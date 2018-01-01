@@ -1,0 +1,154 @@
+@import "./color";
+
+.ball-button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+
+    line-height: 1.5;
+    padding: 6px 15px;
+    margin-bottom: 0;
+    font-size: 12px;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    background-image: none;
+    vertical-align: middle;
+    touch-action: manipulation;
+    white-space: nowrap;
+    user-select: none;
+    border-radius: 4px;
+    transition: color .2s linear,background-color .2s linear,border .2s linear;
+
+    color: @contentFontColor;
+    background-color: @defaultColor;
+    border-color: @borderColor;
+
+    &:hover {
+        color: @primaryHoverColor;
+        background-color: @white;
+        border-color: @primaryHoverColor;
+    }
+
+    &.ball-ghost {
+        color: @contentFontColor;
+        background-color: transparent;
+        border-color: @borderColor;
+        &:hover {
+            color: @primaryHoverColor;
+            background-color: @white;
+            border-color: @primaryHoverColor;
+        }
+    }
+
+    &.ball-dashed {
+        color: @contentFontColor;
+        background-color: transparent;
+        border: 1px dashed @borderColor;
+        &:hover {
+            color: @primaryHoverColor;
+            background-color: @white;
+            border: 1px dashed @primaryHoverColor;
+        }
+    }
+
+    &.ball-text {
+        color: @contentFontColor;
+        background-color: transparent;
+        border-color: transparent;
+        &:hover {
+            color: @primaryHoverColor;
+            border-color: transparent;
+        }
+    }
+
+    &.ball-info {
+        color: @white;
+        background-color: @infoColor;
+        border-color: @infoColor;
+        &:hover {
+            color: @white;
+            background-color: @infoHoverColor;
+            border-color: @infoHoverColor;
+        }
+    }
+
+    &.ball-success {
+        color: @white;
+        background-color: @successColor;
+        border-color: @successColor;
+        &:hover {
+            color: @white;
+            background-color: @successHoverColor;
+            border-color: @successHoverColor;
+        }
+    }
+
+    &.ball-warning {
+        color: @white;
+        background-color: @warningColor;
+        border-color: @warningColor;
+        &:hover {
+            color: @white;
+            background-color: @warningHoverColor;
+            border-color: @warningHoverColor;
+        }
+    }
+
+    &.ball-error {
+        color: @white;
+        background-color: @errorColor;
+        border-color: @errorColor;
+        &:hover {
+            color: @white;
+            background-color: @errorHoverColor;
+            border-color: @errorHoverColor;
+        }
+    }
+
+    &.ball-primary {
+        color: @white;
+        background-color: @primaryColor;
+        border-color: @primaryColor;
+        &:hover {
+            color: @white;
+            background-color: @primaryHoverColor;
+            border-color: @primaryHoverColor;
+        }
+    }
+
+    &.ball-circle {
+        border-radius: 32px;
+    }
+
+    .ball-icon {
+        margin: 0 4px;
+    }
+
+    &.ball-large {
+        padding: 6px 15px 7px;
+        font-size: 14px;
+        &.ball-circle {
+            border-radius: 36px;
+        }
+    }
+    &.ball-small {
+        padding: 2px 7px;
+        font-size: 12px;
+        border-radius: 3px;
+        &.ball-circle {
+            border-radius: 36px;
+        }
+    }
+    &.ball-long {
+        width: 100%;
+    }
+    &.ball-disabled,
+    &.ball-disabled:hover {
+        cursor: not-allowed;
+        color: @disabledFontColor;
+        background-color: @defaultColor;
+        border-color: @borderColor;
+    }
+}
+

@@ -1,0 +1,57 @@
+// 形状
+//
+// @author firede(firede@firede.us)
+
+
+// 快速设置宽度与高度
+// 默认单位为 `px`
+size($values...)
+    if length($values) == 1
+        $values-unit = unit($values) == '' ? 'px' : unit($values)
+
+        width: unit($values, $values-unit)
+        height: unit($values, $values-unit)
+    else
+        $width-unit = unit($values[0]) == '' ? 'px' : unit($values[0])
+        $height-unit = unit($values[1]) == '' ? 'px' : unit($values[1])
+
+        width: unit($values[0], $width-unit)
+        height: unit($values[1], $height-unit)
+
+
+// 三角形
+triangle($direction = top, $size = 10px, $color = #333)
+    size: 0
+
+    if $direction == top
+        border-left: $size solid transparent
+        border-right: $size solid transparent
+        border-bottom: $size solid $color
+    else if $direction == bottom
+        border-left: $size solid transparent
+        border-right: $size solid transparent
+        border-top: $size solid $color
+    else if $direction == left
+        border-top: $size solid transparent
+        border-bottom: $size solid transparent
+        border-right: $size solid $color
+    else if $direction == right
+        border-top: $size solid transparent
+        border-bottom: $size solid transparent
+        border-left: $size solid $color
+
+
+// 圆形
+circle($values...)
+    if length($values) == 1
+        $values-unit = unit($values) == '' ? 'px' : unit($values)
+
+        border-radius: unit($values, $values-unit)
+        size: $values
+    else
+        $horizontal-unit = unit($values[0]) == '' ? 'px' : unit($values[0])
+        $vertical-unit = unit($values[1]) == '' ? 'px' : unit($values[1])
+
+        border-radius: unit($values[0], $horizontal-unit) \/ unit($values[1], $vertical-unit)
+        size: $values[0] $values[1]
+

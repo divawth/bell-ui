@@ -1,0 +1,62 @@
+// breakpoint
+//
+// @author  firede(firede@firede.us)
+
+
+@require 'setting'
+
+breakpoint($min-value, $max-value)
+    // 异常处理
+    unless mixin in ('block' 'root')
+        error('+breakpoint() 需要以 block mixin 的方式使用')
+
+    // media query 数组
+    $mq-array = ()
+
+    if unit($min-value) == ''
+        $min-value = ($-breakpoint-slice[$min-value - 1] + 1 || 0) unless $min-value == 0
+
+    if unit($max-value) == ''
+        if $max-value < length($-breakpoint-slice)
+            $max-value = $-breakpoint-slice[$max-value]
+        else
+            // 最大值为 0 时，代表大于最大的切片的值
+            $max-value = 0
+
+    if $min-value > 1
+        push($mq-array, '(min-width: %s)' % $min-value)
+
+    if $max-value > 1
+        push($mq-array, '(max-width: %s)' % $max-value)
+
+    // join queries
+    $mq-string = join(' and ', $mq-array)
+
+    unless $mq-string
+        error('breakpoint() 无法生成出合法的 media query，请检查参数是否正确')
+
+    @media $mq-string
+        {block}
+
+
+below($value)
+    +breakpoint(0, $value)
+        {block}
+
+
+above($value)
+    +breakpoint($value, length($-breakpoint-slice))
+        {block}
+
+
+at($value)
+    if unit($value) != ''
+        error('$value 必须为 breakpoint 的切片')
+    +breakpoint($value, $value)
+        {block}
+
+
+between($from-value, $to-value)
+    +breakpoint($from-value, $to-value)
+        {block}
+

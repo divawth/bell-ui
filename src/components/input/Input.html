@@ -1,0 +1,30 @@
+<div class="ball-input-wrapper"
+    {{#if style}} style="{{style}}"{{/if}}
+>
+
+    {{#if type != TEXT_TYPE_TEXTAREA}}
+        {{#if !label}}
+        <i class="ball-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>
+        {{else}}
+        <span class="ball-input-label" on-click="click">
+            {{label}}
+        </span>
+        {{/if}}
+
+        <input type="text" class="ball-input{{#if size}} ball-input-{{size}}{{/if}}"
+        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+        {{#if disabled}}disabled="disabled"{{/if}}
+        model="text"
+        ></input>
+
+    {{else}}
+        <textarea class="ball-textarea"
+            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
+            {{#if rows}} rows="{{rows}}"{{/if}}
+            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}
+            {{#if disabled}}disabled="disabled"{{/if}}
+        >
+        </textarea>
+    {{/if}}
+
+</div>
