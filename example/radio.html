@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>button</title>
+</head>
+<body>
+    <script src="https://unpkg.com/yox@latest"></script>
+    <script src="../dep/base.js"></script>
+    <script>
+        (function () {
+            var config = require.config({
+                baseUrl: '../src',
+                packages: [
+                    {
+                        name: 'components',
+                        location: '../src/components'
+                    },
+                    {
+                        name: 'styles',
+                        location: '../src/styles'
+                    }
+                ]
+            });
+        })();
+
+        var styles = '';
+        require(['text!styles/index.css'], function (style) {
+            styles = style;
+        });
+
+        require(['index'], function (index) {
+            index.init();
+            new Yox({
+                el: '#app1',
+                template: '#Template1',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+        });
+    </script>
+    <script id="template1" type="text/plain">
+        <div>
+            <Radio v-model="single" label="Radio"></Radio>
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <div id="app4"></div>
+    <div id="app5"></div>
+    <div id="app6"></div>
+</body>
+</html>

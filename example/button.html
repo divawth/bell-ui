@@ -1,0 +1,223 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>button</title>
+</head>
+<body>
+    <script src="https://unpkg.com/yox@latest"></script>
+    <script src="../dep/base.js"></script>
+    <script>
+        (function () {
+            var config = require.config({
+                baseUrl: '../src',
+                packages: [
+                    {
+                        name: 'components',
+                        location: '../src/components'
+                    },
+                    {
+                        name: 'styles',
+                        location: '../src/styles'
+                    }
+                ]
+            });
+        })();
+
+        var styles = '';
+        require(['text!styles/index.css'], function (style) {
+            styles = style;
+        });
+
+        require(['index'], function (index) {
+            index.init();
+            new Yox({
+                el: '#app1',
+                template: '#buttonTemplate1',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+            new Yox({
+                el: '#app2',
+                template: '#buttonTemplate2',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+            new Yox({
+                el: '#app3',
+                template: '#buttonTemplate3',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+            new Yox({
+                el: '#app4',
+                template: '#buttonTemplate4',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+            new Yox({
+                el: '#app5',
+                template: '#buttonTemplate5',
+                data: function () {
+                    return {
+                        style: styles
+                    }
+                }
+            });
+            new Yox({
+                el: '#app6',
+                template: '#buttonTemplate6',
+                data: function () {
+                    return {
+                        style: styles,
+                        loading: false,
+                        loading2: false
+                    }
+                },
+                methods: {
+                    toLoading: function () {
+                        this.set({
+                            loading: true
+                        });
+                    },
+                    toLoading2: function () {
+                        this.set({
+                            loading2: true
+                        });
+                    }
+                },
+                watchers: {
+                    loading: function () {
+                        console.log(arguments)
+                    }
+                }
+            });
+        });
+    </script>
+    <script id="buttonTemplate1" type="text/plain">
+        <div>
+            <Button label="Default"></Button>
+            <Button type="primary" label="Primary"></Button>
+            <Button type="ghost" label="Ghost"></Button>
+            <Button type="dashed" label="Dashed"></Button>
+            <Button type="text" label="Text"></Button>
+            <br><br>
+            <Button type="info" label="信息按钮"></Button>
+            <Button type="success" label="成功按钮"></Button>
+            <Button type="warning" label="警告按钮"></Button>
+            <Button type="error" label="错误按钮"></Button>
+
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <script id="buttonTemplate2" type="text/plain">
+        <div>
+            <Button type="primary" shape="circle" icon="ios-search"></Button>
+            <Button type="primary" icon="ios-search" label="搜索"></Button>
+            <Button type="primary" shape="circle" icon="ios-search" label="搜索"></Button>
+            <Button type="primary" shape="circle" label="圆角按钮"></Button>
+            <br><br>
+            <Button type="ghost" shape="circle" icon="ios-search"></Button>
+            <Button type="ghost" icon="ios-search" label="搜索"></Button>
+            <Button type="ghost" shape="circle" icon="ios-search" label="搜索"></Button>
+            <Button type="ghost" shape="circle" label="圆角按钮"></Button>
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <script id="buttonTemplate3" type="text/plain">
+        <div>
+            <Button type="primary" size="large" label="Large"></Button>
+            <Button type="primary" label="Default"></Button>
+            <Button type="primary" size="small" label="Small"></Button>
+            <br><br>
+            <Button type="primary" shape="circle" size="large" label="Large"></Button>
+            <Button type="primary" shape="circle" label="Default"></Button>
+            <Button type="primary" shape="circle" size="small" label="Small"></Button>
+
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <script id="buttonTemplate4" type="text/plain">
+        <div>
+            <Button type="success" long label="确认提交"></Button>
+            <br><br>
+            <Button type="error" long label="确认删除"></Button>
+
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <script id="buttonTemplate5" type="text/plain">
+        <div>
+            <Button label="Default"></Button>
+            <Button disabled label="Default(Disabled)"></Button>
+            <br>
+            <Button type="primary" label="Primary"></Button>
+            <Button type="primary" disabled label="Primary(Disabled)"></Button>
+            <br>
+            <Button type="ghost" label="Ghost"></Button>
+            <Button type="ghost" disabled label="Ghost(Disabled)"></Button>
+            <br>
+            <Button type="dashed" label="Dashed"></Button>
+            <Button type="dashed" disabled label="Dashed(Disabled)"></Button>
+            <br>
+            <Button type="text" label="Text"></Button>
+            <Button type="text" disabled label="Text(Disabled)"></Button>
+
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <script id="buttonTemplate6" type="text/plain">
+        <div>
+            <Button type="primary" loading label="Loading..."></Button>
+            <Button type="primary"
+                on-click="toLoading()"
+                label="{{#if !loading}}Click me!{{else}} Loading...{{/if}}">
+            </Button>
+            <Button type="primary"
+                on-click="toLoading2()"
+                icon="checkmark-round"
+                label="{{#if !loading2}}Click me!{{else}} Loading...{{/if}}">
+            </Button>
+
+            <style>
+                {{{style}}}
+            </style>
+        </div>
+    </script>
+
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <div id="app4"></div>
+    <div id="app5"></div>
+    <div id="app6"></div>
+</body>
+</html>

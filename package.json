@@ -1,0 +1,29 @@
+{
+  "name": "Ball-UI",
+  "version": "0.0.1",
+  "description": "edp project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "edp": {
+    "wwwroot": "/",
+    "depDir": "dep",
+    "srcDir": "src",
+    "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+    "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+    "dependencies": {}
+  },
+  "dependencies": {
+    "edp-provider-rider": "^2.0.0",
+    "styl": "^0.2.9"
+  },
+  "author": "",
+  "repository": "empty",
+  "license": "BSD",
+  "readme": "README",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.19.0"
+  }
+}

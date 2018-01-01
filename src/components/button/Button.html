@@ -1,0 +1,16 @@
+<div class="ball-button
+    {{#if type}} ball-{{type}}{{/if}}
+    {{#if shape}} ball-{{shape}}{{/if}}
+    {{#if size}} ball-{{size}}{{/if}}
+    {{#if long}} ball-long{{/if}}
+    {{#if disabled}} ball-disabled{{/if}}
+" on-click="click">
+
+    {{#if icon}}
+        <i class="ball-icon {{icon}}"></i>
+    {{/if}}
+
+    <span>
+        {{label}}
+    </span>
+</div>
