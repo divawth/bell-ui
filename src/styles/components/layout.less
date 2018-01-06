@@ -1,0 +1,162 @@
+@import "../custom";
+
+.bell-layout {
+    text-align: center;
+    background: @layout-body-background;
+    color: @layout-body-font-color;
+    user-select: none;
+
+    .bell-footer,
+    .bell-header {
+        box-shadow: 0 0 5px @layout-header-shadow;
+        height: @layout-header-height;
+        line-height: @layout-header-height;
+        background-color: @layout-header-background;
+    }
+
+    .bell-footer {
+        background-color: @layout-footer-background;
+    }
+
+    .bell-sider,
+    .bell-content {
+        overflow: hidden;
+        background: @layout-sider-background;
+    }
+
+    .bell-content {
+        background-color: @layout-content-background;
+    }
+
+    &.bell-has-sider {
+        text-align: left;
+        position: relative;
+
+        > .bell-sider,
+        > .bell-content {
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        > .bell-sider {
+            width: 20%;
+        }
+        > .bell-content,
+        > .bell-layout {
+            width: 80%;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    .bell-header {
+        position: relative;
+
+        .bell-logo {
+            padding: @layout-header-logo-padding;
+            width: @layout-header-logo-width;
+            height: @layout-header-height;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .bell-title {
+            position: absolute;
+            left: @layout-header-logo-width;
+        }
+
+        .bell-menu {
+            display: inline-block;
+            height: @layout-header-height;
+            .bell-menu-item {
+                display: inline-block;
+                padding: 0 20px;
+                cursor: pointer;
+                border-bottom: 2px solid transparent;
+                height: @layout-header-height;
+                box-sizing: border-box;
+
+                &:hover {
+                    border-bottom-color: @primaryColor;
+                }
+            }
+        }
+    }
+
+    .bell-sider {
+        .bell-user-info {
+            text-align: center;
+            padding: 20px;
+
+            > .bell-user-title {
+                text-align: left;
+                margin-bottom: 20px;
+            }
+
+            > img {
+                overflow: hidden;
+                border-radius: 100px;
+            }
+
+            > .bell-user-name {
+                color: #f6f6f7;
+                display: block;
+                margin-top: 5px;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            > .bell-user-company {
+                margin-top: 5px;
+                color: #888C92;
+            }
+        }
+
+        .bell-menu {
+            .bell-menu-item {
+                height: @layout-sider-menu-item-height;
+                line-height: @layout-sider-menu-item-height;
+                border-right: 2px solid transparent;
+                padding: 0 15px;
+                box-sizing: border-box;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: @layout-sider-menu-item-background;
+                    border-right-color: @primaryColor;
+                    color: @primaryColor;
+                }
+            }
+        }
+    }
+
+    .bell-content {
+
+        .bell-bread-crumb {
+            color: @layout-content-bread-crumb;
+            padding: @layout-content-bread-crumb-padding;
+
+            .bell-bread-crumb-gap {
+                display: inline-block;
+                margin: 0 10px;
+            }
+
+            .bell-bread-crumb-item {
+                &:last-child {
+                    font-weight: bold;
+                    color: #000;
+
+                    .bell-bread-crumb-gap {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+    }
+}
