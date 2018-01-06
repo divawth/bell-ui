@@ -1,0 +1,265 @@
+.bell-button {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  padding: 6px 15px;
+  margin-bottom: 0;
+  font-size: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-image: none;
+  vertical-align: middle;
+  touch-action: manipulation;
+  white-space: nowrap;
+  user-select: none;
+  border-radius: 4px;
+  transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
+  color: #495060;
+  background-color: #f7f7f7;
+  border-color: #dddee1;
+}
+.bell-button:hover {
+  color: #57a3f3;
+  background-color: #fff;
+  border-color: #57a3f3;
+}
+.bell-button.bell-ghost {
+  color: #495060;
+  background-color: transparent;
+  border-color: #dddee1;
+}
+.bell-button.bell-ghost:hover {
+  color: #57a3f3;
+  background-color: #fff;
+  border-color: #57a3f3;
+}
+.bell-button.bell-dashed {
+  color: #495060;
+  background-color: transparent;
+  border: 1px dashed #dddee1;
+}
+.bell-button.bell-dashed:hover {
+  color: #57a3f3;
+  background-color: #fff;
+  border: 1px dashed #57a3f3;
+}
+.bell-button.bell-text {
+  color: #495060;
+  background-color: transparent;
+  border-color: transparent;
+}
+.bell-button.bell-text:hover {
+  color: #57a3f3;
+  border-color: transparent;
+}
+.bell-button.bell-info {
+  color: #fff;
+  background-color: #57a3f3;
+  border-color: #57a3f3;
+}
+.bell-button.bell-info:hover {
+  color: #fff;
+  background-color: #57c5f7;
+  border-color: #57c5f7;
+}
+.bell-button.bell-success {
+  color: #fff;
+  background-color: #19be6b;
+  border-color: #19be6b;
+}
+.bell-button.bell-success:hover {
+  color: #fff;
+  background-color: #47cb89;
+  border-color: #47cb89;
+}
+.bell-button.bell-warning {
+  color: #fff;
+  background-color: #f90;
+  border-color: #f90;
+}
+.bell-button.bell-warning:hover {
+  color: #fff;
+  background-color: #ffad33;
+  border-color: #ffad33;
+}
+.bell-button.bell-error {
+  color: #fff;
+  background-color: #ed3f14;
+  border-color: #ed3f14;
+}
+.bell-button.bell-error:hover {
+  color: #fff;
+  background-color: #f16543;
+  border-color: #f16543;
+}
+.bell-button.bell-primary {
+  color: #fff;
+  background-color: #1c90f3;
+  border-color: #1c90f3;
+}
+.bell-button.bell-primary:hover {
+  color: #fff;
+  background-color: #57a3f3;
+  border-color: #57a3f3;
+}
+.bell-button.bell-circle {
+  border-radius: 32px;
+}
+.bell-button .bell-icon {
+  margin: 0 4px;
+}
+.bell-button.bell-large {
+  padding: 6px 15px 7px;
+  font-size: 14px;
+}
+.bell-button.bell-large.bell-circle {
+  border-radius: 36px;
+}
+.bell-button.bell-small {
+  padding: 2px 7px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.bell-button.bell-small.bell-circle {
+  border-radius: 36px;
+}
+.bell-button.bell-long {
+  width: 100%;
+}
+.bell-button.bell-disabled,
+.bell-button.bell-disabled:hover {
+  cursor: not-allowed;
+  color: #bbbec4;
+  background-color: #f7f7f7;
+  border-color: #dddee1;
+}
+.bell-layout {
+  text-align: center;
+  background: #f5f7f9;
+  color: #fff;
+  user-select: none;
+}
+.bell-layout .bell-footer,
+.bell-layout .bell-header {
+  box-shadow: 0 0 5px rgba(28, 34, 43, 0);
+  height: 64px;
+  line-height: 64px;
+  background-color: #1D232B;
+}
+.bell-layout .bell-footer {
+  background-color: #1D232B;
+}
+.bell-layout .bell-sider,
+.bell-layout .bell-content {
+  overflow: hidden;
+  background: #212831;
+}
+.bell-layout .bell-content {
+  background-color: #f8f8f8;
+}
+.bell-layout.bell-has-sider {
+  text-align: left;
+  position: relative;
+}
+.bell-layout.bell-has-sider > .bell-sider,
+.bell-layout.bell-has-sider > .bell-content {
+  display: inline-block;
+  box-sizing: border-box;
+}
+.bell-layout.bell-has-sider > .bell-sider {
+  width: 20%;
+}
+.bell-layout.bell-has-sider > .bell-content,
+.bell-layout.bell-has-sider > .bell-layout {
+  width: 80%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.bell-layout .bell-header {
+  position: relative;
+}
+.bell-layout .bell-header .bell-logo {
+  padding: 15px 20px;
+  width: 100px;
+  height: 64px;
+  float: left;
+  box-sizing: border-box;
+}
+.bell-layout .bell-header .bell-title {
+  position: absolute;
+  left: 100px;
+}
+.bell-layout .bell-header .bell-menu {
+  display: inline-block;
+  height: 64px;
+}
+.bell-layout .bell-header .bell-menu .bell-menu-item {
+  display: inline-block;
+  padding: 0 20px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  height: 64px;
+  box-sizing: border-box;
+}
+.bell-layout .bell-header .bell-menu .bell-menu-item:hover {
+  border-bottom-color: #1c90f3;
+}
+.bell-layout .bell-sider .bell-user-info {
+  text-align: center;
+  padding: 20px;
+}
+.bell-layout .bell-sider .bell-user-info > .bell-user-title {
+  text-align: left;
+  margin-bottom: 20px;
+}
+.bell-layout .bell-sider .bell-user-info > img {
+  overflow: hidden;
+  border-radius: 100px;
+}
+.bell-layout .bell-sider .bell-user-info > .bell-user-name {
+  color: #f6f6f7;
+  display: block;
+  margin-top: 5px;
+  text-decoration: none;
+}
+.bell-layout .bell-sider .bell-user-info > .bell-user-name:hover {
+  text-decoration: underline;
+}
+.bell-layout .bell-sider .bell-user-info > .bell-user-company {
+  margin-top: 5px;
+  color: #888C92;
+}
+.bell-layout .bell-sider .bell-menu .bell-menu-item {
+  height: 50px;
+  line-height: 50px;
+  border-right: 2px solid transparent;
+  padding: 0 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.bell-layout .bell-sider .bell-menu .bell-menu-item:hover {
+  background-color: #49505F;
+  border-right-color: #1c90f3;
+  color: #1c90f3;
+}
+.bell-layout .bell-content .bell-bread-crumb {
+  color: #999;
+  padding: 20px;
+}
+.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-gap {
+  display: inline-block;
+  margin: 0 10px;
+}
+.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-item:last-child {
+  font-weight: bold;
+  color: #000;
+}
+.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-item:last-child .bell-bread-crumb-gap {
+  display: none;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
