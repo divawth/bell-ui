@@ -1,0 +1,28 @@
+@import "../custom";
+
+.bell-bread-crumb {
+    padding: @bread-crumb-padding;
+
+    .bell-bread-crumb-gap {
+        display: inline-block;
+        margin: 0 10px;
+        color: @bread-crumb-link-color;
+    }
+    .bell-bread-crumb-link {
+        cursor: pointer;
+        text-decoration: none;
+        color: @bread-crumb-link-color;
+    }
+
+    .bell-bread-crumb-item {
+        &:last-child {
+            .bell-bread-crumb-link {
+                font-weight: bold;
+                color: #000;
+            }
+            .bell-bread-crumb-gap {
+                display: none;
+            }
+        }
+    }
+}

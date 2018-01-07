@@ -19,6 +19,9 @@
   background-color: #f7f7f7;
   border-color: #dddee1;
 }
+.bell-button + .bell-button {
+  margin-left: 10px;
+}
 .bell-button:hover {
   color: #57a3f3;
   background-color: #fff;
@@ -247,24 +250,6 @@
   border-right-color: #1c90f3;
   color: #1c90f3;
 }
-.bell-layout .bell-content .bell-bread-crumb {
-  color: #999;
-  padding: 20px;
-}
-.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-gap {
-  display: inline-block;
-  margin: 0 10px;
-}
-.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-link {
-  cursor: pointer;
-}
-.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-item:last-child {
-  font-weight: bold;
-  color: #000;
-}
-.bell-layout .bell-content .bell-bread-crumb .bell-bread-crumb-item:last-child .bell-bread-crumb-gap {
-  display: none;
-}
 .bell-layout .bell-card {
   background: #fff;
   border-radius: 4px;
@@ -362,6 +347,26 @@
 .bell-input-wrapper .bell-input[disabled]:hover,
 .bell-input-wrapper .bell-textarea[disabled]:hover {
   border-color: #dddee1;
+}
+.bell-bread-crumb {
+  padding: 15px;
+}
+.bell-bread-crumb .bell-bread-crumb-gap {
+  display: inline-block;
+  margin: 0 10px;
+  color: #999;
+}
+.bell-bread-crumb .bell-bread-crumb-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #999;
+}
+.bell-bread-crumb .bell-bread-crumb-item:last-child .bell-bread-crumb-link {
+  font-weight: bold;
+  color: #000;
+}
+.bell-bread-crumb .bell-bread-crumb-item:last-child .bell-bread-crumb-gap {
+  display: none;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
