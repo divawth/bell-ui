@@ -25,6 +25,7 @@
     }
 
     .bell-content {
+        overflow: auto;
         background-color: @layout-content-background;
     }
 
@@ -40,6 +41,7 @@
 
         > .bell-sider {
             width: 20%;
+            height: 100%;
         }
         > .bell-content,
         > .bell-layout {
@@ -145,6 +147,9 @@
                 display: inline-block;
                 margin: 0 10px;
             }
+            .bell-bread-crumb-link {
+                cursor: pointer;
+            }
 
             .bell-bread-crumb-item {
                 &:last-child {
@@ -158,5 +163,24 @@
             }
         }
 
+    }
+
+    .bell-card {
+        background: @layout-card-background;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.2;
+        color: @layout-card-font-color;
+
+        border: 1px solid @layout-card-border-color;
+        margin: @layout-card-margin;
+        padding: @layout-card-padding;
+
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 1px 6px rgba(0,0,0,.2);
+            border-color: @layout-card-border-color-hover;
+        }
     }
 }

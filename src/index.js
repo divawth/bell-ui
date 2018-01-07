@@ -13,8 +13,11 @@ import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
 import Breadcrumb from './components/layout/Breadcrumb'
 import BreadcrumbItem from './components/layout/BreadcrumbItem'
+import Card from './components/layout/Card'
 
 import Button from './components/button/Button'
+
+import Input from './components/input/Input'
 
 Yox.component({
     Layout: Layout,
@@ -27,6 +30,8 @@ Yox.component({
     Submenu: Submenu,
     Breadcrumb: Breadcrumb,
     BreadcrumbItem: BreadcrumbItem,
+    Card: Card,
 
     Button: Button,
+    Input: Input,
 });
