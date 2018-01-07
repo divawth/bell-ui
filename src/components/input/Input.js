@@ -1,5 +1,36 @@
 export default {
-    template: require('tpl!./Input.html'),
+    template: `
+    <div class="bell-input-wrapper"
+    {{#if style}} style="{{style}}"{{/if}}
+>
+
+    {{#if type != TEXT_TYPE_TEXTAREA}}
+        {{#if !label}}
+        <i class="bell-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>
+        {{else}}
+        <span class="bell-input-label" on-click="click">
+            {{label}}
+        </span>
+        {{/if}}
+
+        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"
+        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+        {{#if disabled}}disabled="disabled"{{/if}}
+        model="text"
+        ></input>
+
+    {{else}}
+        <textarea class="bell-textarea"
+            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
+            {{#if rows}} rows="{{rows}}"{{/if}}
+            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}
+            {{#if disabled}}disabled="disabled"{{/if}}
+        >
+        </textarea>
+    {{/if}}
+
+</div>
+    `,
 
     propTypes: {
         placeholder: {
@@ -36,8 +67,8 @@ export default {
     data: function () {
         return {
             text: '',
-            TEXT_TYPE_INPUT: TEXT_TYPE_INPUT,
-            TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA
+            TEXT_TYPE_INPUT: 'input',
+            TEXT_TYPE_TEXTAREA: 'textarea'
         }
     },
     watchers: {
