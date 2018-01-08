@@ -19,7 +19,9 @@
         background-color: @select-background;
         border-radius: @select-button-border-radius;
         border: 1px solid @select-button-border-color;
+
         height: @select-button-height;
+        line-height: @select-button-height;
 
         transition: all .2s ease-in-out;
 
@@ -43,6 +45,7 @@
             line-height: @select-button-height;
             font-size: @select-button-placeholder-font-size;
             padding: @select-button-placeholder-padding;
+
             color: @disabledFontColor;
 
             &.bell-hide {
@@ -79,11 +82,12 @@
         box-shadow: @boxShadow;
         border-radius: @select-button-border-radius;
 
-        max-height: @select-dropdown-height;
         position: absolute;
         left: 0;
-        top: @select-dropdown-top;
         z-index: @zindex-select;
+
+        max-height: @select-dropdown-height;
+        top: @select-dropdown-top;
 
         &.bell-hide {
             display: none;
@@ -121,9 +125,57 @@
 }
 
 .bell-select-small {
+    .bell-select-button {
+        height: @select-small-button-height;
+        line-height: @select-small-button-height;
+        .bell-select-value,
+        .bell-select-placeholder {
+            height: @select-small-button-height;
+            line-height: @select-small-button-height;
+            font-size: @select-button-placeholder-font-size;
+            padding: @select-small-button-placeholder-padding;
+        }
+    }
 
+    .bell-select-dropdown {
+        max-height: @select-small-dropdown-height;
+        top: @select-small-dropdown-top;
+        .bell-select-dropdown-list {
+            padding: @select-small-dropdown-padding;
+
+            .bell-select-dropdown-item {
+                padding: @select-small-dropdown-item-padding;
+            }
+        }
+    }
 }
 
 .bell-select-large {
+    .bell-select-button {
+        height: @select-large-button-height;
+        line-height: @select-large-button-height;
+        .bell-select-value,
+        .bell-select-placeholder {
+            height: @select-large-button-height;
+            line-height: @select-large-button-height;
+            font-size: @select-large-button-placeholder-font-size;
+            padding: @select-large-button-placeholder-padding;
+        }
+        .bell-select-value {
+            font-size: @select-large-button-font-size;
+        }
+    }
 
+    .bell-select-dropdown {
+        max-height: @select-large-dropdown-height;
+        top: @select-large-dropdown-top;
+        .bell-select-dropdown-list {
+            padding: @select-large-dropdown-padding;
+
+            .bell-select-dropdown-item {
+                padding: @select-large-dropdown-item-padding;
+                font-size: @select-large-dropdown-font-size;
+            }
+        }
+    }
 }
