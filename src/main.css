@@ -371,6 +371,7 @@
 .bell-select {
   display: inline-block;
   width: 100%;
+  position: relative;
   box-sizing: border-box;
   vertical-align: middle;
   color: #495060;
@@ -390,6 +391,15 @@
   height: 32px;
   transition: all 0.2s ease-in-out;
 }
+.bell-select .bell-select-button:hover {
+  border-color: #57a3f3;
+}
+.bell-select .bell-select-button.bell-active {
+  border-color: #57a3f3;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(45, 140, 240, 0.2);
+}
+.bell-select .bell-select-button .bell-select-value,
 .bell-select .bell-select-button .bell-select-placeholder {
   display: block;
   overflow: hidden;
@@ -400,6 +410,14 @@
   font-size: 12px;
   padding: 0px 15px;
   color: #bbbec4;
+}
+.bell-select .bell-select-button .bell-select-value.bell-hide,
+.bell-select .bell-select-button .bell-select-placeholder.bell-hide {
+  display: none;
+}
+.bell-select .bell-select-button .bell-select-value {
+  font-size: 14px;
+  color: #495060;
 }
 .bell-select .bell-select-button .bell-select-arrow {
   position: absolute;
@@ -415,21 +433,45 @@
   content: "\F104";
 }
 .bell-select .bell-select-dropdown {
+  width: 100%;
   overflow: auto;
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  max-height: 200px;
-  padding: 5px 0;
   border-radius: 4px;
-  width: 100%;
-  transform-origin: center top 0px;
+  max-height: 200px;
   position: absolute;
-  left: 9px;
-  top: 32px;
+  left: 0;
+  top: 36px;
+  z-index: 900;
 }
 .bell-select .bell-select-dropdown.bell-hide {
   display: none;
+}
+.bell-select .bell-select-dropdown .bell-select-dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding: 5px 0;
+}
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item {
+  clear: both;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  color: #495060;
+  font-size: 12px;
+}
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item:hover {
+  background-color: #f3f3f3;
+}
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-focus {
+  background-color: #f3f3f3;
+}
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-active {
+  color: #fff;
+  background: rgba(45, 140, 240, 0.9);
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;

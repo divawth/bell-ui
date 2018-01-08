@@ -26,6 +26,10 @@
 @backgroundColor                    :                       #f8f8f9;
 
 @boxShadow: 0 1px 6px rgba(0,0,0,.2);
+
+@smallFontSize: 12px;
+@normalFontSize: 14px;
+
 // Layout
 @layout-body-font-color      : #fff;
 @layout-body-background      : #f5f7f9;
@@ -62,9 +66,38 @@
 
 
 @select-font-color: #495060;
-@select-font-size: 14px;
+@select-font-size: @normalFontSize;
 @select-background: #fff;
+
+@select-button-border-color: @borderColor;
+@select-button-border-hover-color: @infoColor;
+@select-button-border-active-color: @select-button-border-hover-color;
+@select-button-border-active-shadow: 0 0 0 2px rgba(45,140,240,.2);
 @select-button-border-radius: 4px;
 @select-button-height: 32px;
-@select-button-placeholder-font-size: 12px;
+@select-button-placeholder-font-size: @smallFontSize;
+@select-button-placeholder-font-color: @disabledFontColor;
 @select-button-placeholder-padding: 0px 15px;
+
+@select-dropdown-top: 36px;
+@select-dropdown-height: 200px;
+@select-dropdown-padding: 5px 0;
+@select-dropdown-item-padding: 8px 15px;
+@select-dropdown-font-size: @smallFontSize;
+@select-dropdown-item-hover-background: #f3f3f3;
+@select-dropdown-item-active-background: @infoColor;
+
+
+
+@zindex-spin            : 8;
+@zindex-affix           : 10;
+@zindex-back-top        : 10;
+@zindex-select          : 900;
+@zindex-modal           : 1000;
+@zindex-message         : 1010;
+@zindex-notification    : 1010;
+@zindex-tooltip         : 1060;
+@zindex-transfer        : 1060;
+@zindex-loading-bar     : 2000;
+@zindex-spin-fullscreen : 2010;
+

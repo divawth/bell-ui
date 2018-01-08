@@ -3,7 +3,6 @@ export default {
 <div class="bell-input-wrapper"
     {{#if style}} style="{{style}}"{{/if}}
 >
-
     {{#if type != TEXT_TYPE_TEXTAREA}}
         {{#if !label}}
             <i class="bell-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>

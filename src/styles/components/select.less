@@ -1,6 +1,7 @@
 .bell-select {
     display: inline-block;
     width: 100%;
+    position: relative;
     box-sizing: border-box;
     vertical-align: middle;
     color: @select-font-color;
@@ -17,11 +18,21 @@
 
         background-color: @select-background;
         border-radius: @select-button-border-radius;
-        border: 1px solid @borderColor;
+        border: 1px solid @select-button-border-color;
         height: @select-button-height;
 
         transition: all .2s ease-in-out;
 
+        &:hover {
+            border-color: @select-button-border-hover-color;
+        }
+        &.bell-active {
+            border-color: @select-button-border-active-color;
+            outline: 0;
+            box-shadow: @select-button-border-active-shadow;
+        }
+
+        .bell-select-value,
         .bell-select-placeholder {
             display: block;
             overflow: hidden;
@@ -33,6 +44,15 @@
             font-size: @select-button-placeholder-font-size;
             padding: @select-button-placeholder-padding;
             color: @disabledFontColor;
+
+            &.bell-hide {
+                display: none;
+            }
+        }
+
+        .bell-select-value {
+            font-size: @select-font-size;
+            color: @select-font-color;
         }
 
         .bell-select-arrow {
@@ -52,25 +72,58 @@
     }
 
     .bell-select-dropdown {
-
+        width: 100%;
         overflow: auto;
         background-color: @select-background;
         box-sizing: border-box;
         box-shadow: @boxShadow;
+        border-radius: @select-button-border-radius;
 
-        max-height: 200px;
-        padding: 5px 0;
-        border-radius: 4px;
-
-        width: 100%;
-
-        transform-origin: center top 0px;
+        max-height: @select-dropdown-height;
         position: absolute;
-        left: 9px;
-        top: 32px;
+        left: 0;
+        top: @select-dropdown-top;
+        z-index: @zindex-select;
 
         &.bell-hide {
             display: none;
         }
+
+        .bell-select-dropdown-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            padding: @select-dropdown-padding;
+
+            .bell-select-dropdown-item {
+                clear: both;
+                white-space: nowrap;
+                list-style: none;
+                cursor: pointer;
+
+                padding: @select-dropdown-item-padding;
+                color: @contentFontColor;
+                font-size: @select-dropdown-font-size;
+
+                &:hover {
+                    background-color: @select-dropdown-item-hover-background;
+                }
+                &.bell-focus {
+                    background-color: @select-dropdown-item-hover-background;
+                }
+                &.bell-active {
+                    color: #fff;
+                    background: rgba(45,140,240,.9);
+                }
+            }
+        }
     }
+}
+
+.bell-select-small {
+
+}
+
+.bell-select-large {
+
 }

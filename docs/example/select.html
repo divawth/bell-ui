@@ -18,10 +18,8 @@
             height: 120px !important;
         }
 
-        .bell-content {
-            color: #000;
-            height: 120px;
-            line-height: 120px;
+        .bell-select {
+            margin: 30px;
         }
     </style>
 </head>
@@ -37,12 +35,18 @@
 
 
     <script id="template-1" type="text/plain">
-        <Select model="value" style="width:200px" defaultText="请选择...">
+        <Select list="{{data}}" model="value" style="width: 200px" defaultText="请选择...">
         </Select>
     </script>
 
     <script id="template-2" type="text/plain">
+        <div>
+            <Select list="{{data}}" size="large" style="width: 200px" model="value" defaultText="请选择..." ></Select>
 
+            <Select list="{{data}}" model="value" style="width: 200px" defaultText="请选择..." ></Select>
+
+            <Select list="{{data}}" size="small" style="width: 200px" model="value" defaultText="请选择..." ></Select>
+        </div>
     </script>
 
     <script id="template-3" type="text/plain">
@@ -59,7 +63,25 @@
             el: '#app-1',
             template: '#template-1',
             data: {
-                value: 'fss'
+                value: '1',
+                data: [
+                    {
+                        text: 'option 1',
+                        val: '1'
+                    },
+                    {
+                        text: 'option 2',
+                        val: '2'
+                    },
+                    {
+                        text: 'option 3',
+                        val: '3'
+                    },
+                    {
+                        text: 'option 4',
+                        val: '4'
+                    }
+                ]
             },
             watchers: {
                 value: function (value) {
@@ -67,10 +89,32 @@
                 }
             }
         });
-        // new Yox({
-        //     el: '#app-2',
-        //     template: '#template-2'
-        // });
+
+        new Yox({
+            el: '#app-2',
+            template: '#template-2',
+            data: {
+                value: '1',
+                data: [
+                    {
+                        text: 'option 1',
+                        val: '1'
+                    },
+                    {
+                        text: 'option 2',
+                        val: '2'
+                    },
+                    {
+                        text: 'option 3',
+                        val: '3'
+                    },
+                    {
+                        text: 'option 4',
+                        val: '4'
+                    }
+                ]
+            },
+        });
 
         // new Yox({
         //     el: '#app-3',
