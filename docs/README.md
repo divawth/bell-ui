@@ -12,12 +12,52 @@
 
 # Breadcrumb 面包屑
 
-<a href="./example/Breadcrumb.html">
+<a href="./example/breadcrumb.html">
     Breadcrumb
 </a>
 
-1 通过设置 to 属性添加链接
-2 修改 separator 界定符
+> 1.通过设置 to 属性添加链接
+
+> 2.修改 separator 界定符
+
+# Input 输入框
+
+<a href="./example/input.html">
+    Input
+</a>
+
+> 1.通过设置 style 属性修改样式
+
+> 2.修改 size 修改大小 small large
+
+> 3.placeholder 修改 placeholder 值
+
+> 4.修改 label 值
+
+> 5.type 可取 input 和 textarea
+
+> 6.rows type 为 textarea 时设置列数
+
+> 7.disabled 状态
+
+
+# Select 选择器
+
+<a href="./example/select.html">
+    Select
+</a>
+
+> 1.model 双向绑定
+
+> 2.可以给 Select 添加 style 样式，比如宽度
+
+> 3.在展开选择器后，可以使用键盘的 up 和 down 快速上下选择，按下 Enter 选择，按下 Esc 收起选择器。
+
+> 4.通过设置 size 属性为 large 和 small 将输入框设置为大和小尺寸，不设置为默认（中）尺寸。
+
+> 5.通过给 Select 设置属性 disabled 禁用整个选择器
+
+
 
 # Table 表格
 
@@ -29,9 +69,6 @@
 6 selection 是否需要 input 列
 7 loading
 8 action
-
-
-# Select 选择器
 
 # DatePicker 日期选择器
 
@@ -47,11 +84,6 @@
 
 # Menu 导航菜单
 
-
-
-
-
-# Input 输入框
 
 # Radio 单选框
 

@@ -4,134 +4,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Input</title>
-    <link rel="stylesheet" type="text/css" href="../src/main.css">
+    <link rel="stylesheet" type="text/css" href="../../src/main.css">
+
+    <style>
+        .bell-app {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <script src="../dep/base.js"></script>
-    <script src="../src/main.js"></script>
-    <script id="inputTemplate1" type="text/plain">
+    <script src="../../dep/base.js"></script>
+    <script src="../../src/main.js"></script>
+
+    <script id="template-1" type="text/plain">
         <div>
             <Input placeholder="请输入..."
                 style="width: 300px"
-                value="{{value}}"
-                onValueChange="{{onValueChange}}"
+                model="value"
             ></Input>
-
-            <style>
-                {{{style}}}
-            </style>
         </div>
     </script>
 
-    <script id="inputTemplate2" type="text/plain">
+    <script id="template-2" type="text/plain">
         <div>
             <Input placeholder="large size"
-                value="{{value1}}"
+                model="value"
                 size="large"
             ></Input>
             <br>
             <Input placeholder="default size"
-                value="{{value2}}"
+                model="value"
             ></Input>
             <br>
             <Input placeholder="small size"
                 size="small"
-                value="{{value3}}"
+                model="value"
             ></Input>
-
-            <style>
-                {{{style}}}
-            </style>
         </div>
     </script>
 
-    <script id="inputTemplate3" type="text/plain">
+    <script id="template-3" type="text/plain">
         <div>
             <Input icon="ios-clock-outline"
                 label="search"
                 placeholder="请输入..."
                 style="width: 200px"
-                value="{{value4}}"
+                model="value"
                 on-click="click()"
             ></Input>
-
-            <style>
-                {{{style}}}
-            </style>
         </div>
     </script>
 
-
-    <script id="inputTemplate4" type="text/plain">
+    <script id="template-4" type="text/plain">
         <div>
             <Input
-                value="{{value5}}"
-                type="textarea"
-                placeholder="请输入..."
-            >
-            </Input>
-
-            <Input
-                value="{{value6}}"
+                model="value"
                 type="textarea"
                 rows="4"
                 placeholder="请输入..."
             >
             </Input>
-
-            <style>
-                {{{style}}}
-            </style>
         </div>
     </script>
 
-    <script id="inputTemplate5" type="text/plain">
+    <script id="template-5" type="text/plain">
         <div>
             <Input
-                value="{{value7}}"
-                placeholder="请输入..."
-                disabled
-            >
-            </Input>
-
-            <Input
-                value="{{value8}}"
+                model="value"
                 type="textarea"
                 rows="4"
                 placeholder="请输入..."
-                disabled
+                disabled="true"
             >
             </Input>
-
-            <style>
-                {{{style}}}
-            </style>
         </div>
     </script>
 
-    <div id="app1"></div>
-    <div id="app2"></div>
-    <div id="app3"></div>
-    <div id="app4"></div>
-    <div id="app5"></div>
-    <div id="app6"></div>
+    <div class="bell-app" id="app-1"></div>
+    <div class="bell-app" id="app-2"></div>
+    <div class="bell-app" id="app-3"></div>
+    <div class="bell-app" id="app-4"></div>
+    <div class="bell-app" id="app-5"></div>
 
     <script>
         new Yox({
-            el: '#app1',
-            template: '#inputTemplate1'
+            el: '#app-1',
+            template: '#template-1',
+            data: function () {
+                return {
+                    value: '2121'
+                }
+            },
+            watchers: {
+                value: function (value) {
+                    console.log(value);
+                }
+            }
         });
         new Yox({
-            el: '#app2',
-            template: '#inputTemplate2'
+            el: '#app-2',
+            template: '#template-2',
+            data: function () {
+                return {
+                    value: '2121'
+                }
+            },
+            watchers: {
+                value: function (value) {
+                    console.log(value);
+                }
+            }
         });
         new Yox({
-            el: '#app3',
-            template: '#inputTemplate3'
+            el: '#app-3',
+            template: '#template-3',
+            data: function () {
+                return {
+                    value: 'template-3'
+                }
+            },
+            methods: {
+                click: function () {
+                    console.log('click')
+                }
+            }
         });
         new Yox({
-            el: '#app4',
-            template: '#inputTemplate4'
+            el: '#app-4',
+            template: '#template-4'
+        });
+        new Yox({
+            el: '#app-5',
+            template: '#template-5'
         });
     </script>
 

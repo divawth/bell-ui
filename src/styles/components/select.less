@@ -1,0 +1,76 @@
+.bell-select {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    color: @select-font-color;
+    font-size: @select-font-size;
+    line-height: 1.2;
+    user-select: none;
+
+    .bell-select-button {
+        display: block;
+        box-sizing: border-box;
+        outline: 0;
+        cursor: pointer;
+        position: relative;
+
+        background-color: @select-background;
+        border-radius: @select-button-border-radius;
+        border: 1px solid @borderColor;
+        height: @select-button-height;
+
+        transition: all .2s ease-in-out;
+
+        .bell-select-placeholder {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            height: @select-button-height;
+            line-height: @select-button-height;
+            font-size: @select-button-placeholder-font-size;
+            padding: @select-button-placeholder-padding;
+            color: @disabledFontColor;
+        }
+
+        .bell-select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            line-height: 1;
+            margin-top: -7px;
+            font-size: 14px;
+            color: #80848f;
+            transition: all .2s ease-in-out;
+
+            &:before {
+                content: "\F104";
+            }
+        }
+    }
+
+    .bell-select-dropdown {
+
+        overflow: auto;
+        background-color: @select-background;
+        box-sizing: border-box;
+        box-shadow: @boxShadow;
+
+        max-height: 200px;
+        padding: 5px 0;
+        border-radius: 4px;
+
+        width: 100%;
+
+        transform-origin: center top 0px;
+        position: absolute;
+        left: 9px;
+        top: 32px;
+
+        &.bell-hide {
+            display: none;
+        }
+    }
+}

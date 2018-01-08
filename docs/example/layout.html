@@ -29,49 +29,40 @@
     <script src="../../dep/base.js"></script>
     <script src="../../src/main.js"></script>
 
-    <div id="app">
+    <div id="app-1" class="bell-app"></div>
+    <div id="app-2" class="bell-app"></div>
+    <div id="app-3" class="bell-app"></div>
+    <div id="app-4" class="bell-app"></div>
+    <div id="app-5" class="bell-app"></div>
+    <div id="app-6" class="bell-app"></div>
+    <div id="app-7" class="bell-app"></div>
 
-    </div>
 
-    <script id="template" type="text/plain">
+    <script id="template-1" type="text/plain">
         <div class="app">
-           <!--  <Layout>
-                221112
-            </Layout>
-
             <Layout>
                 <Header>Header</Header>
                 <Content>Content</Content>
                 <Footer>Footer</Footer>
-            </Layout> -->
+            </Layout>
+        </div>
+    </script>
 
-            <!-- <Layout>
+    <script id="template-2" type="text/plain">
+        <div class="app">
+            <Layout>
                 <Header>Header</Header>
                 <Layout>
                     <Sider hide-trigger>Sider</Sider>
                     <Content>Content</Content>
                 </Layout>
                 <Footer>Footer</Footer>
-            </Layout> -->
+            </Layout>
+        </div>
+    </script>
 
-            <!-- <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Content>Content</Content>
-                    <Sider hide-trigger>Sider</Sider>
-                </Layout>
-                <Footer>Footer</Footer>
-            </Layout> -->
-
-            <!-- <Layout>
-                <Sider hide-trigger>Sider</Sider>
-                <Layout>
-                    <Header>Header</Header>
-                    <Content>Content</Content>
-                    <Footer>Footer</Footer>
-                </Layout>
-            </Layout> -->
-
+    <script id="template" type="text/plain">
+        <div class="app">
             <Layout>
                 <Header>
                     <Menu>
@@ -154,9 +145,14 @@
 
     <script>
         new Yox({
-            el: '#app',
+            el: '#app-1',
             replace: true,
-            template: '#template'
+            template: '#template-1'
+        });
+        new Yox({
+            el: '#app-2',
+            replace: true,
+            template: '#template-2'
         });
     </script>
 
