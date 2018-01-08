@@ -11,13 +11,17 @@ import Footer from './components/layout/Footer'
 import Menu from './components/layout/Menu'
 import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
+import Card from './components/layout/Card'
+
+
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
-import Card from './components/layout/Card'
 
 import Button from './components/button/Button'
 
 import Input from './components/input/Input'
+
+import Select from './components/select/Select'
 
 Yox.component({
     Layout: Layout,
@@ -28,10 +32,12 @@ Yox.component({
     Menu: Menu,
     MenuItem: MenuItem,
     Submenu: Submenu,
+    Card: Card,
+
     Breadcrumb: Breadcrumb,
     BreadcrumbItem: BreadcrumbItem,
-    Card: Card,
 
     Button: Button,
     Input: Input,
+    Select: Select
 });

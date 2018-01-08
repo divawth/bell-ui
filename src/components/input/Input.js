@@ -1,22 +1,22 @@
 export default {
     template: `
-    <div class="bell-input-wrapper"
+<div class="bell-input-wrapper"
     {{#if style}} style="{{style}}"{{/if}}
 >
 
     {{#if type != TEXT_TYPE_TEXTAREA}}
         {{#if !label}}
-        <i class="bell-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>
+            <i class="bell-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>
         {{else}}
-        <span class="bell-input-label" on-click="click">
-            {{label}}
-        </span>
+            <span class="bell-input-label" on-click="click">
+                {{label}}
+            </span>
         {{/if}}
 
         <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
         {{#if disabled}}disabled="disabled"{{/if}}
-        model="text"
+        model="value"
         ></input>
 
     {{else}}
@@ -25,6 +25,7 @@ export default {
             {{#if rows}} rows="{{rows}}"{{/if}}
             {{#if placeholder}} placeholder="{{placeholder}}" {{if}}
             {{#if disabled}}disabled="disabled"{{/if}}
+            model="value"
         >
         </textarea>
     {{/if}}
@@ -42,9 +43,6 @@ export default {
         value: {
             type: 'string'
         },
-        onValueChange: {
-            type: 'function'
-        },
         size: {
             type: 'string'
         },
@@ -61,31 +59,23 @@ export default {
             type: 'string'
         },
         disabled: {
-            type: 'boolean'
+            type: 'string'
         }
     },
     data: function () {
         return {
-            text: '',
             TEXT_TYPE_INPUT: 'input',
             TEXT_TYPE_TEXTAREA: 'textarea'
         }
     },
+
     watchers: {
-        text: function (value) {
-            var me = this;
-            var onValueChange = me.get('onValueChange');
-            if (onValueChange) {
-                onValueChange(value);
-            }
+        value: function (value) {
+            console.log(value)
         }
     },
-    afterMount: function () {
-        var me = this;
-        var value = me.get('value');
 
-        me.set({
-            text: value
-        });
+    afterMount: function () {
+
     }
 }

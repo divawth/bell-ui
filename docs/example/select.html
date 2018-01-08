@@ -1,0 +1,91 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        layout
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../src/main.css">
+
+    <style>
+
+        .app {
+            margin: 10px auto;
+        }
+
+        .bell-sider {
+            height: 120px !important;
+        }
+
+        .bell-content {
+            color: #000;
+            height: 120px;
+            line-height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../dep/base.js"></script>
+    <script src="../../src/main.js"></script>
+
+    <div id="app-1" class="bell-app"></div>
+    <div id="app-2" class="bell-app"></div>
+    <div id="app-3" class="bell-app"></div>
+    <div id="app-4" class="bell-app"></div>
+    <div id="app-5" class="bell-app"></div>
+
+
+    <script id="template-1" type="text/plain">
+        <Select model="value" style="width:200px" defaultText="请选择...">
+        </Select>
+    </script>
+
+    <script id="template-2" type="text/plain">
+
+    </script>
+
+    <script id="template-3" type="text/plain">
+    </script>
+
+    <script id="template-4" type="text/plain">
+    </script>
+
+    <script id="template-5" type="text/plain">
+    </script>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+            data: {
+                value: 'fss'
+            },
+            watchers: {
+                value: function (value) {
+                    console.log(value)
+                }
+            }
+        });
+        // new Yox({
+        //     el: '#app-2',
+        //     template: '#template-2'
+        // });
+
+        // new Yox({
+        //     el: '#app-3',
+        //     template: '#template-3'
+        // });
+
+        // new Yox({
+        //     el: '#app-4',
+        //     template: '#template-4'
+        // });
+        // new Yox({
+        //     el: '#app-5',
+        //     template: '#template-5'
+        // });
+    </script>
+
+</body>
+</html>
