@@ -1,6 +1,9 @@
 export default {
     template: `
-<div class="bell-select{{#if size}} bell-select-{{size}}{{/if}}"
+<div class="bell-select
+{{#if size}} bell-select-{{size}}{{/if}}
+{{#if disabled}} bell-select-disabled{{/if}}
+"
     {{#if style}} style="{{style}}"{{/if}}
 >
     <div class="bell-select-button{{#if visible}} bell-active{{/if}}" on-click="toggleMenu()">

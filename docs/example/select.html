@@ -50,6 +50,9 @@
     </script>
 
     <script id="template-3" type="text/plain">
+        <div>
+            <Select list="{{data}}" disabled="true" style="width: 200px" model="value" defaultText="请选择..." ></Select>
+        </div>
     </script>
 
     <script id="template-4" type="text/plain">
@@ -116,10 +119,31 @@
             },
         });
 
-        // new Yox({
-        //     el: '#app-3',
-        //     template: '#template-3'
-        // });
+        new Yox({
+            el: '#app-3',
+            template: '#template-3',
+            data: {
+                value: '1',
+                data: [
+                    {
+                        text: 'option 1',
+                        val: '1'
+                    },
+                    {
+                        text: 'option 2',
+                        val: '2'
+                    },
+                    {
+                        text: 'option 3',
+                        val: '3'
+                    },
+                    {
+                        text: 'option 4',
+                        val: '4'
+                    }
+                ]
+            },
+        });
 
         // new Yox({
         //     el: '#app-4',

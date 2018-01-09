@@ -474,6 +474,13 @@
   color: #fff;
   background: rgba(45, 140, 240, 0.9);
 }
+.bell-select.bell-select-disabled .bell-select-button {
+  cursor: not-allowed;
+  background-color: #f3f3f3;
+}
+.bell-select.bell-select-disabled .bell-select-button:hover {
+  border-color: #dddee1;
+}
 .bell-select-small .bell-select-button {
   height: 24px;
   line-height: 24px;
