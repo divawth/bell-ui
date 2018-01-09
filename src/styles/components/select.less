@@ -122,6 +122,16 @@
             }
         }
     }
+
+    &.bell-select-disabled {
+        .bell-select-button {
+            cursor: not-allowed;
+            background-color: @select-button-disabled-background;
+            &:hover {
+                border-color: @select-button-border-color;
+            }
+        }
+    }
 }
 
 .bell-select-small {
