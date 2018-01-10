@@ -12,7 +12,11 @@ export default {
             {{{valueToText(value)}}}
         </span>
         <span class="bell-select-placeholder{{#if valueToText(value) != null}} bell-hide{{/if}}">
-            {{{defaultText}}}
+            {{#if defaultText}}
+                {{{defaultText}}}
+            {{else}}
+                请选择...
+            {{/if}}
         </span>
         <span class="bell-select-arrow"></span>
     </div>
@@ -198,6 +202,10 @@ export default {
         document.removeEventListener(
             'click',
             me.documentClickHandler
+        );
+        document.removeEventListener(
+            'keydown',
+            me.documentKeydownHander
         );
     }
 }

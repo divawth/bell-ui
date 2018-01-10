@@ -5,7 +5,7 @@ export default {
 >
     {{#if type != TEXT_TYPE_TEXTAREA}}
         {{#if !label}}
-            <i class="bell-input-icon{{#if icon}} icon{{/if}}" on-click="click"></i>
+
         {{else}}
             <span class="bell-input-label" on-click="click">
                 {{label}}

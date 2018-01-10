@@ -10,6 +10,19 @@
     Button
 </a>
 
+> 1.通过设置 type 为 primary、ghost、dashed、text、info、success、warning、error 创建不同样式的按钮，不设置为默认样式。
+
+> 2.通过设置 shape 属性为 circle，可将按钮置为圆的形状。
+
+> 3.通过设置size为large和small将按钮设置为大和小尺寸，不设置为默认（中）尺寸。
+
+> 4.通过设置属性 long 可将按钮宽度设置为 100%。
+
+> 5.通过添加disabled属性可将按钮设置为不可用状态。
+
+> 6.通过添加 loading 属性可以让按钮处于加载中状态，后两个按钮在点击时进入加载状态。
+
+
 # Breadcrumb 面包屑
 
 <a href="./example/breadcrumb.html">
@@ -59,17 +72,28 @@
 
 # Page 分页
 
-> 1.通过 total 设置页数
+<a href="./example/page.html">
+    Page
+</a>
 
-> 2.show-sizer 可以切换每页显示的数量。
+> 1.通过 total 设置页数, current 当前页码，pageSize 每页条数，pageSizeOpts 每页条数配置，
+placement 条数切换弹窗的展开方向，可选值为 bottom 和 top
 
-> 3.show-elevator 快速跳转到某一页。
+> 2.showSizer 可以切换每页显示的数量。
 
-> 4.show-total 显示总共多少条数据
+> 3.showElevator 快速跳转到某一页。
+
+> 4.showTotal 显示总共多少条数据
 
 > 5.设置 size 为 small 使用迷你型，迷你型拥有普通的所有功能。
 
-> 6.设置simple属性即可使用简洁版的分页，通过输入页码回车切换，或使用鼠标点击切换页码，或使用键盘的上下键来切换。简洁分页不能使用总数、电梯和切换数量。
+> 6.设置 simple 属性即可使用简洁版的分页，通过输入页码回车切换，或使用鼠标点击切换页码，或使用键盘的上下键来切换。简洁分页不能使用总数、电梯和切换数量。
+
+> 7.className 自定义类名和自定义样式
+
+> 8.onChange 页码改变的回调，返回改变后的页码
+
+> 9.onPageSizeChange 切换每页条数时的回调，返回切换后的每页条数
 
 
 # Table 表格

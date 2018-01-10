@@ -1,0 +1,119 @@
+.bell-page {
+    font-size: @smallFontSize;
+    user-select: none;
+
+    .bell-page-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+    }
+
+    .bell-page-item {
+        display: inline-block;
+        vertical-align: middle;
+        list-style: none;
+        text-align: center;
+        cursor: pointer;
+        border-radius: @borderRadius;
+        border: 1px solid @borderColor;
+        transition: all .2s ease-in-out;
+
+        color: @page-item-color;
+
+        width: @page-item-width;
+        height: @page-item-width;
+        line-height: @page-item-width;
+        margin-right: @page-item-margin;
+
+        .bell-page-prev {
+            margin-right: @page-item-prev-margin;
+        }
+
+        &.bell-active,
+        &:hover {
+            color: @page-item-hover-color;
+            border-color: @page-item-hover-border-color;
+        }
+
+        &.bell-disabled {
+            cursor: not-allowed;
+            color: @borderColor;
+            border-color: @borderColor;
+            &:hover {
+                color: @borderColor;
+                border-color: @borderColor;
+            }
+        }
+
+    }
+
+    .bell-page-select {
+        width: @page-select-width;
+        display: inline-block;
+        margin-right: @page-select-margin-right;
+    }
+
+    .bell-page-elevator {
+        display: inline-block;
+        .bell-page-input {
+            width: @page-input-width;
+            display: inline-block;
+            margin: @page-input-margin;
+        }
+    }
+
+    .bell-page-total {
+        margin-right: @page-total-margin-right;
+    }
+
+    .bell-page-simple {
+        display: inline-block;
+        .bell-page-input {
+            width: @page-input-width;
+            display: inline-block;
+            margin: @page-input-margin;
+        }
+        .bell-page-gap {
+
+        }
+        .bell-page-item {
+            border: none;
+            color: @page-item-color;
+            &.bell-active,
+            &:hover {
+                color: @page-item-color;
+                border: none;
+            }
+        }
+    }
+}
+
+.bell-page-small {
+    .bell-page-list {
+        .bell-page-item {
+            width: @page-small-item-width;
+            height: @page-small-item-width;
+            line-height: @page-small-item-width;
+            margin-right: @page-small-item-margin;
+
+            .bell-page-prev {
+                margin-right: @page-small-item-prev-margin;
+            }
+        }
+    }
+}
+
+.bell-page-tiny {
+    .bell-page-list {
+        .bell-page-item {
+            border: none;
+            color: @page-item-color;
+            &.bell-active,
+            &:hover {
+                color: @page-item-hover-color;
+                border: none;
+            }
+        }
+    }
+}
