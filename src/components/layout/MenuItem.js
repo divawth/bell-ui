@@ -1,12 +1,15 @@
 export default {
     template: `
-        <div class="bell-menu-item" on-click="handleClick(name)">
+        <div class="bell-menu-item" data-name="{{name}}" on-click="handleClick(name)">
             {{$children}}
         </div>
     `,
 
     propTypes: {
         name: {
+            type: 'string'
+        },
+        to: {
             type: 'string'
         },
 
@@ -20,6 +23,9 @@ export default {
             var me = this;
             if (me.get('disabled')) {
                 return;
+            }
+            if (me.get('to')) {
+                location.href = me.get('to');
             }
 
             me.fire(

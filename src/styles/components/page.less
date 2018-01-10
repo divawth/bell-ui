@@ -26,6 +26,10 @@
         line-height: @page-item-width;
         margin-right: @page-item-margin;
 
+        > .bell-icon {
+            line-height: @page-item-width;
+        }
+
         .bell-page-prev {
             margin-right: @page-item-prev-margin;
         }
@@ -43,6 +47,29 @@
             &:hover {
                 color: @borderColor;
                 border-color: @borderColor;
+            }
+        }
+        &.bell-page-item-next,
+        &.bell-page-item-prev {
+            &:after {
+                content: "\2022\2022\2022";
+                display: block;
+                letter-spacing: 1px;
+                color: #ccc;
+                text-align: center;
+            }
+
+            .bell-icon {
+                display: none;
+            }
+
+            &:hover {
+                &:after {
+                    display: none;
+                }
+                .bell-icon {
+                    display: inline-block;
+                }
             }
         }
 
@@ -99,6 +126,9 @@
 
             .bell-page-prev {
                 margin-right: @page-small-item-prev-margin;
+            }
+            > .bell-icon {
+                line-height: @page-small-item-width;
             }
         }
     }

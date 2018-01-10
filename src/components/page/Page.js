@@ -6,8 +6,9 @@ export default {
 ">
 {{#partial pageCenter}}
     {{#if current - 3 > 1}}
-        <li class="bell-page-item" on-click="fastPrev()">
-            ...
+        <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">
+            <i class="bell-icon bell-icon-ios-arrow-left"></i>
+            <i class="bell-icon bell-icon-ios-arrow-left"></i>
         </li>
     {{/if}}
 
@@ -42,8 +43,9 @@ export default {
     {{/if}}
 
     {{#if current + 3 < count}}
-        <li class="bell-page-item" on-click="fastNext()">
-            ...
+        <li class="bell-page-item bell-page-item-next" on-click="fastNext()">
+            <i class="bell-icon bell-icon-ios-arrow-right"></i>
+            <i class="bell-icon bell-icon-ios-arrow-right"></i>
         </li>
     {{/if}}
 {{/partial}}
@@ -67,7 +69,7 @@ export default {
     <ul class="bell-page-list">
 
         <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
-            <
+            <i class="bell-icon bell-icon-ios-arrow-left"></i>
         </li>
 
         <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">
@@ -82,18 +84,17 @@ export default {
         {{/if}}
 
         <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
-            {{{'>'}}}
+            <i class="bell-icon bell-icon-ios-arrow-right"></i>
         </li>
     </ul>
     {{else}}
         <div class="bell-page-simple">
             <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
-                <
+                <i class="bell-icon bell-icon-ios-arrow-left"></i>
             </span>
 
             <div class="bell-page-input">
-                <Input placeholder="请输入..."
-                    model="currentPage"
+                <Input model="currentPage"
                     size="{{size}}"
                 ></Input>
             </div>
@@ -105,7 +106,7 @@ export default {
             </span>
 
             <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
-                {{{'>'}}}
+                <i class="bell-icon bell-icon-ios-arrow-right"></i>
             </span>
         </div>
     {{/if}}
@@ -187,7 +188,8 @@ export default {
         };
         return {
             pageList: getPageList(),
-            count: 0
+            count: 0,
+            currentPage: 1
         }
     },
 
@@ -227,6 +229,10 @@ export default {
                 return;
             }
             me.decrease('current', 1, 1);
+
+            if (me.get('simple')) {
+                me.decrease('currentPage', 1, 1);
+            }
         },
 
         next: function () {
@@ -235,11 +241,15 @@ export default {
                 return;
             }
             me.increase('current', 1, me.get('count'));
+            if (me.get('simple')) {
+                me.increase('currentPage', 1, me.get('count'));
+            }
         },
 
         changePage: function (page) {
             this.set({
-                current: page
+                current: page,
+                currentPage: page
             });
         },
 

@@ -7,7 +7,15 @@ export default {
 
     events: {
         setActiveMenu: function (event, data) {
-            console.log(data);
+            var me = this;
+            me.$children.some(child => {
+                if (child.$options.props.name == data.name) {
+                    $(child.$el).addClass('bell-active')
+                }
+                else {
+                    $(child.$el).removeClass('bell-active')
+                }
+            });
         }
     },
 
