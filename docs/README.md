@@ -1,10 +1,14 @@
-# Layout 布局
+# Basic
+
+## Layout 布局
 
 <a href="./example/layout.html">
     layout
 </a>
 
-# Button 按钮
+# Form
+
+## Button 按钮
 
 <a href="./example/button.html">
     Button
@@ -23,17 +27,20 @@
 > 6.通过添加 loading 属性可以让按钮处于加载中状态，后两个按钮在点击时进入加载状态。
 
 
-# Breadcrumb 面包屑
+## Breadcrumb 面包屑
 
 <a href="./example/breadcrumb.html">
     Breadcrumb
 </a>
 
-> 1.通过设置 to 属性添加链接
+> Attributes
 
-> 2.修改 separator 界定符
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+to | 添加链接 | string | - | -
+separator | 界定符 | string | - | '/'
 
-# Input 输入框
+## Input 输入框
 
 <a href="./example/input.html">
     Input
@@ -54,49 +61,79 @@
 > 7.disabled 状态
 
 
-# Select 选择器
+## Select 选择器
 
 <a href="./example/select.html">
     Select
 </a>
 
-> 1.model 双向绑定
+> Attributes
 
-> 2.可以给 Select 添加 style 样式，比如宽度
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+list | 列表, 比传参数 | array | - | -
+model | 选中值 | string | - | -
+defaultText | placeholder | string | - | -
+size | 大小 | string | small, large, null | null
+disabled | 是否禁用 | boolean | - | false
+style | 自定义样式 | string | - | -
 
-> 3.在展开选择器后，可以使用键盘的 up 和 down 快速上下选择，按下 Enter 选择，按下 Esc 收起选择器。
+# Navigation
 
-> 4.通过设置 size 属性为 large 和 small 将输入框设置为大和小尺寸，不设置为默认（中）尺寸。
-
-> 5.通过给 Select 设置属性 disabled 禁用整个选择器
-
-# Page 分页
+## Page 分页
 
 <a href="./example/page.html">
     Page
 </a>
 
-> 1.通过 total 设置页数, current 当前页码，pageSize 每页条数，pageSizeOpts 每页条数配置，
-placement 条数切换弹窗的展开方向，可选值为 bottom 和 top
+> Attributes
 
-> 2.showSizer 可以切换每页显示的数量。
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+total | 设置条数，必选参数 | string | - | -
+current | 当前页码 | string | - | 1
+pageSize | 每页条数 | string | - | 10
+pageSizeOpts | 每页条数配置 | array | - | -
+showSizer | 显示的每页数量选框 | boolean | - | false
+showElevator | 显示快速跳转 | boolean | - | false
+size | 大小 | string | small, tiny, null | null
+simple | 是否启用简洁版本 | boolean | - | false
+className | 样式类 | string | - | -
 
-> 3.showElevator 快速跳转到某一页。
+> Events
 
-> 4.showTotal 显示总共多少条数据
+事件名称 | 说明 | 回调参数
+---|---|---
+onChange | 页码改变的回调，返回改变后的页码 | page
+onPageSizeChange | 页码改变的回调，返回改变后的页码 | pageSize
 
-> 5.设置 size 为 small 使用迷你型，迷你型拥有普通的所有功能。
+# View
 
-> 6.设置 simple 属性即可使用简洁版的分页，通过输入页码回车切换，或使用鼠标点击切换页码，或使用键盘的上下键来切换。简洁分页不能使用总数、电梯和切换数量。
+## Alert 警告提示
 
-> 7.className 自定义类名和自定义样式
+<a href="./example/alert.html">
+    Alert
+</a>
 
-> 8.onChange 页码改变的回调，返回改变后的页码
+> Attributes
 
-> 9.onPageSizeChange 切换每页条数时的回调，返回切换后的每页条数
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+type | 主题 | string | info、success、warning、error | info
+closable | 是否可以关闭 | boolean | - | true
+center | 文字是否居中 | boolean | - | true
+closeText | 关闭按钮自定义文本 | string | - | -
+showIcon | 是否显示图标 | boolean | - | false
 
+> Events
 
-# Table 表格
+事件名称 | 说明 | 回调参数
+---|---|---
+close | 关闭 alert 时触发的事件 | -
+
+# Other
+
+## Table 表格
 
 1 表格最简单的用法 传data
 2 表格会间隔显示不同颜色，用于区分不同行数据。传 stripe
@@ -107,79 +144,77 @@ placement 条数切换弹窗的展开方向，可选值为 bottom 和 top
 7 loading
 8 action
 
-# DatePicker 日期选择器
+## DatePicker 日期选择器
 
-# Alert 警告提示
+## Avatar 头像
 
-# Avatar 头像
+## BackTop 返回顶部
 
-# BackTop 返回顶部
+## Spin 加载中
 
-# Spin 加载中
-
-# Menu 导航菜单
+## Menu 导航菜单
 
 
-# Radio 单选框
+## Radio 单选框
 
-# Switch 开关
+## Switch 开关
 
-# Select 选择器
+## Select 选择器
 
-# AutoComplete 自动完成
+## AutoComplete 自动完成
 
-# Slider 滑块
+## Slider 滑块
 
-# TimePicker 时间选择器
+## TimePicker 时间选择器
 
-# Cascader 级联选择
+## Cascader 级联选择
 
-# Transfer 穿梭框
+## Transfer 穿梭框
 
-# InputNumber 数字输入框
+## InputNumber 数字输入框
 
-# Rate 评分
+## Rate 评分
 
-# Upload 上传
+## Upload 上传
 
-# ColorPicker 颜色选择器
+## ColorPicker 颜色选择器
 
-# Form 表单
+## Form 表单
 
-# Message 全局提示
+## Message 全局提示
 
-# Notice 通知提醒
+## Notice 通知提醒
 
-# Modal 对话框
+## Modal 对话框
 
-# Progress 进度条
+## Progress 进度条
 
-# Badge 徽标数
+## Badge 徽标数
 
-# Collapse 折叠面板
+## Collapse 折叠面板
 
-# Timeline 时间轴
+## Timeline 时间轴
 
-# Tag 标签
+## Tag 标签
 
-# Tooltip 文字提示
+## Tooltip 文字提示
 
-# Poptip 气泡提示
+## Poptip 气泡提示
 
-# Carousel 走马灯
+## Carousel 走马灯
 
-# Tree 树形控件
+## Tree 树形控件
 
-# Tabs 标签页
+## Tabs 标签页
 
-# Dropdown 下拉菜单
+## Dropdown 下拉菜单
 
-# Steps 步骤条
+## Steps 步骤条
 
-# LoadingBar 加载进度条
+## LoadingBar 加载进度条
 
-# Circle 进度环
+## Circle 进度环
 
-# Affix 图钉
+## Affix 图钉
 
-# Scroll 无限滚动
+## Scroll 无限滚动
