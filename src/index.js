@@ -18,10 +18,9 @@ import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
 
 import Button from './components/button/Button'
-
 import Input from './components/input/Input'
-
 import Select from './components/select/Select'
+import Page from './components/page/Page'
 
 Yox.component({
     Layout: Layout,
@@ -39,5 +38,6 @@ Yox.component({
 
     Button: Button,
     Input: Input,
-    Select: Select
+    Select: Select,
+    Page: Page
 });
