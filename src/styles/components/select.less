@@ -80,6 +80,7 @@
         box-sizing: border-box;
         box-shadow: @boxShadow;
         border-radius: @select-button-border-radius;
+        transition: all .4s ease-in-out;
 
         position: absolute;
         left: 0;
@@ -87,9 +88,10 @@
 
         max-height: @select-dropdown-height;
         top: @select-dropdown-top;
+        opacity: 1;
 
         &.bell-hide {
-            display: none;
+            opacity: 0;
         }
 
         .bell-select-dropdown-list {

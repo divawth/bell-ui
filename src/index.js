@@ -22,6 +22,9 @@ import Input from './components/input/Input'
 import Select from './components/select/Select'
 import Page from './components/page/Page'
 
+import Alert from './components/alert/Alert'
+import Desc from './components/alert/Desc'
+
 Yox.component({
     Layout: Layout,
     Header: Header,
@@ -39,5 +42,8 @@ Yox.component({
     Button: Button,
     Input: Input,
     Select: Select,
-    Page: Page
+    Page: Page,
+
+    Alert: Alert,
+    Desc: Desc
 });
