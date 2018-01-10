@@ -15,7 +15,7 @@
         }
 
         .bell-sider {
-            height: 120px !important;
+            height: 400px !important;
         }
 
         .bell-content {
@@ -57,6 +57,81 @@
                     <Content>Content</Content>
                 </Layout>
                 <Footer>Footer</Footer>
+            </Layout>
+        </div>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <div class="app">
+            <Layout>
+
+                <Header>
+                    <span class="bell-title">
+
+                    </span>
+
+                    <span class="finstao-logout" on-click="logout()">
+                        退出登录
+                    </span>
+                </Header>
+
+                <Layout>
+                    <Sider>
+                        <div class="bell-user-info">
+                            <div class="bell-user-title">
+                                Author
+                            </div>
+
+                            <img src="//www.gravatar.com/avatar/91185656257c77b52bf0c57170f833c3/?default=&amp;s=120" height="60" width="60">
+
+                            <a class="bell-user-name" title="See public fiddles" href="/user/musicode/fiddles/">
+                                musicode
+                            </a>
+
+                            <div class="bell-user-company">
+                                Beijing, China
+                            </div>
+                        </div>
+
+                        <Menu>
+                            <MenuItem name="1" to="#!question/list">
+                                问题
+                            </MenuItem>
+                            <MenuItem name="2" to="#replay">
+                                回答
+                            </MenuItem>
+                            <MenuItem name="3">
+                                项目
+                            </MenuItem>
+                            <MenuItem name="4">
+                                文章
+                            </MenuItem>
+                            <MenuItem name="4">
+                                反馈
+                            </MenuItem>
+                            <MenuItem name="4">
+                                举报
+                            </MenuItem>
+                        </Menu>
+                    </Sider>
+
+                    <Content>
+                        <!-- <Breadcrumb>
+                            <BreadcrumbItem>Home</BreadcrumbItem>
+                            <BreadcrumbItem>Components</BreadcrumbItem>
+                            <BreadcrumbItem>Layout</BreadcrumbItem>
+                        </Breadcrumb> -->
+
+                        <Card>
+
+                        </Card>
+                    </Content>
+                </Layout>
+
+                <Footer>
+
+                </Footer>
+
             </Layout>
         </div>
     </script>
@@ -153,6 +228,11 @@
             el: '#app-2',
             replace: true,
             template: '#template-2'
+        });
+        new Yox({
+            el: '#app-3',
+            replace: true,
+            template: '#template-3'
         });
     </script>
 

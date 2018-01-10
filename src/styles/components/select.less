@@ -32,6 +32,20 @@
             border-color: @select-button-border-active-color;
             outline: 0;
             box-shadow: @select-button-border-active-shadow;
+            .bell-select-arrow {
+                transform: rotate(180deg);
+            }
+        }
+
+        .bell-select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            line-height: 1;
+            margin-top: -7px;
+            font-size: 14px;
+            color: #80848f;
+            transition: all .2s ease-in-out;
         }
 
         .bell-select-value,
@@ -56,21 +70,6 @@
         .bell-select-value {
             font-size: @select-font-size;
             color: @select-font-color;
-        }
-
-        .bell-select-arrow {
-            position: absolute;
-            top: 50%;
-            right: 8px;
-            line-height: 1;
-            margin-top: -7px;
-            font-size: 14px;
-            color: #80848f;
-            transition: all .2s ease-in-out;
-
-            &:before {
-                content: "\F104";
-            }
         }
     }
 

@@ -127,11 +127,17 @@
                 padding: 0 15px;
                 box-sizing: border-box;
                 cursor: pointer;
-
-                &:hover {
+                color: @disabledFontColor;
+                &:hover{
+                    color: @white;
+                }
+                &.bell-active {
                     background-color: @layout-sider-menu-item-background;
                     border-right-color: @primaryColor;
                     color: @primaryColor;
+                    &:hover{
+                        color: @primaryColor;
+                    }
                 }
             }
         }

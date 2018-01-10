@@ -18,7 +18,7 @@ export default {
                 请选择...
             {{/if}}
         </span>
-        <span class="bell-select-arrow"></span>
+        <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>
     </div>
 
     <div class="bell-select-dropdown{{#if !visible}} bell-hide{{/if}}"
