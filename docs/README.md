@@ -84,9 +84,10 @@ on-click | 点击按钮的回调 | -
 list | 列表, 比传参数 | array | - | -
 model | 选中值 | string | - | -
 defaultText | placeholder | string | - | -
-size | 大小 | string | small, large, null | null
+size | 大小 | string | small, large, - | -
 disabled | 是否禁用 | boolean | - | false
 style | 自定义样式 | string | - | -
+placement | 弹窗的展开方向 | string | bottom 和 top | -
 
 # Navigation
 
@@ -109,6 +110,7 @@ showElevator | 显示快速跳转 | boolean | - | false
 size | 大小 | string | small, tiny, null | null
 simple | 是否启用简洁版本 | boolean | - | false
 className | 样式类 | string | - | -
+placement | 弹窗的展开方向 | string | bottom 和 top | -
 
 > Events
 
@@ -143,10 +145,10 @@ close | 关闭 alert 时触发的事件 | -
 
 # Other
 
-## Spin 加载中
+## Spinner 加载中
 
-<a href="./example/spin.html">
-    Spin
+<a href="./example/spinner.html">
+    Spinner
 </a>
 
 > Attributes
@@ -155,6 +157,9 @@ close | 关闭 alert 时触发的事件 | -
 ---|---|---|---|---
 size | 大小 | string | small, tiny | -
 text | 文字 | string | - | -
+fix | 是否固定 | string | - | -
+type | 风格 | string | circle, - | -
+
 
 
 ## Table 表格
