@@ -24,7 +24,7 @@
 
     <script id="buttonTemplate-1" type="text/plain">
         <div>
-            <Button label="Default"></Button>
+            <Button label="Default" on-click="click()"></Button>
             <Button type="primary" label="Primary"></Button>
             <Button type="ghost" label="Ghost"></Button>
             <Button type="dashed" label="Dashed"></Button>
@@ -109,7 +109,12 @@
     <script>
         new Yox({
             el: '#app-1',
-            template: '#buttonTemplate-1'
+            template: '#buttonTemplate-1',
+            methods: {
+                click: function (argument) {
+                    console.log('clickk')
+                }
+            }
         });
         new Yox({
             el: '#app-2',

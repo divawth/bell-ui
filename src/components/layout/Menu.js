@@ -5,22 +5,35 @@ export default {
         </div>
     `,
 
+    propTypes: {
+        activeName: {
+            type: 'string'
+        }
+    },
+
     events: {
         setActiveMenu: function (event, data) {
+            this.updateChild(data.name);
+        }
+    },
+
+    methods: {
+        updateChild: function (activeName) {
             var me = this;
             me.$children.some(child => {
-                if (child.$options.props.name == data.name) {
-                    $(child.$el).addClass('bell-active')
+                if (child.$options.props.name == activeName) {
+                    $(child.$el).addClass('bell-active');
                 }
                 else {
-                    $(child.$el).removeClass('bell-active')
+                    $(child.$el).removeClass('bell-active');
                 }
             });
         }
     },
 
-    afterMount: function (argument) {
-        var me = this;
-
+    watchers: {
+        activeName: function (activeName) {
+            this.updateChild(activeName);
+        }
     }
 }

@@ -13,7 +13,11 @@ export default {
             {{/if}}
 
             <span>
-                {{label}}
+                {{#if label}}
+                    {{label}}
+                {{else}}
+                    {{$children}}
+                {{/if}}
             </span>
         </div>
     `,
