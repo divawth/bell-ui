@@ -56,6 +56,13 @@
     </script>
 
     <script id="template-4" type="text/plain">
+        <div>
+            <Select list="{{data}}" placement="top" size="large" style="width: 200px" model="value" defaultText="请选择..." ></Select>
+
+            <Select list="{{data}}" placement="top" model="value" style="width: 200px" defaultText="请选择..." ></Select>
+
+            <Select list="{{data}}" placement="top" size="small" style="width: 200px" model="value" defaultText="请选择..." ></Select>
+        </div>
     </script>
 
     <script id="template-5" type="text/plain">
@@ -145,10 +152,31 @@
             },
         });
 
-        // new Yox({
-        //     el: '#app-4',
-        //     template: '#template-4'
-        // });
+        new Yox({
+            el: '#app-4',
+            template: '#template-4',
+            data: {
+                value: '1',
+                data: [
+                    {
+                        text: 'option 1',
+                        val: '1'
+                    },
+                    {
+                        text: 'option 2',
+                        val: '2'
+                    },
+                    {
+                        text: 'option 3',
+                        val: '3'
+                    },
+                    {
+                        text: 'option 4',
+                        val: '4'
+                    }
+                ]
+            },
+        });
         // new Yox({
         //     el: '#app-5',
         //     template: '#template-5'

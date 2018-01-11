@@ -32,6 +32,7 @@
     <div id="app-3" class="bell-app"></div>
     <div id="app-4" class="bell-app"></div>
     <div id="app-5" class="bell-app"></div>
+    <div id="app-6" class="bell-app"></div>
 
 
     <script id="template-1" type="text/plain">
@@ -59,13 +60,21 @@
 
     <script id="template-4" type="text/plain">
         <div>
-            <Page total="100" showTotal="true" simple="true"></Page>
+            <Page total="100" showTotal="true" simple="true" placement="top"></Page>
         </div>
     </script>
 
     <script id="template-5" type="text/plain">
         <div>
             <Page total="100" count="300"></Page>
+        </div>
+    </script>
+
+    <script id="template-6" type="text/plain">
+        <div>
+            <Page total="100" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+
+            <Page total="100" size="small" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
         </div>
     </script>
 
@@ -95,6 +104,13 @@
         new Yox({
             el: '#app-5',
             template: '#template-5'
+        });
+        new Yox({
+            el: '#app-6',
+            template: '#template-6',
+            data: {
+                pageSizeOpts: [10, 15, 20, 25, 40]
+            }
         });
     </script>
 

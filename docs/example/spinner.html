@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        spin
+        spinner
     </title>
     <link rel="stylesheet" type="text/css" href="../../src/main.css">
 
@@ -21,6 +21,12 @@
         .bell-select {
             margin: 30px;
         }
+        .loading {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            background-color: #f90;
+        }
     </style>
 </head>
 <body>
@@ -36,28 +42,28 @@
 
     <script id="template-1" type="text/plain">
         <div style="width: 100px; height: 100px">
-            <Spin></Spin>
+            <Spinner></Spinner>
         </div>
     </script>
 
     <script id="template-2" type="text/plain">
         <div>
-            <Spin size="small"></Spin>
-            <Spin></Spin>
-            <Spin size="large"></Spin>
+            <Spinner size="small"></Spinner>
+            <Spinner></Spinner>
+            <Spinner size="large"></Spinner>
         </div>
     </script>
 
     <script id="template-3" type="text/plain">
         <div>
-            <Spin size="small" text="加载中..."></Spin>
-            <Spin text="加载中..."></Spin>
-            <Spin size="large" text="加载中..."></Spin>
+            <Spinner size="small" text="加载中..."></Spinner>
+            <Spinner text="加载中..."></Spinner>
+            <Spinner size="large" text="加载中..."></Spinner>
         </div>
     </script>
 
     <script id="template-4" type="text/plain">
-       <div class="demo-spin-article">
+       <div class="loading">
             <h3>登金陵凤凰台</h3>
             <p>李白</p>
             <p>
@@ -66,11 +72,26 @@
                 <p>三山半落青天外，二水中分白鹭洲。</p>
                 <p>总为浮云能蔽日，长安不见使人愁。</p>
             </p>
-            <Spin size="large" fix v-if="spinShow"></Spin>
+            <Spinner size="large" fix v-if="spinnerShow"></Spinner>
         </div>
     </script>
 
     <script id="template-5" type="text/plain">
+        <div style="width: 100px; height: 100px">
+            <Spinner type="circle" text="Loading"></Spinner>
+
+            <div class="loading">
+            <h3>登金陵凤凰台</h3>
+            <p>李白</p>
+            <p>
+                <p>凤凰台上凤凰游，凤去台空江自流。</p>
+                <p>吴宫花草埋幽径，晋代衣冠成古丘。</p>
+                <p>三山半落青天外，二水中分白鹭洲。</p>
+                <p>总为浮云能蔽日，长安不见使人愁。</p>
+            </p>
+            <Spinner size="large" text="Loading" type="circle" fix v-if="spinnerShow"></Spinner>
+        </div>
+        </div>
     </script>
 
     <script>
@@ -89,14 +110,14 @@
             template: '#template-3',
         });
 
-        // new Yox({
-        //     el: '#app-4',
-        //     template: '#template-4'
-        // });
-        // new Yox({
-        //     el: '#app-5',
-        //     template: '#template-5'
-        // });
+        new Yox({
+            el: '#app-4',
+            template: '#template-4'
+        });
+        new Yox({
+            el: '#app-5',
+            template: '#template-5'
+        });
     </script>
 
 </body>

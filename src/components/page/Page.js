@@ -61,6 +61,7 @@ export default {
         <Select list="{{pageList}}"
             model="pageSize"
             size="{{size}}"
+            placement="{{placement}}"
         />
     </div>
     {{/if}}
@@ -134,7 +135,7 @@ export default {
             type: 'string'
         },
         total: {
-            type: 'string'
+            type: ['string', 'number']
         },
         current: {
             type: 'string',
@@ -157,6 +158,9 @@ export default {
             type: 'string'
         },
         className: {
+            type: 'string'
+        },
+        placement: {
             type: 'string'
         },
         onChange: {

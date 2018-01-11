@@ -3,6 +3,7 @@ export default {
 <div class="bell-select
 {{#if size}} bell-select-{{size}}{{/if}}
 {{#if disabled}} bell-select-disabled{{/if}}
+{{#if placement}} bell-select-{{placement}}{{/if}}
 "
     {{#if style}} style="{{style}}"{{/if}}
 >
@@ -59,6 +60,10 @@ export default {
         },
 
         disabled: {
+            type: 'string'
+        },
+
+        placement: {
             type: 'string'
         },
 
