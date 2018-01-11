@@ -9,7 +9,7 @@ export default {
         name: {
             type: 'string'
         },
-        to: {
+        hash: {
             type: 'string'
         },
 
@@ -24,8 +24,8 @@ export default {
             if (me.get('disabled')) {
                 return;
             }
-            if (me.get('to')) {
-                location.href = me.get('to');
+            if (me.get('hash')) {
+                location.href = me.get('hash');
             }
 
             me.fire(

@@ -14,18 +14,25 @@
     Button
 </a>
 
-> 1.通过设置 type 为 primary、ghost、dashed、text、info、success、warning、error 创建不同样式的按钮，不设置为默认样式。
+> Attributes
 
-> 2.通过设置 shape 属性为 circle，可将按钮置为圆的形状。
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+type | 按钮类型 | string | primary、ghost、dashed、text、info、success、warning、error | -
+size | 按钮大小 | string | large、small | -
+shape | 按钮形状 | string | circle | -
+long | 开启后，按钮的长度为 100% | boolean | - | false
+label | 话术 | string | - | -
+disabled | 设置按钮为禁用状态 | boolean | - | false
+loading | 设置按钮为加载中状态 | boolean | - | -
+simple | 是否启用简洁版本 | boolean | - | false
+className | 样式类 | string | - | -
 
-> 3.通过设置size为large和small将按钮设置为大和小尺寸，不设置为默认（中）尺寸。
+> Events
 
-> 4.通过设置属性 long 可将按钮宽度设置为 100%。
-
-> 5.通过添加disabled属性可将按钮设置为不可用状态。
-
-> 6.通过添加 loading 属性可以让按钮处于加载中状态，后两个按钮在点击时进入加载状态。
-
+事件名称 | 说明 | 回调参数
+---|---|---
+on-click | 点击按钮的回调 | -
 
 ## Breadcrumb 面包屑
 
@@ -46,20 +53,23 @@ separator | 界定符 | string | - | '/'
     Input
 </a>
 
-> 1.通过设置 style 属性修改样式
 
-> 2.修改 size 修改大小 small large
+> Attributes
 
-> 3.placeholder 修改 placeholder 值
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+type | 按钮类型 | string | text、password、textarea、url、email、date | text
+size | 按钮大小 | string | large、small | -
+model | input 的值 | string | - | -
+placeholder | placeholder | string | - | -
+rows | 行数 | string | - | -
+disabled | 设置按钮为禁用状态 | boolean | - | false
 
-> 4.修改 label 值
+> Events
 
-> 5.type 可取 input 和 textarea
-
-> 6.rows type 为 textarea 时设置列数
-
-> 7.disabled 状态
-
+事件名称 | 说明 | 回调参数
+---|---|---
+on-click | 点击按钮的回调 | -
 
 ## Select 选择器
 
@@ -133,6 +143,20 @@ close | 关闭 alert 时触发的事件 | -
 
 # Other
 
+## Spin 加载中
+
+<a href="./example/spin.html">
+    Spin
+</a>
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+size | 大小 | string | small, tiny | -
+text | 文字 | string | - | -
+
+
 ## Table 表格
 
 1 表格最简单的用法 传data
@@ -149,8 +173,6 @@ close | 关闭 alert 时触发的事件 | -
 ## Avatar 头像
 
 ## BackTop 返回顶部
-
-## Spin 加载中
 
 ## Menu 导航菜单
 

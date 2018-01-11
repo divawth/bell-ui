@@ -24,6 +24,7 @@ import Page from './components/page/Page'
 
 import Alert from './components/alert/Alert'
 import Desc from './components/alert/Desc'
+import Spin from './components/spin/Spin'
 
 Yox.component({
     Layout: Layout,
@@ -45,5 +46,6 @@ Yox.component({
     Page: Page,
 
     Alert: Alert,
-    Desc: Desc
+    Desc: Desc,
+    Spin: Spin
 });

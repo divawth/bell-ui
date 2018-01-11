@@ -2676,6 +2676,7 @@
 }
 .bell-select .bell-select-dropdown.bell-hide {
   opacity: 0;
+  display: none;
 }
 .bell-select .bell-select-dropdown .bell-select-dropdown-list {
   list-style: none;
@@ -2959,6 +2960,105 @@
 }
 .bell-alert-error .bell-alert-icon {
   color: #ed3f14;
+}
+.bell-spin {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+}
+.bell-spin .bell-spin-text {
+  color: #57a3f3;
+  font-size: 14px;
+  line-height: 60px;
+}
+.bell-spin .bell-spin-item {
+  display: inline-block;
+  border-radius: 2px;
+  background: #57a3f3;
+  animation: bell-spin-loading 1s ease infinite;
+  width: 4px;
+  height: 50px;
+  margin: 0 2px;
+}
+.bell-spin .bell-spin-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bell-spin .bell-spin-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.bell-spin .bell-spin-item:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.bell-spin .bell-spin-item:nth-child(5) {
+  animation-delay: 0.8s;
+}
+@keyframes bell-spin-loading {
+  0%,
+  100% {
+    height: 35px;
+    background: #57a3f3;
+    margin: 12.5px 2px;
+  }
+  50% {
+    height: 50px;
+    margin: 5px 2px;
+    background: #57c5f7;
+  }
+}
+.bell-spin-small {
+  width: 40px;
+  height: 40px;
+}
+.bell-spin-small .bell-spin-text {
+  font-size: 12px;
+  line-height: 40px;
+}
+.bell-spin-small .bell-spin-item {
+  width: 4px;
+  height: 25px;
+  margin: 0 2px;
+  animation: bell-small-spin-loading 1s ease infinite;
+}
+@keyframes bell-small-spin-loading {
+  0%,
+  100% {
+    height: 15px;
+    background: #57a3f3;
+    margin: 12.5px 2px;
+  }
+  50% {
+    height: 25px;
+    margin: 7.5px 2px;
+    background: #57c5f7;
+  }
+}
+.bell-spin-large {
+  width: 80px;
+  height: 80px;
+}
+.bell-spin-large .bell-spin-text {
+  font-size: 16px;
+  line-height: 80px;
+}
+.bell-spin-large .bell-spin-item {
+  width: 6px;
+  height: 70px;
+  margin: 0 2px;
+  animation: bell-large-spin-loading 1s ease infinite;
+}
+@keyframes bell-large-spin-loading {
+  0%,
+  100% {
+    height: 40px;
+    background: #57a3f3;
+    margin: 20px 2px;
+  }
+  50% {
+    height: 70px;
+    margin: 5px 2px;
+    background: #57c5f7;
+  }
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
