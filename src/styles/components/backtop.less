@@ -1,0 +1,29 @@
+@import "../custom";
+
+.bell-backtop {
+    cursor: pointer;
+    position: fixed;
+    z-index: @zindex-backtop;
+    background-color: @backtop-background;
+    box-shadow: @backtop-boxshadow;
+    border-radius: @backtop-radius;
+    transition: all .2s ease-in-out;
+
+    &.bell-hide {
+        display: none;
+    }
+
+    > .bell-icon-chevron-up {
+        color: @backtop-font-color;
+        font-size: @backtop-font-size;
+        padding: @backtop-padding;
+    }
+
+    &:hover {
+        background-color: @backtop-hover-background;
+    }
+
+    &.bell-backtop-fix {
+        position: absolute;
+    }
+}

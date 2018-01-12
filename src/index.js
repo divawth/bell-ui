@@ -11,7 +11,6 @@ import Footer from './components/layout/Footer'
 import Menu from './components/layout/Menu'
 import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
-import Card from './components/layout/Card'
 
 
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
@@ -25,27 +24,44 @@ import Page from './components/page/Page'
 import Alert from './components/alert/Alert'
 import Desc from './components/alert/Desc'
 import Spinner from './components/spinner/Spinner'
+import BackTop from './components/backtop/BackTop'
+import Avatar from './components/avatar/Avatar'
+
+import Card from './components/card/Card'
+import CardHeader from './components/card/CardHeader'
+import CardMedia from './components/card/CardMedia'
+import CardTitle from './components/card/CardTitle'
+import CardText from './components/card/CardText'
+import CardActions from './components/card/CardActions'
 
 Yox.component({
-    Layout: Layout,
-    Header: Header,
-    Sider: Sider,
-    Content: Content,
-    Footer: Footer,
-    Menu: Menu,
-    MenuItem: MenuItem,
-    Submenu: Submenu,
-    Card: Card,
+    Layout,
+    Header,
+    Sider,
+    Content,
+    Footer,
+    Menu,
+    MenuItem,
+    Submenu,
 
-    Breadcrumb: Breadcrumb,
-    BreadcrumbItem: BreadcrumbItem,
+    Breadcrumb,
+    BreadcrumbItem,
 
-    Button: Button,
-    Input: Input,
-    Select: Select,
-    Page: Page,
+    Button,
+    Input,
+    Select,
+    Page,
 
-    Alert: Alert,
-    Desc: Desc,
-    Spinner: Spinner
+    Alert,
+    Desc,
+    Spinner,
+    BackTop,
+    Avatar,
+
+    Card,
+    CardHeader,
+    CardMedia,
+    CardTitle,
+    CardText,
+    CardActions
 });
