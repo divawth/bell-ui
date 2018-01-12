@@ -1,0 +1,102 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        Avatar
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../src/main.css">
+
+    <style>
+        .bell-app {
+            margin: 20px 0;
+        }
+
+        .bell-avatar {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../dep/base.js"></script>
+    <script src="../../src/main.js"></script>
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" size="large" />
+
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" />
+
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" size="small" />
+        </div>
+    </script>
+
+    <script id="template-2" type="text/plain">
+        <div>
+
+            <Avatar fontSize="12">
+                User
+            </Avatar>
+
+            <Avatar fontSize="16">
+                User
+            </Avatar>
+
+            <Avatar>
+                <i class="bell-icon bell-icon-person"></i>
+            </Avatar>
+
+            <Avatar backgroundColor="#f90">
+                <i class="bell-icon bell-icon-person"></i>
+            </Avatar>
+
+            <Avatar color="#090">
+                <i class="bell-icon bell-icon-person"></i>
+            </Avatar>
+        </div>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <div>
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" size="large" shape="circle" />
+
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" shape="circle"/>
+
+            <Avatar src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493050047187&di=e36d0920231b645717db227ce4bfc9f0&imgtype=0&src=http%3A%2F%2Fimg.tuku.cn%2Ffile_big%2F201502%2F0e93d8ab02314174a933b5f00438d357.jpg" size="small" shape="circle"/>
+        </div>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <div>
+        </div>
+    </script>
+
+    <div class="bell-app" id="app-1"></div>
+    <div class="bell-app" id="app-2"></div>
+    <div class="bell-app" id="app-3"></div>
+    <div class="bell-app" id="app-4"></div>
+    <div class="bell-app" id="app-5"></div>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1'
+        });
+        new Yox({
+            el: '#app-2',
+            template: '#template-2'
+        });
+        new Yox({
+            el: '#app-3',
+            template: '#template-3'
+        });
+        new Yox({
+            el: '#app-4',
+            template: '#template-4'
+        });
+
+    </script>
+
+</body>
+</html>

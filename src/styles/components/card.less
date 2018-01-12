@@ -1,0 +1,103 @@
+.bell-card {
+    background: @card-background;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.2;
+    color: @card-font-color;
+
+    border: 1px solid @card-border-color;
+    margin: @card-margin;
+
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        box-shadow: @boxShadow;
+        border-color: @card-border-color-hover;
+    }
+}
+
+.bell-card-header {
+    padding: @card-header-padding;
+
+    .bell-avatar {
+        vertical-align: middle;
+    }
+
+    .bell-card-header-detail {
+        vertical-align: middle;
+        display: inline-block;
+        padding: @card-header-detail-padding;
+    }
+
+    .bell-card-header-title {
+        font-size: @card-header-title-font-size;
+        color: @card-header-title-color;
+        line-height: 1.6;
+    }
+    .bell-card-header-sub-title {
+        font-size: @card-header-sub-title-font-size;
+        color: @card-header-sub-title-color;
+        line-height: 1.6;
+    }
+}
+
+.bell-card-media {
+    position: relative;
+
+    > img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .bell-card-media-detail {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: @card-media-detail-padding;
+        background-color: @card-media-detail-background;
+    }
+
+    .bell-card-media-title {
+        font-size: @card-media-title-font-size;
+        color: @card-media-title-color;
+        line-height: 1.6;
+    }
+    .bell-card-media-sub-title {
+        font-size: @card-media-sub-title-font-size;
+        color: @card-media-sub-title-color;
+        line-height: 1.6;
+    }
+}
+.bell-card-title {
+    padding: @card-title-padding;
+
+    .bell-card-title-text {
+        font-size: @card-title-font-size;
+        color: @card-title-color;
+        line-height: 1.6;
+    }
+
+    .bell-card-sub-title {
+        font-size: @card-sub-title-font-size;
+        color: @card-sub-title-color;
+        line-height: 1.6;
+    }
+}
+
+.bell-card-text {
+    padding: @card-text-padding;
+    font-size: @card-text-font-size;
+    color: @card-text-color;
+    line-height: 1.4;
+}
+
+.bell-card-actions {
+    padding: @card-actions-padding;
+    .bell-button {
+        +.bell-button {
+            margin-left: 10px;
+        }
+    }
+}

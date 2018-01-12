@@ -14,6 +14,8 @@
     Button
 </a>
 
+<!-- <iframe frameborder=0 width=800 height=500 marginheight=0 marginwidth=0 scrolling=no src=./example/button.html></iframe>
+ -->
 > Attributes
 
 参数 | 说明 | 类型 | 可选值 | 默认值
@@ -143,6 +145,95 @@ showIcon | 是否显示图标 | boolean | - | false
 ---|---|---
 close | 关闭 alert 时触发的事件 | -
 
+## Card 卡片
+
+基础容器，用来显示文字、列表、图文等内容，也可以配合其它组件一起使用。
+
+<a href="./example/card.html">
+    Card
+</a>
+
+### CardHeader
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+title | 标题文字 | string | - | -
+titleClass | 标题样式 | string | - | -
+subTitle | 副标题文字 | string | - | -
+subTitleClass | 副标题样式 | string | - | -
+
+> children
+
+名称 | 说明
+---|---
+Avatar | 用于放置 Avatar 组件
+
+### CardMedia
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+title | 标题文字 | string | - | -
+titleClass | 标题样式 | string | - | -
+subTitle | 副标题文字 | string | - | -
+subTitleClass | 副标题样式 | string | - | -
+
+> children
+
+名称 | 说明
+---|---
+default | 用于放置图片等媒体元素
+
+### CardTitle
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+title | 标题文字 | string | - | -
+titleClass | 标题样式 | string | - | -
+subTitle | 副标题文字 | string | - | -
+subTitleClass | 副标题样式 | string | - | -
+
+### CardText
+
+> children
+
+名称 | 说明
+---|---
+default | 用于放置大段介绍性的文字
+
+### CardActions
+
+> children
+
+名称 | 说明
+---|---
+default | 用于放置按钮
+
+
+## Avatar 头像
+
+<a href="./example/avatar.html">
+    Avatar
+</a>
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+size | 大小 | string | small, large | -
+src | 图片地址 | string | - | -
+shape | 形状 | string | circle | -
+className | 添加类 | string | - | -
+fontSize | 图标大小 | number | - | 26
+backgroundColor | 背景色 | string | - | #ccc
+color | 文字颜色 | string | - | -
+
+
 # Other
 
 ## Spinner 加载中
@@ -161,6 +252,26 @@ fix | 是否固定 | string | - | -
 type | 风格 | string | circle, - | -
 
 
+## BackTop 返回顶部
+
+<a href="./example/backTop.html">
+    BackTop
+</a>
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+bottom | 组件距离底部的距离 | number | - | 30
+right | 组件距离右部的距离 | number | - | 30
+height | 页面滚动高度达到该值时才显示BackTop组件 | number | - | 400
+className | 给组件添加一个类 | string | - | -
+
+> Events
+
+事件名称 | 说明 | 回调参数
+---|---|---
+close | 关闭 alert 时触发的事件 | -
 
 ## Table 表格
 
@@ -175,18 +286,12 @@ type | 风格 | string | circle, - | -
 
 ## DatePicker 日期选择器
 
-## Avatar 头像
-
-## BackTop 返回顶部
-
 ## Menu 导航菜单
 
 
 ## Radio 单选框
 
 ## Switch 开关
-
-## Select 选择器
 
 ## AutoComplete 自动完成
 

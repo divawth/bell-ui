@@ -52,16 +52,43 @@
 
 @layout-content-background   : #f8f8f8;
 
-@layout-card-background   : #fff;
-@layout-card-padding   : 15px;
-@layout-card-margin   : 15px;
-@layout-card-border-color   : #e9eaec;
-@layout-card-border-color-hover : #eee;
-@layout-card-font-color     : #495060;
 
+// card
+@card-background   : #fff;
+@card-margin   : 15px;
+@card-border-color   : #e9eaec;
+@card-border-color-hover : #eee;
+@card-font-color     : #495060;
+
+@card-header-padding : 10px;
+@card-header-detail-padding: 0 10px;
+@card-header-title-font-size: 15px;
+@card-header-title-color: @titleFontColor;
+@card-header-sub-title-font-size: 14px;
+@card-header-sub-title-color: @subTitleFontColor;
+
+@card-media-detail-background : rgba(0,0,0,.54);
+@card-media-detail-padding: 6px 15px;
+@card-media-title-font-size: 18px;
+@card-media-title-color: #FBFBFB;
+@card-media-sub-title-font-size: 12px;
+@card-media-sub-title-color: #929AA0;
+
+@card-title-padding: @card-header-padding;
+@card-title-font-size: 22px;
+@card-title-color: @card-header-title-color;
+@card-sub-title-font-size: @card-header-sub-title-font-size;
+@card-sub-title-color: @card-header-sub-title-color;
+
+@card-text-padding: @card-header-padding;
+@card-text-font-size: 14px;
+@card-text-color: @contentFontColor;
+
+@card-actions-padding: @card-header-padding;
 
 @button-gap: 10px;
 
+// breadcrumb
 @bread-crumb-link-color   : #999;
 @bread-crumb-padding: 15px;
 
@@ -198,10 +225,30 @@
 @spinner-item-color: @infoColor;
 @spinner-item-part-color: @infoHoverColor;
 
+// backtop
+
+@backtop-background: rgba(0,0,0,.3);
+@backtop-hover-background: rgba(0,0,0,.6);
+@backtop-boxshadow: 0 1px 3px rgba(0,0,0,.2);
+@backtop-radius: 2px;
+@backtop-font-size: 24px;
+@backtop-padding: 8px 12px;
+@backtop-font-color: #fff;
+
+// avatar
+@avatar-small-width: 40px;
+@avatar-width: 50px;
+@avatar-large-width: 60px;
+@avatar-border-radius: 7px;
+
+@avatar-background: #ccc;
+@avatar-icon-font-size: 26px;
+@avatar-font-size: 14px;
+
 // z-index
 @zindex-spinner            : 8;
+@zindex-backtop        : 10;
 @zindex-affix           : 10;
-@zindex-back-top        : 10;
 @zindex-select          : 900;
 @zindex-modal           : 1000;
 @zindex-message         : 1010;
