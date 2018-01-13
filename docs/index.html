@@ -13,16 +13,22 @@
     <script src="../dep/base.js"></script>
     <script src="../src/main.js"></script>
   <div id="app"></div>
+  <script src="//unpkg.com/docsify-edit-on-github@1.0.1/index.js"></script>
   <script>
     window.$docsify = {
         el: '#app',
-        search: 'auto', // default
-        search : [
-            '/',            // => /README.md
-            '/layout',       // => /layout.md
-        ],
-        name: 'Bell',
-        repo: ''
+        repo: 'https://github.com/angeltiva/bellUI',
+        maxLevel: 4,
+        loadSidebar: 'sidebar.md',
+        subMaxLevel: 2,
+        auto2top: true,
+        name: 'BellUI',
+        themeColor: '#1c90f3',
+        plugins: [
+            EditOnGithubPlugin.create(
+                'https://github.com/angeltiva/bellUI/blob/gh-pages/docs/'
+            )
+        ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>

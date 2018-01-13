@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        layout
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../src/main.css">
+
+    <style>
+        .app {
+            margin: 10px auto;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="../../dep/base.js"></script>
+    <script src="../../src/main.js"></script>
+
+    <div id="app-1" class="bell-app"></div>
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <div class="bell-font-info">
+                我戍未定，靡使归聘。
+            </div>
+
+            <div class="bell-font-large bell-font-error">
+                我戍未定，靡使归聘。
+            </div>
+
+            <div class="bell-font-tiny bell-font-main">
+                我戍未定，靡使归聘。
+            </div>
+
+            <div class="bell-font-big bell-font-sub">
+                我戍未定，靡使归聘。
+            </div>
+
+            <div class="bell-font-small bell-font-primary">
+                我戍未定，靡使归聘。
+            </div>
+        </div>
+    </script>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1'
+        });
+
+    </script>
+
+</body>
+</html>
