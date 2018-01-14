@@ -142,7 +142,7 @@ export default {
             value: 1
         },
         pageSize: {
-            type: 'string',
+            type: ['string', 'number'],
             value: 10
         },
         showSizer: {
