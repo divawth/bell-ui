@@ -138,7 +138,7 @@ export default {
             type: ['string', 'number']
         },
         current: {
-            type: 'string',
+            type: ['string', 'number'],
             value: 1
         },
         pageSize: {
@@ -317,6 +317,7 @@ export default {
             }
             else if (code == 13) {
                 // enter
+                e.preventDefault();
                 me.setCurrent('enter');
             }
         };
@@ -329,7 +330,7 @@ export default {
 
     beforeDestroy: function () {
         var me = this;
-        document.addEventListener(
+        document.removeEventListener(
             'keydown',
             me.documentKeydownHander
         );
