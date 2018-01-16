@@ -19,5 +19,5 @@ export default {
     }),
     commonjs()
   ],
-  dest: 'src/main.js'
+  dest: 'dist/bell.js'
 }

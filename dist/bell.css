@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Ionicons";
-  src: url("styles/ionicons/fonts/ionicons.eot?v=2.0.0");
-  src: url("styles/ionicons/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("styles/ionicons/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("styles/ionicons/fonts/ionicons.woff?v=2.0.0") format("woff"), url("styles/ionicons/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
+  src: url("ionicons/fonts/ionicons.eot?v=2.0.0");
+  src: url("ionicons/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("ionicons/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("ionicons/fonts/ionicons.woff?v=2.0.0") format("woff"), url("ionicons/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2408,7 +2408,6 @@
   text-align: center;
   background: #f5f7f9;
   color: #fff;
-  user-select: none;
 }
 .bell-layout .bell-footer,
 .bell-layout .bell-header {

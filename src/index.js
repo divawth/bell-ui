@@ -34,6 +34,11 @@ import CardTitle from './components/card/CardTitle'
 import CardText from './components/card/CardText'
 import CardActions from './components/card/CardActions'
 
+import Message from './components/notice/Message'
+
+
+import './components/notice/base'
+
 Yox.component({
     Layout,
     Header,
@@ -63,5 +68,7 @@ Yox.component({
     CardMedia,
     CardTitle,
     CardText,
-    CardActions
+    CardActions,
+
+    Message
 });
