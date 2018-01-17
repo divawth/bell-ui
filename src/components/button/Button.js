@@ -1,25 +1,26 @@
 export default {
     template: `
-        <div class="bell-button
-            {{#if type}} bell-{{type}}{{/if}}
-            {{#if shape}} bell-{{shape}}{{/if}}
-            {{#if size}} bell-{{size}}{{/if}}
-            {{#if long}} bell-long{{/if}}
-            {{#if disabled}} bell-disabled{{/if}}
-        " on-click="click">
+<div class="bell-button
+    {{#if type}} bell-{{type}}{{/if}}
+    {{#if shape}} bell-{{shape}}{{/if}}
+    {{#if size}} bell-{{size}}{{/if}}
+    {{#if long}} bell-long{{/if}}
+    {{#if disabled}} bell-disabled{{/if}}
+    {{#if className}} {{className}}{{/if}}
+" on-click="click">
 
-            {{#if icon}}
-                <i class="bell-icon {{icon}}"></i>
-            {{/if}}
+    {{#if icon}}
+        <i class="bell-icon {{icon}}"></i>
+    {{/if}}
 
-            <span>
-                {{#if label}}
-                    {{label}}
-                {{else}}
-                    {{$children}}
-                {{/if}}
-            </span>
-        </div>
+    <span>
+        {{#if label}}
+            {{label}}
+        {{else}}
+            {{$children}}
+        {{/if}}
+    </span>
+</div>
     `,
     propTypes: {
         type: {
@@ -38,10 +39,13 @@ export default {
             type: 'string'
         },
         long: {
-            type: 'boolean'
+            type: ['string', 'boolean']
         },
         disabled: {
-            type: 'boolean'
+            type: ['string', 'boolean']
+        },
+        className: {
+            type: 'string'
         }
     }
 }

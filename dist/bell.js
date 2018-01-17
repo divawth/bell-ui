@@ -1,5 +1,7 @@
 (function (global, factory) {
-    (factory());
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(factory());
 }(this, (function () { 'use strict';
 
 var Header = {
@@ -131,7 +133,7 @@ var BreadcrumbItem = {
 };
 
 var Button = {
-    template: '\n        <div class="bell-button\n            {{#if type}} bell-{{type}}{{/if}}\n            {{#if shape}} bell-{{shape}}{{/if}}\n            {{#if size}} bell-{{size}}{{/if}}\n            {{#if long}} bell-long{{/if}}\n            {{#if disabled}} bell-disabled{{/if}}\n        " on-click="click">\n\n            {{#if icon}}\n                <i class="bell-icon {{icon}}"></i>\n            {{/if}}\n\n            <span>\n                {{#if label}}\n                    {{label}}\n                {{else}}\n                    {{$children}}\n                {{/if}}\n            </span>\n        </div>\n    ',
+    template: '\n<div class="bell-button\n    {{#if type}} bell-{{type}}{{/if}}\n    {{#if shape}} bell-{{shape}}{{/if}}\n    {{#if size}} bell-{{size}}{{/if}}\n    {{#if long}} bell-long{{/if}}\n    {{#if disabled}} bell-disabled{{/if}}\n    {{#if className}} {{className}}{{/if}}\n" on-click="click">\n\n    {{#if icon}}\n        <i class="bell-icon {{icon}}"></i>\n    {{/if}}\n\n    <span>\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</div>\n    ',
     propTypes: {
         type: {
             type: 'string'
@@ -149,10 +151,13 @@ var Button = {
             type: 'string'
         },
         long: {
-            type: 'boolean'
+            type: ['string', 'boolean']
         },
         disabled: {
-            type: 'boolean'
+            type: ['string', 'boolean']
+        },
+        className: {
+            type: 'string'
         }
     }
 };
