@@ -28,16 +28,16 @@
     export default {
         template: `
             <div>
-                <Button on-click="open()">
-                    Succ
+                <Button type="success" on-click="open()">
+                    succ
                 </Button>
-                <Button on-click="open2()">
+                <Button type="info" on-click="open2()">
                     info
                 </Button>
-                <Button on-click="open3()">
+                <Button type="warning" on-click="open3()">
                     warn
                 </Button>
-                <Button on-click="open4()">
+                <Button type="error" on-click="open4()">
                     error
                 </Button>
             </div>
