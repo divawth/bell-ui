@@ -1,6 +1,4 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
     (global.Yox = factory());
 }(this, (function () { 'use strict';
 
@@ -6799,6 +6797,8 @@ Yox.directive({ event: bindEvent, model: model, binding: binding });
 return Yox;
 
 })));
+
+
 /*!
  * jQuery JavaScript Library v1.10.2
  * http://jquery.com/

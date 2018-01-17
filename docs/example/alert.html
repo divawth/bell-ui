@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>alert</title>
-    <link rel="stylesheet" type="text/css" href="../../src/main.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
 
     <style>
         .bell-app {
@@ -13,8 +13,8 @@
     </style>
 </head>
 <body>
-    <script src="../../dep/base.js"></script>
-    <script src="../../src/main.js"></script>
+    <script src="../../dep/base/base.js"></script>
+    <script src="../../dist/bell.js"></script>
 
     <script id="template-1" type="text/plain">
         <div>
@@ -141,7 +141,14 @@
     <script>
         new Yox({
             el: '#app-1',
-            template: '#template-1'
+            template: `
+            <div>
+                <Alert>An info prompt</Alert>
+                <Alert type="success">A success prompt</Alert>
+                <Alert type="warning">A warning prompt</Alert>
+                <Alert type="error">An error prompt</Alert>
+            </div>
+            `
         });
         new Yox({
             el: '#app-2',

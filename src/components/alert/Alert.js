@@ -18,12 +18,12 @@ export default {
     </span>
     {{/if}}
 
-    <div class="bell-alert-content">
+    <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">
         {{$children}}
-    </div>
+    </span>
 
     {{#if closable}}
-    <span class="bell-alert-close" on-click="close()">
+    <span ref="close" class="bell-alert-close" on-click="close()">
         {{#if closeText}}
             {{closeText}}
         {{else}}
@@ -58,7 +58,8 @@ export default {
 
     data: function () {
         return {
-            hasDesc: false
+            hasDesc: false,
+            paddingRight: 0
         }
     },
 
@@ -93,6 +94,11 @@ export default {
                         hasDesc: true
                     });
                 }
+            });
+        }
+        if (me.get('closable')) {
+            me.set({
+                paddingRight: me.$refs.close.clientWidth
             });
         }
     },

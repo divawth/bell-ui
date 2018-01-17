@@ -1,0 +1,88 @@
+.bell-view-box {
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    min-height: 200px;
+    box-sizing: border-box;
+    display: flex;
+    transition: all .2s ease-in-out;
+    max-height: 250px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.bell-view-box-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    color: #ccc;
+    box-shadow: inset 0 -25px 30px #fff;
+}
+.bell-view-box-icon:hover {
+    color: #4279F3;
+}
+
+.bell-view-box:hover {
+    box-shadow: 0 2px 7px rgba(0,0,0,.15);
+    border-color: transparent;
+}
+
+.markdown-section pre {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.markdown-section pre>code {
+    background: none;
+    padding: 0;
+}
+.markdown-section pre>code {
+    background: none;
+    font-size: 14px;
+    padding: 0;
+}
+.hljs-keyword {
+    color: #e96900;
+}
+.hljs-tag {
+    font-weight: normal;
+    color: #4279F3;
+}
+.hljs-name {
+    font-weight: normal;
+}
+
+.hljs-string {
+    color: #3e76f6;
+}
+
+.bell-view {
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 15px;
+}
+.bell-source {
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 15px;
+    border-left: 1px dashed #ccc;
+}
+
+.bell-header {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    z-index: 1;
+}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rollup -c",
-    "test": "lessc src/styles/index.less > src/main.css"
+    "test": "lessc src/styles/index.less > dist/bell.css && edp ws start"
   },
   "edp": {
     "wwwroot": "/",
@@ -18,7 +18,8 @@
   "dependencies": {
     "3000": "^6.9.5",
     "babel-core": "^6.26.0",
-    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "edp-provider-rider": "^2.0.0",
     "rollup": "^0.53.3",
     "rollup-plugin-babel": "^3.0.3",

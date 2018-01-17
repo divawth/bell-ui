@@ -34,6 +34,9 @@ import CardTitle from './components/card/CardTitle'
 import CardText from './components/card/CardText'
 import CardActions from './components/card/CardActions'
 
+import './components/message/Message'
+import './components/notice/Notice'
+
 Yox.component({
     Layout,
     Header,
