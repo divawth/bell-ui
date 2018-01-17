@@ -560,7 +560,7 @@ var Page = {
 };
 
 var Alert = {
-    template: '\n<div class="bell-alert\n{{#if type}} bell-alert-{{type}}{{/if}}\n{{#if hasDesc}} bell-alert-with-desc{{/if}}\n{{#if showIcon}} bell-alert-with-icon{{/if}}\n{{#if center}} bell-alert-center{{/if}}\n">\n    {{#if showIcon}}\n    <span class="bell-alert-icon">\n        <i class="bell-icon\n        {{#if type == \'info\'}} bell-icon-information-circled\n        {{else if type == \'success\'}} bell-icon-checkmark-circled\n        {{else if type == \'warning\'}} bell-icon-android-alert\n        {{else if type == \'error\'}} bell-icon-close-circled\n        {{/if}}\n        "></i>\n    </span>\n    {{/if}}\n\n    <div class="bell-alert-content">\n        {{$children}}\n    </div>\n\n    {{#if closable}}\n    <span class="bell-alert-close" on-click="close()">\n        {{#if closeText}}\n            {{closeText}}\n        {{else}}\n            <i class="bell-icon bell-icon-ios-close-empty"></i>\n        {{/if}}\n    </span>\n    {{/if}}\n</div>\n    ',
+    template: '\n<div class="bell-alert\n{{#if type}} bell-alert-{{type}}{{/if}}\n{{#if hasDesc}} bell-alert-with-desc{{/if}}\n{{#if showIcon}} bell-alert-with-icon{{/if}}\n{{#if center}} bell-alert-center{{/if}}\n">\n    {{#if showIcon}}\n    <span class="bell-alert-icon">\n        <i class="bell-icon\n        {{#if type == \'info\'}} bell-icon-information-circled\n        {{else if type == \'success\'}} bell-icon-checkmark-circled\n        {{else if type == \'warning\'}} bell-icon-android-alert\n        {{else if type == \'error\'}} bell-icon-close-circled\n        {{/if}}\n        "></i>\n    </span>\n    {{/if}}\n\n    <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">\n        {{$children}}\n    </span>\n\n    {{#if closable}}\n    <span ref="close" class="bell-alert-close" on-click="close()">\n        {{#if closeText}}\n            {{closeText}}\n        {{else}}\n            <i class="bell-icon bell-icon-ios-close-empty"></i>\n        {{/if}}\n    </span>\n    {{/if}}\n</div>\n    ',
 
     propTypes: {
         type: {
@@ -586,7 +586,8 @@ var Alert = {
 
     data: function data() {
         return {
-            hasDesc: false
+            hasDesc: false,
+            paddingRight: 0
         };
     },
 
@@ -614,6 +615,11 @@ var Alert = {
                         hasDesc: true
                     });
                 }
+            });
+        }
+        if (me.get('closable')) {
+            me.set({
+                paddingRight: me.$refs.close.clientWidth
             });
         }
     },
@@ -800,20 +806,113 @@ var CardActions = {
     template: "\n        <div class=\"bell-card-actions\">\n            {{$children}}\n        </div>\n    "
 };
 
-var Message = {
-    template: "\n\n    ",
+var id = 0;
+var createMessage = function createMessage(_data) {
+    var namespace = 'bell-message-' + id++;
+    var body = document.body;
+    var element = document.createElement('div');
+    element.setAttribute('id', namespace);
+    body.append(element);
 
-    data: function data() {
-        return {};
-    },
+    new Yox({
+        el: '#' + namespace,
+        replace: true,
+        template: '\n<div class="bell-message bell-message-{{type}}\n{{#if isShow}} bell-show{{/if}}\n" style="margin-left: -{{marginLeft / 2}}px">\n    <Alert type="{{type}}" showIcon="{{showIcon}}" closable="{{closable}}" close="{{close}}">\n        {{content}}\n    </Alert>\n</div>',
+        data: function data() {
+            return {
+                marginLeft: 0,
+                content: _data.content,
+                type: _data.type,
+                showIcon: _data.showIcon,
+                closable: _data.closable,
+                isShow: false,
+                close: function close() {
+                    element.remove();
+                    if (Yox.is.func(_data.onClose)) {
+                        _data.onClose();
+                    }
+                }
+            };
+        },
+        afterMount: function afterMount() {
+            var me = this;
 
-    afterMount: function afterMount() {},
+            var fadeIn = 300;
+            var fadeOut = 500;
+            var showTime = _data.duration || 1500;
+            me.set({
+                marginLeft: me.$el.clientWidth
+            });
 
-    beforeDestroy: function beforeDestroy() {}
+            me.fadeInFuc = setTimeout(function () {
+                // 展示时间
+                me.set({
+                    isShow: true
+                });
+                me.showTimeFuc = setTimeout(function () {
+                    // 淡出
+                    me.set({
+                        isShow: false
+                    });
+                    me.fadeOutFuc = setTimeout(function () {
+
+                        element.remove();
+                        if (Yox.is.func(_data.onClose)) {
+                            _data.onClose();
+                        }
+                    }, fadeOut);
+                }, showTime);
+            }, fadeIn);
+        },
+
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            clearTimeout(me.fadeInFuc);
+            clearTimeout(me.showTimeFuc);
+            clearTimeout(me.fadeOutFuc);
+        }
+    });
 };
 
-window.primary = function (content, callback) {
-    console.log(21);
+var add = function add(data) {
+    createMessage(data);
+};
+
+var addMessage = function addMessage(type, arg) {
+    var data = {
+        type: type
+    };
+
+    if (Yox.is.string(arg)) {
+        data.content = arg;
+    } else {
+        Yox.object.extend(data, arg);
+    }
+    add(data);
+};
+
+Yox.prototype.$message = {
+    success: function success(arg) {
+        addMessage('success', arg);
+    },
+    info: function info(arg) {
+        addMessage('info', arg);
+    },
+    warning: function warning(arg) {
+        addMessage('warning', arg);
+    },
+    error: function error(arg) {
+        addMessage('error', arg);
+    },
+    loading: function loading(arg) {
+        addMessage('loading', arg);
+    },
+    config: function config(options) {
+        console.log('config:', options);
+    },
+    destroy: function destroy() {
+        console.log('destroy');
+    }
 };
 
 /*
@@ -850,9 +949,7 @@ Yox.component({
     CardMedia: CardMedia,
     CardTitle: CardTitle,
     CardText: CardText,
-    CardActions: CardActions,
-
-    Message: Message
+    CardActions: CardActions
 });
 
 })));

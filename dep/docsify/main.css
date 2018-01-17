@@ -72,11 +72,17 @@
 }
 
 .bell-view {
-    flex: 1;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
     padding: 15px;
 }
 .bell-source {
-    flex: 1;
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
     padding: 15px;
     border-left: 1px dashed #ccc;
 }

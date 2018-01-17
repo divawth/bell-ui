@@ -15,29 +15,38 @@
     </style>
 </head>
 <body>
-    <script src="../../dep/base/base.js"></script>
+    <script src="../../dep/base/yox.js"></script>
     <script src="../../dist/bell.js"></script>
 
     <script id="template-1" type="text/plain">
         <div>
             <Button on-click="open()">
-                Click me!
+                Success!
             </Button>
         </div>
     </script>
 
     <script id="template-2" type="text/plain">
         <div>
+            <Button on-click="open()">
+                info!
+            </Button>
         </div>
     </script>
 
     <script id="template-3" type="text/plain">
         <div>
+            <Button on-click="open()">
+                warning!
+            </Button>
         </div>
     </script>
 
     <script id="template-4" type="text/plain">
         <div>
+            <Button on-click="open()">
+                error!
+            </Button>
         </div>
     </script>
 
@@ -51,24 +60,60 @@
         new Yox({
             el: '#app-1',
             template: '#template-1',
-
             methods: {
                 open: function () {
-
+                    this.$message.success({
+                        content: '1212',
+                        onClose: function () {
+                            console.log('close')
+                        }
+                    })
                 }
             }
         });
         new Yox({
             el: '#app-2',
-            template: '#template-2'
+            template: '#template-2',
+            methods: {
+                open: function () {
+                    this.$message.info({
+                        content: '1212',
+                        onClose: function () {
+                            console.log('close')
+                        }
+                    })
+                }
+            }
         });
         new Yox({
             el: '#app-3',
-            template: '#template-3'
+            template: '#template-3',
+            methods: {
+                open: function () {
+                    this.$message.warning({
+                        content: '1212',
+                        onClose: function () {
+                            console.log('close')
+                        }
+                    })
+                }
+            }
         });
         new Yox({
             el: '#app-4',
-            template: '#template-4'
+            template: '#template-4',
+            methods: {
+                open: function () {
+                    this.$message.error({
+                        content: 'dsadasd',
+                        duration: 13000,
+                        showIcon: true,
+                        onClose: function () {
+                            console.log('close')
+                        }
+                    })
+                }
+            }
         });
 
     </script>

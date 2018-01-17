@@ -3324,6 +3324,18 @@
 .bell-card-actions .bell-button + .bell-button {
   margin-left: 10px;
 }
+.bell-message {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  opacity: 0;
+  user-select: none;
+  transition: all .3s;
+}
+.bell-message.bell-show {
+  top: 15px;
+  opacity: 1;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }

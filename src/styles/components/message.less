@@ -1,0 +1,16 @@
+@import "../custom";
+
+.bell-message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    opacity: 0;
+
+    user-select: none;
+    transition: all .3s;
+
+    &.bell-show {
+        top: 15px;
+        opacity: 1;
+    }
+}
