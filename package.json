@@ -1,8 +1,8 @@
 {
-  "name": "Bell",
+  "name": "bell-ui",
   "version": "0.0.1",
-  "description": "edp project",
-  "main": "index.js",
+  "description": "bell ui",
+  "entry": "index.js",
   "scripts": {
     "start": "rollup -c",
     "test": "lessc src/styles/index.less > dist/bell.css && edp ws start"
