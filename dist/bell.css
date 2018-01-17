@@ -2957,6 +2957,7 @@
   font-size: 14px;
   margin-right: 6px;
   float: left;
+  vertical-align: top;
 }
 .bell-alert.bell-alert-with-desc .bell-alert-content {
   font-size: 14px;
@@ -3329,12 +3330,81 @@
   top: 0;
   left: 50%;
   opacity: 0;
+  z-index: 1010;
   user-select: none;
   transition: all .3s;
 }
 .bell-message.bell-show {
-  top: 15px;
   opacity: 1;
+}
+#bell-notice-wrapper {
+  position: fixed;
+  right: 0;
+  top: 15px;
+  z-index: 1010;
+}
+.bell-notice {
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+  opacity: 0;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+.bell-notice + .bell-notice {
+  margin-top: 15px;
+}
+.bell-notice:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background-color: #57a3f3;
+}
+.bell-notice.bell-show {
+  opacity: 1;
+}
+.bell-notice .bell-notice-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #212121;
+  line-height: 24px;
+}
+.bell-notice .bell-notice-desc {
+  line-height: 1.5;
+  font-size: 13px;
+  color: #757575;
+  line-height: 20px;
+}
+.bell-notice .bell-notice-close {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 5px 15px;
+  color: #999;
+}
+.bell-notice .bell-notice-close:hover {
+  color: #333;
+}
+.bell-notice-info:before {
+  background-color: #57a3f3;
+}
+.bell-notice-success:before {
+  background-color: #19be6b;
+}
+.bell-notice-warning:before {
+  background-color: #ff9900;
+}
+.bell-notice-error:before {
+  background-color: #ed3f14;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;

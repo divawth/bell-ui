@@ -87,7 +87,7 @@ var DemoBlock = {
     afterMount: function afterMount() {
         var me = this;
         var code = me.get('code');
-        var source = hljs.highlight('html', code);
+        var source = hljs.highlight('js', code);
 
         me.set({
             source: source.value

@@ -43,10 +43,9 @@
     background: none;
     padding: 0;
 }
-.hljs {
+.markdown-section pre>code {
     background: none;
-    font-size: 16px;
-    color: #3e76f6;
+    font-size: 14px;
     padding: 0;
 }
 .hljs-keyword {
@@ -54,6 +53,7 @@
 }
 .hljs-tag {
     font-weight: normal;
+    color: #4279F3;
 }
 .hljs-name {
     font-weight: normal;
@@ -61,14 +61,6 @@
 
 .hljs-string {
     color: #3e76f6;
-}
-
-.hljs-string {
-    color: #31e08c;
-}
-
-.hljs-attr {
-    color: #f90;
 }
 
 .bell-view {
@@ -89,7 +81,6 @@
 
 .bell-header {
     position: absolute;
-    left: 0;
     right: 0;
     top: 0;
     text-align: right;

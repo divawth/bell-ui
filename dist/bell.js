@@ -807,6 +807,7 @@ var CardActions = {
 };
 
 var id = 0;
+
 var createMessage = function createMessage(_data) {
     var namespace = 'bell-message-' + id++;
     var body = document.body;
@@ -814,17 +815,20 @@ var createMessage = function createMessage(_data) {
     element.setAttribute('id', namespace);
     body.append(element);
 
-    new Yox({
+    var instance = new Yox({
         el: '#' + namespace,
         replace: true,
-        template: '\n<div class="bell-message bell-message-{{type}}\n{{#if isShow}} bell-show{{/if}}\n" style="margin-left: -{{marginLeft / 2}}px">\n    <Alert type="{{type}}" showIcon="{{showIcon}}" closable="{{closable}}" close="{{close}}">\n        {{content}}\n    </Alert>\n</div>',
+        template: '\n<div class="bell-message bell-message-{{type}}\n{{#if isShow}} bell-show{{/if}}\n" style="margin-left: -{{marginLeft / 2}}px;\n{{#if top}} top: {{top}}px;{{/if}}">\n    <Alert type="{{type}}" closeText="{{closeText}}" center="{{center}}" showIcon="{{showIcon}}" closable="{{closable}}" close="{{close}}">\n        {{content}}\n    </Alert>\n</div>',
         data: function data() {
             return {
                 marginLeft: 0,
+                top: 0,
                 content: _data.content,
                 type: _data.type,
                 showIcon: _data.showIcon,
                 closable: _data.closable,
+                closeText: _data.closeText,
+                center: _data.center,
                 isShow: false,
                 close: function close() {
                     element.remove();
@@ -834,35 +838,52 @@ var createMessage = function createMessage(_data) {
                 }
             };
         },
-        afterMount: function afterMount() {
-            var me = this;
 
-            var fadeIn = 300;
-            var fadeOut = 500;
-            var showTime = _data.duration || 1500;
-            me.set({
-                marginLeft: me.$el.clientWidth
-            });
-
-            me.fadeInFuc = setTimeout(function () {
-                // 展示时间
-                me.set({
-                    isShow: true
-                });
-                me.showTimeFuc = setTimeout(function () {
-                    // 淡出
+        methods: {
+            fadeIn: function fadeIn() {
+                var me = this;
+                me.fadeInFuc = setTimeout(function () {
                     me.set({
-                        isShow: false
+                        isShow: true,
+                        top: me.top
                     });
-                    me.fadeOutFuc = setTimeout(function () {
+                    me.fadeOut();
+                }, me.fadeInTime);
+            },
+            fadeOut: function fadeOut() {
+                var me = this;
+                me.showTimeFuc = setTimeout(function () {
+                    me.set({
+                        isShow: false,
+                        top: 0
+                    });
 
+                    me.fadeOutFuc = setTimeout(function () {
                         element.remove();
                         if (Yox.is.func(_data.onClose)) {
                             _data.onClose();
                         }
-                    }, fadeOut);
-                }, showTime);
-            }, fadeIn);
+                        if (instance) {
+                            instance.destroy();
+                        }
+                    }, me.fadeOutTime);
+                }, me.showTime);
+            }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+
+            me.fadeInTime = 300;
+            me.fadeOutTime = 300;
+            me.showTime = _data.duration || 1500;
+            me.top = _data.top || 15;
+
+            me.set({
+                marginLeft: me.$el.clientWidth
+            });
+
+            me.fadeIn();
         },
 
         beforeDestroy: function beforeDestroy() {
@@ -878,17 +899,29 @@ var add = function add(data) {
     createMessage(data);
 };
 
+var config = {};
+
 var addMessage = function addMessage(type, arg) {
-    var data = {
-        type: type
-    };
+    var data = {};
+    data.type = type;
 
     if (Yox.is.string(arg)) {
         data.content = arg;
     } else {
-        Yox.object.extend(data, arg);
+        Yox.object.extend(data, arg, config);
     }
+
     add(data);
+};
+
+var updateConfig = function updateConfig(data) {
+    if (data.duration) {
+        config.duration = data.duration;
+    }
+
+    if (data.top) {
+        config.top = data.top;
+    }
 };
 
 Yox.prototype.$message = {
@@ -908,7 +941,156 @@ Yox.prototype.$message = {
         addMessage('loading', arg);
     },
     config: function config(options) {
-        console.log('config:', options);
+        updateConfig(options);
+    },
+    destroy: function destroy() {
+        console.log('destroy');
+    }
+};
+
+var id$1 = 0;
+
+var createNotice = function createNotice(_data) {
+    var namespace = 'bell-notice-' + id$1++;
+    var body = document.getElementById('bell-notice-wrapper');
+    var element = document.createElement('div');
+    element.setAttribute('id', namespace);
+    body.append(element);
+
+    var instance = new Yox({
+        el: '#' + namespace,
+        replace: true,
+        template: '\n<div class="bell-notice bell-notice-{{type}}\n{{#if isShow}} bell-show{{/if}}\n" style="width: {{width}}px;\n{{#if right}} right: {{right}}px;{{/if}}">\n    <div class="bell-notice-title">\n        {{title}}\n    </div>\n    <div class="bell-notice-desc">\n        {{content}}\n    </div>\n    {{#if duration == 0}}\n    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>\n    {{/if}}\n</div>',
+        data: function data() {
+            return {
+                width: _data.width || 320,
+                right: 0,
+
+                type: _data.type,
+                title: _data.title,
+                content: _data.content,
+                duration: _data.duration,
+
+                isShow: false
+            };
+        },
+
+        methods: {
+            close: function close() {
+                this.hide();
+            },
+            fadeIn: function fadeIn() {
+                var me = this;
+                me.fadeInFuc = setTimeout(function () {
+                    me.set({
+                        isShow: true,
+                        right: me.right
+                    });
+                    if (_data.duration == 0) {
+                        return;
+                    }
+                    me.fadeOut();
+                }, me.fadeInTime);
+            },
+            fadeOut: function fadeOut() {
+                var me = this;
+                me.showTimeFuc = setTimeout(function () {
+                    me.hide();
+                }, me.showTime);
+            },
+            hide: function hide() {
+                var me = this;
+                me.set({
+                    isShow: false,
+                    right: -me.$el.clientWidth
+                });
+                me.fadeOutFuc = setTimeout(function () {
+                    element.remove();
+                    if (Yox.is.func(_data.onClose)) {
+                        _data.onClose();
+                    }
+                    if (instance) {
+                        instance.destroy();
+                    }
+                }, me.fadeOutTime);
+            }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+
+            me.fadeInTime = 300;
+            me.fadeOutTime = 300;
+            me.showTime = _data.duration || 4500;
+            me.right = _data.right || 15;
+
+            me.set({
+                right: -me.$el.clientWidth
+            });
+            me.fadeIn();
+        },
+
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            clearTimeout(me.fadeInFuc);
+            clearTimeout(me.showTimeFuc);
+            clearTimeout(me.fadeOutFuc);
+        }
+    });
+};
+
+var add$1 = function add(data) {
+    createNotice(data);
+};
+
+var config$1 = {};
+
+var addNotice = function addNotice(type, arg) {
+    var data = {};
+    data.type = type;
+
+    if (Yox.is.string(arg)) {
+        data.content = arg;
+    } else {
+        Yox.object.extend(data, arg, config$1);
+    }
+
+    add$1(data);
+};
+
+var updateConfig$1 = function updateConfig(data) {
+    if (data.duration) {
+        config$1.duration = data.duration;
+    }
+
+    if (data.top) {
+        config$1.top = data.top;
+    }
+};
+
+var body = document.body;
+var element = document.createElement('div');
+element.setAttribute('id', 'bell-notice-wrapper');
+body.append(element);
+
+Yox.prototype.$notice = {
+    success: function success(arg) {
+        addNotice('success', arg);
+    },
+    info: function info(arg) {
+        addNotice('info', arg);
+    },
+    warning: function warning(arg) {
+        addNotice('warning', arg);
+    },
+    error: function error(arg) {
+        addNotice('error', arg);
+    },
+    loading: function loading(arg) {
+        addNotice('loading', arg);
+    },
+    config: function config(options) {
+        updateConfig$1(options);
     },
     destroy: function destroy() {
         console.log('destroy');

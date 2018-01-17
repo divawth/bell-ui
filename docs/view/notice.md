@@ -1,26 +1,38 @@
-<a href="./example/message.html">
-    Message
-</a>
-
 > 概述
 
-常用于主动操作后的反馈提示
+悬浮出现在页面角落，显示全局的通知提醒消息。常用于以下场景：
+
+- 通知内容带有描述信息
+- 系统主动推送
 
 > 基础用法
 
-从顶部出现，1.5 秒后自动消失。
+从右侧出现，4.5 秒后自动消失。
 
     export default {
         template: `
             <div>
                 <Button on-click="open()">
-                    click me!
+                    提醒
+                </Button>
+                <Button on-click="open1()">
+                    提醒（仅标题）
                 </Button>
             </div>
         `,
         methods: {
             open: function () {
-                this.$message.success('恭喜你，这是一条成功消息')
+                this.$notice.success({
+                    title: '这是标题这是标题这是标题',
+                    content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
+                    width: 320
+                });
+            },
+            open1: function () {
+                this.$notice.success({
+                    title: '这是标题这是标题这是标题',
+                    width: 320
+                });
             }
         }
     }
@@ -32,16 +44,16 @@
     export default {
         template: `
             <div>
-                <Button on-click="open()">
+                <Button type="success" on-click="open()">
                     Succ
                 </Button>
-                <Button on-click="open2()">
+                <Button type="info" on-click="open2()">
                     info
                 </Button>
-                <Button on-click="open3()">
+                <Button type="warning" on-click="open3()">
                     warn
                 </Button>
-                <Button on-click="open4()">
+                <Button type="error" on-click="open4()">
                     error
                 </Button>
             </div>
@@ -49,23 +61,39 @@
 
         methods: {
             open: function () {
-                this.$message.success('恭喜你，这是一条成功消息');
+                this.$notice.success({
+                    title: '这是标题这是标题这是标题',
+                    content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
+                    width: 320
+                });
             },
             open2: function () {
-                this.$message.info('这是一条有 icon 的消息而已～');
+                this.$notice.info({
+                    title: '这是标题这是标题这是标题',
+                    content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
+                    width: 320
+                });
             },
             open3: function () {
-                this.$message.warning('警告哦，这是一条警告消息');
+                this.$notice.warning({
+                    title: '这是标题这是标题这是标题',
+                    content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
+                    width: 320
+                });
             },
             open4: function () {
-                this.$message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
+                this.$notice.error({
+                    title: '这是标题这是标题这是标题',
+                    content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
+                    width: 320
+                });
             }
         }
     }
 
 > 可关闭
 
-可以添加关闭按钮。
+duration 为 0 的时候出现关闭按钮
 
     export default {
         template: `
@@ -77,33 +105,10 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
-                    content: '对方不想和你说话，并且向你抛出了一个异常',
-                    closable: true
-                })
-            }
-        }
-    }
-
-> 设置关闭文本
-
-设置关闭文本为 Close me!
-
-    export default {
-        template: `
-            <div>
-                <Button on-click="open()">
-                    Click me!
-                </Button>
-            </div>
-        `,
-        methods: {
-            open: function () {
-                this.$message.error({
-                    content: '对方不想和你说话，并且向你抛出了一个异常',
-                    showIcon: true,
-                    closable: true,
-                    closeText: 'Close me!'
+                this.$notice.error({
+                    title: '对方不想和你说话，并且向你抛出了一个异常',
+                    duration: 0,
+                    width: 330
                 })
             }
         }
@@ -123,16 +128,15 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
-                    showIcon: true,
                     duration: 10000
                 })
             }
         }
     }
 
-> 设置提示组件距离顶端的距离
+> 设置提示组件距离右侧的距离
 
 设置提示组件距离顶端的距离为 100px
 
@@ -146,10 +150,9 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
-                    showIcon: true,
-                    top: 100
+                    right: 100
                 })
             }
         }
@@ -167,14 +170,12 @@
         `,
         methods: {
             open: function () {
-                this.$message.config({
-                    top: 50,
+                this.$notice.config({
+                    right: 50,
                     duration: 13000
                 });
-                this.$message.error({
+                this.$notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
-                    closable: true,
-                    closeText: 'Close me!',
                     onClose: function () {
                         console.log('close')
                     }
@@ -187,20 +188,17 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$message.info(content, duration, onClose)
-- this.$message.success(content, duration, onClose)
-- this.$message.warning(content, duration, onClose)
-- this.$message.error(content, duration, onClose)
+- this.$notice.info(content, duration, onClose)
+- this.$notice.success(content, duration, onClose)
+- this.$notice.warning(content, duration, onClose)
+- this.$notice.error(content, duration, onClose)
 
 > Attributes
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
-showIcon | 是否显示图标 | boolean | - | false
-closable | 是否可以关闭 | boolean | - | true
-center | 文字是否居中 | boolean | - | true
-closeText | 关闭按钮自定义文本 | string | - | -
+title | 自定义标题 | string | - | -
 top | 提示组件距离顶端的距离，单位像素 | Number | - | 15
 duration | 默认自动关闭的延时，单位毫秒 | Number | - | 150
 
@@ -212,13 +210,13 @@ onClose | 关闭 alert 时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$Message.config();
+- this.$notice.config();
 
 > Attributes
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-top | 提示组件距离顶端的距离，单位像素 | Number | - | 15
+right | 提示组件距离右侧的距离，单位像素 | Number | - | 15
 duration | 默认自动关闭的延时，单位毫秒 | Number | - | 150
 
 

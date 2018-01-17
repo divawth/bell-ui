@@ -19,6 +19,7 @@
     - [CardText](view/card?id=cardText)
     - [CardActions](view/card?id=cardActions)
   - [Message 全局提示](view/message)
+  - [Notice 通知提醒](view/notice)
 - [Other](other)
   - [Spinner 加载中](other/spinner)
   - [BackTop 返回顶部](other/backTop)
