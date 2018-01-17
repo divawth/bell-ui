@@ -1,6 +1,46 @@
-<a href="./example/spinner.html">
-    Spinner
-</a>
+> 基础用法
+
+    export default {
+        template: `
+            <Spinner></Spinner>
+        `
+    }
+
+> 设置大小
+
+    export default {
+        template: `
+            <div>
+                <Spinner size="small"></Spinner>
+                <Spinner></Spinner>
+                <Spinner size="large"></Spinner>
+            </div>
+        `
+    }
+
+> 设置文字
+
+    export default {
+        template: `
+            <div>
+                <Spinner size="small" text="加载中..."></Spinner>
+                <Spinner text="加载中..."></Spinner>
+                <Spinner size="large" text="加载中..."></Spinner>
+            </div>
+        `
+    }
+
+> 设置文字 loading
+
+    export default {
+        template: `
+            <div style="">
+                <Spinner size="large" text="Loading" type="circle"></Spinner>
+            </div>
+        `
+    }
+
+
 
 > Attributes
 

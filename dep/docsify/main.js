@@ -37,7 +37,7 @@ var DemoBlock = {
         open: function open() {
             var me = this;
             var container = me.$el;
-            container.style.maxHeight = container.getElementsByTagName('pre')[0].clientHeight;
+            container.style.maxHeight = container.getElementsByTagName('pre')[0].clientHeight + 'px';
 
             me.set({
                 isOpen: true

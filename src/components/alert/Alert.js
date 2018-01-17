@@ -69,12 +69,13 @@ export default {
 
     methods: {
         close: function () {
-            var me = this;
-            var container = $(me.$el);
-            container.addClass('bell-hide');
+            let me = this;
+            let container = me.$el;
+            let classNames = container.getAttribute('class');
+            container.setAttribute('class', classNames + ' bell-hide');
             setTimeout(
                 function () {
-                    container[0].remove()
+                    container.remove()
                 },
                 500
             );
@@ -83,8 +84,8 @@ export default {
     },
 
     afterMount: function () {
-        var me = this;
-        var children = me.$options.props.$children;
+        let me = this;
+        let children = me.$options.props.$children;
         if (Yox.is.array(children)
             && me.$options.props.$children.length
         ) {

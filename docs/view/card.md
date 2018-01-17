@@ -1,9 +1,42 @@
-
 基础容器，用来显示文字、列表、图文等内容，也可以配合其它组件一起使用。
 
-<a href="./example/card.html">
-    Card
-</a>
+> 示例一个
+
+    export default {
+        template: `
+        <div>
+            <Card>
+                <CardHeader title="Myron Avatar" subTitle="sub title">
+                    <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" ></Avatar>
+                </CardHeader>
+
+                <CardMedia title="Image Title" subTitle="Image Sub Title">
+                    <img src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+                </CardMedia>
+
+                <CardTitle title="Content Title" subTitle="Content Title"/>
+
+                <CardText>
+                    散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
+                    调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。
+                    似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，
+                    找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！
+                </CardText>
+
+                <CardActions>
+                    <Button>
+                        Action1
+                    </Button>
+                    <Button>
+                        Action2
+                    </Button>
+                </CardActions>
+            </Card>
+        </div>
+        `
+    }
+
+#### API
 
 ### CardHeader
 

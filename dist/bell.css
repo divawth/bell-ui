@@ -2579,6 +2579,7 @@
 }
 .bell-input-wrapper .bell-textarea:focus,
 .bell-input-wrapper .bell-input:focus {
+  border-color: #57a3f3;
   box-shadow: 0 0 0 2px rgba(45, 140, 240, 0.2);
 }
 .bell-input-wrapper .bell-input-large {
@@ -2722,7 +2723,7 @@
   white-space: nowrap;
   list-style: none;
   cursor: pointer;
-  padding: 8px 15px;
+  padding: 5px 15px;
   color: #495060;
   font-size: 12px;
 }
@@ -2788,7 +2789,7 @@
   padding: 5px 0;
 }
 .bell-select-small .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item {
-  padding: 8px 15px;
+  padding: 2px 15px;
 }
 .bell-select-small.bell-select-top .bell-select-dropdown {
   bottom: 30px;
@@ -3051,7 +3052,8 @@
 .bell-spinner .bell-spinner-icon {
   font-size: 18px;
   color: #57a3f3;
-  line-height: 50px;
+  line-height: 0;
+  display: block;
   animation: bell-spinner-loading-icon 1s linear infinite;
 }
 .bell-spinner .bell-spinner-text {
@@ -3138,7 +3140,7 @@
 }
 .bell-spinner-small .bell-spinner-icon {
   font-size: 22px;
-  line-height: 25px;
+  line-height: 0;
 }
 .bell-spinner-large {
   width: 80px;
@@ -3174,7 +3176,7 @@
 }
 .bell-spinner-large .bell-spinner-icon {
   font-size: 28px;
-  line-height: 70px;
+  line-height: 0;
 }
 .bell-backtop {
   cursor: pointer;
@@ -3217,6 +3219,9 @@
 .bell-avatar > .bell-icon {
   font-size: 26px;
   line-height: 50px;
+}
+.bell-avatar + .bell-avatar {
+  margin-left: 10px;
 }
 .bell-avatar-large {
   width: 60px;

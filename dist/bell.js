@@ -1,7 +1,5 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(factory());
+    (factory());
 }(this, (function () { 'use strict';
 
 var Header = {
@@ -601,10 +599,11 @@ var Alert = {
     methods: {
         close: function close() {
             var me = this;
-            var container = $(me.$el);
-            container.addClass('bell-hide');
+            var container = me.$el;
+            var classNames = container.getAttribute('class');
+            container.setAttribute('class', classNames + ' bell-hide');
             setTimeout(function () {
-                container[0].remove();
+                container.remove();
             }, 500);
             me.get('close') && me.get('close')();
         }

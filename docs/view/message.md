@@ -1,7 +1,3 @@
-<a href="./example/message.html">
-    Message
-</a>
-
 > 概述
 
 常用于主动操作后的反馈提示

@@ -1,7 +1,147 @@
+> 基础用法
 
-<a href="./example/select.html">
-    Select
-</a>
+    export default {
+        template: `
+            <Select {{...options}} model="value">
+            </Select>
+        `,
+        data: function () {
+            return {
+                value: '1',
+                options: {
+                    style: 'width: 200px',
+                    defaultText: '请选择...',
+                    list: [
+                        {
+                            text: '所有',
+                            val: 1
+                        },
+                        {
+                            text: '正常',
+                            val: 2
+                        },
+                        {
+                            text: '不正常',
+                            val: 3
+                        }
+                    ]
+                }
+            }
+        }
+    }
+
+> 设置 size 大小
+
+    export default {
+        template: `
+            <div>
+                <Select size="large" model="value" {{...options}}></Select>
+                <br><br>
+                <Select model="value1" {{...options}}></Select>
+                <br><br>
+                <Select size="small" model="value2" {{...options}}></Select>
+            </div>
+        `,
+        data: function () {
+            return {
+                options: {
+                    style: 'width: 200px',
+                    defaultText: '请选择...',
+                    list: [
+                        {
+                            text: '所有',
+                            val: 1
+                        },
+                        {
+                            text: '正常',
+                            val: 2
+                        },
+                        {
+                            text: '不正常',
+                            val: 3
+                        }
+                    ]
+                },
+                value: '1',
+                value2: '1',
+                value1: '1'
+            }
+        }
+    }
+
+> 使用 disabled 禁用状态
+
+    export default {
+        template: `
+            <Select {{...options}} model="value" disabled="true">
+            </Select>
+        `,
+        data: function () {
+            return {
+                value: '1',
+                options: {
+                    style: 'width: 200px',
+                    defaultText: '请选择...',
+                    list: [
+                        {
+                            text: '所有',
+                            val: 1
+                        },
+                        {
+                            text: '正常',
+                            val: 2
+                        },
+                        {
+                            text: '不正常',
+                            val: 3
+                        }
+                    ]
+                }
+            }
+        }
+    }
+
+> placement 设置弹窗的展开方向
+
+    export default {
+        template: `
+            <div>
+                <Select placement="top" size="large" model="value" {{...options}}></Select>
+                <br><br>
+                <Select placement="top" model="value1" {{...options}}></Select>
+                <br><br>
+                <Select placement="top" size="small" model="value2" {{...options}}></Select>
+            </div>
+        `,
+        data: function () {
+            return {
+                options: {
+                    style: 'width: 200px',
+                    defaultText: '请选择...',
+                    list: [
+                        {
+                            text: '所有',
+                            val: 1
+                        },
+                        {
+                            text: '正常',
+                            val: 2
+                        },
+                        {
+                            text: '不正常',
+                            val: 3
+                        }
+                    ]
+                },
+                value: '1',
+                value1: '1',
+                value2: '1'
+            }
+        }
+    }
+
+
+#### API
 
 > Attributes
 
