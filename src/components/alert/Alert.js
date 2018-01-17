@@ -96,6 +96,7 @@ export default {
                 }
             });
         }
+
         if (me.get('closable')) {
             me.set({
                 paddingRight: me.$refs.close.clientWidth
