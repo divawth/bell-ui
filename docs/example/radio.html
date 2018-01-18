@@ -3,60 +3,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>button</title>
+    <title>
+        Radio
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+
+    <style>
+        .bell-app {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <script src="https://unpkg.com/yox@latest"></script>
-    <script src="../dep/base/base.js"></script>
-    <script>
-        (function () {
-            var config = require.config({
-                baseUrl: '../src',
-                packages: [
-                    {
-                        name: 'components',
-                        location: '../src/components'
-                    },
-                    {
-                        name: 'styles',
-                        location: '../src/styles'
-                    }
-                ]
-            });
-        })();
+    <script src="../../dep/base/yox.js"></script>
+    <script src="../../dist/bell.js"></script>
 
-        var styles = '';
-        require(['text!styles/index.css'], function (style) {
-            styles = style;
-        });
-
-        require(['index'], function (index) {
-            index.init();
-            new Yox({
-                el: '#app1',
-                template: '#Template1',
-                data: function () {
-                    return {
-                        style: styles
-                    }
-                }
-            });
-        });
-    </script>
-    <script id="template1" type="text/plain">
+    <script id="template-1" type="text/plain">
         <div>
-            <Radio v-model="single" label="Radio"></Radio>
-            <style>
-                {{{style}}}
-            </style>
+            <RadioGroup type="success" name="single" model="radio">
+                <Radio label="tiva" value="zhu"></Radio>
+                <Radio label="musicode" value="wang"></Radio>
+            </RadioGroup>
+
+            <RadioGroup type="warning" name="single1" model="radio">
+                <Radio label="tiva" value="zhu"></Radio>
+                <Radio label="musicode" value="wang"></Radio>
+            </RadioGroup>
+
+            <RadioGroup type="info" name="single2" model="radio">
+                <Radio label="tiva" value="zhu"></Radio>
+                <Radio label="musicode" value="wang"></Radio>
+            </RadioGroup>
+
+            <RadioGroup type="error" name="single3" model="radio">
+                <Radio label="tiva" value="zhu"></Radio>
+                <Radio label="musicode" value="wang"></Radio>
+            </RadioGroup>
         </div>
     </script>
 
-    <div id="app1"></div>
-    <div id="app2"></div>
-    <div id="app3"></div>
-    <div id="app4"></div>
-    <div id="app5"></div>
-    <div id="app6"></div>
+    <script id="template-2" type="text/plain">
+        <RadioGroup name="single" model="radio">
+            <Radio label="tiva" value="zhu"></Radio>
+            <Radio label="musicode" value="wang"></Radio>
+        </RadioGroup>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <RadioGroup name="single" model="radio">
+            <Radio label="tiva" value="zhu" disabled></Radio>
+            <Radio label="musicode" value="wang"></Radio>
+        </RadioGroup>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <RadioGroup name="single" model="radio" vertical>
+            <Radio label="tiva" value="zhu" checked></Radio>
+            <Radio label="musicode" value="wang"></Radio>
+            <Radio label="wang" value="2"></Radio>
+        </RadioGroup>
+    </script>
+
+    <script id="template-5" type="text/plain">
+        <RadioGroup name="single" model="radio" vertical>
+            <Radio label="tiva" value="zhu"></Radio>
+            <Radio label="musicode" value="wang"></Radio>
+        </RadioGroup>
+    </script>
+
+    <script id="template-6" type="text/plain">
+        <RadioGroup button name="single" model="radio">
+            <Radio label="tiva" value="zhu"></Radio>
+            <Radio label="musicode" value="wang"></Radio>
+            <Radio label="other" value="other"></Radio>
+        </RadioGroup>
+    </script>
+
+    <div class="bell-app" id="app-1"></div>
+    <div class="bell-app" id="app-2"></div>
+    <div class="bell-app" id="app-3"></div>
+    <div class="bell-app" id="app-4"></div>
+    <div class="bell-app" id="app-5"></div>
+
+    <div class="bell-app" id="app-6"></div>
+    <div class="bell-app" id="app-7"></div>
+    <div class="bell-app" id="app-8"></div>
+    <div class="bell-app" id="app-9"></div>
+    <div class="bell-app" id="app-10"></div>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+            watchers: {
+                radio: function (val) {
+                    console.log(val)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-2',
+            template: '#template-2',
+            watchers: {
+                radio: function (val) {
+                    console.log(val)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-3',
+            template: '#template-3',
+            watchers: {
+                radio: function (val) {
+                    console.log(val)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-4',
+            template: '#template-4',
+            data: {
+                radio: false
+            },
+            watchers: {
+                radio: function (value) {
+                    console.log(value);
+                }
+            }
+        });
+
+        new Yox({
+            el: '#app-5',
+            template: '#template-5',
+            data: {
+                radio: false
+            },
+            watchers: {
+                radio: function (value) {
+                    console.log(value);
+                }
+            }
+        });
+
+        new Yox({
+            el: '#app-6',
+            template: '#template-6',
+            data: {
+                radio: false
+            },
+            watchers: {
+                radio: function (value) {
+                    console.log(value);
+                }
+            }
+        });
+
+
+    </script>
+
 </body>
 </html>

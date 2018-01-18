@@ -1,0 +1,26 @@
+@import "../custom";
+
+.bell-radio-button {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    .bell-radio-wrapper  {
+        .bell-redio-inner {
+            display: none;
+        }
+    }
+    .bell-radio {
+        padding: 10px;
+        display: inline-block;
+        margin-right: 0;
+        +.bell-radio {
+            border-left: 1px solid #ccc;
+        }
+
+        &.bell-active {
+            background: @infoColor;
+            color: #fff;
+        }
+    }
+}

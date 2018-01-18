@@ -208,6 +208,120 @@ var Input = {
     afterMount: function afterMount() {}
 };
 
+var Radio = {
+    template: '\n<label class="bell-radio\n{{#if isChecked}} bell-active{{/if}}\n{{#if isDisabled}} bell-radio-disabled{{/if}}\n">\n    <span class="bell-radio-wrapper" on-click="click()">\n        <span class="bell-redio-inner"></span>\n        <input class="bell-radio-input" type="radio" value="{{value}}" />\n    </span>\n\n    <span class="bell-radio-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</label>\n    ',
+
+    propTypes: {
+        label: {
+            type: 'string'
+        },
+        value: {
+            type: ['string', 'number', 'boolean']
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        checked: {
+            type: ['string', 'boolean']
+        }
+    },
+
+    data: function data() {
+        var me = this;
+        return {
+            isChecked: me.get('checked'),
+            name: '',
+            isDisabled: me.get('disabled')
+        };
+    },
+
+    events: {
+        updateRadioName: function updateRadioName(event, data) {
+            this.set({
+                name: data.name
+            });
+        },
+        updateRadioValue: function updateRadioValue(event, data) {
+            var me = this;
+            me.set({
+                isChecked: data.value == me.get('value')
+            });
+        },
+        updateRadioDisabled: function updateRadioDisabled(event, data) {
+            var me = this;
+            me.set({
+                isDisabled: data.disabled
+            });
+        }
+    },
+
+    methods: {
+        click: function click() {
+            var me = this;
+            if (me.get('isDisabled')) {
+                return;
+            }
+            var isChecked = me.get('isChecked');
+            me.set({
+                isChecked: !isChecked
+            });
+            me.fire('radioValueChange', {
+                value: me.get('value')
+            });
+            return;
+        }
+    }
+};
+
+var RadioGroup = {
+    template: '\n<div class="\n{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}\n{{#if type}} bell-radio-group-{{type}}{{/if}}\n{{#if disabled}} bell-radio-disabled{{/if}}\n{{#if vertical}} bell-radio-vertical{{/if}}\n">\n    {{$children}}\n</div>\n    ',
+    propTypes: {
+        name: {
+            type: 'string'
+        },
+        value: {
+            type: ['string', 'number']
+        },
+        type: {
+            type: 'string'
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        vertical: {
+            type: ['string', 'boolean']
+        },
+
+        button: {
+            type: ['string', 'boolean']
+        }
+    },
+
+    events: {
+        radioValueChange: function radioValueChange(event, data) {
+            var me = this;
+            me.set({
+                value: data.value
+            });
+            me.fire('updateRadioValue', {
+                value: data.value
+            }, true);
+        }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('updateRadioName', {
+            name: me.get('name')
+        }, true);
+
+        if (me.get('disabled')) {
+            me.fire('updateRadioDisabled', {
+                disabled: me.get('disabled') ? true : false
+            }, true);
+        }
+    }
+};
+
 var Select = {
     template: '\n<div class="bell-select\n{{#if size}} bell-select-{{size}}{{/if}}\n{{#if disabled}} bell-select-disabled{{/if}}\n{{#if placement}} bell-select-{{placement}}{{/if}}\n"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    <div class="bell-select-button{{#if visible}} bell-active{{/if}}" on-click="toggleMenu()">\n        <input type="hidden" model="value" />\n        <span class="bell-select-value{{#if valueToText(value) == null}} bell-hide{{/if}}">\n            {{{valueToText(value)}}}\n        </span>\n        <span class="bell-select-placeholder{{#if valueToText(value) != null}} bell-hide{{/if}}">\n            {{#if defaultText}}\n                {{{defaultText}}}\n            {{else}}\n                \u8BF7\u9009\u62E9...\n            {{/if}}\n        </span>\n        <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n    </div>\n\n    <div class="bell-select-dropdown{{#if !visible}} bell-hide{{/if}}"\n    {{#if style}} style="{{style}}"{{/if}}\n    >\n        <ul class="bell-select-dropdown-list">\n            {{#each list:index}}\n            <li class="bell-select-dropdown-item{{#if focusIndex == index}} bell-focus{{/if}}{{#if value == val}} bell-active{{/if}}" on-click="itemClick(index)">\n                {{text}}\n            </li>\n            {{/each}}\n        </ul>\n    </div>\n</div>\n    ',
 
@@ -1121,6 +1235,8 @@ Yox.component({
 
     Button: Button,
     Input: Input,
+    Radio: Radio,
+    RadioGroup: RadioGroup,
     Select: Select,
     Page: Page,
 

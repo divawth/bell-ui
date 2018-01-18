@@ -18,6 +18,8 @@ import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
 
 import Button from './components/button/Button'
 import Input from './components/input/Input'
+import Radio from './components/radio/Radio'
+import RadioGroup from './components/radio/RadioGroup'
 import Select from './components/select/Select'
 import Page from './components/page/Page'
 
@@ -52,6 +54,8 @@ Yox.component({
 
     Button,
     Input,
+    Radio,
+    RadioGroup,
     Select,
     Page,
 
