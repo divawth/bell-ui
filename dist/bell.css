@@ -2607,6 +2607,9 @@
 .bell-input-wrapper .bell-textarea[disabled]:hover {
   border-color: #dddee1;
 }
+.bell-radio-group-wrapper {
+  display: inline-block;
+}
 .bell-radio-group-wrapper .bell-radio {
   cursor: pointer;
   vertical-align: middle;
@@ -2669,6 +2672,26 @@
   transform: scale(1);
   transition: all 0.2s ease-in-out;
 }
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled {
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-redio-inner {
+  border-color: #dddee1;
+  background-color: #f3f3f3;
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-redio-inner:after {
+  background-color: #ccc;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-input {
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.bell-active .bell-radio-wrapper .bell-redio-inner {
+  border-color: #dddee1;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-label {
+  cursor: not-allowed;
+}
 .bell-radio-group-success .bell-radio .bell-radio-wrapper .bell-redio-inner:after {
   background-color: #19be6b;
 }
@@ -2687,23 +2710,6 @@
 .bell-radio-group-error .bell-radio.bell-active .bell-radio-wrapper .bell-redio-inner {
   border-color: #ed3f14;
 }
-.bell-radio-disabled .bell-radio .bell-radio-wrapper .bell-redio-inner {
-  border-color: #dddee1;
-  background-color: #f3f3f3;
-  cursor: not-allowed;
-}
-.bell-radio-disabled .bell-radio .bell-radio-wrapper .bell-redio-inner:after {
-  background-color: #ccc;
-}
-.bell-radio-disabled .bell-radio .bell-radio-wrapper .bell-radio-input {
-  cursor: not-allowed;
-}
-.bell-radio-disabled .bell-radio.bell-active .bell-radio-wrapper .bell-redio-inner {
-  border-color: #dddee1;
-}
-.bell-radio-disabled .bell-radio .bell-radio-label {
-  cursor: not-allowed;
-}
 .bell-radio-vertical .bell-radio {
   width: 100%;
   display: block;
@@ -2713,23 +2719,73 @@
 }
 .bell-radio-button {
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  user-select: none;
+  font-size: 13px;
 }
-.bell-radio-button .bell-radio-wrapper .bell-redio-inner {
+.bell-radio-button + .bell-radio-button {
+  margin-left: 10px;
+}
+.bell-radio-button .bell-radio-wrapper {
   display: none;
 }
 .bell-radio-button .bell-radio {
-  padding: 10px;
-  display: inline-block;
   margin-right: 0;
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 .bell-radio-button .bell-radio + .bell-radio {
-  border-left: 1px solid #ccc;
+  margin-left: -1px;
 }
 .bell-radio-button .bell-radio.bell-active {
-  background: #57a3f3;
-  color: #fff;
+  border-color: #57a3f3;
+  color: #57a3f3;
+}
+.bell-radio-button .bell-radio.bell-active + .bell-radio {
+  border-left-color: transparent;
+}
+.bell-radio-button .bell-radio:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.bell-radio-button .bell-radio:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.bell-radio-button.bell-radio-group-error .bell-radio.bell-active {
+  border-color: #ed3f14;
+  color: #ed3f14;
+}
+.bell-radio-button.bell-radio-group-warning .bell-radio.bell-active {
+  border-color: #ff9900;
+  color: #ff9900;
+}
+.bell-radio-button.bell-radio-group-success .bell-radio.bell-active {
+  border-color: #19be6b;
+  color: #19be6b;
+}
+.bell-radio-button.bell-radio-group-large {
+  font-size: 14px;
+}
+.bell-radio-button.bell-radio-group-large .bell-radio {
+  padding: 13px;
+}
+.bell-radio-button.bell-radio-group-small {
+  font-size: 12px;
+}
+.bell-radio-button.bell-radio-group-small .bell-radio {
+  padding: 4px;
+}
+.bell-radio-button .bell-radio-disabled {
+  border-color: #dddee1;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.bell-radio-button .bell-radio-disabled.bell-active {
+  border-color: #dddee1;
+  color: #ccc;
+  background-color: #f7f7f7;
 }
 .bell-bread-crumb {
   padding: 15px;

@@ -3,7 +3,8 @@ export default {
 <div class="
 {{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}
 {{#if type}} bell-radio-group-{{type}}{{/if}}
-{{#if disabled}} bell-radio-disabled{{/if}}
+{{#if size}} bell-radio-group-{{size}}{{/if}}
+{{#if disabled}} bell-radio-group-disabled{{/if}}
 {{#if vertical}} bell-radio-vertical{{/if}}
 ">
     {{$children}}
@@ -14,6 +15,9 @@ export default {
             type: 'string'
         },
         value: {
+            type: ['string', 'number']
+        },
+        size: {
             type: ['string', 'number']
         },
         type: {

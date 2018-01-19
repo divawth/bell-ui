@@ -1,6 +1,7 @@
 @import "../custom";
 
 .bell-radio-group-wrapper {
+    display: inline-block;
     .bell-radio {
         cursor: pointer;
         vertical-align: middle;
@@ -73,7 +74,36 @@
                 }
             }
         }
+        &.bell-radio-disabled {
+            cursor: not-allowed;
+            .bell-radio-wrapper {
+                .bell-redio-inner {
+                    border-color: @radio-inner-disabled-border-color;
+                    background-color: @radio-inner-disabled-background-color;
+                    cursor: not-allowed;
+
+                    &:after {
+                        background-color: @radio-inner-after-disabled-background-color;
+                    }
+                }
+                .bell-radio-input {
+                    cursor: not-allowed;
+                }
+            }
+
+            &.bell-active {
+                .bell-radio-wrapper {
+                    .bell-redio-inner {
+                        border-color: @radio-inner-disabled-border-color;
+                    }
+                }
+            }
+            .bell-radio-label {
+                cursor: not-allowed;
+            }
+        }
     }
+
 }
 
 .bell-radio-group-success {
@@ -132,35 +162,6 @@
                     border-color: @radio-error-inner-active-border-color;
                 }
             }
-        }
-    }
-}
-
-.bell-radio-disabled {
-    .bell-radio {
-        .bell-radio-wrapper {
-            .bell-redio-inner {
-                border-color: @radio-inner-disabled-border-color;
-                background-color: @radio-inner-disabled-background-color;
-                cursor: not-allowed;
-                &:after {
-                    background-color: @radio-inner-after-disabled-background-color;
-                }
-            }
-            .bell-radio-input {
-                cursor: not-allowed;
-            }
-        }
-
-        &.bell-active {
-            .bell-radio-wrapper {
-                .bell-redio-inner {
-                    border-color: @radio-inner-disabled-border-color;
-                }
-            }
-        }
-        .bell-radio-label {
-            cursor: not-allowed;
         }
     }
 }

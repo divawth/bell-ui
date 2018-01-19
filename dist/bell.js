@@ -274,12 +274,15 @@ var Radio = {
 };
 
 var RadioGroup = {
-    template: '\n<div class="\n{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}\n{{#if type}} bell-radio-group-{{type}}{{/if}}\n{{#if disabled}} bell-radio-disabled{{/if}}\n{{#if vertical}} bell-radio-vertical{{/if}}\n">\n    {{$children}}\n</div>\n    ',
+    template: '\n<div class="\n{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}\n{{#if type}} bell-radio-group-{{type}}{{/if}}\n{{#if size}} bell-radio-group-{{size}}{{/if}}\n{{#if disabled}} bell-radio-group-disabled{{/if}}\n{{#if vertical}} bell-radio-vertical{{/if}}\n">\n    {{$children}}\n</div>\n    ',
     propTypes: {
         name: {
             type: 'string'
         },
         value: {
+            type: ['string', 'number']
+        },
+        size: {
             type: ['string', 'number']
         },
         type: {
