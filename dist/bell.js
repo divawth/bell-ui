@@ -1,5 +1,5 @@
 (function (global, factory) {
-    (factory());
+	(factory());
 }(this, (function () { 'use strict';
 
 var Header = {
@@ -1026,6 +1026,40 @@ var Avatar = {
     }
 };
 
+var Badge = {
+    template: '\n<div class="bell-badge\n{{#if type}} bell-badge-{{type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n">\n    {{$children}}\n    {{#if !hidden}}\n        {{#if dot}}\n            <span class="bell-badge-dot"></span>\n        {{else}}\n            <span class="bell-badge-count{{#if !$children}} bell-badge-count-alone{{/if}}">\n                {{getText()}}\n            </span>\n        {{/if}}\n    {{/if}}\n</div>\n    ',
+    propTypes: {
+        count: {
+            type: ['string', 'number']
+        },
+        maxCount: {
+            type: ['string', 'number']
+        },
+        dot: {
+            type: ['string', 'number', 'boolean']
+        },
+        className: {
+            type: 'string'
+        },
+        hidden: {
+            type: ['string', 'number', 'boolean']
+        },
+        type: {
+            type: 'string'
+        }
+    },
+
+    filters: {
+        getText: function getText() {
+            var me = this;
+            var maxCount = Yox.is.number(+me.get('maxCount')) ? +me.get('maxCount') : '';
+            var count = Yox.is.number(+me.get('count')) ? +me.get('count') : '';
+
+            return maxCount < count ? maxCount + '+' : me.get('count');
+        }
+    }
+};
+
 var Card = {
     template: "\n        <div class=\"bell-card\">\n            {{$children}}\n        </div>\n    "
 };
@@ -1418,6 +1452,7 @@ Yox.component({
     Spinner: Spinner,
     BackTop: BackTop,
     Avatar: Avatar,
+    Badge: Badge,
 
     Card: Card,
     CardHeader: CardHeader,

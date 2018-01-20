@@ -1,4 +1,4 @@
-- [Basic](basic)
+- [Basic](README)
 - [Layout 布局](layout)
   - [Color 色彩](layout/color)
   - [Font 字体](layout/font)
@@ -21,6 +21,7 @@
     - [CardActions](view/card?id=cardActions)
   - [Message 全局提示](view/message)
   - [Notice 通知提醒](view/notice)
+  - [Badge 标记](view/badge)
 - [Other](other)
   - [Spinner 加载中](other/spinner)
   - [BackTop 返回顶部](other/backTop)

@@ -29,6 +29,7 @@ import Desc from './components/alert/Desc'
 import Spinner from './components/spinner/Spinner'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
+import Badge from './components/badge/Badge'
 
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
@@ -67,6 +68,7 @@ Yox.component({
     Spinner,
     BackTop,
     Avatar,
+    Badge,
 
     Card,
     CardHeader,

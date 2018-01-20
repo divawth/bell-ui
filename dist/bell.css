@@ -2802,6 +2802,8 @@
   outline: 0;
   line-height: 1;
   position: relative;
+  width: 14px;
+  height: 14px;
 }
 .bell-checkbox .bell-checkbox-wrapper.bell-active .bell-redio-inner {
   border-color: #57a3f3;
@@ -3686,6 +3688,70 @@
 }
 .bell-notice-error:before {
   background-color: #ed3f14;
+}
+.bell-badge {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+.bell-badge + .bell-badge {
+  margin-left: 10px;
+}
+.bell-badge .bell-badge-count {
+  border-radius: 10px;
+  white-space: nowrap;
+  position: absolute;
+  right: 0;
+  transform: translateX(50%);
+  height: 20px;
+  top: -10px;
+  text-align: center;
+  border: 1px solid transparent;
+  background-color: #ed3f14;
+  color: #fff;
+  padding: 3px 6px;
+  font-size: 12px;
+  z-index: 10;
+  box-shadow: 0 0 0 1px #fff;
+  transform-origin: -10% center;
+}
+.bell-badge .bell-badge-dot {
+  border-radius: 100%;
+  position: absolute;
+  transform: translateX(-50%);
+  transform-origin: 0 center;
+  top: -4px;
+  right: -8px;
+  height: 8px;
+  width: 8px;
+  background-color: #ed3f14;
+  z-index: 10;
+  box-shadow: 0 0 0 1px #fff;
+}
+.bell-badge .bell-badge-count-alone {
+  top: auto;
+  display: block;
+  position: relative;
+  transform: translateX(0);
+}
+.bell-badge-success .bell-badge-count {
+  background-color: #19be6b;
+}
+.bell-badge-success .bell-badge-dot {
+  background-color: #19be6b;
+}
+.bell-badge-info .bell-badge-count {
+  background-color: #57a3f3;
+}
+.bell-badge-info .bell-badge-dot {
+  background-color: #57a3f3;
+}
+.bell-badge-warning .bell-badge-count {
+  background-color: #ff9900;
+}
+.bell-badge-warning .bell-badge-dot {
+  background-color: #ff9900;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
