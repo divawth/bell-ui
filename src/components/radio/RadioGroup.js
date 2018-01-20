@@ -32,6 +32,9 @@ export default {
 
         button: {
             type: ['string', 'boolean']
+        },
+        onChange: {
+            type: 'function'
         }
     },
 
@@ -41,6 +44,7 @@ export default {
             me.set({
                 value: data.value
             });
+            me.get('onChange') && me.get('onChange')(data.value);
             me.fire(
                 'updateRadioValue',
                 {

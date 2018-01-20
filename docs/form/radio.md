@@ -242,4 +242,3 @@ type | 风格 | string | success, info, warning, error | -
 disabled | 是否禁用 | boolean | - | false
 checked | 是否选中 | boolean | - | false
 vertical | 是否垂直排列，按钮样式下无效 | boolean | - | false
-

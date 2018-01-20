@@ -12,7 +12,6 @@ import Menu from './components/layout/Menu'
 import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
 
-
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
 
@@ -20,6 +19,8 @@ import Button from './components/button/Button'
 import Input from './components/input/Input'
 import Radio from './components/radio/Radio'
 import RadioGroup from './components/radio/RadioGroup'
+import Checkbox from './components/checkbox/Checkbox'
+import CheckboxGroup from './components/checkbox/CheckboxGroup'
 import Select from './components/select/Select'
 import Page from './components/page/Page'
 
@@ -56,6 +57,8 @@ Yox.component({
     Input,
     Radio,
     RadioGroup,
+    Checkbox,
+    CheckboxGroup,
     Select,
     Page,
 

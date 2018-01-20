@@ -297,6 +297,9 @@ var RadioGroup = {
 
         button: {
             type: ['string', 'boolean']
+        },
+        onChange: {
+            type: 'function'
         }
     },
 
@@ -306,6 +309,7 @@ var RadioGroup = {
             me.set({
                 value: data.value
             });
+            me.get('onChange') && me.get('onChange')(data.value);
             me.fire('updateRadioValue', {
                 value: data.value
             }, true);
@@ -320,6 +324,170 @@ var RadioGroup = {
         if (me.get('disabled')) {
             me.fire('updateRadioDisabled', {
                 disabled: me.get('disabled') ? true : false
+            }, true);
+        }
+    }
+};
+
+var Checkbox = {
+    template: '\n<label class="bell-checkbox\n{{#if disabled}} bell-checkbox-disabled{{/if}}\n{{#if type}} bell-checkbox-{{type}}{{/if}}\n{{#if size}} bell-checkbox-{{size}}{{/if}}\n{{#if isChecked}} bell-active{{/if}}\n{{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n">\n    <span class="bell-checkbox-wrapper{{#if isChecked}} bell-active{{/if}}" on-click="click()">\n        <span class="bell-redio-inner"></span>\n        <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />\n    </span>\n\n    <span class="bell-checkbox-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</label>\n    ',
+
+    model: 'modelValue',
+
+    propTypes: {
+        label: {
+            type: 'string'
+        },
+        indeterminate: {
+            type: ['string', 'number', 'boolean']
+        },
+        modelValue: {
+            type: 'string'
+        },
+        value: {
+            type: ['string', 'number', 'boolean']
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        checked: {
+            type: ['string', 'boolean']
+        },
+        type: {
+            type: 'string'
+        },
+        size: {
+            type: 'string'
+        },
+        onChange: {
+            type: 'function'
+        }
+    },
+
+    data: function data() {
+        var me = this;
+        return {
+            isChecked: me.get('checked') ? true : false
+        };
+    },
+
+    events: {
+        updateCheckboxValue: function updateCheckboxValue(event, data) {
+            var me = this;
+            var isChecked = Yox.is.array(data.value) && Yox.array.has(data.value, me.get('value'));
+            me.set({
+                isChecked: isChecked,
+                modelValue: isChecked
+            });
+            me.get('onChange') && me.get('onChange')(isChecked);
+        },
+        updateCheckboxType: function updateCheckboxType(event, data) {
+            var me = this;
+            me.set({
+                type: data.type
+            });
+        },
+        updateCheckboxDisabled: function updateCheckboxDisabled(event, data) {
+            var me = this;
+            me.set({
+                disabled: data.disabled
+            });
+        }
+    },
+
+    watchers: {
+        modelValue: function modelValue(value) {
+            this.set({
+                isChecked: value
+            });
+        }
+    },
+
+    methods: {
+        click: function click() {
+            var me = this;
+            if (me.get('disabled')) {
+                return;
+            }
+            var isChecked = me.get('isChecked');
+            me.fire('updateCheckbox', {
+                isChecked: !isChecked,
+                value: me.get('value')
+            });
+            me.set({
+                isChecked: !isChecked,
+                modelValue: !isChecked
+            });
+            me.get('onChange') && me.get('onChange')(!isChecked);
+        }
+    }
+};
+
+var CheckboxGroup = {
+    template: '\n<div class="\nbell-checkbox-group\n{{#if type}} bell-checkbox-group-{{type}}{{/if}}\n{{#if size}} bell-checkbox-group-{{size}}{{/if}}\n{{#if vertical}} bell-checkbox-vertical{{/if}}\n">\n    {{$children}}\n</div>\n    ',
+    model: 'modelValue',
+    propTypes: {
+        name: {
+            type: 'string'
+        },
+        modelValue: {
+            type: 'array',
+            value: function value() {
+                return [];
+            }
+        },
+        size: {
+            type: ['string', 'number']
+        },
+        type: {
+            type: 'string'
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        vertical: {
+            type: ['string', 'boolean']
+        },
+        onChange: {
+            type: 'function'
+        }
+    },
+
+    events: {
+        updateCheckbox: function updateCheckbox(events, data) {
+            var me = this;
+            var result = Yox.is.array(me.get('modelValue')) ? me.get('modelValue') : [];
+            if (data.isChecked) {
+                if (Yox.array.indexOf(result, data.value) === -1) {
+                    result.push(data.value);
+                }
+            } else {
+                Yox.array.remove(result, data.value);
+            }
+
+            me.set({
+                modelValue: result
+            });
+            me.get('onChange') && me.get('onChange')(result);
+        }
+    },
+    watchers: {
+        modelValue: function modelValue(value) {
+            this.fire('updateCheckboxValue', {
+                value: value
+            }, true);
+        }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        if (me.get('type')) {
+            me.fire('updateCheckboxType', {
+                type: me.get('type')
+            }, true);
+        }
+        if (me.get('disabled')) {
+            me.fire('updateCheckboxDisabled', {
+                disabled: me.get('disabled')
             }, true);
         }
     }
@@ -1240,6 +1408,8 @@ Yox.component({
     Input: Input,
     Radio: Radio,
     RadioGroup: RadioGroup,
+    Checkbox: Checkbox,
+    CheckboxGroup: CheckboxGroup,
     Select: Select,
     Page: Page,
 

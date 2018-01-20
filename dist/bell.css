@@ -2787,6 +2787,102 @@
   color: #ccc;
   background-color: #f7f7f7;
 }
+.bell-checkbox {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.bell-checkbox .bell-checkbox-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+  line-height: 1;
+  position: relative;
+}
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+  border-color: #57a3f3;
+  background-color: #57a3f3;
+}
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-redio-inner:after {
+  transform: rotate(45deg) scale(1);
+}
+.bell-checkbox .bell-redio-inner {
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #dddee1;
+  background-color: #fff;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.bell-checkbox .bell-redio-inner:after {
+  display: inline-block;
+  content: " ";
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  width: 4px;
+  height: 8px;
+  border: 2px solid #fff;
+  transform: rotate(45deg) scale(0);
+  transition: all 0.2s ease-in-out;
+  border-top: 0;
+  border-left: 0;
+}
+.bell-checkbox .bell-checkbox-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+  margin: 0;
+}
+.bell-checkbox .bell-checkbox-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+  border-color: #19be6b;
+  background-color: #19be6b;
+}
+.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+  border-color: #ff9900;
+  background-color: #ff9900;
+}
+.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+  border-color: #ed3f14;
+  background-color: #ed3f14;
+}
+.bell-checkbox-disabled {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper {
+  cursor: not-allowed;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper .bell-redio-inner {
+  cursor: not-allowed;
+  background-color: #f3f3f3;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+  border-color: #f3f3f3;
+  background-color: #f3f3f3;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-redio-inner:after {
+  border-color: #ccc;
+}
+.bell-checkbox-disabled .bell-checkbox-label {
+  cursor: not-allowed;
+}
 .bell-bread-crumb {
   padding: 15px;
 }

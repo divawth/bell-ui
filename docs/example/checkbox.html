@@ -1,0 +1,205 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        checkbox
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+
+    <style>
+        .bell-app {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../dep/base/yox.js"></script>
+    <script src="../../dist/bell.js"></script>
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <Checkbox model="single" onChange="{{onChange}}">
+                Checkbox
+            </Checkbox>
+        </div>
+    </script>
+
+    <script id="template-2" type="text/plain">
+        <div>
+            <CheckboxGroup model="social" onChange="{{onChange}}">
+                <Checkbox value="twitter">
+                    <span>Twitter</span>
+                </Checkbox>
+                <Checkbox value="facebook">
+                    <span>Facebook</span>
+                </Checkbox>
+                <Checkbox value="github">
+                    <span>Github</span>
+                </Checkbox>
+                <Checkbox value="snapchat">
+                    <span>Snapchat</span>
+                </Checkbox>
+            </CheckboxGroup>
+            <br><br>
+            <CheckboxGroup type="success" model="fruit">
+                <Checkbox value="香蕉" checked>
+                    香蕉
+                </Checkbox>
+                <Checkbox value="苹果">
+                    苹果
+                </Checkbox>
+                <Checkbox value="西瓜">
+                    西瓜
+                </Checkbox>
+            </CheckboxGroup>
+        </div>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <div>
+            <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px; margin-bottom:6px;">
+                <Checkbox indeterminate model="checkAll" onChange="{{onCheckAllChange}}">
+                    全选
+                </Checkbox>
+            </div>
+            <CheckboxGroup type="success" model="fruit" onChange="{{onChange}}">
+                <Checkbox value="1">
+                    香蕉
+                </Checkbox>
+                <Checkbox value="2">
+                    苹果
+                </Checkbox>
+                <Checkbox value="3">
+                    西瓜
+                </Checkbox>
+            </CheckboxGroup>
+        </div>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <div>
+            <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px; margin-bottom:6px;">
+                <Checkbox disabled model="checkAll" onChange="{{onCheckAllChange}}">
+                    全选
+                </Checkbox>
+            </div>
+            <CheckboxGroup type="success" model="fruit" onChange="{{onChange}}">
+                <Checkbox value="1">
+                    香蕉
+                </Checkbox>
+                <Checkbox value="2">
+                    苹果
+                </Checkbox>
+                <Checkbox value="3">
+                    西瓜
+                </Checkbox>
+            </CheckboxGroup>
+        </div>
+    </script>
+
+    <div class="bell-app" id="app-1"></div>
+    <div class="bell-app" id="app-2"></div>
+    <div class="bell-app" id="app-3"></div>
+    <div class="bell-app" id="app-4"></div>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+            data: {
+                onChange: function (value) {
+                    console.log(value);
+                }
+            }
+        });
+        new Yox({
+            el: '#app-2',
+            template: '#template-2',
+            data: {
+                social: '',
+                fruit: '',
+                onChange: function (val) {
+                    console.log(val)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-3',
+            template: '#template-3',
+            data: function () {
+                var me = this;
+                return {
+                    checkAll: false,
+                    fruit: true,
+                    onCheckAllChange: function (val) {
+                        console.log(val)
+                        if (val) {
+                            me.set({
+                                fruit: ['1', '3', '2']
+                            });
+                        }
+                        else {
+                            me.set({
+                                fruit: []
+                            });
+                        }
+                    },
+                    onChange: function (val) {
+                        console.log(val)
+                        if (val && val.length == 3) {
+                            me.set({
+                                checkAll: true
+                            });
+                        }
+                        else {
+                            me.set({
+                                checkAll: false
+                            });
+                        }
+                    }
+                };
+            }
+        });
+        new Yox({
+            el: '#app-4',
+            template: '#template-4',
+            data: function () {
+                var me = this;
+                return {
+                    checkAll: false,
+                    fruit: true,
+                    onCheckAllChange: function (val) {
+                        console.log(val)
+                        if (val) {
+                            me.set({
+                                fruit: ['1', '3', '2']
+                            });
+                        }
+                        else {
+                            me.set({
+                                fruit: []
+                            });
+                        }
+                    },
+                    onChange: function (val) {
+                        console.log(val)
+                        if (val && val.length == 3) {
+                            me.set({
+                                checkAll: true
+                            });
+                        }
+                        else {
+                            me.set({
+                                checkAll: false
+                            });
+                        }
+                    }
+                };
+            }
+        });
+    </script>
+
+</body>
+</html>
