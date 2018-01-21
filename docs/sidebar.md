@@ -7,6 +7,7 @@
   - [Breadcrumb 面包屑](form/breadcrumb)
   - [Input 输入框](form/input)
   - [Radio 单选框](form/radio)
+  - [Checkbox 单选框](form/checkbox)
   - [Select 选择器](form/select)
 - [Navigation](navigation)
   - [Page 分页](navigation/page)
