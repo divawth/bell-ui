@@ -21,6 +21,7 @@ import Radio from './components/radio/Radio'
 import RadioGroup from './components/radio/RadioGroup'
 import Checkbox from './components/checkbox/Checkbox'
 import CheckboxGroup from './components/checkbox/CheckboxGroup'
+import Switch from './components/switch/Switch'
 import Select from './components/select/Select'
 import Page from './components/page/Page'
 
@@ -60,6 +61,7 @@ Yox.component({
     RadioGroup,
     Checkbox,
     CheckboxGroup,
+    Switch,
     Select,
     Page,
 

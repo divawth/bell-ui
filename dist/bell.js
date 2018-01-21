@@ -1,5 +1,5 @@
 (function (global, factory) {
-	(factory());
+    (factory());
 }(this, (function () { 'use strict';
 
 var Header = {
@@ -330,7 +330,7 @@ var RadioGroup = {
 };
 
 var Checkbox = {
-    template: '\n<label class="bell-checkbox\n{{#if disabled}} bell-checkbox-disabled{{/if}}\n{{#if type}} bell-checkbox-{{type}}{{/if}}\n{{#if size}} bell-checkbox-{{size}}{{/if}}\n{{#if isChecked}} bell-active{{/if}}\n{{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n">\n    <span class="bell-checkbox-wrapper{{#if isChecked}} bell-active{{/if}}" on-click="click()">\n        <span class="bell-redio-inner"></span>\n        <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />\n    </span>\n\n    <span class="bell-checkbox-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</label>\n    ',
+    template: '\n<label class="bell-checkbox\n{{#if disabled}} bell-checkbox-disabled{{/if}}\n{{#if type}} bell-checkbox-{{type}}{{/if}}\n{{#if size}} bell-checkbox-{{size}}{{/if}}\n{{#if isChecked}} bell-active{{/if}}\n{{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n">\n    <span class="bell-checkbox-wrapper{{#if isChecked}} bell-active{{/if}}" on-click="click()">\n        <span class="bell-checkbox-inner"></span>\n        <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />\n    </span>\n\n    <span class="bell-checkbox-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</label>\n    ',
 
     model: 'modelValue',
 
@@ -489,6 +489,65 @@ var CheckboxGroup = {
             me.fire('updateCheckboxDisabled', {
                 disabled: me.get('disabled')
             }, true);
+        }
+    }
+};
+
+var Switch = {
+    template: '\n<div class="bell-switch\n{{#if type}} bell-switch-{{type}}{{/if}}\n{{#if size}} bell-switch-{{size}}{{/if}}\n{{#if disabled}} bell-switch-disabled{{/if}}\n{{#if isChecked}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n" on-click="click()">\n    <span class="bell-switch-button">\n        {{#if $children}}\n            {{$children}}\n        {{else if size != \'small\'}}\n            {{#if isChecked}}\n                {{#if onLabel}}\n                    <span class="bell-switch-on">\n                        {{onLabel}}\n                    </span>\n                {{/if}}\n            {{else}}\n                {{#if offLabel}}\n                    <span class="bell-switch-off">\n                        {{offLabel}}\n                    </span>\n                {{/if}}\n            {{/if}}\n        {{/if}}\n    </span>\n    <input class="bell-switch-input" type="hidden" value="{{value}}" />\n</div>\n    ',
+    model: 'modelValue',
+    propTypes: {
+        className: {
+            type: 'string'
+        },
+        label: {
+            type: 'string'
+        },
+        modelValue: {
+            type: 'string'
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        checked: {
+            type: ['string', 'boolean']
+        },
+        type: {
+            type: 'string'
+        },
+        size: {
+            type: 'string'
+        },
+        onChange: {
+            type: 'function'
+        },
+        onLabel: {
+            type: 'string'
+        },
+        offLabel: {
+            type: 'string'
+        }
+    },
+
+    data: function data() {
+        var me = this;
+        return {
+            isChecked: me.get('checked') ? true : false
+        };
+    },
+
+    methods: {
+        click: function click() {
+            var me = this;
+            if (me.get('disabled')) {
+                return;
+            }
+            var isChecked = me.get('isChecked');
+            me.set({
+                isChecked: !isChecked,
+                modelValue: !isChecked
+            });
+            me.get('onChange') && me.get('onChange')(!isChecked);
         }
     }
 };
@@ -1027,7 +1086,7 @@ var Avatar = {
 };
 
 var Badge = {
-    template: '\n<div class="bell-badge\n{{#if type}} bell-badge-{{type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n">\n    {{$children}}\n    {{#if !hidden}}\n        {{#if dot}}\n            <span class="bell-badge-dot"></span>\n        {{else}}\n            <span class="bell-badge-count{{#if !$children}} bell-badge-count-alone{{/if}}">\n                {{getText()}}\n            </span>\n        {{/if}}\n    {{/if}}\n</div>\n    ',
+    template: '\n<div class="bell-badge\n{{#if type}} bell-badge-{{type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n">\n    {{$children}}\n    {{#if !hidden}}\n        {{#if dot}}\n            <span class="bell-badge-dot"></span>\n        {{else}}\n            <span class="bell-badge-count{{#if !$children}} bell-badge-count-alone{{/if}}">\n                {{getText(count, maxCount)}}\n            </span>\n        {{/if}}\n    {{/if}}\n</div>\n    ',
     propTypes: {
         count: {
             type: ['string', 'number']
@@ -1050,12 +1109,11 @@ var Badge = {
     },
 
     filters: {
-        getText: function getText() {
-            var me = this;
-            var maxCount = Yox.is.number(+me.get('maxCount')) ? +me.get('maxCount') : '';
-            var count = Yox.is.number(+me.get('count')) ? +me.get('count') : '';
+        getText: function getText(count, maxCount) {
+            var maxCount = Yox.is.number(+maxCount) ? +maxCount : '';
+            var count = Yox.is.number(+count) ? +count : '';
 
-            return maxCount < count ? maxCount + '+' : me.get('count');
+            return maxCount < count ? maxCount + '+' : count;
         }
     }
 };
@@ -1444,6 +1502,7 @@ Yox.component({
     RadioGroup: RadioGroup,
     Checkbox: Checkbox,
     CheckboxGroup: CheckboxGroup,
+    Switch: Switch,
     Select: Select,
     Page: Page,
 

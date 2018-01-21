@@ -10,7 +10,7 @@ export default {
             <span class="bell-badge-dot"></span>
         {{else}}
             <span class="bell-badge-count{{#if !$children}} bell-badge-count-alone{{/if}}">
-                {{getText()}}
+                {{getText(count, maxCount)}}
             </span>
         {{/if}}
     {{/if}}
@@ -38,12 +38,12 @@ export default {
     },
 
     filters: {
-        getText: function () {
+        getText: function (count, maxCount) {
             var me = this;
-            var maxCount = Yox.is.number(+me.get('maxCount')) ? +me.get('maxCount') : '';
-            var count = Yox.is.number(+me.get('count')) ? +me.get('count') : '';
+            var maxCount = Yox.is.number(+maxCount) ? +maxCount : '';
+            var count = Yox.is.number(+count) ? +count : '';
 
-            return maxCount < count ? maxCount + '+' : me.get('count');
+            return maxCount < count ? maxCount + '+' : count;
         }
     }
 }

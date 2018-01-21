@@ -20,7 +20,7 @@
         height: @checkbox-inner-width;
 
         &.bell-active {
-            .bell-redio-inner {
+            .bell-checkbox-inner {
                 border-color: @checkbox-background-color;
                 background-color: @checkbox-border-color;
                 &:after {
@@ -30,7 +30,7 @@
         }
     }
 
-    .bell-redio-inner {
+    .bell-checkbox-inner {
         display: inline-block;
         position: relative;
 
@@ -85,7 +85,7 @@
 .bell-checkbox-success {
     .bell-checkbox-wrapper {
         &.bell-active {
-            .bell-redio-inner {
+            .bell-checkbox-inner {
                 border-color: @checkbox-success-background-color;
                 background-color: @checkbox-success-border-color;
             }
@@ -96,7 +96,7 @@
 .bell-checkbox-warning {
     .bell-checkbox-wrapper {
         &.bell-active {
-            .bell-redio-inner {
+            .bell-checkbox-inner {
                 border-color: @checkbox-warning-background-color;
                 background-color: @checkbox-warning-border-color;
             }
@@ -107,7 +107,7 @@
 .bell-checkbox-error {
     .bell-checkbox-wrapper {
         &.bell-active {
-            .bell-redio-inner {
+            .bell-checkbox-inner {
                 border-color: @checkbox-error-background-color;
                 background-color: @checkbox-error-border-color;
             }
@@ -119,12 +119,12 @@
     color: @checkbox-disabled-color;
     .bell-checkbox-wrapper {
         cursor: not-allowed;
-        .bell-redio-inner {
+        .bell-checkbox-inner {
             cursor: not-allowed;
             background-color: @checkbox-disabled-background-color;
         }
         &.bell-active {
-            .bell-redio-inner {
+            .bell-checkbox-inner {
                 border-color: @checkbox-disabled-background-color;
                 background-color: @checkbox-disabled-border-color;
                 &:after {

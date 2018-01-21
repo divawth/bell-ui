@@ -8,7 +8,7 @@ export default {
 {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}
 ">
     <span class="bell-checkbox-wrapper{{#if isChecked}} bell-active{{/if}}" on-click="click()">
-        <span class="bell-redio-inner"></span>
+        <span class="bell-checkbox-inner"></span>
         <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />
     </span>
 

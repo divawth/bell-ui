@@ -2805,14 +2805,14 @@
   width: 14px;
   height: 14px;
 }
-.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #57a3f3;
   background-color: #57a3f3;
 }
-.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-redio-inner:after {
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
   transform: rotate(45deg) scale(1);
 }
-.bell-checkbox .bell-redio-inner {
+.bell-checkbox .bell-checkbox-inner {
   display: inline-block;
   position: relative;
   width: 14px;
@@ -2822,7 +2822,7 @@
   background-color: #fff;
   transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
-.bell-checkbox .bell-redio-inner:after {
+.bell-checkbox .bell-checkbox-inner:after {
   display: inline-block;
   content: " ";
   position: absolute;
@@ -2852,15 +2852,15 @@
   vertical-align: middle;
   margin-left: 6px;
 }
-.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #19be6b;
   background-color: #19be6b;
 }
-.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #ff9900;
   background-color: #ff9900;
 }
-.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #ed3f14;
   background-color: #ed3f14;
 }
@@ -2871,15 +2871,15 @@
 .bell-checkbox-disabled .bell-checkbox-wrapper {
   cursor: not-allowed;
 }
-.bell-checkbox-disabled .bell-checkbox-wrapper .bell-redio-inner {
+.bell-checkbox-disabled .bell-checkbox-wrapper .bell-checkbox-inner {
   cursor: not-allowed;
   background-color: #f3f3f3;
 }
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-redio-inner {
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #f3f3f3;
   background-color: #f3f3f3;
 }
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-redio-inner:after {
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
   border-color: #ccc;
 }
 .bell-checkbox-disabled .bell-checkbox-label {
@@ -2904,6 +2904,149 @@
 }
 .bell-bread-crumb .bell-bread-crumb-item:last-child .bell-bread-crumb-gap {
   display: none;
+}
+.bell-switch {
+  cursor: pointer;
+  line-height: 1;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  border-radius: 24px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  transition: all 0.2s ease-in-out;
+}
+.bell-switch + .bell-switch {
+  margin-left: 10px;
+}
+.bell-switch.bell-active {
+  border-color: #57a3f3;
+  background-color: #57a3f3;
+}
+.bell-switch.bell-active .bell-switch-button:after {
+  left: 25px;
+}
+.bell-switch.bell-active .bell-switch-button .bell-switch-on {
+  display: block;
+}
+.bell-switch.bell-active .bell-switch-off {
+  display: none;
+}
+.bell-switch .bell-switch-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.bell-switch .bell-switch-button .bell-switch-on {
+  position: absolute;
+  font-size: 12px;
+  top: 5px;
+  color: #fff;
+  display: none;
+  left: 8px;
+}
+.bell-switch .bell-switch-button .bell-switch-off {
+  position: absolute;
+  font-size: 12px;
+  top: 5px;
+  color: #fff;
+  left: auto;
+  right: 8px;
+}
+.bell-switch .bell-switch-button:after {
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  left: 1px;
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  transition: left 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+.bell-switch-large {
+  width: 60px;
+  height: 24px;
+  border-radius: 24px;
+}
+.bell-switch-large.bell-active .bell-switch-button:after {
+  left: 37px;
+}
+.bell-switch-large .bell-switch-button .bell-switch-off {
+  left: auto;
+  right: 8px;
+}
+.bell-switch-large .bell-switch-button:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+}
+.bell-switch-small {
+  width: 24px;
+  height: 12px;
+  border-radius: 12px;
+}
+.bell-switch-small.bell-active .bell-switch-button:after {
+  left: 12px;
+}
+.bell-switch-small .bell-switch-button:after {
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.bell-switch-success {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-success.bell-active {
+  border-color: #19be6b;
+  background-color: #19be6b;
+}
+.bell-switch-success .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-warning {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-warning.bell-active {
+  border-color: #ff9900;
+  background-color: #ff9900;
+}
+.bell-switch-warning .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-error {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-error.bell-active {
+  border-color: #ed3f14;
+  background-color: #ed3f14;
+}
+.bell-switch-error .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-disabled {
+  cursor: not-allowed;
+  border: 1px solid #EAECF0;
+  background-color: #EAECF0;
+}
+.bell-switch-disabled.bell-active {
+  border-color: #EAECF0;
+  background-color: #EAECF0;
+}
+.bell-switch-disabled .bell-switch-button {
+  cursor: not-allowed;
+}
+.bell-switch-disabled .bell-switch-button:after {
+  background-color: #fff;
 }
 .bell-select {
   display: inline-block;
@@ -3001,7 +3144,7 @@
   white-space: nowrap;
   list-style: none;
   cursor: pointer;
-  padding: 5px 15px;
+  padding: 8px 15px;
   color: #495060;
   font-size: 12px;
 }
@@ -3730,6 +3873,7 @@
   box-shadow: 0 0 0 1px #fff;
 }
 .bell-badge .bell-badge-count-alone {
+  box-sizing: border-box;
   top: auto;
   display: block;
   position: relative;
