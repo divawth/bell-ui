@@ -1,28 +1,4 @@
-1 badge 传 string
-
-2 grid 栅格布局
-
-    /* Extra small devices (phones, less than 768px) */
-    /* No media query since this is the default in Bootstrap */
-
-    /* Small devices (tablets, 768px and up) */
-    @media (min-width: @screen-sm-min) { ... }
-
-    /* Medium devices (desktops, 992px and up) */
-    @media (min-width: @screen-md-min) { ... }
-
-    /* Large devices (large desktops, 1200px and up) */
-    @media (min-width: @screen-lg-min) { ... }
-
-    @media (max-width: @screen-xs-max) { ... }
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
-    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
-    @media (min-width: @screen-lg-min) { ... }
-
-    ![](https://ws4.sinaimg.cn/large/006tNc79ly1fnp7yybl4zj31ca0mywi9.jpg)
-
 3 indeterminate 表示不定状态
-1 messageBox ## Modal 对话框
 
 5 Drawer 抽屉式导航
 
@@ -110,3 +86,29 @@ click   点击时候触发
 ## Affix 图钉
 
 ## Scroll 无限滚动
+
+
+1 badge 传 string
+
+2 grid 栅格布局
+
+    /* Extra small devices (phones, less than 768px) */
+    /* No media query since this is the default in Bootstrap */
+
+    /* Small devices (tablets, 768px and up) */
+    @media (min-width: @screen-sm-min) { ... }
+
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: @screen-md-min) { ... }
+
+    /* Large devices (large desktops, 1200px and up) */
+    @media (min-width: @screen-lg-min) { ... }
+
+    @media (max-width: @screen-xs-max) { ... }
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+    @media (min-width: @screen-lg-min) { ... }
+
+    ![](https://ws4.sinaimg.cn/large/006tNc79ly1fnp7yybl4zj31ca0mywi9.jpg)
+1 messageBox ## Modal 对话框
+

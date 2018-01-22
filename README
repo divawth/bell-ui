@@ -1,3 +1,10 @@
-# bell-ui
+# Bell
+
+> A Yox.js UI Toolkit for Web.
+
+## Install
+```shell
+npm install bell-ui -S
+```
 
 [Doc](https://angeltiva.github.io/bellUI/#/view/notice)
