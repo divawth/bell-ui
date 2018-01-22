@@ -11,6 +11,8 @@ import Footer from './components/layout/Footer'
 import Menu from './components/layout/Menu'
 import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
+import Row from './components/grid/Row'
+import Col from './components/grid/Col'
 
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
@@ -51,6 +53,8 @@ Yox.component({
     Menu,
     MenuItem,
     Submenu,
+    Row,
+    Col,
 
     Breadcrumb,
     BreadcrumbItem,

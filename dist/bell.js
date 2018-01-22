@@ -113,6 +113,169 @@ var Submenu = {
     template: "\n        <div class=\"bell-sub-menu\">\n            {{$children}}\n        </div>\n    "
 };
 
+var Row = {
+    template: '\n<div class="bell-row\n{{#if gutter}} bell-row-gutter{{/if}}\n{{#if type}} bell-row-{{type}}{{/if}}\n{{#if justify}} bell-row-flex-{{justify}}{{/if}}\n{{#if align}} bell-row-flex-{{align}}{{/if}}\n" style="{{style}}">\n    {{$children}}\n</div>\n    ',
+
+    propTypes: {
+        gutter: {
+            type: ['number', 'string']
+        },
+        type: {
+            type: 'string'
+        },
+        justify: {
+            type: 'string'
+        },
+        align: {
+            type: 'string'
+        }
+    },
+
+    data: function data() {
+        return {
+            style: ''
+        };
+    },
+
+    computed: {
+        style: function style() {
+            var me = this;
+            var gap = me.get('gutter') / 2;
+            var style = '';
+            style = 'margin-left: -' + gap + 'px;margin-right: -' + gap + 'px;';
+            return style;
+        }
+    },
+
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('updateGridGutter', {
+            gutter: me.get('gutter')
+        }, true);
+    }
+};
+
+var Col = {
+    template: '\n<div class="bell-col\n{{#if span}} bell-col-span-{{span}}{{/if}}\n{{#if order}} bell-col-order-{{order}}{{/if}}\n{{#if push}} bell-col-push-{{push}}{{/if}}\n{{#if pull}} bell-col-pull-{{pull}}{{/if}}\n{{#if offset}} bell-col-offset-{{offset}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n{{#if xsClass}} {{xsClass}}{{/if}}\n{{#if mdClass}} {{mdClass}}{{/if}}\n{{#if smClass}} {{smClass}}{{/if}}\n{{#if lgClass}} {{lgClass}}{{/if}}\n" style="{{style}}">\n    <div class="bell-col-content">\n        {{$children}}\n    </div>\n</div>\n    ',
+
+    propTypes: {
+        span: {
+            type: ['string', 'number']
+        },
+        order: {
+            type: ['string', 'number']
+        },
+        offset: {
+            type: ['string', 'number']
+        },
+        push: {
+            type: ['string', 'number']
+        },
+        pull: {
+            type: ['string', 'number']
+        },
+        className: {
+            type: 'string'
+        },
+        xs: {
+            type: ['string', 'number', 'object']
+        },
+        sm: {
+            type: ['string', 'number', 'object']
+        },
+        md: {
+            type: ['string', 'number', 'object']
+        },
+        lg: {
+            type: ['string', 'number', 'object']
+        }
+    },
+
+    data: function data() {
+        return {
+            style: '',
+            gutter: ''
+        };
+    },
+
+    events: {
+        updateGridGutter: function updateGridGutter(event, data) {
+            this.set({
+                gutter: data.gutter
+            });
+        }
+    },
+
+    computed: {
+        xsClass: function xsClass() {
+            var me = this;
+            var data = me.get('xs');
+            if (!data) {
+                return;
+            }
+            return me.getClass('xs', data);
+        },
+        smClass: function smClass() {
+            var me = this;
+            var data = me.get('sm');
+            if (!data) {
+                return;
+            }
+            return me.getClass('sm', data);
+        },
+        mdClass: function mdClass() {
+            var me = this;
+            var data = me.get('md');
+            if (!data) {
+                return;
+            }
+            return me.getClass('md', data);
+        },
+        lgClass: function lgClass() {
+            var me = this;
+            var data = me.get('lg');
+            if (!data) {
+                return;
+            }
+            return me.getClass('lg', data);
+        },
+        style: function style() {
+            var me = this;
+            var gap = me.get('gutter') / 2;
+            var style = '';
+            style = 'padding-left:' + gap + 'px;padding-right: ' + gap + 'px;';
+            return style;
+        }
+    },
+
+    methods: {
+        getClass: function getClass(name, data) {
+            var classArr = [];
+            if (Yox.is.object(data)) {
+                if (data.span) {
+                    classArr.push('bell-col-span-' + name + '-' + data.span);
+                }
+                if (data.order) {
+                    classArr.push('bell-col-' + name + '-order-' + data.order);
+                }
+                if (data.offset) {
+                    classArr.push('bell-col-' + name + '-offset-' + data.offset);
+                }
+                if (data.push) {
+                    classArr.push('bell-col-' + name + '-push-' + data.push);
+                }
+                if (data.pull) {
+                    classArr.push('bell-col-' + name + '-pull-' + data.pull);
+                }
+            } else {
+                classArr.push('bell-col-span-' + name + '-' + data);
+            }
+
+            return classArr.join(' ');
+        }
+    }
+};
+
 var Breadcrumb = {
     template: "\n        <div class=\"bell-bread-crumb\">\n            {{$children}}\n        </div>\n    "
 };
@@ -1492,6 +1655,8 @@ Yox.component({
     Menu: Menu,
     MenuItem: MenuItem,
     Submenu: Submenu,
+    Row: Row,
+    Col: Col,
 
     Breadcrumb: Breadcrumb,
     BreadcrumbItem: BreadcrumbItem,

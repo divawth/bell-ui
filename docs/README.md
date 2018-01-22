@@ -1,3 +1,49 @@
+1 badge 传 string
+
+2 grid 栅格布局
+
+    /* Extra small devices (phones, less than 768px) */
+    /* No media query since this is the default in Bootstrap */
+
+    /* Small devices (tablets, 768px and up) */
+    @media (min-width: @screen-sm-min) { ... }
+
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: @screen-md-min) { ... }
+
+    /* Large devices (large desktops, 1200px and up) */
+    @media (min-width: @screen-lg-min) { ... }
+
+    @media (max-width: @screen-xs-max) { ... }
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+    @media (min-width: @screen-lg-min) { ... }
+
+    ![](https://ws4.sinaimg.cn/large/006tNc79ly1fnp7yybl4zj31ca0mywi9.jpg)
+
+3 indeterminate 表示不定状态
+1 messageBox ## Modal 对话框
+
+5 Drawer 抽屉式导航
+
+8 InputNumber
+
+9 进度指示器 Progress
+
+2 Chip
+
+是一种小块的用来呈现复杂实体的块，比如说日历的事件或联系人。它可以包含一张图片，一个短字符串(必要时可能被截取的字符串)，或者是其它的一些与实体对象有关的简洁的信息。
+disabled    Boolean false   禁用
+showDelete  Boolean false   是否显示删除icon
+color   String      文字的颜色
+backgroundColor    String      背景色
+delete  点击删除图标后触发
+click   点击时候触发
+
+6 扩展面板 ExpansionPanel ## Collapse 折叠面板
+
+
+
 ## Table 表格
 
 1 表格最简单的用法 传data
@@ -64,27 +110,3 @@
 ## Affix 图钉
 
 ## Scroll 无限滚动
-
-
-4 badge 传 string
-7 grid 栅格布局
-3 indeterminate 表示不定状态
-1 messageBox ## Modal 对话框
-
-5 Drawer 抽屉式导航
-
-8 InputNumber
-
-9 进度指示器 Progress
-
-2 Chip
-
-是一种小块的用来呈现复杂实体的块，比如说日历的事件或联系人。它可以包含一张图片，一个短字符串(必要时可能被截取的字符串)，或者是其它的一些与实体对象有关的简洁的信息。
-disabled    Boolean false   禁用
-showDelete  Boolean false   是否显示删除icon
-color   String      文字的颜色
-backgroundColor    String      背景色
-delete  点击删除图标后触发
-click   点击时候触发
-
-6 扩展面板 ExpansionPanel ## Collapse 折叠面板
