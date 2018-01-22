@@ -2261,6 +2261,7 @@
 }
 .bell-text-main {
   color: #212121;
+  font-weight: 500;
 }
 .bell-text-sub {
   color: #757575;
@@ -5976,6 +5977,114 @@
   .bell-col-span-lg-pull-0 {
     right: auto;
   }
+}
+.bell-msg-alert-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.bell-msg-alert-wrapper .bell-msg-alert {
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+  max-width: 500px;
+  min-width: 320px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.bell-msg-alert-wrapper .bell-msg-alert-title,
+.bell-msg-alert-wrapper .bell-msg-alert-desc,
+.bell-msg-alert-wrapper .bell-msg-alert-footer {
+  text-align: center;
+  padding: 10px 15px;
+}
+.bell-msg-alert-wrapper .bell-msg-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+.bell-msg-alert-wrapper .bell-msg-alert-close {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 5px 15px;
+  font-size: 24px;
+}
+.bell-msg-alert-hidden .bell-msg-alert {
+  margin-top: -200px;
+  opacity: 0;
+}
+.bell-msg-alert-hidden .bell-msg-mask {
+  opacity: 0;
+}
+.bell-msg-confirm-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.bell-msg-confirm-wrapper .bell-msg-confirm {
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+  max-width: 700px;
+  min-width: 320px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.bell-msg-confirm-wrapper .bell-msg-confirm-title,
+.bell-msg-confirm-wrapper .bell-msg-confirm-desc,
+.bell-msg-confirm-wrapper .bell-msg-confirm-footer {
+  text-align: center;
+  padding: 10px 15px;
+}
+.bell-msg-confirm-wrapper .bell-msg-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+.bell-msg-confirm-wrapper .bell-msg-confirm-close {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 5px 15px;
+  font-size: 24px;
+}
+.bell-msg-confirm-hidden .bell-msg-confirm {
+  margin-top: -200px;
+  opacity: 0;
+}
+.bell-msg-confirm-hidden .bell-msg-mask {
+  opacity: 0;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;

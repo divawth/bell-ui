@@ -465,13 +465,42 @@
 @grid-lg-min          : @grid-lg;
 @grid-lg-max          : (@grid-lg-min - 1);
 
+// msgbox
+@msgbox-msg-mask-background-color: rgba(0,0,0,.54);
+
+@msgbox-alert-zindex: @zindex-msgbox;
+@msgbox-alert-min-width: 320px;
+@msgbox-alert-border-radius: 4px;
+
+@msgbox-alert-background-color: #fff;
+@msgbox-alert-border-color: #ebeef5;
+@msgbox-alert-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+
+@msgbox-alert-close-padding: 5px 15px;
+@msgbox-alert-close-font-size: 24px;
+@msgbox-alert-max-width: 500px;
+
+@msgbox-msg-body-padding: 10px 15px;
+
+@msgbox-confirm-zindex: @zindex-msgbox;
+@msgbox-confirm-min-width: 320px;
+@msgbox-confirm-border-radius: 4px;
+
+@msgbox-confirm-background-color: #fff;
+@msgbox-confirm-border-color: #ebeef5;
+@msgbox-confirm-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+
+@msgbox-confirm-close-padding: 5px 15px;
+@msgbox-confirm-close-font-size: 24px;
+@msgbox-confirm-max-width: 700px;
+
 // z-index
 @zindex-spinner            : 8;
 @zindex-backtop        : 10;
 @zindex-affix           : 10;
 @zindex-badge           : 10;
 @zindex-select          : 900;
-@zindex-modal           : 1000;
+@zindex-msgbox           : 1000;
 @zindex-message         : 1010;
 @zindex-notification    : 1010;
 @zindex-tooltip         : 1060;

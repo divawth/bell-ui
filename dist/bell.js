@@ -1641,6 +1641,167 @@ Yox.prototype.$notice = {
     }
 };
 
+var id$2 = 0;
+
+var createAlert = function createAlert(_data) {
+
+    var namespace = 'bell-msg-alert-' + id$2++;
+    var body = document.getElementById('bell-msgbox-wrapper');
+    var element = document.createElement('div');
+    element.setAttribute('id', namespace);
+    body.append(element);
+
+    var instance = new Yox({
+        el: '#' + namespace,
+        replace: true,
+        template: '\n            <div class="bell-msg-alert-wrapper\n            {{#if isHidden}} bell-msg-alert-hidden{{/if}}\n            ">\n                <div class="bell-msg-alert"{{#if width}} style="width: {{width}}px;"{{/if}}>\n                    {{#if closable}}\n                    <div class="bell-msg-alert-close" on-click="hide()">\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    </div>\n                    {{/if}}\n\n                    <div class="bell-msg-alert-title bell-text-main bell-text-medium">\n                        {{#if title}}\n                            {{title}}\n                        {{/if}}\n                    </div>\n\n                    <div class="bell-msg-alert-desc bell-text-sub bell-text-small">\n                        {{content}}\n                    </div>\n\n                    <div class="bell-msg-alert-footer">\n                        <Button type="{{button.type}}" on-click="hide()">\n                            {{button.text}}\n                        </Button>\n                    </div>\n                </div>\n                <div class="bell-msg-mask" on-click="maskClick()"></div>\n            </div>\n        ',
+        data: function data() {
+            return {
+                isHidden: true,
+                closable: _data.closable,
+                title: _data.title || _data,
+                content: _data.content || _data,
+                button: _data.button || {
+                    text: '我知道了',
+                    type: 'info'
+                }
+            };
+        },
+
+        methods: {
+            maskClick: function maskClick() {
+                if (!_data.maskClosable) {
+                    return;
+                }
+                this.hide();
+            },
+            hide: function hide() {
+                var me = this;
+                var transTime = 500;
+                me.set({
+                    isHidden: true
+                });
+                me.transTimeFuc = setTimeout(function () {
+                    element.remove();
+                    if (Yox.is.func(_data.onClose)) {
+                        _data.onClose();
+                    }
+                    if (instance) {
+                        instance.destroy();
+                    }
+                }, transTime);
+            }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+            var transTime = 300;
+            me.transTimeFuc = setTimeout(function () {
+                me.set({
+                    isHidden: false
+                });
+            }, transTime);
+        },
+
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            clearTimeout(me.transTimeFuc);
+        }
+    });
+};
+
+var createConfirm = function createConfirm(_data2) {
+    var namespace = 'bell-msg-confirm-' + id$2++;
+    var body = document.getElementById('bell-msgbox-wrapper');
+    var element = document.createElement('div');
+    element.setAttribute('id', namespace);
+    body.append(element);
+
+    var instance = new Yox({
+        el: '#' + namespace,
+        replace: true,
+        template: '\n            <div class="bell-msg-confirm-wrapper\n            {{#if isHidden}} bell-msg-confirm-hidden{{/if}}\n            ">\n                <div class="bell-msg-confirm"{{#if width}} style="width: {{width}}px;{{/if}}">\n                    {{#if closable}}\n                    <div class="bell-msg-confirm-close" on-click="hide()">\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    </div>\n                    {{/if}}\n\n                    <div class="bell-msg-confirm-title bell-text-main bell-text-medium">\n                        {{#if title}}\n                            {{title}}\n                        {{/if}}\n                    </div>\n\n                    <div class="bell-msg-confirm-desc bell-text-sub bell-text-small">\n                        {{content}}\n                    </div>\n                    {{#if buttons}}\n                    <div class="bell-msg-confirm-footer">\n                        {{#each buttons:index}}\n                        <Button type="{{type}}" on-click="buttonClick(index)">\n                            {{text}}\n                        </Button>\n                        {{/each}}\n                    </div>\n                    {{/if}}\n                </div>\n                <div class="bell-msg-mask" on-click="maskClick()"></div>\n            </div>\n        ',
+        data: function data() {
+            return {
+                isHidden: true,
+                width: _data2.width,
+                closable: _data2.closable,
+                title: _data2.title || _data2,
+                content: _data2.content || _data2,
+                buttons: _data2.buttons,
+                maskClosable: _data2.maskClosable
+            };
+        },
+
+        methods: {
+            buttonClick: function buttonClick(index) {
+                var me = this;
+                var handler = me.get('buttons.' + index + '.action');
+                handler.call(instance);
+                return false;
+            },
+            maskClick: function maskClick() {
+                if (!_data2.maskClosable) {
+                    return;
+                }
+                this.hide();
+            },
+            hide: function hide() {
+                var me = this;
+                var transTime = 500;
+                me.set({
+                    isHidden: true
+                });
+                me.transTimeFuc = setTimeout(function () {
+                    element.remove();
+                    if (Yox.is.func(_data2.onClose)) {
+                        _data2.onClose();
+                    }
+                    if (instance) {
+                        instance.destroy();
+                    }
+                }, transTime);
+            }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+            var transTime = 300;
+            me.transTimeFuc = setTimeout(function () {
+                me.set({
+                    isHidden: false
+                });
+            }, transTime);
+        },
+
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            clearTimeout(me.transTimeFuc);
+        }
+    });
+};
+
+var addAlert = function addAlert(data) {
+    createAlert(data);
+};
+
+var addConfirm = function addConfirm(data) {
+    createConfirm(data);
+};
+
+var body$1 = document.body;
+var element$1 = document.createElement('div');
+element$1.setAttribute('id', 'bell-msgbox-wrapper');
+body$1.append(element$1);
+
+Yox.prototype.$alert = function (data) {
+    addAlert(data);
+};
+
+Yox.prototype.$confirm = function (data) {
+    addConfirm(data);
+};
+
 /*
  * @file 主模块
  * @author wangtianhua

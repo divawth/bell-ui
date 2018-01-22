@@ -19,6 +19,7 @@
   - [Card 卡片](view/card)
   - [Message 全局提示](view/message)
   - [Notice 通知提醒](view/notice)
+  - [Msgbox 消息对话框](view/msgbox)
   - [Badge 标记](view/badge)
 - [Other](other)
   - [Spinner 加载中](other/spinner)

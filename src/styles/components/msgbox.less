@@ -1,0 +1,116 @@
+.bell-msg-alert-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: @msgbox-alert-zindex;
+    text-align: center;
+    .fullscreen();
+
+    .bell-msg-alert {
+        text-align: left;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s;
+
+
+        max-width: @msgbox-alert-max-width;
+        min-width: @msgbox-alert-min-width;
+        border-radius: @msgbox-alert-border-radius;
+
+        background-color: @msgbox-alert-background-color;
+        border: 1px solid @msgbox-alert-border-color;
+        box-shadow: @msgbox-alert-box-shadow;
+
+    }
+
+    .bell-msg-alert-title,
+    .bell-msg-alert-desc,
+    .bell-msg-alert-footer {
+        text-align: center;
+        padding: @msgbox-msg-body-padding;
+    }
+
+    .bell-msg-mask {
+        .fullscreen();
+        background-color: @msgbox-msg-mask-background-color;
+        z-index: -1;
+        transition: opacity 0.3s;
+    }
+
+    .bell-msg-alert-close {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        padding: @msgbox-alert-close-padding;
+        font-size: @msgbox-alert-close-font-size;
+    }
+}
+
+.bell-msg-alert-hidden {
+    .bell-msg-alert {
+        margin-top: -200px;
+        opacity: 0;
+    }
+    .bell-msg-mask {
+        opacity: 0;
+    }
+}
+
+// confirm
+
+.bell-msg-confirm-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: @msgbox-confirm-zindex;
+    text-align: center;
+    .fullscreen();
+
+    .bell-msg-confirm {
+        text-align: left;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s;
+
+        max-width: @msgbox-confirm-max-width;
+        min-width: @msgbox-confirm-min-width;
+        border-radius: @msgbox-confirm-border-radius;
+
+        background-color: @msgbox-confirm-background-color;
+        border: 1px solid @msgbox-confirm-border-color;
+        box-shadow: @msgbox-confirm-box-shadow;
+
+    }
+
+    .bell-msg-confirm-title,
+    .bell-msg-confirm-desc,
+    .bell-msg-confirm-footer {
+        text-align: center;
+        padding: @msgbox-msg-body-padding;
+    }
+
+    .bell-msg-mask {
+        .fullscreen();
+        background-color: @msgbox-msg-mask-background-color;
+        z-index: -1;
+        transition: opacity 0.3s;
+    }
+
+    .bell-msg-confirm-close {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        padding: @msgbox-confirm-close-padding;
+        font-size: @msgbox-confirm-close-font-size;
+    }
+}
+
+.bell-msg-confirm-hidden {
+    .bell-msg-confirm {
+        margin-top: -200px;
+        opacity: 0;
+    }
+    .bell-msg-mask {
+        opacity: 0;
+    }
+}

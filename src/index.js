@@ -43,6 +43,7 @@ import CardActions from './components/card/CardActions'
 
 import './components/message/Message'
 import './components/notice/Notice'
+import './components/msgbox/Msgbox'
 
 Yox.component({
     Layout,
