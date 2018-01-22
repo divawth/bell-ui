@@ -18,15 +18,15 @@
     export default {
         template: `
             <div>
-                <Badge count="212" maxCount="99">
+                <Badge count="{{{212}}}" maxCount="{{{99}}}">
                     <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
                 </Badge>
                 <br><br>
-                <Badge count="212211" maxCount="999">
+                <Badge count="{{{212211}}}" maxCount="{{{999}}}">
                     <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
                 </Badge>
                 <br><br>
-                <Badge count="212211" maxCount="999">
+                <Badge count="{{{212211}}}" maxCount="{{{999}}}">
                     <Button type="info">
                         按钮
                     </Button>

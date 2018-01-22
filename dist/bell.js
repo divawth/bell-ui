@@ -1110,10 +1110,10 @@ var Badge = {
 
     filters: {
         getText: function getText(count, maxCount) {
-            var maxCount = Yox.is.number(+maxCount) ? +maxCount : '';
-            var count = Yox.is.number(+count) ? +count : '';
+            var maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
+            var countStr = Yox.is.number(count) ? +count : 0;
 
-            return maxCount < count ? maxCount + '+' : count;
+            return maxCount < countStr ? maxCount + '+' : count;
         }
     }
 };

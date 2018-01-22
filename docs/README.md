@@ -14,10 +14,6 @@
 ## Menu 导航菜单
 
 
-## Radio 单选框
-
-## Switch 开关
-
 ## AutoComplete 自动完成
 
 ## Slider 滑块
@@ -38,15 +34,10 @@
 
 ## Form 表单
 
-## Notice 通知提醒
-
-## Modal 对话框
 
 ## Progress 进度条
 
-## Badge 徽标数
 
-## Collapse 折叠面板
 
 ## Timeline 时间轴
 
@@ -73,3 +64,27 @@
 ## Affix 图钉
 
 ## Scroll 无限滚动
+
+
+4 badge 传 string
+7 grid 栅格布局
+3 indeterminate 表示不定状态
+1 messageBox ## Modal 对话框
+
+5 Drawer 抽屉式导航
+
+8 InputNumber
+
+9 进度指示器 Progress
+
+2 Chip
+
+是一种小块的用来呈现复杂实体的块，比如说日历的事件或联系人。它可以包含一张图片，一个短字符串(必要时可能被截取的字符串)，或者是其它的一些与实体对象有关的简洁的信息。
+disabled    Boolean false   禁用
+showDelete  Boolean false   是否显示删除icon
+color   String      文字的颜色
+backgroundColor    String      背景色
+delete  点击删除图标后触发
+click   点击时候触发
+
+6 扩展面板 ExpansionPanel ## Collapse 折叠面板
