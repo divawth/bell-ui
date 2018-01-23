@@ -1,3 +1,7 @@
+
+1 DatePicker 日期选择器 mode='day'
+2 tooltip
+
 3 indeterminate 表示不定状态
 
 5 Drawer 抽屉式导航
@@ -31,7 +35,6 @@ click   点击时候触发
 7 loading
 8 action
 
-## DatePicker 日期选择器
 
 ## Menu 导航菜单
 
