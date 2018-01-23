@@ -11,6 +11,7 @@
   - [Checkbox 单选框](form/checkbox)
   - [Switch 单选框](form/switch)
   - [Select 选择器](form/select)
+  - [Datepicker 日期选择器](form/datepicker)
 - [Navigation](navigation)
   - [Page 分页](navigation/page)
 - [View](view)

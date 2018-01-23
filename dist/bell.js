@@ -324,7 +324,7 @@ var Button = {
 };
 
 var Input = {
-    template: '\n<div class="bell-input-wrapper"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    {{#if type != TEXT_TYPE_TEXTAREA}}\n        {{#if !label}}\n\n        {{else}}\n            <span class="bell-input-label" on-click="click">\n                {{label}}\n            </span>\n        {{/if}}\n\n        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"\n        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n        {{#if disabled}}disabled="disabled"{{/if}}\n        model="value"\n        ></input>\n\n    {{else}}\n        <textarea class="bell-textarea"\n            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n            {{#if rows}} rows="{{rows}}"{{/if}}\n            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n            {{#if disabled}}disabled="disabled"{{/if}}\n            model="value"\n        >\n        </textarea>\n    {{/if}}\n\n</div>\n    ',
+    template: '\n<div class="bell-input-wrapper"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    {{#if type != TEXT_TYPE_TEXTAREA}}\n        {{#if !label}}\n\n        {{else}}\n            <span class="bell-input-label" on-click="click">\n                {{label}}\n            </span>\n        {{/if}}\n\n        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"\n        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n        {{#if disabled}}disabled="disabled"{{/if}}\n        model="value" on-blur="blur()" on-focus="focus()"\n        ></input>\n\n    {{else}}\n        <textarea class="bell-textarea"\n            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n            {{#if rows}} rows="{{rows}}"{{/if}}\n            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n            {{#if disabled}}disabled="disabled"{{/if}}\n            model="value"\n        >\n        </textarea>\n    {{/if}}\n\n</div>\n    ',
 
     propTypes: {
         placeholder: {
@@ -334,7 +334,7 @@ var Input = {
             type: 'string'
         },
         value: {
-            type: 'string'
+            type: ['string', 'number']
         },
         size: {
             type: 'string'
@@ -353,6 +353,15 @@ var Input = {
         },
         disabled: {
             type: 'string'
+        },
+        onChange: {
+            type: 'function'
+        },
+        onBlur: {
+            type: 'function'
+        },
+        onFocus: {
+            type: 'function'
         }
     },
     data: function data() {
@@ -364,11 +373,18 @@ var Input = {
 
     watchers: {
         value: function value(_value) {
-            console.log(_value);
+            this.get('onChange') && this.get('onChange')(_value);
         }
     },
 
-    afterMount: function afterMount() {}
+    methods: {
+        blur: function blur() {
+            this.get('onBlur') && this.get('onBlur')();
+        },
+        focus: function focus() {
+            this.get('onFocus') && this.get('onFocus')();
+        }
+    }
 };
 
 var Radio = {
@@ -1281,6 +1297,303 @@ var Badge = {
     }
 };
 
+var normalizeDate = function normalizeDate(date) {
+    return date.setHours(0, 0, 0, 0);
+};
+
+var offsetSecond = function offsetSecond(date, offset) {
+    if (!Yox.is.numeric(date)) {
+        date = date.getTime();
+    }
+    return new Date(date + offset * 1000);
+};
+
+var offsetMinute = function offsetMinute(date, offset) {
+    return offsetSecond(date, offset * 60);
+};
+
+var offsetHour = function offsetHour(date, offset) {
+    return offsetMinute(date, offset * 60);
+};
+
+var offsetDate = function offsetDate(date, offset) {
+    return offsetHour(date, offset * 24);
+};
+
+var offsetMonth = function offsetMonth(date, offset) {
+    if (!Yox.is.numeric(date)) {
+        date = date.getTime();
+    }
+    date = new Date(date);
+    date.setDate(1);
+    date.setMonth(date.getMonth() + offset);
+    return date;
+};
+
+var firstDateInWeek = function firstDateInWeek(date, firstDay) {
+    if (Yox.is.numeric(date)) {
+        date = new Date(date);
+    }
+    var day = date.getDay();
+    day = day >= firstDay ? day : day + 7;
+
+    return offsetDate(date, -1 * (day - firstDay));
+};
+
+var lastDateInWeek = function lastDateInWeek(date, firstDay) {
+    return offsetDate(firstDateInWeek(date, firstDay), 6);
+};
+
+var firstDateInMonth = function firstDateInMonth(date) {
+    if (Yox.is.numeric(date)) {
+        date = new Date(date);
+    }
+    return offsetDate(date, 1 - date.getDate());
+};
+
+var lastDateInMonth = function lastDateInMonth(date) {
+    return offsetDate(firstDateInMonth(offsetMonth(date, 1)), -1);
+};
+
+
+
+var parseDate = function parseDate(year, month, date) {
+    var valid = false;
+
+    if (Yox.is.numeric(year) && Yox.is.numeric(month) && Yox.is.numeric(date)) {
+        valid = true;
+    } else if (arguments.length === 1) {
+        if (Yox.is.object(year)) {
+            valid = true;
+            date = year.date;
+            month = year.month;
+            year = year.year;
+        }
+    } else if (arguments.length === 2) {
+        if (Yox.is.string(year)) {
+            valid = true;
+            var parts = year.split(month || '-');
+            year = parts[0];
+            month = parts[1];
+            date = parts[2];
+        }
+    }
+
+    if (valid) {
+        year = '' + year;
+        if (year.length === 4 && month >= 1 && month <= 12 && date >= 1 && date <= 31) {
+            return new Date(year, month - 1, date);
+        }
+    }
+};
+
+var simplifyDate = function simplifyDate(date) {
+    if (!date) {
+        return;
+    }
+
+    if (Yox.is.number(date)) {
+        date = new Date(date);
+    }
+
+    return {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate(),
+        day: date.getDay()
+    };
+};
+
+var WEEKS = ['日', '一', '二', '三', '四', '五', '六'];
+
+var MODE_YEAR = 'year';
+var MODE_MONTH = 'month';
+var MODE_DAY = 'day';
+var MODE_TIME = 'time';
+
+var DAY = 24 * 60 * 60 * 1000;
+var stableDuration = 41 * DAY;
+
+var Datepicker = {
+    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-button" style="width: {{width}}px;">\n                <Input {{...inputOptions}}></Input>\n            </div>\n\n            <div class="bell-datepicker-panel{{#if !isOpen}} bell-hide{{/if}}">\n                <div class="bell-datepicker-header">\n                    <Button size="small" type="text" on-click="prevYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="prevMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n\n                    <span class="bell-datepicker-header-label">\n                        {{currentYear}}\n                    </span>\n                    <span class="bell-datepicker-header-label">\n                        {{currentMonth}}\n                    </span>\n\n                    <Button size="small" type="text" on-click="nextMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="nextYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                </div>\n\n                <div class="bell-datepicker-content">\n                    {{#if viewMode == MODE_YEAR}}\n                        <div class="bell-datepicker-table-years">\n                            <div class="bell-datepicker-weeks">\n\n                            </div>\n                            <div class="bell-datepicker-days">\n\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_MONTH}}\n                        <div class="bell-datepicker-table-months">\n                            <div class="bell-datepicker-month">\n\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_DAY}}\n                        <div class="bell-datepicker-table-days">\n                            <div class="bell-datepicker-weeks">\n                                {{#each weeks}}\n                                    <span class="bell-datepicker-col">\n                                        {{this}}\n                                    </span>\n                                {{/each}}\n                            </div>\n                            <div class="bell-datepicker-days">\n                                {{#each dayList:index}}\n                                    <span class="bell-datepicker-col bell-datepicker-col-{{phase}}" on-click="dateClick(this)">\n                                        {{date}}\n                                    </span>\n                                    {{#if index % 7 == 6}}\n                                        <div class="bell-datepicker-divide"></div>\n                                    {{/if}}\n                                {{/each}}\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_TIME}}\n                        <div class="bell-datepicker-table-times">\n                            <div class="bell-datepicker-weeks">\n\n                            </div>\n                            <div class="bell-datepicker-days">\n\n                            </div>\n                        </div>\n                    {{/if}}\n                </div>\n            </div>\n        </div>\n    ',
+
+    propTypes: {
+        today: {
+            type: ['string', 'object'],
+            value: new Date()
+        },
+        date: {
+            type: ['string', 'object'],
+            value: new Date()
+        },
+        firstDay: {
+            type: 'numeric',
+            value: 0
+        },
+        viewMode: {
+            type: 'string',
+            value: MODE_DAY
+        },
+        multiple: {
+            type: ['string', 'boolean'],
+            value: false
+        },
+        stable: {
+            type: ['string', 'boolean'],
+            value: true
+        },
+        onChange: {
+            type: 'function'
+        }
+    },
+
+    data: function data() {
+        var me = this;
+        return {
+            // Input 的宽度
+            width: 220,
+            // 选项卡是否展开
+            isOpen: false,
+            inputOptions: {
+                placeholder: '选择日期',
+                value: '',
+                onFocus: function onFocus() {
+                    me.set({
+                        isOpen: true
+                    });
+                },
+                onChange: function onChange(value) {
+                    console.log(value);
+                }
+            },
+
+            MODE_YEAR: MODE_YEAR,
+            MODE_MONTH: MODE_MONTH,
+            MODE_DAY: MODE_DAY,
+            MODE_TIME: MODE_TIME,
+
+            weeks: WEEKS,
+            dayList: []
+        };
+    },
+
+    computed: {
+        currentYear: function currentYear() {
+            var me = this;
+            var date = me.get('date');
+            date = date ? simplifyDate(date) : simplifyDate(new Date());
+            return date.year;
+        },
+        currentMonth: function currentMonth() {
+            var me = this;
+            var date = me.get('date');
+            date = date ? simplifyDate(date) : simplifyDate(new Date());
+            return date.month;
+        }
+    },
+
+    methods: {
+        changeDate: function changeDate(offset) {
+            var me = this;
+            var date = me.get('date');
+
+            date = offsetMonth(date, offset);
+
+            me.set({
+                date: date,
+                data: me.createRenderData(date)
+            });
+        },
+        prevYear: function prevYear() {
+            this.changeDate(-12);
+        },
+        prevMonth: function prevMonth() {
+            this.changeDate(-1);
+        },
+        nextYear: function nextYear() {
+            this.changeDate(12);
+        },
+        nextMonth: function nextMonth() {
+            this.changeDate(1);
+        },
+        dateClick: function dateClick(date) {
+            var me = this;
+            var inputValue = '' + date.year + '年' + date.month + '月' + date.day + '日';
+
+            date = parseDate(date);
+            me.set({
+                'inputOptions.value': inputValue,
+                date: date,
+                isOpen: false
+            });
+            me.get('onChange') && me.get('onChange')(date);
+        },
+        // 获取渲染模板的数据
+        getDatasource: function getDatasource(start, end, today) {
+            var data = [];
+
+            for (var time = start, item; time <= end; time += DAY) {
+                item = simplifyDate(time);
+                // 过去 or 现在 or 将来
+                if (time > today) {
+                    item.phase = 'future';
+                } else if (time < today) {
+                    item.phase = 'past';
+                } else {
+                    item.phase = 'today';
+                }
+                data.push(item);
+            }
+
+            return data;
+        },
+        createRenderData: function createRenderData(date) {
+
+            var me = this;
+            var firstDay = me.get('firstDay');
+            var today = normalizeDate(me.get('today'));
+            date = date ? date : today;
+
+            var startDate;
+            var endDate;
+
+            var isMonthMode = me.get('viewMode') === MODE_DAY;
+            if (isMonthMode) {
+                startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
+                endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
+            } else {
+                startDate = firstDateInWeek(date, firstDay);
+                endDate = lastDateInWeek(date, firstDay);
+            }
+
+            startDate = normalizeDate(startDate);
+            endDate = normalizeDate(endDate);
+
+            if (isMonthMode && me.get('stable')) {
+
+                var duration = endDate - startDate;
+                var offset = stableDuration - duration;
+
+                if (offset > 0) {
+                    endDate += offset;
+                }
+            }
+            me.set({
+                dayList: me.getDatasource(startDate, endDate, today)
+            });
+        }
+    },
+
+    afterMount: function afterMount() {
+        var me = this;
+        var today = me.get('today');
+        today = today ? today : new Date();
+        var date = me.get('date');
+        date = date ? date : today;
+        me.createRenderData(date);
+    }
+};
+
 var Card = {
     template: "\n        <div class=\"bell-card\">\n            {{$children}}\n        </div>\n    "
 };
@@ -1831,6 +2144,7 @@ Yox.component({
     Switch: Switch,
     Select: Select,
     Page: Page,
+    Datepicker: Datepicker,
 
     Alert: Alert,
     Desc: Desc,

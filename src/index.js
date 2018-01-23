@@ -33,6 +33,7 @@ import Spinner from './components/spinner/Spinner'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
 import Badge from './components/badge/Badge'
+import Datepicker from './components/datepicker/Datepicker'
 
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
@@ -69,6 +70,7 @@ Yox.component({
     Switch,
     Select,
     Page,
+    Datepicker,
 
     Alert,
     Desc,

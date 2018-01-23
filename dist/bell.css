@@ -6086,6 +6086,77 @@
 .bell-msg-confirm-hidden .bell-msg-mask {
   opacity: 0;
 }
+.bell-datepicker {
+  position: relative;
+  user-select: none;
+}
+.bell-datepicker-button {
+  position: relative;
+}
+.bell-datepicker-panel {
+  padding: 10px;
+  position: absolute;
+  top: 36px;
+  z-index: 2721211;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+.bell-datepicker-panel.bell-hide {
+  display: none;
+  opacity: 0;
+  top: 0;
+}
+.bell-datepicker-table-days {
+  font-size: 12px;
+}
+.bell-datepicker-table-days .bell-datepicker-weeks .bell-datepicker-col {
+  transition: all 0.3s;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 24px;
+  margin: 2px;
+  color: rgba(0, 0, 0, 0.37);
+  display: inline-block;
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-col {
+  cursor: pointer;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.54);
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 24px;
+  margin: 2px;
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-col:hover {
+  background: #4279F3;
+  color: #fff;
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-col-past {
+  color: rgba(0, 0, 0, 0.37);
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-col-today {
+  position: relative;
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-col-today:after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.bell-datepicker-table-days .bell-datepicker-days .bell-datepicker-divide {
+  width: 100%;
+  height: 0px;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }

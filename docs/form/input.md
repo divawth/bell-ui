@@ -41,9 +41,15 @@
                     style="width: 200px"
                     model="value"
                     on-click="click()"
+                    onChange="{{onChange}}"
                 ></Input>
             </div>
         `,
+        data: {
+            onChange: function (val) {
+                console.log(val)
+            }
+        },
         methods: {
             click: function () {
                 this.$message.success('click secrch');
@@ -101,4 +107,8 @@ label | 设置右侧按钮文字 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-on-click | 点击按钮的回调 | -
+onChange | 输入的时候值发生改变的时候回调 | value
+onFocus | 聚焦的时候触发 | -
+onBlur | 失焦的时候触发 | -
+on-click | 有按钮时候的点击事件 | -
+

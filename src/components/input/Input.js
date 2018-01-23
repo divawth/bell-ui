@@ -15,7 +15,7 @@ export default {
         <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
         {{#if disabled}}disabled="disabled"{{/if}}
-        model="value"
+        model="value" on-blur="blur()" on-focus="focus()"
         ></input>
 
     {{else}}
@@ -40,7 +40,7 @@ export default {
             type: 'string'
         },
         value: {
-            type: 'string'
+            type: ['string', 'number']
         },
         size: {
             type: 'string'
@@ -59,6 +59,15 @@ export default {
         },
         disabled: {
             type: 'string'
+        },
+        onChange: {
+            type: 'function'
+        },
+        onBlur: {
+            type: 'function'
+        },
+        onFocus: {
+            type: 'function'
         }
     },
     data: function () {
@@ -70,11 +79,16 @@ export default {
 
     watchers: {
         value: function (value) {
-            console.log(value)
+            this.get('onChange') && this.get('onChange')(value);
         }
     },
 
-    afterMount: function () {
-
+    methods: {
+        blur: function () {
+            this.get('onBlur') && this.get('onBlur')();
+        },
+        focus: function () {
+            this.get('onFocus') && this.get('onFocus')();
+        }
     }
 }
