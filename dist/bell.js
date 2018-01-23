@@ -1408,21 +1408,22 @@ var WEEKS = ['日', '一', '二', '三', '四', '五', '六'];
 
 var MODE_YEAR = 'year';
 var MODE_MONTH = 'month';
-var MODE_DAY = 'day';
+var MODE_WEEK = 'week';
+var MODE_DATE = 'date';
 var MODE_TIME = 'time';
 
 var DAY = 24 * 60 * 60 * 1000;
 var stableDuration = 41 * DAY;
 
 var Datepicker = {
-    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-button" style="width: {{width}}px;">\n                <Input {{...inputOptions}}></Input>\n            </div>\n\n            <div class="bell-datepicker-panel{{#if !isOpen}} bell-hide{{/if}}">\n                <div class="bell-datepicker-header">\n                    <Button size="small" type="text" on-click="prevYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="prevMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n\n                    <span class="bell-datepicker-header-label">\n                        {{currentYear}}\n                    </span>\n                    <span class="bell-datepicker-header-label">\n                        {{currentMonth}}\n                    </span>\n\n                    <Button size="small" type="text" on-click="nextMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="nextYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                </div>\n\n                <div class="bell-datepicker-content">\n                    {{#if viewMode == MODE_YEAR}}\n                        <div class="bell-datepicker-table-years">\n                            <div class="bell-datepicker-weeks">\n\n                            </div>\n                            <div class="bell-datepicker-days">\n\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_MONTH}}\n                        <div class="bell-datepicker-table-months">\n                            <div class="bell-datepicker-month">\n\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_DAY}}\n                        <div class="bell-datepicker-table-days">\n                            <div class="bell-datepicker-weeks">\n                                {{#each weeks}}\n                                    <span class="bell-datepicker-col">\n                                        {{this}}\n                                    </span>\n                                {{/each}}\n                            </div>\n                            <div class="bell-datepicker-days">\n                                {{#each dayList:index}}\n                                    <span class="bell-datepicker-col bell-datepicker-col-{{phase}}" on-click="dateClick(this)">\n                                        {{date}}\n                                    </span>\n                                    {{#if index % 7 == 6}}\n                                        <div class="bell-datepicker-divide"></div>\n                                    {{/if}}\n                                {{/each}}\n                            </div>\n                        </div>\n                    {{/if}}\n\n                    {{#if viewMode == MODE_TIME}}\n                        <div class="bell-datepicker-table-times">\n                            <div class="bell-datepicker-weeks">\n\n                            </div>\n                            <div class="bell-datepicker-days">\n\n                            </div>\n                        </div>\n                    {{/if}}\n                </div>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-button" style="width: {{width}}px;">\n                <Input {{...inputOptions}}></Input>\n            </div>\n\n            <div class="bell-datepicker-panel{{#if !isOpen}} bell-hide{{/if}}">\n                <div class="bell-datepicker-header">\n                    <Button size="small" type="text" on-click="prevYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="prevMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </Button>\n\n                    <span class="bell-datepicker-header-label">\n                        {{currentYear}}\n                    </span>\n                    <span class="bell-datepicker-header-label">\n                        {{currentMonth}}\n                    </span>\n\n                    <Button size="small" type="text" on-click="nextMonth()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                    <Button size="small" type="text" on-click="nextYear()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </Button>\n                </div>\n\n                <div class="bell-datepicker-content">\n                    {{#if viewMode == MODE_DATE}}\n                        <div class="bell-datepicker-table-date">\n                            <div class="bell-datepicker-weeks">\n                                {{#each weeks}}\n                                    <span class="bell-datepicker-col">\n                                        {{this}}\n                                    </span>\n                                {{/each}}\n                            </div>\n                            <div class="bell-datepicker-days">\n                                {{#each dayList:index}}\n                                    <span\n                                        class="bell-datepicker-col bell-datepicker-col-{{phase}}\n                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                        {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"\n                                        on-click="dateClick(this)"\n                                    >\n                                        {{date}}\n                                    </span>\n                                    {{#if index % 7 == 6}}\n                                        <div class="bell-datepicker-divide"></div>\n                                    {{/if}}\n                                {{/each}}\n                            </div>\n                        </div>\n                    {{/if}}\n                </div>\n            </div>\n        </div>\n    ',
 
     propTypes: {
         today: {
             type: ['string', 'object'],
             value: new Date()
         },
-        date: {
+        defaultValue: {
             type: ['string', 'object'],
             value: new Date()
         },
@@ -1432,7 +1433,7 @@ var Datepicker = {
         },
         viewMode: {
             type: 'string',
-            value: MODE_DAY
+            value: MODE_DATE
         },
         multiple: {
             type: ['string', 'boolean'],
@@ -1461,16 +1462,15 @@ var Datepicker = {
                     me.set({
                         isOpen: true
                     });
-                },
-                onChange: function onChange(value) {
-                    console.log(value);
                 }
             },
 
+            date: new Date(me.get('defaultValue')),
             MODE_YEAR: MODE_YEAR,
             MODE_MONTH: MODE_MONTH,
-            MODE_DAY: MODE_DAY,
+            MODE_DATE: MODE_DATE,
             MODE_TIME: MODE_TIME,
+            MODE_WEEK: MODE_WEEK,
 
             weeks: WEEKS,
             dayList: []
@@ -1501,7 +1501,7 @@ var Datepicker = {
 
             me.set({
                 date: date,
-                data: me.createRenderData(date)
+                dayList: me.createRenderData(date)
             });
         },
         prevYear: function prevYear() {
@@ -1517,24 +1517,31 @@ var Datepicker = {
             this.changeDate(1);
         },
         dateClick: function dateClick(date) {
+            if (!date.isCurrentMonth) {
+                return;
+            }
             var me = this;
-            var inputValue = '' + date.year + '年' + date.month + '月' + date.day + '日';
+            var inputValue = '' + date.year + '年' + date.month + '月' + date.date + '日';
 
             date = parseDate(date);
             me.set({
-                'inputOptions.value': inputValue,
                 date: date,
-                isOpen: false
+                isOpen: false,
+                dayList: me.createRenderData(date),
+                'inputOptions.value': inputValue
             });
             me.get('onChange') && me.get('onChange')(date);
         },
         // 获取渲染模板的数据
-        getDatasource: function getDatasource(start, end, today) {
+        getDatasource: function getDatasource(start, end, today, date) {
             var data = [];
-
+            date = simplifyDate(date);
             for (var time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
-                // 过去 or 现在 or 将来
+                if (item.year == date.year && item.month == date.month && item.date == date.date) {
+                    item.isCurrentDate = true;
+                }
+
                 if (time > today) {
                     item.phase = 'future';
                 } else if (time < today) {
@@ -1542,9 +1549,12 @@ var Datepicker = {
                 } else {
                     item.phase = 'today';
                 }
+
+                item.isPrevMonth = item.month < date.month;
+                item.isCurrentMonth = item.month == date.month;
+                item.isLastMonth = item.month > date.month;
                 data.push(item);
             }
-
             return data;
         },
         createRenderData: function createRenderData(date) {
@@ -1557,7 +1567,7 @@ var Datepicker = {
             var startDate;
             var endDate;
 
-            var isMonthMode = me.get('viewMode') === MODE_DAY;
+            var isMonthMode = me.get('viewMode') === MODE_DATE;
             if (isMonthMode) {
                 startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
                 endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
@@ -1578,9 +1588,7 @@ var Datepicker = {
                     endDate += offset;
                 }
             }
-            me.set({
-                dayList: me.getDatasource(startDate, endDate, today)
-            });
+            return me.getDatasource(startDate, endDate, today, date);
         }
     },
 
@@ -1590,7 +1598,9 @@ var Datepicker = {
         today = today ? today : new Date();
         var date = me.get('date');
         date = date ? date : today;
-        me.createRenderData(date);
+        me.set({
+            dayList: me.createRenderData(date)
+        });
     }
 };
 

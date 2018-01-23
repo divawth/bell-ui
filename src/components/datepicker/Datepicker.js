@@ -21,7 +21,8 @@ const WEEKS = [
 
 const MODE_YEAR = 'year';
 const MODE_MONTH = 'month';
-const MODE_DAY = 'day';
+const MODE_WEEK = 'week';
+const MODE_DATE = 'date';
 const MODE_TIME = 'time';
 
 const DAY = 24 * 60 * 60 * 1000;
@@ -41,20 +42,26 @@ export default {
                         <i class="bell-icon bell-icon-ios-arrow-left"></i>
                         <i class="bell-icon bell-icon-ios-arrow-left"></i>
                     </Button>
+
+                    {{#if viewMode == MODE_DATE}}
                     <Button size="small" type="text" on-click="prevMonth()">
                         <i class="bell-icon bell-icon-ios-arrow-left"></i>
                     </Button>
+                    {{/if}}
 
                     <span class="bell-datepicker-header-label">
-                        {{currentYear}}
-                    </span>
-                    <span class="bell-datepicker-header-label">
-                        {{currentMonth}}
+                        {{currentYear}} 年
                     </span>
 
+                    {{#if viewMode == MODE_DATE}}
+                    <span class="bell-datepicker-header-label">
+                        {{currentMonth}} 月
+                    </span>
                     <Button size="small" type="text" on-click="nextMonth()">
                         <i class="bell-icon bell-icon-ios-arrow-right"></i>
                     </Button>
+                    {{/if}}
+
                     <Button size="small" type="text" on-click="nextYear()">
                         <i class="bell-icon bell-icon-ios-arrow-right"></i>
                         <i class="bell-icon bell-icon-ios-arrow-right"></i>
@@ -62,27 +69,8 @@ export default {
                 </div>
 
                 <div class="bell-datepicker-content">
-                    {{#if viewMode == MODE_YEAR}}
-                        <div class="bell-datepicker-table-years">
-                            <div class="bell-datepicker-weeks">
-
-                            </div>
-                            <div class="bell-datepicker-days">
-
-                            </div>
-                        </div>
-                    {{/if}}
-
-                    {{#if viewMode == MODE_MONTH}}
-                        <div class="bell-datepicker-table-months">
-                            <div class="bell-datepicker-month">
-
-                            </div>
-                        </div>
-                    {{/if}}
-
-                    {{#if viewMode == MODE_DAY}}
-                        <div class="bell-datepicker-table-days">
+                    {{#if viewMode == MODE_DATE}}
+                        <div class="bell-datepicker-table-date">
                             <div class="bell-datepicker-weeks">
                                 {{#each weeks}}
                                     <span class="bell-datepicker-col">
@@ -92,7 +80,14 @@ export default {
                             </div>
                             <div class="bell-datepicker-days">
                                 {{#each dayList:index}}
-                                    <span class="bell-datepicker-col bell-datepicker-col-{{phase}}" on-click="dateClick(this)">
+                                    <span
+                                        class="bell-datepicker-col bell-datepicker-col-{{phase}}
+                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
+                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
+                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
+                                        {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
+                                        on-click="dateClick(this)"
+                                    >
                                         {{date}}
                                     </span>
                                     {{#if index % 7 == 6}}
@@ -101,15 +96,11 @@ export default {
                                 {{/each}}
                             </div>
                         </div>
-                    {{/if}}
-
-                    {{#if viewMode == MODE_TIME}}
-                        <div class="bell-datepicker-table-times">
-                            <div class="bell-datepicker-weeks">
-
-                            </div>
-                            <div class="bell-datepicker-days">
-
+                    {{else if viewMode == MODE_MONTH}}
+                        <div class="bell-datepicker-table-month">
+                            <div class="bell-datepicker-months">
+                                {{#each monthList:index}}
+                                {{/each}}
                             </div>
                         </div>
                     {{/if}}
@@ -123,7 +114,7 @@ export default {
             type: ['string', 'object'],
             value: new Date()
         },
-        date: {
+        defaultValue: {
             type: ['string', 'object'],
             value: new Date()
         },
@@ -133,7 +124,7 @@ export default {
         },
         viewMode: {
             type: 'string',
-            value: MODE_DAY
+            value: MODE_DATE
         },
         multiple: {
             type: ['string', 'boolean'],
@@ -162,16 +153,16 @@ export default {
                     me.set({
                         isOpen: true
                     });
-                },
-                onChange: function (value) {
-                    console.log(value)
                 }
             },
 
+            date: new Date(me.get('defaultValue')),
+
             MODE_YEAR: MODE_YEAR,
             MODE_MONTH: MODE_MONTH,
-            MODE_DAY: MODE_DAY,
+            MODE_DATE: MODE_DATE,
             MODE_TIME: MODE_TIME,
+            MODE_WEEK: MODE_WEEK,
 
             weeks: WEEKS,
             dayList: []
@@ -202,7 +193,7 @@ export default {
 
             me.set({
                 date: date,
-                data: me.createRenderData(date)
+                dayList: me.createRenderData(date)
             });
         },
         prevYear: function () {
@@ -218,31 +209,42 @@ export default {
             this.changeDate(1);
         },
         dateClick: function (date) {
+            if (!date.isCurrentMonth) {
+                return;
+            }
             var me = this;
             var inputValue   = ''
                             + date.year
                             + '年'
                             + date.month
                             + '月'
-                            + date.day
+                            + date.date
                             + '日';
 
             date = parseDate(date);
             me.set({
-                'inputOptions.value': inputValue,
                 date: date,
-                isOpen: false
+                isOpen: false,
+                dayList: me.createRenderData(date),
+                'inputOptions.value': inputValue
             });
             me.get('onChange') && me.get('onChange')(date);
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, today) {
+        getDatasource: function (start, end, today, date) {
             var me = this;
-            var data = [ ];
-
+            var data = [];
+            date = simplifyDate(date);
             for (var time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
-                // 过去 or 现在 or 将来
+                if (item.year == date.year
+                    && item.month == date.month
+                    && item.date == date.date
+                    && item.day == date.day
+                ) {
+                    item.isCurrentDate = true;
+                }
+
                 if (time > today) {
                     item.phase = 'future';
                 }
@@ -252,9 +254,12 @@ export default {
                 else {
                     item.phase = 'today';
                 }
+
+                item.isPrevMonth = item.month < date.month;
+                item.isCurrentMonth = item.month == date.month;
+                item.isLastMonth = item.month > date.month;
                 data.push(item);
             }
-
             return data;
 
         },
@@ -268,8 +273,7 @@ export default {
             var startDate;
             var endDate;
 
-            var isMonthMode = me.get('viewMode') === MODE_DAY;
-            if (isMonthMode) {
+            if (me.get('viewMode') === MODE_DATE) {
                 startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
                 endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
             }
@@ -281,7 +285,9 @@ export default {
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
 
-            if (isMonthMode && me.get('stable')) {
+            if (me.get('viewMode') === MODE_DATE
+                && me.get('stable')
+            ) {
 
                 var duration = endDate - startDate;
                 var offset = stableDuration - duration;
@@ -291,9 +297,7 @@ export default {
                 }
 
             }
-            me.set({
-                dayList: me.getDatasource(startDate, endDate, today)
-            });
+            return me.getDatasource(startDate, endDate, today, date);
         }
     },
 
@@ -303,6 +307,8 @@ export default {
         today = today ? today : new Date();
         var date = me.get('date');
         date = date ? date : today;
-        me.createRenderData(date);
+        me.set({
+            dayList: me.createRenderData(date)
+        });
     }
 }

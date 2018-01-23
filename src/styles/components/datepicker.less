@@ -22,7 +22,7 @@
         top: 0;
     }
 }
-.bell-datepicker-table-days {
+.bell-datepicker-table-date {
     font-size: 12px;
     .bell-datepicker-weeks {
         .bell-datepicker-col {
@@ -39,7 +39,6 @@
     }
 
     .bell-datepicker-days {
-
         .bell-datepicker-col {
             cursor: pointer;
             display: inline-block;
@@ -50,15 +49,24 @@
             text-align: center;
             line-height: 24px;
             margin: 2px;
+        }
+
+        .bell-datepicker-col-current-month {
             &:hover {
                 background: #4279F3;
                 color: #fff;
             }
         }
+        .bell-datepicker-col-checked {
+            background: #4279F3;
+            color: #fff;
+        }
 
-        .bell-datepicker-col-past {
+        .bell-datepicker-col-prev-month,
+        .bell-datepicker-col-last-month {
             color: rgba(0,0,0,0.37);
         }
+
         .bell-datepicker-col-today {
             position: relative;
             &:after {
