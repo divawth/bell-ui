@@ -126,3 +126,10 @@ export let simplifyDate = function (date) {
         day: date.getDay()
     };
 };
+
+export let getOffsetTime = function (date) {
+    if (!date) {
+        return 0;
+    }
+    return date.getTime();
+}

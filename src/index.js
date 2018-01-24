@@ -34,6 +34,9 @@ import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
 import Badge from './components/badge/Badge'
 import Datepicker from './components/datepicker/Datepicker'
+import Date from './components/datepicker/components/Date'
+import DateRange from './components/datepicker/components/DateRange'
+import DateWeek from './components/datepicker/components/DateWeek'
 
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
@@ -71,6 +74,9 @@ Yox.component({
     Select,
     Page,
     Datepicker,
+    Date,
+    DateRange,
+    DateWeek,
 
     Alert,
     Desc,

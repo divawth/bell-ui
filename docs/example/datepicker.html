@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        datapicker
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+
+    <style>
+        .bell-app {
+            margin: 20px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="../../dep/base/base.js"></script>
+    <script src="../../dist/bell.js"></script>
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <Date></Date>
+        </div>
+    </script>
+
+    <script id="template-2" type="text/plain">
+        <div>
+            <DateRange></DateRange>
+        </div>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <div>
+            <DateWeek></DateWeek>
+        </div>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <div>
+        </div>
+    </script>
+
+    <div class="bell-app" id="app-1"></div>
+    <div class="bell-app" id="app-2"></div>
+    <div class="bell-app" id="app-3"></div>
+    <div class="bell-app" id="app-4"></div>
+    <div class="bell-app" id="app-5"></div>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+            events: {
+                deteChange: function (event, data) {
+                    console.log(data)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-2',
+            template: '#template-2',
+            events: {
+                deteRangeChange: function (event, data) {
+                    console.log(data)
+                }
+            }
+        });
+        new Yox({
+            el: '#app-3',
+            template: '#template-3'
+        });
+        // new Yox({
+        //     el: '#app-4',
+        //     template: '#template-4'
+        // });
+
+    </script>
+
+</body>
+</html>

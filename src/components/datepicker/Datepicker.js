@@ -310,5 +310,25 @@ export default {
         me.set({
             dayList: me.createRenderData(date)
         });
+
+        me.documentClickHandler = function (e) {
+            if (me.$el.contains(e.target)) {
+                return false;
+            }
+            me.set({
+                isOpen: false
+            });
+        };
+        document.addEventListener(
+            'click',
+            me.documentClickHandler
+        );
+    },
+    beforeDestroy: function () {
+        var me = this;
+        document.removeEventListener(
+            'click',
+            me.documentClickHandler
+        );
     }
 }
