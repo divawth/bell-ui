@@ -1896,7 +1896,7 @@ var DAY$3 = 24 * 60 * 60 * 1000;
 var stableDuration$3 = 41 * DAY$3;
 
 var DateWeek = {
-    template: '\n        <div class="bell-datepicker-table-date">\n            <div class="bell-datepicker-weeks">\n                {{#each weeks}}\n                    <span class="bell-datepicker-col">\n                        {{this}}\n                    </span>\n                {{/each}}\n            </div>\n            <div class="bell-datepicker-days">\n                {{#each dateList:index}}\n                    <span\n                        class="bell-datepicker-col\n                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                        {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"\n                        on-click="click(this)"\n                    >\n                        {{date}}\n                    </span>\n                    {{#if index % 7 == 6}}\n                        <div class="bell-datepicker-divide"></div>\n                    {{/if}}\n                {{/each}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker-table-date">\n            <div class="bell-datepicker-weeks">\n                {{#each weeks}}\n                    <span class="bell-datepicker-col">\n                        {{this}}\n                    </span>\n                {{/each}}\n            </div>\n            <div class="bell-datepicker-days">\n                {{#each dateList}}\n                    <div class="bell-datepicker-row" on-click="click(this)">\n                        {{#each this}}\n                            <span\n                                class="bell-datepicker-col\n                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"\n                            >\n                                {{date}}\n                            </span>\n                        {{/each}}\n                    </div>\n                {{/each}}\n            </div>\n        </div>\n    ',
 
     propTypes: {
         date: {
@@ -1974,12 +1974,15 @@ var DateWeek = {
         },
         format: function format(list) {
             var result = [];
-            for(var i = 0; i < list.length; i++) {
+            var arr = [];
+            for (var i = 0; i < list.length; i++) {
+                arr.push(list[i]);
                 if (i % 7 == 6) {
-                    console.log(i)
+                    result.push(arr);
+                    arr = [];
                 }
             }
-            return [];
+            return result;
         }
     },
 

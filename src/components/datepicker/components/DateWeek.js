@@ -33,20 +33,20 @@ export default {
                 {{/each}}
             </div>
             <div class="bell-datepicker-days">
-                {{#each dateList:index}}
-                    <span
-                        class="bell-datepicker-col
-                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-                        {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
-                        on-click="click(this)"
-                    >
-                        {{date}}
-                    </span>
-                    {{#if index % 7 == 6}}
-                        <div class="bell-datepicker-divide"></div>
-                    {{/if}}
+                {{#each dateList}}
+                    <div class="bell-datepicker-row" on-click="click(this)">
+                        {{#each this}}
+                            <span
+                                class="bell-datepicker-col
+                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
+                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
+                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
+                                {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
+                            >
+                                {{date}}
+                            </span>
+                        {{/each}}
+                    </div>
                 {{/each}}
             </div>
         </div>
@@ -134,11 +134,19 @@ export default {
             }
 
             var list = me.getDatasource(startDate, endDate, date);
-            return format(list);
+            return me.format(list);
         },
         format: function (list) {
-            console.log(list)
-            return [];
+            var result = [];
+            var arr = [];
+            for(var i = 0; i < list.length; i++) {
+                arr.push(list[i])
+                if (i % 7 == 6) {
+                    result.push(arr);
+                    arr = [];
+                }
+            }
+            return result;
         }
     },
 
