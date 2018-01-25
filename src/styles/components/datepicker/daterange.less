@@ -1,4 +1,5 @@
 .bell-datepicker-daterange {
+    user-select: none;
     box-sizing: border-box;
     background-color: @datepicker-background;
     border-radius: @datepicker-border-radius;
@@ -10,8 +11,8 @@
         display: flex;
         width: 100%;
 
-        padding: @datepicker-date-header-padding;
-        border-bottom: 1px solid @datepicker-date-header-border-color;
+        padding: @datepicker-daterange-header-padding;
+        border-bottom: 1px solid @datepicker-daterange-header-border-color;
 
         .bell-datepicker-header-month {
             margin-right: @datepicker-daterange-header-month-margin-right;
@@ -39,7 +40,7 @@
 
             .bell-datepicker-weeks {
                 display: flex;
-                padding: @datepicker-date-week-padding;
+                padding: @datepicker-daterange-week-padding;
 
                 .bell-datepicker-col {
                     flex: 1;
@@ -49,7 +50,7 @@
             }
 
             .bell-datepicker-days {
-                padding: @datepicker-date-body-padding;
+                padding: @datepicker-daterange-body-padding;
                 .bell-datepicker-row {
                     display: flex;
                 }
@@ -58,25 +59,57 @@
                     cursor: pointer;
                     flex: 1;
                     text-align: center;
-                    color: @datepicker-date-item-color;
-                    border-radius: @datepicker-date-item-border-radius;
-                    margin: @datepicker-date-item-margin;
-                    padding: @datepicker-date-item-padding;
+                    color: @datepicker-daterange-item-color;
+                    border-radius: @datepicker-daterange-item-border-radius;
+                    margin: @datepicker-daterange-item-margin;
+                    padding: @datepicker-daterange-item-padding;
 
                     &-prev-month,
                     &-last-month {
-                        color: @datepicker-date-item-disabled-color;
+                        color: @datepicker-daterange-item-disabled-color;
                     }
 
                     &-current-month {
                         &:hover {
-                            background: @datepicker-date-item-checked-background-color;
-                            color: @datepicker-date-item-checked-color;
+                            background: @datepicker-daterange-item-checked-background-color;
+                            color: @datepicker-daterange-item-checked-color;
                         }
                     }
                     &-checked {
-                        background: @datepicker-date-item-checked-background-color;
-                        color: @datepicker-date-item-checked-color;
+                        background: @datepicker-daterange-item-checked-background-color;
+                        color: @datepicker-daterange-item-checked-color;
+                    }
+                    &-range {
+                        position: relative;
+                        border-radius: 0;
+                        background-color: @datepicker-daterange-item-range-background-color;
+
+                        &:before {
+                            position: absolute;
+                            content: ' ';
+                            height: 100%;
+                            top: 0;
+                            width: @datepicker-daterange-item-before-width;
+                            left: -@datepicker-daterange-item-before-width;
+                            background-color: @datepicker-daterange-item-range-background-color;
+                        }
+                        &:hover {
+                            background-color: @datepicker-daterange-item-range-background-color;
+                            color: @datepicker-daterange-item-color;
+                        }
+
+                        + .bell-datepicker-col-checked {
+                            position: relative;
+                            &:before {
+                                position: absolute;
+                                content: ' ';
+                                height: 100%;
+                                top: 0;
+                                width: @datepicker-daterange-item-before-width;
+                                left: -@datepicker-daterange-item-before-width;
+                                background-color: @datepicker-daterange-item-range-background-color;
+                            }
+                        }
                     }
                 }
             }

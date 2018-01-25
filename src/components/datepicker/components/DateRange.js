@@ -69,23 +69,23 @@ export default {
                         {{/each}}
                     </div>
                     <div class="bell-datepicker-days">
-                        {{#each dateList:index}}
-                            <span
-                                class="bell-datepicker-col
-                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-                                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}
-                                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"
-                                on-click="click(this)"
-                                on-mouseover="hover(this)"
-                            >
-                                {{date}}
-                            </span>
-
-                            {{#if index % 7 == 6}}
-                                <div class="bell-datepicker-divide"></div>
-                            {{/if}}
+                        {{#each dateList:key}}
+                            <div class="bell-datepicker-row">
+                                {{#each this:index}}
+                                    <span
+                                        class="bell-datepicker-col
+                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
+                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
+                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
+                                        {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}
+                                        {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"
+                                        on-click="click(this)"
+                                        on-mouseover="hover(this)"
+                                    >
+                                        {{date}}
+                                    </span>
+                                {{/each}}
+                            </div>
                         {{/each}}
                     </div>
                 </div>
@@ -98,23 +98,23 @@ export default {
                         {{/each}}
                     </div>
                     <div class="bell-datepicker-days">
-                        {{#each nextDateList:index}}
-                            <span
-                                class="bell-datepicker-col
-                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-                                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}
-                                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"
-                                on-click="click(this)"
-                                on-mouseover="hover(this)"
-                            >
-                                {{date}}
-                            </span>
-
-                            {{#if index % 7 == 6}}
-                                <div class="bell-datepicker-divide"></div>
-                            {{/if}}
+                        {{#each nextDateList:key}}
+                            <div class="bell-datepicker-row">
+                                {{#each this:index}}
+                                    <span
+                                        class="bell-datepicker-col
+                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
+                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
+                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
+                                        {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}
+                                        {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"
+                                        on-click="click(this)"
+                                        on-mouseover="hover(this)"
+                                    >
+                                        {{date}}
+                                    </span>
+                                {{/each}}
+                            </div>
                         {{/each}}
                     </div>
                 </div>
@@ -141,8 +141,9 @@ export default {
             // 视图日期
             modeDate: '',
 
-            startDate: me.get('start') ? simplifyDate(new Date(me.get('start'))) : '',
-            endDate: me.get('end') ? simplifyDate(new Date(me.get('end'))) : '',
+            checkedStartDate: me.get('start') ? simplifyDate(new Date(me.get('start'))) : '',
+            checkedEndDate: me.get('end') ? simplifyDate(new Date(me.get('end'))) : '',
+
             dateList: [],
             nextDateList: []
         }
@@ -164,10 +165,44 @@ export default {
     },
 
     methods: {
+        changeDate: function (offset) {
+            var me = this;
+            var date = me.get('modeDate');
+
+            date = offsetMonth(date, offset);
+
+            var dateList = me.createRenderData(
+                                date,
+                                me.get('checkedStartDate'),
+                                me.get('checkedEndDate')
+                            );
+            var nextDateList = me.createRenderData(
+                                    offsetMonth(date, 1),
+                                    me.get('checkedStartDate'),
+                                    me.get('checkedEndDate'),
+                                );
+            me.set({
+                modeDate: date,
+                dateList: dateList,
+                nextDateList: nextDateList
+            });
+        },
+        prevYear: function () {
+            this.changeDate(-12);
+        },
+        prevMonth: function () {
+            this.changeDate(-1);
+        },
+        nextYear: function () {
+            this.changeDate(12);
+        },
+        nextMonth: function () {
+            this.changeDate(1);
+        },
         hover: function  (date) {
             var me = this;
-            var startDate = me.get('startDate');
-            var endDate = me.get('endDate');
+            var startDate = me.get('checkedStartDate');
+            var endDate = me.get('checkedEndDate');
 
             if (!date.isCurrentMonth
                 || !startDate
@@ -178,7 +213,7 @@ export default {
 
             var rangDate = '';
             if (!startDate
-                || me.get('endDate')
+                || me.get('checkedEndDate')
                 || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))
             ) {
                 rangDate = '';
@@ -196,31 +231,32 @@ export default {
                 return;
             }
             var me = this;
-            var startDate = me.get('startDate');
-            var endDate = me.get('endDate');
+            var checkedStartDate = me.get('checkedStartDate');
+            var checkedEndDate = me.get('checkedEndDate');
 
-            if (!startDate || me.get('endDate')
-                || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))
+            if (!checkedStartDate || me.get('checkedEndDate')
+                || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(checkedStartDate))
             ) {
-                startDate = date;
-                endDate = '';
+                checkedStartDate = date;
+                checkedEndDate = '';
             }
             else {
-                endDate = date;
+                checkedEndDate = date;
             }
             me.set({
-                startDate: startDate,
-                endDate: endDate
+                checkedStartDate: checkedStartDate,
+                checkedEndDate: checkedEndDate
             });
             me.refresh(
-                getOffsetTime(parseDate(startDate)),
-                getOffsetTime(parseDate(endDate))
+                getOffsetTime(parseDate(checkedStartDate)),
+                getOffsetTime(parseDate(checkedEndDate))
             );
+
             me.fire(
                 'deteRangeChange',
                 {
-                    start: startDate,
-                    end: endDate,
+                    start: checkedStartDate,
+                    end: checkedEndDate,
                 }
             );
         },
@@ -231,59 +267,95 @@ export default {
             var nextDateList = me.copy(me.get('nextDateList'));
 
             if (end) {
-                for (var i = 0; i < dateList.length; i++) {
-                    var item = dateList[i];
-                    var itemTime = getOffsetTime(parseDate(item));
-                    item.isRangeDate
-                        = itemTime < end
-                        && itemTime > start;
-                    item.isCheckedDate
-                        = itemTime == end || itemTime == start;
-
-                    var nextItem = nextDateList[i];
-                    var nextItemTime = getOffsetTime(parseDate(nextItem));
-                    nextItem.isRangeDate
-                        = nextItemTime < end
-                        && nextItemTime > start;
-
-                    nextItem.isCheckedDate
-                        = nextItemTime == end || nextItemTime == start;
-                }
+                Yox.array.each(
+                    dateList,
+                    function (arr) {
+                        Yox.array.each(
+                            arr,
+                            function (item) {
+                                var itemTime = getOffsetTime(parseDate(item));
+                                item.isRangeDate
+                                    = itemTime < end
+                                    && itemTime > start;
+                                item.isCheckedDate
+                                    = itemTime == end || itemTime == start;
+                            }
+                        );
+                    }
+                );
+                Yox.array.each(
+                    nextDateList,
+                    function (arr) {
+                        Yox.array.each(
+                            arr,
+                            function (item) {
+                                var itemTime = getOffsetTime(parseDate(item));
+                                item.isRangeDate
+                                    = itemTime < end
+                                    && itemTime > start;
+                                item.isCheckedDate
+                                    = itemTime == end || itemTime == start;
+                            }
+                        );
+                    }
+                );
             }
             else if (start) {
-                for (var i = 0; i < dateList.length; i++) {
-
-                    var item = dateList[i];
-                    item.isCheckedDate
-                        = getOffsetTime(parseDate(item)) == start;
-                    item.isRangeDate = false;
-                    var nextItem = nextDateList[i];
-                    nextItem.isCheckedDate
-                        = getOffsetTime(parseDate(nextItem)) == start;
-                    nextItem.isRangeDate = false;
-                }
+                Yox.array.each(
+                    dateList,
+                    function (arr) {
+                        Yox.array.each(
+                            arr,
+                            function (item) {
+                                item.isCheckedDate
+                                    = getOffsetTime(parseDate(item)) == start;
+                                item.isRangeDate = false;
+                            }
+                        );
+                    }
+                );
+                Yox.array.each(
+                    nextDateList,
+                    function (arr) {
+                        Yox.array.each(
+                            arr,
+                            function (item) {
+                                item.isCheckedDate
+                                    = getOffsetTime(parseDate(item)) == start;
+                                item.isRangeDate = false;
+                            }
+                        );
+                    }
+                );
             }
+
             me.set({
                 dateList: dateList,
                 nextDateList: nextDateList
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, date) {
+        getDatasource: function (start, end, date, checkedStart, checkedEnd) {
             var me = this;
             var data = [];
             date = simplifyDate(date);
+            checkedStart = getOffsetTime(parseDate(checkedStart));
+            checkedEnd = getOffsetTime(parseDate(checkedEnd));
+
             for (var time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
+                var itemTime = getOffsetTime(parseDate(item));
                 item.isPrevMonth = item.month < date.month;
                 item.isCurrentMonth = item.month == date.month;
                 item.isLastMonth = item.month > date.month;
+                item.isCheckedDate = itemTime === checkedStart || itemTime === checkedEnd;
+                item.isRangeDate = itemTime > checkedStart && itemTime < checkedEnd;
                 data.push(item);
             }
             return data;
 
         },
-        createRenderData: function (date) {
+        createRenderData: function (date, checkedStart, checkedEnd) {
 
             var me = this;
             var firstDay = me.get('firstDay') || 0;
@@ -304,8 +376,27 @@ export default {
             if (offset > 0) {
                 endDate += offset;
             }
+            var list = me.getDatasource(
+                startDate,
+                endDate,
+                date,
+                checkedStart,
+                checkedEnd
+            );
+            return me.format(list);
 
-            return me.getDatasource(startDate, endDate, date);
+        },
+        format: function (list) {
+            var result = [];
+            var arr = [];
+            for(var i = 0; i < list.length; i++) {
+                arr.push(list[i])
+                if (i % 7 == 6) {
+                    result.push(arr);
+                    arr = [];
+                }
+            }
+            return result;
         }
     },
 
@@ -317,10 +408,20 @@ export default {
         var date = me.get('start');
         date = date ? date : today;
 
+        var dateList = me.createRenderData(
+                            date,
+                            me.get('checkedStartDate'),
+                            me.get('checkedEndDate')
+                        );
+        var nextDateList = me.createRenderData(
+                                offsetMonth(date, 1),
+                                me.get('CheckedStartDate'),
+                                me.get('CheckedEndDate'),
+                            );
         me.set({
             modeDate: date,
-            dateList: me.createRenderData(date),
-            nextDateList: me.createRenderData(offsetMonth(date, 1))
+            dateList: dateList,
+            nextDateList: nextDateList
         });
     },
     beforeDestroy: function () {

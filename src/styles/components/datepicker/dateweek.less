@@ -1,0 +1,49 @@
+.bell-datepicker-table-week {
+    width: 200px;
+
+    .bell-datepicker-row {
+        display: inline-block;
+    }
+
+    .bell-datepicker-weeks {
+        display: flex;
+        padding: @datepicker-daterange-week-padding;
+
+        .bell-datepicker-col {
+            flex: 1;
+            text-align: center;
+            line-height: 1;
+        }
+    }
+
+    .bell-datepicker-days {
+        .bell-datepicker-row {
+            display: flex;
+            color: rgba(0,0,0,.54);
+            cursor: pointer;
+            &:hover {
+                background-color: #e1f0fe;
+                border-radius: 20px;
+            }
+            .bell-datepicker-col {
+                flex: 1;
+                text-align: center;
+                font-size: 12px;
+                line-height: 1.8;
+                margin: 2px;
+            }
+        }
+        .bell-datepicker-row-checked {
+            background-color: #e1f0fe;
+            border-radius: 20px;
+            .bell-datepicker-col {
+                &:first-child,
+                &:last-child {
+                    background-color: #4279F3;
+                    border-radius: 20px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

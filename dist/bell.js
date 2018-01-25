@@ -1788,7 +1788,7 @@ var DAY$2 = 24 * 60 * 60 * 1000;
 var stableDuration$2 = 41 * DAY$2;
 
 var DateRange = {
-    template: '\n        <div class="bell-datepicker-daterange">\n            <div class="bell-datepicker-header">\n                <span class="bell-datepicker-header-button" on-click="prevYear()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="prevMonth()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                </span>\n\n                <span class="bell-text-medium">\n                    {{currentYear}} \u5E74\n                </span>\n                <span class="bell-text-medium bell-datepicker-header-month">\n                    {{currentMonth}} \u6708\n                </span>\n\n                <span class="bell-text-medium">\n                    {{currentYear}} \u5E74\n                </span>\n                <span class="bell-text-medium">\n                    {{currentMonth + 1}} \u6708\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="nextMonth()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="nextYear()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                </span>\n            </div>\n            <div class="bell-datepicker-daterange-wrapper">\n                <div class="bell-datepicker-table-date">\n                    <div class="bell-datepicker-weeks">\n                        {{#each weeks}}\n                            <span class="bell-datepicker-col">\n                                {{this}}\n                            </span>\n                        {{/each}}\n                    </div>\n                    <div class="bell-datepicker-days">\n                        {{#each dateList:index}}\n                            <span\n                                class="bell-datepicker-col\n                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"\n                                on-click="click(this)"\n                                on-mouseover="hover(this)"\n                            >\n                                {{date}}\n                            </span>\n\n                            {{#if index % 7 == 6}}\n                                <div class="bell-datepicker-divide"></div>\n                            {{/if}}\n                        {{/each}}\n                    </div>\n                </div>\n                <div class="bell-datepicker-table-date">\n                    <div class="bell-datepicker-weeks">\n                        {{#each weeks}}\n                            <span class="bell-datepicker-col">\n                                {{this}}\n                            </span>\n                        {{/each}}\n                    </div>\n                    <div class="bell-datepicker-days">\n                        {{#each nextDateList:index}}\n                            <span\n                                class="bell-datepicker-col\n                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"\n                                on-click="click(this)"\n                                on-mouseover="hover(this)"\n                            >\n                                {{date}}\n                            </span>\n\n                            {{#if index % 7 == 6}}\n                                <div class="bell-datepicker-divide"></div>\n                            {{/if}}\n                        {{/each}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker-daterange">\n            <div class="bell-datepicker-header">\n                <span class="bell-datepicker-header-button" on-click="prevYear()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="prevMonth()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>\n                </span>\n\n                <span class="bell-text-medium">\n                    {{currentYear}} \u5E74\n                </span>\n                <span class="bell-text-medium bell-datepicker-header-month">\n                    {{currentMonth}} \u6708\n                </span>\n\n                <span class="bell-text-medium">\n                    {{currentYear}} \u5E74\n                </span>\n                <span class="bell-text-medium">\n                    {{currentMonth + 1}} \u6708\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="nextMonth()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                </span>\n\n                <span class="bell-datepicker-header-button" on-click="nextYear()">\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>\n                </span>\n            </div>\n            <div class="bell-datepicker-daterange-wrapper">\n                <div class="bell-datepicker-table-date">\n                    <div class="bell-datepicker-weeks">\n                        {{#each weeks}}\n                            <span class="bell-datepicker-col bell-text-sub">\n                                {{this}}\n                            </span>\n                        {{/each}}\n                    </div>\n                    <div class="bell-datepicker-days">\n                        {{#each dateList:key}}\n                            <div class="bell-datepicker-row">\n                                {{#each this:index}}\n                                    <span\n                                        class="bell-datepicker-col\n                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                        {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                                        {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"\n                                        on-click="click(this)"\n                                        on-mouseover="hover(this)"\n                                    >\n                                        {{date}}\n                                    </span>\n                                {{/each}}\n                            </div>\n                        {{/each}}\n                    </div>\n                </div>\n                <div class="bell-datepicker-table-date">\n                    <div class="bell-datepicker-weeks">\n                        {{#each weeks}}\n                            <span class="bell-datepicker-col bell-text-sub">\n                                {{this}}\n                            </span>\n                        {{/each}}\n                    </div>\n                    <div class="bell-datepicker-days">\n                        {{#each nextDateList:key}}\n                            <div class="bell-datepicker-row">\n                                {{#each this:index}}\n                                    <span\n                                        class="bell-datepicker-col\n                                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                        {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                                        {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}"\n                                        on-click="click(this)"\n                                        on-mouseover="hover(this)"\n                                    >\n                                        {{date}}\n                                    </span>\n                                {{/each}}\n                            </div>\n                        {{/each}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    ',
 
     propTypes: {
         start: {
@@ -1809,8 +1809,9 @@ var DateRange = {
             // 视图日期
             modeDate: '',
 
-            startDate: me.get('start') ? simplifyDate(new Date(me.get('start'))) : '',
-            endDate: me.get('end') ? simplifyDate(new Date(me.get('end'))) : '',
+            checkedStartDate: me.get('start') ? simplifyDate(new Date(me.get('start'))) : '',
+            checkedEndDate: me.get('end') ? simplifyDate(new Date(me.get('end'))) : '',
+
             dateList: [],
             nextDateList: []
         };
@@ -1832,17 +1833,43 @@ var DateRange = {
     },
 
     methods: {
+        changeDate: function changeDate(offset) {
+            var me = this;
+            var date = me.get('modeDate');
+
+            date = offsetMonth(date, offset);
+
+            var dateList = me.createRenderData(date, me.get('checkedStartDate'), me.get('checkedEndDate'));
+            var nextDateList = me.createRenderData(offsetMonth(date, 1), me.get('checkedStartDate'), me.get('checkedEndDate'));
+            me.set({
+                modeDate: date,
+                dateList: dateList,
+                nextDateList: nextDateList
+            });
+        },
+        prevYear: function prevYear() {
+            this.changeDate(-12);
+        },
+        prevMonth: function prevMonth() {
+            this.changeDate(-1);
+        },
+        nextYear: function nextYear() {
+            this.changeDate(12);
+        },
+        nextMonth: function nextMonth() {
+            this.changeDate(1);
+        },
         hover: function hover(date) {
             var me = this;
-            var startDate = me.get('startDate');
-            var endDate = me.get('endDate');
+            var startDate = me.get('checkedStartDate');
+            var endDate = me.get('checkedEndDate');
 
             if (!date.isCurrentMonth || !startDate || endDate) {
                 return;
             }
 
             var rangDate = '';
-            if (!startDate || me.get('endDate') || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))) {
+            if (!startDate || me.get('checkedEndDate') || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))) {
                 rangDate = '';
             } else {
                 rangDate = date;
@@ -1855,23 +1882,24 @@ var DateRange = {
                 return;
             }
             var me = this;
-            var startDate = me.get('startDate');
-            var endDate = me.get('endDate');
+            var checkedStartDate = me.get('checkedStartDate');
+            var checkedEndDate = me.get('checkedEndDate');
 
-            if (!startDate || me.get('endDate') || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))) {
-                startDate = date;
-                endDate = '';
+            if (!checkedStartDate || me.get('checkedEndDate') || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(checkedStartDate))) {
+                checkedStartDate = date;
+                checkedEndDate = '';
             } else {
-                endDate = date;
+                checkedEndDate = date;
             }
             me.set({
-                startDate: startDate,
-                endDate: endDate
+                checkedStartDate: checkedStartDate,
+                checkedEndDate: checkedEndDate
             });
-            me.refresh(getOffsetTime(parseDate(startDate)), getOffsetTime(parseDate(endDate)));
+            me.refresh(getOffsetTime(parseDate(checkedStartDate)), getOffsetTime(parseDate(checkedEndDate)));
+
             me.fire('deteRangeChange', {
-                start: startDate,
-                end: endDate
+                start: checkedStartDate,
+                end: checkedEndDate
             });
         },
         refresh: function refresh(start, end) {
@@ -1881,48 +1909,60 @@ var DateRange = {
             var nextDateList = me.copy(me.get('nextDateList'));
 
             if (end) {
-                for (var i = 0; i < dateList.length; i++) {
-                    var item = dateList[i];
-                    var itemTime = getOffsetTime(parseDate(item));
-                    item.isRangeDate = itemTime < end && itemTime > start;
-                    item.isCheckedDate = itemTime == end || itemTime == start;
-
-                    var nextItem = nextDateList[i];
-                    var nextItemTime = getOffsetTime(parseDate(nextItem));
-                    nextItem.isRangeDate = nextItemTime < end && nextItemTime > start;
-
-                    nextItem.isCheckedDate = nextItemTime == end || nextItemTime == start;
-                }
+                Yox.array.each(dateList, function (arr) {
+                    Yox.array.each(arr, function (item) {
+                        var itemTime = getOffsetTime(parseDate(item));
+                        item.isRangeDate = itemTime < end && itemTime > start;
+                        item.isCheckedDate = itemTime == end || itemTime == start;
+                    });
+                });
+                Yox.array.each(nextDateList, function (arr) {
+                    Yox.array.each(arr, function (item) {
+                        var itemTime = getOffsetTime(parseDate(item));
+                        item.isRangeDate = itemTime < end && itemTime > start;
+                        item.isCheckedDate = itemTime == end || itemTime == start;
+                    });
+                });
             } else if (start) {
-                for (var i = 0; i < dateList.length; i++) {
-
-                    var item = dateList[i];
-                    item.isCheckedDate = getOffsetTime(parseDate(item)) == start;
-                    item.isRangeDate = false;
-                    var nextItem = nextDateList[i];
-                    nextItem.isCheckedDate = getOffsetTime(parseDate(nextItem)) == start;
-                    nextItem.isRangeDate = false;
-                }
+                Yox.array.each(dateList, function (arr) {
+                    Yox.array.each(arr, function (item) {
+                        item.isCheckedDate = getOffsetTime(parseDate(item)) == start;
+                        item.isRangeDate = false;
+                    });
+                });
+                Yox.array.each(nextDateList, function (arr) {
+                    Yox.array.each(arr, function (item) {
+                        item.isCheckedDate = getOffsetTime(parseDate(item)) == start;
+                        item.isRangeDate = false;
+                    });
+                });
             }
+
             me.set({
                 dateList: dateList,
                 nextDateList: nextDateList
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function getDatasource(start, end, date) {
+        getDatasource: function getDatasource(start, end, date, checkedStart, checkedEnd) {
             var data = [];
             date = simplifyDate(date);
+            checkedStart = getOffsetTime(parseDate(checkedStart));
+            checkedEnd = getOffsetTime(parseDate(checkedEnd));
+
             for (var time = start, item; time <= end; time += DAY$2) {
                 item = simplifyDate(time);
+                var itemTime = getOffsetTime(parseDate(item));
                 item.isPrevMonth = item.month < date.month;
                 item.isCurrentMonth = item.month == date.month;
                 item.isLastMonth = item.month > date.month;
+                item.isCheckedDate = itemTime === checkedStart || itemTime === checkedEnd;
+                item.isRangeDate = itemTime > checkedStart && itemTime < checkedEnd;
                 data.push(item);
             }
             return data;
         },
-        createRenderData: function createRenderData(date) {
+        createRenderData: function createRenderData(date, checkedStart, checkedEnd) {
 
             var me = this;
             var firstDay = me.get('firstDay') || 0;
@@ -1943,8 +1983,20 @@ var DateRange = {
             if (offset > 0) {
                 endDate += offset;
             }
-
-            return me.getDatasource(startDate, endDate, date);
+            var list = me.getDatasource(startDate, endDate, date, checkedStart, checkedEnd);
+            return me.format(list);
+        },
+        format: function format(list) {
+            var result = [];
+            var arr = [];
+            for (var i = 0; i < list.length; i++) {
+                arr.push(list[i]);
+                if (i % 7 == 6) {
+                    result.push(arr);
+                    arr = [];
+                }
+            }
+            return result;
         }
     },
 
@@ -1956,10 +2008,12 @@ var DateRange = {
         var date = me.get('start');
         date = date ? date : today;
 
+        var dateList = me.createRenderData(date, me.get('checkedStartDate'), me.get('checkedEndDate'));
+        var nextDateList = me.createRenderData(offsetMonth(date, 1), me.get('CheckedStartDate'), me.get('CheckedEndDate'));
         me.set({
             modeDate: date,
-            dateList: me.createRenderData(date),
-            nextDateList: me.createRenderData(offsetMonth(date, 1))
+            dateList: dateList,
+            nextDateList: nextDateList
         });
     },
     beforeDestroy: function beforeDestroy() {
