@@ -1896,7 +1896,7 @@ var DAY$3 = 24 * 60 * 60 * 1000;
 var stableDuration$3 = 41 * DAY$3;
 
 var DateWeek = {
-    template: '\n        <div class="bell-datepicker-table-date">\n            <div class="bell-datepicker-weeks">\n                {{#each weeks}}\n                    <span class="bell-datepicker-col">\n                        {{this}}\n                    </span>\n                {{/each}}\n            </div>\n            <div class="bell-datepicker-days">\n                {{#each dateList}}\n                    <div class="bell-datepicker-row" on-click="click(this)">\n                        {{#each this}}\n                            <span\n                                class="bell-datepicker-col\n                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"\n                            >\n                                {{date}}\n                            </span>\n                        {{/each}}\n                    </div>\n                {{/each}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker-table-week">\n            <div class="bell-datepicker-weeks">\n                {{#each weeks}}\n                    <span class="bell-datepicker-col">\n                        {{this}}\n                    </span>\n                {{/each}}\n            </div>\n            <div class="bell-datepicker-days">\n                {{#each dateList:index}}\n                    <div class="bell-datepicker-row\n                    {{#if checkedIndex == index}} bell-datepicker-row-checked{{/if}}\n                    " on-click="click(this)">\n                        {{#each this}}\n                            <span\n                                class="bell-datepicker-col\n                                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                                {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"\n                            >\n                                {{date}}\n                            </span>\n                        {{/each}}\n                    </div>\n                {{/each}}\n            </div>\n        </div>\n    ',
 
     propTypes: {
         date: {
@@ -1910,24 +1910,33 @@ var DateWeek = {
     data: function data() {
         return {
             weeks: WEEKS$3,
-            dateList: []
+            dateList: [],
+            checkedIndex: ''
         };
     },
 
     methods: {
         click: function click(date) {
-            if (!date.isCurrentMonth) {
-                return;
-            }
             var me = this;
-            me.fire('deteChange', {
-                date: date
+            me.fire('weekRangeChange', {
+                start: date[0],
+                end: date[date.length]
             });
-
-            date = parseDate(date);
+            me.refresh(getOffsetTime(parseDate(date[0])), getOffsetTime(parseDate(date[date.length])));
+        },
+        refresh: function refresh(start, end) {
+            var me = this;
+            var dateList = me.get('dateList');
+            var checkedIndex = '';
+            for (var i = 0; i < dateList.length; i++) {
+                var item = dateList[i][0];
+                var itemTime = getOffsetTime(parseDate(item));
+                if (itemTime == start) {
+                    checkedIndex = i;
+                }
+            }
             me.set({
-                checkedDate: date,
-                dateList: me.createRenderData(date)
+                checkedIndex: checkedIndex
             });
         },
         // 获取渲染模板的数据

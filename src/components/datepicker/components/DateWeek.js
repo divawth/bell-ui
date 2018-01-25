@@ -6,7 +6,8 @@ import {
     lastDateInMonth,
     simplifyDate,
     offsetMonth,
-    parseDate
+    parseDate,
+    getOffsetTime
 } from '../function/util'
 
 const WEEKS = [
@@ -24,7 +25,7 @@ const stableDuration = 41 * DAY;
 
 export default {
     template: `
-        <div class="bell-datepicker-table-date">
+        <div class="bell-datepicker-table-week">
             <div class="bell-datepicker-weeks">
                 {{#each weeks}}
                     <span class="bell-datepicker-col">
@@ -33,9 +34,11 @@ export default {
                 {{/each}}
             </div>
             <div class="bell-datepicker-days">
-                {{#each dateList}}
-                    <div class="bell-datepicker-row" on-click="click(this)">
-                        {{#each this}}
+                {{#each dateList:index}}
+                    <div class="bell-datepicker-row
+                    {{#if checkedIndex == index}} bell-datepicker-row-checked{{/if}}
+                    " on-click="click(this)">
+                        {{#each this:key}}
                             <span
                                 class="bell-datepicker-col
                                 {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
@@ -65,27 +68,39 @@ export default {
         let me = this;
         return {
             weeks: WEEKS,
-            dateList: []
+            dateList: [],
+            checkedIndex: ''
         }
     },
 
     methods: {
         click: function (date) {
-            if (!date.isCurrentMonth) {
-                return;
-            }
             var me = this;
             me.fire(
-                'deteChange',
+                'weekRangeChange',
                 {
-                    date: date
+                    start: date[0],
+                    end: date[date.length]
                 }
             );
-
-            date = parseDate(date);
+            me.refresh(
+                getOffsetTime(parseDate(date[0])),
+                getOffsetTime(parseDate(date[date.length]))
+            );
+        },
+        refresh: function (start, end) {
+            var me = this;
+            var dateList = me.get('dateList');
+            var checkedIndex = '';
+            for (var i = 0; i < dateList.length; i++) {
+                var item = dateList[i][0];
+                var itemTime = getOffsetTime(parseDate(item));
+                if (itemTime == start) {
+                    checkedIndex = i;
+                }
+            }
             me.set({
-                checkedDate: date,
-                dateList: me.createRenderData(date),
+                checkedIndex: checkedIndex
             });
         },
         // 获取渲染模板的数据

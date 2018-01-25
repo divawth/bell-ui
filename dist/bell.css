@@ -6090,10 +6090,10 @@
   position: relative;
   user-select: none;
 }
-.bell-datepicker-button {
+.bell-datepicker .bell-datepicker-button {
   position: relative;
 }
-.bell-datepicker-panel {
+.bell-datepicker .bell-datepicker-panel {
   padding: 10px;
   position: absolute;
   top: 36px;
@@ -6104,7 +6104,7 @@
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
 }
-.bell-datepicker-panel.bell-hide {
+.bell-datepicker .bell-datepicker-panel.bell-hide {
   display: none;
   opacity: 0;
   top: 0;
@@ -6181,6 +6181,49 @@
 }
 .bell-datepicker-daterange-wrapper .bell-datepicker-table-date + .bell-datepicker-table-date {
   margin-left: 10px;
+}
+.bell-datepicker-table-week {
+  width: 200px;
+}
+.bell-datepicker-table-week .bell-datepicker-row {
+  display: inline-block;
+}
+.bell-datepicker-table-week .bell-datepicker-weeks .bell-datepicker-col {
+  transition: all 0.3s;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 24px;
+  margin: 2px;
+  color: rgba(0, 0, 0, 0.37);
+  display: inline-block;
+}
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row {
+  display: flex;
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+}
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row:hover {
+  background-color: #e1f0fe;
+  border-radius: 20px;
+}
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row .bell-datepicker-col {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 2px;
+}
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row-checked {
+  background-color: #e1f0fe;
+  border-radius: 20px;
+}
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row-checked .bell-datepicker-col:first-child,
+.bell-datepicker-table-week .bell-datepicker-days .bell-datepicker-row-checked .bell-datepicker-col:last-child {
+  background-color: #4279F3;
+  border-radius: 20px;
+  color: #fff;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;

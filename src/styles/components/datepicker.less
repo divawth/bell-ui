@@ -1,27 +1,27 @@
 .bell-datepicker {
     position: relative;
     user-select: none;
-}
-
-.bell-datepicker-button {
-    position: relative;
-}
-.bell-datepicker-panel {
-    padding: 10px;
-    position: absolute;
-    top: 36px;
-    z-index: 2721211;
-    background-color: #fff;
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(0,0,0,.2);
-    transition: all 0.3s;
-    &.bell-hide {
-        display: none;
-        opacity: 0;
-        top: 0;
+    .bell-datepicker-button {
+        position: relative;
+    }
+    .bell-datepicker-panel {
+        padding: 10px;
+        position: absolute;
+        top: 36px;
+        z-index: 2721211;
+        background-color: #fff;
+        box-sizing: border-box;
+        border-radius: 4px;
+        box-shadow: 0 1px 6px rgba(0,0,0,.2);
+        transition: all 0.3s;
+        &.bell-hide {
+            display: none;
+            opacity: 0;
+            top: 0;
+        }
     }
 }
+
 .bell-datepicker-table-date {
     font-size: 12px;
     .bell-datepicker-weeks {
@@ -105,6 +105,56 @@
         display: inline-block;
         +.bell-datepicker-table-date {
             margin-left: 10px;
+        }
+    }
+}
+
+.bell-datepicker-table-week {
+    width: 200px;
+    .bell-datepicker-row {
+        display: inline-block;
+    }
+    .bell-datepicker-weeks {
+        .bell-datepicker-col {
+            transition: all 0.3s;
+            width: 24px;
+            height: 24px;
+            border-radius: 100%;
+            text-align: center;
+            line-height: 24px;
+            margin: 2px;
+            color: rgba(0,0,0,0.37);
+            display: inline-block;
+        }
+    }
+    .bell-datepicker-days {
+        .bell-datepicker-row {
+            display: flex;
+            color: rgba(0,0,0,.54);
+            cursor: pointer;
+            &:hover {
+                background-color: #e1f0fe;
+                border-radius: 20px;
+            }
+            .bell-datepicker-col {
+                flex: 1;
+                text-align: center;
+                font-size: 12px;
+                line-height: 1.8;
+                margin: 2px;
+            }
+        }
+        .bell-datepicker-row-checked {
+            background-color: #e1f0fe;
+            border-radius: 20px;
+            .bell-datepicker-col {
+                &:first-child,
+                &:last-child {
+                    background-color: #4279F3;
+                    border-radius: 20px;
+                    color: #fff;
+                }
+            }
         }
     }
 }
