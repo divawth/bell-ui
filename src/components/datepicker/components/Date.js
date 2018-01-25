@@ -24,30 +24,59 @@ const stableDuration = 41 * DAY;
 
 export default {
     template: `
-        <div class="bell-datepicker-table-date">
-            <div class="bell-datepicker-weeks">
-                {{#each weeks}}
-                    <span class="bell-datepicker-col">
-                        {{this}}
-                    </span>
-                {{/each}}
+        <div class="bell-datepicker-date">
+            <div class="bell-datepicker-header">
+                <span class="bell-datepicker-header-button" on-click="prevYear()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                </span>
+
+                <span class="bell-datepicker-header-button" on-click="prevMonth()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                </span>
+
+                <span class="bell-text-medium">
+                    {{currentYear}} 年
+                </span>
+                <span class="bell-text-medium">
+                    {{currentMonth}} 月
+                </span>
+
+                <span class="bell-datepicker-header-button" on-click="nextMonth()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                </span>
+
+                <span class="bell-datepicker-header-button" on-click="nextYear()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                </span>
             </div>
-            <div class="bell-datepicker-days">
-                {{#each dateList:index}}
-                    <span
-                        class="bell-datepicker-col
-                        {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-                        {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-                        {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-                        {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
-                        on-click="click(this)"
-                    >
-                        {{date}}
-                    </span>
-                    {{#if index % 7 == 6}}
-                        <div class="bell-datepicker-divide"></div>
-                    {{/if}}
-                {{/each}}
+            <div class="bell-datepicker-table-date">
+                <div class="bell-datepicker-weeks">
+                    {{#each weeks}}
+                        <span class="bell-datepicker-col bell-text-sub">
+                            {{this}}
+                        </span>
+                    {{/each}}
+                </div>
+                <div class="bell-datepicker-days">
+                    {{#each dateList:index}}
+                        <div class="bell-datepicker-row">
+                            {{#each this:index}}
+                                <span
+                                    class="bell-datepicker-col
+                                    {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
+                                    {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
+                                    {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
+                                    {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
+                                    on-click="click(this)"
+                                >
+                                    {{date}}
+                                </span>
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
             </div>
         </div>
     `,
@@ -65,11 +94,52 @@ export default {
         let me = this;
         return {
             weeks: WEEKS,
-            dateList: []
+            dateList: [],
+            checkedDate: '',
+            // 视图日期
+            modeDate: ''
+        }
+    },
+
+    computed: {
+        currentYear: function () {
+            var me = this;
+            var date = me.get('modeDate');
+            date = date ? simplifyDate(date) : simplifyDate(new Date());
+            return date.year;
+        },
+        currentMonth: function () {
+            var me = this;
+            var date = me.get('modeDate');
+            date = date ? simplifyDate(date) : simplifyDate(new Date());
+            return date.month;
         }
     },
 
     methods: {
+        changeDate: function (offset) {
+            var me = this;
+            var date = me.get('modeDate');
+
+            date = offsetMonth(date, offset);
+
+            me.set({
+                modeDate: date,
+                dateList: me.createRenderData(date, me.get('checkedDate'))
+            });
+        },
+        prevYear: function () {
+            this.changeDate(-12);
+        },
+        prevMonth: function () {
+            this.changeDate(-1);
+        },
+        nextYear: function () {
+            this.changeDate(12);
+        },
+        nextMonth: function () {
+            this.changeDate(1);
+        },
         click: function (date) {
             if (!date.isCurrentMonth) {
                 return;
@@ -85,43 +155,45 @@ export default {
             date = parseDate(date);
             me.set({
                 checkedDate: date,
-                dateList: me.createRenderData(date),
+                modeDate: date,
+                dateList: me.createRenderData(date, date),
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, date) {
+        getDatasource: function (start, end, modeDate, checkedDate) {
             var me = this;
             var data = [];
-            date = simplifyDate(date);
+            modeDate = simplifyDate(modeDate);
+            checkedDate = simplifyDate(checkedDate);
             for (var time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
-                if (item.year == date.year
-                    && item.month == date.month
-                    && item.date == date.date
-                    && item.day == date.day
+                if (item.year == checkedDate.year
+                    && item.month == checkedDate.month
+                    && item.date == checkedDate.date
+                    && item.day == checkedDate.day
                 ) {
                     item.isCurrentDate = true;
                 }
 
-                item.isPrevMonth = item.month < date.month;
-                item.isCurrentMonth = item.month == date.month;
-                item.isLastMonth = item.month > date.month;
+                item.isPrevMonth = item.month < modeDate.month;
+                item.isCurrentMonth = item.month == modeDate.month;
+                item.isLastMonth = item.month > modeDate.month;
                 data.push(item);
             }
             return data;
 
         },
-        createRenderData: function (date) {
+        createRenderData: function (modeDate, checkedDate) {
 
             var me = this;
             var firstDay = me.get('firstDay') || 0;
-            date = normalizeDate(date);
+            modeDate = normalizeDate(modeDate);
 
             var startDate;
             var endDate;
 
-            startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
-            endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
+            startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
+            endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
 
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
@@ -132,8 +204,20 @@ export default {
             if (offset > 0) {
                 endDate += offset;
             }
-
-            return me.getDatasource(startDate, endDate, date);
+            var list = me.getDatasource(startDate, endDate, modeDate, checkedDate);
+            return me.format(list);
+        },
+        format: function (list) {
+            var result = [];
+            var arr = [];
+            for(var i = 0; i < list.length; i++) {
+                arr.push(list[i])
+                if (i % 7 == 6) {
+                    result.push(arr);
+                    arr = [];
+                }
+            }
+            return result;
         }
     },
 
@@ -146,7 +230,9 @@ export default {
         date = date ? date : today;
 
         me.set({
-            dateList: me.createRenderData(date)
+            modeDate: date,
+            checkedDate: date,
+            dateList: me.createRenderData(date, date)
         });
     },
     beforeDestroy: function () {

@@ -37,6 +37,8 @@ import Datepicker from './components/datepicker/Datepicker'
 import Date from './components/datepicker/components/Date'
 import DateRange from './components/datepicker/components/DateRange'
 import DateWeek from './components/datepicker/components/DateWeek'
+import DateMonth from './components/datepicker/components/DateMonth'
+import DateYear from './components/datepicker/components/DateYear'
 
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
@@ -77,6 +79,8 @@ Yox.component({
     Date,
     DateRange,
     DateWeek,
+    DateMonth,
+    DateYear,
 
     Alert,
     Desc,

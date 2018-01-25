@@ -80,12 +80,12 @@ export default {
                 'weekRangeChange',
                 {
                     start: date[0],
-                    end: date[date.length]
+                    end: date[date.length - 1]
                 }
             );
             me.refresh(
                 getOffsetTime(parseDate(date[0])),
-                getOffsetTime(parseDate(date[date.length]))
+                getOffsetTime(parseDate(date[date.length - 1]))
             );
         },
         refresh: function (start, end) {

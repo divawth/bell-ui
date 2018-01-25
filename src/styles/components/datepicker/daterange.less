@@ -1,0 +1,85 @@
+.bell-datepicker-daterange {
+    box-sizing: border-box;
+    background-color: @datepicker-background;
+    border-radius: @datepicker-border-radius;
+    box-shadow: @datepicker-box-shadow;
+    width: @datepicker-daterange-width;
+
+    .bell-datepicker-header {
+        box-sizing: border-box;
+        display: flex;
+        width: 100%;
+
+        padding: @datepicker-date-header-padding;
+        border-bottom: 1px solid @datepicker-date-header-border-color;
+
+        .bell-datepicker-header-month {
+            margin-right: @datepicker-daterange-header-month-margin-right;
+        }
+
+        .bell-datepicker-header-button {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            .bell-icon {
+                margin: 0;
+            }
+        }
+    }
+
+    .bell-datepicker-daterange-wrapper {
+        display: flex;
+        .bell-datepicker-table-date {
+            flex: 1;
+            font-size: @datepicker-daterange-font-size;
+
+            + .bell-datepicker-table-date {
+                border-left: 1px solid @datepicker-daterange-table-border-color;
+            }
+
+            .bell-datepicker-weeks {
+                display: flex;
+                padding: @datepicker-date-week-padding;
+
+                .bell-datepicker-col {
+                    flex: 1;
+                    text-align: center;
+                    line-height: 1;
+                }
+            }
+
+            .bell-datepicker-days {
+                padding: @datepicker-date-body-padding;
+                .bell-datepicker-row {
+                    display: flex;
+                }
+
+                .bell-datepicker-col {
+                    cursor: pointer;
+                    flex: 1;
+                    text-align: center;
+                    color: @datepicker-date-item-color;
+                    border-radius: @datepicker-date-item-border-radius;
+                    margin: @datepicker-date-item-margin;
+                    padding: @datepicker-date-item-padding;
+
+                    &-prev-month,
+                    &-last-month {
+                        color: @datepicker-date-item-disabled-color;
+                    }
+
+                    &-current-month {
+                        &:hover {
+                            background: @datepicker-date-item-checked-background-color;
+                            color: @datepicker-date-item-checked-color;
+                        }
+                    }
+                    &-checked {
+                        background: @datepicker-date-item-checked-background-color;
+                        color: @datepicker-date-item-checked-color;
+                    }
+                }
+            }
+        }
+    }
+}
