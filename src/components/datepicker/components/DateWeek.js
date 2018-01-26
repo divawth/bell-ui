@@ -55,12 +55,12 @@ export default {
             <div class="bell-datepicker-table-week">
                 <div class="bell-datepicker-weeks">
                     {{#each weeks}}
-                        <span class="bell-datepicker-col">
+                        <span class="bell-datepicker-col bell-text-sub">
                             {{this}}
                         </span>
                     {{/each}}
                 </div>
-                <div class="bell-datepicker-days">
+                <div class="bell-datepicker-body">
                     {{#each dateList:index}}
                         <div class="bell-datepicker-row
                         {{#if checkedIndex == index}} bell-datepicker-row-checked{{/if}}
@@ -84,7 +84,12 @@ export default {
     `,
 
     propTypes: {
+        // 表示第几周
         week: {
+            type: ['string', 'number']
+        },
+        // date
+        date: {
             type: ['string', 'number']
         },
         firstDay: {
@@ -96,9 +101,11 @@ export default {
         let me = this;
         return {
             weeks: WEEKS,
-            modeDate: '',
             dateList: [],
-            checkedIndex: ''
+            // 默认是某周第一天
+            modeDate: me.get('date') ? parseDate(me.get('date')) : '',
+            checkedIndex: me.get('week'),
+            checkedDateTime: -1
         }
     },
 
@@ -120,11 +127,17 @@ export default {
     methods: {
         changeDate: function (offset) {
             var me = this;
+            var date = me.get('modeDate');
 
             date = offsetMonth(date, offset);
 
             me.set({
-                dateList: me.createRenderData(date, me.get('checkedDate'))
+                checkedIndex: -1,
+                modeDate: date,
+                dateList: me.createRenderData(
+                    date,
+                    me.get('checkedDateTime')
+                )
             });
         },
         prevYear: function () {
@@ -141,7 +154,6 @@ export default {
         },
         click: function (date) {
             var me = this;
-
             me.fire(
                 'weekRangeChange',
                 {
@@ -158,32 +170,28 @@ export default {
             var me = this;
             var dateList = me.get('dateList');
             var checkedIndex = '';
+            var checkedDateTime = '';
             for (var i = 0; i < dateList.length; i++) {
                 var item = dateList[i][0];
                 var itemTime = getOffsetTime(parseDate(item));
                 if (itemTime == start) {
+                    checkedDateTime = itemTime;
                     checkedIndex = i;
                 }
             }
             me.set({
+                checkedDateTime: checkedDateTime,
                 checkedIndex: checkedIndex
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, date) {
+        getDatasource: function (start, end, date, checkedDateTime) {
             var me = this;
             var data = [];
             date = simplifyDate(date);
             for (var time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
-                if (item.year == date.year
-                    && item.month == date.month
-                    && item.date == date.date
-                    && item.day == date.day
-                ) {
-                    item.isCurrentDate = true;
-                }
-
+                item.isCurrentDate = checkedDateTime && checkedDateTime === getOffsetTime(parseDate(item));
                 item.isPrevMonth = item.month < date.month;
                 item.isCurrentMonth = item.month == date.month;
                 item.isLastMonth = item.month > date.month;
@@ -192,17 +200,17 @@ export default {
             return data;
 
         },
-        createRenderData: function (date) {
+        createRenderData: function (modeDate, checkedDateTime) {
 
             var me = this;
             var firstDay = me.get('firstDay') || 0;
-            date = normalizeDate(date);
+            modeDate = normalizeDate(modeDate);
 
             var startDate;
             var endDate;
 
-            startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
-            endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
+            startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
+            endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
 
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
@@ -214,19 +222,27 @@ export default {
                 endDate += offset;
             }
 
-            var list = me.getDatasource(startDate, endDate, date);
+            var list = me.getDatasource(startDate, endDate, modeDate, checkedDateTime);
             return me.format(list);
         },
         format: function (list) {
+            var me = this;
             var result = [];
             var arr = [];
+            var checkedIndex = -1;
             for(var i = 0; i < list.length; i++) {
                 arr.push(list[i])
                 if (i % 7 == 6) {
+                    if (getOffsetTime(parseDate(arr[0])) === me.get('checkedDateTime')) {
+                        checkedIndex = result.length;
+                    }
                     result.push(arr);
                     arr = [];
                 }
             }
+            me.set({
+                checkedIndex: checkedIndex
+            });
             return result;
         }
     },
@@ -236,11 +252,15 @@ export default {
 
         var today = new Date();
 
-        var date = me.get('week');
+        var date = me.get('modeDate');
         date = date ? date : today;
 
         me.set({
-            dateList: me.createRenderData(date)
+            modeDate: date,
+            dateList: me.createRenderData(
+                date,
+                me.get('checkedDateTime')
+            )
         });
     },
     beforeDestroy: function () {

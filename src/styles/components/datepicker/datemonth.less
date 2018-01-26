@@ -1,0 +1,53 @@
+.bell-datepicker-month {
+    user-select: none;
+    box-sizing: border-box;
+    background-color: @datepicker-background;
+    border-radius: @datepicker-border-radius;
+    box-shadow: @datepicker-box-shadow;
+    width: @datepicker-width;
+
+    .bell-datepicker-header {
+        box-sizing: border-box;
+        display: flex;
+        width: 100%;
+
+        padding: @datepicker-month-header-padding;
+        border-bottom: 1px solid @datepicker-month-header-border-color;
+
+        .bell-datepicker-header-button {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            .bell-icon {
+                margin: 0;
+            }
+        }
+    }
+
+    .bell-datepicker-body {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        line-height: 1;
+        width: 100%;
+        box-sizing: border-box;
+
+        font-size: @datepicker-month-item-font-size;
+        padding: @datepicker-month-item-padding;
+
+        .bell-datepicker-col {
+            cursor: pointer;
+            box-sizing: border-box;
+            width: 25%;
+            padding: @datepicker-month-item-padding;
+
+            &.bell-datepicker-col-checked {
+                color: @datepicker-month-item-hover-color;
+            }
+
+            &:hover {
+                color: @datepicker-month-item-hover-color;
+            }
+        }
+    }
+}

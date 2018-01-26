@@ -15,16 +15,42 @@ const MONTHS = [
 
 export default {
     template: `
-        <div class="bell-datepicker-table-month">
-            {{#each months:index}}
-                <span
-                    class="bell-datepicker-col
-                    {{#if checkedMonth == index}} bell-datepicker-col-checked{{/if}}"
-                    on-click="click(index)"
-                >
-                    {{this}}
+        <div class="bell-datepicker-month">
+            <div class="bell-datepicker-header">
+                <span class="bell-datepicker-header-button" on-click="prevMore()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
                 </span>
-            {{/each}}
+
+                <span class="bell-datepicker-header-button" on-click="prev()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                </span>
+
+                <span class="bell-text-medium">
+                    {{modeYear}} 年
+                </span>
+
+                <span class="bell-datepicker-header-button" on-click="next()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                </span>
+
+                <span class="bell-datepicker-header-button" on-click="nextMore()">
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                </span>
+            </div>
+
+            <div class="bell-datepicker-body">
+                {{#each months:index}}
+                    <span
+                        class="bell-datepicker-col
+                        {{#if checkedMonth == index && checkedYear == modeYear}} bell-datepicker-col-checked{{/if}}"
+                        on-click="click(index)"
+                    >
+                        {{this}}
+                    </span>
+                {{/each}}
+            </div>
         </div>
     `,
 
@@ -38,20 +64,35 @@ export default {
         let me = this;
         return {
             checkedMonth: '',
+            checkedYear: '',
+            modeYear: me.get('year') ? me.get('year') : new Date().getFullYear(),
             months: MONTHS
         }
     },
 
     methods: {
+        prevMore: function () {
+            this.decrease('modeYear', 10);
+        },
+        prev: function () {
+            this.decrease('modeYear', 1);
+        },
+        nextMore: function () {
+            this.increase('modeYear', 10);
+        },
+        next: function () {
+            this.increase('modeYear', 1);
+        },
         click: function (month) {
 
             var me = this;
-            var year = me.get('year');
-            year = year ? year : new Date().getFullYear();
+            var year = me.get('modeYear');
 
             me.set({
+                checkedYear: year,
                 checkedMonth: month
             });
+
             me.fire(
                 'monthChange',
                 {
@@ -59,13 +100,7 @@ export default {
                     month: month
                 }
             );
-        }
-    },
 
-    afterMount: function () {
-        var me = this;
-    },
-    beforeDestroy: function () {
-        var me = this;
+        }
     }
 }
