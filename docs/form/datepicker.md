@@ -1,23 +1,125 @@
 > 基础用法
 
+> Date
+
     export default {
         template: `
             <div>
-                <Datepicker defaultValue="{{date}}" viewMode="date" onChange="{{onChange}}"></Datepicker>
-                <Datepicker defaultValue="{{date}}" viewMode="month" onChange="{{onChange}}"></Datepicker>
+                <Date></Date>
+                <span>
+                    {{#if date}}
+                        {{date.year}} 年 {{date.month}} 月 {{date.date}} 日
+                    {{/if}}
+                </span>
             </div>
         `,
-        data: function () {
-            let me = this;
-            return {
-                checkDate: '',
-                date: '2016/09/08',
-                onChange: function (val) {
-                    me.set({
-                        checkDate: val
-                    });
-                    console.log(me.get('checkDate'));
-                }
+        data: {
+            date: null
+        },
+        events: {
+            deteChange: function (event, data) {
+                this.set({
+                    date: data.date
+                });
+            }
+        }
+    }
+
+> DateRange
+
+    export default {
+        template: `
+            <div>
+                <DateRange></DateRange>
+                <span>
+                    {{#if startDate}}
+                        {{startDate.year}} 年 {{startDate.month}} 月 {{startDate.date}} 日
+                    {{/if}}
+                        至
+                    {{#if endDate}}
+                        {{endDate.year}} 年 {{endDate.month}} 月 {{endDate.date}} 日
+                    {{/if}}
+                </span>
+            </div>
+        `,
+        events: {
+            deteRangeChange: function (event, data) {
+                this.set({
+                    startDate: data.start,
+                    endDate: data.end
+                });
+            }
+        }
+    }
+
+> DateWeek
+
+    export default {
+        template: `
+            <div>
+                <DateWeek></DateWeek>
+                <span>
+                    {{#if startDate}}
+                        {{startDate.year}} 年 {{startDate.month}} 月 {{startDate.date}} 日
+                    {{/if}}
+                        至
+                    {{#if endDate}}
+                        {{endDate.year}} 年 {{endDate.month}} 月 {{endDate.date}} 日
+                    {{/if}}
+                </span>
+            </div>
+        `,
+        events: {
+            weekRangeChange: function (event, data) {
+                this.set({
+                    startDate: data.start,
+                    endDate: data.end
+                });
+            }
+        }
+    }
+
+> DateMonth
+
+    export default {
+        template: `
+            <div>
+                <DateMonth></DateMonth>
+                <span>
+                    {{#if year}}
+                        {{year}} 年 {{month + 1}} 月
+                    {{/if}}
+                </span>
+            </div>
+        `,
+        events: {
+            monthChange: function (event, data) {
+                this.set({
+                    year: data.year,
+                    month: data.month
+                });
+            }
+        }
+    }
+
+> DateYear
+
+    export default {
+        template: `
+            <div>
+                <DateYear></DateYear>
+                <span>
+                    {{#if year}}
+                        {{year}} 年
+                    {{/if}}
+                </span>
+            </div>
+        `,
+        events: {
+            yearChange: function (event, data) {
+                this.set({
+                    year: data.year
+                });
             }
         }
     }
