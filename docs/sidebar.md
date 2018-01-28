@@ -22,6 +22,7 @@
   - [Notice 通知提醒](view/notice)
   - [Msgbox 消息对话框](view/msgbox)
   - [Badge 标记](view/badge)
+  - [Tooltip 提示](view/tooltip)
 - [Other](other)
   - [Spinner 加载中](other/spinner)
   - [BackTop 返回顶部](other/backTop)

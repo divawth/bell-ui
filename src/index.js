@@ -40,6 +40,9 @@ import DateWeek from './components/datepicker/components/DateWeek'
 import DateMonth from './components/datepicker/components/DateMonth'
 import DateYear from './components/datepicker/components/DateYear'
 
+import Tooltip from './components/tooltip/Tooltip'
+import TooltipItem from './components/tooltip/TooltipItem'
+
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
 import CardMedia from './components/card/CardMedia'
@@ -81,6 +84,9 @@ Yox.component({
     DateWeek,
     DateMonth,
     DateYear,
+
+    Tooltip,
+    TooltipItem,
 
     Alert,
     Desc,
