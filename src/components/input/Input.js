@@ -5,7 +5,7 @@ export default {
 >
     {{#if type != TEXT_TYPE_TEXTAREA}}
         {{#if !label}}
-
+            {{$children}}
         {{else}}
             <span class="bell-input-label" on-click="click">
                 {{label}}
@@ -85,10 +85,10 @@ export default {
 
     methods: {
         blur: function () {
-            this.get('onBlur') && this.get('onBlur')();
+            this.get('onBlur') && this.get('onBlur')(arguments);
         },
         focus: function () {
-            this.get('onFocus') && this.get('onFocus')();
+            this.get('onFocus') && this.get('onFocus')(arguments);
         }
     }
 }

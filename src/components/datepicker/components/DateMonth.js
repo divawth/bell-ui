@@ -97,7 +97,7 @@ export default {
                 'monthChange',
                 {
                     year: year,
-                    month: month
+                    month: month + 1
                 }
             );
 

@@ -1,20 +1,30 @@
 .bell-datepicker {
     position: relative;
     user-select: none;
-    width: 200px;
-    .bell-datepicker-button {
-        position: relative;
+    display: inline-block;
+
+    .bell-datepicker-el {
+        display: inline-block;
     }
-    .bell-datepicker-panel {
-        padding: 10px;
+
+    .bell-datepicker-poper {
+        display: none;
+        transition: all 0.5s;
         position: absolute;
+        opacity: 0;
         top: 36px;
-        z-index: 2721211;
-        transition: all 0.3s;
-        &.bell-hide {
-            display: none;
+
+        &.bell-isPopuping {
+            display: block;
+        }
+
+        &.bell-show {
+            display: block;
+            opacity: 1;
+        }
+
+        &.bell-isPopdowning {
             opacity: 0;
-            top: 0;
         }
     }
 }

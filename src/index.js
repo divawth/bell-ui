@@ -78,12 +78,12 @@ Yox.component({
     Switch,
     Select,
     Page,
-    Datepicker,
     Date,
     DateRange,
     DateWeek,
     DateMonth,
     DateYear,
+    Datepicker,
 
     Tooltip,
     TooltipItem,

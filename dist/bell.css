@@ -6089,22 +6089,27 @@
 .bell-datepicker {
   position: relative;
   user-select: none;
-  width: 200px;
+  display: inline-block;
 }
-.bell-datepicker .bell-datepicker-button {
-  position: relative;
+.bell-datepicker .bell-datepicker-el {
+  display: inline-block;
 }
-.bell-datepicker .bell-datepicker-panel {
-  padding: 10px;
-  position: absolute;
-  top: 36px;
-  z-index: 2721211;
-  transition: all 0.3s;
-}
-.bell-datepicker .bell-datepicker-panel.bell-hide {
+.bell-datepicker .bell-datepicker-poper {
   display: none;
+  transition: all 0.5s;
+  position: absolute;
   opacity: 0;
-  top: 0;
+  top: 36px;
+}
+.bell-datepicker .bell-datepicker-poper.bell-isPopuping {
+  display: block;
+}
+.bell-datepicker .bell-datepicker-poper.bell-show {
+  display: block;
+  opacity: 1;
+}
+.bell-datepicker .bell-datepicker-poper.bell-isPopdowning {
+  opacity: 0;
 }
 .bell-datepicker-date {
   user-select: none;
