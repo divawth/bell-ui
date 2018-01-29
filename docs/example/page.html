@@ -1,0 +1,118 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        layout
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+
+    <style>
+
+        .app {
+            margin: 10px auto;
+        }
+
+        .bell-sider {
+            height: 120px !important;
+        }
+
+        .bell-page {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../dep/base/base.js"></script>
+    <script src="../../dist/bell.js"></script>
+
+    <div id="app-1" class="bell-app"></div>
+    <div id="app-2" class="bell-app"></div>
+    <div id="app-3" class="bell-app"></div>
+    <div id="app-4" class="bell-app"></div>
+    <div id="app-5" class="bell-app"></div>
+    <div id="app-6" class="bell-app"></div>
+
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <Page total="1000" current="{{8}}"></Page>
+            <Page total="1000" size="small"></Page>
+            <Page total="1000" size="tiny"></Page>
+            <Page total="10" size="small"></Page>
+        </div>
+    </script>
+
+    <script id="template-2" type="text/plain">
+        <div>
+            <Page total="100" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}"></Page>
+
+            <Page total="100" size="small" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}"></Page>
+        </div>
+    </script>
+
+    <script id="template-3" type="text/plain">
+        <div>
+            <Page total="100" showElevator="true"></Page>
+        </div>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <div>
+            <Page total="100" showTotal="true" simple="true" placement="top"></Page>
+        </div>
+    </script>
+
+    <script id="template-5" type="text/plain">
+        <div>
+            <Page total="100" count="300"></Page>
+        </div>
+    </script>
+
+    <script id="template-6" type="text/plain">
+        <div>
+            <Page total="100" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+
+            <Page total="100" size="small" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+        </div>
+    </script>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+        });
+
+        new Yox({
+            el: '#app-2',
+            template: '#template-2',
+            data: {
+                pageSizeOpts: [10, 15, 20, 25, 40]
+            }
+        });
+
+        new Yox({
+            el: '#app-3',
+            template: '#template-3',
+        });
+
+        new Yox({
+            el: '#app-4',
+            template: '#template-4'
+        });
+        new Yox({
+            el: '#app-5',
+            template: '#template-5'
+        });
+        new Yox({
+            el: '#app-6',
+            template: '#template-6',
+            data: {
+                pageSizeOpts: [10, 15, 20, 25, 40]
+            }
+        });
+    </script>
+
+</body>
+</html>
