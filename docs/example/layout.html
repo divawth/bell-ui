@@ -14,10 +14,6 @@
             margin: 10px auto;
         }
 
-        .bell-sider {
-            height: 400px !important;
-        }
-
         .bell-content {
             color: #000;
             height: 120px;
@@ -64,14 +60,48 @@
     <script id="template-3" type="text/plain">
         <div class="app">
             <Layout>
+                <Header>Header</Header>
+                <Layout>
+                    <Content>Content</Content>
+                    <Sider hide-trigger>Sider</Sider>
+                </Layout>
+                <Footer>Footer</Footer>
+            </Layout>
+        </div>
+    </script>
+
+    <script id="template-4" type="text/plain">
+        <div class="app">
+            <Layout>
+                <Sider hide-trigger>Sider</Sider>
+                <Layout>
+                    <Header>Header</Header>
+                    <Content>Content</Content>
+                    <Footer>Footer</Footer>
+                </Layout>
+            </Layout>
+        </div>
+    </script>
+
+    <script id="template-5" type="text/plain">
+        <div class="app">
+            <Layout>
+                <Header>Header</Header>
+                <Layout>
+                    <Sider hide-trigger>Sider</Sider>
+                    <Content>Content</Content>
+                </Layout>
+            </Layout>
+        </div>
+    </script>
+
+    <script id="template-6" type="text/plain">
+        <div class="app">
+            <Layout>
 
                 <Header>
                     <span class="bell-title">
-
-                    </span>
-
-                    <span class="finstao-logout" on-click="logout()">
-                        退出登录
+                        header
                     </span>
                 </Header>
 
@@ -233,6 +263,21 @@
             el: '#app-3',
             replace: true,
             template: '#template-3'
+        });
+        new Yox({
+            el: '#app-4',
+            replace: true,
+            template: '#template-4'
+        });
+        new Yox({
+            el: '#app-5',
+            replace: true,
+            template: '#template-5'
+        });
+        new Yox({
+            el: '#app-6',
+            replace: true,
+            template: '#template-6'
         });
     </script>
 

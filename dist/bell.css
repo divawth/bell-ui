@@ -2424,18 +2424,18 @@
   border-color: #dddee1;
 }
 .bell-layout {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background: #f5f7f9;
   color: #fff;
 }
 .bell-layout .bell-footer,
 .bell-layout .bell-header {
+  user-select: none;
   box-shadow: 0 0 5px rgba(28, 34, 43, 0);
   height: 64px;
   line-height: 64px;
-  background-color: #1D232B;
-}
-.bell-layout .bell-footer {
   background-color: #1D232B;
 }
 .bell-layout .bell-sider,
@@ -2446,10 +2446,12 @@
 .bell-layout .bell-content {
   overflow: auto;
   background-color: #f8f8f8;
+  color: #49505F;
+  min-height: 100px;
 }
 .bell-layout.bell-has-sider {
-  text-align: left;
-  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 .bell-layout.bell-has-sider > .bell-sider,
 .bell-layout.bell-has-sider > .bell-content {
@@ -2457,90 +2459,66 @@
   box-sizing: border-box;
 }
 .bell-layout.bell-has-sider > .bell-sider {
-  width: 20%;
-  height: 100%;
+  flex: 0 0 200px;
 }
 .bell-layout.bell-has-sider > .bell-content,
 .bell-layout.bell-has-sider > .bell-layout {
-  width: 80%;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
+  flex: 1;
 }
-.bell-layout .bell-header {
-  position: relative;
-}
-.bell-layout .bell-header .bell-logo {
-  padding: 15px 20px;
-  width: 100px;
-  height: 64px;
-  float: left;
-  box-sizing: border-box;
-}
-.bell-layout .bell-header .bell-title {
-  position: absolute;
-  left: 100px;
-}
-.bell-layout .bell-header .bell-menu {
-  display: inline-block;
-  height: 64px;
-}
-.bell-layout .bell-header .bell-menu .bell-menu-item {
-  display: inline-block;
-  padding: 0 20px;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  height: 64px;
-  box-sizing: border-box;
-}
-.bell-layout .bell-header .bell-menu .bell-menu-item:hover {
-  border-bottom-color: #1c90f3;
-}
-.bell-layout .bell-sider .bell-user-info {
-  text-align: center;
-  padding: 20px;
-}
-.bell-layout .bell-sider .bell-user-info > .bell-user-title {
+.bell-layout .bell-menu {
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  margin-bottom: 20px;
 }
-.bell-layout .bell-sider .bell-user-info > img {
-  overflow: hidden;
-  border-radius: 100px;
-}
-.bell-layout .bell-sider .bell-user-info > .bell-user-name {
-  color: #f6f6f7;
-  display: block;
-  margin-top: 5px;
-  text-decoration: none;
-}
-.bell-layout .bell-sider .bell-user-info > .bell-user-name:hover {
-  text-decoration: underline;
-}
-.bell-layout .bell-sider .bell-user-info > .bell-user-company {
-  margin-top: 5px;
-  color: #888C92;
-}
-.bell-layout .bell-sider .bell-menu .bell-menu-item {
-  height: 50px;
-  line-height: 50px;
-  border-right: 2px solid transparent;
-  padding: 0 15px;
+.bell-layout .bell-menu .bell-menu-item {
   box-sizing: border-box;
   cursor: pointer;
+  border: 2px solid transparent;
   color: #bbbec4;
 }
-.bell-layout .bell-sider .bell-menu .bell-menu-item:hover {
+.bell-layout .bell-menu .bell-menu-item:hover {
   color: #fff;
 }
-.bell-layout .bell-sider .bell-menu .bell-menu-item.bell-active {
+.bell-layout .bell-menu .bell-menu-item.bell-active {
   background-color: #49505F;
-  border-right-color: #1c90f3;
   color: #1c90f3;
 }
-.bell-layout .bell-sider .bell-menu .bell-menu-item.bell-active:hover {
+.bell-layout .bell-menu .bell-menu-item.bell-active:hover {
   color: #1c90f3;
+}
+.bell-layout .bell-header {
+  display: flex;
+}
+.bell-layout .bell-header .bell-header-logo {
+  flex: 0 0 100px;
+  padding: 10px 15px;
+}
+.bell-layout .bell-header .bell-header-title {
+  flex: 0 0 auto;
+}
+.bell-layout .bell-header .bell-menu {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+}
+.bell-layout .bell-header .bell-menu .bell-menu-item {
+  width: auto;
+  height: 100%;
+  padding: 0 15px;
+}
+.bell-layout .bell-header .bell-menu .bell-menu-item.bell-active {
+  border-bottom-color: #1c90f3;
+}
+.bell-layout .bell-sider {
+  user-select: none;
+}
+.bell-layout .bell-sider .bell-menu .bell-menu-item {
+  width: 100%;
+  padding: 10px 15px;
+}
+.bell-layout .bell-sider .bell-menu .bell-menu-item.bell-active {
+  border-right-color: #1c90f3;
 }
 .bell-input-wrapper {
   display: inline-block;
@@ -2715,6 +2693,12 @@
   padding-left: 8px;
 }
 .bell-input-number-disabled:hover {
+  border-color: #dddee1;
+}
+.bell-input-number-readonly .bell-input-number-actions {
+  display: none;
+}
+.bell-input-number-readonly:hover {
   border-color: #dddee1;
 }
 .bell-radio-group-wrapper {

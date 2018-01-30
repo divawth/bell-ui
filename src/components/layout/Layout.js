@@ -5,7 +5,10 @@ import Footer from './Footer'
 
 export default {
     template: `
-        <div class="bell-layout{{#if hasSider}} bell-has-sider{{/if}}">
+        <div class="bell-layout
+        {{#if hasSider}} bell-has-sider{{/if}}
+        {{#if className}} {{className}}{{/if}}"
+        {{#if style}} style="{{style}}"{{/if}}>
             {{$children}}
         </div>
     `,
@@ -15,17 +18,21 @@ export default {
             hasSider: false
         };
     },
-
-    afterMount: function (argument) {
-        var me = this;
-        if (me.$options.props.$children.length) {
-            me.$options.props.$children.some(child => {
-                if (child.tag == 'Sider') {
-                    me.set({
-                        hasSider: true
-                    });
-                }
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    },
+    events: {
+        hasSider: function (event, data) {
+            var me = this;
+            me.set({
+                hasSider: data.hasSider
             });
+            return false;
         }
     }
 }

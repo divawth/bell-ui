@@ -13,6 +13,7 @@ import MenuItem from './components/layout/MenuItem'
 import Submenu from './components/layout/Submenu'
 import Row from './components/grid/Row'
 import Col from './components/grid/Col'
+import Icon from './components/icon/Icon'
 
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
@@ -66,6 +67,7 @@ Yox.component({
     Submenu,
     Row,
     Col,
+    Icon,
 
     Breadcrumb,
     BreadcrumbItem,

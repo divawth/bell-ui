@@ -4,6 +4,7 @@
   - [Color 色彩](layout/color)
   - [Font 字体](layout/font)
   - [Button 按钮](layout/button)
+  - [Layout 布局](layout/layout)
   - [Icon 图标](layout/icon)
 - [Form](form)
   - [Breadcrumb 面包屑](form/breadcrumb)

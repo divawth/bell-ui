@@ -3,40 +3,82 @@
 }(this, (function () { 'use strict';
 
 var Header = {
-    template: "\n        <div class=\"bell-header\">\n            {{$children}}\n        </div>\n    "
+    template: '\n        <div class="bell-header\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
 };
 
 var Sider = {
-    template: "\n        <div class=\"bell-sider\">\n            {{$children}}\n        </div>\n    "
+    template: '\n        <div class="bell-sider\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('hasSider', {
+            hasSider: true
+        });
+    }
 };
 
 var Content = {
-    template: "\n        <div class=\"bell-content\">\n            {{$children}}\n        </div>\n    "
+    template: '\n        <div class="bell-content\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
 };
 
 var Footer = {
-    template: "\n        <div class=\"bell-footer\">\n            {{$children}}\n        </div>\n    "
+    template: '\n        <div class="bell-footer\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
 };
 
 var Layout = {
-    template: '\n        <div class="bell-layout{{#if hasSider}} bell-has-sider{{/if}}">\n            {{$children}}\n        </div>\n    ',
+    template: '\n        <div class="bell-layout\n        {{#if hasSider}} bell-has-sider{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
 
     data: function data() {
         return {
             hasSider: false
         };
     },
-
-    afterMount: function afterMount(argument) {
-        var me = this;
-        if (me.$options.props.$children.length) {
-            me.$options.props.$children.some(function (child) {
-                if (child.tag == 'Sider') {
-                    me.set({
-                        hasSider: true
-                    });
-                }
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    },
+    events: {
+        hasSider: function hasSider(event, data) {
+            var me = this;
+            me.set({
+                hasSider: data.hasSider
             });
+            return false;
         }
     }
 };
@@ -110,7 +152,15 @@ var MenuItem = {
 };
 
 var Submenu = {
-    template: "\n        <div class=\"bell-sub-menu\">\n            {{$children}}\n        </div>\n    "
+    template: '\n        <div class="bell-sub-menu\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
 };
 
 var Row = {
@@ -272,6 +322,15 @@ var Col = {
             }
 
             return classArr.join(' ');
+        }
+    }
+};
+
+var Icon = {
+    template: '\n        <div class="bell-icon bell-icon-{{type}}">\n        </div>\n    ',
+    propTypes: {
+        type: {
+            type: 'string'
         }
     }
 };
@@ -1773,7 +1832,7 @@ var Date$1 = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 
@@ -2012,7 +2071,7 @@ var DateRange = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 
@@ -2191,7 +2250,7 @@ var DateWeek = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 
@@ -3014,6 +3073,7 @@ Yox.component({
     Submenu: Submenu,
     Row: Row,
     Col: Col,
+    Icon: Icon,
 
     Breadcrumb: Breadcrumb,
     BreadcrumbItem: BreadcrumbItem,
