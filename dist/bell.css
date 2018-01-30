@@ -2626,6 +2626,97 @@
 .bell-input-wrapper .bell-textarea[disabled]:hover {
   border-color: #dddee1;
 }
+.bell-input-number {
+  position: relative;
+  display: inline-block;
+  cursor: text;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 80px;
+  height: 32px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #495060;
+  background-color: #fff;
+  border: 1px solid #dddee1;
+  transition: all 0.2s ease-in-out;
+}
+.bell-input-number + .bell-input-number {
+  margin-left: 10px;
+}
+.bell-input-number:hover {
+  border-color: #1c90f3;
+}
+.bell-input-number:hover .bell-input-number-actions {
+  opacity: 1;
+}
+.bell-input-number .bell-input-number-actions {
+  height: 100%;
+  float: right;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 24px;
+  opacity: 0;
+}
+.bell-input-number .bell-input-number-actions .bell-icon {
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.2;
+  border-left: 1px solid #ccc;
+}
+.bell-input-number .bell-input-number-actions .bell-icon + .bell-icon {
+  border-top: 1px solid #ccc;
+}
+.bell-input-number .bell-input-number-actions .bell-icon:hover {
+  color: #57a3f3;
+}
+.bell-input-number .bell-input-number-wrapper {
+  overflow: hidden;
+  height: 100%;
+  padding: 4px 8px;
+}
+.bell-input-number .bell-input-number-wrapper .bell-input {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+.bell-input-number-small {
+  width: 80px;
+  height: 24px;
+}
+.bell-input-number-small .bell-input-number-actions .bell-icon {
+  line-height: 1;
+}
+.bell-input-number-small .bell-input-number-wrapper {
+  padding: 2px 6px;
+}
+.bell-input-number-large {
+  width: 80px;
+  height: 36px;
+}
+.bell-input-number-large .bell-input-number-wrapper {
+  padding: 6px 8px;
+}
+.bell-input-number-disabled .bell-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: not-allowed;
+  background-color: #f7f7f7;
+  color: #ccc;
+  padding-left: 8px;
+}
+.bell-input-number-disabled:hover {
+  border-color: #dddee1;
+}
 .bell-radio-group-wrapper {
   display: inline-block;
 }

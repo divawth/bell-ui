@@ -19,6 +19,7 @@ import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
 
 import Button from './components/button/Button'
 import Input from './components/input/Input'
+import InputNumber from './components/input/InputNumber'
 import Radio from './components/radio/Radio'
 import RadioGroup from './components/radio/RadioGroup'
 import Checkbox from './components/checkbox/Checkbox'
@@ -71,6 +72,7 @@ Yox.component({
 
     Button,
     Input,
+    InputNumber,
     Radio,
     RadioGroup,
     Checkbox,

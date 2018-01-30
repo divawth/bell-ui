@@ -387,6 +387,64 @@ var Input = {
     }
 };
 
+var InputNumber = {
+    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
+    propTypes: {
+        maxValue: {
+            type: ['number', 'string']
+        },
+        minValue: {
+            type: ['number', 'string']
+        },
+        value: {
+            type: ['number', 'string']
+        },
+        step: {
+            type: ['number', 'string'],
+            value: 1
+        },
+        size: {
+            type: 'string'
+        },
+        readonly: {
+            type: 'string'
+        },
+        disabled: {
+            type: ['string', 'boolean']
+        },
+        editable: {
+            type: ['string', 'boolean']
+        },
+
+        onChange: {
+            type: 'function'
+        },
+        onFocus: {
+            type: 'function'
+        },
+        onBlur: {
+            type: 'function'
+        }
+    },
+
+    methods: {
+        up: function up() {
+            var me = this;
+            var value = me.decrease('value', me.get('step'), me.get('minValue'));
+        },
+        down: function down() {
+            var me = this;
+            me.increase('value', me.get('step'), me.get('maxValue'));
+        },
+        blur: function blur() {
+            this.get('onBlur') && this.get('onBlur').apply(undefined, arguments);
+        },
+        focus: function focus() {
+            this.get('onFocus') && this.get('onFocus').apply(undefined, arguments);
+        }
+    }
+};
+
 var Radio = {
     template: '\n<label class="bell-radio\n{{#if isChecked}} bell-active{{/if}}\n{{#if isDisabled}} bell-radio-disabled{{/if}}\n">\n    <span class="bell-radio-wrapper" on-click="click()">\n        <span class="bell-redio-inner"></span>\n        <input class="bell-radio-input" type="radio" value="{{value}}" />\n    </span>\n\n    <span class="bell-radio-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            {{$children}}\n        {{/if}}\n    </span>\n</label>\n    ',
 
@@ -1442,7 +1500,10 @@ var Datepicker = {
         document.addEventListener('click', me.documentClickHandler);
     },
 
-    beforeDestroy: function beforeDestroy() {}
+    beforeDestroy: function beforeDestroy() {
+        var me = this;
+        document.removeEventListener('click', me.documentClickHandler);
+    }
 };
 
 var normalizeDate = function normalizeDate(date) {
@@ -1712,7 +1773,7 @@ var Date$1 = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -1951,7 +2012,7 @@ var DateRange = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2130,7 +2191,7 @@ var DateWeek = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2959,6 +3020,7 @@ Yox.component({
 
     Button: Button,
     Input: Input,
+    InputNumber: InputNumber,
     Radio: Radio,
     RadioGroup: RadioGroup,
     Checkbox: Checkbox,

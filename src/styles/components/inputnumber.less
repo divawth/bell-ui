@@ -1,0 +1,121 @@
+.bell-input-number {
+    position: relative;
+    display: inline-block;
+    cursor: text;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    width: @input-number-width;
+    height: @input-number-height;
+    font-size: @input-number-font-size;
+    border-radius: @input-number-border-radius;
+
+    color: @input-number-color;
+    background-color: @input-number-background-color;
+    border: 1px solid @input-number-border-color;
+
+    transition: all .2s ease-in-out;
+
+    +.bell-input-number {
+        margin-left: @input-number-margin-left;
+    }
+
+    &:hover {
+        border-color: @input-number-hover-border-color;
+        .bell-input-number-actions {
+            opacity: 1;
+        }
+    }
+
+    .bell-input-number-actions {
+        height: 100%;
+        float: right;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        width: @input-number-actions-width;
+        opacity: 0;
+
+        .bell-icon {
+            width: 100%;
+            height: 50%;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.2;
+
+            border-left: 1px solid @input-number-actions-color;
+            + .bell-icon {
+                border-top: 1px solid @input-number-actions-color;
+            }
+
+            &:hover { 
+                color: @input-number-hover-actions-color;
+            }
+        }
+    }
+    
+    .bell-input-number-wrapper {
+        overflow: hidden;
+        height: 100%;
+
+        padding: @input-number-wrapper-padding;
+
+        .bell-input {
+            outline: none;
+            border: none;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+        }
+    }
+}
+
+.bell-input-number-small { 
+    width: @input-number-small-width;
+    height: @input-number-small-height;
+    .bell-input-number-actions {
+        .bell-icon {
+            line-height: 1;
+        }
+    }
+    .bell-input-number-wrapper {
+        padding: @input-number-small-wrapper-padding;
+    }
+}
+
+.bell-input-number-large { 
+    width: @input-number-large-width;
+    height: @input-number-large-height;
+    .bell-input-number-wrapper {
+        padding: @input-number-large-wrapper-padding;
+    }
+}
+
+.bell-input-number-disabled {
+    .bell-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: not-allowed;
+
+        background-color: @input-number-disabled-background;
+        color: @input-number-disabled-color;
+        padding-left: @input-number-disabled-padding-left;
+    }
+
+    &:hover {
+        border-color: @input-number-border-color
+    }
+}
+
+.bell-input-number-readonly {
+    .bell-input-number-actions {
+        display: none;
+    }
+    &:hover {
+        border-color: @input-number-border-color
+    }
+}
