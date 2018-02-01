@@ -84,42 +84,44 @@ var Layout = {
 };
 
 var Menu = {
-    template: '\n        <div class="bell-menu">\n            {{$children}}\n        </div>\n    ',
+    template: '\n        <div class="bell-menu\n        {{#if mode}} bell-menu-{{mode}}{{/if}}"\n        {{#if style}} style="{{style}}"{{if}}>\n            {{$children}}\n        </div>\n    ',
 
     propTypes: {
+        mode: {
+            type: 'string'
+        },
         activeName: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         }
     },
 
     events: {
-        setActiveMenu: function setActiveMenu(event, data) {
-            this.updateChild(data.name);
+        menuItemActive: function menuItemActive(event, data) {
+            this.updateActiveName(data.name);
         }
     },
 
     methods: {
-        updateChild: function updateChild(activeName) {
+        updateActiveName: function updateActiveName(name) {
             var me = this;
-            me.$children.some(function (child) {
-                if (child.$options.props.name == activeName) {
-                    $(child.$el).addClass('bell-active');
-                } else {
-                    $(child.$el).removeClass('bell-active');
-                }
-            });
+            me.fire('activeMenuChange', {
+                name: name
+            }, true);
         }
     },
 
     watchers: {
         activeName: function activeName(_activeName) {
-            this.updateChild(_activeName);
+            this.updateActiveName(_activeName);
         }
     }
 };
 
 var MenuItem = {
-    template: '\n        <div class="bell-menu-item" data-name="{{name}}" on-click="handleClick(name)">\n            {{$children}}\n        </div>\n    ',
+    template: '\n        <div class="bell-menu-item\n        {{#if isActive}} bell-active{{/if}}\n        " on-click="click(name)">\n            {{$children}}\n        </div>\n    ',
 
     propTypes: {
         name: {
@@ -128,14 +130,28 @@ var MenuItem = {
         hash: {
             type: 'string'
         },
-
         disabled: {
             type: 'boolean'
         }
     },
 
+    data: function data() {
+        return {
+            isActive: false
+        };
+    },
+
+    events: {
+        activeMenuChange: function activeMenuChange(event, data) {
+            var me = this;
+            me.set({
+                isActive: me.get('name') === data.name
+            });
+        }
+    },
+
     methods: {
-        handleClick: function handleClick(name) {
+        click: function click(name) {
             var me = this;
             if (me.get('disabled')) {
                 return;
@@ -143,8 +159,11 @@ var MenuItem = {
             if (me.get('hash')) {
                 location.href = me.get('hash');
             }
+            me.set({
+                isActive: true
+            });
 
-            me.fire('setActiveMenu', {
+            me.fire('menuItemActive', {
                 name: name
             });
         }
@@ -2536,6 +2555,82 @@ var TooltipItem = {
     }
 };
 
+var Collapse = {
+    template: '\n        <div class="bell-collapse\n        {{#if className}} {{className}}{{/if}}\n        ">\n            {{$children}}\n        </div>\n    ',
+    propTypes: {
+        className: {
+            type: 'string'
+        }
+    }
+};
+
+var Panel = {
+    template: '\n        <div class="bell-panel\n        {{#if className}} {{className}}{{/if}}\n        {{#if isOpen}} bell-panel-open{{/if}}\n        {{#if isOpening}} bell-panel-isOpening{{/if}}\n        ">\n            <div class="bell-panel-el" on-click="click()">\n                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>\n                {{title}}\n            </div>\n            <div ref="panelInner" class="bell-panel-inner">\n                {{$children}}\n            </div>\n        </div>\n    ',
+    propTypes: {
+        className: {
+            type: 'string'
+        },
+        title: {
+            type: 'string'
+        }
+    },
+    data: function data() {
+        return {
+            isOpening: false,
+            isOpen: false
+        };
+    },
+    events: {
+        panelOpen: function panelOpen() {
+            console.log(this);
+        }
+    },
+    methods: {
+        click: function click() {
+            var me = this;
+            var isOpen = !me.get('isOpen');
+            if (isOpen) {
+                me.open();
+            } else {
+                me.close();
+            }
+        },
+        close: function close() {
+            var me = this;
+            var innerElement = me.$refs.panelInner;
+            innerElement.style.height = innerElement.clientHeight + 'px';
+            setTimeout(function () {
+                innerElement.style.height = 0;
+                setTimeout(function () {
+                    me.set({
+                        isOpen: false
+                    });
+                    innerElement.style.height = '';
+                }, 100);
+            }, 300);
+        },
+        open: function open() {
+            var me = this;
+            var innerElement = me.$refs.panelInner;
+            me.set({
+                isOpen: true
+            });
+
+            Yox.nextTick(function () {
+                var height = innerElement.clientHeight;
+                innerElement.style.height = 0;
+
+                setTimeout(function () {
+                    innerElement.style.height = height + 'px';
+                    setTimeout(function () {
+                        innerElement.style.height = '';
+                    }, 100);
+                }, 100);
+            });
+        }
+    }
+};
+
 var Card = {
     template: "\n        <div class=\"bell-card\">\n            {{$children}}\n        </div>\n    "
 };
@@ -3110,7 +3205,10 @@ Yox.component({
     CardMedia: CardMedia,
     CardTitle: CardTitle,
     CardText: CardText,
-    CardActions: CardActions
+    CardActions: CardActions,
+
+    Collapse: Collapse,
+    Panel: Panel
 });
 
 })));

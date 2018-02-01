@@ -45,6 +45,9 @@ import DateYear from './components/datepicker/components/DateYear'
 import Tooltip from './components/tooltip/Tooltip'
 import TooltipItem from './components/tooltip/TooltipItem'
 
+import Collapse from './components/collapse/Collapse'
+import Panel from './components/collapse/Panel'
+
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
 import CardMedia from './components/card/CardMedia'
@@ -104,5 +107,8 @@ Yox.component({
     CardMedia,
     CardTitle,
     CardText,
-    CardActions
+    CardActions,
+
+    Collapse,
+    Panel
 });

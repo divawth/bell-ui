@@ -1,117 +1,97 @@
 .bell-layout {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 250px;
 
-    text-align: center;
-    background: @layout-body-background;
-    color: @layout-body-font-color;
-
-    .bell-footer,
     .bell-header {
-        user-select: none;
-        box-shadow: 0 0 5px @layout-header-shadow;
-        height: @layout-header-height;
-        line-height: @layout-header-height;
+        width: 100%;
+        flex: 0 0 64px;
         background-color: @layout-header-background;
-    }
+        color: @layout-header-font-color;
 
-    .bell-sider,
-    .bell-content {
-        overflow: hidden;
-        background: @layout-sider-background;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
     .bell-content {
-        overflow: auto;
+        width: 100%;
+        flex: 1;
         background-color: @layout-content-background;
-        color: @layout-content-color;
-        min-height: 100px;
+        color: @layout-content-font-color;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .bell-footer {
+        width: 100%;
+        flex: 0 0 64px;
+        background-color: @layout-footer-background;
+        color: @layout-footer-font-color;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &.bell-has-sider {
-        display: flex;
         flex-direction: row;
-
-        > .bell-sider,
-        > .bell-content {
-            display: inline-block;
-            box-sizing: border-box;
-        }
-
-        > .bell-sider {
-            flex: 0 0 200px;
-        }
-
-        > .bell-content,
-        > .bell-layout {
-            flex: 1;
-        }
-    }
-
-    .bell-menu {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-
-        .bell-menu-item {
-            box-sizing: border-box;
-            cursor: pointer;
-            border: 2px solid transparent;
-            color: @disabledFontColor;
-
-            &:hover{
-                color: @white;
-            }
-
-            &.bell-active {
-                background-color: @layout-sider-menu-item-background;
-                color: @primaryColor;
-                &:hover{
-                    color: @primaryColor;
-                }
-            }
-        }
-    }
-
-    .bell-header {
-        display: flex;
-
-        .bell-header-logo {
-            flex: 0 0 100px;
-            padding: 10px 15px;
-        }
-
-        .bell-header-title {
-            flex: 0 0 auto;
-        }
-
-        .bell-menu {
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-            justify-content: center;
-            .bell-menu-item {
-                width: auto;
-                height: 100%;
-                padding: 0 15px;
-
-                &.bell-active {
-                    border-bottom-color: @primaryColor;
-                }
-            }
-        }
+        align-items: stretch;
+        min-height: auto;
+        flex: 1;
     }
 
     .bell-sider {
-        user-select: none;
-        .bell-menu {
-            .bell-menu-item {
-                width: 100%;
-                padding: 10px 15px;
+        flex: 0 0 20%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        background-color: @layout-sider-background;
+        color: @layout-sider-font-color;
+    }
+}
 
-                &.bell-active {
-                    border-right-color: @primaryColor;
-                }
+.bell-menu {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    color: @layout-menu-item-font-color;
+
+    .bell-menu-item {
+        flex: 1;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        box-sizing: border-box;
+
+        padding: @layout-menu-item-padding;
+        border: 2px solid transparent;
+
+        &:hover {
+            color: @layout-sider-font-color;
+        }
+        &.bell-active {
+            color: @layout-sider-font-color;
+            border-bottom-color: @layout-menu-item-border-bottom;
+        }
+    }
+
+    &.bell-menu-vertical {
+        width: 100%;
+        flex-direction: column;
+
+        .bell-menu-item {
+            width: 100%;
+            justify-content: left;
+
+            &.bell-active {
+                color: @layout-sider-font-color;
+                border-bottom-color: transparent;
+                border-right-color: @layout-menu-item-border-bottom;
             }
         }
     }

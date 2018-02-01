@@ -1,39 +1,46 @@
 export default {
     template: `
-        <div class="bell-menu">
+        <div class="bell-menu
+        {{#if mode}} bell-menu-{{mode}}{{/if}}"
+        {{#if style}} style="{{style}}"{{if}}>
             {{$children}}
         </div>
     `,
 
     propTypes: {
+        mode: {
+            type: 'string'
+        },
         activeName: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         }
     },
 
     events: {
-        setActiveMenu: function (event, data) {
-            this.updateChild(data.name);
+        menuItemActive: function (event, data) {
+            this.updateActiveName(data.name);
         }
     },
 
     methods: {
-        updateChild: function (activeName) {
+        updateActiveName: function (name) {
             var me = this;
-            me.$children.some(child => {
-                if (child.$options.props.name == activeName) {
-                    $(child.$el).addClass('bell-active');
-                }
-                else {
-                    $(child.$el).removeClass('bell-active');
-                }
-            });
+            me.fire(
+                'activeMenuChange',
+                {
+                    name: name
+                },
+                true
+            );
         }
     },
 
     watchers: {
         activeName: function (activeName) {
-            this.updateChild(activeName);
+            this.updateActiveName(activeName);
         }
     }
 }

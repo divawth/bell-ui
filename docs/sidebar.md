@@ -25,6 +25,7 @@
   - [Notice 通知提醒](view/notice)
   - [Msgbox 消息对话框](view/msgbox)
   - [Badge 标记](view/badge)
+  - [Collapse 折叠面板](view/collapse)
   - [Tooltip 提示](view/tooltip)
 - [Other](other)
   - [Spinner 加载中](other/spinner)
