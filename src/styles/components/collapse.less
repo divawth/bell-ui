@@ -1,26 +1,26 @@
 .bell-collapse {
-    border: 1px solid #ccc;
-    border-radius: 4px;
     overflow: hidden;
 }
 
 .bell-panel {
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid @collapse-panel-border-color;
 
     &:last-child {
-        border-bottom: none;
+        border-bottom: 1px solid @collapse-panel-border-color;
     }
 
     .bell-panel-el {
         width: 100%;
-        padding: 8px 15px;
-        background-color: #f9f9f9;
         cursor: pointer;
         user-select: none;
+        font-weight: bold;
+
+        padding: @collapse-panel-el-padding;
+        font-size: @collapse-panel-el-font-size;
 
         .bell-panel-el-icon {
             float: right;
-            font-size: 18px;
+            font-size: @collapse-panel-el-icon-font-size;
             transition: transform 0.2s ease-in-out;
             transform-origin: left;
         }
@@ -30,17 +30,20 @@
         transition: height 0.3s ease-in-out;
         overflow: hidden;
 
-        > div {
-            padding: 15px;
+        font-size: @collapse-panel-inner-font-size;
+
+        .bell-panel-content {
+            padding: @collapse-panel-inner-content-padding;
+        }
+    }
+
+    .bell-panel-el-open {
+        > .bell-panel-el-icon {
+            transform: rotate(90deg);
         }
     }
 
     &.bell-panel-open {
-        > .bell-panel-el {
-            > .bell-panel-el-icon {
-                transform: rotate(90deg);
-            }
-        }
         > .bell-panel-inner {
             display: block;
         }

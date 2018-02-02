@@ -1,11 +1,12 @@
+let closeTimer, initTimer, openTimer;
 export default {
     template: `
         <div class="bell-panel
         {{#if className}} {{className}}{{/if}}
         {{#if isOpen}} bell-panel-open{{/if}}
-        {{#if isOpening}} bell-panel-isOpening{{/if}}
         ">
-            <div class="bell-panel-el" on-click="click()">
+            <div class="bell-panel-el
+            {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">
                 <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>
                 {{title}}
             </div>
@@ -20,62 +21,118 @@ export default {
         },
         title: {
             type: 'string'
+        },
+        name: {
+            type: ['string', 'number']
         }
     },
     data: function () {
         return {
-            isOpening: false,
-            isOpen: false
+            isOpen: false,
+            arrowOpen: false,
+            accordion: false,
         }
     },
     events: {
-        panelOpen: function () {
-            console.log(this);
+        panelAccordion: function (event, data) {
+            this.set({
+                accordion: data.accordion
+            });
+        },
+        panelActiveName: function (event, data) {
+            let me = this;
+            if (data.name === me.get('name')) {
+                me.toggleStatus(true);
+            }
+            else if (me.get('accordion')) {
+                me.toggleStatus(false);
+            }
         }
     },
     methods: {
-        click: function () {
-            var me = this;
-            var isOpen = !me.get('isOpen');
+        toggleStatus: function (isOpen) {
+            let me = this;
+            let arrowOpen = me.get('arrowOpen');
+            if (isOpen == arrowOpen) {
+                return;
+            }
             if (isOpen) {
                 me.open();
+                if (me.get('accordion')) {
+                    me.fire(
+                        'panelOpen',
+                        {
+                            name: me.get('name')
+                        }
+                    );
+                }
             }
             else {
                 me.close();
             }
+            me.set({
+                arrowOpen: isOpen
+            });
+        },
+        click: function () {
+            let me = this;
+            let isOpen = !me.get('isOpen');
+            me.toggleStatus(isOpen);
         },
         close: function () {
-            var me = this;
-            var innerElement = me.$refs.panelInner;
+            let me = this;
+            let innerElement = me.$refs.panelInner;
             innerElement.style.height = innerElement.clientHeight + 'px';
-            setTimeout(function () {
-                innerElement.style.height = 0;
-                setTimeout(function () {
-                    me.set({
-                        isOpen: false
-                    });
-                    innerElement.style.height = '';
-                }, 100);
-            }, 300);
+
+            closeTimer = setTimeout(
+                function () {
+                    innerElement.style.height = 0;
+                    initTimer = setTimeout(
+                        function () {
+                            me.set({
+                                isOpen: false
+                            });
+                            innerElement.style.height = '';
+                        },
+                        200
+                    );
+                },
+                100
+            );
         },
         open: function () {
-            var me = this;
-            var innerElement = me.$refs.panelInner;
+            let me = this;
+            let innerElement = me.$refs.panelInner;
             me.set({
                 isOpen: true
             });
 
             Yox.nextTick(function () {
-                var height = innerElement.clientHeight;
+                let height = innerElement.clientHeight;
                 innerElement.style.height = 0;
 
-                setTimeout(function () {
-                    innerElement.style.height = height + 'px';
-                    setTimeout(function () {
-                        innerElement.style.height = '';
-                    }, 100);
-                }, 100);
+                openTimer = setTimeout(
+                    function () {
+                        innerElement.style.height = height + 'px';
+                        initTimer = setTimeout(
+                            function () {
+                                innerElement.style.height = '';
+                            },
+                            200
+                        );
+                    },
+                    100
+                );
             });
         }
+    },
+    beforeDestroy: function () {
+        let me = this;
+        closeTimer = null;
+        initTimer = null;
+        openTimer = null;
+        clearTimeout(closeTimer);
+        clearTimeout(initTimer);
+        clearTimeout(openTimer);
     }
 }

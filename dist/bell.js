@@ -2560,54 +2560,121 @@ var Collapse = {
     propTypes: {
         className: {
             type: 'string'
+        },
+        activeName: {
+            type: ['string', 'number']
+        },
+        accordion: {
+            type: ['string', 'number', 'boolean']
+        }
+    },
+
+    events: {
+        panelOpen: function panelOpen(event, data) {
+            var me = this;
+            if (data.name) {
+                me.fire('panelActiveName', {
+                    name: name
+                }, true);
+            }
+        }
+    },
+    afterMount: function afterMount(argument) {
+        var me = this;
+        var name = me.get('activeName');
+        var accordion = me.get('accordion');
+        if (name) {
+            me.fire('panelActiveName', {
+                name: name
+            }, true);
+        }
+        if (accordion) {
+            me.fire('panelAccordion', {
+                accordion: true
+            }, true);
         }
     }
+
 };
 
+var closeTimer = void 0;
+var initTimer = void 0;
+var openTimer = void 0;
 var Panel = {
-    template: '\n        <div class="bell-panel\n        {{#if className}} {{className}}{{/if}}\n        {{#if isOpen}} bell-panel-open{{/if}}\n        {{#if isOpening}} bell-panel-isOpening{{/if}}\n        ">\n            <div class="bell-panel-el" on-click="click()">\n                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>\n                {{title}}\n            </div>\n            <div ref="panelInner" class="bell-panel-inner">\n                {{$children}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-panel\n        {{#if className}} {{className}}{{/if}}\n        {{#if isOpen}} bell-panel-open{{/if}}\n        ">\n            <div class="bell-panel-el\n            {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">\n                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>\n                {{title}}\n            </div>\n            <div ref="panelInner" class="bell-panel-inner">\n                {{$children}}\n            </div>\n        </div>\n    ',
     propTypes: {
         className: {
             type: 'string'
         },
         title: {
             type: 'string'
+        },
+        name: {
+            type: ['string', 'number']
         }
     },
     data: function data() {
         return {
-            isOpening: false,
-            isOpen: false
+            isOpen: false,
+            arrowOpen: false,
+            accordion: false
         };
     },
     events: {
-        panelOpen: function panelOpen() {
-            console.log(this);
+        panelAccordion: function panelAccordion(event, data) {
+            this.set({
+                accordion: data.accordion
+            });
+        },
+        panelActiveName: function panelActiveName(event, data) {
+            var me = this;
+            if (data.name === me.get('name')) {
+                me.toggleStatus(true);
+            } else if (me.get('accordion')) {
+                me.toggleStatus(false);
+            }
         }
     },
     methods: {
-        click: function click() {
+        toggleStatus: function toggleStatus(isOpen) {
             var me = this;
-            var isOpen = !me.get('isOpen');
+            var arrowOpen = me.get('arrowOpen');
+            if (isOpen == arrowOpen) {
+                return;
+            }
             if (isOpen) {
                 me.open();
+                if (me.get('accordion')) {
+                    me.fire('panelOpen', {
+                        name: me.get('name')
+                    });
+                }
             } else {
                 me.close();
             }
+            me.set({
+                arrowOpen: isOpen
+            });
+        },
+        click: function click() {
+            var me = this;
+            var isOpen = !me.get('isOpen');
+            me.toggleStatus(isOpen);
         },
         close: function close() {
             var me = this;
             var innerElement = me.$refs.panelInner;
             innerElement.style.height = innerElement.clientHeight + 'px';
-            setTimeout(function () {
+
+            closeTimer = setTimeout(function () {
                 innerElement.style.height = 0;
-                setTimeout(function () {
+                initTimer = setTimeout(function () {
                     me.set({
                         isOpen: false
                     });
                     innerElement.style.height = '';
-                }, 100);
-            }, 300);
+                }, 200);
+            }, 100);
         },
         open: function open() {
             var me = this;
@@ -2620,14 +2687,22 @@ var Panel = {
                 var height = innerElement.clientHeight;
                 innerElement.style.height = 0;
 
-                setTimeout(function () {
+                openTimer = setTimeout(function () {
                     innerElement.style.height = height + 'px';
-                    setTimeout(function () {
+                    initTimer = setTimeout(function () {
                         innerElement.style.height = '';
-                    }, 100);
+                    }, 200);
                 }, 100);
             });
         }
+    },
+    beforeDestroy: function beforeDestroy() {
+        closeTimer = null;
+        initTimer = null;
+        openTimer = null;
+        clearTimeout(closeTimer);
+        clearTimeout(initTimer);
+        clearTimeout(openTimer);
     }
 };
 

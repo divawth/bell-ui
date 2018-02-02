@@ -6680,22 +6680,21 @@
   border-right-color: rgba(0, 0, 0, 0.6);
 }
 .bell-collapse {
-  border: 1px solid #ccc;
-  border-radius: 4px;
   overflow: hidden;
 }
 .bell-panel {
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
 }
 .bell-panel:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #ccc;
 }
 .bell-panel .bell-panel-el {
   width: 100%;
   padding: 8px 15px;
-  background-color: #f9f9f9;
   cursor: pointer;
   user-select: none;
+  font-weight: bold;
+  font-size: 14px;
 }
 .bell-panel .bell-panel-el .bell-panel-el-icon {
   float: right;
@@ -6707,11 +6706,12 @@
   display: none;
   transition: height 0.3s ease-in-out;
   overflow: hidden;
+  font-size: 13px;
 }
 .bell-panel .bell-panel-inner > div {
   padding: 15px;
 }
-.bell-panel.bell-panel-open > .bell-panel-el > .bell-panel-el-icon {
+.bell-panel .bell-panel-el-open > .bell-panel-el-icon {
   transform: rotate(90deg);
 }
 .bell-panel.bell-panel-open > .bell-panel-inner {
