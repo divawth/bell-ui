@@ -3,10 +3,41 @@
     export default {
         template: `
             <Input placeholder="请输入..."
+                type="input"
                 style="width: 300px"
                 model="value"
+                onFocus="{{onFocus}}"
+                onBlur="{{onBlur}}"
+                onKeyup="{{onKeyup}}"
+                onKeydown="{{onKeydown}}"
+                onKeypress="{{onKeypress}}"
+                onEnter="{{onEnter}}"
+                onChange="{{onChange}}"
             ></Input>
-        `
+        `,
+        data: {
+            onFocus: function (event) {
+                console.log('onFocus')
+            },
+            onBlur: function (event) {
+                console.log('onBlur')
+            },
+            onKeyup: function (event) {
+                console.log('onKeyup')
+            },
+            onKeydown: function (event) {
+                console.log('onKeydown')
+            },
+            onKeypress: function (event) {
+                console.log('onKeypress')
+            },
+            onEnter: function (event) {
+                console.log('onEnter')
+            },
+            onChange: function (event) {
+                console.log('onChange')
+            }
+        }
     }
 
 > 可以清除
@@ -15,6 +46,7 @@
         template: `
             <Input placeholder="请输入..."
                 style="width: 300px"
+                type="input"
                 model="value"
                 clearable
             ></Input>
@@ -29,15 +61,21 @@
                 <Input placeholder="large size"
                     model="value"
                     size="large"
+                    type="input"
+                    clearable
                 ></Input>
                 <br><br>
                 <Input placeholder="default size"
                     model="value"
+                    type="input"
+                    clearable
                 ></Input>
                 <br><br>
                 <Input placeholder="small size"
                     size="small"
                     model="value"
+                    type="input"
+                    clearable
                 ></Input>
             </div>
         `
@@ -45,29 +83,7 @@
 
 > 通过 label 设置右侧按钮文字
 
-    export default {
-        template: `
-            <div>
-                <Input label="search"
-                    placeholder="请输入..."
-                    style="width: 200px"
-                    model="value"
-                    on-click="click()"
-                    onChange="{{onChange}}"
-                ></Input>
-            </div>
-        `,
-        data: {
-            onChange: function (val) {
-                console.log(val)
-            }
-        },
-        methods: {
-            click: function () {
-                this.$message.success('click secrch');
-            }
-        }
-    }
+!> (暂不支持)
 
 > type 设置为 textarea, 通过 rows 设置显示行数
 
@@ -120,8 +136,11 @@ clearable | 清空按钮 | boolean, string, number | - | false
 
 事件名称 | 说明 | 回调参数
 ---|---|---
+onEnter | 按下回车键的时候触发 | -
 onChange | 输入的时候值发生改变的时候回调 | value
 onFocus | 聚焦的时候触发 | -
 onBlur | 失焦的时候触发 | -
-on-click | 有按钮时候的点击事件 | -
-
+onClick | 有按钮时候的点击事件 | -
+onKeyup | 原生的 keyup 事件 | -
+onKeydown | 原生的 keyup 事件 | -
+onKeypress | 原生的 keypress 事件 | -

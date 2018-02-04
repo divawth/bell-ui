@@ -1,5 +1,5 @@
 (function (global, factory) {
-    (factory());
+	(factory());
 }(this, (function () { 'use strict';
 
 var Header = {
@@ -401,29 +401,33 @@ var Button = {
     }
 };
 
+var TEXT_TYPE_TEXTAREA = 'textarea';
+var TEXT_TYPE_INPUT = 'input';
+
 var Input = {
-    template: '\n<div class="bell-input-wrapper"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    {{#if type != TEXT_TYPE_TEXTAREA}}\n        {{#if !label}}\n            {{$children}}\n        {{else}}\n            <span class="bell-input-label" on-click="click">\n                {{label}}\n            </span>\n        {{/if}}\n\n        {{#if clearable}}\n            <i class="bell-icon\n            bell-icon-ios-close\n            bell-input-clear-icon\n            " on-click="clear()"></i>\n        {{/if}}\n\n        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"\n        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n        {{#if disabled}}disabled="disabled"{{/if}}\n        model="value" on-blur="blur()" on-focus="focus()"\n        ></input>\n\n    {{else}}\n        <textarea class="bell-textarea"\n            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n            {{#if rows}} rows="{{rows}}"{{/if}}\n            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n            {{#if disabled}}disabled="disabled"{{/if}}\n            model="value"\n        >\n        </textarea>\n    {{/if}}\n\n</div>\n    ',
+    template: '\n        <div class="bell-{{type}}\n        {{#if size}} bell-input-{{size}}{{/if}}\n        {{#if isFocus}} bell-focus{{/if}}\n        {{#if className}} bell-input-{{className}}{{/if}}\n        {{#if clearable}} bell-input-clearable{{/if}}\n        {{#if disabled}} bell-input-disabled{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if type === TEXT_TYPE_INPUT}}\n\n                <input ref="input"\n                    type="text"\n                    class="bell-input-el\n                        {{#if size}} bell-input-{{size}}{{/if}}\n                    "\n                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                    on-blur="blur()"\n                    on-focus="focus()"\n                ></input>\n\n                {{#if clearable}}\n                    <i class="bell-icon\n                        bell-icon-ios-close\n                        bell-input-clear-icon\n                    " on-click="clear()"></i>\n                {{/if}}\n\n            {{else if type === TEXT_TYPE_TEXTAREA}}\n\n                <textarea class="bell-input-el"\n                    style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                    {{#if rows}} rows="{{rows}}"{{/if}}\n                    {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                >\n                </textarea>\n\n            {{/if}}\n\n        </div>\n    ',
 
     propTypes: {
-        placeholder: {
+        style: {
             type: 'string'
         },
-        style: {
+        size: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        },
+        type: {
+            type: 'string'
+        },
+        placeholder: {
             type: 'string'
         },
         value: {
             type: ['string', 'number']
         },
-        size: {
-            type: 'string'
-        },
+
         icon: {
-            type: 'string'
-        },
-        label: {
-            type: 'string'
-        },
-        type: {
             type: 'string'
         },
         rows: {
@@ -435,20 +439,37 @@ var Input = {
         clearable: {
             type: ['string', 'number', 'boolean']
         },
+
         onChange: {
+            type: 'function'
+        },
+        onFocus: {
             type: 'function'
         },
         onBlur: {
             type: 'function'
         },
-        onFocus: {
+        onClick: {
+            type: 'function'
+        },
+        onEnter: {
+            type: 'function'
+        },
+        onKeyup: {
+            type: 'function'
+        },
+        onKeydown: {
+            type: 'function'
+        },
+        onKeypress: {
             type: 'function'
         }
     },
     data: function data() {
         return {
-            TEXT_TYPE_INPUT: 'input',
-            TEXT_TYPE_TEXTAREA: 'textarea'
+            TEXT_TYPE_INPUT: TEXT_TYPE_INPUT,
+            TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
+            isFocus: false
         };
     },
 
@@ -459,17 +480,63 @@ var Input = {
     },
 
     methods: {
-        blur: function blur() {
-            this.get('onBlur') && this.get('onBlur')(arguments);
+        blur: function blur(args) {
+            this.set({
+                isFocus: false
+            });
+            this.get('onBlur') && this.get('onBlur')(args);
         },
-        focus: function focus() {
-            this.get('onFocus') && this.get('onFocus')(arguments);
+        focus: function focus(args) {
+            this.set({
+                isFocus: true
+            });
+            this.get('onFocus') && this.get('onFocus')(args);
         },
         clear: function clear() {
             this.set({
                 value: ''
             });
+        },
+        labelClick: function labelClick(args) {
+            var me = this;
+            me.get('onChange') && me.get('onChange')(me.get('value'), args);
         }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        if (!me.$refs) {
+            return;
+        }
+        me.documentKeydownHandler = function (event) {
+            if (event.target == me.$refs.input) {
+                me.get('onKeydown') && me.get('onKeydown')(event);
+                if (event.keyCode === 13) {
+                    me.get('onEnter') && me.get('onEnter')(event);
+                }
+            }
+        };
+        me.documentKeyupHandler = function (event) {
+            if (event.target == me.$refs.input) {
+                me.get('onKeyup') && me.get('onKeyup')(event);
+            }
+        };
+        me.documentKeypressHandler = function (event) {
+            if (event.target == me.$refs.input) {
+                me.get('onKeypress') && me.get('onKeypress')(event);
+            }
+        };
+        document.addEventListener('keydown', me.documentKeydownHandler);
+        document.addEventListener('keyup', me.documentKeyupHandler);
+        document.addEventListener('keypress', me.documentKeypressHandler);
+    },
+    beforeDestroy: function beforeDestroy() {
+        var me = this;
+        if (!me.$refs) {
+            return;
+        }
+        document.removeEventListener('keydown', me.documentKeydownHandler);
+        document.removeEventListener('keyup', me.documentKeyupHandler);
+        document.removeEventListener('keypress', me.documentKeypressHandler);
     }
 };
 

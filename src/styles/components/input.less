@@ -1,111 +1,108 @@
-.bell-input-wrapper {
+.bell-textarea,
+.bell-input {
     display: inline-block;
     position: relative;
     vertical-align: middle;
     width: 100%;
+    border: 1px solid @input-border-color;
+    border-radius: @input-border-radius;
+    background-color: @input-background-color;
+    overflow: hidden;
 
     &:hover {
-        .bell-input-clear-icon {
-            display: block;
-        }
+        border-color: @input-hover-border-color;
     }
 
-    .bell-input-icon {
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
-        font-size: 16px;
-        text-align: center;
-        color: @subTitleFontColor;
-        position: absolute;
-        right: 0;
-        z-index: 3;
+    &.bell-focus {
+        border-color: @input-hover-border-color;
+        box-shadow: @input-focus-box-shadow;
     }
 
-    .bell-input-label {
-        padding: 0 10px;
-        line-height: 32px;
-        text-align: center;
-        color: @subTitleFontColor;
-        position: absolute;
-        right: 0;
-        z-index: 3;
-        cursor: pointer;
-        user-select: none;
-        border-left: 1px solid @borderColor;
-
-        &:hover {
-            color: @primaryHoverColor;
-        }
-    }
-
-    .bell-input-clear-icon {
-        position: absolute;
-        right: 0;
-        z-index: 3;
-        width: 24px;
-        height: 32px;
-        line-height: 32px;
-        cursor: pointer;
-        color: #bbb;
-        font-size: 16px;
-        display: none;
-    }
-
-    .bell-textarea,
-    .bell-input {
+    .bell-input-el {
+        border: none;
         box-sizing: border-box;
         display: inline-block;
         width: 100%;
-        height: 32px;
-        line-height: 1.5;
-        padding: 4px 7px;
-        font-size: 12px;
-        border: 1px solid @borderColor;
-        border-radius: 4px;
-        color: @contentFontColor;
         outline: none;
-        background-color: @white;
         background-image: none;
         position: relative;
         cursor: text;
+        background-color: transparent;
+
+        font-size: @input-el-font-size;
+        height: @input-el-height;
+        line-height: @input-el-line-height;
+        color: @input-el-color;
+        padding: @input-el-padding;
+
         transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
 
+    }
+
+    &.bell-input-clearable {
+        .bell-input-el {
+            padding-right: @input-clearable-width;
+        }
+
+        .bell-input-clear-icon {
+            position: absolute;
+            right: 0;
+            text-align: center;
+            cursor: pointer;
+
+            opacity: 0;
+
+            width: @input-clearable-width;
+            height: @input-el-height;
+            line-height: @input-el-height;
+            font-size: @input-clearable-font-size;
+            color: @input-clearable-color;
+
+            transition: opacity .2s ease-in-out;
+        }
+
         &:hover {
-            border-color: @primaryHoverColor;
-        }
-        &:focus {
-            border-color: @primaryHoverColor;
-            box-shadow: 0 0 0 2px rgba(45,140,240,.2);
+            .bell-input-clear-icon {
+                opacity: 1;
+            }
         }
     }
 
-    .bell-input-large {
-        font-size: 14px;
-        padding: 6px 7px;
-        height: 36px;
-    }
-
-    .bell-input-small {
-        padding: 1px 7px;
-        height: 24px;
-        border-radius: 3px;
-    }
-
-    .bell-textarea {
-        font-size: 14px;
-        width: 250px;
-    }
-
-    .bell-input[disabled],
-    .bell-textarea[disabled] {
-        background-color: @backgroundColor;
-        opacity: 1;
+    &.bell-input-disabled {
+        background-color: @input-disabled-backround-color;
         cursor: not-allowed;
-        color: @borderColor ;
-
+        .bell-input-el {
+            cursor: not-allowed;
+        }
         &:hover {
-            border-color: @borderColor;
+            border-color: @input-border-color;
+        }
+    }
+}
+.bell-input-small {
+    .bell-input-el {
+        height: @input-el-small-height;
+        line-height: @input-el-small-line-height;
+        padding: @input-el-small-padding;
+    }
+    &.bell-input-clearable {
+        .bell-input-clear-icon {
+            height: @input-el-small-height;
+            line-height: @input-el-small-height;
+        }
+    }
+
+}
+.bell-input-large {
+    .bell-input-el {
+        height: @input-el-large-height;
+        line-height: @input-el-large-line-height;
+        padding: @input-el-large-padding;
+    }
+    &.bell-input-clearable {
+        .bell-input-clear-icon {
+            height: @input-el-large-height;
+            line-height: @input-el-large-height;
         }
     }
 }
