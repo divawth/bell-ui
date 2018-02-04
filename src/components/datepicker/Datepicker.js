@@ -7,6 +7,7 @@ export default {
                     style="width: 200px;"
                     model="value"
                     onFocus="{{onFocus}}"
+                    clearable
                 >
                 </Input>
             </div>

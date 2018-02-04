@@ -146,16 +146,16 @@ export default {
             value: 10
         },
         showSizer: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         pageSizeOpts: {
             type: 'array'
         },
         showElevator: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         showTotal: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         className: {
             type: 'string'

@@ -5,6 +5,7 @@
 > 基础用法
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Header>Header</Header>
@@ -17,6 +18,7 @@
 > 有侧边栏
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Header>Header</Header>
@@ -32,6 +34,7 @@
 > sider 在右边
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Header>Header</Header>
@@ -47,6 +50,7 @@
 > sider 在左边
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Sider>Sider</Sider>
@@ -62,6 +66,7 @@
 > 没有 footer
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Header>Header</Header>
@@ -76,6 +81,7 @@
 > header 里面有 item
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Header>
@@ -106,6 +112,7 @@
 > sider 里面有 item
 
     export default {
+        isViewFullBlock: true,
         template: `
             <Layout>
                 <Sider>

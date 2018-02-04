@@ -12,6 +12,13 @@ export default {
             </span>
         {{/if}}
 
+        {{#if clearable}}
+            <i class="bell-icon
+            bell-icon-ios-close
+            bell-input-clear-icon
+            " on-click="clear()"></i>
+        {{/if}}
+
         <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
         {{#if disabled}}disabled="disabled"{{/if}}
@@ -60,6 +67,9 @@ export default {
         disabled: {
             type: 'string'
         },
+        clearable: {
+            type: ['string', 'number', 'boolean']
+        },
         onChange: {
             type: 'function'
         },
@@ -89,6 +99,11 @@ export default {
         },
         focus: function () {
             this.get('onFocus') && this.get('onFocus')(arguments);
+        },
+        clear: function () {
+            this.set({
+                value: ''
+            });
         }
     }
 }

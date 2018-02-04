@@ -9,6 +9,18 @@
         `
     }
 
+> 可以清除
+
+    export default {
+        template: `
+            <Input placeholder="请输入..."
+                style="width: 300px"
+                model="value"
+                clearable
+            ></Input>
+        `
+    }
+
 > 通过 size 设置大小
 
     export default {
@@ -102,6 +114,7 @@ placeholder | placeholder | string | - | -
 rows | 行数 | string | - | -
 disabled | 设置按钮为禁用状态 | boolean | - | false
 label | 设置右侧按钮文字 | string | - | -
+clearable | 清空按钮 | boolean, string, number | - | false
 
 > Events
 

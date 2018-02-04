@@ -2514,6 +2514,9 @@
   vertical-align: middle;
   width: 100%;
 }
+.bell-input-wrapper:hover .bell-input-clear-icon {
+  display: block;
+}
 .bell-input-wrapper .bell-input-icon {
   width: 32px;
   height: 32px;
@@ -2540,8 +2543,21 @@
 .bell-input-wrapper .bell-input-label:hover {
   color: #57a3f3;
 }
+.bell-input-wrapper .bell-input-clear-icon {
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  width: 24px;
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  color: #bbb;
+  font-size: 16px;
+  display: none;
+}
 .bell-input-wrapper .bell-textarea,
 .bell-input-wrapper .bell-input {
+  box-sizing: border-box;
   display: inline-block;
   width: 100%;
   height: 32px;
@@ -2994,6 +3010,7 @@
   user-select: none;
   vertical-align: middle;
   display: inline-block;
+  box-sizing: border-box;
   width: 48px;
   height: 24px;
   border-radius: 24px;
@@ -6163,6 +6180,7 @@
   position: absolute;
   opacity: 0;
   top: 36px;
+  z-index: 1060;
 }
 .bell-datepicker .bell-datepicker-poper.bell-isPopuping {
   display: block;
@@ -6683,17 +6701,17 @@
   overflow: hidden;
 }
 .bell-panel {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #dddee1;
 }
 .bell-panel:last-child {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #dddee1;
 }
 .bell-panel .bell-panel-el {
   width: 100%;
-  padding: 8px 15px;
   cursor: pointer;
   user-select: none;
   font-weight: bold;
+  padding: 8px 15px;
   font-size: 14px;
 }
 .bell-panel .bell-panel-el .bell-panel-el-icon {
@@ -6708,7 +6726,7 @@
   overflow: hidden;
   font-size: 13px;
 }
-.bell-panel .bell-panel-inner > div {
+.bell-panel .bell-panel-inner .bell-panel-content {
   padding: 15px;
 }
 .bell-panel .bell-panel-el-open > .bell-panel-el-icon {

@@ -402,7 +402,7 @@ var Button = {
 };
 
 var Input = {
-    template: '\n<div class="bell-input-wrapper"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    {{#if type != TEXT_TYPE_TEXTAREA}}\n        {{#if !label}}\n            {{$children}}\n        {{else}}\n            <span class="bell-input-label" on-click="click">\n                {{label}}\n            </span>\n        {{/if}}\n\n        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"\n        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n        {{#if disabled}}disabled="disabled"{{/if}}\n        model="value" on-blur="blur()" on-focus="focus()"\n        ></input>\n\n    {{else}}\n        <textarea class="bell-textarea"\n            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n            {{#if rows}} rows="{{rows}}"{{/if}}\n            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n            {{#if disabled}}disabled="disabled"{{/if}}\n            model="value"\n        >\n        </textarea>\n    {{/if}}\n\n</div>\n    ',
+    template: '\n<div class="bell-input-wrapper"\n    {{#if style}} style="{{style}}"{{/if}}\n>\n    {{#if type != TEXT_TYPE_TEXTAREA}}\n        {{#if !label}}\n            {{$children}}\n        {{else}}\n            <span class="bell-input-label" on-click="click">\n                {{label}}\n            </span>\n        {{/if}}\n\n        {{#if clearable}}\n            <i class="bell-icon\n            bell-icon-ios-close\n            bell-input-clear-icon\n            " on-click="clear()"></i>\n        {{/if}}\n\n        <input type="text" class="bell-input{{#if size}} bell-input-{{size}}{{/if}}"\n        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n        {{#if disabled}}disabled="disabled"{{/if}}\n        model="value" on-blur="blur()" on-focus="focus()"\n        ></input>\n\n    {{else}}\n        <textarea class="bell-textarea"\n            style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n            {{#if rows}} rows="{{rows}}"{{/if}}\n            {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n            {{#if disabled}}disabled="disabled"{{/if}}\n            model="value"\n        >\n        </textarea>\n    {{/if}}\n\n</div>\n    ',
 
     propTypes: {
         placeholder: {
@@ -431,6 +431,9 @@ var Input = {
         },
         disabled: {
             type: 'string'
+        },
+        clearable: {
+            type: ['string', 'number', 'boolean']
         },
         onChange: {
             type: 'function'
@@ -461,6 +464,11 @@ var Input = {
         },
         focus: function focus() {
             this.get('onFocus') && this.get('onFocus')(arguments);
+        },
+        clear: function clear() {
+            this.set({
+                value: ''
+            });
         }
     }
 };
@@ -1048,16 +1056,16 @@ var Page = {
             value: 10
         },
         showSizer: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         pageSizeOpts: {
             type: 'array'
         },
         showElevator: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         showTotal: {
-            type: 'string'
+            type: ['string', 'boolean', 'number']
         },
         className: {
             type: 'string'
@@ -1434,7 +1442,7 @@ var Badge = {
 };
 
 var Datepicker = {
-    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n            {{#if isPopuping}} bell-isPopuping{{/if}}\n            {{#if isPopdowning}} bell-isPopdowning{{/if}}\n            {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                    clearable\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n            {{#if isPopuping}} bell-isPopuping{{/if}}\n            {{#if isPopdowning}} bell-isPopdowning{{/if}}\n            {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
 
     propTypes: {
         mode: {
