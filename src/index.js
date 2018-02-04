@@ -3,6 +3,8 @@
  * @author wangtianhua
  */
 
+import Transition from './components/transition/Transition'
+
 import Layout from './components/layout/Layout'
 import Header from './components/layout/Header'
 import Sider from './components/layout/Sider'
@@ -55,11 +57,16 @@ import CardTitle from './components/card/CardTitle'
 import CardText from './components/card/CardText'
 import CardActions from './components/card/CardActions'
 
+import List from './components/list/List'
+import Item from './components/list/Item'
+
 import './components/message/Message'
 import './components/notice/Notice'
 import './components/msgbox/Msgbox'
 
 Yox.component({
+    Transition,
+
     Layout,
     Header,
     Sider,
@@ -110,5 +117,7 @@ Yox.component({
     CardActions,
 
     Collapse,
-    Panel
+    Panel,
+    List,
+    Item
 });

@@ -1,4 +1,5 @@
 - [Basic](README)
+  - [动画](basic/transition)
 - [Layout 布局](layout)
   - [Grid 栅格布局](layout/grid)
   - [Color 色彩](layout/color)
@@ -18,6 +19,7 @@
 - [Navigation](navigation)
   - [Page 分页](navigation/page)
 - [View](view)
+  - [List 列表](view/list)
   - [Avatar 头像](view/avatar)
   - [Alert 警告提示](view/alert)
   - [Card 卡片](view/card)

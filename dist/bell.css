@@ -6726,6 +6726,22 @@
 .bell-panel.bell-panel-open > .bell-panel-inner {
   display: block;
 }
+.bell-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bell-list .bell-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bell-list .bell-item + .bell-item {
+  margin-top: 10px;
+}
+.bell-list .bell-item :nth-child(1) {
+  margin-left: 10px;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }

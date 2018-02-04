@@ -1,8 +1,21 @@
+2 动画 transition
+
+fade 淡入淡出
+zoom 缩放
+collapse 展开折叠、
+
+3 Transfer 穿梭框
+
+4 proptype
+
+
 3 indeterminate 表示不定状态
 
 5 Drawer 抽屉式导航
 
 9 进度指示器 Progress
+
+5 list
 
 2 Chip
 
@@ -13,8 +26,6 @@ color   String      文字的颜色
 backgroundColor    String      背景色
 delete  点击删除图标后触发
 click   点击时候触发
-
-6 扩展面板 ExpansionPanel ## Collapse 折叠面板
 
 
 
@@ -32,18 +43,13 @@ click   点击时候触发
 
 ## Menu 导航菜单
 
-
 ## AutoComplete 自动完成
 
 ## Slider 滑块
 
 ## TimePicker 时间选择器
 
-## Cascader 级联选择
-
 ## Transfer 穿梭框
-
-## InputNumber 数字输入框
 
 ## Rate 评分
 

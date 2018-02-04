@@ -1,6 +1,29 @@
 (function (global, factory) {
-	(factory());
+    (factory());
 }(this, (function () { 'use strict';
+
+var Transition = {
+    template: '\n        <div id="21">\n            {{$children}}\n        <div>\n    ',
+    propTypes: {
+        name: {
+            type: 'string'
+        }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        function render(parent, children) {
+            Yox.object.extend(children.props, {
+                on: function on() {
+                    console.log('on');
+                }
+            });
+
+            return new Yox(children);
+        }
+
+        render(me.$el, me.$context.$children[0]);
+    }
+};
 
 var Header = {
     template: '\n        <div class="bell-header\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{$children}}\n        </div>\n    ',
@@ -1509,7 +1532,7 @@ var Badge = {
 };
 
 var Datepicker = {
-    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                    clearable\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n            {{#if isPopuping}} bell-isPopuping{{/if}}\n            {{#if isPopdowning}} bell-isPopdowning{{/if}}\n            {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                    type="input"\n                    clearable\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n            {{#if isPopuping}} bell-isPopuping{{/if}}\n            {{#if isPopdowning}} bell-isPopdowning{{/if}}\n            {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
 
     propTypes: {
         mode: {
@@ -2850,6 +2873,14 @@ var CardActions = {
     template: "\n        <div class=\"bell-card-actions\">\n            {{$children}}\n        </div>\n    "
 };
 
+var List = {
+    template: "\n        <ul class=\"bell-list\">\n            {{$children}}\n        </ul>\n    "
+};
+
+var Item = {
+    template: "\n        <li class=\"bell-item\">\n            {{$children}}\n        </li>\n    "
+};
+
 var id = 0;
 
 var createMessage = function createMessage(_data) {
@@ -3308,6 +3339,8 @@ Yox.prototype.$confirm = function (data) {
  */
 
 Yox.component({
+    Transition: Transition,
+
     Layout: Layout,
     Header: Header,
     Sider: Sider,
@@ -3358,7 +3391,9 @@ Yox.component({
     CardActions: CardActions,
 
     Collapse: Collapse,
-    Panel: Panel
+    Panel: Panel,
+    List: List,
+    Item: Item
 });
 
 })));

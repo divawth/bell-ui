@@ -1,0 +1,16 @@
+.bell-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    .bell-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        + .bell-item {
+            margin-top: 10px;
+        }
+        :nth-child(1) {
+            margin-left: 10px;
+        }
+    }
+}
