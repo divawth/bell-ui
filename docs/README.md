@@ -1,12 +1,45 @@
 2 动画 transition
 
+transition
+Props：
+
+enter-class - string
+leave-class - string
+appear-class - string
+
+enter-to-class - string
+leave-to-class - string
+appear-to-class - string
+
+enter-active-class - string
+leave-active-class - string
+appear-active-class - string
+
+事件：
+before-enter
+before-leave
+before-appear
+
+enter
+leave
+appear
+
+after-enter
+after-leave
+after-appear
+
+enter-cancelled
+leave-cancelled (v-show only)
+appear-cancelled
+
+
 fade 淡入淡出
 zoom 缩放
 collapse 展开折叠、
 
 3 Transfer 穿梭框
 
-4 proptype
+4 proptype https://github.com/developit/proptypes/blob/master/README.md
 
 
 3 indeterminate 表示不定状态

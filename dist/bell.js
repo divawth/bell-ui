@@ -2,26 +2,143 @@
     (factory());
 }(this, (function () { 'use strict';
 
+var FADE = 'fade';
 var Transition = {
-    template: '\n        <div id="21">\n            {{$children}}\n        <div>\n    ',
+    template: '\n        {{$children}}\n    ',
+
     propTypes: {
+        // 用于自动生成 CSS 过渡类名。用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为.fade-enter，.fade-enter-active等。
         name: {
             type: 'string'
+        },
+        // 是否在初始渲染时使用过渡
+        appear: {
+            type: ['string', 'number', 'boolean']
+        },
+        // 是否使用 CSS 过渡类。如果设置为 false，将只通过组件事件触发注册的 JavaScript 钩子
+        css: {
+            type: ['string', 'number', 'boolean']
+        },
+        // 指定过渡事件类型，侦听过渡何时结束
+        type: {
+            type: 'string'
+        },
+        mode: {
+            type: 'string'
+        },
+        value: {
+            type: ['string', 'number', 'boolean']
+        },
+        enterClass: {
+            type: 'string'
+        },
+        leaveClass: {
+            type: 'string'
+        },
+        appearClass: {
+            type: 'string'
+        },
+        enterToClass: {
+            type: 'string'
+        },
+        leaveToClass: {
+            type: 'string'
+        },
+        appearToClass: {
+            type: 'string'
+        },
+        enterActiveClass: {
+            type: 'string'
+        },
+        leaveActiveClass: {
+            type: 'string'
+        },
+        appearActiveClass: {
+            type: 'string'
+        },
+        beforeEnter: {
+            type: 'function'
+        },
+        beforeLeave: {
+            type: 'function'
+        },
+        beforeAppear: {
+            type: 'function'
+        },
+        onEnter: {
+            type: 'function'
+        },
+        onLeave: {
+            type: 'function'
+        },
+        onAppear: {
+            type: 'function'
+        },
+        afterEnter: {
+            type: 'function'
+        },
+        afterLeave: {
+            type: 'function'
+        },
+        afterAppear: {
+            type: 'function'
         }
     },
+
+    watchers: {
+        value: function value(_value) {
+            var me = this;
+            if (_value) {
+                me.begin();
+            } else {
+                me.beginTo();
+            }
+        }
+    },
+
+    methods: {
+        begin: function begin() {
+            var me = this;
+            me.enter();
+            setTimeout(function () {
+                me.leave();
+            }, 100);
+        },
+        enter: function enter() {
+            console.log(this.get('enterClass'));
+        },
+        leave: function leave() {
+            console.log(this.get('leaveClass'));
+        },
+        beginTo: function beginTo() {
+            me.enterTo();
+            setTimeout(function () {
+                me.leaveTo();
+            }, 100);
+        },
+        enterTo: function enterTo() {
+            console.log(this.get('enterToClass'));
+        },
+        leaveTo: function leaveTo() {
+            console.log(this.get('leaveToClass'));
+        }
+    },
+
     afterMount: function afterMount() {
         var me = this;
-        function render(parent, children) {
-            Yox.object.extend(children.props, {
-                on: function on() {
-                    console.log('on');
-                }
+        if (me.get('name') === FADE) {
+            me.set({
+                enterClass: me.get('enterClass') ? me.get('enterClass') : 'fade-enter',
+                leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'fade-leave',
+                appearClass: me.get('appearClass') ? me.get('appearClass') : 'fade-appear',
+                enterToClass: me.get('enterToClass') ? me.get('enterToClass') : 'fade-enter-to',
+                leaveToClass: me.get('leaveToClass') ? me.get('leaveToClass') : 'fade-leave-to',
+                appearToClass: me.get('appearToClass') ? me.get('appearToClass') : 'fade-appear-to',
+                enterActiveClass: me.get('enterActiveClass') ? me.get('enterActiveClass') : 'fade-enter-active',
+                leaveActiveClass: me.get('leaveActiveClass') ? me.get('leaveActiveClass') : 'fade-leave-active',
+                appearActiveClass: me.get('appearActiveClass') ? me.get('appearActiveClass') : 'fade-appear-active'
             });
-
-            return new Yox(children);
         }
-
-        render(me.$el, me.$context.$children[0]);
     }
 };
 
