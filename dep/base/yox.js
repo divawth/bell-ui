@@ -1,6 +1,59 @@
 (function (global, factory) {
-    (global.Yox = factory());
+  (global.Yox = factory());
 }(this, (function () { 'use strict';
+
+if (!Object.keys) {
+  Object.keys = function (obj) {
+    var result = [];
+    for (var key in obj) {
+      push(result, key);
+    }
+    return result;
+  };
+  Object.create = function (proto, descriptor) {
+    function Class() {}
+    Class.prototype = proto;
+    proto = new Class();
+    var constructor = descriptor && descriptor.constructor;
+    if (constructor) {
+      proto.constructor = constructor.value;
+    }
+    return proto;
+  };
+}
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s*|\s*$/g, '');
+  };
+}
+if (!Array.prototype.map) {
+  Array.prototype.indexOf = function (target) {
+    var result = -1;
+    each(this, function (item, index) {
+      if (item === target) {
+        result = index;
+        return FALSE;
+      }
+    });
+    return result;
+  };
+  Array.prototype.map = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      result.push(fn(item, index));
+    });
+    return result;
+  };
+  Array.prototype.filter = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      if (fn(item, index)) {
+        result.push(item);
+      }
+    });
+    return result;
+  };
+}
 
 
 
@@ -145,15 +198,15 @@ function primitive(value) {
 }
 
 var is$1 = {
-    is: is,
-    func: func,
-    array: array,
-    object: object,
-    string: string,
-    number: number,
-    boolean: boolean,
-    numeric: numeric,
-    primitive: primitive
+  is: is,
+  func: func,
+  array: array,
+  object: object,
+  string: string,
+  number: number,
+  boolean: boolean,
+  numeric: numeric,
+  primitive: primitive
 };
 
 /**
@@ -490,18 +543,18 @@ function falsy(array$$1) {
 }
 
 var array$1 = {
-    each: each,
-    merge: merge,
-    push: push,
-    unshift: unshift,
-    toArray: toArray$1,
-    toObject: toObject,
-    indexOf: indexOf,
-    has: has,
-    last: last,
-    pop: pop,
-    remove: remove,
-    falsy: falsy
+  each: each,
+  merge: merge,
+  push: push,
+  unshift: unshift,
+  toArray: toArray$1,
+  toObject: toObject,
+  indexOf: indexOf,
+  has: has,
+  last: last,
+  pop: pop,
+  remove: remove,
+  falsy: falsy
 };
 
 /**
@@ -608,15 +661,15 @@ function falsy$1(str) {
 }
 
 var string$1 = {
-    camelCase: camelCase,
-    trim: trim,
-    slice: slice,
-    split: split,
-    indexOf: indexOf$1,
-    has: has$2,
-    startsWith: startsWith,
-    endsWith: endsWith,
-    falsy: falsy$1
+  camelCase: camelCase,
+  trim: trim,
+  slice: slice,
+  split: split,
+  indexOf: indexOf$1,
+  has: has$2,
+  startsWith: startsWith,
+  endsWith: endsWith,
+  falsy: falsy$1
 };
 
 var SEPARATOR_KEY = '.';
@@ -874,16 +927,16 @@ function set$1(object$$1, keypath, value, autofill) {
 }
 
 var object$1 = {
-    keys: keys,
-    sort: sort,
-    each: each$1,
-    has: has$1,
-    exists: exists,
-    clear: clear,
-    extend: extend,
-    copy: copy,
-    get: get$1,
-    set: set$1
+  keys: keys,
+  sort: sort,
+  each: each$1,
+  has: has$1,
+  exists: exists,
+  clear: clear,
+  extend: extend,
+  copy: copy,
+  get: get$1,
+  set: set$1
 };
 
 var guid = 0;
@@ -1174,10 +1227,10 @@ function fatal(msg) {
 
 
 var logger = {
-    log: log,
-    warn: warn,
-    error: error$1,
-    fatal: fatal
+  log: log,
+  warn: warn,
+  error: error$1,
+  fatal: fatal
 };
 
 var isNative = function (fn) {
@@ -1884,12 +1937,12 @@ function init(api) {
 }
 
 var snabbdom = {
-    createCommentVnode: createCommentVnode,
-    createTextVnode: createTextVnode,
-    isTextVnode: isTextVnode,
-    createElementVnode: createElementVnode,
-    createComponentVnode: createComponentVnode,
-    init: init
+  createCommentVnode: createCommentVnode,
+  createTextVnode: createTextVnode,
+  isTextVnode: isTextVnode,
+  createElementVnode: createElementVnode,
+  createComponentVnode: createComponentVnode,
+  init: init
 };
 
 var SYNTAX_IF = '#if';
@@ -5398,30 +5451,30 @@ function setComponent(element, component) {
 }
 
 var domApi = {
-    createElement: createElement,
-    createText: createText,
-    createComment: createComment,
-    createEvent: createEvent,
-    isElement: isElement,
-    setProp: setProp,
-    removeProp: removeProp,
-    setAttr: setAttr,
-    removeAttr: removeAttr,
-    before: before,
-    append: append$1,
-    replace: replace,
-    remove: remove$1,
-    parent: parent,
-    next: next,
-    tag: tag$1,
-    children: children,
-    text: text,
-    html: html,
-    find: find,
-    on: on$1,
-    off: off,
-    getComponent: getComponent,
-    setComponent: setComponent
+  createElement: createElement,
+  createText: createText,
+  createComment: createComment,
+  createEvent: createEvent,
+  isElement: isElement,
+  setProp: setProp,
+  removeProp: removeProp,
+  setAttr: setAttr,
+  removeAttr: removeAttr,
+  before: before,
+  append: append$1,
+  replace: replace,
+  remove: remove$1,
+  parent: parent,
+  next: next,
+  tag: tag$1,
+  children: children,
+  text: text,
+  html: html,
+  find: find,
+  on: on$1,
+  off: off,
+  getComponent: getComponent,
+  setComponent: setComponent
 };
 
 /**
@@ -5477,14 +5530,123 @@ var COMPOSITION_END = 'compositionend';
  *
  * @type {string}
  */
+var PROPERTY_CHANGE = 'propertychange';
+
+var IEEvent = function () {
+  function IEEvent(event, element) {
+    classCallCheck(this, IEEvent);
+
+
+    extend(this, event);
+
+    this.currentTarget = element;
+    this.target = event.srcElement || element;
+    this.originalEvent = event;
+  }
+
+  IEEvent.prototype.preventDefault = function () {
+    this.originalEvent.returnValue = FALSE;
+  };
+
+  IEEvent.prototype.stopPropagation = function () {
+    this.originalEvent.cancelBubble = TRUE;
+  };
+
+  return IEEvent;
+}();
+
+function addInputListener(element, listener) {
+  listener.$listener = function (e) {
+    if (e.propertyName === 'value') {
+      e = new Event(e);
+      e.type = INPUT;
+      listener.call(this, e);
+    }
+  };
+  on$2(element, PROPERTY_CHANGE, listener.$listener);
+}
+
+function removeInputListener(element, listener) {
+  off$1(element, PROPERTY_CHANGE, listener.$listener);
+  delete listener.$listener;
+}
+
+function addChangeListener(element, listener) {
+  listener.$listener = function (e) {
+    e = new Event(e);
+    e.type = CHANGE;
+    listener.call(this, e);
+  };
+  on$2(element, CLICK, listener.$listener);
+}
+
+function removeChangeListener(element, listener) {
+  off$1(element, CLICK, listener.$listener);
+  delete listener.$listener;
+}
+
+function isBox(element) {
+  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
+}
+
+function on$2(element, type, listener) {
+  if (type === INPUT) {
+    addInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    addChangeListener(element, listener);
+  } else {
+    element.attachEvent('on' + type, listener);
+  }
+}
+
+function off$1(element, type, listener) {
+  if (type === INPUT) {
+    removeInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    removeChangeListener(element, listener);
+  } else {
+    element.detachEvent('on' + type, listener);
+  }
+}
+
+function createEvent$1(event, element) {
+  return new IEEvent(event, element);
+}
+
+function find$1(selector, context) {
+  context = context || doc;
+  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
+}
+
+function setProp$1(element, name, value) {
+  try {
+    if (name === 'textContent' && !exists(element, name)) {
+      name = 'innerText';
+    }
+    set$1(element, name, value);
+  } catch (e) {
+    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
+      element.setAttribute('type', 'text/css');
+      element.styleSheet.cssText = value;
+    }
+  }
+}
+
+
+
+var oldApi = {
+  on: on$2,
+  off: off$1,
+  createEvent: createEvent$1,
+  find: find$1,
+  setProp: setProp$1
+};
 
 var api = copy(domApi);
 
-// import * as oldApi from './oldApi'
-
-// if (env.doc && !env.doc.addEventListener) {
-//   object.extend(api, oldApi)
-// }
+if (doc && !doc.addEventListener) {
+  extend(api, oldApi);
+}
 
 var _on = api.on;
 var _off = api.off;

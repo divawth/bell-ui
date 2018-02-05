@@ -1,5 +1,5 @@
 (function (global, factory) {
-    (factory());
+	(factory());
 }(this, (function () { 'use strict';
 
 var addClass = function addClass(element, className) {
@@ -3157,6 +3157,138 @@ var Item = {
     template: "\n        <li class=\"bell-item\">\n            {{$children}}\n        </li>\n    "
 };
 
+var Transfer = {
+    template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{leftCheckedCount}} / {{leftList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{rightCheckedCount}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
+    propTypes: {
+        data: {
+            type: 'object',
+            value: function value() {
+                return {};
+            }
+        },
+        targetKeys: {
+            type: 'array',
+            value: function value() {
+                return [];
+            }
+        },
+        onChange: {
+            type: 'function'
+        },
+        leftLabel: {
+            type: 'string'
+        },
+        rightLabel: {
+            type: 'string'
+        }
+    },
+    data: function data() {
+        var me = this;
+        return {
+            leftKeys: [],
+            rightKeys: [],
+
+            checkLeftAll: false,
+            checkRightAll: false,
+
+            left: [],
+            right: [],
+
+            leftCheckedCount: 0,
+            rightCheckedCount: 0,
+
+            onLeftChange: function onLeftChange(left) {
+                me.set({
+                    leftCheckedCount: left.length,
+                    left: left,
+                    checkLeftAll: left && left.length == me.get('leftList.length')
+                });
+            },
+            onRightChange: function onRightChange(right) {
+                me.set({
+                    rightCheckedCount: right.length,
+                    right: right,
+                    checkRightAll: right && right.length == me.get('rightList.length')
+                });
+            },
+            onCheckLeftAllChange: function onCheckLeftAllChange(isCheckAll) {
+                me.set({
+                    left: isCheckAll ? me.getListKeys(me.get('leftList')) : []
+                });
+            },
+            onCheckRightAllChange: function onCheckRightAllChange(isCheckAll) {
+                me.set({
+                    right: isCheckAll ? me.getListKeys(me.get('rightList')) : []
+                });
+            }
+        };
+    },
+    computed: {
+        rightList: {
+            deps: ['targetKeys', 'targetKeys.length', 'data.*'],
+            get: function get() {
+                var me = this;
+                var data = me.get('data');
+                var targetKeys = me.get('targetKeys');
+                if (!data || !targetKeys) {
+                    return [];
+                }
+                return data.filter(function (item) {
+                    return targetKeys.indexOf(item['key']) !== -1;
+                });
+            }
+        },
+        leftList: {
+            deps: ['targetKeys', 'targetKeys.length', 'data.*'],
+            get: function get() {
+                var me = this;
+                var data = me.get('data');
+                var targetKeys = me.get('targetKeys');
+                if (!data || !targetKeys) {
+                    return [];
+                }
+                return data.filter(function (item) {
+                    return targetKeys.indexOf(item['key']) === -1;
+                });
+            }
+        }
+    },
+    methods: {
+        addToLeft: function addToLeft() {
+            var me = this;
+            me.get('right').map(function (item) {
+                Yox.array.remove('targetKeys', item.key);
+            });
+        },
+        addToRight: function addToRight() {
+            var me = this;
+            me.set({
+                targetKeys: Yox.array.merge(me.get('targetKeys'), me.get('left'))
+            });
+        },
+        getListCheckedkeys: function getListCheckedkeys(list) {
+            var keys = [];
+            if (list.length) {
+                keys = list.map(function (item) {
+                    if (item.checked) {
+                        return item.keys;
+                    }
+                });
+            }
+            return keys;
+        },
+        getListKeys: function getListKeys(list) {
+            var keys = [];
+            if (list.length) {
+                keys = list.map(function (item) {
+                    return item.key;
+                });
+            }
+            return keys;
+        }
+    }
+};
+
 var id = 0;
 
 var createMessage = function createMessage(_data) {
@@ -3669,7 +3801,9 @@ Yox.component({
     Collapse: Collapse,
     Panel: Panel,
     List: List,
-    Item: Item
+    Item: Item,
+
+    Transfer: Transfer
 });
 
 })));

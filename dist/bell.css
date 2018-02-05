@@ -3153,6 +3153,13 @@
 .bell-checkbox-disabled .bell-checkbox-label {
   cursor: not-allowed;
 }
+.bell-checkbox-vertical {
+  display: flex;
+  flex-direction: column;
+}
+.bell-checkbox-vertical .bell-checkbox {
+  flex: 1;
+}
 .bell-bread-crumb {
   padding: 15px;
 }
@@ -6918,8 +6925,53 @@
 .bell-list .bell-item + .bell-item {
   margin-top: 10px;
 }
-.bell-list .bell-item :nth-child(1) {
-  margin-left: 10px;
+.bell-transfer {
+  display: flex;
+}
+.bell-transfer .bell-transfer-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-body {
+  overflow-y: auto;
+  padding: 10px;
+  flex: 1;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-body .bell-checkbox {
+  padding: 10px 0;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-header {
+  padding: 10px;
+  flex: 0 0 40px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-header .bell-transfer-list-header-checkbox {
+  flex: 0 0 20px;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-header .bell-transfer-list-header-title {
+  flex: 1;
+  text-align: center;
+}
+.bell-transfer .bell-transfer-list .bell-transfer-list-header .bell-transfer-list-header-count {
+  flex: 0 0 60px;
+  text-align: right;
+}
+.bell-transfer .bell-transfer-actions {
+  flex: 0 0 60px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+}
+.bell-transfer .bell-transfer-actions .bell-button + .bell-button {
+  margin-left: 0;
+  margin-top: 10px;
 }
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
