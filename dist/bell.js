@@ -2,12 +2,36 @@
     (factory());
 }(this, (function () { 'use strict';
 
+var addClass = function addClass(element, className) {
+    var classNameArray = element.className.split(/\s/g);
+    if (Yox.array.indexOf(classNameArray, className) > 0) {
+        return;
+    } else {
+        classNameArray.push(className);
+        element.className = classNameArray.join(' ');
+    }
+};
+
+var removeClass = function removeClass(element, className) {
+    var classNameArray = element.className.split(/\s/g);
+    var index = Yox.array.indexOf(classNameArray, className);
+    if (index > 0) {
+        classNameArray.splice(index);
+        element.className = classNameArray.join(' ');
+        if (Yox.array.indexOf(classNameArray, className) > 0) {
+            removeClass(element, className);
+        }
+    } else {
+        return;
+    }
+};
+
 var FADE = 'fade';
 var Transition = {
-    template: '\n        {{$children}}\n    ',
+    template: '{{$children}}',
 
     propTypes: {
-        // 用于自动生成 CSS 过渡类名。用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为.fade-enter，.fade-enter-active等。
+        // 用于自动生成 CSS 过渡类名。用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为.bell-fade-enter，.bell-fade-enter-active等。
         name: {
             type: 'string'
         },
@@ -19,7 +43,7 @@ var Transition = {
         css: {
             type: ['string', 'number', 'boolean']
         },
-        // 指定过渡事件类型，侦听过渡何时结束
+        // 指定过渡事件类型
         type: {
             type: 'string'
         },
@@ -102,41 +126,69 @@ var Transition = {
             me.enter();
             setTimeout(function () {
                 me.leave();
+                setTimeout(function () {
+                    me.appear();
+                }, 300);
             }, 100);
         },
         enter: function enter() {
-            console.log(this.get('enterClass'));
+            var me = this;
+            removeClass(me.$el, this.get('appearToClass'));
+            addClass(me.$el, this.get('enterClass'));
         },
         leave: function leave() {
-            console.log(this.get('leaveClass'));
+            var me = this;
+            addClass(me.$el, this.get('leaveClass'));
+        },
+        appear: function appear() {
+            var me = this;
+            removeClass(me.$el, this.get('enterClass'));
+            removeClass(me.$el, this.get('leaveClass'));
+            addClass(me.$el, this.get('appearClass'));
         },
         beginTo: function beginTo() {
+            var me = this;
             me.enterTo();
             setTimeout(function () {
                 me.leaveTo();
+                setTimeout(function () {
+                    me.appearTo();
+                }, 300);
             }, 100);
         },
         enterTo: function enterTo() {
-            console.log(this.get('enterToClass'));
+            var me = this;
+            removeClass(me.$el, this.get('appearClass'));
+            addClass(me.$el, this.get('enterToClass'));
         },
         leaveTo: function leaveTo() {
-            console.log(this.get('leaveToClass'));
+            var me = this;
+            addClass(me.$el, this.get('leaveToClass'));
+        },
+        appearTo: function appearTo() {
+            var me = this;
+            removeClass(me.$el, this.get('enterToClass'));
+            removeClass(me.$el, this.get('leaveToClass'));
+            addClass(me.$el, this.get('appearToClass'));
         }
     },
 
     afterMount: function afterMount() {
         var me = this;
-        if (me.get('name') === FADE) {
+        if (me.get('type')) {
+            me.$el.style.transitionTimingFunction = me.get('type');
+        }
+        if (me.get('mode') === FADE) {
             me.set({
-                enterClass: me.get('enterClass') ? me.get('enterClass') : 'fade-enter',
-                leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'fade-leave',
-                appearClass: me.get('appearClass') ? me.get('appearClass') : 'fade-appear',
-                enterToClass: me.get('enterToClass') ? me.get('enterToClass') : 'fade-enter-to',
-                leaveToClass: me.get('leaveToClass') ? me.get('leaveToClass') : 'fade-leave-to',
-                appearToClass: me.get('appearToClass') ? me.get('appearToClass') : 'fade-appear-to',
-                enterActiveClass: me.get('enterActiveClass') ? me.get('enterActiveClass') : 'fade-enter-active',
-                leaveActiveClass: me.get('leaveActiveClass') ? me.get('leaveActiveClass') : 'fade-leave-active',
-                appearActiveClass: me.get('appearActiveClass') ? me.get('appearActiveClass') : 'fade-appear-active'
+                enterClass: me.get('enterClass') ? me.get('enterClass') : 'bell-fade-enter',
+                leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'bell-fade-leave',
+                appearClass: me.get('appearClass') ? me.get('appearClass') : 'bell-fade-appear',
+                enterToClass: me.get('enterToClass') ? me.get('enterToClass') : 'bell-fade-enter-to',
+                leaveToClass: me.get('leaveToClass') ? me.get('leaveToClass') : 'bell-fade-leave-to',
+                appearToClass: me.get('appearToClass') ? me.get('appearToClass') : 'bell-fade-appear-to',
+                enterActiveClass: me.get('enterActiveClass') ? me.get('enterActiveClass') : 'bell-fade-enter-active',
+                leaveActiveClass: me.get('leaveActiveClass') ? me.get('leaveActiveClass') : 'bell-fade-leave-active',
+                appearActiveClass: me.get('appearActiveClass') ? me.get('appearActiveClass') : 'bell-fade-appear-active'
             });
         }
     }

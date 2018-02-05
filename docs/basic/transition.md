@@ -1,10 +1,77 @@
+> 基础用法
+
     export default {
         template: `
-            <Transition model="isShow" mode="fade">
+            <div>
                 <Button on-click="click()">
-                    fade-in-linear
+                    Fade
                 </Button>
-            </Transition>
+                <br><br>
+                <Transition model="isShow" type="ease-out" mode="fade">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        fade-ease-out
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="ease-in" mode="fade">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        fade-ease-in
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="linear" mode="fade">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        fade-linear
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="ease" mode="fade">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        fade-ease
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="ease-in-out" mode="fade">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        fade-ease-in-out
+                    </div>
+                </Transition>
+            </div>
         `,
         methods: {
             click: function () {
@@ -23,7 +90,7 @@
 name | 用于自动生成 CSS 过渡类名 | string | - | -
 appear | 是否在初始渲染时使用过渡 | boolean | - | false
 css | 是否使用 CSS 过渡类。如果设置为 false，将只通过组件事件触发注册的 JavaScript 钩子 | boolean | - | true
-type | 指定过渡事件类型，侦听过渡何时结束 | string | transition, animation | -
+type | 指定过渡事件类型，侦听过渡何时结束 | string | linear, ease, ease-in, ease-out, ease-in-out | -
 mode | 动画类型 | string | zoom, fade, collapse | -
 enterClass | 类名 | string | - | -
 leaveClass | 类名 | string | - | -
@@ -34,6 +101,8 @@ appearToClass | 类名 | string | - | -
 enterActiveClass | 类名 | string | - | -
 leaveActiveClass | 类名 | string | - | -
 appearActiveClass | 类名 | string | - | -
+
+
 
 > Events
 

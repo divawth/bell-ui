@@ -29,7 +29,7 @@ after-leave
 after-appear
 
 enter-cancelled
-leave-cancelled (v-show only)
+leave-cancelled
 appear-cancelled
 
 
