@@ -60,6 +60,8 @@ import CardActions from './components/card/CardActions'
 import List from './components/list/List'
 import Item from './components/list/Item'
 
+import Transfer from './components/transfer/Transfer'
+
 import './components/message/Message'
 import './components/notice/Notice'
 import './components/msgbox/Msgbox'
@@ -119,5 +121,7 @@ Yox.component({
     Collapse,
     Panel,
     List,
-    Item
+    Item,
+
+    Transfer
 });

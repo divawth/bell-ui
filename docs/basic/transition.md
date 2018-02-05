@@ -1,4 +1,4 @@
-> 基础用法
+> Fade 淡入淡出
 
     export default {
         template: `
@@ -7,7 +7,7 @@
                     Fade
                 </Button>
                 <br><br>
-                <Transition model="isShow" type="ease-out" mode="fade">
+                <Transition appear model="isShow" type="ease-out" mode="fade">
                     <div style="
                         width: 100px;
                         height: 100px;
@@ -82,12 +82,153 @@
         }
     }
 
+> Zoom 缩放
+
+    export default {
+        template: `
+            <div>
+                <Button on-click="click()">
+                    Zoom
+                </Button>
+                <br><br>
+                <Transition model="isShow" type="lineart" mode="zoom-left">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-left
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="linear" mode="zoom-right">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-right
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="linear" mode="zoom-top">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-top
+                    </div>
+                </Transition>
+                <br><br>
+                <Transition model="isShow" type="linear" mode="zoom-bottom">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-bottom
+                    </div>
+                </Transition>
+
+                <br><br>
+                <Transition model="isShow" type="linear" mode="zoom-center-y">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-center-y
+                    </div>
+                </Transition>
+
+                <br><br>
+                <Transition model="isShow" type="linear" mode="zoom-center-x">
+                    <div style="
+                        width: 100px;
+                        height: 100px;
+                        line-height: 100px;
+                        background-color: #2892F0;
+                        text-align:  center;
+                        color:  #ffff;
+                    ">
+                        zoom-center-x
+                    </div>
+                </Transition>
+            </div>
+        `,
+        methods: {
+            click: function () {
+                this.set({
+                    isShow: !this.get('isShow')
+                });
+            }
+        }
+    }
+
+> Collapse 折叠效果
+
+    export default {
+        template: `
+            <div>
+                <Button on-click="click()">
+                    Collapse
+                </Button>
+                <br><br>
+                <Transition model="isShow" type="lineart" mode="collapse">
+                    <div style="background: #2892F0">
+                        <div style="
+                            width: 100px;
+                            height: 100px;
+                            line-height: 100px;
+                            text-align:  center;
+                            color:  #ffff;
+                        ">
+                            Panel 1
+                        </div>
+
+                        <div style="
+                            width: 100px;
+                            height: 100px;
+                            line-height: 100px;
+                            text-align:  center;
+                            color:  #ffff;
+                        ">
+                            Panel 2
+                        </div>
+                    </div>
+                </Transition>
+            </div>
+        `,
+        methods: {
+            click: function () {
+                this.set({
+                    isShow: !this.get('isShow')
+                });
+            }
+        }
+    }
+
 
 > Attributes
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-name | 用于自动生成 CSS 过渡类名 | string | - | -
 appear | 是否在初始渲染时使用过渡 | boolean | - | false
 css | 是否使用 CSS 过渡类。如果设置为 false，将只通过组件事件触发注册的 JavaScript 钩子 | boolean | - | true
 type | 指定过渡事件类型，侦听过渡何时结束 | string | linear, ease, ease-in, ease-out, ease-in-out | -
@@ -103,17 +244,11 @@ leaveActiveClass | 类名 | string | - | -
 appearActiveClass | 类名 | string | - | -
 
 
-
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-beforeEnter | 进入动画之前 | -
-beforeLeave | 离开动画之前 | -
-beforeAppear | 消失动画之前 | -
 onEnter | 进入动画 | -
 onLeave | 离开动画 | -
 onAppear | 消失动画 | -
-afterEnter | 进入动画之后 | -
-afterLeave | 离开动画之后 | -
-afterAppear | 消失动画之后 | -
+onEnd | 结束动画 | -

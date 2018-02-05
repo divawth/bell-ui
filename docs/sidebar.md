@@ -16,6 +16,7 @@
   - [Switch 单选框](form/switch)
   - [Select 选择器](form/select)
   - [Datepicker 日期选择器](form/datepicker)
+  - [Transfer 穿梭框](form/transfer)
 - [Navigation](navigation)
   - [Page 分页](navigation/page)
 - [View](view)

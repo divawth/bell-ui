@@ -27,14 +27,12 @@ var removeClass = function removeClass(element, className) {
 };
 
 var FADE = 'fade';
+var COLLAPSE = 'collapse';
+
 var Transition = {
     template: '{{$children}}',
 
     propTypes: {
-        // 用于自动生成 CSS 过渡类名。用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为.bell-fade-enter，.bell-fade-enter-active等。
-        name: {
-            type: 'string'
-        },
         // 是否在初始渲染时使用过渡
         appear: {
             type: ['string', 'number', 'boolean']
@@ -80,15 +78,7 @@ var Transition = {
         appearActiveClass: {
             type: 'string'
         },
-        beforeEnter: {
-            type: 'function'
-        },
-        beforeLeave: {
-            type: 'function'
-        },
-        beforeAppear: {
-            type: 'function'
-        },
+
         onEnter: {
             type: 'function'
         },
@@ -96,6 +86,19 @@ var Transition = {
             type: 'function'
         },
         onAppear: {
+            type: 'function'
+        },
+        onEnd: function onEnd() {
+
+        },
+
+        beforeEnter: {
+            type: 'function'
+        },
+        beforeLeave: {
+            type: 'function'
+        },
+        beforeAppear: {
             type: 'function'
         },
         afterEnter: {
@@ -121,6 +124,7 @@ var Transition = {
     },
 
     methods: {
+        dispose: function dispose() {},
         begin: function begin() {
             var me = this;
             me.enter();
@@ -128,23 +132,74 @@ var Transition = {
                 me.leave();
                 setTimeout(function () {
                     me.appear();
+                    setTimeout(function () {
+                        me.end();
+                    }, 100);
                 }, 300);
             }, 100);
         },
         enter: function enter() {
             var me = this;
-            removeClass(me.$el, this.get('appearToClass'));
-            addClass(me.$el, this.get('enterClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onEnter') && me.get('onEnter')();
+                return;
+            }
+            if (me.get('mode') === FADE) {
+                element.style.opacity = '';
+            } else if (me.get('mode') === COLLAPSE) {
+                me.collapseClientHeight = element.clientHeight;
+                me.collapsePaddingTop = element.style.paddingTop;
+                me.collapsePaddingBottom = element.style.paddingBottom;
+                element.style.height = me.collapseClientHeight + 'px';
+            } else {
+                element.style.display = '';
+            }
+            addClass(element, me.get('enterClass'));
         },
         leave: function leave() {
             var me = this;
-            addClass(me.$el, this.get('leaveClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onLeave') && me.get('onLeave')();
+                return;
+            }
+            if (me.get('mode') === COLLAPSE) {
+                element.style.height = 0;
+                element.style.paddingTop = 0;
+                element.style.paddingBottom = 0;
+            }
+            addClass(element, me.get('leaveClass'));
         },
         appear: function appear() {
             var me = this;
-            removeClass(me.$el, this.get('enterClass'));
-            removeClass(me.$el, this.get('leaveClass'));
-            addClass(me.$el, this.get('appearClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onAppear') && me.get('onAppear')();
+                return;
+            }
+            removeClass(element, me.get('enterClass'));
+            removeClass(element, me.get('leaveClass'));
+            addClass(element, me.get('appearClass'));
+        },
+        end: function end() {
+            var me = this;
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onEnd') && me.get('onEnd')();
+                return;
+            }
+            if (me.get('mode') === FADE) {
+                element.style.opacity = 0;
+            } else if (me.get('mode') === COLLAPSE) {
+                element.style.height = '';
+                element.style.display = 'none';
+                element.style.paddingTop = '';
+                element.style.paddingBottom = '';
+            } else {
+                element.style.display = 'none';
+            }
+            removeClass(element, me.get('appearClass'));
         },
         beginTo: function beginTo() {
             var me = this;
@@ -153,23 +208,69 @@ var Transition = {
                 me.leaveTo();
                 setTimeout(function () {
                     me.appearTo();
+                    setTimeout(function () {
+                        me.endTo();
+                    }, 100);
                 }, 300);
             }, 100);
         },
         enterTo: function enterTo() {
             var me = this;
-            removeClass(me.$el, this.get('appearClass'));
-            addClass(me.$el, this.get('enterToClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onEnter') && me.get('onEnter')();
+                return;
+            }
+            if (me.get('mode') === FADE) {
+                element.style.opacity = '';
+            } else if (me.get('mode') === COLLAPSE) {
+                element.style.height = 0;
+                element.style.paddingTop = 0;
+                element.style.paddingBottom = 0;
+                element.style.display = '';
+            } else {
+                element.style.display = '';
+            }
+            addClass(element, me.get('enterToClass'));
         },
         leaveTo: function leaveTo() {
             var me = this;
-            addClass(me.$el, this.get('leaveToClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onLeave') && me.get('onLeave')();
+                return;
+            }
+            if (me.get('mode') === COLLAPSE) {
+                element.style.height = me.collapseClientHeight + 'px';
+                element.style.paddingTop = me.collapsePaddingTop;
+                element.style.paddingBottom = me.collapsePaddingBottom;
+            }
+            addClass(element, me.get('leaveToClass'));
         },
         appearTo: function appearTo() {
             var me = this;
-            removeClass(me.$el, this.get('enterToClass'));
-            removeClass(me.$el, this.get('leaveToClass'));
-            addClass(me.$el, this.get('appearToClass'));
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onAppear') && me.get('onAppear')();
+                return;
+            }
+            removeClass(element, this.get('enterToClass'));
+            removeClass(element, this.get('leaveToClass'));
+            addClass(element, this.get('appearToClass'));
+        },
+        endTo: function endTo() {
+            var me = this;
+            var element = me.$el;
+            if (me.get('css') === false) {
+                me.get('onEnd') && me.get('onEnd')();
+                return;
+            }
+            if (me.get('mode') === FADE) {
+                element.style.opacity = 1;
+            } else if (me.get('mode') === COLLAPSE) {
+                element.style.height = '';
+            }
+            removeClass(element, me.get('appearToClass'));
         }
     },
 
@@ -178,18 +279,24 @@ var Transition = {
         if (me.get('type')) {
             me.$el.style.transitionTimingFunction = me.get('type');
         }
-        if (me.get('mode') === FADE) {
-            me.set({
-                enterClass: me.get('enterClass') ? me.get('enterClass') : 'bell-fade-enter',
-                leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'bell-fade-leave',
-                appearClass: me.get('appearClass') ? me.get('appearClass') : 'bell-fade-appear',
-                enterToClass: me.get('enterToClass') ? me.get('enterToClass') : 'bell-fade-enter-to',
-                leaveToClass: me.get('leaveToClass') ? me.get('leaveToClass') : 'bell-fade-leave-to',
-                appearToClass: me.get('appearToClass') ? me.get('appearToClass') : 'bell-fade-appear-to',
-                enterActiveClass: me.get('enterActiveClass') ? me.get('enterActiveClass') : 'bell-fade-enter-active',
-                leaveActiveClass: me.get('leaveActiveClass') ? me.get('leaveActiveClass') : 'bell-fade-leave-active',
-                appearActiveClass: me.get('appearActiveClass') ? me.get('appearActiveClass') : 'bell-fade-appear-active'
-            });
+        me.set({
+            enterClass: me.get('enterClass') ? me.get('enterClass') : 'bell-' + me.get('mode') + '-enter',
+            leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'bell-' + me.get('mode') + '-leave',
+            appearClass: me.get('appearClass') ? me.get('appearClass') : 'bell-' + me.get('mode') + '-appear',
+            enterToClass: me.get('enterToClass') ? me.get('enterToClass') : 'bell-' + me.get('mode') + '-enter-to',
+            leaveToClass: me.get('leaveToClass') ? me.get('leaveToClass') : 'bell-' + me.get('mode') + '-leave-to',
+            appearToClass: me.get('appearToClass') ? me.get('appearToClass') : 'bell-' + me.get('mode') + '-appear-to',
+            enterActiveClass: me.get('enterActiveClass') ? me.get('enterActiveClass') : 'bell-' + me.get('mode') + '-enter-active',
+            leaveActiveClass: me.get('leaveActiveClass') ? me.get('leaveActiveClass') : 'bell-' + me.get('mode') + '-leave-active',
+            appearActiveClass: me.get('appearActiveClass') ? me.get('appearActiveClass') : 'bell-' + me.get('mode') + '-appear-active'
+        });
+
+        if (me.get('appear')) {
+            if (me.get('value')) {
+                me.begin();
+            } else {
+                me.beginTo();
+            }
         }
     }
 };
