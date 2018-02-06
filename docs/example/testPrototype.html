@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        layout
+    </title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+
+    <style>
+        .bell-page {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            position: relative;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="../../dep/base/yox.js"></script>
+    <script src="../../dist/bell.js"></script>
+    <script src="./prototype.js"></script>
+
+    <div id="app-1" class="bell-app">
+        <div id="app-2" class="bell-app"></div>
+    </div>
+
+    <script id="template-1" type="text/plain">
+        <div style="width: 100px; height: 100px">
+            <Spinner></Spinner>
+        </div>
+    </script>
+
+    <script>
+        new Yox({
+            el: '#app-1',
+            template: '#template-1',
+            props: {
+                skin: 'dark',
+                number: 1,
+                oneOf: 'small'
+            },
+            propTypes: {
+                skin: {
+                    type: YoxPropTypes.array
+                },
+                number: {
+                    type: 'number'
+                },
+                oneOf: {
+                    type: 'oneOf'
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -2,7 +2,11 @@
     (global.Yox = factory());
 }(this, (function () { 'use strict';
 
-
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
 
 
 
@@ -16,7 +20,7 @@
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new Error("Cannot call a class as a function");
+    throw new TypeError("Cannot call a class as a function");
   }
 };
 
@@ -32,7 +36,7 @@ var classCallCheck = function (instance, Constructor) {
 
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new Error("Super expression must either be null or a function, not " + typeof superClass);
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
   }
 
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -87,14 +91,14 @@ var KEYPATH_SEPARATOR = '.';
  *
  * @type {?Window}
  */
-var win = typeof window !== RAW_UNDEFINED ? window : NULL;
+var win = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== RAW_UNDEFINED ? window : NULL;
 
 /**
  * 浏览器环境下的 document 对象
  *
  * @type {?Document}
  */
-var doc = typeof document !== RAW_UNDEFINED ? document : NULL;
+var doc = (typeof document === 'undefined' ? 'undefined' : _typeof(document)) !== RAW_UNDEFINED ? document : NULL;
 
 /**
  * 空函数
@@ -116,7 +120,7 @@ function is(value, type) {
 }
 
 function func(value) {
-  return value && typeof value === RAW_FUNCTION;
+  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === RAW_FUNCTION;
 }
 
 function array(value) {
@@ -125,7 +129,7 @@ function array(value) {
 
 function object(value) {
   // 低版本 IE 会把 null 和 undefined 当作 object
-  return value && typeof value === 'object';
+  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
 }
 
 function string(value) {
@@ -150,7 +154,7 @@ function primitive(value) {
 
 
 
-var is$1 = {
+var is$1 = Object.freeze({
     is: is,
     func: func,
     array: array,
@@ -160,7 +164,7 @@ var is$1 = {
     boolean: boolean,
     numeric: numeric,
     primitive: primitive
-};
+});
 
 /**
  * 任性地执行一个函数，不管它有没有、是不是
@@ -188,7 +192,7 @@ var Event = function () {
     }
   }
 
-  Event.prototype.prevent = function () {
+  Event.prototype.prevent = function prevent() {
     var instance = this;
     if (!instance.isPrevented) {
       var originalEvent = instance.originalEvent;
@@ -205,7 +209,7 @@ var Event = function () {
     return instance;
   };
 
-  Event.prototype.stop = function () {
+  Event.prototype.stop = function stop() {
     var instance = this;
     if (!instance.isStoped) {
       var originalEvent = instance.originalEvent;
@@ -514,7 +518,7 @@ function falsy(array$$1) {
   return !array(array$$1) || array$$1.length === 0;
 }
 
-var array$1 = {
+var array$1 = Object.freeze({
     each: each,
     merge: merge,
     join: join,
@@ -528,7 +532,7 @@ var array$1 = {
     pop: pop,
     remove: remove,
     falsy: falsy
-};
+});
 
 /**
  * 连字符转成驼峰
@@ -646,7 +650,7 @@ function falsy$1(str) {
   return !string(str) || str === CHAR_BLANK;
 }
 
-var string$1 = {
+var string$1 = Object.freeze({
     camelCase: camelCase,
     trim: trim,
     slice: slice,
@@ -657,7 +661,7 @@ var string$1 = {
     startsWith: startsWith,
     endsWith: endsWith,
     falsy: falsy$1
-};
+});
 
 /**
  * 获取对象的 key 的数组
@@ -861,7 +865,7 @@ function set$1(object$$1, keypath, value, autofill) {
   });
 }
 
-var object$1 = {
+var object$1 = Object.freeze({
     keys: keys,
     sort: sort,
     each: each$1,
@@ -872,9 +876,7 @@ var object$1 = {
     copy: copy,
     get: get$1,
     set: set$1
-};
-
-var guid = 0;
+});
 
 var Emitter = function () {
 
@@ -889,7 +891,7 @@ var Emitter = function () {
     this.listeners = {};
   }
 
-  Emitter.prototype.fire = function (type, data, context) {
+  Emitter.prototype.fire = function fire(type, data, context) {
     var namespace = this.namespace,
         listeners = this.listeners;
 
@@ -902,23 +904,18 @@ var Emitter = function () {
     if (list) {
 
       var event = array(data) ? data[0] : data,
-          isEvent = Event.is(event),
-          fireId = ++guid,
-          i = -1,
-          j,
-          item,
-          result;
+          isEvent = Event.is(event);
 
-      while (item = list[++i]) {
+      each(list.slice(), function (item) {
 
-        // 当前执行 id
-        item.id = fireId;
+        var index = indexOf(list, item);
 
-        if (space && item.space && space !== item.space) {
-          continue;
+        // 在 fire 过程中被移除了
+        if (index < 0 || space && item.space && space !== item.space) {
+          return;
         }
 
-        result = execute(item.func, isDef(context) ? context : item.context, data);
+        var result = execute(item.func, isDef(context) ? context : item.context, data);
 
         // 执行次数
         if (item.count > 0) {
@@ -929,8 +926,7 @@ var Emitter = function () {
 
         // 注册的 listener 可以指定最大执行次数
         if (item.count === item.max) {
-          list.splice(i, 1);
-          execute(item.onRemove);
+          list.splice(index, 1);
         }
 
         // 如果没有返回 false，而是调用了 event.stop 也算是返回 false
@@ -945,20 +941,7 @@ var Emitter = function () {
         if (result === FALSE) {
           return isComplete = FALSE;
         }
-
-        // 解绑了一些 event handler
-        // 则往回找最远的未执行的 item
-        if (i >= 0 && item !== list[i]) {
-          j = i;
-          while (item = list[i]) {
-            if (item.id !== fireId) {
-              j = i;
-            }
-            i--;
-          }
-          i = j - 1;
-        }
-      }
+      });
 
       if (!list.length) {
         delete listeners[name];
@@ -968,7 +951,7 @@ var Emitter = function () {
     return isComplete;
   };
 
-  Emitter.prototype.has = function (type, listener) {
+  Emitter.prototype.has = function has$$1(type, listener) {
     var namespace = this.namespace,
         listeners = this.listeners,
         _parseType2 = parseType(type, namespace),
@@ -976,7 +959,7 @@ var Emitter = function () {
         space = _parseType2.space,
         result = TRUE;
 
-    var each$$1 = function (list) {
+    var each$$1 = function each$$1(list) {
       each(list, function (item, index) {
         if ((!space || space === item.space) && (!listener || listener === item.func)) {
           return result = FALSE;
@@ -1006,15 +989,14 @@ extend(Emitter.prototype, {
   off: function off(type, listener) {
 
     var instance = this,
-        filter;
+        filter = void 0;
     var listeners = instance.listeners;
 
 
-    var each$$1 = function (list, name) {
+    var each$$1 = function each$$1(list, name) {
       each(list, function (item, index) {
-        if (filter(item)) {
+        if (!filter || filter(item)) {
           list.splice(index, 1);
-          execute(item.onRemove);
         }
       }, TRUE);
       if (!list.length) {
@@ -1031,17 +1013,13 @@ extend(Emitter.prototype, {
         return (!space || space === item.space) && (!listener || listener === item.func);
       };
       if (name) {
-        var list = listeners[name];
-        if (list) {
-          each$$1(list, name);
+        if (listeners[name]) {
+          each$$1(listeners[name], name);
         }
       } else if (space) {
         each$1(listeners, each$$1);
       }
     } else {
-      filter = function filter() {
-        return TRUE;
-      };
       each$1(listeners, each$$1);
     }
   }
@@ -1053,7 +1031,7 @@ function on(data) {
         listeners = this.listeners;
 
 
-    var addListener = function (item, type) {
+    var addListener = function addListener(item, type) {
       if (func(item)) {
         item = { func: item };
       }
@@ -1068,7 +1046,6 @@ function on(data) {
 
         item.space = space;
         push(listeners[name] || (listeners[name] = []), item);
-        execute(item.onAdd);
       }
     };
 
@@ -1109,7 +1086,7 @@ var toString = function (str) {
  *
  * @type {?Object}
  */
-var Console = typeof console !== RAW_UNDEFINED ? console : NULL;
+var Console = (typeof console === 'undefined' ? 'undefined' : _typeof(console)) !== RAW_UNDEFINED ? console : NULL;
 
 var debug = /yox/.test(toString(noop));
 
@@ -1171,12 +1148,12 @@ function fatal(msg) {
 
 
 
-var logger = {
+var logger = Object.freeze({
     log: log,
     warn: warn,
     error: error$1,
     fatal: fatal
-};
+});
 
 var isNative = function (fn) {
   if (func(fn)) {
@@ -1184,21 +1161,21 @@ var isNative = function (fn) {
   }
 };
 
-var nextTick;
+var nextTick = void 0;
 
-if (typeof setImmediate === RAW_FUNCTION) {
+if ((typeof setImmediate === 'undefined' ? 'undefined' : _typeof(setImmediate)) === RAW_FUNCTION) {
   nextTick = setImmediate;
 }
 // 用 MessageChannel 去做 setImmediate 的 polyfill
 // 原理是将新的 message 事件加入到原有的 dom events 之后
-else if (typeof MessageChannel === RAW_FUNCTION) {
+else if ((typeof MessageChannel === 'undefined' ? 'undefined' : _typeof(MessageChannel)) === RAW_FUNCTION) {
     nextTick = function nextTick(fn) {
       var channel = new MessageChannel();
       var port = channel.port2;
       channel.port1.onmessage = fn;
       port.postMessage(1);
     };
-  } else if (typeof Promise === RAW_FUNCTION && isNative(Promise)) {
+  } else if ((typeof Promise === 'undefined' ? 'undefined' : _typeof(Promise)) === RAW_FUNCTION && isNative(Promise)) {
     nextTick = function nextTick(fn) {
       Promise.resolve().then(fn);
     };
@@ -1292,7 +1269,7 @@ function stringify(keypaths) {
 }
 
 function startsWith$1(keypath, prefix) {
-  var temp;
+  var temp = void 0;
   if (keypath === prefix) {
     return prefix.length;
   } else if (startsWith(keypath, temp = prefix + KEYPATH_SEPARATOR)) {
@@ -1466,10 +1443,10 @@ function updateDirectives(vnode, oldVnode) {
   oldDirectives = oldDirectives || {};
 
   var api = this,
-      newUnbinds;
+      newUnbinds = void 0;
 
   each$1(newDirectives, function (directive, key) {
-    var unbind;
+    var unbind = void 0;
     if (has$1(oldDirectives, key)) {
       var oldDirective = oldDirectives[key];
       if (directive.value !== oldDirective.value || directive.keypath !== oldDirective.keypath) {
@@ -1598,7 +1575,7 @@ function isPatchable(vnode1, vnode2) {
 
 function createKeyToIndex(vnodes, startIndex, endIndex) {
   var result = {},
-      key;
+      key = void 0;
   while (startIndex <= endIndex) {
     key = vnodes[startIndex].key;
     if (isDef(key)) {
@@ -1652,7 +1629,7 @@ function isTextVnode(vnode) {
 
 function init(api) {
 
-  var createElement = function (parentNode, vnode) {
+  var createElement = function createElement(parentNode, vnode) {
     var _vnode = vnode,
         el = _vnode.el,
         tag = _vnode.tag,
@@ -1716,22 +1693,22 @@ function init(api) {
     return el;
   };
 
-  var addVnodes = function (parentNode, vnodes, startIndex, endIndex, before) {
+  var addVnodes = function addVnodes(parentNode, vnodes, startIndex, endIndex, before) {
     while (startIndex <= endIndex) {
       addVnode(parentNode, vnodes[startIndex], before);
       startIndex++;
     }
   };
 
-  var addVnode = function (parentNode, vnode, before) {
+  var addVnode = function addVnode(parentNode, vnode, before) {
     var el = createElement(parentNode, vnode);
     if (el) {
       api.before(parentNode, el, before);
     }
   };
 
-  var removeVnodes = function (parentNode, vnodes, startIndex, endIndex) {
-    var vnode;
+  var removeVnodes = function removeVnodes(parentNode, vnodes, startIndex, endIndex) {
+    var vnode = void 0;
     while (startIndex <= endIndex) {
       vnode = vnodes[startIndex];
       if (vnode) {
@@ -1741,7 +1718,7 @@ function init(api) {
     }
   };
 
-  var removeVnode = function (parentNode, vnode) {
+  var removeVnode = function removeVnode(parentNode, vnode) {
     var tag = vnode.tag,
         el = vnode.el,
         component$$1 = vnode.component;
@@ -1755,7 +1732,7 @@ function init(api) {
     }
   };
 
-  var destroyVnode = function (vnode) {
+  var destroyVnode = function destroyVnode(vnode) {
     var el = vnode.el,
         component$$1 = vnode.component,
         children = vnode.children;
@@ -1777,12 +1754,12 @@ function init(api) {
     moduleEmitter.fire(HOOK_DESTROY, vnode, api);
   };
 
-  var replaceVnode = function (parentNode, oldVnode, vnode) {
+  var replaceVnode = function replaceVnode(parentNode, oldVnode, vnode) {
     api.before(parentNode, vnode.el, oldVnode.el);
     removeVnode(parentNode, oldVnode);
   };
 
-  var updateChildren = function (parentNode, oldChildren, newChildren) {
+  var updateChildren = function updateChildren(parentNode, oldChildren, newChildren) {
 
     var oldStartIndex = 0;
     var oldEndIndex = oldChildren.length - 1;
@@ -1794,9 +1771,9 @@ function init(api) {
     var newStartVnode = newChildren[newStartIndex];
     var newEndVnode = newChildren[newEndIndex];
 
-    var oldKeyToIndex,
-        oldIndex,
-        activeVnode;
+    var oldKeyToIndex = void 0,
+        oldIndex = void 0,
+        activeVnode = void 0;
 
     while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
 
@@ -1880,7 +1857,7 @@ function init(api) {
     }
   };
 
-  var patchVnode = function (oldVnode, vnode) {
+  var patchVnode = function patchVnode(oldVnode, vnode) {
 
     if (oldVnode === vnode) {
       return;
@@ -1958,7 +1935,7 @@ function init(api) {
   };
 }
 
-var snabbdom = {
+var snabbdom = Object.freeze({
     createCommentVnode: createCommentVnode,
     createTextVnode: createTextVnode,
     createElementVnode: createElementVnode,
@@ -1966,7 +1943,7 @@ var snabbdom = {
     isVnode: isVnode,
     isTextVnode: isTextVnode,
     init: init
-};
+});
 
 var SYNTAX_IF = '#if';
 var SYNTAX_ELSE = 'else';
@@ -2178,7 +2155,7 @@ binary[MODULO] = function (a, b) {
  * 节点基类
  */
 
-var Node = function (type, raw) {
+var Node = function Node(type, raw) {
   classCallCheck(this, Node);
 
   this.type = type;
@@ -2474,27 +2451,27 @@ function compile$1(content) {
 
   var length = content.length,
       index = 0,
-      charCode;
+      charCode = void 0;
 
-  var throwError = function () {
+  var throwError = function throwError() {
     fatal('Failed to compile expression: ' + CHAR_BREAKLINE + content);
   };
 
-  var getCharCode = function () {
+  var getCharCode = function getCharCode() {
     return codeAt(content, index);
   };
 
-  var cutString = function (start, end) {
+  var cutString = function cutString(start, end) {
     return content.substring(start, end == NULL ? index : end);
   };
 
-  var skipWhitespace = function () {
+  var skipWhitespace = function skipWhitespace() {
     while ((charCode = getCharCode()) && (charCode === CODE_WHITESPACE || charCode === CODE_TAB)) {
       index++;
     }
   };
 
-  var skipNumber = function () {
+  var skipNumber = function skipNumber() {
     if (getCharCode() === CODE_DOT) {
       skipDecimal();
     } else {
@@ -2505,13 +2482,13 @@ function compile$1(content) {
     }
   };
 
-  var skipDigit = function () {
+  var skipDigit = function skipDigit() {
     do {
       index++;
     } while (isDigit(getCharCode()));
   };
 
-  var skipDecimal = function () {
+  var skipDecimal = function skipDecimal() {
     // 跳过点号
     index++;
     // 后面必须紧跟数字
@@ -2522,7 +2499,7 @@ function compile$1(content) {
     }
   };
 
-  var skipString = function () {
+  var skipString = function skipString() {
 
     var quote = getCharCode();
 
@@ -2538,7 +2515,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var skipIdentifier = function () {
+  var skipIdentifier = function skipIdentifier() {
     // 第一个字符一定是经过 isIdentifierStart 判断的
     // 因此循环至少要执行一次
     do {
@@ -2546,7 +2523,7 @@ function compile$1(content) {
     } while (isIdentifierPart(getCharCode()));
   };
 
-  var parseIdentifier = function (careKeyword) {
+  var parseIdentifier = function parseIdentifier(careKeyword) {
 
     var start = index;
     skipIdentifier();
@@ -2559,7 +2536,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseTuple = function (delimiter) {
+  var parseTuple = function parseTuple(delimiter) {
 
     var list = [];
 
@@ -2581,7 +2558,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseObject = function () {
+  var parseObject = function parseObject() {
 
     var keys$$1 = [],
         values = [],
@@ -2628,12 +2605,12 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseOperator = function (sortedOperatorList) {
+  var parseOperator = function parseOperator(sortedOperatorList) {
 
     skipWhitespace();
 
     var value = slice(content, index),
-        match;
+        match = void 0;
     each(sortedOperatorList, function (prefix) {
       if (startsWith(value, prefix)) {
         match = prefix;
@@ -2647,11 +2624,11 @@ function compile$1(content) {
     }
   };
 
-  var parseVariable = function () {
+  var parseVariable = function parseVariable() {
 
     var start = index,
         node = parseIdentifier(TRUE),
-        temp;
+        temp = void 0;
 
     while (index < length) {
       // a(x)
@@ -2678,14 +2655,14 @@ function compile$1(content) {
     return node;
   };
 
-  var parseToken = function () {
+  var parseToken = function parseToken() {
 
     skipWhitespace();
 
     charCode = getCharCode();
 
     var start = index,
-        temp;
+        temp = void 0;
 
     // 'xx' 或 "xx"
     if (charCode === CODE_SQUOTE || charCode === CODE_DQUOTE) {
@@ -2725,11 +2702,11 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseBinary = function () {
+  var parseBinary = function parseBinary() {
 
     var stack = [index, parseToken(), index],
-        next,
-        length;
+        next = void 0,
+        length = void 0;
 
     // stack 的结构必须是 token 之后跟一个 index
     // 这样在裁剪原始字符串时，才有据可查
@@ -2762,7 +2739,7 @@ function compile$1(content) {
     }
   };
 
-  var parseExpression = function (delimiter) {
+  var parseExpression = function parseExpression(delimiter) {
 
     // 主要是区分三元和二元表达式
     // 三元表达式可以认为是 3 个二元表达式组成的
@@ -3004,11 +2981,11 @@ var Node$1 = function () {
     this.type = type;
   }
 
-  Node.prototype.stringify = function () {
+  Node.prototype.stringify = function stringify() {
     return this.stringifyObject(this);
   };
 
-  Node.prototype.stringifyObject = function (obj) {
+  Node.prototype.stringifyObject = function stringifyObject(obj) {
     var me = this,
         result = [];
     if (obj) {
@@ -3031,7 +3008,7 @@ var Node$1 = function () {
     return '{' + join(result, ',') + '}';
   };
 
-  Node.prototype.stringifyArray = function (arr, special) {
+  Node.prototype.stringifyArray = function stringifyArray(arr, special) {
     var me = this,
         result = [];
     if (arr) {
@@ -3048,17 +3025,17 @@ var Node$1 = function () {
     return special ? 'a(' + result + ')' : result;
   };
 
-  Node.prototype.stringifyExpression = function (expr, safe) {
+  Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
     if (expr) {
       return 'o(' + this.stringifyObject(expr) + (safe === FALSE ? ',true)' : ')');
     }
   };
 
-  Node.prototype.stringifyCall = function (name, params) {
+  Node.prototype.stringifyCall = function stringifyCall(name, params) {
     return name + '(' + join(params, ',') + ')';
   };
 
-  Node.prototype.stringifyString = function (str) {
+  Node.prototype.stringifyString = function stringifyString(str) {
     return '"' + str.replace(/"/g, '\\"') + '"';
   };
 
@@ -3135,7 +3112,7 @@ var Each = function (_Node) {
     return _this;
   }
 
-  Each.prototype.stringify = function () {
+  Each.prototype.stringify = function stringify() {
     var params = [this.stringifyObject(this.expr), 'function(){return ' + this.stringifyArray(this.children) + '}'];
     if (this.index) {
       push(params, this.stringifyString(this.index));
@@ -3168,7 +3145,7 @@ var Element = function (_Node) {
     return _this;
   }
 
-  Element.prototype.stringify = function () {
+  Element.prototype.stringify = function stringify() {
 
     var me = this;
     var name = me.name,
@@ -3192,7 +3169,7 @@ var Element = function (_Node) {
     // 反过来 push
     // 这样序列化能省更多字符
     if (key || ref) {
-      var stringify = function (value) {
+      var stringify = function stringify(value) {
         if (array(value)) {
           return me.stringifyArray(value, TRUE);
         } else if (Node.is(value)) {
@@ -3290,7 +3267,7 @@ var Expression$1 = function (_Node) {
     return _this;
   }
 
-  Expression.prototype.stringify = function () {
+  Expression.prototype.stringify = function stringify() {
     return this.stringifyExpression(this.expr, this.safe);
   };
 
@@ -3315,11 +3292,11 @@ var If = function (_Node) {
     return _this;
   }
 
-  If.prototype.stringify = function () {
+  If.prototype.stringify = function stringify() {
     var stump = this.stump;
 
 
-    var stringify = function (node) {
+    var stringify = function stringify(node) {
       var expr = node.stringifyExpression(node.expr);
       var result = node.stringifyArray(node.children, TRUE);
       if (node.next) {
@@ -3357,7 +3334,7 @@ var Import = function (_Node) {
     return _this;
   }
 
-  Import.prototype.stringify = function () {
+  Import.prototype.stringify = function stringify() {
     return this.stringifyCall('i', [this.stringifyString(this.name)]);
   };
 
@@ -3382,7 +3359,7 @@ var Partial = function (_Node) {
     return _this;
   }
 
-  Partial.prototype.stringify = function () {
+  Partial.prototype.stringify = function stringify() {
     return this.stringifyCall('p', [this.stringifyString(this.name), 'function(){return ' + this.stringifyArray(this.children) + '}']);
   };
 
@@ -3407,7 +3384,7 @@ var Spread = function (_Node) {
     return _this;
   }
 
-  Spread.prototype.stringify = function () {
+  Spread.prototype.stringify = function stringify() {
     return this.stringifyCall('s', [this.stringifyObject(this.expr)]);
   };
 
@@ -3432,7 +3409,7 @@ var Text = function (_Node) {
     return _this;
   }
 
-  Text.prototype.stringify = function () {
+  Text.prototype.stringify = function stringify() {
     return this.stringifyString(this.text);
   };
 
@@ -3499,20 +3476,20 @@ function compile$$1(content) {
   var nodeStack = [],
       ifStack = [],
       htmlStack = [],
-      currentQuote;
+      currentQuote = void 0;
 
-  var throwError = function (msg) {
+  var throwError = function throwError(msg) {
     fatal('Error compiling template:' + CHAR_BREAKLINE + content + CHAR_BREAKLINE + '- ' + msg);
   };
 
-  var popSelfClosingElementIfNeeded = function (popingTagName) {
+  var popSelfClosingElementIfNeeded = function popSelfClosingElementIfNeeded(popingTagName) {
     var lastNode = last(nodeStack);
     if (lastNode && lastNode.type === ELEMENT && lastNode.name !== popingTagName && has(selfClosingTagNames, lastNode.name)) {
       popStack(ELEMENT, lastNode.name);
     }
   };
 
-  var popStack = function (type, expectedTagName) {
+  var popStack = function popStack(type, expectedTagName) {
 
     /**
      * <div>
@@ -3523,7 +3500,7 @@ function compile$$1(content) {
       popSelfClosingElementIfNeeded(expectedTagName);
     }
 
-    var target;
+    var target = void 0;
 
     each(nodeStack, function (node, i) {
       if (node.type === type) {
@@ -3568,18 +3545,20 @@ function compile$$1(content) {
               var attr = new Attribute(SPECIAL_CHILDREN);
               attr.children = [singleChild];
               children[divider] = attr;
+              target.divider++;
             } else {
               target.props = {
                 textContent: singleChild.text
               };
               pop(children);
             }
-          } else if (singleChild.type === EXPRESSION && singleChild.expr.raw !== SPECIAL_CHILDREN) {
+          } else if (singleChild.type === EXPRESSION) {
             if (component) {
               var _attr = new Attribute(SPECIAL_CHILDREN);
               _attr.children = [singleChild];
               children[divider] = _attr;
-            } else {
+              target.divider++;
+            } else if (singleChild.expr.raw !== SPECIAL_CHILDREN) {
               var props = {};
               if (singleChild.safe === FALSE) {
                 props.innerHTML = singleChild.expr;
@@ -3657,7 +3636,7 @@ function compile$$1(content) {
     }
   };
 
-  var addChild = function (node) {
+  var addChild = function addChild(node) {
     var type = node.type,
         text = node.text;
 
@@ -3692,7 +3671,7 @@ function compile$$1(content) {
       return;
     }
 
-    var prevNode;
+    var prevNode = void 0;
 
     var currentNode = last(nodeStack);
     if (currentNode) {
@@ -3782,8 +3761,8 @@ function compile$$1(content) {
   }, function (content) {
     if (htmlStack.length === 2) {
       var index = 0,
-          currentChar,
-          closed;
+          currentChar = void 0,
+          closed = void 0;
       while (currentChar = charAt(content, index)) {
         if (currentChar === currentQuote) {
           closed = TRUE;
@@ -3863,7 +3842,7 @@ function compile$$1(content) {
     }
   }];
 
-  var parseHtml = function (content) {
+  var parseHtml = function parseHtml(content) {
     if (content) {
       (function () {
         var tpl = content;
@@ -3881,7 +3860,7 @@ function compile$$1(content) {
     }
   };
 
-  var parseDelimiter = function (content, all) {
+  var parseDelimiter = function parseDelimiter(content, all) {
     if (content) {
       if (charAt(content) === CHAR_SLASH) {
         var name = slice(content, 1),
@@ -3909,7 +3888,7 @@ function compile$$1(content) {
   };
 
   var str = content,
-      match;
+      match = void 0;
 
   // 干掉 html 注释
   str = str.replace(/<!--[\s\S]*?-->/g, function () {
@@ -4016,7 +3995,7 @@ function render(render, getter, setter, instance) {
 
     if (props || attrs) {
 
-      var addDirective = function (name, modifier, value) {
+      var addDirective = function addDirective(name, modifier, value) {
         return directives[join$1(name, modifier)] = {
           name: name,
           modifier: modifier,
@@ -4042,7 +4021,7 @@ function render(render, getter, setter, instance) {
       }
 
       if (attrs) {
-        var addAttr = function (item) {
+        var addAttr = function addAttr(item) {
           var type = item.type,
               name = item.name,
               modifier = item.modifier,
@@ -4063,7 +4042,7 @@ function render(render, getter, setter, instance) {
             return;
           }
 
-          var value;
+          var value = void 0;
           if (has$1(item, 'value')) {
             value = item.value;
           } else if (expr) {
@@ -4107,8 +4086,8 @@ function render(render, getter, setter, instance) {
     var children = [];
 
     if (childs) {
-      var lastChild;
-      var addChild = function (child) {
+      var lastChild = void 0;
+      var addChild = function addChild(child) {
         if (isVnode(child)) {
           if (child.component) {
             child.parent = instance;
@@ -4122,7 +4101,7 @@ function render(render, getter, setter, instance) {
           push(children, lastChild);
         }
       };
-      var eachChilds = function (childs) {
+      var eachChilds = function eachChilds(childs) {
         each(childs, function (child) {
           if (child != NULL) {
             if (array(child) && child[STRUCT]) {
@@ -4146,13 +4125,24 @@ function render(render, getter, setter, instance) {
   // each
   e = function e(expr, generate, index) {
 
-    var each$$1,
-        value = getter(expr, keypathStack);
+    var value = getter(expr, keypathStack),
+        each$$1 = void 0;
 
     if (array(value)) {
-      each$$1 = each;
+      if (value.length) {
+        each$$1 = function each$$1(callback) {
+          each(value, function (_, i) {
+            callback(i);
+          });
+        };
+      }
     } else if (object(value)) {
-      each$$1 = each$1;
+      var keys$$1 = keys(value);
+      if (keys$$1.length) {
+        each$$1 = function each$$1(callback) {
+          each(keys$$1, callback);
+        };
+      }
     }
 
     if (each$$1) {
@@ -4165,17 +4155,17 @@ function render(render, getter, setter, instance) {
         pushKeypath(eachKeypath);
       }
 
-      each$$1(value, function (item, i) {
+      each$$1(function (key) {
 
         var lastKeypath = keypath,
             lastKeypathStack = keypathStack;
 
-        pushKeypath(i);
+        pushKeypath(key);
 
-        setter(keypath, RAW_THIS, item);
+        setter(keypath, RAW_THIS, value[key]);
 
         if (index) {
-          setter(keypath, index, i);
+          setter(keypath, index, key);
         }
 
         each(generate(), function (item) {
@@ -4244,7 +4234,7 @@ var toNumber = function (str) {
 
 var LENGTH = 'length';
 
-var guid$1 = 0;
+var guid = 0;
 
 /**
  * 记录对比值
@@ -4278,7 +4268,7 @@ function updateValue(changes, newValue, oldValue, keypath) {
  */
 function diffObject(newObject, oldObject, callback) {
 
-  var keys$$1;
+  var keys$$1 = void 0;
   if (oldObject) {
     if (newObject) {
       keys$$1 = keys(extend({}, oldObject, newObject));
@@ -4373,13 +4363,13 @@ var Computed = function () {
     classCallCheck(this, Computed);
 
 
-    this.id = ++guid$1;
+    this.id = ++guid;
     this.keypath = keypath;
     this.observer = observer;
     this.deps = [];
   }
 
-  Computed.prototype.update = function (newValue, oldValue, key) {
+  Computed.prototype.update = function update(newValue, oldValue, key, changes) {
 
     var instance = this;
     var observer = instance.observer,
@@ -4394,12 +4384,16 @@ var Computed = function () {
     // 当前计算属性是否是其他计算属性的依赖
     each$1(observer.computed, function (computed, key) {
       if (computed.hasDep(keypath)) {
-        observer.emitter.fire(keypath, [instance.get(), value, keypath]);
+        var _newValue = instance.get();
+        if (_newValue !== value) {
+          changes.push(keypath, _newValue, value, keypath);
+          return FALSE;
+        }
       }
     });
   };
 
-  Computed.prototype.get = function (force) {
+  Computed.prototype.get = function get$$1(force) {
     var value = this.value,
         cache = this.cache;
 
@@ -4417,34 +4411,34 @@ var Computed = function () {
     return value;
   };
 
-  Computed.prototype.hasDep = function (dep) {
+  Computed.prototype.hasDep = function hasDep(dep) {
     return has(this.deps, dep);
   };
 
-  Computed.prototype.addDep = function (dep) {
+  Computed.prototype.addDep = function addDep(dep) {
     if (!this.hasDep(dep)) {
       push(this.deps, dep);
       this.observer.watch(dep, this.update, FALSE, this);
     }
   };
 
-  Computed.prototype.removeDep = function (dep) {
+  Computed.prototype.removeDep = function removeDep(dep) {
     if (this.hasDep(dep)) {
       remove(this.deps, dep);
       this.observer.unwatch(dep, this.update);
     }
   };
 
-  Computed.prototype.clearDep = function () {
+  Computed.prototype.clearDep = function clearDep() {
     var instance = this;
     each(instance.deps, function (dep) {
       instance.removeDep(dep);
     }, TRUE);
   };
 
-  Computed.prototype.isDirty = function () {
+  Computed.prototype.isDirty = function isDirty() {
     var changes = this.changes,
-        result;
+        result = void 0;
     if (isDef(changes)) {
       if (changes) {
         each$1(changes, function (item, keypath) {
@@ -4477,7 +4471,7 @@ var Observer = function () {
 
     var instance = this;
 
-    instance.id = ++guid$1;
+    instance.id = ++guid;
     instance.data = options.data || {};
     instance.context = options.context || instance;
     instance.emitter = new Emitter();
@@ -4490,14 +4484,15 @@ var Observer = function () {
     }
   }
 
-  Observer.prototype.onChange = function (newValue, oldValue, keypath, computed, computedValue) {
+  Observer.prototype.onChange = function onChange(newValue, oldValue, keypath, computed, computedValue) {
 
-    var instance = this;
+    var instance = this,
+        changes = instance.changes || (instance.changes = {});
 
-    instance.changes = updateValue(instance.changes, newValue, oldValue, keypath);
+    changes = updateValue(changes, newValue, oldValue, keypath);
 
-    if (computed && !instance.changes[computed.keypath]) {
-      instance.changes[computed.keypath] = {
+    if (computed.keypath && !changes[computed.keypath]) {
+      changes[computed.keypath] = {
         computed: computed,
         oldValue: computedValue
       };
@@ -4507,7 +4502,7 @@ var Observer = function () {
       instance.pending = TRUE;
       instance.nextTick(function () {
         if (instance.pending) {
-          var changes = instance.changes;
+          var _changes = instance.changes;
 
 
           instance.pending = instance.changes = NULL;
@@ -4516,7 +4511,7 @@ var Observer = function () {
 
           var listenerKeys = keys(asyncEmitter.listeners);
 
-          each$1(changes, function (item, keypath) {
+          each$1(_changes, function (item, keypath) {
             var newValue = item.newValue,
                 oldValue = item.oldValue,
                 computed = item.computed;
@@ -4548,14 +4543,14 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.get = function (keypath, defaultValue) {
+  Observer.prototype.get = function get$$1(keypath, defaultValue) {
 
     if (!string(keypath) || isFuzzyKeypath(keypath)) {
       return;
     }
 
     var instance = this,
-        result;
+        result = void 0;
 
     // 传入 '' 获取整个 data
     if (keypath === '') {
@@ -4589,12 +4584,13 @@ var Observer = function () {
           return target[prop];
         } else if (target != NULL) {
           result = get$1(target, prop);
-          return result ? result.value : UNDEFINED;
         }
       }
     }
 
-    result = get$1(instance.data, keypath);
+    if (!result) {
+      result = get$1(instance.data, keypath);
+    }
 
     return result ? result.value : defaultValue;
   };
@@ -4607,7 +4603,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.set = function (keypath, value) {
+  Observer.prototype.set = function set$$1(keypath, value) {
 
     var instance = this;
 
@@ -4616,7 +4612,9 @@ var Observer = function () {
 
     var listenKeys = keys(emitter.listeners);
 
-    var setValue = function (value, keypath) {
+    var changes = [];
+
+    var setValue = function setValue(value, keypath) {
 
       keypath = normalize(keypath);
 
@@ -4627,7 +4625,7 @@ var Observer = function () {
         return;
       }
 
-      var getNewValue = function (key) {
+      var getNewValue = function getNewValue(key) {
         if (key === keypath || value == NULL) {
           return value;
         }
@@ -4642,7 +4640,7 @@ var Observer = function () {
       each(listenKeys, function (listenKey) {
         if (isFuzzyKeypath(listenKey)) {
           if (matchKeypath(keypath, listenKey)) {
-            emitter.fire(listenKey, [newValue, oldValue, keypath]);
+            changes.push(listenKey, newValue, oldValue, keypath);
           } else {
             push(fuzzyKeypaths, listenKey);
           }
@@ -4650,7 +4648,7 @@ var Observer = function () {
           var listenNewValue = getNewValue(listenKey),
               listenOldValue = instance.get(listenKey);
           if (listenNewValue !== listenOldValue) {
-            emitter.fire(listenKey, [listenNewValue, listenOldValue, listenKey]);
+            changes.push(listenKey, listenNewValue, listenOldValue, listenKey);
           }
         }
       });
@@ -4660,12 +4658,12 @@ var Observer = function () {
       // 性能确实会慢一些，但是很好用啊，几乎可以监听所有的数据
       if (fuzzyKeypaths[LENGTH]) {
 
-        var addChange = function (newValue, oldValue, key) {
+        var addChange = function addChange(newValue, oldValue, key) {
           if (newValue !== oldValue) {
 
             each(fuzzyKeypaths, function (fuzzyKeypath) {
               if (matchKeypath(key, fuzzyKeypath)) {
-                emitter.fire(fuzzyKeypath, [newValue, oldValue, key]);
+                changes.push(fuzzyKeypath, newValue, oldValue, key);
               }
             });
 
@@ -4728,6 +4726,10 @@ var Observer = function () {
     } else if (object(keypath)) {
       each$1(keypath, setValue);
     }
+
+    for (var i = 0; i < changes.length; i += 4) {
+      emitter.fire(changes[i], [changes[i + 1], changes[i + 2], changes[i + 3], changes]);
+    }
   };
 
   /**
@@ -4738,13 +4740,13 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.addComputed = function (keypath, computed) {
+  Observer.prototype.addComputed = function addComputed(keypath, computed) {
 
     var instance = this,
         cache = TRUE,
-        get$$1,
-        set$$1,
-        deps;
+        get$$1 = void 0,
+        set$$1 = void 0,
+        deps = void 0;
 
     if (func(computed)) {
       get$$1 = computed;
@@ -4815,7 +4817,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.toggle = function (keypath) {
+  Observer.prototype.toggle = function toggle(keypath) {
     var value = !this.get(keypath);
     this.set(keypath, value);
     return value;
@@ -4833,7 +4835,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.increase = function (keypath, step, max) {
+  Observer.prototype.increase = function increase(keypath, step, max) {
     var value = toNumber(this.get(keypath), 0) + (numeric(step) ? step : 1);
     if (!numeric(max) || value <= max) {
       this.set(keypath, value);
@@ -4853,7 +4855,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.decrease = function (keypath, step, min) {
+  Observer.prototype.decrease = function decrease(keypath, step, min) {
     var value = toNumber(this.get(keypath), 0) - (numeric(step) ? step : 1);
     if (!numeric(min) || value >= min) {
       this.set(keypath, value);
@@ -4871,7 +4873,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.insert = function (keypath, item, index) {
+  Observer.prototype.insert = function insert(keypath, item, index) {
 
     var list = this.get(keypath);
     if (!array(list)) {
@@ -4905,7 +4907,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.removeAt = function (keypath, index) {
+  Observer.prototype.removeAt = function removeAt(keypath, index) {
     var list = this.get(keypath);
     if (array(list) && index >= 0 && index < list[LENGTH]) {
       list = copy(list);
@@ -4924,7 +4926,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.remove = function (keypath, item) {
+  Observer.prototype.remove = function remove$$1(keypath, item) {
     var list = this.get(keypath);
     if (array(list)) {
       list = copy(list);
@@ -4935,11 +4937,11 @@ var Observer = function () {
     }
   };
 
-  Observer.prototype.nextTick = function (fn) {
+  Observer.prototype.nextTick = function nextTick(fn) {
     append(fn);
   };
 
-  Observer.prototype.nextRun = function () {
+  Observer.prototype.nextRun = function nextRun() {
     run();
   };
 
@@ -4948,7 +4950,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.destroy = function () {
+  Observer.prototype.destroy = function destroy() {
     this.emitter.off();
     this.asyncEmitter.off();
     clear(this);
@@ -5002,7 +5004,7 @@ extend(Observer.prototype, {
 
 function createWatch(action) {
 
-  var watch = function (instance, keypath, func$$1, sync, computed) {
+  var watch = function watch(instance, keypath, func$$1, sync, computed) {
     var context = instance.context;
 
 
@@ -5195,7 +5197,7 @@ function setComponent(element, component) {
   return element.component = component;
 }
 
-var domApi = {
+var domApi = Object.freeze({
     createElement: createElement,
     createText: createText,
     createComment: createComment,
@@ -5220,7 +5222,7 @@ var domApi = {
     off: off,
     getComponent: getComponent,
     setComponent: setComponent
-};
+});
 
 /**
  * tap 事件
@@ -5332,7 +5334,7 @@ var EMITTER_KEY = '_emitter';
 api.on = function (element, type, listener, context) {
   var emitter = element[EMITTER_KEY] || (element[EMITTER_KEY] = new Emitter());
   if (!emitter.has(type)) {
-    var nativeListener = function (e, type) {
+    var nativeListener = function nativeListener(e, type) {
       if (!Event.is(e)) {
         e = new Event(api.createEvent(e, element));
       }
@@ -5394,7 +5396,7 @@ api.off = function (element, type, listener) {
  */
 var debounce = function (fn, delay, sync) {
 
-  var timer;
+  var timer = void 0;
 
   return function () {
 
@@ -5568,22 +5570,23 @@ var model = function (_ref) {
 
   var keypath = instance.lookup(value, keypathStack);
   if (!keypath) {
-    fatal('"' + value + '" is not defined on the instance but referenced during render.');
+    warn('"' + value + '" is not defined on the instance but using for model.');
+    keypath = value;
   }
 
-  var set$$1 = function () {
+  var set$$1 = function set$$1() {
     if (control) {
       control.set(target, keypath, instance);
     }
   };
-  var sync = function () {
+  var sync = function sync() {
     control.sync(target, keypath, instance);
   };
 
-  var target,
-      control,
-      unbindTarget,
-      unbindInstance;
+  var target = void 0,
+      control = void 0,
+      unbindTarget = void 0,
+      unbindInstance = void 0;
   if (component) {
 
     target = component;
@@ -5654,7 +5657,7 @@ var binding = function (_ref) {
   // 比如写了个 <div>{{name}}</div>
   // 删了数据却忘了删模板，无视之
   if (keypath) {
-    var set = function (value) {
+    var set = function set(value) {
       var name = node.modifier;
       if (node.prop) {
         api.setProp(el, name, value);
@@ -5725,7 +5728,7 @@ var Yox = function () {
 
     extensions && extend(instance, extensions);
 
-    var source;
+    var source = void 0;
     if (object(propTypes)) {
       source = Yox.validate(props || {}, propTypes);
       // validate 可能过滤 $children 字段
@@ -5773,8 +5776,12 @@ var Yox = function () {
       if (selector.test(template)) {
         template = api.html(api.find(template));
       }
+      // 如果是根组件，必须有一个根元素
+      // 如果是子组件，可以是 $children
       if (!tag.test(template)) {
-        error$1(templateError);
+        if (!parent || trim(template) !== SPECIAL_CHILDREN) {
+          error$1(templateError);
+        }
       }
     } else {
       template = NULL;
@@ -5811,7 +5818,7 @@ var Yox = function () {
     }
 
     // 聪明的 set...
-    var smartSet = function (key, value) {
+    var smartSet = function smartSet(key, value) {
       if (func(value)) {
         instance[key](execute(value, instance));
       } else if (object(value)) {
@@ -5871,7 +5878,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.addComputed = function (keypath, computed) {
+  Yox.prototype.addComputed = function addComputed(keypath, computed) {
     return this.$observer.addComputed(keypath, computed);
   };
 
@@ -5884,7 +5891,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.get = function (keypath, defaultValue) {
+  Yox.prototype.get = function get$$1(keypath, defaultValue) {
     return this.$observer.get(keypath, defaultValue);
   };
 
@@ -5896,7 +5903,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.set = function (keypath, value) {
+  Yox.prototype.set = function set$$1(keypath, value) {
     this.$observer.set(keypath, value);
   };
 
@@ -5909,7 +5916,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.on = function (type, listener) {
+  Yox.prototype.on = function on(type, listener) {
     this.$emitter.on(type, listener);
     return this;
   };
@@ -5923,7 +5930,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.once = function (type, listener) {
+  Yox.prototype.once = function once(type, listener) {
     this.$emitter.once(type, listener);
     return this;
   };
@@ -5937,7 +5944,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.off = function (type, listener) {
+  Yox.prototype.off = function off(type, listener) {
     this.$emitter.off(type, listener);
     return this;
   };
@@ -5952,7 +5959,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.fire = function (type, data, downward) {
+  Yox.prototype.fire = function fire(type, data, downward) {
 
     // 外部为了使用方便，fire(type) 或 fire(type, data) 就行了
     // 内部为了保持格式统一
@@ -6002,7 +6009,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watch = function (keypath, watcher, sync) {
+  Yox.prototype.watch = function watch(keypath, watcher, sync) {
     this.$observer.watch(keypath, watcher, sync);
     return this;
   };
@@ -6017,7 +6024,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watchOnce = function (keypath, watcher, sync) {
+  Yox.prototype.watchOnce = function watchOnce(keypath, watcher, sync) {
     this.$observer.watchOnce(keypath, watcher, sync);
     return this;
   };
@@ -6031,7 +6038,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.unwatch = function (keypath, watcher) {
+  Yox.prototype.unwatch = function unwatch(keypath, watcher) {
     this.$observer.unwatch(keypath, watcher);
     return this;
   };
@@ -6047,15 +6054,15 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.lookup = function (key, stack, localVars, defaultVars) {
+  Yox.prototype.lookup = function lookup(key, stack, localVars, defaultVars) {
 
     var instance = this,
-        value;
+        value = void 0;
 
     var index = stack.length - 1;
     var lookup = index > 0 && startsWith$1(key, RAW_THIS) === FALSE;
 
-    var getKeypath = function (index) {
+    var getKeypath = function getKeypath(index) {
       var keypath = join$1(stack[index], key);
       if (localVars && has$1(localVars, keypath)) {
         value = localVars[keypath];
@@ -6091,7 +6098,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.forceUpdate = function () {
+  Yox.prototype.forceUpdate = function forceUpdate() {
 
     if (this.$node) {
       var $renderCount = this.$renderCount;
@@ -6112,7 +6119,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.render = function () {
+  Yox.prototype.render = function render$$1() {
     console.time('render');
     var instance = this;
 
@@ -6166,10 +6173,10 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.updateView = function (newNode, oldNode) {
+  Yox.prototype.updateView = function updateView(newNode, oldNode) {
 
     var instance = this,
-        afterHook;
+        afterHook = void 0;
 
     var $node = instance.$node,
         $options = instance.$options;
@@ -6205,7 +6212,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.create = function (options, extra) {
+  Yox.prototype.create = function create(options, extra) {
     options = extend({}, options, extra);
     options.parent = this;
     var child = new Yox(options);
@@ -6221,7 +6228,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.importPartial = function (name) {
+  Yox.prototype.importPartial = function importPartial(name) {
     return Yox.compile(this.partial(name));
   };
 
@@ -6233,7 +6240,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.compileDirective = function (directive) {
+  Yox.prototype.compileDirective = function compileDirective(directive) {
 
     var instance = this;
     var value = directive.value,
@@ -6248,12 +6255,12 @@ var Yox = function () {
           method = instance[callee.name];
 
       if (method) {
-        var getValue = function (node) {
+        var getValue = function getValue(node) {
           return instance.$getter(node, keypathStack);
         };
         return function (event) {
           var isEvent = Event.is(event),
-              result;
+              result = void 0;
           if (!args.length) {
             if (isEvent) {
               result = execute(method, instance, event);
@@ -6285,7 +6292,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.destroy = function () {
+  Yox.prototype.destroy = function destroy() {
 
     var instance = this;
 
@@ -6321,7 +6328,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.nextTick = function (fn) {
+  Yox.prototype.nextTick = function nextTick(fn) {
     this.$observer.nextTick(fn);
   };
 
@@ -6335,7 +6342,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.toggle = function (keypath) {
+  Yox.prototype.toggle = function toggle(keypath) {
     return this.$observer.toggle(keypath);
   };
 
@@ -6351,7 +6358,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.increase = function (keypath, step, max) {
+  Yox.prototype.increase = function increase(keypath, step, max) {
     return this.$observer.increase(keypath, step, max);
   };
 
@@ -6367,7 +6374,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.decrease = function (keypath, step, min) {
+  Yox.prototype.decrease = function decrease(keypath, step, min) {
     return this.$observer.decrease(keypath, step, min);
   };
 
@@ -6380,7 +6387,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.copy = function (data, deep) {
+  Yox.prototype.copy = function copy$$1(data, deep) {
     return copy(data, deep);
   };
 
@@ -6394,7 +6401,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.insert = function (keypath, item, index) {
+  Yox.prototype.insert = function insert(keypath, item, index) {
     return this.$observer.insert(keypath, item, index);
   };
 
@@ -6407,7 +6414,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.append = function (keypath, item) {
+  Yox.prototype.append = function append$$1(keypath, item) {
     return this.$observer.insert(keypath, item, TRUE);
   };
 
@@ -6420,7 +6427,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.prepend = function (keypath, item) {
+  Yox.prototype.prepend = function prepend$$1(keypath, item) {
     return this.$observer.insert(keypath, item, FALSE);
   };
 
@@ -6433,7 +6440,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.removeAt = function (keypath, index) {
+  Yox.prototype.removeAt = function removeAt(keypath, index) {
     return this.$observer.removeAt(keypath, index);
   };
 
@@ -6446,7 +6453,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.remove = function (keypath, item) {
+  Yox.prototype.remove = function remove$$1(keypath, item) {
     return this.$observer.remove(keypath, item);
   };
 
@@ -6583,7 +6590,7 @@ Yox.validate = function (props, propTypes) {
       // 就当做此规则无效，和没写一样
       if (type) {
         var target = props[key],
-            matched;
+            matched = void 0;
         // 比较类型
         if (!falsy$1(type)) {
           matched = is(target, type);
