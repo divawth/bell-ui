@@ -34,7 +34,7 @@
     padding: 0px;
     flex: 0 0 0px;
 }
-.bell-box-open .bell-docsify-source {
+.bell-view-full-block .bell-box-open .bell-docsify-source {
     padding: 15px;
     flex: 1;
     border-left: none;

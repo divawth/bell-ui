@@ -1,6 +1,6 @@
-3 Transfer 穿梭框
+4 proptype https://github.com/developit/proptypes
 
-4 proptype https://github.com/developit/proptypes/blob/master/README.md
+3 Transfer 穿梭框
 
 
 3 indeterminate 表示不定状态
