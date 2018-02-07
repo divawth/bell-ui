@@ -3008,7 +3008,7 @@ var Node$1 = function () {
     return '{' + join(result, ',') + '}';
   };
 
-  Node.prototype.stringifyArray = function stringifyArray(arr, special) {
+  Node.prototype.stringifyArray = function stringifyArray(arr) {
     var me = this,
         result = [];
     if (arr) {
@@ -3021,8 +3021,7 @@ var Node$1 = function () {
         push(result, item);
       });
     }
-    result = '[' + join(result, ',') + ']';
-    return special ? 'a(' + result + ')' : result;
+    return 'a(' + join(result, ',') + ')';
   };
 
   Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
@@ -3036,7 +3035,7 @@ var Node$1 = function () {
   };
 
   Node.prototype.stringifyString = function stringifyString(str) {
-    return '"' + str.replace(/"/g, '\\"') + '"';
+    return '"' + str.replace(/"/g, '\\"').replace(/\s*\n+\s*/g, ' ') + '"';
   };
 
   return Node;
@@ -3171,7 +3170,7 @@ var Element = function (_Node) {
     if (key || ref) {
       var stringify = function stringify(value) {
         if (array(value)) {
-          return me.stringifyArray(value, TRUE);
+          return me.stringifyArray(value);
         } else if (Node.is(value)) {
           return me.stringifyExpression(value);
         } else if (string(value)) {
@@ -3298,12 +3297,12 @@ var If = function (_Node) {
 
     var stringify = function stringify(node) {
       var expr = node.stringifyExpression(node.expr);
-      var result = node.stringifyArray(node.children, TRUE);
+      var result = node.stringifyArray(node.children);
       if (node.next) {
         return expr + '?' + result + ':(' + stringify(node.next) + ')';
       } else {
         if (expr) {
-          return expr + '?' + result + ':' + (stump ? 'm()' : RAW_NULL);
+          return expr + '?' + result + ':' + (stump ? 'm()' : RAW_UNDEFINED);
         } else {
           return result;
         }
@@ -3969,9 +3968,19 @@ function render(render, getter, setter, instance) {
 
 
   // array
-  a = function a(arr) {
-    arr[STRUCT] = TRUE;
-    return arr;
+  a = function a() {
+    var result = [];
+    each(arguments, function (item) {
+      if (isDef(item)) {
+        if (array(item) && item[STRUCT]) {
+          push(result, item);
+        } else {
+          result.push(item);
+        }
+      }
+    });
+    result[STRUCT] = TRUE;
+    return result;
   },
       toArray$$1 = function toArray$$1(arr) {
     var length = arr.length;
