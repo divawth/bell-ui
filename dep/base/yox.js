@@ -3021,12 +3021,12 @@ var Node$1 = function () {
         push(result, item);
       });
     }
-    return 'a(' + join(result, ',') + ')';
+    return me.stringifyCall('a', result);
   };
 
   Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
     if (expr) {
-      return 'o(' + this.stringifyObject(expr) + (safe === FALSE ? ',true)' : ')');
+      return 'o(' + this.stringifyObject(expr) + ')';
     }
   };
 
@@ -3986,7 +3986,11 @@ function render(render, getter, setter, instance) {
     var length = arr.length;
 
     if (length > 0) {
-      return length === 1 ? arr[0] : a(arr);
+      if (length === 1) {
+        return arr[0];
+      }
+      arr[STRUCT] = TRUE;
+      return arr;
     }
   },
       getRefKey = function getRefKey(value) {

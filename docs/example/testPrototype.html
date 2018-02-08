@@ -38,19 +38,11 @@
             el: '#app-1',
             template: '#template-1',
             props: {
-                skin: 'dark',
-                number: 1,
-                oneOf: 'small'
+                skin: [1,2,3,4,5]
             },
             propTypes: {
                 skin: {
-                    type: YoxPropTypes.array
-                },
-                number: {
-                    type: 'number'
-                },
-                oneOf: {
-                    type: 'oneOf'
+                    type: 'array'
                 }
             }
         });
