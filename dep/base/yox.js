@@ -1497,6 +1497,39 @@ var directives = {
   destroy: destroyDirectives
 };
 
+var SYNTAX_IF = '#if';
+var SYNTAX_ELSE = 'else';
+var SYNTAX_ELSE_IF = 'else if';
+var SYNTAX_EACH = '#each';
+var SYNTAX_PARTIAL = '#partial';
+var SYNTAX_IMPORT = '>';
+var SYNTAX_SPREAD = '...';
+var SYNTAX_COMMENT = /^!\s/;
+
+var SPECIAL_EVENT = '$event';
+var SPECIAL_KEYPATH = '$keypath';
+var SPECIAL_CHILDREN = '$children';
+
+var DIRECTIVE_CUSTOM_PREFIX = 'o-';
+var DIRECTIVE_EVENT_PREFIX = 'on-';
+
+var DIRECTIVE_LAZY = 'lazy';
+var DIRECTIVE_MODEL = 'model';
+var DIRECTIVE_EVENT = 'event';
+var DIRECTIVE_BINDING = 'binding';
+
+var KEYWORD_REF = 'ref';
+var KEYWORD_UNIQUE = 'key';
+
+var HOOK_BEFORE_CREATE = 'beforeCreate';
+var HOOK_AFTER_CREATE = 'afterCreate';
+var HOOK_BEFORE_MOUNT = 'beforeMount';
+var HOOK_AFTER_MOUNT = 'afterMount';
+var HOOK_BEFORE_UPDATE = 'beforeUpdate';
+var HOOK_AFTER_UPDATE = 'afterUpdate';
+var HOOK_BEFORE_DESTROY = 'beforeDestroy';
+var HOOK_AFTER_DESTROY = 'afterDestroy';
+
 function setRef(instance, ref, value) {
   if (ref) {
     var refs = instance.$refs || (instance.$refs = {});
@@ -1525,6 +1558,7 @@ function createComponent(vnode) {
 function updateComponent(vnode, oldVnode) {
   var el = vnode.el,
       component = vnode.component,
+      children = vnode.children,
       instance = vnode.instance,
       ref = vnode.ref;
 
@@ -1532,6 +1566,9 @@ function updateComponent(vnode, oldVnode) {
   if (component) {
     el = this.getComponent(el);
     el.set(vnode.attrs);
+    if (children) {
+      el.set(SPECIAL_CHILDREN, children);
+    }
   }
 
   if (oldVnode && oldVnode.ref !== ref) {
@@ -1648,7 +1685,7 @@ function init(api) {
     }
 
     // 不管是组件还是元素，必须先有一个元素
-    el = vnode.el = api.createElement(component$$1 ? 'div' : tag, parentNode);
+    el = vnode.el = api.createElement(component$$1 ? 'i' : tag, parentNode);
 
     if (component$$1) {
 
@@ -1663,8 +1700,10 @@ function init(api) {
         vnode = api.getComponent(el);
 
         if (vnode && tag === vnode.tag) {
+
           component$$1 = (vnode.parent || vnode.instance).create(options, {
             el: el,
+            children: children,
             props: vnode.attrs,
             replace: TRUE
           });
@@ -1944,39 +1983,6 @@ var snabbdom = Object.freeze({
     isTextVnode: isTextVnode,
     init: init
 });
-
-var SYNTAX_IF = '#if';
-var SYNTAX_ELSE = 'else';
-var SYNTAX_ELSE_IF = 'else if';
-var SYNTAX_EACH = '#each';
-var SYNTAX_PARTIAL = '#partial';
-var SYNTAX_IMPORT = '>';
-var SYNTAX_SPREAD = '...';
-var SYNTAX_COMMENT = /^!\s/;
-
-var SPECIAL_EVENT = '$event';
-var SPECIAL_KEYPATH = '$keypath';
-var SPECIAL_CHILDREN = '$children';
-
-var DIRECTIVE_CUSTOM_PREFIX = 'o-';
-var DIRECTIVE_EVENT_PREFIX = 'on-';
-
-var DIRECTIVE_LAZY = 'lazy';
-var DIRECTIVE_MODEL = 'model';
-var DIRECTIVE_EVENT = 'event';
-var DIRECTIVE_BINDING = 'binding';
-
-var KEYWORD_REF = 'ref';
-var KEYWORD_UNIQUE = 'key';
-
-var HOOK_BEFORE_CREATE = 'beforeCreate';
-var HOOK_AFTER_CREATE = 'afterCreate';
-var HOOK_BEFORE_MOUNT = 'beforeMount';
-var HOOK_AFTER_MOUNT = 'afterMount';
-var HOOK_BEFORE_UPDATE = 'beforeUpdate';
-var HOOK_AFTER_UPDATE = 'afterUpdate';
-var HOOK_BEFORE_DESTROY = 'beforeDestroy';
-var HOOK_AFTER_DESTROY = 'afterDestroy';
 
 var PLUS = '+';
 var MINUS = '-';
@@ -3026,12 +3032,12 @@ var Node$1 = function () {
 
   Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
     if (expr) {
-      return 'o(' + this.stringifyObject(expr) + ')';
+      return this.stringifyCall('o', this.stringifyObject(expr));
     }
   };
 
   Node.prototype.stringifyCall = function stringifyCall(name, params) {
-    return name + '(' + join(params, ',') + ')';
+    return name + '(' + (array(params) ? join(params, ',') : params) + ')';
   };
 
   Node.prototype.stringifyString = function stringifyString(str) {
@@ -3165,7 +3171,7 @@ var Element = function (_Node) {
       });
     }
 
-    // 反过来 push
+    // 反过来
     // 这样序列化能省更多字符
     if (key || ref) {
       var stringify = function stringify(value) {
@@ -3179,27 +3185,24 @@ var Element = function (_Node) {
         return value;
       };
       if (key) {
-        unshift(params, stringify(key));
+        unshift(params, me.stringifyCall('q', stringify(key)));
       }
       if (ref || params.length) {
-        unshift(params, ref ? stringify(ref) : RAW_NULL);
+        unshift(params, ref ? me.stringifyCall('q', stringify(ref)) : RAW_UNDEFINED);
       }
     }
 
+    var isComponent = component ? 1 : 0;
     if (component || params.length) {
-      unshift(params, component ? 1 : 0);
+      unshift(params, isComponent);
     }
 
     if (children.length || params.length) {
-      unshift(params, children.length ? this.stringifyArray(children) : 0);
+      unshift(params, me.stringifyCall('x', [children.length ? this.stringifyArray(children) : 0, isComponent]));
     }
 
-    if (props || params.length) {
-      unshift(params, props ? this.stringifyObject(props) : 0);
-    }
-
-    if (attrs.length || params.length) {
-      unshift(params, attrs.length ? this.stringifyArray(attrs) : 0);
+    if (props || attrs.length || params.length) {
+      unshift(params, me.stringifyCall('y', [props ? this.stringifyObject(props) : 0, attrs.length ? this.stringifyArray(attrs) : 0, isComponent]));
     }
 
     unshift(params, me.stringifyString(name));
@@ -3267,7 +3270,7 @@ var Expression$1 = function (_Node) {
   }
 
   Expression.prototype.stringify = function stringify() {
-    return this.stringifyExpression(this.expr, this.safe);
+    return this.stringifyExpression(this.expr);
   };
 
   return Expression;
@@ -3334,7 +3337,7 @@ var Import = function (_Node) {
   }
 
   Import.prototype.stringify = function stringify() {
-    return this.stringifyCall('i', [this.stringifyString(this.name)]);
+    return this.stringifyCall('i', this.stringifyString(this.name));
   };
 
   return Import;
@@ -3384,7 +3387,7 @@ var Spread = function (_Node) {
   }
 
   Spread.prototype.stringify = function stringify() {
-    return this.stringifyCall('s', [this.stringifyObject(this.expr)]);
+    return this.stringifyCall('s', this.stringifyObject(this.expr));
   };
 
   return Spread;
@@ -3536,37 +3539,23 @@ function compile$$1(content) {
 
       if (type === ELEMENT) {
         // 优化只有一个子节点的情况
-        if (children.length - divider === 1) {
+        if (!component && children.length - divider === 1) {
           var singleChild = last(children);
           // 子节点是纯文本
           if (singleChild.type === TEXT) {
-            if (component) {
-              var attr = new Attribute(SPECIAL_CHILDREN);
-              attr.children = [singleChild];
-              children[divider] = attr;
-              target.divider++;
+            target.props = {
+              textContent: singleChild.text
+            };
+            pop(children);
+          } else if (singleChild.type === EXPRESSION && singleChild.expr.raw !== SPECIAL_CHILDREN) {
+            var props = {};
+            if (singleChild.safe === FALSE) {
+              props.innerHTML = singleChild.expr;
             } else {
-              target.props = {
-                textContent: singleChild.text
-              };
-              pop(children);
+              props.textContent = singleChild.expr;
             }
-          } else if (singleChild.type === EXPRESSION) {
-            if (component) {
-              var _attr = new Attribute(SPECIAL_CHILDREN);
-              _attr.children = [singleChild];
-              children[divider] = _attr;
-              target.divider++;
-            } else if (singleChild.expr.raw !== SPECIAL_CHILDREN) {
-              var props = {};
-              if (singleChild.safe === FALSE) {
-                props.innerHTML = singleChild.expr;
-              } else {
-                props.textContent = singleChild.expr;
-              }
-              target.props = props;
-              pop(children);
-            }
+            target.props = props;
+            pop(children);
           }
 
           if (!children.length) {
@@ -3920,7 +3909,7 @@ function compile$$1(content) {
  */
 function convert(ast) {
   return ast.map(function (item) {
-    return new Function('a', 'c', 'm', 'e', 'o', 's', 'p', 'i', 'return ' + item.stringify());
+    return new Function('a', 'c', 'e', 'i', 'm', 'o', 'p', 'q', 's', 'x', 'y', 'return ' + item.stringify());
   });
 }
 
@@ -3965,6 +3954,26 @@ function render(render, getter, setter, instance) {
     keypathStack = lastKeypathStack;
   },
       STRUCT = 'struct',
+      toArray$$1 = function toArray$$1(arr) {
+    var length = arr.length;
+
+    if (length > 0) {
+      if (length === 1) {
+        return arr[0];
+      }
+      arr[STRUCT] = TRUE;
+      return arr;
+    }
+  },
+      addDirective = function addDirective(directives, name, modifier, value) {
+    return directives[join$1(name, modifier)] = {
+      name: name,
+      modifier: modifier,
+      value: value,
+      keypath: keypath,
+      keypathStack: keypathStack
+    };
+  },
 
 
   // array
@@ -3982,154 +3991,136 @@ function render(render, getter, setter, instance) {
     result[STRUCT] = TRUE;
     return result;
   },
-      toArray$$1 = function toArray$$1(arr) {
-    var length = arr.length;
-
-    if (length > 0) {
-      if (length === 1) {
-        return arr[0];
-      }
-      arr[STRUCT] = TRUE;
-      return arr;
-    }
-  },
-      getRefKey = function getRefKey(value) {
-    return array(value) && value[STRUCT] ? join(value, '') : value;
-  },
 
 
   // create
-  c = function c(tag, attrs, props, childs, isComponent, ref, key) {
+  c = function c(tag, mix, children, isComponent, ref, key) {
+    return snabbdom[isComponent ? 'createComponentVnode' : 'createElementVnode'](tag, mix && mix.attributes, mix && mix.properties, mix && mix.directives, children, ref, key, instance);
+  },
 
-    // 处理属性
+  // m childs 的 c 被占用了，随便换个字母
+  x = function x(childs, isComponent) {
+
+    var result = [];
+
+    if (childs) {
+      var lastChild = void 0;
+      each(childs, function (child) {
+        if (child != NULL) {
+          if (isVnode(child)) {
+            if (child.component) {
+              child.parent = instance;
+            }
+            push(result, child);
+            lastChild = NULL;
+          } else if (isTextVnode(lastChild)) {
+            lastChild.text += toString(child);
+          } else {
+            lastChild = createTextVnode(child);
+            push(result, lastChild);
+          }
+        }
+      });
+    }
+
+    if (isComponent) {
+      result[STRUCT] = TRUE;
+    }
+
+    return result;
+  },
+      y = function y(props, attrs, isComponent) {
+
     var properties = {},
         attributes = {},
         directives = {};
 
-    if (props || attrs) {
+    if (props) {
+      each$1(props, function (value, key) {
+        if (object(value)) {
+          var _value = value,
+              staticKeypath = _value.staticKeypath;
 
-      var addDirective = function addDirective(name, modifier, value) {
-        return directives[join$1(name, modifier)] = {
-          name: name,
-          modifier: modifier,
-          value: value,
-          keypath: keypath,
-          keypathStack: keypathStack
-        };
-      };
-
-      if (props) {
-        each$1(props, function (value, key) {
-          if (object(value)) {
-            var _value = value,
-                staticKeypath = _value.staticKeypath;
-
-            value = getter(value, keypathStack, staticKeypath);
-            if (staticKeypath) {
-              addDirective(DIRECTIVE_BINDING, key, staticKeypath).prop = TRUE;
-            }
+          value = getter(value, keypathStack, staticKeypath);
+          if (staticKeypath) {
+            addDirective(directives, DIRECTIVE_BINDING, key, staticKeypath).prop = TRUE;
           }
-          properties[key] = value;
-        });
-      }
-
-      if (attrs) {
-        var addAttr = function addAttr(item) {
-          var type = item.type,
-              name = item.name,
-              modifier = item.modifier,
-              expr = item.expr,
-              children = item.children,
-              binding = item.binding,
-              data = item.data;
-
-          // 延展数据
-
-          if (data) {
-            each$1(data, function (value, key) {
-              attributes[key] = value;
-              if (binding) {
-                addDirective(DIRECTIVE_BINDING, key, join$1(binding, key));
-              }
-            });
-            return;
-          }
-
-          var value = void 0;
-          if (has$1(item, 'value')) {
-            value = item.value;
-          } else if (expr) {
-            value = getter(expr, keypathStack, binding);
-          } else if (children) {
-            value = join(children, '');
-          }
-
-          // <input checked>
-          // <div title="{{title}}" 这种写法，如果没取到值，就是 undefined
-          if (!isDef(value) && !expr) {
-            if (children) {
-              value = CHAR_BLANK;
-            } else {
-              value = isComponent ? TRUE : name;
-            }
-          }
-
-          if (type === ATTRIBUTE) {
-            attributes[name] = value;
-            if (binding) {
-              addDirective(DIRECTIVE_BINDING, name, binding);
-            }
-          } else if (type === DIRECTIVE) {
-            addDirective(name, modifier, value).expr = expr;
-          }
-        };
-        each(attrs, function (item) {
-          if (item) {
-            if (array(item)) {
-              each(item, addAttr);
-            } else {
-              addAttr(item);
-            }
-          }
-        });
-      }
+        }
+        properties[key] = value;
+      });
     }
 
-    // 处理 children
-    var children = [];
+    if (attrs) {
+      var addAttr = function addAttr(item) {
+        var type = item.type,
+            name = item.name,
+            modifier = item.modifier,
+            expr = item.expr,
+            children = item.children,
+            binding = item.binding,
+            data = item.data;
 
-    if (childs) {
-      var lastChild = void 0;
-      var addChild = function addChild(child) {
-        if (isVnode(child)) {
-          if (child.component) {
-            child.parent = instance;
+        // 延展数据
+
+        if (data) {
+          each$1(data, function (value, key) {
+            attributes[key] = value;
+            if (binding) {
+              addDirective(directives, DIRECTIVE_BINDING, key, join$1(binding, key));
+            }
+          });
+          return;
+        }
+
+        var value = void 0;
+        if (has$1(item, 'value')) {
+          value = item.value;
+        } else if (expr) {
+          value = getter(expr, keypathStack, binding);
+        } else if (children) {
+          value = join(children, '');
+        }
+
+        // <input checked>
+        // <div title="{{title}}" 这种写法，如果没取到值，就是 undefined
+        if (!isDef(value) && !expr) {
+          if (children) {
+            value = CHAR_BLANK;
+          } else {
+            value = isComponent ? TRUE : name;
           }
-          push(children, child);
-          lastChild = NULL;
-        } else if (isTextVnode(lastChild)) {
-          lastChild.text += toString(child);
-        } else {
-          lastChild = createTextVnode(child);
-          push(children, lastChild);
+        }
+
+        if (type === ATTRIBUTE) {
+          attributes[name] = value;
+          if (binding) {
+            addDirective(directives, DIRECTIVE_BINDING, name, binding);
+          }
+        } else if (type === DIRECTIVE) {
+          addDirective(directives, name, modifier, value).expr = expr;
         }
       };
-      var eachChilds = function eachChilds(childs) {
-        each(childs, function (child) {
-          if (child != NULL) {
-            if (array(child) && child[STRUCT]) {
-              eachChilds(child);
-            } else {
-              addChild(child);
-            }
+      each(attrs, function (item) {
+        if (item) {
+          if (array(item)) {
+            each(item, addAttr);
+          } else {
+            addAttr(item);
           }
-        });
-      };
-      eachChilds(childs);
+        }
+      });
     }
 
-    // 创建元素/组件
-    return snabbdom[isComponent ? 'createComponentVnode' : 'createElementVnode'](tag, attributes, properties, directives, children, getRefKey(ref), getRefKey(key), instance);
+    return {
+      properties: properties,
+      attributes: attributes,
+      directives: directives
+    };
+  },
+
+  // ref key
+  q = function q(value) {
+    return array(value) && value[STRUCT] ? join(value, '') : value;
   },
 
   // comment
@@ -4159,7 +4150,7 @@ function render(render, getter, setter, instance) {
     }
 
     if (each$$1) {
-      var children = [],
+      var result = [],
           lastKeypath = keypath,
           lastKeypathStack = keypathStack;
 
@@ -4182,7 +4173,7 @@ function render(render, getter, setter, instance) {
         }
 
         each(generate(), function (item) {
-          push(children, item);
+          push(result, item);
         });
 
         popKeypath(lastKeypath, lastKeypathStack);
@@ -4192,7 +4183,7 @@ function render(render, getter, setter, instance) {
         popKeypath(lastKeypath, lastKeypathStack);
       }
 
-      return toArray$$1(children);
+      return toArray$$1(result);
     }
   },
 
@@ -4210,7 +4201,6 @@ function render(render, getter, setter, instance) {
         binding: expr.staticKeypath
       };
     }
-    fatal('"' + expr.raw + '" spread expected to be an object.');
   },
       localPartials = {},
 
@@ -4226,14 +4216,15 @@ function render(render, getter, setter, instance) {
     }
     var partial = instance.importPartial(name);
     if (partial) {
-      return toArray$$1(partial.map(function (item) {
-        return item(a, c, m, e, o, s, p, i);
-      }));
+      return toArray$$1(partial.map(executeRender));
     }
     fatal('"' + name + '" partial is not found.');
+  },
+      executeRender = function executeRender(render) {
+    return render(a, c, e, i, m, o, p, q, s, x, y);
   };
 
-  return render(a, c, m, e, o, s, p, i);
+  return executeRender(render);
 }
 
 var toNumber = function (str) {
@@ -5727,6 +5718,7 @@ var Yox = function () {
         parent = _options.parent,
         replace = _options.replace,
         computed = _options.computed,
+        children = _options.children,
         template = _options.template,
         components = _options.components,
         directives = _options.directives,
@@ -5744,10 +5736,8 @@ var Yox = function () {
     var source = void 0;
     if (object(propTypes)) {
       source = Yox.validate(props || {}, propTypes);
-      // validate 可能过滤 $children 字段
-      // 这里确保外面传入的 $children 还在
-      if (props && has$1(props, SPECIAL_CHILDREN)) {
-        source[SPECIAL_CHILDREN] = props[SPECIAL_CHILDREN];
+      if (children) {
+        source[SPECIAL_CHILDREN] = children;
       }
     } else {
       source = props || {};

@@ -38,11 +38,12 @@
             el: '#app-1',
             template: '#template-1',
             props: {
-                skin: [1,2,3,4,5]
+                skin: 'light',
             },
             propTypes: {
                 skin: {
-                    type: 'array'
+                    type: 'oneOf',
+                    value: ['ligth', 1, 'dark']
                 }
             }
         });
