@@ -32,6 +32,8 @@
         data: function () {
             var me = this;
             return {
+                targetKeys: [],
+                data: [],
                 onChange: function (targetKeys, direction, moveKeys) {
 
                 }

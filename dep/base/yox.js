@@ -1,5 +1,7 @@
 (function (global, factory) {
-    (global.Yox = factory());
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Yox = factory());
 }(this, (function () { 'use strict';
 
 
@@ -152,15 +154,15 @@ function primitive(value) {
 
 
 var is$1 = {
-    is: is,
-    func: func,
-    array: array,
-    object: object,
-    string: string,
-    number: number,
-    boolean: boolean,
-    numeric: numeric,
-    primitive: primitive
+	is: is,
+	func: func,
+	array: array,
+	object: object,
+	string: string,
+	number: number,
+	boolean: boolean,
+	numeric: numeric,
+	primitive: primitive
 };
 
 /**
@@ -515,19 +517,19 @@ function falsy(array$$1) {
 }
 
 var array$1 = {
-    each: each,
-    merge: merge,
-    join: join,
-    push: push,
-    unshift: unshift,
-    toArray: toArray$1,
-    toObject: toObject,
-    indexOf: indexOf,
-    has: has,
-    last: last,
-    pop: pop,
-    remove: remove,
-    falsy: falsy
+	each: each,
+	merge: merge,
+	join: join,
+	push: push,
+	unshift: unshift,
+	toArray: toArray$1,
+	toObject: toObject,
+	indexOf: indexOf,
+	has: has,
+	last: last,
+	pop: pop,
+	remove: remove,
+	falsy: falsy
 };
 
 /**
@@ -647,16 +649,16 @@ function falsy$1(str) {
 }
 
 var string$1 = {
-    camelCase: camelCase,
-    trim: trim,
-    slice: slice,
-    split: split,
-    indexOf: indexOf$1,
-    lastIndexOf: lastIndexOf,
-    has: has$2,
-    startsWith: startsWith,
-    endsWith: endsWith,
-    falsy: falsy$1
+	camelCase: camelCase,
+	trim: trim,
+	slice: slice,
+	split: split,
+	indexOf: indexOf$1,
+	lastIndexOf: lastIndexOf,
+	has: has$2,
+	startsWith: startsWith,
+	endsWith: endsWith,
+	falsy: falsy$1
 };
 
 /**
@@ -866,16 +868,16 @@ function set$1(object$$1, keypath, value, autofill) {
 }
 
 var object$1 = {
-    keys: keys,
-    sort: sort,
-    each: each$1,
-    has: has$1,
-    exists: exists,
-    clear: clear,
-    extend: extend,
-    copy: copy,
-    get: get$1,
-    set: set$1
+	keys: keys,
+	sort: sort,
+	each: each$1,
+	has: has$1,
+	exists: exists,
+	clear: clear,
+	extend: extend,
+	copy: copy,
+	get: get$1,
+	set: set$1
 };
 
 var Emitter = function () {
@@ -1149,10 +1151,10 @@ function fatal(msg) {
 
 
 var logger = {
-    log: log,
-    warn: warn,
-    error: error$1,
-    fatal: fatal
+	log: log,
+	warn: warn,
+	error: error$1,
+	fatal: fatal
 };
 
 var isNative = function (fn) {
@@ -1971,13 +1973,13 @@ function init(api) {
 }
 
 var snabbdom = {
-    createCommentVnode: createCommentVnode,
-    createTextVnode: createTextVnode,
-    createElementVnode: createElementVnode,
-    createComponentVnode: createComponentVnode,
-    isVnode: isVnode,
-    isTextVnode: isTextVnode,
-    init: init
+	createCommentVnode: createCommentVnode,
+	createTextVnode: createTextVnode,
+	createElementVnode: createElementVnode,
+	createComponentVnode: createComponentVnode,
+	isVnode: isVnode,
+	isTextVnode: isTextVnode,
+	init: init
 };
 
 var PLUS = '+';
@@ -3579,8 +3581,10 @@ function compile$$1(content) {
 
       if (type === ELEMENT) {
         // 优化只有一个子节点的情况
-        if (!component && children[RAW_LENGTH] - divider === 1) {
+        if (!component && tag !== 'template' && children[RAW_LENGTH] - divider === 1) {
+
           var singleChild = last(children);
+
           // 子节点是纯文本
           if (singleChild.type === TEXT) {
             target.props = [{
@@ -3616,7 +3620,7 @@ function compile$$1(content) {
           // <div ref="xx">
           // <slot name="xx">
           var element = last(htmlStack);
-          if (name === 'key' || name === 'ref' || name === 'slot' || element.tag === 'slot' && name === 'name') {
+          if (name === 'key' || name === 'ref' || element.tag === 'template' && name === 'slot' || element.tag === 'slot' && name === 'name') {
             // 把数据从属性中提出来，减少渲染时的遍历
             remove(element.children, target);
             if (!element.children[RAW_LENGTH]) {
@@ -4199,7 +4203,7 @@ function render(render, getter, setter, instance) {
     }
 
     if (slot && lastComponent) {
-      addSlot(slotPrefix + getValue(slot), result);
+      addSlot(slotPrefix + getValue(slot), children);
       return;
     }
 
@@ -4713,7 +4717,7 @@ var Observer = function () {
           } else {
             push(fuzzyKeypaths, listenKey);
           }
-        } else if (startsWith(listenKey, keypath)) {
+        } else if (startsWith$1(listenKey, keypath)) {
           var listenNewValue = getNewValue(listenKey),
               listenOldValue = instance.get(listenKey);
           if (listenNewValue !== listenOldValue) {
@@ -5267,30 +5271,30 @@ function setComponent(element, component) {
 }
 
 var domApi = {
-    createElement: createElement,
-    createText: createText,
-    createComment: createComment,
-    createEvent: createEvent,
-    isElement: isElement,
-    setProp: setProp,
-    removeProp: removeProp,
-    setAttr: setAttr,
-    removeAttr: removeAttr,
-    before: before,
-    append: append$1,
-    replace: replace,
-    remove: remove$1,
-    parent: parent,
-    next: next,
-    tag: tag$1,
-    children: children,
-    text: text,
-    html: html,
-    find: find,
-    on: on$1,
-    off: off,
-    getComponent: getComponent,
-    setComponent: setComponent
+	createElement: createElement,
+	createText: createText,
+	createComment: createComment,
+	createEvent: createEvent,
+	isElement: isElement,
+	setProp: setProp,
+	removeProp: removeProp,
+	setAttr: setAttr,
+	removeAttr: removeAttr,
+	before: before,
+	append: append$1,
+	replace: replace,
+	remove: remove$1,
+	parent: parent,
+	next: next,
+	tag: tag$1,
+	children: children,
+	text: text,
+	html: html,
+	find: find,
+	on: on$1,
+	off: off,
+	getComponent: getComponent,
+	setComponent: setComponent
 };
 
 /**
@@ -5917,7 +5921,9 @@ var Yox = function () {
         instance.$renderCount++;
         return instance.render();
       });
-      if (!watchers) {
+      if (watchers) {
+        watchers = copy(watchers);
+      } else {
         watchers = {};
       }
       watchers[TEMPLATE_COMPUTED] = function (newNode) {

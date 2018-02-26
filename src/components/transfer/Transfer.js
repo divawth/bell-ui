@@ -14,6 +14,7 @@ export default {
                         {{left.length}} / {{leftList.length}}
                     </span>
                 </div>
+
                 <div class="bell-transfer-list-body">
                     <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">
                         {{#each leftList}}
@@ -138,7 +139,7 @@ export default {
             }
         },
         leftList: {
-            deps: ['targetKeys', 'targetKeys.length', 'data.*'],
+            deps: ['targetKeys', 'targetKeys.length', 'data.*', 'data'],
             get: function () {
                 var me = this;
                 var data = me.get('data');
