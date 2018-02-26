@@ -1,7 +1,7 @@
 export default {
     template: `
         <div class="bell-alert-desc">
-            {{$children}}
+            <slot name="children" />
         </div>
     `
 }

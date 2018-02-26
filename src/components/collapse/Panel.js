@@ -11,7 +11,7 @@ export default {
                 {{title}}
             </div>
             <div ref="panelInner" class="bell-panel-inner">
-                {{$children}}
+                <slot name="children" />
             </div>
         </div>
     `,

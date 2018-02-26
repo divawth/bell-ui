@@ -8,7 +8,7 @@ let ZOOM = 'zoom';
 let COLLAPSE = 'collapse';
 
 export default {
-    template: `{{$children}}`,
+    template: `<slot name="children" />`,
 
     propTypes: {
         // 是否在初始渲染时使用过渡

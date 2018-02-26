@@ -4,7 +4,7 @@ export default {
 {{#if type}} bell-badge-{{type}}{{/if}}
 {{#if className}} {{className}}{{/if}}
 ">
-    {{$children}}
+    <slot name="children" />
     {{#if !hidden}}
         {{#if dot}}
             <span class="bell-badge-dot"></span>

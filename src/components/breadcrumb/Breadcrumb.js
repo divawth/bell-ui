@@ -1,7 +1,7 @@
 export default {
     template: `
         <div class="bell-bread-crumb">
-            {{$children}}
+            <slot name="children" />
         </div>
     `
 }

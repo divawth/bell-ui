@@ -1,7 +1,7 @@
 export default {
     template: `
         <div class="bell-tooltip-inner-content">
-            {{$children}}
+            <slot name="children" />
         </div>
     `,
     afterMount: function () {

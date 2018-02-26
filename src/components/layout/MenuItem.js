@@ -3,7 +3,7 @@ export default {
         <div class="bell-menu-item
         {{#if isActive}} bell-active{{/if}}
         " on-click="click(name)">
-            {{$children}}
+            <slot name="children" />
         </div>
     `,
 

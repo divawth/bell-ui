@@ -3,7 +3,7 @@ export default {
         <div class="bell-sub-menu
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
-            {{$children}}
+            <slot name="children" />
         </div>
     `,
     propTypes: {

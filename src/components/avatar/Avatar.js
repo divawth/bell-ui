@@ -10,7 +10,7 @@ color: {{color}}">
     {{#if src}}
         <img ondragstart="return false" src="{{src}}" />
     {{else}}
-        {{$children}}
+        <slot name="children" />
     {{/if}}
 </div>
     `,

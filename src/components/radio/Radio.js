@@ -13,7 +13,7 @@ export default {
         {{#if label}}
             {{label}}
         {{else}}
-            {{$children}}
+            <slot name="children" />
         {{/if}}
     </span>
 </label>

@@ -6,7 +6,7 @@ export default {
 {{#if justify}} bell-row-flex-{{justify}}{{/if}}
 {{#if align}} bell-row-flex-{{align}}{{/if}}
 " style="{{style}}">
-    {{$children}}
+    <slot name="children" />
 </div>
     `,
 

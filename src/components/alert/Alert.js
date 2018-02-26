@@ -19,7 +19,7 @@ export default {
     {{/if}}
 
     <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">
-        {{$children}}
+        <slot name="children" />
     </span>
 
     {{#if closable}}

@@ -6,7 +6,7 @@ bell-checkbox-group
 {{#if size}} bell-checkbox-group-{{size}}{{/if}}
 {{#if vertical}} bell-checkbox-vertical{{/if}}
 ">
-    {{$children}}
+    <slot name="children" />
 </div>
     `,
     model: 'modelValue',

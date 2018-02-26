@@ -2,7 +2,7 @@ export default {
     template: `
 <div class="bell-card-media">
 
-    {{$children}}
+    <slot name="children" />
 
     <div class="bell-card-media-detail">
         {{#if title}}

@@ -9,7 +9,7 @@ export default {
         {{#if hasSider}} bell-has-sider{{/if}}
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
-            {{$children}}
+            <slot name="children" />
         </div>
     `,
 

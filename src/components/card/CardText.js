@@ -1,7 +1,7 @@
 export default {
     template: `
         <div class="bell-card-text">
-            {{$children}}
+            <slot name="children" />
         </div>
     `
 }

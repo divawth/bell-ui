@@ -13,7 +13,7 @@ export default {
 {{#if lgClass}} {{lgClass}}{{/if}}
 " style="{{style}}">
     <div class="bell-col-content">
-        {{$children}}
+        <slot name="children" />
     </div>
 </div>
     `,

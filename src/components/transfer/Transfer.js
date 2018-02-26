@@ -65,9 +65,9 @@ export default {
     `,
     propTypes: {
         data: {
-            type: 'object',
+            type: 'array',
             value: function () {
-                return {};
+                return [];
             }
         },
         targetKeys: {

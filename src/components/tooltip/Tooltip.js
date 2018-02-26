@@ -9,7 +9,7 @@ export default {
             on-mouseover="hover()"
             on-mouseleave="leave()"
             on-click="click()">
-                {{$children}}
+                <slot name="children" />
             </div>
 
             <div class="bell-tooltip-popper

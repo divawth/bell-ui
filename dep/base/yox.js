@@ -2,11 +2,7 @@
     (global.Yox = factory());
 }(this, (function () { 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
+
 
 
 
@@ -20,7 +16,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+    throw new Error("Cannot call a class as a function");
   }
 };
 
@@ -36,7 +32,7 @@ var classCallCheck = function (instance, Constructor) {
 
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    throw new Error("Super expression must either be null or a function, not " + typeof superClass);
   }
 
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -82,6 +78,7 @@ var RAW_NULL = 'null';
 var RAW_UNDEFINED = 'undefined';
 
 var RAW_THIS = 'this';
+var RAW_LENGTH = 'length';
 var RAW_FUNCTION = 'function';
 
 var KEYPATH_SEPARATOR = '.';
@@ -91,14 +88,14 @@ var KEYPATH_SEPARATOR = '.';
  *
  * @type {?Window}
  */
-var win = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== RAW_UNDEFINED ? window : NULL;
+var win = typeof window !== RAW_UNDEFINED ? window : NULL;
 
 /**
  * 浏览器环境下的 document 对象
  *
  * @type {?Document}
  */
-var doc = (typeof document === 'undefined' ? 'undefined' : _typeof(document)) !== RAW_UNDEFINED ? document : NULL;
+var doc = typeof document !== RAW_UNDEFINED ? document : NULL;
 
 /**
  * 空函数
@@ -120,7 +117,7 @@ function is(value, type) {
 }
 
 function func(value) {
-  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === RAW_FUNCTION;
+  return value && typeof value === RAW_FUNCTION;
 }
 
 function array(value) {
@@ -129,7 +126,7 @@ function array(value) {
 
 function object(value) {
   // 低版本 IE 会把 null 和 undefined 当作 object
-  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
+  return value && typeof value === 'object';
 }
 
 function string(value) {
@@ -145,7 +142,7 @@ function boolean(value) {
 }
 
 function numeric(value) {
-  return !isNaN(parseFloat(value)) && isFinite(value);
+  return number(value) || string(value) && !isNaN(parseFloat(value)) && isFinite(value);
 }
 
 function primitive(value) {
@@ -154,7 +151,7 @@ function primitive(value) {
 
 
 
-var is$1 = Object.freeze({
+var is$1 = {
     is: is,
     func: func,
     array: array,
@@ -164,7 +161,7 @@ var is$1 = Object.freeze({
     boolean: boolean,
     numeric: numeric,
     primitive: primitive
-});
+};
 
 /**
  * 任性地执行一个函数，不管它有没有、是不是
@@ -192,7 +189,7 @@ var Event = function () {
     }
   }
 
-  Event.prototype.prevent = function prevent() {
+  Event.prototype.prevent = function () {
     var instance = this;
     if (!instance.isPrevented) {
       var originalEvent = instance.originalEvent;
@@ -209,7 +206,7 @@ var Event = function () {
     return instance;
   };
 
-  Event.prototype.stop = function stop() {
+  Event.prototype.stop = function () {
     var instance = this;
     if (!instance.isStoped) {
       var originalEvent = instance.originalEvent;
@@ -321,8 +318,7 @@ var CODE_WHITESPACE = codeAt(CHAR_WHITESPACE);
  * @param {?boolean} reversed 是否逆序遍历
  */
 function each(array$$1, callback, reversed) {
-  var length = array$$1.length;
-
+  var length = array$$1[RAW_LENGTH];
   if (length) {
     if (reversed) {
       for (var i = length - 1; i >= 0; i--) {
@@ -363,7 +359,7 @@ function join(array$$1, separator) {
 }
 
 function nativePush(array$$1, item) {
-  array$$1[array$$1.length] = item;
+  array$$1[array$$1[RAW_LENGTH]] = item;
 }
 
 function nativeUnshift(array$$1, item) {
@@ -427,7 +423,7 @@ function toArray$1(array$$1) {
  */
 function toObject(array$$1, key, value) {
   var result = {},
-      hasValue = arguments.length === 3;
+      hasValue = arguments[RAW_LENGTH] === 3;
   each(array$$1, function (item, index) {
     result[key ? item[key] : item] = hasValue ? value : item;
   });
@@ -446,7 +442,7 @@ function indexOf(array$$1, item, strict) {
   if (strict !== FALSE) {
     return array$$1.indexOf(item);
   } else {
-    for (var i = 0, len = array$$1.length; i < len; i++) {
+    for (var i = 0, len = array$$1[RAW_LENGTH]; i < len; i++) {
       if (array$$1[i] == item) {
         return i;
       }
@@ -474,7 +470,7 @@ function has(array$$1, item, strict) {
  * @return {*}
  */
 function last(array$$1) {
-  return array$$1[array$$1.length - 1];
+  return array$$1[array$$1[RAW_LENGTH] - 1];
 }
 
 /**
@@ -515,10 +511,10 @@ function remove(array$$1, item, strict) {
  * @return {boolean}
  */
 function falsy(array$$1) {
-  return !array(array$$1) || array$$1.length === 0;
+  return !array(array$$1) || array$$1[RAW_LENGTH] === 0;
 }
 
-var array$1 = Object.freeze({
+var array$1 = {
     each: each,
     merge: merge,
     join: join,
@@ -532,7 +528,7 @@ var array$1 = Object.freeze({
     pop: pop,
     remove: remove,
     falsy: falsy
-});
+};
 
 /**
  * 连字符转成驼峰
@@ -636,7 +632,7 @@ function startsWith(str, part) {
  * @return {boolean}
  */
 function endsWith(str, part) {
-  var offset = str.length - part.length;
+  var offset = str[RAW_LENGTH] - part[RAW_LENGTH];
   return offset >= 0 && lastIndexOf(str, part) === offset;
 }
 
@@ -650,7 +646,7 @@ function falsy$1(str) {
   return !string(str) || str === CHAR_BLANK;
 }
 
-var string$1 = Object.freeze({
+var string$1 = {
     camelCase: camelCase,
     trim: trim,
     slice: slice,
@@ -661,7 +657,7 @@ var string$1 = Object.freeze({
     startsWith: startsWith,
     endsWith: endsWith,
     falsy: falsy$1
-});
+};
 
 /**
  * 获取对象的 key 的数组
@@ -674,11 +670,11 @@ function keys(object$$1) {
 }
 
 function sortByAsc(a, b) {
-  return a.length - b.length;
+  return a[RAW_LENGTH] - b[RAW_LENGTH];
 }
 
 function sortByDesc(a, b) {
-  return b.length - a.length;
+  return b[RAW_LENGTH] - a[RAW_LENGTH];
 }
 
 /**
@@ -765,10 +761,14 @@ function extend(original, object1, object2, object3) {
 function copy(object$$1, deep) {
   var result = object$$1;
   if (array(object$$1)) {
-    result = [];
-    each(object$$1, function (item, index) {
-      result[index] = deep ? copy(item, deep) : item;
-    });
+    if (deep) {
+      result = [];
+      each(object$$1, function (item, index) {
+        result[index] = copy(item, deep);
+      });
+    } else {
+      result = object$$1.slice();
+    }
   } else if (object(object$$1)) {
     result = {};
     each$1(object$$1, function (value, key) {
@@ -865,7 +865,7 @@ function set$1(object$$1, keypath, value, autofill) {
   });
 }
 
-var object$1 = Object.freeze({
+var object$1 = {
     keys: keys,
     sort: sort,
     each: each$1,
@@ -876,7 +876,7 @@ var object$1 = Object.freeze({
     copy: copy,
     get: get$1,
     set: set$1
-});
+};
 
 var Emitter = function () {
 
@@ -891,7 +891,7 @@ var Emitter = function () {
     this.listeners = {};
   }
 
-  Emitter.prototype.fire = function fire(type, data, context) {
+  Emitter.prototype.fire = function (type, data, context) {
     var namespace = this.namespace,
         listeners = this.listeners;
 
@@ -906,7 +906,7 @@ var Emitter = function () {
       var event = array(data) ? data[0] : data,
           isEvent = Event.is(event);
 
-      each(list.slice(), function (item) {
+      each(copy(list), function (item) {
 
         var index = indexOf(list, item);
 
@@ -943,7 +943,7 @@ var Emitter = function () {
         }
       });
 
-      if (!list.length) {
+      if (!list[RAW_LENGTH]) {
         delete listeners[name];
       }
     }
@@ -951,7 +951,7 @@ var Emitter = function () {
     return isComplete;
   };
 
-  Emitter.prototype.has = function has$$1(type, listener) {
+  Emitter.prototype.has = function (type, listener) {
     var namespace = this.namespace,
         listeners = this.listeners,
         _parseType2 = parseType(type, namespace),
@@ -959,7 +959,7 @@ var Emitter = function () {
         space = _parseType2.space,
         result = TRUE;
 
-    var each$$1 = function each$$1(list) {
+    var each$$1 = function (list) {
       each(list, function (item, index) {
         if ((!space || space === item.space) && (!listener || listener === item.func)) {
           return result = FALSE;
@@ -989,17 +989,17 @@ extend(Emitter.prototype, {
   off: function off(type, listener) {
 
     var instance = this,
-        filter = void 0;
+        filter;
     var listeners = instance.listeners;
 
 
-    var each$$1 = function each$$1(list, name) {
+    var each$$1 = function (list, name) {
       each(list, function (item, index) {
         if (!filter || filter(item)) {
           list.splice(index, 1);
         }
       }, TRUE);
-      if (!list.length) {
+      if (!list[RAW_LENGTH]) {
         delete listeners[name];
       }
     };
@@ -1031,7 +1031,7 @@ function on(data) {
         listeners = this.listeners;
 
 
-    var addListener = function addListener(item, type) {
+    var addListener = function (item, type) {
       if (func(item)) {
         item = { func: item };
       }
@@ -1086,7 +1086,7 @@ var toString = function (str) {
  *
  * @type {?Object}
  */
-var Console = (typeof console === 'undefined' ? 'undefined' : _typeof(console)) !== RAW_UNDEFINED ? console : NULL;
+var Console = typeof console !== RAW_UNDEFINED ? console : NULL;
 
 var debug = /yox/.test(toString(noop));
 
@@ -1148,12 +1148,12 @@ function fatal(msg) {
 
 
 
-var logger = Object.freeze({
+var logger = {
     log: log,
     warn: warn,
     error: error$1,
     fatal: fatal
-});
+};
 
 var isNative = function (fn) {
   if (func(fn)) {
@@ -1161,21 +1161,21 @@ var isNative = function (fn) {
   }
 };
 
-var nextTick = void 0;
+var nextTick;
 
-if ((typeof setImmediate === 'undefined' ? 'undefined' : _typeof(setImmediate)) === RAW_FUNCTION) {
+if (typeof setImmediate === RAW_FUNCTION) {
   nextTick = setImmediate;
 }
 // 用 MessageChannel 去做 setImmediate 的 polyfill
 // 原理是将新的 message 事件加入到原有的 dom events 之后
-else if ((typeof MessageChannel === 'undefined' ? 'undefined' : _typeof(MessageChannel)) === RAW_FUNCTION) {
+else if (typeof MessageChannel === RAW_FUNCTION) {
     nextTick = function nextTick(fn) {
       var channel = new MessageChannel();
       var port = channel.port2;
       channel.port1.onmessage = fn;
       port.postMessage(1);
     };
-  } else if ((typeof Promise === 'undefined' ? 'undefined' : _typeof(Promise)) === RAW_FUNCTION && isNative(Promise)) {
+  } else if (typeof Promise === RAW_FUNCTION && isNative(Promise)) {
     nextTick = function nextTick(fn) {
       Promise.resolve().then(fn);
     };
@@ -1188,7 +1188,7 @@ var nextTick$1 = nextTick;
 var nextTasks = [];
 
 function addTask(name, task) {
-  if (!nextTasks.length) {
+  if (!nextTasks[RAW_LENGTH]) {
     nextTick$1(run);
   }
   array$1[name](nextTasks, task);
@@ -1269,11 +1269,11 @@ function stringify(keypaths) {
 }
 
 function startsWith$1(keypath, prefix) {
-  var temp = void 0;
+  var temp;
   if (keypath === prefix) {
-    return prefix.length;
+    return prefix[RAW_LENGTH];
   } else if (startsWith(keypath, temp = prefix + KEYPATH_SEPARATOR)) {
-    return temp.length;
+    return temp[RAW_LENGTH];
   } else {
     return FALSE;
   }
@@ -1443,10 +1443,10 @@ function updateDirectives(vnode, oldVnode) {
   oldDirectives = oldDirectives || {};
 
   var api = this,
-      newUnbinds = void 0;
+      newUnbinds;
 
   each$1(newDirectives, function (directive, key) {
-    var unbind = void 0;
+    var unbind;
     if (has$1(oldDirectives, key)) {
       var oldDirective = oldDirectives[key];
       if (directive.value !== oldDirective.value || directive.keypath !== oldDirective.keypath) {
@@ -1508,7 +1508,6 @@ var SYNTAX_COMMENT = /^!\s/;
 
 var SPECIAL_EVENT = '$event';
 var SPECIAL_KEYPATH = '$keypath';
-var SPECIAL_CHILDREN = '$children';
 
 var DIRECTIVE_CUSTOM_PREFIX = 'o-';
 var DIRECTIVE_EVENT_PREFIX = 'on-';
@@ -1517,9 +1516,6 @@ var DIRECTIVE_LAZY = 'lazy';
 var DIRECTIVE_MODEL = 'model';
 var DIRECTIVE_EVENT = 'event';
 var DIRECTIVE_BINDING = 'binding';
-
-var KEYWORD_REF = 'ref';
-var KEYWORD_UNIQUE = 'key';
 
 var HOOK_BEFORE_CREATE = 'beforeCreate';
 var HOOK_AFTER_CREATE = 'afterCreate';
@@ -1566,9 +1562,7 @@ function updateComponent(vnode, oldVnode) {
   if (component) {
     el = this.getComponent(el);
     el.set(vnode.attrs);
-    if (children) {
-      el.set(SPECIAL_CHILDREN, children);
-    }
+    el.set(vnode.slots);
   }
 
   if (oldVnode && oldVnode.ref !== ref) {
@@ -1612,7 +1606,7 @@ function isPatchable(vnode1, vnode2) {
 
 function createKeyToIndex(vnodes, startIndex, endIndex) {
   var result = {},
-      key = void 0;
+      key;
   while (startIndex <= endIndex) {
     key = vnodes[startIndex].key;
     if (isDef(key)) {
@@ -1636,13 +1630,14 @@ function createTextVnode(text) {
   };
 }
 
-function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, ref, key, instance) {
+function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance) {
   return {
     tag: tag,
     attrs: attrs$$1,
     props: props$$1,
     directives: directives$$1,
     children: children,
+    slots: slots,
     ref: ref,
     key: key,
     instance: instance,
@@ -1650,8 +1645,8 @@ function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, re
   };
 }
 
-function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, ref, key, instance) {
-  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, ref, key, instance);
+function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance) {
+  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance);
   vnode.component = TRUE;
   return vnode;
 }
@@ -1666,11 +1661,12 @@ function isTextVnode(vnode) {
 
 function init(api) {
 
-  var createElement = function createElement(parentNode, vnode) {
+  var createElement = function (parentNode, vnode) {
     var _vnode = vnode,
         el = _vnode.el,
         tag = _vnode.tag,
         component$$1 = _vnode.component,
+        slots = _vnode.slots,
         children = _vnode.children,
         text = _vnode.text,
         instance = _vnode.instance;
@@ -1703,7 +1699,7 @@ function init(api) {
 
           component$$1 = (vnode.parent || vnode.instance).create(options, {
             el: el,
-            children: children,
+            slots: slots,
             props: vnode.attrs,
             replace: TRUE
           });
@@ -1721,7 +1717,7 @@ function init(api) {
     } else {
 
       if (array(children)) {
-        addVnodes(el, children, 0, children.length - 1);
+        addVnodes(el, children, 0, children[RAW_LENGTH] - 1);
       } else if (string(text)) {
         api.append(el, api.createText(text));
       }
@@ -1732,22 +1728,22 @@ function init(api) {
     return el;
   };
 
-  var addVnodes = function addVnodes(parentNode, vnodes, startIndex, endIndex, before) {
+  var addVnodes = function (parentNode, vnodes, startIndex, endIndex, before) {
     while (startIndex <= endIndex) {
       addVnode(parentNode, vnodes[startIndex], before);
       startIndex++;
     }
   };
 
-  var addVnode = function addVnode(parentNode, vnode, before) {
+  var addVnode = function (parentNode, vnode, before) {
     var el = createElement(parentNode, vnode);
     if (el) {
       api.before(parentNode, el, before);
     }
   };
 
-  var removeVnodes = function removeVnodes(parentNode, vnodes, startIndex, endIndex) {
-    var vnode = void 0;
+  var removeVnodes = function (parentNode, vnodes, startIndex, endIndex) {
+    var vnode;
     while (startIndex <= endIndex) {
       vnode = vnodes[startIndex];
       if (vnode) {
@@ -1757,7 +1753,7 @@ function init(api) {
     }
   };
 
-  var removeVnode = function removeVnode(parentNode, vnode) {
+  var removeVnode = function (parentNode, vnode) {
     var tag = vnode.tag,
         el = vnode.el,
         component$$1 = vnode.component;
@@ -1771,7 +1767,7 @@ function init(api) {
     }
   };
 
-  var destroyVnode = function destroyVnode(vnode) {
+  var destroyVnode = function (vnode) {
     var el = vnode.el,
         component$$1 = vnode.component,
         children = vnode.children;
@@ -1793,26 +1789,26 @@ function init(api) {
     moduleEmitter.fire(HOOK_DESTROY, vnode, api);
   };
 
-  var replaceVnode = function replaceVnode(parentNode, oldVnode, vnode) {
+  var replaceVnode = function (parentNode, oldVnode, vnode) {
     api.before(parentNode, vnode.el, oldVnode.el);
     removeVnode(parentNode, oldVnode);
   };
 
-  var updateChildren = function updateChildren(parentNode, oldChildren, newChildren) {
+  var updateChildren = function (parentNode, oldChildren, newChildren) {
 
     var oldStartIndex = 0;
-    var oldEndIndex = oldChildren.length - 1;
+    var oldEndIndex = oldChildren[RAW_LENGTH] - 1;
     var oldStartVnode = oldChildren[oldStartIndex];
     var oldEndVnode = oldChildren[oldEndIndex];
 
     var newStartIndex = 0;
-    var newEndIndex = newChildren.length - 1;
+    var newEndIndex = newChildren[RAW_LENGTH] - 1;
     var newStartVnode = newChildren[newStartIndex];
     var newEndVnode = newChildren[newEndIndex];
 
-    var oldKeyToIndex = void 0,
-        oldIndex = void 0,
-        activeVnode = void 0;
+    var oldKeyToIndex,
+        oldIndex,
+        activeVnode;
 
     while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
 
@@ -1896,7 +1892,7 @@ function init(api) {
     }
   };
 
-  var patchVnode = function patchVnode(oldVnode, vnode) {
+  var patchVnode = function (oldVnode, vnode) {
 
     if (oldVnode === vnode) {
       return;
@@ -1948,11 +1944,11 @@ function init(api) {
           if (string(oldText)) {
             api.text(el, CHAR_BLANK);
           }
-          addVnodes(el, newChildren, 0, newChildren.length - 1);
+          addVnodes(el, newChildren, 0, newChildren[RAW_LENGTH] - 1);
         }
         // 有旧的没新的 - 删除节点
         else if (oldChildren) {
-            removeVnodes(el, oldChildren, 0, oldChildren.length - 1);
+            removeVnodes(el, oldChildren, 0, oldChildren[RAW_LENGTH] - 1);
           }
           // 有旧的 text 没有新的 text
           else if (string(oldText)) {
@@ -1974,7 +1970,7 @@ function init(api) {
   };
 }
 
-var snabbdom = Object.freeze({
+var snabbdom = {
     createCommentVnode: createCommentVnode,
     createTextVnode: createTextVnode,
     createElementVnode: createElementVnode,
@@ -1982,7 +1978,7 @@ var snabbdom = Object.freeze({
     isVnode: isVnode,
     isTextVnode: isTextVnode,
     init: init
-});
+};
 
 var PLUS = '+';
 var MINUS = '-';
@@ -2161,15 +2157,11 @@ binary[MODULO] = function (a, b) {
  * 节点基类
  */
 
-var Node = function Node(type, raw) {
+var Node = function (type, raw) {
   classCallCheck(this, Node);
 
   this.type = type;
   this.raw = trim(raw);
-};
-
-Node.is = function (node) {
-  return node instanceof Node;
 };
 
 /**
@@ -2455,29 +2447,29 @@ function compile$1(content) {
     return compileCache$1[content];
   }
 
-  var length = content.length,
+  var length = content[RAW_LENGTH],
       index = 0,
-      charCode = void 0;
+      charCode;
 
-  var throwError = function throwError() {
+  var throwError = function () {
     fatal('Failed to compile expression: ' + CHAR_BREAKLINE + content);
   };
 
-  var getCharCode = function getCharCode() {
+  var getCharCode = function () {
     return codeAt(content, index);
   };
 
-  var cutString = function cutString(start, end) {
+  var cutString = function (start, end) {
     return content.substring(start, end == NULL ? index : end);
   };
 
-  var skipWhitespace = function skipWhitespace() {
+  var skipWhitespace = function () {
     while ((charCode = getCharCode()) && (charCode === CODE_WHITESPACE || charCode === CODE_TAB)) {
       index++;
     }
   };
 
-  var skipNumber = function skipNumber() {
+  var skipNumber = function () {
     if (getCharCode() === CODE_DOT) {
       skipDecimal();
     } else {
@@ -2488,13 +2480,13 @@ function compile$1(content) {
     }
   };
 
-  var skipDigit = function skipDigit() {
+  var skipDigit = function () {
     do {
       index++;
     } while (isDigit(getCharCode()));
   };
 
-  var skipDecimal = function skipDecimal() {
+  var skipDecimal = function () {
     // 跳过点号
     index++;
     // 后面必须紧跟数字
@@ -2505,7 +2497,7 @@ function compile$1(content) {
     }
   };
 
-  var skipString = function skipString() {
+  var skipString = function () {
 
     var quote = getCharCode();
 
@@ -2521,7 +2513,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var skipIdentifier = function skipIdentifier() {
+  var skipIdentifier = function () {
     // 第一个字符一定是经过 isIdentifierStart 判断的
     // 因此循环至少要执行一次
     do {
@@ -2529,7 +2521,7 @@ function compile$1(content) {
     } while (isIdentifierPart(getCharCode()));
   };
 
-  var parseIdentifier = function parseIdentifier(careKeyword) {
+  var parseIdentifier = function (careKeyword) {
 
     var start = index;
     skipIdentifier();
@@ -2542,7 +2534,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseTuple = function parseTuple(delimiter) {
+  var parseTuple = function (delimiter) {
 
     var list = [];
 
@@ -2564,7 +2556,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseObject = function parseObject() {
+  var parseObject = function () {
 
     var keys$$1 = [],
         values = [],
@@ -2578,7 +2570,7 @@ function compile$1(content) {
       // }
       if (charCode === CODE_CBRACE) {
         index++;
-        if (keys$$1.length !== values.length) {
+        if (keys$$1[RAW_LENGTH] !== values[RAW_LENGTH]) {
           throwError();
         }
         return {
@@ -2611,12 +2603,12 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseOperator = function parseOperator(sortedOperatorList) {
+  var parseOperator = function (sortedOperatorList) {
 
     skipWhitespace();
 
     var value = slice(content, index),
-        match = void 0;
+        match;
     each(sortedOperatorList, function (prefix) {
       if (startsWith(value, prefix)) {
         match = prefix;
@@ -2625,16 +2617,16 @@ function compile$1(content) {
     });
 
     if (match) {
-      index += match.length;
+      index += match[RAW_LENGTH];
       return match;
     }
   };
 
-  var parseVariable = function parseVariable() {
+  var parseVariable = function () {
 
     var start = index,
         node = parseIdentifier(TRUE),
-        temp = void 0;
+        temp;
 
     while (index < length) {
       // a(x)
@@ -2661,14 +2653,14 @@ function compile$1(content) {
     return node;
   };
 
-  var parseToken = function parseToken() {
+  var parseToken = function () {
 
     skipWhitespace();
 
     charCode = getCharCode();
 
     var start = index,
-        temp = void 0;
+        temp;
 
     // 'xx' 或 "xx"
     if (charCode === CODE_SQUOTE || charCode === CODE_DQUOTE) {
@@ -2708,11 +2700,11 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseBinary = function parseBinary() {
+  var parseBinary = function () {
 
     var stack = [index, parseToken(), index],
-        next = void 0,
-        length = void 0;
+        next,
+        length;
 
     // stack 的结构必须是 token 之后跟一个 index
     // 这样在裁剪原始字符串时，才有据可查
@@ -2720,7 +2712,7 @@ function compile$1(content) {
     // 处理优先级，确保循环结束时，是相同的优先级操作
     while (next = parseOperator(binaryList)) {
 
-      length = stack.length;
+      length = stack[RAW_LENGTH];
 
       if (length > 7 && binaryMap[next] < stack[length - 4]) {
         stack.splice(length - 7, 6, new Binary(cutString(stack[length - 8], stack[length - 1]), stack[length - 7], stack[length - 5], stack[length - 2]));
@@ -2734,7 +2726,7 @@ function compile$1(content) {
     }
 
     while (TRUE) {
-      length = stack.length;
+      length = stack[RAW_LENGTH];
       if (length > 8 && stack[length - 4] > stack[length - 9]) {
         stack.splice(length - 7, 6, new Binary(cutString(stack[length - 8], stack[length - 1]), stack[length - 7], stack[length - 5], stack[length - 2]));
       } else if (length > 7) {
@@ -2745,7 +2737,7 @@ function compile$1(content) {
     }
   };
 
-  var parseExpression = function parseExpression(delimiter) {
+  var parseExpression = function (delimiter) {
 
     // 主要是区分三元和二元表达式
     // 三元表达式可以认为是 3 个二元表达式组成的
@@ -2980,44 +2972,63 @@ each$1(name2Type, function (type, name) {
  * 节点基类
  */
 
-var Node$1 = function () {
+var Node$2 = function () {
   function Node(type) {
     classCallCheck(this, Node);
 
     this.type = type;
   }
 
-  Node.prototype.stringify = function stringify() {
+  Node.prototype.stringify = function () {
     return this.stringifyObject(this);
   };
 
-  Node.prototype.stringifyObject = function stringifyObject(obj) {
-    var me = this,
-        result = [];
+  Node.prototype.stringifyObject = function (obj) {
     if (obj) {
-      each$1(obj, function (value, key) {
-        if (value == NULL) {
-          return;
+      var keys$$1 = keys(obj);
+      if (keys$$1[RAW_LENGTH]) {
+        var me = this,
+            result;
+        each(keys$$1, function (key) {
+          var value = obj[key];
+          if (value == NULL) {
+            return;
+          }
+          if (string(value)) {
+            value = me.stringifyString(value);
+          } else {
+            if (array(value)) {
+              if (key === 'children') {
+                value = me.stringifyArray(value, 'x');
+                if (value) {
+                  value = me.stringifyFunction(value);
+                }
+              } else {
+                value = me.stringifyArray(value);
+              }
+            } else if (object(value)) {
+              value = me.stringifyObject(value);
+            }
+            if (value == NULL) {
+              return;
+            }
+          }
+          if (!result) {
+            result = [];
+          }
+          push(result, key + ':' + value);
+        });
+        if (result) {
+          return '{' + join(result, ',') + '}';
         }
-        if (value.stringify) {
-          value = value.stringify();
-        } else if (string(value)) {
-          value = me.stringifyString(value);
-        } else if (array(value)) {
-          value = me.stringifyArray(value);
-        } else if (object(value)) {
-          value = me.stringifyObject(value);
-        }
-        push(result, key + ':' + value);
-      });
+      }
     }
-    return '{' + join(result, ',') + '}';
   };
 
-  Node.prototype.stringifyArray = function stringifyArray(arr) {
-    var me = this,
-        result = [];
-    if (arr) {
+  Node.prototype.stringifyArray = function (arr, name) {
+    if (arr && arr[RAW_LENGTH]) {
+      var me = this,
+          result = [];
       each(arr, function (item) {
         if (item.stringify) {
           item = item.stringify();
@@ -3026,22 +3037,26 @@ var Node$1 = function () {
         }
         push(result, item);
       });
+      return name ? me.stringifyCall(name, result) : '[' + join(result, ',') + ']';
     }
-    return me.stringifyCall('a', result);
   };
 
-  Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
+  Node.prototype.stringifyExpression = function (expr, safe) {
     if (expr) {
       return this.stringifyCall('o', this.stringifyObject(expr));
     }
   };
 
-  Node.prototype.stringifyCall = function stringifyCall(name, params) {
+  Node.prototype.stringifyCall = function (name, params) {
     return name + '(' + (array(params) ? join(params, ',') : params) + ')';
   };
 
-  Node.prototype.stringifyString = function stringifyString(str) {
+  Node.prototype.stringifyString = function (str) {
     return '"' + str.replace(/"/g, '\\"').replace(/\s*\n+\s*/g, ' ') + '"';
+  };
+
+  Node.prototype.stringifyFunction = function (str) {
+    return 'function(){' + (str || '') + '}';
   };
 
   return Node;
@@ -3066,7 +3081,7 @@ var Attribute = function (_Node) {
   }
 
   return Attribute;
-}(Node$1);
+}(Node$2);
 
 /**
  * 指令节点
@@ -3093,7 +3108,7 @@ var Directive = function (_Node) {
   }
 
   return Directive;
-}(Node$1);
+}(Node$2);
 
 /**
  * each 节点
@@ -3117,46 +3132,51 @@ var Each = function (_Node) {
     return _this;
   }
 
-  Each.prototype.stringify = function stringify() {
-    var params = [this.stringifyObject(this.expr), 'function(){return ' + this.stringifyArray(this.children) + '}'];
-    if (this.index) {
-      push(params, this.stringifyString(this.index));
+  Each.prototype.stringify = function () {
+    var generate = this.stringifyArray(this.children, 'x');
+    if (generate) {
+      var params = [this.stringifyObject(this.expr), this.stringifyFunction(generate)];
+      if (this.index) {
+        push(params, this.stringifyString(this.index));
+      }
+      return this.stringifyFunction(this.stringifyCall('e', params));
     }
-    return this.stringifyCall('e', params);
   };
 
   return Each;
-}(Node$1);
+}(Node$2);
 
 /**
  * 元素节点
  *
- * @param {string} name
+ * @param {string} tag
  * @param {?boolean} component 是否是组件
  */
 
 var Element = function (_Node) {
   inherits(Element, _Node);
 
-  function Element(name, component) {
+  function Element(tag, component) {
     classCallCheck(this, Element);
 
     var _this = possibleConstructorReturn(this, _Node.call(this, ELEMENT));
 
-    _this.name = name;
+    _this.tag = tag;
     if (component) {
       _this.component = component;
     }
     return _this;
   }
 
-  Element.prototype.stringify = function stringify() {
+  Element.prototype.stringify = function () {
 
     var me = this;
-    var name = me.name,
+    var tag = me.tag,
         divider = me.divider,
         component = me.component,
         props = me.props,
+        slot = me.slot,
+        name = me.name,
         key = me.key,
         ref = me.ref;
 
@@ -3171,47 +3191,50 @@ var Element = function (_Node) {
       });
     }
 
+    var addArray = function (arr, name) {
+      arr = me.stringifyArray(arr, name);
+      unshift(params, arr ? me.stringifyFunction(arr) : RAW_UNDEFINED);
+    };
+
     // 反过来
     // 这样序列化能省更多字符
-    if (key || ref) {
-      var stringify = function stringify(value) {
-        if (array(value)) {
-          return me.stringifyArray(value);
-        } else if (Node.is(value)) {
-          return me.stringifyExpression(value);
-        } else if (string(value)) {
-          return me.stringifyString(value);
-        }
-        return value;
-      };
-      if (key) {
-        unshift(params, me.stringifyCall('q', stringify(key)));
-      }
-      if (ref || params.length) {
-        unshift(params, ref ? me.stringifyCall('q', stringify(ref)) : RAW_UNDEFINED);
-      }
+
+    if (name) {
+      addArray(name, 'x');
     }
 
-    var isComponent = component ? 1 : 0;
-    if (component || params.length) {
-      unshift(params, isComponent);
+    if (slot || params[RAW_LENGTH]) {
+      addArray(slot, 'x');
     }
 
-    if (children.length || params.length) {
-      unshift(params, me.stringifyCall('x', [children.length ? this.stringifyArray(children) : 0, isComponent]));
+    if (key || params[RAW_LENGTH]) {
+      addArray(key, 'x');
     }
 
-    if (props || attrs.length || params.length) {
-      unshift(params, me.stringifyCall('y', [props ? this.stringifyObject(props) : 0, attrs.length ? this.stringifyArray(attrs) : 0, isComponent]));
+    if (ref || params[RAW_LENGTH]) {
+      addArray(ref, 'x');
     }
 
-    unshift(params, me.stringifyString(name));
+    if (children[RAW_LENGTH] || params[RAW_LENGTH]) {
+      addArray(children, 'x');
+    }
+
+    if (attrs[RAW_LENGTH] || params[RAW_LENGTH]) {
+      addArray(attrs, 'y');
+    }
+
+    if (props && props[RAW_LENGTH] || params[RAW_LENGTH]) {
+      addArray(props, 'z');
+    }
+
+    unshift(params, me.stringifyString(tag));
+    unshift(params, component ? 1 : 0);
 
     return this.stringifyCall('c', params);
   };
 
   return Element;
-}(Node$1);
+}(Node$2);
 
 /**
  * else 节点
@@ -3226,7 +3249,7 @@ var Else = function (_Node) {
   }
 
   return Else;
-}(Node$1);
+}(Node$2);
 
 /**
  * else if 节点
@@ -3247,7 +3270,7 @@ var ElseIf = function (_Node) {
   }
 
   return ElseIf;
-}(Node$1);
+}(Node$2);
 
 /**
  * 表达式节点
@@ -3256,7 +3279,7 @@ var ElseIf = function (_Node) {
  * @param {boolean} safe
  */
 
-var Expression$1 = function (_Node) {
+var Expression = function (_Node) {
   inherits(Expression, _Node);
 
   function Expression(expr, safe) {
@@ -3269,12 +3292,12 @@ var Expression$1 = function (_Node) {
     return _this;
   }
 
-  Expression.prototype.stringify = function stringify() {
+  Expression.prototype.stringify = function () {
     return this.stringifyExpression(this.expr);
   };
 
   return Expression;
-}(Node$1);
+}(Node$2);
 
 /**
  * if 节点
@@ -3294,29 +3317,43 @@ var If = function (_Node) {
     return _this;
   }
 
-  If.prototype.stringify = function stringify() {
+  If.prototype.stringify = function () {
     var stump = this.stump;
 
 
-    var stringify = function stringify(node) {
+    var stringify = function (node) {
       var expr = node.stringifyExpression(node.expr);
-      var result = node.stringifyArray(node.children);
-      if (node.next) {
-        return expr + '?' + result + ':(' + stringify(node.next) + ')';
-      } else {
-        if (expr) {
-          return expr + '?' + result + ':' + (stump ? 'm()' : RAW_UNDEFINED);
+      var children = node.stringifyArray(node.children, 'x');
+      var next = node.next;
+      if (next) {
+        next = stringify(next);
+      } else if (stump) {
+        next = 'x(m())';
+      }
+      if (expr) {
+        if (children) {
+          if (next) {
+            return expr + '?' + children + ':' + next;
+          }
+          return expr + '&&' + children;
         } else {
-          return result;
+          if (next) {
+            return '!' + expr + '&&' + next;
+          }
         }
+      } else if (children) {
+        return children;
       }
     };
 
-    return stringify(this);
+    var str = stringify(this);
+    if (str) {
+      return this.stringifyFunction(str);
+    }
   };
 
   return If;
-}(Node$1);
+}(Node$2);
 
 /**
  * import 节点
@@ -3336,12 +3373,12 @@ var Import = function (_Node) {
     return _this;
   }
 
-  Import.prototype.stringify = function stringify() {
+  Import.prototype.stringify = function () {
     return this.stringifyCall('i', this.stringifyString(this.name));
   };
 
   return Import;
-}(Node$1);
+}(Node$2);
 
 /**
  * Partial 节点
@@ -3361,12 +3398,12 @@ var Partial = function (_Node) {
     return _this;
   }
 
-  Partial.prototype.stringify = function stringify() {
-    return this.stringifyCall('p', [this.stringifyString(this.name), 'function(){return ' + this.stringifyArray(this.children) + '}']);
+  Partial.prototype.stringify = function () {
+    return this.stringifyCall('p', [this.stringifyString(this.name), this.stringifyFunction(this.stringifyArray(this.children, 'x'))]);
   };
 
   return Partial;
-}(Node$1);
+}(Node$2);
 
 /**
  * 延展操作 节点
@@ -3386,12 +3423,14 @@ var Spread = function (_Node) {
     return _this;
   }
 
-  Spread.prototype.stringify = function stringify() {
-    return this.stringifyCall('s', this.stringifyObject(this.expr));
+  Spread.prototype.stringify = function () {
+    var expr = this.expr;
+
+    return this.stringifyCall('s', [this.stringifyExpression(expr), expr.staticKeypath && this.stringifyString(expr.staticKeypath)]);
   };
 
   return Spread;
-}(Node$1);
+}(Node$2);
 
 /**
  * 文本节点
@@ -3411,12 +3450,12 @@ var Text = function (_Node) {
     return _this;
   }
 
-  Text.prototype.stringify = function stringify() {
+  Text.prototype.stringify = function () {
     return this.stringifyString(this.text);
   };
 
   return Text;
-}(Node$1);
+}(Node$2);
 
 var delimiterPattern = /(\{?\{\{)\s*([^\}]+?)\s*(\}\}\}?)/;
 var openingTagPattern = /<(\/)?([a-z][-a-z0-9]*)/i;
@@ -3436,7 +3475,7 @@ var compileCache = {};
  * @return {string}
  */
 function slicePrefix(str, prefix) {
-  return trim(slice(str, prefix.length));
+  return trim(slice(str, prefix[RAW_LENGTH]));
 }
 
 /**
@@ -3478,20 +3517,20 @@ function compile$$1(content) {
   var nodeStack = [],
       ifStack = [],
       htmlStack = [],
-      currentQuote = void 0;
+      currentQuote;
 
-  var throwError = function throwError(msg) {
+  var throwError = function (msg) {
     fatal('Error compiling template:' + CHAR_BREAKLINE + content + CHAR_BREAKLINE + '- ' + msg);
   };
 
-  var popSelfClosingElementIfNeeded = function popSelfClosingElementIfNeeded(popingTagName) {
+  var popSelfClosingElementIfNeeded = function (popingTagName) {
     var lastNode = last(nodeStack);
-    if (lastNode && lastNode.type === ELEMENT && lastNode.name !== popingTagName && has(selfClosingTagNames, lastNode.name)) {
-      popStack(ELEMENT, lastNode.name);
+    if (lastNode && lastNode.type === ELEMENT && lastNode.tag !== popingTagName && has(selfClosingTagNames, lastNode.tag)) {
+      popStack(ELEMENT, lastNode.tag);
     }
   };
 
-  var popStack = function popStack(type, expectedTagName) {
+  var popStack = function (type, expectedTagName) {
 
     /**
      * <div>
@@ -3502,7 +3541,7 @@ function compile$$1(content) {
       popSelfClosingElementIfNeeded(expectedTagName);
     }
 
-    var target = void 0;
+    var target;
 
     each(nodeStack, function (node, i) {
       if (node.type === type) {
@@ -3513,13 +3552,14 @@ function compile$$1(content) {
 
     if (target) {
       var _target = target,
+          tag = _target.tag,
           name = _target.name,
           divider = _target.divider,
           children = _target.children,
           component = _target.component;
 
-      if (type === ELEMENT && expectedTagName && name !== expectedTagName) {
-        throwError('end tag expected </' + name + '> to be </' + expectedTagName + '>.');
+      if (type === ELEMENT && expectedTagName && tag !== expectedTagName) {
+        throwError('end tag expected </' + tag + '> to be </' + expectedTagName + '>.');
       }
 
       // ==========================================
@@ -3528,7 +3568,7 @@ function compile$$1(content) {
 
       // 如果 children 没实际的数据，删掉它
       // 避免在渲染阶段增加计算量
-      if (children && !children.length) {
+      if (children && !children[RAW_LENGTH]) {
         children = NULL;
         delete target.children;
       }
@@ -3539,56 +3579,57 @@ function compile$$1(content) {
 
       if (type === ELEMENT) {
         // 优化只有一个子节点的情况
-        if (!component && children.length - divider === 1) {
+        if (!component && children[RAW_LENGTH] - divider === 1) {
           var singleChild = last(children);
           // 子节点是纯文本
           if (singleChild.type === TEXT) {
-            target.props = {
-              textContent: singleChild.text
-            };
+            target.props = [{
+              name: 'textContent',
+              value: singleChild.text
+            }];
             pop(children);
-          } else if (singleChild.type === EXPRESSION && singleChild.expr.raw !== SPECIAL_CHILDREN) {
-            var props = {};
+          } else if (singleChild.type === EXPRESSION) {
+            var props = [];
             if (singleChild.safe === FALSE) {
-              props.innerHTML = singleChild.expr;
+              push(props, {
+                name: 'innerHTML',
+                value: singleChild.expr
+              });
             } else {
-              props.textContent = singleChild.expr;
+              push(props, {
+                name: 'textContent',
+                value: singleChild.expr
+              });
             }
             target.props = props;
             pop(children);
           }
 
-          if (!children.length) {
+          if (!children[RAW_LENGTH]) {
             delete target.children;
           }
         }
       } else {
 
-        var _singleChild = children.length === 1 && children[0];
-
         if (type === ATTRIBUTE) {
           // <div key="xx">
           // <div ref="xx">
-          if (name === KEYWORD_UNIQUE || name === KEYWORD_REF) {
+          // <slot name="xx">
+          var element = last(htmlStack);
+          if (name === 'key' || name === 'ref' || name === 'slot' || element.tag === 'slot' && name === 'name') {
             // 把数据从属性中提出来，减少渲染时的遍历
-            var element = last(htmlStack);
             remove(element.children, target);
-            if (!element.children.length) {
+            if (!element.children[RAW_LENGTH]) {
               delete element.children;
             }
-            if (_singleChild) {
-              if (_singleChild.type === TEXT) {
-                element[name] = _singleChild.text;
-              } else if (_singleChild.type === EXPRESSION) {
-                element[name] = _singleChild.expr;
-              }
-            } else {
-              element[name] = target.children;
+            if (children[RAW_LENGTH]) {
+              element[name] = children;
             }
             return;
           }
         }
 
+        var _singleChild = children[RAW_LENGTH] === 1 && children[0];
         if (_singleChild) {
           if (_singleChild.type === TEXT) {
             // 指令的值如果是纯文本，可以预编译表达式，提升性能
@@ -3624,7 +3665,7 @@ function compile$$1(content) {
     }
   };
 
-  var addChild = function addChild(node) {
+  var addChild = function (node) {
     var type = node.type,
         text = node.text;
 
@@ -3646,7 +3687,7 @@ function compile$$1(content) {
      *    <input>xxx
      * </div>
      */
-    if (!htmlStack.length) {
+    if (!htmlStack[RAW_LENGTH]) {
       popSelfClosingElementIfNeeded();
     }
 
@@ -3659,7 +3700,7 @@ function compile$$1(content) {
       return;
     }
 
-    var prevNode = void 0;
+    var prevNode;
 
     var currentNode = last(nodeStack);
     if (currentNode) {
@@ -3667,8 +3708,8 @@ function compile$$1(content) {
           divider = currentNode.divider;
 
       if (children) {
-        if (children.length !== divider) {
-          prevNode = children[children.length - 1];
+        if (children[RAW_LENGTH] !== divider) {
+          prevNode = children[children[RAW_LENGTH] - 1];
         }
       } else {
         children = currentNode.children = [];
@@ -3681,7 +3722,7 @@ function compile$$1(content) {
 
     // 上一个 if 节点没有 else 分支
     // 在渲染时，如果这种 if 分支为 false，需要加上注释节点
-    if (prevNode && ifTypes[prevNode.type] && !htmlStack.length) {
+    if (prevNode && ifTypes[prevNode.type] && !htmlStack[RAW_LENGTH]) {
       prevNode.stump = TRUE;
     }
 
@@ -3697,7 +3738,7 @@ function compile$$1(content) {
   };
 
   var htmlParsers = [function (content) {
-    if (!htmlStack.length) {
+    if (!htmlStack[RAW_LENGTH]) {
       var _match = content.match(openingTagPattern);
       // 必须以 <tag 开头才能继续
       if (_match && !_match.index) {
@@ -3713,9 +3754,9 @@ function compile$$1(content) {
   }, function (content) {
     var match = content.match(closingTagPattern);
     if (match) {
-      if (htmlStack.length === 1) {
+      if (htmlStack[RAW_LENGTH] === 1) {
         var element = last(htmlStack);
-        element.divider = element.children ? element.children.length : 0;
+        element.divider = element.children ? element.children[RAW_LENGTH] : 0;
         if (match[1] === CHAR_SLASH) {
           popStack(ELEMENT);
         }
@@ -3724,17 +3765,17 @@ function compile$$1(content) {
       return match[0];
     }
   }, function (content) {
-    if (htmlStack.length === 1) {
+    if (htmlStack[RAW_LENGTH] === 1) {
       var _match2 = content.match(attributePattern);
       if (_match2) {
         var name = _match2[1];
         if (builtInDirectives[name]) {
           addChild(new Directive(camelCase(name)));
         } else if (startsWith(name, DIRECTIVE_EVENT_PREFIX)) {
-          name = slice(name, DIRECTIVE_EVENT_PREFIX.length);
+          name = slice(name, DIRECTIVE_EVENT_PREFIX[RAW_LENGTH]);
           addChild(new Directive(DIRECTIVE_EVENT, camelCase(name)));
         } else if (startsWith(name, DIRECTIVE_CUSTOM_PREFIX)) {
-          name = slice(name, DIRECTIVE_CUSTOM_PREFIX.length);
+          name = slice(name, DIRECTIVE_CUSTOM_PREFIX[RAW_LENGTH]);
           addChild(new Directive(camelCase(name)));
         } else {
           addChild(new Attribute(htmlStack[0].component ? camelCase(name) : name));
@@ -3747,10 +3788,10 @@ function compile$$1(content) {
       }
     }
   }, function (content) {
-    if (htmlStack.length === 2) {
+    if (htmlStack[RAW_LENGTH] === 2) {
       var index = 0,
-          currentChar = void 0,
-          closed = void 0;
+          currentChar,
+          closed;
       while (currentChar = charAt(content, index)) {
         if (currentChar === currentQuote) {
           closed = TRUE;
@@ -3779,7 +3820,7 @@ function compile$$1(content) {
       }
       // 属性级别的空字符串是没有意义的
       // 比如 <div      class="xx">
-      if (htmlStack.length !== 1 || trim(content)) {
+      if (htmlStack[RAW_LENGTH] !== 1 || trim(content)) {
         addChild(new Text(content));
       }
       return content;
@@ -3826,11 +3867,11 @@ function compile$$1(content) {
   }, function (source, all) {
     if (!SYNTAX_COMMENT.test(source)) {
       source = trim(source);
-      return source ? new Expression$1(compile$1(source), !endsWith(all, '}}}')) : throwError('invalid expression: ' + all);
+      return source ? new Expression(compile$1(source), !endsWith(all, '}}}')) : throwError('invalid expression: ' + all);
     }
   }];
 
-  var parseHtml = function parseHtml(content) {
+  var parseHtml = function (content) {
     if (content) {
       (function () {
         var tpl = content;
@@ -3838,17 +3879,17 @@ function compile$$1(content) {
           each(htmlParsers, function (parse$$1, match) {
             match = parse$$1(tpl);
             if (match) {
-              tpl = slice(tpl, match.length);
+              tpl = slice(tpl, match[RAW_LENGTH]);
               return FALSE;
             }
           });
         }
-        str = slice(str, content.length);
+        str = slice(str, content[RAW_LENGTH]);
       })();
     }
   };
 
-  var parseDelimiter = function parseDelimiter(content, all) {
+  var parseDelimiter = function (content, all) {
     if (content) {
       if (charAt(content) === CHAR_SLASH) {
         var name = slice(content, 1),
@@ -3872,11 +3913,11 @@ function compile$$1(content) {
         });
       }
     }
-    str = slice(str, all.length);
+    str = slice(str, all[RAW_LENGTH]);
   };
 
   var str = content,
-      match = void 0;
+      match;
 
   // 干掉 html 注释
   str = str.replace(/<!--[\s\S]*?-->/g, function () {
@@ -3888,7 +3929,7 @@ function compile$$1(content) {
     if (match) {
       parseHtml(slice(str, 0, match.index));
       // 避免手误写成 {{{ name }}
-      if (match[1].length === match[3].length) {
+      if (match[1][RAW_LENGTH] === match[3][RAW_LENGTH]) {
         parseDelimiter(match[2], match[0]);
       } else {
         throwError('invalid syntax: ' + match[0]);
@@ -3909,7 +3950,7 @@ function compile$$1(content) {
  */
 function convert(ast) {
   return ast.map(function (item) {
-    return new Function('a', 'c', 'e', 'i', 'm', 'o', 'p', 'q', 's', 'x', 'y', 'return ' + item.stringify());
+    return new Function('c', 'e', 'i', 'm', 'o', 'p', 's', 'x', 'y', 'z', 'return ' + item.stringify());
   });
 }
 
@@ -3939,6 +3980,7 @@ function render(render, getter, setter, instance) {
   var keypath = CHAR_BLANK,
       keypaths = [],
       keypathStack = [keypath],
+      rootStack = [keypath],
       pushKeypath = function pushKeypath(newKeypath) {
     push(keypaths, newKeypath);
     newKeypath = stringify(keypaths);
@@ -3953,19 +3995,20 @@ function render(render, getter, setter, instance) {
     keypath = lastKeypath;
     keypathStack = lastKeypathStack;
   },
-      STRUCT = 'struct',
-      toArray$$1 = function toArray$$1(arr) {
-    var length = arr.length;
-
-    if (length > 0) {
-      if (length === 1) {
-        return arr[0];
-      }
-      arr[STRUCT] = TRUE;
-      return arr;
+      values,
+      currentElement,
+      elementStack = [],
+      currentComponent,
+      componentStack = [],
+      addAttr = function addAttr(name, value, binding) {
+    var attrs = currentElement.attrs || (currentElement.attrs = {});
+    attrs[name] = value;
+    if (binding) {
+      addDirective(DIRECTIVE_BINDING, name, binding);
     }
   },
-      addDirective = function addDirective(directives, name, modifier, value) {
+      addDirective = function addDirective(name, modifier, value) {
+    var directives = currentElement.directives || (currentElement.directives = {});
     return directives[join$1(name, modifier)] = {
       name: name,
       modifier: modifier,
@@ -3974,153 +4017,193 @@ function render(render, getter, setter, instance) {
       keypathStack: keypathStack
     };
   },
+      addChild = function addChild(node) {
+    var _currentElement = currentElement,
+        lastChild = _currentElement.lastChild,
+        children = _currentElement.children;
 
+    if (!children) {
+      children = currentElement.children = [];
+    }
 
-  // array
-  a = function a() {
-    var result = [];
-    each(arguments, function (item) {
-      if (isDef(item)) {
-        if (array(item) && item[STRUCT]) {
-          push(result, item);
+    if (isVnode(node)) {
+      if (node.component) {
+        node.parent = instance;
+      }
+      push(children, node);
+      if (lastChild) {
+        currentElement.lastChild = NULL;
+      }
+    } else if (isTextVnode(lastChild)) {
+      lastChild.text += toString(node);
+    } else {
+      push(children, currentElement.lastChild = createTextVnode(node));
+    }
+  },
+      slotPrefix = '$slot_',
+      addSlot = function addSlot(name, slot) {
+    var slots = currentComponent.slots || (currentComponent.slots = {});
+    if (slots[name]) {
+      if (array(slots[name])) {
+        push(slots[name], slot);
+      } else {
+        slots[name] = [slots[name], slot];
+      }
+    } else {
+      slots[name] = slot;
+    }
+  },
+      attrHandler = function attrHandler(node) {
+    if (isDef(node)) {
+      if (func(node)) {
+        node();
+      } else if (node.type === ATTRIBUTE) {
+        var value;
+        if (has$1(node, 'value')) {
+          value = node.value;
+        } else if (node.expr) {
+          value = o(node.expr, node.binding);
+        } else if (node.children) {
+          value = getValue(node.children);
         } else {
-          result.push(item);
+          value = currentElement.component ? TRUE : node.name;
+        }
+        addAttr(node.name, value, node.binding);
+      } else {
+        addDirective(node.name, node.modifier, node.value).expr = node.expr;
+      }
+    }
+  },
+      childHandler = function childHandler(node) {
+    if (isDef(node)) {
+      if (func(node)) {
+        node();
+      } else if (values) {
+        values[values[RAW_LENGTH]] = node;
+      } else if (currentElement.opened === TRUE) {
+
+        if (array(node)) {
+          each(node, addChild);
+        } else {
+          addChild(node);
+        }
+      } else {
+        attrHandler(node);
+      }
+    }
+  },
+      getValue = function getValue(generate) {
+    values = [];
+    generate();
+    var value = values[RAW_LENGTH] > 1 ? join(values, '') : values[0];
+    values = NULL;
+    return value;
+  },
+
+
+  // 处理 children
+  x = function x() {
+    each(arguments, childHandler);
+  },
+
+
+  // 处理元素 attribute
+  y = function y() {
+    each(arguments, attrHandler);
+  },
+
+
+  // 处理 properties
+  z = function z() {
+    each$1(arguments, function (item) {
+      var name = item.name,
+          value = item.value;
+
+      if (object(value)) {
+        var _value = value,
+            staticKeypath = _value.staticKeypath;
+
+        value = o(value, staticKeypath);
+        if (staticKeypath) {
+          addDirective(DIRECTIVE_BINDING, name, staticKeypath).prop = TRUE;
         }
       }
+      var props = currentElement.props || (currentElement.props = {});
+      props[name] = value;
     });
-    result[STRUCT] = TRUE;
-    return result;
   },
 
 
   // create
-  c = function c(tag, mix, children, isComponent, ref, key) {
-    return snabbdom[isComponent ? 'createComponentVnode' : 'createElementVnode'](tag, mix && mix.attributes, mix && mix.properties, mix && mix.directives, children, ref, key, instance);
-  },
+  c = function c(component, tag, props, attrs, childs, ref, key, slot, name) {
 
-  // m childs 的 c 被占用了，随便换个字母
-  x = function x(childs, isComponent) {
-
-    var result = [];
-
-    if (childs) {
-      var lastChild = void 0;
-      each(childs, function (child) {
-        if (child != NULL) {
-          if (isVnode(child)) {
-            if (child.component) {
-              child.parent = instance;
-            }
-            push(result, child);
-            lastChild = NULL;
-          } else if (isTextVnode(lastChild)) {
-            lastChild.text += toString(child);
-          } else {
-            lastChild = createTextVnode(child);
-            push(result, lastChild);
-          }
+    if (tag === 'slot') {
+      if (name) {
+        name = getValue(name);
+        if (name) {
+          return getter(slotPrefix + name, rootStack);
         }
-      });
+      }
+      return;
     }
 
-    if (isComponent) {
-      result[STRUCT] = TRUE;
+    var lastElement = currentElement,
+        lastComponent = currentComponent;
+
+    currentElement = {
+      component: component
+    };
+
+    push(elementStack, currentElement);
+
+    if (component) {
+      currentComponent = currentElement;
+      push(componentStack, currentElement);
     }
 
-    return result;
-  },
-      y = function y(props, attrs, isComponent) {
+    if (key) {
+      key = getValue(key);
+    }
 
-    var properties = {},
-        attributes = {},
-        directives = {};
-
-    if (props) {
-      each$1(props, function (value, key) {
-        if (object(value)) {
-          var _value = value,
-              staticKeypath = _value.staticKeypath;
-
-          value = getter(value, keypathStack, staticKeypath);
-          if (staticKeypath) {
-            addDirective(directives, DIRECTIVE_BINDING, key, staticKeypath).prop = TRUE;
-          }
-        }
-        properties[key] = value;
-      });
+    if (ref) {
+      ref = getValue(ref);
     }
 
     if (attrs) {
-      var addAttr = function addAttr(item) {
-        var type = item.type,
-            name = item.name,
-            modifier = item.modifier,
-            expr = item.expr,
-            children = item.children,
-            binding = item.binding,
-            data = item.data;
-
-        // 延展数据
-
-        if (data) {
-          each$1(data, function (value, key) {
-            attributes[key] = value;
-            if (binding) {
-              addDirective(directives, DIRECTIVE_BINDING, key, join$1(binding, key));
-            }
-          });
-          return;
-        }
-
-        var value = void 0;
-        if (has$1(item, 'value')) {
-          value = item.value;
-        } else if (expr) {
-          value = getter(expr, keypathStack, binding);
-        } else if (children) {
-          value = join(children, '');
-        }
-
-        // <input checked>
-        // <div title="{{title}}" 这种写法，如果没取到值，就是 undefined
-        if (!isDef(value) && !expr) {
-          if (children) {
-            value = CHAR_BLANK;
-          } else {
-            value = isComponent ? TRUE : name;
-          }
-        }
-
-        if (type === ATTRIBUTE) {
-          attributes[name] = value;
-          if (binding) {
-            addDirective(directives, DIRECTIVE_BINDING, name, binding);
-          }
-        } else if (type === DIRECTIVE) {
-          addDirective(directives, name, modifier, value).expr = expr;
-        }
-      };
-      each(attrs, function (item) {
-        if (item) {
-          if (array(item)) {
-            each(item, addAttr);
-          } else {
-            addAttr(item);
-          }
-        }
-      });
+      attrs();
     }
 
-    return {
-      properties: properties,
-      attributes: attributes,
-      directives: directives
-    };
-  },
+    if (props) {
+      props();
+    }
 
-  // ref key
-  q = function q(value) {
-    return array(value) && value[STRUCT] ? join(value, '') : value;
+    var children;
+    if (childs) {
+      currentElement.opened = TRUE;
+      childs();
+      children = currentElement.children;
+      if (component && children) {
+        addSlot(slotPrefix + 'children', children);
+        children = UNDEFINED;
+      }
+    }
+
+    var result = snabbdom[component ? 'createComponentVnode' : 'createElementVnode'](tag, currentElement.attrs, currentElement.props, currentElement.directives, children, currentElement.slots, ref, key, instance);
+
+    currentElement = lastElement;
+    pop(elementStack);
+
+    if (component) {
+      currentComponent = lastComponent;
+      pop(componentStack);
+    }
+
+    if (slot && lastComponent) {
+      addSlot(slotPrefix + getValue(slot), result);
+      return;
+    }
+
+    return result;
   },
 
   // comment
@@ -4129,29 +4212,17 @@ function render(render, getter, setter, instance) {
   // each
   e = function e(expr, generate, index) {
 
-    var value = getter(expr, keypathStack),
-        each$$1 = void 0;
+    var value = o(expr),
+        each$$1;
 
     if (array(value)) {
-      if (value.length) {
-        each$$1 = function each$$1(callback) {
-          each(value, function (_, i) {
-            callback(i);
-          });
-        };
-      }
+      each$$1 = each;
     } else if (object(value)) {
-      var keys$$1 = keys(value);
-      if (keys$$1.length) {
-        each$$1 = function each$$1(callback) {
-          each(keys$$1, callback);
-        };
-      }
+      each$$1 = each$1;
     }
 
     if (each$$1) {
-      var result = [],
-          lastKeypath = keypath,
+      var lastKeypath = keypath,
           lastKeypathStack = keypathStack;
 
       var eachKeypath = expr.staticKeypath || expr.dynamicKeypath;
@@ -4159,22 +4230,20 @@ function render(render, getter, setter, instance) {
         pushKeypath(eachKeypath);
       }
 
-      each$$1(function (key) {
+      each$$1(value, function (item, key) {
 
         var lastKeypath = keypath,
             lastKeypathStack = keypathStack;
 
         pushKeypath(key);
 
-        setter(keypath, RAW_THIS, value[key]);
+        setter(keypath, RAW_THIS, item);
 
         if (index) {
           setter(keypath, index, key);
         }
 
-        each(generate(), function (item) {
-          push(result, item);
-        });
+        generate();
 
         popKeypath(lastKeypath, lastKeypathStack);
       });
@@ -4182,24 +4251,20 @@ function render(render, getter, setter, instance) {
       if (eachKeypath) {
         popKeypath(lastKeypath, lastKeypathStack);
       }
-
-      return toArray$$1(result);
     }
   },
 
   // output（e 被 each 占了..)
-  o = function o(expr) {
-    return getter(expr, keypathStack);
+  o = function o(expr, binding) {
+    return getter(expr.staticKeypath || expr, keypathStack, binding);
   },
 
   // spread
-  s = function s(expr) {
-    var value = getter(expr, keypathStack);
-    if (object(value)) {
-      return {
-        data: value,
-        binding: expr.staticKeypath
-      };
+  s = function s(value, staticKeypath) {
+    if (object(value) && currentElement.opened !== TRUE) {
+      each$1(value, function (value, key) {
+        addAttr(key, value, staticKeypath && join$1(staticKeypath, key));
+      });
     }
   },
       localPartials = {},
@@ -4212,16 +4277,18 @@ function render(render, getter, setter, instance) {
   // import
   i = function i(name) {
     if (localPartials[name]) {
-      return toArray$$1(localPartials[name]());
+      localPartials[name]();
+      return;
     }
     var partial = instance.importPartial(name);
     if (partial) {
-      return toArray$$1(partial.map(executeRender));
+      each(partial, executeRender);
+      return;
     }
     fatal('"' + name + '" partial is not found.');
   },
       executeRender = function executeRender(render) {
-    return render(a, c, e, i, m, o, p, q, s, x, y);
+    return render(c, e, i, m, o, p, s, x, y, z);
   };
 
   return executeRender(render);
@@ -4235,8 +4302,6 @@ var toNumber = function (str) {
   }
   return defaultValue;
 };
-
-var LENGTH = 'length';
 
 var guid = 0;
 
@@ -4272,7 +4337,7 @@ function updateValue(changes, newValue, oldValue, keypath) {
  */
 function diffObject(newObject, oldObject, callback) {
 
-  var keys$$1 = void 0;
+  var keys$$1;
   if (oldObject) {
     if (newObject) {
       keys$$1 = keys(extend({}, oldObject, newObject));
@@ -4300,10 +4365,10 @@ function diffArray(newArray, oldArray, callback) {
 
   if (newArray || oldArray) {
 
-    var newLength = newArray ? newArray[LENGTH] : 0;
-    var oldLength = oldArray ? oldArray[LENGTH] : 0;
+    var newLength = newArray ? newArray[RAW_LENGTH] : 0;
+    var oldLength = oldArray ? oldArray[RAW_LENGTH] : 0;
 
-    callback(newArray ? newLength : UNDEFINED, oldArray ? oldLength : UNDEFINED, LENGTH);
+    callback(newArray ? newLength : UNDEFINED, oldArray ? oldLength : UNDEFINED, RAW_LENGTH);
 
     for (var i = 0, length = Math.max(newLength, oldLength); i < length; i++) {
       callback(newArray ? newArray[i] : UNDEFINED, oldArray ? oldArray[i] : UNDEFINED, i);
@@ -4373,7 +4438,7 @@ var Computed = function () {
     this.deps = [];
   }
 
-  Computed.prototype.update = function update(newValue, oldValue, key, changes) {
+  Computed.prototype.update = function (newValue, oldValue, key, changes) {
 
     var instance = this;
     var observer = instance.observer,
@@ -4397,7 +4462,7 @@ var Computed = function () {
     });
   };
 
-  Computed.prototype.get = function get$$1(force) {
+  Computed.prototype.get = function (force) {
     var value = this.value,
         cache = this.cache;
 
@@ -4415,34 +4480,34 @@ var Computed = function () {
     return value;
   };
 
-  Computed.prototype.hasDep = function hasDep(dep) {
+  Computed.prototype.hasDep = function (dep) {
     return has(this.deps, dep);
   };
 
-  Computed.prototype.addDep = function addDep(dep) {
+  Computed.prototype.addDep = function (dep) {
     if (!this.hasDep(dep)) {
       push(this.deps, dep);
       this.observer.watch(dep, this.update, FALSE, this);
     }
   };
 
-  Computed.prototype.removeDep = function removeDep(dep) {
+  Computed.prototype.removeDep = function (dep) {
     if (this.hasDep(dep)) {
       remove(this.deps, dep);
       this.observer.unwatch(dep, this.update);
     }
   };
 
-  Computed.prototype.clearDep = function clearDep() {
+  Computed.prototype.clearDep = function () {
     var instance = this;
     each(instance.deps, function (dep) {
       instance.removeDep(dep);
     }, TRUE);
   };
 
-  Computed.prototype.isDirty = function isDirty() {
+  Computed.prototype.isDirty = function () {
     var changes = this.changes,
-        result = void 0;
+        result;
     if (isDef(changes)) {
       if (changes) {
         each$1(changes, function (item, keypath) {
@@ -4488,7 +4553,7 @@ var Observer = function () {
     }
   }
 
-  Observer.prototype.onChange = function onChange(newValue, oldValue, keypath, computed, computedValue) {
+  Observer.prototype.onChange = function (newValue, oldValue, keypath, computed, computedValue) {
 
     var instance = this,
         changes = instance.changes || (instance.changes = {});
@@ -4547,14 +4612,14 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.get = function get$$1(keypath, defaultValue) {
+  Observer.prototype.get = function (keypath, defaultValue) {
 
     if (!string(keypath) || isFuzzyKeypath(keypath)) {
       return;
     }
 
     var instance = this,
-        result = void 0;
+        result;
 
     // 传入 '' 获取整个 data
     if (keypath === '') {
@@ -4607,7 +4672,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.set = function set$$1(keypath, value) {
+  Observer.prototype.set = function (keypath, value) {
 
     var instance = this;
 
@@ -4618,7 +4683,7 @@ var Observer = function () {
 
     var changes = [];
 
-    var setValue = function setValue(value, keypath) {
+    var setValue = function (value, keypath) {
 
       keypath = normalize(keypath);
 
@@ -4629,7 +4694,7 @@ var Observer = function () {
         return;
       }
 
-      var getNewValue = function getNewValue(key) {
+      var getNewValue = function (key) {
         if (key === keypath || value == NULL) {
           return value;
         }
@@ -4660,9 +4725,9 @@ var Observer = function () {
       // 存在模糊匹配的需求
       // 必须对数据进行递归
       // 性能确实会慢一些，但是很好用啊，几乎可以监听所有的数据
-      if (fuzzyKeypaths[LENGTH]) {
+      if (fuzzyKeypaths[RAW_LENGTH]) {
 
-        var addChange = function addChange(newValue, oldValue, key) {
+        var addChange = function (newValue, oldValue, key) {
           if (newValue !== oldValue) {
 
             each(fuzzyKeypaths, function (fuzzyKeypath) {
@@ -4681,7 +4746,7 @@ var Observer = function () {
             var newIs = string(newValue),
                 oldIs = string(oldValue);
             if (newIs || oldIs) {
-              addChange(newIs ? newValue[LENGTH] : UNDEFINED, oldIs ? oldValue[LENGTH] : UNDEFINED, join$1(key, LENGTH));
+              addChange(newIs ? newValue[RAW_LENGTH] : UNDEFINED, oldIs ? oldValue[RAW_LENGTH] : UNDEFINED, join$1(key, RAW_LENGTH));
             } else {
               newIs = object(newValue), oldIs = object(oldValue);
               if (newIs || oldIs) {
@@ -4731,7 +4796,7 @@ var Observer = function () {
       each$1(keypath, setValue);
     }
 
-    for (var i = 0; i < changes.length; i += 4) {
+    for (var i = 0; i < changes[RAW_LENGTH]; i += 4) {
       emitter.fire(changes[i], [changes[i + 1], changes[i + 2], changes[i + 3], changes]);
     }
   };
@@ -4744,13 +4809,13 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.addComputed = function addComputed(keypath, computed) {
+  Observer.prototype.addComputed = function (keypath, computed) {
 
     var instance = this,
         cache = TRUE,
-        get$$1 = void 0,
-        set$$1 = void 0,
-        deps = void 0;
+        get$$1,
+        set$$1,
+        deps;
 
     if (func(computed)) {
       get$$1 = computed;
@@ -4774,7 +4839,7 @@ var Observer = function () {
       var _computed = new Computed(keypath, instance);
 
       if (get$$1) {
-        var hasDeps = array(deps) && deps[LENGTH] > 0;
+        var hasDeps = array(deps) && deps[RAW_LENGTH] > 0;
         if (hasDeps) {
           each(deps, function (dep) {
             _computed.addDep(dep);
@@ -4821,7 +4886,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.toggle = function toggle(keypath) {
+  Observer.prototype.toggle = function (keypath) {
     var value = !this.get(keypath);
     this.set(keypath, value);
     return value;
@@ -4839,7 +4904,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.increase = function increase(keypath, step, max) {
+  Observer.prototype.increase = function (keypath, step, max) {
     var value = toNumber(this.get(keypath), 0) + (numeric(step) ? step : 1);
     if (!numeric(max) || value <= max) {
       this.set(keypath, value);
@@ -4859,7 +4924,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.decrease = function decrease(keypath, step, min) {
+  Observer.prototype.decrease = function (keypath, step, min) {
     var value = toNumber(this.get(keypath), 0) - (numeric(step) ? step : 1);
     if (!numeric(min) || value >= min) {
       this.set(keypath, value);
@@ -4877,7 +4942,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.insert = function insert(keypath, item, index) {
+  Observer.prototype.insert = function (keypath, item, index) {
 
     var list = this.get(keypath);
     if (!array(list)) {
@@ -4886,7 +4951,7 @@ var Observer = function () {
       list = copy(list);
     }
 
-    var length = list[LENGTH];
+    var length = list[RAW_LENGTH];
     if (index === TRUE || index === length) {
       list.push(item);
     } else if (index === FALSE || index === 0) {
@@ -4911,9 +4976,9 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.removeAt = function removeAt(keypath, index) {
+  Observer.prototype.removeAt = function (keypath, index) {
     var list = this.get(keypath);
-    if (array(list) && index >= 0 && index < list[LENGTH]) {
+    if (array(list) && index >= 0 && index < list[RAW_LENGTH]) {
       list = copy(list);
       list.splice(index, 1);
       this.set(keypath, list);
@@ -4930,7 +4995,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.remove = function remove$$1(keypath, item) {
+  Observer.prototype.remove = function (keypath, item) {
     var list = this.get(keypath);
     if (array(list)) {
       list = copy(list);
@@ -4941,11 +5006,11 @@ var Observer = function () {
     }
   };
 
-  Observer.prototype.nextTick = function nextTick(fn) {
+  Observer.prototype.nextTick = function (fn) {
     append(fn);
   };
 
-  Observer.prototype.nextRun = function nextRun() {
+  Observer.prototype.nextRun = function () {
     run();
   };
 
@@ -4954,7 +5019,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.destroy = function destroy() {
+  Observer.prototype.destroy = function () {
     this.emitter.off();
     this.asyncEmitter.off();
     clear(this);
@@ -5008,7 +5073,7 @@ extend(Observer.prototype, {
 
 function createWatch(action) {
 
-  var watch = function watch(instance, keypath, func$$1, sync, computed) {
+  var watch = function (instance, keypath, func$$1, sync, computed) {
     var context = instance.context;
 
 
@@ -5201,7 +5266,7 @@ function setComponent(element, component) {
   return element.component = component;
 }
 
-var domApi = Object.freeze({
+var domApi = {
     createElement: createElement,
     createText: createText,
     createComment: createComment,
@@ -5226,7 +5291,7 @@ var domApi = Object.freeze({
     off: off,
     getComponent: getComponent,
     setComponent: setComponent
-});
+};
 
 /**
  * tap 事件
@@ -5338,7 +5403,7 @@ var EMITTER_KEY = '_emitter';
 api.on = function (element, type, listener, context) {
   var emitter = element[EMITTER_KEY] || (element[EMITTER_KEY] = new Emitter());
   if (!emitter.has(type)) {
-    var nativeListener = function nativeListener(e, type) {
+    var nativeListener = function (e, type) {
       if (!Event.is(e)) {
         e = new Event(api.createEvent(e, element));
       }
@@ -5400,7 +5465,7 @@ api.off = function (element, type, listener) {
  */
 var debounce = function (fn, delay, sync) {
 
-  var timer = void 0;
+  var timer;
 
   return function () {
 
@@ -5492,20 +5557,25 @@ var selectControl = {
     var options = el.options,
         selectedIndex = el.selectedIndex;
 
-    var selectedOption = options[selectedIndex];
-    if (selectedOption && value !== selectedOption.value) {
-      each(options, function (option, index) {
-        if (option.value === value) {
-          el.selectedIndex = index;
-          return FALSE;
+    if (selectedIndex >= 0) {
+      var selectedOption = options[selectedIndex];
+      if (selectedOption) {
+        var newValue = isDef(selectedOption.value) ? selectedOption.value : selectedOption.text;
+        if (value !== newValue) {
+          each(options, function (option, index) {
+            var optionValue = isDef(option.value) ? option.value : option.text;
+            if (optionValue === newValue) {
+              el.selectedIndex = index;
+              return FALSE;
+            }
+          });
         }
-      });
+      }
     }
   },
   sync: function sync(el, keypath, instance) {
-    var value = el.options[el.selectedIndex].value;
-
-    instance.set(keypath, value);
+    var selectedOption = el.options[el.selectedIndex];
+    instance.set(keypath, isDef(selectedOption.value) ? selectedOption.value : selectedOption.text);
   }
 };
 
@@ -5578,19 +5648,19 @@ var model = function (_ref) {
     keypath = value;
   }
 
-  var set$$1 = function set$$1() {
+  var set$$1 = function () {
     if (control) {
       control.set(target, keypath, instance);
     }
   };
-  var sync = function sync() {
+  var sync = function () {
     control.sync(target, keypath, instance);
   };
 
-  var target = void 0,
-      control = void 0,
-      unbindTarget = void 0,
-      unbindInstance = void 0;
+  var target,
+      control,
+      unbindTarget,
+      unbindInstance;
   if (component) {
 
     target = component;
@@ -5614,9 +5684,7 @@ var model = function (_ref) {
     var type = CHANGE;
     if (!control) {
       control = inputControl;
-      if (exists(el, 'autofocus')) {
-        type = INPUT;
-      }
+      type = INPUT;
     }
 
     if (!control.attr || !has$1(attrs, control.attr)) {
@@ -5661,7 +5729,7 @@ var binding = function (_ref) {
   // 比如写了个 <div>{{name}}</div>
   // 删了数据却忘了删模板，无视之
   if (keypath) {
-    var set = function set(value) {
+    var set = function (value) {
       var name = node.modifier;
       if (node.prop) {
         api.setProp(el, name, value);
@@ -5718,29 +5786,30 @@ var Yox = function () {
         parent = _options.parent,
         replace = _options.replace,
         computed = _options.computed,
-        children = _options.children,
         template = _options.template,
         components = _options.components,
         directives = _options.directives,
         partials = _options.partials,
         filters = _options.filters,
+        slots = _options.slots,
         events = _options.events,
-        watchers = _options.watchers,
         methods = _options.methods,
+        watchers = _options.watchers,
         propTypes = _options.propTypes,
         extensions = _options.extensions;
 
 
     extensions && extend(instance, extensions);
 
-    var source = void 0;
+    var source;
     if (object(propTypes)) {
       source = Yox.validate(props || {}, propTypes);
-      if (children) {
-        source[SPECIAL_CHILDREN] = children;
-      }
     } else {
       source = props || {};
+    }
+
+    if (slots) {
+      extend(source, slots);
     }
 
     // 如果传了 props，则 data 应该是个 function
@@ -5781,10 +5850,8 @@ var Yox = function () {
       }
       // 如果是根组件，必须有一个根元素
       // 如果是子组件，可以是 $children
-      if (!tag.test(template)) {
-        if (!parent || trim(template) !== SPECIAL_CHILDREN) {
-          error$1(templateError);
-        }
+      if (!tag.test(template) && !parent) {
+        error$1(templateError);
       }
     } else {
       template = NULL;
@@ -5821,7 +5888,7 @@ var Yox = function () {
     }
 
     // 聪明的 set...
-    var smartSet = function smartSet(key, value) {
+    var smartSet = function (key, value) {
       if (func(value)) {
         instance[key](execute(value, instance));
       } else if (object(value)) {
@@ -5881,7 +5948,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.addComputed = function addComputed(keypath, computed) {
+  Yox.prototype.addComputed = function (keypath, computed) {
     return this.$observer.addComputed(keypath, computed);
   };
 
@@ -5894,7 +5961,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.get = function get$$1(keypath, defaultValue) {
+  Yox.prototype.get = function (keypath, defaultValue) {
     return this.$observer.get(keypath, defaultValue);
   };
 
@@ -5906,7 +5973,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.set = function set$$1(keypath, value) {
+  Yox.prototype.set = function (keypath, value) {
     this.$observer.set(keypath, value);
   };
 
@@ -5919,7 +5986,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.on = function on(type, listener) {
+  Yox.prototype.on = function (type, listener) {
     this.$emitter.on(type, listener);
     return this;
   };
@@ -5933,7 +6000,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.once = function once(type, listener) {
+  Yox.prototype.once = function (type, listener) {
     this.$emitter.once(type, listener);
     return this;
   };
@@ -5947,7 +6014,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.off = function off(type, listener) {
+  Yox.prototype.off = function (type, listener) {
     this.$emitter.off(type, listener);
     return this;
   };
@@ -5962,7 +6029,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.fire = function fire(type, data, downward) {
+  Yox.prototype.fire = function (type, data, downward) {
 
     // 外部为了使用方便，fire(type) 或 fire(type, data) 就行了
     // 内部为了保持格式统一
@@ -6012,7 +6079,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watch = function watch(keypath, watcher, sync) {
+  Yox.prototype.watch = function (keypath, watcher, sync) {
     this.$observer.watch(keypath, watcher, sync);
     return this;
   };
@@ -6027,7 +6094,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watchOnce = function watchOnce(keypath, watcher, sync) {
+  Yox.prototype.watchOnce = function (keypath, watcher, sync) {
     this.$observer.watchOnce(keypath, watcher, sync);
     return this;
   };
@@ -6041,7 +6108,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.unwatch = function unwatch(keypath, watcher) {
+  Yox.prototype.unwatch = function (keypath, watcher) {
     this.$observer.unwatch(keypath, watcher);
     return this;
   };
@@ -6057,15 +6124,15 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.lookup = function lookup(key, stack, localVars, defaultVars) {
+  Yox.prototype.lookup = function (key, stack, localVars, defaultVars) {
 
     var instance = this,
-        value = void 0;
+        value;
 
     var index = stack.length - 1;
     var lookup = index > 0 && startsWith$1(key, RAW_THIS) === FALSE;
 
-    var getKeypath = function getKeypath(index) {
+    var getKeypath = function (index) {
       var keypath = join$1(stack[index], key);
       if (localVars && has$1(localVars, keypath)) {
         value = localVars[keypath];
@@ -6101,7 +6168,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.forceUpdate = function forceUpdate() {
+  Yox.prototype.forceUpdate = function () {
 
     if (this.$node) {
       var $renderCount = this.$renderCount;
@@ -6122,7 +6189,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.render = function render$$1() {
+  Yox.prototype.render = function () {
     console.time('render');
     var instance = this;
 
@@ -6135,17 +6202,23 @@ var Yox = function () {
 
       var filters = extend({}, registry.filter, instance.$filters);
 
+      var getValue = function (key, keypathStack) {
+        return key === SPECIAL_KEYPATH ? last(keypathStack) : instance.lookup(key, keypathStack, instance.$vars, filters);
+      };
+
       $getter = instance.$getter = function (expr, keypathStack, binding$$1) {
-        var lastComputed = Observer.computed;
+        var lastComputed = Observer.computed,
+            value;
         if (binding$$1) {
           Observer.computed = NULL;
         }
-        var value = execute$1(expr, function (key) {
-          if (key === SPECIAL_KEYPATH) {
-            return last(keypathStack);
-          }
-          return instance.lookup(key, keypathStack, instance.$vars, filters);
-        }, instance);
+        if (string(expr)) {
+          value = getValue(expr, keypathStack);
+        } else {
+          value = execute$1(expr, function (key) {
+            return getValue(key, keypathStack);
+          }, instance);
+        }
         if (binding$$1) {
           Observer.computed = lastComputed;
         }
@@ -6176,10 +6249,10 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.updateView = function updateView(newNode, oldNode) {
+  Yox.prototype.updateView = function (newNode, oldNode) {
 
     var instance = this,
-        afterHook = void 0;
+        afterHook;
 
     var $node = instance.$node,
         $options = instance.$options;
@@ -6215,7 +6288,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.create = function create(options, extra) {
+  Yox.prototype.create = function (options, extra) {
     options = extend({}, options, extra);
     options.parent = this;
     var child = new Yox(options);
@@ -6231,7 +6304,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.importPartial = function importPartial(name) {
+  Yox.prototype.importPartial = function (name) {
     return Yox.compile(this.partial(name));
   };
 
@@ -6243,7 +6316,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.compileDirective = function compileDirective(directive) {
+  Yox.prototype.compileDirective = function (directive) {
 
     var instance = this;
     var value = directive.value,
@@ -6258,21 +6331,21 @@ var Yox = function () {
           method = instance[callee.name];
 
       if (method) {
-        var getValue = function getValue(node) {
+        var getValue = function (node) {
           return instance.$getter(node, keypathStack);
         };
         return function (event) {
           var isEvent = Event.is(event),
-              result = void 0;
-          if (!args.length) {
-            if (isEvent) {
-              result = execute(method, instance, event);
-            }
-          } else {
+              result;
+          if (args && args.length) {
             if (isEvent) {
               instance.$setter(keypath, SPECIAL_EVENT, event);
             }
             result = execute(method, instance, args.map(getValue));
+          } else {
+            if (isEvent) {
+              result = execute(method, instance, event);
+            }
           }
           if (result === FALSE && isEvent) {
             event.prevent().stop();
@@ -6295,7 +6368,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.destroy = function destroy() {
+  Yox.prototype.destroy = function () {
 
     var instance = this;
 
@@ -6331,7 +6404,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.nextTick = function nextTick(fn) {
+  Yox.prototype.nextTick = function (fn) {
     this.$observer.nextTick(fn);
   };
 
@@ -6345,7 +6418,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.toggle = function toggle(keypath) {
+  Yox.prototype.toggle = function (keypath) {
     return this.$observer.toggle(keypath);
   };
 
@@ -6361,7 +6434,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.increase = function increase(keypath, step, max) {
+  Yox.prototype.increase = function (keypath, step, max) {
     return this.$observer.increase(keypath, step, max);
   };
 
@@ -6377,7 +6450,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.decrease = function decrease(keypath, step, min) {
+  Yox.prototype.decrease = function (keypath, step, min) {
     return this.$observer.decrease(keypath, step, min);
   };
 
@@ -6390,7 +6463,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.copy = function copy$$1(data, deep) {
+  Yox.prototype.copy = function (data, deep) {
     return copy(data, deep);
   };
 
@@ -6404,7 +6477,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.insert = function insert(keypath, item, index) {
+  Yox.prototype.insert = function (keypath, item, index) {
     return this.$observer.insert(keypath, item, index);
   };
 
@@ -6417,7 +6490,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.append = function append$$1(keypath, item) {
+  Yox.prototype.append = function (keypath, item) {
     return this.$observer.insert(keypath, item, TRUE);
   };
 
@@ -6430,7 +6503,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.prepend = function prepend$$1(keypath, item) {
+  Yox.prototype.prepend = function (keypath, item) {
     return this.$observer.insert(keypath, item, FALSE);
   };
 
@@ -6443,7 +6516,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.removeAt = function removeAt(keypath, index) {
+  Yox.prototype.removeAt = function (keypath, index) {
     return this.$observer.removeAt(keypath, index);
   };
 
@@ -6456,7 +6529,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.remove = function remove$$1(keypath, item) {
+  Yox.prototype.remove = function (keypath, item) {
     return this.$observer.remove(keypath, item);
   };
 
@@ -6593,7 +6666,7 @@ Yox.validate = function (props, propTypes) {
       // 就当做此规则无效，和没写一样
       if (type) {
         var target = props[key],
-            matched = void 0;
+            matched;
         // 比较类型
         if (!falsy$1(type)) {
           matched = is(target, type);

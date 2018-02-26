@@ -7,7 +7,7 @@ export default {
 {{#if disabled}} bell-radio-group-disabled{{/if}}
 {{#if vertical}} bell-radio-vertical{{/if}}
 ">
-    {{$children}}
+    <slot name="children" />
 </div>
     `,
     propTypes: {
