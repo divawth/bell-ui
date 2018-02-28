@@ -1,6 +1,4 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
 	(global.Yox = factory());
 }(this, (function () { 'use strict';
 
@@ -339,17 +337,6 @@ function each(array$$1, callback, reversed) {
 }
 
 /**
- * 合并两个数组
- *
- * @param {Array} array1
- * @param {Array} array2
- * @return {Array}
- */
-function merge(array1, array2) {
-  return array1.concat(array2);
-}
-
-/**
  * 把数组合并成字符串
  *
  * @param {Array} array
@@ -518,7 +505,6 @@ function falsy(array$$1) {
 
 var array$1 = {
 	each: each,
-	merge: merge,
 	join: join,
 	push: push,
 	unshift: unshift,
@@ -567,17 +553,6 @@ function trim(str) {
  */
 function slice(str, start, end) {
   return number(end) ? str.slice(start, end) : str.slice(start);
-}
-
-/**
- * 分割字符串
- *
- * @param {string} str
- * @param {string} delimiter
- * @return {Array}
- */
-function split(str, delimiter) {
-  return falsy$1(str) ? [] : str.split(new RegExp('\\s*' + delimiter.replace(/[.*?]/g, '\\$&') + '\\s*'));
 }
 
 /**
@@ -652,7 +627,6 @@ var string$1 = {
 	camelCase: camelCase,
 	trim: trim,
 	slice: slice,
-	split: split,
 	indexOf: indexOf$1,
 	lastIndexOf: lastIndexOf,
 	has: has$2,
@@ -711,17 +685,6 @@ function each$1(object$$1, callback) {
  */
 function has$1(object$$1, key) {
   return object$$1.hasOwnProperty(key);
-}
-
-/**
- * 本来想用 in，无奈关键字...
- *
- * @param {Object} object
- * @param {string} key
- * @return {boolean}
- */
-function exists(object$$1, key) {
-  return primitive(object$$1) ? has$1(object$$1, key) : key in object$$1;
 }
 
 /**
@@ -825,7 +788,7 @@ function getValue(object$$1, key) {
  */
 function get$1(object$$1, keypath) {
 
-  if (exists(object$$1, keypath)) {
+  if (has$1(object$$1, keypath)) {
     return getValue(object$$1, keypath);
   }
 
@@ -872,7 +835,6 @@ var object$1 = {
 	sort: sort,
 	each: each$1,
 	has: has$1,
-	exists: exists,
 	clear: clear,
 	extend: extend,
 	copy: copy,
@@ -1074,13 +1036,11 @@ function parseType(type, namespace) {
   return result;
 }
 
-var toString = function (str) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : CHAR_BLANK;
-
+var toString = function (str, defaultValue) {
   if (str != NULL && str.toString) {
     return str.toString();
   }
-  return defaultValue;
+  return arguments[RAW_LENGTH] === 1 ? CHAR_BLANK : defaultValue;
 };
 
 /**
@@ -1250,26 +1210,6 @@ function filter(term) {
   return term !== CHAR_BLANK && term !== RAW_THIS;
 }
 
-function parse(str) {
-  var filterable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : TRUE;
-
-  str = normalize(str);
-  if (string(str) && has$2(str, KEYPATH_SEPARATOR)) {
-    var result = str.split(KEYPATH_SEPARATOR);
-    return filterable ? result.filter(filter) : result;
-  }
-  return filterable && filter(str) ? [str] : [];
-}
-
-function stringify(keypaths) {
-  var filterable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : TRUE;
-
-  if (filterable) {
-    keypaths = keypaths.filter(filter);
-  }
-  return join(keypaths, KEYPATH_SEPARATOR);
-}
-
 function startsWith$1(keypath, prefix) {
   var temp;
   if (keypath === prefix) {
@@ -1292,7 +1232,7 @@ function join$1(keypath1, keypath2) {
   if (number(keypath2)) {
     push(result, keypath2);
   } else if (string(keypath2) && filter(keypath2)) {
-    push(result, parse(keypath2));
+    push(result, keypath2);
   }
   return join(result, KEYPATH_SEPARATOR);
 }
@@ -1412,7 +1352,7 @@ function bindDirective(vnode, key, api) {
   };
 
   if (component) {
-    options.component = api.getComponent(el);
+    options.component = api.component(el);
   }
 
   var bind = instance.directive(node.name),
@@ -1548,7 +1488,7 @@ function createComponent(vnode) {
       ref = vnode.ref;
 
   if (component) {
-    el = this.getComponent(el);
+    el = this.component(el);
   }
   setRef(instance, ref, el);
 }
@@ -1562,7 +1502,7 @@ function updateComponent(vnode, oldVnode) {
 
 
   if (component) {
-    el = this.getComponent(el);
+    el = this.component(el);
     el.set(vnode.attrs);
     el.set(vnode.slots);
   }
@@ -1687,7 +1627,7 @@ function init(api) {
 
     if (component$$1) {
 
-      api.setComponent(el, vnode);
+      api.component(el, vnode);
 
       instance.component(tag, function (options) {
 
@@ -1695,7 +1635,7 @@ function init(api) {
           fatal('"' + tag + '" component is not found.');
         }
 
-        vnode = api.getComponent(el);
+        vnode = api.component(el);
 
         if (vnode && tag === vnode.tag) {
 
@@ -1711,7 +1651,7 @@ function init(api) {
           }
 
           vnode.el = el;
-          api.setComponent(el, component$$1);
+          api.component(el, component$$1);
 
           moduleEmitter.fire(HOOK_CREATE, vnode, api);
         }
@@ -1775,14 +1715,14 @@ function init(api) {
         children = vnode.children;
 
     if (component$$1) {
-      component$$1 = api.getComponent(el);
+      component$$1 = api.component(el);
       if (component$$1.set) {
         moduleEmitter.fire(HOOK_DESTROY, vnode, api);
-        api.setComponent(el, NULL);
+        api.component(el, NULL);
         component$$1.destroy();
         return true;
       }
-      api.setComponent(el, NULL);
+      api.component(el, NULL);
     } else if (children) {
       each(children, function (child) {
         destroyVnode(child);
@@ -1914,9 +1854,9 @@ function init(api) {
     }
 
     if (component$$1) {
-      component$$1 = api.getComponent(el);
+      component$$1 = api.component(el);
       if (!component$$1.set) {
-        api.setComponent(el, vnode);
+        api.component(el, vnode);
         return;
       }
     }
@@ -2844,9 +2784,14 @@ executor[OBJECT] = function (node, getter, context) {
 };
 
 executor[CALL] = function (node, getter, context) {
-  return execute(execute$1(node.callee, getter, context), context, node.args.map(function (node) {
-    return execute$1(node, getter, context);
-  }));
+  var args = node.args;
+
+  if (args) {
+    args = args.map(function (node) {
+      return execute$1(node, getter, context);
+    });
+  }
+  return execute(execute$1(node.callee, getter, context), context, args);
 };
 
 /**
@@ -3836,7 +3781,8 @@ function compile$$1(content) {
 
   var delimiterParsers = [function (source, all) {
     if (startsWith(source, SYNTAX_EACH)) {
-      var terms = split(slicePrefix(source, SYNTAX_EACH), CHAR_COLON);
+      source = slicePrefix(source, SYNTAX_EACH);
+      var terms = source.replace(/\s+/g, CHAR_BLANK).split(CHAR_COLON);
       if (terms[0]) {
         return new Each(compile$1(trim(terms[0])), trim(terms[1]));
       }
@@ -3883,8 +3829,8 @@ function compile$$1(content) {
       (function () {
         var tpl = content;
         while (tpl) {
-          each(htmlParsers, function (parse$$1, match) {
-            match = parse$$1(tpl);
+          each(htmlParsers, function (parse, match) {
+            match = parse(tpl);
             if (match) {
               tpl = slice(tpl, match[RAW_LENGTH]);
               return FALSE;
@@ -3911,8 +3857,8 @@ function compile$$1(content) {
         }
         popStack(type);
       } else {
-        each(delimiterParsers, function (parse$$1, node) {
-          node = parse$$1(content, all);
+        each(delimiterParsers, function (parse, node) {
+          node = parse(content, all);
           if (node) {
             addChild(node);
             return FALSE;
@@ -3992,7 +3938,7 @@ function render(render, getter, setter, instance) {
       rootStack = [keypath],
       pushKeypath = function pushKeypath(newKeypath) {
     push(keypaths, newKeypath);
-    newKeypath = stringify(keypaths);
+    newKeypath = join(keypaths, KEYPATH_SEPARATOR);
     if (newKeypath !== keypath) {
       keypath = newKeypath;
       keypathStack = copy(keypathStack);
@@ -4328,13 +4274,11 @@ function render(render, getter, setter, instance) {
   return executeRender(render);
 }
 
-var toNumber = function (str) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
+var toNumber = function (str, defaultValue) {
   if (numeric(str)) {
     return +str;
   }
-  return defaultValue;
+  return arguments[RAW_LENGTH] === 1 ? 0 : defaultValue;
 };
 
 var guid = 0;
@@ -4466,35 +4410,33 @@ var Computed = function () {
     classCallCheck(this, Computed);
 
 
-    this.id = ++guid;
-    this.keypath = keypath;
-    this.observer = observer;
-    this.deps = [];
-  }
-
-  Computed.prototype.update = function (newValue, oldValue, key, changes) {
-
     var instance = this;
-    var observer = instance.observer,
-        keypath = instance.keypath,
-        value = instance.value;
+
+    instance.id = ++guid;
+    instance.keypath = keypath;
+    instance.observer = observer;
+    instance.deps = [];
+
+    instance.update = function (newValue, oldValue, key, changes) {
+      var value = instance.value;
 
 
-    instance.changes = updateValue(instance.changes, newValue, oldValue, key);
+      instance.changes = updateValue(instance.changes, newValue, oldValue, key);
 
-    observer.onChange(newValue, oldValue, key, instance, value);
+      observer.onChange(newValue, oldValue, key, instance, value);
 
-    // 当前计算属性是否是其他计算属性的依赖
-    each$1(observer.computed, function (computed, key) {
-      if (computed.hasDep(keypath)) {
-        var _newValue = instance.get();
-        if (_newValue !== value) {
-          changes.push(keypath, _newValue, value, keypath);
-          return FALSE;
+      // 当前计算属性是否是其他计算属性的依赖
+      each$1(observer.computed, function (computed, key) {
+        if (computed.hasDep(keypath)) {
+          var _newValue = instance.get();
+          if (_newValue !== value) {
+            changes.push(keypath, _newValue, value, keypath);
+            return FALSE;
+          }
         }
-      }
-    });
-  };
+      });
+    };
+  }
 
   Computed.prototype.get = function (force) {
     var value = this.value,
@@ -4683,7 +4625,7 @@ var Observer = function () {
 
       if (name && prop) {
         target = instance.computed[name].get();
-        if (exists(target, prop)) {
+        if (has$1(target, prop)) {
           return target[prop];
         } else if (target != NULL) {
           result = get$1(target, prop);
@@ -5280,6 +5222,10 @@ function html(node, content) {
   return content == NULL ? node.innerHTML : node.innerHTML = content;
 }
 
+function component$1(element, component) {
+  return isDef(component) ? element.component = component : element.component;
+}
+
 function find(selector, context) {
   return (context || doc).querySelector(selector);
 }
@@ -5290,14 +5236,6 @@ function on$1(element, type, listener) {
 
 function off(element, type, listener) {
   element.removeEventListener(type, listener, FALSE);
-}
-
-function getComponent(element) {
-  return element.component;
-}
-
-function setComponent(element, component) {
-  return element.component = component;
 }
 
 var domApi = {
@@ -5320,11 +5258,10 @@ var domApi = {
 	children: children,
 	text: text,
 	html: html,
+	component: component$1,
 	find: find,
 	on: on$1,
-	off: off,
-	getComponent: getComponent,
-	setComponent: setComponent
+	off: off
 };
 
 /**
