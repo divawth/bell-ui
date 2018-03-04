@@ -1,4 +1,6 @@
 (function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(factory());
 }(this, (function () { 'use strict';
 
@@ -89,7 +91,7 @@ var Transition = {
             type: 'function'
         },
         onEnd: function onEnd() {
-
+            
         },
 
         beforeEnter: {
@@ -2225,7 +2227,7 @@ var Date$1 = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2464,7 +2466,7 @@ var DateRange = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2643,7 +2645,7 @@ var DateWeek = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 

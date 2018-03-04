@@ -1,6 +1,64 @@
 (function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(global.Yox = factory());
 }(this, (function () { 'use strict';
+
+if (!Object.keys) {
+  Object.keys = function (obj) {
+    var result = [];
+    for (var key in obj) {
+      push(result, key);
+    }
+    return result;
+  };
+  Object.create = function (proto, descriptor) {
+    function Class() {}
+    Class.prototype = proto;
+    proto = new Class();
+    var constructor = descriptor && descriptor.constructor;
+    if (constructor) {
+      proto.constructor = constructor.value;
+    }
+    return proto;
+  };
+}
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s*|\s*$/g, '');
+  };
+}
+if (!Array.prototype.map) {
+  Array.isArray = function (value) {
+    return is(value, 'array');
+  };
+  Array.prototype.indexOf = function (target) {
+    var result = -1;
+    each(this, function (item, index) {
+      if (item === target) {
+        result = index;
+        return FALSE;
+      }
+    });
+    return result;
+  };
+  Array.prototype.map = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      result.push(fn(item, index));
+    });
+    return result;
+  };
+  Array.prototype.filter = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      if (fn(item, index)) {
+        result.push(item);
+      }
+    });
+    return result;
+  };
+}
 
 
 
@@ -4014,11 +4072,7 @@ function render(render, getter, setter, instance) {
       addSlot = function addSlot(name, slot) {
     var slots = currentComponent.slots || (currentComponent.slots = {});
     if (slots[name]) {
-      if (array(slots[name])) {
-        push(slots[name], slot);
-      } else {
-        slots[name] = [slots[name], slot];
-      }
+      push(slots[name], slot);
     } else {
       slots[name] = slot;
     }
@@ -4127,7 +4181,8 @@ function render(render, getter, setter, instance) {
   b = function b(name) {
     name = getValue(name);
     if (name) {
-      return getter(SLOT_PREFIX + name, rootStack);
+      var result = getter(SLOT_PREFIX + name, rootStack);
+      return array(result) && result.length === 1 ? result[0] : result;
     }
   },
 
@@ -5317,14 +5372,123 @@ var COMPOSITION_END = 'compositionend';
  *
  * @type {string}
  */
+var PROPERTY_CHANGE = 'propertychange';
+
+var IEEvent = function () {
+  function IEEvent(event, element) {
+    classCallCheck(this, IEEvent);
+
+
+    extend(this, event);
+
+    this.currentTarget = element;
+    this.target = event.srcElement || element;
+    this.originalEvent = event;
+  }
+
+  IEEvent.prototype.preventDefault = function () {
+    this.originalEvent.returnValue = FALSE;
+  };
+
+  IEEvent.prototype.stopPropagation = function () {
+    this.originalEvent.cancelBubble = TRUE;
+  };
+
+  return IEEvent;
+}();
+
+function addInputListener(element, listener) {
+  listener.$listener = function (e) {
+    if (e.propertyName === 'value') {
+      e = new Event(e);
+      e.type = INPUT;
+      listener.call(this, e);
+    }
+  };
+  on$2(element, PROPERTY_CHANGE, listener.$listener);
+}
+
+function removeInputListener(element, listener) {
+  off$1(element, PROPERTY_CHANGE, listener.$listener);
+  delete listener.$listener;
+}
+
+function addChangeListener(element, listener) {
+  listener.$listener = function (e) {
+    e = new Event(e);
+    e.type = CHANGE;
+    listener.call(this, e);
+  };
+  on$2(element, CLICK, listener.$listener);
+}
+
+function removeChangeListener(element, listener) {
+  off$1(element, CLICK, listener.$listener);
+  delete listener.$listener;
+}
+
+function isBox(element) {
+  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
+}
+
+function on$2(element, type, listener) {
+  if (type === INPUT) {
+    addInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    addChangeListener(element, listener);
+  } else {
+    element.attachEvent('on' + type, listener);
+  }
+}
+
+function off$1(element, type, listener) {
+  if (type === INPUT) {
+    removeInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    removeChangeListener(element, listener);
+  } else {
+    element.detachEvent('on' + type, listener);
+  }
+}
+
+function createEvent$1(event, element) {
+  return new IEEvent(event, element);
+}
+
+function find$1(selector, context) {
+  context = context || doc;
+  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
+}
+
+function setProp$1(element, name, value) {
+  try {
+    if (name === 'textContent' && !has$1(element, name)) {
+      name = 'innerText';
+    }
+    set$1(element, name, value);
+  } catch (e) {
+    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
+      element.setAttribute('type', 'text/css');
+      element.styleSheet.cssText = value;
+    }
+  }
+}
+
+
+
+var oldApi = {
+	on: on$2,
+	off: off$1,
+	createEvent: createEvent$1,
+	find: find$1,
+	setProp: setProp$1
+};
 
 var api = copy(domApi);
 
-// import * as oldApi from './oldApi'
-//
-// if (env.doc && !env.doc.addEventListener) {
-//   object.extend(api, oldApi)
-// }
+if (doc && !doc.addEventListener) {
+  extend(api, oldApi);
+}
 
 var _on = api.on;
 var _off = api.off;
