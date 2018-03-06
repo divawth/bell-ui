@@ -1,18 +1,30 @@
+浏览器会查找每一个连续的字体，如果可能的话，会选择第一个字体，如果不能找到字体(在系统中或在CSS中定义)，则会返回到下一个字体。
 
-对字体进行统一规范，力求在不同平台、浏览器下能显示出其最佳的效果。
+- -apple-system 在 ios 和 macOS 上使用（而不是 Chrome）
+- BlinkMacSystemFont 在 macOS 的 Chrome 上使用
+- Segoe UI 在 Windows 10 上使用
+- Roboto 在 Android 上使用
+- Oxygen-Sans 在 GNU+Linux 上使用
+- Ubuntu 在 Linux 上使用
+- "Helvetica Neue" and Helvetica 在 macOS 10.10 上使用
+- Arial 被广泛的操作系统所支持
+- sans-serif 如果不支持其他字体就返回 sans-serif
+
+> 字体样式
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
 > 字体大小
-
-<a href="./example/font.html">
-    Font
-</a>
 
 <html>
     <table class="bell-table">
         <tbody>
             <tr>
                 <td>HeadLine 主标题</td>
-                <td style="font-size: 28px">用 Bell 快速搭建页面</td>
+                <td class="bell-text-large" style="font-size: 28px">用 Bell 快速搭建页面</td>
                 <td>28px</td>
             </tr>
             <tr>

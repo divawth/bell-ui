@@ -1,15 +1,8 @@
 .clearfix() {
-    zoom: 1;
-    &:before,
     &:after {
-        content: "";
-        display: table;
-    }
-    &:after {
+        content: '';
+        display: block;
         clear: both;
-        visibility: hidden;
-        font-size: 0;
-        height: 0;
     }
 }
 
@@ -21,4 +14,206 @@
     bottom: 0;
 }
 
+// padding-top 如果是百分比 表示父容器宽度的百分比
+// .evenly-distributed-children {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .flexbox-centering {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .grid-centering {
+//   display: grid;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .truncate-text {
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   width: 200px;
+// }
+
+// .circle {
+//   border-radius: 50%;
+//   width: 2rem;
+//   height: 2rem;
+//   background: #333;
+// }
+
+// ::-webkit-scrollbar {
+//     width: 8px;
+// }
+// ::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     border-radius: 10px;
+// }
+// ::-webkit-scrollbar-thumb {
+//     box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+//     border-radius: 10px;
+// }
+
+// ::selection {
+//   background: aquamarine;
+//   color: black;
+// }
+
+// .etched-text {
+//   text-shadow: 0 2px white;
+//   font-size: 1.5rem;
+//   font-weight: bold;
+//   color: #b8bec5;
+// }
+
+// .gradient-text {
+//   background: -webkit-linear-gradient(pink, red);
+//   -webkit-text-fill-color: transparent;
+//   -webkit-background-clip: text;
+// }
+
+// .hairline-border {
+//   box-shadow: 0 0 0 1px;
+// }
+// @media (min-resolution: 2dppx) {
+//   .hairline-border {
+//     box-shadow: 0 0 0 0.5px;
+//   }
+// }
+// @media (min-resolution: 3dppx) {
+//   .hairline-border {
+//     box-shadow: 0 0 0 0.33333333px;
+//   }
+// }
+// @media (min-resolution: 4dppx) {
+//   .hairline-border {
+//     box-shadow: 0 0 0 0.25px;
+//   }
+// }
+
+// .overflow-scroll-gradient {
+//   position: relative;
+// }
+// .overflow-scroll-gradient::after {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   width: 240px;
+//   height: 25px;
+//   background: linear-gradient(
+//     rgba(255, 255, 255, 0.001),
+//     white
+//   );  transparent keyword is broken in Safari
+//   pointer-events: none;
+// }
+// .overflow-scroll-gradient__scroller {
+//   overflow-y: scroll;
+//   background: white;
+//   width: 240px;
+//   height: 200px;
+//   padding: 15px 0;
+//   line-height: 1.2;
+//   text-align: center;
+// }
+
+
+// .pretty-text-underline {
+//   font-family: Arial, sans-serif;
+//   display: inline;
+//   font-size: 18px;
+//   text-shadow: 1px 1px 0 #f5f6f9, -1px 1px 0 #f5f6f9, -1px -1px 0 #f5f6f9, 1px -1px 0 #f5f6f9;
+//   background-image: linear-gradient(90deg, currentColor 100%, transparent 100%);
+//   background-position: 0 0.98em;
+//   background-repeat: repeat-x;
+//   background-size: 1px 1px;
+// }
+// .pretty-text-underline::-moz-selection {
+//   background-color: rgba(0, 150, 255, 0.3);
+//   text-shadow: none;
+// }
+// .pretty-text-underline::selection {
+//   background-color: rgba(0, 150, 255, 0.3);
+//   text-shadow: none;
+// }
+
+// .reset-all-styles {
+//   all: initial;
+// }
+
+// .shape-separator {
+//   position: relative;
+//   height: 48px;
+//   background: #333;
+// }
+// .shape-separator::after {
+//   content: '';
+//   background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxLjQxNCI+PHBhdGggZD0iTTEyIDEybDEyIDEySDBsMTItMTJ6IiBmaWxsPSIjZmZmIi8+PC9zdmc+);
+//   position: absolute;
+//   width: 100%;
+//   height: 24px;
+//   bottom: 0;
+// }
+
+
+// .triangle {
+//   width: 0;
+//   height: 0;
+//   border-top: 20px solid #333;
+//   border-left: 20px solid transparent;
+//   border-right: 20px solid transparent;
+// }
+
+// @keyframes bouncing-loader {
+//   from {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+//   to {
+//     opacity: 0.1;
+//     transform: translateY(-1rem);
+//   }
+// }
+// .bouncing-loader {
+//   display: flex;
+//   justify-content: center;
+// }
+// .bouncing-loader > div {
+//   width: 1rem;
+//   height: 1rem;
+//   margin: 3rem 0.2rem;
+//   background: #8385aa;
+//   border-radius: 50%;
+//   animation: bouncing-loader 0.6s infinite alternate;
+// }
+// .bouncing-loader > div:nth-of-type(2) {
+//   animation-delay: 0.2s;
+// }
+// .bouncing-loader > div:nth-of-type(3) {
+//   animation-delay: 0.4s;
+// }
+
+
+// @keyframes donut-spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+// .donut {
+//   display: inline-block;
+//   border: 4px solid rgba(0, 0, 0, 0.1);
+//   border-left-color: #7983ff;
+//   border-radius: 50%;
+//   width: 30px;
+//   height: 30px;
+//   animation: donut-spin 1.2s linear infinite;
+// }
+
+// 变量在全局范围内定义:根CSS伪类，它匹配表示文档的树的根元素。 在HTML中:root表示< HTML >元素，与选择器HTML相同，只是其特性更高。
 @import "./grid";

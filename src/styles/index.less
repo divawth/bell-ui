@@ -1,11 +1,11 @@
 @import "./custom";
+@import "./components/font";
 
 @import "./mixins/index";
 
 @import "./ionicons/ionicons";
 
 @import "./components/transition";
-@import "./components/font";
 @import "./components/button";
 @import "./components/layout";
 @import "./components/input";
@@ -38,6 +38,19 @@
 @import "./components/list";
 @import "./components/transfer";
 
+// Uses the native font of the operating system to get close to a native app feel.
 body {
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+// resets the box-model so that widths and heights are not affected by theie boders or padding
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
