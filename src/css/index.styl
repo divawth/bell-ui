@@ -1,0 +1,39 @@
+@import './icomoon/style'
+@import './reset/normalize'
+@import './mixins/ui'
+
+$styl-primary = {
+    color: '#1c90f3'
+}
+$styl-info = {
+    color: '#57a3f3'
+}
+$styl-success = {
+    color: '#19be6b'
+}
+$styl-warning = {
+    color: '#ff9900'
+}
+$styl-error = {
+    color: '#ed3f14'
+}
+
+$selector-text = '.text'
+$selector-texts = '.texts'
+
+$text-size-hash = {
+    '': $styl-primary,
+    info: $styl-info,
+    success: $styl-success,
+    warning: $styl-warning,
+    error: $styl-error
+}
+
+text-style(color)
+
+    ui-set('color', color['color'])
+
+ui-variant(
+    hash: $text-size-hash,
+    each: text-style
+)
