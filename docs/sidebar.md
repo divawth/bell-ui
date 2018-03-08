@@ -1,7 +1,7 @@
 - [Basic](README)
   - [动画](basic/transition)
 - [Layout 布局](layout)
-  - [Font 字体](layout/font)
+  - [Text 字体](layout/font)
   - [Color 色彩](layout/color)
   - [Grid 栅格布局](layout/grid)
   - [Button 按钮](layout/button)

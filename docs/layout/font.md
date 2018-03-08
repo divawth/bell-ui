@@ -19,130 +19,220 @@ body {
 
 > 字体大小
 
+
 <html>
     <table class="bell-table">
+        <tr>
+            <td class="bell-text" >字体大小</td>
+            <td class="bell-text">示例</td>
+            <td>类名</td>
+        </tr>
         <tbody>
             <tr>
-                <td>HeadLine 主标题</td>
-                <td class="bell-text-large" style="font-size: 28px">用 Bell 快速搭建页面</td>
-                <td>28px</td>
+                <td class="bell-text huge" >Huge 超大号字体</td>
+                <td class="bell-text huge">用 Bell 快速搭建页面</td>
+                <td>bell-text huge</td>
             </tr>
             <tr>
-                <td>Title 标题</td>
-                <td style="font-size: 20px">用 Bell 快速搭建页面</td>
-                <td>20px</td>
+                <td class="bell-text large" >Large 大号字体</td>
+                <td class="bell-text large">用 Bell 快速搭建页面</td>
+                <td>bell-text large</td>
             </tr>
             <tr>
-                <td>subHead 小标题</td>
-                <td style="font-size: 16px">用 Bell 快速搭建页面</td>
-                <td>16px</td>
+                <td class="bell-text" >正常字体</td>
+                <td class="bell-text">用 Bell 快速搭建页面</td>
+                <td>bell-text</td>
             </tr>
             <tr>
-                <td>text 正文</td>
-                <td style="font-size: 14px">用 Bell 快速搭建页面</td>
-                <td>14px</td>
+                <td class="bell-text small" >Small 小号字体</td>
+                <td class="bell-text small">用 Bell 快速搭建页面</td>
+                <td>bell-text large</td>
             </tr>
             <tr>
-                <td>textSmall 正文</td>
-                <td style="font-size: 13px">用 Bell 快速搭建页面</td>
-                <td>13px</td>
-            </tr>
-            <tr>
-                <td>caption 辅助文字</td>
-                <td style="font-size: 12px">用 Bell 快速搭建页面</td>
-                <td>12px</td>
+                <td class="bell-text tiny" >Tiny 超小号字体</td>
+                <td class="bell-text tiny">用 Bell 快速搭建页面</td>
+                <td>bell-text tiny</td>
             </tr>
         </tbody>
     </table>
 </html>
 
-> 字体基本色/色彩对比度
-
-最基本的常识是，相同颜色的背景和文字是很难阅读的。但有些人不知道的是，带有过强对比度的文本会有些炫目，同样难以阅读。这一点在深色背景下尤其明显。
-
-要获得良好的辨识度，文本应当满足一个最低的对比度，也就是4.5:1（依据明度计算）。7:1的对比度是最适合阅读的。
-
-这些色彩的组合同样要考虑到某些非典型用户对于对比度的不同反应。
+> 排版字体大小
 
 <html>
     <table class="bell-table">
+        <tr>
+            <td class="bell-text" >字体大小</td>
+            <td class="bell-text">示例</td>
+            <td>类名</td>
+        </tr>
         <tbody>
             <tr>
-                <td>HeadLine 主标题</td>
-                <td style="font-size: 28px; color: rgba(0,0,0,.87);">用 Bell 快速搭建页面</td>
-                <td>0.87</td>
+                <td class="bell-text h1" >h1</td>
+                <td class="bell-text h1">用 Bell 快速搭建页面</td>
+                <td>bell-text h1</td>
             </tr>
             <tr>
-                <td>Title 标题</td>
-                <td style="font-size: 20px; color: rgba(0,0,0,.87); font-weight: bold;">用 Bell 快速搭建页面</td>
-                <td>0.87</td>
+                <td class="bell-text h2" >h2</td>
+                <td class="bell-text h2">用 Bell 快速搭建页面</td>
+                <td>bell-text h2</td>
             </tr>
             <tr>
-                <td>subHead 小标题</td>
-                <td style="font-size: 16px; color: rgba(0,0,0,.87);">用 Bell 快速搭建页面</td>
-                <td>0.87</td>
+                <td class="bell-text h3" >h3</td>
+                <td class="bell-text h3">用 Bell 快速搭建页面</td>
+                <td>bell-text h3</td>
             </tr>
             <tr>
-                <td>text 正文</td>
-                <td style="font-size: 14px; color: rgba(0,0,0,.87); font-weight: bold;">用 Bell 快速搭建页面</td>
-                <td>0.87</td>
+                <td class="bell-text h4" >h4</td>
+                <td class="bell-text h4">用 Bell 快速搭建页面</td>
+                <td>bell-text h4</td>
             </tr>
             <tr>
-                <td>textSmall 正文</td>
-                <td style="font-size: 13px; color: rgba(0,0,0,.87);">用 Bell 快速搭建页面</td>
-                <td>0.87</td>
+                <td class="bell-text h5" >h5</td>
+                <td class="bell-text h5">用 Bell 快速搭建页面</td>
+                <td>bell-text h5</td>
             </tr>
             <tr>
-                <td>caption 辅助文字</td>
-                <td style="font-size: 12px; color: rgba(0,0,0,.54);">用 Bell 快速搭建页面</td>
-                <td>0.54</td>
-            </tr>
-            <tr>
-                <td>失效文字</td>
-                <td style="font-size: 12px; color: rgba(0,0,0,.37);">用 Bell 快速搭建页面</td>
-                <td>0.34</td>
+                <td class="bell-text h6" >h6</td>
+                <td class="bell-text h6">用 Bell 快速搭建页面</td>
+                <td>bell-text h6</td>
             </tr>
         </tbody>
     </table>
 </html>
 
-> 行高
-
-行高是通过每个样式各自的尺寸和粗细决定的，以获得良好的可读性和合适的间距。只有“正文”、“小标题”、“正文(small)”等类似的样式中才允许使用自动换行。其它所有样式应当以单行形式出现。
+> 一些除了主体文字还常用的文字大小
 
 <html>
     <table class="bell-table">
+        <tr>
+            <td class="bell-text" >字体大小</td>
+            <td class="bell-text">示例</td>
+            <td>类名</td>
+        </tr>
         <tbody>
             <tr>
-                <td>HeadLine 主标题</td>
-                <td style="width: 130px;font-size: 28px; color: rgba(0,0,0,.87); line-height: 40px;">用 Bell 快速搭建页面</td>
-                <td>28px - 40px</td>
+                <td class="bell-text" >display1</td>
+                <td class="bell-text display1">Display1</td>
+                <td>bell-text display1</td>
             </tr>
             <tr>
-                <td>Title 标题</td>
-                <td style="width: 130px;font-size: 18px; color: rgba(0,0,0,.87); line-height: 30px;">用 Bell 快速搭建页面</td>
-                <td>18px - 30px</td>
+                <td class="bell-text">display2</td>
+                <td class="bell-text display2">Display2</td>
+                <td>bell-text display2</td>
             </tr>
             <tr>
-                <td>subHead 小标题</td>
-                <td style="width: 130px;font-size: 16px; color: rgba(0,0,0,.87); line-height: 28px;">用 Bell 快速搭建页面</td>
-                <td>16px - 28px</td>
+                <td class="bell-text">display3</td>
+                <td class="bell-text display3">Display3</td>
+                <td>bell-text display3</td>
             </tr>
             <tr>
-                <td>text 正文</td>
-                <td style="width: 130px;font-size: 14px; color: rgba(0,0,0,.87); line-height: 24px;">用 Bell 快速搭建页面</td>
-                <td>14px - 24px</td>
-            </tr>
-            <tr>
-                <td>textSmall 正文(small)</td>
-                <td style="width: 130px;font-size: 13px; color: rgba(0,0,0,.87); line-height: 20px;">用 Bell 快速搭建页面</td>
-                <td>13px - 20px</td>
-            </tr>
-            <tr>
-                <td>caption 辅助文字</td>
-                <td style="width: 130px;font-size: 12px; color: rgba(0,0,0,.54); line-height: 18px;">用 Bell 快速搭建页面</td>
-                <td>12px - 18px</td>
+                <td class="bell-text" >display4</td>
+                <td class="bell-text display4">Display4</td>
+                <td>bell-text display4</td>
             </tr>
         </tbody>
     </table>
+</html>
+
+> 字体的基本颜色
+
+<html>
+    <table class="bell-table">
+        <tr>
+            <td class="bell-text" >字体大小</td>
+            <td class="bell-text">示例</td>
+            <td>类名</td>
+        </tr>
+        <tbody>
+            <tr>
+                <td class="bell-text primary" >primary</td>
+                <td class="bell-text primary">用 Bell 快速搭建页面</td>
+                <td>bell-text primary</td>
+            </tr>
+            <tr>
+                <td class="bell-text success" >success</td>
+                <td class="bell-text success">用 Bell 快速搭建页面</td>
+                <td>bell-text success</td>
+            </tr>
+            <tr>
+                <td class="bell-text error" >error</td>
+                <td class="bell-text error">用 Bell 快速搭建页面</td>
+                <td>bell-text error</td>
+            </tr>
+            <tr>
+                <td class="bell-text info" >info</td>
+                <td class="bell-text info">用 Bell 快速搭建页面</td>
+                <td>bell-text info</td>
+            </tr>
+            <tr>
+                <td class="bell-text warning" >warning</td>
+                <td class="bell-text warning">用 Bell 快速搭建页面</td>
+                <td>bell-text warning</td>
+            </tr>
+            <tr>
+                <td class="bell-text danger" >danger</td>
+                <td class="bell-text danger">用 Bell 快速搭建页面</td>
+                <td>bell-text danger</td>
+            </tr>
+            <tr>
+                <td class="bell-text main" >main</td>
+                <td class="bell-text main">用 Bell 快速搭建页面</td>
+                <td>bell-text main</td>
+            </tr>
+            <tr>
+                <td class="bell-text secondary" >secondary</td>
+                <td class="bell-text secondary">用 Bell 快速搭建页面</td>
+                <td>bell-text secondary</td>
+            </tr>
+            <tr>
+                <td class="bell-text muted" >muted</td>
+                <td class="bell-text muted">用 Bell 快速搭建页面</td>
+                <td>bell-text muted</td>
+            </tr>
+        </tbody>
+    </table>
+</html>
+
+> 文本对齐
+
+<html>
+    <p class="bell-text left">Left aligned text on all viewport sizes</p>
+    <p class="bell-text center">Center aligned text on all viewport sizes</p>
+    <p class="bell-text right">Right aligned text on all viewport sizes</p>
+</html>
+
+> 文本包装和溢出
+
+<html>
+    <p class="bell-text danger h5">text with a .bell-text-nowrap class.</p>
+    <div class="bell-text bell-text-nowrap" style="width: 8rem; background: #f90">
+      This text should overflow the parent.
+    </div>
+    <p class="bell-text danger h5">text with a .bell-text-truncate class. Requires display: inline-block or display: block.</p>
+    <div class="row">
+        <div class="bell-text bell-text-truncate" style="max-width: 150px;">
+            Praeterea iter est quasdam res quas ex communi.
+        </div>
+    </div>
+</html>
+
+> 文本转换
+
+<html>
+    <p class="bell-text danger h5">Transform to lowsercase</p>
+    <p class="bell-text-lowercase">Lowercased text.</p>
+    <p class="bell-text danger h5">Transform to uppercase</p>
+    <p class="bell-text-uppercase">Uppercased text.</p>
+    <p class="bell-text danger h5">Transform to captitalize</p>
+    <p class="bell-text-capitalize">CapiTaliZed text.</p>
+</html>
+
+> 文本的加粗和斜体
+
+<html>
+    <p class="bell-text-weight-bold">Bold text.</p>
+    <p class="bell-text-weight-normal">Normal weight text.</p>
+    <p class="bell-text-weight-light">Light weight text.</p>
+    <p class="bell-text-italic">Italic text.</p>
 </html>

@@ -1,0 +1,49 @@
+text-style(color)
+
+    ui-set('color', color)
+
+text-size(size)
+
+    ui-set('font-size', size['font'])
+    ui-set('line-height', size['line-height'])
+
+text-header-style(size)
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+
+    ui-set('font-size', size)
+
+text-display-style(size)
+
+    ui-set('font-size', size['font-size'])
+    ui-set('font-weight', size['font-weight'])
+    ui-set('line-height', size['line-height'])
+
+text-alignment-style(align)
+
+    ui-set('text-align', align)
+
+ui-text()
+
+    ui-variant(
+        hash: $text-size-hash,
+        each: text-size
+    )
+    ui-variant(
+        hash: $text-brand-hash,
+        each: text-style
+    )
+    ui-variant(
+        hash: $text-header-hash,
+        each: text-header-style
+    )
+    ui-variant(
+        hash: $text-display-hash,
+        each: text-display-style
+    )
+    ui-variant(
+        hash: $text-alignment-hash,
+        each: text-alignment-style
+    )
