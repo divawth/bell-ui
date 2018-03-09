@@ -1,0 +1,90 @@
+$boder = 1px solid $brand-border
+$boder-2 = 2px solid $brand-border
+$boder-4 = 4px solid $brand-border
+$boder-10 = 10px solid $brand-border
+
+border-brand(color)
+
+    ui-set(
+        'border',
+        $boder,
+        true
+    )
+
+    ui-set('border-color', color, true)
+
+border-style(pos)
+    if pos
+        pos = '-' + pos
+
+    ui-set(
+        'border' + pos,
+        $boder,
+        true
+    )
+
+border-0-style(pos)
+    if pos
+        pos = '-' + pos
+
+    ui-set(
+        'border' + pos,
+        0,
+        true
+    )
+
+border-2-style(pos)
+    if pos
+        pos = '-' + pos
+
+    ui-set(
+        'border' + pos,
+        $boder-2,
+        true
+    )
+
+border-4-style(pos)
+    if pos
+        pos = '-' + pos
+
+    ui-set(
+        'border' + pos,
+        $boder-4,
+        true
+    )
+
+border-10-style(pos)
+    if pos
+        pos = '-' + pos
+
+    ui-set(
+        'border' + pos,
+        $boder-10,
+        true
+    )
+
+ui-border()
+    ui-connect(
+        hash: $border-hash,
+        each: border-style
+    )
+    ui-connect(
+        hash: $border-brand-hash,
+        each: border-brand
+    )
+    ui-connect(
+        hash: $border-0-hash,
+        each: border-0-style
+    )
+    ui-connect(
+        hash: $border-2-hash,
+        each: border-2-style
+    )
+    ui-connect(
+        hash: $border-4-hash,
+        each: border-4-style
+    )
+    ui-connect(
+        hash: $border-10-hash,
+        each: border-10-style
+    )

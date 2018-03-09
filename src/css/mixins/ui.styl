@@ -66,3 +66,17 @@ ui-variant(hash, each)
             }
         )
 
+ui-connect(hash, each)
+    for name in hash
+
+        selector = '&'
+
+        if name
+            selector += '-' + name
+
+        ui-apply(
+            selector: selector,
+            style: @() {
+                each(hash[name], name)
+            }
+        )
