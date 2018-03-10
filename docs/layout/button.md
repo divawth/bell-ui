@@ -4,20 +4,38 @@
 
     export default {
         template: `
-            <div>
+            <div class="bell-buttons">
                 <Button>
                     Default
                 </Button>
-                <Button type="primary" label="Primary"></Button>
-                <Button type="ghost" label="Ghost"></Button>
-                <Button type="dashed" label="Dashed"></Button>
+                <Button type="ghost">
+                    Ghost
+                </Button>
+                <Button type="dashed">
+                    Dashed
+                </Button>
+                <Button type="text fluid" >
+                    Text
+                </Button>
                 <br><br>
-                <Button type="text" label="Text"></Button>
-                <br><br>
-                <Button type="info" label="信息按钮"></Button>
-                <Button type="success" label="成功按钮"></Button>
-                <Button type="warning" label="警告按钮"></Button>
-                <Button type="error" label="错误按钮"></Button>
+                <Button type="primary">
+                    Primary
+                </Button>
+                <Button type="success">
+                    success
+                </Button>
+                <Button type="error">
+                    error
+                </Button>
+                <Button type="info">
+                    info
+                </Button>
+                <Button type="warning">
+                    warning
+                </Button>
+                <Button type="danger">
+                    danger
+                </Button>
             </div>
         `
     }

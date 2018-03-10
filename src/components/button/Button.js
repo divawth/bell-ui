@@ -1,7 +1,7 @@
 export default {
     template: `
 <div class="bell-button
-    {{#if type}} bell-{{type}}{{/if}}
+    {{#if type}} {{type}}{{/if}}
     {{#if shape}} bell-{{shape}}{{/if}}
     {{#if size}} bell-{{size}}{{/if}}
     {{#if long}} bell-long{{/if}}

@@ -1,0 +1,100 @@
+button-reset()
+
+    a&
+        ui-set('color', $brand-text)
+        text-decoration none
+
+    button&
+        background-color transparent
+        outline 0
+
+button-size(size)
+    ui-set('font-size', size['font'])
+    ui-set('line-height', size['line-height'])
+    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+
+button-radius(radius)
+    ui-set('border-radius', radius['round'])
+
+button-color(color, bg, border)
+    ui-set('color', color)
+    ui-set('background-color', bg)
+    ui-set('border', border)
+
+button-style(style)
+    button-color(
+        style['color'],
+        style['bg'],
+        style['border']
+    )
+
+    {$selector-hover} {
+        button-color(
+            style['hover-color'],
+            style['hover-bg'],
+            style['hover-border']
+        )
+    }
+
+    {$selector-active} {
+        button-color(
+            style['active-color'],
+            style['active-bg'],
+            style['active-border']
+        )
+    }
+
+    {$selector-disabled} {
+        button-color(
+            style['disabled-color'],
+            style['disabled-bg'],
+            style['disabled-border']
+        )
+        cursor not-allowed
+    }
+
+ui-button()
+    display inline-block
+    text-align center
+    user-select none
+    white-space nowrap
+    border 1px solid transparent
+    transition color .2s linear, background-color .2s linear, border .2s linear
+    cursor pointer
+    background-image none
+    font-weight 400
+
+    button-reset()
+
+    ui-variant(
+        hash: $button-size-hash,
+        each: button-size
+    )
+    ui-variant(
+        hash: $button-radius-hash,
+        each: button-radius
+    )
+    ui-variant(
+        hash: $button-hash,
+        each: button-style
+    )
+
+    > {$selector-text}
+        font inherit
+
+ui-buttons()
+
+    ui-collection(
+        selector-item: $selector-button,
+        hash: $button-size-hash,
+        each: @(size) {
+            > {$selector-button} {
+                button-size(size)
+            }
+
+            ui-variant(
+                hash: $button-radius-hash,
+                each: button-radius
+            )
+        }
+    )

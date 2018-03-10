@@ -3,7 +3,7 @@
 - [Layout 布局](layout)
   - [Border 边框](layout/border)
   - [Color 颜色](layout/color)
-  - [Text 字体](layout/font)
+  - [Text 字体](layout/text)
   - [Clearfix](layout/clearfix)
   - [Grid 栅格布局](layout/grid)
   - [Button 按钮](layout/button)
