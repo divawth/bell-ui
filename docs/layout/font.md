@@ -236,3 +236,26 @@ body {
     <p class="bell-text-weight-light">Light weight text.</p>
     <p class="bell-text-italic">Italic text.</p>
 </html>
+
+> 文本组合
+
+<html>
+    <div class="bell-texts tight">
+        <span class="bell-text bell-bg-success white">bell-texts tight</span>
+        <span class="bell-text bell-bg-success white">bell-texts tight</span>
+        <span class="bell-text bell-bg-success white">bell-texts tight</span>
+        <span class="bell-text bell-bg-success white">bell-texts tight</span>
+    </div>
+    <div class="bell-texts">
+        <span class="bell-text bell-bg-danger white">bell-texts</span>
+        <span class="bell-text bell-bg-danger white">bell-texts</span>
+        <span class="bell-text bell-bg-danger white">bell-texts</span>
+        <span class="bell-text bell-bg-danger white">bell-texts</span>
+    </div>
+    <div class="bell-texts">
+        <div class="bell-text bell-bg-info white fluid">bell-texts</div>
+        <div class="bell-text bell-bg-info white fluid">bell-texts</div>
+        <div class="bell-text bell-bg-info white fluid">bell-texts</div>
+        <div class="bell-text bell-bg-info white fluid">bell-texts</div>
+    </div>
+</html>

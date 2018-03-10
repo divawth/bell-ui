@@ -47,3 +47,15 @@ ui-text()
         hash: $text-alignment-hash,
         each: text-alignment-style
     )
+
+ui-texts()
+
+    ui-collection(
+        selector-item: $selector-text,
+        hash: $text-size-hash,
+        each: @(size) {
+            > {$selector-text} {
+                text-size(size)
+            }
+        }
+    )

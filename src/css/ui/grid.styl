@@ -5,6 +5,7 @@
     height: auto;
 
     ui-clearfix()
+    ui-grid-row()
 
 {$selector-grid-col}
     position relative
@@ -37,3 +38,50 @@
 {$selector-grid-col-span}-order
     ui-grid-col-order()
 
+{$selector-grid-col-span}-xs
+    ui-grid()
+    ui-grid-col()
+
+{$selector-grid-col-span}-xs-push
+    ui-grid-col-push()
+{$selector-grid-col-span}-xs-pull
+    ui-grid-col-pull()
+
+{$selector-grid-col-span}-xs-offset
+    ui-grid-col-offset()
+{$selector-grid-col-span}-xs-order
+    ui-grid-col-order()
+
+@media (min-width: $grid-sm-min)
+
+    {$selector-grid-col-span}-sm-push
+        ui-grid-col-push()
+    {$selector-grid-col-span}-sm-pull
+        ui-grid-col-pull()
+
+    {$selector-grid-col-span}-sm-offset
+        ui-grid-col-offset()
+    {$selector-grid-col-span}-sm-order
+        ui-grid-col-order()
+
+@media (min-width: $grid-md-min)
+    {$selector-grid-col-span}-md-push
+        ui-grid-col-push()
+    {$selector-grid-col-span}-md-pull
+        ui-grid-col-pull()
+
+    {$selector-grid-col-span}-md-offset
+        ui-grid-col-offset()
+    {$selector-grid-col-span}-md-order
+        ui-grid-col-order()
+
+@media (min-width: $grid-lg-min)
+    {$selector-grid-col-span}-lg-push
+        ui-grid-col-push()
+    {$selector-grid-col-span}-lg-pull
+        ui-grid-col-pull()
+
+    {$selector-grid-col-span}-lg-offset
+        ui-grid-col-offset()
+    {$selector-grid-col-span}-lg-order
+        ui-grid-col-order()

@@ -1,3 +1,9 @@
+ui-grid-row-justify-style(justify)
+    ui-set('justify-content', justify)
+
+ui-grid-row-align-style(align)
+    ui-set('align-items', align)
+
 ui-col-span()
     float left
     flex 0 0 auto
@@ -67,4 +73,14 @@ ui-grid-col-order()
     ui-connect(
         hash: $grid-hash,
         each: ui-grid-col-order-style
+    )
+
+ui-grid-row()
+    ui-connect(
+        hash: $grid-justify-hash,
+        each: ui-grid-row-justify-style
+    )
+    ui-connect(
+        hash: $grid-align-hash,
+        each: ui-grid-row-align-style
     )
