@@ -1,10 +1,3 @@
-.make-row {
-    position: relative;
-    margin-left: 0;
-    margin-right: 0;
-    height: auto;
-    .clearfix;
-}
 
 .grid-col-span(@class) {
     .col(@index) {
@@ -55,9 +48,3 @@
         right: auto;
     }
 }
-
-.make-grid(@class: ~'') {
-    .grid-col-span(@class);
-    .loop-grid-col(@grid-columns, @class);
-}
-

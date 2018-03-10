@@ -5,7 +5,7 @@
   "entry": "index.js",
   "scripts": {
     "start": "rollup -c",
-    "test": "stylus -w src/css/index.styl -o dist/bell.css",
+    "test": "lessc src/styles/index.less > dist/bells.css"
   },
   "edp": {
     "wwwroot": "/",

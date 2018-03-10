@@ -1,0 +1,39 @@
+{$selector-grid-row}
+
+    position: relative;
+    margin: 0 auto;
+    height: auto;
+
+    ui-clearfix()
+
+{$selector-grid-col}
+    position relative
+    display block
+
+    .bell-col-content
+        text-align center
+        color #fff
+        padding 10px 0
+        background rgba(0,153,229,.9)
+
+    &:nth-child(odd)
+        .bell-col-content
+            background rgba(0,153,229,.7)
+
+.bell-row-gutter
+    background transparent
+
+{$selector-grid-col-span}
+    ui-grid()
+    ui-grid-col()
+
+{$selector-grid-col-span}-push
+    ui-grid-col-push()
+{$selector-grid-col-span}-pull
+    ui-grid-col-pull()
+
+{$selector-grid-col-span}-offset
+    ui-grid-col-offset()
+{$selector-grid-col-span}-order
+    ui-grid-col-order()
+

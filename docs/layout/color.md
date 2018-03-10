@@ -11,7 +11,7 @@
             display: inline-block;
         }
     </style>
-    <span class="bell-text bg-primary rounded">
+    <span class="bell-text bell-bg-primary rounded">
         <p class="bell-text h6 white">Primary</p>
         <p class="bell-text white">#1c90f3</p>
     </span>
@@ -29,23 +29,23 @@
             margin-bottom: 10px;
         }
     </style>
-    <span class="bell-text bg-success rounded">
+    <span class="bell-text bell-bg-success rounded">
         <p class="bell-text h6 white">Success</p>
         <p class="bell-text white">#19be6b</p>
     </span>
-    <span class="bell-text bg-error rounded">
+    <span class="bell-text bell-bg-error rounded">
         <p class="bell-text h6 white">Error</p>
         <p class="bell-text white">#ed3f14</p>
     </span>
-    <span class="bell-text bg-info rounded">
+    <span class="bell-text bell-bg-info rounded">
         <p class="bell-text h6 white">Info</p>
         <p class="bell-text white">#57a3f3</p>
     </span>
-    <span class="bell-text bg-warning rounded">
+    <span class="bell-text bell-bg-warning rounded">
         <p class="bell-text h6 white">Warning</p>
         <p class="bell-text white">#ff9900</p>
     </span>
-    <span class="bell-text bg-danger rounded">
+    <span class="bell-text bell-bg-danger rounded">
         <p class="bell-text h6 white">Danger</p>
         <p class="bell-text white">#d9534f</p>
     </span>
@@ -65,15 +65,15 @@
             margin-bottom: 10px;
         }
     </style>
-    <span class="bell-text bg-main rounded">
+    <span class="bell-text bell-bg-main rounded">
         <p class="bell-text h6 white">Main</p>
         <p class="bell-text white">rgba(0,0,0,.87)</p>
     </span>
-    <span class="bell-text bg-secondary rounded">
+    <span class="bell-text bell-bg-secondary rounded">
         <p class="bell-text h6 white">Secondary</p>
         <p class="bell-text white">rgba(0,0,0,.54)</p>
     </span>
-    <span class="bell-text bg-muted rounded">
+    <span class="bell-text bell-bg-muted rounded">
         <p class="bell-text h6 white">Muted</p>
         <p class="bell-text white">rgba(0,0,0,.37)</p>
     </span>

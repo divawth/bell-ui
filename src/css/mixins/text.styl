@@ -2,10 +2,6 @@ text-style(color)
 
     ui-set('color', color)
 
-text-bg-style(color)
-
-    ui-set('background-color', color)
-
 text-size(size)
 
     ui-set('font-size', size['font'])
@@ -38,10 +34,6 @@ ui-text()
     ui-variant(
         hash: $text-brand-hash,
         each: text-style
-    )
-    ui-variant(
-        hash: $text-brand-bg-hash,
-        each: text-bg-style
     )
     ui-variant(
         hash: $text-header-hash,
