@@ -4828,6 +4828,7 @@ button.bell-button {
 }
 .bell-button.disabled,
 .bell-button[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -4851,6 +4852,7 @@ button.bell-button {
 }
 .bell-button.ghost.disabled,
 .bell-button.ghost[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -4874,6 +4876,7 @@ button.bell-button {
 }
 .bell-button.dashed.disabled,
 .bell-button.dashed[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px dashed #ccc;
@@ -4897,6 +4900,7 @@ button.bell-button {
 }
 .bell-button.text.disabled,
 .bell-button.text[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: none;
@@ -4920,6 +4924,7 @@ button.bell-button {
 }
 .bell-button.primary.disabled,
 .bell-button.primary[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -4943,6 +4948,7 @@ button.bell-button {
 }
 .bell-button.success.disabled,
 .bell-button.success[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -4966,6 +4972,7 @@ button.bell-button {
 }
 .bell-button.error.disabled,
 .bell-button.error[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -4989,6 +4996,7 @@ button.bell-button {
 }
 .bell-button.info.disabled,
 .bell-button.info[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -5012,6 +5020,7 @@ button.bell-button {
 }
 .bell-button.warning.disabled,
 .bell-button.warning[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -5035,6 +5044,7 @@ button.bell-button {
 }
 .bell-button.danger.disabled,
 .bell-button.danger[disabled] {
+  cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border: 1px solid #ccc;
@@ -5043,6 +5053,7 @@ button.bell-button {
   font: inherit;
 }
 .bell-button-long {
+  display: block;
   width: 100%;
 }
 .bell-buttons {

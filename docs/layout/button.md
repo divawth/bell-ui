@@ -4,38 +4,44 @@
 
     export default {
         template: `
-            <div class="bell-buttons">
-                <Button>
-                    Default
-                </Button>
-                <Button type="ghost">
-                    Ghost
-                </Button>
-                <Button type="dashed">
-                    Dashed
-                </Button>
-                <Button type="text fluid" >
-                    Text
-                </Button>
-                <br><br>
-                <Button type="primary">
-                    Primary
-                </Button>
-                <Button type="success">
-                    success
-                </Button>
-                <Button type="error">
-                    error
-                </Button>
-                <Button type="info">
-                    info
-                </Button>
-                <Button type="warning">
-                    warning
-                </Button>
-                <Button type="danger">
-                    danger
-                </Button>
+            <div class="bell-template">
+                <div class="bell-buttons">
+                    <Button>
+                        Default
+                    </Button>
+                    <Button type="ghost">
+                        Ghost
+                    </Button>
+                    <Button type="dashed">
+                        Dashed
+                    </Button>
+                    <Button type="text" >
+                        Text
+                    </Button>
+                </div>
+
+                <div class="bell-buttons" style="margin-top: 10px;">
+                    <Button type="primary">
+                        Primary
+                    </Button>
+                    <Button type="success">
+                        success
+                    </Button>
+                    <Button type="error">
+                        error
+                    </Button>
+                    <Button type="info">
+                        info
+                    </Button>
+                </div>
+                <div class="bell-buttons" style="margin-top: 10px;">
+                    <Button type="warning">
+                        warning
+                    </Button>
+                    <Button type="danger">
+                        danger
+                    </Button>
+                </div>
             </div>
         `
     }
@@ -44,14 +50,42 @@
 
     export default {
         template: `
-            <div>
-                <Button type="primary" size="large" label="Large"></Button>
-                <Button type="primary" label="Default"></Button>
-                <Button type="primary" size="small" label="Small"></Button>
-                <br><br>
-                <Button type="primary" shape="circle" size="large" label="Large"></Button>
-                <Button type="primary" shape="circle" label="Default"></Button>
-                <Button type="primary" shape="circle" size="small" label="Small"></Button>
+            <div class="template">
+                <div class="" style="margin-top: 10px;">
+                    <Button type="primary" size="huge">
+                        Huge
+                    </Button>
+                    <Button type="primary" size="large">
+                        Large
+                    </Button>
+                    <Button type="primary">
+                        Default
+                    </Button>
+                    <Button type="primary" size="small">
+                        Default
+                    </Button>
+                    <Button type="primary" size="tiny">
+                        Small
+                    </Button>
+                </div>
+
+                <div class="" style="margin-top: 10px;">
+                    <Button type="primary" shape="circle" size="huge">
+                        Huge
+                    </Button>
+                    <Button type="primary" shape="circle" size="large">
+                        Large
+                    </Button>
+                    <Button type="primary" shape="circle">
+                        Default
+                    </Button>
+                    <Button type="primary" shape="circle" size="small">
+                        Default
+                    </Button>
+                    <Button type="primary" shape="circle" size="tiny">
+                        Small
+                    </Button>
+                </div>
             </div>
         `
     }

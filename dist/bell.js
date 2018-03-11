@@ -671,7 +671,7 @@ var BreadcrumbItem = {
 };
 
 var Button = {
-    template: '\n<div class="bell-button\n    {{#if type}} {{type}}{{/if}}\n    {{#if shape}} bell-{{shape}}{{/if}}\n    {{#if size}} bell-{{size}}{{/if}}\n    {{#if long}} bell-long{{/if}}\n    {{#if disabled}} bell-disabled{{/if}}\n    {{#if className}} {{className}}{{/if}}\n" on-click="click">\n\n    {{#if icon}}\n        <i class="bell-icon {{icon}}"></i>\n    {{/if}}\n\n    <span>\n        {{#if label}}\n            {{label}}\n        {{else}}\n            <slot name="children" />\n        {{/if}}\n    </span>\n</div>\n    ',
+    template: '\n<div class="bell-button\n    {{#if type}} {{type}}{{/if}}\n    {{#if shape}} border-{{shape}}{{/if}}\n    {{#if size}} {{size}}{{/if}}\n    {{#if long}} bell-button-long{{/if}}\n    {{#if className}} {{className}}{{/if}}\n"{{#if disabled}} disabled{{/if}} on-click="click">\n\n    {{#if icon}}\n        <i class="bell-icon {{icon}}"></i>\n    {{/if}}\n\n    <span>\n        {{#if label}}\n            {{label}}\n        {{else}}\n            <slot name="children" />\n        {{/if}}\n    </span>\n</div>\n    ',
     propTypes: {
         type: {
             type: 'string'

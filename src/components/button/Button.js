@@ -2,12 +2,11 @@ export default {
     template: `
 <div class="bell-button
     {{#if type}} {{type}}{{/if}}
-    {{#if shape}} bell-{{shape}}{{/if}}
-    {{#if size}} bell-{{size}}{{/if}}
-    {{#if long}} bell-long{{/if}}
-    {{#if disabled}} bell-disabled{{/if}}
+    {{#if shape}} border-{{shape}}{{/if}}
+    {{#if size}} {{size}}{{/if}}
+    {{#if long}} bell-button-long{{/if}}
     {{#if className}} {{className}}{{/if}}
-" on-click="click">
+"{{#if disabled}} disabled{{/if}} on-click="click">
 
     {{#if icon}}
         <i class="bell-icon {{icon}}"></i>

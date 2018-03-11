@@ -45,12 +45,12 @@ button-style(style)
     }
 
     {$selector-disabled} {
+        ui-set('cursor', not-allowed, true)
         button-color(
             style['disabled-color'],
             style['disabled-bg'],
             style['disabled-border']
         )
-        cursor not-allowed
     }
 
 ui-button()
