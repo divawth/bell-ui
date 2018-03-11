@@ -5209,3 +5209,50 @@ button.bell-button {
 .bell-buttons.huge.border-circle {
   border-radius: 32px;
 }
+.bell-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 250px;
+}
+.bell-header {
+  width: 100%;
+  flex: 0 0 64px;
+  background-color: #2892f0;
+  color: Rgba(0, 0, 0, 0.57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.bell-content {
+  width: 100%;
+  flex: 0 0 64px;
+  background-color: #2892f0;
+  color: Rgba(0, 0, 0, 0.57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.bell-footer {
+  width: 100%;
+  flex: 0 0 64px;
+  background-color: #2892f0;
+  color: Rgba(0, 0, 0, 0.57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.bell-sider {
+  width: 100%;
+  flex: 0 0 64px;
+  background-color: #2892f0;
+  color: Rgba(0, 0, 0, 0.57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

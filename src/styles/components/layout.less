@@ -36,21 +36,22 @@
         justify-content: center;
     }
 
-    &.bell-has-sider {
-        flex-direction: row;
-        align-items: stretch;
-        min-height: auto;
-        flex: 1;
-    }
-
     .bell-sider {
         flex: 0 0 20%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
         flex-direction: column;
         background-color: @layout-sider-background;
         color: @layout-sider-font-color;
+    }
+
+    &.bell-has-sider {
+        flex-direction: row;
+        align-items: stretch;
+        min-height: auto;
+        flex: 1;
     }
 }
 
