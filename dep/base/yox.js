@@ -2,11 +2,63 @@
 	(global.Yox = factory());
 }(this, (function () { 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
+if (!Object.keys) {
+  Object.keys = function (obj) {
+    var result = [];
+    for (var key in obj) {
+      push(result, key);
+    }
+    return result;
+  };
+  Object.create = function (proto, descriptor) {
+    function Class() {}
+    Class.prototype = proto;
+    proto = new Class();
+    var constructor = descriptor && descriptor.constructor;
+    if (constructor) {
+      proto.constructor = constructor.value;
+    }
+    return proto;
+  };
+}
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s*|\s*$/g, '');
+  };
+}
+if (!Array.prototype.map) {
+  Array.isArray = function (value) {
+    return is(value, 'array');
+  };
+  Array.prototype.indexOf = function (target) {
+    var result = -1;
+    each(this, function (item, index) {
+      if (item === target) {
+        result = index;
+        return FALSE;
+      }
+    });
+    return result;
+  };
+  Array.prototype.map = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      result.push(fn(item, index));
+    });
+    return result;
+  };
+  Array.prototype.filter = function (fn) {
+    var result = [];
+    each(this, function (item, index) {
+      if (fn(item, index)) {
+        result.push(item);
+      }
+    });
+    return result;
+  };
+}
+
+
 
 
 
@@ -20,7 +72,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+    throw new Error("Cannot call a class as a function");
   }
 };
 
@@ -36,7 +88,7 @@ var classCallCheck = function (instance, Constructor) {
 
 var inherits = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    throw new Error("Super expression must either be null or a function, not " + typeof superClass);
   }
 
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -92,14 +144,14 @@ var KEYPATH_SEPARATOR = '.';
  *
  * @type {?Window}
  */
-var win = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== RAW_UNDEFINED ? window : NULL;
+var win = typeof window !== RAW_UNDEFINED ? window : NULL;
 
 /**
  * 浏览器环境下的 document 对象
  *
  * @type {?Document}
  */
-var doc = (typeof document === 'undefined' ? 'undefined' : _typeof(document)) !== RAW_UNDEFINED ? document : NULL;
+var doc = typeof document !== RAW_UNDEFINED ? document : NULL;
 
 /**
  * 空函数
@@ -121,7 +173,7 @@ function is(value, type) {
 }
 
 function func(value) {
-  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === RAW_FUNCTION;
+  return value && typeof value === RAW_FUNCTION;
 }
 
 function array(value) {
@@ -130,7 +182,7 @@ function array(value) {
 
 function object(value) {
   // 低版本 IE 会把 null 和 undefined 当作 object
-  return value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
+  return value && typeof value === 'object';
 }
 
 function string(value) {
@@ -155,7 +207,7 @@ function primitive(value) {
 
 
 
-var is$1 = Object.freeze({
+var is$1 = {
 	is: is,
 	func: func,
 	array: array,
@@ -165,7 +217,7 @@ var is$1 = Object.freeze({
 	boolean: boolean,
 	numeric: numeric,
 	primitive: primitive
-});
+};
 
 /**
  * 任性地执行一个函数，不管它有没有、是不是
@@ -193,7 +245,7 @@ var Event = function () {
     }
   }
 
-  Event.prototype.prevent = function prevent() {
+  Event.prototype.prevent = function () {
     var instance = this;
     if (!instance.isPrevented) {
       var originalEvent = instance.originalEvent;
@@ -210,7 +262,7 @@ var Event = function () {
     return instance;
   };
 
-  Event.prototype.stop = function stop() {
+  Event.prototype.stop = function () {
     var instance = this;
     if (!instance.isStoped) {
       var originalEvent = instance.originalEvent;
@@ -507,7 +559,7 @@ function falsy(array$$1) {
   return !array(array$$1) || array$$1[RAW_LENGTH] === 0;
 }
 
-var array$1 = Object.freeze({
+var array$1 = {
 	each: each,
 	join: join,
 	push: push,
@@ -520,7 +572,7 @@ var array$1 = Object.freeze({
 	pop: pop,
 	remove: remove,
 	falsy: falsy
-});
+};
 
 /**
  * 连字符转成驼峰
@@ -627,7 +679,7 @@ function falsy$1(str) {
   return !string(str) || str === CHAR_BLANK;
 }
 
-var string$1 = Object.freeze({
+var string$1 = {
 	camelCase: camelCase,
 	trim: trim,
 	slice: slice,
@@ -637,7 +689,7 @@ var string$1 = Object.freeze({
 	startsWith: startsWith,
 	endsWith: endsWith,
 	falsy: falsy$1
-});
+};
 
 /**
  * 获取对象的 key 的数组
@@ -767,16 +819,14 @@ function eachKeypath(keypath, callback) {
 }
 
 function getValue(object$$1, key) {
-  if (object$$1 != NULL) {
+  if (object$$1 != NULL && has$1(object$$1, key)) {
     var value = object$$1[key];
-    if (value != NULL) {
-      if (object(value) && value.get) {
-        value = value.get();
-      }
-      return {
-        value: value
-      };
+    if (object(value) && value.get) {
+      value = value.get();
     }
+    return {
+      value: value
+    };
   }
 }
 
@@ -834,7 +884,7 @@ function set$1(object$$1, keypath, value, autofill) {
   });
 }
 
-var object$1 = Object.freeze({
+var object$1 = {
 	keys: keys,
 	sort: sort,
 	each: each$1,
@@ -844,7 +894,7 @@ var object$1 = Object.freeze({
 	copy: copy,
 	get: get$1,
 	set: set$1
-});
+};
 
 var Emitter = function () {
 
@@ -859,7 +909,7 @@ var Emitter = function () {
     this.listeners = {};
   }
 
-  Emitter.prototype.fire = function fire(type, data, context) {
+  Emitter.prototype.fire = function (type, data, context) {
 
     var instance = this;
     var namespace = instance.namespace,
@@ -917,7 +967,7 @@ var Emitter = function () {
     return isComplete;
   };
 
-  Emitter.prototype.has = function has$$1(type, listener) {
+  Emitter.prototype.has = function (type, listener) {
     var namespace = this.namespace,
         listeners = this.listeners,
         _parseType2 = parseType(type, namespace),
@@ -925,7 +975,7 @@ var Emitter = function () {
         space = _parseType2.space,
         result = TRUE;
 
-    var each$$1 = function each$$1(list) {
+    var each$$1 = function (list) {
       each(list, function (item, index) {
         if ((!space || space === item.space) && (!listener || listener === item.func)) {
           return result = FALSE;
@@ -962,7 +1012,7 @@ extend(Emitter.prototype, {
           name = _parseType3.name,
           space = _parseType3.space;
 
-      var each$$1 = function each$$1(list, name) {
+      var each$$1 = function (list, name) {
         if (object(listener)) {
           var index = indexOf(list, listener);
           if (index >= 0) {
@@ -1000,7 +1050,7 @@ function on(data) {
         listeners = this.listeners;
 
 
-    var addListener = function addListener(item, type) {
+    var addListener = function (item, type) {
       if (func(item)) {
         item = { func: item };
       }
@@ -1053,7 +1103,7 @@ var toString = function (str, defaultValue) {
  *
  * @type {?Object}
  */
-var Console = (typeof console === 'undefined' ? 'undefined' : _typeof(console)) !== RAW_UNDEFINED ? console : NULL;
+var Console = typeof console !== RAW_UNDEFINED ? console : NULL;
 
 var debug = /yox/.test(toString(noop));
 
@@ -1115,12 +1165,12 @@ function fatal(msg) {
 
 
 
-var logger = Object.freeze({
+var logger = {
 	log: log,
 	warn: warn,
 	error: error$1,
 	fatal: fatal
-});
+};
 
 var isNative = function (fn) {
   if (func(fn)) {
@@ -1128,22 +1178,22 @@ var isNative = function (fn) {
   }
 };
 
-var nextTick = void 0;
+var nextTick;
 
-if ((typeof setImmediate === 'undefined' ? 'undefined' : _typeof(setImmediate)) === RAW_FUNCTION) {
+if (typeof setImmediate === RAW_FUNCTION) {
   nextTick = setImmediate;
 }
 // 用 MessageChannel 去做 setImmediate 的 polyfill
 // 原理是将新的 message 事件加入到原有的 dom events 之后
-else if ((typeof MessageChannel === 'undefined' ? 'undefined' : _typeof(MessageChannel)) === RAW_FUNCTION) {
-    nextTick = function nextTick(fn) {
+else if (typeof MessageChannel === RAW_FUNCTION) {
+    nextTick = function (fn) {
       var channel = new MessageChannel();
       var port = channel.port2;
       channel.port1.onmessage = fn;
       port.postMessage(1);
     };
-  } else if ((typeof Promise === 'undefined' ? 'undefined' : _typeof(Promise)) === RAW_FUNCTION && isNative(Promise)) {
-    nextTick = function nextTick(fn) {
+  } else if (typeof Promise === RAW_FUNCTION && isNative(Promise)) {
+    nextTick = function (fn) {
       Promise.resolve().then(fn);
     };
   } else {
@@ -1202,7 +1252,7 @@ function normalize(str) {
           if (code === CODE_SQUOTE || code === CODE_DQUOTE) {
             $1 = slice($1, 1, -1);
           }
-          return '' + KEYPATH_SEPARATOR + $1;
+          return KEYPATH_SEPARATOR + $1;
         });
       }
       return normalizeCache[str];
@@ -1211,12 +1261,8 @@ function normalize(str) {
   return str;
 }
 
-function filter(term) {
-  return term !== CHAR_BLANK && term !== RAW_THIS;
-}
-
 function startsWith$1(keypath, prefix) {
-  var temp = void 0;
+  var temp;
   if (keypath === prefix) {
     return prefix[RAW_LENGTH];
   } else if (startsWith(keypath, temp = prefix + KEYPATH_SEPARATOR)) {
@@ -1226,20 +1272,19 @@ function startsWith$1(keypath, prefix) {
   }
 }
 
+function isValidTerm(term) {
+  return number(term) || string(term);
+}
+
 function join$1(keypath1, keypath2) {
-  // keypath 可以是两种形式
-  // 1. 非空字符串
-  // 2. 数字
-  var result = [];
-  if (!falsy$1(keypath1) || number(keypath1)) {
-    push(result, keypath1);
+
+  var keypath = keypath1 === CHAR_BLANK || isValidTerm(keypath1) ? keypath1 : CHAR_BLANK;
+
+  if (keypath2 !== CHAR_BLANK && isValidTerm(keypath2)) {
+    return keypath === CHAR_BLANK ? keypath2 : keypath + KEYPATH_SEPARATOR + keypath2;
   }
-  if (number(keypath2)) {
-    push(result, keypath2);
-  } else if (string(keypath2) && filter(keypath2)) {
-    push(result, keypath2);
-  }
-  return join(result, KEYPATH_SEPARATOR);
+
+  return keypath;
 }
 
 function createAttrs(vnode) {
@@ -1390,10 +1435,10 @@ function updateDirectives(vnode, oldVnode) {
   oldDirectives = oldDirectives || {};
 
   var api = this,
-      newUnbinds = void 0;
+      newUnbinds;
 
   each$1(newDirectives, function (directive, key) {
-    var unbind = void 0;
+    var unbind;
     if (has$1(oldDirectives, key)) {
       var oldDirective = oldDirectives[key];
       if (directive.value !== oldDirective.value || directive.keypath !== oldDirective.keypath) {
@@ -1553,7 +1598,7 @@ function isPatchable(vnode1, vnode2) {
 
 function createKeyToIndex(vnodes, startIndex, endIndex) {
   var result = {},
-      key = void 0;
+      key;
   while (startIndex <= endIndex) {
     key = vnodes[startIndex].key;
     if (isDef(key)) {
@@ -1608,7 +1653,7 @@ function isTextVnode(vnode) {
 
 function init(api) {
 
-  var createElement = function createElement(parentNode, vnode) {
+  var createElement = function (parentNode, vnode) {
     var _vnode = vnode,
         el = _vnode.el,
         tag = _vnode.tag,
@@ -1675,22 +1720,22 @@ function init(api) {
     return el;
   };
 
-  var addVnodes = function addVnodes(parentNode, vnodes, startIndex, endIndex, before) {
+  var addVnodes = function (parentNode, vnodes, startIndex, endIndex, before) {
     while (startIndex <= endIndex) {
       addVnode(parentNode, vnodes[startIndex], before);
       startIndex++;
     }
   };
 
-  var addVnode = function addVnode(parentNode, vnode, before) {
+  var addVnode = function (parentNode, vnode, before) {
     var el = createElement(parentNode, vnode);
     if (el) {
       api.before(parentNode, el, before);
     }
   };
 
-  var removeVnodes = function removeVnodes(parentNode, vnodes, startIndex, endIndex) {
-    var vnode = void 0;
+  var removeVnodes = function (parentNode, vnodes, startIndex, endIndex) {
+    var vnode;
     while (startIndex <= endIndex) {
       vnode = vnodes[startIndex];
       if (vnode) {
@@ -1700,7 +1745,7 @@ function init(api) {
     }
   };
 
-  var removeVnode = function removeVnode(parentNode, vnode) {
+  var removeVnode = function (parentNode, vnode) {
     var tag = vnode.tag,
         el = vnode.el,
         component$$1 = vnode.component;
@@ -1714,7 +1759,7 @@ function init(api) {
     }
   };
 
-  var destroyVnode = function destroyVnode(vnode) {
+  var destroyVnode = function (vnode) {
     var el = vnode.el,
         component$$1 = vnode.component,
         children = vnode.children;
@@ -1736,12 +1781,12 @@ function init(api) {
     moduleEmitter.fire(HOOK_DESTROY, vnode, api);
   };
 
-  var replaceVnode = function replaceVnode(parentNode, oldVnode, vnode) {
+  var replaceVnode = function (parentNode, oldVnode, vnode) {
     api.before(parentNode, vnode.el, oldVnode.el);
     removeVnode(parentNode, oldVnode);
   };
 
-  var updateChildren = function updateChildren(parentNode, oldChildren, newChildren) {
+  var updateChildren = function (parentNode, oldChildren, newChildren) {
 
     var oldStartIndex = 0;
     var oldEndIndex = oldChildren[RAW_LENGTH] - 1;
@@ -1753,9 +1798,9 @@ function init(api) {
     var newStartVnode = newChildren[newStartIndex];
     var newEndVnode = newChildren[newEndIndex];
 
-    var oldKeyToIndex = void 0,
-        oldIndex = void 0,
-        activeVnode = void 0;
+    var oldKeyToIndex,
+        oldIndex,
+        activeVnode;
 
     while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
 
@@ -1839,7 +1884,7 @@ function init(api) {
     }
   };
 
-  var patchVnode = function patchVnode(oldVnode, vnode) {
+  var patchVnode = function (oldVnode, vnode) {
 
     if (oldVnode === vnode) {
       return;
@@ -1917,7 +1962,7 @@ function init(api) {
   };
 }
 
-var snabbdom = Object.freeze({
+var snabbdom = {
 	createCommentVnode: createCommentVnode,
 	createTextVnode: createTextVnode,
 	createElementVnode: createElementVnode,
@@ -1925,7 +1970,7 @@ var snabbdom = Object.freeze({
 	isVnode: isVnode,
 	isTextVnode: isTextVnode,
 	init: init
-});
+};
 
 var PLUS = '+';
 var MINUS = '-';
@@ -2104,7 +2149,7 @@ binary[MODULO] = function (a, b) {
  * 节点基类
  */
 
-var Node = function Node(type, raw) {
+var Node = function (type, raw) {
   classCallCheck(this, Node);
 
   this.type = type;
@@ -2407,27 +2452,27 @@ function compile$1(content) {
 
   var length = content[RAW_LENGTH],
       index = 0,
-      charCode = void 0;
+      charCode;
 
-  var throwError = function throwError() {
+  var throwError = function () {
     fatal('Failed to compile expression: ' + CHAR_BREAKLINE + content);
   };
 
-  var getCharCode = function getCharCode() {
+  var getCharCode = function () {
     return codeAt(content, index);
   };
 
-  var cutString = function cutString(start, end) {
+  var cutString = function (start, end) {
     return content.substring(start, end == NULL ? index : end);
   };
 
-  var skipWhitespace = function skipWhitespace() {
+  var skipWhitespace = function () {
     while ((charCode = getCharCode()) && (charCode === CODE_WHITESPACE || charCode === CODE_TAB)) {
       index++;
     }
   };
 
-  var skipNumber = function skipNumber() {
+  var skipNumber = function () {
     if (getCharCode() === CODE_DOT) {
       skipDecimal();
     } else {
@@ -2438,13 +2483,13 @@ function compile$1(content) {
     }
   };
 
-  var skipDigit = function skipDigit() {
+  var skipDigit = function () {
     do {
       index++;
     } while (isDigit(getCharCode()));
   };
 
-  var skipDecimal = function skipDecimal() {
+  var skipDecimal = function () {
     // 跳过点号
     index++;
     // 后面必须紧跟数字
@@ -2455,7 +2500,7 @@ function compile$1(content) {
     }
   };
 
-  var skipString = function skipString() {
+  var skipString = function () {
 
     var quote = getCharCode();
 
@@ -2471,7 +2516,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var skipIdentifier = function skipIdentifier() {
+  var skipIdentifier = function () {
     // 第一个字符一定是经过 isIdentifierStart 判断的
     // 因此循环至少要执行一次
     do {
@@ -2479,7 +2524,7 @@ function compile$1(content) {
     } while (isIdentifierPart(getCharCode()));
   };
 
-  var parseIdentifier = function parseIdentifier(careKeyword) {
+  var parseIdentifier = function (careKeyword) {
 
     var start = index;
     skipIdentifier();
@@ -2492,7 +2537,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseTuple = function parseTuple(delimiter) {
+  var parseTuple = function (delimiter) {
 
     var list = [];
 
@@ -2514,7 +2559,7 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseObject = function parseObject() {
+  var parseObject = function () {
 
     var keys$$1 = [],
         values = [],
@@ -2561,12 +2606,12 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseOperator = function parseOperator(sortedOperatorList) {
+  var parseOperator = function (sortedOperatorList) {
 
     skipWhitespace();
 
     var value = slice(content, index),
-        match = void 0;
+        match;
     each(sortedOperatorList, function (prefix) {
       if (startsWith(value, prefix)) {
         match = prefix;
@@ -2580,11 +2625,11 @@ function compile$1(content) {
     }
   };
 
-  var parseVariable = function parseVariable() {
+  var parseVariable = function () {
 
     var start = index,
         node = parseIdentifier(TRUE),
-        temp = void 0;
+        temp;
 
     while (index < length) {
       // a(x)
@@ -2611,14 +2656,14 @@ function compile$1(content) {
     return node;
   };
 
-  var parseToken = function parseToken() {
+  var parseToken = function () {
 
     skipWhitespace();
 
     charCode = getCharCode();
 
     var start = index,
-        temp = void 0;
+        temp;
 
     // 'xx' 或 "xx"
     if (charCode === CODE_SQUOTE || charCode === CODE_DQUOTE) {
@@ -2658,11 +2703,11 @@ function compile$1(content) {
     throwError();
   };
 
-  var parseBinary = function parseBinary() {
+  var parseBinary = function () {
 
     var stack = [index, parseToken(), index],
-        next = void 0,
-        length = void 0;
+        next,
+        length;
 
     // stack 的结构必须是 token 之后跟一个 index
     // 这样在裁剪原始字符串时，才有据可查
@@ -2695,7 +2740,7 @@ function compile$1(content) {
     }
   };
 
-  var parseExpression = function parseExpression(delimiter) {
+  var parseExpression = function (delimiter) {
 
     // 主要是区分三元和二元表达式
     // 三元表达式可以认为是 3 个二元表达式组成的
@@ -2756,19 +2801,22 @@ executor[IDENTIFIER] = function (node, getter) {
 executor[MEMBER] = function (node, getter, context) {
   var keypath = node.staticKeypath;
   if (!keypath) {
-    keypath = node.dynamicKeypath = join(node.props.map(function (node, index) {
-      var type = node.type;
-
+    keypath = CHAR_BLANK;
+    each(node.props, function (node, index) {
+      var type = node.type,
+          next = CHAR_BLANK;
       if (type !== LITERAL) {
         if (index > 0) {
-          return execute$1(node, getter, context);
+          next = execute$1(node, getter, context);
         } else if (type === IDENTIFIER) {
-          return node.name;
+          next = node.name;
         }
       } else {
-        return node.value;
+        next = node.value;
       }
-    }), KEYPATH_SEPARATOR);
+      keypath = join$1(keypath, next);
+    });
+    node.dynamicKeypath = keypath;
   }
   return getter(keypath, node);
 };
@@ -2942,16 +2990,16 @@ var Node$2 = function () {
     this.type = type;
   }
 
-  Node.prototype.stringify = function stringify() {
+  Node.prototype.stringify = function () {
     return this.stringifyObject(this);
   };
 
-  Node.prototype.stringifyObject = function stringifyObject(obj) {
+  Node.prototype.stringifyObject = function (obj) {
     if (obj) {
       var keys$$1 = keys(obj);
       if (keys$$1[RAW_LENGTH]) {
         var me = this,
-            result = void 0;
+            result;
         each(keys$$1, function (key) {
           var value = obj[key];
           if (value == NULL) {
@@ -2988,7 +3036,7 @@ var Node$2 = function () {
     }
   };
 
-  Node.prototype.stringifyArray = function stringifyArray(arr, name) {
+  Node.prototype.stringifyArray = function (arr, name) {
     if (arr && arr[RAW_LENGTH]) {
       var me = this,
           result = [];
@@ -3004,21 +3052,21 @@ var Node$2 = function () {
     }
   };
 
-  Node.prototype.stringifyExpression = function stringifyExpression(expr, safe) {
+  Node.prototype.stringifyExpression = function (expr, safe) {
     if (expr) {
       return this.stringifyCall('o', this.stringifyObject(expr));
     }
   };
 
-  Node.prototype.stringifyCall = function stringifyCall(name, params) {
+  Node.prototype.stringifyCall = function (name, params) {
     return name + '(' + (array(params) ? join(params, ',') : params) + ')';
   };
 
-  Node.prototype.stringifyString = function stringifyString(str) {
+  Node.prototype.stringifyString = function (str) {
     return '"' + str.replace(/"/g, '\\"').replace(/\s*\n+\s*/g, ' ') + '"';
   };
 
-  Node.prototype.stringifyFunction = function stringifyFunction(str) {
+  Node.prototype.stringifyFunction = function (str) {
     return 'function(){' + (str || '') + '}';
   };
 
@@ -3095,7 +3143,7 @@ var Each = function (_Node) {
     return _this;
   }
 
-  Each.prototype.stringify = function stringify() {
+  Each.prototype.stringify = function () {
     var generate = this.stringifyArray(this.children, 'x');
     if (generate) {
       var params = [this.stringifyObject(this.expr), this.stringifyFunction(generate)];
@@ -3131,7 +3179,7 @@ var Element = function (_Node) {
     return _this;
   }
 
-  Element.prototype.stringify = function stringify() {
+  Element.prototype.stringify = function () {
 
     var me = this;
     var tag = me.tag,
@@ -3154,7 +3202,7 @@ var Element = function (_Node) {
       });
     }
 
-    var addArray = function addArray(arr, name) {
+    var addArray = function (arr, name) {
       arr = me.stringifyArray(arr, name || 'x');
       unshift(params, arr ? me.stringifyFunction(arr) : RAW_UNDEFINED);
     };
@@ -3180,16 +3228,16 @@ var Element = function (_Node) {
         addArray(ref);
       }
 
-      if (children[RAW_LENGTH] || params[RAW_LENGTH]) {
-        addArray(children);
+      if (props && props[RAW_LENGTH] || params[RAW_LENGTH]) {
+        addArray(props, 'z');
       }
 
       if (attrs[RAW_LENGTH] || params[RAW_LENGTH]) {
         addArray(attrs, 'y');
       }
 
-      if (props && props[RAW_LENGTH] || params[RAW_LENGTH]) {
-        addArray(props, 'z');
+      if (children[RAW_LENGTH] || params[RAW_LENGTH]) {
+        addArray(children);
       }
 
       unshift(params, me.stringifyString(tag));
@@ -3258,7 +3306,7 @@ var Expression = function (_Node) {
     return _this;
   }
 
-  Expression.prototype.stringify = function stringify() {
+  Expression.prototype.stringify = function () {
     return this.stringifyExpression(this.expr);
   };
 
@@ -3283,11 +3331,11 @@ var If = function (_Node) {
     return _this;
   }
 
-  If.prototype.stringify = function stringify() {
+  If.prototype.stringify = function () {
     var stump = this.stump;
 
 
-    var stringify = function stringify(node) {
+    var stringify = function (node) {
       var expr = node.stringifyExpression(node.expr);
       var children = node.stringifyArray(node.children, 'x');
       var next = node.next;
@@ -3339,7 +3387,7 @@ var Import = function (_Node) {
     return _this;
   }
 
-  Import.prototype.stringify = function stringify() {
+  Import.prototype.stringify = function () {
     return this.stringifyCall('i', this.stringifyString(this.name));
   };
 
@@ -3364,7 +3412,7 @@ var Partial = function (_Node) {
     return _this;
   }
 
-  Partial.prototype.stringify = function stringify() {
+  Partial.prototype.stringify = function () {
     return this.stringifyCall('p', [this.stringifyString(this.name), this.stringifyFunction(this.stringifyArray(this.children, 'x'))]);
   };
 
@@ -3389,7 +3437,7 @@ var Spread = function (_Node) {
     return _this;
   }
 
-  Spread.prototype.stringify = function stringify() {
+  Spread.prototype.stringify = function () {
     var expr = this.expr;
 
     return this.stringifyCall('s', this.stringifyObject(expr));
@@ -3416,7 +3464,7 @@ var Text = function (_Node) {
     return _this;
   }
 
-  Text.prototype.stringify = function stringify() {
+  Text.prototype.stringify = function () {
     return this.stringifyString(this.text);
   };
 
@@ -3428,7 +3476,7 @@ var openingTagPattern = /<(\/)?([a-z][-a-z0-9]*)/i;
 var closingTagPattern = /^\s*(\/)?>/;
 var attributePattern = /^\s*([-:\w]+)(?:=(['"]))?/;
 var componentNamePattern = /[-A-Z]/;
-var selfClosingTagNames = ['area', 'base', 'embed', 'track', 'source', 'param', 'input', 'col', 'img', 'br', 'hr'];
+var selfClosingTagNames = ['area', 'base', 'embed', 'track', 'source', 'param', 'input', 'slot', 'col', 'img', 'br', 'hr'];
 
 // 缓存编译结果
 var compileCache = {};
@@ -3483,20 +3531,20 @@ function compile$$1(content) {
   var nodeStack = [],
       ifStack = [],
       htmlStack = [],
-      currentQuote = void 0;
+      currentQuote;
 
-  var throwError = function throwError(msg) {
+  var throwError = function (msg) {
     fatal('Error compiling template:' + CHAR_BREAKLINE + content + CHAR_BREAKLINE + '- ' + msg);
   };
 
-  var popSelfClosingElementIfNeeded = function popSelfClosingElementIfNeeded(popingTagName) {
+  var popSelfClosingElementIfNeeded = function (popingTagName) {
     var lastNode = last(nodeStack);
     if (lastNode && lastNode.type === ELEMENT && lastNode.tag !== popingTagName && has(selfClosingTagNames, lastNode.tag)) {
       popStack(ELEMENT, lastNode.tag);
     }
   };
 
-  var popStack = function popStack(type, expectedTagName) {
+  var popStack = function (type, expectedTagName) {
 
     /**
      * <div>
@@ -3507,7 +3555,7 @@ function compile$$1(content) {
       popSelfClosingElementIfNeeded(expectedTagName);
     }
 
-    var target = void 0;
+    var target;
 
     each(nodeStack, function (node, i) {
       if (node.type === type) {
@@ -3552,7 +3600,7 @@ function compile$$1(content) {
           // 子节点是纯文本
           if (singleChild.type === TEXT) {
             target.props = [{
-              name: 'textContent',
+              name: 'innerText',
               value: singleChild.text
             }];
             pop(children);
@@ -3565,7 +3613,7 @@ function compile$$1(content) {
               });
             } else {
               push(props, {
-                name: 'textContent',
+                name: 'innerText',
                 value: singleChild.expr
               });
             }
@@ -3630,7 +3678,7 @@ function compile$$1(content) {
     }
   };
 
-  var addChild = function addChild(node) {
+  var addChild = function (node) {
     var type = node.type,
         text = node.text;
 
@@ -3665,7 +3713,7 @@ function compile$$1(content) {
       return;
     }
 
-    var prevNode = void 0;
+    var prevNode;
 
     var currentNode = last(nodeStack);
     if (currentNode) {
@@ -3755,8 +3803,8 @@ function compile$$1(content) {
   }, function (content) {
     if (htmlStack[RAW_LENGTH] === 2) {
       var index = 0,
-          currentChar = void 0,
-          closed = void 0;
+          currentChar,
+          closed;
       while (currentChar = charAt(content, index)) {
         if (currentChar === currentQuote) {
           closed = TRUE;
@@ -3837,7 +3885,7 @@ function compile$$1(content) {
     }
   }];
 
-  var parseHtml = function parseHtml(content) {
+  var parseHtml = function (content) {
     if (content) {
       (function () {
         var tpl = content;
@@ -3855,7 +3903,7 @@ function compile$$1(content) {
     }
   };
 
-  var parseDelimiter = function parseDelimiter(content, all) {
+  var parseDelimiter = function (content, all) {
     if (content) {
       if (charAt(content) === CHAR_SLASH) {
         var name = slice(content, 1),
@@ -3883,7 +3931,7 @@ function compile$$1(content) {
   };
 
   var str = content,
-      match = void 0;
+      match;
 
   // 干掉 html 注释
   str = str.replace(/<!--[\s\S]*?-->/g, function () {
@@ -3948,7 +3996,7 @@ function render(render, getter, setter, instance) {
   var keypath = CHAR_BLANK,
       keypaths = [],
       keypathStack = [keypath],
-      pushKeypath = function pushKeypath(newKeypath) {
+      pushKeypath = function (newKeypath) {
     push(keypaths, newKeypath);
     newKeypath = join(keypaths, KEYPATH_SEPARATOR);
     if (newKeypath !== keypath) {
@@ -3957,37 +4005,37 @@ function render(render, getter, setter, instance) {
       push(keypathStack, keypath);
     }
   },
-      popKeypath = function popKeypath(lastKeypath, lastKeypathStack) {
+      popKeypath = function (lastKeypath, lastKeypathStack) {
     keypaths.pop();
     keypath = lastKeypath;
     keypathStack = lastKeypathStack;
   },
-      values = void 0,
-      currentElement = void 0,
+      values,
+      currentElement,
       elementStack = [],
-      pushElement = function pushElement(element) {
+      pushElement = function (element) {
     currentElement = element;
     push(elementStack, element);
   },
-      popElement = function popElement(lastElement) {
+      popElement = function (lastElement) {
     currentElement = lastElement;
     pop(elementStack);
   },
-      currentComponent = void 0,
+      currentComponent,
       componentStack = [],
-      pushComponent = function pushComponent(component) {
+      pushComponent = function (component) {
     currentComponent = component;
     push(componentStack, component);
   },
-      popComponent = function popComponent(lastComponent) {
+      popComponent = function (lastComponent) {
     currentComponent = lastComponent;
     pop(componentStack);
   },
-      addAttr = function addAttr(name, value) {
+      addAttr = function (name, value) {
     var attrs = currentElement.attrs || (currentElement.attrs = {});
     attrs[name] = value;
   },
-      addDirective = function addDirective(name, modifier, value) {
+      addDirective = function (name, modifier, value) {
     var directives = currentElement.directives || (currentElement.directives = {});
     return directives[join$1(name, modifier)] = {
       name: name,
@@ -3997,14 +4045,11 @@ function render(render, getter, setter, instance) {
       keypathStack: keypathStack
     };
   },
-      addChild = function addChild(node) {
+      addChild = function (node) {
     var _currentElement = currentElement,
         lastChild = _currentElement.lastChild,
         children = _currentElement.children;
 
-    if (!children) {
-      children = currentElement.children = [];
-    }
 
     if (isVnode(node)) {
       if (node.component) {
@@ -4020,7 +4065,7 @@ function render(render, getter, setter, instance) {
       push(children, currentElement.lastChild = createTextVnode(node));
     }
   },
-      addSlot = function addSlot(name, slot) {
+      addSlot = function (name, slot) {
     var slots = currentComponent.slots || (currentComponent.slots = {});
     if (slots[name]) {
       push(slots[name], slot);
@@ -4028,7 +4073,7 @@ function render(render, getter, setter, instance) {
       slots[name] = slot;
     }
   },
-      attrHandler = function attrHandler(node) {
+      attrHandler = function (node) {
     if (isDef(node)) {
       if (func(node)) {
         node();
@@ -4037,7 +4082,7 @@ function render(render, getter, setter, instance) {
             expr = node.expr;
 
         if (node.type === ATTRIBUTE) {
-          var value = void 0;
+          var value;
           if (has$1(node, 'value')) {
             value = node.value;
           } else if (expr) {
@@ -4057,13 +4102,13 @@ function render(render, getter, setter, instance) {
       }
     }
   },
-      childHandler = function childHandler(node) {
+      childHandler = function (node) {
     if (isDef(node)) {
       if (func(node)) {
         node();
       } else if (values) {
         values[values[RAW_LENGTH]] = node;
-      } else if (currentElement.opened === TRUE) {
+      } else if (currentElement.children) {
 
         if (array(node)) {
           each(node, addChild);
@@ -4075,7 +4120,7 @@ function render(render, getter, setter, instance) {
       }
     }
   },
-      getValue = function getValue(generate) {
+      getValue = function (generate) {
     values = [];
     generate();
     var value = values[RAW_LENGTH] > 1 ? join(values, '') : values[0];
@@ -4085,19 +4130,19 @@ function render(render, getter, setter, instance) {
 
 
   // 处理 children
-  x = function x() {
+  x = function () {
     each(arguments, childHandler);
   },
 
 
   // 处理元素 attribute
-  y = function y() {
+  y = function () {
     each(arguments, attrHandler);
   },
 
 
   // 处理 properties
-  z = function z() {
+  z = function () {
     each$1(arguments, function (item) {
       var name = item.name,
           value = item.value;
@@ -4116,26 +4161,27 @@ function render(render, getter, setter, instance) {
 
 
   // template
-  a = function a(name, childs) {
+  a = function (name, childs) {
 
     if (currentComponent && (name = getValue(name))) {
 
-      var lastElement = currentElement;
+      var lastElement = currentElement,
+          children = [];
 
       pushElement({
-        opened: TRUE
+        children: children
       });
 
       childs();
 
-      addSlot(SLOT_PREFIX + name, currentElement.children);
+      addSlot(SLOT_PREFIX + name, children);
 
       popElement(lastElement);
     }
   },
 
   // slot
-  b = function b(name) {
+  b = function (name) {
     name = getValue(name);
     if (name) {
       var result = getter(SLOT_PREFIX + name);
@@ -4145,7 +4191,7 @@ function render(render, getter, setter, instance) {
 
 
   // create
-  c = function c(component, tag, props, attrs, childs, ref, key) {
+  c = function (component, tag, childs, attrs, props, ref, key) {
 
     var lastElement = currentElement,
         lastComponent = currentComponent;
@@ -4174,16 +4220,13 @@ function render(render, getter, setter, instance) {
       props();
     }
 
-    var children = void 0;
+    var children;
     if (childs) {
-      currentElement.opened = TRUE;
+      children = currentElement.children = [];
       childs();
-      children = currentElement.children;
       if (component) {
-        addSlot(SLOT_PREFIX + 'children', children || []);
-        if (children) {
-          children = UNDEFINED;
-        }
+        addSlot(SLOT_PREFIX + 'children', children);
+        children = UNDEFINED;
       }
     }
 
@@ -4202,10 +4245,10 @@ function render(render, getter, setter, instance) {
   m = createCommentVnode,
 
   // each
-  e = function e(expr, generate, index) {
+  e = function (expr, generate, index) {
 
     var value = o(expr),
-        each$$1 = void 0;
+        each$$1;
 
     if (array(value)) {
       each$$1 = each;
@@ -4247,16 +4290,16 @@ function render(render, getter, setter, instance) {
   },
 
   // output（e 被 each 占了..)
-  o = function o(expr, binding) {
+  o = function (expr, binding) {
     return getter(expr, keypathStack, binding);
   },
 
   // spread
-  s = function s(expr) {
+  s = function (expr) {
     var staticKeypath = expr.staticKeypath,
-        value = void 0;
+        value;
     // 只能作用于 attribute 层级
-    if (currentElement.opened !== TRUE && (value = o(expr, staticKeypath)) && object(value)) {
+    if (!currentElement.children && (value = o(expr, staticKeypath)) && object(value)) {
       var actualKeypath = expr.actualKeypath;
 
       each$1(value, function (value, key) {
@@ -4270,12 +4313,12 @@ function render(render, getter, setter, instance) {
       localPartials = {},
 
   // partial
-  p = function p(name, children) {
+  p = function (name, children) {
     localPartials[name] = children;
   },
 
   // import
-  i = function i(name) {
+  i = function (name) {
     if (localPartials[name]) {
       localPartials[name]();
       return;
@@ -4287,7 +4330,7 @@ function render(render, getter, setter, instance) {
     }
     fatal('"' + name + '" partial is not found.');
   },
-      executeRender = function executeRender(render) {
+      executeRender = function (render) {
     return render(a, b, c, e, i, m, o, p, s, x, y, z);
   };
 
@@ -4304,29 +4347,6 @@ var toNumber = function (str, defaultValue) {
 var guid = 0;
 
 /**
- * 记录对比值
- *
- * @param {?Object} changes
- * @param {*} newValue
- * @param {*} oldValue
- * @param {string} keypath
- */
-function updateValue(changes, newValue, oldValue, keypath) {
-  if (!changes) {
-    changes = {};
-  }
-  if (changes[keypath]) {
-    changes[keypath].newValue = newValue;
-  } else {
-    changes[keypath] = {
-      newValue: newValue,
-      oldValue: oldValue
-    };
-  }
-  return changes;
-}
-
-/**
  * 对比新旧对象
  *
  * @param {?Object} newObject
@@ -4335,7 +4355,7 @@ function updateValue(changes, newValue, oldValue, keypath) {
  */
 function diffObject(newObject, oldObject, callback) {
 
-  var keys$$1 = void 0;
+  var keys$$1;
   if (oldObject) {
     if (newObject) {
       keys$$1 = keys(extend({}, oldObject, newObject));
@@ -4437,20 +4457,26 @@ var Computed = function () {
     instance.observer = observer;
     instance.deps = [];
 
-    instance.update = function (newValue, oldValue, key, changes) {
-      var value = instance.value;
+    instance.update = function (oldValue, key, globalChanges) {
 
+      var value = instance.value,
+          changes = instance.changes || (instance.changes = {});
 
-      instance.changes = updateValue(instance.changes, newValue, oldValue, key);
+      // 当前计算属性的依赖发生变化
+      if (!has$1(changes, key)) {
+        changes[key] = oldValue;
+      }
 
-      observer.onChange(newValue, oldValue, key, instance, value);
+      // 把依赖和计算属性自身注册到下次可能的变化中
+      observer.onChange(oldValue, key);
+      // newValue 用不上，只是占位
+      observer.onChange(value, keypath);
 
       // 当前计算属性是否是其他计算属性的依赖
-      each$1(observer.computed, function (computed, key) {
+      each$1(observer.computed, function (computed) {
         if (computed.hasDep(keypath)) {
-          var _newValue = instance.get();
-          if (_newValue !== value) {
-            changes.push(keypath, _newValue, value, keypath);
+          if (instance.get() !== value) {
+            globalChanges.push(keypath, value, keypath);
             return FALSE;
           }
         }
@@ -4458,7 +4484,7 @@ var Computed = function () {
     };
   }
 
-  Computed.prototype.get = function get$$1(force) {
+  Computed.prototype.get = function (force) {
     var value = this.value,
         cache = this.cache;
 
@@ -4476,47 +4502,45 @@ var Computed = function () {
     return value;
   };
 
-  Computed.prototype.hasDep = function hasDep(dep) {
+  Computed.prototype.hasDep = function (dep) {
     return has(this.deps, dep);
   };
 
-  Computed.prototype.addDep = function addDep(dep) {
+  Computed.prototype.addDep = function (dep) {
     if (!this.hasDep(dep)) {
       push(this.deps, dep);
       this.observer.watch(dep, this.update, FALSE, this);
     }
   };
 
-  Computed.prototype.removeDep = function removeDep(dep) {
+  Computed.prototype.removeDep = function (dep) {
     if (this.hasDep(dep)) {
       remove(this.deps, dep);
       this.observer.unwatch(dep, this.update);
     }
   };
 
-  Computed.prototype.clearDep = function clearDep() {
+  Computed.prototype.clearDep = function () {
     var instance = this;
     each(instance.deps, function (dep) {
       instance.removeDep(dep);
     }, TRUE);
   };
 
-  Computed.prototype.isDirty = function isDirty() {
-    var changes = this.changes,
-        result = void 0;
-    if (isDef(changes)) {
-      if (changes) {
-        each$1(changes, function (item, keypath) {
-          if (item.newValue !== item.oldValue) {
-            result = TRUE;
-            return FALSE;
-          }
-        });
+  Computed.prototype.isDirty = function () {
+    var observer = this.observer,
+        changes = this.changes,
+        result;
+
+    if (changes) {
+      for (var key in changes) {
+        if (changes[key] !== observer.get(key)) {
+          return TRUE;
+        }
       }
-    } else {
-      result = TRUE;
     }
-    return result;
+    // undefined 表示第一次执行，要返回 true
+    return !isDef(changes);
   };
 
   return Computed;
@@ -4548,41 +4572,30 @@ var Observer = function () {
     }
   }
 
-  Observer.prototype.onChange = function onChange(newValue, oldValue, keypath, computed, computedValue) {
+  Observer.prototype.onChange = function (oldValue, keypath) {
 
     var instance = this,
-        changes = instance.changes || (instance.changes = {});
+        changes = startsWith(keypath, '$') ? instance.$changes || (instance.$changes = {}) : instance.changes || (instance.changes = {});
 
-    changes = updateValue(changes, newValue, oldValue, keypath);
-
-    if (computed.keypath && !changes[computed.keypath]) {
-      changes[computed.keypath] = {
-        computed: computed,
-        oldValue: computedValue
-      };
+    if (!has$1(changes, keypath)) {
+      changes[keypath] = oldValue;
     }
 
     if (!instance.pending) {
       instance.pending = TRUE;
       instance.nextTick(function () {
         if (instance.pending) {
-          var _changes = instance.changes;
+          var _changes = instance.changes,
+              $changes = instance.$changes,
+              asyncEmitter = instance.asyncEmitter;
 
 
-          instance.pending = instance.changes = NULL;
-
-          var asyncEmitter = instance.asyncEmitter;
+          instance.pending = instance.changes = instance.$changes = NULL;
 
           var listenerKeys = keys(asyncEmitter.listeners);
 
-          each$1(_changes, function (item, keypath) {
-            var newValue = item.newValue,
-                oldValue = item.oldValue,
-                computed = item.computed;
-
-            if (computed) {
-              newValue = computed.get();
-            }
+          var eachChange = function (oldValue, keypath) {
+            var newValue = instance.get(keypath);
             if (newValue !== oldValue) {
               var args = [newValue, oldValue, keypath];
               asyncEmitter.fire(keypath, args);
@@ -4592,7 +4605,10 @@ var Observer = function () {
                 }
               });
             }
-          });
+          };
+
+          $changes && each$1($changes, eachChange);
+          _changes && each$1(_changes, eachChange);
         }
       });
     }
@@ -4607,17 +4623,17 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.get = function get$$1(keypath, defaultValue) {
+  Observer.prototype.get = function (keypath, defaultValue) {
 
     if (!string(keypath) || isFuzzyKeypath(keypath)) {
       return;
     }
 
     var instance = this,
-        result = void 0;
+        result;
 
     // 传入 '' 获取整个 data
-    if (keypath === '') {
+    if (keypath === CHAR_BLANK) {
       return instance.data;
     }
 
@@ -4667,7 +4683,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.set = function set$$1(keypath, value) {
+  Observer.prototype.set = function (keypath, value) {
 
     var instance = this;
 
@@ -4678,7 +4694,7 @@ var Observer = function () {
 
     var changes = [];
 
-    var setValue = function setValue(value, keypath) {
+    var setValue = function (value, keypath) {
 
       keypath = normalize(keypath);
 
@@ -4689,7 +4705,7 @@ var Observer = function () {
         return;
       }
 
-      var getNewValue = function getNewValue(key) {
+      var getNewValue = function (key) {
         if (key === keypath || value == NULL) {
           return value;
         }
@@ -4704,7 +4720,7 @@ var Observer = function () {
       each(listenKeys, function (listenKey) {
         if (isFuzzyKeypath(listenKey)) {
           if (matchKeypath(keypath, listenKey)) {
-            changes.push(listenKey, newValue, oldValue, keypath);
+            changes.push(listenKey, oldValue, keypath);
           } else {
             push(fuzzyKeypaths, listenKey);
           }
@@ -4712,7 +4728,7 @@ var Observer = function () {
           var listenNewValue = getNewValue(listenKey),
               listenOldValue = instance.get(listenKey);
           if (listenNewValue !== listenOldValue) {
-            changes.push(listenKey, listenNewValue, listenOldValue, listenKey);
+            changes.push(listenKey, listenOldValue, listenKey);
           }
         }
       });
@@ -4722,12 +4738,12 @@ var Observer = function () {
       // 性能确实会慢一些，但是很好用啊，几乎可以监听所有的数据
       if (fuzzyKeypaths[RAW_LENGTH]) {
 
-        var addChange = function addChange(newValue, oldValue, key) {
+        var addChange = function (newValue, oldValue, key) {
           if (newValue !== oldValue) {
 
             each(fuzzyKeypaths, function (fuzzyKeypath) {
               if (matchKeypath(key, fuzzyKeypath)) {
-                changes.push(fuzzyKeypath, newValue, oldValue, key);
+                changes.push(fuzzyKeypath, oldValue, key);
               }
             });
 
@@ -4791,8 +4807,8 @@ var Observer = function () {
       each$1(keypath, setValue);
     }
 
-    for (var i = 0; i < changes[RAW_LENGTH]; i += 4) {
-      emitter.fire(changes[i], [changes[i + 1], changes[i + 2], changes[i + 3], changes]);
+    for (var i = 0; i < changes[RAW_LENGTH]; i += 3) {
+      emitter.fire(changes[i], [changes[i + 1], changes[i + 2], changes]);
     }
   };
 
@@ -4804,13 +4820,13 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.addComputed = function addComputed(keypath, computed) {
+  Observer.prototype.addComputed = function (keypath, computed) {
 
     var instance = this,
         cache = TRUE,
-        get$$1 = void 0,
-        set$$1 = void 0,
-        deps = void 0;
+        get$$1,
+        set$$1,
+        deps;
 
     if (func(computed)) {
       get$$1 = computed;
@@ -4881,7 +4897,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.toggle = function toggle(keypath) {
+  Observer.prototype.toggle = function (keypath) {
     var value = !this.get(keypath);
     this.set(keypath, value);
     return value;
@@ -4899,7 +4915,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.increase = function increase(keypath, step, max) {
+  Observer.prototype.increase = function (keypath, step, max) {
     var value = toNumber(this.get(keypath), 0) + (numeric(step) ? step : 1);
     if (!numeric(max) || value <= max) {
       this.set(keypath, value);
@@ -4919,7 +4935,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.decrease = function decrease(keypath, step, min) {
+  Observer.prototype.decrease = function (keypath, step, min) {
     var value = toNumber(this.get(keypath), 0) - (numeric(step) ? step : 1);
     if (!numeric(min) || value >= min) {
       this.set(keypath, value);
@@ -4937,7 +4953,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.insert = function insert(keypath, item, index) {
+  Observer.prototype.insert = function (keypath, item, index) {
 
     var list = this.get(keypath);
     if (!array(list)) {
@@ -4971,7 +4987,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.removeAt = function removeAt(keypath, index) {
+  Observer.prototype.removeAt = function (keypath, index) {
     var list = this.get(keypath);
     if (array(list) && index >= 0 && index < list[RAW_LENGTH]) {
       list = copy(list);
@@ -4990,7 +5006,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.remove = function remove$$1(keypath, item) {
+  Observer.prototype.remove = function (keypath, item) {
     var list = this.get(keypath);
     if (array(list)) {
       list = copy(list);
@@ -5001,11 +5017,11 @@ var Observer = function () {
     }
   };
 
-  Observer.prototype.nextTick = function nextTick(fn) {
+  Observer.prototype.nextTick = function (fn) {
     append(fn);
   };
 
-  Observer.prototype.nextRun = function nextRun() {
+  Observer.prototype.nextRun = function () {
     run();
   };
 
@@ -5014,7 +5030,7 @@ var Observer = function () {
    */
 
 
-  Observer.prototype.destroy = function destroy() {
+  Observer.prototype.destroy = function () {
     this.emitter.off();
     this.asyncEmitter.off();
     clear(this);
@@ -5068,7 +5084,7 @@ extend(Observer.prototype, {
 
 function createWatch(action) {
 
-  var watch = function watch(instance, keypath, func$$1, sync, computed) {
+  var watch = function (instance, keypath, func$$1, sync, computed) {
     var context = instance.context;
 
 
@@ -5257,7 +5273,7 @@ function off(element, type, listener) {
   element.removeEventListener(type, listener, FALSE);
 }
 
-var domApi = Object.freeze({
+var domApi = {
 	createElement: createElement,
 	createText: createText,
 	createComment: createComment,
@@ -5281,7 +5297,7 @@ var domApi = Object.freeze({
 	find: find,
 	on: on$1,
 	off: off
-});
+};
 
 /**
  * tap 事件
@@ -5336,14 +5352,120 @@ var COMPOSITION_END = 'compositionend';
  *
  * @type {string}
  */
+var PROPERTY_CHANGE = 'propertychange';
+
+var IEEvent = function () {
+  function IEEvent(event, element) {
+    classCallCheck(this, IEEvent);
+
+
+    extend(this, event);
+
+    this.currentTarget = element;
+    this.target = event.srcElement || element;
+    this.originalEvent = event;
+  }
+
+  IEEvent.prototype.preventDefault = function () {
+    this.originalEvent.returnValue = FALSE;
+  };
+
+  IEEvent.prototype.stopPropagation = function () {
+    this.originalEvent.cancelBubble = TRUE;
+  };
+
+  return IEEvent;
+}();
+
+function addInputListener(element, listener) {
+  listener.$listener = function (e) {
+    if (e.propertyName === 'value') {
+      e = new Event(e);
+      e.type = INPUT;
+      listener.call(this, e);
+    }
+  };
+  on$2(element, PROPERTY_CHANGE, listener.$listener);
+}
+
+function removeInputListener(element, listener) {
+  off$1(element, PROPERTY_CHANGE, listener.$listener);
+  delete listener.$listener;
+}
+
+function addChangeListener(element, listener) {
+  listener.$listener = function (e) {
+    e = new Event(e);
+    e.type = CHANGE;
+    listener.call(this, e);
+  };
+  on$2(element, CLICK, listener.$listener);
+}
+
+function removeChangeListener(element, listener) {
+  off$1(element, CLICK, listener.$listener);
+  delete listener.$listener;
+}
+
+function isBox(element) {
+  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
+}
+
+function on$2(element, type, listener) {
+  if (type === INPUT) {
+    addInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    addChangeListener(element, listener);
+  } else {
+    element.attachEvent('on' + type, listener);
+  }
+}
+
+function off$1(element, type, listener) {
+  if (type === INPUT) {
+    removeInputListener(element, listener);
+  } else if (type === CHANGE && isBox(element)) {
+    removeChangeListener(element, listener);
+  } else {
+    element.detachEvent('on' + type, listener);
+  }
+}
+
+function createEvent$1(event, element) {
+  return new IEEvent(event, element);
+}
+
+function find$1(selector, context) {
+  context = context || doc;
+  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
+}
+
+function setProp$1(element, name, value) {
+  try {
+    set$1(element, name, value);
+  } catch (e) {
+    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
+      element.setAttribute('type', 'text/css');
+      element.styleSheet.cssText = value;
+    }
+  }
+}
+
+
+
+var oldApi = {
+	on: on$2,
+	off: off$1,
+	createEvent: createEvent$1,
+	find: find$1,
+	setProp: setProp$1
+};
 
 var api = copy(domApi);
 
-// import * as oldApi from './oldApi'
-//
-// if (env.doc && !env.doc.addEventListener) {
-//   object.extend(api, oldApi)
-// }
+if (doc && !doc.addEventListener) {
+  extend(api, oldApi);
+}
 
 var _on = api.on;
 var _off = api.off;
@@ -5393,7 +5515,7 @@ var EMITTER_KEY = '_emitter';
 api.on = function (element, type, listener, context) {
   var emitter = element[EMITTER_KEY] || (element[EMITTER_KEY] = new Emitter());
   if (!emitter.has(type)) {
-    var nativeListener = function nativeListener(e, type) {
+    var nativeListener = function (e, type) {
       if (!Event.is(e)) {
         e = new Event(api.createEvent(e, element));
       }
@@ -5455,7 +5577,7 @@ api.off = function (element, type, listener) {
  */
 var debounce = function (fn, delay, sync) {
 
-  var timer = void 0;
+  var timer;
 
   return function () {
 
@@ -5630,19 +5752,19 @@ var model = function (_ref) {
   var keypath = node.value;
   if (keypath) {
 
-    var set$$1 = function set$$1() {
+    var set$$1 = function () {
       if (control) {
         control.set(target, keypath, instance);
       }
     };
-    var sync = function sync() {
+    var sync = function () {
       control.sync(target, keypath, instance);
     };
 
-    var target = void 0,
-        control = void 0,
-        unbindTarget = void 0,
-        unbindInstance = void 0;
+    var target,
+        control,
+        unbindTarget,
+        unbindInstance;
     if (component) {
 
       target = component;
@@ -5654,7 +5776,7 @@ var model = function (_ref) {
         set$$1();
       }
       component.watch(field, sync);
-      unbindTarget = function unbindTarget() {
+      unbindTarget = function () {
         component.unwatch(field, sync);
         delete component.$model;
       };
@@ -5686,7 +5808,7 @@ var model = function (_ref) {
     prepend(function () {
       if (set$$1) {
         instance.watch(keypath, set$$1);
-        unbindInstance = function unbindInstance() {
+        unbindInstance = function () {
           instance.unwatch(keypath, set$$1);
         };
       }
@@ -5712,7 +5834,7 @@ var binding = function (_ref) {
   // 比如写了个 <div>{{name}}</div>
   // 删了数据却忘了删模板，无视之
   if (keypath) {
-    var set = function set(value) {
+    var set = function (value) {
       var name = node.modifier;
       if (component) {
         component.set(name, value);
@@ -5780,7 +5902,7 @@ var Yox = function () {
 
     extensions && extend(instance, extensions);
 
-    var source = void 0;
+    var source;
     if (object(propTypes)) {
       source = Yox.validate(props || {}, propTypes);
     } else {
@@ -5867,7 +5989,7 @@ var Yox = function () {
     }
 
     // 聪明的 set...
-    var smartSet = function smartSet(key, value) {
+    var smartSet = function (key, value) {
       if (func(value)) {
         instance[key](execute(value, instance));
       } else if (object(value)) {
@@ -5891,9 +6013,7 @@ var Yox = function () {
       }
       instance.$template = template[0];
 
-      instance.$renderCount = 0;
-      instance.$renderComputed = instance.$observer.addComputed(TEMPLATE_COMPUTED, function () {
-        instance.$renderCount++;
+      instance.$observer.addComputed(TEMPLATE_COMPUTED, function () {
         return instance.render();
       });
       if (watchers) {
@@ -5929,7 +6049,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.addComputed = function addComputed(keypath, computed) {
+  Yox.prototype.addComputed = function (keypath, computed) {
     return this.$observer.addComputed(keypath, computed);
   };
 
@@ -5942,7 +6062,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.get = function get$$1(keypath, defaultValue) {
+  Yox.prototype.get = function (keypath, defaultValue) {
     return this.$observer.get(keypath, defaultValue);
   };
 
@@ -5954,7 +6074,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.set = function set$$1(keypath, value) {
+  Yox.prototype.set = function (keypath, value) {
     this.$observer.set(keypath, value);
   };
 
@@ -5967,7 +6087,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.on = function on(type, listener) {
+  Yox.prototype.on = function (type, listener) {
     this.$emitter.on(type, listener);
     return this;
   };
@@ -5981,7 +6101,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.once = function once(type, listener) {
+  Yox.prototype.once = function (type, listener) {
     this.$emitter.once(type, listener);
     return this;
   };
@@ -5995,7 +6115,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.off = function off(type, listener) {
+  Yox.prototype.off = function (type, listener) {
     this.$emitter.off(type, listener);
     return this;
   };
@@ -6010,7 +6130,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.fire = function fire(type, data, downward) {
+  Yox.prototype.fire = function (type, data, downward) {
 
     // 外部为了使用方便，fire(type) 或 fire(type, data) 就行了
     // 内部为了保持格式统一
@@ -6060,7 +6180,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watch = function watch(keypath, watcher, sync) {
+  Yox.prototype.watch = function (keypath, watcher, sync) {
     this.$observer.watch(keypath, watcher, sync);
     return this;
   };
@@ -6075,7 +6195,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.watchOnce = function watchOnce(keypath, watcher, sync) {
+  Yox.prototype.watchOnce = function (keypath, watcher, sync) {
     this.$observer.watchOnce(keypath, watcher, sync);
     return this;
   };
@@ -6089,7 +6209,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.unwatch = function unwatch(keypath, watcher) {
+  Yox.prototype.unwatch = function (keypath, watcher) {
     this.$observer.unwatch(keypath, watcher);
     return this;
   };
@@ -6100,16 +6220,14 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.forceUpdate = function forceUpdate() {
+  Yox.prototype.forceUpdate = function () {
 
     if (this.$node) {
-      var $renderCount = this.$renderCount;
-
-
-      this.$observer.nextRun();
-
-      if (this.$renderCount === $renderCount) {
-        this.updateView(this.$renderComputed.get(TRUE), this.$node);
+      var computed = this.$observer.computed[TEMPLATE_COMPUTED];
+      if (computed.isDirty()) {
+        this.$observer.nextRun();
+      } else {
+        this.updateView(computed.get(TRUE), this.$node);
       }
     }
   };
@@ -6121,7 +6239,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.render = function render$$1() {
+  Yox.prototype.render = function () {
     console.time('render');
     var instance = this;
 
@@ -6134,7 +6252,7 @@ var Yox = function () {
 
       var filters = extend({}, registry.filter, instance.$filters);
 
-      var getValue = function getValue(key, expr, keypathStack) {
+      var getValue = function (key, expr, keypathStack) {
 
         if (keypathStack) {
 
@@ -6142,11 +6260,11 @@ var Yox = function () {
             return last(keypathStack);
           }
 
-          var value = void 0,
+          var value,
               localVars = instance.$vars,
               lookup = expr.lookup !== FALSE,
               index = keypathStack[RAW_LENGTH] - 1,
-              getKeypath = function getKeypath() {
+              getKeypath = function () {
             var keypath = join$1(keypathStack[index], key);
             if (localVars && has$1(localVars, keypath)) {
               value = localVars[keypath];
@@ -6178,7 +6296,7 @@ var Yox = function () {
 
       $getter = instance.$getter = function (expr, keypathStack, binding$$1) {
         var lastComputed = Observer.computed,
-            value = void 0;
+            value;
         if (binding$$1) {
           Observer.computed = NULL;
         }
@@ -6219,10 +6337,10 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.updateView = function updateView(newNode, oldNode) {
+  Yox.prototype.updateView = function (newNode, oldNode) {
 
     var instance = this,
-        afterHook = void 0;
+        afterHook;
 
     var $node = instance.$node,
         $options = instance.$options;
@@ -6258,7 +6376,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.create = function create(options, extra) {
+  Yox.prototype.create = function (options, extra) {
     options = extend({}, options, extra);
     options.parent = this;
     var child = new Yox(options);
@@ -6274,7 +6392,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.importPartial = function importPartial(name) {
+  Yox.prototype.importPartial = function (name) {
     return Yox.compile(this.partial(name));
   };
 
@@ -6286,7 +6404,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.compileDirective = function compileDirective(directive) {
+  Yox.prototype.compileDirective = function (directive) {
 
     var instance = this;
     var value = directive.value,
@@ -6301,12 +6419,12 @@ var Yox = function () {
           method = instance[callee.name];
 
       if (method) {
-        var getValue = function getValue(node) {
+        var getValue = function (node) {
           return instance.$getter(node, keypathStack);
         };
         return function (event) {
           var isEvent = Event.is(event),
-              result = void 0;
+              result;
           if (args && args[RAW_LENGTH]) {
             if (isEvent) {
               instance.$setter(keypath, SPECIAL_EVENT, event);
@@ -6338,7 +6456,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.destroy = function destroy() {
+  Yox.prototype.destroy = function () {
 
     var instance = this;
 
@@ -6374,7 +6492,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.nextTick = function nextTick(fn) {
+  Yox.prototype.nextTick = function (fn) {
     this.$observer.nextTick(fn);
   };
 
@@ -6388,7 +6506,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.toggle = function toggle(keypath) {
+  Yox.prototype.toggle = function (keypath) {
     return this.$observer.toggle(keypath);
   };
 
@@ -6404,7 +6522,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.increase = function increase(keypath, step, max) {
+  Yox.prototype.increase = function (keypath, step, max) {
     return this.$observer.increase(keypath, step, max);
   };
 
@@ -6420,7 +6538,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.decrease = function decrease(keypath, step, min) {
+  Yox.prototype.decrease = function (keypath, step, min) {
     return this.$observer.decrease(keypath, step, min);
   };
 
@@ -6433,7 +6551,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.copy = function copy$$1(data, deep) {
+  Yox.prototype.copy = function (data, deep) {
     return copy(data, deep);
   };
 
@@ -6447,7 +6565,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.insert = function insert(keypath, item, index) {
+  Yox.prototype.insert = function (keypath, item, index) {
     return this.$observer.insert(keypath, item, index);
   };
 
@@ -6460,7 +6578,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.append = function append$$1(keypath, item) {
+  Yox.prototype.append = function (keypath, item) {
     return this.$observer.insert(keypath, item, TRUE);
   };
 
@@ -6473,7 +6591,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.prepend = function prepend$$1(keypath, item) {
+  Yox.prototype.prepend = function (keypath, item) {
     return this.$observer.insert(keypath, item, FALSE);
   };
 
@@ -6486,7 +6604,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.removeAt = function removeAt(keypath, index) {
+  Yox.prototype.removeAt = function (keypath, index) {
     return this.$observer.removeAt(keypath, index);
   };
 
@@ -6499,7 +6617,7 @@ var Yox = function () {
    */
 
 
-  Yox.prototype.remove = function remove$$1(keypath, item) {
+  Yox.prototype.remove = function (keypath, item) {
     return this.$observer.remove(keypath, item);
   };
 
@@ -6636,7 +6754,7 @@ Yox.validate = function (props, propTypes) {
       // 就当做此规则无效，和没写一样
       if (type) {
         var target = props[key],
-            matched = void 0;
+            matched;
         // 比较类型
         if (!falsy$1(type)) {
           matched = is(target, type);

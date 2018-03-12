@@ -1,6 +1,6 @@
 export default {
     template: `
-        <div class="bell-sub-menu
+        <div class="bell-layout-sub-menu
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
             <slot name="children" />

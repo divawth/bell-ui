@@ -1,71 +1,27 @@
 $selector-layout = '.bell-layout'
-$selector = '.bell'
+$selector-layout-has-sider = '.bell-layout-has-sider'
+
 
 $layout-hash = {
     header: {
-        width: 100%,
         flex: 0 0 64px,
         background-color: #2892F0,
-        color: Rgba(0,0,0,.57),
-        display: flex,
-        align-items: center,
-        justify-content: center,
-        flex-direction: column,
     },
     content: {
-        width: 100%,
-        flex: 0 0 64px,
-        background-color: #2892F0,
-        color: Rgba(0,0,0,.57),
-        display: flex,
-        align-items: center,
-        justify-content: center,
-        flex-direction: column,
+        flex: 0 0 auto,
+        background-color: #f9f9f9,
     },
     footer: {
-        width: 100%,
         flex: 0 0 64px,
         background-color: #2892F0,
-        color: Rgba(0,0,0,.57),
-        display: flex,
-        align-items: center,
-        justify-content: center,
-        flex-direction: column,
     },
     sider: {
-        width: 100%,
-        flex: 0 0 64px,
+        flex: 0 0 200px,
         background-color: #2892F0,
-        color: Rgba(0,0,0,.57),
-        display: flex,
-        align-items: center,
-        justify-content: center,
-        flex-direction: column,
     }
 }
 
 
-layout-style(style)
 
-    ui-set('width', style['width'])
-    ui-set('flex', style['flex'])
-    ui-set('background-color', style['background-color'])
-    ui-set('color', style['color'])
-    ui-set('display', style['display'])
-    ui-set('align-items', style['align-items'])
-    ui-set('justify-content', style['justify-content'])
-    ui-set('flex-direction', style['flex-direction'])
 
-{$selector-layout}
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-height: 250px;
-
-{$selector}
-    ui-connect(
-        hash: $layout-hash,
-        each: layout-style
-    )
 

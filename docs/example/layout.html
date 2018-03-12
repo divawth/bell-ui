@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
 
     <style>
-
         .app {
             margin: 10px auto;
         }
@@ -35,13 +34,7 @@
 
 
     <script id="template-1" type="text/plain">
-        <div class="app">
-            <Layout>
-                <Header>Header</Header>
-                <Content>Content</Content>
-                <Footer>Footer</Footer>
-            </Layout>
-        </div>
+
     </script>
 
     <script id="template-2" type="text/plain">
@@ -251,39 +244,44 @@
     <script>
         new Yox({
             el: '#app-1',
-            replace: true,
-            template: '#template-1'
+            replace: false,
+            template: `<Layout>
+                    <Header>Header</Header>
+                    <Content>Content</Content>
+                    <Footer>Footer</Footer>
+                </Layout>
+            `
         });
-        new Yox({
-            el: '#app-2',
-            replace: true,
-            template: '#template-2'
-        });
-        new Yox({
-            el: '#app-3',
-            replace: true,
-            template: '#template-3'
-        });
-        new Yox({
-            el: '#app-4',
-            replace: true,
-            template: '#template-4'
-        });
-        new Yox({
-            el: '#app-5',
-            replace: true,
-            template: '#template-5'
-        });
-        new Yox({
-            el: '#app-6',
-            replace: true,
-            template: '#template-6'
-        });
-        new Yox({
-            el: '#app-7',
-            replace: true,
-            template: '#template-7'
-        });
+        // new Yox({
+        //     el: '#app-2',
+        //     replace: true,
+        //     template: '#template-2'
+        // });
+        // new Yox({
+        //     el: '#app-3',
+        //     replace: true,
+        //     template: '#template-3'
+        // });
+        // new Yox({
+        //     el: '#app-4',
+        //     replace: true,
+        //     template: '#template-4'
+        // });
+        // new Yox({
+        //     el: '#app-5',
+        //     replace: true,
+        //     template: '#template-5'
+        // });
+        // new Yox({
+        //     el: '#app-6',
+        //     replace: true,
+        //     template: '#template-6'
+        // });
+        // new Yox({
+        //     el: '#app-7',
+        //     replace: true,
+        //     template: '#template-7'
+        // });
     </script>
 
 </body>

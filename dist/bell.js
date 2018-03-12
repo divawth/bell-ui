@@ -301,62 +301,8 @@ var Transition = {
     }
 };
 
-var Header = {
-    template: '\n        <div class="bell-header\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
-    propTypes: {
-        style: {
-            type: 'string'
-        },
-        className: {
-            type: 'string'
-        }
-    }
-};
-
-var Sider = {
-    template: '\n        <div class="bell-sider\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
-    propTypes: {
-        style: {
-            type: 'string'
-        },
-        className: {
-            type: 'string'
-        }
-    },
-    afterMount: function afterMount() {
-        var me = this;
-        me.fire('hasSider', {
-            hasSider: true
-        });
-    }
-};
-
-var Content = {
-    template: '\n        <div class="bell-content\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
-    propTypes: {
-        style: {
-            type: 'string'
-        },
-        className: {
-            type: 'string'
-        }
-    }
-};
-
-var Footer = {
-    template: '\n        <div class="bell-footer\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
-    propTypes: {
-        style: {
-            type: 'string'
-        },
-        className: {
-            type: 'string'
-        }
-    }
-};
-
 var Layout = {
-    template: '\n        <div class="bell-layout\n        {{#if hasSider}} bell-has-sider{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout\n        {{#if hasSider}} has-sider{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
 
     data: function data() {
         return {
@@ -378,6 +324,60 @@ var Layout = {
                 hasSider: data.hasSider
             });
             return false;
+        }
+    }
+};
+
+var Header = {
+    template: '\n        <div class="bell-layout-header\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
+};
+
+var Sider = {
+    template: '\n        <div class="bell-layout-sider\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    },
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('hasSider', {
+            hasSider: true
+        });
+    }
+};
+
+var Content = {
+    template: '\n        <div class="bell-layout-content\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
+        }
+    }
+};
+
+var Footer = {
+    template: '\n        <div class="bell-layout-footer\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    propTypes: {
+        style: {
+            type: 'string'
+        },
+        className: {
+            type: 'string'
         }
     }
 };
@@ -470,7 +470,7 @@ var MenuItem = {
 };
 
 var Submenu = {
-    template: '\n        <div class="bell-sub-menu\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-sub-menu\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'

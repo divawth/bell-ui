@@ -5211,48 +5211,12 @@ button.bell-button {
 }
 .bell-layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 250px;
+  flex-direction: row;
 }
-.bell-header {
-  width: 100%;
-  flex: 0 0 64px;
-  background-color: #2892f0;
-  color: Rgba(0, 0, 0, 0.57);
+.bell-layout.column {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
-.bell-content {
+.bell-layout.fluid {
   width: 100%;
-  flex: 0 0 64px;
-  background-color: #2892f0;
-  color: Rgba(0, 0, 0, 0.57);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.bell-footer {
-  width: 100%;
-  flex: 0 0 64px;
-  background-color: #2892f0;
-  color: Rgba(0, 0, 0, 0.57);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.bell-sider {
-  width: 100%;
-  flex: 0 0 64px;
-  background-color: #2892f0;
-  color: Rgba(0, 0, 0, 0.57);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }

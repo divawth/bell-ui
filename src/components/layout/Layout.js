@@ -1,12 +1,7 @@
-import Header from './Header'
-import Sider from './Sider'
-import Content from './Content'
-import Footer from './Footer'
-
 export default {
     template: `
         <div class="bell-layout
-        {{#if hasSider}} bell-has-sider{{/if}}
+        {{#if hasSider}} has-sider{{/if}}
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
             <slot name="children" />

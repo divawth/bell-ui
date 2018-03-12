@@ -1,6 +1,6 @@
 export default {
     template: `
-        <div class="bell-footer
+        <div class="bell-layout-footer
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
             <slot name="children" />

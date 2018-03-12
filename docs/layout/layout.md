@@ -1,67 +1,81 @@
-<a href="./example/layout.html">
-    layout
-</a>
-
 > 基础用法
 
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Header>Header</Header>
-                <Content>Content</Content>
-                <Footer>Footer</Footer>
-            </Layout>
-        `
-    }
+<html>
+    <div class="bell-layout bell-row column">
+        <div class="bell-layout-header bell-col bell-col-span-24">
+            header
+        </div>
+        <div class="bell-layout-content bell-col bell-col-span-24">
+            content
+        </div>
+        <div class="bell-layout-footer bell-col bell-col-span-24">
+            footer
+        </div>
+    </div>
+</html>
 
 > 有侧边栏
 
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Sider>Sider</Sider>
-                    <Content>Content</Content>
-                </Layout>
-                <Footer>Footer</Footer>
-            </Layout>
-        `
-    }
+<html>
+    <div class="bell-layout bell-row column">
+        <div class="bell-layout-header bell-col bell-col-span-24">
+            header
+        </div>
+        <div class="bell-layout bell-row bell-col-span-24">
+            <div class="bell-layout-sider bell-col-span-6">
+                sider
+            </div>
+            <div class="bell-layout-content bell-col-span-18">
+                content
+            </div>
+        </div>
+        <div class="bell-layout-footer bell-col bell-col-span-24">
+            footer
+        </div>
+    </div>
+</html>
 
 > sider 在右边
 
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Header>Header</Header>
-                <Layout>
-                    <Content>Content</Content>
-                    <Sider>Sider</Sider>
-                </Layout>
-                <Footer>Footer</Footer>
-            </Layout>
-        `
-    }
+<html>
+    <div class="bell-layout bell-row column">
+        <div class="bell-layout-header bell-col bell-col-span-24">
+            header
+        </div>
+        <div class="bell-layout bell-row bell-col-span-24">
+            <div class="bell-layout-content bell-col-span-18">
+                content
+            </div>
+            <div class="bell-layout-sider bell-col-span-6">
+                sider
+            </div>
+        </div>
+        <div class="bell-layout-footer bell-col bell-col-span-24">
+            footer
+        </div>
+    </div>
+</html>
 
 > sider 在左边
 
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Sider>Sider</Sider>
-                <Layout>
-                    <Header>Header</Header>
-                    <Content>Content</Content>
-                    <Footer>Footer</Footer>
-                </Layout>
-            </Layout>
-        `
-    }
+<html>
+    <div class="bell-layout bell-row">
+        <div class="bell-layout-sider bell-col-span-6">
+            sider
+        </div>
+        <div class="bell-layout bell-row bell-col-span-18 column">
+            <div class="bell-layout-header bell-col bell-col-span-24">
+                header
+            </div>
+            <div class="bell-layout-content bell-col-span-18">
+                content
+            </div>
+            <div class="bell-layout-footer bell-col bell-col-span-24">
+                footer
+            </div>
+        </div>
+    </div>
+</html>
 
 > 没有 footer
 
