@@ -4747,6 +4747,226 @@ html {
     order: 24;
   }
 }
+.tiny {
+  font-size: 12px;
+  line-height: 1.333333333333333;
+}
+.small {
+  font-size: 12px;
+  line-height: 1.571428571428571;
+}
+.large {
+  font-size: 16px;
+  line-height: 1.625;
+}
+.huge {
+  font-size: 18px;
+  line-height: 2;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+a:hover {
+  color: #f90;
+}
+.bell-link {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+.bell-link input,
+button.bell-link {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  padding: 0;
+}
+.bell-link {
+  font-size: 14px;
+}
+.bell-link.tiny {
+  font-size: 12px;
+}
+.bell-link.small {
+  font-size: 12px;
+}
+.bell-link.large {
+  font-size: 16px;
+}
+.bell-link.huge {
+  font-size: 18px;
+}
+.bell-link.hover,
+.bell-link:hover {
+  color: #f90;
+}
+.bell-link.disabled,
+.bell-link[disabled] {
+  color: #bbb !important;
+}
+.bell-links {
+  font-size: 0;
+}
+.bell-links > .bell-link + .bell-link {
+  margin-left: 8px;
+}
+.bell-links > .bell-link + .bell-link.fluid {
+  margin-left: 0;
+  margin-top: 8px;
+}
+.bell-links > .bell-link {
+  font-size: 14px;
+}
+.bell-links.tiny > .bell-link + .bell-link {
+  margin-left: 4px;
+}
+.bell-links.tiny > .bell-link + .bell-link.fluid {
+  margin-left: 0;
+  margin-top: 4px;
+}
+.bell-links.tiny > .bell-link {
+  font-size: 12px;
+}
+.bell-links.small > .bell-link + .bell-link {
+  margin-left: 6px;
+}
+.bell-links.small > .bell-link + .bell-link.fluid {
+  margin-left: 0;
+  margin-top: 6px;
+}
+.bell-links.small > .bell-link {
+  font-size: 12px;
+}
+.bell-links.large > .bell-link + .bell-link {
+  margin-left: 12px;
+}
+.bell-links.large > .bell-link + .bell-link.fluid {
+  margin-left: 0;
+  margin-top: 12px;
+}
+.bell-links.large > .bell-link {
+  font-size: 16px;
+}
+.bell-links.huge > .bell-link + .bell-link {
+  margin-left: 14px;
+}
+.bell-links.huge > .bell-link + .bell-link.fluid {
+  margin-left: 0;
+  margin-top: 14px;
+}
+.bell-links.huge > .bell-link {
+  font-size: 18px;
+}
+.bell-links.tight > .bell-link + .bell-link {
+  margin-left: 0;
+}
+.bell-links.tight > .bell-link + .bell-linkselector-fluid {
+  margin-top: 0;
+}
+.bell-links.justified {
+  display: table;
+}
+.bell-links.justified > .bell-link {
+  display: table-cell;
+  width: 1%;
+}
+.primary {
+  color: #1c90f3;
+}
+.primary .bell-link {
+  color: inherit;
+}
+.primary.bell-link.hover,
+.primary .bell-link.hover,
+.primary.bell-link:hover,
+.primary .bell-link:hover {
+  color: #1c90f3;
+}
+.secondary {
+  color: #666;
+}
+.secondary .bell-link {
+  color: inherit;
+}
+.secondary.bell-link.hover,
+.secondary .bell-link.hover,
+.secondary.bell-link:hover,
+.secondary .bell-link:hover {
+  color: #f90;
+}
+.success {
+  color: #19be6b;
+}
+.success .bell-link {
+  color: inherit;
+}
+.success.bell-link.hover,
+.success .bell-link.hover,
+.success.bell-link:hover,
+.success .bell-link:hover {
+  color: #19be6b;
+}
+.error {
+  color: #ed3f14;
+}
+.error .bell-link {
+  color: inherit;
+}
+.error.bell-link.hover,
+.error .bell-link.hover,
+.error.bell-link:hover,
+.error .bell-link:hover {
+  color: #ed3f14;
+}
+.info {
+  color: #38b8f3;
+}
+.info .bell-link {
+  color: inherit;
+}
+.info.bell-link.hover,
+.info .bell-link.hover,
+.info.bell-link:hover,
+.info .bell-link:hover {
+  color: #38b8f3;
+}
+.warning {
+  color: #f90;
+}
+.warning .bell-link {
+  color: inherit;
+}
+.warning.bell-link.hover,
+.warning .bell-link.hover,
+.warning.bell-link:hover,
+.warning .bell-link:hover {
+  color: #f90;
+}
+.danger {
+  color: #d9534f;
+}
+.danger .bell-link {
+  color: inherit;
+}
+.danger.bell-link.hover,
+.danger .bell-link.hover,
+.danger.bell-link:hover,
+.danger .bell-link:hover {
+  color: #d9534f;
+}
+.muted {
+  color: rgba(0,0,0,0.37);
+}
+.muted .bell-link {
+  color: inherit;
+}
+.muted.bell-link.hover,
+.muted .bell-link.hover,
+.muted.bell-link:hover,
+.muted .bell-link:hover {
+  color: rgba(0,0,0,0.37);
+}
 .bell-button {
   display: inline-block;
   text-align: center;
