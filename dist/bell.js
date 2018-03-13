@@ -1,4 +1,6 @@
 (function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(factory());
 }(this, (function () { 'use strict';
 
@@ -89,7 +91,7 @@ var Transition = {
             type: 'function'
         },
         onEnd: function onEnd() {
-
+            
         },
 
         beforeEnter: {
@@ -302,13 +304,14 @@ var Transition = {
 };
 
 var Layout = {
-    template: '\n        <div class="bell-layout\n        {{#if hasSider}} has-sider{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout bell-row\n        {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
 
     data: function data() {
         return {
             hasSider: false
         };
     },
+
     propTypes: {
         style: {
             type: 'string'
@@ -323,13 +326,14 @@ var Layout = {
             me.set({
                 hasSider: data.hasSider
             });
+            me.fire('hasSider', {}, true);
             return false;
         }
     }
 };
 
 var Header = {
-    template: '\n        <div class="bell-layout-header\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-header bell-col-span-24\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
@@ -341,7 +345,7 @@ var Header = {
 };
 
 var Sider = {
-    template: '\n        <div class="bell-layout-sider\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-sider bell-col-span-6\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
@@ -359,7 +363,16 @@ var Sider = {
 };
 
 var Content = {
-    template: '\n        <div class="bell-layout-content\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-content bell-col-span-{{#if hasSider}}-18{{else}}-24{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+
+    events: {
+        hasSider: function hasSider(value) {
+            this.set({
+                hasSider: value
+            });
+        }
+    },
+
     propTypes: {
         style: {
             type: 'string'
@@ -371,7 +384,7 @@ var Content = {
 };
 
 var Footer = {
-    template: '\n        <div class="bell-layout-footer\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-footer bell-col-span-24\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
@@ -2225,7 +2238,7 @@ var Date$1 = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2464,7 +2477,7 @@ var DateRange = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 
@@ -2643,7 +2656,7 @@ var DateWeek = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-
+        
     }
 };
 

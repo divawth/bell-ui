@@ -5213,6 +5213,22 @@ button.bell-button {
   display: flex;
   flex-direction: row;
 }
+.bell-layout-header {
+  flex: 0 0 64px;
+  background-color: #2892f0;
+}
+.bell-layout-content {
+  flex: 0 0 auto;
+  background-color: #f9f9f9;
+}
+.bell-layout-footer {
+  flex: 0 0 64px;
+  background-color: #2892f0;
+}
+.bell-layout-sider {
+  flex: 0 0 200px;
+  background-color: #2892f0;
+}
 .bell-layout.column {
   display: flex;
   flex-direction: column;

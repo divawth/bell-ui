@@ -1,6 +1,6 @@
 export default {
     template: `
-        <div class="bell-layout-sider
+        <div class="bell-layout-sider bell-col-span-6
         {{#if className}} {{className}}{{/if}}"
         {{#if style}} style="{{style}}"{{/if}}>
             <slot name="children" />

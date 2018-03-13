@@ -6,7 +6,7 @@
   "scripts": {
     "start": "rollup -c",
     "test": "lessc src/styles/index.less > dist/bells.css",
-    "style": " stylus -w src/css/index.styl -o dist/bell.css"
+    "style": "stylus -w src/css/index.styl -o dist/bell.css"
   },
   "edp": {
     "wwwroot": "/",
