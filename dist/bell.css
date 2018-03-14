@@ -5456,3 +5456,135 @@ button.bell-button {
 .bell-layout.fluid {
   width: 100%;
 }
+.bell-breadcrumb {
+  padding: 15px;
+  color: #999;
+}
+.bell-breadcrumb .bell-breadcrumb-gap {
+  display: inline-block;
+  margin: 0 10px;
+}
+.bell-breadcrumb .bell-breadcrumb-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #999;
+}
+.bell-breadcrumb .bell-breadcrumb-item:last-child .bell-breadcrumb-link {
+  font-weight: bold;
+  color: #000;
+}
+.bell-breadcrumb .bell-breadcrumb-item:last-child .bell-breadcrumb-gap {
+  display: none;
+}
+.bell-textarea,
+.bell-input {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #dddee1;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.bell-textarea.bell-textarea.hover,
+.bell-input.bell-input.hover,
+.bell-textarea:hover,
+.bell-input:hover {
+  border-color: #57a3f3;
+}
+.bell-textarea.bell-focus,
+.bell-input.bell-focus {
+  border-color: #57a3f3;
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+}
+.bell-textarea .bell-input-el,
+.bell-input .bell-input-el {
+  height: 32px;
+  line-height: 32px;
+  padding: 4px 7px;
+}
+.bell-textarea.bell-input-clearable .bell-input-clear-icon,
+.bell-input.bell-input-clearable .bell-input-clear-icon {
+  height: 32px;
+  line-height: 32px;
+}
+.bell-textarea-small .bell-input-el,
+.bell-input-small .bell-input-el {
+  height: 24px;
+  line-height: 24px;
+  padding: 1px 7px;
+}
+.bell-textarea-small.bell-input-clearable .bell-input-clear-icon,
+.bell-input-small.bell-input-clearable .bell-input-clear-icon {
+  height: 24px;
+  line-height: 24px;
+}
+.bell-textarea-large .bell-input-el,
+.bell-input-large .bell-input-el {
+  height: 36px;
+  line-height: 36px;
+  padding: 6px 7px;
+}
+.bell-textarea-large.bell-input-clearable .bell-input-clear-icon,
+.bell-input-large.bell-input-clearable .bell-input-clear-icon {
+  height: 36px;
+  line-height: 36px;
+}
+.bell-textarea .bell-input-el,
+.bell-input .bell-input-el {
+  border: none;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  outline: none;
+  background-image: none;
+  position: relative;
+  cursor: text;
+  background-color: transparent;
+  transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  font-size: 12px;
+  height: $input-el-height;
+  line-height: $input-el-line-height;
+  color: rgba(0,0,0,0.54);
+  padding: $input-el-padding;
+}
+.bell-textarea.bell-input-clearable .bell-input-el,
+.bell-input.bell-input-clearable .bell-input-el {
+  padding-right: 24px;
+}
+.bell-textarea.bell-input-clearable .bell-input-clear-icon,
+.bell-input.bell-input-clearable .bell-input-clear-icon {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  width: 24px;
+  height: $input-el-height;
+  line-height: $input-el-height;
+  font-size: 16px;
+  color: #ddd;
+}
+.bell-textarea.bell-input-clearable.hover .bell-input-clear-icon,
+.bell-input.bell-input-clearable.hover .bell-input-clear-icon,
+.bell-textarea.bell-input-clearable:hover .bell-input-clear-icon,
+.bell-input.bell-input-clearable:hover .bell-input-clear-icon {
+  opacity: 1;
+}
+.bell-textarea.bell-input-disabled,
+.bell-input.bell-input-disabled {
+  background-color: #fff;
+  cursor: not-allowed;
+}
+.bell-textarea.bell-input-disabled .bell-input-el,
+.bell-input.bell-input-disabled .bell-input-el {
+  cursor: not-allowed;
+}
+.bell-textarea.bell-input-disabled.hover,
+.bell-input.bell-input-disabled.hover,
+.bell-textarea.bell-input-disabled:hover,
+.bell-input.bell-input-disabled:hover {
+  border-color: #dddee1;
+}

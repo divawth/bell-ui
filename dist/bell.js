@@ -1,7 +1,5 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(factory());
+    (factory());
 }(this, (function () { 'use strict';
 
 var addClass = function addClass(element, className) {
@@ -91,7 +89,7 @@ var Transition = {
             type: 'function'
         },
         onEnd: function onEnd() {
-            
+
         },
 
         beforeEnter: {
@@ -363,7 +361,7 @@ var Sider = {
 };
 
 var Content = {
-    template: '\n        <div class="bell-layout-content bell-col-span-{{#if hasSider}}-18{{else}}-24{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-content bell-col-span{{#if hasSider}}-18{{else}}-24{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
 
     events: {
         hasSider: function hasSider(value) {
@@ -667,11 +665,11 @@ var Icon = {
 };
 
 var Breadcrumb = {
-    template: "\n        <div class=\"bell-bread-crumb\">\n            <slot name=\"children\" />\n        </div>\n    "
+    template: "\n        <div class=\"bell-breadcrumb bell-texts\">\n            <slot name=\"children\" />\n        </div>\n    "
 };
 
 var BreadcrumbItem = {
-    template: '\n        <span class="bell-bread-crumb-item">\n            <a {{#if to}}href="{{to}}"{{/if}} class="bell-bread-crumb-link">\n                <slot name="children" />\n            </a>\n            <span class="bell-bread-crumb-gap">\n                {{#if separator}}\n                    {{separator}}\n                {{else}}\n                    /\n                {{/if}}\n            </span>\n        </span>\n    ',
+    template: '\n        <span class="bell-breadcrumb-item bell-text">\n            <a {{#if to}}href="{{to}}"{{/if}} class="bell-breadcrumb-link">\n                <slot name="children" />\n            </a>\n            <span class="bell-breadcrumb-gap">\n                {{#if separator}}\n                    {{separator}}\n                {{else}}\n                    /\n                {{/if}}\n            </span>\n        </span>\n    ',
 
     propTypes: {
         to: {
@@ -2238,7 +2236,7 @@ var Date$1 = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 
@@ -2477,7 +2475,7 @@ var DateRange = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 
@@ -2656,7 +2654,7 @@ var DateWeek = {
         });
     },
     beforeDestroy: function beforeDestroy() {
-        
+
     }
 };
 

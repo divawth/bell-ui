@@ -1,0 +1,22 @@
+{$selector-breadcrumb}
+    padding $breadcrumb-padding
+    color $breadcrumb-link-color
+
+    {$selector-breadcrumb}-gap
+        display inline-block
+        margin 0 10px
+
+    {$selector-breadcrumb}-link
+        cursor pointer
+        text-decoration none
+        color $breadcrumb-link-color
+
+    {$selector-breadcrumb-item}
+
+        &:last-child
+            {$selector-breadcrumb}-link
+                font-weight bold
+                color #000
+
+            {$selector-breadcrumb}-gap
+                display none

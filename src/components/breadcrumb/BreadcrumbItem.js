@@ -1,10 +1,10 @@
 export default {
     template: `
-        <span class="bell-bread-crumb-item">
-            <a {{#if to}}href="{{to}}"{{/if}} class="bell-bread-crumb-link">
+        <span class="bell-breadcrumb-item bell-text">
+            <a {{#if to}}href="{{to}}"{{/if}} class="bell-breadcrumb-link">
                 <slot name="children" />
             </a>
-            <span class="bell-bread-crumb-gap">
+            <span class="bell-breadcrumb-gap">
                 {{#if separator}}
                     {{separator}}
                 {{else}}

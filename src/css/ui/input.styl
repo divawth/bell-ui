@@ -1,0 +1,53 @@
+{$selector-textarea},
+{$selector-input}
+    display inline-block
+    position relative
+    vertical-align middle
+    width 100%
+    overflow hidden
+
+    ui-input()
+
+    {$selector-input-el}
+        border none
+        box-sizing border-box
+        display inline-block
+        width 100%
+        outline none
+        background-image none
+        position relative
+        cursor $cursor-text
+        background-color transparent
+        transition border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out
+
+        ui-input-el()
+
+
+    &{$selector-input}-clearable
+        {$selector-input-el}
+            padding-right $input-clearable-width
+
+        {$selector-input}-clear-icon
+            position absolute
+            right 0
+            text-align center
+            cursor $cursor-clickable
+
+            opacity 0
+            transition opacity .2s ease-in-out
+
+            ui-input-clear-icon()
+
+        {$selector-hover}
+            {$selector-input}-clear-icon
+                opacity 1
+
+    &{$selector-input}-disabled
+        background-color $input-disabled-backround-color
+        cursor $cursor-disabled
+
+        {$selector-input-el}
+            cursor $cursor-disabled
+
+        {$selector-hover}
+            border-color $input-border-color
