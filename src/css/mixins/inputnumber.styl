@@ -1,0 +1,14 @@
+input-number-style(style)
+    ui-set('width', style['width']);
+    ui-set('height', style['height']);
+
+    {$selector-input-number-wrapper}
+        ui-set('wrapper-padding', style['wrapper-padding']);
+
+ui-input-number()
+
+    ui-connect(
+        hash: $input-number-hash,
+        each: input-number-style
+    )
+

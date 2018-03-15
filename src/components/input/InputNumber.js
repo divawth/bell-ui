@@ -6,8 +6,8 @@ export default {
         {{#if readonly}} bell-input-number-readonly{{/if}}
         ">
             <div class="bell-input-number-actions">
-                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>
-                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>
+                <span class="bell-icon icon-ios-arrow-up" on-click="up()"></span>
+                <span class="bell-icon icon-ios-arrow-down" on-click="down()"></span>
             </div>
             <div class="bell-input-number-wrapper">
                 <input type="text" class="bell-input"
@@ -50,12 +50,12 @@ export default {
         },
         onFocus: {
             type: 'function'
-        }, 
+        },
         onBlur: {
             type: 'function'
         }
     },
-    
+
     methods: {
         up: function () {
             var me = this;
