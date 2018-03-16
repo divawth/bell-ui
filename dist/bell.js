@@ -1,5 +1,5 @@
 (function (global, factory) {
-    (factory());
+	(factory());
 }(this, (function () { 'use strict';
 
 var addClass = function addClass(element, className) {
@@ -851,7 +851,7 @@ var Input = {
 };
 
 var InputNumber = {
-    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
     propTypes: {
         maxValue: {
             type: ['number', 'string']

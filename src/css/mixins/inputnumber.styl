@@ -3,7 +3,11 @@ input-number-style(style)
     ui-set('height', style['height']);
 
     {$selector-input-number-wrapper}
-        ui-set('wrapper-padding', style['wrapper-padding']);
+        ui-set('padding', style['wrapper-padding']);
+
+    {$selector-input-number-actions}
+        {$selector-input-number-icon}
+            ui-set('line-height', style['line-height']);
 
 ui-input-number()
 
