@@ -6739,3 +6739,128 @@ button.bell-button {
 .bell-datepicker-year .bell-datepicker-body .bell-datepicker-col:hover {
   color: #1c90f3;
 }
+.bell-page {
+  user-select: none;
+}
+.bell-page .bell-page-list .bell-page-item {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 4px;
+}
+.bell-page .bell-page-list .bell-page-item .bell-page-prev {
+  margin-right: 6px;
+}
+.bell-page .bell-page-list .bell-page-item > .bell-icon {
+  line-height: 32px;
+}
+.bell-page-small .bell-page-list .bell-page-item {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin-right: 2px;
+}
+.bell-page-small .bell-page-list .bell-page-item .bell-page-prev {
+  margin-right: 4px;
+}
+.bell-page-small .bell-page-list .bell-page-item > .bell-icon {
+  line-height: 32px;
+}
+.bell-page .bell-page-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.bell-page .bell-page-item {
+  display: inline-block;
+  vertical-align: middle;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease-in-out;
+  color: #666;
+}
+.bell-page .bell-page-item.bell-active,
+.bell-page .bell-page-item:hover {
+  color: #1c90f3;
+  border-color: #1c90f3;
+}
+.bell-page .bell-page-item.bell-disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  border-color: #ccc;
+}
+.bell-page .bell-page-item.bell-disabled.bell-page .bell-page-item.bell-disabled.hover,
+.bell-page .bell-page-item.bell-disabled:hover {
+  color: #ccc;
+  border-color: #ccc;
+}
+.bell-page .bell-page-item.bell-page-item-next:after,
+.bell-page .bell-page-item.bell-page-item-prev:after {
+  content: "\2022\2022\2022";
+  display: block;
+  letter-spacing: 1px;
+  color: #ccc;
+  text-align: center;
+}
+.bell-page .bell-page-item.bell-page-item-next .bell-icon,
+.bell-page .bell-page-item.bell-page-item-prev .bell-icon {
+  display: none;
+}
+.bell-page .bell-page-item.bell-page-item-next.bell-page .bell-page-item.bell-page-item-next.hover:after,
+.bell-page .bell-page-item.bell-page-item-prev.bell-page .bell-page-item.bell-page-item-prev.hover:after,
+.bell-page .bell-page-item.bell-page-item-next:hover:after,
+.bell-page .bell-page-item.bell-page-item-prev:hover:after {
+  display: none;
+}
+.bell-page .bell-page-item.bell-page-item-next.bell-page .bell-page-item.bell-page-item-next.hover .bell-icon,
+.bell-page .bell-page-item.bell-page-item-prev.bell-page .bell-page-item.bell-page-item-prev.hover .bell-icon,
+.bell-page .bell-page-item.bell-page-item-next:hover .bell-icon,
+.bell-page .bell-page-item.bell-page-item-prev:hover .bell-icon {
+  display: inline-block;
+}
+.bell-page .bell-page-select {
+  display: inline-block;
+  width: 100px;
+  margin-right: 10px;
+}
+.bell-page .bell-page-elevator {
+  display: inline-block;
+}
+.bell-page .bell-page-elevator .bell-page-input {
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
+}
+.bell-page .bell-page-total {
+  margin-right: 10px;
+}
+.bell-page .bell-page-simple {
+  display: inline-block;
+}
+.bell-page .bell-page-simple .bell-page-input {
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
+}
+.bell-page .bell-page-simple .bell-page-item {
+  border: none;
+  color: #666;
+}
+.bell-page .bell-page-simple .bell-page-item.bell-active,
+.bell-page .bell-page-simple .bell-page-item:hover {
+  color: #666;
+  border: none;
+}
+.bell-page-tiny .bell-page-list .bell-page-item {
+  border: none;
+  color: #666;
+}
+.bell-page-tiny .bell-page-list .bell-page-item.bell-active,
+.bell-page-tiny .bell-page-list .bell-page-item:hover {
+  color: #1c90f3;
+  border: none;
+}

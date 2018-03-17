@@ -1,0 +1,114 @@
+{$selector-page}
+    user-select none
+
+    ui-page()
+
+    {$selector-page}-list
+        list-style none
+        padding 0
+        margin 0
+        display inline-block
+
+    {$selector-page}-item
+        display inline-block
+        vertical-align middle
+        list-style none
+        text-align center
+        cursor pointer
+        border-radius $radius-base
+        border 1px solid $brand-border
+        transition all .2s ease-in-out
+
+        color $page-item-color
+
+        &.bell-active,
+        &:hover
+            color $page-item-hover-color
+            border-color $page-item-hover-border-color
+
+
+        &.bell-disabled
+
+            cursor not-allowed
+            color $brand-border
+            border-color $brand-border
+
+            &{$selector-hover}
+
+                color $brand-border
+                border-color $brand-border
+
+        &{$selector-page-item}-next,
+        &{$selector-page-item}-prev
+            &:after
+                content "\2022\2022\2022"
+                display block
+                letter-spacing 1px
+                color $brand-border
+                text-align center
+
+            {$selector-icon}
+
+                display none
+
+            &{$selector-hover}
+                &:after
+                    display none
+
+                {$selector-icon}
+
+                    display inline-block
+
+    {$selector-page}-select
+
+        display inline-block
+        width $page-select-width
+        margin-right $page-select-margin-right
+
+    {$selector-page}-elevator
+
+        display inline-block
+
+        {$selector-page}-input
+
+            width $page-input-width
+            display inline-block
+            margin $page-input-margin
+
+    {$selector-page}-total
+
+        margin-right $page-total-margin-right
+
+
+    {$selector-page}-simple
+
+        display inline-block
+
+        {$selector-page}-input
+
+            width $page-input-width
+            display inline-block
+            margin $page-input-margin
+
+        {$selector-page}-item
+
+            border none
+            color $page-item-color
+
+            &.bell-active,
+            &:hover
+
+                color $page-item-color
+                border none
+
+{$selector-page}-tiny
+    {$selector-page}-list
+        {$selector-page}-item
+
+            border none
+            color $page-item-color
+
+            &.bell-active,
+            &:hover
+                color $page-item-hover-color
+                border none
