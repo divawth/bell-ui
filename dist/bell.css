@@ -5027,7 +5027,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-button.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-button {
   color: rgba(0,0,0,0.54);
@@ -5297,7 +5297,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-buttons.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-buttons.tiny > .bell-button + .bell-button {
   margin-left: 4px;
@@ -5327,7 +5327,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-buttons.tiny.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-buttons.small > .bell-button + .bell-button {
   margin-left: 6px;
@@ -5357,7 +5357,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-buttons.small.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-buttons.large > .bell-button + .bell-button {
   margin-left: 12px;
@@ -5387,7 +5387,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-buttons.large.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-buttons.huge > .bell-button + .bell-button {
   margin-left: 14px;
@@ -5417,7 +5417,7 @@ button.bell-button {
   border-radius: 10px;
 }
 .bell-buttons.huge.border-circle {
-  border-radius: 32px;
+  border-radius: 50%;
 }
 .bell-layout {
   display: flex;
@@ -6383,4 +6383,359 @@ button.bell-button {
 }
 .bell-select.bell-select-top .bell-select-button.bell-active .bell-select-arrow {
   transform: rotate(0);
+}
+.bell-datepicker {
+  position: relative;
+  user-select: none;
+  display: inline-block;
+}
+.bell-datepicker .bell-datepicker-el {
+  display: inline-block;
+}
+.bell-datepicker .bell-datepicker-poper {
+  display: none;
+  transition: all 0.3s;
+  position: absolute;
+  opacity: 0;
+  top: 36px;
+  z-index: 1060;
+}
+.bell-datepicker .bell-datepicker-poper.bell-isPopuping {
+  display: block;
+}
+.bell-datepicker .bell-datepicker-poper.bell-show {
+  display: block;
+  opacity: 1;
+}
+.bell-datepicker .bell-datepicker-poper.bell-isPopdowning {
+  opacity: 0;
+}
+.bell-datepicker-date {
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  width: 200px;
+}
+.bell-datepicker-date .bell-datepicker-header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #f7f7f7;
+}
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
+  margin: 0;
+}
+.bell-datepicker-date .bell-datepicker-table-date {
+  font-size: 12px;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-weeks {
+  display: flex;
+  padding: 10px 10px 5px;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-weeks .bell-datepicker-col {
+  flex: 1;
+  text-align: center;
+  line-height: 1;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days {
+  padding: 5px 10px;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-row {
+  display: flex;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col {
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  color: rgba(0,0,0,0.54);
+  border-radius: 4px;
+  margin: 2px;
+  padding: 5px 0;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-prev-month,
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-last-month {
+  color: rgba(0,0,0,0.37);
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month:hover {
+  background: #1c90f3;
+  color: #fff;
+}
+.bell-datepicker-date .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-checked {
+  background: #1c90f3;
+  color: #fff;
+}
+.bell-datepicker-month {
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  width: 200px;
+}
+.bell-datepicker-month .bell-datepicker-header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #f7f7f7;
+}
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
+  margin: 0;
+}
+.bell-datepicker-month .bell-datepicker-body {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  line-height: 1;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 12px;
+  padding: 10px 0;
+}
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 25%;
+  padding: 10px 0;
+}
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.bell-datepicker-col-checked {
+  color: #1c90f3;
+}
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.hover,
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col:hover {
+  color: #1c90f3;
+}
+.bell-datepicker-daterange {
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  width: 420px;
+}
+.bell-datepicker-daterange .bell-datepicker-header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #f7f7f7;
+}
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-month {
+  margin-right: 126px;
+}
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
+  margin: 0;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper {
+  display: flex;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date {
+  flex: 1;
+  font-size: 12px;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date + .bell-datepicker-table-date {
+  border-left: 1px solid #f7f7f7;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-weeks {
+  display: flex;
+  padding: 10px 10px 5px;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-weeks .bell-datepicker-col {
+  flex: 1;
+  text-align: center;
+  line-height: 1;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days {
+  padding: 5px 10px;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-row {
+  display: flex;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col {
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  color: rgba(0,0,0,0.54);
+  border-radius: 4px;
+  margin: 2px;
+  padding: 5px 0;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-prev-month,
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-last-month {
+  color: rgba(0,0,0,0.37);
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month.hover,
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month:hover {
+  background: #1c90f3;
+  color: #fff;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-checked {
+  background: #1c90f3;
+  color: #fff;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range {
+  position: relative;
+  border-radius: 0;
+  background-color: #e1f0fe;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range:before {
+  position: absolute;
+  content: ' ';
+  height: 100%;
+  top: 0;
+  width: 4px;
+  left: -4px;
+  background-color: #e1f0fe;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range.hover,
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range:hover {
+  background-color: #e1f0fe;
+  color: rgba(0,0,0,0.54);
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range + .bell-datepicker-col-checked {
+  position: relative;
+}
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range + .bell-datepicker-col-checked:before {
+  position: absolute;
+  content: ' ';
+  height: 100%;
+  top: 0;
+  width: 4px;
+  left: -4px;
+  background-color: #e1f0fe;
+}
+.bell-datepicker-week {
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  width: 200px;
+}
+.bell-datepicker-week .bell-datepicker-header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #f7f7f7;
+}
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
+  margin: 0;
+}
+.bell-datepicker-week .bell-datepicker-table-week {
+  width: 100%;
+  font-size: 12px;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-weeks {
+  display: flex;
+  padding: 10px 10px 5px;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-weeks .bell-datepicker-col {
+  flex: 1;
+  text-align: center;
+  line-height: 1;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row {
+  display: flex;
+  cursor: pointer;
+  color: rgba(0,0,0,0.54);
+  border-radius: 20px;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row.hover,
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row:hover {
+  background-color: #e1f0fe;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row .bell-datepicker-col {
+  flex: 1;
+  text-align: center;
+  line-height: 1;
+  border-radius: 20px;
+  padding: 5px 0;
+  margin: 2px;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row .bell-datepicker-col-prev-month,
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row .bell-datepicker-col-last-month {
+  color: rgba(0,0,0,0.37);
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row-checked {
+  background-color: #e1f0fe;
+}
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row-checked .bell-datepicker-col:first-child,
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row-checked .bell-datepicker-col:last-child {
+  background-color: #1c90f3;
+  color: #fff;
+}
+.bell-datepicker-year {
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  width: 420px;
+}
+.bell-datepicker-year .bell-datepicker-header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #f7f7f7;
+}
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+}
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
+  margin: 0;
+}
+.bell-datepicker-year .bell-datepicker-body {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  line-height: 1;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 12px;
+  padding: 10px 0;
+}
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col {
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 25%;
+  padding: 10px 0;
+}
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.bell-datepicker-col-checked {
+  color: #1c90f3;
+}
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.hover,
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col:hover {
+  color: #1c90f3;
 }

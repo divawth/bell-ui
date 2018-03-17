@@ -1,0 +1,70 @@
+{$selector-datepicker-date}
+
+    user-select none
+    box-sizing border-box
+    background-color $brand-bg
+    border-radius $radius-base
+    box-shadow $datepicker-box-shadow
+    width $datepicker-width
+
+    {$selector-datepicker-header}
+
+        box-sizing border-box
+        display flex
+        width 100%
+        padding $datepicker-date-header-padding
+        border-bottom 1px solid $datepicker-date-header-border-color
+
+        {$selector-datepicker-header}-button
+
+            flex 1
+            text-align center
+            cursor pointer
+
+            {$selector-icon}
+                margin 0
+
+    {$selector-datepicker}-table-date
+
+        font-size $datepicker-date-font-size
+
+        {$selector-datepicker}-weeks
+
+            display flex
+            padding $datepicker-date-week-padding
+
+            {$selector-datepicker}-col
+
+                flex 1
+                text-align center
+                line-height 1
+
+        {$selector-datepicker}-days
+
+            padding $datepicker-date-body-padding
+
+            {$selector-datepicker}-row
+
+                display flex
+
+            {$selector-datepicker}-col
+                cursor pointer
+                flex 1
+                text-align center
+                color $datepicker-date-item-color
+                border-radius $datepicker-date-item-border-radius
+                margin $datepicker-date-item-margin
+                padding $datepicker-date-item-padding
+
+                &-prev-month,
+                &-last-month
+                    color $datepicker-date-item-disabled-color
+
+                &-current-month
+                    &:hover
+                        background $datepicker-date-item-checked-background-color
+                        color $datepicker-date-item-checked-color
+
+                &-checked
+                    background $datepicker-date-item-checked-background-color
+                    color $datepicker-date-item-checked-color
