@@ -128,3 +128,22 @@ ui-collection-tight(selector-item, gap-item = 0)
                 if gap-item != 0
                     margin-left 0
                 margin-top 0
+
+ui-scrollbar()
+
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+    ::-webkit-scrollbar {
+        height: 2px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgba(0,0,0,0);
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #d1d1d1;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #b3b3b3;
+    }

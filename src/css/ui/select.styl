@@ -1,0 +1,120 @@
+{$selector-select}
+    display inline-block
+    width 100%
+    position relative
+    box-sizing border-box
+    vertical-align middle
+    line-height 1.2
+    user-select none
+    text-align left
+
+    ui-scrollbar()
+    ui-select()
+
+    {$selector-select-button}
+        display block
+        box-sizing border-box
+        outline 0
+        cursor pointer
+        position relative
+
+        background-color $brand-bg
+        border-radius $select-button-border-radius
+        border 1px solid $brand-border
+        transition all .2s ease-in-out
+
+        &{$selector-hover}
+            border-color $brand-primary-hover
+
+        &{$selector-active}
+            outline 0
+            border-color $brand-primary-hover
+            box-shadow $select-button-border-active-shadow
+
+            {$selector-select}-arrow
+                transform rotate(180deg)
+
+        {$selector-select}-arrow
+            position absolute
+            top 50%
+            right 8px
+            line-height 1
+            margin-top -7px
+            font-size 14px
+            color #80848f
+            transition all .2s ease-in-out
+
+        {$selector-select}-value,
+        {$selector-select}-placeholder
+            display block
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+            color $brand-muted
+
+            &.bell-hide
+                display none
+
+    {$selector-select}-dropdown
+        width 100%
+        overflow auto
+        box-sizing border-box
+        box-shadow 0 1px 6px rgba(0,0,0,.2)
+        transition all .4s ease-in-out
+        position absolute
+        left 0
+        opacity 1
+        background-color $brand-bg
+        border-radius $select-button-border-radius
+        z-index $zindex-select
+
+        &.bell-hide
+            opacity 0
+            display none
+
+        {$selector-select}-dropdown-list
+            list-style none
+            padding 0
+            margin 0
+
+            {$selector-select}-dropdown-item
+                clear both
+                white-space nowrap
+                list-style none
+                cursor pointer
+
+                color $brand-secondary
+
+                &{$selector-hover}
+                    background-color $brand-bg-hover
+
+                &.bell-focus
+                    background-color $brand-bg-hover
+
+                &{$selector-active}
+                    color #fff
+                    background rgba(45,140,240,.9)
+
+    &{$selector-select}-disabled
+        {$selector-select}-button
+
+            cursor not-allowed
+            background-color $brand-bg-disabled
+
+            &{$selector-hover}
+                border-color $brand-border
+
+    &{$selector-select}-top
+        {$selector-select}-dropdown
+
+            top auto
+
+        {$selector-select}-button
+            {$selector-select}-arrow
+
+                transform rotate(180deg)
+
+            &{$selector-active}
+                {$selector-select}-arrow
+
+                    transform rotate(0)
