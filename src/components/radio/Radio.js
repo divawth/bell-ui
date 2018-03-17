@@ -5,7 +5,7 @@ export default {
 {{#if isDisabled}} bell-radio-disabled{{/if}}
 ">
     <span class="bell-radio-wrapper" on-click="click()">
-        <span class="bell-redio-inner"></span>
+        <span class="bell-radio-inner"></span>
         <input class="bell-radio-input" type="radio" value="{{value}}" />
     </span>
 

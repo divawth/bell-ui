@@ -909,7 +909,7 @@ var InputNumber = {
 };
 
 var Radio = {
-    template: '\n<label class="bell-radio\n{{#if isChecked}} bell-active{{/if}}\n{{#if isDisabled}} bell-radio-disabled{{/if}}\n">\n    <span class="bell-radio-wrapper" on-click="click()">\n        <span class="bell-redio-inner"></span>\n        <input class="bell-radio-input" type="radio" value="{{value}}" />\n    </span>\n\n    <span class="bell-radio-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            <slot name="children" />\n        {{/if}}\n    </span>\n</label>\n    ',
+    template: '\n<label class="bell-radio\n{{#if isChecked}} bell-active{{/if}}\n{{#if isDisabled}} bell-radio-disabled{{/if}}\n">\n    <span class="bell-radio-wrapper" on-click="click()">\n        <span class="bell-radio-inner"></span>\n        <input class="bell-radio-input" type="radio" value="{{value}}" />\n    </span>\n\n    <span class="bell-radio-label">\n        {{#if label}}\n            {{label}}\n        {{else}}\n            <slot name="children" />\n        {{/if}}\n    </span>\n</label>\n    ',
 
     propTypes: {
         label: {

@@ -1,44 +1,53 @@
-@radio-inner-width: 14px;
-@radio-inner-after-width: 8px;
-@radio-inner-after-margin-left: -4px;
-@radio-inner-color: #fff;
-@radio-inner-border-color: #d7dde4;
-@radio-inner-hover-border-color: #bcbcbc;
-@radio-label-margin-left: 4px;
-@radio-font-size: 12px;
-@radio-margin-right: 8px;
-@radio-background-color: #fff;
-@radio-active-background-color: @infoColor;
-@radio-inner-active-border-color: @infoColor;
-@radio-success-active-background-color: @successColor;
-@radio-success-inner-active-border-color: @successColor;
-@radio-warning-active-background-color: @warningColor;
-@radio-warning-inner-active-border-color: @warningColor;
-@radio-error-active-background-color: @errorColor;
-@radio-error-inner-active-border-color: @errorColor;
-@radio-inner-disabled-background-color: #f3f3f3;
-@radio-inner-after-disabled-background-color: #ccc;
-@radio-inner-disabled-border-color: #dddee1;
+$selector-radio-group = '.bell-radio-group'
+$selector-radio = '.bell-radio'
+$selector-active = '.bell-active'
 
-@radio-button-radius: 4px;
-@radio-button-border-color: #ccc;
+$radio-font-size = 12px;
+$radio-margin-right = 8px;
 
-@radio-button-padding: 8px;
-@radio-button-large-padding: 13px;
-@radio-button-small-padding: 4px;
+$radio-inner-width = 14px;
+$radio-background-color = #fff;
+$radio-inner-border-color = #d7dde4;
+$radio-inner-hover-border-color = #bcbcbc;
 
-@radio-button-active-border-color: @infoColor;
-@radio-button-active-color: @infoColor;
-@radio-button-success-active-border-color: @successColor;
-@radio-button-success-active-color: @successColor;
-@radio-button-warning-active-border-color: @warningColor;
-@radio-button-warning-active-color: @warningColor;
-@radio-button-error-active-border-color: @errorColor;
-@radio-button-error-active-color: @errorColor;
-@radio-button-gap: 10px;
-@radio-button-font-size: 13px;
-@radio-button-large-font-size: 14px;
-@radio-button-small-font-size: 12px;
-@radio-button-disabled-border-color: #dddee1;
-@radio-button-disabled-color: #ccc;
-@radio-button-disabled-background-color: #f7f7f7;
+$radio-inner-after-width = 8px;
+$radio-inner-after-margin-left = -4px;
+$radio-inner-color = #fff;
+$radio-label-margin-left = 4px;
+
+$radio-active-background-color = $brand-primary;
+$radio-inner-active-border-color = $brand-primary;
+
+$radio-success-active-background-color = $brand-success;
+$radio-success-inner-active-border-color = $brand-success;
+$radio-warning-active-background-color = $brand-warning;
+$radio-warning-inner-active-border-color = $brand-warning;
+$radio-error-active-background-color = $brand-error;
+$radio-error-inner-active-border-color = $brand-error;
+
+$radio-inner-disabled-background-color = #f3f3f3;
+$radio-inner-after-disabled-background-color = #ccc;
+$radio-inner-disabled-border-color = #dddee1;
+
+$radio-brand-hash = {
+    'success': {
+        bg-color: $radio-success-active-background-color,
+        border-color: $radio-success-inner-active-border-color
+    },
+    'warning': {
+        bg-color: $radio-warning-active-background-color,
+        border-color: $radio-warning-inner-active-border-color
+    },
+    'error': {
+        bg-color: $radio-error-active-background-color,
+        border-color: $radio-error-inner-active-border-color
+    },
+    'danger': {
+        bg-color: $radio-danger-active-background-color,
+        border-color: $radio-danger-inner-active-border-color
+    },
+    'info': {
+        bg-color: $radio-info-active-background-color,
+        border-color: $radio-info-inner-active-border-color
+    }
+}

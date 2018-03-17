@@ -5040,8 +5040,7 @@ button.bell-button {
   background-color: #f9f9f9;
   border: 1px solid #ccc;
 }
-.bell-button.active,
-.bell-button:active {
+.bell-button .bell-active {
   color: rgba(0,0,0,0.54);
   background-color: #f6f6f6;
   border: 1px solid #ccc;
@@ -5064,8 +5063,7 @@ button.bell-button {
   background-color: #fff;
   border: 1px solid #1c90f3;
 }
-.bell-button.ghost.active,
-.bell-button.ghost:active {
+.bell-button.ghost .bell-active {
   color: #1c90f3;
   background-color: #fff;
   border: 1px solid #1c90f3;
@@ -5088,8 +5086,7 @@ button.bell-button {
   background-color: #fff;
   border: 1px dashed #1c90f3;
 }
-.bell-button.dashed.active,
-.bell-button.dashed:active {
+.bell-button.dashed .bell-active {
   color: #1c90f3;
   background-color: #fff;
   border: 1px dashed #1c90f3;
@@ -5112,8 +5109,7 @@ button.bell-button {
   background-color: #fff;
   border: none;
 }
-.bell-button.text.active,
-.bell-button.text:active {
+.bell-button.text .bell-active {
   color: #1c90f3;
   background-color: #fff;
   border: none;
@@ -5136,8 +5132,7 @@ button.bell-button {
   background-color: #57a3f3;
   border: 1px solid #57a3f3;
 }
-.bell-button.primary.active,
-.bell-button.primary:active {
+.bell-button.primary .bell-active {
   color: #fff;
   background-color: #57a3f3;
   border: 1px solid #57a3f3;
@@ -5160,8 +5155,7 @@ button.bell-button {
   background-color: #47cb89;
   border: 1px solid #47cb89;
 }
-.bell-button.success.active,
-.bell-button.success:active {
+.bell-button.success .bell-active {
   color: #fff;
   background-color: #47cb89;
   border: 1px solid #47cb89;
@@ -5184,8 +5178,7 @@ button.bell-button {
   background-color: #f16543;
   border: 1px solid #f16543;
 }
-.bell-button.error.active,
-.bell-button.error:active {
+.bell-button.error .bell-active {
   color: #fff;
   background-color: #f16543;
   border: 1px solid #f16543;
@@ -5208,8 +5201,7 @@ button.bell-button {
   background-color: #5cc6f5;
   border: 1px solid #5cc6f5;
 }
-.bell-button.info.active,
-.bell-button.info:active {
+.bell-button.info .bell-active {
   color: #fff;
   background-color: #5cc6f5;
   border: 1px solid #5cc6f5;
@@ -5232,8 +5224,7 @@ button.bell-button {
   background-color: #ffad33;
   border: 1px solid #ffad33;
 }
-.bell-button.warning.active,
-.bell-button.warning:active {
+.bell-button.warning .bell-active {
   color: #fff;
   background-color: #ffad33;
   border: 1px solid #ffad33;
@@ -5256,8 +5247,7 @@ button.bell-button {
   background-color: #f16543;
   border: 1px solid #f16543;
 }
-.bell-button.danger.active,
-.bell-button.danger:active {
+.bell-button.danger .bell-active {
   color: #fff;
   background-color: #f16543;
   border: 1px solid #f16543;
@@ -5610,7 +5600,7 @@ button.bell-button {
   padding: 4px 8px;
 }
 .bell-input-number .bell-input-number-actions .bell-icon {
-  line-height: 1;
+  line-height: 1.2;
 }
 .bell-input-number-small {
   width: 80px;
@@ -5620,7 +5610,7 @@ button.bell-button {
   padding: 2px 6px;
 }
 .bell-input-number-small .bell-input-number-actions .bell-icon {
-  line-height: 1.2;
+  line-height: 1;
 }
 .bell-input-number-large {
   width: 80px;
@@ -5698,4 +5688,496 @@ button.bell-button {
 .bell-input-number-readonly.bell-input-number-readonly.hover,
 .bell-input-number-readonly:hover {
   border-color: ;
+}
+.bell-radio-group-wrapper {
+  display: inline-block;
+}
+.bell-radio-group-wrapper .bell-radio {
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-right: 8px;
+  user-select: none;
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner {
+  position: relative;
+  display: inline-block;
+  border-radius: 100%;
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+  border: 1px solid #d7dde4;
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-innerselector-hover {
+  border-color: #bcbcbc;
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  content: ' ';
+  position: absolute;
+  border-radius: 100%;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background-color: #1c90f3;
+  opacity: 0;
+  transform: scale(0);
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-input {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.bell-radio-group-wrapper .bell-radio .bell-radio-label {
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.bell-radio-group-wrapper .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #1c90f3;
+}
+.bell-radio-group-wrapper .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner:after {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled {
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner {
+  border-color: #dddee1;
+  background-color: #f3f3f3;
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #ccc;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-input {
+  cursor: not-allowed;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #dddee1;
+}
+.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-label {
+  cursor: not-allowed;
+}
+.bell-radio-vertical .bell-radio {
+  width: 100%;
+  display: block;
+}
+.bell-radio-vertical .bell-radio +.bell-radio {
+  margin-top: 10px;
+}
+.bell-radio-group-success .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #19be6b;
+}
+.bell-radio-group-success .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #19be6b;
+}
+.bell-radio-group-warning .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #f90;
+}
+.bell-radio-group-warning .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #f90;
+}
+.bell-radio-group-error .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #ed3f14;
+}
+.bell-radio-group-error .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #ed3f14;
+}
+.bell-radio-group-danger .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: $radio-danger-active-background-color;
+}
+.bell-radio-group-danger .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: $radio-danger-inner-active-border-color;
+}
+.bell-radio-group-info .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: $radio-info-active-background-color;
+}
+.bell-radio-group-info .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: $radio-info-inner-active-border-color;
+}
+.bell-radio-button {
+  display: inline-block;
+  user-select: none;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.bell-radio-button +.bell-radio-button {
+  margin-left: 10px;
+}
+.bell-radio-button .bell-radio-wrapper {
+  display: none;
+}
+.bell-radio-button .bell-radio {
+  margin-right: 0;
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.bell-radio-button .bell-radio +.bell-radio {
+  margin-left: -1px;
+}
+.bell-radio-button .bell-radio.bell-active {
+  border-color: #1c90f3;
+  color: #1c90f3;
+}
+.bell-radio-button .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent;
+}
+.bell-radio-button .bell-radio:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.bell-radio-button .bell-radio:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.bell-radio-button.bell-radio-group-success .bell-radio.bell-active {
+  border-color: #19be6b;
+  color: #19be6b;
+}
+.bell-radio-button.bell-radio-group-warning .bell-radio.bell-active {
+  border-color: #f90;
+  color: #f90;
+}
+.bell-radio-button.bell-radio-group-error .bell-radio.bell-active {
+  border-color: #ed3f14;
+  color: #ed3f14;
+}
+.bell-radio-button.bell-radio-group-danger .bell-radio.bell-active {
+  border-color: #d9534f;
+  color: #d9534f;
+}
+.bell-radio-button.bell-radio-group-info .bell-radio.bell-active {
+  border-color: #38b8f3;
+  color: #38b8f3;
+}
+.bell-radio-button.bell-radio-group {
+  font-size: 13px;
+}
+.bell-radio-button.bell-radio-group .bell-radio {
+  padding: 8px;
+}
+.bell-radio-button.bell-radio-group-large {
+  font-size: 14px;
+}
+.bell-radio-button.bell-radio-group-large .bell-radio {
+  padding: 13px;
+}
+.bell-radio-button.bell-radio-group-small {
+  font-size: 12px;
+}
+.bell-radio-button.bell-radio-group-small .bell-radio {
+  padding: 4px;
+}
+.bell-radio-button .bell-radio-disabled {
+  border-color: #dddee1;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.bell-radio-button .bell-radio-disabled.bell-active {
+  border-color: #dddee1;
+  color: #ccc;
+  background-color: #f7f7f7;
+}
+.bell-checkbox {
+  user-select: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #1c90f3;
+  background-color: #1c90f3;
+}
+.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #19be6b;
+  background-color: #19be6b;
+}
+.bell-checkbox-info .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #38b8f3;
+  background-color: #38b8f3;
+}
+.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #ed3f14;
+  background-color: #ed3f14;
+}
+.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #f90;
+  background-color: #f90;
+}
+.bell-checkbox-danger .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #d9534f;
+  background-color: #d9534f;
+}
+.bell-checkbox .bell-checkbox-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+  line-height: 1;
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
+  transform: rotate(45deg) scale(1);
+}
+.bell-checkbox .bell-checkbox-inner {
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #dddee1;
+  background-color: #fff;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.bell-checkbox .bell-checkbox-inner:after {
+  display: inline-block;
+  content: " ";
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  width: 6px;
+  height: 9px;
+  border: 2px solid #fff;
+  transform: rotate(45deg) scale(0);
+  transition: all 0.2s ease-in-out;
+  border-top: 0;
+  border-left: 0;
+}
+.bell-checkbox .bell-checkbox-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+  margin: 0;
+}
+.bell-checkbox .bell-checkbox-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+.bell-checkbox-disabled {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper {
+  cursor: not-allowed;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper .bell-checkbox-inner {
+  cursor: not-allowed;
+  background-color: #f3f3f3;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  border-color: #f3f3f3;
+  background-color: #f3f3f3;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
+  border-color: #ccc;
+}
+.bell-checkbox-disabled .bell-checkbox-label {
+  cursor: not-allowed;
+}
+.bell-checkbox-vertical {
+  display: flex;
+  flex-direction: column;
+}
+.bell-checkbox-vertical .bell-checkbox {
+  flex: 1;
+}
+.bell-switch {
+  cursor: pointer;
+  line-height: 1;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+.bell-switch {
+  width: 48px;
+  height: 24px;
+  border-radius: 24px;
+}
+.bell-switch.bell-active .bell-switch-button:after {
+  left: 25px;
+}
+.bell-switch .bell-switch-button:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+}
+.bell-switch-small {
+  width: 24px;
+  height: 14px;
+  border-radius: 14px;
+}
+.bell-switch-small.bell-active .bell-switch-button:after {
+  left: 12px;
+}
+.bell-switch-small .bell-switch-button:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.bell-switch-large {
+  width: 60px;
+  height: 24px;
+  border-radius: 24px;
+}
+.bell-switch-large.bell-active .bell-switch-button:after {
+  left: 37px;
+}
+.bell-switch-large .bell-switch-button:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+}
+.bell-switch {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch.bell-active {
+  background-color: #1c90f3;
+  border-color: #1c90f3;
+}
+.bell-switch .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-success {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-success.bell-active {
+  background-color: #19be6b;
+  border-color: #19be6b;
+}
+.bell-switch-success .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-error {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-error.bell-active {
+  background-color: #ed3f14;
+  border-color: #ed3f14;
+}
+.bell-switch-error .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-warning {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-warning.bell-active {
+  background-color: #f90;
+  border-color: #f90;
+}
+.bell-switch-warning .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-danger {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-danger.bell-active {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+.bell-switch-danger .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-info {
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+.bell-switch-info.bell-active {
+  background-color: #38b8f3;
+  border-color: #38b8f3;
+}
+.bell-switch-info .bell-switch-button:after {
+  background-color: #fff;
+}
+.bell-switch-disabled {
+  border: 1px solid #dddee1;
+  background-color: #fcfcfc;
+}
+.bell-switch-disabled.bell-active {
+  background-color: #fff;
+  border-color: #dddee1;
+}
+.bell-switch-disabled .bell-switch-button:after {
+  background-color: #dddee1;
+}
+.bell-switch +.bell-switch {
+  margin-left: 10px;
+}
+.bell-switch.bell-active .bell-switch-button .bell-switch-on {
+  display: block;
+}
+.bell-switch.bell-active .bell-switch-off {
+  display: none;
+}
+.bell-switch .bell-switch-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.bell-switch .bell-switch-button .bell-switch-on {
+  position: absolute;
+  font-size: 12px;
+  top: 5px;
+  color: #fff;
+  display: none;
+  left: 8px;
+}
+.bell-switch .bell-switch-button .bell-switch-off {
+  position: absolute;
+  font-size: 12px;
+  top: 5px;
+  color: #fff;
+  left: auto;
+  right: 8px;
+}
+.bell-switch .bell-switch-button:after {
+  content: " ";
+  position: absolute;
+  cursor: pointer;
+  left: 1px;
+  top: 1px;
+  transition: left 0.2s ease-in-out, width 0.2s ease-in-out;
+}
+.bell-switch-disabled {
+  cursor: not-allowed;
+}
+.bell-switch-disabled .bell-switch-button {
+  cursor: not-allowed;
+}
+.bell-switch-disabled .bell-switch-button:after {
+  cursor: not-allowed;
 }

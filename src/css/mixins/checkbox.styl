@@ -1,0 +1,12 @@
+checkbox-style(style)
+    {$selector-checkbox}-wrapper
+        &{$selector-active}
+            {$selector-checkbox}-inner
+                ui-set('border-color', style['border-color'])
+                ui-set('background-color', style['bg-color'])
+
+ui-checkbox()
+    ui-connect(
+        hash: $checkbox-brand-hash,
+        each: checkbox-style
+    )

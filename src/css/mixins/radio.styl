@@ -1,0 +1,18 @@
+radio-group-style(style)
+    {$selector-radio}
+        {$selector-radio}-wrapper
+            {$selector-radio}-inner
+                &:after
+                    ui-set('background-color', style['bg-color'])
+
+        &{$selector-active}
+            {$selector-radio}-wrapper
+                {$selector-radio}-inner
+                    ui-set('border-color', style['border-color'])
+
+ui-radio-group()
+
+    ui-connect(
+        hash: $radio-brand-hash,
+        each: radio-group-style
+    )

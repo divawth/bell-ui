@@ -1,0 +1,21 @@
+radio-button-group-style(style)
+    {$selector-radio}
+        &{$selector-active}
+            ui-set('border-color', style['border-color'])
+            ui-set('color', style['color'])
+
+radio-button-group-size(size)
+    ui-set('font-size', size['font'])
+
+    {$selector-radio}
+        ui-set('padding', size['padding'])
+
+ui-radio-button-group()
+    ui-connect(
+        hash: $radio-button-brand-hash,
+        each: radio-button-group-style
+    )
+    ui-connect(
+        hash: $radio-button-size-hash,
+        each: radio-button-group-size
+    )

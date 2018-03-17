@@ -1,0 +1,63 @@
+{$selector-switch}
+    cursor pointer
+    line-height 1
+    position relative
+    user-select none
+    vertical-align middle
+    display inline-block
+    box-sizing border-box
+    transition all .2s ease-in-out
+
+    ui-switch-size()
+    ui-switch-brand()
+
+    +{$selector-switch}
+        margin-left $switch-margin-left
+
+    &{$selector-active}
+        {$selector-switch-button}
+            {$selector-switch}-on
+                display block
+
+        {$selector-switch}-off
+            display none
+
+    {$selector-switch-button}
+        position absolute
+        width 100%
+        height 100%
+
+        {$selector-switch}-on
+            position absolute
+            font-size $switch-button-label-font-size
+            top $switch-button-label-top
+            color $switch-button-label-color
+
+            display none
+            left $switch-button-label-on-left
+
+        {$selector-switch}-off
+            position absolute
+            font-size $switch-button-label-font-size
+            top $switch-button-label-top
+            color $switch-button-label-color
+
+            left auto
+            right $switch-button-label-off-right
+
+        &:after
+            content " "
+            position absolute
+            cursor pointer
+            left 1px
+            top 1px
+            transition left .2s ease-in-out,width .2s ease-in-out
+
+{$selector-switch}-disabled
+    cursor $cursor-disabled
+
+    {$selector-switch-button}
+        cursor $cursor-disabled
+
+        &:after
+            cursor $cursor-disabled

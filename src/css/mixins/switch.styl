@@ -1,0 +1,42 @@
+switch-size-style(size)
+    ui-set('width', size['width'])
+    ui-set('height', size['height'])
+    ui-set('border-radius', size['border-radius'])
+
+    &{$selector-active}
+        {$selector-switch-button}
+            &:after
+                ui-set('left', size['after-left'])
+
+    {$selector-switch-button}
+
+        &:after
+            ui-set('width', size['after-width'])
+            ui-set('height', size['after-height'])
+            ui-set('border-radius', size['after-height'])
+
+switch-brand-style(style)
+    ui-set('border', style['border'])
+    ui-set('background-color', style['bg-color'])
+
+    &{$selector-active}
+        ui-set('background-color', style['active-bg-color'])
+        ui-set('border-color', style['active-border-color'])
+
+    {$selector-switch-button}
+        &:after
+            ui-set('background-color', style['after-bg-color'])
+
+ui-switch-size()
+
+    ui-connect(
+        hash: $switch-size-hash,
+        each: switch-size-style
+    )
+
+ui-switch-brand()
+
+    ui-connect(
+        hash: $switch-brand-hash,
+        each: switch-brand-style
+    )
