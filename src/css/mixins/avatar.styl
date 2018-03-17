@@ -1,0 +1,14 @@
+avatar-style(style)
+    ui-set('font-size', style['font'])
+
+    font-size @avatar-font-size
+    width: @avatar-large-width;
+    height: @avatar-large-width;
+    line-height: @avatar-large-width;
+    border-radius: @avatar-border-radius;
+ui-avatar()
+
+    ui-connect(
+        hash: $avatar-size-hash,
+        each: avatar-style
+    )

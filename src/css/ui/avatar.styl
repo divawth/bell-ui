@@ -1,0 +1,22 @@
+{$selector-avatar}
+
+    overflow hidden
+    display inline-block
+    text-align center
+
+    background-color $avatar-bg
+    font-size @avatar-font-size
+
+    ui-avatar()
+
+    > img
+        width 100%
+        height 100%
+
+    +{$selector-avatar}
+
+        margin-left $avatar-margin-left
+
+{$selector-avatar}-circle
+
+    border-radius $radius-circle

@@ -6864,3 +6864,16 @@ button.bell-button {
   color: #1c90f3;
   border: none;
 }
+.bell-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bell-list .bell-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bell-list .bell-item + .bell-item {
+  margin-top: 10px;
+}
