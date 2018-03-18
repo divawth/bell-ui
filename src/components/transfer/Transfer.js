@@ -30,10 +30,10 @@ export default {
 
             <div class="bell-transfer-actions">
                 <Button shape="circle" on-click="addToLeft()">
-                    <i class="bell-icon bell-icon-ios-arrow-left"></i>
+                    <i class="bell-icon icon-ios-arrow-left"></i>
                 </Button>
                 <Button shape="circle" on-click="addToRight()">
-                    <i class="bell-icon bell-icon-ios-arrow-right"></i>
+                    <i class="bell-icon icon-ios-arrow-right"></i>
                 </Button>
             </div>
 

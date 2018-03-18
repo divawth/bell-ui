@@ -1,0 +1,67 @@
+{$selector-notice}-wrapper
+
+    position fixed
+    right 0
+    top $notice-wrapper-top
+    z-index $zindex-notification
+
+{$selector-notice}
+
+    position relative
+    overflow hidden
+    transition all .3s
+    opacity 0
+    padding $notice-padding
+    border-radius $notice-border-radius
+    box-shadow $notice-box-shadow
+    background-color $brand-bg
+
+    ui-notice()
+
+    +{$selector-notice}
+        margin-top $notice-margin-top
+
+    &:before
+        content ' '
+        position absolute
+        top 0
+        bottom 0
+        left 0
+        width 4px
+
+    &.bell-show
+        opacity 1
+
+    {$selector-notice}-title
+
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+        font-size $notice-title-font-size
+        color $notice-title-color
+        line-height $notice-title-line-height
+
+    {$selector-notice}-desc
+
+        line-height 1.5
+        font-size $notice-desc-font-size
+        color $notice-desc-color
+        line-height $notice-desc-line-height
+
+    {$selector-notice}-close
+
+        position absolute
+        right 0
+        top 10px
+        cursor pointer
+        font-size $notice-close-font-size
+        padding $notice-close-padding
+        color $notice-close-color
+
+        &{$selector-hover}
+
+            color $notice-close-hover-color
+
+
+

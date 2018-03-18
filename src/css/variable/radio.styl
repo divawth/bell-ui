@@ -15,39 +15,33 @@ $radio-inner-after-margin-left = -4px;
 $radio-inner-color = #fff;
 $radio-label-margin-left = 4px;
 
-$radio-active-background-color = $brand-primary;
-$radio-inner-active-border-color = $brand-primary;
-
-$radio-success-active-background-color = $brand-success;
-$radio-success-inner-active-border-color = $brand-success;
-$radio-warning-active-background-color = $brand-warning;
-$radio-warning-inner-active-border-color = $brand-warning;
-$radio-error-active-background-color = $brand-error;
-$radio-error-inner-active-border-color = $brand-error;
-
 $radio-inner-disabled-background-color = #f3f3f3;
 $radio-inner-after-disabled-background-color = #ccc;
 $radio-inner-disabled-border-color = #dddee1;
 
 $radio-brand-hash = {
+    '': {
+        bg-color: $brand-primary,
+        border-color: $brand-primary
+    },
     'success': {
-        bg-color: $radio-success-active-background-color,
-        border-color: $radio-success-inner-active-border-color
+        bg-color: $brand-success,
+        border-color: $brand-success
     },
     'warning': {
-        bg-color: $radio-warning-active-background-color,
-        border-color: $radio-warning-inner-active-border-color
+        bg-color: $brand-warning,
+        border-color: $brand-warning
     },
     'error': {
-        bg-color: $radio-error-active-background-color,
-        border-color: $radio-error-inner-active-border-color
+        bg-color: $brand-error,
+        border-color: $brand-error
     },
     'danger': {
-        bg-color: $radio-danger-active-background-color,
-        border-color: $radio-danger-inner-active-border-color
+        bg-color: $brand-danger,
+        border-color: $brand-danger
     },
     'info': {
-        bg-color: $radio-info-active-background-color,
-        border-color: $radio-info-inner-active-border-color
+        bg-color: $brand-info,
+        border-color: $brand-info
     }
 }

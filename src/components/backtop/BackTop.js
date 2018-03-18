@@ -7,7 +7,7 @@ export default {
 "
 style="bottom: {{bottom}}px; right: {{right}}px;" on-click="back()"
 >
-    <i class="bell-icon bell-icon-chevron-up"></i>
+    <i class="bell-icon icon-chevron-up"></i>
 </div>
     `,
     propTypes: {

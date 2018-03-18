@@ -11,7 +11,7 @@ export default {
     {{else}}
         <div class="bell-spinner-list">
             {{#if type == 'circle'}}
-                <i class="bell-spinner-icon bell-icon bell-icon-load-c" style="font-size: 18px;"></i>
+                <i class="bell-spinner-icon bell-icon icon-load-c" style="font-size: 18px;"></i>
                 <span class="bell-spinner-text">
                     {{text}}
                 </span>
