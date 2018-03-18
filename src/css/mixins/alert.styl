@@ -1,0 +1,15 @@
+alert-style(style)
+
+    ui-set('border', style['border'])
+    ui-set('background-color', style['bg-color'])
+
+    {$selector-alert}-icon
+
+        ui-set('color', style['icon-color'])
+
+ui-alert()
+
+    ui-connect(
+        hash: $alert-brand-hash,
+        each: alert-style
+    )

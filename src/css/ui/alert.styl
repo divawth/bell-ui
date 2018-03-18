@@ -1,0 +1,75 @@
+{$selector-alert}
+
+    position relative
+    user-select none
+    transition all .5s ease-in-out
+
+    border-radius $radius-base
+    font-size $alert-font-size
+    line-height $alert-line-height
+    padding $alert-padding
+
+    color $alert-font-color
+
+    ui-alert()
+
+    &.bell-hide
+        opacity 0
+
+    {$selector-alert}-icon
+
+        font-size $alert-font-size
+        margin-right $alert-icon-margin-right
+        float left
+        vertical-align top
+
+    &{$selector-alert}-with-desc
+
+        {$selector-alert}-content
+
+            font-size 14px
+            line-height 1.8
+            font-weight bold
+
+        {$selector-alert}-desc
+
+            font-size 12px
+            line-height 1.8
+            font-weight normal
+
+        &{$selector-alert}-with-icon
+
+            {$selector-icon}
+
+                font-size 22px
+                line-height 45px
+                margin-right 8px
+
+    &{$selector-alert}-center
+
+        text-align center
+
+    {$selector-alert}-close
+
+        cursor pointer
+        min-width $alert-close-min-width
+        height $alert-close-height
+        line-height $alert-close-height
+        padding $alert-close-padding
+
+        text-align center
+        position absolute
+        right 0
+        top 0
+
+        > {$selector-icon}
+
+            font-size $alert-close-font-size
+            color $alert-close-font-color
+            line-height $alert-close-height
+
+            &{$selector-hover}
+
+                color $alert-close-font-hover-color
+
+

@@ -1,11 +1,15 @@
 avatar-style(style)
-    ui-set('font-size', style['font'])
 
-    font-size @avatar-font-size
-    width: @avatar-large-width;
-    height: @avatar-large-width;
-    line-height: @avatar-large-width;
-    border-radius: @avatar-border-radius;
+    ui-set('width', style['width'])
+    ui-set('height', style['width'])
+    ui-set('font-size', style['font'])
+    ui-set('line-height', style['width'])
+    ui-set('border-radius', style['border-radius'])
+
+    >{$seletor-icon}
+        ui-set('font-size', style['icon-font'])
+        ui-set('line-height', style['width'])
+
 ui-avatar()
 
     ui-connect(
