@@ -51,38 +51,38 @@
     export default {
         template: `
             <div class="template">
-                <div class="" style="margin-top: 10px;">
-                    <Button type="primary" size="huge">
+                <div style="margin-top: 10px;">
+                    <Button type="ghost" size="huge">
                         Huge
                     </Button>
-                    <Button type="primary" size="large">
+                    <Button type="ghost" size="large">
                         Large
                     </Button>
-                    <Button type="primary">
+                    <Button type="ghost">
                         Default
                     </Button>
-                    <Button type="primary" size="small">
+                    <Button type="ghost" size="small">
                         Default
                     </Button>
-                    <Button type="primary" size="tiny">
+                    <Button type="ghost" size="tiny">
                         Small
                     </Button>
                 </div>
 
                 <div class="" style="margin-top: 10px;">
-                    <Button type="primary" shape="circle" size="huge">
+                    <Button type="ghost" shape="circle" size="huge">
                         Huge
                     </Button>
-                    <Button type="primary" shape="circle" size="large">
+                    <Button type="ghost" shape="circle" size="large">
                         Large
                     </Button>
-                    <Button type="primary" shape="circle">
+                    <Button type="ghost" shape="circle">
                         Default
                     </Button>
-                    <Button type="primary" shape="circle" size="small">
+                    <Button type="ghost" shape="circle" size="small">
                         Default
                     </Button>
-                    <Button type="primary" shape="circle" size="tiny">
+                    <Button type="ghost" shape="circle" size="tiny">
                         Small
                     </Button>
                 </div>
@@ -94,14 +94,20 @@
 
     export default {
         template: `
-            <div>
-                <Button type="primary" label="搜索"></Button>
-                <Button type="primary" shape="circle" label="搜索"></Button>
-                <Button type="primary" shape="circle" label="圆角按钮"></Button>
-                <br><br>
-                <Button type="ghost" label="搜索"></Button>
-                <Button type="ghost" shape="circle" label="搜索"></Button>
-                <Button type="ghost" shape="circle" label="圆角按钮"></Button>
+            <div style="margin-top: 10px;">
+                <div class="bell-buttons">
+                    <Button type="primary" shape="radius-circle-harf" icon="ios-search"></Button>
+                    <Button type="primary" label="搜索"></Button>
+                    <Button type="primary" icon="ios-search" shape="radius-circle-harf" label="搜索"></Button>
+                    <Button type="primary" shape="radius-circle-harf" label="圆角按钮"></Button>
+                </div>
+
+                <div class="bell-buttons" style="margin-top: 10px;">
+                    <Button type="ghost" shape="radius-circle-harf" icon="ios-search"></Button>
+                    <Button type="ghost" label="搜索"></Button>
+                    <Button type="ghost" icon="ios-search" shape="radius-circle-harf" label="搜索"></Button>
+                    <Button type="ghost" shape="radius-circle-harf" label="圆角按钮"></Button>
+                </div>
             </div>
         `
     }
@@ -145,12 +151,16 @@
 
     export default {
         template: `
-            <div>
+            <div class="bell-buttons">
                 <Button type="primary" loading label="Loading..."></Button>
 
                 <Button type="primary"
-                    on-click="toLoading()"
-                    label="{{#if !loading}}Click me!{{else}} Loading...{{/if}}">
+                    on-click="toLoading()">
+                    {{#if !loading}}
+                        Click me!
+                    {{else}}
+                        Loading...
+                    {{/if}}
                 </Button>
 
                 <Button type="primary"
@@ -159,7 +169,22 @@
                     label="{{#if !loading2}}Click me!{{else}} Loading...{{/if}}">
                 </Button>
             </div>
-        `
+        `,
+        data: function () {
+            return {
+                loading: false
+            }
+        },
+        methods: {
+            toLoading: function () {
+                var me = this;
+                me.set('loading', !me.get('loading'));
+            },
+            toLoading2: function () {
+                var me = this;
+                me.set('loading2', !me.get('loading2'));
+            }
+        }
     }
 
 #### API

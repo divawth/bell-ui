@@ -17,9 +17,10 @@ button-radius(radius)
     ui-set('border-radius', radius)
 
 button-color(color, bg, border)
+    border 1px solid transparent
     ui-set('color', color)
     ui-set('background-color', bg)
-    ui-set('border', border)
+    ui-set('border-color', border)
 
 button-style(style)
     button-color(
@@ -32,16 +33,22 @@ button-style(style)
         button-color(
             style['hover-color'],
             style['hover-bg'],
-            style['hover-border']
+            style['hover-border-color']
         )
     }
 
     {$selector-active} {
+        outline none
         button-color(
             style['active-color'],
             style['active-bg'],
-            style['active-border']
+            style['active-border-color']
         )
+    }
+
+    {$selector-focus} {
+        outline none
+        box-shadow 0 0 0 2px style['focus-border-color']
     }
 
     {$selector-disabled} {
@@ -49,7 +56,7 @@ button-style(style)
         button-color(
             style['disabled-color'],
             style['disabled-bg'],
-            style['disabled-border']
+            style['disabled-border-color']
         )
     }
 

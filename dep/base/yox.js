@@ -1,62 +1,8 @@
 (function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
 	(global.Yox = factory());
 }(this, (function () { 'use strict';
-
-if (!Object.keys) {
-  Object.keys = function (obj) {
-    var result = [];
-    for (var key in obj) {
-      push(result, key);
-    }
-    return result;
-  };
-  Object.create = function (proto, descriptor) {
-    function Class() {}
-    Class.prototype = proto;
-    proto = new Class();
-    var constructor = descriptor && descriptor.constructor;
-    if (constructor) {
-      proto.constructor = constructor.value;
-    }
-    return proto;
-  };
-}
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s*|\s*$/g, '');
-  };
-}
-if (!Array.prototype.map) {
-  Array.isArray = function (value) {
-    return is(value, 'array');
-  };
-  Array.prototype.indexOf = function (target) {
-    var result = -1;
-    each(this, function (item, index) {
-      if (item === target) {
-        result = index;
-        return FALSE;
-      }
-    });
-    return result;
-  };
-  Array.prototype.map = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      result.push(fn(item, index));
-    });
-    return result;
-  };
-  Array.prototype.filter = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      if (fn(item, index)) {
-        result.push(item);
-      }
-    });
-    return result;
-  };
-}
 
 
 
@@ -1673,7 +1619,7 @@ function init(api) {
     }
 
     // 不管是组件还是元素，必须先有一个元素
-    el = vnode.el = api.createElement(component$$1 ? 'i' : tag, parentNode);
+    el = vnode.el = api.createElement(component$$1 ? 'i' : tag);
 
     if (component$$1) {
 
@@ -3514,6 +3460,8 @@ function trimBreakline(content) {
   return content.replace(/^\s*[\n\r]\s*|\s*[\n\r]\s*$/g, CHAR_BLANK);
 }
 
+var textProp = win && win.SVGElement ? 'textContent' : 'innerText';
+
 /**
  * 把模板编译为抽象语法树
  *
@@ -3600,7 +3548,7 @@ function compile$$1(content) {
           // 子节点是纯文本
           if (singleChild.type === TEXT) {
             target.props = [{
-              name: 'innerText',
+              name: textProp,
               value: singleChild.text
             }];
             pop(children);
@@ -3613,7 +3561,7 @@ function compile$$1(content) {
               });
             } else {
               push(props, {
-                name: 'innerText',
+                name: textProp,
                 value: singleChild.expr
               });
             }
@@ -4457,7 +4405,7 @@ var Computed = function () {
     instance.observer = observer;
     instance.deps = [];
 
-    instance.update = function (oldValue, key, globalChanges) {
+    instance.update = function (oldValue, key, addChange) {
 
       var value = instance.value,
           changes = instance.changes || (instance.changes = {});
@@ -4469,15 +4417,29 @@ var Computed = function () {
 
       // 把依赖和计算属性自身注册到下次可能的变化中
       observer.onChange(oldValue, key);
-      // newValue 用不上，只是占位
       observer.onChange(value, keypath);
 
       // 当前计算属性是否是其他计算属性的依赖
+      var diff = function () {
+        var newValue = instance.get();
+        if (newValue !== value) {
+          addChange(newValue, value, keypath);
+          return FALSE;
+        }
+      };
+
       each$1(observer.computed, function (computed) {
-        if (computed.hasDep(keypath)) {
-          if (instance.get() !== value) {
-            globalChanges.push(keypath, value, keypath);
-            return FALSE;
+        if (computed.keypath !== keypath) {
+          var deps = computed.deps;
+
+          if (has(deps, keypath)) {
+            return diff();
+          } else {
+            for (var i = 0, len = deps.length; i < len; i++) {
+              if (startsWith$1(deps[i], keypath)) {
+                return diff();
+              }
+            }
           }
         }
       });
@@ -4694,26 +4656,53 @@ var Observer = function () {
 
     var changes = [];
 
-    var setValue = function (value, keypath) {
+    var addFuzzyChange = function (fuzzyKeypaths, newValue, oldValue, key) {
+      if (newValue !== oldValue) {
 
-      keypath = normalize(keypath);
+        each(fuzzyKeypaths, function (fuzzyKeypath) {
+          if (matchKeypath(key, fuzzyKeypath)) {
+            changes.push(fuzzyKeypath, oldValue, key);
+          }
+        });
 
-      var newValue = value,
-          oldValue = instance.get(keypath);
+        // 我们认为 $ 开头的变量是不可递归的
+        // 比如浏览器中常见的 $0 表示当前选中元素
+        // DOM 元素是不能递归的
+        if (startsWith(key, '$')) {
+          return;
+        }
 
-      if (newValue === oldValue) {
-        return;
+        var newIs = string(newValue),
+            oldIs = string(oldValue);
+        if (newIs || oldIs) {
+          addFuzzyChange(fuzzyKeypaths, newIs ? newValue[RAW_LENGTH] : UNDEFINED, oldIs ? oldValue[RAW_LENGTH] : UNDEFINED, join$1(key, RAW_LENGTH));
+        } else {
+          newIs = object(newValue), oldIs = object(oldValue);
+          if (newIs || oldIs) {
+            diffObject(newIs && newValue, oldIs && oldValue, function (newValue, oldValue, prop) {
+              addFuzzyChange(fuzzyKeypaths, newValue, oldValue, join$1(key, prop));
+            });
+          } else {
+            diffArray(array(newValue) && newValue, array(oldValue) && oldValue, function (newValue, oldValue, index) {
+              addFuzzyChange(fuzzyKeypaths, newValue, oldValue, join$1(key, index));
+            });
+          }
+        }
       }
+    };
 
-      var getNewValue = function (key) {
-        if (key === keypath || value == NULL) {
-          return value;
+    var getValue = function (value, key) {
+      if (value == NULL) {
+        return value;
+      } else {
+        var result = get$1(value, key);
+        if (result) {
+          return result.value;
         }
-        key = get$1(value, slice(key, startsWith$1(key, keypath)));
-        if (key) {
-          return key.value;
-        }
-      };
+      }
+    };
+
+    var addChange = function (newValue, oldValue, keypath) {
 
       var fuzzyKeypaths = [];
 
@@ -4724,11 +4713,24 @@ var Observer = function () {
           } else {
             push(fuzzyKeypaths, listenKey);
           }
-        } else if (startsWith$1(listenKey, keypath)) {
-          var listenNewValue = getNewValue(listenKey),
-              listenOldValue = instance.get(listenKey);
-          if (listenNewValue !== listenOldValue) {
-            changes.push(listenKey, listenOldValue, listenKey);
+        } else {
+          var length = startsWith$1(listenKey, keypath);
+          if (length) {
+
+            var listenNewValue,
+                listenOldValue;
+            if (listenKey === keypath) {
+              listenNewValue = newValue;
+              listenOldValue = oldValue;
+            } else {
+              var propName = slice(listenKey, length);
+              listenNewValue = getValue(newValue, propName);
+              listenOldValue = getValue(oldValue, propName);
+            }
+
+            if (listenNewValue !== listenOldValue) {
+              changes.push(listenKey, listenOldValue, listenKey);
+            }
           }
         }
       });
@@ -4737,52 +4739,31 @@ var Observer = function () {
       // 必须对数据进行递归
       // 性能确实会慢一些，但是很好用啊，几乎可以监听所有的数据
       if (fuzzyKeypaths[RAW_LENGTH]) {
-
-        var addChange = function (newValue, oldValue, key) {
-          if (newValue !== oldValue) {
-
-            each(fuzzyKeypaths, function (fuzzyKeypath) {
-              if (matchKeypath(key, fuzzyKeypath)) {
-                changes.push(fuzzyKeypath, oldValue, key);
-              }
-            });
-
-            // 我们认为 $ 开头的变量是不可递归的
-            // 比如浏览器中常见的 $0 表示当前选中元素
-            // DOM 元素是不能递归的
-            if (startsWith(key, '$')) {
-              return;
-            }
-
-            var newIs = string(newValue),
-                oldIs = string(oldValue);
-            if (newIs || oldIs) {
-              addChange(newIs ? newValue[RAW_LENGTH] : UNDEFINED, oldIs ? oldValue[RAW_LENGTH] : UNDEFINED, join$1(key, RAW_LENGTH));
-            } else {
-              newIs = object(newValue), oldIs = object(oldValue);
-              if (newIs || oldIs) {
-                diffObject(newIs && newValue, oldIs && oldValue, function (newValue, oldValue, prop) {
-                  addChange(newValue, oldValue, join$1(key, prop));
-                });
-              } else {
-                diffArray(array(newValue) && newValue, array(oldValue) && oldValue, function (newValue, oldValue, index) {
-                  addChange(newValue, oldValue, join$1(key, index));
-                });
-              }
-            }
-          }
-        };
-
-        addChange(value, instance.get(keypath), keypath);
+        addFuzzyChange(fuzzyKeypaths, newValue, oldValue, keypath);
       }
+    };
+
+    var setValue = function (value, keypath) {
+
+      keypath = normalize(keypath);
+
+      var oldValue = instance.get(keypath);
+      if (value === oldValue) {
+        return;
+      }
+
+      addChange(value, oldValue, keypath);
 
       var computed = instance.computed,
           reversedComputedKeys = instance.reversedComputedKeys;
 
       if (computed) {
         var target = computed[keypath];
-        if (target && target.set) {
-          target.set(value);
+        if (target) {
+          // 如果强制给没有 set 方法的计算属性设值，忽略
+          if (target.set) {
+            target.set(value);
+          }
           return;
         }
 
@@ -4808,7 +4789,7 @@ var Observer = function () {
     }
 
     for (var i = 0; i < changes[RAW_LENGTH]; i += 3) {
-      emitter.fire(changes[i], [changes[i + 1], changes[i + 2], changes]);
+      emitter.fire(changes[i], [changes[i + 1], changes[i + 2], addChange]);
     }
   };
 
@@ -5157,10 +5138,15 @@ attr2Prop['defaultchecked'] = 'defaultChecked';
 attr2Prop['defaultmuted'] = 'defaultMuted';
 attr2Prop['defaultselected'] = 'defaultSelected';
 
-function createElement(tagName, parentNode) {
-  var SVGElement = win.SVGElement;
+var svgTags = toObject(('svg,g,defs,desc,metadata,symbol,use,' + 'image,path,rect,circle,line,ellipse,polyline,polygon,' + 'text,tspan,tref,textpath,' + 'marker,pattern,clippath,mask,filter,cursor,view,animate,' + 'font,font-face,glyph,missing-glyph').split(','));
 
-  return tagName === 'svg' || parentNode && SVGElement && parentNode instanceof SVGElement ? doc.createElementNS('http://www.w3.org/2000/svg', tagName) : doc.createElement(tagName);
+var namespaces = {
+  svg: 'http://www.w3.org/2000/svg',
+  xlink: 'http://www.w3.org/1999/xlink'
+};
+
+function createElement(tagName) {
+  return svgTags[tagName] ? doc.createElementNS(namespaces.svg, tagName) : doc.createElement(tagName);
 }
 
 function createText(text) {
@@ -5197,6 +5183,14 @@ function setAttr(node, name, value) {
   if (propName || isBoolean) {
     setProp(node, propName || name, value);
   } else {
+    if (has$2(name, CHAR_COLON)) {
+      var parts = name.split(CHAR_COLON),
+          ns = namespaces[parts[0]];
+      if (ns) {
+        node.setAttributeNS(ns, parts[1], value);
+        return;
+      }
+    }
     node.setAttribute(name, value);
   }
 }
@@ -5207,6 +5201,14 @@ function removeAttr(node, name) {
   } else if (boolean(node[name])) {
     removeProp(node, name);
   } else {
+    if (has$2(name, CHAR_COLON)) {
+      var parts = name.split(CHAR_COLON),
+          ns = namespaces[parts[0]];
+      if (ns) {
+        node.removeAttributeNS(ns, parts[1]);
+        return;
+      }
+    }
     node.removeAttribute(name);
   }
 }
@@ -5352,120 +5354,14 @@ var COMPOSITION_END = 'compositionend';
  *
  * @type {string}
  */
-var PROPERTY_CHANGE = 'propertychange';
-
-var IEEvent = function () {
-  function IEEvent(event, element) {
-    classCallCheck(this, IEEvent);
-
-
-    extend(this, event);
-
-    this.currentTarget = element;
-    this.target = event.srcElement || element;
-    this.originalEvent = event;
-  }
-
-  IEEvent.prototype.preventDefault = function () {
-    this.originalEvent.returnValue = FALSE;
-  };
-
-  IEEvent.prototype.stopPropagation = function () {
-    this.originalEvent.cancelBubble = TRUE;
-  };
-
-  return IEEvent;
-}();
-
-function addInputListener(element, listener) {
-  listener.$listener = function (e) {
-    if (e.propertyName === 'value') {
-      e = new Event(e);
-      e.type = INPUT;
-      listener.call(this, e);
-    }
-  };
-  on$2(element, PROPERTY_CHANGE, listener.$listener);
-}
-
-function removeInputListener(element, listener) {
-  off$1(element, PROPERTY_CHANGE, listener.$listener);
-  delete listener.$listener;
-}
-
-function addChangeListener(element, listener) {
-  listener.$listener = function (e) {
-    e = new Event(e);
-    e.type = CHANGE;
-    listener.call(this, e);
-  };
-  on$2(element, CLICK, listener.$listener);
-}
-
-function removeChangeListener(element, listener) {
-  off$1(element, CLICK, listener.$listener);
-  delete listener.$listener;
-}
-
-function isBox(element) {
-  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
-}
-
-function on$2(element, type, listener) {
-  if (type === INPUT) {
-    addInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    addChangeListener(element, listener);
-  } else {
-    element.attachEvent('on' + type, listener);
-  }
-}
-
-function off$1(element, type, listener) {
-  if (type === INPUT) {
-    removeInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    removeChangeListener(element, listener);
-  } else {
-    element.detachEvent('on' + type, listener);
-  }
-}
-
-function createEvent$1(event, element) {
-  return new IEEvent(event, element);
-}
-
-function find$1(selector, context) {
-  context = context || doc;
-  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
-}
-
-function setProp$1(element, name, value) {
-  try {
-    set$1(element, name, value);
-  } catch (e) {
-    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
-      element.setAttribute('type', 'text/css');
-      element.styleSheet.cssText = value;
-    }
-  }
-}
-
-
-
-var oldApi = {
-	on: on$2,
-	off: off$1,
-	createEvent: createEvent$1,
-	find: find$1,
-	setProp: setProp$1
-};
 
 var api = copy(domApi);
 
-if (doc && !doc.addEventListener) {
-  extend(api, oldApi);
-}
+// import * as oldApi from './oldApi'
+//
+// if (env.doc && !env.doc.addEventListener) {
+//   object.extend(api, oldApi)
+// }
 
 var _on = api.on;
 var _off = api.off;
@@ -6240,7 +6136,7 @@ var Yox = function () {
 
 
   Yox.prototype.render = function () {
-    console.time('render');
+
     var instance = this;
 
     var $template = instance.$template,
@@ -6325,7 +6221,6 @@ var Yox = function () {
 
     var result = render($template, $getter, $setter, instance);
 
-    console.timeEnd('render');
     return result;
   };
 
@@ -6624,7 +6519,7 @@ var Yox = function () {
   return Yox;
 }();
 
-Yox.version = '0.56.0';
+Yox.version = '0.56.3';
 
 /**
  * 工具，便于扩展、插件使用

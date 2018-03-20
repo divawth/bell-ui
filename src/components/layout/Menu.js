@@ -1,8 +1,7 @@
 export default {
     template: `
         <div class="bell-menu
-        {{#if mode}} bell-menu-{{mode}}{{/if}}"
-        {{#if style}} style="{{style}}"{{if}}>
+        {{#if mode}} bell-menu-{{mode}}{{/if}}">
             <slot name="children" />
         </div>
     `,
@@ -12,9 +11,6 @@ export default {
             type: 'string'
         },
         activeName: {
-            type: 'string'
-        },
-        style: {
             type: 'string'
         }
     },

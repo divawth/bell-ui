@@ -18,12 +18,12 @@ export default {
         <div class="bell-datepicker-month">
             <div class="bell-datepicker-header">
                 <span class="bell-datepicker-header-button" on-click="prevMore()">
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-left"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-left"></i>
                 </span>
 
                 <span class="bell-datepicker-header-button" on-click="prev()">
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-left"></i>
                 </span>
 
                 <span class="bell-text-medium">
@@ -31,12 +31,12 @@ export default {
                 </span>
 
                 <span class="bell-datepicker-header-button" on-click="next()">
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-right"></i>
                 </span>
 
                 <span class="bell-datepicker-header-button" on-click="nextMore()">
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-                    <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-right"></i>
+                    <i class="bell-icon bell-text-medium bell-text-muted icon-ios-arrow-right"></i>
                 </span>
             </div>
 

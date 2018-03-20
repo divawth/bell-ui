@@ -1,25 +1,26 @@
 export default {
     template: `
-<div class="bell-button
+<button class="bell-button
     {{#if type}} {{type}}{{/if}}
-    {{#if shape}} border-{{shape}}{{/if}}
+    {{#if shape}} {{shape}}{{/if}}
     {{#if size}} {{size}}{{/if}}
     {{#if long}} bell-button-long{{/if}}
     {{#if className}} {{className}}{{/if}}
+    {{#if !label && !children && icon}} icon-only{{/if}}
 "{{#if disabled}} disabled{{/if}} on-click="click">
 
     {{#if icon}}
-        <i class="bell-icon {{icon}}"></i>
+        <i class="bell-icon icon-{{icon}}"></i>
     {{/if}}
 
-    <span>
-        {{#if label}}
+    {{#if label}}
+        <span>
             {{label}}
-        {{else}}
-            <slot name="children" />
-        {{/if}}
-    </span>
-</div>
+        </span>
+    {{else}}
+        <slot name="children" />
+    {{/if}}
+</button>
     `,
     propTypes: {
         type: {
