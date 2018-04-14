@@ -16,23 +16,3 @@ ui-radio-group()
         hash: $radio-brand-hash,
         each: radio-group-style
     )
-
-radio-style(style)
-
-    {$selector-radio}-wrapper
-        {$selector-radio}-inner
-            &:after
-                ui-set('background-color', style['bg-color'])
-
-    &{$selector-active}
-        {$selector-radio}-wrapper
-            {$selector-radio}-inner
-                ui-set('border-color', style['border-color'])
-
-
-ui-radio()
-
-    ui-connect(
-        hash: $radio-brand-hash,
-        each: radio-style
-    )

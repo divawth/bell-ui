@@ -1,100 +1,96 @@
 {$selector-radio-group}-wrapper
     display inline-block
 
-{$selector-radio}
+    {$selector-radio}
 
-    cursor $cursor-clickable
-    vertical-align middle
-    font-size $radio-font-size
-    margin-right $radio-margin-right
-    user-select none
-
-    ui-radio()
-
-    {$selector-radio}-wrapper
-        position relative
+        cursor $cursor-clickable
         vertical-align middle
-        display inline-block
-        height $radio-inner-width
+        font-size $radio-font-size
+        margin-right $radio-margin-right
+        user-select none
 
-        {$selector-radio}-inner
+        {$selector-radio}-wrapper
             position relative
+            vertical-align middle
             display inline-block
-            border-radius 100%
-            width $radio-inner-width
-            height $radio-inner-width
-            background-color $radio-background-color
-            border 1px solid $radio-inner-border-color
-            transition border-color .3s
 
-            &{selector-hover}
-
-                border-color $radio-inner-hover-border-color
-
-            &:after
-                content ' '
-                position absolute
+            {$selector-radio}-inner
+                position relative
+                display inline-block
                 border-radius 100%
-                left 50%
-                top 50%
-                width $radio-inner-after-width
-                height $radio-inner-after-width
-                margin-left $radio-inner-after-margin-left
-                margin-top $radio-inner-after-margin-left
-                opacity 0
-                transform scale(0)
+                width $radio-inner-width
+                height $radio-inner-width
+                background-color $radio-background-color
+                border 1px solid $radio-inner-border-color
 
+                &{selector-hover}
 
-        {$selector-radio}-input
-            opacity 0
-            cursor pointer
-            position absolute
-            top 0
-            left 0
-            padding 0
-            margin 0
-            display inline-block
-            width 100%
-            height 100%
-
-    {$selector-radio}-label
-
-        vertical-align middle
-        margin-left $radio-label-margin-left
-
-    &{$selector-active}
-        {$selector-radio}-wrapper
-            {$selector-radio}-inner
-                &::after
-                    opacity 1
-                    transform scale(1)
-                    transition all .2s ease-in-out
-
-    &{$selector-radio}-disabled
-        cursor $cursor-disabled
-
-        {$selector-radio}-wrapper
-            {$selector-radio}-inner
-                ui-set('border-color', $radio-inner-disabled-border-color, true)
-                ui-set('background-color', $radio-inner-disabled-background-color, true)
-                cursor $cursor-disabled
+                    border-color $radio-inner-hover-border-color
 
                 &:after
-                    ui-set('display', none, true)
-                    ui-set('background-color', $radio-inner-after-disabled-background-color, true)
+                    content ' '
+                    position absolute
+                    border-radius 100%
+                    left 50%
+                    top 50%
+                    width $radio-inner-after-width
+                    height $radio-inner-after-width
+                    margin-left $radio-inner-after-margin-left
+                    margin-top $radio-inner-after-margin-left
+                    opacity 0
+                    transform scale(0)
 
 
             {$selector-radio}-input
-                cursor $cursor-disabled
+                opacity 0
+                cursor pointer
+                position absolute
+                top 0
+                left 0
+                padding 0
+                margin 0
+                display inline-block
+                width 100%
+                height 100%
 
+        {$selector-radio}-label
+
+            vertical-align middle
+            margin-left $radio-label-margin-left
 
         &{$selector-active}
             {$selector-radio}-wrapper
                 {$selector-radio}-inner
-                    border-color $radio-inner-disabled-border-color
 
-        {$selector-radio}-label
+                    &:after
+                        opacity 1
+                        transform scale(1)
+                        transition all .2s ease-in-out
+
+        &{$selector-radio}-disabled
             cursor $cursor-disabled
+
+            {$selector-radio}-wrapper
+                {$selector-radio}-inner
+                    border-color $radio-inner-disabled-border-color
+                    background-color $radio-inner-disabled-background-color
+                    cursor $cursor-disabled
+
+                    &:after
+                        background-color $radio-inner-after-disabled-background-color
+
+
+                {$selector-radio}-input
+                    cursor $cursor-disabled
+
+
+            &{$selector-active}
+                {$selector-radio}-wrapper
+                    {$selector-radio}-inner
+                        border-color $radio-inner-disabled-border-color
+
+            {$selector-radio}-label
+                cursor $cursor-disabled
 
 {$selector-radio}-vertical
     {$selector-radio}
@@ -105,5 +101,4 @@
             margin-top 10px
 
 {$selector-radio-group}
-
     ui-radio-group()

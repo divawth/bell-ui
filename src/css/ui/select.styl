@@ -96,24 +96,13 @@
                     background rgba(45,140,240,.9)
 
     &{$selector-select}-disabled
+        {$selector-select}-button
 
-        {$selector-select-button}
-
-            ui-set('cursor', not-allowed, true)
-            ui-set('background-color', $brand-bg-disabled, true)
+            cursor not-allowed
+            background-color $brand-bg-disabled
 
             &{$selector-hover}
-
-                ui-set('border-color', $brand-border, true)
-
-            &{$selector-active}
-                outline none
-                ui-set('border-color', $brand-border, true)
-                ui-set('box-shadow', none, true)
-
-                {$selector-select}-arrow
-
-                    ui-set('transform', none, true)
+                border-color $brand-border
 
     &{$selector-select}-top
         {$selector-select}-dropdown

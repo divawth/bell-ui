@@ -4,7 +4,6 @@ export default {
         {{#if size}} bell-input-number-{{size}}{{/if}}
         {{#if disabled}} bell-input-number-disabled{{/if}}
         {{#if readonly}} bell-input-number-readonly{{/if}}
-        {{#if isFocus}} bell-focus{{/if}}
         ">
             <div class="bell-input-number-actions">
                 <span class="bell-icon icon-ios-arrow-up" on-click="up()"></span>
@@ -19,13 +18,6 @@ export default {
             </div>
         </div>
     `,
-
-    data: function () {
-        return {
-            isFocus: false
-        }
-    },
-
     propTypes: {
         maxValue: {
             type: ['number', 'string']
@@ -44,7 +36,7 @@ export default {
             type: 'string'
         },
         readonly: {
-            type: ['string', 'boolean']
+            type: 'string'
         },
         disabled: {
             type: ['string', 'boolean']
@@ -74,18 +66,10 @@ export default {
             me.increase('value', me.get('step'), me.get('maxValue'));
         },
         blur: function (...args) {
-            var me = this;
-            me.set({
-                isFocus: false
-            });
-            me.get('onBlur') && me.get('onBlur')(...args)
+            this.get('onBlur') && this.get('onBlur')(...args)
         },
         focus: function (...args) {
-            var me = this;
-            me.set({
-                isFocus: true
-            });
-            me.get('onFocus') && me.get('onFocus')(...args)
+            this.get('onFocus') && this.get('onFocus')(...args)
         }
     }
 }
