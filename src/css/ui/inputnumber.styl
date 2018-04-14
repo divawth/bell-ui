@@ -6,6 +6,7 @@
     margin 0
     padding 0
     overflow hidden
+    transition all .2s ease-in-out
 
     font-size $input-number-font-size
     border-radius $input-number-border-radius
@@ -27,24 +28,27 @@
 
             opacity 1
 
+    &.bell-focus
+
+        box-shadow $input-number-focus-box-shadow
+
     {$selector-input-number-actions}
-        height 100%
         float right
         cursor pointer
-        transition all .2s ease-in-out
+        transition opacity .2s ease-in-out
         opacity 0
         width $input-number-actions-width
 
         {$selector-icon}
             display inline-block
             width 100%
-            height 50%
             text-align center
             font-weight 700
             border-left 1px solid $input-number-actions-color
 
             + {$selector-icon}
                 border-top 1px solid $input-number-actions-color
+                margin-top: -1px;
 
             &{$selector-hover}
                 color $input-number-hover-actions-color
@@ -59,19 +63,21 @@
             width 100%
             height 100%
             text-align left
+            cursor pointer
 
 {$selector-input-number}-disabled
-    {$selector-input}
-        position absolute
-        top 0
-        left 0
-        right 0
-        bottom 0
-        cursor not-allowed
+    {$selector-input-number-wrapper}
+        {$selector-input}
+            position absolute
+            top 0
+            left 0
+            right 0
+            bottom 0
+            cursor $cursor-disabled
 
-        background-color $input-number-disabled-background
-        color $input-number-disabled-color
-        padding-left $input-number-disabled-padding-left
+            background-color $input-number-disabled-background
+            color $input-number-disabled-color
+            padding-left $input-number-disabled-padding-left
 
     &{$selector-hover}
         border-color $input-number-border-color

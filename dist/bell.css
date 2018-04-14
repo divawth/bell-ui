@@ -4798,11 +4798,13 @@ button.bell-link {
   font-size: 18px;
 }
 .bell-link.hover,
-.bell-link:hover {
+.bell-link:hover,
+.bell-link.bell-hover {
   color: #f90;
 }
 .bell-link.disabled,
-.bell-link[disabled] {
+.bell-link[disabled],
+.bell-link.bell-disabled {
   color: #bbb !important;
 }
 .bell-links {
@@ -4880,7 +4882,9 @@ button.bell-link {
 .primary.bell-link.hover,
 .primary .bell-link.hover,
 .primary.bell-link:hover,
-.primary .bell-link:hover {
+.primary .bell-link:hover,
+.primary.bell-link.bell-hover,
+.primary .bell-link.bell-hover {
   color: #348eed;
 }
 .secondary {
@@ -4892,7 +4896,9 @@ button.bell-link {
 .secondary.bell-link.hover,
 .secondary .bell-link.hover,
 .secondary.bell-link:hover,
-.secondary .bell-link:hover {
+.secondary .bell-link:hover,
+.secondary.bell-link.bell-hover,
+.secondary .bell-link.bell-hover {
   color: #f90;
 }
 .success {
@@ -4904,7 +4910,9 @@ button.bell-link {
 .success.bell-link.hover,
 .success .bell-link.hover,
 .success.bell-link:hover,
-.success .bell-link:hover {
+.success .bell-link:hover,
+.success.bell-link.bell-hover,
+.success .bell-link.bell-hover {
   color: #29bd6e;
 }
 .error {
@@ -4916,7 +4924,9 @@ button.bell-link {
 .error.bell-link.hover,
 .error .bell-link.hover,
 .error.bell-link:hover,
-.error .bell-link:hover {
+.error .bell-link:hover,
+.error.bell-link.bell-hover,
+.error .bell-link.bell-hover {
   color: #eb4124;
 }
 .info {
@@ -4928,7 +4938,9 @@ button.bell-link {
 .info.bell-link.hover,
 .info .bell-link.hover,
 .info.bell-link:hover,
-.info .bell-link:hover {
+.info .bell-link:hover,
+.info.bell-link.bell-hover,
+.info .bell-link.bell-hover {
   color: #38b8f3;
 }
 .warning {
@@ -4940,7 +4952,9 @@ button.bell-link {
 .warning.bell-link.hover,
 .warning .bell-link.hover,
 .warning.bell-link:hover,
-.warning .bell-link:hover {
+.warning .bell-link:hover,
+.warning.bell-link.bell-hover,
+.warning .bell-link.bell-hover {
   color: #fd9827;
 }
 .danger {
@@ -4952,7 +4966,9 @@ button.bell-link {
 .danger.bell-link.hover,
 .danger .bell-link.hover,
 .danger.bell-link:hover,
-.danger .bell-link:hover {
+.danger .bell-link:hover,
+.danger.bell-link.bell-hover,
+.danger .bell-link.bell-hover {
   color: #d9534f;
 }
 .muted {
@@ -4964,7 +4980,9 @@ button.bell-link {
 .muted.bell-link.hover,
 .muted .bell-link.hover,
 .muted.bell-link:hover,
-.muted .bell-link:hover {
+.muted .bell-link:hover,
+.muted.bell-link.bell-hover,
+.muted .bell-link.bell-hover {
   color: rgba(0,0,0,0.37);
 }
 .bell-button {
@@ -5040,14 +5058,16 @@ button.bell-button {
   border-color: #ccc;
 }
 .bell-button.hover,
-.bell-button:hover {
+.bell-button:hover,
+.bell-button.bell-hover {
   border: 1px solid transparent;
   color: #348eed;
   background-color: #fff;
   border-color: #348eed;
 }
 .bell-button.active,
-.bell-button:active {
+.bell-button:active,
+.bell-button.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #348eed;
@@ -5055,12 +5075,14 @@ button.bell-button {
   border-color: #348eed;
 }
 .bell-button.focus,
-.bell-button:focus {
+.bell-button:focus,
+.bell-button.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(52,142,237,0.2);
 }
 .bell-button.disabled,
-.bell-button[disabled] {
+.bell-button[disabled],
+.bell-button.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5074,14 +5096,16 @@ button.bell-button {
   border-color: #ccc;
 }
 .bell-button.ghost.hover,
-.bell-button.ghost:hover {
+.bell-button.ghost:hover,
+.bell-button.ghost.bell-hover {
   border: 1px solid transparent;
   color: #348eed;
   background-color: #fff;
   border-color: #348eed;
 }
 .bell-button.ghost.active,
-.bell-button.ghost:active {
+.bell-button.ghost:active,
+.bell-button.ghost.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #348eed;
@@ -5089,12 +5113,14 @@ button.bell-button {
   border-color: #348eed;
 }
 .bell-button.ghost.focus,
-.bell-button.ghost:focus {
+.bell-button.ghost:focus,
+.bell-button.ghost.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(52,142,237,0.2);
 }
 .bell-button.ghost.disabled,
-.bell-button.ghost[disabled] {
+.bell-button.ghost[disabled],
+.bell-button.ghost.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5108,14 +5134,16 @@ button.bell-button {
   border-color: 1px dashed #ccc;
 }
 .bell-button.dashed.hover,
-.bell-button.dashed:hover {
+.bell-button.dashed:hover,
+.bell-button.dashed.bell-hover {
   border: 1px solid transparent;
   color: #348eed;
   background-color: #fff;
   border-color: 1px dashed #348eed;
 }
 .bell-button.dashed.active,
-.bell-button.dashed:active {
+.bell-button.dashed:active,
+.bell-button.dashed.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #348eed;
@@ -5123,12 +5151,14 @@ button.bell-button {
   border-color: 1px dashed #348eed;
 }
 .bell-button.dashed.focus,
-.bell-button.dashed:focus {
+.bell-button.dashed:focus,
+.bell-button.dashed.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(52,142,237,0.2);
 }
 .bell-button.dashed.disabled,
-.bell-button.dashed[disabled] {
+.bell-button.dashed[disabled],
+.bell-button.dashed.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5142,14 +5172,16 @@ button.bell-button {
   border-color: none;
 }
 .bell-button.text.hover,
-.bell-button.text:hover {
+.bell-button.text:hover,
+.bell-button.text.bell-hover {
   border: 1px solid transparent;
   color: #348eed;
   background-color: #fff;
   border-color: none;
 }
 .bell-button.text.active,
-.bell-button.text:active {
+.bell-button.text:active,
+.bell-button.text.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #348eed;
@@ -5157,12 +5189,14 @@ button.bell-button {
   border-color: transparent;
 }
 .bell-button.text.focus,
-.bell-button.text:focus {
+.bell-button.text:focus,
+.bell-button.text.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px transparent;
 }
 .bell-button.text.disabled,
-.bell-button.text[disabled] {
+.bell-button.text[disabled],
+.bell-button.text.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5176,14 +5210,16 @@ button.bell-button {
   border-color: #348eed;
 }
 .bell-button.primary.hover,
-.bell-button.primary:hover {
+.bell-button.primary:hover,
+.bell-button.primary.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #5aa5f0;
   border-color: #5aa5f0;
 }
 .bell-button.primary.active,
-.bell-button.primary:active {
+.bell-button.primary:active,
+.bell-button.primary.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5191,12 +5227,14 @@ button.bell-button {
   border-color: #5aa5f0;
 }
 .bell-button.primary.focus,
-.bell-button.primary:focus {
+.bell-button.primary:focus,
+.bell-button.primary.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(90,165,240,0.2);
 }
 .bell-button.primary.disabled,
-.bell-button.primary[disabled] {
+.bell-button.primary[disabled],
+.bell-button.primary.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5210,14 +5248,16 @@ button.bell-button {
   border-color: #29bd6e;
 }
 .bell-button.success.hover,
-.bell-button.success:hover {
+.bell-button.success:hover,
+.bell-button.success.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #4dca8b;
   border-color: #4dca8b;
 }
 .bell-button.success.active,
-.bell-button.success:active {
+.bell-button.success:active,
+.bell-button.success.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5225,12 +5265,14 @@ button.bell-button {
   border-color: #4dca8b;
 }
 .bell-button.success.focus,
-.bell-button.success:focus {
+.bell-button.success:focus,
+.bell-button.success.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(77,202,139,0.2);
 }
 .bell-button.success.disabled,
-.bell-button.success[disabled] {
+.bell-button.success[disabled],
+.bell-button.success.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5244,14 +5286,16 @@ button.bell-button {
   border-color: #eb4124;
 }
 .bell-button.error.hover,
-.bell-button.error:hover {
+.bell-button.error:hover,
+.bell-button.error.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #ef6549;
   border-color: #ef6549;
 }
 .bell-button.error.active,
-.bell-button.error:active {
+.bell-button.error:active,
+.bell-button.error.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5259,12 +5303,14 @@ button.bell-button {
   border-color: #ef6549;
 }
 .bell-button.error.focus,
-.bell-button.error:focus {
+.bell-button.error:focus,
+.bell-button.error.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(239,101,73,0.2);
 }
 .bell-button.error.disabled,
-.bell-button.error[disabled] {
+.bell-button.error[disabled],
+.bell-button.error.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5278,14 +5324,16 @@ button.bell-button {
   border-color: #38b8f3;
 }
 .bell-button.info.hover,
-.bell-button.info:hover {
+.bell-button.info:hover,
+.bell-button.info.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #5cc6f5;
   border-color: #5cc6f5;
 }
 .bell-button.info.active,
-.bell-button.info:active {
+.bell-button.info:active,
+.bell-button.info.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5293,12 +5341,14 @@ button.bell-button {
   border-color: #5cc6f5;
 }
 .bell-button.info.focus,
-.bell-button.info:focus {
+.bell-button.info:focus,
+.bell-button.info.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(92,198,245,0.2);
 }
 .bell-button.info.disabled,
-.bell-button.info[disabled] {
+.bell-button.info[disabled],
+.bell-button.info.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5312,14 +5362,16 @@ button.bell-button {
   border-color: #fd9827;
 }
 .bell-button.warning.hover,
-.bell-button.warning:hover {
+.bell-button.warning:hover,
+.bell-button.warning.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #fdac42;
   border-color: #fdac42;
 }
 .bell-button.warning.active,
-.bell-button.warning:active {
+.bell-button.warning:active,
+.bell-button.warning.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5327,12 +5379,14 @@ button.bell-button {
   border-color: #fdac42;
 }
 .bell-button.warning.focus,
-.bell-button.warning:focus {
+.bell-button.warning:focus,
+.bell-button.warning.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(253,172,66,0.2);
 }
 .bell-button.warning.disabled,
-.bell-button.warning[disabled] {
+.bell-button.warning[disabled],
+.bell-button.warning.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5346,14 +5400,16 @@ button.bell-button {
   border-color: #d9534f;
 }
 .bell-button.danger.hover,
-.bell-button.danger:hover {
+.bell-button.danger:hover,
+.bell-button.danger.bell-hover {
   border: 1px solid transparent;
   color: #fff;
   background-color: #f16543;
   border-color: #f16543;
 }
 .bell-button.danger.active,
-.bell-button.danger:active {
+.bell-button.danger:active,
+.bell-button.danger.bell-active {
   outline: none;
   border: 1px solid transparent;
   color: #fff;
@@ -5361,12 +5417,14 @@ button.bell-button {
   border-color: #f16543;
 }
 .bell-button.danger.focus,
-.bell-button.danger:focus {
+.bell-button.danger:focus,
+.bell-button.danger.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(241,101,67,0.2);
 }
 .bell-button.danger.disabled,
-.bell-button.danger[disabled] {
+.bell-button.danger[disabled],
+.bell-button.danger.bell-disabled {
   cursor: not-allowed !important;
   border: 1px solid transparent;
   color: #c7c7c7;
@@ -5608,6 +5666,7 @@ button.bell-button {
   vertical-align: middle;
   width: 100%;
   overflow: hidden;
+  transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   border: 1px solid #dddee1;
   border-radius: 4px;
   background-color: #fff;
@@ -5615,7 +5674,9 @@ button.bell-button {
 .bell-textarea.bell-textarea.hover,
 .bell-input.bell-input.hover,
 .bell-textarea:hover,
-.bell-input:hover {
+.bell-input:hover,
+.bell-textarea.bell-hover,
+.bell-input.bell-hover {
   border-color: #5aa5f0;
 }
 .bell-textarea.bell-focus,
@@ -5667,7 +5728,6 @@ button.bell-button {
   position: relative;
   cursor: text;
   background-color: transparent;
-  transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   font-size: 12px;
   color: rgba(0,0,0,0.54);
 }
@@ -5684,15 +5744,15 @@ button.bell-button {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   width: 24px;
-  height: 32px;
-  line-height: 32px;
   font-size: 16px;
   color: #ddd;
 }
 .bell-textarea.bell-input-clearable.bell-textarea.bell-input-clearable.hover .bell-input-clear-icon,
 .bell-input.bell-input-clearable.bell-input.bell-input-clearable.hover .bell-input-clear-icon,
 .bell-textarea.bell-input-clearable:hover .bell-input-clear-icon,
-.bell-input.bell-input-clearable:hover .bell-input-clear-icon {
+.bell-input.bell-input-clearable:hover .bell-input-clear-icon,
+.bell-textarea.bell-input-clearable.bell-hover .bell-input-clear-icon,
+.bell-input.bell-input-clearable.bell-hover .bell-input-clear-icon {
   opacity: 1;
 }
 .bell-textarea.bell-input-disabled,
@@ -5707,7 +5767,9 @@ button.bell-button {
 .bell-textarea.bell-input-disabled.bell-textarea.bell-input-disabled.hover,
 .bell-input.bell-input-disabled.bell-input.bell-input-disabled.hover,
 .bell-textarea.bell-input-disabled:hover,
-.bell-input.bell-input-disabled:hover {
+.bell-input.bell-input-disabled:hover,
+.bell-textarea.bell-input-disabled.bell-hover,
+.bell-input.bell-input-disabled.bell-hover {
   border-color: #dddee1;
 }
 .bell-input-number {
@@ -5718,6 +5780,7 @@ button.bell-button {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  transition: all 0.2s ease-in-out;
   font-size: 12px;
   border-radius: 4px;
   color: #495060;
@@ -5731,8 +5794,12 @@ button.bell-button {
 .bell-input-number .bell-input-number-wrapper {
   padding: 4px 8px;
 }
+.bell-input-number .bell-input-number-actions {
+  height: 32px;
+}
 .bell-input-number .bell-input-number-actions .bell-icon {
-  line-height: 1.2;
+  height: 16px;
+  line-height: 16px;
 }
 .bell-input-number-small {
   width: 80px;
@@ -5741,8 +5808,12 @@ button.bell-button {
 .bell-input-number-small .bell-input-number-wrapper {
   padding: 2px 6px;
 }
+.bell-input-number-small .bell-input-number-actions {
+  height: 24px;
+}
 .bell-input-number-small .bell-input-number-actions .bell-icon {
-  line-height: 1;
+  height: 12px;
+  line-height: 12px;
 }
 .bell-input-number-large {
   width: 80px;
@@ -5751,41 +5822,50 @@ button.bell-button {
 .bell-input-number-large .bell-input-number-wrapper {
   padding: 6px 8px;
 }
+.bell-input-number-large .bell-input-number-actions {
+  height: 36px;
+}
 .bell-input-number-large .bell-input-number-actions .bell-icon {
-  line-height: 1.2;
+  height: 18px;
+  line-height: 18px;
 }
 .bell-input-number +.bell-input-number {
   margin-left: 10px;
 }
 .bell-input-number.bell-input-number.hover,
-.bell-input-number:hover {
+.bell-input-number:hover,
+.bell-input-number.bell-hover {
   border-color: #348eed;
 }
 .bell-input-number.bell-input-number.hover .bell-input-number-actions,
-.bell-input-number:hover .bell-input-number-actions {
+.bell-input-number:hover .bell-input-number-actions,
+.bell-input-number.bell-hover .bell-input-number-actions {
   opacity: 1;
 }
+.bell-input-number.bell-focus {
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+}
 .bell-input-number .bell-input-number-actions {
-  height: 100%;
   float: right;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   opacity: 0;
   width: 24px;
 }
 .bell-input-number .bell-input-number-actions .bell-icon {
   display: inline-block;
   width: 100%;
-  height: 50%;
   text-align: center;
   font-weight: 700;
   border-left: 1px solid #ccc;
 }
 .bell-input-number .bell-input-number-actions .bell-icon + .bell-icon {
   border-top: 1px solid #ccc;
+  margin-top: -1px;
 }
 .bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.hover,
-.bell-input-number .bell-input-number-actions .bell-icon:hover {
+.bell-input-number .bell-input-number-actions .bell-icon:hover,
+.bell-input-number .bell-input-number-actions .bell-icon.bell-hover {
   color: #5aa5f0;
 }
 .bell-input-number .bell-input-number-wrapper {
@@ -5798,8 +5878,9 @@ button.bell-button {
   width: 100%;
   height: 100%;
   text-align: left;
+  cursor: pointer;
 }
-.bell-input-number-disabled .bell-input {
+.bell-input-number-disabled .bell-input-number-wrapper .bell-input {
   position: absolute;
   top: 0;
   left: 0;
@@ -5811,32 +5892,83 @@ button.bell-button {
   padding-left: 8px;
 }
 .bell-input-number-disabled.bell-input-number-disabled.hover,
-.bell-input-number-disabled:hover {
+.bell-input-number-disabled:hover,
+.bell-input-number-disabled.bell-hover {
   border-color: #dddee1;
 }
 .bell-input-number-readonly .bell-input-number-actions {
   display: none;
 }
 .bell-input-number-readonly.bell-input-number-readonly.hover,
-.bell-input-number-readonly:hover {
+.bell-input-number-readonly:hover,
+.bell-input-number-readonly.bell-hover {
   border-color: ;
 }
 .bell-radio-group-wrapper {
   display: inline-block;
 }
-.bell-radio-group-wrapper .bell-radio {
+.bell-radio {
   cursor: pointer;
   vertical-align: middle;
   font-size: 12px;
   margin-right: 8px;
   user-select: none;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper {
+.bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #348eed;
+}
+.bell-radio.bell-radio.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #348eed;
+}
+.bell-radio-success .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #29bd6e;
+}
+.bell-radio-success.bell-radio-success.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-success:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-success.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #29bd6e;
+}
+.bell-radio-warning .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #fd9827;
+}
+.bell-radio-warning.bell-radio-warning.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-warning:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-warning.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #fd9827;
+}
+.bell-radio-error .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #eb4124;
+}
+.bell-radio-error.bell-radio-error.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-error:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-error.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #eb4124;
+}
+.bell-radio-danger .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #d9534f;
+}
+.bell-radio-danger.bell-radio-danger.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-danger:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-danger.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #d9534f;
+}
+.bell-radio-info .bell-radio-wrapper .bell-radio-inner:after {
+  background-color: #38b8f3;
+}
+.bell-radio-info.bell-radio-info.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-info:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-info.bell-active .bell-radio-wrapper .bell-radio-inner {
+  border-color: #38b8f3;
+}
+.bell-radio .bell-radio-wrapper {
   position: relative;
   vertical-align: middle;
   display: inline-block;
+  height: 14px;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner {
+.bell-radio .bell-radio-wrapper .bell-radio-inner {
   position: relative;
   display: inline-block;
   border-radius: 100%;
@@ -5844,11 +5976,12 @@ button.bell-button {
   height: 14px;
   background-color: #fff;
   border: 1px solid #d7dde4;
+  transition: border-color 0.3s;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-innerselector-hover {
+.bell-radio .bell-radio-wrapper .bell-radio-innerselector-hover {
   border-color: #bcbcbc;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+.bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   content: ' ';
   position: absolute;
   border-radius: 100%;
@@ -5861,7 +5994,7 @@ button.bell-button {
   opacity: 0;
   transform: scale(0);
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-input {
+.bell-radio .bell-radio-wrapper .bell-radio-input {
   opacity: 0;
   cursor: pointer;
   position: absolute;
@@ -5873,35 +6006,38 @@ button.bell-button {
   width: 100%;
   height: 100%;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-label {
+.bell-radio .bell-radio-label {
   vertical-align: middle;
   margin-left: 4px;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-group-wrapper .bell-radio.active .bell-radio-wrapper .bell-radio-inner:after,
-.bell-radio-group-wrapper .bell-radio:active .bell-radio-wrapper .bell-radio-inner:after {
+.bell-radio.bell-radio.active .bell-radio-wrapper .bell-radio-inner::after,
+.bell-radio:active .bell-radio-wrapper .bell-radio-inner::after,
+.bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner::after {
   opacity: 1;
   transform: scale(1);
   transition: all 0.2s ease-in-out;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled {
+.bell-radio.bell-radio-disabled {
   cursor: not-allowed;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner {
+.bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner {
+  border-color: #dddee1 !important;
+  background-color: #f3f3f3 !important;
+  cursor: not-allowed;
+}
+.bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner:after {
+  display: none !important;
+  background-color: #ccc !important;
+}
+.bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-input {
+  cursor: not-allowed;
+}
+.bell-radio.bell-radio-disabled.bell-radio.bell-radio-disabled.active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio.bell-radio-disabled:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio.bell-radio-disabled.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #dddee1;
-  background-color: #f3f3f3;
-  cursor: not-allowed;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #ccc;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-input {
-  cursor: not-allowed;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled:active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #dddee1;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-label {
+.bell-radio.bell-radio-disabled .bell-radio-label {
   cursor: not-allowed;
 }
 .bell-radio-vertical .bell-radio {
@@ -5915,42 +6051,48 @@ button.bell-button {
   background-color: #348eed;
 }
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #348eed;
 }
 .bell-radio-group-success .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   background-color: #29bd6e;
 }
 .bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-success .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group-success .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group-success .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #29bd6e;
 }
 .bell-radio-group-warning .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   background-color: #fd9827;
 }
 .bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-warning .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group-warning .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group-warning .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #fd9827;
 }
 .bell-radio-group-error .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   background-color: #eb4124;
 }
 .bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-error .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group-error .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group-error .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #eb4124;
 }
 .bell-radio-group-danger .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   background-color: #d9534f;
 }
 .bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-danger .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group-danger .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group-danger .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #d9534f;
 }
 .bell-radio-group-info .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
   background-color: #38b8f3;
 }
 .bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-info .bell-radio:active .bell-radio-wrapper .bell-radio-inner {
+.bell-radio-group-info .bell-radio:active .bell-radio-wrapper .bell-radio-inner,
+.bell-radio-group-info .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
   border-color: #38b8f3;
 }
 .bell-radio-button {
@@ -5976,13 +6118,18 @@ button.bell-button {
 .bell-radio-button .bell-radio +.bell-radio {
   margin-left: -1px;
 }
+.bell-radio-button .bell-radio .bell-radio-label {
+  margin-left: 0;
+}
 .bell-radio-button .bell-radio.bell-radio-button .bell-radio.active,
-.bell-radio-button .bell-radio:active {
+.bell-radio-button .bell-radio:active,
+.bell-radio-button .bell-radio.bell-active {
   border-color: #348eed;
   color: #348eed;
 }
 .bell-radio-button .bell-radio.bell-radio-button .bell-radio.active +.bell-radio,
-.bell-radio-button .bell-radio:active +.bell-radio {
+.bell-radio-button .bell-radio:active +.bell-radio,
+.bell-radio-button .bell-radio.bell-active +.bell-radio {
   border-left-color: transparent;
 }
 .bell-radio-button .bell-radio:first-child {
@@ -5992,27 +6139,32 @@ button.bell-button {
   border-radius: 0 4px 4px 0;
 }
 .bell-radio-button.bell-radio-group-success .bell-radio.bell-radio-button.bell-radio-group-success .bell-radio.active,
-.bell-radio-button.bell-radio-group-success .bell-radio:active {
+.bell-radio-button.bell-radio-group-success .bell-radio:active,
+.bell-radio-button.bell-radio-group-success .bell-radio.bell-active {
   border-color: #29bd6e;
   color: #29bd6e;
 }
 .bell-radio-button.bell-radio-group-warning .bell-radio.bell-radio-button.bell-radio-group-warning .bell-radio.active,
-.bell-radio-button.bell-radio-group-warning .bell-radio:active {
+.bell-radio-button.bell-radio-group-warning .bell-radio:active,
+.bell-radio-button.bell-radio-group-warning .bell-radio.bell-active {
   border-color: #fd9827;
   color: #fd9827;
 }
 .bell-radio-button.bell-radio-group-error .bell-radio.bell-radio-button.bell-radio-group-error .bell-radio.active,
-.bell-radio-button.bell-radio-group-error .bell-radio:active {
+.bell-radio-button.bell-radio-group-error .bell-radio:active,
+.bell-radio-button.bell-radio-group-error .bell-radio.bell-active {
   border-color: #eb4124;
   color: #eb4124;
 }
 .bell-radio-button.bell-radio-group-danger .bell-radio.bell-radio-button.bell-radio-group-danger .bell-radio.active,
-.bell-radio-button.bell-radio-group-danger .bell-radio:active {
+.bell-radio-button.bell-radio-group-danger .bell-radio:active,
+.bell-radio-button.bell-radio-group-danger .bell-radio.bell-active {
   border-color: #d9534f;
   color: #d9534f;
 }
 .bell-radio-button.bell-radio-group-info .bell-radio.bell-radio-button.bell-radio-group-info .bell-radio.active,
-.bell-radio-button.bell-radio-group-info .bell-radio:active {
+.bell-radio-button.bell-radio-group-info .bell-radio:active,
+.bell-radio-button.bell-radio-group-info .bell-radio.bell-active {
   border-color: #38b8f3;
   color: #38b8f3;
 }
@@ -6040,7 +6192,8 @@ button.bell-button {
   cursor: not-allowed;
 }
 .bell-radio-button .bell-radio-disabled.bell-radio-button .bell-radio-disabled.active,
-.bell-radio-button .bell-radio-disabled:active {
+.bell-radio-button .bell-radio-disabled:active,
+.bell-radio-button .bell-radio-disabled.bell-active {
   border-color: #dddee1;
   color: #ccc;
   background-color: #f7f7f7;
@@ -6053,32 +6206,38 @@ button.bell-button {
   margin-right: 8px;
 }
 .bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #348eed;
   background-color: #348eed;
 }
 .bell-checkbox-success .bell-checkbox-wrapper.bell-checkbox-success .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-success .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-success .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #29bd6e;
   background-color: #29bd6e;
 }
 .bell-checkbox-info .bell-checkbox-wrapper.bell-checkbox-info .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-info .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-info .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-info .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #38b8f3;
   background-color: #38b8f3;
 }
 .bell-checkbox-error .bell-checkbox-wrapper.bell-checkbox-error .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-error .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-error .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #eb4124;
   background-color: #eb4124;
 }
 .bell-checkbox-warning .bell-checkbox-wrapper.bell-checkbox-warning .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-warning .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-warning .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #fd9827;
   background-color: #fd9827;
 }
 .bell-checkbox-danger .bell-checkbox-wrapper.bell-checkbox-danger .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-danger .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-danger .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-danger .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #d9534f;
   background-color: #d9534f;
 }
@@ -6094,7 +6253,8 @@ button.bell-button {
   height: 14px;
 }
 .bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner:after,
-.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner:after {
+.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner:after,
+.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
   transform: rotate(45deg) scale(1);
 }
 .bell-checkbox .bell-checkbox-inner {
@@ -6149,12 +6309,14 @@ button.bell-button {
   background-color: #f3f3f3;
 }
 .bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-disabled .bell-checkbox-wrapper:active .bell-checkbox-inner {
+.bell-checkbox-disabled .bell-checkbox-wrapper:active .bell-checkbox-inner,
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
   border-color: #f3f3f3;
   background-color: #f3f3f3;
 }
 .bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner:after,
-.bell-checkbox-disabled .bell-checkbox-wrapper:active .bell-checkbox-inner:after {
+.bell-checkbox-disabled .bell-checkbox-wrapper:active .bell-checkbox-inner:after,
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
   border-color: #ccc;
 }
 .bell-checkbox-disabled .bell-checkbox-label {
@@ -6183,7 +6345,8 @@ button.bell-button {
   border-radius: 24px;
 }
 .bell-switch.bell-switch.active .bell-switch-button:after,
-.bell-switch:active .bell-switch-button:after {
+.bell-switch:active .bell-switch-button:after,
+.bell-switch.bell-active .bell-switch-button:after {
   left: 25px;
 }
 .bell-switch .bell-switch-button:after {
@@ -6197,7 +6360,8 @@ button.bell-button {
   border-radius: 14px;
 }
 .bell-switch-small.bell-switch-small.active .bell-switch-button:after,
-.bell-switch-small:active .bell-switch-button:after {
+.bell-switch-small:active .bell-switch-button:after,
+.bell-switch-small.bell-active .bell-switch-button:after {
   left: 12px;
 }
 .bell-switch-small .bell-switch-button:after {
@@ -6211,7 +6375,8 @@ button.bell-button {
   border-radius: 24px;
 }
 .bell-switch-large.bell-switch-large.active .bell-switch-button:after,
-.bell-switch-large:active .bell-switch-button:after {
+.bell-switch-large:active .bell-switch-button:after,
+.bell-switch-large.bell-active .bell-switch-button:after {
   left: 37px;
 }
 .bell-switch-large .bell-switch-button:after {
@@ -6224,7 +6389,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch.bell-switch.active,
-.bell-switch:active {
+.bell-switch:active,
+.bell-switch.bell-active {
   background-color: #348eed;
   border-color: #348eed;
 }
@@ -6236,7 +6402,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch-success.bell-switch-success.active,
-.bell-switch-success:active {
+.bell-switch-success:active,
+.bell-switch-success.bell-active {
   background-color: #29bd6e;
   border-color: #29bd6e;
 }
@@ -6248,7 +6415,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch-error.bell-switch-error.active,
-.bell-switch-error:active {
+.bell-switch-error:active,
+.bell-switch-error.bell-active {
   background-color: #eb4124;
   border-color: #eb4124;
 }
@@ -6260,7 +6428,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch-warning.bell-switch-warning.active,
-.bell-switch-warning:active {
+.bell-switch-warning:active,
+.bell-switch-warning.bell-active {
   background-color: #fd9827;
   border-color: #fd9827;
 }
@@ -6272,7 +6441,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch-danger.bell-switch-danger.active,
-.bell-switch-danger:active {
+.bell-switch-danger:active,
+.bell-switch-danger.bell-active {
   background-color: #d9534f;
   border-color: #d9534f;
 }
@@ -6284,7 +6454,8 @@ button.bell-button {
   background-color: #ccc;
 }
 .bell-switch-info.bell-switch-info.active,
-.bell-switch-info:active {
+.bell-switch-info:active,
+.bell-switch-info.bell-active {
   background-color: #38b8f3;
   border-color: #38b8f3;
 }
@@ -6296,7 +6467,8 @@ button.bell-button {
   background-color: #fcfcfc;
 }
 .bell-switch-disabled.bell-switch-disabled.active,
-.bell-switch-disabled:active {
+.bell-switch-disabled:active,
+.bell-switch-disabled.bell-active {
   background-color: #fff;
   border-color: #dddee1;
 }
@@ -6307,11 +6479,13 @@ button.bell-button {
   margin-left: 10px;
 }
 .bell-switch.bell-switch.active .bell-switch-button .bell-switch-on,
-.bell-switch:active .bell-switch-button .bell-switch-on {
+.bell-switch:active .bell-switch-button .bell-switch-on,
+.bell-switch.bell-active .bell-switch-button .bell-switch-on {
   display: block;
 }
 .bell-switch.bell-switch.active .bell-switch-off,
-.bell-switch:active .bell-switch-off {
+.bell-switch:active .bell-switch-off,
+.bell-switch.bell-active .bell-switch-off {
   display: none;
 }
 .bell-switch .bell-switch-button {
@@ -6465,17 +6639,20 @@ button.bell-button {
   transition: all 0.2s ease-in-out;
 }
 .bell-select .bell-select-button.bell-select .bell-select-button.hover,
-.bell-select .bell-select-button:hover {
+.bell-select .bell-select-button:hover,
+.bell-select .bell-select-button.bell-hover {
   border-color: #5aa5f0;
 }
 .bell-select .bell-select-button.bell-select .bell-select-button.active,
-.bell-select .bell-select-button:active {
+.bell-select .bell-select-button:active,
+.bell-select .bell-select-button.bell-active {
   outline: 0;
   border-color: #5aa5f0;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-select .bell-select-button.bell-select .bell-select-button.active .bell-select-arrow,
-.bell-select .bell-select-button:active .bell-select-arrow {
+.bell-select .bell-select-button:active .bell-select-arrow,
+.bell-select .bell-select-button.bell-active .bell-select-arrow {
   transform: rotate(180deg);
 }
 .bell-select .bell-select-button .bell-select-arrow {
@@ -6530,24 +6707,39 @@ button.bell-button {
   color: rgba(0,0,0,0.54);
 }
 .bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.hover,
-.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item:hover {
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item:hover,
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-hover {
   background-color: #f9f9f9;
 }
 .bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-focus {
   background-color: #f9f9f9;
 }
 .bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.active,
-.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item:active {
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item:active,
+.bell-select .bell-select-dropdown .bell-select-dropdown-list .bell-select-dropdown-item.bell-active {
   color: #fff;
   background: rgba(45,140,240,0.9);
 }
 .bell-select.bell-select-disabled .bell-select-button {
-  cursor: not-allowed;
-  background-color: #fcfcfc;
+  cursor: not-allowed !important;
+  background-color: #fcfcfc !important;
 }
 .bell-select.bell-select-disabled .bell-select-button.bell-select.bell-select-disabled .bell-select-button.hover,
-.bell-select.bell-select-disabled .bell-select-button:hover {
-  border-color: #ccc;
+.bell-select.bell-select-disabled .bell-select-button:hover,
+.bell-select.bell-select-disabled .bell-select-button.bell-hover {
+  border-color: #ccc !important;
+}
+.bell-select.bell-select-disabled .bell-select-button.bell-select.bell-select-disabled .bell-select-button.active,
+.bell-select.bell-select-disabled .bell-select-button:active,
+.bell-select.bell-select-disabled .bell-select-button.bell-active {
+  outline: none;
+  border-color: #ccc !important;
+  box-shadow: none !important;
+}
+.bell-select.bell-select-disabled .bell-select-button.bell-select.bell-select-disabled .bell-select-button.active .bell-select-arrow,
+.bell-select.bell-select-disabled .bell-select-button:active .bell-select-arrow,
+.bell-select.bell-select-disabled .bell-select-button.bell-active .bell-select-arrow {
+  transform: none !important;
 }
 .bell-select.bell-select-top .bell-select-dropdown {
   top: auto;
@@ -6556,7 +6748,8 @@ button.bell-button {
   transform: rotate(180deg);
 }
 .bell-select.bell-select-top .bell-select-button.bell-select.bell-select-top .bell-select-button.active .bell-select-arrow,
-.bell-select.bell-select-top .bell-select-button:active .bell-select-arrow {
+.bell-select.bell-select-top .bell-select-button:active .bell-select-arrow,
+.bell-select.bell-select-top .bell-select-button.bell-active .bell-select-arrow {
   transform: rotate(0);
 }
 .bell-datepicker {
@@ -6607,6 +6800,18 @@ button.bell-button {
 }
 .bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
   margin: 0;
+}
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left,
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-left,
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-left,
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-right,
+.bell-datepicker-date .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-right {
+  margin-left: -10px;
 }
 .bell-datepicker-date .bell-datepicker-table-date {
   font-size: 12px;
@@ -6670,6 +6875,18 @@ button.bell-button {
 .bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
   margin: 0;
 }
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left,
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-left,
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-left,
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-right,
+.bell-datepicker-month .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-right {
+  margin-left: -10px;
+}
 .bell-datepicker-month .bell-datepicker-body {
   display: flex;
   flex-wrap: wrap;
@@ -6690,7 +6907,8 @@ button.bell-button {
   color: #348eed;
 }
 .bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.hover,
-.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col:hover {
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col:hover,
+.bell-datepicker-month .bell-datepicker-body .bell-datepicker-col.bell-hover {
   color: #348eed;
 }
 .bell-datepicker-daterange {
@@ -6718,6 +6936,18 @@ button.bell-button {
 }
 .bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
   margin: 0;
+}
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left,
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-left,
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-left,
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-right,
+.bell-datepicker-daterange .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-right {
+  margin-left: -10px;
 }
 .bell-datepicker-daterange .bell-datepicker-daterange-wrapper {
   display: flex;
@@ -6758,7 +6988,8 @@ button.bell-button {
   color: rgba(0,0,0,0.37);
 }
 .bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month.hover,
-.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month:hover {
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month:hover,
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-current-month.bell-hover {
   background: #348eed;
   color: #fff;
 }
@@ -6781,7 +7012,8 @@ button.bell-button {
   background-color: #e1f0fe;
 }
 .bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range.hover,
-.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range:hover {
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range:hover,
+.bell-datepicker-daterange .bell-datepicker-daterange-wrapper .bell-datepicker-table-date .bell-datepicker-days .bell-datepicker-col-range.bell-hover {
   background-color: #e1f0fe;
   color: rgba(0,0,0,0.54);
 }
@@ -6820,6 +7052,18 @@ button.bell-button {
 .bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
   margin: 0;
 }
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left,
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-left,
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-left,
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-right,
+.bell-datepicker-week .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-right {
+  margin-left: -10px;
+}
 .bell-datepicker-week .bell-datepicker-table-week {
   width: 100%;
   font-size: 12px;
@@ -6845,7 +7089,8 @@ button.bell-button {
   border-radius: 20px;
 }
 .bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row.hover,
-.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row:hover {
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row:hover,
+.bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row.bell-hover {
   background-color: #e1f0fe;
 }
 .bell-datepicker-week .bell-datepicker-table-week .bell-datepicker-body .bell-datepicker-row .bell-datepicker-col {
@@ -6891,6 +7136,18 @@ button.bell-button {
 .bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon {
   margin: 0;
 }
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left,
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+}
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-left,
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-left,
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-left + .icon-ios-arrow-right,
+.bell-datepicker-year .bell-datepicker-header .bell-datepicker-header-button .bell-icon.icon-ios-arrow-right + .icon-ios-arrow-right {
+  margin-left: -10px;
+}
 .bell-datepicker-year .bell-datepicker-body {
   display: flex;
   flex-wrap: wrap;
@@ -6911,7 +7168,8 @@ button.bell-button {
   color: #348eed;
 }
 .bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.hover,
-.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col:hover {
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col:hover,
+.bell-datepicker-year .bell-datepicker-body .bell-datepicker-col.bell-hover {
   color: #348eed;
 }
 .bell-page {
@@ -6969,7 +7227,8 @@ button.bell-button {
   border-color: #ccc;
 }
 .bell-page .bell-page-item.bell-disabled.bell-page .bell-page-item.bell-disabled.hover,
-.bell-page .bell-page-item.bell-disabled:hover {
+.bell-page .bell-page-item.bell-disabled:hover,
+.bell-page .bell-page-item.bell-disabled.bell-hover {
   color: #ccc;
   border-color: #ccc;
 }
@@ -6988,13 +7247,17 @@ button.bell-button {
 .bell-page .bell-page-item.bell-page-item-next.bell-page .bell-page-item.bell-page-item-next.hover:after,
 .bell-page .bell-page-item.bell-page-item-prev.bell-page .bell-page-item.bell-page-item-prev.hover:after,
 .bell-page .bell-page-item.bell-page-item-next:hover:after,
-.bell-page .bell-page-item.bell-page-item-prev:hover:after {
+.bell-page .bell-page-item.bell-page-item-prev:hover:after,
+.bell-page .bell-page-item.bell-page-item-next.bell-hover:after,
+.bell-page .bell-page-item.bell-page-item-prev.bell-hover:after {
   display: none;
 }
 .bell-page .bell-page-item.bell-page-item-next.bell-page .bell-page-item.bell-page-item-next.hover .bell-icon,
 .bell-page .bell-page-item.bell-page-item-prev.bell-page .bell-page-item.bell-page-item-prev.hover .bell-icon,
 .bell-page .bell-page-item.bell-page-item-next:hover .bell-icon,
-.bell-page .bell-page-item.bell-page-item-prev:hover .bell-icon {
+.bell-page .bell-page-item.bell-page-item-prev:hover .bell-icon,
+.bell-page .bell-page-item.bell-page-item-next.bell-hover .bell-icon,
+.bell-page .bell-page-item.bell-page-item-prev.bell-hover .bell-icon {
   display: inline-block;
 }
 .bell-page .bell-page-select {
@@ -7186,7 +7449,8 @@ button.bell-button {
   line-height: 40px;
 }
 .bell-alert .bell-alert-close > .bell-icon.bell-alert .bell-alert-close > .bell-icon.hover,
-.bell-alert .bell-alert-close > .bell-icon:hover {
+.bell-alert .bell-alert-close > .bell-icon:hover,
+.bell-alert .bell-alert-close > .bell-icon.bell-hover {
   color: #444;
 }
 .bell-message {
@@ -7273,7 +7537,8 @@ button.bell-button {
   color: #999;
 }
 .bell-notice .bell-notice-close.bell-notice .bell-notice-close.hover,
-.bell-notice .bell-notice-close:hover {
+.bell-notice .bell-notice-close:hover,
+.bell-notice .bell-notice-close.bell-hover {
   color: #333;
 }
 .bell-msg-alert-wrapper {
@@ -7509,7 +7774,8 @@ button.bell-button {
   display: inline-block;
 }
 .bell-tooltip.bell-tooltip.hover .bell-tooltip-popper,
-.bell-tooltip:hover .bell-tooltip-popper {
+.bell-tooltip:hover .bell-tooltip-popper,
+.bell-tooltip.bell-hover .bell-tooltip-popper {
   display: block;
   opacity: 0;
 }

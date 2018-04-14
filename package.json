@@ -39,6 +39,3 @@
     "style-loader": "^0.19.0"
   }
 }
-
-
-    // "test": "lessc src/styles/index.less > dist/bell.css && edp ws start"

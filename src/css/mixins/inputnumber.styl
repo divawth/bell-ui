@@ -1,4 +1,5 @@
 input-number-style(style)
+
     ui-set('width', style['width']);
     ui-set('height', style['height']);
 
@@ -6,8 +7,10 @@ input-number-style(style)
         ui-set('padding', style['wrapper-padding']);
 
     {$selector-input-number-actions}
+        ui-set('height', style['height']);
         {$selector-icon}
-            ui-set('line-height', style['line-height']);
+            ui-set('height', style['height'] / 2);
+            ui-set('line-height', style['height'] / 2);
 
 ui-input-number()
 

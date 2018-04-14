@@ -402,9 +402,6 @@ var Menu = {
         },
         activeName: {
             type: 'string'
-        },
-        style: {
-            type: 'string'
         }
     },
 
@@ -715,7 +712,7 @@ var TEXT_TYPE_TEXTAREA = 'textarea';
 var TEXT_TYPE_INPUT = 'input';
 
 var Input = {
-    template: '\n        <div class="bell-{{type}}\n        {{#if size}} bell-input-{{size}}{{/if}}\n        {{#if isFocus}} bell-focus{{/if}}\n        {{#if className}} bell-input-{{className}}{{/if}}\n        {{#if clearable}} bell-input-clearable{{/if}}\n        {{#if disabled}} bell-input-disabled{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if type === TEXT_TYPE_INPUT}}\n\n                <input ref="input"\n                    type="text"\n                    class="bell-input-el\n                        {{#if size}} bell-input-{{size}}{{/if}}\n                    "\n                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                    on-blur="blur()"\n                    on-focus="focus()"\n                ></input>\n\n                {{#if clearable}}\n                    <i class="bell-icon\n                        icon-ios-close\n                        bell-input-clear-icon\n                    " on-click="clear()"></i>\n                {{/if}}\n\n            {{else if type === TEXT_TYPE_TEXTAREA}}\n\n                <textarea class="bell-input-el"\n                    style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                    {{#if rows}} rows="{{rows}}"{{/if}}\n                    {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                >\n                </textarea>\n\n            {{/if}}\n\n        </div>\n    ',
+    template: '\n        <div class="bell-{{type}}\n        {{#if size}} bell-input-{{size}}{{/if}}\n        {{#if isFocus}} bell-focus{{/if}}\n        {{#if className}} bell-input-{{className}}{{/if}}\n        {{#if clearable}} bell-input-clearable{{/if}}\n        {{#if disabled}} bell-input-disabled{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if type === TEXT_TYPE_INPUT}}\n\n                <input ref="input"\n                    type="text"\n                    class="bell-input-el\n                        {{#if size}} bell-input-{{size}}{{/if}}\n                    "\n                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                    on-blur="blur()"\n                    on-focus="focus()"\n                ></input>\n\n                {{#if clearable}}\n                    <i class="bell-icon\n                        icon-ios-close\n                        bell-input-clear-icon\n                    " on-click="clear()"></i>\n                {{/if}}\n\n            {{else if type === TEXT_TYPE_TEXTAREA}}\n\n                <textarea class="bell-input-el"\n                    style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                    {{#if rows}} rows="{{rows}}"{{/if}}\n                    {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                    on-blur="blur()"\n                    on-focus="focus()"\n                >\n                </textarea>\n\n            {{/if}}\n\n        </div>\n    ',
 
     propTypes: {
         style: {
@@ -851,7 +848,14 @@ var Input = {
 };
 
 var InputNumber = {
-    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        {{#if isFocus}} bell-focus{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
+
+    data: function data() {
+        return {
+            isFocus: false
+        };
+    },
+
     propTypes: {
         maxValue: {
             type: ['number', 'string']
@@ -870,7 +874,7 @@ var InputNumber = {
             type: 'string'
         },
         readonly: {
-            type: 'string'
+            type: ['string', 'boolean']
         },
         disabled: {
             type: ['string', 'boolean']
@@ -900,10 +904,18 @@ var InputNumber = {
             me.increase('value', me.get('step'), me.get('maxValue'));
         },
         blur: function blur() {
-            this.get('onBlur') && this.get('onBlur').apply(undefined, arguments);
+            var me = this;
+            me.set({
+                isFocus: false
+            });
+            me.get('onBlur') && me.get('onBlur').apply(undefined, arguments);
         },
         focus: function focus() {
-            this.get('onFocus') && this.get('onFocus').apply(undefined, arguments);
+            var me = this;
+            me.set({
+                isFocus: true
+            });
+            me.get('onFocus') && me.get('onFocus').apply(undefined, arguments);
         }
     }
 };

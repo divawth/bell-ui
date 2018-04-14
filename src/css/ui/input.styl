@@ -5,6 +5,7 @@
     vertical-align middle
     width 100%
     overflow hidden
+    transition border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out
 
     ui-input()
 
@@ -18,10 +19,8 @@
         position relative
         cursor $cursor-text
         background-color transparent
-        transition border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out
 
         ui-input-el()
-
 
     &{$selector-input}-clearable
         {$selector-input-el}

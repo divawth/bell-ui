@@ -40,6 +40,8 @@ export default {
                     {{#if placeholder}} placeholder="{{placeholder}}" {{if}}
                     {{#if disabled}} disabled="disabled"{{/if}}
                     model="value"
+                    on-blur="blur()"
+                    on-focus="focus()"
                 >
                 </textarea>
 
