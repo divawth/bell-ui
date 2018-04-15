@@ -324,7 +324,7 @@ var Layout = {
             me.set({
                 hasSider: data.hasSider
             });
-            me.fire('hasSider', {}, true);
+            me.fire('childrenHasSider', {}, true);
             return false;
         }
     }
@@ -364,11 +364,17 @@ var Content = {
     template: '\n        <div class="bell-layout-content bell-col-span{{#if hasSider}}-18{{else}}-24{{/if}}\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
 
     events: {
-        hasSider: function hasSider(value) {
+        childrenHasSider: function childrenHasSider(value) {
             this.set({
                 hasSider: value
             });
         }
+    },
+
+    data: function data() {
+        return {
+            hasSider: false
+        };
     },
 
     propTypes: {

@@ -5563,7 +5563,7 @@ button.bell-button {
   background-color: #2892f0;
 }
 .bell-layout-content {
-  flex: 0 0 auto;
+  flex: 1;
   background-color: #f9f9f9;
 }
 .bell-layout-footer {

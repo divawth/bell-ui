@@ -8,10 +8,16 @@ export default {
     `,
 
     events: {
-        hasSider: function (value) {
+        childrenHasSider: function (value) {
             this.set({
                 hasSider: value
             });
+        }
+    },
+
+    data: function () {
+        return {
+            hasSider: false
         }
     },
 

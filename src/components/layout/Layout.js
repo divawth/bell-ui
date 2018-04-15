@@ -29,7 +29,7 @@ export default {
                 hasSider: data.hasSider
             });
             me.fire(
-                'hasSider',
+                'childrenHasSider',
                 {},
                 true
             );
