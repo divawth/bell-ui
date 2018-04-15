@@ -9,7 +9,7 @@ export default {
         {{#if dot}}
             <span class="bell-badge-dot"></span>
         {{else}}
-            <span class="bell-badge-count{{#if !$children}} bell-badge-count-alone{{/if}}">
+            <span class="bell-badge-count{{#if !$slot_children}} bell-badge-count-alone{{/if}}">
                 {{getText(count, maxCount)}}
             </span>
         {{/if}}

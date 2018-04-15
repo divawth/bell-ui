@@ -38,7 +38,7 @@ export default {
 
     {{#if current + 2 < count}}
         <li class="bell-page-item" on-click="changePage(current + 2)">
-            <a>{{ current + 2 }}</a>
+            {{ current + 2 }}
         </li>
     {{/if}}
 
@@ -95,7 +95,8 @@ export default {
             </span>
 
             <div class="bell-page-input">
-                <Input model="currentPage"
+                <Input type="input"
+                    model="currentPage"
                     size="{{size}}"
                 ></Input>
             </div>
@@ -116,7 +117,8 @@ export default {
     <div class="bell-page-elevator">
         跳至
         <div class="bell-page-input">
-            <Input placeholder="请输入..."
+            <Input type="input"
+                placeholder="请输入..."
                 model="currentPage"
                 size="{{size}}"
             ></Input>
