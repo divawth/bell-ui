@@ -2,7 +2,7 @@ export default {
     template: `
 <div class="bell-spinner
 {{#if size}} bell-spinner-{{size}}{{/if}}
-{{#if fix}} bell-spinner-{{fix}}{{/if}}
+{{#if fix}} bell-spinner-fix{{/if}}
 ">
     {{#if text && type != 'circle'}}
         <span class="bell-spinner-text">
@@ -34,7 +34,7 @@ export default {
             type: 'string'
         },
         fix: {
-            type: 'string'
+            type: 'boolean'
         },
         type: {
             type: 'string'

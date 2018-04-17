@@ -8,3 +8,34 @@
 
     &{$selector-fluid}
         width 100%
+
+{$selector-menu}-item
+
+    padding $layout-menu-item-padding
+    color $layout-menu-item-color
+    cursor pointer
+    border-bottom 2px solid transparent
+    display inline-block
+    line-height 64px
+
+
+    &{$selector-active}
+        color #fff
+        border-color $layout-menu-item-active-color
+
+    &{$selector-hover}
+        color #fff
+
+{$selector-menu}-vertical
+
+    {$selector-menu}-item
+        line-height 1
+        padding 10px 15px
+        display block
+        border-bottom none
+        border-right 2px solid transparent
+
+        &{$selector-active}
+            color #fff
+            border-color $layout-menu-item-active-color
+

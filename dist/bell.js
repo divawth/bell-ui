@@ -1692,7 +1692,7 @@ var Spinner = {
             type: 'string'
         },
         fix: {
-            type: 'string'
+            type: 'boolean'
         },
         type: {
             type: 'string'
