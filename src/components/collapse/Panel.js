@@ -7,11 +7,14 @@ export default {
         ">
             <div class="bell-panel-el
             {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">
-                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>
+                <Icon type="arrow-down-b" className="bell-panel-el-icon"></Icon>
                 {{title}}
             </div>
+
             <div ref="panelInner" class="bell-panel-inner">
-                <slot name="children" />
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
             </div>
         </div>
     `,
@@ -94,10 +97,9 @@ export default {
                             });
                             innerElement.style.height = '';
                         },
-                        200
+                        100
                     );
-                },
-                100
+                }
             );
         },
         open: function () {
@@ -118,10 +120,9 @@ export default {
                             function () {
                                 innerElement.style.height = '';
                             },
-                            200
+                            100
                         );
-                    },
-                    100
+                    }
                 );
             });
         }

@@ -3,7 +3,9 @@ export default {
         <div class="bell-collapse
         {{#if className}} {{className}}{{/if}}
         ">
-            <slot name="children" />
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
         </div>
     `,
     propTypes: {

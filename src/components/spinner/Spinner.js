@@ -1,26 +1,20 @@
 export default {
     template: `
 <div class="bell-spinner
-{{#if size}} bell-spinner-{{size}}{{/if}}
+{{#if size}} {{size}}{{/if}}
+{{#if type}} {{type}}{{/if}}
 {{#if fix}} bell-spinner-fix{{/if}}
-">
-    {{#if text && type != 'circle'}}
-        <span class="bell-spinner-text">
-            {{text}}
-        </span>
+" {{#if style}} style="{{style}}"{{/if}}>
+
+    {{#if hasSlot('children')}}
+        <slot name="children" />
     {{else}}
-        <div class="bell-spinner-list">
-            {{#if type == 'circle'}}
-                <i class="bell-spinner-icon bell-icon bell-icon-load-c" style="font-size: 18px;"></i>
+        <div class="bell-spinner-main">
+            <span class="bell-spinner-dot"></span>
+            {{#if text}}
                 <span class="bell-spinner-text">
                     {{text}}
                 </span>
-            {{else}}
-                <span class="bell-spinner-item"></span>
-                <span class="bell-spinner-item"></span>
-                <span class="bell-spinner-item"></span>
-                <span class="bell-spinner-item"></span>
-                <span class="bell-spinner-item"></span>
             {{/if}}
         </div>
     {{/if}}
@@ -28,6 +22,9 @@ export default {
     `,
     propTypes: {
         size: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         },
         text: {

@@ -88,6 +88,7 @@ export default {
             <i class="bell-icon bell-icon-ios-arrow-right"></i>
         </li>
     </ul>
+
     {{else}}
         <div class="bell-page-simple">
             <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">

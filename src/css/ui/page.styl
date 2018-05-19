@@ -30,7 +30,7 @@
         &.bell-disabled
 
             cursor not-allowed
-            color $brand-border
+            ui-set('color', $brand-border, true)
             border-color $brand-border
 
             &{$selector-hover}
@@ -57,7 +57,6 @@
                     display none
 
                 {$selector-icon}
-                    width 8px
                     display inline-block
 
     {$selector-page}-select
@@ -96,6 +95,7 @@
 
             border none
             color $page-item-color
+            padding $page-simple-item-padding
 
             &.bell-active,
             &:hover

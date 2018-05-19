@@ -20,17 +20,18 @@
 
         {$selector-panel-el}-icon
 
-            float right
-            transition transform 0.2s ease-in-out
-            transform-origin left
+            margin-right $collapse-panel-el-icon-margin-right
+            transition transform 0.2s linear
+            transform-origin center
             font-size $collapse-panel-el-bell-icon-font-size
+            transform rotate(-90deg)
 
     {$selector-panel-inner}
 
         display none
-        transition height 0.3s ease-in-out
+        transition height 0.1s linear
         overflow hidden
-
+        padding $collapse-panel-inner-padding
         font-size $collapse-panel-inner-font-size
 
         {$selector-panel}-content
@@ -42,7 +43,7 @@
 
         > {$selector-panel-el}-icon
 
-            transform rotate(90deg)
+            transform rotate(0)
 
     &{$selector-panel}-open
 

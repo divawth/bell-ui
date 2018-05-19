@@ -659,9 +659,12 @@ var Col = {
 };
 
 var Icon = {
-    template: '\n        <span class="bell-icon bell-icon-{{type}}">\n        </span>\n    ',
+    template: '\n        <span class="bell-icon bell-icon-{{type}}\n        {{#if className}} {{className}}{{/if}}">\n        </span>\n    ',
     propTypes: {
         type: {
+            type: 'string'
+        },
+        className: {
             type: 'string'
         }
     }
@@ -1415,7 +1418,7 @@ var Select = {
 };
 
 var Page = {
-    template: '\n<div class="bell-page\n{{#if size}} bell-page-{{size}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n">\n{{#partial pageCenter}}\n    {{#if current - 3 > 1}}\n        <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n        </li>\n    {{/if}}\n\n    {{#if current - 2 > 1}}\n        <li class="bell-page-item" on-click="changePage(current - 2)">\n            {{ current - 2 }}\n        </li>\n    {{/if}}\n\n    {{#if current - 1 > 1}}\n        <li class="bell-page-item" on-click="changePage(current - 1)">\n            {{ current - 1 }}\n        </li>\n    {{/if}}\n\n    {{#if current != 1 && current != count}}\n        <li class="bell-page-item bell-active">\n            {{ current }}\n        </li>\n    {{/if}}\n\n    {{#if current + 1 < count}}\n        <li class="bell-page-item" on-click="changePage(current + 1)">\n            {{ current + 1 }}\n        </li>\n    {{/if}}\n\n    {{#if current + 2 < count}}\n        <li class="bell-page-item" on-click="changePage(current + 2)">\n            {{ current + 2 }}\n        </li>\n    {{/if}}\n\n    {{#if current + 3 < count}}\n        <li class="bell-page-item bell-page-item-next" on-click="fastNext()">\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n        </li>\n    {{/if}}\n{{/partial}}\n\n    {{#if showTotal}}\n    <span class="bell-page-total">\n        \u5171 {{total}} \u6761\n    </span>\n    {{/if}}\n\n    {{#if showSizer}}\n    <div class="bell-page-select">\n        <Select list="{{pageList}}"\n            model="pageSize"\n            size="{{size}}"\n            placement="{{placement}}"\n        />\n    </div>\n    {{/if}}\n\n    {{#if !simple}}\n    <ul class="bell-page-list">\n\n        <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n        </li>\n\n        <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">\n            1\n        </li>\n\n        {{#if count > 1}}\n            {{> pageCenter}}\n            <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                {{count}}\n            </li>\n        {{/if}}\n\n        <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n        </li>\n    </ul>\n    {{else}}\n        <div class="bell-page-simple">\n            <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                <i class="bell-icon bell-icon-ios-arrow-left"></i>\n            </span>\n\n            <div class="bell-page-input">\n                <Input type="input"\n                    model="currentPage"\n                    size="{{size}}"\n                ></Input>\n            </div>\n\n            {{\'/\'}}\n\n            <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                {{count}}\n            </span>\n\n            <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                <i class="bell-icon bell-icon-ios-arrow-right"></i>\n            </span>\n        </div>\n    {{/if}}\n\n    {{#if showElevator}}\n    <div class="bell-page-elevator">\n        \u8DF3\u81F3\n        <div class="bell-page-input">\n            <Input type="input"\n                placeholder="\u8BF7\u8F93\u5165..."\n                model="currentPage"\n                size="{{size}}"\n            ></Input>\n        </div>\n        \u9875\n    </div>\n    {{/if}}\n</div>\n    ',
+    template: '\n<div class="bell-page\n{{#if size}} bell-page-{{size}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n">\n{{#partial pageCenter}}\n    {{#if current - 3 > 1}}\n        <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n        </li>\n    {{/if}}\n\n    {{#if current - 2 > 1}}\n        <li class="bell-page-item" on-click="changePage(current - 2)">\n            {{ current - 2 }}\n        </li>\n    {{/if}}\n\n    {{#if current - 1 > 1}}\n        <li class="bell-page-item" on-click="changePage(current - 1)">\n            {{ current - 1 }}\n        </li>\n    {{/if}}\n\n    {{#if current != 1 && current != count}}\n        <li class="bell-page-item bell-active">\n            {{ current }}\n        </li>\n    {{/if}}\n\n    {{#if current + 1 < count}}\n        <li class="bell-page-item" on-click="changePage(current + 1)">\n            {{ current + 1 }}\n        </li>\n    {{/if}}\n\n    {{#if current + 2 < count}}\n        <li class="bell-page-item" on-click="changePage(current + 2)">\n            {{ current + 2 }}\n        </li>\n    {{/if}}\n\n    {{#if current + 3 < count}}\n        <li class="bell-page-item bell-page-item-next" on-click="fastNext()">\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n        </li>\n    {{/if}}\n{{/partial}}\n\n    {{#if showTotal}}\n    <span class="bell-page-total">\n        \u5171 {{total}} \u6761\n    </span>\n    {{/if}}\n\n    {{#if showSizer}}\n    <div class="bell-page-select">\n        <Select list="{{pageList}}"\n            model="pageSize"\n            size="{{size}}"\n            placement="{{placement}}"\n        />\n    </div>\n    {{/if}}\n\n    {{#if !simple}}\n    <ul class="bell-page-list">\n\n        <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n            <i class="bell-icon bell-icon-ios-arrow-left"></i>\n        </li>\n\n        <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">\n            1\n        </li>\n\n        {{#if count > 1}}\n            {{> pageCenter}}\n            <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                {{count}}\n            </li>\n        {{/if}}\n\n        <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n            <i class="bell-icon bell-icon-ios-arrow-right"></i>\n        </li>\n    </ul>\n\n    {{else}}\n        <div class="bell-page-simple">\n            <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                <i class="bell-icon bell-icon-ios-arrow-left"></i>\n            </span>\n\n            <div class="bell-page-input">\n                <Input type="input"\n                    model="currentPage"\n                    size="{{size}}"\n                ></Input>\n            </div>\n\n            {{\'/\'}}\n\n            <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                {{count}}\n            </span>\n\n            <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                <i class="bell-icon bell-icon-ios-arrow-right"></i>\n            </span>\n        </div>\n    {{/if}}\n\n    {{#if showElevator}}\n    <div class="bell-page-elevator">\n        \u8DF3\u81F3\n        <div class="bell-page-input">\n            <Input type="input"\n                placeholder="\u8BF7\u8F93\u5165..."\n                model="currentPage"\n                size="{{size}}"\n            ></Input>\n        </div>\n        \u9875\n    </div>\n    {{/if}}\n</div>\n    ',
 
     propTypes: {
         size: {
@@ -1683,9 +1686,12 @@ var Desc = {
 };
 
 var Spinner = {
-    template: '\n<div class="bell-spinner\n{{#if size}} bell-spinner-{{size}}{{/if}}\n{{#if fix}} bell-spinner-fix{{/if}}\n">\n    {{#if text && type != \'circle\'}}\n        <span class="bell-spinner-text">\n            {{text}}\n        </span>\n    {{else}}\n        <div class="bell-spinner-list">\n            {{#if type == \'circle\'}}\n                <i class="bell-spinner-icon bell-icon bell-icon-load-c" style="font-size: 18px;"></i>\n                <span class="bell-spinner-text">\n                    {{text}}\n                </span>\n            {{else}}\n                <span class="bell-spinner-item"></span>\n                <span class="bell-spinner-item"></span>\n                <span class="bell-spinner-item"></span>\n                <span class="bell-spinner-item"></span>\n                <span class="bell-spinner-item"></span>\n            {{/if}}\n        </div>\n    {{/if}}\n</div>\n    ',
+    template: '\n<div class="bell-spinner\n{{#if size}} {{size}}{{/if}}\n{{#if type}} {{type}}{{/if}}\n{{#if fix}} bell-spinner-fix{{/if}}\n" {{#if style}} style="{{style}}"{{/if}}>\n\n    {{#if hasSlot(\'children\')}}\n        <slot name="children" />\n    {{else}}\n        <div class="bell-spinner-main">\n            <span class="bell-spinner-dot"></span>\n            {{#if text}}\n                <span class="bell-spinner-text">\n                    {{text}}\n                </span>\n            {{/if}}\n        </div>\n    {{/if}}\n</div>\n    ',
     propTypes: {
         size: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         },
         text: {
@@ -2950,7 +2956,7 @@ var TooltipItem = {
 };
 
 var Collapse = {
-    template: '\n        <div class="bell-collapse\n        {{#if className}} {{className}}{{/if}}\n        ">\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-collapse\n        {{#if className}} {{className}}{{/if}}\n        ">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
     propTypes: {
         className: {
             type: 'string'
@@ -2995,7 +3001,7 @@ var closeTimer = void 0;
 var initTimer = void 0;
 var openTimer = void 0;
 var Panel = {
-    template: '\n        <div class="bell-panel\n        {{#if className}} {{className}}{{/if}}\n        {{#if isOpen}} bell-panel-open{{/if}}\n        ">\n            <div class="bell-panel-el\n            {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">\n                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>\n                {{title}}\n            </div>\n            <div ref="panelInner" class="bell-panel-inner">\n                <slot name="children" />\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-panel\n        {{#if className}} {{className}}{{/if}}\n        {{#if isOpen}} bell-panel-open{{/if}}\n        ">\n            <div class="bell-panel-el\n            {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">\n                <Icon type="arrow-down-b" className="bell-panel-el-icon"></Icon>\n                {{title}}\n            </div>\n\n            <div ref="panelInner" class="bell-panel-inner">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
     propTypes: {
         className: {
             type: 'string'
@@ -3067,8 +3073,8 @@ var Panel = {
                         isOpen: false
                     });
                     innerElement.style.height = '';
-                }, 200);
-            }, 100);
+                }, 100);
+            });
         },
         open: function open() {
             var me = this;
@@ -3085,8 +3091,8 @@ var Panel = {
                     innerElement.style.height = height + 'px';
                     initTimer = setTimeout(function () {
                         innerElement.style.height = '';
-                    }, 200);
-                }, 100);
+                    }, 100);
+                });
             });
         }
     },
