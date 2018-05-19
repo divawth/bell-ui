@@ -65,6 +65,7 @@
 ---|---|---|---|---
 size | 大小 | string | small, large | -
 src | 图片地址 | string | - | -
+srcset | srcset | string | - | -
 shape | 形状 | string | circle | -
 className | 添加类 | string | - | -
 fontSize | 图标大小 | number | - | 26

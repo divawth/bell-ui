@@ -9,10 +9,10 @@ export default {
     {{#if showIcon}}
     <span class="bell-alert-icon">
         <i class="bell-icon
-        {{#if type == 'info'}} icon-information-circled
-        {{else if type == 'success'}} icon-checkmark-circled
-        {{else if type == 'warning'}} icon-android-alert
-        {{else if type == 'error'}} icon-close-circled
+        {{#if type == 'info'}} bell-icon-information-circled
+        {{else if type == 'success'}} bell-icon-checkmark-circled
+        {{else if type == 'warning'}} bell-icon-android-alert
+        {{else if type == 'error'}} bell-icon-close-circled
         {{/if}}
         "></i>
     </span>
@@ -27,7 +27,7 @@ export default {
         {{#if closeText}}
             {{closeText}}
         {{else}}
-            <i class="bell-icon icon-ios-close-empty"></i>
+            <i class="bell-icon bell-icon-ios-close-empty"></i>
         {{/if}}
     </span>
     {{/if}}

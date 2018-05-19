@@ -27,7 +27,7 @@ export default {
 
                 {{#if clearable}}
                     <i class="bell-icon
-                        icon-ios-close
+                        bell-icon-ios-close
                         bell-input-clear-icon
                     " on-click="clear()"></i>
                 {{/if}}

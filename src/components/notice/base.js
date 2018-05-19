@@ -22,7 +22,7 @@ let createNotice = function (data) {
         {{content}}
     </div>
     {{#if duration == 0}}
-    <i class="bell-icon bell-notice-close icon-ios-close-empty" on-click="close()"></i>
+    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>
     {{/if}}
 </div>`,
         data: function () {

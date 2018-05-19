@@ -1,6 +1,6 @@
 export default {
     template: `
-        <span class="bell-icon icon-{{type}}">
+        <span class="bell-icon bell-icon-{{type}}">
         </span>
     `,
     propTypes: {

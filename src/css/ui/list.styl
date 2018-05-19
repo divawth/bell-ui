@@ -1,15 +1,15 @@
 {$selector-list}
 
+    ui-list()
+
     list-style none
-    padding 0
-    margin 0
+    user-select none
+
+    ui-set('padding', 0, true)
+    ui-set('margin', 0, true)
 
     {$selector-list-item}
 
         display flex
         flex-direction row
         align-items center
-
-        + {$selector-list-item}
-
-            margin-top 10px

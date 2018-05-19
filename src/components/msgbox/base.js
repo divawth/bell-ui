@@ -18,7 +18,7 @@ let createAlert = function (data) {
                 <div class="bell-msg-alert"{{#if width}} style="width: {{width}}px;"{{/if}}>
                     {{#if closable}}
                     <div class="bell-msg-alert-close" on-click="hide()">
-                        <i class="bell-icon icon-ios-close-empty"></i>
+                        <i class="bell-icon bell-icon-ios-close-empty"></i>
                     </div>
                     {{/if}}
 
@@ -120,7 +120,7 @@ let createConfirm = function (data) {
                 <div class="bell-msg-confirm"{{#if width}} style="width: {{width}}px;{{/if}}">
                     {{#if closable}}
                     <div class="bell-msg-confirm-close" on-click="hide()">
-                        <i class="bell-icon icon-ios-close-empty"></i>
+                        <i class="bell-icon bell-icon-ios-close-empty"></i>
                     </div>
                     {{/if}}
 

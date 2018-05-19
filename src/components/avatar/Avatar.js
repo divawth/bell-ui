@@ -8,7 +8,7 @@ export default {
 background-color: {{backgroundColor}};
 color: {{color}}">
     {{#if src}}
-        <img ondragstart="return false" src="{{src}}" />
+        <img{{#if srcset}} srcset="{{srcset}}"{{/if}} ondragstart="return false" src="{{src}}" />
     {{else}}
         <slot name="children" />
     {{/if}}
@@ -19,6 +19,9 @@ color: {{color}}">
             type: 'string'
         },
         src: {
+            type: 'string'
+        },
+        srcset: {
             type: 'string'
         },
         size: {

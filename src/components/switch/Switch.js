@@ -8,7 +8,7 @@ export default {
 {{#if className}} {{className}}{{/if}}
 " on-click="click()">
     <span class="bell-switch-button">
-        {{#if $children}}
+        {{#if hasSlot('children')}}
             <slot name="children" />
         {{else if size != 'small'}}
             {{#if isChecked}}

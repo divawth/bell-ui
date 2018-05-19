@@ -133,6 +133,9 @@ export default {
         },
         close: function () {
             var me = this;
+            if (!me.get('isOpen')) {
+                return;
+            }
             me.set({
                 isPopdowning: true
             });

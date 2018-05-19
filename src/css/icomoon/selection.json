@@ -17973,7 +17973,7 @@
         "isMulticolor2": false,
         "grid": 0,
         "tags": [
-          "navicon-round"
+          "navbell-icon-round"
         ]
       },
       "attrs": [
@@ -17984,7 +17984,7 @@
       "properties": {
         "order": 718,
         "id": 170,
-        "name": "navicon-round",
+        "name": "navbell-icon-round",
         "prevSize": 32,
         "code": 60210
       },
@@ -23485,7 +23485,7 @@
     "showQuickUse2": true,
     "showSVGs": true,
     "fontPref": {
-      "prefix": "icon-",
+      "prefix": "bell-icon-",
       "metadata": {
         "fontFamily": "icomoon"
       },
@@ -23497,7 +23497,7 @@
       "embed": false
     },
     "imagePref": {
-      "prefix": "icon-",
+      "prefix": "bell-icon-",
       "png": true,
       "useClassSelector": true,
       "color": 0,

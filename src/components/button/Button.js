@@ -6,11 +6,11 @@ export default {
     {{#if size}} {{size}}{{/if}}
     {{#if long}} bell-button-long{{/if}}
     {{#if className}} {{className}}{{/if}}
-    {{#if !label && !children && icon}} icon-only{{/if}}
+    {{#if !label && !children && icon}} bell-icon-only{{/if}}
 "{{#if disabled}} disabled{{/if}} on-click="click">
 
     {{#if icon}}
-        <i class="bell-icon icon-{{icon}}"></i>
+        <i class="bell-icon bell-icon-{{icon}}"></i>
     {{/if}}
 
     {{#if label}}

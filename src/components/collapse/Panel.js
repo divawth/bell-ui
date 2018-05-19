@@ -7,7 +7,7 @@ export default {
         ">
             <div class="bell-panel-el
             {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">
-                <i class="bell-panel-el-icon bell-icon icon-ios-arrow-right"></i>
+                <i class="bell-panel-el-icon bell-icon bell-icon-ios-arrow-right"></i>
                 {{title}}
             </div>
             <div ref="panelInner" class="bell-panel-inner">
