@@ -3246,6 +3246,35 @@ var Circle = {
     }
 };
 
+var Progress = {
+    template: '\n        <div class="bell-progress\n            {{#if type}} {{type}}{{/if}}\n            {{#if active}} active{{/if}}\n            {{#if vertical}} bell-progress-vertical{{/if}}\n        ">\n            <div class="bell-progress-outer">\n                <div class="bell-progress-inner"\n                    style="{{#if vertical}} width: {{strokeWidth}}px;{{/if}}\n                ">\n                    <div class="bell-progress-bg"\n                        style="\n                        {{#if !vertical}}\n                            width: {{percent}}%;\n                            height: {{strokeWidth}}px;\n                        {{else}}\n                            height: {{percent}}%;\n                            width: {{strokeWidth}}px;\n                        {{/if}}\n                        "\n                    >\n                    </div>\n                </div>\n            </div>\n            {{#if !hideInfo}}\n            <span class="bell-progress-inner-text">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{else}}\n                    {{percent}}%\n                {{/if}}\n            </span>\n            {{/if}}\n        </div>\n    ',
+    propTypes: {
+        percent: {
+            type: 'number',
+            value: 0
+        },
+        type: {
+            type: 'string'
+        },
+        strokeWidth: {
+            type: 'string',
+            value: 10
+        },
+        hideInfo: {
+            type: 'boolean',
+            value: false
+        },
+        vertical: {
+            type: 'boolean',
+            value: false
+        },
+        active: {
+            type: 'boolean',
+            value: false
+        }
+    }
+};
+
 var Transfer = {
     template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{left.length}} / {{leftList.length}}\n                    </span>\n                </div>\n\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{right.length}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
     propTypes: {
@@ -3887,6 +3916,7 @@ Yox.component({
     List: List,
     Item: Item,
     Circle: Circle,
+    Progress: Progress,
 
     Transfer: Transfer
 });

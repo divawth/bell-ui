@@ -34,6 +34,7 @@
   - [Collapse 折叠面板](view/collapse)
   - [Tooltip 提示](view/tooltip)
 - [Other](other)
+  - [Progress 进度条](other/progress)
   - [Circle 进度环](other/circle)
   - [Spinner 加载中](other/spinner)
   - [BackTop 返回顶部](other/backTop)

@@ -1,0 +1,12 @@
+progress-style(color)
+
+    {$selector-progress-bg}
+
+        ui-set('background-color', color['bg-color']);
+
+ui-progress()
+
+    ui-variant(
+        hash: $progress-brand-hash,
+        each: progress-style
+    )

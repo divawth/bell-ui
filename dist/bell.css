@@ -5935,3 +5935,123 @@ button.bell-button {
   transform: translate(-50%, -50%);
   line-height: 1;
 }
+.bell-progress {
+  display: flex;
+}
+.bell-progress .bell-progress-bg {
+  background-color: #348eed;
+}
+.bell-progress.success .bell-progress-bg {
+  background-color: #29bd6e;
+}
+.bell-progress.error .bell-progress-bg {
+  background-color: #eb4124;
+}
+.bell-progress.warning .bell-progress-bg {
+  background-color: #fd9827;
+}
+.bell-progress.danger .bell-progress-bg {
+  background-color: #d9534f;
+}
+.bell-progress.info .bell-progress-bg {
+  background-color: #38b8f3;
+}
+.bell-progress.bell-progress.active .bell-progress-inner,
+.bell-progress:active .bell-progress-inner,
+.bell-progress.bell-active .bell-progress-inner {
+  position: relative;
+}
+.bell-progress.bell-progress.active .bell-progress-inner:before,
+.bell-progress:active .bell-progress-inner:before,
+.bell-progress.bell-active .bell-progress-inner:before {
+  content: " ";
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 10px;
+  animation: bell-progress-active 2s ease-in-out infinite;
+}
+.bell-progress .bell-progress-outer {
+  flex: 1;
+}
+.bell-progress .bell-progress-inner-text {
+  text-align: right;
+  width: 60px;
+  font-size: 12px;
+  line-height: 2;
+}
+.bell-progress .bell-progress-inner {
+  display: inline-block;
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 100px;
+  vertical-align: middle;
+}
+.bell-progress .bell-progress-bg {
+  border-radius: 100px;
+  transition: height 0.2s linear, width 0.2s linear;
+}
+.bell-progress-vertical {
+  height: 100%;
+  width: auto;
+  display: inline-block;
+}
+.bell-progress-vertical .bell-progress-outer,
+.bell-progress-vertical .bell-progress-inner {
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+}
+.bell-progress-vertical .bell-progress-inner {
+  display: flex;
+  align-items: flex-end;
+}
+.bell-progress-vertical .bell-progress-inner-text {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+@-moz-keyframes bell-progress-active {
+  0% {
+    opacity: 0.3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
+@-webkit-keyframes bell-progress-active {
+  0% {
+    opacity: 0.3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
+@-o-keyframes bell-progress-active {
+  0% {
+    opacity: 0.3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}
+@keyframes bell-progress-active {
+  0% {
+    opacity: 0.3;
+    width: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+}

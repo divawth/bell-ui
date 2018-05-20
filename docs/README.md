@@ -53,7 +53,7 @@ click   点击时候触发
 
 ## Form 表单
 
-## Progress 进度条
+## LoadingBar 加载进度条
 
 ## Timeline 时间轴
 
@@ -70,10 +70,6 @@ click   点击时候触发
 ## Dropdown 下拉菜单
 
 ## Steps 步骤条
-
-## LoadingBar 加载进度条
-
-## Circle 进度环
 
 ## Affix 图钉
 
