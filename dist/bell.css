@@ -5922,3 +5922,16 @@ button.bell-button {
     opacity: 0;
   }
 }
+.bell-circle {
+  display: inline-block;
+  position: relative;
+}
+.bell-circle .bell-circle-inner {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}

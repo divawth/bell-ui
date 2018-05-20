@@ -60,6 +60,8 @@ import CardActions from './components/card/CardActions'
 import List from './components/list/List'
 import Item from './components/list/Item'
 
+import Circle from './components/circle/Circle'
+
 import Transfer from './components/transfer/Transfer'
 
 import './components/message/Message'
@@ -122,6 +124,7 @@ Yox.component({
     Panel,
     List,
     Item,
+    Circle,
 
     Transfer
 });

@@ -659,10 +659,13 @@ var Col = {
 };
 
 var Icon = {
-    template: '\n        <span class="bell-icon bell-icon-{{type}}\n        {{#if className}} {{className}}{{/if}}">\n        </span>\n    ',
+    template: '\n        <span class="bell-icon bell-icon-{{type}}\n        {{#if className}} {{className}}{{/if}}"\n        style="font-size: {{size}}px;">\n        </span>\n    ',
     propTypes: {
         type: {
             type: 'string'
+        },
+        size: {
+            type: 'number'
         },
         className: {
             type: 'string'
@@ -3196,6 +3199,53 @@ var Item = {
     }
 };
 
+var Circle = {
+    template: '\n        <div class="bell-circle"\n            style="width: {{size}}px;\n                height: {{size}}px;\n            "\n        >\n            <svg viewBox="0 0 100 100">\n                <path d="M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94"\n                    stroke="{{trailColor}}"\n                    stroke-width="{{trailWidth}}"\n                    fill-opacity="0"\n                />\n                <path d="M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94"\n                    stroke-linecap="{{strokeLinecap}}"\n                    stroke="{{strokeColor}}"\n                    stroke-width="{{strokeWidth}}"\n                    fill-opacity="0"\n                    style="\n                        stroke-dasharray: {{strokeDasharray}};\n                        stroke-dashoffset: {{strokeDashoffset}};\n                        transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease\n                    "\n                />\n            </svg>\n            <div class="bell-circle-inner">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
+    propTypes: {
+        percent: {
+            type: 'number',
+            value: 0
+        },
+        size: {
+            type: 'number',
+            value: 120
+        },
+        strokeWidth: {
+            type: 'number',
+            value: 6
+        },
+        strokeColor: {
+            type: 'string',
+            value: '#2db7f5'
+        },
+        strokeLinecap: {
+            type: ['square', 'round'],
+            value: 'round'
+        },
+        trailWidth: {
+            type: 'number',
+            value: 5
+        },
+        trailColor: {
+            type: 'string',
+            value: '#eaeef2'
+        }
+    },
+    computed: {
+        strokeDasharray: function strokeDasharray() {
+            var me = this;
+            var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
+            return len + 'px ' + len + 'px';
+        },
+        strokeDashoffset: function strokeDashoffset() {
+            var me = this;
+            var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
+            var percent = me.get('percent');
+            return (100 - percent) / 100 * len + 'px';
+        }
+    }
+};
+
 var Transfer = {
     template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{left.length}} / {{leftList.length}}\n                    </span>\n                </div>\n\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{right.length}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
     propTypes: {
@@ -3836,6 +3886,7 @@ Yox.component({
     Panel: Panel,
     List: List,
     Item: Item,
+    Circle: Circle,
 
     Transfer: Transfer
 });
