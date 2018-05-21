@@ -31,7 +31,7 @@ let element = document.createElement('div');
 element.setAttribute('id', 'bell-notice-wrapper');
 body.append(element);
 
-Yox.prototype.$notice = {
+Yox.prototype.$Notice = {
     success: function (arg) {
         addNotice('success', arg);
     },
@@ -51,6 +51,6 @@ Yox.prototype.$notice = {
         updateConfig(options);
     },
     destroy: function () {
-        console.log('destroy');
+        config = {};
     }
 };

@@ -25,7 +25,7 @@
             <div>
                 <Circle percent="{{percent}}" strokeLinecap="round">
                     {{#if percent == 100}}
-                        <Icon type="ios-checkmark-empty" size="60" style="color:#5cb85c"></Icon>
+                        <Icon type="ios-checkmark-empty" size="{{60}}" style="color:#35D05E"></Icon>
                     {{else}}
                         <span style="font-size:24px">
                             {{ percent }}%

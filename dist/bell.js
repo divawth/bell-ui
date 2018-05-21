@@ -665,7 +665,8 @@ var Icon = {
             type: 'string'
         },
         size: {
-            type: 'number'
+            type: 'number',
+            value: 12
         },
         className: {
             type: 'string'
@@ -860,7 +861,7 @@ var Input = {
 };
 
 var InputNumber = {
-    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-input-number\n        {{#if size}} bell-input-number-{{size}}{{/if}}\n        {{#if disabled}} bell-input-number-disabled{{/if}}\n        {{#if readonly}} bell-input-number-readonly{{/if}}\n        ">\n            <div class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>\n                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>\n            </div>\n\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n        </div>\n    ',
     propTypes: {
         maxValue: {
             type: ['number', 'string']
@@ -869,7 +870,8 @@ var InputNumber = {
             type: ['number', 'string']
         },
         value: {
-            type: ['number', 'string']
+            type: ['number', 'string'],
+            value: 0
         },
         step: {
             type: ['number', 'string'],
@@ -879,7 +881,8 @@ var InputNumber = {
             type: 'string'
         },
         readonly: {
-            type: 'string'
+            type: 'boolean',
+            value: false
         },
         disabled: {
             type: ['string', 'boolean']
@@ -902,11 +905,11 @@ var InputNumber = {
     methods: {
         up: function up() {
             var me = this;
-            var value = me.decrease('value', me.get('step'), me.get('minValue'));
+            me.increase('value', me.get('step'), me.get('maxValue'));
         },
         down: function down() {
             var me = this;
-            me.increase('value', me.get('step'), me.get('maxValue'));
+            var value = me.decrease('value', me.get('step'), me.get('minValue'));
         },
         blur: function blur() {
             this.get('onBlur') && this.get('onBlur').apply(undefined, arguments);
@@ -3520,7 +3523,7 @@ var updateConfig = function updateConfig(data) {
     }
 };
 
-Yox.prototype.$message = {
+Yox.prototype.$Message = {
     success: function success(arg) {
         addMessage('success', arg);
     },
@@ -3669,7 +3672,7 @@ var element = document.createElement('div');
 element.setAttribute('id', 'bell-notice-wrapper');
 body.append(element);
 
-Yox.prototype.$notice = {
+Yox.prototype.$Notice = {
     success: function success(arg) {
         addNotice('success', arg);
     },
@@ -3689,7 +3692,7 @@ Yox.prototype.$notice = {
         updateConfig$1(options);
     },
     destroy: function destroy() {
-        console.log('destroy');
+        config$1 = {};
     }
 };
 
@@ -3846,12 +3849,139 @@ var element$1 = document.createElement('div');
 element$1.setAttribute('id', 'bell-msgbox-wrapper');
 body$1.append(element$1);
 
-Yox.prototype.$alert = function (data) {
+Yox.prototype.$Alert = function (data) {
     addAlert(data);
 };
 
-Yox.prototype.$confirm = function (data) {
+Yox.prototype.$Confirm = function (data) {
     addConfirm(data);
+};
+
+var namespace = 'bell-loading-bar';
+var instance = null;
+var timer$1 = null;
+
+var add$2 = function add(data) {
+
+    if (instance) {
+        remove();
+    }
+
+    var body = document.getElementById('bell-loading-bar-wrapper');
+    var element = document.createElement('div');
+    element.setAttribute('id', namespace);
+    body.append(element);
+
+    instance = new Yox({
+        el: '#' + namespace,
+        replace: true,
+        props: {
+            percent: data.percent,
+            height: data.height,
+            type: data.type,
+            color: data.color
+        },
+        template: '\n            <div class="bell-loading-bar\n            {{#if type}} bell-loading-bar-{{type}}{{/if}}">\n                <div class="bell-loading-bar-inner">\n                    <div class="bell-loading-bar-bg"\n                        style="\n                            width: {{percent}}%;\n                            height: {{height}}px;\n                            {{#if color}} color: {{color}};{{/if}}\n                        "\n                    >\n                    </div>\n                </div>\n            </div>\n        ',
+        propTypes: {
+            type: {
+                type: 'string'
+            },
+            height: {
+                type: 'number',
+                value: 2
+            },
+            percent: {
+                type: 'number',
+                value: 0
+            },
+            color: {
+                type: 'string'
+            }
+        },
+        afterMount: function afterMount() {
+            var me = this;
+            var timerStart = function timerStart() {
+                timer$1 = setTimeout(function () {
+                    if (!timer$1 || !me) {
+                        return;
+                    }
+                    me.increase('percent', Math.floor(Math.random() * 10), 98);
+                    if (me.get('percent') <= 98) {
+                        timerStart();
+                    }
+                }, 200);
+            };
+            timerStart();
+        },
+        beforeDestroy: function beforeDestroy() {
+            if (timer$1) {
+                clearTimeout(timer$1);
+            }
+        }
+    });
+
+    return instance;
+};
+
+var remove = function remove() {
+
+    if (instance) {
+        instance.destroy();
+        instance = null;
+    }
+    var body = document.getElementById('bell-loading-bar-wrapper');
+    var element = document.getElementById(namespace);
+    if (element) {
+        body.removeChild(element);
+    }
+};
+
+var update = function update(config) {
+    if (instance) {
+        instance.set(config);
+    }
+};
+
+var body$2 = document.body;
+var element$2 = document.createElement('div');
+element$2.setAttribute('id', 'bell-loading-bar-wrapper');
+body$2.append(element$2);
+
+var config$2 = {};
+
+var updateConfig$2 = function updateConfig(data) {
+    config$2.type = data.type ? data.type : config$2.type;
+    config$2.color = data.color ? data.color : config$2.color;
+    config$2.height = data.height ? data.height : config$2.height;
+};
+
+Yox.prototype.$LoadingBar = {
+    // 开始从 0 显示进度条，并自动加载进度
+    start: function start(options) {
+        return add$2(Yox.object.extend({}, options, config$2));
+    },
+
+    // 结束进度条，自动补全剩余进度
+    finish: function finish() {
+        update({
+            percent: 100
+        });
+
+        setTimeout(function () {
+            return remove();
+        }, 1000);
+    },
+    // 精确加载到指定的进度
+    update: function update$$1(data) {
+        return update(data);
+    },
+    config: function config(data) {
+        updateConfig$2(data);
+    },
+    destroy: function destroy() {
+        config$2 = {};
+        element$2.remove();
+    }
 };
 
 /*

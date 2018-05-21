@@ -9,6 +9,7 @@ export default {
                 <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>
                 <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>
             </div>
+
             <div class="bell-input-number-wrapper">
                 <input type="text" class="bell-input"
                 {{#if disabled}}disabled="disabled"{{/if}}
@@ -26,7 +27,8 @@ export default {
             type: ['number', 'string']
         },
         value: {
-            type: ['number', 'string']
+            type: ['number', 'string'],
+            value: 0
         },
         step: {
             type: ['number', 'string'],
@@ -36,7 +38,8 @@ export default {
             type: 'string'
         },
         readonly: {
-            type: 'string'
+            type: 'boolean',
+            value: false
         },
         disabled: {
             type: ['string', 'boolean']
@@ -59,11 +62,11 @@ export default {
     methods: {
         up: function () {
             var me = this;
-            var value = me.decrease('value', me.get('step'), me.get('minValue'));
+            me.increase('value', me.get('step'), me.get('maxValue'));
         },
         down: function () {
             var me = this;
-            me.increase('value', me.get('step'), me.get('maxValue'));
+            var value = me.decrease('value', me.get('step'), me.get('minValue'));
         },
         blur: function (...args) {
             this.get('onBlur') && this.get('onBlur')(...args)

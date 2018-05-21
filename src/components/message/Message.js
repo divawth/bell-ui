@@ -26,7 +26,7 @@ let updateConfig = function (data) {
     }
 }
 
-Yox.prototype.$message = {
+Yox.prototype.$Message = {
     success: function (arg) {
         addMessage('success', arg);
     },

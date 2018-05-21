@@ -68,6 +68,7 @@ import Transfer from './components/transfer/Transfer'
 import './components/message/Message'
 import './components/notice/Notice'
 import './components/msgbox/Msgbox'
+import './components/loadingBar/LoadingBar'
 
 Yox.component({
     Transition,

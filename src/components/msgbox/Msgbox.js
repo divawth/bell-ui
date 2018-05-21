@@ -5,10 +5,10 @@ let element = document.createElement('div');
 element.setAttribute('id', 'bell-msgbox-wrapper');
 body.append(element);
 
-Yox.prototype.$alert = function (data) {
+Yox.prototype.$Alert = function (data) {
     addAlert(data);
 };
 
-Yox.prototype.$confirm = function (data) {
+Yox.prototype.$Confirm = function (data) {
     addConfirm(data);
 };

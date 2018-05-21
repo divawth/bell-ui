@@ -22,14 +22,14 @@
         `,
         methods: {
             open: function () {
-                this.$notice.success({
+                this.$Notice.success({
                     title: '这是标题这是标题这是标题',
                     content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
                     width: 320
                 });
             },
             open1: function () {
-                this.$notice.success({
+                this.$Notice.success({
                     title: '这是标题这是标题这是标题',
                     width: 320
                 });
@@ -61,28 +61,28 @@
 
         methods: {
             open: function () {
-                this.$notice.success({
+                this.$Notice.success({
                     title: '这是标题这是标题这是标题',
                     content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
                     width: 320
                 });
             },
             open2: function () {
-                this.$notice.info({
+                this.$Notice.info({
                     title: '这是标题这是标题这是标题',
                     content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
                     width: 320
                 });
             },
             open3: function () {
-                this.$notice.warning({
+                this.$Notice.warning({
                     title: '这是标题这是标题这是标题',
                     content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
                     width: 320
                 });
             },
             open4: function () {
-                this.$notice.error({
+                this.$Notice.error({
                     title: '这是标题这是标题这是标题',
                     content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
                     width: 320
@@ -105,7 +105,7 @@ duration 为 0 的时候出现关闭按钮
         `,
         methods: {
             open: function () {
-                this.$notice.error({
+                this.$Notice.error({
                     title: '对方不想和你说话，并且向你抛出了一个异常',
                     duration: 0,
                     width: 330
@@ -128,7 +128,7 @@ duration 为 0 的时候出现关闭按钮
         `,
         methods: {
             open: function () {
-                this.$notice.error({
+                this.$Notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     duration: 10000
                 })
@@ -150,7 +150,7 @@ duration 为 0 的时候出现关闭按钮
         `,
         methods: {
             open: function () {
-                this.$notice.error({
+                this.$Notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     right: 100
                 })
@@ -170,11 +170,11 @@ duration 为 0 的时候出现关闭按钮
         `,
         methods: {
             open: function () {
-                this.$notice.config({
+                this.$Notice.config({
                     right: 50,
                     duration: 13000
                 });
-                this.$notice.error({
+                this.$Notice.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     onClose: function () {
                         console.log('close')
@@ -188,10 +188,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$notice.info(content, duration, onClose)
-- this.$notice.success(content, duration, onClose)
-- this.$notice.warning(content, duration, onClose)
-- this.$notice.error(content, duration, onClose)
+- this.$Notice.info(content, duration, onClose)
+- this.$Notice.success(content, duration, onClose)
+- this.$Notice.warning(content, duration, onClose)
+- this.$Notice.error(content, duration, onClose)
 
 > Attributes
 
@@ -210,7 +210,7 @@ onClose | 关闭 alert 时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$notice.config();
+- this.$Notice.config();
 
 > Attributes
 

@@ -5401,7 +5401,7 @@ button.bell-button {
   justify-content: center;
   z-index: 1000;
   text-align: center;
-  position: 'fixed';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -5426,7 +5426,7 @@ button.bell-button {
   padding: 10px 15px;
 }
 .bell-msg-alert-wrapper .bell-msg-mask {
-  position: 'fixed';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -5455,7 +5455,7 @@ button.bell-button {
   justify-content: center;
   z-index: 1000;
   text-align: center;
-  position: 'fixed';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -5480,7 +5480,7 @@ button.bell-button {
   padding: 10px 15px;
 }
 .bell-msg-confirm-wrapper .bell-msg-mask {
-  position: 'fixed';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -6054,4 +6054,37 @@ button.bell-button {
     opacity: 0;
     width: 100%;
   }
+}
+#bell-loading-bar-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+}
+#bell-loading-bar-wrapper .bell-loading-bar {
+  background-color: #f8f8f8;
+  border-radius: 100px;
+}
+#bell-loading-bar-wrapper .bell-loading-bar .bell-loading-bar-bg {
+  background-color: #348eed;
+}
+#bell-loading-bar-wrapper .bell-loading-bar-success .bell-loading-bar-bg {
+  background-color: #29bd6e;
+}
+#bell-loading-bar-wrapper .bell-loading-bar-error .bell-loading-bar-bg {
+  background-color: #eb4124;
+}
+#bell-loading-bar-wrapper .bell-loading-bar-info .bell-loading-bar-bg {
+  background-color: #38b8f3;
+}
+#bell-loading-bar-wrapper .bell-loading-bar-warning .bell-loading-bar-bg {
+  background-color: #fd9827;
+}
+#bell-loading-bar-wrapper .bell-loading-bar-danger .bell-loading-bar-bg {
+  background-color: #d9534f;
+}
+#bell-loading-bar-wrapper .bell-loading-bar .bell-loading-bar-bg {
+  border-radius: 100px;
+  transition: width 0.2s linear;
 }

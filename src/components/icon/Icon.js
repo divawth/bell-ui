@@ -10,7 +10,8 @@ export default {
             type: 'string'
         },
         size: {
-            type: 'number'
+            type: 'number',
+            value: 12
         },
         className: {
             type: 'string'

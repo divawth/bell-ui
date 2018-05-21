@@ -1,0 +1,11 @@
+loading-bar-style(color)
+    {$selector-loading-bar-bg}
+
+        ui-set('background-color', color['bg-color'])
+
+ui-loading-bar()
+
+    ui-connect(
+        hash: $loading-bar-brand-hash,
+        each: loading-bar-style
+    )

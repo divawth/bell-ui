@@ -7,8 +7,6 @@
 
 5 Drawer 抽屉式导航
 
-9 进度指示器 Progress
-
 5 list
 
 2 Chip
@@ -52,8 +50,6 @@ click   点击时候触发
 ## ColorPicker 颜色选择器
 
 ## Form 表单
-
-## LoadingBar 加载进度条
 
 ## Timeline 时间轴
 

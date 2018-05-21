@@ -1,0 +1,19 @@
+{$selector-loading-bar-wrapper}
+
+    position fixed
+    left 0
+    top 0
+    right 0
+    z-index $zindex-loading-bar
+
+    {$selector-loading-bar}
+
+        background-color $loading-bar-inner-background-color
+        border-radius 100px
+
+        ui-loading-bar()
+
+        {$selector-loading-bar-bg}
+
+            border-radius 100px
+            transition width .2s linear

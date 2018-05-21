@@ -37,9 +37,16 @@
     export default {
         template: `
             <div>
-                <Progress percent="{{percent}}" strokeLinecap="round">
+                <Progress percent="{{percent}}"
+                {{#if percent == 100}}
+                    type="success"
+                {{else}}
+                    type="primary"
+                {{/if}}
+                 strokeLinecap="round">
                     {{#if percent == 100}}
                         <Icon type="checkmark-circled" style="color:#5cb85c"></Icon>
+                        <span style="margin-left: 10px;">成功</span>
                     {{else}}
                         <span style="font-size:12px">
                             {{ percent }}%
@@ -91,3 +98,4 @@ type | 类型 | String | - | -
 strokeWidth | 进度环的线宽 | Number | 6 | 6
 hideInfo | 隐藏数值或状态图标 | Boolean | - | false
 vertical | 是否在垂直方向显示 | Boolean | - | false
+active | active | Boolean | - | false
