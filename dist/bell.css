@@ -6088,3 +6088,43 @@ button.bell-button {
   border-radius: 100px;
   transition: width 0.2s linear;
 }
+.bell-slider {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  cursor: default;
+  user-select: none;
+  outline: none;
+}
+.bell-slider .bell-slider-bg {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background-color: #bdbdbd;
+}
+.bell-slider .bell-slider-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background-color: #2196f3;
+  transition: width 0.3s linear;
+}
+.bell-slider .bell-slider-thumb {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  border-radius: 100%;
+  background-color: #2196f3;
+  transition: transform 0.3s linear;
+  cursor: pointer;
+}
+.bell-slider .bell-slider-thumb:hover {
+  transform: scale(1.5);
+}

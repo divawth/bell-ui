@@ -1,36 +1,48 @@
 export default {
     template: `
-        <div class="bell-player-slider"
-            on-touchstart="mediaControl()"
-        >
-            <span class="bell-current-time">
-                {{getFormatTime(currentTime)}}
-            </span>
+        <div class="bell-slider">
 
-            <div class="bell-slider">
-                <div class="wrapper">
-                    <div class="bell-slider-track">
-                        <div class="bell-slider-selection">
-                        </div>
-                    </div>
+            <input type="hidden" model="value">
 
-                    <div class="bell-slider-handle">
-                        <span class="bell-handle-tooltip">
-                            {{getFormatTime(sliderValue)}}
-                        </span>
-                        <span class="bell-handle-button">
-                            <div class="bell-handle-icon"></div>
-                        </span>
-                    </div>
-                </div>
+            <div class="bell-slider-bg"></div>
+
+            <div class="bell-slider-fill"
+                style="width: 0%;"
+            ></div>
+
+            <div class="bell-slider-thumb"
+                style="left: 0%;"
+                title="值：0；占比：0%"
+            >
+
             </div>
 
-            <span class="bell-duration">
-                {{getFormatTime(duration)}}
-            </span>
         </div>
     `,
     propTypes: {
-
+        value: {
+            type: 'number',
+            value: 40
+        },
+        max: {
+            type: 'number',
+            value: 100
+        },
+        min: {
+            type: 'number',
+            value: 0
+        },
+        step: {
+            type: 'number',
+            value: 1
+        },
+        disabled: {
+            type: 'boolean',
+            value: false
+        },
+        range: {
+            type: 'boolean',
+            value: false
+        },
     }
 };

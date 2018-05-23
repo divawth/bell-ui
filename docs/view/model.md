@@ -1,4 +1,4 @@
-从场景上说，Msgbox 的作用是美化系统自带的 alert、confirm 因此适合展示较为简单的内容。如果需要弹出较为复杂的内容，请使用 Dialog。
+从场景上说，Model 的作用是美化系统自带的 alert、confirm 因此适合展示较为简单的内容。如果需要弹出较为复杂的内容，请使用 Dialog。
 
 > alert 的基本用法
 

@@ -37,7 +37,7 @@ import Spinner from './components/spinner/Spinner'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
 import Badge from './components/badge/Badge'
-import Datepicker from './components/datepicker/Datepicker'
+import DatePicker from './components/datepicker/DatePicker'
 import Date from './components/datepicker/components/Date'
 import DateRange from './components/datepicker/components/DateRange'
 import DateWeek from './components/datepicker/components/DateWeek'
@@ -62,6 +62,7 @@ import Item from './components/list/Item'
 
 import Circle from './components/circle/Circle'
 import Progress from './components/progress/Progress'
+import Slider from './components/slider/Slider'
 
 import Transfer from './components/transfer/Transfer'
 
@@ -103,7 +104,7 @@ Yox.component({
     DateWeek,
     DateMonth,
     DateYear,
-    Datepicker,
+    DatePicker,
 
     Tooltip,
     TooltipItem,
@@ -128,6 +129,7 @@ Yox.component({
     Item,
     Circle,
     Progress,
+    Slider,
 
     Transfer
 });

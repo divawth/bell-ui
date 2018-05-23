@@ -1836,7 +1836,7 @@ var Badge = {
     }
 };
 
-var Datepicker = {
+var DatePicker = {
     template: '\n        <div class="bell-datepicker\n        ">\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                    type="input"\n                    clearable\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n            {{#if isPopuping}} bell-isPopuping{{/if}}\n            {{#if isPopdowning}} bell-isPopdowning{{/if}}\n            {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
 
     propTypes: {
@@ -3278,6 +3278,36 @@ var Progress = {
     }
 };
 
+var Slider = {
+    template: '\n        <div class="bell-slider">\n\n            <input type="hidden" model="value">\n\n            <div class="bell-slider-bg"></div>\n\n            <div class="bell-slider-fill"\n                style="width: 0%;"\n            ></div>\n\n            <div class="bell-slider-thumb"\n                style="left: 0%;"\n                title="\u503C\uFF1A0\uFF1B\u5360\u6BD4\uFF1A0%"\n            >\n\n            </div>\n\n        </div>\n    ',
+    propTypes: {
+        value: {
+            type: 'number',
+            value: 40
+        },
+        max: {
+            type: 'number',
+            value: 100
+        },
+        min: {
+            type: 'number',
+            value: 0
+        },
+        step: {
+            type: 'number',
+            value: 1
+        },
+        disabled: {
+            type: 'boolean',
+            value: false
+        },
+        range: {
+            type: 'boolean',
+            value: false
+        }
+    }
+};
+
 var Transfer = {
     template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{left.length}} / {{leftList.length}}\n                    </span>\n                </div>\n\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{right.length}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
     propTypes: {
@@ -4022,7 +4052,7 @@ Yox.component({
     DateWeek: DateWeek,
     DateMonth: DateMonth,
     DateYear: DateYear,
-    Datepicker: Datepicker,
+    DatePicker: DatePicker,
 
     Tooltip: Tooltip,
     TooltipItem: TooltipItem,
@@ -4047,6 +4077,7 @@ Yox.component({
     Item: Item,
     Circle: Circle,
     Progress: Progress,
+    Slider: Slider,
 
     Transfer: Transfer
 });

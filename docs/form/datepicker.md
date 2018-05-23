@@ -3,7 +3,7 @@
     export default {
         template: `
             <div>
-                <Datepicker mode="date" onChange="{{onChange}}"></Datepicker>
+                <DatePicker mode="date" onChange="{{onChange}}"></DatePicker>
             </div>
         `,
         data: {
@@ -18,7 +18,7 @@
     export default {
         template: `
             <div>
-                <Datepicker mode="dateRange" onChange="{{onChange}}"></Datepicker>
+                <DatePicker mode="dateRange" onChange="{{onChange}}"></DatePicker>
             </div>
         `,
         data: {
@@ -33,7 +33,7 @@
     export default {
         template: `
             <div>
-                <Datepicker mode="week" onChange="{{onChange}}"></Datepicker>
+                <DatePicker mode="week" onChange="{{onChange}}"></DatePicker>
             </div>
         `,
         data: {
@@ -48,7 +48,7 @@
     export default {
         template: `
             <div>
-                <Datepicker mode="month" onChange="{{onChange}}"></Datepicker>
+                <DatePicker mode="month" onChange="{{onChange}}"></DatePicker>
             </div>
         `,
         data: {
@@ -63,7 +63,7 @@
     export default {
         template: `
             <div>
-                <Datepicker mode="year" onChange="{{onChange}}"></Datepicker>
+                <DatePicker mode="year" onChange="{{onChange}}"></DatePicker>
             </div>
         `,
         data: {
