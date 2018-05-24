@@ -34,6 +34,7 @@
   - [Badge 标记](view/badge)
   - [Collapse 折叠面板](view/collapse)
   - [Tooltip 提示](view/tooltip)
+  - [Tag 标签](view/tag)
 - [Other](other)
   - [LoadingBar 加载进度条](other/loadingbar)
   - [Progress 进度条](other/progress)

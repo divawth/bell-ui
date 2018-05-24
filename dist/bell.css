@@ -6184,3 +6184,163 @@ button.bell-button {
 .bell-slider .bell-slider-thumb:hover {
   transform: scale(1.5);
 }
+.bell-tag {
+  display: inline-block;
+  opacity: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  position: relative;
+}
+.bell-tag.large {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.bell-tag {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.bell-tag.small {
+  padding: 3px 10px;
+  font-size: 12px;
+}
+.bell-tag.tiny {
+  padding: 2px 10px;
+  font-size: 12px;
+}
+.bell-tag {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.bell-tag-checked {
+  border-color: #e9eaec;
+  background-color: #e9eaec;
+  color: rgba(0,0,0,0.54);
+}
+.bell-tag.bell-tag-checked.bell-tag-border {
+  border-color: #e9eaec;
+  background-color: transparent;
+  color: #e9eaec;
+}
+.bell-tag.bell-tag-checked.bell-tag-border::after {
+  background-color: #e9eaec;
+}
+.bell-tag.success {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.success.bell-tag-checked {
+  border-color: #29bd6e;
+  background-color: #29bd6e;
+  color: #fff;
+}
+.bell-tag.success.bell-tag-checked.bell-tag-border {
+  border-color: #29bd6e;
+  background-color: transparent;
+  color: #29bd6e;
+}
+.bell-tag.success.bell-tag-checked.bell-tag-border::after {
+  background-color: #29bd6e;
+}
+.bell-tag.error {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.error.bell-tag-checked {
+  border-color: #eb4124;
+  background-color: #eb4124;
+  color: #fff;
+}
+.bell-tag.error.bell-tag-checked.bell-tag-border {
+  border-color: #eb4124;
+  background-color: transparent;
+  color: #eb4124;
+}
+.bell-tag.error.bell-tag-checked.bell-tag-border::after {
+  background-color: #eb4124;
+}
+.bell-tag.info {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.info.bell-tag-checked {
+  border-color: #38b8f3;
+  background-color: #38b8f3;
+  color: #fff;
+}
+.bell-tag.info.bell-tag-checked.bell-tag-border {
+  border-color: #38b8f3;
+  background-color: transparent;
+  color: #38b8f3;
+}
+.bell-tag.info.bell-tag-checked.bell-tag-border::after {
+  background-color: #38b8f3;
+}
+.bell-tag.primary {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.primary.bell-tag-checked {
+  border-color: #348eed;
+  background-color: #348eed;
+  color: #fff;
+}
+.bell-tag.primary.bell-tag-checked.bell-tag-border {
+  border-color: #348eed;
+  background-color: transparent;
+  color: #348eed;
+}
+.bell-tag.primary.bell-tag-checked.bell-tag-border::after {
+  background-color: #348eed;
+}
+.bell-tag.warning {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.warning.bell-tag-checked {
+  border-color: #fd9827;
+  background-color: #fd9827;
+  color: #fff;
+}
+.bell-tag.warning.bell-tag-checked.bell-tag-border {
+  border-color: #fd9827;
+  background-color: transparent;
+  color: #fd9827;
+}
+.bell-tag.warning.bell-tag-checked.bell-tag-border::after {
+  background-color: #fd9827;
+}
+.bell-tag.danger {
+  color: rgba(0,0,0,0.37);
+}
+.bell-tag.danger.bell-tag-checked {
+  border-color: #d9534f;
+  background-color: #d9534f;
+  color: #fff;
+}
+.bell-tag.danger.bell-tag-checked.bell-tag-border {
+  border-color: #d9534f;
+  background-color: transparent;
+  color: #d9534f;
+}
+.bell-tag.danger.bell-tag-checked.bell-tag-border::after {
+  background-color: #d9534f;
+}
+.bell-tag + .bell-tag {
+  margin-left: 10px;
+}
+.bell-tag .bell-tag-close-icon {
+  transform: scale(2);
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.bell-tag.bell-tag-border::after {
+  display: inline-block;
+  content: ' ';
+  height: 100%;
+  width: 1px;
+  position: absolute;
+  top: 0;
+  right: 24px;
+}
+.bell-tag.bell-tag-border .bell-tag-close-icon {
+  margin-left: 20px;
+}

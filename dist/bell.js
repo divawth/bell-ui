@@ -3541,6 +3541,50 @@ var Slider = {
     }
 };
 
+var Tag = {
+    template: '\n        <div class="bell-tag\n        {{#if border}} bell-tag-border{{/if}}\n        {{#if size}} {{size}}{{/if}}\n        {{#if type}} {{type}}{{/if}}\n        {{#if checked}} bell-tag-checked{{/if}}\n        " on-click="click()">\n            <div class="bell-tag-text">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n\n                {{#if closable}}\n                    <i class="bell-tag-close-icon bell-icon bell-icon-ios-close-empty" on-click="close()"></i>\n                {{/if}}\n            </div>\n        </div>\n    ',
+    propTypes: {
+        size: {
+            type: 'string'
+        },
+        closable: {
+            type: 'boolean',
+            value: false
+        },
+        border: {
+            type: 'boolean',
+            value: false
+        },
+        type: {
+            type: 'string'
+        },
+        checkable: {
+            type: 'boolean',
+            value: false
+        },
+        checked: {
+            type: 'boolean',
+            value: true
+        },
+        onClose: {
+            type: 'function'
+        }
+    },
+    methods: {
+        click: function click() {
+            var me = this;
+            if (!me.get('checkable')) {
+                return;
+            }
+            me.toggle('checked');
+        },
+        close: function close() {
+            var me = this;
+            me.get('onClose') && me.get('onClose')();
+        }
+    }
+};
+
 var Transfer = {
     template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{left.length}} / {{leftList.length}}\n                    </span>\n                </div>\n\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{right.length}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
     propTypes: {
@@ -4311,6 +4355,7 @@ Yox.component({
     Circle: Circle,
     Progress: Progress,
     Slider: Slider,
+    Tag: Tag,
 
     Transfer: Transfer
 });

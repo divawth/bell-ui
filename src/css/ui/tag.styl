@@ -1,0 +1,40 @@
+{$selector-tag}
+
+    ui-tag()
+
+    display inline-block
+    opacity 1
+    overflow hidden
+    cursor $cursor-clickable
+    border-radius $radius-base
+    vertical-align middle
+    border 1px solid transparent
+    position relative
+
+    + {$selector-tag}
+
+        margin-left 10px
+
+    {$selector-tag-close-icon}
+        transform scale(2)
+        position relative
+        top 1px
+        cursor $cursor-clickable
+
+        margin-left 8px
+
+
+    &{$selector-tag-border}
+        &::after
+            display inline-block
+            content ' '
+            height 100%
+            width 1px
+            position absolute
+            top 0
+            right 24px
+
+        {$selector-tag-close-icon}
+
+            margin-left 20px
+

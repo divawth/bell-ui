@@ -1,0 +1,31 @@
+tag-size(size)
+
+    ui-set('padding', size['padding'])
+    ui-set('font-size', size['font-size'])
+
+tag-color(color)
+
+    ui-set('color', $brand-muted)
+
+    &{$selector-tag-checked}
+        ui-set('border-color', color['border-color'])
+        ui-set('background-color', color['background-color'])
+        ui-set('color', color['color'])
+
+        &{$selector-tag-border}
+            ui-set('border-color', color['border-color'])
+            ui-set('background-color', transparent)
+            ui-set('color', color['border-color'])
+
+            &::after
+                ui-set('background-color', color['border-color'])
+
+ui-tag()
+    ui-variant(
+        hash: $selector-tag-size-hash,
+        each: tag-size
+    )
+    ui-variant(
+        hash: $selector-tag-color-hash,
+        each: tag-color
+    )

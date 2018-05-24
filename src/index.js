@@ -63,6 +63,7 @@ import Item from './components/list/Item'
 import Circle from './components/circle/Circle'
 import Progress from './components/progress/Progress'
 import Slider from './components/slider/Slider'
+import Tag from './components/tag/Tag'
 
 import Transfer from './components/transfer/Transfer'
 
@@ -130,6 +131,7 @@ Yox.component({
     Circle,
     Progress,
     Slider,
+    Tag,
 
     Transfer
 });

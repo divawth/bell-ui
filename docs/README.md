@@ -35,8 +35,6 @@ click   点击时候触发
 
 ## Timeline 时间轴
 
-## Tag 标签
-
 ## Poptip 气泡提示
 
 ## Carousel 走马灯
