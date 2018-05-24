@@ -1,44 +1,63 @@
 {$selector-slider}
 
-    position: relative;
-    width: 100%;
-    height: 24px;
-    cursor: default;
-    user-select: none;
-    outline: none;
+    ui-slider()
+
+    position relative
+    width 100%
+    height 24px
+    user-select none
+    outline none
+    cursor pointer
+
+    &{$selector-slider-dragging}
+
+        {$selector-slider-thumb}
+
+            transform scale(1.5)
+
+    {$selector-disabled}
+
+        cursor default
+
+        {$selector-slider-thumb}
+
+            {$selector-hover}
+
+                transform scale(1)
 
     {$selector-slider-bg}
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        height: 2px;
-        margin-top: -1px;
 
-        background-color: #bdbdbd;
+        width 100%
+        position absolute
+        left 0
+        top 50%
+        height 4px
+        margin-top -1px
+        border-radius 100px
+
+        background-color $brand-link-disabled
 
     {$selector-slider-fill}
 
-        position: absolute;
-        left: 0;
-        top: 50%;
-        height: 2px;
-        margin-top: -1px;
-
-        background-color: #2196f3;
-        transition: width .3s linear;
+        position absolute
+        left 0
+        top 50%
+        height 4px
+        margin-top -1px
+        border-radius 100px
 
     {$selector-slider-thumb}
-        width: 8px;
-        height: 8px;
-        position: absolute;
-        top: 50%;
-        margin-top: -4px;
-        border-radius: 100%;
-        background-color: #2196f3;
-        transition: transform .3s linear;
-        cursor: pointer;
 
-        &:hover {
-            transform: scale(1.5);
-        }
+        width 10px
+        height 10px
+        position absolute
+        top 50%
+        margin-top -4px
+        border-radius 100%
+        background-color #fff
+        border 2px solid transparent
+        transition transform .3s linear
+
+        {$selector-hover}
+
+            transform scale(1.5)

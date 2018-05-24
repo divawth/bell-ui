@@ -6092,39 +6092,95 @@ button.bell-button {
   position: relative;
   width: 100%;
   height: 24px;
-  cursor: default;
   user-select: none;
   outline: none;
+  cursor: pointer;
+}
+.bell-slider .bell-slider-fill {
+  background-color: #348eed !important;
+}
+.bell-slider .bell-slider-thumb {
+  border-color: #348eed !important;
+}
+.bell-slider.success .bell-slider-fill {
+  background-color: #29bd6e !important;
+}
+.bell-slider.success .bell-slider-thumb {
+  border-color: #29bd6e !important;
+}
+.bell-slider.error .bell-slider-fill {
+  background-color: #eb4124 !important;
+}
+.bell-slider.error .bell-slider-thumb {
+  border-color: #eb4124 !important;
+}
+.bell-slider.warning .bell-slider-fill {
+  background-color: #fd9827 !important;
+}
+.bell-slider.warning .bell-slider-thumb {
+  border-color: #fd9827 !important;
+}
+.bell-slider.danger .bell-slider-fill {
+  background-color: #d9534f !important;
+}
+.bell-slider.danger .bell-slider-thumb {
+  border-color: #d9534f !important;
+}
+.bell-slider.info .bell-slider-fill {
+  background-color: #38b8f3 !important;
+}
+.bell-slider.info .bell-slider-thumb {
+  border-color: #38b8f3 !important;
+}
+.bell-slider.disabled .bell-slider-fill {
+  background-color: #ccc !important;
+}
+.bell-slider.disabled .bell-slider-thumb {
+  border-color: #ccc !important;
+}
+.bell-slider.dragging .bell-slider-thumb {
+  transform: scale(1.5);
+}
+.bell-slider.disabled,
+.bell-slider[disabled] {
+  cursor: default;
+}
+.bell-slider.disabled .bell-slider-thumb.hover,
+.bell-slider[disabled] .bell-slider-thumb.hover,
+.bell-slider.disabled .bell-slider-thumb:hover,
+.bell-slider[disabled] .bell-slider-thumb:hover {
+  transform: scale(1);
 }
 .bell-slider .bell-slider-bg {
   width: 100%;
   position: absolute;
   left: 0;
   top: 50%;
-  height: 2px;
+  height: 4px;
   margin-top: -1px;
-  background-color: #bdbdbd;
+  border-radius: 100px;
+  background-color: #bbb;
 }
 .bell-slider .bell-slider-fill {
   position: absolute;
   left: 0;
   top: 50%;
-  height: 2px;
+  height: 4px;
   margin-top: -1px;
-  background-color: #2196f3;
-  transition: width 0.3s linear;
+  border-radius: 100px;
 }
 .bell-slider .bell-slider-thumb {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   position: absolute;
   top: 50%;
   margin-top: -4px;
   border-radius: 100%;
-  background-color: #2196f3;
+  background-color: #fff;
+  border: 2px solid transparent;
   transition: transform 0.3s linear;
-  cursor: pointer;
 }
+.bell-slider .bell-slider-thumb.hover,
 .bell-slider .bell-slider-thumb:hover {
   transform: scale(1.5);
 }

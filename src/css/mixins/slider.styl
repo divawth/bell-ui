@@ -1,0 +1,16 @@
+slider-color(color)
+
+    {$selector-slider-fill}
+
+        ui-set('background-color', color['color'], true)
+
+    {$selector-slider-thumb}
+
+        ui-set('border-color', color['color'], true)
+
+ui-slider()
+
+    ui-variant(
+        hash: $slider-brand-hash,
+        each: slider-color
+    )

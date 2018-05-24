@@ -2,12 +2,9 @@
 
 3 Transfer 穿梭框
 
-
 3 indeterminate 表示不定状态
 
 5 Drawer 抽屉式导航
-
-5 list
 
 2 Chip
 
@@ -20,24 +17,9 @@ delete  点击删除图标后触发
 click   点击时候触发
 
 
-
-## Table 表格
-
-1 表格最简单的用法 传data
-2 表格会间隔显示不同颜色，用于区分不同行数据。传 stripe
-3 添加表格的边框线。传 border
-4 rowClassName columnClassName cellClassName
-5 固定表格头部
-6 selection 是否需要 input 列
-7 loading
-8 action
-
-
 ## Menu 导航菜单
 
 ## AutoComplete 自动完成
-
-## Slider 滑块
 
 ## TimePicker 时间选择器
 
