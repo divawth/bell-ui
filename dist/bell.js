@@ -400,14 +400,25 @@ var Footer = {
 };
 
 var Menu = {
-    template: '\n        <div class="bell-menu\n        {{#if mode}} bell-menu-{{mode}}{{/if}}">\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-menu\n            {{#if mode}} bell-menu-{{mode}}{{/if}}\n            {{#if theme}} bell-menu-{{theme}}{{/if}}\n        ">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         mode: {
             type: 'string'
         },
+        theme: {
+            type: 'string',
+            value: 'dark'
+        },
         activeName: {
-            type: 'string'
+            type: ['string', 'number'],
+            value: -1
+        },
+        openNames: {
+            type: 'array'
+        },
+        onSelect: {
+            type: 'function'
         }
     },
 
@@ -428,13 +439,26 @@ var Menu = {
 
     watchers: {
         activeName: function activeName(_activeName) {
-            this.updateActiveName(_activeName);
+            var me = this;
+            me.get('onSelect') && me.get('onSelect')(_activeName);
+            me.updateActiveName(_activeName);
+        }
+    },
+
+    afterMount: function afterMount() {
+        var me = this;
+        me.updateActiveName(me.get('activeName'));
+        var openNames = me.get('openNames');
+        if (openNames && openNames.length) {
+            me.fire('activeSubMenuChange', {
+                openNames: openNames
+            }, true);
         }
     }
 };
 
 var MenuItem = {
-    template: '\n        <div class="bell-menu-item\n        {{#if isActive}} bell-active{{/if}}\n        " on-click="click(name)">\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-menu-item\n        {{#if isActive}} bell-active{{/if}}\n        " on-click="click(name)">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         name: {
@@ -483,16 +507,55 @@ var MenuItem = {
     }
 };
 
+var MenuGroup = {
+    template: '\n        <div class="bell-menu-group">\n            <div class="bell-menu-group-title">\n                {{title}}\n            </div>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+
+    propTypes: {
+        title: {
+            type: 'string'
+        }
+    }
+};
+
 var Submenu = {
-    template: '\n        <div class="bell-layout-sub-menu\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "\n        {{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            <div class="bell-menu-groups\n            {{#if isOpen}} bell-show{{/if}}">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
         },
         className: {
             type: 'string'
+        },
+        name: {
+            type: 'string'
         }
-    }
+    },
+
+    data: function data() {
+        return {
+            isOpen: false
+        };
+    },
+
+    events: {
+        activeSubMenuChange: function activeSubMenuChange(openNames) {
+            var me = this;
+            var isOpen = openNames.indexOf(me.get('name')) != -1;
+            console.log(isOpen);
+            this.set({
+                isOpen: isOpen
+            });
+        }
+    },
+
+    methods: {
+        click: function click(name) {
+            var me = this;
+            me.toggle('isOpen');
+        }
+    },
+    afterMount: {}
+
 };
 
 var Row = {
@@ -3568,8 +3631,18 @@ var Tag = {
         },
         onClose: {
             type: 'function'
+        },
+        onChecked: {
+            type: 'function'
         }
     },
+
+    watchers: {
+        checked: function checked(value) {
+            me.get('onChecked') && me.get('onChecked')(value);
+        }
+    },
+
     methods: {
         click: function click() {
             var me = this;
@@ -3581,6 +3654,114 @@ var Tag = {
         close: function close() {
             var me = this;
             me.get('onClose') && me.get('onClose')();
+        }
+    }
+};
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var Rate = {
+    template: '\n        <div class="bell-rate\n        {{#if readOnly}} bell-rate-read-only{{/if}}\n        " on-mouseleave="handleLeave()">\n            <input type="hidden" model="value">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if hoverValue >= index}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if index - hoverValue == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{value + 1}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n        </div>\n    ',
+    propTypes: {
+        count: {
+            type: 'number',
+            value: 5
+        },
+        value: function value(_value) {
+            console.log(typeof _value === 'undefined' ? 'undefined' : _typeof(_value), _value);
+            return _value;
+        },
+        half: {
+            type: 'boolean',
+            value: false
+        },
+        readOnly: {
+            type: 'boolean',
+            value: false
+        },
+        showTexts: {
+            type: 'boolean',
+            value: false
+        },
+        texts: {
+            type: 'array'
+        },
+        textColor: {
+            type: 'string',
+            value: '#1F2D3D'
+        },
+        onChange: {
+            type: 'function'
+        }
+    },
+
+    data: function data() {
+        return {
+            hoverValue: -1
+        };
+    },
+
+    filters: {
+        createRateList: function createRateList() {
+            var me = this;
+            var list = new Array(me.get('count'));
+            var texts = me.get('texts');
+            if (texts && texts.length) {
+                Yox.array.each(list, function (item, index) {
+                    item.push({
+                        text: texts[index] ? texts[index] : texts[texts.length]
+                    });
+                });
+            }
+            return list;
+        }
+    },
+
+    methods: {
+        handleMove: function handleMove(event, index) {
+            var me = this;
+
+            if (me.get('readOnly')) {
+                return;
+            }
+
+            var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
+            var currentValue = index;
+            if (isHalf) {
+                currentValue -= 0.5;
+            }
+
+            me.set({
+                hoverValue: currentValue
+            });
+        },
+
+        handleLeave: function handleLeave() {
+            var me = this;
+            if (me.get('readOnly')) {
+                return;
+            }
+
+            var value = me.get('value');
+            me.set({
+                hoverValue: value >= 0 ? value : -1
+            });
+        },
+
+        handleClick: function handleClick(event, index) {
+            var me = this;
+            if (me.get('readOnly')) {
+                return;
+            }
+            var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
+            var currentValue = index;
+            if (isHalf) {
+                currentValue -= 0.5;
+            }
+
+            me.set({
+                value: currentValue
+            });
         }
     }
 };
@@ -4306,6 +4487,7 @@ Yox.component({
     Footer: Footer,
     Menu: Menu,
     MenuItem: MenuItem,
+    MenuGroup: MenuGroup,
     Submenu: Submenu,
     Row: Row,
     Col: Col,
@@ -4356,6 +4538,7 @@ Yox.component({
     Progress: Progress,
     Slider: Slider,
     Tag: Tag,
+    Rate: Rate,
 
     Transfer: Transfer
 });

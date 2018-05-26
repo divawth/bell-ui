@@ -9,3 +9,30 @@ ui-layout()
         hash: $layout-hash,
         each: layout-style
     )
+
+menu-style(style)
+
+    ui-set('background-color', style['background-color']);
+    ui-set('color', style['color']);
+    ui-set('border-color', style['border-bottom-color']);
+
+    {$selector-menu}-item
+
+        &{$selector-hover}
+
+            ui-set('background-color', style['background-color-hover']);
+            ui-set('color', style['color-hover']);
+            ui-set('border-color', style['border-bottom-color-hover']);
+
+        &{$selector-active}
+
+            ui-set('background-color', style['background-color-hover']);
+            ui-set('color', style['color-hover']);
+            ui-set('border-color', style['border-bottom-color-hover']);
+
+ui-menu()
+
+    ui-connect(
+        hash: $layout-menu-theme-hash,
+        each: menu-style
+    )

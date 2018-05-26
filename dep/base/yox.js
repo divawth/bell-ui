@@ -1,64 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.Yox = factory());
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Yox = factory());
 }(this, (function () { 'use strict';
-
-if (!Object.keys) {
-  Object.keys = function (obj) {
-    var result = [];
-    for (var key in obj) {
-      push(result, key);
-    }
-    return result;
-  };
-  Object.create = function (proto, descriptor) {
-    function Class() {}
-    Class.prototype = proto;
-    proto = new Class();
-    var constructor = descriptor && descriptor.constructor;
-    if (constructor) {
-      proto.constructor = constructor.value;
-    }
-    return proto;
-  };
-}
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s*|\s*$/g, '');
-  };
-}
-if (!Array.prototype.map) {
-  Array.isArray = function (value) {
-    return is(value, 'array');
-  };
-  Array.prototype.indexOf = function (target) {
-    var result = -1;
-    each(this, function (item, index) {
-      if (item === target) {
-        result = index;
-        return FALSE;
-      }
-    });
-    return result;
-  };
-  Array.prototype.map = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      result.push(fn(item, index));
-    });
-    return result;
-  };
-  Array.prototype.filter = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      if (fn(item, index)) {
-        result.push(item);
-      }
-    });
-    return result;
-  };
-}
 
 
 
@@ -217,15 +161,15 @@ function primitive(value) {
 
 
 var is$1 = {
-    is: is,
-    func: func,
-    array: array,
-    object: object,
-    string: string,
-    number: number,
-    boolean: boolean,
-    numeric: numeric,
-    primitive: primitive
+	is: is,
+	func: func,
+	array: array,
+	object: object,
+	string: string,
+	number: number,
+	boolean: boolean,
+	numeric: numeric,
+	primitive: primitive
 };
 
 /**
@@ -569,18 +513,18 @@ function falsy(array$$1) {
 }
 
 var array$1 = {
-    each: each,
-    join: join,
-    push: push,
-    unshift: unshift,
-    toArray: toArray$1,
-    toObject: toObject,
-    indexOf: indexOf,
-    has: has,
-    last: last,
-    pop: pop,
-    remove: remove,
-    falsy: falsy
+	each: each,
+	join: join,
+	push: push,
+	unshift: unshift,
+	toArray: toArray$1,
+	toObject: toObject,
+	indexOf: indexOf,
+	has: has,
+	last: last,
+	pop: pop,
+	remove: remove,
+	falsy: falsy
 };
 
 /**
@@ -689,15 +633,15 @@ function falsy$1(str) {
 }
 
 var string$1 = {
-    camelCase: camelCase,
-    trim: trim,
-    slice: slice,
-    indexOf: indexOf$1,
-    lastIndexOf: lastIndexOf,
-    has: has$2,
-    startsWith: startsWith,
-    endsWith: endsWith,
-    falsy: falsy$1
+	camelCase: camelCase,
+	trim: trim,
+	slice: slice,
+	indexOf: indexOf$1,
+	lastIndexOf: lastIndexOf,
+	has: has$2,
+	startsWith: startsWith,
+	endsWith: endsWith,
+	falsy: falsy$1
 };
 
 var normalizeCache = {};
@@ -945,15 +889,15 @@ function set$1(object$$1, keypath, value, autofill) {
 }
 
 var object$1 = {
-    keys: keys,
-    sort: sort,
-    each: each$1,
-    has: has$1,
-    clear: clear,
-    extend: extend,
-    copy: copy,
-    get: get$1,
-    set: set$1
+	keys: keys,
+	sort: sort,
+	each: each$1,
+	has: has$1,
+	clear: clear,
+	extend: extend,
+	copy: copy,
+	get: get$1,
+	set: set$1
 };
 
 var Emitter = function () {
@@ -1236,10 +1180,10 @@ function fatal(msg) {
 
 
 var logger = {
-    log: log,
-    warn: warn,
-    error: error$1,
-    fatal: fatal
+	log: log,
+	warn: warn,
+	error: error$1,
+	fatal: fatal
 };
 
 var isNative = function (fn) {
@@ -1436,7 +1380,7 @@ function bindDirective(vnode, key, api) {
 }
 
 function unbindDirective(vnode, key) {
-  var unbinds = vnode.unbinds;
+  var unbinds = vnode.data.unbinds;
 
   if (unbinds && unbinds[key]) {
     unbinds[key]();
@@ -1481,22 +1425,19 @@ function updateDirectives(vnode, oldVnode) {
     }
   });
 
-  var oldUnbinds = oldVnode && oldVnode.unbinds;
-  if (oldUnbinds) {
-    if (newUnbinds) {
-      extend(newUnbinds, oldUnbinds);
-    } else {
-      newUnbinds = oldUnbinds;
-    }
-  }
-
   if (newUnbinds) {
-    vnode.unbinds = newUnbinds;
+    var data = vnode.data;
+
+    if (data.unbinds) {
+      extend(data.unbinds, newUnbinds);
+    } else {
+      data.unbinds = newUnbinds;
+    }
   }
 }
 
 function destroyDirectives(vnode) {
-  var unbinds = vnode.unbinds;
+  var unbinds = vnode.data.unbinds;
 
   if (unbinds) {
     each$1(unbinds, function (unbind) {
@@ -1652,7 +1593,7 @@ function createTextVnode(text) {
   };
 }
 
-function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance) {
+function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks) {
   return {
     tag: tag,
     attrs: attrs$$1,
@@ -1663,12 +1604,13 @@ function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, sl
     ref: ref,
     key: key,
     instance: instance,
-    text: UNDEFINED
+    text: UNDEFINED,
+    hooks: hooks
   };
 }
 
-function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance) {
-  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance);
+function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks) {
+  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks);
   vnode.component = TRUE;
   return vnode;
 }
@@ -1683,7 +1625,7 @@ function isTextVnode(vnode) {
 
 function init(api) {
 
-  var createElement = function (parentNode, vnode) {
+  var createElement = function (vnode, data) {
     var _vnode = vnode,
         el = _vnode.el,
         tag = _vnode.tag,
@@ -1693,6 +1635,8 @@ function init(api) {
         text = _vnode.text,
         instance = _vnode.instance;
 
+
+    vnode.data = data || {};
 
     if (falsy$1(tag)) {
       return vnode.el = api.createText(text);
@@ -1733,6 +1677,8 @@ function init(api) {
           vnode.el = el;
           api.component(el, component$$1);
 
+          enterVnode(vnode);
+
           moduleEmitter.fire(HOOK_CREATE, vnode, api);
         }
       });
@@ -1751,16 +1697,13 @@ function init(api) {
   };
 
   var addVnodes = function (parentNode, vnodes, startIndex, endIndex, before) {
+    var vnode;
     while (startIndex <= endIndex) {
-      addVnode(parentNode, vnodes[startIndex], before);
+      vnode = vnodes[startIndex];
+      if (createElement(vnode)) {
+        insertVnode(parentNode, vnode, before);
+      }
       startIndex++;
-    }
-  };
-
-  var addVnode = function (parentNode, vnode, before) {
-    var el = createElement(parentNode, vnode);
-    if (el) {
-      api.before(parentNode, el, before);
     }
   };
 
@@ -1781,9 +1724,11 @@ function init(api) {
         component$$1 = vnode.component;
 
     if (tag) {
-      if (!destroyVnode(vnode)) {
-        api.remove(parentNode, el);
-      }
+      leaveVnode(vnode, function () {
+        if (!destroyVnode(vnode)) {
+          api.remove(parentNode, el);
+        }
+      });
     } else if (el) {
       api.remove(parentNode, el);
     }
@@ -1800,7 +1745,7 @@ function init(api) {
         moduleEmitter.fire(HOOK_DESTROY, vnode, api);
         api.component(el, NULL);
         component$$1.destroy();
-        return true;
+        return TRUE;
       }
       api.component(el, NULL);
     } else if (children) {
@@ -1811,9 +1756,46 @@ function init(api) {
     moduleEmitter.fire(HOOK_DESTROY, vnode, api);
   };
 
-  var replaceVnode = function (parentNode, oldVnode, vnode) {
-    api.before(parentNode, vnode.el, oldVnode.el);
-    removeVnode(parentNode, oldVnode);
+  var insertVnode = function (parentNode, vnode, oldVnode) {
+    var el = vnode.el,
+        hasParent = api.parent(el);
+    api.before(parentNode, el, oldVnode ? oldVnode.el : NULL);
+    if (!hasParent) {
+      enterVnode(vnode);
+    }
+  };
+
+  var enterVnode = function (vnode) {
+    var el = vnode.el,
+        hooks = vnode.hooks,
+        data = vnode.data,
+        instance = vnode.instance;
+
+    if (hooks) {
+      if (data.leaving) {
+        data.leaving();
+      }
+      execute(hooks.enter, instance, [el, noop]);
+    }
+  };
+
+  var leaveVnode = function (vnode, done) {
+    var el = vnode.el,
+        hooks = vnode.hooks,
+        data = vnode.data,
+        instance = vnode.instance;
+
+    if (hooks) {
+      data.leaving = function () {
+        if (done) {
+          done();
+          done = NULL;
+        }
+      };
+      execute(hooks.leave, instance, [el, data.leaving]);
+    } else {
+      done();
+    }
   };
 
   var updateChildren = function (parentNode, oldChildren, newChildren) {
@@ -1891,15 +1873,12 @@ function init(api) {
                     oldChildren[oldIndex] = NULL;
                   }
                   // 新元素
-                  else {
-                      activeVnode = createElement(parentNode, newStartVnode);
-                      if (activeVnode) {
-                        activeVnode = newStartVnode;
-                      }
+                  else if (createElement(newStartVnode, oldStartVnode.data)) {
+                      activeVnode = newStartVnode;
                     }
 
                   if (activeVnode) {
-                    api.before(parentNode, activeVnode.el, oldStartVnode.el);
+                    insertVnode(parentNode, activeVnode, oldStartVnode);
                   }
 
                   newStartVnode = newChildren[++newStartIndex];
@@ -1907,8 +1886,7 @@ function init(api) {
     }
 
     if (oldStartIndex > oldEndIndex) {
-      activeVnode = newChildren[newEndIndex + 1];
-      addVnodes(parentNode, newChildren, newStartIndex, newEndIndex, activeVnode ? activeVnode.el : NULL);
+      addVnodes(parentNode, newChildren, newStartIndex, newEndIndex, newChildren[newEndIndex + 1]);
     } else if (newStartIndex > newEndIndex) {
       removeVnodes(parentNode, oldChildren, oldStartIndex, oldEndIndex);
     }
@@ -1921,14 +1899,18 @@ function init(api) {
     }
 
     var el = oldVnode.el,
-        component$$1 = oldVnode.component;
+        component$$1 = oldVnode.component,
+        data = oldVnode.data;
+
 
     vnode.el = el;
+    vnode.data = data;
 
     if (!isPatchable(oldVnode, vnode)) {
       var parentNode = api.parent(el);
-      if (createElement(parentNode, vnode)) {
-        parentNode && replaceVnode(parentNode, oldVnode, vnode);
+      if (createElement(vnode) && parentNode) {
+        insertVnode(parentNode, vnode, oldVnode);
+        removeVnode(parentNode, oldVnode);
       }
       return;
     }
@@ -1985,7 +1967,8 @@ function init(api) {
 
     patchVnode(api.isElement(oldVnode) ? {
       el: oldVnode,
-      tag: api.tag(oldVnode)
+      tag: api.tag(oldVnode),
+      data: {}
     } : oldVnode, vnode);
 
     return vnode;
@@ -1993,13 +1976,13 @@ function init(api) {
 }
 
 var snabbdom = {
-    createCommentVnode: createCommentVnode,
-    createTextVnode: createTextVnode,
-    createElementVnode: createElementVnode,
-    createComponentVnode: createComponentVnode,
-    isVnode: isVnode,
-    isTextVnode: isTextVnode,
-    init: init
+	createCommentVnode: createCommentVnode,
+	createTextVnode: createTextVnode,
+	createElementVnode: createElementVnode,
+	createComponentVnode: createComponentVnode,
+	isVnode: isVnode,
+	isTextVnode: isTextVnode,
+	init: init
 };
 
 var PLUS = '+';
@@ -3275,7 +3258,8 @@ var Element = function (_Node) {
         slot = me.slot,
         name = me.name,
         key = me.key,
-        ref = me.ref;
+        ref = me.ref,
+        transition = me.transition;
 
 
     var params = [],
@@ -3308,6 +3292,10 @@ var Element = function (_Node) {
 
       if (key) {
         addArray(key);
+      }
+
+      if (transition || params[RAW_LENGTH]) {
+        addArray(transition);
       }
 
       if (ref || params[RAW_LENGTH]) {
@@ -3718,9 +3706,11 @@ function compile$$1(content) {
         if (type === ATTRIBUTE) {
           // <div key="xx">
           // <div ref="xx">
+          // <div transition="xx">
           // <slot name="xx">
+          // <template slot="xx">
           var element = last(htmlStack);
-          if (name === 'key' || name === 'ref' || element.tag === 'template' && name === 'slot' || element.tag === 'slot' && name === 'name') {
+          if (name === 'key' || name === 'ref' || name === 'transition' || element.tag === 'template' && name === 'slot' || element.tag === 'slot' && name === 'name') {
             // 把数据从属性中提出来，减少渲染时的遍历
             remove(element[RAW_CHILDREN], target);
             if (!element[RAW_CHILDREN][RAW_LENGTH]) {
@@ -3821,13 +3811,12 @@ function compile$$1(content) {
       push(nodeList, node);
     }
 
-    // 上一个 if 节点没有 else 分支
-    // 在渲染时，如果这种 if 分支为 false，需要加上注释节点
-    if (prevNode && ifTypes[prevNode.type] && !htmlStack[RAW_LENGTH]) {
-      prevNode.stump = TRUE;
-    }
-
     if (ifTypes[type]) {
+      // 只要是 if 节点，并且处于 element 层级，就加 stump
+      // 方便 virtual dom 进行对比
+      if (!htmlStack[RAW_LENGTH]) {
+        node.stump = TRUE;
+      }
       push(ifStack, node);
     } else if (htmlTypes[type]) {
       push(htmlStack, node);
@@ -4262,7 +4251,7 @@ function render(render, getter, instance) {
 
 
   // create
-  c = function (component, tag, childs, attrs, props, ref, key) {
+  c = function (component, tag, childs, attrs, props, ref, transition, key) {
 
     var lastElement = currentElement,
         lastComponent = currentComponent;
@@ -4277,6 +4266,10 @@ function render(render, getter, instance) {
 
     if (key) {
       key = getValue(key);
+    }
+
+    if (transition) {
+      transition = getValue(transition);
     }
 
     if (ref) {
@@ -4301,7 +4294,7 @@ function render(render, getter, instance) {
       }
     }
 
-    var result = snabbdom[component ? 'createComponentVnode' : 'createElementVnode'](tag, currentElement.attrs, currentElement.props, currentElement.directives, children, currentElement.slots, ref, key, instance);
+    var result = snabbdom[component ? 'createComponentVnode' : 'createElementVnode'](tag, currentElement.attrs, currentElement.props, currentElement.directives, children, currentElement.slots, ref, key, instance, instance.transition(transition));
 
     popElement(lastElement);
 
@@ -4329,7 +4322,7 @@ function render(render, getter, instance) {
 
     if (each$$1) {
 
-      var eachKeypath = expr.absoluteKeypath;
+      var eachKeypath = expr.absoluteKeypath || join$1(keypath, expr.raw);
 
       each$$1(value, function (item, key) {
 
@@ -4337,13 +4330,11 @@ function render(render, getter, instance) {
             lastKeypath = keypath,
             lastKeypathStack = keypathStack;
 
-        if (eachKeypath) {
-          scope = {};
-          keypath = join$1(eachKeypath, key);
-          keypathStack = copy(keypathStack);
-          push(keypathStack, keypath);
-          push(keypathStack, scope);
-        }
+        scope = {};
+        keypath = join$1(eachKeypath, key);
+        keypathStack = copy(keypathStack);
+        push(keypathStack, keypath);
+        push(keypathStack, scope);
 
         scope[SPECIAL_KEYPATH] = keypath;
 
@@ -4353,11 +4344,9 @@ function render(render, getter, instance) {
 
         generate();
 
-        if (eachKeypath) {
-          scope = lastScope;
-          keypath = lastKeypath;
-          keypathStack = lastKeypathStack;
-        }
+        scope = lastScope;
+        keypath = lastKeypath;
+        keypathStack = lastKeypathStack;
       });
     }
   },
@@ -5133,7 +5122,15 @@ var Observer = function () {
   };
 
   Observer.prototype.nextTick = function (fn) {
-    append(fn);
+    if (func(fn)) {
+      var instance = this;
+      append(function () {
+        // 确保没销毁
+        if (instance.data) {
+          fn();
+        }
+      });
+    }
   };
 
   Observer.prototype.nextRun = function () {
@@ -5411,30 +5408,60 @@ function off(element, type, listener) {
   element.removeEventListener(type, listener, FALSE);
 }
 
+function addClass(element, className) {
+  var classList = element.classList;
+
+  if (classList) {
+    classList.add(className);
+  } else {
+    classList = element.className.split(CHAR_WHITESPACE);
+    if (!has(classList, className)) {
+      push(classList, className);
+      element.className = join(classList, CHAR_WHITESPACE);
+    }
+  }
+}
+
+function removeClass(element, className) {
+  var classList = element.classList;
+
+  if (classList) {
+    classList.remove(className);
+  } else {
+    classList = element.className.split(CHAR_WHITESPACE);
+    if (has(classList, className)) {
+      remove(classList, className);
+      element.className = join(classList, CHAR_WHITESPACE);
+    }
+  }
+}
+
 var domApi = {
-    createElement: createElement,
-    createText: createText,
-    createComment: createComment,
-    createEvent: createEvent,
-    isElement: isElement,
-    setProp: setProp,
-    removeProp: removeProp,
-    setAttr: setAttr,
-    removeAttr: removeAttr,
-    before: before,
-    append: append$1,
-    replace: replace,
-    remove: remove$1,
-    parent: parent,
-    next: next,
-    tag: tag$1,
-    children: children,
-    text: text,
-    html: html,
-    component: component$1,
-    find: find,
-    on: on$1,
-    off: off
+	createElement: createElement,
+	createText: createText,
+	createComment: createComment,
+	createEvent: createEvent,
+	isElement: isElement,
+	setProp: setProp,
+	removeProp: removeProp,
+	setAttr: setAttr,
+	removeAttr: removeAttr,
+	before: before,
+	append: append$1,
+	replace: replace,
+	remove: remove$1,
+	parent: parent,
+	next: next,
+	tag: tag$1,
+	children: children,
+	text: text,
+	html: html,
+	component: component$1,
+	find: find,
+	on: on$1,
+	off: off,
+	addClass: addClass,
+	removeClass: removeClass
 };
 
 /**
@@ -5490,120 +5517,14 @@ var COMPOSITION_END = 'compositionend';
  *
  * @type {string}
  */
-var PROPERTY_CHANGE = 'propertychange';
-
-var IEEvent = function () {
-  function IEEvent(event, element) {
-    classCallCheck(this, IEEvent);
-
-
-    extend(this, event);
-
-    this.currentTarget = element;
-    this.target = event.srcElement || element;
-    this.originalEvent = event;
-  }
-
-  IEEvent.prototype.preventDefault = function () {
-    this.originalEvent.returnValue = FALSE;
-  };
-
-  IEEvent.prototype.stopPropagation = function () {
-    this.originalEvent.cancelBubble = TRUE;
-  };
-
-  return IEEvent;
-}();
-
-function addInputListener(element, listener) {
-  listener.$listener = function (e) {
-    if (e.propertyName === 'value') {
-      e = new Event(e);
-      e.type = INPUT;
-      listener.call(this, e);
-    }
-  };
-  on$2(element, PROPERTY_CHANGE, listener.$listener);
-}
-
-function removeInputListener(element, listener) {
-  off$1(element, PROPERTY_CHANGE, listener.$listener);
-  delete listener.$listener;
-}
-
-function addChangeListener(element, listener) {
-  listener.$listener = function (e) {
-    e = new Event(e);
-    e.type = CHANGE;
-    listener.call(this, e);
-  };
-  on$2(element, CLICK, listener.$listener);
-}
-
-function removeChangeListener(element, listener) {
-  off$1(element, CLICK, listener.$listener);
-  delete listener.$listener;
-}
-
-function isBox(element) {
-  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
-}
-
-function on$2(element, type, listener) {
-  if (type === INPUT) {
-    addInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    addChangeListener(element, listener);
-  } else {
-    element.attachEvent('on' + type, listener);
-  }
-}
-
-function off$1(element, type, listener) {
-  if (type === INPUT) {
-    removeInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    removeChangeListener(element, listener);
-  } else {
-    element.detachEvent('on' + type, listener);
-  }
-}
-
-function createEvent$1(event, element) {
-  return new IEEvent(event, element);
-}
-
-function find$1(selector, context) {
-  context = context || doc;
-  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
-}
-
-function setProp$1(element, name, value) {
-  try {
-    set$1(element, name, value);
-  } catch (e) {
-    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
-      element.setAttribute('type', 'text/css');
-      element.styleSheet.cssText = value;
-    }
-  }
-}
-
-
-
-var oldApi = {
-    on: on$2,
-    off: off$1,
-    createEvent: createEvent$1,
-    find: find$1,
-    setProp: setProp$1
-};
 
 var api = copy(domApi);
 
-if (doc && !doc.addEventListener) {
-  extend(api, oldApi);
-}
+// import * as oldApi from './oldApi'
+//
+// if (env.doc && !env.doc.addEventListener) {
+//   object.extend(api, oldApi)
+// }
 
 var _on = api.on;
 var _off = api.off;
@@ -5911,8 +5832,9 @@ var model = function (_ref) {
       var field = component.$model = component.$options.model || VALUE;
 
       if (!has$1(attrs, field)) {
-        set$$1();
+        instance.nextTick(set$$1);
       }
+
       component.watch(field, sync);
       unbindTarget = function () {
         component.unwatch(field, sync);
@@ -5953,8 +5875,8 @@ var model = function (_ref) {
     });
 
     return function () {
-      unbindTarget && unbindTarget();
-      unbindInstance && unbindInstance();
+      execute(unbindTarget);
+      execute(unbindInstance);
       set$$1 = NULL;
     };
   }
@@ -6031,6 +5953,7 @@ var Yox = function () {
         replace = _options.replace,
         computed = _options.computed,
         template = _options.template,
+        transitions = _options.transitions,
         components = _options.components,
         directives = _options.directives,
         partials = _options.partials,
@@ -6047,7 +5970,8 @@ var Yox = function () {
 
     var source;
     if (object(propTypes)) {
-      source = Yox.validate(props || {}, propTypes);
+      instance.$propTypes = propTypes;
+      source = instance.validate(props || {}, propTypes);
     } else {
       source = props || {};
     }
@@ -6140,6 +6064,7 @@ var Yox = function () {
       }
     };
 
+    smartSet('transition', transitions);
     smartSet('component', components);
     smartSet('directive', directives);
     smartSet('partial', partials);
@@ -6183,6 +6108,12 @@ var Yox = function () {
       });
     }
   }
+
+  Yox.prototype.validate = function (props) {
+    var $propTypes = this.$propTypes;
+
+    return $propTypes ? Yox.validate(props, $propTypes) : props;
+  };
 
   /**
    * 添加计算属性
@@ -6781,7 +6712,7 @@ var Yox = function () {
   return Yox;
 }();
 
-Yox.version = '0.58.2';
+Yox.version = '0.59.3';
 
 /**
  * 工具，便于扩展、插件使用
@@ -6841,7 +6772,7 @@ function setResource(data, name, value) {
  * @param {Object|string} name
  * @param {?Object} value
  */
-each([COMPONENT, 'directive', 'partial', 'filter'], function (type) {
+each([COMPONENT, 'transition', 'directive', 'partial', 'filter'], function (type) {
   prototype[type] = function (name, value) {
     var instance = this,
         prop = '$' + type + 's',
@@ -6907,32 +6838,35 @@ Yox.validate = function (props, propTypes) {
     required = required === TRUE || func(required) && required(props);
 
     if (isDef(props[key])) {
+      var target = props[key];
+      if (func(rule)) {
+        result[key] = rule(target);
+      }
       // 如果不写 type 或 type 不是 字符串 或 数组
       // 就当做此规则无效，和没写一样
-      if (type) {
-        var target = props[key],
-            matched;
-        // 比较类型
-        if (!falsy$1(type)) {
-          matched = is(target, type);
-        } else if (!falsy(type)) {
-          each(type, function (t) {
-            if (is(target, t)) {
-              matched = TRUE;
-              return FALSE;
-            }
-          });
-        } else if (func(type)) {
-          // 有时候做判断需要参考其他数据
-          // 比如当 a 有值时，b 可以为空之类的
-          matched = type(target, props);
+      else if (type) {
+          var matched;
+          // 比较类型
+          if (!falsy$1(type)) {
+            matched = is(target, type);
+          } else if (!falsy(type)) {
+            each(type, function (t) {
+              if (is(target, t)) {
+                matched = TRUE;
+                return FALSE;
+              }
+            });
+          } else if (func(type)) {
+            // 有时候做判断需要参考其他数据
+            // 比如当 a 有值时，b 可以为空之类的
+            matched = type(target, props);
+          }
+          if (matched === TRUE) {
+            result[key] = target;
+          } else {
+            warn('"' + key + '" prop\'s type is not matched.');
+          }
         }
-        if (matched === TRUE) {
-          result[key] = target;
-        } else {
-          warn('"' + key + '" prop\'s type is not matched.');
-        }
-      }
     } else if (required) {
       warn('"' + key + '" prop is not found.');
     } else if (has$1(rule, 'value')) {

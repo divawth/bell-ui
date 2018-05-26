@@ -1,0 +1,67 @@
+{$selector-rate}
+
+    color $selector-rate-color-default
+    cursor pointer
+    font-size $selector-rate-font-size
+
+    {$selector-rate-star-full}
+
+        position relative
+
+        &::before
+            color $selector-rate-color-default
+            cursor pointer
+            content "\F4B3"
+            transition all .2s ease-in-out
+            display block
+
+        {$selector-hover}
+        {$selector-active}
+            &::before
+                color $selector-rate-color-hover
+
+        + {$selector-rate-star-full}
+
+            margin-left 6px
+
+    {$selector-rate-star-content}
+
+        position absolute
+        left 0
+        top 0
+        width 50%
+        height 100%
+        overflow hidden
+
+        &::before
+            color transparent
+            cursor pointer
+            content "\F4B3"
+            transition all .2s ease-in-out
+            display block
+
+        {$selector-active}
+
+            &::before
+                color $selector-rate-color-hover
+
+    {$selector-rate-text}
+        margin-left 10px
+        font-size 12px
+        color $brand-secondary
+
+    &{$selector-rate}-read-only
+
+        cursor default
+
+        {$selector-rate-star-full}
+
+            &::before
+
+                cursor default
+
+        {$selector-rate-star-content}
+
+            &::before
+
+                cursor default

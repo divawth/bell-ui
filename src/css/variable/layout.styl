@@ -1,10 +1,11 @@
-$selector-layout = '.bell-layout'
-$selector-layout-has-sider = '.bell-layout-has-sider'
-$selector-menu = '.bell-menu'
+$selector-layout = '.bell-layout';
+$selector-layout-has-sider = '.bell-layout-has-sider';
+$selector-menu = '.bell-menu';
+$selector-menu-vertical = '.bell-menu-vertical';
 
-$layout-menu-item-color = #BABDC3
-$layout-menu-item-padding = 6px 10px
-$layout-menu-item-active-color = #57a3f3
+$layout-menu-item-color = #BABDC3;
+$layout-menu-item-padding = 0 10px;
+$layout-menu-item-active-color = #57a3f3;
 
 $layout-hash = {
     header: {
@@ -23,7 +24,38 @@ $layout-hash = {
         flex: 0 0 200px,
         background-color: #1E242B,
     }
-}
+};
+
+
+$layout-menu-theme-hash = {
+    'light': {
+        background-color: $brand-bg,
+        color: $brand-main,
+        border-bottom-color: $brand-border,
+
+        background-color-hover: $brand-bg,
+        color-hover: $brand-primary,
+        border-bottom-color-hover: $brand-primary
+    },
+    'dark': {
+        background-color: #495060,
+        color: $brand-border,
+        border-bottom-color: transparent,
+
+        background-color-hover: #495060,
+        color-hover: $brand-bg,
+        border-bottom-color-hover: transparent
+    },
+    'primary': {
+        background-color: $brand-primary,
+        color: $brand-white,
+        border-bottom-color: transparent,
+
+        background-color-hover: $brand-primary-hover,
+        color-hover: $brand-white,
+        border-bottom-color-hover: transparent
+    }
+};
 
 
 

@@ -12,6 +12,7 @@ import Content from './components/layout/Content'
 import Footer from './components/layout/Footer'
 import Menu from './components/layout/Menu'
 import MenuItem from './components/layout/MenuItem'
+import MenuGroup from './components/layout/MenuGroup'
 import Submenu from './components/layout/Submenu'
 import Row from './components/grid/Row'
 import Col from './components/grid/Col'
@@ -64,6 +65,7 @@ import Circle from './components/circle/Circle'
 import Progress from './components/progress/Progress'
 import Slider from './components/slider/Slider'
 import Tag from './components/tag/Tag'
+import Rate from './components/rate/Rate'
 
 import Transfer from './components/transfer/Transfer'
 
@@ -82,6 +84,7 @@ Yox.component({
     Footer,
     Menu,
     MenuItem,
+    MenuGroup,
     Submenu,
     Row,
     Col,
@@ -132,6 +135,7 @@ Yox.component({
     Progress,
     Slider,
     Tag,
+    Rate,
 
     Transfer
 });

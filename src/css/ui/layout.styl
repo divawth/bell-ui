@@ -4,38 +4,74 @@
     ui-layout()
 
     &{$selector-column}
+
         ui-column()
 
     &{$selector-fluid}
         width 100%
 
+{$selector-menu}
+
+    ui-menu()
+
+    height 62px
+    line-height 62px
+    font-size 14px
+
+{$selector-menu}-sub-menu,
 {$selector-menu}-item
 
+    position relative
     padding $layout-menu-item-padding
     color $layout-menu-item-color
     cursor pointer
     border-bottom 2px solid transparent
     display inline-block
-    line-height 64px
+    height inherit
+    line-height inherit
 
+{$selector-menu-vertical}
 
-    &{$selector-active}
-        color #fff
-        border-color $layout-menu-item-active-color
+    height auto
+    text-align left
 
-    &{$selector-hover}
-        color #fff
-
-{$selector-menu}-vertical
-
+    {$selector-menu}-sub-menu,
     {$selector-menu}-item
+
         line-height 1
-        padding 10px 15px
+        padding 14px 24px
         display block
         border-bottom none
         border-right 2px solid transparent
 
-        &{$selector-active}
-            color #fff
-            border-color $layout-menu-item-active-color
+    {$selector-menu}-sub-menu
+
+        padding 0
+
+        {$selector-menu}-title
+            position relative
+
+            {$selector-menu}-title-icon
+                position absolute
+                top 50%
+                right 15px
+                transform translateY(-50%)
+
+        {$selector-menu}-title,
+        {$selector-menu}-item
+
+            padding 15px
+
+        {$selector-menu}-groups
+
+            display none
+
+            &.bell-show
+
+                display block
+
+    {$selector-menu}-group-title
+
+        padding 5px 10px
+        line-height 1
 
