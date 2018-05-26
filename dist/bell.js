@@ -518,7 +518,7 @@ var MenuGroup = {
 };
 
 var Submenu = {
-    template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "\n        {{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            <div class="bell-menu-groups\n            {{#if isOpen}} bell-show{{/if}}">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
+    template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "\n        {{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n            <div class="bell-menu-groups" transition="groups">\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
@@ -541,10 +541,27 @@ var Submenu = {
         activeSubMenuChange: function activeSubMenuChange(openNames) {
             var me = this;
             var isOpen = openNames.indexOf(me.get('name')) != -1;
-            console.log(isOpen);
             this.set({
                 isOpen: isOpen
             });
+        }
+    },
+
+    transitions: {
+        groups: {
+            enter: function enter(el, done) {
+                var clientHeight = el.clientHeight;
+                el.style.height = 0;
+                setTimeout(function () {
+                    el.style.height = clientHeight + 'px';
+                }, 50);
+                setTimeout(done, 300);
+            },
+            leave: function leave(el, done) {
+                el.style.height = 0;
+                Yox.dom.removeClass(el, 'bell-visible');
+                setTimeout(done, 300);
+            }
         }
     },
 

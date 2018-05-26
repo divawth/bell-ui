@@ -3440,6 +3440,7 @@ button.bell-button {
   line-height: 1;
   padding: 14px 24px;
   display: block;
+  height: auto;
   border-bottom: none;
   border-right: 2px solid transparent;
 }
@@ -3460,10 +3461,8 @@ button.bell-button {
   padding: 15px;
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-groups {
-  display: none;
-}
-.bell-menu-vertical .bell-menu-sub-menu .bell-menu-groups.bell-show {
-  display: block;
+  overflow: hidden;
+  transition: height 0.4s;
 }
 .bell-menu-vertical .bell-menu-group-title {
   padding: 5px 10px;

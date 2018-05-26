@@ -16,12 +16,10 @@ export default {
                     <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>
                 {{/if}}
             </div>
-            <div class="bell-menu-groups
-            {{#if isOpen}} bell-show{{/if}}">
-                {{#if hasSlot('children')}}
-                    <slot name="children" />
-                {{/if}}
-            </div>
+            {{#if isOpen && hasSlot('children')}}
+            <div class="bell-menu-groups" transition="groups">
+                <slot name="children" />
+            {{/if}}
         </div>
     `,
     propTypes: {
@@ -46,10 +44,30 @@ export default {
         activeSubMenuChange: function (openNames) {
             var me = this;
             var isOpen = openNames.indexOf(me.get('name')) != -1;
-            console.log(isOpen);
             this.set({
                 isOpen: isOpen
             });
+        }
+    },
+
+    transitions: {
+        groups: {
+            enter: function (el, done) {
+                var clientHeight = el.clientHeight;
+                el.style.height = 0;
+                setTimeout(
+                    function () {
+                        el.style.height = clientHeight + 'px';
+                    },
+                    50
+                );
+                setTimeout(done, 300);
+            },
+            leave: function (el, done) {
+                el.style.height = 0;
+                Yox.dom.removeClass(el, 'bell-visible');
+                setTimeout(done, 300);
+            }
         }
     },
 

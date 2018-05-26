@@ -41,6 +41,7 @@
         line-height 1
         padding 14px 24px
         display block
+        height auto
         border-bottom none
         border-right 2px solid transparent
 
@@ -64,11 +65,10 @@
 
         {$selector-menu}-groups
 
-            display none
+            overflow hidden
+            transition height 0.4s
 
-            &.bell-show
 
-                display block
 
     {$selector-menu}-group-title
 
