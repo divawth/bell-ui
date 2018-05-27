@@ -33,7 +33,7 @@ export default {
     events: {
         menuItemActive: function (event, data) {
             var me = this;
-            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.get('onSelect') && me.get('onSelect')(data.name);
             me.updateActiveName(data.name);
         }
     },
