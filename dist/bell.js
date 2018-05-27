@@ -424,7 +424,9 @@ var Menu = {
 
     events: {
         menuItemActive: function menuItemActive(event, data) {
-            this.updateActiveName(data.name);
+            var me = this;
+            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.updateActiveName(data.name);
         }
     },
 
@@ -438,11 +440,21 @@ var Menu = {
     },
 
     watchers: {
-        activeName: function activeName(_activeName) {
+        activeName: function (_activeName) {
+            function activeName(_x) {
+                return _activeName.apply(this, arguments);
+            }
+
+            activeName.toString = function () {
+                return _activeName.toString();
+            };
+
+            return activeName;
+        }(function (activeName) {
             var me = this;
-            me.get('onSelect') && me.get('onSelect')(_activeName);
-            me.updateActiveName(_activeName);
-        }
+            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.updateActiveName(activeName);
+        })
     },
 
     afterMount: function afterMount() {
@@ -3783,6 +3795,106 @@ var Rate = {
     }
 };
 
+var Tabs = {
+    template: '\n        <div class="bell-tabs">\n            <div class="bell-tabs-labels">\n                {{#each tabLabels}}\n                    {{#if label}}\n                        <span class="bell-tabs-label\n                            {{#if value == name}} bell-active{{/if}}\n                        " on-click="clickTabLabel(this)">\n                            {{label}}\n                        </span>\n                    {{/if}}\n                {{/each}}\n            </div>\n\n            <div class="bell-tabs-contents" style="transform: translateX({{translateStyle}});">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
+    propTypes: {
+        value: {
+            type: 'string'
+        }
+    },
+
+    data: function data() {
+        return {
+            tabLabels: []
+        };
+    },
+
+    computed: {
+        translateStyle: function translateStyle() {
+            var me = this;
+            var index = 0;
+            Yox.array.each(me.get('tabLabels'), function (item, key) {
+                if (item.name == me.get('value')) {
+                    index = key;
+                    return false;
+                }
+            });
+            return index * -100 + '%';
+            console.log(index * -100 + '%');
+        }
+    },
+
+    events: {
+        addTabLabel: function addTabLabel(event, data) {
+            var me = this;
+            var tabLabels = me.copy(me.get('tabLabels'));
+            tabLabels.push(data);
+            me.set({
+                tabLabels: tabLabels
+            });
+        }
+    },
+
+    watchers: {
+        value: function value(_value) {
+            this.fire('tabsValueUpdate', {
+                value: _value
+            }, true);
+        }
+    },
+
+    methods: {
+        clickTabLabel: function clickTabLabel(data) {
+            var me = this;
+            me.set({
+                value: data.name
+            });
+        }
+    },
+
+    afterMount: function afterMount() {
+
+    }
+};
+
+var TabPanel = {
+    template: '\n        <div class="bell-tabs-panel\n        {{#if isActive}} active{{/if}}">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+    propTypes: {
+        name: {
+            type: 'string'
+        },
+        label: {
+            type: 'string'
+        }
+    },
+
+    data: function data() {
+        return {
+            isActive: false
+        };
+    },
+
+    events: {
+        tabsValueUpdate: function tabsValueUpdate(event, data) {
+            var me = this;
+            if (!data.value) {
+                return;
+            }
+            me.set({
+                isActive: me.get('name') == data.value
+            });
+        }
+    },
+
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('addTabLabel', {
+            label: me.get('label'),
+            name: me.get('name')
+        });
+    }
+};
+
 var Transfer = {
     template: '\n        <div class="bell-transfer">\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{leftLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{left.length}} / {{leftList.length}}\n                    </span>\n                </div>\n\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">\n                        {{#each leftList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n\n            <div class="bell-transfer-actions">\n                <Button shape="circle" on-click="addToLeft()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </Button>\n                <Button shape="circle" on-click="addToRight()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </Button>\n            </div>\n\n            <div class="bell-transfer-list">\n                <div class="bell-transfer-list-header">\n                    <span class="bell-transfer-list-header-checkbox">\n                        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">\n                        </Checkbox>\n                    </span>\n                    <span class="bell-transfer-list-header-title">\n                        {{rightLabel}}\n                    </span>\n                    <span class="bell-transfer-list-header-count">\n                        {{right.length}} / {{rightList.length}}\n                    </span>\n                </div>\n                <div class="bell-transfer-list-body">\n                    <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">\n                        {{#each rightList}}\n                            <Checkbox value="{{this.key}}">\n                                <span>\n                                    {{text}}\n                                </span>\n                            </Checkbox>\n                        {{/each}}\n                    </CheckboxGroup>\n                </div>\n            </div>\n        </div>\n    ',
     propTypes: {
@@ -4556,6 +4668,8 @@ Yox.component({
     Slider: Slider,
     Tag: Tag,
     Rate: Rate,
+    Tabs: Tabs,
+    TabPanel: TabPanel,
 
     Transfer: Transfer
 });

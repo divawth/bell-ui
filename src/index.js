@@ -66,6 +66,8 @@ import Progress from './components/progress/Progress'
 import Slider from './components/slider/Slider'
 import Tag from './components/tag/Tag'
 import Rate from './components/rate/Rate'
+import Tabs from './components/tabs/Tabs'
+import TabPanel from './components/tabs/TabPanel'
 
 import Transfer from './components/transfer/Transfer'
 
@@ -136,6 +138,8 @@ Yox.component({
     Slider,
     Tag,
     Rate,
+    Tabs,
+    TabPanel,
 
     Transfer
 });

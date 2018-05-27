@@ -1,0 +1,41 @@
+{$selector-tabs}
+    overflow hidden
+
+    {$selector-tabs-labels}
+
+        {$selector-tabs-label}
+
+            padding 10px 15px
+            display inline-block
+            border-bottom 2px solid $brand-border
+            color $brand-secondary
+            cursor pointer
+
+            &{$selector-hover}
+
+                color $brand-primary
+                border-color $brand-primary
+
+            &{$selector-active}
+
+                color $brand-primary
+                border-color $brand-primary
+
+    {$selector-tabs-contents}
+
+        display flex
+        flex-direction row
+        will-change transform
+        transition transform .3s ease-in-out
+
+        ::-webkit-scrollbar
+
+            display none
+
+    {$selector-tabs-panel}
+
+        outline 0
+        flex-shrink 0
+        width 100%
+        transition opacity .3s
+        opacity 1

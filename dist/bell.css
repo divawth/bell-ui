@@ -3424,12 +3424,12 @@ button.bell-button {
 .bell-menu-item {
   position: relative;
   padding: 0 10px;
-  color: #babdc3;
   cursor: pointer;
   border-bottom: 2px solid transparent;
   display: inline-block;
   height: inherit;
   line-height: inherit;
+  transition: all 0.4s;
 }
 .bell-menu-vertical {
   height: auto;
@@ -3443,6 +3443,7 @@ button.bell-button {
   height: auto;
   border-bottom: none;
   border-right: 2px solid transparent;
+  transition: all 0.4s;
 }
 .bell-menu-vertical .bell-menu-sub-menu {
   padding: 0;
@@ -6411,4 +6412,40 @@ button.bell-button {
 }
 .bell-rate.bell-rate-read-only .bell-rate-star-content::before {
   cursor: default;
+}
+.bell-tabs {
+  overflow: hidden;
+}
+.bell-tabs .bell-tabs-labels .bell-tabs-label {
+  padding: 10px 15px;
+  display: inline-block;
+  border-bottom: 2px solid #ccc;
+  color: rgba(0,0,0,0.54);
+  cursor: pointer;
+}
+.bell-tabs .bell-tabs-labels .bell-tabs-label.bell-tabs .bell-tabs-labels .bell-tabs-label.hover,
+.bell-tabs .bell-tabs-labels .bell-tabs-label:hover {
+  color: #348eed;
+  border-color: #348eed;
+}
+.bell-tabs .bell-tabs-labels .bell-tabs-label.bell-tabs .bell-tabs-labels .bell-tabs-label.active,
+.bell-tabs .bell-tabs-labels .bell-tabs-label.bell-active {
+  color: #348eed;
+  border-color: #348eed;
+}
+.bell-tabs .bell-tabs-contents {
+  display: flex;
+  flex-direction: row;
+  will-change: transform;
+  transition: transform 0.3s ease-in-out;
+}
+.bell-tabs .bell-tabs-contents ::-webkit-scrollbar {
+  display: none;
+}
+.bell-tabs .bell-tabs-panel {
+  outline: 0;
+  flex-shrink: 0;
+  width: 100%;
+  transition: opacity 0.3s;
+  opacity: 1;
 }

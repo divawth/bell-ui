@@ -32,7 +32,9 @@ export default {
 
     events: {
         menuItemActive: function (event, data) {
-            this.updateActiveName(data.name);
+            var me = this;
+            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.updateActiveName(data.name);
         }
     },
 

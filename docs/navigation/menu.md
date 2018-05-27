@@ -96,7 +96,7 @@
                         </Menu>
                     </Col>
                     <Col span="8">
-                        <Menu mode="vertical" theme="{{theme2}}" mode="vertical" :open-names="['1']" accordion>
+                        <Menu mode="vertical" theme="{{theme2}}" mode="vertical" open-names="['1']" accordion>
                             <Submenu name="1">
                                 <template slot="title">
                                     <Icon type="ios-paper"></Icon>
@@ -127,6 +127,9 @@
                     </Radio>
                     <Radio value="dark">
                         dark
+                    </Radio>
+                    <Radio value="primary">
+                        primary
                     </Radio>
                 </RadioGroup>
             </div>
@@ -178,7 +181,7 @@
         isViewFullBlock: true,
         template: `
             <div class="bell-template">
-                <Menu activeName="1-2" mode="vertical" openNames="['1']">
+                <Menu onSelect="{{select}}" theme="{{theme2}}" activeName="1-2" mode="vertical" openNames="['1']">
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-analytics"></Icon>
@@ -214,8 +217,25 @@
                         <MenuItem name="4-4">Option 12</MenuItem>
                     </Submenu>
                 </Menu>
+                <p>Change theme</p>
+                <RadioGroup model="theme2" type="info">
+                    <Radio value="light">
+                        light
+                    </Radio>
+                    <Radio value="dark" checked>
+                        dark
+                    </Radio>
+                    <Radio value="primary">
+                        primary
+                    </Radio>
+                </RadioGroup>
             </div>
         `,
+        data: {
+            select: function (name) {
+                console.log(name)
+            }
+        }
     }
 
 #### API

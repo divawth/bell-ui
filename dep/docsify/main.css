@@ -59,7 +59,7 @@
   background-color: #b3b3b3;
 }
 .bell-docsify-view-box ::-webkit-scrollbar {
-  width: 2px;
+    display: none
 }
 .bell-docsify-view-box ::-webkit-scrollbar {
   height: 2px;
