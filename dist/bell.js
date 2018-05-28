@@ -343,15 +343,25 @@ var Header = {
 };
 
 var Sider = {
-    template: '\n        <div class="bell-layout-sider bell-col-span-6\n        {{#if className}} {{className}}{{/if}}"\n        {{#if style}} style="{{style}}"{{/if}}>\n            <slot name="children" />\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-sider bell-col-span-6\n            {{#if className}} {{className}}{{/if}}\n            {{#if collapsed}} bell-sider-collapsed{{/if}}\n        "\n        {{#if style}} style="{{style}}"{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            {{#if collapsible}}\n                <div class="bell-sider-trigger" on-click="toggle(\'collapsed\')">\n                    {{#if collapsed}}\n                        <i class="bell-icon bell-icon-chevron-right"></i>\n                    {{else}}\n                        <i class="bell-icon bell-icon-chevron-left"></i>\n                    {{/if}}\n                </div>\n            {{/if}}\n        </div>\n    ',
     propTypes: {
         style: {
             type: 'string'
         },
         className: {
             type: 'string'
+        },
+        collapsible: {
+            type: ['string', 'boolean']
         }
     },
+
+    data: function data() {
+        return {
+            collapsed: false
+        };
+    },
+
     afterMount: function afterMount() {
         var me = this;
         me.fire('hasSider', {
@@ -425,7 +435,7 @@ var Menu = {
     events: {
         menuItemActive: function menuItemActive(event, data) {
             var me = this;
-            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.get('onSelect') && me.get('onSelect')(data.name);
             me.updateActiveName(data.name);
         }
     },
@@ -440,21 +450,11 @@ var Menu = {
     },
 
     watchers: {
-        activeName: function (_activeName) {
-            function activeName(_x) {
-                return _activeName.apply(this, arguments);
-            }
-
-            activeName.toString = function () {
-                return _activeName.toString();
-            };
-
-            return activeName;
-        }(function (activeName) {
+        activeName: function activeName(_activeName) {
             var me = this;
-            me.get('onSelect') && me.get('onSelect')(activeName);
-            me.updateActiveName(activeName);
-        })
+            me.get('onSelect') && me.get('onSelect')(_activeName);
+            me.updateActiveName(_activeName);
+        }
     },
 
     afterMount: function afterMount() {

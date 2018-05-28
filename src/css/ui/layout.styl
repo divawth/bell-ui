@@ -3,6 +3,39 @@
     ui-row()
     ui-layout()
 
+    {$selector-layout}-sider
+
+        position relative
+        transition flex .4s
+
+    {$selector-sider}-trigger
+
+        position absolute
+        right 0
+        padding 10px
+        background-color rgba(255,255,255,.2)
+        bottom 0
+
+    {$selector-sider-collapsed}
+
+        flex 0 0 100px
+
+        {$selector-menu}-item
+
+            > span
+
+                font-size 16px !important
+                width auto
+                display inline-block !important
+
+                + span
+
+                    width 0
+                    height 0
+                    overflow hidden
+                    display inline-block
+                    transition width .3s
+
     &{$selector-column}
 
         ui-column()

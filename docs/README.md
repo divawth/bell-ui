@@ -1,4 +1,7 @@
-## Tabs 标签页
+
+3 indeterminate 表示不定状态
+
+5 Drawer 抽屉式导航
 
 ## Timeline 时间轴
 
@@ -17,13 +20,6 @@
 4 proptype https://github.com/developit/proptypes
 
 3 Transfer 穿梭框
-
-3 indeterminate 表示不定状态
-
-5 Drawer 抽屉式导航
-
-
-## Menu 导航菜单
 
 ## AutoComplete 自动完成
 
