@@ -83,20 +83,17 @@ export default {
         }
     },
 
-    afterMount: function () {
-        let me = this;
-        let children = me.$options.props.$children;
-        if (Yox.is.array(children)
-            && me.$options.props.$children.length
-        ) {
-            me.$options.props.$children.some(child => {
-                if (child.tag == 'Desc') {
-                    me.set({
-                        hasDesc: true
-                    });
-                }
+    events: {
+        hasDesc: function () {
+            this.set({
+                hasDesc: true
             });
         }
+    },
+
+    afterMount: function () {
+        let me = this;
+
         if (me.get('closable')) {
             me.set({
                 paddingRight: me.$refs.close.clientWidth

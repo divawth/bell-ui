@@ -1,7 +1,15 @@
 export default {
     template: `
         <div class="bell-alert-desc">
-            <slot name="children" />
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
         </div>
-    `
+    `,
+    afterMount: function () {
+        var me = this;
+        me.fire(
+            'hasDesc'
+        );
+    }
 }

@@ -353,6 +353,9 @@ var Sider = {
         },
         collapsible: {
             type: ['string', 'boolean']
+        },
+        onToggleCollapse: {
+            type: 'toggle'
         }
     },
 
@@ -360,6 +363,12 @@ var Sider = {
         return {
             collapsed: false
         };
+    },
+
+    wactchers: {
+        collapsed: function collapsed(value) {
+            this.get('onToggleCollapse') && this.get('onToggleCollapse')(value);
+        }
     },
 
     afterMount: function afterMount() {
@@ -1757,18 +1766,17 @@ var Alert = {
         }
     },
 
-    afterMount: function afterMount() {
-        var me = this;
-        var children = me.$options.props.$children;
-        if (Yox.is.array(children) && me.$options.props.$children.length) {
-            me.$options.props.$children.some(function (child) {
-                if (child.tag == 'Desc') {
-                    me.set({
-                        hasDesc: true
-                    });
-                }
+    events: {
+        hasDesc: function hasDesc() {
+            this.set({
+                hasDesc: true
             });
         }
+    },
+
+    afterMount: function afterMount() {
+        var me = this;
+
         if (me.get('closable')) {
             me.set({
                 paddingRight: me.$refs.close.clientWidth
@@ -1780,7 +1788,11 @@ var Alert = {
 };
 
 var Desc = {
-    template: "\n        <div class=\"bell-alert-desc\">\n            <slot name=\"children\" />\n        </div>\n    "
+    template: '\n        <div class="bell-alert-desc">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+    afterMount: function afterMount() {
+        var me = this;
+        me.fire('hasDesc');
+    }
 };
 
 var Spinner = {
