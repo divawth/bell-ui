@@ -33,7 +33,10 @@
     "styl": "^0.2.9"
   },
   "author": "",
-  "repository": "empty",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angeltiva/bell-ui.git"
+},
   "license": "BSD",
   "readme": "README",
   "devDependencies": {
