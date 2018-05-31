@@ -3,8 +3,7 @@ export default {
         <div class="bell-menu-sub-menu
             {{#if className}} {{className}}{{/if}}
             {{#if isOpen}} bell-active{{/if}}
-        "
-        {{#if style}} style="{{style}}"{{/if}}>
+        "{{#if style}} style="{{style}}"{{/if}}>
             <div class="bell-menu-title" on-click="click(name)">
                 {{#if hasSlot('title')}}
                     <slot name="title" />
@@ -23,10 +22,10 @@ export default {
         </div>
     `,
     propTypes: {
-        style: {
+        className: {
             type: 'string'
         },
-        className: {
+        style: {
             type: 'string'
         },
         name: {
@@ -34,16 +33,16 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         return {
             isOpen: false
         }
     },
 
     events: {
-        activeSubMenuChange: function (openNames) {
-            var me = this;
-            var isOpen = openNames.indexOf(me.get('name')) != -1;
+        activeSubMenuChange(openNames) {
+            let me = this;
+            let isOpen = openNames.indexOf(me.get('name')) != -1;
             this.set({
                 isOpen: isOpen
             });
@@ -52,18 +51,18 @@ export default {
 
     transitions: {
         groups: {
-            enter: function (el, done) {
-                var clientHeight = el.clientHeight;
+            enter(el, done) {
+                let clientHeight = el.clientHeight;
                 el.style.height = 0;
                 setTimeout(
-                    function () {
+                    () => {
                         el.style.height = clientHeight + 'px';
                     },
                     50
                 );
                 setTimeout(done, 300);
             },
-            leave: function (el, done) {
+            leave(el, done) {
                 el.style.height = 0;
                 Yox.dom.removeClass(el, 'bell-visible');
                 setTimeout(done, 300);
@@ -72,13 +71,9 @@ export default {
     },
 
     methods: {
-        click: function (name) {
-            var me = this;
+        click(name) {
+            let me = this;
             me.toggle('isOpen');
         }
-    },
-    afterMount: {
-
     }
-
-}
+};

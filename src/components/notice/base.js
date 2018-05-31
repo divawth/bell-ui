@@ -1,6 +1,7 @@
 let id = 0;
 
-let createNotice = function (data) {
+let createNotice = (data) => {
+
     let namespace = 'bell-notice-' + id++;
     let body = document.getElementById('bell-notice-wrapper');
     let element = document.createElement('div');
@@ -8,24 +9,34 @@ let createNotice = function (data) {
     body.append(element);
 
     let instance = new Yox({
+
         el: '#' + namespace,
+
         replace: true,
+
         template: `
-<div class="bell-notice bell-notice-{{type}}
-{{#if isShow}} bell-show{{/if}}
-" style="width: {{width}}px;
-{{#if right}} right: {{right}}px;{{/if}}">
-    <div class="bell-notice-title">
-        {{title}}
-    </div>
-    <div class="bell-notice-desc">
-        {{content}}
-    </div>
-    {{#if duration == 0}}
-    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>
-    {{/if}}
-</div>`,
-        data: function () {
+            <div class="bell-notice bell-notice-{{type}}
+                {{#if isShow}} bell-show{{/if}}
+            " style="width: {{width}}px;
+                {{#if right}} right: {{right}}px;{{/if}}
+            ">
+
+                <div class="bell-notice-title">
+                    {{title}}
+                </div>
+
+                <div class="bell-notice-desc">
+                    {{content}}
+                </div>
+
+                {{#if duration == 0}}
+                    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>
+                {{/if}}
+
+            </div>
+        `,
+
+        data() {
             let me = this;
             return {
                 width: data.width || 320,
@@ -41,13 +52,13 @@ let createNotice = function (data) {
         },
 
         methods: {
-            close: function () {
+            close() {
                 this.hide();
             },
-            fadeIn: function () {
+            fadeIn() {
                 let me = this;
                 me.fadeInFuc = setTimeout(
-                    function () {
+                    () => {
                         me.set({
                             isShow: true,
                             right: me.right
@@ -60,23 +71,23 @@ let createNotice = function (data) {
                     me.fadeInTime
                 );
             },
-            fadeOut: function () {
+            fadeOut() {
                 let me = this;
                 me.showTimeFuc = setTimeout(
-                    function () {
+                    () => {
                         me.hide();
                     },
                     me.showTime
                 );
             },
-            hide: function () {
+            hide() {
                 let me = this;
                 me.set({
                     isShow: false,
                     right: -me.$el.clientWidth
                 });
                 me.fadeOutFuc = setTimeout(
-                    function () {
+                    () => {
                         element.remove();
                         if (Yox.is.func(data.onClose)) {
                             data.onClose();
@@ -90,7 +101,7 @@ let createNotice = function (data) {
             }
         },
 
-        afterMount: function () {
+        afterMount() {
             let me = this;
 
             me.fadeInTime = 300;
@@ -104,7 +115,7 @@ let createNotice = function (data) {
             me.fadeIn();
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             let me = this;
             clearTimeout(me.fadeInFuc);
             clearTimeout(me.showTimeFuc);
@@ -113,6 +124,6 @@ let createNotice = function (data) {
     });
 };
 
-export let add = function (data) {
+export let add = (data) => {
     createNotice(data);
-}
+};

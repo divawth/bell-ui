@@ -1,12 +1,15 @@
 let closeTimer, initTimer, openTimer;
+
 export default {
     template: `
         <div class="bell-panel
-        {{#if className}} {{className}}{{/if}}
-        {{#if isOpen}} bell-panel-open{{/if}}
-        ">
+            {{#if className}} {{className}}{{/if}}
+            {{#if isOpen}} bell-panel-open{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
             <div class="bell-panel-el
-            {{#if arrowOpen}} bell-panel-el-open{{/if}}" on-click="click()">
+                {{#if arrowOpen}} bell-panel-el-open{{/if}}"
+                on-click="click()"
+            >
                 <Icon type="arrow-down-b" className="bell-panel-el-icon"></Icon>
                 {{title}}
             </div>
@@ -18,31 +21,39 @@ export default {
             </div>
         </div>
     `,
+
     propTypes: {
         className: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         },
         title: {
             type: 'string'
         },
         name: {
-            type: ['string', 'number']
+            type: 'numeric'
         }
     },
-    data: function () {
+
+    data() {
         return {
             isOpen: false,
             arrowOpen: false,
             accordion: false,
         }
     },
+
     events: {
-        panelAccordion: function (event, data) {
+        panelAccordion(event, data) {
+            var accordion = data.accordion;
             this.set({
-                accordion: data.accordion
+                accordion
             });
         },
-        panelActiveName: function (event, data) {
+
+        panelActiveName(event, data) {
             let me = this;
             if (data.name === me.get('name')) {
                 me.toggleStatus(true);
@@ -52,8 +63,10 @@ export default {
             }
         }
     },
+
     methods: {
-        toggleStatus: function (isOpen) {
+
+        toggleStatus(isOpen) {
             let me = this;
             let arrowOpen = me.get('arrowOpen');
             if (isOpen == arrowOpen) {
@@ -61,6 +74,7 @@ export default {
             }
             if (isOpen) {
                 me.open();
+
                 if (me.get('accordion')) {
                     me.fire(
                         'panelOpen',
@@ -73,25 +87,28 @@ export default {
             else {
                 me.close();
             }
+
             me.set({
                 arrowOpen: isOpen
             });
         },
-        click: function () {
+
+        click() {
             let me = this;
             let isOpen = !me.get('isOpen');
             me.toggleStatus(isOpen);
         },
-        close: function () {
+
+        close() {
             let me = this;
             let innerElement = me.$refs.panelInner;
             innerElement.style.height = innerElement.clientHeight + 'px';
 
             closeTimer = setTimeout(
-                function () {
+                () => {
                     innerElement.style.height = 0;
                     initTimer = setTimeout(
-                        function () {
+                        () => {
                             me.set({
                                 isOpen: false
                             });
@@ -102,22 +119,23 @@ export default {
                 }
             );
         },
-        open: function () {
+
+        open() {
             let me = this;
             let innerElement = me.$refs.panelInner;
             me.set({
                 isOpen: true
             });
 
-            Yox.nextTick(function () {
+            Yox.nextTick(() => {
                 let height = innerElement.clientHeight;
                 innerElement.style.height = 0;
 
                 openTimer = setTimeout(
-                    function () {
+                    () => {
                         innerElement.style.height = height + 'px';
                         initTimer = setTimeout(
-                            function () {
+                            () => {
                                 innerElement.style.height = '';
                             },
                             100
@@ -127,7 +145,7 @@ export default {
             });
         }
     },
-    beforeDestroy: function () {
+    beforeDestroy() {
         let me = this;
         closeTimer = null;
         initTimer = null;
@@ -136,4 +154,4 @@ export default {
         clearTimeout(initTimer);
         clearTimeout(openTimer);
     }
-}
+};

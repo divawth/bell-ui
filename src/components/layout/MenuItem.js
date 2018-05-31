@@ -1,15 +1,24 @@
 export default {
     template: `
         <div class="bell-menu-item
-        {{#if isActive}} bell-active{{/if}}
-        " on-click="click(name)">
+            {{#if className}} {{className}}{{/if}}
+            {{#if isActive}} bell-active{{/if}}
+        " style="{{style}}" on-click="click(name)">
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         name: {
             type: 'string'
         },
@@ -21,15 +30,15 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         return {
             isActive: false
         }
     },
 
     events: {
-        activeMenuChange: function (event, data) {
-            var me = this;
+        activeMenuChange(event, data) {
+            let me = this;
             me.set({
                 isActive: me.get('name') === data.name
             });
@@ -37,8 +46,8 @@ export default {
     },
 
     methods: {
-        click: function (name) {
-            var me = this;
+        click(name) {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
@@ -57,4 +66,4 @@ export default {
             );
         }
     }
-}
+};

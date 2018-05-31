@@ -64,16 +64,17 @@ export default {
             </div>
         </div>
     `,
+
     propTypes: {
         data: {
             type: 'array',
-            value: function () {
+            value() {
                 return [];
             }
         },
         targetKeys: {
             type: 'array',
-            value: function () {
+            value() {
                 return [];
             }
         },
@@ -87,8 +88,8 @@ export default {
             type: 'string'
         }
     },
-    data: function () {
-        var me = this;
+    data() {
+        let me = this;
         return {
             leftKeys: [],
             rightKeys: [],
@@ -99,37 +100,38 @@ export default {
             left: [],
             right: [],
 
-            onLeftChange: function (left) {
+            onLeftChange(left) {
                 me.set({
                     left: left,
                     checkLeftAll: left && left.length == me.get('leftList.length')
                 });
             },
-            onRightChange: function (right) {
+            onRightChange(right) {
                 me.set({
                     right: right,
                     checkRightAll: right && right.length == me.get('rightList.length')
                 });
             },
-            onCheckLeftAllChange: function (isCheckAll) {
+            onCheckLeftAllChange(isCheckAll) {
                 me.set({
                     left: isCheckAll ? me.getListKeys(me.get('leftList')) : []
                 });
             },
-            onCheckRightAllChange: function (isCheckAll) {
+            onCheckRightAllChange(isCheckAll) {
                 me.set({
                     right: isCheckAll ? me.getListKeys(me.get('rightList')) : []
                 });
             }
         }
     },
+
     computed: {
         rightList: {
             deps: ['targetKeys', 'targetKeys.length', 'data.*'],
-            get: function () {
-                var me = this;
-                var data = me.get('data');
-                var targetKeys = me.get('targetKeys');
+            get() {
+                let me = this;
+                let data = me.get('data');
+                let targetKeys = me.get('targetKeys');
                 if (!data
                     || !targetKeys
                 ) {
@@ -138,12 +140,13 @@ export default {
                 return data.filter(item => targetKeys.indexOf(item['key']) !== -1);
             }
         },
+
         leftList: {
             deps: ['targetKeys', 'targetKeys.length', 'data.*', 'data'],
-            get: function () {
-                var me = this;
-                var data = me.get('data');
-                var targetKeys = me.get('targetKeys');
+            get() {
+                let me = this;
+                let data = me.get('data');
+                let targetKeys = me.get('targetKeys');
                 if (!data
                     || !targetKeys
                 ) {
@@ -154,20 +157,20 @@ export default {
         }
     },
     methods: {
-        addToLeft: function addToLeft() {
-            var me = this;
+        addToLeft() {
+            let me = this;
             me.get('right').map(item => {
                 Yox.array.remove('targetKeys', item.key);
             });
         },
-        addToRight: function addToRight() {
-            var me = this;
+        addToRight() {
+            let me = this;
             me.set({
                 targetKeys: Yox.array.merge(me.get('targetKeys'), me.get('left'))
             });
         },
-        getListCheckedkeys: function (list) {
-            var keys = [];
+        getListCheckedkeys(list) {
+            let keys = [];
             if (list.length) {
                 keys = list.map(item => {
                     if (item.checked) {
@@ -177,12 +180,12 @@ export default {
             }
             return keys;
         },
-        getListKeys: function (list) {
-            var keys = [];
+        getListKeys(list) {
+            let keys = [];
             if (list.length) {
                 keys = list.map(item => item.key);
             }
             return keys;
         }
     }
-}
+};

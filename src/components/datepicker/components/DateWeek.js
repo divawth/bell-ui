@@ -25,7 +25,10 @@ const stableDuration = 41 * DAY;
 
 export default {
     template: `
-        <div class="bell-datepicker-week">
+        <div class="bell-datepicker-week
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             <div class="bell-datepicker-header">
                 <span class="bell-datepicker-header-button" on-click="prevYear()">
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
@@ -52,6 +55,7 @@ export default {
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
                 </span>
             </div>
+
             <div class="bell-datepicker-table-week">
                 <div class="bell-datepicker-weeks">
                     {{#each weeks}}
@@ -80,24 +84,31 @@ export default {
                     {{/each}}
                 </div>
             </div>
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         // 表示第几周
         week: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         // date
         date: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         firstDay: {
-            type: ['number', 'string']
+            type: 'numeric'
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             weeks: WEEKS,
@@ -110,24 +121,24 @@ export default {
     },
 
     computed: {
-        currentYear: function () {
-            var me = this;
-            var date = me.get('modeDate');
+        currentYear() {
+            let me = this;
+            let date = me.get('modeDate');
             date = date ? simplifyDate(date) : simplifyDate(new Date());
             return date.year;
         },
-        currentMonth: function () {
-            var me = this;
-            var date = me.get('modeDate');
+        currentMonth() {
+            let me = this;
+            let date = me.get('modeDate');
             date = date ? simplifyDate(date) : simplifyDate(new Date());
             return date.month;
         }
     },
 
     methods: {
-        changeDate: function (offset) {
-            var me = this;
-            var date = me.get('modeDate');
+        changeDate(offset) {
+            let me = this;
+            let date = me.get('modeDate');
 
             date = offsetMonth(date, offset);
 
@@ -140,20 +151,20 @@ export default {
                 )
             });
         },
-        prevYear: function () {
+        prevYear() {
             this.changeDate(-12);
         },
-        prevMonth: function () {
+        prevMonth() {
             this.changeDate(-1);
         },
-        nextYear: function () {
+        nextYear() {
             this.changeDate(12);
         },
-        nextMonth: function () {
+        nextMonth() {
             this.changeDate(1);
         },
-        click: function (date) {
-            var me = this;
+        click(date) {
+            let me = this;
             me.fire(
                 'weekRangeChange',
                 {
@@ -166,14 +177,14 @@ export default {
                 getOffsetTime(parseDate(date[date.length - 1]))
             );
         },
-        refresh: function (start, end) {
-            var me = this;
-            var dateList = me.get('dateList');
-            var checkedIndex = '';
-            var checkedDateTime = '';
-            for (var i = 0; i < dateList.length; i++) {
-                var item = dateList[i][0];
-                var itemTime = getOffsetTime(parseDate(item));
+        refresh(start, end) {
+            let me = this;
+            let dateList = me.get('dateList');
+            let checkedIndex = '';
+            let checkedDateTime = '';
+            for (let i = 0; i < dateList.length; i++) {
+                let item = dateList[i][0];
+                let itemTime = getOffsetTime(parseDate(item));
                 if (itemTime == start) {
                     checkedDateTime = itemTime;
                     checkedIndex = i;
@@ -185,11 +196,11 @@ export default {
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, date, checkedDateTime) {
-            var me = this;
-            var data = [];
+        getDatasource(start, end, date, checkedDateTime) {
+            let me = this;
+            let data = [];
             date = simplifyDate(date);
-            for (var time = start, item; time <= end; time += DAY) {
+            for (let time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
                 item.isCurrentDate = checkedDateTime && checkedDateTime === getOffsetTime(parseDate(item));
                 item.isPrevMonth = item.month < date.month;
@@ -200,14 +211,14 @@ export default {
             return data;
 
         },
-        createRenderData: function (modeDate, checkedDateTime) {
+        createRenderData(modeDate, checkedDateTime) {
 
-            var me = this;
-            var firstDay = me.get('firstDay') || 0;
+            let me = this;
+            let firstDay = me.get('firstDay') || 0;
             modeDate = normalizeDate(modeDate);
 
-            var startDate;
-            var endDate;
+            let startDate;
+            let endDate;
 
             startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
             endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
@@ -215,22 +226,22 @@ export default {
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
 
-            var duration = endDate - startDate;
-            var offset = stableDuration - duration;
+            let duration = endDate - startDate;
+            let offset = stableDuration - duration;
 
             if (offset > 0) {
                 endDate += offset;
             }
 
-            var list = me.getDatasource(startDate, endDate, modeDate, checkedDateTime);
+            let list = me.getDatasource(startDate, endDate, modeDate, checkedDateTime);
             return me.format(list);
         },
-        format: function (list) {
-            var me = this;
-            var result = [];
-            var arr = [];
-            var checkedIndex = -1;
-            for(var i = 0; i < list.length; i++) {
+        format(list) {
+            let me = this;
+            let result = [];
+            let arr = [];
+            let checkedIndex = -1;
+            for(let i = 0; i < list.length; i++) {
                 arr.push(list[i])
                 if (i % 7 == 6) {
                     if (getOffsetTime(parseDate(arr[0])) === me.get('checkedDateTime')) {
@@ -247,12 +258,12 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
 
-        var today = new Date();
+        let today = new Date();
 
-        var date = me.get('modeDate');
+        let date = me.get('modeDate');
         date = date ? date : today;
 
         me.set({
@@ -262,8 +273,5 @@ export default {
                 me.get('checkedDateTime')
             )
         });
-    },
-    beforeDestroy: function () {
-        var me = this;
     }
-}
+};

@@ -1,8 +1,12 @@
 export default {
     template: `
-        <span class="bell-breadcrumb-item bell-text">
+        <span class="bell-breadcrumb-item bell-text
+            {{#if className}} {{className}}{{/if}}
+        " {{#if style}} style="{{style}}"{{/if}}>
             <a {{#if to}}href="{{to}}"{{/if}} class="bell-breadcrumb-link">
-                <slot name="children" />
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
             </a>
             <span class="bell-breadcrumb-gap">
                 {{#if separator}}
@@ -15,6 +19,12 @@ export default {
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         to: {
             type: 'string'
         },
@@ -22,4 +32,4 @@ export default {
             type: 'string'
         }
     }
-}
+};

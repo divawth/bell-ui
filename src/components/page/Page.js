@@ -1,136 +1,142 @@
 export default {
     template: `
-<div class="bell-page
-{{#if size}} bell-page-{{size}}{{/if}}
-{{#if className}} {{className}}{{/if}}
-">
-{{#partial pageCenter}}
-    {{#if current - 3 > 1}}
-        <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">
-            <i class="bell-icon bell-icon-ios-arrow-left"></i>
-            <i class="bell-icon bell-icon-ios-arrow-left"></i>
-        </li>
-    {{/if}}
+        <div class="bell-page
+            {{#if size}} bell-page-{{size}}{{/if}}
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+            {{#partial pageCenter}}
+                {{#if current - 3 > 1}}
+                    <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">
+                        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+                        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+                    </li>
+                {{/if}}
 
-    {{#if current - 2 > 1}}
-        <li class="bell-page-item" on-click="changePage(current - 2)">
-            {{ current - 2 }}
-        </li>
-    {{/if}}
+                {{#if current - 2 > 1}}
+                    <li class="bell-page-item" on-click="changePage(current - 2)">
+                        {{ current - 2 }}
+                    </li>
+                {{/if}}
 
-    {{#if current - 1 > 1}}
-        <li class="bell-page-item" on-click="changePage(current - 1)">
-            {{ current - 1 }}
-        </li>
-    {{/if}}
+                {{#if current - 1 > 1}}
+                    <li class="bell-page-item" on-click="changePage(current - 1)">
+                        {{ current - 1 }}
+                    </li>
+                {{/if}}
 
-    {{#if current != 1 && current != count}}
-        <li class="bell-page-item bell-active">
-            {{ current }}
-        </li>
-    {{/if}}
+                {{#if current != 1 && current != count}}
+                    <li class="bell-page-item bell-active">
+                        {{ current }}
+                    </li>
+                {{/if}}
 
-    {{#if current + 1 < count}}
-        <li class="bell-page-item" on-click="changePage(current + 1)">
-            {{ current + 1 }}
-        </li>
-    {{/if}}
+                {{#if current + 1 < count}}
+                    <li class="bell-page-item" on-click="changePage(current + 1)">
+                        {{ current + 1 }}
+                    </li>
+                {{/if}}
 
-    {{#if current + 2 < count}}
-        <li class="bell-page-item" on-click="changePage(current + 2)">
-            {{ current + 2 }}
-        </li>
-    {{/if}}
+                {{#if current + 2 < count}}
+                    <li class="bell-page-item" on-click="changePage(current + 2)">
+                        {{ current + 2 }}
+                    </li>
+                {{/if}}
 
-    {{#if current + 3 < count}}
-        <li class="bell-page-item bell-page-item-next" on-click="fastNext()">
-            <i class="bell-icon bell-icon-ios-arrow-right"></i>
-            <i class="bell-icon bell-icon-ios-arrow-right"></i>
-        </li>
-    {{/if}}
-{{/partial}}
+                {{#if current + 3 < count}}
+                    <li class="bell-page-item bell-page-item-next" on-click="fastNext()">
+                        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+                        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+                    </li>
+                {{/if}}
+            {{/partial}}
 
-    {{#if showTotal}}
-    <span class="bell-page-total">
-        共 {{total}} 条
-    </span>
-    {{/if}}
-
-    {{#if showSizer}}
-    <div class="bell-page-select">
-        <Select list="{{pageList}}"
-            model="pageSize"
-            size="{{size}}"
-            placement="{{placement}}"
-        />
-    </div>
-    {{/if}}
-
-    {{#if !simple}}
-    <ul class="bell-page-list">
-
-        <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
-            <i class="bell-icon bell-icon-ios-arrow-left"></i>
-        </li>
-
-        <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">
-            1
-        </li>
-
-        {{#if count > 1}}
-            {{> pageCenter}}
-            <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
-                {{count}}
-            </li>
-        {{/if}}
-
-        <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
-            <i class="bell-icon bell-icon-ios-arrow-right"></i>
-        </li>
-    </ul>
-
-    {{else}}
-        <div class="bell-page-simple">
-            <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
-                <i class="bell-icon bell-icon-ios-arrow-left"></i>
+            {{#if showTotal}}
+            <span class="bell-page-total">
+                共 {{total}} 条
             </span>
+            {{/if}}
 
-            <div class="bell-page-input">
-                <Input type="input"
-                    model="currentPage"
+            {{#if showSizer}}
+            <div class="bell-page-select">
+                <Select list="{{pageList}}"
+                    model="pageSize"
                     size="{{size}}"
-                ></Input>
+                    placement="{{placement}}"
+                />
             </div>
+            {{/if}}
 
-            {{'/'}}
+            {{#if !simple}}
+            <ul class="bell-page-list">
 
-            <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
-                {{count}}
-            </span>
+                <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
+                    <i class="bell-icon bell-icon-ios-arrow-left"></i>
+                </li>
 
-            <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
-                <i class="bell-icon bell-icon-ios-arrow-right"></i>
-            </span>
+                <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">
+                    1
+                </li>
+
+                {{#if count > 1}}
+                    {{> pageCenter}}
+                    <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
+                        {{count}}
+                    </li>
+                {{/if}}
+
+                <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
+                    <i class="bell-icon bell-icon-ios-arrow-right"></i>
+                </li>
+            </ul>
+
+            {{else}}
+                <div class="bell-page-simple">
+                    <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
+                        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+                    </span>
+
+                    <div class="bell-page-input">
+                        <Input type="input"
+                            model="currentPage"
+                            size="{{size}}"
+                        ></Input>
+                    </div>
+
+                    {{'/'}}
+
+                    <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
+                        {{count}}
+                    </span>
+
+                    <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
+                        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+                    </span>
+                </div>
+            {{/if}}
+
+            {{#if showElevator}}
+                <div class="bell-page-elevator">
+                    跳至
+                    <div class="bell-page-input">
+                        <Input type="input"
+                            placeholder="请输入..."
+                            model="currentPage"
+                            size="{{size}}"
+                        ></Input>
+                    </div>
+                    页
+                </div>
+            {{/if}}
         </div>
-    {{/if}}
-
-    {{#if showElevator}}
-    <div class="bell-page-elevator">
-        跳至
-        <div class="bell-page-input">
-            <Input type="input"
-                placeholder="请输入..."
-                model="currentPage"
-                size="{{size}}"
-            ></Input>
-        </div>
-        页
-    </div>
-    {{/if}}
-</div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         size: {
             type: 'string'
         },
@@ -138,30 +144,27 @@ export default {
             type: 'string'
         },
         total: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         current: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: 1
         },
         pageSize: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: 10
         },
         showSizer: {
-            type: ['string', 'boolean', 'number']
+            type: ['numeric', 'boolean']
         },
         pageSizeOpts: {
             type: 'array'
         },
         showElevator: {
-            type: ['string', 'boolean', 'number']
+            type: ['numeric', 'boolean']
         },
         showTotal: {
-            type: ['string', 'boolean', 'number']
-        },
-        className: {
-            type: 'string'
+            type: ['numeric', 'boolean']
         },
         placement: {
             type: 'string'
@@ -174,16 +177,16 @@ export default {
         }
     },
 
-    data: function () {
-        var me = this;
-        var getPageList = function () {
-            var pageList = [];
+    data() {
+        let me = this;
+        let getPageList = () => {
+            let pageList = [];
             if (me.get('showSizer')
                 && me.get('pageSizeOpts')
             ) {
                 Yox.array.each(
                     me.get('pageSizeOpts'),
-                    function (value) {
+                    (value) => {
                         pageList.push({
                             text: value + ' 条/页',
                             val: value
@@ -201,37 +204,37 @@ export default {
     },
 
     watchers: {
-        pageSize: function (value) {
-            var me = this;
+        pageSize(value) {
+            let me = this;
             me.updateCount();
             me.get('onPageSizeChange') && me.get('onPageSizeChange')(value);
         },
-        current: function (value) {
-            var me = this;
+        current(value) {
+            let me = this;
             me.get('onChange') && me.get('onChange')(value);
         }
     },
 
     methods: {
 
-        fastPrev: function () {
-            var me = this;
+        fastPrev() {
+            let me = this;
             if (me.get('current') < 1) {
                 return;
             }
             me.decrease('current', 5, 1);
         },
 
-        fastNext: function () {
-            var me = this;
+        fastNext() {
+            let me = this;
             if (me.get('current') >= me.get('count')) {
                 return;
             }
             me.increase('current', 5, me.get('count'));
         },
 
-        prev: function () {
-            var me = this;
+        prev() {
+            let me = this;
             if (me.get('current') < 1) {
                 return;
             }
@@ -242,8 +245,8 @@ export default {
             }
         },
 
-        next: function () {
-            var me = this;
+        next() {
+            let me = this;
             if (me.get('current') >= me.get('count')) {
                 return;
             }
@@ -253,17 +256,17 @@ export default {
             }
         },
 
-        changePage: function (page) {
+        changePage(page) {
             this.set({
                 current: page,
                 currentPage: page
             });
         },
 
-        updateCount: function () {
-            var me = this;
+        updateCount() {
+            let me = this;
             if (me.get('total')) {
-                var count = 1;
+                let count = 1;
                 if (me.get('total') > me.get('pageSize')) {
                     count = Math.ceil(me.get('total') / me.get('pageSize'));
                 }
@@ -274,11 +277,11 @@ export default {
             }
         },
 
-        setCurrent: function (option) {
-            var me = this;
-            var currentPage = +me.get('currentPage');
-            var current = me.get('current');
-            var count = me.get('count');
+        setCurrent(option) {
+            let me = this;
+            let currentPage = +me.get('currentPage');
+            let current = me.get('current');
+            let count = me.get('count');
 
             if (option == 'enter') {
                 if (Yox.is.number(currentPage)
@@ -302,12 +305,12 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.updateCount();
 
-        me.documentKeydownHander = function (e) {
-            var code = e.keyCode;
+        me.documentKeydownHander = (e) => {
+            let code = e.keyCode;
             if (code === 40) {
                 // up
                 e.preventDefault();
@@ -331,8 +334,8 @@ export default {
         );
     },
 
-    beforeDestroy: function () {
-        var me = this;
+    beforeDestroy() {
+        let me = this;
         document.removeEventListener(
             'keydown',
             me.documentKeydownHander

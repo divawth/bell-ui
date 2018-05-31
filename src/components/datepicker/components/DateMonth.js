@@ -15,7 +15,10 @@ const MONTHS = [
 
 export default {
     template: `
-        <div class="bell-datepicker-month">
+        <div class="bell-datepicker-month
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             <div class="bell-datepicker-header">
                 <span class="bell-datepicker-header-button" on-click="prevMore()">
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
@@ -51,16 +54,29 @@ export default {
                     </span>
                 {{/each}}
             </div>
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
+        date: {
+            type: 'numeric'
+        },
+        firstDay: {
+            type: 'numeric'
+        },
         year: {
-            type: ['string', 'number']
+            type: 'numeric'
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             checkedMonth: '',
@@ -71,22 +87,22 @@ export default {
     },
 
     methods: {
-        prevMore: function () {
+        prevMore() {
             this.decrease('modeYear', 10);
         },
-        prev: function () {
+        prev() {
             this.decrease('modeYear', 1);
         },
-        nextMore: function () {
+        nextMore() {
             this.increase('modeYear', 10);
         },
-        next: function () {
+        next() {
             this.increase('modeYear', 1);
         },
-        click: function (month) {
+        click(month) {
 
-            var me = this;
-            var year = me.get('modeYear');
+            let me = this;
+            let year = me.get('modeYear');
 
             me.set({
                 checkedYear: year,
@@ -103,4 +119,4 @@ export default {
 
         }
     }
-}
+};

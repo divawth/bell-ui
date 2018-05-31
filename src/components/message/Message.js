@@ -1,8 +1,8 @@
-import { add } from './base'
+import { add } from './base';
 
 let config = {};
 
-let addMessage = function (type, arg) {
+let addMessage = (type, arg) => {
     let data = {};
     data.type = type;
 
@@ -14,9 +14,9 @@ let addMessage = function (type, arg) {
     }
 
     add(data);
-}
+};
 
-let updateConfig = function (data) {
+let updateConfig = (data) => {
     if (data.duration) {
         config.duration = data.duration;
     }
@@ -24,28 +24,28 @@ let updateConfig = function (data) {
     if (data.top) {
         config.top = data.top;
     }
-}
+};
 
 Yox.prototype.$Message = {
-    success: function (arg) {
+    success: (arg) => {
         addMessage('success', arg);
     },
-    info: function (arg) {
+    info: (arg) => {
         addMessage('info', arg);
     },
-    warning: function (arg) {
+    warning: (arg) => {
         addMessage('warning', arg);
     },
-    error: function (arg) {
+    error: (arg) => {
         addMessage('error', arg);
     },
-    loading: function (arg) {
+    loading: (arg) => {
         addMessage('loading', arg);
     },
-    config: function (options) {
+    config: (options) => {
         updateConfig(options);
     },
-    destroy: function () {
+    destroy: () => {
         console.log('destroy');
     }
 };

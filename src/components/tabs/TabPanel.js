@@ -1,13 +1,23 @@
 export default {
     template: `
         <div class="bell-tabs-panel
-        {{#if isActive}} active{{/if}}">
+            {{#if className}} {{className}}{{/if}}
+            {{#if isActive}} active{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </div>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         name: {
             type: 'string'
         },
@@ -16,15 +26,15 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         return {
             isActive: false
         }
     },
 
     events: {
-        tabsValueUpdate: function (event, data) {
-            var me = this;
+        tabsValueUpdate(event, data) {
+            let me = this;
             if (!data.value) {
                 return;
             }
@@ -34,8 +44,8 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.fire(
             'addTabLabel',
             {
@@ -44,4 +54,4 @@ export default {
             }
         );
     }
-}
+};

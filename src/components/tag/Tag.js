@@ -1,11 +1,12 @@
 export default {
     template: `
         <div class="bell-tag
-        {{#if border}} bell-tag-border{{/if}}
-        {{#if size}} {{size}}{{/if}}
-        {{#if type}} {{type}}{{/if}}
-        {{#if checked}} bell-tag-checked{{/if}}
-        " on-click="click()">
+            {{#if className}} {{className}}{{/if}}
+            {{#if border}} bell-tag-border{{/if}}
+            {{#if size}} {{size}}{{/if}}
+            {{#if type}} {{type}}{{/if}}
+            {{#if checked}} bell-tag-checked{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
             <div class="bell-tag-text">
                 {{#if hasSlot('children')}}
                     <slot name="children" />
@@ -18,6 +19,12 @@ export default {
         </div>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         size: {
             type: 'string'
         },
@@ -49,22 +56,22 @@ export default {
     },
 
     watchers: {
-        checked: function (value) {
+        checked(value) {
             me.get('onChecked') && me.get('onChecked')(value);
         }
     },
 
     methods: {
-        click: function () {
-            var me = this;
+        click() {
+            let me = this;
             if (!me.get('checkable')) {
                 return;
             }
             me.toggle('checked');
         },
-        close: function () {
-            var me = this;
+        close() {
+            let me = this;
             me.get('onClose') && me.get('onClose')();
         }
     }
-}
+};

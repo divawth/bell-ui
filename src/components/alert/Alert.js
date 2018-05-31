@@ -1,40 +1,49 @@
 export default {
     template: `
-<div class="bell-alert
-{{#if type}} bell-alert-{{type}}{{/if}}
-{{#if hasDesc}} bell-alert-with-desc{{/if}}
-{{#if showIcon}} bell-alert-with-icon{{/if}}
-{{#if center}} bell-alert-center{{/if}}
-">
-    {{#if showIcon}}
-    <span class="bell-alert-icon">
-        <i class="bell-icon
-        {{#if type == 'info'}} bell-icon-information-circled
-        {{else if type == 'success'}} bell-icon-checkmark-circled
-        {{else if type == 'warning'}} bell-icon-android-alert
-        {{else if type == 'error'}} bell-icon-close-circled
-        {{/if}}
-        "></i>
-    </span>
-    {{/if}}
+        <div class="bell-alert
+            {{#if className}} {{className}}{{/if}}
+            {{#if type}} bell-alert-{{type}}{{/if}}
+            {{#if hasDesc}} bell-alert-with-desc{{/if}}
+            {{#if showIcon}} bell-alert-with-icon{{/if}}
+            {{#if center}} bell-alert-center{{/if}}
+        " {{#if style}} style="{{style}}"{{/if}}>
+            {{#if showIcon}}
+                <span class="bell-alert-icon">
+                    <i class="bell-icon
+                    {{#if type == 'info'}} bell-icon-information-circled
+                    {{else if type == 'success'}} bell-icon-checkmark-circled
+                    {{else if type == 'warning'}} bell-icon-android-alert
+                    {{else if type == 'error'}} bell-icon-close-circled
+                    {{/if}}
+                    "></i>
+                </span>
+            {{/if}}
 
-    <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">
-        <slot name="children" />
-    </span>
+            <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
+            </span>
 
-    {{#if closable}}
-    <span ref="close" class="bell-alert-close" on-click="close()">
-        {{#if closeText}}
-            {{closeText}}
-        {{else}}
-            <i class="bell-icon bell-icon-ios-close-empty"></i>
-        {{/if}}
-    </span>
-    {{/if}}
-</div>
+            {{#if closable}}
+                <span ref="close" class="bell-alert-close" on-click="close()">
+                    {{#if closeText}}
+                        {{closeText}}
+                    {{else}}
+                        <i class="bell-icon bell-icon-ios-close-empty"></i>
+                    {{/if}}
+                </span>
+            {{/if}}
+        </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         type: {
             type: 'string',
             value: 'info'
@@ -56,26 +65,22 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         return {
             hasDesc: false,
             paddingRight: 0
         }
     },
 
-    watchers: {
-
-    },
-
     methods: {
-        close: function () {
+        close() {
             let me = this;
             let container = me.$el;
             let classNames = container.getAttribute('class');
             container.setAttribute('class', classNames + ' bell-hide');
             setTimeout(
-                function () {
-                    container.remove()
+                () => {
+                    container.remove();
                 },
                 500
             );
@@ -84,14 +89,14 @@ export default {
     },
 
     events: {
-        hasDesc: function () {
+        hasDesc() {
             this.set({
                 hasDesc: true
             });
         }
     },
 
-    afterMount: function () {
+    afterMount() {
         let me = this;
 
         if (me.get('closable')) {
@@ -99,8 +104,5 @@ export default {
                 paddingRight: me.$refs.close.clientWidth
             });
         }
-    },
-
-    beforeDestroy: function () {
     }
 };

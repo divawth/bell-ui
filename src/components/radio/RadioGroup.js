@@ -1,24 +1,34 @@
 export default {
+
     template: `
-<div class="
-{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}
-{{#if type}} bell-radio-group-{{type}}{{/if}}
-{{#if size}} bell-radio-group-{{size}}{{/if}}
-{{#if disabled}} bell-radio-group-disabled{{/if}}
-{{#if vertical}} bell-radio-vertical{{/if}}
-">
-    <slot name="children" />
-</div>
+        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}
+            {{#if type}} bell-radio-group-{{type}}{{/if}}
+            {{#if size}} bell-radio-group-{{size}}{{/if}}
+            {{#if disabled}} bell-radio-group-disabled{{/if}}
+            {{#if vertical}} bell-radio-vertical{{/if}}
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
+        </div>
     `,
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         name: {
             type: 'string'
         },
         value: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         size: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         type: {
             type: 'string'
@@ -29,7 +39,6 @@ export default {
         vertical: {
             type: ['string', 'boolean']
         },
-
         button: {
             type: ['string', 'boolean']
         },
@@ -39,8 +48,8 @@ export default {
     },
 
     events: {
-        radioValueChange: function (event, data) {
-            var me = this;
+        radioValueChange(event, data) {
+            let me = this;
             me.set({
                 value: data.value
             });
@@ -54,8 +63,8 @@ export default {
             );
         }
     },
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.fire(
             'updateRadioName',
             {
@@ -74,4 +83,4 @@ export default {
             );
         }
     }
-}
+};

@@ -2,7 +2,7 @@ let namespace = 'bell-loading-bar';
 let instance= null;
 let timer = null;
 
-export let add = function (data) {
+export let add = (data) => {
 
     if (instance) {
         remove();
@@ -14,17 +14,22 @@ export let add = function (data) {
     body.append(element);
 
     instance = new Yox({
+
         el: '#' + namespace,
+
         replace: true,
+
         props: {
             percent: data.percent,
             height: data.height,
             type: data.type,
             color: data.color
         },
+
         template: `
             <div class="bell-loading-bar
-            {{#if type}} bell-loading-bar-{{type}}{{/if}}">
+                {{#if type}} bell-loading-bar-{{type}}{{/if}}"
+            >
                 <div class="bell-loading-bar-inner">
                     <div class="bell-loading-bar-bg"
                         style="
@@ -37,6 +42,7 @@ export let add = function (data) {
                 </div>
             </div>
         `,
+
         propTypes: {
             type: {
                 type: 'string'
@@ -53,11 +59,12 @@ export let add = function (data) {
                 type: 'string'
             }
         },
-        afterMount: function () {
+
+        afterMount() {
             let me = this;
-            var timerStart = function () {
+            let timerStart = () => {
                 timer = setTimeout(
-                    function () {
+                    () => {
                         if (!timer || !me) {
                             return;
                         }
@@ -71,7 +78,8 @@ export let add = function (data) {
             };
             timerStart();
         },
-        beforeDestroy: function () {
+
+        beforeDestroy() {
             if (timer) {
                 clearTimeout(timer);
             }
@@ -81,7 +89,7 @@ export let add = function (data) {
     return instance;
 };
 
-export let remove = function () {
+export let remove = () => {
 
     if (instance) {
         instance.destroy();
@@ -95,7 +103,7 @@ export let remove = function () {
 
 };
 
-export let update = function (config) {
+export let update = (config) => {
     if (instance) {
         instance.set(config);
     }

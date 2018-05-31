@@ -1,8 +1,10 @@
 export default {
     template: `
         <div class="bell-rate
-        {{#if readOnly}} bell-rate-read-only{{/if}}
-        " on-mouseleave="handleLeave()">
+            {{#if className}} {{className}}{{/if}}
+            {{#if readOnly}} bell-rate-read-only{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">
+
             <input type="hidden" model="value">
             {{#each createRateList():index}}
                 <span class="bell-icon bell-rate-star-full
@@ -28,16 +30,23 @@ export default {
                     {{/if}}
                 </span>
             {{/if}}
+
         </div>
     `,
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         count: {
             type: 'number',
             value: 5
         },
-        value: function (value) {
-            console.log(typeof value, value)
-            return value
+        value: {
+            type: 'numeric'
         },
         half: {
             type: 'boolean',
@@ -63,22 +72,22 @@ export default {
         }
     },
 
-    data: function () {
-        var me = this;
+    data() {
+        let me = this;
         return {
             hoverValue: -1
         }
     },
 
     filters: {
-        createRateList: function () {
-            var me = this;
-            var list = new Array(me.get('count'));
-            var texts = me.get('texts');
+        createRateList() {
+            let me = this;
+            let list = new Array(me.get('count'));
+            let texts = me.get('texts');
             if (texts && texts.length) {
                 Yox.array.each(
                     list,
-                    function (item, index) {
+                    (item, index) => {
                         item.push({
                             text: texts[index] ? texts[index] : texts[texts.length]
                         });
@@ -90,15 +99,15 @@ export default {
     },
 
     methods: {
-        handleMove: function (event, index) {
-            var me = this;
+        handleMove(event, index) {
+            let me = this;
 
             if (me.get('readOnly')) {
                 return;
             }
 
-            var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-            var currentValue = index;
+            let isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
+            let currentValue = index;
             if (isHalf) {
                 currentValue -= 0.5;
             }
@@ -108,25 +117,25 @@ export default {
             });
         },
 
-        handleLeave: function () {
-            var me = this;
+        handleLeave() {
+            let me = this;
             if (me.get('readOnly')) {
                 return;
             }
 
-            var value = me.get('value');
+            let value = me.get('value');
             me.set({
                 hoverValue: value >= 0 ? value : -1
             });
         },
 
-        handleClick: function (event, index) {
-            var me = this;
+        handleClick(event, index) {
+            let me = this;
             if (me.get('readOnly')) {
                 return;
             }
-            var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-            var currentValue = index;
+            let isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
+            let currentValue = index;
             if (isHalf) {
                 currentValue -= 0.5;
             }
@@ -136,4 +145,4 @@ export default {
             });
         }
     }
-}
+};

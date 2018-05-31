@@ -1,32 +1,36 @@
 export default {
     template: `
-        <div class="bell-layout-content bell-col-span{{#if hasSider}}-18{{else}}-24{{/if}}
-        {{#if className}} {{className}}{{/if}}"
-        {{#if style}} style="{{style}}"{{/if}}>
-            <slot name="children" />
+        <div class="bell-layout-content bell-col-span
+            {{#if hasSider}}-18{{else}}-24{{/if}}
+            {{#if className}} {{className}}{{/if}}"
+            {{#if style}} style="{{style}}"{{/if}}
+        >
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
         </div>
     `,
 
     events: {
-        childrenHasSider: function (value) {
+        childrenHasSider(value) {
             this.set({
                 hasSider: value
             });
         }
     },
 
-    data: function () {
+    data() {
         return {
             hasSider: false
         }
     },
 
     propTypes: {
-        style: {
+        className: {
             type: 'string'
         },
-        className: {
+        style: {
             type: 'string'
         }
     }
-}
+};

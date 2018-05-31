@@ -13,11 +13,11 @@ export default {
     propTypes: {
         // 是否在初始渲染时使用过渡
         appear: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
         // 是否使用 CSS 过渡类。如果设置为 false，将只通过组件事件触发注册的 JavaScript 钩子
         css: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
         // 指定过渡事件类型
         type: {
@@ -27,7 +27,7 @@ export default {
             type: 'string'
         },
         value: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
         enterClass: {
             type: 'string'
@@ -66,10 +66,9 @@ export default {
         onAppear: {
             type: 'function'
         },
-        onEnd: function () {
+        onEnd: {
             type: 'function'
         },
-
         beforeEnter: {
             type: 'function'
         },
@@ -87,12 +86,12 @@ export default {
         },
         afterAppear: {
             type: 'function'
-        },
+        }
     },
 
     watchers: {
-        value: function (value) {
-            var me = this;
+        value(value) {
+            let me = this;
             if (value) {
                 me.begin();
             }
@@ -103,20 +102,17 @@ export default {
     },
 
     methods: {
-        dispose: function () {
-
-        },
-        begin: function () {
-            var me = this;
+        begin() {
+            let me = this;
             me.enter();
             setTimeout(
-                function () {
+                () => {
                     me.leave();
                     setTimeout(
-                        function () {
+                        () => {
                             me.appear();
                             setTimeout(
-                                function () {
+                                () => {
                                     me.end();
                                 },
                                 100
@@ -128,9 +124,10 @@ export default {
                 100
             );
         },
-        enter: function () {
-            var me = this;
-            var element = me.$el;
+
+        enter() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onEnter') && me.get('onEnter')();
                 return;
@@ -149,9 +146,10 @@ export default {
             }
             addClass(element, me.get('enterClass'));
         },
-        leave: function () {
-            var me = this;
-            var element = me.$el;
+
+        leave() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onLeave') && me.get('onLeave')();
                 return;
@@ -163,9 +161,10 @@ export default {
             }
             addClass(element, me.get('leaveClass'));
         },
-        appear: function () {
-            var me = this;
-            var element = me.$el;
+
+        appear() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onAppear') && me.get('onAppear')();
                 return;
@@ -174,9 +173,10 @@ export default {
             removeClass(element, me.get('leaveClass'));
             addClass(element, me.get('appearClass'));
         },
-        end: function () {
-            var me = this;
-            var element = me.$el;
+
+        end() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onEnd') && me.get('onEnd')();
                 return;
@@ -195,17 +195,18 @@ export default {
             }
             removeClass(element, me.get('appearClass'));
         },
-        beginTo: function () {
-            var me = this;
+
+        beginTo() {
+            let me = this;
             me.enterTo();
             setTimeout(
-                function () {
+                () => {
                     me.leaveTo();
                     setTimeout(
-                        function () {
+                        () => {
                             me.appearTo();
                             setTimeout(
-                                function () {
+                                () => {
                                     me.endTo();
                                 },
                                 100
@@ -217,9 +218,10 @@ export default {
                 100
             );
         },
-        enterTo: function () {
-            var me = this;
-            var element = me.$el;
+
+        enterTo() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onEnter') && me.get('onEnter')();
                 return;
@@ -238,9 +240,10 @@ export default {
             }
             addClass(element, me.get('enterToClass'));
         },
-        leaveTo: function () {
-            var me = this;
-            var element = me.$el;
+
+        leaveTo() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onLeave') && me.get('onLeave')();
                 return;
@@ -252,9 +255,10 @@ export default {
             }
             addClass(element, me.get('leaveToClass'));
         },
-        appearTo: function () {
-            var me = this;
-            var element = me.$el;
+
+        appearTo() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onAppear') && me.get('onAppear')();
                 return;
@@ -263,9 +267,10 @@ export default {
             removeClass(element, this.get('leaveToClass'));
             addClass(element, this.get('appearToClass'));
         },
-        endTo: function () {
-            var me = this;
-            var element = me.$el;
+
+        endTo() {
+            let me = this;
+            let element = me.$el;
             if (me.get('css') === false) {
                 me.get('onEnd') && me.get('onEnd')();
                 return;
@@ -280,11 +285,12 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         if (me.get('type')) {
             me.$el.style.transitionTimingFunction = me.get('type');
         }
+
         me.set({
             enterClass: me.get('enterClass') ? me.get('enterClass') : 'bell-' + me.get('mode') +'-enter',
             leaveClass: me.get('leaveClass') ? me.get('leaveClass') : 'bell-' + me.get('mode') +'-leave',
@@ -306,4 +312,4 @@ export default {
             }
         }
     }
-}
+};

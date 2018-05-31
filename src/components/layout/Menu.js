@@ -1,16 +1,25 @@
 export default {
     template: `
         <div class="bell-menu
+            {{#if className}} {{className}}{{/if}}
             {{#if mode}} bell-menu-{{mode}}{{/if}}
             {{#if theme}} bell-menu-{{theme}}{{/if}}
-        ">
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         mode: {
             type: 'string'
         },
@@ -19,7 +28,7 @@ export default {
             value: 'dark'
         },
         activeName: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: -1
         },
         openNames: {
@@ -31,16 +40,16 @@ export default {
     },
 
     events: {
-        menuItemActive: function (event, data) {
-            var me = this;
+        menuItemActive(event, data) {
+            let me = this;
             me.get('onSelect') && me.get('onSelect')(data.name);
             me.updateActiveName(data.name);
         }
     },
 
     methods: {
-        updateActiveName: function (name) {
-            var me = this;
+        updateActiveName(name) {
+            let me = this;
             me.fire(
                 'activeMenuChange',
                 {
@@ -52,17 +61,17 @@ export default {
     },
 
     watchers: {
-        activeName: function (activeName) {
-            var me = this;
+        activeName(activeName) {
+            let me = this;
             me.get('onSelect') && me.get('onSelect')(activeName);
             me.updateActiveName(activeName);
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.updateActiveName(me.get('activeName'));
-        var openNames = me.get('openNames');
+        let openNames = me.get('openNames');
         if (openNames && openNames.length) {
             me.fire(
                 'activeSubMenuChange',
@@ -73,4 +82,4 @@ export default {
             );
         }
     }
-}
+};

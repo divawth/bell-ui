@@ -1,31 +1,45 @@
 let timer;
+
 export default {
+
     template: `
         <div class="bell-tooltip
-        {{#if isShow}} bell-show{{/if}}
-        {{#if isHover}} bell-hover{{/if}}
-        ">
+            {{#if className}} {{className}}{{/if}}
+            {{#if isShow}} bell-show{{/if}}
+            {{#if isHover}} bell-hover{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
             <div class="bell-tooltip-el"
-            on-mouseover="hover()"
-            on-mouseleave="leave()"
-            on-click="click()">
-                <slot name="children" />
+                on-mouseover="hover()"
+                on-mouseleave="leave()"
+                on-click="click()"
+            >
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
             </div>
 
             <div class="bell-tooltip-popper
-            {{#if disabled}} bell-tooltip-disabled{{/if}}"
-            data-placement="{{placement ? placement : 'bottom'}}">
+                {{#if disabled}} bell-tooltip-disabled{{/if}}"
+                data-placement="{{placement ? placement : 'bottom'}}"
+            >
                 <div class="bell-tooltip-arrow"></div>
                 <div class="bell-tooltip-inner"
-                style="{{#if maxWidth}} max-width: {{maxWidth}}px{{/if}};
-                {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};
+                style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
+                    {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};
                 ">
                     {{content}}
                 </div>
             </div>
         </div>
     `,
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         content: {
             type: 'string'
         },
@@ -36,7 +50,7 @@ export default {
             type: ['string', 'boolean']
         },
         delay: {
-            type: ['number', 'string']
+            type: 'numeric'
         },
         mode: {
             type: 'string'
@@ -56,20 +70,20 @@ export default {
     },
 
     events: {
-        hasTooltipItem: function (event, data) {
-            var me = this;
-            var element = me.$el.getElementsByClassName('bell-tooltip-el')[0];
-            var content = element.getElementsByClassName('bell-tooltip-inner-content');
-            var inner = me.$el.getElementsByClassName('bell-tooltip-inner')[0];
+        hasTooltipItem(event, data) {
+            let me = this;
+            let element = me.$el.getElementsByClassName('bell-tooltip-el')[0];
+            let content = element.getElementsByClassName('bell-tooltip-inner-content');
+            let inner = me.$el.getElementsByClassName('bell-tooltip-inner')[0];
             if (content.length) {
-                for(var i = 0; i < content.length; i++) {
+                for(let i = 0; i < content.length; i++) {
                     inner.appendChild(content[i]);
                 }
             }
         }
     },
 
-    data: function () {
+    data() {
         return {
             isShow: false,
             isHover: false,
@@ -77,24 +91,24 @@ export default {
     },
 
     watchers: {
-        disabled: function (disabled) {
+        disabled(disabled) {
             this.setPos();
         }
     },
 
     methods: {
-        setPos: function () {
-            var me = this;
-            var offsetX = me.get('offsetX') ? +me.get('offsetX') : 0;
-            var offsetY = me.get('offsetY') ? +me.get('offsetY') : 0;
+        setPos() {
+            let me = this;
+            let offsetX = me.get('offsetX') ? +me.get('offsetX') : 0;
+            let offsetY = me.get('offsetY') ? +me.get('offsetY') : 0;
 
-            var poperElement = me.$el.getElementsByClassName('bell-tooltip-popper')[0];
-            var placement = me.get('placement') || 'bottom';
-            var poperElementWidth = poperElement.clientWidth;
-            var poperElementHeight = poperElement.clientHeight;
+            let poperElement = me.$el.getElementsByClassName('bell-tooltip-popper')[0];
+            let placement = me.get('placement') || 'bottom';
+            let poperElementWidth = poperElement.clientWidth;
+            let poperElementHeight = poperElement.clientHeight;
 
-            var marginLeft = 0;
-            var marginTop = 0;
+            let marginLeft = 0;
+            let marginTop = 0;
 
             if (placement == 'bottom') {
                 marginLeft = -(poperElementWidth / 2);
@@ -139,29 +153,32 @@ export default {
             poperElement.style.marginLeft = marginLeft + 'px';
             poperElement.style.marginTop = marginTop + 'px';
         },
-        leave: function () {
-            var me = this;
+
+        leave() {
+            let me = this;
             if (me.get('mode') && me.get('mode') == 'click') {
                 return;
             }
+
             me.set({
                 isShow: false,
                 isHover: false
             });
         },
-        hover: function () {
-            var me = this;
+
+        hover() {
+            let me = this;
             if (me.get('mode') && me.get('mode') == 'click') {
                 return;
             }
-            var delay = me.get('delay') ? +me.get('delay') : 0;
+            let delay = me.get('delay') ? +me.get('delay') : 0;
             me.set({
                 isHover: true
             });
-            Yox.nextTick(function () {
+            Yox.nextTick(() => {
                 me.setPos();
                 timer = setTimeout(
-                    function () {
+                    () => {
                         if (me.get('isHover')) {
                             me.set({
                                 isShow: true
@@ -172,8 +189,9 @@ export default {
                 );
             });
         },
-        click: function () {
-            var me = this;
+
+        click() {
+            let me = this;
             if (!me.get('mode') || me.get('mode') == 'hover') {
                 return;
             }
@@ -181,16 +199,17 @@ export default {
             me.set({
                 isShow: !me.get('isShow')
             });
-            Yox.nextTick(function () {
+
+            Yox.nextTick(() => {
                 me.setPos();
             });
         }
     },
 
-    beforeDestroy: function () {
+    beforeDestroy() {
         if (timer) {
             clearTimeout(timer);
             timer = null;
         }
     }
-}
+};

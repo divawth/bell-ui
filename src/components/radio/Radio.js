@@ -1,40 +1,51 @@
 export default {
     template: `
-<label class="bell-radio
-{{#if isChecked}} bell-active{{/if}}
-{{#if isDisabled}} bell-radio-disabled{{/if}}
-">
-    <span class="bell-radio-wrapper" on-click="click()">
-        <span class="bell-radio-inner"></span>
-        <input class="bell-radio-input" type="radio" value="{{value}}" />
-    </span>
+        <label class="bell-radio
+            {{#if className}} {{className}}{{/if}}
+            {{#if isChecked}} bell-active{{/if}}
+            {{#if isDisabled}} bell-radio-disabled{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
 
-    <span class="bell-radio-label">
-        {{#if label}}
-            {{label}}
-        {{else}}
-            <slot name="children" />
-        {{/if}}
-    </span>
-</label>
+            <span class="bell-radio-wrapper" on-click="click()">
+                <span class="bell-radio-inner"></span>
+                <input class="bell-radio-input" type="radio" value="{{value}}" />
+            </span>
+
+            <span class="bell-radio-label">
+                {{#if label}}
+                    {{label}}
+                {{else}}
+                    {{#if hasSlot('children')}}
+                        <slot name="children" />
+                    {{/if}}
+                {{/if}}
+            </span>
+
+        </label>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         label: {
             type: 'string'
         },
         value: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         checked: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             isChecked: me.get('checked'),
@@ -44,19 +55,19 @@ export default {
     },
 
     events: {
-        updateRadioName: function (event, data) {
+        updateRadioName(event, data) {
             this.set({
                 name: data.name
             });
         },
-        updateRadioValue: function (event, data) {
-            var me = this;
+        updateRadioValue(event, data) {
+            let me = this;
             me.set({
                 isChecked: data.value == me.get('value')
             });
         },
-        updateRadioDisabled: function (event, data) {
-            var me = this;
+        updateRadioDisabled(event, data) {
+            let me = this;
             me.set({
                 isDisabled: data.disabled
             });
@@ -64,12 +75,12 @@ export default {
     },
 
     methods: {
-        click: function () {
-            var me = this;
+        click() {
+            let me = this;
             if (me.get('isDisabled')) {
                 return;
             }
-            var isChecked = me.get('isChecked');
+            let isChecked = me.get('isChecked');
             me.set({
                 isChecked: !isChecked
             });
@@ -82,4 +93,4 @@ export default {
             return;
         }
     }
-}
+};

@@ -1,37 +1,44 @@
 export default {
     template: `
-<div class="bell-switch
-{{#if type}} bell-switch-{{type}}{{/if}}
-{{#if size}} bell-switch-{{size}}{{/if}}
-{{#if disabled}} bell-switch-disabled{{/if}}
-{{#if isChecked}} bell-active{{/if}}
-{{#if className}} {{className}}{{/if}}
-" on-click="click()">
-    <span class="bell-switch-button">
-        {{#if hasSlot('children')}}
-            <slot name="children" />
-        {{else if size != 'small'}}
-            {{#if isChecked}}
-                {{#if onLabel}}
-                    <span class="bell-switch-on">
-                        {{onLabel}}
-                    </span>
+        <div class="bell-switch
+            {{#if type}} bell-switch-{{type}}{{/if}}
+            {{#if size}} bell-switch-{{size}}{{/if}}
+            {{#if disabled}} bell-switch-disabled{{/if}}
+            {{#if isChecked}} bell-active{{/if}}
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
+
+            <span class="bell-switch-button">
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{else if size != 'small'}}
+                    {{#if isChecked}}
+                        {{#if onLabel}}
+                            <span class="bell-switch-on">
+                                {{onLabel}}
+                            </span>
+                        {{/if}}
+                    {{else}}
+                        {{#if offLabel}}
+                            <span class="bell-switch-off">
+                                {{offLabel}}
+                            </span>
+                        {{/if}}
+                    {{/if}}
                 {{/if}}
-            {{else}}
-                {{#if offLabel}}
-                    <span class="bell-switch-off">
-                        {{offLabel}}
-                    </span>
-                {{/if}}
-            {{/if}}
-        {{/if}}
-    </span>
-    <input class="bell-switch-input" type="hidden" value="{{value}}" />
-</div>
+
+            </span>
+            <input class="bell-switch-input" type="hidden" value="{{value}}" />
+        </div>
     `,
+
     model: 'modelValue',
+
     propTypes: {
         className: {
+            type: 'string'
+        },
+        style: {
             type: 'string'
         },
         label: {
@@ -63,7 +70,7 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             isChecked: me.get('checked') ? true : false
@@ -71,12 +78,12 @@ export default {
     },
 
     methods: {
-        click: function () {
-            var me = this;
+        click() {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
-            var isChecked = me.get('isChecked');
+            let isChecked = me.get('isChecked');
             me.set({
                 isChecked: !isChecked,
                 modelValue: !isChecked
@@ -84,4 +91,4 @@ export default {
             me.get('onChange') && me.get('onChange')(!isChecked);
         }
     }
-}
+};

@@ -1,36 +1,47 @@
 export default {
     template: `
-<div class="bell-badge
-{{#if type}} bell-badge-{{type}}{{/if}}
-{{#if className}} {{className}}{{/if}}
-">
-    <slot name="children" />
-    {{#if !hidden}}
-        {{#if dot}}
-            <span class="bell-badge-dot"></span>
-        {{else}}
-            <span class="bell-badge-count{{#if !$slot_children}} bell-badge-count-alone{{/if}}">
-                {{getText(count, maxCount)}}
-            </span>
-        {{/if}}
-    {{/if}}
-</div>
+        <div class="bell-badge
+            {{#if type}} bell-badge-{{type}}{{/if}}
+            {{#if className}} {{className}}{{/if}}
+            " {{#if style}} style="{{style}}"{{/if}}
+        >
+
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
+
+            {{#if !hidden}}
+                {{#if dot}}
+                    <span class="bell-badge-dot"></span>
+                {{else}}
+                    <span class="bell-badge-count
+                        {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}
+                    ">
+                        {{getText(count, maxCount)}}
+                    </span>
+                {{/if}}
+            {{/if}}
+        </div>
     `,
+
     propTypes: {
-        count: {
-            type: ['string', 'number']
-        },
-        maxCount: {
-            type: ['string', 'number']
-        },
-        dot: {
-            type: ['string', 'number', 'boolean']
-        },
         className: {
             type: 'string'
         },
+        style: {
+            type: 'string'
+        },
+        count: {
+            type: 'numeric'
+        },
+        maxCount: {
+            type: 'numeric'
+        },
+        dot: {
+            type: ['numeric', 'boolean']
+        },
         hidden: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
         type: {
             type: 'string'
@@ -38,12 +49,14 @@ export default {
     },
 
     filters: {
-        getText: function (count, maxCount) {
-            var me = this;
-            var maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
-            var countStr = Yox.is.number(count) ? +count : 0;
+        getText(count, maxCount) {
+            let me = this;
+            maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
+            let countStr = Yox.is.number(count) ? +count : 0;
 
-            return maxCount < countStr ? maxCount + '+' : count;
+            return maxCount < countStr
+                ? maxCount + '+'
+                : count;
         }
     }
-}
+};

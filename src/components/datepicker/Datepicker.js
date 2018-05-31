@@ -1,7 +1,9 @@
 export default {
     template: `
         <div class="bell-datepicker
-        ">
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             <div class="bell-datepicker-el" on-click="click()">
                 <Input placeholder="请选择日期..."
                     style="width: 200px;"
@@ -14,9 +16,9 @@ export default {
             </div>
 
             <div class="bell-datepicker-poper
-            {{#if isPopuping}} bell-isPopuping{{/if}}
-            {{#if isPopdowning}} bell-isPopdowning{{/if}}
-            {{#if isOpen}} bell-show{{/if}}
+                {{#if isPopuping}} bell-isPopuping{{/if}}
+                {{#if isPopdowning}} bell-isPopdowning{{/if}}
+                {{#if isOpen}} bell-show{{/if}}
             ">
                 {{#if mode == 'date'}}
                     <Date></Date>
@@ -34,6 +36,12 @@ export default {
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         mode: {
             type: 'string'
         },
@@ -43,8 +51,9 @@ export default {
     },
 
     events: {
-        yearChange: function (event, data) {
-            var me = this;
+
+        yearChange(event, data) {
+            let me = this;
             me.get('onChange') && me.get('onChange')(
                 {
                     year: data.year
@@ -56,8 +65,9 @@ export default {
             });
             me.close();
         },
-        monthChange: function (event, data) {
-            var me = this;
+
+        monthChange(event, data) {
+            let me = this;
             me.get('onChange') && me.get('onChange')(
                 {
                     year: data.year,
@@ -70,17 +80,20 @@ export default {
             });
             me.close();
         },
-        weekRangeChange: function (event, data) {
+
+        weekRangeChange(event, data) {
             this.rangeChange(data);
         },
-        deteRangeChange: function (event, data) {
+
+        deteRangeChange(event, data) {
             this.rangeChange(data);
         },
-        deteChange: function (event, data) {
-            var me = this;
-            var date = data.date;
-            var value = me.get('value');
-            var newValue = me.formateDate(date);
+
+        deteChange(event, data) {
+            let me = this;
+            let date = data.date;
+            let value = me.get('value');
+            let newValue = me.formateDate(date);
             if (newValue !== value) {
                 me.get('onChange') && me.get('onChange')(
                     {
@@ -101,7 +114,7 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             value: '',
@@ -109,20 +122,20 @@ export default {
             isPopuping: false,
             isPopdowning: false,
             isOpen: false,
-            onFocus: function () {
+            onFocus() {
                 me.open();
             }
         }
     },
 
     methods: {
-        open: function () {
-            var me = this;
+        open() {
+            let me = this;
             me.set({
                 isPopuping: true
             });
             setTimeout(
-                function () {
+                () => {
                     me.set({
                         isPopuping: false,
                         isOpen: true
@@ -131,8 +144,9 @@ export default {
                 300
             );
         },
-        close: function () {
-            var me = this;
+
+        close() {
+            let me = this;
             if (!me.get('isOpen')) {
                 return;
             }
@@ -140,7 +154,7 @@ export default {
                 isPopdowning: true
             });
             setTimeout(
-                function () {
+                () => {
                     me.set({
                         isPopdowning: false,
                         isOpen: false
@@ -149,13 +163,15 @@ export default {
                 300
             );
         },
-        formateDate: function (date) {
+
+        formateDate(date) {
             return date.year + '年' + date.month + '月' + date.date + '日';
         },
-        rangeChange: function (data) {
-            var me = this;
-            var start = data.start;
-            var end = data.end;
+
+        rangeChange(data) {
+            let me = this;
+            let start = data.start;
+            let end = data.end;
             if (!end) {
                 return;
             }
@@ -183,9 +199,9 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
-        me.documentClickHandler = function (e) {
+    afterMount() {
+        let me = this;
+        me.documentClickHandler = (e) => {
             if (me.$el.contains(e.target)) {
                 return false;
             }
@@ -197,11 +213,11 @@ export default {
         );
     },
 
-    beforeDestroy: function () {
-        var me = this;
+    beforeDestroy() {
+        let me = this;
         document.removeEventListener(
             'click',
             me.documentClickHandler
         );
     }
-}
+};

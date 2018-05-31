@@ -1,18 +1,24 @@
 export default {
     template: `
-<div class="bell-row
-{{#if gutter}} bell-row-gutter{{/if}}
-{{#if type}} bell-row-{{type}}{{/if}}
-{{#if justify}} bell-row-flex-{{justify}}{{/if}}
-{{#if align}} bell-row-flex-{{align}}{{/if}}
-" style="{{style}}">
-    <slot name="children" />
-</div>
+        <div class="bell-row
+            {{#if className}} {{className}}{{/if}}
+            {{#if gutter}} bell-row-gutter{{/if}}
+            {{#if type}} bell-row-{{type}}{{/if}}
+            {{#if justify}} bell-row-flex-{{justify}}{{/if}}
+            {{#if align}} bell-row-flex-{{align}}{{/if}}
+        " style="{{style}}">
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
+        </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
         gutter: {
-            type: ['number', 'string']
+            type: 'numeric'
         },
         type: {
             type: 'string'
@@ -25,7 +31,7 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             style: ''
@@ -33,17 +39,17 @@ export default {
     },
 
     computed: {
-        style: function () {
-            var me = this;
-            var gap = me.get('gutter') / 2;
-            var style = '';
+        style() {
+            let me = this;
+            let gap = me.get('gutter') / 2;
+            let style = '';
             style = 'margin-left: -' + gap + 'px;margin-right: -' + gap + 'px;';
             return style;
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.fire(
             'updateGridGutter',
             {
@@ -52,4 +58,4 @@ export default {
             true
         );
     }
-}
+};

@@ -1,6 +1,9 @@
 export default {
     template: `
-        <div class="bell-tabs">
+        <div class="bell-tabs
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             <div class="bell-tabs-labels">
                 {{#each tabLabels}}
                     {{#if label}}
@@ -21,24 +24,30 @@ export default {
         </div>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         value: {
             type: 'string'
         }
     },
 
-    data: function () {
+    data() {
         return {
             tabLabels: []
         };
     },
 
     computed: {
-        translateStyle: function () {
-            var me = this;
-            var index = 0;
+        translateStyle() {
+            let me = this;
+            let index = 0;
             Yox.array.each(
                 me.get('tabLabels'),
-                function (item, key) {
+                (item, key) => {
                     if (item.name == me.get('value')) {
                         index = key;
                         return false;
@@ -46,15 +55,14 @@ export default {
                 }
             );
             return index * (-100) + '%';
-            console.log(index * (-100) + '%');
 
         }
     },
 
     events: {
-        addTabLabel: function (event, data) {
-            var me = this;
-            var tabLabels = me.copy(me.get('tabLabels'));
+        addTabLabel(event, data) {
+            let me = this;
+            let tabLabels = me.copy(me.get('tabLabels'));
             tabLabels.push(data);
             me.set({
                 tabLabels: tabLabels
@@ -63,7 +71,7 @@ export default {
     },
 
     watchers: {
-        value: function (value) {
+        value(value) {
             this.fire(
                 'tabsValueUpdate',
                 {
@@ -75,15 +83,11 @@ export default {
     },
 
     methods: {
-        clickTabLabel: function (data) {
-            var me = this;
+        clickTabLabel(data) {
+            let me = this;
             me.set({
                 value: data.name
             });
         }
-    },
-
-    afterMount: function () {
-        var me = this;
     }
-}
+};

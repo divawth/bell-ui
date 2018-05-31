@@ -1,30 +1,35 @@
 export default {
     template: `
-<div class="bell-backtop
-{{#if className}} {{className}}{{/if}}
-{{#if !isShow}} bell-hide{{/if}}
-{{#if !fix}} bell-backtop-fix{{/if}}
-"
-style="bottom: {{bottom}}px; right: {{right}}px;" on-click="back()"
->
-    <i class="bell-icon bell-icon-chevron-up"></i>
-</div>
+        <div class="bell-backtop
+        {{#if className}} {{className}}{{/if}}
+        {{#if !isShow}} bell-hide{{/if}}
+        {{#if !fix}} bell-backtop-fix{{/if}}
+        "
+        style="bottom: {{bottom}}px;
+            right: {{right}}px;
+            {{#if style}} {{style}}{{/if}}
+        " on-click="back()">
+            <i class="bell-icon bell-icon-chevron-up"></i>
+        </div>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         bottom: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: 30
         },
         right: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: 30
         },
         height: {
-            type: ['string', 'number'],
+            type: 'numeric',
             value: 400
-        },
-        className: {
-            type: 'string'
         },
         click: {
             type: 'function'
@@ -34,25 +39,25 @@ style="bottom: {{bottom}}px; right: {{right}}px;" on-click="back()"
         }
     },
 
-    data: function () {
+    data() {
         return {
             isShow: false
         }
     },
 
     methods: {
-        back: function () {
-            var me = this;
-            var top = me.container.scrollTop;
+        back() {
+            let me = this;
+            let top = me.container.scrollTop;
             me.container.scrollTop = 0;
             me.get('click') && me.get('click')(top);
         }
     },
 
-    afterMount: function (argument) {
-        var me = this;
-        var container = me.container = me.$parent.$el;
-        me.handleScroll =  function () {
+    afterMount() {
+        let me = this;
+        let container = me.container = me.$parent.$el;
+        me.handleScroll = () => {
             me.set({
                 isShow: container.scrollTop >= me.get('height')
             });
@@ -62,8 +67,8 @@ style="bottom: {{bottom}}px; right: {{right}}px;" on-click="back()"
         container.addEventListener('resize', me.handleScroll);
     },
 
-    beforeDestroy: function () {
-        var me = this;
+    beforeDestroy() {
+        let me = this;
         me.container.removeEventListener('scroll', me.handleScroll);
         me.container.removeEventListener('resize', me.handleScroll);
     }

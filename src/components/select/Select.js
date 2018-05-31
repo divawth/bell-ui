@@ -1,78 +1,84 @@
 export default {
     template: `
-<div class="bell-select
-{{#if size}} bell-select-{{size}}{{/if}}
-{{#if disabled}} bell-select-disabled{{/if}}
-{{#if placement}} bell-select-{{placement}}{{/if}}
-"
-    {{#if style}} style="{{style}}"{{/if}}
->
-    <div class="bell-select-button{{#if visible}} bell-active{{/if}}" on-click="toggleMenu()">
-        <input type="hidden" model="value" />
-        <span class="bell-select-value{{#if valueToText(value) == null}} bell-hide{{/if}}">
-            {{{valueToText(value)}}}
-        </span>
-        <span class="bell-select-placeholder{{#if valueToText(value) != null}} bell-hide{{/if}}">
-            {{#if defaultText}}
-                {{{defaultText}}}
-            {{else}}
-                请选择...
-            {{/if}}
-        </span>
-        <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>
-    </div>
+        <div class="bell-select
+            {{#if size}} bell-select-{{size}}{{/if}}
+            {{#if disabled}} bell-select-disabled{{/if}}
+            {{#if placement}} bell-select-{{placement}}{{/if}}
+            {{#if className}} {{className}}{{/if}}">
 
-    <div class="bell-select-dropdown{{#if !visible}} bell-hide{{/if}}"
-    {{#if style}} style="{{style}}"{{/if}}
-    >
-        <ul class="bell-select-dropdown-list">
-            {{#each list:index}}
-            <li class="bell-select-dropdown-item{{#if focusIndex == index}} bell-focus{{/if}}{{#if value == val}} bell-active{{/if}}" on-click="itemClick(index)">
-                {{text}}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-</div>
+            <div class="bell-select-button
+                {{#if visible}} bell-active{{/if}}
+            " on-click="toggleMenu()">
+
+                <input type="hidden" model="value" />
+
+                <span class="bell-select-value
+                    {{#if valueToText(value) == null}} bell-hide{{/if}}
+                ">
+                    {{{valueToText(value)}}}
+                </span>
+
+                <span class="bell-select-placeholder
+                    {{#if valueToText(value) != null}} bell-hide{{/if}}
+                ">
+                    {{#if defaultText}}
+                        {{{defaultText}}}
+                    {{else}}
+                        请选择...
+                    {{/if}}
+                </span>
+
+                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>
+            </div>
+
+            <div class="bell-select-dropdown
+                {{#if !visible}} bell-hide{{/if}}
+                " {{#if style}} style="{{style}}"{{/if}}
+            >
+                <ul class="bell-select-dropdown-list">
+                    {{#each list:index}}
+                    <li class="bell-select-dropdown-item{{#if focusIndex == index}} bell-focus{{/if}}{{#if value == val}} bell-active{{/if}}" on-click="itemClick(index)">
+                        {{text}}
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </div>
+        </div>
     `,
 
     propTypes: {
-
+        className: {
+            type: 'string'
+        },
         style: {
             type: 'string'
         },
-
         defaultText: {
             type: 'string'
         },
-
         list: {
             type: 'array',
             require: true
         },
-
         value: {
             type: 'string'
         },
-
         size: {
             type: 'string'
         },
-
         disabled: {
             type: 'string'
         },
-
         placement: {
             type: 'string'
         },
-
         autoComplete: {
             type: 'string'
         }
     },
 
-    data: function () {
+    data() {
         return {
             visible: false,
             focusIndex: null
@@ -80,7 +86,7 @@ export default {
     },
 
     filters: {
-        valueToText: function (value) {
+        valueToText(value) {
             if (value == null) {
                 return '';
             }
@@ -89,8 +95,8 @@ export default {
     },
 
     methods: {
-        toggleMenu: function () {
-            var me = this;
+        toggleMenu() {
+            let me = this;
             if (me.get('disabled') || me.get('autoComplete')) {
                 return false;
             }
@@ -99,9 +105,9 @@ export default {
             });
         },
 
-        itemClick: function (index) {
-            var me = this;
-            var list = me.get('list')
+        itemClick(index) {
+            let me = this;
+            let list = me.get('list')
             me.set({
                 value: list[index].val,
                 focusIndex: index,
@@ -109,12 +115,12 @@ export default {
             });
         },
 
-        setFocusIndex: function (option) {
-            var me = this;
-            var focusIndex = me.get('focusIndex');
-            var value = me.get('value');
-            var list = me.get('list');
-            var length = list.length - 1;
+        setFocusIndex(option) {
+            let me = this;
+            let focusIndex = me.get('focusIndex');
+            let value = me.get('value');
+            let list = me.get('list');
+            let length = list.length - 1;
 
             if (focusIndex == null) {
                 focusIndex = 0;
@@ -146,12 +152,12 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.valueMap = {};
         Yox.array.each(
             me.get('list'),
-            function (item, index) {
+            (item, index) => {
                 me.valueMap[item.val] = item.text;
                 if (item.val == me.get('value')) {
                     me.set({
@@ -161,7 +167,7 @@ export default {
             }
         );
 
-        me.documentClickHandler = function (e) {
+        me.documentClickHandler = (e) => {
             if (me.$el.contains(e.target)) {
                 return false;
             }
@@ -170,8 +176,8 @@ export default {
             });
         };
 
-        me.documentKeydownHander = function (e) {
-            var code = e.keyCode;
+        me.documentKeydownHander = (e) => {
+            let code = e.keyCode;
             if (!me.get('visible')) {
                 return;
             }
@@ -201,8 +207,8 @@ export default {
         );
     },
 
-    beforeDestroy: function () {
-        var me = this;
+    beforeDestroy() {
+        let me = this;
         me.valueMap = null;
         document.removeEventListener(
             'click',
@@ -213,4 +219,4 @@ export default {
             me.documentKeydownHander
         );
     }
-}
+};

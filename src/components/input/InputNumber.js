@@ -1,10 +1,12 @@
 export default {
     template: `
         <div class="bell-input-number
-        {{#if size}} bell-input-number-{{size}}{{/if}}
-        {{#if disabled}} bell-input-number-disabled{{/if}}
-        {{#if readonly}} bell-input-number-readonly{{/if}}
-        ">
+            {{#if className}} {{className}}{{/if}}
+            {{#if size}} bell-input-number-{{size}}{{/if}}
+            {{#if disabled}} bell-input-number-disabled{{/if}}
+            {{#if readonly}} bell-input-number-readonly{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             <div class="bell-input-number-actions">
                 <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>
                 <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>
@@ -17,21 +19,28 @@ export default {
                 model="value" on-blur="blur()" on-focus="focus()"
                 ></input>
             </div>
+
         </div>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         maxValue: {
-            type: ['number', 'string']
+            type: 'numeric'
         },
         minValue: {
-            type: ['number', 'string']
+            type: 'numeric'
         },
         value: {
-            type: ['number', 'string'],
+            type: 'numeric',
             value: 0
         },
         step: {
-            type: ['number', 'string'],
+            type: 'numeric',
             value: 1
         },
         size: {
@@ -60,19 +69,19 @@ export default {
     },
 
     methods: {
-        up: function () {
-            var me = this;
+        up() {
+            let me = this;
             me.increase('value', me.get('step'), me.get('maxValue'));
         },
-        down: function () {
-            var me = this;
-            var value = me.decrease('value', me.get('step'), me.get('minValue'));
+        down() {
+            let me = this;
+            let value = me.decrease('value', me.get('step'), me.get('minValue'));
         },
-        blur: function (...args) {
+        blur(...args) {
             this.get('onBlur') && this.get('onBlur')(...args)
         },
-        focus: function (...args) {
+        focus(...args) {
             this.get('onFocus') && this.get('onFocus')(...args)
         }
     }
-}
+};

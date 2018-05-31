@@ -1,27 +1,37 @@
 export default {
     template: `
-<div class="
-bell-checkbox-group
-{{#if type}} bell-checkbox-group-{{type}}{{/if}}
-{{#if size}} bell-checkbox-group-{{size}}{{/if}}
-{{#if vertical}} bell-checkbox-vertical{{/if}}
-">
-    <slot name="children" />
-</div>
+        <div class="bell-checkbox-group
+            {{#if className}} {{className}}{{/if}}
+            {{#if type}} bell-checkbox-group-{{type}}{{/if}}
+            {{#if size}} bell-checkbox-group-{{size}}{{/if}}
+            {{#if vertical}} bell-checkbox-vertical{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+            {{#if hasSlot('children')}}
+                <slot name="children" />
+            {{/if}}
+        </div>
     `,
+
     model: 'modelValue',
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         name: {
             type: 'string'
         },
         modelValue: {
             type: 'array',
-            value: function () {
+            value: () => {
                 return [];
             }
         },
         size: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         type: {
             type: 'string'
@@ -38,9 +48,9 @@ bell-checkbox-group
     },
 
     events: {
-        updateCheckbox: function (events, data) {
-            var me = this;
-            var result = Yox.is.array(me.get('modelValue')) ? me.get('modelValue') : [];
+        updateCheckbox(events, data) {
+            let me = this;
+            let result = Yox.is.array(me.get('modelValue')) ? me.get('modelValue') : [];
             if (data.isChecked) {
                 if (Yox.array.indexOf(result, data.value) === -1) {
                     result.push(data.value);
@@ -57,7 +67,7 @@ bell-checkbox-group
         }
     },
     watchers: {
-        modelValue: function (value) {
+        modelValue(value) {
             this.fire(
                 'updateCheckboxValue',
                 {
@@ -67,8 +77,8 @@ bell-checkbox-group
             );
         }
     },
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         if (me.get('type')) {
             me.fire(
                 'updateCheckboxType',

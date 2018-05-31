@@ -1,15 +1,24 @@
 export default {
     template: `
-        <div class="bell-alert-desc">
+        <div class="bell-alert-desc
+            {{#if className}} {{className}}{{/if}}
+        " {{#if style}} style="{{style}}"{{/if}}>
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
         </div>
     `,
-    afterMount: function () {
-        var me = this;
-        me.fire(
+    propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
+    },
+    afterMount() {
+        this.fire(
             'hasDesc'
         );
     }
-}
+};

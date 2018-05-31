@@ -1,9 +1,11 @@
 export default {
     template: `
         <li class="bell-item
-        {{#if !disableHover}} bell-item-hover{{/if}}
-        {{#if active}} bell-active{{/if}}"
-        on-click="click">
+            {{#if className}} {{className}}{{/if}}
+            {{#if !disableHover}} bell-item-hover{{/if}}
+            {{#if active}} bell-active{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}} on-click="click">
+
             {{#if hasSlot('itemHeader')}}
                 <div class="bell-item-header">
                     <slot name="itemHeader" />
@@ -19,9 +21,16 @@ export default {
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </li>
     `,
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         disableHover: {
             type: 'boolean'
         },
@@ -29,4 +38,4 @@ export default {
             type: 'boolean'
         }
     }
-}
+};

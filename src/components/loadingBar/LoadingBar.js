@@ -11,7 +11,7 @@ import {
 
 let config = {};
 
-let updateConfig = function (data) {
+let updateConfig = (data) => {
     config.type = data.type ? data.type : config.type;
     config.color = data.color ? data.color : config.color;
     config.height = data.height ? data.height : config.height;
@@ -19,7 +19,7 @@ let updateConfig = function (data) {
 
 Yox.prototype.$LoadingBar = {
     // 开始从 0 显示进度条，并自动加载进度
-    start: function (options) {
+    start(options) {
         return add(
             Yox.object.extend(
                 {},
@@ -30,26 +30,26 @@ Yox.prototype.$LoadingBar = {
     },
 
     // 结束进度条，自动补全剩余进度
-    finish: function () {
+    finish() {
         update({
             percent: 100
         });
 
         setTimeout(
-            function () {
+            () => {
                 return remove();
             },
             1000
         );
     },
     // 精确加载到指定的进度
-    update: function (data) {
+    update(data) {
         return update(data);
     },
-    config: function (data) {
+    config(data) {
         updateConfig(data);
     },
-    destroy: function () {
+    destroy() {
         config = {};
         element.remove();
     }

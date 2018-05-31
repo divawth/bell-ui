@@ -3,8 +3,8 @@ export default {
         <div class="bell-layout-sider bell-col-span-6
             {{#if className}} {{className}}{{/if}}
             {{#if collapsed}} bell-sider-collapsed{{/if}}
-        "
-        {{#if style}} style="{{style}}"{{/if}}>
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
@@ -18,13 +18,14 @@ export default {
                     {{/if}}
                 </div>
             {{/if}}
+
         </div>
     `,
     propTypes: {
-        style: {
+        className: {
             type: 'string'
         },
-        className: {
+        style: {
             type: 'string'
         },
         collapsible: {
@@ -35,20 +36,20 @@ export default {
         }
     },
 
-    data: function () {
+    data() {
         return {
             collapsed: false
         }
     },
 
     wactchers: {
-        collapsed: function (value) {
+        collapsed(value) {
             this.get('onToggleCollapse') && this.get('onToggleCollapse')(value);
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
         me.fire(
             'hasSider',
             {
@@ -56,4 +57,4 @@ export default {
             }
         );
     }
-}
+};

@@ -1,5 +1,5 @@
-export let addClass = function (element, className) {
-    var classNameArray = element.className.split(/\s/g);
+export let addClass = (element, className) => {
+    let classNameArray = element.className.split(/\s/g);
     if (Yox.array.indexOf(classNameArray, className) > 0) {
         return;
     }
@@ -9,9 +9,9 @@ export let addClass = function (element, className) {
     }
 };
 
-export let removeClass = function (element, className) {
-    var classNameArray = element.className.split(/\s/g);
-    var index = Yox.array.indexOf(classNameArray, className);
+export let removeClass = (element, className) => {
+    let classNameArray = element.className.split(/\s/g);
+    let index = Yox.array.indexOf(classNameArray, className);
     if (index > 0) {
         classNameArray.splice(index);
         element.className = classNameArray.join(' ');

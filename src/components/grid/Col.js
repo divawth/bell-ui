@@ -1,57 +1,63 @@
 export default {
     template: `
-<div class="bell-col
-{{#if span}} bell-col-span-{{span}}{{/if}}
-{{#if order}} bell-col-order-{{order}}{{/if}}
-{{#if push}} bell-col-push-{{push}}{{/if}}
-{{#if pull}} bell-col-pull-{{pull}}{{/if}}
-{{#if offset}} bell-col-offset-{{offset}}{{/if}}
-{{#if className}} {{className}}{{/if}}
-{{#if xsClass}} {{xsClass}}{{/if}}
-{{#if mdClass}} {{mdClass}}{{/if}}
-{{#if smClass}} {{smClass}}{{/if}}
-{{#if lgClass}} {{lgClass}}{{/if}}
-" style="{{style}}">
-    <div class="bell-col-content">
-        <slot name="children" />
-    </div>
-</div>
+        <div class="bell-col
+            {{#if className}} {{className}}{{/if}}
+            {{#if span}} bell-col-span-{{span}}{{/if}}
+            {{#if order}} bell-col-order-{{order}}{{/if}}
+            {{#if push}} bell-col-push-{{push}}{{/if}}
+            {{#if pull}} bell-col-pull-{{pull}}{{/if}}
+            {{#if offset}} bell-col-offset-{{offset}}{{/if}}
+            {{#if xsClass}} {{xsClass}}{{/if}}
+            {{#if mdClass}} {{mdClass}}{{/if}}
+            {{#if smClass}} {{smClass}}{{/if}}
+            {{#if lgClass}} {{lgClass}}{{/if}}
+        " style="{{style}}">
+
+            <div class="bell-col-content">
+
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
+
+            </div>
+
+        </div>
     `,
 
     propTypes: {
-        span: {
-            type: ['string', 'number']
-        },
-        order: {
-            type: ['string', 'number']
-        },
-        offset: {
-            type: ['string', 'number']
-        },
-        push: {
-            type: ['string', 'number']
-        },
-        pull: {
-            type: ['string', 'number']
-        },
         className: {
             type: 'string'
         },
+        span: {
+            type: 'numeric'
+        },
+        order: {
+            type: 'numeric'
+        },
+        offset: {
+            type: 'numeric'
+        },
+        push: {
+            type: 'numeric'
+        },
+        pull: {
+            type: 'numeric'
+        },
         xs: {
-            type: ['string', 'number', 'object']
+            type: ['numeric', 'object']
         },
         sm: {
-            type: ['string', 'number', 'object']
+            type: ['numeric', 'object']
         },
         md: {
-            type: ['string', 'number', 'object']
+            type: ['numeric', 'object']
         },
         lg: {
-            type: ['string', 'number', 'object']
+            type: ['numeric', 'object']
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             style: '',
@@ -60,7 +66,7 @@ export default {
     },
 
     events: {
-        updateGridGutter: function (event, data) {
+        updateGridGutter(event, data) {
             this.set({
                 gutter: data.gutter
             });
@@ -68,51 +74,51 @@ export default {
     },
 
     computed: {
-        xsClass: function () {
-            var me = this;
-            var data = me.get('xs');
+        xsClass() {
+            let me = this;
+            let data = me.get('xs');
             if (!data) {
                 return;
             }
             return me.getClass('xs', data);
         },
-        smClass: function () {
-            var me = this;
-            var data = me.get('sm');
+        smClass() {
+            let me = this;
+            let data = me.get('sm');
             if (!data) {
                 return;
             }
             return me.getClass('sm', data);
         },
-        mdClass: function () {
-            var me = this;
-            var data = me.get('md');
+        mdClass() {
+            let me = this;
+            let data = me.get('md');
             if (!data) {
                 return;
             }
             return me.getClass('md', data);
         },
-        lgClass: function () {
-            var me = this;
-            var data = me.get('lg');
+        lgClass() {
+            let me = this;
+            let data = me.get('lg');
             if (!data) {
                 return;
             }
             return me.getClass('lg', data);
         },
-        style: function () {
-            var me = this;
-            var gap = me.get('gutter') / 2;
-            var style = '';
+        style() {
+            let me = this;
+            let gap = me.get('gutter') / 2;
+            let style = '';
             style = 'padding-left:' + gap + 'px;padding-right: ' + gap + 'px;';
             return style;
         }
     },
 
     methods: {
-        getClass: function (name, data) {
-            var me = this;
-            var classArr = [];
+        getClass(name, data) {
+            let me = this;
+            let classArr = [];
             if (Yox.is.object(data)) {
                 if (data.span) {
                     classArr.push('bell-col-span-' + name + '-' + data.span);
@@ -137,4 +143,4 @@ export default {
             return classArr.join(' ');
         }
     }
-}
+};

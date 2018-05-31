@@ -24,7 +24,10 @@ const stableDuration = 41 * DAY;
 
 export default {
     template: `
-        <div class="bell-datepicker-date">
+        <div class="bell-datepicker-date
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             <div class="bell-datepicker-header">
                 <span class="bell-datepicker-header-button" on-click="prevYear()">
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
@@ -51,6 +54,7 @@ export default {
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
                 </span>
             </div>
+
             <div class="bell-datepicker-table-date">
                 <div class="bell-datepicker-weeks">
                     {{#each weeks}}
@@ -78,19 +82,26 @@ export default {
                     {{/each}}
                 </div>
             </div>
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         date: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         firstDay: {
-            type: ['number', 'string']
+            type: 'numeric'
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             weeks: WEEKS,
@@ -102,24 +113,28 @@ export default {
     },
 
     computed: {
-        currentYear: function () {
-            var me = this;
-            var date = me.get('modeDate');
-            date = date ? simplifyDate(date) : simplifyDate(new Date());
+        currentYear() {
+            let me = this;
+            let date = me.get('modeDate');
+            date = date
+                    ? simplifyDate(date)
+                    : simplifyDate(new Date());
             return date.year;
         },
-        currentMonth: function () {
-            var me = this;
-            var date = me.get('modeDate');
-            date = date ? simplifyDate(date) : simplifyDate(new Date());
+        currentMonth() {
+            let me = this;
+            let date = me.get('modeDate');
+            date = date
+                ? simplifyDate(date)
+                : simplifyDate(new Date());
             return date.month;
         }
     },
 
     methods: {
-        changeDate: function (offset) {
-            var me = this;
-            var date = me.get('modeDate');
+        changeDate(offset) {
+            let me = this;
+            let date = me.get('modeDate');
 
             date = offsetMonth(date, offset);
 
@@ -128,23 +143,24 @@ export default {
                 dateList: me.createRenderData(date, me.get('checkedDate'))
             });
         },
-        prevYear: function () {
+
+        prevYear() {
             this.changeDate(-12);
         },
-        prevMonth: function () {
+        prevMonth() {
             this.changeDate(-1);
         },
-        nextYear: function () {
+        nextYear() {
             this.changeDate(12);
         },
-        nextMonth: function () {
+        nextMonth() {
             this.changeDate(1);
         },
-        click: function (date) {
+        click(date) {
             if (!date.isCurrentMonth) {
                 return;
             }
-            var me = this;
+            let me = this;
             me.fire(
                 'deteChange',
                 {
@@ -160,12 +176,12 @@ export default {
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, modeDate, checkedDate) {
-            var me = this;
-            var data = [];
+        getDatasource(start, end, modeDate, checkedDate) {
+            let me = this;
+            let data = [];
             modeDate = simplifyDate(modeDate);
             checkedDate = simplifyDate(checkedDate);
-            for (var time = start, item; time <= end; time += DAY) {
+            for (let time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
                 if (item.year == checkedDate.year
                     && item.month == checkedDate.month
@@ -183,14 +199,14 @@ export default {
             return data;
 
         },
-        createRenderData: function (modeDate, checkedDate) {
+        createRenderData(modeDate, checkedDate) {
 
-            var me = this;
-            var firstDay = me.get('firstDay') || 0;
+            let me = this;
+            let firstDay = me.get('firstDay') || 0;
             modeDate = normalizeDate(modeDate);
 
-            var startDate;
-            var endDate;
+            let startDate;
+            let endDate;
 
             startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
             endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
@@ -198,19 +214,19 @@ export default {
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
 
-            var duration = endDate - startDate;
-            var offset = stableDuration - duration;
+            let duration = endDate - startDate;
+            let offset = stableDuration - duration;
 
             if (offset > 0) {
                 endDate += offset;
             }
-            var list = me.getDatasource(startDate, endDate, modeDate, checkedDate);
+            let list = me.getDatasource(startDate, endDate, modeDate, checkedDate);
             return me.format(list);
         },
-        format: function (list) {
-            var result = [];
-            var arr = [];
-            for(var i = 0; i < list.length; i++) {
+        format(list) {
+            let result = [];
+            let arr = [];
+            for(let i = 0; i < list.length; i++) {
                 arr.push(list[i])
                 if (i % 7 == 6) {
                     result.push(arr);
@@ -221,12 +237,11 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
 
-        var today = new Date();
-
-        var date = me.get('checkedDate');
+        let today = new Date();
+        let date = me.get('checkedDate');
         date = date ? date : today;
 
         me.set({
@@ -234,8 +249,5 @@ export default {
             checkedDate: date,
             dateList: me.createRenderData(date, date)
         });
-    },
-    beforeDestroy: function () {
-        var me = this;
     }
-}
+};

@@ -25,7 +25,10 @@ const stableDuration = 41 * DAY;
 
 export default {
     template: `
-        <div class="bell-datepicker-daterange">
+        <div class="bell-datepicker-daterange
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             <div class="bell-datepicker-header">
                 <span class="bell-datepicker-header-button" on-click="prevYear()">
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
@@ -59,6 +62,7 @@ export default {
                     <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
                 </span>
             </div>
+
             <div class="bell-datepicker-daterange-wrapper">
                 <div class="bell-datepicker-table-date">
                     <div class="bell-datepicker-weeks">
@@ -119,22 +123,29 @@ export default {
                     </div>
                 </div>
             </div>
+
         </div>
     `,
 
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         start: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         end: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         firstDay: {
-            type: ['number', 'string']
+            type: 'numeric'
         }
     },
 
-    data: function () {
+    data() {
         let me = this;
         return {
             weeks: WEEKS,
@@ -150,33 +161,33 @@ export default {
     },
 
     computed: {
-        currentYear: function () {
-            var me = this;
-            var date = me.get('modeDate');
+        currentYear() {
+            let me = this;
+            let date = me.get('modeDate');
             date = date ? simplifyDate(date) : simplifyDate(new Date());
             return date.year;
         },
-        currentMonth: function () {
-            var me = this;
-            var date = me.get('modeDate');
+        currentMonth() {
+            let me = this;
+            let date = me.get('modeDate');
             date = date ? simplifyDate(date) : simplifyDate(new Date());
             return date.month;
         }
     },
 
     methods: {
-        changeDate: function (offset) {
-            var me = this;
-            var date = me.get('modeDate');
+        changeDate(offset) {
+            let me = this;
+            let date = me.get('modeDate');
 
             date = offsetMonth(date, offset);
 
-            var dateList = me.createRenderData(
+            let dateList = me.createRenderData(
                                 date,
                                 me.get('checkedStartDate'),
                                 me.get('checkedEndDate')
                             );
-            var nextDateList = me.createRenderData(
+            let nextDateList = me.createRenderData(
                                     offsetMonth(date, 1),
                                     me.get('checkedStartDate'),
                                     me.get('checkedEndDate'),
@@ -187,22 +198,22 @@ export default {
                 nextDateList: nextDateList
             });
         },
-        prevYear: function () {
+        prevYear() {
             this.changeDate(-12);
         },
-        prevMonth: function () {
+        prevMonth() {
             this.changeDate(-1);
         },
-        nextYear: function () {
+        nextYear() {
             this.changeDate(12);
         },
-        nextMonth: function () {
+        nextMonth() {
             this.changeDate(1);
         },
-        hover: function  (date) {
-            var me = this;
-            var startDate = me.get('checkedStartDate');
-            var endDate = me.get('checkedEndDate');
+        hover (date) {
+            let me = this;
+            let startDate = me.get('checkedStartDate');
+            let endDate = me.get('checkedEndDate');
 
             if (!date.isCurrentMonth
                 || !startDate
@@ -211,7 +222,7 @@ export default {
                 return;
             }
 
-            var rangDate = '';
+            let rangDate = '';
             if (!startDate
                 || me.get('checkedEndDate')
                 || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))
@@ -226,13 +237,13 @@ export default {
                 getOffsetTime(parseDate(rangDate))
             );
         },
-        click: function (date) {
+        click(date) {
             if (!date.isCurrentMonth) {
                 return;
             }
-            var me = this;
-            var checkedStartDate = me.get('checkedStartDate');
-            var checkedEndDate = me.get('checkedEndDate');
+            let me = this;
+            let checkedStartDate = me.get('checkedStartDate');
+            let checkedEndDate = me.get('checkedEndDate');
 
             if (!checkedStartDate || me.get('checkedEndDate')
                 || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(checkedStartDate))
@@ -260,20 +271,20 @@ export default {
                 }
             );
         },
-        refresh: function (start, end) {
-            var me = this;
+        refresh(start, end) {
+            let me = this;
 
-            var dateList = me.copy(me.get('dateList'));
-            var nextDateList = me.copy(me.get('nextDateList'));
+            let dateList = me.copy(me.get('dateList'));
+            let nextDateList = me.copy(me.get('nextDateList'));
 
             if (end) {
                 Yox.array.each(
                     dateList,
-                    function (arr) {
+                    (arr) => {
                         Yox.array.each(
                             arr,
-                            function (item) {
-                                var itemTime = getOffsetTime(parseDate(item));
+                            (item) => {
+                                let itemTime = getOffsetTime(parseDate(item));
                                 item.isRangeDate
                                     = itemTime < end
                                     && itemTime > start;
@@ -285,11 +296,11 @@ export default {
                 );
                 Yox.array.each(
                     nextDateList,
-                    function (arr) {
+                    (arr) => {
                         Yox.array.each(
                             arr,
-                            function (item) {
-                                var itemTime = getOffsetTime(parseDate(item));
+                            (item) => {
+                                let itemTime = getOffsetTime(parseDate(item));
                                 item.isRangeDate
                                     = itemTime < end
                                     && itemTime > start;
@@ -303,10 +314,10 @@ export default {
             else if (start) {
                 Yox.array.each(
                     dateList,
-                    function (arr) {
+                    (arr) => {
                         Yox.array.each(
                             arr,
-                            function (item) {
+                            (item) => {
                                 item.isCheckedDate
                                     = getOffsetTime(parseDate(item)) == start;
                                 item.isRangeDate = false;
@@ -316,10 +327,10 @@ export default {
                 );
                 Yox.array.each(
                     nextDateList,
-                    function (arr) {
+                    (arr) => {
                         Yox.array.each(
                             arr,
-                            function (item) {
+                            (item) => {
                                 item.isCheckedDate
                                     = getOffsetTime(parseDate(item)) == start;
                                 item.isRangeDate = false;
@@ -335,16 +346,16 @@ export default {
             });
         },
         // 获取渲染模板的数据
-        getDatasource: function (start, end, date, checkedStart, checkedEnd) {
-            var me = this;
-            var data = [];
+        getDatasource(start, end, date, checkedStart, checkedEnd) {
+            let me = this;
+            let data = [];
             date = simplifyDate(date);
             checkedStart = getOffsetTime(parseDate(checkedStart));
             checkedEnd = getOffsetTime(parseDate(checkedEnd));
 
-            for (var time = start, item; time <= end; time += DAY) {
+            for (let time = start, item; time <= end; time += DAY) {
                 item = simplifyDate(time);
-                var itemTime = getOffsetTime(parseDate(item));
+                let itemTime = getOffsetTime(parseDate(item));
                 item.isPrevMonth = item.month < date.month;
                 item.isCurrentMonth = item.month == date.month;
                 item.isLastMonth = item.month > date.month;
@@ -355,14 +366,14 @@ export default {
             return data;
 
         },
-        createRenderData: function (date, checkedStart, checkedEnd) {
+        createRenderData(date, checkedStart, checkedEnd) {
 
-            var me = this;
-            var firstDay = me.get('firstDay') || 0;
+            let me = this;
+            let firstDay = me.get('firstDay') || 0;
             date = normalizeDate(date);
 
-            var startDate;
-            var endDate;
+            let startDate;
+            let endDate;
 
             startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
             endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
@@ -370,13 +381,13 @@ export default {
             startDate = normalizeDate(startDate);
             endDate = normalizeDate(endDate);
 
-            var duration = endDate - startDate;
-            var offset = stableDuration - duration;
+            let duration = endDate - startDate;
+            let offset = stableDuration - duration;
 
             if (offset > 0) {
                 endDate += offset;
             }
-            var list = me.getDatasource(
+            let list = me.getDatasource(
                 startDate,
                 endDate,
                 date,
@@ -386,10 +397,10 @@ export default {
             return me.format(list);
 
         },
-        format: function (list) {
-            var result = [];
-            var arr = [];
-            for(var i = 0; i < list.length; i++) {
+        format(list) {
+            let result = [];
+            let arr = [];
+            for(let i = 0; i < list.length; i++) {
                 arr.push(list[i])
                 if (i % 7 == 6) {
                     result.push(arr);
@@ -400,20 +411,20 @@ export default {
         }
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
 
-        var today = new Date();
+        let today = new Date();
 
-        var date = me.get('start');
+        let date = me.get('start');
         date = date ? date : today;
 
-        var dateList = me.createRenderData(
+        let dateList = me.createRenderData(
                             date,
                             me.get('checkedStartDate'),
                             me.get('checkedEndDate')
                         );
-        var nextDateList = me.createRenderData(
+        let nextDateList = me.createRenderData(
                                 offsetMonth(date, 1),
                                 me.get('CheckedStartDate'),
                                 me.get('CheckedEndDate'),
@@ -423,8 +434,5 @@ export default {
             dateList: dateList,
             nextDateList: nextDateList
         });
-    },
-    beforeDestroy: function () {
-        var me = this;
     }
-}
+};

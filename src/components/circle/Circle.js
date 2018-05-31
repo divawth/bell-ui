@@ -1,8 +1,11 @@
 export default {
     template: `
-        <div class="bell-circle"
+        <div class="bell-circle
+            {{#if className}} {{className}}{{/if}}
+        "
             style="width: {{size}}px;
                 height: {{size}}px;
+                {{#if style}} {{style}}{{/if}}
             "
         >
             <svg viewBox="0 0 100 100">
@@ -30,7 +33,14 @@ export default {
             </div>
         </div>
     `,
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         percent: {
             type: 'number',
             value: 0
@@ -60,17 +70,18 @@ export default {
             value: '#eaeef2'
         }
     },
+
     computed: {
-        strokeDasharray: function () {
-            var me = this;
-            var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
+        strokeDasharray() {
+            let me = this;
+            let len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
             return `${len}px ${len}px`;
         },
-        strokeDashoffset: function () {
-            var me = this;
-            var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
-            var percent = me.get('percent');
+        strokeDashoffset() {
+            let me = this;
+            let len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
+            let percent = me.get('percent');
             return `${((100 - percent) / 100 * len)}px`;
         }
     }
-}
+};

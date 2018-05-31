@@ -1,27 +1,33 @@
 export default {
     template: `
         <div class="bell-collapse
-        {{#if className}} {{className}}{{/if}}
-        ">
+            {{#if className}} {{className}}{{/if}}
+        "{{#if style}} {{style}}{{/if}}>
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </div>
     `,
+
     propTypes: {
         className: {
             type: 'string'
         },
+        style: {
+            type: 'string'
+        },
         activeName: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
         accordion: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         }
     },
 
     events: {
-        panelOpen: function (event, data) {
+        panelOpen(event, data) {
             var me = this;
             if (data.name) {
                 me.fire(
@@ -34,7 +40,7 @@ export default {
             }
         }
     },
-    afterMount: function (argument) {
+    afterMount() {
         let me = this;
         let name = me.get('activeName');
         let accordion = me.get('accordion');
@@ -58,4 +64,4 @@ export default {
         }
     }
 
-}
+};

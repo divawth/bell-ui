@@ -1,14 +1,15 @@
-var SLIDER_TOOLTIP_MARGIN_TOP = 56;
-var SLIDER_TOOLTIP_MARGIN_LEFT = 30;
-var SLIDER_TOOLTIP_THUMB_WIDTH = 10;
+const SLIDER_TOOLTIP_MARGIN_TOP = 56;
+const SLIDER_TOOLTIP_MARGIN_LEFT = 30;
+const SLIDER_TOOLTIP_THUMB_WIDTH = 10;
 
 export default {
     template: `
         <div class="bell-slider
+            {{#if className}} {{className}}{{/if}}
             {{#if disabled}} disabled{{/if}}
             {{#if type}} {{type}}{{/if}}
             {{#if dragging}} dragging{{/if}}
-            "
+        "{{#if style}} style="{{style}}" {{/if}}
             on-blur="handleBlur($event)"
             on-focus="handleFocus($event)"
             on-touchstart="handleTouchStart($event)"
@@ -34,19 +35,28 @@ export default {
             >
             </div>
 
-            <div class="bell-tooltip{{#if dragging}} bell-show{{/if}}"
-                style="{{tooltipStyle}}"
-            >
+            <div class="bell-tooltip
+                {{#if dragging}} bell-show{{/if}}
+            " style="{{tooltipStyle}}">
+
                 <div ref="tooltip" class="bell-tooltip-popper" data-placement="top">
                     <div class="bell-tooltip-arrow"></div>
                     <div class="bell-tooltip-inner">
                         {{percent}}%
                     </div>
                 </div>
+
             </div>
         </div>
     `,
+
     propTypes: {
+        className: {
+            type: 'string'
+        },
+        style: {
+            type: 'string'
+        },
         value: {
             type: ['number', 'array'],
             value: 40
@@ -88,21 +98,22 @@ export default {
             type: 'function'
         }
     },
-    data: function () {
+
+    data() {
         return {
             dragging: false
         }
     },
 
     computed: {
-        percent: function () {
-            var me = this;
-            var min = me.get('min');
-            var max = me.get('max');
-            var value = me.get('value');
+        percent() {
+            let me = this;
+            let min = me.get('min');
+            let max = me.get('max');
+            let value = me.get('value');
 
-            var range = max - min;
-            var percentNum = range > 0
+            let range = max - min;
+            let percentNum = range > 0
                 ? (value - min) / range * 100
                 : 0;
 
@@ -110,13 +121,14 @@ export default {
                 ? 100
                 : (percentNum < 0 ? 0 : percentNum.toFixed(2));
         },
-        fillStyle: function () {
-            var me = this;
+
+        fillStyle() {
+            let me = this;
             return 'width: ' + me.get('percent') + '%';
         },
 
-        tooltipStyle: function () {
-            var me = this;
+        tooltipStyle() {
+            let me = this;
             if (!me.$refs) {
                 if (me.get('percent')) {
                     return '';
@@ -124,13 +136,13 @@ export default {
                 return '';
             }
 
-            var boundingRect = me.$refs.tooltip.getBoundingClientRect();
-            var marginLeft = boundingRect.width / 2;
+            let boundingRect = me.$refs.tooltip.getBoundingClientRect();
+            let marginLeft = boundingRect.width / 2;
             marginLeft = !marginLeft
                         ? SLIDER_TOOLTIP_MARGIN_LEFT
                         : marginLeft - (SLIDER_TOOLTIP_THUMB_WIDTH / 2);
 
-            var marginTop = +boundingRect.height;
+            let marginTop = +boundingRect.height;
             marginTop = !marginTop
                         ? SLIDER_TOOLTIP_MARGIN_TOP
                         : marginTop + SLIDER_TOOLTIP_THUMB_WIDTH;
@@ -140,21 +152,21 @@ export default {
                 + 'top: -' + marginTop + 'px;';
         },
 
-        thumbStyle: function () {
-            var me = this;
+        thumbStyle() {
+            let me = this;
             return 'left: ' + me.get('percent') + '%';
         },
 
-        range: function () {
-            var me = this;
+        range() {
+            let me = this;
             return me.get('max') - me.get('min');
         }
     },
 
     methods: {
 
-        handleTouchStart: function (e) {
-            var me = this;
+        handleTouchStart(e) {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
@@ -182,8 +194,8 @@ export default {
             me.onDragStart(e);
         },
 
-        handleTouchEnd: function () {
-            var me = this;
+        handleTouchEnd() {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
@@ -206,18 +218,18 @@ export default {
             me.onDragStop(e);
         },
 
-        handleTouchMove: function (e) {
-            var me = this;
+        handleTouchMove(e) {
+            let me = this;
             me.onDragUpdate(e.touches[0]);
         },
 
-        handleDragMouseMove: function (e) {
-            var me = this;
+        handleDragMouseMove(e) {
+            let me = this;
             me.onDragUpdate(e);
         },
 
-        handleMouseDown: function (e) {
-            var me = this;
+        handleMouseDown(e) {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
@@ -231,8 +243,8 @@ export default {
             me.onDragStart(e.originalEvent);
         },
 
-        handleDragMouseEnd: function (e) {
-            var me = this;
+        handleDragMouseEnd(e) {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
@@ -241,8 +253,8 @@ export default {
             me.onDragStop(e);
         },
 
-        onDragStart: function (e) {
-            var me = this;
+        onDragStart(e) {
+            let me = this;
             me.set({
                 dragging: 1,
                 active: 1
@@ -251,8 +263,8 @@ export default {
             me.get('onDragStart') && me.get('onDragStart')(e);
         },
 
-        onDragStop: function (e) {
-            var me = this;
+        onDragStop(e) {
+            let me = this;
             me.set({
                 dragging: 0,
                 active: 0
@@ -261,14 +273,14 @@ export default {
             me.get('onDragStop') && me.get('onDragStop')(e);
         },
 
-        onDragUpdate: function (e) {
-            var me = this;
+        onDragUpdate(e) {
+            let me = this;
             if (me.get('dragRunning')) {
                 return;
             }
             me.set('dragRunning', 1);
 
-            window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(() => {
                 me.set('dragRunning', 0);
                 if (!me.get('disabled')) {
                     me.setValue(e);
@@ -276,41 +288,42 @@ export default {
             });
         },
 
-        handleMouseUp: function () {
-            var me = this;
+        handleMouseUp() {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
             me.set('active', 0);
         },
 
-        handleMouseEnter: function () {
-            var me = this;
+        handleMouseEnter() {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
             me.set('hover', 1);
         },
 
-        handleMouseLeave: function () {
-            var me = this;
+        handleMouseLeave() {
+            let me = this;
             if (me.get('disabled')) {
                 return;
             }
             me.set('hover', 0);
         },
-        setValue: function (e) {
-            var me = this;
-            var element = me.$el;
-            var oldValue = me.get('value');
-            var elementLeft = element.getBoundingClientRect().left;
-            var elementWidth = element.offsetWidth;
-            var step = me.get('step');
-            var range = me.get('range');
-            var max = me.get('max');
-            var min = me.get('min');
 
-            var value = 0;
+        setValue(e) {
+            let me = this;
+            let element = me.$el;
+            let oldValue = me.get('value');
+            let elementLeft = element.getBoundingClientRect().left;
+            let elementWidth = element.offsetWidth;
+            let step = me.get('step');
+            let range = me.get('range');
+            let max = me.get('max');
+            let min = me.get('min');
+
+            let value = 0;
             value = elementWidth && ((e.clientX - elementLeft) / elementWidth * range);
             value = Math.round( value / step) * step + min;
             value = parseFloat(value.toFixed(5));
@@ -329,8 +342,8 @@ export default {
 
     },
 
-    afterMount: function () {
-        var me = this;
+    afterMount() {
+        let me = this;
 
         me.handleDragMouseMove = me.handleDragMouseMove.bind(me);
         me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me);

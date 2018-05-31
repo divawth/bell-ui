@@ -4,13 +4,13 @@ let TEXT_TYPE_INPUT = 'input';
 export default {
     template: `
         <div class="bell-{{type}}
-        {{#if size}} bell-input-{{size}}{{/if}}
-        {{#if isFocus}} bell-focus{{/if}}
-        {{#if className}} bell-input-{{className}}{{/if}}
-        {{#if clearable}} bell-input-clearable{{/if}}
-        {{#if disabled}} bell-input-disabled{{/if}}"
-        {{#if style}} style="{{style}}"{{/if}}
-        >
+            {{#if className}} {{className}}{{/if}}
+            {{#if size}} bell-input-{{size}}{{/if}}
+            {{#if isFocus}} bell-focus{{/if}}
+            {{#if clearable}} bell-input-clearable{{/if}}
+            {{#if disabled}} bell-input-disabled{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
+
             {{#if type === TEXT_TYPE_INPUT}}
 
                 <input ref="input"
@@ -65,9 +65,8 @@ export default {
             type: 'string'
         },
         value: {
-            type: ['string', 'number']
+            type: 'numeric'
         },
-
         icon: {
             type: 'string'
         },
@@ -78,7 +77,7 @@ export default {
             type: 'string'
         },
         clearable: {
-            type: ['string', 'number', 'boolean']
+            type: ['numeric', 'boolean']
         },
 
         onChange: {
@@ -106,7 +105,8 @@ export default {
             type: 'function'
         }
     },
-    data: function () {
+
+    data() {
         return {
             TEXT_TYPE_INPUT: TEXT_TYPE_INPUT,
             TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
@@ -115,40 +115,41 @@ export default {
     },
 
     watchers: {
-        value: function (value) {
+        value(value) {
             this.get('onChange') && this.get('onChange')(value);
         }
     },
 
     methods: {
-        blur: function (args) {
+        blur(args) {
             this.set({
                 isFocus: false
             });
             this.get('onBlur') && this.get('onBlur')(args);
         },
-        focus: function (args) {
+        focus(args) {
             this.set({
                 isFocus: true
             });
             this.get('onFocus') && this.get('onFocus')(args);
         },
-        clear: function () {
+        clear() {
             this.set({
                 value: ''
             });
         },
-        labelClick: function (args) {
-            var me = this;
+        labelClick(args) {
+            let me = this;
             me.get('onChange') && me.get('onChange')(me.get('value'), args);
         }
     },
-    afterMount: function () {
-        var me = this;
+
+    afterMount() {
+        let me = this;
         if (!me.$refs) {
             return;
         }
-        me.documentKeydownHandler = function (event) {
+        me.documentKeydownHandler = (event) => {
             if (event.target == me.$refs.input) {
                 me.get('onKeydown') && me.get('onKeydown')(event);
                 if (event.keyCode === 13) {
@@ -156,12 +157,12 @@ export default {
                 }
             }
         };
-        me.documentKeyupHandler = function (event) {
+        me.documentKeyupHandler = (event) => {
             if (event.target == me.$refs.input) {
                 me.get('onKeyup') && me.get('onKeyup')(event);
             }
         };
-        me.documentKeypressHandler = function (event) {
+        me.documentKeypressHandler = (event) => {
             if (event.target == me.$refs.input) {
                 me.get('onKeypress') && me.get('onKeypress')(event);
             }
@@ -179,8 +180,9 @@ export default {
             me.documentKeypressHandler
         );
     },
-    beforeDestroy: function () {
-        var me = this;
+
+    beforeDestroy() {
+        let me = this;
         if (!me.$refs) {
             return;
         }
@@ -196,5 +198,5 @@ export default {
             'keypress',
             me.documentKeypressHandler
         );
-    },
-}
+    }
+};

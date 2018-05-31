@@ -1,6 +1,6 @@
 let id = 0;
 
-let createAlert = function (data) {
+let createAlert = (data) => {
 
     let namespace = 'bell-msg-alert-' + id++;
     let body = document.getElementById('bell-msgbox-wrapper');
@@ -41,7 +41,7 @@ let createAlert = function (data) {
                 <div class="bell-msg-mask" on-click="maskClick()"></div>
             </div>
         `,
-        data: function () {
+        data() {
             let me = this;
             return {
                 isHidden: true,
@@ -56,20 +56,20 @@ let createAlert = function (data) {
         },
 
         methods: {
-            maskClick: function () {
+            maskClick() {
                 if (!data.maskClosable) {
                     return;
                 }
                 this.hide();
             },
-            hide: function () {
+            hide() {
                 let me = this;
                 let transTime = 500;
                 me.set({
                     isHidden: true
                 });
                 me.transTimeFuc = setTimeout(
-                    function () {
+                    () => {
                         element.remove();
                         if (Yox.is.func(data.onClose)) {
                             data.onClose();
@@ -83,11 +83,11 @@ let createAlert = function (data) {
             }
         },
 
-        afterMount: function () {
+        afterMount() {
             let me = this;
             let transTime = 300;
             me.transTimeFuc = setTimeout(
-                function () {
+                () => {
                     me.set({
                         isHidden: false
                     });
@@ -96,14 +96,15 @@ let createAlert = function (data) {
             );
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             let me = this;
             clearTimeout(me.transTimeFuc);
         }
     });
 };
 
-let createConfirm = function (data) {
+let createConfirm = (data) => {
+
     let namespace = 'bell-msg-confirm-' + id++;
     let body = document.getElementById('bell-msgbox-wrapper');
     let element = document.createElement('div');
@@ -146,7 +147,7 @@ let createConfirm = function (data) {
                 <div class="bell-msg-mask" on-click="maskClick()"></div>
             </div>
         `,
-        data: function () {
+        data() {
             let me = this;
             return {
                 isHidden: true,
@@ -160,26 +161,29 @@ let createConfirm = function (data) {
         },
 
         methods: {
-            buttonClick: function (index) {
-                var me = this;
-                var handler = me.get('buttons.' + index + '.action');
+
+            buttonClick(index) {
+                let me = this;
+                let handler = me.get('buttons.' + index + '.action');
                 handler.call(instance);
                 return false;
             },
-            maskClick: function () {
+
+            maskClick() {
                 if (!data.maskClosable) {
                     return;
                 }
                 this.hide();
             },
-            hide: function () {
+
+            hide() {
                 let me = this;
                 let transTime = 500;
                 me.set({
                     isHidden: true
                 });
                 me.transTimeFuc = setTimeout(
-                    function () {
+                    () => {
                         element.remove();
                         if (Yox.is.func(data.onClose)) {
                             data.onClose();
@@ -193,11 +197,11 @@ let createConfirm = function (data) {
             }
         },
 
-        afterMount: function () {
+        afterMount() {
             let me = this;
             let transTime = 300;
             me.transTimeFuc = setTimeout(
-                function () {
+                () => {
                     me.set({
                         isHidden: false
                     });
@@ -206,17 +210,17 @@ let createConfirm = function (data) {
             );
         },
 
-        beforeDestroy: function () {
+        beforeDestroy() {
             let me = this;
             clearTimeout(me.transTimeFuc);
         }
     });
 };
 
-export let addAlert = function (data) {
+export let addAlert = (data) => {
     createAlert(data);
-}
+};
 
-export let addConfirm = function (data) {
+export let addConfirm = (data) => {
     createConfirm(data);
-}
+};
