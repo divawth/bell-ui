@@ -1,0 +1,56 @@
+{$selector-time-line}
+    list-style none
+    padding 0
+    padding-left 30px
+    font-size 0
+
+{$selector-time-line}-padding
+    {$selector-time-line-item}
+
+        &:nth-last-of-type(2)
+
+            .bell-time-line-tail
+
+                border-left 1px dotted
+
+
+{$selector-time-line-item}
+    font-size 12px
+    line-height 22px
+
+    padding-bottom 12px
+    padding-left 14px
+    position relative
+
+    &:last-child
+        .bell-time-line-tail
+            display none
+
+
+    .bell-time-line-dot
+        width 12px
+        height 12px
+        border 1px solid
+        border-radius 100%
+        position absolute
+        margin 4px -20px
+        background-color #fff
+
+    .bell-time-line-tail
+        position absolute
+        left 0
+        right 0
+        top 0
+        bottom 0
+        width 1px
+        height 100%
+        margin-top 5px
+        color #e9eaec
+        border-left 1px solid
+
+    .bell-time-line-content
+        overflow hidden
+        line-height 20px
+        p
+            padding 0
+            margin 0

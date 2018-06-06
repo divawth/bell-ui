@@ -181,9 +181,6 @@ th {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-html {
-  box-sizing: border-box;
-}
 *,
 *::before,
 *::after {
@@ -6466,4 +6463,231 @@ button.bell-button {
   width: 100%;
   transition: opacity 0.3s;
   opacity: 1;
+}
+.bell-fade-enter {
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+}
+.bell-fade-leave {
+  opacity: 0;
+}
+.bell-fade-appear {
+  opacity: 0;
+}
+.bell-fade-enter-to {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+}
+.bell-fade-leave-to {
+  opacity: 1;
+}
+.bell-fade-appear-to {
+  opacity: 1;
+}
+.bell-zoom-left-enter {
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-left-leave {
+  transform: scaleX(0);
+}
+.bell-zoom-left-appear {
+  transform: scaleX(0);
+}
+.bell-zoom-left-enter-to {
+  transform: scaleX(0);
+  transform-origin: left top;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-left-leave-to {
+  transform: scaleX(1);
+}
+.bell-zoom-left-appear-to {
+  transform: scaleX(1);
+}
+.bell-zoom-right-enter {
+  transform: scaleX(1);
+  transform-origin: right center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-right-leave {
+  transform: scaleX(0);
+}
+.bell-zoom-right-appear {
+  transform: scaleX(0);
+}
+.bell-zoom-right-enter-to {
+  transform: scaleX(0);
+  transform-origin: right top;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-right-leave-to {
+  transform: scaleX(1);
+}
+.bell-zoom-right-appear-to {
+  transform: scaleX(1);
+}
+.bell-zoom-top-enter {
+  transform: scaleY(1);
+  transform-origin: center top;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-top-leave {
+  transform: scaleY(0);
+}
+.bell-zoom-top-appear {
+  transform: scaleY(0);
+}
+.bell-zoom-top-enter-to {
+  transform: scaleY(0);
+  transform-origin: top top;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-top-leave-to {
+  transform: scaleY(1);
+}
+.bell-zoom-top-appear-to {
+  transform: scaleY(1);
+}
+.bell-zoom-bottom-enter {
+  transform: scaleY(1);
+  transform-origin: center bottom;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-bottom-leave {
+  transform: scaleY(0);
+}
+.bell-zoom-bottom-appear {
+  transform: scaleY(0);
+}
+.bell-zoom-bottom-enter-to {
+  transform: scaleY(0);
+  transform-origin: bottom bottom;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-bottom-leave-to {
+  transform: scaleY(1);
+}
+.bell-zoom-bottom-appear-to {
+  transform: scaleY(1);
+}
+.bell-zoom-center-y-enter {
+  transform: scaleY(1);
+  transform-origin: center center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-center-y-leave {
+  transform: scaleY(0);
+}
+.bell-zoom-center-y-appear {
+  transform: scaleY(0);
+}
+.bell-zoom-center-y-enter-to {
+  transform: scaleY(0);
+  transform-origin: center center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-center-y-leave-to {
+  transform: scaleY(1);
+}
+.bell-zoom-center-y-appear-to {
+  transform: scaleY(1);
+}
+.bell-zoom-center-x-enter {
+  transform: scaleX(1);
+  transform-origin: center center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-center-x-leave {
+  transform: scaleX(0);
+}
+.bell-zoom-center-x-appear {
+  transform: scaleX(0);
+}
+.bell-zoom-center-x-enter-to {
+  transform: scaleX(0);
+  transform-origin: center center;
+  transition-property: transform;
+  transition-duration: 0.3s;
+}
+.bell-zoom-center-x-leave-to {
+  transform: scaleX(1);
+}
+.bell-zoom-center-x-appear-to {
+  transform: scaleX(1);
+}
+.bell-collapse-enter {
+  overflow: hidden;
+  transition-property: height, padding-top, padding-bottom, margin;
+  transition-duration: 0.3s;
+}
+.bell-collapse-appear {
+  display: none;
+}
+.bell-collapse-enter-to {
+  overflow: hidden;
+  transition-property: height, padding-top, padding-bottom, margin;
+  transition-duration: 0.3s;
+}
+.bell-time-line {
+  list-style: none;
+  padding: 0;
+  padding-left: 30px;
+  font-size: 0;
+}
+.bell-time-line-padding .bell-time-line-item:nth-last-of-type(2) .bell-time-line-tail {
+  border-left: 1px dotted;
+}
+.bell-time-line-item {
+  font-size: 12px;
+  line-height: 22px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  position: relative;
+}
+.bell-time-line-item:last-child .bell-time-line-tail {
+  display: none;
+}
+.bell-time-line-item .bell-time-line-dot {
+  width: 12px;
+  height: 12px;
+  border: 1px solid;
+  border-radius: 100%;
+  position: absolute;
+  margin: 4px -20px;
+  background-color: #fff;
+}
+.bell-time-line-item .bell-time-line-tail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  height: 100%;
+  margin-top: 5px;
+  color: #e9eaec;
+  border-left: 1px solid;
+}
+.bell-time-line-item .bell-time-line-content {
+  overflow: hidden;
+  line-height: 20px;
+}
+.bell-time-line-item .bell-time-line-content p {
+  padding: 0;
+  margin: 0;
 }

@@ -4297,6 +4297,39 @@ var Transfer = {
     }
 };
 
+var TimeLine = {
+    template: '\n        <ul class="bell-time-line\n            {{#if pending}} bell-time-line-padding{{/if}}\n        ">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </ul>\n    ',
+    propTypes: {
+        pending: {
+            type: 'boolean'
+        }
+    },
+
+    data: function data() {
+        return {};
+    },
+
+    watchers: {}
+
+};
+
+var TimeLineItem = {
+    template: '\n        <li class="bell-time-line-item">\n            <div class="bell-time-line-tail"></div>\n            {{#if hasSlot(\'dot\')}}\n                <slot name="dot" />\n            {{else}}\n                <div class="bell-time-line-dot"\n                    style="color: {{color}}"\n                ></div>\n            {{/if}}\n            <div class="bell-time-line-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </li>\n    ',
+    propTypes: {
+        color: {
+            type: 'string',
+            value: '#348EED'
+        }
+    },
+
+    data: function data() {
+        return {};
+    },
+
+    watchers: {}
+
+};
+
 var id = 0;
 
 var createMessage = function createMessage(_data) {
@@ -4965,7 +4998,9 @@ Yox.component({
     Tabs: Tabs,
     TabPanel: TabPanel,
 
-    Transfer: Transfer
+    Transfer: Transfer,
+    TimeLine: TimeLine,
+    TimeLineItem: TimeLineItem
 });
 
 })));

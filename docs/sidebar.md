@@ -37,6 +37,7 @@
   - [Collapse 折叠面板](view/collapse)
   - [Tooltip 提示](view/tooltip)
   - [Tag 标签](view/tag)
+  - [TimeLine 时间轴](view/timeline)
 - [Other](other)
   - [LoadingBar 加载进度条](other/loadingbar)
   - [Progress 进度条](other/progress)

@@ -71,6 +71,9 @@ import TabPanel from './components/tabs/TabPanel'
 
 import Transfer from './components/transfer/Transfer'
 
+import TimeLine from './components/timeline/TimeLine'
+import TimeLineItem from './components/timeline/TimeLineItem'
+
 import './components/message/Message'
 import './components/notice/Notice'
 import './components/msgbox/Msgbox'
@@ -141,5 +144,7 @@ Yox.component({
     Tabs,
     TabPanel,
 
-    Transfer
+    Transfer,
+    TimeLine,
+    TimeLineItem
 });
