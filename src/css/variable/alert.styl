@@ -15,33 +15,48 @@ $alert-font-color = #495060;
 
 $alert-brand-hash = {
     '': {
-        border: 1px solid $brand-primary-hover,
-        bg-color: rgba($brand-primary-hover, .4),
-        bell-icon-color: $brand-primary,
+        border: 1px solid $brand-primary,
+        bg-color: $brand-primary-hover,
+        bell-icon-color: $brand-primary-active
+    },
+    'secondary': {
+        border: 1px solid $brand-secondary-hover,
+        bg-color: rgba($brand-secondary-hover, .4),
+        bell-icon-color: $brand-secondary-active
     },
     'info': {
-        border: 1px solid $brand-info-hover,
-        bg-color: rgba($brand-info-hover, .4),
-        bell-icon-color: $brand-info,
+        border: 1px solid $brand-info,
+        bg-color: $brand-info-hover,
+        bell-icon-color: $brand-info-active
     },
     'success': {
-        border: 1px solid $brand-success-hover,
-        bg-color: rgba($brand-success-hover, .4),
-        bell-icon-color: $brand-success,
+        border: 1px solid $brand-success,
+        bg-color: $brand-success-hover,
+        bell-icon-color: $brand-success-active
     },
     'error': {
-        border: 1px solid $brand-error-hover,
-        bg-color: rgba($brand-error-hover, .4),
-        bell-icon-color: $brand-error,
+        border: 1px solid $brand-error,
+        bg-color: $brand-error-hover,
+        bell-icon-color: $brand-error-active
     },
     'warning': {
-        border: 1px solid $brand-warning-hover,
-        bg-color: rgba($brand-warning-hover, .4),
-        bell-icon-color: $brand-warning,
+        border: 1px solid $brand-warning,
+        bg-color: $brand-warning-hover,
+        bell-icon-color: $brand-warning-active,
     },
     'danger': {
-        border: 1px solid $brand-danger-hover,
-        bg-color: rgba($brand-danger-hover, .4),
-        bell-icon-color: $brand-danger,
+        border: 1px solid $brand-danger,
+        bg-color: $brand-danger-hover,
+        bell-icon-color: $brand-danger-active
+    },
+    'light': {
+        border: 1px solid $brand-white,
+        bg-color: $brand-white,
+        bell-icon-color: $brand-secondary-active
+    },
+    'dark': {
+        border: 1px solid $brand-secondary-hover,
+        bg-color: $brand-muted,
+        bell-icon-color: $brand-muted-active
     }
 }

@@ -46,7 +46,7 @@ export default {
         },
         type: {
             type: 'string',
-            value: 'info'
+            value: 'primary'
         },
         closable: {
             type: ['string', 'boolean']

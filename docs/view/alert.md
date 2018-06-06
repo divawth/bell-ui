@@ -5,11 +5,21 @@
         <div>
             <Alert>An info prompt</Alert>
             <br>
+            <Alert type="secondary">An secondary prompt</Alert>
+            <br>
             <Alert type="success">A success prompt</Alert>
+            <br>
+            <Alert type="danger">An danger prompt</Alert>
             <br>
             <Alert type="warning">A warning prompt</Alert>
             <br>
+            <Alert type="info">An info prompt</Alert>
+            <br>
             <Alert type="error">An error prompt</Alert>
+            <br>
+            <Alert type="light">An light prompt</Alert>
+            <br>
+            <Alert type="dark">An dark prompt</Alert>
         </div>
         `
     }
