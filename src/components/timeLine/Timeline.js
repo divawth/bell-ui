@@ -12,17 +12,5 @@ export default {
         pending: {
             type: 'boolean'
         }
-    },
-
-    data: function () {
-        var me = this;
-        return {
-
-        };
-    },
-
-    watchers: {
-
     }
-
 }

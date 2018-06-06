@@ -21,17 +21,6 @@ export default {
             type: 'string',
             value: '#348EED'
         }
-    },
-
-    data: function () {
-        var me = this;
-        return {
-
-        };
-    },
-
-    watchers: {
-
     }
 
 }
