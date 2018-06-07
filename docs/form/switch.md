@@ -3,7 +3,6 @@
     export default {
         template: `
             <Switch model="single" onChange="{{onChange}}">
-
             </Switch>
         `,
         data: function () {

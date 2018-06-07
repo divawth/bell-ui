@@ -16,7 +16,7 @@
         `,
         methods: {
             open: function () {
-                this.$message.success('恭喜你，这是一条成功消息')
+                this.$Message.success('恭喜你，这是一条成功消息')
             }
         }
     }
@@ -45,16 +45,16 @@
 
         methods: {
             open: function () {
-                this.$message.success('恭喜你，这是一条成功消息');
+                this.$Message.success('恭喜你，这是一条成功消息');
             },
             open2: function () {
-                this.$message.info('这是一条有 icon 的消息而已～');
+                this.$Message.info('这是一条有 icon 的消息而已～');
             },
             open3: function () {
-                this.$message.warning('警告哦，这是一条警告消息');
+                this.$Message.warning('警告哦，这是一条警告消息');
             },
             open4: function () {
-                this.$message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
+                this.$Message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
             }
         }
     }
@@ -73,7 +73,7 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$Message.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     closable: true
                 })
@@ -95,7 +95,7 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$Message.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     showIcon: true,
                     closable: true,
@@ -119,7 +119,7 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$Message.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     showIcon: true,
                     duration: 10000
@@ -142,7 +142,7 @@
         `,
         methods: {
             open: function () {
-                this.$message.error({
+                this.$Message.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     showIcon: true,
                     top: 100
@@ -163,11 +163,11 @@
         `,
         methods: {
             open: function () {
-                this.$message.config({
+                this.$Message.config({
                     top: 50,
                     duration: 13000
                 });
-                this.$message.error({
+                this.$Message.error({
                     content: '对方不想和你说话，并且向你抛出了一个异常',
                     closable: true,
                     closeText: 'Close me!',
@@ -183,10 +183,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$message.info(content, duration, onClose)
-- this.$message.success(content, duration, onClose)
-- this.$message.warning(content, duration, onClose)
-- this.$message.error(content, duration, onClose)
+- this.$Message.info(content, duration, onClose)
+- this.$Message.success(content, duration, onClose)
+- this.$Message.warning(content, duration, onClose)
+- this.$Message.error(content, duration, onClose)
 
 > Attributes
 
