@@ -22,6 +22,19 @@
                     <Col span="6">col-6</Col>
                     <Col span="6">col-6</Col>
                 </Row>
+                <style>
+                    .bell-col {
+                        text-align: center;
+                        color: #fff;
+                        line-height: 20px;
+                    }
+                    .bell-col:nth-child(odd) {
+                        background-color: #5782D1;
+                    }
+                    .bell-col:nth-child(even) {
+                        background-color: #6C94E1;
+                    }
+                </style>
             </div>
         `
     }

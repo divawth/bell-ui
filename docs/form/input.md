@@ -2,7 +2,7 @@
 
     export default {
         template: `
-            <Input placeholder="请输入..."
+            <Input ref="input" placeholder="请输入..."
                 type="input"
                 style="width: 300px"
                 model="value"
@@ -37,6 +37,14 @@
             onChange: function (event) {
                 console.log('onChange')
             }
+        },
+        afterMount: function () {
+            var me = this;
+            console.log(me.$refs.input.blur)
+            me.$refs.input.blur = function () {
+                console.log(21)
+            };
+            console.log(me.$refs.input.blur)
         }
     }
 

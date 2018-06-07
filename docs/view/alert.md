@@ -36,8 +36,22 @@
                 </Desc>
             </Alert>
             <br>
+            <Alert type="secondary">
+                An secondary prompt
+                <Desc>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+                </Desc>
+            </Alert>
+            <br>
             <Alert type="success">
                 A success prompt
+                <Desc>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+                </Desc>
+            </Alert>
+            <br>
+            <Alert type="danger">
+                An danger prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
@@ -50,11 +64,31 @@
                 </Desc>
             </Alert>
             <br>
+            <Alert type="info">
+                An info prompt
+                <Desc>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+                </Desc>
+            </Alert>
+            <br>
             <Alert type="error">
                 An error prompt
                 <Desc>
-                    Custom error description copywriting.
-                    <i style="font-size: 18px; margin: 0 10px;" class="bell-icon bell-icon-help-circled"></i>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+                </Desc>
+            </Alert>
+            <br>
+            <Alert type="light">
+                An light prompt
+                <Desc>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+                </Desc>
+            </Alert>
+            <br>
+            <Alert type="dark">
+                An dark prompt
+                <Desc>
+                    Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
         </div>
@@ -66,7 +100,7 @@
     export default {
         template: `
         <div>
-            <Alert showIcon>An info prompt</Alert>
+            <Alert type="primary" showIcon>An info prompt</Alert>
             <br>
             <Alert type="success" showIcon>A success prompt</Alert>
             <br>
@@ -74,7 +108,7 @@
             <br>
             <Alert type="error" showIcon>An error prompt</Alert>
             <br>
-            <Alert showIcon>
+            <Alert type="primary" showIcon>
                 An info prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.

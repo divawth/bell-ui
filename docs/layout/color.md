@@ -1,5 +1,9 @@
 为了避免视觉传达差异，使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
 
+
+![](https://ws4.sinaimg.cn/large/006tNc79ly1fs2r4j4re3j308d09aaa2.jpg)
+
+
 > 主色
 
 <html>
@@ -13,7 +17,7 @@
     </style>
     <span class="bell-text bell-bg-primary rounded">
         <p class="bell-text h6 white">Primary</p>
-        <p class="bell-text white">#1c90f3</p>
+        <p class="bell-text white">#6392E5</p>
     </span>
 </html>
 
@@ -31,23 +35,23 @@
     </style>
     <span class="bell-text bell-bg-success rounded">
         <p class="bell-text h6 white">Success</p>
-        <p class="bell-text white">#19be6b</p>
+        <p class="bell-text white">#28CD6A</p>
     </span>
     <span class="bell-text bell-bg-error rounded">
         <p class="bell-text h6 white">Error</p>
-        <p class="bell-text white">#ed3f14</p>
+        <p class="bell-text white">#FC4B4E</p>
     </span>
     <span class="bell-text bell-bg-info rounded">
         <p class="bell-text h6 white">Info</p>
-        <p class="bell-text white">#57a3f3</p>
+        <p class="bell-text white">#7AA3E9</p>
     </span>
     <span class="bell-text bell-bg-warning rounded">
         <p class="bell-text h6 white">Warning</p>
-        <p class="bell-text white">#ff9900</p>
+        <p class="bell-text white">#FEC740</p>
     </span>
     <span class="bell-text bell-bg-danger rounded">
         <p class="bell-text h6 white">Danger</p>
-        <p class="bell-text white">#d9534f</p>
+        <p class="bell-text white">#EB1111</p>
     </span>
 </html>
 

@@ -10,7 +10,7 @@ export default {
             {{#if showIcon}}
                 <span class="bell-alert-icon">
                     <i class="bell-icon
-                    {{#if type == 'info'}} bell-icon-information-circled
+                    {{#if type == 'primary'}} bell-icon-information-circled
                     {{else if type == 'success'}} bell-icon-checkmark-circled
                     {{else if type == 'warning'}} bell-icon-android-alert
                     {{else if type == 'error'}} bell-icon-close-circled

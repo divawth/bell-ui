@@ -52,9 +52,6 @@
         template: `
             <div class="template">
                 <div style="margin-top: 10px;">
-                    <Button type="ghost" size="huge">
-                        Huge
-                    </Button>
                     <Button type="ghost" size="large">
                         Large
                     </Button>
@@ -69,10 +66,7 @@
                     </Button>
                 </div>
 
-                <div class="" style="margin-top: 10px;">
-                    <Button type="ghost" shape="circle" size="huge">
-                        Huge
-                    </Button>
+                <div style="margin-top: 10px;">
                     <Button type="ghost" shape="circle" size="large">
                         Large
                     </Button>

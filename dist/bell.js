@@ -1798,7 +1798,7 @@ var Page = {
 };
 
 var Alert = {
-    template: '\n        <div class="bell-alert\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} bell-alert-{{type}}{{/if}}\n            {{#if hasDesc}} bell-alert-with-desc{{/if}}\n            {{#if showIcon}} bell-alert-with-icon{{/if}}\n            {{#if center}} bell-alert-center{{/if}}\n        " {{#if style}} style="{{style}}"{{/if}}>\n            {{#if showIcon}}\n                <span class="bell-alert-icon">\n                    <i class="bell-icon\n                    {{#if type == \'info\'}} bell-icon-information-circled\n                    {{else if type == \'success\'}} bell-icon-checkmark-circled\n                    {{else if type == \'warning\'}} bell-icon-android-alert\n                    {{else if type == \'error\'}} bell-icon-close-circled\n                    {{/if}}\n                    "></i>\n                </span>\n            {{/if}}\n\n            <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n            {{#if closable}}\n                <span ref="close" class="bell-alert-close" on-click="close()">\n                    {{#if closeText}}\n                        {{closeText}}\n                    {{else}}\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    {{/if}}\n                </span>\n            {{/if}}\n        </div>\n    ',
+    template: '\n        <div class="bell-alert\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} bell-alert-{{type}}{{/if}}\n            {{#if hasDesc}} bell-alert-with-desc{{/if}}\n            {{#if showIcon}} bell-alert-with-icon{{/if}}\n            {{#if center}} bell-alert-center{{/if}}\n        " {{#if style}} style="{{style}}"{{/if}}>\n            {{#if showIcon}}\n                <span class="bell-alert-icon">\n                    <i class="bell-icon\n                    {{#if type == \'primary\'}} bell-icon-information-circled\n                    {{else if type == \'success\'}} bell-icon-checkmark-circled\n                    {{else if type == \'warning\'}} bell-icon-android-alert\n                    {{else if type == \'error\'}} bell-icon-close-circled\n                    {{/if}}\n                    "></i>\n                </span>\n            {{/if}}\n\n            <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n            {{#if closable}}\n                <span ref="close" class="bell-alert-close" on-click="close()">\n                    {{#if closeText}}\n                        {{closeText}}\n                    {{else}}\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    {{/if}}\n                </span>\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         className: {
@@ -1809,7 +1809,7 @@ var Alert = {
         },
         type: {
             type: 'string',
-            value: 'info'
+            value: 'primary'
         },
         closable: {
             type: ['string', 'boolean']
@@ -4303,14 +4303,7 @@ var TimeLine = {
         pending: {
             type: 'boolean'
         }
-    },
-
-    data: function data() {
-        return {};
-    },
-
-    watchers: {}
-
+    }
 };
 
 var TimeLineItem = {
@@ -4320,13 +4313,7 @@ var TimeLineItem = {
             type: 'string',
             value: '#348EED'
         }
-    },
-
-    data: function data() {
-        return {};
-    },
-
-    watchers: {}
+    }
 
 };
 
