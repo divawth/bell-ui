@@ -344,7 +344,7 @@ var Header = {
 };
 
 var Sider = {
-    template: '\n        <div class="bell-layout-sider bell-col-span-6\n            {{#if className}} {{className}}{{/if}}\n            {{#if collapsed}} bell-sider-collapsed{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            {{#if collapsible}}\n                <div class="bell-sider-trigger" on-click="toggle(\'collapsed\')">\n                    {{#if collapsed}}\n                        <i class="bell-icon bell-icon-chevron-right"></i>\n                    {{else}}\n                        <i class="bell-icon bell-icon-chevron-left"></i>\n                    {{/if}}\n                </div>\n            {{/if}}\n\n        </div>\n    ',
+    template: '\n        <div class="bell-layout-sider bell-col-span-6\n            {{#if className}} {{className}}{{/if}}\n            {{#if collapsed}} bell-layout-sider-collapsed{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            {{#if collapsible}}\n                <div class="bell-sider-trigger" on-click="toggle(\'collapsed\')">\n                    {{#if collapsed}}\n                        <i class="bell-icon bell-icon-chevron-right"></i>\n                    {{else}}\n                        <i class="bell-icon bell-icon-chevron-left"></i>\n                    {{/if}}\n                </div>\n            {{/if}}\n\n\n            {{#if hasSlot(\'trigger\')}}\n                <div class="bell-sider-trigger" on-click="toggle(\'collapsed\')">\n                    <slot name="trigger" />\n                </div>\n            {{/if}}\n        </div>\n    ',
     propTypes: {
         className: {
             type: 'string'
@@ -354,9 +354,6 @@ var Sider = {
         },
         collapsible: {
             type: ['string', 'boolean']
-        },
-        onToggleCollapse: {
-            type: 'toggle'
         }
     },
 
@@ -367,9 +364,14 @@ var Sider = {
     },
 
 
-    wactchers: {
-        collapsed: function collapsed(value) {
-            this.get('onToggleCollapse') && this.get('onToggleCollapse')(value);
+    watchers: {
+        collapsed: function collapsed(_collapsed) {
+            var me = this;
+            Yox.nextTick(function () {
+                me.fire('collapse', {
+                    isCollapsed: _collapsed
+                });
+            });
         }
     },
 
@@ -488,7 +490,7 @@ var Menu = {
 };
 
 var MenuItem = {
-    template: '\n        <div class="bell-menu-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if isActive}} bell-active{{/if}}\n        " style="{{style}}" on-click="click(name)">\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n        </div>\n    ',
+    template: '\n        <div class="bell-menu-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if isActive}} bell-active{{/if}}\n        " style="{{style}}" on-click="click(name)">\n\n            <span class="bell-left-icon">\n                {{#if hasSlot(\'leftIcon\')}}\n                    <slot name="leftIcon" />\n                {{/if}}\n            </span>\n\n            <span class="bell-menu-item-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n        </div>\n    ',
 
     propTypes: {
         className: {
@@ -533,6 +535,7 @@ var MenuItem = {
             if (me.get('hash')) {
                 location.href = me.get('hash');
             }
+
             me.set({
                 isActive: true
             });
@@ -618,7 +621,7 @@ var Submenu = {
 };
 
 var Row = {
-    template: '\n        <div class="bell-row\n            {{#if className}} {{className}}{{/if}}\n            {{#if gutter}} bell-row-gutter{{/if}}\n            {{#if type}} bell-row-{{type}}{{/if}}\n            {{#if justify}} bell-row-flex-{{justify}}{{/if}}\n            {{#if align}} bell-row-flex-{{align}}{{/if}}\n        " style="{{style}}">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+    template: '\n        <div class="bell-row\n            {{#if className}} {{className}}{{/if}}\n            {{#if gutter}} bell-row-gutter{{/if}}\n            {{#if type}} bell-row-{{type}}{{/if}}\n            {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n            {{#if align}} bell-row-align-{{align}}{{/if}}\n        " style="{{style}}">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         className: {
@@ -664,7 +667,7 @@ var Row = {
 };
 
 var Col = {
-    template: '\n        <div class="bell-col\n            {{#if className}} {{className}}{{/if}}\n            {{#if span}} bell-col-span-{{span}}{{/if}}\n            {{#if order}} bell-col-order-{{order}}{{/if}}\n            {{#if push}} bell-col-push-{{push}}{{/if}}\n            {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n            {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n            {{#if xsClass}} {{xsClass}}{{/if}}\n            {{#if mdClass}} {{mdClass}}{{/if}}\n            {{#if smClass}} {{smClass}}{{/if}}\n            {{#if lgClass}} {{lgClass}}{{/if}}\n        " style="{{style}}">\n\n            <div class="bell-col-content">\n\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n\n            </div>\n\n        </div>\n    ',
+    template: '\n        <div class="bell-col\n            {{#if className}} {{className}}{{/if}}\n            {{#if span}} bell-col-span-{{span}}{{/if}}\n            {{#if order}} bell-col-order-{{order}}{{/if}}\n            {{#if push}} bell-col-push-{{push}}{{/if}}\n            {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n            {{#if offset}} bell-col-span-offset-{{offset}}{{/if}}\n            {{#if xsClass}} {{xsClass}}{{/if}}\n            {{#if mdClass}} {{mdClass}}{{/if}}\n            {{#if smClass}} {{smClass}}{{/if}}\n            {{#if lgClass}} {{lgClass}}{{/if}}\n        " style="{{style}}">\n\n            <div class="bell-col-content">\n\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n\n            </div>\n\n        </div>\n    ',
 
     propTypes: {
         className: {
@@ -836,7 +839,7 @@ var BreadcrumbItem = {
 };
 
 var Button = {
-    template: '\n        <button class="bell-button\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if shape}} {{shape}}{{/if}}\n            {{#if size}} {{size}}{{/if}}\n            {{#if long}} bell-button-long{{/if}}\n            {{#if !label && !children && icon}} bell-icon-only{{/if}}\n        "{{#if disabled}} disabled{{/if}} on-click="click"\n        {{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if icon}}\n                <i class="bell-icon bell-icon-{{icon}}"></i>\n            {{/if}}\n\n            {{#if label}}\n                <span>\n                    {{label}}\n                </span>\n            {{else}}\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            {{/if}}\n        </button>\n    ',
+    template: '\n        <button class="bell-button\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if shape}} {{shape}}{{/if}}\n            {{#if size}} {{size}}{{/if}}\n            {{#if fluid}} bell-button-fluid{{/if}}\n            {{#if !label && !children && icon}} bell-icon-only{{/if}}\n        "{{#if disabled}} disabled{{/if}} on-click="click"\n        {{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'leftIcon\')}}\n                <slot name="leftIcon" />\n            {{/if}}\n\n            {{#if label}}\n                <span>\n                    {{label}}\n                </span>\n            {{else}}\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            {{/if}}\n\n            {{#if hasSlot(\'rightIcon\')}}\n                <slot name="rightIcon" />\n            {{/if}}\n        </button>\n    ',
     propTypes: {
         className: {
             type: 'string'
@@ -859,7 +862,7 @@ var Button = {
         size: {
             type: 'string'
         },
-        long: {
+        fluid: {
             type: ['numeric', 'boolean']
         },
         disabled: {
@@ -872,7 +875,7 @@ var TEXT_TYPE_TEXTAREA = 'textarea';
 var TEXT_TYPE_INPUT = 'input';
 
 var Input = {
-    template: '\n        <div class="bell-{{type}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-{{size}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-clearable{{/if}}\n            {{#if disabled}} bell-input-disabled{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if type === TEXT_TYPE_INPUT}}\n\n                <input ref="input"\n                    type="text"\n                    class="bell-input-el\n                        {{#if size}} bell-input-{{size}}{{/if}}\n                    "\n                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                    on-blur="blur()"\n                    on-focus="focus()"\n                ></input>\n\n                {{#if clearable}}\n                    <i class="bell-icon\n                        bell-icon-ios-close\n                        bell-input-clear-icon\n                    " on-click="clear()"></i>\n                {{/if}}\n\n            {{else if type === TEXT_TYPE_TEXTAREA}}\n\n                <textarea class="bell-input-el"\n                    style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                    {{#if rows}} rows="{{rows}}"{{/if}}\n                    {{#if placeholder}} placeholder="{{placeholder}}" {{if}}\n                    {{#if disabled}} disabled="disabled"{{/if}}\n                    model="value"\n                >\n                </textarea>\n\n            {{/if}}\n\n        </div>\n    ',
+    template: '\n        <div class="bell-input-wrapper">\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input\n                {{#if className}} {{className}}{{/if}}\n                {{#if size}} bell-input-{{size}}{{/if}}\n                {{#if status}} bell-input-{{status}}{{/if}}\n                {{#if isFocus}} bell-focus{{/if}}\n                {{#if clearable}} bell-input-clearable{{/if}}\n                {{#if disabled}} bell-input-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}>\n\n                {{#if type === TEXT_TYPE_TEXTAREA}}\n\n                    <textarea class="bell-input-el"\n                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                        {{#if rows}} rows="{{rows}}"{{/if}}\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                    >\n                    </textarea>\n\n                {{else}}\n\n                    <input ref="input"\n                        type="{{type}}"\n                        class="bell-input-el\n                            {{#if size}} bell-input-{{size}}{{/if}}\n                        "\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                        on-blur="blur()"\n                        on-focus="focus()"\n                    />\n\n                    {{#if clearable}}\n                        <i class="bell-icon\n                            bell-icon-ios-close\n                            bell-input-clear-icon\n                        " on-click="clear()"></i>\n                    {{/if}}\n\n                {{/if}}\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         style: {
@@ -885,6 +888,9 @@ var Input = {
             type: 'string'
         },
         type: {
+            type: 'string'
+        },
+        status: {
             type: 'string'
         },
         placeholder: {

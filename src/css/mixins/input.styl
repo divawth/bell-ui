@@ -1,30 +1,41 @@
-input-inner-style(style)
+input-size(size)
 
     {$selector-input-el}
-        ui-set('height', style['height']);
-        ui-set('line-height', style['line-height']);
-        ui-set('padding', style['padding']);
+
+        ui-set('height', size['height']);
+        ui-set('line-height', size['line-height']);
+        ui-set('padding', size['padding']);
 
     &{$selector-input}-clearable
-        {$selector-input}-clear-icon
-            ui-set('height', style['height']);
-            ui-set('line-height', style['line-height']);
 
-ui-input()
-    border 1px solid $input-border-color
-    border-radius $input-border-radius
-    background-color $input-background-color
+        {$selector-input}-clear-icon
+
+            ui-set('height', size['height']);
+            ui-set('line-height', size['line-height']);
+
+input-inner-color(color)
+
+    ui-set('border-color', color['border-color']);
+    ui-set('background-color', color['bg-color']);
 
     &{$selector-hover}
-        border-color $input-hover-border-color
+
+        ui-set('border-color', color['border-color-hover']);
 
     &.bell-focus
-        border-color $input-hover-border-color
-        box-shadow $input-focus-box-shadow
+
+        ui-set('border-color', color['border-color-hover']);
+        ui-set('box-shadow', color['box-shadow']);
+
+ui-input()
 
     ui-connect(
         hash: $input-hash,
-        each: input-inner-style
+        each: input-size
+    )
+    ui-connect(
+        hash: $input-color-hash,
+        each: input-inner-color
     )
 
 ui-input-el()
@@ -36,7 +47,5 @@ ui-input-el()
 ui-input-clear-icon()
 
     width $input-clearable-width
-    height $input-el-height
-    line-height $input-el-height
     font-size $input-clearable-font-size
     color $input-clearable-color

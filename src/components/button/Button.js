@@ -5,13 +5,13 @@ export default {
             {{#if type}} {{type}}{{/if}}
             {{#if shape}} {{shape}}{{/if}}
             {{#if size}} {{size}}{{/if}}
-            {{#if long}} bell-button-long{{/if}}
+            {{#if fluid}} bell-button-fluid{{/if}}
             {{#if !label && !children && icon}} bell-icon-only{{/if}}
         "{{#if disabled}} disabled{{/if}} on-click="click"
         {{#if style}} style="{{style}}"{{/if}}>
 
-            {{#if icon}}
-                <i class="bell-icon bell-icon-{{icon}}"></i>
+            {{#if hasSlot('leftIcon')}}
+                <slot name="leftIcon" />
             {{/if}}
 
             {{#if label}}
@@ -22,6 +22,10 @@ export default {
                 {{#if hasSlot('children')}}
                     <slot name="children" />
                 {{/if}}
+            {{/if}}
+
+            {{#if hasSlot('rightIcon')}}
+                <slot name="rightIcon" />
             {{/if}}
         </button>
     `,
@@ -47,7 +51,7 @@ export default {
         size: {
             type: 'string'
         },
-        long: {
+        fluid: {
             type: ['numeric', 'boolean']
         },
         disabled: {

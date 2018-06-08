@@ -254,4 +254,20 @@ openNames | 展开的 Submenu 的 name 集合 | Array | - | []
 
 事件名 | 说明 | 返回值
 ---|---|---
-onSelect | 选择菜单（MenuItem）时触发 | name
+select | 选择菜单（MenuItem）时触发 | name
+
+
+> Menu Slot
+
+参数 | 说明
+---|---
+children | 自定义内容
+
+> MenuItem Slot
+
+参数 | 说明
+---|---
+children | 自定义内容
+leftIcon | 自定义左边的 icon
+
+

@@ -5,9 +5,17 @@ export default {
             {{#if isActive}} bell-active{{/if}}
         " style="{{style}}" on-click="click(name)">
 
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{/if}}
+            <span class="bell-left-icon">
+                {{#if hasSlot('leftIcon')}}
+                    <slot name="leftIcon" />
+                {{/if}}
+            </span>
+
+            <span class="bell-menu-item-content">
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
+            </span>
 
         </div>
     `,
@@ -54,6 +62,7 @@ export default {
             if (me.get('hash')) {
                 location.href = me.get('hash');
             }
+
             me.set({
                 isActive: true
             });

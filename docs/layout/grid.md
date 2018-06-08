@@ -23,15 +23,15 @@
                     <Col span="6">col-6</Col>
                 </Row>
                 <style>
-                    .bell-col {
+                    .bell-col-content {
                         text-align: center;
                         color: #fff;
                         line-height: 20px;
                     }
-                    .bell-col:nth-child(odd) {
+                    .bell-col-content:nth-child(odd) {
                         background-color: #5782D1;
                     }
-                    .bell-col:nth-child(even) {
+                    .bell-col-content:nth-child(even) {
                         background-color: #6C94E1;
                     }
                 </style>

@@ -90,17 +90,35 @@
         template: `
             <div style="margin-top: 10px;">
                 <div class="bell-buttons">
-                    <Button type="primary" shape="radius-circle-harf" icon="ios-search"></Button>
-                    <Button type="primary" label="搜索"></Button>
-                    <Button type="primary" icon="ios-search" shape="radius-circle-harf" label="搜索"></Button>
-                    <Button type="primary" shape="radius-circle-harf" label="圆角按钮"></Button>
+                    <Button type="primary" shape="radius-circle-harf">
+                        <Icon size="18" type="ios-search"></Icon>
+                    </Button>
+                    <Button type="primary">
+                        搜索
+                    </Button>
+                    <Button type="primary" shape="radius-circle-harf">
+                        <Icon name="leftIcon" style="padding-right: 10px;" size="18" type="ios-search"></Icon>
+                        搜索
+                        <Icon name="rightIcon" style="padding-left: 10px;" size="18" type="ios-search"></Icon>
+                    </Button>
+                    <Button type="primary" shape="radius-circle-harf">
+                        圆角按钮
+                    </Button>
                 </div>
 
                 <div class="bell-buttons" style="margin-top: 10px;">
-                    <Button type="ghost" shape="radius-circle-harf" icon="ios-search"></Button>
-                    <Button type="ghost" label="搜索"></Button>
-                    <Button type="ghost" icon="ios-search" shape="radius-circle-harf" label="搜索"></Button>
-                    <Button type="ghost" shape="radius-circle-harf" label="圆角按钮"></Button>
+                    <Button type="ghost" shape="radius-circle-harf">
+                        <Icon name="leftIcon" size="18" type="ios-search"></Icon>
+                    </Button>
+                    <Button type="ghost">
+                        搜索
+                    </Button>
+                    <Button type="ghost" shape="radius-circle-harf">
+                        搜索
+                    </Button>
+                    <Button type="ghost" shape="radius-circle-harf">
+                        圆角按钮
+                    </Button>
                 </div>
             </div>
         `
@@ -111,9 +129,13 @@
     export default {
         template: `
             <div>
-                <Button type="success" long label="确认提交"></Button>
+                <Button type="success" fluid>
+                    确认提交
+                </Button>
                 <br><br>
-                <Button type="error" long label="确认删除"></Button>
+                <Button type="error" fluid>
+                    确认删除
+                </Button>
             </div>
         `
     }
@@ -123,20 +145,40 @@
     export default {
         template: `
             <div>
-                <Button label="Default"></Button>
-                <Button disabled label="Default(Disabled)"></Button>
+                <Button>
+                    Default
+                </Button>
+                <Button disabled>
+                    Default(Disabled)
+                </Button>
                 <br><br>
-                <Button type="primary" label="Primary"></Button>
-                <Button type="primary" disabled label="Primary(Disabled)"></Button>
+                <Button type="primary">
+                    Primary
+                </Button>
+                <Button type="primary" disabled>
+                    Primary(Disabled)
+                </Button>
                 <br><br>
-                <Button type="ghost" label="Ghost"></Button>
-                <Button type="ghost" disabled label="Ghost(Disabled)"></Button>
+                <Button type="ghost">
+                    Ghost
+                </Button>
+                <Button type="ghost" disabled>
+                    Ghost(Disabled)
+                </Button>
                 <br><br>
-                <Button type="dashed" label="Dashed"></Button>
-                <Button type="dashed" disabled label="Dashed(Disabled)"></Button>
+                <Button type="dashed">
+                    Dashed
+                </Button>
+                <Button type="dashed" disabled>
+                    Dashed(Disabled)
+                </Button>
                 <br><br>
-                <Button type="text" label="Text"></Button>
-                <Button type="text" disabled label="Text(Disabled)"></Button>
+                <Button type="text">
+                    Text
+                </Button>
+                <Button type="text" disabled>
+                    Text(Disabled)
+                </Button>
             </div>
         `
     }
@@ -146,7 +188,9 @@
     export default {
         template: `
             <div class="bell-buttons">
-                <Button type="primary" loading label="Loading..."></Button>
+                <Button type="primary">
+                    Loading...
+                </Button>
 
                 <Button type="primary"
                     on-click="toLoading()">
@@ -159,8 +203,13 @@
 
                 <Button type="primary"
                     on-click="toLoading2()"
-                    icon="checkmark-round"
-                    label="{{#if !loading2}}Click me!{{else}} Loading...{{/if}}">
+                >
+                    <Icon name="leftIcon" style="padding-right: 10px;" size="18" type="checkmark-round"></Icon>
+                    {{#if !loading2}}
+                        Click me!
+                    {{else}}
+                        Loading...
+                    {{/if}}
                 </Button>
             </div>
         `,
@@ -187,17 +236,23 @@
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-label | 话术 | string | - | -
 type | 按钮类型 | string | primary、ghost、dashed、text、info、success、warning、error | -
 size | 按钮大小 | string | large、small | -
 shape | 按钮形状 | string | circle | -
-long | 开启后，按钮的长度为 100% | boolean | - | false
+fluid | 开启后，按钮的长度为 100% | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false
-loading | 设置按钮为加载中状态 | boolean | - | -
-className | 样式类 | string | - | -
+className | 自定义样式类 | string | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-on-click | 点击按钮的回调 | -
+click | 点击按钮的回调 | -
+
+> Slot
+
+参数 | 说明
+---|---
+children | 自定义内容
+leftIcon | 自定义左边的 icon
+rightIcon | 自定义右边的 icon

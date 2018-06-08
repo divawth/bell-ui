@@ -1,13 +1,10 @@
+$selector-input-wrapper = '.bell-input-wrapper'
 $selector-input = '.bell-input'
 $selector-textarea = '.bell-textarea'
 $selector-input-el = '.bell-input-el'
+$selector-input-placeholder = '.bell-input-placeholder'
 
 // input
-$input-border-color = $brand-border-disabled;
-$input-hover-border-color = $brand-primary-hover;
-$input-border-radius = $radius-base;
-$input-background-color = $brand-bg;
-$input-focus-box-shadow = 0 0 0 2px rgba(45, 140, 240,.2);
 
 $input-el-color = $brand-secondary;
 $input-el-font-size = 12px;
@@ -17,8 +14,7 @@ $input-el-padding = 4px 7px;
 $input-clearable-width = 24px;
 $input-clearable-font-size = 16px;
 $input-clearable-color = #ddd;
-
-$input-disabled-backround-color = $brand-bg;
+$input-el-placeholder-color = #D2D2D2;
 
 $input-hash = {
     '': {
@@ -37,3 +33,64 @@ $input-hash = {
         line-height: 36px
     }
 };
+
+$input-color-hash = {
+    '': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-border,
+        border-color-hover: $brand-primary-hover,
+        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
+    },
+    'success': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-success-hover,
+        border-color-hover: $brand-success-hover,
+        box-shadow: 0 0 0 2px $brand-success-box-shadow-color
+    },
+    'error': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-error-hover,
+        border-color-hover: $brand-error-hover,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
+    },
+    'info': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-info-hover,
+        border-color-hover: $brand-info-hover,
+        box-shadow: 0 0 0 2px $brand-info-box-shadow-color
+    },
+    'warning': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-warning-hover,
+        border-color-hover: $brand-warning-hover,
+        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
+    },
+    'danger': {
+        color: $brand-secondary,
+        bg-color: $brand-white,
+        border-color: $brand-danger-hover,
+        border-color-hover: $brand-danger-hover,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
+    },
+    'disabled': {
+        color: $brand-primary,
+        bg-color: #F7F7F7,
+        border-color: $brand-border-disabled,
+        border-color-hover: $brand-border-disabled,
+        box-shadow: none
+    }
+}
+
+    // $brand-primary = #6392E5
+    // $brand-success = #28CD6A
+    // $brand-error = #FC4B4E
+    // $brand-info = #7AA3E9
+    // $brand-warning = #FEC740
+    // $brand-danger = #EB1111
+    // $brand-white = #fff
+    // $brand-dark = #000

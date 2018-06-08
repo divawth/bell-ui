@@ -7,34 +7,17 @@
 
         position relative
         transition flex .4s
+        overflow hidden
 
     {$selector-sider}-trigger
 
         position absolute
         right 0
-        padding 10px
-        background-color rgba(255,255,255,.2)
+        left 0
         bottom 0
-
-    {$selector-sider-collapsed}
-
-        flex 0 0 100px
-
-        {$selector-menu}-item
-
-            > span
-
-                font-size 16px !important
-                width auto
-                display inline-block !important
-
-                + span
-
-                    width 0
-                    height 0
-                    overflow hidden
-                    display inline-block
-                    transition width .3s
+        text-align center
+        padding 10px
+        cursor pointer
 
     &{$selector-column}
 
@@ -71,10 +54,10 @@
     {$selector-menu}-sub-menu,
     {$selector-menu}-item
 
-        line-height 1
-        padding 14px 24px
+        line-height 48px
+        height 48px
+        overflow hidden
         display block
-        height auto
         border-bottom none
         border-right 2px solid transparent
         transition all 0.4s
@@ -109,3 +92,8 @@
         padding 5px 10px
         line-height 1
 
+{$selector-sider-collapsed}
+
+    {$selector-menu}-item
+
+        text-align center

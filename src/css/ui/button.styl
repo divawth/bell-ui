@@ -1,10 +1,20 @@
 {$selector-button}
 
     ui-button()
-    transition color .2s linear,
-        background-color .2s linear,
-        border .2s linear,
-        box-shadow .2s linear;
+
+    display inline-block
+    text-align center
+    user-select none
+    white-space nowrap
+    cursor pointer
+    background-image none
+    font-weight 400
+    border 1px solid transparent
+
+    transition color .2s ease-out,
+        background-color .2s ease-out,
+        border .2s ease-out,
+        box-shadow .2s ease-out;
 
     + {$selector-button}
 
@@ -18,7 +28,7 @@
 
             margin-left 4px
 
-{$selector-button}-long
+{$selector-button}-fluid
 
     ui-fluid()
 

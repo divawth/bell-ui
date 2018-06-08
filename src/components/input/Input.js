@@ -3,48 +3,63 @@ let TEXT_TYPE_INPUT = 'input';
 
 export default {
     template: `
-        <div class="bell-{{type}}
-            {{#if className}} {{className}}{{/if}}
-            {{#if size}} bell-input-{{size}}{{/if}}
-            {{#if isFocus}} bell-focus{{/if}}
-            {{#if clearable}} bell-input-clearable{{/if}}
-            {{#if disabled}} bell-input-disabled{{/if}}
-        "{{#if style}} style="{{style}}"{{/if}}>
+        <div class="bell-input-wrapper">
 
-            {{#if type === TEXT_TYPE_INPUT}}
-
-                <input ref="input"
-                    type="text"
-                    class="bell-input-el
-                        {{#if size}} bell-input-{{size}}{{/if}}
-                    "
-                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
-                    {{#if disabled}} disabled="disabled"{{/if}}
-                    model="value"
-                    on-blur="blur()"
-                    on-focus="focus()"
-                ></input>
-
-                {{#if clearable}}
-                    <i class="bell-icon
-                        bell-icon-ios-close
-                        bell-input-clear-icon
-                    " on-click="clear()"></i>
-                {{/if}}
-
-            {{else if type === TEXT_TYPE_TEXTAREA}}
-
-                <textarea class="bell-input-el"
-                    style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
-                    {{#if rows}} rows="{{rows}}"{{/if}}
-                    {{#if placeholder}} placeholder="{{placeholder}}" {{if}}
-                    {{#if disabled}} disabled="disabled"{{/if}}
-                    model="value"
-                >
-                </textarea>
-
+            {{#if hasSlot('prepend')}}
+                <div class="bell-input-prepend">
+                    <slot name="prepend" />
+                </div>
             {{/if}}
 
+            <div class="bell-input
+                {{#if className}} {{className}}{{/if}}
+                {{#if size}} bell-input-{{size}}{{/if}}
+                {{#if status}} bell-input-{{status}}{{/if}}
+                {{#if isFocus}} bell-focus{{/if}}
+                {{#if clearable}} bell-input-clearable{{/if}}
+                {{#if disabled}} bell-input-disabled{{/if}}
+            "{{#if style}} style="{{style}}"{{/if}}>
+
+                {{#if type === TEXT_TYPE_TEXTAREA}}
+
+                    <textarea class="bell-input-el"
+                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
+                        {{#if rows}} rows="{{rows}}"{{/if}}
+                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+                        {{#if disabled}} disabled="disabled"{{/if}}
+                        model="value"
+                    >
+                    </textarea>
+
+                {{else}}
+
+                    <input ref="input"
+                        type="{{type}}"
+                        class="bell-input-el
+                            {{#if size}} bell-input-{{size}}{{/if}}
+                        "
+                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+                        {{#if disabled}} disabled="disabled"{{/if}}
+                        model="value"
+                        on-blur="blur()"
+                        on-focus="focus()"
+                    />
+
+                    {{#if clearable}}
+                        <i class="bell-icon
+                            bell-icon-ios-close
+                            bell-input-clear-icon
+                        " on-click="clear()"></i>
+                    {{/if}}
+
+                {{/if}}
+
+            </div>
+            {{#if hasSlot('append')}}
+                <div class="bell-input-append">
+                    <slot name="append" />
+                </div>
+            {{/if}}
         </div>
     `,
 
@@ -59,6 +74,9 @@ export default {
             type: 'string'
         },
         type: {
+            type: 'string'
+        },
+        status: {
             type: 'string'
         },
         placeholder: {

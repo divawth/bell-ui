@@ -575,34 +575,34 @@ body {
   content: ' ';
   display: block;
 }
-.bell-row-start {
+.bell-row-justify-start {
   justify-content: flex-start;
 }
-.bell-row-center {
+.bell-row-justify-center {
   justify-content: center;
 }
-.bell-row-end {
+.bell-row-justify-end {
   justify-content: flex-end;
 }
-.bell-row-space-between {
+.bell-row-justify-space-between {
   justify-content: space-between;
 }
-.bell-row-space-around {
+.bell-row-justify-space-around {
   justify-content: space-around;
 }
-.bell-row-top {
+.bell-row-align-top {
   align-items: flex-start;
 }
-.bell-row-middle {
+.bell-row-align-middle {
   align-items: center;
 }
-.bell-row-bottom {
+.bell-row-align-bottom {
   align-items: flex-end;
 }
-.bell-row-baseline {
+.bell-row-align-baseline {
   align-items: baseline;
 }
-.bell-row-stretch {
+.bell-row-align-stretch {
   align-items: stretch;
 }
 .bell-col {
@@ -611,6 +611,9 @@ body {
 }
 .bell-row-gutter {
   background: transparent;
+}
+.bell-row-flex {
+  display: flex;
 }
 .bell-col-span-0 {
   float: left;
@@ -2741,12 +2744,11 @@ button.bell-link {
   text-align: center;
   user-select: none;
   white-space: nowrap;
-  border: 1px solid transparent;
-  transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear;
   cursor: pointer;
   background-image: none;
   font-weight: 400;
-  transition: color 0.2s linear, background-color 0.2s linear, border 0.2s linear, box-shadow 0.2s linear;
+  border: 1px solid transparent;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out, border 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 a.bell-button {
   color: #555;
@@ -2803,14 +2805,12 @@ button.bell-button {
   border-radius: 100%;
 }
 .bell-button {
-  border: 1px solid transparent;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
   border-color: #ccc;
 }
 .bell-button.hover,
 .bell-button:hover {
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: #6392e5;
@@ -2818,7 +2818,6 @@ button.bell-button {
 .bell-button.active,
 .bell-button.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: #6392e5;
@@ -2831,20 +2830,17 @@ button.bell-button {
 .bell-button.disabled,
 .bell-button[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.ghost {
-  border: 1px solid transparent;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
   border-color: #ccc;
 }
 .bell-button.ghost.hover,
 .bell-button.ghost:hover {
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: #6392e5;
@@ -2852,7 +2848,6 @@ button.bell-button {
 .bell-button.ghost.active,
 .bell-button.ghost.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: #6392e5;
@@ -2865,20 +2860,17 @@ button.bell-button {
 .bell-button.ghost.disabled,
 .bell-button.ghost[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.dashed {
-  border: 1px solid transparent;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
   border-color: 1px dashed #ccc;
 }
 .bell-button.dashed.hover,
 .bell-button.dashed:hover {
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: 1px dashed #6392e5;
@@ -2886,7 +2878,6 @@ button.bell-button {
 .bell-button.dashed.active,
 .bell-button.dashed.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: 1px dashed #6392e5;
@@ -2899,20 +2890,17 @@ button.bell-button {
 .bell-button.dashed.disabled,
 .bell-button.dashed[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: 1px dashed #ccc;
 }
 .bell-button.text {
-  border: 1px solid transparent;
   color: rgba(0,0,0,0.54);
   background-color: transparent;
   border-color: transparent;
 }
 .bell-button.text.hover,
 .bell-button.text:hover {
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: transparent;
   border-color: transparent;
@@ -2920,7 +2908,6 @@ button.bell-button {
 .bell-button.text.active,
 .bell-button.text.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #6392e5;
   background-color: #fff;
   border-color: transparent;
@@ -2933,20 +2920,17 @@ button.bell-button {
 .bell-button.text.disabled,
 .bell-button.text[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: none;
 }
 .bell-button.primary {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #6392e5;
   border-color: #6392e5;
 }
 .bell-button.primary.hover,
 .bell-button.primary:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #7fa6ea;
   border-color: #7fa6ea;
@@ -2954,7 +2938,6 @@ button.bell-button {
 .bell-button.primary.active,
 .bell-button.primary.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #7fa6ea;
   border-color: #7fa6ea;
@@ -2967,20 +2950,17 @@ button.bell-button {
 .bell-button.primary.disabled,
 .bell-button.primary[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.success {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #28cd6a;
   border-color: #28cd6a;
 }
 .bell-button.success.hover,
 .bell-button.success:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #4bd582;
   border-color: #4bd582;
@@ -2988,7 +2968,6 @@ button.bell-button {
 .bell-button.success.active,
 .bell-button.success.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #4bd582;
   border-color: #4bd582;
@@ -3001,20 +2980,17 @@ button.bell-button {
 .bell-button.success.disabled,
 .bell-button.success[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.error {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fc4b4e;
   border-color: #fc4b4e;
 }
 .bell-button.error.hover,
 .bell-button.error:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fd686b;
   border-color: #fd686b;
@@ -3022,7 +2998,6 @@ button.bell-button {
 .bell-button.error.active,
 .bell-button.error.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fd686b;
   border-color: #fd686b;
@@ -3035,20 +3010,17 @@ button.bell-button {
 .bell-button.error.disabled,
 .bell-button.error[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.info {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #7aa3e9;
   border-color: #7aa3e9;
 }
 .bell-button.info.hover,
 .bell-button.info:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #8fb2ed;
   border-color: #8fb2ed;
@@ -3056,7 +3028,6 @@ button.bell-button {
 .bell-button.info.active,
 .bell-button.info.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #8fb2ed;
   border-color: #8fb2ed;
@@ -3069,20 +3040,17 @@ button.bell-button {
 .bell-button.info.disabled,
 .bell-button.info[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.warning {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fec740;
   border-color: #fec740;
 }
 .bell-button.warning.hover,
 .bell-button.warning:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fed05f;
   border-color: #fed05f;
@@ -3090,7 +3058,6 @@ button.bell-button {
 .bell-button.warning.active,
 .bell-button.warning.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #fed05f;
   border-color: #fed05f;
@@ -3103,20 +3070,17 @@ button.bell-button {
 .bell-button.warning.disabled,
 .bell-button.warning[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
 }
 .bell-button.danger {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #eb1111;
   border-color: #eb1111;
 }
 .bell-button.danger.hover,
 .bell-button.danger:hover {
-  border: 1px solid transparent;
   color: #fff;
   background-color: #ee3737;
   border-color: #ee3737;
@@ -3124,7 +3088,6 @@ button.bell-button {
 .bell-button.danger.active,
 .bell-button.danger.bell-active {
   outline: none;
-  border: 1px solid transparent;
   color: #fff;
   background-color: #ee3737;
   border-color: #ee3737;
@@ -3137,7 +3100,6 @@ button.bell-button {
 .bell-button.danger.disabled,
 .bell-button.danger[disabled] {
   cursor: not-allowed !important;
-  border: 1px solid transparent;
   color: #c7c7c7;
   background-color: #fcfcfc;
   border-color: #ccc;
@@ -3154,7 +3116,7 @@ button.bell-button {
 .bell-button .bell-icon + span {
   margin-left: 4px;
 }
-.bell-button-long {
+.bell-button-fluid {
   display: block;
   width: 100%;
 }
@@ -3332,45 +3294,32 @@ button.bell-button {
 }
 .bell-layout-header {
   flex: 0 0 62px;
-  background-color: #1e242b;
 }
 .bell-layout-content {
   flex: 1;
-  background-color: #f9f9f9;
 }
 .bell-layout-footer {
   flex: 0 0 62px;
-  background-color: #2892f0;
 }
 .bell-layout-sider {
   flex: 0 0 200px;
-  background-color: #1e242b;
+}
+.bell-layout-sider-collapsed {
+  flex: 0 0 78px;
 }
 .bell-layout .bell-layout-sider {
   position: relative;
   transition: flex 0.4s;
+  overflow: hidden;
 }
 .bell-layout .bell-sider-trigger {
   position: absolute;
   right: 0;
-  padding: 10px;
-  background-color: rgba(255,255,255,0.2);
+  left: 0;
   bottom: 0;
-}
-.bell-layout .bell-sider-collapsed {
-  flex: 0 0 100px;
-}
-.bell-layout .bell-sider-collapsed .bell-menu-item > span {
-  font-size: 16px !important;
-  width: auto;
-  display: inline-block !important;
-}
-.bell-layout .bell-sider-collapsed .bell-menu-item > span + span {
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  display: inline-block;
-  transition: width 0.3s;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
 }
 .bell-layout.column {
   display: flex;
@@ -3452,10 +3401,10 @@ button.bell-button {
 }
 .bell-menu-vertical .bell-menu-sub-menu,
 .bell-menu-vertical .bell-menu-item {
-  line-height: 1;
-  padding: 14px 24px;
+  line-height: 48px;
+  height: 48px;
+  overflow: hidden;
   display: block;
-  height: auto;
   border-bottom: none;
   border-right: 2px solid transparent;
   transition: all 0.4s;
@@ -3484,6 +3433,9 @@ button.bell-button {
   padding: 5px 10px;
   line-height: 1;
 }
+.bell-layout-sider-collapsed .bell-menu-item {
+  text-align: center;
+}
 .bell-breadcrumb {
   padding: 15px;
   color: #999;
@@ -3504,27 +3456,23 @@ button.bell-button {
 .bell-breadcrumb .bell-breadcrumb-item:last-child .bell-breadcrumb-gap {
   display: none;
 }
+.bell-input-prepend,
+.bell-input-append {
+  display: inline-block;
+  font-size: 12px;
+  vertical-align: top;
+}
 .bell-textarea,
 .bell-input {
   display: inline-block;
-  position: relative;
   vertical-align: middle;
-  width: 100%;
   overflow: hidden;
-  border: 1px solid #dddee1;
+  width: 100%;
+  outline: none;
+  position: relative;
+  border: 1px solid;
   border-radius: 4px;
-  background-color: #fff;
-}
-.bell-textarea.bell-textarea.hover,
-.bell-input.bell-input.hover,
-.bell-textarea:hover,
-.bell-input:hover {
-  border-color: #7fa6ea;
-}
-.bell-textarea.bell-focus,
-.bell-input.bell-focus {
-  border-color: #7fa6ea;
-  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .bell-textarea .bell-input-el,
 .bell-input .bell-input-el {
@@ -3559,20 +3507,152 @@ button.bell-button {
   height: 36px;
   line-height: 36px;
 }
+.bell-textarea,
+.bell-input {
+  border-color: #ccc;
+  background-color: #fff;
+}
+.bell-textarea.bell-textarea.hover,
+.bell-input.bell-input.hover,
+.bell-textarea:hover,
+.bell-input:hover {
+  border-color: #7fa6ea;
+}
+.bell-textarea.bell-focus,
+.bell-input.bell-focus {
+  border-color: #7fa6ea;
+  box-shadow: 0 0 0 2px #cde6fe;
+}
+.bell-textarea-success,
+.bell-input-success {
+  border-color: #4bd582;
+  background-color: #fff;
+}
+.bell-textarea-success.bell-textarea-success.hover,
+.bell-input-success.bell-input-success.hover,
+.bell-textarea-success:hover,
+.bell-input-success:hover {
+  border-color: #4bd582;
+}
+.bell-textarea-success.bell-focus,
+.bell-input-success.bell-focus {
+  border-color: #4bd582;
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-textarea-error,
+.bell-input-error {
+  border-color: #fd686b;
+  background-color: #fff;
+}
+.bell-textarea-error.bell-textarea-error.hover,
+.bell-input-error.bell-input-error.hover,
+.bell-textarea-error:hover,
+.bell-input-error:hover {
+  border-color: #fd686b;
+}
+.bell-textarea-error.bell-focus,
+.bell-input-error.bell-focus {
+  border-color: #fd686b;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-textarea-info,
+.bell-input-info {
+  border-color: #8fb2ed;
+  background-color: #fff;
+}
+.bell-textarea-info.bell-textarea-info.hover,
+.bell-input-info.bell-input-info.hover,
+.bell-textarea-info:hover,
+.bell-input-info:hover {
+  border-color: #8fb2ed;
+}
+.bell-textarea-info.bell-focus,
+.bell-input-info.bell-focus {
+  border-color: #8fb2ed;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-textarea-warning,
+.bell-input-warning {
+  border-color: #fed05f;
+  background-color: #fff;
+}
+.bell-textarea-warning.bell-textarea-warning.hover,
+.bell-input-warning.bell-input-warning.hover,
+.bell-textarea-warning:hover,
+.bell-input-warning:hover {
+  border-color: #fed05f;
+}
+.bell-textarea-warning.bell-focus,
+.bell-input-warning.bell-focus {
+  border-color: #fed05f;
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-textarea-danger,
+.bell-input-danger {
+  border-color: #ee3737;
+  background-color: #fff;
+}
+.bell-textarea-danger.bell-textarea-danger.hover,
+.bell-input-danger.bell-input-danger.hover,
+.bell-textarea-danger:hover,
+.bell-input-danger:hover {
+  border-color: #ee3737;
+}
+.bell-textarea-danger.bell-focus,
+.bell-input-danger.bell-focus {
+  border-color: #ee3737;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-textarea-disabled,
+.bell-input-disabled {
+  border-color: #dddee1;
+  background-color: #f7f7f7;
+}
+.bell-textarea-disabled.bell-textarea-disabled.hover,
+.bell-input-disabled.bell-input-disabled.hover,
+.bell-textarea-disabled:hover,
+.bell-input-disabled:hover {
+  border-color: #dddee1;
+}
+.bell-textarea-disabled.bell-focus,
+.bell-input-disabled.bell-focus {
+  border-color: #dddee1;
+  box-shadow: none;
+}
+.bell-textarea .bell-input-prepend,
+.bell-input .bell-input-prepend {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
 .bell-textarea .bell-input-el,
 .bell-input .bell-input-el {
   border: none;
   box-sizing: border-box;
   display: inline-block;
-  width: 100%;
   outline: none;
+  width: 100%;
   background-image: none;
   position: relative;
   cursor: text;
   background-color: transparent;
-  transition: border 0.2s ease-in-out, background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   font-size: 12px;
   color: rgba(0,0,0,0.54);
+}
+.bell-textarea .bell-input-el::-webkit-input-placeholder,
+.bell-input .bell-input-el::-webkit-input-placeholder {
+  color: #d2d2d2;
+}
+.bell-textarea .bell-input-el:-moz-placeholder,
+.bell-input .bell-input-el:-moz-placeholder {
+  color: #d2d2d2;
+}
+.bell-textarea .bell-input-el::-moz-placeholder,
+.bell-input .bell-input-el::-moz-placeholder {
+  color: #d2d2d2;
+}
+.bell-textarea .bell-input-el:-ms-input-placeholder,
+.bell-input .bell-input-el:-ms-input-placeholder {
+  color: #d2d2d2;
 }
 .bell-textarea.bell-input-clearable .bell-input-el,
 .bell-input.bell-input-clearable .bell-input-el {
@@ -3587,8 +3667,6 @@ button.bell-button {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   width: 24px;
-  height: 32px;
-  line-height: 32px;
   font-size: 16px;
   color: #ddd;
 }
@@ -3600,18 +3678,11 @@ button.bell-button {
 }
 .bell-textarea.bell-input-disabled,
 .bell-input.bell-input-disabled {
-  background-color: #fff;
   cursor: not-allowed;
 }
 .bell-textarea.bell-input-disabled .bell-input-el,
 .bell-input.bell-input-disabled .bell-input-el {
   cursor: not-allowed;
-}
-.bell-textarea.bell-input-disabled.bell-textarea.bell-input-disabled.hover,
-.bell-input.bell-input-disabled.bell-input.bell-input-disabled.hover,
-.bell-textarea.bell-input-disabled:hover,
-.bell-input.bell-input-disabled:hover {
-  border-color: #dddee1;
 }
 .bell-input-number {
   position: relative;

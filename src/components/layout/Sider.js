@@ -2,7 +2,7 @@ export default {
     template: `
         <div class="bell-layout-sider bell-col-span-6
             {{#if className}} {{className}}{{/if}}
-            {{#if collapsed}} bell-sider-collapsed{{/if}}
+            {{#if collapsed}} bell-layout-sider-collapsed{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
 
             {{#if hasSlot('children')}}
@@ -19,6 +19,12 @@ export default {
                 </div>
             {{/if}}
 
+
+            {{#if hasSlot('trigger')}}
+                <div class="bell-sider-trigger" on-click="toggle('collapsed')">
+                    <slot name="trigger" />
+                </div>
+            {{/if}}
         </div>
     `,
     propTypes: {
@@ -30,9 +36,6 @@ export default {
         },
         collapsible: {
             type: ['string', 'boolean']
-        },
-        onToggleCollapse: {
-            type: 'toggle'
         }
     },
 
@@ -42,9 +45,17 @@ export default {
         }
     },
 
-    wactchers: {
-        collapsed(value) {
-            this.get('onToggleCollapse') && this.get('onToggleCollapse')(value);
+    watchers: {
+        collapsed(collapsed) {
+            var me = this;
+            Yox.nextTick(function () {
+                me.fire(
+                    'collapse',
+                    {
+                        isCollapsed: collapsed
+                    }
+                );
+            });
         }
     },
 

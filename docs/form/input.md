@@ -2,18 +2,40 @@
 
     export default {
         template: `
-            <Input ref="input" placeholder="请输入..."
-                type="input"
-                style="width: 300px"
-                model="value"
-                onFocus="{{onFocus}}"
-                onBlur="{{onBlur}}"
-                onKeyup="{{onKeyup}}"
-                onKeydown="{{onKeydown}}"
-                onKeypress="{{onKeypress}}"
-                onEnter="{{onEnter}}"
-                onChange="{{onChange}}"
-            ></Input>
+            <div>
+                <Input ref="input" placeholder="请输入..."
+                    type="text"
+                    style="width: 300px"
+                    model="value"
+                    onFocus="{{onFocus}}"
+                    onBlur="{{onBlur}}"
+                    onKeyup="{{onKeyup}}"
+                    onKeydown="{{onKeydown}}"
+                    onKeypress="{{onKeypress}}"
+                    onEnter="{{onEnter}}"
+                    onChange="{{onChange}}"
+                />
+                <Input
+                    model="value"
+                    type="text"
+                    style="width: 300px; margin-top: 30px;"
+                    rows="4"
+                    placeholder="请输入..."
+                    disabled="true"
+                />
+                <Input ref="input" placeholder="请输入密码..."
+                    type="password"
+                    style="width: 300px; margin-top: 30px;"
+                    model="value"
+                    onFocus="{{onFocus}}"
+                    onBlur="{{onBlur}}"
+                    onKeyup="{{onKeyup}}"
+                    onKeydown="{{onKeydown}}"
+                    onKeypress="{{onKeypress}}"
+                    onEnter="{{onEnter}}"
+                    onChange="{{onChange}}"
+                />
+            </div>
         `,
         data: {
             onFocus: function (event) {
@@ -89,9 +111,58 @@
         `
     }
 
+> 通过 status 设置状态
+
+    export default {
+        template: `
+            <div>
+                <Input placeholder="info input"
+                    model="value"
+                    status="info"
+                    type="input"
+                    clearable
+                ></Input>
+                <br><br>
+                <Input placeholder="success input"
+                    model="value"
+                    type="input"
+                    status="success"
+                    clearable
+                ></Input>
+                <br><br>
+                <Input placeholder="error input"
+                    model="value"
+                    type="input"
+                    status="error"
+                    clearable
+                ></Input>
+                <br><br>
+                <Input placeholder="warning input"
+                    status="warning"
+                    model="value"
+                    type="input"
+                    clearable
+                ></Input>
+            </div>
+        `
+    }
+
 > 通过 label 设置右侧按钮文字
 
-!> (暂不支持)
+    export default {
+        template: `
+            <div>
+                <Input model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="prepend">
+                        <span>Https://</span>
+                      </template>
+                </Input>
+            </div>
+        `
+    }
 
 > type 设置为 textarea, 通过 rows 设置显示行数
 
@@ -152,3 +223,11 @@ onClick | 有按钮时候的点击事件 | -
 onKeyup | 原生的 keyup 事件 | -
 onKeydown | 原生的 keyup 事件 | -
 onKeypress | 原生的 keypress 事件 | -
+
+> Slot
+
+
+参数 | 说明
+---|---
+prepend | 自定义前插槽
+append | 自定义后插槽

@@ -6,7 +6,7 @@ export default {
             {{#if order}} bell-col-order-{{order}}{{/if}}
             {{#if push}} bell-col-push-{{push}}{{/if}}
             {{#if pull}} bell-col-pull-{{pull}}{{/if}}
-            {{#if offset}} bell-col-offset-{{offset}}{{/if}}
+            {{#if offset}} bell-col-span-offset-{{offset}}{{/if}}
             {{#if xsClass}} {{xsClass}}{{/if}}
             {{#if mdClass}} {{mdClass}}{{/if}}
             {{#if smClass}} {{smClass}}{{/if}}

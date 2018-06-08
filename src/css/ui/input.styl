@@ -1,33 +1,68 @@
+{$selector-input}-prepend,
+    {$selector-input}-append
+
+        display inline-block
+        font-size 12px
+        vertical-align top
+
+{$selector-input-wrapper}
+
+
 {$selector-textarea},
 {$selector-input}
+
     display inline-block
-    position relative
     vertical-align middle
-    width 100%
     overflow hidden
+    width 100%
+    outline none
+    position relative
+    border 1px solid
+    border-radius $radius-base
+    transition border-color .3s, box-shadow .3s
 
     ui-input()
 
+    {$selector-input}-prepend
+
+        border-top-left-radius $radius-base
+        border-bottom-left-radius $radius-base
+
     {$selector-input-el}
+
         border none
         box-sizing border-box
         display inline-block
-        width 100%
         outline none
+        width 100%
         background-image none
         position relative
         cursor $cursor-text
         background-color transparent
-        transition border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out
 
         ui-input-el()
 
+        &::-webkit-input-placeholder  /* WebKit browsers */
+            color $input-el-placeholder-color
+
+        &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+            color $input-el-placeholder-color
+
+        &::-moz-placeholder  /* Mozilla Firefox 19+ */
+            color $input-el-placeholder-color
+
+        &:-ms-input-placeholder  /* Internet Explorer 10+ */
+            color $input-el-placeholder-color
+
 
     &{$selector-input}-clearable
+
         {$selector-input-el}
+
             padding-right $input-clearable-width
 
         {$selector-input}-clear-icon
+
             position absolute
             right 0
             text-align center
@@ -39,15 +74,15 @@
             ui-input-clear-icon()
 
         &{$selector-hover}
+
             {$selector-input}-clear-icon
+
                 opacity 1
 
     &{$selector-input}-disabled
-        background-color $input-disabled-backround-color
+
         cursor $cursor-disabled
 
         {$selector-input-el}
-            cursor $cursor-disabled
 
-        &{$selector-hover}
-            border-color $input-border-color
+            cursor $cursor-disabled
