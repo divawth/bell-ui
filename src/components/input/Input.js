@@ -1,9 +1,20 @@
+let TEXT_TYPE_PASSWORD = 'password';
 let TEXT_TYPE_TEXTAREA = 'textarea';
-let TEXT_TYPE_INPUT = 'input';
+let TEXT_TYPE_TEXT = 'text';
 
 export default {
     template: `
-        <div class="bell-input-wrapper">
+        <div class="bell-input-wrapper
+            {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}
+            {{#if hasSlot('append')}} bell-input-has-append{{/if}}
+            {{#if className}} {{className}}{{/if}}
+            {{#if size}} bell-input-wrapper-{{size}}{{/if}}
+            {{#if status}} bell-input-wrapper-{{status}}{{/if}}
+            {{#if isFocus}} bell-focus{{/if}}
+            {{#if clearable}} bell-input-wrapper-clearable{{/if}}
+            {{#if disabled}} bell-input-wrapper-disabled{{/if}}
+            "{{#if style}} style="{{style}}"{{/if}}
+        >
 
             {{#if hasSlot('prepend')}}
                 <div class="bell-input-prepend">
@@ -11,14 +22,7 @@ export default {
                 </div>
             {{/if}}
 
-            <div class="bell-input
-                {{#if className}} {{className}}{{/if}}
-                {{#if size}} bell-input-{{size}}{{/if}}
-                {{#if status}} bell-input-{{status}}{{/if}}
-                {{#if isFocus}} bell-focus{{/if}}
-                {{#if clearable}} bell-input-clearable{{/if}}
-                {{#if disabled}} bell-input-disabled{{/if}}
-            "{{#if style}} style="{{style}}"{{/if}}>
+            <div class="bell-input">
 
                 {{#if type === TEXT_TYPE_TEXTAREA}}
 
@@ -34,7 +38,7 @@ export default {
                 {{else}}
 
                     <input ref="input"
-                        type="{{type}}"
+                        type="{{currentType}}"
                         class="bell-input-el
                             {{#if size}} bell-input-{{size}}{{/if}}
                         "
@@ -50,6 +54,20 @@ export default {
                             bell-icon-ios-close
                             bell-input-clear-icon
                         " on-click="clear()"></i>
+                    {{/if}}
+
+                    {{#if secure}}
+                        {{#if isSecure}}
+                            <i class="bell-icon
+                                bell-icon-eye
+                                bell-input-icon-eye
+                            " on-click="toggle('isSecure')"></i>
+                        {{else}}
+                            <i class="bell-icon
+                                bell-icon-eye-disabled
+                                bell-input-icon-eye
+                            " on-click="toggle('isSecure')"></i>
+                        {{/if}}
                     {{/if}}
 
                 {{/if}}
@@ -97,59 +115,54 @@ export default {
         clearable: {
             type: ['numeric', 'boolean']
         },
-
-        onChange: {
-            type: 'function'
-        },
-        onFocus: {
-            type: 'function'
-        },
-        onBlur: {
-            type: 'function'
-        },
-        onClick: {
-            type: 'function'
-        },
-        onEnter: {
-            type: 'function'
-        },
-        onKeyup: {
-            type: 'function'
-        },
-        onKeydown: {
-            type: 'function'
-        },
-        onKeypress: {
-            type: 'function'
+        secure: {
+            type: ['numeric', 'boolean']
         }
     },
 
     data() {
+        let me = this;
         return {
-            TEXT_TYPE_INPUT: TEXT_TYPE_INPUT,
+            TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
             TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
-            isFocus: false
+            TEXT_TYPE_PASSWORD: TEXT_TYPE_PASSWORD,
+
+            isSecure: true,
+            isFocus: false,
+            currentType: me.get('type')
         }
     },
 
     watchers: {
         value(value) {
-            this.get('onChange') && this.get('onChange')(value);
+            this.fire(
+                'change',
+                {
+                    value: value
+                }
+            );
+        },
+        isSecure(isSecure) {
+            this.set({
+                currentType: isSecure ? TEXT_TYPE_PASSWORD : TEXT_TYPE_TEXT
+            });
         }
     },
 
     methods: {
         blur(args) {
-            this.set({
+            let me = this;
+            me.set({
                 isFocus: false
             });
-            this.get('onBlur') && this.get('onBlur')(args);
+            me.fire('blur');
         },
         focus(args) {
-            this.set({
+            let me = this;
+            me.set({
                 isFocus: true
             });
-            this.get('onFocus') && this.get('onFocus')(args);
+            me.fire('focus');
         },
         clear() {
             this.set({
@@ -157,8 +170,12 @@ export default {
             });
         },
         labelClick(args) {
-            let me = this;
-            me.get('onChange') && me.get('onChange')(me.get('value'), args);
+            this.fire(
+                'change',
+                {
+                    value: value
+                }
+            );
         }
     },
 
@@ -169,20 +186,20 @@ export default {
         }
         me.documentKeydownHandler = (event) => {
             if (event.target == me.$refs.input) {
-                me.get('onKeydown') && me.get('onKeydown')(event);
+                me.fire('keydown');
                 if (event.keyCode === 13) {
-                    me.get('onEnter') && me.get('onEnter')(event);
+                    me.fire('enter');
                 }
             }
         };
         me.documentKeyupHandler = (event) => {
             if (event.target == me.$refs.input) {
-                me.get('onKeyup') && me.get('onKeyup')(event);
+                me.fire('keyup');
             }
         };
         me.documentKeypressHandler = (event) => {
             if (event.target == me.$refs.input) {
-                me.get('onKeypress') && me.get('onKeypress')(event);
+                me.fire('keypress');
             }
         };
         document.addEventListener(

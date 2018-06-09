@@ -1,5 +1,6 @@
 /*
-Ionicons, v2.0.0
+Ionicons,
+v2.0.0
 Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
 https://twitter.com/benjsperry  https://twitter.com/ionicframework
 MIT License: https://github.com/driftyco/ionicons
@@ -7,7 +8,9 @@ MIT License: https://github.com/driftyco/ionicons
 @font-face {
   font-family: "Ionicons";
   src: url("fonts/ionicons.eot?v=2.0.0");
-  src: url("fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("fonts/ionicons.woff?v=2.0.0") format("woff"), url("fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
+  src: local(' '),
+        url("fonts/ionicons.woff?v=2.0.0") format("woff"),
+        url("fonts/ionicons.ttf?v=2.0.0") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

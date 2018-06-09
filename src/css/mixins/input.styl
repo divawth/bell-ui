@@ -1,12 +1,28 @@
 input-size(size)
 
-    {$selector-input-el}
+    {$selector-input}-prepend
 
-        ui-set('height', size['height']);
-        ui-set('line-height', size['line-height']);
-        ui-set('padding', size['padding']);
+        ui-set('height', size['height'] + 2);
+        ui-set('line-height', size['line-height'] + 2);
 
-    &{$selector-input}-clearable
+    {$selector-input}-append
+
+        ui-set('height', size['height'] + 2);
+        ui-set('line-height', size['line-height'] + 2);
+
+    {$selector-input}
+
+        {$selector-input-el}
+
+            ui-set('height', size['height']);
+            ui-set('line-height', size['line-height']);
+            ui-set('padding', size['padding']);
+
+        {$selector-input}-icon-eye
+
+            ui-set('line-height', size['line-height']);
+
+    &{$selector-input-wrapper}-clearable
 
         {$selector-input}-clear-icon
 
@@ -15,17 +31,28 @@ input-size(size)
 
 input-inner-color(color)
 
-    ui-set('border-color', color['border-color']);
-    ui-set('background-color', color['bg-color']);
+    {$selector-input}-prepend
+
+        ui-set('border-color', color['border-color']);
+
+    {$selector-input}-append
+
+        ui-set('border-color', color['border-color']);
+
+    {$selector-input}
+
+        ui-set('border-color', color['border-color']);
+        ui-set('background-color', color['bg-color']);
 
     &{$selector-hover}
 
-        ui-set('border-color', color['border-color-hover']);
+        {$selector-input}
+            ui-set('border-color', color['border-color-hover']);
 
     &.bell-focus
-
-        ui-set('border-color', color['border-color-hover']);
-        ui-set('box-shadow', color['box-shadow']);
+        {$selector-input}
+            ui-set('border-color', color['border-color-hover']);
+            ui-set('box-shadow', color['box-shadow']);
 
 ui-input()
 
@@ -43,9 +70,3 @@ ui-input-el()
     font-size $input-el-font-size
     color $input-el-color
 
-
-ui-input-clear-icon()
-
-    width $input-clearable-width
-    font-size $input-clearable-font-size
-    color $input-clearable-color

@@ -7,66 +7,49 @@
                     type="text"
                     style="width: 300px"
                     model="value"
-                    onFocus="{{onFocus}}"
-                    onBlur="{{onBlur}}"
-                    onKeyup="{{onKeyup}}"
-                    onKeydown="{{onKeydown}}"
-                    onKeypress="{{onKeypress}}"
-                    onEnter="{{onEnter}}"
-                    onChange="{{onChange}}"
+                    on-focus="focus()"
+                    on-blur="blur()"
+                    on-keyup="keyup()"
+                    on-keydown="keydown()"
+                    on-keypress="keypress()"
+                    on-enter="enter()"
+                    on-change="change($data)"
                 />
                 <Input
                     model="value"
                     type="text"
-                    style="width: 300px; margin-top: 30px;"
+                    style="width: 300px;"
                     rows="4"
                     placeholder="请输入..."
                     disabled="true"
                 />
                 <Input ref="input" placeholder="请输入密码..."
                     type="password"
-                    style="width: 300px; margin-top: 30px;"
+                    secure
+                    style="width: 300px;"
                     model="value"
-                    onFocus="{{onFocus}}"
-                    onBlur="{{onBlur}}"
-                    onKeyup="{{onKeyup}}"
-                    onKeydown="{{onKeydown}}"
-                    onKeypress="{{onKeypress}}"
-                    onEnter="{{onEnter}}"
-                    onChange="{{onChange}}"
                 />
             </div>
         `,
-        data: {
-            onFocus: function (event) {
-                console.log('onFocus')
+        methods: {
+            change: function (data) {
+                // console.log(data.value)
             },
-            onBlur: function (event) {
-                console.log('onBlur')
+            focus: function () {
+                // console.log('focus');
             },
-            onKeyup: function (event) {
-                console.log('onKeyup')
+            blur: function () {
+                // console.log('blur');
             },
-            onKeydown: function (event) {
-                console.log('onKeydown')
+            enter: function () {
+                // console.log('enter');
             },
-            onKeypress: function (event) {
-                console.log('onKeypress')
+            keyup: function () {
+                // console.log('keyup');
             },
-            onEnter: function (event) {
-                console.log('onEnter')
-            },
-            onChange: function (event) {
-                console.log('onChange')
+            keydown: function () {
+                // console.log('keydown');
             }
-        },
-        afterMount: function () {
-            var me = this;
-            console.log(me.$refs.input.blur)
-            me.$refs.input.blur = function () {
-                console.log(21)
-            };
-            console.log(me.$refs.input.blur)
         }
     }
 
@@ -158,8 +141,30 @@
                 >
                     <template slot="prepend">
                         <span>Https://</span>
-                      </template>
+                    </template>
                 </Input>
+                <Input model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="append">
+                        <span>@bell.io</span>
+                    </template>
+                </Input>
+                <Input model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="prepend">
+                        <Button type="text">搜索</Button>
+                    </template>
+                </Input>
+
+                <style>
+                    .bell-input-wrapper {
+                        margin-top: 10px;
+                    }
+                </style>
             </div>
         `
     }
@@ -210,22 +215,22 @@ rows | 行数 | string | - | -
 disabled | 设置按钮为禁用状态 | boolean | - | false
 label | 设置右侧按钮文字 | string | - | -
 clearable | 清空按钮 | boolean, string, number | - | false
+secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onEnter | 按下回车键的时候触发 | -
-onChange | 输入的时候值发生改变的时候回调 | value
-onFocus | 聚焦的时候触发 | -
-onBlur | 失焦的时候触发 | -
-onClick | 有按钮时候的点击事件 | -
-onKeyup | 原生的 keyup 事件 | -
-onKeydown | 原生的 keyup 事件 | -
-onKeypress | 原生的 keypress 事件 | -
+enter | 按下回车键的时候触发 | -
+change | 输入的时候值发生改变的时候回调 | value
+focus | 聚焦的时候触发 | -
+blur | 失焦的时候触发 | -
+click | 有按钮时候的点击事件 | -
+keyup | 原生的 keyup 事件 | -
+keydown | 原生的 keyup 事件 | -
+keypress | 原生的 keypress 事件 | -
 
 > Slot
-
 
 参数 | 说明
 ---|---

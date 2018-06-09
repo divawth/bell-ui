@@ -3456,11 +3456,248 @@ button.bell-button {
 .bell-breadcrumb .bell-breadcrumb-item:last-child .bell-breadcrumb-gap {
   display: none;
 }
-.bell-input-prepend,
-.bell-input-append {
+.bell-input-wrapper.bell-input-has-append .bell-input,
+.bell-input-wrapper.bell-input-has-prepend .bell-input {
+  width: auto;
+}
+.bell-input-wrapper .bell-input-prepend,
+.bell-input-wrapper .bell-input-append {
+  border: 1px solid;
   display: inline-block;
   font-size: 12px;
   vertical-align: top;
+  padding: 0 10px;
+}
+.bell-input-wrapper .bell-input-prepend {
+  border-right: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.bell-input-wrapper .bell-input-prepend + .bell-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.bell-input-wrapper.bell-input-has-append .bell-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.bell-input-wrapper .bell-input-append {
+  border-left: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.bell-input-wrapper .bell-input-prepend {
+  height: 34px;
+  line-height: 34px;
+}
+.bell-input-wrapper .bell-input-append {
+  height: 34px;
+  line-height: 34px;
+}
+.bell-input-wrapper .bell-input .bell-input-el {
+  height: 32px;
+  line-height: 32px;
+  padding: 4px 7px;
+}
+.bell-input-wrapper .bell-input .bell-input-icon-eye {
+  line-height: 32px;
+}
+.bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
+  height: 32px;
+  line-height: 32px;
+}
+.bell-input-wrapper-small .bell-input-prepend {
+  height: 26px;
+  line-height: 26px;
+}
+.bell-input-wrapper-small .bell-input-append {
+  height: 26px;
+  line-height: 26px;
+}
+.bell-input-wrapper-small .bell-input .bell-input-el {
+  height: 24px;
+  line-height: 24px;
+  padding: 1px 7px;
+}
+.bell-input-wrapper-small .bell-input .bell-input-icon-eye {
+  line-height: 24px;
+}
+.bell-input-wrapper-small.bell-input-wrapper-clearable .bell-input-clear-icon {
+  height: 24px;
+  line-height: 24px;
+}
+.bell-input-wrapper-large .bell-input-prepend {
+  height: 38px;
+  line-height: 38px;
+}
+.bell-input-wrapper-large .bell-input-append {
+  height: 38px;
+  line-height: 38px;
+}
+.bell-input-wrapper-large .bell-input .bell-input-el {
+  height: 36px;
+  line-height: 36px;
+  padding: 6px 7px;
+}
+.bell-input-wrapper-large .bell-input .bell-input-icon-eye {
+  line-height: 36px;
+}
+.bell-input-wrapper-large.bell-input-wrapper-clearable .bell-input-clear-icon {
+  height: 36px;
+  line-height: 36px;
+}
+.bell-input-wrapper .bell-input-prepend {
+  border-color: #ccc;
+}
+.bell-input-wrapper .bell-input-append {
+  border-color: #ccc;
+}
+.bell-input-wrapper .bell-input {
+  border-color: #ccc;
+  background-color: #fff;
+}
+.bell-input-wrapper.bell-input-wrapper.hover .bell-input,
+.bell-input-wrapper:hover .bell-input {
+  border-color: #7fa6ea;
+}
+.bell-input-wrapper.bell-focus .bell-input {
+  border-color: #7fa6ea;
+  box-shadow: 0 0 0 2px #cde6fe;
+}
+.bell-input-wrapper-success .bell-input-prepend {
+  border-color: #4bd582;
+}
+.bell-input-wrapper-success .bell-input-append {
+  border-color: #4bd582;
+}
+.bell-input-wrapper-success .bell-input {
+  border-color: #4bd582;
+  background-color: #fff;
+}
+.bell-input-wrapper-success.bell-input-wrapper-success.hover .bell-input,
+.bell-input-wrapper-success:hover .bell-input {
+  border-color: #4bd582;
+}
+.bell-input-wrapper-success.bell-focus .bell-input {
+  border-color: #4bd582;
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-input-wrapper-error .bell-input-prepend {
+  border-color: #fd686b;
+}
+.bell-input-wrapper-error .bell-input-append {
+  border-color: #fd686b;
+}
+.bell-input-wrapper-error .bell-input {
+  border-color: #fd686b;
+  background-color: #fff;
+}
+.bell-input-wrapper-error.bell-input-wrapper-error.hover .bell-input,
+.bell-input-wrapper-error:hover .bell-input {
+  border-color: #fd686b;
+}
+.bell-input-wrapper-error.bell-focus .bell-input {
+  border-color: #fd686b;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-input-wrapper-info .bell-input-prepend {
+  border-color: #8fb2ed;
+}
+.bell-input-wrapper-info .bell-input-append {
+  border-color: #8fb2ed;
+}
+.bell-input-wrapper-info .bell-input {
+  border-color: #8fb2ed;
+  background-color: #fff;
+}
+.bell-input-wrapper-info.bell-input-wrapper-info.hover .bell-input,
+.bell-input-wrapper-info:hover .bell-input {
+  border-color: #8fb2ed;
+}
+.bell-input-wrapper-info.bell-focus .bell-input {
+  border-color: #8fb2ed;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-input-wrapper-warning .bell-input-prepend {
+  border-color: #fed05f;
+}
+.bell-input-wrapper-warning .bell-input-append {
+  border-color: #fed05f;
+}
+.bell-input-wrapper-warning .bell-input {
+  border-color: #fed05f;
+  background-color: #fff;
+}
+.bell-input-wrapper-warning.bell-input-wrapper-warning.hover .bell-input,
+.bell-input-wrapper-warning:hover .bell-input {
+  border-color: #fed05f;
+}
+.bell-input-wrapper-warning.bell-focus .bell-input {
+  border-color: #fed05f;
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-input-wrapper-danger .bell-input-prepend {
+  border-color: #ee3737;
+}
+.bell-input-wrapper-danger .bell-input-append {
+  border-color: #ee3737;
+}
+.bell-input-wrapper-danger .bell-input {
+  border-color: #ee3737;
+  background-color: #fff;
+}
+.bell-input-wrapper-danger.bell-input-wrapper-danger.hover .bell-input,
+.bell-input-wrapper-danger:hover .bell-input {
+  border-color: #ee3737;
+}
+.bell-input-wrapper-danger.bell-focus .bell-input {
+  border-color: #ee3737;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-input-wrapper-disabled .bell-input-prepend {
+  border-color: #dddee1;
+}
+.bell-input-wrapper-disabled .bell-input-append {
+  border-color: #dddee1;
+}
+.bell-input-wrapper-disabled .bell-input {
+  border-color: #dddee1;
+  background-color: #f7f7f7;
+}
+.bell-input-wrapper-disabled.bell-input-wrapper-disabled.hover .bell-input,
+.bell-input-wrapper-disabled:hover .bell-input {
+  border-color: #dddee1;
+}
+.bell-input-wrapper-disabled.bell-focus .bell-input {
+  border-color: #dddee1;
+  box-shadow: none;
+}
+.bell-input-wrapper.bell-input-wrapper-disabled .bell-input {
+  cursor: not-allowed;
+}
+.bell-input-wrapper.bell-input-wrapper-disabled .bell-input .bell-input-el {
+  cursor: not-allowed;
+}
+.bell-input-wrapper.bell-input-wrapper-clearable .bell-input-el {
+  padding-right: 24px;
+}
+.bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
+  position: absolute;
+  right: 0;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  width: 24px;
+  font-size: 16px;
+  color: #ddd;
+}
+.bell-input-wrapper.bell-input-wrapper-clearable.bell-input-wrapper.bell-input-wrapper-clearable.hover .bell-input-clear-icon,
+.bell-input-wrapper.bell-input-wrapper-clearable:hover .bell-input-clear-icon {
+  opacity: 1;
+}
+.bell-textarea textarea {
+  resize: none;
 }
 .bell-textarea,
 .bell-input {
@@ -3474,155 +3711,21 @@ button.bell-button {
   border-radius: 4px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-.bell-textarea .bell-input-el,
-.bell-input .bell-input-el {
-  height: 32px;
-  line-height: 32px;
-  padding: 4px 7px;
+.bell-textarea .bell-input-icon-eye,
+.bell-input .bell-input-icon-eye {
+  position: absolute;
+  margin-left: -30px;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+  color: #ddd;
+  transition: color 0.3s;
 }
-.bell-textarea.bell-input-clearable .bell-input-clear-icon,
-.bell-input.bell-input-clearable .bell-input-clear-icon {
-  height: 32px;
-  line-height: 32px;
-}
-.bell-textarea-small .bell-input-el,
-.bell-input-small .bell-input-el {
-  height: 24px;
-  line-height: 24px;
-  padding: 1px 7px;
-}
-.bell-textarea-small.bell-input-clearable .bell-input-clear-icon,
-.bell-input-small.bell-input-clearable .bell-input-clear-icon {
-  height: 24px;
-  line-height: 24px;
-}
-.bell-textarea-large .bell-input-el,
-.bell-input-large .bell-input-el {
-  height: 36px;
-  line-height: 36px;
-  padding: 6px 7px;
-}
-.bell-textarea-large.bell-input-clearable .bell-input-clear-icon,
-.bell-input-large.bell-input-clearable .bell-input-clear-icon {
-  height: 36px;
-  line-height: 36px;
-}
-.bell-textarea,
-.bell-input {
-  border-color: #ccc;
-  background-color: #fff;
-}
-.bell-textarea.bell-textarea.hover,
-.bell-input.bell-input.hover,
-.bell-textarea:hover,
-.bell-input:hover {
-  border-color: #7fa6ea;
-}
-.bell-textarea.bell-focus,
-.bell-input.bell-focus {
-  border-color: #7fa6ea;
-  box-shadow: 0 0 0 2px #cde6fe;
-}
-.bell-textarea-success,
-.bell-input-success {
-  border-color: #4bd582;
-  background-color: #fff;
-}
-.bell-textarea-success.bell-textarea-success.hover,
-.bell-input-success.bell-input-success.hover,
-.bell-textarea-success:hover,
-.bell-input-success:hover {
-  border-color: #4bd582;
-}
-.bell-textarea-success.bell-focus,
-.bell-input-success.bell-focus {
-  border-color: #4bd582;
-  box-shadow: 0 0 0 2px #d5eddb;
-}
-.bell-textarea-error,
-.bell-input-error {
-  border-color: #fd686b;
-  background-color: #fff;
-}
-.bell-textarea-error.bell-textarea-error.hover,
-.bell-input-error.bell-input-error.hover,
-.bell-textarea-error:hover,
-.bell-input-error:hover {
-  border-color: #fd686b;
-}
-.bell-textarea-error.bell-focus,
-.bell-input-error.bell-focus {
-  border-color: #fd686b;
-  box-shadow: 0 0 0 2px #f7d7db;
-}
-.bell-textarea-info,
-.bell-input-info {
-  border-color: #8fb2ed;
-  background-color: #fff;
-}
-.bell-textarea-info.bell-textarea-info.hover,
-.bell-input-info.bell-input-info.hover,
-.bell-textarea-info:hover,
-.bell-input-info:hover {
-  border-color: #8fb2ed;
-}
-.bell-textarea-info.bell-focus,
-.bell-input-info.bell-focus {
-  border-color: #8fb2ed;
-  box-shadow: 0 0 0 2px #d2ecf1;
-}
-.bell-textarea-warning,
-.bell-input-warning {
-  border-color: #fed05f;
-  background-color: #fff;
-}
-.bell-textarea-warning.bell-textarea-warning.hover,
-.bell-input-warning.bell-input-warning.hover,
-.bell-textarea-warning:hover,
-.bell-input-warning:hover {
-  border-color: #fed05f;
-}
-.bell-textarea-warning.bell-focus,
-.bell-input-warning.bell-focus {
-  border-color: #fed05f;
-  box-shadow: 0 0 0 2px #fff3cf;
-}
-.bell-textarea-danger,
-.bell-input-danger {
-  border-color: #ee3737;
-  background-color: #fff;
-}
-.bell-textarea-danger.bell-textarea-danger.hover,
-.bell-input-danger.bell-input-danger.hover,
-.bell-textarea-danger:hover,
-.bell-input-danger:hover {
-  border-color: #ee3737;
-}
-.bell-textarea-danger.bell-focus,
-.bell-input-danger.bell-focus {
-  border-color: #ee3737;
-  box-shadow: 0 0 0 2px #f7d7db;
-}
-.bell-textarea-disabled,
-.bell-input-disabled {
-  border-color: #dddee1;
-  background-color: #f7f7f7;
-}
-.bell-textarea-disabled.bell-textarea-disabled.hover,
-.bell-input-disabled.bell-input-disabled.hover,
-.bell-textarea-disabled:hover,
-.bell-input-disabled:hover {
-  border-color: #dddee1;
-}
-.bell-textarea-disabled.bell-focus,
-.bell-input-disabled.bell-focus {
-  border-color: #dddee1;
-  box-shadow: none;
-}
-.bell-textarea .bell-input-prepend,
-.bell-input .bell-input-prepend {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+.bell-textarea .bell-input-icon-eye.bell-textarea .bell-input-icon-eye.hover,
+.bell-input .bell-input-icon-eye.bell-input .bell-input-icon-eye.hover,
+.bell-textarea .bell-input-icon-eye:hover,
+.bell-input .bell-input-icon-eye:hover {
+  color: #aaa;
 }
 .bell-textarea .bell-input-el,
 .bell-input .bell-input-el {
@@ -3653,36 +3756,6 @@ button.bell-button {
 .bell-textarea .bell-input-el:-ms-input-placeholder,
 .bell-input .bell-input-el:-ms-input-placeholder {
   color: #d2d2d2;
-}
-.bell-textarea.bell-input-clearable .bell-input-el,
-.bell-input.bell-input-clearable .bell-input-el {
-  padding-right: 24px;
-}
-.bell-textarea.bell-input-clearable .bell-input-clear-icon,
-.bell-input.bell-input-clearable .bell-input-clear-icon {
-  position: absolute;
-  right: 0;
-  text-align: center;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  width: 24px;
-  font-size: 16px;
-  color: #ddd;
-}
-.bell-textarea.bell-input-clearable.bell-textarea.bell-input-clearable.hover .bell-input-clear-icon,
-.bell-input.bell-input-clearable.bell-input.bell-input-clearable.hover .bell-input-clear-icon,
-.bell-textarea.bell-input-clearable:hover .bell-input-clear-icon,
-.bell-input.bell-input-clearable:hover .bell-input-clear-icon {
-  opacity: 1;
-}
-.bell-textarea.bell-input-disabled,
-.bell-input.bell-input-disabled {
-  cursor: not-allowed;
-}
-.bell-textarea.bell-input-disabled .bell-input-el,
-.bell-input.bell-input-disabled .bell-input-el {
-  cursor: not-allowed;
 }
 .bell-input-number {
   position: relative;

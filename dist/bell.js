@@ -871,11 +871,12 @@ var Button = {
     }
 };
 
+var TEXT_TYPE_PASSWORD = 'password';
 var TEXT_TYPE_TEXTAREA = 'textarea';
-var TEXT_TYPE_INPUT = 'input';
+var TEXT_TYPE_TEXT = 'text';
 
 var Input = {
-    template: '\n        <div class="bell-input-wrapper">\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input\n                {{#if className}} {{className}}{{/if}}\n                {{#if size}} bell-input-{{size}}{{/if}}\n                {{#if status}} bell-input-{{status}}{{/if}}\n                {{#if isFocus}} bell-focus{{/if}}\n                {{#if clearable}} bell-input-clearable{{/if}}\n                {{#if disabled}} bell-input-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}>\n\n                {{#if type === TEXT_TYPE_TEXTAREA}}\n\n                    <textarea class="bell-input-el"\n                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                        {{#if rows}} rows="{{rows}}"{{/if}}\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                    >\n                    </textarea>\n\n                {{else}}\n\n                    <input ref="input"\n                        type="{{type}}"\n                        class="bell-input-el\n                            {{#if size}} bell-input-{{size}}{{/if}}\n                        "\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                        on-blur="blur()"\n                        on-focus="focus()"\n                    />\n\n                    {{#if clearable}}\n                        <i class="bell-icon\n                            bell-icon-ios-close\n                            bell-input-clear-icon\n                        " on-click="clear()"></i>\n                    {{/if}}\n\n                {{/if}}\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+    template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input">\n\n                {{#if type === TEXT_TYPE_TEXTAREA}}\n\n                    <textarea class="bell-input-el"\n                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                        {{#if rows}} rows="{{rows}}"{{/if}}\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                    >\n                    </textarea>\n\n                {{else}}\n\n                    <input ref="input"\n                        type="{{currentType}}"\n                        class="bell-input-el\n                            {{#if size}} bell-input-{{size}}{{/if}}\n                        "\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                        on-blur="blur()"\n                        on-focus="focus()"\n                    />\n\n                    {{#if clearable}}\n                        <i class="bell-icon\n                            bell-icon-ios-close\n                            bell-input-clear-icon\n                        " on-click="clear()"></i>\n                    {{/if}}\n\n                    {{#if secure}}\n                        {{#if isSecure}}\n                            <i class="bell-icon\n                                bell-icon-eye\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{else}}\n                            <i class="bell-icon\n                                bell-icon-eye-disabled\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{/if}}\n                    {{/if}}\n\n                {{/if}}\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         style: {
@@ -911,60 +912,62 @@ var Input = {
         clearable: {
             type: ['numeric', 'boolean']
         },
-
-        onChange: {
-            type: 'function'
-        },
-        onFocus: {
-            type: 'function'
-        },
-        onBlur: {
-            type: 'function'
-        },
-        onClick: {
-            type: 'function'
-        },
-        onEnter: {
-            type: 'function'
-        },
-        onKeyup: {
-            type: 'function'
-        },
-        onKeydown: {
-            type: 'function'
-        },
-        onKeypress: {
-            type: 'function'
+        secure: {
+            type: ['numeric', 'boolean']
         }
     },
 
     data: function data() {
+        var me = this;
         return {
-            TEXT_TYPE_INPUT: TEXT_TYPE_INPUT,
+            TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
             TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
-            isFocus: false
+            TEXT_TYPE_PASSWORD: TEXT_TYPE_PASSWORD,
+
+            isSecure: true,
+            isFocus: false,
+            currentType: me.get('type')
         };
     },
 
 
     watchers: {
-        value: function value(_value) {
-            this.get('onChange') && this.get('onChange')(_value);
+        value: function (_value) {
+            function value(_x) {
+                return _value.apply(this, arguments);
+            }
+
+            value.toString = function () {
+                return _value.toString();
+            };
+
+            return value;
+        }(function (value) {
+            this.fire('change', {
+                value: value
+            });
+        }),
+        isSecure: function isSecure(_isSecure) {
+            this.set({
+                currentType: _isSecure ? TEXT_TYPE_PASSWORD : TEXT_TYPE_TEXT
+            });
         }
     },
 
     methods: {
         blur: function blur(args) {
-            this.set({
+            var me = this;
+            me.set({
                 isFocus: false
             });
-            this.get('onBlur') && this.get('onBlur')(args);
+            me.fire('blur');
         },
         focus: function focus(args) {
-            this.set({
+            var me = this;
+            me.set({
                 isFocus: true
             });
-            this.get('onFocus') && this.get('onFocus')(args);
+            me.fire('focus');
         },
         clear: function clear() {
             this.set({
@@ -972,8 +975,9 @@ var Input = {
             });
         },
         labelClick: function labelClick(args) {
-            var me = this;
-            me.get('onChange') && me.get('onChange')(me.get('value'), args);
+            this.fire('change', {
+                value: value
+            });
         }
     },
 
@@ -984,20 +988,20 @@ var Input = {
         }
         me.documentKeydownHandler = function (event) {
             if (event.target == me.$refs.input) {
-                me.get('onKeydown') && me.get('onKeydown')(event);
+                me.fire('keydown');
                 if (event.keyCode === 13) {
-                    me.get('onEnter') && me.get('onEnter')(event);
+                    me.fire('enter');
                 }
             }
         };
         me.documentKeyupHandler = function (event) {
             if (event.target == me.$refs.input) {
-                me.get('onKeyup') && me.get('onKeyup')(event);
+                me.fire('keyup');
             }
         };
         me.documentKeypressHandler = function (event) {
             if (event.target == me.$refs.input) {
-                me.get('onKeypress') && me.get('onKeypress')(event);
+                me.fire('keypress');
             }
         };
         document.addEventListener('keydown', me.documentKeydownHandler);
