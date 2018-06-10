@@ -6,7 +6,6 @@ edp-webserver-config.js
 edp-build-config.js
 
 dep/
-docs/
 
 module.conf
 package-lock.json

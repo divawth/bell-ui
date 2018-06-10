@@ -77,13 +77,11 @@
                     type="input"
                     clearable
                 ></Input>
-                <br><br>
                 <Input placeholder="default size"
                     model="value"
                     type="input"
                     clearable
                 ></Input>
-                <br><br>
                 <Input placeholder="small size"
                     size="small"
                     model="value"
@@ -105,21 +103,18 @@
                     type="input"
                     clearable
                 ></Input>
-                <br><br>
                 <Input placeholder="success input"
                     model="value"
                     type="input"
                     status="success"
                     clearable
                 ></Input>
-                <br><br>
                 <Input placeholder="error input"
                     model="value"
                     type="input"
                     status="error"
                     clearable
                 ></Input>
-                <br><br>
                 <Input placeholder="warning input"
                     status="warning"
                     model="value"

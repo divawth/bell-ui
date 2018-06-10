@@ -5,7 +5,7 @@
             <InputNumber maxValue="10" minValue="1" model="value"></InputNumber>
         `,
         data: {
-            value: 34
+            value: 3
         }
     }
 
@@ -43,21 +43,6 @@
                 <InputNumber size="large" disabled minValue="1" model="value"></InputNumber>
                 <InputNumber disabled minValue="1" model="value"></InputNumber>
                 <InputNumber size="small" disabled minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 34
-        }
-    }
-
-> readonly 只读
-
-    export default {
-        template: `
-            <div>
-                <InputNumber size="large" readonly minValue="1" model="value"></InputNumber>
-                <InputNumber readonly minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" readonly minValue="1" model="value"></InputNumber>
             </div>
         `,
         data: {
