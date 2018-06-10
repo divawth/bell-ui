@@ -83,6 +83,6 @@ editable | 是否可编辑 | string， boolean | - | true
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onChange | 值变化的时候回调 | value
-onFocus | 聚焦的时候触发 | value
-onBlur | 失焦的时候触发 | value
+change | 值变化的时候回调 | value
+focus | 聚焦的时候触发(仅 editable 为 true 的时候生效) | value
+blur | 失焦的时候触发(仅 editable 为 true 的时候生效) | value

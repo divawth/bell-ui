@@ -8,8 +8,12 @@ export default {
         "{{#if style}} style="{{style}}"{{/if}}>
 
             <div class="bell-input-number-actions">
-                <span class="bell-icon bell-icon-ios-arrow-up" on-click="up()"></span>
-                <span class="bell-icon bell-icon-ios-arrow-down" on-click="down()"></span>
+                <span class="bell-icon bell-icon-ios-arrow-up
+                    {{#if maxValue != null && value >= maxValue}} disabled{{/if}}
+                " on-click="up()"></span>
+                <span class="bell-icon bell-icon-ios-arrow-down
+                    {{#if minValue != null && value <= minValue}} disabled{{/if}}
+                " on-click="down()"></span>
             </div>
 
             <div class="bell-input-number-wrapper">
@@ -51,20 +55,10 @@ export default {
             value: false
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         editable: {
-            type: ['string', 'boolean']
-        },
-
-        onChange: {
-            type: 'function'
-        },
-        onFocus: {
-            type: 'function'
-        },
-        onBlur: {
-            type: 'function'
+            type: ['numeric', 'boolean']
         }
     },
 
@@ -72,16 +66,22 @@ export default {
         up() {
             let me = this;
             me.increase('value', me.get('step'), me.get('maxValue'));
+            me.fire('change', {
+                value: me.get('value')
+            });
         },
         down() {
             let me = this;
             let value = me.decrease('value', me.get('step'), me.get('minValue'));
+            me.fire('change', {
+                value: me.get('value')
+            });
         },
-        blur(...args) {
-            this.get('onBlur') && this.get('onBlur')(...args)
+        blur() {
+            this.fire('blur');
         },
-        focus(...args) {
-            this.get('onFocus') && this.get('onFocus')(...args)
+        focus() {
+            this.fire('focus');
         }
     }
 };

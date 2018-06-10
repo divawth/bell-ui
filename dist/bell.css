@@ -3828,6 +3828,11 @@ button.bell-button {
   font-weight: 700;
   border-left: 1px solid #ccc;
 }
+.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled,
+.bell-input-number .bell-input-number-actions .bell-icon[disabled] {
+  color: #ccc;
+  cursor: not-allowed;
+}
 .bell-input-number .bell-input-number-actions .bell-icon + .bell-icon {
   border-top: 1px solid #ccc;
 }
