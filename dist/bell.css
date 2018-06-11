@@ -4242,9 +4242,7 @@ button.bell-button {
   user-select: none;
 }
 .bell-radio-button .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4255,29 +4253,14 @@ button.bell-button {
 }
 .bell-radio-button .bell-radio.bell-radio-button .bell-radio.active,
 .bell-radio-button .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #cde6fe;
-  border-color: #6392e5;
-  border-right-color: #6392e5 !important;
+  background-color: #6392e5;
 }
 .bell-radio-button .bell-radio.bell-radio-button .bell-radio.active .bell-radio-label,
 .bell-radio-button .bell-radio.bell-active .bell-radio-label {
-  color: #6392e5;
-}
-.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active +.bell-radio,
-.bell-radio-button .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button .bell-radio:last-child.bell-radio-button .bell-radio:last-child.active,
-.bell-radio-button .bell-radio:last-child.bell-active {
-  border-right-color: #6392e5 !important;
+  color: #fff;
 }
 .bell-radio-button-success .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button-success .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4288,29 +4271,14 @@ button.bell-button {
 }
 .bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active,
 .bell-radio-button-success .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #d5eddb;
-  border-color: #28cd6a;
-  border-right-color: #28cd6a !important;
+  background-color: #28cd6a;
 }
 .bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active .bell-radio-label,
 .bell-radio-button-success .bell-radio.bell-active .bell-radio-label {
-  color: #28cd6a;
-}
-.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active +.bell-radio,
-.bell-radio-button-success .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-success .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-success .bell-radio:last-child.bell-radio-button-success .bell-radio:last-child.active,
-.bell-radio-button-success .bell-radio:last-child.bell-active {
-  border-right-color: #28cd6a !important;
+  color: #fff;
 }
 .bell-radio-button-warning .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button-warning .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4321,29 +4289,14 @@ button.bell-button {
 }
 .bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active,
 .bell-radio-button-warning .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #fff3cf;
-  border-color: #fec740;
-  border-right-color: #fec740 !important;
+  background-color: #fec740;
 }
 .bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active .bell-radio-label,
 .bell-radio-button-warning .bell-radio.bell-active .bell-radio-label {
-  color: #fec740;
-}
-.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active +.bell-radio,
-.bell-radio-button-warning .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-warning .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-warning .bell-radio:last-child.bell-radio-button-warning .bell-radio:last-child.active,
-.bell-radio-button-warning .bell-radio:last-child.bell-active {
-  border-right-color: #fec740 !important;
+  color: #fff;
 }
 .bell-radio-button-error .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button-error .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4354,29 +4307,14 @@ button.bell-button {
 }
 .bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active,
 .bell-radio-button-error .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #f7d7db;
-  border-color: #fc4b4e;
-  border-right-color: #fc4b4e !important;
+  background-color: #fc4b4e;
 }
 .bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active .bell-radio-label,
 .bell-radio-button-error .bell-radio.bell-active .bell-radio-label {
-  color: #fc4b4e;
-}
-.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active +.bell-radio,
-.bell-radio-button-error .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-error .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-error .bell-radio:last-child.bell-radio-button-error .bell-radio:last-child.active,
-.bell-radio-button-error .bell-radio:last-child.bell-active {
-  border-right-color: #fc4b4e !important;
+  color: #fff;
 }
 .bell-radio-button-danger .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button-danger .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4387,29 +4325,14 @@ button.bell-button {
 }
 .bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active,
 .bell-radio-button-danger .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #f7d7db;
-  border-color: #eb1111;
-  border-right-color: #eb1111 !important;
+  background-color: #eb1111;
 }
 .bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active .bell-radio-label,
 .bell-radio-button-danger .bell-radio.bell-active .bell-radio-label {
-  color: #eb1111;
-}
-.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active +.bell-radio,
-.bell-radio-button-danger .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-danger .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-danger .bell-radio:last-child.bell-radio-button-danger .bell-radio:last-child.active,
-.bell-radio-button-danger .bell-radio:last-child.bell-active {
-  border-right-color: #eb1111 !important;
+  color: #fff;
 }
 .bell-radio-button-info .bell-radio {
-  background-color: transparent;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fff;
 }
 .bell-radio-button-info .bell-radio .bell-radio-label {
   color: rgba(0,0,0,0.87);
@@ -4420,57 +4343,29 @@ button.bell-button {
 }
 .bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active,
 .bell-radio-button-info .bell-radio.bell-active {
-  box-shadow: 0 0 0 2px #d2ecf1;
-  border-color: #7aa3e9;
-  border-right-color: #7aa3e9 !important;
+  background-color: #7aa3e9;
 }
 .bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active .bell-radio-label,
 .bell-radio-button-info .bell-radio.bell-active .bell-radio-label {
-  color: #7aa3e9;
-}
-.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active +.bell-radio,
-.bell-radio-button-info .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-info .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-info .bell-radio:last-child.bell-radio-button-info .bell-radio:last-child.active,
-.bell-radio-button-info .bell-radio:last-child.bell-active {
-  border-right-color: #7aa3e9 !important;
+  color: #fff;
 }
 .bell-radio-button-disabled .bell-radio {
-  background-color: #f7f7f7;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: transparent !important;
+  background-color: #fcfcfc;
 }
 .bell-radio-button-disabled .bell-radio .bell-radio-label {
-  color: rgba(0,0,0,0.37);
+  color: #dddee1;
 }
 .bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.hover .bell-radio-label,
 .bell-radio-button-disabled .bell-radio:hover .bell-radio-label {
-  color: rgba(0,0,0,0.37);
+  color: #dddee1;
 }
 .bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active,
 .bell-radio-button-disabled .bell-radio.bell-active {
-  box-shadow: none;
-  border-color: rgba(0,0,0,0.37);
-  border-right-color: rgba(0,0,0,0.37) !important;
+  background-color: #fcfcfc;
 }
 .bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active .bell-radio-label,
 .bell-radio-button-disabled .bell-radio.bell-active .bell-radio-label {
-  color: rgba(0,0,0,0.37);
-}
-.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active +.bell-radio,
-.bell-radio-button-disabled .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent !important;
-}
-.bell-radio-button-disabled .bell-radio:last-child {
-  border-right-color: rgba(0,0,0,0.37) !important;
-}
-.bell-radio-button-disabled .bell-radio:last-child.bell-radio-button-disabled .bell-radio:last-child.active,
-.bell-radio-button-disabled .bell-radio:last-child.bell-active {
-  border-right-color: rgba(0,0,0,0.37) !important;
+  color: #dddee1;
 }
 .bell-radio-button {
   font-size: 13px;
@@ -4499,8 +4394,8 @@ button.bell-button {
 .bell-radio-button .bell-radio {
   margin-right: 0;
   display: inline-block;
-  border: 1px solid rgba(0,0,0,0.37);
-  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+  border: 1px solid #eee;
+  transition: border-color 0.3s, color 0.3s, background-color 0.3s;
   cursor: pointer;
 }
 .bell-radio-button .bell-radio +.bell-radio {
