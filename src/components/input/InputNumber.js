@@ -8,12 +8,13 @@ export default {
         "{{#if style}} style="{{style}}"{{/if}}>
 
             <div class="bell-input-number-actions">
-                <span class="bell-icon bell-icon-ios-arrow-up
-                    {{#if maxValue != null && value >= maxValue}} disabled{{/if}}
-                " on-click="up()"></span>
-                <span class="bell-icon bell-icon-ios-arrow-down
-                    {{#if minValue != null && value <= minValue}} disabled{{/if}}
-                " on-click="down()"></span>
+                <span class="bell-icon bell-icon-ios-arrow-up"
+                    {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}
+                    on-click="up()"></span>
+                <span class="bell-icon bell-icon-ios-arrow-down"
+                    {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}
+                    on-click="down()"
+                ></span>
             </div>
 
             <div class="bell-input-number-wrapper">
