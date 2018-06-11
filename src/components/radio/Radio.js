@@ -35,7 +35,7 @@ export default {
             type: 'string'
         },
         value: {
-            type: ['numeric', 'boolean']
+            type: ['numeric', 'boolean', 'string']
         },
         disabled: {
             type: ['numeric', 'boolean']
@@ -80,10 +80,6 @@ export default {
             if (me.get('isDisabled')) {
                 return;
             }
-            let isChecked = me.get('isChecked');
-            me.set({
-                isChecked: !isChecked
-            });
             me.fire(
                 'radioValueChange',
                 {

@@ -1,46 +1,62 @@
-$selector-radio-group = '.bell-radio-group';
-$selector-radio = '.bell-radio';
+$selector-radio-group = $selector-prefix + '-radio-group';
+$selector-radio = $selector-prefix + '-radio';
 
+$radio-inner-size = 14px;
+$radio-label-padding-left = 20px;
 $radio-font-size = 12px;
-$radio-margin-right = 8px;
-
-$radio-inner-width = 14px;
-$radio-background-color = #fff;
-$radio-inner-border-color = #d7dde4;
-$radio-inner-hover-border-color = #bcbcbc;
-
-$radio-inner-after-width = 8px;
-$radio-inner-after-margin-left = -4px;
-$radio-inner-color = #fff;
-$radio-label-margin-left = 4px;
-
-$radio-inner-disabled-background-color = #f3f3f3;
-$radio-inner-after-disabled-background-color = #ccc;
-$radio-inner-disabled-border-color = #dddee1;
+$radio-wrapper-margin-top = 4px;
+$radio-margin-gap = 8px;
 
 $radio-brand-hash = {
     '': {
-        bg-color: $brand-primary,
-        border-color: $brand-primary
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-primary,
+        color-active: $brand-primary,
+        border-color: $brand-primary,
+        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
     },
     'success': {
-        bg-color: $brand-success,
-        border-color: $brand-success
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-success,
+        color-active: $brand-success,
+        border-color: $brand-success,
+        box-shadow: 0 0 0 2px $brand-success-box-shadow-color
     },
     'warning': {
-        bg-color: $brand-warning,
-        border-color: $brand-warning
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-warning,
+        color-active: $brand-warning,
+        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
     },
     'error': {
-        bg-color: $brand-error,
-        border-color: $brand-error
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-error,
+        color-active: $brand-error,
+        box-shadow: 0 0 0 2px $brand-error-box-shadow-color
     },
     'danger': {
-        bg-color: $brand-danger,
-        border-color: $brand-danger
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-danger,
+        color-active: $brand-danger,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
     },
     'info': {
-        bg-color: $brand-info,
-        border-color: $brand-info
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-info,
+        color-active: $brand-info,
+        box-shadow: 0 0 0 2px $brand-info-box-shadow-color
+    },
+    'disabled': {
+        color: $brand-border,
+        bg-color: $brand-bg,
+        color-hover: $brand-border,
+        color-active: $brand-border,
+        box-shadow: none
     }
-}
+};

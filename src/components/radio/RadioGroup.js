@@ -1,16 +1,18 @@
 export default {
 
     template: `
-        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}
-            {{#if type}} bell-radio-group-{{type}}{{/if}}
-            {{#if size}} bell-radio-group-{{size}}{{/if}}
-            {{#if disabled}} bell-radio-group-disabled{{/if}}
+        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}
+            {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}
+            {{#if size && button}} bell-radio-button-{{size}}{{/if}}
+            {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}
             {{#if vertical}} bell-radio-vertical{{/if}}
             {{#if className}} {{className}}{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
+
         </div>
     `,
 
@@ -28,22 +30,19 @@ export default {
             type: 'numeric'
         },
         size: {
-            type: 'numeric'
+            type: 'string'
         },
         type: {
             type: 'string'
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         vertical: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         button: {
-            type: ['string', 'boolean']
-        },
-        onChange: {
-            type: 'function'
+            type: ['numeric', 'boolean']
         }
     },
 
@@ -53,7 +52,14 @@ export default {
             me.set({
                 value: data.value
             });
-            me.get('onChange') && me.get('onChange')(data.value);
+
+            me.fire(
+                'change',
+                {
+                    value: data.value
+                }
+            );
+
             me.fire(
                 'updateRadioValue',
                 {

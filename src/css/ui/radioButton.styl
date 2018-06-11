@@ -1,47 +1,40 @@
 {$selector-radio-button}
+
     display inline-block
     user-select none
-    border-radius $radio-button-radius
-    font-size $radio-button-font-size
+
+    ui-radio-button-group()
 
     +{$selector-radio-button}
+
         margin-left $radio-button-gap
 
     {$selector-radio}-wrapper
+
         display none
 
     {$selector-radio}
+
         margin-right 0
         display inline-block
-        padding $radio-button-padding
-        border 1px solid $radio-button-border-color
-        transition all .2s ease-in-out
+        border 1px solid $brand-muted
+        transition border-color .3s, color .3s, box-shadow .3s
         cursor $cursor-clickable
 
         +{$selector-radio}
+
             margin-left -1px
 
-        &{$selector-active}
-            border-color $radio-button-active-border-color
-            color $radio-button-active-color
-            +{$selector-radio}
-                border-left-color transparent
-
     {$selector-radio}:first-child
-        border-radius $radio-button-radius 0 0 $radio-button-radius
+
+        border-top-left-radius $radius-base
+        border-bottom-left-radius $radius-base
 
     {$selector-radio}:last-child
-        border-radius 0 $radio-button-radius $radio-button-radius 0
 
-    &{$selector-radio-group}
-        ui-radio-button-group()
+        border-top-right-radius $radius-base
+        border-bottom-right-radius $radius-base
 
     {$selector-radio}-disabled
-        border-color $radio-button-disabled-border-color
-        color $radio-button-disabled-color
-        cursor $cursor-disabled
 
-        &{$selector-active}
-            border-color $radio-button-disabled-border-color
-            color $radio-button-disabled-color
-            background-color $radio-button-disabled-background-color
+        cursor $cursor-disabled

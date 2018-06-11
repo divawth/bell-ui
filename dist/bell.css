@@ -431,58 +431,58 @@ body {
   margin-top: 0;
 }
 .bell-border {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
 }
 .bell-border-top {
-  border-top: 1px solid #ccc !important;
+  border-top: 1px solid #eee !important;
 }
 .bell-border-left {
-  border-left: 1px solid #ccc !important;
+  border-left: 1px solid #eee !important;
 }
 .bell-border-right {
-  border-right: 1px solid #ccc !important;
+  border-right: 1px solid #eee !important;
 }
 .bell-border-bottom {
-  border-bottom: 1px solid #ccc !important;
+  border-bottom: 1px solid #eee !important;
 }
 .bell-border-white {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #fff !important;
 }
 .bell-border-primary {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #6392e5 !important;
 }
 .bell-border-success {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #28cd6a !important;
 }
 .bell-border-error {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #fc4b4e !important;
 }
 .bell-border-info {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #7aa3e9 !important;
 }
 .bell-border-warning {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #fec740 !important;
 }
 .bell-border-danger {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: #eb1111 !important;
 }
 .bell-border-main {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: rgba(0,0,0,0.87) !important;
 }
 .bell-border-secondary {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: rgba(0,0,0,0.54) !important;
 }
 .bell-border-muted {
-  border: 1px solid #ccc !important;
+  border: 1px solid #eee !important;
   border-color: rgba(0,0,0,0.37) !important;
 }
 .bell-border-0 {
@@ -501,49 +501,49 @@ body {
   border-bottom: 0 !important;
 }
 .bell-border-2 {
-  border: 2px solid #ccc !important;
+  border: 2px solid #eee !important;
 }
 .bell-border-top-2 {
-  border-top: 2px solid #ccc !important;
+  border-top: 2px solid #eee !important;
 }
 .bell-border-left-2 {
-  border-left: 2px solid #ccc !important;
+  border-left: 2px solid #eee !important;
 }
 .bell-border-right-2 {
-  border-right: 2px solid #ccc !important;
+  border-right: 2px solid #eee !important;
 }
 .bell-border-bottom-2 {
-  border-bottom: 2px solid #ccc !important;
+  border-bottom: 2px solid #eee !important;
 }
 .bell-border-4 {
-  border: 4px solid #ccc !important;
+  border: 4px solid #eee !important;
 }
 .bell-border-top-4 {
-  border-top: 4px solid #ccc !important;
+  border-top: 4px solid #eee !important;
 }
 .bell-border-left-4 {
-  border-left: 4px solid #ccc !important;
+  border-left: 4px solid #eee !important;
 }
 .bell-border-right-4 {
-  border-right: 4px solid #ccc !important;
+  border-right: 4px solid #eee !important;
 }
 .bell-border-bottom-4 {
-  border-bottom: 4px solid #ccc !important;
+  border-bottom: 4px solid #eee !important;
 }
 .bell-border-10 {
-  border: 10px solid #ccc !important;
+  border: 10px solid #eee !important;
 }
 .bell-border-top-10 {
-  border-top: 10px solid #ccc !important;
+  border-top: 10px solid #eee !important;
 }
 .bell-border-left-10 {
-  border-left: 10px solid #ccc !important;
+  border-left: 10px solid #eee !important;
 }
 .bell-border-right-10 {
-  border-right: 10px solid #ccc !important;
+  border-right: 10px solid #eee !important;
 }
 .bell-border-bottom-10 {
-  border-bottom: 10px solid #ccc !important;
+  border-bottom: 10px solid #eee !important;
 }
 .rounded {
   border-radius: 0.5rem !important;
@@ -2807,7 +2807,7 @@ button.bell-button {
 .bell-button {
   color: rgba(0,0,0,0.54);
   background-color: #fff;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.hover,
 .bell-button:hover {
@@ -2833,12 +2833,12 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.ghost {
   color: rgba(0,0,0,0.54);
   background-color: #fff;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.ghost.hover,
 .bell-button.ghost:hover {
@@ -2864,12 +2864,12 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.dashed {
   color: rgba(0,0,0,0.54);
   background-color: #fff;
-  border-color: 1px dashed #ccc;
+  border-color: 1px dashed #eee;
 }
 .bell-button.dashed.hover,
 .bell-button.dashed:hover {
@@ -2895,7 +2895,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: 1px dashed #ccc;
+  border-color: 1px dashed #eee;
 }
 .bell-button.text {
   color: rgba(0,0,0,0.54);
@@ -2957,7 +2957,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.success {
   color: #fff;
@@ -2988,7 +2988,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.error {
   color: #fff;
@@ -3019,7 +3019,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.info {
   color: #fff;
@@ -3050,7 +3050,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.warning {
   color: #fff;
@@ -3081,7 +3081,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button.danger {
   color: #fff;
@@ -3112,7 +3112,7 @@ button.bell-button {
   cursor: not-allowed !important;
   color: #c7c7c7;
   background-color: #fcfcfc;
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-button > .bell-text {
   font: inherit;
@@ -3129,6 +3129,7 @@ button.bell-button {
 .bell-button-fluid {
   display: block;
   width: 100%;
+  box-sizing: border-box;
 }
 .bell-buttons {
   font-size: 0;
@@ -3346,7 +3347,7 @@ button.bell-button {
 .bell-menu-light {
   background-color: #fff;
   color: rgba(0,0,0,0.87);
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-menu-light .bell-menu-item.bell-menu-light .bell-menu-item.hover,
 .bell-menu-light .bell-menu-item:hover {
@@ -3362,7 +3363,7 @@ button.bell-button {
 }
 .bell-menu-dark {
   background-color: #495060;
-  color: #ccc;
+  color: #eee;
   border-color: transparent;
 }
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.hover,
@@ -3557,13 +3558,13 @@ button.bell-button {
   line-height: 36px;
 }
 .bell-input-wrapper .bell-input-prepend {
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-input-wrapper .bell-input-append {
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-input-wrapper .bell-input {
-  border-color: #ccc;
+  border-color: #eee;
   background-color: #fff;
 }
 .bell-input-wrapper.bell-input-wrapper.hover .bell-input,
@@ -3749,7 +3750,7 @@ button.bell-button {
   cursor: text;
   background-color: transparent;
   font-size: 12px;
-  color: rgba(0,0,0,0.54);
+  color: rgba(0,0,0,0.87);
 }
 .bell-textarea .bell-input-el::-webkit-input-placeholder,
 .bell-input .bell-input-el::-webkit-input-placeholder {
@@ -3833,7 +3834,7 @@ button.bell-button {
   line-height: 18px;
 }
 .bell-input-number {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -3851,7 +3852,7 @@ button.bell-button {
   color: #7fa6ea;
 }
 .bell-input-number-success {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -3869,7 +3870,7 @@ button.bell-button {
   color: #4bd582;
 }
 .bell-input-number-error {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -3887,7 +3888,7 @@ button.bell-button {
   color: #fd686b;
 }
 .bell-input-number-info {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -3905,7 +3906,7 @@ button.bell-button {
   color: #8fb2ed;
 }
 .bell-input-number-warning {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -3923,7 +3924,7 @@ button.bell-button {
   color: #fed05f;
 }
 .bell-input-number-danger {
-  border-color: #ccc;
+  border-color: #eee;
   color: rgba(0,0,0,0.54);
   background-color: #fff;
 }
@@ -4028,146 +4029,469 @@ button.bell-button {
 .bell-input-number-readonly:hover {
   border-color: ;
 }
-.bell-radio-group-wrapper {
+.bell-radio-group {
   display: inline-block;
-}
-.bell-radio-group-wrapper .bell-radio {
-  cursor: pointer;
-  vertical-align: middle;
-  font-size: 12px;
-  margin-right: 8px;
   user-select: none;
+  margin-right: -8px;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper {
-  position: relative;
-  vertical-align: middle;
-  display: inline-block;
+.bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner,
+.bell-radio-group .bell-radio.bell-active .bell-radio-inner {
+  color: #6392e5;
+  box-shadow: 0 0 0 2px #cde6fe;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner {
-  position: relative;
-  display: inline-block;
+.bell-radio-group .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group .bell-radio.bell-radio-group .bell-radio.hover .bell-radio-inner,
+.bell-radio-group .bell-radio:hover .bell-radio-inner {
+  color: #6392e5;
+}
+.bell-radio-group .bell-radio-disabled.bell-radio-group .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.active .bell-radio-inner,
+.bell-radio-group-success .bell-radio.bell-active .bell-radio-inner {
+  color: #28cd6a;
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-radio-group-success .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-success .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-success .bell-radio:hover .bell-radio-inner {
+  color: #28cd6a;
+}
+.bell-radio-group-success .bell-radio-disabled.bell-radio-group-success .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-success .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.active .bell-radio-inner,
+.bell-radio-group-warning .bell-radio.bell-active .bell-radio-inner {
+  color: #fec740;
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-radio-group-warning .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-warning .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-warning .bell-radio:hover .bell-radio-inner {
+  color: #fec740;
+}
+.bell-radio-group-warning .bell-radio-disabled.bell-radio-group-warning .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-warning .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.active .bell-radio-inner,
+.bell-radio-group-error .bell-radio.bell-active .bell-radio-inner {
+  color: #fc4b4e;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-radio-group-error .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-error .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-error .bell-radio:hover .bell-radio-inner {
+  color: #fc4b4e;
+}
+.bell-radio-group-error .bell-radio-disabled.bell-radio-group-error .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-error .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.active .bell-radio-inner,
+.bell-radio-group-danger .bell-radio.bell-active .bell-radio-inner {
+  color: #eb1111;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-radio-group-danger .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-danger .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-danger .bell-radio:hover .bell-radio-inner {
+  color: #eb1111;
+}
+.bell-radio-group-danger .bell-radio-disabled.bell-radio-group-danger .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-danger .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.active .bell-radio-inner,
+.bell-radio-group-info .bell-radio.bell-active .bell-radio-inner {
+  color: #7aa3e9;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-radio-group-info .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-info .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-info .bell-radio:hover .bell-radio-inner {
+  color: #7aa3e9;
+}
+.bell-radio-group-info .bell-radio-disabled.bell-radio-group-info .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-info .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-disabled .bell-radio.bell-radio-group-disabled .bell-radio.active .bell-radio-inner,
+.bell-radio-group-disabled .bell-radio.bell-active .bell-radio-inner {
+  color: #eee;
+  box-shadow: none;
+}
+.bell-radio-group-disabled .bell-radio .bell-radio-inner {
+  background-color: #fff;
+  color: #eee;
+}
+.bell-radio-group-disabled .bell-radio .bell-radio-inner:after {
+  background-color: #fff;
+}
+.bell-radio-group-disabled .bell-radio.bell-radio-group-disabled .bell-radio.hover .bell-radio-inner,
+.bell-radio-group-disabled .bell-radio:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group-disabled .bell-radio-disabled.bell-radio-group-disabled .bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group-disabled .bell-radio-disabled:hover .bell-radio-inner {
+  color: #eee;
+}
+.bell-radio-group .bell-radio {
+  cursor: pointer;
+  margin-right: 8px;
+}
+.bell-radio-group .bell-radio .bell-radio-wrapper {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+}
+.bell-radio-group .bell-radio .bell-radio-inner {
+  position: absolute;
   border-radius: 100%;
   width: 14px;
   height: 14px;
-  background-color: #fff;
-  border: 1px solid #d7dde4;
+  border: 1px solid;
+  transition: color 0.3s, box-shadow 0.3s;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-innerselector-hover {
-  border-color: #bcbcbc;
-}
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
+.bell-radio-group .bell-radio .bell-radio-inner:after {
+  display: inline-block;
   content: ' ';
-  position: absolute;
   border-radius: 100%;
-  left: 50%;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  margin-left: -4px;
-  margin-top: -4px;
-  opacity: 0;
-  transform: scale(0);
-}
-.bell-radio-group-wrapper .bell-radio .bell-radio-wrapper .bell-radio-input {
-  opacity: 0;
-  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  margin: auto;
+  opacity: 0;
+  transform: scale(0);
+  border: 1px solid;
 }
-.bell-radio-group-wrapper .bell-radio .bell-radio-label {
-  vertical-align: middle;
-  margin-left: 4px;
+.bell-radio-group .bell-radio .bell-radio-input {
+  opacity: 0;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-group-wrapper .bell-radio.active .bell-radio-wrapper .bell-radio-inner:after,
-.bell-radio-group-wrapper .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner:after {
+.bell-radio-group .bell-radio .bell-radio-label {
+  font-size: 12px;
+  line-height: 12px;
+  padding-left: 20px;
+}
+.bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group .bell-radio.bell-active .bell-radio-inner:after {
   opacity: 1;
-  transform: scale(1);
-  transition: all 0.2s ease-in-out;
+  transform: scale(4);
+  transition: transform 0.3s, opacity 0.3s;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled {
+.bell-radio-group .bell-radio.bell-radio-disabled {
   cursor: not-allowed;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner {
-  border-color: #dddee1;
-  background-color: #f3f3f3;
+.bell-radio-group .bell-radio.bell-radio-disabled span,
+.bell-radio-group .bell-radio.bell-radio-disabled input {
   cursor: not-allowed;
 }
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #ccc;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-wrapper .bell-radio-input {
-  cursor: not-allowed;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #dddee1;
-}
-.bell-radio-group-wrapper .bell-radio.bell-radio-disabled .bell-radio-label {
-  cursor: not-allowed;
+.bell-radio-vertical {
+  margin-bottom: -8px;
 }
 .bell-radio-vertical .bell-radio {
   width: 100%;
   display: block;
-}
-.bell-radio-vertical .bell-radio +.bell-radio {
-  margin-top: 10px;
-}
-.bell-radio-group .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #6392e5;
-}
-.bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #6392e5;
-}
-.bell-radio-group-success .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #28cd6a;
-}
-.bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-success .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #28cd6a;
-}
-.bell-radio-group-warning .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #fec740;
-}
-.bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-warning .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #fec740;
-}
-.bell-radio-group-error .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #fc4b4e;
-}
-.bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-error .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #fc4b4e;
-}
-.bell-radio-group-danger .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #eb1111;
-}
-.bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-danger .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #eb1111;
-}
-.bell-radio-group-info .bell-radio .bell-radio-wrapper .bell-radio-inner:after {
-  background-color: #7aa3e9;
-}
-.bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.active .bell-radio-wrapper .bell-radio-inner,
-.bell-radio-group-info .bell-radio.bell-active .bell-radio-wrapper .bell-radio-inner {
-  border-color: #7aa3e9;
+  margin-bottom: 8px;
 }
 .bell-radio-button {
   display: inline-block;
   user-select: none;
-  border-radius: 4px;
+}
+.bell-radio-button .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button .bell-radio.bell-radio-button .bell-radio.hover .bell-radio-label,
+.bell-radio-button .bell-radio:hover .bell-radio-label {
+  color: #6392e5;
+}
+.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active,
+.bell-radio-button .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #cde6fe;
+  border-color: #6392e5;
+  border-right-color: #6392e5 !important;
+}
+.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active .bell-radio-label,
+.bell-radio-button .bell-radio.bell-active .bell-radio-label {
+  color: #6392e5;
+}
+.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active +.bell-radio,
+.bell-radio-button .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button .bell-radio:last-child.bell-radio-button .bell-radio:last-child.active,
+.bell-radio-button .bell-radio:last-child.bell-active {
+  border-right-color: #6392e5 !important;
+}
+.bell-radio-button-success .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-success .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.hover .bell-radio-label,
+.bell-radio-button-success .bell-radio:hover .bell-radio-label {
+  color: #28cd6a;
+}
+.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active,
+.bell-radio-button-success .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #d5eddb;
+  border-color: #28cd6a;
+  border-right-color: #28cd6a !important;
+}
+.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active .bell-radio-label,
+.bell-radio-button-success .bell-radio.bell-active .bell-radio-label {
+  color: #28cd6a;
+}
+.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active +.bell-radio,
+.bell-radio-button-success .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-success .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-success .bell-radio:last-child.bell-radio-button-success .bell-radio:last-child.active,
+.bell-radio-button-success .bell-radio:last-child.bell-active {
+  border-right-color: #28cd6a !important;
+}
+.bell-radio-button-warning .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-warning .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.hover .bell-radio-label,
+.bell-radio-button-warning .bell-radio:hover .bell-radio-label {
+  color: #fec740;
+}
+.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active,
+.bell-radio-button-warning .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #fff3cf;
+  border-color: #fec740;
+  border-right-color: #fec740 !important;
+}
+.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active .bell-radio-label,
+.bell-radio-button-warning .bell-radio.bell-active .bell-radio-label {
+  color: #fec740;
+}
+.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active +.bell-radio,
+.bell-radio-button-warning .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-warning .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-warning .bell-radio:last-child.bell-radio-button-warning .bell-radio:last-child.active,
+.bell-radio-button-warning .bell-radio:last-child.bell-active {
+  border-right-color: #fec740 !important;
+}
+.bell-radio-button-error .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-error .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.hover .bell-radio-label,
+.bell-radio-button-error .bell-radio:hover .bell-radio-label {
+  color: #fc4b4e;
+}
+.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active,
+.bell-radio-button-error .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #f7d7db;
+  border-color: #fc4b4e;
+  border-right-color: #fc4b4e !important;
+}
+.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active .bell-radio-label,
+.bell-radio-button-error .bell-radio.bell-active .bell-radio-label {
+  color: #fc4b4e;
+}
+.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active +.bell-radio,
+.bell-radio-button-error .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-error .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-error .bell-radio:last-child.bell-radio-button-error .bell-radio:last-child.active,
+.bell-radio-button-error .bell-radio:last-child.bell-active {
+  border-right-color: #fc4b4e !important;
+}
+.bell-radio-button-danger .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-danger .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.hover .bell-radio-label,
+.bell-radio-button-danger .bell-radio:hover .bell-radio-label {
+  color: #eb1111;
+}
+.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active,
+.bell-radio-button-danger .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #f7d7db;
+  border-color: #eb1111;
+  border-right-color: #eb1111 !important;
+}
+.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active .bell-radio-label,
+.bell-radio-button-danger .bell-radio.bell-active .bell-radio-label {
+  color: #eb1111;
+}
+.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active +.bell-radio,
+.bell-radio-button-danger .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-danger .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-danger .bell-radio:last-child.bell-radio-button-danger .bell-radio:last-child.active,
+.bell-radio-button-danger .bell-radio:last-child.bell-active {
+  border-right-color: #eb1111 !important;
+}
+.bell-radio-button-info .bell-radio {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-info .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.87);
+}
+.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.hover .bell-radio-label,
+.bell-radio-button-info .bell-radio:hover .bell-radio-label {
+  color: #7aa3e9;
+}
+.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active,
+.bell-radio-button-info .bell-radio.bell-active {
+  box-shadow: 0 0 0 2px #d2ecf1;
+  border-color: #7aa3e9;
+  border-right-color: #7aa3e9 !important;
+}
+.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active .bell-radio-label,
+.bell-radio-button-info .bell-radio.bell-active .bell-radio-label {
+  color: #7aa3e9;
+}
+.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active +.bell-radio,
+.bell-radio-button-info .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-info .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-info .bell-radio:last-child.bell-radio-button-info .bell-radio:last-child.active,
+.bell-radio-button-info .bell-radio:last-child.bell-active {
+  border-right-color: #7aa3e9 !important;
+}
+.bell-radio-button-disabled .bell-radio {
+  background-color: #f7f7f7;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: transparent !important;
+}
+.bell-radio-button-disabled .bell-radio .bell-radio-label {
+  color: rgba(0,0,0,0.37);
+}
+.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.hover .bell-radio-label,
+.bell-radio-button-disabled .bell-radio:hover .bell-radio-label {
+  color: rgba(0,0,0,0.37);
+}
+.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active,
+.bell-radio-button-disabled .bell-radio.bell-active {
+  box-shadow: none;
+  border-color: rgba(0,0,0,0.37);
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active .bell-radio-label,
+.bell-radio-button-disabled .bell-radio.bell-active .bell-radio-label {
+  color: rgba(0,0,0,0.37);
+}
+.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active +.bell-radio,
+.bell-radio-button-disabled .bell-radio.bell-active +.bell-radio {
+  border-left-color: transparent !important;
+}
+.bell-radio-button-disabled .bell-radio:last-child {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button-disabled .bell-radio:last-child.bell-radio-button-disabled .bell-radio:last-child.active,
+.bell-radio-button-disabled .bell-radio:last-child.bell-active {
+  border-right-color: rgba(0,0,0,0.37) !important;
+}
+.bell-radio-button {
   font-size: 13px;
 }
+.bell-radio-button .bell-radio {
+  padding: 4px 18px;
+}
+.bell-radio-button-large {
+  font-size: 14px;
+}
+.bell-radio-button-large .bell-radio {
+  padding: 6px 18px;
+}
+.bell-radio-button-small {
+  font-size: 12px;
+}
+.bell-radio-button-small .bell-radio {
+  padding: 3px 12px;
+}
 .bell-radio-button +.bell-radio-button {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 .bell-radio-button .bell-radio-wrapper {
   display: none;
@@ -4175,82 +4499,23 @@ button.bell-button {
 .bell-radio-button .bell-radio {
   margin-right: 0;
   display: inline-block;
-  padding: 8px;
-  border: 1px solid #ccc;
-  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(0,0,0,0.37);
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 .bell-radio-button .bell-radio +.bell-radio {
   margin-left: -1px;
 }
-.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active,
-.bell-radio-button .bell-radio.bell-active {
-  border-color: #6392e5;
-  color: #6392e5;
-}
-.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active +.bell-radio,
-.bell-radio-button .bell-radio.bell-active +.bell-radio {
-  border-left-color: transparent;
-}
 .bell-radio-button .bell-radio:first-child {
-  border-radius: 4px 0 0 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 .bell-radio-button .bell-radio:last-child {
-  border-radius: 0 4px 4px 0;
-}
-.bell-radio-button.bell-radio-group-success .bell-radio.bell-radio-button.bell-radio-group-success .bell-radio.active,
-.bell-radio-button.bell-radio-group-success .bell-radio.bell-active {
-  border-color: #28cd6a;
-  color: #28cd6a;
-}
-.bell-radio-button.bell-radio-group-warning .bell-radio.bell-radio-button.bell-radio-group-warning .bell-radio.active,
-.bell-radio-button.bell-radio-group-warning .bell-radio.bell-active {
-  border-color: #fec740;
-  color: #fec740;
-}
-.bell-radio-button.bell-radio-group-error .bell-radio.bell-radio-button.bell-radio-group-error .bell-radio.active,
-.bell-radio-button.bell-radio-group-error .bell-radio.bell-active {
-  border-color: #fc4b4e;
-  color: #fc4b4e;
-}
-.bell-radio-button.bell-radio-group-danger .bell-radio.bell-radio-button.bell-radio-group-danger .bell-radio.active,
-.bell-radio-button.bell-radio-group-danger .bell-radio.bell-active {
-  border-color: #eb1111;
-  color: #eb1111;
-}
-.bell-radio-button.bell-radio-group-info .bell-radio.bell-radio-button.bell-radio-group-info .bell-radio.active,
-.bell-radio-button.bell-radio-group-info .bell-radio.bell-active {
-  border-color: #7aa3e9;
-  color: #7aa3e9;
-}
-.bell-radio-button.bell-radio-group {
-  font-size: 13px;
-}
-.bell-radio-button.bell-radio-group .bell-radio {
-  padding: 8px;
-}
-.bell-radio-button.bell-radio-group-large {
-  font-size: 14px;
-}
-.bell-radio-button.bell-radio-group-large .bell-radio {
-  padding: 13px;
-}
-.bell-radio-button.bell-radio-group-small {
-  font-size: 12px;
-}
-.bell-radio-button.bell-radio-group-small .bell-radio {
-  padding: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 .bell-radio-button .bell-radio-disabled {
-  border-color: #dddee1;
-  color: #ccc;
   cursor: not-allowed;
-}
-.bell-radio-button .bell-radio-disabled.bell-radio-button .bell-radio-disabled.active,
-.bell-radio-button .bell-radio-disabled.bell-active {
-  border-color: #dddee1;
-  color: #ccc;
-  background-color: #f7f7f7;
 }
 .bell-checkbox {
   user-select: none;
@@ -4670,7 +4935,7 @@ button.bell-button {
   position: relative;
   background-color: #fff;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   transition: all 0.2s ease-in-out;
 }
 .bell-select .bell-select-button.bell-select .bell-select-button.hover,
@@ -4756,7 +5021,7 @@ button.bell-button {
 }
 .bell-select.bell-select-disabled .bell-select-button.bell-select.bell-select-disabled .bell-select-button.hover,
 .bell-select.bell-select-disabled .bell-select-button:hover {
-  border-color: #ccc;
+  border-color: #eee;
 }
 .bell-select.bell-select-top .bell-select-dropdown {
   top: auto;
@@ -5167,7 +5432,7 @@ button.bell-button {
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #eee;
   transition: all 0.2s ease-in-out;
   color: #666;
 }
@@ -5178,20 +5443,20 @@ button.bell-button {
 }
 .bell-page .bell-page-item.bell-disabled {
   cursor: not-allowed;
-  color: #ccc !important;
-  border-color: #ccc;
+  color: #eee !important;
+  border-color: #eee;
 }
 .bell-page .bell-page-item.bell-disabled.bell-page .bell-page-item.bell-disabled.hover,
 .bell-page .bell-page-item.bell-disabled:hover {
-  color: #ccc;
-  border-color: #ccc;
+  color: #eee;
+  border-color: #eee;
 }
 .bell-page .bell-page-item.bell-page-item-next:after,
 .bell-page .bell-page-item.bell-page-item-prev:after {
   content: "\2022\2022\2022";
   display: block;
   letter-spacing: 1px;
-  color: #ccc;
+  color: #eee;
   text-align: center;
   font-size: 12px;
 }
@@ -5955,10 +6220,10 @@ button.bell-button {
   overflow: hidden;
 }
 .bell-panel {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee;
 }
 .bell-panel:last-child {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
 }
 .bell-panel .bell-panel-el {
   width: 100%;
@@ -6497,10 +6762,10 @@ button.bell-button {
   border-color: #7aa3e9 !important;
 }
 .bell-slider.disabled .bell-slider-fill {
-  background-color: #ccc !important;
+  background-color: #eee !important;
 }
 .bell-slider.disabled .bell-slider-thumb {
-  border-color: #ccc !important;
+  border-color: #eee !important;
 }
 .bell-slider.dragging .bell-slider-thumb {
   transform: scale(1.5);
@@ -6769,7 +7034,7 @@ button.bell-button {
 .bell-tabs .bell-tabs-labels .bell-tabs-label {
   padding: 10px 15px;
   display: inline-block;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #eee;
   color: rgba(0,0,0,0.54);
   cursor: pointer;
 }

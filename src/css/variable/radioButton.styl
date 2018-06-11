@@ -1,69 +1,77 @@
-$selector-radio-button = '.bell-radio-button'
-
-$radio-button-radius = 4px;
-$radio-button-border-color = #ccc;
-
-$radio-button-padding = 8px;
-$radio-button-large-padding = 13px;
-$radio-button-small-padding = 4px;
-
-$radio-button-active-border-color = $brand-primary;
-$radio-button-active-color = $brand-primary;
-
-$radio-button-success-active-border-color = $brand-success;
-$radio-button-success-active-color = $brand-success;
-$radio-button-warning-active-border-color = $brand-warning;
-$radio-button-warning-active-color = $brand-warning;
-$radio-button-error-active-border-color = $brand-error;
-$radio-button-error-active-color = $brand-error;
-$radio-button-danger-active-border-color = $brand-danger;
-$radio-button-danger-active-color = $brand-danger;
-$radio-button-info-active-border-color = $brand-info;
-$radio-button-info-active-color = $brand-info;
-
-$radio-button-gap = 10px;
-$radio-button-font-size = 13px;
-$radio-button-large-font-size = 14px;
-$radio-button-small-font-size = 12px;
-$radio-button-disabled-border-color = #dddee1;
-$radio-button-disabled-color = #ccc;
-$radio-button-disabled-background-color = #f7f7f7;
+$selector-radio-button = $selector-prefix + '-radio-button';
+$radio-button-gap = 8px;
 
 $radio-button-brand-hash = {
+    '': {
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-primary,
+        border-color: $brand-muted,
+        border-color-hover: $brand-primary,
+        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
+    },
     'success': {
-        color: $radio-button-success-active-color,
-        border-color: $radio-button-success-active-border-color
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-success,
+        border-color: $brand-muted,
+        border-color-hover: $brand-success,
+        box-shadow: 0 0 0 2px $brand-success-box-shadow-color
     },
     'warning': {
-        color: $radio-button-warning-active-color,
-        border-color: $radio-button-warning-active-border-color
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-warning,
+        border-color: $brand-muted,
+        border-color-hover: $brand-warning,
+        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
     },
     'error': {
-        color: $radio-button-error-active-color,
-        border-color: $radio-button-error-active-border-color
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-error,
+        border-color: $brand-muted,
+        border-color-hover: $brand-error,
+        box-shadow: 0 0 0 2px $brand-error-box-shadow-color
     },
     'danger': {
-        color: $radio-button-danger-active-color,
-        border-color: $radio-button-danger-active-border-color
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-danger,
+        border-color: $brand-muted,
+        border-color-hover: $brand-danger,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
     },
     'info': {
-        color: $radio-button-info-active-color,
-        border-color: $radio-button-info-active-border-color
+        bg-color: transparent,
+        color: $brand-main,
+        color-hover: $brand-info,
+        border-color: $brand-muted,
+        border-color-hover: $brand-info,
+        box-shadow: 0 0 0 2px $brand-info-box-shadow-color
     },
-}
+    'disabled': {
+        bg-color: #F7F7F7,
+        color: $brand-muted,
+        color-hover: $brand-muted,
+        border-color: $brand-muted,
+        border-color-hover: $brand-muted,
+        box-shadow: none
+    }
+};
 
 $radio-button-size-hash = {
     '': {
-        font: $radio-button-font-size,
-        padding: $radio-button-padding
+        font: 13px,
+        padding: 4px 18px
     },
     'large': {
-        font: $radio-button-large-font-size,
-        padding: $radio-button-large-padding
+        font: 14px,
+        padding: 6px 18px
     },
 
     'small': {
-        font: $radio-button-small-font-size,
-        padding: $radio-button-small-padding
+        font: 12px,
+        padding: 3px 12px
     }
-}
+};

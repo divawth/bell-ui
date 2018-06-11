@@ -6,7 +6,7 @@
 
     export default {
         template: `
-            <RadioGroup name="country" model="radio">
+            <RadioGroup name="country" model="radio" on-change="change()">
                 <Radio value="china">
                     中国
                 </Radio>
@@ -19,6 +19,11 @@
             return {
                 radio: ''
             }
+        },
+        methods: {
+            change: function (event, data) {
+                console.log(data.value)
+            }
         }
     }
 
@@ -28,23 +33,39 @@
         template: `
             <RadioGroup name="country" model="radio">
                 <RadioGroup type="success" name="single" model="radio">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feiChine">
+                        非中国
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="warning" name="single1" model="radio">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feiChine">
+                        非中国
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="info" name="single2" model="radio">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feiChine">
+                        非中国
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="error" name="single3" model="radio">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feiChine">
+                        非中国
+                    </Radio>
                 </RadioGroup>
             </RadioGroup>
         `,
@@ -59,17 +80,26 @@
 
     export default {
         template: `
-            <RadioGroup name="country" model="radio">
-                <RadioGroup type="success" name="single" model="radio">
-                    <Radio label="中国" disabled value="china"></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
+            <div>
+                <RadioGroup name="country" model="radio">
+                    <RadioGroup disabled type="success" name="single" model="radio">
+                        <Radio disabled value="china">
+                            中国
+                        </Radio>
+                        <Radio value="feiChine">
+                            非中国
+                        </Radio>
+                    </RadioGroup>
+                    <RadioGroup type="warning" name="single1" model="radio">
+                        <Radio value="china" checked>
+                            中国
+                        </Radio>
+                        <Radio value="feiChina" disabled>
+                            非中国
+                        </Radio>
+                    </RadioGroup>
                 </RadioGroup>
-                <br><br>
-                <RadioGroup type="warning" disabled name="single1" model="radio">
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非中国" value="feiChine"></Radio>
-                </RadioGroup>
-            </RadioGroup>
+            </div>
         `,
         data: function () {
             return {
@@ -83,9 +113,15 @@
     export default {
         template: `
             <RadioGroup name="single" model="radio" vertical>
-                <Radio label="中国" value="china" checked></Radio>
-                <Radio label="非洲" value="Am"></Radio>
-                <Radio label="Am" value="2"></Radio>
+                <Radio value="china" checked>
+                    中国
+                </Radio>
+                <Radio value="Am">
+                    非洲
+                </Radio>
+                <Radio value="2">
+                    Am
+                </Radio>
             </RadioGroup>
         `,
         data: function () {
@@ -100,9 +136,15 @@
     export default {
         template: `
             <RadioGroup name="single" model="radio" vertical>
-                <Radio label="中国" value="china"></Radio>
-                <Radio label="非洲" value="Am"></Radio>
-                <Radio label="Am" value="2" checked></Radio>
+                <Radio value="china" checked>
+                    中国
+                </Radio>
+                <Radio value="Am">
+                    非洲
+                </Radio>
+                <Radio value="2">
+                    Am
+                </Radio>
             </RadioGroup>
         `,
         data: function () {
@@ -117,9 +159,15 @@
     export default {
         template: `
             <RadioGroup button name="single" model="country">
-                <Radio label="中国" value="c"></Radio>
-                <Radio label="非洲" value="f"></Radio>
-                <Radio label="菲律宾" value="l"></Radio>
+                <Radio value="c">
+                    中国
+                </Radio>
+                <Radio value="f">
+                    非洲
+                </Radio>
+                <Radio value="l">
+                    菲律宾
+                </Radio>
             </RadioGroup>
         `,
         data: function () {
@@ -135,21 +183,39 @@
         template: `
             <div>
                 <RadioGroup size="large" button name="country" model="value">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup button name="country" model="value">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup size="small" button name="country" model="value">
-                    <Radio label="中国" value="china"></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
             </div>
         `,
@@ -166,27 +232,51 @@
         template: `
             <div>
                 <RadioGroup type="success" button name="country" model="value">
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="warning" button name="country" model="value">
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="error" button name="country" model="value">
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
                 <br><br>
                 <RadioGroup type="info" button name="country" model="value">
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
             </div>
         `,
@@ -203,9 +293,15 @@
         template: `
             <div>
                 <RadioGroup button name="country" model="value" disabled>
-                    <Radio label="中国" value="china" checked></Radio>
-                    <Radio label="非洲" value="feizhou"></Radio>
-                    <Radio label="其他" value="other"></Radio>
+                    <Radio value="china">
+                        中国
+                    </Radio>
+                    <Radio value="feizhou">
+                        非洲
+                    </Radio>
+                    <Radio value="other">
+                        其他
+                    </Radio>
                 </RadioGroup>
             </div>
         `,
@@ -225,9 +321,7 @@ Radio
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-label | label | string | - | -
 value | value | string | - | -
-size | 大小 | string | small, large, - | -
 disabled | 是否禁用 | boolean | - | false
 checked | 是否选中 | boolean | - | false
 
@@ -237,8 +331,18 @@ RadioGroup
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+name | 当前选中 tab 的 value 值 | string | - | -
 model | 选中值 | string | - | -
+size | 大小（仅 button 时有效） | string | small, large, - | -
 type | 风格 | string | success, info, warning, error | -
 disabled | 是否禁用 | boolean | - | false
 checked | 是否选中 | boolean | - | false
 vertical | 是否垂直排列，按钮样式下无效 | boolean | - | false
+button | 按钮形式 | boolean | - | false
+
+> Events
+
+事件名称 | 说明 | 回调参数
+---|---|---
+change | 值发生改变的时候回调 | value
+

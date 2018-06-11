@@ -1130,7 +1130,7 @@ var Radio = {
             type: 'string'
         },
         value: {
-            type: ['numeric', 'boolean']
+            type: ['numeric', 'boolean', 'string']
         },
         disabled: {
             type: ['numeric', 'boolean']
@@ -1176,10 +1176,6 @@ var Radio = {
             if (me.get('isDisabled')) {
                 return;
             }
-            var isChecked = me.get('isChecked');
-            me.set({
-                isChecked: !isChecked
-            });
             me.fire('radioValueChange', {
                 value: me.get('value')
             });
@@ -1190,7 +1186,7 @@ var Radio = {
 
 var RadioGroup = {
 
-    template: '\n        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group-wrapper{{/if}}\n            {{#if type}} bell-radio-group-{{type}}{{/if}}\n            {{#if size}} bell-radio-group-{{size}}{{/if}}\n            {{#if disabled}} bell-radio-group-disabled{{/if}}\n            {{#if vertical}} bell-radio-vertical{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+    template: '\n        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}\n            {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}\n            {{#if size && button}} bell-radio-button-{{size}}{{/if}}\n            {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}\n            {{#if vertical}} bell-radio-vertical{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
 
     propTypes: {
         className: {
@@ -1206,22 +1202,19 @@ var RadioGroup = {
             type: 'numeric'
         },
         size: {
-            type: 'numeric'
+            type: 'string'
         },
         type: {
             type: 'string'
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         vertical: {
-            type: ['string', 'boolean']
+            type: ['numeric', 'boolean']
         },
         button: {
-            type: ['string', 'boolean']
-        },
-        onChange: {
-            type: 'function'
+            type: ['numeric', 'boolean']
         }
     },
 
@@ -1231,7 +1224,11 @@ var RadioGroup = {
             me.set({
                 value: data.value
             });
-            me.get('onChange') && me.get('onChange')(data.value);
+
+            me.fire('change', {
+                value: data.value
+            });
+
             me.fire('updateRadioValue', {
                 value: data.value
             }, true);
