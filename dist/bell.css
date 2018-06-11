@@ -2823,7 +2823,8 @@ button.bell-button {
   border-color: #6392e5;
 }
 .bell-button.focus,
-.bell-button:focus {
+.bell-button:focus,
+.bell-button.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(99,146,229,0.2);
 }
@@ -2853,7 +2854,8 @@ button.bell-button {
   border-color: #6392e5;
 }
 .bell-button.ghost.focus,
-.bell-button.ghost:focus {
+.bell-button.ghost:focus,
+.bell-button.ghost.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(99,146,229,0.2);
 }
@@ -2883,7 +2885,8 @@ button.bell-button {
   border-color: 1px dashed #6392e5;
 }
 .bell-button.dashed.focus,
-.bell-button.dashed:focus {
+.bell-button.dashed:focus,
+.bell-button.dashed.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(99,146,229,0.2);
 }
@@ -2913,7 +2916,8 @@ button.bell-button {
   border-color: transparent;
 }
 .bell-button.text.focus,
-.bell-button.text:focus {
+.bell-button.text:focus,
+.bell-button.text.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px transparent;
 }
@@ -2943,7 +2947,8 @@ button.bell-button {
   border-color: #7fa6ea;
 }
 .bell-button.primary.focus,
-.bell-button.primary:focus {
+.bell-button.primary:focus,
+.bell-button.primary.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(127,166,234,0.2);
 }
@@ -2973,7 +2978,8 @@ button.bell-button {
   border-color: #4bd582;
 }
 .bell-button.success.focus,
-.bell-button.success:focus {
+.bell-button.success:focus,
+.bell-button.success.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(75,213,130,0.2);
 }
@@ -3003,7 +3009,8 @@ button.bell-button {
   border-color: #fd686b;
 }
 .bell-button.error.focus,
-.bell-button.error:focus {
+.bell-button.error:focus,
+.bell-button.error.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(253,104,107,0.2);
 }
@@ -3033,7 +3040,8 @@ button.bell-button {
   border-color: #8fb2ed;
 }
 .bell-button.info.focus,
-.bell-button.info:focus {
+.bell-button.info:focus,
+.bell-button.info.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(143,178,237,0.2);
 }
@@ -3063,7 +3071,8 @@ button.bell-button {
   border-color: #fed05f;
 }
 .bell-button.warning.focus,
-.bell-button.warning:focus {
+.bell-button.warning:focus,
+.bell-button.warning.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(254,208,95,0.2);
 }
@@ -3093,7 +3102,8 @@ button.bell-button {
   border-color: #ee3737;
 }
 .bell-button.danger.focus,
-.bell-button.danger:focus {
+.bell-button.danger:focus,
+.bell-button.danger.bell-focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(238,55,55,0.2);
 }
@@ -3758,91 +3768,241 @@ button.bell-button {
   color: #d2d2d2;
 }
 .bell-input-number {
-  position: relative;
-  display: inline-block;
   cursor: text;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
-  font-size: 12px;
+  box-sizing: content-box;
   border-radius: 4px;
-  color: #495060;
-  background-color: #fff;
-  border: 1px solid #dddee1;
+  display: inline-block;
+  border: 1px solid;
+  user-select: none;
+  font-size: 12px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .bell-input-number {
   width: 80px;
   height: 32px;
 }
 .bell-input-number .bell-input-number-wrapper {
-  padding: 4px 8px;
+  height: 32px;
+  padding: 0 34px 0 10px;
+}
+.bell-input-number .bell-input-number-actions {
+  width: 23px;
+  margin-left: -24px;
+  height: 32px;
 }
 .bell-input-number .bell-input-number-actions .bell-icon {
-  line-height: 1.2;
+  width: 23px;
+  height: 16px;
+  line-height: 16px;
 }
 .bell-input-number-small {
   width: 80px;
   height: 24px;
 }
 .bell-input-number-small .bell-input-number-wrapper {
-  padding: 2px 6px;
+  height: 24px;
+  padding: 0 34px 0 10px;
+}
+.bell-input-number-small .bell-input-number-actions {
+  width: 23px;
+  margin-left: -24px;
+  height: 24px;
 }
 .bell-input-number-small .bell-input-number-actions .bell-icon {
-  line-height: 1;
+  width: 23px;
+  height: 12px;
+  line-height: 12px;
 }
 .bell-input-number-large {
   width: 80px;
   height: 36px;
 }
 .bell-input-number-large .bell-input-number-wrapper {
-  padding: 6px 8px;
+  height: 36px;
+  padding: 0 34px 0 10px;
+}
+.bell-input-number-large .bell-input-number-actions {
+  width: 23px;
+  margin-left: -24px;
+  height: 36px;
 }
 .bell-input-number-large .bell-input-number-actions .bell-icon {
-  line-height: 1.2;
+  width: 23px;
+  height: 18px;
+  line-height: 18px;
 }
-.bell-input-number +.bell-input-number {
-  margin-left: 10px;
+.bell-input-number {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
 }
 .bell-input-number.bell-input-number.hover,
 .bell-input-number:hover {
-  border-color: #6392e5;
+  border-color: #7fa6ea;
 }
-.bell-input-number.bell-input-number.hover .bell-input-number-actions,
-.bell-input-number:hover .bell-input-number-actions {
-  opacity: 1;
-}
-.bell-input-number .bell-input-number-actions {
-  height: 100%;
-  float: right;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  opacity: 0;
-  width: 24px;
-}
-.bell-input-number .bell-input-number-actions .bell-icon {
-  display: inline-block;
-  width: 100%;
-  height: 50%;
-  text-align: center;
-  font-weight: 700;
-  border-left: 1px solid #ccc;
-}
-.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled,
-.bell-input-number .bell-input-number-actions .bell-icon[disabled] {
-  color: #ccc;
-  cursor: not-allowed;
-}
-.bell-input-number .bell-input-number-actions .bell-icon + .bell-icon {
-  border-top: 1px solid #ccc;
+.bell-input-number.bell-input-number.focus,
+.bell-input-number:focus,
+.bell-input-number.bell-focus {
+  box-shadow: 0 0 0 2px #cde6fe;
 }
 .bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.hover,
 .bell-input-number .bell-input-number-actions .bell-icon:hover {
   color: #7fa6ea;
 }
+.bell-input-number-success {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
+}
+.bell-input-number-success.bell-input-number-success.hover,
+.bell-input-number-success:hover {
+  border-color: #4bd582;
+}
+.bell-input-number-success.bell-input-number-success.focus,
+.bell-input-number-success:focus,
+.bell-input-number-success.bell-focus {
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-input-number-success .bell-input-number-actions .bell-icon.bell-input-number-success .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-success .bell-input-number-actions .bell-icon:hover {
+  color: #4bd582;
+}
+.bell-input-number-error {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
+}
+.bell-input-number-error.bell-input-number-error.hover,
+.bell-input-number-error:hover {
+  border-color: #fd686b;
+}
+.bell-input-number-error.bell-input-number-error.focus,
+.bell-input-number-error:focus,
+.bell-input-number-error.bell-focus {
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-input-number-error .bell-input-number-actions .bell-icon.bell-input-number-error .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-error .bell-input-number-actions .bell-icon:hover {
+  color: #fd686b;
+}
+.bell-input-number-info {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
+}
+.bell-input-number-info.bell-input-number-info.hover,
+.bell-input-number-info:hover {
+  border-color: #8fb2ed;
+}
+.bell-input-number-info.bell-input-number-info.focus,
+.bell-input-number-info:focus,
+.bell-input-number-info.bell-focus {
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-input-number-info .bell-input-number-actions .bell-icon.bell-input-number-info .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-info .bell-input-number-actions .bell-icon:hover {
+  color: #8fb2ed;
+}
+.bell-input-number-warning {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
+}
+.bell-input-number-warning.bell-input-number-warning.hover,
+.bell-input-number-warning:hover {
+  border-color: #fed05f;
+}
+.bell-input-number-warning.bell-input-number-warning.focus,
+.bell-input-number-warning:focus,
+.bell-input-number-warning.bell-focus {
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-input-number-warning .bell-input-number-actions .bell-icon.bell-input-number-warning .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-warning .bell-input-number-actions .bell-icon:hover {
+  color: #fed05f;
+}
+.bell-input-number-danger {
+  border-color: #ccc;
+  color: rgba(0,0,0,0.54);
+  background-color: #fff;
+}
+.bell-input-number-danger.bell-input-number-danger.hover,
+.bell-input-number-danger:hover {
+  border-color: #ee3737;
+}
+.bell-input-number-danger.bell-input-number-danger.focus,
+.bell-input-number-danger:focus,
+.bell-input-number-danger.bell-focus {
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-input-number-danger .bell-input-number-actions .bell-icon.bell-input-number-danger .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-danger .bell-input-number-actions .bell-icon:hover {
+  color: #ee3737;
+}
+.bell-input-number-disabled {
+  border-color: #dddee1;
+  color: rgba(0,0,0,0.37);
+  background-color: #f7f7f7;
+}
+.bell-input-number-disabled.bell-input-number-disabled.hover,
+.bell-input-number-disabled:hover {
+  border-color: #dddee1;
+}
+.bell-input-number-disabled.bell-input-number-disabled.focus,
+.bell-input-number-disabled:focus,
+.bell-input-number-disabled.bell-focus {
+  box-shadow: 0 0 0 2px $brand-disabled-box-shadow-color;
+}
+.bell-input-number-disabled .bell-input-number-actions .bell-icon.bell-input-number-disabled .bell-input-number-actions .bell-icon.hover,
+.bell-input-number-disabled .bell-input-number-actions .bell-icon:hover {
+  color: #dddee1;
+}
+.bell-input-number +.bell-input-number {
+  margin-left: 10px;
+}
+.bell-input-number.bell-input-number.hover .bell-input-number-actions,
+.bell-input-number:hover .bell-input-number-actions {
+  opacity: 1;
+}
+.bell-input-number.bell-input-number.focus,
+.bell-input-number:focus,
+.bell-input-number.bell-focus {
+  outline: none;
+}
+.bell-input-number .bell-input-number-actions {
+  position: absolute;
+  cursor: pointer;
+  font-size: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-left: 1px solid #dddee1;
+}
+.bell-input-number .bell-input-number-actions .bell-icon {
+  display: inline-block;
+  text-align: center;
+  font-weight: 700;
+  transition: color 0.3s;
+  font-size: 12px;
+}
+.bell-input-number .bell-input-number-actions .bell-icon + .bell-icon {
+  border-top: 1px solid #dddee1;
+}
+.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled,
+.bell-input-number .bell-input-number-actions .bell-icon[disabled] {
+  color: #dddee1;
+  cursor: not-allowed;
+}
+.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled.hover,
+.bell-input-number .bell-input-number-actions .bell-icon[disabled].bell-input-number .bell-input-number-actions .bell-icon[disabled].hover,
+.bell-input-number .bell-input-number-actions .bell-icon.bell-input-number .bell-input-number-actions .bell-icon.disabled:hover,
+.bell-input-number .bell-input-number-actions .bell-icon[disabled]:hover {
+  color: #dddee1;
+}
 .bell-input-number .bell-input-number-wrapper {
   overflow: hidden;
-  height: 100%;
+  box-sizing: content-box;
+  display: inline-block;
 }
 .bell-input-number .bell-input-number-wrapper .bell-input {
   outline: none;
@@ -3850,21 +4010,16 @@ button.bell-button {
   width: 100%;
   height: 100%;
   text-align: left;
+  background-color: inherit;
+}
+.bell-input-number-disabled {
+  cursor: not-allowed;
+}
+.bell-input-number-disabled .bell-input-number-actions {
+  display: none;
 }
 .bell-input-number-disabled .bell-input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   cursor: not-allowed;
-  background-color: #f7f7f7;
-  color: #ccc;
-  padding-left: 8px;
-}
-.bell-input-number-disabled.bell-input-number-disabled.hover,
-.bell-input-number-disabled:hover {
-  border-color: #dddee1;
 }
 .bell-input-number-readonly .bell-input-number-actions {
   display: none;

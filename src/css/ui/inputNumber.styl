@@ -1,0 +1,95 @@
+{$selector-input-number}
+
+    cursor text
+    overflow hidden
+    box-sizing content-box
+    border-radius $radius-base
+    display inline-block
+    border 1px solid
+    user-select none
+    font-size $input-number-font-size
+    transition border-color .3s, box-shadow .3s
+
+    ui-input-number()
+
+    +{$selector-input-number}
+
+        margin-left $input-number-margin-left
+
+    &{$selector-hover}
+
+        {$selector-input-number-actions}
+
+            opacity 1
+
+    &{$selector-focus}
+
+        outline none
+
+    {$selector-input-number-actions}
+
+        position absolute
+        cursor pointer
+        font-size 0
+        opacity 0
+        transition opacity .3s
+        border-left 1px solid $brand-border-disabled
+
+        {$selector-icon}
+
+            display inline-block
+            text-align center
+            font-weight 700
+            transition color .3s
+            font-size $input-number-font-size
+
+            + {$selector-icon}
+
+                border-top 1px solid $brand-border-disabled
+
+            &{$selector-disabled}
+
+                color $brand-border-disabled
+                cursor $cursor-disabled
+
+                &{$selector-hover}
+
+                    color $brand-border-disabled
+
+    {$selector-input-number-wrapper}
+
+        overflow hidden
+        box-sizing content-box
+        display inline-block
+
+        {$selector-input}
+
+            outline none
+            border none
+            width 100%
+            height 100%
+            text-align left
+            background-color inherit
+
+{$selector-input-number}-disabled
+
+    cursor $cursor-disabled
+
+    {$selector-input-number-actions}
+
+        display none
+
+    {$selector-input}
+
+        cursor $cursor-disabled
+
+{$selector-input-number}-readonly
+
+    {$selector-input-number}-actions
+
+        display none
+
+    &{$selector-hover}
+
+        border-color @input-number-border-color
+

@@ -9,14 +9,14 @@
         }
     }
 
-> step 修改步值
+> step 修改步值（这里暂时不支持小数）
 
     export default {
         template: `
-            <InputNumber maxValue="10" minValue="1" model="value" step="10"></InputNumber>
+            <InputNumber maxValue="100" minValue="1" model="value" step="3"></InputNumber>
         `,
         data: {
-            value: 34
+            value: 3
         }
     }
 
@@ -32,6 +32,21 @@
         `,
         data: {
             value: 34
+        }
+    }
+
+> status 修改颜色风格
+
+    export default {
+        template: `
+            <div>
+                <InputNumber maxValue="10" minValue="1" model="value"></InputNumber>
+                <InputNumber status="error" maxValue="10" minValue="1" model="value"></InputNumber>
+                <InputNumber status="success" maxValue="10" minValue="1" model="value"></InputNumber>
+            </div>
+        `,
+        data: {
+            value: 3
         }
     }
 
@@ -55,9 +70,24 @@
     export default {
         template: `
             <div>
-                <InputNumber size="large" editable minValue="1" model="value"></InputNumber>
-                <InputNumber editable minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" editable minValue="1" model="value"></InputNumber>
+                <InputNumber size="large" editable="false" minValue="1" model="value"></InputNumber>
+                <InputNumber editable="false" minValue="1" model="value"></InputNumber>
+                <InputNumber size="small" editable="false" minValue="1" model="value"></InputNumber>
+            </div>
+        `,
+        data: {
+            value: 34
+        }
+    }
+
+> readonly 只读。
+
+    export default {
+        template: `
+            <div>
+                <InputNumber size="large" readonly minValue="1" model="value"></InputNumber>
+                <InputNumber readonly minValue="1" model="value"></InputNumber>
+                <InputNumber size="small" readonly minValue="1" model="value"></InputNumber>
             </div>
         `,
         data: {
@@ -75,9 +105,11 @@ maxValue | 最大值 | number | - | -
 minValue | 最小值 | number | - | -
 model | 当前值 | number | - | -
 step | 每次改变的步伐，可以是小数 | number | - | 1
-size | 风格 | 输入框尺寸 | large, small, default | default
-disabled | 是否禁用 | string， boolean | - | false
-editable | 是否可编辑 | string， boolean | - | true
+size | 风格 | string | large, small, default | default
+status | 颜色风格 | string | info等 | primary
+disabled | 是否禁用 | boolean | - | false
+editable | 是否可编辑 | boolean | - | true
+readonly | 是否开启只读 | boolean | - | true
 
 > Events
 

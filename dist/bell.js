@@ -1020,7 +1020,7 @@ var Input = {
 };
 
 var InputNumber = {
-    template: '\n        <div class="bell-input-number\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-number-{{size}}{{/if}}\n            {{#if disabled}} bell-input-number-disabled{{/if}}\n            {{#if readonly}} bell-input-number-readonly{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-ios-arrow-up"\n                    {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                    on-click="up()"></span>\n                <span class="bell-icon bell-icon-ios-arrow-down"\n                    {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                    on-click="down()"\n                ></span>\n            </div>\n\n            <div class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </div>\n\n        </div>\n    ',
+    template: '\n        <div class="bell-input-number\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-number-{{size}}{{/if}}\n            {{#if status}} bell-input-number-{{status}}{{/if}}\n            {{#if disabled}} bell-input-number-disabled{{/if}}\n            {{#if readonly}} bell-input-number-readonly{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <span class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </span>\n\n            <span class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-up bell-icon-ios-arrow-up"\n                    {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                    on-click="up()"></span>\n                <span class="bell-icon bell-icon-down bell-icon-ios-arrow-down"\n                    {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                    on-click="down()"\n                ></span>\n            </span>\n\n        </div>\n    ',
     propTypes: {
         className: {
             type: 'string'
@@ -1028,11 +1028,15 @@ var InputNumber = {
         style: {
             type: 'string'
         },
+        status: {
+            type: 'string'
+        },
         maxValue: {
             type: 'numeric'
         },
         minValue: {
-            type: 'numeric'
+            type: 'numeric',
+            value: 0
         },
         value: {
             type: 'numeric',
@@ -1046,14 +1050,37 @@ var InputNumber = {
             type: 'string'
         },
         readonly: {
-            type: 'boolean',
+            type: ['numeric', 'boolean'],
             value: false
         },
         disabled: {
             type: ['numeric', 'boolean']
         },
         editable: {
-            type: ['numeric', 'boolean']
+            type: ['numeric', 'boolean'],
+            value: true
+        }
+    },
+
+    data: function data() {
+        return {
+            isFocus: false
+        };
+    },
+
+
+    watchers: {
+        value: function value(val) {
+            var me = this;
+            if (!Yox.is.numeric(val)) {
+                me.set({
+                    value: me.get('minValue')
+                });
+                return;
+            }
+            me.fire('change', {
+                value: val
+            });
         }
     },
 
@@ -1073,9 +1100,17 @@ var InputNumber = {
             });
         },
         blur: function blur() {
-            this.fire('blur');
+            var me = this;
+            me.set({
+                isFocus: false
+            });
+            me.fire('blur');
         },
         focus: function focus() {
+            var me = this;
+            me.set({
+                isFocus: true
+            });
             this.fire('focus');
         }
     }

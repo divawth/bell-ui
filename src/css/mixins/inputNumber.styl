@@ -1,0 +1,56 @@
+input-number-style(style)
+
+    ui-set('width', style['width']);
+    ui-set('height', style['height']);
+
+    {$selector-input-number-wrapper}
+
+        ui-set('height', style['height']);
+        ui-set('padding', style['padding']);
+
+    {$selector-input-number-actions}
+
+        ui-set('width', style['actions-width'] - 1);
+        ui-set('margin-left', - + style['actions-width']);
+        ui-set('height', style['height']);
+
+        {$selector-icon}
+
+            ui-set('width', style['actions-width'] - 1);
+            ui-set('height', style['height'] / 2);
+            ui-set('line-height', style['height'] / 2);
+
+input-number-color(color)
+
+    ui-set('border-color', color['border-color']);
+    ui-set('color', color['color']);
+    ui-set('background-color', color['bg-color']);
+
+    &{$selector-hover}
+
+        ui-set('border-color', color['border-color-hover']);
+
+    &{$selector-focus}
+
+        ui-set('box-shadow', color['box-shadow']);
+
+    {$selector-input-number-actions}
+
+        {$selector-icon}
+
+            &{$selector-hover}
+
+                ui-set('color', color['border-color-hover']);
+
+
+ui-input-number()
+
+    ui-connect(
+        hash: $input-number-hash,
+        each: input-number-style
+    );
+    ui-connect(
+        hash: $input-number-color-hash,
+        each: input-number-color
+    )
+
