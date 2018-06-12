@@ -1,59 +1,59 @@
-$selector-checkbox = '.bell-checkbox'
-$selector-checkbox-inner = '.bell-checkbox-inner'
-$selector-checkbox-input = '.bell-checkbox-input'
+$selector-checkbox = $selector-prefix + '-checkbox'
+$selector-checkbox-inner = $selector-prefix + '-checkbox-inner'
+$selector-checkbox-input = $selector-prefix + '-checkbox-input'
 
 $checkbox-font-size = 12px;
-$checkbox-margin-left = 8px;
-$checkbox-label-margin-left = 6px;
-$checkbox-inner-width = 14px;
-$checkbox-inner-border-radius = 2px;
-$checkbox-inner-after-width = 6px;
-$checkbox-inner-after-height = 9px;
-
-$checkbox-inner-border-color = #dddee1;
-$checkbox-inner-background-color = #fff;
-
-$checkbox-disabled-background-color = #f3f3f3;
-$checkbox-disabled-border-color = #f3f3f3;
-$checkbox-disabled-color = #ccc;
-
-$checkbox-background-color = $brand-primary;
-$checkbox-border-color = $brand-primary;
-$checkbox-success-background-color = $brand-success;
-$checkbox-success-border-color = $brand-success;
-$checkbox-error-background-color = $brand-error;
-$checkbox-error-border-color = $brand-error;
-$checkbox-warning-background-color = $brand-warning;
-$checkbox-warning-border-color = $brand-warning;
-$checkbox-info-background-color = $brand-info;
-$checkbox-info-border-color = $brand-info;
-$checkbox-danger-background-color = $brand-danger;
-$checkbox-danger-border-color = $brand-danger;
-
+$checkbox-gap = 8px;
+$checkbox-inner-size = 14px;
 
 $checkbox-brand-hash = {
     '': {
-        border-color: $checkbox-border-color,
-        bg-color: $checkbox-background-color
+        color-active: $brand-primary,
+        bg-color-active: $brand-primary,
+        color-hover: $brand-primary,
+        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color,
+        color: $brand-main
     },
     'success': {
-        border-color: $checkbox-success-border-color,
-        bg-color: $checkbox-success-background-color
+        color-active: $brand-success,
+        bg-color-active: $brand-success,
+        color-hover: $brand-success,
+        box-shadow: 0 0 0 2px $brand-success-box-shadow-color,
+        color: $brand-main
     },
     'info': {
-        border-color: $checkbox-info-border-color,
-        bg-color: $checkbox-info-background-color
+        color-active: $brand-info,
+        bg-color-active: $brand-info,
+        color-hover: $brand-info,
+        box-shadow: 0 0 0 2px $brand-info-box-shadow-color,
+        color: $brand-main
     },
     'error': {
-        border-color: $checkbox-error-border-color,
-        bg-color: $checkbox-error-background-color
+        color-active: $brand-error,
+        bg-color-active: $brand-error,
+        color-hover: $brand-error,
+        box-shadow: 0 0 0 2px $brand-error-box-shadow-color,
+        color: $brand-main
     },
     'warning': {
-        border-color: $checkbox-warning-border-color,
-        bg-color: $checkbox-warning-background-color
+        color-active: $brand-warning,
+        bg-color-active: $brand-warning,
+        color-hover: $brand-warning,
+        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color,
+        color: $brand-main
     },
     'danger': {
-        border-color: $checkbox-danger-border-color,
-        bg-color: $checkbox-danger-background-color
+        color-active: $brand-danger,
+        bg-color-active: $brand-danger,
+        color-hover: $brand-danger,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color,
+        color: $brand-main
+    },
+    'disabled': {
+        color-active: $brand-border-disabled,
+        color-hover: $brand-border-disabled,
+        bg-color-active: $brand-border-disabled,
+        box-shadow: none,
+        color: #ccc
     }
-}
+};

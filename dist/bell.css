@@ -4416,51 +4416,117 @@ button.bell-button {
   user-select: none;
   display: inline-block;
   cursor: pointer;
-  font-size: 12px;
+  position: relative;
+}
+.bell-checkbox {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #6392e5;
+  color: #6392e5;
   background-color: #6392e5;
+  box-shadow: 0 0 0 2px #cde6fe;
+}
+.bell-checkbox.bell-checkbox.hover .bell-checkbox-inner,
+.bell-checkbox:hover .bell-checkbox-inner {
+  color: #6392e5;
+  background-color: ;
+}
+.bell-checkbox-success {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox-success .bell-checkbox-wrapper.bell-checkbox-success .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #28cd6a;
+  color: #28cd6a;
   background-color: #28cd6a;
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-checkbox-success.bell-checkbox-success.hover .bell-checkbox-inner,
+.bell-checkbox-success:hover .bell-checkbox-inner {
+  color: #28cd6a;
+  background-color: ;
+}
+.bell-checkbox-info {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox-info .bell-checkbox-wrapper.bell-checkbox-info .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox-info .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #7aa3e9;
+  color: #7aa3e9;
   background-color: #7aa3e9;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-checkbox-info.bell-checkbox-info.hover .bell-checkbox-inner,
+.bell-checkbox-info:hover .bell-checkbox-inner {
+  color: #7aa3e9;
+  background-color: ;
+}
+.bell-checkbox-error {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox-error .bell-checkbox-wrapper.bell-checkbox-error .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #fc4b4e;
+  color: #fc4b4e;
   background-color: #fc4b4e;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-checkbox-error.bell-checkbox-error.hover .bell-checkbox-inner,
+.bell-checkbox-error:hover .bell-checkbox-inner {
+  color: #fc4b4e;
+  background-color: ;
+}
+.bell-checkbox-warning {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox-warning .bell-checkbox-wrapper.bell-checkbox-warning .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #fec740;
+  color: #fec740;
   background-color: #fec740;
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-checkbox-warning.bell-checkbox-warning.hover .bell-checkbox-inner,
+.bell-checkbox-warning:hover .bell-checkbox-inner {
+  color: #fec740;
+  background-color: ;
+}
+.bell-checkbox-danger {
+  color: rgba(0,0,0,0.87);
 }
 .bell-checkbox-danger .bell-checkbox-wrapper.bell-checkbox-danger .bell-checkbox-wrapper.active .bell-checkbox-inner,
 .bell-checkbox-danger .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #eb1111;
+  color: #eb1111;
   background-color: #eb1111;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-checkbox-danger.bell-checkbox-danger.hover .bell-checkbox-inner,
+.bell-checkbox-danger:hover .bell-checkbox-inner {
+  color: #eb1111;
+  background-color: ;
+}
+.bell-checkbox-disabled {
+  color: #ccc;
+}
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner,
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+  color: #dddee1;
+  background-color: #dddee1;
+  box-shadow: none;
+}
+.bell-checkbox-disabled.bell-checkbox-disabled.hover .bell-checkbox-inner,
+.bell-checkbox-disabled:hover .bell-checkbox-inner {
+  color: #dddee1;
+  background-color: ;
 }
 .bell-checkbox + .bell-checkbox {
   margin-left: 8px;
 }
 .bell-checkbox .bell-checkbox-wrapper {
-  display: inline-block;
-  vertical-align: middle;
+  position: absolute;
   white-space: nowrap;
   cursor: pointer;
   outline: 0;
-  line-height: 1;
-  position: relative;
   width: 14px;
   height: 14px;
+  margin-top: 2px;
 }
 .bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner:after,
 .bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
@@ -4468,63 +4534,50 @@ button.bell-button {
 }
 .bell-checkbox .bell-checkbox-inner {
   display: inline-block;
-  position: relative;
   width: 14px;
   height: 14px;
   border-radius: 2px;
-  border: 1px solid #dddee1;
-  background-color: #fff;
-  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  border: 1px solid #eee;
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 .bell-checkbox .bell-checkbox-inner:after {
   display: inline-block;
   content: " ";
   position: absolute;
-  top: 0px;
-  left: 3px;
-  width: 6px;
-  height: 9px;
+  top: 3px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
   border: 2px solid #fff;
-  transform: rotate(45deg) scale(0);
-  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
   border-top: 0;
   border-left: 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.3s;
 }
 .bell-checkbox .bell-checkbox-input {
+  opacity: 0;
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
-  cursor: pointer;
-  opacity: 0;
-  margin: 0;
+  right: 0;
+  bottom: 0;
 }
 .bell-checkbox .bell-checkbox-label {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 6px;
+  font-size: 12px;
+  line-height: 12px;
+  padding-left: 22px;
 }
 .bell-checkbox-disabled {
   cursor: not-allowed;
-  color: #ccc;
 }
 .bell-checkbox-disabled .bell-checkbox-wrapper {
   cursor: not-allowed;
 }
 .bell-checkbox-disabled .bell-checkbox-wrapper .bell-checkbox-inner {
   cursor: not-allowed;
-  background-color: #f3f3f3;
-}
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
-  border-color: #f3f3f3;
-  background-color: #f3f3f3;
-}
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner:after,
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
-  border-color: #ccc;
 }
 .bell-checkbox-disabled .bell-checkbox-label {
   cursor: not-allowed;

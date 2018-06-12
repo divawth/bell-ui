@@ -31,26 +31,28 @@ export default {
             }
         },
         size: {
-            type: 'numeric'
+            type: 'string'
         },
         type: {
             type: 'string'
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['string', 'numeric', 'boolean']
         },
         vertical: {
-            type: ['string', 'boolean']
-        },
-        onChange: {
-            type: 'function'
+            type: ['string', 'numeric', 'boolean']
         }
     },
 
     events: {
-        updateCheckbox(events, data) {
+        change(events, data) {
             let me = this;
-            let result = Yox.is.array(me.get('modelValue')) ? me.get('modelValue') : [];
+            if (events.target == me) {
+                return;
+            }
+            events.stop();
+
+            let result = Yox.is.array(me.get('modelValue')) ? me.copy(me.get('modelValue')) : [];
             if (data.isChecked) {
                 if (Yox.array.indexOf(result, data.value) === -1) {
                     result.push(data.value);
@@ -63,7 +65,9 @@ export default {
             me.set({
                 modelValue: result
             });
-            me.get('onChange') && me.get('onChange')(result);
+            me.fire('change', {
+                value: result
+            });
         }
     },
     watchers: {

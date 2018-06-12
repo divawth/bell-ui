@@ -1,11 +1,26 @@
 checkbox-style(style)
+
+    ui-set('color', style['color'])
+
     {$selector-checkbox}-wrapper
+
         &{$selector-active}
+
             {$selector-checkbox}-inner
-                ui-set('border-color', style['border-color'])
-                ui-set('background-color', style['bg-color'])
+
+                ui-set('color', style['color-active'])
+                ui-set('background-color', style['bg-color-active'])
+                ui-set('box-shadow', style['box-shadow'])
+
+    &{$selector-hover}
+
+        {$selector-checkbox}-inner
+
+            ui-set('color', style['color-hover'])
+            ui-set('background-color', style['bg-color'])
 
 ui-checkbox()
+
     ui-connect(
         hash: $checkbox-brand-hash,
         each: checkbox-style

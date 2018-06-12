@@ -48,22 +48,19 @@ export default {
             type: ['numeric', 'boolean']
         },
         value: {
-            type: ['numeric', 'boolean']
+            type: ['string', 'numeric', 'boolean']
         },
         disabled: {
-            type: ['string', 'boolean']
+            type: ['string', 'numeric', 'boolean']
         },
         checked: {
-            type: ['string', 'boolean']
+            type: ['string', 'numeric', 'boolean']
         },
         type: {
             type: 'string'
         },
         size: {
             type: 'string'
-        },
-        onChange: {
-            type: 'function'
         }
     },
 
@@ -83,17 +80,14 @@ export default {
                 isChecked: isChecked,
                 modelValue: isChecked
             });
-            me.get('onChange') && me.get('onChange')(isChecked);
         },
         updateCheckboxType(event, data) {
-            let me = this;
-            me.set({
+            this.set({
                 type: data.type
             });
         },
         updateCheckboxDisabled(event, data) {
-            let me = this;
-            me.set({
+            this.set({
                 disabled: data.disabled
             });
         }
@@ -115,7 +109,7 @@ export default {
             }
             let isChecked = me.get('isChecked');
             me.fire(
-                'updateCheckbox',
+                'change',
                 {
                     isChecked: !isChecked,
                     value: me.get('value')
@@ -125,7 +119,6 @@ export default {
                 isChecked: !isChecked,
                 modelValue: !isChecked
             });
-            me.get('onChange') && me.get('onChange')(!isChecked);
         }
     }
 };

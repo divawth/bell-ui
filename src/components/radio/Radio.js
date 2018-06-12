@@ -80,6 +80,7 @@ export default {
             if (me.get('isDisabled')) {
                 return;
             }
+
             me.fire(
                 'radioValueChange',
                 {
