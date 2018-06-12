@@ -2,14 +2,15 @@
 
     export default {
         template: `
-            <Switch model="single" onChange="{{onChange}}">
-            </Switch>
+            <div>
+                <Switch model="single" on-change="change()">
+                </Switch>
+                <p class="bell-text">{{single}}</p>
+            </div>
         `,
-        data: function () {
-            return {
-                onChange: function (value) {
-                    console.log(value);
-                }
+        methods: {
+            change: function (events, data) {
+                console.log(data.isChecked);
             }
         }
     }
@@ -31,6 +32,7 @@
     export default {
         template: `
             <div>
+                <Switch></Switch>
                 <Switch type="info"></Switch>
                 <Switch type="success"></Switch>
                 <Switch type="warning"></Switch>
@@ -46,21 +48,26 @@
     export default {
         template: `
             <div>
-                <Switch type="info" onLabel="开" offLabel="关">
+                <Switch type="info">
+                    <template slot="checkedText">开</template>
+                    <template slot="unCheckedText">关</template>
                 </Switch>
-                <Switch size="large" type="info" onLabel="开" offLabel="关">
+                <Switch size="large" type="info">
+                    <template slot="checkedText">开</template>
+                    <template slot="unCheckedText">关</template>
                 </Switch>
                 <br><br>
-                <Switch size="large" type="info" onLabel="开启" offLabel="关闭">
+                <Switch size="large" type="info">
+                    <template slot="checkedText">开启</template>
+                    <template slot="unCheckedText">关闭</template>
                 </Switch>
-
                 <Switch type="success">
-                    <span class="bell-switch-on">开</span>
-                    <span class="bell-switch-off">关</span>
+                    <template slot="checkedText">开</template>
+                    <template slot="unCheckedText">关</template>
                 </Switch>
                 <Switch size="large" type="warning">
-                    <span class="bell-switch-on">ON</span>
-                    <span class="bell-switch-off">OFF</span>
+                    <template slot="checkedText">ON</template>
+                    <template slot="unCheckedText">OFF</template>
                 </Switch>
                 <Switch type="error"></Switch>
             </div>
@@ -103,14 +110,19 @@ Switch
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 model | 选中值 | string, boolean | - | -
-onLabel | 选项选中描述话术 | string | - | -
-offLabel | 选项非选中时描述话术 | string | - | -
 type | 风格 | string | success, info, warning, error | -
-disabled | 是否禁用 | string， boolean | - | false
-checked | 是否选中 | string， boolean | - | -
+disabled | 是否禁用 | boolean | - | false
+checked | 是否选中 | boolean | - | -
+
+> Slots
+
+参数 | 说明
+---|---
+prepend | 自定义选中时的内容
+append | 自定义未选中时的内容
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onChange | 值变化的时候回调 | value
+change | 值变化的时候回调 | value

@@ -1,88 +1,88 @@
-$selector-switch = '.bell-switch'
-$selector-switch-button = '.bell-switch-button'
+$selector-switch =  $selector-prefix + '-switch'
+$selector-switch-button =  $selector-prefix + '-switch-button'
 
-$switch-margin-left = 10px;
-$switch-button-label-font-size = 12px;
-$switch-button-label-top = 5px;
-$switch-button-label-color = #fff;
-$switch-button-label-on-left = 8px;
-$switch-button-label-off-right = 8px;
+$switch-margin-gap = 8px;
+
 
 $switch-size-hash = {
     '' : {
         width: 48px,
         height: 24px,
-        border-radius: 24px,
+        after-size: 20px,
         after-left: 25px,
-        after-width: 20px,
-        after-height: 20px
+        font-size: 12px
     },
     'small': {
         width: 24px,
         height: 14px,
-        border-radius: 14px,
+        after-size: 10px,
         after-left: 12px,
-        after-width: 10px,
-        after-height: 10px
+        font-size: 12px
     },
     'large': {
         width: 60px,
         height: 24px,
-        border-radius: 24px,
+        after-size: 20px,
         after-left: 37px,
-        after-width: 20px,
-        after-height: 20px
+        font-size: 12px
     }
-}
+};
 
 $switch-brand-hash = {
     '': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-primary,
         active-bg-color: $brand-primary,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'success': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-success,
         active-bg-color: $brand-success,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'error': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-error,
         active-bg-color: $brand-error,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'warning': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-warning,
         active-bg-color: $brand-warning,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'danger': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-danger,
         active-bg-color: $brand-danger,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'info': {
-        border: 1px solid #ccc,
+        border-color: #ccc,
         bg-color: #ccc,
         active-border-color: $brand-info,
         active-bg-color: $brand-info,
-        after-bg-color: #fff
+        after-bg-color: #fff,
+        color: #fff
     },
     'disabled': {
-        border: 1px solid $brand-border-disabled,
+        border-color: $brand-border-disabled,
         bg-color: $brand-bg-disabled,
         active-border-color: $brand-border-disabled,
-        active-bg-color: #fff,
-        after-bg-color: $brand-border-disabled
+        active-bg-color: #ccc,
+        after-bg-color: $brand-border-disabled,
+        color: #fff
     }
-}
+};

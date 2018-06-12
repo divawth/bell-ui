@@ -27,7 +27,7 @@ export default {
             type: 'string'
         },
         value: {
-            type: 'numeric'
+            type: 'string'
         },
         size: {
             type: 'string'

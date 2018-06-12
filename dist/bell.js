@@ -1,5 +1,5 @@
 (function (global, factory) {
-    (factory());
+   (factory());
 }(this, (function () { 'use strict';
 
     var addClass = function addClass(element, className) {
@@ -1200,7 +1200,7 @@
                 type: 'string'
             },
             value: {
-                type: 'numeric'
+                type: 'string'
             },
             size: {
                 type: 'string'
@@ -1274,10 +1274,10 @@
                 type: ['string', 'numeric', 'boolean']
             },
             disabled: {
-                type: ['string', 'boolean']
+                type: ['string', 'numeric', 'boolean']
             },
             checked: {
-                type: ['string', 'boolean']
+                type: ['string', 'numeric', 'boolean']
             },
             type: {
                 type: 'string'
@@ -1371,10 +1371,10 @@
                 type: 'string'
             },
             disabled: {
-                type: ['string', 'boolean']
+                type: ['string', 'numeric', 'boolean']
             },
             vertical: {
-                type: ['string', 'boolean']
+                type: ['string', 'numeric', 'boolean']
             }
         },
 
@@ -1398,7 +1398,6 @@
                 me.set({
                     modelValue: result
                 });
-
                 me.fire('change', {
                     value: result
                 });
@@ -1427,7 +1426,7 @@
     };
 
     var Switch = {
-        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if isChecked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{else if size != \'small\'}}\n                    {{#if isChecked}}\n                        {{#if onLabel}}\n                            <span class="bell-switch-on">\n                                {{onLabel}}\n                            </span>\n                        {{/if}}\n                    {{else}}\n                        {{#if offLabel}}\n                            <span class="bell-switch-off">\n                                {{offLabel}}\n                            </span>\n                        {{/if}}\n                    {{/if}}\n                {{/if}}\n\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
+        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if isChecked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                {{#if hasSlot(\'checkedText\')}}\n                    <span class="bell-switch-on">\n                        <slot name="checkedText" />\n                    </span>\n                {{/if}}\n                {{#if hasSlot(\'unCheckedText\')}}\n                    <span class="bell-switch-off">\n                        <slot name="unCheckedText" />\n                    </span>\n                {{/if}}\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
 
         model: 'modelValue',
 
@@ -1444,20 +1443,17 @@
             modelValue: {
                 type: 'string'
             },
-            disabled: {
-                type: ['string', 'boolean']
-            },
-            checked: {
-                type: ['string', 'boolean']
-            },
             type: {
                 type: 'string'
             },
             size: {
                 type: 'string'
             },
-            onChange: {
-                type: 'function'
+            disabled: {
+                type: ['numeric', 'boolean']
+            },
+            checked: {
+                type: ['numeric', 'boolean']
             },
             onLabel: {
                 type: 'string'
@@ -1486,7 +1482,9 @@
                     isChecked: !isChecked,
                     modelValue: !isChecked
                 });
-                me.get('onChange') && me.get('onChange')(!isChecked);
+                me.fire('change', {
+                    isChecked: !isChecked
+                });
             }
         }
     };

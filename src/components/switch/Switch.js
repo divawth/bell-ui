@@ -9,24 +9,16 @@ export default {
         "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
 
             <span class="bell-switch-button">
-                {{#if hasSlot('children')}}
-                    <slot name="children" />
-                {{else if size != 'small'}}
-                    {{#if isChecked}}
-                        {{#if onLabel}}
-                            <span class="bell-switch-on">
-                                {{onLabel}}
-                            </span>
-                        {{/if}}
-                    {{else}}
-                        {{#if offLabel}}
-                            <span class="bell-switch-off">
-                                {{offLabel}}
-                            </span>
-                        {{/if}}
-                    {{/if}}
+                {{#if hasSlot('checkedText')}}
+                    <span class="bell-switch-on">
+                        <slot name="checkedText" />
+                    </span>
                 {{/if}}
-
+                {{#if hasSlot('unCheckedText')}}
+                    <span class="bell-switch-off">
+                        <slot name="unCheckedText" />
+                    </span>
+                {{/if}}
             </span>
             <input class="bell-switch-input" type="hidden" value="{{value}}" />
         </div>
@@ -47,20 +39,17 @@ export default {
         modelValue: {
             type: 'string'
         },
-        disabled: {
-            type: ['string', 'boolean']
-        },
-        checked: {
-            type: ['string', 'boolean']
-        },
         type: {
             type: 'string'
         },
         size: {
             type: 'string'
         },
-        onChange: {
-            type: 'function'
+        disabled: {
+            type: ['numeric', 'boolean']
+        },
+        checked: {
+            type: ['numeric', 'boolean']
         },
         onLabel: {
             type: 'string'
@@ -88,7 +77,12 @@ export default {
                 isChecked: !isChecked,
                 modelValue: !isChecked
             });
-            me.get('onChange') && me.get('onChange')(!isChecked);
+            me.fire(
+                'change',
+                {
+                    isChecked: !isChecked
+                }
+            );
         }
     }
 };
