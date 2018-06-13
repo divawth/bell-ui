@@ -4,6 +4,8 @@
         template: `
             <div>
                 <Switch model="single" on-change="change()">
+                    <template slot="checkedText">开</template>
+                    <template slot="unCheckedText">关</template>
                 </Switch>
                 <p class="bell-text">{{single}}</p>
             </div>
@@ -11,6 +13,11 @@
         methods: {
             change: function (events, data) {
                 console.log(data.isChecked);
+            }
+        },
+        data: function () {
+            return {
+                single: false
             }
         }
     }
@@ -41,9 +48,7 @@
         `
     }
 
-> 修改文字和图标
-
-如果使用2个汉字，将开关尺寸设置为 large
+> 修改文字和图标（建议使用文字字数相同）
 
     export default {
         template: `

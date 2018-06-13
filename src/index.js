@@ -30,6 +30,7 @@ import Checkbox from './components/checkbox/Checkbox'
 import CheckboxGroup from './components/checkbox/CheckboxGroup'
 import Switch from './components/switch/Switch'
 import Select from './components/select/Select'
+import Option from './components/select/Option'
 import Page from './components/page/Page'
 
 import Alert from './components/alert/Alert'
@@ -107,6 +108,7 @@ Yox.component({
     CheckboxGroup,
     Switch,
     Select,
+    Option,
     Page,
     Date,
     DateRange,

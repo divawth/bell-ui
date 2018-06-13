@@ -1,36 +1,71 @@
-select-style(size)
+select-size-style(size)
+
     {$selector-select}-button
-        ui-set('height', size['height'])
-        ui-set('line-height', size['height'])
 
         {$selector-select}-value,
         {$selector-select}-placeholder
 
-            ui-set('height', size['height'])
-            ui-set('line-height', size['height'])
             ui-set('font-size', size['font'])
-            ui-set('padding', size['value-padding'])
+            ui-set('padding', size['padding'])
+
+        {$selector-select}-arrow
+
+            ui-set('padding', size['arrow-padding'])
 
     {$selector-select}-dropdown
+
         ui-set('max-height', size['max-height'])
-        ui-set('top', size['height'] + 2)
+        ui-set('top', size['height'] + 8)
 
-        {$selector-select}-dropdown-list
-            ui-set('padding', size['list-padding'])
+        {$selector-select}-option
 
-            {$selector-select}-dropdown-item
-                ui-set('padding', size['item-padding'])
-                ui-set('font-size', size['font'])
+            ui-set('padding', size['option-padding'])
+            ui-set('font-size', size['font'])
 
     &{$selector-select}-top
+
         {$selector-select}-dropdown
 
-            ui-set('bottom', size['dropdown-bottom'])
+            ui-set('bottom', size['height'] + 8)
 
+    &{$selector-active}
+
+        {$selector-select}-dropdown
+
+            ui-set('max-height', size['max-height'], true)
+
+select-color-style(color)
+
+    {$selector-select-button}
+
+        border 1px solid
+        ui-set('background-color', color['bg-color'])
+        ui-set('border-color', color['border-color'])
+
+        &{$selector-hover}
+
+            ui-set('border-color', color['border-color-hover'])
+
+    &{$selector-active}
+
+        {$selector-select-button}
+
+            ui-set('border-color', color['border-color-hover'])
+            ui-set('box-shadow', color['box-shadow'])
+
+    {$selector-select}-option
+
+        &{$selector-hover}
+
+            ui-set('background-color', color['brand-bg-hover'])
 
 ui-select()
 
     ui-connect(
         hash: $select-size-hash,
-        each: select-style
+        each: select-size-style
+    )
+    ui-connect(
+        hash: $select-color-hash,
+        each: select-color-style
     )

@@ -2,29 +2,29 @@ $selector-switch =  $selector-prefix + '-switch'
 $selector-switch-button =  $selector-prefix + '-switch-button'
 
 $switch-margin-gap = 8px;
-
+$switch-font-size = 12px;
 
 $switch-size-hash = {
     '' : {
-        width: 48px,
-        height: 24px,
-        after-size: 20px,
-        after-left: 25px,
-        font-size: 12px
+        checked-left: 6px,
+        checked-right: 22px,
+        min-width: 40px,
+        height: 20px,
+        after-size: 16px
     },
     'small': {
-        width: 24px,
-        height: 14px,
-        after-size: 10px,
-        after-left: 12px,
-        font-size: 12px
+        checked-left: 4px,
+        checked-right: 16px,
+        min-width: 32px,
+        height: 16px,
+        after-size: 12px
     },
     'large': {
-        width: 60px,
+        checked-left: 6px,
+        checked-right: 26px,
+        min-width: 48px,
         height: 24px,
-        after-size: 20px,
-        after-left: 37px,
-        font-size: 12px
+        after-size: 20px
     }
 };
 
@@ -32,56 +32,56 @@ $switch-brand-hash = {
     '': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-primary,
-        active-bg-color: $brand-primary,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-primary,
+        active-bg-color: $brand-primary
     },
     'success': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-success,
-        active-bg-color: $brand-success,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-success,
+        active-bg-color: $brand-success
     },
     'error': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-error,
-        active-bg-color: $brand-error,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-error,
+        active-bg-color: $brand-error
     },
     'warning': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-warning,
-        active-bg-color: $brand-warning,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-warning,
+        active-bg-color: $brand-warning
     },
     'danger': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-danger,
-        active-bg-color: $brand-danger,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-danger,
+        active-bg-color: $brand-danger
     },
     'info': {
         border-color: #ccc,
         bg-color: #ccc,
-        active-border-color: $brand-info,
-        active-bg-color: $brand-info,
         after-bg-color: #fff,
-        color: #fff
+        color: #fff,
+        active-border-color: $brand-info,
+        active-bg-color: $brand-info
     },
     'disabled': {
         border-color: $brand-border-disabled,
         bg-color: $brand-bg-disabled,
         active-border-color: $brand-border-disabled,
-        active-bg-color: #ccc,
+        active-bg-color: #d2d2d2,
         after-bg-color: $brand-border-disabled,
         color: #fff
     }

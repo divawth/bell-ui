@@ -1,5 +1,7 @@
 (function (global, factory) {
-   (factory());
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (factory());
 }(this, (function () { 'use strict';
 
     var addClass = function addClass(element, className) {
@@ -1426,7 +1428,7 @@
     };
 
     var Switch = {
-        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if isChecked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                {{#if hasSlot(\'checkedText\')}}\n                    <span class="bell-switch-on">\n                        <slot name="checkedText" />\n                    </span>\n                {{/if}}\n                {{#if hasSlot(\'unCheckedText\')}}\n                    <span class="bell-switch-off">\n                        <slot name="unCheckedText" />\n                    </span>\n                {{/if}}\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
+        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if isChecked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                <span class="bell-switch-on">\n                    {{#if hasSlot(\'checkedText\')}}\n                        <slot name="checkedText" />\n                    {{/if}}\n                </span>\n                <span class="bell-switch-off">\n                    {{#if hasSlot(\'unCheckedText\')}}\n                        <slot name="unCheckedText" />\n                    {{/if}}\n                </span>\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
 
         model: 'modelValue',
 
@@ -1450,10 +1452,10 @@
                 type: 'string'
             },
             disabled: {
-                type: ['numeric', 'boolean']
+                type: ['numeric', 'string', 'boolean']
             },
             checked: {
-                type: ['numeric', 'boolean']
+                type: ['numeric', 'string', 'boolean']
             },
             onLabel: {
                 type: 'string'
@@ -1490,7 +1492,9 @@
     };
 
     var Select = {
-        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if className}} {{className}}{{/if}}">\n\n            <div class="bell-select-button\n                {{#if visible}} bell-active{{/if}}\n            " on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if valueToText(value) == null}} bell-hide{{/if}}\n                ">\n                    {{{valueToText(value)}}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if valueToText(value) != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown\n                {{#if !visible}} bell-hide{{/if}}\n                " {{#if style}} style="{{style}}"{{/if}}\n            >\n                <ul class="bell-select-dropdown-list">\n                    {{#each list:index}}\n                    <li class="bell-select-dropdown-item{{#if focusIndex == index}} bell-focus{{/if}}{{#if value == val}} bell-active{{/if}}" on-click="itemClick(index)">\n                        {{text}}\n                    </li>\n                    {{/each}}\n                </ul>\n\n            </div>\n        </div>\n    ',
+        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if type}} bell-select-{{type}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if visible}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-select-button" on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if modelValue == null}} bell-hide{{/if}}\n                ">\n                    {{#if selectedText}}\n                        {{selectedText}}\n                    {{else if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if modelValue != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown">\n                <ul class="bell-select-list">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{/if}}\n                </ul>\n            </div>\n        </div>\n    ',
+
+        model: 'modelValue',
 
         propTypes: {
             className: {
@@ -1502,108 +1506,117 @@
             defaultText: {
                 type: 'string'
             },
-            list: {
-                type: 'array',
-                require: true
-            },
-            value: {
-                type: 'string'
+            modelValue: {
+                type: ['numeric', 'string']
             },
             size: {
                 type: 'string'
             },
-            disabled: {
+            type: {
                 type: 'string'
+            },
+            disabled: {
+                type: ['numeric', 'string', 'boolean']
             },
             placement: {
-                type: 'string'
-            },
-            autoComplete: {
                 type: 'string'
             }
         },
 
         data: function data() {
             return {
+                count: 0,
                 visible: false,
-                focusIndex: null
+                hoverIndex: 0,
+                selectedIndex: 0,
+                selectedText: ''
             };
         },
 
 
-        filters: {
-            valueToText: function valueToText(value) {
-                if (value == null) {
-                    return '';
-                }
-                return this.valueMap[value];
+        watchers: {
+            modelValue: function modelValue(value) {
+                var me = this;
+                me.fire('optionSelectedChange', {
+                    value: value
+                }, true);
+
+                me.fire('change', {
+                    value: value,
+                    text: me.get('selectedText'),
+                    index: me.get('selectedIndex')
+                });
+            }
+        },
+
+        events: {
+            optionAdd: function optionAdd() {
+                this.increase('count');
+            },
+            optionRemove: function optionRemove() {
+                this.decrease('count');
+            },
+            optionSelect: function optionSelect(event) {
+                var option = event.target;
+                this.set({
+                    modelValue: option.get('value'),
+                    selectedText: option.get('text'),
+                    selectedIndex: option.get('index'),
+                    visible: false
+                });
             }
         },
 
         methods: {
             toggleMenu: function toggleMenu() {
                 var me = this;
-                if (me.get('disabled') || me.get('autoComplete')) {
+                if (me.get('disabled')) {
                     return false;
                 }
-                me.set({
-                    visible: !me.get('visible')
-                });
+                me.toggle('visible');
             },
-            itemClick: function itemClick(index) {
+            decreaseHoverIndex: function decreaseHoverIndex() {
                 var me = this;
-                var list = me.get('list');
+                var hoverIndex = me.get('hoverIndex');
+                hoverIndex = hoverIndex <= 0 ? me.get('count') - 1 : hoverIndex - 1;
                 me.set({
-                    value: list[index].val,
-                    focusIndex: index,
-                    visible: false
+                    hoverIndex: hoverIndex
                 });
+                me.fire('optionHoveredChange', {
+                    index: hoverIndex
+                }, true);
             },
-            setFocusIndex: function setFocusIndex(option) {
+            increaseHoverIndex: function increaseHoverIndex() {
+
                 var me = this;
-                var focusIndex = me.get('focusIndex');
-                var value = me.get('value');
-                var list = me.get('list');
-                var length = list.length - 1;
+                var hoverIndex = me.get('hoverIndex');
+                hoverIndex = hoverIndex >= me.get('count') - 1 ? 0 : hoverIndex + 1;
+                me.set({
+                    hoverIndex: hoverIndex
+                });
 
-                if (focusIndex == null) {
-                    focusIndex = 0;
-                }
-
-                if (option == 'up') {
-                    focusIndex = focusIndex + 1 > length ? 0 : focusIndex + 1;
-                    me.set({
-                        focusIndex: focusIndex
-                    });
-                } else if (option == 'down') {
-                    focusIndex = focusIndex - 1 < 0 ? length : focusIndex - 1;
-                    me.set({
-                        focusIndex: focusIndex
-                    });
-                } else if (option == 'enter') {
-                    me.set({
-                        value: list[focusIndex].val,
-                        focusIndex: focusIndex,
-                        visible: false
-                    });
-                }
+                me.fire('optionHoveredChange', {
+                    index: hoverIndex
+                }, true);
+            },
+            selectOption: function selectOption() {
+                this.fire('optionHoveredChange', {
+                    index: this.get('hoverIndex'),
+                    selected: true
+                }, true);
             }
         },
 
         afterMount: function afterMount() {
             var me = this;
-            me.valueMap = {};
-            Yox.array.each(me.get('list'), function (item, index) {
-                me.valueMap[item.val] = item.text;
-                if (item.val == me.get('value')) {
-                    me.set({
-                        focusIndex: index
-                    });
-                }
-            });
 
             me.documentClickHandler = function (e) {
-                if (me.$el.contains(e.target)) {
+
+                var element = me.$el;
+                var target = e.originalEvent.target;
+                if (element.contains && element.contains(target)) {
+                    return false;
+                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
                     return false;
                 }
                 me.set({
@@ -1612,32 +1625,117 @@
             };
 
             me.documentKeydownHander = function (e) {
-                var code = e.keyCode;
+
                 if (!me.get('visible')) {
                     return;
                 }
-                if (code === 40) {
-                    // up
-                    e.preventDefault();
-                    me.setFocusIndex('up');
-                } else if (code === 38) {
-                    // down
-                    e.preventDefault();
-                    me.setFocusIndex('down');
-                } else if (code == 13) {
-                    // enter
-                    me.setFocusIndex('enter');
-                }
-            };
 
-            document.addEventListener('click', me.documentClickHandler);
-            document.addEventListener('keydown', me.documentKeydownHander);
+                switch (e.originalEvent.keyCode) {
+
+                    case 40:
+                        e.prevent();
+                        me.increaseHoverIndex();
+                        break;
+
+                    case 38:
+                        e.prevent();
+                        me.decreaseHoverIndex();
+                        break;
+
+                    case 13:
+                        me.selectOption();
+
+                }        };
+
+            Yox.dom.on(document, 'click', me.documentClickHandler);
+            Yox.dom.on(document, 'keydown', me.documentKeydownHander);
         },
         beforeDestroy: function beforeDestroy() {
             var me = this;
-            me.valueMap = null;
-            document.removeEventListener('click', me.documentClickHandler);
-            document.removeEventListener('keydown', me.documentKeydownHander);
+            Yox.dom.off(document, 'click', me.documentClickHandler);
+            Yox.dom.off(document, 'keydown', me.documentKeydownHander);
+        }
+    };
+
+    var Option = {
+        template: '\n        <li class="bell-select-option\n            {{#if className}} {{className}}{{/if}}\n            {{#if isHover}} bell-hover{{/if}}\n            {{#if isSelected}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click(index)">\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{else}}\n                {{text}}\n            {{/if}}\n        </li>\n    ',
+
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            },
+            value: {
+                type: ['string', 'numeric']
+            },
+            text: {
+                type: ['string', 'numeric']
+            },
+            index: {
+                type: 'number',
+                require: true
+            }
+        },
+
+        events: {
+            updateOptionStatus: function updateOptionStatus(event, data) {
+                var me = this;
+                var isSelected = data.value == me.get('value') || data.index == me.get('index');
+                me.set({
+                    isSelected: isSelected
+                });
+            },
+
+
+            optionChangeByIndex: function optionChangeByIndex(event, data) {
+                var me = this;
+                var isSelected = data.index == me.get('index');
+                if (isSelected) {
+                    me.click();
+                }
+            },
+
+            optionHoveredChange: function optionHoveredChange(event, data) {
+                var me = this;
+                var isHover = data.index == me.get('index');
+                me.set({
+                    isHover: isHover
+                });
+                if (isHover && !me.get('isSelected')) {
+                    me.set({
+                        isSelected: data.selected
+                    });
+                }
+            },
+            optionSelectedChange: function optionSelectedChange(event, data) {
+                this.set({
+                    isSelected: data.value == this.get('value')
+                });
+            }
+        },
+
+        data: function data() {
+            return {
+                isSelected: false,
+                isHover: false
+            };
+        },
+
+
+        methods: {
+            click: function click() {
+                this.fire('optionSelect');
+            }
+        },
+
+        afterMount: function afterMount() {
+
+            this.fire('optionAdd');
+        },
+        beforeDestroy: function beforeDestroy() {
+            this.fire('optionRemove');
         }
     };
 
@@ -4980,6 +5078,7 @@
         CheckboxGroup: CheckboxGroup,
         Switch: Switch,
         Select: Select,
+        Option: Option,
         Page: Page,
         Date: Date$1,
         DateRange: DateRange,

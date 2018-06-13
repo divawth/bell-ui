@@ -9,16 +9,16 @@ export default {
         "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
 
             <span class="bell-switch-button">
-                {{#if hasSlot('checkedText')}}
-                    <span class="bell-switch-on">
+                <span class="bell-switch-on">
+                    {{#if hasSlot('checkedText')}}
                         <slot name="checkedText" />
-                    </span>
-                {{/if}}
-                {{#if hasSlot('unCheckedText')}}
-                    <span class="bell-switch-off">
+                    {{/if}}
+                </span>
+                <span class="bell-switch-off">
+                    {{#if hasSlot('unCheckedText')}}
                         <slot name="unCheckedText" />
-                    </span>
-                {{/if}}
+                    {{/if}}
+                </span>
             </span>
             <input class="bell-switch-input" type="hidden" value="{{value}}" />
         </div>
@@ -46,10 +46,10 @@ export default {
             type: 'string'
         },
         disabled: {
-            type: ['numeric', 'boolean']
+            type: ['numeric', 'string', 'boolean']
         },
         checked: {
-            type: ['numeric', 'boolean']
+            type: ['numeric', 'string', 'boolean']
         },
         onLabel: {
             type: 'string'

@@ -2,24 +2,31 @@ export default {
     template: `
         <div class="bell-select
             {{#if size}} bell-select-{{size}}{{/if}}
+            {{#if type}} bell-select-{{type}}{{/if}}
             {{#if disabled}} bell-select-disabled{{/if}}
             {{#if placement}} bell-select-{{placement}}{{/if}}
-            {{#if className}} {{className}}{{/if}}">
+            {{#if className}} {{className}}{{/if}}
+            {{#if visible}} bell-active{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}}>
 
-            <div class="bell-select-button
-                {{#if visible}} bell-active{{/if}}
-            " on-click="toggleMenu()">
+            <div class="bell-select-button" on-click="toggleMenu()">
 
                 <input type="hidden" model="value" />
 
                 <span class="bell-select-value
-                    {{#if valueToText(value) == null}} bell-hide{{/if}}
+                    {{#if modelValue == null}} bell-hide{{/if}}
                 ">
-                    {{{valueToText(value)}}}
+                    {{#if selectedText}}
+                        {{selectedText}}
+                    {{else if defaultText}}
+                        {{{defaultText}}}
+                    {{else}}
+                        请选择...
+                    {{/if}}
                 </span>
 
                 <span class="bell-select-placeholder
-                    {{#if valueToText(value) != null}} bell-hide{{/if}}
+                    {{#if modelValue != null}} bell-hide{{/if}}
                 ">
                     {{#if defaultText}}
                         {{{defaultText}}}
@@ -31,21 +38,17 @@ export default {
                 <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>
             </div>
 
-            <div class="bell-select-dropdown
-                {{#if !visible}} bell-hide{{/if}}
-                " {{#if style}} style="{{style}}"{{/if}}
-            >
-                <ul class="bell-select-dropdown-list">
-                    {{#each list:index}}
-                    <li class="bell-select-dropdown-item{{#if focusIndex == index}} bell-focus{{/if}}{{#if value == val}} bell-active{{/if}}" on-click="itemClick(index)">
-                        {{text}}
-                    </li>
-                    {{/each}}
+            <div class="bell-select-dropdown">
+                <ul class="bell-select-list">
+                    {{#if hasSlot('children')}}
+                        <slot name="children" />
+                    {{/if}}
                 </ul>
-
             </div>
         </div>
     `,
+
+    model: 'modelValue',
 
     propTypes: {
         className: {
@@ -57,151 +60,183 @@ export default {
         defaultText: {
             type: 'string'
         },
-        list: {
-            type: 'array',
-            require: true
-        },
-        value: {
-            type: 'string'
+        modelValue: {
+            type: ['numeric', 'string']
         },
         size: {
             type: 'string'
         },
-        disabled: {
+        type: {
             type: 'string'
+        },
+        disabled: {
+            type: ['numeric', 'string', 'boolean']
         },
         placement: {
-            type: 'string'
-        },
-        autoComplete: {
             type: 'string'
         }
     },
 
     data() {
         return {
+            count: 0,
             visible: false,
-            focusIndex: null
+            hoverIndex: 0,
+            selectedIndex: 0,
+            selectedText: '',
         }
     },
 
-    filters: {
-        valueToText(value) {
-            if (value == null) {
-                return '';
-            }
-            return this.valueMap[value];
+    watchers: {
+        modelValue(value) {
+            let me = this;
+            me.fire(
+                'optionSelectedChange',
+                {
+                    value: value
+                },
+                true
+            );
+
+            me.fire(
+                'change',
+                {
+                    value: value,
+                    text: me.get('selectedText'),
+                    index: me.get('selectedIndex')
+                }
+            );
+        }
+    },
+
+    events: {
+        optionAdd() {
+            this.increase('count');
+        },
+
+        optionRemove() {
+            this.decrease('count');
+        },
+
+        optionSelect(event) {
+            let option = event.target;
+            this.set({
+                modelValue: option.get('value'),
+                selectedText: option.get('text'),
+                selectedIndex: option.get('index'),
+                visible: false
+            });
         }
     },
 
     methods: {
         toggleMenu() {
             let me = this;
-            if (me.get('disabled') || me.get('autoComplete')) {
+            if (me.get('disabled')) {
                 return false;
             }
-            me.set({
-                visible: !me.get('visible')
-            });
+            me.toggle('visible');
         },
 
-        itemClick(index) {
+        decreaseHoverIndex() {
             let me = this;
-            let list = me.get('list')
+            let hoverIndex = me.get('hoverIndex');
+            hoverIndex = hoverIndex <= 0 ? (me.get('count') - 1) : hoverIndex - 1;
             me.set({
-                value: list[index].val,
-                focusIndex: index,
-                visible: false
+                hoverIndex: hoverIndex
             });
+            me.fire(
+                'optionHoveredChange',
+                {
+                    index: hoverIndex
+                },
+                true
+            );
         },
 
-        setFocusIndex(option) {
+        increaseHoverIndex() {
+
             let me = this;
-            let focusIndex = me.get('focusIndex');
-            let value = me.get('value');
-            let list = me.get('list');
-            let length = list.length - 1;
+            let hoverIndex = me.get('hoverIndex');
+            hoverIndex = hoverIndex >= (me.get('count') - 1) ? 0 : hoverIndex + 1;
+            me.set({
+                hoverIndex: hoverIndex
+            });
 
-            if (focusIndex == null) {
-                focusIndex = 0;
-            }
+            me.fire(
+                'optionHoveredChange',
+                {
+                    index: hoverIndex
+                },
+                true
+            );
 
-            if (option == 'up') {
-                focusIndex = focusIndex + 1 > length
-                            ? 0
-                            : focusIndex + 1;
-                me.set({
-                    focusIndex: focusIndex
-                });
-            }
-            else if (option == 'down') {
-                focusIndex = focusIndex - 1 < 0
-                            ? length
-                            : focusIndex - 1;
-                me.set({
-                    focusIndex: focusIndex
-                });
-            }
-            else if (option == 'enter') {
-                me.set({
-                    value: list[focusIndex].val,
-                    focusIndex: focusIndex,
-                    visible: false
-                });
-            }
+        },
+
+        selectOption() {
+            this.fire(
+                'optionHoveredChange',
+                {
+                    index: this.get('hoverIndex'),
+                    selected: true
+                },
+                true
+            );
         }
+
     },
 
     afterMount() {
         let me = this;
-        me.valueMap = {};
-        Yox.array.each(
-            me.get('list'),
-            (item, index) => {
-                me.valueMap[item.val] = item.text;
-                if (item.val == me.get('value')) {
-                    me.set({
-                        focusIndex: index
-                    });
-                }
-            }
-        );
 
-        me.documentClickHandler = (e) => {
-            if (me.$el.contains(e.target)) {
+        me.documentClickHandler = function (e) {
+
+            let element = me.$el;
+            let target = e.originalEvent.target;
+            if (element.contains && element.contains(target)) {
+                return false;
+            }
+            else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
                 return false;
             }
             me.set({
                 visible: false
             });
+
         };
 
-        me.documentKeydownHander = (e) => {
-            let code = e.keyCode;
+        me.documentKeydownHander = function (e) {
+
             if (!me.get('visible')) {
                 return;
             }
-            if (code === 40) {
-                // up
-                e.preventDefault();
-                me.setFocusIndex('up');
-            }
-            else if (code === 38) {
-                // down
-                e.preventDefault();
-                me.setFocusIndex('down');
-            }
-            else if (code == 13) {
-                // enter
-                me.setFocusIndex('enter');
-            }
+
+            switch (e.originalEvent.keyCode) {
+
+                case 40:
+                    e.prevent();
+                    me.increaseHoverIndex();
+                    break;
+
+                case 38:
+                    e.prevent();
+                    me.decreaseHoverIndex();
+                    break;
+
+                case 13:
+                    me.selectOption();
+
+            };
+
         };
 
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'click',
             me.documentClickHandler
         );
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'keydown',
             me.documentKeydownHander
         );
@@ -209,12 +244,13 @@ export default {
 
     beforeDestroy() {
         let me = this;
-        me.valueMap = null;
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'click',
             me.documentClickHandler
         );
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'keydown',
             me.documentKeydownHander
         );

@@ -7,6 +7,7 @@
     box-sizing border-box
     border 1px solid
     transition border-color .3s, background-color .3s
+    font-size $switch-font-size
 
     ui-switch()
 
@@ -20,11 +21,15 @@
 
             {$selector-switch}-on
 
-                opacity 1
+                display inline
 
             {$selector-switch}-off
 
-                opacity 0
+                display none
+
+            &:after
+
+                left 100%
 
     {$selector-switch-button}
 
@@ -32,19 +37,17 @@
 
         {$selector-switch}-on
 
-            margin-top -1px
-            opacity 0
-            transition opacity .3s
-            text-align center
-            display inline-block
+            display none
 
         {$selector-switch}-off
 
-            opacity 1
+            display inline
+
+        {$selector-switch}-on,
+        {$selector-switch}-off,
+
             margin-top -1px
-            display inline-block
-            text-align left
-            transition opacity .3s
+            text-align center
 
         &:after
 
@@ -54,7 +57,7 @@
             left 1px
             top 1px
             border-radius 100%
-            transition left .3s, width .3s
+            transition left .3s, margin-left .3s
 
 {$selector-switch}-disabled
 

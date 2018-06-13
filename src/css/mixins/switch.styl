@@ -1,6 +1,6 @@
 switch-size-style(size)
 
-    ui-set('width', size['width'])
+    ui-set('min-width', size['min-width'])
     ui-set('height', size['height'])
     ui-set('border-radius', size['height'])
 
@@ -8,28 +8,30 @@ switch-size-style(size)
 
         {$selector-switch-button}
 
+            ui-set('padding-left', size['checked-left'])
+            ui-set('padding-right', size['checked-right'])
+
             &:after
 
-                ui-set('left', size['after-left'])
+                ui-set('margin-left', - size['after-size'] - 1)
 
     {$selector-switch-button}
 
-        ui-set('width', size['width'])
         ui-set('height', size['height'])
+        ui-set('padding-right', size['checked-left'])
+        ui-set('padding-left', size['checked-right'])
 
         {$selector-switch}-on
 
             ui-set('font-size', size['font-size'])
             ui-set('line-height', size['height'])
             ui-set('height', size['height'])
-            ui-set('width', size['width'] / 2)
 
         {$selector-switch}-off
 
             ui-set('font-size', size['font-size'])
             ui-set('line-height', size['height'])
             ui-set('height', size['height'])
-            ui-set('width', size['width'] / 2)
 
         &:after
 

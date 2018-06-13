@@ -1,38 +1,81 @@
-$selector-select = '.bell-select'
-$selector-select-button = '.bell-select-button'
-
-$select-font-color = $brand-secondary
-$select-background = $brand-bg
-
-$select-button-border-active-shadow = 0 0 0 2px rgba(45,140,240,.2);
-$select-button-border-radius = 4px;
+$selector-select = $selector-prefix + '-select'
+$selector-select-button = $selector-prefix + '-select-button'
 
 $select-size-hash = {
     '': {
-        height: 32px,
-        max-height: 200px,
         font: 12px,
-        value-padding: 0px 15px,
-        list-padding: 5px 0,
-        item-padding: 4px 15px,
-        dropdown-bottom: 40px
+        padding: 8px 15px,
+        max-height: 200px,
+        height: 32px,
+        option-padding: 4px 15px,
+        arrow-padding: 10px 15px
     },
     'small': {
-        height: 24px,
-        max-height: 200px,
         font: 12px,
-        value-padding: 0px 15px,
-        list-padding: 5px 0,
-        item-padding: 0px 15px,
-        dropdown-bottom: 30px
+        padding: 3px 15px,
+        max-height: 200px,
+        height: 24px,
+        option-padding: 2px 15px,
+        arrow-padding: 5px 15px
     },
     'large': {
-        height: 36px,
-        max-height: 200px,
         font: 14px,
-        value-padding: 0px 15px,
-        list-padding: 5px 0,
-        item-padding: 8px 15px,
-        dropdown-bottom: 42px
+        padding: 8px 15px,
+        max-height: 200px,
+        height: 36px,
+        option-padding: 6px 15px,
+        arrow-padding: 10px 15px
     }
-}
+};
+
+$select-color-hash = {
+    '': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-primary-box-shadow-color,
+        border-color-hover: $brand-primary-hover,
+        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
+    },
+    'success': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-success-box-shadow-color,
+        border-color-hover: $brand-success-hover,
+        box-shadow: 0 0 0 2px $brand-success-box-shadow-color
+    },
+    'error': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-error-box-shadow-color,
+        border-color-hover: $brand-error-hover,
+        box-shadow: 0 0 0 2px $brand-error-box-shadow-color
+    },
+    'info': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-info-box-shadow-color,
+        border-color-hover: $brand-info-hover,
+        box-shadow: 0 0 0 2px $brand-info-box-shadow-color
+    },
+    'warning': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-warning-box-shadow-color,
+        border-color-hover: $brand-warning-hover,
+        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
+    },
+    'danger': {
+        border-color: $brand-border,
+        bg-color: $brand-bg,
+        brand-bg-hover: $brand-danger-box-shadow-color,
+        border-color-hover: $brand-danger-hover,
+        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
+    },
+    'disabled': {
+        bg-color: #F7F7F7,
+        border-color: $brand-border-disabled,
+        brand-bg-hover: none,
+        border-color-hover: $brand-border-disabled,
+        box-shadow: none
+    }
+};
