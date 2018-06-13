@@ -1,8 +1,3 @@
-import {
-    addClass,
-    removeClass
-} from './util'
-
 let FADE = 'fade';
 let ZOOM = 'zoom';
 let COLLAPSE = 'collapse';
@@ -144,7 +139,7 @@ export default {
             else {
                 element.style.display = '';
             }
-            addClass(element, me.get('enterClass'));
+            Yox.dom.addClass(element, me.get('enterClass'));
         },
 
         leave() {
@@ -159,7 +154,7 @@ export default {
                 element.style.paddingTop = 0;
                 element.style.paddingBottom = 0;
             }
-            addClass(element, me.get('leaveClass'));
+            Yox.dom.addClass(element, me.get('leaveClass'));
         },
 
         appear() {
@@ -169,9 +164,9 @@ export default {
                 me.get('onAppear') && me.get('onAppear')();
                 return;
             }
-            removeClass(element, me.get('enterClass'));
-            removeClass(element, me.get('leaveClass'));
-            addClass(element, me.get('appearClass'));
+            Yox.dom.removeClass(element, me.get('enterClass'));
+            Yox.dom.removeClass(element, me.get('leaveClass'));
+            Yox.dom.addClass(element, me.get('appearClass'));
         },
 
         end() {
@@ -193,7 +188,7 @@ export default {
             else {
                 element.style.display = 'none';
             }
-            removeClass(element, me.get('appearClass'));
+            Yox.dom.removeClass(element, me.get('appearClass'));
         },
 
         beginTo() {
@@ -238,7 +233,7 @@ export default {
             else {
                 element.style.display = '';
             }
-            addClass(element, me.get('enterToClass'));
+            Yox.dom.addClass(element, me.get('enterToClass'));
         },
 
         leaveTo() {
@@ -253,7 +248,7 @@ export default {
                 element.style.paddingTop = me.collapsePaddingTop;
                 element.style.paddingBottom = me.collapsePaddingBottom;
             }
-            addClass(element, me.get('leaveToClass'));
+            Yox.dom.addClass(element, me.get('leaveToClass'));
         },
 
         appearTo() {
@@ -263,9 +258,9 @@ export default {
                 me.get('onAppear') && me.get('onAppear')();
                 return;
             }
-            removeClass(element, this.get('enterToClass'));
-            removeClass(element, this.get('leaveToClass'));
-            addClass(element, this.get('appearToClass'));
+            Yox.dom.removeClass(element, this.get('enterToClass'));
+            Yox.dom.removeClass(element, this.get('leaveToClass'));
+            Yox.dom.addClass(element, this.get('appearToClass'));
         },
 
         endTo() {
@@ -281,7 +276,7 @@ export default {
             else if (me.get('mode') === COLLAPSE) {
                 element.style.height = '';
             }
-            removeClass(element, me.get('appearToClass'));
+            Yox.dom.removeClass(element, me.get('appearToClass'));
         }
     },
 

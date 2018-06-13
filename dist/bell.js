@@ -4,30 +4,6 @@
     (factory());
 }(this, (function () { 'use strict';
 
-    var addClass = function addClass(element, className) {
-        var classNameArray = element.className.split(/\s/g);
-        if (Yox.array.indexOf(classNameArray, className) > 0) {
-            return;
-        } else {
-            classNameArray.push(className);
-            element.className = classNameArray.join(' ');
-        }
-    };
-
-    var removeClass = function removeClass(element, className) {
-        var classNameArray = element.className.split(/\s/g);
-        var index = Yox.array.indexOf(classNameArray, className);
-        if (index > 0) {
-            classNameArray.splice(index);
-            element.className = classNameArray.join(' ');
-            if (Yox.array.indexOf(classNameArray, className) > 0) {
-                removeClass(element, className);
-            }
-        } else {
-            return;
-        }
-    };
-
     var FADE = 'fade';
     var COLLAPSE = 'collapse';
 
@@ -155,7 +131,7 @@
                 } else {
                     element.style.display = '';
                 }
-                addClass(element, me.get('enterClass'));
+                Yox.dom.addClass(element, me.get('enterClass'));
             },
             leave: function leave() {
                 var me = this;
@@ -169,7 +145,7 @@
                     element.style.paddingTop = 0;
                     element.style.paddingBottom = 0;
                 }
-                addClass(element, me.get('leaveClass'));
+                Yox.dom.addClass(element, me.get('leaveClass'));
             },
             appear: function appear() {
                 var me = this;
@@ -178,9 +154,9 @@
                     me.get('onAppear') && me.get('onAppear')();
                     return;
                 }
-                removeClass(element, me.get('enterClass'));
-                removeClass(element, me.get('leaveClass'));
-                addClass(element, me.get('appearClass'));
+                Yox.dom.removeClass(element, me.get('enterClass'));
+                Yox.dom.removeClass(element, me.get('leaveClass'));
+                Yox.dom.addClass(element, me.get('appearClass'));
             },
             end: function end() {
                 var me = this;
@@ -199,7 +175,7 @@
                 } else {
                     element.style.display = 'none';
                 }
-                removeClass(element, me.get('appearClass'));
+                Yox.dom.removeClass(element, me.get('appearClass'));
             },
             beginTo: function beginTo() {
                 var me = this;
@@ -231,7 +207,7 @@
                 } else {
                     element.style.display = '';
                 }
-                addClass(element, me.get('enterToClass'));
+                Yox.dom.addClass(element, me.get('enterToClass'));
             },
             leaveTo: function leaveTo() {
                 var me = this;
@@ -245,7 +221,7 @@
                     element.style.paddingTop = me.collapsePaddingTop;
                     element.style.paddingBottom = me.collapsePaddingBottom;
                 }
-                addClass(element, me.get('leaveToClass'));
+                Yox.dom.addClass(element, me.get('leaveToClass'));
             },
             appearTo: function appearTo() {
                 var me = this;
@@ -254,9 +230,9 @@
                     me.get('onAppear') && me.get('onAppear')();
                     return;
                 }
-                removeClass(element, this.get('enterToClass'));
-                removeClass(element, this.get('leaveToClass'));
-                addClass(element, this.get('appearToClass'));
+                Yox.dom.removeClass(element, this.get('enterToClass'));
+                Yox.dom.removeClass(element, this.get('leaveToClass'));
+                Yox.dom.addClass(element, this.get('appearToClass'));
             },
             endTo: function endTo() {
                 var me = this;
@@ -270,7 +246,7 @@
                 } else if (me.get('mode') === COLLAPSE) {
                     element.style.height = '';
                 }
-                removeClass(element, me.get('appearToClass'));
+                Yox.dom.removeClass(element, me.get('appearToClass'));
             }
         },
 

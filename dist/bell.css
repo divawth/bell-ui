@@ -6125,15 +6125,8 @@ button.bell-button {
   font-size: 14px;
   line-height: 1.2;
   color: #495060;
-  border: 1px solid #e9eaec;
   margin: 15px;
-  transition: all 0.2s ease-in-out;
-}
-.bell-card.bell-card.hover,
-.bell-card:hover,
-.bell-card.bell-hover {
-  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
-  border-color: #eee;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 .bell-card-header {
   padding: 15px;
