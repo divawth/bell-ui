@@ -17,7 +17,7 @@
         },
         data: function () {
             return {
-                single: false
+                single: true
             }
         }
     }

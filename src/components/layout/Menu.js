@@ -28,7 +28,7 @@ export default {
             value: 'dark'
         },
         activeName: {
-            type: 'numeric',
+            type: ['numeric', 'string'],
             value: -1
         },
         openNames: {

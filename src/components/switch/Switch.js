@@ -33,9 +33,6 @@ export default {
         style: {
             type: 'string'
         },
-        label: {
-            type: 'string'
-        },
         modelValue: {
             type: 'string'
         },
@@ -50,19 +47,21 @@ export default {
         },
         checked: {
             type: ['numeric', 'string', 'boolean']
-        },
-        onLabel: {
-            type: 'string'
-        },
-        offLabel: {
-            type: 'string'
         }
     },
 
     data() {
         let me = this;
         return {
-            isChecked: me.get('checked') ? true : false
+            isChecked: me.get('checked')
+        }
+    },
+
+    watchers: {
+        modelValue(value) {
+            this.set({
+                isChecked: value
+            })
         }
     },
 
@@ -72,11 +71,13 @@ export default {
             if (me.get('disabled')) {
                 return;
             }
+
             let isChecked = me.get('isChecked');
             me.set({
                 isChecked: !isChecked,
                 modelValue: !isChecked
             });
+
             me.fire(
                 'change',
                 {

@@ -419,21 +419,20 @@
                 value: 'dark'
             },
             activeName: {
-                type: 'numeric',
+                type: ['numeric', 'string'],
                 value: -1
             },
             openNames: {
                 type: 'array'
-            },
-            onSelect: {
-                type: 'function'
             }
         },
 
         events: {
             menuItemActive: function menuItemActive(event, data) {
                 var me = this;
-                me.get('onSelect') && me.get('onSelect')(data.name);
+                me.fire('select', {
+                    name: data.name
+                });
                 me.updateActiveName(data.name);
             }
         },
@@ -450,7 +449,9 @@
         watchers: {
             activeName: function activeName(_activeName) {
                 var me = this;
-                me.get('onSelect') && me.get('onSelect')(_activeName);
+                me.fire('select', {
+                    name: _activeName
+                });
                 me.updateActiveName(_activeName);
             }
         },
@@ -468,7 +469,7 @@
     };
 
     var MenuItem = {
-        template: '\n        <div class="bell-menu-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if isActive}} bell-active{{/if}}\n        " style="{{style}}" on-click="click(name)">\n\n            <span class="bell-left-icon">\n                {{#if hasSlot(\'leftIcon\')}}\n                    <slot name="leftIcon" />\n                {{/if}}\n            </span>\n\n            <span class="bell-menu-item-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n        </div>\n    ',
+        template: '\n        <div class="bell-menu-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if isActive}} bell-active{{/if}}\n        " style="{{style}}" on-click="click(name)">\n\n            {{#if hasSlot(\'leftIcon\')}}\n            <span class="bell-left-icon">\n                <slot name="leftIcon" />\n            </span>\n            {{/if}}\n\n            <span class="bell-menu-item-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -1415,9 +1416,6 @@
             style: {
                 type: 'string'
             },
-            label: {
-                type: 'string'
-            },
             modelValue: {
                 type: 'string'
             },
@@ -1432,22 +1430,24 @@
             },
             checked: {
                 type: ['numeric', 'string', 'boolean']
-            },
-            onLabel: {
-                type: 'string'
-            },
-            offLabel: {
-                type: 'string'
             }
         },
 
         data: function data() {
             var me = this;
             return {
-                isChecked: me.get('checked') ? true : false
+                isChecked: me.get('checked')
             };
         },
 
+
+        watchers: {
+            modelValue: function modelValue(value) {
+                this.set({
+                    isChecked: value
+                });
+            }
+        },
 
         methods: {
             click: function click() {
@@ -1455,11 +1455,13 @@
                 if (me.get('disabled')) {
                     return;
                 }
+
                 var isChecked = me.get('isChecked');
                 me.set({
                     isChecked: !isChecked,
                     modelValue: !isChecked
                 });
+
                 me.fire('change', {
                     isChecked: !isChecked
                 });
@@ -1757,9 +1759,6 @@
             placement: {
                 type: 'string'
             },
-            onChange: {
-                type: 'function'
-            },
             onPageSizeChange: {
                 type: 'function'
             }
@@ -1794,8 +1793,9 @@
                 me.get('onPageSizeChange') && me.get('onPageSizeChange')(value);
             },
             current: function current(value) {
-                var me = this;
-                me.get('onChange') && me.get('onChange')(value);
+                this.fire('change', {
+                    value: value
+                });
             }
         },
 
@@ -1931,9 +1931,6 @@
             },
             closeText: {
                 type: 'string'
-            },
-            close: {
-                type: 'function'
             }
         },
 
@@ -1954,7 +1951,7 @@
                 setTimeout(function () {
                     container.remove();
                 }, 500);
-                me.get('close') && me.get('close')();
+                me.fire('close');
             }
         },
 
@@ -2037,9 +2034,6 @@
                 type: 'numeric',
                 value: 400
             },
-            click: {
-                type: 'function'
-            },
             fix: {
                 type: 'string'
             }
@@ -2057,7 +2051,7 @@
                 var me = this;
                 var top = me.container.scrollTop;
                 me.container.scrollTop = 0;
-                me.get('click') && me.get('click')(top);
+                me.fire('click');
             }
         },
 
@@ -2163,16 +2157,13 @@
             },
             mode: {
                 type: 'string'
-            },
-            onChange: {
-                type: 'function'
             }
         },
 
         events: {
             yearChange: function yearChange(event, data) {
                 var me = this;
-                me.get('onChange') && me.get('onChange')({
+                me.fire('change', {
                     year: data.year
                 });
                 me.set({
@@ -2183,7 +2174,7 @@
             },
             monthChange: function monthChange(event, data) {
                 var me = this;
-                me.get('onChange') && me.get('onChange')({
+                me.fire('change', {
                     year: data.year,
                     month: data.month
                 });
@@ -2205,7 +2196,7 @@
                 var value = me.get('value');
                 var newValue = me.formateDate(date);
                 if (newValue !== value) {
-                    me.get('onChange') && me.get('onChange')({
+                    me.fire('change', {
                         value: newValue,
                         date: date
                     }, {
@@ -2274,7 +2265,7 @@
                 if (!end) {
                     return;
                 }
-                me.get('onChange') && me.get('onChange')({
+                me.fire('change', {
                     start: start,
                     end: end,
                     date: me.formateDate(start)
@@ -3776,6 +3767,7 @@
             type: {
                 type: 'string'
             },
+
             onDragStart: {
                 type: 'function'
             },
@@ -3903,8 +3895,7 @@
                     dragging: 1,
                     active: 1
                 });
-
-                me.get('onDragStart') && me.get('onDragStart')(e);
+                me.fire('dragStart');
             },
             onDragStop: function onDragStop(e) {
                 var me = this;
@@ -4082,9 +4073,6 @@
             textColor: {
                 type: 'string',
                 value: '#1F2D3D'
-            },
-            onChange: {
-                type: 'function'
             }
         },
 
@@ -4152,6 +4140,10 @@
                 }
 
                 me.set({
+                    value: currentValue
+                });
+
+                me.fire('change', {
                     value: currentValue
                 });
             }
