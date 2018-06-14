@@ -5,11 +5,11 @@ export default {
             {{#if isActive}} bell-active{{/if}}
         " style="{{style}}" on-click="click(name)">
 
+            {{#if hasSlot('leftIcon')}}
             <span class="bell-left-icon">
-                {{#if hasSlot('leftIcon')}}
-                    <slot name="leftIcon" />
-                {{/if}}
+                <slot name="leftIcon" />
             </span>
+            {{/if}}
 
             <span class="bell-menu-item-content">
                 {{#if hasSlot('children')}}

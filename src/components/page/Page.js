@@ -169,9 +169,6 @@ export default {
         placement: {
             type: 'string'
         },
-        onChange: {
-            type: 'function'
-        },
         onPageSizeChange: {
             type: 'function'
         }
@@ -210,8 +207,12 @@ export default {
             me.get('onPageSizeChange') && me.get('onPageSizeChange')(value);
         },
         current(value) {
-            let me = this;
-            me.get('onChange') && me.get('onChange')(value);
+            this.fire(
+                'change',
+                {
+                    value: value
+                }
+            );
         }
     },
 

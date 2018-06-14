@@ -59,9 +59,6 @@ export default {
         },
         closeText: {
             type: 'string'
-        },
-        close: {
-            type: 'function'
         }
     },
 
@@ -84,7 +81,7 @@ export default {
                 },
                 500
             );
-            me.get('close') && me.get('close')();
+            me.fire('close');
         }
     },
 

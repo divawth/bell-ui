@@ -31,9 +31,6 @@ export default {
             type: 'numeric',
             value: 400
         },
-        click: {
-            type: 'function'
-        },
         fix: {
             type: 'string'
         }
@@ -50,7 +47,7 @@ export default {
             let me = this;
             let top = me.container.scrollTop;
             me.container.scrollTop = 0;
-            me.get('click') && me.get('click')(top);
+            me.fire('click');
         }
     },
 

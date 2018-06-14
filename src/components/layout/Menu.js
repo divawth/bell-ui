@@ -33,16 +33,18 @@ export default {
         },
         openNames: {
             type: 'array'
-        },
-        onSelect: {
-            type: 'function'
         }
     },
 
     events: {
         menuItemActive(event, data) {
             let me = this;
-            me.get('onSelect') && me.get('onSelect')(data.name);
+            me.fire(
+                'select',
+                {
+                    name: data.name
+                }
+            );
             me.updateActiveName(data.name);
         }
     },
@@ -63,7 +65,12 @@ export default {
     watchers: {
         activeName(activeName) {
             let me = this;
-            me.get('onSelect') && me.get('onSelect')(activeName);
+            me.fire(
+                'select',
+                {
+                    name: activeName
+                }
+            );
             me.updateActiveName(activeName);
         }
     },

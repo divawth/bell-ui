@@ -44,9 +44,6 @@ export default {
         },
         mode: {
             type: 'string'
-        },
-        onChange: {
-            type: 'function'
         }
     },
 
@@ -54,7 +51,8 @@ export default {
 
         yearChange(event, data) {
             let me = this;
-            me.get('onChange') && me.get('onChange')(
+            me.fire(
+                'change',
                 {
                     year: data.year
                 }
@@ -68,7 +66,8 @@ export default {
 
         monthChange(event, data) {
             let me = this;
-            me.get('onChange') && me.get('onChange')(
+            me.fire(
+                'change',
                 {
                     year: data.year,
                     month: data.month
@@ -95,7 +94,8 @@ export default {
             let value = me.get('value');
             let newValue = me.formateDate(date);
             if (newValue !== value) {
-                me.get('onChange') && me.get('onChange')(
+                me.fire(
+                    'change',
                     {
                         value: newValue,
                         date: date
@@ -175,7 +175,8 @@ export default {
             if (!end) {
                 return;
             }
-            me.get('onChange') && me.get('onChange')(
+            me.fire(
+                'change',
                 {
                     start: start,
                     end: end,

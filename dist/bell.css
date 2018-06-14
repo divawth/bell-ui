@@ -6149,6 +6149,9 @@ button.bell-button {
   color: #80848f;
   line-height: 1.6;
 }
+.bell-card-title-extra {
+  float: right;
+}
 .bell-card-media {
   position: relative;
 }

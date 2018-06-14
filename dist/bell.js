@@ -3566,7 +3566,7 @@
     };
 
     var CardTitle = {
-        template: '\n        <div class="bell-card-title\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            {{#if title}}\n                <div class="bell-card-title-text\n                    {{#if titleClass}} {{titleClass}}{{/if}}\n                ">\n                    {{title}}\n                </div>\n            {{/if}}\n\n            {{#if subTitle}}\n                <div class="bell-card-sub-title\n                    {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n                ">\n                    {{subTitle}}\n                </div>\n            {{/if}}\n\n        </div>\n    ',
+        template: '\n        <div class="bell-card-title\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'title\')}}\n                <span class="bell-card-title-text\n                    {{#if titleClass}} {{titleClass}}{{/if}}\n                ">\n                    <slot name="title" />\n                </span>\n            {{/if}}\n\n            {{#if hasSlot(\'extra\')}}\n                <span class="bell-card-title-extra">\n                    <slot name="extra" />\n                </span>\n            {{/if}}\n\n            {{#if hasSlot(\'subTitle\')}}\n                <div class="bell-card-sub-title\n                    {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n                ">\n                    <slot name="subTitle" />\n                </div>\n            {{/if}}\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -3575,13 +3575,7 @@
             style: {
                 type: 'string'
             },
-            title: {
-                type: 'string'
-            },
             titleClass: {
-                type: 'string'
-            },
-            subTitle: {
                 type: 'string'
             },
             subTitleClass: {

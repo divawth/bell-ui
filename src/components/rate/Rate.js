@@ -66,9 +66,6 @@ export default {
         textColor: {
             type: 'string',
             value: '#1F2D3D'
-        },
-        onChange: {
-            type: 'function'
         }
     },
 
@@ -143,6 +140,13 @@ export default {
             me.set({
                 value: currentValue
             });
+
+            me.fire(
+                'change',
+                {
+                    value: currentValue
+                }
+            );
         }
     }
 };

@@ -88,6 +88,7 @@ export default {
         type: {
             type: 'string'
         },
+
         onDragStart: {
             type: 'function'
         },
@@ -259,8 +260,7 @@ export default {
                 dragging: 1,
                 active: 1
             });
-
-            me.get('onDragStart') && me.get('onDragStart')(e);
+            me.fire('dragStart');
         },
 
         onDragStop(e) {

@@ -4,23 +4,25 @@ export default {
             {{#if className}} {{className}}{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
 
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{/if}}
-
-            {{#if title}}
-                <div class="bell-card-title-text
+            {{#if hasSlot('title')}}
+                <span class="bell-card-title-text
                     {{#if titleClass}} {{titleClass}}{{/if}}
                 ">
-                    {{title}}
-                </div>
+                    <slot name="title" />
+                </span>
             {{/if}}
 
-            {{#if subTitle}}
+            {{#if hasSlot('extra')}}
+                <span class="bell-card-title-extra">
+                    <slot name="extra" />
+                </span>
+            {{/if}}
+
+            {{#if hasSlot('subTitle')}}
                 <div class="bell-card-sub-title
                     {{#if subTitleClass}} {{subTitleClass}}{{/if}}
                 ">
-                    {{subTitle}}
+                    <slot name="subTitle" />
                 </div>
             {{/if}}
 
@@ -34,13 +36,7 @@ export default {
         style: {
             type: 'string'
         },
-        title: {
-            type: 'string'
-        },
         titleClass: {
-            type: 'string'
-        },
-        subTitle: {
             type: 'string'
         },
         subTitleClass: {
