@@ -6,6 +6,14 @@
         `
     }
 
+> type
+
+    export default {
+        template: `
+            <Rate type="success"> </Rate>
+        `
+    }
+
 > 半星
 
     export default {
@@ -18,12 +26,17 @@
 
     export default {
         template: `
-            <Rate showTexts model="value" value="{{value}}">
+            <Rate showTexts model="value" value="{{value}}" on-change="change()">
                 <span style="color: #f5a623">{{ value + 1 }} 分</span>
             </Rate>
         `,
         data: {
             value: 2
+        },
+        methods: {
+            change: function (event, data) {
+                console.log(data)
+            }
         }
     }
 

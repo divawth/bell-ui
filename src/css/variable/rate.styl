@@ -1,11 +1,54 @@
-$selector-rate = '.bell-rate';
-$selector-rate-star-full = '.bell-rate-star-full';
-$selector-rate-star-content = '.bell-rate-star-content';
-$selector-rate-text = '.bell-rate-text';
-
-$selector-rate-color-default = $brand-muted;
-$selector-rate-color-hover = $brand-warning;
-$selector-rate-color-active = $brand-warning;
+$selector-rate = $selector-prefix + '-rate';
+$selector-rate-star-full = $selector-prefix + '-rate-star-full';
+$selector-rate-star-content = $selector-prefix + '-rate-star-content';
+$selector-rate-text = $selector-prefix + '-rate-text';
 
 $selector-rate-font-size = 20px;
+$selector-rate-hover-font-size = 22px;
+$selector-rate-star-box-size = 22px;
+$selector-rate-margin-gap = 2px;
 
+$rate-color-hash = {
+    '': {
+        color-default: $brand-muted,
+        color-hover: $brand-primary,
+        color-active: $brand-primary,
+        text-color: $brand-secondary
+    },
+    'success': {
+        color-default: $brand-muted,
+        color-hover: $brand-success,
+        color-active: $brand-success,
+        text-color: $brand-secondary
+    },
+    'error': {
+        color-default: $brand-muted,
+        color-hover: $brand-error,
+        color-active: $brand-error,
+        text-color: $brand-secondary
+    },
+    'info': {
+        color-default: $brand-muted,
+        color-hover: $brand-info,
+        color-active: $brand-info,
+        text-color: $brand-secondary
+    },
+    'warning': {
+        color-default: $brand-muted,
+        color-hover: $brand-warning,
+        color-active: $brand-warning,
+        text-color: $brand-secondary
+    },
+    'danger': {
+        color-default: $brand-muted,
+        color-hover: $brand-danger,
+        color-active: $brand-danger,
+        text-color: $brand-secondary
+    },
+    'disabled': {
+        color-default: $brand-muted,
+        color-hover: $brand-disabled,
+        color-active: $brand-disabled,
+        text-color: $brand-secondary
+    }
+};

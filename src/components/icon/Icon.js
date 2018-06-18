@@ -1,10 +1,10 @@
 export default {
     template: `
-        <span class="bell-icon bell-icon-{{type}}
+        <i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}
             {{#if className}} {{className}}{{/if}}"
             style="font-size: {{size}}px;{{#if style}} {{style}}{{/if}}"
         >
-        </span>
+        </i>
     `,
     propTypes: {
         className: {
@@ -16,9 +16,8 @@ export default {
         type: {
             type: 'string'
         },
-        size: {
-            type: 'number',
-            value: 12
+        size: function (value) {
+            return value != null ? +value : 14;
         }
     }
 };

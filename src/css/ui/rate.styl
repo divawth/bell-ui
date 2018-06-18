@@ -1,54 +1,64 @@
 {$selector-rate}
 
-    color $selector-rate-color-default
+    display inline-block
     cursor pointer
     font-size $selector-rate-font-size
+    ui-rate()
 
     {$selector-rate-star-full}
 
         position relative
-
-        &::before
-            color $selector-rate-color-default
-            cursor pointer
-            content "\F4B3"
-            transition all .2s ease-in-out
-            display block
+        transition color .3s, font-size .3s
+        display inline-block
+        width $selector-rate-star-box-size
+        height $selector-rate-star-box-size
+        line-height $selector-rate-star-box-size
+        vertical-align middle
 
         {$selector-hover}
-        {$selector-active}
-            &::before
-                color $selector-rate-color-hover
+
+            font-size $selector-rate-hover-font-size
+
+            {$selector-rate-star-content}
+
+                ui-set('width', $selector-rate-hover-font-size / 2 - 1)
+
+        &::before
+
+            cursor pointer
+            content "\F4B3"
 
         + {$selector-rate-star-full}
 
-            margin-left 6px
+            margin-left 0
 
     {$selector-rate-star-content}
 
         position absolute
         left 0
         top 0
-        width 50%
         height 100%
         overflow hidden
+        line-height $selector-rate-star-box-size
+        ui-set('width', $selector-rate-font-size / 2 - 1)
 
         &::before
-            color transparent
+
+            opacity 0
             cursor pointer
             content "\F4B3"
-            transition all .2s ease-in-out
-            display block
+            transition opacity .3s
 
         {$selector-active}
 
             &::before
-                color $selector-rate-color-hover
+
+                opacity 1
 
     {$selector-rate-text}
-        margin-left 10px
+
+        margin-left $selector-rate-margin-gap
         font-size 12px
-        color $brand-secondary
 
     &{$selector-rate}-read-only
 

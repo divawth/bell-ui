@@ -12,7 +12,7 @@
         `,
         methods: {
             change: function (events, data) {
-                console.log(data.isChecked);
+                console.log(data.checked);
             }
         },
         data: function () {

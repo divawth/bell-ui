@@ -4,7 +4,7 @@ export default {
             {{#if type}} bell-switch-{{type}}{{/if}}
             {{#if size}} bell-switch-{{size}}{{/if}}
             {{#if disabled}} bell-switch-disabled{{/if}}
-            {{#if isChecked}} bell-active{{/if}}
+            {{#if checked}} bell-active{{/if}}
             {{#if className}} {{className}}{{/if}}
         "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
 
@@ -24,16 +24,13 @@ export default {
         </div>
     `,
 
-    model: 'modelValue',
+    model: 'checked',
 
     propTypes: {
         className: {
             type: 'string'
         },
         style: {
-            type: 'string'
-        },
-        modelValue: {
             type: 'string'
         },
         type: {
@@ -50,21 +47,6 @@ export default {
         }
     },
 
-    data() {
-        let me = this;
-        return {
-            isChecked: me.get('checked')
-        }
-    },
-
-    watchers: {
-        modelValue(value) {
-            this.set({
-                isChecked: value
-            })
-        }
-    },
-
     methods: {
         click() {
             let me = this;
@@ -72,16 +54,11 @@ export default {
                 return;
             }
 
-            let isChecked = me.get('isChecked');
-            me.set({
-                isChecked: !isChecked,
-                modelValue: !isChecked
-            });
-
+            me.toggle('checked');
             me.fire(
                 'change',
                 {
-                    isChecked: !isChecked
+                    checked: me.get('checked')
                 }
             );
         }

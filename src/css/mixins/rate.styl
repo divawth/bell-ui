@@ -1,1 +1,29 @@
+rate-color-style(color)
+
+    ui-set('color', color['color-default'])
+
+    {$selector-rate-star-full}
+
+        ui-set('color', color['color-default'])
+
+        {$selector-hover}
+        {$selector-active}
+
+            ui-set('color', color['color-hover'])
+
+    {$selector-rate-star-content}
+
+        {$selector-active}
+
+            ui-set('color', color['color-hover'])
+
+    {$selector-rate-text}
+
+        ui-set('color', color['text-color'])
+
+
 ui-rate()
+    ui-connect(
+        hash: $rate-color-hash,
+        each: rate-color-style
+    )

@@ -768,7 +768,7 @@
     };
 
     var Icon = {
-        template: '\n        <span class="bell-icon bell-icon-{{type}}\n            {{#if className}} {{className}}{{/if}}"\n            style="font-size: {{size}}px;{{#if style}} {{style}}{{/if}}"\n        >\n        </span>\n    ',
+        template: '\n        <i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}\n            {{#if className}} {{className}}{{/if}}"\n            style="font-size: {{size}}px;{{#if style}} {{style}}{{/if}}"\n        >\n        </i>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -779,9 +779,8 @@
             type: {
                 type: 'string'
             },
-            size: {
-                type: 'number',
-                value: 12
+            size: function size(value) {
+                return value != null ? +value : 14;
             }
         }
     };
@@ -1405,18 +1404,15 @@
     };
 
     var Switch = {
-        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if isChecked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                <span class="bell-switch-on">\n                    {{#if hasSlot(\'checkedText\')}}\n                        <slot name="checkedText" />\n                    {{/if}}\n                </span>\n                <span class="bell-switch-off">\n                    {{#if hasSlot(\'unCheckedText\')}}\n                        <slot name="unCheckedText" />\n                    {{/if}}\n                </span>\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
+        template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if checked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                <span class="bell-switch-on">\n                    {{#if hasSlot(\'checkedText\')}}\n                        <slot name="checkedText" />\n                    {{/if}}\n                </span>\n                <span class="bell-switch-off">\n                    {{#if hasSlot(\'unCheckedText\')}}\n                        <slot name="unCheckedText" />\n                    {{/if}}\n                </span>\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
 
-        model: 'modelValue',
+        model: 'checked',
 
         propTypes: {
             className: {
                 type: 'string'
             },
             style: {
-                type: 'string'
-            },
-            modelValue: {
                 type: 'string'
             },
             type: {
@@ -1433,22 +1429,6 @@
             }
         },
 
-        data: function data() {
-            var me = this;
-            return {
-                isChecked: me.get('checked')
-            };
-        },
-
-
-        watchers: {
-            modelValue: function modelValue(value) {
-                this.set({
-                    isChecked: value
-                });
-            }
-        },
-
         methods: {
             click: function click() {
                 var me = this;
@@ -1456,14 +1436,9 @@
                     return;
                 }
 
-                var isChecked = me.get('isChecked');
-                me.set({
-                    isChecked: !isChecked,
-                    modelValue: !isChecked
-                });
-
+                me.toggle('checked');
                 me.fire('change', {
-                    isChecked: !isChecked
+                    checked: me.get('checked')
                 });
             }
         }
@@ -4039,7 +4014,7 @@
     };
 
     var Rate = {
-        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-read-only{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="value">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if hoverValue >= index}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if index - hoverValue == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{value + 1}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
+        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-read-only{{/if}}\n            {{#if type}} bell-rate-{{type}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="value">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if hoverValue >= index}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if index - hoverValue == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{value + 1}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -4073,6 +4048,9 @@
             textColor: {
                 type: 'string',
                 value: '#1F2D3D'
+            },
+            type: {
+                type: 'string'
             }
         },
 

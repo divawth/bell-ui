@@ -5010,7 +5010,7 @@ button.bell-button {
   padding: 3px 15px;
 }
 .bell-select-small .bell-select-button .bell-select-arrow {
-  padding: 5px 15px;
+  padding: 4px 15px;
 }
 .bell-select-small .bell-select-dropdown {
   max-height: 200px;
@@ -5257,6 +5257,7 @@ button.bell-button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   color: rgba(0,0,0,0.54);
 }
 .bell-select .bell-select-dropdown .bell-select-option.bell-select .bell-select-dropdown .bell-select-option.active,
@@ -7243,50 +7244,177 @@ button.bell-button {
   margin-left: 20px;
 }
 .bell-rate {
-  color: rgba(0,0,0,0.37);
+  display: inline-block;
   cursor: pointer;
   font-size: 20px;
 }
-.bell-rate .bell-rate-star-full {
-  position: relative;
-}
-.bell-rate .bell-rate-star-full::before {
+.bell-rate {
   color: rgba(0,0,0,0.37);
-  cursor: pointer;
-  content: "\F4B3";
-  transition: all 0.2s ease-in-out;
-  display: block;
 }
-.bell-rate .bell-rate-star-full.active::before,
-.bell-rate .bell-rate-star-full.bell-active::before {
+.bell-rate .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate .bell-rate-star-full.active,
+.bell-rate .bell-rate-star-full.bell-active {
+  color: #6392e5;
+}
+.bell-rate .bell-rate-star-content.active,
+.bell-rate .bell-rate-star-content.bell-active {
+  color: #6392e5;
+}
+.bell-rate .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-success {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-success .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-success .bell-rate-star-full.active,
+.bell-rate-success .bell-rate-star-full.bell-active {
+  color: #28cd6a;
+}
+.bell-rate-success .bell-rate-star-content.active,
+.bell-rate-success .bell-rate-star-content.bell-active {
+  color: #28cd6a;
+}
+.bell-rate-success .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-error {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-error .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-error .bell-rate-star-full.active,
+.bell-rate-error .bell-rate-star-full.bell-active {
+  color: #fc4b4e;
+}
+.bell-rate-error .bell-rate-star-content.active,
+.bell-rate-error .bell-rate-star-content.bell-active {
+  color: #fc4b4e;
+}
+.bell-rate-error .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-info {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-info .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-info .bell-rate-star-full.active,
+.bell-rate-info .bell-rate-star-full.bell-active {
+  color: #7aa3e9;
+}
+.bell-rate-info .bell-rate-star-content.active,
+.bell-rate-info .bell-rate-star-content.bell-active {
+  color: #7aa3e9;
+}
+.bell-rate-info .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-warning {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-warning .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-warning .bell-rate-star-full.active,
+.bell-rate-warning .bell-rate-star-full.bell-active {
   color: #fec740;
 }
+.bell-rate-warning .bell-rate-star-content.active,
+.bell-rate-warning .bell-rate-star-content.bell-active {
+  color: #fec740;
+}
+.bell-rate-warning .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-danger {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-danger .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-danger .bell-rate-star-full.active,
+.bell-rate-danger .bell-rate-star-full.bell-active {
+  color: #eb1111;
+}
+.bell-rate-danger .bell-rate-star-content.active,
+.bell-rate-danger .bell-rate-star-content.bell-active {
+  color: #eb1111;
+}
+.bell-rate-danger .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate-disabled {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-disabled .bell-rate-star-full {
+  color: rgba(0,0,0,0.37);
+}
+.bell-rate-disabled .bell-rate-star-full.active,
+.bell-rate-disabled .bell-rate-star-full.bell-active {
+  color: $brand-disabled;
+}
+.bell-rate-disabled .bell-rate-star-content.active,
+.bell-rate-disabled .bell-rate-star-content.bell-active {
+  color: $brand-disabled;
+}
+.bell-rate-disabled .bell-rate-text {
+  color: rgba(0,0,0,0.54);
+}
+.bell-rate .bell-rate-star-full {
+  position: relative;
+  transition: color 0.3s, font-size 0.3s;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+.bell-rate .bell-rate-star-full.hover,
+.bell-rate .bell-rate-star-full:hover,
+.bell-rate .bell-rate-star-full.bell-hover {
+  font-size: 22px;
+}
+.bell-rate .bell-rate-star-full.hover .bell-rate-star-content,
+.bell-rate .bell-rate-star-full:hover .bell-rate-star-content,
+.bell-rate .bell-rate-star-full.bell-hover .bell-rate-star-content {
+  width: 10px;
+}
+.bell-rate .bell-rate-star-full::before {
+  cursor: pointer;
+  content: "\F4B3";
+}
 .bell-rate .bell-rate-star-full + .bell-rate-star-full {
-  margin-left: 6px;
+  margin-left: 0;
 }
 .bell-rate .bell-rate-star-content {
   position: absolute;
   left: 0;
   top: 0;
-  width: 50%;
   height: 100%;
   overflow: hidden;
+  line-height: 22px;
+  width: 9px;
 }
 .bell-rate .bell-rate-star-content::before {
-  color: transparent;
+  opacity: 0;
   cursor: pointer;
   content: "\F4B3";
-  transition: all 0.2s ease-in-out;
-  display: block;
+  transition: opacity 0.3s;
 }
 .bell-rate .bell-rate-star-content.active::before,
 .bell-rate .bell-rate-star-content.bell-active::before {
-  color: #fec740;
+  opacity: 1;
 }
 .bell-rate .bell-rate-text {
-  margin-left: 10px;
+  margin-left: 2px;
   font-size: 12px;
-  color: rgba(0,0,0,0.54);
 }
 .bell-rate.bell-rate-read-only {
   cursor: default;

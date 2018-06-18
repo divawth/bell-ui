@@ -3,6 +3,7 @@ export default {
         <div class="bell-rate
             {{#if className}} {{className}}{{/if}}
             {{#if readOnly}} bell-rate-read-only{{/if}}
+            {{#if type}} bell-rate-{{type}}{{/if}}
         "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">
 
             <input type="hidden" model="value">
@@ -66,6 +67,9 @@ export default {
         textColor: {
             type: 'string',
             value: '#1F2D3D'
+        },
+        type: {
+            type: 'string'
         }
     },
 
