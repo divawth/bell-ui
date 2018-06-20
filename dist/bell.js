@@ -1901,7 +1901,7 @@
     };
 
     var Alert = {
-        template: '\n        <div class="bell-alert\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} bell-alert-{{type}}{{/if}}\n            {{#if hasDesc}} bell-alert-with-desc{{/if}}\n            {{#if showIcon}} bell-alert-with-icon{{/if}}\n            {{#if center}} bell-alert-center{{/if}}\n        " {{#if style}} style="{{style}}"{{/if}}>\n            {{#if showIcon}}\n                <span class="bell-alert-icon">\n                    <i class="bell-icon\n                    {{#if type == \'primary\'}} bell-icon-information-circled\n                    {{else if type == \'success\'}} bell-icon-checkmark-circled\n                    {{else if type == \'warning\'}} bell-icon-android-alert\n                    {{else if type == \'error\'}} bell-icon-close-circled\n                    {{/if}}\n                    "></i>\n                </span>\n            {{/if}}\n\n            <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n            {{#if closable}}\n                <span ref="close" class="bell-alert-close" on-click="close()">\n                    {{#if closeText}}\n                        {{closeText}}\n                    {{else}}\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    {{/if}}\n                </span>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-alert\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} bell-alert-{{type}}{{/if}}\n            {{#if hasDesc}} bell-alert-with-desc{{/if}}\n            {{#if showIcon}} bell-alert-with-icon{{/if}}\n            {{#if center}} bell-alert-center{{/if}}\n        " {{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if showIcon}}\n                <span class="bell-alert-icon">\n                    <i class="bell-icon\n                    {{#if type == \'primary\'}} bell-icon-information-circled\n                    {{else if type == \'success\'}} bell-icon-checkmark-circled\n                    {{else if type == \'warning\'}} bell-icon-android-alert\n                    {{else if type == \'error\'}} bell-icon-close-circled\n                    {{/if}}\n                    "></i>\n                </span>\n            {{/if}}\n\n            <span class="bell-alert-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </span>\n\n            {{#if closable}}\n                <span ref="close" class="bell-alert-close" on-click="close()">\n                    {{#if closeText}}\n                        {{closeText}}\n                    {{else}}\n                        <i class="bell-icon bell-icon-ios-close-empty"></i>\n                    {{/if}}\n                </span>\n            {{/if}}\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -1915,13 +1915,13 @@
                 value: 'primary'
             },
             closable: {
-                type: ['string', 'boolean']
+                type: 'boolean'
             },
             showIcon: {
-                type: ['string', 'boolean']
+                type: 'boolean'
             },
             center: {
-                type: ['string', 'boolean']
+                type: 'boolean'
             },
             closeText: {
                 type: 'string'
@@ -1938,14 +1938,13 @@
 
         methods: {
             close: function close() {
-                var me = this;
-                var container = me.$el;
+                var container = this.$el;
                 var classNames = container.getAttribute('class');
-                container.setAttribute('class', classNames + ' bell-hide');
+                Yox.dom.addClass(container, 'bell-hide');
                 setTimeout(function () {
                     container.remove();
                 }, 500);
-                me.fire('close');
+                this.fire('close');
             }
         },
 

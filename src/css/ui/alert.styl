@@ -1,8 +1,8 @@
 {$selector-alert}
 
-    position relative
     user-select none
-    transition all .5s ease-in-out
+    position relative
+    transition all .3s
 
     border 1px solid
     border-radius $radius-base
@@ -10,17 +10,15 @@
     line-height $alert-line-height
     padding $alert-padding
 
-    color $alert-font-color
-
     ui-alert()
 
     &.bell-hide
+
         opacity 0
 
     {$selector-alert}-icon
 
-        font-size $alert-font-size
-        margin-right $alert-bell-icon-margin-right
+        margin-right $alert-bell-icon-margin-gap
         float left
         vertical-align top
 
@@ -28,23 +26,23 @@
 
         {$selector-alert}-content
 
-            font-size 14px
-            line-height 1.8
+            font-size $size-base['font']
+            line-height $size-base['line-height']
             font-weight bold
 
         {$selector-alert}-desc
 
-            font-size 12px
-            line-height 1.8
+            font-size $size-tiny['font']
+            line-height $size-tiny['line-height']
             font-weight normal
 
         &{$selector-alert}-with-icon
 
             {$selector-icon}
 
-                font-size 22px
-                line-height 45px
-                margin-right 8px
+                font-size $size-huge['font']
+                line-height $size-huge['line-height']
+                margin-right $size-huge['margin-horizontal']
 
     &{$selector-alert}-center
 

@@ -7,6 +7,7 @@ export default {
             {{#if showIcon}} bell-alert-with-icon{{/if}}
             {{#if center}} bell-alert-center{{/if}}
         " {{#if style}} style="{{style}}"{{/if}}>
+
             {{#if showIcon}}
                 <span class="bell-alert-icon">
                     <i class="bell-icon
@@ -19,7 +20,7 @@ export default {
                 </span>
             {{/if}}
 
-            <span class="bell-alert-content" style="padding-right: {{paddingRight}}px">
+            <span class="bell-alert-content">
                 {{#if hasSlot('children')}}
                     <slot name="children" />
                 {{/if}}
@@ -49,13 +50,13 @@ export default {
             value: 'primary'
         },
         closable: {
-            type: ['string', 'boolean']
+            type: 'boolean'
         },
         showIcon: {
-            type: ['string', 'boolean']
+            type: 'boolean'
         },
         center: {
-            type: ['string', 'boolean']
+            type: 'boolean'
         },
         closeText: {
             type: 'string'
@@ -71,17 +72,16 @@ export default {
 
     methods: {
         close() {
-            let me = this;
-            let container = me.$el;
+            let container = this.$el;
             let classNames = container.getAttribute('class');
-            container.setAttribute('class', classNames + ' bell-hide');
+            Yox.dom.addClass(container, 'bell-hide');
             setTimeout(
                 () => {
                     container.remove();
                 },
                 500
             );
-            me.fire('close');
+            this.fire('close');
         }
     },
 

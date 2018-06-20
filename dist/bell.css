@@ -5892,15 +5892,14 @@ button.bell-button-danger[disabled] {
   border-radius: 100%;
 }
 .bell-alert {
-  position: relative;
   user-select: none;
-  transition: all 0.5s ease-in-out;
+  position: relative;
+  transition: all 0.3s;
   border: 1px solid;
   border-radius: 4px;
   font-size: 12px;
-  line-height: 1.2;
+  line-height: 14px;
   padding: 12px 16px;
-  color: #495060;
 }
 .bell-alert {
   border-color: #bbdcfd;
@@ -5978,24 +5977,23 @@ button.bell-button-danger[disabled] {
   opacity: 0;
 }
 .bell-alert .bell-alert-icon {
-  font-size: 12px;
   margin-right: 6px;
   float: left;
   vertical-align: top;
 }
 .bell-alert.bell-alert-with-desc .bell-alert-content {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: {"font":"(14px)","line-height":"(1.477)","margin-horizontal":"(8px)","margin-vertical":"(8px)","padding-horizontal":"(12px)","padding-vertical":"(5px)"};
+  line-height: 25px;
   font-weight: bold;
 }
 .bell-alert.bell-alert-with-desc .bell-alert-desc {
   font-size: 12px;
-  line-height: 1.8;
+  line-height: 18px;
   font-weight: normal;
 }
 .bell-alert.bell-alert-with-desc.bell-alert-with-icon .bell-icon {
   font-size: 22px;
-  line-height: 45px;
+  line-height: 43px;
   margin-right: 8px;
 }
 .bell-alert.bell-alert-center {

@@ -3,23 +3,20 @@
     export default {
         template: `
         <div>
-            <Alert>An info prompt</Alert>
-            <br>
+            <Alert center>An info prompt</Alert>
             <Alert type="secondary">An secondary prompt</Alert>
-            <br>
             <Alert type="success">A success prompt</Alert>
-            <br>
             <Alert type="danger">An danger prompt</Alert>
-            <br>
             <Alert type="warning">A warning prompt</Alert>
-            <br>
             <Alert type="info">An info prompt</Alert>
-            <br>
             <Alert type="error">An error prompt</Alert>
-            <br>
             <Alert type="light">An light prompt</Alert>
-            <br>
             <Alert type="dark">An dark prompt</Alert>
+            <style>
+                .bell-alert {
+                    margin-top: 10px;
+                }
+            </style>
         </div>
         `
     }
@@ -35,56 +32,48 @@
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="secondary">
                 An secondary prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="success">
                 A success prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="danger">
                 An danger prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="warning">
                 A warning prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="info">
                 An info prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="error">
                 An error prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="light">
                 An light prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="dark">
                 An dark prompt
                 <Desc>
@@ -101,41 +90,33 @@
         template: `
         <div>
             <Alert type="primary" showIcon>An info prompt</Alert>
-            <br>
             <Alert type="success" showIcon>A success prompt</Alert>
-            <br>
             <Alert type="warning" showIcon>A warning prompt</Alert>
-            <br>
             <Alert type="error" showIcon>An error prompt</Alert>
-            <br>
             <Alert type="primary" showIcon>
                 An info prompt
                 <Desc>
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="success" showIcon>
                 A success prompt
                 <Desc slot="desc">
                     Content of prompt. Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="warning" showIcon>
                 A warning prompt
                 <Desc slot="desc">
                     Content of prompt. Content of prompt. Content of prompt.
                 </Desc>
             </Alert>
-            <br>
             <Alert type="error" showIcon>
                 An error prompt
                 <Desc slot="desc">
                     Custom error description copywriting.
                 </Desc>
             </Alert>
-            <br>
             <Alert showIcon closable>
                 Custom icon
 
@@ -151,11 +132,8 @@
         template: `
         <div>
             <Alert showIcon closable>An info prompt</Alert>
-            <br>
             <Alert type="success" showIcon closable>A success prompt</Alert>
-            <br>
             <Alert type="warning" showIcon closable>A warning prompt</Alert>
-            <br>
             <Alert type="error" showIcon closable>An error prompt</Alert>
         </div>
         `
@@ -167,11 +145,8 @@
         template: `
         <div>
             <Alert showIcon closable closeText="No longer prompt">An info prompt</Alert>
-            <br>
             <Alert type="success" showIcon closable closeText="No longer prompt">A success prompt</Alert>
-            <br>
             <Alert type="warning" showIcon closable closeText="No longer prompt">A warning prompt</Alert>
-            <br>
             <Alert type="error" showIcon closable closeText="No longer prompt">An error prompt</Alert>
         </div>
         `
