@@ -1,8 +1,8 @@
-slider-color(color)
+slider-style(color)
 
     {$selector-slider-fill}
 
-        ui-set('background-color', color['color'], true)
+        ui-set('background-color', color['color'])
 
     {$selector-slider-thumb}
 
@@ -10,7 +10,7 @@ slider-color(color)
 
 ui-slider()
 
-    ui-variant(
+    ui-connect(
         hash: $slider-brand-hash,
-        each: slider-color
+        each: slider-style
     )

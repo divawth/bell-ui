@@ -125,7 +125,7 @@
         `
     }
 
-> 通过 label 设置右侧按钮文字
+> 设置右侧按钮文字
 
     export default {
         template: `

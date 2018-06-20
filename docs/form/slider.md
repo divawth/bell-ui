@@ -3,9 +3,20 @@
     export default {
         template: `
             <div>
-                <Slider model="value"></Slider>
+                <Slider model="value" on-change="change()" />
+                <p>{{ value }}</p>
+                <style>
+                    .bell-slider {
+                        margin-top: 30px;
+                    }
+                </style>
             </div>
         `,
+        methods: {
+            change: function (event, data) {
+                console.log(data)
+            }
+        },
         data: function () {
             return {
                 value: 10
@@ -18,7 +29,7 @@
     export default {
         template: `
             <div>
-                <Slider model="value" disabled></Slider>
+                <Slider model="value" disabled />
             </div>
         `,
         data: function () {
@@ -36,7 +47,7 @@
                 <Slider model="value2"
                     min="{{60}}"
                     max="{{100}}"
-                    step="{{10}}"></Slider>
+                    step="{{10}}" />
             </div>
         `,
         data: function () {
@@ -52,10 +63,10 @@
     export default {
         template: `
             <div>
-                <Slider model="value2" type="error"></Slider>
-                <Slider model="value2" type="warning"></Slider>
-                <Slider model="value2" type="info"></Slider>
-                <Slider model="value2" type="success"></Slider>
+                <Slider model="value2" type="error" />
+                <Slider model="value2" type="warning" />
+                <Slider model="value2" type="info" />
+                <Slider model="value2" type="success" />
             </div>
         `,
         data: function () {
@@ -64,6 +75,44 @@
             }
         }
     }
+
+> 和其他组件一起使用
+
+    export default {
+        template: `
+            <div>
+                <InputNumber model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="prepend">
+                        <span>输入 percent:</span>
+                    </template>
+                    <template slot="append">
+                        <span>%</span>
+                    </template>
+                </InputNumber>
+                <Slider model="value" on-change="change()" />
+                <p>{{ value }}</p>
+                <style>
+                    .bell-slider {
+                        margin-top: 30px;
+                    }
+                </style>
+            </div>
+        `,
+        methods: {
+            change: function (event, data) {
+                console.log(data)
+            }
+        },
+        data: function () {
+            return {
+                value: 10
+            }
+        }
+    }
+
 
 #### API
 
@@ -80,8 +129,8 @@ type | 类型 | string | - | -
 
 > Slider events
 
-参数 | 说明
+方法 | 说明 | 参数
 ---|---
-onDragStart | 开始拖拽时回调
-onDragStop | 结束拖拽时回调
-onChange | 值改变时回调
+dragStart | 开始拖拽时回调 | -
+dragStop | 结束拖拽时回调 | -
+change | 值改变时回调 | percent

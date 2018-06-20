@@ -95,6 +95,45 @@
         }
     }
 
+> 设置右侧按钮文字
+
+    export default {
+        template: `
+            <div>
+                <InputNumber model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="prepend">
+                        <span>Https://</span>
+                    </template>
+                </InputNumber>
+                <InputNumber model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="append">
+                        <span>@bell.io</span>
+                    </template>
+                </InputNumber>
+                <InputNumber model="value"
+                    type="text"
+                    placeholder="请输入..."
+                >
+                    <template slot="prepend">
+                        <Button type="text">搜索</Button>
+                    </template>
+                </InputNumber>
+
+                <style>
+                    .bell-input-wrapper {
+                        margin-top: 10px;
+                    }
+                </style>
+            </div>
+        `
+    }
+
 #### API
 
 > Attributes

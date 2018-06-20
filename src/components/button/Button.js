@@ -2,11 +2,10 @@ export default {
     template: `
         <button class="bell-button
             {{#if className}} {{className}}{{/if}}
-            {{#if type}} {{type}}{{/if}}
-            {{#if shape}} {{shape}}{{/if}}
-            {{#if size}} {{size}}{{/if}}
+            {{#if type}} bell-button-{{type}}{{/if}}
+            {{#if shape}} bell-button-{{shape}}{{/if}}
+            {{#if size}} bell-button-{{size}}{{/if}}
             {{#if fluid}} bell-button-fluid{{/if}}
-            {{#if !label && !children && icon}} bell-icon-only{{/if}}
         "{{#if disabled}} disabled{{/if}} on-click="click"
         {{#if style}} style="{{style}}"{{/if}}>
 
@@ -18,10 +17,8 @@ export default {
                 <span>
                     {{label}}
                 </span>
-            {{else}}
-                {{#if hasSlot('children')}}
-                    <slot name="children" />
-                {{/if}}
+            {{else if hasSlot('children')}}
+                <slot name="children" />
             {{/if}}
 
             {{#if hasSlot('rightIcon')}}
@@ -52,10 +49,10 @@ export default {
             type: 'string'
         },
         fluid: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         disabled: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         }
     }
 };

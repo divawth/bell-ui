@@ -5,6 +5,7 @@ button-reset()
         text-decoration none
 
     button&
+
         background-color transparent
         outline 0
 
@@ -20,9 +21,10 @@ button-radius(radius)
 
 button-color(color, bg, border)
 
-    ui-set('color', color)
-    ui-set('background-color', bg)
-    ui-set('border-color', border)
+    button&
+        ui-set('color', color)
+        ui-set('background-color', bg)
+        ui-set('border-color', border)
 
 button-style(style)
 
@@ -70,20 +72,21 @@ ui-button()
 
     button-reset()
 
-    ui-variant(
+    ui-connect(
         hash: $button-size-hash,
         each: button-size
     )
-    ui-variant(
+    ui-connect(
         hash: $button-radius-hash,
         each: button-radius
     )
-    ui-variant(
+    ui-connect(
         hash: $button-hash,
         each: button-style
     )
 
     > {$selector-text}
+
         font inherit
 
 ui-buttons()
@@ -96,7 +99,7 @@ ui-buttons()
                 button-size(size)
             }
 
-            ui-variant(
+            ui-connect(
                 hash: $button-radius-hash,
                 each: button-radius
             )

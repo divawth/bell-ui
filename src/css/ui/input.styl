@@ -1,4 +1,5 @@
 {$selector-input-wrapper}
+
     &{$selector-input}-has-append,
     &{$selector-input}-has-prepend
 
@@ -22,14 +23,16 @@
         border-top-left-radius $radius-base
         border-bottom-left-radius $radius-base
 
-        + {$selector-input}
+        + {$selector-input},
+        + {$selector-input-number}
 
             border-top-left-radius 0
             border-bottom-left-radius 0
 
     &{$selector-input}-has-append
 
-        {$selector-input}
+        {$selector-input},
+        {$selector-input-number}
 
             border-top-right-radius 0
             border-bottom-right-radius 0

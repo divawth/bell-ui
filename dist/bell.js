@@ -817,7 +817,7 @@
     };
 
     var Button = {
-        template: '\n        <button class="bell-button\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if shape}} {{shape}}{{/if}}\n            {{#if size}} {{size}}{{/if}}\n            {{#if fluid}} bell-button-fluid{{/if}}\n            {{#if !label && !children && icon}} bell-icon-only{{/if}}\n        "{{#if disabled}} disabled{{/if}} on-click="click"\n        {{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'leftIcon\')}}\n                <slot name="leftIcon" />\n            {{/if}}\n\n            {{#if label}}\n                <span>\n                    {{label}}\n                </span>\n            {{else}}\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            {{/if}}\n\n            {{#if hasSlot(\'rightIcon\')}}\n                <slot name="rightIcon" />\n            {{/if}}\n        </button>\n    ',
+        template: '\n        <button class="bell-button\n            {{#if className}} {{className}}{{/if}}\n            {{#if type}} bell-button-{{type}}{{/if}}\n            {{#if shape}} bell-button-{{shape}}{{/if}}\n            {{#if size}} bell-button-{{size}}{{/if}}\n            {{#if fluid}} bell-button-fluid{{/if}}\n        "{{#if disabled}} disabled{{/if}} on-click="click"\n        {{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'leftIcon\')}}\n                <slot name="leftIcon" />\n            {{/if}}\n\n            {{#if label}}\n                <span>\n                    {{label}}\n                </span>\n            {{else if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            {{#if hasSlot(\'rightIcon\')}}\n                <slot name="rightIcon" />\n            {{/if}}\n        </button>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -841,10 +841,10 @@
                 type: 'string'
             },
             fluid: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             disabled: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             }
         }
     };
@@ -998,7 +998,7 @@
     };
 
     var InputNumber = {
-        template: '\n        <div class="bell-input-number\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-number-{{size}}{{/if}}\n            {{#if status}} bell-input-number-{{status}}{{/if}}\n            {{#if disabled}} bell-input-number-disabled{{/if}}\n            {{#if readonly}} bell-input-number-readonly{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <span class="bell-input-number-wrapper">\n                <input type="text" class="bell-input"\n                {{#if disabled}}disabled="disabled"{{/if}}\n                {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                model="value" on-blur="blur()" on-focus="focus()"\n                ></input>\n            </span>\n\n            <span class="bell-input-number-actions">\n                <span class="bell-icon bell-icon-up bell-icon-ios-arrow-up"\n                    {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                    on-click="up()"></span>\n                <span class="bell-icon bell-icon-down bell-icon-ios-arrow-down"\n                    {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                    on-click="down()"\n                ></span>\n            </span>\n\n        </div>\n    ',
+        template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input-number\n                {{#if className}} {{className}}{{/if}}\n                {{#if size}} bell-input-number-{{size}}{{/if}}\n                {{#if status}} bell-input-number-{{status}}{{/if}}\n                {{#if disabled}} bell-input-number-disabled{{/if}}\n                {{#if readonly}} bell-input-number-readonly{{/if}}\n                {{#if isFocus}} bell-focus{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}>\n\n                <span class="bell-input-number-wrapper">\n                    <input type="text" class="bell-input"\n                    {{#if disabled}}disabled="disabled"{{/if}}\n                    {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                    model="value" on-blur="blur()" on-focus="focus()"\n                    ></input>\n                </span>\n\n                <span class="bell-input-number-actions">\n                    <span class="bell-icon bell-icon-up bell-icon-ios-arrow-up"\n                        {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                        on-click="up()"></span>\n                    <span class="bell-icon bell-icon-down bell-icon-ios-arrow-down"\n                        {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                        on-click="down()"\n                    ></span>\n                </span>\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -1078,19 +1078,38 @@
                 });
             },
             blur: function blur() {
-                var me = this;
-                me.set({
+                this.set({
                     isFocus: false
                 });
-                me.fire('blur');
+                this.fire('blur');
             },
             focus: function focus() {
-                var me = this;
-                me.set({
+                this.set({
                     isFocus: true
                 });
                 this.fire('focus');
+            },
+            documentKeydownHander: function documentKeydownHander(event) {
+                var me = this;
+                switch (event.originalEvent.keyCode) {
+                    case 38:
+                        me.up();
+                        break;
+                    case 40:
+                        me.down();
+                        break;
+                }
             }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+            me.documentKeydownHander = me.documentKeydownHander.bind(me);
+            Yox.dom.on(document, 'keydown', me.documentKeydownHander);
+        },
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            Yox.dom.off(document, 'keydown', me.documentKeydownHander);
         }
     };
 
@@ -3741,12 +3760,11 @@
         }
     };
 
-    var SLIDER_TOOLTIP_MARGIN_TOP = 56;
-    var SLIDER_TOOLTIP_MARGIN_LEFT = 30;
-    var SLIDER_TOOLTIP_THUMB_WIDTH = 10;
+    var SLIDER_TOOLTIP_MARGIN_TOP = 68;
+    var SLIDER_TOOLTIP_MARGIN_LEFT = 29;
 
     var Slider = {
-        template: '\n        <div class="bell-slider\n            {{#if className}} {{className}}{{/if}}\n            {{#if disabled}} disabled{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if dragging}} dragging{{/if}}\n        "{{#if style}} style="{{style}}" {{/if}}\n            on-blur="handleBlur($event)"\n            on-focus="handleFocus($event)"\n            on-touchstart="handleTouchStart($event)"\n            on-touchend="handleTouchEnd($event)"\n            on-touchcancel="handleTouchEnd($event)"\n            on-mousedown="handleMouseDown($event)"\n            on-mouseup="handleMouseUp($event)"\n            on-mouseenter="handleMouseEnter($event)"\n            on-mouseleave="handleMouseLeave($event)"\n        >\n\n            <input type="hidden" disabled="{{disabled ? \' disabled\' : \'\'}}" model="value">\n\n            <div class="bell-slider-bg"></div>\n\n            <div class="bell-slider-fill"\n                style="{{fillStyle}}"\n            ></div>\n\n            <div class="bell-slider-thumb"\n                style="{{thumbStyle}}"\n                title="\u503C\uFF1A{{value}}\uFF1B\u5360\u6BD4\uFF1A{{percent + \'%\'}}"\n            >\n            </div>\n\n            <div class="bell-tooltip\n                {{#if dragging}} bell-show{{/if}}\n            " style="{{tooltipStyle}}">\n\n                <div ref="tooltip" class="bell-tooltip-popper" data-placement="top">\n                    <div class="bell-tooltip-arrow"></div>\n                    <div class="bell-tooltip-inner">\n                        {{percent}}%\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    ',
+        template: '\n        <div class="bell-slider\n            {{#if className}} {{className}}{{/if}}\n            {{#if disabled}} bell-slider-disabled{{/if}}\n            {{#if type}} bell-slider-{{type}}{{/if}}\n            {{#if dragging}} dragging{{/if}}\n        "{{#if style}} style="{{style}}" {{/if}}\n            on-blur="handleBlur($event)"\n            on-focus="handleFocus($event)"\n            on-touchstart="handleTouchStart($event)"\n            on-touchend="handleTouchEnd($event)"\n            on-touchcancel="handleTouchEnd($event)"\n            on-mousedown="handleMouseDown($event)"\n            on-mouseup="handleMouseUp($event)"\n            on-mouseenter="handleMouseEnter($event)"\n            on-mouseleave="handleMouseLeave($event)"\n        >\n\n            <input type="hidden" disabled="{{disabled ? \' disabled\' : \'\'}}" model="value">\n\n            <div class="bell-slider-bg">\n                <div class="bell-slider-fill"\n                    style="{{fillStyle}}"\n                ></div>\n\n                <div class="bell-slider-thumb"\n                    style="{{thumbStyle}}"\n                    title="\u503C\uFF1A{{value}}\uFF1B\u5360\u6BD4\uFF1A{{percent + \'%\'}}"\n                >\n                </div>\n            </div>\n\n            <div class="bell-tooltip\n                {{#if dragging}} bell-show{{/if}}\n            " style="{{tooltipStyle}}">\n\n                <div ref="tooltip" class="bell-tooltip-popper" data-placement="top">\n                    <div class="bell-tooltip-arrow"></div>\n                    <div class="bell-tooltip-inner">\n                        {{percent}}%\n                    </div>\n                </div>\n\n            </div>\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -3782,19 +3800,8 @@
                 type: 'boolean',
                 value: false
             },
-
             type: {
                 type: 'string'
-            },
-
-            onDragStart: {
-                type: 'function'
-            },
-            onDragStop: {
-                type: 'function'
-            },
-            onChange: {
-                type: 'function'
             }
         },
 
@@ -3808,18 +3815,13 @@
         computed: {
             percent: function percent() {
                 var me = this;
-                var min = me.get('min');
-                var max = me.get('max');
-                var value = me.get('value');
-
-                var range = max - min;
-                var percentNum = range > 0 ? (value - min) / range * 100 : 0;
+                var range = me.get('max') - me.get('min');
+                var percentNum = range > 0 ? (me.get('value') - me.get('min')) / range * 100 : 0;
 
                 return percentNum > 100 ? 100 : percentNum < 0 ? 0 : percentNum.toFixed(2);
             },
             fillStyle: function fillStyle() {
-                var me = this;
-                return 'width: ' + me.get('percent') + '%';
+                return 'width: ' + this.get('percent') + '%';
             },
             tooltipStyle: function tooltipStyle() {
                 var me = this;
@@ -3830,159 +3832,147 @@
                     return '';
                 }
 
-                var boundingRect = me.$refs.tooltip.getBoundingClientRect();
-                var marginLeft = boundingRect.width / 2;
-                marginLeft = !marginLeft ? SLIDER_TOOLTIP_MARGIN_LEFT : marginLeft - SLIDER_TOOLTIP_THUMB_WIDTH / 2;
-
-                var marginTop = +boundingRect.height;
-                marginTop = !marginTop ? SLIDER_TOOLTIP_MARGIN_TOP : marginTop + SLIDER_TOOLTIP_THUMB_WIDTH;
-
-                return 'left: ' + me.get('percent') + '%;' + 'margin-left: -' + marginLeft + 'px;' + 'top: -' + marginTop + 'px;';
+                return 'left: ' + me.get('percent') + '%;' + 'margin-left: -' + SLIDER_TOOLTIP_MARGIN_LEFT + 'px;' + 'top: -' + SLIDER_TOOLTIP_MARGIN_TOP + 'px;';
             },
             thumbStyle: function thumbStyle() {
-                var me = this;
-                return 'left: ' + me.get('percent') + '%';
+                return 'left: ' + this.get('percent') + '%';
             },
             range: function range() {
-                var me = this;
-                return me.get('max') - me.get('min');
+                return this.get('max') - this.get('min');
             }
         },
 
         methods: {
-            handleTouchStart: function handleTouchStart(e) {
+            handleTouchStart: function handleTouchStart(event) {
                 var me = this;
                 if (me.get('disabled')) {
                     return;
                 }
 
-                me.setValue(e.touches[0]);
+                me.setValue(event);
 
-                document.addEventListener('touchmove', me.handleTouchMove);
-                document.addEventListener('touchup', me.handleTouchEnd);
-                document.addEventListener('touchend', me.handleTouchEnd);
-                document.addEventListener('touchcancel', me.handleTouchEnd);
+                Yox.dom.on(document, 'touchmove', me.handleTouchMove);
+                Yox.dom.on(document, 'touchup', me.handleTouchEnd);
+                Yox.dom.on(document, 'touchend', me.handleTouchEnd);
+                Yox.dom.on(document, 'touchcancel', me.handleTouchEnd);
 
-                e.preventDefault();
-                me.onDragStart(e);
+                event.prevent();
+                me.onDragStart(event);
             },
-            handleTouchEnd: function handleTouchEnd() {
+            handleTouchEnd: function handleTouchEnd(event) {
                 var me = this;
                 if (me.get('disabled')) {
                     return;
                 }
-                document.removeEventListener('touchmove', me.handleTouchMove);
-                document.removeEventListener('touchup', me.handleTouchEnd);
-                document.removeEventListener('touchend', me.handleTouchEnd);
-                document.removeEventListener('touchcancel', me.handleTouchEnd);
-                me.onDragStop(e);
+                Yox.dom.off(document, 'touchmove', me.handleTouchMove);
+                Yox.dom.off(document, 'touchup', me.handleTouchEnd);
+                Yox.dom.off(document, 'touchend', me.handleTouchEnd);
+                Yox.dom.off(document, 'touchcancel', me.handleTouchEnd);
+                event.prevent();
+                me.onDragStop(event);
             },
-            handleTouchMove: function handleTouchMove(e) {
-                var me = this;
-                me.onDragUpdate(e.touches[0]);
+            handleTouchMove: function handleTouchMove(event) {
+                this.onDragUpdate(event);
             },
-            handleDragMouseMove: function handleDragMouseMove(e) {
-                var me = this;
-                me.onDragUpdate(e);
+            handleDragMouseMove: function handleDragMouseMove(event) {
+                this.onDragUpdate(event);
             },
-            handleMouseDown: function handleMouseDown(e) {
-                var me = this;
-                if (me.get('disabled')) {
-                    return;
-                }
-
-                me.setValue(e.originalEvent);
-
-                document.addEventListener('mousemove', me.handleDragMouseMove);
-                document.addEventListener('mouseup', me.handleDragMouseEnd);
-
-                e.prevent();
-                me.onDragStart(e.originalEvent);
-            },
-            handleDragMouseEnd: function handleDragMouseEnd(e) {
+            handleMouseDown: function handleMouseDown(event) {
                 var me = this;
                 if (me.get('disabled')) {
                     return;
                 }
-                document.removeEventListener('mousemove', me.handleDragMouseMove);
-                document.removeEventListener('mouseup', me.handleDragMouseEnd);
-                me.onDragStop(e);
+
+                me.setValue(event);
+
+                Yox.dom.on(document, 'mousemove', me.handleDragMouseMove);
+                Yox.dom.on(document, 'mouseup', me.handleDragMouseEnd);
+
+                event.prevent();
+                me.onDragStart();
             },
-            onDragStart: function onDragStart(e) {
+            handleDragMouseEnd: function handleDragMouseEnd() {
                 var me = this;
-                me.set({
+                if (me.get('disabled')) {
+                    return;
+                }
+                Yox.dom.off(document, 'mousemove', me.handleDragMouseMove);
+                Yox.dom.off(document, 'mouseup', me.handleDragMouseEnd);
+                me.onDragStop();
+            },
+            onDragStart: function onDragStart() {
+                this.set({
                     dragging: 1,
                     active: 1
                 });
-                me.fire('dragStart');
+                this.fire('dragStart');
             },
-            onDragStop: function onDragStop(e) {
-                var me = this;
-                me.set({
+            onDragStop: function onDragStop() {
+                this.set({
                     dragging: 0,
                     active: 0
                 });
-
-                me.get('onDragStop') && me.get('onDragStop')(e);
+                this.fire('dragStop');
             },
-            onDragUpdate: function onDragUpdate(e) {
+            onDragUpdate: function onDragUpdate(event) {
                 var me = this;
-                if (me.get('dragRunning')) {
+                if (me.get('draging')) {
                     return;
                 }
-                me.set('dragRunning', 1);
+                me.set('draging', 1);
 
                 window.requestAnimationFrame(function () {
-                    me.set('dragRunning', 0);
+                    me.set('draging', 0);
                     if (!me.get('disabled')) {
-                        me.setValue(e);
+                        me.setValue(event);
                     }
                 });
             },
             handleMouseUp: function handleMouseUp() {
-                var me = this;
-                if (me.get('disabled')) {
+                if (this.get('disabled')) {
                     return;
                 }
-                me.set('active', 0);
+                this.set('active', 0);
             },
             handleMouseEnter: function handleMouseEnter() {
-                var me = this;
-                if (me.get('disabled')) {
+                if (this.get('disabled')) {
                     return;
                 }
-                me.set('hover', 1);
+                this.set('hover', 1);
             },
             handleMouseLeave: function handleMouseLeave() {
-                var me = this;
-                if (me.get('disabled')) {
+                if (this.get('disabled')) {
                     return;
                 }
-                me.set('hover', 0);
+                this.set('hover', 0);
             },
-            setValue: function setValue(e) {
+            setValue: function setValue(event) {
+
+                event = event.originalEvent;
+                var clientX = event.touches ? event.touches[0].clientX : event.clientX;
+
                 var me = this;
                 var element = me.$el;
                 var oldValue = me.get('value');
                 var elementLeft = element.getBoundingClientRect().left;
                 var elementWidth = element.offsetWidth;
-                var step = me.get('step');
-                var range = me.get('range');
-                var max = me.get('max');
                 var min = me.get('min');
 
                 var value = 0;
-                value = elementWidth && (e.clientX - elementLeft) / elementWidth * range;
-                value = Math.round(value / step) * step + min;
+                value = elementWidth && (clientX - elementLeft) / elementWidth * me.get('range');
+                value = Math.round(value / me.get('step')) * me.get('step') + min;
                 value = parseFloat(value.toFixed(5));
 
-                value = value > max ? max : value < min ? min : value;
+                value = value > me.get('max') ? me.get('max') : value < min ? min : value;
 
                 if (value !== oldValue) {
                     me.set({
                         value: value
                     });
-                    me.get('onChange') && me.get('onChange')(value, oldValue);
+                    me.fire('change', {
+                        value: value,
+                        oldValue: oldValue
+                    });
                 }
             }
         },

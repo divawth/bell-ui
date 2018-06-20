@@ -1,13 +1,13 @@
-const SLIDER_TOOLTIP_MARGIN_TOP = 56;
-const SLIDER_TOOLTIP_MARGIN_LEFT = 30;
+const SLIDER_TOOLTIP_MARGIN_TOP = 68;
+const SLIDER_TOOLTIP_MARGIN_LEFT = 29;
 const SLIDER_TOOLTIP_THUMB_WIDTH = 10;
 
 export default {
     template: `
         <div class="bell-slider
             {{#if className}} {{className}}{{/if}}
-            {{#if disabled}} disabled{{/if}}
-            {{#if type}} {{type}}{{/if}}
+            {{#if disabled}} bell-slider-disabled{{/if}}
+            {{#if type}} bell-slider-{{type}}{{/if}}
             {{#if dragging}} dragging{{/if}}
         "{{#if style}} style="{{style}}" {{/if}}
             on-blur="handleBlur($event)"
@@ -23,16 +23,16 @@ export default {
 
             <input type="hidden" disabled="{{disabled ? ' disabled' : ''}}" model="value">
 
-            <div class="bell-slider-bg"></div>
+            <div class="bell-slider-bg">
+                <div class="bell-slider-fill"
+                    style="{{fillStyle}}"
+                ></div>
 
-            <div class="bell-slider-fill"
-                style="{{fillStyle}}"
-            ></div>
-
-            <div class="bell-slider-thumb"
-                style="{{thumbStyle}}"
-                title="值：{{value}}；占比：{{percent + '%'}}"
-            >
+                <div class="bell-slider-thumb"
+                    style="{{thumbStyle}}"
+                    title="值：{{value}}；占比：{{percent + '%'}}"
+                >
+                </div>
             </div>
 
             <div class="bell-tooltip
@@ -84,19 +84,8 @@ export default {
             type: 'boolean',
             value: false
         },
-
         type: {
             type: 'string'
-        },
-
-        onDragStart: {
-            type: 'function'
-        },
-        onDragStop: {
-            type: 'function'
-        },
-        onChange: {
-            type: 'function'
         }
     },
 
@@ -109,13 +98,9 @@ export default {
     computed: {
         percent() {
             let me = this;
-            let min = me.get('min');
-            let max = me.get('max');
-            let value = me.get('value');
-
-            let range = max - min;
+            let range = me.get('max') - me.get('min');
             let percentNum = range > 0
-                ? (value - min) / range * 100
+                ? (me.get('value') - me.get('min')) / range * 100
                 : 0;
 
             return percentNum > 100
@@ -124,8 +109,7 @@ export default {
         },
 
         fillStyle() {
-            let me = this;
-            return 'width: ' + me.get('percent') + '%';
+            return 'width: ' + this.get('percent') + '%';
         },
 
         tooltipStyle() {
@@ -137,206 +121,217 @@ export default {
                 return '';
             }
 
-            let boundingRect = me.$refs.tooltip.getBoundingClientRect();
-            let marginLeft = boundingRect.width / 2;
-            marginLeft = !marginLeft
-                        ? SLIDER_TOOLTIP_MARGIN_LEFT
-                        : marginLeft - (SLIDER_TOOLTIP_THUMB_WIDTH / 2);
-
-            let marginTop = +boundingRect.height;
-            marginTop = !marginTop
-                        ? SLIDER_TOOLTIP_MARGIN_TOP
-                        : marginTop + SLIDER_TOOLTIP_THUMB_WIDTH;
-
             return 'left: ' + me.get('percent') + '%;'
-                + 'margin-left: -' + marginLeft + 'px;'
-                + 'top: -' + marginTop + 'px;';
+                + 'margin-left: -' + SLIDER_TOOLTIP_MARGIN_LEFT + 'px;'
+                + 'top: -' + SLIDER_TOOLTIP_MARGIN_TOP + 'px;';
         },
 
         thumbStyle() {
-            let me = this;
-            return 'left: ' + me.get('percent') + '%';
+            return 'left: ' + this.get('percent') + '%';
         },
 
         range() {
-            let me = this;
-            return me.get('max') - me.get('min');
+            return this.get('max') - this.get('min');
         }
     },
 
     methods: {
 
-        handleTouchStart(e) {
+        handleTouchStart(event) {
             let me = this;
             if (me.get('disabled')) {
                 return;
             }
 
-            me.setValue(e.touches[0]);
+            me.setValue(event);
 
-            document.addEventListener(
+            Yox.dom.on(
+                document,
                 'touchmove',
                 me.handleTouchMove
             );
-            document.addEventListener(
+            Yox.dom.on(
+                document,
                 'touchup',
                 me.handleTouchEnd
             );
-            document.addEventListener(
+            Yox.dom.on(
+                document,
                 'touchend',
                 me.handleTouchEnd
             );
-            document.addEventListener(
+            Yox.dom.on(
+                document,
                 'touchcancel',
                 me.handleTouchEnd
             );
 
-            e.preventDefault();
-            me.onDragStart(e);
+            event.prevent();
+            me.onDragStart(event);
         },
 
-        handleTouchEnd() {
+        handleTouchEnd(event) {
             let me = this;
             if (me.get('disabled')) {
                 return;
             }
-            document.removeEventListener(
+            Yox.dom.off(
+                document,
                 'touchmove',
                 me.handleTouchMove
             );
-            document.removeEventListener(
+            Yox.dom.off(
+                document,
                 'touchup',
                 me.handleTouchEnd
             );
-            document.removeEventListener(
+            Yox.dom.off(
+                document,
                 'touchend',
                 me.handleTouchEnd
             );
-            document.removeEventListener(
+            Yox.dom.off(
+                document,
                 'touchcancel',
                 me.handleTouchEnd
             );
-            me.onDragStop(e);
+            event.prevent();
+            me.onDragStop(event);
         },
 
-        handleTouchMove(e) {
-            let me = this;
-            me.onDragUpdate(e.touches[0]);
+        handleTouchMove(event) {
+            this.onDragUpdate(event);
         },
 
-        handleDragMouseMove(e) {
-            let me = this;
-            me.onDragUpdate(e);
+        handleDragMouseMove(event) {
+            this.onDragUpdate(event);
         },
 
-        handleMouseDown(e) {
-            let me = this;
-            if (me.get('disabled')) {
-                return;
-            }
-
-            me.setValue(e.originalEvent);
-
-            document.addEventListener('mousemove', me.handleDragMouseMove);
-            document.addEventListener('mouseup', me.handleDragMouseEnd);
-
-            e.prevent();
-            me.onDragStart(e.originalEvent);
-        },
-
-        handleDragMouseEnd(e) {
+        handleMouseDown(event) {
             let me = this;
             if (me.get('disabled')) {
                 return;
             }
-            document.removeEventListener('mousemove', me.handleDragMouseMove);
-            document.removeEventListener('mouseup', me.handleDragMouseEnd);
-            me.onDragStop(e);
+
+            me.setValue(event);
+
+            Yox.dom.on(
+                document,
+                'mousemove',
+                me.handleDragMouseMove
+            );
+            Yox.dom.on(
+                document,
+                'mouseup',
+                me.handleDragMouseEnd
+            );
+
+            event.prevent();
+            me.onDragStart();
         },
 
-        onDragStart(e) {
+        handleDragMouseEnd() {
             let me = this;
-            me.set({
+            if (me.get('disabled')) {
+                return;
+            }
+            Yox.dom.off(
+                document,
+                'mousemove',
+                me.handleDragMouseMove
+            );
+            Yox.dom.off(
+                document,
+                'mouseup',
+                me.handleDragMouseEnd
+            );
+            me.onDragStop();
+        },
+
+        onDragStart() {
+            this.set({
                 dragging: 1,
                 active: 1
             });
-            me.fire('dragStart');
+            this.fire('dragStart');
         },
 
-        onDragStop(e) {
-            let me = this;
-            me.set({
+        onDragStop() {
+            this.set({
                 dragging: 0,
                 active: 0
             });
-
-            me.get('onDragStop') && me.get('onDragStop')(e);
+            this.fire('dragStop');
         },
 
-        onDragUpdate(e) {
+        onDragUpdate(event) {
             let me = this;
-            if (me.get('dragRunning')) {
+            if (me.get('draging')) {
                 return;
             }
-            me.set('dragRunning', 1);
+            me.set('draging', 1);
 
             window.requestAnimationFrame(() => {
-                me.set('dragRunning', 0);
+                me.set('draging', 0);
                 if (!me.get('disabled')) {
-                    me.setValue(e);
+                    me.setValue(event);
                 }
             });
         },
 
         handleMouseUp() {
-            let me = this;
-            if (me.get('disabled')) {
+            if (this.get('disabled')) {
                 return;
             }
-            me.set('active', 0);
+            this.set('active', 0);
         },
 
         handleMouseEnter() {
-            let me = this;
-            if (me.get('disabled')) {
+            if (this.get('disabled')) {
                 return;
             }
-            me.set('hover', 1);
+            this.set('hover', 1);
         },
 
         handleMouseLeave() {
-            let me = this;
-            if (me.get('disabled')) {
+            if (this.get('disabled')) {
                 return;
             }
-            me.set('hover', 0);
+            this.set('hover', 0);
         },
 
-        setValue(e) {
+        setValue(event) {
+
+            event = event.originalEvent;
+            let clientX = event.touches ? event.touches[0].clientX : event.clientX;
+
             let me = this;
             let element = me.$el;
             let oldValue = me.get('value');
             let elementLeft = element.getBoundingClientRect().left;
             let elementWidth = element.offsetWidth;
-            let step = me.get('step');
-            let range = me.get('range');
-            let max = me.get('max');
             let min = me.get('min');
 
             let value = 0;
-            value = elementWidth && ((e.clientX - elementLeft) / elementWidth * range);
-            value = Math.round( value / step) * step + min;
+            value = elementWidth && ((clientX - elementLeft) / elementWidth * me.get('range'));
+            value = Math.round( value / me.get('step')) * me.get('step') + min;
             value = parseFloat(value.toFixed(5));
 
-            value = value > max
-                    ? max
+            value = value > me.get('max')
+                    ? me.get('max')
                     : (value < min ? min : value);
 
             if (value !== oldValue) {
                 me.set({
                     value: value
                 });
-                me.get('onChange') && me.get('onChange')(value, oldValue);
+                me.fire(
+                    'change',
+                    {
+                        value: value,
+                        oldValue: oldValue
+                    }
+                );
             }
         }
 
