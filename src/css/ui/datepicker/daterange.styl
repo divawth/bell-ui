@@ -1,107 +1,53 @@
-{$selector-datepicker-daterange}
+{$selector-datepicker}-header-month
 
-    user-select none
-    box-sizing border-box
-    background-color $brand-bg
-    border-radius $radius-base
-    box-shadow $datepicker-box-shadow
-    width $datepicker-daterange-width
+    + {$selector-datepicker}-header-month
 
-    {$selector-datepicker-header}
-        box-sizing border-box
-        display flex
-        width 100%
-        padding $datepicker-daterange-header-padding
-        border-bottom 1px solid $datepicker-daterange-header-border-color
+        margin-left 30%
 
-        {$selector-datepicker-header}-month
-            margin-right $datepicker-daterange-header-month-margin-right
+{$selector-datepicker-daterange}-wrapper
 
-        {$selector-datepicker-header}-button
-            flex 1
-            text-align center
-            cursor pointer
+    display flex
 
-            {$selector-icon}
-                margin 0
+    {$selector-datepicker}-table-date
 
-    {$selector-datepicker-daterange}-wrapper
+        flex 1
 
-        display flex
+        + {$selector-datepicker}-table-date
 
-        {$selector-datepicker}-table-date
+            border-left 1px solid $brand-border
 
-            flex 1
-            font-size $datepicker-daterange-font-size
+        {$selector-datepicker}-days
 
-            + {$selector-datepicker}-table-date
-                border-left 1px solid $datepicker-daterange-table-border-color
+            {$selector-datepicker}-col
 
-            {$selector-datepicker}-weeks
-                display flex
-                padding $datepicker-daterange-week-padding
+                &-range
 
-                {$selector-datepicker}-col
-                    flex 1
-                    text-align center
-                    line-height 1
+                    position relative
+                    border-radius 0
+                    background-color $datepicker-item-range-background-color
 
-            {$selector-datepicker}-days
+                    &:before
 
-                padding $datepicker-daterange-body-padding
+                        position absolute
+                        content ' '
+                        height 100%
+                        top 0
+                        width $datepicker-poper-margin-gap
+                        left - $datepicker-poper-margin-gap
+                        background-color $datepicker-item-range-background-color
 
-                {$selector-datepicker}-row
+                    &{$selector-hover}
+                        background-color $datepicker-item-range-background-color
+                        color $brand-secondary
 
-                    display flex
-
-                {$selector-datepicker}-col
-                    cursor pointer
-                    flex 1
-                    text-align center
-                    color $datepicker-daterange-item-color
-                    border-radius $datepicker-daterange-item-border-radius
-                    margin $datepicker-daterange-item-margin
-                    padding $datepicker-daterange-item-padding
-
-                    &-prev-month,
-                    &-last-month
-                        color $datepicker-daterange-item-disabled-color
-
-                    &-current-month
-                        &{$selector-hover}
-                            background $datepicker-daterange-item-checked-background-color
-                            color $datepicker-daterange-item-checked-color
-
-                    &-checked
-                        background $datepicker-daterange-item-checked-background-color
-                        color $datepicker-daterange-item-checked-color
-
-                    &-range
+                    + {$selector-datepicker}-col-checked
                         position relative
-                        border-radius 0
-                        background-color $datepicker-daterange-item-range-background-color
 
                         &:before
                             position absolute
                             content ' '
                             height 100%
                             top 0
-                            width $datepicker-daterange-item-before-width
-                            left $datepicker-daterange-item-before-z-width
-                            background-color $datepicker-daterange-item-range-background-color
-
-                        &{$selector-hover}
-                            background-color $datepicker-daterange-item-range-background-color
-                            color $datepicker-daterange-item-color
-
-                        + {$selector-datepicker}-col-checked
-                            position relative
-
-                            &:before
-                                position absolute
-                                content ' '
-                                height 100%
-                                top 0
-                                width $datepicker-daterange-item-before-width
-                                left $datepicker-daterange-item-before-z-width
-                                background-color $datepicker-daterange-item-range-background-color
+                            width $datepicker-poper-margin-gap
+                            left - $datepicker-poper-margin-gap
+                            background-color $datepicker-item-range-background-color

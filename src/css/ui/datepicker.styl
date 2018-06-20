@@ -1,28 +1,27 @@
 {$selector-datepicker}
 
-    position relative
     user-select none
     display inline-block
+    box-sizing border-box
+    font-size $datepicker-font-size
+    min-width $datepicker-min-width
 
-    {$selector-datepicker}-el
+    {$selector-datepicker-el}
+
         display inline-block
+        width 100%
 
-    {$selector-datepicker}-poper
+    {$selector-datepicker-poper}
 
-        display none
-        transition all 0.3s
         position absolute
-        opacity 0
-        top 36px
         z-index $datepicker-innner-z-index
+        overflow hidden
+        box-shadow 0px 0px 2px $brand-border
+        margin-top $datepicker-poper-margin-gap
 
-        &.bell-isPopuping
-
-            display block
+        max-height 0px
+        transition max-height .3s
 
         &.bell-show
-            display block
-            opacity 1
 
-        &.bell-isPopdowning
-            opacity 0
+            max-height 300px

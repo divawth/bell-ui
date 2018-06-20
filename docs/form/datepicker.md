@@ -3,12 +3,15 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="date" onChange="{{onChange}}"></DatePicker>
+                <DatePicker mode="date" on-change="change()" />
+                <p>{{ formateDate }}</p>
             </div>
         `,
-        data: {
-            onChange: function (newValue, oldValue) {
-                console.log(newValue, oldValue)
+        methods: {
+            change: function (event, data) {
+                this.set({
+                    formateDate: data.value.formateDate
+                });
             }
         }
     }
@@ -18,12 +21,15 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="dateRange" onChange="{{onChange}}"></DatePicker>
+                <DatePicker mode="dateRange" on-change="change()" />
+                <p>{{ formateDate }}</p>
             </div>
         `,
-        data: {
-            onChange: function (data) {
-                console.log(data)
+        methods: {
+            change: function (events, data) {
+                this.set({
+                    formateDate: data.value.formateDate
+                });
             }
         }
     }
@@ -33,12 +39,15 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="week" onChange="{{onChange}}"></DatePicker>
+                <DatePicker mode="week" on-change="change()" />
+                <p>{{ formateDate }}</p>
             </div>
         `,
-        data: {
-            onChange: function (data) {
-                console.log(data)
+        methods: {
+            change: function (event, data) {
+                this.set({
+                    formateDate: data.value.formateDate
+                });
             }
         }
     }
@@ -48,12 +57,15 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="month" onChange="{{onChange}}"></DatePicker>
+                <DatePicker mode="month" on-change="change()" />
+                <p>{{ formateDate }}</p>
             </div>
         `,
-        data: {
-            onChange: function (data) {
-                console.log(data)
+        methods: {
+            change: function (event, data) {
+                this.set({
+                    formateDate: data.value.formateDate
+                });
             }
         }
     }
@@ -63,18 +75,14 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="year" onChange="{{onChange}}"></DatePicker>
+                <DatePicker mode="year" on-change="change()"/>
+                <p>{{ formateDate }}</p>
             </div>
         `,
-        data: {
-            onChange: function (data) {
-                console.log(data)
-            }
-        },
-        events: {
-            yearChange: function (event, data) {
+        methods: {
+            change: function (event, data) {
                 this.set({
-                    year: data.year
+                    formateDate: data.value.formateDate
                 });
             }
         }
@@ -88,9 +96,11 @@
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 mode | 日期选择器类型 | string | date, dateRange, week, month, year | date
+format | 可以用来格式化date | function | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onChange | 值改变之后的回调 | 选中的值
+change | 值改变之后的回调 | 选中的值
+clear | 清空值时候的回掉 | -

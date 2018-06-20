@@ -26,8 +26,8 @@
 
     export default {
         template: `
-            <Rate showTexts model="value" value="{{value}}" on-change="change()">
-                <span style="color: #f5a623">{{ value + 1 }} 分</span>
+            <Rate showTexts model="value" on-change="change()">
+                <span style="color: #f5a623">{{ value }} 分</span>
             </Rate>
         `,
         data: {
@@ -44,10 +44,15 @@
 
     export default {
         template: `
-            <Rate readOnly>
+            <Rate readOnly showTexts model="value">
                 <span style="color: #f5a623">3 分</span>
             </Rate>
-        `
+        `,
+        data: function () {
+            return {
+                value: 3
+            }
+        }
     }
 
 #### API
@@ -57,7 +62,7 @@
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 count | star 总数 | Number | - | 5
-value | 当前 star 数，可以使用 model 双向绑定数据 | Number | - | 0
+model | 当前 star 数 | Number | - | 0
 half | 是否允许半选 | Boolean | - | true
 readOnly | 是否只读 | Boolean | - | false
 showTexts | 是否提示文字 | Boolean | - | false
@@ -68,4 +73,4 @@ textColor | 提示文字的颜色 | Sting | - | #1F2D3D
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onChange | 分值改变时触发 | -
+change | 分值改变时触发 | -

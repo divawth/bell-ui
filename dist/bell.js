@@ -1357,12 +1357,12 @@
         },
 
         events: {
-            change: function change(events, data) {
+            change: function change(event, data) {
                 var me = this;
-                if (events.target == me) {
+                if (event.target == me) {
                     return;
                 }
-                events.stop();
+                event.stop();
 
                 var result = Yox.is.array(me.get('modelValue')) ? me.copy(me.get('modelValue')) : [];
                 if (data.isChecked) {
@@ -2120,164 +2120,6 @@
         }
     };
 
-    var DatePicker = {
-        template: '\n        <div class="bell-datepicker\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    style="width: 200px;"\n                    model="value"\n                    onFocus="{{onFocus}}"\n                    type="input"\n                    clearable\n                >\n                </Input>\n            </div>\n\n            <div class="bell-datepicker-poper\n                {{#if isPopuping}} bell-isPopuping{{/if}}\n                {{#if isPopdowning}} bell-isPopdowning{{/if}}\n                {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date></Date>\n                {{else if mode == \'dateRange\'}}\n                    <DateRange></DateRange>\n                {{else if mode == \'week\'}}\n                    <DateWeek></DateWeek>\n                {{else if mode == \'year\'}}\n                    <DateYear></DateYear>\n                {{else if mode == \'month\'}}\n                    <DateMonth></DateMonth>\n                {{/if}}\n            </div>\n        </div>\n    ',
-
-        propTypes: {
-            className: {
-                type: 'string'
-            },
-            style: {
-                type: 'string'
-            },
-            mode: {
-                type: 'string'
-            }
-        },
-
-        events: {
-            yearChange: function yearChange(event, data) {
-                var me = this;
-                me.fire('change', {
-                    year: data.year
-                });
-                me.set({
-                    currentValue: data,
-                    value: data.year + '年'
-                });
-                me.close();
-            },
-            monthChange: function monthChange(event, data) {
-                var me = this;
-                me.fire('change', {
-                    year: data.year,
-                    month: data.month
-                });
-                me.set({
-                    currentValue: data,
-                    value: data.year + '年' + data.month + '月'
-                });
-                me.close();
-            },
-            weekRangeChange: function weekRangeChange(event, data) {
-                this.rangeChange(data);
-            },
-            deteRangeChange: function deteRangeChange(event, data) {
-                this.rangeChange(data);
-            },
-            deteChange: function deteChange(event, data) {
-                var me = this;
-                var date = data.date;
-                var value = me.get('value');
-                var newValue = me.formateDate(date);
-                if (newValue !== value) {
-                    me.fire('change', {
-                        value: newValue,
-                        date: date
-                    }, {
-                        value: value,
-                        date: me.get('currentValue')
-                    });
-                }
-                me.set({
-                    currentValue: date,
-                    value: me.formateDate(date)
-                });
-                me.close();
-            }
-        },
-
-        data: function data() {
-            var me = this;
-            return {
-                value: '',
-                currentValue: null,
-                isPopuping: false,
-                isPopdowning: false,
-                isOpen: false,
-                onFocus: function onFocus() {
-                    me.open();
-                }
-            };
-        },
-
-
-        methods: {
-            open: function open() {
-                var me = this;
-                me.set({
-                    isPopuping: true
-                });
-                setTimeout(function () {
-                    me.set({
-                        isPopuping: false,
-                        isOpen: true
-                    });
-                }, 300);
-            },
-            close: function close() {
-                var me = this;
-                if (!me.get('isOpen')) {
-                    return;
-                }
-                me.set({
-                    isPopdowning: true
-                });
-                setTimeout(function () {
-                    me.set({
-                        isPopdowning: false,
-                        isOpen: false
-                    });
-                }, 300);
-            },
-            formateDate: function formateDate(date) {
-                return date.year + '年' + date.month + '月' + date.date + '日';
-            },
-            rangeChange: function rangeChange(data) {
-                var me = this;
-                var start = data.start;
-                var end = data.end;
-                if (!end) {
-                    return;
-                }
-                me.fire('change', {
-                    start: start,
-                    end: end,
-                    date: me.formateDate(start)
-                }, {
-                    start: start,
-                    end: end,
-                    date: me.formateDate(end)
-                });
-                me.set({
-                    currentValue: {
-                        start: start,
-                        end: end,
-                        date: me.formateDate(start)
-                    },
-                    value: me.formateDate(start) + '-' + me.formateDate(end)
-                });
-                me.close();
-            }
-        },
-
-        afterMount: function afterMount() {
-            var me = this;
-            me.documentClickHandler = function (e) {
-                if (me.$el.contains(e.target)) {
-                    return false;
-                }
-                me.close();
-            };
-            document.addEventListener('click', me.documentClickHandler);
-        },
-        beforeDestroy: function beforeDestroy() {
-            var me = this;
-            document.removeEventListener('click', me.documentClickHandler);
-        }
-    };
-
-    var _arguments = arguments;
     var normalizeDate = function normalizeDate(date) {
         return date.setHours(0, 0, 0, 0);
     };
@@ -2341,21 +2183,17 @@
 
         if (Yox.is.numeric(year) && Yox.is.numeric(month) && Yox.is.numeric(date)) {
             valid = true;
-        } else if (_arguments.length === 1) {
-            if (Yox.is.object(year)) {
-                valid = true;
-                date = year.date;
-                month = year.month;
-                year = year.year;
-            }
-        } else if (_arguments.length === 2) {
-            if (Yox.is.string(year)) {
-                valid = true;
-                var parts = year.split(month || '-');
-                year = parts[0];
-                month = parts[1];
-                date = parts[2];
-            }
+        } else if (Yox.is.object(year)) {
+            valid = true;
+            date = year.date;
+            month = year.month;
+            year = year.year;
+        } else if (Yox.is.string(year)) {
+            valid = true;
+            var parts = year.split(month || '-');
+            year = parts[0];
+            month = parts[1];
+            date = parts[2];
         }
 
         if (valid) {
@@ -2388,6 +2226,214 @@
             return 0;
         }
         return date.getTime();
+    };
+
+    var lpad = function lpad(num, length) {
+        if (length == null) {
+            length = 2;
+        }
+
+        var arr = new Array(length - ('' + num).length + 1);
+
+        return arr.join('0') + num;
+    };
+
+    var DatePicker = {
+        template: '\n        <div class="bell-datepicker\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    model="formateDate"\n                    type="input"\n                    on-focus="focus()"\n                    clearable\n                />\n            </div>\n\n            <div class="bell-datepicker-poper\n                {{#if isPopuping}} bell-isPopuping{{/if}}\n                {{#if isPopdowning}} bell-isPopdowning{{/if}}\n                {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date />\n                {{else if mode == \'dateRange\'}}\n                    <DateRange />\n                {{else if mode == \'week\'}}\n                    <DateWeek />\n                {{else if mode == \'year\'}}\n                    <DateYear />\n                {{else if mode == \'month\'}}\n                    <DateMonth />\n                {{/if}}\n            </div>\n        </div>\n    ',
+
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            },
+            mode: {
+                type: 'string'
+            },
+            formate: {
+                type: 'function'
+            }
+        },
+
+        data: function data() {
+            return {
+
+                formateDate: null,
+                date: null,
+                start: null,
+                end: null,
+
+                isPopuping: false,
+                isPopdowning: false,
+                isOpen: false
+
+            };
+        },
+
+
+        events: {
+            change: function change(event, data) {
+                var me = this;
+                if (event.target != me) {
+                    if (!data.value) {
+                        this.fire('clear');
+                    }
+                    event.stop();
+                }
+            },
+            yearChange: function yearChange(event, date) {
+                this.dateChange(date);
+            },
+            monthChange: function monthChange(event, date) {
+                this.dateChange(date);
+            },
+            deteChange: function deteChange(event, date) {
+                this.dateChange(date);
+            },
+            weekRangeChange: function weekRangeChange(event, date) {
+                this.dateRangeChange(date);
+            },
+            deteRangeChange: function deteRangeChange(event, date) {
+                this.dateRangeChange(date);
+            }
+        },
+
+        methods: {
+            focus: function focus() {
+                this.open();
+            },
+            open: function open() {
+                var me = this;
+                me.set({
+                    isPopuping: true
+                });
+                setTimeout(function () {
+                    me.set({
+                        isPopuping: false,
+                        isOpen: true
+                    });
+                });
+            },
+            close: function close() {
+                var me = this;
+                if (!me.get('isOpen')) {
+                    return;
+                }
+                me.set({
+                    isPopdowning: true
+                });
+                setTimeout(function () {
+                    me.set({
+                        isPopdowning: false,
+                        isOpen: false
+                    });
+                });
+            },
+            formateDate: function formateDate(date) {
+                var result = '';
+                if (this.get('formate')) {
+                    return this.get('formate')(date);
+                }
+                if (!date) {
+                    return result;
+                }
+                if (arguments.length > 1) {
+                    var start = arguments[0];
+                    var end = arguments[1];
+
+                    result = start.year + '年' + lpad(start.month) + '月' + lpad(start.date) + '日' + ' - ' + end.year + '年' + lpad(end.month) + '月' + lpad(end.date) + '日';
+                } else {
+                    if (date.year) {
+                        result += date.year + '年';
+                    }
+                    if (date.month) {
+                        result += lpad(date.month) + '月';
+                    }
+                    if (date.date) {
+                        result += lpad(date.date) + '日';
+                    }
+                }
+                return result;
+            },
+            dateChange: function dateChange(date) {
+
+                var me = this;
+                var formateDate = me.get('formateDate');
+                var newFormateDate = me.formateDate(date);
+                if (newFormateDate !== formateDate) {
+                    me.fire('change', {
+                        value: {
+                            formateDate: newFormateDate,
+                            date: date
+                        },
+                        oldValue: {
+                            formateDate: formateDate,
+                            date: me.get('date')
+                        }
+                    });
+                }
+                me.set({
+                    date: date,
+                    formateDate: newFormateDate
+                });
+                me.close();
+            },
+            dateRangeChange: function dateRangeChange(data) {
+                var end = data.end;
+
+                if (!end) {
+                    return;
+                }
+
+                var me = this;
+                var start = data.start;
+
+                me.fire('change', {
+                    value: {
+                        start: start,
+                        end: end,
+                        startDate: me.formateDate(start),
+                        endDate: me.formateDate(end),
+                        formateDate: me.formateDate(start, end)
+                    },
+                    oldValue: {
+                        start: me.get('start'),
+                        end: me.get('end'),
+                        startDate: me.formateDate(me.get('start')),
+                        endDate: me.formateDate(me.get('end')),
+                        formateDate: me.formateDate(me.get('start'), me.get('end'))
+                    }
+                });
+
+                me.set({
+                    start: start,
+                    end: end,
+                    formateDate: me.formateDate(start, end)
+                });
+                me.close();
+            }
+        },
+
+        afterMount: function afterMount() {
+            var me = this;
+
+            me.documentClickHandler = function (e) {
+                var element = me.$el;
+                var target = e.originalEvent.target;
+                if (element.contains && element.contains(target)) {
+                    return false;
+                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
+                    return false;
+                }
+                me.close();
+            };
+
+            Yox.dom.on(document, 'click', me.documentClickHandler);
+        },
+        beforeDestroy: function beforeDestroy() {
+            Yox.dom.off(document, 'click', this.documentClickHandler);
+        }
     };
 
     var WEEKS = ['日', '一', '二', '三', '四', '五', '六'];
@@ -2468,9 +2514,7 @@
                     return;
                 }
                 var me = this;
-                me.fire('deteChange', {
-                    date: date
-                });
+                me.fire('deteChange', date);
 
                 date = parseDate(date);
                 me.set({
@@ -4014,7 +4058,9 @@
     };
 
     var Rate = {
-        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-read-only{{/if}}\n            {{#if type}} bell-rate-{{type}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="value">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if hoverValue >= index}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if index - hoverValue == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{value + 1}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
+        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-readonly{{/if}}\n            {{#if type}} bell-rate-{{type}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="modelValue">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if activeValue - index >= 1}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if activeValue - index == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{modelValue}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
+
+        model: 'modelValue',
 
         propTypes: {
             className: {
@@ -4027,7 +4073,7 @@
                 type: 'number',
                 value: 5
             },
-            value: {
+            modelValue: {
                 type: 'numeric'
             },
             half: {
@@ -4061,6 +4107,13 @@
         },
 
 
+        computed: {
+            activeValue: function activeValue() {
+                var hoverValue = this.get('hoverValue');
+                return hoverValue < 0 ? this.get('modelValue') : hoverValue;
+            }
+        },
+
         filters: {
             createRateList: function createRateList() {
                 var me = this;
@@ -4080,19 +4133,20 @@
         methods: {
             handleMove: function handleMove(event, index) {
                 var me = this;
+                index += 1;
 
                 if (me.get('readOnly')) {
                     return;
                 }
+                event = event.originalEvent;
+                var isHalf = event && event.target.getAttribute('type') == 'half';
 
-                var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-                var currentValue = index;
                 if (isHalf) {
-                    currentValue -= 0.5;
+                    index -= 0.5;
                 }
 
                 me.set({
-                    hoverValue: currentValue
+                    hoverValue: index
                 });
             },
             handleLeave: function handleLeave() {
@@ -4101,9 +4155,8 @@
                     return;
                 }
 
-                var value = me.get('value');
                 me.set({
-                    hoverValue: value >= 0 ? value : -1
+                    hoverValue: me.get('modelValue') >= 0 ? me.get('modelValue') : -1
                 });
             },
             handleClick: function handleClick(event, index) {
@@ -4111,18 +4164,19 @@
                 if (me.get('readOnly')) {
                     return;
                 }
-                var isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-                var currentValue = index;
+
+                index += 1;
+                event = event.originalEvent;
+
+                var isHalf = event && event.target.getAttribute('type') == 'half';
                 if (isHalf) {
-                    currentValue -= 0.5;
+                    index -= 0.5;
                 }
-
                 me.set({
-                    value: currentValue
+                    modelValue: index
                 });
-
                 me.fire('change', {
-                    value: currentValue
+                    value: index
                 });
             }
         }

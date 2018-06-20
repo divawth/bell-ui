@@ -45,12 +45,12 @@ export default {
     },
 
     events: {
-        change(events, data) {
+        change(event, data) {
             let me = this;
-            if (events.target == me) {
+            if (event.target == me) {
                 return;
             }
-            events.stop();
+            event.stop();
 
             let result = Yox.is.array(me.get('modelValue')) ? me.copy(me.get('modelValue')) : [];
             if (data.isChecked) {

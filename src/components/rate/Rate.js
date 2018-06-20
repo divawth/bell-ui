@@ -2,21 +2,21 @@ export default {
     template: `
         <div class="bell-rate
             {{#if className}} {{className}}{{/if}}
-            {{#if readOnly}} bell-rate-read-only{{/if}}
+            {{#if readOnly}} bell-rate-readonly{{/if}}
             {{#if type}} bell-rate-{{type}}{{/if}}
         "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">
 
-            <input type="hidden" model="value">
+            <input type="hidden" model="modelValue">
             {{#each createRateList():index}}
                 <span class="bell-icon bell-rate-star-full
-                    {{#if hoverValue >= index}} active{{/if}}
+                    {{#if activeValue - index >= 1}} active{{/if}}
                 " on-mousemove="handleMove($event, index)"
                 on-click="handleClick($event, index)"
                 >
                     {{#if half}}
                         <span type="half"
                         class="bell-icon bell-rate-star-content
-                        {{#if index - hoverValue == 0.5}} active{{/if}}">
+                        {{#if activeValue - index == 0.5}} active{{/if}}">
                         </span>
                     {{/if}}
                 </span>
@@ -27,13 +27,15 @@ export default {
                     {{#if hasSlot('children')}}
                         <slot name="children" />
                     {{else}}
-                        {{value + 1}} 星
+                        {{modelValue}} 星
                     {{/if}}
                 </span>
             {{/if}}
 
         </div>
     `,
+
+    model: 'modelValue',
 
     propTypes: {
         className: {
@@ -46,7 +48,7 @@ export default {
             type: 'number',
             value: 5
         },
-        value: {
+        modelValue: {
             type: 'numeric'
         },
         half: {
@@ -74,9 +76,15 @@ export default {
     },
 
     data() {
-        let me = this;
         return {
             hoverValue: -1
+        }
+    },
+
+    computed: {
+        activeValue() {
+            let hoverValue = this.get('hoverValue');
+            return hoverValue < 0 ? this.get('modelValue') : hoverValue;
         }
     },
 
@@ -102,19 +110,20 @@ export default {
     methods: {
         handleMove(event, index) {
             let me = this;
+            index += 1;
 
             if (me.get('readOnly')) {
                 return;
             }
+            event = event.originalEvent;
+            let isHalf = event && event.target.getAttribute('type') == 'half';
 
-            let isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-            let currentValue = index;
             if (isHalf) {
-                currentValue -= 0.5;
+                index -= 0.5;
             }
 
             me.set({
-                hoverValue: currentValue
+                hoverValue: index
             });
         },
 
@@ -124,9 +133,8 @@ export default {
                 return;
             }
 
-            let value = me.get('value');
             me.set({
-                hoverValue: value >= 0 ? value : -1
+                hoverValue: me.get('modelValue') >= 0 ? me.get('modelValue') : -1
             });
         },
 
@@ -135,20 +143,21 @@ export default {
             if (me.get('readOnly')) {
                 return;
             }
-            let isHalf = event.originalEvent && event.originalEvent.target.getAttribute('type') == 'half';
-            let currentValue = index;
+
+            index += 1;
+            event = event.originalEvent;
+
+            let isHalf = event && event.target.getAttribute('type') == 'half';
             if (isHalf) {
-                currentValue -= 0.5;
+                index -= 0.5;
             }
-
             me.set({
-                value: currentValue
+                modelValue: index
             });
-
             me.fire(
                 'change',
                 {
-                    value: currentValue
+                    value: index
                 }
             );
         }

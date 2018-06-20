@@ -1,70 +1,88 @@
-{$selector-datepicker-date}
+{$selector-datepicker-date},
+{$selector-datepicker-daterange},
+{$selector-datepicker-month},
+{$selector-datepicker-week},
+{$selector-datepicker-year}
 
     user-select none
     box-sizing border-box
     background-color $brand-bg
     border-radius $radius-base
-    box-shadow $datepicker-box-shadow
-    width $datepicker-width
+    min-width $datepicker-min-width
 
-    {$selector-datepicker-header}
+{$selector-datepicker-header}
 
-        box-sizing border-box
+    box-sizing border-box
+    display flex
+    width 100%
+    padding $datepicker-header-padding
+    border-bottom 1px solid $brand-bg-active
+
+    {$selector-datepicker-header}-button
+
+        flex 1
+        text-align center
+        cursor pointer
+        color $brand-muted
+        transition color .3s
+
+        {$selector-hover}
+
+            color $brand-secondary
+
+        {$selector-icon}
+
+            margin 0
+
+{$selector-datepicker}-weeks
+
+    display flex
+    margin $datepicker-week-margin
+
+    {$selector-datepicker}-col
+
+        flex 1
+        text-align center
+        line-height 1
+
+{$selector-datepicker}-body
+
+    margin $datepicker-body-margin
+
+{$selector-datepicker}-days
+
+    margin $datepicker-body-margin
+
+    {$selector-datepicker}-row
+
         display flex
-        width 100%
-        padding $datepicker-date-header-padding
-        border-bottom 1px solid $datepicker-date-header-border-color
+        text-align center
+        line-height 1
 
-        {$selector-datepicker-header}-button
+    {$selector-datepicker}-col
 
-            flex 1
-            text-align center
-            cursor pointer
+        cursor pointer
+        flex 1
+        text-align center
+        color $brand-secondary
+        border-radius $radius-base
+        margin $datepicker-item-margin
+        padding $datepicker-item-padding
 
-            {$selector-icon}
-                margin 0
+        &-prev-month,
+        &-last-month
 
-    {$selector-datepicker}-table-date
+            color $brand-muted
+            cursor $cursor-disabled
 
-        font-size $datepicker-date-font-size
+        &-current-month
 
-        {$selector-datepicker}-weeks
+            &:hover
 
-            display flex
-            padding $datepicker-date-week-padding
+                background-color $datepicker-item-checked-background-color
+                color $datepicker-item-checked-color
 
-            {$selector-datepicker}-col
+        &-checked
 
-                flex 1
-                text-align center
-                line-height 1
-
-        {$selector-datepicker}-days
-
-            padding $datepicker-date-body-padding
-
-            {$selector-datepicker}-row
-
-                display flex
-
-            {$selector-datepicker}-col
-                cursor pointer
-                flex 1
-                text-align center
-                color $datepicker-date-item-color
-                border-radius $datepicker-date-item-border-radius
-                margin $datepicker-date-item-margin
-                padding $datepicker-date-item-padding
-
-                &-prev-month,
-                &-last-month
-                    color $datepicker-date-item-disabled-color
-
-                &-current-month
-                    &:hover
-                        background $datepicker-date-item-checked-background-color
-                        color $datepicker-date-item-checked-color
-
-                &-checked
-                    background $datepicker-date-item-checked-background-color
-                    color $datepicker-date-item-checked-color
+            background-color $datepicker-item-checked-background-color
+            color $datepicker-item-checked-color

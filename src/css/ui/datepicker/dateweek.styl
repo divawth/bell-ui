@@ -1,84 +1,37 @@
 {$selector-datepicker-week}
 
-    user-select none
-    box-sizing border-box
-    background-color $brand-bg
-    border-radius $radius-base
-    box-shadow $datepicker-box-shadow
-    width $datepicker-width
+    {$selector-datepicker}-row
 
-    {$selector-datepicker-header}
-        box-sizing border-box
         display flex
-        width 100%
+        cursor pointer
+        color $brand-secondary
+        border-radius $radius-circle-half
 
-        padding $datepicker-week-header-padding
-        border-bottom 1px solid $datepicker-week-header-border-color
+        &{$selector-hover}
 
-        {$selector-datepicker-header}-button
+            background-color $datepicker-item-range-background-color
 
+        {$selector-datepicker}-col
+
+            border-radius $radius-circle-half
+            padding $datepicker-item-padding
+            margin $datepicker-item-margin
             flex 1
             text-align center
-            cursor pointer
 
-            {$selector-icon}
-                margin 0
+            &-prev-month,
+            &-last-month
 
-    {$selector-datepicker}-table-week
+                color $brand-muted
 
-        width 100%
-        font-size $datepicker-week-item-font-size
+    {$selector-datepicker}-row-checked
 
-        {$selector-datepicker}-weeks
+        background-color $datepicker-item-range-background-color
 
-            display flex
-            padding $datepicker-daterange-week-padding
+        {$selector-datepicker}-col
 
-            {$selector-datepicker}-col
+            &:first-child,
+            &:last-child
 
-                flex 1
-                text-align center
-                line-height 1
-
-        {$selector-datepicker}-body
-
-            width 100%
-            box-sizing border-box
-            padding $datepicker-week-body-padding
-
-            {$selector-datepicker}-row
-
-                display flex
-                cursor pointer
-                color $datepicker-week-item-color
-                border-radius $datepicker-week-item-border-radius
-
-                &{$selector-hover}
-
-                    background-color $datepicker-week-item-hover-background-color
-
-                {$selector-datepicker}-col
-
-                    flex 1
-                    text-align center
-                    line-height 1
-
-                    border-radius $datepicker-week-item-border-radius
-                    padding $datepicker-week-item-padding
-                    margin $datepicker-week-item-margin
-
-                    &-prev-month,
-                    &-last-month
-                        color $datepicker-week-item-disabled-color
-
-            {$selector-datepicker}-row-checked
-
-                background-color $datepicker-week-item-hover-background-color
-
-                {$selector-datepicker}-col
-
-                    &:first-child,
-                    &:last-child
-
-                        background-color $datepicker-week-item-checked-background-color
-                        color $datepicker-week-item-checked-color
+                background-color $datepicker-item-checked-background-color
+                color $datepicker-item-checked-color

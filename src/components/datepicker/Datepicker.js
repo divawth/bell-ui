@@ -1,3 +1,7 @@
+import {
+    lpad
+} from './function/util'
+
 export default {
     template: `
         <div class="bell-datepicker
@@ -6,13 +10,11 @@ export default {
 
             <div class="bell-datepicker-el" on-click="click()">
                 <Input placeholder="请选择日期..."
-                    style="width: 200px;"
-                    model="value"
-                    onFocus="{{onFocus}}"
+                    model="formateDate"
                     type="input"
+                    on-focus="focus()"
                     clearable
-                >
-                </Input>
+                />
             </div>
 
             <div class="bell-datepicker-poper
@@ -21,15 +23,15 @@ export default {
                 {{#if isOpen}} bell-show{{/if}}
             ">
                 {{#if mode == 'date'}}
-                    <Date></Date>
+                    <Date />
                 {{else if mode == 'dateRange'}}
-                    <DateRange></DateRange>
+                    <DateRange />
                 {{else if mode == 'week'}}
-                    <DateWeek></DateWeek>
+                    <DateWeek />
                 {{else if mode == 'year'}}
-                    <DateYear></DateYear>
+                    <DateYear />
                 {{else if mode == 'month'}}
-                    <DateMonth></DateMonth>
+                    <DateMonth />
                 {{/if}}
             </div>
         </div>
@@ -44,91 +46,66 @@ export default {
         },
         mode: {
             type: 'string'
-        }
-    },
-
-    events: {
-
-        yearChange(event, data) {
-            let me = this;
-            me.fire(
-                'change',
-                {
-                    year: data.year
-                }
-            );
-            me.set({
-                currentValue: data,
-                value: data.year + '年'
-            });
-            me.close();
         },
-
-        monthChange(event, data) {
-            let me = this;
-            me.fire(
-                'change',
-                {
-                    year: data.year,
-                    month: data.month
-                }
-            );
-            me.set({
-                currentValue: data,
-                value: data.year + '年' + data.month + '月'
-            });
-            me.close();
-        },
-
-        weekRangeChange(event, data) {
-            this.rangeChange(data);
-        },
-
-        deteRangeChange(event, data) {
-            this.rangeChange(data);
-        },
-
-        deteChange(event, data) {
-            let me = this;
-            let date = data.date;
-            let value = me.get('value');
-            let newValue = me.formateDate(date);
-            if (newValue !== value) {
-                me.fire(
-                    'change',
-                    {
-                        value: newValue,
-                        date: date
-                    },
-                    {
-                        value: value,
-                        date: me.get('currentValue')
-                    }
-                );
-            }
-            me.set({
-                currentValue: date,
-                value: me.formateDate(date)
-            });
-            me.close();
+        formate: {
+            type: 'function'
         }
     },
 
     data() {
         let me = this;
         return {
-            value: '',
-            currentValue: null,
+
+            formateDate: null,
+            date: null,
+            start: null,
+            end: null,
+
             isPopuping: false,
             isPopdowning: false,
             isOpen: false,
-            onFocus() {
-                me.open();
-            }
+
         }
     },
 
+    events: {
+        change(event, data) {
+            let me = this;
+            if (event.target != me) {
+                if (!data.value) {
+                    this.fire('clear');
+                }
+                event.stop();
+            }
+        },
+
+        yearChange(event, date) {
+            this.dateChange(date);
+        },
+
+        monthChange(event, date) {
+            this.dateChange(date);
+        },
+
+        deteChange(event, date) {
+            this.dateChange(date);
+        },
+
+        weekRangeChange(event, date) {
+            this.dateRangeChange(date);
+        },
+
+        deteRangeChange(event, date) {
+            this.dateRangeChange(date);
+        },
+    },
+
     methods: {
+
+        focus() {
+            this.open();
+        },
+
         open() {
             let me = this;
             me.set({
@@ -140,8 +117,7 @@ export default {
                         isPopuping: false,
                         isOpen: true
                     });
-                },
-                300
+                }
             );
         },
 
@@ -159,66 +135,140 @@ export default {
                         isPopdowning: false,
                         isOpen: false
                     });
-                },
-                300
+                }
             );
         },
 
         formateDate(date) {
-            return date.year + '年' + date.month + '月' + date.date + '日';
+            let result = '';
+            if (this.get('formate')) {
+                return this.get('formate')(date);
+            }
+            if (!date) {
+                return result;
+            }
+            if (arguments.length > 1) {
+                let start = arguments[0];
+                let end = arguments[1];
+
+                result = start.year + '年'
+                        + lpad(start.month) + '月'
+                        + lpad(start.date) + '日'
+                        + ' - '
+                        + end.year + '年'
+                        + lpad(end.month) + '月'
+                        + lpad(end.date) + '日';
+            }
+            else {
+                if (date.year) {
+                    result += date.year + '年';
+                }
+                if (date.month) {
+                    result += lpad(date.month) + '月';
+                }
+                if (date.date) {
+                    result += lpad(date.date) + '日';
+                }
+            }
+            return result;
         },
 
-        rangeChange(data) {
+        dateChange(date) {
+
             let me = this;
-            let start = data.start;
+            let formateDate = me.get('formateDate');
+            let newFormateDate = me.formateDate(date);
+            if (newFormateDate !== formateDate) {
+                me.fire(
+                    'change',
+                    {
+                        value: {
+                            formateDate: newFormateDate,
+                            date: date,
+                        },
+                        oldValue: {
+                            formateDate: formateDate,
+                            date: me.get('date')
+                        }
+                    }
+                );
+            }
+            me.set({
+                date: date,
+                formateDate: newFormateDate
+            });
+            me.close();
+
+        },
+
+        dateRangeChange(data) {
             let end = data.end;
+
             if (!end) {
                 return;
             }
+
+            let me = this;
+            let start = data.start;
+
             me.fire(
                 'change',
                 {
-                    start: start,
-                    end: end,
-                    date: me.formateDate(start)
-                },
-                {
-                    start: start,
-                    end: end,
-                    date: me.formateDate(end)
+                    value: {
+                        start: start,
+                        end: end,
+                        startDate: me.formateDate(start),
+                        endDate: me.formateDate(end),
+                        formateDate: me.formateDate(start, end)
+                    },
+                    oldValue: {
+                        start: me.get('start'),
+                        end: me.get('end'),
+                        startDate: me.formateDate(me.get('start')),
+                        endDate: me.formateDate(me.get('end')),
+                        formateDate: me.formateDate(me.get('start'), me.get('end'))
+                    }
                 }
             );
+
             me.set({
-                currentValue: {
-                    start: start,
-                    end: end,
-                    date: me.formateDate(start)
-                },
-                value: me.formateDate(start) + '-' + me.formateDate(end)
+                start: start,
+                end: end,
+                formateDate: me.formateDate(start, end)
             });
             me.close();
+
         }
     },
 
     afterMount() {
         let me = this;
-        me.documentClickHandler = (e) => {
-            if (me.$el.contains(e.target)) {
+
+        me.documentClickHandler = function (e) {
+            let element = me.$el;
+            let target = e.originalEvent.target;
+            if (element.contains && element.contains(target)) {
+                return false;
+            }
+            else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
                 return false;
             }
             me.close();
         };
-        document.addEventListener(
+
+        Yox.dom.on(
+            document,
             'click',
             me.documentClickHandler
         );
+
     },
 
     beforeDestroy() {
-        let me = this;
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'click',
-            me.documentClickHandler
+            this.documentClickHandler
         );
     }
 };

@@ -58,13 +58,17 @@
     {$selector-rate-text}
 
         margin-left $selector-rate-margin-gap
-        font-size 12px
+        font-size $selector-rate-text-font-size
 
-    &{$selector-rate}-read-only
+    &{$selector-rate}-readonly
 
         cursor default
 
         {$selector-rate-star-full}
+
+            {$selector-hover}
+
+                font-size $selector-rate-font-size
 
             &::before
 

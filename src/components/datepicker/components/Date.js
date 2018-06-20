@@ -163,9 +163,7 @@ export default {
             let me = this;
             me.fire(
                 'deteChange',
-                {
-                    date: date
-                }
+                date
             );
 
             date = parseDate(date);

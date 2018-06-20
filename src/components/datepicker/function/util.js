@@ -1,27 +1,27 @@
-export let normalizeDate = (date) => {
+export let normalizeDate = function(date) {
     return date.setHours(0, 0, 0, 0);
 };
 
-export let offsetSecond = (date, offset) => {
+export let offsetSecond = function(date, offset) {
     if (!Yox.is.numeric(date)) {
         date = date.getTime();
     }
     return new Date(date + offset * 1000);
 };
 
-export let offsetMinute = (date, offset) => {
+export let offsetMinute = function(date, offset) {
     return offsetSecond(date, offset * 60);
 };
 
-export let offsetHour = (date, offset) => {
+export let offsetHour = function(date, offset) {
     return offsetMinute(date, offset * 60);
 };
 
-export let offsetDate = (date, offset) => {
+export let offsetDate = function(date, offset) {
     return offsetHour(date, offset * 24);
 };
 
-export let offsetMonth = (date, offset) => {
+export let offsetMonth = function(date, offset) {
     if (!Yox.is.numeric(date)) {
         date = date.getTime();
     }
@@ -31,7 +31,7 @@ export let offsetMonth = (date, offset) => {
     return date;
 };
 
-export let firstDateInWeek = (date, firstDay) => {
+export let firstDateInWeek = function(date, firstDay) {
     if (Yox.is.numeric(date)) {
         date = new Date(date);
     }
@@ -41,14 +41,14 @@ export let firstDateInWeek = (date, firstDay) => {
     return offsetDate(date, -1 * (day - firstDay));
 };
 
-export let lastDateInWeek = (date, firstDay) => {
+export let lastDateInWeek = function(date, firstDay) {
     return offsetDate(
         firstDateInWeek(date, firstDay),
         6
     );
 };
 
-export let firstDateInMonth = (date) => {
+export let firstDateInMonth = function (date) {
     if (Yox.is.numeric(date)) {
         date = new Date(date);
     }
@@ -58,7 +58,7 @@ export let firstDateInMonth = (date) => {
     );
 };
 
-export let lastDateInMonth = (date) => {
+export let lastDateInMonth = function (date) {
     return offsetDate(
         firstDateInMonth(
             offsetMonth(date, 1)
@@ -67,7 +67,7 @@ export let lastDateInMonth = (date) => {
     );
 };
 
-export let isValidDate = (date) => {
+export let isValidDate = function (date) {
     let time = date.getTime();
     if (Yox.is.number(time)) {
         return ('' + time).length > 8;
@@ -75,7 +75,7 @@ export let isValidDate = (date) => {
     return false;
 };
 
-export let parseDate = (year, month, date) => {
+export let parseDate = function(year, month, date) {
     let valid = false;
 
     if (Yox.is.numeric(year)
@@ -84,22 +84,18 @@ export let parseDate = (year, month, date) => {
     ) {
         valid = true;
     }
-    else if (arguments.length === 1) {
-        if (Yox.is.object(year)) {
-            valid = true;
-            date = year.date;
-            month = year.month;
-            year = year.year;
-        }
+    else if (Yox.is.object(year)) {
+        valid = true;
+        date = year.date;
+        month = year.month;
+        year = year.year;
     }
-    else if (arguments.length === 2) {
-        if (Yox.is.string(year)) {
-            valid = true;
-            let parts = year.split(month || '-');
-            year = parts[0];
-            month = parts[1];
-            date = parts[2];
-        }
+    else if (Yox.is.string(year)) {
+        valid = true;
+        let parts = year.split(month || '-');
+        year = parts[0];
+        month = parts[1];
+        date = parts[2];
     }
 
     if (valid) {
@@ -113,7 +109,7 @@ export let parseDate = (year, month, date) => {
     }
 };
 
-export let simplifyDate = (date) => {
+export let simplifyDate = function (date) {
     if (!date) {
         return;
     }
@@ -130,9 +126,21 @@ export let simplifyDate = (date) => {
     };
 };
 
-export let getOffsetTime = (date) => {
+export let getOffsetTime = function (date) {
     if (!date) {
         return 0;
     }
     return date.getTime();
+};
+
+export let lpad = function (num, length) {
+    if (length == null) {
+        length = 2;
+    }
+
+    var arr = new Array(
+        length - ('' + num).length + 1
+    );
+
+    return arr.join('0') + num;
 };
