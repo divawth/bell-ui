@@ -8,8 +8,62 @@
     ui-set('padding', 0, true)
     ui-set('margin', 0, true)
 
-    {$selector-list-item}
+{$selector-list}-border
 
-        display flex
-        flex-direction row
-        align-items center
+    box-shadow $selector-list-box-shadow
+
+{$selector-list}-divider
+
+    height $selector-list-divider-height
+    background-color $brand-border
+    list-style none
+
+{$selector-list}-header
+
+    ui-set('font-size', $size-base['font'])
+    ui-set('line-height', $size-base['line-height'])
+
+{$selector-list-item}-nested
+
+    display none
+    padding 0 10px
+
+    &.bell-show
+
+        display block
+
+{$selector-list-item}
+
+    {$selector-list-item}-header
+
+        display inline-block
+        vertical-align middle
+
+    {$selector-list-item}-footer
+
+        top 50%
+        transform translateY(-50%)
+
+    {$selector-list-item}-text
+
+        ui-ellipsis()
+        display inline-block
+        vertical-align middle
+
+{$selector-list-item}-has-header
+
+    {$selector-list-item}-text
+
+        position absolute
+        left $selector-list-header-size
+        right 0
+        top 50%
+        transform translateY(-50%)
+
+{$selector-list-item}-has-footer
+
+    {$selector-list-item}-text
+
+        width 100%
+        padding-right $selector-list-header-size
+        right $selector-list-header-size

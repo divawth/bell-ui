@@ -2,8 +2,15 @@ export default {
     template: `
         <ul class="bell-list
             {{#if className}} {{className}}{{/if}}
-            {{#if border}} bell-border{{/if}}
+            {{#if border}} bell-list-border{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
+
+            {{#if hasSlot('subHeader')}}
+                <div class="bell-list-header">
+                    <slot name="subHeader" />
+                </div>
+            {{/if}}
+
             {{#if hasSlot('children')}}
                 <slot name="children" />
             {{/if}}
@@ -17,7 +24,8 @@ export default {
             type: 'string'
         },
         border: {
-            type: 'boolean'
+            type: 'boolean',
+            value: true
         }
     }
 };

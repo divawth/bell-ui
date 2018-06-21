@@ -3637,7 +3637,7 @@
     };
 
     var List = {
-        template: '\n        <ul class="bell-list\n            {{#if className}} {{className}}{{/if}}\n            {{#if border}} bell-border{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </ul>\n    ',
+        template: '\n        <ul class="bell-list\n            {{#if className}} {{className}}{{/if}}\n            {{#if border}} bell-list-border{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'subHeader\')}}\n                <div class="bell-list-header">\n                    <slot name="subHeader" />\n                </div>\n            {{/if}}\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </ul>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -3646,13 +3646,14 @@
                 type: 'string'
             },
             border: {
-                type: 'boolean'
+                type: 'boolean',
+                value: true
             }
         }
     };
 
     var Item = {
-        template: '\n        <li class="bell-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if !disableHover}} bell-item-hover{{/if}}\n            {{#if active}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click">\n\n            {{#if hasSlot(\'itemHeader\')}}\n                <div class="bell-item-header">\n                    <slot name="itemHeader" />\n                </div>\n            {{/if}}\n\n            {{#if hasSlot(\'itemFooter\')}}\n                <div class="bell-item-footer">\n                    <slot name="itemFooter" />\n                </div>\n            {{/if}}\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n        </li>\n    ',
+        template: '\n        <li class="bell-list-item\n            {{#if className}} {{className}}{{/if}}\n            {{#if hasSlot(\'header\')}} bell-list-item-has-header{{/if}}\n            {{#if hasSlot(\'footer\')}} bell-list-item-has-footer{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="itemClick($event, hasSlot(\'nested\'))">\n\n            <div class="bell-list-item-content\n                {{#if !disableHover}} bell-list-item-content-hover{{/if}}\n                {{#if active}} bell-active{{/if}}\n            ">\n                {{#if hasSlot(\'header\')}}\n                    <div class="bell-list-item-header">\n                        <slot name="header" />\n                    </div>\n                {{/if}}\n\n                {{#if hasSlot(\'footer\')}}\n                    <div class="bell-list-item-footer">\n                        <slot name="footer" />\n                    </div>\n                {{/if}}\n\n                {{#if hasSlot(\'children\')}}\n                    <div class="bell-list-item-text">\n                        <slot name="children" />\n                    </div>\n                {{/if}}\n            </div>\n\n            {{#if hasSlot(\'nested\')}}\n                <div class="bell-list-item-nested{{#if nestedIsShow}} bell-show{{/if}}">\n                    <slot name="nested" />\n                </div>\n            {{/if}}\n\n        </li>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -3665,6 +3666,37 @@
             },
             active: {
                 type: 'boolean'
+            }
+        },
+
+        data: function data() {
+            return {
+                nestedIsShow: false
+            };
+        },
+
+
+        methods: {
+            itemClick: function itemClick(event, hasNested) {
+                if (!hasNested) {
+                    event.stop();
+                    return;
+                }
+                console.log('console');
+                this.toggle('nestedIsShow');
+                event.stop();
+            }
+        }
+    };
+
+    var Divider = {
+        template: '\n        <li class="bell-list-divider\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n        </li>\n    ',
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
             }
         }
     };
@@ -5091,6 +5123,7 @@
         Panel: Panel,
         List: List,
         Item: Item,
+        Divider: Divider,
         Circle: Circle,
         Progress: Progress,
         Slider: Slider,

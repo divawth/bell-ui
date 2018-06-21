@@ -2,127 +2,253 @@
 
     export default {
         template: `
-            <List>
-                <Item disableHover="{{!0}}">
-                    1 号员工
-                </Item>
-                <Item disableHover="{{true}}">
-                    2 号员工
-                </Item>
-                <Item disableHover>
-                    3 号员工
-                </Item>
-            </List>
-        `
-    }
-
-> 带边框
-
-    export default {
-        template: `
             <List border>
                 <Item>
-                    <template slot="itemHeader">
-                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                    <template slot="header">
+                        <Icon type="star"></Icon>
                     </template>
-                    1 号员工
-                </Item>
-                <Item on-click="itemClick()" active="{{!!active}}">
-                    <template slot="itemHeader">
-                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
-                    </template>
-                    2 号员工
-                </Item>
-                <Item>
-                    <template slot="itemHeader">
-                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
-                    </template>
-                    3 号员工
-                </Item>
-            </List>
-        `,
-        methods: {
-            itemClick: function (val) {
-                this.toggle('active');
-            }
-        },
-        data: {
-            active: false
-        }
-    }
+                    Sent mail Sent mail Sent mail Sent mail Sent mail Sent mail Sent mail
+                    Sent mail
+                    Sent mailSent mailSent mail
 
-> 插入 header
+                    Sent mail
 
-    export default {
-        template: `
-            <List>
+                </Item>
                 <Item>
-                    <template slot="itemHeader">
+                    <template slot="header">
                         <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
                     </template>
-                    1 号员工
-                </Item>
-                <Item on-click="itemClick()" active="{{!!active}}">
-                    <template slot="itemHeader">
-                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
-                    </template>
-                    2 号员工
+                    Drafts
                 </Item>
                 <Item>
-                    <template slot="itemHeader">
-                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                    <template slot="header">
+                        <Icon type="star"></Icon>
                     </template>
-                    3 号员工
+                    Inbox
                 </Item>
-            </List>
-        `,
-        methods: {
-            itemClick: function (val) {
-                this.toggle('active');
-            }
-        },
-        data: {
-            active: false
-        }
-    }
+                <Item>
+                    <template slot="header">
+                        <Icon type="star"></Icon>
+                    </template>
+                    Starred
+                </Item>
+                <Divider />
+                <Item>
+                    <template slot="footer">
+                        <Icon type="star"></Icon>
+                    </template>
+                    Sent mail Sent mail Sent mail Sent mail Sent mail Sent mail Sent mail
+                    Sent mail
+                    Sent mailSent mailSent mail
 
-> 插入 footer
-
-    export default {
-        template: `
-            <List>
-                <Item>
-                    <template slot="itemFooter">
-                        <Icon type="heart" />
-                    </template>
-                    1 号员工
+                    Sent mail
                 </Item>
                 <Item>
-                    <template slot="itemFooter">
-                        <Checkbox model="single" onChange="{{onChange}}">
-                        </Checkbox>
+                    <template slot="footer">
+                        <Icon type="star"></Icon>
                     </template>
-                    2 号员工
+                    Trash
                 </Item>
                 <Item>
-                    <template slot="itemFooter">
-                        <Switch size="small" model="single" onChange="{{onChange}}">
-                        </Switch>
+                    <template slot="footer">
+                        <Icon type="star"></Icon>
                     </template>
-                    3 号员工
+                    Spam
+                </Item>
+                <Item>
+                    <template slot="footer">
+                        <Icon type="star"></Icon>
+                    </template>
+                    Follow up
                 </Item>
             </List>
         `
     }
 
+> 不带边框
+
+    export default {
+        template: `
+            <List border="{{false}}">
+                <Item>
+                    <template slot="header">
+                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                    </template>
+                    1 号员工
+                </Item>
+                <Item on-click="itemClick()" active="{{!!active}}">
+                    <template slot="header">
+                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                    </template>
+                    2 号员工
+                </Item>
+                <Item>
+                    <template slot="header">
+                        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                    </template>
+                    3 号员工
+                </Item>
+            </List>
+        `,
+        methods: {
+            itemClick: function (val) {
+                this.toggle('active');
+            }
+        },
+        data: {
+            active: false
+        }
+    }
+
+> 聊天列表
+
+    export default {
+        template: `
+            <div class="list-wrapper">
+                <List>
+                    <template slot="subHeader">
+                        最近聊天记录
+                    </template>
+                    <Item>
+                        <template slot="header">
+                            <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                        </template>
+                        <template slot="footer">
+                            <Icon type="chatbox"></Icon>
+                        </template>
+                        Junmer
+                    </Item>
+                    <Item>
+                        <template slot="header">
+                            <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                        </template>
+                        <template slot="footer">
+                            <Icon type="chatbox"></Icon>
+                        </template>
+                        Leon Lu
+                    </Item>
+                    <Item>
+                        <template slot="header">
+                            <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                        </template>
+                        <template slot="footer">
+                            <Icon type="chatbox"></Icon>
+                        </template>
+                        Zhiqiang Zhang
+                    </Item>
+                    <Item>
+                        <template slot="header">
+                            <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                        </template>
+                        <template slot="footer">
+                            <Icon type="chatbox"></Icon>
+                        </template>
+                        CK Yau
+                    </Item>
+                </List>
+                <Divider />
+                <List>
+                    <template slot="subHeader">
+                        历史聊天记录
+                    </template>
+                    <Item>
+                        <template slot="header">
+                            <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
+                        </template>
+                        <template slot="footer">
+                            <Icon type="chatbox"></Icon>
+                        </template>
+                        Huiquan Huang
+                    </Item>
+                </List>
+            </div>
+        `,
+        methods: {
+            itemClick: function (val) {
+                this.toggle('active');
+            }
+        },
+        data: {
+            active: false
+        }
+    }
+
+> 嵌套列表
+
+    export default {
+        template: `
+            <div class="list-wrapper">
+                <List>
+                    <Item>
+                        <template slot="header">
+                            <Icon type="star"></Icon>
+                        </template>
+                        Sent mail
+                    </Item>
+                    <Item>
+                        <template slot="header">
+                            <Icon type="star"></Icon>
+                        </template>
+                        Drafts
+                    </Item>
+                    <Item>
+                        <template slot="footer">
+                            <Icon type="chevron-down"></Icon>
+                        </template>
+                        Inbox
+                        <template slot="nested">
+                            <Item>
+                                <template slot="header">
+                                    <Icon type="star"></Icon>
+                                </template>
+                                Starred
+                            </Item>
+                        </template>
+                        <template slot="nested">
+                            <Item>
+                                <template slot="header">
+                                    <Icon type="star"></Icon>
+                                </template>
+                                Starred
+                            </Item>
+                        </template>
+                        <template slot="nested">
+                            <Item>
+                                <template slot="footer">
+                                    <Icon type="chevron-down"></Icon>
+                                </template>
+                                Starred
+                                <template slot="nested">
+                                    <Item>
+                                        <template slot="header">
+                                            <Icon type="chevron-down"></Icon>
+                                        </template>
+                                        Starred
+                                    </Item>
+                                </template>
+                            </Item>
+                        </template>
+                    </Item>
+                </List>
+            </div>
+        `,
+        methods: {
+            itemClick: function (val) {
+                this.toggle('active');
+            }
+        },
+        data: {
+            active: false
+        }
+    }
 #### API
 
 > slot
 
 参数 | 说明
 ---|---
-itemHeader | 列表的 item 的 header
-itemFooter | 列表的 item 的 footer
+header | 列表的 item 的 header
+footer | 列表的 item 的 footer
 
 > Attributes
 
@@ -138,4 +264,4 @@ showIcon | 是否显示图标 | boolean | - | false
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-close | 关闭 alert 时触发的事件 | -
+nestedItemClick | 触发 item toggle 的时候触发 | -

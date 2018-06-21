@@ -1,16 +1,17 @@
 list-size(size)
 
-    {$selector-list-item}
+    {$selector-list-item}-content
 
         ui-set('position', relative)
         ui-set('padding', size['item-padding'])
         ui-set('border-radius', size['border-radius'])
 
-    {$selector-list-item}-header
-        ui-set('display', inherit)
-        ui-set('margin-right', size['header-margin-right'])
+    {$selector-list}-header
+
+        ui-set('padding', size['item-padding'])
 
     {$selector-list-item}-footer
+
         ui-set('position', absolute)
         ui-set('right', size['footer-right'])
 
@@ -18,7 +19,7 @@ list-color(color)
 
     color $brand-secondary
 
-    {$selector-list-item}
+    {$selector-list-item}-content
 
         ui-set('background-color', color['bg'])
 
@@ -27,7 +28,7 @@ list-color(color)
             ui-set('background-color', color['active-bg'])
             ui-set('color', color['active-color'])
 
-    {$selector-list-item}-hover
+    {$selector-list-item}-content-hover
 
         ui-set('cursor', $cursor-clickable)
 

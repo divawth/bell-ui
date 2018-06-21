@@ -1,25 +1,38 @@
 export default {
     template: `
-        <li class="bell-item
+        <li class="bell-list-item
             {{#if className}} {{className}}{{/if}}
-            {{#if !disableHover}} bell-item-hover{{/if}}
-            {{#if active}} bell-active{{/if}}
-        "{{#if style}} style="{{style}}"{{/if}} on-click="click">
+            {{#if hasSlot('header')}} bell-list-item-has-header{{/if}}
+            {{#if hasSlot('footer')}} bell-list-item-has-footer{{/if}}
+        "{{#if style}} style="{{style}}"{{/if}} on-click="itemClick($event, hasSlot('nested'))">
 
-            {{#if hasSlot('itemHeader')}}
-                <div class="bell-item-header">
-                    <slot name="itemHeader" />
+            <div class="bell-list-item-content
+                {{#if !disableHover}} bell-list-item-content-hover{{/if}}
+                {{#if active}} bell-active{{/if}}
+            ">
+                {{#if hasSlot('header')}}
+                    <div class="bell-list-item-header">
+                        <slot name="header" />
+                    </div>
+                {{/if}}
+
+                {{#if hasSlot('footer')}}
+                    <div class="bell-list-item-footer">
+                        <slot name="footer" />
+                    </div>
+                {{/if}}
+
+                {{#if hasSlot('children')}}
+                    <div class="bell-list-item-text">
+                        <slot name="children" />
+                    </div>
+                {{/if}}
+            </div>
+
+            {{#if hasSlot('nested')}}
+                <div class="bell-list-item-nested{{#if nestedIsShow}} bell-show{{/if}}">
+                    <slot name="nested" />
                 </div>
-            {{/if}}
-
-            {{#if hasSlot('itemFooter')}}
-                <div class="bell-item-footer">
-                    <slot name="itemFooter" />
-                </div>
-            {{/if}}
-
-            {{#if hasSlot('children')}}
-                <slot name="children" />
             {{/if}}
 
         </li>
@@ -36,6 +49,24 @@ export default {
         },
         active: {
             type: 'boolean'
+        }
+    },
+
+    data() {
+        return {
+            nestedIsShow: false
+        }
+    },
+
+    methods: {
+        itemClick(event, hasNested) {
+            if (!hasNested) {
+                event.stop();
+                return;
+            }
+            this.fire('nestedItemClick');
+            this.toggle('nestedIsShow');
+            event.stop();
         }
     }
 };
