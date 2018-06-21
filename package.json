@@ -1,12 +1,13 @@
 {
   "name": "bell-ui",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "bell ui",
   "entry": "index.js",
   "scripts": {
     "start": "rollup -c",
     "test": "lessc src/styles/index.less > dist/bells.css",
-    "style": "stylus -w src/css/index.styl -o dist/bell.css"
+    "style": "stylus -w src/css/index.styl -o dist/bell.css",
+    "uglifyjs": "uglifyjs bell.js -o bell-min.js"
   },
   "edp": {
     "wwwroot": "/",
