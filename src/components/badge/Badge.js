@@ -38,10 +38,10 @@ export default {
             type: 'numeric'
         },
         dot: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         hidden: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         type: {
             type: 'string'
@@ -50,7 +50,6 @@ export default {
 
     filters: {
         getText(count, maxCount) {
-            let me = this;
             maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
             let countStr = Yox.is.number(count) ? +count : 0;
 

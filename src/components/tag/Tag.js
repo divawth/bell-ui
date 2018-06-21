@@ -46,18 +46,17 @@ export default {
         checked: {
             type: 'boolean',
             value: true
-        },
-        onClose: {
-            type: 'function'
-        },
-        onChecked: {
-            type: 'function'
         }
     },
 
     watchers: {
         checked(value) {
-            me.get('onChecked') && me.get('onChecked')(value);
+            this.fire(
+                'check',
+                {
+                    value: value
+                }
+            );
         }
     },
 
@@ -70,8 +69,7 @@ export default {
             me.toggle('checked');
         },
         close() {
-            let me = this;
-            me.get('onClose') && me.get('onClose')();
+            this.fire('close');
         }
     }
 };

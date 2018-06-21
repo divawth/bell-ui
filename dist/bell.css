@@ -5644,6 +5644,7 @@ button.bell-button-danger[disabled] {
   display: inline-block;
   width: 100px;
   margin-right: 10px;
+  vertical-align: middle;
 }
 .bell-page .bell-page-elevator {
   display: inline-block;
@@ -5907,6 +5908,10 @@ button.bell-button-danger[disabled] {
   line-height: 50px;
   border-radius: 8px;
 }
+.bell-avatar > $seletor-icon {
+  font-size: 26px;
+  line-height: 50px;
+}
 .bell-avatar-small {
   width: 40px;
   height: 40px;
@@ -5914,12 +5919,20 @@ button.bell-button-danger[disabled] {
   line-height: 40px;
   border-radius: 8px;
 }
+.bell-avatar-small > $seletor-icon {
+  font-size: 26px;
+  line-height: 40px;
+}
 .bell-avatar-large {
   width: 60px;
   height: 60px;
   font-size: 14px;
   line-height: 60px;
   border-radius: 8px;
+}
+.bell-avatar-large > $seletor-icon {
+  font-size: 26px;
+  line-height: 60px;
 }
 .bell-avatar > img {
   width: 100%;

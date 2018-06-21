@@ -80,5 +80,5 @@ size | 尺寸 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onClose | 点击 close 时触发 | -
-onChecked | checked 改变时触发 | -
+close | 点击 close 时触发 | -
+check | checked 改变时触发 | -

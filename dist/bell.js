@@ -1712,7 +1712,7 @@
     };
 
     var Page = {
-        template: '\n        <div class="bell-page\n            {{#if size}} bell-page-{{size}}{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            {{#partial pageCenter}}\n                {{#if current - 3 > 1}}\n                    <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </li>\n                {{/if}}\n\n                {{#if current - 2 > 1}}\n                    <li class="bell-page-item" on-click="changePage(current - 2)">\n                        {{ current - 2 }}\n                    </li>\n                {{/if}}\n\n                {{#if current - 1 > 1}}\n                    <li class="bell-page-item" on-click="changePage(current - 1)">\n                        {{ current - 1 }}\n                    </li>\n                {{/if}}\n\n                {{#if current != 1 && current != count}}\n                    <li class="bell-page-item bell-active">\n                        {{ current }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 1 < count}}\n                    <li class="bell-page-item" on-click="changePage(current + 1)">\n                        {{ current + 1 }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 2 < count}}\n                    <li class="bell-page-item" on-click="changePage(current + 2)">\n                        {{ current + 2 }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 3 < count}}\n                    <li class="bell-page-item bell-page-item-next" on-click="fastNext()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </li>\n                {{/if}}\n            {{/partial}}\n\n            {{#if showTotal}}\n            <span class="bell-page-total">\n                \u5171 {{total}} \u6761\n            </span>\n            {{/if}}\n\n            {{#if showSizer}}\n            <div class="bell-page-select">\n                <Select list="{{pageList}}"\n                    model="pageSize"\n                    size="{{size}}"\n                    placement="{{placement}}"\n                />\n            </div>\n            {{/if}}\n\n            {{#if !simple}}\n            <ul class="bell-page-list">\n\n                <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </li>\n\n                <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">\n                    1\n                </li>\n\n                {{#if count > 1}}\n                    {{> pageCenter}}\n                    <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                        {{count}}\n                    </li>\n                {{/if}}\n\n                <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </li>\n            </ul>\n\n            {{else}}\n                <div class="bell-page-simple">\n                    <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </span>\n\n                    <div class="bell-page-input">\n                        <Input type="input"\n                            model="currentPage"\n                            size="{{size}}"\n                        ></Input>\n                    </div>\n\n                    {{\'/\'}}\n\n                    <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                        {{count}}\n                    </span>\n\n                    <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </span>\n                </div>\n            {{/if}}\n\n            {{#if showElevator}}\n                <div class="bell-page-elevator">\n                    \u8DF3\u81F3\n                    <div class="bell-page-input">\n                        <Input type="input"\n                            placeholder="\u8BF7\u8F93\u5165..."\n                            model="currentPage"\n                            size="{{size}}"\n                        ></Input>\n                    </div>\n                    \u9875\n                </div>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-page\n            {{#if size}} bell-page-{{size}}{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            {{#partial pageCenter}}\n                {{#if current - 3 > 1}}\n                    <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </li>\n                {{/if}}\n\n                {{#if current - 2 > 1}}\n                    <li class="bell-page-item" on-click="changePage(current - 2)">\n                        {{ current - 2 }}\n                    </li>\n                {{/if}}\n\n                {{#if current - 1 > 1}}\n                    <li class="bell-page-item" on-click="changePage(current - 1)">\n                        {{ current - 1 }}\n                    </li>\n                {{/if}}\n\n                {{#if current != 1 && current != count}}\n                    <li class="bell-page-item bell-active">\n                        {{ current }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 1 < count}}\n                    <li class="bell-page-item" on-click="changePage(current + 1)">\n                        {{ current + 1 }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 2 < count}}\n                    <li class="bell-page-item" on-click="changePage(current + 2)">\n                        {{ current + 2 }}\n                    </li>\n                {{/if}}\n\n                {{#if current + 3 < count}}\n                    <li class="bell-page-item bell-page-item-next" on-click="fastNext()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </li>\n                {{/if}}\n            {{/partial}}\n\n            {{#if showTotal}}\n            <span class="bell-page-total">\n                \u5171 {{total}} \u6761\n            </span>\n            {{/if}}\n\n            {{#if showSizer}}\n            <div class="bell-page-select">\n                <Select model="pageSize"\n                    size="{{size}}"\n                    placement="{{placement}}"\n                >\n                {{#each pageList:index}}\n                    <Option index="{{index}}" value="{{value}}" text="{{text}}">\n                        {{text}}\n                    </Option>\n                {{/each}}\n                </Select>\n            </div>\n            {{/if}}\n\n            {{#if !simple}}\n            <ul class="bell-page-list">\n\n                <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                    <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                </li>\n\n                <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">\n                    1\n                </li>\n\n                {{#if count > 1}}\n                    {{> pageCenter}}\n                    <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                        {{count}}\n                    </li>\n                {{/if}}\n\n                <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                    <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                </li>\n            </ul>\n\n            {{else}}\n                <div class="bell-page-simple">\n                    <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">\n                        <i class="bell-icon bell-icon-ios-arrow-left"></i>\n                    </span>\n\n                    <div class="bell-page-input">\n                        <Input type="input"\n                            model="currentPage"\n                            size="{{size}}"\n                        ></Input>\n                    </div>\n\n                    {{\'/\'}}\n\n                    <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">\n                        {{count}}\n                    </span>\n\n                    <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">\n                        <i class="bell-icon bell-icon-ios-arrow-right"></i>\n                    </span>\n                </div>\n            {{/if}}\n\n            {{#if showElevator}}\n                <div class="bell-page-elevator">\n                    \u8DF3\u81F3\n                    <div class="bell-page-input">\n                        <Input type="input"\n                            placeholder="\u8BF7\u8F93\u5165..."\n                            model="currentPage"\n                            size="{{size}}"\n                        ></Input>\n                    </div>\n                    \u9875\n                </div>\n            {{/if}}\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -1739,22 +1739,19 @@
                 value: 10
             },
             showSizer: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             pageSizeOpts: {
                 type: 'array'
             },
             showElevator: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             showTotal: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             placement: {
                 type: 'string'
-            },
-            onPageSizeChange: {
-                type: 'function'
             }
         },
 
@@ -1766,7 +1763,7 @@
                     Yox.array.each(me.get('pageSizeOpts'), function (value) {
                         pageList.push({
                             text: value + ' 条/页',
-                            val: value
+                            value: value
                         });
                     });
                 }
@@ -1784,7 +1781,9 @@
             pageSize: function pageSize(value) {
                 var me = this;
                 me.updateCount();
-                me.get('onPageSizeChange') && me.get('onPageSizeChange')(value);
+                me.fire('pageSizeChange', {
+                    value: value
+                });
             },
             current: function current(value) {
                 this.fire('change', {
@@ -1847,27 +1846,6 @@
                         count: count
                     });
                 }
-            },
-            setCurrent: function setCurrent(option) {
-                var me = this;
-                var currentPage = +me.get('currentPage');
-                var current = me.get('current');
-                var count = me.get('count');
-
-                if (option == 'enter') {
-                    if (Yox.is.number(currentPage) && currentPage > 0 && currentPage <= count) {
-                        current = currentPage;
-                    }
-                } else if (option == 'up') {
-                    current = current > 1 ? current - 1 : 1;
-                } else if (option == 'down') {
-                    current = current + 1 > count ? count : current + 1;
-                }
-
-                me.set({
-                    current: current,
-                    currentPage: current
-                });
             }
         },
 
@@ -1875,28 +1853,37 @@
             var me = this;
             me.updateCount();
 
-            me.documentKeydownHander = function (e) {
-                var code = e.keyCode;
-                if (code === 40) {
-                    // up
-                    e.preventDefault();
-                    me.setCurrent('down');
-                } else if (code === 38) {
-                    // down
-                    e.preventDefault();
-                    me.setCurrent('up');
-                } else if (code == 13) {
-                    // enter
-                    e.preventDefault();
-                    me.setCurrent('enter');
+            me.documentKeydownHander = function (event) {
+
+                var currentPage = +me.get('currentPage');
+                var current = me.get('current');
+                var count = me.get('count');
+
+                switch (event.originalEvent.keyCode) {
+                    case 40:
+                        current = current + 1 > count ? count : current + 1;
+                        break;
+                    case 38:
+                        current = current > 1 ? current - 1 : 1;
+                        break;
+                    case 13:
+                        if (Yox.is.number(currentPage) && currentPage > 0 && currentPage <= count) {
+                            current = currentPage;
+                        }
+                        break;
                 }
+                me.set({
+                    current: current,
+                    currentPage: current
+                });
+                event.prevent();
             };
 
-            document.addEventListener('keydown', me.documentKeydownHander);
+            Yox.dom.on(document, 'keydown', me.documentKeydownHander);
         },
         beforeDestroy: function beforeDestroy() {
             var me = this;
-            document.removeEventListener('keydown', me.documentKeydownHander);
+            Yox.dom.off(document, 'keydown', me.documentKeydownHander);
         }
     };
 
@@ -2067,10 +2054,12 @@
         }
     };
 
+    var _propTypes;
+
     var Avatar = {
         template: '\n        <div class="bell-avatar\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-avatar-{{size}}{{/if}}\n            {{#if shape}} bell-avatar-{{shape}}{{/if}}\n        " style="font-size: {{fontSize}}px;\n            background-color: {{backgroundColor}};\n            color: {{color}};\n            {{#if style}} {{style}}{{/if}}"\n        >\n            {{#if src}}\n                <img{{#if srcset}} srcset="{{srcset}}"{{/if}} ondragstart="return false" src="{{src}}" />\n            {{else}}\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            {{/if}}\n        </div>\n    ',
 
-        propTypes: {
+        propTypes: (_propTypes = {
             className: {
                 type: 'string'
             },
@@ -2088,17 +2077,14 @@
             },
             size: {
                 type: 'string'
-            },
-            fontSize: {
-                type: 'numeric'
-            },
-            backgroundColor: {
-                type: 'string'
-            },
-            color: {
-                type: 'string'
             }
-        }
+        }, _propTypes['size'] = function size(value) {
+            return value != null ? +value : 14;
+        }, _propTypes.backgroundColor = {
+            type: 'string'
+        }, _propTypes.color = {
+            type: 'string'
+        }, _propTypes)
     };
 
     var Badge = {
@@ -2118,10 +2104,10 @@
                 type: 'numeric'
             },
             dot: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             hidden: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             type: {
                 type: 'string'
@@ -3376,10 +3362,10 @@
                 type: 'string'
             },
             activeName: {
-                type: 'numeric'
+                type: ['numeric', 'string']
             },
             accordion: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             }
         },
 
@@ -3679,10 +3665,10 @@
         methods: {
             itemClick: function itemClick(event, hasNested) {
                 if (!hasNested) {
+                    this.fire('click');
                     event.stop();
                     return;
                 }
-                console.log('console');
                 this.toggle('nestedIsShow');
                 event.stop();
             }

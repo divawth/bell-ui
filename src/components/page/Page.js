@@ -58,11 +58,16 @@ export default {
 
             {{#if showSizer}}
             <div class="bell-page-select">
-                <Select list="{{pageList}}"
-                    model="pageSize"
+                <Select model="pageSize"
                     size="{{size}}"
                     placement="{{placement}}"
-                />
+                >
+                {{#each pageList:index}}
+                    <Option index="{{index}}" value="{{value}}" text="{{text}}">
+                        {{text}}
+                    </Option>
+                {{/each}}
+                </Select>
             </div>
             {{/if}}
 
@@ -155,38 +160,35 @@ export default {
             value: 10
         },
         showSizer: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         pageSizeOpts: {
             type: 'array'
         },
         showElevator: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         showTotal: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         placement: {
             type: 'string'
-        },
-        onPageSizeChange: {
-            type: 'function'
         }
     },
 
     data() {
         let me = this;
-        let getPageList = () => {
+        let getPageList = function () {
             let pageList = [];
             if (me.get('showSizer')
                 && me.get('pageSizeOpts')
             ) {
                 Yox.array.each(
                     me.get('pageSizeOpts'),
-                    (value) => {
+                    function (value) {
                         pageList.push({
                             text: value + ' 条/页',
-                            val: value
+                            value: value
                         });
                     }
                 );
@@ -204,7 +206,12 @@ export default {
         pageSize(value) {
             let me = this;
             me.updateCount();
-            me.get('onPageSizeChange') && me.get('onPageSizeChange')(value);
+            me.fire(
+                'pageSizeChange',
+                {
+                    value: value
+                }
+            );
         },
         current(value) {
             this.fire(
@@ -276,33 +283,6 @@ export default {
                     count: count
                 });
             }
-        },
-
-        setCurrent(option) {
-            let me = this;
-            let currentPage = +me.get('currentPage');
-            let current = me.get('current');
-            let count = me.get('count');
-
-            if (option == 'enter') {
-                if (Yox.is.number(currentPage)
-                    && currentPage > 0
-                    && currentPage <= count
-                ) {
-                    current = currentPage;
-                }
-            }
-            else if (option == 'up') {
-                current = current > 1 ? current - 1 : 1;
-            }
-            else if (option == 'down') {
-                current = current + 1 > count ? count : current + 1;
-            }
-
-            me.set({
-                current: current,
-                currentPage: current
-            });
         }
     },
 
@@ -310,26 +290,39 @@ export default {
         let me = this;
         me.updateCount();
 
-        me.documentKeydownHander = (e) => {
-            let code = e.keyCode;
-            if (code === 40) {
-                // up
-                e.preventDefault();
-                me.setCurrent('down');
-            }
-            else if (code === 38) {
-                // down
-                e.preventDefault();
-                me.setCurrent('up');
-            }
-            else if (code == 13) {
-                // enter
-                e.preventDefault();
-                me.setCurrent('enter');
-            }
+        me.documentKeydownHander = function (event) {
+
+            let currentPage = +me.get('currentPage');
+            let current = me.get('current');
+            let count = me.get('count');
+
+            switch(event.originalEvent.keyCode) {
+                case 40:
+                    current = current + 1 > count ? count : current + 1;
+                    break;
+                case 38:
+                    current = current > 1 ? current - 1 : 1;
+                    break;
+                case 13:
+                    if (Yox.is.number(currentPage)
+                        && currentPage > 0
+                        && currentPage <= count
+                    ) {
+                        current = currentPage;
+                    }
+                    break;
+            };
+
+            me.set({
+                current: current,
+                currentPage: current
+            });
+            event.prevent();
+
         };
 
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'keydown',
             me.documentKeydownHander
         );
@@ -337,7 +330,8 @@ export default {
 
     beforeDestroy() {
         let me = this;
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'keydown',
             me.documentKeydownHander
         );

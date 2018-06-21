@@ -25,7 +25,7 @@
     export default {
         template: `
             <div>
-                <Page total="100" showTotal="true"></Page>
+                <Page total="100" showTotal="{{true}}"></Page>
             </div>
         `
     }
@@ -34,7 +34,7 @@
 
     export default {
         template: `
-            <Page size="small" total="100" showSizer="true" pageSizeOpts="{{pageSizeOpts}}"></Page>
+            <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}"></Page>
         `,
         data: function () {
             return {
@@ -47,7 +47,7 @@
 
     export default {
         template: `
-            <Page total="100" showElevator="true"></Page>
+            <Page total="100" showElevator="{{true}}"></Page>
         `
     }
 
@@ -55,7 +55,7 @@
 
     export default {
         template: `
-            <Page size="small" total="100" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+            <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
         `,
         data: function () {
             return {
@@ -68,7 +68,7 @@
 
     export default {
         template: `
-            <Page total="100" simple="true"></Page>
+            <Page total="100" simple="{{true}}"></Page>
         `
     }
 
@@ -95,5 +95,5 @@ placement | 弹窗的展开方向 | string | bottom 和 top | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onChange | 页码改变的回调，返回改变后的页码 | page
-onPageSizeChange | 页码改变的回调，返回改变后的页码 | pageSize
+change | 页码改变的回调，返回改变后的页码 | page
+pageSizeChange | 页码改变的回调，返回改变后的页码 | pageSize

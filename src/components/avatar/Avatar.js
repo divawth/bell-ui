@@ -38,8 +38,8 @@ export default {
         size: {
             type: 'string'
         },
-        fontSize: {
-            type: 'numeric'
+        size: function (value) {
+            return value != null ? +value : 14;
         },
         backgroundColor: {
             type: 'string'

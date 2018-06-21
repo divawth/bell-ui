@@ -42,16 +42,16 @@
                     MB
                 </Avatar>
 
-                <Avatar size="small">
-                    <i class="bell-icon bell-icon-person"></i>
+                <Avatar size="small" fontSize="22">
+                    <Icon type="person"/>
                 </Avatar>
 
-                <Avatar shape="circle" backgroundColor="#f90">
-                    <i class="bell-icon bell-icon-person"></i>
+                <Avatar shape="circle" backgroundColor="#f90" fontSize="22">
+                    <Icon type="person" />
                 </Avatar>
 
-                <Avatar size="small" color="#090">
-                    <i class="bell-icon bell-icon-person"></i>
+                <Avatar size="small" color="#090" fontSize="22">
+                    <Icon type="person" />
                 </Avatar>
             </div>
         `

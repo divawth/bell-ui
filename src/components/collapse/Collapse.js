@@ -19,10 +19,10 @@ export default {
             type: 'string'
         },
         activeName: {
-            type: 'numeric'
+            type: ['numeric', 'string']
         },
         accordion: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         }
     },
 

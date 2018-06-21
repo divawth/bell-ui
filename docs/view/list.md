@@ -76,7 +76,7 @@
                     </template>
                     1 号员工
                 </Item>
-                <Item on-click="itemClick()" active="{{!!active}}">
+                <Item active="{{!!active}}">
                     <template slot="header">
                         <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
                     </template>
@@ -90,11 +90,6 @@
                 </Item>
             </List>
         `,
-        methods: {
-            itemClick: function (val) {
-                this.toggle('active');
-            }
-        },
         data: {
             active: false
         }
@@ -232,11 +227,6 @@
                 </List>
             </div>
         `,
-        methods: {
-            itemClick: function (val) {
-                this.toggle('active');
-            }
-        },
         data: {
             active: false
         }
@@ -249,6 +239,7 @@
 ---|---
 header | 列表的 item 的 header
 footer | 列表的 item 的 footer
+nested | 列表的 item 的子列表
 
 > Attributes
 
@@ -264,4 +255,4 @@ showIcon | 是否显示图标 | boolean | - | false
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-nestedItemClick | 触发 item toggle 的时候触发 | -
+click | 点击的时候触发 | -

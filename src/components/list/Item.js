@@ -61,10 +61,10 @@ export default {
     methods: {
         itemClick(event, hasNested) {
             if (!hasNested) {
+                this.fire('click');
                 event.stop();
                 return;
             }
-            this.fire('nestedItemClick');
             this.toggle('nestedIsShow');
             event.stop();
         }

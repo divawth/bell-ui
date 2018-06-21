@@ -1,6 +1,6 @@
 let id = 0;
 
-let createMessage = (data) => {
+let createMessage = function (data) {
 
     let namespace = 'bell-message-' + id++;
     let body = document.body;
@@ -113,6 +113,6 @@ let createMessage = (data) => {
     });
 };
 
-export let add = (data) => {
+export let add = function (data) {
     createMessage(data);
 }
