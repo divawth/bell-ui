@@ -1,7 +1,5 @@
 ## Bell
 
-![](https://ws4.sinaimg.cn/large/006tKfTcly1fs720whwf3j30gu0gcq3n.jpg)
-
 > A Yox.js UI Toolkit for Web.
 
 [Doc](https://angeltiva.github.io/bellUI/#/view/notice)
