@@ -244,10 +244,10 @@
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-mode | 菜单类型 | String | horizontal（水平） 和 vertical（垂直） | horizontal
-theme | 主题 | String | light、dark、primary 其中 primary 只适用于 mode="horizontal"| light
-activeName | 激活菜单的 name 值 | String, Number | - | -
-openNames | 展开的 Submenu 的 name 集合 | Array | - | []
+mode | 菜单类型 | string | horizontal（水平） 和 vertical（垂直） | horizontal
+theme | 主题 | string | light、dark、primary 其中 primary 只适用于 mode="horizontal"| light
+activeName | 激活菜单的 name 值 | string, number | - | -
+openNames | 展开的 Submenu 的 name 集合 | array | - | []
 
 
 > Menu events

@@ -102,8 +102,8 @@
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-count | 显示的数字 | Number, String | - | -
-maxCount | 展示封顶的数字值 | Number, String | - | -
+count | 显示的数字 | number, string | - | -
+maxCount | 展示封顶的数字值 | number, string | - | -
 dot | 不展示数字，只有一个小红点 | string, boolean | - | -
 className | 添加类 | string | - | -
 hidden | 是不是不显示 | string, boolean | - | false

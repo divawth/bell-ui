@@ -70,7 +70,7 @@ padding | 指定是否最后一个节点变成虚线表示省略 | boolean | - |
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-color | 圈圈的颜色（color 支持的值都可以） | String | - | primary
+color | 圈圈的颜色（color 支持的值都可以） | string | - | primary
 
 > TimeLineItem slot
 

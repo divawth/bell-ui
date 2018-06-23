@@ -120,10 +120,10 @@
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-value | 滑块选定的值 | Number | - | -
-max | 最大值 | Number | - | -
-min | 最小值 | Number | - | -
-step | 步长 | Number | - | 1
+value | 滑块选定的值 | number | - | -
+max | 最大值 | number | - | -
+min | 最小值 | number | - | -
+step | 步长 | number | - | 1
 disabled | 是否禁用 | boolean | - | false
 type | 类型 | string | - | -
 
