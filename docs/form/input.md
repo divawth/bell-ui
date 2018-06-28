@@ -19,9 +19,8 @@
                     model="value"
                     type="text"
                     style="width: 300px;"
-                    rows="4"
                     placeholder="请输入..."
-                    disabled="true"
+                    disabled="{{true}}"
                 />
                 <Input ref="input" placeholder="请输入密码..."
                     type="password"
@@ -171,7 +170,7 @@
             <div>
                 <Input model="value"
                     type="textarea"
-                    rows="4"
+                    rows="{{4}}"
                     placeholder="请输入..."
                 >
                 </Input>
@@ -187,9 +186,9 @@
                 <Input
                     model="value"
                     type="textarea"
-                    rows="4"
+                    rows="{{4}}"
                     placeholder="请输入..."
-                    disabled="true"
+                    disabled="{{true}}"
                 >
                 </Input>
             </div>

@@ -16,6 +16,7 @@
         }
     }
 
+
 > DateRange
 
     export default {
@@ -88,6 +89,25 @@
         }
     }
 
+> 通过 formatText 确定返回的格式
+
+    export default {
+        template: `
+            <div>
+                <DatePicker mode="date" on-change="change()" formateText="YYYY/MM/DD 星期w" />
+                <DatePicker mode="date" on-change="change()" formateText="YYYY-MM-DD" />
+                <p>{{ formateDate }}</p>
+            </div>
+        `,
+        methods: {
+            change: function (event, data) {
+                this.set({
+                    formateDate: data.value.formateDate
+                });
+            }
+        }
+    }
+
 
 #### API
 
@@ -96,7 +116,7 @@
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 mode | 日期选择器类型 | string | date, dateRange, week, month, year | date
-format | 可以用来格式化date | function | - | -
+formatText | 可以用来格式化date | string | - | YYYY-MM-DD
 
 > Events
 

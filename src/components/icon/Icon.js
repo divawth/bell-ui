@@ -2,7 +2,7 @@ export default {
     template: `
         <i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}
             {{#if className}} {{className}}{{/if}}"
-            style="font-size: {{size}}px;{{#if style}} {{style}}{{/if}}"
+            style="font-size: {{size}}px;{{#if color}} color: {{color}};{{/if}}{{#if style}} {{style}}{{/if}}"
         >
         </i>
     `,
@@ -18,6 +18,9 @@ export default {
         },
         size: function (value) {
             return value != null ? +value : 14;
+        },
+        color: {
+            type: 'string'
         }
     }
 };

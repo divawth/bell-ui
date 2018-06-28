@@ -768,7 +768,7 @@
     };
 
     var Icon = {
-        template: '\n        <i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}\n            {{#if className}} {{className}}{{/if}}"\n            style="font-size: {{size}}px;{{#if style}} {{style}}{{/if}}"\n        >\n        </i>\n    ',
+        template: '\n        <i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}\n            {{#if className}} {{className}}{{/if}}"\n            style="font-size: {{size}}px;{{#if color}} color: {{color}};{{/if}}{{#if style}} {{style}}{{/if}}"\n        >\n        </i>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -781,6 +781,9 @@
             },
             size: function size(value) {
                 return value != null ? +value : 14;
+            },
+            color: {
+                type: 'string'
             }
         }
     };
@@ -854,7 +857,7 @@
     var TEXT_TYPE_TEXT = 'text';
 
     var Input = {
-        template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input">\n\n                {{#if type === TEXT_TYPE_TEXTAREA}}\n\n                    <textarea class="bell-input-el"\n                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                        {{#if rows}} rows="{{rows}}"{{/if}}\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                    >\n                    </textarea>\n\n                {{else}}\n\n                    <input ref="input"\n                        type="{{currentType}}"\n                        class="bell-input-el\n                            {{#if size}} bell-input-{{size}}{{/if}}\n                        "\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                        on-blur="blur()"\n                        on-focus="focus()"\n                    />\n\n                    {{#if clearable}}\n                        <i class="bell-icon\n                            bell-icon-ios-close\n                            bell-input-clear-icon\n                        " on-click="clear()"></i>\n                    {{/if}}\n\n                    {{#if secure}}\n                        {{#if isSecure}}\n                            <i class="bell-icon\n                                bell-icon-eye\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{else}}\n                            <i class="bell-icon\n                                bell-icon-eye-disabled\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{/if}}\n                    {{/if}}\n\n                {{/if}}\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input">\n\n                {{#if type === TEXT_TYPE_TEXTAREA}}\n\n                    <textarea class="bell-input-el"\n                        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"\n                        {{#if rows}} rows="{{rows}}"{{/if}}\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled{{/if}}\n                        model="value"\n                    >\n                    </textarea>\n\n                {{else}}\n\n                    <input ref="input"\n                        type="{{currentType}}"\n                        class="bell-input-el\n                            {{#if size}} bell-input-{{size}}{{/if}}\n                        "\n                        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                        {{#if disabled}} disabled="disabled"{{/if}}\n                        model="value"\n                        on-blur="blur()"\n                        on-focus="focus()"\n                    />\n\n                    {{#if clearable}}\n                        <i class="bell-icon\n                            bell-icon-ios-close\n                            bell-input-clear-icon\n                        " on-click="clear()"></i>\n                    {{/if}}\n\n                    {{#if secure}}\n                        {{#if isSecure}}\n                            <i class="bell-icon\n                                bell-icon-eye\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{else}}\n                            <i class="bell-icon\n                                bell-icon-eye-disabled\n                                bell-input-icon-eye\n                            " on-click="toggle(\'isSecure\')"></i>\n                        {{/if}}\n                    {{/if}}\n\n                {{/if}}\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
 
         propTypes: {
             style: {
@@ -876,22 +879,22 @@
                 type: 'string'
             },
             value: {
-                type: 'numeric'
+                type: 'string'
             },
             icon: {
                 type: 'string'
             },
             rows: {
-                type: 'string'
+                type: 'number'
             },
             disabled: {
-                type: 'string'
+                type: 'boolean'
             },
             clearable: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             secure: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             }
         },
 
@@ -910,21 +913,11 @@
 
 
         watchers: {
-            value: function (_value) {
-                function value(_x) {
-                    return _value.apply(this, arguments);
-                }
-
-                value.toString = function () {
-                    return _value.toString();
-                };
-
-                return value;
-            }(function (value) {
+            value: function value(_value) {
                 this.fire('change', {
-                    value: value
+                    value: _value
                 });
-            }),
+            },
             isSecure: function isSecure(_isSecure) {
                 this.set({
                     currentType: _isSecure ? TEXT_TYPE_PASSWORD : TEXT_TYPE_TEXT
@@ -934,38 +927,30 @@
 
         methods: {
             blur: function blur(args) {
-                var me = this;
-                me.set({
+                this.set({
                     isFocus: false
                 });
-                me.fire('blur');
+                this.fire('blur');
             },
             focus: function focus(args) {
-                var me = this;
-                me.set({
+                this.set({
                     isFocus: true
                 });
-                me.fire('focus');
+                this.fire('focus');
             },
             clear: function clear() {
                 this.set({
                     value: ''
-                });
-            },
-            labelClick: function labelClick(args) {
-                this.fire('change', {
-                    value: value
                 });
             }
         },
 
         afterMount: function afterMount() {
             var me = this;
-            if (!me.$refs) {
-                return;
-            }
+
             me.documentKeydownHandler = function (event) {
-                if (event.target == me.$refs.input) {
+                event = event.originalEvent;
+                if (me.$refs && event.target == me.$refs.input) {
                     me.fire('keydown');
                     if (event.keyCode === 13) {
                         me.fire('enter');
@@ -973,27 +958,26 @@
                 }
             };
             me.documentKeyupHandler = function (event) {
-                if (event.target == me.$refs.input) {
+                event = event.originalEvent;
+                if (me.$refs && event.target == me.$refs.input) {
                     me.fire('keyup');
                 }
             };
             me.documentKeypressHandler = function (event) {
-                if (event.target == me.$refs.input) {
+                event = event.originalEvent;
+                if (me.$refs && event.target == me.$refs.input) {
                     me.fire('keypress');
                 }
             };
-            document.addEventListener('keydown', me.documentKeydownHandler);
-            document.addEventListener('keyup', me.documentKeyupHandler);
-            document.addEventListener('keypress', me.documentKeypressHandler);
+            Yox.dom.on(document, 'keydown', me.documentKeydownHandler);
+            Yox.dom.on(document, 'keyup', me.documentKeyupHandler);
+            Yox.dom.on(document, 'keypress', me.documentKeypressHandler);
         },
         beforeDestroy: function beforeDestroy() {
             var me = this;
-            if (!me.$refs) {
-                return;
-            }
-            document.removeEventListener('keydown', me.documentKeydownHandler);
-            document.removeEventListener('keyup', me.documentKeyupHandler);
-            document.removeEventListener('keypress', me.documentKeypressHandler);
+            Yox.dom.off(document, 'keydown', me.documentKeydownHandler);
+            Yox.dom.off(document, 'keyup', me.documentKeyupHandler);
+            Yox.dom.off(document, 'keypress', me.documentKeypressHandler);
         }
     };
 
@@ -2242,6 +2226,16 @@
         return arr.join('0') + num;
     };
 
+    var DAY_MAP = {
+        '1': '一',
+        '2': '二',
+        '3': '三',
+        '4': '四',
+        '5': '五',
+        '6': '六',
+        '7': '七'
+    };
+
     var DatePicker = {
         template: '\n        <div class="bell-datepicker\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n\n            <div class="bell-datepicker-el" on-click="click()">\n                <Input placeholder="\u8BF7\u9009\u62E9\u65E5\u671F..."\n                    model="formateDate"\n                    type="input"\n                    on-focus="focus()"\n                    clearable\n                />\n            </div>\n\n            <div class="bell-datepicker-poper\n                {{#if isPopuping}} bell-isPopuping{{/if}}\n                {{#if isPopdowning}} bell-isPopdowning{{/if}}\n                {{#if isOpen}} bell-show{{/if}}\n            ">\n                {{#if mode == \'date\'}}\n                    <Date />\n                {{else if mode == \'dateRange\'}}\n                    <DateRange />\n                {{else if mode == \'week\'}}\n                    <DateWeek />\n                {{else if mode == \'year\'}}\n                    <DateYear />\n                {{else if mode == \'month\'}}\n                    <DateMonth />\n                {{/if}}\n            </div>\n        </div>\n    ',
 
@@ -2255,15 +2249,13 @@
             mode: {
                 type: 'string'
             },
-            formate: {
-                type: 'function'
+            formateText: {
+                type: 'string'
             }
         },
 
         data: function data() {
             return {
-
-                formateDate: null,
                 date: null,
                 start: null,
                 end: null,
@@ -2336,9 +2328,16 @@
             },
             formateDate: function formateDate(date) {
                 var result = '';
-                if (this.get('formate')) {
-                    return this.get('formate')(date);
+                if (this.get('formateText')) {
+                    var dateObject = {
+                        year: date.year,
+                        month: date.month,
+                        date: date.date,
+                        day: date.day
+                    };
+                    return this.get('formateText').replace(/yyyy/i, dateObject.year).replace(/yy/i, +('' + dateObject.year).substr(2)).replace(/MM/, lpad(dateObject.month)).replace(/M/, dateObject.month).replace(/dd/i, lpad(dateObject.date)).replace(/d/i, dateObject.date).replace(/w/, DAY_MAP[dateObject.day]);
                 }
+
                 if (!date) {
                     return result;
                 }
@@ -4034,18 +4033,14 @@
             checked: {
                 type: 'boolean',
                 value: true
-            },
-            onClose: {
-                type: 'function'
-            },
-            onChecked: {
-                type: 'function'
             }
         },
 
         watchers: {
             checked: function checked(value) {
-                me.get('onChecked') && me.get('onChecked')(value);
+                this.fire('check', {
+                    value: value
+                });
             }
         },
 
@@ -4058,8 +4053,7 @@
                 me.toggle('checked');
             },
             close: function close() {
-                var me = this;
-                me.get('onClose') && me.get('onClose')();
+                this.fire('close');
             }
         }
     };

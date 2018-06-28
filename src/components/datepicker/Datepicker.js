@@ -2,6 +2,16 @@ import {
     lpad
 } from './function/util'
 
+const DAY_MAP = {
+    '1': '一',
+    '2': '二',
+    '3': '三',
+    '4': '四',
+    '5': '五',
+    '6': '六',
+    '7': '七',
+}
+
 export default {
     template: `
         <div class="bell-datepicker
@@ -47,16 +57,14 @@ export default {
         mode: {
             type: 'string'
         },
-        formate: {
-            type: 'function'
+        formateText: {
+            type: 'string'
         }
     },
 
     data() {
         let me = this;
         return {
-
-            formateDate: null,
             date: null,
             start: null,
             end: null,
@@ -141,9 +149,23 @@ export default {
 
         formateDate(date) {
             let result = '';
-            if (this.get('formate')) {
-                return this.get('formate')(date);
+            if (this.get('formateText')) {
+                var dateObject = {
+                    year: date.year,
+                    month: date.month,
+                    date: date.date,
+                    day: date.day
+                };
+                return this.get('formateText')
+                    .replace(/yyyy/i, dateObject.year)
+                    .replace(/yy/i, +('' + dateObject.year).substr(2))
+                    .replace(/MM/, lpad(dateObject.month))
+                    .replace(/M/, dateObject.month)
+                    .replace(/dd/i, lpad(dateObject.date))
+                    .replace(/d/i, dateObject.date)
+                    .replace(/w/, DAY_MAP[dateObject.day]);
             }
+
             if (!date) {
                 return result;
             }

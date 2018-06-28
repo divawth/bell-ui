@@ -30,7 +30,7 @@ export default {
                         style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
                         {{#if rows}} rows="{{rows}}"{{/if}}
                         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
-                        {{#if disabled}} disabled="disabled"{{/if}}
+                        {{#if disabled}} disabled{{/if}}
                         model="value"
                     >
                     </textarea>
@@ -101,22 +101,22 @@ export default {
             type: 'string'
         },
         value: {
-            type: 'numeric'
+            type: 'string'
         },
         icon: {
             type: 'string'
         },
         rows: {
-            type: 'string'
+            type: 'number'
         },
         disabled: {
-            type: 'string'
+            type: 'boolean'
         },
         clearable: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         secure: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         }
     },
 
@@ -151,66 +151,60 @@ export default {
 
     methods: {
         blur(args) {
-            let me = this;
-            me.set({
+            this.set({
                 isFocus: false
             });
-            me.fire('blur');
+            this.fire('blur');
         },
         focus(args) {
-            let me = this;
-            me.set({
+            this.set({
                 isFocus: true
             });
-            me.fire('focus');
+            this.fire('focus');
         },
         clear() {
             this.set({
                 value: ''
             });
-        },
-        labelClick(args) {
-            this.fire(
-                'change',
-                {
-                    value: value
-                }
-            );
         }
     },
 
     afterMount() {
         let me = this;
-        if (!me.$refs) {
-            return;
-        }
-        me.documentKeydownHandler = (event) => {
-            if (event.target == me.$refs.input) {
+
+        me.documentKeydownHandler = function (event) {
+            event = event.originalEvent;
+            if (me.$refs && event.target == me.$refs.input) {
                 me.fire('keydown');
                 if (event.keyCode === 13) {
                     me.fire('enter');
                 }
             }
         };
-        me.documentKeyupHandler = (event) => {
-            if (event.target == me.$refs.input) {
+        me.documentKeyupHandler = function (event) {
+            event = event.originalEvent;
+            if (me.$refs && event.target == me.$refs.input) {
                 me.fire('keyup');
             }
         };
-        me.documentKeypressHandler = (event) => {
-            if (event.target == me.$refs.input) {
+        me.documentKeypressHandler = function (event) {
+            event = event.originalEvent;
+            if (me.$refs && event.target == me.$refs.input) {
                 me.fire('keypress');
             }
         };
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'keydown',
             me.documentKeydownHandler
         );
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'keyup',
             me.documentKeyupHandler
         );
-        document.addEventListener(
+        Yox.dom.on(
+            document,
             'keypress',
             me.documentKeypressHandler
         );
@@ -218,18 +212,18 @@ export default {
 
     beforeDestroy() {
         let me = this;
-        if (!me.$refs) {
-            return;
-        }
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'keydown',
             me.documentKeydownHandler
         );
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'keyup',
             me.documentKeyupHandler
         );
-        document.removeEventListener(
+        Yox.dom.off(
+            document,
             'keypress',
             me.documentKeypressHandler
         );
