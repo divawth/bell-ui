@@ -5048,14 +5048,13 @@ button.bell-button-danger[disabled] {
 .bell-select .bell-select-button .bell-select-value,
 .bell-select .bell-select-button .bell-select-placeholder {
   font-size: 12px;
-  padding: 8px 15px;
+  padding: 8px 30px 8px 15px;
 }
 .bell-select .bell-select-button .bell-select-arrow {
   padding: 10px 15px;
 }
 .bell-select .bell-select-dropdown {
   max-height: 200px;
-  top: 40px;
 }
 .bell-select .bell-select-dropdown .bell-select-option {
   padding: 4px 15px;
@@ -5071,14 +5070,13 @@ button.bell-button-danger[disabled] {
 .bell-select-small .bell-select-button .bell-select-value,
 .bell-select-small .bell-select-button .bell-select-placeholder {
   font-size: 12px;
-  padding: 3px 15px;
+  padding: 3px 30px 3px 15px;
 }
 .bell-select-small .bell-select-button .bell-select-arrow {
   padding: 4px 15px;
 }
 .bell-select-small .bell-select-dropdown {
   max-height: 200px;
-  top: 32px;
 }
 .bell-select-small .bell-select-dropdown .bell-select-option {
   padding: 2px 15px;
@@ -5094,14 +5092,13 @@ button.bell-button-danger[disabled] {
 .bell-select-large .bell-select-button .bell-select-value,
 .bell-select-large .bell-select-button .bell-select-placeholder {
   font-size: 14px;
-  padding: 8px 15px;
+  padding: 8px 30px 8px 15px;
 }
 .bell-select-large .bell-select-button .bell-select-arrow {
   padding: 10px 15px;
 }
 .bell-select-large .bell-select-dropdown {
   max-height: 200px;
-  top: 44px;
 }
 .bell-select-large .bell-select-dropdown .bell-select-option {
   padding: 6px 15px;
@@ -5257,6 +5254,11 @@ button.bell-button-danger[disabled] {
 .bell-select.bell-select.active .bell-select-arrow,
 .bell-select.bell-active .bell-select-arrow {
   transform: rotate(180deg);
+}
+.bell-select.bell-select-multiple .bell-select-value,
+.bell-select.bell-select-multiple .bell-select-placeholder {
+  white-space: normal;
+  line-height: 1.8;
 }
 .bell-select .bell-select-button {
   width: 100%;
@@ -7042,6 +7044,7 @@ button.bell-button-danger[disabled] {
   vertical-align: middle;
   border: 1px solid transparent;
   position: relative;
+  margin-right: 10px;
 }
 .bell-tag.large {
   padding: 6px 10px;
@@ -7170,9 +7173,6 @@ button.bell-button-danger[disabled] {
 }
 .bell-tag.danger.bell-tag-checked.bell-tag-border::after {
   background-color: #eb1111;
-}
-.bell-tag + .bell-tag {
-  margin-left: 10px;
 }
 .bell-tag .bell-tag-close-icon {
   transform: scale(2);

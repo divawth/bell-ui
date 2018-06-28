@@ -257,6 +257,91 @@
         }
     }
 
+> 使用 multiple 支持多选
+
+    export default {
+        template: `
+            <div>
+                <Select multiple model="value" on-change="change()">
+                    {{#each list:index}}
+                        <Option index="{{index}}" value="{{value}}" text="{{text}}">
+                            {{text}}
+                        </Option>
+                    {{/each}}
+                </Select>
+                <p>
+                    value: {{value}}
+                </p>
+            </div>
+        `,
+        data: function () {
+            return {
+                list: [
+                    {
+                        text: '深圳',
+                        value: 1
+                    },
+                    {
+                        text: '广州',
+                        value: 2
+                    },
+                    {
+                        text: '上海',
+                        value: 3
+                    },
+                    {
+                        text: '北京',
+                        value: 4
+                    },
+                    {
+                        text: '南昌',
+                        value: 5
+                    }
+                ]
+            }
+        },
+        methods: {
+            change: function (events, data) {
+                console.log(data);
+            }
+        }
+    }
+
+> 自定义模板
+
+    export default {
+        template: `
+            <div>
+                <Select size="large" model="value">
+                    <div style="padding: 4px 15px;">
+                        B
+                    </div>
+                    <Option index="0" value="3" text="深圳">
+                        北京
+                    </Option>
+                    <div style="padding: 4px 15px;">
+                        S
+                    </div>
+                    <Option index="1" value="1" text="深圳">
+                        深圳
+                    </Option>
+                    <Option index="2" value="3" text="石家庄">
+                        石家庄
+                        <Icon style="float: right;" size="18" type="star" color="#f90"></Icon>
+                    </Option>
+                    <div style="padding: 4px 15px;">
+                        G
+                    </div>
+                    <Option index="3" value="4" text="广州广州广州广州广州广州广州广州广州广州">
+                        广州广州广州广州广州广州广州广州广州广州
+                    </Option>
+                </Select>
+            </div>
+        `
+    }
+
+!> 使用 suggestion 支持可搜索模式
+
 
 #### API
 

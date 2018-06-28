@@ -1,3 +1,5 @@
+import Tag from '../tag/Tag'
+
 export default {
     template: `
         <div class="bell-select
@@ -5,6 +7,7 @@ export default {
             {{#if type}} bell-select-{{type}}{{/if}}
             {{#if disabled}} bell-select-disabled{{/if}}
             {{#if placement}} bell-select-{{placement}}{{/if}}
+            {{#if multiple}} bell-select-multiple{{/if}}
             {{#if className}} {{className}}{{/if}}
             {{#if visible}} bell-active{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
@@ -16,8 +19,14 @@ export default {
                 <span class="bell-select-value
                     {{#if modelValue == null}} bell-hide{{/if}}
                 ">
-                    {{#if selectedText}}
+                    {{#if selectedText && !multiple}}
                         {{selectedText}}
+                    {{else if selectedText}}
+                        {{#each selectedText:index}}
+                        <Tag size="tiny" closable on-close="tagClose($event, this, index)">
+                            {{this}}
+                        </Tag>
+                        {{/each}}
                     {{else if defaultText}}
                         {{{defaultText}}}
                     {{else}}
@@ -70,10 +79,13 @@ export default {
             type: 'string'
         },
         disabled: {
-            type: ['numeric', 'string', 'boolean']
+            type: 'boolean'
         },
         placement: {
             type: 'string'
+        },
+        multiple: {
+            type: 'boolean'
         }
     },
 
@@ -82,8 +94,8 @@ export default {
             count: 0,
             visible: false,
             hoverIndex: 0,
-            selectedIndex: 0,
-            selectedText: '',
+            selectedIndex: null,
+            selectedText: null,
         }
     },
 
@@ -119,17 +131,67 @@ export default {
         },
 
         optionSelect(event) {
+
+            let me = this;
             let option = event.target;
-            this.set({
-                modelValue: option.get('value'),
-                selectedText: option.get('text'),
-                selectedIndex: option.get('index'),
-                visible: false
-            });
+
+            let value = option.get('value');
+            let text = option.get('text');
+            let index = option.get('index');
+
+            if (me.get('multiple')) {
+
+                me.set({
+                    modelValue: me.setArrayValue(value, me.get('modelValue')),
+                    selectedText: me.setArrayValue(text, me.get('selectedText')),
+                    selectedIndex: index,
+                    visible: true
+                });
+            }
+            else {
+                me.set({
+                    modelValue: value,
+                    selectedText: text,
+                    selectedIndex: index,
+                    visible: false
+                });
+            }
         }
     },
 
     methods: {
+        setArrayValue: function (text, values) {
+
+            values = this.copy(values);
+            if (Array.isArray(values)) {
+                let index = values.indexOf(text);
+                if (index >= 0) {
+                    values.splice(index, 1);
+                }
+                else {
+                    values.push(text);
+                }
+            }
+            else {
+                values = [ text ];
+            }
+
+            return values.length ? values : null;
+
+        },
+
+        tagClose(event, text, index) {
+
+            let me = this;
+
+            this.set({
+                modelValue: me.setArrayValue(me.get('modelValue')[index], me.get('modelValue')),
+                selectedText: me.setArrayValue(text, me.get('selectedText'))
+            });
+            event.stop();
+
+        },
+
         toggleMenu() {
             let me = this;
             if (me.get('disabled')) {

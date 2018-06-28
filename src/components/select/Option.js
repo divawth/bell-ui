@@ -63,8 +63,11 @@ export default {
         },
 
         optionSelectedChange(event, data) {
-            this.set({
-                isSelected: data.value == this.get('value')
+            let me = this;
+            let value = me.get('value');
+            let values = data.value;
+            me.set({
+                isSelected: Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
             });
         }
     },

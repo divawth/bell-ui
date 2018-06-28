@@ -1447,8 +1447,63 @@
         }
     };
 
+    var Tag = {
+        template: '\n        <div class="bell-tag\n            {{#if className}} {{className}}{{/if}}\n            {{#if border}} bell-tag-border{{/if}}\n            {{#if size}} {{size}}{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if checked}} bell-tag-checked{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n            <div class="bell-tag-text">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n\n                {{#if closable}}\n                    <i class="bell-tag-close-icon bell-icon bell-icon-ios-close-empty" on-click="close()"></i>\n                {{/if}}\n            </div>\n        </div>\n    ',
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            },
+            size: {
+                type: 'string'
+            },
+            closable: {
+                type: 'boolean',
+                value: false
+            },
+            border: {
+                type: 'boolean',
+                value: false
+            },
+            type: {
+                type: 'string'
+            },
+            checkable: {
+                type: 'boolean',
+                value: false
+            },
+            checked: {
+                type: 'boolean',
+                value: true
+            }
+        },
+
+        watchers: {
+            checked: function checked(value) {
+                this.fire('check', {
+                    value: value
+                });
+            }
+        },
+
+        methods: {
+            click: function click() {
+                var me = this;
+                if (!me.get('checkable')) {
+                    return;
+                }
+                me.toggle('checked');
+            },
+            close: function close() {
+                this.fire('close');
+            }
+        }
+    };
+
     var Select = {
-        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if type}} bell-select-{{type}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if visible}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-select-button" on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if modelValue == null}} bell-hide{{/if}}\n                ">\n                    {{#if selectedText}}\n                        {{selectedText}}\n                    {{else if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if modelValue != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown">\n                <ul class="bell-select-list">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{/if}}\n                </ul>\n            </div>\n        </div>\n    ',
+        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if type}} bell-select-{{type}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if multiple}} bell-select-multiple{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if visible}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-select-button" on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if modelValue == null}} bell-hide{{/if}}\n                ">\n                    {{#if selectedText && !multiple}}\n                        {{selectedText}}\n                    {{else if selectedText}}\n                        {{#each selectedText:index}}\n                        <Tag size="tiny" closable on-close="tagClose($event, this, index)">\n                            {{this}}\n                        </Tag>\n                        {{/each}}\n                    {{else if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if modelValue != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown">\n                <ul class="bell-select-list">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{/if}}\n                </ul>\n            </div>\n        </div>\n    ',
 
         model: 'modelValue',
 
@@ -1472,10 +1527,13 @@
                 type: 'string'
             },
             disabled: {
-                type: ['numeric', 'string', 'boolean']
+                type: 'boolean'
             },
             placement: {
                 type: 'string'
+            },
+            multiple: {
+                type: 'boolean'
             }
         },
 
@@ -1484,8 +1542,8 @@
                 count: 0,
                 visible: false,
                 hoverIndex: 0,
-                selectedIndex: 0,
-                selectedText: ''
+                selectedIndex: null,
+                selectedText: null
             };
         },
 
@@ -1513,17 +1571,61 @@
                 this.decrease('count');
             },
             optionSelect: function optionSelect(event) {
+
+                var me = this;
                 var option = event.target;
-                this.set({
-                    modelValue: option.get('value'),
-                    selectedText: option.get('text'),
-                    selectedIndex: option.get('index'),
-                    visible: false
-                });
+
+                var value = option.get('value');
+                var text = option.get('text');
+                var index = option.get('index');
+
+                if (me.get('multiple')) {
+
+                    me.set({
+                        modelValue: me.setArrayValue(value, me.get('modelValue')),
+                        selectedText: me.setArrayValue(text, me.get('selectedText')),
+                        selectedIndex: index,
+                        visible: true
+                    });
+                } else {
+                    me.set({
+                        modelValue: value,
+                        selectedText: text,
+                        selectedIndex: index,
+                        visible: false
+                    });
+                }
             }
         },
 
         methods: {
+            setArrayValue: function setArrayValue(text, values) {
+
+                values = this.copy(values);
+                if (Array.isArray(values)) {
+                    var index = values.indexOf(text);
+                    if (index >= 0) {
+                        values.splice(index, 1);
+                    } else {
+                        values.push(text);
+                    }
+                } else {
+                    values = [text];
+                }
+
+                return values.length ? values : null;
+            },
+
+            tagClose: function tagClose(event, text, index) {
+
+                var me = this;
+
+                this.set({
+                    modelValue: me.setArrayValue(me.get('modelValue')[index], me.get('modelValue')),
+                    selectedText: me.setArrayValue(text, me.get('selectedText'))
+                });
+                event.stop();
+            },
             toggleMenu: function toggleMenu() {
                 var me = this;
                 if (me.get('disabled')) {
@@ -1666,8 +1768,11 @@
                 }
             },
             optionSelectedChange: function optionSelectedChange(event, data) {
-                this.set({
-                    isSelected: data.value == this.get('value')
+                var me = this;
+                var value = me.get('value');
+                var values = data.value;
+                me.set({
+                    isSelected: Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
                 });
             }
         },
@@ -4000,61 +4105,6 @@
             me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me);
             me.handleTouchMove = me.handleTouchMove.bind(me);
             me.handleTouchEnd = me.handleTouchEnd.bind(me);
-        }
-    };
-
-    var Tag = {
-        template: '\n        <div class="bell-tag\n            {{#if className}} {{className}}{{/if}}\n            {{#if border}} bell-tag-border{{/if}}\n            {{#if size}} {{size}}{{/if}}\n            {{#if type}} {{type}}{{/if}}\n            {{#if checked}} bell-tag-checked{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n            <div class="bell-tag-text">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n\n                {{#if closable}}\n                    <i class="bell-tag-close-icon bell-icon bell-icon-ios-close-empty" on-click="close()"></i>\n                {{/if}}\n            </div>\n        </div>\n    ',
-        propTypes: {
-            className: {
-                type: 'string'
-            },
-            style: {
-                type: 'string'
-            },
-            size: {
-                type: 'string'
-            },
-            closable: {
-                type: 'boolean',
-                value: false
-            },
-            border: {
-                type: 'boolean',
-                value: false
-            },
-            type: {
-                type: 'string'
-            },
-            checkable: {
-                type: 'boolean',
-                value: false
-            },
-            checked: {
-                type: 'boolean',
-                value: true
-            }
-        },
-
-        watchers: {
-            checked: function checked(value) {
-                this.fire('check', {
-                    value: value
-                });
-            }
-        },
-
-        methods: {
-            click: function click() {
-                var me = this;
-                if (!me.get('checkable')) {
-                    return;
-                }
-                me.toggle('checked');
-            },
-            close: function close() {
-                this.fire('close');
-            }
         }
     };
 
