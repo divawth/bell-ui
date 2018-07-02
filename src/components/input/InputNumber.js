@@ -74,22 +74,21 @@ export default {
             type: 'numeric',
             value: 0
         },
-        step: {
-            type: 'numeric',
-            value: 1
+        step: function (val) {
+            return val === undefined ? 1 : +val;
         },
         size: {
             type: 'string'
         },
         readonly: {
-            type: ['numeric', 'boolean'],
+            type: 'boolean',
             value: false
         },
         disabled: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         editable: {
-            type: ['numeric', 'boolean'],
+            type: 'boolean',
             value: true
         }
     },

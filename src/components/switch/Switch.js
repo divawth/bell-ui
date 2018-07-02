@@ -24,8 +24,6 @@ export default {
         </div>
     `,
 
-    model: 'checked',
-
     propTypes: {
         className: {
             type: 'string'
@@ -40,10 +38,10 @@ export default {
             type: 'string'
         },
         disabled: {
-            type: ['numeric', 'string', 'boolean']
+            type: 'boolean'
         },
         checked: {
-            type: ['numeric', 'string', 'boolean']
+            type: 'boolean'
         }
     },
 

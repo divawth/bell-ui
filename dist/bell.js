@@ -1004,22 +1004,21 @@
                 type: 'numeric',
                 value: 0
             },
-            step: {
-                type: 'numeric',
-                value: 1
+            step: function step(val) {
+                return val === undefined ? 1 : +val;
             },
             size: {
                 type: 'string'
             },
             readonly: {
-                type: ['numeric', 'boolean'],
+                type: 'boolean',
                 value: false
             },
             disabled: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             editable: {
-                type: ['numeric', 'boolean'],
+                type: 'boolean',
                 value: true
             }
         },
@@ -1114,10 +1113,10 @@
                 type: ['numeric', 'boolean', 'string']
             },
             disabled: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             checked: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             }
         },
 
@@ -1138,14 +1137,12 @@
                 });
             },
             updateRadioValue: function updateRadioValue(event, data) {
-                var me = this;
-                me.set({
-                    isChecked: data.value == me.get('value')
+                this.set({
+                    isChecked: data.value == this.get('value')
                 });
             },
             updateRadioDisabled: function updateRadioDisabled(event, data) {
-                var me = this;
-                me.set({
+                this.set({
                     isDisabled: data.disabled
                 });
             }
@@ -1245,20 +1242,17 @@
             label: {
                 type: 'string'
             },
-            modelValue: {
-                type: 'string'
-            },
             indeterminate: {
-                type: ['numeric', 'boolean']
+                type: 'boolean'
             },
             value: {
                 type: ['string', 'numeric', 'boolean']
             },
             disabled: {
-                type: ['string', 'numeric', 'boolean']
+                type: 'boolean'
             },
             checked: {
-                type: ['string', 'numeric', 'boolean']
+                type: 'boolean'
             },
             type: {
                 type: 'string'
@@ -1269,9 +1263,8 @@
         },
 
         data: function data() {
-            var me = this;
             return {
-                isChecked: me.get('checked') ? true : false
+                isChecked: this.get('checked') ? true : false
             };
         },
 
@@ -1281,8 +1274,7 @@
                 var me = this;
                 var isChecked = Yox.is.array(data.value) && Yox.array.has(data.value, me.get('value'));
                 me.set({
-                    isChecked: isChecked,
-                    modelValue: isChecked
+                    isChecked: isChecked
                 });
             },
             updateCheckboxType: function updateCheckboxType(event, data) {
@@ -1293,14 +1285,6 @@
             updateCheckboxDisabled: function updateCheckboxDisabled(event, data) {
                 this.set({
                     disabled: data.disabled
-                });
-            }
-        },
-
-        watchers: {
-            modelValue: function modelValue(value) {
-                this.set({
-                    isChecked: value
                 });
             }
         },
@@ -1317,8 +1301,7 @@
                     value: me.get('value')
                 });
                 me.set({
-                    isChecked: !isChecked,
-                    modelValue: !isChecked
+                    isChecked: !isChecked
                 });
             }
         }
@@ -1409,8 +1392,6 @@
     var Switch = {
         template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if checked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                <span class="bell-switch-on">\n                    {{#if hasSlot(\'checkedText\')}}\n                        <slot name="checkedText" />\n                    {{/if}}\n                </span>\n                <span class="bell-switch-off">\n                    {{#if hasSlot(\'unCheckedText\')}}\n                        <slot name="unCheckedText" />\n                    {{/if}}\n                </span>\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
 
-        model: 'checked',
-
         propTypes: {
             className: {
                 type: 'string'
@@ -1425,10 +1406,10 @@
                 type: 'string'
             },
             disabled: {
-                type: ['numeric', 'string', 'boolean']
+                type: 'boolean'
             },
             checked: {
-                type: ['numeric', 'string', 'boolean']
+                type: 'boolean'
             }
         },
 
@@ -1732,7 +1713,7 @@
                 type: ['string', 'numeric']
             },
             index: {
-                type: 'number',
+                type: ['string', 'numeric'],
                 require: true
             }
         },

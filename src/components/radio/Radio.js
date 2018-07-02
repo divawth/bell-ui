@@ -38,10 +38,10 @@ export default {
             type: ['numeric', 'boolean', 'string']
         },
         disabled: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         checked: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         }
     },
 
@@ -61,14 +61,12 @@ export default {
             });
         },
         updateRadioValue(event, data) {
-            let me = this;
-            me.set({
-                isChecked: data.value == me.get('value')
+            this.set({
+                isChecked: data.value == this.get('value')
             });
         },
         updateRadioDisabled(event, data) {
-            let me = this;
-            me.set({
+            this.set({
                 isDisabled: data.disabled
             });
         }

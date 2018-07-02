@@ -41,20 +41,17 @@ export default {
         label: {
             type: 'string'
         },
-        modelValue: {
-            type: 'string'
-        },
         indeterminate: {
-            type: ['numeric', 'boolean']
+            type: 'boolean'
         },
         value: {
             type: ['string', 'numeric', 'boolean']
         },
         disabled: {
-            type: ['string', 'numeric', 'boolean']
+            type: 'boolean'
         },
         checked: {
-            type: ['string', 'numeric', 'boolean']
+            type: 'boolean'
         },
         type: {
             type: 'string'
@@ -65,9 +62,8 @@ export default {
     },
 
     data() {
-        let me = this;
         return {
-            isChecked: me.get('checked') ? true : false
+            isChecked: this.get('checked') ? true : false
         }
     },
 
@@ -77,8 +73,7 @@ export default {
             let isChecked = Yox.is.array(data.value)
                 && Yox.array.has(data.value, me.get('value'));
             me.set({
-                isChecked: isChecked,
-                modelValue: isChecked
+                isChecked: isChecked
             });
         },
         updateCheckboxType(event, data) {
@@ -89,14 +84,6 @@ export default {
         updateCheckboxDisabled(event, data) {
             this.set({
                 disabled: data.disabled
-            });
-        }
-    },
-
-    watchers: {
-        modelValue(value) {
-            this.set({
-                isChecked: value,
             });
         }
     },
@@ -116,8 +103,7 @@ export default {
                 }
             );
             me.set({
-                isChecked: !isChecked,
-                modelValue: !isChecked
+                isChecked: !isChecked
             });
         }
     }

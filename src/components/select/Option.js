@@ -27,7 +27,7 @@ export default {
             type: ['string', 'numeric']
         },
         index: {
-            type: 'number',
+            type: ['string', 'numeric'],
             require: true
         }
     },
