@@ -33,8 +33,16 @@
                     {{/if}}
                 </Circle>
 
-                <Button icon="ios-plus-empty" on-click="add()"></Button>
-                <Button icon="ios-minus-empty" on-click="minus()"></Button>
+                <Button on-click="add()">
+                    <template slot="leftIcon">
+                        <Icon type="ios-plus-empty"></Icon>
+                    </template>
+                </Button>
+                <Button on-click="minus()">
+                    <template slot="leftIcon">
+                        <Icon type="ios-minus-empty"></Icon>
+                    </template>
+                </Button>
             </div>
         `,
         data: {
