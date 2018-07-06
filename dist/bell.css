@@ -7644,3 +7644,34 @@ button.bell-button-danger[disabled] {
   padding: 0;
   margin: 0;
 }
+.bell-drawer-top .bell-drawer-content {
+  left: 0px;
+  top: 0px;
+  right: 0px;
+}
+.bell-drawer-left .bell-drawer-content {
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.bell-drawer-right .bell-drawer-content {
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+.bell-drawer-bottom .bell-drawer-content {
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+.bell-drawer .bell-drawer-content {
+  position: fixed;
+}
+.bell-drawer .bell-drawer-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.54);
+}

@@ -29,7 +29,15 @@
                 <Button style="margin-top: 15px;" on-click="click()" fluid>
                     toggle drawer
                 </Button>
-                <Drawer position="position" useMask="{{useMask}}" open="{{isOpen}}"></Drawer>
+                <Drawer position="{{position}}" useMask="{{useMask}}" open="{{isOpen}}">
+                    <ul>
+                        <li>a</li>
+                        <li>b</li>
+                        <li>c</li>
+                        <li>d</li>
+                        <li>e</li>
+                    </ul>
+                </Drawer>
             </div>
         `,
         data: function () {

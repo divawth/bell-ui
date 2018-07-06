@@ -1,0 +1,28 @@
+drawer-position(position)
+
+    {$selector-drawer-content}
+
+        if position['left']
+
+            ui-set('left', position['left'])
+
+        if position['top']
+
+            ui-set('top', position['top'])
+
+        if position['bottom']
+
+            ui-set('bottom', position['bottom'])
+
+        if position['right']
+
+            ui-set('right', position['right'])
+
+
+ui-drawer()
+
+    ui-connect(
+        hash: $drawer-position-hash,
+        each: drawer-position
+    )
+

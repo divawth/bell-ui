@@ -789,7 +789,7 @@
     };
 
     var Drawer = {
-        template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}}">\n\n            <div class="bell-drawer-content"></div>\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n        </div>\n    ',
+        template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}}">\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n            <div class="bell-drawer-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -809,10 +809,30 @@
                 type: 'boolean'
             }
         },
-        watchers: {
-            useMask: function useMask(argument) {
-                console.log(arguments);
-            }
+
+        afterMount: function afterMount() {
+
+            var me = this;
+
+            me.documentClickHandler = function (event) {
+
+                var element = me.$el;
+                var target = event.originalEvent.target;
+                if (element.contains && element.contains(target)) {
+                    return false;
+                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
+                    return false;
+                }
+                me.set({
+                    open: false
+                });
+            };
+
+            Yox.dom.on(document, 'click', me.documentClickHandler);
+        },
+        beforeDestroy: function beforeDestroy() {
+            var me = this;
+            Yox.dom.on(document, 'click', me.documentClickHandler);
         }
     };
 
