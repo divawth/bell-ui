@@ -24,6 +24,8 @@ export default {
         </div>
     `,
 
+    model: 'checked',
+
     propTypes: {
         className: {
             type: 'string'

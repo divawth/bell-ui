@@ -28,6 +28,9 @@
                     style="width: 300px;"
                     model="value"
                 />
+                <div>
+                    输入：{{value}}
+                </div>
             </div>
         `,
         methods: {

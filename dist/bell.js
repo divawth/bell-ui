@@ -788,6 +788,34 @@
         }
     };
 
+    var Drawer = {
+        template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}}">\n\n            <div class="bell-drawer-content"></div>\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n        </div>\n    ',
+
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            },
+            position: {
+                type: 'string',
+                value: 'left'
+            },
+            useMask: {
+                type: 'boolean'
+            },
+            open: {
+                type: 'boolean'
+            }
+        },
+        watchers: {
+            useMask: function useMask(argument) {
+                console.log(arguments);
+            }
+        }
+    };
+
     var Breadcrumb = {
         template: '\n        <div class="bell-breadcrumb bell-texts\n        {{#if className}} {{className}}{{/if}}\n        " {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
         propTypes: {
@@ -1391,6 +1419,8 @@
 
     var Switch = {
         template: '\n        <div class="bell-switch\n            {{#if type}} bell-switch-{{type}}{{/if}}\n            {{#if size}} bell-switch-{{size}}{{/if}}\n            {{#if disabled}} bell-switch-disabled{{/if}}\n            {{#if checked}} bell-active{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-click="click()">\n\n            <span class="bell-switch-button">\n                <span class="bell-switch-on">\n                    {{#if hasSlot(\'checkedText\')}}\n                        <slot name="checkedText" />\n                    {{/if}}\n                </span>\n                <span class="bell-switch-off">\n                    {{#if hasSlot(\'unCheckedText\')}}\n                        <slot name="unCheckedText" />\n                    {{/if}}\n                </span>\n            </span>\n            <input class="bell-switch-input" type="hidden" value="{{value}}" />\n        </div>\n    ',
+
+        model: 'checked',
 
         propTypes: {
             className: {
@@ -5091,6 +5121,7 @@
         Row: Row,
         Col: Col,
         Icon: Icon,
+        Drawer: Drawer,
 
         Breadcrumb: Breadcrumb,
         BreadcrumbItem: BreadcrumbItem,

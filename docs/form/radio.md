@@ -13,6 +13,9 @@
                 <Radio value="other">
                     外国
                 </Radio>
+                <div>
+                    {{radio}}
+                </div>
             </RadioGroup>
         `,
         data: function () {
