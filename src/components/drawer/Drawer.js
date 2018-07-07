@@ -4,13 +4,20 @@ export default {
             {{#if className}} {{className}}{{/if}}
             {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}
             {{#if position}} bell-drawer-{{position}}{{/if}}
-        " style="{{#if style}} {{style}}{{/if}}">
+        " style="{{#if style}} {{style}}{{/if}};">
 
             {{#if useMask}}
                 <div class="bell-drawer-mask"></div>
             {{/if}}
 
-            <div class="bell-drawer-content">
+            <div ref="drawContent" class="bell-drawer-content"
+                style="{{#if position == "left" || position == "right"}}
+                        width: {{size}}px;
+                    {{else}}
+                        height: {{size}}px;
+                    {{/if}}
+                "
+            >
                 {{#if hasSlot('children')}}
                     <slot name="children" />
                 {{/if}}
@@ -35,6 +42,9 @@ export default {
         },
         open: {
             type: 'boolean'
+        },
+        size: function (value) {
+            return value != null ? +value : 300;
         }
     },
 
@@ -44,7 +54,7 @@ export default {
 
         me.documentClickHandler = function (event) {
 
-            let element = me.$el;
+            let element = me.$refs.drawContent;
             let target = event.originalEvent.target;
             if (element.contains && element.contains(target)) {
                 return false;

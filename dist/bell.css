@@ -4154,6 +4154,7 @@ button.bell-button-danger[disabled] {
 .bell-radio-group {
   display: inline-block;
   user-select: none;
+  position: relative;
   margin-right: -8px;
 }
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner,
@@ -7666,6 +7667,7 @@ button.bell-button-danger[disabled] {
 }
 .bell-drawer .bell-drawer-content {
   position: fixed;
+  background-color: #fff;
 }
 .bell-drawer .bell-drawer-mask {
   position: fixed;
@@ -7674,4 +7676,7 @@ button.bell-button-danger[disabled] {
   top: 0;
   bottom: 0;
   background: rgba(0,0,0,0.54);
+}
+.bell-drawer.bell-drawer-hidden {
+  display: none;
 }

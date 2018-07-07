@@ -789,7 +789,7 @@
     };
 
     var Drawer = {
-        template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}}">\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n            <div class="bell-drawer-content">\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n\n        </div>\n    ',
+        template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}};">\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n            <div ref="drawContent" class="bell-drawer-content"\n                style="{{#if position == "left" || position == "right"}}\n                        width: {{size}}px;\n                    {{else}}\n                        height: {{size}}px;\n                    {{/if}}\n                "\n            >\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -807,6 +807,9 @@
             },
             open: {
                 type: 'boolean'
+            },
+            size: function size(value) {
+                return value != null ? +value : 300;
             }
         },
 
@@ -816,7 +819,7 @@
 
             me.documentClickHandler = function (event) {
 
-                var element = me.$el;
+                var element = me.$refs.drawContent;
                 var target = event.originalEvent.target;
                 if (element.contains && element.contains(target)) {
                     return false;

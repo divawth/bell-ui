@@ -29,7 +29,7 @@
                 <Button style="margin-top: 15px;" on-click="click()" fluid>
                     toggle drawer
                 </Button>
-                <Drawer position="{{position}}" useMask="{{useMask}}" open="{{isOpen}}">
+                <Drawer position="{{position}}" useMask="{{useMask}}" open="{{isOpen}}" size="300">
                     <ul>
                         <li>a</li>
                         <li>b</li>
@@ -53,7 +53,9 @@
             },
             click: function () {
                 var me = this;
-
+                me.set({
+                    isOpen: true
+                });
                 console.log(me.get('useMask'), me.get('position'), me.get('isOpen'))
             }
         }
