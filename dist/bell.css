@@ -3437,12 +3437,14 @@ button.bell-button-danger[disabled] {
   color: rgba(0,0,0,0.87);
   border-color: #eee;
 }
+.bell-menu-light .bell-menu-item {
+  color: rgba(0,0,0,0.87);
+}
 .bell-menu-light .bell-menu-item.bell-menu-light .bell-menu-item.hover,
 .bell-menu-light .bell-menu-item:hover,
 .bell-menu-light .bell-menu-item.bell-hover {
   background-color: #fff;
   color: #6392e5;
-  border-color: #6392e5;
 }
 .bell-menu-light .bell-menu-item.bell-menu-light .bell-menu-item.active,
 .bell-menu-light .bell-menu-item.bell-active {
@@ -3452,15 +3454,17 @@ button.bell-button-danger[disabled] {
 }
 .bell-menu-dark {
   background-color: #495060;
-  color: #eee;
+  color: #c7c7c7;
   border-color: transparent;
+}
+.bell-menu-dark .bell-menu-item {
+  color: #c7c7c7;
 }
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.hover,
 .bell-menu-dark .bell-menu-item:hover,
 .bell-menu-dark .bell-menu-item.bell-hover {
   background-color: #495060;
   color: #fff;
-  border-color: transparent;
 }
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.active,
 .bell-menu-dark .bell-menu-item.bell-active {
@@ -3473,12 +3477,14 @@ button.bell-button-danger[disabled] {
   color: #fff;
   border-color: transparent;
 }
+.bell-menu-primary .bell-menu-item {
+  color: #fff;
+}
 .bell-menu-primary .bell-menu-item.bell-menu-primary .bell-menu-item.hover,
 .bell-menu-primary .bell-menu-item:hover,
 .bell-menu-primary .bell-menu-item.bell-hover {
   background-color: #7fa6ea;
   color: #fff;
-  border-color: transparent;
 }
 .bell-menu-primary .bell-menu-item.bell-menu-primary .bell-menu-item.active,
 .bell-menu-primary .bell-menu-item.bell-active {
@@ -3532,7 +3538,7 @@ button.bell-button-danger[disabled] {
   transition: height 0.4s;
 }
 .bell-menu-vertical .bell-menu-group-title {
-  padding: 5px 10px;
+  padding: 17px 10px;
   line-height: 1;
 }
 .bell-layout-sider-collapsed .bell-menu-item {

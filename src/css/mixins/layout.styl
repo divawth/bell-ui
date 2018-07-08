@@ -17,11 +17,12 @@ menu-style(style)
 
     {$selector-menu}-item
 
+        ui-set('color', style['color']);
+
         &{$selector-hover}
 
             ui-set('background-color', style['background-color-hover']);
             ui-set('color', style['color-hover']);
-            ui-set('border-color', style['border-bottom-color-hover']);
 
         &{$selector-active}
 
