@@ -279,7 +279,7 @@
     };
 
     var Layout = {
-        template: '\n        <div class="bell-layout bell-row\n            {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}\n            {{#if className}} {{className}}{{/if}}"\n            {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-layout bell-row\n            {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}\n            {{#if fixed}} bell-layout-fixed{{/if}}\n            {{#if className}} {{className}}{{/if}}"\n            {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
 
         data: function data() {
             return {
@@ -294,6 +294,9 @@
             },
             style: {
                 type: 'string'
+            },
+            fixed: {
+                type: 'boolean'
             }
         },
 

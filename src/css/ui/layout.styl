@@ -7,7 +7,8 @@
 
         position relative
         transition flex .4s
-        overflow hidden
+        overflow auto
+        max-height 100%
 
     {$selector-sider}-trigger
 
@@ -24,7 +25,13 @@
         ui-column()
 
     &{$selector-fluid}
+
         width 100%
+
+{$selector-layout-fixed}
+
+    ui-fullscreen()
+    overflow hidden
 
 {$selector-menu}
 

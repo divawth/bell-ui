@@ -3409,7 +3409,8 @@ button.bell-button-danger[disabled] {
 .bell-layout .bell-layout-sider {
   position: relative;
   transition: flex 0.4s;
-  overflow: hidden;
+  overflow: auto;
+  max-height: 100%;
 }
 .bell-layout .bell-sider-trigger {
   position: absolute;
@@ -3426,6 +3427,14 @@ button.bell-button-danger[disabled] {
 }
 .bell-layout.fluid {
   width: 100%;
+}
+.bell-layout-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 .bell-menu {
   height: 62px;
