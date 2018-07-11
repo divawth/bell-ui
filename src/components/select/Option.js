@@ -33,21 +33,6 @@ export default {
     },
 
     events: {
-        updateOptionStatus(event, data) {
-            let me = this;
-            let isSelected = data.value == me.get('value') || data.index == me.get('index');
-            me.set({
-                isSelected: isSelected
-            });
-        },
-
-        optionChangeByIndex: function (event, data) {
-            let me = this;
-            let isSelected = data.index == me.get('index');
-            if (isSelected) {
-                me.click();
-            }
-        },
 
         optionHoveredChange(event, data) {
             let me = this;
@@ -66,6 +51,7 @@ export default {
             let me = this;
             let value = me.get('value');
             let values = data.value;
+
             me.set({
                 isSelected: Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
             });
@@ -91,8 +77,14 @@ export default {
 
     afterMount() {
 
-        this.fire(
-            'optionAdd'
+        let me = this;
+        me.fire(
+            'optionAdd',
+            {
+                value: me.get('value'),
+                text: me.get('text'),
+                index: me.get('index')
+            }
         );
 
     },

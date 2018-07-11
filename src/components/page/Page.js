@@ -61,12 +61,13 @@ export default {
                 <Select model="pageSize"
                     size="{{size}}"
                     placement="{{placement}}"
+                    on-change="pageSizeChange()"
                 >
-                {{#each pageList:index}}
-                    <Option index="{{index}}" value="{{value}}" text="{{text}}">
-                        {{text}}
-                    </Option>
-                {{/each}}
+                    {{#each pageList:index}}
+                        <Option index="{{index}}" value="{{value}}" text="{{text}}">
+                            {{text}}
+                        </Option>
+                    {{/each}}
                 </Select>
             </div>
             {{/if}}
@@ -155,21 +156,20 @@ export default {
             type: 'numeric',
             value: 1
         },
-        pageSize: {
-            type: 'numeric',
-            value: 10
+        pageSize: function (value) {
+            return isNaN(+value) ? +value : 10;
         },
-        showSizer: {
-            type: 'boolean'
+        showSizer: function (value) {
+            return value ? true : false;
         },
         pageSizeOpts: {
             type: 'array'
         },
-        showElevator: {
-            type: 'boolean'
+        showElevator: function (value) {
+            return value ? true : false;
         },
-        showTotal: {
-            type: 'boolean'
+        showTotal: function (value) {
+            return value ? true : false;
         },
         placement: {
             type: 'string'
@@ -202,17 +202,13 @@ export default {
         }
     },
 
+    events: {
+        change: function (event) {
+            event.stop();
+        }
+    },
+
     watchers: {
-        pageSize(value) {
-            let me = this;
-            me.updateCount();
-            me.fire(
-                'pageSizeChange',
-                {
-                    value: value
-                }
-            );
-        },
         current(value) {
             this.fire(
                 'change',
@@ -224,6 +220,18 @@ export default {
     },
 
     methods: {
+
+        pageSizeChange(event, data) {
+
+            this.updateCount();
+            this.fire(
+                'pageSizeChange',
+                {
+                    value: data.value
+                }
+            );
+            event.stop();
+        },
 
         fastPrev() {
             let me = this;

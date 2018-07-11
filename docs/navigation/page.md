@@ -2,7 +2,7 @@
 
     export default {
         template: `
-            <Page total="100" current="{{8}}"></Page>
+            <Page total="100" current="{{8}}" ></Page>
         `
     }
 
@@ -34,7 +34,7 @@
 
     export default {
         template: `
-            <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}"></Page>
+            <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}"></Page>
         `,
         data: function () {
             return {

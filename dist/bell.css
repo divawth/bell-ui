@@ -3393,18 +3393,23 @@ button.bell-button-danger[disabled] {
 }
 .bell-layout-header {
   flex: 0 0 62px;
+  box-sizing: border-box;
 }
 .bell-layout-content {
   flex: 1;
+  box-sizing: border-box;
 }
 .bell-layout-footer {
   flex: 0 0 62px;
+  box-sizing: border-box;
 }
 .bell-layout-sider {
   flex: 0 0 200px;
+  box-sizing: border-box;
 }
 .bell-layout-sider-collapsed {
   flex: 0 0 78px;
+  box-sizing: border-box;
 }
 .bell-layout .bell-layout-sider {
   position: relative;
@@ -3462,9 +3467,9 @@ button.bell-button-danger[disabled] {
   border-color: #6392e5;
 }
 .bell-menu-dark {
-  background-color: #495060;
+  background-color: transparent;
   color: #c7c7c7;
-  border-color: transparent;
+  border-color: #f90;
 }
 .bell-menu-dark .bell-menu-item {
   color: #c7c7c7;
@@ -3472,14 +3477,14 @@ button.bell-button-danger[disabled] {
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.hover,
 .bell-menu-dark .bell-menu-item:hover,
 .bell-menu-dark .bell-menu-item.bell-hover {
-  background-color: #495060;
+  background-color: transparent;
   color: #fff;
 }
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.active,
 .bell-menu-dark .bell-menu-item.bell-active {
-  background-color: #495060;
+  background-color: transparent;
   color: #fff;
-  border-color: transparent;
+  border-color: #f90;
 }
 .bell-menu-primary {
   background-color: #6392e5;
@@ -5073,8 +5078,9 @@ button.bell-button-danger[disabled] {
   max-height: 200px;
 }
 .bell-select .bell-select-dropdown .bell-select-option {
-  padding: 4px 15px;
+  padding: 10px 15px;
   font-size: 12px;
+  line-height: 1;
 }
 .bell-select.bell-select-top .bell-select-dropdown {
   bottom: 40px;
@@ -5095,8 +5101,9 @@ button.bell-button-danger[disabled] {
   max-height: 200px;
 }
 .bell-select-small .bell-select-dropdown .bell-select-option {
-  padding: 2px 15px;
+  padding: 6px 15px;
   font-size: 12px;
+  line-height: 1;
 }
 .bell-select-small.bell-select-top .bell-select-dropdown {
   bottom: 32px;
@@ -5117,8 +5124,9 @@ button.bell-button-danger[disabled] {
   max-height: 200px;
 }
 .bell-select-large .bell-select-dropdown .bell-select-option {
-  padding: 6px 15px;
+  padding: 12px 15px;
   font-size: 14px;
+  line-height: 1;
 }
 .bell-select-large.bell-select-top .bell-select-dropdown {
   bottom: 44px;

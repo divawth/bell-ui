@@ -9,14 +9,14 @@ const DAY_MAP = {
     '4': '四',
     '5': '五',
     '6': '六',
-    '7': '七',
+    '0': '日',
 }
 
 export default {
     template: `
         <div class="bell-datepicker
             {{#if className}} {{className}}{{/if}}
-        "{{#if style}} {{style}}{{/if}}>
+        "{{#if style}} style="{{style}}"{{/if}}>
 
             <div class="bell-datepicker-el" on-click="click()">
                 <Input placeholder="请选择日期..."
@@ -57,8 +57,11 @@ export default {
         mode: {
             type: 'string'
         },
-        formateText: {
-            type: 'string'
+        formateText: function (formateText) {
+            if (!formateText) {
+                formateText = 'YYYY/MM/DD';
+            }
+            return formateText;
         }
     },
 
@@ -148,49 +151,48 @@ export default {
         },
 
         formateDate(date) {
-            let result = '';
-            if (this.get('formateText')) {
-                var dateObject = {
-                    year: date.year,
-                    month: date.month,
-                    date: date.date,
-                    day: date.day
-                };
-                return this.get('formateText')
-                    .replace(/yyyy/i, dateObject.year)
-                    .replace(/yy/i, +('' + dateObject.year).substr(2))
-                    .replace(/MM/, lpad(dateObject.month))
-                    .replace(/M/, dateObject.month)
-                    .replace(/dd/i, lpad(dateObject.date))
-                    .replace(/d/i, dateObject.date)
-                    .replace(/w/, DAY_MAP[dateObject.day]);
-            }
 
             if (!date) {
-                return result;
+                return false;
             }
-            if (arguments.length > 1) {
+            let argsLen = arguments.length;
+            let result = '';
+            let me = this;
+
+            if (argsLen > 1) {
                 let start = arguments[0];
                 let end = arguments[1];
 
-                result = start.year + '年'
-                        + lpad(start.month) + '月'
-                        + lpad(start.date) + '日'
-                        + ' - '
-                        + end.year + '年'
-                        + lpad(end.month) + '月'
-                        + lpad(end.date) + '日';
+                let formatStart = me.get('formateText')
+                        .replace(/yyyy/i, start.year)
+                        .replace(/yy/i, +('' + start.year).substr(2))
+                        .replace(/MM/, lpad(start.month))
+                        .replace(/M/, start.month)
+                        .replace(/dd/i, lpad(start.date))
+                        .replace(/d/i, start.date)
+                        .replace(/w/, DAY_MAP[start.day]);
+
+                let formatEnd = me.get('formateText')
+                        .replace(/yyyy/i, end.year)
+                        .replace(/yy/i, +('' + end.year).substr(2))
+                        .replace(/MM/, lpad(end.month))
+                        .replace(/M/, end.month)
+                        .replace(/dd/i, lpad(end.date))
+                        .replace(/d/i, end.date)
+                        .replace(/w/, DAY_MAP[end.day]);
+
+                result = formatStart + '-' + formatEnd;
+
             }
             else {
-                if (date.year) {
-                    result += date.year + '年';
-                }
-                if (date.month) {
-                    result += lpad(date.month) + '月';
-                }
-                if (date.date) {
-                    result += lpad(date.date) + '日';
-                }
+                result = me.get('formateText')
+                    .replace(/yyyy/i, date.year)
+                    .replace(/yy/i, +('' + date.year).substr(2))
+                    .replace(/MM/, lpad(date.month))
+                    .replace(/M/, date.month)
+                    .replace(/dd/i, lpad(date.date))
+                    .replace(/d/i, date.date)
+                    .replace(/w/, DAY_MAP[date.day]);
             }
             return result;
         },

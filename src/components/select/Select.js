@@ -101,7 +101,9 @@ export default {
 
     watchers: {
         modelValue(value) {
+
             let me = this;
+
             me.fire(
                 'optionSelectedChange',
                 {
@@ -118,6 +120,7 @@ export default {
                     index: me.get('selectedIndex')
                 }
             );
+
         }
     },
 
