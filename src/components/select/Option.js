@@ -52,9 +52,14 @@ export default {
             let value = me.get('value');
             let values = data.value;
 
+            let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value;
             me.set({
-                isSelected: Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
+                isSelected: isSelected
             });
+            // 默认值的时候需要传给上层
+            if (isSelected) {
+                me.fire('selectedOptionChange');
+            }
         }
     },
 

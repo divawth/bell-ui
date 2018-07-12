@@ -34,11 +34,16 @@
 
     export default {
         template: `
-            <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}"></Page>
+            <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
         `,
         data: function () {
             return {
                 pageSizeOpts: [10, 15, 20, 25, 40]
+            }
+        },
+        methods: {
+            change: function (data) {
+                console.log(data)
             }
         }
     }

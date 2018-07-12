@@ -17,7 +17,7 @@ export default {
                 <input type="hidden" model="value" />
 
                 <span class="bell-select-value
-                    {{#if modelValue == null}} bell-hide{{/if}}
+                    {{#if value == null}} bell-hide{{/if}}
                 ">
                     {{#if selectedText && !multiple}}
                         {{selectedText}}
@@ -35,7 +35,7 @@ export default {
                 </span>
 
                 <span class="bell-select-placeholder
-                    {{#if modelValue != null}} bell-hide{{/if}}
+                    {{#if value != null}} bell-hide{{/if}}
                 ">
                     {{#if defaultText}}
                         {{{defaultText}}}
@@ -57,8 +57,6 @@ export default {
         </div>
     `,
 
-    model: 'modelValue',
-
     propTypes: {
         className: {
             type: 'string'
@@ -69,7 +67,7 @@ export default {
         defaultText: {
             type: 'string'
         },
-        modelValue: {
+        value: {
             type: ['numeric', 'string']
         },
         size: {
@@ -100,8 +98,7 @@ export default {
     },
 
     watchers: {
-        modelValue(value) {
-
+        value(value){
             let me = this;
 
             me.fire(
@@ -120,11 +117,24 @@ export default {
                     index: me.get('selectedIndex')
                 }
             );
-
         }
     },
 
     events: {
+        selectedOptionChange(event) {
+            let me = this;
+            let option = event.target;
+            if (me.get('selectedText') == null
+                && me.get('selectedIndex') == null
+            ) {
+                me.set({
+                    selectedIndex: option.get('index'),
+                    selectedText: option.get('text'),
+                });
+            }
+            event.stop();
+        },
+
         optionAdd() {
             this.increase('count');
         },
@@ -145,19 +155,22 @@ export default {
             if (me.get('multiple')) {
 
                 me.set({
-                    modelValue: me.setArrayValue(value, me.get('modelValue')),
+                    value: me.setArrayValue(value, me.get('value')),
                     selectedText: me.setArrayValue(text, me.get('selectedText')),
                     selectedIndex: index,
                     visible: true
                 });
+
             }
             else {
+
                 me.set({
-                    modelValue: value,
+                    value: value,
                     selectedText: text,
                     selectedIndex: index,
                     visible: false
                 });
+
             }
         }
     },
@@ -188,7 +201,7 @@ export default {
             let me = this;
 
             this.set({
-                modelValue: me.setArrayValue(me.get('modelValue')[index], me.get('modelValue')),
+                value: me.setArrayValue(me.get('value')[index], me.get('value')),
                 selectedText: me.setArrayValue(text, me.get('selectedText'))
             });
             event.stop();
@@ -253,6 +266,19 @@ export default {
 
     afterMount() {
         let me = this;
+
+        if (me.get('value') != null
+            && me.get('selectedText') == null
+            && me.get('selectedIndex') == null
+        ) {
+            me.fire(
+                'optionSelectedChange',
+                {
+                    value: me.get('value')
+                },
+                true
+            );
+        }
 
         me.documentClickHandler = function (e) {
 

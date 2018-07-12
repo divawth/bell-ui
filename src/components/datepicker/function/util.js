@@ -134,10 +134,12 @@ export let getOffsetTime = function (date) {
 };
 
 export let lpad = function (num, length) {
+    if (num == undefined) {
+        return '';
+    }
     if (length == null) {
         length = 2;
     }
-
     var arr = new Array(
         length - ('' + num).length + 1
     );

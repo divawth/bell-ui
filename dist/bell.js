@@ -1540,9 +1540,7 @@
     };
 
     var Select = {
-        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if type}} bell-select-{{type}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if multiple}} bell-select-multiple{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if visible}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-select-button" on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if modelValue == null}} bell-hide{{/if}}\n                ">\n                    {{#if selectedText && !multiple}}\n                        {{selectedText}}\n                    {{else if selectedText}}\n                        {{#each selectedText:index}}\n                        <Tag size="tiny" closable on-close="tagClose($event, this, index)">\n                            {{this}}\n                        </Tag>\n                        {{/each}}\n                    {{else if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if modelValue != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown">\n                <ul class="bell-select-list">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{/if}}\n                </ul>\n            </div>\n        </div>\n    ',
-
-        model: 'modelValue',
+        template: '\n        <div class="bell-select\n            {{#if size}} bell-select-{{size}}{{/if}}\n            {{#if type}} bell-select-{{type}}{{/if}}\n            {{#if disabled}} bell-select-disabled{{/if}}\n            {{#if placement}} bell-select-{{placement}}{{/if}}\n            {{#if multiple}} bell-select-multiple{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if visible}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            <div class="bell-select-button" on-click="toggleMenu()">\n\n                <input type="hidden" model="value" />\n\n                <span class="bell-select-value\n                    {{#if value == null}} bell-hide{{/if}}\n                ">\n                    {{#if selectedText && !multiple}}\n                        {{selectedText}}\n                    {{else if selectedText}}\n                        {{#each selectedText:index}}\n                        <Tag size="tiny" closable on-close="tagClose($event, this, index)">\n                            {{this}}\n                        </Tag>\n                        {{/each}}\n                    {{else if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-select-placeholder\n                    {{#if value != null}} bell-hide{{/if}}\n                ">\n                    {{#if defaultText}}\n                        {{{defaultText}}}\n                    {{else}}\n                        \u8BF7\u9009\u62E9...\n                    {{/if}}\n                </span>\n\n                <span class="bell-icon bell-icon-arrow-down-b bell-select-arrow"></span>\n            </div>\n\n            <div class="bell-select-dropdown">\n                <ul class="bell-select-list">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{/if}}\n                </ul>\n            </div>\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -1554,7 +1552,7 @@
             defaultText: {
                 type: 'string'
             },
-            modelValue: {
+            value: {
                 type: ['numeric', 'string']
             },
             size: {
@@ -1586,16 +1584,15 @@
 
 
         watchers: {
-            modelValue: function modelValue(value) {
-
+            value: function value(_value) {
                 var me = this;
 
                 me.fire('optionSelectedChange', {
-                    value: value
+                    value: _value
                 }, true);
 
                 me.fire('change', {
-                    value: value,
+                    value: _value,
                     text: me.get('selectedText'),
                     index: me.get('selectedIndex')
                 });
@@ -1603,6 +1600,17 @@
         },
 
         events: {
+            selectedOptionChange: function selectedOptionChange(event) {
+                var me = this;
+                var option = event.target;
+                if (me.get('selectedText') == null && me.get('selectedIndex') == null) {
+                    me.set({
+                        selectedIndex: option.get('index'),
+                        selectedText: option.get('text')
+                    });
+                }
+                event.stop();
+            },
             optionAdd: function optionAdd() {
                 this.increase('count');
             },
@@ -1621,14 +1629,15 @@
                 if (me.get('multiple')) {
 
                     me.set({
-                        modelValue: me.setArrayValue(value, me.get('modelValue')),
+                        value: me.setArrayValue(value, me.get('value')),
                         selectedText: me.setArrayValue(text, me.get('selectedText')),
                         selectedIndex: index,
                         visible: true
                     });
                 } else {
+
                     me.set({
-                        modelValue: value,
+                        value: value,
                         selectedText: text,
                         selectedIndex: index,
                         visible: false
@@ -1660,7 +1669,7 @@
                 var me = this;
 
                 this.set({
-                    modelValue: me.setArrayValue(me.get('modelValue')[index], me.get('modelValue')),
+                    value: me.setArrayValue(me.get('value')[index], me.get('value')),
                     selectedText: me.setArrayValue(text, me.get('selectedText'))
                 });
                 event.stop();
@@ -1706,6 +1715,12 @@
 
         afterMount: function afterMount() {
             var me = this;
+
+            if (me.get('value') == null && me.get('selectedText') == null && me.get('selectedIndex') == null) {
+                me.fire('optionSelectedChange', {
+                    value: me.get('value')
+                }, true);
+            }
 
             me.documentClickHandler = function (e) {
 
@@ -1794,9 +1809,14 @@
                 var value = me.get('value');
                 var values = data.value;
 
+                var isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value;
                 me.set({
-                    isSelected: Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
+                    isSelected: isSelected
                 });
+                // 默认值的时候需要传给上层
+                if (isSelected) {
+                    me.fire('selectedOptionChange');
+                }
             }
         },
 
@@ -1852,7 +1872,7 @@
                 value: 1
             },
             pageSize: function pageSize(value) {
-                return isNaN(+value) ? +value : 10;
+                return !isNaN(+value) ? +value : 10;
             },
             showSizer: function showSizer(value) {
                 return value ? true : false;
@@ -2356,10 +2376,12 @@
     };
 
     var lpad = function lpad(num, length) {
+        if (num == undefined) {
+            return '';
+        }
         if (length == null) {
             length = 2;
         }
-
         var arr = new Array(length - ('' + num).length + 1);
 
         return arr.join('0') + num;
@@ -2388,11 +2410,8 @@
             mode: {
                 type: 'string'
             },
-            formateText: function formateText(_formateText) {
-                if (!_formateText) {
-                    _formateText = 'YYYY/MM/DD';
-                }
-                return _formateText;
+            formateText: {
+                type: 'string'
             }
         },
 
@@ -2412,8 +2431,8 @@
 
         events: {
             change: function change(event, data) {
-                var me = this;
-                if (event.target != me) {
+
+                if (event.target != this) {
                     if (!data.value) {
                         this.fire('clear');
                     }
@@ -2476,20 +2495,22 @@
                 var argsLen = arguments.length;
                 var result = '';
                 var me = this;
+                var startFormat = me.get('formateText').split('$')[0];
+                var endFormat = me.get('formateText').split('$')[1];
 
                 if (argsLen > 1) {
                     var start = arguments[0];
                     var end = arguments[1];
 
-                    var formatStart = me.get('formateText').replace(/yyyy/i, start.year).replace(/yy/i, +('' + start.year).substr(2)).replace(/MM/, lpad(start.month)).replace(/M/, start.month).replace(/dd/i, lpad(start.date)).replace(/d/i, start.date).replace(/w/, DAY_MAP[start.day]);
+                    var formatStart = startFormat.replace(/yyyy/i, start.year).replace(/yy/i, +('' + start.year).substr(2)).replace(/MM/, lpad(start.month)).replace(/M/, start.month).replace(/dd/i, lpad(start.date)).replace(/d/i, start.date).replace(/w/, DAY_MAP[start.day]);
 
-                    var formatEnd = me.get('formateText').replace(/yyyy/i, end.year).replace(/yy/i, +('' + end.year).substr(2)).replace(/MM/, lpad(end.month)).replace(/M/, end.month).replace(/dd/i, lpad(end.date)).replace(/d/i, end.date).replace(/w/, DAY_MAP[end.day]);
+                    var formatEnd = endFormat.replace(/yyyy/i, end.year).replace(/yy/i, +('' + end.year).substr(2)).replace(/MM/, lpad(end.month)).replace(/M/, end.month).replace(/dd/i, lpad(end.date)).replace(/d/i, end.date).replace(/w/, DAY_MAP[end.day]);
 
-                    result = formatStart + '-' + formatEnd;
+                    result = formatStart + formatEnd;
                 } else {
-                    result = me.get('formateText').replace(/yyyy/i, date.year).replace(/yy/i, +('' + date.year).substr(2)).replace(/MM/, lpad(date.month)).replace(/M/, date.month).replace(/dd/i, lpad(date.date)).replace(/d/i, date.date).replace(/w/, DAY_MAP[date.day]);
+                    result = startFormat.replace(/yyyy/i, date.year).replace(/yy/i, +('' + date.year).substr(2)).replace(/MM/, lpad(date.month)).replace(/M/, date.month).replace(/dd/i, lpad(date.date)).replace(/d/i, date.date).replace(/w/, DAY_MAP[date.day]);
                 }
-                return result;
+                return result.trim();
             },
             dateChange: function dateChange(date) {
 
@@ -2552,6 +2573,36 @@
 
         afterMount: function afterMount() {
             var me = this;
+
+            if (!me.get('formateText')) {
+                switch (me.get('mode')) {
+                    case 'date':
+                        me.set({
+                            formateText: 'YYYY/MM/DD'
+                        });
+                        break;
+                    case 'dateRange':
+                        me.set({
+                            formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
+                        });
+                        break;
+                    case 'week':
+                        me.set({
+                            formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
+                        });
+                        break;
+                    case 'year':
+                        me.set({
+                            formateText: 'YYYY'
+                        });
+                        break;
+                    case 'month':
+                        me.set({
+                            formateText: 'YYYY/MM'
+                        });
+                        break;
+                }
+            }
 
             me.documentClickHandler = function (e) {
                 var element = me.$el;

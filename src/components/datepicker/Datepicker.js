@@ -57,11 +57,8 @@ export default {
         mode: {
             type: 'string'
         },
-        formateText: function (formateText) {
-            if (!formateText) {
-                formateText = 'YYYY/MM/DD';
-            }
-            return formateText;
+        formateText: {
+            type: 'string'
         }
     },
 
@@ -81,13 +78,14 @@ export default {
 
     events: {
         change(event, data) {
-            let me = this;
-            if (event.target != me) {
+
+            if (event.target != this) {
                 if (!data.value) {
                     this.fire('clear');
                 }
                 event.stop();
             }
+
         },
 
         yearChange(event, date) {
@@ -158,12 +156,14 @@ export default {
             let argsLen = arguments.length;
             let result = '';
             let me = this;
+            let startFormat = me.get('formateText').split('$')[0];
+            let endFormat = me.get('formateText').split('$')[1];
 
             if (argsLen > 1) {
                 let start = arguments[0];
                 let end = arguments[1];
 
-                let formatStart = me.get('formateText')
+                let formatStart = startFormat
                         .replace(/yyyy/i, start.year)
                         .replace(/yy/i, +('' + start.year).substr(2))
                         .replace(/MM/, lpad(start.month))
@@ -172,7 +172,7 @@ export default {
                         .replace(/d/i, start.date)
                         .replace(/w/, DAY_MAP[start.day]);
 
-                let formatEnd = me.get('formateText')
+                let formatEnd = endFormat
                         .replace(/yyyy/i, end.year)
                         .replace(/yy/i, +('' + end.year).substr(2))
                         .replace(/MM/, lpad(end.month))
@@ -181,11 +181,11 @@ export default {
                         .replace(/d/i, end.date)
                         .replace(/w/, DAY_MAP[end.day]);
 
-                result = formatStart + '-' + formatEnd;
+                result = formatStart + formatEnd;
 
             }
             else {
-                result = me.get('formateText')
+                result = startFormat
                     .replace(/yyyy/i, date.year)
                     .replace(/yy/i, +('' + date.year).substr(2))
                     .replace(/MM/, lpad(date.month))
@@ -194,7 +194,7 @@ export default {
                     .replace(/d/i, date.date)
                     .replace(/w/, DAY_MAP[date.day]);
             }
-            return result;
+            return result.trim();
         },
 
         dateChange(date) {
@@ -267,6 +267,36 @@ export default {
 
     afterMount() {
         let me = this;
+
+        if (!me.get('formateText')) {
+            switch(me.get('mode')) {
+                case 'date':
+                    me.set({
+                        formateText: 'YYYY/MM/DD'
+                    });
+                    break;
+                case 'dateRange':
+                    me.set({
+                        formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
+                    });
+                    break;
+                case 'week':
+                    me.set({
+                        formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
+                    });
+                    break;
+                case 'year':
+                    me.set({
+                        formateText: 'YYYY'
+                    });
+                    break;
+                case 'month':
+                    me.set({
+                        formateText: 'YYYY/MM'
+                    });
+                    break;
+            }
+        }
 
         me.documentClickHandler = function (e) {
             let element = me.$el;

@@ -157,7 +157,7 @@ export default {
             value: 1
         },
         pageSize: function (value) {
-            return isNaN(+value) ? +value : 10;
+            return !isNaN(+value) ? +value : 10;
         },
         showSizer: function (value) {
             return value ? true : false;
