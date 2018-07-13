@@ -204,7 +204,9 @@ export default {
 
     events: {
         change: function (event) {
-            event.stop();
+            if (event.target != this) {
+                event.stop();
+            }
         }
     },
 

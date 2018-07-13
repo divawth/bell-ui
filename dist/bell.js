@@ -1716,7 +1716,7 @@
         afterMount: function afterMount() {
             var me = this;
 
-            if (me.get('value') == null && me.get('selectedText') == null && me.get('selectedIndex') == null) {
+            if (me.get('value') != null && me.get('selectedText') == null && me.get('selectedIndex') == null) {
                 me.fire('optionSelectedChange', {
                     value: me.get('value')
                 }, true);
@@ -1915,7 +1915,9 @@
 
         events: {
             change: function change(event) {
-                event.stop();
+                if (event.target != this) {
+                    event.stop();
+                }
             }
         },
 
@@ -3712,7 +3714,7 @@
     };
 
     var CardHeader = {
-        template: '\n        <div class="bell-card-header\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n            <div class="bell-card-header-detail">\n                {{#if title}}\n                    <div class="bell-card-header-title\n                        {{#if titleClass}} {{titleClass}}{{/if}}\n                    ">\n                        {{title}}\n                    </div>\n                {{/if}}\n\n                {{#if subTitle}}\n                    <div class="bell-card-header-sub-title\n                        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n                    ">\n                        {{subTitle}}\n                    </div>\n                {{/if}}\n            </div>\n        </div>\n    ',
+        template: '\n        <div class="bell-card-header\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'avatar\')}}\n                <slot name="avatar" />\n            {{/if}}\n\n            <div class="bell-card-header-detail">\n                {{#if hasSlot(\'title\')}}\n                    <div class="bell-card-header-title\n                        {{#if titleClass}} {{titleClass}}{{/if}}\n                    ">\n                        <slot name="title" />\n                    </div>\n                {{/if}}\n\n                {{#if hasSlot(\'subTitle\')}}\n                    <div class="bell-card-header-sub-title\n                        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n                    ">\n                        <slot name="subTitle" />\n                    </div>\n                {{/if}}\n            </div>\n\n            {{#if hasSlot(\'extra\')}}\n                <span class="bell-card-header-extra">\n                    <slot name="extra" />\n                </span>\n            {{/if}}\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -3721,13 +3723,7 @@
             style: {
                 type: 'string'
             },
-            title: {
-                type: 'string'
-            },
             titleClass: {
-                type: 'string'
-            },
-            subTitle: {
                 type: 'string'
             },
             subTitleClass: {
