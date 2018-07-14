@@ -302,6 +302,90 @@
         }
     }
 
+> Header
+
+    export default {
+        isViewFullBlock: true,
+        template: `
+            <Layout>
+                <Header>
+                    <template slot="left">
+                        <img class="index-logo-srcnew" src="//www.baidu.com/img/baidu_jgylogo3.gif" alt="到百度首页" title="到百度首页">
+                    </template>
+                    <template slot="right">
+                        <Button type="text" style="color: #fff;">
+                            Right
+                        </Button>
+                    </template>
+                    <template slot="center">
+                        <Button type="text" style="color: #fff;">
+                            Center 1
+                        </Button>
+                        <Button type="text" style="color: #fff;">
+                            Center 2
+                        </Button>
+                        <Button type="text" style="color: #fff;">
+                            Center 3
+                        </Button>
+                        <Button type="text" style="color: #fff;">
+                            Center 4
+                        </Button>
+                    </template>
+                </Header>
+                <style>
+                    .bell-layout {
+                        color: #fff;
+                    }
+                    .bell-layout-content {
+                        color: #000;
+                        min-height: 100px;
+                        line-height: 100px;
+                        background-color: #f8f8f8;
+                    }
+                    .bell-layout-sider,
+                    .bell-layout-footer,
+                    .bell-layout-header {
+                        background-color: #1e242b;
+                    }
+                </style>
+            </Layout>
+        `,
+    }
+
+> Footer
+
+    export default {
+        isViewFullBlock: true,
+        template: `
+            <Layout>
+                <Footer>
+                    <p style="font-size: 14px; line-height: 1; color: #ccc;">
+                        Copyright © 2018（北京）科技有限公司 版权所有
+                    </p>
+                    <p style="font-size: 12px; line-height: 1; color: #ccc;">
+                        联系方式 xxxxxxxx
+                    </p>
+                </Footer>
+                <style>
+                    .bell-layout {
+                        color: #fff;
+                    }
+                    .bell-layout-content {
+                        color: #000;
+                        min-height: 100px;
+                        line-height: 100px;
+                        background-color: #f8f8f8;
+                    }
+                    .bell-layout-sider,
+                    .bell-layout-footer,
+                    .bell-layout-header {
+                        background-color: #1e242b;
+                    }
+                </style>
+            </Layout>
+        `,
+    }
+
 > Layout Attributes
 
 参数 | 说明 | 类型 | 可选值 | 默认值
@@ -327,6 +411,9 @@ style | 自定义样式 | string | - | -
 参数 | 说明
 ---|---
 children | 自定义内容
+left | 自定义左边内容
+right | 自定义右边内容
+center | 自定义中间内容
 
 > Content Attributes
 

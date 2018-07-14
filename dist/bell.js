@@ -313,7 +313,7 @@
     };
 
     var Header = {
-        template: '\n        <div class="bell-layout-header bell-col-span-24\n            {{#if className}} {{className}}{{/if}}"\n            {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-layout-header bell-col-span-24\n            {{#if className}} {{className}}{{/if}}"\n            {{#if style}} style="{{style}}"{{/if}}\n        >\n            {{#if hasSlot(\'left\')}}\n                <div class="bell-layout-header-left">\n                    <slot name="left" />\n                </div>\n            {{/if}}\n\n            {{#if hasSlot(\'center\') || hasSlot(\'children\')}}\n                <div class="bell-layout-header-center">\n                    <slot name="center" />\n                    <slot name="children" />\n                </div>\n            {{/if}}\n\n            {{#if hasSlot(\'right\')}}\n                <div class="bell-layout-header-right">\n                    <slot name="right" />\n                </div>\n            {{/if}}\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'

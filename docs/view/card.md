@@ -6,8 +6,18 @@
         template: `
         <div>
             <Card>
-                <CardHeader title="Myron Avatar" subTitle="sub title">
-                    <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" ></Avatar>
+                <CardHeader>
+                    <template slot="title">
+                        Myron Avatar
+                    </template>
+
+                    <template slot="subTitle">
+                        sub title
+                    </template>
+
+                    <template slot="avatar">
+                        <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" ></Avatar>
+                    </template>
                 </CardHeader>
 
                 <CardMedia title="Image Title" subTitle="Image Sub Title">
@@ -89,16 +99,16 @@
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-title | 标题文字 | string | - | -
 titleClass | 标题样式 | string | - | -
-subTitle | 副标题文字 | string | - | -
 subTitleClass | 副标题样式 | string | - | -
 
-> children
+> slot
 
 名称 | 说明
 ---|---
-Avatar | 用于放置 Avatar 组件
+title | 用于放置标题文字
+subTitle | 用于放置副标题文字
+avatar | 用于放置 Avatar 组件
 
 ### CardMedia
 
@@ -106,16 +116,15 @@ Avatar | 用于放置 Avatar 组件
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-title | 标题文字 | string | - | -
 titleClass | 标题样式 | string | - | -
-subTitle | 副标题文字 | string | - | -
 subTitleClass | 副标题样式 | string | - | -
 
-> children
+> slot
 
 名称 | 说明
 ---|---
-default | 用于放置图片等媒体元素
+title | 用于放置标题文字
+subTitle | 用于放置副标题文字
 
 ### CardTitle
 
@@ -123,18 +132,17 @@ default | 用于放置图片等媒体元素
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-title | 标题文字 | string | - | -
 titleClass | 标题样式 | string | - | -
-subTitle | 副标题文字 | string | - | -
 subTitleClass | 副标题样式 | string | - | -
 
 ### CardText
 
-> children
+> slot
 
 名称 | 说明
 ---|---
-default | 用于放置大段介绍性的文字
+title | 用于放置标题文字
+subTitle | 用于放置副标题文字
 
 ### CardActions
 

@@ -3433,6 +3433,34 @@ button.bell-button-danger[disabled] {
 .bell-layout.fluid {
   width: 100%;
 }
+.bell-layout-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.bell-layout-header-left {
+  flex: 1;
+  align-self: center;
+  text-align: center;
+  justify-content: center;
+}
+.bell-layout-header-right {
+  flex: 1;
+  align-self: center;
+  text-align: right;
+  justify-content: center;
+}
+.bell-layout-header-center {
+  flex: 4;
+  align-self: center;
+  text-align: center;
+  justify-content: center;
+}
+.bell-layout-footer {
+  align-self: center;
+  text-align: center;
+  justify-content: center;
+}
 .bell-layout-fixed {
   position: fixed;
   top: 0;
@@ -5069,10 +5097,10 @@ button.bell-button-danger[disabled] {
 .bell-select .bell-select-button .bell-select-value,
 .bell-select .bell-select-button .bell-select-placeholder {
   font-size: 12px;
-  padding: 8px 30px 8px 15px;
+  padding: 7px 30px 8px 15px;
 }
 .bell-select .bell-select-button .bell-select-arrow {
-  padding: 10px 15px;
+  padding: 9px 15px;
 }
 .bell-select .bell-select-dropdown {
   max-height: 200px;
