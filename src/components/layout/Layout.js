@@ -13,8 +13,9 @@ export default {
     `,
 
     data() {
+        let me = this;
         return {
-            hasSider: false
+            hasSider: me.get('hasSider')
         };
     },
 
@@ -27,6 +28,9 @@ export default {
         },
         fixed: {
             type: 'boolean'
+        },
+        hasSider(value) {
+            return value ? true : false;
         }
     },
 

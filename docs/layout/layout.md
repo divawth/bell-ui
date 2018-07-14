@@ -42,7 +42,7 @@
                 <Header>
                     Header
                 </Header>
-                <Layout>
+                <Layout hasSider>
                     <Sider>
                         Sider
                     </Sider>
