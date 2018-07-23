@@ -76,6 +76,8 @@ import Transfer from './components/transfer/Transfer'
 
 import TimeLine from './components/timeline/TimeLine'
 import TimeLineItem from './components/timeline/TimeLineItem'
+import Form from './components/form/Form'
+import FormItem from './components/form/FormItem'
 
 import './components/message/Message'
 import './components/notice/Notice'
@@ -152,5 +154,7 @@ Yox.component({
 
     Transfer,
     TimeLine,
-    TimeLineItem
+    TimeLineItem,
+    Form,
+    FormItem
 });

@@ -4570,6 +4570,30 @@
 
     };
 
+    var Form = {
+        template: '\n        <div class="bell-form\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            }
+        }
+    };
+
+    var FormItem = {
+        template: '\n        <div class="bell-form-item\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        propTypes: {
+            className: {
+                type: 'string'
+            },
+            style: {
+                type: 'string'
+            }
+        }
+    };
+
     var id = 0;
 
     var createMessage = function createMessage(_data) {
@@ -5243,7 +5267,9 @@
 
         Transfer: Transfer,
         TimeLine: TimeLine,
-        TimeLineItem: TimeLineItem
+        TimeLineItem: TimeLineItem,
+        Form: Form,
+        FormItem: FormItem
     });
 
 })));

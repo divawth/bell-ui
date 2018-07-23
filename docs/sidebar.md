@@ -19,6 +19,7 @@
   - [Rate 评分](form/rate)
   - [DatePicker 日期选择器](form/datepicker)
   - [Slider 滑块](form/slider)
+  - [Form 表单](form/form)
 - [View](view)
   - [Alert 警告提示](view/alert)
   - [List 列表](view/list)
