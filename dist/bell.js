@@ -4571,14 +4571,43 @@
     };
 
     var Form = {
-        template: '\n        <div class="bell-form\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-form\n            {{#if className}} {{className}}{{/if}}\n            {{#if inline}} bell-form-inline{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
             },
             style: {
                 type: 'string'
+            },
+            value: {
+                type: 'object'
+            },
+            rules: {
+                type: 'object'
+            },
+            inline: {
+                type: 'boolean'
+            },
+            labelPosition: {
+                type: ['left', 'right', 'top'],
+                value: 'left'
+            },
+            labelWidth: {
+                type: 'number'
+            },
+            showMessage: {
+                type: 'boolean'
             }
+        },
+        methods: {
+            getValue: function getValue() {}
+        },
+        afterMount: function afterMount() {
+            var me = this;
+            me.fire('setRules', {
+                rules: me.get('rules'),
+                value: me.get('value')
+            }, true);
         }
     };
 
@@ -4590,6 +4619,43 @@
             },
             style: {
                 type: 'string'
+            },
+            prop: {
+                type: 'string'
+            },
+            label: {
+                type: 'string'
+            },
+            labelWidth: {
+                type: 'number'
+            },
+            required: {
+                type: 'boolean'
+            },
+            rules: {
+                type: 'number'
+            },
+            errorMsg: {
+                type: 'string'
+            }
+        },
+        data: function data() {
+            return {
+                rules: [],
+                defaultValue: ''
+            };
+        },
+
+        events: {
+            setRules: function setRules(event, data) {
+                var me = this;
+                var prop = me.get('prop');
+                var defaultValue = data.value && data.value[prop];
+                var rules = data.rules && data.rules[prop];
+                me.set({
+                    rules: rules,
+                    defaultValue: defaultValue
+                });
             }
         }
     };

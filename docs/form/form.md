@@ -2,28 +2,57 @@
 
     export default {
         template: `
-            <Form v-ref:form-inline :model="formInline" :rules="ruleInline" inline>
+            <Form ref="formInline" model="formInline" rules="{{ruleInline}}" inline>
                 <FormItem prop="user">
-                    <Input type="text" :value.sync="formInline.user" placeholder="Username">
-                        <Icon type="ios-person-outline" slot="prepend"></Icon>
+                    <Input type="text" model="formInline.user" placeholder="Username">
+                        <template slot="prepend">
+                            <Icon type="ios-person-outline" slot="prepend"></Icon>
+                        </template>
                     </Input>
                 </FormItem>
                 <FormItem prop="password">
-                    <Input type="password" :value.sync="formInline.password" placeholder="Password">
-                        <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                    <Input type="password" model="formInline.password" placeholder="Password">
+                        <template slot="prepend">
+                            <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                        </template>
                     </Input>
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" on-click="handleSubmit('formInline')">登录</Button>
+                    <Button type="primary" on-click="handleSubmit()">登录</Button>
                 </FormItem>
             </Form>
         `,
         data: {
-            value: 3
+            formInline: {
+                user: '',
+                password: ''
+            },
+            ruleInline: {
+                user: [
+                    { required: true, message: '请填写用户名', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '请填写密码', trigger: 'blur' },
+                    { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
+                ]
+            }
+        },
+        methods: {
+            handleSubmit(name) {
+              console.log(this.$refs['formInline'].getValue)
+                this.$refs['formInline'].$options.validate((valid) => {
+                  console.log(valid)
+                    if (valid) {
+                        this.$Message.success('提交成功!');
+                    } else {
+                        this.$Message.error('表单验证失败!');
+                    }
+                })
+            }
         }
     }
 
-#### API
+#### Form API
 
 > Attributes
 
@@ -35,3 +64,24 @@ inline | 是否开启行内表单模式 | boolean | - | -
 labelPosition | 表单域标签的位置，可选值为 left、right、top | string | - | -
 labelWidth | 表单宽度 | number | - | -
 showMessage | 是否显示校验错误信息 | boolean | true | -
+
+> methods
+
+参数 | 说明 | 参数
+---|---|---|---|---
+validate | 对整个表单进行校验，参数为检验完的回调，会返回一个 Boolean 表示成功与失败 | callback
+validateField | 对部分表单字段进行校验的方法，参数1为需校验的 prop，参数2为检验完回调，同上 | callback
+resetFields | 对整个表单进行重置，将所有字段值重置为空并移除校验结果 | -
+
+#### FormItem API
+
+> Attributes
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+prop | 对应表单域 model 里的字段 | string | - | -
+label | 标签文本 | string | - | -
+labelWidth | 表单域标签的的宽度 | number | - | -
+required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | - | -
+rules | 表单验证规则 | number | - | -
+errorMsg | 表单域验证错误信息, 设置该值会使表单验证状态变为error，并显示该错误信息 | string | - | -
