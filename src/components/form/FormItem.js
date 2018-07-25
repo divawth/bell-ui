@@ -34,6 +34,7 @@ export default {
             type: 'string'
         }
     },
+
     data() {
         return {
             rules: [],

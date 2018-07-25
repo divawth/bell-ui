@@ -2,25 +2,31 @@
 
     export default {
         template: `
-            <Form ref="formInline" model="formInline" rules="{{ruleInline}}" inline>
-                <FormItem prop="user">
-                    <Input type="text" model="formInline.user" placeholder="Username">
-                        <template slot="prepend">
-                            <Icon type="ios-person-outline" slot="prepend"></Icon>
-                        </template>
-                    </Input>
-                </FormItem>
-                <FormItem prop="password">
-                    <Input type="password" model="formInline.password" placeholder="Password">
-                        <template slot="prepend">
-                            <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                        </template>
-                    </Input>
-                </FormItem>
-                <FormItem>
-                    <Button type="primary" on-click="handleSubmit()">登录</Button>
-                </FormItem>
-            </Form>
+            <div>
+                <Form ref="formInline" model="formInline" rules="{{ruleInline}}" inline>
+                    <FormItem prop="user">
+                        <Input type="text" model="formInline.user" placeholder="Username">
+                            <template slot="prepend">
+                                <Icon type="ios-person-outline" slot="prepend"></Icon>
+                            </template>
+                        </Input>
+                    </FormItem>
+                    <FormItem prop="password">
+                        <Input type="password" model="formInline.password" placeholder="Password">
+                            <template slot="prepend">
+                                <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                            </template>
+                        </Input>
+                    </FormItem>
+                    <FormItem>
+                        <Button type="primary" on-click="handleSubmit()">登录</Button>
+                    </FormItem>
+                </Form>
+                <p>
+                    {{formInline.user}}:
+                    {{formInline.password}}
+                </p>
+            </div>
         `,
         data: {
             formInline: {
@@ -39,8 +45,8 @@
         },
         methods: {
             handleSubmit(name) {
-              console.log(this.$refs['formInline'].getValue)
-                this.$refs['formInline'].$options.validate((valid) => {
+              console.log(this.$refs['formInline'].validate)
+                this.$refs['formInline'].validate((valid) => {
                   console.log(valid)
                     if (valid) {
                         this.$Message.success('提交成功!');

@@ -37,7 +37,32 @@ export default {
         }
     },
     methods: {
-        getValue(){}
+        validate() {
+            let me = this;
+            let flag = true;
+            let rules = me.get('rules');
+            let result = me.get('value');
+            let errorMsgs = [];
+
+            if (rules) {
+                Yox.object.each(
+                    rules,
+                    function (list, key) {
+                        Yox.array.each(
+                            list,
+                            function (item) {
+                                let value = result[key];
+                                if (item.required && value == undefined) {
+                                    errorMsgs.push(item.message);
+                                    flag = false;
+                                }
+                            }
+                        );
+                    }
+                );
+            }
+            return flag;
+        }
     },
     afterMount() {
         let me = this;

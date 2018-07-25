@@ -1,5 +1,7 @@
 (function (global, factory) {
-    (global.Yox = factory());
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.Yox = factory());
 }(this, (function () { 'use strict';
 
 
@@ -160,15 +162,15 @@ function primitive(value) {
 
 
 var is$1 = {
-    is: is,
-    func: func,
-    array: array,
-    object: object,
-    string: string,
-    number: number,
-    boolean: boolean,
-    numeric: numeric,
-    primitive: primitive
+  is: is,
+  func: func,
+  array: array,
+  object: object,
+  string: string,
+  number: number,
+  boolean: boolean,
+  numeric: numeric,
+  primitive: primitive
 };
 
 /**
@@ -512,18 +514,18 @@ function falsy(array$$1) {
 }
 
 var array$1 = {
-    each: each,
-    join: join,
-    push: push,
-    unshift: unshift,
-    toArray: toArray$1,
-    toObject: toObject,
-    indexOf: indexOf,
-    has: has,
-    last: last,
-    pop: pop,
-    remove: remove,
-    falsy: falsy
+  each: each,
+  join: join,
+  push: push,
+  unshift: unshift,
+  toArray: toArray$1,
+  toObject: toObject,
+  indexOf: indexOf,
+  has: has,
+  last: last,
+  pop: pop,
+  remove: remove,
+  falsy: falsy
 };
 
 /**
@@ -632,15 +634,15 @@ function falsy$1(str) {
 }
 
 var string$1 = {
-    camelCase: camelCase,
-    trim: trim,
-    slice: slice,
-    indexOf: indexOf$1,
-    lastIndexOf: lastIndexOf,
-    has: has$2,
-    startsWith: startsWith,
-    endsWith: endsWith,
-    falsy: falsy$1
+  camelCase: camelCase,
+  trim: trim,
+  slice: slice,
+  indexOf: indexOf$1,
+  lastIndexOf: lastIndexOf,
+  has: has$2,
+  startsWith: startsWith,
+  endsWith: endsWith,
+  falsy: falsy$1
 };
 
 function startsWith$1(keypath, prefix) {
@@ -866,15 +868,15 @@ function set$1(object$$1, keypath, value, autofill) {
 }
 
 var object$1 = {
-    keys: keys,
-    sort: sort,
-    each: each$1,
-    has: has$1,
-    clear: clear,
-    extend: extend,
-    copy: copy,
-    get: get$1,
-    set: set$1
+  keys: keys,
+  sort: sort,
+  each: each$1,
+  has: has$1,
+  clear: clear,
+  extend: extend,
+  copy: copy,
+  get: get$1,
+  set: set$1
 };
 
 var RAW_SPACE = 'space';
@@ -1149,10 +1151,10 @@ function fatal(msg) {
 
 
 var logger = {
-    log: log,
-    warn: warn,
-    error: error$1,
-    fatal: fatal
+  log: log,
+  warn: warn,
+  error: error$1,
+  fatal: fatal
 };
 
 var nextTick;
@@ -1942,13 +1944,13 @@ function init(api) {
 }
 
 var snabbdom = {
-    createCommentVnode: createCommentVnode,
-    createTextVnode: createTextVnode,
-    createElementVnode: createElementVnode,
-    createComponentVnode: createComponentVnode,
-    isVnode: isVnode,
-    isTextVnode: isTextVnode,
-    init: init
+  createCommentVnode: createCommentVnode,
+  createTextVnode: createTextVnode,
+  createElementVnode: createElementVnode,
+  createComponentVnode: createComponentVnode,
+  isVnode: isVnode,
+  isTextVnode: isTextVnode,
+  init: init
 };
 
 var PLUS = '+';
@@ -5347,31 +5349,31 @@ function removeClass(element, className) {
 }
 
 var domApi = {
-    createElement: createElement,
-    createText: createText,
-    createComment: createComment,
-    createEvent: createEvent,
-    isElement: isElement,
-    setProp: setProp,
-    removeProp: removeProp,
-    setAttr: setAttr,
-    removeAttr: removeAttr,
-    before: before,
-    append: append$1,
-    replace: replace,
-    remove: remove$1,
-    parent: parent,
-    next: next,
-    tag: tag$1,
-    children: children,
-    text: text,
-    html: html,
-    component: component$1,
-    find: find,
-    on: on$1,
-    off: off,
-    addClass: addClass,
-    removeClass: removeClass
+  createElement: createElement,
+  createText: createText,
+  createComment: createComment,
+  createEvent: createEvent,
+  isElement: isElement,
+  setProp: setProp,
+  removeProp: removeProp,
+  setAttr: setAttr,
+  removeAttr: removeAttr,
+  before: before,
+  append: append$1,
+  replace: replace,
+  remove: remove$1,
+  parent: parent,
+  next: next,
+  tag: tag$1,
+  children: children,
+  text: text,
+  html: html,
+  component: component$1,
+  find: find,
+  on: on$1,
+  off: off,
+  addClass: addClass,
+  removeClass: removeClass
 };
 
 /**
@@ -5870,7 +5872,7 @@ var Yox = function () {
     var source;
     if (object(propTypes)) {
       instance.$propTypes = propTypes;
-      source = instance.validate(props || {}, propTypes);
+      source = Yox.validate(props || {}, propTypes);
     } else {
       source = props || {};
     }
@@ -6008,12 +6010,6 @@ var Yox = function () {
       });
     }
   }
-
-  Yox.prototype.validate = function (props) {
-    var $propTypes = this.$propTypes;
-
-    return $propTypes ? Yox.validate(props, $propTypes) : props;
-  };
 
   /**
    * 添加计算属性

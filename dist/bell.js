@@ -4600,7 +4600,22 @@
             }
         },
         methods: {
-            getValue: function getValue() {}
+            validate: function validate() {
+                var me = this;
+                var flag = true;
+                var rules = me.get('rules');
+                var result = me.get('value');
+                if (rules) {
+                    Yox.object.each(rules, function (list, key) {
+                        Yox.array.each(list, function (item) {
+                            var value = result[key];
+                            console.log(value);
+                            debugger;
+                        });
+                    });
+                }
+                return flag;
+            }
         },
         afterMount: function afterMount() {
             var me = this;
@@ -4639,6 +4654,7 @@
                 type: 'string'
             }
         },
+
         data: function data() {
             return {
                 rules: [],
