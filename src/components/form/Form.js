@@ -1,3 +1,7 @@
+import {
+    Validator
+} from './util/validate'
+
 export default {
     template: `
         <div class="bell-form
@@ -22,6 +26,9 @@ export default {
         rules: {
             type: 'object'
         },
+        messages: {
+            type: 'object'
+        },
         inline: {
             type: 'boolean'
         },
@@ -37,31 +44,25 @@ export default {
         }
     },
     methods: {
-        validate() {
+        validate(callback) {
             let me = this;
-            let flag = true;
-            let rules = me.get('rules');
-            let result = me.get('value');
-            let errorMsgs = [];
-
-            if (rules) {
-                Yox.object.each(
-                    rules,
-                    function (list, key) {
-                        Yox.array.each(
-                            list,
-                            function (item) {
-                                let value = result[key];
-                                if (item.required && value == undefined) {
-                                    errorMsgs.push(item.message);
-                                    flag = false;
-                                }
-                            }
-                        );
-                    }
-                );
+            const validator = new Validator(
+                function (rule, value, errorType, messgae) {
+                    return errorType
+                }
+            );
+            let errors = validator.validate(
+                me.get('value'),
+                me.get('rules'),
+                me.get('messages')
+            );
+            let isValid = !errors;
+            if (isValid) {
+                callback(true)
             }
-            return flag;
+            else {
+                callback(false, errors);
+            }
         }
     },
     afterMount() {

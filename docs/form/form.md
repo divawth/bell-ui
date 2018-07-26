@@ -3,20 +3,26 @@
     export default {
         template: `
             <div>
-                <Form ref="formInline" model="formInline" rules="{{ruleInline}}" inline>
+                <Form ref="formInline" model="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
                     <FormItem prop="user">
-                        <Input type="text" model="formInline.user" placeholder="Username">
+                        <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
                             <template slot="prepend">
                                 <Icon type="ios-person-outline" slot="prepend"></Icon>
                             </template>
                         </Input>
+                        <p class="bell-text tiny error">
+                          {{errors.user}}
+                        </p>
                     </FormItem>
                     <FormItem prop="password">
-                        <Input type="password" model="formInline.password" placeholder="Password">
+                        <Input type="password" status="{{#if errors.password}}error{{/if}}" model="formInline.password" placeholder="Password">
                             <template slot="prepend">
                                 <Icon type="ios-locked-outline" slot="prepend"></Icon>
                             </template>
                         </Input>
+                        <p class="bell-text tiny error">
+                          {{errors.password}}
+                        </p>
                     </FormItem>
                     <FormItem>
                         <Button type="primary" on-click="handleSubmit()">登录</Button>
@@ -29,26 +35,41 @@
             </div>
         `,
         data: {
+            errors: null,
             formInline: {
                 user: '',
                 password: ''
             },
             ruleInline: {
-                user: [
-                    { required: true, message: '请填写用户名', trigger: 'blur' }
-                ],
-                password: [
-                    { required: true, message: '请填写密码', trigger: 'blur' },
-                    { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
-                ]
+                user: {
+                    type: 'string',
+                    required: true,
+                },
+                password: {
+                    require: true,
+                    type: 'string',
+                    min: 6
+                }
+            },
+            messageInline: {
+                user: {
+                    empty: '请填写用户名'
+                },
+                password: {
+                    empty: '请填写密码',
+                    min: '密码长度不能小于 6 位'
+                }
             }
+
         },
         methods: {
             handleSubmit(name) {
               console.log(this.$refs['formInline'].validate)
-                this.$refs['formInline'].validate((valid) => {
-                  console.log(valid)
-                    if (valid) {
+                this.$refs['formInline'].validate((isValid, errors) => {
+                    this.set({
+                        errors: errors
+                    })
+                    if (isValid) {
                         this.$Message.success('提交成功!');
                     } else {
                         this.$Message.error('表单验证失败!');
@@ -66,6 +87,7 @@
 ---|---|---|---|---
 model | 表单数据对象 | object | - | -
 rules | 表单验证规则 | object | - | -
+messages | 表单验证之后的错误提示 | object | - | -
 inline | 是否开启行内表单模式 | boolean | - | -
 labelPosition | 表单域标签的位置，可选值为 left、right、top | string | - | -
 labelWidth | 表单宽度 | number | - | -
