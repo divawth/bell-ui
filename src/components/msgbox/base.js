@@ -22,14 +22,14 @@ let createAlert = (data) => {
                     </div>
                     {{/if}}
 
+                    {{#if title}}
                     <div class="bell-msg-alert-title bell-text-main bell-text-medium">
-                        {{#if title}}
-                            {{title}}
-                        {{/if}}
+                        {{{title}}}
                     </div>
+                    {{/if}}
 
                     <div class="bell-msg-alert-desc bell-text-sub bell-text-small">
-                        {{content}}
+                        {{{content}}}
                     </div>
 
                     <div class="bell-msg-alert-footer">
@@ -125,14 +125,14 @@ let createConfirm = (data) => {
                     </div>
                     {{/if}}
 
+                    {{#if title}}
                     <div class="bell-msg-confirm-title bell-text-main bell-text-medium">
-                        {{#if title}}
-                            {{title}}
-                        {{/if}}
+                        {{{title}}}
                     </div>
+                    {{/if}}
 
                     <div class="bell-msg-confirm-desc bell-text-sub bell-text-small">
-                        {{content}}
+                        {{{content}}}
                     </div>
                     {{#if buttons}}
                     <div class="bell-msg-confirm-footer">

@@ -3453,7 +3453,6 @@ button.bell-button-danger[disabled] {
 .bell-layout-header-center {
   flex: 4;
   align-self: center;
-  text-align: center;
   justify-content: center;
 }
 .bell-layout-footer {
@@ -6364,6 +6363,7 @@ button.bell-button-danger[disabled] {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: auto;
 }
 .bell-msg-confirm-wrapper .bell-msg-confirm {
   text-align: left;
