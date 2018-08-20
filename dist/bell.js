@@ -4187,10 +4187,7 @@
     };
 
     var Rate = {
-        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-readonly{{/if}}\n            {{#if type}} bell-rate-{{type}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="modelValue">\n            {{#each createRateList():index}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if activeValue - index >= 1}} active{{/if}}\n                " on-mousemove="handleMove($event, index)"\n                on-click="handleClick($event, index)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if activeValue - index == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{modelValue}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
-
-        model: 'modelValue',
-
+        template: '\n        <div class="bell-rate\n            {{#if className}} {{className}}{{/if}}\n            {{#if readOnly}} bell-rate-readonly{{/if}}\n            {{#if type}} bell-rate-{{type}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">\n\n            <input type="hidden" model="value">\n            {{#each 1 => count}}\n                <span class="bell-icon bell-rate-star-full\n                    {{#if activeValue - this >= 1}} active{{/if}}\n                " on-mousemove="handleMove($event, this)"\n                on-click="handleClick($event, this)"\n                >\n                    {{#if half}}\n                        <span type="half"\n                        class="bell-icon bell-rate-star-content\n                        {{#if activeValue - this == 0.5}} active{{/if}}">\n                        </span>\n                    {{/if}}\n                </span>\n            {{/each}}\n\n            {{#if showTexts}}\n                <span class="bell-rate-text">\n                    {{#if hasSlot(\'children\')}}\n                        <slot name="children" />\n                    {{else}}\n                        {{value}} \u661F\n                    {{/if}}\n                </span>\n            {{/if}}\n\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -4202,7 +4199,7 @@
                 type: 'number',
                 value: 5
             },
-            modelValue: {
+            value: {
                 type: 'numeric'
             },
             half: {
@@ -4239,7 +4236,7 @@
         computed: {
             activeValue: function activeValue() {
                 var hoverValue = this.get('hoverValue');
-                return hoverValue < 0 ? this.get('modelValue') : hoverValue;
+                return hoverValue < 0 ? this.get('value') : hoverValue;
             }
         },
 
@@ -4285,7 +4282,7 @@
                 }
 
                 me.set({
-                    hoverValue: me.get('modelValue') >= 0 ? me.get('modelValue') : -1
+                    hoverValue: me.get('value') >= 0 ? me.get('value') : -1
                 });
             },
             handleClick: function handleClick(event, index) {
@@ -4302,7 +4299,7 @@
                     index -= 0.5;
                 }
                 me.set({
-                    modelValue: index
+                    value: index
                 });
                 me.fire('change', {
                     value: index
@@ -4840,7 +4837,7 @@
     };
 
     var FormItem = {
-        template: '\n        <div class="bell-form-item\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-form-item\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} {{style}}{{/if}}>\n            {{#if label}}\n            <label class="bell-form-item-label" style="width: {{labelWidth}}px;">\n                {{label}}\n            </label>\n            {{/if}}\n            <div \n                class="bell-form-item-content" \n                {{#if label}}style="padding-left: {{labelWidth}}px;"{{/if}}\n            >\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -4855,7 +4852,8 @@
                 type: 'string'
             },
             labelWidth: {
-                type: 'number'
+                type: 'number',
+                value: 80
             },
             required: {
                 type: 'boolean'

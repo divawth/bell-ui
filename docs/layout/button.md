@@ -59,10 +59,10 @@
                         Default
                     </Button>
                     <Button type="ghost" size="small">
-                        Default
+                        Small
                     </Button>
                     <Button type="ghost" size="tiny">
-                        Small
+                        Tiny
                     </Button>
                 </div>
 

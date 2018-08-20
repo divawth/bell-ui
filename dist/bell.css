@@ -4193,11 +4193,6 @@ button.bell-button-danger[disabled] {
 .bell-input-number-readonly .bell-input-number-actions {
   display: none;
 }
-.bell-input-number-readonly.bell-input-number-readonly.hover,
-.bell-input-number-readonly:hover,
-.bell-input-number-readonly.bell-hover {
-  border-color: ;
-}
 .bell-radio-group {
   display: inline-block;
   user-select: none;
@@ -4622,7 +4617,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox:hover .bell-checkbox-inner,
 .bell-checkbox.bell-hover .bell-checkbox-inner {
   color: #f67422;
-  background-color: ;
 }
 .bell-checkbox-success {
   color: rgba(0,0,0,0.87);
@@ -4637,7 +4631,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-success:hover .bell-checkbox-inner,
 .bell-checkbox-success.bell-hover .bell-checkbox-inner {
   color: #28cd6a;
-  background-color: ;
 }
 .bell-checkbox-info {
   color: rgba(0,0,0,0.87);
@@ -4652,7 +4645,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-info:hover .bell-checkbox-inner,
 .bell-checkbox-info.bell-hover .bell-checkbox-inner {
   color: #7aa3e9;
-  background-color: ;
 }
 .bell-checkbox-error {
   color: rgba(0,0,0,0.87);
@@ -4667,7 +4659,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-error:hover .bell-checkbox-inner,
 .bell-checkbox-error.bell-hover .bell-checkbox-inner {
   color: #fc4b4e;
-  background-color: ;
 }
 .bell-checkbox-warning {
   color: rgba(0,0,0,0.87);
@@ -4682,7 +4673,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-warning:hover .bell-checkbox-inner,
 .bell-checkbox-warning.bell-hover .bell-checkbox-inner {
   color: #fec740;
-  background-color: ;
 }
 .bell-checkbox-danger {
   color: rgba(0,0,0,0.87);
@@ -4697,7 +4687,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-danger:hover .bell-checkbox-inner,
 .bell-checkbox-danger.bell-hover .bell-checkbox-inner {
   color: #eb1111;
-  background-color: ;
 }
 .bell-checkbox-disabled {
   color: #ccc;
@@ -4712,7 +4701,6 @@ button.bell-button-danger[disabled] {
 .bell-checkbox-disabled:hover .bell-checkbox-inner,
 .bell-checkbox-disabled.bell-hover .bell-checkbox-inner {
   color: #dddee1;
-  background-color: ;
 }
 .bell-checkbox + .bell-checkbox {
   margin-left: 8px;
@@ -4817,12 +4805,10 @@ button.bell-button-danger[disabled] {
   padding-left: 22px;
 }
 .bell-switch .bell-switch-button .bell-switch-on {
-  font-size: ;
   line-height: 20px;
   height: 20px;
 }
 .bell-switch .bell-switch-button .bell-switch-off {
-  font-size: ;
   line-height: 20px;
   height: 20px;
 }
@@ -4850,12 +4836,10 @@ button.bell-button-danger[disabled] {
   padding-left: 16px;
 }
 .bell-switch-small .bell-switch-button .bell-switch-on {
-  font-size: ;
   line-height: 16px;
   height: 16px;
 }
 .bell-switch-small .bell-switch-button .bell-switch-off {
-  font-size: ;
   line-height: 16px;
   height: 16px;
 }
@@ -4883,12 +4867,10 @@ button.bell-button-danger[disabled] {
   padding-left: 26px;
 }
 .bell-switch-large .bell-switch-button .bell-switch-on {
-  font-size: ;
   line-height: 24px;
   height: 24px;
 }
 .bell-switch-large .bell-switch-button .bell-switch-off {
-  font-size: ;
   line-height: 24px;
   height: 24px;
 }
@@ -5952,7 +5934,6 @@ button.bell-button-danger[disabled] {
   display: inline-block;
   text-align: center;
   background-color: #ccc;
-  font-size: ;
 }
 .bell-avatar {
   width: 50px;
@@ -6716,42 +6697,36 @@ button.bell-button-danger[disabled] {
 }
 .bell-spinner {
   color: #f67422;
-  padding: ;
 }
 .bell-spinner .bell-spinner-dot {
   background-color: #f67422;
 }
 .bell-spinner.success {
   color: #28cd6a;
-  padding: ;
 }
 .bell-spinner.success .bell-spinner-dot {
   background-color: #28cd6a;
 }
 .bell-spinner.info {
   color: #7aa3e9;
-  padding: ;
 }
 .bell-spinner.info .bell-spinner-dot {
   background-color: #7aa3e9;
 }
 .bell-spinner.error {
   color: #fc4b4e;
-  padding: ;
 }
 .bell-spinner.error .bell-spinner-dot {
   background-color: #fc4b4e;
 }
 .bell-spinner.warning {
   color: #fec740;
-  padding: ;
 }
 .bell-spinner.warning .bell-spinner-dot {
   background-color: #fec740;
 }
 .bell-spinner.danger {
   color: #eb1111;
-  padding: ;
 }
 .bell-spinner.danger .bell-spinner-dot {
   background-color: #eb1111;
@@ -7730,4 +7705,12 @@ button.bell-button-danger[disabled] {
 }
 .bell-drawer.bell-drawer-hidden {
   display: none;
+}
+.bell-form .bell-form-item-label {
+  text-align: right;
+  vertical-align: middle;
+  line-height: 1;
+  padding: 10px 12px 10px 0;
+  box-sizing: border-box;
+  float: left;
 }

@@ -3,9 +3,19 @@ export default {
         <div class="bell-form-item
             {{#if className}} {{className}}{{/if}}
         "{{#if style}} {{style}}{{/if}}>
-            {{#if hasSlot('children')}}
-                <slot name="children" />
+            {{#if label}}
+            <label class="bell-form-item-label" style="width: {{labelWidth}}px;">
+                {{label}}
+            </label>
             {{/if}}
+            <div 
+                class="bell-form-item-content" 
+                {{#if label}}style="padding-left: {{labelWidth}}px;"{{/if}}
+            >
+                {{#if hasSlot('children')}}
+                    <slot name="children" />
+                {{/if}}
+            </div>
         </div>
     `,
     propTypes: {
@@ -22,7 +32,8 @@ export default {
             type: 'string'
         },
         labelWidth: {
-            type: 'number'
+            type: 'number',
+            value: 80
         },
         required: {
             type: 'boolean'
