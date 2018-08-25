@@ -16,6 +16,7 @@
   - [Checkbox 单选框](form/checkbox)
   - [Switch 单选框](form/switch)
   - [Select 选择器](form/select)
+  - [Upload 上传](form/upload)
   - [Rate 评分](form/rate)
   - [DatePicker 日期选择器](form/datepicker)
   - [Slider 滑块](form/slider)

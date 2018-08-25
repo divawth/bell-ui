@@ -4,6 +4,13 @@
         template: `
             <div>
                 <Form ref="formInline" model="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
+                    <FormItem label="user">
+                        <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
+                        </Input>
+                        <p class="bell-text tiny error">
+                          {{errors.user}}
+                        </p>
+                    </FormItem>
                     <FormItem prop="user">
                         <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
                             <template slot="prepend">

@@ -33,6 +33,7 @@ import Switch from './components/switch/Switch'
 import Select from './components/select/Select'
 import Option from './components/select/Option'
 import Page from './components/page/Page'
+import Upload from './components/upload/Upload'
 
 import Alert from './components/alert/Alert'
 import Desc from './components/alert/Desc'
@@ -121,6 +122,7 @@ Yox.component({
     DateMonth,
     DateYear,
     DatePicker,
+    Upload,
 
     Tooltip,
     TooltipItem,
