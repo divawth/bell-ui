@@ -1,3 +1,7 @@
+import {
+    contains
+} from '../util'
+
 export default {
     template: `
         <div class="bell-drawer
@@ -54,13 +58,13 @@ export default {
 
         me.documentClickHandler = function (event) {
 
+            if (!me.get('open')) {
+                return
+            }
             let element = me.$refs.drawContent;
             let target = event.originalEvent.target;
-            if (element.contains && element.contains(target)) {
-                return false;
-            }
-            else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                return false;
+            if (contains(element, target)) {
+                return;
             }
             me.set({
                 open: false

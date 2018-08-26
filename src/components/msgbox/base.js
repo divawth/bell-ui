@@ -46,7 +46,7 @@ let createAlert = (data) => {
             return {
                 isHidden: true,
                 closable: data.closable,
-                title: data.title || data,
+                title: data.title || '温馨提示',
                 content: data.content || data,
                 button: data.button || {
                     text: '我知道了',

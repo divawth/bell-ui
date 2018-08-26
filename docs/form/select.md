@@ -34,7 +34,8 @@
                         text: '北京',
                         value: 4
                     }
-                ]
+                ],
+                value: 2
             }
         },
         methods: {

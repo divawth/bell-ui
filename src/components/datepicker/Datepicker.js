@@ -1,6 +1,9 @@
 import {
     lpad
 } from './function/util'
+import {
+    contains
+} from '../util'
 
 const DAY_MAP = {
     '1': '一',
@@ -57,6 +60,9 @@ export default {
         mode: {
             type: 'string'
         },
+        value: {
+            type: 'object'
+        },
         formateText: {
             type: 'string'
         }
@@ -72,7 +78,6 @@ export default {
             isPopuping: false,
             isPopdowning: false,
             isOpen: false,
-
         }
     },
 
@@ -267,7 +272,6 @@ export default {
 
     afterMount() {
         let me = this;
-
         if (!me.get('formateText')) {
             switch(me.get('mode')) {
                 case 'date':
@@ -298,14 +302,18 @@ export default {
             }
         }
 
+        if (me.get('value')) {
+            me.dateChange(me.get('value'));    
+        }
+        
         me.documentClickHandler = function (e) {
+            if (!me.get('isOpen')) {
+                return
+            }
             let element = me.$el;
             let target = e.originalEvent.target;
-            if (element.contains && element.contains(target)) {
-                return false;
-            }
-            else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                return false;
+            if (contains(element, target)) {
+                return;
             }
             me.close();
         };

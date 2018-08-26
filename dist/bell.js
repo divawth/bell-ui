@@ -795,6 +795,15 @@
         }
     };
 
+    var contains = function contains(element, target) {
+      if (element.contains && element.contains(target)) {
+        return true;
+      } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
+        return true;
+      }
+      return false;
+    };
+
     var Drawer = {
         template: '\n        <div class="bell-drawer\n            {{#if className}} {{className}}{{/if}}\n            {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n            {{#if position}} bell-drawer-{{position}}{{/if}}\n        " style="{{#if style}} {{style}}{{/if}};">\n\n            {{#if useMask}}\n                <div class="bell-drawer-mask"></div>\n            {{/if}}\n\n            <div ref="drawContent" class="bell-drawer-content"\n                style="{{#if position == "left" || position == "right"}}\n                        width: {{size}}px;\n                    {{else}}\n                        height: {{size}}px;\n                    {{/if}}\n                "\n            >\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            </div>\n\n        </div>\n    ',
 
@@ -826,12 +835,13 @@
 
             me.documentClickHandler = function (event) {
 
+                if (!me.get('open')) {
+                    return;
+                }
                 var element = me.$refs.drawContent;
                 var target = event.originalEvent.target;
-                if (element.contains && element.contains(target)) {
-                    return false;
-                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                    return false;
+                if (contains(element, target)) {
+                    return;
                 }
                 me.set({
                     open: false
@@ -1040,7 +1050,7 @@
     };
 
     var InputNumber = {
-        template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input-number\n                {{#if className}} {{className}}{{/if}}\n                {{#if size}} bell-input-number-{{size}}{{/if}}\n                {{#if status}} bell-input-number-{{status}}{{/if}}\n                {{#if disabled}} bell-input-number-disabled{{/if}}\n                {{#if readonly}} bell-input-number-readonly{{/if}}\n                {{#if isFocus}} bell-focus{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}>\n\n                <span class="bell-input-number-wrapper">\n                    <input type="text" class="bell-input"\n                    {{#if disabled}}disabled="disabled"{{/if}}\n                    {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                    model="value" on-blur="blur()" on-focus="focus()"\n                    ></input>\n                </span>\n\n                <span class="bell-input-number-actions">\n                    <span class="bell-icon bell-icon-up bell-icon-ios-arrow-up"\n                        {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                        on-click="up()"></span>\n                    <span class="bell-icon bell-icon-down bell-icon-ios-arrow-down"\n                        {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                        on-click="down()"\n                    ></span>\n                </span>\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-input-wrapper\n            {{#if hasSlot(\'prepend\')}} bell-input-has-prepend{{/if}}\n            {{#if hasSlot(\'append\')}} bell-input-has-append{{/if}}\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n            {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n            {{#if isFocus}} bell-focus{{/if}}\n            {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n            {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}\n        >\n\n            {{#if hasSlot(\'prepend\')}}\n                <div class="bell-input-prepend">\n                    <slot name="prepend" />\n                </div>\n            {{/if}}\n\n            <div class="bell-input-number\n                {{#if className}} {{className}}{{/if}}\n                {{#if size}} bell-input-number-{{size}}{{/if}}\n                {{#if status}} bell-input-number-{{status}}{{/if}}\n                {{#if disabled}} bell-input-number-disabled{{/if}}\n                {{#if readonly}} bell-input-number-readonly{{/if}}\n                {{#if isFocus}} bell-focus{{/if}}\n            "{{#if style}} style="{{style}}"{{/if}}>\n\n                <span class="bell-input-number-wrapper">\n                    <input type="text" class="bell-input"\n                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}\n                    {{#if disabled}}disabled="disabled"{{/if}}\n                    {{#if readonly || !editable}}readonly="readonly"{{/if}}\n                    model="value" on-blur="blur()" on-focus="focus()"\n                    ></input>\n                </span>\n\n                <span class="bell-input-number-actions">\n                    <span class="bell-icon bell-icon-up bell-icon-ios-arrow-up"\n                        {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}\n                        on-click="up()"></span>\n                    <span class="bell-icon bell-icon-down bell-icon-ios-arrow-down"\n                        {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}\n                        on-click="down()"\n                    ></span>\n                </span>\n\n            </div>\n            {{#if hasSlot(\'append\')}}\n                <div class="bell-input-append">\n                    <slot name="append" />\n                </div>\n            {{/if}}\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -1059,8 +1069,7 @@
                 value: 0
             },
             value: {
-                type: 'numeric',
-                value: 0
+                type: 'numeric'
             },
             step: function step(val) {
                 return val === undefined ? 1 : +val;
@@ -1078,6 +1087,9 @@
             editable: {
                 type: 'boolean',
                 value: true
+            },
+            placeholder: {
+                type: 'string'
             }
         },
 
@@ -1728,12 +1740,14 @@
 
             me.documentClickHandler = function (e) {
 
+                if (!me.get('visible')) {
+                    return;
+                }
+
                 var element = me.$el;
                 var target = e.originalEvent.target;
-                if (element.contains && element.contains(target)) {
-                    return false;
-                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                    return false;
+                if (contains(element, target)) {
+                    return;
                 }
                 me.set({
                     visible: false
@@ -2432,6 +2446,9 @@
             mode: {
                 type: 'string'
             },
+            value: {
+                type: 'object'
+            },
             formateText: {
                 type: 'string'
             }
@@ -2446,7 +2463,6 @@
                 isPopuping: false,
                 isPopdowning: false,
                 isOpen: false
-
             };
         },
 
@@ -2595,7 +2611,6 @@
 
         afterMount: function afterMount() {
             var me = this;
-
             if (!me.get('formateText')) {
                 switch (me.get('mode')) {
                     case 'date':
@@ -2626,13 +2641,18 @@
                 }
             }
 
+            if (me.get('value')) {
+                me.dateChange(me.get('value'));
+            }
+
             me.documentClickHandler = function (e) {
+                if (!me.get('isOpen')) {
+                    return;
+                }
                 var element = me.$el;
                 var target = e.originalEvent.target;
-                if (element.contains && element.contains(target)) {
-                    return false;
-                } else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                    return false;
+                if (contains(element, target)) {
+                    return;
                 }
                 me.close();
             };
@@ -5222,7 +5242,7 @@
                 return {
                     isHidden: true,
                     closable: _data.closable,
-                    title: _data.title || _data,
+                    title: _data.title || '温馨提示',
                     content: _data.content || _data,
                     button: _data.button || {
                         text: '我知道了',

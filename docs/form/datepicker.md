@@ -3,7 +3,7 @@
     export default {
         template: `
             <div>
-                <DatePicker mode="date" on-change="change()" />
+                <DatePicker mode="date" model="value" on-change="change()" />
                 <p>{{ formateDate }}</p>
             </div>
         `,
@@ -12,6 +12,15 @@
                 this.set({
                     formateDate: data.value.formateDate
                 });
+            }
+        },
+        data: function () {
+            return {
+                value: {
+                    year: 2018, 
+                    month: 8, 
+                    date: 16
+                }
             }
         }
     }

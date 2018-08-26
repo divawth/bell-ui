@@ -3639,63 +3639,63 @@ button.bell-button-danger[disabled] {
 }
 .bell-input-wrapper .bell-input-prepend {
   height: 34px;
-  line-height: 34px;
+  line-height: 3.5;
 }
 .bell-input-wrapper .bell-input-append {
   height: 34px;
-  line-height: 34px;
+  line-height: 3.5;
 }
 .bell-input-wrapper .bell-input .bell-input-el {
   height: 32px;
-  line-height: 32px;
+  line-height: 1.5;
   padding: 4px 7px;
 }
 .bell-input-wrapper .bell-input .bell-input-icon-eye {
-  line-height: 32px;
+  line-height: 1.5;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 32px;
-  line-height: 32px;
+  line-height: 1.5;
 }
 .bell-input-wrapper-small .bell-input-prepend {
   height: 26px;
-  line-height: 26px;
+  line-height: 3.5;
 }
 .bell-input-wrapper-small .bell-input-append {
   height: 26px;
-  line-height: 26px;
+  line-height: 3.5;
 }
 .bell-input-wrapper-small .bell-input .bell-input-el {
   height: 24px;
-  line-height: 24px;
+  line-height: 1.5;
   padding: 1px 7px;
 }
 .bell-input-wrapper-small .bell-input .bell-input-icon-eye {
-  line-height: 24px;
+  line-height: 1.5;
 }
 .bell-input-wrapper-small.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 24px;
-  line-height: 24px;
+  line-height: 1.5;
 }
 .bell-input-wrapper-large .bell-input-prepend {
   height: 38px;
-  line-height: 38px;
+  line-height: 3.5;
 }
 .bell-input-wrapper-large .bell-input-append {
   height: 38px;
-  line-height: 38px;
+  line-height: 3.5;
 }
 .bell-input-wrapper-large .bell-input .bell-input-el {
   height: 36px;
-  line-height: 36px;
+  line-height: 1.5;
   padding: 6px 7px;
 }
 .bell-input-wrapper-large .bell-input .bell-input-icon-eye {
-  line-height: 36px;
+  line-height: 1.5;
 }
 .bell-input-wrapper-large.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 36px;
-  line-height: 36px;
+  line-height: 1.5;
 }
 .bell-input-wrapper .bell-input-prepend {
   border-color: #eee;
@@ -6139,6 +6139,7 @@ button.bell-button-danger[disabled] {
 }
 .bell-card-title-extra {
   float: right;
+  text-align: right;
 }
 .bell-card-media {
   position: relative;
@@ -7707,10 +7708,10 @@ button.bell-button-danger[disabled] {
   display: none;
 }
 .bell-form .bell-form-item-label {
-  text-align: right;
+  text-align: left;
   vertical-align: middle;
   line-height: 1;
   padding: 10px 12px 10px 0;
   box-sizing: border-box;
-  float: left;
+  position: absolute;
 }

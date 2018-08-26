@@ -29,6 +29,7 @@ export default {
 
                 <span class="bell-input-number-wrapper">
                     <input type="text" class="bell-input"
+                    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
                     {{#if disabled}}disabled="disabled"{{/if}}
                     {{#if readonly || !editable}}readonly="readonly"{{/if}}
                     model="value" on-blur="blur()" on-focus="focus()"
@@ -71,8 +72,7 @@ export default {
             value: 0
         },
         value: {
-            type: 'numeric',
-            value: 0
+            type: 'numeric'
         },
         step: function (val) {
             return val === undefined ? 1 : +val;
@@ -90,6 +90,9 @@ export default {
         editable: {
             type: 'boolean',
             value: true
+        },
+        placeholder: {
+            type: 'string'
         }
     },
 

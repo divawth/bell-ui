@@ -1,4 +1,7 @@
-import Tag from '../tag/Tag'
+import Tag from '../tag/Tag';
+import {
+    contains
+} from '../util';
 
 export default {
     template: `
@@ -282,13 +285,14 @@ export default {
 
         me.documentClickHandler = function (e) {
 
+            if (!me.get('visible')) {
+                return
+            }
+
             let element = me.$el;
             let target = e.originalEvent.target;
-            if (element.contains && element.contains(target)) {
-                return false;
-            }
-            else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-                return false;
+            if (contains(element, target)) {
+                return;
             }
             me.set({
                 visible: false
