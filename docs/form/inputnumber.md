@@ -1,12 +1,14 @@
 > 基础用法
 
     export default {
-        template: `
-            <InputNumber maxValue="10" minValue="1" model="value"></InputNumber>
-        `,
-        data: {
-            value: 3
-        }
+      template: `
+        <div>
+            <InputNumber maxValue="10" minValue="1" model="value" placeholder="请输入" />
+            <div>
+                {{value}}
+            </div>
+        </div>
+      `,
     }
 
 > step 修改步值（这里暂时不支持小数）

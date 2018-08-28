@@ -72,6 +72,18 @@
             background-color inherit
             box-shadow none
 
+            &::-webkit-input-placeholder  /* WebKit browsers */
+                color $input-number-el-placeholder-color
+
+            &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+                color $input-number-el-placeholder-color
+
+            &::-moz-placeholder  /* Mozilla Firefox 19+ */
+                color $input-number-el-placeholder-color
+
+            &:-ms-input-placeholder  /* Internet Explorer 10+ */
+                color $input-number-el-placeholder-color
+
 {$selector-input-number}-disabled
 
     cursor $cursor-disabled
