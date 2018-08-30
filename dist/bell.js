@@ -600,8 +600,10 @@
 
         methods: {
             click: function click(name) {
-                var me = this;
-                me.toggle('isOpen');
+                this.toggle('isOpen');
+                this.fire('click', {
+                    isOpen: this.get('isOpen')
+                });
             }
         }
     };
@@ -2233,12 +2235,10 @@
         }
     };
 
-    var _propTypes;
-
     var Avatar = {
         template: '\n        <div class="bell-avatar\n            {{#if className}} {{className}}{{/if}}\n            {{#if size}} bell-avatar-{{size}}{{/if}}\n            {{#if shape}} bell-avatar-{{shape}}{{/if}}\n        " style="font-size: {{fontSize}}px;\n            background-color: {{backgroundColor}};\n            color: {{color}};\n            {{#if style}} {{style}}{{/if}}"\n        >\n            {{#if src}}\n                <img{{#if srcset}} srcset="{{srcset}}"{{/if}} ondragstart="return false" src="{{src}}" />\n            {{else}}\n                {{#if hasSlot(\'children\')}}\n                    <slot name="children" />\n                {{/if}}\n            {{/if}}\n        </div>\n    ',
 
-        propTypes: (_propTypes = {
+        propTypes: {
             className: {
                 type: 'string'
             },
@@ -2256,14 +2256,17 @@
             },
             size: {
                 type: 'string'
+            },
+            fontSize: function fontSize(value) {
+                return value != null ? +value : 14;
+            },
+            backgroundColor: {
+                type: 'string'
+            },
+            color: {
+                type: 'string'
             }
-        }, _propTypes['size'] = function size(value) {
-            return value != null ? +value : 14;
-        }, _propTypes.backgroundColor = {
-            type: 'string'
-        }, _propTypes.color = {
-            type: 'string'
-        }, _propTypes)
+        }
     };
 
     var Badge = {
@@ -5527,79 +5530,79 @@
      */
 
     Yox.component({
-        Transition: Transition,
+      Transition: Transition,
 
-        Layout: Layout,
-        Header: Header,
-        Sider: Sider,
-        Content: Content,
-        Footer: Footer,
-        Menu: Menu,
-        MenuItem: MenuItem,
-        MenuGroup: MenuGroup,
-        Submenu: Submenu,
-        Row: Row,
-        Col: Col,
-        Icon: Icon,
-        Drawer: Drawer,
+      Layout: Layout,
+      Header: Header,
+      Sider: Sider,
+      Content: Content,
+      Footer: Footer,
+      Menu: Menu,
+      MenuItem: MenuItem,
+      MenuGroup: MenuGroup,
+      Submenu: Submenu,
+      Row: Row,
+      Col: Col,
+      Icon: Icon,
+      Drawer: Drawer,
 
-        Breadcrumb: Breadcrumb,
-        BreadcrumbItem: BreadcrumbItem,
+      Breadcrumb: Breadcrumb,
+      BreadcrumbItem: BreadcrumbItem,
 
-        Button: Button,
-        Input: Input,
-        InputNumber: InputNumber,
-        Radio: Radio,
-        RadioGroup: RadioGroup,
-        Checkbox: Checkbox,
-        CheckboxGroup: CheckboxGroup,
-        Switch: Switch,
-        Select: Select,
-        Option: Option,
-        Page: Page,
-        Date: Date$1,
-        DateRange: DateRange,
-        DateWeek: DateWeek,
-        DateMonth: DateMonth,
-        DateYear: DateYear,
-        DatePicker: DatePicker,
-        Upload: Upload,
+      Button: Button,
+      Input: Input,
+      InputNumber: InputNumber,
+      Radio: Radio,
+      RadioGroup: RadioGroup,
+      Checkbox: Checkbox,
+      CheckboxGroup: CheckboxGroup,
+      Switch: Switch,
+      Select: Select,
+      Option: Option,
+      Page: Page,
+      Date: Date$1,
+      DateRange: DateRange,
+      DateWeek: DateWeek,
+      DateMonth: DateMonth,
+      DateYear: DateYear,
+      DatePicker: DatePicker,
+      Upload: Upload,
 
-        Tooltip: Tooltip,
-        TooltipItem: TooltipItem,
+      Tooltip: Tooltip,
+      TooltipItem: TooltipItem,
 
-        Alert: Alert,
-        Desc: Desc,
-        Spinner: Spinner,
-        BackTop: BackTop,
-        Avatar: Avatar,
-        Badge: Badge,
+      Alert: Alert,
+      Desc: Desc,
+      Spinner: Spinner,
+      BackTop: BackTop,
+      Avatar: Avatar,
+      Badge: Badge,
 
-        Card: Card,
-        CardHeader: CardHeader,
-        CardMedia: CardMedia,
-        CardTitle: CardTitle,
-        CardText: CardText,
-        CardActions: CardActions,
+      Card: Card,
+      CardHeader: CardHeader,
+      CardMedia: CardMedia,
+      CardTitle: CardTitle,
+      CardText: CardText,
+      CardActions: CardActions,
 
-        Collapse: Collapse,
-        Panel: Panel,
-        List: List,
-        Item: Item,
-        Divider: Divider,
-        Circle: Circle,
-        Progress: Progress,
-        Slider: Slider,
-        Tag: Tag,
-        Rate: Rate,
-        Tabs: Tabs,
-        TabPanel: TabPanel,
+      Collapse: Collapse,
+      Panel: Panel,
+      List: List,
+      Item: Item,
+      Divider: Divider,
+      Circle: Circle,
+      Progress: Progress,
+      Slider: Slider,
+      Tag: Tag,
+      Rate: Rate,
+      Tabs: Tabs,
+      TabPanel: TabPanel,
 
-        Transfer: Transfer,
-        TimeLine: TimeLine,
-        TimeLineItem: TimeLineItem,
-        Form: Form,
-        FormItem: FormItem
+      Transfer: Transfer,
+      TimeLine: TimeLine,
+      TimeLineItem: TimeLineItem,
+      Form: Form,
+      FormItem: FormItem
     });
 
 })));

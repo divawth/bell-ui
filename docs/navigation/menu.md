@@ -181,7 +181,7 @@
         isViewFullBlock: true,
         template: `
             <div class="bell-template">
-                <Menu onSelect="{{select}}" theme="{{theme2}}" activeName="1-2" mode="vertical" openNames="['1']">
+                <Menu on-select="select()" theme="{{theme2}}" activeName="1-2" mode="vertical" openNames="['1']">
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-analytics"></Icon>
@@ -231,7 +231,7 @@
                 </RadioGroup>
             </div>
         `,
-        data: {
+        methods: {
             select: function (name) {
                 console.log(name)
             }

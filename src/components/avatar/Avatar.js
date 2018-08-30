@@ -38,7 +38,7 @@ export default {
         size: {
             type: 'string'
         },
-        size: function (value) {
+        fontSize: function (value) {
             return value != null ? +value : 14;
         },
         backgroundColor: {

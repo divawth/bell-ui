@@ -72,8 +72,13 @@ export default {
 
     methods: {
         click(name) {
-            let me = this;
-            me.toggle('isOpen');
+            this.toggle('isOpen');
+            this.fire(
+                'click',
+                {
+                    isOpen: this.get('isOpen')
+                }
+            );
         }
     }
 };
