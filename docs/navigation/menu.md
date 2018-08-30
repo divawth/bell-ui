@@ -28,7 +28,7 @@
                 <p>切换主题</p>
                 <RadioGroup model="theme1" type="info">
                     <Radio label="light" value="light"></Radio>
-                    <Radio label="dark" value="dark"></Radio>
+                    <Radio label="dark" value="dark" checked></Radio>
                     <Radio label="primary" value="primary"></Radio>
                 </RadioGroup>
 
@@ -125,7 +125,7 @@
                     <Radio value="light">
                         light
                     </Radio>
-                    <Radio value="dark">
+                    <Radio value="dark" checked>
                         dark
                     </Radio>
                     <Radio value="primary">
@@ -169,7 +169,7 @@
                 <p>Change theme</p>
                 <RadioGroup model="theme3" type="info">
                     <Radio value="light" type="info">light</Radio>
-                    <Radio value="dark" type="info">dark</Radio>
+                    <Radio value="dark" type="info" checked>dark</Radio>
                 </RadioGroup>
             </div>
         `,

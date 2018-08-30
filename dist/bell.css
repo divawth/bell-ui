@@ -3494,7 +3494,7 @@ button.bell-button-danger[disabled] {
   border-color: #f67422;
 }
 .bell-menu-dark {
-  background-color: transparent;
+  background-color: #453c4b;
   color: #c7c7c7;
   border-color: #f90;
 }
@@ -3504,12 +3504,12 @@ button.bell-button-danger[disabled] {
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.hover,
 .bell-menu-dark .bell-menu-item:hover,
 .bell-menu-dark .bell-menu-item.bell-hover {
-  background-color: transparent;
+  background-color: #453c4b;
   color: #fff;
 }
 .bell-menu-dark .bell-menu-item.bell-menu-dark .bell-menu-item.active,
 .bell-menu-dark .bell-menu-item.bell-active {
-  background-color: transparent;
+  background-color: #453c4b;
   color: #fff;
   border-color: #f90;
 }
@@ -3560,6 +3560,7 @@ button.bell-button-danger[disabled] {
 }
 .bell-menu-vertical .bell-menu-sub-menu {
   padding: 0;
+  height: auto;
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-title {
   position: relative;
@@ -3572,7 +3573,7 @@ button.bell-button-danger[disabled] {
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-title,
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-item {
-  padding: 15px;
+  padding: 0 15px;
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-groups {
   overflow: hidden;
