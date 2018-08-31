@@ -16,8 +16,9 @@ export default {
                 {{/if}}
             </div>
             {{#if isOpen && hasSlot('children')}}
-            <div class="bell-menu-groups" transition="groups">
-                <slot name="children" />
+                <div class="bell-menu-groups" transition="groups">
+                    <slot name="children" />
+                </div>
             {{/if}}
         </div>
     `,

@@ -550,7 +550,7 @@
     };
 
     var Submenu = {
-        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n            <div class="bell-menu-groups" transition="groups">\n                <slot name="children" />\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n                <div class="bell-menu-groups" transition="groups">\n                    <slot name="children" />\n                </div>\n            {{/if}}\n        </div>\n    ',
         propTypes: {
             className: {
                 type: 'string'
@@ -1107,12 +1107,12 @@
                 var me = this;
                 if (!Yox.is.numeric(val)) {
                     me.set({
-                        value: me.get('minValue')
+                        value: +me.get('minValue')
                     });
                     return;
                 }
                 me.fire('change', {
-                    value: val
+                    value: +val
                 });
             }
         },
@@ -1122,14 +1122,14 @@
                 var me = this;
                 me.increase('value', me.get('step'), me.get('maxValue'));
                 me.fire('change', {
-                    value: me.get('value')
+                    value: +me.get('value')
                 });
             },
             down: function down() {
                 var me = this;
                 var value = me.decrease('value', me.get('step'), me.get('minValue'));
                 me.fire('change', {
-                    value: me.get('value')
+                    value: +me.get('value')
                 });
             },
             blur: function blur() {

@@ -107,14 +107,14 @@ export default {
             let me = this;
             if (!Yox.is.numeric(val)) {
                 me.set({
-                    value: me.get('minValue')
+                    value: +me.get('minValue')
                 });
                 return;
             }
             me.fire(
                 'change',
                 {
-                    value: val
+                    value: +val
                 }
             );
         }
@@ -125,14 +125,14 @@ export default {
             let me = this;
             me.increase('value', me.get('step'), me.get('maxValue'));
             me.fire('change', {
-                value: me.get('value')
+                value: +me.get('value')
             });
         },
         down() {
             let me = this;
             let value = me.decrease('value', me.get('step'), me.get('minValue'));
             me.fire('change', {
-                value: me.get('value')
+                value: +me.get('value')
             });
         },
         blur() {
