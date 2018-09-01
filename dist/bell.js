@@ -550,7 +550,8 @@
     };
 
     var Submenu = {
-        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n\n                {{#if isOpen}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                {{else}}\n                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n                <div class="bell-menu-groups" transition="groups">\n                    <slot name="children" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n                {{#if isCollapsed}}\n                    {{#if isOpen}}\n                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                    {{else}}\n                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                    {{/if}}\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n                <div class="bell-menu-groups" transition="groups">\n                    <slot name="children" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+
         propTypes: {
             className: {
                 type: 'string'
@@ -560,6 +561,9 @@
             },
             name: {
                 type: 'string'
+            },
+            isCollapsed: {
+                type: ['string', 'boolean']
             }
         },
 

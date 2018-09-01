@@ -8,11 +8,12 @@ export default {
                 {{#if hasSlot('title')}}
                     <slot name="title" />
                 {{/if}}
-
-                {{#if isOpen}}
-                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>
-                {{else}}
-                    <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>
+                {{#if isCollapsed}}
+                    {{#if isOpen}}
+                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>
+                    {{else}}
+                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>
+                    {{/if}}
                 {{/if}}
             </div>
             {{#if isOpen && hasSlot('children')}}
@@ -22,6 +23,7 @@ export default {
             {{/if}}
         </div>
     `,
+
     propTypes: {
         className: {
             type: 'string'
@@ -31,6 +33,9 @@ export default {
         },
         name: {
             type: 'string'
+        },
+        isCollapsed: {
+            type: ['string', 'boolean']
         }
     },
 
