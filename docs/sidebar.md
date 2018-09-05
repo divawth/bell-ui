@@ -26,6 +26,7 @@
   - [List 列表](view/list)
   - [Avatar 头像](view/avatar)
   - [Card 卡片](view/card)
+  - [Dialog 全局提示](view/dialog)
   - [Message 全局提示](view/message)
   - [Notice 通知提醒](view/notice)
   - [Model 消息对话框](view/model)

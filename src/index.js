@@ -79,6 +79,7 @@ import TimeLine from './components/timeline/TimeLine'
 import TimeLineItem from './components/timeline/TimeLineItem'
 import Form from './components/form/Form'
 import FormItem from './components/form/FormItem'
+import Dialog from './components/dialog/Dialog'
 
 import './components/message/Message'
 import './components/notice/Notice'
@@ -158,5 +159,7 @@ Yox.component({
   TimeLine,
   TimeLineItem,
   Form,
-  FormItem
+  FormItem,
+  Dialog
+  
 });

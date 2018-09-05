@@ -7728,3 +7728,61 @@ button.bell-button-danger[disabled] {
   box-sizing: border-box;
   position: absolute;
 }
+.bell-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+.bell-dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.54);
+  transition: opacity 0.3s;
+}
+.bell-dialog-content {
+  max-width: 90%;
+  min-width: 300px;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  background-color: #fff;
+  z-index: 1;
+  transition: margin-top 0.3s;
+}
+.bell-dialog-title,
+.bell-dialog-actions {
+  padding: 15px;
+}
+.bell-dialog-title {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #17233d;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid #efefec;
+}
+.bell-dialog-body {
+  padding: 15px;
+  max-height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.bell-dialog-actions {
+  border-top: 1px solid #efefec;
+  padding: 12px 18px;
+  text-align: right;
+}

@@ -4930,6 +4930,59 @@
         }
     };
 
+    var _template$propTypes$m;
+
+    var Dialog = (_template$propTypes$m = {
+
+      template: '\n    <div class="bell-dialog\n      {{#if className}} {{className}}{{/if}}\n    " {{#if style}} style="{{style}}"{{/if}}>\n      <div class="bell-dialog-content">\n        \n        {{#if hasSlot(\'title\')}}\n        <div class="bell-dialog-title">\n          <slot name="title" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'children\')}}\n        <div class="bell-dialog-body">\n          <slot name="children" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'actions\')}}\n        <div class="bell-dialog-actions">\n          <slot name="actions" />\n        </div>\n        {{/if}}\n\n      </div>\n      <div class="bell-dialog-mask" on-click="maskClick()"></div>\n    </div>\n  ',
+
+      propTypes: {
+        className: {
+          type: 'string'
+        },
+        style: {
+          type: 'string'
+        },
+        open: {
+          type: ['string', 'number', 'boolean']
+        }
+      },
+
+      methods: {
+        maskClick: function maskClick() {
+          this.fire('maskClick');
+        }
+      },
+
+      watchers: {
+        open: function open(isOpen) {
+          this.setStatus();
+        }
+      }
+
+    }, _template$propTypes$m['methods'] = {
+      setStatus: function setStatus() {
+        var me = this;
+        var element = me.$el;
+        var contentElement = element.querySelector('.bell-dialog-content');
+        if (me.get('open')) {
+          contentElement.style.marginTop = '-250px';
+          element.style.display = 'flex';
+          setTimeout(function () {
+            contentElement.style.marginTop = 0;
+          }, 100);
+        } else {
+          contentElement.style.marginTop = '-250px';
+          setTimeout(function () {
+            element.style.display = 'none';
+          }, 100);
+        }
+      }
+    }, _template$propTypes$m.afterMount = function afterMount() {
+      this.setStatus();
+      document.body.append(this.$el);
+    }, _template$propTypes$m);
+
     var id = 0;
 
     var createMessage = function createMessage(_data) {
@@ -5606,7 +5659,9 @@
       TimeLine: TimeLine,
       TimeLineItem: TimeLineItem,
       Form: Form,
-      FormItem: FormItem
+      FormItem: FormItem,
+      Dialog: Dialog
+
     });
 
 })));
