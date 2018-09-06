@@ -4934,7 +4934,7 @@
 
     var Dialog = (_template$propTypes$m = {
 
-      template: '\n    <div class="bell-dialog\n      {{#if className}} {{className}}{{/if}}\n    " {{#if style}} style="{{style}}"{{/if}}>\n      <div class="bell-dialog-content">\n        \n        {{#if hasSlot(\'title\')}}\n        <div class="bell-dialog-title">\n          <slot name="title" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'children\')}}\n        <div class="bell-dialog-body">\n          <slot name="children" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'actions\')}}\n        <div class="bell-dialog-actions">\n          <slot name="actions" />\n        </div>\n        {{/if}}\n\n      </div>\n      <div class="bell-dialog-mask" on-click="maskClick()"></div>\n    </div>\n  ',
+      template: '\n    <div class="bell-dialog\n      {{#if className}} {{className}}{{/if}}\n    " style="{{#if !open}}display: none;{{/if}}{{#if style}}{{style}}{{/if}}">\n      <div class="bell-dialog-content">\n        \n        {{#if hasSlot(\'title\')}}\n        <div class="bell-dialog-title">\n          <slot name="title" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'children\')}}\n        <div class="bell-dialog-body">\n          <slot name="children" />\n        </div>\n        {{/if}}\n\n        {{#if hasSlot(\'actions\')}}\n        <div class="bell-dialog-actions">\n          <slot name="actions" />\n        </div>\n        {{/if}}\n\n      </div>\n      <div class="bell-dialog-mask" on-click="maskClick()"></div>\n    </div>\n  ',
 
       propTypes: {
         className: {
@@ -4970,12 +4970,12 @@
           element.style.display = 'flex';
           setTimeout(function () {
             contentElement.style.marginTop = 0;
-          }, 100);
+          }, 300);
         } else {
           contentElement.style.marginTop = '-250px';
           setTimeout(function () {
             element.style.display = 'none';
-          }, 100);
+          }, 300);
         }
       }
     }, _template$propTypes$m.afterMount = function afterMount() {

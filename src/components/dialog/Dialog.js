@@ -3,7 +3,7 @@ export default {
   template: `
     <div class="bell-dialog
       {{#if className}} {{className}}{{/if}}
-    " {{#if style}} style="{{style}}"{{/if}}>
+    " style="{{#if !open}}display: none;{{/if}}{{#if style}}{{style}}{{/if}}">
       <div class="bell-dialog-content">
         
         {{#if hasSlot('title')}}
