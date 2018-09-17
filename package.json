@@ -7,7 +7,7 @@
     "start": "rollup -c",
     "test": "lessc src/styles/index.less > dist/bells.css",
     "style": "stylus -w src/css/index.styl -o dist/bell.css",
-    "uglifyjs": "uglifyjs bell.js -o bell-min.js"
+    "uglifyjs": "uglifyjs dist/bell.js -o dist/bell-min.js"
   },
   "edp": {
     "wwwroot": "/",
@@ -32,7 +32,9 @@
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "styl": "^0.2.9"
+    "styl": "^0.2.9",
+    "uglify-js": "^3.4.9",
+    "uglifyjs": "^2.4.11"
   },
   "author": "",
   "repository": {
