@@ -86,6 +86,62 @@
         }
     }
 
+> 基础用法
+
+    export default {
+        template: `
+            <div>
+                <Form ref="formInline" model="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
+                    <FormItem label="资源位">
+                        <Select model="type">
+                            {{#each typeList:index}}
+                            <Option index="{{index}}" value="{{value}}" text="{{text}}">
+                                {{text}}
+                            </Option>
+                            {{/each}}
+                        </Select>
+                    </FormItem>
+                </Form>
+            </div>
+        `,
+        data: {
+            errors: null,
+            formInline: {
+                type: 1
+            },
+            type: 1,
+            typeList: [
+                {
+                    text: '广告',
+                    value: 1
+                },
+                {
+                    text: '首页',
+                    value: 2
+                }
+            ]
+        },
+        methods: {
+            handleSubmit(name) {
+              console.log(this.$refs['formInline'].validate)
+                this.$refs['formInline'].validate((isValid, errors) => {
+                    this.set({
+                        errors: errors
+                    })
+                    if (isValid) {
+                        this.$Message.success('提交成功!');
+                    } else {
+                        this.$Message.error('表单验证失败!');
+                    }
+                })
+            }
+        }
+    }
+
+
+
+    
+
 #### Form API
 
 > Attributes

@@ -1608,7 +1608,7 @@
         watchers: {
             value: function value(_value) {
                 var me = this;
-
+                debugger;
                 me.fire('optionSelectedChange', {
                     value: _value
                 }, true);
