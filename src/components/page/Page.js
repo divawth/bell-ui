@@ -327,7 +327,6 @@ export default {
                 current: current,
                 currentPage: current
             });
-            event.prevent();
 
         };
 
