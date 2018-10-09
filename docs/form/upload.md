@@ -3,7 +3,7 @@
     export default {
       template: `
         <div>
-          <Upload action="//test-shenhe.finstao.com/v1/upload/image" data="{{data}}">
+          <Upload action="/v1/upload/image" data="{{data}}">
             <Button>Upload files</Button>
           </Upload>
           <img src="{{url}}">
