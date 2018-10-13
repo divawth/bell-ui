@@ -103,7 +103,6 @@ export default {
     watchers: {
         value(value){
             let me = this;
-            debugger
             me.fire(
                 'optionSelectedChange',
                 {

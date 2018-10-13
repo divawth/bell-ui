@@ -101,6 +101,16 @@
                             {{/each}}
                         </Select>
                     </FormItem>
+                    <FormItem label="资源位">
+                        <RadioGroup name="single" model="isFree">
+                            <Radio value="{{true}}">
+                                面议
+                            </Radio>
+                            <Radio value="{{false}}">
+                                额度
+                            </Radio>
+                        </RadioGroup>
+                    </FormItem>
                 </Form>
             </div>
         `,
@@ -119,7 +129,8 @@
                     text: '首页',
                     value: 2
                 }
-            ]
+            ],
+            isFree: true
         },
         methods: {
             handleSubmit(name) {

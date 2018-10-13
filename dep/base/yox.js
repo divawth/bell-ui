@@ -120,10 +120,13 @@ var isDef = function (target) {
   return target !== UNDEFINED;
 };
 
+var toString = Object.prototype.toString;
+
+
 function is(value, type) {
   return type === 'numeric' ? numeric(value)
   // 这个函数比较慢，所以下面都不用它
-  : Object.prototype.toString.call(value).toLowerCase() === '[object ' + type + ']';
+  : toString.call(value).toLowerCase() === '[object ' + type + ']';
 }
 
 function func(value) {
@@ -649,9 +652,9 @@ function startsWith$1(keypath, prefix) {
   if (keypath === prefix) {
     return prefix[RAW_LENGTH];
   }
-  var temp;
-  if (startsWith(keypath, temp = prefix + KEYPATH_SEPARATOR)) {
-    return temp[RAW_LENGTH];
+  prefix += KEYPATH_SEPARATOR;
+  if (startsWith(keypath, prefix)) {
+    return prefix[RAW_LENGTH];
   }
   return FALSE;
 }
@@ -677,9 +680,9 @@ function each$2(keypath, callback) {
 
 function join$1(keypath1, keypath2) {
 
-  var keypath = number(keypath1) || string(keypath1) ? keypath1 : CHAR_BLANK,
-      isNumber,
-      isString;
+  var isNumber,
+      isString,
+      keypath = number(keypath1) || string(keypath1) ? keypath1 : CHAR_BLANK;
 
   if ((isNumber = number(keypath2)) || (isString = string(keypath2))) {
     if (keypath === CHAR_BLANK) {
@@ -1076,7 +1079,7 @@ function parseType(type, namespace) {
   return result;
 }
 
-var toString = function (str, defaultValue) {
+var toString$1 = function (str, defaultValue) {
   if (str != NULL && str.toString) {
     return str.toString();
   }
@@ -1090,7 +1093,7 @@ var toString = function (str, defaultValue) {
  */
 var Console = typeof console !== RAW_UNDEFINED ? console : NULL;
 
-var debug = /yox/.test(toString(noop));
+var debug = /yox/.test(toString$1(noop));
 
 // 全局可覆盖
 // 比如开发环境，开了 debug 模式，但是有时候觉得看着一堆日志特烦，想强制关掉
@@ -1308,24 +1311,21 @@ var props = {
 };
 
 function bindDirective(vnode, key, api) {
-  var el = vnode.el,
-      tag = vnode.tag,
-      attrs = vnode.attrs,
-      directives = vnode.directives,
+  var directives = vnode.directives,
       instance = vnode.instance;
 
 
   var node = directives[key],
       options = {
-    el: el,
+    el: vnode.el,
     node: node,
     instance: instance,
     directives: directives,
-    attrs: attrs || {}
+    attrs: vnode.attrs || {}
   };
 
   if (vnode[RAW_COMPONENT]) {
-    options[RAW_COMPONENT] = api[RAW_COMPONENT](el);
+    options[RAW_COMPONENT] = api[RAW_COMPONENT](vnode.data.id);
   }
 
   var bind = instance.directive(node[RAW_NAME]),
@@ -1459,7 +1459,7 @@ function removeRef(instance, ref) {
 function createComponent(vnode) {
   var el = vnode.el;
   if (vnode[RAW_COMPONENT]) {
-    el = this[RAW_COMPONENT](el);
+    el = this[RAW_COMPONENT](vnode.data.id);
   }
   setRef(vnode.instance, vnode[RAW_REF], el);
 }
@@ -1467,12 +1467,21 @@ function createComponent(vnode) {
 function updateComponent(vnode, oldVnode) {
 
   var el = vnode.el,
+      attrs = vnode.attrs,
+      model = vnode.model,
       instance = vnode.instance,
       ref = vnode[RAW_REF];
 
   if (vnode[RAW_COMPONENT]) {
-    el = this[RAW_COMPONENT](el);
-    el.set(vnode.attrs);
+    el = this[RAW_COMPONENT](vnode.data.id);
+    if (attrs) {
+      // 如果有双向绑定，要把它的值取出来放进 attrs
+      var modelField = el.$model;
+      if (model && modelField && !has$1(attrs, modelField)) {
+        attrs[modelField] = instance.get(model);
+      }
+      el.set(el.checkPropTypes(attrs));
+    }
     el.set(vnode.slots);
   }
 
@@ -1531,17 +1540,17 @@ function createKeyToIndex(vnodes, startIndex, endIndex) {
 function createCommentVnode(text) {
   return {
     tag: TAG_COMMENT,
-    text: toString(text)
+    text: toString$1(text)
   };
 }
 
 function createTextVnode(text) {
   return {
-    text: toString(text)
+    text: toString$1(text)
   };
 }
 
-function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks) {
+function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, model, ref, key, instance, hooks) {
   return {
     tag: tag,
     attrs: attrs$$1,
@@ -1549,6 +1558,7 @@ function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, sl
     directives: directives$$1,
     children: children,
     slots: slots,
+    model: model,
     ref: ref,
     key: key,
     instance: instance,
@@ -1557,8 +1567,8 @@ function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, sl
   };
 }
 
-function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks) {
-  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, ref, key, instance, hooks);
+function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, model, ref, key, instance, hooks) {
+  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, slots, model, ref, key, instance, hooks);
   vnode[RAW_COMPONENT] = TRUE;
   return vnode;
 }
@@ -1571,6 +1581,8 @@ function isTextVnode(vnode) {
   return isVnode(vnode) && !has$1(vnode, RAW_TAG);
 }
 
+var guid = 0;
+
 function init(api) {
 
   var createElement = function (vnode, data) {
@@ -1578,15 +1590,14 @@ function init(api) {
         el = _vnode.el,
         tag = _vnode.tag,
         component$$1 = _vnode.component,
-        attrs$$1 = _vnode.attrs,
-        slots = _vnode.slots,
-        directives$$1 = _vnode.directives,
         children = _vnode.children,
         text = _vnode.text,
         instance = _vnode.instance;
 
 
-    vnode.data = {};
+    var id = ++guid;
+
+    vnode.data = { id: id };
 
     if (falsy$1(tag)) {
       return vnode.el = api.createText(text);
@@ -1601,7 +1612,7 @@ function init(api) {
 
     if (component$$1) {
 
-      api[RAW_COMPONENT](el, vnode);
+      api[RAW_COMPONENT](id, vnode);
 
       instance[RAW_COMPONENT](tag, function (options) {
 
@@ -1609,41 +1620,21 @@ function init(api) {
           fatal('"' + tag + '" ' + RAW_COMPONENT + ' is not found.');
         }
 
-        vnode = api[RAW_COMPONENT](el);
+        vnode = api[RAW_COMPONENT](id);
 
         if (vnode && tag === vnode[RAW_TAG]) {
 
-          var host = vnode.parent || instance,
-              extensions;
+          // 这里优先用 vnode.parent
+          // 因为要实现正确的父子关系
+          component$$1 = (vnode.parent || instance).create(options, vnode, el);
 
-          var modelKeypath = directives$$1 && directives$$1.model && directives$$1.model[RAW_VALUE];
-          if (modelKeypath) {
-            if (!attrs$$1) {
-              attrs$$1 = vnode.attrs = {};
-            }
-            var field = options.model || RAW_VALUE;
-            if (!has$1(attrs$$1, field)) {
-              attrs$$1[field] = host.get(modelKeypath);
-            }
-            extensions = {
-              $model: field
-            };
-          }
-
-          component$$1 = host.create(options, {
-            el: el,
-            slots: slots,
-            props: attrs$$1,
-            replace: TRUE,
-            extensions: extensions
-          });
           el = component$$1.$el;
           if (!el) {
             fatal('"' + tag + '" ' + RAW_COMPONENT + ' must have a root element.');
           }
 
           vnode.el = el;
-          api[RAW_COMPONENT](el, component$$1);
+          api[RAW_COMPONENT](id, component$$1);
 
           enterVnode(vnode);
 
@@ -1706,15 +1697,17 @@ function init(api) {
         component$$1 = vnode[RAW_COMPONENT];
 
     if (component$$1) {
-      component$$1 = api[RAW_COMPONENT](el);
+      var id = vnode.data.id;
+
+      component$$1 = api[RAW_COMPONENT](id);
       if (vnode.parent === vnode.instance) {
         if (component$$1.set) {
           moduleEmitter.fire(HOOK_DESTROY, vnode, api);
-          api[RAW_COMPONENT](el, NULL);
+          api[RAW_COMPONENT](id, NULL);
           component$$1.destroy();
           return TRUE;
         }
-        api[RAW_COMPONENT](el, NULL);
+        api[RAW_COMPONENT](id, NULL);
       } else {
         return;
       }
@@ -1884,9 +1877,11 @@ function init(api) {
     }
 
     if (component$$1) {
-      component$$1 = api[RAW_COMPONENT](el);
+      var id = vnode.data.id;
+
+      component$$1 = api[RAW_COMPONENT](id);
       if (!component$$1.set) {
-        api[RAW_COMPONENT](el, vnode);
+        api[RAW_COMPONENT](id, vnode);
         return;
       }
     }
@@ -1974,6 +1969,9 @@ var LTE = '<=';
 var GT = '>';
 var GTE = '>=';
 
+var TO = '=>';
+var UNTIL = '->';
+
 var unaryMap = {};
 
 unaryMap[PLUS] = unaryMap[MINUS] = unaryMap[NOT] = unaryMap[WAVE] = unaryMap[BOOLEAN] = TRUE;
@@ -1983,17 +1981,19 @@ var unaryList = sort(unaryMap, TRUE);
 // 操作符和对应的优先级，数字越大优先级越高
 var binaryMap = {};
 
-binaryMap[OR] = 1;
+binaryMap[TO] = binaryMap[UNTIL] = 1;
 
-binaryMap[AND] = 2;
+binaryMap[OR] = 2;
 
-binaryMap[LE] = binaryMap[LNE] = binaryMap[SE] = binaryMap[SNE] = 3;
+binaryMap[AND] = 3;
 
-binaryMap[LT] = binaryMap[LTE] = binaryMap[GT] = binaryMap[GTE] = 4;
+binaryMap[LE] = binaryMap[LNE] = binaryMap[SE] = binaryMap[SNE] = 4;
 
-binaryMap[PLUS] = binaryMap[MINUS] = 5;
+binaryMap[LT] = binaryMap[LTE] = binaryMap[GT] = binaryMap[GTE] = 5;
 
-binaryMap[MULTIPLY] = binaryMap[DIVIDE] = binaryMap[MODULO] = 6;
+binaryMap[PLUS] = binaryMap[MINUS] = 6;
+
+binaryMap[MULTIPLY] = binaryMap[DIVIDE] = binaryMap[MODULO] = 7;
 
 var binaryList = sort(binaryMap, TRUE);
 
@@ -2124,6 +2124,28 @@ binary[DIVIDE] = function (a, b) {
 };
 binary[MODULO] = function (a, b) {
   return a % b;
+};
+binary[TO] = function (a, b) {
+  return a > b ? function (callback) {
+    for (var i = a, index = 0; i >= b; i--) {
+      callback(i, index++);
+    }
+  } : function (callback) {
+    for (var i = a, index = 0; i <= b; i++) {
+      callback(i, index++);
+    }
+  };
+};
+binary[UNTIL] = function (a, b) {
+  return a > b ? function (callback) {
+    for (var i = a, index = 0; i > b; i--) {
+      callback(i, index++);
+    }
+  } : function (callback) {
+    for (var i = a, index = 0; i < b; i++) {
+      callback(i, index++);
+    }
+  };
 };
 
 /**
@@ -3483,7 +3505,8 @@ var delimiterPattern = /(\{?\{\{)\s*([^\}]+?)\s*(\}\}\}?)/;
 var openingTagPattern = /<(\/)?([a-z][-a-z0-9]*)/i;
 var closingTagPattern = /^\s*(\/)?>/;
 var attributePattern = /^\s*([-:\w]+)(?:=(['"]))?/;
-var componentNamePattern = /[-A-Z]/;
+// 首字母大写，或中间包含 -
+var componentNamePattern = /^[A-Z]|-/;
 var selfClosingTagNames = ['area', 'base', 'embed', 'track', 'source', 'param', 'input', RAW_SLOT, 'col', 'img', 'br', 'hr'];
 
 // 缓存编译结果
@@ -4041,7 +4064,7 @@ function render(render, getter, instance) {
         currentElement.lastChild = NULL;
       }
     } else if (isTextVnode(lastChild)) {
-      lastChild[RAW_TEXT] += toString(node);
+      lastChild[RAW_TEXT] += toString$1(node);
     } else {
       push(children, currentElement.lastChild = createTextVnode(node));
     }
@@ -4062,9 +4085,9 @@ function render(render, getter, instance) {
         node();
       } else {
         var name = node[RAW_NAME],
-            expr = node[RAW_EXPR];
+            expr = node[RAW_EXPR],
+            value;
         if (node[RAW_TYPE] === ATTRIBUTE) {
-          var value;
           if (has$1(node, RAW_VALUE)) {
             value = node[RAW_VALUE];
           } else if (expr) {
@@ -4079,7 +4102,15 @@ function render(render, getter, instance) {
           }
           addAttr(name, value);
         } else {
-          addDirective(name, node.modifier, name === DIRECTIVE_MODEL ? (o(expr), expr[RAW_ABSOLUTE_KEYPATH]) : node[RAW_VALUE])[RAW_EXPR] = expr;
+          if (name === DIRECTIVE_MODEL) {
+            value = (o(expr, expr[RAW_STATIC_KEYPATH]), expr[RAW_ABSOLUTE_KEYPATH]);
+            currentElement.model = value;
+          } else if (has$1(node, RAW_VALUE)) {
+            value = node[RAW_VALUE];
+          } else if (has$1(node, RAW_CHILDREN)) {
+            value = getValue(node[RAW_CHILDREN]);
+          }
+          addDirective(name, node.modifier, value)[RAW_EXPR] = expr;
         }
       }
     }
@@ -4215,7 +4246,7 @@ function render(render, getter, instance) {
       }
     }
 
-    var result = snabbdom[component ? 'createComponentVnode' : 'createElementVnode'](tag, currentElement.attrs, currentElement.props, currentElement.directives, children, currentElement.slots, ref, key, instance, instance.transition(transition));
+    var result = snabbdom[component ? 'createComponentVnode' : 'createElementVnode'](tag, currentElement.attrs, currentElement.props, currentElement.directives, children, currentElement.slots, currentElement.model, ref, key, instance, instance.transition(transition));
 
     popElement(lastElement);
 
@@ -4233,42 +4264,47 @@ function render(render, getter, instance) {
   e = function (expr, generate, index) {
 
     var value = o(expr),
-        each$$1;
+        absoluteKeypath = expr[RAW_ABSOLUTE_KEYPATH],
+        eachKeypath = absoluteKeypath || join$1(keypath, expr.raw),
+        eachHandler = function (item, key) {
+
+      var lastScope = scope,
+          lastKeypath = keypath,
+          lastKeypathStack = keypathStack;
+
+      scope = {};
+      keypath = join$1(eachKeypath, key);
+      keypathStack = copy(keypathStack);
+      push(keypathStack, keypath);
+      push(keypathStack, scope);
+
+      // 从下面这几句赋值可以看出
+      // scope 至少会有 'keypath' 'this' 'index' 等几个值
+      scope[SPECIAL_KEYPATH] = keypath;
+
+      // 类似 {{#each 1 -> 10}} 这样的临时循环，需要在 scope 上加上当前项
+      // 因为通过 instance.get() 无法获取数据
+      if (!absoluteKeypath) {
+        scope[RAW_THIS] = item;
+      }
+
+      if (index) {
+        scope[index] = key;
+      }
+
+      generate();
+
+      scope = lastScope;
+      keypath = lastKeypath;
+      keypathStack = lastKeypathStack;
+    };
 
     if (array(value)) {
-      each$$1 = each;
+      each(value, eachHandler);
     } else if (object(value)) {
-      each$$1 = each$1;
-    }
-
-    if (each$$1) {
-
-      var eachKeypath = expr[RAW_ABSOLUTE_KEYPATH] || join$1(keypath, expr.raw);
-
-      each$$1(value, function (item, key) {
-
-        var lastScope = scope,
-            lastKeypath = keypath,
-            lastKeypathStack = keypathStack;
-
-        scope = {};
-        keypath = join$1(eachKeypath, key);
-        keypathStack = copy(keypathStack);
-        push(keypathStack, keypath);
-        push(keypathStack, scope);
-
-        scope[SPECIAL_KEYPATH] = keypath;
-
-        if (index) {
-          scope[index] = key;
-        }
-
-        generate();
-
-        scope = lastScope;
-        keypath = lastKeypath;
-        keypathStack = lastKeypathStack;
-      });
+      each$1(value, eachHandler);
+    } else if (func(value)) {
+      value(eachHandler);
     }
   },
 
@@ -4335,7 +4371,7 @@ var toNumber = function (str, defaultValue) {
   return arguments[RAW_LENGTH] === 1 ? 0 : defaultValue;
 };
 
-var guid = 0;
+var guid$1 = 0;
 
 /**
  * 对比新旧对象
@@ -4443,7 +4479,7 @@ var Computed = function () {
 
     var instance = this;
 
-    instance.id = ++guid;
+    instance.id = ++guid$1;
     instance[RAW_KEYPATH] = keypath;
     instance.observer = observer;
     instance.deps = [];
@@ -5180,7 +5216,7 @@ attr2Prop['defaultchecked'] = 'defaultChecked';
 attr2Prop['defaultmuted'] = 'defaultMuted';
 attr2Prop['defaultselected'] = 'defaultSelected';
 
-var svgTags = toObject('svg,g,defs,desc,metadata,symbol,use,image,path,rect,circle,line,ellipse,polyline,polygon,text,tspan,tref,textpath,marker,pattern,clippath,mask,filter,cursor,view,animate,font,font-face,glyph,missing-glyph'.split(CHAR_COMMA));
+var svgTags = toObject('svg,g,defs,desc,metadata,symbol,use,image,path,rect,circle,line,ellipse,polyline,polygon,text,tspan,tref,textpath,marker,pattern,clippath,mask,filter,cursor,view,animate,font,font-face,glyph,missing-glyph,foreignObject'.split(CHAR_COMMA));
 
 var domain = 'http://www.w3.org/';
 var namespaces = {
@@ -5304,10 +5340,6 @@ function html(node, content) {
   return content == NULL ? node.innerHTML : node.innerHTML = content;
 }
 
-function component$1(element, component) {
-  return isDef(component) ? element[RAW_COMPONENT] = component : element[RAW_COMPONENT];
-}
-
 function find(selector, context) {
   return (context || doc).querySelector(selector);
 }
@@ -5348,6 +5380,12 @@ function removeClass(element, className) {
   }
 }
 
+var components = {};
+
+function component$1(id, component) {
+  return isDef(component) ? components[id] = component : components[id];
+}
+
 var domApi = {
   createElement: createElement,
   createText: createText,
@@ -5368,12 +5406,12 @@ var domApi = {
   children: children,
   text: text,
   html: html,
-  component: component$1,
   find: find,
   on: on$1,
   off: off,
   addClass: addClass,
-  removeClass: removeClass
+  removeClass: removeClass,
+  component: component$1
 };
 
 /**
@@ -5625,7 +5663,7 @@ function getOptionValue(option) {
 
 var inputControl = {
   set: function set$$1(el, keypath, instance) {
-    var value = toString(instance.get(keypath));
+    var value = toString$1(instance.get(keypath));
     if (value !== el[RAW_VALUE]) {
       el[RAW_VALUE] = value;
     }
@@ -5639,7 +5677,7 @@ var inputControl = {
 
 var selectControl = {
   set: function set$$1(el, keypath, instance) {
-    var value = toString(instance.get(keypath));
+    var value = toString$1(instance.get(keypath));
     var options = el.options;
 
     if (options) {
@@ -5658,7 +5696,7 @@ var selectControl = {
 
 var radioControl = {
   set: function set$$1(el, keypath, instance) {
-    el[RAW_CHECKED] = el[RAW_VALUE] === toString(instance.get(keypath));
+    el[RAW_CHECKED] = el[RAW_VALUE] === toString$1(instance.get(keypath));
   },
   sync: function sync(el, keypath, instance) {
     if (el[RAW_CHECKED]) {
@@ -5869,13 +5907,7 @@ var Yox = function () {
 
     extensions && extend(instance, extensions);
 
-    var source;
-    if (object(propTypes)) {
-      instance.$propTypes = propTypes;
-      source = Yox.validate(props || {}, propTypes);
-    } else {
-      source = props || {};
-    }
+    var source = this.checkPropTypes(props || {});
 
     if (slots) {
       extend(source, slots);
@@ -6045,7 +6077,9 @@ var Yox = function () {
 
 
   Yox.prototype.set = function (keypath, value) {
-    this.$observer.set(keypath, value);
+    // 组件经常有各种异步改值，为了避免组件销毁后依然调用 set
+    // 这里判断一下，至于其他方法的异步调用就算了，业务自己控制吧
+    this.$observer && this.$observer.set(keypath, value);
   };
 
   /**
@@ -6249,10 +6283,38 @@ var Yox = function () {
               absoluteKeypath = keypath;
             }
             var scope = keypathStack[keypathIndex + 1];
+
+            // #each 时，scope 存储是当前循环的数据，如 keypath、index 等
+            // scope 无法直接拿到当前数组项，它存在于 scope[ 'this' ] 上
+            // 为什么这样设计呢？
+            // 因为 {{this}} 的存在，经过上面的处理，key 会是 ''
+            // 而 {{this.length}} 会变成 'length'
+
+            // 如果取的是 scope 上直接有的数据，如 keypath
             if (has$1(scope, key)) {
               value = scope[key];
               return keypath;
             }
+            // 如果取的是数组项，则要更进一步
+            else if (has$1(scope, RAW_THIS)) {
+                scope = scope[RAW_THIS];
+
+                // 到这里 scope 可能为空
+                // 比如 new Array(10) 然后遍历这个数组，每一项肯定是空
+
+                // 取 this
+                if (key === CHAR_BLANK) {
+                  value = scope;
+                  return keypath;
+                }
+                // 取 this.xx
+                else if (scope && has$1(scope, key)) {
+                    value = scope[key];
+                    return keypath;
+                  }
+              }
+
+            // 正常取数据
             value = instance.get(keypath, getKeypath);
             if (value === getKeypath) {
               if (lookup && index > 0) {
@@ -6346,19 +6408,62 @@ var Yox = function () {
   };
 
   /**
+   * 校验组件参数
+   *
+   * @param {Object} props
+   * @return {?Object}
+   */
+
+
+  Yox.prototype.checkPropTypes = function (props) {
+    var propTypes = this.$options.propTypes;
+
+    return propTypes ? Yox.checkPropTypes(props, propTypes) : props;
+  };
+
+  /**
    * 创建子组件
    *
    * @param {Object} options 组件配置
-   * @param {?Object} extra 添加进组件配置，但不修改配置的数据，比如 el、props 等
+   * @param {?Object} vnode 虚拟节点
+   * @param {?HTMLElement} el DOM 元素
    * @return {Yox} 子组件实例
    */
 
 
-  Yox.prototype.create = function (options, extra) {
-    options = extend({}, options, extra);
+  Yox.prototype.create = function (options, vnode, el) {
+
+    options = copy(options);
     options.parent = this;
+
+    if (vnode && el) {
+
+      options.el = el;
+      options.replace = TRUE;
+      options.slots = vnode.slots;
+
+      var attrs = vnode.attrs;
+
+
+      if (vnode.model) {
+        if (!attrs) {
+          attrs = {};
+        }
+        var field = options.model || RAW_VALUE;
+        if (!has$1(attrs, field)) {
+          attrs[field] = vnode.instance.get(vnode.model);
+        }
+        options.extensions = {
+          $model: field
+        };
+      }
+
+      options.props = attrs;
+    }
+
     var child = new Yox(options);
     push(this.$children || (this.$children = []), child);
+
     return child;
   };
 
@@ -6601,7 +6706,7 @@ var Yox = function () {
   return Yox;
 }();
 
-Yox.version = '0.61.2';
+Yox.version = '0.62.5';
 
 /**
  * 工具，便于扩展、插件使用
@@ -6714,16 +6819,22 @@ Yox.compile = function (template) {
  * @param {Object} propTypes 数据格式
  * @return {Object} 验证通过的数据
  */
-Yox.validate = function (props, propTypes) {
-  var result = {};
+Yox.checkPropTypes = function (props, propTypes) {
+  var result = copy(props);
   each$1(propTypes, function (rule, key) {
 
+    // 类型
     var type = rule[RAW_TYPE],
-        value = rule[RAW_VALUE],
-        required = rule.required;
+
+    // 默认值
+    value = rule[RAW_VALUE],
+
+    // 是否必传
+    required = rule.required;
 
     required = required === TRUE || func(required) && required(props);
 
+    // 传了数据
     if (isDef(props[key])) {
       var target = props[key];
       if (func(rule)) {
@@ -6748,20 +6859,14 @@ Yox.validate = function (props, propTypes) {
             // 比如当 a 有值时，b 可以为空之类的
             matched = type(target, props);
           }
-          if (matched === TRUE) {
-            result[key] = target;
-          } else {
-            warn('"' + key + '" prop\'s type is not matched.');
+          if (matched !== TRUE) {
+            warn('The prop "' + key + '" ' + RAW_TYPE + ' is not matched.');
           }
         }
     } else if (required) {
-      warn('"' + key + '" prop is not found.');
+      warn('The prop "' + key + '" is marked as required, but its ' + RAW_VALUE + ' is "' + RAW_UNDEFINED + '".');
     } else if (has$1(rule, RAW_VALUE)) {
-      if (type === RAW_FUNCTION) {
-        result[key] = value;
-      } else {
-        result[key] = func(value) ? value(props) : value;
-      }
+      result[key] = type === RAW_FUNCTION ? value : func(value) ? value(props) : value;
     }
   });
   return result;

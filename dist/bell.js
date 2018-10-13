@@ -1241,66 +1241,70 @@
 
     var RadioGroup = {
 
-        template: '\n        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}\n            {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}\n            {{#if size && button}} bell-radio-button-{{size}}{{/if}}\n            {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}\n            {{#if vertical}} bell-radio-vertical{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n        </div>\n    ',
+      template: '\n        <div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}\n            {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}\n            {{#if size && button}} bell-radio-button-{{size}}{{/if}}\n            {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}\n            {{#if vertical}} bell-radio-vertical{{/if}}\n            {{#if className}} {{className}}{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n\n            {{#if hasSlot(\'children\')}}\n                <slot name="children" />\n            {{/if}}\n\n        </div>\n    ',
 
-        propTypes: {
-            className: {
-                type: 'string'
-            },
-            style: {
-                type: 'string'
-            },
-            name: {
-                type: 'string'
-            },
-            value: {
-                type: 'string'
-            },
-            size: {
-                type: 'string'
-            },
-            type: {
-                type: 'string'
-            },
-            disabled: {
-                type: ['numeric', 'boolean']
-            },
-            vertical: {
-                type: ['numeric', 'boolean']
-            },
-            button: {
-                type: ['numeric', 'boolean']
-            }
+      propTypes: {
+        className: {
+          type: 'string'
         },
-
-        events: {
-            radioValueChange: function radioValueChange(event, data) {
-                var me = this;
-                me.set({
-                    value: data.value
-                });
-
-                me.fire('change', {
-                    value: data.value
-                });
-
-                me.fire('updateRadioValue', {
-                    value: data.value
-                }, true);
-            }
+        style: {
+          type: 'string'
         },
-        afterMount: function afterMount() {
-            var me = this;
-            me.fire('updateRadioName', {
-                name: me.get('name')
-            }, true);
-
-            if (me.get('disabled')) {
-                me.fire('updateRadioDisabled', {
-                    disabled: me.get('disabled') ? true : false
-                }, true);
-            }
+        name: {
+          type: 'string'
+        },
+        value: {
+          type: 'string'
+        },
+        size: {
+          type: 'string'
+        },
+        type: {
+          type: 'string'
+        },
+        disabled: {
+          type: ['numeric', 'boolean']
+        },
+        vertical: {
+          type: ['numeric', 'boolean']
+        },
+        button: {
+          type: ['numeric', 'boolean']
         }
+      },
+
+      events: {
+        radioValueChange: function radioValueChange(event, data) {
+          var me = this;
+          me.set({
+            value: data.value
+          });
+
+          me.fire('change', {
+            value: data.value
+          });
+
+          me.fire('updateRadioValue', {
+            value: data.value
+          }, true);
+        }
+      },
+      afterMount: function afterMount() {
+        var me = this;
+        me.fire('updateRadioName', {
+          name: me.get('name')
+        }, true);
+
+        me.fire('updateRadioValue', {
+          value: me.get('value')
+        }, true);
+
+        if (me.get('disabled')) {
+          me.fire('updateRadioDisabled', {
+            disabled: me.get('disabled') ? true : false
+          }, true);
+        }
+      }
     };
 
     var Checkbox = {
@@ -1608,7 +1612,6 @@
         watchers: {
             value: function value(_value) {
                 var me = this;
-                debugger;
                 me.fire('optionSelectedChange', {
                     value: _value
                 }, true);

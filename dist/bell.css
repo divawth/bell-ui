@@ -7726,6 +7726,9 @@ button.bell-button-danger[disabled] {
 .bell-drawer.bell-drawer-hidden {
   display: none;
 }
+.bell-form .bell-form-item {
+  position: relative;
+}
 .bell-form .bell-form-item-label {
   text-align: left;
   vertical-align: middle;
