@@ -550,7 +550,7 @@
     };
 
     var Submenu = {
-        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                {{#if hasSlot(\'title\')}}\n                    <slot name="title" />\n                {{/if}}\n                {{#if isCollapsed}}\n                    {{#if isOpen}}\n                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>\n                    {{else}}\n                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>\n                    {{/if}}\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n                <div class="bell-menu-groups" transition="groups">\n                    <slot name="children" />\n                </div>\n            {{/if}}\n        </div>\n    ',
+        template: '\n        <div class="bell-menu-sub-menu\n            {{#if className}} {{className}}{{/if}}\n            {{#if isOpen}} bell-active{{/if}}\n        "{{#if style}} style="{{style}}"{{/if}}>\n            <div class="bell-menu-title" on-click="click(name)">\n                <span class="bell-menu-title-text">\n                    {{#if hasSlot(\'title\')}}\n                        <slot name="title" />\n                    {{/if}}\n                </span>\n                {{#if isCollapsed}}\n                    <i class="\n                        bell-icon \n                        bell-menu-title-icon \n                        bell-icon-ios-arrow-down\n                        {{#if isOpen}} bell-menu-open{{/if}}\n                    "></i>\n                {{/if}}\n            </div>\n            {{#if isOpen && hasSlot(\'children\')}}\n                <div class="bell-menu-groups" transition="groups">\n                    <slot name="children" />\n                </div>\n            {{/if}}\n        </div>\n    ',
 
         propTypes: {
             className: {
@@ -2045,7 +2045,6 @@
                     current: current,
                     currentPage: current
                 });
-                event.prevent();
             };
 
             Yox.dom.on(document, 'keydown', me.documentKeydownHander);

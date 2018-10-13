@@ -3563,13 +3563,18 @@ button.bell-button-danger[disabled] {
   height: auto;
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-title {
-  position: relative;
+  display: flex;
+}
+.bell-menu-vertical .bell-menu-sub-menu .bell-menu-title .bell-menu-title-text {
+  flex: 1;
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-title .bell-menu-title-icon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
+  font-weight: bold;
+  line-height: 48px;
+  transition: transform 0.3s;
+}
+.bell-menu-vertical .bell-menu-sub-menu .bell-menu-title .bell-menu-title-icon.bell-menu-open {
+  transform: rotate(180deg);
 }
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-title,
 .bell-menu-vertical .bell-menu-sub-menu .bell-menu-item {
@@ -4211,6 +4216,7 @@ button.bell-button-danger[disabled] {
   user-select: none;
   position: relative;
   margin-right: -8px;
+  padding: 8px 0;
 }
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner,
 .bell-radio-group .bell-radio.bell-active .bell-radio-inner {

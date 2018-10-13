@@ -104,13 +104,15 @@
         height auto
 
         {$selector-menu}-title
-            position relative
-
+            display flex
+            {$selector-menu}-title-text
+                flex 1
             {$selector-menu}-title-icon
-                position absolute
-                top 50%
-                right 15px
-                transform translateY(-50%)
+                font-weight bold
+                line-height 48px
+                transition transform .3s
+                &{$selector-menu}-open
+                    transform rotate(180deg)
 
         {$selector-menu}-title,
         {$selector-menu}-item
@@ -121,8 +123,6 @@
 
             overflow hidden
             transition height 0.4s
-
-
 
     {$selector-menu}-group-title
 

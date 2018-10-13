@@ -182,7 +182,7 @@
         template: `
             <div class="bell-template">
                 <Menu on-select="select()" theme="{{theme2}}" activeName="1-2" mode="vertical" openNames="['1']">
-                    <Submenu name="1">
+                    <Submenu name="1" isCollapsed>
                         <template slot="title">
                             <Icon type="ios-analytics"></Icon>
                             Navigation One
@@ -197,7 +197,7 @@
                         </MenuGroup>
                     </Submenu>
 
-                    <Submenu name="2">
+                    <Submenu name="2" isCollapsed>
                         <template slot="title">
                             <Icon type="ios-filing"></Icon>
                             Navigation Two
@@ -206,7 +206,7 @@
                         <MenuItem name="2-2">Option 6</MenuItem>
                     </Submenu>
 
-                    <Submenu name="4">
+                    <Submenu name="4" isCollapsed>
                         <template slot="title">
                             <Icon type="ios-gear"></Icon>
                             Navigation Three

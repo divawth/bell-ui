@@ -10,3 +10,4 @@ dep/
 module.conf
 package-lock.json
 router.js
+docs/index.html

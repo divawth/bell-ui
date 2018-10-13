@@ -5,15 +5,18 @@ export default {
             {{#if isOpen}} bell-active{{/if}}
         "{{#if style}} style="{{style}}"{{/if}}>
             <div class="bell-menu-title" on-click="click(name)">
-                {{#if hasSlot('title')}}
-                    <slot name="title" />
-                {{/if}}
-                {{#if isCollapsed}}
-                    {{#if isOpen}}
-                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-up"></i>
-                    {{else}}
-                        <i class="bell-icon bell-menu-title-icon bell-icon-ios-arrow-down"></i>
+                <span class="bell-menu-title-text">
+                    {{#if hasSlot('title')}}
+                        <slot name="title" />
                     {{/if}}
+                </span>
+                {{#if isCollapsed}}
+                    <i class="
+                        bell-icon 
+                        bell-menu-title-icon 
+                        bell-icon-ios-arrow-down
+                        {{#if isOpen}} bell-menu-open{{/if}}
+                    "></i>
                 {{/if}}
             </div>
             {{#if isOpen && hasSlot('children')}}

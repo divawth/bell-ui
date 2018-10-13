@@ -35,6 +35,7 @@
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "styl": "^0.2.9",
+    "stylus": "^0.54.5",
     "uglify-js": "^3.4.9",
     "uglifyjs": "^2.4.11"
   },
