@@ -22,7 +22,7 @@ export default {
                 </div>
             {{/if}}
 
-            <div class="bell-input">
+            <div class="bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}">
 
                 {{#if type === TEXT_TYPE_TEXTAREA}}
 

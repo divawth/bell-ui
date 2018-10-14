@@ -79,13 +79,6 @@
 
                 opacity 1
 
-
-
-
-{$selector-textarea}
-    textarea
-        resize none
-
 {$selector-textarea},
 {$selector-input}
 
@@ -113,7 +106,7 @@
         &{$selector-hover}
 
             color $input-eye-color-hover
-
+    
     {$selector-input-el}
 
         border none
@@ -140,3 +133,8 @@
 
         &:-ms-input-placeholder  /* Internet Explorer 10+ */
             color $input-el-placeholder-color
+
+    &{$selector-textarea}
+        {$selector-input-el}
+            resize none
+            line-height 1.5

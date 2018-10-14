@@ -3645,63 +3645,63 @@ button.bell-button-danger[disabled] {
 }
 .bell-input-wrapper .bell-input-prepend {
   height: 34px;
-  line-height: 3.5;
+  line-height: 34px;
 }
 .bell-input-wrapper .bell-input-append {
   height: 34px;
-  line-height: 3.5;
+  line-height: 34px;
 }
 .bell-input-wrapper .bell-input .bell-input-el {
   height: 32px;
-  line-height: 1.5;
+  line-height: 32px;
   padding: 8px 15px;
 }
 .bell-input-wrapper .bell-input .bell-input-icon-eye {
-  line-height: 1.5;
+  line-height: 32px;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 32px;
-  line-height: 1.5;
+  line-height: 32px;
 }
 .bell-input-wrapper-small .bell-input-prepend {
   height: 26px;
-  line-height: 3.5;
+  line-height: 26px;
 }
 .bell-input-wrapper-small .bell-input-append {
   height: 26px;
-  line-height: 3.5;
+  line-height: 26px;
 }
 .bell-input-wrapper-small .bell-input .bell-input-el {
   height: 24px;
-  line-height: 1.5;
+  line-height: 24px;
   padding: 2px 15px;
 }
 .bell-input-wrapper-small .bell-input .bell-input-icon-eye {
-  line-height: 1.5;
+  line-height: 24px;
 }
 .bell-input-wrapper-small.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 24px;
-  line-height: 1.5;
+  line-height: 24px;
 }
 .bell-input-wrapper-large .bell-input-prepend {
   height: 38px;
-  line-height: 3.5;
+  line-height: 38px;
 }
 .bell-input-wrapper-large .bell-input-append {
   height: 38px;
-  line-height: 3.5;
+  line-height: 38px;
 }
 .bell-input-wrapper-large .bell-input .bell-input-el {
   height: 36px;
-  line-height: 1.5;
+  line-height: 36px;
   padding: 10px 15px;
 }
 .bell-input-wrapper-large .bell-input .bell-input-icon-eye {
-  line-height: 1.5;
+  line-height: 36px;
 }
 .bell-input-wrapper-large.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 36px;
-  line-height: 1.5;
+  line-height: 36px;
 }
 .bell-input-wrapper .bell-input-prepend {
   border-color: #eee;
@@ -3861,9 +3861,6 @@ button.bell-button-danger[disabled] {
 .bell-input-wrapper.bell-input-wrapper-clearable.bell-hover .bell-input-clear-icon {
   opacity: 1;
 }
-.bell-textarea textarea {
-  resize: none;
-}
 .bell-textarea,
 .bell-input {
   display: inline-block;
@@ -3907,7 +3904,7 @@ button.bell-button-danger[disabled] {
   cursor: text;
   background-color: transparent;
   resize: vertical;
-  font-size: 12px;
+  font-size: 13px;
   color: rgba(0,0,0,0.87);
 }
 .bell-textarea .bell-input-el::-webkit-input-placeholder,
@@ -3925,6 +3922,11 @@ button.bell-button-danger[disabled] {
 .bell-textarea .bell-input-el:-ms-input-placeholder,
 .bell-input .bell-input-el:-ms-input-placeholder {
   color: #d2d2d2;
+}
+.bell-textarea.bell-textarea .bell-input-el,
+.bell-input.bell-textarea .bell-input-el {
+  resize: none;
+  line-height: 1.5;
 }
 .bell-input-number {
   cursor: text;
