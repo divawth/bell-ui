@@ -6,7 +6,7 @@ let createNotice = (data) => {
     let body = document.getElementById('bell-notice-wrapper');
     let element = document.createElement('div');
     element.setAttribute('id', namespace);
-    body.append(element);
+    body.appendChild(element);
 
     let instance = new Yox({
 

@@ -50,7 +50,7 @@ export default {
       }
 
       me.inputElement.style.display = 'none';
-      me.$el.append(me.inputElement);
+      me.$el.appendChild(me.inputElement);
 
       me.fileChange = function (event) {
 
@@ -78,10 +78,10 @@ export default {
       var data = me.get('data');
       if (data) {
         for(var key in data) {
-          formData.append(key, data[ key ]);
+          formData.appendChild(key, data[ key ]);
         }
       }
-      formData.append('file', file);
+      formData.appendChild('file', file);
       xhr.send(formData);
 
       xhr.onreadystatechange = function() {

@@ -1,7 +1,7 @@
 let body = document.body;
 let element = document.createElement('div');
 element.setAttribute('id', 'bell-loading-bar-wrapper');
-body.append(element);
+body.appendChild(element);
 
 import {
     add,

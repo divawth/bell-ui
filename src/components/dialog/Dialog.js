@@ -82,7 +82,7 @@ export default {
 
   afterMount() {
     this.setStatus();
-    document.body.append(this.$el);
+    document.body.appendChild(this.$el);
   }
 
 };

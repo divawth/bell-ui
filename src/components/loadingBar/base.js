@@ -11,7 +11,7 @@ export let add = (data) => {
     let body = document.getElementById('bell-loading-bar-wrapper');
     let element = document.createElement('div');
     element.setAttribute('id', namespace);
-    body.append(element);
+    body.appendChild(element);
 
     instance = new Yox({
 

@@ -6,7 +6,7 @@ let createMessage = function (data) {
     let body = document.body;
     let element = document.createElement('div');
     element.setAttribute('id', namespace);
-    body.append(element);
+    body.appendChild(element);
 
     let instance = new Yox({
 

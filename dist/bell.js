@@ -2100,7 +2100,7 @@
           }
 
           me.inputElement.style.display = 'none';
-          me.$el.append(me.inputElement);
+          me.$el.appendChild(me.inputElement);
 
           me.fileChange = function (event) {
 
@@ -2124,10 +2124,10 @@
           var data = me.get('data');
           if (data) {
             for (var key in data) {
-              formData.append(key, data[key]);
+              formData.appendChild(key, data[key]);
             }
           }
-          formData.append('file', file);
+          formData.appendChild('file', file);
           xhr.send(formData);
 
           xhr.onreadystatechange = function () {
@@ -5062,7 +5062,7 @@
       }
     }, _template$propTypes$m.afterMount = function afterMount() {
       this.setStatus();
-      document.body.append(this.$el);
+      document.body.appendChild(this.$el);
     }, _template$propTypes$m);
 
     var id = 0;
@@ -5073,7 +5073,7 @@
         var body = document.body;
         var element = document.createElement('div');
         element.setAttribute('id', namespace);
-        body.append(element);
+        body.appendChild(element);
 
         var instance = new Yox({
 
@@ -5220,7 +5220,7 @@
         var body = document.getElementById('bell-notice-wrapper');
         var element = document.createElement('div');
         element.setAttribute('id', namespace);
-        body.append(element);
+        body.appendChild(element);
 
         var instance = new Yox({
 
@@ -5340,7 +5340,7 @@
     var body = document.body;
     var element = document.createElement('div');
     element.setAttribute('id', 'bell-notice-wrapper');
-    body.append(element);
+    body.appendChild(element);
 
     Yox.prototype.$Notice = {
         success: function success(arg) {
@@ -5374,7 +5374,7 @@
         var body = document.getElementById('bell-msgbox-wrapper');
         var element = document.createElement('div');
         element.setAttribute('id', namespace);
-        body.append(element);
+        body.appendChild(element);
 
         var instance = new Yox({
             el: '#' + namespace,
@@ -5441,7 +5441,7 @@
         var body = document.getElementById('bell-msgbox-wrapper');
         var element = document.createElement('div');
         element.setAttribute('id', namespace);
-        body.append(element);
+        body.appendChild(element);
 
         var instance = new Yox({
             el: '#' + namespace,
@@ -5518,7 +5518,7 @@
     var body$1 = document.body;
     var element$1 = document.createElement('div');
     element$1.setAttribute('id', 'bell-msgbox-wrapper');
-    body$1.append(element$1);
+    body$1.appendChild(element$1);
 
     Yox.prototype.$Alert = function (data) {
         addAlert(data);
@@ -5541,7 +5541,7 @@
         var body = document.getElementById('bell-loading-bar-wrapper');
         var element = document.createElement('div');
         element.setAttribute('id', namespace);
-        body.append(element);
+        body.appendChild(element);
 
         instance = new Yox({
 
@@ -5622,7 +5622,7 @@
     var body$2 = document.body;
     var element$2 = document.createElement('div');
     element$2.setAttribute('id', 'bell-loading-bar-wrapper');
-    body$2.append(element$2);
+    body$2.appendChild(element$2);
 
     var config$2 = {};
 

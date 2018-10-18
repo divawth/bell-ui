@@ -29,7 +29,7 @@ let updateConfig = (data) => {
 let body = document.body;
 let element = document.createElement('div');
 element.setAttribute('id', 'bell-notice-wrapper');
-body.append(element);
+body.appendChild(element);
 
 Yox.prototype.$Notice = {
     success: (arg) => {
