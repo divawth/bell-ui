@@ -78,10 +78,10 @@ export default {
       var data = me.get('data');
       if (data) {
         for(var key in data) {
-          formData.appendChild(key, data[ key ]);
+          formData.append(key, data[ key ]);
         }
       }
-      formData.appendChild('file', file);
+      formData.append('file', file);
       xhr.send(formData);
 
       xhr.onreadystatechange = function() {

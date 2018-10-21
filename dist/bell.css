@@ -181,11 +181,6 @@ th {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
 .bell-bg-white {
   background-color: #fff;
 }
