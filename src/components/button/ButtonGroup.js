@@ -1,19 +1,19 @@
 export default {
-    template: `
-        <div class="bell-button
-            {{#if className}} {{className}}{{/if}}
-        " {{#if style}} style="{{style}}"{{/if}}>
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{/if}}
-        </div>
-    `,
-    propTypes: {
-        className: {
-            type: 'string'
-        },
-        style: {
-            type: 'string'
-        }
+  template: `
+<div class="bell-button
+  {{#if className}} {{className}}{{/if}}
+" {{#if style}} style="{{style}}"{{/if}}>
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{/if}}
+</div>
+  `,
+  propTypes: {
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
+  }
 };

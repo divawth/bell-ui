@@ -1,29 +1,29 @@
 export default {
-    template: `
-        <div class="bell-tooltip-inner-content
-            {{#if className}} {{className}}{{/if}}
-        "{{#if style}} style="{{style}}"{{/if}}>
+  template: `
+<div class="bell-tooltip-inner-content
+  {{#if className}} {{className}}{{/if}}
+"{{#if style}} style="{{style}}"{{/if}}>
 
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{/if}}
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{/if}}
 
-        </div>
-    `,
+</div>
+  `,
 
-    propTypes: {
-        className: {
-            type: 'string'
-        },
-        style: {
-            type: 'string'
-        },
+  propTypes: {
+    className: {
+      type: 'string'
     },
+    style: {
+      type: 'string'
+    },
+  },
 
-    afterMount() {
-        let me = this;
-        me.fire(
-            'hasTooltipItem'
-        );
-    }
+  afterMount() {
+    let me = this;
+    me.fire(
+      'hasTooltipItem'
+    );
+  }
 };

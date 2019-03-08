@@ -1,29 +1,29 @@
 export default {
-    template: `
-        <div class="bell-menu-group
-            {{#if className}} {{className}}{{/if}}
-        "{{#if style}} style="{{style}}"{{/if}}>
+  template: `
+<div class="bell-menu-group
+{{#if className}} {{className}}{{/if}}
+"{{#if style}} style="{{style}}"{{/if}}>
 
-            <div class="bell-menu-group-title">
-                {{title}}
-            </div>
+  <div class="bell-menu-group-title">
+    {{title}}
+  </div>
 
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{/if}}
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{/if}}
 
-        </div>
+</div>
     `,
 
-    propTypes: {
-        className: {
-            type: 'string'
-        },
-        style: {
-            type: 'string'
-        },
-        title: {
-            type: 'string'
-        }
+  propTypes: {
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    },
+    title: {
+      type: 'string'
     }
+  }
 };

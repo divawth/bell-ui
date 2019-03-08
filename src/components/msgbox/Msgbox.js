@@ -6,9 +6,9 @@ element.setAttribute('id', 'bell-msgbox-wrapper');
 body.appendChild(element);
 
 Yox.prototype.$Alert = (data) => {
-    addAlert(data);
+  addAlert(data);
 };
 
 Yox.prototype.$Confirm = (data) => {
-    addConfirm(data);
+  addConfirm(data);
 };

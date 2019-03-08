@@ -1,103 +1,103 @@
 export default {
-    template: `
-        <li class="bell-select-option
-            {{#if className}} {{className}}{{/if}}
-            {{#if isHover}} bell-hover{{/if}}
-            {{#if isSelected}} bell-active{{/if}}
-        "{{#if style}} style="{{style}}"{{/if}} on-click="click(index)">
-            {{#if hasSlot('children')}}
-                <slot name="children" />
-            {{else}}
-                {{text}}
-            {{/if}}
-        </li>
+  template: `
+<li class="bell-select-option
+  {{#if className}} {{className}}{{/if}}
+  {{#if isHover}} bell-hover{{/if}}
+  {{#if isSelected}} bell-active{{/if}}
+"{{#if style}} style="{{style}}"{{/if}} on-click="click(index)">
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{else}}
+    {{text}}
+  {{/if}}
+</li>
     `,
 
-    propTypes: {
-        className: {
-            type: 'string'
-        },
-        style: {
-            type: 'string'
-        },
-        value: {
-            type: ['string', 'numeric']
-        },
-        text: {
-            type: ['string', 'numeric']
-        },
-        index: {
-            type: ['string', 'numeric'],
-            require: true
-        }
+  propTypes: {
+    className: {
+      type: 'string'
     },
-
-    events: {
-
-        optionHoveredChange(event, data) {
-            let me = this;
-            let isHover = data.index == me.get('index');
-            me.set({
-                isHover: isHover
-            });
-            if (isHover && !me.get('isSelected')) {
-                me.set({
-                    isSelected: data.selected
-                });
-            }
-        },
-
-        optionSelectedChange(event, data) {
-            let me = this;
-            let value = me.get('value');
-            let values = data.value;
-
-            let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value;
-            me.set({
-                isSelected: isSelected
-            });
-            // 默认值的时候需要传给上层
-            if (isSelected) {
-                me.fire('selectedOptionChange');
-            }
-        }
+    style: {
+      type: 'string'
     },
-
-    data() {
-        return {
-            isSelected: false,
-            isHover: false
-        };
+    value: {
+      type: ['string', 'numeric']
     },
-
-    methods: {
-
-        click() {
-            this.fire(
-                'optionSelect'
-            );
-        }
-
+    text: {
+      type: ['string', 'numeric']
     },
-
-    afterMount() {
-
-        let me = this;
-        me.fire(
-            'optionAdd',
-            {
-                value: me.get('value'),
-                text: me.get('text'),
-                index: me.get('index')
-            }
-        );
-
-    },
-
-    beforeDestroy() {
-        this.fire(
-            'optionRemove'
-        );
+    index: {
+      type: ['string', 'numeric'],
+      require: true
     }
+  },
+
+  events: {
+
+    optionHoveredChange(event, data) {
+      let me = this;
+      let isHover = data.index == me.get('index');
+      me.set({
+        isHover: isHover
+      });
+      if (isHover && !me.get('isSelected')) {
+        me.set({
+          isSelected: data.selected
+        });
+      }
+    },
+
+    optionSelectedChange(event, data) {
+      let me = this;
+      let value = me.get('value');
+      let values = data.value;
+
+      let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value;
+      me.set({
+        isSelected: isSelected
+      });
+      // 默认值的时候需要传给上层
+      if (isSelected) {
+        me.fire('selectedOptionChange');
+      }
+    }
+  },
+
+  data() {
+    return {
+      isSelected: false,
+      isHover: false
+    };
+  },
+
+  methods: {
+
+    click() {
+      this.fire(
+        'optionSelect'
+      );
+    }
+
+  },
+
+  afterMount() {
+
+    let me = this;
+    me.fire(
+      'optionAdd',
+      {
+        value: me.get('value'),
+        text: me.get('text'),
+        index: me.get('index')
+      }
+    );
+
+  },
+
+  beforeDestroy() {
+    this.fire(
+      'optionRemove'
+    );
+  }
 
 };

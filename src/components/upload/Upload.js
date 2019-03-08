@@ -1,12 +1,12 @@
 export default {
   template: `
-    <div class="bell-upload
-      {{#if className}} {{className}}{{/if}}
-    "{{#if style}} style="{{style}}"{{/if}} on-click="click()">
-      {{#if hasSlot('children')}}
-        <slot name="children" />
-      {{/if}}
-    </div>
+<div class="bell-upload
+  {{#if className}} {{className}}{{/if}}
+"{{#if style}} style="{{style}}"{{/if}} on-click="click()">
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{/if}}
+</div>
   `,
   propTypes: {
     className: {

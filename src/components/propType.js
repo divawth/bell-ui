@@ -1,5 +1,5 @@
 Yox.validate = function (props, propTypes) {
-    return props;
+  return props;
 };
 
 var PropTypes = {
