@@ -396,8 +396,6 @@ body.sticky .sidebar-toggle {
     border-collapse: collapse;
     border-spacing: 0;
     display: block;
-    margin-bottom: 16px;
-    margin-bottom: 1rem;
     overflow: auto;
     width: 100%
 }

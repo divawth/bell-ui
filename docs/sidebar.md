@@ -21,6 +21,7 @@
   - [DatePicker 日期选择器](form/datepicker)
   - [Slider 滑块](form/slider)
   - [Form 表单](form/form)
+  - [Table 表格](form/table)
 - [View](view)
   - [Alert 警告提示](view/alert)
   - [List 列表](view/list)

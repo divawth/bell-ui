@@ -7794,3 +7794,86 @@ button.bell-button-danger[disabled] {
   padding: 12px 18px;
   text-align: right;
 }
+.bell-table,
+.bell-table-header {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  clear: both;
+  background-color: #fff;
+  color: rgba(0,0,0,0.65);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bell-table td,
+.bell-table-header td,
+.bell-table th,
+.bell-table-header th {
+  border: none;
+}
+.bell-table tr:nth-child(2n),
+.bell-table-header tr:nth-child(2n) {
+  background-color: #fff;
+}
+.bell-table-stripe tr:nth-child(2n) {
+  background-color: #f8f8f9;
+}
+.bell-table-border td,
+.bell-table-border th {
+  border: 1px solid #ddd;
+}
+.bell-table-header th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  height: 40px;
+  background-color: #f8f8f9;
+}
+.bell-table-body td {
+  min-width: 0;
+  cursor: default;
+  box-sizing: border-box;
+  text-align: left;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  height: 48px;
+  border-bottom: 1px solid #e8eaec;
+}
+.bell-table-body tr:hover {
+  background-color: #ebf7ff;
+}
+.bell-table-fixed {
+  position: relative;
+}
+.bell-table-fixed th,
+.bell-table-fixed td {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+.bell-table-hidden {
+  visibility: hidden;
+}
+.bell-table-fixed-header {
+  position: top;
+  top: 0;
+  z-index: 1;
+}
+.bell-table-fixed-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  box-shadow: 2px 0 6px -2px rgba(0,0,0,0.2);
+}
+.bell-table-fixed-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  box-shadow: -2px 0 6px -2px rgba(0,0,0,0.2);
+}
