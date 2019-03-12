@@ -19,9 +19,16 @@
   tr:nth-child(2n)
     background-color #fff
 
+    &{$selector-table}-active
+      background-color #ebf7ff
+  
+  {$selector-table}-active
+    background-color #ebf7ff
+
   color rgba(0,0,0,.65)
   font-size 14px
   line-height 1.5
+
 
 {$selector-table-stripe}
   tr:nth-child(2n)
@@ -70,6 +77,8 @@
 {$selector-table-fixed-header}
   position absolute
   top 0
+  left 0
+  right 0
   z-index 1
 
 {$selector-table-fixed-left}

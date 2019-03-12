@@ -5066,7 +5066,7 @@
   }, _template$propTypes$m);
 
   var SmallTable = {
-    template: '\n<table class="bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n"{{#if style}} style="{{style}}"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align="left" width="{{this}}"></col>\n    {{/each}}\n  </colgroup>\n  <thead class="bell-table-header">\n    {{#each columns}}\n      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">\n        {{title}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class="bell-table-body"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr{{#if setRowClassName}} class="{{setRowClassName(this, index)}}"{{/if}}>\n          {{#each columns}}\n            <td class="{{#if className}}{{className}}{{/if}}\n              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n            ">  \n              {{#if key != \'action\'}}\n                {{list[ index ][ key ]}}\n              {{else}}\n                {{#each actions}}\n                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">\n                    {{text}}\n                  </Button>\n                {{/each}}\n              {{/if}}\n            </td>\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>\n    ',
+    template: '\n<table class="bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n"{{#if style}} style="{{style}}"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align="left" width="{{this}}"></col>\n    {{/each}}\n  </colgroup>\n  <thead class="bell-table-header">\n    {{#each columns}}\n      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">\n        {{title}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class="bell-table-body"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}\n          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}\n        " on-click="rowClick(this, index)">\n          {{#each columns}}\n            <td class="{{#if className}}{{className}}{{/if}}\n              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n            ">  \n              {{#if key == \'index\'}}\n                {{#if setIndex}}\n                  {{setIndex(this, index)}}\n                {{else}}\n                  {{index + 1}}\n                {{/if}}\n              {{else if key != \'action\'}}\n                {{list[ index ][ key ]}}\n              {{else}}\n                {{#each actions}}\n                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">\n                    {{text}}\n                  </Button>\n                {{/each}}\n              {{/if}}\n            </td>\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>\n    ',
     propTypes: {
       className: {
         type: 'string'
@@ -5099,19 +5099,46 @@
       header: {
         type: 'boolean',
         default: false
+      },
+      highlightRow: {
+        type: 'boolean'
+      },
+      setIndex: {
+        type: 'function'
       }
     },
 
     data: function data() {
       return {
-        colWidths: []
+        colWidths: [],
+        currentItem: null
       };
     },
 
 
     methods: {
+      clearCurrentRow: function clearCurrentRow() {
+        console.log('212112112');
+        this.set({
+          'currentItem': null
+        });
+      },
       click: function click(item, data, index) {
         item.action(data, index);
+      },
+      rowClick: function rowClick(data, index) {
+        var me = this;
+        if (!me.get('highlightRow') || me.get('header')) {
+          return;
+        }
+        data.index = index;
+        me.fire('currentChange', {
+          current: data,
+          oldCurrent: me.get('currentItem')
+        });
+        me.set({
+          'currentItem': data
+        });
       }
     },
 
@@ -5135,7 +5162,7 @@
   };
 
   var Table = {
-    template: '\n<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} \n  style="{{#if height}}height: {{height}}px; overflow-y: auto;{{/if}}\n  {{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}\n">\n\n  {{#if height}}\n  <div class="bell-table-fixed-header">\n    <SmallTable {{...this}} header></SmallTable>\n  </div>\n  {{/if}}\n\n  {{#if fixedLeftList.length}}\n    <div class="bell-table-fixed-left">\n      <SmallTable {{...this}} columns="{{fixedLeftList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n  <div class="bell-table-insert">\n    <SmallTable {{...this}}></SmallTable>\n  </div>\n  {{#if fixedRightList.length}}\n    <div class="bell-table-fixed-right">\n      <SmallTable {{...this}} columns="{{fixedRightList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n</div>\n    ',
+    template: '\n<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} \n  style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}">\n\n  {{#if height}}\n  <div class="bell-table-fixed-header">\n    <SmallTable ref="smallTable" {{...this}} header></SmallTable>\n  </div>\n  {{/if}}\n\n  {{#if fixedLeftList.length}}\n    <div class="bell-table-fixed-left">\n      <SmallTable ref="smallTable" {{...this}} columns="{{fixedLeftList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n  <div class="bell-table-insert{{#if height}} bell-table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>\n    <SmallTable ref="smallTable" {{...this}}></SmallTable>\n  </div>\n  {{#if fixedRightList.length}}\n    <div class="bell-table-fixed-right">\n      <SmallTable ref="smallTable" {{...this}} columns="{{fixedRightList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n</div>\n    ',
     propTypes: {
       className: {
         type: 'string'
@@ -5164,6 +5191,12 @@
       },
       width: {
         type: 'string'
+      },
+      highlightRow: {
+        type: 'boolean'
+      },
+      setIndex: {
+        type: 'function'
       }
     },
 
@@ -5178,6 +5211,10 @@
     methods: {
       click: function click(item, data, index) {
         item.action(data, index);
+      },
+      clearCurrentRow: function clearCurrentRow() {
+        console.log(this.$refs.smallTable);
+        this.$refs.smallTable.clearCurrentRow();
       }
     },
 

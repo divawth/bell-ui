@@ -20,12 +20,20 @@ export default {
   <tbody class="bell-table-body"> 
     {{#if !header}}
       {{#each list:index}}
-        <tr{{#if setRowClassName}} class="{{setRowClassName(this, index)}}"{{/if}}>
+        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}
+          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}
+        " on-click="rowClick(this, index)">
           {{#each columns}}
             <td class="{{#if className}}{{className}}{{/if}}
               {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
             ">  
-              {{#if key != 'action'}}
+              {{#if key == 'index'}}
+                {{#if setIndex}}
+                  {{setIndex(this, index)}}
+                {{else}}
+                  {{index + 1}}
+                {{/if}}
+              {{else if key != 'action'}}
                 {{list[ index ][ key ]}}
               {{else}}
                 {{#each actions}}
@@ -74,18 +82,44 @@ export default {
     header: {
       type: 'boolean',
       default: false
+    },
+    highlightRow: {
+      type: 'boolean'
+    },
+    setIndex: {
+      type: 'function'
     }
   },
 
   data() {
     return {
-      colWidths: []
+      colWidths: [],
+      currentItem: null
     };
   },
 
   methods: {
+    clearCurrentRow: function () {
+      this.set({
+        'currentItem': null
+      });
+    },
     click: function (item, data, index) {
       item.action(data, index);
+    },
+    rowClick: function (data, index) {
+      let me = this;
+      if (!me.get('highlightRow') || me.get('header')) {
+        return;
+      }
+      data.index = index;
+      me.fire('currentChange', {
+        current: data,
+        oldCurrent: me.get('currentItem')
+      });
+      me.set({
+        'currentItem': data
+      });
     }
   },
 

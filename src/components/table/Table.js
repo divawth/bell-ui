@@ -52,6 +52,12 @@ export default {
     },
     width: {
       type: 'string'
+    },
+    highlightRow: {
+      type: 'boolean'
+    },
+    setIndex: {
+      type: 'function'
     }
   },
 
@@ -65,6 +71,9 @@ export default {
   methods: {
     click: function (item, data, index) {
       item.action(data, index);
+    },
+    clearCurrentRow: function () {
+      this.$refs.smallTable.clearCurrentRow();
     }
   },
 

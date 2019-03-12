@@ -7820,6 +7820,14 @@ button.bell-button-danger[disabled] {
 .bell-table-header tr:nth-child(2n) {
   background-color: #fff;
 }
+.bell-table tr:nth-child(2n).bell-table-active,
+.bell-table-header tr:nth-child(2n).bell-table-active {
+  background-color: #ebf7ff;
+}
+.bell-table .bell-table-active,
+.bell-table-header .bell-table-active {
+  background-color: #ebf7ff;
+}
 .bell-table-stripe tr:nth-child(2n) {
   background-color: #f8f8f9;
 }
@@ -7859,8 +7867,10 @@ button.bell-button-danger[disabled] {
   visibility: hidden;
 }
 .bell-table-fixed-header {
-  position: top;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
 }
 .bell-table-fixed-left {

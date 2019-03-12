@@ -48,9 +48,6 @@
             }
           ]
         }
-      },
-      methods: {
-        
       }
     }
 
@@ -464,7 +461,134 @@
         }
       }
     }
-    
+
+> 单选 
+
+    export default {
+      isViewFullBlock: true,
+      template: `
+        <div>
+          <Table ref="currentRowTable" highlightRow columns="{{columns1}}" list="{{data1}}" on-currentChange="rowChange($data)"></Table>
+          <Button on-click="clearRowChange()">
+            Clear
+          </Button>
+        </div>
+      `,
+      data: function () {
+        return {
+          columns1: [
+            {
+              title: 'Name',
+              key: 'name'
+            },
+            {
+              title: 'Age',
+              key: 'age'
+            },
+            {
+              title: 'Address',
+              key: 'address'
+            }
+          ],
+          data1: [
+            {
+              name: 'John Brown',
+              age: 18,
+              address: 'New York No. 1 Lake Park',
+              date: '2016-10-03'
+            },
+            {
+              name: 'Jim Green',
+              age: 24,
+              address: 'London No. 1 Lake Park',
+              date: '2016-10-01'
+            },
+            {
+              name: 'Joe Black',
+              age: 30,
+              address: 'Sydney No. 1 Lake Park',
+              date: '2016-10-02'
+            },
+            {
+              name: 'Jon Snow',
+              age: 26,
+              address: 'Ottawa No. 2 Lake Park',
+              date: '2016-10-04'
+            }
+          ]
+        }
+      },
+      methods: {
+        rowChange: function (data) {
+          console.log(data)
+        },
+        clearRowChange: function () {
+          this.$refs.currentRowTable.clearCurrentRow();
+        }
+      }
+    }
+
+> 设置 Index 用 setIndex 自定义 index
+
+    export default {
+      isViewFullBlock: true,
+      template: `
+        <Table setIndex="{{setIndex}}" columns="{{columns1}}" list="{{data1}}"></Table>
+      `,
+      data: function () {
+        return {
+          setIndex: function (item, index) {
+            return index + 2;
+          },
+          columns1: [
+            {
+              title: '#',
+              key: 'index',
+              width: 60
+            },
+            {
+              title: 'Name',
+              key: 'name'
+            },
+            {
+              title: 'Age',
+              key: 'age'
+            },
+            {
+              title: 'Address',
+              key: 'address'
+            }
+          ],
+          data1: [
+            {
+              name: 'John Brown',
+              age: 18,
+              address: 'New York No. 1 Lake Park',
+              date: '2016-10-03'
+            },
+            {
+              name: 'Jim Green',
+              age: 24,
+              address: 'London No. 1 Lake Park',
+              date: '2016-10-01'
+            },
+            {
+              name: 'Joe Black',
+              age: 30,
+              address: 'Sydney No. 1 Lake Park',
+              date: '2016-10-02'
+            },
+            {
+              name: 'Jon Snow',
+              age: 26,
+              address: 'Ottawa No. 2 Lake Park',
+              date: '2016-10-04'
+            }
+          ]
+        }
+      }
+    }
+
 #### API
 
 > Attributes
@@ -479,9 +603,11 @@ setRowClassName | 设置某行的类名 | Function | - | -
 columns.className | 设置某列的类名 | String | - | -
 data.cellClassName | 设置某个数据的类名 | String | - | -
 height | 设置表格的高度 | String | - | -
+highlightRow | 表示可以选中某一行 | Boolean | - | false
+clearCurrentRow | 清楚单选选择的行 | Function | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 分值改变时触发 | -
+currentChange | 当 highlightRow 为 true 的时候点击某一行触发  | data.current 当前选中 data.oldCurrent 上一次选中
