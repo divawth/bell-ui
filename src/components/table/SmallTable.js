@@ -117,14 +117,15 @@ export default {
       }).length === this.get('list').length;
     }
   },
+
   methods: {
     checkedChange (data, index) {
-      this.setCheckedInit(data.isChecked, true, index);
+      this.setChecked(data.isChecked, true, index);
       data.index = index;
       this.fire('select', data);
     },
     checkedAllChange (event, data) {
-      this.setCheckedInit(data.isChecked, true);
+      this.setChecked(data.isChecked, true);
       this.fire('selectAll', data);
     },
     selectAll () {
@@ -155,7 +156,7 @@ export default {
       });
     },
 
-    setCheckedInit(value, force, index) {
+    setChecked(value, force, index) {
       let me = this;
       let list = me.copy(me.get('list'));
       list = list.map((item, key) => {
@@ -172,6 +173,8 @@ export default {
         }
         return item;
       });
+
+      this.fire('selectChange', list);
       me.set({
         list
       });
@@ -181,7 +184,7 @@ export default {
   afterMount: function () {
     let me = this;
     if (me.get('selection')) {
-      me.setCheckedInit();
+      me.setChecked();
     }
     if (!me.get('columns').length) {
       return;

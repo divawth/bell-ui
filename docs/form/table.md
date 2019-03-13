@@ -678,3 +678,6 @@ selection | 设置表格可选操作 | Boolean | - | -
 事件名称 | 说明 | 回调参数
 ---|---|---
 currentChange | 当 highlightRow 为 true 的时候点击某一行触发  | data.current 当前选中 data.oldCurrent 上一次选中
+select | 选择某项的时候触发 | data.isChecked 是否选中
+selectAll | 是否全选中 | data.isChecked
+selectChange | 选项改变的时候触发 | list

@@ -5064,6 +5064,7 @@
     document.body.appendChild(this.$el);
   }, _template$propTypes$m);
 
+  var _arguments = arguments;
   var SmallTable = {
     template: '\n<table class="bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n"{{#if style}} style="{{style}}"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align="left" width="{{this}}"></col>\n    {{/each}}\n  </colgroup>\n  <thead class="bell-table-header">\n    {{#each columns}}\n      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">\n        {{#if key !== \'checked\'}}\n          {{title}}\n        {{else}}\n          <Checkbox checked="{{checkAll}}" on-change="checkedAllChange()">\n            {{title}}\n          </Checkbox>\n        {{/if}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class="bell-table-body"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}\n          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}\n        " on-click="rowClick(this, index)">\n          {{#each columns}}\n            <td class="{{#if className}}{{className}}{{/if}}\n              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n            ">  \n              {{#if key == \'index\'}}\n                {{#if setIndex}}\n                  {{setIndex(this, index)}}\n                {{else}}\n                  {{index + 1}}\n                {{/if}}\n              {{else if key == \'checked\'}}\n                <Checkbox checked="{{list[ index ][ key ]}}" on-change="checkedChange($data, index)">\n                </Checkbox>\n              {{else if key != \'action\'}}\n                {{list[ index ][ key ]}}\n              {{else}}\n                {{#each actions}}\n                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">\n                    {{text}}\n                  </Button>\n                {{/each}}\n              {{/if}}\n            </td>\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>\n    ',
     propTypes: {
@@ -5125,6 +5126,13 @@
         }).length === this.get('list').length;
       }
     },
+
+    watchers: {
+      'list.*.checked': function listChecked() {
+        console.log(_arguments);
+      }
+    },
+
     methods: {
       checkedChange: function checkedChange(data, index) {
         this.setCheckedInit(data.isChecked, true, index);
