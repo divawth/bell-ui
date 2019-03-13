@@ -1342,12 +1342,11 @@
       }
     },
 
-    data: function data() {
-      return {
-        isChecked: this.get('checked') ? true : false
-      };
+    computed: {
+      isChecked: function isChecked() {
+        return this.get('checked') ? true : false;
+      }
     },
-
 
     events: {
       updateCheckboxValue: function updateCheckboxValue(event, data) {
@@ -5066,7 +5065,7 @@
   }, _template$propTypes$m);
 
   var SmallTable = {
-    template: '\n<table class="bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n"{{#if style}} style="{{style}}"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align="left" width="{{this}}"></col>\n    {{/each}}\n  </colgroup>\n  <thead class="bell-table-header">\n    {{#each columns}}\n      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">\n        {{title}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class="bell-table-body"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}\n          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}\n        " on-click="rowClick(this, index)">\n          {{#each columns}}\n            <td class="{{#if className}}{{className}}{{/if}}\n              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n            ">  \n              {{#if key == \'index\'}}\n                {{#if setIndex}}\n                  {{setIndex(this, index)}}\n                {{else}}\n                  {{index + 1}}\n                {{/if}}\n              {{else if key != \'action\'}}\n                {{list[ index ][ key ]}}\n              {{else}}\n                {{#each actions}}\n                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">\n                    {{text}}\n                  </Button>\n                {{/each}}\n              {{/if}}\n            </td>\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>\n    ',
+    template: '\n<table class="bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n"{{#if style}} style="{{style}}"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align="left" width="{{this}}"></col>\n    {{/each}}\n  </colgroup>\n  <thead class="bell-table-header">\n    {{#each columns}}\n      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">\n        {{#if key !== \'checked\'}}\n          {{title}}\n        {{else}}\n          <Checkbox checked="{{checkAll}}" on-change="checkedAllChange()">\n            {{title}}\n          </Checkbox>\n        {{/if}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class="bell-table-body"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}\n          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}\n        " on-click="rowClick(this, index)">\n          {{#each columns}}\n            <td class="{{#if className}}{{className}}{{/if}}\n              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n            ">  \n              {{#if key == \'index\'}}\n                {{#if setIndex}}\n                  {{setIndex(this, index)}}\n                {{else}}\n                  {{index + 1}}\n                {{/if}}\n              {{else if key == \'checked\'}}\n                <Checkbox checked="{{list[ index ][ key ]}}" on-change="checkedChange($data, index)">\n                </Checkbox>\n              {{else if key != \'action\'}}\n                {{list[ index ][ key ]}}\n              {{else}}\n                {{#each actions}}\n                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">\n                    {{text}}\n                  </Button>\n                {{/each}}\n              {{/if}}\n            </td>\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>\n    ',
     propTypes: {
       className: {
         type: 'string'
@@ -5105,6 +5104,9 @@
       },
       setIndex: {
         type: 'function'
+      },
+      selection: {
+        type: 'boolean'
       }
     },
 
@@ -5116,9 +5118,30 @@
     },
 
 
+    computed: {
+      checkAll: function checkAll() {
+        return this.get('list').filter(function (item) {
+          return item.checked;
+        }).length === this.get('list').length;
+      }
+    },
     methods: {
+      checkedChange: function checkedChange(data, index) {
+        this.setCheckedInit(data.isChecked, true, index);
+        data.index = index;
+        this.fire('select', data);
+      },
+      checkedAllChange: function checkedAllChange(event, data) {
+        this.setCheckedInit(data.isChecked, true);
+        this.fire('selectAll', data);
+      },
+      selectAll: function selectAll() {
+        this.checkedAllChange(null, {
+          isChecked: true
+        });
+      },
+
       clearCurrentRow: function clearCurrentRow() {
-        console.log('212112112');
         this.set({
           'currentItem': null
         });
@@ -5139,11 +5162,34 @@
         me.set({
           'currentItem': data
         });
+      },
+
+      setCheckedInit: function setCheckedInit(value, force, index) {
+        var me = this;
+        var list = me.copy(me.get('list'));
+        list = list.map(function (item, key) {
+          if (force && index == null) {
+            item.checked = value;
+          } else if (index != null) {
+            if (key === index) {
+              item.checked = value;
+            }
+          } else {
+            item.checked = item.checked != null ? item.checked : value;
+          }
+          return item;
+        });
+        me.set({
+          list: list
+        });
       }
     },
 
     afterMount: function afterMount() {
       var me = this;
+      if (me.get('selection')) {
+        me.setCheckedInit();
+      }
       if (!me.get('columns').length) {
         return;
       }
@@ -5162,7 +5208,7 @@
   };
 
   var Table = {
-    template: '\n<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} \n  style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}">\n\n  {{#if height}}\n  <div class="bell-table-fixed-header">\n    <SmallTable ref="smallTable" {{...this}} header></SmallTable>\n  </div>\n  {{/if}}\n\n  {{#if fixedLeftList.length}}\n    <div class="bell-table-fixed-left">\n      <SmallTable ref="smallTable" {{...this}} columns="{{fixedLeftList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n  <div class="bell-table-insert{{#if height}} bell-table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>\n    <SmallTable ref="smallTable" {{...this}}></SmallTable>\n  </div>\n  {{#if fixedRightList.length}}\n    <div class="bell-table-fixed-right">\n      <SmallTable ref="smallTable" {{...this}} columns="{{fixedRightList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n</div>\n    ',
+    template: '\n<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} \n  style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}">\n\n  {{#if height}}\n  <div class="bell-table-fixed-header">\n    <SmallTable {{...this}} header></SmallTable>\n  </div>\n  {{/if}}\n\n  {{#if fixedLeftList.length}}\n    <div class="bell-table-fixed-left">\n      <SmallTable {{...this}} columns="{{fixedLeftList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n  <div class="bell-table-insert{{#if height}} bell-table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>\n    <SmallTable {{...this}}></SmallTable>\n  </div>\n  {{#if fixedRightList.length}}\n    <div class="bell-table-fixed-right">\n      <SmallTable {{...this}} columns="{{fixedRightList}}" list="{{list}}"></SmallTable>\n    </div>\n  {{/if}}\n</div>\n    ',
     propTypes: {
       className: {
         type: 'string'
@@ -5197,6 +5243,9 @@
       },
       setIndex: {
         type: 'function'
+      },
+      selection: {
+        type: 'boolean'
       }
     },
 
@@ -5213,8 +5262,10 @@
         item.action(data, index);
       },
       clearCurrentRow: function clearCurrentRow() {
-        console.log(this.$refs.smallTable);
         this.$refs.smallTable.clearCurrentRow();
+      },
+      selectAll: function selectAll() {
+        this.$refs.smallTable.selectAll();
       }
     },
 
@@ -5225,7 +5276,8 @@
       }
       var fixedLeftList = [];
       var fixedRightList = [];
-      me.get('columns').forEach(function (item) {
+      var columns = me.copy(me.get('columns'));
+      columns.forEach(function (item) {
         var fixed = item.fixed;
         switch (fixed) {
           case 'left':

@@ -58,6 +58,9 @@ export default {
     },
     setIndex: {
       type: 'function'
+    },
+    selection: {
+      type: 'boolean'
     }
   },
 
@@ -74,6 +77,9 @@ export default {
     },
     clearCurrentRow: function () {
       this.$refs.smallTable.clearCurrentRow();
+    },
+    selectAll: function () {
+      this.$refs.smallTable.selectAll();
     }
   },
 
@@ -84,7 +90,8 @@ export default {
     }
     let fixedLeftList = [];
     let fixedRightList = [];
-    me.get('columns').forEach(item => {
+    let columns = me.copy(me.get('columns'));
+    columns.forEach(item => {
       let fixed = item.fixed;
       switch(fixed) {
         case 'left': 

@@ -13,7 +13,13 @@ export default {
   <thead class="bell-table-header">
     {{#each columns}}
       <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}">
-        {{title}}
+        {{#if key !== 'checked'}}
+          {{title}}
+        {{else}}
+          <Checkbox checked="{{checkAll}}" on-change="checkedAllChange()">
+            {{title}}
+          </Checkbox>
+        {{/if}}
       </th>
     {{/each}}
   </thead>
@@ -33,6 +39,9 @@ export default {
                 {{else}}
                   {{index + 1}}
                 {{/if}}
+              {{else if key == 'checked'}}
+                <Checkbox checked="{{list[ index ][ key ]}}" on-change="checkedChange($data, index)">
+                </Checkbox>
               {{else if key != 'action'}}
                 {{list[ index ][ key ]}}
               {{else}}
@@ -88,6 +97,9 @@ export default {
     },
     setIndex: {
       type: 'function'
+    },
+    selection: {
+      type: 'boolean'
     }
   },
 
@@ -98,7 +110,28 @@ export default {
     };
   },
 
+  computed: {
+    checkAll () {
+      return this.get('list').filter(item => {
+        return item.checked;
+      }).length === this.get('list').length;
+    }
+  },
   methods: {
+    checkedChange (data, index) {
+      this.setCheckedInit(data.isChecked, true, index);
+      data.index = index;
+      this.fire('select', data);
+    },
+    checkedAllChange (event, data) {
+      this.setCheckedInit(data.isChecked, true);
+      this.fire('selectAll', data);
+    },
+    selectAll () {
+      this.checkedAllChange(null, {
+        isChecked: true
+      });
+    },
     clearCurrentRow: function () {
       this.set({
         'currentItem': null
@@ -120,11 +153,36 @@ export default {
       me.set({
         'currentItem': data
       });
+    },
+
+    setCheckedInit(value, force, index) {
+      let me = this;
+      let list = me.copy(me.get('list'));
+      list = list.map((item, key) => {
+        if (force && index == null) {
+          item.checked = value;
+        }
+        else if (index != null) {
+          if (key === index) {
+            item.checked = value
+          }
+        }
+        else {
+          item.checked = item.checked != null ? item.checked : value;
+        }
+        return item;
+      });
+      me.set({
+        list
+      });
     }
   },
 
   afterMount: function () {
     let me = this;
+    if (me.get('selection')) {
+      me.setCheckedInit();
+    }
     if (!me.get('columns').length) {
       return;
     }

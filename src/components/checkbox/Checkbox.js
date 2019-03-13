@@ -60,9 +60,9 @@ export default {
     }
   },
 
-  data() {
-    return {
-      isChecked: this.get('checked') ? true : false
+  computed: {
+    isChecked () {
+      return this.get('checked') ? true : false
     }
   },
 
