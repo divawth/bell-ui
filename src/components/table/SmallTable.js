@@ -27,31 +27,42 @@ export default {
     {{#if !header}}
       {{#each list:index}}
         <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}
-          {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}
-        " on-click="rowClick(this, index)">
+            {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}
+          " 
+          on-click="rowClick(this, index)"
+        >
           {{#each columns}}
-            <td class="{{#if className}}{{className}}{{/if}}
-              {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
-            ">  
-              {{#if key == 'index'}}
-                {{#if setIndex}}
-                  {{setIndex(this, index)}}
-                {{else}}
-                  {{index + 1}}
+            {{#if list[ index ][ key ]}}
+              <td class="{{#if className}}{{className}}{{/if}}
+                  {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
+                "
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'rowSpan' ]}}
+                  rowspan="{{list[ index ][ key ][ 'rowSpan' ]}}"
                 {{/if}}
-              {{else if key == 'checked'}}
-                <Checkbox checked="{{list[ index ][ key ]}}" on-change="checkedChange($data, index)">
-                </Checkbox>
-              {{else if key != 'action'}}
-                {{list[ index ][ key ]}}
-              {{else}}
-                {{#each actions}}
-                  <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">
-                    {{text}}
-                  </Button>
-                {{/each}}
-              {{/if}}
-            </td>
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'colSpan' ]}}
+                  colspan="{{list[ index ][ key ][ 'colSpan' ]}}"
+                {{/if}}
+              >  
+                {{#if key == 'index'}}
+                  {{#if setIndex}}
+                    {{setIndex(this, index)}}
+                  {{else}}
+                    {{index + 1}}
+                  {{/if}}
+                {{else if key == 'checked'}}
+                  <Checkbox checked="{{list[ index ][ key ]}}" on-change="checkedChange($data, index)">
+                  </Checkbox>
+                {{else if key != 'action'}}
+                  {{isObject(list[ index ][ key ]) ? list[ index ][ key ][ 'value' ] : list[ index ][ key ]}}
+                {{else}}
+                  {{#each actions}}
+                    <Button on-click="click(this, list[ index ], index)" className="{{className}}" disabled="{{disabled}}" fluid="{{fluid}}" shape="{{shape}}" size="{{size}}" type="{{type}}">
+                      {{text}}
+                    </Button>
+                  {{/each}}
+                {{/if}}
+              </td>
+            {{/if}}
           {{/each}}
         </tr>
       {{/each}}
@@ -106,7 +117,10 @@ export default {
   data() {
     return {
       colWidths: [],
-      currentItem: null
+      currentItem: null,
+      isObject(data) {
+        return Object.prototype.toString.call(data).toLocaleLowerCase().substr(8, 6) === 'object'
+      },
     };
   },
 

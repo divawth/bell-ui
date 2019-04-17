@@ -51,6 +51,61 @@
       }
     }
 
+> xxx
+
+    export default {
+      isViewFullBlock: true,
+      template: `
+        <Table columns="{{columns1}}" list="{{data1}}"></Table>
+      `,
+      data: function () {
+        return {
+          columns1: [
+            {
+              title: 'Name',
+              key: 'name'
+            },
+            {
+              title: 'Age',
+              key: 'age'
+            },
+            {
+              title: 'Address',
+              key: 'address'
+            }
+          ],
+          data1: [
+            {
+              name: 'John Brown',
+              age: {
+                value: 18,
+                rowSpan: 2
+              },
+              address: 'New York No. 1 Lake Park',
+              date: '2016-10-03'
+            },
+            {
+              name: 'Jim Green',
+              address: 'London No. 1 Lake Park',
+              date: '2016-10-01'
+            },
+            {
+              name: 'Joe Black',
+              age: 30,
+              address: 'Sydney No. 1 Lake Park',
+              date: '2016-10-02'
+            },
+            {
+              name: 'Jon Snow',
+              age: 26,
+              address: 'Ottawa No. 2 Lake Park',
+              date: '2016-10-04'
+            }
+          ]
+        }
+      }
+    }
+
 > border 加边框
 
     export default {
