@@ -1,4 +1,4 @@
-import BreadcrumbItemTpl from './BreadcrumbItem.html'
+import BreadcrumbItemTpl from './template/BreadcrumbItem.html'
 
 export default {
   template: BreadcrumbItemTpl,

@@ -1,4 +1,4 @@
-import ButtonGroupTpl from './ButtonGroup.html'
+import ButtonGroupTpl from './template/ButtonGroup.html'
 
 export default {
   template: ButtonGroupTpl,

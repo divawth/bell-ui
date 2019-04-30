@@ -1,4 +1,4 @@
-import BackTopTpl from './BackTop.html'
+import BackTopTpl from './template/BackTop.html'
 
 export default {
   template: BackTopTpl,

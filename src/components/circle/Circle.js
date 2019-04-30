@@ -1,4 +1,4 @@
-import CircleTpl from './Circle.html'
+import CircleTpl from './template/Circle.html'
 
 export default {
   template: CircleTpl,

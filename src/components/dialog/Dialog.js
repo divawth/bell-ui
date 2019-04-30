@@ -1,4 +1,4 @@
-import DialogTpl from './Dialog.html'
+import DialogTpl from './template/Dialog.html'
 
 export default {
 

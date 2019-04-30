@@ -1,4 +1,4 @@
-import AvatarTpl from './Avatar.html'
+import AvatarTpl from './template/Avatar.html'
 
 export default {
   template: AvatarTpl,

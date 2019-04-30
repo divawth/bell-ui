@@ -1,4 +1,4 @@
-import AlertTpl from './Alert.html'
+import AlertTpl from './template/Alert.html'
 
 export default {
   template: AlertTpl,

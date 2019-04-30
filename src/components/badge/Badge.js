@@ -1,4 +1,4 @@
-import BadgeTpl from './Badge.html'
+import BadgeTpl from './template/Badge.html'
 
 export default {
   template: BadgeTpl,

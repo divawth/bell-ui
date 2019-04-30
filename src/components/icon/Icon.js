@@ -1,4 +1,4 @@
-import IconTpl from './Icon.html'
+import IconTpl from './template/Icon.html'
 
 export default {
   template: IconTpl,

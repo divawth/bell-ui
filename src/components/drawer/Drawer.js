@@ -1,7 +1,7 @@
 import {
   contains
 } from '../util'
-import DrawerTpl from './Drawer.html'
+import DrawerTpl from './template/Drawer.html'
 
 export default {
   template: DrawerTpl,

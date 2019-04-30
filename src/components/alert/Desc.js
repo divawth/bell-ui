@@ -1,4 +1,4 @@
-import DescTpl from './Desc.html'
+import DescTpl from './template/Desc.html'
 
 export default {
   template: DescTpl,

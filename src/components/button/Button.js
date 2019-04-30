@@ -1,4 +1,4 @@
-import ButtonTpl from './Button.html'
+import ButtonTpl from './template/Button.html'
 
 export default {
   template: ButtonTpl,
