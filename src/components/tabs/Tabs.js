@@ -1,28 +1,7 @@
+import TabsTpl from './template/Tabs.html'
+
 export default {
-  template: `
-<div class="bell-tabs
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  <div class="bell-tabs-labels">
-    {{#each tabLabels}}
-      {{#if label}}
-        <span class="bell-tabs-label
-          {{#if value == name}} bell-active{{/if}}
-        " on-click="clickTabLabel(this)">
-          {{label}}
-        </span>
-      {{/if}}
-    {{/each}}
-  </div>
-
-  <div class="bell-tabs-contents" style="transform: translateX({{translateStyle}});">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </div>
-</div>
-    `,
+  template: TabsTpl,
   propTypes: {
     className: {
       type: 'string'

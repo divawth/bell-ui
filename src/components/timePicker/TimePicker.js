@@ -1,23 +1,7 @@
+import TimePickerTpl from './template/TimePicker.html'
+
 export default {
-  template: `
-<div class="bell-time-inputs">
-  <div class="wrapper">
-    <span class="icon icon-caret-up bell-button" on-click="downTens()"></span>
-    <input class="bell-time-input" type="text" model="tens">
-    <span class="icon icon-caret-down bell-button" on-click="upTens()"></span>
-  </div>
-
-  <div class="wrapper">
-    <span class="icon icon-caret-up bell-button" on-click="downOnes()"></span>
-    <input class="bell-time-input" type="text" model="ones">
-    <span class="icon icon-caret-down bell-button" on-click="upOnes()"></span>
-  </div>
-
-  <span class="bell-time-unit">
-    {{unit}}
-  </span>
-</div>
-  `,
+  template: TimePickerTpl,
   propTypes: {
     unit: {
       type: 'string',

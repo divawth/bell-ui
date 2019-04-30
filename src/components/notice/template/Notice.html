@@ -1,0 +1,19 @@
+<div class="bell-notice bell-notice-{{type}}
+  {{#if isShow}} bell-show{{/if}}
+" style="width: {{width}}px;
+  {{#if right}} right: {{right}}px;{{/if}}
+">
+
+  <div class="bell-notice-title">
+    {{title}}
+  </div>
+
+  <div class="bell-notice-desc">
+    {{content}}
+  </div>
+
+  {{#if duration == 0}}
+    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>
+  {{/if}}
+
+</div>

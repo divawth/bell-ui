@@ -207,7 +207,7 @@ class Validator {
   }
 }
 
-module.exports = {
+export {
   Validator,
   checkInteger,
   checkNumber,

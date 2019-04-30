@@ -1,3 +1,5 @@
+import LoadingBarTpl from './template/LoadingBar.html'
+
 let namespace = 'bell-loading-bar';
 let instance = null;
 let timer = null;
@@ -26,22 +28,7 @@ export let add = (data) => {
       color: data.color
     },
 
-    template: `
-<div class="bell-loading-bar
-  {{#if type}} bell-loading-bar-{{type}}{{/if}}"
->
-  <div class="bell-loading-bar-inner">
-    <div class="bell-loading-bar-bg"
-      style="
-        width: {{percent}}%;
-        height: {{height}}px;
-        {{#if color}} color: {{color}};{{/if}}
-      "
-    >
-    </div>
-  </div>
-</div>
-    `,
+    template: LoadingBarTpl,
 
     propTypes: {
       type: {

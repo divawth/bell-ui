@@ -1,16 +1,7 @@
+import LayoutTpl from './template/Layout.html'
+
 export default {
-  template: `
-<div class="bell-layout bell-row
-  {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}
-  {{#if fixed}} bell-layout-fixed{{/if}}
-  {{#if className}} {{className}}{{/if}}"
-  {{#if style}} style="{{style}}"{{/if}}
->
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-    `,
+  template: LayoutTpl,
 
   data() {
     let me = this;

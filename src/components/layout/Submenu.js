@@ -1,31 +1,7 @@
+import SubmenuTpl from './template/Submenu.html'
+
 export default {
-  template: `
-<div class="bell-menu-sub-menu
-  {{#if className}} {{className}}{{/if}}
-  {{#if isOpen}} bell-active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  <div class="bell-menu-title" on-click="click(name)">
-    <span class="bell-menu-title-text">
-      {{#if hasSlot('title')}}
-        <slot name="title" />
-      {{/if}}
-    </span>
-    {{#if isCollapsed}}
-      <i class="
-        bell-icon 
-        bell-menu-title-icon 
-        bell-icon-ios-arrow-down
-        {{#if isOpen}} bell-menu-open{{/if}}
-      "></i>
-    {{/if}}
-  </div>
-  {{#if isOpen && hasSlot('children')}}
-    <div class="bell-menu-groups" transition="groups">
-      <slot name="children" />
-    </div>
-  {{/if}}
-</div>
-    `,
+  template: SubmenuTpl,
 
   propTypes: {
     className: {

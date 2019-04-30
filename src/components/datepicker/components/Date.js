@@ -8,6 +8,7 @@ import {
   offsetMonth,
   parseDate
 } from '../function/util'
+import DateTpl from '../template/Date.html'
 
 const WEEKS = [
   '日',
@@ -23,68 +24,7 @@ const DAY = 24 * 60 * 60 * 1000;
 const stableDuration = 41 * DAY;
 
 export default {
-  template: `
-<div class="bell-datepicker-date
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-
-  <div class="bell-datepicker-header">
-    <span class="bell-datepicker-header-button" on-click="prevYear()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-    </span>
-
-    <span class="bell-datepicker-header-button" on-click="prevMonth()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-    </span>
-
-    <span class="bell-text-medium">
-      {{currentYear}} 年
-    </span>
-    <span class="bell-text-medium">
-      {{currentMonth}} 月
-    </span>
-
-    <span class="bell-datepicker-header-button" on-click="nextMonth()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-    </span>
-
-    <span class="bell-datepicker-header-button" on-click="nextYear()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-    </span>
-  </div>
-
-  <div class="bell-datepicker-table-date">
-    <div class="bell-datepicker-weeks">
-      {{#each weeks}}
-        <span class="bell-datepicker-col bell-text-sub">
-          {{this}}
-        </span>
-      {{/each}}
-    </div>
-    <div class="bell-datepicker-days">
-      {{#each dateList:index}}
-        <div class="bell-datepicker-row">
-          {{#each this:index}}
-            <span
-              class="bell-datepicker-col
-              {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
-              on-click="click(this)"
-            >
-              {{date}}
-            </span>
-          {{/each}}
-        </div>
-      {{/each}}
-    </div>
-  </div>
-
-</div>
-  `,
+  template: DateTpl,
 
   propTypes: {
     className: {

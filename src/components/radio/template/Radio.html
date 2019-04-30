@@ -1,0 +1,22 @@
+<label class="bell-radio
+  {{#if className}} {{className}}{{/if}}
+  {{#if isChecked}} bell-active{{/if}}
+  {{#if isDisabled}} bell-radio-disabled{{/if}}
+"{{#if style}} style="{{style}}"{{/if}}>
+
+  <span class="bell-radio-wrapper" on-click="click()">
+    <span class="bell-radio-inner"></span>
+    <input class="bell-radio-input" type="radio" value="{{value}}" />
+  </span>
+
+  <span class="bell-radio-label">
+    {{#if label}}
+      {{label}}
+    {{else}}
+      {{#if hasSlot('children')}}
+        <slot name="children" />
+      {{/if}}
+    {{/if}}
+  </span>
+
+</label>

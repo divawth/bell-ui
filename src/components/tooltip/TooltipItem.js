@@ -1,15 +1,7 @@
+import TooltipItemTpl from './template/TooltipItem.html'
+
 export default {
-  template: `
-<div class="bell-tooltip-inner-content
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
-  `,
+  template: TooltipItemTpl,
 
   propTypes: {
     className: {

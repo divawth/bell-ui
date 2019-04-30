@@ -1,29 +1,7 @@
+import TableTpl from './template/Table.html'
+
 export default {
-  template: `
-<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} 
-  style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}">
-
-  {{#if height}}
-  <div class="bell-table-fixed-header">
-    <SmallTable {{...this}} header></SmallTable>
-  </div>
-  {{/if}}
-
-  {{#if fixedLeftList.length}}
-    <div class="bell-table-fixed-left">
-      <SmallTable {{...this}} columns="{{fixedLeftList}}" list="{{list}}"></SmallTable>
-    </div>
-  {{/if}}
-  <div class="bell-table-insert{{#if height}} bell-table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>
-    <SmallTable {{...this}}></SmallTable>
-  </div>
-  {{#if fixedRightList.length}}
-    <div class="bell-table-fixed-right">
-      <SmallTable {{...this}} columns="{{fixedRightList}}" list="{{list}}"></SmallTable>
-    </div>
-  {{/if}}
-</div>
-    `,
+  template: TableTpl,
   propTypes: {
     className: {
       type: 'string'

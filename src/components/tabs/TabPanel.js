@@ -1,16 +1,7 @@
+import TabPanelTpl from './template/TabPanel.html'
+
 export default {
-  template: `
-<div class="bell-tabs-panel
-  {{#if className}} {{className}}{{/if}}
-  {{#if isActive}} active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
-  `,
+  template: TabPanelTpl,
   propTypes: {
     className: {
       type: 'string'

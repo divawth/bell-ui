@@ -1,38 +1,7 @@
+import CircleTpl from './Circle.html'
+
 export default {
-  template: `
-<div class="bell-circle
-    {{#if className}} {{className}}{{/if}}
-"
-  style="width: {{size}}px;
-    height: {{size}}px;
-    {{#if style}} {{style}}{{/if}}
-  "
->
-  <svg viewBox="0 0 100 100">
-    <path d="M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94"
-      stroke="{{trailColor}}"
-      stroke-width="{{trailWidth}}"
-      fill-opacity="0"
-    />
-    <path d="M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94"
-      stroke-linecap="{{strokeLinecap}}"
-      stroke="{{strokeColor}}"
-      stroke-width="{{strokeWidth}}"
-      fill-opacity="0"
-      style="
-          stroke-dasharray: {{strokeDasharray}};
-          stroke-dashoffset: {{strokeDashoffset}};
-          transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease
-      "
-    />
-  </svg>
-  <div class="bell-circle-inner">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </div>
-</div>
-  `,
+  template: CircleTpl,
 
   propTypes: {
     className: {

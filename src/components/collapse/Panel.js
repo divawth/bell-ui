@@ -1,26 +1,8 @@
 let closeTimer, initTimer, openTimer;
+import PanelTpl from './template/Panel.html'
 
 export default {
-  template: `
-<div class="bell-panel
-  {{#if className}} {{className}}{{/if}}
-  {{#if isOpen}} bell-panel-open{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-  <div class="bell-panel-el
-    {{#if arrowOpen}} bell-panel-el-open{{/if}}"
-    on-click="click()"
-  >
-    <Icon type="arrow-down-b" className="bell-panel-el-icon"></Icon>
-    {{title}}
-  </div>
-
-  <div ref="panelInner" class="bell-panel-inner">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </div>
-</div>
-    `,
+  template: PanelTpl,
 
   propTypes: {
     className: {

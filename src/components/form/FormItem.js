@@ -1,22 +1,8 @@
+
+import FormItemTpl from './template/FormItem.html'
+
 export default {
-  template: `
-<div class="bell-form-item
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-  {{#if label}}
-  <label class="bell-form-item-label" style="width: {{labelWidth}}px;">
-    {{label}}
-  </label>
-  {{/if}}
-  <div class="bell-form-item-content" 
-    {{#if label}}style="padding-left: {{labelWidth}}px;"{{/if}}
-  >
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </div>
-</div>
-    `,
+  template: FormItemTpl,
   propTypes: {
     className: {
       type: 'string'

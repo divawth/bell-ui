@@ -1,14 +1,7 @@
+import FooterTpl from './template/Footer.html'
+
 export default {
-  template: `
-<div class="bell-layout-footer bell-col-span-24
-  {{#if className}} {{className}}{{/if}}"
-  {{#if style}} style="{{style}}"{{/if}}
->
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-  `,
+  template: FooterTpl,
   propTypes: {
     className: {
       type: 'string'

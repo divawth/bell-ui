@@ -1,18 +1,8 @@
-import {
-  Validator
-} from './util/validate'
+import { Validator } from './util/validate.js'
+import FormTpl from './template/Form.html'
 
 export default {
-  template: `
-<div class="bell-form
-  {{#if className}} {{className}}{{/if}}
-  {{#if inline}} bell-form-inline{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-    `,
+  template: FormTpl,
   propTypes: {
     className: {
       type: 'string'

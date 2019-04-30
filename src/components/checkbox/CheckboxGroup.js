@@ -1,16 +1,7 @@
+import CheckboxGroupTpl from './template/CheckboxGroup.html'
+
 export default {
-  template: `
-<div class="bell-checkbox-group
-  {{#if className}} {{className}}{{/if}}
-  {{#if type}} bell-checkbox-group-{{type}}{{/if}}
-  {{#if size}} bell-checkbox-group-{{size}}{{/if}}
-  {{#if vertical}} bell-checkbox-vertical{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-  `,
+  template: CheckboxGroupTpl,
 
   model: 'modelValue',
 

@@ -1,0 +1,33 @@
+<div class="bell-rate
+  {{#if className}} {{className}}{{/if}}
+  {{#if readOnly}} bell-rate-readonly{{/if}}
+  {{#if type}} bell-rate-{{type}}{{/if}}
+"{{#if style}} style="{{style}}"{{/if}} on-mouseleave="handleLeave()">
+
+  <input type="hidden" model="value">
+  {{#each 1 => count}}
+    <span class="bell-icon bell-rate-star-full
+      {{#if activeValue - this >= 1}} active{{/if}}
+    " on-mousemove="handleMove($event, this)"
+    on-click="handleClick($event, this)"
+    >
+      {{#if half}}
+        <span type="half"
+        class="bell-icon bell-rate-star-content
+        {{#if activeValue - this == 0.5}} active{{/if}}">
+        </span>
+      {{/if}}
+    </span>
+  {{/each}}
+
+  {{#if showTexts}}
+    <span class="bell-rate-text">
+      {{#if hasSlot('children')}}
+        <slot name="children" />
+      {{else}}
+        {{value}} 星
+      {{/if}}
+    </span>
+  {{/if}}
+
+</div>

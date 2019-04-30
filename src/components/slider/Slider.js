@@ -1,54 +1,11 @@
+import SliderTpl from './template/Slider.html'
+
 const SLIDER_TOOLTIP_MARGIN_TOP = 68;
 const SLIDER_TOOLTIP_MARGIN_LEFT = 29;
 const SLIDER_TOOLTIP_THUMB_WIDTH = 10;
 
 export default {
-  template: `
-<div class="bell-slider
-  {{#if className}} {{className}}{{/if}}
-  {{#if disabled}} bell-slider-disabled{{/if}}
-  {{#if type}} bell-slider-{{type}}{{/if}}
-  {{#if dragging}} dragging{{/if}}
-"{{#if style}} style="{{style}}" {{/if}}
-  on-blur="handleBlur($event)"
-  on-focus="handleFocus($event)"
-  on-touchstart="handleTouchStart($event)"
-  on-touchend="handleTouchEnd($event)"
-  on-touchcancel="handleTouchEnd($event)"
-  on-mousedown="handleMouseDown($event)"
-  on-mouseup="handleMouseUp($event)"
-  on-mouseenter="handleMouseEnter($event)"
-  on-mouseleave="handleMouseLeave($event)"
->
-
-  <input type="hidden" disabled="{{disabled ? ' disabled' : ''}}" model="value">
-
-  <div class="bell-slider-bg">
-    <div class="bell-slider-fill"
-      style="{{fillStyle}}"
-    ></div>
-
-    <div class="bell-slider-thumb"
-      style="{{thumbStyle}}"
-      title="值：{{value}}；占比：{{percent + '%'}}"
-    >
-    </div>
-  </div>
-
-  <div class="bell-tooltip
-    {{#if dragging}} bell-show{{/if}}
-  " style="{{tooltipStyle}}">
-
-    <div ref="tooltip" class="bell-tooltip-popper" data-placement="top">
-      <div class="bell-tooltip-arrow"></div>
-      <div class="bell-tooltip-inner">
-        {{percent}}%
-      </div>
-    </div>
-
-  </div>
-</div>
-  `,
+  template: SliderTpl,
 
   propTypes: {
     className: {

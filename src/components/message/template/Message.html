@@ -1,0 +1,9 @@
+<div class="bell-message bell-message-{{type}}
+  {{#if isShow}} bell-show{{/if}}
+" style="margin-left: -{{marginLeft / 2}}px;
+  {{#if top}} top: {{top}}px;{{/if}}
+">
+  <Alert type="{{type}}" closeText="{{closeText}}" center="{{center}}" showIcon="{{showIcon}}" closable="{{closable}}" close="{{close}}">
+    {{content}}
+  </Alert>
+</div>

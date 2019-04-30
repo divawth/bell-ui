@@ -1,17 +1,7 @@
+import OptionTpl from './template/Option.html'
+
 export default {
-  template: `
-<li class="bell-select-option
-  {{#if className}} {{className}}{{/if}}
-  {{#if isHover}} bell-hover{{/if}}
-  {{#if isSelected}} bell-active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}} on-click="click(index)">
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{else}}
-    {{text}}
-  {{/if}}
-</li>
-    `,
+  template: OptionTpl,
 
   propTypes: {
     className: {

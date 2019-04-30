@@ -1,0 +1,75 @@
+<div class="bell-input-wrapper
+  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}
+  {{#if hasSlot('append')}} bell-input-has-append{{/if}}
+  {{#if className}} {{className}}{{/if}}
+  {{#if size}} bell-input-wrapper-{{size}}{{/if}}
+  {{#if status}} bell-input-wrapper-{{status}}{{/if}}
+  {{#if isFocus}} bell-focus{{/if}}
+  {{#if clearable}} bell-input-wrapper-clearable{{/if}}
+  {{#if disabled}} bell-input-wrapper-disabled{{/if}}
+  "{{#if style}} style="{{style}}"{{/if}}
+>
+
+  {{#if hasSlot('prepend')}}
+    <div class="bell-input-prepend">
+      <slot name="prepend" />
+    </div>
+  {{/if}}
+
+  <div class="bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}">
+
+    {{#if type === TEXT_TYPE_TEXTAREA}}
+
+      <textarea class="bell-input-el"
+        style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
+        {{#if rows}} rows="{{rows}}"{{/if}}
+        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+        {{#if disabled}} disabled{{/if}}
+        model="value"
+      >
+      </textarea>
+
+    {{else}}
+
+      <input ref="input"
+        type="{{currentType}}"
+        class="bell-input-el
+            {{#if size}} bell-input-{{size}}{{/if}}
+        "
+        {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+        {{#if disabled}} disabled="disabled"{{/if}}
+        model="value"
+        on-blur="blur()"
+        on-focus="focus()"
+      />
+
+      {{#if clearable}}
+        <i class="bell-icon
+          bell-icon-ios-close
+          bell-input-clear-icon
+        " on-click="clear()"></i>
+      {{/if}}
+
+      {{#if secure}}
+        {{#if isSecure}}
+          <i class="bell-icon
+              bell-icon-eye
+              bell-input-icon-eye
+          " on-click="toggle('isSecure')"></i>
+        {{else}}
+          <i class="bell-icon
+              bell-icon-eye-disabled
+              bell-input-icon-eye
+          " on-click="toggle('isSecure')"></i>
+        {{/if}}
+      {{/if}}
+
+    {{/if}}
+
+  </div>
+  {{#if hasSlot('append')}}
+    <div class="bell-input-append">
+      <slot name="append" />
+    </div>
+  {{/if}}
+</div>

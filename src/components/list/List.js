@@ -1,20 +1,7 @@
-export default {
-  template: `
-<ul class="bell-list
-  {{#if className}} {{className}}{{/if}}
-  {{#if border}} bell-list-border{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  {{#if hasSlot('subHeader')}}
-    <div class="bell-list-header">
-      <slot name="subHeader" />
-    </div>
-  {{/if}}
+import ListTpl from './template/List.html'
 
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</ul>
-    `,
+export default {
+  template: ListTpl,
   propTypes: {
     className: {
       type: 'string'

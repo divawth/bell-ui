@@ -1,23 +1,7 @@
-export default {
-  template: `
-<div class="bell-tag
-  {{#if className}} {{className}}{{/if}}
-  {{#if border}} bell-tag-border{{/if}}
-  {{#if size}} {{size}}{{/if}}
-  {{#if type}} {{type}}{{/if}}
-  {{#if checked}} bell-tag-checked{{/if}}
-"{{#if style}} style="{{style}}"{{/if}} on-click="click()">
-  <div class="bell-tag-text">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
+import TagTpl from './template/Tag.html'
 
-    {{#if closable}}
-      <i class="bell-tag-close-icon bell-icon bell-icon-ios-close-empty" on-click="close()"></i>
-    {{/if}}
-  </div>
-</div>
-    `,
+export default {
+  template: TagTpl,
   propTypes: {
     className: {
       type: 'string'

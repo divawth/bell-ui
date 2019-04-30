@@ -1,13 +1,7 @@
+import DescTpl from './Desc.html'
+
 export default {
-  template: `
-<div class="bell-alert-desc
-  {{#if className}} {{className}}{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}>
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-  `,
+  template: DescTpl,
   propTypes: {
     className: {
       type: 'string'

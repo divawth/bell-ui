@@ -1,20 +1,8 @@
+import RadioGroupTpl from './template/RadioGroup.html'
+
 export default {
 
-  template: `
-<div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}
-  {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}
-  {{#if size && button}} bell-radio-button-{{size}}{{/if}}
-  {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}
-  {{#if vertical}} bell-radio-vertical{{/if}}
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
-    `,
+  template: RadioGroupTpl,
 
   propTypes: {
     className: {

@@ -1,42 +1,7 @@
+import AlertTpl from './Alert.html'
+
 export default {
-  template: `
-<div class="bell-alert
-  {{#if className}} {{className}}{{/if}}
-  {{#if type}} bell-alert-{{type}}{{/if}}
-  {{#if hasDesc}} bell-alert-with-desc{{/if}}
-  {{#if showIcon}} bell-alert-with-icon{{/if}}
-  {{#if center}} bell-alert-center{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if showIcon}}
-    <span class="bell-alert-icon">
-      <i class="bell-icon
-      {{#if type == 'primary'}} bell-icon-information-circled
-      {{else if type == 'success'}} bell-icon-checkmark-circled
-      {{else if type == 'warning'}} bell-icon-android-alert
-      {{else if type == 'error'}} bell-icon-close-circled
-      {{/if}}
-      "></i>
-    </span>
-  {{/if}}
-
-  <span class="bell-alert-content">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </span>
-
-  {{#if closable}}
-    <span ref="close" class="bell-alert-close" on-click="close()">
-      {{#if closeText}}
-        {{closeText}}
-      {{else}}
-        <i class="bell-icon bell-icon-ios-close-empty"></i>
-      {{/if}}
-    </span>
-  {{/if}}
-</div>
-  `,
+  template: AlertTpl,
 
   propTypes: {
     className: {

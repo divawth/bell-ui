@@ -1,28 +1,7 @@
+import BadgeTpl from './Badge.html'
+
 export default {
-  template: `
-<div class="bell-badge
-{{#if type}} bell-badge-{{type}}{{/if}}
-{{#if className}} {{className}}{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}
->
-
-{{#if hasSlot('children')}}
-  <slot name="children" />
-{{/if}}
-
-{{#if !hidden}}
-  {{#if dot}}
-    <span class="bell-badge-dot"></span>
-  {{else}}
-    <span class="bell-badge-count
-      {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}
-    ">
-      {{getText(count, maxCount)}}
-    </span>
-  {{/if}}
-{{/if}}
-</div>
-    `,
+  template: BadgeTpl,
 
   propTypes: {
     className: {

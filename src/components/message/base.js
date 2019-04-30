@@ -1,3 +1,5 @@
+import MessageTpl from './template/Message.html'
+
 let id = 0;
 
 let createMessage = function (data) {
@@ -14,17 +16,7 @@ let createMessage = function (data) {
 
     replace: true,
 
-    template: `
-<div class="bell-message bell-message-{{type}}
-  {{#if isShow}} bell-show{{/if}}
-" style="margin-left: -{{marginLeft / 2}}px;
-  {{#if top}} top: {{top}}px;{{/if}}
-">
-  <Alert type="{{type}}" closeText="{{closeText}}" center="{{center}}" showIcon="{{showIcon}}" closable="{{closable}}" close="{{close}}">
-    {{content}}
-  </Alert>
-</div>
-    `,
+    template: MessageTpl,
 
     data() {
       let me = this;

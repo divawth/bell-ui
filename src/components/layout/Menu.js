@@ -1,17 +1,7 @@
+import MenuTpl from './template/Menu.html'
+
 export default {
-  template: `
-<div class="bell-menu
-  {{#if className}} {{className}}{{/if}}
-  {{#if mode}} bell-menu-{{mode}}{{/if}}
-  {{#if theme}} bell-menu-{{theme}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
-    `,
+  template: MenuTpl,
 
   propTypes: {
     className: {

@@ -1,15 +1,7 @@
+import CollapseTpl from './template/Collapse.html'
+
 export default {
-  template: `
-<div class="bell-collapse
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
-    `,
+  template: CollapseTpl,
 
   propTypes: {
     className: {

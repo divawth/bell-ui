@@ -1,24 +1,7 @@
+import MenuItemTpl from './template/MenuItem.html'
+
 export default {
-  template: `
-<div class="bell-menu-item
-  {{#if className}} {{className}}{{/if}}
-  {{#if isActive}} bell-active{{/if}}
-" style="{{style}}" on-click="click(name)">
-
-  {{#if hasSlot('leftIcon')}}
-  <span class="bell-left-icon">
-    <slot name="leftIcon" />
-  </span>
-  {{/if}}
-
-  <span class="bell-menu-item-content">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </span>
-
-</div>
-  `,
+  template: MenuItemTpl,
 
   propTypes: {
     className: {

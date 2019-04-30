@@ -1,17 +1,7 @@
+import BackTopTpl from './BackTop.html'
+
 export default {
-  template: `
-<div class="bell-backtop
-{{#if className}} {{className}}{{/if}}
-{{#if !isShow}} bell-hide{{/if}}
-{{#if !fix}} bell-backtop-fix{{/if}}
-"
-style="bottom: {{bottom}}px;
-  right: {{right}}px;
-  {{#if style}} {{style}}{{/if}}
-" on-click="back()">
-  <i class="bell-icon bell-icon-chevron-up"></i>
-</div>
-  `,
+  template: BackTopTpl,
   propTypes: {
     className: {
       type: 'string'

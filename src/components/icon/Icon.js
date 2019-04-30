@@ -1,11 +1,7 @@
+import IconTpl from './Icon.html'
+
 export default {
-  template: `
-<i class="{{#if type}}bell-icon bell-icon-{{type}}{{/if}}
-  {{#if className}} {{className}}{{/if}}"
-  style="font-size: {{size}}px;{{#if color}} color: {{color}};{{/if}}{{#if style}} {{style}}{{/if}}"
->
-</i>
-    `,
+  template: IconTpl,
   propTypes: {
     className: {
       type: 'string'

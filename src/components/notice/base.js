@@ -1,9 +1,11 @@
+import NoticeTpl from './template/Notice.html'
+
 let id = 0;
 
 let createNotice = (data) => {
 
   let namespace = 'bell-notice-' + id++;
-  let body = document.getElementById('bell-notice-wrapper');
+  let body = Yox.dom.find('#bell-notice-wrapper');
   let element = document.createElement('div');
   element.setAttribute('id', namespace);
   body.appendChild(element);
@@ -14,27 +16,7 @@ let createNotice = (data) => {
 
     replace: true,
 
-    template: `
-<div class="bell-notice bell-notice-{{type}}
-  {{#if isShow}} bell-show{{/if}}
-" style="width: {{width}}px;
-  {{#if right}} right: {{right}}px;{{/if}}
-">
-
-  <div class="bell-notice-title">
-    {{title}}
-  </div>
-
-  <div class="bell-notice-desc">
-    {{content}}
-  </div>
-
-  {{#if duration == 0}}
-    <i class="bell-icon bell-notice-close bell-icon-ios-close-empty" on-click="close()"></i>
-  {{/if}}
-
-</div>
-    `,
+    template: NoticeTpl,
 
     data() {
       let me = this;

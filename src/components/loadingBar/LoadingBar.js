@@ -3,6 +3,7 @@ let element = document.createElement('div');
 element.setAttribute('id', 'bell-loading-bar-wrapper');
 body.appendChild(element);
 
+
 import {
   add,
   remove,

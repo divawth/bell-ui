@@ -1,0 +1,26 @@
+<div class="bell-dialog
+  {{#if className}} {{className}}{{/if}}
+" style="{{#if !open}}display: none;{{/if}}{{#if style}}{{style}}{{/if}}">
+  <div class="bell-dialog-content">
+    
+    {{#if hasSlot('title')}}
+    <div class="bell-dialog-title">
+      <slot name="title" />
+    </div>
+    {{/if}}
+
+    {{#if hasSlot('children')}}
+    <div class="bell-dialog-body">
+      <slot name="children" />
+    </div>
+    {{/if}}
+
+    {{#if hasSlot('actions')}}
+    <div class="bell-dialog-actions">
+      <slot name="actions" />
+    </div>
+    {{/if}}
+
+  </div>
+  <div class="bell-dialog-mask" on-click="maskClick()"></div>
+</div>

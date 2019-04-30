@@ -1,17 +1,7 @@
+import RowTpl from './template/Row.html'
+
 export default {
-  template: `
-<div class="bell-row
-  {{#if className}} {{className}}{{/if}}
-  {{#if gutter}} bell-row-gutter{{/if}}
-  {{#if type}} bell-row-{{type}}{{/if}}
-  {{#if justify}} bell-row-justify-{{justify}}{{/if}}
-  {{#if align}} bell-row-align-{{align}}{{/if}}
-" style="{{style}}">
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-  `,
+  template: RowTpl,
 
   propTypes: {
     className: {

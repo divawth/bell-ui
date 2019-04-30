@@ -1,37 +1,7 @@
+import DateYearTpl from '../template/DateYear.html'
+
 export default {
-  template: `
-<div class="bell-datepicker-month
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-
-  <div class="bell-datepicker-header">
-    <span class="bell-datepicker-header-button" on-click="prev()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-    </span>
-
-    <span class="bell-text-medium">
-      {{modeYear}} 年 ~ {{modeYear + 12}} 年
-    </span>
-
-    <span class="bell-datepicker-header-button" on-click="next()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-    </span>
-  </div>
-
-  <div class="bell-datepicker-body">
-    {{#each years:index}}
-      <span
-        class="bell-datepicker-col
-        {{#if checkedYear == this}} bell-datepicker-col-checked{{/if}}"
-        on-click="click(this)"
-      >
-        {{this}}
-      </span>
-    {{/each}}
-  </div>
-
-</div>
-  `,
+  template: DateYearTpl,
 
   propTypes: {
     className: {

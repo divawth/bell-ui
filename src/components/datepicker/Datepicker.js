@@ -4,6 +4,7 @@ import {
 import {
   contains
 } from '../util'
+import DatePickerTpl from './template/DatePicker.html'
 
 const DAY_MAP = {
   '1': '一',
@@ -16,39 +17,7 @@ const DAY_MAP = {
 }
 
 export default {
-  template: `
-<div class="bell-datepicker
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  <div class="bell-datepicker-el" on-click="click()">
-    <Input placeholder="请选择日期..."
-      model="formateDate"
-      type="input"
-      on-focus="focus()"
-      clearable
-    />
-  </div>
-
-  <div class="bell-datepicker-poper
-    {{#if isPopuping}} bell-isPopuping{{/if}}
-    {{#if isPopdowning}} bell-isPopdowning{{/if}}
-    {{#if isOpen}} bell-show{{/if}}
-  ">
-    {{#if mode == 'date'}}
-      <Date />
-    {{else if mode == 'dateRange'}}
-      <DateRange />
-    {{else if mode == 'week'}}
-      <DateWeek />
-    {{else if mode == 'year'}}
-      <DateYear />
-    {{else if mode == 'month'}}
-      <DateMonth />
-    {{/if}}
-  </div>
-</div>
-    `,
+  template: DatePickerTpl,
 
   propTypes: {
     className: {

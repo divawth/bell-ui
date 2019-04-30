@@ -1,32 +1,7 @@
+import CheckboxTpl from './template/Checkbox.html'
+
 export default {
-  template: `
-<label class="bell-checkbox
-  {{#if className}} {{className}}{{/if}}
-  {{#if disabled}} bell-checkbox-disabled{{/if}}
-  {{#if type}} bell-checkbox-{{type}}{{/if}}
-  {{#if size}} bell-checkbox-{{size}}{{/if}}
-  {{#if isChecked}} bell-active{{/if}}
-  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  <span class="bell-checkbox-wrapper
-    {{#if isChecked}} bell-active{{/if}}
-  " on-click="click()">
-    <span class="bell-checkbox-inner"></span>
-    <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />
-  </span>
-
-  <span class="bell-checkbox-label">
-    {{#if label}}
-      {{label}}
-    {{else}}
-      {{#if hasSlot('children')}}
-        <slot name="children" />
-      {{/if}}
-    {{/if}}
-  </span>
-</label>
-  `,
+  template: CheckboxTpl,
 
   model: 'modelValue',
 

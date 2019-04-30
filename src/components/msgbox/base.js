@@ -1,3 +1,6 @@
+import MsgboxTpl from './template/Msgbox.html'
+import ConfirmTpl from './template/Confirm.html'
+
 let id = 0;
 
 let createAlert = (data) => {
@@ -11,36 +14,7 @@ let createAlert = (data) => {
   let instance = new Yox({
     el: '#' + namespace,
     replace: true,
-    template: `
-<div class="bell-msg-alert-wrapper
-{{#if isHidden}} bell-msg-alert-hidden{{/if}}
-">
-  <div class="bell-msg-alert"{{#if width}} style="width: {{width}}px;"{{/if}}>
-    {{#if closable}}
-    <div class="bell-msg-alert-close" on-click="hide()">
-      <i class="bell-icon bell-icon-ios-close-empty"></i>
-    </div>
-    {{/if}}
-
-    {{#if title}}
-    <div class="bell-msg-alert-title bell-text-main bell-text-medium">
-      {{{title}}}
-    </div>
-    {{/if}}
-
-    <div class="bell-msg-alert-desc bell-text-sub bell-text-small">
-      {{{content}}}
-    </div>
-
-    <div class="bell-msg-alert-footer">
-      <Button type="{{button.type}}" on-click="hide()">
-        {{button.text}}
-      </Button>
-    </div>
-  </div>
-  <div class="bell-msg-mask" on-click="maskClick()"></div>
-</div>
-    `,
+    template: MsgboxTpl,
     data() {
       let me = this;
       return {
@@ -106,47 +80,15 @@ let createAlert = (data) => {
 let createConfirm = (data) => {
 
   let namespace = 'bell-msg-confirm-' + id++;
-  let body = document.getElementById('bell-msgbox-wrapper');
-  let element = document.createElement('div');
+  let body = Yox.dom.find('#bell-msgbox-wrapper');
+  let element = Yox.dom.createElement('div');
   element.setAttribute('id', namespace);
   body.appendChild(element);
 
   let instance = new Yox({
     el: '#' + namespace,
     replace: true,
-    template: `
-<div class="bell-msg-confirm-wrapper
-{{#if isHidden}} bell-msg-confirm-hidden{{/if}}
-">
-  <div class="bell-msg-confirm"{{#if width}} style="width: {{width}}px;{{/if}}">
-    {{#if closable}}
-    <div class="bell-msg-confirm-close" on-click="hide()">
-      <i class="bell-icon bell-icon-ios-close-empty"></i>
-    </div>
-    {{/if}}
-
-    {{#if title}}
-    <div class="bell-msg-confirm-title bell-text-main bell-text-medium">
-      {{{title}}}
-    </div>
-    {{/if}}
-
-    <div class="bell-msg-confirm-desc bell-text-sub bell-text-small">
-      {{{content}}}
-    </div>
-    {{#if buttons}}
-    <div class="bell-msg-confirm-footer">
-      {{#each buttons:index}}
-      <Button type="{{type}}" on-click="buttonClick(index)">
-        {{text}}
-      </Button>
-      {{/each}}
-    </div>
-    {{/if}}
-  </div>
-  <div class="bell-msg-mask" on-click="maskClick()"></div>
-</div>
-    `,
+    template: ConfirmTpl,
     data() {
       let me = this;
       return {

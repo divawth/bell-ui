@@ -1,13 +1,7 @@
+import CardActionsTpl from './template/CardActions.html'
+
 export default {
-  template: `
-<div class="bell-card-actions
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-</div>
-  `,
+  template: CardActionsTpl,
   propTypes: {
     className: {
       type: 'string'

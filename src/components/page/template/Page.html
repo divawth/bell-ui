@@ -1,0 +1,134 @@
+<div class="bell-page
+  {{#if size}} bell-page-{{size}}{{/if}}
+  {{#if className}} {{className}}{{/if}}
+"{{#if style}} style="{{style}}"{{/if}}>
+  {{#partial pageCenter}}
+    {{#if current - 3 > 1}}
+      <li class="bell-page-item bell-page-item-prev" on-click="fastPrev()">
+        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+      </li>
+    {{/if}}
+
+    {{#if current - 2 > 1}}
+      <li class="bell-page-item" on-click="changePage(current - 2)">
+        {{ current - 2 }}
+      </li>
+    {{/if}}
+
+    {{#if current - 1 > 1}}
+      <li class="bell-page-item" on-click="changePage(current - 1)">
+        {{ current - 1 }}
+      </li>
+    {{/if}}
+
+    {{#if current != 1 && current != count}}
+      <li class="bell-page-item bell-active">
+        {{ current }}
+      </li>
+    {{/if}}
+
+    {{#if current + 1 < count}}
+      <li class="bell-page-item" on-click="changePage(current + 1)">
+        {{ current + 1 }}
+      </li>
+    {{/if}}
+
+    {{#if current + 2 < count}}
+      <li class="bell-page-item" on-click="changePage(current + 2)">
+        {{ current + 2 }}
+      </li>
+    {{/if}}
+
+    {{#if current + 3 < count}}
+      <li class="bell-page-item bell-page-item-next" on-click="fastNext()">
+        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+      </li>
+    {{/if}}
+  {{/partial}}
+
+  {{#if showTotal}}
+  <span class="bell-page-total">
+    共 {{total}} 条
+  </span>
+  {{/if}}
+
+  {{#if showSizer}}
+  <div class="bell-page-select">
+    <Select model="pageSize"
+      size="{{size}}"
+      placement="{{placement}}"
+      on-change="pageSizeChange()"
+    >
+      {{#each pageList:index}}
+        <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          {{text}}
+        </Option>
+      {{/each}}
+    </Select>
+  </div>
+  {{/if}}
+
+  {{#if !simple}}
+  <ul class="bell-page-list">
+
+    <li class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
+      <i class="bell-icon bell-icon-ios-arrow-left"></i>
+    </li>
+
+    <li class="bell-page-item{{#if current == 1}} bell-active{{/if}}" on-click="changePage(1)">
+      1
+    </li>
+
+    {{#if count > 1}}
+      {{> pageCenter}}
+      <li class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
+        {{count}}
+      </li>
+    {{/if}}
+
+    <li class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
+      <i class="bell-icon bell-icon-ios-arrow-right"></i>
+    </li>
+  </ul>
+
+  {{else}}
+    <div class="bell-page-simple">
+      <span class="bell-page-item bell-page-prev{{#if current <= 1}} bell-disabled{{/if}}" on-click="prev()">
+        <i class="bell-icon bell-icon-ios-arrow-left"></i>
+      </span>
+
+      <div class="bell-page-input">
+        <Input type="input"
+          model="currentPage"
+          size="{{size}}"
+        ></Input>
+      </div>
+
+      {{'/'}}
+
+      <span class="bell-page-item{{#if current == count}} bell-active{{/if}}" on-click="changePage(count)">
+        {{count}}
+      </span>
+
+      <span class="bell-page-item bell-page-next {{count}}{{#if current >= count}} bell-disabled{{/if}}" on-click="next()">
+        <i class="bell-icon bell-icon-ios-arrow-right"></i>
+      </span>
+    </div>
+  {{/if}}
+
+  {{#if showElevator}}
+    <div class="bell-page-elevator">
+      跳至
+      <div class="bell-page-input">
+        <Input type="input"
+          placeholder="请输入..."
+          model="currentPage"
+          size="{{size}}"
+        ></Input>
+      </div>
+      页
+    </div>
+  {{/if}}
+</div>

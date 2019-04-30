@@ -1,0 +1,22 @@
+<div class="bell-col
+  {{#if className}} {{className}}{{/if}}
+  {{#if span}} bell-col-span-{{span}}{{/if}}
+  {{#if order}} bell-col-order-{{order}}{{/if}}
+  {{#if push}} bell-col-push-{{push}}{{/if}}
+  {{#if pull}} bell-col-pull-{{pull}}{{/if}}
+  {{#if offset}} bell-col-span-offset-{{offset}}{{/if}}
+  {{#if xsClass}} {{xsClass}}{{/if}}
+  {{#if mdClass}} {{mdClass}}{{/if}}
+  {{#if smClass}} {{smClass}}{{/if}}
+  {{#if lgClass}} {{lgClass}}{{/if}}
+" style="{{style}}">
+
+  <div class="bell-col-content">
+
+    {{#if hasSlot('children')}}
+      <slot name="children" />
+    {{/if}}
+
+  </div>
+
+</div>

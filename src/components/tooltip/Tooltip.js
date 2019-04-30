@@ -1,37 +1,10 @@
+import TooltipTpl from './template/Tooltip.html'
+
 let timer;
 
 export default {
 
-  template: `
-<div class="bell-tooltip
-  {{#if className}} {{className}}{{/if}}
-  {{#if isShow}} bell-show{{/if}}
-  {{#if isHover}} bell-hover{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  <div class="bell-tooltip-el"
-    on-mouseover="hover()"
-    on-mouseleave="leave()"
-    on-click="click()"
-  >
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-  </div>
-
-  <div class="bell-tooltip-popper
-    {{#if disabled}} bell-tooltip-disabled{{/if}}"
-    data-placement="{{placement ? placement : 'bottom'}}"
-  >
-    <div class="bell-tooltip-arrow"></div>
-    <div class="bell-tooltip-inner"
-    style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
-      {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};
-    ">
-      {{content}}
-    </div>
-  </div>
-</div>
-    `,
+  template: TooltipTpl,
 
   propTypes: {
     className: {

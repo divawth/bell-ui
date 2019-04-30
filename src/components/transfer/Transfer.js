@@ -1,69 +1,7 @@
+import TransferTpl from './template/Transfer.html'
+
 export default {
-  template: `
-<div class="bell-transfer">
-  <div class="bell-transfer-list">
-    <div class="bell-transfer-list-header">
-      <span class="bell-transfer-list-header-checkbox">
-        <Checkbox model="checkLeftAll" onChange="{{onCheckLeftAllChange}}">
-        </Checkbox>
-      </span>
-      <span class="bell-transfer-list-header-title">
-        {{leftLabel}}
-      </span>
-      <span class="bell-transfer-list-header-count">
-        {{left.length}} / {{leftList.length}}
-      </span>
-    </div>
-
-    <div class="bell-transfer-list-body">
-      <CheckboxGroup vertical model="left" onChange="{{onLeftChange}}">
-        {{#each leftList}}
-          <Checkbox value="{{this.key}}">
-            <span>
-              {{text}}
-            </span>
-          </Checkbox>
-        {{/each}}
-      </CheckboxGroup>
-    </div>
-  </div>
-
-  <div class="bell-transfer-actions">
-    <Button shape="circle" on-click="addToLeft()">
-      <i class="bell-icon bell-icon-ios-arrow-left"></i>
-    </Button>
-    <Button shape="circle" on-click="addToRight()">
-      <i class="bell-icon bell-icon-ios-arrow-right"></i>
-    </Button>
-  </div>
-
-  <div class="bell-transfer-list">
-    <div class="bell-transfer-list-header">
-      <span class="bell-transfer-list-header-checkbox">
-        <Checkbox model="checkRightAll" onChange="{{onCheckRightAllChange}}">
-        </Checkbox>
-      </span>
-      <span class="bell-transfer-list-header-title">
-        {{rightLabel}}
-      </span>
-      <span class="bell-transfer-list-header-count">
-        {{right.length}} / {{rightList.length}}
-      </span>
-    </div>
-    <div class="bell-transfer-list-body">
-      <CheckboxGroup vertical model="right" onChange="{{onRightChange}}">
-        {{#each rightList}}
-          <Checkbox value="{{this.key}}">
-            <span>
-              {{text}}
-            </span>
-          </Checkbox>
-        {{/each}}
-      </CheckboxGroup>
-    </div>
-  </div>
-</div>
-  `,
+  template: TransferTpl,
 
   propTypes: {
     data: {
