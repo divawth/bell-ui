@@ -1004,10 +1004,9 @@ var BreadcrumbItem = {
   }
 };
 
-var ButtonTpl = "<button class=\"bell-button\n  {{#if className}} {{className}}{{/if}}\n  {{#if type}} bell-button-{{type}}{{/if}}\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n\"{{#if disabled}} disabled{{/if}} on-click=\"click\"\n{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('leftIcon')}}\n    <slot name=\"leftIcon\" />\n  {{/if}}\n\n  {{#if label}}\n    <span>\n      {{label}}\n    </span>\n  {{else if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  {{#if hasSlot('rightIcon')}}\n    <slot name=\"rightIcon\" />\n  {{/if}}\n</button>";
+var ButtonTpl = "<button class=\"bell-button\n  {{#if className}} {{className}}{{/if}}\n  {{#if ghost}} bell-button-{{type}}-ghost {{else}} bell-button-{{type}}-normal {{/if}} \n  bell-button-{{borderType}}\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n\"{{#if disabled}} disabled{{/if}} on-click=\"click\"\n{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('leftIcon')}}\n    <slot name=\"leftIcon\" />\n  {{/if}}\n\n  {{#if label}}\n    <span>\n      {{label}}\n    </span>\n  {{else if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  {{#if hasSlot('rightIcon')}}\n    <slot name=\"rightIcon\" />\n  {{/if}}\n</button>";
 
 var Button = {
-  template: ButtonTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -1016,7 +1015,12 @@ var Button = {
       type: 'string'
     },
     type: {
-      type: 'string'
+      type: 'string',
+      value: 'default'
+    },
+    borderType: {
+      type: 'string', 
+      value: 'solid'
     },
     label: {
       type: 'string'
@@ -1035,8 +1039,12 @@ var Button = {
     },
     disabled: {
       type: 'boolean'
+    },
+    ghost: {
+      type: 'boolean'
     }
-  }
+  },
+  template: ButtonTpl
 };
 
 var InputTpl = "<div class=\"bell-input-wrapper\n  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}\n  {{#if hasSlot('append')}} bell-input-has-append{{/if}}\n  {{#if className}} {{className}}{{/if}}\n  {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n  {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n  {{#if isFocus}} bell-focus{{/if}}\n  {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n  {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n  \"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('prepend')}}\n    <div class=\"bell-input-prepend\">\n      <slot name=\"prepend\" />\n    </div>\n  {{/if}}\n\n  <div class=\"bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}\">\n\n    {{#if type === TEXT_TYPE_TEXTAREA}}\n\n      <textarea class=\"bell-input-el\"\n        style=\"height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px\"\n        {{#if rows}} rows=\"{{rows}}\"{{/if}}\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled{{/if}}\n        model=\"value\"\n      >\n      </textarea>\n\n    {{else}}\n\n      <input ref=\"input\"\n        type=\"{{currentType}}\"\n        class=\"bell-input-el\n            {{#if size}} bell-input-{{size}}{{/if}}\n        \"\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled=\"disabled\"{{/if}}\n        model=\"value\"\n        on-blur=\"blur()\"\n        on-focus=\"focus()\"\n      />\n\n      {{#if clearable}}\n        <i class=\"bell-icon\n          bell-icon-ios-close\n          bell-input-clear-icon\n        \" on-click=\"clear()\"></i>\n      {{/if}}\n\n      {{#if secure}}\n        {{#if isSecure}}\n          <i class=\"bell-icon\n              bell-icon-eye\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{else}}\n          <i class=\"bell-icon\n              bell-icon-eye-disabled\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{/if}}\n      {{/if}}\n\n    {{/if}}\n\n  </div>\n  {{#if hasSlot('append')}}\n    <div class=\"bell-input-append\">\n      <slot name=\"append\" />\n    </div>\n  {{/if}}\n</div>";

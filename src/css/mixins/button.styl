@@ -19,19 +19,22 @@ button-radius(radius)
 
     ui-set('border-radius', radius)
 
-button-color(color, bg, border)
-
+button-color(color, bg, borderColor)
     button&
         ui-set('color', color)
-        ui-set('background-color', bg)
-        ui-set('border-color', border)
+        ui-set('border-color', borderColor)
+        if bg
+            ui-set('background-color', bg)
+
+button-border(border)
+    ui-set('border', border)
 
 button-style(style)
 
     button-color(
         style['color'],
         style['bg'],
-        style['border']
+        style['border-color']
     )
 
     {$selector-hover} {
@@ -85,6 +88,10 @@ ui-button()
         each: button-style
     )
 
+    ui-connect(
+        hash: $button-border-hash,
+        each: button-border
+    )
     > {$selector-text}
 
         font inherit

@@ -6,197 +6,274 @@ $button-size-hash = $size-hash
 
 $button-radius-hash = $radius-hash
 
+$button-border-hash = {
+  'solid': 1px solid,
+  'none': none,
+  'dashed': 1px dashed
+}
+
 $button-hash = {
-    '': {
-        color: $brand-secondary,
-        bg: $brand-bg,
-        border: $brand-border,
+  'default-normal': {
+    color: $brand-secondary,
+    bg: $brand-bg,
+    border-color: $brand-border,
 
-        hover-color: $brand-primary,
-        hover-bg: $brand-bg,
-        hover-border-color: $brand-primary,
+    hover-color: $brand-primary,
+    hover-bg: $brand-bg,
+    hover-border-color: $brand-primary,
 
-        active-color: $brand-primary,
-        active-bg: $brand-bg,
-        active-border-color: $brand-primary,
+    active-color: $brand-primary,
+  active-bg: $brand-bg,
+    active-border-color: $brand-primary,
 
-        focus-border-color: rgba($brand-primary, .2),
+    focus-border-color: rgba($brand-primary, .2),
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
-    'ghost': {
-        color: $brand-secondary,
-        bg: $brand-bg,
-        border: $brand-border,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'primary-normal': {
+    color: $brand-white,
+    bg: $brand-primary,
+    border-color: $brand-primary,
 
-        hover-color: $brand-primary,
-        hover-bg: $brand-bg,
-        hover-border-color: $brand-primary,
+    hover-color: $brand-white,
+    hover-bg: $brand-primary-hover,
+    hover-border-color: $brand-primary-hover,
 
-        active-color: $brand-primary,
-        active-bg: $brand-bg,
-        active-border-color: $brand-primary,
+    active-color: $brand-white,
+    active-bg: $brand-primary-hover,
+    active-border-color: $brand-primary-hover,
 
-        focus-border-color: rgba($brand-primary, .2),
+    focus-border-color: rgba($brand-primary-hover, .2),
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
-    'dashed': {
-        color: $brand-secondary,
-        bg: $brand-bg,
-        border: 1px dashed $brand-border,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+  disabled-border-color: $brand-border,
+  },
+  'success-normal': {
+    color: $brand-white,
+    bg: $brand-success,
+    border-color: $brand-success,
 
-        hover-color: $brand-primary,
-        hover-bg: $brand-bg,
-        hover-border-color: 1px dashed $brand-primary,
+    hover-color: $brand-white,
+    hover-bg: $brand-success-hover,
+    hover-border-color: $brand-success-hover,
 
-        active-color: $brand-primary,
-        active-bg: $brand-bg,
-        active-border-color: 1px dashed $brand-primary,
+    active-color: $brand-white,
+    active-bg: $brand-success-hover,
+    active-border-color: $brand-success-hover,
 
-        focus-border-color: rgba($brand-primary, .2),
+    focus-border-color: rgba($brand-success-hover, .2),
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: 1px dashed $brand-border,
-    },
-    'text': {
-        color: $brand-secondary,
-        bg: transparent,
-        border: transparent,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
 
-        hover-color: $brand-primary,
-        hover-bg: transparent,
-        hover-border-color: transparent,
+  'error-normal': {
+    color: $brand-white,
+    bg: $brand-error,
+    border-color: $brand-error,
 
-        active-color: $brand-primary,
-        active-bg: $brand-bg,
-        active-border-color: transparent,
+    hover-color: $brand-white,
+    hover-bg: $brand-error-hover,
+    hover-border-color: $brand-error-hover,
 
-        focus-border-color: transparent,
+    active-color: $brand-white,
+    active-bg: $brand-error-hover,
+    active-border-color: $brand-error-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: none,
-    },
-    'primary': {
-        color: $brand-white,
-        bg: $brand-primary,
-        border: $brand-primary,
+    focus-border-color: rgba($brand-error-hover, .2),
 
-        hover-color: $brand-white,
-        hover-bg: $brand-primary-hover,
-        hover-border-color: $brand-primary-hover,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
 
-        active-color: $brand-white,
-        active-bg: $brand-primary-hover,
-        active-border-color: $brand-primary-hover,
+  'info-normal': {
+    color: $brand-white,
+    bg: $brand-info,
+    border-color: $brand-info,
 
-        focus-border-color: rgba($brand-primary-hover, .2),
+    hover-color: $brand-white,
+    hover-bg: $brand-info-hover,
+    hover-border-color: $brand-info-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
-    'success': {
-        color: $brand-white,
-        bg: $brand-success,
-        border: $brand-success,
+    active-color: $brand-white,
+    active-bg: $brand-info-hover,
+    active-border-color: $brand-info-hover,
 
-        hover-color: $brand-white,
-        hover-bg: $brand-success-hover,
-        hover-border-color: $brand-success-hover,
+    focus-border-color: rgba($brand-info-hover, .2),
 
-        active-color: $brand-white,
-        active-bg: $brand-success-hover,
-        active-border-color: $brand-success-hover,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'warning-normal': {
+    color: $brand-white,
+    bg: $brand-warning,
+    border-color: $brand-warning,
 
-        focus-border-color: rgba($brand-success-hover, .2),
+    hover-color: $brand-white,
+    hover-bg: $brand-warning-hover,
+    hover-border-color: $brand-warning-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
+    active-color: $brand-white,
+    active-bg: $brand-warning-hover,
+    active-border-color: $brand-warning-hover,
 
-    'error': {
-        color: $brand-white,
-        bg: $brand-error,
-        border: $brand-error,
+    focus-border-color: rgba($brand-warning-hover, .2),
 
-        hover-color: $brand-white,
-        hover-bg: $brand-error-hover,
-        hover-border-color: $brand-error-hover,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'danger-normal': {
+    color: $brand-white,
+    bg: $brand-danger,
+    border-color: $brand-danger,
 
-        active-color: $brand-white,
-        active-bg: $brand-error-hover,
-        active-border-color: $brand-error-hover,
+    hover-color: $brand-white,
+    hover-bg: $brand-danger-hover,
+    hover-border-color: $brand-danger-hover,
 
-        focus-border-color: rgba($brand-error-hover, .2),
+    active-color: $brand-white,
+    active-bg: $brand-danger-hover,
+    active-border-color: $brand-danger-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
+    focus-border-color: rgba($brand-danger-hover, .2),
 
-    'info': {
-        color: $brand-white,
-        bg: $brand-info,
-        border: $brand-info,
+    disabled-color: $brand-text-disabled,
+    disabled-bg: $brand-bg-disabled,
+    disabled-border-color: $brand-border,
+  },
 
-        hover-color: $brand-white,
-        hover-bg: $brand-info-hover,
-        hover-border-color: $brand-info-hover,
+  'default-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
 
-        active-color: $brand-white,
-        active-bg: $brand-info-hover,
-        active-border-color: $brand-info-hover,
+    hover-color: $brand-secondary,
+  hover-border-color: $brand-secondary,
 
-        focus-border-color: rgba($brand-info-hover, .2),
+    active-color: $brand-secondary,
+    active-border-color: $brand-secondary,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
-    'warning': {
-        color: $brand-white,
-        bg: $brand-warning,
-        border: $brand-warning,
+    focus-border-color: rgba($brand-secondary, .2),
 
-        hover-color: $brand-white,
-        hover-bg: $brand-warning-hover,
-        hover-border-color: $brand-warning-hover,
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'primary-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
 
-        active-color: $brand-white,
-        active-bg: $brand-warning-hover,
-        active-border-color: $brand-warning-hover,
+    hover-color: $brand-primary,
+    hover-border-color: $brand-primary-hover,
 
-        focus-border-color: rgba($brand-warning-hover, .2),
+    active-color: $brand-primary,
+    active-border-color: $brand-primary-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
-    'danger': {
-        color: $brand-white,
-        bg: $brand-danger,
-        border: $brand-danger,
+    focus-border-color: rgba($brand-primary-hover, .2),
 
-        hover-color: $brand-white,
-        hover-bg: $brand-danger-hover,
-        hover-border-color: $brand-danger-hover,
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'success-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
 
-        active-color: $brand-white,
-        active-bg: $brand-danger-hover,
-        active-border-color: $brand-danger-hover,
+    hover-color: $brand-success,
+    hover-border-color: $brand-success-hover,
 
-        focus-border-color: rgba($brand-danger-hover, .2),
+    active-color: $brand-success,
+    active-border-color: $brand-success-hover,
 
-        disabled-color: $brand-text-disabled,
-        disabled-bg: $brand-bg-disabled,
-        disabled-border-color: $brand-border,
-    },
+    focus-border-color: rgba($brand-success-hover, .2),
+
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+
+  'error-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
+
+    hover-color: $brand-error,
+    hover-border-color: $brand-error-hover,
+
+    active-color: $brand-error,
+    active-border-color: $brand-error-hover,
+
+    focus-border-color: rgba($brand-error-hover, .2),
+
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+
+  'info-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
+
+    hover-color: $brand-info,
+    hover-border-color: $brand-info-hover,
+
+    active-color: $brand-info,
+    active-border-color: $brand-info-hover,
+
+    focus-border-color: rgba($brand-info-hover, .2),
+
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'warning-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
+
+    hover-color: $brand-warning,
+    hover-border-color: $brand-warning-hover,
+
+    active-color: $brand-warning,
+    active-border-color: $brand-warning-hover,
+
+    focus-border-color: rgba($brand-warning-hover, .2),
+
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+  'danger-ghost': {
+    color: $brand-white,
+    border-color: $brand-white,
+
+    hover-color: $brand-danger,
+    hover-border-color: $brand-danger-hover,
+
+    active-color: $brand-danger,
+    active-border-color: $brand-danger-hover,
+
+    focus-border-color: rgba($brand-danger-hover, .2),
+
+    disabled-color: $brand-text-disabled,
+    disabled-border-color: $brand-border,
+  },
+
+  // 'ghost': {
+  //   color: $brand-secondary,
+  //   bg: $brand-bg,
+  //   border-color: $brand-border,
+
+  //   hover-color: $brand-primary,
+  //   hover-bg: $brand-bg,
+  //   hover-border-color: $brand-primary,
+
+  //   active-color: $brand-primary,
+  //   active-bg: $brand-bg,
+  //   active-border-color: $brand-primary,
+
+  //   focus-border-color: rgba($brand-primary, .2),
+
+  //   disabled-color: $brand-text-disabled,
+  //   disabled-bg: $brand-bg-disabled,
+  //   disabled-border-color: $brand-border,
+  // },
 }

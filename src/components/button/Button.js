@@ -1,7 +1,6 @@
 import ButtonTpl from './template/Button.html'
 
 export default {
-  template: ButtonTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -10,7 +9,12 @@ export default {
       type: 'string'
     },
     type: {
-      type: 'string'
+      type: 'string',
+      value: 'default'
+    },
+    borderType: {
+      type: 'string', 
+      value: 'solid'
     },
     label: {
       type: 'string'
@@ -29,6 +33,10 @@ export default {
     },
     disabled: {
       type: 'boolean'
+    },
+    ghost: {
+      type: 'boolean'
     }
-  }
+  },
+  template: ButtonTpl
 };

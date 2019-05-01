@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node_modules/.bin/rollup -c ./build/config.dev.js",
     "dev": "lessc src/styles/index.less > dist/bells.css",
-    "style": "stylus -w src/css/index.styl -o dist/bell.css"
+    "style": "stylus -w src/css/index.styl -o dist/bell-ui.css"
   },
   "edp": {
     "wwwroot": "/",

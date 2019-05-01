@@ -17,7 +17,7 @@
     </style>
     <span class="bell-text bell-bg-primary rounded">
         <p class="bell-text h6 white">Primary</p>
-        <p class="bell-text white">#6392E5</p>
+        <p class="bell-text white">#1890ff</p>
     </span>
 </html>
 

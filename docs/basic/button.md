@@ -1,6 +1,4 @@
-> 基础用法
-
-根据 type 显示按钮类型
+> 根据 type 显示按钮类型 
 
     export default {
         template: `
@@ -9,37 +7,83 @@
                     <Button>
                         Default
                     </Button>
-                    <Button type="ghost">
-                        Ghost
+                    <Button type="primary">
+                        Primary
                     </Button>
-                    <Button type="dashed">
-                        Dashed
+                    <Button type="warning">
+                        Warning
                     </Button>
-                    <Button type="text" >
-                        Text
+                    <Button type="success">
+                        Success
                     </Button>
                 </div>
 
                 <div class="bell-buttons" style="margin-top: 10px;">
-                    <Button type="primary">
-                        Primary
-                    </Button>
-                    <Button type="success">
-                        success
-                    </Button>
                     <Button type="error">
-                        error
+                        Error
                     </Button>
                     <Button type="info">
-                        info
+                        Info
                     </Button>
                 </div>
-                <div class="bell-buttons" style="margin-top: 10px;">
-                    <Button type="warning">
-                        warning
+            </div>
+        `
+    }
+
+> 设置按钮的边框
+
+    export default {
+        template: `
+            <div class="bell-template">
+                <div class="bell-buttons">
+                    <Button borderType="solid">
+                        Solid
                     </Button>
-                    <Button type="danger">
-                        danger
+                    <Button borderType="dashed">
+                        Dashed
+                    </Button>
+                    <Button borderType="none">
+                        Text
+                    </Button>
+                </div>
+            </div>
+        `
+    }
+
+> 设置幽灵按钮
+
+幽灵按钮将其他按钮的内容反色，背景变为透明，常用在有色背景上。
+
+    export default {
+        template: `
+            <div class="bell-template" style="background-color: rgb(190, 200, 200); padding: 10px;">
+                <div class="bell-buttons">
+                    <Button ghost>
+                        Default
+                    </Button>
+                    <Button ghost type="primary">
+                        Primary
+                    </Button>
+                    <Button ghost type="warning">
+                        Warning
+                    </Button>
+                    <Button ghost type="success">
+                        Success
+                    </Button>
+                </div>
+
+                <div class="bell-buttons" style="margin-top: 10px;">
+                    <Button ghost type="primary" borderType="dashed">
+                        Dashed
+                    </Button>
+                    <Button ghost type="primary" borderType="none">
+                        Text
+                    </Button>
+                    <Button ghost type="warning" borderType="none">
+                        Warning
+                    </Button>
+                    <Button ghost type="success" borderType="none">
+                        Success
                     </Button>
                 </div>
             </div>
@@ -52,32 +96,32 @@
         template: `
             <div class="template">
                 <div style="margin-top: 10px;">
-                    <Button type="ghost" size="large">
+                    <Button size="large">
                         Large
                     </Button>
-                    <Button type="ghost">
+                    <Button>
                         Default
                     </Button>
-                    <Button type="ghost" size="small">
+                    <Button size="small">
                         Small
                     </Button>
-                    <Button type="ghost" size="tiny">
+                    <Button size="tiny">
                         Tiny
                     </Button>
                 </div>
 
                 <div style="margin-top: 10px;">
-                    <Button type="ghost" shape="circle" size="large">
+                    <Button shape="circle" size="large">
                         Large
                     </Button>
-                    <Button type="ghost" shape="circle">
+                    <Button shape="circle">
                         Default
                     </Button>
-                    <Button type="ghost" shape="circle" size="small">
-                        Default
-                    </Button>
-                    <Button type="ghost" shape="circle" size="tiny">
+                    <Button shape="circle" size="small">
                         Small
+                    </Button>
+                    <Button shape="circle" size="tiny">
+                        Tiny
                     </Button>
                 </div>
             </div>
@@ -90,33 +134,33 @@
         template: `
             <div style="margin-top: 10px;">
                 <div class="bell-buttons">
-                    <Button type="primary" shape="radius-circle-harf">
+                    <Button type="primary" shape="circle">
                         <Icon size="18" type="ios-search"></Icon>
                     </Button>
                     <Button type="primary">
                         搜索
                     </Button>
-                    <Button type="primary" shape="radius-circle-harf">
+                    <Button type="primary" shape="circle">
                         <Icon name="leftIcon" style="padding-right: 10px;" size="18" type="ios-search"></Icon>
                         搜索
                         <Icon name="rightIcon" style="padding-left: 10px;" size="18" type="ios-search"></Icon>
                     </Button>
-                    <Button type="primary" shape="radius-circle-harf">
+                    <Button type="primary" shape="circle">
                         圆角按钮
                     </Button>
                 </div>
 
                 <div class="bell-buttons" style="margin-top: 10px;">
-                    <Button type="ghost" shape="radius-circle-harf">
+                    <Button shape="circle">
                         <Icon name="leftIcon" size="18" type="ios-search"></Icon>
                     </Button>
-                    <Button type="ghost">
+                    <Button>
                         搜索
                     </Button>
-                    <Button type="ghost" shape="radius-circle-harf">
+                    <Button shape="circle">
                         搜索
                     </Button>
-                    <Button type="ghost" shape="radius-circle-harf">
+                    <Button shape="circle">
                         圆角按钮
                     </Button>
                 </div>
@@ -159,24 +203,17 @@
                     Primary(Disabled)
                 </Button>
                 <br><br>
-                <Button type="ghost">
-                    Ghost
-                </Button>
-                <Button type="ghost" disabled>
-                    Ghost(Disabled)
-                </Button>
-                <br><br>
-                <Button type="dashed">
+                <Button borderType="dashed">
                     Dashed
                 </Button>
-                <Button type="dashed" disabled>
+                <Button borderType="dashed" disabled>
                     Dashed(Disabled)
                 </Button>
                 <br><br>
-                <Button type="text">
+                <Button borderType="none">
                     Text
                 </Button>
-                <Button type="text" disabled>
+                <Button borderType="none" disabled>
                     Text(Disabled)
                 </Button>
             </div>
