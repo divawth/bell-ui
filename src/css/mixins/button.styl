@@ -15,6 +15,26 @@ button-size(size)
     ui-set('line-height', size['line-height'])
     ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
 
+button-group-size(size)
+
+    {$selector-button}
+        ui-set('font-size', size['font'])
+        ui-set('line-height', size['line-height'])
+        ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+
+button-group-circle-size(size)
+
+    {$selector-button}
+
+      &:first-child:not(:last-child)
+        ui-set('border-top-left-radius', size)
+        ui-set('border-bottom-left-radius', size)
+
+      &:last-child:not(:first-child)
+        ui-set('border-top-right-radius', size)
+        ui-set('border-bottom-right-radius', size)
+
+
 button-radius(radius)
 
     ui-set('border-radius', radius)
@@ -28,6 +48,11 @@ button-color(color, bg, borderColor)
 
 button-border(border)
     ui-set('border', border)
+
+button-circle-size(size)
+    padding: 0;
+    ui-set('width', size)
+    ui-set('height', size)
 
 button-style(style)
 
@@ -71,6 +96,57 @@ button-style(style)
         )
     }
 
+button-group-direction(isHorizontal)
+    if isHorizontal
+        {$selector-button}
+            z-index: $zindex-tiny;
+
+            + {$selector-button}
+                margin-left: -1px;
+            
+            &{$selector-hover},
+            &{$selector-active},
+            &{$selector-focus}
+                position: relative;
+                z-index: $zindex-small;
+
+            &:first-child:not(:last-child)
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+
+            &:last-child:not(:first-child)
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+
+            &:not(:first-child):not(:last-child)
+                border-radius: 0;
+    else
+        {$selector-button}
+            z-index: $zindex-tiny;
+            width: 100%;
+            margin-left: 0px;
+
+            + {$selector-button}
+                margin-top: -1px;
+            
+            &{$selector-hover},
+            &{$selector-active},
+            &{$selector-focus}
+                position: relative;
+                z-index: $zindex-small;
+
+            &:first-child:not(:last-child)
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+
+            &:last-child:not(:first-child)
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+
+            &:not(:first-child):not(:last-child)
+                border-radius: 0;
+
+
 ui-button()
 
     button-reset()
@@ -87,28 +163,36 @@ ui-button()
         hash: $button-hash,
         each: button-style
     )
-
     ui-connect(
         hash: $button-border-hash,
         each: button-border
     )
+
+    &{$selector-button}-circle
+        ui-connect(
+            hash: $button-circle-size-hash,
+            each: button-circle-size
+        )
+
     > {$selector-text}
 
         font inherit
 
-ui-buttons()
+ui-button-group()
 
-    ui-collection(
-        selector-item: $selector-button,
-        hash: $button-size-hash,
-        each: @(size) {
-            > {$selector-button} {
-                button-size(size)
-            }
-
-            ui-connect(
-                hash: $button-radius-hash,
-                each: button-radius
-            )
-        }
+    ui-connect(
+        hash: $button-group-direction,
+        each: button-group-direction
     )
+
+    ui-connect(
+        hash: $button-size-hash,
+        each: button-group-size
+    )
+
+    &{$selector-button-group}-round
+        &{$selector-button-group}
+            ui-connect(
+                hash: $button-circle-size-hash,
+                each: button-group-circle-size
+            )   

@@ -28,8 +28,8 @@ export default function (env, minify = false, port = 0) {
 
   let plugins = [
     replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
-      'process.env.NODE_VERSION': JSON.stringify(version)
+      'delimiters': ['${', '}'],
+      'prefix': 'bell-'
     }),
     // typescript(),
     string({

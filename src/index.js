@@ -2,7 +2,6 @@
  * @file 主模块
  * @author wangtianhua
  */
-
 import Transition from './components/transition/Transition'
 
 import Layout from './components/layout/Layout'
@@ -23,6 +22,7 @@ import Breadcrumb from './components/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './components/breadcrumb/BreadcrumbItem'
 
 import Button from './components/button/Button'
+import ButtonGroup from './components/button/ButtonGroup'
 import Input from './components/input/Input'
 import InputNumber from './components/input/InputNumber'
 import Radio from './components/radio/Radio'
@@ -109,6 +109,7 @@ Yox.component({
   BreadcrumbItem,
 
   Button,
+  ButtonGroup,
   Input,
   InputNumber,
   Radio,

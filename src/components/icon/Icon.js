@@ -1,22 +1,23 @@
-import IconTpl from './template/Icon.html'
+import template from './template/Icon.html'
 
 export default {
-  template: IconTpl,
   propTypes: {
+    type: {
+      type: 'string'
+    },
+    size: {
+      type: 'numeric',
+      value: 14
+    },
+    color: {
+      type: 'string'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
-    type: {
-      type: 'string'
-    },
-    size: function (value) {
-      return value != null ? +value : 14;
-    },
-    color: {
-      type: 'string'
     }
-  }
+  },
+  template
 };

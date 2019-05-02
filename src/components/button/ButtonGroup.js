@@ -1,13 +1,23 @@
-import ButtonGroupTpl from './template/ButtonGroup.html'
+import template from './template/ButtonGroup.html'
 
 export default {
-  template: ButtonGroupTpl,
   propTypes: {
+    size: {
+      type: 'string'
+    },
+    shape: {
+      type: 'string'
+    },
+    vertical: {
+      type: 'boolean',
+      value: false
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
     }
-  }
+  },
+  template
 };

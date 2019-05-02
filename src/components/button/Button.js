@@ -1,13 +1,7 @@
-import ButtonTpl from './template/Button.html'
+import template from './template/Button.html'
 
 export default {
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     type: {
       type: 'string',
       value: 'default'
@@ -15,9 +9,6 @@ export default {
     borderType: {
       type: 'string', 
       value: 'solid'
-    },
-    label: {
-      type: 'string'
     },
     shape: {
       type: 'string'
@@ -36,7 +27,13 @@ export default {
     },
     ghost: {
       type: 'boolean'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
-  template: ButtonTpl
+  template
 };

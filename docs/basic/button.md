@@ -56,7 +56,7 @@
 
     export default {
         template: `
-            <div class="bell-template" style="background-color: rgb(190, 200, 200); padding: 10px;">
+            <div class="bell-template" style="background-color: rgb(190, 200, 200); padding: 8px;">
                 <div class="bell-buttons">
                     <Button ghost>
                         Default
@@ -111,16 +111,16 @@
                 </div>
 
                 <div style="margin-top: 10px;">
-                    <Button shape="circle" size="large">
+                    <Button shape="round" size="large">
                         Large
                     </Button>
-                    <Button shape="circle">
+                    <Button shape="round">
                         Default
                     </Button>
-                    <Button shape="circle" size="small">
+                    <Button shape="round" size="small">
                         Small
                     </Button>
-                    <Button shape="circle" size="tiny">
+                    <Button shape="round" size="tiny">
                         Tiny
                     </Button>
                 </div>
@@ -135,32 +135,28 @@
             <div style="margin-top: 10px;">
                 <div class="bell-buttons">
                     <Button type="primary" shape="circle">
-                        <Icon size="18" type="ios-search"></Icon>
+                        <Icon type="ios-cloud-download"></Icon>
                     </Button>
                     <Button type="primary">
                         搜索
                     </Button>
-                    <Button type="primary" shape="circle">
-                        <Icon name="leftIcon" style="padding-right: 10px;" size="18" type="ios-search"></Icon>
+                    <Button type="primary" shape="round">
+                        <Icon name="icon" style="padding-right: 10px;" type="ios-cloud-download"></Icon>
                         搜索
-                        <Icon name="rightIcon" style="padding-left: 10px;" size="18" type="ios-search"></Icon>
                     </Button>
-                    <Button type="primary" shape="circle">
+                    <Button type="primary" shape="round">
                         圆角按钮
                     </Button>
                 </div>
 
                 <div class="bell-buttons" style="margin-top: 10px;">
                     <Button shape="circle">
-                        <Icon name="leftIcon" size="18" type="ios-search"></Icon>
+                        <Icon name="icon" type="ios-cloud-download"></Icon>
                     </Button>
-                    <Button>
+                    <Button shape="round">
                         搜索
                     </Button>
-                    <Button shape="circle">
-                        搜索
-                    </Button>
-                    <Button shape="circle">
+                    <Button shape="round">
                         圆角按钮
                     </Button>
                 </div>
@@ -241,7 +237,7 @@
                 <Button type="primary"
                     on-click="toLoading2()"
                 >
-                    <Icon name="leftIcon" style="padding-right: 10px;" size="18" type="checkmark-round"></Icon>
+                    <Icon name="icon" style="padding-right: 10px; vertical-align: top;" size="12" type="ios-refresh"></Icon>
                     {{#if !loading2}}
                         Click me!
                     {{else}}
@@ -267,18 +263,85 @@
         }
     }
 
+> ButtonGroups
+
+    export default {
+        template: `
+            <div>
+                <ButtonGroup>
+                    <Button type="primary">L</Button>
+                    <Button>M</Button>
+                    <Button>M</Button>
+                    <Button borderType="dashed">R</Button>
+                </ButtonGroup>
+                <br><br>
+                <ButtonGroup>
+                    <Button type="primary">
+                        <Icon type="ios-arrow-back"></Icon>
+                        Backward
+                    </Button>
+                    <Button type="primary">
+                        Forward
+                        <Icon type="ios-arrow-forward"></Icon>
+                    </Button>
+                </ButtonGroup>
+                <br><br>
+                <ButtonGroup>
+                    <Button icon="ios-airplane"></Button>
+                    <Button icon="ios-alarm"></Button>
+                    <Button icon="ios-crop"></Button>
+                    <Button icon="ios-american-football"></Button>
+                </ButtonGroup>
+                <br><br>
+                <ButtonGroup shape="round">
+                    <Button type="primary">
+                        <Icon type="ios-arrow-back"></Icon>
+                        Backward
+                    </Button>
+                    <Button type="primary">
+                        Forward
+                        <Icon type="ios-arrow-forward"></Icon>
+                    </Button>
+                </ButtonGroup>
+                <br><br>
+                <ButtonGroup size="small">
+                    <Button type="primary">L</Button>
+                    <Button>M</Button>
+                    <Button>M</Button>
+                    <Button borderType="dashed">R</Button>
+                </ButtonGroup>
+            </div>
+        `
+    }
+
+> vertical
+
+    export default {
+        template: `
+            <div>
+                <ButtonGroup vertical>
+                    <Button type="primary">L</Button>
+                    <Button>M</Button>
+                    <Button>M</Button>
+                    <Button borderType="dashed">R</Button>
+                </ButtonGroup>
+            </div>
+        `
+    }
+
 #### API
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 按钮类型 | string | primary、ghost、dashed、text、info、success、warning、error | -
-size | 按钮大小 | string | large、small | -
-shape | 按钮形状 | string | circle | -
+type | 按钮类型 | string | primary、info、success、warning、error | -
+borderType | 边框类型 | string | solid、none、dashed | solid
+ghost | 是否是幽灵按钮 | boolean | true、false | false
+size | 按钮大小 | string | large、small、tiny | -
+shape | 按钮形状 | string | circle, round | -
 fluid | 开启后，按钮的长度为 100% | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false
-className | 自定义样式类 | string | - | -
 
 > Events
 
@@ -291,5 +354,13 @@ click | 点击按钮的回调 | -
 参数 | 说明
 ---|---
 children | 自定义内容
-leftIcon | 自定义左边的 icon
-rightIcon | 自定义右边的 icon
+icon | 自定义左边的 icon
+
+> ButtonGroup Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+size | 按钮大小 | string | large、small、tiny | -
+shape | 按钮形状 | string | round | -
+vertical | 是否纵向排列按钮组 | boolean | - | false
+

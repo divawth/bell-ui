@@ -2,7 +2,7 @@
   <!-- - [Color 颜色](basic/color)
   - [Text 字体](layout/text) -->
   - [Button 按钮](basic/button)
-  - [Icon 图标](layout/icon)
+  - [Icon 图标](basic/icon)
   <!-- - [动画](basic/transition) -->
 - [布局](layout)
   - [Grid 栅格布局](layout/grid)

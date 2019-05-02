@@ -1,26 +1,26 @@
-<button class="bell-button
+<button class="${prefix}button
   {{#if className}} {{className}}{{/if}}
-  {{#if ghost}} bell-button-{{type}}-ghost {{else}} bell-button-{{type}}-normal {{/if}} 
-  bell-button-{{borderType}}
-  {{#if shape}} bell-button-{{shape}}{{/if}}
-  {{#if size}} bell-button-{{size}}{{/if}}
-  {{#if fluid}} bell-button-fluid{{/if}}
+  {{#if ghost}} ${prefix}button-{{type}}-ghost {{else}} ${prefix}button-{{type}}-normal {{/if}} 
+  ${prefix}button-{{borderType}}
+  {{#if shape}} ${prefix}button-{{shape}}{{/if}}
+  {{#if size}} ${prefix}button-{{size}}{{/if}}
+  {{#if fluid}} ${prefix}button-fluid{{/if}}
 "{{#if disabled}} disabled{{/if}} on-click="click"
 {{#if style}} style="{{style}}"{{/if}}>
 
-  {{#if hasSlot('leftIcon')}}
-    <slot name="leftIcon" />
+  {{#if icon}}
+    <Icon type="{{icon}}" />
   {{/if}}
 
-  {{#if label}}
-    <span>
-      {{label}}
-    </span>
-  {{else if hasSlot('children')}}
-    <slot name="children" />
+  {{#if hasSlot('icon')}}
+    <slot name="icon" />
   {{/if}}
 
-  {{#if hasSlot('rightIcon')}}
-    <slot name="rightIcon" />
+  {{#if hasSlot('children')}}
+  <span>
+    <slot name="children">
+    </slot>
+  </span>
   {{/if}}
+  
 </button>
