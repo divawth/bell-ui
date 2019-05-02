@@ -872,7 +872,7 @@ var Col = {
   }
 };
 
-var template = "<i class=\"{{#if type}}bell-icon bell-icon-{{type}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  style=\"font-size: {{size}}px;{{#if color}} color: {{color}};{{/if}}{{#if style}} {{style}}{{/if}}\"\n>\n</i>";
+var template = "<i class=\"bell-icon \n  {{#if type}} bell-icon-ios-{{type}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if rotate}} bell-icon-rotate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n  style=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n{{#if rotate}}\n<style>\n  .bell-icon-rotate::before {\n    transform: rotate({{rotate}}deg);\n  }\n</style>\n{{/if}}\n</i>";
 
 var Icon = {
   propTypes: {
@@ -885,6 +885,14 @@ var Icon = {
     },
     color: {
       type: 'string'
+    },
+    spin: {
+      type: 'Boolean',
+      value: false
+    },
+    rotate: {
+      type: 'numeric',
+      value: 0
     },
     className: {
       type: 'string'

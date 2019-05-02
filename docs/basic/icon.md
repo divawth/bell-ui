@@ -5,29 +5,23 @@
     export default {
         template: `
             <div class="bell-template">
-                <div class="bell-buttons">
-                    <Button>
-                        Default
-                    </Button>
-                    <Button type="primary">
-                        Primary
-                    </Button>
-                    <Button type="warning">
-                        Warning
-                    </Button>
-                    <Button type="success">
-                        Success
-                    </Button>
-                </div>
-
-                <div class="bell-buttons" style="margin-top: 10px;">
-                    <Button type="error">
-                        Error
-                    </Button>
-                    <Button type="info">
-                        Info
-                    </Button>
-                </div>
+                <Icon type="happy" />
+                <Icon type="happy" size="18"/>
+                <Icon type="happy" size="18" color="#f90" />
+                <Icon type="happy" size="18" spin />
+                <Icon type="happy" size="18" rotate="90" />
             </div>
         `
     }
+
+#### API
+
+> Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+type | 图标名称 | string | - | -
+size | 图标的大小，单位是 px | string | - | 14
+color | 图标的颜色 | String | - | -
+spin | 是否展示图标动画 | Boolean | - | false
+rotate | 旋转的角度 | Number | - | 0

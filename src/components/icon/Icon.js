@@ -12,6 +12,14 @@ export default {
     color: {
       type: 'string'
     },
+    spin: {
+      type: 'Boolean',
+      value: false
+    },
+    rotate: {
+      type: 'numeric',
+      value: 0
+    },
     className: {
       type: 'string'
     },

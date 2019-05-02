@@ -1,6 +1,6 @@
-- [基础](README)
-  <!-- - [Color 颜色](basic/color)
-  - [Text 字体](layout/text) -->
+- [通用](README)
+  <!-- - [Color 颜色](basic/color) -->
+  - [Text 字体](basic/text)
   - [Button 按钮](basic/button)
   - [Icon 图标](basic/icon)
   <!-- - [动画](basic/transition) -->

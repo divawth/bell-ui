@@ -2515,6 +2515,44 @@ body {
     order: 24;
   }
 }
+.bell-icon + .bell-icon {
+  margin-left: 6px;
+}
+.bell-icon.bell-icon-spin:before {
+  animation: 1s linear infinite icon-spin;
+}
+@-moz-keyframes icon-spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes icon-spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes icon-spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .tiny {
   font-size: 12px;
   line-height: 1.333333333333333;

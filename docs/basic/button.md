@@ -135,13 +135,13 @@
             <div style="margin-top: 10px;">
                 <div class="bell-buttons">
                     <Button type="primary" shape="circle">
-                        <Icon type="ios-cloud-download"></Icon>
+                        <Icon type="cloud-download"></Icon>
                     </Button>
                     <Button type="primary">
                         搜索
                     </Button>
                     <Button type="primary" shape="round">
-                        <Icon name="icon" style="padding-right: 10px;" type="ios-cloud-download"></Icon>
+                        <Icon name="icon" style="padding-right: 10px;" type="cloud-download"></Icon>
                         搜索
                     </Button>
                     <Button type="primary" shape="round">
@@ -151,7 +151,7 @@
 
                 <div class="bell-buttons" style="margin-top: 10px;">
                     <Button shape="circle">
-                        <Icon name="icon" type="ios-cloud-download"></Icon>
+                        <Icon name="icon" type="cloud-download"></Icon>
                     </Button>
                     <Button shape="round">
                         搜索
@@ -221,8 +221,8 @@
     export default {
         template: `
             <div class="bell-buttons">
-                <Button type="primary">
-                    Loading...
+                <Button type="primary" shape="circle">
+                    <Icon spin name="icon" size="18" type="refresh"></Icon>
                 </Button>
 
                 <Button type="primary"
@@ -237,7 +237,7 @@
                 <Button type="primary"
                     on-click="toLoading2()"
                 >
-                    <Icon name="icon" style="padding-right: 10px; vertical-align: top;" size="12" type="ios-refresh"></Icon>
+                    <Icon spin name="icon" style="padding-right: 10px; vertical-align: top;" size="12" type="refresh"></Icon>
                     {{#if !loading2}}
                         Click me!
                     {{else}}
@@ -277,30 +277,30 @@
                 <br><br>
                 <ButtonGroup>
                     <Button type="primary">
-                        <Icon type="ios-arrow-back"></Icon>
+                        <Icon type="arrow-back"></Icon>
                         Backward
                     </Button>
                     <Button type="primary">
                         Forward
-                        <Icon type="ios-arrow-forward"></Icon>
+                        <Icon type="arrow-forward"></Icon>
                     </Button>
                 </ButtonGroup>
                 <br><br>
                 <ButtonGroup>
-                    <Button icon="ios-airplane"></Button>
-                    <Button icon="ios-alarm"></Button>
-                    <Button icon="ios-crop"></Button>
-                    <Button icon="ios-american-football"></Button>
+                    <Button icon="airplane"></Button>
+                    <Button icon="alarm"></Button>
+                    <Button icon="crop"></Button>
+                    <Button icon="american-football"></Button>
                 </ButtonGroup>
                 <br><br>
                 <ButtonGroup shape="round">
                     <Button type="primary">
-                        <Icon type="ios-arrow-back"></Icon>
+                        <Icon type="arrow-back"></Icon>
                         Backward
                     </Button>
                     <Button type="primary">
                         Forward
-                        <Icon type="ios-arrow-forward"></Icon>
+                        <Icon type="arrow-forward"></Icon>
                     </Button>
                 </ButtonGroup>
                 <br><br>

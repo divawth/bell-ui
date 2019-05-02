@@ -1,8 +1,19 @@
-<i class="{{#if type}}${prefix}icon ${prefix}icon-{{type}}{{/if}}
-  {{#if className}} {{className}}{{/if}}"
+<i class="${prefix}icon 
+  {{#if type}} ${prefix}icon-ios-{{type}}{{/if}}
+  {{#if spin}} ${prefix}icon-spin{{/if}}
+  {{#if rotate}} ${prefix}icon-rotate{{/if}}
+  {{#if className}} {{className}}{{/if}}
+"
   style="font-size: {{size}}px; 
-  {{#if color}} color: {{color}};
-  {{/if}}{{#if style}} {{style}}{{/if}}
+  {{#if color}} color: {{color}};{{/if}}
+  {{#if style}} {{style}}{{/if}}
 "
 >
+{{#if rotate}}
+<style>
+  .${prefix}icon-rotate::before {
+    transform: rotate({{rotate}}deg);
+  }
+</style>
+{{/if}}
 </i>

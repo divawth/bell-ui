@@ -1,0 +1,19 @@
+{$selector-icon}
+
+  + {$selector-icon}
+    margin-left: $bell-icon-gap;
+
+  &{$selector-icon-spin}
+    &:before
+      animation: 1s linear infinite icon-spin;
+
+
+@keyframes icon-spin {
+  0% {
+    transform rotate(0)
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
