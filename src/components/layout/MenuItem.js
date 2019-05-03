@@ -1,15 +1,7 @@
-import MenuItemTpl from './template/MenuItem.html'
+import template from './template/MenuItem.html'
 
 export default {
-  template: MenuItemTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     name: {
       type: 'string'
     },
@@ -18,8 +10,16 @@ export default {
     },
     disabled: {
       type: 'boolean'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template,
 
   data() {
     return {

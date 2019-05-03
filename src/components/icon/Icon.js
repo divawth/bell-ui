@@ -16,10 +16,6 @@ export default {
       type: 'Boolean',
       value: false
     },
-    rotate: {
-      type: 'numeric',
-      value: 0
-    },
     className: {
       type: 'string'
     },

@@ -1,17 +1,17 @@
-import MenuGroupTpl from './template/MenuGroup.html'
+import template from './template/MenuGroup.html'
 
 export default {
-  template: MenuGroupTpl,
-
   propTypes: {
+    title: {
+      type: 'string'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
-    title: {
-      type: 'string'
     }
-  }
+  },
+
+  template
 };

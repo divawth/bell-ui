@@ -314,10 +314,23 @@ var Transition = {
   }
 };
 
-var LayoutTpl = "<div class=\"bell-layout bell-row\n  {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template = "<div class=\"bell-layout bell-row\n  {{#if hasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Layout = {
-  template: LayoutTpl,
+  propTypes: {
+    fixed: {
+      type: 'boolean'
+    },
+    hasSider: function hasSider(value) {
+      return value ? true : false;
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    }
+  },
 
   data: function data() {
     var me = this;
@@ -326,41 +339,30 @@ var Layout = {
     };
   },
 
-  propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
-    fixed: {
-      type: 'boolean'
-    },
-    hasSider: function hasSider(value) {
-      return value ? true : false;
-    }
-  },
+  template: template,
 
   events: {
-    hasSider: function hasSider(event, data) {
-      var me = this;
-      me.set({
-        hasSider: data.hasSider
-      });
-      me.fire(
-        'childrenHasSider',
-        {},
-        true
-      );
-      return false;
+    hasSider: function hasSider(event) {
+      if (event.phase === 0) {
+        return;
+      }
+      if (event.phase > 0) {
+        this.set({
+          hasSider: true
+        });
+        this.fire(
+          'hasSider',
+          true
+        );
+      }
+      event.stop();
     }
   }
 };
 
-var HeaderTpl = "<div class=\"bell-layout-header bell-col-span-24\n{{#if className}} {{className}}{{/if}}\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n{{#if hasSlot('left')}}\n  <div class=\"bell-layout-header-left\">\n    <slot name=\"left\" />\n  </div>\n{{/if}}\n\n{{#if hasSlot('center') || hasSlot('children')}}\n  <div class=\"bell-layout-header-center\">\n    <slot name=\"center\" />\n    <slot name=\"children\" />\n  </div>\n{{/if}}\n\n{{#if hasSlot('right')}}\n  <div class=\"bell-layout-header-right\">\n    <slot name=\"right\" />\n  </div>\n{{/if}}\n</div>";
+var template$1 = "<div class=\"bell-layout-header \n{{#if className}} {{className}}{{/if}}\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n{{#if hasSlot('left')}}\n  <div class=\"bell-layout-header-left\">\n    <slot name=\"left\" />\n  </div>\n{{/if}}\n\n{{#if hasSlot('center')}}\n  <div class=\"bell-layout-header-center\">\n    <slot name=\"center\" />\n  </div>\n{{/if}}\n\n<slot name=\"children\" />\n\n{{#if hasSlot('right')}}\n  <div class=\"bell-layout-header-right\">\n    <slot name=\"right\" />\n  </div>\n{{/if}}\n</div>";
 
 var Header = {
-  template: HeaderTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -368,14 +370,13 @@ var Header = {
     style: {
       type: 'string'
     }
-  }
+  },
+  template: template$1
 };
 
-var SiderTpl = "<div class=\"bell-layout-sider bell-col-span-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if collapsed}} bell-layout-sider-collapsed{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  {{#if collapsible}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      {{#if collapsed}}\n        <i class=\"bell-icon bell-icon-chevron-right\"></i>\n      {{else}}\n        <i class=\"bell-icon bell-icon-chevron-left\"></i>\n      {{/if}}\n    </div>\n  {{/if}}\n\n\n  {{#if hasSlot('trigger')}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      <slot name=\"trigger\" />\n    </div>\n  {{/if}}\n</div>";
+var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if collapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if collapsible}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      {{#if collapsed}}\n        <i class=\"bell-icon bell-icon-chevron-right\"></i>\n      {{else}}\n        <i class=\"bell-icon bell-icon-chevron-left\"></i>\n      {{/if}}\n    </div>\n  {{/if}}\n\n  {{#if hasSlot('trigger')}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      <slot name=\"trigger\" />\n    </div>\n  {{/if}}\n</div>";
 
 var Sider = {
-  template: SiderTpl,
-  
   propTypes: {
     className: {
       type: 'string'
@@ -387,6 +388,8 @@ var Sider = {
       type: ['string', 'boolean']
     }
   },
+
+  template: template$2,
 
   data: function data() {
     return {
@@ -409,25 +412,30 @@ var Sider = {
   },
 
   afterMount: function afterMount() {
-    var me = this;
-    me.fire(
-      'hasSider',
-      {
-        hasSider: true
-      }
+    this.fire(
+      'hasSider'
     );
   }
 };
 
-var ContentTpl = "<div class=\"bell-layout-content bell-col-span\n  {{#if hasSider}}-18{{else}}-24{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
+var template$3 = "<div class=\"bell-layout-content\n  {{#if hasSider}} bell-col-18{{else}} bell-col-24{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Content = {
-  template: ContentTpl,
+  propTypes: {
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    }
+  },
+
+  template: template$3,
 
   events: {
-    childrenHasSider: function childrenHasSider(value) {
+    hasSider: function hasSider(event) {
       this.set({
-        hasSider: value
+        hasSider: true
       });
     }
   },
@@ -436,22 +444,12 @@ var Content = {
     return {
       hasSider: false
     }
-  },
-
-  propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    }
   }
 };
 
-var FooterTpl = "<div class=\"bell-layout-footer bell-col-span-24\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
+var template$4 = "<div class=\"bell-layout-footer \n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Footer = {
-  template: FooterTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -459,21 +457,14 @@ var Footer = {
     style: {
       type: 'string'
     }
-  }
+  },
+  template: template$4
 };
 
-var MenuTpl = "<div class=\"bell-menu\n  {{#if className}} {{className}}{{/if}}\n  {{#if mode}} bell-menu-{{mode}}{{/if}}\n  {{#if theme}} bell-menu-{{theme}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
+var template$5 = "<div class=\"bell-menu\n  {{#if className}} {{className}}{{/if}}\n  {{#if mode}} bell-menu-{{mode}}{{/if}}\n  {{#if theme}} bell-menu-{{theme}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
 
 var Menu = {
-  template: MenuTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     mode: {
       type: 'string'
     },
@@ -487,8 +478,16 @@ var Menu = {
     },
     openNames: {
       type: 'array'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template: template$5,
 
   events: {
     menuItemActive: function menuItemActive(event, data) {
@@ -545,18 +544,10 @@ var Menu = {
   }
 };
 
-var MenuItemTpl = "<div class=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-active{{/if}}\n\" style=\"{{style}}\" on-click=\"click(name)\">\n\n  {{#if hasSlot('leftIcon')}}\n  <span class=\"bell-left-icon\">\n    <slot name=\"leftIcon\" />\n  </span>\n  {{/if}}\n\n  <span class=\"bell-menu-item-content\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </span>\n\n</div>";
+var template$6 = "<div class=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-active{{/if}}\n\" style=\"{{style}}\" on-click=\"click(name)\">\n\n  {{#if hasSlot('leftIcon')}}\n  <span class=\"bell-left-icon\">\n    <slot name=\"leftIcon\" />\n  </span>\n  {{/if}}\n\n  <span class=\"bell-menu-item-content\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </span>\n\n</div>";
 
 var MenuItem = {
-  template: MenuItemTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     name: {
       type: 'string'
     },
@@ -565,8 +556,16 @@ var MenuItem = {
     },
     disabled: {
       type: 'boolean'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template: template$6,
 
   data: function data() {
     return {
@@ -607,43 +606,43 @@ var MenuItem = {
   }
 };
 
-var MenuGroupTpl = "<div class=\"bell-menu-group\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  <div class=\"bell-menu-group-title\">\n    {{title}}\n  </div>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
+var template$7 = "<div class=\"bell-menu-group\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  <div class=\"bell-menu-group-title\">\n    {{title}}\n  </div>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
 
 var MenuGroup = {
-  template: MenuGroupTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     title: {
       type: 'string'
-    }
-  }
-};
-
-var SubmenuTpl = "<div class=\"bell-menu-sub-menu\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  <div class=\"bell-menu-title\" on-click=\"click(name)\">\n    <span class=\"bell-menu-title-text\">\n      {{#if hasSlot('title')}}\n        <slot name=\"title\" />\n      {{/if}}\n    </span>\n    {{#if isCollapsed}}\n      <i class=\"\n        bell-icon \n        bell-menu-title-icon \n        bell-icon-ios-arrow-down\n        {{#if isOpen}} bell-menu-open{{/if}}\n      \"></i>\n    {{/if}}\n  </div>\n  {{#if isOpen && hasSlot('children')}}\n    <div class=\"bell-menu-groups\" transition=\"groups\">\n      <slot name=\"children\" />\n    </div>\n  {{/if}}\n</div>";
-
-var Submenu = {
-  template: SubmenuTpl,
-
-  propTypes: {
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
+    }
+  },
+
+  template: template$7
+};
+
+var template$8 = "<div class=\"bell-menu-sub-menu\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  <div class=\"bell-menu-title\" on-click=\"click(name)\">\n    <span class=\"bell-menu-title-text\">\n      {{#if hasSlot('title')}}\n        <slot name=\"title\" />\n      {{/if}}\n    </span>\n    {{#if isCollapsed}}\n      <i class=\"\n        bell-icon \n        bell-menu-title-icon \n        bell-icon-ios-arrow-down\n        {{#if isOpen}} bell-menu-open{{/if}}\n      \"></i>\n    {{/if}}\n  </div>\n  {{#if isOpen && hasSlot('children')}}\n    <div class=\"bell-menu-groups\" transition=\"groups\">\n      <slot name=\"children\" />\n    </div>\n  {{/if}}\n</div>";
+
+var Submenu = {
+  propTypes: {
     name: {
       type: 'string'
     },
     isCollapsed: {
       type: ['string', 'boolean']
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template: template$8,
 
   data: function data() {
     return {
@@ -695,15 +694,10 @@ var Submenu = {
   }
 };
 
-var RowTpl = "<div class=\"bell-row\n  {{#if className}} {{className}}{{/if}}\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n\" style=\"{{style}}\">\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
+var template$9 = "<div class=\"bell-row\n  {{#if className}} {{className}}{{/if}}\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n\" style=\"{{style}}\"\n>\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
 
 var Row = {
-  template: RowTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
     gutter: {
       type: 'numeric'
     },
@@ -715,10 +709,18 @@ var Row = {
     },
     align: {
       type: 'string'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
 
-  data: function data() {
+  template: template$9,
+
+  data: function data () {
     return {
       style: ''
     }
@@ -746,15 +748,10 @@ var Row = {
   }
 };
 
-var ColTpl = "<div class=\"bell-col\n  {{#if className}} {{className}}{{/if}}\n  {{#if span}} bell-col-span-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-span-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n\" style=\"{{style}}\">\n\n  <div class=\"bell-col-content\">\n\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n\n  </div>\n\n</div>";
+var template$a = "<div class=\"bell-col\n  {{#if className}} {{className}}{{/if}}\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
 
 var Col = {
-  template: ColTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
     span: {
       type: 'numeric'
     },
@@ -781,10 +778,18 @@ var Col = {
     },
     lg: {
       type: ['numeric', 'object']
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+  
+  template: template$a,
 
-  data: function data() {
+  data: function data () {
     return {
       style: '',
       gutter: ''
@@ -846,23 +851,23 @@ var Col = {
       var classArr = [];
       if (Yox.is.object(data)) {
         if (data.span) {
-          classArr.push('bell-col-span-' + name + '-' + data.span);
+          classArr.push(bell- + 'col-' + name + '-' + data.span);
         }
         if (data.order) {
-          classArr.push('bell-col-' + name + '-order-' + data.order);
+          classArr.push(bell- + 'col-' + name + '-order-' + data.order);
         }
         if (data.offset) {
-          classArr.push('bell-col-' + name + '-offset-' + data.offset);
+          classArr.push(bell- + 'col-' + name + '-offset-' + data.offset);
         }
         if (data.push) {
-          classArr.push('bell-col-' + name + '-push-' + data.push);
+          classArr.push(bell- + 'col-' + name + '-push-' + data.push);
         }
         if (data.pull) {
-          classArr.push('bell-col-' + name + '-pull-' + data.pull);
+          classArr.push(bell- + 'col-' + name + '-pull-' + data.pull);
         }
       }
       else {
-        classArr.push('bell-col-span-' + name + '-' + data);
+        classArr.push(bell- + 'col-' + name + '-' + data);
       }
 
       return classArr.join(' ');
@@ -870,7 +875,7 @@ var Col = {
   }
 };
 
-var template = "<i class=\"bell-icon \n  {{#if type}} bell-icon-ios-{{type}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if rotate}} bell-icon-rotate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n  style=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n{{#if rotate}}\n<style>\n  .bell-icon-rotate::before {\n    transform: rotate({{rotate}}deg);\n  }\n</style>\n{{/if}}\n</i>";
+var template$b = "<i class=\"bell-icon \n  {{#if type}} bell-icon-ios-{{type}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n  style=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n</i>";
 
 var Icon = {
   propTypes: {
@@ -888,10 +893,6 @@ var Icon = {
       type: 'Boolean',
       value: false
     },
-    rotate: {
-      type: 'numeric',
-      value: 0
-    },
     className: {
       type: 'string'
     },
@@ -899,7 +900,7 @@ var Icon = {
       type: 'string'
     }
   },
-  template: template
+  template: template$b
 };
 
 var contains = function(element, target) {
@@ -1011,7 +1012,7 @@ var BreadcrumbItem = {
   }
 };
 
-var template$1 = "<button class=\"bell-button\n  {{#if className}} {{className}}{{/if}}\n  {{#if ghost}} bell-button-{{type}}-ghost {{else}} bell-button-{{type}}-normal {{/if}} \n  bell-button-{{borderType}}\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n\"{{#if disabled}} disabled{{/if}} on-click=\"click\"\n{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  {{#if hasSlot('icon')}}\n    <slot name=\"icon\" />\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\">\n    </slot>\n  </span>\n  {{/if}}\n  \n</button>";
+var template$c = "<button class=\"bell-button\n  {{#if className}} {{className}}{{/if}}\n  {{#if ghost}} bell-button-{{type}}-ghost {{else}} bell-button-{{type}}-normal {{/if}} \n  bell-button-{{borderType}}\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n\"{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n  on-click=\"click\"\n>\n\n  {{#if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  <slot name=\"icon\" />\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\">\n    </slot>\n  </span>\n  {{/if}}\n  \n</button>";
 
 var Button = {
   propTypes: {
@@ -1048,10 +1049,10 @@ var Button = {
       type: 'string'
     }
   },
-  template: template$1
+  template: template$c
 };
 
-var template$2 = "<div class=\"bell-button-group\n  {{#if shape}} bell-button-group-{{shape}}{{/if}}\n  {{#if size}} bell-button-group-{{size}}{{/if}}\n  {{#if vertical}} bell-button-group-vertical{{else}} bell-button-group-horizontal{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
+var template$d = "<div class=\"bell-button-group\n  {{#if shape}} bell-button-group-{{shape}}{{/if}}\n  {{#if size}} bell-button-group-{{size}}{{/if}}\n  {{#if vertical}} bell-button-group-vertical{{else}} bell-button-group-horizontal{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
 
 var ButtonGroup = {
   propTypes: {
@@ -1072,7 +1073,7 @@ var ButtonGroup = {
       type: 'string'
     }
   },
-  template: template$2
+  template: template$d
 };
 
 var InputTpl = "<div class=\"bell-input-wrapper\n  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}\n  {{#if hasSlot('append')}} bell-input-has-append{{/if}}\n  {{#if className}} {{className}}{{/if}}\n  {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n  {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n  {{#if isFocus}} bell-focus{{/if}}\n  {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n  {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n  \"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('prepend')}}\n    <div class=\"bell-input-prepend\">\n      <slot name=\"prepend\" />\n    </div>\n  {{/if}}\n\n  <div class=\"bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}\">\n\n    {{#if type === TEXT_TYPE_TEXTAREA}}\n\n      <textarea class=\"bell-input-el\"\n        style=\"height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px\"\n        {{#if rows}} rows=\"{{rows}}\"{{/if}}\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled{{/if}}\n        model=\"value\"\n      >\n      </textarea>\n\n    {{else}}\n\n      <input ref=\"input\"\n        type=\"{{currentType}}\"\n        class=\"bell-input-el\n            {{#if size}} bell-input-{{size}}{{/if}}\n        \"\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled=\"disabled\"{{/if}}\n        model=\"value\"\n        on-blur=\"blur()\"\n        on-focus=\"focus()\"\n      />\n\n      {{#if clearable}}\n        <i class=\"bell-icon\n          bell-icon-ios-close\n          bell-input-clear-icon\n        \" on-click=\"clear()\"></i>\n      {{/if}}\n\n      {{#if secure}}\n        {{#if isSecure}}\n          <i class=\"bell-icon\n              bell-icon-eye\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{else}}\n          <i class=\"bell-icon\n              bell-icon-eye-disabled\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{/if}}\n      {{/if}}\n\n    {{/if}}\n\n  </div>\n  {{#if hasSlot('append')}}\n    <div class=\"bell-input-append\">\n      <slot name=\"append\" />\n    </div>\n  {{/if}}\n</div>";

@@ -1,8 +1,6 @@
-import SiderTpl from './template/Sider.html'
+import template from './template/Sider.html'
 
 export default {
-  template: SiderTpl,
-  
   propTypes: {
     className: {
       type: 'string'
@@ -14,6 +12,8 @@ export default {
       type: ['string', 'boolean']
     }
   },
+
+  template,
 
   data() {
     return {
@@ -36,12 +36,8 @@ export default {
   },
 
   afterMount() {
-    let me = this;
-    me.fire(
-      'hasSider',
-      {
-        hasSider: true
-      }
+    this.fire(
+      'hasSider'
     );
   }
 };

@@ -1,7 +1,6 @@
-import FooterTpl from './template/Footer.html'
+import template from './template/Footer.html'
 
 export default {
-  template: FooterTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -9,5 +8,6 @@ export default {
     style: {
       type: 'string'
     }
-  }
+  },
+  template
 };

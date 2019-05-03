@@ -1,10 +1,11 @@
-<div class="bell-row
+<div class="${prefix}row
   {{#if className}} {{className}}{{/if}}
-  {{#if gutter}} bell-row-gutter{{/if}}
-  {{#if type}} bell-row-{{type}}{{/if}}
-  {{#if justify}} bell-row-justify-{{justify}}{{/if}}
-  {{#if align}} bell-row-align-{{align}}{{/if}}
-" style="{{style}}">
+  {{#if gutter}} ${prefix}row-gutter{{/if}}
+  {{#if type}} ${prefix}row-{{type}}{{/if}}
+  {{#if justify}} ${prefix}row-justify-{{justify}}{{/if}}
+  {{#if align}} ${prefix}row-align-{{align}}{{/if}}
+" style="{{style}}"
+>
   {{#if hasSlot('children')}}
     <slot name="children" />
   {{/if}}

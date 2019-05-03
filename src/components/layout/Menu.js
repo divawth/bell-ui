@@ -1,15 +1,7 @@
-import MenuTpl from './template/Menu.html'
+import template from './template/Menu.html'
 
 export default {
-  template: MenuTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     mode: {
       type: 'string'
     },
@@ -23,8 +15,16 @@ export default {
     },
     openNames: {
       type: 'array'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template,
 
   events: {
     menuItemActive(event, data) {

@@ -1,12 +1,21 @@
-import ContentTpl from './template/Content.html'
+import template from './template/Content.html'
 
 export default {
-  template: ContentTpl,
+  propTypes: {
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    }
+  },
+
+  template,
 
   events: {
-    childrenHasSider(value) {
+    hasSider(event) {
       this.set({
-        hasSider: value
+        hasSider: true
       });
     }
   },
@@ -14,15 +23,6 @@ export default {
   data() {
     return {
       hasSider: false
-    }
-  },
-
-  propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
     }
   }
 };

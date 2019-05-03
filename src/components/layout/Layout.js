@@ -1,7 +1,20 @@
-import LayoutTpl from './template/Layout.html'
+import template from './template/Layout.html'
 
 export default {
-  template: LayoutTpl,
+  propTypes: {
+    fixed: {
+      type: 'boolean'
+    },
+    hasSider(value) {
+      return value ? true : false;
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    }
+  },
 
   data() {
     let me = this;
@@ -10,33 +23,23 @@ export default {
     };
   },
 
-  propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
-    fixed: {
-      type: 'boolean'
-    },
-    hasSider(value) {
-      return value ? true : false;
-    }
-  },
+  template,
 
   events: {
-    hasSider(event, data) {
-      let me = this;
-      me.set({
-        hasSider: data.hasSider
-      });
-      me.fire(
-        'childrenHasSider',
-        {},
-        true
-      );
-      return false;
+    hasSider(event) {
+      if (event.phase === 0) {
+        return;
+      }
+      if (event.phase > 0) {
+        this.set({
+          hasSider: true
+        });
+        this.fire(
+          'hasSider',
+          true
+        );
+      }
+      event.stop();
     }
   }
 };

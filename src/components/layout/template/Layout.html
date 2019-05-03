@@ -1,6 +1,6 @@
-<div class="bell-layout bell-row
-  {{#if hasSider}} bell-col-span-24{{else}} column{{/if}}
-  {{#if fixed}} bell-layout-fixed{{/if}}
+<div class="${prefix}layout ${prefix}row
+  {{#if hasSider}} ${prefix}col-24{{else}} column{{/if}}
+  {{#if fixed}} ${prefix}layout-fixed{{/if}}
   {{#if className}} {{className}}{{/if}}"
   {{#if style}} style="{{style}}"{{/if}}
 >

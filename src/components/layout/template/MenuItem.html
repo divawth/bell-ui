@@ -1,15 +1,15 @@
-<div class="bell-menu-item
+<div class="${prefix}menu-item
   {{#if className}} {{className}}{{/if}}
-  {{#if isActive}} bell-active{{/if}}
+  {{#if isActive}} ${prefix}active{{/if}}
 " style="{{style}}" on-click="click(name)">
 
   {{#if hasSlot('leftIcon')}}
-  <span class="bell-left-icon">
+  <span class="${prefix}left-icon">
     <slot name="leftIcon" />
   </span>
   {{/if}}
 
-  <span class="bell-menu-item-content">
+  <span class="${prefix}menu-item-content">
     {{#if hasSlot('children')}}
       <slot name="children" />
     {{/if}}

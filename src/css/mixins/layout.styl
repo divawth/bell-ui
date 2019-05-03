@@ -3,6 +3,24 @@ layout-style(style)
     ui-set('flex', style['flex'])
     box-sizing border-box
 
+
+    if (style['padding'] != null)
+
+        ui-set('padding', style['padding'])
+
+    if style['line-height']
+
+        ui-set('line-height', style['line-height'])
+
+    if style['background-color']
+
+        ui-set('background-color', style['background-color'])
+
+    if style['color']
+
+        ui-set('color', style['color'])
+    
+
 ui-layout()
 
     ui-connect(

@@ -2,10 +2,10 @@
 
     ui-row()
     ui-layout()
+    flex 1
 
     {$selector-layout}-sider
 
-        position relative
         transition flex .4s
         overflow auto
         max-height 100%
@@ -29,33 +29,15 @@
         width 100%
 
 
-{$selector-layout-header}
-    display flex
-    flex-direction row
-    align-items flex-start
-
 {$selector-layout-header}-left
-    flex 1
-    align-self center
-    text-align center
-    justify-content center
+    float left
 
 {$selector-layout-header}-right
-    flex 1
-    align-self center
-    text-align right
-    justify-content center
+    float right
 
 {$selector-layout-header}-center
-    flex 4
-    align-self center
-    justify-content center
-
-{$selector-layout-footer}
-
-    align-self center
-    text-align center
-    justify-content center
+    margin 0 auto
+    display inline-block
 
 {$selector-layout-fixed}
 

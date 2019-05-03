@@ -1,12 +1,7 @@
-import RowTpl from './template/Row.html'
+import template from './template/Row.html'
 
 export default {
-  template: RowTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
     gutter: {
       type: 'numeric'
     },
@@ -18,10 +13,18 @@ export default {
     },
     align: {
       type: 'string'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
 
-  data() {
+  template,
+
+  data () {
     let me = this;
     return {
       style: ''

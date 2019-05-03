@@ -5,16 +5,16 @@
   {{#if shape}} ${prefix}button-{{shape}}{{/if}}
   {{#if size}} ${prefix}button-{{size}}{{/if}}
   {{#if fluid}} ${prefix}button-fluid{{/if}}
-"{{#if disabled}} disabled{{/if}} on-click="click"
-{{#if style}} style="{{style}}"{{/if}}>
+"{{#if disabled}} disabled{{/if}} 
+{{#if style}} style="{{style}}"{{/if}}
+  on-click="click"
+>
 
   {{#if icon}}
     <Icon type="{{icon}}" />
   {{/if}}
 
-  {{#if hasSlot('icon')}}
-    <slot name="icon" />
-  {{/if}}
+  <slot name="icon" />
 
   {{#if hasSlot('children')}}
   <span>

@@ -1,12 +1,7 @@
-import ColTpl from './template/Col.html'
+import template from './template/Col.html'
 
 export default {
-  template: ColTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
     span: {
       type: 'numeric'
     },
@@ -33,10 +28,18 @@ export default {
     },
     lg: {
       type: ['numeric', 'object']
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+  
+  template,
 
-  data() {
+  data () {
     let me = this;
     return {
       style: '',
@@ -100,23 +103,23 @@ export default {
       let classArr = [];
       if (Yox.is.object(data)) {
         if (data.span) {
-          classArr.push('bell-col-span-' + name + '-' + data.span);
+          classArr.push(${prefix} + 'col-' + name + '-' + data.span);
         }
         if (data.order) {
-          classArr.push('bell-col-' + name + '-order-' + data.order);
+          classArr.push(${prefix} + 'col-' + name + '-order-' + data.order);
         }
         if (data.offset) {
-          classArr.push('bell-col-' + name + '-offset-' + data.offset);
+          classArr.push(${prefix} + 'col-' + name + '-offset-' + data.offset);
         }
         if (data.push) {
-          classArr.push('bell-col-' + name + '-push-' + data.push);
+          classArr.push(${prefix} + 'col-' + name + '-push-' + data.push);
         }
         if (data.pull) {
-          classArr.push('bell-col-' + name + '-pull-' + data.pull);
+          classArr.push(${prefix} + 'col-' + name + '-pull-' + data.pull);
         }
       }
       else {
-        classArr.push('bell-col-span-' + name + '-' + data);
+        classArr.push(${prefix} + 'col-' + name + '-' + data);
       }
 
       return classArr.join(' ');

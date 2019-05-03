@@ -1,7 +1,6 @@
-import HeaderTpl from './template/Header.html'
+import template from './template/Header.html'
 
 export default {
-  template: HeaderTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -9,5 +8,6 @@ export default {
     style: {
       type: 'string'
     }
-  }
+  },
+  template
 };

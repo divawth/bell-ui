@@ -1,22 +1,18 @@
-<div class="bell-col
+<div class="${prefix}col
   {{#if className}} {{className}}{{/if}}
-  {{#if span}} bell-col-span-{{span}}{{/if}}
-  {{#if order}} bell-col-order-{{order}}{{/if}}
-  {{#if push}} bell-col-push-{{push}}{{/if}}
-  {{#if pull}} bell-col-pull-{{pull}}{{/if}}
-  {{#if offset}} bell-col-span-offset-{{offset}}{{/if}}
+  {{#if span}} ${prefix}col-{{span}}{{/if}}
+  {{#if order}} ${prefix}col-order-{{order}}{{/if}}
+  {{#if push}} ${prefix}col-push-{{push}}{{/if}}
+  {{#if pull}} ${prefix}col-pull-{{pull}}{{/if}}
+  {{#if offset}} ${prefix}col-offset-{{offset}}{{/if}}
   {{#if xsClass}} {{xsClass}}{{/if}}
   {{#if mdClass}} {{mdClass}}{{/if}}
   {{#if smClass}} {{smClass}}{{/if}}
   {{#if lgClass}} {{lgClass}}{{/if}}
-" style="{{style}}">
+"{{#if style}} style="{{style}}"{{/if}}>
 
-  <div class="bell-col-content">
-
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
-
-  </div>
+  {{#if hasSlot('children')}}
+    <slot name="children" />
+  {{/if}}
 
 </div>

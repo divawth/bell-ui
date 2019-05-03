@@ -3,6 +3,7 @@
 水平排列的布局 Col 必须放在 Row 里面。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row>
@@ -22,19 +23,6 @@
                     <Col span="6">col-6</Col>
                     <Col span="6">col-6</Col>
                 </Row>
-                <style>
-                    .bell-col-content {
-                        text-align: center;
-                        color: #fff;
-                        line-height: 20px;
-                    }
-                    .bell-col-content:nth-child(odd) {
-                        background-color: #5782D1;
-                    }
-                    .bell-col-content:nth-child(even) {
-                        background-color: #6C94E1;
-                    }
-                </style>
             </div>
         `
     }
@@ -42,6 +30,7 @@
 > 通过给 Row 添加 gutter 属性，可以给下属的 col 添加间距，推荐使用 (16+8n)px 作为栅格间隔。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row gutter="16">
@@ -65,6 +54,7 @@
 > 通过 Flex 布局的 order 来改变栅格的顺序。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row type="flex">
@@ -80,6 +70,7 @@
 > 通过设置 push 和 pull 来改变栅格的顺序。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row>
@@ -93,6 +84,7 @@
 > 通过设置 offset 属性，将列进行左右偏移，偏移栅格数为 offset 的值。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row>
@@ -115,6 +107,7 @@
 > 通过给 row 设置参数 justify 为不同的值，来定义子元素的排布方式。在flex模式下有效。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <p>子元素向左排列</p>
@@ -159,6 +152,7 @@
 > 通过给 Row 设置参数 align 为不同的值，来定义子元素在垂直方向上的排布方式。在flex模式下有效。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <p>顶部对齐</p>
@@ -203,6 +197,7 @@
 > 响应式布局
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row>
@@ -221,6 +216,7 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg 属性中来
 其中 :xs="6" 相当于 :xs="{ span: 6 }"。
 
     export default {
+        isViewFullBlock: true,
         template: `
             <div>
                 <Row>
@@ -232,15 +228,15 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg 属性中来
         `,
         data: {
             xsList1: {
-                span: 5,
+                span: 3,
                 offset: 1
             },
             xsList2: {
-                span: 11,
+                span: 10,
                 offset: 1
             },
             xsList3: {
-                span: 5,
+                span: 3,
                 offset: 1
             },
             lgList: {
@@ -249,9 +245,12 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg 属性中来
             }
         }
     }
+
+> 栅格配置器
+
 #### API
 
-> Row Attributes
+> Row Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -261,7 +260,7 @@ align | flex 布局对齐方式 | string | 'top', 'middle', 'bottom', 'baseline'
 justify | flex 布局 justify 值 | string | - | -
 className | 自定义 Row 类名 | string | - | -
 
-> Col Attributes
+> Col Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -271,7 +270,9 @@ offset | 列偏移的栅格列数 | number | - | -
 push | 改变列排序的 push 值 | number | - | -
 pull | 改变列排序的 pull 值 | number | - | -
 className | 自定义 Col 类名 | string | - | -
-xs | <768px 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | - | -
-sm | ≥768px 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | - | -
-md | ≥992px 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | - | -
-lg | ≥1200px 响应式栅格数或者栅格属性对象 | number/object (例如： {span: 4, offset: 4}) | - | -
+xs | <768px 响应式栅格数或者栅格属性对象 | number/Object (例如： {span: 4, offset: 4}) | - | -
+sm | ≥768px 响应式栅格数或者栅格属性对象 | number/Object (例如： {span: 4, offset: 4}) | - | -
+md | ≥992px 响应式栅格数或者栅格属性对象 | number/Object (例如： {span: 4, offset: 4}) | - | -
+lg | ≥1200px 响应式栅格数或者栅格属性对象 | number/Object (例如： {span: 4, offset: 4}) | - | -
+
+

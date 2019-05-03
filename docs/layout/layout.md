@@ -1,11 +1,57 @@
+### Layout 布局 
+
+协助进行页面级整体布局
+
+设计规则
+
+#### 尺寸
+
+一级导航项偏左靠近 logo 放置，辅助菜单偏左放置。
+- 顶部导航（大部分系统）: 一级导航高度 64px，二级导航 48px。
+- 顶部导航（展示类页面）：一级导航高度 80px，二级导航 56px。
+- 顶部导航高度的范围计算公式为：48+8n。
+- 侧边导航的宽度计算公式：200+8n。
+
+#### 交互
+- 一级导航和末级的导航需要在可视化的层面被强调出来。
+- 当前项应该在呈现上优先级最高。
+- 当导航收起的时候，当前项的样式自动赋予给它的上一个层级。
+- 左侧导航栏的收放交互同时支持手风琴和全展开的样式
+
+#### 视觉
+导航样式上需要根据信息层级合理的选择样式：
+- 大色块强调
+建议用于底色为深色系时，当前页面父级的导航项。
+- 高亮火柴棍
+当导航栏底色为浅色系时使用，可用于当前页面对应导航项，建议尽量在导航路径的最终项使用。
+- 字体高亮变色
+从可视化层面，字体高亮的视觉强化力度低于大色块，通常在当前项的上一级使用。
+- 字体放大
+12px、14px 是导航的标准字号，14 号字体用在一、二级导航中。字号可以考虑导航项的等级做相应选择。
+
+#### 组件概述
+- Layout 下面的组件只能在 Layout 中使用。
+- Header 顶部布局。 
+- Sider 侧边栏。
+- Content 内容部分。
+- Footer 底部布局。
+
 > 基础用法
 
     export default {
         isViewFullBlock: true,
         template: `
-            <Layout>
+            <Layout className="layout-demo">
                 <Header>
-                    Header
+                    <template slot="left">
+                        Header Left
+                    </template>
+                    <template slot="center">
+                        Header Center
+                    </template>
+                    <template slot="right">
+                        Header Right
+                    </template>
                 </Header>
                 <Content>
                     Content
@@ -13,22 +59,6 @@
                 <Footer>
                     Footer
                 </Footer>
-                <style>
-                    .bell-layout {
-                        color: #fff;
-                    }
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                        background-color: #f8f8f8;
-                    }
-                    .bell-layout-sider,
-                    .bell-layout-footer,
-                    .bell-layout-header {
-                        background-color: #1e242b;
-                    }
-                </style>
             </Layout>
         `,
     }
@@ -38,11 +68,11 @@
     export default {
         isViewFullBlock: true,
         template: `
-            <Layout>
+            <Layout className="layout-demo">
                 <Header>
                     Header
                 </Header>
-                <Layout hasSider>
+                <Layout className="layout-demo" hasSider>
                     <Sider>
                         Sider
                     </Sider>
@@ -53,16 +83,6 @@
                 <Footer>
                     Footer
                 </Footer>
-                <style>
-                    .bell-layout {
-                        color: #fff;
-                    }
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                    }
-                </style>
             </Layout>
         `,
     }
@@ -72,11 +92,11 @@
     export default {
         isViewFullBlock: true,
         template: `
-            <Layout>
+            <Layout className="layout-demo">
                 <Header>
                     Header
                 </Header>
-                <Layout>
+                <Layout className="layout-demo">
                     <Content>
                         Content
                     </Content>
@@ -87,16 +107,74 @@
                 <Footer>
                     Footer
                 </Footer>
-                <style>
-                    .bell-layout {
-                        color: #fff;
-                    }
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                    }
-                </style>
+            </Layout>
+        `,
+    }
+
+> Sider 在最左侧
+
+    export default {
+        isViewFullBlock: true,
+        template: `
+            <Layout className="layout-demo">
+                <Sider>Sider</Sider>
+                <Layout className="layout-demo">
+                    <Header>Header</Header>
+                    <Content>Content</Content>
+                    <Footer>Footer</Footer>
+                </Layout>
+            </Layout>
+        `,
+    }
+
+> 上中下布局
+
+一般主导航放置于页面的顶端，从左自右依次为：logo、一级导航项、辅助菜单（用户、设置、通知等）。通常将内容放在固定尺寸（例如：1200px）内，整个页面排版稳定，不受用户终端显示器影响；上下级的结构符合用户上下浏览的习惯，也是较为经典的网站导航模式。页面上下切分的方式提高了主工作区域的信息展示效率，但在纵向空间上会有一些牺牲。此外，由于导航栏水平空间的限制，不适合那些一级导航项很多的信息结构。
+
+    
+    export default {
+        isViewFullBlock: true,
+        template: `
+            <Layout className="layout-demo-wrapper">
+                <Header>
+                    <template slot="left">
+                        <div class="layout-logo"></div>
+                    </template>
+                    <Menu mode="horizontal" theme="dark" active-name="1">
+                        
+                        <div class="layout-nav">
+                            <MenuItem name="1">
+                                <Icon type="ios-navigate"></Icon>
+                                Item 1
+                            </MenuItem>
+                            <MenuItem name="2">
+                                <Icon type="ios-keypad"></Icon>
+                                Item 2
+                            </MenuItem>
+                            <MenuItem name="3">
+                                <Icon type="ios-analytics"></Icon>
+                                Item 3
+                            </MenuItem>
+                            <MenuItem name="4">
+                                <Icon type="ios-paper"></Icon>
+                                Item 4
+                            </MenuItem>
+                        </div>
+                    </Menu>
+                </Header>
+                <Content :style="{padding: '0 50px'}">
+                    <Breadcrumb :style="{margin: '20px 0'}">
+                        <BreadcrumbItem>Home</BreadcrumbItem>
+                        <BreadcrumbItem>Components</BreadcrumbItem>
+                        <BreadcrumbItem>Layout</BreadcrumbItem>
+                    </Breadcrumb>
+                    <Card>
+                        <div style="min-height: 200px;">
+                            Content
+                        </div>
+                    </Card>
+                </Content>
+                <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
             </Layout>
         `,
     }
@@ -108,25 +186,25 @@
         template: `
             <Layout>
                 <Header>
-                    <Menu theme="{{theme1}}" style="height: 62px;" activeName="question">
+                    <Menu theme="{{theme1}}" activeName="1">
                         <MenuItem name="1">
-                            MenuItem 1
-                        </MenuItem>
-                        <MenuItem name="3">
-                            MenuItem 2
+                            <Icon type="ios-paper"></Icon>
+                            内容管理
                         </MenuItem>
                         <MenuItem name="2">
-                            MenuItem 3
+                            <Icon type="ios-people"></Icon>
+                            用户管理
+                        </MenuItem>
+                        <MenuItem name="3">
+                            <Icon type="stats-bars"></Icon>
+                            统计分析
+                        </MenuItem>
+                        <MenuItem name="4">
+                            <Icon type="settings"></Icon>
+                            综合设置
                         </MenuItem>
                     </Menu>
                 </Header>
-                <style>
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                    }
-                </style>
             </Layout>
         `,
     }
@@ -157,11 +235,6 @@
                     Content
                 </Content>
 
-                <style>
-                    .bell-menu-dark {
-                        background-color: transparent;
-                    }
-                </style>
             </Layout>
         `,
     }
@@ -332,22 +405,6 @@
                         </Button>
                     </template>
                 </Header>
-                <style>
-                    .bell-layout {
-                        color: #fff;
-                    }
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                        background-color: #f8f8f8;
-                    }
-                    .bell-layout-sider,
-                    .bell-layout-footer,
-                    .bell-layout-header {
-                        background-color: #1e242b;
-                    }
-                </style>
             </Layout>
         `,
     }
@@ -366,45 +423,9 @@
                         联系方式 xxxxxxxx
                     </p>
                 </Footer>
-                <style>
-                    .bell-layout {
-                        color: #fff;
-                    }
-                    .bell-layout-content {
-                        color: #000;
-                        min-height: 100px;
-                        line-height: 100px;
-                        background-color: #f8f8f8;
-                    }
-                    .bell-layout-sider,
-                    .bell-layout-footer,
-                    .bell-layout-header {
-                        background-color: #1e242b;
-                    }
-                </style>
             </Layout>
         `,
     }
-
-> Layout Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-className | 自定义样式类 | string | - | -
-style | 自定义样式 | string | - | -
-
-> Layout Slot
-
-参数 | 说明
----|---
-children | 自定义内容
-
-> Header Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-className | 自定义样式类 | string | - | -
-style | 自定义样式 | string | - | -
 
 > Header Slot
 
@@ -415,20 +436,7 @@ left | 自定义左边内容
 right | 自定义右边内容
 center | 自定义中间内容
 
-> Content Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-className | 自定义样式类 | string | - | -
-style | 自定义样式 | string | - | -
-
-> Content Slot
-
-参数 | 说明
----|---
-children | 自定义内容
-
-> Sider Attributes
+> Sider Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -441,13 +449,6 @@ style | 自定义样式 | string | - | -
 事件名称 | 说明 | 回调参数(data)
 ---|---|---
 collapse | 点击按钮的回调 | isCollapsed
-
-> Footer Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-className | 自定义样式类 | string | - | -
-style | 自定义样式 | string | - | -
 
 > Footer Slot
 

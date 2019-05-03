@@ -1,22 +1,22 @@
-import SubmenuTpl from './template/Submenu.html'
+import template from './template/Submenu.html'
 
 export default {
-  template: SubmenuTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     name: {
       type: 'string'
     },
     isCollapsed: {
       type: ['string', 'boolean']
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template,
 
   data() {
     return {
