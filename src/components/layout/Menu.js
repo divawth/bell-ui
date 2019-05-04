@@ -3,7 +3,8 @@ import template from './template/Menu.html'
 export default {
   propTypes: {
     mode: {
-      type: 'string'
+      type: 'string',
+      value: 'horizontal'
     },
     theme: {
       type: 'string',

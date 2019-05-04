@@ -6,6 +6,7 @@
   <!-- - [动画](basic/transition) -->
 - [布局](layout)
   - [Grid 栅格布局](layout/grid)
+  - [Menu 导航菜单](layout/menu)
   - [Layout 布局](layout/layout)
   - [Card 卡片](view/card)
   - [Collapse 折叠面板](view/collapse)

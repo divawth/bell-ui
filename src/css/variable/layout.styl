@@ -1,18 +1,11 @@
 $selector-layout = $selector-prefix + '-layout';
 $selector-layout-header = $selector-layout + '-header';
-$selector-layout-footer = $selector-layout + '-footer';
+$selector-layout-sider = $selector-layout + '-sider';
 $selector-layout-has-sider = $selector-prefix + '-layout-has-sider';
 $selector-layout-fixed = $selector-layout + '-fixed';
 
-$selector-menu = $selector-prefix + '-menu';
-$selector-menu-vertical = $selector-prefix + '-menu-vertical';
-
 $selector-sider-collapsed = $selector-prefix + '-layout-sider-collapsed';
 $selector-sider = $selector-prefix + '-sider';
-
-$layout-menu-item-color = #BABDC3;
-$layout-menu-item-padding = 0 10px;
-$layout-menu-item-active-color = #57a3f3;
 
 $layout-hash = {
     header: {
@@ -32,43 +25,91 @@ $layout-hash = {
         color: #515a6e
     },
     sider: {
-        flex: 0 0 200px
+        flex: 0 0 200px,
+        background-color: #515a6e
     },
     sider-collapsed: {
-        flex: 0 0 78px
+        flex: 0 0 78px,
+        background-color: #515a6e
+    },
+    trigger: {
+        color: #fff
     }
 };
 
+$selector-menu = $selector-prefix + '-menu';
+$selector-menu-item = $selector-prefix + '-menu-item';
+$selector-menu-submenu = $selector-prefix + '-menu-submenu';
+$selector-menu-group = $selector-prefix + '-menu-group';
 
-$layout-menu-theme-hash = {
-    'light': {
-        background-color: $brand-bg,
-        color: $brand-main,
-        border-bottom-color: $brand-border,
+$layout-menu-default-color = #515a6e;
+$layout-menu-default-font-size = 14px;
+$layout-menu-submenu-default-padding = 0 20px;
 
-        background-color-hover: $brand-bg,
-        color-hover: $brand-primary,
-        border-bottom-color-hover: $brand-primary
+$layout-menu-direction-hash = {
+    'horizontal': {
+        height: 64px,
+        line-height: 64px,
+        item: {
+            display: inline-block,
+            vertical-align: bottom,
+            border-bottom: 2px solid transparent,
+            height: inherit,
+            line-height: inherit,
+        },
+        theme: {
+            'light': {
+                background-color: $brand-white,
+                item: {
+                    color: #515a6e,
+                    border-bottom: 2px solid transparent,
+
+                    color-hover: $brand-primary,
+                    border-bottom-hover: 2px solid $brand-primary,
+                },
+                after: horizontal,
+            },
+            'dark': {
+                background-color: #515a6e,
+                item: {
+                    color: hsla(0,0%,100%,.7),
+
+                    color-hover: $brand-white
+                }
+            },
+            'primary': {
+                background-color: $brand-primary,
+                item: {
+                    color: $brand-white
+                }
+            }
+        }
     },
-    'dark': {
-        background-color: #453C4B,
-        color: $brand-text-disabled,
-        border-bottom-color: #f90,
+    'vertical': {
+        theme: {
+            'light': {
+                background-color: $brand-white,
+                item: {
+                    color: #515a6e,
+                    border-right: 2px solid transparent,
 
-        background-color-hover: #453C4B,
-        color-hover: $brand-white,
-        border-bottom-color-hover: #f90
-    },
-    'primary': {
-        background-color: $brand-primary,
-        color: $brand-white,
-        border-bottom-color: transparent,
+                    color-hover: $brand-primary,
+                    border-right-hover: 2px solid $brand-primary,
+                    background-color-active: #f0faff
+                },
+                after: vertical,
+            },
+            'dark': {
+                item: {
+                    color: hsla(0,0%,100%,.7),
 
-        background-color-hover: $brand-primary-hover,
-        color-hover: $brand-white,
-        border-bottom-color-hover: transparent
+                    color-hover: $brand-primary,
+                    background-color-active: #363e4f
+                }
+            },
+        }
     }
-};
+}
 
 
 

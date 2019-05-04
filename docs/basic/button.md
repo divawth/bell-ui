@@ -251,6 +251,11 @@
                 loading: false
             }
         },
+        events: {
+            click () {
+                console.log(arguments);
+            }
+        },
         methods: {
             toLoading: function () {
                 var me = this;

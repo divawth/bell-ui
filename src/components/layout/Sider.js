@@ -9,18 +9,13 @@ export default {
       type: 'string'
     },
     collapsible: {
-      type: ['string', 'boolean']
+      type: ['boolean'],
+      value: false
     }
   },
 
   template,
-
-  data() {
-    return {
-      collapsed: false
-    }
-  },
-
+  
   watchers: {
     collapsed(collapsed) {
       var me = this;

@@ -5,9 +5,6 @@ export default {
     name: {
       type: 'string'
     },
-    isCollapsed: {
-      type: ['string', 'boolean']
-    },
     className: {
       type: 'string'
     },

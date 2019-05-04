@@ -1,13 +1,16 @@
-<div class="${prefix}menu-group
+<ul class="${prefix}menu-group
 {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"{{#if style}} style="{{style}}"{{/if}}
+>
 
-  <div class="${prefix}menu-group-title">
+  <li class="${prefix}menu-group-title">
     {{title}}
-  </div>
+  </li>
 
   {{#if hasSlot('children')}}
-    <slot name="children" />
+    <ul>
+      <slot name="children" />
+    </ul>
   {{/if}}
 
-</div>
+</ul>

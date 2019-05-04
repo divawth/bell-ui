@@ -1,25 +1,22 @@
-<div class="${prefix}menu-sub-menu
+<li class="${prefix}menu-submenu
   {{#if className}} {{className}}{{/if}}
   {{#if isOpen}} ${prefix}active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"{{#if style}} style="{{style}}"{{/if}}
+>
   <div class="${prefix}menu-title" on-click="click(name)">
-    <span class="${prefix}menu-title-text">
-      {{#if hasSlot('title')}}
-        <slot name="title" />
-      {{/if}}
-    </span>
-    {{#if isCollapsed}}
-      <i class="
-        ${prefix}icon 
-        ${prefix}menu-title-icon 
-        ${prefix}icon-ios-arrow-down
-        {{#if isOpen}} ${prefix}menu-open{{/if}}
-      "></i>
-    {{/if}}
+    <slot name="title" />
+    <Icon type="arrow-down"></Icon>
   </div>
+
   {{#if isOpen && hasSlot('children')}}
-    <div class="${prefix}menu-groups" transition="groups">
+    <div class="${prefix}menu-dropdown">
       <slot name="children" />
     </div>
   {{/if}}
-</div>
+
+  {{#if isVertical && hasSlot('children')}}
+    <Menu mode="vertical">
+      <slot name="children" />
+    </Menu>
+  {{/if}}
+  </li>

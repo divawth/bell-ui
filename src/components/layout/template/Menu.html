@@ -1,11 +1,7 @@
-<div class="${prefix}menu
+<ul class="${prefix}menu ${prefix}menu-{{mode}} ${prefix}menu-{{theme}}
   {{#if className}} {{className}}{{/if}}
-  {{#if mode}} ${prefix}menu-{{mode}}{{/if}}
-  {{#if theme}} ${prefix}menu-{{theme}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"{{#if style}} style="{{style}}"{{/if}}
+>
 
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
-</div>
+  <slot name="children" />
+</ul>

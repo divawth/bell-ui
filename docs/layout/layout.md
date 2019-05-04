@@ -144,19 +144,19 @@
                         
                         <div class="layout-nav">
                             <MenuItem name="1">
-                                <Icon type="ios-navigate"></Icon>
+                                <Icon type="navigate"></Icon>
                                 Item 1
                             </MenuItem>
                             <MenuItem name="2">
-                                <Icon type="ios-keypad"></Icon>
+                                <Icon type="keypad"></Icon>
                                 Item 2
                             </MenuItem>
                             <MenuItem name="3">
-                                <Icon type="ios-analytics"></Icon>
+                                <Icon type="analytics"></Icon>
                                 Item 3
                             </MenuItem>
                             <MenuItem name="4">
-                                <Icon type="ios-paper"></Icon>
+                                <Icon type="paper"></Icon>
                                 Item 4
                             </MenuItem>
                         </div>
@@ -174,255 +174,128 @@
                         </div>
                     </Card>
                 </Content>
-                <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+                <Footer class="layout-footer-center">2011-2016 Bell-UI</Footer>
             </Layout>
         `,
     }
 
-> header 里面有 item
+> 顶部-侧边布局-通栏 
+
+同样拥有顶部导航及侧边栏，区别是两边未留边距，多用于应用型的网站
 
     export default {
         isViewFullBlock: true,
         template: `
-            <Layout>
+            <Layout className="layout-demo-wrapper">
                 <Header>
-                    <Menu theme="{{theme1}}" activeName="1">
-                        <MenuItem name="1">
-                            <Icon type="ios-paper"></Icon>
-                            内容管理
-                        </MenuItem>
-                        <MenuItem name="2">
-                            <Icon type="ios-people"></Icon>
-                            用户管理
-                        </MenuItem>
-                        <MenuItem name="3">
-                            <Icon type="stats-bars"></Icon>
-                            统计分析
-                        </MenuItem>
-                        <MenuItem name="4">
-                            <Icon type="settings"></Icon>
-                            综合设置
-                        </MenuItem>
+                    <template slot="left">
+                        <div class="layout-logo"></div>
+                    </template>
+                    <Menu mode="horizontal" theme="dark" active-name="1">
+                        
+                        <div class="layout-nav">
+                            <MenuItem name="1">
+                                <Icon type="navigate"></Icon>
+                                Item 1
+                            </MenuItem>
+                            <MenuItem name="2">
+                                <Icon type="keypad"></Icon>
+                                Item 2
+                            </MenuItem>
+                            <MenuItem name="3">
+                                <Icon type="analytics"></Icon>
+                                Item 3
+                            </MenuItem>
+                            <MenuItem name="4">
+                                <Icon type="paper"></Icon>
+                                Item 4
+                            </MenuItem>
+                        </div>
                     </Menu>
                 </Header>
-            </Layout>
-        `,
-    }
-
-> sider 里面有 item
-
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout style="height: 200px;">
-                <Sider>
-                    <Menu style="height: 300px;" mode="vertical" activeName="question">
-                        <MenuItem name="1">
-                            MenuItem 1
-                        </MenuItem>
-                        <MenuItem name="3">
-                            MenuItem 2
-                        </MenuItem>
-                        <MenuItem name="2">
-                            MenuItem 3
-                        </MenuItem>
-                        <MenuItem name="4">
-                            MenuItem 4
-                        </MenuItem>
-                    </Menu>
-                </Sider>
-                <Content>
-                    Content
-                </Content>
-
+                <Layout>
+                    <Sider style="background: #fff">
+                        <Menu mode="vertical" theme="dark" active-name="1">
+                            <div class="layout-nav">
+                                <MenuItem name="1">
+                                    <Icon type="navigate"></Icon>
+                                    Item 1
+                                </MenuItem>
+                                <MenuItem name="2">
+                                    <Icon type="keypad"></Icon>
+                                    Item 2
+                                </MenuItem>
+                                <MenuItem name="3">
+                                    <Icon type="analytics"></Icon>
+                                    Item 3
+                                </MenuItem>
+                                <MenuItem name="4">
+                                    <Icon type="paper"></Icon>
+                                    Item 4
+                                </MenuItem>
+                            </div>
+                        </Menu>
+                    </Sider>
+                    <Layout style="padding: 0 24px 24px">
+                        <Breadcrumb>
+                            <BreadcrumbItem>Home</BreadcrumbItem>
+                            <BreadcrumbItem>Components</BreadcrumbItem>
+                            <BreadcrumbItem>Layout</BreadcrumbItem>
+                        </Breadcrumb>
+                        <Content style="padding: 24px; min-height: 280px; background: #fff;">
+                            Content
+                        </Content>
+                    </Layout>
+                </Layout>
             </Layout>
         `,
     }
 
 > 侧边布局
 
+侧边两列式布局。页面横向空间有限时，侧边导航可收起。
+
+侧边导航在页面布局上采用的是左右的结构，一般主导航放置于页面的左侧固定位置，辅助菜单放置于工作区顶部。内容根据浏览器终端进行自适应，能提高横向空间的使用率，但是整个页面排版不稳定。侧边导航的模式层级扩展性强，一、二、三级导航项目可以更为顺畅且具关联性的被展示，同时侧边导航可以固定，使得用户在操作和浏览中可以快速的定位和切换当前位置，有很高的操作效率。但这类导航横向页面内容的空间会被牺牲一部份。
+
     export default {
         isViewFullBlock: true,
         template: `
-            <div>
-                <Layout style="height: 400px;">
-                    <Sider collapsible on-collapse="collapse()">
-                        <Menu mode="vertical" active-name="1-2" theme="dark">
-                            <MenuItem name="1-1">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
+            <Layout className="layout-demo-wrapper">
+                <Sider collapsible>
+                    <Menu mode="vertical" theme="dark" active-name="1">
+                        <div class="layout-nav">
+                            <MenuItem name="1">
+                                <Icon style="margin-right: 6px;" type="navigate"></Icon>
+                                Item 1
                             </MenuItem>
-                            <MenuItem name="1-2">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
+                            <MenuItem name="2">
+                                <Icon style="margin-right: 6px;" type="keypad"></Icon>
+                                Item 2
                             </MenuItem>
-                            <MenuItem name="1-3">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
+                            <MenuItem name="3">
+                                <Icon style="margin-right: 6px;" type="analytics"></Icon>
+                                Item 3
                             </MenuItem>
-                        </Menu>
-                    </Sider>
-                    <Content>
-                        <Content style="padding: 0 16px 16px">
-                            Content
-                        </Content>
+                            <MenuItem name="4">
+                                <Icon style="margin-right: 6px;" type="paper"></Icon>
+                                Item 4
+                            </MenuItem>
+                        </div>
+                    </Menu>
+                </Sider>
+                <Layout>
+                    <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
+                    <Content :style="{padding: '0 16px 16px'}">
+                        <Breadcrumb :style="{margin: '16px 0'}">
+                            <BreadcrumbItem>Home</BreadcrumbItem>
+                            <BreadcrumbItem>Components</BreadcrumbItem>
+                            <BreadcrumbItem>Layout</BreadcrumbItem>
+                        </Breadcrumb>
+                        <Card>
+                            <div style="height: 300px">Content</div>
+                        </Card>
                     </Content>
                 </Layout>
-            </div>
-        `,
-        methods: {
-            collapse: function (event, data) {
-                this.set({
-                    isCollapsed: data.isCollapsed
-                });
-            }
-        },
-        data: function () {
-            return {
-                isCollapsed: false
-            }
-        }
-    }
-
-> 自定义的 trigger
-
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <div>
-                <Layout style="height: 400px;">
-                    <Sider on-collapse="collapse()">
-                        <template slot="trigger">
-                            <div>
-                            {{#if isCollapsed}}
-                                <i class="bell-icon bell-icon-navicon-round"></i>
-                            {{else}}
-                                <i class="bell-icon bell-icon-navicon-round"></i>
-                            {{/if}}
-                            </div>
-                        </template>
-
-                        <Menu mode="vertical" active-name="1-2" theme="dark">
-                            <MenuItem name="1-1">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
-                            </MenuItem>
-                            <MenuItem name="1-2">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
-                            </MenuItem>
-                            <MenuItem name="1-3">
-                                {{#if !isCollapsed}}
-                                    <Icon size="14" type="search"></Icon>
-                                    <span style="padding-left: 10px;">
-                                        Option 1
-                                    </span>
-                                {{else}}
-                                    <Icon name="leftIcon" type="search" size="18"></Icon>
-                                {{/if}}
-                            </MenuItem>
-                        </Menu>
-                    </Sider>
-                    <Content>
-                        <Content style="padding: 0 16px 16px">
-                            Content
-                        </Content>
-                    </Content>
-                </Layout>
-            </div>
-        `,
-        methods: {
-            collapse: function (event, data) {
-                this.set({
-                    isCollapsed: data.isCollapsed
-                });
-            }
-        },
-        data: function () {
-            return {
-                isCollapsed: false
-            }
-        }
-    }
-
-> Header
-
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Header>
-                    <template slot="left">
-                        <img class="index-logo-srcnew" src="//www.baidu.com/img/baidu_jgylogo3.gif" alt="到百度首页" title="到百度首页">
-                    </template>
-                    <template slot="right">
-                        <Button type="text" style="color: #fff;">
-                            Right
-                        </Button>
-                    </template>
-                    <template slot="center">
-                        <Button type="text" style="color: #fff;">
-                            Center 1
-                        </Button>
-                        <Button type="text" style="color: #fff;">
-                            Center 2
-                        </Button>
-                        <Button type="text" style="color: #fff;">
-                            Center 3
-                        </Button>
-                        <Button type="text" style="color: #fff;">
-                            Center 4
-                        </Button>
-                    </template>
-                </Header>
-            </Layout>
-        `,
-    }
-
-> Footer
-
-    export default {
-        isViewFullBlock: true,
-        template: `
-            <Layout>
-                <Footer>
-                    <p style="font-size: 14px; line-height: 1; color: #ccc;">
-                        Copyright © 2018（北京）科技有限公司 版权所有
-                    </p>
-                    <p style="font-size: 12px; line-height: 1; color: #ccc;">
-                        联系方式 xxxxxxxx
-                    </p>
-                </Footer>
             </Layout>
         `,
     }

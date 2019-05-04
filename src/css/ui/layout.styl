@@ -17,8 +17,10 @@
         left 0
         bottom 0
         text-align center
-        padding 10px
         cursor pointer
+        padding 10px
+        color #fff
+        transition transform .2s
 
     &{$selector-column}
 
@@ -39,6 +41,10 @@
     margin 0 auto
     display inline-block
 
+{$selector-layout-sider}
+    position relative
+
+
 {$selector-layout-fixed}
 
     ui-fullscreen()
@@ -48,37 +54,89 @@
 
     ui-menu()
 
-    height 62px
-    line-height 62px
-    font-size 14px
-
-{$selector-menu}-sub-menu,
-{$selector-menu}-item
-
+    display block
+    margin 0
+    padding 0
+    outline 0
+    list-style none
     position relative
-    padding $layout-menu-item-padding
-    cursor pointer
-    border-bottom 2px solid transparent
-    display inline-block
-    height inherit
-    line-height inherit
-    transition all 0.4s
+    color $layout-menu-default-color
+    font-size $layout-menu-default-font-size
+    transition background .3s, width .2s
+    zoom 1
 
-{$selector-menu-vertical}
+
+{$selector-menu-submenu},
+{$selector-menu-item}
+
+    display block
+    outline 0
+    list-style none
+    position relative
+    cursor pointer
+    font-size $layout-menu-default-font-size
+    padding $layout-menu-submenu-default-padding
+    transition all .2s ease-in-out
+
+{$selector-menu-item}-disabled
+
+    color: rgba(0,0,0,.25)!important;
+    background: 0 0;
+    border-color: transparent!important;
+    cursor: not-allowed;
+
+{$selector-menu}-dropdown
+    position: absolute;
+    max-height: 200px;
+    overflow: auto;
+    margin: 5px 0;
+    padding: 5px 0;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+
+{$selector-menu-group}
+
+    line-height: normal;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > ul 
+        line-height: normal;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        {$selector-menu-submenu},
+        {$selector-menu-item}
+        
+            padding: 7px 16px 8px;
+            color: #515a6e;
+
+{$selector-menu-group}-title
+
+    height: 30px;
+    line-height: 30px;
+    padding-left: 8px;
+    font-size: 12px;
+    color: #999;
+
+
+{$selector-menu}-vertical
 
     height auto
     text-align left
 
-    {$selector-menu}-sub-menu,
+    {$selector-menu-submenu},
     {$selector-menu}-item
 
-        line-height 48px
-        height 48px
-        overflow hidden
-        display block
-        border-bottom none
-        border-right 2px solid transparent
-        transition all 0.4s
+        padding: 14px 24px
+        position: relative
+        cursor: pointer
+        z-index: 1
+        transition: all .2s ease-in-out
 
     {$selector-menu}-sub-menu
 
@@ -116,3 +174,7 @@
     {$selector-menu}-item
 
         text-align center
+
+    {$selector-sider}-trigger
+    
+        transform rotate(180deg)
