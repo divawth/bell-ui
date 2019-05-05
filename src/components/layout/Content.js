@@ -16,7 +16,7 @@ export default {
     hasSider(event) {
       this.set({
         hasSider: true
-      });
+      })
     }
   },
 
@@ -25,4 +25,4 @@ export default {
       hasSider: false
     }
   }
-};
+}

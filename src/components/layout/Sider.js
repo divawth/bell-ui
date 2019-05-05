@@ -26,6 +26,6 @@ export default {
   afterMount() {
     this.fire(
       'hasSider'
-    );
+    )
   }
-};
+}

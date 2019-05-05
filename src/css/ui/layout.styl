@@ -1,224 +1,67 @@
 {$selector-layout}
 
-    ui-row()
-    ui-layout()
-    flex 1
+  ui-row()
+  ui-layout()
+  flex 1
 
-    {$selector-layout}-sider
+  {$selector-layout}-sider
 
-        transition flex .4s
-        overflow auto
-        max-height 100%
+    transition flex .4s
+    max-height 100%
 
-    {$selector-sider}-trigger
+  {$selector-layout-sider}-trigger
 
-        position absolute
-        right 0
-        left 0
-        bottom 0
-        text-align center
-        cursor pointer
-        padding 10px
-        color #fff
-        transition transform .2s
+    position absolute
+    right 0
+    left 0
+    bottom 0
+    text-align center
+    cursor pointer
+    padding 10px
+    color #fff
+    transition transform .2s
+    z-index $zindex-menu
 
-    &{$selector-column}
+  &{$selector-column}
 
-        ui-column()
+    ui-column()
 
-    &{$selector-fluid}
+  &{$selector-fluid}
 
-        width 100%
-
+    width 100%
 
 {$selector-layout-header}-left
-    float left
+  float left
 
 {$selector-layout-header}-right
-    float right
+  float right
 
 {$selector-layout-header}-center
-    margin 0 auto
-    display inline-block
+  margin 0 auto
+  display inline-block
 
 {$selector-layout-sider}
-    position relative
-    
+  position relative
+
+  &{$selector-layout-sider}-collapsed
+    {$selector-layout-sider}-trigger-icon  
+      &::before 
+        transition transform .2s
+        transform rotate(-180deg)
+
+    {$selector-layout-sider}-children
+      overflow visible
+
+  {$selector-layout-sider}-children
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 38px
+    overflow auto
+
 
 {$selector-layout-fixed}
 
-    ui-fullscreen()
-    overflow hidden
-
-{$selector-menu}
-
-    display block
-    width 100%
-    margin 0
-    padding 0
-    outline 0
-    list-style none
-    position relative
-    color $layout-menu-default-color
-    font-size $layout-menu-default-font-size
-    transition background .3s, width .2s
-    zoom 1
-
-    {$selector-menu},
-    {$selector-menu}-group
-        padding-left: 16px;
-    
-    {$selector-menu}-dropdown
-        display: none;
-        position: absolute;
-        max-height: 200px;
-        min-width: 200px;
-        overflow: auto;
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-        box-sizing: border-box;
-        border-radius: 4px;
-        box-shadow: 0 1px 6px rgba(0,0,0,.2);
-    
-    {$selector-menu}-open
-        {$selector-menu}-dropdown
-            display: block;
-
-{$selector-menu-item}-disabled
-
-    color: rgba(0,0,0,.25)!important;
-    background: 0 0;
-    border-color: transparent!important;
-    cursor: not-allowed;
-
-{$selector-menu-group}
-
-    line-height: normal;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    > ul 
-        line-height: normal;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        
-        {$selector-menu-submenu},
-        {$selector-menu-item}
-        
-            padding: 7px 16px 8px;
-            color: #515a6e;
-            line-height: normal;
-            height: auto;
-
-{$selector-menu-group}-title
-
-    height: 30px;
-    line-height: 30px;
-    padding-left: 8px;
-    font-size: 12px;
-
-{$selector-menu-submenu},
-{$selector-menu-item}
-
-    display block
-    outline 0
-    list-style none
-    position relative
-    cursor pointer
-    font-size $layout-menu-default-font-size
-    padding $layout-menu-submenu-default-padding
-    transition all .2s ease-in-out
-
-    {$selector-menu-submenu}-title-icon
-        float: right;
-
-    &{$selector-menu}-open
-        > {$selector-menu-submenu}-title
-            {$selector-menu-submenu}-title-icon
-                &::before
-                    transform: rotate(-180deg);
-                    transition: transform .2s;
-
-{$selector-menu}-inline
-
-    {$selector-menu-item}
-        padding: 14px 24px;
-        position: relative;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-        
-    {$selector-menu-submenu}
-        padding: 0;
-        {$selector-menu-submenu}-title
-            padding: 14px 24px;
-            position: relative;
-            cursor: pointer;
-            transition: all .2s ease-in-out;
-
-        > {$selector-menu}
-            display: none;
-
-        &{$selector-menu}-open
-            > {$selector-menu}
-                display: block;
-    
-    {$selector-menu-group}
-        {$selector-menu-item}
-            padding: 14px 24px;
-
-    &{$selector-menu}-collapsed
-        width: $layout-menu-collapsed-default-width;
-        
-        > {$selector-menu}-inline
-            display none
-        
-        {$selector-menu-submenu}-title-icon
-            display none
-
-
-        {$selector-menu}-open
-            > {$selector-menu}
-                display: inline-block;
-                position: absolute;
-                width: 200px;
-                left: 100%;
-                margin-left: 1px;
-                top: 0;
-
-{$selector-menu}-vertical
-
-    height auto
-    text-align left
-
-    {$selector-menu-submenu},
-    {$selector-menu}-item
-
-        padding: 14px 24px
-        position: relative
-        cursor: pointer
-        transition: all .2s ease-in-out
-
-    {$selector-menu}-dropdown
-        top 0
-        left: 100%
-        margin-left: 4px;
-    
-    {$selector-menu-submenu}
-        {$selector-menu-submenu}-title-icon
-            &::before
-                transform: rotate(-90deg);
-    
-
-        &{$selector-menu}-open
-            > {$selector-menu-submenu}-title
-                {$selector-menu-submenu}-title-icon
-                    &::before
-                        transform: rotate(-90deg);
-
-
-{$selector-menu}
-
-    ui-menu()
+  ui-fullscreen()
+  overflow hidden

@@ -24,18 +24,18 @@ export default {
   events: {
     hasSider(event) {
       if (event.phase === 0) {
-        return;
+        return
       }
       if (event.phase > 0) {
         this.set({
           hasSider: true
-        });
+        })
         this.fire(
           'hasSider',
           true
-        );
+        )
       }
-      event.stop();
+      event.stop()
     }
   }
-};
+}

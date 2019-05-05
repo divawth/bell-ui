@@ -29,19 +29,19 @@ export default {
 
   events: {
     themeChanged(event, data) {
-      this.set('theme', data.theme);
+      this.set('theme', data.theme)
     },
     isCollapsedChanged(event, data) {
-      this.set('isCollapsed', data.isCollapsed);
+      this.set('isCollapsed', data.isCollapsed)
     },
     menuItemSelected(event, data) {
       if (event.phase < 0) {
-        this.set('isActive', data.name === this.get('activeName'));
+        this.set('isActive', data.name === this.get('activeName'))
       }
       if (event.phase > 0) {
-        this.set('activeName', data.name);
+        this.set('activeName', data.name)
         if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
-          this.toggle('isOpen');
+          this.toggle('isOpen')
         }
       }
     }
@@ -49,29 +49,29 @@ export default {
 
   methods: {
     clickMenuItem() {
-      this.toggle('isOpen');
+      this.toggle('isOpen')
     },
     mouseenter() {
       if (!this.get('isCollapsed')) {
-        return;
+        return
       }
-      this.set('isOpen', true);
+      this.set('isOpen', true)
     },
     mouseleave() {
       if (!this.get('isCollapsed')) {
-        return;
+        return
       }
-      this.set('isOpen', false);
+      this.set('isOpen', false)
     }
   },
    
   afterMount () {
-    let element = findComponentUpward(this, '${prefix}menu');
+    let element = findComponentUpward(this, '${prefix}menu')
     this.set({
       'mode': element.get('mode'),
       'theme': element.get('theme'),
       'isActive': element.get('activeName') === this.get('name'),
       'isOpen': element.get('openNames').indexOf(this.get('name')) >= 0 
-    });
+    })
   }
-};
+}

@@ -33,11 +33,11 @@ export default {
   events: {
     menuItemSelected(event, data) {
       if (event.phase < 0) {
-        this.set('isActive', data.name === this.get('name'));
+        this.set('isActive', data.name === this.get('name'))
       }
     },
     isCollapsedChanged(event, data) {
-      this.set('isCollapsed', data.isCollapsed);
+      this.set('isCollapsed', data.isCollapsed)
     }
   },
 
@@ -45,15 +45,15 @@ export default {
     clickMenuItem() {
       this.fire('menuItemSelected', {
         name: this.get('name')
-      });
+      })
     }
   },
 
   afterMount () {
-    let element = findComponentUpward(this, '${prefix}menu');
+    let element = findComponentUpward(this, '${prefix}menu')
     this.set({
       'mode': element.get('mode'),
       'isActive': element.get('activeName') === this.get('name')
-    });
+    })
   }
-};
+}

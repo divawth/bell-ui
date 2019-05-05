@@ -1,0 +1,123 @@
+
+$selector-menu = $selector-prefix + '-menu'
+$selector-menu-item = $selector-prefix + '-menu-item'
+$selector-menu-submenu = $selector-prefix + '-submenu'
+$selector-menu-group = $selector-prefix + '-menu-group'
+
+$layout-menu-default-color = #515a6e
+$layout-menu-default-font-size = 14px
+$layout-menu-submenu-default-padding = 0 20px
+$layout-menu-collapsed-default-width = 80px
+
+$layout-menu-direction-hash = {
+  'horizontal': {
+    height: 64px,
+    line-height: 64px,
+    item: {
+      display: inline-block,
+      vertical-align: bottom,
+      height: inherit,
+      line-height: inherit,
+    },
+    theme: {
+      'light': {
+        background-color: $brand-white,
+        color: $layout-menu-default-color,
+        item: {
+          color: $layout-menu-default-color,
+          border-bottom: {
+            height: 4px,
+            background-color: $brand-primary
+          },
+
+          color-hover: $brand-primary,
+
+          color-active: $brand-primary
+        },
+        after: horizontal,
+      },
+      'dark': {
+        background-color: $layout-menu-default-color,
+        color: hsla(0,0%,100%,.7),
+        item: {
+          color: hsla(0,0%,100%,.7),
+          border-bottom: {
+            height: 4px,
+            background-color: $brand-primary
+          },
+          color-hover: $brand-white,
+
+          color-active: $brand-white
+        }
+      }
+    }
+  },
+  'vertical': {
+    theme: {
+      'light': {
+        background-color: $brand-white,
+          color: $layout-menu-default-color,
+        item: {
+          color: $layout-menu-default-color,
+          border-right: {
+            width: 4px,
+            background-color: $brand-primary,
+          },
+
+          color-hover: $brand-primary,
+
+          color-active: $brand-primary,
+        },
+        after: vertical,
+      },
+      'dark': {
+        background-color: $layout-menu-default-color,
+        color: hsla(0,0%,100%,.7),
+        item: {
+          color: hsla(0,0%,100%,.7),
+          border-right: {
+            width: 4px,
+            background-color: $brand-primary,
+          },
+          color-hover: $brand-white,
+
+          color-active: $brand-white,
+        }
+      },
+    }
+  },
+  'inline': {
+    theme: {
+      'light': {
+        background-color: $brand-white,
+        color: $layout-menu-default-color,
+        item: {
+          color: $layout-menu-default-color,
+          border-right: {
+            width: 4px,
+            background-color: $brand-primary,
+          },
+
+          color-hover: $brand-primary,
+
+          color-active: $brand-primary
+        },
+        after: inline,
+      },
+      'dark': {
+        background-color: $layout-menu-default-color,
+        color: hsla(0,0%,100%,.7),
+        item: {
+          color: hsla(0,0%,100%,.7),
+          border-right: {
+            width: 4px,
+            background-color: $brand-primary,
+          },
+
+          color-hover: $brand-white,
+          color-active: $brand-white
+        }
+      },
+    }
+  }
+}

@@ -353,18 +353,5 @@ center | 自定义中间内容
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-collapsible | 是否可收起，设为false后，默认触发器会隐藏，且响应式布局不会触发 | boolean | - | false
-className | 自定义样式类 | string | - | -
-style | 自定义样式 | string | - | -
+isCollapsed | 双向绑定，表示是否可以展开 | boolean | - | null
 
-> Sider Events
-
-事件名称 | 说明 | 回调参数(data)
----|---|---
-collapse | 点击按钮的回调 | isCollapsed
-
-> Footer Slot
-
-参数 | 说明
----|---
-children | 自定义内容

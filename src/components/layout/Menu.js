@@ -40,14 +40,14 @@ export default {
         'themeChanged',
         { theme },
         true
-      );
+      )
     },
     isCollapsed(isCollapsed) {
       this.fire(
         'isCollapsedChanged',
         { isCollapsed },
         true
-      );
+      )
     }
   },
 
@@ -58,15 +58,8 @@ export default {
           'menuItemSelected',
           data,
           true
-        );
+        )
       }
     }
-  },
-
-  methods: {
-  },
-
-  afterMount() {
-    console.log(this.get('activeName'), this.get('openNames'))
   }
-};
+}

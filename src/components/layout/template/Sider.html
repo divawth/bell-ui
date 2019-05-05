@@ -3,13 +3,13 @@
   {{#if isCollapsed}} ${prefix}layout-sider-collapsed{{/if}}
 " {{#if style}}style="{{style}}"{{/if}}
 >
-
-  <slot name="children" />
-  
+  <div class="${prefix}layout-sider-children">
+    <slot name="children" />
+  </div>
   {{#if isCollapsed != null}}
-    <div class="${prefix}sider-trigger" on-click="toggleCollapsed()">
+    <div class="${prefix}layout-sider-trigger" on-click="toggleCollapsed()">
       <slot name="trigger">
-        <Icon type="arrow-back"></Icon>
+        <Icon type="arrow-back" className="${prefix}layout-sider-trigger-icon"></Icon>
       </slot>
     </div>
   {{/if}}

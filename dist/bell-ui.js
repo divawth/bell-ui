@@ -319,16 +319,12 @@
     }
   };
 
-  var template = "<div class=\"bell-layout bell-row\n  {{#if layoutHasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template = "<div class=\"bell-layout bell-row\n  {{#if hasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var Layout = {
     propTypes: {
       fixed: {
         type: 'boolean'
-      },
-      hasSider: {
-        type: 'boolean',
-        value: false
       },
       className: {
         type: 'string'
@@ -342,18 +338,18 @@
 
     data: function data () {
       return {
-        layoutHasSider: this.get('hasSider')
+        hasSider: false
       }
     },
 
     events: {
       hasSider: function hasSider(event) {
         if (event.phase === 0) {
-          return;
+          return
         }
         if (event.phase > 0) {
           this.set({
-            layoutHasSider: true
+            hasSider: true
           });
           this.fire(
             'hasSider',
@@ -379,7 +375,7 @@
     template: template$1
   };
 
-  var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if isCollapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n  \n  {{#if isCollapsed != null}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggleCollapsed()\">\n      <slot name=\"trigger\">\n        <Icon type=\"arrow-back\"></Icon>\n      </slot>\n    </div>\n  {{/if}}\n\n</div>";
+  var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if isCollapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-layout-sider-children\">\n    <slot name=\"children\" />\n  </div>\n  {{#if isCollapsed != null}}\n    <div class=\"bell-layout-sider-trigger\" on-click=\"toggleCollapsed()\">\n      <slot name=\"trigger\">\n        <Icon type=\"arrow-back\" className=\"bell-layout-sider-trigger-icon\"></Icon>\n      </slot>\n    </div>\n  {{/if}}\n\n</div>";
 
   var Sider = {
     propTypes: {
@@ -707,13 +703,13 @@
       },
       mouseenter: function mouseenter() {
         if (!this.get('isCollapsed')) {
-          return;
+          return
         }
         this.set('isOpen', true);
       },
       mouseleave: function mouseleave() {
         if (!this.get('isCollapsed')) {
-          return;
+          return
         }
         this.set('isOpen', false);
       }

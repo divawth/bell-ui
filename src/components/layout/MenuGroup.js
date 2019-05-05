@@ -25,15 +25,15 @@ export default {
 
   events: {
     themeChanged(event, data) {
-      this.set('theme', data.theme);
+      this.set('theme', data.theme)
     }
   },
 
   afterMount () {
-    let element = findComponentUpward(this, '${prefix}menu');
+    let element = findComponentUpward(this, '${prefix}menu')
     this.set({
       'mode': element.get('mode'),
       'theme': element.get('theme'),
-    });
+    })
   }
-};
+}
