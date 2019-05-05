@@ -8,9 +8,9 @@
   </li>
 
   {{#if hasSlot('children')}}
-    <ul>
+    <Menu mode="{{mode === 'inline' ? 'inline' : 'vertical'}}" theme="{{theme}}">
       <slot name="children" />
-    </ul>
+    </Menu>
   {{/if}}
 
 </ul>

@@ -1,4 +1,5 @@
 import template from './template/Submenu.html'
+import { findComponentUpward, contains } from '../util'
 
 export default {
   propTypes: {
@@ -17,50 +18,60 @@ export default {
 
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      isActive: false,
+      activeName: null,
+      mode: null,
+      theme: null,
+      isCollapsed: false
     }
   },
 
   events: {
-    activeSubMenuChange(openNames) {
-      let me = this;
-      let isOpen = openNames.indexOf(me.get('name')) != -1;
-      this.set({
-        isOpen: isOpen
-      });
-    }
-  },
-
-  transitions: {
-    groups: {
-      enter(el, done) {
-        let clientHeight = el.clientHeight;
-        el.style.height = 0;
-        setTimeout(
-          () => {
-            el.style.height = clientHeight + 'px';
-          },
-          50
-        );
-        setTimeout(done, 300);
-      },
-      leave(el, done) {
-        el.style.height = 0;
-        Yox.dom.removeClass(el, 'bell-visible');
-        setTimeout(done, 300);
+    themeChanged(event, data) {
+      this.set('theme', data.theme);
+    },
+    isCollapsedChanged(event, data) {
+      this.set('isCollapsed', data.isCollapsed);
+    },
+    menuItemSelected(event, data) {
+      if (event.phase < 0) {
+        this.set('isActive', data.name === this.get('activeName'));
+      }
+      if (event.phase > 0) {
+        this.set('activeName', data.name);
+        if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
+          this.toggle('isOpen');
+        }
       }
     }
   },
 
   methods: {
-    click(name) {
+    clickMenuItem() {
       this.toggle('isOpen');
-      this.fire(
-        'click',
-        {
-          isOpen: this.get('isOpen')
-        }
-      );
+    },
+    mouseenter() {
+      if (!this.get('isCollapsed')) {
+        return;
+      }
+      this.set('isOpen', true);
+    },
+    mouseleave() {
+      if (!this.get('isCollapsed')) {
+        return;
+      }
+      this.set('isOpen', false);
     }
+  },
+   
+  afterMount () {
+    let element = findComponentUpward(this, '${prefix}menu');
+    this.set({
+      'mode': element.get('mode'),
+      'theme': element.get('theme'),
+      'isActive': element.get('activeName') === this.get('name'),
+      'isOpen': element.get('openNames').indexOf(this.get('name')) >= 0 
+    });
   }
 };

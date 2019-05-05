@@ -8,25 +8,18 @@ export default {
     style: {
       type: 'string'
     },
-    collapsible: {
-      type: ['boolean'],
-      value: false
+    isCollapsed: {
+      type: 'boolean'
     }
   },
 
+  model: 'isCollapsed',
+
   template,
   
-  watchers: {
-    collapsed(collapsed) {
-      var me = this;
-      Yox.nextTick(function () {
-        me.fire(
-          'collapse',
-          {
-            isCollapsed: collapsed
-          }
-        );
-      });
+  methods: {
+    toggleCollapsed() {
+      this.toggle('isCollapsed')
     }
   },
 

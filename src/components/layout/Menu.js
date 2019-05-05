@@ -1,6 +1,9 @@
 import template from './template/Menu.html'
 
 export default {
+
+  name: '${prefix}menu',
+
   propTypes: {
     mode: {
       type: 'string',
@@ -10,12 +13,16 @@ export default {
       type: 'string',
       value: 'dark'
     },
+    isCollapsed: {
+      type: 'boolean',
+      value: false
+    },
     activeName: {
-      type: ['numeric', 'string'],
-      value: -1
+      type: 'string'
     },
     openNames: {
-      type: 'array'
+      type: 'array',
+      value: []
     },
     className: {
       type: 'string'
@@ -27,57 +34,39 @@ export default {
 
   template,
 
-  events: {
-    menuItemActive(event, data) {
-      let me = this;
-      me.fire(
-        'select',
-        {
-          name: data.name
-        }
+  watchers: {
+    theme(theme) {
+      this.fire(
+        'themeChanged',
+        { theme },
+        true
       );
-      me.updateActiveName(data.name);
+    },
+    isCollapsed(isCollapsed) {
+      this.fire(
+        'isCollapsedChanged',
+        { isCollapsed },
+        true
+      );
+    }
+  },
+
+  events: {
+    menuItemSelected(event, data) {
+      if (event.phase > 0) {
+        this.fire(
+          'menuItemSelected',
+          data,
+          true
+        );
+      }
     }
   },
 
   methods: {
-    updateActiveName(name) {
-      let me = this;
-      me.fire(
-        'activeMenuChange',
-        {
-          name: name
-        },
-        true
-      );
-    }
-  },
-
-  watchers: {
-    activeName(activeName) {
-      let me = this;
-      me.fire(
-        'select',
-        {
-          name: activeName
-        }
-      );
-      me.updateActiveName(activeName);
-    }
   },
 
   afterMount() {
-    let me = this;
-    me.updateActiveName(me.get('activeName'));
-    let openNames = me.get('openNames');
-    if (openNames && openNames.length) {
-      me.fire(
-        'activeSubMenuChange',
-        {
-          openNames: openNames
-        },
-        true
-      );
-    }
+    console.log(this.get('activeName'), this.get('openNames'))
   }
 };

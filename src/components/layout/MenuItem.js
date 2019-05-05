@@ -1,4 +1,5 @@
 import template from './template/MenuItem.html'
+import { findComponentUpward } from '../util'
 
 export default {
   propTypes: {
@@ -23,39 +24,36 @@ export default {
 
   data() {
     return {
-      isActive: false
+      mode: null,
+      isActive: false,
+      isCollapsed: false
     }
   },
 
   events: {
-    activeMenuChange(event, data) {
-      let me = this;
-      me.set({
-        isActive: me.get('name') === data.name
-      });
+    menuItemSelected(event, data) {
+      if (event.phase < 0) {
+        this.set('isActive', data.name === this.get('name'));
+      }
+    },
+    isCollapsedChanged(event, data) {
+      this.set('isCollapsed', data.isCollapsed);
     }
   },
 
   methods: {
-    click(name) {
-      let me = this;
-      if (me.get('disabled')) {
-        return;
-      }
-      if (me.get('hash')) {
-        location.href = me.get('hash');
-      }
-
-      me.set({
-        isActive: true
+    clickMenuItem() {
+      this.fire('menuItemSelected', {
+        name: this.get('name')
       });
-
-      me.fire(
-        'menuItemActive',
-        {
-          name: name
-        }
-      );
     }
+  },
+
+  afterMount () {
+    let element = findComponentUpward(this, '${prefix}menu');
+    this.set({
+      'mode': element.get('mode'),
+      'isActive': element.get('activeName') === this.get('name')
+    });
   }
 };

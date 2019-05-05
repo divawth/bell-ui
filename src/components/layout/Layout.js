@@ -5,9 +5,6 @@ export default {
     fixed: {
       type: 'boolean'
     },
-    hasSider(value) {
-      return value ? true : false;
-    },
     className: {
       type: 'string'
     },
@@ -16,14 +13,13 @@ export default {
     }
   },
 
-  data() {
-    let me = this;
-    return {
-      hasSider: me.get('hasSider')
-    };
-  },
-
   template,
+
+  data () {
+    return {
+      hasSider: false
+    }
+  },
 
   events: {
     hasSider(event) {

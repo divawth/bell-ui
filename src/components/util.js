@@ -1,4 +1,4 @@
-export let contains = function(element, target) {
+const contains = function(element, target) {
   if (element.contains && element.contains(target)) {
     return true;
   }
@@ -7,3 +7,25 @@ export let contains = function(element, target) {
   }
   return false;
 };
+
+const findComponentUpward = function (context, componentName) {
+  if (typeof componentName === 'string') {
+    componentName = [ componentName ];
+  } else {
+    componentName = componentName;
+  }
+
+  let parent = context.$parent;
+  let name = parent.$options.name;
+
+  while (parent && (!name || componentName.indexOf(name) < 0)) {
+    parent = parent.$parent;
+    if (parent) name = parent.$options.name;
+  }
+
+  return parent;
+}
+export {
+  contains,
+  findComponentUpward
+}

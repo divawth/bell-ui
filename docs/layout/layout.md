@@ -141,25 +141,22 @@
                         <div class="layout-logo"></div>
                     </template>
                     <Menu mode="horizontal" theme="dark" active-name="1">
-                        
-                        <div class="layout-nav">
-                            <MenuItem name="1">
-                                <Icon type="navigate"></Icon>
-                                Item 1
-                            </MenuItem>
-                            <MenuItem name="2">
-                                <Icon type="keypad"></Icon>
-                                Item 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                                <Icon type="analytics"></Icon>
-                                Item 3
-                            </MenuItem>
-                            <MenuItem name="4">
-                                <Icon type="paper"></Icon>
-                                Item 4
-                            </MenuItem>
-                        </div>
+                        <MenuItem name="1">
+                            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+                            Item 1
+                        </MenuItem>
+                        <MenuItem name="2">
+                            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+                            Item 2
+                        </MenuItem>
+                        <MenuItem name="3">
+                            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+                            Item 3
+                        </MenuItem>
+                        <MenuItem name="4">
+                            <Icon style="margin-right: 6px;" type="paper"></Icon>
+                            Item 4
+                        </MenuItem>
                     </Menu>
                 </Header>
                 <Content :style="{padding: '0 50px'}">
@@ -192,48 +189,43 @@
                         <div class="layout-logo"></div>
                     </template>
                     <Menu mode="horizontal" theme="dark" active-name="1">
-                        
-                        <div class="layout-nav">
-                            <MenuItem name="1">
-                                <Icon type="navigate"></Icon>
-                                Item 1
-                            </MenuItem>
-                            <MenuItem name="2">
-                                <Icon type="keypad"></Icon>
-                                Item 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                                <Icon type="analytics"></Icon>
-                                Item 3
-                            </MenuItem>
-                            <MenuItem name="4">
-                                <Icon type="paper"></Icon>
-                                Item 4
-                            </MenuItem>
-                        </div>
+                        <MenuItem name="1">
+                            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+                            Item 1
+                        </MenuItem>
+                        <MenuItem name="2">
+                            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+                            Item 2
+                        </MenuItem>
+                        <MenuItem name="3">
+                            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+                            Item 3
+                        </MenuItem>
+                        <MenuItem name="4">
+                            <Icon style="margin-right: 6px;" type="paper"></Icon>
+                            Item 4
+                        </MenuItem>
                     </Menu>
                 </Header>
                 <Layout>
-                    <Sider style="background: #fff">
-                        <Menu mode="vertical" theme="dark" active-name="1">
-                            <div class="layout-nav">
-                                <MenuItem name="1">
-                                    <Icon type="navigate"></Icon>
-                                    Item 1
-                                </MenuItem>
-                                <MenuItem name="2">
-                                    <Icon type="keypad"></Icon>
-                                    Item 2
-                                </MenuItem>
-                                <MenuItem name="3">
-                                    <Icon type="analytics"></Icon>
-                                    Item 3
-                                </MenuItem>
-                                <MenuItem name="4">
-                                    <Icon type="paper"></Icon>
-                                    Item 4
-                                </MenuItem>
-                            </div>
+                    <Sider>
+                        <Menu mode="inline" theme="dark" active-name="1">
+                            <MenuItem name="1">
+                                <Icon style="margin-right: 6px;" type="navigate"></Icon>
+                                Item 1
+                            </MenuItem>
+                            <MenuItem name="2">
+                                <Icon style="margin-right: 6px;" type="keypad"></Icon>
+                                Item 2
+                            </MenuItem>
+                            <MenuItem name="3">
+                                <Icon style="margin-right: 6px;" type="analytics"></Icon>
+                                Item 3
+                            </MenuItem>
+                            <MenuItem name="4">
+                                <Icon style="margin-right: 6px;" type="paper"></Icon>
+                                Item 4
+                            </MenuItem>
                         </Menu>
                     </Sider>
                     <Layout style="padding: 0 24px 24px">
@@ -261,26 +253,69 @@
         isViewFullBlock: true,
         template: `
             <Layout className="layout-demo-wrapper">
-                <Sider collapsible>
-                    <Menu mode="vertical" theme="dark" active-name="1">
-                        <div class="layout-nav">
-                            <MenuItem name="1">
-                                <Icon style="margin-right: 6px;" type="navigate"></Icon>
-                                Item 1
-                            </MenuItem>
-                            <MenuItem name="2">
-                                <Icon style="margin-right: 6px;" type="keypad"></Icon>
-                                Item 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                                <Icon style="margin-right: 6px;" type="analytics"></Icon>
-                                Item 3
-                            </MenuItem>
-                            <MenuItem name="4">
-                                <Icon style="margin-right: 6px;" type="paper"></Icon>
-                                Item 4
-                            </MenuItem>
-                        </div>
+                <Sider model="isCollapsed">
+                    <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
+                        <MenuItem name="4">
+                            {{#if !isCollapsed}}
+                                <Icon style="margin-right: 6px;" type="paper" />
+                                内容管理
+                            {{else}}
+                                <Tooltip placement="right" content="内容管理">
+                                    <Icon type="paper" size="32" />
+                                </Tooltip>
+                            {{/if}}
+                        </MenuItem>
+                        <Submenu name="1">
+                            <template slot="title">
+                                {{#if !isCollapsed}}
+                                    <Icon style="margin-right: 6px;" type="paper" />
+                                    内容管理
+                                {{else}}
+                                    <Icon type="paper" size="32" />
+                                {{/if}}
+                            </template>
+                            <MenuItem name="1-1">文章管理</MenuItem>
+                            <MenuItem name="1-2">评论管理</MenuItem>
+                            <MenuItem name="1-3">举报管理</MenuItem>
+                        </Submenu>
+                        <Submenu name="2">
+                            <template slot="title">
+                                {{#if !isCollapsed}}
+                                    <Icon style="margin-right: 6px;" type="people" />
+                                    用户管理
+                                {{else}}
+                                    <Icon type="people" size="32" />
+                                {{/if}}
+                            </template>
+                            <MenuItem name="2-1">新增用户</MenuItem>
+                            <Submenu name="2-2">
+                                <template slot="title">
+                                    <Icon style="margin-right: 6px;" type="people" />
+                                    新增用户
+                                </template>
+                                <MenuItem name="2-2-1">新增用户2</MenuItem>
+                                <MenuItem name="2-2-2">新增用户2</MenuItem>
+                            </Submenu>
+                        </Submenu>
+                        <Submenu name="3">
+                            <template slot="title">
+                                {{#if !isCollapsed}}
+                                    <Icon style="margin-right: 6px;" type="stats" />
+                                    统计分析
+                                {{else}}
+                                    <Icon type="stats" size="32" />
+                                {{/if}}
+                            </template>
+                            <MenuGroup title="使用">
+                                <MenuItem name="3-1">新增和启动</MenuItem>
+                                <MenuItem name="3-2">活跃分析</MenuItem>
+                                <MenuItem name="3-3">时段分析</MenuItem>
+                            </MenuGroup>
+                            <MenuGroup title="留存">
+                                <MenuItem name="3-4">用户留存</MenuItem>
+                                <MenuItem name="3-5">流失用户</MenuItem>
+                            </MenuGroup>
+                        </Submenu>
                     </Menu>
                 </Sider>
                 <Layout>
@@ -292,12 +327,17 @@
                             <BreadcrumbItem>Layout</BreadcrumbItem>
                         </Breadcrumb>
                         <Card>
-                            <div style="height: 300px">Content</div>
+                            <div style="height: 300px">Content-{{isCollapsed}}</div>
                         </Card>
                     </Content>
                 </Layout>
             </Layout>
         `,
+        data: function () {
+            return {
+                isCollapsed: false
+            }
+        }
     }
 
 > Header Slot

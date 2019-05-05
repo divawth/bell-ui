@@ -39,12 +39,13 @@ $layout-hash = {
 
 $selector-menu = $selector-prefix + '-menu';
 $selector-menu-item = $selector-prefix + '-menu-item';
-$selector-menu-submenu = $selector-prefix + '-menu-submenu';
+$selector-menu-submenu = $selector-prefix + '-submenu';
 $selector-menu-group = $selector-prefix + '-menu-group';
 
 $layout-menu-default-color = #515a6e;
 $layout-menu-default-font-size = 14px;
 $layout-menu-submenu-default-padding = 0 20px;
+$layout-menu-collapsed-default-width = 80px;
 
 $layout-menu-direction-hash = {
     'horizontal': {
@@ -53,34 +54,38 @@ $layout-menu-direction-hash = {
         item: {
             display: inline-block,
             vertical-align: bottom,
-            border-bottom: 2px solid transparent,
             height: inherit,
             line-height: inherit,
         },
         theme: {
             'light': {
                 background-color: $brand-white,
+                color: $layout-menu-default-color,
                 item: {
-                    color: #515a6e,
-                    border-bottom: 2px solid transparent,
+                    color: $layout-menu-default-color,
+                    border-bottom: {
+                        height: 4px,
+                        background-color: $brand-primary
+                    },
 
                     color-hover: $brand-primary,
-                    border-bottom-hover: 2px solid $brand-primary,
+
+                    color-active: $brand-primary
                 },
                 after: horizontal,
             },
             'dark': {
-                background-color: #515a6e,
+                background-color: $layout-menu-default-color,
+                color: hsla(0,0%,100%,.7),
                 item: {
                     color: hsla(0,0%,100%,.7),
+                    border-bottom: {
+                        height: 4px,
+                        background-color: $brand-primary
+                    },
+                    color-hover: $brand-white,
 
-                    color-hover: $brand-white
-                }
-            },
-            'primary': {
-                background-color: $brand-primary,
-                item: {
-                    color: $brand-white
+                    color-active: $brand-white
                 }
             }
         }
@@ -89,22 +94,66 @@ $layout-menu-direction-hash = {
         theme: {
             'light': {
                 background-color: $brand-white,
+                    color: $layout-menu-default-color,
                 item: {
-                    color: #515a6e,
-                    border-right: 2px solid transparent,
+                    color: $layout-menu-default-color,
+                    border-right: {
+                        width: 4px,
+                        background-color: $brand-primary,
+                    },
 
                     color-hover: $brand-primary,
-                    border-right-hover: 2px solid $brand-primary,
-                    background-color-active: #f0faff
+
+                    color-active: $brand-primary,
                 },
                 after: vertical,
             },
             'dark': {
+                background-color: $layout-menu-default-color,
+                color: hsla(0,0%,100%,.7),
                 item: {
                     color: hsla(0,0%,100%,.7),
+                    border-right: {
+                        width: 4px,
+                        background-color: $brand-primary,
+                    },
+                    color-hover: $brand-white,
+
+                    color-active: $brand-white,
+                }
+            },
+        }
+    },
+    'inline': {
+        theme: {
+            'light': {
+                background-color: $brand-white,
+                color: $layout-menu-default-color,
+                item: {
+                    color: $layout-menu-default-color,
+                    border-right: {
+                        width: 4px,
+                        background-color: $brand-primary,
+                    },
 
                     color-hover: $brand-primary,
-                    background-color-active: #363e4f
+
+                    color-active: $brand-primary
+                },
+                after: inline,
+            },
+            'dark': {
+                background-color: $layout-menu-default-color,
+                color: hsla(0,0%,100%,.7),
+                item: {
+                    color: hsla(0,0%,100%,.7),
+                    border-right: {
+                        width: 4px,
+                        background-color: $brand-primary,
+                    },
+
+                    color-hover: $brand-white,
+                    color-active: $brand-white
                 }
             },
         }

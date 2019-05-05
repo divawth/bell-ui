@@ -314,15 +314,16 @@ var Transition = {
   }
 };
 
-var template = "<div class=\"bell-layout bell-row\n  {{#if hasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template = "<div class=\"bell-layout bell-row\n  {{#if layoutHasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Layout = {
   propTypes: {
     fixed: {
       type: 'boolean'
     },
-    hasSider: function hasSider(value) {
-      return value ? true : false;
+    hasSider: {
+      type: 'boolean',
+      value: false
     },
     className: {
       type: 'string'
@@ -332,14 +333,13 @@ var Layout = {
     }
   },
 
-  data: function data() {
-    var me = this;
-    return {
-      hasSider: me.get('hasSider')
-    };
-  },
-
   template: template,
+
+  data: function data () {
+    return {
+      layoutHasSider: this.get('hasSider')
+    }
+  },
 
   events: {
     hasSider: function hasSider(event) {
@@ -348,7 +348,7 @@ var Layout = {
       }
       if (event.phase > 0) {
         this.set({
-          hasSider: true
+          layoutHasSider: true
         });
         this.fire(
           'hasSider',
@@ -374,7 +374,7 @@ var Header = {
   template: template$1
 };
 
-var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if collapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if collapsible}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      <Icon type=\"arrow-back\"></Icon>\n    </div>\n  {{/if}}\n\n  {{#if hasSlot('trigger')}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggle('collapsed')\">\n      <slot name=\"trigger\" />\n    </div>\n  {{/if}}\n</div>";
+var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if isCollapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n  \n  {{#if isCollapsed != null}}\n    <div class=\"bell-sider-trigger\" on-click=\"toggleCollapsed()\">\n      <slot name=\"trigger\">\n        <Icon type=\"arrow-back\"></Icon>\n      </slot>\n    </div>\n  {{/if}}\n\n</div>";
 
 var Sider = {
   propTypes: {
@@ -384,25 +384,18 @@ var Sider = {
     style: {
       type: 'string'
     },
-    collapsible: {
-      type: ['boolean'],
-      value: false
+    isCollapsed: {
+      type: 'boolean'
     }
   },
 
+  model: 'isCollapsed',
+
   template: template$2,
   
-  watchers: {
-    collapsed: function collapsed(collapsed$1) {
-      var me = this;
-      Yox.nextTick(function () {
-        me.fire(
-          'collapse',
-          {
-            isCollapsed: collapsed$1
-          }
-        );
-      });
+  methods: {
+    toggleCollapsed: function toggleCollapsed() {
+      this.toggle('isCollapsed');
     }
   },
 
@@ -456,9 +449,12 @@ var Footer = {
   template: template$4
 };
 
-var template$5 = "<ul class=\"bell-menu bell-menu-{{mode}} bell-menu-{{theme}}\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n</ul>";
+var template$5 = "<ul class=\"bell-menu bell-menu-{{mode}} bell-menu-{{theme}}\n{{#if isCollapsed}} bell-menu-collapsed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</ul>";
 
 var Menu = {
+
+  name: 'bell-menu',
+
   propTypes: {
     mode: {
       type: 'string',
@@ -468,12 +464,16 @@ var Menu = {
       type: 'string',
       value: 'dark'
     },
+    isCollapsed: {
+      type: 'boolean',
+      value: false
+    },
     activeName: {
-      type: ['numeric', 'string'],
-      value: -1
+      type: 'string'
     },
     openNames: {
-      type: 'array'
+      type: 'array',
+      value: []
     },
     className: {
       type: 'string'
@@ -485,62 +485,72 @@ var Menu = {
 
   template: template$5,
 
-  events: {
-    menuItemActive: function menuItemActive(event, data) {
-      var me = this;
-      me.fire(
-        'select',
-        {
-          name: data.name
-        }
+  watchers: {
+    theme: function theme(theme$1) {
+      this.fire(
+        'themeChanged',
+        { theme: theme$1 },
+        true
       );
-      me.updateActiveName(data.name);
+    },
+    isCollapsed: function isCollapsed(isCollapsed$1) {
+      this.fire(
+        'isCollapsedChanged',
+        { isCollapsed: isCollapsed$1 },
+        true
+      );
+    }
+  },
+
+  events: {
+    menuItemSelected: function menuItemSelected(event, data) {
+      if (event.phase > 0) {
+        this.fire(
+          'menuItemSelected',
+          data,
+          true
+        );
+      }
     }
   },
 
   methods: {
-    updateActiveName: function updateActiveName(name) {
-      var me = this;
-      me.fire(
-        'activeMenuChange',
-        {
-          name: name
-        },
-        true
-      );
-    }
-  },
-
-  watchers: {
-    activeName: function activeName(activeName$1) {
-      var me = this;
-      me.fire(
-        'select',
-        {
-          name: activeName$1
-        }
-      );
-      me.updateActiveName(activeName$1);
-    }
   },
 
   afterMount: function afterMount() {
-    var me = this;
-    me.updateActiveName(me.get('activeName'));
-    var openNames = me.get('openNames');
-    if (openNames && openNames.length) {
-      me.fire(
-        'activeSubMenuChange',
-        {
-          openNames: openNames
-        },
-        true
-      );
-    }
+    console.log(this.get('activeName'), this.get('openNames'));
   }
 };
 
-var template$6 = "<li class=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" style=\"{{style}}\" on-click=\"click(name)\">\n  <slot name=\"children\" />\n\n</li>";
+var template$6 = "<li class=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" style=\"{{style}}\" \n  on-click=\"clickMenuItem()\"\n>\n  <slot name=\"children\" />\n</li>";
+
+var contains = function(element, target) {
+  if (element.contains && element.contains(target)) {
+    return true;
+  }
+  else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
+    return true;
+  }
+  return false;
+};
+
+var findComponentUpward = function (context, componentName) {
+  if (typeof componentName === 'string') {
+    componentName = [ componentName ];
+  } else {
+    componentName = componentName;
+  }
+
+  var parent = context.$parent;
+  var name = parent.$options.name;
+
+  while (parent && (!name || componentName.indexOf(name) < 0)) {
+    parent = parent.$parent;
+    if (parent) { name = parent.$options.name; }
+  }
+
+  return parent;
+};
 
 var MenuItem = {
   propTypes: {
@@ -565,44 +575,41 @@ var MenuItem = {
 
   data: function data() {
     return {
-      isActive: false
+      mode: null,
+      isActive: false,
+      isCollapsed: false
     }
   },
 
   events: {
-    activeMenuChange: function activeMenuChange(event, data) {
-      var me = this;
-      me.set({
-        isActive: me.get('name') === data.name
-      });
+    menuItemSelected: function menuItemSelected(event, data) {
+      if (event.phase < 0) {
+        this.set('isActive', data.name === this.get('name'));
+      }
+    },
+    isCollapsedChanged: function isCollapsedChanged(event, data) {
+      this.set('isCollapsed', data.isCollapsed);
     }
   },
 
   methods: {
-    click: function click(name) {
-      var me = this;
-      if (me.get('disabled')) {
-        return;
-      }
-      if (me.get('hash')) {
-        location.href = me.get('hash');
-      }
-
-      me.set({
-        isActive: true
+    clickMenuItem: function clickMenuItem() {
+      this.fire('menuItemSelected', {
+        name: this.get('name')
       });
-
-      me.fire(
-        'menuItemActive',
-        {
-          name: name
-        }
-      );
     }
+  },
+
+  afterMount: function afterMount () {
+    var element = findComponentUpward(this, 'bell-menu');
+    this.set({
+      'mode': element.get('mode'),
+      'isActive': element.get('activeName') === this.get('name')
+    });
   }
 };
 
-var template$7 = "<ul class=\"bell-menu-group\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <li class=\"bell-menu-group-title\">\n    {{title}}\n  </li>\n\n  {{#if hasSlot('children')}}\n    <ul>\n      <slot name=\"children\" />\n    </ul>\n  {{/if}}\n\n</ul>";
+var template$7 = "<ul class=\"bell-menu-group\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <li class=\"bell-menu-group-title\">\n    {{title}}\n  </li>\n\n  {{#if hasSlot('children')}}\n    <Menu mode=\"{{mode === 'inline' ? 'inline' : 'vertical'}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n\n</ul>";
 
 var MenuGroup = {
   propTypes: {
@@ -617,10 +624,31 @@ var MenuGroup = {
     }
   },
 
-  template: template$7
+  template: template$7, 
+
+  data: function data() {
+    return {
+      mode: null,
+      theme: null
+    }
+  },
+
+  events: {
+    themeChanged: function themeChanged(event, data) {
+      this.set('theme', data.theme);
+    }
+  },
+
+  afterMount: function afterMount () {
+    var element = findComponentUpward(this, 'bell-menu');
+    this.set({
+      'mode': element.get('mode'),
+      'theme': element.get('theme'),
+    });
+  }
 };
 
-var template$8 = "<li class=\"bell-menu-submenu\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-menu-title\" on-click=\"click(name)\">\n    <slot name=\"title\" />\n    <Icon type=\"arrow-down\"></Icon>\n  </div>\n\n  {{#if isOpen && hasSlot('children')}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{/if}}\n\n  {{#if isVertical && hasSlot('children')}}\n    <Menu mode=\"vertical\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n  </li>";
+var template$8 = "<li class=\"bell-submenu \n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-menu-open{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n  on-mouseenter=\"mouseenter()\"\n  on-mouseleave=\"mouseleave()\"\n  lazy-mouseleave=\"300\"\n> \n  <div class=\"bell-submenu-title\" on-click=\"clickMenuItem()\">\n    <slot name=\"title\" />\n    <Icon className=\"bell-submenu-title-icon\" type=\"arrow-down\"></Icon>\n  </div>\n\n  {{#if mode != 'inline'}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{else}}\n    <Menu mode=\"{{mode}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n</li>";
 
 var Submenu = {
   propTypes: {
@@ -639,51 +667,61 @@ var Submenu = {
 
   data: function data() {
     return {
-      isOpen: false
+      isOpen: false,
+      isActive: false,
+      activeName: null,
+      mode: null,
+      theme: null,
+      isCollapsed: false
     }
   },
 
   events: {
-    activeSubMenuChange: function activeSubMenuChange(openNames) {
-      var me = this;
-      var isOpen = openNames.indexOf(me.get('name')) != -1;
-      this.set({
-        isOpen: isOpen
-      });
-    }
-  },
-
-  transitions: {
-    groups: {
-      enter: function enter(el, done) {
-        var clientHeight = el.clientHeight;
-        el.style.height = 0;
-        setTimeout(
-          function () {
-            el.style.height = clientHeight + 'px';
-          },
-          50
-        );
-        setTimeout(done, 300);
-      },
-      leave: function leave(el, done) {
-        el.style.height = 0;
-        Yox.dom.removeClass(el, 'bell-visible');
-        setTimeout(done, 300);
+    themeChanged: function themeChanged(event, data) {
+      this.set('theme', data.theme);
+    },
+    isCollapsedChanged: function isCollapsedChanged(event, data) {
+      this.set('isCollapsed', data.isCollapsed);
+    },
+    menuItemSelected: function menuItemSelected(event, data) {
+      if (event.phase < 0) {
+        this.set('isActive', data.name === this.get('activeName'));
+      }
+      if (event.phase > 0) {
+        this.set('activeName', data.name);
+        if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
+          this.toggle('isOpen');
+        }
       }
     }
   },
 
   methods: {
-    click: function click(name) {
+    clickMenuItem: function clickMenuItem() {
       this.toggle('isOpen');
-      this.fire(
-        'click',
-        {
-          isOpen: this.get('isOpen')
-        }
-      );
+    },
+    mouseenter: function mouseenter() {
+      if (!this.get('isCollapsed')) {
+        return;
+      }
+      this.set('isOpen', true);
+    },
+    mouseleave: function mouseleave() {
+      if (!this.get('isCollapsed')) {
+        return;
+      }
+      this.set('isOpen', false);
     }
+  },
+   
+  afterMount: function afterMount () {
+    var element = findComponentUpward(this, 'bell-menu');
+    this.set({
+      'mode': element.get('mode'),
+      'theme': element.get('theme'),
+      'isActive': element.get('activeName') === this.get('name'),
+      'isOpen': element.get('openNames').indexOf(this.get('name')) >= 0 
+    });
   }
 };
 
@@ -894,16 +932,6 @@ var Icon = {
     }
   },
   template: template$b
-};
-
-var contains = function(element, target) {
-  if (element.contains && element.contains(target)) {
-    return true;
-  }
-  else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-    return true;
-  }
-  return false;
 };
 
 var DrawerTpl = "<div class=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n  {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n  {{#if position}} bell-drawer-{{position}}{{/if}}\n\" style=\"{{#if style}} {{style}}{{/if}};\">\n\n  {{#if useMask}}\n    <div class=\"bell-drawer-mask\"></div>\n  {{/if}}\n\n  <div ref=\"drawContent\" class=\"bell-drawer-content\"\n    style=\"{{#if position == \"left\" || position == \"right\"}}\n      width: {{size}}px;\n    {{else}}\n        height: {{size}}px;\n    {{/if}}\"\n  >\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
