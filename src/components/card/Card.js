@@ -1,7 +1,7 @@
-import CardTpl from './template/Card.html'
+import template from './template/Card.html'
 
 export default {
-  template: CardTpl,
+  
   propTypes: {
     className: {
       type: 'string'
@@ -9,5 +9,7 @@ export default {
     style: {
       type: 'string'
     }
-  }
-};
+  },
+
+  template
+}

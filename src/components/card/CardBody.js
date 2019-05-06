@@ -1,7 +1,6 @@
-import CardTextTpl from './template/CardText.html'
+import template from './template/CardBody.html'
 
 export default {
-  template: CardTextTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -9,5 +8,6 @@ export default {
     style: {
       type: 'string'
     }
-  }
-};
+  },
+  template
+}

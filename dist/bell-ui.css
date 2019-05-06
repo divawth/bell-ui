@@ -3564,19 +3564,20 @@ button.bell-button-danger-ghost[disabled] {
   box-sizing: border-box;
   padding: 0 50px;
   line-height: 64px;
-  background-color: #1890ff;
+  background-color: #515a6e;
   color: #fff;
 }
 .bell-layout-content {
   flex: auto;
   box-sizing: border-box;
+  background-color: #f8f8f8;
 }
 .bell-layout-footer {
   flex: 0 0 auto;
   box-sizing: border-box;
   padding: 24px 50px;
-  background-color: #f5f7f9;
-  color: #515a6e;
+  background-color: #515a6f;
+  color: #f8f8f8;
 }
 .bell-layout-sider {
   flex: 0 0 200px;
@@ -6810,18 +6811,25 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1.2;
   color: #495060;
   margin: 15px;
+  border: 1px solid #e8e8e8;
+}
+.bell-card.bell-card.hover,
+.bell-card:hover,
+.bell-card.bell-hover {
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 .bell-card-header {
-  padding: 15px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
 }
 .bell-card-header .bell-avatar {
+  margin-right: 6px;
   vertical-align: middle;
 }
 .bell-card-header .bell-card-header-detail {
   vertical-align: middle;
   display: inline-block;
-  padding: 0 10px;
 }
 .bell-card-header .bell-card-header-title {
   font-size: 15px;
@@ -6833,9 +6841,11 @@ button.bell-button-danger-ghost[disabled] {
   color: #80848f;
   line-height: 1.6;
 }
-.bell-card-title-extra {
-  float: right;
-  text-align: right;
+.bell-card-header .bell-card-header-extra {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .bell-card-media {
   position: relative;
@@ -6866,7 +6876,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-card-title {
   padding: 15px;
 }
-.bell-card-title .bell-card-title-text {
+.bell-card-title .bell-card-title-body {
   font-size: 22px;
   color: #1c2438;
   line-height: 1.6;
@@ -6876,7 +6886,7 @@ button.bell-button-danger-ghost[disabled] {
   color: #80848f;
   line-height: 1.6;
 }
-.bell-card-text {
+.bell-card-body {
   padding: 15px;
   font-size: 14px;
   color: #495060;

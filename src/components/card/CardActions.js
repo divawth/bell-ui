@@ -1,7 +1,7 @@
-import CardActionsTpl from './template/CardActions.html'
+import template from './template/CardActions.html'
 
 export default {
-  template: CardActionsTpl,
+  
   propTypes: {
     className: {
       type: 'string'
@@ -9,5 +9,8 @@ export default {
     style: {
       type: 'string'
     }
-  }
-};
+  },
+
+  template
+
+}

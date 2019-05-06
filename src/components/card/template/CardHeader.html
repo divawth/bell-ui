@@ -1,29 +1,25 @@
-<div class="bell-card-header
+<div class="${prefix}card-header
   {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"{{#if style}} style="{{style}}"{{/if}}
+>
 
   <slot name="avatar" />
 
-  <div class="bell-card-header-detail">
-    {{#if hasSlot('title')}}
-      <div class="bell-card-header-title
-        {{#if titleClass}} {{titleClass}}{{/if}}
-      ">
-        <slot name="title" />
-      </div>
-    {{/if}}
-
+  <div class="${prefix}card-header-detail">
+    <div class="${prefix}card-header-title">
+      <slot name="title" />
+      <slot name="children" />
+    </div>
+    
     {{#if hasSlot('subTitle')}}
-      <div class="bell-card-header-sub-title
-          {{#if subTitleClass}} {{subTitleClass}}{{/if}}
-      ">
+      <div class="${prefix}card-header-sub-title">
         <slot name="subTitle" />
       </div>
     {{/if}}
-</div>
+  </div>
 
   {{#if hasSlot('extra')}}
-    <span class="bell-card-header-extra">
+    <span class="${prefix}card-header-extra">
       <slot name="extra" />
     </span>
   {{/if}}

@@ -9,10 +9,12 @@ import Header from './components/layout/Header'
 import Sider from './components/layout/Sider'
 import Content from './components/layout/Content'
 import Footer from './components/layout/Footer'
-import Menu from './components/layout/Menu'
-import MenuItem from './components/layout/MenuItem'
-import MenuGroup from './components/layout/MenuGroup'
-import Submenu from './components/layout/Submenu'
+
+import Menu from './components/menu/Menu'
+import MenuItem from './components/menu/MenuItem'
+import MenuGroup from './components/menu/MenuGroup'
+import Submenu from './components/menu/Submenu'
+
 import Row from './components/grid/Row'
 import Col from './components/grid/Col'
 import Icon from './components/icon/Icon'
@@ -57,8 +59,7 @@ import Panel from './components/collapse/Panel'
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
 import CardMedia from './components/card/CardMedia'
-import CardTitle from './components/card/CardTitle'
-import CardText from './components/card/CardText'
+import CardBody from './components/card/CardBody'
 import CardActions from './components/card/CardActions'
 
 import List from './components/list/List'
@@ -141,8 +142,7 @@ Yox.component({
   Card,
   CardHeader,
   CardMedia,
-  CardTitle,
-  CardText,
+  CardBody,
   CardActions,
 
   Collapse,

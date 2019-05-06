@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.1.5
+ * bell-ui.js v0.2.0
  * (c) 2016-2019 
  * Released under the BSD License.
  */
@@ -508,13 +508,6 @@ var Menu = {
         );
       }
     }
-  },
-
-  methods: {
-  },
-
-  afterMount: function afterMount() {
-    console.log(this.get('activeName'), this.get('openNames'));
   }
 };
 
@@ -4455,10 +4448,10 @@ var Panel = {
   }
 };
 
-var CardTpl = "<div class=\"bell-card\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  <slot name=\"children\" />\n</div>";
+var template$e = "<div class=\"bell-card\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Card = {
-  template: CardTpl,
+  
   propTypes: {
     className: {
       type: 'string'
@@ -4466,42 +4459,39 @@ var Card = {
     style: {
       type: 'string'
     }
-  }
+  },
+
+  template: template$e
 };
 
-var CardHeaderTpl = "<div class=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    {{#if hasSlot('title')}}\n      <div class=\"bell-card-header-title\n        {{#if titleClass}} {{titleClass}}{{/if}}\n      \">\n        <slot name=\"title\" />\n      </div>\n    {{/if}}\n\n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\n          {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n</div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
+var template$f = "<div class=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    <div class=\"bell-card-header-title\n      {{#if titleClass}} {{titleClass}}{{/if}}\n    \">\n      <slot name=\"title\" />\n      <slot name=\"children\" />\n    </div>\n    \n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\n        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n  </div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
 
 var CardHeader = {
-  template: CardHeaderTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     titleClass: {
       type: 'string'
     },
     subTitleClass: {
       type: 'string'
-    }
-  }
-};
-
-var CardMediaTpl = "<div class=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\n        {{#if titleClass}} {{titleClass}}{{/if}}\n      \">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\n        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
-
-var CardMedia = {
-  template: CardMediaTpl,
-
-  propTypes: {
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
     },
+  },
+
+  template: template$f
+
+};
+
+var template$g = "<div class=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\n        {{#if titleClass}} {{titleClass}}{{/if}}\n      \">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\n        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
+
+var CardMedia = {
+
+  propTypes: {
     title: {
       type: 'string'
     },
@@ -4513,35 +4503,43 @@ var CardMedia = {
     },
     subTitleClass: {
       type: 'string'
-    }
-  }
-};
-
-var CardTitleTpl = "<div class=\"bell-card-title\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('title')}}\n    <span class=\"bell-card-title-text\n      {{#if titleClass}} {{titleClass}}{{/if}}\n    \">\n      <slot name=\"title\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-title-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('subTitle')}}\n    <div class=\"bell-card-sub-title\n      {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n    \">\n      <slot name=\"subTitle\" />\n    </div>\n  {{/if}}\n\n</div>";
-
-var CardTitle = {
-  template: CardTitleTpl,
-
-  propTypes: {
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
+    }
+  },
+
+  template: template$g
+};
+
+var template$h = "<div class=\"bell-card-title\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('title')}}\n    <span class=\"bell-card-title-text\n      {{#if titleClass}} {{titleClass}}{{/if}}\n    \">\n      <slot name=\"title\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-title-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('subTitle')}}\n    <div class=\"bell-card-sub-title\n      {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n    \">\n      <slot name=\"subTitle\" />\n    </div>\n  {{/if}}\n\n</div>";
+
+var CardTitle = {
+
+  propTypes: {
     titleClass: {
       type: 'string'
     },
     subTitleClass: {
       type: 'string'
-    }
-  }
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    },
+  },
+  template: template$h
+
 };
 
-var CardTextTpl = "<div class=\"bell-card-text\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$i = "<div class=\"bell-card-body\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
-var CardText = {
-  template: CardTextTpl,
+var CardBody = {
   propTypes: {
     className: {
       type: 'string'
@@ -4549,13 +4547,14 @@ var CardText = {
     style: {
       type: 'string'
     }
-  }
+  },
+  template: template$i
 };
 
-var CardActionsTpl = "<div class=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  <slot name=\"children\" />\n</div>";
+var template$j = "<div class=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var CardActions = {
-  template: CardActionsTpl,
+  
   propTypes: {
     className: {
       type: 'string'
@@ -4563,7 +4562,10 @@ var CardActions = {
     style: {
       type: 'string'
     }
-  }
+  },
+
+  template: template$j
+
 };
 
 var ListTpl = "<ul class=\"bell-list\n  {{#if className}} {{className}}{{/if}}\n  {{#if border}} bell-list-border{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  {{#if hasSlot('subHeader')}}\n    <div class=\"bell-list-header\">\n      <slot name=\"subHeader\" />\n    </div>\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</ul>";
@@ -6847,7 +6849,7 @@ Yox.component({
   CardHeader: CardHeader,
   CardMedia: CardMedia,
   CardTitle: CardTitle,
-  CardText: CardText,
+  CardBody: CardBody,
   CardActions: CardActions,
 
   Collapse: Collapse,

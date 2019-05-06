@@ -8,7 +8,7 @@
   - [Grid 栅格布局](layout/grid)
   - [Menu 导航菜单](layout/menu)
   - [Layout 布局](layout/layout)
-  - [Card 卡片](view/card)
+  - [Card 卡片](layout/card)
   - [Collapse 折叠面板](view/collapse)
   - [Split 面板分割](layout/split)
   - [Divider 分割线](layout/divider)

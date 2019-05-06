@@ -1,25 +1,22 @@
-<div class="bell-card-media
+<div class="${prefix}card-media
   {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"{{#if style}} style="{{style}}"{{/if}}
+>
 
   {{#if hasSlot('children')}}
     <slot name="children" />
   {{/if}}
 
-  <div class="bell-card-media-detail">
+  <div class="${prefix}card-media-detail">
 
     {{#if title}}
-      <div class="bell-card-media-title
-        {{#if titleClass}} {{titleClass}}{{/if}}
-      ">
+      <div class="${prefix}card-media-title">
         {{title}}
       </div>
     {{/if}}
 
     {{#if subTitle}}
-      <div class="bell-card-media-sub-title
-        {{#if subTitleClass}} {{subTitleClass}}{{/if}}
-      ">
+      <div class="${prefix}card-media-sub-title">
         {{subTitle}}
       </div>
     {{/if}}
