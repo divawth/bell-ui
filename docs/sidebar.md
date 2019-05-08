@@ -9,7 +9,7 @@
   - [Menu 导航菜单](layout/menu)
   - [Layout 布局](layout/layout)
   - [Card 卡片](layout/card)
-  - [Collapse 折叠面板](view/collapse)
+  - [Collapse 折叠面板](layout/collapse)
   - [Split 面板分割](layout/split)
   - [Divider 分割线](layout/divider)
   - [Cell 单元格](layout/cell)

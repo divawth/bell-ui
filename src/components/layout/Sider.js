@@ -16,12 +16,6 @@ export default {
   model: 'isCollapsed',
 
   template,
-  
-  methods: {
-    toggleCollapsed() {
-      this.toggle('isCollapsed')
-    }
-  },
 
   afterMount() {
     this.fire(

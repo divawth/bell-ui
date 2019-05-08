@@ -6,13 +6,7 @@ export default {
     title: {
       type: 'string'
     },
-    titleClass: {
-      type: 'string'
-    },
     subTitle: {
-      type: 'string'
-    },
-    subTitleClass: {
       type: 'string'
     },
     className: {

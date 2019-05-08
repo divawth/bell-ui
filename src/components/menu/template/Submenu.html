@@ -1,15 +1,19 @@
-<li class="${prefix}submenu 
+<li 
+class="${prefix}submenu 
   {{#if className}} {{className}}{{/if}}
   {{#if isOpen}} ${prefix}menu-open{{/if}}
   {{#if isActive}} ${prefix}menu-active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}
-  on-mouseenter="mouseenter()"
-  on-mouseleave="mouseleave()"
+"
+{{#if style}} style="{{style}}"{{/if}}
+{{#if isCollapsed}}
+  on-mouseenter="set('isOpen', true)"
+  on-mouseleave="set('isOpen', false)"
   lazy-mouseleave="300"
+{{/if}}
 > 
-  <div class="${prefix}submenu-title" on-click="clickMenuItem()">
+  <div class="${prefix}submenu-title" on-click="toggle('isOpen')">
     <slot name="title" />
-    <Icon className="${prefix}submenu-title-icon" type="arrow-down"></Icon>
+    <Icon className="${prefix}submenu-title-icon" type="arrow-down" />
   </div>
 
   {{#if mode != 'inline'}}

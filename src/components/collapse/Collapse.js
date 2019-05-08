@@ -1,41 +1,42 @@
-import CollapseTpl from './template/Collapse.html'
+import template from './template/Collapse.html'
 
 export default {
-  template: CollapseTpl,
 
   propTypes: {
+    activeName: {
+      type: 'numeric'
+    },
+    accordion: {
+      type: 'boolean'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
-    activeName: {
-      type: ['numeric', 'string']
-    },
-    accordion: {
-      type: 'boolean'
     }
   },
 
+  template,
+
   events: {
-    panelOpen(event, data) {
-      var me = this;
+    panelOpen(_, data) {
       if (data.name) {
-        me.fire(
+        this.fire(
           'panelActiveName',
           {
             name: name
           },
           true
-        );
+        )
       }
     }
   },
+
   afterMount() {
-    let me = this;
-    let name = me.get('activeName');
-    let accordion = me.get('accordion');
+    let me = this
+    let name = me.get('activeName')
+    let accordion = me.get('accordion')
     if (name) {
       me.fire(
         'panelActiveName',
@@ -43,7 +44,7 @@ export default {
           name: name
         },
         true
-      );
+      )
     }
     if (accordion) {
       me.fire(
@@ -52,8 +53,8 @@ export default {
           accordion: true
         },
         true
-      );
+      )
     }
   }
 
-};
+}

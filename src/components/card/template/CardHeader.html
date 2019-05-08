@@ -1,6 +1,8 @@
-<div class="${prefix}card-header
+<div 
+class="${prefix}card-header
   {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
 >
 
   <slot name="avatar" />
@@ -24,8 +26,6 @@
     </span>
   {{/if}}
 
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
+  <slot name="children" />
 
 </div>

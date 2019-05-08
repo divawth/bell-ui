@@ -314,7 +314,7 @@ var Transition = {
   }
 };
 
-var template = "<div class=\"bell-layout bell-row\n  {{#if hasSider}} bell-col-24{{else}} column{{/if}}\n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\"\n  {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template = "<div \nclass=\"bell-layout bell-row\n  \n  {{#if hasSider}} bell-col-24\n  {{else}} column\n  {{/if}}\n  \n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Layout = {
   propTypes: {
@@ -339,10 +339,10 @@ var Layout = {
 
   events: {
     hasSider: function hasSider(event) {
-      if (event.phase === 0) {
+      if (event.phase === Yox.Event.PHASE_CURRENT) {
         return
       }
-      if (event.phase > 0) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set({
           hasSider: true
         });
@@ -351,12 +351,13 @@ var Layout = {
           true
         );
       }
+      // 阻止嵌套模式下 上层 layout 发下来的 hasSider 事件
       event.stop();
     }
   }
 };
 
-var template$1 = "<div class=\"bell-layout-header \n{{#if className}} {{className}}{{/if}}\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n{{#if hasSlot('left')}}\n  <div class=\"bell-layout-header-left\">\n    <slot name=\"left\" />\n  </div>\n{{/if}}\n\n{{#if hasSlot('center')}}\n  <div class=\"bell-layout-header-center\">\n    <slot name=\"center\" />\n  </div>\n{{/if}}\n\n<slot name=\"children\" />\n\n{{#if hasSlot('right')}}\n  <div class=\"bell-layout-header-right\">\n    <slot name=\"right\" />\n  </div>\n{{/if}}\n</div>";
+var template$1 = "<div \nclass=\"bell-layout-header \n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('left')}}\n    <div class=\"bell-layout-header-left\">\n      <slot name=\"left\" />\n    </div>\n  {{/if}}\n\n  {{#if hasSlot('center')}}\n    <div class=\"bell-layout-header-center\">\n      <slot name=\"center\" />\n    </div>\n  {{/if}}\n\n  <slot name=\"children\" />\n\n  {{#if hasSlot('right')}}\n    <div class=\"bell-layout-header-right\">\n      <slot name=\"right\" />\n    </div>\n  {{/if}}\n  \n</div>";
 
 var Header = {
   propTypes: {
@@ -370,7 +371,7 @@ var Header = {
   template: template$1
 };
 
-var template$2 = "<div class=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if isCollapsed}} bell-layout-sider-collapsed{{/if}}\n\" {{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-layout-sider-children\">\n    <slot name=\"children\" />\n  </div>\n  {{#if isCollapsed != null}}\n    <div class=\"bell-layout-sider-trigger\" on-click=\"toggleCollapsed()\">\n      <slot name=\"trigger\">\n        <Icon type=\"arrow-back\" className=\"bell-layout-sider-trigger-icon\"></Icon>\n      </slot>\n    </div>\n  {{/if}}\n\n</div>";
+var template$2 = "<div \nclass=\"bell-layout-sider bell-col-6\n  {{#if className}} {{className}}{{/if}}\n  {{#if isCollapsed}} bell-layout-sider-collapsed{{/if}}\n\" \n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-layout-sider-children\">\n    <slot name=\"children\" />\n  </div>\n  {{#if isCollapsed != null}}\n    <div class=\"bell-layout-sider-trigger\" on-click=\"toggle('isCollapsed')\">\n      <slot name=\"trigger\">\n        <Icon type=\"arrow-back\" className=\"bell-layout-sider-trigger-icon\" />\n      </slot>\n    </div>\n  {{/if}}\n\n</div>";
 
 var Sider = {
   propTypes: {
@@ -388,12 +389,6 @@ var Sider = {
   model: 'isCollapsed',
 
   template: template$2,
-  
-  methods: {
-    toggleCollapsed: function toggleCollapsed() {
-      this.toggle('isCollapsed');
-    }
-  },
 
   afterMount: function afterMount() {
     this.fire(
@@ -402,7 +397,7 @@ var Sider = {
   }
 };
 
-var template$3 = "<div class=\"bell-layout-content\n  {{#if hasSider}} bell-col-18{{else}} bell-col-24{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$3 = "<div \nclass=\"bell-layout-content\n  \n  {{#if hasSider}} bell-col-18\n  {{else}} bell-col-24\n  {{/if}}\n  \n  {{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Content = {
   propTypes: {
@@ -417,7 +412,7 @@ var Content = {
   template: template$3,
 
   events: {
-    hasSider: function hasSider(event) {
+    hasSider: function hasSider(_) {
       this.set({
         hasSider: true
       });
@@ -431,7 +426,7 @@ var Content = {
   }
 };
 
-var template$4 = "<div class=\"bell-layout-footer \n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$4 = "<div \nclass=\"bell-layout-footer \n  {{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Footer = {
   propTypes: {
@@ -500,7 +495,7 @@ var Menu = {
 
   events: {
     menuItemSelected: function menuItemSelected(event, data) {
-      if (event.phase > 0) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'menuItemSelected',
           data,
@@ -511,7 +506,7 @@ var Menu = {
   }
 };
 
-var template$6 = "<li class=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" style=\"{{style}}\" \n  on-click=\"clickMenuItem()\"\n>\n  <slot name=\"children\" />\n</li>";
+var template$6 = "<li \nclass=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" \nstyle=\"{{style}}\" \non-click=\"click()\"\n>\n  <slot name=\"children\" />\n</li>";
 
 var contains = function(element, target) {
   if (element.contains && element.contains(target)) {
@@ -572,17 +567,17 @@ var MenuItem = {
 
   events: {
     menuItemSelected: function menuItemSelected(event, data) {
-      if (event.phase < 0) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('name'));
       }
     },
-    isCollapsedChanged: function isCollapsedChanged(event, data) {
+    isCollapsedChanged: function isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed);
     }
   },
 
   methods: {
-    clickMenuItem: function clickMenuItem() {
+    click: function click() {
       this.fire('menuItemSelected', {
         name: this.get('name')
       });
@@ -623,7 +618,7 @@ var MenuGroup = {
   },
 
   events: {
-    themeChanged: function themeChanged(event, data) {
+    themeChanged: function themeChanged(_, data) {
       this.set('theme', data.theme);
     }
   },
@@ -637,7 +632,7 @@ var MenuGroup = {
   }
 };
 
-var template$8 = "<li class=\"bell-submenu \n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-menu-open{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n  on-mouseenter=\"mouseenter()\"\n  on-mouseleave=\"mouseleave()\"\n  lazy-mouseleave=\"300\"\n> \n  <div class=\"bell-submenu-title\" on-click=\"clickMenuItem()\">\n    <slot name=\"title\" />\n    <Icon className=\"bell-submenu-title-icon\" type=\"arrow-down\"></Icon>\n  </div>\n\n  {{#if mode != 'inline'}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{else}}\n    <Menu mode=\"{{mode}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n</li>";
+var template$8 = "<li \nclass=\"bell-submenu \n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-menu-open{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n{{#if isCollapsed}}\n  on-mouseenter=\"set('isOpen', true)\"\n  on-mouseleave=\"set('isOpen', false)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\n> \n  <div class=\"bell-submenu-title\" on-click=\"toggle('isOpen')\">\n    <slot name=\"title\" />\n    <Icon className=\"bell-submenu-title-icon\" type=\"arrow-down\" />\n  </div>\n\n  {{#if mode != 'inline'}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{else}}\n    <Menu mode=\"{{mode}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n</li>";
 
 var Submenu = {
   propTypes: {
@@ -666,40 +661,22 @@ var Submenu = {
   },
 
   events: {
-    themeChanged: function themeChanged(event, data) {
+    themeChanged: function themeChanged(_, data) {
       this.set('theme', data.theme);
     },
-    isCollapsedChanged: function isCollapsedChanged(event, data) {
+    isCollapsedChanged: function isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed);
     },
     menuItemSelected: function menuItemSelected(event, data) {
-      if (event.phase < 0) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('activeName'));
       }
-      if (event.phase > 0) {
+      else if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set('activeName', data.name);
         if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
           this.toggle('isOpen');
         }
       }
-    }
-  },
-
-  methods: {
-    clickMenuItem: function clickMenuItem() {
-      this.toggle('isOpen');
-    },
-    mouseenter: function mouseenter() {
-      if (!this.get('isCollapsed')) {
-        return
-      }
-      this.set('isOpen', true);
-    },
-    mouseleave: function mouseleave() {
-      if (!this.get('isCollapsed')) {
-        return
-      }
-      this.set('isOpen', false);
     }
   },
    
@@ -714,7 +691,7 @@ var Submenu = {
   }
 };
 
-var template$9 = "<div class=\"bell-row\n  {{#if className}} {{className}}{{/if}}\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n\" style=\"{{style}}\"\n>\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
+var template$9 = "<div \nclass=\"bell-row\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" \nstyle=\"{{style}}\"\n>\n  <slot name=\"children\" />\n</div>";
 
 var Row = {
   propTypes: {
@@ -740,35 +717,34 @@ var Row = {
 
   template: template$9,
 
-  data: function data () {
-    return {
-      style: ''
-    }
-  },
-
-  computed: {
-    style: function style() {
-      var me = this;
-      var gap = me.get('gutter') / 2;
-      var style = '';
-      style = 'margin-left: -' + gap + 'px;margin-right: -' + gap + 'px;';
-      return style;
-    }
-  },
-
-  afterMount: function afterMount() {
-    var me = this;
-    me.fire(
-      'updateGridGutter',
-      {
-        gutter: me.get('gutter')
+  watchers: {
+    gutter: {
+      watcher: function (value) {
+        this.fire(
+          'gridGutterChanged',
+          {
+            gutter: value
+          },
+          true
+        );
       },
-      true
-    );
+      immediate: true
+    }
+  },
+  
+  computed: {
+    inlineStyle: function inlineStyle() {
+      var gap = this.get('gutter') / 2;
+      var style = Yox.sring.trim(this.get('style'));
+      if (style && !Yox.sring.endsWith(style, ';')) {
+        style += ';';
+      }
+      return (style + "margin-left: -" + gap + "px; margin-right: -" + gap + "px;")
+    }
   }
 };
 
-var template$a = "<div class=\"bell-col\n  {{#if className}} {{className}}{{/if}}\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
+var template$a = "<div \nclass=\"bell-col\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
 
 var Col = {
   propTypes: {
@@ -817,7 +793,7 @@ var Col = {
   },
 
   events: {
-    updateGridGutter: function updateGridGutter(event, data) {
+    gridGutterChanged: function gridGutterChanged(_, data) {
       this.set({
         gutter: data.gutter
       });
@@ -826,43 +802,38 @@ var Col = {
 
   computed: {
     xsClass: function xsClass() {
-      var me = this;
-      var data = me.get('xs');
+      var data = this.get('xs');
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('xs', data);
+      return this.getClass('xs', data)
     },
     smClass: function smClass() {
-      var me = this;
-      var data = me.get('sm');
+      var data = this.get('sm');
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('sm', data);
+      return this.getClass('sm', data)
     },
     mdClass: function mdClass() {
-      var me = this;
-      var data = me.get('md');
+      var data = this.get('md');
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('md', data);
+      return this.getClass('md', data)
     },
     lgClass: function lgClass() {
-      var me = this;
-      var data = me.get('lg');
+      var data = this.get('lg');
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('lg', data);
+      return this.getClass('lg', data)
     },
     style: function style() {
-      var me = this;
-      var gap = me.get('gutter') / 2;
+      var gap = this.get('gutter') / 2;
       var style = '';
-      style = 'padding-left:' + gap + 'px;padding-right: ' + gap + 'px;';
-      return style;
+      style = 'padding-left:' + gap + 'pxpadding-right: ' + gap + 'px';
+      return style
     }
   },
 
@@ -890,12 +861,12 @@ var Col = {
         classArr.push(bell- + 'col-' + name + '-' + data);
       }
 
-      return classArr.join(' ');
+      return classArr.join(' ')
     }
   }
 };
 
-var template$b = "<i class=\"bell-icon \n  {{#if type}} bell-icon-ios-{{type}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n  style=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n</i>";
+var template$b = "<i \nclass=\"bell-icon \n  {{#if type}} bell-icon-ios-{{type}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\nstyle=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n</i>";
 
 var Icon = {
   propTypes: {
@@ -910,7 +881,7 @@ var Icon = {
       type: 'string'
     },
     spin: {
-      type: 'Boolean',
+      type: 'boolean',
       value: false
     },
     className: {
@@ -1022,7 +993,7 @@ var BreadcrumbItem = {
   }
 };
 
-var template$c = "<button class=\"bell-button\n  {{#if className}} {{className}}{{/if}}\n  {{#if ghost}} bell-button-{{type}}-ghost {{else}} bell-button-{{type}}-normal {{/if}} \n  bell-button-{{borderType}}\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n\"{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n  on-click=\"click.button\"\n>\n\n  {{#if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  <slot name=\"icon\" />\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\">\n    </slot>\n  </span>\n  {{/if}}\n  \n</button>";
+var template$c = "<button \non-click=\"click.button\"\nclass=\"bell-button\n  {{#if ghost}} bell-button-{{type}}-ghost \n  {{else}} bell-button-{{type}}-normal \n  {{/if}} \n\n  bell-button-{{borderType}}\n\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('icon')}}\n    <slot name=\"icon\" />\n  {{else if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\" />\n  </span>\n  {{/if}}\n  \n</button>";
 
 var Button = {
   propTypes: {
@@ -1062,7 +1033,7 @@ var Button = {
   template: template$c
 };
 
-var template$d = "<div class=\"bell-button-group\n  {{#if shape}} bell-button-group-{{shape}}{{/if}}\n  {{#if size}} bell-button-group-{{size}}{{/if}}\n  {{#if vertical}} bell-button-group-vertical{{else}} bell-button-group-horizontal{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" {{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
+var template$d = "<div \nclass=\"bell-button-group\n  {{#if shape}} bell-button-group-{{shape}}{{/if}}\n  {{#if size}} bell-button-group-{{size}}{{/if}}\n  \n  {{#if vertical}} bell-button-group-vertical\n  {{else}} bell-button-group-horizontal\n  {{/if}}\n\n  {{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
 
 var ButtonGroup = {
   propTypes: {
@@ -4248,31 +4219,31 @@ var TooltipItem = {
   }
 };
 
-var CollapseTpl = "<div class=\"bell-collapse\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n</div>";
+var template$e = "<div \nclass=\"bell-collapse\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Collapse = {
-  template: CollapseTpl,
 
   propTypes: {
+    activeName: {
+      type: 'numeric'
+    },
+    accordion: {
+      type: 'boolean'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
-    activeName: {
-      type: ['numeric', 'string']
-    },
-    accordion: {
-      type: 'boolean'
     }
   },
 
+  template: template$e,
+
   events: {
-    panelOpen: function panelOpen(event, data) {
-      var me = this;
+    panelOpen: function panelOpen(_, data) {
       if (data.name) {
-        me.fire(
+        this.fire(
           'panelActiveName',
           {
             name: name
@@ -4282,6 +4253,7 @@ var Collapse = {
       }
     }
   },
+
   afterMount: function afterMount() {
     var me = this;
     var name = me.get('activeName');
@@ -4308,27 +4280,28 @@ var Collapse = {
 
 };
 
-var PanelTpl = "<div class=\"bell-panel\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-panel-open{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n  <div class=\"bell-panel-el\n    {{#if arrowOpen}} bell-panel-el-open{{/if}}\"\n    on-click=\"click()\"\n  >\n    <Icon type=\"arrow-down-b\" className=\"bell-panel-el-icon\"></Icon>\n    {{title}}\n  </div>\n\n  <div ref=\"panelInner\" class=\"bell-panel-inner\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
+var template$f = "<div \nclass=\"bell-collapse-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\n    {{#if isOpen}} bell-collapse-item-open{{/if}}\n  \" on-click=\"click()\">\n\n    <slot name=\"icon\">\n      <Icon type=\"arrow-down\" className=\"bell-collapse-item-header-icon\" />\n    </slot>\n    {{title}}\n  \n  </div>\n\n  <div ref=\"panelInner\" class=\"bell-collapse-content\">\n    <slot name=\"children\" />\n  </div>\n</div>";
 
 var closeTimer, initTimer, openTimer;
 
 var Panel = {
-  template: PanelTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     title: {
       type: 'string'
     },
     name: {
       type: 'numeric'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
+
+  template: template$f,
 
   data: function data() {
     return {
@@ -4359,6 +4332,10 @@ var Panel = {
 
   methods: {
 
+    click: function click() {
+      this.toggle('isOpen');
+    },
+
     toggleStatus: function toggleStatus(isOpen) {
       var me = this;
       var arrowOpen = me.get('arrowOpen');
@@ -4384,12 +4361,6 @@ var Panel = {
       me.set({
         arrowOpen: isOpen
       });
-    },
-
-    click: function click() {
-      var me = this;
-      var isOpen = !me.get('isOpen');
-      me.toggleStatus(isOpen);
     },
 
     close: function close() {
@@ -4448,61 +4419,18 @@ var Panel = {
   }
 };
 
-var template$e = "<div class=\"bell-card\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$g = "<div \nclass=\"bell-card\n  {{#if bordered}} bell-card-bordered{{/if}}\n  {{#if hoverDisabled}} bell-card-hover-disabled{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Card = {
   
   propTypes: {
-    className: {
-      type: 'string'
+    bordered: {
+      type: 'boolean',
+      value: true
     },
-    style: {
-      type: 'string'
-    }
-  },
-
-  template: template$e
-};
-
-var template$f = "<div class=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    <div class=\"bell-card-header-title\n      {{#if titleClass}} {{titleClass}}{{/if}}\n    \">\n      <slot name=\"title\" />\n      <slot name=\"children\" />\n    </div>\n    \n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\n        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n  </div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
-
-var CardHeader = {
-
-  propTypes: {
-    titleClass: {
-      type: 'string'
-    },
-    subTitleClass: {
-      type: 'string'
-    },
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
-  },
-
-  template: template$f
-
-};
-
-var template$g = "<div class=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\n        {{#if titleClass}} {{titleClass}}{{/if}}\n      \">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\n        {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n      \">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
-
-var CardMedia = {
-
-  propTypes: {
-    title: {
-      type: 'string'
-    },
-    titleClass: {
-      type: 'string'
-    },
-    subTitle: {
-      type: 'string'
-    },
-    subTitleClass: {
-      type: 'string'
+    hoverDisabled: {
+      type: 'boolean',
+      value: true
     },
     className: {
       type: 'string'
@@ -4515,17 +4443,11 @@ var CardMedia = {
   template: template$g
 };
 
-var template$h = "<div class=\"bell-card-title\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('title')}}\n    <span class=\"bell-card-title-text\n      {{#if titleClass}} {{titleClass}}{{/if}}\n    \">\n      <slot name=\"title\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-title-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  {{#if hasSlot('subTitle')}}\n    <div class=\"bell-card-sub-title\n      {{#if subTitleClass}} {{subTitleClass}}{{/if}}\n    \">\n      <slot name=\"subTitle\" />\n    </div>\n  {{/if}}\n\n</div>";
+var template$h = "<div \nclass=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    <div class=\"bell-card-header-title\">\n      <slot name=\"title\" />\n      <slot name=\"children\" />\n    </div>\n    \n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n  </div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  <slot name=\"children\" />\n\n</div>";
 
-var CardTitle = {
+var CardHeader = {
 
   propTypes: {
-    titleClass: {
-      type: 'string'
-    },
-    subTitleClass: {
-      type: 'string'
-    },
     className: {
       type: 'string'
     },
@@ -4533,11 +4455,34 @@ var CardTitle = {
       type: 'string'
     },
   },
+
   template: template$h
 
 };
 
-var template$i = "<div class=\"bell-card-body\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$i = "<div \nclass=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
+
+var CardMedia = {
+
+  propTypes: {
+    title: {
+      type: 'string'
+    },
+    subTitle: {
+      type: 'string'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
+    }
+  },
+
+  template: template$i
+};
+
+var template$j = "<div \nclass=\"bell-card-body\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var CardBody = {
   propTypes: {
@@ -4548,10 +4493,10 @@ var CardBody = {
       type: 'string'
     }
   },
-  template: template$i
+  template: template$j
 };
 
-var template$j = "<div class=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$k = "<div \nclass=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var CardActions = {
   
@@ -4564,7 +4509,7 @@ var CardActions = {
     }
   },
 
-  template: template$j
+  template: template$k
 
 };
 
@@ -6848,7 +6793,6 @@ Yox.component({
   Card: Card,
   CardHeader: CardHeader,
   CardMedia: CardMedia,
-  CardTitle: CardTitle,
   CardBody: CardBody,
   CardActions: CardActions,
 

@@ -169,6 +169,7 @@
 
     export default {
         isViewFullBlock: true,
+        height: 400,
         template: `
             <div class="bell-template" style="width: 200px;">
                 <Button type="primary" on-click="toggle('isCollapsed')">

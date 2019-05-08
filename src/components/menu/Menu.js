@@ -53,7 +53,7 @@ export default {
 
   events: {
     menuItemSelected(event, data) {
-      if (event.phase > 0) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'menuItemSelected',
           data,

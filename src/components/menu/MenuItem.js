@@ -32,17 +32,17 @@ export default {
 
   events: {
     menuItemSelected(event, data) {
-      if (event.phase < 0) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('name'))
       }
     },
-    isCollapsedChanged(event, data) {
+    isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed)
     }
   },
 
   methods: {
-    clickMenuItem() {
+    click() {
       this.fire('menuItemSelected', {
         name: this.get('name')
       })

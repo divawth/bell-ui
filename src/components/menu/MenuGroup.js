@@ -24,7 +24,7 @@ export default {
   },
 
   events: {
-    themeChanged(event, data) {
+    themeChanged(_, data) {
       this.set('theme', data.theme)
     }
   },

@@ -6,10 +6,14 @@
   line-height 1.2
   color $card-font-color
   margin $card-margin
-  border 1px solid $card-border-color
+  border 1px solid transparent
 
-  &{$selector-hover}
-    box-shadow 0 1px 4px rgba(0,0,0,0.1)
+  &{$selector-card}-hover
+    &{$selector-hover}
+      box-shadow 0 1px 4px rgba(0,0,0,0.1)
+  
+  &{$selector-card}-bordered
+    border-color $card-border-color
 
 {$selector-card-header}
 

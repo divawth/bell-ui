@@ -1,5 +1,5 @@
 import template from './template/Submenu.html'
-import { findComponentUpward, contains } from '../util'
+import { findComponentUpward } from '../util'
 
 export default {
   propTypes: {
@@ -28,40 +28,22 @@ export default {
   },
 
   events: {
-    themeChanged(event, data) {
+    themeChanged(_, data) {
       this.set('theme', data.theme)
     },
-    isCollapsedChanged(event, data) {
+    isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed)
     },
     menuItemSelected(event, data) {
-      if (event.phase < 0) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('activeName'))
       }
-      if (event.phase > 0) {
+      else if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set('activeName', data.name)
         if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
           this.toggle('isOpen')
         }
       }
-    }
-  },
-
-  methods: {
-    clickMenuItem() {
-      this.toggle('isOpen')
-    },
-    mouseenter() {
-      if (!this.get('isCollapsed')) {
-        return
-      }
-      this.set('isOpen', true)
-    },
-    mouseleave() {
-      if (!this.get('isCollapsed')) {
-        return
-      }
-      this.set('isOpen', false)
     }
   },
    

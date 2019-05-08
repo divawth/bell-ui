@@ -6811,12 +6811,15 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1.2;
   color: #495060;
   margin: 15px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid transparent;
 }
-.bell-card.bell-card.hover,
-.bell-card:hover,
-.bell-card.bell-hover {
+.bell-card.bell-card-hover.bell-card.bell-card-hover.hover,
+.bell-card.bell-card-hover:hover,
+.bell-card.bell-card-hover.bell-hover {
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.bell-card.bell-card-bordered {
+  border-color: #e8e8e8;
 }
 .bell-card-header {
   padding: 10px 15px;
@@ -7179,14 +7182,17 @@ button.bell-button-danger-ghost[disabled] {
 }
 .bell-collapse {
   overflow: hidden;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  border: 1px solid #dcdee2;
 }
-.bell-panel {
-  border-top: 1px solid #eee;
+.bell-collapse-item {
+  border-bottom: 1px solid #dcdee2;
 }
-.bell-panel:last-child {
-  border-bottom: 1px solid #eee;
+.bell-collapse-item:last-child {
+  border-bottom: none;
 }
-.bell-panel .bell-panel-el {
+.bell-collapse-item .bell-collapse-header {
   width: 100%;
   cursor: pointer;
   user-select: none;
@@ -7194,27 +7200,25 @@ button.bell-button-danger-ghost[disabled] {
   padding: 8px 15px;
   font-size: 14px;
 }
-.bell-panel .bell-panel-el .bell-panel-el-icon {
+.bell-collapse-item .bell-collapse-header .bell-collapse-header-icon {
   margin-right: 10px;
   transition: transform 0.2s linear;
   transform-origin: center;
   font-size: 18px;
   transform: rotate(-90deg);
 }
-.bell-panel .bell-panel-inner {
+.bell-collapse-item .bell-collapse-content {
   display: none;
   transition: height 0.1s linear;
   overflow: hidden;
-  padding: 10px;
-  font-size: 13px;
-}
-.bell-panel .bell-panel-inner .bell-panel-content {
   padding: 15px;
+  font-size: 13px;
+  background-color: #fff;
 }
-.bell-panel .bell-panel-el-open > .bell-panel-el-icon {
+.bell-collapse-item .bell-collapse-item-open > .bell-collapse-header-icon {
   transform: rotate(0);
 }
-.bell-panel.bell-panel-open > .bell-panel-inner {
+.bell-collapse-item.bell-collapse-item-open > .bell-collapse-content {
   display: block;
 }
 .bell-tooltip {

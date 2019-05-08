@@ -1,12 +1,12 @@
-<div class="${prefix}row
-  {{#if className}} {{className}}{{/if}}
+<div 
+class="${prefix}row
   {{#if gutter}} ${prefix}row-gutter{{/if}}
   {{#if type}} ${prefix}row-{{type}}{{/if}}
   {{#if justify}} ${prefix}row-justify-{{justify}}{{/if}}
   {{#if align}} ${prefix}row-align-{{align}}{{/if}}
-" style="{{style}}"
+  {{#if className}} {{className}}{{/if}}
+" 
+style="{{style}}"
 >
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
+  <slot name="children" />
 </div>

@@ -13,7 +13,7 @@ export default {
   template,
 
   events: {
-    hasSider(event) {
+    hasSider(_) {
       this.set({
         hasSider: true
       })

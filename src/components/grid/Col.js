@@ -40,7 +40,6 @@ export default {
   template,
 
   data () {
-    let me = this;
     return {
       style: '',
       gutter: ''
@@ -48,81 +47,75 @@ export default {
   },
 
   events: {
-    updateGridGutter(event, data) {
+    gridGutterChanged(_, data) {
       this.set({
         gutter: data.gutter
-      });
+      })
     }
   },
 
   computed: {
     xsClass() {
-      let me = this;
-      let data = me.get('xs');
+      let data = this.get('xs')
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('xs', data);
+      return this.getClass('xs', data)
     },
     smClass() {
-      let me = this;
-      let data = me.get('sm');
+      let data = this.get('sm')
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('sm', data);
+      return this.getClass('sm', data)
     },
     mdClass() {
-      let me = this;
-      let data = me.get('md');
+      let data = this.get('md')
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('md', data);
+      return this.getClass('md', data)
     },
     lgClass() {
-      let me = this;
-      let data = me.get('lg');
+      let data = this.get('lg')
       if (!data) {
-        return;
+        return
       }
-      return me.getClass('lg', data);
+      return this.getClass('lg', data)
     },
     style() {
-      let me = this;
-      let gap = me.get('gutter') / 2;
-      let style = '';
-      style = 'padding-left:' + gap + 'px;padding-right: ' + gap + 'px;';
-      return style;
+      let gap = this.get('gutter') / 2
+      let style = ''
+      style = 'padding-left:' + gap + 'pxpadding-right: ' + gap + 'px'
+      return style
     }
   },
 
   methods: {
     getClass(name, data) {
-      let me = this;
-      let classArr = [];
+      let classArr = []
       if (Yox.is.object(data)) {
         if (data.span) {
-          classArr.push(${prefix} + 'col-' + name + '-' + data.span);
+          classArr.push(${prefix} + 'col-' + name + '-' + data.span)
         }
         if (data.order) {
-          classArr.push(${prefix} + 'col-' + name + '-order-' + data.order);
+          classArr.push(${prefix} + 'col-' + name + '-order-' + data.order)
         }
         if (data.offset) {
-          classArr.push(${prefix} + 'col-' + name + '-offset-' + data.offset);
+          classArr.push(${prefix} + 'col-' + name + '-offset-' + data.offset)
         }
         if (data.push) {
-          classArr.push(${prefix} + 'col-' + name + '-push-' + data.push);
+          classArr.push(${prefix} + 'col-' + name + '-push-' + data.push)
         }
         if (data.pull) {
-          classArr.push(${prefix} + 'col-' + name + '-pull-' + data.pull);
+          classArr.push(${prefix} + 'col-' + name + '-pull-' + data.pull)
         }
       }
       else {
-        classArr.push(${prefix} + 'col-' + name + '-' + data);
+        classArr.push(${prefix} + 'col-' + name + '-' + data)
       }
 
-      return classArr.join(' ');
+      return classArr.join(' ')
     }
   }
-};
+}

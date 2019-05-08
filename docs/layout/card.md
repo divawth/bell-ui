@@ -74,61 +74,62 @@
       `
     }
 
+> bordered 设置成 false 
+
+    export default {
+      template: `
+        <div style="bell-template" style="background: #ccc; padding: 15px 0;">
+          <Card bordered="{{false}}" style="width: 300px;">
+            <CardHeader>
+              <template slot="title">
+                Card title
+              </template>
+              <template slot="extra">
+                <a>More</a>
+              </template>
+            </CardHeader>
+            
+            <CardBody>
+              <p>Card content</p>
+              <p>Card content</p>
+              <p>Card content</p>
+            </CardBody>
+          </Card>
+        </div>
+      `
+    }
+  
+> disHover 设置成 false 
+
+    export default {
+      template: `
+        <Row>
+          <Card disHover="{{false}}" style="width: 300px;">
+            <CardHeader>
+              <template slot="title">
+                Card title
+              </template>
+              <template slot="extra">
+                <a>More</a>
+              </template>
+            </CardHeader>
+            
+            <CardBody>
+              <p>Card content</p>
+              <p>Card content</p>
+              <p>Card content</p>
+            </CardBody>
+          </Card>
+        </Row>
+      `
+    }
+
 #### API
 
-> CardHeader Props
+> Card Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-titleClass | 标题样式 | string | - | -
-subTitleClass | 副标题样式 | string | - | -
+bordered | 是否有边框 | boolean | - | true
+disHover | 通过设置 disHover 来禁用鼠标悬停显示阴影效果 | boolean | - | true
 
-> slot
-
-名称 | 说明
----|---
-title | 用于放置标题文字
-subTitle | 用于放置副标题文字
-avatar | 用于放置 Avatar 组件
-
-### CardMedia
-
-> Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-titleClass | 标题样式 | string | - | -
-subTitleClass | 副标题样式 | string | - | -
-
-> slot
-
-名称 | 说明
----|---
-title | 用于放置标题文字
-subTitle | 用于放置副标题文字
-
-### CardHeader
-
-> Attributes
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
-titleClass | 标题样式 | string | - | -
-subTitleClass | 副标题样式 | string | - | -
-
-### CardBody
-
-> slot
-
-名称 | 说明
----|---
-title | 用于放置标题文字
-subTitle | 用于放置副标题文字
-
-### CardActions
-
-> children
-
-名称 | 说明
----|---
-default | 用于放置按钮

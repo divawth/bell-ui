@@ -23,10 +23,10 @@ export default {
 
   events: {
     hasSider(event) {
-      if (event.phase === 0) {
+      if (event.phase === Yox.Event.PHASE_CURRENT) {
         return
       }
-      if (event.phase > 0) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set({
           hasSider: true
         })
@@ -35,6 +35,7 @@ export default {
           true
         )
       }
+      // 阻止嵌套模式下 上层 layout 发下来的 hasSider 事件
       event.stop()
     }
   }

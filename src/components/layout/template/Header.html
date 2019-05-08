@@ -1,24 +1,28 @@
-<div class="${prefix}layout-header 
-{{#if className}} {{className}}{{/if}}"
+<div 
+class="${prefix}layout-header 
+  {{#if className}} {{className}}{{/if}}
+"
 {{#if style}} style="{{style}}"{{/if}}
 >
-{{#if hasSlot('left')}}
-  <div class="${prefix}layout-header-left">
-    <slot name="left" />
-  </div>
-{{/if}}
 
-{{#if hasSlot('center')}}
-  <div class="${prefix}layout-header-center">
-    <slot name="center" />
-  </div>
-{{/if}}
+  {{#if hasSlot('left')}}
+    <div class="${prefix}layout-header-left">
+      <slot name="left" />
+    </div>
+  {{/if}}
 
-<slot name="children" />
+  {{#if hasSlot('center')}}
+    <div class="${prefix}layout-header-center">
+      <slot name="center" />
+    </div>
+  {{/if}}
 
-{{#if hasSlot('right')}}
-  <div class="${prefix}layout-header-right">
-    <slot name="right" />
-  </div>
-{{/if}}
+  <slot name="children" />
+
+  {{#if hasSlot('right')}}
+    <div class="${prefix}layout-header-right">
+      <slot name="right" />
+    </div>
+  {{/if}}
+  
 </div>

@@ -13,7 +13,7 @@ export default {
       type: 'string'
     },
     spin: {
-      type: 'Boolean',
+      type: 'boolean',
       value: false
     },
     className: {
