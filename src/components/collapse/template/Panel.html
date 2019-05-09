@@ -7,15 +7,13 @@ class="${prefix}collapse-item
 >
 
   <div class="${prefix}collapse-header" on-click="click()">
-
     <slot name="icon">
       <Icon type="arrow-down" className="${prefix}collapse-item-header-icon" />
     </slot>
     {{title}}
-  
   </div>
 
-  <div ref="panelInner" class="${prefix}collapse-content">
+  <div ref="panelContent" class="${prefix}collapse-content">
     <slot name="children" />
   </div>
 </div>

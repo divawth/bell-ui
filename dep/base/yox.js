@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.22
+ * yox.js v1.0.0-alpha.25
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -31,7 +31,6 @@
     var RAW_DIRECTIVE = 'directive';
     var RAW_TRANSITION = 'transition';
     var RAW_THIS = 'this';
-    var RAW_TYPE = 'type';
     var RAW_VALUE = 'value';
     var RAW_LENGTH = 'length';
     var RAW_FUNCTION = 'function';
@@ -925,7 +924,11 @@
     /**
      * 当前是否是源码调试，如果开启了代码压缩，empty function 里的注释会被干掉
      */
-    useSource = /yox/.test(toString(EMPTY_FUNCTION));
+    useSource = /yox/.test(toString(EMPTY_FUNCTION)), 
+    /**
+     * console 样式前缀
+     */
+    stylePrefix = '%c';
     /**
      * 全局调试开关
      *
@@ -934,41 +937,64 @@
      */
     function isDebug() {
         if (WINDOW) {
-            var debug = WINDOW['DEBUG'];
-            if (boolean(debug)) {
-                return debug;
+            var debug_1 = WINDOW['DEBUG'];
+            if (boolean(debug_1)) {
+                return debug_1;
             }
         }
         return useSource;
     }
+    function getStyle(backgroundColor) {
+        return "background-color:" + backgroundColor + ";color:#fff;padding:4px 8px;border-radius:20px;";
+    }
     /**
-     * 打印普通日志
+     * 打印 debug 日志
      *
      * @param msg
      */
-    function log(msg) {
+    function debug(msg, tag) {
         if (nativeConsole && isDebug()) {
-            nativeConsole.log("[Yox log]: " + msg);
+            nativeConsole.log(stylePrefix + (tag || 'Yox debug'), getStyle('#888'), msg);
         }
     }
     /**
-     * 打印警告日志
+     * 打印 info 日志
      *
      * @param msg
      */
-    function warn(msg) {
+    function info(msg, tag) {
         if (nativeConsole && isDebug()) {
-            nativeConsole.warn("[Yox warn]: " + msg);
+            nativeConsole.log(stylePrefix + (tag || 'Yox info'), getStyle('#2db7f5'), msg);
         }
     }
     /**
-     * 打印错误日志
+     * 打印 success 日志
      *
      * @param msg
      */
-    function error(msg) {
+    function success(msg, tag) {
+        if (nativeConsole && isDebug()) {
+            nativeConsole.log(stylePrefix + (tag || 'Yox success'), getStyle('#19be6b'), msg);
+        }
+    }
+    /**
+     * 打印 warn 日志
+     *
+     * @param msg
+     */
+    function warn(msg, tag) {
+        if (nativeConsole && isDebug()) {
+            nativeConsole.warn(stylePrefix + (tag || 'Yox warn'), getStyle('#f90'), msg);
+        }
+    }
+    /**
+     * 打印 error 日志
+     *
+     * @param msg
+     */
+    function error(msg, tag) {
         if (nativeConsole) {
-            nativeConsole.error("[Yox error]: " + msg);
+            nativeConsole.error(stylePrefix + (tag || 'Yox error'), getStyle('#ed4014'), msg);
         }
     }
     /**
@@ -981,7 +1007,9 @@
     }
   
     var logger = /*#__PURE__*/Object.freeze({
-      log: log,
+      debug: debug,
+      info: info,
+      success: success,
       warn: warn,
       error: error,
       fatal: fatal
@@ -1054,31 +1082,6 @@
             return isComplete;
         };
         /**
-         * 是否已监听某个事件
-         *
-         * @param type
-         * @param listener
-         */
-        Emitter.prototype.has = function (type, listener) {
-            var instance = this, listeners = instance.listeners, _a = parseNamespace(instance.ns, type), name = _a.name, ns = _a.ns, result = TRUE, matchListener = createMatchListener(listener), each$1 = function (list) {
-                each(list, function (options) {
-                    if (matchListener(options) && matchNamespace(ns, options)) {
-                        return result = FALSE;
-                    }
-                });
-                return result;
-            };
-            if (name) {
-                if (listeners[name]) {
-                    each$1(listeners[name]);
-                }
-            }
-            else if (ns) {
-                each$2(listeners, each$1);
-            }
-            return !result;
-        };
-        /**
          * 注册监听
          *
          * @param type
@@ -1094,7 +1097,7 @@
                 push(listeners[name] || (listeners[name] = []), options);
             }
             else {
-                fatal("invoke emitter.on(type, listener) failed.");
+                fatal("Invoke emitter.on(type, listener) failed.");
             }
         };
         /**
@@ -1132,10 +1135,35 @@
                 // 但你不知道它是空值
                 {
                     if (arguments.length > 0) {
-                        warn("invoke emitter.off(type), but [type] is undefined or null.");
+                        warn("emitter.off(type) is invoked, but the \"type\" argument is undefined or null.");
                     }
                 }
             }
+        };
+        /**
+         * 是否已监听某个事件
+         *
+         * @param type
+         * @param listener
+         */
+        Emitter.prototype.has = function (type, listener) {
+            var instance = this, listeners = instance.listeners, _a = parseNamespace(instance.ns, type), name = _a.name, ns = _a.ns, result = TRUE, matchListener = createMatchListener(listener), each$1 = function (list) {
+                each(list, function (options) {
+                    if (matchListener(options) && matchNamespace(ns, options)) {
+                        return result = FALSE;
+                    }
+                });
+                return result;
+            };
+            if (name) {
+                if (listeners[name]) {
+                    each$1(listeners[name]);
+                }
+            }
+            else if (ns) {
+                each$2(listeners, each$1);
+            }
+            return !result;
         };
         return Emitter;
     }());
@@ -3468,7 +3496,7 @@
             // 因为 attrs 具有动态性，compiler 无法保证最终一定会输出 type 属性
             if (element.isStyle && falsy(element.attrs)) {
                 element.attrs = [
-                    createProperty(RAW_TYPE, HINT_STRING, 'text/css')
+                    createProperty('type', HINT_STRING, 'text/css')
                 ];
             }
         }, bindSpecialAttr = function (element, attr) {
@@ -4355,14 +4383,14 @@
     nodeStringify[DIRECTIVE] = function (node) {
         var ns = node.ns, name = node.name, key = node.key, value = node.value, expr = node.expr;
         if (ns === DIRECTIVE_LAZY) {
-            return stringifyCall(RENDER_LAZY_VNODE, join(trimArgs([toJSON(name), toJSON(value)]), SEP_COMMA));
+            return stringifyCall(RENDER_LAZY_VNODE, join([toJSON(name), toJSON(value)], SEP_COMMA));
         }
         if (ns === RAW_TRANSITION) {
-            return stringifyCall(RENDER_TRANSITION_VNODE, join(trimArgs([toJSON(value)]), SEP_COMMA));
+            return stringifyCall(RENDER_TRANSITION_VNODE, toJSON(value));
         }
         // <input model="id">
         if (ns === DIRECTIVE_MODEL) {
-            return stringifyCall(RENDER_MODEL_VNODE, join(trimArgs([toJSON(expr)]), SEP_COMMA));
+            return stringifyCall(RENDER_MODEL_VNODE, toJSON(expr));
         }
         var renderName = RENDER_DIRECTIVE_VNODE, args = [
             toJSON(ns),
@@ -5761,7 +5789,15 @@
                 node[EMITTER] = UNDEFINED;
             }
         },
-        specialEvents: specialEvents
+        addSpecialEvent: function (type, hooks) {
+            {
+                if (specialEvents[type]) {
+                    error("Special event \"" + type + "\" is existed.");
+                }
+                success("Special event \"" + type + "\" add success.");
+            }
+            specialEvents[type] = hooks;
+        }
     };
     specialEvents[EVENT_MODEL] = {
         on: function (node, listener) {
@@ -6715,7 +6751,7 @@
         /**
          * core 版本
          */
-        Yox.version = "1.0.0-alpha.22";
+        Yox.version = "1.0.0-alpha.25";
         /**
          * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
          */

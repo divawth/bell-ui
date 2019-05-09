@@ -4282,7 +4282,7 @@ var Collapse = {
 
 };
 
-var template$f = "<div \nclass=\"bell-collapse-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\n    {{#if isOpen}} bell-collapse-item-open{{/if}}\n  \" on-click=\"click()\">\n\n    <slot name=\"icon\">\n      <Icon type=\"arrow-down\" className=\"bell-collapse-item-header-icon\" />\n    </slot>\n    {{title}}\n  \n  </div>\n\n  <div ref=\"panelInner\" class=\"bell-collapse-content\">\n    <slot name=\"children\" />\n  </div>\n</div>";
+var template$f = "<div \nclass=\"bell-collapse-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\" on-click=\"click()\">\n    <slot name=\"icon\">\n      <Icon type=\"arrow-down\" className=\"bell-collapse-item-header-icon\" />\n    </slot>\n    {{title}}\n  </div>\n\n  <div ref=\"panelContent\" class=\"bell-collapse-content\">\n    <slot name=\"children\" />\n  </div>\n</div>";
 
 var closeTimer, initTimer, openTimer;
 
@@ -4308,29 +4308,28 @@ var Panel = {
   data: function data() {
     return {
       isOpen: false,
-      arrowOpen: false,
       accordion: false,
     }
   },
 
-  events: {
-    panelAccordion: function panelAccordion(event, data) {
-      var accordion = data.accordion;
-      this.set({
-        accordion: accordion
-      });
-    },
+  // events: {
+  //   panelAccordion(event, data) {
+  //     var accordion = data.accordion;
+  //     this.set({
+  //       accordion
+  //     });
+  //   },
 
-    panelActiveName: function panelActiveName(event, data) {
-      var me = this;
-      if (data.name === me.get('name')) {
-        me.toggleStatus(true);
-      }
-      else if (me.get('accordion')) {
-        me.toggleStatus(false);
-      }
-    }
-  },
+  //   panelActiveName(event, data) {
+  //     let me = this;
+  //     if (data.name === me.get('name')) {
+  //       me.toggleStatus(true);
+  //     }
+  //     else if (me.get('accordion')) {
+  //       me.toggleStatus(false);
+  //     }
+  //   }
+  // },
 
   methods: {
 
@@ -4338,78 +4337,78 @@ var Panel = {
       this.toggle('isOpen');
     },
 
-    toggleStatus: function toggleStatus(isOpen) {
-      var me = this;
-      var arrowOpen = me.get('arrowOpen');
-      if (isOpen == arrowOpen) {
-        return;
-      }
-      if (isOpen) {
-        me.open();
+    // toggleStatus(isOpen) {
+    //   let me = this;
+    //   let arrowOpen = me.get('arrowOpen');
+    //   if (isOpen == arrowOpen) {
+    //     return;
+    //   }
+    //   if (isOpen) {
+    //     me.open();
 
-        if (me.get('accordion')) {
-          me.fire(
-            'panelOpen',
-            {
-              name: me.get('name')
-            }
-          );
-        }
-      }
-      else {
-        me.close();
-      }
+    //     if (me.get('accordion')) {
+    //       me.fire(
+    //         'panelOpen',
+    //         {
+    //           name: me.get('name')
+    //         }
+    //       );
+    //     }
+    //   }
+    //   else {
+    //     me.close();
+    //   }
 
-      me.set({
-        arrowOpen: isOpen
-      });
-    },
+    //   me.set({
+    //     arrowOpen: isOpen
+    //   });
+    // },
 
-    close: function close() {
-      var me = this;
-      var innerElement = me.$refs.panelInner;
-      innerElement.style.height = innerElement.clientHeight + 'px';
+    // close() {
+    //   let me = this;
+    //   let innerElement = me.$refs.panelInner;
+    //   innerElement.style.height = innerElement.clientHeight + 'px';
 
-      closeTimer = setTimeout(
-        function () {
-          innerElement.style.height = 0;
-          initTimer = setTimeout(
-            function () {
-              me.set({
-                isOpen: false
-              });
-              innerElement.style.height = '';
-            },
-            100
-          );
-        }
-      );
-    },
+    //   closeTimer = setTimeout(
+    //     () => {
+    //       innerElement.style.height = 0;
+    //       initTimer = setTimeout(
+    //         () => {
+    //           me.set({
+    //             isOpen: false
+    //           });
+    //           innerElement.style.height = '';
+    //         },
+    //         100
+    //       );
+    //     }
+    //   );
+    // },
 
-    open: function open() {
-      var me = this;
-      var innerElement = me.$refs.panelInner;
-      me.set({
-        isOpen: true
-      });
+    // open() {
+    //   let me = this;
+    //   let innerElement = me.$refs.panelInner;
+    //   me.set({
+    //     isOpen: true
+    //   });
 
-      Yox.nextTick(function () {
-        var height = innerElement.clientHeight;
-        innerElement.style.height = 0;
+    //   Yox.nextTick(() => {
+    //     let height = innerElement.clientHeight;
+    //     innerElement.style.height = 0;
 
-        openTimer = setTimeout(
-          function () {
-            innerElement.style.height = height + 'px';
-            initTimer = setTimeout(
-              function () {
-                innerElement.style.height = '';
-              },
-              100
-            );
-          }
-        );
-      });
-    }
+    //     openTimer = setTimeout(
+    //       () => {
+    //         innerElement.style.height = height + 'px';
+    //         initTimer = setTimeout(
+    //           () => {
+    //             innerElement.style.height = '';
+    //           },
+    //           100
+    //         );
+    //       }
+    //     );
+    //   });
+    // }
   },
   beforeDestroy: function beforeDestroy() {
     closeTimer = null;

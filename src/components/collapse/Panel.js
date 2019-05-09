@@ -1,4 +1,3 @@
-let closeTimer, initTimer, openTimer;
 import template from './template/Panel.html'
 
 export default {
@@ -81,7 +80,7 @@ export default {
 
     // close() {
     //   let me = this;
-    //   let innerElement = me.$refs.panelInner;
+    //   let innerElement = me.$refs.panelContent;
     //   innerElement.style.height = innerElement.clientHeight + 'px';
 
     //   closeTimer = setTimeout(
@@ -100,30 +99,30 @@ export default {
     //   );
     // },
 
-    // open() {
-    //   let me = this;
-    //   let innerElement = me.$refs.panelInner;
-    //   me.set({
-    //     isOpen: true
-    //   });
+    open() {
+      let me = this
+      let element = me.$refs.panelContent
+      me.set({
+        isOpen: true
+      })
 
-    //   Yox.nextTick(() => {
-    //     let height = innerElement.clientHeight;
-    //     innerElement.style.height = 0;
+      Yox.nextTick(() => {
+        let height = element.clientHeight
+        element.style.height = 0
 
-    //     openTimer = setTimeout(
-    //       () => {
-    //         innerElement.style.height = height + 'px';
-    //         initTimer = setTimeout(
-    //           () => {
-    //             innerElement.style.height = '';
-    //           },
-    //           100
-    //         );
-    //       }
-    //     );
-    //   });
-    // }
+        openTimer = setTimeout(
+          () => {
+            element.style.height = height + 'px'
+            initTimer = setTimeout(
+              () => {
+                element.style.height = ''
+              },
+              100
+            )
+          }
+        )
+      })
+    }
   },
   beforeDestroy() {
     let me = this;
