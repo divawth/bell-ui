@@ -9,8 +9,9 @@
   position relative
   color $layout-menu-default-color
   font-size $layout-menu-default-font-size
-  transition background .3s, width .2s
+  transition background .3s, width .2s, height .2s
   z-index $zindex-menu
+  user-select none
 
   {$selector-menu},
   {$selector-menu}-group
@@ -80,15 +81,18 @@
   padding $layout-menu-submenu-default-padding
   transition all .2s ease-in-out
 
-  {$selector-menu-submenu}-title-icon
-    float right
+  > {$selector-menu-submenu}-title
+    {$selector-menu-submenu}-title-icon
+      float right
+      &::before
+        transform rotate(0deg)
+        transition transform .2s
 
   &{$selector-menu}-open
     > {$selector-menu-submenu}-title
       {$selector-menu-submenu}-title-icon
         &::before
           transform rotate(-180deg)
-          transition transform .2s
 
 {$selector-menu}-inline
 

@@ -11,7 +11,7 @@ class="${prefix}submenu
   lazy-mouseleave="300"
 {{/if}}
 > 
-  <div class="${prefix}submenu-title" on-click="toggle('isOpen')">
+  <div class="${prefix}submenu-title" on-click="click()">
     <slot name="title" />
     <Icon className="${prefix}submenu-title-icon" type="arrow-down" />
   </div>
@@ -21,7 +21,7 @@ class="${prefix}submenu
       <slot name="children" />
     </div>
   {{else}}
-    <Menu mode="{{mode}}" theme="{{theme}}">
+    <Menu ref="menu" mode="{{mode}}" theme="{{theme}}">
       <slot name="children" />
     </Menu>
   {{/if}}

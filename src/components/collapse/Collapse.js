@@ -2,12 +2,19 @@ import template from './template/Collapse.html'
 
 export default {
 
+
+  name: '${prefix}collapse',
+
   propTypes: {
     activeName: {
       type: 'numeric'
     },
     accordion: {
       type: 'boolean'
+    },
+    bordered: {
+      type: 'boolean',
+      value: true
     },
     className: {
       type: 'string'
@@ -19,41 +26,28 @@ export default {
 
   template,
 
+  watchers: {
+    accordion(accordion) {
+      this.fire(
+        'accordionChanged',
+        { accordion },
+        true
+      )
+    }
+  },
+
   events: {
-    panelOpen(_, data) {
-      if (data.name) {
+    panelOpen(event, data) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
-          'panelActiveName',
+          'panelOpen',
           {
-            name: name
+            name: data.name,
+            isOpen: data.isOpen
           },
           true
         )
       }
-    }
-  },
-
-  afterMount() {
-    let me = this
-    let name = me.get('activeName')
-    let accordion = me.get('accordion')
-    if (name) {
-      me.fire(
-        'panelActiveName',
-        {
-          name: name
-        },
-        true
-      )
-    }
-    if (accordion) {
-      me.fire(
-        'panelAccordion',
-        {
-          accordion: true
-        },
-        true
-      )
     }
   }
 

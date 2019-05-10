@@ -634,7 +634,7 @@ var MenuGroup = {
   }
 };
 
-var template$8 = "<li \nclass=\"bell-submenu \n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-menu-open{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n{{#if isCollapsed}}\n  on-mouseenter=\"set('isOpen', true)\"\n  on-mouseleave=\"set('isOpen', false)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\n> \n  <div class=\"bell-submenu-title\" on-click=\"toggle('isOpen')\">\n    <slot name=\"title\" />\n    <Icon className=\"bell-submenu-title-icon\" type=\"arrow-down\" />\n  </div>\n\n  {{#if mode != 'inline'}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{else}}\n    <Menu mode=\"{{mode}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n</li>";
+var template$8 = "<li \nclass=\"bell-submenu \n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-menu-open{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n{{#if isCollapsed}}\n  on-mouseenter=\"set('isOpen', true)\"\n  on-mouseleave=\"set('isOpen', false)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\n> \n  <div class=\"bell-submenu-title\" on-click=\"click()\">\n    <slot name=\"title\" />\n    <Icon className=\"bell-submenu-title-icon\" type=\"arrow-down\" />\n  </div>\n\n  {{#if mode != 'inline'}}\n    <div class=\"bell-menu-dropdown\">\n      <slot name=\"children\" />\n    </div>\n  {{else}}\n    <Menu ref=\"menu\" mode=\"{{mode}}\" theme=\"{{theme}}\">\n      <slot name=\"children\" />\n    </Menu>\n  {{/if}}\n</li>";
 
 var Submenu = {
   propTypes: {
@@ -659,6 +659,56 @@ var Submenu = {
       mode: null,
       theme: null,
       isCollapsed: false
+    }
+  },
+
+  methods: {
+    click: function click () {
+      this.get('isOpen') ? this.close() : this.open();
+    },
+
+    close: function close() {
+      var me = this;
+      var element = me.$refs.menu.$el;
+      element.style.height = element.clientHeight + 'px';
+
+      me.closeTimer = setTimeout(
+        function () {
+          element.style.height = 0;
+          element.style.overflow = 'hidden';
+          me.initTimer = setTimeout(
+            function () {
+              element.style.height = '';
+              element.style.overflow = '';
+              me.set('isOpen', false);
+            },
+            100
+          );
+        }
+      );
+    },
+
+    open: function open() {
+      var me = this;
+      me.set('isOpen', true);
+
+      me.nextTick(function () {
+        var element = me.$refs.menu.$el;
+        var height = element.clientHeight;
+        element.style.height = 0;
+
+        me.openTimer = setTimeout(
+          function () {
+            element.style.height = height + 'px';
+            me.initTimer = setTimeout(
+              function () {
+                element.style.height = '';
+              },
+              100
+            );
+          }
+        );
+      });
     }
   },
 
@@ -4221,9 +4271,12 @@ var TooltipItem = {
   }
 };
 
-var template$e = "<div \nclass=\"bell-collapse\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$e = "<div \nclass=\"bell-collapse\n  {{#if bordered}} bell-collapse-bordered{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Collapse = {
+
+
+  name: 'bell-collapse',
 
   propTypes: {
     activeName: {
@@ -4231,6 +4284,10 @@ var Collapse = {
     },
     accordion: {
       type: 'boolean'
+    },
+    bordered: {
+      type: 'boolean',
+      value: true
     },
     className: {
       type: 'string'
@@ -4242,49 +4299,34 @@ var Collapse = {
 
   template: template$e,
 
+  watchers: {
+    accordion: function accordion(accordion$1) {
+      this.fire(
+        'accordionChanged',
+        { accordion: accordion$1 },
+        true
+      );
+    }
+  },
+
   events: {
-    panelOpen: function panelOpen(_, data) {
-      if (data.name) {
+    panelOpen: function panelOpen(event, data) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
-          'panelActiveName',
+          'panelOpen',
           {
-            name: name
+            name: data.name,
+            isOpen: data.isOpen
           },
           true
         );
       }
     }
-  },
-
-  afterMount: function afterMount() {
-    var me = this;
-    var name = me.get('activeName');
-    var accordion = me.get('accordion');
-    if (name) {
-      me.fire(
-        'panelActiveName',
-        {
-          name: name
-        },
-        true
-      );
-    }
-    if (accordion) {
-      me.fire(
-        'panelAccordion',
-        {
-          accordion: true
-        },
-        true
-      );
-    }
   }
 
 };
 
-var template$f = "<div \nclass=\"bell-collapse-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\" on-click=\"click()\">\n    <slot name=\"icon\">\n      <Icon type=\"arrow-down\" className=\"bell-collapse-item-header-icon\" />\n    </slot>\n    {{title}}\n  </div>\n\n  <div ref=\"panelContent\" class=\"bell-collapse-content\">\n    <slot name=\"children\" />\n  </div>\n</div>";
-
-var closeTimer, initTimer, openTimer;
+var template$f = "<div \nclass=\"bell-collapse-item\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\" on-click=\"click()\">\n    <slot name=\"icon\">\n      {{#if showIcon}}\n      <Icon \n        type=\"arrow-down\" \n        className=\"bell-collapse-header-icon\" \n      />\n      {{/if}}\n    </slot>\n    {{title}}\n\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-collapse-header-extra\">\n        <slot name=\"extra\"></slot>\n      </div>\n    {{/if}}\n  </div>\n\n  <div ref=\"panelContent\" class=\"bell-collapse-content\">\n    <div class=\"bell-collapse-content-box\">\n      <slot name=\"children\" />\n    </div>\n  </div>\n\n</div>";
 
 var Panel = {
 
@@ -4294,6 +4336,13 @@ var Panel = {
     },
     name: {
       type: 'numeric'
+    },
+    isActive: {
+      type: 'boolean'
+    },
+    showIcon: {
+      type: 'boolean',
+      value: true
     },
     className: {
       type: 'string'
@@ -4312,111 +4361,107 @@ var Panel = {
     }
   },
 
-  // events: {
-  //   panelAccordion(event, data) {
-  //     var accordion = data.accordion;
-  //     this.set({
-  //       accordion
-  //     });
-  //   },
+  events: {
+    accordionChanged: function accordionChanged(_, data) {
+      this.set('accordion', data.accordion);
+    },
 
-  //   panelActiveName(event, data) {
-  //     let me = this;
-  //     if (data.name === me.get('name')) {
-  //       me.toggleStatus(true);
-  //     }
-  //     else if (me.get('accordion')) {
-  //       me.toggleStatus(false);
-  //     }
-  //   }
-  // },
+    panelOpen: function panelOpen(event, data) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
+        var me = this;
+        if (data.name === me.get('name')) {
+          data.isOpen ? me.open() : me.close();
+        }
+        else if (me.get('accordion')) {
+          me.close();
+        }
+      }
+    }
+  },
 
   methods: {
 
     click: function click() {
-      this.toggle('isOpen');
+      this.fire(
+        'panelOpen',
+        {
+          name: this.get('name'),
+          isOpen: !this.get('isOpen')
+        }
+      );
     },
 
-    // toggleStatus(isOpen) {
-    //   let me = this;
-    //   let arrowOpen = me.get('arrowOpen');
-    //   if (isOpen == arrowOpen) {
-    //     return;
-    //   }
-    //   if (isOpen) {
-    //     me.open();
+    close: function close() {
+      var me = this;
+      var element = me.$refs.panelContent;
+      element.style.height = element.clientHeight + 'px';
 
-    //     if (me.get('accordion')) {
-    //       me.fire(
-    //         'panelOpen',
-    //         {
-    //           name: me.get('name')
-    //         }
-    //       );
-    //     }
-    //   }
-    //   else {
-    //     me.close();
-    //   }
+      me.closeTimer = setTimeout(
+        function () {
+          element.style.height = 0;
+          me.initTimer = setTimeout(
+            function () {
+              element.style.height = '';
+              me.set('isOpen', false);
+            },
+            100
+          );
+        }
+      );
+    },
 
-    //   me.set({
-    //     arrowOpen: isOpen
-    //   });
-    // },
+    open: function open() {
+      var me = this;
+      me.set('isOpen', true);
 
-    // close() {
-    //   let me = this;
-    //   let innerElement = me.$refs.panelInner;
-    //   innerElement.style.height = innerElement.clientHeight + 'px';
+      me.nextTick(function () {
+        var element = me.$refs.panelContent;
+        var height = element.clientHeight;
+        element.style.height = 0;
 
-    //   closeTimer = setTimeout(
-    //     () => {
-    //       innerElement.style.height = 0;
-    //       initTimer = setTimeout(
-    //         () => {
-    //           me.set({
-    //             isOpen: false
-    //           });
-    //           innerElement.style.height = '';
-    //         },
-    //         100
-    //       );
-    //     }
-    //   );
-    // },
-
-    // open() {
-    //   let me = this;
-    //   let innerElement = me.$refs.panelInner;
-    //   me.set({
-    //     isOpen: true
-    //   });
-
-    //   Yox.nextTick(() => {
-    //     let height = innerElement.clientHeight;
-    //     innerElement.style.height = 0;
-
-    //     openTimer = setTimeout(
-    //       () => {
-    //         innerElement.style.height = height + 'px';
-    //         initTimer = setTimeout(
-    //           () => {
-    //             innerElement.style.height = '';
-    //           },
-    //           100
-    //         );
-    //       }
-    //     );
-    //   });
-    // }
+        me.openTimer = setTimeout(
+          function () {
+            element.style.height = height + 'px';
+            me.initTimer = setTimeout(
+              function () {
+                element.style.height = '';
+              },
+              100
+            );
+          }
+        );
+      });
+    }
   },
+
+  afterMount: function afterMount () {
+    var collapse = findComponentUpward(this, 'bell-collapse');
+    this.set('accordion', collapse.get('accordion'));
+    this.watch(
+      'isActive',
+      {
+        watcher: function watcher(isActive) {
+          if (isActive == null) {
+            return
+          }
+          this.fire(
+            'panelOpen',
+            {
+              name: this.get('name'),
+              isOpen: isActive 
+            }
+          );
+        },
+        immediate: true
+      }
+    );
+  },
+
   beforeDestroy: function beforeDestroy() {
-    closeTimer = null;
-    initTimer = null;
-    openTimer = null;
-    clearTimeout(closeTimer);
-    clearTimeout(initTimer);
-    clearTimeout(openTimer);
+    var me = this;
+    clearTimeout(me.closeTimer);
+    clearTimeout(me.initTimer);
+    clearTimeout(me.openTimer);
   }
 };
 
@@ -4570,18 +4615,33 @@ var Item = {
   }
 };
 
-var DividerTpl = "<li class=\"bell-list-divider\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n</li>";
+var template$l = "<div \nclass=\"bell-divider bell-divider-{{type}} bell-divider-{{orientation}}\n{{#if dashed}} bell-divider-dashed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n</div>";
 
 var Divider = {
-  template: DividerTpl,
   propTypes: {
+    type: {
+      type: 'string',
+      value: 'horizontal'
+    },
+    dashed: {
+      type: 'boolean',
+      value: false
+    },
+    orientation: {
+      type: 'string',
+      value: 'center'
+    },
+    text: {
+      type: 'string'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
     }
-  }
+  },
+  template: template$l
 };
 
 var CircleTpl = "<div class=\"bell-circle\n    {{#if className}} {{className}}{{/if}}\n\"\n  style=\"width: {{size}}px;\n    height: {{size}}px;\n    {{#if style}} {{style}}{{/if}}\n  \"\n>\n  <svg viewBox=\"0 0 100 100\">\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke=\"{{trailColor}}\"\n      stroke-width=\"{{trailWidth}}\"\n      fill-opacity=\"0\"\n    />\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke-linecap=\"{{strokeLinecap}}\"\n      stroke=\"{{strokeColor}}\"\n      stroke-width=\"{{strokeWidth}}\"\n      fill-opacity=\"0\"\n      style=\"\n          stroke-dasharray: {{strokeDasharray}};\n          stroke-dashoffset: {{strokeDashoffset}};\n          transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease\n      \"\n    />\n  </svg>\n  <div class=\"bell-circle-inner\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";

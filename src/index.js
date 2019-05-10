@@ -64,7 +64,7 @@ import CardActions from './components/card/CardActions'
 
 import List from './components/list/List'
 import Item from './components/list/Item'
-import Divider from './components/list/Divider'
+import Divider from './components/divider/Divider'
 
 import Circle from './components/circle/Circle'
 import Progress from './components/progress/Progress'

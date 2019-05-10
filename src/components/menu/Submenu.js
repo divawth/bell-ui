@@ -27,6 +27,56 @@ export default {
     }
   },
 
+  methods: {
+    click () {
+      this.get('isOpen') ? this.close() : this.open()
+    },
+
+    close() {
+      let me = this
+      let element = me.$refs.menu.$el
+      element.style.height = element.clientHeight + 'px'
+
+      me.closeTimer = setTimeout(
+        () => {
+          element.style.height = 0
+          element.style.overflow = 'hidden'
+          me.initTimer = setTimeout(
+            () => {
+              element.style.height = ''
+              element.style.overflow = ''
+              me.set('isOpen', false)
+            },
+            100
+          )
+        }
+      )
+    },
+
+    open() {
+      let me = this
+      me.set('isOpen', true)
+
+      me.nextTick(() => {
+        let element = me.$refs.menu.$el
+        let height = element.clientHeight
+        element.style.height = 0
+
+        me.openTimer = setTimeout(
+          () => {
+            element.style.height = height + 'px'
+            me.initTimer = setTimeout(
+              () => {
+                element.style.height = ''
+              },
+              100
+            )
+          }
+        )
+      })
+    }
+  },
+
   events: {
     themeChanged(_, data) {
       this.set('theme', data.theme)

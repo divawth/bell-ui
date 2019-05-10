@@ -1,4 +1,5 @@
 import template from './template/Panel.html'
+import { findComponentUpward } from '../util'
 
 export default {
 
@@ -8,6 +9,13 @@ export default {
     },
     name: {
       type: 'numeric'
+    },
+    isActive: {
+      type: 'boolean'
+    },
+    showIcon: {
+      type: 'boolean',
+      value: true
     },
     className: {
       type: 'string'
@@ -26,94 +34,68 @@ export default {
     }
   },
 
-  // events: {
-  //   panelAccordion(event, data) {
-  //     var accordion = data.accordion;
-  //     this.set({
-  //       accordion
-  //     });
-  //   },
+  events: {
+    accordionChanged(_, data) {
+      this.set('accordion', data.accordion)
+    },
 
-  //   panelActiveName(event, data) {
-  //     let me = this;
-  //     if (data.name === me.get('name')) {
-  //       me.toggleStatus(true);
-  //     }
-  //     else if (me.get('accordion')) {
-  //       me.toggleStatus(false);
-  //     }
-  //   }
-  // },
+    panelOpen(event, data) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
+        let me = this
+        if (data.name === me.get('name')) {
+          data.isOpen ? me.open() : me.close()
+        }
+        else if (me.get('accordion')) {
+          me.close()
+        }
+      }
+    }
+  },
 
   methods: {
 
     click() {
-      this.toggle('isOpen');
+      this.fire(
+        'panelOpen',
+        {
+          name: this.get('name'),
+          isOpen: !this.get('isOpen')
+        }
+      )
     },
 
-    // toggleStatus(isOpen) {
-    //   let me = this;
-    //   let arrowOpen = me.get('arrowOpen');
-    //   if (isOpen == arrowOpen) {
-    //     return;
-    //   }
-    //   if (isOpen) {
-    //     me.open();
+    close() {
+      let me = this
+      let element = me.$refs.panelContent
+      element.style.height = element.clientHeight + 'px'
 
-    //     if (me.get('accordion')) {
-    //       me.fire(
-    //         'panelOpen',
-    //         {
-    //           name: me.get('name')
-    //         }
-    //       );
-    //     }
-    //   }
-    //   else {
-    //     me.close();
-    //   }
-
-    //   me.set({
-    //     arrowOpen: isOpen
-    //   });
-    // },
-
-    // close() {
-    //   let me = this;
-    //   let innerElement = me.$refs.panelContent;
-    //   innerElement.style.height = innerElement.clientHeight + 'px';
-
-    //   closeTimer = setTimeout(
-    //     () => {
-    //       innerElement.style.height = 0;
-    //       initTimer = setTimeout(
-    //         () => {
-    //           me.set({
-    //             isOpen: false
-    //           });
-    //           innerElement.style.height = '';
-    //         },
-    //         100
-    //       );
-    //     }
-    //   );
-    // },
+      me.closeTimer = setTimeout(
+        () => {
+          element.style.height = 0
+          me.initTimer = setTimeout(
+            () => {
+              element.style.height = ''
+              me.set('isOpen', false)
+            },
+            100
+          )
+        }
+      )
+    },
 
     open() {
       let me = this
-      let element = me.$refs.panelContent
-      me.set({
-        isOpen: true
-      })
+      me.set('isOpen', true)
 
-      Yox.nextTick(() => {
+      me.nextTick(() => {
+        let element = me.$refs.panelContent
         let height = element.clientHeight
         element.style.height = 0
 
-        openTimer = setTimeout(
+        me.openTimer = setTimeout(
           () => {
             element.style.height = height + 'px'
-            initTimer = setTimeout(
+            me.initTimer = setTimeout(
               () => {
                 element.style.height = ''
               },
@@ -124,13 +106,34 @@ export default {
       })
     }
   },
+
+  afterMount () {
+    let collapse = findComponentUpward(this, '${prefix}collapse')
+    this.set('accordion', collapse.get('accordion'))
+    this.watch(
+      'isActive',
+      {
+        watcher(isActive) {
+          if (isActive == null) {
+            return
+          }
+          this.fire(
+            'panelOpen',
+            {
+              name: this.get('name'),
+              isOpen: isActive 
+            }
+          )
+        },
+        immediate: true
+      }
+    )
+  },
+
   beforeDestroy() {
-    let me = this;
-    closeTimer = null;
-    initTimer = null;
-    openTimer = null;
-    clearTimeout(closeTimer);
-    clearTimeout(initTimer);
-    clearTimeout(openTimer);
+    let me = this
+    clearTimeout(me.closeTimer)
+    clearTimeout(me.initTimer)
+    clearTimeout(me.openTimer)
   }
-};
+}

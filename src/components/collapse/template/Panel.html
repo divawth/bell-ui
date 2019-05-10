@@ -1,19 +1,33 @@
 <div 
 class="${prefix}collapse-item
-  {{#if className}} {{className}}{{/if}}
   {{#if isOpen}} ${prefix}collapse-item-open{{/if}}
+  {{#if className}} {{className}}{{/if}}
 "
 {{#if style}} {{style}}{{/if}}
 >
 
   <div class="${prefix}collapse-header" on-click="click()">
     <slot name="icon">
-      <Icon type="arrow-down" className="${prefix}collapse-item-header-icon" />
+      {{#if showIcon}}
+      <Icon 
+        type="arrow-down" 
+        className="${prefix}collapse-header-icon" 
+      />
+      {{/if}}
     </slot>
     {{title}}
+
+    {{#if hasSlot('extra')}}
+      <div class="${prefix}collapse-header-extra">
+        <slot name="extra"></slot>
+      </div>
+    {{/if}}
   </div>
 
   <div ref="panelContent" class="${prefix}collapse-content">
-    <slot name="children" />
+    <div class="${prefix}collapse-content-box">
+      <slot name="children" />
+    </div>
   </div>
+
 </div>

@@ -1,51 +1,59 @@
 {$selector-collapse}
 
     overflow hidden
-    background-color $collapse-background-color
     border-radius $collapse-border-radius
-    border 1px solid $collapse-border-color
 
-{$selector-panel}
+    &{$selector-collapse}-bordered
+        background-color $collapse-background-color
+        border 1px solid $collapse-border-color
 
-    border-bottom 1px solid $collapse-panel-border-color
+        {$selector-panel}
+            &:last-child
+                border-bottom none
 
-    &:last-child
-        border-bottom none
+    {$selector-panel}
 
-    {$selector-panel-header}
-        width 100%
-        cursor pointer
-        user-select none
-        font-weight bold
+        border-bottom 1px solid $collapse-panel-border-color
 
-        padding $collapse-panel-el-padding
-        font-size $collapse-panel-el-font-size
+        {$selector-panel-header}
+            width 100%
+            cursor pointer
+            user-select none
+            font-weight bold
 
-        {$selector-panel-header}-icon
+            padding $collapse-panel-el-padding
+            font-size $collapse-panel-el-font-size
 
-            margin-right $collapse-panel-el-icon-margin-right
-            transition transform 0.2s linear
-            transform-origin center
-            font-size $collapse-panel-el-bell-icon-font-size
-            transform rotate(-90deg)
+            {$selector-panel-header}-icon
 
-    {$selector-panel-content}
+                margin-right $collapse-panel-el-icon-margin-right
+                font-size $collapse-panel-el-bell-icon-font-size
+                
+                &::before
+                    transition transform .1s
+                    transform-origin center
+                    transform rotate(-90deg)
 
-        display none
-        transition height 0.1s linear
-        overflow hidden
-        padding $collapse-panel-content-padding
-        font-size $collapse-panel-content-font-size
-        background-color $collapse-panel-content-background-color
+            {$selector-panel-header}-extra
+                float right
 
-    {$selector-panel}-open
+        {$selector-panel-content}
 
-        > {$selector-panel-header}-icon
+            display none
+            transition height 0.1s linear
+            overflow hidden
+            font-size $collapse-panel-content-font-size
+            background-color $collapse-panel-content-background-color
 
-            transform rotate(0)
+            {$selector-panel-content}-box
+                padding $collapse-panel-content-padding
 
-    &{$selector-panel}-open
+        &{$selector-panel}-open
 
-        > {$selector-panel-content}
+            > {$selector-panel-content}
+                display block
 
-            display block
+            > {$selector-panel-header}
+                {$selector-panel-header}-icon
+                    &::before
+                        transform rotate(0)
