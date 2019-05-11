@@ -1,12 +1,17 @@
 import template from './template/Content.html'
+import { 
+  FALSE,
+  TRUE,
+  RAW_STRING
+} from '../constant'
 
 export default {
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -15,14 +20,14 @@ export default {
   events: {
     hasSider(_) {
       this.set({
-        hasSider: true
+        hasSider: TRUE
       })
     }
   },
 
   data() {
     return {
-      hasSider: false
+      hasSider: FALSE
     }
   }
 }

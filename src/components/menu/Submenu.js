@@ -1,16 +1,22 @@
 import template from './template/Submenu.html'
 import { findComponentUpward } from '../util'
+import {
+  NULL,
+  FALSE,
+  TRUE,
+  RAW_STRING
+} from '../constant'
 
 export default {
   propTypes: {
     name: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -18,12 +24,12 @@ export default {
 
   data() {
     return {
-      isOpen: false,
-      isActive: false,
-      activeName: null,
-      mode: null,
-      theme: null,
-      isCollapsed: false
+      isOpen: FALSE,
+      isActive: FALSE,
+      activeName: NULL,
+      mode: NULL,
+      theme: NULL,
+      isCollapsed: FALSE
     }
   },
 
@@ -45,7 +51,7 @@ export default {
             () => {
               element.style.height = ''
               element.style.overflow = ''
-              me.set('isOpen', false)
+              me.set('isOpen', FALSE)
             },
             100
           )
@@ -55,7 +61,7 @@ export default {
 
     open() {
       let me = this
-      me.set('isOpen', true)
+      me.set('isOpen', TRUE)
 
       me.nextTick(() => {
         let element = me.$refs.menu.$el

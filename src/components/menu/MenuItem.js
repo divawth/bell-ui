@@ -1,22 +1,28 @@
 import template from './template/MenuItem.html'
 import { findComponentUpward } from '../util'
+import {
+  NULL,
+  FALSE,
+  RAW_STRING,
+  RAW_BOOLEAN
+} from '../constant'
 
 export default {
   propTypes: {
     name: {
-      type: 'string'
+      type: RAW_STRING
     },
     hash: {
-      type: 'string'
+      type: RAW_STRING
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -24,9 +30,9 @@ export default {
 
   data() {
     return {
-      mode: null,
-      isActive: false,
-      isCollapsed: false
+      mode: NULL,
+      isActive: FALSE,
+      isCollapsed: FALSE
     }
   },
 

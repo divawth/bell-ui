@@ -1,26 +1,33 @@
 import template from './template/Icon.html'
+import { 
+  FALSE,
+
+  RAW_STRING, 
+  RAW_BOOLEAN, 
+  RAW_NUMERIC
+} from '../constant'
 
 export default {
   propTypes: {
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'numeric',
+      type: RAW_NUMERIC,
       value: 14
     },
     color: {
-      type: 'string'
+      type: RAW_STRING
     },
     spin: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
   template

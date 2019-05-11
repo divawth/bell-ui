@@ -1,16 +1,20 @@
 import template from './template/MenuGroup.html'
 import { findComponentUpward } from '../util'
+import {
+  NULL,
+  RAW_STRING
+} from '../constant'
 
 export default {
   propTypes: {
     title: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -18,8 +22,8 @@ export default {
 
   data() {
     return {
-      mode: null,
-      theme: null
+      mode: NULL,
+      theme: NULL
     }
   },
 

@@ -1,27 +1,35 @@
 import template from './template/Panel.html'
 import { findComponentUpward } from '../util'
+import { 
+  NULL,
+  TRUE,
+  FALSE,
+  RAW_STRING,
+  RAW_BOOLEAN, 
+  RAW_NUMERIC
+} from '../constant'
 
 export default {
 
   propTypes: {
     title: {
-      type: 'string'
+      type: RAW_STRING
     },
     name: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     isActive: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     showIcon: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -29,8 +37,8 @@ export default {
 
   data() {
     return {
-      isOpen: false,
-      accordion: false,
+      isOpen: FALSE,
+      accordion: FALSE,
     }
   },
 
@@ -75,7 +83,7 @@ export default {
           me.initTimer = setTimeout(
             () => {
               element.style.height = ''
-              me.set('isOpen', false)
+              me.set('isOpen', FALSE)
             },
             100
           )
@@ -85,7 +93,7 @@ export default {
 
     open() {
       let me = this
-      me.set('isOpen', true)
+      me.set('isOpen', TRUE)
 
       me.nextTick(() => {
         let element = me.$refs.panelContent
@@ -114,7 +122,7 @@ export default {
       'isActive',
       {
         watcher(isActive) {
-          if (isActive == null) {
+          if (isActive == NULL) {
             return
           }
           this.fire(
@@ -125,7 +133,7 @@ export default {
             }
           )
         },
-        immediate: true
+        immediate: TRUE
       }
     )
   },

@@ -1,24 +1,29 @@
 import template from './template/Row.html'
+import { 
+  TRUE,
+  RAW_STRING, 
+  RAW_NUMERIC
+} from '../constant'
 
 export default {
   propTypes: {
     gutter: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     justify: {
-      type: 'string'
+      type: RAW_STRING
     },
     align: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -32,10 +37,10 @@ export default {
           {
             gutter: value
           },
-          true
+          TRUE
         )
       },
-      immediate: true
+      immediate: TRUE
     }
   },
   

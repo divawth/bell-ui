@@ -1,26 +1,31 @@
 import template from './template/Collapse.html'
+import { 
+  TRUE,
+  RAW_STRING,
+  RAW_BOOLEAN, 
+  RAW_NUMERIC
+} from '../constant'
 
 export default {
-
 
   name: '${prefix}collapse',
 
   propTypes: {
     activeName: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     accordion: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     bordered: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -31,7 +36,7 @@ export default {
       this.fire(
         'accordionChanged',
         { accordion },
-        true
+        TRUE
       )
     }
   },
@@ -45,7 +50,7 @@ export default {
             name: data.name,
             isOpen: data.isOpen
           },
-          true
+          TRUE
         )
       }
     }

@@ -1,13 +1,16 @@
 import template from './template/CardActions.html'
+import { 
+  RAW_STRING
+} from '../constant'
 
 export default {
   
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 

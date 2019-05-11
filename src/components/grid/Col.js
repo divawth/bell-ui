@@ -1,39 +1,44 @@
 import template from './template/Col.html'
+import { 
+  RAW_STRING, 
+  RAW_NUMERIC,
+  RAW_OBJECT
+} from '../constant'
 
 export default {
   propTypes: {
     span: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     order: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     offset: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     push: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     pull: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     xs: {
-      type: ['numeric', 'object']
+      type: [RAW_NUMERIC, RAW_OBJECT]
     },
     sm: {
-      type: ['numeric', 'object']
+      type: [RAW_NUMERIC, RAW_OBJECT]
     },
     md: {
-      type: ['numeric', 'object']
+      type: [RAW_NUMERIC, RAW_OBJECT]
     },
     lg: {
-      type: ['numeric', 'object']
+      type: [RAW_NUMERIC, RAW_OBJECT]
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
   

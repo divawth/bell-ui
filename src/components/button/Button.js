@@ -1,38 +1,43 @@
 import template from './template/Button.html'
+import { oneOf } from '../util'
+import { 
+  RAW_STRING, 
+  RAW_BOOLEAN
+} from '../constant'
 
 export default {
   propTypes: {
     type: {
-      type: 'string',
+      type: oneOf(['primary', 'info', 'success', 'warning', 'error']),
       value: 'default'
     },
     borderType: {
-      type: 'string', 
+      type: oneOf(['solid', 'none', 'dashed']), 
       value: 'solid'
     },
     shape: {
-      type: 'string'
+      type: RAW_STRING
     },
     icon: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     fluid: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     ghost: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
   template

@@ -1,21 +1,26 @@
 import template from './template/Card.html'
+import { 
+  TRUE,
+  RAW_STRING, 
+  RAW_BOOLEAN
+} from '../constant'
 
 export default {
   
   propTypes: {
     bordered: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     hoverDisabled: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 

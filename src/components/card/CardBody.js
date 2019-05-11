@@ -1,12 +1,15 @@
 import template from './template/CardBody.html'
+import { 
+  RAW_STRING
+} from '../constant'
 
 export default {
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
   template

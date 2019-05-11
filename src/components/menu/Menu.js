@@ -1,4 +1,16 @@
 import template from './template/Menu.html'
+import {
+  TRUE,
+  FALSE,
+  
+  RAW_ARRAY,
+  RAW_STRING,
+  RAW_BOOLEAN,
+
+  RAW_HORIZONTAL,
+  RAW_VERTICAL
+} from '../constant'
+import { oneOf } from '../util'
 
 export default {
 
@@ -6,29 +18,29 @@ export default {
 
   propTypes: {
     mode: {
-      type: 'string',
-      value: 'horizontal'
+      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
+      value: RAW_HORIZONTAL
     },
     theme: {
-      type: 'string',
+      type: oneOf(['dark', 'light']),
       value: 'dark'
     },
     isCollapsed: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     activeName: {
-      type: 'string'
+      type: RAW_STRING
     },
     openNames: {
-      type: 'array',
+      type: RAW_ARRAY,
       value: []
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -39,14 +51,14 @@ export default {
       this.fire(
         'themeChanged',
         { theme },
-        true
+        TRUE
       )
     },
     isCollapsed(isCollapsed) {
       this.fire(
         'isCollapsedChanged',
         { isCollapsed },
-        true
+        TRUE
       )
     }
   },
@@ -57,7 +69,7 @@ export default {
         this.fire(
           'menuItemSelected',
           data,
-          true
+          TRUE
         )
       }
     }

@@ -321,16 +321,32 @@
 
   var template = "<div \nclass=\"bell-layout bell-row\n  \n  {{#if hasSider}} bell-col-24\n  {{else}} column\n  {{/if}}\n  \n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
+  var TRUE = true;
+  var FALSE = false;
+  var NULL = null;
+
+  var RAW_ARRAY = 'array';
+  var RAW_STRING = 'string';
+  var RAW_BOOLEAN = 'boolean';
+  var RAW_NUMERIC = 'numeric';
+
+  var RAW_CENTER = 'center';
+  var RAW_LEFT = 'left';
+  var RAW_RIGHT = 'right';
+
+  var RAW_HORIZONTAL = 'horizontal';
+  var RAW_VERTICAL = 'vertical';
+
   var Layout = {
     propTypes: {
       fixed: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -338,7 +354,7 @@
 
     data: function data () {
       return {
-        hasSider: false
+        hasSider: FALSE
       }
     },
 
@@ -349,11 +365,11 @@
         }
         if (event.phase === Yox.Event.PHASE_UPWARD) {
           this.set({
-            hasSider: true
+            hasSider: TRUE
           });
           this.fire(
             'hasSider',
-            true
+            TRUE
           );
         }
         // 阻止嵌套模式下 上层 layout 发下来的 hasSider 事件
@@ -367,10 +383,10 @@
   var Header = {
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$1
@@ -380,14 +396,14 @@
 
   var Sider = {
     propTypes: {
+      isCollapsed: {
+        type: RAW_BOOLEAN
+      },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
-      },
-      isCollapsed: {
-        type: 'boolean'
+        type: RAW_STRING
       }
     },
 
@@ -407,10 +423,10 @@
   var Content = {
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -419,14 +435,14 @@
     events: {
       hasSider: function hasSider(_) {
         this.set({
-          hasSider: true
+          hasSider: TRUE
         });
       }
     },
 
     data: function data() {
       return {
-        hasSider: false
+        hasSider: FALSE
       }
     }
   };
@@ -436,82 +452,16 @@
   var Footer = {
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$4
   };
 
   var template$5 = "<ul class=\"bell-menu bell-menu-{{mode}} bell-menu-{{theme}}\n{{#if isCollapsed}} bell-menu-collapsed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</ul>";
-
-  var Menu = {
-
-    name: 'bell-menu',
-
-    propTypes: {
-      mode: {
-        type: 'string',
-        value: 'horizontal'
-      },
-      theme: {
-        type: 'string',
-        value: 'dark'
-      },
-      isCollapsed: {
-        type: 'boolean',
-        value: false
-      },
-      activeName: {
-        type: 'string'
-      },
-      openNames: {
-        type: 'array',
-        value: []
-      },
-      className: {
-        type: 'string'
-      },
-      style: {
-        type: 'string'
-      }
-    },
-
-    template: template$5,
-
-    watchers: {
-      theme: function theme(theme$1) {
-        this.fire(
-          'themeChanged',
-          { theme: theme$1 },
-          true
-        );
-      },
-      isCollapsed: function isCollapsed(isCollapsed$1) {
-        this.fire(
-          'isCollapsedChanged',
-          { isCollapsed: isCollapsed$1 },
-          true
-        );
-      }
-    },
-
-    events: {
-      menuItemSelected: function menuItemSelected(event, data) {
-        if (event.phase === Yox.Event.PHASE_UPWARD) {
-          this.fire(
-            'menuItemSelected',
-            data,
-            true
-          );
-        }
-      }
-    }
-  };
-
-  var template$6 = "<li \nclass=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" \nstyle=\"{{style}}\" \non-click=\"click()\"\n>\n  <slot name=\"children\" />\n</li>";
 
   var contains = function(element, target) {
     if (element.contains && element.contains(target)) {
@@ -541,22 +491,97 @@
     return parent;
   };
 
+  var oneOf = function (values) {
+    return function (props, key) {
+      if (!Yox.array.has(values, props[ key ])) {
+        Yox.logger.warn((key + " 期望是 " + (values.join(',')) + " 中的值，实际传值 " + (props[key]) + "。"));
+      }
+      return true
+    }
+  };
+
+  var Menu = {
+
+    name: 'bell-menu',
+
+    propTypes: {
+      mode: {
+        type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
+        value: RAW_HORIZONTAL
+      },
+      theme: {
+        type: oneOf(['dark', 'light']),
+        value: 'dark'
+      },
+      isCollapsed: {
+        type: RAW_BOOLEAN,
+        value: FALSE
+      },
+      activeName: {
+        type: RAW_STRING
+      },
+      openNames: {
+        type: RAW_ARRAY,
+        value: []
+      },
+      className: {
+        type: RAW_STRING
+      },
+      style: {
+        type: RAW_STRING
+      }
+    },
+
+    template: template$5,
+
+    watchers: {
+      theme: function theme(theme$1) {
+        this.fire(
+          'themeChanged',
+          { theme: theme$1 },
+          TRUE
+        );
+      },
+      isCollapsed: function isCollapsed(isCollapsed$1) {
+        this.fire(
+          'isCollapsedChanged',
+          { isCollapsed: isCollapsed$1 },
+          TRUE
+        );
+      }
+    },
+
+    events: {
+      menuItemSelected: function menuItemSelected(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD) {
+          this.fire(
+            'menuItemSelected',
+            data,
+            TRUE
+          );
+        }
+      }
+    }
+  };
+
+  var template$6 = "<li \nclass=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" \nstyle=\"{{style}}\" \non-click=\"click()\"\n>\n  <slot name=\"children\" />\n</li>";
+
   var MenuItem = {
     propTypes: {
       name: {
-        type: 'string'
+        type: RAW_STRING
       },
       hash: {
-        type: 'string'
+        type: RAW_STRING
       },
       disabled: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -564,9 +589,9 @@
 
     data: function data() {
       return {
-        mode: null,
-        isActive: false,
-        isCollapsed: false
+        mode: NULL,
+        isActive: FALSE,
+        isCollapsed: FALSE
       }
     },
 
@@ -603,13 +628,13 @@
   var MenuGroup = {
     propTypes: {
       title: {
-        type: 'string'
+        type: RAW_STRING
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -617,8 +642,8 @@
 
     data: function data() {
       return {
-        mode: null,
-        theme: null
+        mode: NULL,
+        theme: NULL
       }
     },
 
@@ -642,13 +667,13 @@
   var Submenu = {
     propTypes: {
       name: {
-        type: 'string'
+        type: RAW_STRING
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -656,12 +681,12 @@
 
     data: function data() {
       return {
-        isOpen: false,
-        isActive: false,
-        activeName: null,
-        mode: null,
-        theme: null,
-        isCollapsed: false
+        isOpen: FALSE,
+        isActive: FALSE,
+        activeName: NULL,
+        mode: NULL,
+        theme: NULL,
+        isCollapsed: FALSE
       }
     },
 
@@ -683,7 +708,7 @@
               function () {
                 element.style.height = '';
                 element.style.overflow = '';
-                me.set('isOpen', false);
+                me.set('isOpen', FALSE);
               },
               100
             );
@@ -693,7 +718,7 @@
 
       open: function open() {
         var me = this;
-        me.set('isOpen', true);
+        me.set('isOpen', TRUE);
 
         me.nextTick(function () {
           var element = me.$refs.menu.$el;
@@ -926,24 +951,24 @@
   var Icon = {
     propTypes: {
       type: {
-        type: 'string'
+        type: RAW_STRING
       },
       size: {
-        type: 'numeric',
+        type: RAW_NUMERIC,
         value: 14
       },
       color: {
-        type: 'string'
+        type: RAW_STRING
       },
       spin: {
-        type: 'boolean',
-        value: false
+        type: RAW_BOOLEAN,
+        value: FALSE
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$b
@@ -1048,41 +1073,41 @@
     }
   };
 
-  var template$c = "<button \non-click=\"click.button\"\nclass=\"bell-button\n  {{#if ghost}} bell-button-{{type}}-ghost \n  {{else}} bell-button-{{type}}-normal \n  {{/if}} \n\n  bell-button-{{borderType}}\n\n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('icon')}}\n    <slot name=\"icon\" />\n  {{else if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\" />\n  </span>\n  {{/if}}\n  \n</button>";
+  var template$c = "<button \non-click=\"click.button\"\nclass=\"bell-button bell-button-{{borderType}}\n  {{#if ghost}} bell-button-{{type}}-ghost \n  {{else}} bell-button-{{type}}-normal \n  {{/if}}  \n  \n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('icon')}}\n    <slot name=\"icon\" />\n  {{else if icon}}\n    <Icon type=\"{{icon}}\" />\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\" />\n  </span>\n  {{/if}}\n  \n</button>";
 
   var Button = {
     propTypes: {
       type: {
-        type: 'string',
+        type: oneOf(['primary', 'info', 'success', 'warning', 'error']),
         value: 'default'
       },
       borderType: {
-        type: 'string', 
+        type: oneOf(['solid', 'none', 'dashed']), 
         value: 'solid'
       },
       shape: {
-        type: 'string'
+        type: RAW_STRING
       },
       icon: {
-        type: 'string'
+        type: RAW_STRING
       },
       size: {
-        type: 'string'
+        type: RAW_STRING
       },
       fluid: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       disabled: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       ghost: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$c
@@ -1093,20 +1118,20 @@
   var ButtonGroup = {
     propTypes: {
       size: {
-        type: 'string'
+        type: oneOf(['large', 'small', 'tiny'])
       },
       shape: {
-        type: 'string'
+        type: oneOf(['round', 'circle'])
       },
       vertical: {
-        type: 'boolean',
-        value: false
+        type: RAW_BOOLEAN,
+        value: FALSE
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$d
@@ -4618,30 +4643,30 @@
     }
   };
 
-  var template$l = "<div \nclass=\"bell-divider bell-divider-{{type}} \n{{#if hasSlot('children')}} bell-divider-with-text-{{orientation}}{{/if}}\n{{#if dashed}} bell-divider-dashed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <div class=\"bell-divider-text\">\n      <slot name=\"children\" />\n    </div> \n  {{/if}}\n</div>";
+  var template$l = "<div \nclass=\"bell-divider bell-divider-{{type}} \n{{#if hasSlot('children')}} bell-divider-with-text-{{align}}{{/if}}\n{{#if dashed}} bell-divider-dashed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <div class=\"bell-divider-text\">\n      <slot name=\"children\" />\n    </div> \n  {{/if}}\n</div>";
 
   var Divider = {
     propTypes: {
       type: {
-        type: 'string',
-        value: 'horizontal'
+        type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
+        value: RAW_HORIZONTAL
       },
       dashed: {
-        type: 'boolean',
-        value: false
+        type: RAW_BOOLEAN,
+        value: FALSE
       },
-      orientation: {
-        type: 'string',
-        value: 'center'
+      align: {
+        type: oneOf([RAW_CENTER, RAW_LEFT, RAW_RIGHT]),
+        value: RAW_CENTER
       },
       text: {
-        type: 'string'
+        type: RAW_STRING
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$l

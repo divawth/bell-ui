@@ -1,15 +1,21 @@
 import template from './template/Layout.html'
+import { 
+  FALSE,
+  TRUE,
+  RAW_STRING,
+  RAW_BOOLEAN
+} from '../constant'
 
 export default {
   propTypes: {
     fixed: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -17,7 +23,7 @@ export default {
 
   data () {
     return {
-      hasSider: false
+      hasSider: FALSE
     }
   },
 
@@ -28,11 +34,11 @@ export default {
       }
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set({
-          hasSider: true
+          hasSider: TRUE
         })
         this.fire(
           'hasSider',
-          true
+          TRUE
         )
       }
       // 阻止嵌套模式下 上层 layout 发下来的 hasSider 事件

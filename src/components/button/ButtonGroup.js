@@ -1,22 +1,29 @@
 import template from './template/ButtonGroup.html'
+import { oneOf } from '../util'
+import { 
+  FALSE, 
+
+  RAW_STRING,
+  RAW_BOOLEAN
+} from '../constant'
 
 export default {
   propTypes: {
     size: {
-      type: 'string'
+      type: oneOf(['large', 'small', 'tiny'])
     },
     shape: {
-      type: 'string'
+      type: oneOf(['round', 'circle'])
     },
     vertical: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
   template

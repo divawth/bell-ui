@@ -25,7 +25,18 @@ const findComponentUpward = function (context, componentName) {
 
   return parent;
 }
+
+const oneOf = function (values) {
+  return function (props, key) {
+    if (!Yox.array.has(values, props[ key ])) {
+      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 ${props[key]}。`)
+    }
+    return true
+  }
+}
+
 export {
   contains,
-  findComponentUpward
+  findComponentUpward,
+  oneOf
 }

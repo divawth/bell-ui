@@ -1,13 +1,16 @@
 import template from './template/CardHeader.html'
+import { 
+  RAW_STRING
+} from '../constant'
 
 export default {
 
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     },
   },
 

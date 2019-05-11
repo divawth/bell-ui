@@ -1,19 +1,22 @@
 import template from './template/CardMedia.html'
+import { 
+  RAW_STRING
+} from '../constant'
 
 export default {
 
   propTypes: {
     title: {
-      type: 'string'
+      type: RAW_STRING
     },
     subTitle: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 

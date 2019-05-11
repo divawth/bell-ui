@@ -6346,7 +6346,7 @@
                             }
                             // 动态判断是否匹配类型
                             else if (func(type)) {
-                                matched_1 = type(props);
+                                matched_1 = type(props, key);
                             }
                             if (!matched_1) {
                                 warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
