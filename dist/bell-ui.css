@@ -3655,13 +3655,99 @@ button.bell-button-danger-ghost[disabled] {
 }
 .bell-divider {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
-  list-style: none;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #515a6e;
+  margin: 0;
   background-color: #e8eaec;
+}
+.bell-divider-horizontal {
+  display: block;
+  clear: both;
+  width: 100%;
+  height: 1px;
+  min-width: 100%;
+  margin: 12px 0;
+}
+.bell-divider-vertical {
+  display: inline-block;
+  position: relative;
+  width: 1px;
+  height: 0.9em;
+  top: -0.06em;
+  vertical-align: middle;
+  margin: 0 8px;
+}
+.bell-divider-text {
+  display: inline-block;
+  padding: 0 10px;
+}
+.bell-divider-dashed {
+  background: 0 0;
+  border-top: 1px dashed #e8eaec;
+}
+.bell-divider-dashed.bell-divider-with-text-center:before,
+.bell-divider-dashed.bell-divider-with-text-left:before,
+.bell-divider-dashed.bell-divider-with-text-right:before {
+  border-top-style: dashed;
+}
+.bell-divider-dashed.bell-divider-with-text-center:after,
+.bell-divider-dashed.bell-divider-with-text-left:after,
+.bell-divider-dashed.bell-divider-with-text-right:after {
+  border-top-style: dashed;
+}
+.bell-divider-with-text-center,
+.bell-divider-with-text-left,
+.bell-divider-with-text-right {
+  display: table;
+  white-space: nowrap;
+  text-align: center;
+  background: 0 0;
+  font-weight: 500;
+  border-top: 0;
+  margin: 16px 0;
+  color: rgba(0,0,0,0.85);
+  font-size: 16px;
+}
+.bell-divider-with-text-center:before,
+.bell-divider-with-text-left:before,
+.bell-divider-with-text-right:before {
+  content: '';
+  position: relative;
+  display: table-cell;
+  border-top: 1px solid #e8eaec;
+  transform: translateY(50%);
+  top: 50%;
+  width: 50%;
+}
+.bell-divider-with-text-center:after,
+.bell-divider-with-text-left:after,
+.bell-divider-with-text-right:after {
+  content: '';
+  position: relative;
+  display: table-cell;
+  border-top: 1px solid #e8eaec;
+  transform: translateY(50%);
+  top: 50%;
+  width: 50%;
+}
+.bell-divider-with-text-center.bell-divider-with-text-left:before,
+.bell-divider-with-text-left.bell-divider-with-text-left:before,
+.bell-divider-with-text-right.bell-divider-with-text-left:before {
+  width: 5%;
+}
+.bell-divider-with-text-center.bell-divider-with-text-left:after,
+.bell-divider-with-text-left.bell-divider-with-text-left:after,
+.bell-divider-with-text-right.bell-divider-with-text-left:after {
+  width: 95%;
+}
+.bell-divider-with-text-center.bell-divider-with-text-right:before,
+.bell-divider-with-text-left.bell-divider-with-text-right:before,
+.bell-divider-with-text-right.bell-divider-with-text-right:before {
+  width: 95%;
+}
+.bell-divider-with-text-center.bell-divider-with-text-right:after,
+.bell-divider-with-text-left.bell-divider-with-text-right:after,
+.bell-divider-with-text-right.bell-divider-with-text-right:after {
+  width: 5%;
 }
 .bell-breadcrumb {
   margin: 15px;

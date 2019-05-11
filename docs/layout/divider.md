@@ -26,3 +26,33 @@
     }
 
 
+> type="vertical"
+
+    export default {
+      template: `
+        <div>
+          Text
+          <Divider type="vertical" />
+          <a href="#">Link</a>
+          <Divider type="vertical" />
+          <a href="#">Link</a>
+        </div>
+      `
+    }
+
+> orientation 设置文字的位置
+
+    export default {
+      isViewFullBlock: true,
+      height: 300,
+      template: `
+        <div>
+          <Divider orientation="left">Left Text</Divider>
+          <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+          <Divider orientation="right">Right Text</Divider>
+          <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+          <Divider orientation="right" dashed>Right Text</Divider>
+        </div>
+      `
+    }
+

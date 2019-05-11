@@ -1,8 +1,14 @@
 <div 
-class="${prefix}divider ${prefix}divider-{{type}} ${prefix}divider-{{orientation}}
+class="${prefix}divider ${prefix}divider-{{type}} 
+{{#if hasSlot('children')}} ${prefix}divider-with-text-{{orientation}}{{/if}}
 {{#if dashed}} ${prefix}divider-dashed{{/if}}
 {{#if className}} {{className}}{{/if}}
 "
 {{#if style}} style="{{style}}"{{/if}}
 >
+  {{#if hasSlot('children')}}
+    <div class="${prefix}divider-text">
+      <slot name="children" />
+    </div> 
+  {{/if}}
 </div>
