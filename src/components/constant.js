@@ -16,4 +16,8 @@ export const RAW_RIGHT = 'right'
 export const RAW_HORIZONTAL = 'horizontal'
 export const RAW_VERTICAL = 'vertical'
 
+export const RAW_TINY = 'tiny'
+export const RAW_SMALL = 'small'
+export const RAW_LARGE = 'large'
+
 

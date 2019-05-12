@@ -329,6 +329,7 @@
   var RAW_STRING = 'string';
   var RAW_BOOLEAN = 'boolean';
   var RAW_NUMERIC = 'numeric';
+  var RAW_OBJECT = 'object';
 
   var RAW_CENTER = 'center';
   var RAW_LEFT = 'left';
@@ -336,6 +337,10 @@
 
   var RAW_HORIZONTAL = 'horizontal';
   var RAW_VERTICAL = 'vertical';
+
+  var RAW_TINY = 'tiny';
+  var RAW_SMALL = 'small';
+  var RAW_LARGE = 'large';
 
   var Layout = {
     propTypes: {
@@ -776,22 +781,22 @@
   var Row = {
     propTypes: {
       gutter: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       type: {
-        type: 'string'
+        type: RAW_STRING
       },
       justify: {
-        type: 'string'
+        type: RAW_STRING
       },
       align: {
-        type: 'string'
+        type: RAW_STRING
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -805,10 +810,10 @@
             {
               gutter: value
             },
-            true
+            TRUE
           );
         },
-        immediate: true
+        immediate: TRUE
       }
     },
     
@@ -824,42 +829,42 @@
     }
   };
 
-  var template$a = "<div \nclass=\"bell-col\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
+  var template$a = "<div \nclass=\"bell-col\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var Col = {
     propTypes: {
       span: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       order: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       offset: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       push: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       pull: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       xs: {
-        type: ['numeric', 'object']
+        type: [RAW_NUMERIC, RAW_OBJECT]
       },
       sm: {
-        type: ['numeric', 'object']
+        type: [RAW_NUMERIC, RAW_OBJECT]
       },
       md: {
-        type: ['numeric', 'object']
+        type: [RAW_NUMERIC, RAW_OBJECT]
       },
       lg: {
-        type: ['numeric', 'object']
+        type: [RAW_NUMERIC, RAW_OBJECT]
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     
@@ -1092,7 +1097,7 @@
         type: RAW_STRING
       },
       size: {
-        type: RAW_STRING
+        type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
       },
       fluid: {
         type: RAW_BOOLEAN
@@ -4303,25 +4308,24 @@
 
   var Collapse = {
 
-
     name: 'bell-collapse',
 
     propTypes: {
       activeName: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       accordion: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       bordered: {
-        type: 'boolean',
-        value: true
+        type: RAW_BOOLEAN,
+        value: TRUE
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -4332,7 +4336,7 @@
         this.fire(
           'accordionChanged',
           { accordion: accordion$1 },
-          true
+          TRUE
         );
       }
     },
@@ -4346,7 +4350,7 @@
               name: data.name,
               isOpen: data.isOpen
             },
-            true
+            TRUE
           );
         }
       }
@@ -4360,23 +4364,23 @@
 
     propTypes: {
       title: {
-        type: 'string'
+        type: RAW_STRING
       },
       name: {
-        type: 'numeric'
+        type: RAW_NUMERIC
       },
       isActive: {
-        type: 'boolean'
+        type: RAW_BOOLEAN
       },
       showIcon: {
-        type: 'boolean',
-        value: true
+        type: RAW_BOOLEAN,
+        value: TRUE
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -4384,8 +4388,8 @@
 
     data: function data() {
       return {
-        isOpen: false,
-        accordion: false,
+        isOpen: FALSE,
+        accordion: FALSE,
       }
     },
 
@@ -4430,7 +4434,7 @@
             me.initTimer = setTimeout(
               function () {
                 element.style.height = '';
-                me.set('isOpen', false);
+                me.set('isOpen', FALSE);
               },
               100
             );
@@ -4440,7 +4444,7 @@
 
       open: function open() {
         var me = this;
-        me.set('isOpen', true);
+        me.set('isOpen', TRUE);
 
         me.nextTick(function () {
           var element = me.$refs.panelContent;
@@ -4469,7 +4473,7 @@
         'isActive',
         {
           watcher: function watcher(isActive) {
-            if (isActive == null) {
+            if (isActive == NULL) {
               return
             }
             this.fire(
@@ -4480,7 +4484,7 @@
               }
             );
           },
-          immediate: true
+          immediate: TRUE
         }
       );
     },
@@ -4499,18 +4503,18 @@
     
     propTypes: {
       bordered: {
-        type: 'boolean',
-        value: true
+        type: RAW_BOOLEAN,
+        value: TRUE
       },
       hoverDisabled: {
-        type: 'boolean',
-        value: true
+        type: RAW_BOOLEAN,
+        value: TRUE
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -4523,10 +4527,10 @@
 
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       },
     },
 
@@ -4540,16 +4544,16 @@
 
     propTypes: {
       title: {
-        type: 'string'
+        type: RAW_STRING
       },
       subTitle: {
-        type: 'string'
+        type: RAW_STRING
       },
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -4561,10 +4565,10 @@
   var CardBody = {
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
     template: template$j
@@ -4576,10 +4580,10 @@
     
     propTypes: {
       className: {
-        type: 'string'
+        type: RAW_STRING
       },
       style: {
-        type: 'string'
+        type: RAW_STRING
       }
     },
 
@@ -4658,9 +4662,6 @@
       align: {
         type: oneOf([RAW_CENTER, RAW_LEFT, RAW_RIGHT]),
         value: RAW_CENTER
-      },
-      text: {
-        type: RAW_STRING
       },
       className: {
         type: RAW_STRING
@@ -5262,26 +5263,46 @@
     }
   };
 
-  var TabsTpl = "<div class=\"bell-tabs\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  <div class=\"bell-tabs-labels\">\n    {{#each tabLabels}}\n      {{#if label}}\n        <span class=\"bell-tabs-label\n          {{#if value == name}} bell-active{{/if}}\n        \" on-click=\"clickTabLabel(this)\">\n          {{label}}\n        </span>\n      {{/if}}\n    {{/each}}\n  </div>\n\n  <div class=\"bell-tabs-contents\" style=\"transform: translateX({{translateStyle}});\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
+  var template$m = "<div \nclass=\"bell-tabs bell-tabs-{{type}}\n{{#if size}} bell-tabs-{{size}}{{/if}}\n{{#if animated}} bell-tabs-animated{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <div class=\"bell-tabs-bar\">\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-tabs-extra-container\">\n        <slot name=\"extra\" />\n      </div>\n    {{/if}}\n    <div class=\"bell-tabs-nav-container\">\n      <span class=\"bell-tabs-tab-prev\"></span>\n      <span class=\"bell-tabs-tab-next\"></span>\n      <div class=\"bell-tabs-tab-wrap\">\n        <div class=\"bell-tabs-tab-scroll\">\n          <div class=\"bell-tabs-nav bell-tabs-animated\">\n            {{#each tabsList}}\n              <div class=\"bell-tabs-tab\n                {{#if disabled}} bell-tabs-tab-disabled{{/if}}\n                {{#if value === id}} bell-tabs-tab-active{{/if}}\n              \" on-click=\"click(this)\"\n              >\n                {{#if this.icon}}\n                  <Icon className=\"bell-tabs-tab-icon\" type=\"{{this.icon}}\" />\n                {{/if}}\n                {{label}}\n                {{#if value === id && closable}}\n                  <div class=\"bell-tabs-tab-close-icon\" on-click=\"close(this)\">\n                    <Icon className=\"bell-tabs-tab-icon-close\" type=\"close\" size=\"20\" /> \n                  </div>\n                {{/if}}\n              </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bell-tabs-content\" style=\"transform: translateX({{translateStyle}});\">\n    <slot name=\"children\" />\n  </div>\n</div>";
 
   var Tabs = {
-    template: TabsTpl,
+
+    name: 'bell-tabs',
+
     propTypes: {
-      className: {
-        type: 'string'
+      type: {
+        type: oneOf(['line', 'card']),
+        value: 'line'
       },
-      style: {
-        type: 'string'
+      size: {
+        type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE, 'default' ])
+      },
+      closable: {
+        type: 'boolean',
+        value: FALSE
+      },
+      animated: {
+        type: 'boolean',
+        value: TRUE
       },
       value: {
-        type: 'string'
+        type: RAW_NUMERIC,
+        value: 0
+      },
+      className: {
+        type: RAW_STRING
+      },
+      style: {
+        type: RAW_STRING
       }
     },
 
+    template: template$m,
+
     data: function data() {
       return {
-        tabLabels: []
-      };
+        tabsList: []
+      }
     },
 
     computed: {
@@ -5289,98 +5310,148 @@
         var me = this;
         var index = 0;
         Yox.array.each(
-          me.get('tabLabels'),
+          me.get('tabsList'),
           function (item, key) {
-            if (item.name == me.get('value')) {
+            if (item.id == me.get('value')) {
               index = key;
-              return false;
+              return FALSE
             }
           }
         );
-        return index * (-100) + '%';
-
+        return index * (-100) + '%'
       }
     },
 
     events: {
-      addTabLabel: function addTabLabel(event, data) {
-        var me = this;
-        var tabLabels = me.copy(me.get('tabLabels'));
-        tabLabels.push(data);
-        me.set({
-          tabLabels: tabLabels
-        });
+      tabPanelRemove: function tabPanelRemove(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD) {
+          var tabsList = this.copy(this.get('tabsList'));
+          tabsList = tabsList.filter(function (item) {
+            return item.id !== data.id
+          });
+          this.set({ tabsList: tabsList });
+        }
+      },
+      tabsValueUpdate: function tabsValueUpdate(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD) {
+          var me = this;
+          var tabsList = me.copy(me.get('tabsList'));
+          tabsList.forEach(function (item) {
+            if (item.id === data.id) {
+              item = data;
+            }
+          });
+          me.set({ tabsList: tabsList });
+        }
+      },
+      tabPanelAdd: function tabPanelAdd(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD) {
+          this.append('tabsList', data);
+        }
       }
     },
 
     watchers: {
       value: function value(value$1) {
         this.fire(
-          'tabsValueUpdate',
-          {
-            value: value$1
-          },
-          true
+          'tabSelected',
+          { value: value$1 },
+          TRUE
         );
       }
     },
 
     methods: {
-      clickTabLabel: function clickTabLabel(data) {
-        var me = this;
-        me.set({
-          value: data.name
+      close: function close (data) {
+        this.fire('tabRemove', data);
+      },
+      click: function click(data) {
+        if (data.disabled) { return }
+        this.set({
+          value: data.id
         });
       }
     }
   };
 
-  var TabPanelTpl = "<div class=\"bell-tabs-panel\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} active{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n</div>";
+  var template$n = "<div \nclass=\"bell-tabs-panel\n{{#if disabled}} bell-tabs-panel-disabled{{/if}}\n{{#if isActive}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var TabPanel = {
-    template: TabPanelTpl,
     propTypes: {
-      className: {
-        type: 'string'
-      },
-      style: {
-        type: 'string'
-      },
       name: {
-        type: 'string'
+        type: RAW_STRING
+      },
+      icon: {
+        type: RAW_STRING
       },
       label: {
-        type: 'string'
+        type: RAW_STRING
+      },
+      disabled: {
+        type: RAW_BOOLEAN,
+        value: FALSE
+      },
+      className: {
+        type: RAW_STRING
+      },
+      style: {
+        type: RAW_STRING
       }
     },
 
+    template: template$n,
+
     data: function data() {
       return {
-        isActive: false
+        id: 0,
+        isActive: FALSE
+      }
+    },
+
+    watchers: {
+      '*': function (newValue, oldValue, keypath) {
+        var pathArray = ['name', 'icon', 'label', 'disabled'];
+        if (pathArray.indexOf(keypath) >= 0) {
+          this.upsert('tabPanelUpdate');
+        }
       }
     },
 
     events: {
-      tabsValueUpdate: function tabsValueUpdate(event, data) {
-        var me = this;
-        if (!data.value) {
-          return;
-        }
-        me.set({
-          isActive: me.get('name') == data.value
+      tabSelected: function tabSelected(_, data) {
+        this.set({
+          isActive: this.get('id') == data.value
         });
+      }
+    },
+
+    methods: {
+      upsert: function upsert(name) {
+        var me = this;
+        me.fire(
+          name,
+          {
+            label: me.get('label'),
+            icon: me.get('icon'),
+            disabled: me.get('disabled'),
+            id: me.get('id')
+          }
+        );
       }
     },
 
     afterMount: function afterMount() {
       var me = this;
-      me.fire(
-        'addTabLabel',
-        {
-          label: me.get('label'),
-          name: me.get('name')
-        }
-      );
+      var name = me.get('name');
+      if (name == null) {
+        var element = findComponentUpward(me, 'bell-tabs');
+        name = Yox.array.indexOf(element.$children, me);
+      }
+      me.set('id', name);
+      me.upsert('tabPanelAdd');
+    },
+    beforeDestroy: function beforeDestroy() {
+      this.upsert('tabPanelRemove');
     }
   };
 

@@ -1,41 +1,153 @@
 {$selector-tabs}
-    overflow hidden
+  box-sizing border-box
+  margin 0
+  padding 0    
+  background-color #fff
 
-    {$selector-tabs-labels}
+  position relative
+  overflow hidden
+  line-height 1
+  
+  font-size $tabs-size
+  color $tabs-color
+  ui-tabs()
 
-        {$selector-tabs-label}
+  {$selector-tabs-bar}
+    border-bottom 1px solid $tabs-border-color
+    outline 0
+    transition padding .3s cubic-bezier(.645,.045,.355,1)
+    margin $tabs-bar-margin
+    user-select none
 
-            padding 10px 15px
-            display inline-block
-            border-bottom 2px solid $brand-border
-            color $brand-secondary
-            cursor pointer
+    {$selector-tabs-extra-container}
+      float right
 
-            &{$selector-hover}
+    {$selector-tabs-nav-container}
+      position relative
+      box-sizing border-box
+      overflow hidden
+      white-space nowrap
+      font-size $tabs-size
+      margin-bottom -1px
+      transition padding .3s cubic-bezier(.645,.045,.355,1)
+      
+      {$selector-tabs-tab}-wrap
+        overflow hidden
+        margin-bottom -1px
 
-                color $brand-primary
-                border-color $brand-primary
+      {$selector-tabs-tab}-scroll
+        overflow hidden
+        white-space nowrap
 
-            &{$selector-active}
+      {$selector-tabs-nav}
+        position relative
+        display inline-block
+        box-sizing border-box
+        margin 0
+        padding-left 0
+        transition transform .3s cubic-bezier(.645,.045,.355,1)
 
-                color $brand-primary
-                border-color $brand-primary
+    {$selector-tabs-tab}
+      display inline-block
+      position relative
+      border-bottom 2px solid $tabs-border-color
+      color $tabs-color
+      cursor pointer
+      transition border .2s, color .2s
 
-    {$selector-tabs-contents}
+      &:after
+        content ' '
+        position absolute
+        bottom -1px
+        left 50%
+        transform translateX(-50%)
+        box-sizing border-box
+        height 2px    
+        width 0px
+        background-color $tabs-tab-active-color
+        transition width .2s
 
-        display flex
-        flex-direction row
-        will-change transform
-        transition transform .3s ease-in-out
+      &{$selector-hover}
 
-        ::-webkit-scrollbar
+        color $tabs-tab-active-color
 
-            display none
+      &{$selector-tabs-tab}-active
 
-    {$selector-tabs-panel}
+        color $tabs-tab-active-color
+        font-weight 500
 
-        outline 0
-        flex-shrink 0
-        width 100%
-        transition opacity .3s
-        opacity 1
+        &:after
+          width 100%
+
+      &{$selector-tabs-tab}-disabled
+        border-color $tabs-border-color
+        color $tabs-disabled-color
+        cursor not-allowed
+
+      {$selector-tabs-tab}-icon
+        margin-right 6px
+
+  {$selector-tabs-content}
+    width 100%
+    display flex
+    flex-direction row
+
+    ::-webkit-scrollbar
+      display none
+
+  {$selector-tabs-panel}
+    outline 0
+    flex-shrink 0
+    width 100%
+    opacity 1
+    transition opacity .3s
+
+    &{$selector-tabs-panel}-disabled
+      opacity 0
+
+  &{$selector-tabs}-card
+    {$selector-tabs-tab}
+      margin 0 2px 0 0
+      background #fafafa
+      border 1px solid $tabs-border-color
+      border-radius 4px 4px 0 0
+      transition all .3s cubic-bezier(.645,.045,.355,1)
+
+      &:after
+        display none
+
+      &{$selector-hover}
+
+        color $tabs-tab-active-color
+
+      &{$selector-tabs-tab}-active
+
+        color $tabs-tab-active-color
+        font-weight 500
+        background-color #fff
+
+      &{$selector-tabs-tab}-disabled
+        border-color $tabs-border-color
+        color $tabs-disabled-color
+        cursor not-allowed
+
+      {$selector-tabs-tab}-icon
+        margin-right 6px
+      
+      {$selector-tabs-tab}-close-icon
+        display inline-block
+        position relative
+        width $tabs-tab-close-size
+        height $tabs-tab-close-size
+        vertical-align middle
+
+        {$selector-tabs-tab}-icon-close
+          position absolute 
+          left 50%
+          top 50%
+          transform translate(-50%, -50%)
+  
+  &{$selector-tabs}-animated
+    {$selector-tabs-content}
+      will-change transform
+      transition transform .3s ease-in-out

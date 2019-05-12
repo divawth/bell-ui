@@ -1,6 +1,10 @@
 import template from './template/Button.html'
 import { oneOf } from '../util'
 import { 
+  RAW_TINY,
+  RAW_SMALL,
+  RAW_LARGE,
+
   RAW_STRING, 
   RAW_BOOLEAN
 } from '../constant'
@@ -22,7 +26,7 @@ export default {
       type: RAW_STRING
     },
     size: {
-      type: RAW_STRING
+      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     fluid: {
       type: RAW_BOOLEAN
