@@ -1,0 +1,14 @@
+<li 
+class="${prefix}dropdown-item
+{{#if selected}} ${prefix}dropdown-selected{{/if}}
+{{#if disabled}} ${prefix}dropdown-disabled{{/if}}
+{{#if divided}} ${prefix}dropdown-divided{{/if}}
+{{#if className}} {{className}}{{/if}}
+" 
+{{#if style}} style="{{style}}"{{/if}}
+on-click="click.dropdownItem"
+>
+
+  <slot name="children" />  
+  
+</li>

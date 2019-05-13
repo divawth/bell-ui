@@ -1,7 +1,6 @@
 import template from './template/TabPanel.html'
 import { findComponentUpward } from '../util'
 import { 
-  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN

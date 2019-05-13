@@ -1,87 +1,105 @@
 > 基础用法
 
-    export default {
-        template: `
-            <Page total="100" current="{{8}}" ></Page>
-        `
-    }
+```js
+export default {
+  template: `
+    <Page total="100" current="{{8}}" ></Page>
+  `
+}
+```
 
 > size 设置大小
 
-    export default {
-        template: `
-            <div>
-                <Page total="100" size="small"></Page>
-                <br><br>
-                <Page total="100"></Page>
-                <br><br>
-                <Page total="100" size="tiny"></Page>
-            </div>
-        `
-    }
+```js
+export default {
+  template: `
+    <div>
+      <Page total="100" size="small"></Page>
+      <br><br>
+      <Page total="100"></Page>
+      <br><br>
+      <Page total="100" size="tiny"></Page>
+    </div>
+  `
+}
+```
 
 > showTotal 设置显示条数
 
-    export default {
-        template: `
-            <div>
-                <Page total="100" showTotal="{{true}}"></Page>
-            </div>
-        `
-    }
+```js
+export default {
+  template: `
+    <div>
+      <Page total="100" showTotal="{{true}}"></Page>
+    </div>
+  `
+}
+```
 
 > showSizer 设置显示每页条数
 
-    export default {
-        template: `
-            <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
-        `,
-        data: function () {
-            return {
-                pageSizeOpts: [10, 15, 20, 25, 40]
-            }
-        },
-        methods: {
-            change: function (data) {
-                console.log(data)
-            }
-        }
+```js
+export default {
+  template: `
+    <div>
+      <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
+    </div>
+  `,
+  data: function () {
+    return {
+      pageSizeOpts: [10, 15, 20, 25, 40]
     }
+  },
+  methods: {
+    change: function (data) {
+      console.log(data)
+    }
+  }
+}
+```
 
 > showElevator 显示快速跳转
 
-    export default {
-        template: `
-            <Page total="100" showElevator="{{true}}"></Page>
-        `
-    }
+```js
+export default {
+  template: `
+    <div>
+      <Page total="100" showElevator></Page>
+    </div>
+  `
+}
+```
 
 > placement 弹窗的展开方向
 
-    export default {
-        template: `
-            <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
-        `,
-        data: function () {
-            return {
-                pageSizeOpts: [10, 15, 20, 25, 40]
-            }
-        }
+```js
+export default {
+  template: `
+    <div>
+      <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+    </div>
+  `,
+  data: function () {
+    return {
+      pageSizeOpts: [10, 15, 20, 25, 40]
     }
+  }
+}
+```
 
 > simple 显示简洁版本
 
-    export default {
-        template: `
-            <Page total="100" simple="{{true}}"></Page>
-        `
-    }
-
-
+```js
+export default {
+  template: `
+    <Page total="100" simple></Page>
+  `
+}
+```
 
 #### API
 
-> Attributes
+> Page Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -96,7 +114,7 @@ simple | 是否启用简洁版本 | boolean | - | false
 className | 样式类 | string | - | -
 placement | 弹窗的展开方向 | string | bottom 和 top | -
 
-> Events
+> Page Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---

@@ -1,14 +1,16 @@
-<span class="bell-breadcrumb-item bell-text
+<span 
+class="${prefix}breadcrumb-item ${prefix}text
   {{#if className}} {{className}}{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}>
-  <a {{#if to}}href="{{to}}"{{/if}} class="bell-breadcrumb-link">
+" 
+{{#if style}} style="{{style}}"{{/if}}
+>
+
+  <a {{#if to}}href="{{to}}"{{/if}} class="${prefix}breadcrumb-link">
     <slot name="children" />
   </a>
-  <span class="bell-breadcrumb-gap">
-    {{#if separator}}
-      {{separator}}
-    {{else}}
-      /
-    {{/if}}
+
+  <span class="${prefix}breadcrumb-gap">
+    {{separator || '/'}}
   </span>
+
 </span>

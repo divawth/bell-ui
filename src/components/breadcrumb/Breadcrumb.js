@@ -1,13 +1,17 @@
-import BreadcrumbTpl from './template/Breadcrumb.html'
+import template from './template/Breadcrumb.html'
+import { 
+  RAW_STRING
+} from '../constant'
 
 export default {
-  template: BreadcrumbTpl,
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
-  }
-};
+  },
+
+  template
+}

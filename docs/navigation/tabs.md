@@ -157,6 +157,8 @@ export default {
 
 > closable 设置可关闭的卡片按钮，tabRemove 接受关闭事件
 
+设置 closable 之后必须给 TabPanel 传 key。
+
 ```js
 export default {
   data: function () {
@@ -168,14 +170,13 @@ export default {
     <div>
       <Tabs type="card" closable size="{{size}}" on-tab-remove="removeTab($data)">
         {{#each tabsList}}
-          <TabPanel label="{{name}}">{{content}}</TabPanel>
+          <TabPanel key="{{name}}" label="{{name}}">{{content}}</TabPanel>
         {{/each}}
       </Tabs>
     </div>
   `,
   methods: {
     removeTab(data) {
-      console.log(data)
       let list = this.copy(this.get('tabsList'))
       list = list.filter((item, index) => {
         return index !== data.id

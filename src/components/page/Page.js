@@ -1,52 +1,63 @@
-import PageTpl from './template/Page.html'
+import template from './template/Page.html'
+import { 
+  FALSE, 
+  RAW_STRING, 
+  RAW_BOOLEAN,
+  RAW_NUMERIC
+} from '../constant'
 
 export default {
-  template: PageTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     simple: {
-      type: 'string'
+      type: RAW_STRING
     },
     total: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     current: {
-      type: 'numeric',
+      type: RAW_NUMERIC,
       value: 1
     },
-    pageSize: function (value) {
-      return !isNaN(+value) ? +value : 10;
+    pageSize: {
+      type: RAW_NUMERIC,
+      value: 10
     },
-    showSizer: function (value) {
-      return value ? true : false;
+    showSizer: {
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     pageSizeOpts: {
       type: 'array'
     },
-    showElevator: function (value) {
-      return value ? true : false;
+    showElevator: {
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
-    showTotal: function (value) {
-      return value ? true : false;
+    showTotal: {
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     placement: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
+  template,
+
   data() {
-    let me = this;
+    let me = this
     let getPageList = function () {
-      let pageList = [];
+      let pageList = []
       if (me.get('showSizer')
         && me.get('pageSizeOpts')
       ) {
@@ -56,12 +67,12 @@ export default {
             pageList.push({
               text: value + ' 条/页',
               value: value
-            });
+            })
           }
-        );
+        )
       }
-      return pageList;
-    };
+      return pageList
+    }
     return {
       pageList: getPageList(),
       count: 0,
@@ -72,7 +83,7 @@ export default {
   events: {
     change: function (event) {
       if (event.target != this) {
-        event.stop();
+        event.stop()
       }
     }
   },
@@ -84,7 +95,7 @@ export default {
         {
           value: value
         }
-      );
+      )
     }
   },
 
@@ -92,52 +103,52 @@ export default {
 
     pageSizeChange(event, data) {
 
-      this.updateCount();
+      this.updateCount()
       this.fire(
         'pageSizeChange',
         {
           value: data.value
         }
-      );
-      event.stop();
+      )
+      event.stop()
     },
 
     fastPrev() {
-      let me = this;
+      let me = this
       if (me.get('current') < 1) {
-        return;
+        return
       }
-      me.decrease('current', 5, 1);
+      me.decrease('current', 5, 1)
     },
 
     fastNext() {
-      let me = this;
+      let me = this
       if (me.get('current') >= me.get('count')) {
-        return;
+        return
       }
-      me.increase('current', 5, me.get('count'));
+      me.increase('current', 5, me.get('count'))
     },
 
     prev() {
-      let me = this;
+      let me = this
       if (me.get('current') < 1) {
-        return;
+        return
       }
-      me.decrease('current', 1, 1);
+      me.decrease('current', 1, 1)
 
       if (me.get('simple')) {
-        me.decrease('currentPage', 1, 1);
+        me.decrease('currentPage', 1, 1)
       }
     },
 
     next() {
-      let me = this;
+      let me = this
       if (me.get('current') >= me.get('count')) {
-        return;
+        return
       }
-      me.increase('current', 1, me.get('count'));
+      me.increase('current', 1, me.get('count'))
       if (me.get('simple')) {
-        me.increase('currentPage', 1, me.get('count'));
+        me.increase('currentPage', 1, me.get('count'))
       }
     },
 
@@ -145,71 +156,71 @@ export default {
       this.set({
         current: page,
         currentPage: page
-      });
+      })
     },
 
     updateCount() {
-      let me = this;
+      let me = this
       if (me.get('total')) {
-        let count = 1;
+        let count = 1
         if (me.get('total') > me.get('pageSize')) {
-          count = Math.ceil(me.get('total') / me.get('pageSize'));
+          count = Math.ceil(me.get('total') / me.get('pageSize'))
         }
 
         me.set({
           count: count
-        });
+        })
       }
     }
   },
 
   afterMount() {
-    let me = this;
-    me.updateCount();
+    let me = this
+    me.updateCount()
 
     me.documentKeydownHander = function (event) {
 
-      let currentPage = +me.get('currentPage');
-      let current = me.get('current');
-      let count = me.get('count');
+      let currentPage = +me.get('currentPage')
+      let current = me.get('current')
+      let count = me.get('count')
 
       switch (event.originalEvent.keyCode) {
         case 40:
-          current = current + 1 > count ? count : current + 1;
-          break;
+          current = current + 1 > count ? count : current + 1
+          break
         case 38:
-          current = current > 1 ? current - 1 : 1;
-          break;
+          current = current > 1 ? current - 1 : 1
+          break
         case 13:
           if (Yox.is.number(currentPage)
             && currentPage > 0
             && currentPage <= count
           ) {
-            current = currentPage;
+            current = currentPage
           }
-          break;
-      };
+          break
+      }
 
       me.set({
         current: current,
         currentPage: current
-      });
+      })
 
-    };
+    }
 
     Yox.dom.on(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   },
 
   beforeDestroy() {
-    let me = this;
+    let me = this
     Yox.dom.off(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   }
-};
+}

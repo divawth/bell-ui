@@ -1,20 +1,22 @@
-<div class="bell-badge
-{{#if type}} bell-badge-{{type}}{{/if}}
+<div 
+class="${prefix}badge
+{{#if type}} ${prefix}badge-{{type}}{{/if}}
 {{#if className}} {{className}}{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}
+" 
+{{#if style}} style="{{style}}"{{/if}}
 >
 
-<slot name="children" />
+  <slot name="children" />
 
-{{#if !hidden}}
-  {{#if dot}}
-    <span class="bell-badge-dot"></span>
-  {{else}}
-    <span class="bell-badge-count
-      {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}
-    ">
-      {{getText(count, maxCount)}}
-    </span>
-  {{/if}}
+  {{#if !hidden}}
+    {{#if dot}}
+      <span class="${prefix}badge-dot"></span>
+    {{else}}
+      <span class="${prefix}badge-count
+        {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}
+      ">
+        {{getText(count, maxCount)}}
+      </span>
+    {{/if}}
 {{/if}}
 </div>

@@ -63,50 +63,6 @@
 
             color $brand-main
 
-    {$selector-select}-dropdown
-
-        width 100%
-        overflow auto
-        box-sizing border-box
-        box-shadow 0 1px 4px rgba(0,0,0,0.2)
-        opacity 1
-        max-height 0px
-        position absolute
-        z-index $zindex-select
-        transition max-height .3s, opacity .3s
-
-        background-color $brand-bg
-        border-radius $radius-base
-
-        &.bell-hide
-
-            opacity 0
-            display none
-
-        {$selector-select}-list
-
-            list-style none
-            padding 0
-            margin 0
-
-        {$selector-select}-option
-
-            clear both
-            white-space nowrap
-            list-style none
-            cursor pointer
-            overflow hidden
-            text-overflow ellipsis
-            white-space nowrap
-            transition background-color .3s, color .3s, border-color .3s
-
-            color $brand-secondary
-
-            &{$selector-active}
-
-                font-weight bold
-                background-color $brand-bg-active
-
     &{$selector-select}-disabled
 
         {$selector-select}-button

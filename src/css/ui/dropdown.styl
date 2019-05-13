@@ -1,0 +1,125 @@
+{$selector-dropdown}
+  display inline-block
+  position relative
+
+  {$selector-dropdown-trigger}
+    position relative
+    padding $dropdown-trigger-padding
+  
+  &{$selector-dropdown}-open
+    > {$selector-dropdown-list}
+      max-height $dropdown-max-height
+  
+  &[data-placement="top"]
+    {$selector-dropdown-list}
+      bottom 100%
+      left 50%
+      transform translateX(-50%)
+
+  &[data-placement="top-start"]
+    {$selector-dropdown-list}
+      left 0
+      bottom 100%
+
+  &[data-placement="top-end"]
+    {$selector-dropdown-list}
+      right 0
+      bottom 100%
+
+  &[data-placement="left"]
+    {$selector-dropdown-list}
+      right 100%
+      top 50%
+      transform translateY(-50%)
+
+  &[data-placement="left-start"]
+    {$selector-dropdown-list}
+      right 100%
+      top 0
+  &[data-placement="left-end"]
+    {$selector-dropdown-list}
+      right 100%
+      bottom 0
+  
+  &[data-placement="right"]
+    {$selector-dropdown-list}
+      left 100%
+      top 50%
+      transform translateY(-50%)
+
+  &[data-placement="right-start"]
+    {$selector-dropdown-list}
+      left 100%
+      top 0
+
+  &[data-placement="right-end"]
+    {$selector-dropdown-list}
+      left 100%
+      bottom 0
+  
+  &[data-placement="bottom"]
+    {$selector-dropdown-list}
+      left 50%
+      transform translateX(-50%)
+  &[data-placement="bottom-start"]
+    {$selector-dropdown-list}
+      left 0
+  &[data-placement="bottom-end"]
+    {$selector-dropdown-list}
+      right 0
+
+{$selector-dropdown-list}
+
+  width inherit
+  overflow auto
+  box-sizing border-box
+  position absolute
+  box-shadow $dropdown-box-shadow 
+  opacity 1
+  max-height 0px
+  z-index $zindex-dropdown
+  transition max-height .3s, opacity .3s
+
+  background-color $brand-bg
+  border-radius $radius-base
+
+  &{$selector-prefix}-hide
+    opacity 0
+    display none
+
+  {$selector-dropdown}-menu
+    list-style none
+    padding 0
+    margin 0
+    min-width $dropdown-menu-min-width
+
+  {$selector-dropdown}-item
+
+    clear both
+    white-space nowrap
+    list-style none
+    cursor pointer
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    transition background-color .3s, color .3s, border-color .3s
+
+    font-size $dropdown-item-size
+    color $dropdown-item-color
+    padding $dropdown-item-padding
+
+    &{$selector-dropdown}-selected
+      font-weight 400
+      background-color $brand-bg-active
+
+    &{$selector-hover}
+      font-weight 400
+      background-color $brand-bg-active
+
+    &{$selector-dropdown}-disabled
+      color $brand-text-disabled
+      cursor not-allowed
+    
+    &{$selector-dropdown}-divided
+      margin-top $dropdown-item-divider-margin-top
+      border-top 1px solid $brand-border

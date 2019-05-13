@@ -73,6 +73,9 @@ import Tag from './components/tag/Tag'
 import Rate from './components/rate/Rate'
 import Tabs from './components/tabs/Tabs'
 import TabPanel from './components/tabs/TabPanel'
+import Dropdown from './components/dropdown/Dropdown'
+import DropdownItem from './components/dropdown/DropdownItem'
+import DropdownMenu from './components/dropdown/DropdownMenu'
 
 import Transfer from './components/transfer/Transfer'
 
@@ -157,6 +160,10 @@ Yox.component({
   Rate,
   Tabs,
   TabPanel,
+
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
 
   Transfer,
   TimeLine,

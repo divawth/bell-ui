@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.26
+ * yox.js v1.0.0-alpha.33
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -917,6 +917,11 @@
                 : EMPTY_STRING;
     }
   
+    var DEBUG = 1;
+    var INFO = 2;
+    var WARN = 3;
+    var ERROR = 4;
+    var FATAL = 5;
     /**
      * 是否有原生的日志特性，没有必要单独实现
      */
@@ -924,25 +929,22 @@
     /**
      * 当前是否是源码调试，如果开启了代码压缩，empty function 里的注释会被干掉
      */
-    useSource = /yox/.test(toString(EMPTY_FUNCTION)), 
+    level = /yox/.test(toString(EMPTY_FUNCTION)) ? DEBUG : WARN, 
     /**
      * console 样式前缀
      */
     stylePrefix = '%c';
     /**
      * 全局调试开关
-     *
-     * 比如开发环境，开了 debug 模式，但是有时候觉得看着一堆日志特烦，想强制关掉
-     * 比如线上环境，关了 debug 模式，为了调试，想强制打开
      */
-    function isDebug() {
+    function getLevel() {
         if (WINDOW) {
-            var debug_1 = WINDOW['DEBUG'];
-            if (boolean(debug_1)) {
-                return debug_1;
+            var logLevel = WINDOW['YOX_LOG_LEVEL'];
+            if (logLevel >= DEBUG && logLevel <= FATAL) {
+                return logLevel;
             }
         }
-        return useSource;
+        return level;
     }
     function getStyle(backgroundColor) {
         return "background-color:" + backgroundColor + ";border-radius:20px;color:#fff;font-size:10px;padding:3px 6px;";
@@ -953,7 +955,7 @@
      * @param msg
      */
     function debug(msg, tag) {
-        if (nativeConsole && isDebug()) {
+        if (nativeConsole && getLevel() <= DEBUG) {
             nativeConsole.log(stylePrefix + (tag || 'Yox debug'), getStyle('#888'), msg);
         }
     }
@@ -963,18 +965,8 @@
      * @param msg
      */
     function info(msg, tag) {
-        if (nativeConsole && isDebug()) {
+        if (nativeConsole && getLevel() <= INFO) {
             nativeConsole.log(stylePrefix + (tag || 'Yox info'), getStyle('#2db7f5'), msg);
-        }
-    }
-    /**
-     * 打印 success 日志
-     *
-     * @param msg
-     */
-    function success(msg, tag) {
-        if (nativeConsole && isDebug()) {
-            nativeConsole.log(stylePrefix + (tag || 'Yox success'), getStyle('#19be6b'), msg);
         }
     }
     /**
@@ -983,7 +975,7 @@
      * @param msg
      */
     function warn(msg, tag) {
-        if (nativeConsole && isDebug()) {
+        if (nativeConsole && getLevel() <= WARN) {
             nativeConsole.warn(stylePrefix + (tag || 'Yox warn'), getStyle('#f90'), msg);
         }
     }
@@ -993,7 +985,7 @@
      * @param msg
      */
     function error(msg, tag) {
-        if (nativeConsole) {
+        if (nativeConsole && getLevel() <= ERROR) {
             nativeConsole.error(stylePrefix + (tag || 'Yox error'), getStyle('#ed4014'), msg);
         }
     }
@@ -1003,13 +995,19 @@
      * @param msg
      */
     function fatal(msg, tag) {
-        throw new Error("[" + (tag || 'Yox fatal') + "]: " + msg);
+        if (getLevel() <= FATAL) {
+            throw new Error("[" + (tag || 'Yox fatal') + "]: " + msg);
+        }
     }
   
     var logger = /*#__PURE__*/Object.freeze({
+      DEBUG: DEBUG,
+      INFO: INFO,
+      WARN: WARN,
+      ERROR: ERROR,
+      FATAL: FATAL,
       debug: debug,
       info: info,
-      success: success,
       warn: warn,
       error: error,
       fatal: fatal
@@ -1650,15 +1648,18 @@
          * 不论是组件或是元素，都不能销毁，只能简单的 remove，
          * 否则子组件下一次展现它们时，会出问题
          */
-        var data = vnode.data, children = vnode.children, parent = vnode.parent;
-        if (parent
-            // 如果宿主组件正在销毁，$vnode 属性会在调 destroy() 之前被删除
-            // 这里表示的是宿主组件还没被销毁
-            // 如果宿主组件被销毁了，则它的一切都要进行销毁
-            && parent.$vnode
-            // 是从外部传入到组件内的
-            && parent !== vnode.context) {
-            return;
+        var data = vnode.data, children = vnode.children, parent = vnode.parent, slot = vnode.slot;
+        // 销毁插槽组件
+        // 如果宿主组件正在销毁，$vnode 属性会在调 destroy() 之前被删除
+        // 这里表示的是宿主组件还没被销毁
+        // 如果宿主组件被销毁了，则它的一切都要进行销毁
+        if (slot && parent && parent.$vnode) {
+            // 如果更新时，父组件没有传入该 slot，则子组件需要销毁该 slot
+            var slots = parent.get(slot);
+            // slots 要么没有，要么是数组，不可能是别的
+            if (slots && has(slots, vnode)) {
+                return;
+            }
         }
         if (vnode.isComponent) {
             var component_3 = data[COMPONENT];
@@ -3370,15 +3371,21 @@
         }, processDirectiveEmptyChildren = function (element, directive) {
             directive.value = TRUE;
         }, processDirectiveSingleText = function (directive, child) {
-            var text = child.text;
-            // 指令的值是纯文本，可以预编译表达式，提升性能
-            var expr = compile(text), 
+            var text = child.text, 
             // model="xx" model="this.x" 值只能是标识符或 Member
             isModel = directive.ns === DIRECTIVE_MODEL, 
             // lazy 的值必须是大于 0 的数字
             isLazy = directive.ns === DIRECTIVE_LAZY, 
             // 校验事件名称
-            isEvent = directive.ns === DIRECTIVE_EVENT;
+            isEvent = directive.ns === DIRECTIVE_EVENT, 
+            // 自定义指令运行不合法的表达式
+            isCustom = directive.ns === DIRECTIVE_CUSTOM;
+            // 指令的值是纯文本，可以预编译表达式，提升性能
+            var expr;
+            try {
+                expr = compile(text);
+            }
+            catch (_a) { }
             if (expr) {
                 {
                     var raw = expr.raw;
@@ -3418,7 +3425,7 @@
             }
             else {
                 {
-                    if (isModel || isEvent) {
+                    if (!isCustom) {
                         fatal$1(directive.ns + " \u6307\u4EE4\u7684\u8868\u8FBE\u5F0F\u9519\u8BEF: [" + text + "]");
                     }
                 }
@@ -3468,12 +3475,8 @@
             }
         }, checkElement = function (element) {
             {
-                var isTemplate = element.tag === RAW_TEMPLATE;
-                if (element.slot) {
-                    if (!isTemplate) {
-                        fatal$1("slot \u5C5E\u6027\u53EA\u80FD\u7528\u4E8E <template>");
-                    }
-                    else if (element.key) {
+                if (element.tag === RAW_TEMPLATE) {
+                    if (element.key) {
                         fatal$1("<template> \u4E0D\u652F\u6301 key");
                     }
                     else if (element.ref) {
@@ -3482,9 +3485,9 @@
                     else if (element.attrs) {
                         fatal$1("<template> \u4E0D\u652F\u6301\u5C5E\u6027\u6216\u6307\u4EE4");
                     }
-                }
-                else if (isTemplate) {
-                    fatal$1("<template> \u4E0D\u5199 slot \u5C5E\u6027\u662F\u51E0\u4E2A\u610F\u601D\uFF1F");
+                    else if (!element.slot) {
+                        fatal$1("<template> \u4E0D\u5199 slot \u5C5E\u6027\u662F\u51E0\u4E2A\u610F\u601D\uFF1F");
+                    }
                 }
                 else if (element.tag === RAW_SLOT && !element.name) {
                     fatal$1("<slot> \u4E0D\u5199 name \u5C5E\u6027\u662F\u51E0\u4E2A\u610F\u601D\uFF1F");
@@ -4098,9 +4101,17 @@
                 break;
             }
         }
-        {
-            if (nodeStack.length) {
-                fatal$1('还有节点未出栈');
+        if (nodeStack.length) {
+            /**
+             * 处理可能存在的自闭合元素，如下
+             *
+             * <input>
+             */
+            popSelfClosingElementIfNeeded();
+            {
+                if (nodeStack.length) {
+                    fatal$1('还有节点未出栈');
+                }
             }
         }
         return compileCache[content] = nodeList;
@@ -4288,7 +4299,9 @@
             if (child.type === ELEMENT) {
                 var element = child;
                 if (element.slot) {
-                    addSlot(element.slot, element.children);
+                    addSlot(element.slot, element.tag === RAW_TEMPLATE
+                        ? element.children
+                        : [element]);
                     return;
                 }
             }
@@ -4393,7 +4406,6 @@
             return stringifyCall(RENDER_MODEL_VNODE, toJSON(expr));
         }
         var renderName = RENDER_DIRECTIVE_VNODE, args = [
-            toJSON(ns),
             toJSON(name),
             toJSON(key),
             toJSON(value) ];
@@ -4602,7 +4614,7 @@
                 if (node.lookup !== FALSE && index > 1) {
                     index -= 2;
                     {
-                        warn("Can't find [" + keypath + "], start looking up.");
+                        debug("Can't find [" + keypath + "], start looking up.");
                     }
                     return lookup(stack, index, key, node, depIgnore, defaultKeypath);
                 }
@@ -4724,25 +4736,25 @@
                 binding: expr.ak,
                 hooks: directives[DIRECTIVE_MODEL]
             });
-        }, renderEventMethodVnode = function (ns, name, key, value, method, args) {
+        }, renderEventMethodVnode = function (name, key, value, method, args) {
             setPair($vnode, 'directives', key, {
-                ns: ns,
+                ns: DIRECTIVE_EVENT,
                 name: name,
                 key: key,
                 value: value,
                 hooks: directives[DIRECTIVE_EVENT],
                 handler: createMethodListener(method, args, $stack)
             });
-        }, renderEventNameVnode = function (ns, name, key, value, event) {
+        }, renderEventNameVnode = function (name, key, value, event) {
             setPair($vnode, 'directives', key, {
-                ns: ns,
+                ns: DIRECTIVE_EVENT,
                 name: name,
                 key: key,
                 value: value,
                 hooks: directives[DIRECTIVE_EVENT],
                 handler: createEventListener(event)
             });
-        }, renderDirectiveVnode = function (ns, name, key, value, method, args, getter) {
+        }, renderDirectiveVnode = function (name, key, value, method, args, getter) {
             var hooks = directives[name];
             {
                 if (!hooks) {
@@ -4750,7 +4762,7 @@
                 }
             }
             setPair($vnode, 'directives', key, {
-                ns: ns,
+                ns: DIRECTIVE_CUSTOM,
                 name: name,
                 key: key,
                 value: value,
@@ -4816,6 +4828,7 @@
                 if (vnodes) {
                     each(vnodes, function (vnode) {
                         push(vnodeList, vnode);
+                        vnode.slot = name;
                         vnode.parent = context;
                     });
                 }
@@ -5794,7 +5807,7 @@
                 if (specialEvents[type]) {
                     error("Special event \"" + type + "\" is existed.");
                 }
-                success("Special event \"" + type + "\" add success.");
+                info("Special event \"" + type + "\" add success.");
             }
             specialEvents[type] = hooks;
         }
@@ -5851,9 +5864,7 @@
         };
     }
   
-    // 避免连续多次点击，主要用于提交表单场景
-    // 移动端的 tap 事件可自行在业务层打补丁实现
-    var immediateTypes = toObject([EVENT_CLICK, EVENT_TAP]), directive = {
+    var directive = {
         bind: function (node, directive, vnode) {
             var name = directive.name, handler = directive.handler, lazy = vnode.lazy;
             if (!handler) {
@@ -5865,7 +5876,10 @@
                     name = EVENT_CHANGE;
                 }
                 else if (value > 0) {
-                    handler = debounce(handler, value, immediateTypes[name]);
+                    handler = debounce(handler, value, 
+                    // 避免连续多次点击，主要用于提交表单场景
+                    // 移动端的 tap 事件可自行在业务层打补丁实现
+                    name === EVENT_CLICK || name === EVENT_TAP);
                 }
             }
             if (vnode.isComponent) {
@@ -6127,7 +6141,7 @@
                 instance.on(events);
             }
             {
-                var isComment = FALSE, placeholder = void 0, el = $options.el, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
+                var isComment = FALSE, placeholder = void 0, el = $options.el, root = $options.root, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
                 // 把 slots 放进数据里，方便 get
                 if (slots) {
                     extend(source, slots);
@@ -6174,6 +6188,9 @@
                     // 则在该元素下新建一个注释节点，等会用新组件替换掉
                     isComment = TRUE;
                     domApi.append(placeholder, placeholder = domApi.createComment(EMPTY_STRING));
+                }
+                if (root) {
+                    instance.$root = root;
                 }
                 if (parent) {
                     instance.$parent = parent;
@@ -6304,72 +6321,6 @@
                     return getResource(globalFilters, name);
                 }
                 setResource(globalFilters, name, filter);
-            }
-        };
-        /**
-         * 验证 props，无爱请重写
-         */
-        Yox.checkPropTypes = function (props, propTypes) {
-            {
-                var result_1 = copy(props);
-                each$2(propTypes, function (rule, key) {
-                    // 类型
-                    var type = rule.type, 
-                    // 默认值
-                    value = rule.value, 
-                    // 是否必传
-                    required = rule.required, 
-                    // 实际的值
-                    actual = props[key];
-                    // 动态化获取是否必填
-                    if (func(required)) {
-                        required = required(props);
-                    }
-                    // 传了数据
-                    if (isDef(actual)) {
-                        // 如果不写 type 或 type 不是 字符串 或 数组
-                        // 就当做此规则无效，和没写一样
-                        if (type) {
-                            var matched_1;
-                            // type: 'string'
-                            if (!falsy$1(type)) {
-                                matched_1 = matchType(actual, type);
-                            }
-                            // type: ['string', 'number']
-                            else if (!falsy(type)) {
-                                each(type, function (item) {
-                                    if (matchType(actual, item)) {
-                                        matched_1 = TRUE;
-                                        return FALSE;
-                                    }
-                                });
-                            }
-                            // 动态判断是否匹配类型
-                            else if (func(type)) {
-                                matched_1 = type(props, key);
-                            }
-                            if (!matched_1) {
-                                warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
-                            }
-                        }
-                        else {
-                            warn("The prop \"" + key + "\" in propTypes has no type.");
-                        }
-                    }
-                    // 没传值但此项是必传项
-                    else if (required) {
-                        warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
-                    }
-                    // 没传值但是配置了默认值
-                    else if (isDef(value)) {
-                        result_1[key] = type === RAW_FUNCTION
-                            ? value
-                            : func(value)
-                                ? value(props)
-                                : value;
-                    }
-                });
-                return result_1;
             }
         };
         /**
@@ -6591,9 +6542,77 @@
          */
         Yox.prototype.checkPropTypes = function (props) {
             var propTypes = this.$options.propTypes;
-            return propTypes
-                ? Yox.checkPropTypes(props, propTypes)
-                : props;
+            if (propTypes) {
+                var result_1 = copy(props);
+                each$2(propTypes, function (rule, key) {
+                    // 类型
+                    var type = rule.type, 
+                    // 默认值
+                    value = rule.value, 
+                    // 是否必传
+                    required = rule.required, 
+                    // 实际的值
+                    actual = props[key];
+                    // 传了数据
+                    if (isDef(actual)) {
+                        {
+                            // 如果不写 type 或 type 不是 字符串 或 数组
+                            // 就当做此规则无效，和没写一样
+                            if (type) {
+                                // 自定义函数判断是否匹配类型
+                                // 自己打印警告信息吧
+                                if (func(type)) {
+                                    type(props, key);
+                                }
+                                else {
+                                    var matched_1;
+                                    // type: 'string'
+                                    if (!falsy$1(type)) {
+                                        matched_1 = matchType(actual, type);
+                                    }
+                                    // type: ['string', 'number']
+                                    else if (!falsy(type)) {
+                                        each(type, function (item) {
+                                            if (matchType(actual, item)) {
+                                                matched_1 = TRUE;
+                                                return FALSE;
+                                            }
+                                        });
+                                    }
+                                    if (!matched_1) {
+                                        warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
+                                    }
+                                }
+                            }
+                            else {
+                                warn("The prop \"" + key + "\" in propTypes has no type.");
+                            }
+                        }
+                    }
+                    else {
+                        {
+                            // 动态化获取是否必填
+                            if (func(required)) {
+                                required = required(props, key);
+                            }
+                            // 没传值但此项是必传项
+                            if (required) {
+                                warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
+                            }
+                        }
+                        // 没传值但是配置了默认值
+                        if (isDef(value)) {
+                            result_1[key] = type === RAW_FUNCTION
+                                ? value
+                                : func(value)
+                                    ? value(props, key)
+                                    : value;
+                        }
+                    }
+                });
+                return result_1;
+            }
+            return props;
         };
         /**
          * 创建子组件
@@ -6605,20 +6624,18 @@
         Yox.prototype.create = function (options, vnode, node) {
             {
                 options = copy(options);
+                options.root = this.$root || this;
                 options.parent = this;
-                if (vnode) {
-                    // 如果传了 node，表示有一个占位元素，新创建的 child 需要把它替换掉
-                    if (node) {
-                        options.el = node;
-                        options.replace = TRUE;
-                    }
-                    var props = vnode.props, slots = vnode.slots;
-                    if (props) {
-                        options.props = props;
-                    }
-                    if (slots) {
-                        options.slots = slots;
-                    }
+                // 如果传了 node，表示有一个占位元素，新创建的 child 需要把它替换掉
+                if (node) {
+                    options.el = node;
+                    options.replace = TRUE;
+                }
+                if (vnode.props) {
+                    options.props = vnode.props;
+                }
+                if (vnode.slots) {
+                    options.slots = vnode.slots;
                 }
                 var child = new Yox(options);
                 push(this.$children || (this.$children = []), child);
@@ -6638,7 +6655,7 @@
                 }
                 if ($vnode) {
                     // virtual dom 通过判断 parent.$vnode 知道宿主组件是否正在销毁
-                    delete instance.$vnode;
+                    instance.$vnode = UNDEFINED;
                     destroy(domApi, $vnode, !$parent);
                 }
             }
@@ -6743,7 +6760,7 @@
         /**
          * core 版本
          */
-        Yox.version = "1.0.0-alpha.26";
+        Yox.version = "1.0.0-alpha.33";
         /**
          * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
          */

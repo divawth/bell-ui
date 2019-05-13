@@ -1,40 +1,40 @@
-import BadgeTpl from './template/Badge.html'
-
+import template from './template/Badge.html'
+import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant'
 export default {
-  template: BadgeTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     count: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     maxCount: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     dot: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     hidden: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
+  template,
+
   filters: {
     getText(count, maxCount) {
-      maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
-      let countStr = Yox.is.number(count) ? +count : 0;
+      maxCount = Yox.is.number(maxCount) ? +maxCount : 1
+      let countStr = Yox.is.number(count) ? +count : 0
 
       return maxCount < countStr
         ? maxCount + '+'
-        : count;
+        : count
     }
   }
-};
+}
