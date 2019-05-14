@@ -1,5 +1,6 @@
 import template from './template/Badge.html'
 import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant'
+
 export default {
   propTypes: {
     count: {

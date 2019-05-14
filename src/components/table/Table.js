@@ -14,7 +14,7 @@ export default {
     },
     columns: {
       type: 'array',
-      default: []
+      value: []
     },
     stripe: {
       type: 'boolean'

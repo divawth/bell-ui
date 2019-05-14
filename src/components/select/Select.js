@@ -1,7 +1,7 @@
 import SelectTpl from './template/Select.html'
 import {
   contains
-} from '../util';
+} from '../util'
 
 export default {
   template: SelectTpl,
@@ -48,14 +48,14 @@ export default {
 
   watchers: {
     value(value) {
-      let me = this;
+      let me = this
       me.fire(
         'optionSelectedChange',
         {
           value: value
         },
         true
-      );
+      )
 
       me.fire(
         'change',
@@ -64,41 +64,41 @@ export default {
           text: me.get('selectedText'),
           index: me.get('selectedIndex')
         }
-      );
+      )
     }
   },
 
   events: {
     selectedOptionChange(event) {
-      let me = this;
-      let option = event.target;
+      let me = this
+      let option = event.target
       if (me.get('selectedText') == null
         && me.get('selectedIndex') == null
       ) {
         me.set({
           selectedIndex: option.get('index'),
           selectedText: option.get('text'),
-        });
+        })
       }
-      event.stop();
+      event.stop()
     },
 
     optionAdd() {
-      this.increase('count');
+      this.increase('count')
     },
 
     optionRemove() {
-      this.decrease('count');
+      this.decrease('count')
     },
 
     optionSelect(event) {
 
-      let me = this;
-      let option = event.target;
+      let me = this
+      let option = event.target
 
-      let value = option.get('value');
-      let text = option.get('text');
-      let index = option.get('index');
+      let value = option.get('value')
+      let text = option.get('text')
+      let index = option.get('index')
 
       if (me.get('multiple')) {
 
@@ -107,7 +107,7 @@ export default {
           selectedText: me.setArrayValue(text, me.get('selectedText')),
           selectedIndex: index,
           visible: true
-        });
+        })
 
       }
       else {
@@ -117,7 +117,7 @@ export default {
           selectedText: text,
           selectedIndex: index,
           visible: false
-        });
+        })
 
       }
     }
@@ -126,68 +126,68 @@ export default {
   methods: {
     setArrayValue: function (text, values) {
 
-      values = this.copy(values);
+      values = this.copy(values)
       if (Array.isArray(values)) {
-        let index = values.indexOf(text);
+        let index = values.indexOf(text)
         if (index >= 0) {
-          values.splice(index, 1);
+          values.splice(index, 1)
         }
         else {
-          values.push(text);
+          values.push(text)
         }
       }
       else {
-        values = [text];
+        values = [text]
       }
 
-      return values.length ? values : null;
+      return values.length ? values : null
 
     },
 
     tagClose(event, text, index) {
 
-      let me = this;
+      let me = this
 
       this.set({
         value: me.setArrayValue(me.get('value')[index], me.get('value')),
         selectedText: me.setArrayValue(text, me.get('selectedText'))
-      });
-      event.stop();
+      })
+      event.stop()
 
     },
 
     toggleMenu() {
-      let me = this;
+      let me = this
       if (me.get('disabled')) {
-        return false;
+        return false
       }
-      me.toggle('visible');
+      me.toggle('visible')
     },
 
     decreaseHoverIndex() {
-      let me = this;
-      let hoverIndex = me.get('hoverIndex');
-      hoverIndex = hoverIndex <= 0 ? (me.get('count') - 1) : hoverIndex - 1;
+      let me = this
+      let hoverIndex = me.get('hoverIndex')
+      hoverIndex = hoverIndex <= 0 ? (me.get('count') - 1) : hoverIndex - 1
       me.set({
         hoverIndex: hoverIndex
-      });
+      })
       me.fire(
         'optionHoveredChange',
         {
           index: hoverIndex
         },
         true
-      );
+      )
     },
 
     increaseHoverIndex() {
 
-      let me = this;
-      let hoverIndex = me.get('hoverIndex');
-      hoverIndex = hoverIndex >= (me.get('count') - 1) ? 0 : hoverIndex + 1;
+      let me = this
+      let hoverIndex = me.get('hoverIndex')
+      hoverIndex = hoverIndex >= (me.get('count') - 1) ? 0 : hoverIndex + 1
       me.set({
         hoverIndex: hoverIndex
-      });
+      })
 
       me.fire(
         'optionHoveredChange',
@@ -195,7 +195,7 @@ export default {
           index: hoverIndex
         },
         true
-      );
+      )
 
     },
 
@@ -207,13 +207,13 @@ export default {
           selected: true
         },
         true
-      );
+      )
     }
 
   },
 
   afterMount() {
-    let me = this;
+    let me = this
 
     if (me.get('value') != null
       && me.get('selectedText') == null
@@ -225,7 +225,7 @@ export default {
           value: me.get('value')
         },
         true
-      );
+      )
     }
 
     me.documentClickHandler = function (e) {
@@ -234,65 +234,65 @@ export default {
         return
       }
 
-      let element = me.$el;
-      let target = e.originalEvent.target;
+      let element = me.$el
+      let target = e.originalEvent.target
       if (contains(element, target)) {
-        return;
+        return
       }
       me.set({
         visible: false
-      });
+      })
 
-    };
+    }
 
     me.documentKeydownHander = function (e) {
 
       if (!me.get('visible')) {
-        return;
+        return
       }
 
       switch (e.originalEvent.keyCode) {
 
         case 40:
-          e.prevent();
-          me.increaseHoverIndex();
-          break;
+          e.prevent()
+          me.increaseHoverIndex()
+          break
 
         case 38:
-          e.prevent();
-          me.decreaseHoverIndex();
-          break;
+          e.prevent()
+          me.decreaseHoverIndex()
+          break
 
         case 13:
-          me.selectOption();
+          me.selectOption()
 
-      };
+      }
 
-    };
+    }
 
     Yox.dom.on(
       document,
       'click',
       me.documentClickHandler
-    );
+    )
     Yox.dom.on(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   },
 
   beforeDestroy() {
-    let me = this;
+    let me = this
     Yox.dom.off(
       document,
       'click',
       me.documentClickHandler
-    );
+    )
     Yox.dom.off(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   }
-};
+}

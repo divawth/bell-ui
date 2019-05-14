@@ -6,14 +6,14 @@
 
   <input type="hidden" model="value">
   {{#each 1 => count}}
-    <span class="bell-icon bell-rate-star-full
+    <span class="bell-icon bell-rate-star-full bell-icon-ios-star
       {{#if activeValue - this >= 1}} active{{/if}}
     " on-mousemove="handleMove($event, this)"
     on-click="handleClick($event, this)"
     >
       {{#if half}}
         <span type="half"
-        class="bell-icon bell-rate-star-content
+        class="bell-icon bell-rate-star-content bell-icon-ios-star-half
         {{#if activeValue - this == 0.5}} active{{/if}}">
         </span>
       {{/if}}

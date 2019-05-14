@@ -1,5 +1,8 @@
-<div{{#if fixedLeftList.length || fixedRightList.length || height}} class="bell-table-fixed"{{/if}} 
-  style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}">
+<div class="{{#if fixedLeftList.length || fixedRightList.length || height}} 
+  bell-table-fixed
+{{/if}} "
+style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}"
+>
 
   {{#if height}}
   <div class="bell-table-fixed-header">

@@ -47,7 +47,7 @@ export default {
       let isChecked = Yox.is.array(data.value)
         && Yox.array.has(data.value, me.get('value'));
       me.set({
-        isChecked: isChecked
+        checked: isChecked
       });
     },
     updateCheckboxType(event, data) {
@@ -77,7 +77,7 @@ export default {
         }
       );
       me.set({
-        isChecked: !isChecked
+        checked: !isChecked
       });
     }
   }

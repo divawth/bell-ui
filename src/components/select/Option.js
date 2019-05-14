@@ -25,30 +25,30 @@ export default {
   events: {
 
     optionHoveredChange(event, data) {
-      let me = this;
-      let isHover = data.index == me.get('index');
+      let me = this
+      let isHover = data.index == me.get('index')
       me.set({
         isHover: isHover
-      });
+      })
       if (isHover && !me.get('isSelected')) {
         me.set({
           isSelected: data.selected
-        });
+        })
       }
     },
 
     optionSelectedChange(event, data) {
-      let me = this;
-      let value = me.get('value');
-      let values = data.value;
+      let me = this
+      let value = me.get('value')
+      let values = data.value
 
-      let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value;
+      let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
       me.set({
         isSelected: isSelected
-      });
+      })
       // 默认值的时候需要传给上层
       if (isSelected) {
-        me.fire('selectedOptionChange');
+        me.fire('selectedOptionChange')
       }
     }
   },
@@ -57,7 +57,7 @@ export default {
     return {
       isSelected: false,
       isHover: false
-    };
+    }
   },
 
   methods: {
@@ -65,14 +65,14 @@ export default {
     click() {
       this.fire(
         'optionSelect'
-      );
+      )
     }
 
   },
 
   afterMount() {
 
-    let me = this;
+    let me = this
     me.fire(
       'optionAdd',
       {
@@ -80,14 +80,14 @@ export default {
         text: me.get('text'),
         index: me.get('index')
       }
-    );
+    )
 
   },
 
   beforeDestroy() {
     this.fire(
       'optionRemove'
-    );
+    )
   }
 
-};
+}

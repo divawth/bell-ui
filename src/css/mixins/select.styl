@@ -12,9 +12,7 @@ select-size-style(size)
 
             ui-set('padding', size['arrow-padding'])
 
-    {$selector-select}-dropdown
-
-        ui-set('max-height', size['max-height'])
+    {$selector-prefix}-dropdown-list
 
         {$selector-select}-option
 
@@ -24,13 +22,13 @@ select-size-style(size)
 
     &{$selector-select}-top
 
-        {$selector-select}-dropdown
+        {$selector-prefix}-dropdown-list
 
             ui-set('bottom', size['height'] + 8)
 
     &{$selector-active}
 
-        {$selector-select}-dropdown
+        {$selector-prefix}-dropdown-list
 
             ui-set('max-height', size['max-height'], true)
 

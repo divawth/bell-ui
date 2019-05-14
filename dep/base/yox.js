@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.33
+ * yox.js v1.0.0-alpha.35
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -1480,17 +1480,7 @@
         }
     }
     function createComponent(vnode, options) {
-        // 渲染同步加载的组件时，vnode.node 为空
-        // 渲染异步加载的组件时，vnode.node 不为空，因为初始化用了占位节点
-        var child = (vnode.parent || vnode.context).create(options, vnode, vnode.node), 
-        // 组件初始化创建的元素
-        node = child.$el;
-        if (node) {
-            vnode.node = node;
-        }
-        else {
-            fatal("The root element of component [" + vnode.tag + "] is not found.");
-        }
+        var child = (vnode.parent || vnode.context).createComponent(options, vnode);
         vnode.data[COMPONENT] = child;
         vnode.data[LOADING] = FALSE;
         update$3(vnode);
@@ -1518,7 +1508,7 @@
             return;
         }
         if (isComponent) {
-            var isAsync_1 = TRUE;
+            var componentOptions_1 = UNDEFINED;
             context.loadComponent(tag, function (options) {
                 if (has$2(data, LOADING)) {
                     // 异步组件
@@ -1534,12 +1524,15 @@
                 }
                 // 同步组件
                 else {
-                    createComponent(vnode, options);
-                    isAsync_1 = FALSE;
+                    componentOptions_1 = options;
                 }
             });
-            if (isAsync_1) {
-                vnode.node = api.createComment(RAW_COMPONENT);
+            // 不论是同步还是异步组件，都需要一个占位元素
+            vnode.node = api.createComment(RAW_COMPONENT);
+            if (componentOptions_1) {
+                createComponent(vnode, componentOptions_1);
+            }
+            else {
                 data[LOADING] = TRUE;
             }
         }
@@ -1581,7 +1574,7 @@
         // 普通元素和组件的占位节点都会走到这里
         // 但是占位节点不用 enter，而是等组件加载回来之后再调 enter
         if (!hasParent) {
-            var enter = void 0;
+            var enter = UNDEFINED;
             if (vnode.isComponent) {
                 var component_1 = data[COMPONENT];
                 if (component_1) {
@@ -1872,11 +1865,10 @@
             api.text(node, EMPTY_STRING, isStyle);
         }
     }
-    function create(api, node, isComment, context, keypath) {
+    function create(api, node, context, keypath) {
         return {
             tag: api.tag(node),
             data: createData(),
-            isComment: isComment,
             node: node,
             context: context,
             keypath: keypath
@@ -2212,7 +2204,7 @@
          * 跳过空白符
          */
         Parser.prototype.skip = function (step) {
-            var instance = this;
+            var instance = this, isChange = FALSE;
             // 走一步
             if (instance.code === CODE_EOF) {
                 instance.go(step);
@@ -2222,9 +2214,11 @@
             while (TRUE) {
                 if (isWhitespace(instance.code)) {
                     instance.go(step);
+                    isChange = TRUE;
                 }
                 else {
-                    if (step && step < 0) {
+                    // 逆向时，只有位置真的发生过变化才需要在停止时正向移动一位
+                    if (isChange && step && step < 0) {
                         instance.go();
                     }
                     break;
@@ -4008,7 +4002,7 @@
                  */
                 popSelfClosingElementIfNeeded();
                 var name = slice(code, 1);
-                var type = name2Type[name], isCondition = void 0;
+                var type = name2Type[name], isCondition = FALSE;
                 if (type === IF) {
                     var node_1 = pop(ifStack);
                     if (node_1) {
@@ -4284,8 +4278,8 @@
         }, TRUE);
         return args;
     }
-    function renderElement(data, attrs, childs, slots) {
-        return stringifyCall(RENDER_ELEMENT_VNODE, join(trimArgs([data, attrs, childs, slots]), SEP_COMMA));
+    function renderElement(data, tag, attrs, childs, slots) {
+        return stringifyCall(RENDER_ELEMENT_VNODE, join(trimArgs([data, tag, attrs, childs, slots]), SEP_COMMA));
     }
     function getComponentSlots(children) {
         var result = {}, slots = {}, addSlot = function (name, nodes) {
@@ -4317,7 +4311,7 @@
         }
     }
     nodeStringify[ELEMENT] = function (node) {
-        var tag = node.tag, isComponent = node.isComponent, isSvg = node.isSvg, isStyle = node.isStyle, isStatic = node.isStatic, isComplex = node.isComplex, name = node.name, ref = node.ref, key = node.key, html = node.html, attrs = node.attrs, children = node.children, data = {}, outputAttrs = [], outputChilds, outputSlots, args;
+        var tag = node.tag, isComponent = node.isComponent, isSvg = node.isSvg, isStyle = node.isStyle, isStatic = node.isStatic, isComplex = node.isComplex, name = node.name, ref = node.ref, key = node.key, html = node.html, attrs = node.attrs, children = node.children, data = {}, outputTag, outputAttrs = [], outputChilds, outputSlots, args;
         if (tag === RAW_SLOT) {
             args = [toJSON(SLOT_DATA_PREFIX + name)];
             if (children) {
@@ -4331,7 +4325,13 @@
                 push(outputAttrs, nodeStringify[attr.type](attr));
             });
         }
-        data.tag = toJSON(tag);
+        // 如果以 $ 开头，表示动态组件
+        if (codeAt(tag) === 36) {
+            outputTag = toJSON(slice(tag, 1));
+        }
+        else {
+            data.tag = toJSON(tag);
+        }
         if (isSvg) {
             data.isSvg = STRING_TRUE;
         }
@@ -4370,7 +4370,7 @@
             }
         }
         pop(collectStack);
-        return renderElement(stringifyObject(data), falsy(outputAttrs)
+        return renderElement(stringifyObject(data), outputTag, falsy(outputAttrs)
             ? UNDEFINED
             : stringifyFunction(join(outputAttrs, SEP_COMMA)), outputChilds, outputSlots);
     };
@@ -4653,7 +4653,7 @@
             return function (event, data) {
                 var method = context[name];
                 if (event instanceof CustomEvent) {
-                    var result = void 0;
+                    var result = UNDEFINED;
                     if (args) {
                         var scope = last(stack);
                         if (scope) {
@@ -4792,7 +4792,16 @@
             else {
                 warn("[" + expr.raw + "] \u4E0D\u662F\u5BF9\u8C61\uFF0C\u5EF6\u5C55\u4E2A\u6BDB\u554A");
             }
-        }, renderElementVnode = function (vnode, attrs, childs, slots) {
+        }, renderElementVnode = function (vnode, tag, attrs, childs, slots) {
+            if (tag) {
+                var componentName = context.get(tag);
+                {
+                    if (!componentName) {
+                        error("Dynamic component [" + tag + "] is not found.");
+                    }
+                }
+                vnode.tag = componentName;
+            }
             if (attrs) {
                 $vnode = vnode;
                 attrs();
@@ -5590,6 +5599,31 @@
             }
         };
         /**
+         * 删除旧元素并插入新元素
+         *
+         * @param keypath
+         * @param index
+         * @param count
+         * @param items
+         */
+        Observer.prototype.splice = function (keypath, index, count) {
+            var arguments$1 = arguments;
+  
+            var items = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                items[_i - 3] = arguments$1[_i];
+            }
+            var list = this.get(keypath);
+            if (array(list)) {
+                list = copy(list);
+                unshift(items, count);
+                unshift(items, index);
+                execute(list.splice, list, items);
+                this.set(keypath, list);
+                return TRUE;
+            }
+        };
+        /**
          * 拷贝任意数据，支持深拷贝
          *
          * @param data
@@ -6090,7 +6124,6 @@
             var instance = this, $options = options || EMPTY_OBJECT;
             // 一进来就执行 before create
             execute($options[HOOK_BEFORE_CREATE], instance, $options);
-            // 如果不绑着，其他方法调不到钩子
             instance.$options = $options;
             var data = $options.data, props = $options.props, computed = $options.computed, events = $options.events, methods = $options.methods, watchers = $options.watchers, extensions = $options.extensions;
             // 如果传了 props，则 data 应该是个 function
@@ -6141,7 +6174,7 @@
                 instance.on(events);
             }
             {
-                var isComment = FALSE, placeholder = void 0, el = $options.el, root = $options.root, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
+                var placeholder = UNDEFINED, el = $options.el, vnode = $options.vnode, root = $options.root, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
                 // 把 slots 放进数据里，方便 get
                 if (slots) {
                     extend(source, slots);
@@ -6182,12 +6215,9 @@
                     else {
                         placeholder = el;
                     }
-                }
-                if (placeholder && !replace) {
-                    // 如果不是替换占位元素
-                    // 则在该元素下新建一个注释节点，等会用新组件替换掉
-                    isComment = TRUE;
-                    domApi.append(placeholder, placeholder = domApi.createComment(EMPTY_STRING));
+                    if (!replace) {
+                        domApi.append(placeholder, placeholder = domApi.createComment(EMPTY_STRING));
+                    }
                 }
                 if (root) {
                     instance.$root = root;
@@ -6230,17 +6260,20 @@
                     // 当然，这个需要外部自己控制传入的 template 是什么
                     // Yox.compile 会自动判断 template 是否经过编译
                     instance.$template = Yox.compile(template);
-                    // 第一次渲染视图
-                    if (!placeholder) {
-                        isComment = TRUE;
-                        placeholder = domApi.createComment(EMPTY_STRING);
+                    if (!vnode) {
+                        {
+                            if (!placeholder) {
+                                fatal('根组件不传 el 是几个意思？');
+                            }
+                        }
+                        vnode = create(domApi, placeholder, instance, EMPTY_STRING);
                     }
-                    instance.update(instance.get(TEMPLATE_COMPUTED), create(domApi, placeholder, isComment, instance, EMPTY_STRING));
+                    instance.update(instance.get(TEMPLATE_COMPUTED), vnode);
                     return;
                 }
                 else {
-                    if (placeholder) {
-                        fatal('有 el 没 template 是几个意思？');
+                    if (placeholder || vnode) {
+                        fatal('组件不写 template 是几个意思？');
                     }
                 }
             }
@@ -6422,9 +6455,47 @@
             this.$observer.unwatch(keypath, watcher);
             return this;
         };
+        /**
+         * 加载组件，组件可以是同步或异步，最后会调用 callback
+         *
+         * @param name 组件名称
+         * @param callback 组件加载成功后的回调
+         */
         Yox.prototype.loadComponent = function (name, callback) {
             if (!loadComponent(this.$components, name, callback)) {
                 loadComponent(globalComponents, name, callback);
+            }
+        };
+        /**
+         * 创建子组件
+         *
+         * @param options 组件配置
+         * @param vnode 虚拟节点
+         */
+        Yox.prototype.createComponent = function (options, vnode) {
+            {
+                var instance = this;
+                options = copy(options);
+                options.root = instance.$root || instance;
+                options.parent = instance;
+                options.vnode = vnode;
+                options.replace = TRUE;
+                if (vnode.props) {
+                    options.props = vnode.props;
+                }
+                if (vnode.slots) {
+                    options.slots = vnode.slots;
+                }
+                var child = new Yox(options);
+                push(instance.$children || (instance.$children = []), child);
+                var node = child.$el;
+                if (node) {
+                    vnode.node = node;
+                }
+                else {
+                    fatal("The root element of [Component " + vnode.tag + "] is not found.");
+                }
+                return child;
             }
         };
         Yox.prototype.directive = function (name, directive) {
@@ -6541,106 +6612,80 @@
          * @param props
          */
         Yox.prototype.checkPropTypes = function (props) {
-            var propTypes = this.$options.propTypes;
-            if (propTypes) {
-                var result_1 = copy(props);
-                each$2(propTypes, function (rule, key) {
-                    // 类型
-                    var type = rule.type, 
-                    // 默认值
-                    value = rule.value, 
-                    // 是否必传
-                    required = rule.required, 
-                    // 实际的值
-                    actual = props[key];
-                    // 传了数据
-                    if (isDef(actual)) {
-                        {
-                            // 如果不写 type 或 type 不是 字符串 或 数组
-                            // 就当做此规则无效，和没写一样
-                            if (type) {
-                                // 自定义函数判断是否匹配类型
-                                // 自己打印警告信息吧
-                                if (func(type)) {
-                                    type(props, key);
+            {
+                var propTypes = this.$options.propTypes;
+                if (propTypes) {
+                    var result_1 = copy(props);
+                    each$2(propTypes, function (rule, key) {
+                        // 类型
+                        var type = rule.type, 
+                        // 默认值
+                        value = rule.value, 
+                        // 实际的值
+                        actual = props[key];
+                        // 传了数据
+                        if (isDef(actual)) {
+                            {
+                                // 如果不写 type 或 type 不是 字符串 或 数组
+                                // 就当做此规则无效，和没写一样
+                                if (type) {
+                                    // 自定义函数判断是否匹配类型
+                                    // 自己打印警告信息吧
+                                    if (func(type)) {
+                                        type(props, key);
+                                    }
+                                    else {
+                                        var matched_1;
+                                        // type: 'string'
+                                        if (!falsy$1(type)) {
+                                            matched_1 = matchType(actual, type);
+                                        }
+                                        // type: ['string', 'number']
+                                        else if (!falsy(type)) {
+                                            each(type, function (item) {
+                                                if (matchType(actual, item)) {
+                                                    matched_1 = TRUE;
+                                                    return FALSE;
+                                                }
+                                            });
+                                        }
+                                        if (!matched_1) {
+                                            warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
+                                        }
+                                    }
                                 }
                                 else {
-                                    var matched_1;
-                                    // type: 'string'
-                                    if (!falsy$1(type)) {
-                                        matched_1 = matchType(actual, type);
-                                    }
-                                    // type: ['string', 'number']
-                                    else if (!falsy(type)) {
-                                        each(type, function (item) {
-                                            if (matchType(actual, item)) {
-                                                matched_1 = TRUE;
-                                                return FALSE;
-                                            }
-                                        });
-                                    }
-                                    if (!matched_1) {
-                                        warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
-                                    }
+                                    warn("The prop \"" + key + "\" in propTypes has no type.");
                                 }
                             }
-                            else {
-                                warn("The prop \"" + key + "\" in propTypes has no type.");
+                        }
+                        else {
+                            {
+                                // 是否必传
+                                var required = rule.required;
+                                // 动态化获取是否必填
+                                if (func(required)) {
+                                    required = required(props, key);
+                                }
+                                // 没传值但此项是必传项
+                                if (required) {
+                                    warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
+                                }
+                            }
+                            // 没传值但是配置了默认值
+                            if (isDef(value)) {
+                                result_1[key] = type === RAW_FUNCTION
+                                    ? value
+                                    : func(value)
+                                        ? value(props, key)
+                                        : value;
                             }
                         }
-                    }
-                    else {
-                        {
-                            // 动态化获取是否必填
-                            if (func(required)) {
-                                required = required(props, key);
-                            }
-                            // 没传值但此项是必传项
-                            if (required) {
-                                warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
-                            }
-                        }
-                        // 没传值但是配置了默认值
-                        if (isDef(value)) {
-                            result_1[key] = type === RAW_FUNCTION
-                                ? value
-                                : func(value)
-                                    ? value(props, key)
-                                    : value;
-                        }
-                    }
-                });
-                return result_1;
+                    });
+                    return result_1;
+                }
             }
             return props;
-        };
-        /**
-         * 创建子组件
-         *
-         * @param options 组件配置
-         * @param vnode 虚拟节点
-         * @param node DOM 元素
-         */
-        Yox.prototype.create = function (options, vnode, node) {
-            {
-                options = copy(options);
-                options.root = this.$root || this;
-                options.parent = this;
-                // 如果传了 node，表示有一个占位元素，新创建的 child 需要把它替换掉
-                if (node) {
-                    options.el = node;
-                    options.replace = TRUE;
-                }
-                if (vnode.props) {
-                    options.props = vnode.props;
-                }
-                if (vnode.slots) {
-                    options.slots = vnode.slots;
-                }
-                var child = new Yox(options);
-                push(this.$children || (this.$children = []), child);
-                return child;
-            }
         };
         /**
          * 销毁组件
@@ -6749,6 +6794,24 @@
             return this.$observer.remove(keypath, item);
         };
         /**
+         * 删除旧元素并插入新元素
+         *
+         * @param keypath
+         * @param index
+         * @param count
+         * @param items
+         */
+        Yox.prototype.splice = function (keypath, index, count) {
+            var arguments$1 = arguments;
+  
+            var _a;
+            var items = [];
+            for (var _i = 3; _i < arguments.length; _i++) {
+                items[_i - 3] = arguments$1[_i];
+            }
+            return (_a = this.$observer).splice.apply(_a, [keypath, index, count].concat(items));
+        };
+        /**
          * 拷贝任意数据，支持深拷贝
          *
          * @param data
@@ -6760,7 +6823,7 @@
         /**
          * core 版本
          */
-        Yox.version = "1.0.0-alpha.33";
+        Yox.version = "1.0.0-alpha.35";
         /**
          * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
          */
