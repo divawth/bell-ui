@@ -37,3 +37,21 @@ export const RAW_RIGHT = 'right'
 export const RAW_RIGHT_START = 'right-start'
 export const RAW_RIGHT_END = 'right-end'
 
+export const RAW_TYPE_PRIMARY = 'primary'
+export const RAW_TYPE_INFO = 'info'
+export const RAW_TYPE_SUCCESS = 'success'
+export const RAW_TYPE_WARNING = 'warning'
+export const RAW_TYPE_ERROR = 'error'
+export const RAW_TYPE_SECONDARY = 'secondary'
+
+export const RAW_TYPE_ARRAY = [
+  RAW_TYPE_PRIMARY, 
+  RAW_TYPE_INFO, 
+  RAW_TYPE_SUCCESS, 
+  RAW_TYPE_WARNING, 
+  RAW_TYPE_ERROR,
+  RAW_TYPE_SECONDARY
+]
+
+
+

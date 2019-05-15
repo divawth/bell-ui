@@ -13,8 +13,7 @@ export default {
       type: RAW_STRING
     },
     size: {
-      type: RAW_NUMERIC,
-      value: 14
+      type: RAW_NUMERIC
     },
     color: {
       type: RAW_STRING

@@ -38,7 +38,6 @@ import Page from './components/page/Page'
 import Upload from './components/upload/Upload'
 
 import Alert from './components/alert/Alert'
-import Desc from './components/alert/Desc'
 import Spinner from './components/spinner/Spinner'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
@@ -136,7 +135,6 @@ Yox.component({
   TooltipItem,
 
   Alert,
-  Desc,
   Spinner,
   BackTop,
   Avatar,

@@ -6,13 +6,14 @@ import {
   RAW_LARGE,
 
   RAW_STRING, 
-  RAW_BOOLEAN
+  RAW_BOOLEAN,
+  RAW_TYPE_ARRAY
 } from '../constant'
 
 export default {
   propTypes: {
     type: {
-      type: oneOf(['primary', 'info', 'success', 'warning', 'error']),
+      type: oneOf(RAW_TYPE_ARRAY),
       value: 'default'
     },
     borderType: {

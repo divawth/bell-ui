@@ -6729,11 +6729,9 @@ button.bell-button-danger-ghost[disabled] {
 .bell-alert {
   user-select: none;
   position: relative;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
   border: 1px solid;
   border-radius: 4px;
-  font-size: 12px;
-  line-height: 14px;
   padding: 12px 16px;
 }
 .bell-alert {
@@ -6768,12 +6766,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-alert-success .bell-alert-icon {
   color: #52c41a;
 }
-.bell-alert-danger {
+.bell-alert-error {
   border-color: #f4c6cc;
   background-color: #f7d7db;
   color: #701d26;
 }
-.bell-alert-danger .bell-alert-icon {
+.bell-alert-error .bell-alert-icon {
   color: #eb1111;
 }
 .bell-alert-warning {
@@ -6783,14 +6781,6 @@ button.bell-button-danger-ghost[disabled] {
 }
 .bell-alert-warning .bell-alert-icon {
   color: #faad14;
-}
-.bell-alert-error {
-  border-color: #f4c6cc;
-  background-color: #fc451e;
-  color: #fff;
-}
-.bell-alert-error .bell-alert-icon {
-  color: #fff;
 }
 .bell-alert-light {
   border-color: #fff;
@@ -6808,47 +6798,56 @@ button.bell-button-danger-ghost[disabled] {
 .bell-alert-dark .bell-alert-icon {
   color: $brand-muted-active;
 }
+.bell-alert .bell-alert-icon {
+  font-size: 16px;
+  margin-right: 6px;
+}
+.bell-alert .bell-alert-title {
+  font-size: 14px;
+  line-height: 16px;
+}
 .bell-alert.bell-hide {
   opacity: 0;
 }
-.bell-alert .bell-alert-icon {
-  margin-right: 6px;
-  float: left;
-  vertical-align: top;
+.bell-alert .bell-alert-wrapper {
+  display: inline-block;
 }
-.bell-alert-with-desc .bell-alert-content {
-  font-size: 14px;
-  line-height: 1.477;
-  font-weight: bold;
-}
-.bell-alert-with-desc .bell-alert-desc {
-  font-size: 12px;
-  line-height: 1.333333333333333;
-  font-weight: normal;
-}
-.bell-alert-with-desc.bell-alert-with-icon .bell-icon {
-  font-size: 18px;
-  line-height: 2;
-  margin-right: 14px;
-}
-.bell-alert-center {
+.bell-alert.bell-alert-center {
   text-align: center;
 }
+.bell-alert-with-content .bell-alert-title {
+  font-weight: bold;
+}
+.bell-alert-with-content .bell-alert-content {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: normal;
+  margin-top: 6px;
+}
+.bell-alert-with-content.bell-alert-with-icon {
+  display: flex;
+}
+.bell-alert-with-content.bell-alert-with-icon .bell-alert-icon {
+  line-height: 2;
+  font-size: 28px;
+}
+.bell-alert-with-content.bell-alert-with-icon .bell-alert-wrapper {
+  margin-left: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .bell-alert-close {
-  cursor: pointer;
-  min-width: 24px;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 10px;
   text-align: center;
   position: absolute;
   right: 0;
   top: 0;
-}
-.bell-alert-close > .bell-icon {
-  font-size: 22px;
-  color: #999;
-  line-height: 40px;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
 }
 .bell-alert-close > .bell-icon.bell-alert-close > .bell-icon.hover,
 .bell-alert-close > .bell-icon:hover,

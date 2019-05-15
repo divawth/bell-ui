@@ -1,70 +1,56 @@
-import AlertTpl from './template/Alert.html'
+import template from './template/Alert.html'
+
+import {
+  RAW_STRING,
+  RAW_BOOLEAN,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY
+} from '../constant'
+
+import {
+  oneOf
+} from '../util'
 
 export default {
-  template: AlertTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     type: {
-      type: 'string',
-      value: 'primary'
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY
     },
     closable: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     showIcon: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     center: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     closeText: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
-  data() {
-    return {
-      hasDesc: false,
-      paddingRight: 0
-    }
-  },
+  template,
 
   methods: {
     close() {
-      let container = this.$el;
-      let classNames = container.getAttribute('class');
-      Yox.dom.addClass(container, 'bell-hide');
+      let me = this
+      Yox.dom.addClass(me.$el, 'bell-hide')
       setTimeout(
-        () => {
-          container.remove();
+        function () {
+          me.$el.remove()
         },
         500
-      );
-      this.fire('close');
-    }
-  },
-
-  events: {
-    hasDesc() {
-      this.set({
-        hasDesc: true
-      });
-    }
-  },
-
-  afterMount() {
-    let me = this;
-
-    if (me.get('closable')) {
-      me.set({
-        paddingRight: me.$refs.close.clientWidth
-      });
+      )
+      me.fire('close')
     }
   }
-};
+}

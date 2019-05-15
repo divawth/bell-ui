@@ -1,74 +1,71 @@
 {$selector-alert}
 
-    user-select none
-    position relative
-    transition all .3s
+  user-select none
+  position relative
+  transition opacity .3s
 
-    border 1px solid
-    border-radius $radius-base
-    font-size $alert-font-size
-    line-height $alert-line-height
-    padding $alert-padding
+  border 1px solid
+  border-radius $alert-radius
+  padding $alert-padding
 
-    ui-alert()
+  ui-alert()
+  
+  {$selector-alert-icon}
+    font-size $alert-icon-size
+    margin-right $alert-gap
 
-    &.bell-hide
+  {$selector-alert-title}
+    font-size $alert-size
+    line-height $alert-icon-size
 
-        opacity 0
+  &.bell-hide
+    opacity 0
 
-    {$selector-alert}-icon
+  {$selector-alert}-wrapper
+    display inline-block
+  
 
-        margin-right $alert-bell-icon-margin-gap
-        float left
-        vertical-align top
-
-{$selector-alert}-with-desc
-
-    {$selector-alert}-content
-
-        ui-set('font-size', $size-base['font'])
-        ui-set('line-height', $size-base['line-height'])
-        font-weight bold
-
-    {$selector-alert}-desc
-
-        ui-set('font-size', $size-tiny['font'])
-        ui-set('line-height', $size-tiny['line-height'])
-        font-weight normal
-
-    &{$selector-alert}-with-icon
-
-        {$selector-icon}
-
-            ui-set('font-size', $size-huge['font'])
-            ui-set('line-height', $size-huge['line-height'])
-            ui-set('margin-right', $size-huge['margin-horizontal'])
-
-&{$selector-alert}-center
-
+  &{$selector-alert}-center
     text-align center
+  
+{$selector-alert-with-content}
+
+  {$selector-alert-title}
+    font-weight bold
+
+  {$selector-alert-content}
+    font-size 12px
+    line-height 1.4
+    font-weight normal    
+    margin-top $alert-gap
+
+  &{$selector-alert-with-icon}
+    display flex
+    {$selector-alert-icon}
+      line-height 2
+      font-size $alert-with-content-icon-size
+    
+    {$selector-alert}-wrapper
+      margin-left $alert-gap
+      display flex
+      flex-direction column
+      justify-content center
 
 {$selector-alert}-close
 
-    cursor pointer
-    min-width $alert-close-min-width
-    height $alert-close-height
-    line-height $alert-close-height
-    padding $alert-close-padding
+  text-align center
+  position absolute
+  right 0
+  top 0
+  cursor pointer
+  height 100%
+  display flex
+  align-items center
+  padding $alert-close-padding
+  font-size $alert-close-size
 
-    text-align center
-    position absolute
-    right 0
-    top 0
-
-    > {$selector-icon}
-
-        font-size $alert-close-font-size
-        color $alert-close-font-color
-        line-height $alert-close-height
-
-        &{$selector-hover}
-
-            color $alert-close-font-hover-color
+  > {$selector-icon}
+    &{$selector-hover}
+      color $alert-close-hover-color
 
 

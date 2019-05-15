@@ -1,34 +1,54 @@
-<div class="bell-alert
+<div 
+class="${prefix}alert
+  {{#if type}} ${prefix}alert-{{type}}{{/if}}
+  {{#if hasSlot('content')}} ${prefix}alert-with-content{{/if}}
+  {{#if showIcon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
+  {{#if center}} ${prefix}alert-center{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if type}} bell-alert-{{type}}{{/if}}
-  {{#if hasDesc}} bell-alert-with-desc{{/if}}
-  {{#if showIcon}} bell-alert-with-icon{{/if}}
-  {{#if center}} bell-alert-center{{/if}}
-" {{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if showIcon}}
-    <span class="bell-alert-icon">
-      <i class="bell-icon
-      {{#if type == 'primary'}} bell-icon-information-circled
-      {{else if type == 'success'}} bell-icon-checkmark-circled
-      {{else if type == 'warning'}} bell-icon-android-alert
-      {{else if type == 'error'}} bell-icon-close-circled
-      {{/if}}
-      "></i>
+" 
+{{#if style}} style="{{style}}"{{/if}}
+>
+  {{#if showIcon || hasSlot('icon')}}
+    <span class="${prefix}alert-icon">
+      <slot name="icon">
+        {{#if type == 'primary'}}
+          <Icon type="information-circle" />
+        {{else if type == 'success'}}
+          <Icon type="checkmark-circle" />
+        {{else if type == 'warning'}}
+          <Icon type="alert" />
+        {{else if type == 'error'}}
+          <Icon type="close-circle" />
+        {{/if}}
+      </slot>>
     </span>
   {{/if}}
 
-  <span class="bell-alert-content">
-    <slot name="children" />
-  </span>
+  <div class="${prefix}alert-wrapper">
+    
+    {{#if hasSlot('children')}}
+    <div class="${prefix}alert-title">
+      <slot name="children" />
+    </div>
+    {{/if}}
 
-  {{#if closable}}
-    <span ref="close" class="bell-alert-close" on-click="close()">
-      {{#if closeText}}
-        {{closeText}}
-      {{else}}
-        <i class="bell-icon bell-icon-ios-close-empty"></i>
-      {{/if}}
+    {{#if hasSlot('content')}}
+    <div class="${prefix}alert-content">
+      <slot name="content" />
+    </div>
+    {{/if}}
+
+  </div>
+
+  {{#if closable || hasSlot('close')}}
+    <span ref="close" class="${prefix}alert-close" on-click="close()">
+      <slot name="close">
+        {{#if closeText}}
+          {{closeText}}
+        {{else}}
+          <Icon type="close" size="24" />
+        {{/if}}
+      </slot>
     </span>
   {{/if}}
 </div>
