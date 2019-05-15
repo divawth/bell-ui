@@ -8,8 +8,8 @@ class="${prefix}page
   {{#partial pageCenter}}
     {{#if current - 3 > 1}}
       <li class="${prefix}page-item ${prefix}page-item-prev" on-click="fastPrev()">
-        <Icon type="arrow-back" />
-        <Icon type="arrow-back" />
+        <Icon name="arrow-back" />
+        <Icon name="arrow-back" />
       </li>
     {{/if}}
 
@@ -45,8 +45,8 @@ class="${prefix}page
 
     {{#if current + 3 < count}}
       <li class="${prefix}page-item ${prefix}page-item-next" on-click="fastNext()">
-        <Icon type="arrow-forward" />
-        <Icon type="arrow-forward" />
+        <Icon name="arrow-forward" />
+        <Icon name="arrow-forward" />
       </li>
     {{/if}}
   {{/partial}}
@@ -79,7 +79,7 @@ class="${prefix}page
     <li class="${prefix}page-item ${prefix}page-prev
       {{#if current <= 1}} ${prefix}disabled{{/if}}
     " on-click="prev()">
-      <Icon type="arrow-back" />
+      <Icon name="arrow-back" />
     </li>
 
     <li class="${prefix}page-item
@@ -100,7 +100,7 @@ class="${prefix}page
     <li class="${prefix}page-item ${prefix}page-next 
       {{#if current >= count}} ${prefix}disabled{{/if}}
     " on-click="next()">
-      <Icon type="arrow-forward" />
+      <Icon name="arrow-forward" />
     </li>
   </ul>
 
@@ -109,7 +109,7 @@ class="${prefix}page
       <span class="${prefix}page-item ${prefix}page-prev
         {{#if current <= 1}} ${prefix}disabled{{/if}}
       " on-click="prev()">
-        <Icon type="arrow-back" />
+        <Icon name="arrow-back" />
       </span>
 
       <div class="${prefix}page-input">
@@ -130,7 +130,7 @@ class="${prefix}page
       <span class="${prefix}page-item ${prefix}page-next
         {{#if current >= count}} ${prefix}disabled{{/if}}
       " on-click="next()">
-        <Icon type="arrow-forward" />
+        <Icon name="arrow-forward" />
       </span>
     </div>
   {{/if}}

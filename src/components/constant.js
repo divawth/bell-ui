@@ -16,6 +16,7 @@ export const RAW_TINY = 'tiny'
 export const RAW_SMALL = 'small'
 export const RAW_DEFAULT = 'default'
 export const RAW_LARGE = 'large'
+export const RAW_HUGE = 'huge'
 
 export const RAW_HOVER = 'hover'
 export const RAW_CLICK = 'click'
@@ -44,6 +45,12 @@ export const RAW_TYPE_WARNING = 'warning'
 export const RAW_TYPE_ERROR = 'error'
 export const RAW_TYPE_SECONDARY = 'secondary'
 
+export const RAW_SHAPE_CIRCLE = 'circle'
+export const RAW_SHAPE_ROUND = 'round'
+
+export const RAW_ICON_IOS = 'ios'
+export const RAW_ICON_MD = 'md'
+
 export const RAW_TYPE_ARRAY = [
   RAW_TYPE_PRIMARY, 
   RAW_TYPE_INFO, 
@@ -52,6 +59,20 @@ export const RAW_TYPE_ARRAY = [
   RAW_TYPE_ERROR,
   RAW_TYPE_SECONDARY
 ]
+
+export const RAW_SIZE_ARRAY = [
+  RAW_TINY,
+  RAW_SMALL,
+  RAW_DEFAULT,
+  RAW_LARGE,
+  RAW_HUGE
+]
+
+export const RAW_ICON_TYPE_ARRAY = [
+  RAW_ICON_IOS,
+  RAW_ICON_MD
+]
+
 
 
 

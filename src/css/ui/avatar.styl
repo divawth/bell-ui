@@ -1,21 +1,27 @@
 {$selector-avatar}
 
-    overflow hidden
-    display inline-block
-    text-align center
+  overflow hidden
+  display inline-block
+  text-align center
+  position relative
 
-    background-color $avatar-bg
+  background-color $avatar-bg
+  border-radius $avatar-border-radius
 
-    ui-avatar()
+  ui-avatar()
 
-    > img
-        width 100%
-        height 100%
+  > {$selector-avatar}-image
+    width 100%
+    height 100%
 
-    +{$selector-avatar}
+  +{$selector-avatar}
+    margin-left $avatar-margin-left
 
-        margin-left $avatar-margin-left
+  {$selector-avatar-string}
+    position absolute
+    left 50%
+    transform-origin 0 center
+    white-space nowrap
 
 {$selector-avatar}-circle
-
-    border-radius $radius-circle
+  border-radius $radius-circle

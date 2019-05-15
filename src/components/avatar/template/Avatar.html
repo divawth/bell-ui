@@ -1,15 +1,26 @@
-<div class="bell-avatar
-  {{#if className}} {{className}}{{/if}}
-  {{#if size}} bell-avatar-{{size}}{{/if}}
-  {{#if shape}} bell-avatar-{{shape}}{{/if}}
-" style="font-size: {{fontSize}}px;
-  background-color: {{backgroundColor}};
-  color: {{color}};
-  {{#if style}} {{style}}{{/if}}"
+<div 
+class="${prefix}avatar ${prefix}avatar-{{size}} ${prefix}avatar-{{shape}}
+{{#if className}} {{className}}{{/if}}
+" 
+style="color: {{color}};
+{{#if fontSize}} font-size: {{fontSize}}px;{{/if}}
+{{#if bgColor}} background-color: {{bgColor}};{{/if}}
+{{#if style}} {{style}}{{/if}}
+"
 >
+  
   {{#if src}}
-    <img{{#if srcset}} srcset="{{srcset}}"{{/if}} ondragstart="return false" src="{{src}}" />
-  {{else}}
-    <slot name="children" />
+    <img className="${prefix}avatar-image"
+      {{#if srcset}} srcset="{{srcset}}"{{/if}} 
+      ondragstart="return false" 
+      src="{{src}}" 
+    />
+  {{else if icon}}
+    <Icon type="{{iconType}}" className="${prefix}avatar-icon" name="{{icon}}" />
+  {{else if text}}
+    <span ref="textStr" class="${prefix}avatar-string" style="transform: {{transformStyle}};">
+      {{text}}
+    </span>
   {{/if}}
+
 </div>

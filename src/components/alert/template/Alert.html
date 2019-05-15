@@ -1,10 +1,10 @@
 <div 
 class="${prefix}alert
-  {{#if type}} ${prefix}alert-{{type}}{{/if}}
-  {{#if hasSlot('content')}} ${prefix}alert-with-content{{/if}}
-  {{#if showIcon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
-  {{#if center}} ${prefix}alert-center{{/if}}
-  {{#if className}} {{className}}{{/if}}
+{{#if type}} ${prefix}alert-{{type}}{{/if}}
+{{#if hasSlot('content')}} ${prefix}alert-with-content{{/if}}
+{{#if showIcon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
+{{#if center}} ${prefix}alert-center{{/if}}
+{{#if className}} {{className}}{{/if}}
 " 
 {{#if style}} style="{{style}}"{{/if}}
 >
@@ -12,13 +12,13 @@ class="${prefix}alert
     <span class="${prefix}alert-icon">
       <slot name="icon">
         {{#if type == 'primary'}}
-          <Icon type="information-circle" />
+          <Icon name="information-circle" />
         {{else if type == 'success'}}
-          <Icon type="checkmark-circle" />
+          <Icon name="checkmark-circle" />
         {{else if type == 'warning'}}
-          <Icon type="alert" />
+          <Icon name="alert" />
         {{else if type == 'error'}}
-          <Icon type="close-circle" />
+          <Icon name="close-circle" />
         {{/if}}
       </slot>>
     </span>
@@ -46,7 +46,7 @@ class="${prefix}alert
         {{#if closeText}}
           {{closeText}}
         {{else}}
-          <Icon type="close" size="24" />
+          <Icon name="close" size="24" />
         {{/if}}
       </slot>
     </span>
