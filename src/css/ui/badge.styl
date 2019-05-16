@@ -1,54 +1,53 @@
 {$selector-badge}
+  ui-badge()
 
-    ui-badge()
+  position relative
+  display inline-block
+  line-height 1
+
+  {$selector-badge-dot}
+    height $badge-dot-size
+    width $badge-dot-size
+    position absolute
+    right - $badge-dot-size
+    top 0
+    transform translate(-50%, -50%)
+    border-radius 100%
+    z-index $zindex-badge
+    box-shadow $badge-box-shadow
+
+  {$selector-badge-count}
+    white-space nowrap
+    position absolute
+    left 100%
+    top 0
+    transform translate(-50%, -50%)
+    text-align center
+    border-radius $badge-radius
+    color $badge-color
+    padding $badge-padding
+    font-size $badge-font-size
+    box-shadow $badge-box-shadow
+    z-index $zindex-badge
+
+  {$selector-badge-count}-alone
 
     position relative
-    display inline-block
-    line-height 1
-    vertical-align middle
+    left 0
 
-    +{$selector-badge}
+{$selector-badge-status}
+  display inline-block
+  position relative
+  
+  {$selector-badge-dot}   
+    border-radius 100%
+    position absolute
+    height $badge-dot-size
+    width $badge-dot-size
+    top 50%
+    transform translateY(-50%)
+    z-index $zindex-badge
 
-        margin-left $badge-margin-left
-
-    {$selector-badge-count}
-
-        white-space nowrap
-        position absolute
-        right 0
-        transform translateX(50%)
-        height 20px
-        top -10px
-        text-align center
-        border 1px solid transparent
-        border-radius $badge-border-radius
-
-        color $brand-bg
-        padding $badge-padding
-        font-size $badge-font-size
-        z-index $zindex-badge
-        box-shadow $badge-box-shadow
-        transform-origin -10% center
-
-    {$selector-badge-dot}
-
-        border-radius 100%
-        position absolute
-        transform translateX(-50%)
-        transform-origin 0 center
-        top $badge-dot-top
-        right - $badge-dot-width
-        height $badge-dot-width
-        width $badge-dot-width
-        z-index $zindex-badge
-        box-shadow $badge-box-shadow
-
-    {$selector-badge-count}-alone
-
-        box-sizing border-box
-        top auto
-        display block
-        position relative
-        transform translateX(0)
-        box-shadow none
-
+  {$selector-badge-count}
+    padding-left 16px
+    background-color transparent

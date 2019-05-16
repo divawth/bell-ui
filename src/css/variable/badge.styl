@@ -1,32 +1,30 @@
 $selector-badge = $selector-prefix + '-badge'
+$selector-badge-status = $selector-badge + '-status'
+
 $selector-badge-count = $selector-badge + '-count'
 $selector-badge-dot = $selector-badge + '-dot'
 
-$badge-margin-left = 10px;
-$badge-padding = 3px 6px;
-$badge-font-size = 12px;
-$badge-box-shadow = 0 0 0 1px #fff;
-$badge-border-radius = 10px;
-$badge-dot-width = 8px;
-$badge-dot-top = -4px;
+$badge-dot-size = 6px
+$badge-box-shadow = 0 0 0 1px #ffffff
+$badge-radius = 10px
+$badge-color = #ffffff
+$badge-padding = 3px 6px
+$badge-font-size = 12px
 
 $badge-brand-hash = {
-    '': {
-        bg-color: $brand-error
-    },
-    'success': {
-        bg-color: $brand-success
-    },
-    'info': {
-        bg-color: $brand-info
-    },
-    'primary': {
-        bg-color: $brand-error
-    },
-    'warning': {
-        bg-color: $brand-warning
-    },
-    'danger': {
-        bg-color: $brand-danger
-    }
+  'error': {
+    color: $brand-error
+  },
+  'success': {
+    color: $brand-success
+  },
+  'info': {
+    color: $brand-info
+  },
+  'primary': {
+    color: $brand-error
+  },
+  'warning': {
+    color: $brand-warning
+  }
 }

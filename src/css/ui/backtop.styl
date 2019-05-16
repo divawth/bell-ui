@@ -1,0 +1,20 @@
+{$selector-backtop}
+  position fixed
+  z-index $zindex-backtop
+
+  &{$selector-backtop}-hide
+    display none
+
+  {$selector-backtop-inner}
+    cursor pointer
+    display flex
+    align-items center
+    justify-content center
+    background-color $backtop-color
+    box-shadow $backtop-shadow
+    font-size $backtop-font-size
+    width $backtop-size
+    height $backtop-size
+    line-height $backtop-size
+    border-radius $backtop-radius
+    color #ffffff

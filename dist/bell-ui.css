@@ -7167,12 +7167,11 @@ button.bell-button-danger-ghost[disabled] {
   position: relative;
   display: inline-block;
   line-height: 1;
-  vertical-align: middle;
 }
-.bell-badge .bell-badge-count {
+.bell-badge-error .bell-badge-count {
   background-color: #f5222d;
 }
-.bell-badge .bell-badge-dot {
+.bell-badge-error .bell-badge-dot {
   background-color: #f5222d;
 }
 .bell-badge-success .bell-badge-count {
@@ -7199,51 +7198,51 @@ button.bell-button-danger-ghost[disabled] {
 .bell-badge-warning .bell-badge-dot {
   background-color: #faad14;
 }
-.bell-badge-danger .bell-badge-count {
-  background-color: #eb1111;
-}
-.bell-badge-danger .bell-badge-dot {
-  background-color: #eb1111;
-}
-.bell-badge +.bell-badge {
-  margin-left: 10px;
+.bell-badge .bell-badge-dot {
+  height: 6px;
+  width: 6px;
+  position: absolute;
+  right: -6px;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  z-index: 10;
+  box-shadow: 0 0 0 1px #fff;
 }
 .bell-badge .bell-badge-count {
   white-space: nowrap;
   position: absolute;
-  right: 0;
-  transform: translateX(50%);
-  height: 20px;
-  top: -10px;
+  left: 100%;
+  top: 0;
+  transform: translate(-50%, -50%);
   text-align: center;
-  border: 1px solid transparent;
   border-radius: 10px;
   color: #fff;
   padding: 3px 6px;
   font-size: 12px;
-  z-index: 10;
   box-shadow: 0 0 0 1px #fff;
-  transform-origin: -10% center;
-}
-.bell-badge .bell-badge-dot {
-  border-radius: 100%;
-  position: absolute;
-  transform: translateX(-50%);
-  transform-origin: 0 center;
-  top: -4px;
-  right: -8px;
-  height: 8px;
-  width: 8px;
   z-index: 10;
-  box-shadow: 0 0 0 1px #fff;
 }
 .bell-badge .bell-badge-count-alone {
-  box-sizing: border-box;
-  top: auto;
-  display: block;
   position: relative;
-  transform: translateX(0);
-  box-shadow: none;
+  left: 0;
+}
+.bell-badge-status {
+  display: inline-block;
+  position: relative;
+}
+.bell-badge-status .bell-badge-dot {
+  border-radius: 100%;
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.bell-badge-status .bell-badge-count {
+  padding-left: 16px;
+  background-color: transparent;
 }
 .bell-collapse {
   overflow: hidden;
@@ -8911,4 +8910,25 @@ button.bell-button-danger-ghost[disabled] {
   top: 0;
   z-index: 1;
   box-shadow: -2px 0 6px -2px rgba(0,0,0,0.2);
+}
+.bell-backtop {
+  position: fixed;
+  z-index: 10;
+}
+.bell-backtop.bell-backtop-hide {
+  display: none;
+}
+.bell-backtop .bell-backtop-inner {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.65);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  color: #fff;
 }

@@ -1,6 +1,6 @@
 <div 
-class="${prefix}badge
-{{#if type}} ${prefix}badge-{{type}}{{/if}}
+class="${prefix}badge{{#if status}}-status{{/if}}
+{{#if status || type}} ${prefix}badge-{{status || type}}{{/if}}
 {{#if className}} {{className}}{{/if}}
 " 
 {{#if style}} style="{{style}}"{{/if}}
@@ -9,14 +9,19 @@ class="${prefix}badge
   <slot name="children" />
 
   {{#if !hidden}}
+    
     {{#if dot}}
       <span class="${prefix}badge-dot"></span>
-    {{else}}
-      <span class="${prefix}badge-count
-        {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}
-      ">
-        {{getText(count, maxCount)}}
-      </span>
     {{/if}}
-{{/if}}
+    
+    {{#if text || count}}
+    <span class="${prefix}badge-count
+      {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}
+    ">
+      {{text ? text : getText(count, maxCount)}}
+    </span>
+    {{/if}}
+
+  {{/if}}
+  
 </div>

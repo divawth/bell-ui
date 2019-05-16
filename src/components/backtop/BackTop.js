@@ -1,30 +1,35 @@
-import BackTopTpl from './template/BackTop.html'
+import template from './template/BackTop.html'
+
+import { RAW_STRING, RAW_NUMERIC } from '../constant'
+import { scrollTop } from '../util'
 
 export default {
-  template: BackTopTpl,
+
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     bottom: {
-      type: 'numeric',
+      type: RAW_NUMERIC,
       value: 30
     },
     right: {
-      type: 'numeric',
+      type: RAW_NUMERIC,
       value: 30
     },
     height: {
-      type: 'numeric',
-      value: 400
+      type: RAW_NUMERIC
     },
-    fix: {
-      type: 'string'
+    duration: {
+      type: RAW_NUMERIC,
+      value: 1000
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+
+  template,
 
   data() {
     return {
@@ -34,29 +39,27 @@ export default {
 
   methods: {
     back() {
-      let me = this;
-      let top = me.container.scrollTop;
-      me.container.scrollTop = 0;
-      me.fire('click');
+      let parentElement = this.$parent.$el
+      scrollTop(parentElement, parentElement.scrollTop, 0, this.get('duration'))
+      this.fire('click')
     }
   },
 
   afterMount() {
-    let me = this;
-    let container = me.container = me.$parent.$el;
-    me.handleScroll = () => {
+    let me = this
+    let parentElement = me.$parent.$el
+    me.handleScroll = function () {
+      let height = me.get('height') || parentElement.clientHeight
       me.set({
-        isShow: container.scrollTop >= me.get('height')
-      });
-    };
-
-    container.addEventListener('scroll', me.handleScroll);
-    container.addEventListener('resize', me.handleScroll);
+        isShow: parentElement.scrollTop >= height
+      })
+    }
+    Yox.dom.on(parentElement, 'scroll', me.handleScroll)
+    Yox.dom.on(document, 'resize', me.handleScroll)
   },
 
   beforeDestroy() {
-    let me = this;
-    me.container.removeEventListener('scroll', me.handleScroll);
-    me.container.removeEventListener('resize', me.handleScroll);
+    Yox.dom.off(this.$parent.$el, 'scroll', this.handleScroll)
+    Yox.dom.off(document, 'resize', this.handleScroll)
   }
 }

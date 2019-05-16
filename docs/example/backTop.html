@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        layout
+      layout
     </title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
         .bell-page {
@@ -31,43 +31,30 @@
     </style>
 </head>
 <body>
-    <script src="../../dep/base/base.js"></script>
-    <script src="../../dist/bell.js"></script>
+  <script src="../../dep/base/yox.js"></script>
+  <script src="../../dist/bell-ui.js"></script>
 
-    <div id="app-1" class="bell-app"></div>
+  <div id="app-1" class="bell-app"></div>
 
-
-    <!-- <script id="template-1" type="text/plain">
-        <div class="bell-list">
-            <BackTop click="{{back}}"></BackTop>
-        </div>
-    </script> -->
-
-    <script id="template-1" type="text/plain">
-        <div class="bell-page">
-            <div class="bell-list">
-            </div>
-            <BackTop fix click="{{back}}"></BackTop>
-        </div>
-    </script>
-
-    <script>
-        new Yox({
-            el: '#app-1',
-            template: '#template-1',
-            data: {
-                back: function () {
-                    console.log('isClick')
-                }
-            }
-        });
-
-        // new Yox({
-        //     el: '#app-2',
-        //     template: '#template-2'
-        // });
-
-    </script>
+  <script>
+    new Yox({
+      el: '#app-1',
+      template: `
+      <div class="bell-page">
+          <div class="bell-list">
+          </div>
+          <BackTop fix>
+            UP
+          </BackTop>
+      </div>
+      `,
+      data: {
+        back: function () {
+          console.log('isClick')
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>

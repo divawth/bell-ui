@@ -1,16 +1,16 @@
 badge-style(style)
 
-    {$selector-badge-count}
+  {$selector-badge-count}
 
-        ui-set('background-color', style['bg-color'])
+    ui-set('background-color', style[ 'color' ])
 
-    {$selector-badge-dot}
+  {$selector-badge-dot}
 
-        ui-set('background-color', style['bg-color'])
+    ui-set('background-color', style[ 'color' ])
 
 ui-badge()
 
-    ui-connect(
-        hash: $badge-brand-hash,
-        each: badge-style
-    )
+  ui-connect(
+    hash: $badge-brand-hash,
+    each: badge-style
+  )

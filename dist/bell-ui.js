@@ -523,12 +523,12 @@
 
   var contains = function(element, target) {
     if (element.contains && element.contains(target)) {
-      return true;
+      return true
     }
     else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-      return true;
+      return true
     }
-    return false;
+    return false
   };
 
   var findComponentUpward = function (context, componentName) {
@@ -546,7 +546,7 @@
       if (parent) { name = parent.$options.name; }
     }
 
-    return parent;
+    return parent
   };
 
   var oneOf = function (values) {
@@ -556,6 +556,46 @@
       }
       return true
     }
+  };
+
+  var scrollTop = function (element, from, to, duration, endCallback) {
+    if ( from === void 0 ) from = 0;
+    if ( duration === void 0 ) duration = 500;
+
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = (
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback) {
+          return window.setTimeout(callback, 1000 / 60)
+        }
+      );
+    }
+    var difference = Math.abs(from - to);
+    var step = Math.ceil(difference / duration * 50);
+
+    function scroll(start, end, step) {
+      if (start === end) {
+        endCallback && endCallback();
+        return
+      }
+
+      var duration = (start + step > end) ? end : start + step;
+      if (start > end) {
+        duration = (start - step < end) ? end : start - step;
+      }
+
+      if (element === window) {
+        window.scrollTo(duration, duration);
+      } else {
+        element.scrollTop = duration;
+      }
+      window.requestAnimationFrame(function () {
+        scroll(duration, end, step);
+      });
+    }
+    scroll(from, to, step);
   };
 
   var Menu = {
@@ -2668,33 +2708,35 @@
     }
   };
 
-  var BackTopTpl = "<div class=\"bell-backtop\n{{#if className}} {{className}}{{/if}}\n{{#if !isShow}} bell-hide{{/if}}\n{{#if !fix}} bell-backtop-fix{{/if}}\n\"\nstyle=\"bottom: {{bottom}}px;\n  right: {{right}}px;\n  {{#if style}} {{style}}{{/if}}\n\" on-click=\"back()\">\n  <i class=\"bell-icon bell-icon-chevron-up\"></i>\n</div>";
+  var template$i = "<div \nclass=\"bell-backtop\n{{#if !isShow}} bell-backtop-hide{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\nstyle=\"bottom: {{bottom}}px;\nright: {{right}}px;\n{{#if style}} {{style}}{{/if}}\n\" \non-click=\"back()\"\n>\n  <div class=\"bell-backtop-inner\">\n    <slot name=\"children\">\n      <Icon name=\"arrow-up\"></Icon>\n    </slot>\n  </div>\n</div>";
 
   var BackTop = {
-    template: BackTopTpl,
+
     propTypes: {
-      className: {
-        type: 'string'
-      },
-      style: {
-        type: 'string'
-      },
       bottom: {
-        type: 'numeric',
+        type: RAW_NUMERIC,
         value: 30
       },
       right: {
-        type: 'numeric',
+        type: RAW_NUMERIC,
         value: 30
       },
       height: {
-        type: 'numeric',
-        value: 400
+        type: RAW_NUMERIC
       },
-      fix: {
-        type: 'string'
+      duration: {
+        type: RAW_NUMERIC,
+        value: 1000
+      },
+      className: {
+        type: RAW_STRING
+      },
+      style: {
+        type: RAW_STRING
       }
     },
+
+    template: template$i,
 
     data: function data() {
       return {
@@ -2704,34 +2746,32 @@
 
     methods: {
       back: function back() {
-        var me = this;
-        var top = me.container.scrollTop;
-        me.container.scrollTop = 0;
-        me.fire('click');
+        var parentElement = this.$parent.$el;
+        scrollTop(parentElement, parentElement.scrollTop, 0, this.get('duration'));
+        this.fire('click');
       }
     },
 
     afterMount: function afterMount() {
       var me = this;
-      var container = me.container = me.$parent.$el;
+      var parentElement = me.$parent.$el;
       me.handleScroll = function () {
+        var height = me.get('height') || parentElement.clientHeight;
         me.set({
-          isShow: container.scrollTop >= me.get('height')
+          isShow: parentElement.scrollTop >= height
         });
       };
-
-      container.addEventListener('scroll', me.handleScroll);
-      container.addEventListener('resize', me.handleScroll);
+      Yox.dom.on(parentElement, 'scroll', me.handleScroll);
+      Yox.dom.on(document, 'resize', me.handleScroll);
     },
 
     beforeDestroy: function beforeDestroy() {
-      var me = this;
-      me.container.removeEventListener('scroll', me.handleScroll);
-      me.container.removeEventListener('resize', me.handleScroll);
+      Yox.dom.off(this.$parent.$el, 'scroll', this.handleScroll);
+      Yox.dom.off(document, 'resize', this.handleScroll);
     }
   };
 
-  var template$i = "<div \nclass=\"bell-avatar bell-avatar-{{size}} bell-avatar-{{shape}}\n{{#if className}} {{className}}{{/if}}\n\" \nstyle=\"color: {{color}};\n{{#if fontSize}} font-size: {{fontSize}}px;{{/if}}\n{{#if bgColor}} background-color: {{bgColor}};{{/if}}\n{{#if style}} {{style}}{{/if}}\n\"\n>\n  \n  {{#if src}}\n    <img className=\"bell-avatar-image\"\n      {{#if srcset}} srcset=\"{{srcset}}\"{{/if}} \n      ondragstart=\"return false\" \n      src=\"{{src}}\" \n    />\n  {{else if icon}}\n    <Icon type=\"{{iconType}}\" className=\"bell-avatar-icon\" name=\"{{icon}}\" />\n  {{else if text}}\n    <span ref=\"textStr\" class=\"bell-avatar-string\" style=\"transform: {{transformStyle}};\">\n      {{text}}\n    </span>\n  {{/if}}\n\n</div>";
+  var template$j = "<div \nclass=\"bell-avatar bell-avatar-{{size}} bell-avatar-{{shape}}\n{{#if className}} {{className}}{{/if}}\n\" \nstyle=\"color: {{color}};\n{{#if fontSize}} font-size: {{fontSize}}px;{{/if}}\n{{#if bgColor}} background-color: {{bgColor}};{{/if}}\n{{#if style}} {{style}}{{/if}}\n\"\n>\n  \n  {{#if src}}\n    <img className=\"bell-avatar-image\"\n      {{#if srcset}} srcset=\"{{srcset}}\"{{/if}} \n      ondragstart=\"return false\" \n      src=\"{{src}}\" \n    />\n  {{else if icon}}\n    <Icon type=\"{{iconType}}\" className=\"bell-avatar-icon\" name=\"{{icon}}\" />\n  {{else if text}}\n    <span ref=\"textStr\" class=\"bell-avatar-string\" style=\"transform: {{transformStyle}};\">\n      {{text}}\n    </span>\n  {{/if}}\n\n</div>";
 
   var Avatar = {
 
@@ -2777,7 +2817,7 @@
       }
     },
 
-    template: template$i,
+    template: template$j,
     
     data: function data () {
       return {
@@ -2809,15 +2849,19 @@
     }
   };
 
-  var template$j = "<div \nclass=\"bell-badge\n{{#if type}} bell-badge-{{type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if !hidden}}\n    {{#if dot}}\n      <span class=\"bell-badge-dot\"></span>\n    {{else}}\n      <span class=\"bell-badge-count\n        {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}\n      \">\n        {{getText(count, maxCount)}}\n      </span>\n    {{/if}}\n{{/if}}\n</div>";
+  var template$k = "<div \nclass=\"bell-badge{{#if status}}-status{{/if}}\n{{#if status || type}} bell-badge-{{status || type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if !hidden}}\n    {{#if dot}}\n      <span class=\"bell-badge-dot\"></span>\n    {{/if}}\n    {{#if text || count}}\n    <span class=\"bell-badge-count\n      {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}\n    \">\n      {{text ? text : getText(count, maxCount)}}\n    </span>\n    {{/if}}\n  {{/if}}\n</div>";
 
   var Badge = {
     propTypes: {
+      text: {
+        type: RAW_STRING
+      },
       count: {
         type: RAW_NUMERIC
       },
       maxCount: {
-        type: RAW_NUMERIC
+        type: RAW_NUMERIC,
+        value: 999
       },
       dot: {
         type: RAW_BOOLEAN
@@ -2826,7 +2870,11 @@
         type: RAW_BOOLEAN
       },
       type: {
-        type: RAW_STRING
+        type: oneOf(RAW_TYPE_ARRAY),
+        value: RAW_TYPE_ERROR
+      },
+      status: {
+        type: oneOf(RAW_TYPE_ARRAY)
       },
       className: {
         type: RAW_STRING
@@ -2836,12 +2884,12 @@
       }
     },
 
-    template: template$j,
+    template: template$k,
 
     filters: {
       getText: function getText(count, maxCount) {
-        maxCount = Yox.is.number(maxCount) ? +maxCount : 1;
-        var countStr = Yox.is.number(count) ? +count : 0;
+        maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1;
+        var countStr = Yox.is.numeric(count) ? +count : 0;
 
         return maxCount < countStr
           ? maxCount + '+'
@@ -4367,7 +4415,7 @@
     }
   };
 
-  var template$k = "<div \nclass=\"bell-collapse\n  {{#if bordered}} bell-collapse-bordered{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template$l = "<div \nclass=\"bell-collapse\n  {{#if bordered}} bell-collapse-bordered{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var Collapse = {
 
@@ -4392,7 +4440,7 @@
       }
     },
 
-    template: template$k,
+    template: template$l,
 
     watchers: {
       accordion: function accordion(accordion$1) {
@@ -4421,7 +4469,7 @@
 
   };
 
-  var template$l = "<div \nclass=\"bell-collapse-item\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\" on-click=\"click()\">\n    <slot name=\"icon\">\n      {{#if showIcon}}\n      <Icon \n        type=\"arrow-down\" \n        className=\"bell-collapse-header-icon\" \n      />\n      {{/if}}\n    </slot>\n    {{title}}\n\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-collapse-header-extra\">\n        <slot name=\"extra\"></slot>\n      </div>\n    {{/if}}\n  </div>\n\n  <div ref=\"panelContent\" class=\"bell-collapse-content\">\n    <div class=\"bell-collapse-content-box\">\n      <slot name=\"children\" />\n    </div>\n  </div>\n\n</div>";
+  var template$m = "<div \nclass=\"bell-collapse-item\n  {{#if isOpen}} bell-collapse-item-open{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-collapse-header\" on-click=\"click()\">\n    <slot name=\"icon\">\n      {{#if showIcon}}\n      <Icon \n        type=\"arrow-down\" \n        className=\"bell-collapse-header-icon\" \n      />\n      {{/if}}\n    </slot>\n    {{title}}\n\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-collapse-header-extra\">\n        <slot name=\"extra\"></slot>\n      </div>\n    {{/if}}\n  </div>\n\n  <div ref=\"panelContent\" class=\"bell-collapse-content\">\n    <div class=\"bell-collapse-content-box\">\n      <slot name=\"children\" />\n    </div>\n  </div>\n\n</div>";
 
   var Panel = {
 
@@ -4447,7 +4495,7 @@
       }
     },
 
-    template: template$l,
+    template: template$m,
 
     data: function data() {
       return {
@@ -4560,7 +4608,7 @@
     }
   };
 
-  var template$m = "<div \nclass=\"bell-card\n  {{#if bordered}} bell-card-bordered{{/if}}\n  {{#if hoverDisabled}} bell-card-hover-disabled{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template$n = "<div \nclass=\"bell-card\n  {{#if bordered}} bell-card-bordered{{/if}}\n  {{#if hoverDisabled}} bell-card-hover-disabled{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var Card = {
     
@@ -4581,10 +4629,10 @@
       }
     },
 
-    template: template$m
+    template: template$n
   };
 
-  var template$n = "<div \nclass=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    <div class=\"bell-card-header-title\">\n      <slot name=\"title\" />\n      <slot name=\"children\" />\n    </div>\n    \n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n  </div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  <slot name=\"children\" />\n\n</div>";
+  var template$o = "<div \nclass=\"bell-card-header\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"avatar\" />\n\n  <div class=\"bell-card-header-detail\">\n    <div class=\"bell-card-header-title\">\n      <slot name=\"title\" />\n      <slot name=\"children\" />\n    </div>\n    \n    {{#if hasSlot('subTitle')}}\n      <div class=\"bell-card-header-sub-title\">\n        <slot name=\"subTitle\" />\n      </div>\n    {{/if}}\n  </div>\n\n  {{#if hasSlot('extra')}}\n    <span class=\"bell-card-header-extra\">\n      <slot name=\"extra\" />\n    </span>\n  {{/if}}\n\n  <slot name=\"children\" />\n\n</div>";
 
   var CardHeader = {
 
@@ -4597,11 +4645,11 @@
       },
     },
 
-    template: template$n
+    template: template$o
 
   };
 
-  var template$o = "<div \nclass=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
+  var template$p = "<div \nclass=\"bell-card-media\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('children')}}\n    <slot name=\"children\" />\n  {{/if}}\n\n  <div class=\"bell-card-media-detail\">\n\n    {{#if title}}\n      <div class=\"bell-card-media-title\">\n        {{title}}\n      </div>\n    {{/if}}\n\n    {{#if subTitle}}\n      <div class=\"bell-card-media-sub-title\">\n        {{subTitle}}\n      </div>\n    {{/if}}\n\n  </div>\n</div>";
 
   var CardMedia = {
 
@@ -4620,10 +4668,10 @@
       }
     },
 
-    template: template$o
+    template: template$p
   };
 
-  var template$p = "<div \nclass=\"bell-card-body\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template$q = "<div \nclass=\"bell-card-body\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var CardBody = {
     propTypes: {
@@ -4634,10 +4682,10 @@
         type: RAW_STRING
       }
     },
-    template: template$p
+    template: template$q
   };
 
-  var template$q = "<div \nclass=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template$r = "<div \nclass=\"bell-card-actions\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var CardActions = {
     
@@ -4650,7 +4698,7 @@
       }
     },
 
-    template: template$q
+    template: template$r
 
   };
 
@@ -4710,7 +4758,7 @@
     }
   };
 
-  var template$r = "<div \nclass=\"bell-divider bell-divider-{{type}} \n{{#if hasSlot('children')}} bell-divider-with-text-{{align}}{{/if}}\n{{#if dashed}} bell-divider-dashed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <div class=\"bell-divider-text\">\n      <slot name=\"children\" />\n    </div> \n  {{/if}}\n</div>";
+  var template$s = "<div \nclass=\"bell-divider bell-divider-{{type}} \n{{#if hasSlot('children')}} bell-divider-with-text-{{align}}{{/if}}\n{{#if dashed}} bell-divider-dashed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if hasSlot('children')}}\n    <div class=\"bell-divider-text\">\n      <slot name=\"children\" />\n    </div> \n  {{/if}}\n</div>";
 
   var Divider = {
     propTypes: {
@@ -4733,7 +4781,7 @@
         type: RAW_STRING
       }
     },
-    template: template$r
+    template: template$s
   };
 
   var CircleTpl = "<div class=\"bell-circle\n    {{#if className}} {{className}}{{/if}}\n\"\n  style=\"width: {{size}}px;\n    height: {{size}}px;\n    {{#if style}} {{style}}{{/if}}\n  \"\n>\n  <svg viewBox=\"0 0 100 100\">\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke=\"{{trailColor}}\"\n      stroke-width=\"{{trailWidth}}\"\n      fill-opacity=\"0\"\n    />\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke-linecap=\"{{strokeLinecap}}\"\n      stroke=\"{{strokeColor}}\"\n      stroke-width=\"{{strokeWidth}}\"\n      fill-opacity=\"0\"\n      style=\"\n          stroke-dasharray: {{strokeDasharray}};\n          stroke-dashoffset: {{strokeDashoffset}};\n          transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease\n      \"\n    />\n  </svg>\n  <div class=\"bell-circle-inner\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
@@ -5326,7 +5374,7 @@
     }
   };
 
-  var template$s = "<div \nclass=\"bell-tabs bell-tabs-{{type}}\n{{#if size}} bell-tabs-{{size}}{{/if}}\n{{#if animated}} bell-tabs-animated{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <div class=\"bell-tabs-bar\">\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-tabs-extra-container\">\n        <slot name=\"extra\" />\n      </div>\n    {{/if}}\n    <div class=\"bell-tabs-nav-container\">\n      <span class=\"bell-tabs-tab-prev\"></span>\n      <span class=\"bell-tabs-tab-next\"></span>\n      <div class=\"bell-tabs-tab-wrap\">\n        <div class=\"bell-tabs-tab-scroll\">\n          <div class=\"bell-tabs-nav bell-tabs-animated\">\n            {{#each tabsList}}\n              <div class=\"bell-tabs-tab\n                {{#if disabled}} bell-tabs-tab-disabled{{/if}}\n                {{#if value === id}} bell-tabs-tab-active{{/if}}\n              \" on-click=\"click(this)\"\n              >\n                {{#if this.icon}}\n                  <Icon className=\"bell-tabs-tab-icon\" type=\"{{this.icon}}\" />\n                {{/if}}\n                {{label}}\n                {{#if value === id && closable}}\n                  <div class=\"bell-tabs-tab-close-icon\" on-click=\"close(this)\">\n                    <Icon className=\"bell-tabs-tab-icon-close\" type=\"close\" size=\"20\" /> \n                  </div>\n                {{/if}}\n              </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bell-tabs-content\" style=\"transform: translateX({{translateStyle}});\">\n    <slot name=\"children\" />\n  </div>\n</div>";
+  var template$t = "<div \nclass=\"bell-tabs bell-tabs-{{type}}\n{{#if size}} bell-tabs-{{size}}{{/if}}\n{{#if animated}} bell-tabs-animated{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <div class=\"bell-tabs-bar\">\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-tabs-extra-container\">\n        <slot name=\"extra\" />\n      </div>\n    {{/if}}\n    <div class=\"bell-tabs-nav-container\">\n      <span class=\"bell-tabs-tab-prev\"></span>\n      <span class=\"bell-tabs-tab-next\"></span>\n      <div class=\"bell-tabs-tab-wrap\">\n        <div class=\"bell-tabs-tab-scroll\">\n          <div class=\"bell-tabs-nav bell-tabs-animated\">\n            {{#each tabsList}}\n              <div class=\"bell-tabs-tab\n                {{#if disabled}} bell-tabs-tab-disabled{{/if}}\n                {{#if value === id}} bell-tabs-tab-active{{/if}}\n              \" on-click=\"click(this)\"\n              >\n                {{#if this.icon}}\n                  <Icon className=\"bell-tabs-tab-icon\" type=\"{{this.icon}}\" />\n                {{/if}}\n                {{label}}\n                {{#if value === id && closable}}\n                  <div class=\"bell-tabs-tab-close-icon\" on-click=\"close(this)\">\n                    <Icon className=\"bell-tabs-tab-icon-close\" type=\"close\" size=\"20\" /> \n                  </div>\n                {{/if}}\n              </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bell-tabs-content\" style=\"transform: translateX({{translateStyle}});\">\n    <slot name=\"children\" />\n  </div>\n</div>";
 
   var Tabs = {
 
@@ -5360,7 +5408,7 @@
       }
     },
 
-    template: template$s,
+    template: template$t,
 
     data: function data() {
       return {
@@ -5437,7 +5485,7 @@
     }
   };
 
-  var template$t = "<div \nclass=\"bell-tabs-panel\n{{#if disabled}} bell-tabs-panel-disabled{{/if}}\n{{#if isActive}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+  var template$u = "<div \nclass=\"bell-tabs-panel\n{{#if disabled}} bell-tabs-panel-disabled{{/if}}\n{{#if isActive}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
   var TabPanel = {
     propTypes: {
@@ -5462,7 +5510,7 @@
       }
     },
 
-    template: template$t,
+    template: template$u,
 
     data: function data() {
       return {
@@ -5518,7 +5566,7 @@
     }
   };
 
-  var template$u = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n  \n</div>";
+  var template$v = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n  \n</div>";
 
   var Dropdown = {
     propTypes: {
@@ -5561,7 +5609,7 @@
       }
     },
 
-    template: template$u,
+    template: template$v,
 
     watchers: {
       visible: function visible (isOpen) {
@@ -5589,7 +5637,7 @@
     }
   };
 
-  var template$v = "<li \nclass=\"bell-dropdown-item\n{{#if selected}} bell-dropdown-selected{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if divided}} bell-dropdown-divided{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\non-click=\"click.dropdownItem\"\n>\n\n  <slot name=\"children\" />  \n  \n</li>";
+  var template$w = "<li \nclass=\"bell-dropdown-item\n{{#if selected}} bell-dropdown-selected{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if divided}} bell-dropdown-divided{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\non-click=\"click.dropdownItem\"\n>\n\n  <slot name=\"children\" />  \n  \n</li>";
 
   var DropdownItem = {
     propTypes: {
@@ -5616,10 +5664,10 @@
       }
     },
 
-    template: template$v
+    template: template$w
   };
 
-  var template$w = "<ul \nclass=\"bell-dropdown-menu\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />  \n  \n</ul>";
+  var template$x = "<ul \nclass=\"bell-dropdown-menu\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />  \n  \n</ul>";
 
   var DropdownMenu = {
     propTypes: {
@@ -5631,7 +5679,7 @@
       }
     },
 
-    template: template$w
+    template: template$x
   };
 
   var TransferTpl = "<div class=\"bell-transfer\">\n  <div class=\"bell-transfer-list\">\n    <div class=\"bell-transfer-list-header\">\n      <span class=\"bell-transfer-list-header-checkbox\">\n        <Checkbox model=\"checkLeftAll\" onChange=\"{{onCheckLeftAllChange}}\">\n        </Checkbox>\n      </span>\n      <span class=\"bell-transfer-list-header-title\">\n        {{leftLabel}}\n      </span>\n      <span class=\"bell-transfer-list-header-count\">\n        {{left.length}} / {{leftList.length}}\n      </span>\n    </div>\n\n    <div class=\"bell-transfer-list-body\">\n      <CheckboxGroup vertical model=\"left\" onChange=\"{{onLeftChange}}\">\n        {{#each leftList}}\n          <Checkbox value=\"{{this.key}}\">\n            <span>\n              {{text}}\n            </span>\n          </Checkbox>\n        {{/each}}\n      </CheckboxGroup>\n    </div>\n  </div>\n\n  <div class=\"bell-transfer-actions\">\n    <Button shape=\"circle\" on-click=\"addToLeft()\">\n      <i class=\"bell-icon bell-icon-ios-arrow-left\"></i>\n    </Button>\n    <Button shape=\"circle\" on-click=\"addToRight()\">\n      <i class=\"bell-icon bell-icon-ios-arrow-right\"></i>\n    </Button>\n  </div>\n\n  <div class=\"bell-transfer-list\">\n    <div class=\"bell-transfer-list-header\">\n      <span class=\"bell-transfer-list-header-checkbox\">\n        <Checkbox model=\"checkRightAll\" onChange=\"{{onCheckRightAllChange}}\">\n        </Checkbox>\n      </span>\n      <span class=\"bell-transfer-list-header-title\">\n        {{rightLabel}}\n      </span>\n      <span class=\"bell-transfer-list-header-count\">\n        {{right.length}} / {{rightList.length}}\n      </span>\n    </div>\n    <div class=\"bell-transfer-list-body\">\n      <CheckboxGroup vertical model=\"right\" onChange=\"{{onRightChange}}\">\n        {{#each rightList}}\n          <Checkbox value=\"{{this.key}}\">\n            <span>\n              {{text}}\n            </span>\n          </Checkbox>\n        {{/each}}\n      </CheckboxGroup>\n    </div>\n  </div>\n</div>";
