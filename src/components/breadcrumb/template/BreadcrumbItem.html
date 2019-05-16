@@ -1,6 +1,6 @@
 <span 
 class="${prefix}breadcrumb-item ${prefix}text
-  {{#if className}} {{className}}{{/if}}
+{{#if className}} {{className}}{{/if}}
 " 
 {{#if style}} style="{{style}}"{{/if}}
 >
@@ -10,7 +10,7 @@ class="${prefix}breadcrumb-item ${prefix}text
   </a>
 
   <span class="${prefix}breadcrumb-gap">
-    {{separator || '/'}}
+    {{separator}}
   </span>
 
 </span>
