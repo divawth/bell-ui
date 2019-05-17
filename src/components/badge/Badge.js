@@ -1,5 +1,5 @@
 import template from './template/Badge.html'
-import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_TYPE_ARRAY, RAW_TYPE_ERROR, FALSE } from '../constant'
+import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_TYPE_ARRAY, RAW_TYPE_ERROR, FALSE } from '../constant'
 import { oneOf } from '../util';
 
 export default {

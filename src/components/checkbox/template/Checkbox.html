@@ -1,24 +1,30 @@
-<label class="bell-checkbox
+<label 
+class="${prefix}checkbox
+  {{#if disabled}} ${prefix}checkbox-disabled{{/if}}
+  {{#if type}} ${prefix}checkbox-{{type}}{{/if}}
+  {{#if size}} ${prefix}checkbox-{{size}}{{/if}}
+  {{#if checked}} ${prefix}checkbox-active{{/if}}
+  {{#if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if disabled}} bell-checkbox-disabled{{/if}}
-  {{#if type}} bell-checkbox-{{type}}{{/if}}
-  {{#if size}} bell-checkbox-{{size}}{{/if}}
-  {{#if isChecked}} bell-active{{/if}}
-  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
 
-  <span class="bell-checkbox-wrapper
-    {{#if isChecked}} bell-active{{/if}}
-  " on-click="click()">
-    <span class="bell-checkbox-inner"></span>
-    <input class="bell-checkbox-input" type="checkbox" value="{{value}}" />
+  <label class="${prefix}checkbox-wrapper
+    {{#if checked}} ${prefix}checkbox-active{{/if}}
+  ">
+    <span class="${prefix}checkbox-inner"></span>
+    <input class="${prefix}checkbox-input" 
+      type="checkbox" 
+      model="checked" 
+      {{#if disabled}} disabled{{/if}}
+    />
+  </label>
+
+  <span class="${prefix}checkbox-label">
+    <slot name="children">
+      {{label || value}}
+    </slot>
   </span>
 
-  <span class="bell-checkbox-label">
-    {{#if label}}
-      {{label}}
-    {{else}}
-      <slot name="children" />
-    {{/if}}
-  </span>
 </label>

@@ -1,17 +1,11 @@
-import CheckboxTpl from './template/Checkbox.html'
+import template from './template/Checkbox.html'
+import { findComponentUpward } from '../util'
 
 export default {
-  template: CheckboxTpl,
 
-  model: 'modelValue',
+  model: 'checked',
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     label: {
       type: 'string'
     },
@@ -19,7 +13,8 @@ export default {
       type: 'boolean'
     },
     value: {
-      type: ['string', 'numeric', 'boolean']
+      type: ['string', 'numeric', 'boolean'],
+      require: true
     },
     disabled: {
       type: 'boolean'
@@ -32,53 +27,47 @@ export default {
     },
     size: {
       type: 'string'
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
 
-  computed: {
-    isChecked () {
-      return this.get('checked') ? true : false
-    }
-  },
+  template,
 
   events: {
-    updateCheckboxValue(event, data) {
-      let me = this;
-      let isChecked = Yox.is.array(data.value)
-        && Yox.array.has(data.value, me.get('value'));
-      me.set({
-        checked: isChecked
-      });
-    },
-    updateCheckboxType(event, data) {
-      this.set({
-        type: data.type
-      });
-    },
-    updateCheckboxDisabled(event, data) {
-      this.set({
-        disabled: data.disabled
-      });
+    'change.checkboxGroup': function (event, data) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
+        this.set({
+          checked: Yox.array.has(data.selected, this.get('value'))
+        })
+      }
     }
   },
 
-  methods: {
-    click() {
-      let me = this;
-      if (me.get('disabled')) {
-        return;
-      }
-      let isChecked = me.get('isChecked');
-      me.fire(
-        'change',
+  watchers: {
+    checked(checked) {
+      this.fire(
+        'change.checkbox',
         {
-          isChecked: !isChecked,
-          value: me.get('value')
+          checked: checked,
+          value: this.get('value')
         }
-      );
-      me.set({
-        checked: !isChecked
-      });
+      )
     }
+  },
+
+  afterMount() {
+    let checkboxGroup = findComponentUpward(this, '${prefix}checkboxGroup')
+    if (checkboxGroup) {
+      this.set({
+        type:  this.get('type') || checkboxGroup.get('type'),
+        disabled: this.get('disabled') || checkboxGroup.get('disabled'),
+      })
+    }
+    console.log(this.get('value'))
   }
-};
+}

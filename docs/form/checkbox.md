@@ -1,68 +1,119 @@
 > 基础用法
 
-    export default {
-        template: `
-            <div>
-                <Checkbox model="single" on-change="change()">
-                    Checkbox
-                </Checkbox>
+```js
+export default {
+  template: `
+    <div>
+      <Checkbox model="single">
+        Checkbox
+      </Checkbox>
 
-                <p>{{single}}</p>
-            </div>
-        `,
-        data: function () {
-            return {
-                single: false
-            }
-        },
-        methods: {
-            change: function (event, data) {
-                console.log(data.isChecked);
-            }
-        }
+      <p>{{single}}</p>
+    </div>
+  `,
+  data: function () {
+    return {
+      single: false
     }
+  }
+}
+```
 
-> checkbox 组用法
 
-    export default {
-        template: `
-            <div>
-                <CheckboxGroup model="social" on-change="change()">
-                    <Checkbox value="twitter">
-                        <span>Twitter</span>
-                    </Checkbox>
-                    <Checkbox value="facebook">
-                        <span>Facebook</span>
-                    </Checkbox>
-                    <Checkbox value="github">
-                        <span>Github</span>
-                    </Checkbox>
-                    <Checkbox value="snapchat">
-                        <span>Snapchat</span>
-                    </Checkbox>
-                </CheckboxGroup>
-                <p> [ {{showArray(social)}} ] </p>
-            </div>
-        `,
-        data: function () {
-            return {
-                social: []
-            }
-        },
-        filters: {
-            showArray: function (arr) {
-                return arr.join(', ');
-            }
-        },
-        methods: {
-            change: function (event, data) {
-                console.log(data);
-                this.set({
-                    social: data.value
-                });
-            }
-        }
+> CheckboxGroup 组用法
+
+```js
+export default {
+  template: `
+    <div>
+      <CheckboxGroup model="social">
+        <Checkbox value="twitter">
+          <span>Twitter</span>
+        </Checkbox>
+        <Checkbox value="facebook">
+          <span>Facebook</span>
+        </Checkbox>
+        <Checkbox value="github">
+          <span>Github</span>
+        </Checkbox>
+        <Checkbox value="snapchat">
+          <span>Snapchat</span>
+        </Checkbox>
+      </CheckboxGroup>
+      <p> [ {{showArray(social)}} ] </p>
+      <CheckboxGroup model="fruit">
+        <Checkbox value="香蕉"></Checkbox>
+        <Checkbox value="苹果"></Checkbox>
+        <Checkbox value="西瓜"></Checkbox>
+      </CheckboxGroup>
+      <p> [ {{showArray(fruit)}} ] </p>
+    </div>
+  `,
+  data: function () {
+    return {
+      social: [ "snapchat" ],
+      fruit: [ "香蕉" ]
     }
+  },
+  filters: {
+    showArray: function (arr) {
+      return arr.join(', ');
+    }
+  }
+}
+```
+
+> 不可用 
+
+```js
+export default {
+  template: `
+    <div>
+      <Checkbox model="disabledSingle" disabled>Checkbox</Checkbox>
+      <CheckboxGroup model="disabledGroup">
+          <Checkbox value="香蕉" disabled></Checkbox>
+          <Checkbox value="苹果" disabled></Checkbox>
+          <Checkbox value="西瓜"></Checkbox>
+      </CheckboxGroup>
+    </div>
+  `,
+  data () {
+    return {
+      disabledSingle: true,
+      disabledGroup: ['苹果']
+    }
+  }
+}
+```
+
+> 与其它组件通信 
+
+```js
+export default {
+  template: `
+    <div>
+      <Checkbox model="checked" disabled="{{disabled}}">
+        <span>{{Checked ? 'Checked' : 'Unchecked'}}</span>
+        - 
+        <span>{{disabled ? 'Disabled' : 'Usable'}}</span>
+      </Checkbox>
+      <br>
+      <Button type="primary" on-click="toggle('checked')">
+        <span>{{Checked ? 'Checked' : 'Unchecked'}}</span>
+      </Button>
+      <Button type="primary" on-click="toggle('disabled')">
+        <span>{{disabled ? 'Disabled' : 'Usable'}}</span>
+      </Button>
+    </div>
+  `,
+  data () {
+    return {
+      disabledSingle: true,
+      disabledGroup: ['苹果']
+    }
+  }
+}
+```
 
 > type 切换风格
 
@@ -176,20 +227,7 @@
         }
     }
 
-> 禁用状态
 
-    export default {
-        template: `
-            <div>
-                <Checkbox disabled model="single">
-                    Checkbox
-                </Checkbox>
-                <Checkbox disabled checked model="single">
-                    Checkbox
-                </Checkbox>
-            </div>
-        `
-    }
 
 > 默认选中状态
 

@@ -1,24 +1,19 @@
-import CheckboxGroupTpl from './template/CheckboxGroup.html'
+import template from './template/CheckboxGroup.html'
 
 export default {
-  template: CheckboxGroupTpl,
 
-  model: 'modelValue',
+  model: 'selected',
+
+  name: '${prefix}checkboxGroup',
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     name: {
       type: 'string'
     },
-    modelValue: {
+    selected: {
       type: 'array',
-      value: () => {
-        return [];
+      value: function () {
+        return []
       }
     },
     size: {
@@ -32,65 +27,52 @@ export default {
     },
     vertical: {
       type: ['string', 'numeric', 'boolean']
+    },
+    className: {
+      type: 'string'
+    },
+    style: {
+      type: 'string'
     }
   },
 
+  template,
+
   events: {
-    change(event, data) {
-      let me = this;
-      if (event.target == me) {
-        return;
+    'change.checkboxGroup': function (event) {
+      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
+        event.stop()
       }
-      event.stop();
-
-      let result = Yox.is.array(me.get('modelValue')) ? me.copy(me.get('modelValue')) : [];
-      if (data.isChecked) {
-        if (Yox.array.indexOf(result, data.value) === -1) {
-          result.push(data.value);
+    },
+    'change.checkbox': function (event, data) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
+        let me = this
+        let selected = me.copy(me.get('selected'))
+        if (data.checked) {
+          if (Yox.array.indexOf(selected, data.value) === -1) {
+            selected.push(data.value)
+          }
         }
+        else {
+          Yox.array.remove(selected, data.value)
+        }
+        me.set({ selected })
+        me.fire(
+          'change.checkboxGroup', 
+          { selected }, 
+          true
+        )
+        event.stop()
       }
-      else {
-        Yox.array.remove(result, data.value);
-      }
-
-      me.set({
-        modelValue: result
-      });
-      me.fire('change', {
-        value: result
-      });
     }
   },
   watchers: {
-    modelValue(value) {
+    selected(selected) {
       this.fire(
-        'updateCheckboxValue',
-        {
-          value: value
-        },
+        'change.checkboxGroup', 
+        { selected }, 
         true
-      );
-    }
-  },
-  afterMount() {
-    let me = this;
-    if (me.get('type')) {
-      me.fire(
-        'updateCheckboxType',
-        {
-          type: me.get('type')
-        },
-        true
-      );
-    }
-    if (me.get('disabled')) {
-      me.fire(
-        'updateCheckboxDisabled',
-        {
-          disabled: me.get('disabled')
-        },
-        true
-      );
+      )
     }
   }
 }

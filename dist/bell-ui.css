@@ -5362,9 +5362,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #1890ff;
   background-color: #1890ff;
   box-shadow: 0 0 0 2px #d2ecf1;
@@ -5377,9 +5375,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-success {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-success .bell-checkbox-wrapper.bell-checkbox-success .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-success .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-success .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-success .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #52c41a;
   background-color: #52c41a;
   box-shadow: 0 0 0 2px #d5eddb;
@@ -5392,9 +5388,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-info {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-info .bell-checkbox-wrapper.bell-checkbox-info .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-info .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-info .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-info .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #2db7f5;
   background-color: #2db7f5;
   box-shadow: 0 0 0 2px #d2ecf1;
@@ -5407,9 +5401,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-error {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-error .bell-checkbox-wrapper.bell-checkbox-error .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-error .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-error .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-error .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #f5222d;
   background-color: #f5222d;
   box-shadow: 0 0 0 2px #f7d7db;
@@ -5422,9 +5414,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-warning {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-warning .bell-checkbox-wrapper.bell-checkbox-warning .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-warning .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-warning .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-warning .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #faad14;
   background-color: #faad14;
   box-shadow: 0 0 0 2px #fff3cf;
@@ -5437,9 +5427,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-danger {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-danger .bell-checkbox-wrapper.bell-checkbox-danger .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-danger .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-danger .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-danger .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #eb1111;
   background-color: #eb1111;
   box-shadow: 0 0 0 2px #f7d7db;
@@ -5452,9 +5440,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-disabled {
   color: #ccc;
 }
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-disabled .bell-checkbox-wrapper.active .bell-checkbox-inner,
-.bell-checkbox-disabled .bell-checkbox-wrapper:active .bell-checkbox-inner,
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-active .bell-checkbox-inner {
+.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
   color: #dddee1;
   background-color: #dddee1;
   box-shadow: none;
@@ -5476,9 +5462,7 @@ button.bell-button-danger-ghost[disabled] {
   height: 14px;
   margin-top: 2px;
 }
-.bell-checkbox .bell-checkbox-wrapper.bell-checkbox .bell-checkbox-wrapper.active .bell-checkbox-inner:after,
-.bell-checkbox .bell-checkbox-wrapper:active .bell-checkbox-inner:after,
-.bell-checkbox .bell-checkbox-wrapper.bell-active .bell-checkbox-inner:after {
+.bell-checkbox .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner:after {
   transform: rotate(45deg) scale(1);
 }
 .bell-checkbox .bell-checkbox-inner {
