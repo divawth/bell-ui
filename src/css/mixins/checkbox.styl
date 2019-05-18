@@ -2,15 +2,15 @@ checkbox-style(style)
 
     ui-set('color', style['color'])
 
-    {$selector-checkbox}-wrapper
+    &{$selector-checkbox}-active,
+    &{$selector-checkbox}-indeterminate
 
-        &{$selector-checkbox}-active
+        {$selector-checkbox}-inner
 
-            {$selector-checkbox}-inner
-
-                ui-set('color', style['color-active'])
-                ui-set('background-color', style['bg-color-active'])
-                ui-set('box-shadow', style['box-shadow'])
+            ui-set('color', style['color-active'])
+            ui-set('background-color', style['bg-color-active'])
+            ui-set('box-shadow', style['box-shadow'])
+    
 
     &{$selector-hover}
 

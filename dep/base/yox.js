@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.36
+ * yox.js v1.0.0-alpha.39
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -38,6 +38,7 @@
     var RAW_WILDCARD = '*';
     var KEYPATH_PARENT = '..';
     var KEYPATH_CURRENT = RAW_THIS;
+    var RAW_MINUS_ONE = -1;
     /**
      * Single instance for window in browser
      */
@@ -241,7 +242,7 @@
         };
         CustomEvent.PHASE_CURRENT = 0;
         CustomEvent.PHASE_UPWARD = 1;
-        CustomEvent.PHASE_DOWNWARD = -1;
+        CustomEvent.PHASE_DOWNWARD = RAW_MINUS_ONE;
         return CustomEvent;
     }());
   
@@ -321,7 +322,7 @@
      * @return 如果未找到，返回 -1
      */
     function indexOf(array, target, strict) {
-        var result = -1;
+        var result = RAW_MINUS_ONE;
         each(array, function (item, index) {
             if (strict === FALSE ? item == target : item === target) {
                 result = index;
@@ -633,7 +634,7 @@
         prefix += SEP_DOT;
         return startsWith(keypath, prefix)
             ? prefix.length
-            : -1;
+            : RAW_MINUS_ONE;
     }
     /**
      * 遍历 keypath 的每个部分
@@ -746,19 +747,21 @@
      *
      * @return
      */
-    function extend(original) {
-        var arguments$1 = arguments;
-  
-        var objects = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            objects[_i - 1] = arguments$1[_i];
-        }
-        each(objects, function (object) {
-            each$2(object, function (value, key) {
-                original[key] = value;
-            });
+    function extend(original, object) {
+        each$2(object, function (value, key) {
+            original[key] = value;
         });
         return original;
+    }
+    /**
+     * 合并对象
+     *
+     * @return
+     */
+    function merge(object1, object2) {
+        return object1 && object2
+            ? extend(extend({}, object1), object2)
+            : object1 || object2;
     }
     /**
      * 拷贝对象
@@ -902,6 +905,7 @@
       each: each$2,
       clear: clear,
       extend: extend,
+      merge: merge,
       copy: copy,
       get: get,
       set: set,
@@ -1338,6 +1342,10 @@
     var HOOK_AFTER_UPDATE = 'afterUpdate';
     var HOOK_BEFORE_DESTROY = 'beforeDestroy';
     var HOOK_AFTER_DESTROY = 'afterDestroy';
+    var HOOK_BEFORE_CHILD_CREATE = 'beforeChildCreate';
+    var HOOK_AFTER_CHILD_CREATE = 'afterChildCreate';
+    var HOOK_BEFORE_CHILD_DESTROY = 'beforeChildDestroy';
+    var HOOK_AFTER_CHILD_DESTROY = 'afterChildDestroy';
   
     var guid = 0;
     function guid$1 () {
@@ -1392,11 +1400,12 @@
         if (directives || oldDirectives) {
             var node_1 = data[COMPONENT] || vnode.node, isKeypathChange_1 = oldVnode && vnode.keypath !== oldVnode.keypath, newValue_1 = directives || EMPTY_OBJECT, oldValue_1 = oldDirectives || EMPTY_OBJECT;
             each$2(newValue_1, function (directive, name) {
-                var _a = directive.hooks, bind = _a.bind, unbind = _a.unbind;
+                var _a = directive.hooks, once = _a.once, bind = _a.bind, unbind = _a.unbind;
                 if (!oldValue_1[name]) {
                     bind(node_1, directive, vnode);
                 }
-                else if (directive.value !== oldValue_1[name].value
+                else if (once
+                    || directive.value !== oldValue_1[name].value
                     || isKeypathChange_1) {
                     if (unbind) {
                         unbind(node_1, oldValue_1[name], oldVnode);
@@ -1428,17 +1437,24 @@
     }
   
     function update$3(vnode, oldVnode) {
-        var data = vnode.data, ref = vnode.ref, props = vnode.props, slots = vnode.slots, context = vnode.context, node;
+        var data = vnode.data, ref = vnode.ref, props = vnode.props, slots = vnode.slots, model = vnode.model, context = vnode.context, node;
         if (vnode.isComponent) {
             node = data[COMPONENT];
             // 更新时才要 set
             // 因为初始化时，所有这些都经过构造函数完成了
             if (oldVnode) {
-                if (props) {
-                    node.set(node.checkPropTypes(props));
+                // 更新组件时，如果写了 <Component model="xx"/>
+                // 必须把双向绑定的值写到 props 里，否则一旦 propTypes 加了默认值
+                // 传下去的数据就错了
+                if (isDef(model)) {
+                    if (!props) {
+                        props = {};
+                    }
+                    props[node.$model] = model;
                 }
-                if (slots) {
-                    node.set(slots);
+                var result = merge(props ? node.checkPropTypes(props) : UNDEFINED, slots);
+                if (result) {
+                    node.set(result);
                 }
             }
         }
@@ -2179,7 +2195,7 @@
     var Parser = /** @class */ (function () {
         function Parser(content) {
             var instance = this, length = content.length;
-            instance.index = -1;
+            instance.index = RAW_MINUS_ONE;
             instance.end = length;
             instance.code = CODE_EOF;
             instance.content = content;
@@ -2197,7 +2213,7 @@
             }
             else {
                 instance.code = CODE_EOF;
-                instance.index = index < 0 ? -1 : end;
+                instance.index = index < 0 ? RAW_MINUS_ONE : end;
             }
         };
         /**
@@ -2300,12 +2316,12 @@
                         var value = node.value;
                         if (number(value)) {
                             // 类似 ' -1 ' 这样的右侧有空格，需要撤回来
-                            instance.skip(-1);
+                            instance.skip(RAW_MINUS_ONE);
                             return createLiteral(-value, instance.pick(index));
                         }
                     }
                     // 类似 ' -a ' 这样的右侧有空格，需要撤回来
-                    instance.skip(-1);
+                    instance.skip(RAW_MINUS_ONE);
                     return createUnary(operator, node, instance.pick(index));
                 }
                 {
@@ -2800,7 +2816,7 @@
                 }
                 if (test && yes && no) {
                     // 类似 ' a ? 1 : 0 ' 这样的右侧有空格，需要撤回来
-                    instance.skip(-1);
+                    instance.skip(RAW_MINUS_ONE);
                     test = createTernary(test, yes, no, instance.pick(index));
                 }
                 else {
@@ -3116,6 +3132,10 @@
     tagPattern = /<(\/)?([$a-z][-a-z0-9]*)/i, 
     // 注释
     commentPattern = /<!--[\s\S]*?-->/g, 
+    // 开始注释
+    openCommentPattern = /^([\s\S]*?)<!--/, 
+    // 结束注释
+    closeCommentPattern = /-->([\s\S]*?)$/, 
     // 属性的 name
     // 支持 on-click.namespace="" 或 on-get-out="" 或 xml:xx=""
     attributePattern = /^\s*([-.:\w]+)(['"])?(?:=(['"]))?/, 
@@ -3179,7 +3199,9 @@
         // 结束定界符的位置，表示的是 }} 的左侧位置
         closeBlockIndex = 0, 
         // 当前正在处理或即将处理的 block 类型
-        blockMode = BLOCK_MODE_NONE, code, startQuote, fatal$1 = function (msg) {
+        blockMode = BLOCK_MODE_NONE, 
+        // mustache 注释可能出现嵌套插值的情况
+        blockStack = [], indexList = [], code, startQuote, fatal$1 = function (msg) {
             {
                 fatal("Error compiling " + RAW_TEMPLATE + ":\n" + content + "\n- " + msg);
             }
@@ -3271,13 +3293,14 @@
                 }
                 // 大于 1 个子节点，即有插值或 if 写法
                 else if (children) {
-                    // 不支持 on-click="1{{xx}}2" 或是 on-click="1{{#if x}}x{{else}}y{{/if}}2"
-                    // 1. 很难做性能优化
-                    // 2. 全局搜索不到事件名，不利于代码维护
-                    // 3. 不利于编译成静态函数
-                    {
-                        if (isDirective) {
-                            fatal$1("\u6307\u4EE4\u7684\u503C\u4E0D\u80FD\u7528\u63D2\u503C\u6216 if \u8BED\u6CD5");
+                    if (isDirective) {
+                        processDirectiveMultiChildren();
+                    }
+                    // 元素层级
+                    else if (!currentElement) {
+                        removeComment(children);
+                        if (!children.length) {
+                            node.children = UNDEFINED;
                         }
                     }
                 }
@@ -3309,6 +3332,54 @@
             }
             {
                 fatal$1("\u51FA\u6808\u8282\u70B9\u7C7B\u578B\u4E0D\u5339\u914D");
+            }
+        }, removeComment = function (children) {
+            // 类似 <!-- xx {{name}} yy {{age}} zz --> 这样的注释里包含插值
+            // 按照目前的解析逻辑，是根据定界符进行模板分拆
+            // 一旦出现插值，children 长度必然大于 1
+            var openIndex = RAW_MINUS_ONE, openText = EMPTY_STRING, closeIndex = RAW_MINUS_ONE, closeText = EMPTY_STRING;
+            each(children, function (child, index) {
+                if (child.type === TEXT) {
+                    if (closeIndex >= 0) {
+                        openText = child.text;
+                        // 处理 <!-- <!-- 这样有多个的情况
+                        while (openCommentPattern.test(openText)) {
+                            openText = RegExp.$1;
+                            openIndex = index;
+                        }
+                        if (openIndex >= 0) {
+                            // openIndex 肯定小于 closeIndex，因为完整的注释在解析过程中会被干掉
+                            // 只有包含插值的注释才会走进这里
+                            // 现在要确定开始和结束的文本节点，是否包含正常文本
+                            if (openText) {
+                                children[openIndex].text = openText;
+                                openIndex++;
+                            }
+                            if (closeText) {
+                                children[closeIndex].text = closeText;
+                                closeIndex--;
+                            }
+                            children.splice(openIndex, closeIndex - openIndex + 1);
+                            openIndex = closeIndex = RAW_MINUS_ONE;
+                        }
+                    }
+                    else {
+                        closeText = child.text;
+                        // 处理 --> --> 这样有多个的情况
+                        while (closeCommentPattern.test(closeText)) {
+                            closeText = RegExp.$1;
+                            closeIndex = index;
+                        }
+                    }
+                }
+            }, TRUE);
+        }, processDirectiveMultiChildren = function () {
+            // 不支持 on-click="1{{xx}}2" 或是 on-click="1{{#if x}}x{{else}}y{{/if}}2"
+            // 1. 很难做性能优化
+            // 2. 全局搜索不到事件名，不利于代码维护
+            // 3. 不利于编译成静态函数
+            {
+                fatal$1("\u6307\u4EE4\u7684\u503C\u4E0D\u80FD\u7528\u63D2\u503C\u6216 if \u8BED\u6CD5");
             }
         }, processElementSingleExpression = function (element, child) {
             if (!element.isComponent && !element.slot && !child.safe) {
@@ -4039,12 +4110,58 @@
                     }
                 });
             }
+        }, closeBlock = function () {
+            // 确定开始和结束定界符能否配对成功，即 {{ 对 }}，{{{ 对 }}}
+            // 这里不能动 openBlockIndex 和 closeBlockIndex，因为等下要用他俩 slice
+            index = closeBlockIndex + 2;
+            // 这里要用 <=，因为很可能到头了
+            if (index <= length) {
+                if (index < length && charAt(content, index) === '}') {
+                    if (blockMode === BLOCK_MODE_UNSAFE) {
+                        nextIndex = index + 1;
+                    }
+                    else {
+                        fatal$1("{{ \u548C }}} \u65E0\u6CD5\u914D\u5BF9");
+                    }
+                }
+                else {
+                    if (blockMode === BLOCK_MODE_SAFE) {
+                        nextIndex = index;
+                    }
+                    else {
+                        fatal$1("{{{ \u548C }} \u65E0\u6CD5\u914D\u5BF9");
+                    }
+                }
+                pop(blockStack);
+                // }} 左侧的位置
+                addIndex(closeBlockIndex);
+                openBlockIndex = indexOf$1(content, '{{', nextIndex);
+                closeBlockIndex = indexOf$1(content, '}}', nextIndex);
+                // 如果碰到连续的结束定界符，继续 close
+                if (closeBlockIndex >= nextIndex
+                    && (openBlockIndex < 0 || closeBlockIndex < openBlockIndex)) {
+                    return closeBlock();
+                }
+            }
+            else {
+                // 到头了
+                return TRUE;
+            }
+        }, addIndex = function (index) {
+            if (!blockStack.length) {
+                push(indexList, index);
+            }
         };
+        // 因为存在 mustache 注释内包含插值的情况
+        // 这里把流程设计为先标记切片的位置，标记过程中丢弃无效的 block
+        // 最后处理有效的 block
         while (TRUE) {
+            addIndex(nextIndex);
             openBlockIndex = indexOf$1(content, '{{', nextIndex);
             if (openBlockIndex >= nextIndex) {
                 blockMode = BLOCK_MODE_SAFE;
-                parseHtml(slice(content, nextIndex, openBlockIndex));
+                // {{ 左侧的位置
+                addIndex(openBlockIndex);
                 // 跳过 {{
                 openBlockIndex += 2;
                 // {{ 后面总得有内容吧
@@ -4053,39 +4170,21 @@
                         blockMode = BLOCK_MODE_UNSAFE;
                         openBlockIndex++;
                     }
+                    // {{ 右侧的位置
+                    addIndex(openBlockIndex);
+                    // block 是否安全
+                    addIndex(blockMode);
+                    // 打开一个 block 就入栈一个
+                    push(blockStack, TRUE);
                     if (openBlockIndex < length) {
                         closeBlockIndex = indexOf$1(content, '}}', openBlockIndex);
                         if (closeBlockIndex >= openBlockIndex) {
-                            // 确定开始和结束定界符能否配对成功，即 {{ 对 }}，{{{ 对 }}}
-                            // 这里不能动 openBlockIndex 和 closeBlockIndex，因为等下要用他俩 slice
-                            index = closeBlockIndex + 2;
-                            // 这里要用 <=，因为很可能到头了
-                            if (index <= length) {
-                                if (index < length && charAt(content, index) === '}') {
-                                    if (blockMode === BLOCK_MODE_UNSAFE) {
-                                        nextIndex = index + 1;
-                                    }
-                                    else {
-                                        fatal$1("{{ \u548C }}} \u65E0\u6CD5\u914D\u5BF9");
-                                    }
+                            // 注释可以嵌套，如 {{！  {{xx}} {{! {{xx}} }}  }}
+                            nextIndex = indexOf$1(content, '{{', openBlockIndex);
+                            if (nextIndex < 0 || closeBlockIndex < nextIndex) {
+                                if (closeBlock()) {
+                                    break;
                                 }
-                                else {
-                                    if (blockMode === BLOCK_MODE_SAFE) {
-                                        nextIndex = index;
-                                    }
-                                    else {
-                                        fatal$1("{{{ \u548C }} \u65E0\u6CD5\u914D\u5BF9");
-                                    }
-                                }
-                                code = trim(slice(content, openBlockIndex, closeBlockIndex));
-                                // 不用处理 {{ }} 和 {{{ }}} 这种空 block
-                                if (code) {
-                                    parseBlock(code);
-                                }
-                            }
-                            else {
-                                // 到头了
-                                break;
                             }
                         }
                         else {
@@ -4101,9 +4200,30 @@
                 }
             }
             else {
-                blockMode = BLOCK_MODE_NONE;
-                parseHtml(slice(content, nextIndex));
                 break;
+            }
+        }
+        for (var i = 0, length_1 = indexList.length; i < length_1; i += 5) {
+            index = indexList[i];
+            // {{ 左侧的位置
+            openBlockIndex = indexList[i + 1];
+            if (openBlockIndex) {
+                parseHtml(slice(content, index, openBlockIndex));
+            }
+            // {{ 右侧的位置
+            openBlockIndex = indexList[i + 2];
+            blockMode = indexList[i + 3];
+            closeBlockIndex = indexList[i + 4];
+            if (closeBlockIndex) {
+                code = trim(slice(content, openBlockIndex, closeBlockIndex));
+                // 不用处理 {{ }} 和 {{{ }}} 这种空 block
+                if (code) {
+                    parseBlock(code);
+                }
+            }
+            else {
+                blockMode = BLOCK_MODE_NONE;
+                parseHtml(slice(content, index));
             }
         }
         if (nodeStack.length) {
@@ -4118,6 +4238,9 @@
                     fatal$1('还有节点未出栈');
                 }
             }
+        }
+        if (nodeList.length > 0) {
+            removeComment(nodeList);
         }
         return compileCache[content] = nodeList;
     }
@@ -5942,6 +6065,12 @@
             ? option.value
             : option.text;
     }
+    function debounceIfNeeded(fn, lazy) {
+        // 应用 lazy
+        return lazy && lazy !== TRUE
+            ? debounce(fn, lazy)
+            : fn;
+    }
     var inputControl = {
         set: function (node, value) {
             node.value = toString(value);
@@ -6014,26 +6143,30 @@
         radio: radioControl,
         checkbox: checkboxControl
     }, directive$1 = {
+        once: TRUE,
         bind: function (node, directive, vnode) {
-            var context = vnode.context, model = vnode.model, lazy = vnode.lazy, isComponent = vnode.isComponent, dataBinding = directive.binding, viewBinding, eventName, set, sync, lazyValue;
-            if (lazy) {
-                lazyValue = lazy[DIRECTIVE_MODEL] || lazy[EMPTY_STRING];
-            }
+            var context = vnode.context, lazy = vnode.lazy, isComponent = vnode.isComponent, dataBinding = directive.binding, lazyValue = lazy && (lazy[DIRECTIVE_MODEL] || lazy[EMPTY_STRING]), set, sync, unbind;
             if (isComponent) {
-                viewBinding = node.$options.model || RAW_VALUE;
+                var component_1 = node, viewBinding_1 = component_1.$model;
                 set = function (newValue) {
-                    node.set(viewBinding, newValue);
+                    if (set) {
+                        component_1.set(viewBinding_1, newValue);
+                    }
                 };
-                sync = function (newValue) {
+                sync = debounceIfNeeded(function (newValue) {
                     context.set(dataBinding, newValue);
+                }, lazyValue);
+                unbind = function () {
+                    component_1.unwatch(viewBinding_1, sync);
                 };
+                component_1.watch(viewBinding_1, sync);
             }
             else {
-                var control_1 = domApi.tag(node) === 'select'
+                var element_1 = node, control_1 = domApi.tag(element_1) === 'select'
                     ? selectControl
-                    : inputControl;
+                    : inputControl, 
                 // checkbox,radio,select 监听的是 change 事件
-                eventName = EVENT_CHANGE;
+                eventName_1 = EVENT_CHANGE;
                 if (control_1 === inputControl) {
                     var type_1 = node.type;
                     if (inputTypes[type_1]) {
@@ -6043,39 +6176,29 @@
                     // model 事件是个 yox-dom 实现的特殊事件
                     // 不会在输入法组合文字过程中得到触发事件
                     else if (lazyValue !== TRUE) {
-                        eventName = EVENT_MODEL;
+                        eventName_1 = EVENT_MODEL;
                     }
                 }
                 set = function (newValue) {
-                    control_1.set(node, newValue);
+                    if (set) {
+                        control_1.set(element_1, newValue);
+                    }
                 };
-                sync = function () {
-                    control_1.sync(node, dataBinding, context);
+                sync = debounceIfNeeded(function () {
+                    control_1.sync(element_1, dataBinding, context);
+                }, lazyValue);
+                unbind = function () {
+                    domApi.off(element_1, eventName_1, sync);
                 };
-            }
-            // 不管模板是否设值，统一用数据中的值
-            set(model, UNDEFINED, EMPTY_STRING);
-            // 应用 lazy
-            if (lazyValue && lazyValue !== TRUE) {
-                sync = debounce(sync, lazyValue);
-            }
-            // 监听交互，修改数据
-            if (isComponent) {
-                node.watch(viewBinding, sync);
-            }
-            else {
-                domApi.on(node, eventName, sync);
+                domApi.on(element_1, eventName_1, sync);
+                control_1.set(element_1, vnode.model);
             }
             // 监听数据，修改界面
             context.watch(dataBinding, set);
             vnode.data[directive.key] = function () {
-                if (isComponent) {
-                    node.unwatch(viewBinding, sync);
-                }
-                else {
-                    domApi.off(node, eventName, sync);
-                }
                 context.unwatch(dataBinding, set);
+                set = UNDEFINED;
+                unbind();
             };
         },
         unbind: function (node, directive, vnode) {
@@ -6084,26 +6207,30 @@
     };
   
     var directive$2 = {
+        once: TRUE,
         bind: function (node, directive, vnode) {
             // binding 可能是模糊匹配
             // 比如延展属性 {{...obj}}，这里 binding 会是 `obj.*`
             var binding = directive.binding, isFuzzy$1 = isFuzzy(binding), watcher = function (newValue, _, keypath) {
-                var name = isFuzzy$1
-                    ? matchFuzzy(keypath, binding)
-                    : directive.name;
-                if (vnode.isComponent) {
-                    node.set(name, newValue);
-                }
-                else if (isDef(directive.hint)) {
-                    domApi.prop(node, name, newValue);
-                }
-                else {
-                    domApi.attr(node, name, newValue);
+                if (watcher) {
+                    var name = isFuzzy$1
+                        ? matchFuzzy(keypath, binding)
+                        : directive.name;
+                    if (vnode.isComponent) {
+                        node.set(name, newValue);
+                    }
+                    else if (isDef(directive.hint)) {
+                        domApi.prop(node, name, newValue);
+                    }
+                    else {
+                        domApi.attr(node, name, newValue);
+                    }
                 }
             };
             vnode.context.watch(binding, watcher);
             vnode.data[directive.key] = function () {
                 vnode.context.unwatch(binding, watcher);
+                watcher = UNDEFINED;
             };
         },
         unbind: function (node, directive, vnode) {
@@ -6177,7 +6304,10 @@
                 instance.on(events);
             }
             {
-                var placeholder = UNDEFINED, el = $options.el, vnode = $options.vnode, root = $options.root, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
+                var placeholder = UNDEFINED, el = $options.el, vnode = $options.vnode, root = $options.root, model_1 = $options.model, parent = $options.parent, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
+                if (model_1) {
+                    instance.$model = model_1;
+                }
                 // 把 slots 放进数据里，方便 get
                 if (slots) {
                     extend(source, slots);
@@ -6466,7 +6596,12 @@
          */
         Yox.prototype.loadComponent = function (name, callback) {
             if (!loadComponent(this.$components, name, callback)) {
-                loadComponent(globalComponents, name, callback);
+                var hasComponent = loadComponent(globalComponents, name, callback);
+                {
+                    if (!hasComponent) {
+                        error("Component [" + name + "] is not found.");
+                    }
+                }
             }
         };
         /**
@@ -6477,18 +6612,27 @@
          */
         Yox.prototype.createComponent = function (options, vnode) {
             {
-                var instance = this;
+                var instance = this, $options = instance.$options;
                 options = copy(options);
                 options.root = instance.$root || instance;
                 options.parent = instance;
                 options.vnode = vnode;
                 options.replace = TRUE;
-                if (vnode.props) {
-                    options.props = vnode.props;
+                var props = vnode.props, slots = vnode.slots, modelKey = options.model || RAW_VALUE, modelValue = vnode.model;
+                options.model = modelKey;
+                if (isDef(modelValue)) {
+                    if (!props) {
+                        props = {};
+                    }
+                    props[modelKey] = modelValue;
                 }
-                if (vnode.slots) {
-                    options.slots = vnode.slots;
+                if (props) {
+                    options.props = props;
                 }
+                if (slots) {
+                    options.slots = slots;
+                }
+                execute($options[HOOK_BEFORE_CHILD_CREATE], instance, options);
                 var child = new Yox(options);
                 push(instance.$children || (instance.$children = []), child);
                 var node = child.$el;
@@ -6498,6 +6642,7 @@
                 else {
                     fatal("The root element of [Component " + vnode.tag + "] is not found.");
                 }
+                execute($options[HOOK_AFTER_CHILD_CREATE], instance, child);
                 return child;
             }
         };
@@ -6570,7 +6715,7 @@
         Yox.prototype.render = function () {
             {
                 var instance = this;
-                return render(instance, instance.$template, mergeResource(instance.$filters, globalFilters), mergeResource(instance.$partials, globalPartials), mergeResource(instance.$directives, globalDirectives), mergeResource(instance.$transitions, globalTransitions));
+                return render(instance, instance.$template, merge(instance.$filters, globalFilters), merge(instance.$partials, globalPartials), merge(instance.$directives, globalDirectives), merge(instance.$transitions, globalTransitions));
             }
         };
         /**
@@ -6694,10 +6839,13 @@
          * 销毁组件
          */
         Yox.prototype.destroy = function () {
-            var instance = this, $options = instance.$options, $emitter = instance.$emitter, $observer = instance.$observer;
+            var instance = this, $parent = instance.$parent, $options = instance.$options, $emitter = instance.$emitter, $observer = instance.$observer;
+            if ($parent) {
+                execute($parent.$options[HOOK_BEFORE_CHILD_DESTROY], $parent, instance);
+            }
             execute($options[HOOK_BEFORE_DESTROY], instance);
             {
-                var $vnode = instance.$vnode, $parent = instance.$parent;
+                var $vnode = instance.$vnode;
                 if ($parent && $parent.$children) {
                     remove($parent.$children, instance);
                 }
@@ -6711,6 +6859,9 @@
             $observer.destroy();
             clear(instance);
             execute($options[HOOK_AFTER_DESTROY], instance);
+            if ($parent) {
+                execute($parent.$options[HOOK_AFTER_CHILD_DESTROY], $parent, instance);
+            }
         };
         /**
          * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
@@ -6826,7 +6977,7 @@
         /**
          * core 版本
          */
-        Yox.version = "1.0.0-alpha.36";
+        Yox.version = "1.0.0-alpha.39";
         /**
          * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
          */
@@ -6924,11 +7075,6 @@
                 data[key] = formatValue ? formatValue(value) : value;
             });
         }
-    }
-    function mergeResource(locals, globals) {
-        return locals && globals
-            ? extend({}, globals, locals)
-            : locals || globals;
     }
     {
         Yox['dom'] = domApi;

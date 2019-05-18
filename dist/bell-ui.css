@@ -5362,7 +5362,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #1890ff;
   background-color: #1890ff;
   box-shadow: 0 0 0 2px #d2ecf1;
@@ -5375,7 +5376,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-success {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-success .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-success.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-success.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #52c41a;
   background-color: #52c41a;
   box-shadow: 0 0 0 2px #d5eddb;
@@ -5388,7 +5390,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-info {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-info .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-info.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-info.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #2db7f5;
   background-color: #2db7f5;
   box-shadow: 0 0 0 2px #d2ecf1;
@@ -5401,7 +5404,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-error {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-error .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-error.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-error.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #f5222d;
   background-color: #f5222d;
   box-shadow: 0 0 0 2px #f7d7db;
@@ -5414,7 +5418,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-warning {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-warning .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-warning.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-warning.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #faad14;
   background-color: #faad14;
   box-shadow: 0 0 0 2px #fff3cf;
@@ -5427,7 +5432,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-danger {
   color: rgba(0,0,0,0.87);
 }
-.bell-checkbox-danger .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-danger.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-danger.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #eb1111;
   background-color: #eb1111;
   box-shadow: 0 0 0 2px #f7d7db;
@@ -5440,7 +5446,8 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox-disabled {
   color: #ccc;
 }
-.bell-checkbox-disabled .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner {
+.bell-checkbox-disabled.bell-checkbox-active .bell-checkbox-inner,
+.bell-checkbox-disabled.bell-checkbox-indeterminate .bell-checkbox-inner {
   color: #dddee1;
   background-color: #dddee1;
   box-shadow: none;
@@ -5453,6 +5460,17 @@ button.bell-button-danger-ghost[disabled] {
 .bell-checkbox + .bell-checkbox {
   margin-left: 8px;
 }
+.bell-checkbox.bell-checkbox-active .bell-checkbox-inner:after {
+  transform: rotate(45deg) scale(1);
+}
+.bell-checkbox.bell-checkbox-indeterminate .bell-checkbox-inner:after {
+  width: 8px;
+  height: 2px;
+  transform: scale(1);
+  position: absolute;
+  left: 3px;
+  top: 7px;
+}
 .bell-checkbox .bell-checkbox-wrapper {
   position: absolute;
   white-space: nowrap;
@@ -5461,9 +5479,6 @@ button.bell-button-danger-ghost[disabled] {
   width: 14px;
   height: 14px;
   margin-top: 2px;
-}
-.bell-checkbox .bell-checkbox-wrapper.bell-checkbox-active .bell-checkbox-inner:after {
-  transform: rotate(45deg) scale(1);
 }
 .bell-checkbox .bell-checkbox-inner {
   display: inline-block;
@@ -5486,7 +5501,7 @@ button.bell-button-danger-ghost[disabled] {
   border-top: 0;
   border-left: 0;
   transform: rotate(45deg) scale(0);
-  transition: transform 0.3s;
+  transition: all 0.1s;
 }
 .bell-checkbox .bell-checkbox-input {
   opacity: 0;

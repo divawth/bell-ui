@@ -39,12 +39,12 @@ export default {
   template,
 
   events: {
-    'change.checkboxGroup': function (event) {
+    groupChange(event) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         event.stop()
       }
     },
-    'change.checkbox': function (event, data) {
+    change(event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let me = this
         let selected = me.copy(me.get('selected'))
@@ -57,25 +57,17 @@ export default {
           Yox.array.remove(selected, data.value)
         }
         me.set({ selected })
-        me.fire(
-          'change.checkboxGroup', 
-          { selected }, 
-          true
-        )
         event.stop()
       }
     }
   },
   watchers: {
-    selected: {
-      watcher: function (selected) {
-        this.fire(
-          'change.checkboxGroup', 
-          { selected }, 
-          true
-        )
-      },
-      sync: true
+    selected (selected) {
+      this.fire(
+        'groupChange', 
+        { selected }, 
+        true
+      )
     }
   }
 }

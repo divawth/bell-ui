@@ -8,6 +8,10 @@ export default {
         Checkbox
       </Checkbox>
 
+      <Checkbox checked>
+        Checkbox
+      </Checkbox>
+
       <p>{{single}}</p>
     </div>
   `,
@@ -177,7 +181,7 @@ export default {
           全选
         </Checkbox>
       </div>
-      <CheckboxGroup type="success" model="fruit" on-change="change($data)">
+      <CheckboxGroup type="success" model="fruit" on-groupChange="groupChange($data)">
         <Checkbox value="1">
           香蕉
         </Checkbox>
@@ -185,7 +189,7 @@ export default {
           苹果
         </Checkbox>
         <Checkbox value="3">
-          西瓜{{indeterminate}}{{checkAll}}
+          西瓜
         </Checkbox>
       </CheckboxGroup>
     </div>
@@ -193,26 +197,40 @@ export default {
 
   methods: {
     checkAllChange: function (data) {
-      console.log(data)
-      debugger
+      let indeterminate = this.get('fruit').length >= 1 && this.get('fruit').length < 3
       if (data.checked) {
+        this.set('fruit', ['1', '2', '3'])
+      } else if (!indeterminate) {
+        this.set('fruit', [])
+      }
+      this.set('indeterminate', indeterminate)
+    },
+    groupChange: function (data) {
+      let value = data.selected
+      if (value.length === 3) {
         this.set({
-          fruit: ['1', '2', '3']
+          checkAll: true,
+          indeterminate: false
+        })
+      } else if (value.length > 0) {
+        this.set({
+          checkAll: false,
+          indeterminate: true
+        })
+      } else {
+        this.set({
+          checkAll: false,
+          indeterminate: false
         })
       }
-    },
-    change: function (data) {
-      debugger
-      this.set({
-        checkAll: data && data.selected.length == 3,
-        indeterminate: data && data.selected.length !== 3 && data.selected.length !== 0
-      })
+      
+      console.log('groupChange')
     }
   },
 
   data: function () {
     return {
-      indeterminate: true,
+      indeterminate: false,
       checkAll: false,
       fruit: ['1']
     }
@@ -220,31 +238,11 @@ export default {
 }
 ```
 
-
-
-
-> 默认选中状态
-
-    export default {
-        template: `
-            <Checkbox checked model="single" onChange="{{onChange}}">
-                Checkbox
-            </Checkbox>
-        `,
-        data: function () {
-            return {
-                onChange: function (value) {
-                    console.log(value);
-                }
-            }
-        }
-    }
-
 #### API
 
 Checkbox
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---

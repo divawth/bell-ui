@@ -11,6 +11,26 @@
 
         margin-left $checkbox-gap
 
+    &{$selector-checkbox}-active
+
+        {$selector-checkbox-inner}
+
+            &:after
+
+                transform rotate(45deg) scale(1)
+
+    &{$selector-checkbox}-indeterminate
+
+        {$selector-checkbox-inner}
+
+            &:after
+                width 8px
+                height 2px
+                transform scale(1)
+                position absolute
+                left 3px
+                top 7px
+
     {$selector-checkbox}-wrapper
 
         position absolute
@@ -21,14 +41,6 @@
         height $checkbox-inner-size
 
         margin-top $checkbox-inner-size - $checkbox-font-size
-
-        &{$selector-checkbox}-active
-
-            {$selector-checkbox-inner}
-
-                &:after
-
-                    transform rotate(45deg) scale(1)
 
     {$selector-checkbox}-inner
 
@@ -55,7 +67,7 @@
             border-left 0
 
             transform rotate(45deg) scale(0)
-            transition transform .3s
+            transition all .1s
 
     {$selector-checkbox-input}
 

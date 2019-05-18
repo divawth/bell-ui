@@ -1729,7 +1729,7 @@
     template: template$g,
 
     events: {
-      'change.checkboxGroup': function (event, data) {
+      groupChange: function groupChange(event, data) {
         if (event.phase === Yox.Event.PHASE_DOWNWARD) {
           this.set({
             checked: Yox.array.has(data.selected, this.get('value'))
@@ -1741,7 +1741,7 @@
     watchers: {
       checked: function checked(checked$1) {
         this.fire(
-          'change.checkbox',
+          'change',
           {
             checked: checked$1,
             value: this.get('value')
@@ -1753,12 +1753,13 @@
     afterMount: function afterMount() {
       var checkboxGroup = findComponentUpward(this, 'bell-checkboxGroup');
       if (checkboxGroup) {
+        console.log(checkboxGroup.get('selected'), this.get('value'));
         this.set({
-          type:  this.get('type') || checkboxGroup.get('type'),
+          type: this.get('type') || checkboxGroup.get('type'),
           disabled: this.get('disabled') || checkboxGroup.get('disabled'),
+          checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value'))
         });
       }
-      console.log(this.get('value'));
     }
   };
 
@@ -1803,12 +1804,12 @@
     template: template$h,
 
     events: {
-      'change.checkboxGroup': function (event) {
+      groupChange: function groupChange(event) {
         if (event.phase === Yox.Event.PHASE_DOWNWARD) {
           event.stop();
         }
       },
-      'change.checkbox': function (event, data) {
+      change: function change(event, data) {
         if (event.phase === Yox.Event.PHASE_UPWARD) {
           var me = this;
           var selected = me.copy(me.get('selected'));
@@ -1821,25 +1822,17 @@
             Yox.array.remove(selected, data.value);
           }
           me.set({ selected: selected });
-          me.fire(
-            'change.checkboxGroup', 
-            { selected: selected }, 
-            true
-          );
           event.stop();
         }
       }
     },
     watchers: {
-      selected: {
-        watcher: function (selected) {
-          this.fire(
-            'change.checkboxGroup', 
-            { selected: selected }, 
-            true
-          );
-        },
-        sync: true
+      selected: function selected (selected$1) {
+        this.fire(
+          'groupChange', 
+          { selected: selected$1 }, 
+          true
+        );
       }
     }
   };

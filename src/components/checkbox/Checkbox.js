@@ -39,7 +39,7 @@ export default {
   template,
 
   events: {
-    'change.checkboxGroup': function (event, data) {
+    groupChange(event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set({
           checked: Yox.array.has(data.selected, this.get('value'))
@@ -51,7 +51,7 @@ export default {
   watchers: {
     checked(checked) {
       this.fire(
-        'change.checkbox',
+        'change',
         {
           checked: checked,
           value: this.get('value')
@@ -64,10 +64,10 @@ export default {
     let checkboxGroup = findComponentUpward(this, '${prefix}checkboxGroup')
     if (checkboxGroup) {
       this.set({
-        type:  this.get('type') || checkboxGroup.get('type'),
+        type: this.get('type') || checkboxGroup.get('type'),
         disabled: this.get('disabled') || checkboxGroup.get('disabled'),
+        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value'))
       })
     }
-    console.log(this.get('value'))
   }
 }
