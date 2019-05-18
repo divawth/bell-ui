@@ -1,5 +1,6 @@
 import template from './template/Checkbox.html'
 import { findComponentUpward } from '../util'
+import { RAW_STRING, RAW_BOOLEAN } from '../constant'
 
 export default {
 
@@ -7,32 +8,32 @@ export default {
 
   propTypes: {
     label: {
-      type: 'string'
-    },
-    indeterminate: {
-      type: 'boolean'
+      type: RAW_STRING
     },
     value: {
-      type: ['string', 'numeric', 'boolean'],
+      type: [RAW_STRING, RAW_BOOLEAN],
       require: true
     },
+    indeterminate: {
+      type: RAW_BOOLEAN
+    },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     checked: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -66,7 +67,9 @@ export default {
       this.set({
         type: this.get('type') || checkboxGroup.get('type'),
         disabled: this.get('disabled') || checkboxGroup.get('disabled'),
-        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value'))
+        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value')),
+        name: this.get('name') || checkboxGroup.get('name'),
+        size: this.get('size') || checkboxGroup.get('size')
       })
     }
   }

@@ -238,6 +238,84 @@ export default {
 }
 ```
 
+> vertical
+
+```js
+export default {
+  template: `
+    <div>
+      <CheckboxGroup vertical model="social">
+        <Checkbox value="twitter">
+          <span>Twitter</span>
+        </Checkbox>
+        <Checkbox value="facebook">
+          <span>Facebook</span>
+        <Checkbox value="github">
+          <span>Github</span>
+        </Checkbox>
+        <Checkbox value="snapchat">
+          <span>Snapchat</span>
+        </Checkbox>
+      </CheckboxGroup>
+      <p> [ {{showArray(social)}} ] </p>
+      <CheckboxGroup vertical model="fruit">
+        <Checkbox value="香蕉"></Checkbox>
+        <Checkbox value="苹果"></Checkbox>
+        <Checkbox value="西瓜"></Checkbox>
+      </CheckboxGroup>
+      <p> [ {{showArray(fruit)}} ] </p>
+    </div>
+  `,
+  data: function () {
+    return {
+      social: [ "snapchat" ],
+      fruit: [ "香蕉" ]
+    }
+  },
+  filters: {
+    showArray: function (arr) {
+      return arr.join(', ');
+    }
+  }
+}
+```
+
+> 设置 size
+
+```js
+export default {
+  template: `
+    <div>
+      <Checkbox size="tiny" model="single">
+        Checkbox
+      </Checkbox>
+      <br><br>
+      <Checkbox size="small" model="single">
+        Checkbox
+      </Checkbox>
+      <br><br>
+      <Checkbox size="default" model="single">
+        Checkbox
+      </Checkbox>
+      <br><br>
+      <Checkbox size="large" model="single">
+        Checkbox
+      </Checkbox>
+      <br><br>
+      <Checkbox size="huge" model="single">
+        Checkbox
+      </Checkbox>
+      <p>{{single}}</p>
+    </div>
+  `,
+  data: function () {
+    return {
+      single: false
+    }
+  }
+}
+```
+
 #### API
 
 Checkbox
@@ -246,33 +324,35 @@ Checkbox
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-model | 选中值 | string, boolean | - | -
-type | 风格 | string | success, info, warning, error | -
-disabled | 是否禁用 | string， boolean | - | false
-checked | 是否选中 | string， boolean | - | -
+checked | 只在单独使用时有效。可以使用 model 双向绑定数据 | string | - | -
+label | 文本描述 | string | - | -
+disabled | 是否禁用 | boolean | - | false
+indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | false
+type | 风格 | string | success, info, warning, error, primary | primary
+size | 大小 | string | large, huge, small, tiny, default | default
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | value
+change | 值变化的时候回调 | checked, value
 
 
 CheckboxGroup
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 name | checkbox 的 name | string | - | -
-model | 选中值 | string, boolean | - | -
-type | 风格 | string | success, info, warning, error | -
-disabled | 是否禁用 | string， boolean | - | false
-vertical | 是否使用垂直排版 | string， boolean | - | false
+type | 风格 | string | success, info, warning, error, primary | primary
+disabled | 是否禁用 | boolean | - | false
+vertical | 是否使用垂直排版 | boolean | - | false
+selected | 只在单独使用时有效。可以使用 model 双向绑定数据 | Array | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | value
+groupChange | 值变化的时候回调 | selected
 

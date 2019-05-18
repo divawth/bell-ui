@@ -1178,7 +1178,10 @@ var Button = {
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: 'default'
+      value: RAW_DEFAULT
+    },
+    size: {
+      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     borderType: {
       type: oneOf(['solid', 'none', 'dashed']), 
@@ -1189,9 +1192,6 @@ var Button = {
     },
     icon: {
       type: RAW_STRING
-    },
-    size: {
-      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     fluid: {
       type: RAW_BOOLEAN
@@ -1684,7 +1684,7 @@ var RadioGroup = {
   }
 };
 
-var template$g = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\n    {{#if checked}} bell-checkbox-active{{/if}}\n  \">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      {{#if disabled}} disabled{{/if}}\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
+var template$g = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\n    {{#if checked}} bell-checkbox-active{{/if}}\n  \">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      name=\"{{name}}\"\n      {{#if disabled}} disabled{{/if}}\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
 
 var Checkbox = {
 
@@ -1692,32 +1692,32 @@ var Checkbox = {
 
   propTypes: {
     label: {
-      type: 'string'
-    },
-    indeterminate: {
-      type: 'boolean'
+      type: RAW_STRING
     },
     value: {
-      type: ['string', 'numeric', 'boolean'],
+      type: [RAW_STRING, RAW_BOOLEAN],
       require: true
     },
+    indeterminate: {
+      type: RAW_BOOLEAN
+    },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     checked: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 
@@ -1748,11 +1748,12 @@ var Checkbox = {
   afterMount: function afterMount() {
     var checkboxGroup = findComponentUpward(this, 'bell-checkboxGroup');
     if (checkboxGroup) {
-      console.log(checkboxGroup.get('selected'), this.get('value'));
       this.set({
         type: this.get('type') || checkboxGroup.get('type'),
         disabled: this.get('disabled') || checkboxGroup.get('disabled'),
-        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value'))
+        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value')),
+        name: this.get('name') || checkboxGroup.get('name'),
+        size: this.get('size') || checkboxGroup.get('size')
       });
     }
   }
@@ -1768,7 +1769,7 @@ var CheckboxGroup = {
 
   propTypes: {
     name: {
-      type: 'string'
+      type: RAW_STRING
     },
     selected: {
       type: 'array',
@@ -1776,23 +1777,24 @@ var CheckboxGroup = {
         return []
       }
     },
-    size: {
-      type: 'string'
-    },
     type: {
-      type: 'string'
+      type: oneOf(RAW_TYPE_ARRAY)
+    },
+    size: {
+      type: oneOf(RAW_SIZE_ARRAY),
+      value: RAW_DEFAULT
     },
     disabled: {
-      type: ['string', 'numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     vertical: {
-      type: ['string', 'numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 

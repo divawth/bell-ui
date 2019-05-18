@@ -1,4 +1,12 @@
 import template from './template/CheckboxGroup.html'
+import { 
+  RAW_STRING, 
+  RAW_BOOLEAN, 
+  RAW_DEFAULT,
+  RAW_TYPE_ARRAY,
+  RAW_SIZE_ARRAY
+} from '../constant'
+import { oneOf } from '../util'
 
 export default {
 
@@ -8,7 +16,7 @@ export default {
 
   propTypes: {
     name: {
-      type: 'string'
+      type: RAW_STRING
     },
     selected: {
       type: 'array',
@@ -16,23 +24,24 @@ export default {
         return []
       }
     },
-    size: {
-      type: 'string'
-    },
     type: {
-      type: 'string'
+      type: oneOf(RAW_TYPE_ARRAY)
+    },
+    size: {
+      type: oneOf(RAW_SIZE_ARRAY),
+      value: RAW_DEFAULT
     },
     disabled: {
-      type: ['string', 'numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     vertical: {
-      type: ['string', 'numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
 

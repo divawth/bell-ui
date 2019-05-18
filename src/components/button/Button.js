@@ -4,7 +4,7 @@ import {
   RAW_TINY,
   RAW_SMALL,
   RAW_LARGE,
-
+  RAW_DEFAULT,
   RAW_STRING, 
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY
@@ -14,7 +14,10 @@ export default {
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: 'default'
+      value: RAW_DEFAULT
+    },
+    size: {
+      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     borderType: {
       type: oneOf(['solid', 'none', 'dashed']), 
@@ -25,9 +28,6 @@ export default {
     },
     icon: {
       type: RAW_STRING
-    },
-    size: {
-      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     fluid: {
       type: RAW_BOOLEAN

@@ -1,59 +1,120 @@
 $selector-checkbox = $selector-prefix + '-checkbox'
 $selector-checkbox-inner = $selector-checkbox + '-inner'
 $selector-checkbox-input = $selector-checkbox + '-input'
+$selector-checkbox-label = $selector-checkbox + '-label'
+$selector-checkbox-wrapper = $selector-checkbox + '-wrapper'
 
-$checkbox-font-size = 12px;
-$checkbox-gap = 8px;
-$checkbox-inner-size = 14px;
+$checkbox-font-size = 12px
+$checkbox-gap = 8px
+$checkbox-inner-size = 14px
 
 $checkbox-brand-hash = {
-    '': {
-        color-active: $brand-primary,
-        bg-color-active: $brand-primary,
-        color-hover: $brand-primary,
-        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color,
-        color: $brand-main
+  '': {
+    color-active: $brand-primary,
+    box-shadow: 0 0 0 2px $brand-primary-box-shadow-color,
+    color: $brand-main
+  },
+  'success': {
+    color-active: $brand-success,
+    box-shadow: 0 0 0 2px $brand-success-box-shadow-color,
+    color: $brand-main
+  },
+  'info': {
+    color-active: $brand-info,
+    box-shadow: 0 0 0 2px $brand-info-box-shadow-color,
+    color: $brand-main
+  },
+  'error': {
+    color-active: $brand-error,
+    box-shadow: 0 0 0 2px $brand-error-box-shadow-color,
+    color: $brand-main
+  },
+  'warning': {
+    color-active: $brand-warning,
+    box-shadow: 0 0 0 2px $brand-warning-box-shadow-color,
+    color: $brand-main
+  },
+  'disabled': {
+    color-active: $brand-border-disabled,
+    box-shadow: none,
+    color: #ccc
+  }
+}
+
+$checkbox-size-hash = {
+  '': {
+    size: 14px,
+    font-size: 12px,
+    icon: {
+      top: 3px,
+      left: 5px,
+      width: 4px,
+      height: 8px,
     },
-    'success': {
-        color-active: $brand-success,
-        bg-color-active: $brand-success,
-        color-hover: $brand-success,
-        box-shadow: 0 0 0 2px $brand-success-box-shadow-color,
-        color: $brand-main
-    },
-    'info': {
-        color-active: $brand-info,
-        bg-color-active: $brand-info,
-        color-hover: $brand-info,
-        box-shadow: 0 0 0 2px $brand-info-box-shadow-color,
-        color: $brand-main
-    },
-    'error': {
-        color-active: $brand-error,
-        bg-color-active: $brand-error,
-        color-hover: $brand-error,
-        box-shadow: 0 0 0 2px $brand-error-box-shadow-color,
-        color: $brand-main
-    },
-    'warning': {
-        color-active: $brand-warning,
-        bg-color-active: $brand-warning,
-        color-hover: $brand-warning,
-        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color,
-        color: $brand-main
-    },
-    'danger': {
-        color-active: $brand-danger,
-        bg-color-active: $brand-danger,
-        color-hover: $brand-danger,
-        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color,
-        color: $brand-main
-    },
-    'disabled': {
-        color-active: $brand-border-disabled,
-        color-hover: $brand-border-disabled,
-        bg-color-active: $brand-border-disabled,
-        box-shadow: none,
-        color: #ccc
+    indeterminate: {
+      width: 8px,
+      left: 3px,
+      top: 7px
     }
-};
+  },
+  'tiny': {
+    size: 12px,
+    font-size: 10px,
+    icon: {
+      top: 5px,
+      left: 5px,
+      width: 3px,
+      height: 6px,
+    },
+    indeterminate: {
+      width: 5px,
+      left: 3px,
+      top: 8px,
+    }
+  },
+  'small': {
+    size: 12px,
+    font-size: 12px,
+    icon: {
+      top: 5px,
+      left: 5px,
+      width: 3px,
+      height: 7px,
+    },
+    indeterminate: {
+      width: 5px,
+      left: 3px,
+      top: 8px,
+    }
+  },
+  'large': {
+    size: 16px,
+    font-size: 14px,
+    icon: {
+      top: 2px,
+      left: 5px,
+      width: 5px,
+      height: 10px,
+    },
+    indeterminate: {
+      width: 8px,
+      left: 4px,
+      top: 8px,
+    }
+  },
+  'huge': {
+    size: 20px,
+    font-size: 14px,
+    icon: {
+      top: 2px,
+      left: 7px,
+      width: 6px,
+      height: 13px,
+    },
+    indeterminate: {
+      width: 10px,
+      left: 5px,
+      top: 10px,
+    }
+  }
+}

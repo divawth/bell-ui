@@ -10,13 +10,12 @@ class="${prefix}checkbox
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  <label class="${prefix}checkbox-wrapper
-    {{#if checked}} ${prefix}checkbox-active{{/if}}
-  ">
+  <label class="${prefix}checkbox-wrapper">
     <span class="${prefix}checkbox-inner"></span>
     <input class="${prefix}checkbox-input" 
       type="checkbox" 
       model="checked" 
+      name="{{name}}"
       {{#if disabled}} disabled{{/if}}
     />
   </label>
