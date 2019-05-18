@@ -67,12 +67,15 @@ export default {
     }
   },
   watchers: {
-    selected(selected) {
-      this.fire(
-        'change.checkboxGroup', 
-        { selected }, 
-        true
-      )
+    selected: {
+      watcher: function (selected) {
+        this.fire(
+          'change.checkboxGroup', 
+          { selected }, 
+          true
+        )
+      },
+      sync: true
     }
   }
 }

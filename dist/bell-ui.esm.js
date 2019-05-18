@@ -1826,12 +1826,15 @@ var CheckboxGroup = {
     }
   },
   watchers: {
-    selected: function selected(selected$1) {
-      this.fire(
-        'change.checkboxGroup', 
-        { selected: selected$1 }, 
-        true
-      );
+    selected: {
+      watcher: function (selected) {
+        this.fire(
+          'change.checkboxGroup', 
+          { selected: selected }, 
+          true
+        );
+      },
+      sync: true
     }
   }
 };
