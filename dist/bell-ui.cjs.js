@@ -1686,7 +1686,7 @@ var RadioGroup = {
   }
 };
 
-var template$g = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\n    {{#if checked}} bell-checkbox-active{{/if}}\n  \">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      name=\"{{name}}\"\n      {{#if disabled}} disabled{{/if}}\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
+var template$g = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      name=\"{{name}}\"\n      {{#if disabled}} disabled{{/if}}\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
 
 var Checkbox = {
 
@@ -4752,59 +4752,100 @@ var Divider = {
   template: template$u
 };
 
-var CircleTpl = "<div class=\"bell-circle\n    {{#if className}} {{className}}{{/if}}\n\"\n  style=\"width: {{size}}px;\n    height: {{size}}px;\n    {{#if style}} {{style}}{{/if}}\n  \"\n>\n  <svg viewBox=\"0 0 100 100\">\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke=\"{{trailColor}}\"\n      stroke-width=\"{{trailWidth}}\"\n      fill-opacity=\"0\"\n    />\n    <path d=\"M 50 50 m 0 -47 a 47 47 0 1 1 0 94 a 47 47 0 1 1 0 -94\"\n      stroke-linecap=\"{{strokeLinecap}}\"\n      stroke=\"{{strokeColor}}\"\n      stroke-width=\"{{strokeWidth}}\"\n      fill-opacity=\"0\"\n      style=\"\n          stroke-dasharray: {{strokeDasharray}};\n          stroke-dashoffset: {{strokeDashoffset}};\n          transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease\n      \"\n    />\n  </svg>\n  <div class=\"bell-circle-inner\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
+var template$v = "<div \nclass=\"bell-circle\n  {{#if dashboard}} bell-circle-dashboard{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\nstyle=\"width: {{size}}px;\n  height: {{size}}px;\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n  <svg viewBox=\"0 0 100 100\">\n    <path d=\"{{path}}\"\n      stroke=\"{{trailColor}}\"\n      stroke-width=\"{{trailWidth}}\"\n      fill-opacity=\"0\"\n      style=\"{{trailStyle}}\"\n    />\n    <path d=\"{{path}}\"\n      stroke-linecap=\"{{strokeLinecap}}\"\n      stroke=\"{{strokeColor}}\"\n      stroke-width=\"{{strokeWidth}}\"\n      fill-opacity=\"0\"\n      style=\"{{pathStyle}}\"\n    />\n  </svg>\n  <div class=\"bell-circle-inner\">\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
 
 var Circle = {
-  template: CircleTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
+    dashboard: {
+      type: RAW_BOOLEAN
     },
     percent: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 0
     },
     size: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 120
     },
     strokeWidth: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 6
     },
     strokeColor: {
-      type: 'string',
+      type: RAW_STRING,
       value: '#2db7f5'
     },
     strokeLinecap: {
-      type: ['square', 'round'],
+      type: oneOf(['square', 'round']),
       value: 'round'
     },
     trailWidth: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 5
     },
     trailColor: {
-      type: 'string',
+      type: RAW_STRING,
       value: '#eaeef2'
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
+  template: template$v,
+
   computed: {
-    strokeDasharray: function strokeDasharray() {
-      var me = this;
-      var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
-      return (len + "px " + len + "px");
+    computedStrokeWidth: function computedStrokeWidth() {
+      return this.get('percent') === 0 && this.get('dashboard') ? 0 : this.get('strokeWidth')
     },
-    strokeDashoffset: function strokeDashoffset() {
-      var me = this;
-      var len = Math.PI * 2 * (50 - me.get('strokeWidth') / 2);
-      var percent = me.get('percent');
-      return ((((100 - percent) / 100 * len)) + "px");
+    trailStyle: function trailStyle() {
+      var style = [];
+      var len = this.get('len');
+      if (this.get('dashboard')) {
+        style = [
+          ("stroke-dasharray: " + (len - 75) + "px " + len + "px"),
+          ("stroke-dashoffset: -" + (75 / 2) + "px"),
+          'transition: stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s'
+        ];
+      }
+      return style.join(';')
+    },
+    pathStyle: function pathStyle() {
+      var style = [];
+      var percent = this.get('percent');
+      var len = this.get('len');
+      if (this.get('dashboard')) {
+        style = [
+          ("stroke-dasharray: " + ((percent / 100) * (len - 75)) + "px " + len + "px"),
+          ("stroke-dashoffset: -" + (75 / 2) + "px"),
+          'transition: stroke-dashoffset .3s ease 0s, stroke-dasharray .6s ease 0s, stroke .6s, stroke-width .06s ease .6s'
+        ];
+      } else {
+        style = [
+          ("stroke-dasharray: " + len + "px " + len + "px"),
+          ("stroke-dashoffset: " + (((100 - percent) / 100 * len)) + "px"),
+          'transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
+        ];
+      }
+      return style.join(';')
+    },
+    radius: function radius() {
+      return 50 - this.get('strokeWidth') / 2
+    },
+    len: function len() {
+      return Math.PI * 2 * this.get('radius')
+    },
+    path: function path() {
+      var radius = this.get('radius');
+      if (this.get('dashboard')) {
+        return ("M 50,50 m 0," + radius + "\n        a " + radius + "," + radius + " 0 1 1 0,-" + (2 * radius) + "\n        a " + radius + "," + radius + " 0 1 1 0," + (2 * radius))
+      } else {
+        return ("M 50,50 m 0,-" + radius + "\n        a " + radius + "," + radius + " 0 1 1 0," + (2 * radius) + "\n        a " + radius + "," + radius + " 0 1 1 0,-" + (2 * radius))
+      }
     }
   }
 };
@@ -5342,7 +5383,7 @@ var Rate = {
   }
 };
 
-var template$v = "<div \nclass=\"bell-tabs bell-tabs-{{type}}\n{{#if size}} bell-tabs-{{size}}{{/if}}\n{{#if animated}} bell-tabs-animated{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <div class=\"bell-tabs-bar\">\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-tabs-extra-container\">\n        <slot name=\"extra\" />\n      </div>\n    {{/if}}\n    <div class=\"bell-tabs-nav-container\">\n      <span class=\"bell-tabs-tab-prev\"></span>\n      <span class=\"bell-tabs-tab-next\"></span>\n      <div class=\"bell-tabs-tab-wrap\">\n        <div class=\"bell-tabs-tab-scroll\">\n          <div class=\"bell-tabs-nav bell-tabs-animated\">\n            {{#each tabsList}}\n              <div class=\"bell-tabs-tab\n                {{#if disabled}} bell-tabs-tab-disabled{{/if}}\n                {{#if value === id}} bell-tabs-tab-active{{/if}}\n              \" on-click=\"click(this)\"\n              >\n                {{#if this.icon}}\n                  <Icon className=\"bell-tabs-tab-icon\" type=\"{{this.icon}}\" />\n                {{/if}}\n                {{label}}\n                {{#if value === id && closable}}\n                  <div class=\"bell-tabs-tab-close-icon\" on-click=\"close(this)\">\n                    <Icon className=\"bell-tabs-tab-icon-close\" type=\"close\" size=\"20\" /> \n                  </div>\n                {{/if}}\n              </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bell-tabs-content\" style=\"transform: translateX({{translateStyle}});\">\n    <slot name=\"children\" />\n  </div>\n</div>";
+var template$w = "<div \nclass=\"bell-tabs bell-tabs-{{type}}\n{{#if size}} bell-tabs-{{size}}{{/if}}\n{{#if animated}} bell-tabs-animated{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <div class=\"bell-tabs-bar\">\n    {{#if hasSlot('extra')}}\n      <div class=\"bell-tabs-extra-container\">\n        <slot name=\"extra\" />\n      </div>\n    {{/if}}\n    <div class=\"bell-tabs-nav-container\">\n      <span class=\"bell-tabs-tab-prev\"></span>\n      <span class=\"bell-tabs-tab-next\"></span>\n      <div class=\"bell-tabs-tab-wrap\">\n        <div class=\"bell-tabs-tab-scroll\">\n          <div class=\"bell-tabs-nav bell-tabs-animated\">\n            {{#each tabsList}}\n              <div class=\"bell-tabs-tab\n                {{#if disabled}} bell-tabs-tab-disabled{{/if}}\n                {{#if value === id}} bell-tabs-tab-active{{/if}}\n              \" on-click=\"click(this)\"\n              >\n                {{#if this.icon}}\n                  <Icon className=\"bell-tabs-tab-icon\" type=\"{{this.icon}}\" />\n                {{/if}}\n                {{label}}\n                {{#if value === id && closable}}\n                  <div class=\"bell-tabs-tab-close-icon\" on-click=\"close(this)\">\n                    <Icon className=\"bell-tabs-tab-icon-close\" type=\"close\" size=\"20\" /> \n                  </div>\n                {{/if}}\n              </div>\n            {{/each}}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"bell-tabs-content\" style=\"transform: translateX({{translateStyle}});\">\n    <slot name=\"children\" />\n  </div>\n</div>";
 
 var Tabs = {
 
@@ -5376,7 +5417,7 @@ var Tabs = {
     }
   },
 
-  template: template$v,
+  template: template$w,
 
   data: function data() {
     return {
@@ -5453,7 +5494,7 @@ var Tabs = {
   }
 };
 
-var template$w = "<div \nclass=\"bell-tabs-panel\n{{#if disabled}} bell-tabs-panel-disabled{{/if}}\n{{#if isActive}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$x = "<div \nclass=\"bell-tabs-panel\n{{#if disabled}} bell-tabs-panel-disabled{{/if}}\n{{#if isActive}} bell-active{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var TabPanel = {
   propTypes: {
@@ -5478,7 +5519,7 @@ var TabPanel = {
     }
   },
 
-  template: template$w,
+  template: template$x,
 
   data: function data() {
     return {
@@ -5534,7 +5575,7 @@ var TabPanel = {
   }
 };
 
-var template$x = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n  \n</div>";
+var template$y = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n  \n</div>";
 
 var Dropdown = {
   propTypes: {
@@ -5577,7 +5618,7 @@ var Dropdown = {
     }
   },
 
-  template: template$x,
+  template: template$y,
 
   watchers: {
     visible: function visible (isOpen) {
@@ -5605,7 +5646,7 @@ var Dropdown = {
   }
 };
 
-var template$y = "<li \nclass=\"bell-dropdown-item\n{{#if selected}} bell-dropdown-selected{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if divided}} bell-dropdown-divided{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\non-click=\"click.dropdownItem\"\n>\n\n  <slot name=\"children\" />  \n  \n</li>";
+var template$z = "<li \nclass=\"bell-dropdown-item\n{{#if selected}} bell-dropdown-selected{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if divided}} bell-dropdown-divided{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\non-click=\"click.dropdownItem\"\n>\n\n  <slot name=\"children\" />  \n  \n</li>";
 
 var DropdownItem = {
   propTypes: {
@@ -5632,10 +5673,10 @@ var DropdownItem = {
     }
   },
 
-  template: template$y
+  template: template$z
 };
 
-var template$z = "<ul \nclass=\"bell-dropdown-menu\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />  \n  \n</ul>";
+var template$A = "<ul \nclass=\"bell-dropdown-menu\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />  \n  \n</ul>";
 
 var DropdownMenu = {
   propTypes: {
@@ -5647,7 +5688,7 @@ var DropdownMenu = {
     }
   },
 
-  template: template$z
+  template: template$A
 };
 
 var TransferTpl = "<div class=\"bell-transfer\">\n  <div class=\"bell-transfer-list\">\n    <div class=\"bell-transfer-list-header\">\n      <span class=\"bell-transfer-list-header-checkbox\">\n        <Checkbox model=\"checkLeftAll\" onChange=\"{{onCheckLeftAllChange}}\">\n        </Checkbox>\n      </span>\n      <span class=\"bell-transfer-list-header-title\">\n        {{leftLabel}}\n      </span>\n      <span class=\"bell-transfer-list-header-count\">\n        {{left.length}} / {{leftList.length}}\n      </span>\n    </div>\n\n    <div class=\"bell-transfer-list-body\">\n      <CheckboxGroup vertical model=\"left\" onChange=\"{{onLeftChange}}\">\n        {{#each leftList}}\n          <Checkbox value=\"{{this.key}}\">\n            <span>\n              {{text}}\n            </span>\n          </Checkbox>\n        {{/each}}\n      </CheckboxGroup>\n    </div>\n  </div>\n\n  <div class=\"bell-transfer-actions\">\n    <Button shape=\"circle\" on-click=\"addToLeft()\">\n      <i class=\"bell-icon bell-icon-ios-arrow-left\"></i>\n    </Button>\n    <Button shape=\"circle\" on-click=\"addToRight()\">\n      <i class=\"bell-icon bell-icon-ios-arrow-right\"></i>\n    </Button>\n  </div>\n\n  <div class=\"bell-transfer-list\">\n    <div class=\"bell-transfer-list-header\">\n      <span class=\"bell-transfer-list-header-checkbox\">\n        <Checkbox model=\"checkRightAll\" onChange=\"{{onCheckRightAllChange}}\">\n        </Checkbox>\n      </span>\n      <span class=\"bell-transfer-list-header-title\">\n        {{rightLabel}}\n      </span>\n      <span class=\"bell-transfer-list-header-count\">\n        {{right.length}} / {{rightList.length}}\n      </span>\n    </div>\n    <div class=\"bell-transfer-list-body\">\n      <CheckboxGroup vertical model=\"right\" onChange=\"{{onRightChange}}\">\n        {{#each rightList}}\n          <Checkbox value=\"{{this.key}}\">\n            <span>\n              {{text}}\n            </span>\n          </Checkbox>\n        {{/each}}\n      </CheckboxGroup>\n    </div>\n  </div>\n</div>";
