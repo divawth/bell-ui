@@ -250,6 +250,7 @@ export default {
         </Checkbox>
         <Checkbox value="facebook">
           <span>Facebook</span>
+        </Checkbox>
         <Checkbox value="github">
           <span>Github</span>
         </Checkbox>
