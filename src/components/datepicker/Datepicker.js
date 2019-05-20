@@ -1,92 +1,84 @@
-import {
-  lpad
-} from './function/util'
-import {
-  contains
-} from '../util'
-import DatePickerTpl from './template/DatePicker.html'
+import { lpad } from './function/util'
+import { contains, oneOf } from '../util'
+import template from './template/DatePicker.html'
+import { RAW_STRING, NULL, FALSE } from '../constant';
 
-const DAY_MAP = {
-  '1': '一',
-  '2': '二',
-  '3': '三',
-  '4': '四',
-  '5': '五',
-  '6': '六',
-  '0': '日',
-}
+const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
 export default {
-  template: DatePickerTpl,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     mode: {
-      type: 'string'
+      type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
+      value: 'date'
     },
     value: {
       type: 'object'
     },
     formateText: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
-  data() {
-    let me = this;
-    return {
-      date: null,
-      start: null,
-      end: null,
+  mode: 'value',
 
-      isPopuping: false,
-      isPopdowning: false,
-      isOpen: false,
+  template,
+  
+  data() {
+    return {
+      date: NULL,
+      start: NULL,
+      end: NULL,
+
+      isPopuping: FALSE,
+      isPopdowning: FALSE,
+      isOpen: FALSE
     }
   },
 
   events: {
-    change(event, data) {
-
-      if (event.target != this) {
-        if (!data.value) {
-          this.fire('clear');
-        }
-        event.stop();
+    change(_, data) {
+      if (!data.value) {
+        this.fire('clear.datePicker')
       }
-
     },
 
     yearChange(event, date) {
-      this.dateChange(date);
+      this.dateChange(date)
+      event.stop()
     },
 
     monthChange(event, date) {
-      this.dateChange(date);
+      this.dateChange(date)
+      event.stop()
     },
 
     deteChange(event, date) {
-      this.dateChange(date);
+      this.dateChange(date)
+      event.stop()
     },
 
     weekRangeChange(event, date) {
-      this.dateRangeChange(date);
+      this.dateRangeChange(date)
+      event.stop()
     },
 
     deteRangeChange(event, date) {
-      this.dateRangeChange(date);
-    },
+      this.dateRangeChange(date)
+      event.stop()
+    }
   },
 
   methods: {
 
     focus() {
-      this.open();
+      this.open()
     },
 
     open() {

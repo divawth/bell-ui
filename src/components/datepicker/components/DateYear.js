@@ -1,24 +1,24 @@
-import DateYearTpl from '../template/DateYear.html'
+import template from '../template/DateYear.html'
 
 export default {
-  template: DateYearTpl,
 
   propTypes: {
+    startYear: {
+      type: 'numeric'
+    },
     className: {
       type: 'string'
     },
     style: {
       type: 'string'
-    },
-    startYear: {
-      type: 'numeric'
     }
   },
+  
+  template,
 
   data() {
-    let me = this;
     return {
-      modeYear: me.get('startYear'),
+      modeYear: this.get('startYear'),
       checkedYear: '',
       years: []
     }
@@ -26,46 +26,41 @@ export default {
 
   methods: {
     prev() {
-      let me = this;
-      me.decrease('modeYear', 12);
-      me.getYearList(me.get('modeYear'));
+      this.decrease('modeYear', 12)
+      this.getYearList(this.get('modeYear'))
     },
     next() {
-      let me = this;
-      me.increase('modeYear', 12);
-      me.getYearList(me.get('modeYear'));
+      this.increase('modeYear', 12)
+      this.getYearList(this.get('modeYear'))
     },
     click(year) {
-      let me = this;
-      me.set({
+      this.set({
         checkedYear: year
-      });
+      })
 
-      me.fire(
+      this.fire(
         'yearChange',
         {
           year: year
         }
-      );
+      )
     },
     getYearList(startYear) {
-      let me = this;
-      let years = [];
+      let years = []
       for (let item = startYear; item < startYear + 12; item++) {
-        years.push(item);
+        years.push(item)
       }
-      me.set({
+      this.set({
         modeYear: startYear,
         years: years
-      });
+      })
     }
   },
 
   afterMount() {
-    let me = this;
-    let today = new Date();
-    let start = me.get('startYear');
-    start = start ? start : today.getFullYear();
-    me.getYearList(start);
+    let today = new Date()
+    let start = this.get('startYear')
+    start = start ? start : today.getFullYear()
+    this.getYearList(start)
   }
-};
+}

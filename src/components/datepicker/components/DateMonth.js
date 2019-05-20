@@ -13,10 +13,9 @@ const MONTHS = [
   '十二月',
 ];
 
-import DateMonthTpl from '../template/DateMonth.html'
+import template from '../template/DateMonth.html'
 
 export default {
-  template: DateMonthTpl,
 
   propTypes: {
     className: {
@@ -35,6 +34,8 @@ export default {
       type: 'numeric'
     }
   },
+  
+  template,
 
   data() {
     let me = this;

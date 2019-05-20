@@ -8,7 +8,7 @@ import {
   offsetMonth,
   parseDate
 } from '../function/util'
-import DateTpl from '../template/Date.html'
+import template from '../template/Date.html'
 
 const WEEKS = [
   '日',
@@ -18,13 +18,12 @@ const WEEKS = [
   '四',
   '五',
   '六'
-];
+]
 
-const DAY = 24 * 60 * 60 * 1000;
-const stableDuration = 41 * DAY;
+const DAY = 24 * 60 * 60 * 1000
+const stableDuration = 41 * DAY
 
 export default {
-  template: DateTpl,
 
   propTypes: {
     className: {
@@ -41,8 +40,10 @@ export default {
     }
   },
 
+  template,
+
   data() {
-    let me = this;
+    let me = this
     return {
       weeks: WEEKS,
       dateList: [],
@@ -54,138 +55,138 @@ export default {
 
   computed: {
     currentYear() {
-      let me = this;
-      let date = me.get('modeDate');
+      let me = this
+      let date = me.get('modeDate')
       date = date
         ? simplifyDate(date)
-        : simplifyDate(new Date());
-      return date.year;
+        : simplifyDate(new Date())
+      return date.year
     },
     currentMonth() {
-      let me = this;
-      let date = me.get('modeDate');
+      let me = this
+      let date = me.get('modeDate')
       date = date
         ? simplifyDate(date)
-        : simplifyDate(new Date());
-      return date.month;
+        : simplifyDate(new Date())
+      return date.month
     }
   },
 
   methods: {
     changeDate(offset) {
-      let me = this;
-      let date = me.get('modeDate');
+      let me = this
+      let date = me.get('modeDate')
 
-      date = offsetMonth(date, offset);
+      date = offsetMonth(date, offset)
 
       me.set({
         modeDate: date,
         dateList: me.createRenderData(date, me.get('checkedDate'))
-      });
+      })
     },
 
     prevYear() {
-      this.changeDate(-12);
+      this.changeDate(-12)
     },
     prevMonth() {
-      this.changeDate(-1);
+      this.changeDate(-1)
     },
     nextYear() {
-      this.changeDate(12);
+      this.changeDate(12)
     },
     nextMonth() {
-      this.changeDate(1);
+      this.changeDate(1)
     },
     click(date) {
       if (!date.isCurrentMonth) {
-        return;
+        return
       }
-      let me = this;
+      let me = this
       me.fire(
         'deteChange',
         date
-      );
+      )
 
-      date = parseDate(date);
+      date = parseDate(date)
       me.set({
         checkedDate: date,
         modeDate: date,
         dateList: me.createRenderData(date, date),
-      });
+      })
     },
     // 获取渲染模板的数据
     getDatasource(start, end, modeDate, checkedDate) {
-      let me = this;
-      let data = [];
-      modeDate = simplifyDate(modeDate);
-      checkedDate = simplifyDate(checkedDate);
+      let me = this
+      let data = []
+      modeDate = simplifyDate(modeDate)
+      checkedDate = simplifyDate(checkedDate)
       for (let time = start, item; time <= end; time += DAY) {
-        item = simplifyDate(time);
+        item = simplifyDate(time)
         if (item.year == checkedDate.year
           && item.month == checkedDate.month
           && item.date == checkedDate.date
           && item.day == checkedDate.day
         ) {
-          item.isCurrentDate = true;
+          item.isCurrentDate = true
         }
 
-        item.isPrevMonth = item.month < modeDate.month;
-        item.isCurrentMonth = item.month == modeDate.month;
-        item.isLastMonth = item.month > modeDate.month;
-        data.push(item);
+        item.isPrevMonth = item.month < modeDate.month
+        item.isCurrentMonth = item.month == modeDate.month
+        item.isLastMonth = item.month > modeDate.month
+        data.push(item)
       }
-      return data;
+      return data
 
     },
     createRenderData(modeDate, checkedDate) {
 
-      let me = this;
-      let firstDay = me.get('firstDay') || 0;
-      modeDate = normalizeDate(modeDate);
+      let me = this
+      let firstDay = me.get('firstDay') || 0
+      modeDate = normalizeDate(modeDate)
 
-      let startDate;
-      let endDate;
+      let startDate
+      let endDate
 
-      startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
-      endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
+      startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay)
+      endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay)
 
-      startDate = normalizeDate(startDate);
-      endDate = normalizeDate(endDate);
+      startDate = normalizeDate(startDate)
+      endDate = normalizeDate(endDate)
 
-      let duration = endDate - startDate;
-      let offset = stableDuration - duration;
+      let duration = endDate - startDate
+      let offset = stableDuration - duration
 
       if (offset > 0) {
-        endDate += offset;
+        endDate += offset
       }
-      let list = me.getDatasource(startDate, endDate, modeDate, checkedDate);
-      return me.format(list);
+      let list = me.getDatasource(startDate, endDate, modeDate, checkedDate)
+      return me.format(list)
     },
     format(list) {
-      let result = [];
-      let arr = [];
+      let result = []
+      let arr = []
       for (let i = 0; i < list.length; i++) {
         arr.push(list[i])
         if (i % 7 == 6) {
-          result.push(arr);
-          arr = [];
+          result.push(arr)
+          arr = []
         }
       }
-      return result;
+      return result
     }
   },
 
   afterMount() {
-    let me = this;
+    let me = this
 
-    let today = new Date();
-    let date = me.get('checkedDate');
-    date = date ? date : today;
+    let today = new Date()
+    let date = me.get('checkedDate')
+    date = date ? date : today
 
     me.set({
       modeDate: date,
       checkedDate: date,
       dateList: me.createRenderData(date, date)
-    });
+    })
   }
-};
+}

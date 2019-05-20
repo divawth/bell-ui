@@ -1,52 +1,52 @@
-<div class="bell-datepicker-date
+<div class="${prefix}datepicker-date
   {{#if className}} {{className}}{{/if}}
 "{{#if style}} {{style}}{{/if}}>
 
-  <div class="bell-datepicker-header">
-    <span class="bell-datepicker-header-button" on-click="prevYear()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+  <div class="${prefix}datepicker-header">
+    <span class="${prefix}datepicker-header-button" on-click="prevYear()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-left"></i>
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-left"></i>
     </span>
 
-    <span class="bell-datepicker-header-button" on-click="prevMonth()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+    <span class="${prefix}datepicker-header-button" on-click="prevMonth()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-left"></i>
     </span>
 
-    <span class="bell-text-medium">
+    <span class="${prefix}text-medium">
       {{currentYear}} 年
     </span>
-    <span class="bell-text-medium">
+    <span class="${prefix}text-medium">
       {{currentMonth}} 月
     </span>
 
-    <span class="bell-datepicker-header-button" on-click="nextMonth()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+    <span class="${prefix}datepicker-header-button" on-click="nextMonth()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-right"></i>
     </span>
 
-    <span class="bell-datepicker-header-button" on-click="nextYear()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+    <span class="${prefix}datepicker-header-button" on-click="nextYear()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-right"></i>
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-right"></i>
     </span>
   </div>
 
-  <div class="bell-datepicker-table-date">
-    <div class="bell-datepicker-weeks">
+  <div class="${prefix}datepicker-table-date">
+    <div class="${prefix}datepicker-weeks">
       {{#each weeks}}
-        <span class="bell-datepicker-col bell-text-sub">
+        <span class="${prefix}datepicker-col ${prefix}text-sub">
           {{this}}
         </span>
       {{/each}}
     </div>
-    <div class="bell-datepicker-days">
+    <div class="${prefix}datepicker-days">
       {{#each dateList:index}}
-        <div class="bell-datepicker-row">
+        <div class="${prefix}datepicker-row">
           {{#each this:index}}
             <span
-              class="bell-datepicker-col
-              {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}
-              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}
-              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}
-              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}"
+              class="${prefix}datepicker-col
+              {{#if isCurrentMonth}} ${prefix}datepicker-col-current-month{{/if}}
+              {{#if isPrevMonth}} ${prefix}datepicker-col-prev-month{{/if}}
+              {{#if isLastMonth}} ${prefix}datepicker-col-last-month{{/if}}
+              {{#if isCurrentDate}} ${prefix}datepicker-col-checked{{/if}}"
               on-click="click(this)"
             >
               {{date}}

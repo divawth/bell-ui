@@ -9,7 +9,7 @@ import {
   parseDate,
   getOffsetTime
 } from '../function/util'
-import DateRangeTpl from '../template/DateRange.html'
+import template from '../template/DateRange.html'
 
 const WEEKS = [
   '日',
@@ -25,7 +25,6 @@ const DAY = 24 * 60 * 60 * 1000;
 const stableDuration = 41 * DAY;
 
 export default {
-  template: DateRangeTpl,
 
   propTypes: {
     className: {
@@ -44,6 +43,8 @@ export default {
       type: 'numeric'
     }
   },
+  
+  template,
 
   data() {
     let me = this;

@@ -9,7 +9,7 @@ import {
   parseDate,
   getOffsetTime
 } from '../function/util'
-import DateWeekTpl from '../template/DateWeek.html'
+import template from '../template/DateWeek.html'
 
 const WEEKS = [
   '日',
@@ -25,7 +25,6 @@ const DAY = 24 * 60 * 60 * 1000;
 const stableDuration = 41 * DAY;
 
 export default {
-  template: DateWeekTpl,
 
   propTypes: {
     className: {
@@ -46,6 +45,8 @@ export default {
       type: 'numeric'
     }
   },
+  
+  template,
 
   data() {
     let me = this;

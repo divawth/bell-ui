@@ -1,26 +1,26 @@
-<div class="bell-datepicker-month
+<div class="${prefix}datepicker-month
   {{#if className}} {{className}}{{/if}}
 "{{#if style}} {{style}}{{/if}}>
 
-  <div class="bell-datepicker-header">
-    <span class="bell-datepicker-header-button" on-click="prev()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left"></i>
+  <div class="${prefix}datepicker-header">
+    <span class="${prefix}datepicker-header-button" on-click="prev()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-left"></i>
     </span>
 
-    <span class="bell-text-medium">
+    <span class="${prefix}text-medium">
       {{modeYear}} 年 ~ {{modeYear + 12}} 年
     </span>
 
-    <span class="bell-datepicker-header-button" on-click="next()">
-      <i class="bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right"></i>
+    <span class="${prefix}datepicker-header-button" on-click="next()">
+      <i class="${prefix}icon ${prefix}text-medium ${prefix}text-muted ${prefix}icon-ios-arrow-right"></i>
     </span>
   </div>
 
-  <div class="bell-datepicker-body">
+  <div class="${prefix}datepicker-body">
     {{#each years:index}}
       <span
-        class="bell-datepicker-col
-        {{#if checkedYear == this}} bell-datepicker-col-checked{{/if}}"
+        class="${prefix}datepicker-col
+        {{#if checkedYear == this}} ${prefix}datepicker-col-checked{{/if}}"
         on-click="click(this)"
       >
         {{this}}

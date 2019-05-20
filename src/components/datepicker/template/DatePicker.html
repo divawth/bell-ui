@@ -1,8 +1,8 @@
-<div class="bell-datepicker
+<div class="${prefix}datepicker
   {{#if className}} {{className}}{{/if}}
 "{{#if style}} style="{{style}}"{{/if}}>
 
-  <div class="bell-datepicker-el" on-click="click()">
+  <div class="${prefix}datepicker-el" on-click="click()">
     <Input placeholder="请选择日期..."
       model="formateDate"
       type="input"
@@ -11,10 +11,10 @@
     />
   </div>
 
-  <div class="bell-datepicker-poper
-    {{#if isPopuping}} bell-isPopuping{{/if}}
-    {{#if isPopdowning}} bell-isPopdowning{{/if}}
-    {{#if isOpen}} bell-show{{/if}}
+  <div class="${prefix}datepicker-poper
+    {{#if isPopuping}} ${prefix}isPopuping{{/if}}
+    {{#if isPopdowning}} ${prefix}isPopdowning{{/if}}
+    {{#if isOpen}} ${prefix}show{{/if}}
   ">
     {{#if mode == 'date'}}
       <Date />
