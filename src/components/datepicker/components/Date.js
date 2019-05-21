@@ -9,6 +9,7 @@ import {
   parseDate
 } from '../function/util'
 import template from '../template/Date.html'
+import { RAW_NUMERIC, RAW_STRING } from '../../constant';
 
 const WEEKS = [
   '日',
@@ -26,17 +27,17 @@ const stableDuration = 41 * DAY
 export default {
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     date: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     firstDay: {
-      type: 'numeric'
+      type: RAW_NUMERIC
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
