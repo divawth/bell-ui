@@ -1,19 +1,20 @@
 import template from '../template/DateYear.html'
+import { RAW_NUMERIC, RAW_STRING } from '../../constant';
 
 export default {
 
   propTypes: {
     startYear: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
-  
+
   template,
 
   data() {
