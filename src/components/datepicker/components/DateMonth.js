@@ -14,69 +14,68 @@ const MONTHS = [
 ];
 
 import template from '../template/DateMonth.html'
+import { RAW_NUMERIC, RAW_STRING } from '../../constant';
 
 export default {
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     date: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     firstDay: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     year: {
-      type: 'numeric'
+      type: RAW_NUMERIC
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
-  
+
   template,
 
   data() {
-    let me = this;
     return {
       checkedMonth: '',
       checkedYear: '',
-      modeYear: me.get('year') ? me.get('year') : new Date().getFullYear(),
+      modeYear: this.get('year') ? this.get('year') : new Date().getFullYear(),
       months: MONTHS
     }
   },
 
   methods: {
     prevMore() {
-      this.decrease('modeYear', 10);
+      this.decrease('modeYear', 10)
     },
     prev() {
-      this.decrease('modeYear', 1);
+      this.decrease('modeYear', 1)
     },
     nextMore() {
-      this.increase('modeYear', 10);
+      this.increase('modeYear', 10)
     },
     next() {
-      this.increase('modeYear', 1);
+      this.increase('modeYear', 1)
     },
     click(month) {
 
-      let me = this;
-      let year = me.get('modeYear');
+      let year = this.get('modeYear')
 
-      me.set({
+      this.set({
         checkedYear: year,
         checkedMonth: month
-      });
+      })
 
-      me.fire(
+      this.fire(
         'monthChange',
         {
           year: year,
           month: month + 1
         }
-      );
+      )
 
     }
   }
