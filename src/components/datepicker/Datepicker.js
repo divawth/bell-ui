@@ -1,7 +1,7 @@
 import { lpad } from './function/util'
 import { contains, oneOf } from '../util'
 import template from './template/DatePicker.html'
-import { RAW_STRING, NULL, FALSE } from '../constant';
+import { RAW_STRING, NULL, FALSE } from '../constant'
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
@@ -29,7 +29,7 @@ export default {
   mode: 'value',
 
   template,
-  
+
   data() {
     return {
       date: NULL,
