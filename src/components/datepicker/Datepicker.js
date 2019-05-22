@@ -1,19 +1,26 @@
+import Date from './components/Date'
+import DateRange from './components/DateRange'
+import DateWeek from './components/DateWeek'
+import DateMonth from './components/DateMonth'
+import DateYear from './components/DateYear'
+
 import { lpad } from './function/util'
 import { contains, oneOf } from '../util'
 import template from './template/DatePicker.html'
 import { RAW_STRING, NULL, FALSE } from '../constant'
+
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
 export default {
 
   propTypes: {
-    mode: {
+    type: {
       type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
       value: 'date'
     },
     value: {
-      type: 'object'
+      type: 'date'
     },
     formateText: {
       type: RAW_STRING
@@ -26,7 +33,7 @@ export default {
     }
   },
 
-  mode: 'value',
+  model: 'value',
 
   template,
 
@@ -40,6 +47,14 @@ export default {
       isPopdowning: FALSE,
       isOpen: FALSE
     }
+  },
+
+  components: {
+    Date,
+    DateRange,
+    DateWeek,
+    DateMonth,
+    DateYear
   },
 
   events: {
@@ -82,52 +97,52 @@ export default {
     },
 
     open() {
-      let me = this;
+      let me = this
       me.set({
         isPopuping: true
-      });
+      })
       setTimeout(
         () => {
           me.set({
             isPopuping: false,
             isOpen: true
-          });
+          })
         }
-      );
+      )
     },
 
     close() {
-      let me = this;
+      let me = this
       if (!me.get('isOpen')) {
-        return;
+        return
       }
       me.set({
         isPopdowning: true
-      });
+      })
       setTimeout(
         () => {
           me.set({
             isPopdowning: false,
             isOpen: false
-          });
+          })
         }
-      );
+      )
     },
 
     formateDate(date) {
 
       if (!date) {
-        return false;
+        return false
       }
-      let argsLen = arguments.length;
-      let result = '';
-      let me = this;
-      let startFormat = me.get('formateText').split('$')[0];
-      let endFormat = me.get('formateText').split('$')[1];
+      let argsLen = arguments.length
+      let result = ''
+      let me = this
+      let startFormat = me.get('formateText').split('$')[0]
+      let endFormat = me.get('formateText').split('$')[1]
 
       if (argsLen > 1) {
-        let start = arguments[0];
-        let end = arguments[1];
+        let start = arguments[0]
+        let end = arguments[1]
 
         let formatStart = startFormat
           .replace(/yyyy/i, start.year)
@@ -136,7 +151,7 @@ export default {
           .replace(/M/, start.month)
           .replace(/dd/i, lpad(start.date))
           .replace(/d/i, start.date)
-          .replace(/w/, DAY_MAP[start.day]);
+          .replace(/w/, DAY_MAP[start.day])
 
         let formatEnd = endFormat
           .replace(/yyyy/i, end.year)
@@ -145,9 +160,9 @@ export default {
           .replace(/M/, end.month)
           .replace(/dd/i, lpad(end.date))
           .replace(/d/i, end.date)
-          .replace(/w/, DAY_MAP[end.day]);
+          .replace(/w/, DAY_MAP[end.day])
 
-        result = formatStart + formatEnd;
+        result = formatStart + formatEnd
 
       }
       else {
@@ -158,16 +173,16 @@ export default {
           .replace(/M/, date.month)
           .replace(/dd/i, lpad(date.date))
           .replace(/d/i, date.date)
-          .replace(/w/, DAY_MAP[date.day]);
+          .replace(/w/, DAY_MAP[date.day])
       }
-      return result.trim();
+      return result.trim()
     },
 
     dateChange(date) {
 
-      let me = this;
-      let formateDate = me.get('formateDate');
-      let newFormateDate = me.formateDate(date);
+      let me = this
+      let formateDate = me.get('formateDate')
+      let newFormateDate = me.formateDate(date)
       if (newFormateDate !== formateDate) {
         me.fire(
           'change',
@@ -181,25 +196,25 @@ export default {
               date: me.get('date')
             }
           }
-        );
+        )
       }
       me.set({
         date: date,
         formateDate: newFormateDate
-      });
-      me.close();
+      })
+      me.close()
 
     },
 
     dateRangeChange(data) {
-      let end = data.end;
+      let end = data.end
 
       if (!end) {
-        return;
+        return
       }
 
-      let me = this;
-      let start = data.start;
+      let me = this
+      let start = data.start
 
       me.fire(
         'change',
@@ -219,71 +234,71 @@ export default {
             formateDate: me.formateDate(me.get('start'), me.get('end'))
           }
         }
-      );
+      )
 
       me.set({
         start: start,
         end: end,
         formateDate: me.formateDate(start, end)
-      });
-      me.close();
+      })
+      me.close()
 
     }
   },
 
   afterMount() {
-    let me = this;
+    let me = this
     if (!me.get('formateText')) {
-      switch (me.get('mode')) {
+      switch (me.get('type')) {
         case 'date':
           me.set({
             formateText: 'YYYY/MM/DD'
-          });
-          break;
+          })
+          break
         case 'dateRange':
           me.set({
             formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-          });
-          break;
+          })
+          break
         case 'week':
           me.set({
             formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-          });
-          break;
+          })
+          break
         case 'year':
           me.set({
             formateText: 'YYYY'
-          });
-          break;
+          })
+          break
         case 'month':
           me.set({
             formateText: 'YYYY/MM'
-          });
-          break;
+          })
+          break
       }
     }
 
     if (me.get('value')) {
-      me.dateChange(me.get('value'));
+      me.dateChange(me.get('value'))
     }
 
     me.documentClickHandler = function (e) {
       if (!me.get('isOpen')) {
         return
       }
-      let element = me.$el;
-      let target = e.originalEvent.target;
+      let element = me.$el
+      let target = e.originalEvent.target
       if (contains(element, target)) {
-        return;
+        return
       }
-      me.close();
-    };
+      me.close()
+    }
 
     Yox.dom.on(
       document,
       'click',
       me.documentClickHandler
-    );
+    )
 
   },
 
@@ -292,6 +307,6 @@ export default {
       document,
       'click',
       this.documentClickHandler
-    );
+    )
   }
-};
+}

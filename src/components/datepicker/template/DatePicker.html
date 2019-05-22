@@ -1,8 +1,10 @@
-<div class="${prefix}datepicker
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  <div class="${prefix}datepicker-el" on-click="click()">
+<div 
+class="${prefix}datepicker
+{{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <div class="${prefix}datepicker-el">
     <Input placeholder="请选择日期..."
       model="formateDate"
       type="input"
@@ -16,15 +18,15 @@
     {{#if isPopdowning}} ${prefix}isPopdowning{{/if}}
     {{#if isOpen}} ${prefix}show{{/if}}
   ">
-    {{#if mode == 'date'}}
+    {{#if type == 'date'}}
       <Date />
-    {{else if mode == 'dateRange'}}
+    {{else if type == 'dateRange'}}
       <DateRange />
-    {{else if mode == 'week'}}
+    {{else if type == 'week'}}
       <DateWeek />
-    {{else if mode == 'year'}}
+    {{else if type == 'year'}}
       <DateYear />
-    {{else if mode == 'month'}}
+    {{else if type == 'month'}}
       <DateMonth />
     {{/if}}
   </div>
