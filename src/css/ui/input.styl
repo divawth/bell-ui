@@ -57,7 +57,7 @@
 
         {$selector-input-el}
 
-            padding-right $input-clearable-width
+            padding-right 32px
 
         {$selector-input}-clear-icon
 
@@ -69,7 +69,7 @@
             opacity 0
             transition opacity .2s ease-in-out
 
-            width $input-clearable-width
+            width 32px
             font-size $input-clearable-font-size
             color $input-clearable-color
 
@@ -78,6 +78,9 @@
             {$selector-input}-clear-icon
 
                 opacity 1
+            
+            .bell-input-suffix
+                opacity 0
 
 {$selector-textarea},
 {$selector-input}
@@ -138,3 +141,43 @@
         {$selector-input-el}
             resize none
             line-height 1.5
+
+.bell-input-wrapper
+    .bell-input 
+        .bell-input-el
+            &.bell-input-with-prefix 
+                padding-left 32px
+
+.bell-input-wrapper
+    .bell-input 
+        .bell-input-el
+            &.bell-input-with-suffix 
+                padding-right 32px
+
+.bell-input-prefix 
+    width: 32px;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    .bell-input-prefix-icon 
+
+        font-size: 16px;
+        line-height: 32px;
+        color: #808695;
+
+.bell-input-suffix 
+    width: 32px;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .bell-input-suffix-icon 
+
+        font-size: 16px;
+        line-height: 32px;
+        color: #808695;

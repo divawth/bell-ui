@@ -6,10 +6,6 @@
     position relative
     padding $dropdown-trigger-padding
   
-  &{$selector-dropdown}-open
-    > {$selector-dropdown-list}
-      max-height $dropdown-max-height
-  
   &[data-placement="top"]
     {$selector-dropdown-list}
       bottom 100%
@@ -70,7 +66,7 @@
 
 {$selector-dropdown-list}
 
-  width inherit
+  width auto
   overflow auto
   box-sizing border-box
   position absolute

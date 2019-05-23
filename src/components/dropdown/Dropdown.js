@@ -58,6 +58,10 @@ export default {
         }
       }
     },
+    height: {
+      type: RAW_STRING,
+      value: 200
+    },
     className: {
       type: RAW_STRING
     },

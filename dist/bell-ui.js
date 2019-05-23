@@ -1044,7 +1044,7 @@
     }
   };
 
-  var template$b = "<i \nclass=\"bell-icon \n  {{#if name}} bell-icon-{{type}}-{{name}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\nstyle=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\n>\n</i>";
+  var template$b = "<i \nclass=\"bell-icon \n  {{#if name}} bell-icon-{{type}}-{{name}}{{/if}}\n  {{#if spin}} bell-icon-spin{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\nstyle=\"font-size: {{size}}px; \n  {{#if color}} color: {{color}};{{/if}}\n  {{#if style}} {{style}}{{/if}}\n\"\non-click=\"click.icon\"\n>\n</i>";
 
   var Icon = {
     propTypes: {
@@ -1241,7 +1241,7 @@
     template: template$f
   };
 
-  var InputTpl = "<div class=\"bell-input-wrapper\n  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}\n  {{#if hasSlot('append')}} bell-input-has-append{{/if}}\n  {{#if className}} {{className}}{{/if}}\n  {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n  {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n  {{#if isFocus}} bell-focus{{/if}}\n  {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n  {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n  \"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('prepend')}}\n    <div class=\"bell-input-prepend\">\n      <slot name=\"prepend\" />\n    </div>\n  {{/if}}\n\n  <div class=\"bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}\">\n\n    {{#if type === TEXT_TYPE_TEXTAREA}}\n\n      <textarea class=\"bell-input-el\"\n        style=\"height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px\"\n        {{#if rows}} rows=\"{{rows}}\"{{/if}}\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled{{/if}}\n        model=\"value\"\n      >\n      </textarea>\n\n    {{else}}\n\n      <input ref=\"input\"\n        type=\"{{currentType}}\"\n        class=\"bell-input-el\n            {{#if size}} bell-input-{{size}}{{/if}}\n        \"\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled=\"disabled\"{{/if}}\n        model=\"value\"\n        on-blur=\"blur()\"\n        on-focus=\"focus()\"\n      />\n\n      {{#if clearable}}\n        <i class=\"bell-icon\n          bell-icon-ios-close\n          bell-input-clear-icon\n        \" on-click=\"clear()\"></i>\n      {{/if}}\n\n      {{#if secure}}\n        {{#if isSecure}}\n          <i class=\"bell-icon\n              bell-icon-eye\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{else}}\n          <i class=\"bell-icon\n              bell-icon-eye-disabled\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{/if}}\n      {{/if}}\n\n    {{/if}}\n\n  </div>\n  {{#if hasSlot('append')}}\n    <div class=\"bell-input-append\">\n      <slot name=\"append\" />\n    </div>\n  {{/if}}\n</div>";
+  var InputTpl = "<div class=\"bell-input-wrapper\n  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}\n  {{#if hasSlot('append')}} bell-input-has-append{{/if}}\n  {{#if className}} {{className}}{{/if}}\n  {{#if size}} bell-input-wrapper-{{size}}{{/if}}\n  {{#if status}} bell-input-wrapper-{{status}}{{/if}}\n  {{#if isFocus}} bell-focus{{/if}}\n  {{#if clearable}} bell-input-wrapper-clearable{{/if}}\n  {{#if disabled}} bell-input-wrapper-disabled{{/if}}\n  \"{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('prepend')}}\n    <div class=\"bell-input-prepend\">\n      <slot name=\"prepend\" />\n    </div>\n  {{/if}}\n\n  <div class=\"bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}\">\n\n    {{#if type === TEXT_TYPE_TEXTAREA}}\n\n      <textarea class=\"bell-input-el\"\n        style=\"height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px\"\n        {{#if rows}} rows=\"{{rows}}\"{{/if}}\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled{{/if}}\n        model=\"value\"\n      >\n      </textarea>\n\n    {{else}}\n\n      <input ref=\"input\"\n        type=\"{{currentType}}\"\n        class=\"bell-input-el\n          {{#if size}} bell-input-{{size}}{{/if}}\n          {{#if hasSlot('prefix') || prefix}} bell-input-with-prefix{{/if}}\n          {{#if hasSlot('suffix') || suffix}} bell-input-with-suffix{{/if}}\n        \"\n        {{#if placeholder}} placeholder=\"{{placeholder}}\"{{/if}}\n        {{#if disabled}} disabled=\"disabled\"{{/if}}\n        model=\"value\"\n        on-blur=\"blur()\"\n        on-focus=\"focus()\"\n      />\n\n      {{#if hasSlot('prefix') || prefix}}\n      <span class=\"bell-input-prefix\">\n        <slot name=\"prefix\">\n          <Icon name=\"{{prefix}}\" className=\"bell-input-prefix-icon\" />\n        </slot>\n      </span>\n      {{/if}}\n\n      {{#if hasSlot('suffix') || suffix}}\n      <span class=\"bell-input-suffix\">\n        <slot name=\"suffix\">\n          <Icon name=\"{{suffix}}\" className=\"bell-input-suffix-icon\" />\n        </slot>\n      </span>\n      {{/if}}\n\n      {{#if clearable}}\n        <Icon name=\"close-circle\" className=\"bell-input-clear-icon\" on-click=\"clear()\" />\n      {{/if}}\n\n      {{#if secure}}\n        {{#if isSecure}}\n          <i class=\"bell-icon\n              bell-icon-eye\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{else}}\n          <i class=\"bell-icon\n              bell-icon-eye-disabled\n              bell-input-icon-eye\n          \" on-click=\"toggle('isSecure')\"></i>\n        {{/if}}\n      {{/if}}\n\n    {{/if}}\n\n  </div>\n  {{#if hasSlot('append')}}\n    <div class=\"bell-input-append\">\n      <slot name=\"append\" />\n    </div>\n  {{/if}}\n</div>";
 
   var TEXT_TYPE_PASSWORD = 'password';
   var TEXT_TYPE_TEXTAREA = 'textarea';
@@ -1286,6 +1286,12 @@
       },
       secure: {
         type: 'boolean'
+      },
+      prefix: {
+        type: 'string'
+      },
+      suffix: {
+        type: 'string'
       }
     },
 
@@ -3010,7 +3016,7 @@
     return arr.join('0') + num
   };
 
-  var template$n = "<div class=\"bell-datepicker-date\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年\n    </span>\n    <span class=\"bell-text-medium\">\n      {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-table-date\">\n    <div class=\"bell-datepicker-weeks\">\n      {{#each weeks}}\n        <span class=\"bell-datepicker-col bell-text-sub\">\n          {{this}}\n        </span>\n      {{/each}}\n    </div>\n    <div class=\"bell-datepicker-days\">\n      {{#each dateList:index}}\n        <div class=\"bell-datepicker-row\">\n          {{#each this:index}}\n            <span\n              class=\"bell-datepicker-col\n              {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}\"\n              on-click=\"click(this)\"\n            >\n              {{date}}\n            </span>\n          {{/each}}\n        </div>\n      {{/each}}\n    </div>\n  </div>\n\n</div>";
+  var template$n = "<div \nclass=\"bell-datepicker-date\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年 {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-table-date\">\n    <div class=\"bell-datepicker-weeks\">\n      {{#each weeks}}\n        <span class=\"bell-datepicker-col bell-text-sub\">\n          {{this}}\n        </span>\n      {{/each}}\n    </div>\n    <div class=\"bell-datepicker-days\">\n      {{#each dateList:index}}\n        <div class=\"bell-datepicker-row\">\n          {{#each this:index}}\n            <span\n              class=\"bell-datepicker-col\n              {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}\"\n              on-click=\"click(this)\"\n            >\n              {{date}}\n            </span>\n          {{/each}}\n        </div>\n      {{/each}}\n    </div>\n  </div>\n\n</div>";
 
   var WEEKS = [
     '日',
@@ -3191,7 +3197,7 @@
     }
   };
 
-  var template$o = "<div class=\"bell-datepicker-daterange\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年\n    </span>\n    <span class=\"bell-text-medium bell-datepicker-header-month\">\n      {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年\n    </span>\n    <span class=\"bell-text-medium\">\n      {{currentMonth + 1}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-daterange-wrapper\">\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each dateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n    </div>\n  </div>\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each nextDateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n      </div>\n    </div>\n  </div>\n\n</div>";
+  var template$o = "<div class=\"bell-datepicker-daterange\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium bell-datepicker-header-month\">\n      {{currentYear}} 年 {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年 {{currentMonth + 1}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-daterange-wrapper\">\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each dateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n    </div>\n  </div>\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each nextDateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n      </div>\n    </div>\n  </div>\n\n</div>";
 
   var WEEKS$1 = [
     '日',
@@ -3343,13 +3349,15 @@
           getOffsetTime(parseDate(checkedEndDate))
         );
 
-        me.fire(
-          'deteRangeChange',
-          {
-            start: checkedStartDate,
-            end: checkedEndDate,
-          }
-        );
+        if (checkedStartDate && checkedEndDate) {
+          me.fire(
+            'deteRangeChange',
+            {
+              start: checkedStartDate,
+              end: checkedEndDate
+            }
+          );
+        }
       },
       refresh: function refresh(start, end) {
         var me = this;
@@ -3869,7 +3877,7 @@
     }
   };
 
-  var template$s = "<div \nclass=\"bell-datepicker\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-datepicker-el\">\n    <Input placeholder=\"请选择日期...\"\n      model=\"formateDate\"\n      type=\"input\"\n      on-focus=\"focus()\"\n      clearable\n    />\n  </div>\n\n  <div class=\"bell-datepicker-poper\n    {{#if isPopuping}} bell-isPopuping{{/if}}\n    {{#if isPopdowning}} bell-isPopdowning{{/if}}\n    {{#if isOpen}} bell-show{{/if}}\n  \">\n    {{#if type == 'date'}}\n      <Date />\n    {{else if type == 'dateRange'}}\n      <DateRange />\n    {{else if type == 'week'}}\n      <DateWeek />\n    {{else if type == 'year'}}\n      <DateYear />\n    {{else if type == 'month'}}\n      <DateMonth />\n    {{/if}}\n  </div>\n</div>";
+  var template$s = "<div \nclass=\"bell-datepicker\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <Dropdown height=\"230\" \n    className=\"bell-datepicker-dropdown\" \n    placement=\"bottom-start\" \n    trigger=\"custom\" \n    visible=\"{{visible}}\"\n  >\n\n    <div class=\"bell-datepicker-el\">\n      <Input placeholder=\"请选择日期...\"\n        model=\"formateDate\"\n        type=\"input\"\n        on-focus=\"focus()\"\n        suffix=\"calendar\"\n        clearable\n      />\n    </div>\n\n    <template slot=\"list\">\n      {{#if shortcuts}}\n      <div class=\"bell-datepicker-sidebar\">\n        {{#each shortcuts}}\n          <div class=\"bell-datepicker-shortcut\" on-click=\"shortcutClick(this)\">\n            {{text}}\n          </div>\n        {{/each}}\n      </div>\n      {{/if}}\n      <div class=\"bell-datepicker-poper\n        {{#if shortcuts}} bell-datepicker-poper-with-sidebar{{/if}}\n      \">\n        {{#if type == 'date'}}\n          <Date />\n        {{else if type == 'dateRange'}}\n          <DateRange />\n        {{else if type == 'week'}}\n          <DateWeek />\n        {{else if type == 'year'}}\n          <DateYear />\n        {{else if type == 'month'}}\n          <DateMonth />\n        {{/if}}\n      </div>\n    </template>\n\n  </Dropdown>\n\n</div>\n\n";
 
   var DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ];
 
@@ -3882,6 +3890,9 @@
       },
       value: {
         type: 'date'
+      },
+      shortcuts: {
+        type: RAW_ARRAY
       },
       formateText: {
         type: RAW_STRING
@@ -3904,9 +3915,7 @@
         start: NULL,
         end: NULL,
 
-        isPopuping: FALSE,
-        isPopdowning: FALSE,
-        isOpen: FALSE
+        visible: FALSE
       }
     },
 
@@ -3952,42 +3961,25 @@
     },
 
     methods: {
+      shortcutClick: function shortcutClick(data) {
+        var date = data.value && data.value();
+        if (!date) {
+          Yox.logger.warn("shortcuts value 传值错误");
+        }
+        this.dateChange(date);
+        data.onClick && data.onClick();
+      },
 
       focus: function focus() {
-        this.open();
+        this.set('visible', true);
       },
 
       open: function open() {
-        var me = this;
-        me.set({
-          isPopuping: true
-        });
-        setTimeout(
-          function () {
-            me.set({
-              isPopuping: false,
-              isOpen: true
-            });
-          }
-        );
+        this.set('visible', true);
       },
 
       close: function close() {
-        var me = this;
-        if (!me.get('isOpen')) {
-          return
-        }
-        me.set({
-          isPopdowning: true
-        });
-        setTimeout(
-          function () {
-            me.set({
-              isPopdowning: false,
-              isOpen: false
-            });
-          }
-        );
+        this.set('visible', false);
       },
 
       formateDate: function formateDate(date) {
@@ -4040,7 +4032,7 @@
       },
 
       dateChange: function dateChange(date) {
-
+        
         var me = this;
         var formateDate = me.get('formateDate');
         var newFormateDate = me.formateDate(date);
@@ -4068,6 +4060,7 @@
       },
 
       dateRangeChange: function dateRangeChange(data) {
+        
         var end = data.end;
 
         if (!end) {
@@ -4110,43 +4103,33 @@
     afterMount: function afterMount() {
       var me = this;
       if (!me.get('formateText')) {
+        var formateText = '';
         switch (me.get('type')) {
           case 'date':
-            me.set({
-              formateText: 'YYYY/MM/DD'
-            });
+            formateText = 'YYYY/MM/DD';
             break
           case 'dateRange':
-            me.set({
-              formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-            });
+            formateText = 'YYYY/MM/DD $- YYYY/MM/DD';
             break
           case 'week':
-            me.set({
-              formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-            });
+            formateText = 'YYYY/MM/DD $- YYYY/MM/DD';
             break
           case 'year':
-            me.set({
-              formateText: 'YYYY'
-            });
+            formateText = 'YYYY';
             break
           case 'month':
-            me.set({
-              formateText: 'YYYY/MM'
-            });
+            formateText = 'YYYY/MM';
             break
         }
+        me.set({ formateText: formateText });
       }
+      
 
       if (me.get('value')) {
         me.dateChange(me.get('value'));
       }
 
       me.documentClickHandler = function (e) {
-        if (!me.get('isOpen')) {
-          return
-        }
         var element = me.$el;
         var target = e.originalEvent.target;
         if (contains(element, target)) {
@@ -5575,7 +5558,7 @@
     }
   };
 
-  var template$E = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n  \n</div>";
+  var template$E = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-open{{/if}}\n{{#if disabled}} bell-dropdown-disabled{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n\n{{#if trigger === RAW_HOVER}}\n  on-mouseenter=\"set('isOpen', TRUE)\"\n{{/if}}\n{{#if trigger != RAW_CUSTOM}}\n  on-mouseleave=\"set('isOpen', FALSE)\"\n  lazy-mouseleave=\"300\"\n{{/if}}\ndata-placement=\"{{placement}}\"\n>\n\n  <div class=\"bell-dropdown-trigger\"\n    {{#if trigger === RAW_CLICK}}\n      on-click=\"toggle('isOpen')\"\n    {{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n\n  <div class=\"bell-dropdown-list\">\n    <slot name=\"list\" />\n  </div>\n\n  <style>\n    .bell-dropdown.bell-dropdown-open > .bell-dropdown-list {\n      max-height: {{height}}px;\n    }\n  </style>\n\n</div>";
 
   var Dropdown = {
     propTypes: {
@@ -5609,6 +5592,10 @@
             return true
           }
         }
+      },
+      height: {
+        type: RAW_STRING,
+        value: 200
       },
       className: {
         type: RAW_STRING

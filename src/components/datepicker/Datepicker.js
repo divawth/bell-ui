@@ -4,10 +4,10 @@ import DateWeek from './components/DateWeek'
 import DateMonth from './components/DateMonth'
 import DateYear from './components/DateYear'
 
-import { lpad } from './function/util'
+import { lpad, simplifyDate } from './function/util'
 import { contains, oneOf } from '../util'
 import template from './template/DatePicker.html'
-import { RAW_STRING, NULL, FALSE } from '../constant'
+import { RAW_STRING, NULL, FALSE, RAW_OBJECT, RAW_ARRAY } from '../constant'
 
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
@@ -21,6 +21,9 @@ export default {
     },
     value: {
       type: 'date'
+    },
+    shortcuts: {
+      type: RAW_ARRAY
     },
     formateText: {
       type: RAW_STRING
@@ -43,9 +46,7 @@ export default {
       start: NULL,
       end: NULL,
 
-      isPopuping: FALSE,
-      isPopdowning: FALSE,
-      isOpen: FALSE
+      visible: FALSE
     }
   },
 
@@ -91,42 +92,25 @@ export default {
   },
 
   methods: {
+    shortcutClick(data) {
+      let date = data.value && data.value()
+      if (!date) {
+        Yox.logger.warn(`shortcuts value 传值错误`)
+      }
+      this.dateChange(date)
+      data.onClick && data.onClick()
+    },
 
     focus() {
-      this.open()
+      this.set('visible', true)
     },
 
     open() {
-      let me = this
-      me.set({
-        isPopuping: true
-      })
-      setTimeout(
-        () => {
-          me.set({
-            isPopuping: false,
-            isOpen: true
-          })
-        }
-      )
+      this.set('visible', true)
     },
 
     close() {
-      let me = this
-      if (!me.get('isOpen')) {
-        return
-      }
-      me.set({
-        isPopdowning: true
-      })
-      setTimeout(
-        () => {
-          me.set({
-            isPopdowning: false,
-            isOpen: false
-          })
-        }
-      )
+      this.set('visible', false)
     },
 
     formateDate(date) {
@@ -180,6 +164,8 @@ export default {
 
     dateChange(date) {
 
+      date = simplifyDate(date)
+      
       let me = this
       let formateDate = me.get('formateDate')
       let newFormateDate = me.formateDate(date)
@@ -207,6 +193,7 @@ export default {
     },
 
     dateRangeChange(data) {
+      
       let end = data.end
 
       if (!end) {
@@ -249,43 +236,33 @@ export default {
   afterMount() {
     let me = this
     if (!me.get('formateText')) {
+      let formateText = ''
       switch (me.get('type')) {
         case 'date':
-          me.set({
-            formateText: 'YYYY/MM/DD'
-          })
+          formateText = 'YYYY/MM/DD'
           break
         case 'dateRange':
-          me.set({
-            formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-          })
+          formateText = 'YYYY/MM/DD $- YYYY/MM/DD'
           break
         case 'week':
-          me.set({
-            formateText: 'YYYY/MM/DD $- YYYY/MM/DD'
-          })
+          formateText = 'YYYY/MM/DD $- YYYY/MM/DD'
           break
         case 'year':
-          me.set({
-            formateText: 'YYYY'
-          })
+          formateText = 'YYYY'
           break
         case 'month':
-          me.set({
-            formateText: 'YYYY/MM'
-          })
+          formateText = 'YYYY/MM'
           break
       }
+      me.set({ formateText })
     }
+    
 
     if (me.get('value')) {
       me.dateChange(me.get('value'))
     }
 
     me.documentClickHandler = function (e) {
-      if (!me.get('isOpen')) {
-        return
-      }
       let element = me.$el
       let target = e.originalEvent.target
       if (contains(element, target)) {

@@ -27,5 +27,11 @@ data-placement="{{placement}}"
   <div class="${prefix}dropdown-list">
     <slot name="list" />
   </div>
-  
+
+  <style>
+    .${prefix}dropdown.${prefix}dropdown-open > .${prefix}dropdown-list {
+      max-height: {{height}}px;
+    }
+  </style>
+
 </div>

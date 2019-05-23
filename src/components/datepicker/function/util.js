@@ -110,11 +110,14 @@ export let parseDate = function(year, month, date) {
 }
 
 export let simplifyDate = function (date) {
-  if (!date) {
-    return
+  if (!date || !isValidDate(date)) {
+    return date
   }
 
   if (Yox.is.number(date)) {
+    date = new Date(date)
+  }
+  if (isValidDate(date)) {
     date = new Date(date)
   }
 
@@ -145,4 +148,8 @@ export let lpad = function (num, length) {
   )
 
   return arr.join('0') + num
+}
+
+export let isValidDate = function (date) {
+  return Object.prototype.toString.call(date).toLocaleLowerCase() === '[object date]'
 }

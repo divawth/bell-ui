@@ -162,13 +162,15 @@ export default {
         getOffsetTime(parseDate(checkedEndDate))
       )
 
-      me.fire(
-        'deteRangeChange',
-        {
-          start: checkedStartDate,
-          end: checkedEndDate,
-        }
-      )
+      if (checkedStartDate && checkedEndDate) {
+        me.fire(
+          'deteRangeChange',
+          {
+            start: checkedStartDate,
+            end: checkedEndDate
+          }
+        )
+      }
     },
     refresh(start, end) {
       let me = this

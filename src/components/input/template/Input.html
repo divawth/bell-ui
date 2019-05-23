@@ -34,7 +34,9 @@
       <input ref="input"
         type="{{currentType}}"
         class="bell-input-el
-            {{#if size}} bell-input-{{size}}{{/if}}
+          {{#if size}} bell-input-{{size}}{{/if}}
+          {{#if hasSlot('prefix') || prefix}} bell-input-with-prefix{{/if}}
+          {{#if hasSlot('suffix') || suffix}} bell-input-with-suffix{{/if}}
         "
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
         {{#if disabled}} disabled="disabled"{{/if}}
@@ -43,11 +45,24 @@
         on-focus="focus()"
       />
 
+      {{#if hasSlot('prefix') || prefix}}
+      <span class="bell-input-prefix">
+        <slot name="prefix">
+          <Icon name="{{prefix}}" className="bell-input-prefix-icon" />
+        </slot>
+      </span>
+      {{/if}}
+
+      {{#if hasSlot('suffix') || suffix}}
+      <span class="bell-input-suffix">
+        <slot name="suffix">
+          <Icon name="{{suffix}}" className="bell-input-suffix-icon" />
+        </slot>
+      </span>
+      {{/if}}
+
       {{#if clearable}}
-        <i class="bell-icon
-          bell-icon-ios-close
-          bell-input-clear-icon
-        " on-click="clear()"></i>
+        <Icon name="close-circle" className="bell-input-clear-icon" on-click="clear()" />
       {{/if}}
 
       {{#if secure}}

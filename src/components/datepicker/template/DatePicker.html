@@ -4,30 +4,52 @@ class="${prefix}datepicker
 "
 {{#if style}} style="{{style}}"{{/if}}
 >
-  <div class="${prefix}datepicker-el">
-    <Input placeholder="请选择日期..."
-      model="formateDate"
-      type="input"
-      on-focus="focus()"
-      clearable
-    />
-  </div>
 
-  <div class="${prefix}datepicker-poper
-    {{#if isPopuping}} ${prefix}isPopuping{{/if}}
-    {{#if isPopdowning}} ${prefix}isPopdowning{{/if}}
-    {{#if isOpen}} ${prefix}show{{/if}}
-  ">
-    {{#if type == 'date'}}
-      <Date />
-    {{else if type == 'dateRange'}}
-      <DateRange />
-    {{else if type == 'week'}}
-      <DateWeek />
-    {{else if type == 'year'}}
-      <DateYear />
-    {{else if type == 'month'}}
-      <DateMonth />
-    {{/if}}
-  </div>
+  <Dropdown height="230" 
+    className="${prefix}datepicker-dropdown" 
+    placement="bottom-start" 
+    trigger="custom" 
+    visible="{{visible}}"
+  >
+
+    <div class="${prefix}datepicker-el">
+      <Input placeholder="请选择日期..."
+        model="formateDate"
+        type="input"
+        on-focus="focus()"
+        suffix="calendar"
+        clearable
+      />
+    </div>
+
+    <template slot="list">
+      {{#if shortcuts}}
+      <div class="${prefix}datepicker-sidebar">
+        {{#each shortcuts}}
+          <div class="${prefix}datepicker-shortcut" on-click="shortcutClick(this)">
+            {{text}}
+          </div>
+        {{/each}}
+      </div>
+      {{/if}}
+      <div class="${prefix}datepicker-poper
+        {{#if shortcuts}} ${prefix}datepicker-poper-with-sidebar{{/if}}
+      ">
+        {{#if type == 'date'}}
+          <Date />
+        {{else if type == 'dateRange'}}
+          <DateRange />
+        {{else if type == 'week'}}
+          <DateWeek />
+        {{else if type == 'year'}}
+          <DateYear />
+        {{else if type == 'month'}}
+          <DateMonth />
+        {{/if}}
+      </div>
+    </template>
+
+  </Dropdown>
+
 </div>
+

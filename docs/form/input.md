@@ -1,5 +1,19 @@
 > 基础用法
 
+```js
+export default {
+  template: `
+  <div>
+    <Input prefix="person" />
+    <Input suffix="calendar" />
+    <Input prefix="person" suffix="close" />
+  </div>
+  `
+}
+```
+
+> 基础用法
+
     export default {
         template: `
             <div>
@@ -213,6 +227,8 @@ disabled | 设置按钮为禁用状态 | boolean | - | false
 label | 设置右侧按钮文字 | string | - | -
 clearable | 清空按钮 | boolean, string, number | - | false
 secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
+prefix | 输入框头部图标 | string | - | -
+suffix | 输入框尾部图标 | string | - | -
 
 > Events
 

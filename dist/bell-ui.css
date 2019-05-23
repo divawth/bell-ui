@@ -3862,13 +3862,13 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 36px;
 }
 .bell-input-wrapper .bell-input-prepend {
-  border-color: #eee;
+  border-color: #dcdee2;
 }
 .bell-input-wrapper .bell-input-append {
-  border-color: #eee;
+  border-color: #dcdee2;
 }
 .bell-input-wrapper .bell-input {
-  border-color: #eee;
+  border-color: #dcdee2;
   background-color: #fff;
 }
 .bell-input-wrapper.bell-input-wrapper.hover .bell-input,
@@ -4001,7 +4001,7 @@ button.bell-button-danger-ghost[disabled] {
   cursor: not-allowed;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-el {
-  padding-right: 24px;
+  padding-right: 32px;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
   position: absolute;
@@ -4010,14 +4010,19 @@ button.bell-button-danger-ghost[disabled] {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
-  width: 24px;
+  width: 32px;
   font-size: 16px;
-  color: #ddd;
+  color: #808695;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable.bell-input-wrapper.bell-input-wrapper-clearable.hover .bell-input-clear-icon,
 .bell-input-wrapper.bell-input-wrapper-clearable:hover .bell-input-clear-icon,
 .bell-input-wrapper.bell-input-wrapper-clearable.bell-hover .bell-input-clear-icon {
   opacity: 1;
+}
+.bell-input-wrapper.bell-input-wrapper-clearable.bell-input-wrapper.bell-input-wrapper-clearable.hover .bell-input-suffix,
+.bell-input-wrapper.bell-input-wrapper-clearable:hover .bell-input-suffix,
+.bell-input-wrapper.bell-input-wrapper-clearable.bell-hover .bell-input-suffix {
+  opacity: 0;
 }
 .bell-textarea,
 .bell-input {
@@ -4085,6 +4090,38 @@ button.bell-button-danger-ghost[disabled] {
 .bell-input.bell-textarea .bell-input-el {
   resize: none;
   line-height: 1.5;
+}
+.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-prefix {
+  padding-left: 32px;
+}
+.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-suffix {
+  padding-right: 32px;
+}
+.bell-input-prefix {
+  width: 32px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.bell-input-prefix .bell-input-prefix-icon {
+  font-size: 16px;
+  line-height: 32px;
+  color: #808695;
+}
+.bell-input-suffix {
+  width: 32px;
+  height: 100%;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.bell-input-suffix .bell-input-suffix-icon {
+  font-size: 16px;
+  line-height: 32px;
+  color: #808695;
 }
 .bell-menu {
   display: block;
@@ -6185,21 +6222,41 @@ button.bell-button-danger-ghost[disabled] {
   font-size: 12px;
   min-width: 234px;
 }
+.bell-datepicker .bell-datepicker-dropdown {
+  width: 100%;
+}
 .bell-datepicker .bell-datepicker-el {
   display: inline-block;
   width: 100%;
 }
 .bell-datepicker .bell-datepicker-poper {
-  position: absolute;
+  width: 100%;
   z-index: 1060;
-  overflow: hidden;
-  box-shadow: 0px 0px 2px #eee;
-  margin-top: 4px;
-  max-height: 0px;
-  transition: max-height 0.3s;
 }
-.bell-datepicker .bell-datepicker-poper.bell-show {
-  max-height: 300px;
+.bell-datepicker .bell-datepicker-poper.bell-datepicker-poper-with-sidebar {
+  padding-left: 92px;
+}
+.bell-datepicker .bell-datepicker-sidebar {
+  width: 92px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #f8f8f9;
+  border-right: 1px solid #e8eaec;
+  border-radius: 4px 0 0 4px;
+  overflow: auto;
+}
+.bell-datepicker .bell-datepicker-shortcut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 6px 15px;
+}
+.bell-datepicker .bell-datepicker-shortcut.bell-datepicker .bell-datepicker-shortcut.hover,
+.bell-datepicker .bell-datepicker-shortcut:hover,
+.bell-datepicker .bell-datepicker-shortcut.bell-hover {
+  background-color: #e8eaec;
 }
 .bell-datepicker-date,
 .bell-datepicker-daterange,
@@ -8432,9 +8489,6 @@ button.bell-button-danger-ghost[disabled] {
   position: relative;
   padding: 5px 0;
 }
-.bell-dropdown.bell-dropdown-open > .bell-dropdown-list {
-  max-height: 200px;
-}
 .bell-dropdown[data-placement="top"] .bell-dropdown-list {
   bottom: 100%;
   left: 50%;
@@ -8485,7 +8539,7 @@ button.bell-button-danger-ghost[disabled] {
   right: 0;
 }
 .bell-dropdown-list {
-  width: inherit;
+  width: auto;
   overflow: auto;
   box-sizing: border-box;
   position: absolute;

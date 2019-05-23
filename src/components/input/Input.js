@@ -43,6 +43,12 @@ export default {
     },
     secure: {
       type: 'boolean'
+    },
+    prefix: {
+      type: 'string'
+    },
+    suffix: {
+      type: 'string'
     }
   },
 

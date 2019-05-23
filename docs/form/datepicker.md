@@ -7,8 +7,10 @@
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
-    <div>
+    <div style="height: 400px;">
       <DatePicker type="date" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
       <DatePicker type="dateRange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
@@ -21,81 +23,79 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>
-      <DatePicker type="date" options="{{options1}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="date" shortcuts="{{shortcuts1}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" options="{{options2}}" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" shortcuts="{{shortcuts2}}" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
     return {
-      options1: {
-        shortcuts: [
-          {
-            text: 'Today',
-            value () {
-              return new Date();
-            },
-            onClick: (picker) => {
-              this.$Message.info('Click today');
-            }
+      shortcuts1: [
+        {
+          text: 'Today',
+          value () {
+            return new Date();
           },
-          {
-            text: 'Yesterday',
-            value () {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              return date;
-            },
-            onClick: (picker) => {
-              this.$Message.info('Click yesterday');
-            }
-          },
-          {
-            text: 'One week',
-            value () {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              return date;
-            },
-            onClick: (picker) => {
-              this.$Message.info('Click a week ago');
-            }
+          onClick: (picker) => {
+            this.$Message.info('Click today');
           }
-        ]
-      },
-      options2: {
-        shortcuts: [
-          {
-            text: '1 week',
-            value () {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              return [start, end];
-            }
+        },
+        {
+          text: 'Yesterday',
+          value () {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24);
+            return date;
           },
-          {
-            text: '1 month',
-            value () {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              return [start, end];
-            }
-          },
-          {
-            text: '3 months',
-            value () {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              return [start, end];
-            }
+          onClick: (picker) => {
+            this.$Message.info('Click yesterday');
           }
-        ]
-      }
+        },
+        {
+          text: 'One week',
+          value () {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+            return date;
+          },
+          onClick: (picker) => {
+            this.$Message.info('Click a week ago');
+          }
+        }
+      ],
+      shortcuts2: [
+        {
+          text: '1 week',
+          value () {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            return [start, end];
+          }
+        },
+        {
+          text: '1 month',
+          value () {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            return [start, end];
+          }
+        },
+        {
+          text: '3 months',
+          value () {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+            return [start, end];
+          }
+        }
+      ]
     }
   }
 }
