@@ -325,6 +325,7 @@ var RAW_STRING = 'string';
 var RAW_BOOLEAN = 'boolean';
 var RAW_NUMERIC = 'numeric';
 var RAW_OBJECT = 'object';
+var RAW_FUNCTION = 'function';
 
 var RAW_HORIZONTAL = 'horizontal';
 var RAW_VERTICAL = 'vertical';
@@ -388,6 +389,22 @@ var RAW_SIZE_ARRAY = [
 var RAW_ICON_TYPE_ARRAY = [
   RAW_ICON_IOS,
   RAW_ICON_MD
+];
+
+
+var RAW_PLACEMENT_ARRAY = [
+  RAW_TOP, 
+  RAW_TOP_START,
+  RAW_TOP_END,
+  RAW_BOTTOM,
+  RAW_BOTTOM_START,
+  RAW_BOTTOM_END,
+  RAW_LEFT,
+  RAW_LEFT_START,
+  RAW_LEFT_END,
+  RAW_RIGHT,
+  RAW_RIGHT_START,
+  RAW_RIGHT_END
 ];
 
 var Layout = {
@@ -547,7 +564,16 @@ var findComponentUpward = function (context, componentName) {
 var oneOf = function (values) {
   return function (props, key) {
     if (!Yox.array.has(values, props[ key ])) {
-      Yox.logger.warn((key + " 期望是 " + (values.join(',')) + " 中的值，实际传值 " + (props[key]) + "。"));
+      Yox.logger.warn((key + " 期望是 " + (values.join(',')) + " 中的值，实际传值 " + (props[ key ]) + "。"));
+    }
+    return true
+  }
+};
+
+var isDate = function () {
+  return function (props, key) {
+    if (!Object.prototype.toString.call(props[ key ]).toLowerCase() === '[object date]') {
+      Yox.logger.warn((key + " 期望是 Date 类型，实际传值 " + (props[ key ]) + "。"));
     }
     return true
   }
@@ -1306,7 +1332,7 @@ var Input = {
   watchers: {
     value: function value(value$1) {
       this.fire(
-        'change',
+        'change.input',
         {
           value: value$1
         }
@@ -1336,6 +1362,9 @@ var Input = {
       this.set({
         value: ''
       });
+      this.fire(
+        'clear.input'
+      );
     }
   },
 
@@ -2939,6 +2968,17 @@ var lastDateInMonth = function (date) {
   )
 };
 
+var isValidDate = function (date) {
+  var time = date.getTime && date.getTime();
+  if (!time) {
+    time = date;
+  }
+  if (Yox.is.number(time)) {
+    return ('' + time).length > 8
+  }
+  return false
+};
+
 var parseDate = function(year, month, date) {
   var valid = false;
 
@@ -2974,13 +3014,11 @@ var parseDate = function(year, month, date) {
 };
 
 var simplifyDate = function (date) {
-  if (!date) {
-    return
+  if (!date || !isValidDate(date)) {
+    return date
   }
 
-  if (Yox.is.number(date)) {
-    date = new Date(date);
-  }
+  date = new Date(date);
 
   return {
     year: date.getFullYear(),
@@ -3011,7 +3049,20 @@ var lpad = function (num, length) {
   return arr.join('0') + num
 };
 
-var template$n = "<div \nclass=\"bell-datepicker-date\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年 {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-table-date\">\n    <div class=\"bell-datepicker-weeks\">\n      {{#each weeks}}\n        <span class=\"bell-datepicker-col bell-text-sub\">\n          {{this}}\n        </span>\n      {{/each}}\n    </div>\n    <div class=\"bell-datepicker-days\">\n      {{#each dateList:index}}\n        <div class=\"bell-datepicker-row\">\n          {{#each this:index}}\n            <span\n              class=\"bell-datepicker-col\n              {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}\"\n              on-click=\"click(this)\"\n            >\n              {{date}}\n            </span>\n          {{/each}}\n        </div>\n      {{/each}}\n    </div>\n  </div>\n\n</div>";
+var formatList = function (list) {
+  var result = [];
+  var arr = [];
+  for (var i = 0; i < list.length; i++) {
+    arr.push(list[ i ]);
+    if (i % 7 == 6) {
+      result.push(arr);
+      arr = [];
+    }
+  }
+  return result
+};
+
+var template$n = "<div \nclass=\"bell-datepicker-date\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"this.changeDateList(-12)\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"this.changeDateList(-1)\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{modeDate.year}} 年 {{modeDate.month}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"this.changeDateList(1)\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"this.changeDateList(12)\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-table-date\">\n    <div class=\"bell-datepicker-weeks\">\n      {{#each weeks}}\n        <span class=\"bell-datepicker-col bell-text-sub\">\n          {{this}}\n        </span>\n      {{/each}}\n    </div>\n    <div class=\"bell-datepicker-days\">\n      {{#each dateList:index}}\n        <div class=\"bell-datepicker-row\">\n          {{#each this:index}}\n            <span\n              class=\"{{#if isCurrentMonth && !disabled}} \n                bell-datepicker-col-current-month\n              {{else if disabled}}\n                bell-datepicker-col-disabled\n              {{/if}} bell-datepicker-col\n              {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n              {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n              {{#if isCurrentDate}} bell-datepicker-col-checked{{/if}}\n            \"\n            {{#if isCurrentMonth && !disabled}} on-click=\"click(this)\"{{/if}}\n            >\n              {{date}}\n            </span>\n          {{/each}}\n        </div>\n      {{/each}}\n    </div>\n  </div>\n</div>";
 
 var WEEKS = [
   '日',
@@ -3029,8 +3080,17 @@ var stableDuration = 41 * DAY;
 var Date$1 = {
 
   propTypes: {
-    date: {
-      type: RAW_NUMERIC
+    multiple: {
+      type: RAW_BOOLEAN
+    },
+    startDate: {
+      type: isDate()
+    },
+    value: {
+      type: isDate()
+    },
+    disabledDate: {
+      type: RAW_FUNCTION
     },
     firstDay: {
       type: RAW_NUMERIC
@@ -3046,110 +3106,130 @@ var Date$1 = {
   template: template$n,
 
   data: function data() {
+    var modeDate = this.get('startDate') ? this.get('startDate') : new Date();
     return {
       weeks: WEEKS,
+      currentDate: null,
+      modeDate: simplifyDate(modeDate),
+
       dateList: [],
-      checkedDate: '',
-      // 视图日期
-      modeDate: ''
+      selectedDates: []
     }
   },
 
-  computed: {
-    currentYear: function currentYear() {
-      var me = this;
-      var date = me.get('modeDate');
-      date = date
-        ? simplifyDate(date)
-        : simplifyDate(new Date());
-      return date.year
-    },
-    currentMonth: function currentMonth() {
-      var me = this;
-      var date = me.get('modeDate');
-      date = date
-        ? simplifyDate(date)
-        : simplifyDate(new Date());
-      return date.month
+  events: {
+    'clear.datepicker': function (event) {
+      this.set({
+        currentDate: null,
+        selectedDates: [],
+        dateList: this.createRenderData(this.get('modeDate'), null, [])
+      });
+      event.stop();
+    }
+  },
+
+  watchers: {
+    currentDate: function currentDate(date) {
+      this.fire(
+        'change.date',
+        {
+          date: date,
+          selectedDates: this.get('selectedDates')
+        }
+      );
     }
   },
 
   methods: {
-    changeDate: function changeDate(offset) {
+    changeDateList: function changeDateList(offset) {
       var me = this;
-      var date = me.get('modeDate');
-
-      date = offsetMonth(date, offset);
-
-      me.set({
-        modeDate: date,
-        dateList: me.createRenderData(date, me.get('checkedDate'))
-      });
-    },
-
-    prevYear: function prevYear() {
-      this.changeDate(-12);
-    },
-    prevMonth: function prevMonth() {
-      this.changeDate(-1);
-    },
-    nextYear: function nextYear() {
-      this.changeDate(12);
-    },
-    nextMonth: function nextMonth() {
-      this.changeDate(1);
-    },
-    click: function click(date) {
-      if (!date.isCurrentMonth) {
-        return
-      }
-      var me = this;
-      me.fire(
-        'deteChange',
-        date
+      var modeDate = simplifyDate(
+        offsetMonth(
+          parseDate(me.get('modeDate')), 
+          offset
+        )
+      ); 
+      var dateList = me.createRenderData(
+        modeDate, 
+        me.get('currentDate'),
+        me.get('selectedDates')
       );
-
-      date = parseDate(date);
       me.set({
-        checkedDate: date,
-        modeDate: date,
-        dateList: me.createRenderData(date, date),
+        modeDate: modeDate,
+        dateList: dateList
       });
     },
-    // 获取渲染模板的数据
-    getDatasource: function getDatasource(start, end, modeDate, checkedDate) {
+
+    addDates: function addDates(date) {
+      var selectedDates = this.copy(this.get('selectedDates'));
+      var index = this.getDateIndex(date, selectedDates);
+      if (index < 0) {
+        selectedDates.push(
+          this.getDateString(date)
+        );
+      }
+      else {
+        selectedDates.splice(index, 1);
+      }
+      this.set({ selectedDates: selectedDates });
+    },
+
+    click: function click(date) {
+      var me = this;
+      me.get('multiple') && me.addDates(date);
+      me.set({
+        currentDate: date,
+        dateList: me.createRenderData(
+          me.get('modeDate'), 
+          date,
+          me.get('selectedDates')
+        )
+      });
+    },
+
+    getDateString: function getDateString(date) {
+      return ((date.year) + "/" + (date.month) + "/" + (date.date) + "/" + (date.day))
+    },
+    getDateIndex: function getDateIndex(item, list) {
+      return list.indexOf(this.getDateString(item))
+    },
+
+    getDataSource: function getDataSource(start, end, modeDate, currentDate, selectedDates) {
       var data = [];
-      modeDate = simplifyDate(modeDate);
-      checkedDate = simplifyDate(checkedDate);
       for (var time = start, item = (void 0); time <= end; time += DAY) {
         item = simplifyDate(time);
-        if (item.year == checkedDate.year
-          && item.month == checkedDate.month
-          && item.date == checkedDate.date
-          && item.day == checkedDate.day
+
+        if (this.get('multiple')) {
+          if (this.getDateIndex(item, selectedDates) >= 0) {
+            item.isCurrentDate = true;
+          }
+        }
+        else if (currentDate
+          && currentDate.year === item.year 
+          && currentDate.month === item.month
+          && currentDate.date === item.date
         ) {
           item.isCurrentDate = true;
         }
-
+        if (this.get('disabledDate')) {
+          item.disabled = this.get('disabledDate')(parseDate(item));
+        }
         item.isPrevMonth = item.month < modeDate.month;
         item.isCurrentMonth = item.month == modeDate.month;
         item.isLastMonth = item.month > modeDate.month;
         data.push(item);
       }
       return data
-
     },
-    createRenderData: function createRenderData(modeDate, checkedDate) {
-
+    createRenderData: function createRenderData(modeDate, currentDate, selectedDates) {
       var me = this;
       var firstDay = me.get('firstDay') || 0;
-      modeDate = normalizeDate(modeDate);
-
+      var modeDateString = parseDate(modeDate);
       var startDate;
       var endDate;
 
-      startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay);
-      endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay);
+      startDate = firstDateInWeek(firstDateInMonth(modeDateString), firstDay);
+      endDate = lastDateInWeek(lastDateInMonth(modeDateString), firstDay);
 
       startDate = normalizeDate(startDate);
       endDate = normalizeDate(endDate);
@@ -3160,39 +3240,26 @@ var Date$1 = {
       if (offset > 0) {
         endDate += offset;
       }
-      var list = me.getDatasource(startDate, endDate, modeDate, checkedDate);
-      return me.format(list)
-    },
-    format: function format(list) {
-      var result = [];
-      var arr = [];
-      for (var i = 0; i < list.length; i++) {
-        arr.push(list[i]);
-        if (i % 7 == 6) {
-          result.push(arr);
-          arr = [];
-        }
-      }
-      return result
+      var list = me.getDataSource(
+        startDate, 
+        endDate, 
+        modeDate, 
+        currentDate, 
+        selectedDates
+      );
+      return formatList(list)
     }
   },
 
   afterMount: function afterMount() {
-    var me = this;
-
-    var today = new Date();
-    var date = me.get('checkedDate');
-    date = date ? date : today;
-
-    me.set({
-      modeDate: date,
-      checkedDate: date,
-      dateList: me.createRenderData(date, date)
+    this.set({
+      currentDate: this.get('value') ? simplifyDate(this.get('value')) : null,
+      dateList: this.createRenderData(this.get('modeDate'), null, [])
     });
   }
 };
 
-var template$o = "<div class=\"bell-datepicker-daterange\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevYear()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMonth()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium bell-datepicker-header-month\">\n      {{currentYear}} 年 {{currentMonth}} 月\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{currentYear}} 年 {{currentMonth + 1}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMonth()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextYear()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-daterange-wrapper\">\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each dateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n    </div>\n  </div>\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each nextDateList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\"\n                on-click=\"click(this)\"\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n      </div>\n    </div>\n  </div>\n\n</div>";
+var template$o = "<div class=\"bell-datepicker-daterange\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"startPrevYear()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"startPrevMonth()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium \n    {{#if !splitPanel}} bell-datepicker-header-month{{/if}}\"\n    >\n      {{startModeDateYear}} 年 {{startModeDateMonth}} 月\n    </span>\n    \n    {{#if splitPanel}}\n      <span class=\"bell-datepicker-header-button\" on-click=\"startNextMonth()\">\n        <Icon name=\"arrow-forward\" />\n      </span>\n  \n      <span class=\"bell-datepicker-header-button\" on-click=\"startNextYear()\">\n        <Icon name=\"arrow-forward\" />\n        <Icon name=\"arrow-forward\" />\n      </span>\n\n      <span class=\"bell-datepicker-header-button\" on-click=\"endPrevYear()\">\n        <Icon name=\"arrow-back\" />\n        <Icon name=\"arrow-back\" />\n      </span>\n  \n      <span class=\"bell-datepicker-header-button\" on-click=\"endPrevMonth()\">\n        <Icon name=\"arrow-back\" />\n      </span>\n    {{/if}}\n\n    <span class=\"bell-text-medium\">\n      {{endModeDateYear}} 年 {{endModeDateMonth}} 月\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"endNextMonth()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"endNextYear()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-daterange-wrapper\">\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each startModeList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"{{#if isCurrentMonth && !disabled}} \n                  bell-datepicker-col-current-month\n                {{else if disabled}}\n                  bell-datepicker-col-disabled\n                {{/if}} bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\n              \"\n              {{#if isCurrentMonth && !disabled}} on-click=\"click(this)\"{{/if}}\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n    </div>\n  </div>\n    <div class=\"bell-datepicker-table-date\">\n      <div class=\"bell-datepicker-weeks\">\n        {{#each weeks}}\n          <span class=\"bell-datepicker-col bell-text-sub\">\n            {{this}}\n          </span>\n        {{/each}}\n      </div>\n      <div class=\"bell-datepicker-days\">\n        {{#each endModeList:key}}\n          <div class=\"bell-datepicker-row\">\n            {{#each this:index}}\n              <span\n                class=\"{{#if isCurrentMonth && !disabled}} \n                  bell-datepicker-col-current-month\n                {{else if disabled}}\n                  bell-datepicker-col-disabled\n                {{/if}} bell-datepicker-col\n                {{#if isCurrentMonth}} bell-datepicker-col-current-month{{/if}}\n                {{#if isPrevMonth}} bell-datepicker-col-prev-month{{/if}}\n                {{#if isLastMonth}} bell-datepicker-col-last-month{{/if}}\n                {{#if isCurrentMonth && isCheckedDate}} bell-datepicker-col-checked{{/if}}\n                {{#if isCurrentMonth && isRangeDate}} bell-datepicker-col-range{{/if}}\n              \"\n              {{#if isCurrentMonth && !disabled}} on-click=\"click(this)\"{{/if}}\n                on-mouseover=\"hover(this)\"\n              >\n                {{date}}\n              </span>\n            {{/each}}\n          </div>\n        {{/each}}\n      </div>\n    </div>\n  </div>\n\n</div>";
 
 var WEEKS$1 = [
   '日',
@@ -3210,11 +3277,17 @@ var stableDuration$1 = 41 * DAY$1;
 var DateRange = {
 
   propTypes: {
-    start: {
-      type: RAW_NUMERIC
+    splitPanel: {
+      type: RAW_BOOLEAN
     },
-    end: {
-      type: RAW_NUMERIC
+    startDate: {
+      type: isDate()
+    },
+    value: {
+      type: RAW_ARRAY
+    },
+    disabledDate: {
+      type: RAW_FUNCTION
     },
     firstDay: {
       type: RAW_NUMERIC
@@ -3232,74 +3305,122 @@ var DateRange = {
   data: function data() {
     return {
       weeks: WEEKS$1,
-      // 视图日期
-      modeDate: '',
+      
+      startModeDate: '',
+      endModeDate: '',
 
-      checkedStartDate: this.get('start') ? simplifyDate(new Date(this.get('start'))) : '',
-      checkedEndDate: this.get('end') ? simplifyDate(new Date(this.get('end'))) : '',
+      checkedStartDate: '',
+      checkedEndDate: '',
 
-      dateList: [],
-      nextDateList: []
+      startModeList: [],
+      endModeList: []
     }
   },
 
   computed: {
-    currentYear: function currentYear() {
-      var date = this.get('modeDate');
-      date = date ? simplifyDate(date) : simplifyDate(new Date());
-      return date.year
+    startModeDateYear: function startModeDateYear() {
+      return simplifyDate(this.get('startModeDate')).year
     },
-    currentMonth: function currentMonth() {
-      var date = this.get('modeDate');
-      date = date ? simplifyDate(date) : simplifyDate(new Date());
-      return date.month
+    startModeDateMonth: function startModeDateMonth() {
+      return simplifyDate(this.get('startModeDate')).month
+    },
+    endModeDateYear: function endModeDateYear() {
+      return simplifyDate(this.get('endModeDate')).year
+    },
+    endModeDateMonth: function endModeDateMonth() {
+      return simplifyDate(this.get('endModeDate')).month
+    }
+  },
+
+  events: {
+    'clear.datepicker': function (event) {
+      this.set({
+        checkedStartDate: '',
+        checkedEndDate: '',
+        endModeList: this.createRenderData(this.get('endModeDate'), '', ''),
+        startModeList: this.createRenderData(this.get('startModeDate'), '', '')
+      });
+      event.stop();
     }
   },
 
   methods: {
-    changeDate: function changeDate(offset) {
+    changeStartModeDate: function changeStartModeDate(offset) {
       var me = this;
-      var date = me.get('modeDate');
-
-      date = offsetMonth(date, offset);
-
-      var dateList = me.createRenderData(
-        date,
-        me.get('checkedStartDate'),
-        me.get('checkedEndDate')
-      );
-      var nextDateList = me.createRenderData(
-        offsetMonth(date, 1),
+      var startModeDate = me.get('startModeDate');
+      startModeDate = offsetMonth(startModeDate, offset);
+      var startModeList = me.createRenderData(
+        startModeDate,
         me.get('checkedStartDate'),
         me.get('checkedEndDate')
       );
       me.set({
-        modeDate: date,
-        dateList: dateList,
-        nextDateList: nextDateList
+        startModeDate: startModeDate,
+        startModeList: startModeList
       });
+      if (me.get('endModeDate').getTime() <= startModeDate.getTime()) {
+        me.changeEndModeDate(offset);
+      }
     },
-    prevYear: function prevYear() {
-      this.changeDate(-12);
+    changeEndModeDate: function changeEndModeDate(offset) {
+      var me = this;
+      var endModeDate = me.get('endModeDate');
+      endModeDate = offsetMonth(endModeDate, offset);
+      var endModeList = me.createRenderData(
+        endModeDate,
+        me.get('checkedStartDate'),
+        me.get('checkedEndDate')
+      );
+      me.set({
+        endModeDate: endModeDate,
+        endModeList: endModeList
+      });
+      if (me.get('endModeDate').getTime() <= me.get('startModeDate').getTime()) {
+        me.changeStartModeDate(offset);
+      }
     },
-    prevMonth: function prevMonth() {
-      this.changeDate(-1);
+    startPrevYear: function startPrevYear() {
+      this.changeStartModeDate(-12);
+      if (!this.get('splitPanel')) {
+        this.changeEndModeDate(-12);
+      }
     },
-    nextYear: function nextYear() {
-      this.changeDate(12);
+    startPrevMonth: function startPrevMonth() {
+      this.changeStartModeDate(-1);
+      if (!this.get('splitPanel')) {
+        this.changeEndModeDate(-1);
+      }
     },
-    nextMonth: function nextMonth() {
-      this.changeDate(1);
+    startNextYear: function startNextYear() {
+      this.changeStartModeDate(12);
+    },
+    startNextMonth: function startNextMonth() {
+      this.changeStartModeDate(1);
+    },
+    endPrevYear: function endPrevYear() {
+      this.changeEndModeDate(-12);
+    },
+    endPrevMonth: function endPrevMonth() {
+      this.changeEndModeDate(-1);
+    },
+    endNextYear: function endNextYear() {
+      this.changeEndModeDate(12);
+      if (!this.get('splitPanel')) {
+        this.changeStartModeDate(12);
+      }
+    },
+    endNextMonth: function endNextMonth() {
+      this.changeEndModeDate(1);
+      if (!this.get('splitPanel')) {
+        this.changeStartModeDate(1);
+      }
     },
     hover: function hover(date) {
       var me = this;
       var startDate = me.get('checkedStartDate');
       var endDate = me.get('checkedEndDate');
 
-      if (!date.isCurrentMonth
-        || !startDate
-        || endDate
-      ) {
+      if (!startDate || endDate) {
         return
       }
 
@@ -3319,9 +3440,6 @@ var DateRange = {
       );
     },
     click: function click(date) {
-      if (!date.isCurrentMonth) {
-        return
-      }
       var me = this;
       var checkedStartDate = me.get('checkedStartDate');
       var checkedEndDate = me.get('checkedEndDate');
@@ -3346,7 +3464,7 @@ var DateRange = {
 
       if (checkedStartDate && checkedEndDate) {
         me.fire(
-          'deteRangeChange',
+          'deteRangeChange.dateRange',
           {
             start: checkedStartDate,
             end: checkedEndDate
@@ -3357,12 +3475,12 @@ var DateRange = {
     refresh: function refresh(start, end) {
       var me = this;
 
-      var dateList = me.copy(me.get('dateList'));
-      var nextDateList = me.copy(me.get('nextDateList'));
+      var startModeList = me.copy(me.get('startModeList'));
+      var endModeList = me.copy(me.get('endModeList'));
 
       if (end) {
         Yox.array.each(
-          dateList,
+          startModeList,
           function (arr) {
             Yox.array.each(
               arr,
@@ -3378,7 +3496,7 @@ var DateRange = {
           }
         );
         Yox.array.each(
-          nextDateList,
+          endModeList,
           function (arr) {
             Yox.array.each(
               arr,
@@ -3396,7 +3514,7 @@ var DateRange = {
       }
       else if (start) {
         Yox.array.each(
-          dateList,
+          startModeList,
           function (arr) {
             Yox.array.each(
               arr,
@@ -3409,7 +3527,7 @@ var DateRange = {
           }
         );
         Yox.array.each(
-          nextDateList,
+          endModeList,
           function (arr) {
             Yox.array.each(
               arr,
@@ -3424,17 +3542,20 @@ var DateRange = {
       }
 
       me.set({
-        dateList: dateList,
-        nextDateList: nextDateList
+        startModeList: startModeList,
+        endModeList: endModeList
       });
     },
-    // 获取渲染模板的数据
-    getDatasource: function getDatasource(start, end, date, checkedStart, checkedEnd) {
-
+    getDataSource: function getDataSource(start, end, date, checkedStartDate, checkedEndDate) {
       var data = [];
       date = simplifyDate(date);
-      checkedStart = getOffsetTime(parseDate(checkedStart));
-      checkedEnd = getOffsetTime(parseDate(checkedEnd));
+
+      var checkedStart = getOffsetTime(
+        parseDate(checkedStartDate)
+      );
+      var checkedEnd = getOffsetTime(
+        parseDate(checkedEndDate)
+      );
 
       for (var time = start, item = (void 0); time <= end; time += DAY$1) {
         item = simplifyDate(time);
@@ -3444,13 +3565,14 @@ var DateRange = {
         item.isLastMonth = item.month > date.month;
         item.isCheckedDate = itemTime === checkedStart || itemTime === checkedEnd;
         item.isRangeDate = itemTime > checkedStart && itemTime < checkedEnd;
+        if (this.get('disabledDate')) {
+          item.disabled = this.get('disabledDate')(parseDate(item));
+        }
         data.push(item);
       }
       return data
-
     },
-    createRenderData: function createRenderData(date, checkedStart, checkedEnd) {
-
+    createRenderData: function createRenderData(date, checkedStartDate, checkedEndDate) {
       var me = this;
       var firstDay = me.get('firstDay') || 0;
       date = normalizeDate(date);
@@ -3470,53 +3592,57 @@ var DateRange = {
       if (offset > 0) {
         endDate += offset;
       }
-      var list = me.getDatasource(
+      var list = me.getDataSource(
         startDate,
         endDate,
         date,
-        checkedStart,
-        checkedEnd
+        checkedStartDate,
+        checkedEndDate
       );
-      return me.format(list)
-
-    },
-    format: function format(list) {
-      var result = [];
-      var arr = [];
-      for (var i = 0; i < list.length; i++) {
-        arr.push(list[i]);
-        if (i % 7 == 6) {
-          result.push(arr);
-          arr = [];
-        }
-      }
-      return result
+      return formatList(list)
     }
   },
 
   afterMount: function afterMount() {
+
     var me = this;
-
-    var today = new Date();
-
-    var date = me.get('start');
-    date = date ? date : today;
-
-    var dateList = me.createRenderData(
-      date,
-      me.get('checkedStartDate'),
+    var startModeDate = me.get('startDate') ? me.get('startDate') : new Date();
+    var endModeDate = offsetMonth(startModeDate, 1);
+    var startModeList = me.createRenderData(
+      startModeDate, 
+      me.get('checkedStartDate'), 
       me.get('checkedEndDate')
     );
-    var nextDateList = me.createRenderData(
-      offsetMonth(date, 1),
-      me.get('CheckedStartDate'),
-      me.get('CheckedEndDate')
+    var endModeList = me.createRenderData(
+      endModeDate,  
+      me.get('checkedStartDate'), 
+      me.get('checkedEndDate')
     );
+
+    var value = me.get('value');
+    if (value) {
+      var checkedStartDate = simplifyDate(value[ 0 ]);
+      var checkedEndDate = simplifyDate(value[ 1 ]);
+      me.set({
+        checkedStartDate: checkedStartDate,
+        checkedEndDate: checkedEndDate
+      });
+      me.fire(
+        'deteRangeChange.dateRange',
+        {
+          start: checkedStartDate,
+          end: checkedEndDate
+        }
+      );
+    }
+
     me.set({
-      modeDate: date,
-      dateList: dateList,
-      nextDateList: nextDateList
+      startModeDate: startModeDate,
+      endModeDate: endModeDate,
+      startModeList: startModeList,
+      endModeList: endModeList
     });
+
   }
 };
 
@@ -3542,7 +3668,6 @@ var DateWeek = {
     week: {
       type: RAW_NUMERIC
     },
-    // date
     date: {
       type: RAW_NUMERIC
     },
@@ -3563,7 +3688,6 @@ var DateWeek = {
     return {
       weeks: WEEKS$2,
       dateList: [],
-      // 默认是某周第一天
       modeDate: this.get('date') ? parseDate(this.get('date')) : '',
       checkedIndex: this.get('week'),
       checkedDateTime: -1
@@ -3572,15 +3696,10 @@ var DateWeek = {
 
   computed: {
     currentYear: function currentYear() {
-      var me = this;
-      var date = me.get('modeDate');
-      date = date ? simplifyDate(date) : simplifyDate(new Date());
-      return date.year
+      return simplifyDate(this.get('modeDate')).year
     },
     currentMonth: function currentMonth() {
-      var date = this.get('modeDate');
-      date = date ? simplifyDate(date) : simplifyDate(new Date());
-      return date.month
+      return simplifyDate(this.get('modeDate')).month
     }
   },
 
@@ -3588,9 +3707,7 @@ var DateWeek = {
     changeDate: function changeDate(offset) {
       var me = this;
       var date = me.get('modeDate');
-
       date = offsetMonth(date, offset);
-
       me.set({
         checkedIndex: -1,
         modeDate: date,
@@ -3613,20 +3730,18 @@ var DateWeek = {
       this.changeDate(1);
     },
     click: function click(date) {
-      var me = this;
-      me.fire(
+      this.fire(
         'weekRangeChange',
         {
-          start: date[0],
-          end: date[date.length - 1]
+          start: date[ 0 ],
+          end: date[ date.length - 1 ]
         }
       );
-      me.refresh(
-        getOffsetTime(parseDate(date[0])),
-        getOffsetTime(parseDate(date[date.length - 1]))
+      this.refresh(
+        getOffsetTime(parseDate(date[ 0 ]))
       );
     },
-    refresh: function refresh(start, end) {
+    refresh: function refresh(start) {
       var me = this;
       var dateList = me.get('dateList');
       var checkedIndex = '';
@@ -3660,7 +3775,6 @@ var DateWeek = {
 
     },
     createRenderData: function createRenderData(modeDate, checkedDateTime) {
-
       var me = this;
       var firstDay = me.get('firstDay') || 0;
       modeDate = normalizeDate(modeDate);
@@ -3708,12 +3822,9 @@ var DateWeek = {
 
   afterMount: function afterMount() {
     var me = this;
-
     var today = new Date();
-
     var date = me.get('modeDate');
     date = date ? date : today;
-
     me.set({
       modeDate: date,
       dateList: me.createRenderData(
@@ -3724,7 +3835,7 @@ var DateWeek = {
   }
 };
 
-var template$q = "<div class=\"bell-datepicker-month\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMore()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prev()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{modeYear}} 年\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"next()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMore()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-body\">\n    {{#each months:index}}\n      <span\n        class=\"bell-datepicker-col\n        {{#if checkedMonth == index && checkedYear == modeYear}} bell-datepicker-col-checked{{/if}}\"\n        on-click=\"click(index)\"\n      >\n        {{this}}\n      </span>\n    {{/each}}\n  </div>\n\n</div>";
+var template$q = "<div class=\"bell-datepicker-month\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prevMore()\">\n      <Icon name=\"arrow-back\" />\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"prev()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{modeYear}} 年\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"next()\">\n      <Icon name=\"arrow-forward\" />\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"nextMore()\">\n      <Icon name=\"arrow-forward\" />\n      <Icon name=\"arrow-forward\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-body\">\n    {{#each months:index}}\n      <span\n        class=\"bell-datepicker-col\n        {{#if checkedMonth == index && checkedYear == modeYear}} bell-datepicker-col-checked{{/if}}\"\n        on-click=\"click(index)\"\n      >\n        {{this}}\n      </span>\n    {{/each}}\n  </div>\n\n</div>";
 
 var MONTHS = [
   '一月',
@@ -3738,7 +3849,8 @@ var MONTHS = [
   '九月',
   '十月',
   '十一月',
-  '十二月' ];
+  '十二月'
+];
 
 var DateMonth = {
 
@@ -3805,7 +3917,7 @@ var DateMonth = {
   }
 };
 
-var template$r = "<div class=\"bell-datepicker-month\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prev()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-left\"></i>\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{modeYear}} 年 ~ {{modeYear + 12}} 年\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"next()\">\n      <i class=\"bell-icon bell-text-medium bell-text-muted bell-icon-ios-arrow-right\"></i>\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-body\">\n    {{#each years:index}}\n      <span\n        class=\"bell-datepicker-col\n        {{#if checkedYear == this}} bell-datepicker-col-checked{{/if}}\"\n        on-click=\"click(this)\"\n      >\n        {{this}}\n      </span>\n    {{/each}}\n  </div>\n\n</div>";
+var template$r = "<div class=\"bell-datepicker-month\n  {{#if className}} {{className}}{{/if}}\n\"{{#if style}} {{style}}{{/if}}>\n\n  <div class=\"bell-datepicker-header\">\n    <span class=\"bell-datepicker-header-button\" on-click=\"prev()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n\n    <span class=\"bell-text-medium\">\n      {{modeYear}} 年 ~ {{modeYear + 12}} 年\n    </span>\n\n    <span class=\"bell-datepicker-header-button\" on-click=\"next()\">\n      <Icon name=\"arrow-back\" />\n    </span>\n  </div>\n\n  <div class=\"bell-datepicker-body\">\n    {{#each years:index}}\n      <span\n        class=\"bell-datepicker-col\n        {{#if checkedYear == this}} bell-datepicker-col-checked{{/if}}\"\n        on-click=\"click(this)\"\n      >\n        {{this}}\n      </span>\n    {{/each}}\n  </div>\n\n</div>";
 
 var DateYear = {
 
@@ -3824,8 +3936,10 @@ var DateYear = {
   template: template$r,
 
   data: function data() {
+    var start = this.get('startYear');
+    start = start ? start : new Date().getFullYear();
     return {
-      modeYear: this.get('startYear'),
+      modeYear: start,
       checkedYear: '',
       years: []
     }
@@ -3865,14 +3979,11 @@ var DateYear = {
   },
 
   afterMount: function afterMount() {
-    var today = new Date();
-    var start = this.get('startYear');
-    start = start ? start : today.getFullYear();
-    this.getYearList(start);
+    this.getYearList(this.get('modeYear'));
   }
 };
 
-var template$s = "<div \nclass=\"bell-datepicker\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <Dropdown height=\"230\" \n    className=\"bell-datepicker-dropdown\" \n    placement=\"bottom-start\" \n    trigger=\"custom\" \n    visible=\"{{visible}}\"\n  >\n\n    <div class=\"bell-datepicker-el\">\n      <Input placeholder=\"请选择日期...\"\n        model=\"formateDate\"\n        type=\"input\"\n        on-focus=\"focus()\"\n        suffix=\"calendar\"\n        clearable\n      />\n    </div>\n\n    <template slot=\"list\">\n      {{#if shortcuts}}\n      <div class=\"bell-datepicker-sidebar\">\n        {{#each shortcuts}}\n          <div class=\"bell-datepicker-shortcut\" on-click=\"shortcutClick(this)\">\n            {{text}}\n          </div>\n        {{/each}}\n      </div>\n      {{/if}}\n      <div class=\"bell-datepicker-poper\n        {{#if shortcuts}} bell-datepicker-poper-with-sidebar{{/if}}\n      \">\n        {{#if type == 'date'}}\n          <Date />\n        {{else if type == 'dateRange'}}\n          <DateRange />\n        {{else if type == 'week'}}\n          <DateWeek />\n        {{else if type == 'year'}}\n          <DateYear />\n        {{else if type == 'month'}}\n          <DateMonth />\n        {{/if}}\n      </div>\n    </template>\n\n  </Dropdown>\n\n</div>\n\n";
+var template$s = "<div \nclass=\"bell-datepicker\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <Dropdown height=\"{{autoClose ? 230 : 280}}\" \n    className=\"bell-datepicker-dropdown\" \n    placement=\"{{placement}}\" \n    trigger=\"custom\" \n    visible=\"{{isOpen}}\"\n  >\n\n    <div class=\"bell-datepicker-el\">\n      <slot name=\"children\">\n        <Input placeholder=\"请选择日期...\"\n          model=\"formatDate\"\n          type=\"input\"\n          size=\"{{size}}\"\n          on-focus=\"focus()\"\n          suffix=\"calendar\"\n          clearable=\"{{clearable}}\"\n        />\n      </slot>\n    </div>\n\n    <template slot=\"list\">\n      {{#if shortcuts}}\n      <div class=\"bell-datepicker-sidebar\">\n        {{#each shortcuts}}\n          <div class=\"bell-datepicker-shortcut\" on-click=\"shortcutClick(this)\">\n            {{text}}\n          </div>\n        {{/each}}\n      </div>\n      {{/if}}\n      <div class=\"bell-datepicker-poper\n        {{#if shortcuts}} bell-datepicker-poper-with-sidebar{{/if}}\n      \">\n        {{#if type == 'date'}}\n          <Date multiple=\"{{multiple}}\" \n            startDate=\"{{startDate}}\" \n            value=\"{{value}}\"\n            disabledDate=\"{{disabledDate}}\"\n          />\n        {{else if type == 'dateRange'}}\n          <DateRange \n            splitPanel=\"{{splitPanel}}\" \n            startDate=\"{{startDate}}\" \n            value=\"{{value}}\"\n            disabledDate=\"{{disabledDate}}\"\n          />\n        {{else if type == 'week'}}\n          <DateWeek />\n        {{else if type == 'year'}}\n          <DateYear />\n        {{else if type == 'month'}}\n          <DateMonth />\n        {{/if}}\n      </div>\n\n      {{#if autoClose}}\n      <div class=\"bell-datepicker-confirm\">\n        <Button size=\"small\" type=\"primary\" on-click=\"ok()\">\n          确认\n        </Button>\n        <Button size=\"small\" on-click=\"clear()\">\n          清空\n        </Button>\n      </div>\n      {{/if}}\n    </template>\n\n  </Dropdown>\n\n</div>\n\n";
 
 var DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ];
 
@@ -3883,14 +3994,46 @@ var DatePicker = {
       type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
       value: 'date'
     },
+    size: {
+      type: oneOf(RAW_SIZE_ARRAY)
+    },
     value: {
-      type: 'date'
+      type: isDate()
     },
     shortcuts: {
       type: RAW_ARRAY
     },
-    formateText: {
+    splitPanel: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    multiple: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    placement: {
+      type: oneOf(RAW_PLACEMENT_ARRAY),
+      value: RAW_BOTTOM_START
+    },
+    startDate: {
+      type: isDate()
+    },
+    formatText: {
       type: RAW_STRING
+    },
+    disabledDate: {
+      type: RAW_FUNCTION
+    },
+    confirm: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    clearable: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    open: {
+      type: RAW_BOOLEAN
     },
     className: {
       type: RAW_STRING
@@ -3914,6 +4057,15 @@ var DatePicker = {
     }
   },
 
+  computed: {
+    autoClose: function autoClose() {
+      return this.get('multiple') || this.get('confirm')
+    },
+    isOpen: function isOpen() {
+      return this.get('visible') || this.get('open')
+    }
+  },
+
   components: {
     Date: Date$1,
     DateRange: DateRange,
@@ -3923,6 +4075,22 @@ var DatePicker = {
   },
 
   events: {
+    'clear.input': function (event) {
+      this.fire(
+        'clear.datepicker',
+        true
+      );
+      event.stop();
+    },
+    'change.date': function (event, data) {
+      if (data.selectedDates) {
+        this.set({
+          selectedDates: data.selectedDates
+        });
+      }
+      this.dateChange(data.date);
+      event.stop();
+    },
     change: function change(_, data) {
       if (!data.value) {
         this.fire('clear.datePicker');
@@ -3939,17 +4107,12 @@ var DatePicker = {
       event.stop();
     },
 
-    deteChange: function deteChange(event, date) {
-      this.dateChange(date);
-      event.stop();
-    },
-
     weekRangeChange: function weekRangeChange(event, date) {
       this.dateRangeChange(date);
       event.stop();
     },
 
-    deteRangeChange: function deteRangeChange(event, date) {
+    'deteRangeChange.dateRange': function (event, date) {
       this.dateRangeChange(date);
       event.stop();
     }
@@ -3961,7 +4124,16 @@ var DatePicker = {
       if (!date) {
         Yox.logger.warn("shortcuts value 传值错误");
       }
-      this.dateChange(date);
+      if (!Yox.is.array(date)) {
+        date = simplifyDate(date);
+        this.dateChange(date);
+      }
+      else {
+        this.dateRangeChange({
+          start: simplifyDate(date[ 0 ]),
+          end: simplifyDate(date[ 1 ])
+        });
+      }
       data.onClick && data.onClick();
     },
 
@@ -3969,24 +4141,20 @@ var DatePicker = {
       this.set('visible', true);
     },
 
-    open: function open() {
-      this.set('visible', true);
-    },
-
     close: function close() {
       this.set('visible', false);
     },
 
-    formateDate: function formateDate(date) {
+    formatDate: function formatDate(date) {
 
       if (!date) {
-        return false
+        return ''
       }
       var argsLen = arguments.length;
       var result = '';
       var me = this;
-      var startFormat = me.get('formateText').split('$')[0];
-      var endFormat = me.get('formateText').split('$')[1];
+      var startFormat = me.get('formatText').split('$')[0];
+      var endFormat = me.get('formatText').split('$')[1];
 
       if (argsLen > 1) {
         var start = arguments[0];
@@ -4027,31 +4195,53 @@ var DatePicker = {
     },
 
     dateChange: function dateChange(date) {
-      
-      var me = this;
-      var formateDate = me.get('formateDate');
-      var newFormateDate = me.formateDate(date);
-      if (newFormateDate !== formateDate) {
-        me.fire(
-          'change',
-          {
-            value: {
-              formateDate: newFormateDate,
-              date: date,
-            },
-            oldValue: {
-              formateDate: formateDate,
-              date: me.get('date')
-            }
-          }
-        );
-      }
-      me.set({
-        date: date,
-        formateDate: newFormateDate
-      });
-      me.close();
 
+      var me = this;
+      var multiple = me.get('multiple');
+
+      if (!multiple) {
+        var formatDate = me.get('formatDate');
+        var newFormateDate = me.formatDate(date);
+        if (newFormateDate !== formatDate) {
+          me.fire(
+            'change.datepicker',
+            {
+              value: {
+                formatDate: newFormateDate,
+                date: date,
+              },
+              oldValue: {
+                formatDate: formatDate,
+                date: me.get('date')
+              }
+            }
+          );
+        }
+        me.set({
+          date: date,
+          formatDate: newFormateDate
+        });
+      }
+      else {
+        var formatDateArray = [];
+        var selectedDates = me.get('selectedDates');
+        selectedDates.forEach(function (item) {
+          var dateArray = item.split('/');
+          var date = {
+            year: dateArray[ 0 ],
+            month: dateArray[ 1 ],
+            date: dateArray[ 2 ],
+            day: dateArray[ 3 ],
+          };
+          formatDateArray.push(
+            me.formatDate(date)
+          );
+        });
+        me.set({
+          formatDate: formatDateArray.join(', ')
+        });
+      }
+      !me.get('autoClose') && me.close();
     },
 
     dateRangeChange: function dateRangeChange(data) {
@@ -4066,21 +4256,21 @@ var DatePicker = {
       var start = data.start;
 
       me.fire(
-        'change',
+        'change.datepicker',
         {
           value: {
             start: start,
             end: end,
-            startDate: me.formateDate(start),
-            endDate: me.formateDate(end),
-            formateDate: me.formateDate(start, end)
+            startDate: me.formatDate(start),
+            endDate: me.formatDate(end),
+            formatDate: me.formatDate(start, end)
           },
           oldValue: {
             start: me.get('start'),
             end: me.get('end'),
-            startDate: me.formateDate(me.get('start')),
-            endDate: me.formateDate(me.get('end')),
-            formateDate: me.formateDate(me.get('start'), me.get('end'))
+            startDate: me.formatDate(me.get('start')),
+            endDate: me.formatDate(me.get('end')),
+            formatDate: me.formatDate(me.get('start'), me.get('end'))
           }
         }
       );
@@ -4088,40 +4278,44 @@ var DatePicker = {
       me.set({
         start: start,
         end: end,
-        formateDate: me.formateDate(start, end)
+        formatDate: me.formatDate(start, end)
       });
-      me.close();
-
+      !me.get('autoClose') && me.close();
+    },
+    clear: function clear() {
+      this.set('formatDate', '');
+      this.fire('clear.datepicker', true);
+      this.fire('clear.datepicker');
+      this.close();
+    },
+    ok: function ok() {
+      this.close();
+      this.fire('ok.datepicker');
     }
   },
 
   afterMount: function afterMount() {
     var me = this;
-    if (!me.get('formateText')) {
-      var formateText = '';
+    if (!me.get('formatText')) {
+      var formatText = '';
       switch (me.get('type')) {
         case 'date':
-          formateText = 'YYYY/MM/DD';
+          formatText = 'YYYY/MM/DD';
           break
         case 'dateRange':
-          formateText = 'YYYY/MM/DD $- YYYY/MM/DD';
+          formatText = 'YYYY/MM/DD $- YYYY/MM/DD';
           break
         case 'week':
-          formateText = 'YYYY/MM/DD $- YYYY/MM/DD';
+          formatText = 'YYYY/MM/DD $- YYYY/MM/DD';
           break
         case 'year':
-          formateText = 'YYYY';
+          formatText = 'YYYY';
           break
         case 'month':
-          formateText = 'YYYY/MM';
+          formatText = 'YYYY/MM';
           break
       }
-      me.set({ formateText: formateText });
-    }
-    
-
-    if (me.get('value')) {
-      me.dateChange(me.get('value'));
+      me.set({ formatText: formatText });
     }
 
     me.documentClickHandler = function (e) {
@@ -5558,20 +5752,7 @@ var template$E = "<div \nclass=\"bell-dropdown\n{{#if isOpen}} bell-dropdown-ope
 var Dropdown = {
   propTypes: {
     placement: {
-      type: oneOf([
-        RAW_TOP, 
-        RAW_TOP_START,
-        RAW_TOP_END,
-        RAW_BOTTOM,
-        RAW_BOTTOM_START,
-        RAW_BOTTOM_END,
-        RAW_LEFT,
-        RAW_LEFT_START,
-        RAW_LEFT_END,
-        RAW_RIGHT,
-        RAW_RIGHT_START,
-        RAW_RIGHT_END
-      ]),
+      type: oneOf(RAW_PLACEMENT_ARRAY),
       value: RAW_BOTTOM
     },
     trigger: {
@@ -5589,7 +5770,7 @@ var Dropdown = {
       }
     },
     height: {
-      type: RAW_STRING,
+      type: RAW_NUMERIC,
       value: 200
     },
     className: {

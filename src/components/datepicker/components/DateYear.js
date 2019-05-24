@@ -18,8 +18,10 @@ export default {
   template,
 
   data() {
+    let start = this.get('startYear')
+    start = start ? start : new Date().getFullYear()
     return {
-      modeYear: this.get('startYear'),
+      modeYear: start,
       checkedYear: '',
       years: []
     }
@@ -59,9 +61,6 @@ export default {
   },
 
   afterMount() {
-    let today = new Date()
-    let start = this.get('startYear')
-    start = start ? start : today.getFullYear()
-    this.getYearList(start)
+    this.getYearList(this.get('modeYear'))
   }
 }

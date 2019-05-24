@@ -1,25 +1,22 @@
 {$selector-datepicker-month},
 {$selector-datepicker-year}
+  max-width $datepicker-min-width
 
-    max-width $datepicker-min-width
+  {$selector-datepicker-body}
+    {$selector-datepicker}-col
+      display inline-block
+      cursor pointer
+      box-sizing border-box
+      width 25%
+      padding $datepicker-month-padding
+      text-align center
+      border-radius 4px
+      transition color .3s, background-color .3s
 
-    {$selector-datepicker-body}
+      &{$selector-datepicker}-col-checked
+        color $datepicker-item-checked-color
+        background-color $datepicker-item-checked-background-color
 
-        {$selector-datepicker}-col
-
-            display inline-block
-            cursor pointer
-            box-sizing border-box
-            width 25%
-            padding $datepicker-item-padding
-            transition color .3s, background-color .3s
-
-            &{$selector-datepicker}-col-checked
-
-                color $datepicker-item-checked-color
-                background-color $datepicker-item-checked-background-color
-
-            &{$selector-hover}
-
-                color $datepicker-item-checked-color
-                background-color $datepicker-item-checked-background-color
+      &{$selector-hover}
+        color $datepicker-item-checked-color
+        background-color $datepicker-item-checked-background-color

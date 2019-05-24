@@ -10,7 +10,7 @@ import {
   getOffsetTime
 } from '../function/util'
 import template from '../template/DateWeek.html'
-import { RAW_NUMERIC, RAW_STRING } from '../../constant';
+import { RAW_NUMERIC, RAW_STRING } from '../../constant'
 
 const WEEKS = [
   '日',
@@ -20,10 +20,10 @@ const WEEKS = [
   '四',
   '五',
   '六'
-];
+]
 
-const DAY = 24 * 60 * 60 * 1000;
-const stableDuration = 41 * DAY;
+const DAY = 24 * 60 * 60 * 1000
+const stableDuration = 41 * DAY
 
 export default {
 
@@ -32,7 +32,6 @@ export default {
     week: {
       type: RAW_NUMERIC
     },
-    // date
     date: {
       type: RAW_NUMERIC
     },
@@ -53,7 +52,6 @@ export default {
     return {
       weeks: WEEKS,
       dateList: [],
-      // 默认是某周第一天
       modeDate: this.get('date') ? parseDate(this.get('date')) : '',
       checkedIndex: this.get('week'),
       checkedDateTime: -1
@@ -62,15 +60,10 @@ export default {
 
   computed: {
     currentYear() {
-      let me = this
-      let date = me.get('modeDate')
-      date = date ? simplifyDate(date) : simplifyDate(new Date())
-      return date.year
+      return simplifyDate(this.get('modeDate')).year
     },
     currentMonth() {
-      let date = this.get('modeDate')
-      date = date ? simplifyDate(date) : simplifyDate(new Date())
-      return date.month
+      return simplifyDate(this.get('modeDate')).month
     }
   },
 
@@ -78,9 +71,7 @@ export default {
     changeDate(offset) {
       let me = this
       let date = me.get('modeDate')
-
       date = offsetMonth(date, offset)
-
       me.set({
         checkedIndex: -1,
         modeDate: date,
@@ -103,20 +94,18 @@ export default {
       this.changeDate(1)
     },
     click(date) {
-      let me = this
-      me.fire(
+      this.fire(
         'weekRangeChange',
         {
-          start: date[0],
-          end: date[date.length - 1]
+          start: date[ 0 ],
+          end: date[ date.length - 1 ]
         }
       )
-      me.refresh(
-        getOffsetTime(parseDate(date[0])),
-        getOffsetTime(parseDate(date[date.length - 1]))
+      this.refresh(
+        getOffsetTime(parseDate(date[ 0 ]))
       )
     },
-    refresh(start, end) {
+    refresh(start) {
       let me = this
       let dateList = me.get('dateList')
       let checkedIndex = ''
@@ -150,7 +139,6 @@ export default {
 
     },
     createRenderData(modeDate, checkedDateTime) {
-
       let me = this
       let firstDay = me.get('firstDay') || 0
       modeDate = normalizeDate(modeDate)
@@ -198,12 +186,9 @@ export default {
 
   afterMount() {
     let me = this
-
     let today = new Date()
-
     let date = me.get('modeDate')
     date = date ? date : today
-
     me.set({
       modeDate: date,
       dateList: me.createRenderData(

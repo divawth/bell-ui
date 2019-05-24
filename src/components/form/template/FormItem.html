@@ -1,16 +1,18 @@
-<div class="bell-form-item
-  {{#if className}} {{className}}{{/if}}
-"{{#if style}} {{style}}{{/if}}>
+<div 
+class="${prefix}form-item
+{{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
   {{#if label}}
-  <label class="bell-form-item-label" style="width: {{labelWidth}}px;">
+  <label class="${prefix}form-item-label" style="width: {{labelWidth}}px;">
     {{label}}
   </label>
   {{/if}}
-  <div class="bell-form-item-content" 
+
+  <div class="${prefix}form-item-content" 
     {{#if label}}style="padding-left: {{labelWidth}}px;"{{/if}}
   >
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
+    <slot name="children" />
   </div>
 </div>

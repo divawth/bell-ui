@@ -1,38 +1,39 @@
 import { Validator } from './util/validate.js'
-import FormTpl from './template/Form.html'
+import template from './template/Form.html'
+import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC } from '../constant.js'
 
 export default {
-  template: FormTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     value: {
-      type: 'object'
+      type: RAW_OBJECT
     },
     rules: {
-      type: 'object'
+      type: RAW_OBJECT
     },
     messages: {
-      type: 'object'
+      type: RAW_OBJECT
     },
     inline: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     labelPosition: {
       type: ['left', 'right', 'top'],
       value: 'left'
     },
     labelWidth: {
-      type: 'number'
+      type: RAW_NUMERIC
     },
     showMessage: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
   methods: {
     validate(callback) {
       let me = this;

@@ -10,8 +10,8 @@ const MONTHS = [
   '九月',
   '十月',
   '十一月',
-  '十二月',
-];
+  '十二月'
+]
 
 import template from '../template/DateMonth.html'
 import { RAW_NUMERIC, RAW_STRING } from '../../constant';

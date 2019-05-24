@@ -1,63 +1,63 @@
-import DialogTpl from './template/Dialog.html'
+import template from './template/Dialog.html'
+import { RAW_STRING, RAW_BOOLEAN } from '../constant'
 
 export default {
-
-  template: DialogTpl,
-
   propTypes: {
+    open: {
+      type: RAW_BOOLEAN
+    },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
-    },
-    open: {
-      type: ['string', 'number', 'boolean']
+      type: RAW_STRING
     }
   },
 
+  template,
+
   methods: {
     maskClick: function () {
-      this.fire('maskClick');
+      this.fire('maskClick')
     }
   },
 
   watchers: {
-    open: function (isOpen) {
-      this.setStatus();
+    open: function () {
+      this.setStatus()
     }
   },
 
   methods: {
     setStatus: function () {
-      let me = this;
-      let element = me.$el;
-      var contentElement = element.querySelector('.bell-dialog-content');
+      let me = this
+      let element = me.$el
+      var contentElement = element.querySelector('.bell-dialog-content')
       if (me.get('open')) {
-        contentElement.style.marginTop = '-250px';
-        element.style.display = 'flex';
+        contentElement.style.marginTop = '-250px'
+        element.style.display = 'flex'
         setTimeout(
           function () {
-            contentElement.style.marginTop = 0;
+            contentElement.style.marginTop = 0
           },
           300
-        );
+        )
       }
       else {
-        contentElement.style.marginTop = '-250px';
+        contentElement.style.marginTop = '-250px'
         setTimeout(
           function () {
-            element.style.display = 'none';
+            element.style.display = 'none'
           },
           300
-        );
+        )
       }
     }
   },
 
   afterMount() {
-    this.setStatus();
-    document.body.appendChild(this.$el);
+    this.setStatus()
+    document.body.appendChild(this.$el)
   }
 
-};
+}

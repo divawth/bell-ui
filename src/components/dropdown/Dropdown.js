@@ -3,23 +3,12 @@ import {
   TRUE,
   FALSE,
   RAW_STRING, 
-  RAW_BOOLEAN,
   RAW_HOVER,
   RAW_CLICK,
   RAW_CUSTOM,
-
-  RAW_TOP, 
-  RAW_TOP_START,
-  RAW_TOP_END,
+  RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
-  RAW_BOTTOM_START,
-  RAW_BOTTOM_END,
-  RAW_LEFT,
-  RAW_LEFT_START,
-  RAW_LEFT_END,
-  RAW_RIGHT,
-  RAW_RIGHT_START,
-  RAW_RIGHT_END
+  RAW_NUMERIC
 } from '../constant'
 import { 
   oneOf
@@ -28,20 +17,7 @@ import {
 export default {
   propTypes: {
     placement: {
-      type: oneOf([
-        RAW_TOP, 
-        RAW_TOP_START,
-        RAW_TOP_END,
-        RAW_BOTTOM,
-        RAW_BOTTOM_START,
-        RAW_BOTTOM_END,
-        RAW_LEFT,
-        RAW_LEFT_START,
-        RAW_LEFT_END,
-        RAW_RIGHT,
-        RAW_RIGHT_START,
-        RAW_RIGHT_END
-      ]),
+      type: oneOf(RAW_PLACEMENT_ARRAY),
       value: RAW_BOTTOM
     },
     trigger: {
@@ -59,7 +35,7 @@ export default {
       }
     },
     height: {
-      type: RAW_STRING,
+      type: RAW_NUMERIC,
       value: 200
     },
     className: {

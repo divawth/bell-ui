@@ -1,66 +1,62 @@
 import {
   contains
 } from '../util'
-import DrawerTpl from './template/Drawer.html'
+import template from './template/Drawer.html'
+import { RAW_STRING, RAW_BOOLEAN } from '../constant'
 
 export default {
-  template: DrawerTpl,
+  template,
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     position: {
-      type: 'string',
+      type: RAW_STRING,
       value: 'left'
     },
     useMask: {
-      type: 'boolean',
+      type: RAW_BOOLEAN,
     },
     open: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     size: function (value) {
-      return value != null ? +value : 300;
+      return value != null ? +value : 300
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
   afterMount() {
-
-    let me = this;
-
+    let me = this
     me.documentClickHandler = function (event) {
-
       if (!me.get('open')) {
         return
       }
-      let element = me.$refs.drawContent;
-      let target = event.originalEvent.target;
+      let element = me.$refs.drawContent
+      let target = event.originalEvent.target
       if (contains(element, target)) {
-        return;
+        return
       }
       me.set({
         open: false
-      });
-
-    };
+      })
+    }
 
     Yox.dom.on(
       document,
       'click',
       me.documentClickHandler
-    );
+    )
   },
 
   beforeDestroy() {
-    let me = this;
     Yox.dom.on(
       document,
       'click',
-      me.documentClickHandler
-    );
+      this.documentClickHandler
+    )
   }
-};
+}

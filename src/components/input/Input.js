@@ -68,7 +68,7 @@ export default {
   watchers: {
     value(value) {
       this.fire(
-        'change',
+        'change.input',
         {
           value: value
         }
@@ -98,6 +98,9 @@ export default {
       this.set({
         value: ''
       });
+      this.fire(
+        'clear.input'
+      )
     }
   },
 

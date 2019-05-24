@@ -5,9 +5,9 @@ import DateMonth from './components/DateMonth'
 import DateYear from './components/DateYear'
 
 import { lpad, simplifyDate } from './function/util'
-import { contains, oneOf } from '../util'
+import { contains, oneOf, isDate } from '../util'
 import template from './template/DatePicker.html'
-import { RAW_STRING, NULL, FALSE, RAW_OBJECT, RAW_ARRAY } from '../constant'
+import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, RAW_BOTTOM_START, RAW_FUNCTION, RAW_SIZE_ARRAY } from '../constant'
 
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
@@ -19,14 +19,46 @@ export default {
       type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
       value: 'date'
     },
+    size: {
+      type: oneOf(RAW_SIZE_ARRAY)
+    },
     value: {
-      type: 'date'
+      type: isDate()
     },
     shortcuts: {
       type: RAW_ARRAY
     },
-    formateText: {
+    splitPanel: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    multiple: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    placement: {
+      type: oneOf(RAW_PLACEMENT_ARRAY),
+      value: RAW_BOTTOM_START
+    },
+    startDate: {
+      type: isDate()
+    },
+    formatText: {
       type: RAW_STRING
+    },
+    disabledDate: {
+      type: RAW_FUNCTION
+    },
+    confirm: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    clearable: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    open: {
+      type: RAW_BOOLEAN
     },
     className: {
       type: RAW_STRING
@@ -50,6 +82,15 @@ export default {
     }
   },
 
+  computed: {
+    autoClose() {
+      return this.get('multiple') || this.get('confirm')
+    },
+    isOpen() {
+      return this.get('visible') || this.get('open')
+    }
+  },
+
   components: {
     Date,
     DateRange,
@@ -59,6 +100,22 @@ export default {
   },
 
   events: {
+    'clear.input': function (event) {
+      this.fire(
+        'clear.datepicker',
+        true
+      )
+      event.stop()
+    },
+    'change.date': function (event, data) {
+      if (data.selectedDates) {
+        this.set({
+          selectedDates: data.selectedDates
+        })
+      }
+      this.dateChange(data.date)
+      event.stop()
+    },
     change(_, data) {
       if (!data.value) {
         this.fire('clear.datePicker')
@@ -75,17 +132,12 @@ export default {
       event.stop()
     },
 
-    deteChange(event, date) {
-      this.dateChange(date)
-      event.stop()
-    },
-
     weekRangeChange(event, date) {
       this.dateRangeChange(date)
       event.stop()
     },
 
-    deteRangeChange(event, date) {
+    'deteRangeChange.dateRange': function (event, date) {
       this.dateRangeChange(date)
       event.stop()
     }
@@ -97,7 +149,16 @@ export default {
       if (!date) {
         Yox.logger.warn(`shortcuts value 传值错误`)
       }
-      this.dateChange(date)
+      if (!Yox.is.array(date)) {
+        date = simplifyDate(date)
+        this.dateChange(date)
+      }
+      else {
+        this.dateRangeChange({
+          start: simplifyDate(date[ 0 ]),
+          end: simplifyDate(date[ 1 ])
+        })
+      }
       data.onClick && data.onClick()
     },
 
@@ -105,24 +166,20 @@ export default {
       this.set('visible', true)
     },
 
-    open() {
-      this.set('visible', true)
-    },
-
     close() {
       this.set('visible', false)
     },
 
-    formateDate(date) {
+    formatDate(date) {
 
       if (!date) {
-        return false
+        return ''
       }
       let argsLen = arguments.length
       let result = ''
       let me = this
-      let startFormat = me.get('formateText').split('$')[0]
-      let endFormat = me.get('formateText').split('$')[1]
+      let startFormat = me.get('formatText').split('$')[0]
+      let endFormat = me.get('formatText').split('$')[1]
 
       if (argsLen > 1) {
         let start = arguments[0]
@@ -164,32 +221,52 @@ export default {
 
     dateChange(date) {
 
-      date = simplifyDate(date)
-      
       let me = this
-      let formateDate = me.get('formateDate')
-      let newFormateDate = me.formateDate(date)
-      if (newFormateDate !== formateDate) {
-        me.fire(
-          'change',
-          {
-            value: {
-              formateDate: newFormateDate,
-              date: date,
-            },
-            oldValue: {
-              formateDate: formateDate,
-              date: me.get('date')
-            }
-          }
-        )
-      }
-      me.set({
-        date: date,
-        formateDate: newFormateDate
-      })
-      me.close()
+      let multiple = me.get('multiple')
 
+      if (!multiple) {
+        let formatDate = me.get('formatDate')
+        let newFormateDate = me.formatDate(date)
+        if (newFormateDate !== formatDate) {
+          me.fire(
+            'change.datepicker',
+            {
+              value: {
+                formatDate: newFormateDate,
+                date: date,
+              },
+              oldValue: {
+                formatDate: formatDate,
+                date: me.get('date')
+              }
+            }
+          )
+        }
+        me.set({
+          date: date,
+          formatDate: newFormateDate
+        })
+      }
+      else {
+        let formatDateArray = []
+        let selectedDates = me.get('selectedDates')
+        selectedDates.forEach(item => {
+          let dateArray = item.split('/')
+          let date = {
+            year: dateArray[ 0 ],
+            month: dateArray[ 1 ],
+            date: dateArray[ 2 ],
+            day: dateArray[ 3 ],
+          }
+          formatDateArray.push(
+            me.formatDate(date)
+          )
+        });
+        me.set({
+          formatDate: formatDateArray.join(', ')
+        })
+      }
+      !me.get('autoClose') && me.close()
     },
 
     dateRangeChange(data) {
@@ -204,21 +281,21 @@ export default {
       let start = data.start
 
       me.fire(
-        'change',
+        'change.datepicker',
         {
           value: {
             start: start,
             end: end,
-            startDate: me.formateDate(start),
-            endDate: me.formateDate(end),
-            formateDate: me.formateDate(start, end)
+            startDate: me.formatDate(start),
+            endDate: me.formatDate(end),
+            formatDate: me.formatDate(start, end)
           },
           oldValue: {
             start: me.get('start'),
             end: me.get('end'),
-            startDate: me.formateDate(me.get('start')),
-            endDate: me.formateDate(me.get('end')),
-            formateDate: me.formateDate(me.get('start'), me.get('end'))
+            startDate: me.formatDate(me.get('start')),
+            endDate: me.formatDate(me.get('end')),
+            formatDate: me.formatDate(me.get('start'), me.get('end'))
           }
         }
       )
@@ -226,40 +303,44 @@ export default {
       me.set({
         start: start,
         end: end,
-        formateDate: me.formateDate(start, end)
+        formatDate: me.formatDate(start, end)
       })
-      me.close()
-
+      !me.get('autoClose') && me.close()
+    },
+    clear() {
+      this.set('formatDate', '')
+      this.fire('clear.datepicker', true)
+      this.fire('clear.datepicker')
+      this.close()
+    },
+    ok() {
+      this.close()
+      this.fire('ok.datepicker')
     }
   },
 
   afterMount() {
     let me = this
-    if (!me.get('formateText')) {
-      let formateText = ''
+    if (!me.get('formatText')) {
+      let formatText = ''
       switch (me.get('type')) {
         case 'date':
-          formateText = 'YYYY/MM/DD'
+          formatText = 'YYYY/MM/DD'
           break
         case 'dateRange':
-          formateText = 'YYYY/MM/DD $- YYYY/MM/DD'
+          formatText = 'YYYY/MM/DD $- YYYY/MM/DD'
           break
         case 'week':
-          formateText = 'YYYY/MM/DD $- YYYY/MM/DD'
+          formatText = 'YYYY/MM/DD $- YYYY/MM/DD'
           break
         case 'year':
-          formateText = 'YYYY'
+          formatText = 'YYYY'
           break
         case 'month':
-          formateText = 'YYYY/MM'
+          formatText = 'YYYY/MM'
           break
       }
-      me.set({ formateText })
-    }
-    
-
-    if (me.get('value')) {
-      me.dateChange(me.get('value'))
+      me.set({ formatText })
     }
 
     me.documentClickHandler = function (e) {

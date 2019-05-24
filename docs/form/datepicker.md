@@ -101,13 +101,15 @@ export default {
 }
 ```
 
-> DateRange
+> 面板不联动 
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>
-      <DatePicker type="dateRange" splitPanels placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" splitPanel placeholder="Select date" style="width: 300px"></DatePicker>
     </div>
   `
 }
@@ -117,23 +119,11 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>
       <DatePicker type="date" multiple placeholder="Select date" style="width: 300px"></DatePicker>
-    </div>
-  `
-}
-```
-
-> 显示星期数 
-
-```js
-export default {
-  template: `
-    <div>
-      <DatePicker type="date" show-week-numbers placeholder="Select date" style="width: 200px"></DatePicker>
-      <br><br>
-      <DatePicker type="daterange" show-week-numbers placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `
 }
@@ -143,13 +133,20 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>
-      <DatePicker type="date" :start-date="new Date(1991, 4, 14)" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="date" startDate="{{startDate}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>            
-      <DatePicker type="daterange" :start-date="new Date(1991, 4, 14)" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
-  `
+  `,
+  data() {
+    return {
+      startDate: new Date('1991/4/14')
+    }
+  }
 }
 ```
 
@@ -157,37 +154,21 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>
-      <DatePicker :value="value1" format="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker value="{{value1}}" formatText="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>            
-      <DatePicker :value="value2" format="yyyy/MM/dd" type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker value="{{value2}}" formatText="yyyy/MM/dd$-yyyy/MM/dd" type="dateRange" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
     return {
-      value1: '2019-01-01',
-      value2: ['2019-01-01', '2019-02-15']
+      value1: new Date('2019/1/1'),
+      value2: [new Date('2019/1/1'), new Date('2019/2/16')]
     }
   }
-}
-```
-
-> 日期时间选择
-
-```js
-export default {
-  template: `
-    <div>
-      <DatePicker type="datetime" placeholder="Select date and time" style="width: 200px"></DatePicker>
-      <br><br>
-      <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="Select date and time(Excluding seconds)" style="width: 200px"></DatePicker>
-      <br><br>
-      <DatePicker type="datetimerange" placeholder="Select date and time" style="width: 300px"></DatePicker>
-      <br><br>
-      <DatePicker type="datetimerange" format="yyyy-MM-dd HH:mm" placeholder="Select date and time(Excluding seconds)" style="width: 300px"></DatePicker>
-    </div>
-  `
 }
 ```
 
@@ -195,6 +176,8 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>            
       <DatePicker type="year" placeholder="Select year" style="width: 200px"></DatePicker>
@@ -209,25 +192,23 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>            
-      <DatePicker type="date" options="{{options3}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="date" disabledDate="{{disabledDate1}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="date" options="{{options4}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" disabledDate="{{disabledDate2}}" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
     return {
-      options3: {
-        disabledDate (date) {
-          return date && date.valueOf() < Date.now() - 86400000;
-        }
+      disabledDate1 (date) {
+        return date && date.valueOf() < Date.now() - 86400000;
       },
-      options4: {
-        disabledDate (date) {
-          const disabledDay = date.getDate();
-          return disabledDay === 15;
-        }
+      disabledDate2 (date) {
+        const disabledDay = date.getDate();
+        return disabledDay === 15;
       }
     }
   }
@@ -238,11 +219,13 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>            
       <DatePicker type="date" confirm placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" confirm placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" confirm placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `
 }
@@ -252,20 +235,25 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>            
-      <DatePicker
-        :open="open"
-        :value="value3"
+      <DatePicker type="date"
         confirm
-        type="date"
-        @on-change="handleChange"
-        @on-clear="handleClear"
-        @on-ok="handleOk">
-        <a href="javascript:void(0)" @click="handleClick">
-            <Icon type="ios-calendar-outline"></Icon>
-            <template v-if="value3 === ''">Select date</template>
-            <template v-else>{{ value3 }}</template>
+        open="{{open}}"
+        value="{{value3}}"
+        on-change="handleChange($data)"
+        on-clear="handleClear()"
+        on-ok="handleOk()"
+      >
+        <a href="javascript:void(0)" on-click="handleClick()">
+          <Icon type="ios-calendar-outline"></Icon>
+          {{#if value3 === ''}}
+            Select date
+          {{else}}
+            {{ value3 }}
+          {{/if}}
         </a>
       </DatePicker>
     </div>
@@ -277,17 +265,18 @@ export default {
     }
   },
   methods: {
-    handleClick () {
-      this.open = !this.open;
+    handleClick() {
+      this.toggle('open')
     },
-    handleChange (date) {
-      this.value3 = date;
+    handleChange(data) {
+      this.set('value3', data.value.formatDate)
     },
-    handleClear () {
-      this.open = false;
+    handleClear() {
+      this.set('value3', '')
+      this.set('open', false)
     },
-    handleOk () {
-      this.open = false;
+    handleOk() {
+      this.set('open', false)
     }
   }
 }
@@ -297,6 +286,8 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
+  height: 400,
   template: `
     <div>            
       <DatePicker size="small" type="date" placeholder="Select date"></DatePicker>
@@ -309,45 +300,52 @@ export default {
 }
 ```
 
+> 日期时间选择
+
+<!-- ```js
+export default {
+  isViewFullBlock: true,
+  height: 400,
+  template: `
+    <div>
+      <DatePicker type="datetime" placeholder="Select date and time" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker type="datetime" format="yyyy-MM-dd HH:mm" placeholder="Select date and time(Excluding seconds)" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker type="datetimerange" placeholder="Select date and time" style="width: 300px"></DatePicker>
+      <br><br>
+      <DatePicker type="datetimerange" format="yyyy-MM-dd HH:mm" placeholder="Select date and time(Excluding seconds)" style="width: 300px"></DatePicker>
+    </div>
+  `
+}
+``` -->
+
+
 #### API
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 日期选择器类型 | string | date, dateRange, week, month, year | date
+type | 日期选择器类型 | string | date, dateRange, month, year | date
 value | 日期 | Date | - | -
 formatText | 可以用来格式化date | string | - | YYYY-MM-DD
-placement | 日期选择器出现的位置，可选值为toptop-starttop-endbottombottom-startbottom-endleftleft-startleft-endrightright-startright-end，2.12.0 版本开始支持自动识别 | string | bottom-start
+placement | 日期选择器出现的位置 | string | bottom-start
 placeholder | 占位文本 | string | -
-options | 选择器的额外配置 | Object | -
-split-panels | 开启后，左右面板不联动，仅在 daterange 和 datetimerange 下可用。| boolean | false
-multiple | 开启后，可以选择多个日期，仅在 date 下可用。| boolean | false
-show-week-numbers | 开启后，可以显示星期数。| boolean | false
-start-date | 设置默认显示的起始日期。| Date | -
-confirm | 
-open | 
-size | 
-disabled | 
-clearable | 
-readonly | 
-editable | 
-transfer | 
-element-id | 
-time-picker-options | 
-
-> options
-选择器额外配置
-
-
-
-
+splitPanel | 开启后，左右面板不联动，仅在 daterange 下可用 | boolean | false
+multiple | 开启后，可以选择多个日期，仅在 date 下可用 | boolean | false
+shortcuts | 快捷方式 | Array | -
+startDate | 默认显示视图的日期 | Date | -
+confirm | 是否确认操作之后再关闭 | boolean | false
+open | 手动控制日期选择器的显示状态 | boolean | false
+size | 尺寸 | string | -
+disabledDate | 不可选择的日期 | Function | -
+clearable | 是否显示清除按钮 | boolean | false
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
 change | 值改变之后的回调 | 选中的值
-openChange
-ok
-clear
+ok | confirm 的确认按钮的回调 | -
+clear | confirm 的清除按钮的回调 | -

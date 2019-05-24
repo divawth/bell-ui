@@ -1,53 +1,46 @@
 {$selector-datepicker}-header-month
-
-    + {$selector-datepicker}-header-month
-
-        margin-left 30%
+  margin-right 30%
 
 {$selector-datepicker-daterange}-wrapper
+  display flex
 
-    display flex
+  {$selector-datepicker}-table-date
+    flex 1
 
-    {$selector-datepicker}-table-date
+    + {$selector-datepicker}-table-date
+      border-left 1px solid $brand-border
 
-        flex 1
+    {$selector-datepicker}-days
+      {$selector-datepicker}-col
+        &-range
 
-        + {$selector-datepicker}-table-date
+          position relative
+          border-radius 0
+          background-color $datepicker-item-range-background-color
 
-            border-left 1px solid $brand-border
+          &:before
+            position absolute
+            content ' '
+            height 100%
+            top 0
+            width $datepicker-poper-margin-gap
+            left - $datepicker-poper-margin-gap
+            background-color $datepicker-item-range-background-color
 
-        {$selector-datepicker}-days
+          &{$selector-hover}
+            background-color $datepicker-item-range-background-color
+            color $brand-secondary
 
-            {$selector-datepicker}-col
+          + {$selector-datepicker}-col-checked
+            position relative
 
-                &-range
-
-                    position relative
-                    border-radius 0
-                    background-color $datepicker-item-range-background-color
-
-                    &:before
-
-                        position absolute
-                        content ' '
-                        height 100%
-                        top 0
-                        width $datepicker-poper-margin-gap
-                        left - $datepicker-poper-margin-gap
-                        background-color $datepicker-item-range-background-color
-
-                    &{$selector-hover}
-                        background-color $datepicker-item-range-background-color
-                        color $brand-secondary
-
-                    + {$selector-datepicker}-col-checked
-                        position relative
-
-                        &:before
-                            position absolute
-                            content ' '
-                            height 100%
-                            top 0
-                            width $datepicker-poper-margin-gap
-                            left - $datepicker-poper-margin-gap
-                            background-color $datepicker-item-range-background-color
+            &:before
+              position absolute
+              content ' '
+              height 100%
+              top 0
+              width $datepicker-poper-margin-gap
+              left - $datepicker-poper-margin-gap
+              background-color $datepicker-item-range-background-color
+        &-disabled
+          background-color #f7f7f7

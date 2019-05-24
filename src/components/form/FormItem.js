@@ -1,35 +1,36 @@
 
-import FormItemTpl from './template/FormItem.html'
+import template from './template/FormItem.html'
+import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN } from '../constant'
 
 export default {
-  template: FormItemTpl,
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     },
     prop: {
-      type: 'string'
+      type: RAW_STRING
     },
     label: {
-      type: 'string'
+      type: RAW_STRING
     },
     labelWidth: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 80
     },
     required: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     rules: {
-      type: 'number'
+      type: RAW_NUMERIC
     },
     errorMsg: {
-      type: 'string'
+      type: RAW_STRING
     }
   },
+  template,
 
   data() {
     return {
@@ -38,15 +39,15 @@ export default {
     }
   },
   events: {
-    setRules(event, data) {
-      let me = this;
-      let prop = me.get('prop');
-      let defaultValue = data.value && data.value[prop];
-      let rules = data.rules && data.rules[prop];
+    setRules(_, data) {
+      let me = this
+      let prop = me.get('prop')
+      let defaultValue = data.value && data.value[ prop ]
+      let rules = data.rules && data.rules[ prop ]
       me.set({
         rules,
         defaultValue
-      });
+      })
     }
   }
-};
+}

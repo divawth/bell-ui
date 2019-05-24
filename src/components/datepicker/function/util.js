@@ -68,7 +68,10 @@ export let lastDateInMonth = function (date) {
 }
 
 export let isValidDate = function (date) {
-  let time = date.getTime()
+  let time = date.getTime && date.getTime()
+  if (!time) {
+    time = date
+  }
   if (Yox.is.number(time)) {
     return ('' + time).length > 8
   }
@@ -114,12 +117,8 @@ export let simplifyDate = function (date) {
     return date
   }
 
-  if (Yox.is.number(date)) {
-    date = new Date(date)
-  }
   if (isValidDate(date)) {
-    date = new Date(date)
-  }
+  date = new Date(date)
 
   return {
     year: date.getFullYear(),
@@ -150,6 +149,15 @@ export let lpad = function (num, length) {
   return arr.join('0') + num
 }
 
-export let isValidDate = function (date) {
-  return Object.prototype.toString.call(date).toLocaleLowerCase() === '[object date]'
+export let formatList = function (list) {
+  let result = []
+  let arr = []
+  for (let i = 0; i < list.length; i++) {
+    arr.push(list[ i ])
+    if (i % 7 == 6) {
+      result.push(arr)
+      arr = []
+    }
+  }
+  return result
 }

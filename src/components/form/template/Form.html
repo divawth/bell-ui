@@ -1,8 +1,9 @@
-<div class="bell-form
-  {{#if className}} {{className}}{{/if}}
-  {{#if inline}} bell-form-inline{{/if}}
-"{{#if style}} {{style}}{{/if}}>
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
+<div 
+class="${prefix}form
+{{#if inline}} ${prefix}form-inline{{/if}}
+{{#if className}} {{className}}{{/if}}
+"
+{{#if style}} {{style}}{{/if}}
+>
+  <slot name="children" />
 </div>

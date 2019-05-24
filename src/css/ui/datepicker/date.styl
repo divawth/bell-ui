@@ -3,86 +3,77 @@
 {$selector-datepicker-month},
 {$selector-datepicker-week},
 {$selector-datepicker-year}
-
-    user-select none
-    box-sizing border-box
-    background-color $brand-bg
-    border-radius $radius-base
-    min-width $datepicker-min-width
+  user-select none
+  box-sizing border-box
+  background-color $brand-bg
+  border-radius $radius-base
+  min-width $datepicker-min-width
 
 {$selector-datepicker-header}
+  box-sizing border-box
+  display flex
+  width 100%
+  padding $datepicker-header-padding
+  border-bottom 1px solid $brand-bg-active
 
-    box-sizing border-box
-    display flex
-    width 100%
-    padding $datepicker-header-padding
-    border-bottom 1px solid $brand-bg-active
+  {$selector-datepicker-header}-button
+    flex 1
+    text-align center
+    cursor pointer
+    color $brand-muted
+    transition color .3s
 
-    {$selector-datepicker-header}-button
+    {$selector-hover}
+      color $brand-secondary
 
-        flex 1
-        text-align center
-        cursor pointer
-        color $brand-muted
-        transition color .3s
-
-        {$selector-hover}
-
-            color $brand-secondary
-
-        {$selector-icon}
-
-            margin 0
+    {$selector-icon}
+      margin 0
 
 {$selector-datepicker}-weeks
+  display flex
+  margin $datepicker-week-margin
 
-    display flex
-    margin $datepicker-week-margin
-
-    {$selector-datepicker}-col
-
-        flex 1
-        text-align center
-        line-height 1
+  {$selector-datepicker}-col
+    flex 1
+    text-align center
+    line-height 1
 
 {$selector-datepicker}-body
-
-    margin $datepicker-body-margin
+  margin $datepicker-body-margin
 
 {$selector-datepicker}-days
+  margin $datepicker-body-margin
 
-    margin $datepicker-body-margin
+  {$selector-datepicker}-row
+    display flex
+    text-align center
+    line-height 1
 
-    {$selector-datepicker}-row
+  {$selector-datepicker}-col
+    cursor pointer
+    flex 1
+    text-align center
+    color $brand-secondary
+    border-radius $radius-base
+    margin $datepicker-item-margin
+    padding $datepicker-item-padding
 
-        display flex
-        text-align center
-        line-height 1
+    &-prev-month,
+    &-last-month,
+    &-disabled
+      color $brand-muted
+      cursor $cursor-disabled
 
-    {$selector-datepicker}-col
+    &-current-month
+      &:hover
+        background-color $datepicker-item-checked-background-color
+        color $datepicker-item-checked-color
 
-        cursor pointer
-        flex 1
-        text-align center
-        color $brand-secondary
-        border-radius $radius-base
-        margin $datepicker-item-margin
-        padding $datepicker-item-padding
+    &-checked
+      background-color $datepicker-item-checked-background-color
+      color $datepicker-item-checked-color
 
-        &-prev-month,
-        &-last-month
-
-            color $brand-muted
-            cursor $cursor-disabled
-
-        &-current-month
-
-            &:hover
-
-                background-color $datepicker-item-checked-background-color
-                color $datepicker-item-checked-color
-
-        &-checked
-
-            background-color $datepicker-item-checked-background-color
-            color $datepicker-item-checked-color
+{$selector-datepicker}-confirm
+  border-top 1px solid #e8eaec
+  text-align right
+  padding 8px

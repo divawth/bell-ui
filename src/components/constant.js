@@ -8,6 +8,7 @@ export const RAW_STRING = 'string'
 export const RAW_BOOLEAN = 'boolean'
 export const RAW_NUMERIC = 'numeric'
 export const RAW_OBJECT = 'object'
+export const RAW_FUNCTION = 'function'
 
 export const RAW_HORIZONTAL = 'horizontal'
 export const RAW_VERTICAL = 'vertical'
@@ -73,6 +74,21 @@ export const RAW_ICON_TYPE_ARRAY = [
   RAW_ICON_MD
 ]
 
+
+export const RAW_PLACEMENT_ARRAY = [
+  RAW_TOP, 
+  RAW_TOP_START,
+  RAW_TOP_END,
+  RAW_BOTTOM,
+  RAW_BOTTOM_START,
+  RAW_BOTTOM_END,
+  RAW_LEFT,
+  RAW_LEFT_START,
+  RAW_LEFT_END,
+  RAW_RIGHT,
+  RAW_RIGHT_START,
+  RAW_RIGHT_END
+]
 
 
 

@@ -7,10 +7,12 @@ import {
   simplifyDate,
   offsetMonth,
   parseDate,
-  getOffsetTime
+  getOffsetTime,
+  formatList
 } from '../function/util'
 import template from '../template/DateRange.html'
-import { RAW_NUMERIC, RAW_STRING } from '../../constant';
+import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '../../constant';
+import { isDate } from '../../util';
 
 const WEEKS = [
   '日',
@@ -28,11 +30,17 @@ const stableDuration = 41 * DAY;
 export default {
 
   propTypes: {
-    start: {
-      type: RAW_NUMERIC
+    splitPanel: {
+      type: RAW_BOOLEAN
     },
-    end: {
-      type: RAW_NUMERIC
+    startDate: {
+      type: isDate()
+    },
+    value: {
+      type: RAW_ARRAY
+    },
+    disabledDate: {
+      type: RAW_FUNCTION
     },
     firstDay: {
       type: RAW_NUMERIC
@@ -50,74 +58,122 @@ export default {
   data() {
     return {
       weeks: WEEKS,
-      // 视图日期
-      modeDate: '',
+      
+      startModeDate: '',
+      endModeDate: '',
 
-      checkedStartDate: this.get('start') ? simplifyDate(new Date(this.get('start'))) : '',
-      checkedEndDate: this.get('end') ? simplifyDate(new Date(this.get('end'))) : '',
+      checkedStartDate: '',
+      checkedEndDate: '',
 
-      dateList: [],
-      nextDateList: []
+      startModeList: [],
+      endModeList: []
     }
   },
 
   computed: {
-    currentYear() {
-      let date = this.get('modeDate')
-      date = date ? simplifyDate(date) : simplifyDate(new Date())
-      return date.year
+    startModeDateYear() {
+      return simplifyDate(this.get('startModeDate')).year
     },
-    currentMonth() {
-      let date = this.get('modeDate')
-      date = date ? simplifyDate(date) : simplifyDate(new Date())
-      return date.month
+    startModeDateMonth() {
+      return simplifyDate(this.get('startModeDate')).month
+    },
+    endModeDateYear() {
+      return simplifyDate(this.get('endModeDate')).year
+    },
+    endModeDateMonth() {
+      return simplifyDate(this.get('endModeDate')).month
+    }
+  },
+
+  events: {
+    'clear.datepicker': function (event) {
+      this.set({
+        checkedStartDate: '',
+        checkedEndDate: '',
+        endModeList: this.createRenderData(this.get('endModeDate'), '', ''),
+        startModeList: this.createRenderData(this.get('startModeDate'), '', '')
+      })
+      event.stop()
     }
   },
 
   methods: {
-    changeDate(offset) {
+    changeStartModeDate(offset) {
       let me = this
-      let date = me.get('modeDate')
-
-      date = offsetMonth(date, offset)
-
-      let dateList = me.createRenderData(
-        date,
+      let startModeDate = me.get('startModeDate')
+      startModeDate = offsetMonth(startModeDate, offset)
+      let startModeList = me.createRenderData(
+        startModeDate,
         me.get('checkedStartDate'),
         me.get('checkedEndDate')
       )
-      let nextDateList = me.createRenderData(
-        offsetMonth(date, 1),
+      me.set({
+        startModeDate,
+        startModeList
+      })
+      if (me.get('endModeDate').getTime() <= startModeDate.getTime()) {
+        me.changeEndModeDate(offset)
+      }
+    },
+    changeEndModeDate(offset) {
+      let me = this
+      let endModeDate = me.get('endModeDate')
+      endModeDate = offsetMonth(endModeDate, offset)
+      let endModeList = me.createRenderData(
+        endModeDate,
         me.get('checkedStartDate'),
-        me.get('checkedEndDate'),
+        me.get('checkedEndDate')
       )
       me.set({
-        modeDate: date,
-        dateList: dateList,
-        nextDateList: nextDateList
+        endModeDate,
+        endModeList
       })
+      if (me.get('endModeDate').getTime() <= me.get('startModeDate').getTime()) {
+        me.changeStartModeDate(offset)
+      }
     },
-    prevYear() {
-      this.changeDate(-12)
+    startPrevYear() {
+      this.changeStartModeDate(-12)
+      if (!this.get('splitPanel')) {
+        this.changeEndModeDate(-12)
+      }
     },
-    prevMonth() {
-      this.changeDate(-1)
+    startPrevMonth() {
+      this.changeStartModeDate(-1)
+      if (!this.get('splitPanel')) {
+        this.changeEndModeDate(-1)
+      }
     },
-    nextYear() {
-      this.changeDate(12)
+    startNextYear() {
+      this.changeStartModeDate(12)
     },
-    nextMonth() {
-      this.changeDate(1)
+    startNextMonth() {
+      this.changeStartModeDate(1)
+    },
+    endPrevYear() {
+      this.changeEndModeDate(-12)
+    },
+    endPrevMonth() {
+      this.changeEndModeDate(-1)
+    },
+    endNextYear() {
+      this.changeEndModeDate(12)
+      if (!this.get('splitPanel')) {
+        this.changeStartModeDate(12)
+      }
+    },
+    endNextMonth() {
+      this.changeEndModeDate(1)
+      if (!this.get('splitPanel')) {
+        this.changeStartModeDate(1)
+      }
     },
     hover(date) {
       let me = this
       let startDate = me.get('checkedStartDate')
       let endDate = me.get('checkedEndDate')
 
-      if (!date.isCurrentMonth
-        || !startDate
-        || endDate
-      ) {
+      if (!startDate || endDate) {
         return
       }
 
@@ -137,9 +193,6 @@ export default {
       )
     },
     click(date) {
-      if (!date.isCurrentMonth) {
-        return
-      }
       let me = this
       let checkedStartDate = me.get('checkedStartDate')
       let checkedEndDate = me.get('checkedEndDate')
@@ -154,8 +207,8 @@ export default {
         checkedEndDate = date
       }
       me.set({
-        checkedStartDate: checkedStartDate,
-        checkedEndDate: checkedEndDate
+        checkedStartDate,
+        checkedEndDate
       })
       me.refresh(
         getOffsetTime(parseDate(checkedStartDate)),
@@ -164,7 +217,7 @@ export default {
 
       if (checkedStartDate && checkedEndDate) {
         me.fire(
-          'deteRangeChange',
+          'deteRangeChange.dateRange',
           {
             start: checkedStartDate,
             end: checkedEndDate
@@ -175,12 +228,12 @@ export default {
     refresh(start, end) {
       let me = this
 
-      let dateList = me.copy(me.get('dateList'))
-      let nextDateList = me.copy(me.get('nextDateList'))
+      let startModeList = me.copy(me.get('startModeList'))
+      let endModeList = me.copy(me.get('endModeList'))
 
       if (end) {
         Yox.array.each(
-          dateList,
+          startModeList,
           (arr) => {
             Yox.array.each(
               arr,
@@ -196,7 +249,7 @@ export default {
           }
         )
         Yox.array.each(
-          nextDateList,
+          endModeList,
           (arr) => {
             Yox.array.each(
               arr,
@@ -214,7 +267,7 @@ export default {
       }
       else if (start) {
         Yox.array.each(
-          dateList,
+          startModeList,
           (arr) => {
             Yox.array.each(
               arr,
@@ -227,7 +280,7 @@ export default {
           }
         )
         Yox.array.each(
-          nextDateList,
+          endModeList,
           (arr) => {
             Yox.array.each(
               arr,
@@ -242,17 +295,20 @@ export default {
       }
 
       me.set({
-        dateList: dateList,
-        nextDateList: nextDateList
+        startModeList: startModeList,
+        endModeList: endModeList
       })
     },
-    // 获取渲染模板的数据
-    getDatasource(start, end, date, checkedStart, checkedEnd) {
-
+    getDataSource(start, end, date, checkedStartDate, checkedEndDate) {
       let data = []
       date = simplifyDate(date)
-      checkedStart = getOffsetTime(parseDate(checkedStart))
-      checkedEnd = getOffsetTime(parseDate(checkedEnd))
+
+      let checkedStart = getOffsetTime(
+        parseDate(checkedStartDate)
+      )
+      let checkedEnd = getOffsetTime(
+        parseDate(checkedEndDate)
+      )
 
       for (let time = start, item; time <= end; time += DAY) {
         item = simplifyDate(time)
@@ -262,13 +318,14 @@ export default {
         item.isLastMonth = item.month > date.month
         item.isCheckedDate = itemTime === checkedStart || itemTime === checkedEnd
         item.isRangeDate = itemTime > checkedStart && itemTime < checkedEnd
+        if (this.get('disabledDate')) {
+          item.disabled = this.get('disabledDate')(parseDate(item))
+        }
         data.push(item)
       }
       return data
-
     },
-    createRenderData(date, checkedStart, checkedEnd) {
-
+    createRenderData(date, checkedStartDate, checkedEndDate) {
       let me = this
       let firstDay = me.get('firstDay') || 0
       date = normalizeDate(date)
@@ -288,52 +345,56 @@ export default {
       if (offset > 0) {
         endDate += offset
       }
-      let list = me.getDatasource(
+      let list = me.getDataSource(
         startDate,
         endDate,
         date,
-        checkedStart,
-        checkedEnd
+        checkedStartDate,
+        checkedEndDate
       )
-      return me.format(list)
-
-    },
-    format(list) {
-      let result = []
-      let arr = []
-      for (let i = 0; i < list.length; i++) {
-        arr.push(list[i])
-        if (i % 7 == 6) {
-          result.push(arr)
-          arr = []
-        }
-      }
-      return result
+      return formatList(list)
     }
   },
 
   afterMount() {
+
     let me = this
-
-    let today = new Date()
-
-    let date = me.get('start')
-    date = date ? date : today
-
-    let dateList = me.createRenderData(
-      date,
-      me.get('checkedStartDate'),
+    let startModeDate = me.get('startDate') ? me.get('startDate') : new Date()
+    let endModeDate = offsetMonth(startModeDate, 1)
+    let startModeList = me.createRenderData(
+      startModeDate, 
+      me.get('checkedStartDate'), 
       me.get('checkedEndDate')
     )
-    let nextDateList = me.createRenderData(
-      offsetMonth(date, 1),
-      me.get('CheckedStartDate'),
-      me.get('CheckedEndDate'),
+    let endModeList = me.createRenderData(
+      endModeDate,  
+      me.get('checkedStartDate'), 
+      me.get('checkedEndDate')
     )
+
+    let value = me.get('value')
+    if (value) {
+      let checkedStartDate = simplifyDate(value[ 0 ])
+      let checkedEndDate = simplifyDate(value[ 1 ])
+      me.set({
+        checkedStartDate,
+        checkedEndDate
+      })
+      me.fire(
+        'deteRangeChange.dateRange',
+        {
+          start: checkedStartDate,
+          end: checkedEndDate
+        }
+      )
+    }
+
     me.set({
-      modeDate: date,
-      dateList: dateList,
-      nextDateList: nextDateList
+      startModeDate,
+      endModeDate,
+      startModeList,
+      endModeList
     })
+
   }
 }

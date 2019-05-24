@@ -5,21 +5,24 @@ class="${prefix}datepicker
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  <Dropdown height="230" 
+  <Dropdown height="{{autoClose ? 230 : 280}}" 
     className="${prefix}datepicker-dropdown" 
-    placement="bottom-start" 
+    placement="{{placement}}" 
     trigger="custom" 
-    visible="{{visible}}"
+    visible="{{isOpen}}"
   >
 
     <div class="${prefix}datepicker-el">
-      <Input placeholder="请选择日期..."
-        model="formateDate"
-        type="input"
-        on-focus="focus()"
-        suffix="calendar"
-        clearable
-      />
+      <slot name="children">
+        <Input placeholder="请选择日期..."
+          model="formatDate"
+          type="input"
+          size="{{size}}"
+          on-focus="focus()"
+          suffix="calendar"
+          clearable="{{clearable}}"
+        />
+      </slot>
     </div>
 
     <template slot="list">
@@ -36,9 +39,18 @@ class="${prefix}datepicker
         {{#if shortcuts}} ${prefix}datepicker-poper-with-sidebar{{/if}}
       ">
         {{#if type == 'date'}}
-          <Date />
+          <Date multiple="{{multiple}}" 
+            startDate="{{startDate}}" 
+            value="{{value}}"
+            disabledDate="{{disabledDate}}"
+          />
         {{else if type == 'dateRange'}}
-          <DateRange />
+          <DateRange 
+            splitPanel="{{splitPanel}}" 
+            startDate="{{startDate}}" 
+            value="{{value}}"
+            disabledDate="{{disabledDate}}"
+          />
         {{else if type == 'week'}}
           <DateWeek />
         {{else if type == 'year'}}
@@ -47,6 +59,17 @@ class="${prefix}datepicker
           <DateMonth />
         {{/if}}
       </div>
+
+      {{#if autoClose}}
+      <div class="${prefix}datepicker-confirm">
+        <Button size="small" type="primary" on-click="ok()">
+          确认
+        </Button>
+        <Button size="small" on-click="clear()">
+          清空
+        </Button>
+      </div>
+      {{/if}}
     </template>
 
   </Dropdown>
