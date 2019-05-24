@@ -117,7 +117,6 @@ export let simplifyDate = function (date) {
     return date
   }
 
-  if (isValidDate(date)) {
   date = new Date(date)
 
   return {
