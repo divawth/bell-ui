@@ -9,6 +9,7 @@ import {
   parseDate,
   formatList
 } from '../function/util'
+import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 import template from '../template/Date.html'
 import { 
   RAW_NUMERIC, 
@@ -18,18 +19,9 @@ import {
 } from '../../constant'
 import { isDate } from '../../util'
 
-const WEEKS = [
-  '日',
-  '一',
-  '二',
-  '三',
-  '四',
-  '五',
-  '六'
-]
-
-const DAY = 24 * 60 * 60 * 1000
-const stableDuration = 41 * DAY
+const WEEKS = WEEKS
+const DAY = DAY
+const stableDuration = STABLE_DURATION
 
 export default {
 

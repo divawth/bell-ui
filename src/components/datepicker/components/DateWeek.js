@@ -11,19 +11,11 @@ import {
 } from '../function/util'
 import template from '../template/DateWeek.html'
 import { RAW_NUMERIC, RAW_STRING } from '../../constant'
+import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 
-const WEEKS = [
-  '日',
-  '一',
-  '二',
-  '三',
-  '四',
-  '五',
-  '六'
-]
-
-const DAY = 24 * 60 * 60 * 1000
-const stableDuration = 41 * DAY
+const WEEKS = WEEKS
+const DAY = DAY
+const stableDuration = STABLE_DURATION
 
 export default {
 

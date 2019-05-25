@@ -183,6 +183,8 @@ export default {
       <DatePicker type="year" placeholder="Select year" style="width: 200px"></DatePicker>
       <br><br>
       <DatePicker type="month" placeholder="Select month" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker type="week" placeholder="Select month" style="width: 200px"></DatePicker>
     </div>
   `
 }

@@ -6219,44 +6219,36 @@ button.bell-button-danger-ghost[disabled] {
 .bell-datepicker {
   user-select: none;
   display: inline-block;
-  box-sizing: border-box;
   font-size: 12px;
-  min-width: 234px;
 }
 .bell-datepicker .bell-datepicker-dropdown {
   width: 100%;
 }
-.bell-datepicker .bell-datepicker-el {
-  display: inline-block;
+.bell-datepicker .bell-datepicker-dropdown .bell-datepicker-el {
   width: 100%;
 }
-.bell-datepicker .bell-datepicker-poper {
-  width: 100%;
-  z-index: 1060;
-}
-.bell-datepicker .bell-datepicker-poper.bell-datepicker-poper-with-sidebar {
+.bell-datepicker .bell-datepicker-dropdown .bell-datepicker-poper.bell-datepicker-poper-with-sidebar {
   padding-left: 92px;
 }
 .bell-datepicker .bell-datepicker-sidebar {
-  width: 92px;
   position: absolute;
   top: 0;
   bottom: 0;
-  background: #f8f8f9;
-  border-right: 1px solid #e8eaec;
-  border-radius: 4px 0 0 4px;
   overflow: auto;
+  width: 92px;
+  background-color: #f8f8f9;
+  border-right: 1px solid #e8eaec;
 }
-.bell-datepicker .bell-datepicker-shortcut {
+.bell-datepicker .bell-datepicker-sidebar .bell-datepicker-shortcut {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
   padding: 6px 15px;
 }
-.bell-datepicker .bell-datepicker-shortcut.bell-datepicker .bell-datepicker-shortcut.hover,
-.bell-datepicker .bell-datepicker-shortcut:hover,
-.bell-datepicker .bell-datepicker-shortcut.bell-hover {
+.bell-datepicker .bell-datepicker-sidebar .bell-datepicker-shortcut.bell-datepicker .bell-datepicker-sidebar .bell-datepicker-shortcut.hover,
+.bell-datepicker .bell-datepicker-sidebar .bell-datepicker-shortcut:hover,
+.bell-datepicker .bell-datepicker-sidebar .bell-datepicker-shortcut.bell-hover {
   background-color: #e8eaec;
 }
 .bell-datepicker-date,
