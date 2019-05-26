@@ -26,7 +26,7 @@
     </span>
   </div>
 
-  <div class="${prefix}datepicker-table-week">
+  <div class="${prefix}datepicker-body">
     <div class="${prefix}datepicker-weeks">
       {{#each weeks}}
         <span class="${prefix}datepicker-col ${prefix}text-sub">
@@ -34,7 +34,7 @@
         </span>
       {{/each}}
     </div>
-    <div class="${prefix}datepicker-body">
+    <div class="${prefix}datepicker-days">
       {{#each dateList:index}}
         <div class="${prefix}datepicker-row
         {{#if checkedIndex == index}} ${prefix}datepicker-row-checked{{/if}}

@@ -29,10 +29,10 @@ class="${prefix}datepicker-date
     </span>
   </div>
 
-  <div class="${prefix}datepicker-table-date">
+  <div class="${prefix}datepicker-body">
     <div class="${prefix}datepicker-weeks">
       {{#each weeks}}
-        <span class="${prefix}datepicker-col ${prefix}text-sub">
+        <span class="${prefix}datepicker-col">
           {{this}}
         </span>
       {{/each}}
@@ -41,7 +41,7 @@ class="${prefix}datepicker-date
       {{#each dateList:index}}
         <div class="${prefix}datepicker-row">
           {{#each this:index}}
-            <span
+            <div
               class="{{#if isCurrentMonth && !disabled}} 
                 ${prefix}datepicker-col-current-month
               {{else if disabled}}
@@ -54,7 +54,7 @@ class="${prefix}datepicker-date
             {{#if isCurrentMonth && !disabled}} on-click="click(this)"{{/if}}
             >
               {{date}}
-            </span>
+            </div>
           {{/each}}
         </div>
       {{/each}}

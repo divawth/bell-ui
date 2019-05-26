@@ -1,11 +1,15 @@
 import template from '../template/DateYear.html'
-import { RAW_NUMERIC, RAW_STRING } from '../../constant';
+import { RAW_STRING } from '../../constant';
+import { isDate } from '../../util'
 
 export default {
 
   propTypes: {
-    startYear: {
-      type: RAW_NUMERIC
+    startDate: {
+      type: isDate()
+    },
+    value: {
+      type: isDate()
     },
     className: {
       type: RAW_STRING
@@ -18,12 +22,28 @@ export default {
   template,
 
   data() {
-    let start = this.get('startYear')
-    start = start ? start : new Date().getFullYear()
+    let year = new Date().getFullYear() 
+    if (this.get('startDate')) {
+      year = this.get('startDate').getFullYear()
+    }
+    let checkedYear = ''
+    if (this.get('value')) {
+      checkedYear = this.get('value').getFullYear()
+    }
     return {
-      modeYear: start,
-      checkedYear: '',
+      modeYear: year,
+      checkedYear: checkedYear,
       years: []
+    }
+  },
+
+  watchers: {
+    value(value) {
+      let checkedYear = ''
+      if (value) {
+        checkedYear = value.getFullYear()
+      }
+      this.set({ checkedYear })
     }
   },
 
@@ -40,9 +60,8 @@ export default {
       this.set({
         checkedYear: year
       })
-
       this.fire(
-        'yearChange',
+        'change.year',
         {
           year: year
         }
@@ -62,5 +81,13 @@ export default {
 
   afterMount() {
     this.getYearList(this.get('modeYear'))
+    if (this.get('value')) {
+      this.fire(
+        'change.year',
+        {
+          year: this.get('checkedYear')
+        }
+      )
+    }
   }
 }

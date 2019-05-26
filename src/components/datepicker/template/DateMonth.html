@@ -3,12 +3,12 @@
 "{{#if style}} {{style}}{{/if}}>
 
   <div class="${prefix}datepicker-header">
-    <span class="${prefix}datepicker-header-button" on-click="prevMore()">
+    <span class="${prefix}datepicker-header-button" on-click="this.decrease('modeYear', 10)">
       <Icon name="arrow-back" />
       <Icon name="arrow-back" />
     </span>
 
-    <span class="${prefix}datepicker-header-button" on-click="prev()">
+    <span class="${prefix}datepicker-header-button" on-click="this.decrease('modeYear', 1)">
       <Icon name="arrow-back" />
     </span>
 
@@ -16,11 +16,11 @@
       {{modeYear}} 年
     </span>
 
-    <span class="${prefix}datepicker-header-button" on-click="next()">
+    <span class="${prefix}datepicker-header-button" on-click="this.increase('modeYear', 1)">
       <Icon name="arrow-forward" />
     </span>
 
-    <span class="${prefix}datepicker-header-button" on-click="nextMore()">
+    <span class="${prefix}datepicker-header-button" on-click="this.increase('modeYear', 10)">
       <Icon name="arrow-forward" />
       <Icon name="arrow-forward" />
     </span>

@@ -1,20 +1,16 @@
 import template from '../template/DateMonth.html'
 import { RAW_NUMERIC, RAW_STRING } from '../../constant'
 import { MONTHS } from '../function/constant'
-
-const MONTHS = MONTHS
+import { isDate } from '../../util'
 
 export default {
 
   propTypes: {
-    date: {
-      type: RAW_NUMERIC
+    startDate: {
+      type: isDate()
     },
-    firstDay: {
-      type: RAW_NUMERIC
-    },
-    year: {
-      type: RAW_NUMERIC
+    value: {
+      type: isDate()
     },
     className: {
       type: RAW_STRING
@@ -27,27 +23,40 @@ export default {
   template,
 
   data() {
+    let year = new Date().getFullYear()
+    if (this.get('startDate')) {
+      year = this.get('startDate').getFullYear()
+    }
+    let checkedMonth = ''
+    let checkedYear = ''
+    if (this.get('value')) {
+      checkedYear = this.get('value').getFullYear()
+      checkedMonth = this.get('value').getMonth()
+    }
     return {
-      checkedMonth: '',
-      checkedYear: '',
-      modeYear: this.get('year') ? this.get('year') : new Date().getFullYear(),
+      checkedMonth: checkedMonth,
+      checkedYear: checkedYear,
+      modeYear: year,
       months: MONTHS
     }
   },
 
+  watchers: {
+    value(value) {
+      let checkedMonth = ''
+      let checkedYear = ''
+      if (value) {
+        checkedYear = value.getFullYear()
+        checkedMonth = value.getMonth()
+      }
+      this.set({
+        checkedYear,
+        checkedMonth
+      })
+    }
+  },
+
   methods: {
-    prevMore() {
-      this.decrease('modeYear', 10)
-    },
-    prev() {
-      this.decrease('modeYear', 1)
-    },
-    nextMore() {
-      this.increase('modeYear', 10)
-    },
-    next() {
-      this.increase('modeYear', 1)
-    },
     click(month) {
 
       let year = this.get('modeYear')
@@ -58,7 +67,7 @@ export default {
       })
 
       this.fire(
-        'monthChange',
+        'change.month',
         {
           year: year,
           month: month + 1
@@ -66,5 +75,17 @@ export default {
       )
 
     }
+  },
+
+  afterMount() {
+    if (this.get('value')) {
+      this.fire(
+        'change.month',
+        {
+          year: this.get('checkedYear'),
+          month: this.get('checkedMonth') + 1
+        }
+      )
+    }
   }
-};
+}

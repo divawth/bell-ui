@@ -122,22 +122,22 @@ export default {
       }
     },
 
-    yearChange(event, date) {
+    'change.year': function (event, date) {
       this.dateChange(date)
       event.stop()
     },
 
-    monthChange(event, date) {
+    'change.month': function (event, date) {
       this.dateChange(date)
       event.stop()
     },
 
-    weekRangeChange(event, date) {
+    'change.week': function (event, date) {
       this.dateRangeChange(date)
       event.stop()
     },
 
-    'deteRangeChange.dateRange': function (event, date) {
+    'change.daterange': function (event, date) {
       this.dateRangeChange(date)
       event.stop()
     }
@@ -148,6 +148,7 @@ export default {
       let date = data.value && data.value()
       if (!date) {
         Yox.logger.warn(`shortcuts value 传值错误`)
+        return
       }
       if (!Yox.is.array(date)) {
         date = simplifyDate(date)
@@ -159,6 +160,9 @@ export default {
           end: simplifyDate(date[ 1 ])
         })
       }
+      this.set({ 
+        value: date
+      })
       data.onClick && data.onClick()
     },
 

@@ -15,13 +15,10 @@ import {
   RAW_NUMERIC, 
   RAW_STRING, 
   RAW_BOOLEAN, 
-  RAW_FUNCTION 
+  RAW_FUNCTION, 
+  RAW_ARRAY
 } from '../../constant'
 import { isDate } from '../../util'
-
-const WEEKS = WEEKS
-const DAY = DAY
-const stableDuration = STABLE_DURATION
 
 export default {
 
@@ -34,6 +31,9 @@ export default {
     },
     value: {
       type: isDate()
+    },
+    selected: {
+      type: RAW_ARRAY
     },
     disabledDate: {
       type: RAW_FUNCTION
@@ -53,13 +53,20 @@ export default {
 
   data() {
     let modeDate = this.get('startDate') ? this.get('startDate') : new Date()
+    let selectedDates = []
+    if (this.get('selected') && this.get('selected').length) {
+      selectedDates = this.get('selected').map(function (item) {
+        let date = simplifyDate(item)
+        return `${date.year}/${date.month}/${date.date}/${date.day}`
+      })
+    }
     return {
       weeks: WEEKS,
       currentDate: null,
       modeDate: simplifyDate(modeDate),
 
       dateList: [],
-      selectedDates: []
+      selectedDates: selectedDates
     }
   },
 
@@ -75,14 +82,28 @@ export default {
   },
 
   watchers: {
-    currentDate(date) {
-      this.fire(
-        'change.date',
-        {
-          date: date,
-          selectedDates: this.get('selectedDates')
-        }
-      )
+    value(date) {
+      let value = date ? simplifyDate(date) : null
+      this.set({
+        currentDate: value,
+        dateList: this.createRenderData(
+          this.get('modeDate'), 
+          value,
+          this.get('selectedDates')
+        )
+      })
+    },
+    currentDate: {
+      watcher: function (date) {
+        this.fire(
+          'change.date',
+          {
+            date: date,
+            selectedDates: this.get('selectedDates')
+          }
+        )
+      },
+      sync: true
     }
   },
 
@@ -181,7 +202,7 @@ export default {
       endDate = normalizeDate(endDate)
 
       let duration = endDate - startDate
-      let offset = stableDuration - duration
+      let offset = STABLE_DURATION - duration
 
       if (offset > 0) {
         endDate += offset
@@ -198,9 +219,23 @@ export default {
   },
 
   afterMount() {
+    let value = this.get('value') ? simplifyDate(this.get('value')) : null
     this.set({
-      currentDate: this.get('value') ? simplifyDate(this.get('value')) : null,
-      dateList: this.createRenderData(this.get('modeDate'), null, [])
+      currentDate: value,
+      dateList: this.createRenderData(
+        this.get('modeDate'), 
+        value, 
+        this.get('selectedDates')
+      )
     })
+    if (this.get('selected')) {
+      this.fire(
+        'change.date',
+        {
+          date: value,
+          selectedDates: this.get('selectedDates')
+        }
+      )
+    }
   }
 }

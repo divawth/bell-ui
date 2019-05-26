@@ -13,7 +13,7 @@ export default {
     <div style="height: 400px;">
       <DatePicker type="date" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `
 }
@@ -29,7 +29,7 @@ export default {
     <div>
       <DatePicker type="date" shortcuts="{{shortcuts1}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" shortcuts="{{shortcuts2}}" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" shortcuts="{{shortcuts2}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
@@ -124,8 +124,15 @@ export default {
   template: `
     <div>
       <DatePicker type="date" multiple placeholder="Select date" style="width: 300px"></DatePicker>
+      <br><br>
+      <DatePicker type="date" value="{{value}}" multiple placeholder="Select date" style="width: 300px"></DatePicker>
     </div>
-  `
+  `,
+  data() {
+    return {
+      value: [new Date('2019/5/26'), new Date('2019/5/27'), new Date('2019/5/27')]
+    }
+  }
 }
 ```
 
@@ -140,6 +147,12 @@ export default {
       <DatePicker type="date" startDate="{{startDate}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>            
       <DatePicker type="dateRange" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>            
+      <DatePicker type="year" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>            
+      <DatePicker type="month" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>            
+      <DatePicker type="week" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
@@ -161,12 +174,20 @@ export default {
       <DatePicker value="{{value1}}" formatText="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>            
       <DatePicker value="{{value2}}" formatText="yyyy/MM/dd$-yyyy/MM/dd" type="dateRange" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker value="{{value3}}" formatText="yyyy年MM月" type="month" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker value="{{value4}}" formatText="yyyy年" type="year" placeholder="Select date" style="width: 200px"></DatePicker>
+      <br><br>
+      <DatePicker value="{{value2}}" formatText="yyyy/MM/dd$-yyyy/MM/dd" type="week" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {
     return {
       value1: new Date('2019/1/1'),
-      value2: [new Date('2019/1/1'), new Date('2019/2/16')]
+      value2: [new Date('2019/1/1'), new Date('2019/2/16')],
+      value3: new Date('2019/3/11'),
+      value4: new Date('2017/3/11')
     }
   }
 }
@@ -244,7 +265,6 @@ export default {
       <DatePicker type="date"
         confirm
         open="{{open}}"
-        value="{{value3}}"
         on-change="handleChange($data)"
         on-clear="handleClear()"
         on-ok="handleOk()"

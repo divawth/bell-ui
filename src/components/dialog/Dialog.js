@@ -57,7 +57,7 @@ export default {
 
   afterMount() {
     this.setStatus()
-    document.body.appendChild(this.$el)
+    Yox.dom.append(document.body, this.$el)
   }
 
 }

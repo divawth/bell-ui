@@ -5,7 +5,7 @@ class="${prefix}datepicker
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  <Dropdown height="{{autoClose ? 230 : 280}}" 
+  <Dropdown height="{{autoClose ? 230 : 320}}" 
     className="${prefix}datepicker-dropdown" 
     placement="{{placement}}" 
     trigger="custom" 
@@ -26,6 +26,7 @@ class="${prefix}datepicker
     </div>
 
     <template slot="list">
+
       {{#if shortcuts}}
       <div class="${prefix}datepicker-sidebar">
         {{#each shortcuts}}
@@ -35,13 +36,18 @@ class="${prefix}datepicker
         {{/each}}
       </div>
       {{/if}}
+
       <div class="${prefix}datepicker-poper
         {{#if shortcuts}} ${prefix}datepicker-poper-with-sidebar{{/if}}
       ">
         {{#if type == 'date'}}
           <Date multiple="{{multiple}}" 
             startDate="{{startDate}}" 
-            value="{{value}}"
+            {{#if multiple}}
+              selected="{{value}}"
+            {{else}}
+              value="{{value}}"
+            {{/if}}
             disabledDate="{{disabledDate}}"
           />
         {{else if type == 'dateRange'}}
@@ -52,11 +58,20 @@ class="${prefix}datepicker
             disabledDate="{{disabledDate}}"
           />
         {{else if type == 'week'}}
-          <DateWeek />
+          <DateWeek 
+            startDate="{{startDate}}"
+            value="{{value}}"  
+          />
         {{else if type == 'year'}}
-          <DateYear />
+          <DateYear
+            startDate="{{startDate}}"
+            value="{{value}}"   
+          />
         {{else if type == 'month'}}
-          <DateMonth />
+          <DateMonth 
+            startDate="{{startDate}}"
+            value="{{value}}"   
+          />
         {{/if}}
       </div>
 

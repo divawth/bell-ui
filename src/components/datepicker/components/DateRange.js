@@ -15,10 +15,6 @@ import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '.
 import { isDate } from '../../util'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 
-const WEEKS = WEEKS
-const DAY = DAY
-const stableDuration = STABLE_DURATION
-
 export default {
 
   propTypes: {
@@ -209,7 +205,7 @@ export default {
 
       if (checkedStartDate && checkedEndDate) {
         me.fire(
-          'deteRangeChange.dateRange',
+          'change.daterange',
           {
             start: checkedStartDate,
             end: checkedEndDate
@@ -332,7 +328,7 @@ export default {
       endDate = normalizeDate(endDate)
 
       let duration = endDate - startDate
-      let offset = stableDuration - duration
+      let offset = STABLE_DURATION - duration
 
       if (offset > 0) {
         endDate += offset
@@ -345,6 +341,29 @@ export default {
         checkedEndDate
       )
       return formatList(list)
+    }
+  },
+
+  watchers: {
+    value(value) {
+      let checkedStartDate = simplifyDate(value[ 0 ])
+      let checkedEndDate = simplifyDate(value[ 1 ])
+      let startModeList = this.createRenderData(
+        this.get('startModeDate'),
+        checkedStartDate,
+        checkedEndDate
+      )
+      let endModeList = this.createRenderData(
+        this.get('endModeDate'),  
+        checkedStartDate, 
+        checkedEndDate
+      )
+      this.set({
+        checkedStartDate,
+        checkedEndDate,
+        startModeList,
+        endModeList
+      })
     }
   },
 
@@ -373,7 +392,7 @@ export default {
         checkedEndDate
       })
       me.fire(
-        'deteRangeChange.dateRange',
+        'change.daterange',
         {
           start: checkedStartDate,
           end: checkedEndDate

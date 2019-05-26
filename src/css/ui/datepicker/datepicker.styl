@@ -20,8 +20,8 @@
     overflow auto
 
     width $datepicker-sidebar-width
-    background-color #f8f8f9
-    border-right 1px solid #e8eaec
+    background-color $datepicker-sidebar-background-color
+    border-right 1px solid $datepicker-sidebar-border-color
 
     {$selector-datepicker-shortcut}
       overflow hidden
@@ -31,4 +31,70 @@
       padding $datepicker-shortcut-padding
 
       &{$selector-hover}
-        background-color #e8eaec
+        background-color $datepicker-sidebar-border-color
+
+  {$selector-datepicker-header}
+    display flex
+    padding $datepicker-header-padding
+    border-bottom 1px solid $datepicker-border-color
+
+    {$selector-datepicker-header}-button
+      color $brand-muted
+      flex 1
+      text-align center
+      cursor pointer
+      transition color .2s
+
+      {$selector-hover}
+        color $brand-primary
+
+      {$selector-icon}
+        margin 0
+  
+  {$selector-datepicker}-body
+    margin $datepicker-body-margin
+
+  {$selector-datepicker}-weeks
+    display flex
+    margin $datepicker-week-margins auto
+
+    {$selector-datepicker}-col
+      flex 1
+      text-align center
+      line-height 1.5
+
+  {$selector-datepicker}-days
+    {$selector-datepicker}-row
+      display flex
+      text-align center
+
+    {$selector-datepicker}-col
+      cursor pointer
+      flex 1
+      text-align center
+      color $brand-secondary
+      margin $datepicker-date-margin
+      border-radius $datepicker-date-radius
+      width $datepicker-date-size
+      height $datepicker-date-size
+      line-height $datepicker-date-size    
+
+      &-prev-month,
+      &-last-month,
+      &-disabled
+        color $brand-muted
+        cursor $cursor-disabled
+
+      &-current-month
+        &:hover
+          background-color $datepicker-item-checked-background-color
+          color $datepicker-item-checked-color
+
+      &-checked
+        background-color $datepicker-item-checked-background-color
+        color $datepicker-item-checked-color
+
+  {$selector-datepicker}-confirm
+    border-top 1px solid $datepicker-sidebar-border-color
+    text-align right
+    padding 8px

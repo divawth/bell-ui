@@ -10,19 +10,15 @@ import {
   getOffsetTime
 } from '../function/util'
 import template from '../template/DateWeek.html'
-import { RAW_NUMERIC, RAW_STRING } from '../../constant'
+import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
-
-const WEEKS = WEEKS
-const DAY = DAY
-const stableDuration = STABLE_DURATION
+import { isDate } from '../../util'
 
 export default {
 
   propTypes: {
-    // 表示第几周
-    week: {
-      type: RAW_NUMERIC
+    startDate: {
+      type: isDate()
     },
     date: {
       type: RAW_NUMERIC
@@ -44,8 +40,8 @@ export default {
     return {
       weeks: WEEKS,
       dateList: [],
-      modeDate: this.get('date') ? parseDate(this.get('date')) : '',
-      checkedIndex: this.get('week'),
+      modeDate: this.get('startDate') ? this.get('startDate') : new Date(),
+      checkedIndex: 0,
       checkedDateTime: -1
     }
   },
@@ -87,7 +83,7 @@ export default {
     },
     click(date) {
       this.fire(
-        'weekRangeChange',
+        'change.week',
         {
           start: date[ 0 ],
           end: date[ date.length - 1 ]
@@ -145,7 +141,7 @@ export default {
       endDate = normalizeDate(endDate)
 
       let duration = endDate - startDate
-      let offset = stableDuration - duration
+      let offset = STABLE_DURATION - duration
 
       if (offset > 0) {
         endDate += offset
@@ -188,5 +184,18 @@ export default {
         me.get('checkedDateTime')
       )
     })
+    let start = me.get('value') ? me.get('value')[ 0 ] : UNDEFINED
+    if (start) {
+      me.refresh(
+        getOffsetTime(start)
+      )
+      this.fire(
+        'change.week',
+        {
+          start: simplifyDate(start),
+          end: simplifyDate(me.get('value')[ 1 ])
+        }
+      )
+    }
   }
 }
