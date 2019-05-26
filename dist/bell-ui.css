@@ -8829,6 +8829,24 @@ button.bell-button-danger-ghost[disabled] {
 .bell-drawer .bell-drawer-content {
   position: fixed;
   background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.bell-drawer .bell-drawer-content .bell-drawer-header {
+  position: relative;
+  padding: 16px 24px;
+  color: rgba(0,0,0,0.54);
+  border-bottom: 1px solid #e8e8e8;
+}
+.bell-drawer .bell-drawer-content .bell-drawer-header .bell-drawer-title {
+  font-weight: 500;
+  color: rgba(0,0,0,0.87);
+  font-size: 16px;
+}
+.bell-drawer .bell-drawer-content .bell-drawer-body {
+  padding: 16px 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 .bell-drawer .bell-drawer-mask {
   position: fixed;
@@ -8836,7 +8854,7 @@ button.bell-button-danger-ghost[disabled] {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.54);
+  background: rgba(0,0,0,0.37);
 }
 .bell-drawer.bell-drawer-hidden {
   display: none;

@@ -1,21 +1,35 @@
 {$selector-drawer}
+  ui-drawer()
 
-    ui-drawer()
+  {$selector-drawer-content}
+    position fixed
+    background-color $brand-bg
+    box-shadow $drawer-shadow
 
-    {$selector-drawer-content}
+    {$selector-drawer-header}
+      position relative
+      padding $drawer-padding
+      color $brand-secondary
+      border-bottom 1px solid $drawer-border-color
 
-        position fixed
-        background-color $brand-bg
+      {$selector-drawer-title}
+        font-weight 500
+        color $brand-main
+        font-size $drawer-title-size
+    
+    {$selector-drawer}-body
+      padding $drawer-padding
+      font-size $drawer-body-size
+      line-height 1.5
+      word-wrap break-word
 
-    {$selector-drawer-mask}
+  {$selector-drawer-mask}
+    position fixed
+    left 0
+    right 0
+    top 0
+    bottom 0
+    background rgba(0,0,0,.37)
 
-        position fixed
-        left 0
-        right 0
-        top 0
-        bottom 0
-        background $brand-secondary
-
-    &{$selector-drawer-hidden}
-
-        display none
+  &{$selector-drawer-hidden}
+    display none

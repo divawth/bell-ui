@@ -1097,18 +1097,22 @@ var Icon = {
   template: template$b
 };
 
-var template$c = "<div class=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n  {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n  {{#if position}} bell-drawer-{{position}}{{/if}}\n\" style=\"{{#if style}} {{style}}{{/if}};\">\n\n  {{#if useMask}}\n    <div class=\"bell-drawer-mask\"></div>\n  {{/if}}\n\n  <div ref=\"drawContent\" class=\"bell-drawer-content\"\n    style=\"{{#if position == \"left\" || position == \"right\"}}\n      width: {{size}}px;\n    {{else}}\n        height: {{size}}px;\n    {{/if}}\"\n  >\n    {{#if hasSlot('children')}}\n      <slot name=\"children\" />\n    {{/if}}\n  </div>\n</div>";
+var template$c = "<div \nclass=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n  {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n  {{#if position}} bell-drawer-{{position}}{{/if}}\n\" \nstyle=\"{{#if style}} {{style}}{{/if}}\"\n>\n  {{#if useMask}}\n    <div class=\"bell-drawer-mask\"></div>\n  {{/if}}\n\n  <div ref=\"drawContent\" class=\"bell-drawer-content\"\n    style=\"{{#if position == \"left\" || position == \"right\"}}\n      width: {{size}}px;\n    {{else}}\n      height: {{size}}px;\n    {{/if}}\"\n  >   \n    <div class=\"bell-drawer-header\">\n      {{#if title}}\n      <div class=\"bell-drawer-title\">\n        {{title}}\n      </div>\n      {{/if}}\n    </div>\n    \n    <div class=\"bell-drawer-body\">\n      <slot name=\"children\" />\n    </div>\n  </div>\n</div>";
 
 var Drawer = {
   template: template$c,
 
   propTypes: {
+    title: {
+      type: RAW_STRING
+    },
     position: {
       type: RAW_STRING,
       value: 'left'
     },
     useMask: {
       type: RAW_BOOLEAN,
+      value: TRUE
     },
     open: {
       type: RAW_BOOLEAN
@@ -1124,8 +1128,11 @@ var Drawer = {
     }
   },
 
+  model: 'open',
+
   afterMount: function afterMount() {
     var me = this;
+    Yox.dom.append(document.body, this.$el);
     me.documentClickHandler = function (event) {
       if (!me.get('open')) {
         return
@@ -1148,6 +1155,7 @@ var Drawer = {
   },
 
   beforeDestroy: function beforeDestroy() {
+    Yox.dom.remove(document.body, this.$el);
     Yox.dom.on(
       document,
       'click',

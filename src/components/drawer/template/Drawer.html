@@ -1,22 +1,31 @@
-<div class="bell-drawer
+<div 
+class="${prefix}drawer
   {{#if className}} {{className}}{{/if}}
-  {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}
-  {{#if position}} bell-drawer-{{position}}{{/if}}
-" style="{{#if style}} {{style}}{{/if}};">
-
+  {{#if position}} ${prefix}drawer-{{position}}{{/if}}
+" 
+style="{{#if style}} {{style}}{{/if}}"
+>
   {{#if useMask}}
-    <div class="bell-drawer-mask"></div>
+    <div class="${prefix}drawer-mask"></div>
   {{/if}}
 
-  <div ref="drawContent" class="bell-drawer-content"
+  <div ref="drawContent" class="${prefix}drawer-content"
     style="{{#if position == "left" || position == "right"}}
       width: {{size}}px;
     {{else}}
-        height: {{size}}px;
+      height: {{size}}px;
     {{/if}}"
-  >
-    {{#if hasSlot('children')}}
+  >   
+    <div class="${prefix}drawer-header">
+      {{#if title}}
+      <div class="${prefix}drawer-title">
+        {{title}}
+      </div>
+      {{/if}}
+    </div>
+    
+    <div class="${prefix}drawer-body">
       <slot name="children" />
-    {{/if}}
+    </div>
   </div>
 </div>

@@ -2,18 +2,22 @@ import {
   contains
 } from '../util'
 import template from './template/Drawer.html'
-import { RAW_STRING, RAW_BOOLEAN } from '../constant'
+import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
 
 export default {
   template,
 
   propTypes: {
+    title: {
+      type: RAW_STRING
+    },
     position: {
       type: RAW_STRING,
       value: 'left'
     },
     useMask: {
       type: RAW_BOOLEAN,
+      value: TRUE
     },
     open: {
       type: RAW_BOOLEAN
@@ -29,8 +33,31 @@ export default {
     }
   },
 
+  model: 'open',
+
+  watchers: {
+    open(isOpen) {
+      if (isOpen) {
+        this.open()
+      }
+      else {
+        this.close()
+      }
+    }
+  },
+
+  methods: {
+    open() {
+      
+    },
+    close() {
+
+    }
+  },
+
   afterMount() {
     let me = this
+    Yox.dom.append(document.body, this.$el)
     me.documentClickHandler = function (event) {
       if (!me.get('open')) {
         return
@@ -53,6 +80,7 @@ export default {
   },
 
   beforeDestroy() {
+    Yox.dom.remove(document.body, this.$el)
     Yox.dom.on(
       document,
       'click',
