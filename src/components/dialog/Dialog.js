@@ -1,10 +1,14 @@
 import template from './template/Dialog.html'
-import { RAW_STRING, RAW_BOOLEAN } from '../constant'
+import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
 
 export default {
   propTypes: {
     open: {
       type: RAW_BOOLEAN
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
       type: RAW_STRING
@@ -16,48 +20,28 @@ export default {
 
   template,
 
-  methods: {
-    maskClick: function () {
-      this.fire('maskClick')
-    }
-  },
+  model: 'open',
 
   watchers: {
-    open: function () {
-      this.setStatus()
+    open(isOpen) {
+      this.fire('change.dialog', { isOpen })
     }
   },
 
   methods: {
-    setStatus: function () {
-      let me = this
-      let element = me.$el
-      var contentElement = element.querySelector('.bell-dialog-content')
-      if (me.get('open')) {
-        contentElement.style.marginTop = '-250px'
-        element.style.display = 'flex'
-        setTimeout(
-          function () {
-            contentElement.style.marginTop = 0
-          },
-          300
-        )
-      }
-      else {
-        contentElement.style.marginTop = '-250px'
-        setTimeout(
-          function () {
-            element.style.display = 'none'
-          },
-          300
-        )
-      }
+    maskClick: function () {
+      this.set('open', false)
+    },
+    close: function () {
+      this.set('open', false)
     }
   },
 
   afterMount() {
-    this.setStatus()
     Yox.dom.append(document.body, this.$el)
+  },
+  
+  beforeDestroy() {
+    Yox.dom.remove(document.body, this.$el)
   }
-
 }

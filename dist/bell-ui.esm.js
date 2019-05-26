@@ -6408,12 +6408,16 @@ var FormItem = {
   }
 };
 
-var template$K = "<div \nclass=\"bell-dialog\n{{#if open}} bell-dialog-open{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-dialog-content\">\n    \n    {{#if hasSlot('title')}}\n    <div class=\"bell-dialog-title\">\n      <slot name=\"title\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('children')}}\n    <div class=\"bell-dialog-body\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('actions')}}\n    <div class=\"bell-dialog-actions\">\n      <slot name=\"actions\" />\n    </div>\n    {{/if}}\n\n  </div>\n  <div class=\"bell-dialog-mask\" on-click=\"maskClick()\"></div>\n</div>";
+var template$K = "<div \nclass=\"bell-dialog\n{{#if open}} bell-dialog-open{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-dialog-mask\" on-click=\"maskClick()\"></div>\n  <div class=\"bell-dialog-content\">\n    <div class=\"bell-dialog-title\">\n      <slot name=\"title\">\n        温馨提示\n      </slot>\n      {{#if closable}}\n      <Button className=\"bell-dialog-close\" size=\"small\" borderType=\"none\" on-click=\"close()\">\n        <template slot=\"icon\">\n          <Icon size=\"28\" name=\"close\"></Icon>\n        </template>\n      </Button>\n      {{/if}}\n    </div>\n\n    {{#if hasSlot('children')}}\n    <div class=\"bell-dialog-body\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('actions')}}\n    <div class=\"bell-dialog-actions\">\n      <slot name=\"actions\" />\n    </div>\n    {{/if}}\n  </div>\n</div>";
 
 var Dialog = {
   propTypes: {
     open: {
       type: RAW_BOOLEAN
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
       type: RAW_STRING
@@ -6425,50 +6429,30 @@ var Dialog = {
 
   template: template$K,
 
-  methods: {
-    maskClick: function () {
-      this.fire('maskClick');
-    }
-  },
+  model: 'open',
 
   watchers: {
-    open: function () {
-      this.setStatus();
+    open: function open(isOpen) {
+      this.fire('change.dialog', { isOpen: isOpen });
     }
   },
 
   methods: {
-    setStatus: function () {
-      var me = this;
-      var element = me.$el;
-      var contentElement = element.querySelector('.bell-dialog-content');
-      if (me.get('open')) {
-        contentElement.style.marginTop = '-250px';
-        element.style.display = 'flex';
-        setTimeout(
-          function () {
-            contentElement.style.marginTop = 0;
-          },
-          300
-        );
-      }
-      else {
-        contentElement.style.marginTop = '-250px';
-        setTimeout(
-          function () {
-            element.style.display = 'none';
-          },
-          300
-        );
-      }
+    maskClick: function () {
+      this.set('open', false);
+    },
+    close: function () {
+      this.set('open', false);
     }
   },
 
   afterMount: function afterMount() {
-    this.setStatus();
-    document.body.appendChild(this.$el);
+    Yox.dom.append(document.body, this.$el);
+  },
+  
+  beforeDestroy: function beforeDestroy() {
+    Yox.dom.remove(document.body, this.$el);
   }
-
 };
 
 var SmallTableTpl = "<table class=\"bell-table\n{{#if className}} {{className}}{{/if}}\n{{#if stripe}} bell-table-stripe{{/if}}\n{{#if border}} bell-table-border{{/if}}\n\"{{#if style}} style=\"{{style}}\"{{/if}}>\n  <colgroup>\n    {{#each colWidths}}\n      <col align=\"left\" width=\"{{this}}\"></col>\n    {{/each}}\n  </colgroup>\n  <thead class=\"bell-table-header\">\n    {{#each columns}}\n      <th class=\"{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} bell-table-hidden{{/if}}\">\n        {{#if key !== 'checked'}}\n          {{title}}\n        {{else}}\n          <Checkbox checked=\"{{checkAll}}\" on-change=\"checkedAllChange()\">\n            {{title}}\n          </Checkbox>\n        {{/if}}\n      </th>\n    {{/each}}\n  </thead>\n  <tbody class=\"bell-table-body\"> \n    {{#if !header}}\n      {{#each list:index}}\n        <tr class=\"{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}\n            {{#if currentItem && currentItem.index == index}} bell-table-active{{/if}}\n          \" \n          on-click=\"rowClick(this, index)\"\n        >\n          {{#each columns}}\n            {{#if list[ index ][ key ]}}\n              <td class=\"{{#if className}}{{className}}{{/if}}\n                  {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}\n                \"\n                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'rowSpan' ]}}\n                  rowspan=\"{{list[ index ][ key ][ 'rowSpan' ]}}\"\n                {{/if}}\n                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'colSpan' ]}}\n                  colspan=\"{{list[ index ][ key ][ 'colSpan' ]}}\"\n                {{/if}}\n              >  \n                {{#if key == 'index'}}\n                  {{#if setIndex}}\n                    {{setIndex(this, index)}}\n                  {{else}}\n                    {{index + 1}}\n                  {{/if}}\n                {{else if key == 'checked'}}\n                  <Checkbox checked=\"{{list[ index ][ key ]}}\" on-change=\"checkedChange($data, index)\">\n                  </Checkbox>\n                {{else if key != 'action'}}\n                  {{isObject(list[ index ][ key ]) ? list[ index ][ key ][ 'value' ] : list[ index ][ key ]}}\n                {{else}}\n                  {{#each actions}}\n                    <Button on-click=\"click(this, list[ index ], index)\" className=\"{{className}}\" disabled=\"{{disabled}}\" fluid=\"{{fluid}}\" shape=\"{{shape}}\" size=\"{{size}}\" type=\"{{type}}\">\n                      {{text}}\n                    </Button>\n                  {{/each}}\n                {{/if}}\n              </td>\n            {{/if}}\n          {{/each}}\n        </tr>\n      {{/each}}\n    {{/if}} \n  </tbody>\n</table>";

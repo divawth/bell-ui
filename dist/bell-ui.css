@@ -8858,61 +8858,63 @@ button.bell-button-danger-ghost[disabled] {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 20;
   display: none;
 }
 .bell-dialog.bell-dialog-open {
-  display: inline-block;
+  display: block;
+}
+.bell-dialog.bell-dialog-open .bell-dialog-content {
+  transform: translate(-50%, -50%) scale(1);
 }
 .bell-dialog-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0,0,0,0.54);
-  transition: opacity 0.3s;
+  transition: opacity 0.1s;
 }
 .bell-dialog-content {
-  max-width: 90%;
-  min-width: 300px;
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+  max-height: 100%;
+  overflow: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  min-width: 320px;
   background-color: #fff;
-  z-index: 1;
-  transition: margin-top 0.3s;
+  transition: transform 0.3s 0.1s;
 }
-.bell-dialog-title,
-.bell-dialog-actions {
+.bell-dialog-content .bell-dialog-title,
+.bell-dialog-content .bell-dialog-actions {
   padding: 15px;
 }
-.bell-dialog-title {
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #17233d;
-  font-weight: 700;
+.bell-dialog-content .bell-dialog-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 700;
   border: 1px solid #efefec;
+  font-size: 14px;
+  color: #17233d;
 }
-.bell-dialog-body {
+.bell-dialog-content .bell-dialog-title .bell-dialog-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px;
+}
+.bell-dialog-content .bell-dialog-body {
   padding: 15px;
-  max-height: auto;
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 12px;
   line-height: 1.5;
 }
-.bell-dialog-actions {
+.bell-dialog-content .bell-dialog-actions {
   border-top: 1px solid #efefec;
-  padding: 12px 18px;
   text-align: right;
+  padding: 12px 15px;
 }
 .bell-table,
 .bell-table-header {

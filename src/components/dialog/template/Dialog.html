@@ -5,13 +5,20 @@ class="${prefix}dialog
 " 
 {{#if style}}style="{{style}}"{{/if}}
 >
+  <div class="${prefix}dialog-mask" on-click="maskClick()"></div>
   <div class="${prefix}dialog-content">
-    
-    {{#if hasSlot('title')}}
     <div class="${prefix}dialog-title">
-      <slot name="title" />
+      <slot name="title">
+        温馨提示
+      </slot>
+      {{#if closable}}
+      <Button className="${prefix}dialog-close" size="small" borderType="none" on-click="close()">
+        <template slot="icon">
+          <Icon size="28" name="close"></Icon>
+        </template>
+      </Button>
+      {{/if}}
     </div>
-    {{/if}}
 
     {{#if hasSlot('children')}}
     <div class="${prefix}dialog-body">
@@ -24,7 +31,5 @@ class="${prefix}dialog
       <slot name="actions" />
     </div>
     {{/if}}
-
   </div>
-  <div class="${prefix}dialog-mask" on-click="maskClick()"></div>
 </div>

@@ -1,64 +1,68 @@
 {$selector-dialog}
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  z-index $dialog-z-index
   display none
 
   &{$selector-dialog}-open
-    display inline-block
+    display block
 
-{$selector-dialog}-mask
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,.54);
-  transition: opacity .3s;
+    {$selector-dialog-content}
+      transform translate(-50%, -50%) scale(1)
 
-{$selector-dialog}-content
-  max-width: 90%;    
-  min-width: 300px;
-  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-  background-color: #fff;
-  z-index: 1;
-  transition: margin-top .3s;
+{$selector-dialog-mask}
+  position absolute
+  width 100%
+  height 100%
+  background-color rgba(0,0,0,.54)
+  transition opacity .1s
 
-{$selector-dialog}-title,
-{$selector-dialog}-actions
-  padding: 15px;
+{$selector-dialog-content}
+  max-height 100%
+  overflow auto
+  position absolute
+  left 50%
+  top 50%
+  transform translate(-50%, -50%) scale(0)
 
-{$selector-dialog}-title
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #17233d;
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border: 1px solid #efefec;
+  min-width $dialog-min-width
+  background-color $dialog-content-background
+  transition transform 0.3s 0.1s
 
-{$selector-dialog}-body
-  padding: 15px;
-  max-height: auto;
-  overflow-y: auto;
-  overflow-x: hidden;
-  font-size: 12px;
-  line-height: 1.5;
+  {$selector-dialog}-title,
+  {$selector-dialog}-actions
+    padding $dialog-padding
 
-{$selector-dialog}-actions
-  border-top: 1px solid #efefec;
-  padding: 12px 18px;
-  text-align: right;
+  {$selector-dialog}-title
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    font-weight 700
+
+    border 1px solid $dialog-border-color
+    font-size $dialog-title-size
+    color $dialog-title-color
+
+    {$selector-dialog}-close
+      position absolute
+      right 0
+      top 0
+      padding $dialog-close-padding
+
+  {$selector-dialog}-body
+    padding $dialog-padding
+    overflow-y auto
+    overflow-x hidden
+    font-size 12px
+    line-height 1.5
+
+  {$selector-dialog}-actions
+    border-top 1px solid $dialog-border-color
+    text-align right
+    padding $dialog-actions-padding
 
 
   

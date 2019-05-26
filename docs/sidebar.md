@@ -36,6 +36,7 @@
   - [Message 全局消息提示](view/message)
   - [Notice 通知提醒](view/notice)
   - [Modal 对话框](view/model)
+  - [Dialog 弹框](view/dialog)
   - [Tooltip 文字提示](view/tooltip)
   - [Progress 进度条](other/progress)
   - [Avatar 头像](view/avatar)
