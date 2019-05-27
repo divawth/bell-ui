@@ -5,13 +5,12 @@ class="${prefix}form-item
 {{#if style}} style="{{style}}"{{/if}}
 >
   {{#if label}}
-  <label class="${prefix}form-item-label" style="width: {{labelWidth}}px;">
+  <label class="${prefix}form-item-label">
     {{label}}
   </label>
   {{/if}}
 
   <div class="${prefix}form-item-content" 
-    {{#if label}}style="padding-left: {{labelWidth}}px;"{{/if}}
   >
     <slot name="children" />
   </div>

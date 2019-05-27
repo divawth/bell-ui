@@ -1,10 +1,103 @@
 {$selector-drawer}
-  ui-drawer()
+  position fixed
+  top 0
+  left 0
+  overflow hidden
+
+  &{$selector-drawer}-open
+    {$selector-drawer-mask}
+      opacity 1
+  
+  &{$selector-drawer}-leave
+    {$selector-drawer-mask}
+      opacity 0
+
+  &[data-placement="left"]
+    width 100%
+    height 0
+
+    &{$selector-drawer}-open
+      height 100%
+
+      {$selector-drawer-content}
+        transform translate(0)
+    
+    &{$selector-drawer}-leave
+      {$selector-drawer-content}
+        transform translate(-100%)
+
+    {$selector-drawer-content}
+      transform translate(-100%)
+      top 0
+      left 0
+      bottom 0
+  
+  &[data-placement="right"]
+    width 100%
+    height 0
+
+    &{$selector-drawer}-open
+      height 100%
+
+      {$selector-drawer-content}
+        transform translate(0)
+    
+    &{$selector-drawer}-leave
+      {$selector-drawer-content}
+        transform translate(100%)
+
+    {$selector-drawer-content}
+      transform translate(100%)
+      top 0
+      right 0
+      bottom 0
+
+  &[data-placement="top"]
+    width 0
+    height 100%
+    
+    &{$selector-drawer}-open
+      width 100%
+
+      {$selector-drawer-content}
+        transform translate(0)
+    
+    &{$selector-drawer}-leave
+      {$selector-drawer-content}
+        transform translateY(-100%)
+
+    {$selector-drawer-content}
+      transform translateY(-100%)
+      top 0
+      right 0
+      left 0
+
+  &[data-placement="bottom"]
+    width 0
+    height 100%
+    
+    &{$selector-drawer}-open
+      width 100%
+
+      {$selector-drawer-content}
+        transform translate(0)
+    
+    &{$selector-drawer}-leave
+      {$selector-drawer-content}
+        transform translateY(100%)
+
+    {$selector-drawer-content}
+      transform translateY(100%)
+      bottom 0
+      right 0
+      left 0
 
   {$selector-drawer-content}
-    position fixed
+    position absolute
+    overflow-y auto
     background-color $brand-bg
     box-shadow $drawer-shadow
+    transition transform .3s
 
     {$selector-drawer-header}
       position relative
@@ -22,14 +115,19 @@
       font-size $drawer-body-size
       line-height 1.5
       word-wrap break-word
+    
+    {$selector-drawer}-close
+      position absolute
+      right 0
+      top 0
+      padding 3px 15px
 
   {$selector-drawer-mask}
-    position fixed
+    position absolute
     left 0
     right 0
     top 0
     bottom 0
-    background rgba(0,0,0,.37)
-
-  &{$selector-drawer-hidden}
-    display none
+    background rgba(0,0,0,.37)    
+    opacity 0
+    transition opacity .3s

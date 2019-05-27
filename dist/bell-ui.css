@@ -8806,30 +8806,100 @@ button.bell-button-danger-ghost[disabled] {
   padding: 0;
   margin: 0;
 }
-.bell-drawer-top .bell-drawer-content {
-  left: 0px;
-  top: 0px;
-  right: 0px;
+.bell-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
-.bell-drawer-left .bell-drawer-content {
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
+.bell-drawer.bell-drawer-open .bell-drawer-mask {
+  opacity: 1;
 }
-.bell-drawer-right .bell-drawer-content {
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
+.bell-drawer.bell-drawer-leave .bell-drawer-mask {
+  opacity: 0;
 }
-.bell-drawer-bottom .bell-drawer-content {
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
+.bell-drawer[data-placement="left"] {
+  width: 100%;
+  height: 0;
+}
+.bell-drawer[data-placement="left"].bell-drawer-open {
+  height: 100%;
+}
+.bell-drawer[data-placement="left"].bell-drawer-open .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer[data-placement="left"].bell-drawer-leave .bell-drawer-content {
+  transform: translate(-100%);
+}
+.bell-drawer[data-placement="left"] .bell-drawer-content {
+  transform: translate(-100%);
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+.bell-drawer[data-placement="right"] {
+  width: 100%;
+  height: 0;
+}
+.bell-drawer[data-placement="right"].bell-drawer-open {
+  height: 100%;
+}
+.bell-drawer[data-placement="right"].bell-drawer-open .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer[data-placement="right"].bell-drawer-leave .bell-drawer-content {
+  transform: translate(100%);
+}
+.bell-drawer[data-placement="right"] .bell-drawer-content {
+  transform: translate(100%);
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.bell-drawer[data-placement="top"] {
+  width: 0;
+  height: 100%;
+}
+.bell-drawer[data-placement="top"].bell-drawer-open {
+  width: 100%;
+}
+.bell-drawer[data-placement="top"].bell-drawer-open .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer[data-placement="top"].bell-drawer-leave .bell-drawer-content {
+  transform: translateY(-100%);
+}
+.bell-drawer[data-placement="top"] .bell-drawer-content {
+  transform: translateY(-100%);
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.bell-drawer[data-placement="bottom"] {
+  width: 0;
+  height: 100%;
+}
+.bell-drawer[data-placement="bottom"].bell-drawer-open {
+  width: 100%;
+}
+.bell-drawer[data-placement="bottom"].bell-drawer-open .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer[data-placement="bottom"].bell-drawer-leave .bell-drawer-content {
+  transform: translateY(100%);
+}
+.bell-drawer[data-placement="bottom"] .bell-drawer-content {
+  transform: translateY(100%);
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 .bell-drawer .bell-drawer-content {
-  position: fixed;
+  position: absolute;
+  overflow-y: auto;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
 }
 .bell-drawer .bell-drawer-content .bell-drawer-header {
   position: relative;
@@ -8848,49 +8918,65 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1.5;
   word-wrap: break-word;
 }
+.bell-drawer .bell-drawer-content .bell-drawer-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3px 15px;
+}
 .bell-drawer .bell-drawer-mask {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   background: rgba(0,0,0,0.37);
-}
-.bell-drawer.bell-drawer-hidden {
-  display: none;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 .bell-form .bell-form-item {
-  position: relative;
+  margin: 0 0 24px;
+  color: rgba(0,0,0,0.65);
+  font-size: 14px;
+  line-height: 1.5;
 }
 .bell-form .bell-form-item-label {
-  text-align: left;
+  white-space: nowrap;
   vertical-align: middle;
-  line-height: 1;
-  padding: 10px 12px 10px 0;
-  box-sizing: border-box;
-  position: absolute;
+  line-height: 2;
 }
 .bell-dialog {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 0;
   z-index: 20;
-  display: none;
 }
 .bell-dialog.bell-dialog-open {
-  display: block;
+  height: 100%;
 }
 .bell-dialog.bell-dialog-open .bell-dialog-content {
+  opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+.bell-dialog.bell-dialog-open .bell-dialog-mask {
+  opacity: 1;
+}
+.bell-dialog.bell-dialog-leave .bell-dialog-content {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+}
+.bell-dialog.bell-dialog-leave .bell-dialog-mask {
+  opacity: 0;
+}
 .bell-dialog-mask {
+  opacity: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.54);
-  transition: opacity 0.1s;
+  transition: opacity 0.4s;
 }
 .bell-dialog-content {
   max-height: 100%;
@@ -8898,10 +8984,11 @@ button.bell-button-danger-ghost[disabled] {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
   min-width: 320px;
   background-color: #fff;
-  transition: transform 0.3s 0.1s;
+  transition: transform 0.4s, opacity 0.4s;
 }
 .bell-dialog-content .bell-dialog-title,
 .bell-dialog-content .bell-dialog-actions {

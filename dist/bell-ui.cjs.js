@@ -893,12 +893,13 @@ var Submenu = {
   }
 };
 
-var template$9 = "<div \nclass=\"bell-row\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" \nstyle=\"{{style}}\"\n>\n  <slot name=\"children\" />\n</div>";
+var template$9 = "<div \nclass=\"bell-row\n  {{#if gutter}} bell-row-gutter{{/if}}\n  {{#if type}} bell-row-{{type}}{{/if}}\n  {{#if justify}} bell-row-justify-{{justify}}{{/if}}\n  {{#if align}} bell-row-align-{{align}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\" \nstyle=\"{{inlineStyle}}\"\n>\n  <slot name=\"children\" />\n</div>";
 
 var Row = {
   propTypes: {
     gutter: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
+      gutter: 0
     },
     type: {
       type: RAW_STRING
@@ -917,13 +918,15 @@ var Row = {
     }
   },
 
+  name: 'bell-raw',
+
   template: template$9,
 
   watchers: {
     gutter: {
       watcher: function (value) {
         this.fire(
-          'gridGutterChanged',
+          'gutterChanged.row',
           {
             gutter: value
           },
@@ -936,17 +939,23 @@ var Row = {
   
   computed: {
     inlineStyle: function inlineStyle() {
-      var gap = this.get('gutter') / 2;
-      var style = Yox.sring.trim(this.get('style'));
-      if (style && !Yox.sring.endsWith(style, ';')) {
+      var gap = 0; 
+      var style = '';
+      if (this.get('style') 
+        && Yox.sring.trim(this.get('style')) 
+        && !Yox.sring.endsWith(style, ';')
+      ) {
         style += ';';
+      }
+      if (this.get('gutter')) {
+        gap = +this.get('gutter') / 2;
       }
       return (style + "margin-left: -" + gap + "px; margin-right: -" + gap + "px;")
     }
   }
 };
 
-var template$a = "<div \nclass=\"bell-col\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$a = "<div \nclass=\"bell-col\n  {{#if span}} bell-col-{{span}}{{/if}}\n  {{#if order}} bell-col-order-{{order}}{{/if}}\n  {{#if push}} bell-col-push-{{push}}{{/if}}\n  {{#if pull}} bell-col-pull-{{pull}}{{/if}}\n  {{#if offset}} bell-col-offset-{{offset}}{{/if}}\n  {{#if xsClass}} {{xsClass}}{{/if}}\n  {{#if mdClass}} {{mdClass}}{{/if}}\n  {{#if smClass}} {{smClass}}{{/if}}\n  {{#if lgClass}} {{lgClass}}{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\nstyle=\"{{inlineStyle}}\"\n>\n  <slot name=\"children\" />\n</div>";
 
 var Col = {
   propTypes: {
@@ -993,15 +1002,6 @@ var Col = {
       gutter: ''
     }
   },
-
-  events: {
-    gridGutterChanged: function gridGutterChanged(_, data) {
-      this.set({
-        gutter: data.gutter
-      });
-    }
-  },
-
   computed: {
     xsClass: function xsClass() {
       var data = this.get('xs');
@@ -1031,11 +1031,19 @@ var Col = {
       }
       return this.getClass('lg', data)
     },
-    style: function style() {
-      var gap = this.get('gutter') / 2;
+    inlineStyle: function inlineStyle() {
+      var gap = 0;
       var style = '';
-      style = 'padding-left:' + gap + 'pxpadding-right: ' + gap + 'px';
-      return style
+      if (this.get('style') 
+        && Yox.sring.trim(this.get('style')) 
+        && !Yox.sring.endsWith(style, ';')
+      ) {
+        style += ';';
+      }
+      if (this.get('gutter')) {
+        gap = +this.get('gutter') / 2;
+      }
+      return (style + "padding-left: " + gap + "px; padding-right: " + gap + "px")
     }
   },
 
@@ -1044,27 +1052,41 @@ var Col = {
       var classArr = [];
       if (Yox.is.object(data)) {
         if (data.span) {
-          classArr.push(bell- + 'col-' + name + '-' + data.span);
+          classArr.push('bell-col-' + name + '-' + data.span);
         }
         if (data.order) {
-          classArr.push(bell- + 'col-' + name + '-order-' + data.order);
+          classArr.push('bell-col-' + name + '-order-' + data.order);
         }
         if (data.offset) {
-          classArr.push(bell- + 'col-' + name + '-offset-' + data.offset);
+          classArr.push('bell-col-' + name + '-offset-' + data.offset);
         }
         if (data.push) {
-          classArr.push(bell- + 'col-' + name + '-push-' + data.push);
+          classArr.push('bell-col-' + name + '-push-' + data.push);
         }
         if (data.pull) {
-          classArr.push(bell- + 'col-' + name + '-pull-' + data.pull);
+          classArr.push('bell-col-' + name + '-pull-' + data.pull);
         }
       }
       else {
-        classArr.push(bell- + 'col-' + name + '-' + data);
+        classArr.push('bell-col-' + name + '-' + data);
       }
 
       return classArr.join(' ')
     }
+  },
+
+  events: {
+    'gutterChanged.row': function (event, data) {
+      this.set({
+        gutter: data.gutter
+      });
+      event.stop();
+    }
+  },
+
+  afterMount: function afterMount() {
+    var row = findComponentUpward(this, 'bell-raw');
+    this.set('gutter', row.get('gutter'));
   }
 };
 
@@ -1099,7 +1121,7 @@ var Icon = {
   template: template$b
 };
 
-var template$c = "<div \nclass=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n  {{#if open}} bell-drawer-open{{else}} bell-drawer-hidden{{/if}}\n  {{#if position}} bell-drawer-{{position}}{{/if}}\n\" \nstyle=\"{{#if style}} {{style}}{{/if}}\"\n>\n  {{#if useMask}}\n    <div class=\"bell-drawer-mask\"></div>\n  {{/if}}\n\n  <div ref=\"drawContent\" class=\"bell-drawer-content\"\n    style=\"{{#if position == \"left\" || position == \"right\"}}\n      width: {{size}}px;\n    {{else}}\n      height: {{size}}px;\n    {{/if}}\"\n  >   \n    <div class=\"bell-drawer-header\">\n      {{#if title}}\n      <div class=\"bell-drawer-title\">\n        {{title}}\n      </div>\n      {{/if}}\n    </div>\n    \n    <div class=\"bell-drawer-body\">\n      <slot name=\"children\" />\n    </div>\n  </div>\n</div>";
+var template$c = "<div \nclass=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n\" \ndata-placement=\"{{placement}}\"\n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  {{#if mask}}\n    <div class=\"bell-drawer-mask\"\n      {{#if maskClosable}}on-close=\"this.set('open', false)\"{{/if}}\n    ></div>\n  {{/if}}\n\n  <div class=\"bell-drawer-content\"\n    style=\"{{contentStyle}}\"\n  > \n    {{#if title || hasSlot('title')}}\n    <div class=\"bell-drawer-header\">\n      <div class=\"bell-drawer-title\">\n        <slot name=\"title\">\n          {{title}}\n        </slot>\n      </div>\n    </div>\n    {{/if}}\n    \n    <div class=\"bell-drawer-body\">\n      <slot name=\"children\" />\n    </div>\n\n    {{#if closable}}\n    <Button className=\"bell-drawer-close\" size=\"small\" borderType=\"none\" on-click=\"this.set('open', false)\">\n      <template slot=\"icon\">\n        <Icon size=\"28\" name=\"close\"></Icon>\n      </template>\n    </Button>\n    {{/if}}\n  </div>\n\n</div>";
 
 var Drawer = {
   template: template$c,
@@ -1108,11 +1130,27 @@ var Drawer = {
     title: {
       type: RAW_STRING
     },
-    position: {
+    width: {
+      type: RAW_STRING,
+      value: 256
+    },
+    height: {
+      type: RAW_STRING,
+      value: 256
+    },
+    maskClosable: {
+      type: RAW_BOOLEAN,
+      value: TRUE
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    placement: {
       type: RAW_STRING,
       value: 'left'
     },
-    useMask: {
+    mask: {
       type: RAW_BOOLEAN,
       value: TRUE
     },
@@ -1132,37 +1170,59 @@ var Drawer = {
 
   model: 'open',
 
-  afterMount: function afterMount() {
-    var me = this;
-    Yox.dom.append(document.body, this.$el);
-    me.documentClickHandler = function (event) {
-      if (!me.get('open')) {
-        return
+  watchers: {
+    open: function open(isOpen) {
+      var element = this.$el;
+      if (isOpen) {
+        Yox.dom.addClass(element, 'bell-drawer-open');
       }
-      var element = me.$refs.drawContent;
-      var target = event.originalEvent.target;
-      if (contains(element, target)) {
-        return
+      else {
+        Yox.dom.addClass(element, 'bell-drawer-leave');
+        setTimeout(
+          function () {
+            Yox.dom.removeClass(element, 'bell-drawer-open');
+            Yox.dom.removeClass(element, 'bell-drawer-leave');
+          },
+          300
+        );
+        this.fire('close.drawer');
       }
-      me.set({
-        open: false
-      });
-    };
+    }
+  },
 
-    Yox.dom.on(
-      document,
-      'click',
-      me.documentClickHandler
-    );
+  computed: {
+    contentStyle: function contentStyle() {
+      var style = '';
+      if (this.get('placement') === 'left'
+        || this.get('placement') === 'right'
+      ) {
+        var width = +this.get('width');
+        if (width < 100) {
+          style = "width: " + width + "%;";
+        }
+        else {
+          style = "width: " + width + "px;";
+        }
+      }
+      else {
+        var height = +this.get('height');
+        if (height < 100) {
+          style = "height: " + height + "%;";
+        }
+        else {
+          style = "height: " + height + "px;";
+        }
+      }
+      return style
+    }
+  },
+
+  afterMount: function afterMount() {
+    Yox.dom.append(document.body, this.$el);
   },
 
   beforeDestroy: function beforeDestroy() {
     Yox.dom.remove(document.body, this.$el);
-    Yox.dom.on(
-      document,
-      'click',
-      this.documentClickHandler
-    );
   }
 };
 
@@ -6366,7 +6426,7 @@ var Form = {
   }
 };
 
-var template$J = "<div \nclass=\"bell-form-item\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if label}}\n  <label class=\"bell-form-item-label\" style=\"width: {{labelWidth}}px;\">\n    {{label}}\n  </label>\n  {{/if}}\n\n  <div class=\"bell-form-item-content\" \n    {{#if label}}style=\"padding-left: {{labelWidth}}px;\"{{/if}}\n  >\n    <slot name=\"children\" />\n  </div>\n</div>";
+var template$J = "<div \nclass=\"bell-form-item\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if label}}\n  <label class=\"bell-form-item-label\">\n    {{label}}\n  </label>\n  {{/if}}\n\n  <div class=\"bell-form-item-content\" \n  >\n    <slot name=\"children\" />\n  </div>\n</div>";
 
 var FormItem = {
   propTypes: {
@@ -6418,7 +6478,7 @@ var FormItem = {
   }
 };
 
-var template$K = "<div \nclass=\"bell-dialog\n{{#if open}} bell-dialog-open{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-dialog-mask\" on-click=\"maskClick()\"></div>\n  <div class=\"bell-dialog-content\">\n    <div class=\"bell-dialog-title\">\n      <slot name=\"title\">\n        温馨提示\n      </slot>\n      {{#if closable}}\n      <Button className=\"bell-dialog-close\" size=\"small\" borderType=\"none\" on-click=\"close()\">\n        <template slot=\"icon\">\n          <Icon size=\"28\" name=\"close\"></Icon>\n        </template>\n      </Button>\n      {{/if}}\n    </div>\n\n    {{#if hasSlot('children')}}\n    <div class=\"bell-dialog-body\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('actions')}}\n    <div class=\"bell-dialog-actions\">\n      <slot name=\"actions\" />\n    </div>\n    {{/if}}\n  </div>\n</div>";
+var template$K = "<div \nclass=\"bell-dialog\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n  <div class=\"bell-dialog-mask\" on-click=\"maskClick()\"></div>\n  <div class=\"bell-dialog-content\">\n    <div class=\"bell-dialog-title\">\n      <slot name=\"title\">\n        温馨提示\n      </slot>\n      {{#if closable}}\n      <Button className=\"bell-dialog-close\" size=\"small\" borderType=\"none\" on-click=\"close()\">\n        <template slot=\"icon\">\n          <Icon size=\"28\" name=\"close\"></Icon>\n        </template>\n      </Button>\n      {{/if}}\n    </div>\n\n    {{#if hasSlot('children')}}\n    <div class=\"bell-dialog-body\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('actions')}}\n    <div class=\"bell-dialog-actions\">\n      <slot name=\"actions\" />\n    </div>\n    {{/if}}\n  </div>\n</div>";
 
 var Dialog = {
   propTypes: {
@@ -6443,7 +6503,20 @@ var Dialog = {
 
   watchers: {
     open: function open(isOpen) {
-      this.fire('change.dialog', { isOpen: isOpen });
+      var element = this.$el;
+      if (isOpen) {
+        Yox.dom.addClass(element, 'bell-dialog-open');
+      }
+      else {
+        Yox.dom.addClass(element, 'bell-dialog-leave');
+        setTimeout(
+          function () {
+            Yox.dom.removeClass(element, 'bell-dialog-open');
+            Yox.dom.removeClass(element, 'bell-dialog-leave');
+          },
+          300
+        );
+      }
     }
   },
 

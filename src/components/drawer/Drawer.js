@@ -1,29 +1,37 @@
-import {
-  contains
-} from '../util'
 import template from './template/Drawer.html'
-import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
+import { RAW_STRING, RAW_BOOLEAN, TRUE, FALSE } from '../constant'
 
 export default {
-  template,
-
   propTypes: {
     title: {
       type: RAW_STRING
     },
-    position: {
+    width: {
+      type: RAW_STRING,
+      value: 256
+    },
+    height: {
+      type: RAW_STRING,
+      value: 256
+    },
+    maskClosable: {
+      type: RAW_BOOLEAN,
+      value: TRUE
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    placement: {
       type: RAW_STRING,
       value: 'left'
     },
-    useMask: {
+    mask: {
       type: RAW_BOOLEAN,
       value: TRUE
     },
     open: {
       type: RAW_BOOLEAN
-    },
-    size: function (value) {
-      return value != null ? +value : 300
     },
     className: {
       type: RAW_STRING
@@ -35,56 +43,61 @@ export default {
 
   model: 'open',
 
+  template,
+
   watchers: {
     open(isOpen) {
+      let element = this.$el
       if (isOpen) {
-        this.open()
+        Yox.dom.addClass(element, '${prefix}drawer-open')
+        this.fire('open.drawer')
       }
       else {
-        this.close()
+        Yox.dom.addClass(element, '${prefix}drawer-leave')
+        setTimeout(
+          function () {
+            Yox.dom.removeClass(element, '${prefix}drawer-open')
+            Yox.dom.removeClass(element, '${prefix}drawer-leave')
+          },
+          300
+        )
+        this.fire('close.drawer')
       }
     }
   },
 
-  methods: {
-    open() {
-      
-    },
-    close() {
-
+  computed: {
+    contentStyle() {
+      let style = ''
+      if (this.get('placement') === 'left'
+        || this.get('placement') === 'right'
+      ) {
+        let width = +this.get('width')
+        if (width < 100) {
+          style = `width: ${width}%;`
+        }
+        else {
+          style = `width: ${width}px;`
+        }
+      }
+      else {
+        let height = +this.get('height')
+        if (height < 100) {
+          style = `height: ${height}%;`
+        }
+        else {
+          style = `height: ${height}px;`
+        }
+      }
+      return style
     }
   },
 
   afterMount() {
-    let me = this
     Yox.dom.append(document.body, this.$el)
-    me.documentClickHandler = function (event) {
-      if (!me.get('open')) {
-        return
-      }
-      let element = me.$refs.drawContent
-      let target = event.originalEvent.target
-      if (contains(element, target)) {
-        return
-      }
-      me.set({
-        open: false
-      })
-    }
-
-    Yox.dom.on(
-      document,
-      'click',
-      me.documentClickHandler
-    )
   },
 
   beforeDestroy() {
     Yox.dom.remove(document.body, this.$el)
-    Yox.dom.on(
-      document,
-      'click',
-      this.documentClickHandler
-    )
   }
 }

@@ -1,31 +1,41 @@
 <div 
 class="${prefix}drawer
   {{#if className}} {{className}}{{/if}}
-  {{#if position}} ${prefix}drawer-{{position}}{{/if}}
 " 
-style="{{#if style}} {{style}}{{/if}}"
+data-placement="{{placement}}"
+{{#if style}}style="{{style}}"{{/if}}
 >
-  {{#if useMask}}
-    <div class="${prefix}drawer-mask"></div>
+
+  {{#if mask}}
+    <div class="${prefix}drawer-mask"
+      {{#if maskClosable}}on-close="this.set('open', false)"{{/if}}
+    ></div>
   {{/if}}
 
-  <div ref="drawContent" class="${prefix}drawer-content"
-    style="{{#if position == "left" || position == "right"}}
-      width: {{size}}px;
-    {{else}}
-      height: {{size}}px;
-    {{/if}}"
-  >   
+  <div class="${prefix}drawer-content"
+    style="{{contentStyle}}"
+  > 
+    {{#if title || hasSlot('title')}}
     <div class="${prefix}drawer-header">
-      {{#if title}}
       <div class="${prefix}drawer-title">
-        {{title}}
+        <slot name="title">
+          {{title}}
+        </slot>
       </div>
-      {{/if}}
     </div>
+    {{/if}}
     
     <div class="${prefix}drawer-body">
       <slot name="children" />
     </div>
+
+    {{#if closable}}
+    <Button className="${prefix}drawer-close" size="small" borderType="none" on-click="this.set('open', false)">
+      <template slot="icon">
+        <Icon size="28" name="close"></Icon>
+      </template>
+    </Button>
+    {{/if}}
   </div>
+
 </div>

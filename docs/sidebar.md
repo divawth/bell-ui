@@ -41,7 +41,7 @@
   - [Progress 进度条](other/progress)
   - [Avatar 头像](view/avatar)
   - [Tag 标签](view/tag)
-  - [Drawer](layout/drawer)
+  - [Drawer 抽屉](layout/drawer)
 
 - [图表](layout)
   - [Circle 进度环](other/circle)

@@ -5,6 +5,8 @@ import {
   RAW_OBJECT
 } from '../constant'
 
+import { findComponentUpward } from '../util'
+
 export default {
   propTypes: {
     span: {
@@ -50,15 +52,6 @@ export default {
       gutter: ''
     }
   },
-
-  events: {
-    gridGutterChanged(_, data) {
-      this.set({
-        gutter: data.gutter
-      })
-    }
-  },
-
   computed: {
     xsClass() {
       let data = this.get('xs')
@@ -88,11 +81,19 @@ export default {
       }
       return this.getClass('lg', data)
     },
-    style() {
-      let gap = this.get('gutter') / 2
+    inlineStyle() {
+      let gap = 0
       let style = ''
-      style = 'padding-left:' + gap + 'pxpadding-right: ' + gap + 'px'
-      return style
+      if (this.get('style') 
+        && Yox.sring.trim(this.get('style')) 
+        && !Yox.sring.endsWith(style, ';')
+      ) {
+        style += ';'
+      }
+      if (this.get('gutter')) {
+        gap = +this.get('gutter') / 2
+      }
+      return `${style}padding-left: ${gap}px; padding-right: ${gap}px`
     }
   },
 
@@ -101,26 +102,40 @@ export default {
       let classArr = []
       if (Yox.is.object(data)) {
         if (data.span) {
-          classArr.push(${prefix} + 'col-' + name + '-' + data.span)
+          classArr.push('${prefix}col-' + name + '-' + data.span)
         }
         if (data.order) {
-          classArr.push(${prefix} + 'col-' + name + '-order-' + data.order)
+          classArr.push('${prefix}col-' + name + '-order-' + data.order)
         }
         if (data.offset) {
-          classArr.push(${prefix} + 'col-' + name + '-offset-' + data.offset)
+          classArr.push('${prefix}col-' + name + '-offset-' + data.offset)
         }
         if (data.push) {
-          classArr.push(${prefix} + 'col-' + name + '-push-' + data.push)
+          classArr.push('${prefix}col-' + name + '-push-' + data.push)
         }
         if (data.pull) {
-          classArr.push(${prefix} + 'col-' + name + '-pull-' + data.pull)
+          classArr.push('${prefix}col-' + name + '-pull-' + data.pull)
         }
       }
       else {
-        classArr.push(${prefix} + 'col-' + name + '-' + data)
+        classArr.push('${prefix}col-' + name + '-' + data)
       }
 
       return classArr.join(' ')
     }
+  },
+
+  events: {
+    'gutterChanged.row': function (event, data) {
+      this.set({
+        gutter: data.gutter
+      })
+      event.stop()
+    }
+  },
+
+  afterMount() {
+    let row = findComponentUpward(this, '${prefix}raw')
+    this.set('gutter', row.get('gutter'))
   }
 }

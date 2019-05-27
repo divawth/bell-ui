@@ -8,7 +8,8 @@ import {
 export default {
   propTypes: {
     gutter: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
+      gutter: 0
     },
     type: {
       type: RAW_STRING
@@ -27,13 +28,15 @@ export default {
     }
   },
 
+  name: '${prefix}raw',
+
   template,
 
   watchers: {
     gutter: {
       watcher: function (value) {
         this.fire(
-          'gridGutterChanged',
+          'gutterChanged.row',
           {
             gutter: value
           },
@@ -46,10 +49,16 @@ export default {
   
   computed: {
     inlineStyle() {
-      let gap = this.get('gutter') / 2
-      let style = Yox.sring.trim(this.get('style'))
-      if (style && !Yox.sring.endsWith(style, ';')) {
+      let gap = 0 
+      let style = ''
+      if (this.get('style') 
+        && Yox.sring.trim(this.get('style')) 
+        && !Yox.sring.endsWith(style, ';')
+      ) {
         style += ';'
+      }
+      if (this.get('gutter')) {
+        gap = +this.get('gutter') / 2
       }
       return `${style}margin-left: -${gap}px; margin-right: -${gap}px;`
     }

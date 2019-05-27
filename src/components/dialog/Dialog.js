@@ -24,7 +24,20 @@ export default {
 
   watchers: {
     open(isOpen) {
-      this.fire('change.dialog', { isOpen })
+      let element = this.$el
+      if (isOpen) {
+        Yox.dom.addClass(element, '${prefix}dialog-open')
+      }
+      else {
+        Yox.dom.addClass(element, '${prefix}dialog-leave')
+        setTimeout(
+          function () {
+            Yox.dom.removeClass(element, '${prefix}dialog-open')
+            Yox.dom.removeClass(element, '${prefix}dialog-leave')
+          },
+          300
+        )
+      }
     }
   },
 

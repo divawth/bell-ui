@@ -2,23 +2,35 @@
   position fixed
   top 0
   left 0
-  right 0
-  bottom 0
+  width 100%
+  height 0
   z-index $dialog-z-index
-  display none
 
   &{$selector-dialog}-open
-    display block
+    height 100%
 
     {$selector-dialog-content}
+      opacity 1
       transform translate(-50%, -50%) scale(1)
 
+    {$selector-dialog-mask}
+      opacity 1
+  
+  &{$selector-dialog}-leave
+    {$selector-dialog-content}
+      opacity 0
+      transform translate(-50%, -50%) scale(.4)
+
+    {$selector-dialog-mask}
+      opacity 0
+
 {$selector-dialog-mask}
+  opacity 0
   position absolute
   width 100%
   height 100%
   background-color rgba(0,0,0,.54)
-  transition opacity .1s
+  transition opacity .4s
 
 {$selector-dialog-content}
   max-height 100%
@@ -26,11 +38,12 @@
   position absolute
   left 50%
   top 50%
-  transform translate(-50%, -50%) scale(0)
+  transform translate(-50%, -50%) scale(.4)
+  opacity 0
 
   min-width $dialog-min-width
   background-color $dialog-content-background
-  transition transform 0.3s 0.1s
+  transition transform .4s, opacity .4s 
 
   {$selector-dialog}-title,
   {$selector-dialog}-actions
