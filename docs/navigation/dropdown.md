@@ -97,6 +97,13 @@ export default {
           </DropdownMenu>
         </template>
       </Dropdown>
+      <style>
+        p {
+          margin: 10px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+      </style>
     </div>
   `,
   methods: {

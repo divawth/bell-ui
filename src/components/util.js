@@ -81,10 +81,15 @@ const scrollTop = function (element, from = 0, to, duration = 500, endCallback) 
   scroll(from, to, step)
 }
 
+const getType = function (value) {
+  return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
+}
+
 export {
   contains,
   findComponentUpward,
   oneOf,
   isDate,
-  scrollTop
+  scrollTop,
+  getType
 }

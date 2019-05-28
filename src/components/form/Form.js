@@ -1,6 +1,7 @@
 import { Validator } from './util/validate.js'
 import template from './template/Form.html'
-import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC } from '../constant.js'
+import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC, TRUE } from '../constant.js'
+import { oneOf } from '../util.js'
 
 export default {
   propTypes: {
@@ -17,14 +18,16 @@ export default {
       type: RAW_BOOLEAN
     },
     labelPosition: {
-      type: ['left', 'right', 'top'],
+      type: oneOf(['left', 'right', 'top']),
       value: 'left'
     },
     labelWidth: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
+      value: 80
     },
     showMessage: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
       type: RAW_STRING
@@ -33,38 +36,32 @@ export default {
       type: RAW_STRING
     }
   },
+
+  name: '${prefix}form',
+  
   template,
+
   methods: {
     validate(callback) {
-      let me = this;
-      const validator = new Validator(
-        function (rule, value, errorType, messgae) {
-          return errorType
-        }
-      );
+      let me = this
+      const validator = new Validator()
       let errors = validator.validate(
         me.get('value'),
         me.get('rules'),
         me.get('messages')
-      );
-      let isValid = !errors;
+      )
+      let isValid = !errors
       if (isValid) {
         callback(true)
       }
       else {
-        callback(false, errors);
+        me.fire(
+          'validateError.form',
+          { errors },
+          TRUE
+        )
+        callback(false, errors)
       }
     }
-  },
-  afterMount() {
-    let me = this;
-    me.fire(
-      'setRules',
-      {
-        rules: me.get('rules'),
-        value: me.get('value')
-      },
-      true
-    );
   }
-};
+}

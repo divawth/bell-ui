@@ -1,17 +1,32 @@
 <div 
 class="${prefix}form-item
+{{#if required}} ${prefix}form-item-required{{/if}}
 {{#if className}} {{className}}{{/if}}
 "
 {{#if style}} style="{{style}}"{{/if}}
 >
-  {{#if label}}
-  <label class="${prefix}form-item-label">
-    {{label}}
+  {{#if label || hasSlot('lable')}}
+  <label class="${prefix}form-item-label"
+    {{#if width}} style="width: {{width}}px;"{{/if}}
+    {{#if labelFor}} for="{{labelFor}}"{{/if}}
+  >
+    <slot name="label">
+      {{label}}
+    </slot>
   </label>
   {{/if}}
 
-  <div class="${prefix}form-item-content" 
+  <div class="${prefix}form-item-content"
+  {{#if (label || hasSlot('lable')) && width}} style="margin-left: {{width}}px;"{{/if}}
   >
+
     <slot name="children" />
+
+    {{#if isShowError && (error || errorMsg)}}
+    <div class="${prefix}form-item-error-tip">
+      {{error || errorMsg}}
+    </div>
+    {{/if}}
+
   </div>
 </div>

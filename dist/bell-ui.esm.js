@@ -1122,8 +1122,6 @@ var Icon = {
 var template$c = "<div \nclass=\"bell-drawer\n  {{#if className}} {{className}}{{/if}}\n\" \ndata-placement=\"{{placement}}\"\n{{#if style}}style=\"{{style}}\"{{/if}}\n>\n\n  {{#if mask}}\n    <div class=\"bell-drawer-mask\"\n      {{#if maskClosable}}on-close=\"this.set('open', false)\"{{/if}}\n    ></div>\n  {{/if}}\n\n  <div class=\"bell-drawer-content\"\n    style=\"{{contentStyle}}\"\n  > \n    {{#if title || hasSlot('title')}}\n    <div class=\"bell-drawer-header\">\n      <div class=\"bell-drawer-title\">\n        <slot name=\"title\">\n          {{title}}\n        </slot>\n      </div>\n    </div>\n    {{/if}}\n    \n    <div class=\"bell-drawer-body\">\n      <slot name=\"children\" />\n    </div>\n\n    {{#if closable}}\n    <Button className=\"bell-drawer-close\" size=\"small\" borderType=\"none\" on-click=\"this.set('open', false)\">\n      <template slot=\"icon\">\n        <Icon size=\"28\" name=\"close\"></Icon>\n      </template>\n    </Button>\n    {{/if}}\n  </div>\n\n</div>";
 
 var Drawer = {
-  template: template$c,
-
   propTypes: {
     title: {
       type: RAW_STRING
@@ -1155,9 +1153,6 @@ var Drawer = {
     open: {
       type: RAW_BOOLEAN
     },
-    size: function (value) {
-      return value != null ? +value : 300
-    },
     className: {
       type: RAW_STRING
     },
@@ -1168,11 +1163,14 @@ var Drawer = {
 
   model: 'open',
 
+  template: template$c,
+
   watchers: {
     open: function open(isOpen) {
       var element = this.$el;
       if (isOpen) {
         Yox.dom.addClass(element, 'bell-drawer-open');
+        this.fire('open.drawer');
       }
       else {
         Yox.dom.addClass(element, 'bell-drawer-leave');
@@ -5065,6 +5063,7 @@ var Divider = {
       type: RAW_STRING
     }
   },
+  
   template: template$B
 };
 
@@ -6355,7 +6354,7 @@ Validator.prototype.validate = function validate (data, rules, messages) {
 
 };
 
-var template$I = "<div \nclass=\"bell-form\n{{#if inline}} bell-form-inline{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
+var template$I = "<div \nclass=\"bell-form\n{{#if inline}} bell-form-inline{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\ndata-position=\"{{labelPosition}}\"\n{{#if style}} {{style}}{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
 var Form = {
   propTypes: {
@@ -6372,14 +6371,16 @@ var Form = {
       type: RAW_BOOLEAN
     },
     labelPosition: {
-      type: ['left', 'right', 'top'],
+      type: oneOf(['left', 'right', 'top']),
       value: 'left'
     },
     labelWidth: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
+      value: 80
     },
     showMessage: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: TRUE
     },
     className: {
       type: RAW_STRING
@@ -6388,15 +6389,15 @@ var Form = {
       type: RAW_STRING
     }
   },
+
+  name: 'bell-form',
+  
   template: template$I,
+
   methods: {
     validate: function validate(callback) {
       var me = this;
-      var validator = new Validator(
-        function (rule, value, errorType, messgae) {
-          return errorType
-        }
-      );
+      var validator = new Validator();
       var errors = validator.validate(
         me.get('value'),
         me.get('rules'),
@@ -6407,33 +6408,21 @@ var Form = {
         callback(true);
       }
       else {
+        me.fire(
+          'validateError.form',
+          { errors: errors },
+          TRUE
+        );
         callback(false, errors);
       }
     }
-  },
-  afterMount: function afterMount() {
-    var me = this;
-    me.fire(
-      'setRules',
-      {
-        rules: me.get('rules'),
-        value: me.get('value')
-      },
-      true
-    );
   }
 };
 
-var template$J = "<div \nclass=\"bell-form-item\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if label}}\n  <label class=\"bell-form-item-label\">\n    {{label}}\n  </label>\n  {{/if}}\n\n  <div class=\"bell-form-item-content\" \n  >\n    <slot name=\"children\" />\n  </div>\n</div>";
+var template$J = "<div \nclass=\"bell-form-item\n{{#if required}} bell-form-item-required{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if label || hasSlot('lable')}}\n  <label class=\"bell-form-item-label\"\n    {{#if width}} style=\"width: {{width}}px;\"{{/if}}\n    {{#if labelFor}} for=\"{{labelFor}}\"{{/if}}\n  >\n    <slot name=\"label\">\n      {{label}}\n    </slot>\n  </label>\n  {{/if}}\n\n  <div class=\"bell-form-item-content\"\n  {{#if (label || hasSlot('lable')) && width}} style=\"margin-left: {{width}}px;\"{{/if}}\n  >\n\n    <slot name=\"children\" />\n\n    {{#if isShowError && (error || errorMsg)}}\n    <div class=\"bell-form-item-error-tip\">\n      {{error || errorMsg}}\n    </div>\n    {{/if}}\n\n  </div>\n</div>";
 
 var FormItem = {
   propTypes: {
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    },
     prop: {
       type: RAW_STRING
     },
@@ -6441,16 +6430,24 @@ var FormItem = {
       type: RAW_STRING
     },
     labelWidth: {
-      type: RAW_NUMERIC,
-      value: 80
+      type: RAW_NUMERIC
+    },
+    labelFor: {
+      type: RAW_STRING
     },
     required: {
       type: RAW_BOOLEAN
     },
-    rules: {
-      type: RAW_NUMERIC
+    showMessage: {
+      type: RAW_BOOLEAN
     },
-    errorMsg: {
+    error: {
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
       type: RAW_STRING
     }
   },
@@ -6459,18 +6456,58 @@ var FormItem = {
   data: function data() {
     return {
       rules: [],
-      defaultValue: ''
+      messages: [],
+      defaultValue: '',
+      errorMsg: '',
+      isShowError: this.get('showMessage'),
+
+      width: this.get('labelWidth')
     }
   },
+
+  watchers: {
+    error: function error (value) {
+      console.log(value, this.get('isShowError'));
+    }
+  },
+
   events: {
-    setRules: function setRules(_, data) {
-      var me = this;
-      var prop = me.get('prop');
-      var defaultValue = data.value && data.value[ prop ];
-      var rules = data.rules && data.rules[ prop ];
-      me.set({
-        rules: rules,
-        defaultValue: defaultValue
+    'validateError.form': function (_, data) {
+      var error = data.errors[ this.get('prop') ];
+      this.set('errorMsg', error);
+    }
+  },
+  
+  afterMount: function afterMount() {
+    var form = findComponentUpward(this, 'bell-form');
+    var prop = this.get('prop');
+    var rules = form.get('rules');
+    if (rules && prop) {
+      rules = form.get('rules')[ prop ];
+    }
+    var messages = form.get('messages');
+    if (messages && prop) {
+      messages = form.get('messages')[ prop ];
+    }
+    this.set({
+      'rules': rules,
+      'messages': messages,
+      'defaultValue': form.get('value')
+    });
+
+    if (!this.get('width')) {
+      this.set({
+        'width': form.get('labelWidth')
+      });
+    }
+    if (!this.get('isShowError')) {
+      this.set({
+        'isShowError': form.get('showMessage')
+      });
+    }
+    if (!this.get('required') && rules) {
+      this.set({
+        'required': rules[ 'required' ]
       });
     }
   }

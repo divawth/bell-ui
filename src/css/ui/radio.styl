@@ -2,22 +2,27 @@
 
     display inline-block
     user-select none
-    position relative
     ui-radio-group()
     margin-right - $radio-margin-gap
     padding $radio-margin-gap 0
+    font-size $radio-font-size
+    line-height $radio-font-size
 
     {$selector-radio}
-
+        position relative
         cursor $cursor-clickable
         margin-right $radio-margin-gap
+        font-size $radio-font-size
+        line-height $radio-font-size
 
         {$selector-radio}-wrapper
 
             position absolute
             width $radio-inner-size
             height $radio-inner-size
-            margin-top $radio-wrapper-margin-top
+            top 50%
+            left 0
+            transform translateY(-50%)
 
         {$selector-radio}-inner
 

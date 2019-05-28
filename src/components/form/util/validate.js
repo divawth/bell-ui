@@ -1,11 +1,8 @@
-'use strict';
-
-function type(value) {
-  return Object.prototype.toString.call(value).toLowerCase().slice(8, -1);
-}
+import { RAW_STRING, RAW_ARRAY, RAW_OBJECT } from "../../constant"
+import { getType } from "../../util"
 
 function checkInteger(rule, value) {
-  if (type(value) !== 'number' || value % 1 !== 0) {
+  if (getType(value) !== 'number' || value % 1 !== 0) {
     return 'type'
   }
 
@@ -19,7 +16,7 @@ function checkInteger(rule, value) {
 }
 
 function checkNumber(rule, value) {
-  if (type(value) !== 'number' || isNaN(value)) {
+  if (getType(value) !== 'number' || isNaN(value)) {
     return 'type'
   }
 
@@ -41,7 +38,7 @@ function checkString(rule, value) {
       return 'empty'
     }
   }
-  if (type(value) !== 'string') {
+  if (getType(value) !== RAW_STRING) {
     return 'type'
   }
 
@@ -60,7 +57,7 @@ function checkString(rule, value) {
 }
 
 function checkBoolean(rule, value) {
-  if (type(value) !== 'boolean') {
+  if (getType(value) !== 'boolean') {
     return 'type'
   }
 }
@@ -72,7 +69,7 @@ function checkEnum(rule, value) {
 }
 
 function checkArray(rule, value) {
-  if (!value || type(value) !== 'array') {
+  if (!value || getType(value) !== RAW_ARRAY) {
     return 'type'
   }
 
@@ -91,14 +88,14 @@ function checkArray(rule, value) {
     return
   }
   for(let i = 0; i < length; i++) {
-    if (type(value[ i ]) !== itemType) {
+    if (getType(value[ i ]) !== itemType) {
       return 'itemType';
     }
   }
 }
 
 function checkObject(rule, value) {
-  if (!value || type(value) !== 'object') {
+  if (!value || getType(value) !== RAW_OBJECT) {
     return 'type'
   }
 }
@@ -133,9 +130,9 @@ class Validator {
       var value = data[key];
       var rule = rules[key];
 
-      switch (type(rule)) {
+      switch (getType(rule)) {
 
-        case 'string':
+        case RAW_STRING:
 
           rule = {
             type: rule
@@ -143,7 +140,7 @@ class Validator {
 
           break;
 
-        case 'array':
+        case RAW_ARRAY:
           rule = {
             type: 'enum',
             value: rule
@@ -154,7 +151,7 @@ class Validator {
         case 'regexp':
 
           rule = {
-            type: 'string',
+            type: RAW_STRING,
             pattern: rule
           }
 
@@ -162,7 +159,7 @@ class Validator {
 
       }
 
-      if (type(rule) != 'object'
+      if (getType(rule) != RAW_OBJECT
         || !rule.type
       ) {
         throw new TypeError(`${key}'s rule is not found.`)
@@ -183,11 +180,11 @@ class Validator {
 
       if (errorType) {
         var message = messages && messages[ key ] && messages[ key ][ errorType ]
-        if (type(message) !== 'string') {
+        if (getType(message) !== RAW_STRING) {
           message = this.messages[ rule.type ] && this.messages[ rule.type ][ errorType ]
         }
 
-        if (type(message) === 'string') {
+        if (getType(message) === RAW_STRING) {
           errors[ key ] = message
         }
         else if (this.translate) {

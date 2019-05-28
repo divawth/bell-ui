@@ -1,15 +1,11 @@
 
 import template from './template/FormItem.html'
-import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN } from '../constant'
+
+import { findComponentUpward } from '../util'
+import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, TRUE } from '../constant'
 
 export default {
   propTypes: {
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    },
     prop: {
       type: RAW_STRING
     },
@@ -17,16 +13,24 @@ export default {
       type: RAW_STRING
     },
     labelWidth: {
-      type: RAW_NUMERIC,
-      value: 80
+      type: RAW_NUMERIC
+    },
+    labelFor: {
+      type: RAW_STRING
     },
     required: {
       type: RAW_BOOLEAN
     },
-    rules: {
-      type: RAW_NUMERIC
+    showMessage: {
+      type: RAW_BOOLEAN
     },
-    errorMsg: {
+    error: {
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
       type: RAW_STRING
     }
   },
@@ -35,18 +39,52 @@ export default {
   data() {
     return {
       rules: [],
-      defaultValue: ''
+      messages: [],
+      defaultValue: '',
+      errorMsg: '',
+      isShowError: this.get('showMessage'),
+
+      width: this.get('labelWidth')
     }
   },
+
   events: {
-    setRules(_, data) {
-      let me = this
-      let prop = me.get('prop')
-      let defaultValue = data.value && data.value[ prop ]
-      let rules = data.rules && data.rules[ prop ]
-      me.set({
-        rules,
-        defaultValue
+    'validateError.form': function (_, data) {
+      let error = data.errors[ this.get('prop') ]
+      this.set('errorMsg', error)
+    }
+  },
+  
+  afterMount() {
+    let form = findComponentUpward(this, '${prefix}form')
+    let prop = this.get('prop')
+    let rules = form.get('rules')
+    if (rules && prop) {
+      rules = form.get('rules')[ prop ]
+    }
+    let messages = form.get('messages')
+    if (messages && prop) {
+      messages = form.get('messages')[ prop ]
+    }
+    this.set({
+      'rules': rules,
+      'messages': messages,
+      'defaultValue': form.get('value')
+    })
+
+    if (!this.get('width')) {
+      this.set({
+        'width': form.get('labelWidth')
+      })
+    }
+    if (!this.get('isShowError')) {
+      this.set({
+        'isShowError': form.get('showMessage')
+      })
+    }
+    if (!this.get('required') && rules) {
+      this.set({
+        'required': rules[ 'required' ]
       })
     }
   }
