@@ -1,26 +1,28 @@
-<div class="bell-input-wrapper
-  {{#if hasSlot('prepend')}} bell-input-has-prepend{{/if}}
-  {{#if hasSlot('append')}} bell-input-has-append{{/if}}
-  {{#if className}} {{className}}{{/if}}
-  {{#if size}} bell-input-wrapper-{{size}}{{/if}}
-  {{#if status}} bell-input-wrapper-{{status}}{{/if}}
-  {{#if isFocus}} bell-focus{{/if}}
-  {{#if clearable}} bell-input-wrapper-clearable{{/if}}
-  {{#if disabled}} bell-input-wrapper-disabled{{/if}}
-  "{{#if style}} style="{{style}}"{{/if}}
+<div 
+class="${prefix}input-wrapper
+{{#if hasSlot('prepend')}} ${prefix}input-has-prepend{{/if}}
+{{#if hasSlot('append')}} ${prefix}input-has-append{{/if}}
+{{#if className}} {{className}}{{/if}}
+{{#if size}} ${prefix}input-wrapper-{{size}}{{/if}}
+{{#if status}} ${prefix}input-wrapper-{{status}}{{/if}}
+{{#if isFocus}} ${prefix}focus{{/if}}
+{{#if clearable}} ${prefix}input-wrapper-clearable{{/if}}
+{{#if disabled}} ${prefix}input-wrapper-disabled{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
 >
 
   {{#if hasSlot('prepend')}}
-    <div class="bell-input-prepend">
+    <div class="${prefix}input-prepend">
       <slot name="prepend" />
     </div>
   {{/if}}
 
-  <div class="bell-input{{#if type === TEXT_TYPE_TEXTAREA}} bell-textarea{{/if}}">
+  <div class="${prefix}input{{#if type === TEXT_TYPE_TEXTAREA}} ${prefix}textarea{{/if}}">
 
     {{#if type === TEXT_TYPE_TEXTAREA}}
 
-      <textarea class="bell-input-el"
+      <textarea class="${prefix}input-el"
         style="height: {{#if rows}}{{rows * 25}}{{else}}50{{/if}}px"
         {{#if rows}} rows="{{rows}}"{{/if}}
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
@@ -33,10 +35,10 @@
 
       <input ref="input"
         type="{{currentType}}"
-        class="bell-input-el
-          {{#if size}} bell-input-{{size}}{{/if}}
-          {{#if hasSlot('prefix') || prefix}} bell-input-with-prefix{{/if}}
-          {{#if hasSlot('suffix') || suffix}} bell-input-with-suffix{{/if}}
+        class="${prefix}input-el
+          {{#if size}} ${prefix}input-{{size}}{{/if}}
+          {{#if hasSlot('prefix') || prefix}} ${prefix}input-with-prefix{{/if}}
+          {{#if hasSlot('suffix') || suffix}} ${prefix}input-with-suffix{{/if}}
         "
         {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
         {{#if disabled}} disabled="disabled"{{/if}}
@@ -46,35 +48,35 @@
       />
 
       {{#if hasSlot('prefix') || prefix}}
-      <span class="bell-input-prefix">
+      <span class="${prefix}input-prefix">
         <slot name="prefix">
-          <Icon name="{{prefix}}" className="bell-input-prefix-icon" />
+          <Icon name="{{prefix}}" className="${prefix}input-prefix-icon" />
         </slot>
       </span>
       {{/if}}
 
       {{#if hasSlot('suffix') || suffix}}
-      <span class="bell-input-suffix">
+      <span class="${prefix}input-suffix">
         <slot name="suffix">
-          <Icon name="{{suffix}}" className="bell-input-suffix-icon" />
+          <Icon name="{{suffix}}" className="${prefix}input-suffix-icon" />
         </slot>
       </span>
       {{/if}}
 
       {{#if clearable}}
-        <Icon name="close-circle" className="bell-input-clear-icon" on-click="clear()" />
+        <Icon name="close-circle" className="${prefix}input-clear-icon" on-click="clear()" />
       {{/if}}
 
       {{#if secure}}
         {{#if isSecure}}
-          <i class="bell-icon
-              bell-icon-eye
-              bell-input-icon-eye
+          <i class="${prefix}icon
+              ${prefix}icon-eye
+              ${prefix}input-icon-eye
           " on-click="toggle('isSecure')"></i>
         {{else}}
-          <i class="bell-icon
-              bell-icon-eye-disabled
-              bell-input-icon-eye
+          <i class="${prefix}icon
+              ${prefix}icon-eye-disabled
+              ${prefix}input-icon-eye
           " on-click="toggle('isSecure')"></i>
         {{/if}}
       {{/if}}
@@ -83,7 +85,7 @@
 
   </div>
   {{#if hasSlot('append')}}
-    <div class="bell-input-append">
+    <div class="${prefix}input-append">
       <slot name="append" />
     </div>
   {{/if}}

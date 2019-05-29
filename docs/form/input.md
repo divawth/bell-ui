@@ -4,6 +4,80 @@
 export default {
   template: `
   <div>
+    <Input placeholder="Basic usage" model="value" />
+    <Input placeholder="Basic usage" model="value" disabled />
+  </div>
+  `
+}
+```
+
+> 三种大小
+
+```js
+export default {
+  template: `
+    <div class="example-input">
+      <Input placeholder="large size" size="large" />
+      <Input placeholder="default size" size="default" />
+      <Input placeholder="small size" size="small" />
+    </div>
+  `
+}
+```
+
+> 前置/后置标签
+
+```js
+export default {
+  isViewFullBlock: true,
+  height: 300,
+  template: `
+    <div>
+      <Input model="value">
+        <template slot="prepend">
+          <span>Http://</span>
+        </template>
+      </Input>
+      <Input model="value">
+        <template slot="prepend">
+          <Select model="select1" slot="prepend" style="width: 80px">
+            <Option value="http">http://</Option>
+            <Option value="https">https://</Option>
+          </Select>
+        </template>
+        <template slot="append">
+          <Select model="select2" slot="append" style="width: 70px">
+            <Option value="com">.com</Option>
+            <Option value="org">.org</Option>
+            <Option value="io">.io</Option>
+          </Select>
+        </template>
+      </Input>
+        <Input model="value"
+            type="text"
+            placeholder="请输入..."
+        >
+            <template slot="prepend">
+                <Button type="text">搜索</Button>
+            </template>
+        </Input>
+
+        <style>
+            .bell-input-wrapper {
+                margin-top: 10px;
+            }
+        </style>
+    </div>
+  `
+}
+```
+
+> 基础用法
+
+```js
+export default {
+  template: `
+  <div>
     <Input prefix="person" />
     <Input suffix="calendar" />
     <Input prefix="person" suffix="close" />
@@ -82,32 +156,6 @@ export default {
         `
     }
 
-> 通过 size 设置大小
-
-    export default {
-        template: `
-            <div>
-                <Input placeholder="large size"
-                    model="value"
-                    size="large"
-                    type="input"
-                    clearable
-                ></Input>
-                <Input placeholder="default size"
-                    model="value"
-                    type="input"
-                    clearable
-                ></Input>
-                <Input placeholder="small size"
-                    size="small"
-                    model="value"
-                    type="input"
-                    clearable
-                ></Input>
-            </div>
-        `
-    }
-
 > 通过 status 设置状态
 
     export default {
@@ -137,45 +185,6 @@ export default {
                     type="input"
                     clearable
                 ></Input>
-            </div>
-        `
-    }
-
-> 设置右侧按钮文字
-
-    export default {
-        template: `
-            <div>
-                <Input model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="prepend">
-                        <span>Https://</span>
-                    </template>
-                </Input>
-                <Input model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="append">
-                        <span>@bell.io</span>
-                    </template>
-                </Input>
-                <Input model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="prepend">
-                        <Button type="text">搜索</Button>
-                    </template>
-                </Input>
-
-                <style>
-                    .bell-input-wrapper {
-                        margin-top: 10px;
-                    }
-                </style>
             </div>
         `
     }

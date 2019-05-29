@@ -3780,6 +3780,7 @@ button.bell-button-danger-ghost[disabled] {
   font-size: 12px;
   vertical-align: top;
   padding: 0 10px;
+  box-sizing: content-box;
 }
 .bell-input-wrapper .bell-input-prepend {
   border-right: 0;
@@ -3802,44 +3803,86 @@ button.bell-button-danger-ghost[disabled] {
   border-bottom-right-radius: 4px;
 }
 .bell-input-wrapper .bell-input-prepend {
-  height: 32px;
-  line-height: 32px;
+  height: 30px;
+  line-height: 30px;
 }
 .bell-input-wrapper .bell-input-append {
-  height: 32px;
-  line-height: 32px;
+  height: 30px;
+  line-height: 30px;
+}
+.bell-input-wrapper .bell-input-prefix,
+.bell-input-wrapper .bell-input-suffix {
+  width: 30px;
+  height: 30px;
+}
+.bell-input-wrapper .bell-input-prefix .bell-input-prefix-icon,
+.bell-input-wrapper .bell-input-suffix .bell-input-prefix-icon,
+.bell-input-wrapper .bell-input-prefix .bell-input-suffix-icon,
+.bell-input-wrapper .bell-input-suffix .bell-input-suffix-icon {
+  line-height: 30px;
 }
 .bell-input-wrapper .bell-input .bell-input-el {
   height: 30px;
   line-height: 30px;
   padding: 6px 15px;
 }
+.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-prefix {
+  padding-left: 30px;
+}
+.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-suffix {
+  padding-right: 30px;
+}
 .bell-input-wrapper .bell-input .bell-input-icon-eye {
   line-height: 30px;
 }
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
   height: 30px;
+  width: 30px;
   line-height: 30px;
 }
+.bell-input-wrapper.bell-input-wrapper-clearable .bell-input-el {
+  padding-right: 30px;
+}
 .bell-input-wrapper-small .bell-input-prepend {
-  height: 26px;
-  line-height: 26px;
+  height: 22px;
+  line-height: 22px;
 }
 .bell-input-wrapper-small .bell-input-append {
-  height: 26px;
-  line-height: 26px;
+  height: 22px;
+  line-height: 22px;
+}
+.bell-input-wrapper-small .bell-input-prefix,
+.bell-input-wrapper-small .bell-input-suffix {
+  width: 22px;
+  height: 22px;
+}
+.bell-input-wrapper-small .bell-input-prefix .bell-input-prefix-icon,
+.bell-input-wrapper-small .bell-input-suffix .bell-input-prefix-icon,
+.bell-input-wrapper-small .bell-input-prefix .bell-input-suffix-icon,
+.bell-input-wrapper-small .bell-input-suffix .bell-input-suffix-icon {
+  line-height: 22px;
 }
 .bell-input-wrapper-small .bell-input .bell-input-el {
-  height: 24px;
-  line-height: 24px;
-  padding: 2px 15px;
+  height: 22px;
+  line-height: 22px;
+  padding: 4px 15px;
+}
+.bell-input-wrapper-small .bell-input .bell-input-el.bell-input-with-prefix {
+  padding-left: 22px;
+}
+.bell-input-wrapper-small .bell-input .bell-input-el.bell-input-with-suffix {
+  padding-right: 22px;
 }
 .bell-input-wrapper-small .bell-input .bell-input-icon-eye {
-  line-height: 24px;
+  line-height: 22px;
 }
 .bell-input-wrapper-small.bell-input-wrapper-clearable .bell-input-clear-icon {
-  height: 24px;
-  line-height: 24px;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+}
+.bell-input-wrapper-small.bell-input-wrapper-clearable .bell-input-el {
+  padding-right: 22px;
 }
 .bell-input-wrapper-large .bell-input-prepend {
   height: 38px;
@@ -3849,17 +3892,38 @@ button.bell-button-danger-ghost[disabled] {
   height: 38px;
   line-height: 38px;
 }
+.bell-input-wrapper-large .bell-input-prefix,
+.bell-input-wrapper-large .bell-input-suffix {
+  width: 38px;
+  height: 38px;
+}
+.bell-input-wrapper-large .bell-input-prefix .bell-input-prefix-icon,
+.bell-input-wrapper-large .bell-input-suffix .bell-input-prefix-icon,
+.bell-input-wrapper-large .bell-input-prefix .bell-input-suffix-icon,
+.bell-input-wrapper-large .bell-input-suffix .bell-input-suffix-icon {
+  line-height: 38px;
+}
 .bell-input-wrapper-large .bell-input .bell-input-el {
-  height: 36px;
-  line-height: 36px;
-  padding: 10px 15px;
+  height: 38px;
+  line-height: 38px;
+  padding: 8px 15px;
+}
+.bell-input-wrapper-large .bell-input .bell-input-el.bell-input-with-prefix {
+  padding-left: 38px;
+}
+.bell-input-wrapper-large .bell-input .bell-input-el.bell-input-with-suffix {
+  padding-right: 38px;
 }
 .bell-input-wrapper-large .bell-input .bell-input-icon-eye {
-  line-height: 36px;
+  line-height: 38px;
 }
 .bell-input-wrapper-large.bell-input-wrapper-clearable .bell-input-clear-icon {
-  height: 36px;
-  line-height: 36px;
+  height: 38px;
+  width: 38px;
+  line-height: 38px;
+}
+.bell-input-wrapper-large.bell-input-wrapper-clearable .bell-input-el {
+  padding-right: 38px;
 }
 .bell-input-wrapper .bell-input-prepend {
   border-color: #dcdee2;
@@ -4000,9 +4064,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-input-wrapper.bell-input-wrapper-disabled .bell-input .bell-input-el {
   cursor: not-allowed;
 }
-.bell-input-wrapper.bell-input-wrapper-clearable .bell-input-el {
-  padding-right: 32px;
-}
 .bell-input-wrapper.bell-input-wrapper-clearable .bell-input-clear-icon {
   position: absolute;
   right: 0;
@@ -4010,7 +4071,6 @@ button.bell-button-danger-ghost[disabled] {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
-  width: 32px;
   font-size: 16px;
   color: #808695;
 }
@@ -4092,28 +4152,20 @@ button.bell-button-danger-ghost[disabled] {
   resize: none;
   line-height: 1.5;
 }
-.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-prefix {
-  padding-left: 32px;
-}
-.bell-input-wrapper .bell-input .bell-input-el.bell-input-with-suffix {
-  padding-right: 32px;
-}
-.bell-input-prefix {
-  width: 32px;
-  height: 100%;
+.bell-textarea .bell-input-prefix,
+.bell-input .bell-input-prefix {
   text-align: center;
   position: absolute;
   left: 0;
   top: 0;
 }
-.bell-input-prefix .bell-input-prefix-icon {
+.bell-textarea .bell-input-prefix .bell-input-prefix-icon,
+.bell-input .bell-input-prefix .bell-input-prefix-icon {
   font-size: 16px;
-  line-height: 32px;
   color: #808695;
 }
-.bell-input-suffix {
-  width: 32px;
-  height: 100%;
+.bell-textarea .bell-input-suffix,
+.bell-input .bell-input-suffix {
   position: absolute;
   right: 0;
   top: 0;
@@ -4121,7 +4173,8 @@ button.bell-button-danger-ghost[disabled] {
   align-items: center;
   justify-content: center;
 }
-.bell-input-suffix .bell-input-suffix-icon {
+.bell-textarea .bell-input-suffix .bell-input-suffix-icon,
+.bell-input .bell-input-suffix .bell-input-suffix-icon {
   font-size: 16px;
   color: #808695;
 }

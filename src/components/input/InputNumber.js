@@ -1,7 +1,6 @@
-import InputNumberTpl from './template/InputNumber.html';
+import template from './template/InputNumber.html'
 
 export default {
-  template: InputNumberTpl,
   propTypes: {
     className: {
       type: 'string'
@@ -23,7 +22,7 @@ export default {
       type: 'numeric'
     },
     step: function (val) {
-      return val === undefined ? 1 : +val;
+      return val === undefined ? 1 : +val
     },
     size: {
       type: 'string'
@@ -44,6 +43,8 @@ export default {
     }
   },
 
+  template,
+
   data() {
     return {
       isFocus: false
@@ -52,78 +53,78 @@ export default {
 
   watchers: {
     value(val) {
-      let me = this;
+      let me = this
       if (!Yox.is.numeric(val)) {
         me.set({
           value: +me.get('minValue')
-        });
-        return;
+        })
+        return
       }
       me.fire(
         'change',
         {
           value: +val
         }
-      );
+      )
     }
   },
 
   methods: {
     up() {
-      let me = this;
-      me.increase('value', me.get('step'), me.get('maxValue'));
+      let me = this
+      me.increase('value', me.get('step'), me.get('maxValue'))
       me.fire('change', {
         value: +me.get('value')
-      });
+      })
     },
     down() {
-      let me = this;
-      let value = me.decrease('value', me.get('step'), me.get('minValue'));
+      let me = this
+      let value = me.decrease('value', me.get('step'), me.get('minValue'))
       me.fire('change', {
         value: +me.get('value')
-      });
+      })
     },
     blur() {
       this.set({
         isFocus: false
-      });
-      this.fire('blur');
+      })
+      this.fire('blur')
     },
     focus() {
       this.set({
         isFocus: true
-      });
-      this.fire('focus');
+      })
+      this.fire('focus')
     },
     documentKeydownHander(event) {
-      let me = this;
+      let me = this
       switch (event.originalEvent.keyCode) {
         case 38:
           me.up()
-          break;
+          break
         case 40:
           me.down()
-          break;
+          break
       }
     }
   },
 
   afterMount() {
-    let me = this;
-    me.documentKeydownHander = me.documentKeydownHander.bind(me);
+    let me = this
+    me.documentKeydownHander = me.documentKeydownHander.bind(me)
     Yox.dom.on(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   },
 
   beforeDestroy() {
-    let me = this;
+    let me = this
     Yox.dom.off(
       document,
       'keydown',
       me.documentKeydownHander
-    );
+    )
   }
-};
+}

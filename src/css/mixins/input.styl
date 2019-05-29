@@ -1,72 +1,72 @@
 input-size(size)
+  {$selector-input}-prepend
+    ui-set('height', size[ 'height' ])
+    ui-set('line-height', size[ 'height' ])
 
-    {$selector-input}-prepend
+  {$selector-input}-append
+    ui-set('height', size[ 'height' ])
+    ui-set('line-height', size[ 'height' ])
 
-        ui-set('height', size['height'] + 2);
-        ui-set('line-height', size['line-height'] + 2);
+  {$selector-input}-prefix,
+  {$selector-input}-suffix 
+    ui-set('width', size[ 'height' ])
+    ui-set('height', size[ 'height' ])
 
-    {$selector-input}-append
+    {$selector-input}-prefix-icon,
+    {$selector-input}-suffix-icon
+      ui-set('line-height', size[ 'height' ])
 
-        ui-set('height', size['height'] + 2);
-        ui-set('line-height', size['line-height'] + 2);
+  {$selector-input}
+    {$selector-input-el}
+      ui-set('height', size[ 'height' ])
+      ui-set('line-height', size[ 'height' ])
+      ui-set('padding', size['padding'])
 
-    {$selector-input}
+      &{$selector-input}-with-prefix
+        ui-set('padding-left', size[ 'height' ])
+        
+      &{$selector-input}-with-suffix 
+        ui-set('padding-right', size[ 'height' ])
 
-        {$selector-input-el}
+    {$selector-input}-icon-eye
+      ui-set('line-height', size[ 'height' ])
 
-            ui-set('height', size['height']);
-            ui-set('line-height', size['line-height']);
-            ui-set('padding', size['padding']);
+  &{$selector-input-wrapper}-clearable
+    {$selector-input}-clear-icon
+      ui-set('height', size[ 'height' ])
+      ui-set('width', size[ 'height' ])
+      ui-set('line-height', size[ 'height' ])
 
-        {$selector-input}-icon-eye
-
-            ui-set('line-height', size['line-height']);
-
-    &{$selector-input-wrapper}-clearable
-
-        {$selector-input}-clear-icon
-
-            ui-set('height', size['height']);
-            ui-set('line-height', size['line-height']);
+    {$selector-input-el}
+      ui-set('padding-right', size[ 'height' ])
 
 input-inner-color(color)
+  {$selector-input}-prepend
+    ui-set('border-color', color['border-color'])
 
-    {$selector-input}-prepend
+  {$selector-input}-append
+    ui-set('border-color', color['border-color'])
 
-        ui-set('border-color', color['border-color']);
+  {$selector-input}
+    ui-set('border-color', color['border-color'])
+    ui-set('background-color', color['bg-color'])
 
-    {$selector-input}-append
-
-        ui-set('border-color', color['border-color']);
-
+  &{$selector-hover}
     {$selector-input}
+      ui-set('border-color', color['border-color-hover'])
 
-        ui-set('border-color', color['border-color']);
-        ui-set('background-color', color['bg-color']);
-
-    &{$selector-hover}
-
-        {$selector-input}
-            ui-set('border-color', color['border-color-hover']);
-
-    &.bell-focus
-        {$selector-input}
-            ui-set('border-color', color['border-color-hover']);
-            ui-set('box-shadow', color['box-shadow']);
+  &.bell-focus
+    {$selector-input}
+      ui-set('border-color', color['border-color-hover'])
+      ui-set('box-shadow', color['box-shadow'])
 
 ui-input()
-
-    ui-connect(
-        hash: $input-hash,
-        each: input-size
-    )
-    ui-connect(
-        hash: $input-color-hash,
-        each: input-inner-color
-    )
-
-ui-input-el()
-
-    font-size $input-el-font-size
-    color $input-el-color
+  ui-connect(
+    hash: $input-size-hash,
+    each: input-size
+  )
+  ui-connect(
+    hash: $input-color-hash,
+    each: input-inner-color
+  )
 

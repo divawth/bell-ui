@@ -1,20 +1,18 @@
-import InputTpl from './template/Input.html';
+import template from './template/Input.html'
 
-let TEXT_TYPE_PASSWORD = 'password';
-let TEXT_TYPE_TEXTAREA = 'textarea';
-let TEXT_TYPE_TEXT = 'text';
+let TEXT_TYPE_PASSWORD = 'password'
+let TEXT_TYPE_TEXTAREA = 'textarea'
+let TEXT_TYPE_TEXT = 'text'
 
 export default {
-  template: InputTpl,
-
   propTypes: {
     style: {
       type: 'string'
     },
-    size: {
+    className: {
       type: 'string'
     },
-    className: {
+    size: {
       type: 'string'
     },
     type: {
@@ -52,8 +50,10 @@ export default {
     }
   },
 
+  template,
+
   data() {
-    let me = this;
+    let me = this
     return {
       TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
       TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
@@ -72,12 +72,12 @@ export default {
         {
           value: value
         }
-      );
+      )
     },
     isSecure(isSecure) {
       this.set({
         currentType: isSecure ? TEXT_TYPE_PASSWORD : TEXT_TYPE_TEXT
-      });
+      })
     }
   },
 
@@ -85,19 +85,19 @@ export default {
     blur(args) {
       this.set({
         isFocus: false
-      });
-      this.fire('blur');
+      })
+      this.fire('blur')
     },
     focus(args) {
       this.set({
         isFocus: true
-      });
-      this.fire('focus');
+      })
+      this.fire('focus')
     },
     clear() {
       this.set({
         value: ''
-      });
+      })
       this.fire(
         'clear.input'
       )
@@ -105,62 +105,62 @@ export default {
   },
 
   afterMount() {
-    let me = this;
+    let me = this
 
     me.documentKeydownHandler = function (event) {
-      event = event.originalEvent;
+      event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keydown');
+        me.fire('keydown')
         if (event.keyCode === 13) {
-          me.fire('enter');
+          me.fire('enter')
         }
       }
-    };
+    }
     me.documentKeyupHandler = function (event) {
-      event = event.originalEvent;
+      event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keyup');
+        me.fire('keyup')
       }
-    };
+    }
     me.documentKeypressHandler = function (event) {
-      event = event.originalEvent;
+      event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keypress');
+        me.fire('keypress')
       }
-    };
+    }
     Yox.dom.on(
       document,
       'keydown',
       me.documentKeydownHandler
-    );
+    )
     Yox.dom.on(
       document,
       'keyup',
       me.documentKeyupHandler
-    );
+    )
     Yox.dom.on(
       document,
       'keypress',
       me.documentKeypressHandler
-    );
+    )
   },
 
   beforeDestroy() {
-    let me = this;
+    let me = this
     Yox.dom.off(
       document,
       'keydown',
       me.documentKeydownHandler
-    );
+    )
     Yox.dom.off(
       document,
       'keyup',
       me.documentKeyupHandler
-    );
+    )
     Yox.dom.off(
       document,
       'keypress',
       me.documentKeypressHandler
-    );
+    )
   }
-};
+}
