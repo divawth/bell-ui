@@ -3782,6 +3782,10 @@ button.bell-button-danger-ghost[disabled] {
   padding: 0 10px;
   box-sizing: content-box;
 }
+.bell-input-wrapper .bell-input-prepend .bell-select,
+.bell-input-wrapper .bell-input-append .bell-select {
+  margin: -1px -11px;
+}
 .bell-input-wrapper .bell-input-prepend {
   border-right: 0;
   border-top-left-radius: 4px;
@@ -6006,7 +6010,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select .bell-select-button .bell-select-value,
 .bell-select .bell-select-button .bell-select-placeholder {
   font-size: 12px;
-  padding: 7px 30px 8px 15px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 8px;
+  padding-right: 24px;
 }
 .bell-select .bell-select-button .bell-select-arrow {
   padding: 9px 15px;
@@ -6017,7 +6024,7 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1;
 }
 .bell-select.bell-select-top .bell-dropdown-list {
-  bottom: 40px;
+  bottom: 38px;
 }
 .bell-select.bell-select.active .bell-dropdown-list,
 .bell-select:active .bell-dropdown-list,
@@ -6027,7 +6034,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select-small .bell-select-button .bell-select-value,
 .bell-select-small .bell-select-button .bell-select-placeholder {
   font-size: 12px;
-  padding: 3px 30px 3px 15px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 8px;
+  padding-right: 24px;
 }
 .bell-select-small .bell-select-button .bell-select-arrow {
   padding: 4px 15px;
@@ -6038,7 +6048,7 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1;
 }
 .bell-select-small.bell-select-top .bell-dropdown-list {
-  bottom: 32px;
+  bottom: 30px;
 }
 .bell-select-small.bell-select-small.active .bell-dropdown-list,
 .bell-select-small:active .bell-dropdown-list,
@@ -6048,7 +6058,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select-large .bell-select-button .bell-select-value,
 .bell-select-large .bell-select-button .bell-select-placeholder {
   font-size: 14px;
-  padding: 8px 30px 8px 15px;
+  height: 38px;
+  line-height: 38px;
+  padding-left: 8px;
+  padding-right: 24px;
 }
 .bell-select-large .bell-select-button .bell-select-arrow {
   padding: 10px 15px;
@@ -6059,7 +6072,7 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 1;
 }
 .bell-select-large.bell-select-top .bell-dropdown-list {
-  bottom: 44px;
+  bottom: 46px;
 }
 .bell-select-large.bell-select-large.active .bell-dropdown-list,
 .bell-select-large:active .bell-dropdown-list,
