@@ -1,45 +1,52 @@
 import template from './template/InputNumber.html'
+import { FALSE, TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, RAW_TYPE_ARRAY } from '../constant'
+import { oneOf } from '../util'
 
 export default {
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
+    formatter: {
+      type: RAW_FUNCTION
     },
     status: {
-      type: 'string'
+      type: oneOf(RAW_TYPE_ARRAY)
     },
-    maxValue: {
-      type: 'numeric'
+    max: {
+      type: RAW_NUMERIC,
+      value: 100
     },
-    minValue: {
-      type: 'numeric',
+    min: {
+      type: RAW_NUMERIC,
       value: 0
     },
     value: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
-    step: function (val) {
-      return val === undefined ? 1 : +val
+    step: {
+      type: RAW_NUMERIC,
+      value: 1
     },
     size: {
-      type: 'string'
-    },
-    readonly: {
-      type: 'boolean',
-      value: false
-    },
-    disabled: {
-      type: 'boolean'
+      type: RAW_STRING
     },
     editable: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
+    },
+    readonly: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    disabled: {
+      type: RAW_BOOLEAN
     },
     placeholder: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
@@ -47,84 +54,79 @@ export default {
 
   data() {
     return {
-      isFocus: false
+      isFocus: FALSE
     }
   },
 
   watchers: {
-    value(val) {
-      let me = this
-      if (!Yox.is.numeric(val)) {
-        me.set({
-          value: +me.get('minValue')
-        })
-        return
-      }
-      me.fire(
-        'change',
-        {
-          value: +val
-        }
+    value(value) {
+      this.fire(
+        'change.inputnumber',
+        { value }
       )
+    }
+  },
+
+  computed: {
+    computedValue() {
+      if (this.get('formatter')) {
+        return this.get('formatter')(this.get('value'))
+      }
+      else {
+        return this.get('value')
+      }
     }
   },
 
   methods: {
     up() {
-      let me = this
-      me.increase('value', me.get('step'), me.get('maxValue'))
-      me.fire('change', {
-        value: +me.get('value')
-      })
+      let value = this.increase('value', +this.get('step'), +this.get('max'))
+      this.fire(
+        'change.inputnumber', 
+        { value }
+      )
     },
     down() {
-      let me = this
-      let value = me.decrease('value', me.get('step'), me.get('minValue'))
-      me.fire('change', {
-        value: +me.get('value')
-      })
+      let value = this.decrease('value', +this.get('step'), +this.get('min'))
+      this.fire(
+        'change.inputnumber', 
+        { value }
+      )
     },
     blur() {
-      this.set({
-        isFocus: false
-      })
-      this.fire('blur')
+      this.set('isFocus', FALSE)
+      this.fire('blur.inputnumber')
     },
     focus() {
-      this.set({
-        isFocus: true
-      })
-      this.fire('focus')
+      this.set('isFocus', TRUE)
+      this.fire('focus.inputnumber')
     },
     documentKeydownHander(event) {
-      let me = this
       switch (event.originalEvent.keyCode) {
         case 38:
-          me.up()
+          this.up()
           break
         case 40:
-          me.down()
+          this.down()
           break
       }
     }
   },
 
   afterMount() {
-    let me = this
-    me.documentKeydownHander = me.documentKeydownHander.bind(me)
+    this.documentKeydownHander = this.documentKeydownHander.bind(this)
     Yox.dom.on(
       document,
       'keydown',
-      me.documentKeydownHander
+      this.documentKeydownHander
     )
   },
 
   beforeDestroy() {
-    let me = this
     Yox.dom.off(
       document,
       'keydown',
-      me.documentKeydownHander
+      this.documentKeydownHander
     )
   }
 }

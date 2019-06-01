@@ -1,84 +1,72 @@
+$selector-input-wrapper = $selector-prefix + '-input-wrapper'
 $selector-input = $selector-prefix + '-input'
-$selector-input-wrapper = $selector-input + '-wrapper'
 $selector-input-el = $selector-input + '-el'
+$selector-input-prepend = $selector-input + '-prepend'
+$selector-input-append = $selector-input + '-append'
 $selector-textarea = $selector-prefix + '-textarea'
-$selector-input-placeholder = $selector-input + '-placeholder'
 
-// input
 $input-el-color = $brand-main
-$input-el-font-size = 13px
-$input-clearable-width = 24px
-$input-clearable-font-size = 16px
-
-$input-clearable-color = #808695
+$input-el-size = 14px
 $input-el-placeholder-color = #D2D2D2
 
-$input-eye-color = #ddd
-$input-eye-color-hover = #aaa
+$input-prepend-size = 12px
+
+$input-clearable-color = #808695
 
 $input-size-hash = {
-  '': {
-    padding: 6px 15px,
-    height: 30px
-  },
-  'small': {
-    padding: 4px 15px,
-    height: 22px
-  }
-  'large': {
-    padding: 8px 15px,
-    height: 38px
-  }
+  '': 30px,
+  'small': 22px,
+  'large': 38px
 }
 
 $input-color-hash = {
-    '': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: #dcdee2,
-        border-color-hover: $brand-primary-hover,
-        box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
-    },
-    'success': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: $brand-success-hover,
-        border-color-hover: $brand-success-hover,
-        box-shadow: 0 0 0 2px $brand-success-box-shadow-color
-    },
-    'error': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: $brand-error-hover,
-        border-color-hover: $brand-error-hover,
-        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
-    },
-    'info': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: $brand-info-hover,
-        border-color-hover: $brand-info-hover,
-        box-shadow: 0 0 0 2px $brand-info-box-shadow-color
-    },
-    'warning': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: $brand-warning-hover,
-        border-color-hover: $brand-warning-hover,
-        box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
-    },
-    'danger': {
-        color: $brand-secondary,
-        bg-color: $brand-white,
-        border-color: $brand-danger-hover,
-        border-color-hover: $brand-danger-hover,
-        box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
-    },
-    'disabled': {
-        color: $brand-primary,
-        bg-color: #F7F7F7,
-        border-color: $brand-border-disabled,
-        border-color-hover: $brand-border-disabled,
-        box-shadow: none
-    }
+  '': {
+    color: #515a6e,
+    bg-color: transparent,
+    border-color: #dcdee2,
+    border-hover-color: $brand-primary-hover,
+    box-shadow: 0 0 0 2px $brand-primary-box-shadow-color
+  },
+  'success': {
+    color: #515a6e,
+    bg-color: transparent,
+    border-color: $brand-success-hover,
+    border-hover-color: $brand-success-hover,
+    box-shadow: 0 0 0 2px $brand-success-box-shadow-color
+  },
+  'error': {
+    color: #515a6e,
+    bg-color: transparent,
+    border-color: $brand-error-hover,
+    border-hover-color: $brand-error-hover,
+    box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
+  },
+  'info': {
+    color: #515a6e,
+    bg-color: transparent,
+    border-color: $brand-info-hover,
+    border-hover-color: $brand-info-hover,
+    box-shadow: 0 0 0 2px $brand-info-box-shadow-color
+  },
+  'warning': {
+    color: #515a6e,
+    bg-color: transparent,
+    border-color: $brand-warning-hover,
+    border-hover-color: $brand-warning-hover,
+    box-shadow: 0 0 0 2px $brand-warning-box-shadow-color
+  },
+  'danger': {
+    color: #515a6e,
+    bg-color: tra,
+    border-color: $brand-danger-hover,
+    border-hover-color: $brand-danger-hover,
+    box-shadow: 0 0 0 2px $brand-danger-box-shadow-color
+  },
+  'disabled': {
+    color: #ccc,
+    bg-color: #F7F7F7,
+    border-color: $brand-border-disabled,
+    border-hover-color: $brand-border-disabled,
+    box-shadow: none
+  }
 }

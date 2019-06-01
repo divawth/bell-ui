@@ -1,54 +1,33 @@
-<div class="${prefix}input-wrapper
-{{#if hasSlot('prepend')}} ${prefix}input-has-prepend{{/if}}
-{{#if hasSlot('append')}} ${prefix}input-has-append{{/if}}
-{{#if className}} {{className}}{{/if}}
-{{#if size}} ${prefix}input-wrapper-{{size}}{{/if}}
-{{#if status}} ${prefix}input-wrapper-{{status}}{{/if}}
-{{#if isFocus}} ${prefix}focus{{/if}}
-{{#if clearable}} ${prefix}input-wrapper-clearable{{/if}}
-{{#if disabled}} ${prefix}input-wrapper-disabled{{/if}}
+<div class="${prefix}input-number
+  {{#if size}} ${prefix}input-number-{{size}}{{/if}}
+  {{#if status}} ${prefix}input-number-{{status}}{{/if}}
+  {{#if disabled}} ${prefix}input-number-disabled{{/if}}
+  {{#if readonly}} ${prefix}input-number-readonly{{/if}}
+  {{#if isFocus}} ${prefix}focus{{/if}}
+  {{#if className}} {{className}}{{/if}}
 "
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  {{#if hasSlot('prepend')}}
-    <div class="${prefix}input-prepend">
-      <slot name="prepend" />
-    </div>
-  {{/if}}
+  <input type="text" 
+    class="${prefix}input"
+    model="computedValue"
+    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+    {{#if disabled}}disabled="disabled"{{/if}}
+    {{#if readonly || !editable}}readonly="{{readonly || !editable}}"{{/if}}
+    on-blur="blur()" 
+    on-focus="focus()"
+  ></input>
 
-  <div class="${prefix}input-number
-    {{#if className}} {{className}}{{/if}}
-    {{#if size}} ${prefix}input-number-{{size}}{{/if}}
-    {{#if status}} ${prefix}input-number-{{status}}{{/if}}
-    {{#if disabled}} ${prefix}input-number-disabled{{/if}}
-    {{#if readonly}} ${prefix}input-number-readonly{{/if}}
-    {{#if isFocus}} ${prefix}focus{{/if}}
-  "{{#if style}} style="{{style}}"{{/if}}>
+  <span class="${prefix}input-number-actions">
+    <Icon name="arrow-up" 
+      className="${prefix}input-number-icon {{#if max != null && max - value < +step}}disabled{{/if}}"
+      on-click="up()"
+    />
+    <Icon name="arrow-down" 
+      className="${prefix}input-number-icon {{#if min != null && value - min < +step}}disabled{{/if}}" 
+      on-click="down()"
+    />
+  </span>
 
-    <span class="${prefix}input-number-wrapper">
-      <input type="text" class="${prefix}input"
-      {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
-      {{#if disabled}}disabled="disabled"{{/if}}
-      {{#if readonly || !editable}}readonly="readonly"{{/if}}
-      model="value" on-blur="blur()" on-focus="focus()"
-      ></input>
-    </span>
-
-    <span class="${prefix}input-number-actions">
-      <span class="${prefix}icon ${prefix}icon-up ${prefix}icon-ios-arrow-up"
-        {{#if maxValue != null && value >= maxValue}} disabled="disabled"{{/if}}
-        on-click="up()"></span>
-      <span class="${prefix}icon ${prefix}icon-down ${prefix}icon-ios-arrow-down"
-        {{#if minValue != null && value <= minValue}} disabled="disabled"{{/if}}
-        on-click="down()"
-      ></span>
-    </span>
-
-  </div>
-  {{#if hasSlot('append')}}
-    <div class="${prefix}input-append">
-      <slot name="append" />
-    </div>
-  {{/if}}
 </div>

@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.39
+ * yox.js v1.0.0-alpha.49
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -951,7 +951,7 @@
         return level;
     }
     function getStyle(backgroundColor) {
-        return "background-color:" + backgroundColor + ";border-radius:20px;color:#fff;font-size:10px;padding:3px 6px;";
+        return "background-color:" + backgroundColor + ";border-radius:12px;color:#fff;font-size:10px;padding:3px 6px;";
     }
     /**
      * 打印 debug 日志
@@ -960,7 +960,7 @@
      */
     function debug(msg, tag) {
         if (nativeConsole && getLevel() <= DEBUG) {
-            nativeConsole.log(stylePrefix + (tag || 'Yox debug'), getStyle('#888'), msg);
+            nativeConsole.log(stylePrefix + (tag || 'Yox debug'), getStyle('#999'), msg);
         }
     }
     /**
@@ -1342,10 +1342,6 @@
     var HOOK_AFTER_UPDATE = 'afterUpdate';
     var HOOK_BEFORE_DESTROY = 'beforeDestroy';
     var HOOK_AFTER_DESTROY = 'afterDestroy';
-    var HOOK_BEFORE_CHILD_CREATE = 'beforeChildCreate';
-    var HOOK_AFTER_CHILD_CREATE = 'afterChildCreate';
-    var HOOK_BEFORE_CHILD_DESTROY = 'beforeChildDestroy';
-    var HOOK_AFTER_CHILD_DESTROY = 'afterChildDestroy';
   
     var guid = 0;
     function guid$1 () {
@@ -1452,9 +1448,9 @@
                     }
                     props[node.$model] = model;
                 }
-                var result = merge(props ? node.checkPropTypes(props) : UNDEFINED, slots);
+                var result = merge(props ? node.checkProps(props) : UNDEFINED, slots);
                 if (result) {
-                    node.set(result);
+                    node.forceUpdate(result);
                 }
             }
         }
@@ -1509,7 +1505,7 @@
         return data;
     }
     function createVnode(api, vnode) {
-        var tag = vnode.tag, node = vnode.node, data = vnode.data, isComponent = vnode.isComponent, isComment = vnode.isComment, isText = vnode.isText, isStyle = vnode.isStyle, children = vnode.children, text = vnode.text, html = vnode.html, context = vnode.context;
+        var tag = vnode.tag, node = vnode.node, data = vnode.data, isComponent = vnode.isComponent, isComment = vnode.isComment, isText = vnode.isText, isStyle = vnode.isStyle, isOption = vnode.isOption, children = vnode.children, text = vnode.text, html = vnode.html, context = vnode.context;
         if (node && data) {
             return;
         }
@@ -1525,24 +1521,27 @@
         }
         if (isComponent) {
             var componentOptions_1 = UNDEFINED;
-            context.loadComponent(tag, function (options) {
-                if (has$2(data, LOADING)) {
-                    // 异步组件
-                    if (data[LOADING]) {
-                        // 尝试使用最新的 vnode
-                        if (data[VNODE]) {
-                            vnode = data[VNODE];
-                            // 用完就删掉
-                            delete data[VNODE];
+            // 动态组件，tag 可能为空
+            if (tag) {
+                context.loadComponent(tag, function (options) {
+                    if (has$2(data, LOADING)) {
+                        // 异步组件
+                        if (data[LOADING]) {
+                            // 尝试使用最新的 vnode
+                            if (data[VNODE]) {
+                                vnode = data[VNODE];
+                                // 用完就删掉
+                                delete data[VNODE];
+                            }
+                            enterVnode(vnode, createComponent(vnode, options));
                         }
-                        enterVnode(vnode, createComponent(vnode, options));
                     }
-                }
-                // 同步组件
-                else {
-                    componentOptions_1 = options;
-                }
-            });
+                    // 同步组件
+                    else {
+                        componentOptions_1 = options;
+                    }
+                });
+            }
             // 不论是同步还是异步组件，都需要一个占位元素
             vnode.node = api.createComment(RAW_COMPONENT);
             if (componentOptions_1) {
@@ -1558,10 +1557,10 @@
                 addVnodes(api, node, children);
             }
             else if (text) {
-                api.text(node, text, isStyle);
+                api.text(node, text, isStyle, isOption);
             }
             else if (html) {
-                api.html(node, html, isStyle);
+                api.html(node, html, isStyle, isOption);
             }
             update(api, vnode);
             update$1(api, vnode);
@@ -1848,15 +1847,15 @@
         update$1(api, vnode, oldVnode);
         update$3(vnode, oldVnode);
         update$2(vnode, oldVnode);
-        var text = vnode.text, html = vnode.html, children = vnode.children, isStyle = vnode.isStyle, oldText = oldVnode.text, oldHtml = oldVnode.html, oldChildren = oldVnode.children;
+        var text = vnode.text, html = vnode.html, children = vnode.children, isStyle = vnode.isStyle, isOption = vnode.isOption, oldText = oldVnode.text, oldHtml = oldVnode.html, oldChildren = oldVnode.children;
         if (string(text)) {
             if (text !== oldText) {
-                api.text(node, text, isStyle);
+                api.text(node, text, isStyle, isOption);
             }
         }
         else if (string(html)) {
             if (html !== oldHtml) {
-                api.html(node, html, isStyle);
+                api.html(node, html, isStyle, isOption);
             }
         }
         // 两个都有需要 diff
@@ -2150,39 +2149,7 @@
         '^': { prec: 8, exec: function (a, b) { return a ^ b; } },
         '|': { prec: 7, exec: function (a, b) { return a | b; } },
         '&&': { prec: 6, exec: function (a, b) { return a && b; } },
-        '||': { prec: 5, exec: function (a, b) { return a || b; } },
-        '->': {
-            prec: 0,
-            exec: function (a, b) {
-                return a > b
-                    ? function (callback) {
-                        for (var i = a, index = 0; i > b; i--) {
-                            callback(i, index++);
-                        }
-                    }
-                    : function (callback) {
-                        for (var i = a, index = 0; i < b; i++) {
-                            callback(i, index++);
-                        }
-                    };
-            }
-        },
-        '=>': {
-            prec: 0,
-            exec: function (a, b) {
-                return a > b
-                    ? function (callback) {
-                        for (var i = a, index = 0; i >= b; i--) {
-                            callback(i, index++);
-                        }
-                    }
-                    : function (callback) {
-                        for (var i = a, index = 0; i <= b; i++) {
-                            callback(i, index++);
-                        }
-                    };
-            }
-        }
+        '||': { prec: 5, exec: function (a, b) { return a || b; } }
     };
   
     function compile(content) {
@@ -2649,13 +2616,10 @@
                         }
                     }
                     break;
-                // -、->
+                // -
                 case CODE_MINUS:
                     instance.go();
-                    if (instance.is(CODE_GREAT)) {
-                        instance.go();
-                    }
-                    else {
+                    {
                         // --
                         if (instance.is(CODE_MINUS)) {
                             instance.fatal(startIndex, "\u4E0D\u652F\u6301\u8BE5\u8BED\u6CD5");
@@ -2689,7 +2653,7 @@
                         instance.go();
                     }
                     break;
-                // ==、===、=>
+                // ==、===
                 case CODE_EQUAL:
                     instance.go();
                     if (instance.is(CODE_EQUAL)) {
@@ -2697,9 +2661,6 @@
                         if (instance.is(CODE_EQUAL)) {
                             instance.go();
                         }
-                    }
-                    else if (instance.is(CODE_GREAT)) {
-                        instance.go();
                     }
                     // 一个等号要报错
                     else {
@@ -3030,10 +2991,12 @@
             children: children
         };
     }
-    function createEach(expr, index) {
+    function createEach(from, to, equal, index) {
         return {
             type: EACH,
-            expr: expr,
+            from: from,
+            to: to,
+            equal: equal,
             index: index,
             isComplex: TRUE
         };
@@ -3049,6 +3012,8 @@
             tag: tag,
             isSvg: isSvg,
             isStyle: tag === 'style',
+            // 只有 <option> 没有 value 属性时才为 true
+            isOption: FALSE,
             isComponent: isComponent,
             isStatic: !isComponent && tag !== RAW_SLOT
         };
@@ -3118,8 +3083,6 @@
     BLOCK_MODE_UNSAFE = 3, 
     // 表达式的静态 keypath
     STATIC_KEYPATH = 'sk', 
-    // 缓存编译模板
-    compileCache = {}, 
     // 缓存编译正则
     patternCache$1 = {}, 
     // 指令分隔符，如 on-click 和 lazy-click
@@ -3128,6 +3091,11 @@
     eventPattern = /^[_$a-z]([\w]+)?$/i, 
     // 有命名空间的事件
     eventNamespacePattern = /^[_$a-z]([\w]+)?\.[_$a-z]([\w]+)?$/i, 
+    // 换行符
+    // 比较神奇是，有时候你明明看不到换行符，却真的存在一个，那就是 \r
+    breaklinePattern = /^\s*[\n\r]\s*|\s*[\n\r]\s*$/g, 
+    // 区间遍历
+    rangePattern = /\s*(=>|->)\s*/, 
     // 标签
     tagPattern = /<(\/)?([$a-z][-a-z0-9]*)/i, 
     // 注释
@@ -3172,22 +3140,8 @@
     function slicePrefix(str, prefix) {
         return trim(slice(str, prefix.length));
     }
-    /**
-     * trim 文本开始和结束位置的换行符
-     *
-     * 换行符比较神奇，有时候你明明看不到换行符，却真的存在一个，那就是 \r
-     *
-     */
-    function trimBreakline(content) {
-        return content.replace(/^\s*[\n\r]\s*|\s*[\n\r]\s*$/g, EMPTY_STRING);
-    }
     function compile$1(content) {
-        var nodeList = compileCache[content];
-        if (nodeList) {
-            return nodeList;
-        }
-        nodeList = [];
-        var nodeStack = [], 
+        var nodeList = [], nodeStack = [], 
         // 持有 if/elseif/else 节点
         ifStack = [], currentElement, currentAttribute, length = content.length, 
         // 当前处理的位置
@@ -3550,34 +3504,59 @@
                 replaceChild(partial);
             }
         }, checkElement = function (element) {
+            var tag = element.tag, attrs = element.attrs, slot = element.slot, children = element.children, isTemplate = tag === RAW_TEMPLATE;
             {
-                if (element.tag === RAW_TEMPLATE) {
+                if (isTemplate) {
                     if (element.key) {
                         fatal$1("<template> \u4E0D\u652F\u6301 key");
                     }
                     else if (element.ref) {
                         fatal$1("<template> \u4E0D\u652F\u6301 ref");
                     }
-                    else if (element.attrs) {
+                    else if (attrs) {
                         fatal$1("<template> \u4E0D\u652F\u6301\u5C5E\u6027\u6216\u6307\u4EE4");
                     }
-                    else if (!element.slot) {
+                    else if (!slot) {
                         fatal$1("<template> \u4E0D\u5199 slot \u5C5E\u6027\u662F\u51E0\u4E2A\u610F\u601D\uFF1F");
                     }
                 }
-                else if (element.tag === RAW_SLOT && !element.name) {
-                    fatal$1("<slot> \u4E0D\u5199 name \u5C5E\u6027\u662F\u51E0\u4E2A\u610F\u601D\uFF1F");
+            }
+            // 没有子节点，则意味着这个插槽没任何意义
+            if (isTemplate && slot && !children) {
+                replaceChild(element);
+            }
+            // <slot /> 如果没写 name，自动加上默认名称
+            else if (tag === RAW_SLOT && !element.name) {
+                element.name = SLOT_NAME_DEFAULT;
+            }
+            // 补全 style 标签的 type
+            // style 如果没有 type 则加一个 type="text/css"
+            // 因为低版本 IE 没这个属性，没法正常渲染样式
+            else {
+                var hasType_1 = FALSE, hasValue_1 = FALSE;
+                if (attrs) {
+                    each(attrs, function (attr) {
+                        var name = attr.type === PROPERTY
+                            ? attr.name
+                            : UNDEFINED;
+                        if (name === 'type') {
+                            hasType_1 = TRUE;
+                        }
+                        else if (name === RAW_VALUE) {
+                            hasValue_1 = TRUE;
+                        }
+                    });
+                }
+                if (element.isStyle && !hasType_1) {
+                    addProperty(element, createProperty('type', HINT_STRING, 'text/css'));
+                }
+                // 低版本 IE 需要给 option 标签强制加 value
+                else if (tag === 'option' && !hasValue_1) {
+                    element.isOption = TRUE;
                 }
             }
-            // style 如果啥都没写，就默认加一个 type="text/css"
-            // 因为低版本 IE 没这个属性，没法正常渲染样式
-            // 如果 style 写了 attribute 那就自己保证吧
-            // 因为 attrs 具有动态性，compiler 无法保证最终一定会输出 type 属性
-            if (element.isStyle && falsy(element.attrs)) {
-                element.attrs = [
-                    createProperty('type', HINT_STRING, 'text/css')
-                ];
-            }
+        }, addProperty = function (element, prop) {
+            push(element.attrs || (element.attrs = []), prop);
         }, bindSpecialAttr = function (element, attr) {
             var name = attr.name, value = attr.value, 
             // 这三个属性值要求是字符串
@@ -3659,15 +3638,15 @@
                     }
                     else if (type === ELSE_IF) {
                         {
-                            fatal$1('大哥，else 后面不能跟 else if 啊');
+                            fatal$1('else 后面不能跟 else if 啊');
                         }
                     }
                     else {
-                        fatal$1('大哥，只能写一个 else 啊！！');
+                        fatal$1('只能写一个 else 啊');
                     }
                 }
                 else {
-                    fatal$1('不写 if 是几个意思？？');
+                    fatal$1('不写 if 是几个意思');
                 }
             }
             else {
@@ -3720,7 +3699,8 @@
             // </Component>
             // 按现在的逻辑，这样的组件是没有子节点的，因为在这里过滤掉了，因此该组件没有 slot
             // 如果这里放开了，组件就会有一个 slot
-            text = trimBreakline(text);
+            // trim 文本开始和结束位置的换行符
+            text = text.replace(breaklinePattern, EMPTY_STRING);
             if (text) {
                 addChild(createText(text));
             }
@@ -3935,18 +3915,27 @@
             // {{#each xx:index}}
             function (source) {
                 if (startsWith(source, SYNTAX_EACH)) {
+                    {
+                        if (currentElement) {
+                            fatal$1(currentAttribute
+                                ? "each \u4E0D\u80FD\u5199\u5728\u5C5E\u6027\u7684\u503C\u91CC"
+                                : "each \u4E0D\u80FD\u5199\u5728\u5C5E\u6027\u5C42\u7EA7");
+                        }
+                    }
                     source = slicePrefix(source, SYNTAX_EACH);
                     var terms = source.replace(/\s+/g, EMPTY_STRING).split(':');
                     if (terms[0]) {
-                        var expr = compile(trim(terms[0]));
-                        if (expr) {
-                            if (!currentElement) {
-                                return createEach(expr, trim(terms[1]));
+                        var literal = trim(terms[0]), index_1 = trim(terms[1]), match = literal.match(rangePattern);
+                        if (match) {
+                            var parts = literal.split(rangePattern), from = compile(parts[0]), to = compile(parts[2]);
+                            if (from && to) {
+                                return createEach(from, to, trim(match[1]) === '=>', index_1);
                             }
-                            else {
-                                fatal$1(currentAttribute
-                                    ? "each \u4E0D\u80FD\u5199\u5728\u5C5E\u6027\u7684\u503C\u91CC"
-                                    : "each \u4E0D\u80FD\u5199\u5728\u5C5E\u6027\u5C42\u7EA7");
+                        }
+                        else {
+                            var expr = compile(literal);
+                            if (expr) {
+                                return createEach(expr, UNDEFINED, FALSE, index_1);
                             }
                         }
                     }
@@ -4242,7 +4231,7 @@
         if (nodeList.length > 0) {
             removeComment(nodeList);
         }
-        return compileCache[content] = nodeList;
+        return nodeList;
     }
   
     function toJSON (target) {
@@ -4445,7 +4434,7 @@
         }
     }
     nodeStringify[ELEMENT] = function (node) {
-        var tag = node.tag, isComponent = node.isComponent, isSvg = node.isSvg, isStyle = node.isStyle, isStatic = node.isStatic, isComplex = node.isComplex, name = node.name, ref = node.ref, key = node.key, html = node.html, attrs = node.attrs, children = node.children, data = {}, outputTag, outputAttrs = [], outputChilds, outputSlots, args;
+        var tag = node.tag, isComponent = node.isComponent, isSvg = node.isSvg, isStyle = node.isStyle, isOption = node.isOption, isStatic = node.isStatic, isComplex = node.isComplex, name = node.name, ref = node.ref, key = node.key, html = node.html, attrs = node.attrs, children = node.children, data = {}, outputTag, outputAttrs = [], outputChilds, outputSlots, args;
         if (tag === RAW_SLOT) {
             args = [toJSON(SLOT_DATA_PREFIX + name)];
             if (children) {
@@ -4471,6 +4460,9 @@
         }
         if (isStyle) {
             data.isStyle = STRING_TRUE;
+        }
+        if (isOption) {
+            data.isOption = STRING_TRUE;
         }
         if (isStatic) {
             data.isStatic = STRING_TRUE;
@@ -4605,7 +4597,13 @@
     nodeStringify[EACH] = function (node) {
         // compiler 保证了 children 一定有值
         var generate = stringifyFunction(stringifyChildren(node.children, node.isComplex));
-        return stringifyCall(RENDER_EACH, join(trimArgs([generate, toJSON(node.expr), node.index ? toJSON(node.index) : UNDEFINED]), SEP_COMMA));
+        return stringifyCall(RENDER_EACH, join(trimArgs([
+            generate,
+            toJSON(node.from),
+            node.to ? toJSON(node.to) : UNDEFINED,
+            node.equal ? STRING_TRUE : UNDEFINED,
+            node.index ? toJSON(node.index) : UNDEFINED
+        ]), SEP_COMMA));
     };
     nodeStringify[PARTIAL] = function (node) {
         var name = toJSON(node.name), 
@@ -4629,12 +4627,6 @@
     }
   
     var nodeExecutor = {};
-    nodeExecutor[LITERAL] = function (node) {
-        return node.value;
-    };
-    nodeExecutor[IDENTIFIER] = function (node, getter) {
-        return getter(node.name, node);
-    };
     nodeExecutor[MEMBER] = function (node, getter, context) {
         /**
          * 先说第一种奇葩情况：
@@ -4708,7 +4700,12 @@
         }));
     };
     function execute$1(node, getter, context) {
-        return nodeExecutor[node.type](node, getter, context);
+        // LITERAL 和 IDENTIFIER 避免再一次的函数调用
+        return node.type === LITERAL
+            ? node.value
+            : node.type === IDENTIFIER
+                ? getter(node.name, node)
+                : nodeExecutor[node.type](node, getter, context);
     }
   
     function setPair(target, name, key, value) {
@@ -4716,8 +4713,8 @@
         data[key] = value;
     }
     function render(context, template, filters, partials, directives, transitions) {
-        var $keypath = EMPTY_STRING, $scope = { $keypath: $keypath }, $stack = [$keypath, $scope], $vnode, vnodeStack = [], localPartials = {}, lookup = function (stack, index, key, node, depIgnore, defaultKeypath) {
-            var keypath = join$1(stack[index], key), scope = stack[index + 1];
+        var $scope = { $keypath: EMPTY_STRING }, $stack = [$scope], $vnode, vnodeStack = [], localPartials = {}, lookup = function (stack, index, key, node, depIgnore, defaultKeypath) {
+            var scope = stack[index], keypath = join$1(scope.$keypath, key);
             node.ak = keypath;
             // 如果最后还是取不到值，用回最初的 keypath
             if (isUndef(defaultKeypath)) {
@@ -4745,12 +4742,11 @@
             var result = context.get(keypath, lookup, depIgnore);
             if (result === lookup) {
                 // undefined 或 true 都表示需要向上寻找
-                if (node.lookup !== FALSE && index > 1) {
-                    index -= 2;
+                if (node.lookup !== FALSE && index > 0) {
                     {
                         debug("Can't find [" + keypath + "], start looking up.");
                     }
-                    return lookup(stack, index, key, node, depIgnore, defaultKeypath);
+                    return lookup(stack, index - 1, key, node, depIgnore, defaultKeypath);
                 }
                 var holder = get(filters, key);
                 return holder
@@ -4761,7 +4757,7 @@
         }, getValue = function (expr, depIgnore, stack) {
             var renderStack = stack || $stack, length = renderStack.length;
             return execute$1(expr, function (keypath, node) {
-                return lookup(renderStack, length - 2 * ((node.offset || 0) + 1), keypath, node, depIgnore);
+                return lookup(renderStack, length - ((node.offset || 0) + 1), keypath, node, depIgnore);
             }, context);
         }, addBinding = function (vnode, name, expr, hint) {
             var value = getValue(expr, TRUE), key = join$1(DIRECTIVE_BINDING, name);
@@ -4832,7 +4828,7 @@
                         isText: TRUE,
                         text: text,
                         context: context,
-                        keypath: $keypath
+                        keypath: $scope.$keypath
                     };
                     push(vnodeList, textVnode);
                 }
@@ -4931,7 +4927,7 @@
                 var componentName = context.get(tag);
                 {
                     if (!componentName) {
-                        error("Dynamic component [" + tag + "] is not found.");
+                        warn("Dynamic component [" + tag + "] is not found.");
                     }
                 }
                 vnode.tag = componentName;
@@ -4957,7 +4953,7 @@
                 vnode.slots = renderSlots_1;
             }
             vnode.context = context;
-            vnode.keypath = $keypath;
+            vnode.keypath = $scope.$keypath;
             var vnodeList = last(vnodeStack);
             if (vnodeList) {
                 push(vnodeList, vnode);
@@ -5000,40 +4996,72 @@
                     fatal("partial [" + name + "] is not found.");
                 }
             }
-        }, renderEach = function (handler, expr, index) {
-            var value = getValue(expr), exprKeypath = expr['ak'], eachKeypath = exprKeypath || join$1($keypath, expr.raw), callback = function (item, key, length) {
-                var lastKeypath = $keypath, lastScope = $scope, lastKeypathStack = $stack;
-                $keypath = join$1(eachKeypath, toString(key));
-                $scope = {};
-                $stack = copy($stack);
-                push($stack, $keypath);
-                push($stack, $scope);
-                // 从下面这几句赋值可以看出
-                // scope 至少会有 '$keypath' '$length' '$item' index 等几个值
-                $scope.$keypath = $keypath;
-                // 避免模板里频繁读取 list.length
+        }, eachHandler = function (generate, item, key, keypath, index, length) {
+            var lastScope = $scope, lastStack = $stack;
+            // each 会改变 keypath
+            $scope = { $keypath: keypath };
+            $stack = lastStack.concat($scope);
+            // 避免模板里频繁读取 list.length
+            if (isDef(length)) {
                 $scope.$length = length;
-                // 类似 {{#each 1 -> 10}} 这样的临时循环，需要在 scope 上加上当前项
-                // 因为通过 context.get() 无法获取数据
-                if (!exprKeypath) {
-                    $scope.$item = item;
-                }
-                if (index) {
-                    $scope[index] = key;
-                }
-                handler();
-                $keypath = lastKeypath;
-                $scope = lastScope;
-                $stack = lastKeypathStack;
-            };
-            if (array(value)) {
-                each(value, callback);
             }
-            else if (object(value)) {
-                each$2(value, callback);
+            // 业务层是否写了 expr:index
+            if (index) {
+                $scope[index] = key;
             }
-            else if (func(value)) {
-                value(callback);
+            // 无法通过 context.get($keypath + key) 读取到数据的场景
+            // 必须把 item 写到 scope
+            if (!keypath) {
+                $scope.$item = item;
+            }
+            generate();
+            $scope = lastScope;
+            $stack = lastStack;
+        }, renderEach = function (generate, from, to, equal, index) {
+            var fromValue = getValue(from);
+            if (to) {
+                var toValue = getValue(to), count = 0;
+                if (fromValue < toValue) {
+                    if (equal) {
+                        for (var i = fromValue; i <= toValue; i++) {
+                            eachHandler(generate, i, count++, EMPTY_STRING, index);
+                        }
+                    }
+                    else {
+                        for (var i = fromValue; i < toValue; i++) {
+                            eachHandler(generate, i, count++, EMPTY_STRING, index);
+                        }
+                    }
+                }
+                else {
+                    if (equal) {
+                        for (var i = fromValue; i >= toValue; i--) {
+                            eachHandler(generate, i, count++, EMPTY_STRING, index);
+                        }
+                    }
+                    else {
+                        for (var i = fromValue; i > toValue; i--) {
+                            eachHandler(generate, i, count++, EMPTY_STRING, index);
+                        }
+                    }
+                }
+            }
+            else {
+                var eachKeypath = from['ak'];
+                if (array(fromValue)) {
+                    for (var i = 0, length = fromValue.length; i < length; i++) {
+                        eachHandler(generate, fromValue[i], i, eachKeypath
+                            ? join$1(eachKeypath, EMPTY_STRING + i)
+                            : EMPTY_STRING, index, length);
+                    }
+                }
+                else if (object(fromValue)) {
+                    for (var key in fromValue) {
+                        eachHandler(generate, fromValue[key], key, eachKeypath
+                            ? join$1(eachKeypath, key)
+                            : EMPTY_STRING, index);
+                    }
+                }
             }
         };
         return template(renderExpression, renderExpressionArg, renderExpressionVnode, renderTextVnode, renderAttributeVnode, renderPropertyVnode, renderLazyVnode, renderTransitionVnode, renderModelVnode, renderEventMethodVnode, renderEventNameVnode, renderDirectiveVnode, renderSpreadVnode, renderElementVnode, renderSlot, renderPartial, renderImport, renderEach);
@@ -5706,7 +5734,15 @@
          * @param index
          */
         Observer.prototype.removeAt = function (keypath, index) {
-            return this.splice(keypath, index, 1);
+            var list = this.get(keypath);
+            if (array(list)
+                && index >= 0
+                && index < list.length) {
+                list = copy(list);
+                list.splice(index, 1);
+                this.set(keypath, list);
+                return TRUE;
+            }
         };
         /**
          * 直接移除数组中的元素
@@ -5722,31 +5758,6 @@
                     this.set(keypath, list);
                     return TRUE;
                 }
-            }
-        };
-        /**
-         * 删除旧元素并插入新元素
-         *
-         * @param keypath
-         * @param index
-         * @param count
-         * @param items
-         */
-        Observer.prototype.splice = function (keypath, index, count) {
-            var arguments$1 = arguments;
-  
-            var items = [];
-            for (var _i = 3; _i < arguments.length; _i++) {
-                items[_i - 3] = arguments$1[_i];
-            }
-            var list = this.get(keypath);
-            if (array(list)) {
-                list = copy(list);
-                unshift(items, count);
-                unshift(items, index);
-                execute(list.splice, list, items);
-                this.set(keypath, list);
-                return TRUE;
             }
         };
         /**
@@ -5790,22 +5801,24 @@
     }, createEvent = function (event, node) {
         return event;
     };
-    if (DOCUMENT) {
-        // 此时 document.body 不一定有值，比如 script 放在 head 里
-        if (!DOCUMENT.documentElement.classList) {
-            addClass = function (node, className) {
-                var classes = node.className.split(CHAR_WHITESPACE);
-                if (!has(classes, className)) {
-                    push(classes, className);
-                    node.className = join(classes, CHAR_WHITESPACE);
-                }
-            };
-            removeClass = function (node, className) {
-                var classes = node.className.split(CHAR_WHITESPACE);
-                if (remove(classes, className)) {
-                    node.className = join(classes, CHAR_WHITESPACE);
-                }
-            };
+    {
+        if (DOCUMENT) {
+            // 此时 document.body 不一定有值，比如 script 放在 head 里
+            if (!DOCUMENT.documentElement.classList) {
+                addClass = function (node, className) {
+                    var classes = node.className.split(CHAR_WHITESPACE);
+                    if (!has(classes, className)) {
+                        push(classes, className);
+                        node.className = join(classes, CHAR_WHITESPACE);
+                    }
+                };
+                removeClass = function (node, className) {
+                    var classes = node.className.split(CHAR_WHITESPACE);
+                    if (remove(classes, className)) {
+                        node.className = join(classes, CHAR_WHITESPACE);
+                    }
+                };
+            }
         }
     }
     var CHAR_WHITESPACE = ' ', 
@@ -5895,7 +5908,7 @@
                 return lower(node.tagName);
             }
         },
-        text: function (node, text, isStyle) {
+        text: function (node, text, isStyle, isOption) {
             if (isDef(text)) {
                 {
                     node[innerText] = text;
@@ -5905,7 +5918,7 @@
                 return node[innerText];
             }
         },
-        html: function (node, html, isStyle) {
+        html: function (node, html, isStyle, isOption) {
             if (isDef(html)) {
                 {
                     node[innerHTML] = html;
@@ -6060,11 +6073,6 @@
         }
     };
   
-    function getOptionValue(option) {
-        return isDef(option.value)
-            ? option.value
-            : option.text;
-    }
     function debounceIfNeeded(fn, lazy) {
         // 应用 lazy
         return lazy && lazy !== TRUE
@@ -6114,28 +6122,28 @@
         set: function (node, value) {
             each(toArray(node.options), node.multiple
                 ? function (option) {
-                    option.selected = has(value, getOptionValue(option), FALSE);
+                    option.selected = has(value, option.value, FALSE);
                 }
                 : function (option, index) {
-                    if (getOptionValue(option) == value) {
+                    if (option.value == value) {
                         node.selectedIndex = index;
                         return FALSE;
                     }
                 });
         },
         sync: function (node, keypath, context) {
-            var options = toArray(node.options);
+            var options = node.options;
             if (node.multiple) {
                 var values_1 = [];
-                each(options, function (option) {
+                each(toArray(options), function (option) {
                     if (option.selected) {
-                        push(values_1, getOptionValue(option));
+                        push(values_1, option.value);
                     }
                 });
                 context.set(keypath, values_1);
             }
             else {
-                context.set(keypath, getOptionValue(options[node.selectedIndex]));
+                context.set(keypath, options[node.selectedIndex].value);
             }
         },
         name: RAW_VALUE
@@ -6162,7 +6170,7 @@
                 component_1.watch(viewBinding_1, sync);
             }
             else {
-                var element_1 = node, control_1 = domApi.tag(element_1) === 'select'
+                var element_1 = node, control_1 = vnode.tag === 'select'
                     ? selectControl
                     : inputControl, 
                 // checkbox,radio,select 监听的是 change 事件
@@ -6217,7 +6225,8 @@
                         ? matchFuzzy(keypath, binding)
                         : directive.name;
                     if (vnode.isComponent) {
-                        node.set(name, newValue);
+                        var component = node;
+                        component.set(name, component.checkProp(name, newValue));
                     }
                     else if (isDef(directive.hint)) {
                         domApi.prop(node, name, newValue);
@@ -6248,12 +6257,13 @@
         return isDef(this.get(SLOT_DATA_PREFIX + name));
     }
   
-    var globalDirectives = {}, globalTransitions = {}, globalComponents = {}, globalPartials = {}, globalFilters = {}, LOADER_QUEUE = '$queue', TEMPLATE_COMPUTED = '$' + RAW_TEMPLATE, selectorPattern = /^[#.][-\w+]+$/;
+    var globalDirectives = {}, globalTransitions = {}, globalComponents = {}, globalPartials = {}, globalFilters = {}, compileCache = {}, LOADER_QUEUE = '$queue', TEMPLATE_COMPUTED = '$' + RAW_TEMPLATE, selectorPattern = /^[#.][-\w+]+$/;
     var Yox = /** @class */ (function () {
         function Yox(options) {
             var instance = this, $options = options || EMPTY_OBJECT;
             // 一进来就执行 before create
             execute($options[HOOK_BEFORE_CREATE], instance, $options);
+            execute(Yox[HOOK_BEFORE_CREATE], UNDEFINED, $options);
             instance.$options = $options;
             var data = $options.data, props = $options.props, computed = $options.computed, events = $options.events, methods = $options.methods, watchers = $options.watchers, extensions = $options.extensions;
             // 如果传了 props，则 data 应该是个 function
@@ -6266,7 +6276,7 @@
                 extend(instance, extensions);
             }
             // 数据源
-            var source = instance.checkPropTypes(props || {});
+            var source = instance.checkProps(props || {});
             // 先放 props
             // 当 data 是函数时，可以通过 this.get() 获取到外部数据
             var observer = instance.$observer = new Observer(source, instance);
@@ -6434,13 +6444,16 @@
                 {
                     if (!hasStringify(template)) {
                         // 未编译，常出现在开发阶段
-                        var nodes = compile$1(template);
-                        {
-                            if (nodes.length !== 1) {
-                                fatal("\"template\" should have just one root element.");
+                        if (!compileCache[template]) {
+                            var nodes = compile$1(template);
+                            {
+                                if (nodes.length !== 1) {
+                                    fatal("\"template\" should have just one root element.");
+                                }
                             }
+                            compileCache[template] = stringify(nodes[0]);
                         }
-                        template = stringify(nodes[0]);
+                        template = compileCache[template];
                         if (stringify$1) {
                             return template;
                         }
@@ -6448,6 +6461,67 @@
                 }
                 return new Function("return " + template)();
             }
+        };
+        Yox.checkProp = function (key, value, rule) {
+            {
+                // 类型
+                var type_1 = rule.type, 
+                // 默认值
+                defaultValue = rule.value;
+                // 传了数据
+                if (isDef(value)) {
+                    {
+                        // 如果不写 type 或 type 不是 字符串 或 数组
+                        // 就当做此规则无效，和没写一样
+                        if (type_1) {
+                            // 自定义函数判断是否匹配类型
+                            // 自己打印警告信息吧
+                            if (func(type_1)) {
+                                type_1(key, value);
+                            }
+                            else {
+                                var matched_1 = FALSE;
+                                // type: 'string'
+                                if (!falsy$1(type_1)) {
+                                    matched_1 = matchType(value, type_1);
+                                }
+                                // type: ['string', 'number']
+                                else if (!falsy(type_1)) {
+                                    each(type_1, function (item) {
+                                        if (matchType(value, item)) {
+                                            matched_1 = TRUE;
+                                            return FALSE;
+                                        }
+                                    });
+                                }
+                                if (!matched_1) {
+                                    warn("The type of prop \"" + key + "\" expected to be \"" + type_1 + "\", but is \"" + value + "\".");
+                                }
+                            }
+                        }
+                        else {
+                            warn("The prop \"" + key + "\" in propTypes has no type.");
+                        }
+                    }
+                }
+                else {
+                    {
+                        // 没传值但此项是必传项
+                        if (rule.required) {
+                            warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
+                        }
+                    }
+                    // 没传值但是配置了默认值
+                    if (isDef(defaultValue)) {
+                        value = type_1 === RAW_FUNCTION
+                            ? defaultValue
+                            : func(defaultValue)
+                                ? defaultValue()
+                                : defaultValue;
+                    }
+                }
+            }
+            return value;
         };
         Yox.directive = function (name, directive) {
             {
@@ -6595,11 +6669,13 @@
          * @param callback 组件加载成功后的回调
          */
         Yox.prototype.loadComponent = function (name, callback) {
-            if (!loadComponent(this.$components, name, callback)) {
-                var hasComponent = loadComponent(globalComponents, name, callback);
-                {
-                    if (!hasComponent) {
-                        error("Component [" + name + "] is not found.");
+            {
+                if (!loadComponent(this.$components, name, callback)) {
+                    var hasComponent = loadComponent(globalComponents, name, callback);
+                    {
+                        if (!hasComponent) {
+                            error("Component [" + name + "] is not found.");
+                        }
                     }
                 }
             }
@@ -6612,7 +6688,7 @@
          */
         Yox.prototype.createComponent = function (options, vnode) {
             {
-                var instance = this, $options = instance.$options;
+                var instance = this;
                 options = copy(options);
                 options.root = instance.$root || instance;
                 options.parent = instance;
@@ -6632,7 +6708,6 @@
                 if (slots) {
                     options.slots = slots;
                 }
-                execute($options[HOOK_BEFORE_CHILD_CREATE], instance, options);
                 var child = new Yox(options);
                 push(instance.$children || (instance.$children = []), child);
                 var node = child.$el;
@@ -6642,7 +6717,6 @@
                 else {
                     fatal("The root element of [Component " + vnode.tag + "] is not found.");
                 }
-                execute($options[HOOK_AFTER_CHILD_CREATE], instance, child);
                 return child;
             }
         };
@@ -6695,15 +6769,18 @@
          * 对于某些特殊场景，修改了数据，但是模板的依赖中并没有这一项
          * 而你非常确定需要更新模板，强制刷新正是你需要的
          */
-        Yox.prototype.forceUpdate = function () {
+        Yox.prototype.forceUpdate = function (data) {
             {
                 var instance = this, $vnode = instance.$vnode, $observer = instance.$observer, computed = $observer.computed;
                 if ($vnode && computed) {
                     var template = computed[TEMPLATE_COMPUTED], oldValue = template.get();
+                    if (data) {
+                        instance.set(data);
+                    }
                     // 当前可能正在进行下一轮更新
                     $observer.nextTask.run();
                     // 没有更新模板，强制刷新
-                    if (oldValue === template.get()) {
+                    if (!data && oldValue === template.get()) {
                         instance.update(template.get(TRUE), $vnode);
                     }
                 }
@@ -6726,32 +6803,33 @@
          */
         Yox.prototype.update = function (vnode, oldVnode) {
             {
-                var instance_1 = this, $vnode = instance_1.$vnode, $options = instance_1.$options, hook_1;
+                var instance_1 = this, $vnode = instance_1.$vnode, $options_1 = instance_1.$options, afterHook_1;
                 // 每次渲染重置 refs
                 // 在渲染过程中收集最新的 ref
                 // 这样可避免更新时，新的 ref，在前面创建，老的 ref 却在后面删除的情况
                 instance_1.$refs = {};
                 if ($vnode) {
-                    execute($options[HOOK_BEFORE_UPDATE], instance_1);
+                    execute($options_1[HOOK_BEFORE_UPDATE], instance_1);
+                    execute(Yox[HOOK_BEFORE_UPDATE], UNDEFINED, instance_1);
                     patch(domApi, vnode, oldVnode);
-                    hook_1 = $options[HOOK_AFTER_UPDATE];
+                    afterHook_1 = HOOK_AFTER_UPDATE;
                 }
                 else {
-                    execute($options[HOOK_BEFORE_MOUNT], instance_1);
+                    execute($options_1[HOOK_BEFORE_MOUNT], instance_1);
+                    execute(Yox[HOOK_BEFORE_MOUNT], UNDEFINED, instance_1);
                     patch(domApi, vnode, oldVnode);
                     instance_1.$el = vnode.node;
-                    hook_1 = $options[HOOK_AFTER_MOUNT];
+                    afterHook_1 = HOOK_AFTER_MOUNT;
                 }
                 instance_1.$vnode = vnode;
                 // 跟 nextTask 保持一个节奏
                 // 这样可以预留一些优化的余地
-                if (hook_1) {
-                    instance_1.nextTick(function () {
-                        if (instance_1.$vnode) {
-                            execute(hook_1, instance_1);
-                        }
-                    });
-                }
+                Yox.nextTick(function () {
+                    if (instance_1.$vnode) {
+                        execute($options_1[afterHook_1], instance_1);
+                        execute(Yox[afterHook_1], UNDEFINED, instance_1);
+                    }
+                });
             }
         };
         /**
@@ -6759,91 +6837,38 @@
          *
          * @param props
          */
-        Yox.prototype.checkPropTypes = function (props) {
+        Yox.prototype.checkProps = function (props) {
             {
                 var propTypes = this.$options.propTypes;
                 if (propTypes) {
                     var result_1 = copy(props);
                     each$2(propTypes, function (rule, key) {
-                        // 类型
-                        var type = rule.type, 
-                        // 默认值
-                        value = rule.value, 
-                        // 实际的值
-                        actual = props[key];
-                        // 传了数据
-                        if (isDef(actual)) {
-                            {
-                                // 如果不写 type 或 type 不是 字符串 或 数组
-                                // 就当做此规则无效，和没写一样
-                                if (type) {
-                                    // 自定义函数判断是否匹配类型
-                                    // 自己打印警告信息吧
-                                    if (func(type)) {
-                                        type(props, key);
-                                    }
-                                    else {
-                                        var matched_1;
-                                        // type: 'string'
-                                        if (!falsy$1(type)) {
-                                            matched_1 = matchType(actual, type);
-                                        }
-                                        // type: ['string', 'number']
-                                        else if (!falsy(type)) {
-                                            each(type, function (item) {
-                                                if (matchType(actual, item)) {
-                                                    matched_1 = TRUE;
-                                                    return FALSE;
-                                                }
-                                            });
-                                        }
-                                        if (!matched_1) {
-                                            warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + actual + "\".");
-                                        }
-                                    }
-                                }
-                                else {
-                                    warn("The prop \"" + key + "\" in propTypes has no type.");
-                                }
-                            }
-                        }
-                        else {
-                            {
-                                // 是否必传
-                                var required = rule.required;
-                                // 动态化获取是否必填
-                                if (func(required)) {
-                                    required = required(props, key);
-                                }
-                                // 没传值但此项是必传项
-                                if (required) {
-                                    warn("The prop \"" + key + "\" is marked as required, but its value is not found.");
-                                }
-                            }
-                            // 没传值但是配置了默认值
-                            if (isDef(value)) {
-                                result_1[key] = type === RAW_FUNCTION
-                                    ? value
-                                    : func(value)
-                                        ? value(props, key)
-                                        : value;
-                            }
-                        }
+                        result_1[key] = Yox.checkProp(key, props[key], rule);
                     });
                     return result_1;
                 }
             }
             return props;
         };
+        Yox.prototype.checkProp = function (key, value) {
+            {
+                var propTypes = this.$options.propTypes;
+                if (propTypes) {
+                    var rule = propTypes[key];
+                    if (rule) {
+                        value = Yox.checkProp(key, value, rule);
+                    }
+                }
+            }
+            return value;
+        };
         /**
          * 销毁组件
          */
         Yox.prototype.destroy = function () {
             var instance = this, $parent = instance.$parent, $options = instance.$options, $emitter = instance.$emitter, $observer = instance.$observer;
-            if ($parent) {
-                execute($parent.$options[HOOK_BEFORE_CHILD_DESTROY], $parent, instance);
-            }
             execute($options[HOOK_BEFORE_DESTROY], instance);
+            execute(Yox[HOOK_BEFORE_DESTROY], UNDEFINED, instance);
             {
                 var $vnode = instance.$vnode;
                 if ($parent && $parent.$children) {
@@ -6857,11 +6882,9 @@
             }
             $emitter.off();
             $observer.destroy();
-            clear(instance);
             execute($options[HOOK_AFTER_DESTROY], instance);
-            if ($parent) {
-                execute($parent.$options[HOOK_AFTER_CHILD_DESTROY], $parent, instance);
-            }
+            execute(Yox[HOOK_AFTER_DESTROY], UNDEFINED, instance);
+            clear(instance);
         };
         /**
          * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
@@ -6936,7 +6959,7 @@
          * @param index
          */
         Yox.prototype.removeAt = function (keypath, index) {
-            return this.splice(keypath, index, 1);
+            return this.$observer.removeAt(keypath, index);
         };
         /**
          * 直接移除数组中的元素
@@ -6946,24 +6969,6 @@
          */
         Yox.prototype.remove = function (keypath, item) {
             return this.$observer.remove(keypath, item);
-        };
-        /**
-         * 删除旧元素并插入新元素
-         *
-         * @param keypath
-         * @param index
-         * @param count
-         * @param items
-         */
-        Yox.prototype.splice = function (keypath, index, count) {
-            var arguments$1 = arguments;
-  
-            var _a;
-            var items = [];
-            for (var _i = 3; _i < arguments.length; _i++) {
-                items[_i - 3] = arguments$1[_i];
-            }
-            return (_a = this.$observer).splice.apply(_a, [keypath, index, count].concat(items));
         };
         /**
          * 拷贝任意数据，支持深拷贝
@@ -6977,7 +6982,7 @@
         /**
          * core 版本
          */
-        Yox.version = "1.0.0-alpha.39";
+        Yox.version = "1.0.0-alpha.49";
         /**
          * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
          */
@@ -7001,6 +7006,7 @@
             instance.watch(watchers);
         }
         execute(instance.$options[HOOK_AFTER_CREATE], instance);
+        execute(Yox[HOOK_AFTER_CREATE], UNDEFINED, instance);
     }
     function setFlexibleOptions(instance, key, value) {
         if (func(value)) {

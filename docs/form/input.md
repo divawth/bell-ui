@@ -33,12 +33,22 @@ export default {
   height: 300,
   template: `
     <div>
-      <Input model="value">
+      <Input model="value1">
         <template slot="prepend">
           <span>Http://</span>
         </template>
       </Input>
-      <Input model="value">
+      <Input model="value2">
+        <template slot="prepend">
+          <Input model="value1" />
+        </template>
+      </Input>
+      <Input model="value3">
+        <template slot="append">
+          <Input model="value1" />
+        </template>
+      </Input>
+      <Input model="value4">
         <template slot="prepend">
           <Select model="select1" slot="prepend" style="width: 80px">
             <Option value="http">http://</Option>
@@ -53,208 +63,196 @@ export default {
           </Select>
         </template>
       </Input>
-        <Input model="value"
-            type="text"
-            placeholder="请输入..."
-        >
-            <template slot="prepend">
-                <Button type="text">搜索</Button>
-            </template>
-        </Input>
+      <Input model="value5"
+        type="text"
+        placeholder="请输入..."
+      >
+        <template slot="prepend">
+          <Button type="text">搜索</Button>
+        </template>
+      </Input>
 
-        <style>
-            .bell-input-wrapper {
-                margin-top: 10px;
-            }
-        </style>
+      <style>
+        .bell-input-wrapper {
+          margin-top: 10px;
+        }
+      </style>
     </div>
   `
 }
 ```
 
-> 基础用法
+> 搜索框
 
 ```js
 export default {
   template: `
   <div>
-    <Input prefix="person" />
-    <Input suffix="calendar" />
-    <Input prefix="person" suffix="close" />
+    <Input search placeholder="Enter something..." />
+    <Input search enterButton placeholder="Enter something..." />
+    <Input search enterButton="Search" placeholder="Enter something..." />
   </div>
   `
 }
 ```
 
-> 基础用法
+> 可清除
 
-    export default {
-        template: `
-            <div>
-                <Input ref="input" placeholder="请输入..."
-                    type="text"
-                    style="width: 300px"
-                    model="value"
-                    on-focus="focus()"
-                    on-blur="blur()"
-                    on-keyup="keyup()"
-                    on-keydown="keydown()"
-                    on-keypress="keypress()"
-                    on-enter="enter()"
-                    on-change="change($data)"
-                />
-                <Input
-                    model="value"
-                    type="text"
-                    style="width: 300px;"
-                    placeholder="请输入..."
-                    disabled="{{true}}"
-                />
-                <Input ref="input" placeholder="请输入密码..."
-                    type="password"
-                    secure
-                    style="width: 300px;"
-                    model="value"
-                />
-                <div>
-                    输入：{{value}}
-                </div>
-            </div>
-        `,
-        methods: {
-            change: function (data) {
-                // console.log(data.value)
-            },
-            focus: function () {
-                // console.log('focus');
-            },
-            blur: function () {
-                // console.log('blur');
-            },
-            enter: function () {
-                // console.log('enter');
-            },
-            keyup: function () {
-                // console.log('keyup');
-            },
-            keydown: function () {
-                // console.log('keydown');
-            }
-        }
-    }
+```js
+export default {
+  template: `
+    <Input placeholder="请输入..."
+      style="width: 300px"
+      type="input"
+      model="value"
+      clearable
+    ></Input>
+  `
+}
+```
 
-> 可以清除
+> 带Icon的输入框
 
-    export default {
-        template: `
-            <Input placeholder="请输入..."
-                style="width: 300px"
-                type="input"
-                model="value"
-                clearable
-            ></Input>
-        `
-    }
-
-> 通过 status 设置状态
-
-    export default {
-        template: `
-            <div>
-                <Input placeholder="info input"
-                    model="value"
-                    status="info"
-                    type="input"
-                    clearable
-                ></Input>
-                <Input placeholder="success input"
-                    model="value"
-                    type="input"
-                    status="success"
-                    clearable
-                ></Input>
-                <Input placeholder="error input"
-                    model="value"
-                    type="input"
-                    status="error"
-                    clearable
-                ></Input>
-                <Input placeholder="warning input"
-                    status="warning"
-                    model="value"
-                    type="input"
-                    clearable
-                ></Input>
-            </div>
-        `
-    }
+```js
+export default {
+  template: `
+  <div>
+    <Input prefix="contact" />
+    <Input suffix="calendar" />
+    <Input prefix="contact" suffix="calendar" />
+  </div>
+  `
+}
+```
 
 > type 设置为 textarea, 通过 rows 设置显示行数
 
-    export default {
-        template: `
-            <div>
-                <Input model="value"
-                    type="textarea"
-                    rows="{{4}}"
-                    placeholder="请输入..."
-                >
-                </Input>
-            </div>
-        `
-    }
+```js
+export default {
+  template: `
+  <div>
+    <Input model="value"
+      type="textarea"
+      rows="{{4}}"
+      placeholder="请输入..."
+    >
+    </Input>
+  </div>
+  `
+}
+```
 
-> disabled 设置为禁用状态
+> 适应文本高度的文本域
 
-    export default {
-        template: `
-            <div>
-                <Input
-                    model="value"
-                    type="textarea"
-                    rows="{{4}}"
-                    placeholder="请输入..."
-                    disabled="{{true}}"
-                >
-                </Input>
-            </div>
-        `
+```js
+export default {
+  template: `
+  <div>
+    <Input model="value7" type="textarea" autoSize placeholder="Enter something..." />
+    <Input model="value8" type="textarea" autoSize="{{autoSize}}" placeholder="Enter something..." />
+  </div>
+  `,
+  data() {
+    return {
+      autoSize: {
+        minRows: 2,
+        maxRows: 5
+      }
     }
+  }
+}
+```
+
+> 禁用状态 
+
+```js
+export default {
+  template: `
+  <div>
+    <Input model="value9" disabled placeholder="Enter something..." />
+    <Input model="value10" disabled type="textarea" placeholder="Enter something..." />
+  </div>
+  `
+}
+```
+
+
+> 通过 status 设置状态
+
+```js
+export default {
+  template: `
+  <div>
+    <Input placeholder="info input" model="value" status="info" clearable />
+    <Input placeholder="success input" model="value" status="success" clearable />
+    <Input placeholder="error input" model="value" status="error" clearable />
+    <Input placeholder="warning input" model="value" status="warning" clearable />
+  </div>
+  `
+}
+```
+
+> 回调函数
+
+```js
+export default {
+  template: `
+  <div>
+    <Input ref="input" placeholder="请输入密码..."
+      type="password"
+      secure
+      style="width: 300px;"
+      model="value"
+    />
+  </div>
+  `
+}
+```
 
 #### API
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 按钮类型 | string | text、password、textarea、url、email、date | text
-size | 按钮大小 | string | large、small | -
 model | input 的值 | string | - | -
+type | 按钮类型 | string | text、password、textarea | text
+size | 按钮大小 | string | large、small | -
 placeholder | placeholder | string | - | -
-rows | 行数 | string | - | -
+clearable | 清空按钮 | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false
-label | 设置右侧按钮文字 | string | - | -
-clearable | 清空按钮 | boolean, string, number | - | false
-secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
+search | 是否显示为搜索型输入框 | boolean | - | false
+enterButton | 开启 search 时可用，是否有确认按钮，可设为按钮文字 | boolean, string | - | -
+rows | 行数, 仅在 textarea 类型下有效 | number | - | 2
+autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 } | Object | - | -
+secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
+autocomplete | 是否应该启用自动完成功能 | string | on, off | -
+wrap | wrap 属性规定当在表单中提交时，文本区域（text area）中的文本如何换行 | string | soft, hard | -
+spellcheck | 是否对元素内容进行拼写检查 | boolean | - | -
+readonly | 设置输入框为只读 | boolean | - | false
+maxLength | 最大输入长度 | number | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
 enter | 按下回车键的时候触发 | -
-change | 输入的时候值发生改变的时候回调 | value
-focus | 聚焦的时候触发 | -
-blur | 失焦的时候触发 | -
-click | 有按钮时候的点击事件 | -
 keyup | 原生的 keyup 事件 | -
 keydown | 原生的 keyup 事件 | -
 keypress | 原生的 keypress 事件 | -
+change | 输入的时候值发生改变的时候回调 | value
+focus | 聚焦的时候触发 | -
+blur | 失焦的时候触发 | -
+search | 点击搜索按钮的时候的回调 | -
+clear | 点击清除时候的回调 | -
 
-> Slot
+> Slots
 
 参数 | 说明
 ---|---
 prepend | 自定义前插槽
 append | 自定义后插槽
+prefix | 输入框头部图标
+suffix | 输入框尾部图标

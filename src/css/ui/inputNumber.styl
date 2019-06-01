@@ -1,104 +1,88 @@
 {$selector-input-number}
+  position relative
+  cursor text
+  overflow hidden
+  box-sizing content-box
+  border-radius $radius-base
+  display inline-block
+  border 1px solid
+  user-select none
+  width $input-number-width
+  font-size $input-number-font-size
+  transition border-color .3s, box-shadow .3s
 
-    cursor text
-    overflow hidden
-    box-sizing content-box
-    border-radius $radius-base
-    display inline-block
-    border 1px solid
-    user-select none
-    font-size $input-number-font-size
-    transition border-color .3s, box-shadow .3s
+  ui-input-number()
 
-    ui-input-number()
-
-    +{$selector-input-number}
-
-        margin-left $input-number-margin-left
-
-    &{$selector-hover}
-
-        {$selector-input-number-actions}
-
-            opacity 1
-
-    &{$selector-focus}
-
-        outline none
-
+  &{$selector-hover}
     {$selector-input-number-actions}
+      opacity 1
 
-        position absolute
-        cursor pointer
-        font-size 0
-        opacity 0
-        transition opacity .3s
-        border-left 1px solid $brand-border-disabled
+  &{$selector-focus}
+    outline none
 
-        {$selector-icon}
+  {$selector-input-number-actions}
+    position absolute
+    cursor pointer
+    font-size 0
+    opacity 0
+    right 0
+    background-color #fff
+    transition opacity .3s
+    color $input-number-actions-color
+    border-left 1px solid $input-number-actions-border-color
 
-            display inline-block
-            text-align center
-            font-weight 700
-            transition color .3s
-            font-size $input-number-font-size
+    {$selector-input-number}-icon
+      display block
+      width $input-number-actions-size
+      text-align center
+      font-weight 700
+      transition color .3s
+      font-size $input-number-font-size
+      margin 0
 
-            + {$selector-icon}
-
-                border-top 1px solid $brand-border-disabled
-
-            &{$selector-disabled}
-
-                color $brand-border-disabled
-                cursor $cursor-disabled
-
-                &{$selector-hover}
-
-                    color $brand-border-disabled
-
-    {$selector-input-number-wrapper}
-
-        overflow hidden
-        box-sizing content-box
-        display inline-block
-
-        {$selector-input}
-
-            outline none
-            border none
-            width 100%
-            height 100%
-            text-align left
-            background-color inherit
-            box-shadow none
-
-            &::-webkit-input-placeholder  /* WebKit browsers */
-                color $input-number-el-placeholder-color
-
-            &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
-                color $input-number-el-placeholder-color
-
-            &::-moz-placeholder  /* Mozilla Firefox 19+ */
-                color $input-number-el-placeholder-color
-
-            &:-ms-input-placeholder  /* Internet Explorer 10+ */
-                color $input-number-el-placeholder-color
-
-{$selector-input-number}-disabled
-
-    cursor $cursor-disabled
-
-    {$selector-input-number-actions}
-
-        display none
-
-    {$selector-input}
-
+      {$selector-disabled}
+        color $brand-border-disabled
         cursor $cursor-disabled
 
+        &{$selector-hover}
+          color $brand-border-disabled
+      
+      + {$selector-input-number}-icon
+        border-top 1px solid $brand-border-disabled
+        
+
+  {$selector-input}
+    outline none
+    border none
+    width 100%
+    height 100%
+    text-align left
+    background-color inherit
+    box-shadow none
+    padding $input-number-wrapper-padding
+
+    &::-webkit-input-placeholder  /* WebKit browsers */
+      color $input-number-el-placeholder-color
+
+    &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+      color $input-number-el-placeholder-color
+
+    &::-moz-placeholder  /* Mozilla Firefox 19+ */
+      color $input-number-el-placeholder-color
+
+    &:-ms-input-placeholder  /* Internet Explorer 10+ */
+      color $input-number-el-placeholder-color
+
+{$selector-input-number}-disabled
+  cursor $cursor-disabled
+
+  {$selector-input-number-actions}
+    display none
+
+  {$selector-input}
+    cursor $cursor-disabled
+
 {$selector-input-number}-readonly
-
-    {$selector-input-number}-actions
-
-        display none
+  {$selector-input-number}-actions
+    display none
 

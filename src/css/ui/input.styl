@@ -4,40 +4,11 @@
     {$selector-input}
       width auto
 
-  {$selector-input}-prepend,
-  {$selector-input}-append
-    border 1px solid
-    display inline-block
-    font-size 12px
-    vertical-align top
-    padding 0 10px    
-    box-sizing content-box
-
-    {$selector-select}
-      margin -1px -11px
-
-  {$selector-input}-prepend
-    border-right 0
-    border-top-left-radius $radius-base
-    border-bottom-left-radius $radius-base
-
-    + {$selector-input},
-    + {$selector-input-number}
-      border-top-left-radius 0
-      border-bottom-left-radius 0
-
   &{$selector-input}-has-append
     {$selector-input},
     {$selector-input-number}
       border-top-right-radius 0
       border-bottom-right-radius 0
-
-  {$selector-input}-append
-    border-left 0
-    border-top-right-radius $radius-base
-    border-bottom-right-radius $radius-base
-
-  ui-input()
 
   &{$selector-input-wrapper}-disabled
     {$selector-input}
@@ -45,19 +16,17 @@
 
       {$selector-input-el}
         cursor $cursor-disabled
-
+  
   &{$selector-input-wrapper}-clearable
     {$selector-input}-clear-icon
       position absolute
       right 0
       text-align center
       cursor $cursor-clickable
+      color $input-clearable-color
 
       opacity 0
       transition opacity .2s ease-in-out
-
-      font-size $input-clearable-font-size
-      color $input-clearable-color
 
     &{$selector-hover}
       {$selector-input}-clear-icon
@@ -66,82 +35,135 @@
       .bell-input-suffix
         opacity 0
 
-{$selector-textarea},
-{$selector-input}
-  display inline-block
-  vertical-align middle
-  overflow hidden
-  width 100%
-  outline none
-  position relative
-  border 1px solid
-  border-radius $radius-base
-  transition border-color .3s, box-shadow .3s
-  line-height 0
-  vertical-align top
-
-  {$selector-input}-icon-eye
-    position absolute
-    margin-left -30px
-    width 30px
-    text-align center
-    cursor pointer
-    color $input-eye-color
-    transition color .3s
-
-    &{$selector-hover}
-      color $input-eye-color-hover
-  
-  {$selector-input-el}
-
-    border none
-    box-sizing border-box
+  {$selector-input-prepend},
+  {$selector-input-append}
     display inline-block
-    outline none
+    border 1px solid
+    font-size $input-prepend-size
+    padding 0 11px
+    box-sizing content-box
+    background-color #fafafa
+
+    {$selector-select}
+      margin -1px -11px
+
+      {$selector-select-button}
+        border-color transparent
+        box-shadow none
+    
+    {$selector-button}
+      margin -1px -12px
+      border-color transparent
+      box-shadow none
+      cursor pointer
+    
+    {$selector-input-wrapper}
+      margin 0 -12px
+
+  {$selector-input-append}
+    {$selector-button}
+      border-top-left-radius 0
+      border-bottom-left-radius 0
+
+  {$selector-input-prepend}
+    border-right 0
+    border-top-left-radius $radius-base
+    border-bottom-left-radius $radius-base
+
+    {$selector-input},
+    {$selector-input-number}
+      box-shadow none !important
+      border none
+
+    + {$selector-input},
+    + {$selector-input-number}
+      border-top-left-radius 0
+      border-bottom-left-radius 0
+
+  {$selector-input-append}
+    border-left 0
+    border-top-right-radius $radius-base
+    border-bottom-right-radius $radius-base
+
+    {$selector-input},
+    {$selector-input-number}
+      box-shadow none !important
+      border none
+
+  {$selector-textarea},
+  {$selector-input}
+    display inline-block
+    vertical-align middle
+    overflow hidden
     width 100%
-    background-image none
+    outline none
     position relative
-    cursor $cursor-text
-    background-color transparent
-    resize vertical
-    font-size $input-el-font-size
-    color $input-el-color
+    border 1px solid transparent
+    border-radius $radius-base
+    transition border-color .3s, box-shadow .3s
+    line-height 0
+    vertical-align top
+    padding 0 15px
 
-    &:-webkit-input-placeholder  /* WebKit browsers */
-      color $input-el-placeholder-color
+    {$selector-input-el}
+      border none
+      box-sizing border-box
+      display inline-block
+      outline none
+      width 100%
+      background-image none
+      position relative
+      cursor $cursor-text
+      background-color transparent
+      resize vertical
+      font-size $input-el-size
+      color $input-el-color
 
-    &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
-      color $input-el-placeholder-color
+      &:-webkit-input-placeholder  /* WebKit browsers */
+        color $input-el-placeholder-color
 
-    &::-moz-placeholder  /* Mozilla Firefox 19+ */
-      color $input-el-placeholder-color
+      &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+        color $input-el-placeholder-color
 
-    &:-ms-input-placeholder  /* Internet Explorer 10+ */
-      color $input-el-placeholder-color
+      &::-moz-placeholder  /* Mozilla Firefox 19+ */
+        color $input-el-placeholder-color
 
-  &{$selector-textarea}
+      &:-ms-input-placeholder  /* Internet Explorer 10+ */
+        color $input-el-placeholder-color
+
+    {$selector-input}-prefix
+      text-align center
+      position absolute
+      left 0
+      top 0
+
+      {$selector-input}-prefix-icon 
+        font-size 16px
+        color #808695
+
+    {$selector-input}-suffix 
+      position absolute
+      right 0
+      top 0
+      display flex
+      align-items center
+      justify-content center
+      cursor pointer
+
+      {$selector-input}-suffix-icon 
+        font-size 16px
+        color #808695
+
+  ui-input()
+
+
+  {$selector-textarea}
     {$selector-input-el}
       resize none
-      line-height 1.5
-
-  {$selector-input}-prefix
-    text-align center
-    position absolute
-    left 0
-    top 0
-
-    {$selector-input}-prefix-icon 
-      font-size 16px
-      color #808695
-
-  {$selector-input}-suffix 
-    position absolute
-    right 0
-    top 0
-    display flex
-    align-items center
-    justify-content center
-
-    {$selector-input}-suffix-icon 
-      font-size 16px
-      color #808695
+      line-height 1.5 
+  
+  &{$selector-input}-autosize
+    {$selector-textarea}
+      {$selector-input-el}
+        resize vertical
+        height auto

@@ -1,156 +1,188 @@
 > 基础用法
 
-    export default {
-      template: `
-        <div>
-            <InputNumber maxValue="10" minValue="1" model="value" placeholder="请输入" />
-            <div>
-                {{value}}
-            </div>
-        </div>
-      `,
-    }
+```js
+export default {
+  template: `
+  <div>
+    <InputNumber max="10" min="1" model="value" placeholder="请输入" />
+  </div>
+  `,
+}
+```
 
 > step 修改步值（这里暂时不支持小数）
 
-    export default {
-        template: `
-            <InputNumber maxValue="100" minValue="1" model="value" step="3"></InputNumber>
-        `,
-        data: {
-            value: 3
-        }
-    }
+```js
+export default {
+  template: `
+    <div>
+      <InputNumber max="100" min="1" model="value2" step="3" />
+    </div>
+  `,
+  data: {
+    value2: 3
+  }
+}
+```
 
 > size 修改大小
 
-    export default {
-        template: `
-            <div>
-                <InputNumber size="large" maxValue="10" minValue="1" model="value"></InputNumber>
-                <InputNumber maxValue="10" minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" maxValue="10" minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 34
+```js
+export default {
+  template: `
+    <div>
+      <InputNumber size="large" max="10" min="1" model="value3" />
+      <InputNumber max="10" min="1" model="value3" />
+      <InputNumber size="small" max="10" min="1" model="value3" />
+      <style>
+        .bell-input-number {
+          margin-left: 10px;
         }
-    }
+      </style>
+    </div>
+  `,
+  data: {
+    value3: 34
+  }
+}
+```
 
 > status 修改颜色风格
 
-    export default {
-        template: `
-            <div>
-                <InputNumber maxValue="10" minValue="1" model="value"></InputNumber>
-                <InputNumber status="error" maxValue="10" minValue="1" model="value"></InputNumber>
-                <InputNumber status="success" maxValue="10" minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 3
+```js
+export default {
+  template: `
+    <div>
+      <InputNumber max="10" min="1" model="value4" />
+      <InputNumber status="error" max="10" min="1" model="value4" />
+      <InputNumber status="success" max="10" min="1" model="value4" />
+      <style>
+        .bell-input-number {
+          margin-left: 10px;
         }
-    }
+      </style>
+    </div>
+  `,
+  data: {
+    value4: 3
+  }
+}
+```
 
 > disabled 禁用
 
-    export default {
-        template: `
-            <div>
-                <InputNumber size="large" disabled minValue="1" model="value"></InputNumber>
-                <InputNumber disabled minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" disabled minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 34
+```js
+export default {
+  template: `
+    <div>
+      <InputNumber size="large" disabled="{{disabled}}" min="1" model="value5" />
+      <InputNumber disabled="{{disabled}}" min="1" model="value5" />
+      <InputNumber size="small" disabled="{{disabled}}" min="1" model="value5" />
+      <br><br>
+      <Button type="primary" on-click="toggle('disabled')">
+        toggle disabled
+      </Button>
+      <style>
+        .bell-input-number {
+          margin-left: 10px;
         }
-    }
+      </style>
+    </div>
+  `,
+  data: {
+    value5: 34,
+    disabled: false
+  }
+}
+```
 
 > editable 是否能编辑。
 
-    export default {
-        template: `
-            <div>
-                <InputNumber size="large" editable="false" minValue="1" model="value"></InputNumber>
-                <InputNumber editable="false" minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" editable="false" minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 34
-        }
-    }
+```js
+export default {
+  template: `
+  <div>
+    <InputNumber size="large" editable="{{editable}}" min="1" model="value" />
+    <InputNumber editable="{{editable}}" min="1" model="value" />
+    <InputNumber size="small" editable="{{editable}}" min="1" model="value" />
+    <style>
+      .bell-input-number {
+        margin-left: 10px;
+      }
+    </style>
+  </div>
+  `,
+  data: {
+    value: 34,
+    editable: false
+  }
+}
+```
 
 > readonly 只读。
 
-    export default {
-        template: `
-            <div>
-                <InputNumber size="large" readonly minValue="1" model="value"></InputNumber>
-                <InputNumber readonly minValue="1" model="value"></InputNumber>
-                <InputNumber size="small" readonly minValue="1" model="value"></InputNumber>
-            </div>
-        `,
-        data: {
-            value: 34
-        }
+```js
+export default {
+  template: `
+  <div>
+    <InputNumber size="large" readonly min="1" model="value" />
+    <InputNumber readonly min="1" model="value" />
+    <InputNumber size="small" readonly min="1" model="value" />
+    <style>
+      .bell-input-number {
+        margin-left: 10px;
+      }
+    </style>
+  </div>
+  `,
+  data: {
+    value: 34
+  }
+}
+```
+
+> formatter
+
+```js
+export default {
+  template: `
+  <div>
+    <InputNumber formatter="{{formatter}}" size="large" min="1" model="value" />
+    <InputNumber formatter="{{formatter}}" min="1" model="value" />
+    <InputNumber formatter="{{formatter}}" size="small" min="1" model="value" />
+    <style>
+      .bell-input-number {
+        margin-left: 10px;
+      }
+    </style>
+  </div>
+  `,
+  data: {
+    value: 34,
+    formatter: function (value) {
+      return `${value} %`
     }
-
-> 设置右侧按钮文字
-
-    export default {
-        template: `
-            <div>
-                <InputNumber model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="prepend">
-                        <span>Https://</span>
-                    </template>
-                </InputNumber>
-                <InputNumber model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="append">
-                        <span>@bell.io</span>
-                    </template>
-                </InputNumber>
-                <InputNumber model="value"
-                    type="text"
-                    placeholder="请输入..."
-                >
-                    <template slot="prepend">
-                        <Button type="text">搜索</Button>
-                    </template>
-                </InputNumber>
-
-                <style>
-                    .bell-input-wrapper {
-                        margin-top: 10px;
-                    }
-                </style>
-            </div>
-        `
-    }
+  }
+}
+```
 
 #### API
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-maxValue | 最大值 | number | - | -
-minValue | 最小值 | number | - | -
+max | 最大值 | number | - | -
+min | 最小值 | number | - | -
 model | 当前值 | number | - | -
 step | 每次改变的步伐，可以是小数 | number | - | 1
-size | 风格 | string | large, small, default | default
+size | 大小 | string | large, small, default | default
 status | 颜色风格 | string | info等 | primary
 disabled | 是否禁用 | boolean | - | false
 editable | 是否可编辑 | boolean | - | true
 readonly | 是否开启只读 | boolean | - | true
+formatter | 指定输入框展示值的格式 | function | - | -
+placeholder | 占位文本 | string | - | -
 
 > Events
 

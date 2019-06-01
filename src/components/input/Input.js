@@ -1,67 +1,95 @@
 import template from './template/Input.html'
+import { RAW_BOOLEAN, RAW_STRING, RAW_NUMERIC, RAW_OBJECT } from '../constant'
+import { oneOf } from '../util'
 
-let TEXT_TYPE_PASSWORD = 'password'
-let TEXT_TYPE_TEXTAREA = 'textarea'
-let TEXT_TYPE_TEXT = 'text'
+const TEXT_TYPE_PASSWORD = 'password'
+const TEXT_TYPE_TEXTAREA = 'textarea'
+const TEXT_TYPE_TEXT = 'text'
+const ROWS_HEIGHT = 22
 
 export default {
   propTypes: {
-    style: {
-      type: 'string'
-    },
-    className: {
-      type: 'string'
+    value: {
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    search: {
+      type: RAW_BOOLEAN
+    },
+    enterButton: {
+      type: [ RAW_BOOLEAN, RAW_STRING ]
+    },
+    autoSize: {
+      type: [ RAW_BOOLEAN, RAW_OBJECT ]
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     status: {
-      type: 'string'
+      type: RAW_STRING
     },
     placeholder: {
-      type: 'string'
-    },
-    value: {
-      type: 'string'
-    },
-    icon: {
-      type: 'string'
+      type: RAW_STRING
     },
     rows: {
-      type: 'number'
+      type: RAW_NUMERIC,
+      value: 2
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     clearable: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     secure: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     prefix: {
-      type: 'string'
+      type: RAW_STRING
     },
     suffix: {
-      type: 'string'
+      type: RAW_STRING
+    },
+    autocomplete: {
+      type: oneOf([ 'on', 'off' ])
+    },
+    wrap: {
+      type: oneOf([ 'hard', 'soft' ])
+    },
+    spellcheck: {
+      type: RAW_BOOLEAN
+    },
+    readonly: {
+      type: RAW_BOOLEAN
+    },
+    maxLength: {
+      type: RAW_NUMERIC
+    },
+    style: {
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
     }
   },
 
   template,
 
   data() {
-    let me = this
     return {
-      TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
-      TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
-      TEXT_TYPE_PASSWORD: TEXT_TYPE_PASSWORD,
-
       isSecure: true,
       isFocus: false,
-      currentType: me.get('type')
+      currentType: this.get('type'),
+
+      TEXT_TYPE_TEXT,
+      TEXT_TYPE_TEXTAREA,
+      TEXT_TYPE_PASSWORD,
+
+      isBoolean(value) {
+        return Yox.is.boolean(value)
+      }
     }
   },
 
@@ -69,9 +97,7 @@ export default {
     value(value) {
       this.fire(
         'change.input',
-        {
-          value: value
-        }
+        { value }
       )
     },
     isSecure(isSecure) {
@@ -82,50 +108,75 @@ export default {
   },
 
   methods: {
-    blur(args) {
-      this.set({
-        isFocus: false
-      })
-      this.fire('blur')
+    blur() {
+      this.set('isFocus', false)
+      this.fire('blur.input')
     },
-    focus(args) {
-      this.set({
-        isFocus: true
-      })
-      this.fire('focus')
+    focus() {
+      this.set('isFocus', true)
+      this.fire('focus.input')
     },
     clear() {
-      this.set({
-        value: ''
-      })
+      this.set('value', '')
+      this.fire('clear.input')
+    },
+    search() {
       this.fire(
-        'clear.input'
+        'search.input',
+        {
+          value: this.get('value')
+        }
       )
     }
   },
 
-  afterMount() {
-    let me = this
+  computed: {
+    textComputedStyle() {
+      let size = this.get('autoSize')
+      if (size) {
+        let minRows = 2
+        let maxRows = 2
+        let height = 2
+        if (Yox.is.object(size)) {
+          minRows = size.minRows
+          maxRows = size.maxRows
+          height = this.get('value') ? this.get('value').split('\n').length : minRows
+          return `min-height: ${minRows * ROWS_HEIGHT}px;max-height: ${maxRows * ROWS_HEIGHT}px;height: ${height * ROWS_HEIGHT}px;`
+        }
+        else {
+          height = this.get('value') ? this.get('value').split('\n').length : minRows
+          return `min-height: ${minRows * ROWS_HEIGHT}px;height: ${height * ROWS_HEIGHT}px;`
+        }
+        
+      }
+      else {
+        return `height: ${this.get('rows') * ROWS_HEIGHT}px`
+      }
+    }
+  },
 
+  afterMount() {
+
+    let me = this
     me.documentKeydownHandler = function (event) {
       event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keydown')
+        me.fire('keydown.input')
         if (event.keyCode === 13) {
-          me.fire('enter')
+          me.fire('enter.input')
         }
       }
     }
     me.documentKeyupHandler = function (event) {
       event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keyup')
+        me.fire('keyup.input')
       }
     }
     me.documentKeypressHandler = function (event) {
       event = event.originalEvent
       if (me.$refs && event.target == me.$refs.input) {
-        me.fire('keypress')
+        me.fire('keypress.input')
       }
     }
     Yox.dom.on(
@@ -143,6 +194,7 @@ export default {
       'keypress',
       me.documentKeypressHandler
     )
+    
   },
 
   beforeDestroy() {
