@@ -38,7 +38,6 @@
 
 > 基础用法
 
-      isViewFullBlock: true,
 ```js
 export default {
   isViewFullBlock: true,

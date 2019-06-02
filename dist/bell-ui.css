@@ -7099,7 +7099,7 @@ button.bell-button-danger-ghost[disabled] {
   overflow: hidden;
   transition: all 0.3s;
   opacity: 0;
-  padding: 15px;
+  padding: 10px 15px;
   border-radius: 4px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.2);
   background-color: #fff;
@@ -7145,7 +7145,6 @@ button.bell-button-danger-ghost[disabled] {
   line-height: 24px;
 }
 .bell-notice .bell-notice-desc {
-  line-height: 1.5;
   font-size: 12px;
   color: rgba(0,0,0,0.54);
   line-height: 20px;
@@ -7159,40 +7158,53 @@ button.bell-button-danger-ghost[disabled] {
   padding: 5px 15px;
   color: #999;
 }
-.bell-notice .bell-notice-close.bell-notice .bell-notice-close.hover,
-.bell-notice .bell-notice-close:hover,
-.bell-notice .bell-notice-close.bell-hover {
-  color: #333;
-}
 .bell-msg-alert-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  text-align: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  text-align: center;
+  z-index: 1000;
+}
+.bell-msg-alert-wrapper.bell-msg-alert-hidden .bell-msg-alert {
+  margin-top: -100px;
+  opacity: 0;
+}
+.bell-msg-alert-wrapper.bell-msg-alert-hidden .bell-msg-mask {
+  opacity: 0;
 }
 .bell-msg-alert-wrapper .bell-msg-alert {
-  text-align: left;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -80%);
   max-width: 500px;
   min-width: 320px;
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #ebeef5;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: opacity 0.15s, margin-top 0.15s;
 }
-.bell-msg-alert-wrapper .bell-msg-alert-title,
-.bell-msg-alert-wrapper .bell-msg-alert-desc,
+.bell-msg-alert-wrapper .bell-msg-alert-desc {
+  text-align: left;
+  padding: 24px;
+  line-height: 1.5;
+  font-size: 14px;
+}
 .bell-msg-alert-wrapper .bell-msg-alert-footer {
-  text-align: center;
-  padding: 10px 15px;
+  padding: 10px 16px;
+  text-align: right;
+  border-top: 1px solid #e8e8e8;
+}
+.bell-msg-alert-wrapper .bell-msg-alert-title {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e8e8e8;
 }
 .bell-msg-alert-wrapper .bell-msg-mask {
   position: fixed;
@@ -7201,53 +7213,62 @@ button.bell-button-danger-ghost[disabled] {
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.54);
-  z-index: -1;
-  transition: opacity 0.3s;
+  transition: opacity 0.15s;
 }
 .bell-msg-alert-wrapper .bell-msg-alert-close {
   cursor: pointer;
   position: absolute;
   right: 0;
-  padding: 5px 15px;
-  font-size: 24px;
-}
-.bell-msg-alert-hidden .bell-msg-alert {
-  margin-top: -200px;
-  opacity: 0;
-}
-.bell-msg-alert-hidden .bell-msg-mask {
-  opacity: 0;
+  padding: 10px 15px;
+  font-size: 28px;
 }
 .bell-msg-confirm-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  text-align: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: auto;
+  z-index: 1000;
+}
+.bell-msg-confirm-wrapper.bell-msg-confirm-hidden .bell-msg-confirm {
+  margin-top: -100px;
+  opacity: 0;
+}
+.bell-msg-confirm-wrapper.bell-msg-confirm-hidden .bell-msg-mask {
+  opacity: 0;
 }
 .bell-msg-confirm-wrapper .bell-msg-confirm {
-  text-align: left;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.3s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
   max-width: 700px;
   min-width: 320px;
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #ebeef5;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: opacity 0.15s, margin-top 0.15s;
 }
-.bell-msg-confirm-wrapper .bell-msg-confirm-title,
-.bell-msg-confirm-wrapper .bell-msg-confirm-desc,
+.bell-msg-confirm-wrapper .bell-msg-confirm-desc {
+  text-align: left;
+  padding: 24px;
+  line-height: 1.5;
+  font-size: 14px;
+}
 .bell-msg-confirm-wrapper .bell-msg-confirm-footer {
-  text-align: center;
-  padding: 10px 15px;
+  padding: 10px 16px;
+  text-align: right;
+  border-top: 1px solid #e8e8e8;
+}
+.bell-msg-confirm-wrapper .bell-msg-confirm-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e8e8e8;
+  text-align: left;
 }
 .bell-msg-confirm-wrapper .bell-msg-mask {
   position: fixed;
@@ -7256,22 +7277,14 @@ button.bell-button-danger-ghost[disabled] {
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.54);
-  z-index: -1;
-  transition: opacity 0.3s;
+  transition: opacity 0.15s;
 }
 .bell-msg-confirm-wrapper .bell-msg-confirm-close {
   cursor: pointer;
   position: absolute;
   right: 0;
-  padding: 5px 15px;
-  font-size: 24px;
-}
-.bell-msg-confirm-hidden .bell-msg-confirm {
-  margin-top: -200px;
-  opacity: 0;
-}
-.bell-msg-confirm-hidden .bell-msg-mask {
-  opacity: 0;
+  padding: 10px 15px;
+  font-size: 28px;
 }
 .bell-badge {
   position: relative;

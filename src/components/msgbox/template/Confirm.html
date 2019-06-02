@@ -1,24 +1,28 @@
-<div class="bell-msg-confirm-wrapper
-{{#if isHidden}} bell-msg-confirm-hidden{{/if}}
+<div 
+class="${prefix}msg-confirm-wrapper
+  {{#if isHidden}} ${prefix}msg-confirm-hidden{{/if}}
 ">
-  <div class="bell-msg-confirm"{{#if width}} style="width: {{width}}px;{{/if}}">
+  <div class="${prefix}msg-confirm"
+    {{#if width}} style="width: {{width}}px;"{{/if}}
+  >
     {{#if closable}}
-    <div class="bell-msg-confirm-close" on-click="hide()">
-      <i class="bell-icon bell-icon-ios-close-empty"></i>
+    <div class="${prefix}msg-confirm-close" on-click="hide()">
+      <Icon name="close"></Icon>
     </div>
     {{/if}}
 
     {{#if title}}
-    <div class="bell-msg-confirm-title bell-text-main bell-text-medium">
+    <div class="${prefix}msg-confirm-title">
       {{{title}}}
     </div>
     {{/if}}
 
-    <div class="bell-msg-confirm-desc bell-text-sub bell-text-small">
+    <div class="${prefix}msg-confirm-desc">
       {{{content}}}
     </div>
+
     {{#if buttons}}
-    <div class="bell-msg-confirm-footer">
+    <div class="${prefix}msg-confirm-footer">
       {{#each buttons:index}}
       <Button type="{{type}}" on-click="buttonClick(index)">
         {{text}}
@@ -26,6 +30,9 @@
       {{/each}}
     </div>
     {{/if}}
+
   </div>
-  <div class="bell-msg-mask" on-click="maskClick()"></div>
+  {{#if mask}}
+  <div class="${prefix}msg-mask" on-click="maskClick()"></div>
+  {{/if}}
 </div>

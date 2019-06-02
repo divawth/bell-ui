@@ -6887,16 +6887,39 @@
       el: '#' + namespace,
       replace: true,
       template: template$P,
+      props: {
+        content: data.content,
+        type: data.type,
+        showIcon: data.showIcon,
+        closable: data.closable,
+        closeText: data.closeText,
+        center: data.center
+      },
+      propTypes: {
+        content: {
+          type: RAW_STRING
+        },
+        type: {
+          type: RAW_STRING
+        },
+        showIcon: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        closable: {
+          type: RAW_BOOLEAN
+        },
+        closeText: {
+          type: RAW_STRING
+        },
+        center: {
+          type: RAW_BOOLEAN
+        }
+      },
       data: function data$1() {
         return {
           marginLeft: 0,
           top: 0,
-          content: data.content,
-          type: data.type,
-          showIcon: data.showIcon,
-          closable: data.closable,
-          closeText: data.closeText,
-          center: data.center,
           isShow: false,
           close: function close() {
             if (instance) {
@@ -7026,7 +7049,7 @@
     }
   };
 
-  var NoticeTpl = "<div class=\"bell-notice bell-notice-{{type}}\n  {{#if isShow}} bell-show{{/if}}\n\" style=\"width: {{width}}px;\n  {{#if right}} right: {{right}}px;{{/if}}\n\">\n\n  <div class=\"bell-notice-title\">\n    {{title}}\n  </div>\n\n  <div class=\"bell-notice-desc\">\n    {{content}}\n  </div>\n\n  {{#if duration == 0}}\n    <i class=\"bell-icon bell-notice-close bell-icon-ios-close-empty\" on-click=\"close()\"></i>\n  {{/if}}\n\n</div>";
+  var template$Q = "<div \nclass=\"bell-notice bell-notice-{{type}}\n  {{#if isShow}} bell-show{{/if}}\n\" \nstyle=\"width: {{width}}px;\n  {{#if rightSize}} right: {{rightSize}}px;{{/if}}\n\">\n\n  <div class=\"bell-notice-title\">\n    {{title}}\n  </div>\n\n  <div class=\"bell-notice-desc\">\n    {{content}}\n  </div>\n\n  {{#if duration == 0}}\n    <Icon name=\"close\" className=\"bell-notice-close\" on-click=\"close()\" />\n  {{/if}}\n\n</div>";
 
   var id$1 = 0;
 
@@ -7034,101 +7057,116 @@
 
     var namespace = 'bell-notice-' + id$1++;
     var body = Yox.dom.find('#bell-notice-wrapper');
-    var element = document.createElement('div');
-    element.setAttribute('id', namespace);
-    body.appendChild(element);
+    var element = Yox.dom.createElement('div');
+    Yox.dom.prop(element, 'id', namespace);
+    Yox.dom.append(body, element);
 
     var instance = new Yox({
-
       el: '#' + namespace,
-
       replace: true,
-
-      template: NoticeTpl,
-
-      data: function data$1() {
-        return {
-          width: data.width || 320,
-          right: 0,
-
-          type: data.type,
-          title: data.title,
-          content: data.content,
-          duration: data.duration,
-
-          isShow: false
+      template: template$Q,
+      
+      props: {
+        title: data.title,
+        content: data.content,
+        type: data.type,
+        duration: data.duration,
+        width: data.width,
+        right: data.right,
+        onClose: data.onClose
+      },
+      propTypes: {
+        title: {
+          type: RAW_STRING,
+          value: '温馨提示'
+        },
+        content: {
+          type: RAW_STRING
+        },
+        type: {
+          type: RAW_STRING
+        },
+        duration: {
+          type: RAW_NUMERIC,
+          value: 4500
+        },
+        width: {
+          type: RAW_NUMERIC,
+          value: 320
+        },
+        right: {
+          type: RAW_NUMERIC,
+          value: 15
+        },
+        onClose: {
+          type: RAW_FUNCTION
         }
       },
-
+      data: function data () {
+        return {
+          isShow: false,
+          rightSize: 15
+        }
+      },
       methods: {
         close: function close() {
           this.hide();
         },
         fadeIn: function fadeIn() {
           var me = this;
-          me.fadeInFuc = setTimeout(
+          me.fadeInTimer = setTimeout(
             function () {
               me.set({
                 isShow: true,
-                right: me.right
+                rightSize: me.get('right')
               });
-              if (data.duration == 0) {
-                return;
+              if (me.get('duration') == 0) {
+                return
               }
               me.fadeOut();
             },
-            me.fadeInTime
+            300
           );
         },
         fadeOut: function fadeOut() {
           var me = this;
-          me.showTimeFuc = setTimeout(
+          me.showTimer = setTimeout(
             function () {
               me.hide();
             },
-            me.showTime
+            me.get('duration')
           );
         },
         hide: function hide() {
           var me = this;
           me.set({
             isShow: false,
-            right: -me.$el.clientWidth
+            rightSize: ("-" + (me.$el.clientWidth))
           });
-          me.fadeOutFuc = setTimeout(
+          me.fadeOutTimer = setTimeout(
             function () {
-              element.remove();
-              if (Yox.is.func(data.onClose)) {
-                data.onClose();
-              }
+              me.get('onClose') && me.get('onClose')();
               if (instance) {
                 instance.destroy();
               }
             },
-            me.fadeOutTime
+            300
           );
         }
       },
 
       afterMount: function afterMount() {
-        var me = this;
-
-        me.fadeInTime = 300;
-        me.fadeOutTime = 300;
-        me.showTime = data.duration || 4500;
-        me.right = data.right || 15;
-
-        me.set({
-          right: -me.$el.clientWidth
+        this.set({
+          rightSize: ("-" + (this.$el.clientWidth))
         });
-        me.fadeIn();
+        this.fadeIn();
       },
 
       beforeDestroy: function beforeDestroy() {
         var me = this;
-        clearTimeout(me.fadeInFuc);
-        clearTimeout(me.showTimeFuc);
-        clearTimeout(me.fadeOutFuc);
+        clearTimeout(me.fadeInTimer);
+        clearTimeout(me.showTimer);
+        clearTimeout(me.fadeOutTimer);
       }
     });
   };
@@ -7163,10 +7201,9 @@
     }
   };
 
-  var body = document.body;
-  var element = document.createElement('div');
-  element.setAttribute('id', 'bell-notice-wrapper');
-  body.appendChild(element);
+  var element = Yox.dom.createElement('div');
+  Yox.dom.prop(element, 'id', 'bell-notice-wrapper');
+  Yox.dom.append(document.body, element);
 
   Yox.prototype.$Notice = {
     success: function (arg) {
@@ -7192,81 +7229,113 @@
     }
   };
 
-  var MsgboxTpl = "<div class=\"bell-msg-alert-wrapper\n{{#if isHidden}} bell-msg-alert-hidden{{/if}}\n\">\n  <div class=\"bell-msg-alert\"{{#if width}} style=\"width: {{width}}px;\"{{/if}}>\n    {{#if closable}}\n    <div class=\"bell-msg-alert-close\" on-click=\"hide()\">\n      <i class=\"bell-icon bell-icon-ios-close-empty\"></i>\n    </div>\n    {{/if}}\n\n    {{#if title}}\n    <div class=\"bell-msg-alert-title bell-text-main bell-text-medium\">\n      {{{title}}}\n    </div>\n    {{/if}}\n\n    <div class=\"bell-msg-alert-desc bell-text-sub bell-text-small\">\n      {{{content}}}\n    </div>\n\n    <div class=\"bell-msg-alert-footer\">\n      <Button type=\"{{button.type}}\" on-click=\"hide()\">\n        {{button.text}}\n      </Button>\n    </div>\n  </div>\n  <div class=\"bell-msg-mask\" on-click=\"maskClick()\"></div>\n</div>";
+  var MsgboxTpl = "<div \nclass=\"bell-msg-alert-wrapper\n{{#if isHidden}} bell-msg-alert-hidden{{/if}}\n\">\n  <div class=\"bell-msg-alert\"\n    {{#if width}} style=\"width: {{width}}px;\"{{/if}}\n  >\n    {{#if closable}}\n    <div class=\"bell-msg-alert-close\" on-click=\"hide()\">\n      <Icon name=\"close\"></Icon>\n    </div>\n    {{/if}}\n\n    {{#if title}}\n    <div class=\"bell-msg-alert-title\">\n      {{{title}}}\n    </div>\n    {{/if}}\n\n    <div class=\"bell-msg-alert-desc\">\n      {{{content}}}\n    </div>\n\n    <div class=\"bell-msg-alert-footer\">\n      <Button type=\"{{button.type}}\" on-click=\"hide()\">\n        {{button.text}}\n      </Button>\n    </div>\n  </div>\n\n  {{#if mask}}\n  <div class=\"bell-msg-mask\" on-click=\"maskClick()\"></div>\n  {{/if}}\n</div>";
 
-  var ConfirmTpl = "<div class=\"bell-msg-confirm-wrapper\n{{#if isHidden}} bell-msg-confirm-hidden{{/if}}\n\">\n  <div class=\"bell-msg-confirm\"{{#if width}} style=\"width: {{width}}px;{{/if}}\">\n    {{#if closable}}\n    <div class=\"bell-msg-confirm-close\" on-click=\"hide()\">\n      <i class=\"bell-icon bell-icon-ios-close-empty\"></i>\n    </div>\n    {{/if}}\n\n    {{#if title}}\n    <div class=\"bell-msg-confirm-title bell-text-main bell-text-medium\">\n      {{{title}}}\n    </div>\n    {{/if}}\n\n    <div class=\"bell-msg-confirm-desc bell-text-sub bell-text-small\">\n      {{{content}}}\n    </div>\n    {{#if buttons}}\n    <div class=\"bell-msg-confirm-footer\">\n      {{#each buttons:index}}\n      <Button type=\"{{type}}\" on-click=\"buttonClick(index)\">\n        {{text}}\n      </Button>\n      {{/each}}\n    </div>\n    {{/if}}\n  </div>\n  <div class=\"bell-msg-mask\" on-click=\"maskClick()\"></div>\n</div>";
+  var ConfirmTpl = "<div \nclass=\"bell-msg-confirm-wrapper\n  {{#if isHidden}} bell-msg-confirm-hidden{{/if}}\n\">\n  <div class=\"bell-msg-confirm\"\n    {{#if width}} style=\"width: {{width}}px;\"{{/if}}\n  >\n    {{#if closable}}\n    <div class=\"bell-msg-confirm-close\" on-click=\"hide()\">\n      <Icon name=\"close\"></Icon>\n    </div>\n    {{/if}}\n\n    {{#if title}}\n    <div class=\"bell-msg-confirm-title\">\n      {{{title}}}\n    </div>\n    {{/if}}\n\n    <div class=\"bell-msg-confirm-desc\">\n      {{{content}}}\n    </div>\n\n    {{#if buttons}}\n    <div class=\"bell-msg-confirm-footer\">\n      {{#each buttons:index}}\n      <Button type=\"{{type}}\" on-click=\"buttonClick(index)\">\n        {{text}}\n      </Button>\n      {{/each}}\n    </div>\n    {{/if}}\n\n  </div>\n  {{#if mask}}\n  <div class=\"bell-msg-mask\" on-click=\"maskClick()\"></div>\n  {{/if}}\n</div>";
 
   var id$2 = 0;
 
   var createAlert = function (data) {
 
     var namespace = 'bell-msg-alert-' + id$2++;
-    var body = document.getElementById('bell-msgbox-wrapper');
-    var element = document.createElement('div');
-    element.setAttribute('id', namespace);
-    body.appendChild(element);
+    var body = Yox.dom.find('#bell-msgbox-wrapper');
+    var element = Yox.dom.createElement('div');
+    Yox.dom.prop(element, 'id', namespace);
+    Yox.dom.append(body, element);
 
     var instance = new Yox({
       el: '#' + namespace,
       replace: true,
       template: MsgboxTpl,
-      data: function data$1() {
-        return {
-          isHidden: true,
-          closable: data.closable,
-          title: data.title || '温馨提示',
-          content: data.content || data,
-          button: data.button || {
+      props: {
+        title: data.title,
+        closable: data.closable,
+        content: data.content || data,
+        button: data.button,
+        maskClosable: data.maskClosable,
+        onClose: data.onClose,
+        width: data.width,
+        mask: data.mask
+      },
+      propTypes: {
+        title: {
+          type: RAW_STRING,
+          value: '温馨提示'
+        },
+        closable: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        mask: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        content: {
+          type: RAW_STRING
+        },
+        button: {
+          type: RAW_OBJECT,
+          value: {
             text: '我知道了',
-            type: 'info'
+            type: 'primary'
           }
+        },
+        maskClosable: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        onClose: {
+          type: RAW_FUNCTION
+        },
+        width: {
+          type: RAW_NUMERIC
+        }
+      },
+      data: function data() {
+        return {
+          isHidden: true
         }
       },
 
       methods: {
         maskClick: function maskClick() {
-          if (!data.maskClosable) {
-            return;
+          if (!this.get('maskClosable')) {
+            return
           }
           this.hide();
         },
         hide: function hide() {
           var me = this;
-          var transTime = 500;
           me.set({
             isHidden: true
           });
-          me.transTimeFuc = setTimeout(
+          me.transTimer = setTimeout(
             function () {
-              element.remove();
-              if (Yox.is.func(data.onClose)) {
-                data.onClose();
-              }
+              me.get('onClose') && me.get('onClose')();
               if (instance) {
                 instance.destroy();
               }
             },
-            transTime
+            500
           );
         }
       },
 
       afterMount: function afterMount() {
         var me = this;
-        var transTime = 300;
-        me.transTimeFuc = setTimeout(
+        me.transTimer = setTimeout(
           function () {
             me.set({
               isHidden: false
             });
           },
-          transTime
+          300
         );
       },
 
       beforeDestroy: function beforeDestroy() {
         var me = this;
-        clearTimeout(me.transTimeFuc);
+        clearTimeout(me.transTimer);
       }
     });
   };
@@ -7276,78 +7345,103 @@
     var namespace = 'bell-msg-confirm-' + id$2++;
     var body = Yox.dom.find('#bell-msgbox-wrapper');
     var element = Yox.dom.createElement('div');
-    element.setAttribute('id', namespace);
-    body.appendChild(element);
+    Yox.dom.prop(element, 'id', namespace);
+    Yox.dom.append(body, element);
 
     var instance = new Yox({
       el: '#' + namespace,
       replace: true,
       template: ConfirmTpl,
-      data: function data$1() {
+      props: {
+        title: data.title || data,
+        closable: data.closable,
+        content: data.content || data,
+        buttons: data.buttons,
+        maskClosable: data.maskClosable,
+        onClose: data.onClose,
+        mask: data.mask,
+        width: data.width
+      },
+      propTypes: {
+        title: {
+          type: RAW_STRING,
+          value: '温馨提示'
+        },
+        closable: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        mask: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        content: {
+          type: RAW_STRING
+        },
+        buttons: {
+          type: RAW_OBJECT
+        },
+        maskClosable: {
+          type: RAW_BOOLEAN,
+          value: TRUE
+        },
+        onClose: {
+          type: RAW_FUNCTION
+        },
+        width: {
+          type: RAW_NUMERIC
+        }
+      },
+      data: function data() {
         return {
-          isHidden: true,
-          width: data.width,
-          closable: data.closable,
-          title: data.title || data,
-          content: data.content || data,
-          buttons: data.buttons,
-          maskClosable: data.maskClosable
+          isHidden: true
         }
       },
 
       methods: {
-
         buttonClick: function buttonClick(index) {
-          var me = this;
-          var handler = me.get('buttons.' + index + '.action');
-          handler.call(instance);
-          return false;
+          this.get('buttons.' + index + '.action').call(instance);
         },
 
         maskClick: function maskClick() {
-          if (!data.maskClosable) {
-            return;
+          if (!this.get('maskClosable')) {
+            return
           }
           this.hide();
         },
 
         hide: function hide() {
           var me = this;
-          var transTime = 500;
           me.set({
             isHidden: true
           });
-          me.transTimeFuc = setTimeout(
+          me.transTimer = setTimeout(
             function () {
-              element.remove();
-              if (Yox.is.func(data.onClose)) {
-                data.onClose();
-              }
+              me.get('onClose') && me.get('onClose')();
               if (instance) {
                 instance.destroy();
               }
             },
-            transTime
+            500
           );
         }
       },
 
       afterMount: function afterMount() {
         var me = this;
-        var transTime = 300;
-        me.transTimeFuc = setTimeout(
+        me.transTimer = setTimeout(
           function () {
             me.set({
               isHidden: false
             });
           },
-          transTime
+          300
         );
       },
 
       beforeDestroy: function beforeDestroy() {
         var me = this;
-        clearTimeout(me.transTimeFuc);
+        clearTimeout(me.transTimer);
       }
     });
   };
@@ -7360,10 +7454,9 @@
     createConfirm(data);
   };
 
-  var body$1 = document.body;
-  var element$1 = document.createElement('div');
-  element$1.setAttribute('id', 'bell-msgbox-wrapper');
-  body$1.appendChild(element$1);
+  var element$1 = Yox.dom.createElement('div');
+  Yox.dom.prop(element$1, 'id', 'bell-msgbox-wrapper');
+  Yox.dom.append(document.body, element$1);
 
   Yox.prototype.$Alert = function (data) {
     addAlert(data);
@@ -7373,7 +7466,7 @@
     addConfirm(data);
   };
 
-  var template$Q = "<div \nclass=\"bell-loadingbar\n  {{#if type}} bell-loadingbar-{{type}}{{/if}}\n\">\n  <div class=\"bell-loadingbar-inner\">\n    <div class=\"bell-loadingbar-bg\"\n      style=\"\n        width: {{percent}}%;\n        height: {{height}}px;\n        {{#if color}} color: {{color}};{{/if}}\n      \"\n    ></div>\n  </div>\n</div>";
+  var template$R = "<div \nclass=\"bell-loadingbar\n  {{#if type}} bell-loadingbar-{{type}}{{/if}}\n\">\n  <div class=\"bell-loadingbar-inner\">\n    <div class=\"bell-loadingbar-bg\"\n      style=\"\n        width: {{percent}}%;\n        height: {{height}}px;\n        {{#if color}} color: {{color}};{{/if}}\n      \"\n    ></div>\n  </div>\n</div>";
 
   var namespace = 'bell-loadingbar';
   var instance = NULL;
@@ -7397,7 +7490,7 @@
         type: data.type,
         color: data.color
       },
-      template: template$Q,
+      template: template$R,
       propTypes: {
         type: {
           type: RAW_STRING

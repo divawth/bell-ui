@@ -1,28 +1,34 @@
-<div class="bell-msg-alert-wrapper
-{{#if isHidden}} bell-msg-alert-hidden{{/if}}
+<div 
+class="${prefix}msg-alert-wrapper
+{{#if isHidden}} ${prefix}msg-alert-hidden{{/if}}
 ">
-  <div class="bell-msg-alert"{{#if width}} style="width: {{width}}px;"{{/if}}>
+  <div class="${prefix}msg-alert"
+    {{#if width}} style="width: {{width}}px;"{{/if}}
+  >
     {{#if closable}}
-    <div class="bell-msg-alert-close" on-click="hide()">
-      <i class="bell-icon bell-icon-ios-close-empty"></i>
+    <div class="${prefix}msg-alert-close" on-click="hide()">
+      <Icon name="close"></Icon>
     </div>
     {{/if}}
 
     {{#if title}}
-    <div class="bell-msg-alert-title bell-text-main bell-text-medium">
+    <div class="${prefix}msg-alert-title">
       {{{title}}}
     </div>
     {{/if}}
 
-    <div class="bell-msg-alert-desc bell-text-sub bell-text-small">
+    <div class="${prefix}msg-alert-desc">
       {{{content}}}
     </div>
 
-    <div class="bell-msg-alert-footer">
+    <div class="${prefix}msg-alert-footer">
       <Button type="{{button.type}}" on-click="hide()">
         {{button.text}}
       </Button>
     </div>
   </div>
-  <div class="bell-msg-mask" on-click="maskClick()"></div>
+
+  {{#if mask}}
+  <div class="${prefix}msg-mask" on-click="maskClick()"></div>
+  {{/if}}
 </div>

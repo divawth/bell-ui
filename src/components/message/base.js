@@ -1,4 +1,5 @@
 import template from './template/Message.html'
+import { RAW_BOOLEAN, TRUE, RAW_STRING } from '../constant';
 
 let id = 0
 
@@ -13,16 +14,39 @@ const createMessage = function (data) {
     el: '#' + namespace,
     replace: true,
     template,
+    props: {
+      content: data.content,
+      type: data.type,
+      showIcon: data.showIcon,
+      closable: data.closable,
+      closeText: data.closeText,
+      center: data.center
+    },
+    propTypes: {
+      content: {
+        type: RAW_STRING
+      },
+      type: {
+        type: RAW_STRING
+      },
+      showIcon: {
+        type: RAW_BOOLEAN,
+        value: TRUE
+      },
+      closable: {
+        type: RAW_BOOLEAN
+      },
+      closeText: {
+        type: RAW_STRING
+      },
+      center: {
+        type: RAW_BOOLEAN
+      }
+    },
     data() {
       return {
         marginLeft: 0,
         top: 0,
-        content: data.content,
-        type: data.type,
-        showIcon: data.showIcon,
-        closable: data.closable,
-        closeText: data.closeText,
-        center: data.center,
         isShow: false,
         close() {
           if (instance) {

@@ -1,111 +1,126 @@
-import NoticeTpl from './template/Notice.html'
+import template from './template/Notice.html'
+import { RAW_FUNCTION, RAW_STRING, RAW_NUMERIC } from '../constant'
 
-let id = 0;
+let id = 0
 
-let createNotice = (data) => {
+let createNotice = function (data) {
 
-  let namespace = 'bell-notice-' + id++;
-  let body = Yox.dom.find('#bell-notice-wrapper');
-  let element = document.createElement('div');
-  element.setAttribute('id', namespace);
-  body.appendChild(element);
+  let namespace = '${prefix}notice-' + id++
+  let body = Yox.dom.find('#${prefix}notice-wrapper')
+  let element = Yox.dom.createElement('div')
+  Yox.dom.prop(element, 'id', namespace)
+  Yox.dom.append(body, element)
 
   let instance = new Yox({
-
     el: '#' + namespace,
-
     replace: true,
-
-    template: NoticeTpl,
-
-    data() {
-      let me = this;
-      return {
-        width: data.width || 320,
-        right: 0,
-
-        type: data.type,
-        title: data.title,
-        content: data.content,
-        duration: data.duration,
-
-        isShow: false
+    template,
+    
+    props: {
+      title: data.title,
+      content: data.content,
+      type: data.type,
+      duration: data.duration,
+      width: data.width,
+      right: data.right,
+      onClose: data.onClose
+    },
+    propTypes: {
+      title: {
+        type: RAW_STRING,
+        value: '温馨提示'
+      },
+      content: {
+        type: RAW_STRING
+      },
+      type: {
+        type: RAW_STRING
+      },
+      duration: {
+        type: RAW_NUMERIC,
+        value: 4500
+      },
+      width: {
+        type: RAW_NUMERIC,
+        value: 320
+      },
+      right: {
+        type: RAW_NUMERIC,
+        value: 15
+      },
+      onClose: {
+        type: RAW_FUNCTION
       }
     },
-
+    data () {
+      return {
+        isShow: false,
+        rightSize: 15
+      }
+    },
     methods: {
       close() {
-        this.hide();
+        this.hide()
       },
       fadeIn() {
-        let me = this;
-        me.fadeInFuc = setTimeout(
-          () => {
+        let me = this
+        me.fadeInTimer = setTimeout(
+          function () {
             me.set({
               isShow: true,
-              right: me.right
-            });
-            if (data.duration == 0) {
-              return;
+              rightSize: me.get('right')
+            })
+            if (me.get('duration') == 0) {
+              return
             }
-            me.fadeOut();
+            me.fadeOut()
           },
-          me.fadeInTime
-        );
+          300
+        )
       },
       fadeOut() {
-        let me = this;
-        me.showTimeFuc = setTimeout(
-          () => {
-            me.hide();
+        let me = this
+        me.showTimer = setTimeout(
+          function () {
+            me.hide()
           },
-          me.showTime
-        );
+          me.get('duration')
+        )
       },
       hide() {
-        let me = this;
+        let me = this
         me.set({
           isShow: false,
-          right: -me.$el.clientWidth
-        });
-        me.fadeOutFuc = setTimeout(
-          () => {
-            element.remove();
-            if (Yox.is.func(data.onClose)) {
-              data.onClose();
-            }
+          rightSize: `-${me.$el.clientWidth}`
+        })
+        me.fadeOutTimer = setTimeout(
+          function () {
+            me.get('onClose') && me.get('onClose')()
             if (instance) {
-              instance.destroy();
+              instance.destroy()
             }
           },
-          me.fadeOutTime
-        );
+          300
+        )
       }
     },
 
     afterMount() {
-      let me = this;
-
-      me.fadeInTime = 300;
-      me.fadeOutTime = 300;
-      me.showTime = data.duration || 4500;
-      me.right = data.right || 15;
-
-      me.set({
-        right: -me.$el.clientWidth
-      });
-      me.fadeIn();
+      this.set({
+        rightSize: `-${this.$el.clientWidth}`
+      })
+      this.fadeIn()
     },
 
     beforeDestroy() {
-      let me = this;
-      clearTimeout(me.fadeInFuc);
-      clearTimeout(me.showTimeFuc);
-      clearTimeout(me.fadeOutFuc);
+      let me = this
+      clearTimeout(me.fadeInTimer)
+      clearTimeout(me.showTimer)
+      clearTimeout(me.fadeOutTimer)
     }
-  });
-};
+  })
+}
 
-export let add = (data) => {
-  createNotice(data);
-};
+export let add = function (data) {
+  createNotice(data)
+}
