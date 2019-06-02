@@ -1,72 +1,65 @@
-$selector-list = $selector-prefix + '-list';
-$selector-list-item = $selector-list + '-item';
+$selector-list = $selector-prefix + '-list'
+$selector-list-item = $selector-list + '-item'
 
-$selector-list-box-shadow = 0px 0px 1px rgba(0,0,0,.1);
-$selector-list-header-size = 60px;
+$list-border = 1px solid #d9d9d9
+$list-border-radius = 4px
 
-$selector-list-hash = {
-    'large': {
-        item-padding: 10px,
-        header-margin-right: 15px,
-        border-radius: 6px,
-        footer-right: 15px,
-    },
-    '': {
-        item-padding: 8px 10px,
-        header-margin-right: 10px,
-        border-radius: 5px,
-        footer-right: 10px,
-    },
-    'small': {
-        item-padding: 5px 10px,
-        header-margin-right: 8px,
-        border-radius: 4px,
-        footer-right: 8px,
-    }
-};
+$list-size-hash = {
+  '': {
+    item-padding: 12px 16px,
+    header-margin-right: 16px
+  },
+  'large': {
+    item-padding: 16px 24px,
+    header-margin-right: 24px
+  },
+  'small': {
+    item-padding: 8px 15px,
+    header-margin-right: 15px
+  }
+}
 
-$selector-color-hash = {
-    '': {
-        bg: $brand-bg,
-        hover-bg: $brand-bg-hover,
-        hover-color: $brand-secondary,
-        active-bg: $brand-bg-hover,
-        active-color: $brand-secondary,
-
-    },
-    'success': {
-        bg: $brand-bg,
-        hover-bg: $brand-success,
-        hover-color: $brand-bg,
-        active-bg: $brand-success,
-        active-color: $brand-bg
-    },
-    'info': {
-        bg: $brand-bg,
-        hover-bg: $brand-info,
-        hover-color: $brand-bg,
-        active-bg: $brand-info,
-        active-color: $brand-bg
-    },
-    'primary': {
-        bg: $brand-bg,
-        hover-bg: $brand-primary,
-        hover-color: $brand-bg,
-        active-bg: $brand-primary,
-        active-color: $brand-bg
-    },
-    'warning': {
-        bg: $brand-bg,
-        hover-bg: $brand-warning,
-        hover-color: $brand-bg,
-        active-bg: $brand-warning,
-        active-color: $brand-bg,
-    },
-    'danger': {
-        bg: $brand-bg,
-        hover-bg: $brand-danger,
-        hover-color: $brand-bg,
-        active-bg: $brand-danger,
-        active-color: $brand-bg
-    }
-};
+$list-color-hash = {
+  '': {
+    bg: $brand-bg,
+    hover-bg: $brand-bg-hover,
+    hover-color: $brand-secondary,
+    active-bg: $brand-bg-hover,
+    active-color: $brand-secondary
+  },
+  'success': {
+    bg: $brand-bg,
+    hover-bg: $brand-success,
+    hover-color: $brand-bg,
+    active-bg: $brand-success,
+    active-color: $brand-bg
+  },
+  'info': {
+    bg: $brand-bg,
+    hover-bg: $brand-info,
+    hover-color: $brand-bg,
+    active-bg: $brand-info,
+    active-color: $brand-bg
+  },
+  'primary': {
+    bg: $brand-bg,
+    hover-bg: $brand-primary,
+    hover-color: $brand-bg,
+    active-bg: $brand-primary,
+    active-color: $brand-bg
+  },
+  'warning': {
+    bg: $brand-bg,
+    hover-bg: $brand-warning,
+    hover-color: $brand-bg,
+    active-bg: $brand-warning,
+    active-color: $brand-bg
+  },
+  'danger': {
+    bg: $brand-bg,
+    hover-bg: $brand-danger,
+    hover-color: $brand-bg,
+    active-bg: $brand-danger,
+    active-color: $brand-bg
+  }
+}

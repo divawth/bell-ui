@@ -1,37 +1,34 @@
-import ItemTpl from './template/Item.html'
+import template from './template/Item.html'
+import { FALSE, RAW_BOOLEAN, RAW_STRING } from '../constant'
 
 export default {
-  template: ItemTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     disableHover: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     active: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
 
+  template,
+
   data() {
     return {
-      nestedIsShow: false
+      nestedIsShow: FALSE
     }
   },
 
   methods: {
-    itemClick(event, hasNested) {
-      if (!hasNested) {
-        this.fire('click');
-        event.stop();
-        return;
-      }
-      this.toggle('nestedIsShow');
-      event.stop();
+    itemClick(hasNested) {
+      this.fire('click.item')
+      this.toggle('nestedIsShow')
     }
   }
-};
+}

@@ -1,51 +1,51 @@
-import { add } from './base';
+import { add } from './base'
 
-let config = {};
+let config = {}
 
-let addMessage = (type, arg) => {
-  let data = {};
-  data.type = type;
+let addMessage = function (type, arg) {
+  let data = {}
+  data.type = type
 
   if (Yox.is.string(arg)) {
-    data.content = arg;
+    data.content = arg
   }
   else {
-    Yox.object.extend(data, arg, config);
+    Yox.object.extend(data, arg, config)
   }
 
-  add(data);
-};
+  add(data)
+}
 
-let updateConfig = (data) => {
+let updateConfig = function (data) {
   if (data.duration) {
-    config.duration = data.duration;
+    config.duration = data.duration
   }
 
   if (data.top) {
-    config.top = data.top;
+    config.top = data.top
   }
-};
+}
 
 Yox.prototype.$Message = {
-  success: (arg) => {
-    addMessage('success', arg);
+  success: function(arg) {
+    addMessage('success', arg)
   },
-  info: (arg) => {
-    addMessage('info', arg);
+  info: function(arg) {
+    addMessage('info', arg)
   },
-  warning: (arg) => {
-    addMessage('warning', arg);
+  warning: function(arg) {
+    addMessage('warning', arg)
   },
-  error: (arg) => {
-    addMessage('error', arg);
+  error: function(arg) {
+    addMessage('error', arg)
   },
-  loading: (arg) => {
-    addMessage('loading', arg);
+  loading: function(arg) {
+    addMessage('loading', arg)
   },
-  config: (options) => {
-    updateConfig(options);
+  config: function (options) {
+    updateConfig(options)
   },
-  destroy: () => {
-    console.log('destroy');
+  destroy: function () {
+    console.log('destroy')
   }
-};
+}

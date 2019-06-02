@@ -1,17 +1,26 @@
-import ListTpl from './template/List.html'
+import template from './template/List.html'
+import { RAW_STRING, RAW_BOOLEAN, FALSE } from '../constant'
 
 export default {
-  template: ListTpl,
   propTypes: {
+    border: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    loading: {
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    size: {
+      type: RAW_STRING
+    },
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
-    },
-    border: {
-      type: 'boolean',
-      value: true
+      type: RAW_STRING
     }
-  }
-};
+  },
+
+  template
+}

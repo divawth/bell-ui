@@ -1,25 +1,19 @@
-import MessageTpl from './template/Message.html'
+import template from './template/Message.html'
 
-let id = 0;
+let id = 0
 
-let createMessage = function (data) {
+const createMessage = function (data) {
 
-  let namespace = 'bell-message-' + id++;
-  let body = document.body;
-  let element = document.createElement('div');
-  element.setAttribute('id', namespace);
-  body.appendChild(element);
+  let namespace = '${prefix}message-' + id++
+  let element = Yox.dom.createElement('div')
+  Yox.dom.prop(element, 'id', namespace)
+  Yox.dom.append(document.body, element)
 
   let instance = new Yox({
-
     el: '#' + namespace,
-
     replace: true,
-
-    template: MessageTpl,
-
+    template,
     data() {
-      let me = this;
       return {
         marginLeft: 0,
         top: 0,
@@ -31,9 +25,11 @@ let createMessage = function (data) {
         center: data.center,
         isShow: false,
         close() {
-          element.remove();
+          if (instance) {
+            instance.destroy()
+          }
           if (Yox.is.func(data.onClose)) {
-            data.onClose();
+            data.onClose()
           }
         }
       }
@@ -41,70 +37,67 @@ let createMessage = function (data) {
 
     methods: {
       fadeIn() {
-        let me = this;
+        let me = this
         me.fadeInFuc = setTimeout(
-          () => {
+          function () {
             me.set({
               isShow: true,
               top: me.top
-            });
-            me.fadeOut();
+            })
+            me.fadeOut()
           },
           me.fadeInTime
-        );
+        )
       },
       fadeOut() {
-        let me = this;
+        let me = this
         me.showTimeFuc = setTimeout(
-          () => {
+          function () {
             me.set({
               isShow: false,
               top: 0
-            });
+            })
 
             me.fadeOutFuc = setTimeout(
-              () => {
-                element.remove();
-                if (Yox.is.func(data.onClose)) {
-                  data.onClose();
-                }
+              function () {
                 if (instance) {
-                  instance.destroy();
+                  instance.destroy()
+                }
+                if (Yox.is.func(data.onClose)) {
+                  data.onClose()
                 }
               },
               me.fadeOutTime
-            );
+            )
           },
           me.showTime
-        );
+        )
       }
     },
 
     afterMount() {
-      let me = this;
-
-      me.fadeInTime = 300;
-      me.fadeOutTime = 300;
-      me.showTime = data.duration || 1500;
-      me.top = data.top || 15;
+      let me = this
+      me.fadeInTime = 300
+      me.fadeOutTime = 300
+      me.showTime = data.duration || 1500
+      me.top = data.top || 15
 
       me.set({
         marginLeft: me.$el.clientWidth
-      });
+      })
 
-      me.fadeIn();
-
+      me.fadeIn()
     },
 
     beforeDestroy() {
-      let me = this;
-      clearTimeout(me.fadeInFuc);
-      clearTimeout(me.showTimeFuc);
-      clearTimeout(me.fadeOutFuc);
+      let me = this
+      clearTimeout(me.fadeInFuc)
+      clearTimeout(me.showTimeFuc)
+      clearTimeout(me.fadeOutFuc)
     }
-  });
-};
+  })
+}
 
-export let add = function (data) {
-  createMessage(data);
+export const add = function (data) {
+  createMessage(data)
 }

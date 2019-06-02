@@ -1,16 +1,13 @@
 {$selector-layout}
-
   ui-row()
   ui-layout()
   flex 1
 
   {$selector-layout}-sider
-
     transition flex .4s
     max-height 100%
 
   {$selector-layout-sider}-trigger
-
     position absolute
     right 0
     left 0
@@ -23,11 +20,9 @@
     z-index $zindex-menu
 
   &{$selector-column}
-
     ui-column()
 
   &{$selector-fluid}
-
     width 100%
 
 {$selector-layout-header}-left
@@ -62,6 +57,5 @@
 
 
 {$selector-layout-fixed}
-
   ui-fullscreen()
   overflow hidden

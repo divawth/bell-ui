@@ -42,6 +42,7 @@
   - [Avatar 头像](view/avatar)
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
+  - [List 列表](view/list)
 
 - [图表](layout)
   - [Circle 进度环](other/circle)

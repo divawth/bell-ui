@@ -198,21 +198,20 @@ export default {
   },
 
   beforeDestroy() {
-    let me = this
     Yox.dom.off(
       document,
       'keydown',
-      me.documentKeydownHandler
+      this.documentKeydownHandler
     )
     Yox.dom.off(
       document,
       'keyup',
-      me.documentKeyupHandler
+      this.documentKeyupHandler
     )
     Yox.dom.off(
       document,
       'keypress',
-      me.documentKeypressHandler
+      this.documentKeypressHandler
     )
   }
 }

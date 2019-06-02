@@ -73,7 +73,11 @@ export default {
       {
         watcher: function () {
           this.nextTick(function () {
-            let scale = elWidth / this.$refs.textStr.clientWidth 
+            let scale = 1
+            if (this.$refs.textStr && this.$refs.textStr.clientWidth) {
+              scale = elWidth / this.$refs.textStr.clientWidth 
+            }
+
             this.set(
               'transformStyle',
               `scale(${scale > 1 ? 1 : scale}) translateX(-50%)`

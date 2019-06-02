@@ -1,13 +1,13 @@
 {$selector-message}
 
-    position fixed
-    top 0
-    left 50%
-    opacity 0
-    z-index $zindex-message
+  position fixed
+  top 0
+  left 50%
+  opacity 0
+  z-index $zindex-message
 
-    user-select none
-    transition all .3s
+  user-select none
+  transition opacity .15s, top .3s
 
-    &.bell-show
-        opacity 1
+  &.bell-show
+    opacity 1

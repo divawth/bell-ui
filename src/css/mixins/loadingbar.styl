@@ -1,11 +1,9 @@
-loading-bar-style(color)
-    {$selector-loading-bar-bg}
+loadingbar-style(color)
+  {$selector-loadingbar-bg}
+    ui-set('background-color', color[ 'bg-color' ])
 
-        ui-set('background-color', color['bg-color'])
-
-ui-loading-bar()
-
-    ui-connect(
-        hash: $loading-bar-brand-hash,
-        each: loading-bar-style
-    )
+ui-loadingbar()
+  ui-connect(
+    hash: $loadingbar-brand-hash,
+    each: loadingbar-style
+  )

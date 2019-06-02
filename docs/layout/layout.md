@@ -38,210 +38,222 @@
 
 > 基础用法
 
-    export default {
       isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo">
-          <Header>
-            <template slot="left">
-              Header Left
-            </template>
-            <template slot="center">
-              Header Center
-            </template>
-            <template slot="right">
-              Header Right
-            </template>
-          </Header>
-          <Content>
-            Content
-          </Content>
-          <Footer>
-            Footer
-          </Footer>
-        </Layout>
-      `,
-    }
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo">
+      <Header>
+        <template slot="left">
+          Header Left
+        </template>
+        <template slot="center">
+          Header Center
+        </template>
+        <template slot="right">
+          Header Right
+        </template>
+      </Header>
+      <Content>
+        Content
+      </Content>
+      <Footer>
+        Footer
+      </Footer>
+    </Layout>
+  `,
+}
+```
 
 > 有侧边栏
 
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo">
-          <Header>
-            Header
-          </Header>
-          <Layout className="layout-demo" hasSider>
-            <Sider>
-              Sider
-            </Sider>
-            <Content>
-              Content
-            </Content>
-          </Layout>
-          <Footer>
-            Footer
-          </Footer>
-        </Layout>
-      `
-    }
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo">
+      <Header>
+        Header
+      </Header>
+      <Layout className="layout-demo" hasSider>
+        <Sider>
+          Sider
+        </Sider>
+        <Content>
+          Content
+        </Content>
+      </Layout>
+      <Footer>
+        Footer
+      </Footer>
+    </Layout>
+  `
+}
+```
 
 > sider 在右边
 
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo">
-          <Header>
-            Header
-          </Header>
-          <Layout className="layout-demo">
-            <Content>
-              Content
-            </Content>
-            <Sider>
-              Sider
-            </Sider>
-          </Layout>
-          <Footer>
-            Footer
-          </Footer>
-        </Layout>
-      `,
-    }
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo">
+      <Header>
+        Header
+      </Header>
+      <Layout className="layout-demo">
+        <Content>
+          Content
+        </Content>
+        <Sider>
+          Sider
+        </Sider>
+      </Layout>
+      <Footer>
+        Footer
+      </Footer>
+    </Layout>
+  `,
+}
+```
 
 > Sider 在最左侧
 
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo">
-          <Sider>Sider</Sider>
-          <Layout className="layout-demo">
-            <Header>Header</Header>
-            <Content>Content</Content>
-            <Footer>Footer</Footer>
-          </Layout>
-        </Layout>
-      `
-    }
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo">
+      <Sider>Sider</Sider>
+      <Layout className="layout-demo">
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
+      </Layout>
+    </Layout>
+  `
+}
+```
 
 > 上中下布局
 
 一般主导航放置于页面的顶端，从左自右依次为：logo、一级导航项、辅助菜单（用户、设置、通知等）。通常将内容放在固定尺寸（例如：1200px）内，整个页面排版稳定，不受用户终端显示器影响；上下级的结构符合用户上下浏览的习惯，也是较为经典的网站导航模式。页面上下切分的方式提高了主工作区域的信息展示效率，但在纵向空间上会有一些牺牲。此外，由于导航栏水平空间的限制，不适合那些一级导航项很多的信息结构。
 
-    
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo-wrapper">
-          <Header>
-            <template slot="left">
-              <div class="layout-logo"></div>
-            </template>
-            <Menu mode="horizontal" theme="dark" active-name="1">
-              <MenuItem name="1">
-                <Icon style="margin-right: 6px;" type="navigate"></Icon>
-                Item 1
-              </MenuItem>
-              <MenuItem name="2">
-                <Icon style="margin-right: 6px;" type="keypad"></Icon>
-                Item 2
-              </MenuItem>
-              <MenuItem name="3">
-                <Icon style="margin-right: 6px;" type="analytics"></Icon>
-                Item 3
-              </MenuItem>
-              <MenuItem name="4">
-                <Icon style="margin-right: 6px;" type="paper"></Icon>
-                Item 4
-              </MenuItem>
-            </Menu>
-          </Header>
-          <Content :style="{padding: '0 50px'}">
-            <Breadcrumb :style="{margin: '20px 0'}">
-              <BreadcrumbItem>Home</BreadcrumbItem>
-              <BreadcrumbItem>Components</BreadcrumbItem>
-              <BreadcrumbItem>Layout</BreadcrumbItem>
-            </Breadcrumb>
-            <Card>
-              <div style="min-height: 200px;">
-                Content
-              </div>
-            </Card>
-          </Content>
-          <Footer class="layout-footer-center">2011-2016 Bell-UI</Footer>
-        </Layout>
-      `,
-    }
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo-wrapper">
+      <Header>
+        <template slot="left">
+          <div class="layout-logo"></div>
+        </template>
+        <Menu mode="horizontal" theme="dark" active-name="1">
+          <MenuItem name="1">
+            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+            Item 1
+          </MenuItem>
+          <MenuItem name="2">
+            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+            Item 2
+          </MenuItem>
+          <MenuItem name="3">
+            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+            Item 3
+          </MenuItem>
+          <MenuItem name="4">
+            <Icon style="margin-right: 6px;" type="paper"></Icon>
+            Item 4
+          </MenuItem>
+        </Menu>
+      </Header>
+      <Content :style="{padding: '0 50px'}">
+        <Breadcrumb :style="{margin: '20px 0'}">
+          <BreadcrumbItem>Home</BreadcrumbItem>
+          <BreadcrumbItem>Components</BreadcrumbItem>
+          <BreadcrumbItem>Layout</BreadcrumbItem>
+        </Breadcrumb>
+        <Card>
+          <div style="min-height: 200px;">
+            Content
+          </div>
+        </Card>
+      </Content>
+      <Footer class="layout-footer-center">2011-2016 Bell-UI</Footer>
+    </Layout>
+  `,
+}
+```
 
 > 顶部-侧边布局-通栏 
 
 同样拥有顶部导航及侧边栏，区别是两边未留边距，多用于应用型的网站
 
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo-wrapper">
-          <Header>
-            <template slot="left">
-              <div class="layout-logo"></div>
-            </template>
-            <Menu mode="horizontal" theme="dark" active-name="1">
-              <MenuItem name="1">
-                <Icon style="margin-right: 6px;" type="navigate"></Icon>
-                Item 1
-              </MenuItem>
-              <MenuItem name="2">
-                <Icon style="margin-right: 6px;" type="keypad"></Icon>
-                Item 2
-              </MenuItem>
-              <MenuItem name="3">
-                <Icon style="margin-right: 6px;" type="analytics"></Icon>
-                Item 3
-              </MenuItem>
-              <MenuItem name="4">
-                <Icon style="margin-right: 6px;" type="paper"></Icon>
-                Item 4
-              </MenuItem>
-            </Menu>
-          </Header>
-          <Layout>
-            <Sider>
-              <Menu mode="inline" theme="dark" active-name="1">
-                <MenuItem name="1">
-                  <Icon style="margin-right: 6px;" type="navigate"></Icon>
-                  Item 1
-                </MenuItem>
-                <MenuItem name="2">
-                  <Icon style="margin-right: 6px;" type="keypad"></Icon>
-                  Item 2
-                </MenuItem>
-                <MenuItem name="3">
-                  <Icon style="margin-right: 6px;" type="analytics"></Icon>
-                  Item 3
-                </MenuItem>
-                <MenuItem name="4">
-                  <Icon style="margin-right: 6px;" type="paper"></Icon>
-                  Item 4
-                </MenuItem>
-              </Menu>
-            </Sider>
-            <Layout style="padding: 0 24px 24px">
-              <Breadcrumb>
-                <BreadcrumbItem>Home</BreadcrumbItem>
-                <BreadcrumbItem>Components</BreadcrumbItem>
-                <BreadcrumbItem>Layout</BreadcrumbItem>
-              </Breadcrumb>
-              <Content style="padding: 24px; min-height: 280px; background: #fff;">
-                Content
-              </Content>
-            </Layout>
-          </Layout>
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo-wrapper">
+      <Header>
+        <template slot="left">
+          <div class="layout-logo"></div>
+        </template>
+        <Menu mode="horizontal" theme="dark" active-name="1">
+          <MenuItem name="1">
+            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+            Item 1
+          </MenuItem>
+          <MenuItem name="2">
+            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+            Item 2
+          </MenuItem>
+          <MenuItem name="3">
+            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+            Item 3
+          </MenuItem>
+          <MenuItem name="4">
+            <Icon style="margin-right: 6px;" type="paper"></Icon>
+            Item 4
+          </MenuItem>
+        </Menu>
+      </Header>
+      <Layout>
+        <Sider>
+          <Menu mode="inline" theme="dark" active-name="1">
+            <MenuItem name="1">
+              <Icon style="margin-right: 6px;" type="navigate"></Icon>
+              Item 1
+            </MenuItem>
+            <MenuItem name="2">
+              <Icon style="margin-right: 6px;" type="keypad"></Icon>
+              Item 2
+            </MenuItem>
+            <MenuItem name="3">
+              <Icon style="margin-right: 6px;" type="analytics"></Icon>
+              Item 3
+            </MenuItem>
+            <MenuItem name="4">
+              <Icon style="margin-right: 6px;" type="paper"></Icon>
+              Item 4
+            </MenuItem>
+          </Menu>
+        </Sider>
+        <Layout style="padding: 0 24px 24px">
+          <Breadcrumb>
+            <BreadcrumbItem>Home</BreadcrumbItem>
+            <BreadcrumbItem>Components</BreadcrumbItem>
+            <BreadcrumbItem>Layout</BreadcrumbItem>
+          </Breadcrumb>
+          <Content style="padding: 24px; min-height: 280px; background: #fff;">
+            Content
+          </Content>
         </Layout>
-      `
-    }
+      </Layout>
+    </Layout>
+  `
+}
+```
 
 > 侧边布局
 
@@ -249,98 +261,100 @@
 
 侧边导航在页面布局上采用的是左右的结构，一般主导航放置于页面的左侧固定位置，辅助菜单放置于工作区顶部。内容根据浏览器终端进行自适应，能提高横向空间的使用率，但是整个页面排版不稳定。侧边导航的模式层级扩展性强，一、二、三级导航项目可以更为顺畅且具关联性的被展示，同时侧边导航可以固定，使得用户在操作和浏览中可以快速的定位和切换当前位置，有很高的操作效率。但这类导航横向页面内容的空间会被牺牲一部份。
 
-    export default {
-      isViewFullBlock: true,
-      template: `
-        <Layout className="layout-demo-wrapper">
-          <Sider model="isCollapsed">
-            <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
-              <MenuItem name="4">
-                {{#if !isCollapsed}}
-                  <Icon style="margin-right: 6px;" type="paper" />
-                  内容管理
-                {{else}}
-                  <Tooltip placement="right" content="内容管理">
-                    <Icon type="paper" size="32" />
-                  </Tooltip>
-                {{/if}}
-              </MenuItem>
-              <Submenu name="1">
-                <template slot="title">
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Layout className="layout-demo-wrapper">
+      <Sider model="isCollapsed">
+        <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
+          <MenuItem name="4">
+            {{#if !isCollapsed}}
+              <Icon style="margin-right: 6px;" type="paper" />
+              内容管理
+            {{else}}
+              <Tooltip placement="right" content="内容管理">
+                <Icon type="paper" size="32" />
+              </Tooltip>
+            {{/if}}
+          </MenuItem>
+          <Submenu name="1">
+            <template slot="title">
+              {{#if !isCollapsed}}
+                <Icon style="margin-right: 6px;" type="paper" />
+                内容管理
+              {{else}}
+                <Icon type="paper" size="32" />
+              {{/if}}
+            </template>
+            <MenuItem name="1-1">文章管理</MenuItem>
+            <MenuItem name="1-2">评论管理</MenuItem>
+            <MenuItem name="1-3">举报管理</MenuItem>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
+              {{#if !isCollapsed}}
+                <Icon style="margin-right: 6px;" type="people" />
+                用户管理
+              {{else}}
+                <Icon type="people" size="32" />
+              {{/if}}
+            </template>
+            <MenuItem name="2-1">新增用户</MenuItem>
+            <Submenu name="2-2">
+              <template slot="title">
+                <Icon style="margin-right: 6px;" type="people" />
+                新增用户
+              </template>
+              <MenuItem name="2-2-1">新增用户2</MenuItem>
+              <MenuItem name="2-2-2">新增用户2</MenuItem>
+            </Submenu>
+          </Submenu>
+          <Submenu name="3">
+              <template slot="title">
                   {{#if !isCollapsed}}
-                    <Icon style="margin-right: 6px;" type="paper" />
-                    内容管理
+                      <Icon style="margin-right: 6px;" type="stats" />
+                      统计分析
                   {{else}}
-                    <Icon type="paper" size="32" />
+                      <Icon type="stats" size="32" />
                   {{/if}}
-                </template>
-                <MenuItem name="1-1">文章管理</MenuItem>
-                <MenuItem name="1-2">评论管理</MenuItem>
-                <MenuItem name="1-3">举报管理</MenuItem>
-              </Submenu>
-              <Submenu name="2">
-                <template slot="title">
-                  {{#if !isCollapsed}}
-                    <Icon style="margin-right: 6px;" type="people" />
-                    用户管理
-                  {{else}}
-                    <Icon type="people" size="32" />
-                  {{/if}}
-                </template>
-                <MenuItem name="2-1">新增用户</MenuItem>
-                <Submenu name="2-2">
-                  <template slot="title">
-                    <Icon style="margin-right: 6px;" type="people" />
-                    新增用户
-                  </template>
-                  <MenuItem name="2-2-1">新增用户2</MenuItem>
-                  <MenuItem name="2-2-2">新增用户2</MenuItem>
-                </Submenu>
-              </Submenu>
-              <Submenu name="3">
-                  <template slot="title">
-                      {{#if !isCollapsed}}
-                          <Icon style="margin-right: 6px;" type="stats" />
-                          统计分析
-                      {{else}}
-                          <Icon type="stats" size="32" />
-                      {{/if}}
-                  </template>
-                  <MenuGroup title="使用">
-                      <MenuItem name="3-1">新增和启动</MenuItem>
-                      <MenuItem name="3-2">活跃分析</MenuItem>
-                      <MenuItem name="3-3">时段分析</MenuItem>
-                  </MenuGroup>
-                  <MenuGroup title="留存">
-                      <MenuItem name="3-4">用户留存</MenuItem>
-                      <MenuItem name="3-5">流失用户</MenuItem>
-                  </MenuGroup>
-              </Submenu>
-            </Menu>
-          </Sider>
-          <Layout>
-            <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
-            <Content :style="{padding: '0 16px 16px'}">
-              <Breadcrumb :style="{margin: '16px 0'}">
-                <BreadcrumbItem>Home</BreadcrumbItem>
-                <BreadcrumbItem>Components</BreadcrumbItem>
-                <BreadcrumbItem>Layout</BreadcrumbItem>
-              </Breadcrumb>
-              <Card>
-                <div style="height: 300px">Content-{{isCollapsed}}</div>
-              </Card>
-            </Content>
-          </Layout>
-        </Layout>
-      `,
-      data: function () {
-        return {
-          isCollapsed: false
-        }
-      }
+              </template>
+              <MenuGroup title="使用">
+                  <MenuItem name="3-1">新增和启动</MenuItem>
+                  <MenuItem name="3-2">活跃分析</MenuItem>
+                  <MenuItem name="3-3">时段分析</MenuItem>
+              </MenuGroup>
+              <MenuGroup title="留存">
+                  <MenuItem name="3-4">用户留存</MenuItem>
+                  <MenuItem name="3-5">流失用户</MenuItem>
+              </MenuGroup>
+          </Submenu>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
+        <Content :style="{padding: '0 16px 16px'}">
+          <Breadcrumb :style="{margin: '16px 0'}">
+            <BreadcrumbItem>Home</BreadcrumbItem>
+            <BreadcrumbItem>Components</BreadcrumbItem>
+            <BreadcrumbItem>Layout</BreadcrumbItem>
+          </Breadcrumb>
+          <Card>
+            <div style="height: 300px">Content-{{isCollapsed}}</div>
+          </Card>
+        </Content>
+      </Layout>
+    </Layout>
+  `,
+  data: function () {
+    return {
+      isCollapsed: false
     }
+  }
+}
+```
 
-> Header Slot
+> Header Slots
 
 参数 | 说明
 ---|---

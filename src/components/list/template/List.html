@@ -1,14 +1,28 @@
-<ul class="bell-list
+<ul 
+class="${prefix}list
+  {{#if border}} ${prefix}list-border{{/if}}
+  {{#if size}} ${prefix}list-{{size}}{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if border}} bell-list-border{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
   {{#if hasSlot('subHeader')}}
-    <div class="bell-list-header">
-      <slot name="subHeader" />
-    </div>
+  <div class="${prefix}list-header">
+    <slot name="subHeader" />
+  </div>
   {{/if}}
 
-  {{#if hasSlot('children')}}
-    <slot name="children" />
+  {{#if loading}}
+  <Spinner size="large" fix></Spinner>
   {{/if}}
+
+  <slot name="children">
+    <div class="${prefix}list-empty">
+      <slot name="empty"> 
+        <p class="${prefix}list-empty-description">
+          暂无数据
+        </p>
+      </slot>
+    </div>
+  </slot>
 </ul>

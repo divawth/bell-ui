@@ -6254,7 +6254,8 @@
      * @param name
      */
     function hasSlot (name) {
-        return isDef(this.get(SLOT_DATA_PREFIX + name));
+        var value = this.get(SLOT_DATA_PREFIX + name)
+        return value && value.length > 0;
     }
   
     var globalDirectives = {}, globalTransitions = {}, globalComponents = {}, globalPartials = {}, globalFilters = {}, compileCache = {}, LOADER_QUEUE = '$queue', TEMPLATE_COMPUTED = '$' + RAW_TEMPLATE, selectorPattern = /^[#.][-\w+]+$/;

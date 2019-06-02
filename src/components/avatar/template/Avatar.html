@@ -10,11 +10,11 @@ style="color: {{color}};
 >
   
   {{#if src}}
-    <img className="${prefix}avatar-image"
-      {{#if srcset}} srcset="{{srcset}}"{{/if}} 
-      ondragstart="return false" 
-      src="{{src}}" 
-    />
+  <img className="${prefix}avatar-image"
+    {{#if srcset}} srcset="{{srcset}}"{{/if}} 
+    ondragstart="return false" 
+    src="{{src}}" 
+  />
   {{else if icon}}
     <Icon type="{{iconType}}" className="${prefix}avatar-icon" name="{{icon}}" />
   {{else if text}}

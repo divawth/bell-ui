@@ -1,63 +1,59 @@
 {$selector-list}
+  ui-list()
+  position relative
+  list-style none
+  user-select none
+  padding 0
+  margin 0
+  color $brand-secondary
+  overflow auto
 
-    ui-list()
+  &{$selector-list}-border
+    border $list-border
+    border-radius $list-border-radius
+    
+    {$selector-list-item}
+      border-bottom $list-border
 
-    list-style none
-    user-select none
+      &:last-child
+        border-bottom none
+    
+    {$selector-list}-header
+      background-color #f8f8f8
 
-    ui-set('padding', 0, true)
-    ui-set('margin', 0, true)
+  {$selector-list}-empty-description
+    text-align center
 
-{$selector-list}-border
+  {$selector-list}-header
+    font-size 14px
+    line-height 1.5
+    padding 10px
 
-    box-shadow $selector-list-box-shadow
+  {$selector-list-item}-content
+    position relative
+    border-radius $list-border-radius
+  
+  {$selector-list-item}-content-hover
+    cursor $cursor-clickable
 
-{$selector-list}-header
+  {$selector-list-item}-footer
+    position absolute
+    top 50%
+    transform translateY(-50%)
+    right 0px
 
-    ui-set('font-size', $size-base['font'])
-    ui-set('line-height', $size-base['line-height'])
-
-{$selector-list-item}-nested
-
+  {$selector-list-item}-nested
     display none
     padding 0 10px
+    
+    &{$selector-prefix}-show
+      display block
 
-    &.bell-show
+  {$selector-list-item}-header
+    display inline-block
+    vertical-align middle
 
-        display block
-
-{$selector-list-item}
-
-    {$selector-list-item}-header
-
-        display inline-block
-        vertical-align middle
-
-    {$selector-list-item}-footer
-
-        top 50%
-        transform translateY(-50%)
-
-    {$selector-list-item}-text
-
-        ui-ellipsis()
-        display inline-block
-        vertical-align middle
-
-{$selector-list-item}-has-header
-
-    {$selector-list-item}-text
-
-        position absolute
-        left $selector-list-header-size
-        right 0
-        top 50%
-        transform translateY(-50%)
-
-{$selector-list-item}-has-footer
-
-    {$selector-list-item}-text
-
-        width 100%
-        padding-right $selector-list-header-size
-        right $selector-list-header-size
+  {$selector-list-item}-text
+    ui-ellipsis()
+    display inline-block
+    vertical-align middle

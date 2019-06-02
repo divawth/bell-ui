@@ -46,11 +46,11 @@ export default {
       Yox.dom.addClass(me.$el, 'bell-hide')
       setTimeout(
         function () {
-          me.$el.remove()
+          me.$el && me.$el.remove()
         },
         500
       )
-      me.fire('close')
+      me.fire('close.alert')
     }
   }
 }

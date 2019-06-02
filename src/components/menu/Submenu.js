@@ -44,11 +44,11 @@ export default {
       element.style.height = element.clientHeight + 'px'
 
       me.closeTimer = setTimeout(
-        () => {
+        function () {
           element.style.height = 0
           element.style.overflow = 'hidden'
           me.initTimer = setTimeout(
-            () => {
+            function () {
               element.style.height = ''
               element.style.overflow = ''
               me.set('isOpen', FALSE)
@@ -63,16 +63,16 @@ export default {
       let me = this
       me.set('isOpen', TRUE)
 
-      me.nextTick(() => {
+      me.nextTick(function () {
         let element = me.$refs.menu.$el
         let height = element.clientHeight
         element.style.height = 0
 
         me.openTimer = setTimeout(
-          () => {
+          function () {
             element.style.height = height + 'px'
             me.initTimer = setTimeout(
-              () => {
+              function () {
                 element.style.height = ''
               },
               100

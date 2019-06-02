@@ -1,36 +1,40 @@
-<li class="bell-list-item
+<li 
+class="${prefix}list-item
   {{#if className}} {{className}}{{/if}}
-  {{#if hasSlot('header')}} bell-list-item-has-header{{/if}}
-  {{#if hasSlot('footer')}} bell-list-item-has-footer{{/if}}
-"{{#if style}} style="{{style}}"{{/if}} on-click="itemClick($event, hasSlot('nested'))">
+  {{#if hasSlot('header')}} ${prefix}list-item-has-header{{/if}}
+  {{#if hasSlot('footer')}} ${prefix}list-item-has-footer{{/if}}
+"
+on-click="itemClick(hasSlot('nested'))"
+{{#if style}} style="{{style}}"{{/if}}
+>
 
-  <div class="bell-list-item-content
-    {{#if !disableHover}} bell-list-item-content-hover{{/if}}
-    {{#if active}} bell-active{{/if}}
+  <div class="${prefix}list-item-content
+    {{#if !disableHover}} ${prefix}list-item-content-hover{{/if}}
+    {{#if active}} ${prefix}active{{/if}}
   ">
     {{#if hasSlot('header')}}
-      <div class="bell-list-item-header">
-        <slot name="header" />
-      </div>
+    <div class="${prefix}list-item-header">
+      <slot name="header" />
+    </div>
     {{/if}}
 
     {{#if hasSlot('footer')}}
-      <div class="bell-list-item-footer">
-        <slot name="footer" />
-      </div>
+    <div class="${prefix}list-item-footer">
+      <slot name="footer" />
+    </div>
     {{/if}}
 
     {{#if hasSlot('children')}}
-      <div class="bell-list-item-text">
-        <slot name="children" />
-      </div>
+    <div class="${prefix}list-item-text">
+      <slot name="children" />
+    </div>
     {{/if}}
   </div>
 
   {{#if hasSlot('nested')}}
-      <div class="bell-list-item-nested{{#if nestedIsShow}} bell-show{{/if}}">
-          <slot name="nested" />
-      </div>
+  <div class="${prefix}list-item-nested{{#if nestedIsShow}} ${prefix}show{{/if}}">
+    <slot name="nested" />
+  </div>
   {{/if}}
 
 </li>

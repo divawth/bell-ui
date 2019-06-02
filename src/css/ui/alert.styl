@@ -1,7 +1,8 @@
 {$selector-alert}
 
   user-select none
-  position relative
+  display flex
+  align-items center
   transition opacity .3s
 
   border 1px solid
@@ -22,8 +23,7 @@
     opacity 0
 
   {$selector-alert}-wrapper
-    display inline-block
-  
+    flex 1
 
   &{$selector-alert}-center
     text-align center
@@ -54,14 +54,9 @@
 {$selector-alert}-close
 
   text-align center
-  position absolute
-  right 0
-  top 0
   cursor pointer
   height 100%
-  display flex
-  align-items center
-  padding $alert-close-padding
+  padding-left $alert-close-padding
   font-size $alert-close-size
 
   > {$selector-icon}

@@ -1,50 +1,29 @@
 list-size(size)
+  {$selector-list-item}-content
+    ui-set('padding', size[ 'item-padding' ])
 
-    {$selector-list-item}-content
-
-        ui-set('position', relative)
-        ui-set('padding', size['item-padding'])
-        ui-set('border-radius', size['border-radius'])
-
-    {$selector-list}-header
-
-        ui-set('padding', size['item-padding'])
-
-    {$selector-list-item}-footer
-
-        ui-set('position', absolute)
-        ui-set('right', size['footer-right'])
+  {$selector-list-item}-header
+    ui-set('margin-right', size[ 'header-margin-right' ])
 
 list-color(color)
+  {$selector-list-item}-content
+    ui-set('background-color', color[ 'bg' ])
 
-    color $brand-secondary
+    {$selector-active}
+      ui-set('background-color', color[ 'active-bg' ])
+      ui-set('color', color[ 'active-color' ])
 
-    {$selector-list-item}-content
-
-        ui-set('background-color', color['bg'])
-
-        {$selector-active}
-
-            ui-set('background-color', color['active-bg'])
-            ui-set('color', color['active-color'])
-
-    {$selector-list-item}-content-hover
-
-        ui-set('cursor', $cursor-clickable)
-
-        {$selector-hover}
-
-            ui-set('background-color', color['hover-bg'])
-            ui-set('color', color['hover-color'])
+  {$selector-list-item}-content-hover
+    {$selector-hover}
+      ui-set('background-color', color[ 'hover-bg' ])
+      ui-set('color', color[ 'hover-color' ])
 
 ui-list()
-
-    ui-variant(
-        hash: $selector-list-hash,
-        each: list-size
-    )
-
-    ui-variant(
-        hash: $selector-color-hash,
-        each: list-color
-    )
+  ui-connect(
+    hash: $list-size-hash,
+    each: list-size
+  )
+  ui-connect(
+    hash: $list-color-hash,
+    each: list-color
+  )
