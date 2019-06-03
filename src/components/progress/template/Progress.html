@@ -1,16 +1,17 @@
-<div class="bell-progress
-  {{#if className}} {{className}}{{/if}}
+<div 
+class="${prefix}progress
   {{#if type}} {{type}}{{/if}}
   {{#if active}} active{{/if}}
-  {{#if vertical}} bell-progress-vertical{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  <div class="bell-progress-outer">
-    <div class="bell-progress-inner"
+  {{#if vertical}} ${prefix}progress-vertical{{/if}}
+  {{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <div class="${prefix}progress-outer">
+    <div class="${prefix}progress-inner"
       style="{{#if vertical}} width: {{strokeWidth}}px;{{/if}}
     ">
-      <div class="bell-progress-bg"
-        style="
+      <div class="${prefix}progress-bg" style="
         {{#if !vertical}}
           width: {{percent}}%;
           height: {{strokeWidth}}px;
@@ -18,20 +19,15 @@
           height: {{percent}}%;
           width: {{strokeWidth}}px;
         {{/if}}
-        "
-      >
-      </div>
+      "></div>
     </div>
   </div>
 
   {{#if !hideInfo}}
-  <span class="bell-progress-inner-text">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{else}}
-      {{percent}}%
-    {{/if}}
-  </span>
+    <span class="${prefix}progress-inner-text">
+      <slot name="children">
+        {{percent}}%
+      </slot>
+    </span>
   {{/if}}
-
 </div>

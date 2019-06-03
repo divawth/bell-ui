@@ -1,44 +1,46 @@
-import RateTpl from './template/Rate.html'
+import template from './template/Rate.html'
+import { RAW_STRING, RAW_BOOLEAN, FALSE, RAW_NUMERIC, RAW_ARRAY } from '../constant'
 
 export default {
-  template: RateTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     count: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 5
     },
     value: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     half: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN
     },
     readOnly: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     showTexts: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     texts: {
-      type: 'array'
-    },
-    textColor: {
-      type: 'string',
-      value: '#1F2D3D'
+      type: RAW_ARRAY
     },
     type: {
-      type: 'string'
+      type: RAW_STRING,
+      value: 'warning'
+    },
+    icon: {
+      type: RAW_STRING,
+      value: 'star'
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+
+  template,
 
   data() {
     return {
@@ -48,83 +50,66 @@ export default {
 
   computed: {
     activeValue() {
-      let hoverValue = this.get('hoverValue');
-      return hoverValue < 0 ? this.get('value') : hoverValue;
+      return this.get('hoverValue') < 0 ? this.get('value') : this.get('hoverValue')
     }
   },
 
   filters: {
-    createRateList() {
-      let me = this;
-      let list = new Array(me.get('count'));
-      let texts = me.get('texts');
-      if (texts && texts.length) {
-        Yox.array.each(
-          list,
-          (item, index) => {
-            item.push({
-              text: texts[index] ? texts[index] : texts[texts.length]
-            });
-          }
-        );
-      }
-      return list;
+    getValue(index) {
+      let texts = this.get('texts')
+      return texts && texts[ index - 1 ] 
     }
   },
 
   methods: {
     handleMove(event, index) {
-      let me = this;
-      index += 1;
-
-      if (me.get('readOnly')) {
-        return;
+      if (this.get('readOnly')) {
+        return
       }
-      event = event.originalEvent;
-      let isHalf = event && event.target.getAttribute('type') == 'half';
+
+      event = event.originalEvent.originalEvent
+      let isHalf = event && event.target.getAttribute('data-type') == 'half'
 
       if (isHalf) {
-        index -= 0.5;
+        index -= 0.5
       }
 
-      me.set({
+      this.set({
         hoverValue: index
-      });
+      })
     },
 
     handleLeave() {
-      let me = this;
-      if (me.get('readOnly')) {
-        return;
+      if (this.get('readOnly')) {
+        return
       }
 
-      me.set({
-        hoverValue: me.get('value') >= 0 ? me.get('value') : -1
-      });
+      this.set({
+        hoverValue: this.get('value') >= 0 ? this.get('value') : -1
+      })
     },
 
     handleClick(event, index) {
-      let me = this;
-      if (me.get('readOnly')) {
-        return;
+      if (this.get('readOnly')) {
+        return
       }
 
-      index += 1;
-      event = event.originalEvent;
+      event = event.originalEvent.originalEvent
 
-      let isHalf = event && event.target.getAttribute('type') == 'half';
+      let isHalf = event && event.target.getAttribute('data-type') == 'half'
       if (isHalf) {
-        index -= 0.5;
+        index -= 0.5
       }
-      me.set({
+
+      this.set({
         value: index
-      });
-      me.fire(
+      })
+      this.fire(
         'change',
         {
           value: index
         }
-      );
+      )
     }
   }
-};
+}

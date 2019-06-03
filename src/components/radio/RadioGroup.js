@@ -1,88 +1,58 @@
-import RadioGroupTpl from './template/RadioGroup.html'
+import template from './template/RadioGroup.html'
+import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
 
 export default {
-
-  template: RadioGroupTpl,
-
+  name: '${prefix}radiogroup',
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     },
     name: {
-      type: 'string'
+      type: RAW_STRING
     },
     value: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     disabled: {
-      type: ['numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     vertical: {
-      type: ['numeric', 'boolean']
+      type: RAW_BOOLEAN
     },
     button: {
-      type: ['numeric', 'boolean']
+      type: RAW_BOOLEAN
     }
   },
 
+  template,
+
   events: {
-    radioValueChange(event, data) {
-      let me = this;
-      me.set({
+    radioValueChange(_, data) {
+      this.set({
         value: data.value
-      });
-
-      me.fire(
-        'change',
-        {
-          value: data.value
-        }
-      );
-
-      me.fire(
+      })
+      this.fire(
         'updateRadioValue',
         {
           value: data.value
         },
-        true
-      );
-    }
-  },
-  afterMount() {
-    let me = this;
-    me.fire(
-      'updateRadioName',
-      {
-        name: me.get('name')
-      },
-      true
-    );
-    
-    me.fire(
-      'updateRadioValue',
-      {
-        value: me.get('value')
-      },
-      true
-    );
-
-    if (me.get('disabled')) {
-      me.fire(
-        'updateRadioDisabled',
+        TRUE
+      )
+      this.fire(
+        'change.radiogroup',
         {
-          disabled: me.get('disabled') ? true : false
-        },
-        true
-      );
+          value: data.value
+        }
+      )
     }
   }
-};
+}

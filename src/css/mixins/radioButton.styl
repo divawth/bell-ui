@@ -1,44 +1,35 @@
 radio-button-group-style(style)
+  {$selector-radio}
+    ui-set('background-color', style[ 'bg-color' ])
 
-    {$selector-radio}
+    {$selector-radio}-label
+      ui-set('color', style[ 'color' ])
 
-        ui-set('background-color', style['bg-color'])
+    &{$selector-hover}
+      {$selector-radio}-label
+        ui-set('color', style[ 'color-hover' ])
 
-        {$selector-radio}-label
+    &{$selector-active}
+      ui-set('border-color', style[ 'bg-color-hover' ])
 
-            ui-set('color', style['color'])
-
-        &{$selector-hover}
-
-            {$selector-radio}-label
-
-                ui-set('color', style['color-hover'])
-
-        &{$selector-active}
-
-            ui-set('background-color', style['bg-color-hover'])
-
-            {$selector-radio}-label
-
-                ui-set('color', style['color-active'])
-
+      &:after
+        ui-set('background-color', style[ 'bg-color-hover' ])
 
 radio-button-group-size(size)
+  ui-set('font-size', size[ 'font' ])
 
-    ui-set('font-size', size['font'])
-
-    {$selector-radio}
-
-        ui-set('padding', size['padding'])
+  {$selector-radio}
+    ui-set('padding', size[ 'padding' ])
+    ui-set('height', size[ 'height' ])
+    ui-set('line-height', size[ 'height' ])
 
 ui-radio-button-group()
+  ui-connect(
+    hash: $radio-button-brand-hash,
+    each: radio-button-group-style
+  )
 
-    ui-connect(
-        hash: $radio-button-brand-hash,
-        each: radio-button-group-style
-    )
-
-    ui-connect(
-        hash: $radio-button-size-hash,
-        each: radio-button-group-size
-    )
+  ui-connect(
+    hash: $radio-button-size-hash,
+    each: radio-button-group-size
+  )

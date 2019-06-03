@@ -1,81 +1,68 @@
 {$selector-rate}
+  display inline-block
+  cursor pointer
+  font-size $selector-rate-font-size
+  ui-rate()
+  
+  line-height $selector-rate-height
+  height $selector-rate-height
+  color $rate-color
 
+  {$selector-rate-star-full}
+    position relative
+    transition color .3s, font-size .3s
     display inline-block
-    cursor pointer
-    font-size $selector-rate-font-size
-    ui-rate()
+    width $selector-rate-star-box-size
+    height $selector-rate-star-box-size
+    line-height $selector-rate-star-box-size
+    vertical-align middle
+    color $rate-color
+
+    {$selector-hover}
+      font-size $selector-rate-hover-font-size
+
+      {$selector-rate-star-content}
+        width $selector-rate-hover-font-size / 2 - 1
+
+    &:before
+      cursor pointer
+
+    + {$selector-rate-star-full}
+      margin-left 0
+
+  {$selector-rate-star-content}
+    position absolute
+    left 0
+    top 0
+    height 100%
+    overflow hidden
+    line-height $selector-rate-star-box-size
+    ui-set('width', $selector-rate-font-size / 2 - 1)
+
+    &::before
+      opacity 0
+      cursor pointer
+      transition opacity .3s
+
+    {$selector-active}
+      &:before
+        opacity 1
+
+  {$selector-rate-text}
+    margin-left $selector-rate-margin-gap
+    font-size $selector-rate-text-font-size
+    color $rate-text-color
+
+  &{$selector-rate}-readonly
+    cursor default
 
     {$selector-rate-star-full}
+      {$selector-hover}
+        font-size $selector-rate-font-size
 
-        position relative
-        transition color .3s, font-size .3s
-        display inline-block
-        width $selector-rate-star-box-size
-        height $selector-rate-star-box-size
-        line-height $selector-rate-star-box-size
-        vertical-align middle
-
-        {$selector-hover}
-
-            font-size $selector-rate-hover-font-size
-
-            {$selector-rate-star-content}
-
-                ui-set('width', $selector-rate-hover-font-size / 2 - 1)
-
-        &::before
-
-            cursor pointer
-            content "\F4B3"
-
-        + {$selector-rate-star-full}
-
-            margin-left 0
-
-    {$selector-rate-star-content}
-
-        position absolute
-        left 0
-        top 0
-        height 100%
-        overflow hidden
-        line-height $selector-rate-star-box-size
-        ui-set('width', $selector-rate-font-size / 2 - 1)
-
-        &::before
-
-            opacity 0
-            cursor pointer
-            content "\F4B3"
-            transition opacity .3s
-
-        {$selector-active}
-
-            &::before
-
-                opacity 1
-
-    {$selector-rate-text}
-
-        margin-left $selector-rate-margin-gap
-        font-size $selector-rate-text-font-size
-
-    &{$selector-rate}-readonly
-
+      &::before
         cursor default
 
-        {$selector-rate-star-full}
-
-            {$selector-hover}
-
-                font-size $selector-rate-font-size
-
-            &::before
-
-                cursor default
-
-        {$selector-rate-star-content}
-
-            &::before
-
-                cursor default
+    {$selector-rate-star-content}
+      &::before
+        cursor default

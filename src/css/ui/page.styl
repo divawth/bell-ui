@@ -1,6 +1,5 @@
 {$selector-page}
   user-select none
-
   ui-page()
 
   {$selector-page}-list
@@ -9,37 +8,38 @@
     margin 0
     display inline-block
 
-  {$selector-page}-item
+  {$selector-page-item}
     display inline-block
     vertical-align middle
     list-style none
     text-align center
     cursor pointer
     border-radius $radius-base
-    border 1px solid $brand-border
+    border $page-item-border
+    font-size 12px
+    margin-right 4px
     transition all .2s ease-in-out
 
     color $page-item-color
 
-    &.bell-active,
-    &:hover
+    &{$selector-prefix}-active,
+    &{$selector-hover}
       color $page-item-hover-color
-      border-color $page-item-hover-border-color
+      border-color $page-item-hover-color
 
-
-    &.bell-disabled
-
+    &{$selector-prefix}-disabled
       cursor not-allowed
-      ui-set('color', $brand-border, true)
+      color $page-item-disabled-color
       border-color $brand-border
 
       &{$selector-hover}
-
-        color $brand-border
+        color $page-item-disabled-color
         border-color $brand-border
 
     &{$selector-page-item}-next,
     &{$selector-page-item}-prev
+      border none
+
       &:after
         content "\2022\2022\2022"
         display block
@@ -49,7 +49,6 @@
         font-size 12px
 
       {$selector-icon}
-
         display none
 
       &{$selector-hover}
@@ -61,58 +60,58 @@
           margin-left 0
 
   {$selector-page}-select
-
     display inline-block
-    width $page-select-width
-    margin-right $page-select-margin-right
+    width $page-item-width
+    margin-right $page-item-margin
     vertical-align middle
 
   {$selector-page}-elevator
-
     display inline-block
+    margin-left 10px
 
-    {$selector-page}-input
-
-      width $page-input-width
+    {$selector-page}-input    
+      vertical-align middle
+      width $page-item-width
       display inline-block
-      margin $page-input-margin
+      margin 0 $page-item-margin
+
+      {$selector-input}
+        padding 0 10px
 
   {$selector-page}-total
-
     font-size 14px
-    margin-right $page-total-margin-right
-
+    margin-right $page-item-margin
 
   {$selector-page}-simple
-
     display inline-block
 
     {$selector-page}-input
-
       width $page-input-width
       display inline-block
-      margin $page-input-margin
+      margin 0 $page-item-margin
 
-    {$selector-page}-item
+      {$selector-input}
+        padding 0 10px
 
+    {$selector-page-item}
       border none
       color $page-item-color
       padding $page-simple-item-padding
 
-      &.bell-active,
-      &:hover
+      &{$selector-prefix}-active,
+      &{$selector-hover}
 
         color $page-item-color
         border none
 
 {$selector-page}-tiny
   {$selector-page}-list
-    {$selector-page}-item
+    {$selector-page-item}
 
       border none
       color $page-item-color
 
-      &.bell-active,
-      &:hover
+      &{$selector-prefix}-active,
+      &{$selector-hover}
         color $page-item-hover-color
         border none

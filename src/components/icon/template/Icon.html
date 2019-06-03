@@ -9,5 +9,7 @@ style="font-size: {{size}}px;
   {{#if style}} {{style}}{{/if}}
 "
 on-click="click.icon"
+on-mousemove="mousemove.icon"
 >
+  <slot name="children" />
 </i>

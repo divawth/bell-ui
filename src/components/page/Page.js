@@ -76,7 +76,8 @@ export default {
     return {
       pageList: getPageList(),
       count: 0,
-      currentPage: 1
+      currentPage: 1,
+      elevatorPage: ''
     }
   },
 
@@ -91,7 +92,7 @@ export default {
   watchers: {
     current(value) {
       this.fire(
-        'change',
+        'change.page',
         {
           value: value
         }
@@ -99,13 +100,21 @@ export default {
     }
   },
 
-  methods: {
+  methods: {  
+
+    elevator() {
+      let page = this.get('elevatorPage')
+      if (Yox.is.numeric(page)) {
+        this.changePage(+page)
+        return 
+      } 
+    },
 
     pageSizeChange(event, data) {
 
       this.updateCount()
       this.fire(
-        'pageSizeChange',
+        'pageSizeChange.page',
         {
           value: data.value
         }

@@ -1,13 +1,12 @@
-<div class="{{#if button}}bell-radio-button{{else}}bell-radio-group{{/if}}
-  {{#if type && button}} bell-radio-button-{{type}}{{else if type}} bell-radio-group-{{type}}{{/if}}
-  {{#if size && button}} bell-radio-button-{{size}}{{/if}}
-  {{#if disabled && button}} bell-radio-button-disabled{{else if disabled}} bell-radio-group-disabled{{/if}}
-  {{#if vertical}} bell-radio-vertical{{/if}}
+<div 
+class="{{#if button}}${prefix}radio-button{{else}}${prefix}radio-group{{/if}}
+  {{#if type && button}} ${prefix}radio-button-{{type}}{{else if type}} ${prefix}radio-group-{{type}}{{/if}}
+  {{#if size && button}} ${prefix}radio-button-{{size}}{{/if}}
+  {{#if disabled && button}} ${prefix}radio-button-disabled{{else if disabled}} ${prefix}radio-group-disabled{{/if}}
+  {{#if vertical}} ${prefix}radio-vertical{{/if}}
   {{#if className}} {{className}}{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{/if}}
-
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <slot name="children" />
 </div>

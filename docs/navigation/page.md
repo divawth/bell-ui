@@ -2,6 +2,7 @@
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <Page total="100" current="{{8}}" ></Page>
   `
@@ -12,6 +13,7 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <div>
       <Page total="100" size="small"></Page>
@@ -28,6 +30,7 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <div>
       <Page total="100" showTotal="{{true}}"></Page>
@@ -40,9 +43,10 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <div>
-      <Page size="small" total="100" showSizer="{{true}}" pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
+      <Page total="100" showSizer pageSize="{{20}}" pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
     </div>
   `,
   data: function () {
@@ -62,6 +66,7 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <div>
       <Page total="100" showElevator></Page>
@@ -74,8 +79,9 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
-    <div>
+    <div style="margin-top: 150px;">
       <Page size="small" total="100" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
     </div>
   `,
@@ -91,6 +97,7 @@ export default {
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
     <Page total="100" simple></Page>
   `
@@ -99,7 +106,7 @@ export default {
 
 #### API
 
-> Page Props
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -111,10 +118,9 @@ showSizer | 显示的每页数量选框 | boolean | - | false
 showElevator | 显示快速跳转 | boolean | - | false
 size | 大小 | string | small, tiny, null | null
 simple | 是否启用简洁版本 | boolean | - | false
-className | 样式类 | string | - | -
 placement | 弹窗的展开方向 | string | bottom 和 top | -
 
-> Page Events
+> Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---

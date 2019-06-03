@@ -1,70 +1,71 @@
-import RadioTpl from './template/Radio.html'
+import template from './template/Radio.html'
+import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, FALSE } from '../constant'
+import { findComponentUpward } from '../util'
 
 export default {
-  template: RadioTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     label: {
-      type: 'string'
+      type: RAW_STRING
     },
     value: {
-      type: ['numeric', 'boolean', 'string']
+      type: [ RAW_NUMERIC, RAW_BOOLEAN, RAW_STRING ]
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     checked: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
 
   data() {
-    let me = this;
     return {
-      isChecked: me.get('checked'),
+      isChecked: FALSE,
       name: '',
-      isDisabled: me.get('disabled'),
+      isDisabled: this.get('disabled')
     }
   },
 
   events: {
-    updateRadioName(event, data) {
-      this.set({
-        name: data.name
-      });
-    },
-    updateRadioValue(event, data) {
+    updateRadioValue(_, data) {
       this.set({
         isChecked: data.value == this.get('value')
-      });
-    },
-    updateRadioDisabled(event, data) {
-      this.set({
-        isDisabled: data.disabled
-      });
+      })
     }
   },
 
   methods: {
     click() {
-      let me = this;
+      let me = this
       if (me.get('isDisabled')) {
-        return;
+        return
       }
-
       me.fire(
         'radioValueChange',
         {
           value: me.get('value')
         }
-      );
-      return;
+      )
+      return
+    }
+  },
+
+  afterMount() {
+    let radiogroup = findComponentUpward(this, '${prefix}radiogroup')
+    if (radiogroup) {
+      this.set({
+        name: radiogroup.get('name'),
+        isDisabled: this.get('disabled') || radiogroup.get('disabled'),
+        isChecked: this.get('checked') || radiogroup.get('value') == this.get('value')
+      })
     }
   }
-};
+  
+}

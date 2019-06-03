@@ -1,36 +1,37 @@
-import ProgressTpl from './template/Progress.html'
+import template from './template/Progress.html'
+import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, FALSE } from '../constant'
 
 export default {
-  template: ProgressTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     percent: {
-      type: 'number',
+      type: RAW_NUMERIC,
       value: 0
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     strokeWidth: {
-      type: 'string',
+      type: RAW_STRING,
       value: 10
     },
     hideInfo: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     vertical: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     active: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
-  }
-};
+  },
+  template
+}

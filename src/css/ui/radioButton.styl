@@ -1,40 +1,44 @@
 {$selector-radio-button}
+  display inline-block
+  user-select none
 
+  ui-radio-button-group()
+
+  +{$selector-radio-button}
+    margin-left $radio-button-gap
+
+  {$selector-radio}-wrapper
+    display none
+
+  {$selector-radio}
+    margin-right 0
     display inline-block
-    user-select none
+    border 1px solid $brand-border
+    transition border-color .15s, color .15s, background-color .15s
+    cursor $cursor-clickable  
+    position relative
 
-    ui-radio-button-group()
+    &:after
+      content ' '
+      position absolute
+      height 100%
+      width 1px
+      right 0
+      top 0
 
-    +{$selector-radio-button}
+    +{$selector-radio}
+      margin-left -1px
 
-        margin-left $radio-button-gap
+  {$selector-radio}:first-child
+    border-top-left-radius $radius-base
+    border-bottom-left-radius $radius-base
 
-    {$selector-radio}-wrapper
+  {$selector-radio}:last-child
+    border-top-right-radius $radius-base
+    border-bottom-right-radius $radius-base
 
-        display none
+    &:after
+      content none
 
-    {$selector-radio}
-
-        margin-right 0
-        display inline-block
-        border 1px solid $brand-border
-        transition border-color .3s, color .3s, background-color .3s
-        cursor $cursor-clickable
-
-        +{$selector-radio}
-
-            margin-left -1px
-
-    {$selector-radio}:first-child
-
-        border-top-left-radius $radius-base
-        border-bottom-left-radius $radius-base
-
-    {$selector-radio}:last-child
-
-        border-top-right-radius $radius-base
-        border-bottom-right-radius $radius-base
-
-    {$selector-radio}-disabled
-
-        cursor $cursor-disabled
+  {$selector-radio}-disabled
+    cursor $cursor-disabled

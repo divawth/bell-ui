@@ -6,11 +6,22 @@ class="${prefix}page
 {{#if style}} style="{{style}}"{{/if}}
 >
   {{#partial pageCenter}}
-    {{#if current - 3 > 1}}
+    {{#if current - 5 >= 1}}
       <li class="${prefix}page-item ${prefix}page-item-prev" on-click="fastPrev()">
         <Icon name="arrow-back" />
         <Icon name="arrow-back" />
       </li>
+    {{else}}
+      {{#if current - 3 > 1}}
+        <li class="${prefix}page-item" on-click="changePage(current - 3)">
+          {{ current - 3 }}
+        </li>
+      {{/if}}
+      {{#if current - 4 > 1}}
+        <li class="${prefix}page-item" on-click="changePage(current - 4)">
+          {{ current - 4 }}
+        </li>
+      {{/if}}
     {{/if}}
 
     {{#if current - 2 > 1}}
@@ -43,11 +54,23 @@ class="${prefix}page
       </li>
     {{/if}}
 
-    {{#if current + 3 < count}}
+    {{#if current + 5 <= count}}
       <li class="${prefix}page-item ${prefix}page-item-next" on-click="fastNext()">
         <Icon name="arrow-forward" />
         <Icon name="arrow-forward" />
       </li>
+    {{else}}
+      {{#if current + 3 < count}}
+        <li class="${prefix}page-item" on-click="changePage(current + 3)">
+          {{ current + 3 }}
+        </li>
+      {{/if}}
+
+      {{#if current + 4 < count}}
+        <li class="${prefix}page-item" on-click="changePage(current + 4)">
+          {{ current + 4 }}
+        </li>
+      {{/if}}
     {{/if}}
   {{/partial}}
 
@@ -114,17 +137,15 @@ class="${prefix}page
 
       <div class="${prefix}page-input">
         <Input type="input"
+          size="small"
           model="currentPage"
-          size="{{size}}"
         ></Input>
       </div>
-
-      {{'/'}}
 
       <span class="${prefix}page-item
         {{#if current == count}} ${prefix}active{{/if}}
       " on-click="changePage(count)">
-        {{count}}
+        {{'/' + count}}
       </span>
 
       <span class="${prefix}page-item ${prefix}page-next
@@ -137,15 +158,16 @@ class="${prefix}page
 
   {{#if showElevator}}
     <div class="${prefix}page-elevator">
-      跳至
       <div class="${prefix}page-input">
         <Input type="input"
-          placeholder="请输入..."
-          model="currentPage"
+          placeholder="请输入页码"
+          model="elevatorPage"
           size="{{size}}"
         ></Input>
       </div>
-      页
+      <Button type="primary" on-click="elevator()">
+        跳转
+      </Button>
     </div>
   {{/if}}
   

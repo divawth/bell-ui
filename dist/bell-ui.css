@@ -3864,7 +3864,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-input-wrapper .bell-textarea,
 .bell-input-wrapper .bell-input {
   display: inline-block;
-  vertical-align: middle;
   overflow: hidden;
   width: 100%;
   outline: none;
@@ -5014,20 +5013,23 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group {
   display: inline-block;
   user-select: none;
-  margin-right: -10px;
-  padding: 10px 0;
+  padding: 0;
   font-size: 12px;
-  line-height: 12px;
+  line-height: 30px;
 }
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner,
 .bell-radio-group .bell-radio:active .bell-radio-inner,
 .bell-radio-group .bell-radio.bell-active .bell-radio-inner {
-  color: #1890ff;
+  border-color: #1890ff;
   box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #1890ff;
 }
 .bell-radio-group .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5035,22 +5037,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.hover .bell-radio-inner,
 .bell-radio-group .bell-radio:hover .bell-radio-inner,
 .bell-radio-group .bell-radio.bell-hover .bell-radio-inner {
-  color: #1890ff;
-}
-.bell-radio-group .bell-radio-disabled.bell-radio-group .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #1890ff;
 }
 .bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.active .bell-radio-inner,
 .bell-radio-group-success .bell-radio:active .bell-radio-inner,
 .bell-radio-group-success .bell-radio.bell-active .bell-radio-inner {
-  color: #52c41a;
+  border-color: #52c41a;
   box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-success .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-success .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #52c41a;
 }
 .bell-radio-group-success .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group-success .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5058,22 +5059,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group-success .bell-radio.bell-radio-group-success .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-success .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-success .bell-radio.bell-hover .bell-radio-inner {
-  color: #52c41a;
-}
-.bell-radio-group-success .bell-radio-disabled.bell-radio-group-success .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-success .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-success .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #52c41a;
 }
 .bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.active .bell-radio-inner,
 .bell-radio-group-warning .bell-radio:active .bell-radio-inner,
 .bell-radio-group-warning .bell-radio.bell-active .bell-radio-inner {
-  color: #faad14;
+  border-color: #faad14;
   box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-warning .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-warning .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #faad14;
 }
 .bell-radio-group-warning .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group-warning .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5081,22 +5081,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group-warning .bell-radio.bell-radio-group-warning .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-warning .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-warning .bell-radio.bell-hover .bell-radio-inner {
-  color: #faad14;
-}
-.bell-radio-group-warning .bell-radio-disabled.bell-radio-group-warning .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-warning .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-warning .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #faad14;
 }
 .bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.active .bell-radio-inner,
 .bell-radio-group-error .bell-radio:active .bell-radio-inner,
 .bell-radio-group-error .bell-radio.bell-active .bell-radio-inner {
-  color: #f5222d;
+  border-color: #f5222d;
   box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-error .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-error .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #f5222d;
 }
 .bell-radio-group-error .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group-error .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5104,22 +5103,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group-error .bell-radio.bell-radio-group-error .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-error .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-error .bell-radio.bell-hover .bell-radio-inner {
-  color: #f5222d;
-}
-.bell-radio-group-error .bell-radio-disabled.bell-radio-group-error .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-error .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-error .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #f5222d;
 }
 .bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.active .bell-radio-inner,
 .bell-radio-group-danger .bell-radio:active .bell-radio-inner,
 .bell-radio-group-danger .bell-radio.bell-active .bell-radio-inner {
-  color: #eb1111;
+  border-color: #eb1111;
   box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-danger .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-danger .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #eb1111;
 }
 .bell-radio-group-danger .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group-danger .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5127,22 +5125,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group-danger .bell-radio.bell-radio-group-danger .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-danger .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-danger .bell-radio.bell-hover .bell-radio-inner {
-  color: #eb1111;
-}
-.bell-radio-group-danger .bell-radio-disabled.bell-radio-group-danger .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-danger .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-danger .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #eb1111;
 }
 .bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.active .bell-radio-inner,
 .bell-radio-group-info .bell-radio:active .bell-radio-inner,
 .bell-radio-group-info .bell-radio.bell-active .bell-radio-inner {
-  color: #2db7f5;
+  border-color: #2db7f5;
   box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-info .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-info .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #2db7f5;
 }
 .bell-radio-group-info .bell-radio .bell-radio-inner {
   background-color: #fff;
-  color: #eee;
 }
 .bell-radio-group-info .bell-radio .bell-radio-inner:after {
   background-color: #fff;
@@ -5150,47 +5147,41 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group-info .bell-radio.bell-radio-group-info .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-info .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-info .bell-radio.bell-hover .bell-radio-inner {
-  color: #2db7f5;
-}
-.bell-radio-group-info .bell-radio-disabled.bell-radio-group-info .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-info .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-info .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #2db7f5;
 }
 .bell-radio-group-disabled .bell-radio.bell-radio-group-disabled .bell-radio.active .bell-radio-inner,
 .bell-radio-group-disabled .bell-radio:active .bell-radio-inner,
 .bell-radio-group-disabled .bell-radio.bell-active .bell-radio-inner {
-  color: #eee;
+  border-color: #eee;
   box-shadow: none;
 }
+.bell-radio-group-disabled .bell-radio.bell-radio-group-disabled .bell-radio.active .bell-radio-inner:after,
+.bell-radio-group-disabled .bell-radio:active .bell-radio-inner:after,
+.bell-radio-group-disabled .bell-radio.bell-active .bell-radio-inner:after {
+  background-color: #eee;
+}
 .bell-radio-group-disabled .bell-radio .bell-radio-inner {
-  background-color: #fff;
-  color: #eee;
+  background-color: #f3f3f3;
 }
 .bell-radio-group-disabled .bell-radio .bell-radio-inner:after {
-  background-color: #fff;
+  background-color: #f3f3f3;
 }
 .bell-radio-group-disabled .bell-radio.bell-radio-group-disabled .bell-radio.hover .bell-radio-inner,
 .bell-radio-group-disabled .bell-radio:hover .bell-radio-inner,
 .bell-radio-group-disabled .bell-radio.bell-hover .bell-radio-inner {
-  color: #eee;
-}
-.bell-radio-group-disabled .bell-radio-disabled.bell-radio-group-disabled .bell-radio-disabled.hover .bell-radio-inner,
-.bell-radio-group-disabled .bell-radio-disabled:hover .bell-radio-inner,
-.bell-radio-group-disabled .bell-radio-disabled.bell-hover .bell-radio-inner {
-  color: #eee;
+  border-color: #eee;
 }
 .bell-radio-group .bell-radio {
   position: relative;
   cursor: pointer;
   margin-right: 10px;
   font-size: 12px;
-  line-height: 12px;
+  line-height: 1.5;
 }
 .bell-radio-group .bell-radio .bell-radio-wrapper {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -5198,25 +5189,26 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group .bell-radio .bell-radio-inner {
   position: absolute;
   border-radius: 100%;
-  width: 14px;
-  height: 14px;
-  border: 1px solid;
-  transition: color 0.3s, box-shadow 0.3s;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #dcdee2;
+  transition: color 0.15s;
 }
 .bell-radio-group .bell-radio .bell-radio-inner:after {
   display: inline-block;
   content: ' ';
   border-radius: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  line-height: 1;
   width: 2px;
   height: 2px;
-  margin: auto;
   opacity: 0;
-  transform: scale(0);
+  transform: scale(0) translate(-50%, -50%);
+  transform-origin: left top;
   border: 1px solid;
 }
 .bell-radio-group .bell-radio .bell-radio-input {
@@ -5225,13 +5217,18 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group .bell-radio .bell-radio-label {
   font-size: 12px;
   line-height: 12px;
-  padding-left: 20px;
+  padding-left: 24px;
+}
+.bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner,
+.bell-radio-group .bell-radio:active .bell-radio-inner,
+.bell-radio-group .bell-radio.bell-active .bell-radio-inner {
+  color: #fff;
 }
 .bell-radio-group .bell-radio.bell-radio-group .bell-radio.active .bell-radio-inner:after,
 .bell-radio-group .bell-radio:active .bell-radio-inner:after,
 .bell-radio-group .bell-radio.bell-active .bell-radio-inner:after {
   opacity: 1;
-  transform: scale(4);
+  transform: scale(3) translate(-50%, -50%);
   transition: transform 0.3s, opacity 0.3s;
 }
 .bell-radio-group .bell-radio.bell-radio-disabled {
@@ -5241,13 +5238,21 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-group .bell-radio.bell-radio-disabled input {
   cursor: not-allowed;
 }
+.bell-radio-group .bell-radio.bell-radio-disabled .bell-radio-inner {
+  background-color: #f3f3f3;
+}
+.bell-radio-group .bell-radio.bell-radio-disabled.bell-radio-group .bell-radio.bell-radio-disabled.hover .bell-radio-inner,
+.bell-radio-group .bell-radio.bell-radio-disabled:hover .bell-radio-inner,
+.bell-radio-group .bell-radio.bell-radio-disabled.bell-hover .bell-radio-inner {
+  border-color: #dcdee2;
+}
 .bell-radio-vertical {
   margin-bottom: -10px;
 }
 .bell-radio-vertical .bell-radio {
   width: 100%;
   display: block;
-  margin-bottom: 10px;
+  line-height: 30px;
 }
 .bell-radio-button {
   display: inline-block;
@@ -5267,12 +5272,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button .bell-radio.bell-radio-button .bell-radio.active,
 .bell-radio-button .bell-radio:active,
 .bell-radio-button .bell-radio.bell-active {
-  background-color: #1890ff;
+  border-color: #1890ff;
 }
-.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active .bell-radio-label,
-.bell-radio-button .bell-radio:active .bell-radio-label,
-.bell-radio-button .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button .bell-radio.bell-radio-button .bell-radio.active:after,
+.bell-radio-button .bell-radio:active:after,
+.bell-radio-button .bell-radio.bell-active:after {
+  background-color: #1890ff;
 }
 .bell-radio-button-success .bell-radio {
   background-color: #fff;
@@ -5288,12 +5293,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active,
 .bell-radio-button-success .bell-radio:active,
 .bell-radio-button-success .bell-radio.bell-active {
-  background-color: #52c41a;
+  border-color: #52c41a;
 }
-.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active .bell-radio-label,
-.bell-radio-button-success .bell-radio:active .bell-radio-label,
-.bell-radio-button-success .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button-success .bell-radio.bell-radio-button-success .bell-radio.active:after,
+.bell-radio-button-success .bell-radio:active:after,
+.bell-radio-button-success .bell-radio.bell-active:after {
+  background-color: #52c41a;
 }
 .bell-radio-button-warning .bell-radio {
   background-color: #fff;
@@ -5309,12 +5314,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active,
 .bell-radio-button-warning .bell-radio:active,
 .bell-radio-button-warning .bell-radio.bell-active {
-  background-color: #faad14;
+  border-color: #faad14;
 }
-.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active .bell-radio-label,
-.bell-radio-button-warning .bell-radio:active .bell-radio-label,
-.bell-radio-button-warning .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button-warning .bell-radio.bell-radio-button-warning .bell-radio.active:after,
+.bell-radio-button-warning .bell-radio:active:after,
+.bell-radio-button-warning .bell-radio.bell-active:after {
+  background-color: #faad14;
 }
 .bell-radio-button-error .bell-radio {
   background-color: #fff;
@@ -5330,12 +5335,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active,
 .bell-radio-button-error .bell-radio:active,
 .bell-radio-button-error .bell-radio.bell-active {
-  background-color: #f5222d;
+  border-color: #f5222d;
 }
-.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active .bell-radio-label,
-.bell-radio-button-error .bell-radio:active .bell-radio-label,
-.bell-radio-button-error .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button-error .bell-radio.bell-radio-button-error .bell-radio.active:after,
+.bell-radio-button-error .bell-radio:active:after,
+.bell-radio-button-error .bell-radio.bell-active:after {
+  background-color: #f5222d;
 }
 .bell-radio-button-danger .bell-radio {
   background-color: #fff;
@@ -5351,12 +5356,12 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active,
 .bell-radio-button-danger .bell-radio:active,
 .bell-radio-button-danger .bell-radio.bell-active {
-  background-color: #eb1111;
+  border-color: #eb1111;
 }
-.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active .bell-radio-label,
-.bell-radio-button-danger .bell-radio:active .bell-radio-label,
-.bell-radio-button-danger .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button-danger .bell-radio.bell-radio-button-danger .bell-radio.active:after,
+.bell-radio-button-danger .bell-radio:active:after,
+.bell-radio-button-danger .bell-radio.bell-active:after {
+  background-color: #eb1111;
 }
 .bell-radio-button-info .bell-radio {
   background-color: #fff;
@@ -5372,51 +5377,57 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active,
 .bell-radio-button-info .bell-radio:active,
 .bell-radio-button-info .bell-radio.bell-active {
-  background-color: #2db7f5;
+  border-color: #2db7f5;
 }
-.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active .bell-radio-label,
-.bell-radio-button-info .bell-radio:active .bell-radio-label,
-.bell-radio-button-info .bell-radio.bell-active .bell-radio-label {
-  color: #fff;
+.bell-radio-button-info .bell-radio.bell-radio-button-info .bell-radio.active:after,
+.bell-radio-button-info .bell-radio:active:after,
+.bell-radio-button-info .bell-radio.bell-active:after {
+  background-color: #2db7f5;
 }
 .bell-radio-button-disabled .bell-radio {
   background-color: #fcfcfc;
 }
 .bell-radio-button-disabled .bell-radio .bell-radio-label {
-  color: #dddee1;
+  color: #ccc;
 }
 .bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.hover .bell-radio-label,
 .bell-radio-button-disabled .bell-radio:hover .bell-radio-label,
 .bell-radio-button-disabled .bell-radio.bell-hover .bell-radio-label {
-  color: #dddee1;
+  color: #ccc;
 }
 .bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active,
 .bell-radio-button-disabled .bell-radio:active,
 .bell-radio-button-disabled .bell-radio.bell-active {
-  background-color: #fcfcfc;
+  border-color: #fcfcfc;
 }
-.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active .bell-radio-label,
-.bell-radio-button-disabled .bell-radio:active .bell-radio-label,
-.bell-radio-button-disabled .bell-radio.bell-active .bell-radio-label {
-  color: #dddee1;
+.bell-radio-button-disabled .bell-radio.bell-radio-button-disabled .bell-radio.active:after,
+.bell-radio-button-disabled .bell-radio:active:after,
+.bell-radio-button-disabled .bell-radio.bell-active:after {
+  background-color: #fcfcfc;
 }
 .bell-radio-button {
   font-size: 13px;
 }
 .bell-radio-button .bell-radio {
-  padding: 4px 18px;
+  padding: 0 18px;
+  height: 32px;
+  line-height: 32px;
 }
 .bell-radio-button-large {
   font-size: 14px;
 }
 .bell-radio-button-large .bell-radio {
-  padding: 6px 18px;
+  padding: 0 18px;
+  height: 36px;
+  line-height: 36px;
 }
 .bell-radio-button-small {
   font-size: 12px;
 }
 .bell-radio-button-small .bell-radio {
-  padding: 3px 12px;
+  padding: 0 12px;
+  height: 24px;
+  line-height: 24px;
 }
 .bell-radio-button +.bell-radio-button {
   margin-left: 8px;
@@ -5428,8 +5439,17 @@ button.bell-button-danger-ghost[disabled] {
   margin-right: 0;
   display: inline-block;
   border: 1px solid #eee;
-  transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
   cursor: pointer;
+  position: relative;
+}
+.bell-radio-button .bell-radio:after {
+  content: ' ';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  right: 0;
+  top: 0;
 }
 .bell-radio-button .bell-radio +.bell-radio {
   margin-left: -1px;
@@ -5441,6 +5461,9 @@ button.bell-button-danger-ghost[disabled] {
 .bell-radio-button .bell-radio:last-child {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+}
+.bell-radio-button .bell-radio:last-child:after {
+  content: none;
 }
 .bell-radio-button .bell-radio-disabled {
   cursor: not-allowed;
@@ -6487,31 +6510,17 @@ button.bell-button-danger-ghost[disabled] {
   width: 32px;
   height: 32px;
   line-height: 32px;
-  margin-right: 4px;
-  font-size: 12px;
-  background: #fff;
-}
-.bell-page .bell-page-list .bell-page-item .bell-page-prev {
-  margin-right: 6px;
 }
 .bell-page .bell-page-list .bell-page-item > .bell-icon {
-  line-height: 32px;
-  font-size: 12px !important;
+  line-height: 30px;
 }
 .bell-page-small .bell-page-list .bell-page-item {
   width: 24px;
   height: 24px;
   line-height: 24px;
-  margin-right: 2px;
-  font-size: 12px;
-  background: #fff;
-}
-.bell-page-small .bell-page-list .bell-page-item .bell-page-prev {
-  margin-right: 4px;
 }
 .bell-page-small .bell-page-list .bell-page-item > .bell-icon {
-  line-height: 24px;
-  font-size: 12px !important;
+  line-height: 22px;
 }
 .bell-page .bell-page-list {
   list-style: none;
@@ -6526,25 +6535,33 @@ button.bell-button-danger-ghost[disabled] {
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid #eee;
+  border: 1px solid #dcdee2;
+  font-size: 12px;
+  margin-right: 4px;
   transition: all 0.2s ease-in-out;
-  color: #666;
+  color: #515a6e;
 }
 .bell-page .bell-page-item.bell-active,
-.bell-page .bell-page-item:hover {
+.bell-page .bell-page-item.bell-page .bell-page-item.hover,
+.bell-page .bell-page-item:hover,
+.bell-page .bell-page-item.bell-hover {
   color: #1890ff;
   border-color: #1890ff;
 }
 .bell-page .bell-page-item.bell-disabled {
   cursor: not-allowed;
-  color: #eee !important;
+  color: #dcdee2;
   border-color: #eee;
 }
 .bell-page .bell-page-item.bell-disabled.bell-page .bell-page-item.bell-disabled.hover,
 .bell-page .bell-page-item.bell-disabled:hover,
 .bell-page .bell-page-item.bell-disabled.bell-hover {
-  color: #eee;
+  color: #dcdee2;
   border-color: #eee;
+}
+.bell-page .bell-page-item.bell-page-item-next,
+.bell-page .bell-page-item.bell-page-item-prev {
+  border: none;
 }
 .bell-page .bell-page-item.bell-page-item-next:after,
 .bell-page .bell-page-item.bell-page-item-prev:after {
@@ -6584,11 +6601,16 @@ button.bell-button-danger-ghost[disabled] {
 }
 .bell-page .bell-page-elevator {
   display: inline-block;
+  margin-left: 10px;
 }
 .bell-page .bell-page-elevator .bell-page-input {
-  width: 40px;
+  vertical-align: middle;
+  width: 100px;
   display: inline-block;
   margin: 0 10px;
+}
+.bell-page .bell-page-elevator .bell-page-input .bell-input {
+  padding: 0 10px;
 }
 .bell-page .bell-page-total {
   font-size: 14px;
@@ -6598,26 +6620,33 @@ button.bell-button-danger-ghost[disabled] {
   display: inline-block;
 }
 .bell-page .bell-page-simple .bell-page-input {
-  width: 40px;
+  width: 45px;
   display: inline-block;
   margin: 0 10px;
 }
+.bell-page .bell-page-simple .bell-page-input .bell-input {
+  padding: 0 10px;
+}
 .bell-page .bell-page-simple .bell-page-item {
   border: none;
-  color: #666;
-  padding: 5px;
+  color: #515a6e;
+  padding: 3px 6px;
 }
 .bell-page .bell-page-simple .bell-page-item.bell-active,
-.bell-page .bell-page-simple .bell-page-item:hover {
-  color: #666;
+.bell-page .bell-page-simple .bell-page-item.bell-page .bell-page-simple .bell-page-item.hover,
+.bell-page .bell-page-simple .bell-page-item:hover,
+.bell-page .bell-page-simple .bell-page-item.bell-hover {
+  color: #515a6e;
   border: none;
 }
 .bell-page-tiny .bell-page-list .bell-page-item {
   border: none;
-  color: #666;
+  color: #515a6e;
 }
 .bell-page-tiny .bell-page-list .bell-page-item.bell-active,
-.bell-page-tiny .bell-page-list .bell-page-item:hover {
+.bell-page-tiny .bell-page-list .bell-page-item.bell-page-tiny .bell-page-list .bell-page-item.hover,
+.bell-page-tiny .bell-page-list .bell-page-item:hover,
+.bell-page-tiny .bell-page-list .bell-page-item.bell-hover {
   color: #1890ff;
   border: none;
 }
@@ -7152,10 +7181,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-notice .bell-notice-close {
   position: absolute;
   right: 0;
-  top: 10px;
+  top: 0;
   cursor: pointer;
   font-size: 22px;
-  padding: 5px 15px;
+  padding: 8px 15px;
   color: #999;
 }
 .bell-msg-alert-wrapper {
@@ -8134,12 +8163,9 @@ button.bell-button-danger-ghost[disabled] {
   display: inline-block;
   cursor: pointer;
   font-size: 20px;
-}
-.bell-rate {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
+  line-height: 32px;
+  height: 32px;
+  color: #e9e9e9;
 }
 .bell-rate .bell-rate-star-full.active,
 .bell-rate .bell-rate-star-full:active,
@@ -8151,15 +8177,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate .bell-rate-star-content.bell-active {
   color: #1890ff;
 }
-.bell-rate .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-success {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-success .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
-}
 .bell-rate-success .bell-rate-star-full.active,
 .bell-rate-success .bell-rate-star-full:active,
 .bell-rate-success .bell-rate-star-full.bell-active {
@@ -8169,15 +8186,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-success .bell-rate-star-content:active,
 .bell-rate-success .bell-rate-star-content.bell-active {
   color: #52c41a;
-}
-.bell-rate-success .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-error {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-error .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
 }
 .bell-rate-error .bell-rate-star-full.active,
 .bell-rate-error .bell-rate-star-full:active,
@@ -8189,15 +8197,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-error .bell-rate-star-content.bell-active {
   color: #f5222d;
 }
-.bell-rate-error .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-info {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-info .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
-}
 .bell-rate-info .bell-rate-star-full.active,
 .bell-rate-info .bell-rate-star-full:active,
 .bell-rate-info .bell-rate-star-full.bell-active {
@@ -8207,15 +8206,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-info .bell-rate-star-content:active,
 .bell-rate-info .bell-rate-star-content.bell-active {
   color: #2db7f5;
-}
-.bell-rate-info .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-warning {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-warning .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
 }
 .bell-rate-warning .bell-rate-star-full.active,
 .bell-rate-warning .bell-rate-star-full:active,
@@ -8227,15 +8217,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-warning .bell-rate-star-content.bell-active {
   color: #faad14;
 }
-.bell-rate-warning .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-danger {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-danger .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
-}
 .bell-rate-danger .bell-rate-star-full.active,
 .bell-rate-danger .bell-rate-star-full:active,
 .bell-rate-danger .bell-rate-star-full.bell-active {
@@ -8245,15 +8226,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-danger .bell-rate-star-content:active,
 .bell-rate-danger .bell-rate-star-content.bell-active {
   color: #eb1111;
-}
-.bell-rate-danger .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
-.bell-rate-disabled {
-  color: rgba(0,0,0,0.37);
-}
-.bell-rate-disabled .bell-rate-star-full {
-  color: rgba(0,0,0,0.37);
 }
 .bell-rate-disabled .bell-rate-star-full.active,
 .bell-rate-disabled .bell-rate-star-full:active,
@@ -8265,9 +8237,6 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate-disabled .bell-rate-star-content.bell-active {
   color: #c7c7c7;
 }
-.bell-rate-disabled .bell-rate-text {
-  color: rgba(0,0,0,0.54);
-}
 .bell-rate .bell-rate-star-full {
   position: relative;
   transition: color 0.3s, font-size 0.3s;
@@ -8276,6 +8245,7 @@ button.bell-button-danger-ghost[disabled] {
   height: 21px;
   line-height: 21px;
   vertical-align: middle;
+  color: #e9e9e9;
 }
 .bell-rate .bell-rate-star-full.hover,
 .bell-rate .bell-rate-star-full:hover,
@@ -8285,11 +8255,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate .bell-rate-star-full.hover .bell-rate-star-content,
 .bell-rate .bell-rate-star-full:hover .bell-rate-star-content,
 .bell-rate .bell-rate-star-full.bell-hover .bell-rate-star-content {
-  width: 9.5px;
+  width: 21px/1;
 }
-.bell-rate .bell-rate-star-full::before {
+.bell-rate .bell-rate-star-full:before {
   cursor: pointer;
-  content: "\F4B3";
 }
 .bell-rate .bell-rate-star-full + .bell-rate-star-full {
   margin-left: 0;
@@ -8306,17 +8275,17 @@ button.bell-button-danger-ghost[disabled] {
 .bell-rate .bell-rate-star-content::before {
   opacity: 0;
   cursor: pointer;
-  content: "\F4B3";
   transition: opacity 0.3s;
 }
-.bell-rate .bell-rate-star-content.active::before,
-.bell-rate .bell-rate-star-content:active::before,
-.bell-rate .bell-rate-star-content.bell-active::before {
+.bell-rate .bell-rate-star-content.active:before,
+.bell-rate .bell-rate-star-content:active:before,
+.bell-rate .bell-rate-star-content.bell-active:before {
   opacity: 1;
 }
 .bell-rate .bell-rate-text {
   margin-left: 2px;
   font-size: 12px;
+  color: #515a6e;
 }
 .bell-rate.bell-rate-readonly {
   cursor: default;

@@ -1,82 +1,69 @@
 {$selector-progress}
+  ui-progress()
+  display flex
 
-    ui-progress()
-    display flex
-
-    &{$selector-active}
-
-        {$selector-progress-inner}
-
-            position relative
-
-            &:before
-                content " "
-                opacity 0
-                position absolute
-                top 0
-                left 0
-                right 0
-                bottom 0
-                background #fff
-                border-radius 10px
-                animation bell-progress-active 2s ease-in-out infinite
-
-
-    {$selector-progress-outer}
-
-        flex 1
-
-    {$selector-progress-inner-text}
-
-        text-align right
-        width $progress-inner-text-width
-        font-size $progress-inner-text-font-size
-        line-height 2
-
+  &{$selector-active}
     {$selector-progress-inner}
+      position relative
+      &:before
+        content " "
+        opacity 0
+        position absolute
+        top 0
+        left 0
+        right 0
+        bottom 0
+        background #fff
+        border-radius 10px
+        animation bell-progress-active 2s ease-in-out infinite
 
-        display inline-block
-        width 100%
-        background-color #f3f3f3
-        border-radius $progress-inner-border-radius
-        vertical-align middle
+  {$selector-progress-outer}
+    flex 1
 
-    {$selector-progress-bg}
+  {$selector-progress-inner-text}
+    text-align right
+    width $progress-inner-text-width
+    font-size $progress-inner-text-font-size
+    line-height 2
 
-        border-radius $progress-inner-border-radius
-        transition height .2s linear, width .2s linear
+  {$selector-progress-inner}
+    display inline-block
+    width 100%
+    background-color #f3f3f3
+    border-radius $progress-inner-border-radius
+    vertical-align middle
+
+  {$selector-progress-bg}
+    border-radius $progress-inner-border-radius
+    transition height .2s linear, width .2s linear
 
 {$selector-progress-vertical}
+  height 100%
+  width auto
+  display inline-block
 
+  {$selector-progress-outer},
+  {$selector-progress-inner}
     height 100%
     width auto
+    margin 0 auto
+
+  {$selector-progress-inner}
+    display flex
+    align-items flex-end
+
+  {$selector-progress-inner-text}
     display inline-block
-
-    {$selector-progress-outer},
-    {$selector-progress-inner}
-
-        height 100%
-        width auto
-        margin 0 auto
-
-    {$selector-progress-inner}
-
-        display flex
-        align-items flex-end
-
-    {$selector-progress-inner-text}
-
-        display inline-block
-        text-align center
-        width 100%
+    text-align center
+    width 100%
 
 @keyframes bell-progress-active {
-    0% {
-        opacity .3
-        width 0
-    }
-    100% {
-        opacity 0
-        width 100%
-    }
+  0% {
+    opacity .3
+    width 0
+  }
+  100% {
+    opacity 0
+    width 100%
+  }
 }
