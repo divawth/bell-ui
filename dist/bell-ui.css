@@ -8132,158 +8132,224 @@ button.bell-button-danger-ghost[disabled] {
   opacity: 1;
   overflow: hidden;
   cursor: pointer;
-  border-radius: 4px;
   vertical-align: middle;
-  border: 1px solid transparent;
   position: relative;
   margin-right: 10px;
-}
-.bell-tag.large {
-  padding: 6px 10px;
-  font-size: 12px;
-}
-.bell-tag {
-  padding: 5px 10px;
-  font-size: 12px;
-}
-.bell-tag.small {
-  padding: 3px 10px;
-  font-size: 12px;
-}
-.bell-tag.tiny {
-  padding: 2px 10px;
-  font-size: 12px;
-}
-.bell-tag {
+  border: 1px solid;
   color: rgba(0,0,0,0.37);
+  border-radius: 2px;
+  font-size: 12px;
+  padding: 0px 10px;
+  transition: background-color 0.3s, color 0.3s;
 }
 .bell-tag.bell-tag-checked {
+  color: #515a6e;
   border-color: #e9eaec;
-  background-color: #e9eaec;
-  color: rgba(0,0,0,0.54);
+  background-color: #f7f7f7;
 }
-.bell-tag.bell-tag-checked.bell-tag-border {
-  border-color: #e9eaec;
-  background-color: transparent;
-  color: #e9eaec;
+.bell-tag-large {
+  height: 40px;
+  line-height: 40px;
 }
-.bell-tag.bell-tag-checked.bell-tag-border::after {
-  background-color: #e9eaec;
+.bell-tag-large.bell-tag-text {
+  line-height: 40px;
 }
-.bell-tag.success {
-  color: rgba(0,0,0,0.37);
+.bell-tag {
+  height: 32px;
+  line-height: 32px;
 }
-.bell-tag.success.bell-tag-checked {
+.bell-tag.bell-tag-text {
+  line-height: 32px;
+}
+.bell-tag-small {
+  height: 22px;
+  line-height: 22px;
+}
+.bell-tag-small.bell-tag-text {
+  line-height: 22px;
+}
+.bell-tag-tiny {
+  height: 22px;
+  line-height: 22px;
+}
+.bell-tag-tiny.bell-tag-text {
+  line-height: 22px;
+}
+.bell-tag-success.bell-tag-checked {
+  color: #fff;
   border-color: #52c41a;
   background-color: #52c41a;
-  color: #fff;
 }
-.bell-tag.success.bell-tag-checked.bell-tag-border {
+.bell-tag-success.bell-tag-checked.bell-tag-border {
   border-color: #52c41a;
-  background-color: transparent;
   color: #52c41a;
 }
-.bell-tag.success.bell-tag-checked.bell-tag-border::after {
+.bell-tag-success.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #52c41a;
+}
+.bell-tag-success.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #52c41a;
+}
+.bell-tag-success.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #52c41a;
 }
-.bell-tag.error {
-  color: rgba(0,0,0,0.37);
+.bell-tag-success.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #52c41a;
 }
-.bell-tag.error.bell-tag-checked {
+.bell-tag-error.bell-tag-checked {
+  color: #fff;
   border-color: #f5222d;
   background-color: #f5222d;
-  color: #fff;
 }
-.bell-tag.error.bell-tag-checked.bell-tag-border {
+.bell-tag-error.bell-tag-checked.bell-tag-border {
   border-color: #f5222d;
-  background-color: transparent;
   color: #f5222d;
 }
-.bell-tag.error.bell-tag-checked.bell-tag-border::after {
+.bell-tag-error.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #f5222d;
+}
+.bell-tag-error.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #f5222d;
+}
+.bell-tag-error.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #f5222d;
 }
-.bell-tag.info {
-  color: rgba(0,0,0,0.37);
+.bell-tag-error.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #f5222d;
 }
-.bell-tag.info.bell-tag-checked {
+.bell-tag-info.bell-tag-checked {
+  color: #fff;
   border-color: #2db7f5;
   background-color: #2db7f5;
-  color: #fff;
 }
-.bell-tag.info.bell-tag-checked.bell-tag-border {
+.bell-tag-info.bell-tag-checked.bell-tag-border {
   border-color: #2db7f5;
-  background-color: transparent;
   color: #2db7f5;
 }
-.bell-tag.info.bell-tag-checked.bell-tag-border::after {
+.bell-tag-info.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #2db7f5;
+}
+.bell-tag-info.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #2db7f5;
+}
+.bell-tag-info.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #2db7f5;
 }
-.bell-tag.primary {
-  color: rgba(0,0,0,0.37);
+.bell-tag-info.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #2db7f5;
 }
-.bell-tag.primary.bell-tag-checked {
+.bell-tag-primary.bell-tag-checked {
+  color: #fff;
   border-color: #1890ff;
   background-color: #1890ff;
-  color: #fff;
 }
-.bell-tag.primary.bell-tag-checked.bell-tag-border {
+.bell-tag-primary.bell-tag-checked.bell-tag-border {
   border-color: #1890ff;
-  background-color: transparent;
   color: #1890ff;
 }
-.bell-tag.primary.bell-tag-checked.bell-tag-border::after {
+.bell-tag-primary.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #1890ff;
+}
+.bell-tag-primary.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #1890ff;
+}
+.bell-tag-primary.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #1890ff;
 }
-.bell-tag.warning {
-  color: rgba(0,0,0,0.37);
+.bell-tag-primary.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #1890ff;
 }
-.bell-tag.warning.bell-tag-checked {
+.bell-tag-warning.bell-tag-checked {
+  color: #fff;
   border-color: #faad14;
   background-color: #faad14;
-  color: #fff;
 }
-.bell-tag.warning.bell-tag-checked.bell-tag-border {
+.bell-tag-warning.bell-tag-checked.bell-tag-border {
   border-color: #faad14;
-  background-color: transparent;
   color: #faad14;
 }
-.bell-tag.warning.bell-tag-checked.bell-tag-border::after {
+.bell-tag-warning.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #faad14;
+}
+.bell-tag-warning.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #faad14;
+}
+.bell-tag-warning.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #faad14;
 }
-.bell-tag.danger {
-  color: rgba(0,0,0,0.37);
+.bell-tag-warning.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #faad14;
 }
-.bell-tag.danger.bell-tag-checked {
+.bell-tag-danger.bell-tag-checked {
+  color: #fff;
   border-color: #eb1111;
   background-color: #eb1111;
-  color: #fff;
 }
-.bell-tag.danger.bell-tag-checked.bell-tag-border {
+.bell-tag-danger.bell-tag-checked.bell-tag-border {
   border-color: #eb1111;
-  background-color: transparent;
   color: #eb1111;
 }
-.bell-tag.danger.bell-tag-checked.bell-tag-border::after {
+.bell-tag-danger.bell-tag-checked.bell-tag-border .bell-tag-text {
+  color: #eb1111;
+}
+.bell-tag-danger.bell-tag-checked.bell-tag-border .bell-tag-close-icon {
+  color: #eb1111;
+}
+.bell-tag-danger.bell-tag-checked.bell-tag-border.bell-tag-closable:after {
   background-color: #eb1111;
 }
-.bell-tag .bell-tag-close-icon {
-  transform: scale(2);
-  position: relative;
-  top: 1px;
-  cursor: pointer;
-  margin-left: 8px;
+.bell-tag-danger.bell-tag-checked.bell-tag-dot .bell-tag-dot-inner {
+  background-color: #eb1111;
 }
-.bell-tag.bell-tag-border::after {
+.bell-tag.bell-tag-closable .bell-tag-text {
+  padding-right: 12px;
+}
+.bell-tag.bell-tag-closable .bell-tag-close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 22px;
+  padding: 0 8px;
+  color: #ccc;
+  transition: color 0.3s;
+}
+.bell-tag.bell-tag-border {
+  background-color: #fff;
+}
+.bell-tag.bell-tag-border.bell-tag-closable .bell-tag-text {
+  padding-right: 20px;
+}
+.bell-tag.bell-tag-border.bell-tag-closable:after {
   display: inline-block;
   content: ' ';
   height: 100%;
   width: 1px;
   position: absolute;
   top: 0;
-  right: 24px;
+  right: 22px;
+  background-color: #e9eaec;
 }
-.bell-tag.bell-tag-border .bell-tag-close-icon {
-  margin-left: 20px;
+.bell-tag.bell-tag-border .bell-tag-close-icon margin-left $tag-close-gap {
+  color: #515a6e;
+}
+.bell-tag.bell-tag-dot {
+  background-color: #fff;
+  border-color: #e9eaec;
+}
+.bell-tag.bell-tag-dot .bell-tag-text {
+  color: #515a6e;
+}
+.bell-tag.bell-tag-dot .bell-tag-dot-inner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  position: relative;
+  top: 1px;
+  background-color: #e8eaec;
+  margin-right: 8px;
 }
 .bell-rate {
   display: inline-block;

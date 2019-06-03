@@ -1,63 +1,61 @@
-$selector-tag = $selector-prefix + '-tag';
-$selector-tag-text = $selector-tag + '-text';
-$selector-tag-close-icon = $selector-tag + '-close-icon';
-$selector-tag-border = $selector-tag + '-border';
-$selector-tag-checked = $selector-tag + '-checked';
+$selector-tag = $selector-prefix + '-tag'
+$selector-tag-text = $selector-tag + '-text'
+$selector-tag-close-icon = $selector-tag + '-close-icon'
+$selector-tag-border = $selector-tag + '-border'
+$selector-tag-checked = $selector-tag + '-checked'
+
+$tag-radius = 2px
+$tag-color = #515a6e
+$tag-dot-bg-color = #fff
+$tag-font-size = 12px
+$tag-padding = 0px 10px
+$tag-close-font-size = 22px
+$tag-close-color = #ccc
+$tag-close-padding = 0 8px
+$tag-close-gap = 20px
+$tag-dot-inner-gap = 8px
+$tag-dot-color = #e8eaec
+$tag-bg-color = #f7f7f7
+$tag-border-color = #e9eaec
 
 $selector-tag-size-hash = {
-    'large': {
-        padding: 6px 10px,
-        font-size: 12px,
-    },
-    '': {
-        padding: 5px 10px,
-        font-size: 12px,
-    },
-    'small': {
-        padding: 3px 10px,
-        font-size: 12px,
-    },
-    'tiny': {
-        padding: 2px 10px,
-        font-size: 12px,
-        height: 22px
-    }
-};
+  'large': {
+    height: 40px
+  },
+  '': {
+    height: 32px
+  },
+  'small': {
+    height: 22px
+  },
+  'tiny': {
+    height: 22px
+  }
+}
 
 $selector-tag-color-hash = {
-    '': {
-        border-color: $brand-divider,
-        background-color: $brand-divider,
-        color: $brand-secondary
-    },
-    'success': {
-        border-color: $brand-success,
-        background-color: $brand-success
-        color: $brand-white
-    },
-    'error': {
-        border-color: $brand-error,
-        background-color: $brand-error
-        color: $brand-white
-    },
-    'info': {
-        border-color: $brand-info,
-        background-color: $brand-info
-        color: $brand-white
-    },
-    'primary': {
-        border-color: $brand-primary,
-        background-color: $brand-primary
-        color: $brand-white
-    },
-    'warning': {
-        border-color: $brand-warning,
-        background-color: $brand-warning
-        color: $brand-white
-    },
-    'danger': {
-        border-color: $brand-danger,
-        background-color: $brand-danger
-        color: $brand-white
-    }
-};
+  'success': {
+    color: $brand-white,
+    active-color: $brand-success
+  },
+  'error': {
+    color: $brand-white,
+    active-color: $brand-error
+  },
+  'info': {
+    color: $brand-white,
+    active-color: $brand-info
+  },
+  'primary': {
+    color: $brand-white,
+    active-color: $brand-primary
+  },
+  'warning': {
+    color: $brand-white,
+    active-color: $brand-warning
+  },
+  'danger': {
+    color: $brand-white,
+    active-color: $brand-danger
+  }
+}

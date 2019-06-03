@@ -1,17 +1,25 @@
-<div class="bell-tag
+<div 
+class="${prefix}tag
+  {{#if border}} ${prefix}tag-border{{/if}}
+  {{#if dot}} ${prefix}tag-dot{{/if}}
+  {{#if size}} ${prefix}tag-{{size}}{{/if}}
+  {{#if type}} ${prefix}tag-{{type}}{{/if}}
+  {{#if checked}} ${prefix}tag-checked{{/if}}
+  {{#if closable}} ${prefix}tag-closable{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if border}} bell-tag-border{{/if}}
-  {{#if size}} {{size}}{{/if}}
-  {{#if type}} {{type}}{{/if}}
-  {{#if checked}} bell-tag-checked{{/if}}
-"{{#if style}} style="{{style}}"{{/if}} on-click="click()">
-  <div class="bell-tag-text">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}} 
+on-click="click()"
+> 
+  {{#if dot}}
+    <span class="${prefix}tag-dot-inner"></span>
+  {{/if}}
 
-    {{#if closable}}
-      <i class="bell-tag-close-icon bell-icon bell-icon-ios-close-empty" on-click="close()"></i>
-    {{/if}}
-  </div>
+  <span class="${prefix}tag-text">
+    <slot name="children" />
+  </span>
+
+  {{#if closable}}
+    <Icon name="close" className="${prefix}tag-close-icon" on-click="close()" />
+  {{/if}}
 </div>

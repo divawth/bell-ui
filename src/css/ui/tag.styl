@@ -1,37 +1,81 @@
 {$selector-tag}
+  display inline-block
+  opacity 1
+  overflow hidden
+  cursor $cursor-clickable
+  vertical-align middle
+  position relative
+  margin-right 10px
+  border 1px solid 
+  color $brand-muted
 
-    ui-tag()
+  border-radius $tag-radius
+  font-size $tag-font-size
+  padding $tag-padding
 
-    display inline-block
-    opacity 1
-    overflow hidden
-    cursor $cursor-clickable
-    border-radius $radius-base
-    vertical-align middle
-    border 1px solid transparent
-    position relative
-    margin-right 10px
+  transition background-color .3s, color .3s
+  
+  &{$selector-tag-checked}
+    color $tag-color
+    border-color $brand-divider
+    background-color $tag-bg-color
+  
+  ui-tag()
+
+  &{$selector-tag}-closable   
+    {$selector-tag}-text
+      padding-right $tag-font-size
 
     {$selector-tag-close-icon}
-        transform scale(2)
-        position relative
-        top 1px
-        cursor $cursor-clickable
+      position absolute
+      top 0
+      right 0
+      cursor pointer
+      vertical-align middle
 
-        margin-left 8px
+      font-size $tag-close-font-size
+      padding $tag-close-padding
+      color $tag-close-color
 
+      transition color .3s
 
-    &{$selector-tag-border}
-        &::after
-            display inline-block
-            content ' '
-            height 100%
-            width 1px
-            position absolute
-            top 0
-            right 24px
+  &{$selector-tag-border}
+    background-color $tag-dot-bg-color
 
-        {$selector-tag-close-icon}
+    &{$selector-tag}-closable  
+      {$selector-tag}-text
+        padding-right $tag-close-gap
 
-            margin-left 20px
+      &:after
+        display inline-block
+        content ' '
+        height 100%
+        width 1px
+        position absolute
+        top 0
+        right $tag-close-font-size
+        background-color $brand-divider
 
+    {$selector-tag-close-icon}
+      margin-left $tag-close-gap
+        color $tag-color
+
+  &{$selector-tag}-dot
+    background-color $tag-dot-bg-color
+    border-color $tag-border-color
+
+    {$selector-tag}-text
+      color $tag-color
+      
+    {$selector-tag}-dot-inner
+      display inline-block
+      width $tag-font-size
+      height $tag-font-size
+      border-radius 100%
+      position relative
+      top 1px
+
+      background-color $tag-dot-color
+      margin-right $tag-dot-inner-gap 
+      
+  

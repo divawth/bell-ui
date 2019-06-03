@@ -160,7 +160,7 @@ export default {
 
     toggleMenu() {
       if (this.get('disabled')) {
-        return FALSE
+        return 
       }
       this.toggle('visible')
     },

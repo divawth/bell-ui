@@ -1,31 +1,40 @@
 tag-size(size)
+  ui-set('height', size[ 'height' ])
+  ui-set('line-height', size[ 'height' ])
 
-    ui-set('padding', size['padding'])
-    ui-set('font-size', size['font-size'])
-
+  &{$selector-tag}-text
+    ui-set('line-height', size[ 'height' ])
+    
 tag-color(color)
+  &{$selector-tag-checked}
+    ui-set('color', color[ 'color' ])
+    ui-set('border-color', color[ 'active-color' ])
+    ui-set('background-color', color[ 'active-color' ])
 
-    ui-set('color', $brand-muted)
+    &{$selector-tag-border}
+      ui-set('border-color', color[ 'active-color' ])
+      ui-set('color', color[ 'active-color' ])
 
-    &{$selector-tag-checked}
-        ui-set('border-color', color['border-color'])
-        ui-set('background-color', color['background-color'])
-        ui-set('color', color['color'])
+      {$selector-tag}-text
+        ui-set('color', color[ 'active-color' ])
 
-        &{$selector-tag-border}
-            ui-set('border-color', color['border-color'])
-            ui-set('background-color', transparent)
-            ui-set('color', color['border-color'])
+      {$selector-tag}-close-icon
+        ui-set('color', color[ 'active-color' ])
 
-            &::after
-                ui-set('background-color', color['border-color'])
+      &{$selector-tag}-closable 
+        &:after
+          ui-set('background-color', color[ 'active-color' ])
+          
+    &{$selector-tag}-dot 
+      {$selector-tag}-dot-inner
+        ui-set('background-color', color[ 'active-color' ])
 
 ui-tag()
-    ui-variant(
-        hash: $selector-tag-size-hash,
-        each: tag-size
-    )
-    ui-variant(
-        hash: $selector-tag-color-hash,
-        each: tag-color
-    )
+  ui-connect(
+    hash: $selector-tag-size-hash,
+    each: tag-size
+  )
+  ui-connect(
+    hash: $selector-tag-color-hash,
+    each: tag-color
+  )

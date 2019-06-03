@@ -1,59 +1,64 @@
-import TagTpl from './template/Tag.html'
+import template from './template/Tag.html'
+import { RAW_STRING, RAW_BOOLEAN, FALSE, TRUE } from '../constant'
 
 export default {
-  template: TagTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     size: {
-      type: 'string'
+      type: RAW_STRING,
+      value: 'small'
     },
     closable: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     border: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
+    },
+    dot: {
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     checkable: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     checked: {
-      type: 'boolean',
-      value: true
+      type: RAW_BOOLEAN,
+      value: TRUE
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
 
   watchers: {
     checked(value) {
       this.fire(
-        'check',
+        'change.tag',
         {
           value: value
         }
-      );
+      )
     }
   },
 
   methods: {
     click() {
-      let me = this;
-      if (!me.get('checkable')) {
-        return;
+      if (!this.get('checkable')) {
+        return
       }
-      me.toggle('checked');
+      this.toggle('checked')
     },
     close() {
-      this.fire('close');
+      this.fire('close.tag')
     }
   }
-};
+}

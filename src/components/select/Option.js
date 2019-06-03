@@ -23,13 +23,12 @@ export default {
   template,
   events: {
     optionHoveredChange(_, data) {
-      let me = this
-      let isHover = data.index == me.get('index')
-      me.set({
+      let isHover = data.index == this.get('index')
+      this.set({
         isHover: isHover
       })
-      if (isHover && !me.get('isSelected')) {
-        me.set({
+      if (isHover && !this.get('isSelected')) {
+        this.set({
           isSelected: data.selected
         })
       }
@@ -81,5 +80,4 @@ export default {
       'optionRemove'
     )
   }
-
 }
