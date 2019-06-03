@@ -1,68 +1,72 @@
-import SelectTpl from './template/Select.html'
+import template from './template/Select.html'
 import {
   contains
 } from '../util'
+import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, NULL, FALSE, TRUE } from '../constant'
 
 export default {
-  template: SelectTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
+    clearable: {
+      type: RAW_BOOLEAN
     },
     defaultText: {
-      type: 'string'
+      type: RAW_STRING
     },
     value: {
-      type: ['numeric', 'string']
+      type: [ RAW_NUMERIC, RAW_STRING ]
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     placement: {
-      type: 'string'
+      type: RAW_STRING
     },
     multiple: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    prefix: {
+      type: RAW_STRING
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+
+  template,
 
   data() {
     return {
       count: 0,
-      visible: false,
+      visible: FALSE,
       hoverIndex: 0,
-      selectedIndex: null,
-      selectedText: null,
+      selectedIndex: NULL,
+      selectedText: NULL,
     }
   },
 
   watchers: {
     value(value) {
-      let me = this
-      me.fire(
+      this.fire(
         'optionSelectedChange',
-        {
-          value: value
-        },
-        true
+        { value },
+        TRUE
       )
 
-      me.fire(
+      this.fire(
         'change',
         {
           value: value,
-          text: me.get('selectedText'),
-          index: me.get('selectedIndex')
+          text: this.get('selectedText'),
+          index: this.get('selectedIndex')
         }
       )
     }
@@ -70,17 +74,13 @@ export default {
 
   events: {
     selectedOptionChange(event) {
-      let me = this
       let option = event.target
-      if (me.get('selectedText') == null
-        && me.get('selectedIndex') == null
-      ) {
-        me.set({
+      if (!this.get('multiple')) {
+        this.set({
           selectedIndex: option.get('index'),
-          selectedText: option.get('text'),
+          selectedText: option.get('text')
         })
       }
-      event.stop()
     },
 
     optionAdd() {
@@ -92,7 +92,6 @@ export default {
     },
 
     optionSelect(event) {
-
       let me = this
       let option = event.target
 
@@ -101,33 +100,37 @@ export default {
       let index = option.get('index')
 
       if (me.get('multiple')) {
-
         me.set({
           value: me.setArrayValue(value, me.get('value')),
           selectedText: me.setArrayValue(text, me.get('selectedText')),
           selectedIndex: index,
-          visible: true
+          visible: TRUE
         })
-
       }
       else {
-
         me.set({
           value: value,
           selectedText: text,
           selectedIndex: index,
-          visible: false
+          visible: FALSE
         })
-
       }
     }
   },
 
   methods: {
-    setArrayValue: function (text, values) {
+    clear() {
+      this.set({
+        value: NULL,
+        selectedText: NULL,
+        selectedIndex: NULL
+      })
+      this.fire('clear.select')
+    },
+    setArrayValue(text, values) {
 
       values = this.copy(values)
-      if (Array.isArray(values)) {
+      if (Yox.is.array(values)) {
         let index = values.indexOf(text)
         if (index >= 0) {
           values.splice(index, 1)
@@ -140,12 +143,11 @@ export default {
         values = [text]
       }
 
-      return values.length ? values : null
+      return values.length ? values : NULL
 
     },
 
     tagClose(event, text, index) {
-
       let me = this
 
       this.set({
@@ -157,46 +159,41 @@ export default {
     },
 
     toggleMenu() {
-      let me = this
-      if (me.get('disabled')) {
-        return false
+      if (this.get('disabled')) {
+        return FALSE
       }
-      me.toggle('visible')
+      this.toggle('visible')
     },
 
     decreaseHoverIndex() {
-      let me = this
-      let hoverIndex = me.get('hoverIndex')
-      hoverIndex = hoverIndex <= 0 ? (me.get('count') - 1) : hoverIndex - 1
-      me.set({
+      let hoverIndex = this.get('hoverIndex')
+      hoverIndex = hoverIndex <= 0 ? (this.get('count') - 1) : hoverIndex - 1
+      this.set({
         hoverIndex: hoverIndex
       })
-      me.fire(
+      this.fire(
         'optionHoveredChange',
         {
           index: hoverIndex
         },
-        true
+        TRUE
       )
     },
 
     increaseHoverIndex() {
-
-      let me = this
-      let hoverIndex = me.get('hoverIndex')
-      hoverIndex = hoverIndex >= (me.get('count') - 1) ? 0 : hoverIndex + 1
-      me.set({
+      let hoverIndex = this.get('hoverIndex')
+      hoverIndex = hoverIndex >= (this.get('count') - 1) ? 0 : hoverIndex + 1
+      this.set({
         hoverIndex: hoverIndex
       })
 
-      me.fire(
+      this.fire(
         'optionHoveredChange',
         {
           index: hoverIndex
         },
-        true
+        TRUE
       )
-
     },
 
     selectOption() {
@@ -204,9 +201,9 @@ export default {
         'optionHoveredChange',
         {
           index: this.get('hoverIndex'),
-          selected: true
+          selected: TRUE
         },
-        true
+        TRUE
       )
     }
 
@@ -215,21 +212,20 @@ export default {
   afterMount() {
     let me = this
 
-    if (me.get('value') != null
-      && me.get('selectedText') == null
-      && me.get('selectedIndex') == null
+    if (me.get('value') != NULL
+      && me.get('selectedText') == NULL
+      && me.get('selectedIndex') == NULL
     ) {
       me.fire(
         'optionSelectedChange',
         {
           value: me.get('value')
         },
-        true
+        TRUE
       )
     }
 
     me.documentClickHandler = function (e) {
-
       if (!me.get('visible')) {
         return
       }
@@ -240,19 +236,16 @@ export default {
         return
       }
       me.set({
-        visible: false
+        visible: FALSE
       })
-
     }
 
     me.documentKeydownHander = function (e) {
-
       if (!me.get('visible')) {
         return
       }
 
       switch (e.originalEvent.keyCode) {
-
         case 40:
           e.prevent()
           me.increaseHoverIndex()
@@ -265,9 +258,8 @@ export default {
 
         case 13:
           me.selectOption()
-
+          break
       }
-
     }
 
     Yox.dom.on(

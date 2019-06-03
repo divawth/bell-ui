@@ -1,11 +1,13 @@
-<li class="bell-select-option
+<li 
+class="${prefix}select-option
+  {{#if isHover}} ${prefix}hover{{/if}}
+  {{#if isSelected}} ${prefix}active{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if isHover}} bell-hover{{/if}}
-  {{#if isSelected}} bell-active{{/if}}
-"{{#if style}} style="{{style}}"{{/if}} on-click="click(index)">
-  {{#if hasSlot('children')}}
-    <slot name="children" />
-  {{else}}
+"
+{{#if style}} style="{{style}}"{{/if}} 
+on-click="click(index)"
+>
+  <slot name="children">
     {{text}}
-  {{/if}}
+  </slot>
 </li>

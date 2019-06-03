@@ -5998,7 +5998,6 @@ button.bell-button-danger-ghost[disabled] {
 }
 .bell-select {
   display: inline-block;
-  box-sizing: border-box;
   user-select: none;
   text-align: left;
   width: 100%;
@@ -6020,217 +6019,10 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select ::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
-.bell-select .bell-select-button .bell-select-value,
-.bell-select .bell-select-button .bell-select-placeholder {
-  font-size: 12px;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 8px;
-  padding-right: 24px;
-}
-.bell-select .bell-select-button .bell-select-arrow {
-  padding: 0px 8px;
-}
-.bell-select .bell-dropdown-list .bell-select-option {
-  padding: 10px 15px;
-  font-size: 12px;
-  line-height: 1;
-}
-.bell-select.bell-select-top .bell-dropdown-list {
-  bottom: 38px;
-}
 .bell-select.bell-select.active .bell-dropdown-list,
 .bell-select:active .bell-dropdown-list,
 .bell-select.bell-active .bell-dropdown-list {
-  max-height: 200px !important;
-}
-.bell-select-small .bell-select-button .bell-select-value,
-.bell-select-small .bell-select-button .bell-select-placeholder {
-  font-size: 12px;
-  height: 22px;
-  line-height: 22px;
-  padding-left: 8px;
-  padding-right: 24px;
-}
-.bell-select-small .bell-select-button .bell-select-arrow {
-  padding: 0px 8px;
-}
-.bell-select-small .bell-dropdown-list .bell-select-option {
-  padding: 6px 15px;
-  font-size: 12px;
-  line-height: 1;
-}
-.bell-select-small.bell-select-top .bell-dropdown-list {
-  bottom: 30px;
-}
-.bell-select-small.bell-select-small.active .bell-dropdown-list,
-.bell-select-small:active .bell-dropdown-list,
-.bell-select-small.bell-active .bell-dropdown-list {
-  max-height: 200px !important;
-}
-.bell-select-large .bell-select-button .bell-select-value,
-.bell-select-large .bell-select-button .bell-select-placeholder {
-  font-size: 14px;
-  height: 38px;
-  line-height: 38px;
-  padding-left: 8px;
-  padding-right: 24px;
-}
-.bell-select-large .bell-select-button .bell-select-arrow {
-  padding: 0px 8px;
-}
-.bell-select-large .bell-dropdown-list .bell-select-option {
-  padding: 12px 15px;
-  font-size: 14px;
-  line-height: 1;
-}
-.bell-select-large.bell-select-top .bell-dropdown-list {
-  bottom: 46px;
-}
-.bell-select-large.bell-select-large.active .bell-dropdown-list,
-.bell-select-large:active .bell-dropdown-list,
-.bell-select-large.bell-active .bell-dropdown-list {
-  max-height: 200px !important;
-}
-.bell-select .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select .bell-select-button.bell-select .bell-select-button.hover,
-.bell-select .bell-select-button:hover,
-.bell-select .bell-select-button.bell-hover {
-  border-color: #40a9ff;
-}
-.bell-select.bell-select.active .bell-select-button,
-.bell-select:active .bell-select-button,
-.bell-select.bell-active .bell-select-button {
-  border-color: #40a9ff;
-  box-shadow: 0 0 0 2px #d2ecf1;
-}
-.bell-select .bell-select-option.bell-select .bell-select-option.hover,
-.bell-select .bell-select-option:hover,
-.bell-select .bell-select-option.bell-hover {
-  background-color: #d2ecf1;
-}
-.bell-select-success .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select-success .bell-select-button.bell-select-success .bell-select-button.hover,
-.bell-select-success .bell-select-button:hover,
-.bell-select-success .bell-select-button.bell-hover {
-  border-color: #47cb89;
-}
-.bell-select-success.bell-select-success.active .bell-select-button,
-.bell-select-success:active .bell-select-button,
-.bell-select-success.bell-active .bell-select-button {
-  border-color: #47cb89;
-  box-shadow: 0 0 0 2px #d5eddb;
-}
-.bell-select-success .bell-select-option.bell-select-success .bell-select-option.hover,
-.bell-select-success .bell-select-option:hover,
-.bell-select-success .bell-select-option.bell-hover {
-  background-color: #d5eddb;
-}
-.bell-select-error .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select-error .bell-select-button.bell-select-error .bell-select-button.hover,
-.bell-select-error .bell-select-button:hover,
-.bell-select-error .bell-select-button.bell-hover {
-  border-color: #f16643;
-}
-.bell-select-error.bell-select-error.active .bell-select-button,
-.bell-select-error:active .bell-select-button,
-.bell-select-error.bell-active .bell-select-button {
-  border-color: #f16643;
-  box-shadow: 0 0 0 2px #f7d7db;
-}
-.bell-select-error .bell-select-option.bell-select-error .bell-select-option.hover,
-.bell-select-error .bell-select-option:hover,
-.bell-select-error .bell-select-option.bell-hover {
-  background-color: #f7d7db;
-}
-.bell-select-info .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select-info .bell-select-button.bell-select-info .bell-select-button.hover,
-.bell-select-info .bell-select-button:hover,
-.bell-select-info .bell-select-button.bell-hover {
-  border-color: #57c5f7;
-}
-.bell-select-info.bell-select-info.active .bell-select-button,
-.bell-select-info:active .bell-select-button,
-.bell-select-info.bell-active .bell-select-button {
-  border-color: #57c5f7;
-  box-shadow: 0 0 0 2px #d2ecf1;
-}
-.bell-select-info .bell-select-option.bell-select-info .bell-select-option.hover,
-.bell-select-info .bell-select-option:hover,
-.bell-select-info .bell-select-option.bell-hover {
-  background-color: #d2ecf1;
-}
-.bell-select-warning .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select-warning .bell-select-button.bell-select-warning .bell-select-button.hover,
-.bell-select-warning .bell-select-button:hover,
-.bell-select-warning .bell-select-button.bell-hover {
-  border-color: #ffad33;
-}
-.bell-select-warning.bell-select-warning.active .bell-select-button,
-.bell-select-warning:active .bell-select-button,
-.bell-select-warning.bell-active .bell-select-button {
-  border-color: #ffad33;
-  box-shadow: 0 0 0 2px #fff3cf;
-}
-.bell-select-warning .bell-select-option.bell-select-warning .bell-select-option.hover,
-.bell-select-warning .bell-select-option:hover,
-.bell-select-warning .bell-select-option.bell-hover {
-  background-color: #fff3cf;
-}
-.bell-select-danger .bell-select-button {
-  border: 1px solid;
-  border-color: #eee;
-}
-.bell-select-danger .bell-select-button.bell-select-danger .bell-select-button.hover,
-.bell-select-danger .bell-select-button:hover,
-.bell-select-danger .bell-select-button.bell-hover {
-  border-color: #ee3737;
-}
-.bell-select-danger.bell-select-danger.active .bell-select-button,
-.bell-select-danger:active .bell-select-button,
-.bell-select-danger.bell-active .bell-select-button {
-  border-color: #ee3737;
-  box-shadow: 0 0 0 2px #f7d7db;
-}
-.bell-select-danger .bell-select-option.bell-select-danger .bell-select-option.hover,
-.bell-select-danger .bell-select-option:hover,
-.bell-select-danger .bell-select-option.bell-hover {
-  background-color: #f7d7db;
-}
-.bell-select-disabled .bell-select-button {
-  border: 1px solid;
-  border-color: #dddee1;
-}
-.bell-select-disabled .bell-select-button.bell-select-disabled .bell-select-button.hover,
-.bell-select-disabled .bell-select-button:hover,
-.bell-select-disabled .bell-select-button.bell-hover {
-  border-color: #dddee1;
-}
-.bell-select-disabled.bell-select-disabled.active .bell-select-button,
-.bell-select-disabled:active .bell-select-button,
-.bell-select-disabled.bell-active .bell-select-button {
-  border-color: #dddee1;
-  box-shadow: none;
-}
-.bell-select-disabled .bell-select-option.bell-select-disabled .bell-select-option.hover,
-.bell-select-disabled .bell-select-option:hover,
-.bell-select-disabled .bell-select-option.bell-hover {
-  background-color: none;
+  max-height: 200px;
 }
 .bell-select.bell-select.active .bell-select-arrow,
 .bell-select:active .bell-select-arrow,
@@ -6242,12 +6034,31 @@ button.bell-button-danger-ghost[disabled] {
   white-space: normal;
   line-height: 1.8;
 }
+.bell-select.bell-select-multiple .bell-select-value .bell-tag,
+.bell-select.bell-select-multiple .bell-select-placeholder .bell-tag {
+  margin: 0px 4px 3px 0;
+}
+.bell-select.bell-select-with-prefix .bell-select-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bell-select.bell-select-with-prefix .bell-select-value,
+.bell-select.bell-select-with-prefix .bell-select-placeholder {
+  flex: 1;
+}
+.bell-select.bell-select-with-prefix .bell-select-prefix {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
 .bell-select .bell-select-button {
   width: 100%;
   display: inline-block;
   position: relative;
   outline: 0;
   cursor: pointer;
+  border: 1px solid;
   border-radius: 4px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -6258,6 +6069,7 @@ button.bell-button-danger-ghost[disabled] {
   font-size: 14px;
   color: rgba(0,0,0,0.37);
   transform-origin: center;
+  padding: 0px 8px;
   transition: transform 0.3s;
 }
 .bell-select .bell-select-button .bell-select-value,
@@ -6267,6 +6079,8 @@ button.bell-button-danger-ghost[disabled] {
   text-overflow: ellipsis;
   white-space: nowrap;
   color: rgba(0,0,0,0.37);
+  padding-right: 24px;
+  padding-left: 8px;
 }
 .bell-select .bell-select-button .bell-select-value.bell-hide,
 .bell-select .bell-select-button .bell-select-placeholder.bell-hide {
@@ -6275,9 +6089,19 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select .bell-select-button .bell-select-value {
   color: rgba(0,0,0,0.87);
 }
+.bell-select .bell-dropdown-list {
+  min-width: 100%;
+}
+.bell-select .bell-dropdown-list .bell-select-option.bell-select .bell-dropdown-list .bell-select-option.active,
+.bell-select .bell-dropdown-list .bell-select-option:active,
+.bell-select .bell-dropdown-list .bell-select-option.bell-active {
+  font-weight: bold;
+}
+.bell-select .bell-dropdown-list .bell-select-option-title {
+  color: #999;
+}
 .bell-select.bell-select-disabled .bell-select-button {
   cursor: not-allowed;
-  background-color: #fcfcfc;
 }
 .bell-select.bell-select-disabled .bell-select-button.bell-select.bell-select-disabled .bell-select-button.hover,
 .bell-select.bell-select-disabled .bell-select-button:hover,
@@ -6294,6 +6118,308 @@ button.bell-button-danger-ghost[disabled] {
 .bell-select.bell-select-top:active .bell-select-arrow,
 .bell-select.bell-select-top.bell-active .bell-select-arrow {
   transform: rotate(0);
+}
+.bell-select.bell-select-clearable .bell-select-clear-icon {
+  font-size: 16px;
+  color: #808695;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  opacity: 0;
+  padding: 0 6px;
+  transform: translateY(-50%);
+  transition: opacity 0.3s;
+}
+.bell-select.bell-select-clearable.hover .bell-select-arrow,
+.bell-select.bell-select-clearable:hover .bell-select-arrow,
+.bell-select.bell-select-clearable.bell-hover .bell-select-arrow {
+  display: none;
+}
+.bell-select.bell-select-clearable.hover .bell-select-clear-icon,
+.bell-select.bell-select-clearable:hover .bell-select-clear-icon,
+.bell-select.bell-select-clearable.bell-hover .bell-select-clear-icon {
+  opacity: 1;
+}
+.bell-select {
+  height: 32px;
+}
+.bell-select .bell-select-prefix {
+  height: 30px;
+  line-height: 30px;
+}
+.bell-select .bell-select-button {
+  height: 30px;
+}
+.bell-select .bell-select-button .bell-select-value,
+.bell-select .bell-select-button .bell-select-placeholder {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+}
+.bell-select .bell-select-button .bell-select-arrow {
+  line-height: 30px;
+}
+.bell-select .bell-dropdown-list .bell-select-option {
+  padding: 10px 15px;
+  font-size: 12px;
+  line-height: 1;
+}
+.bell-select .bell-dropdown-list .bell-select-option-title {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: ;
+}
+.bell-select.bell-select-top .bell-dropdown-list {
+  bottom: 40px;
+}
+.bell-select-small {
+  height: 24px;
+}
+.bell-select-small .bell-select-prefix {
+  height: 22px;
+  line-height: 22px;
+}
+.bell-select-small .bell-select-button {
+  height: 22px;
+}
+.bell-select-small .bell-select-button .bell-select-value,
+.bell-select-small .bell-select-button .bell-select-placeholder {
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+}
+.bell-select-small .bell-select-button .bell-select-arrow {
+  line-height: 22px;
+}
+.bell-select-small .bell-dropdown-list .bell-select-option {
+  padding: 6px 15px;
+  font-size: 12px;
+  line-height: 1;
+}
+.bell-select-small .bell-dropdown-list .bell-select-option-title {
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: ;
+}
+.bell-select-small.bell-select-top .bell-dropdown-list {
+  bottom: 32px;
+}
+.bell-select-large {
+  height: 40px;
+}
+.bell-select-large .bell-select-prefix {
+  height: 38px;
+  line-height: 38px;
+}
+.bell-select-large .bell-select-button {
+  height: 38px;
+}
+.bell-select-large .bell-select-button .bell-select-value,
+.bell-select-large .bell-select-button .bell-select-placeholder {
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+}
+.bell-select-large .bell-select-button .bell-select-arrow {
+  line-height: 38px;
+}
+.bell-select-large .bell-dropdown-list .bell-select-option {
+  padding: 12px 15px;
+  font-size: 14px;
+  line-height: 1;
+}
+.bell-select-large .bell-dropdown-list .bell-select-option-title {
+  font-size: 14px;
+  height: 38px;
+  line-height: 38px;
+  padding-left: ;
+}
+.bell-select-large.bell-select-top .bell-dropdown-list {
+  bottom: 48px;
+}
+.bell-select .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select .bell-select-button.bell-select .bell-select-button.hover,
+.bell-select .bell-select-button:hover,
+.bell-select .bell-select-button.bell-hover {
+  border-color: #40a9ff;
+}
+.bell-select.bell-select.active .bell-select-button,
+.bell-select:active .bell-select-button,
+.bell-select.bell-active .bell-select-button {
+  border-color: #40a9ff;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-select .bell-select-option.bell-select .bell-select-option.hover,
+.bell-select .bell-select-option:hover,
+.bell-select .bell-select-option.bell-hover {
+  color: #1890ff;
+  background-color: #f3f3f3;
+}
+.bell-select .bell-select-option.bell-select .bell-select-option.active,
+.bell-select .bell-select-option:active,
+.bell-select .bell-select-option.bell-active {
+  color: #1890ff;
+}
+.bell-select-success .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select-success .bell-select-button.bell-select-success .bell-select-button.hover,
+.bell-select-success .bell-select-button:hover,
+.bell-select-success .bell-select-button.bell-hover {
+  border-color: #47cb89;
+}
+.bell-select-success.bell-select-success.active .bell-select-button,
+.bell-select-success:active .bell-select-button,
+.bell-select-success.bell-active .bell-select-button {
+  border-color: #47cb89;
+  box-shadow: 0 0 0 2px #d5eddb;
+}
+.bell-select-success .bell-select-option.bell-select-success .bell-select-option.hover,
+.bell-select-success .bell-select-option:hover,
+.bell-select-success .bell-select-option.bell-hover {
+  color: #52c41a;
+  background-color: #f3f3f3;
+}
+.bell-select-success .bell-select-option.bell-select-success .bell-select-option.active,
+.bell-select-success .bell-select-option:active,
+.bell-select-success .bell-select-option.bell-active {
+  color: #52c41a;
+}
+.bell-select-error .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select-error .bell-select-button.bell-select-error .bell-select-button.hover,
+.bell-select-error .bell-select-button:hover,
+.bell-select-error .bell-select-button.bell-hover {
+  border-color: #f16643;
+}
+.bell-select-error.bell-select-error.active .bell-select-button,
+.bell-select-error:active .bell-select-button,
+.bell-select-error.bell-active .bell-select-button {
+  border-color: #f16643;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-select-error .bell-select-option.bell-select-error .bell-select-option.hover,
+.bell-select-error .bell-select-option:hover,
+.bell-select-error .bell-select-option.bell-hover {
+  color: #f5222d;
+  background-color: #f3f3f3;
+}
+.bell-select-error .bell-select-option.bell-select-error .bell-select-option.active,
+.bell-select-error .bell-select-option:active,
+.bell-select-error .bell-select-option.bell-active {
+  color: #f5222d;
+}
+.bell-select-info .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select-info .bell-select-button.bell-select-info .bell-select-button.hover,
+.bell-select-info .bell-select-button:hover,
+.bell-select-info .bell-select-button.bell-hover {
+  border-color: #57c5f7;
+}
+.bell-select-info.bell-select-info.active .bell-select-button,
+.bell-select-info:active .bell-select-button,
+.bell-select-info.bell-active .bell-select-button {
+  border-color: #57c5f7;
+  box-shadow: 0 0 0 2px #d2ecf1;
+}
+.bell-select-info .bell-select-option.bell-select-info .bell-select-option.hover,
+.bell-select-info .bell-select-option:hover,
+.bell-select-info .bell-select-option.bell-hover {
+  color: #2db7f5;
+  background-color: #f3f3f3;
+}
+.bell-select-info .bell-select-option.bell-select-info .bell-select-option.active,
+.bell-select-info .bell-select-option:active,
+.bell-select-info .bell-select-option.bell-active {
+  color: #2db7f5;
+}
+.bell-select-warning .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select-warning .bell-select-button.bell-select-warning .bell-select-button.hover,
+.bell-select-warning .bell-select-button:hover,
+.bell-select-warning .bell-select-button.bell-hover {
+  border-color: #ffad33;
+}
+.bell-select-warning.bell-select-warning.active .bell-select-button,
+.bell-select-warning:active .bell-select-button,
+.bell-select-warning.bell-active .bell-select-button {
+  border-color: #ffad33;
+  box-shadow: 0 0 0 2px #fff3cf;
+}
+.bell-select-warning .bell-select-option.bell-select-warning .bell-select-option.hover,
+.bell-select-warning .bell-select-option:hover,
+.bell-select-warning .bell-select-option.bell-hover {
+  color: #faad14;
+  background-color: #f3f3f3;
+}
+.bell-select-warning .bell-select-option.bell-select-warning .bell-select-option.active,
+.bell-select-warning .bell-select-option:active,
+.bell-select-warning .bell-select-option.bell-active {
+  color: #faad14;
+}
+.bell-select-danger .bell-select-button {
+  border-color: #eee;
+  background-color: #fff;
+}
+.bell-select-danger .bell-select-button.bell-select-danger .bell-select-button.hover,
+.bell-select-danger .bell-select-button:hover,
+.bell-select-danger .bell-select-button.bell-hover {
+  border-color: #ee3737;
+}
+.bell-select-danger.bell-select-danger.active .bell-select-button,
+.bell-select-danger:active .bell-select-button,
+.bell-select-danger.bell-active .bell-select-button {
+  border-color: #ee3737;
+  box-shadow: 0 0 0 2px #f7d7db;
+}
+.bell-select-danger .bell-select-option.bell-select-danger .bell-select-option.hover,
+.bell-select-danger .bell-select-option:hover,
+.bell-select-danger .bell-select-option.bell-hover {
+  color: #eb1111;
+  background-color: #f3f3f3;
+}
+.bell-select-danger .bell-select-option.bell-select-danger .bell-select-option.active,
+.bell-select-danger .bell-select-option:active,
+.bell-select-danger .bell-select-option.bell-active {
+  color: #eb1111;
+}
+.bell-select-disabled .bell-select-button {
+  border-color: #dddee1;
+  background-color: #f7f7f7;
+}
+.bell-select-disabled .bell-select-button.bell-select-disabled .bell-select-button.hover,
+.bell-select-disabled .bell-select-button:hover,
+.bell-select-disabled .bell-select-button.bell-hover {
+  border-color: #dddee1;
+}
+.bell-select-disabled.bell-select-disabled.active .bell-select-button,
+.bell-select-disabled:active .bell-select-button,
+.bell-select-disabled.bell-active .bell-select-button {
+  border-color: #dddee1;
+  box-shadow: none;
+}
+.bell-select-disabled .bell-select-option.bell-select-disabled .bell-select-option.hover,
+.bell-select-disabled .bell-select-option:hover,
+.bell-select-disabled .bell-select-option.bell-hover {
+  color: rgba(0,0,0,0.37);
+  background-color: #f3f3f3;
+}
+.bell-select-disabled .bell-select-option.bell-select-disabled .bell-select-option.active,
+.bell-select-disabled .bell-select-option:active,
+.bell-select-disabled .bell-select-option.bell-active {
+  color: rgba(0,0,0,0.37);
 }
 .bell-datepicker {
   user-select: none;

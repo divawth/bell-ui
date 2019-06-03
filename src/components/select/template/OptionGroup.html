@@ -1,0 +1,11 @@
+<li 
+class="${prefix}select-option-group
+  {{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}} 
+>
+  <div class="${prefix}select-option-title">
+    {{label}}
+  </div>
+  <slot name="children" />
+</li>

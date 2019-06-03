@@ -1,30 +1,28 @@
-import OptionTpl from './template/Option.html'
+import template from './template/Option.html'
+import { RAW_STRING, RAW_NUMERIC } from '../constant'
 
 export default {
-  template: OptionTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     value: {
-      type: ['string', 'numeric']
+      type: [ RAW_STRING, RAW_NUMERIC ]
     },
     text: {
-      type: ['string', 'numeric']
+      type: [ RAW_STRING, RAW_NUMERIC ]
     },
     index: {
-      type: ['string', 'numeric'],
+      type: [ RAW_STRING, RAW_NUMERIC ],
       require: true
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
-
+  template,
   events: {
-
-    optionHoveredChange(event, data) {
+    optionHoveredChange(_, data) {
       let me = this
       let isHover = data.index == me.get('index')
       me.set({
@@ -37,18 +35,17 @@ export default {
       }
     },
 
-    optionSelectedChange(event, data) {
-      let me = this
-      let value = me.get('value')
+    optionSelectedChange(_, data) {
+      let value = this.get('value')
       let values = data.value
 
-      let isSelected = Array.isArray(values) ? values.indexOf(value) >= 0 : values == value
-      me.set({
+      let isSelected = Yox.is.array(values) ? values.indexOf(value) >= 0 : values == value
+      this.set({
         isSelected: isSelected
       })
-      // 默认值的时候需要传给上层
+      
       if (isSelected) {
-        me.fire('selectedOptionChange')
+        this.fire('selectedOptionChange')
       }
     }
   },
@@ -61,27 +58,22 @@ export default {
   },
 
   methods: {
-
     click() {
       this.fire(
         'optionSelect'
       )
     }
-
   },
 
   afterMount() {
-
-    let me = this
-    me.fire(
+    this.fire(
       'optionAdd',
       {
-        value: me.get('value'),
-        text: me.get('text'),
-        index: me.get('index')
+        value: this.get('value'),
+        text: this.get('text'),
+        index: this.get('index')
       }
     )
-
   },
 
   beforeDestroy() {

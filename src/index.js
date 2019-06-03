@@ -34,6 +34,8 @@ import CheckboxGroup from './components/checkbox/CheckboxGroup'
 import Switch from './components/switch/Switch'
 import Select from './components/select/Select'
 import Option from './components/select/Option'
+import OptionGroup from './components/select/OptionGroup'
+
 import Page from './components/page/Page'
 import Upload from './components/upload/Upload'
 
@@ -117,6 +119,7 @@ Yox.component({
   Switch,
   Select,
   Option,
+  OptionGroup,
   Page,
   DatePicker,
   Upload,
