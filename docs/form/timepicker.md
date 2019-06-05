@@ -6,6 +6,7 @@ export default {
   height: 300,
   template: `
     <div style="margin: 30px;">
+      <TimePicker model="value" />
     </div>
   `
 }
