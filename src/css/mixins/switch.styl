@@ -1,73 +1,54 @@
 switch-size-style(size)
+  ui-set('height', size[ 'height' ])
+  ui-set('width', size[ 'width' ])
+  ui-set('border-radius', size[ 'height' ])
 
-    ui-set('min-width', size['min-width'])
-    ui-set('height', size['height'])
-    ui-set('border-radius', size['height'])
+  &{$selector-active}
+    {$selector-switch-button}
+      &:after
+        ui-set('margin-left', - size[ 'after-size' ] - 1)
+
+  {$selector-switch-button}
+    ui-set('height', size[ 'height' ] - 2)
+
+    {$selector-switch}-inner
+      ui-set('line-height', size[ 'height' ] - 2)
+      ui-set('height', size[ 'height' ] - 2)
+      ui-set('left', size[ 'height' ])
+
+    &:after
+      ui-set('width', size[ 'after-size' ])
+      ui-set('height', size[ 'after-size' ])
+
+  &{$selector-switch}-loading
+    {$selector-switch-button}
+      &:before
+        ui-set('width', size[ 'after-size' ] - 6)
+        ui-set('height', size[ 'after-size' ] - 6)
 
     &{$selector-active}
-
-        {$selector-switch-button}
-
-            ui-set('padding-left', size['checked-left'])
-            ui-set('padding-right', size['checked-right'])
-
-            &:after
-
-                ui-set('margin-left', - size['after-size'] - 1)
-
-    {$selector-switch-button}
-
-        ui-set('height', size['height'])
-        ui-set('padding-right', size['checked-left'])
-        ui-set('padding-left', size['checked-right'])
-
-        {$selector-switch}-on
-
-            ui-set('line-height', size['height'])
-            ui-set('height', size['height'])
-
-        {$selector-switch}-off
-
-            ui-set('line-height', size['height'])
-            ui-set('height', size['height'])
-
-        &:after
-
-            ui-set('width', size['after-size'])
-            ui-set('height', size['after-size'])
-
+      {$selector-switch-button}
+        &:before
+          ui-set('left', size[ 'before-left' ])
+        
 switch-brand-style(style)
 
-    ui-set('border-color', style['border-color'])
-    ui-set('background-color', style['bg-color'])
-
-    &{$selector-active}
-
-        ui-set('background-color', style['active-bg-color'])
-        ui-set('border-color', style['active-border-color'])
-
+  &{$selector-switch}-loading
     {$selector-switch-button}
-
-        {$selector-switch}-on
-
-            ui-set('color', style['color'])
-
-        {$selector-switch}-off
-
-            ui-set('color', style['color'])
-
-        &:after
-
-            ui-set('background-color', style['after-bg-color'])
+      &:before
+        ui-set('border-left-color', style[ 'active-color' ])
+        
+  &{$selector-active}
+    ui-set('background-color', style[ 'active-color' ])
+    ui-set('border-color', style[ 'active-color' ])
 
 ui-switch()
+  ui-connect(
+    hash: $switch-size-hash,
+    each: switch-size-style
+  )
 
-    ui-connect(
-        hash: $switch-size-hash,
-        each: switch-size-style
-    )
-
-    ui-connect(
-        hash: $switch-brand-hash,
-        each: switch-brand-style
-    )
+  ui-connect(
+    hash: $switch-brand-hash,
+    each: switch-brand-style
+  )

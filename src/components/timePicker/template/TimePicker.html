@@ -1,17 +1,17 @@
-<div class="bell-time-inputs">
+<div class="${prefix}time-inputs">
   <div class="wrapper">
-    <span class="icon icon-caret-up bell-button" on-click="downTens()"></span>
-    <input class="bell-time-input" type="text" model="tens">
-    <span class="icon icon-caret-down bell-button" on-click="upTens()"></span>
+    <span class="icon icon-caret-up ${prefix}button" on-click="downTens()"></span>
+    <input class="${prefix}time-input" type="text" model="tens">
+    <span class="icon icon-caret-down ${prefix}button" on-click="upTens()"></span>
   </div>
 
   <div class="wrapper">
-    <span class="icon icon-caret-up bell-button" on-click="downOnes()"></span>
-    <input class="bell-time-input" type="text" model="ones">
-    <span class="icon icon-caret-down bell-button" on-click="upOnes()"></span>
+    <span class="icon icon-caret-up ${prefix}button" on-click="downOnes()"></span>
+    <input class="${prefix}time-input" type="text" model="ones">
+    <span class="icon icon-caret-down ${prefix}button" on-click="upOnes()"></span>
   </div>
 
-  <span class="bell-time-unit">
+  <span class="${prefix}time-unit">
     {{unit}}
   </span>
 </div>

@@ -1,7 +1,5 @@
-<ul class="bell-time-line
-  {{#if pending}} bell-time-line-padding{{/if}}
+<ul class="${prefix}timeline
+  {{#if pending}} ${prefix}timeline-pending{{/if}}
 ">
-  {{#if hasSlot('children')}}
-      <slot name="children" />
-  {{/if}}
+  <slot name="children" />
 </ul>

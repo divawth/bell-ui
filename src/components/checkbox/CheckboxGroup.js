@@ -48,12 +48,12 @@ export default {
   template,
 
   events: {
-    groupChange(event) {
+    'groupChange.checkboxgroup': function (event) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         event.stop()
       }
     },
-    change(event, data) {
+    'change.checkbox': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let me = this
         let selected = me.copy(me.get('selected'))
@@ -73,7 +73,7 @@ export default {
   watchers: {
     selected (selected) {
       this.fire(
-        'groupChange', 
+        'groupChange.checkboxgroup', 
         { selected }, 
         true
       )

@@ -1,56 +1,59 @@
-{$selector-time-line}
+{$selector-timeline}
+  list-style none
+  margin 0
+  padding 0
+
+  &{$selector-timeline}-pending
+    {$selector-timeline-item}
+      &:nth-last-of-type(2)
+        {$selector-timeline}-tail
+          border-left 1px dotted
+
+  {$selector-timeline-item}
+    margin 0
+    padding 0 0 12px
     list-style none
-    padding 0
-    padding-left 30px
-    font-size 0
-
-{$selector-time-line}-padding
-    {$selector-time-line-item}
-
-        &:nth-last-of-type(2)
-
-            .bell-time-line-tail
-
-                border-left 1px dotted
-
-
-{$selector-time-line-item}
-    font-size 12px
-    line-height 22px
-
-    padding-bottom 12px
-    padding-left 14px
     position relative
 
+    {$selector-timeline}-tail
+      height 100%
+      border-left 1px solid #e8eaec
+      position absolute
+      left 6px
+      top 0
+    
+    {$selector-timeline}-dot
+      position absolute
+      width $timeline-dot-size
+      height $timeline-dot-size
+      background-color #fff
+      border-radius 100%
+      border 1px solid 
+
+    {$selector-timeline}-custom
+      height auto
+      text-align center
+      line-height 1
+      position absolute
+      border 0
+      border-radius 0
+      transform translateY(-50%)
+      background-color #ffffff
+
+      width $timeline-custom-width
+      margin-top $timeline-custom-margin-top
+      padding $timeline-custom-padding
+      left $timeline-custom-left
+      
+    {$selector-timeline}-content
+      position relative
+      padding $timeline-content-padding
+      font-size $timeline-font-size
+      top -3px
+      p
+        padding 0
+        margin 0
+
     &:last-child
-        .bell-time-line-tail
-            display none
-
-
-    .bell-time-line-dot
-        width 12px
-        height 12px
-        border 1px solid
-        border-radius 100%
-        position absolute
-        margin 4px -20px
-        background-color #fff
-
-    .bell-time-line-tail
-        position absolute
-        left 0
-        right 0
-        top 0
-        bottom 0
-        width 1px
-        height 100%
-        margin-top 5px
-        color #e9eaec
-        border-left 1px solid
-
-    .bell-time-line-content
-        overflow hidden
-        line-height 20px
-        p
-            padding 0
-            margin 0
+      {$selector-timeline}-tail
+        display none

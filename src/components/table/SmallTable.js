@@ -1,50 +1,55 @@
-import SmallTableTpl from './template/SmallTable.html'
+import template from './template/SmallTable.html'
+import { RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, TRUE, NULL } from '../constant'
 
 export default {
-  template: SmallTableTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     list: {
-      type: 'array'
+      type: RAW_ARRAY
     },
     columns: {
-      type: 'array',
-      default: []
+      type: RAW_ARRAY,
+      require: TRUE
     },
     stripe: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     border: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     setRowClassName: {
-      type: 'function'
+      type: RAW_FUNCTION
     },
     height: {
-      type: 'string'
+      type: RAW_STRING
     },
     width: {
-      type: 'string'
+      type: RAW_STRING
     },
     header: {
-      type: 'boolean',
+      type: RAW_BOOLEAN,
       default: false
     },
+    fixed: {
+      type: RAW_BOOLEAN
+    },
     highlightRow: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     setIndex: {
-      type: 'function'
+      type: RAW_FUNCTION
     },
     selection: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+
+  template,
 
   data() {
     return {
@@ -52,62 +57,69 @@ export default {
       currentItem: null,
       isObject(data) {
         return Object.prototype.toString.call(data).toLocaleLowerCase().substr(8, 6) === 'object'
-      },
-    };
+      }
+    }
   },
 
   computed: {
     checkAll () {
-      return this.get('list').filter(item => {
-        return item.checked;
-      }).length === this.get('list').length;
+      return this.get('list').filter(function(item) {
+        return item.checked
+      }).length === this.get('list').length
+    }
+  },
+
+  events: {
+    'clearCurrentRow.table': function () {
+      this.clearCurrentRow()
+    },
+    'selectAll.table': function () {
+      this.selectAll()
     }
   },
 
   methods: {
-    checkedChange (data, index) {
-      this.setChecked(data.isChecked, true, index);
-      data.index = index;
-      this.fire('select', data);
+    checkedChange(data, index) {
+      this.setChecked(data.isChecked, TRUE, index)
+      data.index = index
+      this.fire('select', data)
     },
-    checkedAllChange (event, data) {
-      this.setChecked(data.isChecked, true);
-      this.fire('selectAll', data);
+    checkedAllChange(_, data) {
+      this.setChecked(data.isChecked, TRUE)
+      this.fire('selectAll', data)
     },
-    selectAll () {
-      this.checkedAllChange(null, {
-        isChecked: true
-      });
+    selectAll() {
+      this.checkedAllChange(NULL, {
+        isChecked: TRUE
+      })
     },
-    clearCurrentRow: function () {
+    clearCurrentRow() {
       this.set({
         'currentItem': null
-      });
+      })
     },
-    click: function (item, data, index) {
-      item.action(data, index);
+    click(item, data, index) {
+      item.action(data, index)
     },
-    rowClick: function (data, index) {
-      let me = this;
-      if (!me.get('highlightRow') || me.get('header')) {
-        return;
+    rowClick(data, index) {
+      if (!this.get('highlightRow') || this.get('header')) {
+        return
       }
-      data.index = index;
-      me.fire('currentChange', {
+      data.index = index
+      this.fire('currentChange', {
         current: data,
-        oldCurrent: me.get('currentItem')
-      });
-      me.set({
+        oldCurrent: this.get('currentItem')
+      })
+      this.set({
         'currentItem': data
-      });
+      })
     },
 
     setChecked(value, force, index) {
-      let me = this;
-      let list = me.copy(me.get('list'));
-      list = list.map((item, key) => {
+      let list = this.copy(this.get('list'))
+      list = list.map(function(item, key) {
         if (force && index == null) {
-          item.checked = value;
+          item.checked = value
         }
         else if (index != null) {
           if (key === index) {
@@ -115,36 +127,33 @@ export default {
           }
         }
         else {
-          item.checked = item.checked != null ? item.checked : value;
+          item.checked = item.checked != null ? item.checked : value
         }
-        return item;
-      });
+        return item
+      })
 
-      this.fire('selectChange', list);
-      me.set({
-        list
-      });
+      this.fire('selectChange', list)
+      this.set({ list })
     }
   },
 
   afterMount: function () {
-    let me = this;
-    if (me.get('selection')) {
-      me.setChecked();
-    }
+    let me = this
     if (!me.get('columns').length) {
-      return;
+      return
     }
-    let colWidths = [];
-    me.get('columns').forEach(item => {
-      let colWidth = me.$el.clientWidth / 3;
+
+    if (me.get('selection')) {
+      me.setChecked()
+    }
+    let colWidths = []
+    me.get('columns').forEach(function(item) {
+      let colWidth = me.$el.clientWidth / 3
       if (item.width) {
-        colWidth = item.width;
+        colWidth = item.width
       }
-      colWidths.push(colWidth);
-    });
-    me.set({
-      colWidths
-    });
+      colWidths.push(colWidth)
+    })
+    me.set({ colWidths })
   }
-};
+}

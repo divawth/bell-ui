@@ -1,7 +1,7 @@
-import TimePickerTpl from './template/TimePicker.html'
+import template from './template/TimePicker.html'
 
 export default {
-  template: TimePickerTpl,
+  template: template,
   propTypes: {
     unit: {
       type: 'string',

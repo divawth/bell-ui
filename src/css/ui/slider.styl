@@ -1,59 +1,50 @@
 {$selector-slider}
+  ui-slider()
 
-    ui-slider()
+  width 100%
+  user-select none
+  outline none
+  cursor pointer
 
-    width 100%
-    user-select none
-    outline none
-    cursor pointer
+  &{$selector-slider-dragging}
+    {$selector-slider-thumb}
+      transform scale(1.5)
 
-    &{$selector-slider-dragging}
-
-        {$selector-slider-thumb}
-
-            transform scale(1.5)
-
-    {$selector-disabled}
-
-        cursor default
-
-        {$selector-slider-thumb}
-
-            {$selector-hover}
-
-                transform scale(1)
-
-    {$selector-slider-bg}
-
-        width 100%
-        height $slider-height
-        border-radius $radius-base
-        background-color $brand-border-disabled
-        position relative
-
-    {$selector-slider-fill}
-
-        position absolute
-        left 0
-        top 0
-        height 100%
-        border-radius $radius-base
-        border-top-right-radius 0
-        border-bottom-right-radius 0
+  &{$selector-slider}-disabled
+    cursor not-allowed
 
     {$selector-slider-thumb}
+      cursor not-allowed
+      {$selector-hover}
+        transform scale(1)
 
-        width $slider-thumb-size
-        height $slider-thumb-size
-        position absolute
-        top 50%
-        margin-top - $slider-height - 1
-        border-radius $radius-circle
-        background-color $brand-bg
-        border 2px solid transparent
-        margin-left -1px
-        transition transform .3s
+  {$selector-slider-bg}
+    width 100%
+    height $slider-height
+    border-radius $radius-base
+    background-color $brand-border-disabled
+    position relative
 
-        {$selector-hover}
+  {$selector-slider-fill}
+    position absolute
+    left 0
+    top 0
+    height 100%
+    border-radius $radius-base
+    border-top-right-radius 0
+    border-bottom-right-radius 0
 
-            transform scale(1.5)
+  {$selector-slider-thumb}
+    width $slider-thumb-size
+    height $slider-thumb-size
+    position absolute
+    top 50%
+    margin-top - $slider-height - 1
+    border-radius $radius-circle
+    background-color $brand-bg
+    border 2px solid transparent
+    margin-left -1px
+    transition transform .3s
+
+    {$selector-hover}
+      transform scale(1.5)

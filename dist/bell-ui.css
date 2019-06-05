@@ -5711,253 +5711,18 @@ button.bell-button-danger-ghost[disabled] {
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid;
-  transition: border-color 0.3s, background-color 0.3s;
   font-size: 12px;
-}
-.bell-switch {
-  min-width: 40px;
-  height: 20px;
-  border-radius: 20px;
-}
-.bell-switch.bell-switch.active .bell-switch-button,
-.bell-switch:active .bell-switch-button,
-.bell-switch.bell-active .bell-switch-button {
-  padding-left: 6px;
-  padding-right: 22px;
-}
-.bell-switch.bell-switch.active .bell-switch-button:after,
-.bell-switch:active .bell-switch-button:after,
-.bell-switch.bell-active .bell-switch-button:after {
-  margin-left: -17px;
-}
-.bell-switch .bell-switch-button {
-  height: 20px;
-  padding-right: 6px;
-  padding-left: 22px;
-}
-.bell-switch .bell-switch-button .bell-switch-on {
-  line-height: 20px;
-  height: 20px;
-}
-.bell-switch .bell-switch-button .bell-switch-off {
-  line-height: 20px;
-  height: 20px;
-}
-.bell-switch .bell-switch-button:after {
-  width: 16px;
-  height: 16px;
-}
-.bell-switch-small {
-  min-width: 32px;
-  height: 16px;
-  border-radius: 16px;
-}
-.bell-switch-small.bell-switch-small.active .bell-switch-button,
-.bell-switch-small:active .bell-switch-button,
-.bell-switch-small.bell-active .bell-switch-button {
-  padding-left: 4px;
-  padding-right: 16px;
-}
-.bell-switch-small.bell-switch-small.active .bell-switch-button:after,
-.bell-switch-small:active .bell-switch-button:after,
-.bell-switch-small.bell-active .bell-switch-button:after {
-  margin-left: -13px;
-}
-.bell-switch-small .bell-switch-button {
-  height: 16px;
-  padding-right: 4px;
-  padding-left: 16px;
-}
-.bell-switch-small .bell-switch-button .bell-switch-on {
-  line-height: 16px;
-  height: 16px;
-}
-.bell-switch-small .bell-switch-button .bell-switch-off {
-  line-height: 16px;
-  height: 16px;
-}
-.bell-switch-small .bell-switch-button:after {
-  width: 12px;
-  height: 12px;
-}
-.bell-switch-large {
-  min-width: 48px;
-  height: 24px;
-  border-radius: 24px;
-}
-.bell-switch-large.bell-switch-large.active .bell-switch-button,
-.bell-switch-large:active .bell-switch-button,
-.bell-switch-large.bell-active .bell-switch-button {
-  padding-left: 6px;
-  padding-right: 26px;
-}
-.bell-switch-large.bell-switch-large.active .bell-switch-button:after,
-.bell-switch-large:active .bell-switch-button:after,
-.bell-switch-large.bell-active .bell-switch-button:after {
-  margin-left: -21px;
-}
-.bell-switch-large .bell-switch-button {
-  height: 24px;
-  padding-right: 6px;
-  padding-left: 26px;
-}
-.bell-switch-large .bell-switch-button .bell-switch-on {
-  line-height: 24px;
-  height: 24px;
-}
-.bell-switch-large .bell-switch-button .bell-switch-off {
-  line-height: 24px;
-  height: 24px;
-}
-.bell-switch-large .bell-switch-button:after {
-  width: 20px;
-  height: 20px;
-}
-.bell-switch {
+  transition: border-color 0.3s, background-color 0.3s;
   border-color: #ccc;
   background-color: #ccc;
-}
-.bell-switch.bell-switch.active,
-.bell-switch:active,
-.bell-switch.bell-active {
-  background-color: #1890ff;
-  border-color: #1890ff;
-}
-.bell-switch .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-success {
-  border-color: #ccc;
-  background-color: #ccc;
-}
-.bell-switch-success.bell-switch-success.active,
-.bell-switch-success:active,
-.bell-switch-success.bell-active {
-  background-color: #52c41a;
-  border-color: #52c41a;
-}
-.bell-switch-success .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-success .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-success .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-error {
-  border-color: #ccc;
-  background-color: #ccc;
-}
-.bell-switch-error.bell-switch-error.active,
-.bell-switch-error:active,
-.bell-switch-error.bell-active {
-  background-color: #f5222d;
-  border-color: #f5222d;
-}
-.bell-switch-error .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-error .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-error .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-warning {
-  border-color: #ccc;
-  background-color: #ccc;
-}
-.bell-switch-warning.bell-switch-warning.active,
-.bell-switch-warning:active,
-.bell-switch-warning.bell-active {
-  background-color: #faad14;
-  border-color: #faad14;
-}
-.bell-switch-warning .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-warning .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-warning .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-danger {
-  border-color: #ccc;
-  background-color: #ccc;
-}
-.bell-switch-danger.bell-switch-danger.active,
-.bell-switch-danger:active,
-.bell-switch-danger.bell-active {
-  background-color: #eb1111;
-  border-color: #eb1111;
-}
-.bell-switch-danger .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-danger .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-danger .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-info {
-  border-color: #ccc;
-  background-color: #ccc;
-}
-.bell-switch-info.bell-switch-info.active,
-.bell-switch-info:active,
-.bell-switch-info.bell-active {
-  background-color: #2db7f5;
-  border-color: #2db7f5;
-}
-.bell-switch-info .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-info .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-info .bell-switch-button:after {
-  background-color: #fff;
-}
-.bell-switch-disabled {
-  border-color: #dddee1;
-  background-color: #fcfcfc;
-}
-.bell-switch-disabled.bell-switch-disabled.active,
-.bell-switch-disabled:active,
-.bell-switch-disabled.bell-active {
-  background-color: #d2d2d2;
-  border-color: #dddee1;
-}
-.bell-switch-disabled .bell-switch-button .bell-switch-on {
-  color: #fff;
-}
-.bell-switch-disabled .bell-switch-button .bell-switch-off {
-  color: #fff;
-}
-.bell-switch-disabled .bell-switch-button:after {
-  background-color: #dddee1;
 }
 .bell-switch +.bell-switch {
   margin-left: 8px;
 }
-.bell-switch.bell-switch.active .bell-switch-button .bell-switch-on,
-.bell-switch:active .bell-switch-button .bell-switch-on,
-.bell-switch.bell-active .bell-switch-button .bell-switch-on {
-  display: inline;
-}
-.bell-switch.bell-switch.active .bell-switch-button .bell-switch-off,
-.bell-switch:active .bell-switch-button .bell-switch-off,
-.bell-switch.bell-active .bell-switch-button .bell-switch-off {
-  display: none;
+.bell-switch.bell-switch.active .bell-switch-button .bell-switch-inner,
+.bell-switch:active .bell-switch-button .bell-switch-inner,
+.bell-switch.bell-active .bell-switch-button .bell-switch-inner {
+  left: 8px;
 }
 .bell-switch.bell-switch.active .bell-switch-button:after,
 .bell-switch:active .bell-switch-button:after,
@@ -5965,18 +5730,12 @@ button.bell-button-danger-ghost[disabled] {
   left: 100%;
 }
 .bell-switch .bell-switch-button {
+  width: 100%;
   display: inline-block;
 }
-.bell-switch .bell-switch-button .bell-switch-on {
-  display: none;
-}
-.bell-switch .bell-switch-button .bell-switch-off {
-  display: inline;
-}
-.bell-switch .bell-switch-button .bell-switch-on,
-.bell-switch .bell-switch-button .bell-switch-off,
-.bell-switch .bell-switch-button margin-top -1px {
-  text-align: center;
+.bell-switch .bell-switch-button .bell-switch-inner {
+  position: absolute;
+  color: #fff;
 }
 .bell-switch .bell-switch-button:after {
   cursor: pointer;
@@ -5985,16 +5744,211 @@ button.bell-button-danger-ghost[disabled] {
   left: 1px;
   top: 1px;
   border-radius: 100%;
+  background-color: #fff;
   transition: left 0.3s, margin-left 0.3s;
 }
-.bell-switch-disabled {
+.bell-switch.bell-switch-disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.bell-switch.bell-switch-disabled .bell-switch-button {
   cursor: not-allowed;
 }
-.bell-switch-disabled .bell-switch-button {
+.bell-switch.bell-switch-disabled .bell-switch-button:after {
   cursor: not-allowed;
 }
-.bell-switch-disabled .bell-switch-button:after {
-  cursor: not-allowed;
+.bell-switch.bell-switch-loading {
+  opacity: 0.4;
+}
+.bell-switch.bell-switch-loading .bell-switch-button:before {
+  content: " ";
+  border-radius: 100%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  z-index: 1;
+  border: 1px solid transparent;
+  animation: switch-loading 1s linear infinite;
+  transition: transform 0.3s;
+}
+.bell-switch {
+  height: 22px;
+  width: 44px;
+  border-radius: 22px;
+}
+.bell-switch.bell-switch.active .bell-switch-button:after,
+.bell-switch:active .bell-switch-button:after,
+.bell-switch.bell-active .bell-switch-button:after {
+  margin-left: -19px;
+}
+.bell-switch .bell-switch-button {
+  height: 20px;
+}
+.bell-switch .bell-switch-button .bell-switch-inner {
+  line-height: 20px;
+  height: 20px;
+  left: 22px;
+}
+.bell-switch .bell-switch-button:after {
+  width: 18px;
+  height: 18px;
+}
+.bell-switch.bell-switch-loading .bell-switch-button:before {
+  width: 12px;
+  height: 12px;
+}
+.bell-switch.bell-switch-loading.bell-switch.bell-switch-loading.active .bell-switch-button:before,
+.bell-switch.bell-switch-loading:active .bell-switch-button:before,
+.bell-switch.bell-switch-loading.bell-active .bell-switch-button:before {
+  left: 25px;
+}
+.bell-switch-small {
+  height: 16px;
+  width: 28px;
+  border-radius: 16px;
+}
+.bell-switch-small.bell-switch-small.active .bell-switch-button:after,
+.bell-switch-small:active .bell-switch-button:after,
+.bell-switch-small.bell-active .bell-switch-button:after {
+  margin-left: -13px;
+}
+.bell-switch-small .bell-switch-button {
+  height: 14px;
+}
+.bell-switch-small .bell-switch-button .bell-switch-inner {
+  line-height: 14px;
+  height: 14px;
+  left: 16px;
+}
+.bell-switch-small .bell-switch-button:after {
+  width: 12px;
+  height: 12px;
+}
+.bell-switch-small.bell-switch-loading .bell-switch-button:before {
+  width: 6px;
+  height: 6px;
+}
+.bell-switch-small.bell-switch-loading.bell-switch-small.bell-switch-loading.active .bell-switch-button:before,
+.bell-switch-small.bell-switch-loading:active .bell-switch-button:before,
+.bell-switch-small.bell-switch-loading.bell-active .bell-switch-button:before {
+  left: 15px;
+}
+.bell-switch-large {
+  height: 22px;
+  width: 56px;
+  border-radius: 22px;
+}
+.bell-switch-large.bell-switch-large.active .bell-switch-button:after,
+.bell-switch-large:active .bell-switch-button:after,
+.bell-switch-large.bell-active .bell-switch-button:after {
+  margin-left: -19px;
+}
+.bell-switch-large .bell-switch-button {
+  height: 20px;
+}
+.bell-switch-large .bell-switch-button .bell-switch-inner {
+  line-height: 20px;
+  height: 20px;
+  left: 22px;
+}
+.bell-switch-large .bell-switch-button:after {
+  width: 18px;
+  height: 18px;
+}
+.bell-switch-large.bell-switch-loading .bell-switch-button:before {
+  width: 12px;
+  height: 12px;
+}
+.bell-switch-large.bell-switch-loading.bell-switch-large.bell-switch-loading.active .bell-switch-button:before,
+.bell-switch-large.bell-switch-loading:active .bell-switch-button:before,
+.bell-switch-large.bell-switch-loading.bell-active .bell-switch-button:before {
+  left: 37px;
+}
+.bell-switch.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #1890ff;
+}
+.bell-switch.bell-switch.active,
+.bell-switch:active,
+.bell-switch.bell-active {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+.bell-switch-success.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #52c41a;
+}
+.bell-switch-success.bell-switch-success.active,
+.bell-switch-success:active,
+.bell-switch-success.bell-active {
+  background-color: #52c41a;
+  border-color: #52c41a;
+}
+.bell-switch-error.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #f5222d;
+}
+.bell-switch-error.bell-switch-error.active,
+.bell-switch-error:active,
+.bell-switch-error.bell-active {
+  background-color: #f5222d;
+  border-color: #f5222d;
+}
+.bell-switch-warning.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #faad14;
+}
+.bell-switch-warning.bell-switch-warning.active,
+.bell-switch-warning:active,
+.bell-switch-warning.bell-active {
+  background-color: #faad14;
+  border-color: #faad14;
+}
+.bell-switch-danger.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #eb1111;
+}
+.bell-switch-danger.bell-switch-danger.active,
+.bell-switch-danger:active,
+.bell-switch-danger.bell-active {
+  background-color: #eb1111;
+  border-color: #eb1111;
+}
+.bell-switch-info.bell-switch-loading .bell-switch-button:before {
+  border-left-color: #2db7f5;
+}
+.bell-switch-info.bell-switch-info.active,
+.bell-switch-info:active,
+.bell-switch-info.bell-active {
+  background-color: #2db7f5;
+  border-color: #2db7f5;
+}
+@-moz-keyframes switch-loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes switch-loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes switch-loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes switch-loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .bell-select {
   display: inline-block;
@@ -7763,34 +7717,34 @@ button.bell-button-danger-ghost[disabled] {
 .bell-spinner .bell-spinner-dot {
   background-color: #1890ff;
 }
-.bell-spinner.success {
+.bell-spinner-success {
   color: #52c41a;
 }
-.bell-spinner.success .bell-spinner-dot {
+.bell-spinner-success .bell-spinner-dot {
   background-color: #52c41a;
 }
-.bell-spinner.info {
+.bell-spinner-info {
   color: #2db7f5;
 }
-.bell-spinner.info .bell-spinner-dot {
+.bell-spinner-info .bell-spinner-dot {
   background-color: #2db7f5;
 }
-.bell-spinner.error {
+.bell-spinner-error {
   color: #f5222d;
 }
-.bell-spinner.error .bell-spinner-dot {
+.bell-spinner-error .bell-spinner-dot {
   background-color: #f5222d;
 }
-.bell-spinner.warning {
+.bell-spinner-warning {
   color: #faad14;
 }
-.bell-spinner.warning .bell-spinner-dot {
+.bell-spinner-warning .bell-spinner-dot {
   background-color: #faad14;
 }
-.bell-spinner.danger {
+.bell-spinner-danger {
   color: #eb1111;
 }
-.bell-spinner.danger .bell-spinner-dot {
+.bell-spinner-danger .bell-spinner-dot {
   background-color: #eb1111;
 }
 .bell-spinner .bell-spinner-dot {
@@ -7798,12 +7752,12 @@ button.bell-button-danger-ghost[disabled] {
   width: 20px;
   font-size: 14px;
 }
-.bell-spinner.small .bell-spinner-dot {
+.bell-spinner-small .bell-spinner-dot {
   height: 16px;
   width: 16px;
   font-size: 13px;
 }
-.bell-spinner.large .bell-spinner-dot {
+.bell-spinner-large .bell-spinner-dot {
   height: 30px;
   width: 30px;
   font-size: 16px;
@@ -8082,16 +8036,15 @@ button.bell-button-danger-ghost[disabled] {
 .bell-slider.dragging .bell-slider-thumb {
   transform: scale(1.5);
 }
-.bell-slider.disabled,
-.bell-slider[disabled] {
-  cursor: default;
+.bell-slider.bell-slider-disabled {
+  cursor: not-allowed;
 }
-.bell-slider.disabled .bell-slider-thumb.hover,
-.bell-slider[disabled] .bell-slider-thumb.hover,
-.bell-slider.disabled .bell-slider-thumb:hover,
-.bell-slider[disabled] .bell-slider-thumb:hover,
-.bell-slider.disabled .bell-slider-thumb.bell-hover,
-.bell-slider[disabled] .bell-slider-thumb.bell-hover {
+.bell-slider.bell-slider-disabled .bell-slider-thumb {
+  cursor: not-allowed;
+}
+.bell-slider.bell-slider-disabled .bell-slider-thumb.hover,
+.bell-slider.bell-slider-disabled .bell-slider-thumb:hover,
+.bell-slider.bell-slider-disabled .bell-slider-thumb.bell-hover {
   transform: scale(1);
 }
 .bell-slider .bell-slider-bg {
@@ -8948,53 +8901,61 @@ button.bell-button-danger-ghost[disabled] {
   transition-property: height, padding-top, padding-bottom, margin;
   transition-duration: 0.3s;
 }
-.bell-time-line {
+.bell-timeline {
   list-style: none;
+  margin: 0;
   padding: 0;
-  padding-left: 30px;
-  font-size: 0;
 }
-.bell-time-line-padding .bell-time-line-item:nth-last-of-type(2) .bell-time-line-tail {
+.bell-timeline.bell-timeline-pending .bell-timeline-item:nth-last-of-type(2) .bell-timeline-tail {
   border-left: 1px dotted;
 }
-.bell-time-line-item {
-  font-size: 12px;
-  line-height: 22px;
-  padding-bottom: 12px;
-  padding-left: 14px;
+.bell-timeline .bell-timeline-item {
+  margin: 0;
+  padding: 0 0 12px;
+  list-style: none;
   position: relative;
 }
-.bell-time-line-item:last-child .bell-time-line-tail {
-  display: none;
-}
-.bell-time-line-item .bell-time-line-dot {
-  width: 12px;
-  height: 12px;
-  border: 1px solid;
-  border-radius: 100%;
-  position: absolute;
-  margin: 4px -20px;
-  background-color: #fff;
-}
-.bell-time-line-item .bell-time-line-tail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
+.bell-timeline .bell-timeline-item .bell-timeline-tail {
   height: 100%;
-  margin-top: 5px;
-  color: #e9eaec;
-  border-left: 1px solid;
+  border-left: 1px solid #e8eaec;
+  position: absolute;
+  left: 6px;
+  top: 0;
 }
-.bell-time-line-item .bell-time-line-content {
-  overflow: hidden;
-  line-height: 20px;
+.bell-timeline .bell-timeline-item .bell-timeline-dot {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background-color: #fff;
+  border-radius: 100%;
+  border: 1px solid;
 }
-.bell-time-line-item .bell-time-line-content p {
+.bell-timeline .bell-timeline-item .bell-timeline-custom {
+  height: auto;
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  border: 0;
+  border-radius: 0;
+  transform: translateY(-50%);
+  background-color: #fff;
+  width: 40px;
+  margin-top: 8px;
+  padding: 3px 0;
+  left: -13px;
+}
+.bell-timeline .bell-timeline-item .bell-timeline-content {
+  position: relative;
+  padding: 1px 1px 10px 24px;
+  font-size: 12px;
+  top: -3px;
+}
+.bell-timeline .bell-timeline-item .bell-timeline-content p {
   padding: 0;
   margin: 0;
+}
+.bell-timeline .bell-timeline-item:last-child .bell-timeline-tail {
+  display: none;
 }
 .bell-drawer {
   position: fixed;
@@ -9300,7 +9261,7 @@ button.bell-button-danger-ghost[disabled] {
 .bell-table-header .bell-table-active {
   background-color: #ebf7ff;
 }
-.bell-table-stripe tr:nth-child(2n) {
+.bell-table-stripe tr:nth-child(2n + 1) {
   background-color: #f8f8f9;
 }
 .bell-table-border td,

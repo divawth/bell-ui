@@ -1,15 +1,20 @@
-<li class="bell-time-line-item">
-  <div class="bell-time-line-tail"></div>
+<li class="${prefix}timeline-item">
+  <div class="${prefix}timeline-tail"></div>
+
+
   {{#if hasSlot('dot')}}
-    <slot name="dot" />
-  {{else}}
-    <div class="bell-time-line-dot"
-      style="color: {{color}}"
-    ></div>
+  <div class="${prefix}timeline-custom">
+    <slot name="dot" /> 
+  </div>
   {{/if}}
-  <div class="bell-time-line-content">
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
+
+  {{#if !hasSlot('dot')}}
+  <div class="${prefix}timeline-dot"
+    style="color: {{color}}"
+  ></div>
+  {{/if}}
+
+  <div class="${prefix}timeline-content">
+    <slot name="children" />
   </div>
 </li>

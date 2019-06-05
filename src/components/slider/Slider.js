@@ -1,305 +1,242 @@
-import SliderTpl from './template/Slider.html'
+import template from './template/Slider.html'
+import { RAW_ARRAY, RAW_NUMBER, RAW_STRING, RAW_BOOLEAN, FALSE, TRUE } from '../constant'
 
-const SLIDER_TOOLTIP_MARGIN_TOP = 68;
-const SLIDER_TOOLTIP_MARGIN_LEFT = 29;
-const SLIDER_TOOLTIP_THUMB_WIDTH = 10;
+const SLIDER_TOOLTIP_MARGIN_TOP = 68
+const SLIDER_TOOLTIP_MARGIN_LEFT = 29
+const SLIDER_TOOLTIP_THUMB_WIDTH = 10
 
 export default {
-  template: SliderTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
+    type: {
+      type: RAW_STRING
     },
     value: {
-      type: ['number', 'array'],
+      type: [RAW_NUMBER, RAW_ARRAY],
       value: 40
     },
-    // 最大值
     max: {
-      type: 'number',
+      type: RAW_NUMBER,
       value: 100
     },
-    // 最小值
     min: {
-      type: 'number',
+      type: RAW_NUMBER,
       value: 0
     },
-    // 最小步数
     step: {
-      type: 'number',
+      type: RAW_NUMBER,
       value: 1
     },
     disabled: {
-      type: 'boolean',
-      value: false
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
-    range: {
-      type: 'boolean',
-      value: false
+    className: {
+      type: RAW_STRING
     },
-    type: {
-      type: 'string'
+    style: {
+      type: RAW_STRING
     }
   },
 
+  template,
+
   data() {
     return {
-      dragging: false
+      dragging: FALSE
     }
   },
 
   computed: {
     percent() {
-      let me = this;
-      let range = me.get('max') - me.get('min');
+      let range = this.get('max') - this.get('min')
       let percentNum = range > 0
-        ? (me.get('value') - me.get('min')) / range * 100
-        : 0;
+        ? (this.get('value') - this.get('min')) / range * 100
+        : 0
 
       return percentNum > 100
         ? 100
-        : (percentNum < 0 ? 0 : percentNum.toFixed(2));
-    },
-
-    fillStyle() {
-      return 'width: ' + this.get('percent') + '%';
-    },
-
-    tooltipStyle() {
-      let me = this;
-      if (!me.$refs) {
-        if (me.get('percent')) {
-          return '';
-        }
-        return '';
-      }
-
-      return 'left: ' + me.get('percent') + '%;'
-        + 'margin-left: -' + SLIDER_TOOLTIP_MARGIN_LEFT + 'px;'
-        + 'top: -' + SLIDER_TOOLTIP_MARGIN_TOP + 'px;';
-    },
-
-    thumbStyle() {
-      return 'left: ' + this.get('percent') + '%';
-    },
-
-    range() {
-      return this.get('max') - this.get('min');
+        : (percentNum < 0 ? 0 : percentNum.toFixed(2))
     }
   },
 
   methods: {
-
     handleTouchStart(event) {
-      let me = this;
+      let me = this
       if (me.get('disabled')) {
-        return;
+        return
       }
-
-      me.setValue(event);
-
+      me.setValue(event)
       Yox.dom.on(
         document,
         'touchmove',
         me.handleTouchMove
-      );
+      )
       Yox.dom.on(
         document,
         'touchup',
         me.handleTouchEnd
-      );
+      )
       Yox.dom.on(
         document,
         'touchend',
         me.handleTouchEnd
-      );
+      )
       Yox.dom.on(
         document,
         'touchcancel',
         me.handleTouchEnd
-      );
-
-      event.prevent();
-      me.onDragStart(event);
+      )
+      event.prevent()
+      me.onDragStart(event)
     },
 
     handleTouchEnd(event) {
-      let me = this;
+      let me = this
       if (me.get('disabled')) {
-        return;
+        return
       }
       Yox.dom.off(
         document,
         'touchmove',
         me.handleTouchMove
-      );
+      )
       Yox.dom.off(
         document,
         'touchup',
         me.handleTouchEnd
-      );
+      )
       Yox.dom.off(
         document,
         'touchend',
         me.handleTouchEnd
-      );
+      )
       Yox.dom.off(
         document,
         'touchcancel',
         me.handleTouchEnd
-      );
-      event.prevent();
-      me.onDragStop(event);
+      )
+      event.prevent()
+      me.onDragStop(event)
     },
 
     handleTouchMove(event) {
-      this.onDragUpdate(event);
+      this.onDragUpdate(event)
     },
 
     handleDragMouseMove(event) {
-      this.onDragUpdate(event);
+      this.onDragUpdate(event)
     },
 
     handleMouseDown(event) {
-      let me = this;
+      let me = this
       if (me.get('disabled')) {
-        return;
+        return
       }
-
-      me.setValue(event);
-
+      me.setValue(event)
       Yox.dom.on(
         document,
         'mousemove',
         me.handleDragMouseMove
-      );
+      )
       Yox.dom.on(
         document,
         'mouseup',
         me.handleDragMouseEnd
-      );
-
-      event.prevent();
-      me.onDragStart();
+      )
+      event.prevent()
+      me.onDragStart()
     },
 
     handleDragMouseEnd() {
-      let me = this;
+      let me = this
       if (me.get('disabled')) {
-        return;
+        return
       }
       Yox.dom.off(
         document,
         'mousemove',
         me.handleDragMouseMove
-      );
+      )
       Yox.dom.off(
         document,
         'mouseup',
         me.handleDragMouseEnd
-      );
-      me.onDragStop();
+      )
+      me.onDragStop()
     },
 
     onDragStart() {
       this.set({
-        dragging: 1,
-        active: 1
-      });
-      this.fire('dragStart');
+        dragging: TRUE
+      })
+      this.fire('dragStart')
     },
 
     onDragStop() {
       this.set({
-        dragging: 0,
-        active: 0
-      });
-      this.fire('dragStop');
+        dragging: FALSE
+      })
+      this.fire('dragStop')
     },
 
     onDragUpdate(event) {
-      let me = this;
+      let me = this
       if (me.get('draging')) {
-        return;
+        return
       }
-      me.set('draging', 1);
+      me.set('draging', TRUE)
 
       window.requestAnimationFrame(() => {
-        me.set('draging', 0);
+        me.set('draging', FALSE)
         if (!me.get('disabled')) {
-          me.setValue(event);
+          me.setValue(event)
         }
-      });
-    },
-
-    handleMouseUp() {
-      if (this.get('disabled')) {
-        return;
-      }
-      this.set('active', 0);
-    },
-
-    handleMouseEnter() {
-      if (this.get('disabled')) {
-        return;
-      }
-      this.set('hover', 1);
-    },
-
-    handleMouseLeave() {
-      if (this.get('disabled')) {
-        return;
-      }
-      this.set('hover', 0);
+      })
     },
 
     setValue(event) {
 
-      event = event.originalEvent;
-      let clientX = event.touches ? event.touches[0].clientX : event.clientX;
+      event = event.originalEvent
+      let clientX = event.touches ? event.touches[0].clientX : event.clientX
 
-      let me = this;
-      let element = me.$el;
-      let oldValue = me.get('value');
-      let elementLeft = element.getBoundingClientRect().left;
-      let elementWidth = element.offsetWidth;
-      let min = me.get('min');
+      let me = this
+      let element = me.$el
+      let oldValue = me.get('value')
+      let elementLeft = element.getBoundingClientRect().left
+      let elementWidth = element.offsetWidth
+      let min = me.get('min')
+      let max = me.get('max')
+      let range = max - min
+      let value = 0
+      value = elementWidth && ((clientX - elementLeft) / elementWidth * range)
+      value = Math.round(value / me.get('step')) * me.get('step') + min
+      value = parseFloat(value.toFixed(5))
 
-      let value = 0;
-      value = elementWidth && ((clientX - elementLeft) / elementWidth * me.get('range'));
-      value = Math.round(value / me.get('step')) * me.get('step') + min;
-      value = parseFloat(value.toFixed(5));
-
-      value = value > me.get('max')
-        ? me.get('max')
-        : (value < min ? min : value);
+      value = value > max
+        ? max
+        : (value < min ? min : value)
 
       if (value !== oldValue) {
         me.set({
           value: value
-        });
+        })
         me.fire(
-          'change',
+          'change.slider',
           {
             value: value,
             oldValue: oldValue
           }
-        );
+        )
       }
     }
 
   },
 
   afterMount() {
-    let me = this;
-
-    me.handleDragMouseMove = me.handleDragMouseMove.bind(me);
-    me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me);
-    me.handleTouchMove = me.handleTouchMove.bind(me);
-    me.handleTouchEnd = me.handleTouchEnd.bind(me);
+    let me = this
+    me.handleDragMouseMove = me.handleDragMouseMove.bind(me)
+    me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me)
+    me.handleTouchMove = me.handleTouchMove.bind(me)
+    me.handleTouchEnd = me.handleTouchEnd.bind(me)
   }
-};
+}

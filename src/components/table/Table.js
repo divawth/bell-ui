@@ -1,90 +1,98 @@
-import TableTpl from './template/Table.html'
+import template from './template/Table.html'
+import { RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, TRUE } from '../constant'
 
 export default {
-  template: TableTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     list: {
-      type: 'array'
+      type: RAW_ARRAY
     },
     columns: {
-      type: 'array',
-      value: []
+      type: RAW_ARRAY,
+      value: function () {
+        return []
+      }
     },
     stripe: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     border: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     setRowClassName: {
-      type: 'function'
+      type: RAW_FUNCTION
     },
     height: {
-      type: 'string'
+      type: RAW_STRING
     },
     width: {
-      type: 'string'
+      type: RAW_STRING
     },
     highlightRow: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     setIndex: {
-      type: 'function'
+      type: RAW_FUNCTION
     },
     selection: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
 
   data() {
     return {
       fixedLeftList: [],
       fixedRightList: []
-    };
+    }
   },
 
   methods: {
-    click: function (item, data, index) {
-      item.action(data, index);
+    click(item, data, index) {
+      item.action(data, index)
     },
-    clearCurrentRow: function () {
-      this.$refs.smallTable.clearCurrentRow();
+    clearCurrentRow() {
+      this.fire(
+        'clearCurrentRow.table',
+        TRUE
+      )
     },
-    selectAll: function () {
-      this.$refs.smallTable.selectAll();
+    selectAll() {
+      this.fire(
+        'selectAll.table',
+        TRUE
+      )
     }
   },
 
-  afterMount: function () {
-    let me = this;
-    if (!me.get('columns').length) {
-      return;
+  afterMount() {
+    if (!this.get('columns').length) {
+      return
     }
-    let fixedLeftList = [];
-    let fixedRightList = [];
-    let columns = me.copy(me.get('columns'));
+    let fixedLeftList = []
+    let fixedRightList = []
+    let columns = this.copy(this.get('columns'))
     columns.forEach(item => {
-      let fixed = item.fixed;
+      let fixed = item.fixed
       switch(fixed) {
         case 'left': 
-          item.fixed = null;
-          fixedLeftList.push(item);
-          break;
+          item.fixed = null
+          fixedLeftList.push(item)
+          break
         case 'right': 
-          item.fixed = null;
-          fixedRightList.push(item);
-          break;
+          item.fixed = null
+          fixedRightList.push(item)
+          break
       }
-    });
-    me.set({
+    })
+    this.set({
       fixedLeftList,
       fixedRightList
-    });
+    })
   }
-};
+}

@@ -1,46 +1,51 @@
 
-import SwitchTpl from './template/Switch.html'
+import template from './template/Switch.html'
+import { RAW_STRING, RAW_BOOLEAN } from '../constant'
 
 export default {
-  template: SwitchTpl,
-
   model: 'checked',
 
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     type: {
-      type: 'string'
+      type: RAW_STRING
     },
     size: {
-      type: 'string'
+      type: RAW_STRING
     },
     disabled: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     checked: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
+    },
+    loading: {
+      type: RAW_BOOLEAN
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
+
+  model: 'checked',
 
   methods: {
     click() {
-      let me = this;
-      if (me.get('disabled')) {
-        return;
+      if (this.get('disabled')
+        || this.get('loading')
+      ) {
+        return
       }
-
-      me.toggle('checked');
-      me.fire(
-        'change',
+      this.toggle('checked')
+      this.fire(
+        'change.switch',
         {
-          checked: me.get('checked')
+          checked: this.get('checked')
         }
-      );
+      )
     }
   }
-};
+}

@@ -1,12 +1,12 @@
-import TimeLineItemTpl from './template/TimeLineItem.html'
+import template from './template/TimeLineItem.html'
+import { RAW_STRING } from '../constant'
 
 export default {
-  template: TimeLineItemTpl,
   propTypes: {
     color: {
-      type: 'string',
+      type: RAW_STRING,
       value: '#348EED'
     }
-  }
-
+  },
+  template
 }

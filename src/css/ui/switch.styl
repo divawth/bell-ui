@@ -1,72 +1,78 @@
 {$selector-switch}
+  cursor pointer
+  position relative
+  user-select none
+  display inline-block
+  box-sizing border-box
+  border 1px solid
+  font-size $switch-font-size 
+  transition border-color .3s, background-color .3s
 
-    cursor pointer
-    position relative
-    user-select none
+  border-color #ccc
+  background-color #ccc
+
+  +{$selector-switch}
+    margin-left $switch-margin-gap
+
+  &{$selector-active}
+    {$selector-switch-button}
+      {$selector-switch}-inner
+        left $switch-inner-left
+
+      &:after
+        left 100%
+  
+  {$selector-switch-button}
+    width 100%
     display inline-block
-    box-sizing border-box
-    border 1px solid
-    transition border-color .3s, background-color .3s
-    font-size $switch-font-size
 
-    ui-switch()
+    {$selector-switch}-inner
+      position absolute
+      color #ffffff
 
-    +{$selector-switch}
+    &:after
+      cursor pointer
+      content " "
+      position absolute
+      left 1px
+      top 1px
+      border-radius 100%
+      background-color #ffffff
+      transition left .3s, margin-left .3s
 
-        margin-left $switch-margin-gap
-
-    &{$selector-active}
-
-        {$selector-switch-button}
-
-            {$selector-switch}-on
-
-                display inline
-
-            {$selector-switch}-off
-
-                display none
-
-            &:after
-
-                left 100%
-
-    {$selector-switch-button}
-
-        display inline-block
-
-        {$selector-switch}-on
-
-            display none
-
-        {$selector-switch}-off
-
-            display inline
-
-        {$selector-switch}-on,
-        {$selector-switch}-off,
-
-            margin-top -1px
-            text-align center
-
-        &:after
-
-            cursor pointer
-            content " "
-            position absolute
-            left 1px
-            top 1px
-            border-radius 100%
-            transition left .3s, margin-left .3s
-
-{$selector-switch}-disabled
-
+  &{$selector-switch}-disabled
     cursor $cursor-disabled
+    opacity .4
 
     {$selector-switch-button}
+      cursor $cursor-disabled
 
+      &:after
         cursor $cursor-disabled
 
-        &:after
+  &{$selector-switch}-loading
+    opacity .4
 
-            cursor $cursor-disabled
+    {$selector-switch-button}
+      &:before
+        content " "
+        border-radius 100%
+        position absolute
+        left $switch-loading-left
+        top $switch-loading-left
+        z-index $switch-loading-zindex
+        border 1px solid transparent
+
+        animation switch-loading 1s linear infinite
+        transition transform .3s
+
+  ui-switch()
+
+@keyframes switch-loading {
+  0% {
+    transform rotate(0)
+  }
+  100% {
+    transform rotate(360deg)
+  }
+}

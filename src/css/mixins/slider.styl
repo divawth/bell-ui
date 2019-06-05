@@ -1,16 +1,12 @@
 slider-style(color)
+  {$selector-slider-fill}
+    ui-set('background-color', color['color'])
 
-    {$selector-slider-fill}
-
-        ui-set('background-color', color['color'])
-
-    {$selector-slider-thumb}
-
-        ui-set('border-color', color['color'], true)
+  {$selector-slider-thumb}
+    ui-set('border-color', color['color'], true)
 
 ui-slider()
-
-    ui-connect(
-        hash: $slider-brand-hash,
-        each: slider-style
-    )
+  ui-connect(
+    hash: $slider-brand-hash,
+    each: slider-style
+  )

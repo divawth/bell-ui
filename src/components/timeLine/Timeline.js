@@ -1,10 +1,11 @@
-import TimeLineTpl from './template/TimeLine.html'
+import template from './template/TimeLine.html'
+import { RAW_BOOLEAN } from '../constant'
 
 export default {
-  template: TimeLineTpl,
   propTypes: {
     pending: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     }
-  }
+  },
+  template
 }

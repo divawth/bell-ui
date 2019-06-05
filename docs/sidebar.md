@@ -30,6 +30,7 @@
   - [Rate 评分](form/rate)
   - [Upload 上传](form/upload)
   - [Form 表单](form/form)
+  - [Table 表格](form/table)
 
 - [视图](layout)
   - [Alert 警告提示](view/alert)
@@ -43,6 +44,7 @@
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
+  - [Timeline 时间轴](view/timeline)
 
 - [图表](layout)
   - [Circle 进度环](other/circle)

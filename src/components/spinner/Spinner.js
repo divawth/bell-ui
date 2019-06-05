@@ -1,26 +1,27 @@
 
-import SpinnerTpl from './template/Spinner.html'
+import template from './template/Spinner.html'
+import { RAW_STRING, RAW_BOOLEAN } from '../constant'
 
 export default {
-  template: SpinnerTpl,
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING 
     },
     style: {
-      type: 'string'
+      type: RAW_STRING 
     },
     size: {
-      type: 'string'
+      type: RAW_STRING 
     },
     text: {
-      type: 'string'
+      type: RAW_STRING 
     },
     fix: {
-      type: 'boolean'
+      type: RAW_BOOLEAN
     },
     type: {
-      type: 'string'
+      type: RAW_STRING 
     }
-  }
-};
+  },
+  template
+}
