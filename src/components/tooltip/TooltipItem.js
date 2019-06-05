@@ -1,21 +1,22 @@
-import TooltipItemTpl from './template/TooltipItem.html'
+import template from './template/TooltipItem.html'
+import { RAW_STRING } from '../constant'
 
 export default {
-  template: TooltipItemTpl,
 
   propTypes: {
     className: {
-      type: 'string'
+      type: RAW_STRING
     },
     style: {
-      type: 'string'
+      type: RAW_STRING
     },
   },
 
+  template,
+
   afterMount() {
-    let me = this;
-    me.fire(
-      'hasTooltipItem'
-    );
+    this.fire(
+      'hasItem.tootipItem'
+    )
   }
-};
+}

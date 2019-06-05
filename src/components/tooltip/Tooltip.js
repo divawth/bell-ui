@@ -1,56 +1,52 @@
-import TooltipTpl from './template/Tooltip.html'
+import template from './template/Tooltip.html'
+import { RAW_STRING, RAW_NUMERIC, FALSE, RAW_BOOLEAN } from '../constant'
 
-let timer;
+let timer
 
 export default {
-
-  template: TooltipTpl,
-
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     content: {
-      type: 'string'
+      type: RAW_STRING
     },
     placement: {
-      type: 'string'
+      type: RAW_STRING
     },
     disabled: {
-      type: ['string', 'boolean']
+      type: RAW_BOOLEAN
     },
     delay: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     mode: {
-      type: 'string'
+      type: RAW_STRING
     },
     maxWidth: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     maxHeight: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     offsetX: {
-      type: 'numeric'
+      type: RAW_NUMERIC
     },
     offsetY: {
-      type: 'numeric'
+      type: RAW_NUMERIC
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+  template,
 
   events: {
-    hasTooltipItem(event, data) {
-      let me = this;
-      let element = me.$el.getElementsByClassName('bell-tooltip-el')[0];
-      let content = element.getElementsByClassName('bell-tooltip-inner-content');
-      let inner = me.$el.getElementsByClassName('bell-tooltip-inner')[0];
+    'hasItem.tootipItem': function() {
+      let content = this.$refs.contents.getElementsByClassName('${prefix}tooltip-inner-content')
       if (content.length) {
         for (let i = 0; i < content.length; i++) {
-          inner.appendChild(content[i]);
+          Yox.dom.append(this.$refs.innerElement, content[ i ])
         }
       }
     }
@@ -58,131 +54,131 @@ export default {
 
   data() {
     return {
-      isShow: false,
-      isHover: false,
+      isShow: FALSE,
+      isHover: FALSE
     }
   },
-
+  
   watchers: {
-    disabled(disabled) {
-      this.setPos();
+    disabled() {
+      this.setPosition()
     }
   },
 
   methods: {
-    setPos() {
-      let me = this;
-      let offsetX = me.get('offsetX') ? +me.get('offsetX') : 0;
-      let offsetY = me.get('offsetY') ? +me.get('offsetY') : 0;
+    setPosition() {
+      let me = this
+      let offsetX = me.get('offsetX') ? +me.get('offsetX') : 0
+      let offsetY = me.get('offsetY') ? +me.get('offsetY') : 0
 
-      let poperElement = me.$el.getElementsByClassName('bell-tooltip-popper')[0];
-      let placement = me.get('placement') || 'bottom';
-      let poperElementWidth = poperElement.clientWidth;
-      let poperElementHeight = poperElement.clientHeight;
+      let poperElement = this.$refs.poperElement
+      let placement = me.get('placement') || 'bottom'
+      let poperElementWidth = poperElement.clientWidth
+      let poperElementHeight = poperElement.clientHeight
 
-      let marginLeft = 0;
-      let marginTop = 0;
+      let marginLeft = 0
+      let marginTop = 0
 
       if (placement == 'bottom') {
-        marginLeft = -(poperElementWidth / 2);
+        marginLeft = -(poperElementWidth / 2)
       }
       else if (placement == 'bottom-start') {
-        marginLeft = 0;
+        marginLeft = 0
       }
       else if (placement == 'bottom-end') {
-        marginLeft = 0;
+        marginLeft = 0
       }
       else if (placement == 'top') {
-        marginLeft = -(poperElementWidth / 2);
-        marginTop = -poperElementHeight;
+        marginLeft = -(poperElementWidth / 2)
+        marginTop = -poperElementHeight
       }
       else if (placement == 'top-start') {
-        marginTop = -poperElementHeight;
+        marginTop = -poperElementHeight
       }
       else if (placement == 'top-end') {
-        marginTop = -poperElementHeight;
+        marginTop = -poperElementHeight
       }
       else if (placement == 'left') {
-        marginLeft = -poperElementWidth;
-        marginTop = -(poperElementHeight / 2);
+        marginLeft = -poperElementWidth
+        marginTop = -(poperElementHeight / 2)
       }
       else if (placement == 'left-start') {
-        marginLeft = -poperElementWidth;
+        marginLeft = -poperElementWidth
       }
       else if (placement == 'left-end') {
-        marginLeft = -poperElementWidth;
+        marginLeft = -poperElementWidth
       }
       else if (placement == 'right') {
-        marginTop = -(poperElementHeight / 2);
+        marginTop = -(poperElementHeight / 2)
       }
 
       if (Yox.is.number(offsetX)) {
-        marginLeft += offsetX;
+        marginLeft += offsetX
       }
       if (Yox.is.number(offsetY)) {
-        marginTop += offsetY;
+        marginTop += offsetY
       }
 
-      poperElement.style.marginLeft = marginLeft + 'px';
-      poperElement.style.marginTop = marginTop + 'px';
+      poperElement.style.marginLeft = marginLeft + 'px'
+      poperElement.style.marginTop = marginTop + 'px'
     },
 
     leave() {
-      let me = this;
+      let me = this
       if (me.get('mode') && me.get('mode') == 'click') {
-        return;
+        return
       }
 
       me.set({
         isShow: false,
         isHover: false
-      });
+      })
     },
 
     hover() {
-      let me = this;
+      let me = this
       if (me.get('mode') && me.get('mode') == 'click') {
-        return;
+        return
       }
-      let delay = me.get('delay') ? +me.get('delay') : 0;
+      let delay = me.get('delay') ? +me.get('delay') : 0
       me.set({
         isHover: true
-      });
-      Yox.nextTick(() => {
-        me.setPos();
+      })
+      Yox.nextTick(function () {
+        me.setPosition()
         timer = setTimeout(
-          () => {
+          function () {
             if (me.get('isHover')) {
               me.set({
                 isShow: true
-              });
+              })
             }
           },
           delay
-        );
-      });
+        )
+      })
     },
 
     click() {
-      let me = this;
+      let me = this
       if (!me.get('mode') || me.get('mode') == 'hover') {
-        return;
+        return
       }
 
       me.set({
         isShow: !me.get('isShow')
-      });
+      })
 
-      Yox.nextTick(() => {
-        me.setPos();
-      });
+      Yox.nextTick(function () {
+        me.setPosition()
+      })
     }
   },
 
   beforeDestroy() {
     if (timer) {
-      clearTimeout(timer);
-      timer = null;
+      clearTimeout(timer)
+      timer = null
     }
   }
-};
+}

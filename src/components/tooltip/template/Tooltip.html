@@ -1,28 +1,34 @@
-<div class="bell-tooltip
+<div class="${prefix}tooltip
+  {{#if isShow}} ${prefix}show{{/if}}
+  {{#if isHover}} ${prefix}hover{{/if}}
   {{#if className}} {{className}}{{/if}}
-  {{#if isShow}} bell-show{{/if}}
-  {{#if isHover}} bell-hover{{/if}}
-"{{#if style}} style="{{style}}"{{/if}}>
-  <div class="bell-tooltip-el"
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <div class="${prefix}tooltip-el"
+    ref="contents"
     on-mouseover="hover()"
     on-mouseleave="leave()"
     on-click="click()"
   >
-    {{#if hasSlot('children')}}
-      <slot name="children" />
-    {{/if}}
+    <slot name="children" />
   </div>
 
-  <div class="bell-tooltip-popper
-    {{#if disabled}} bell-tooltip-disabled{{/if}}"
+  <div class="${prefix}tooltip-popper
+    {{#if disabled}} ${prefix}tooltip-disabled{{/if}}"
+    ref="poperElement"
     data-placement="{{placement ? placement : 'bottom'}}"
   >
-    <div class="bell-tooltip-arrow"></div>
-    <div class="bell-tooltip-inner"
-    style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
-      {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};
-    ">
-      {{content}}
+    <div class="${prefix}tooltip-arrow"></div>
+    <div class="${prefix}tooltip-inner"
+      ref="innerElement"
+      style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
+        {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};
+      "
+    >
+      <slot name="content">
+        {{content}}
+      </slot>
     </div>
   </div>
 </div>

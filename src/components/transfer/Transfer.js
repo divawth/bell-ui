@@ -1,8 +1,6 @@
-import TransferTpl from './template/Transfer.html'
+import template from './template/Transfer.html'
 
 export default {
-  template: TransferTpl,
-
   propTypes: {
     data: {
       type: 'array',
@@ -26,6 +24,7 @@ export default {
       type: 'string'
     }
   },
+  template,
   data() {
     let me = this;
     return {

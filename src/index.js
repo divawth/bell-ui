@@ -2,8 +2,6 @@
  * @file 主模块
  * @author wangtianhua
  */
-import Transition from './components/transition/Transition'
-
 import Layout from './components/layout/Layout'
 import Header from './components/layout/Header'
 import Sider from './components/layout/Sider'
@@ -75,8 +73,10 @@ import DropdownMenu from './components/dropdown/DropdownMenu'
 
 import Transfer from './components/transfer/Transfer'
 
+import TimePicker from './components/timePicker/TimePicker'
 import TimeLine from './components/timeline/TimeLine'
 import TimeLineItem from './components/timeline/TimeLineItem'
+
 import Form from './components/form/Form'
 import FormItem from './components/form/FormItem'
 import Dialog from './components/dialog/Dialog'
@@ -89,8 +89,6 @@ import './components/msgbox/Msgbox'
 import './components/loadingBar/LoadingBar'
 
 Yox.component({
-  Transition,
-
   Layout,
   Header,
   Sider,
@@ -157,6 +155,7 @@ Yox.component({
   DropdownMenu,
 
   Transfer,
+  TimePicker,
   TimeLine,
   TimeLineItem,
   Form,

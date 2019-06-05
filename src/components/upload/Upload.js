@@ -1,30 +1,30 @@
-import UploadTpl from './template/Upload.html'
+import template from './template/Upload.html'
+import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, FALSE, RAW_ARRAY } from '../constant'
 
 export default {
-  template: UploadTpl,
   propTypes: {
-    className: {
-      type: 'string'
-    },
-    style: {
-      type: 'string'
-    },
     action: {
-      type: 'string'
+      type: RAW_STRING
     },
     data: {
-      type: 'object'
+      type: RAW_OBJECT
     },
     multiple: {
-      type: 'boolean',
-      value: function (value) {
-        return value ? true : false;
-      }
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     accept: {
-      type: 'array'
+      type: RAW_ARRAY
+    },
+    className: {
+      type: RAW_STRING
+    },
+    style: {
+      type: RAW_STRING
     }
   },
+
+  template,
 
   watchers: {
     
