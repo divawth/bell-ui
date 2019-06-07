@@ -1,13 +1,13 @@
 import { addAlert, addConfirm } from './base'
 
-let element = Yox.dom.createElement('div')
-Yox.dom.prop(element, 'id', '${prefix}msgbox-wrapper')
-Yox.dom.append(document.body, element)
-
-Yox.prototype.$Alert = (data) => {
+const Alert = function (data) {
   addAlert(data)
 }
-
-Yox.prototype.$Confirm = (data) => {
+const Confirm = function (data) {
   addConfirm(data)
+}
+
+export default {
+  Alert,
+  Confirm
 }

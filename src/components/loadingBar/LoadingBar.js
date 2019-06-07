@@ -1,9 +1,5 @@
 import { add, remove, update } from './base'
 
-let element = Yox.dom.createElement('div')
-Yox.dom.prop(element, 'id', '${prefix}loadingbar-wrapper')
-Yox.dom.append(document.body, element)
-
 let config = {}
 
 let updateConfig = function (data) {
@@ -12,7 +8,7 @@ let updateConfig = function (data) {
   config.height = data.height ? data.height : config.height
 }
 
-Yox.prototype.$LoadingBar = {
+export default {
   // 开始从 0 显示进度条，并自动加载进度
   start(options) {
     return add(

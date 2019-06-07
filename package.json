@@ -1,6 +1,7 @@
 {
   "name": "bell-ui",
-  "version": "0.3.0",
+  "version": "0.4.0",
+  "main": "dist/bell-ui.js",
   "description": "bell ui",
   "entry": "index.js",
   "scripts": {
@@ -17,14 +18,14 @@
     "dependencies": {}
   },
   "dependencies": {
-    "3000": "^6.9.5",
     "autoprefixer-stylus": "^0.14.0",
     "bell-docsify": "^1.0.0",
     "edp-provider-rider": "^2.0.0",
     "less": "^3.0.4",
     "publish": "^0.6.0",
     "styl": "^0.2.9",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "yox": "^1.0.0-alpha.53"
   },
   "author": "",
   "repository": {
@@ -34,17 +35,17 @@
   "license": "BSD",
   "readme": "README",
   "devDependencies": {
+    "css-loader": "^0.28.7",
     "rollup": "^1.10.1",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-filesize": "^6.0.1",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-typescript": "^1.0.1",
+    "style-loader": "^0.19.0",
     "tslib": "^1.9.3",
-    "typescript": "^3.4.4",
-    "css-loader": "^0.28.7",
-    "rollup-plugin-string": "^3.0.0",
-    "style-loader": "^0.19.0"
+    "typescript": "^3.4.4"
   }
 }

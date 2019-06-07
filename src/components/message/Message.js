@@ -26,7 +26,7 @@ let updateConfig = function (data) {
   }
 }
 
-Yox.prototype.$Message = {
+export default {
   success: function(arg) {
     addMessage('success', arg)
   },

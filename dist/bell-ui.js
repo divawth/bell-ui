@@ -1,13 +1,14 @@
 /**
- * bell-ui.js v0.2.0
+ * bell-ui.js v0.4.0
  * (c) 2016-2019 
  * Released under the BSD License.
  */
 
-(function (factory) {
-  typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-}(function () { 'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = global || self, factory(global.Bell = {}));
+}(this, function (exports) { 'use strict';
 
   var template = "<div \nclass=\"bell-layout bell-row\n  \n  {{#if hasSider}} bell-col-24\n  {{else}} column\n  {{/if}}\n  \n  {{#if fixed}} bell-layout-fixed{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</div>";
 
@@ -6680,7 +6681,7 @@
     }
   };
 
-  Yox.prototype.$Message = {
+  var Message = {
     success: function(arg) {
       addMessage('success', arg);
     },
@@ -6856,11 +6857,7 @@
     }
   };
 
-  var element = Yox.dom.createElement('div');
-  Yox.dom.prop(element, 'id', 'bell-notice-wrapper');
-  Yox.dom.append(document.body, element);
-
-  Yox.prototype.$Notice = {
+  var Notice = {
     success: function (arg) {
       addNotice('success', arg);
     },
@@ -7109,16 +7106,16 @@
     createConfirm(data);
   };
 
-  var element$1 = Yox.dom.createElement('div');
-  Yox.dom.prop(element$1, 'id', 'bell-msgbox-wrapper');
-  Yox.dom.append(document.body, element$1);
-
-  Yox.prototype.$Alert = function (data) {
+  var Alert$1 = function (data) {
     addAlert(data);
   };
-
-  Yox.prototype.$Confirm = function (data) {
+  var Confirm = function (data) {
     addConfirm(data);
+  };
+
+  var Msgbox = {
+    Alert: Alert$1,
+    Confirm: Confirm
   };
 
   var template$19 = "<div \nclass=\"bell-loadingbar\n  {{#if type}} bell-loadingbar-{{type}}{{/if}}\n\">\n  <div class=\"bell-loadingbar-inner\">\n    <div class=\"bell-loadingbar-bg\"\n      style=\"\n        width: {{percent}}%;\n        height: {{height}}px;\n        {{#if color}} color: {{color}};{{/if}}\n      \"\n    ></div>\n  </div>\n</div>";
@@ -7209,10 +7206,6 @@
     }
   };
 
-  var element$2 = Yox.dom.createElement('div');
-  Yox.dom.prop(element$2, 'id', 'bell-loadingbar-wrapper');
-  Yox.dom.append(document.body, element$2);
-
   var config$2 = {};
 
   var updateConfig$2 = function (data) {
@@ -7221,7 +7214,7 @@
     config$2.height = data.height ? data.height : config$2.height;
   };
 
-  Yox.prototype.$LoadingBar = {
+  var LoadingBar = {
     // 开始从 0 显示进度条，并自动加载进度
     start: function start(options) {
       return add$2(
@@ -7253,7 +7246,7 @@
     },
     destroy: function destroy() {
       config$2 = {};
-      element$2.remove();
+      element.remove();
     }
   };
 
@@ -7262,7 +7255,7 @@
    * @author wangtianhua
    */
 
-  Yox.component({
+  var components = {
     Layout: Layout,
     Header: Header,
     Sider: Sider,
@@ -7337,7 +7330,42 @@
     Dialog: Dialog,
     SmallTable: SmallTable,
     Table: Table
-  });
+  };
+
+  var install = function (Yox) {
+    if (typeof window !== 'undefined' && !window.Yox) {
+      window.Yox = Yox;
+    }
+
+    var loadingbarElement = Yox.dom.createElement('div');
+    Yox.dom.prop(loadingbarElement, 'id', 'bell-loadingbar-wrapper');
+    Yox.dom.append(document.body, loadingbarElement);
+
+
+    var msgboxElement = Yox.dom.createElement('div');
+    Yox.dom.prop(msgboxElement, 'id', 'bell-msgbox-wrapper');
+    Yox.dom.append(document.body, msgboxElement);
+
+
+    var noticeElement = Yox.dom.createElement('div');
+    Yox.dom.prop(noticeElement, 'id', 'bell-notice-wrapper');
+    Yox.dom.append(document.body, noticeElement);
+
+    Yox.component(components);
+    Yox.prototype.$Message = Message;
+    Yox.prototype.$Confirm = Msgbox.Confirm;
+    Yox.prototype.$Alert = Msgbox.Alert;
+    Yox.prototype.$Notice = Notice;
+    Yox.prototype.$LoadingBar = LoadingBar;
+  };
+
+  if (typeof window !== 'undefined' && window.Yox) {
+    install(window.Yox);
+  }
+
+  exports.install = install;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=bell-ui.js.map

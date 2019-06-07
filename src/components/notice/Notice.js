@@ -26,11 +26,7 @@ let updateConfig = function (data) {
   }
 }
 
-let element = Yox.dom.createElement('div')
-Yox.dom.prop(element, 'id', '${prefix}notice-wrapper')
-Yox.dom.append(document.body, element)
-
-Yox.prototype.$Notice = {
+export default {
   success: function (arg) {
     addNotice('success', arg)
   },

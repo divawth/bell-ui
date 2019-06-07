@@ -83,12 +83,12 @@ import Dialog from './components/dialog/Dialog'
 import SmallTable from './components/table/SmallTable'
 import Table from './components/table/Table'
 
-import './components/message/Message'
-import './components/notice/Notice'
-import './components/msgbox/Msgbox'
-import './components/loadingBar/LoadingBar'
+import Message from './components/message/Message'
+import Notice from './components/notice/Notice'
+import Msgbox from './components/msgbox/Msgbox'
+import LoadingBar from  './components/loadingBar/LoadingBar'
 
-Yox.component({
+const components = {
   Layout,
   Header,
   Sider,
@@ -163,4 +163,34 @@ Yox.component({
   Dialog,
   SmallTable,
   Table
-});
+}
+
+export const install = function (Yox) {
+  if (typeof window !== 'undefined' && !window.Yox) {
+    window.Yox = Yox
+  }
+
+  let loadingbarElement = Yox.dom.createElement('div')
+  Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
+  Yox.dom.append(document.body, loadingbarElement)
+
+  let msgboxElement = Yox.dom.createElement('div')
+  Yox.dom.prop(msgboxElement, 'id', '${prefix}msgbox-wrapper')
+  Yox.dom.append(document.body, msgboxElement)
+
+
+  let noticeElement = Yox.dom.createElement('div')
+  Yox.dom.prop(noticeElement, 'id', '${prefix}notice-wrapper')
+  Yox.dom.append(document.body, noticeElement)
+
+  Yox.component(components)
+  Yox.prototype.$Message = Message
+  Yox.prototype.$Confirm = Msgbox.Confirm
+  Yox.prototype.$Alert = Msgbox.Alert
+  Yox.prototype.$Notice = Notice
+  Yox.prototype.$LoadingBar = LoadingBar
+}
+
+if (typeof window !== 'undefined' && window.Yox) {
+  install(window.Yox);
+}
