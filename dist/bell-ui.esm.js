@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.4.0
+ * bell-ui.js v0.6.0
  * (c) 2016-2019 
  * Released under the BSD License.
  */
@@ -379,7 +379,7 @@ var Menu = {
   }
 };
 
-var template$6 = "<li \nclass=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" \nstyle=\"{{style}}\" \non-click=\"click()\"\n>\n  <slot name=\"children\" />\n</li>";
+var template$6 = "<li \nclass=\"bell-menu-item\n  {{#if className}} {{className}}{{/if}}\n  {{#if isActive}} bell-menu-active{{/if}}\n  {{#if disabled}} bell-menu-item-disabled{{/if}}\n\" \nstyle=\"{{style}}\" \non-click=\"click.menuItem\"\n>\n  <slot name=\"children\" />\n</li>";
 
 var MenuItem = {
   propTypes: {
@@ -418,14 +418,10 @@ var MenuItem = {
     },
     isCollapsedChanged: function isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed);
-    }
-  },
-
-  methods: {
-    click: function click() {
-      this.fire('menuItemSelected', {
-        name: this.get('name')
-      });
+    },
+    'click.menuItem': function () {
+      var name = this.get('name');
+      this.fire('menuItemSelected', { name: name });
     }
   },
 
@@ -7334,7 +7330,6 @@ var install = function (Yox) {
   var loadingbarElement = Yox.dom.createElement('div');
   Yox.dom.prop(loadingbarElement, 'id', 'bell-loadingbar-wrapper');
   Yox.dom.append(document.body, loadingbarElement);
-
 
   var msgboxElement = Yox.dom.createElement('div');
   Yox.dom.prop(msgboxElement, 'id', 'bell-msgbox-wrapper');

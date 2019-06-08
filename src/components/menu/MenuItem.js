@@ -44,14 +44,10 @@ export default {
     },
     isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed)
-    }
-  },
-
-  methods: {
-    click() {
-      this.fire('menuItemSelected', {
-        name: this.get('name')
-      })
+    },
+    'click.menuItem': function () {
+      let name = this.get('name')
+      this.fire('menuItemSelected', { name })
     }
   },
 
