@@ -1,4 +1,13 @@
-const contains = function(element, target) {
+export const requestAnimationFrame = (
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.msRequestAnimationFrame ||
+  function (callback) {
+    return window.setTimeout(callback, 1000 / 60)
+  }
+)
+
+export function contains(element, target) {
   if (element.contains && element.contains(target)) {
     return true
   }
@@ -8,7 +17,7 @@ const contains = function(element, target) {
   return false
 }
 
-const findComponentUpward = function (context, componentName) {
+export function findComponentUpward(context, componentName) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ]
   } else {
@@ -26,35 +35,26 @@ const findComponentUpward = function (context, componentName) {
   return parent
 }
 
-const oneOf = function (values) {
-  return function (props, key) {
-    if (!Yox.array.has(values, props[ key ])) {
-      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 ${props[ key ]}。`)
+export function oneOf(values) {
+  return function (key, value) {
+    if (!Yox.array.has(values, value)) {
+      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 ${value}。`)
     }
     return true
   }
 }
 
-const isDate = function () {
-  return function (props, key) {
-    if (!Object.prototype.toString.call(props[ key ]).toLowerCase() === '[object date]') {
-      Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${props[ key ]}。`)
+export function isDate() {
+  return function (key, value) {
+    if (value instanceof Date) {
+      return true
     }
-    return true
+    Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
   }
 }
 
-const scrollTop = function (element, from = 0, to, duration = 500, endCallback) {
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = (
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      function (callback) {
-        return window.setTimeout(callback, 1000 / 60)
-      }
-    )
-  }
+export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
+
   const difference = Math.abs(from - to)
   const step = Math.ceil(difference / duration * 50)
 
@@ -74,22 +74,13 @@ const scrollTop = function (element, from = 0, to, duration = 500, endCallback) 
     } else {
       element.scrollTop = duration
     }
-    window.requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
       scroll(duration, end, step)
     })
   }
   scroll(from, to, step)
 }
 
-const getType = function (value) {
+export function getType(value) {
   return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
-}
-
-export {
-  contains,
-  findComponentUpward,
-  oneOf,
-  isDate,
-  scrollTop,
-  getType
 }

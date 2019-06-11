@@ -58,7 +58,7 @@ export default {
         let me = this
         let selected = me.copy(me.get('selected'))
         if (data.checked) {
-          if (Yox.array.indexOf(selected, data.value) === -1) {
+          if (!Yox.array.has(selected, data.value)) {
             selected.push(data.value)
           }
         }

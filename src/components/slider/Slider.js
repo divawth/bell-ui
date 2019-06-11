@@ -1,9 +1,6 @@
 import template from './template/Slider.html'
+import { requestAnimationFrame } from '../util'
 import { RAW_ARRAY, RAW_NUMBER, RAW_STRING, RAW_BOOLEAN, FALSE, TRUE } from '../constant'
-
-const SLIDER_TOOLTIP_MARGIN_TOP = 68
-const SLIDER_TOOLTIP_MARGIN_LEFT = 29
-const SLIDER_TOOLTIP_THUMB_WIDTH = 10
 
 export default {
   propTypes: {
@@ -186,7 +183,7 @@ export default {
       }
       me.set('draging', TRUE)
 
-      window.requestAnimationFrame(() => {
+      requestAnimationFrame(function () {
         me.set('draging', FALSE)
         if (!me.get('disabled')) {
           me.setValue(event)

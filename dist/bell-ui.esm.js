@@ -225,7 +225,16 @@ var Footer = {
 
 var template$5 = "<ul \nclass=\"bell-menu bell-menu-{{mode}} bell-menu-{{theme}}\n{{#if isCollapsed}} bell-menu-collapsed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</ul>";
 
-var contains = function(element, target) {
+var requestAnimationFrame = (
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  window.msRequestAnimationFrame ||
+  function (callback) {
+    return window.setTimeout(callback, 1000 / 60)
+  }
+);
+
+function contains(element, target) {
   if (element.contains && element.contains(target)) {
     return true
   }
@@ -233,9 +242,9 @@ var contains = function(element, target) {
     return true
   }
   return false
-};
+}
 
-var findComponentUpward = function (context, componentName) {
+function findComponentUpward(context, componentName) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ];
   } else {
@@ -251,40 +260,31 @@ var findComponentUpward = function (context, componentName) {
   }
 
   return parent
-};
+}
 
-var oneOf = function (values) {
-  return function (props, key) {
-    if (!Yox.array.has(values, props[ key ])) {
-      Yox.logger.warn((key + " 期望是 " + (values.join(',')) + " 中的值，实际传值 " + (props[ key ]) + "。"));
+function oneOf(values) {
+  return function (key, value) {
+    if (!Yox.array.has(values, value)) {
+      Yox.logger.warn((key + " 期望是 " + (values.join(',')) + " 中的值，实际传值 " + value + "。"));
     }
     return true
   }
-};
+}
 
-var isDate = function () {
-  return function (props, key) {
-    if (!Object.prototype.toString.call(props[ key ]).toLowerCase() === '[object date]') {
-      Yox.logger.warn((key + " 期望是 Date 类型，实际传值 " + (props[ key ]) + "。"));
+function isDate() {
+  return function (key, value) {
+    if (value instanceof Date) {
+      return true
     }
-    return true
+    Yox.logger.warn((key + " 期望是 Date 类型，实际传值 " + value + "。"));
   }
-};
+}
 
-var scrollTop = function (element, from, to, duration, endCallback) {
+function scrollTop(element, from, to, duration, endCallback) {
   if ( from === void 0 ) from = 0;
   if ( duration === void 0 ) duration = 500;
 
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = (
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      function (callback) {
-        return window.setTimeout(callback, 1000 / 60)
-      }
-    );
-  }
+
   var difference = Math.abs(from - to);
   var step = Math.ceil(difference / duration * 50);
 
@@ -304,16 +304,16 @@ var scrollTop = function (element, from, to, duration, endCallback) {
     } else {
       element.scrollTop = duration;
     }
-    window.requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
       scroll(duration, end, step);
     });
   }
   scroll(from, to, step);
-};
+}
 
-var getType = function (value) {
+function getType(value) {
   return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
-};
+}
 
 var Menu = {
 
@@ -1490,7 +1490,7 @@ var RadioGroup = {
   }
 };
 
-var template$l = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      name=\"{{name}}\"\n      {{#if disabled}} disabled{{/if}}\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
+var template$l = "<label \nclass=\"bell-checkbox\n  {{#if disabled}} bell-checkbox-disabled{{/if}}\n  {{#if type}} bell-checkbox-{{type}}{{/if}}\n  {{#if size}} bell-checkbox-{{size}}{{/if}}\n  {{#if checked}} bell-checkbox-active{{/if}}\n  {{#if indeterminate}} bell-checkbox-indeterminate{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <label class=\"bell-checkbox-wrapper\">\n    <span class=\"bell-checkbox-inner\"></span>\n    <input class=\"bell-checkbox-input\" \n      type=\"checkbox\" \n      model=\"checked\" \n      name=\"{{name}}\"\n      disabled=\"{{disabled}}\"\n    />\n  </label>\n\n  <span class=\"bell-checkbox-label\">\n    <slot name=\"children\">\n      {{label || value}}\n    </slot>\n  </span>\n\n</label>";
 
 var Checkbox = {
 
@@ -1502,7 +1502,7 @@ var Checkbox = {
     },
     value: {
       type: [RAW_STRING, RAW_BOOLEAN],
-      require: true
+      require: TRUE
     },
     indeterminate: {
       type: RAW_BOOLEAN
@@ -1533,7 +1533,10 @@ var Checkbox = {
     'groupChange.checkboxgroup': function (event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set({
-          checked: Yox.array.has(data.selected, this.get('value'))
+          checked: Yox.array.has(
+            data.selected, 
+            this.get('value')
+          )
         });
       }
     }
@@ -1617,7 +1620,7 @@ var CheckboxGroup = {
         var me = this;
         var selected = me.copy(me.get('selected'));
         if (data.checked) {
-          if (Yox.array.indexOf(selected, data.value) === -1) {
+          if (!Yox.array.has(selected, data.value)) {
             selected.push(data.value);
           }
         }
@@ -5106,7 +5109,7 @@ var Slider = {
       }
       me.set('draging', TRUE);
 
-      window.requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
         me.set('draging', FALSE);
         if (!me.get('disabled')) {
           me.setValue(event);

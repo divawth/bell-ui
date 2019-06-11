@@ -1,6 +1,6 @@
 import template from './template/Checkbox.html'
 import { findComponentUpward } from '../util'
-import { RAW_STRING, RAW_BOOLEAN } from '../constant'
+import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
 
 export default {
 
@@ -12,7 +12,7 @@ export default {
     },
     value: {
       type: [RAW_STRING, RAW_BOOLEAN],
-      require: true
+      require: TRUE
     },
     indeterminate: {
       type: RAW_BOOLEAN
@@ -43,7 +43,10 @@ export default {
     'groupChange.checkboxgroup': function (event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set({
-          checked: Yox.array.has(data.selected, this.get('value'))
+          checked: Yox.array.has(
+            data.selected, 
+            this.get('value')
+          )
         })
       }
     }

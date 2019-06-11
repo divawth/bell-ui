@@ -185,7 +185,7 @@ export default {
           全选
         </Checkbox>
       </div>
-      <CheckboxGroup type="success" model="fruit" on-groupChange="groupChange($data)">
+      <CheckboxGroup type="success" model="fruit" on-group-change="groupChange($data)">
         <Checkbox value="1">
           香蕉
         </Checkbox>
