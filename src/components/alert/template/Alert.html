@@ -43,11 +43,7 @@ class="${prefix}alert
   {{#if closable || hasSlot('close')}}
     <span ref="close" class="${prefix}alert-close" on-click="close()">
       <slot name="close">
-        {{#if closeText}}
-          {{closeText}}
-        {{else}}
-          <Icon name="close" size="24" />
-        {{/if}}
+        <Icon name="close" size="24" />
       </slot>
     </span>
   {{/if}}

@@ -231,6 +231,41 @@
 
   var template$5 = "<ul \nclass=\"bell-menu bell-menu-{{mode}} bell-menu-{{theme}}\n{{#if isCollapsed}} bell-menu-collapsed{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  <slot name=\"children\" />\n</ul>";
 
+  var element$1 = document.createElement('div');
+
+  var prefixs = ['Webkit', 'Moz', 'O', 'ms'];
+
+  function testCSS(property) {
+
+    var upperCase = property.charAt(0).toUpperCase()
+                  + property.slice(1);
+
+    var list = (property
+              + ' '
+              + prefixs.join(upperCase + ' ')
+              + upperCase).split(' ');
+
+    for (var i = 0, len = list.length; i < len; i++) {
+      if (list[i] in element$1.style) {
+        return list[i]
+      }
+    }
+
+  }
+
+  var transitionEnd = testCSS('transition') ? 'transitionend' : '';
+
+  var supportTransform = testCSS('transform') ? true : false;
+
+  function onTransitionEnd(el, callback) {
+    if (transitionEnd) {
+      Yox.dom.on(el, transitionEnd, callback);
+    }
+    else {
+      Yox.nextTick(callback);
+    }
+  }
+
   var requestAnimationFrame = (
     window.webkitRequestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -957,7 +992,7 @@
     template: template$e
   };
 
-  var template$f = "<button \non-click=\"click.button\"\nclass=\"bell-button bell-button-{{borderType}}\n  {{#if ghost}} bell-button-{{type}}-ghost \n  {{else}} bell-button-{{type}}-normal \n  {{/if}}  \n  \n  {{#if shape}} bell-button-{{shape}}{{/if}}\n  {{#if size}} bell-button-{{size}}{{/if}}\n  {{#if fluid}} bell-button-fluid{{/if}}\n  {{#if className}} {{className}}{{/if}}\n\"\n{{#if disabled}} disabled{{/if}} \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  {{#if hasSlot('icon')}}\n    <slot name=\"icon\" />\n  {{else if icon}}\n    <Icon name=\"{{icon}}\" />\n  {{/if}}\n\n  {{#if hasSlot('children')}}\n  <span>\n    <slot name=\"children\" />\n  </span>\n  {{/if}}\n  \n</button>";
+  var template$f = "<button on-click=\"click.button\"\nclass=\"bell-button bell-button-{{borderType}}\n{{#if ghost}} bell-button-{{type}}-ghost\n{{else}} bell-button-{{type}}-normal\n{{/if}}\n\n{{#if shape}} bell-button-{{shape}}{{/if}}\n{{#if size}} bell-button-{{size}}{{/if}}\n{{#if fluid}} bell-button-fluid{{/if}}\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if disabled}} disabled{{/if}}\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"icon\" />\n\n  <slot name=\"children\" />\n\n</button>";
 
   var Button = {
     propTypes: {
@@ -969,13 +1004,10 @@
         type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
       },
       borderType: {
-        type: oneOf(['solid', 'none', 'dashed']), 
+        type: oneOf(['solid', 'none', 'dashed']),
         value: 'solid'
       },
       shape: {
-        type: RAW_STRING
-      },
-      icon: {
         type: RAW_STRING
       },
       fluid: {
@@ -997,7 +1029,7 @@
     template: template$f
   };
 
-  var template$g = "<div \nclass=\"bell-button-group\n  {{#if shape}} bell-button-group-{{shape}}{{/if}}\n  {{#if size}} bell-button-group-{{size}}{{/if}}\n  \n  {{#if vertical}} bell-button-group-vertical\n  {{else}} bell-button-group-horizontal\n  {{/if}}\n\n  {{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
+  var template$g = "<div class=\"bell-button-group\n{{#if shape}} bell-button-group-{{shape}}{{/if}}\n{{#if size}} bell-button-group-{{size}}{{/if}}\n\n{{#if vertical}} bell-button-group-vertical\n{{else}} bell-button-group-horizontal\n{{/if}}\n\n{{#if className}} {{className}}{{/if}}\n\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n</div>";
 
   var ButtonGroup = {
     propTypes: {
@@ -1008,8 +1040,7 @@
         type: oneOf(['round', 'circle'])
       },
       vertical: {
-        type: RAW_BOOLEAN,
-        value: FALSE
+        type: RAW_BOOLEAN
       },
       className: {
         type: RAW_STRING
@@ -2424,7 +2455,7 @@
     }
   };
 
-  var template$t = "<div \nclass=\"bell-alert\n{{#if type}} bell-alert-{{type}}{{/if}}\n{{#if hasSlot('content')}} bell-alert-with-content{{/if}}\n{{#if showIcon || hasSlot('icon')}} bell-alert-with-icon{{/if}}\n{{#if center}} bell-alert-center{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if showIcon || hasSlot('icon')}}\n    <span class=\"bell-alert-icon\">\n      <slot name=\"icon\">\n        {{#if type == 'primary'}}\n          <Icon name=\"information-circle\" />\n        {{else if type == 'success'}}\n          <Icon name=\"checkmark-circle\" />\n        {{else if type == 'warning'}}\n          <Icon name=\"alert\" />\n        {{else if type == 'error'}}\n          <Icon name=\"close-circle\" />\n        {{/if}}\n      </slot>>\n    </span>\n  {{/if}}\n\n  <div class=\"bell-alert-wrapper\">\n    \n    {{#if hasSlot('children')}}\n    <div class=\"bell-alert-title\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('content')}}\n    <div class=\"bell-alert-content\">\n      <slot name=\"content\" />\n    </div>\n    {{/if}}\n\n  </div>\n\n  {{#if closable || hasSlot('close')}}\n    <span ref=\"close\" class=\"bell-alert-close\" on-click=\"close()\">\n      <slot name=\"close\">\n        {{#if closeText}}\n          {{closeText}}\n        {{else}}\n          <Icon name=\"close\" size=\"24\" />\n        {{/if}}\n      </slot>\n    </span>\n  {{/if}}\n</div>";
+  var template$t = "<div \nclass=\"bell-alert\n{{#if type}} bell-alert-{{type}}{{/if}}\n{{#if hasSlot('content')}} bell-alert-with-content{{/if}}\n{{#if showIcon || hasSlot('icon')}} bell-alert-with-icon{{/if}}\n{{#if center}} bell-alert-center{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n  {{#if showIcon || hasSlot('icon')}}\n    <span class=\"bell-alert-icon\">\n      <slot name=\"icon\">\n        {{#if type == 'primary'}}\n          <Icon name=\"information-circle\" />\n        {{else if type == 'success'}}\n          <Icon name=\"checkmark-circle\" />\n        {{else if type == 'warning'}}\n          <Icon name=\"alert\" />\n        {{else if type == 'error'}}\n          <Icon name=\"close-circle\" />\n        {{/if}}\n      </slot>>\n    </span>\n  {{/if}}\n\n  <div class=\"bell-alert-wrapper\">\n    \n    {{#if hasSlot('children')}}\n    <div class=\"bell-alert-title\">\n      <slot name=\"children\" />\n    </div>\n    {{/if}}\n\n    {{#if hasSlot('content')}}\n    <div class=\"bell-alert-content\">\n      <slot name=\"content\" />\n    </div>\n    {{/if}}\n\n  </div>\n\n  {{#if closable || hasSlot('close')}}\n    <span ref=\"close\" class=\"bell-alert-close\" on-click=\"close()\">\n      <slot name=\"close\">\n        <Icon name=\"close\" size=\"24\" />\n      </slot>\n    </span>\n  {{/if}}\n</div>";
 
   var Alert = {
 
@@ -2442,9 +2473,6 @@
       center: {
         type: RAW_BOOLEAN
       },
-      closeText: {
-        type: RAW_STRING
-      },
       className: {
         type: RAW_STRING
       },
@@ -2459,13 +2487,13 @@
       close: function close() {
         var me = this;
         Yox.dom.addClass(me.$el, 'bell-hide');
-        setTimeout(
+        onTransitionEnd(
+          me.$el,
           function () {
             me.$el && me.$el.remove();
-          },
-          500
+            me.fire('close.alert');
+          }
         );
-        me.fire('close.alert');
       }
     }
   };
@@ -2528,7 +2556,7 @@
 
     data: function data() {
       return {
-        isShow: false
+        isShow: FALSE
       }
     },
 
@@ -2559,7 +2587,9 @@
     }
   };
 
-  var template$w = "<div \nclass=\"bell-avatar bell-avatar-{{size}} bell-avatar-{{shape}}\n{{#if className}} {{className}}{{/if}}\n\" \nstyle=\"color: {{color}};\n{{#if fontSize}} font-size: {{fontSize}}px;{{/if}}\n{{#if bgColor}} background-color: {{bgColor}};{{/if}}\n{{#if style}} {{style}}{{/if}}\n\"\n>\n  \n  {{#if src}}\n  <img className=\"bell-avatar-image\"\n    {{#if srcset}} srcset=\"{{srcset}}\"{{/if}} \n    ondragstart=\"return false\" \n    src=\"{{src}}\" \n  />\n  {{else if icon}}\n    <Icon type=\"{{iconType}}\" className=\"bell-avatar-icon\" name=\"{{icon}}\" />\n  {{else if text}}\n    <span ref=\"textStr\" class=\"bell-avatar-string\" style=\"transform: {{transformStyle}};\">\n      {{text}}\n    </span>\n  {{/if}}\n\n</div>";
+  var template$w = "<div \nclass=\"bell-avatar bell-avatar-{{size}} bell-avatar-{{shape}}\n{{#if className}} {{className}}{{/if}}\"\n\nstyle=\"{{#if text}}color: {{color}};{{/if}}\n{{#if fontSize}}font-size: {{fontSize}}px;{{/if}}\n{{#if bgColor}}background-color: {{bgColor}};{{/if}}\n{{#if style}}{{style}}{{/if}}\"\n>\n  \n  {{#if src}}\n  <img class=\"bell-avatar-image\"\n    src=\"{{src}}\" \n    {{#if srcset}} srcset=\"{{srcset}}\"{{/if}} \n    ondragstart=\"return false\" \n  />\n  {{else if hasSlot('icon')}}\n    <span class=\"bell-avatar-icon\">\n      <slot name=\"icon\" />\n    </span>\n  {{else if text}}\n    <span ref=\"textSpan\" \n      class=\"bell-avatar-text\"\n      {{#if supportTransform && transform}}\n        style=\"transform: {{transform}}\"\n      {{/if}}\n    >\n      {{text}}\n    </span>\n  {{/if}}\n\n</div>";
+
+  var SPACE_HORIZONTAL = 8;
 
   var Avatar = {
 
@@ -2581,12 +2611,6 @@
       srcset: {
         type: RAW_STRING
       },
-      icon: {
-        type: RAW_STRING
-      },
-      iconType: {
-        type: oneOf(RAW_ICON_TYPE_ARRAY)
-      },
       fontSize: {
         type: RAW_NUMERIC
       },
@@ -2595,7 +2619,7 @@
       },
       color: {
         type: RAW_STRING,
-        value: '#ffffff'
+        value: '#FFF'
       },
       className: {
         type: RAW_STRING
@@ -2606,42 +2630,49 @@
     },
 
     template: template$w,
-    
-    data: function data () {
+
+    data: function data() {
       return {
-        transformStyle: "scale(1) translateX(-50%)"
+        supportTransform: supportTransform,
       }
     },
 
-    watchers: {
-      
-    },
+    afterMount: function afterMount() {
+      if (supportTransform) {
+        this.watch(
+          'text',
+          {
+            watcher: function () {
+              this.nextTick(function () {
 
-    afterMount: function afterMount () {
-      var elWidth = this.$el.clientWidth - 8;
-      this.watch(
-        'text',
-        {
-          watcher: function () {
-            this.nextTick(function () {
-              var scale = 1;
-              if (this.$refs.textStr && this.$refs.textStr.clientWidth) {
-                scale = elWidth / this.$refs.textStr.clientWidth; 
-              }
+                var ref = this;
+                var $el = ref.$el;
+                var $refs = ref.$refs;
+                if (!$el || !$refs) {
+                  return
+                }
 
-              this.set(
-                'transformStyle',
-                ("scale(" + (scale > 1 ? 1 : scale) + ") translateX(-50%)")
-              );
-            });
-          },
-          immediate: true
-        }
-      );
+                var textSpan = $refs.textSpan;
+
+                var scale = textSpan && textSpan.offsetWidth
+                  ? ($el.offsetWidth - SPACE_HORIZONTAL) / textSpan.offsetWidth
+                  : 1;
+
+                this.set(
+                  'transform',
+                  ("scale(" + (Math.min(scale, 1)) + ") translateX(-50%)")
+                );
+
+              });
+            },
+            immediate: TRUE
+          }
+        );
+      }
     }
   };
 
-  var template$x = "<div \nclass=\"bell-badge{{#if status}}-status{{/if}}\n{{#if status || type}} bell-badge-{{status || type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\n\" \n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if !hidden}}\n    \n    {{#if dot}}\n      <span class=\"bell-badge-dot\"></span>\n    {{/if}}\n    \n    {{#if text || count}}\n    <span class=\"bell-badge-count\n      {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}\n    \">\n      {{text ? text : getText(count, maxCount)}}\n    </span>\n    {{/if}}\n\n  {{/if}}\n  \n</div>";
+  var template$x = "<div class=\"bell-badge{{#if status}}-status{{/if}}\n{{#if status || type}} bell-badge-{{status || type}}{{/if}}\n{{#if className}} {{className}}{{/if}}\"\n{{#if style}} style=\"{{style}}\"{{/if}}\n>\n\n  <slot name=\"children\" />\n\n  {{#if !hidden}}\n\n    {{#if dot}}\n      <span class=\"bell-badge-dot\"></span>\n    {{/if}}\n\n    {{#if text || isNumber(count)}}\n    <span class=\"bell-badge-count\n      {{#if !hasSlot('children')}} bell-badge-count-alone{{/if}}\n    \">\n      {{text ? text : formatText(count, maxCount)}}\n    </span>\n    {{/if}}\n\n  {{/if}}\n\n</div>";
 
   var Badge = {
     propTypes: {
@@ -2681,11 +2712,14 @@
     template: template$x,
 
     filters: {
-      getText: function getText(count, maxCount) {
+      isNumber: function isNumber(count) {
+        return Yox.is.numeric(count)
+      },
+      formatText: function formatText(count, maxCount) {
+        count = Yox.is.numeric(count) ? +count : 0;
         maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1;
-        var countStr = Yox.is.numeric(count) ? +count : 0;
 
-        return maxCount < countStr
+        return maxCount < count
           ? maxCount + '+'
           : count
       }

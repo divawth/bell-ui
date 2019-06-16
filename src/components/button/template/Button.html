@@ -1,29 +1,20 @@
-<button 
-on-click="click.button"
+<button on-click="click.button"
 class="${prefix}button ${prefix}button-{{borderType}}
-  {{#if ghost}} ${prefix}button-{{type}}-ghost 
-  {{else}} ${prefix}button-{{type}}-normal 
-  {{/if}}  
-  
-  {{#if shape}} ${prefix}button-{{shape}}{{/if}}
-  {{#if size}} ${prefix}button-{{size}}{{/if}}
-  {{#if fluid}} ${prefix}button-fluid{{/if}}
-  {{#if className}} {{className}}{{/if}}
+{{#if ghost}} ${prefix}button-{{type}}-ghost
+{{else}} ${prefix}button-{{type}}-normal
+{{/if}}
+
+{{#if shape}} ${prefix}button-{{shape}}{{/if}}
+{{#if size}} ${prefix}button-{{size}}{{/if}}
+{{#if fluid}} ${prefix}button-fluid{{/if}}
+{{#if className}} {{className}}{{/if}}
 "
-{{#if disabled}} disabled{{/if}} 
+{{#if disabled}} disabled{{/if}}
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  {{#if hasSlot('icon')}}
-    <slot name="icon" />
-  {{else if icon}}
-    <Icon name="{{icon}}" />
-  {{/if}}
+  <slot name="icon" />
 
-  {{#if hasSlot('children')}}
-  <span>
-    <slot name="children" />
-  </span>
-  {{/if}}
-  
+  <slot name="children" />
+
 </button>

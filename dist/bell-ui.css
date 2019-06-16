@@ -6906,7 +6906,6 @@ button.bell-button-danger-ghost[disabled] {
   text-align: center;
   position: relative;
   background-color: #ccc;
-  border-radius: 4px;
 }
 .bell-avatar {
   width: 32px;
@@ -6955,11 +6954,14 @@ button.bell-button-danger-ghost[disabled] {
 .bell-avatar +.bell-avatar {
   margin-left: 10px;
 }
-.bell-avatar .bell-avatar-string {
+.bell-avatar .bell-avatar-text {
   position: absolute;
   left: 50%;
   transform-origin: 0 center;
   white-space: nowrap;
+}
+.bell-avatar-round {
+  border-radius: 4px;
 }
 .bell-avatar-circle {
   border-radius: 50%;

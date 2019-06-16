@@ -107,10 +107,16 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 size | 大小 | string | huge, large, default, small, tiny | default
-shape | 形状 | string | circle, round | round
+shape | 形状 | string | round, circle | round
 text | 文字 | string | - | -
 src | 图片地址 | string | - | -
 srcset | srcset | string | - | -
-bgColor | 背景色 | string | - | #ccc
-color | 文字颜色 | string | - | -
+bgColor | 背景色 | string | - | #CCC
+color | 文字颜色 | string | - | #FFF
 fontSize | 图标大小 | number | - | -
+
+> Slots
+
+名称 | 说明
+---|---
+icon | 设置 icon

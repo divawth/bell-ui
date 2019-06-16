@@ -2,16 +2,18 @@
 
 使用 <a target="_blank" href="//ionicons.com/">ionicons</a>
 
-    export default {
-        template: `
-            <div class="bell-template">
-                <Icon type="happy" />
-                <Icon type="happy" size="18"/>
-                <Icon type="happy" size="18" color="#f90" />
-                <Icon type="happy" size="18" spin />
-            </div>
-        `
-    }
+```
+export default {
+  template: `
+  <div class="bell-template">
+    <Icon name="happy" />
+    <Icon name="happy" size="18"/>
+    <Icon name="happy" size="18" color="#f90" />
+    <Icon name="happy" size="18" spin />
+  </div>
+  `
+}
+```
 
 #### API
 

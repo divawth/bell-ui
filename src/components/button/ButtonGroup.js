@@ -1,10 +1,12 @@
 import template from './template/ButtonGroup.html'
-import { oneOf } from '../util'
-import { 
-  FALSE, 
 
+import {
+  oneOf,
+} from '../util'
+
+import {
   RAW_STRING,
-  RAW_BOOLEAN
+  RAW_BOOLEAN,
 } from '../constant'
 
 export default {
@@ -16,8 +18,7 @@ export default {
       type: oneOf(['round', 'circle'])
     },
     vertical: {
-      type: RAW_BOOLEAN,
-      value: FALSE
+      type: RAW_BOOLEAN
     },
     className: {
       type: RAW_STRING
@@ -27,4 +28,4 @@ export default {
     }
   },
   template
-};
+}

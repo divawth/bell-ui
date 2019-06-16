@@ -1,6 +1,17 @@
 import template from './template/Badge.html'
-import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_TYPE_ARRAY, RAW_TYPE_ERROR, FALSE } from '../constant'
-import { oneOf } from '../util';
+
+import {
+  RAW_STRING,
+  RAW_BOOLEAN,
+  RAW_NUMERIC,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_ERROR,
+  FALSE
+} from '../constant'
+
+import {
+  oneOf
+} from '../util'
 
 export default {
   propTypes: {
@@ -40,11 +51,14 @@ export default {
   template,
 
   filters: {
-    getText(count, maxCount) {
+    isNumber(count) {
+      return Yox.is.numeric(count)
+    },
+    formatText(count, maxCount) {
+      count = Yox.is.numeric(count) ? +count : 0
       maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1
-      let countStr = Yox.is.numeric(count) ? +count : 0
 
-      return maxCount < countStr
+      return maxCount < count
         ? maxCount + '+'
         : count
     }

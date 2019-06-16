@@ -180,10 +180,9 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 主题 | string | info, success, warning, error, primary | primary
+type | 主题 | string | primary, info, warning, success, error | primary
 closable | 是否可以关闭 | boolean | - | false
 center | 文字是否居中 | boolean | - | false
-closeText | 关闭按钮自定义文本 | string | - | -
 showIcon | 是否显示图标 | boolean | - | false
 
 > Events
@@ -192,7 +191,7 @@ showIcon | 是否显示图标 | boolean | - | false
 ---|---|---
 close | 关闭 alert 时触发的事件 | -
 
-> slots
+> Slots
 
 名称 | 说明
 ---|---

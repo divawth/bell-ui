@@ -6,7 +6,6 @@
   position relative
 
   background-color $avatar-bg
-  border-radius $avatar-border-radius
 
   ui-avatar()
 
@@ -17,11 +16,14 @@
   +{$selector-avatar}
     margin-left $avatar-margin-left
 
-  {$selector-avatar-string}
+  {$selector-avatar-text}
     position absolute
     left 50%
     transform-origin 0 center
     white-space nowrap
+
+{$selector-avatar}-round
+  border-radius $avatar-border-radius
 
 {$selector-avatar}-circle
   border-radius $radius-circle

@@ -8,7 +8,8 @@ import {
 } from '../constant'
 
 import {
-  oneOf
+  oneOf,
+  onTransitionEnd,
 } from '../util'
 
 export default {
@@ -27,9 +28,6 @@ export default {
     center: {
       type: RAW_BOOLEAN
     },
-    closeText: {
-      type: RAW_STRING
-    },
     className: {
       type: RAW_STRING
     },
@@ -42,15 +40,15 @@ export default {
 
   methods: {
     close() {
-      let me = this
-      Yox.dom.addClass(me.$el, 'bell-hide')
-      setTimeout(
+      const me = this
+      Yox.dom.addClass(me.$el, '${prefix}hide')
+      onTransitionEnd(
+        me.$el,
         function () {
           me.$el && me.$el.remove()
-        },
-        500
+          me.fire('close.alert')
+        }
       )
-      me.fire('close.alert')
     }
   }
 }

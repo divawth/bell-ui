@@ -1,14 +1,21 @@
 import template from './template/Avatar.html'
+
 import {
+  TRUE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
   RAW_SHAPE_ROUND,
-  RAW_ICON_TYPE_ARRAY
 } from '../constant'
-import { oneOf } from '../util';
+
+import { 
+  oneOf,
+  supportTransform,
+} from '../util'
+
+const SPACE_HORIZONTAL = 8
 
 export default {
 
@@ -30,12 +37,6 @@ export default {
     srcset: {
       type: RAW_STRING
     },
-    icon: {
-      type: RAW_STRING
-    },
-    iconType: {
-      type: oneOf(RAW_ICON_TYPE_ARRAY)
-    },
     fontSize: {
       type: RAW_NUMERIC
     },
@@ -44,7 +45,7 @@ export default {
     },
     color: {
       type: RAW_STRING,
-      value: '#ffffff'
+      value: '#FFF'
     },
     className: {
       type: RAW_STRING
@@ -55,37 +56,42 @@ export default {
   },
 
   template,
-  
-  data () {
+
+  data() {
     return {
-      transformStyle: `scale(1) translateX(-50%)`
+      supportTransform,
     }
   },
 
-  watchers: {
-    
-  },
+  afterMount() {
+    if (supportTransform) {
+      this.watch(
+        'text',
+        {
+          watcher: function () {
+            this.nextTick(function () {
 
-  afterMount () {
-    let elWidth = this.$el.clientWidth - 8
-    this.watch(
-      'text',
-      {
-        watcher: function () {
-          this.nextTick(function () {
-            let scale = 1
-            if (this.$refs.textStr && this.$refs.textStr.clientWidth) {
-              scale = elWidth / this.$refs.textStr.clientWidth 
-            }
+              const { $el, $refs } = this
+              if (!$el || !$refs) {
+                return
+              }
 
-            this.set(
-              'transformStyle',
-              `scale(${scale > 1 ? 1 : scale}) translateX(-50%)`
-            )
-          })
-        },
-        immediate: true
-      }
-    )
+              const { textSpan } = $refs
+
+              const scale = textSpan && textSpan.offsetWidth
+                ? ($el.offsetWidth - SPACE_HORIZONTAL) / textSpan.offsetWidth
+                : 1
+
+              this.set(
+                'transform',
+                `scale(${Math.min(scale, 1)}) translateX(-50%)`
+              )
+
+            })
+          },
+          immediate: TRUE
+        }
+      )
+    }
   }
 }

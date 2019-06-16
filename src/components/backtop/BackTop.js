@@ -1,6 +1,6 @@
 import template from './template/BackTop.html'
 
-import { RAW_STRING, RAW_NUMERIC } from '../constant'
+import { FALSE, RAW_STRING, RAW_NUMERIC } from '../constant'
 import { scrollTop } from '../util'
 
 export default {
@@ -33,7 +33,7 @@ export default {
 
   data() {
     return {
-      isShow: false
+      isShow: FALSE
     }
   },
 

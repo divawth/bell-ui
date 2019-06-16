@@ -1,11 +1,13 @@
 import template from './template/Button.html'
+
 import { oneOf } from '../util'
-import { 
+
+import {
   RAW_TINY,
   RAW_SMALL,
   RAW_LARGE,
   RAW_DEFAULT,
-  RAW_STRING, 
+  RAW_STRING,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY
 } from '../constant'
@@ -20,13 +22,10 @@ export default {
       type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     borderType: {
-      type: oneOf(['solid', 'none', 'dashed']), 
+      type: oneOf(['solid', 'none', 'dashed']),
       value: 'solid'
     },
     shape: {
-      type: RAW_STRING
-    },
-    icon: {
       type: RAW_STRING
     },
     fluid: {
@@ -46,4 +45,4 @@ export default {
     }
   },
   template
-};
+}

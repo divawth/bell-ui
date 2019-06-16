@@ -1,3 +1,38 @@
+const element = document.createElement('div')
+
+const prefixs = ['Webkit', 'Moz', 'O', 'ms']
+
+function testCSS(property) {
+
+  const upperCase = property.charAt(0).toUpperCase()
+                + property.slice(1)
+
+  const list = (property
+            + ' '
+            + prefixs.join(upperCase + ' ')
+            + upperCase).split(' ')
+
+  for (let i = 0, len = list.length; i < len; i++) {
+    if (list[i] in element.style) {
+      return list[i]
+    }
+  }
+
+}
+
+const transitionEnd = testCSS('transition') ? 'transitionend' : ''
+
+export const supportTransform = testCSS('transform') ? true : false
+
+export function onTransitionEnd(el, callback) {
+  if (transitionEnd) {
+    Yox.dom.on(el, transitionEnd, callback)
+  }
+  else {
+    Yox.nextTick(callback)
+  }
+}
+
 export const requestAnimationFrame = (
   window.webkitRequestAnimationFrame ||
   window.mozRequestAnimationFrame ||
