@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+
+    "outDir": "./dist/",
+    "moduleResolution": "node",
+
+    "allowJs": true,
+    "sourceMap": true,
+
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "node_module/yox/**/*.ts",
+    "./type/image.d.ts",
+    "./type/style.d.ts",
+    "./type/template.d.ts",
+    "src/components/util.js", "src/components/constant.js"
+  ]
+}

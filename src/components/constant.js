@@ -75,7 +75,6 @@ export const RAW_ICON_TYPE_ARRAY = [
   RAW_ICON_MD
 ]
 
-
 export const RAW_PLACEMENT_ARRAY = [
   RAW_TOP, 
   RAW_TOP_START,
@@ -90,6 +89,3 @@ export const RAW_PLACEMENT_ARRAY = [
   RAW_RIGHT_START,
   RAW_RIGHT_END
 ]
-
-
-

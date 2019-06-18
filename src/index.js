@@ -2,6 +2,7 @@
  * @file 主模块
  * @author wangtianhua
  */
+
 import Layout from './components/layout/Layout'
 import Header from './components/layout/Header'
 import Sider from './components/layout/Sider'
@@ -87,6 +88,7 @@ import Message from './components/message/Message'
 import Notice from './components/notice/Notice'
 import Msgbox from './components/msgbox/Msgbox'
 import LoadingBar from  './components/loadingBar/LoadingBar'
+import { debug } from 'yox/js/yox-common/src/util/logger';
 
 const components = {
   Layout,
@@ -192,5 +194,6 @@ export const install = function (Yox) {
 }
 
 if (typeof window !== 'undefined' && window.Yox) {
+  debugger
   install(window.Yox);
 }

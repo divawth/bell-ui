@@ -1,13 +1,6 @@
 node_modules/
 doc/
-
-edp-webserver-config.js
-
-edp-build-config.js
-
 dep/
-
 module.conf
 package-lock.json
 router.js
-docs/index.html
