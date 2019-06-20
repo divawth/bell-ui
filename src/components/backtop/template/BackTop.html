@@ -1,17 +1,16 @@
-<div 
-class="${prefix}backtop
+<div class="${prefix}backtop
 {{#if !isShow}} ${prefix}backtop-hide{{/if}}
-{{#if className}} {{className}}{{/if}}
-"
+{{#if className}} {{className}}{{/if}}"
+
 style="bottom: {{bottom}}px;
 right: {{right}}px;
-{{#if style}} {{style}}{{/if}}
-" 
-on-click="back()"
+{{#if style}} {{style}}{{/if}}"
+
+on-click="click.backTop"
 >
   <div class="${prefix}backtop-inner">
     <slot name="children">
-      <Icon name="arrow-up"></Icon>
+      <Icon name="arrow-up" />
     </slot>
   </div>
 </div>

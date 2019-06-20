@@ -1,20 +1,19 @@
-<label 
-class="${prefix}checkbox
-  {{#if disabled}} ${prefix}checkbox-disabled{{/if}}
-  {{#if type}} ${prefix}checkbox-{{type}}{{/if}}
-  {{#if size}} ${prefix}checkbox-{{size}}{{/if}}
-  {{#if checked}} ${prefix}checkbox-active{{/if}}
-  {{#if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
-  {{#if className}} {{className}}{{/if}}
-"
+<label class="${prefix}checkbox
+{{#if disabled}} ${prefix}checkbox-disabled{{/if}}
+{{#if type}} ${prefix}checkbox-{{type}}{{/if}}
+{{#if size}} ${prefix}checkbox-{{size}}{{/if}}
+{{#if checked}} ${prefix}checkbox-active{{/if}}
+{{#if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
 {{#if style}} style="{{style}}"{{/if}}
 >
 
   <label class="${prefix}checkbox-wrapper">
     <span class="${prefix}checkbox-inner"></span>
-    <input class="${prefix}checkbox-input" 
-      type="checkbox" 
-      model="checked" 
+    <input class="${prefix}checkbox-input"
+      type="checkbox"
+      model="checked"
       name="{{name}}"
       disabled="{{disabled}}"
     />

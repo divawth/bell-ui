@@ -1,12 +1,13 @@
 import template from './template/Card.html'
-import { 
+
+import {
   TRUE,
-  RAW_STRING, 
-  RAW_BOOLEAN
+  RAW_STRING,
+  RAW_BOOLEAN,
 } from '../constant'
 
 export default {
-  
+
   propTypes: {
     bordered: {
       type: RAW_BOOLEAN,

@@ -9,7 +9,11 @@
     "allowJs": true,
     "sourceMap": true,
 
-    "esModuleInterop": true
+    "esModuleInterop": true,
+
+    "typeRoots": [
+      "node_modules/yox/js/yox/src"
+    ]
   },
   "include": [
     "src/**/*.ts",

@@ -16,6 +16,6 @@ export default {
             type: RAW_STRING
         }
     },
-    template: template
+    template: template,
 };
 //# sourceMappingURL=BreadcrumbItem.js.map

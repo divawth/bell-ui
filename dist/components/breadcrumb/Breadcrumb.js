@@ -1,5 +1,5 @@
 import template from './template/Breadcrumb.html';
-import { RAW_STRING } from '../constant';
+import { RAW_STRING, } from '../constant';
 export default {
     propTypes: {
         className: {

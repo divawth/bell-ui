@@ -1,6 +1,7 @@
+import Yox from 'yox';
 import template from './template/CheckboxGroup.html';
-import { RAW_STRING, RAW_BOOLEAN, RAW_DEFAULT, RAW_TYPE_ARRAY, RAW_SIZE_ARRAY } from '../constant';
-import { oneOf } from '../util';
+import { RAW_ARRAY, RAW_STRING, RAW_BOOLEAN, RAW_DEFAULT, RAW_TYPE_ARRAY, RAW_SIZE_ARRAY, } from '../constant';
+import { oneOf, } from '../util';
 export default {
     model: 'selected',
     name: '${prefix}checkboxGroup',
@@ -9,7 +10,7 @@ export default {
             type: RAW_STRING
         },
         selected: {
-            type: 'array',
+            type: RAW_ARRAY,
             value: function () {
                 return [];
             }

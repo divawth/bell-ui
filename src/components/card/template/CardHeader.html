@@ -1,7 +1,6 @@
-<div 
-class="${prefix}card-header
-{{#if className}} {{className}}{{/if}}
-"
+<div class="${prefix}card-header
+{{#if className}} {{className}}{{/if}}"
+
 {{#if style}} style="{{style}}"{{/if}}
 >
 
@@ -12,7 +11,7 @@ class="${prefix}card-header
       <slot name="title" />
       <slot name="children" />
     </div>
-    
+
     {{#if hasSlot('subTitle')}}
       <div class="${prefix}card-header-sub-title">
         <slot name="subTitle" />

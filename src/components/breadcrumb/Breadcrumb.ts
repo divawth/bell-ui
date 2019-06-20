@@ -1,10 +1,10 @@
-import template from './template/CardActions.html'
-import { 
-  RAW_STRING
+import template from './template/Breadcrumb.html'
+
+import {
+  RAW_STRING,
 } from '../constant'
 
 export default {
-  
   propTypes: {
     className: {
       type: RAW_STRING
@@ -13,7 +13,5 @@ export default {
       type: RAW_STRING
     }
   },
-
   template
-
 }

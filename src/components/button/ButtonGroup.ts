@@ -27,5 +27,5 @@ export default {
       type: RAW_STRING
     }
   },
-  template
+  template,
 }

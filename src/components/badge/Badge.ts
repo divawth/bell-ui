@@ -1,3 +1,5 @@
+import Yox from 'yox'
+
 import template from './template/Badge.html'
 
 import {
@@ -6,11 +8,11 @@ import {
   RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
-  FALSE
+  FALSE,
 } from '../constant'
 
 import {
-  oneOf
+  oneOf,
 } from '../util'
 
 export default {
@@ -51,13 +53,12 @@ export default {
   template,
 
   filters: {
-    isNumber(count) {
+    isNumber(count: any) {
       return Yox.is.numeric(count)
     },
-    formatText(count, maxCount) {
+    formatText(count: any, maxCount: any) {
       count = Yox.is.numeric(count) ? +count : 0
       maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1
-
       return maxCount < count
         ? maxCount + '+'
         : count

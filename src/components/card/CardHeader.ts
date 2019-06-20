@@ -1,5 +1,6 @@
 import template from './template/CardHeader.html'
-import { 
+
+import {
   RAW_STRING
 } from '../constant'
 

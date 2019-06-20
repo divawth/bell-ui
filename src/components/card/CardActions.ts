@@ -1,18 +1,12 @@
-import template from './template/BreadcrumbItem.html'
-import { 
+import template from './template/CardActions.html'
+
+import {
   RAW_STRING
 } from '../constant'
 
 export default {
 
   propTypes: {
-    to: {
-      type: RAW_STRING
-    },
-    separator: {
-      type: RAW_STRING,
-      value: '/'
-    },
     className: {
       type: RAW_STRING
     },
@@ -22,4 +16,5 @@ export default {
   },
 
   template
+
 }

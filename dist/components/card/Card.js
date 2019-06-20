@@ -1,5 +1,5 @@
 import template from './template/Card.html';
-import { TRUE, RAW_STRING, RAW_BOOLEAN } from '../constant';
+import { TRUE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
 export default {
     propTypes: {
         bordered: {

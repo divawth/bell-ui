@@ -19,6 +19,6 @@ export default {
             type: RAW_STRING
         }
     },
-    template: template
+    template: template,
 };
 //# sourceMappingURL=ButtonGroup.js.map

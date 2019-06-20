@@ -1,6 +1,7 @@
+import Yox from 'yox';
 import template from './template/BackTop.html';
-import { FALSE, RAW_STRING, RAW_NUMERIC } from '../constant';
-import { scrollTop } from '../util';
+import { FALSE, RAW_STRING, RAW_NUMERIC, } from '../constant';
+import { scrollTop, } from '../util';
 export default {
     propTypes: {
         bottom: {
@@ -31,28 +32,24 @@ export default {
             isShow: FALSE
         };
     },
-    methods: {
-        back: function () {
-            var parentElement = this.$parent.$el;
-            scrollTop(parentElement, parentElement.scrollTop, 0, this.get('duration'));
-            this.fire('click');
+    events: {
+        click: function () {
+            var me = this, parentElement = me.$parent.$el;
+            scrollTop(parentElement, parentElement.scrollTop, 0, me.get('duration'));
         }
     },
     afterMount: function () {
-        var me = this;
-        var parentElement = me.$parent.$el;
-        me.handleScroll = function () {
-            var height = me.get('height') || parentElement.clientHeight;
+        var me = this, parentElement = me.$parent.$el, onRefresh = function () {
             me.set({
-                isShow: parentElement.scrollTop >= height
+                isShow: parentElement.scrollTop >= (me.get('height') || parentElement.clientHeight)
             });
         };
-        Yox.dom.on(parentElement, 'scroll', me.handleScroll);
-        Yox.dom.on(document, 'resize', me.handleScroll);
-    },
-    beforeDestroy: function () {
-        Yox.dom.off(this.$parent.$el, 'scroll', this.handleScroll);
-        Yox.dom.off(document, 'resize', this.handleScroll);
+        Yox.dom.on(parentElement, 'scroll', onRefresh);
+        Yox.dom.on(document, 'resize', onRefresh);
+        me.once('beforeDestroy.hook', function () {
+            Yox.dom.off(parentElement, 'scroll', onRefresh);
+            Yox.dom.off(document, 'resize', onRefresh);
+        });
     }
 };
 //# sourceMappingURL=BackTop.js.map
