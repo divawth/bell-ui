@@ -1,7 +1,8 @@
-import template from './template/Dropdown.html';
+import Yox from 'yox';
+import template from './template/Dropdown.hbs';
 import { TRUE, FALSE, RAW_STRING, RAW_HOVER, RAW_CLICK, RAW_CUSTOM, RAW_PLACEMENT_ARRAY, RAW_BOTTOM, RAW_NUMERIC } from '../constant';
-import { oneOf } from '../util';
-export default {
+import { oneOf, } from '../util';
+export default Yox.create({
     propTypes: {
         placement: {
             type: oneOf(RAW_PLACEMENT_ARRAY),
@@ -12,13 +13,11 @@ export default {
             value: RAW_HOVER
         },
         visible: {
-            type: function () {
-                return function (props, key) {
-                    if (props['trigger'] !== RAW_CUSTOM) {
-                        Yox.logger.warn(key + " \u671F\u671B\u5728 trigger \u53D6\u503C\u4E3A custom \u65F6\u4F20\u503C");
-                    }
-                    return true;
-                };
+            type: function (props, key) {
+                if (props['trigger'] !== RAW_CUSTOM) {
+                    Yox.logger.warn(key + " \u671F\u671B\u5728 trigger \u53D6\u503C\u4E3A custom \u65F6\u4F20\u503C");
+                }
+                return true;
             }
         },
         height: {
@@ -55,5 +54,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=Dropdown.js.map

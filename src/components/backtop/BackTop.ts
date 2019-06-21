@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/BackTop.html'
+import template from './template/BackTop.hbs'
 
 import {
   FALSE,
@@ -12,7 +12,7 @@ import {
   scrollTop,
 } from '../util'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     bottom: {
@@ -77,4 +77,4 @@ export default {
     )
   }
 
-}
+})

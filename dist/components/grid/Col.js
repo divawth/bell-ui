@@ -1,7 +1,8 @@
-import template from './template/Col.html';
+import Yox from 'yox';
+import template from './template/Col.hbs';
 import { RAW_STRING, RAW_NUMERIC, RAW_OBJECT } from '../constant';
 import { findComponentUpward } from '../util';
-export default {
+export default Yox.create({
     propTypes: {
         span: {
             type: RAW_NUMERIC
@@ -77,8 +78,8 @@ export default {
             var gap = 0;
             var style = '';
             if (this.get('style')
-                && Yox.sring.trim(this.get('style'))
-                && !Yox.sring.endsWith(style, ';')) {
+                && Yox.string.trim(this.get('style'))
+                && !Yox.string.endsWith(style, ';')) {
                 style += ';';
             }
             if (this.get('gutter')) {
@@ -125,5 +126,5 @@ export default {
         var row = findComponentUpward(this, '${prefix}raw');
         this.set('gutter', row.get('gutter'));
     }
-};
+});
 //# sourceMappingURL=Col.js.map

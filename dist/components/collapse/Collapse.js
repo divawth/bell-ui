@@ -1,6 +1,7 @@
-import template from './template/Collapse.html';
+import Yox from 'yox';
+import template from './template/Collapse.hbs';
 import { TRUE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant';
-export default {
+export default Yox.create({
     name: '${prefix}collapse',
     propTypes: {
         activeName: {
@@ -36,5 +37,5 @@ export default {
             }
         }
     }
-};
+});
 //# sourceMappingURL=Collapse.js.map

@@ -1,7 +1,8 @@
+import Yox from 'yox';
 import template from './template/Tooltip.html';
-import { RAW_STRING, RAW_NUMERIC, FALSE, RAW_BOOLEAN } from '../constant';
+import { FALSE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
 var timer;
-export default {
+export default Yox.create({
     propTypes: {
         content: {
             type: RAW_STRING
@@ -160,5 +161,5 @@ export default {
             timer = null;
         }
     }
-};
+});
 //# sourceMappingURL=Tooltip.js.map

@@ -1,6 +1,7 @@
-import template from './template/Tag.html';
-import { RAW_STRING, RAW_BOOLEAN, FALSE, TRUE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Tag.hbs';
+import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         size: {
             type: RAW_STRING,
@@ -55,5 +56,5 @@ export default {
             this.fire('close.tag');
         }
     }
-};
+});
 //# sourceMappingURL=Tag.js.map

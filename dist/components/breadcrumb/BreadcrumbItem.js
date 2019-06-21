@@ -1,6 +1,7 @@
-import template from './template/BreadcrumbItem.html';
+import Yox from 'yox';
+import template from './template/BreadcrumbItem.hbs';
 import { RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         to: {
             type: RAW_STRING
@@ -17,5 +18,5 @@ export default {
         }
     },
     template: template,
-};
+});
 //# sourceMappingURL=BreadcrumbItem.js.map

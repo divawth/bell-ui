@@ -1,6 +1,7 @@
-import template from './template/RadioGroup.html';
-import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/RadioGroup.hbs';
+import { TRUE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     name: '${prefix}radiogroup',
     propTypes: {
         className: {
@@ -45,5 +46,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=RadioGroup.js.map

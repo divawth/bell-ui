@@ -1,7 +1,8 @@
-import template from './template/Select.html';
+import Yox from 'yox';
+import template from './template/Select.hbs';
 import { contains } from '../util';
-import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, NULL, FALSE, TRUE } from '../constant';
-export default {
+import { NULL, FALSE, TRUE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
+export default Yox.create({
     propTypes: {
         clearable: {
             type: RAW_BOOLEAN
@@ -211,5 +212,5 @@ export default {
         Yox.dom.off(document, 'click', me.documentClickHandler);
         Yox.dom.off(document, 'keydown', me.documentKeydownHander);
     }
-};
+});
 //# sourceMappingURL=Select.js.map

@@ -1,6 +1,10 @@
-import template from './template/Dialog.html';
-import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Dialog.hbs';
+import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+import { onTransitionEnd, } from '../util';
+var CLASS_OPEN = '${prefix}dialog-open';
+var CLASS_LEAVE = '${prefix}dialog-leave';
+export default Yox.create({
     propTypes: {
         open: {
             type: RAW_BOOLEAN
@@ -22,23 +26,23 @@ export default {
         open: function (isOpen) {
             var element = this.$el;
             if (isOpen) {
-                Yox.dom.addClass(element, '${prefix}dialog-open');
+                Yox.dom.addClass(element, CLASS_OPEN);
             }
             else {
-                Yox.dom.addClass(element, '${prefix}dialog-leave');
-                setTimeout(function () {
-                    Yox.dom.removeClass(element, '${prefix}dialog-open');
-                    Yox.dom.removeClass(element, '${prefix}dialog-leave');
-                }, 300);
+                Yox.dom.addClass(element, CLASS_LEAVE);
+                onTransitionEnd(element, function () {
+                    Yox.dom.removeClass(element, CLASS_OPEN);
+                    Yox.dom.removeClass(element, CLASS_LEAVE);
+                });
             }
         }
     },
     methods: {
         maskClick: function () {
-            this.set('open', false);
+            this.set('open', FALSE);
         },
         close: function () {
-            this.set('open', false);
+            this.set('open', FALSE);
         }
     },
     afterMount: function () {
@@ -47,5 +51,5 @@ export default {
     beforeDestroy: function () {
         Yox.dom.remove(document.body, this.$el);
     }
-};
+});
 //# sourceMappingURL=Dialog.js.map

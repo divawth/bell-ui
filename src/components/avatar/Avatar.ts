@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Avatar.html'
+import template from './template/Avatar.hbs'
 
 import {
   TRUE,
@@ -19,7 +19,7 @@ import {
 
 const SPACE_HORIZONTAL = 8
 
-export default {
+export default Yox.create({
 
   propTypes: {
     shape: {
@@ -97,4 +97,4 @@ export default {
       )
     }
   }
-}
+})

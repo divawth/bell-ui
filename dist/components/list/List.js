@@ -1,6 +1,7 @@
-import template from './template/List.html';
-import { RAW_STRING, RAW_BOOLEAN, FALSE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/List.hbs';
+import { FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         border: {
             type: RAW_BOOLEAN,
@@ -21,5 +22,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=List.js.map

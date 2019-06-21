@@ -1,7 +1,8 @@
-import template from './template/InputNumber.html';
-import { FALSE, TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, RAW_TYPE_ARRAY } from '../constant';
-import { oneOf } from '../util';
-export default {
+import Yox from 'yox';
+import template from './template/InputNumber.hbs';
+import { FALSE, TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, RAW_TYPE_ARRAY, } from '../constant';
+import { oneOf, } from '../util';
+export default Yox.create({
     propTypes: {
         formatter: {
             type: RAW_FUNCTION
@@ -56,7 +57,7 @@ export default {
     },
     watchers: {
         value: function (value) {
-            this.fire('change.inputnumber', { value: value });
+            this.fire('change.inputNumber', { value: value });
         }
     },
     computed: {
@@ -71,38 +72,36 @@ export default {
     },
     methods: {
         up: function () {
-            var value = this.increase('value', +this.get('step'), +this.get('max'));
-            this.fire('change.inputnumber', { value: value });
+            this.increase('value', +this.get('step'), +this.get('max'));
         },
         down: function () {
-            var value = this.decrease('value', +this.get('step'), +this.get('min'));
-            this.fire('change.inputnumber', { value: value });
+            this.decrease('value', +this.get('step'), +this.get('min'));
         },
         blur: function () {
             this.set('isFocus', FALSE);
-            this.fire('blur.inputnumber');
+            this.fire('blur.inputNumber');
         },
         focus: function () {
             this.set('isFocus', TRUE);
-            this.fire('focus.inputnumber');
-        },
-        documentKeydownHander: function (event) {
-            switch (event.originalEvent.keyCode) {
-                case 38:
-                    this.up();
-                    break;
-                case 40:
-                    this.down();
-                    break;
-            }
+            this.fire('focus.inputNumber');
         }
     },
     afterMount: function () {
-        this.documentKeydownHander = this.documentKeydownHander.bind(this);
-        Yox.dom.on(document, 'keydown', this.documentKeydownHander);
-    },
-    beforeDestroy: function () {
-        Yox.dom.off(document, 'keydown', this.documentKeydownHander);
+        var me = this, doc = document;
+        var onKeydown = function (event) {
+            switch (event.originalEvent.keyCode) {
+                case 38:
+                    me.up();
+                    break;
+                case 40:
+                    me.down();
+                    break;
+            }
+        };
+        Yox.dom.on(doc, 'keydown', onKeydown);
+        me.on('beforeDestroy.hook', function () {
+            Yox.dom.off(doc, 'keydown', onKeydown);
+        });
     }
-};
+});
 //# sourceMappingURL=InputNumber.js.map

@@ -1,0 +1,122 @@
+<table
+class="${prefix}table
+{{#if stripe}} ${prefix}table-stripe{{/if}}
+{{#if border}} ${prefix}table-border{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <colgroup>
+    {{#each colWidths}}
+      <col align="left" width="{{this}}">
+    {{/each}}
+  </colgroup>
+
+  <thead class="${prefix}table-header">
+    {{#each columns}}
+      <th class="{{#if className}}{{className}}{{/if}}{{#if fixed || (height && !header)}} ${prefix}table-hidden{{/if}}">
+        {{#if key !== 'checked'}}
+          {{title}}
+        {{else}}
+          <Checkbox checked="{{checkAll}}" on-change="checkedAllChange()">
+            {{title}}
+          </Checkbox>
+        {{/if}}
+      </th>
+    {{/each}}
+  </thead>
+
+  <tbody class="${prefix}table-body">
+    {{#if fixed}}
+      {{#each list:index}}
+        <tr class="{{list.length}}">
+          {{#each columns}}
+            {{#if actions && actions.length}}
+              <td>
+                {{#each actions}}
+                  <Button
+                    on-click="click(this, list[ index ], index)"
+                    className="{{className}}"
+                    disabled="{{disabled}}"
+                    fluid="{{fluid}}"
+                    shape="{{shape}}"
+                    size="{{size}}"
+                    type="{{type}}"
+                  >
+                    {{text}}
+                  </Button>
+                {{/each}}
+              </td>
+            {{else if list[ index ][ key ]}}
+              <td class="{{#if className}}{{className}}{{/if}}
+                  {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
+                "
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'rowSpan' ]}}
+                  rowspan="{{list[ index ][ key ][ 'rowSpan' ]}}"
+                {{/if}}
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'colSpan' ]}}
+                  colspan="{{list[ index ][ key ][ 'colSpan' ]}}"
+                {{/if}}
+              >
+                {{#if key == 'index'}}
+                  {{#if setIndex}}
+                    {{setIndex(this, index)}}
+                  {{else}}
+                    {{index + 1}}
+                  {{/if}}
+                {{else if key == 'checked'}}
+                  <Checkbox
+                    checked="{{list[ index ][ key ]}}"
+                    on-change="checkedChange($data, index)"
+                  />
+                {{else if key != 'action'}}
+                  {{isObject(list[ index ][ key ]) ? list[ index ][ key ][ 'value' ] : list[ index ][ key ]}}
+                {{/if}}
+              </td>
+            {{/if}}
+          {{/each}}
+        </tr>
+      {{/each}}
+    {{else if !header}}
+      {{#each list:index}}
+        <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}
+            {{#if currentItem && currentItem.index == index}} ${prefix}table-active{{/if}}
+            {{list.length}}
+          "
+          on-click="rowClick(this, index)"
+        >
+          {{#each columns}}
+            {{#if list[ index ][ key ]}}
+              <td class="{{#if className}}{{className}}{{/if}}
+                  {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
+                  {{list[ index ][ key ]}}-{{index}}
+                "
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'rowSpan' ]}}
+                  rowspan="{{list[ index ][ key ][ 'rowSpan' ]}}"
+                {{/if}}
+                {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'colSpan' ]}}
+                  colspan="{{list[ index ][ key ][ 'colSpan' ]}}"
+                {{/if}}
+              >
+                {{#if key == 'index'}}
+                  {{#if setIndex}}
+                    {{setIndex(this, index)}}
+                  {{else}}
+                    {{index + 1}}
+                  {{/if}}
+                {{else if key == 'checked'}}
+                  <Checkbox
+                    checked="{{list[ index ][ key ]}}"
+                    on-change="checkedChange($data, index)"
+                  />
+                {{else if key != 'action'}}
+                  {{isObject(list[ index ][ key ]) ? list[ index ][ key ][ 'value' ] : list[ index ][ key ]}}
+                {{/if}}
+              </td>
+            {{/if}}
+          {{/each}}
+        </tr>
+      {{/each}}
+    {{/if}}
+  </tbody>
+</table>

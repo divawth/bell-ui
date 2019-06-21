@@ -1,6 +1,7 @@
-import template from './template/Card.html';
+import Yox from 'yox';
+import template from './template/Card.hbs';
 import { TRUE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         bordered: {
             type: RAW_BOOLEAN,
@@ -18,5 +19,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=Card.js.map

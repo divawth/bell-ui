@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Alert.html'
+import template from './template/Alert.hbs'
 
 import {
   RAW_STRING,
@@ -14,7 +14,7 @@ import {
   onTransitionEnd,
 } from '../util'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     type: {
@@ -57,4 +57,4 @@ export default {
 
     }
   }
-}
+})

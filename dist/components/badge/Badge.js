@@ -1,8 +1,8 @@
 import Yox from 'yox';
-import template from './template/Badge.html';
+import template from './template/Badge.hbs';
 import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_TYPE_ARRAY, RAW_TYPE_ERROR, FALSE, } from '../constant';
 import { oneOf, } from '../util';
-export default {
+export default Yox.create({
     propTypes: {
         text: {
             type: RAW_STRING
@@ -49,5 +49,5 @@ export default {
                 : count;
         }
     }
-};
+});
 //# sourceMappingURL=Badge.js.map

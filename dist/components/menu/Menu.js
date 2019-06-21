@@ -1,7 +1,8 @@
-import template from './template/Menu.html';
+import Yox from 'yox';
+import template from './template/Menu.hbs';
 import { TRUE, FALSE, RAW_ARRAY, RAW_STRING, RAW_BOOLEAN, RAW_HORIZONTAL, RAW_VERTICAL } from '../constant';
-import { oneOf } from '../util';
-export default {
+import { oneOf, } from '../util';
+export default Yox.create({
     name: '${prefix}menu',
     propTypes: {
         mode: {
@@ -46,5 +47,5 @@ export default {
             }
         }
     }
-};
+});
 //# sourceMappingURL=Menu.js.map

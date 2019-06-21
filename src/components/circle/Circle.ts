@@ -1,9 +1,18 @@
-import template from './template/Circle.html'
+import Yox from 'yox'
 
-import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN } from '../constant'
-import { oneOf } from '../util'
+import template from './template/Circle.hbs'
 
-export default {
+import {
+  RAW_STRING,
+  RAW_NUMERIC,
+  RAW_BOOLEAN,
+} from '../constant'
+
+import {
+  oneOf,
+} from '../util'
+
+export default Yox.create({
 
   propTypes: {
     dashboard: {
@@ -94,11 +103,12 @@ export default {
         return `M 50,50 m 0,${radius}
         a ${radius},${radius} 0 1 1 0,-${2 * radius}
         a ${radius},${radius} 0 1 1 0,${2 * radius}`
-      } else {
+      }
+      else {
         return `M 50,50 m 0,-${radius}
         a ${radius},${radius} 0 1 1 0,${2 * radius}
         a ${radius},${radius} 0 1 1 0,-${2 * radius}`
       }
     }
   }
-}
+})

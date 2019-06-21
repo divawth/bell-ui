@@ -1,0 +1,16 @@
+<div class="${prefix}col
+{{#if span}} ${prefix}col-{{span}}{{/if}}
+{{#if order}} ${prefix}col-order-{{order}}{{/if}}
+{{#if push}} ${prefix}col-push-{{push}}{{/if}}
+{{#if pull}} ${prefix}col-pull-{{pull}}{{/if}}
+{{#if offset}} ${prefix}col-offset-{{offset}}{{/if}}
+{{#if xsClass}} {{xsClass}}{{/if}}
+{{#if mdClass}} {{mdClass}}{{/if}}
+{{#if smClass}} {{smClass}}{{/if}}
+{{#if lgClass}} {{lgClass}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+style="{{inlineStyle}}"
+>
+  <slot name="children" />
+</div>

@@ -1,4 +1,4 @@
-#### checkbox 
+#### checkbox
 
 基本组件-多选框。主要用于一组可选项多项选择，或者单独用于标记切换某种状态。
 
@@ -71,7 +71,7 @@ export default {
 }
 ```
 
-> 不可用 
+> 不可用
 
 ```js
 export default {
@@ -94,7 +94,7 @@ export default {
 }
 ```
 
-> 与其它组件通信 
+> 与其它组件通信
 
 ```js
 export default {
@@ -102,7 +102,7 @@ export default {
     <div>
       <Checkbox model="checked" disabled="{{disabled}}">
         <span>{{Checked ? 'Checked' : 'Unchecked'}}</span>
-        - 
+        -
         <span>{{disabled ? 'Disabled' : 'Usable'}}</span>
       </Checkbox>
       <br/><br/>
@@ -185,7 +185,7 @@ export default {
           全选
         </Checkbox>
       </div>
-      <CheckboxGroup type="success" model="fruit" on-group-change="groupChange($data)">
+      <CheckboxGroup type="success" model="fruit" on-change="groupChange($data)">
         <Checkbox value="1">
           香蕉
         </Checkbox>
@@ -227,7 +227,7 @@ export default {
           indeterminate: false
         })
       }
-      
+
       console.log('groupChange')
     }
   },
@@ -359,5 +359,5 @@ selected | 只在单独使用时有效。可以使用 model 双向绑定数据 |
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-groupChange | 值变化的时候回调 | selected
+change | 值变化的时候回调 | selected
 

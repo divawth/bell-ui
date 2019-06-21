@@ -1,0 +1,31 @@
+<div class="${prefix}avatar ${prefix}avatar-{{size}} ${prefix}avatar-{{shape}}
+{{#if className}} {{className}}{{/if}}"
+
+style="{{#if text}}color: {{color}};{{/if}}
+{{#if fontSize}}font-size: {{fontSize}}px;{{/if}}
+{{#if bgColor}}background-color: {{bgColor}};{{/if}}
+{{#if style}}{{style}}{{/if}}"
+>
+
+  {{#if src}}
+    <img class="${prefix}avatar-image"
+      src="{{src}}"
+      {{#if srcset}} srcset="{{srcset}}"{{/if}}
+      ondragstart="return false"
+    />
+  {{else if hasSlot('icon')}}
+    <span class="${prefix}avatar-icon">
+      <slot name="icon" />
+    </span>
+  {{else if text}}
+    <span ref="textSpan"
+      class="${prefix}avatar-text"
+      {{#if supportTransform && transform}}
+        style="transform: {{transform}}"
+      {{/if}}
+    >
+      {{text}}
+    </span>
+  {{/if}}
+
+</div>

@@ -4325,7 +4325,7 @@ yox-template-loader@^0.0.9:
   resolved "https://registry.npmjs.org/yox-template-loader/-/yox-template-loader-0.0.9.tgz#e36f104a833d8fcf53747301e52b9ef218c78fe3"
   integrity sha512-FK1lQI18OrCK/M4Og95G8cw3055SKwvNqNJDusssfoB4zEUwIku6vw69pJZa2MRTdOOVFmdHxA8d0kHfcVSovA==
 
-yox@^1.0.0-alpha.66:
-  version "1.0.0-alpha.66"
-  resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.66.tgz#a3e494cf411dd90a4219dac5e417902130cd99ee"
-  integrity sha512-LXGr9HcQCT4HdoX1QnmZYTox5dtK2cjOtW6j/57ZhN35/Kh7IfWEslhLcrTlFEt9m+PydJ/iuhQ+XBCWIxL7ZA==
+yox@^1.0.0-alpha.73:
+  version "1.0.0-alpha.73"
+  resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.73.tgz#277825b4064378a860b4ff16cdaf8d774d4bf1d0"
+  integrity sha512-3sc04arpuqktKtsgA6NKqTsf+dJuPUDRspc/gu+oJWdjuWfaMyAJVKBLPk2ehfslzSJrBIMu3mkof6ImBwKOgw==

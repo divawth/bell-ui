@@ -1,4 +1,6 @@
-import template from './template/Card.html'
+import Yox from 'yox'
+
+import template from './template/Card.hbs'
 
 import {
   TRUE,
@@ -6,7 +8,7 @@ import {
   RAW_BOOLEAN,
 } from '../constant'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     bordered: {
@@ -26,4 +28,4 @@ export default {
   },
 
   template
-}
+})

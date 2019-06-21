@@ -1,6 +1,7 @@
-import template from './template/Item.html';
-import { FALSE, RAW_BOOLEAN, RAW_STRING } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Item.hbs';
+import { FALSE, RAW_BOOLEAN, RAW_STRING, } from '../constant';
+export default Yox.create({
     propTypes: {
         disableHover: {
             type: RAW_BOOLEAN
@@ -21,11 +22,10 @@ export default {
             nestedIsShow: FALSE
         };
     },
-    methods: {
-        itemClick: function (hasNested) {
-            this.fire('click.item');
+    events: {
+        click: function () {
             this.toggle('nestedIsShow');
         }
-    }
-};
+    },
+});
 //# sourceMappingURL=Item.js.map

@@ -1,7 +1,8 @@
-import template from './template/Radio.html';
-import { RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, FALSE } from '../constant';
-import { findComponentUpward } from '../util';
-export default {
+import Yox from 'yox';
+import template from './template/Radio.hbs';
+import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
+import { findComponentUpward, } from '../util';
+export default Yox.create({
     propTypes: {
         label: {
             type: RAW_STRING
@@ -59,5 +60,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=Radio.js.map

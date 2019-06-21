@@ -1,6 +1,6 @@
 import { firstDateInWeek, lastDateInWeek, normalizeDate, firstDateInMonth, lastDateInMonth, simplifyDate, offsetMonth, parseDate, formatList } from '../function/util';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
-import template from '../template/Date.html';
+import template from '../template/Date.hbs';
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY } from '../../constant';
 import { isDate } from '../../util';
 export default {

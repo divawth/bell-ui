@@ -1,0 +1,22 @@
+<li class="${prefix}timeline-item">
+  <div class="${prefix}timeline-tail"></div>
+
+
+  {{#if hasSlot('dot')}}
+    <div class="${prefix}timeline-custom">
+      <slot name="dot" />
+    </div>
+  {{/if}}
+
+  {{#if !hasSlot('dot')}}
+    <div
+      class="${prefix}timeline-dot"
+      style="color: {{color}}"
+    >
+    </div>
+  {{/if}}
+
+  <div class="${prefix}timeline-content">
+    <slot name="children" />
+  </div>
+</li>

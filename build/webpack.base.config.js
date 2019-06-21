@@ -42,7 +42,7 @@ module.exports = {
         }
       },
       {
-        test: /\.html$/,
+        test: /\.(html|hbs)$/,
         use: [
           'yox-template-loader',
           {

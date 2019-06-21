@@ -1,11 +1,12 @@
-import template from './template/Input.html';
-import { RAW_BOOLEAN, RAW_STRING, RAW_NUMERIC, RAW_OBJECT } from '../constant';
-import { oneOf } from '../util';
+import Yox from 'yox';
+import template from './template/Input.hbs';
+import { FALSE, TRUE, RAW_BOOLEAN, RAW_STRING, RAW_NUMERIC, RAW_OBJECT, } from '../constant';
+import { oneOf, } from '../util';
 var TEXT_TYPE_PASSWORD = 'password';
 var TEXT_TYPE_TEXTAREA = 'textarea';
 var TEXT_TYPE_TEXT = 'text';
 var ROWS_HEIGHT = 22;
-export default {
+export default Yox.create({
     propTypes: {
         value: {
             type: RAW_STRING
@@ -75,16 +76,18 @@ export default {
     template: template,
     data: function () {
         return {
-            isSecure: true,
-            isFocus: false,
+            isSecure: TRUE,
+            isFocus: FALSE,
             currentType: this.get('type'),
             TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
             TEXT_TYPE_TEXTAREA: TEXT_TYPE_TEXTAREA,
             TEXT_TYPE_PASSWORD: TEXT_TYPE_PASSWORD,
-            isBoolean: function (value) {
-                return Yox.is.boolean(value);
-            }
         };
+    },
+    filters: {
+        isBoolean: function (value) {
+            return Yox.is.boolean(value);
+        }
     },
     watchers: {
         value: function (value) {
@@ -92,17 +95,19 @@ export default {
         },
         isSecure: function (isSecure) {
             this.set({
-                currentType: isSecure ? TEXT_TYPE_PASSWORD : TEXT_TYPE_TEXT
+                currentType: isSecure
+                    ? TEXT_TYPE_PASSWORD
+                    : TEXT_TYPE_TEXT
             });
         }
     },
     methods: {
         blur: function () {
-            this.set('isFocus', false);
+            this.set('isFocus', FALSE);
             this.fire('blur.input');
         },
         focus: function () {
-            this.set('isFocus', true);
+            this.set('isFocus', TRUE);
             this.fire('focus.input');
         },
         clear: function () {
@@ -139,36 +144,36 @@ export default {
         }
     },
     afterMount: function () {
-        var me = this;
-        me.documentKeydownHandler = function (event) {
-            event = event.originalEvent;
-            if (me.$refs && event.target == me.$refs.input) {
+        var me = this, doc = document;
+        var onKeydown = function (event) {
+            var originalEvent = event.originalEvent;
+            if (me.$refs && originalEvent.target == me.$refs.input) {
                 me.fire('keydown.input');
-                if (event.keyCode === 13) {
+                if (originalEvent.keyCode === 13) {
                     me.fire('enter.input');
                 }
             }
         };
-        me.documentKeyupHandler = function (event) {
-            event = event.originalEvent;
-            if (me.$refs && event.target == me.$refs.input) {
+        var onKeyup = function (event) {
+            var originalEvent = event.originalEvent;
+            if (me.$refs && originalEvent.target == me.$refs.input) {
                 me.fire('keyup.input');
             }
         };
-        me.documentKeypressHandler = function (event) {
-            event = event.originalEvent;
-            if (me.$refs && event.target == me.$refs.input) {
+        var onKeypress = function (event) {
+            var originalEvent = event.originalEvent;
+            if (me.$refs && originalEvent.target == me.$refs.input) {
                 me.fire('keypress.input');
             }
         };
-        Yox.dom.on(document, 'keydown', me.documentKeydownHandler);
-        Yox.dom.on(document, 'keyup', me.documentKeyupHandler);
-        Yox.dom.on(document, 'keypress', me.documentKeypressHandler);
-    },
-    beforeDestroy: function () {
-        Yox.dom.off(document, 'keydown', this.documentKeydownHandler);
-        Yox.dom.off(document, 'keyup', this.documentKeyupHandler);
-        Yox.dom.off(document, 'keypress', this.documentKeypressHandler);
+        Yox.dom.on(doc, 'keydown', onKeydown);
+        Yox.dom.on(doc, 'keyup', onKeyup);
+        Yox.dom.on(doc, 'keypress', onKeypress);
+        me.on('beforeDestroy.hook', function () {
+            Yox.dom.off(doc, 'keydown', onKeydown);
+            Yox.dom.off(doc, 'keyup', onKeyup);
+            Yox.dom.off(doc, 'keypress', onKeypress);
+        });
     }
-};
+});
 //# sourceMappingURL=Input.js.map

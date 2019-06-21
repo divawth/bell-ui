@@ -1,10 +1,12 @@
-import template from './template/CardHeader.html'
+import Yox from 'yox'
+
+import template from './template/CardHeader.hbs'
 
 import {
   RAW_STRING
 } from '../constant'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     className: {
@@ -17,4 +19,4 @@ export default {
 
   template
 
-};
+})

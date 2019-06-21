@@ -1,0 +1,27 @@
+<ul class="${prefix}list
+{{#if border}} ${prefix}list-border{{/if}}
+{{#if size}} ${prefix}list-{{size}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}}
+>
+  {{#if hasSlot('subHeader')}}
+    <div class="${prefix}list-header">
+      <slot name="subHeader" />
+    </div>
+  {{/if}}
+
+  {{#if loading}}
+    <Spinner size="large" fix />
+  {{/if}}
+
+  <slot name="children">
+    <div class="${prefix}list-empty">
+      <slot name="empty">
+        <p class="${prefix}list-empty-description">
+          暂无数据
+        </p>
+      </slot>
+    </div>
+  </slot>
+</ul>

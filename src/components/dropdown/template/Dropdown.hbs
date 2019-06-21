@@ -1,0 +1,38 @@
+<div class="${prefix}dropdown
+{{#if isOpen}} ${prefix}dropdown-open{{/if}}
+{{#if disabled}} ${prefix}dropdown-disabled{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}}
+
+{{#if trigger === RAW_HOVER}}
+  on-mouseenter="set('isOpen', TRUE)"
+{{/if}}
+
+{{#if trigger != RAW_CUSTOM}}
+  on-mouseleave="set('isOpen', FALSE)"
+  lazy-mouseleave="300"
+{{/if}}
+
+data-placement="{{placement}}"
+>
+
+  <div class="${prefix}dropdown-trigger"
+    {{#if trigger === RAW_CLICK}}
+      on-click="toggle('isOpen')"
+    {{/if}}
+  >
+    <slot name="children" />
+  </div>
+
+  <div class="${prefix}dropdown-list">
+    <slot name="list" />
+  </div>
+
+  <style>
+    .${prefix}dropdown.${prefix}dropdown-open > .${prefix}dropdown-list {
+      max-height: {{height}}px;
+    }
+  </style>
+
+</div>

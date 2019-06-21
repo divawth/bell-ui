@@ -1,6 +1,7 @@
-import template from './template/Table.html';
-import { RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, TRUE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Table.hbs';
+import { TRUE, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, } from '../constant';
+export default Yox.create({
     propTypes: {
         list: {
             type: RAW_ARRAY
@@ -85,5 +86,5 @@ export default {
             fixedRightList: fixedRightList
         });
     }
-};
+});
 //# sourceMappingURL=Table.js.map

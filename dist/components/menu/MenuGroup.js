@@ -1,7 +1,8 @@
-import template from './template/MenuGroup.html';
-import { findComponentUpward } from '../util';
+import Yox from 'yox';
+import template from './template/MenuGroup.hbs';
+import { findComponentUpward, } from '../util';
 import { NULL, RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -32,5 +33,5 @@ export default {
             'theme': element.get('theme'),
         });
     }
-};
+});
 //# sourceMappingURL=MenuGroup.js.map

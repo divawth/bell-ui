@@ -1,0 +1,18 @@
+<ul class="${prefix}menu-group
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <li class="${prefix}menu-group-title">
+    {{title}}
+  </li>
+
+  {{#if hasSlot('children')}}
+    <Menu
+      theme="{{theme}}"
+      mode="{{mode === 'inline' ? 'inline' : 'vertical'}}"
+    >
+      <slot name="children" />
+    </Menu>
+  {{/if}}
+</ul>

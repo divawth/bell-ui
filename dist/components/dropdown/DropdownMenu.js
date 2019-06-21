@@ -1,6 +1,7 @@
-import template from './template/DropdownMenu.html';
-import { RAW_STRING } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/DropdownMenu.hbs';
+import { RAW_STRING, } from '../constant';
+export default Yox.create({
     propTypes: {
         className: {
             type: RAW_STRING
@@ -10,5 +11,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=DropdownMenu.js.map

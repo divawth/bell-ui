@@ -1,8 +1,8 @@
 import Yox from 'yox';
-import template from './template/CheckboxGroup.html';
-import { RAW_ARRAY, RAW_STRING, RAW_BOOLEAN, RAW_DEFAULT, RAW_TYPE_ARRAY, RAW_SIZE_ARRAY, } from '../constant';
+import template from './template/CheckboxGroup.hbs';
+import { TRUE, RAW_ARRAY, RAW_STRING, RAW_BOOLEAN, RAW_DEFAULT, RAW_TYPE_ARRAY, RAW_SIZE_ARRAY, } from '../constant';
 import { oneOf, } from '../util';
-export default {
+export default Yox.create({
     model: 'selected',
     name: '${prefix}checkboxGroup',
     propTypes: {
@@ -37,7 +37,7 @@ export default {
     },
     template: template,
     events: {
-        'groupChange.checkboxgroup': function (event) {
+        'change.checkboxGroup': function (event) {
             if (event.phase === Yox.Event.PHASE_DOWNWARD) {
                 event.stop();
             }
@@ -61,8 +61,8 @@ export default {
     },
     watchers: {
         selected: function (selected) {
-            this.fire('groupChange.checkboxgroup', { selected: selected }, true);
+            this.fire('change.checkboxGroup', { selected: selected }, TRUE);
         }
     }
-};
+});
 //# sourceMappingURL=CheckboxGroup.js.map

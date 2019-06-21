@@ -1,6 +1,7 @@
-import template from './template/TimeLineItem.html';
+import Yox from 'yox';
+import template from './template/TimeLineItem.hbs';
 import { RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         color: {
             type: RAW_STRING,
@@ -8,5 +9,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=TimeLineItem.js.map

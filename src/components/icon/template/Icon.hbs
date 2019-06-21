@@ -1,0 +1,14 @@
+<i class="${prefix}icon
+{{#if name}} ${prefix}icon-{{type}}-{{name}}{{/if}}
+{{#if spin}} ${prefix}icon-spin{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+style="font-size: {{size}}px;
+{{#if color}} color: {{color}};{{/if}}
+{{#if style}} {{style}}{{/if}}"
+
+on-click="click.icon"
+on-mousemove="mousemove.icon"
+>
+  <slot name="children" />
+</i>

@@ -1,4 +1,4 @@
-import template from '../template/DateYear.html';
+import template from '../template/DateYear.hbs';
 import { RAW_STRING } from '../../constant';
 import { isDate } from '../../util';
 export default {

@@ -1,6 +1,7 @@
+import Yox from 'yox';
 import template from './template/Page.html';
 import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         size: {
             type: RAW_STRING
@@ -150,9 +151,9 @@ export default {
         }
     },
     afterMount: function () {
-        var me = this;
+        var me = this, doc = document;
         me.updateCount();
-        me.documentKeydownHander = function (event) {
+        var onKeydown = function (event) {
             var currentPage = +me.get('currentPage');
             var current = me.get('current');
             var count = me.get('count');
@@ -176,11 +177,10 @@ export default {
                 currentPage: current
             });
         };
-        Yox.dom.on(document, 'keydown', me.documentKeydownHander);
-    },
-    beforeDestroy: function () {
-        var me = this;
-        Yox.dom.off(document, 'keydown', me.documentKeydownHander);
+        Yox.dom.on(doc, 'keydown', onKeydown);
+        me.on('beforeDestroy.hook', function () {
+            Yox.dom.off(doc, 'keydown', onKeydown);
+        });
     }
-};
+});
 //# sourceMappingURL=Page.js.map

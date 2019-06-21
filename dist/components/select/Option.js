@@ -1,6 +1,7 @@
-import template from './template/Option.html';
-import { RAW_STRING, RAW_NUMERIC } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Option.hbs';
+import { TRUE, FALSE, RAW_STRING, RAW_NUMERIC, } from '../constant';
+export default Yox.create({
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMERIC]
@@ -10,7 +11,7 @@ export default {
         },
         index: {
             type: [RAW_STRING, RAW_NUMERIC],
-            require: true
+            required: TRUE
         },
         className: {
             type: RAW_STRING
@@ -46,8 +47,8 @@ export default {
     },
     data: function () {
         return {
-            isSelected: false,
-            isHover: false
+            isSelected: FALSE,
+            isHover: FALSE
         };
     },
     methods: {
@@ -65,5 +66,5 @@ export default {
     beforeDestroy: function () {
         this.fire('optionRemove');
     }
-};
+});
 //# sourceMappingURL=Option.js.map

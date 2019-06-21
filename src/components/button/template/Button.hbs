@@ -1,0 +1,22 @@
+<button on-click="click.button"
+
+class="${prefix}button ${prefix}button-{{borderType}}
+{{#if ghost}} ${prefix}button-{{type}}-ghost
+{{else}} ${prefix}button-{{type}}-normal
+{{/if}}
+
+{{#if shape}} ${prefix}button-{{shape}}{{/if}}
+{{#if size}} ${prefix}button-{{size}}{{/if}}
+{{#if fluid}} ${prefix}button-fluid{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if disabled}} disabled{{/if}}
+
+{{#if style}} style="{{style}}"{{/if}}
+
+>
+
+  <slot name="icon" />
+  <slot name="children" />
+
+</button>

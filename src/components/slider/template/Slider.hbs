@@ -1,0 +1,49 @@
+<div class="${prefix}slider
+{{#if disabled}} ${prefix}slider-disabled{{/if}}
+{{#if type}} ${prefix}slider-{{type}}{{/if}}
+{{#if dragging}} dragging{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}" {{/if}}
+
+on-blur="handleBlur()"
+on-focus="handleFocus()"
+on-touchstart="handleTouchStart()"
+on-touchend="handleTouchEnd()"
+on-touchcancel="handleTouchEnd()"
+on-mousedown="handleMouseDown()"
+on-mouseup="handleMouseUp()"
+on-mouseenter="handleMouseEnter()"
+on-mouseleave="handleMouseLeave()"
+>
+
+  <input type="hidden" disabled="{{disabled ? ' disabled' : ''}}" model="value">
+
+  <div class="${prefix}slider-bg">
+    <div
+      class="${prefix}slider-fill"
+      style="width: {{percent}}%;"
+    >
+    </div>
+
+    <div
+      class="${prefix}slider-thumb"
+      style="left: {{percent}}%"
+      title="值：{{value}}；占比：{{percent + '%'}}"
+    >
+    </div>
+  </div>
+
+  <div
+    class="${prefix}tooltip
+    {{#if dragging}} ${prefix}show{{/if}}"
+    style="left:{{percent}}%;margin-left: -29px;top: -68px;"
+  >
+    <div ref="tooltip" class="${prefix}tooltip-popper" data-placement="top">
+      <div class="${prefix}tooltip-arrow"></div>
+      <div class="${prefix}tooltip-inner">
+        {{percent}}%
+      </div>
+    </div>
+  </div>
+</div>

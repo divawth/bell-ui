@@ -1,5 +1,6 @@
+import Yox from 'yox';
 import { firstDateInWeek, lastDateInWeek, normalizeDate, firstDateInMonth, lastDateInMonth, simplifyDate, offsetMonth, parseDate, getOffsetTime, formatList } from '../function/util';
-import template from '../template/DateRange.html';
+import template from '../template/DateRange.hbs';
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '../../constant';
 import { isDate } from '../../util';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';

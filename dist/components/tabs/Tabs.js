@@ -1,7 +1,8 @@
-import template from './template/Tabs.html';
-import { TRUE, FALSE, RAW_TINY, RAW_SMALL, RAW_LARGE, RAW_STRING, RAW_NUMERIC } from '../constant';
-import { oneOf } from '../util';
-export default {
+import Yox from 'yox';
+import template from './template/Tabs.hbs';
+import { TRUE, FALSE, RAW_TINY, RAW_SMALL, RAW_LARGE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
+import { oneOf, } from '../util';
+export default Yox.create({
     name: '${prefix}tabs',
     propTypes: {
         type: {
@@ -12,11 +13,11 @@ export default {
             type: oneOf([RAW_TINY, RAW_SMALL, RAW_LARGE, 'default'])
         },
         closable: {
-            type: 'boolean',
+            type: RAW_BOOLEAN,
             value: FALSE
         },
         animated: {
-            type: 'boolean',
+            type: RAW_BOOLEAN,
             value: TRUE
         },
         value: {
@@ -94,5 +95,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=Tabs.js.map

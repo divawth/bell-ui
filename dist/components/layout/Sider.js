@@ -1,6 +1,7 @@
-import template from './template/Sider.html';
+import Yox from 'yox';
+import template from './template/Sider.hbs';
 import { RAW_STRING, RAW_BOOLEAN } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         isCollapsed: {
             type: RAW_BOOLEAN
@@ -17,5 +18,5 @@ export default {
     afterMount: function () {
         this.fire('hasSider');
     }
-};
+});
 //# sourceMappingURL=Sider.js.map

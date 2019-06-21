@@ -1,6 +1,7 @@
-import template from './template/TooltipItem.html';
+import Yox from 'yox';
+import template from './template/TooltipItem.hbs';
 import { RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         className: {
             type: RAW_STRING
@@ -13,5 +14,5 @@ export default {
     afterMount: function () {
         this.fire('hasItem.tootipItem');
     }
-};
+});
 //# sourceMappingURL=TooltipItem.js.map

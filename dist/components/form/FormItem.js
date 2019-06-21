@@ -1,7 +1,8 @@
-import template from './template/FormItem.html';
-import { findComponentUpward } from '../util';
-import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/FormItem.hbs';
+import { findComponentUpward, } from '../util';
+import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         prop: {
             type: RAW_STRING
@@ -80,5 +81,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=FormItem.js.map

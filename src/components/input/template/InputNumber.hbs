@@ -1,0 +1,35 @@
+<div class="${prefix}input-number
+{{#if size}} ${prefix}input-number-{{size}}{{/if}}
+{{#if status}} ${prefix}input-number-{{status}}{{/if}}
+{{#if disabled}} ${prefix}input-number-disabled{{/if}}
+{{#if readonly}} ${prefix}input-number-readonly{{/if}}
+{{#if isFocus}} ${prefix}focus{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}}
+>
+
+  <input type="text"
+    class="${prefix}input"
+    model="computedValue"
+    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+    {{#if disabled}}disabled="disabled"{{/if}}
+    {{#if readonly || !editable}}readonly="{{readonly || !editable}}"{{/if}}
+    on-blur="blur()"
+    on-focus="focus()"
+  >
+
+  <span class="${prefix}input-number-actions">
+    <Icon name="arrow-up"
+      className="${prefix}input-number-icon
+      {{#if max != null && max - value < +step}} disabled{{/if}}"
+      on-click="up()"
+    />
+    <Icon name="arrow-down"
+      className="${prefix}input-number-icon
+      {{#if min != null && value - min < +step}} disabled{{/if}}"
+      on-click="down()"
+    />
+  </span>
+
+</div>

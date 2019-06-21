@@ -1,8 +1,9 @@
+import Yox from 'yox';
 import { Validator } from './util/validate.js';
-import template from './template/Form.html';
-import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC, TRUE } from '../constant.js';
+import template from './template/Form.hbs';
+import { TRUE, RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant.js';
 import { oneOf } from '../util.js';
-export default {
+export default Yox.create({
     propTypes: {
         value: {
             type: RAW_OBJECT
@@ -52,5 +53,5 @@ export default {
             }
         }
     }
-};
+});
 //# sourceMappingURL=Form.js.map

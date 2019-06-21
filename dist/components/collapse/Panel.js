@@ -1,7 +1,8 @@
-import template from './template/Panel.html';
+import Yox from 'yox';
+import template from './template/Panel.hbs';
 import { findComponentUpward } from '../util';
 import { NULL, TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -103,5 +104,5 @@ export default {
         clearTimeout(me.initTimer);
         clearTimeout(me.openTimer);
     }
-};
+});
 //# sourceMappingURL=Panel.js.map

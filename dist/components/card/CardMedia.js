@@ -1,6 +1,7 @@
-import template from './template/CardMedia.html';
+import Yox from 'yox';
+import template from './template/CardMedia.hbs';
 import { RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -16,5 +17,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=CardMedia.js.map

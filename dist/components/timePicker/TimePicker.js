@@ -1,13 +1,14 @@
-import template from './template/TimePicker.html';
-import { RAW_STRING, RAW_NUMBER } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/TimePicker.hbs';
+import { RAW_STRING, RAW_NUMBER, RAW_FUNCTION, } from '../constant';
+export default Yox.create({
     propTypes: {
         unit: {
             type: RAW_STRING,
             value: '分'
         },
         onChange: {
-            type: 'function'
+            type: RAW_FUNCTION
         },
         tens: {
             type: RAW_NUMBER,
@@ -49,5 +50,5 @@ export default {
     },
     beforeDestroy: function () {
     }
-};
+});
 //# sourceMappingURL=TimePicker.js.map

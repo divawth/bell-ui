@@ -1,5 +1,5 @@
 import { firstDateInWeek, lastDateInWeek, normalizeDate, firstDateInMonth, lastDateInMonth, simplifyDate, offsetMonth, parseDate, getOffsetTime } from '../function/util';
-import template from '../template/DateWeek.html';
+import template from '../template/DateWeek.hbs';
 import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
 import { isDate } from '../../util';

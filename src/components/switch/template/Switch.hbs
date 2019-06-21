@@ -1,0 +1,23 @@
+<div
+class="${prefix}switch
+{{#if type}} ${prefix}switch-{{type}}{{/if}}
+{{#if size}} ${prefix}switch-{{size}}{{/if}}
+{{#if disabled}} ${prefix}switch-disabled{{/if}}
+{{#if checked}} ${prefix}active{{/if}}
+{{#if loading}} ${prefix}switch-loading{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}} style="{{style}}"{{/if}} on-click="click()"
+>
+
+  <span class="${prefix}switch-button">
+    <span class="${prefix}switch-inner">
+      {{#if checked}}
+      <slot name="checkedText" />
+      {{else}}
+      <slot name="unCheckedText" />
+      {{/if}}
+    </span>
+  </span>
+  <input class="${prefix}switch-input" type="hidden" value="{{value}}">
+</div>

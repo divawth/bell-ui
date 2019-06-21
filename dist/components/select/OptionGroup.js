@@ -1,6 +1,7 @@
-import template from './template/OptionGroup.html';
+import Yox from 'yox';
+import template from './template/OptionGroup.hbs';
 import { RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         label: {
             type: RAW_STRING
@@ -13,5 +14,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=OptionGroup.js.map

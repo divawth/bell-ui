@@ -1,7 +1,8 @@
-import template from './template/Slider.html';
+import Yox from 'yox';
+import template from './template/Slider.hbs';
 import { requestAnimationFrame } from '../util';
-import { RAW_ARRAY, RAW_NUMBER, RAW_STRING, RAW_BOOLEAN, FALSE, TRUE } from '../constant';
-export default {
+import { TRUE, FALSE, RAW_ARRAY, RAW_NUMBER, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         type: {
             type: RAW_STRING
@@ -163,5 +164,5 @@ export default {
         me.handleTouchMove = me.handleTouchMove.bind(me);
         me.handleTouchEnd = me.handleTouchEnd.bind(me);
     }
-};
+});
 //# sourceMappingURL=Slider.js.map

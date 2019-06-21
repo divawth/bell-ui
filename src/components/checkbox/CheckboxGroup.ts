@@ -1,8 +1,9 @@
 import Yox from 'yox'
 
-import template from './template/CheckboxGroup.html'
+import template from './template/CheckboxGroup.hbs'
 
 import {
+  TRUE,
   RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -15,8 +16,7 @@ import {
   oneOf,
 } from '../util'
 
-
-export default {
+export default Yox.create({
 
   model: 'selected',
 
@@ -56,7 +56,7 @@ export default {
   template,
 
   events: {
-    'groupChange.checkboxgroup': function (event) {
+    'change.checkboxGroup': function (event) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         event.stop()
       }
@@ -81,10 +81,10 @@ export default {
   watchers: {
     selected (selected) {
       this.fire(
-        'groupChange.checkboxgroup',
+        'change.checkboxGroup',
         { selected },
-        true
+        TRUE
       )
     }
   }
-}
+})

@@ -1,7 +1,8 @@
-import template from './template/Circle.html';
-import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN } from '../constant';
-import { oneOf } from '../util';
-export default {
+import Yox from 'yox';
+import template from './template/Circle.hbs';
+import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
+import { oneOf, } from '../util';
+export default Yox.create({
     propTypes: {
         dashboard: {
             type: RAW_BOOLEAN
@@ -94,5 +95,5 @@ export default {
             }
         }
     }
-};
+});
 //# sourceMappingURL=Circle.js.map

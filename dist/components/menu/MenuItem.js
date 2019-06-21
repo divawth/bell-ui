@@ -1,7 +1,8 @@
-import template from './template/MenuItem.html';
-import { findComponentUpward } from '../util';
+import Yox from 'yox';
+import template from './template/MenuItem.hbs';
+import { findComponentUpward, } from '../util';
 import { NULL, FALSE, RAW_STRING, RAW_BOOLEAN } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -48,5 +49,5 @@ export default {
             'isActive': element.get('activeName') === this.get('name')
         });
     }
-};
+});
 //# sourceMappingURL=MenuItem.js.map

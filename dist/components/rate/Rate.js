@@ -1,6 +1,7 @@
-import template from './template/Rate.html';
-import { RAW_STRING, RAW_BOOLEAN, FALSE, RAW_NUMERIC, RAW_ARRAY } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Rate.hbs';
+import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_ARRAY, } from '../constant';
+export default Yox.create({
     propTypes: {
         count: {
             type: RAW_NUMERIC,
@@ -94,5 +95,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=Rate.js.map

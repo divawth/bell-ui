@@ -9,18 +9,12 @@
     "allowJs": true,
     "sourceMap": true,
 
-    "esModuleInterop": true,
-
-    "typeRoots": [
-      "node_modules/yox/js/yox/src"
-    ]
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*.ts",
-    "node_module/yox/**/*.ts",
     "./type/image.d.ts",
     "./type/style.d.ts",
-    "./type/template.d.ts",
-    "src/components/util.js", "src/components/constant.js"
+    "./type/template.d.ts"
   ]
 }

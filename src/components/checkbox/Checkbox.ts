@@ -1,8 +1,18 @@
-import template from './template/Checkbox.html'
-import { findComponentUpward } from '../util'
-import { RAW_STRING, RAW_BOOLEAN, TRUE } from '../constant'
+import Yox from 'yox'
 
-export default {
+import template from './template/Checkbox.hbs'
+
+import {
+  findComponentUpward,
+} from '../util'
+
+import {
+  RAW_STRING,
+  RAW_BOOLEAN,
+  TRUE
+} from '../constant'
+
+export default Yox.create({
 
   model: 'checked',
 
@@ -12,7 +22,7 @@ export default {
     },
     value: {
       type: [RAW_STRING, RAW_BOOLEAN],
-      require: TRUE
+      required: TRUE
     },
     indeterminate: {
       type: RAW_BOOLEAN
@@ -40,11 +50,11 @@ export default {
   template,
 
   events: {
-    'groupChange.checkboxgroup': function (event, data) {
+    'change.checkboxGroup': function (event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set({
           checked: Yox.array.has(
-            data.selected, 
+            data.selected,
             this.get('value')
           )
         })
@@ -76,4 +86,4 @@ export default {
       })
     }
   }
-}
+})

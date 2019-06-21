@@ -1,6 +1,10 @@
-import template from './template/Drawer.html';
-import { RAW_STRING, RAW_BOOLEAN, TRUE, FALSE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Drawer.hbs';
+import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+import { onTransitionEnd, } from '../util';
+var CLASS_OPEN = '${prefix}drawer-open';
+var CLASS_LEAVE = '${prefix}drawer-leave';
+export default Yox.create({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -45,15 +49,15 @@ export default {
         open: function (isOpen) {
             var element = this.$el;
             if (isOpen) {
-                Yox.dom.addClass(element, '${prefix}drawer-open');
+                Yox.dom.addClass(element, CLASS_OPEN);
                 this.fire('open.drawer');
             }
             else {
-                Yox.dom.addClass(element, '${prefix}drawer-leave');
-                setTimeout(function () {
-                    Yox.dom.removeClass(element, '${prefix}drawer-open');
-                    Yox.dom.removeClass(element, '${prefix}drawer-leave');
-                }, 300);
+                Yox.dom.addClass(element, CLASS_LEAVE);
+                onTransitionEnd(element, function () {
+                    Yox.dom.removeClass(element, CLASS_OPEN);
+                    Yox.dom.removeClass(element, CLASS_LEAVE);
+                });
                 this.fire('close.drawer');
             }
         }
@@ -89,5 +93,5 @@ export default {
     beforeDestroy: function () {
         Yox.dom.remove(document.body, this.$el);
     }
-};
+});
 //# sourceMappingURL=Drawer.js.map

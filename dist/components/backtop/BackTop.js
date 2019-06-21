@@ -1,8 +1,8 @@
 import Yox from 'yox';
-import template from './template/BackTop.html';
+import template from './template/BackTop.hbs';
 import { FALSE, RAW_STRING, RAW_NUMERIC, } from '../constant';
 import { scrollTop, } from '../util';
-export default {
+export default Yox.create({
     propTypes: {
         bottom: {
             type: RAW_NUMERIC,
@@ -51,5 +51,5 @@ export default {
             Yox.dom.off(document, 'resize', onRefresh);
         });
     }
-};
+});
 //# sourceMappingURL=BackTop.js.map

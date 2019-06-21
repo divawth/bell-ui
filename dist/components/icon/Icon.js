@@ -1,7 +1,8 @@
-import template from './template/Icon.html';
-import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_ICON_TYPE_ARRAY, RAW_ICON_IOS } from '../constant';
-import { oneOf } from '../util';
-export default {
+import Yox from 'yox';
+import template from './template/Icon.hbs';
+import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_ICON_TYPE_ARRAY, RAW_ICON_IOS, } from '../constant';
+import { oneOf, } from '../util';
+export default Yox.create({
     propTypes: {
         type: {
             type: oneOf(RAW_ICON_TYPE_ARRAY),
@@ -28,5 +29,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=Icon.js.map

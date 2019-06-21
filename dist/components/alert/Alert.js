@@ -1,8 +1,8 @@
 import Yox from 'yox';
-import template from './template/Alert.html';
+import template from './template/Alert.hbs';
 import { RAW_STRING, RAW_BOOLEAN, RAW_TYPE_ARRAY, RAW_TYPE_PRIMARY } from '../constant';
 import { oneOf, onTransitionEnd, } from '../util';
-export default {
+export default Yox.create({
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -35,5 +35,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=Alert.js.map

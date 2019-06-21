@@ -1,13 +1,14 @@
-import template from './template/SmallTable.html';
-import { RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, TRUE, NULL } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/SmallTable.hbs';
+import { TRUE, NULL, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, } from '../constant';
+export default Yox.create({
     propTypes: {
         list: {
             type: RAW_ARRAY
         },
         columns: {
             type: RAW_ARRAY,
-            require: TRUE
+            required: TRUE
         },
         stripe: {
             type: RAW_BOOLEAN
@@ -26,7 +27,7 @@ export default {
         },
         header: {
             type: RAW_BOOLEAN,
-            default: false
+            value: FALSE
         },
         fixed: {
             type: RAW_BOOLEAN
@@ -51,17 +52,19 @@ export default {
     data: function () {
         return {
             colWidths: [],
-            currentItem: null,
-            isObject: function (data) {
-                return Object.prototype.toString.call(data).toLocaleLowerCase().substr(8, 6) === 'object';
-            }
+            currentItem: NULL,
         };
+    },
+    filters: {
+        isObject: function (value) {
+            return Yox.is.object(value);
+        }
     },
     computed: {
         checkAll: function () {
             return this.get('list').filter(function (item) {
                 return item.checked;
-            }).length === this.get('list').length;
+            }).length === this.get('list.length');
         }
     },
     events: {
@@ -146,5 +149,5 @@ export default {
         });
         me.set({ colWidths: colWidths });
     }
-};
+});
 //# sourceMappingURL=SmallTable.js.map

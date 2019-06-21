@@ -1,6 +1,7 @@
-import template from './template/Content.html';
+import Yox from 'yox';
+import template from './template/Content.hbs';
 import { FALSE, TRUE, RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         className: {
             type: RAW_STRING
@@ -11,7 +12,7 @@ export default {
     },
     template: template,
     events: {
-        hasSider: function (_) {
+        hasSider: function () {
             this.set({
                 hasSider: TRUE
             });
@@ -22,5 +23,5 @@ export default {
             hasSider: FALSE
         };
     }
-};
+});
 //# sourceMappingURL=Content.js.map

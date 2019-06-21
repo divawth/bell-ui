@@ -1,7 +1,8 @@
-import template from './template/TabPanel.html';
-import { findComponentUpward } from '../util';
-import { FALSE, RAW_STRING, RAW_BOOLEAN } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/TabPanel.hbs';
+import { findComponentUpward, } from '../util';
+import { FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -69,5 +70,5 @@ export default {
     beforeDestroy: function () {
         this.upsert('tabPanelRemove');
     }
-};
+});
 //# sourceMappingURL=TabPanel.js.map

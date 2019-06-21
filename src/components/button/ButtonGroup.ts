@@ -1,4 +1,6 @@
-import template from './template/ButtonGroup.html'
+import Yox from 'yox'
+
+import template from './template/ButtonGroup.hbs'
 
 import {
   oneOf,
@@ -9,7 +11,7 @@ import {
   RAW_BOOLEAN,
 } from '../constant'
 
-export default {
+export default Yox.create({
   propTypes: {
     size: {
       type: oneOf(['large', 'small', 'tiny'])
@@ -28,4 +30,4 @@ export default {
     }
   },
   template,
-}
+})

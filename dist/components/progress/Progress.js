@@ -1,6 +1,7 @@
-import template from './template/Progress.html';
-import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, FALSE } from '../constant';
-export default {
+import Yox from 'yox';
+import template from './template/Progress.hbs';
+import { FALSE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
+export default Yox.create({
     propTypes: {
         percent: {
             type: RAW_NUMERIC,
@@ -33,5 +34,5 @@ export default {
         }
     },
     template: template
-};
+});
 //# sourceMappingURL=Progress.js.map

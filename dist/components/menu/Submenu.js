@@ -1,7 +1,8 @@
-import template from './template/Submenu.html';
-import { findComponentUpward } from '../util';
+import Yox from 'yox';
+import template from './template/Submenu.hbs';
+import { findComponentUpward, } from '../util';
 import { NULL, FALSE, TRUE, RAW_STRING } from '../constant';
-export default {
+export default Yox.create({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -86,5 +87,5 @@ export default {
             'isOpen': element.get('openNames').indexOf(this.get('name')) >= 0
         });
     }
-};
+});
 //# sourceMappingURL=Submenu.js.map

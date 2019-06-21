@@ -1,4 +1,4 @@
-import template from '../template/DateMonth.html';
+import template from '../template/DateMonth.hbs';
 import { RAW_STRING } from '../../constant';
 import { MONTHS } from '../function/constant';
 import { isDate } from '../../util';

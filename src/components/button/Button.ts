@@ -1,4 +1,6 @@
-import template from './template/Button.html'
+import Yox from 'yox'
+
+import template from './template/Button.hbs'
 
 import { oneOf } from '../util'
 
@@ -12,7 +14,7 @@ import {
   RAW_TYPE_ARRAY
 } from '../constant'
 
-export default {
+export default Yox.create({
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
@@ -45,4 +47,4 @@ export default {
     }
   },
   template,
-}
+})
