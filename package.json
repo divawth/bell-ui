@@ -36,7 +36,7 @@
     "webpack-dev-server": "^3.7.1",
     "webpack-merge": "^4.2.1",
     "webpack-replace-loader": "^1.3.0",
-    "yox": "^1.0.0-alpha.73",
+    "yox": "^1.0.0-alpha.74",
     "yox-template-loader": "^0.0.9"
   }
 }

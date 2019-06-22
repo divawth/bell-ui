@@ -41,7 +41,8 @@ export default Yox.create({
         translateStyle: function () {
             var me = this;
             var index = 0;
-            Yox.array.each(me.get('tabsList'), function (item, key) {
+            var tabs = me.get('tabsList');
+            Yox.array.each(tabs, function (item, key) {
                 if (item.id == me.get('value')) {
                     index = key;
                     return FALSE;
