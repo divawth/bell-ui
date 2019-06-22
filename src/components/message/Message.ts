@@ -1,8 +1,15 @@
 import { add } from './base'
 
-let config = {}
+interface Config {
+  duration?: number
+  top?: number
+}
 
-let addMessage = function (type, arg) {
+type arg = string | Record<string, number>
+
+let config: Config = {}
+
+let addMessage = function (type: string, arg: arg) {
   let data = {}
   data.type = type
 
@@ -27,23 +34,23 @@ let updateConfig = function (data) {
 }
 
 export default {
-  success: function(arg) {
+  success: function(arg: arg) {
     addMessage('success', arg)
   },
-  info: function(arg) {
+  info: function(arg: arg) {
     addMessage('info', arg)
   },
-  warning: function(arg) {
+  warning: function(arg: arg) {
     addMessage('warning', arg)
   },
-  error: function(arg) {
+  error: function(arg: arg) {
     addMessage('error', arg)
   },
-  loading: function(arg) {
+  loading: function(arg: arg) {
     addMessage('loading', arg)
   },
-  config: function (options) {
-    updateConfig(options)
+  config: function (arg: arg) {
+    updateConfig(arg)
   },
   destroy: function () {
     console.log('destroy')

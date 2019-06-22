@@ -1,18 +1,24 @@
-import template from './template/Message.html'
-import { RAW_BOOLEAN, TRUE, RAW_STRING } from '../constant';
+import Yox from 'yox'
+import template from './template/Message.hbs'
+import {
+  TRUE,
+  RAW_BOOLEAN,
+  RAW_STRING,
+  FALSE
+} from '../constant'
 
 let id = 0
 
 const createMessage = function (data) {
 
-  let namespace = '${prefix}message-' + id++
-  let element = Yox.dom.createElement('div')
+  const namespace = '${prefix}message-' + id++
+  const element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(document.body, element)
 
   let instance = new Yox({
     el: '#' + namespace,
-    replace: true,
+    replace: TRUE,
     template,
     props: {
       content: data.content,
@@ -43,11 +49,12 @@ const createMessage = function (data) {
         type: RAW_BOOLEAN
       }
     },
+
     data() {
       return {
         marginLeft: 0,
         top: 0,
-        isShow: false,
+        isShow: FALSE,
         close() {
           if (instance) {
             instance.destroy()

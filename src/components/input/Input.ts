@@ -1,6 +1,4 @@
-import Yox from 'yox'
-import { listener } from 'yox/dts/yox-type/src/type'
-
+import Yox, { listener } from 'yox'
 import template from './template/Input.hbs'
 
 import {

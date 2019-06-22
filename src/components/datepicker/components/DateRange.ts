@@ -17,6 +17,10 @@ import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '.
 import { isDate } from '../../util'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 
+interface Mode {
+ id: string
+}
+
 export default {
 
   propTypes: {

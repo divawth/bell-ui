@@ -1,5 +1,6 @@
-import template from './template/Message.html';
-import { RAW_BOOLEAN, TRUE, RAW_STRING } from '../constant';
+import Yox from 'yox';
+import template from './template/Message.hbs';
+import { TRUE, RAW_BOOLEAN, RAW_STRING, FALSE } from '../constant';
 var id = 0;
 var createMessage = function (data) {
     var namespace = '${prefix}message-' + id++;
@@ -8,7 +9,7 @@ var createMessage = function (data) {
     Yox.dom.append(document.body, element);
     var instance = new Yox({
         el: '#' + namespace,
-        replace: true,
+        replace: TRUE,
         template: template,
         props: {
             content: data.content,
@@ -43,7 +44,7 @@ var createMessage = function (data) {
             return {
                 marginLeft: 0,
                 top: 0,
-                isShow: false,
+                isShow: FALSE,
                 close: function () {
                     if (instance) {
                         instance.destroy();

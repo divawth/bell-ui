@@ -35,8 +35,8 @@ export default {
     loading: function (arg) {
         addMessage('loading', arg);
     },
-    config: function (options) {
-        updateConfig(options);
+    config: function (arg) {
+        updateConfig(arg);
     },
     destroy: function () {
         console.log('destroy');
