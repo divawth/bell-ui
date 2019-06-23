@@ -1,9 +1,10 @@
 import template from '../template/DateMonth.hbs'
-import { RAW_NUMERIC, RAW_STRING } from '../../constant'
+import { RAW_STRING } from '../../constant'
 import { MONTHS } from '../function/constant'
 import { isDate } from '../../util'
+import Yox from 'yox'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     startDate: {
@@ -73,7 +74,6 @@ export default {
           month: month + 1
         }
       )
-
     }
   },
 
@@ -88,4 +88,4 @@ export default {
       )
     }
   }
-}
+})

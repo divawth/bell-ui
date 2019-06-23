@@ -3,14 +3,15 @@ import Yox from 'yox'
 import template from './template/Checkbox.hbs'
 
 import {
-  findComponentUpward,
-} from '../util'
-
-import {
+  TRUE,
   RAW_STRING,
   RAW_BOOLEAN,
-  TRUE
 } from '../constant'
+
+import {
+  isDef,
+  findComponentUpward,
+} from '../util'
 
 export default Yox.create({
 
@@ -74,16 +75,21 @@ export default Yox.create({
     }
   },
 
-  afterMount() {
-    let checkboxGroup = findComponentUpward(this, '${prefix}checkboxGroup')
+  beforeCreate(options) {
+    const checkboxGroup = findComponentUpward(options.parent, '${prefix}checkboxGroup')
     if (checkboxGroup) {
-      this.set({
-        type: this.get('type') || checkboxGroup.get('type'),
-        disabled: this.get('disabled') || checkboxGroup.get('disabled'),
-        checked: Yox.array.has(checkboxGroup.get('selected'), this.get('value')),
-        name: this.get('name') || checkboxGroup.get('name'),
-        size: this.get('size') || checkboxGroup.get('size')
-      })
+      const props = options.props || (options.props = {})
+      Yox.object.extend(
+        props,
+        {
+          type: isDef(props.type) ? props.type : checkboxGroup.get('type'),
+          disabled: isDef(props.disabled) ? props.disabled : checkboxGroup.get('disabled'),
+          checked: Yox.array.has(checkboxGroup.get('selected'), props.value),
+          name: isDef(props.name) ? props.name : checkboxGroup.get('name'),
+          size: isDef(props.size) ? props.size : checkboxGroup.get('size')
+        }
+      )
     }
   }
+
 })

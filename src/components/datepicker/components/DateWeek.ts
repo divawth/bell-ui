@@ -13,8 +13,9 @@ import template from '../template/DateWeek.hbs'
 import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 import { isDate } from '../../util'
+import Yox from 'yox';
 
-export default {
+export default Yox.create({
 
   propTypes: {
     startDate: {
@@ -96,7 +97,7 @@ export default {
     refresh(start) {
       let me = this
       let dateList = me.get('dateList')
-      let checkedIndex = ''
+      let checkedIndex = undefined
       let checkedDateTime = ''
       for (let i = 0; i < dateList.length; i++) {
         let item = dateList[i][0]
@@ -107,8 +108,8 @@ export default {
         }
       }
       me.set({
-        checkedDateTime: checkedDateTime,
-        checkedIndex: checkedIndex
+        checkedDateTime,
+        checkedIndex
       })
     },
     // 获取渲染模板的数据
@@ -173,7 +174,7 @@ export default {
   },
 
   afterMount() {
-    let me = this
+    const me = this
     let today = new Date()
     let date = me.get('modeDate')
     date = date ? date : today
@@ -198,4 +199,4 @@ export default {
       )
     }
   }
-}
+})

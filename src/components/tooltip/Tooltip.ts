@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Tooltip.html'
+import template from './template/Tooltip.hbs'
 
 import {
   FALSE,

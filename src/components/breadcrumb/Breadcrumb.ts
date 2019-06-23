@@ -1,4 +1,5 @@
 import Yox from 'yox'
+
 import template from './template/Breadcrumb.hbs'
 
 import {

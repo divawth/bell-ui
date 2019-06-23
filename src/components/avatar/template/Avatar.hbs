@@ -1,4 +1,5 @@
-<div class="${prefix}avatar ${prefix}avatar-{{size}} ${prefix}avatar-{{shape}}
+<div
+class="${prefix}avatar ${prefix}avatar-{{size}} ${prefix}avatar-{{shape}}
 {{#if className}} {{className}}{{/if}}"
 
 style="{{#if text}}color: {{color}};{{/if}}
@@ -8,7 +9,8 @@ style="{{#if text}}color: {{color}};{{/if}}
 >
 
   {{#if src}}
-    <img class="${prefix}avatar-image"
+    <img
+      class="${prefix}avatar-image"
       src="{{src}}"
       {{#if srcset}} srcset="{{srcset}}"{{/if}}
       ondragstart="return false"
@@ -18,7 +20,8 @@ style="{{#if text}}color: {{color}};{{/if}}
       <slot name="icon" />
     </span>
   {{else if text}}
-    <span ref="textSpan"
+    <span
+      ref="textSpan"
       class="${prefix}avatar-text"
       {{#if supportTransform && transform}}
         style="transform: {{transform}}"

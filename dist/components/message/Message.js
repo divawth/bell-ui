@@ -1,4 +1,5 @@
 import { add } from './base';
+import Yox from 'yox';
 var config = {};
 var addMessage = function (type, arg) {
     var data = {};
@@ -7,7 +8,8 @@ var addMessage = function (type, arg) {
         data.content = arg;
     }
     else {
-        Yox.object.extend(data, arg, config);
+        Yox.object.extend(data, arg);
+        Yox.object.extend(data, config);
     }
     add(data);
 };

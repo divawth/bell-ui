@@ -1,14 +1,25 @@
-<span class="${prefix}breadcrumb-item ${prefix}text
+<span
+class="${prefix}breadcrumb-item ${prefix}text
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  <a class="${prefix}breadcrumb-link"
-    {{#if to}} href="{{to}}"{{/if}}
-  >
-    <slot name="children" />
-  </a>
+  {{#if to}}
+    <a
+      class="${prefix}breadcrumb-link"
+      href="{{to}}"
+    >
+      <slot name="children" />
+    </a>
+  {{else}}
+    <span
+      class="${prefix}breadcrumb-link"
+      on-click="click.breadcrumbItem"
+    >
+      <slot name="children" />
+    </span>
+  {{/if}}
 
   <span class="${prefix}breadcrumb-gap">
     {{separator}}

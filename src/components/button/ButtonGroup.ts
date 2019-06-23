@@ -3,13 +3,13 @@ import Yox from 'yox'
 import template from './template/ButtonGroup.hbs'
 
 import {
-  oneOf,
-} from '../util'
-
-import {
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.create({
   propTypes: {

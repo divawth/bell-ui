@@ -1,3 +1,5 @@
+import { UNDEFINED } from './constant'
+
 const element = document.createElement('div')
 
 const prefixs = ['Webkit', 'Moz', 'O', 'ms']
@@ -52,19 +54,26 @@ export function contains(element, target) {
   return false
 }
 
-export function findComponentUpward(context, componentName) {
-  if (typeof componentName === 'string') {
+export function isDef(value) {
+  return value !== UNDEFINED
+}
+
+export function findComponentUpward(parent, componentName) {
+  if (Yox.is.string(componentName)) {
     componentName = [ componentName ]
-  } else {
+  }
+  else {
     componentName = componentName
   }
 
-  let parent = context.$parent
-  let name = parent.$options.name
-
-  while (parent && (!name || componentName.indexOf(name) < 0)) {
-    parent = parent.$parent
-    if (parent) name = parent.$options.name
+  while (parent) {
+    let { name } = parent.$options
+    if (name && Yox.array.has(componentName, name)) {
+      break
+    }
+    else {
+      parent = parent.$parent
+    }
   }
 
   return parent

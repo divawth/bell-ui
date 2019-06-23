@@ -3,7 +3,8 @@ import template from '../template/DateWeek.hbs';
 import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
 import { isDate } from '../../util';
-export default {
+import Yox from 'yox';
+export default Yox.create({
     propTypes: {
         startDate: {
             type: isDate()
@@ -72,7 +73,7 @@ export default {
         refresh: function (start) {
             var me = this;
             var dateList = me.get('dateList');
-            var checkedIndex = '';
+            var checkedIndex = undefined;
             var checkedDateTime = '';
             for (var i = 0; i < dateList.length; i++) {
                 var item = dateList[i][0];
@@ -158,5 +159,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=DateWeek.js.map

@@ -9,7 +9,7 @@ import { contains, oneOf, isDate } from '../util';
 import template from './template/DatePicker.html';
 import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, RAW_BOTTOM_START, RAW_FUNCTION, RAW_SIZE_ARRAY } from '../constant';
 var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
-export default {
+export default Yox.create({
     propTypes: {
         type: {
             type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
@@ -278,7 +278,7 @@ export default {
         }
     },
     afterMount: function () {
-        var me = this;
+        var me = this, doc = document;
         if (!me.get('formatText')) {
             var formatText = '';
             switch (me.get('type')) {
@@ -300,18 +300,18 @@ export default {
             }
             me.set({ formatText: formatText });
         }
-        me.documentClickHandler = function (e) {
+        var onClick = function (event) {
             var element = me.$el;
-            var target = e.originalEvent.target;
+            var target = event.originalEvent.target;
             if (contains(element, target)) {
                 return;
             }
             me.close();
         };
-        Yox.dom.on(document, 'click', me.documentClickHandler);
-    },
-    beforeDestroy: function () {
-        Yox.dom.off(document, 'click', this.documentClickHandler);
+        Yox.dom.on(doc, 'click', onClick);
+        me.on('beforeDestroy.hook', function () {
+            Yox.dom.off(doc, 'click', onClick);
+        });
     }
-};
+});
 //# sourceMappingURL=DatePicker.js.map

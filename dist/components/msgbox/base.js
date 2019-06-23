@@ -1,6 +1,7 @@
-import MsgboxTpl from './template/Msgbox.html';
-import ConfirmTpl from './template/Confirm.html';
-import { RAW_OBJECT, RAW_STRING, RAW_BOOLEAN, TRUE, RAW_FUNCTION, RAW_NUMERIC } from '../constant';
+import MsgboxTpl from './template/Msgbox.hbs';
+import ConfirmTpl from './template/Confirm.hbs';
+import { TRUE, RAW_OBJECT, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_NUMERIC, } from '../constant';
+import Yox from 'yox';
 var id = 0;
 var createAlert = function (data) {
     var namespace = '${prefix}msg-alert-' + id++;
@@ -103,7 +104,7 @@ var createConfirm = function (data) {
     Yox.dom.append(body, element);
     var instance = new Yox({
         el: '#' + namespace,
-        replace: true,
+        replace: TRUE,
         template: ConfirmTpl,
         props: {
             title: data.title || data,
@@ -147,7 +148,7 @@ var createConfirm = function (data) {
         },
         data: function () {
             return {
-                isHidden: true
+                isHidden: TRUE
             };
         },
         methods: {

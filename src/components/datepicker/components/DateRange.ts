@@ -17,11 +17,17 @@ import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '.
 import { isDate } from '../../util'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 
-interface Mode {
- id: string
+interface ModeDate {
+  isCurrentMonth: boolean,
+  isPrevMonth: boolean,
+  isLastMonth: boolean,
+  isCurrentDate: boolean,
+  disabled: boolean,
+  isRangeDate: boolean,
+  isCheckedDate: boolean
 }
 
-export default {
+export default Yox.create({
 
   propTypes: {
     splitPanel: {
@@ -222,8 +228,8 @@ export default {
     refresh(start, end) {
       let me = this
 
-      let startModeList = me.copy(me.get('startModeList'))
-      let endModeList = me.copy(me.get('endModeList'))
+      let startModeList: ModeDate[][] = me.copy(me.get('startModeList'))
+      let endModeList: ModeDate[][] = me.copy(me.get('endModeList'))
 
       if (end) {
         Yox.array.each(
@@ -375,7 +381,7 @@ export default {
 
   afterMount() {
 
-    let me = this
+    const me = this
     let startModeDate = me.get('startDate') ? me.get('startDate') : new Date()
     let endModeDate = offsetMonth(startModeDate, 1)
     let startModeList = me.createRenderData(
@@ -414,4 +420,4 @@ export default {
     })
 
   }
-}
+})

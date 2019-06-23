@@ -1,6 +1,6 @@
 import Yox, { listener } from 'yox'
 
-import template from './template/Page.html'
+import template from './template/Page.hbs'
 
 import {
   FALSE,

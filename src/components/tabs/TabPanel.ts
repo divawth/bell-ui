@@ -80,7 +80,7 @@ export default Yox.create({
     let me = this
     let name = me.get('name')
     if (name == null) {
-      let element = findComponentUpward(me, '${prefix}tabs')
+      let element = findComponentUpward(me.$parent, '${prefix}tabs')
       name = Yox.array.indexOf(element.$children, me)
     }
     me.set('id', name)

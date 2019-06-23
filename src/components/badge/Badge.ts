@@ -3,12 +3,12 @@ import Yox from 'yox'
 import template from './template/Badge.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
-  FALSE,
 } from '../constant'
 
 import {
@@ -53,9 +53,7 @@ export default Yox.create({
   template,
 
   filters: {
-    isNumber(count: any) {
-      return Yox.is.numeric(count)
-    },
+    isNumber: Yox.is.numeric,
     formatText(count: any, maxCount: any) {
       count = Yox.is.numeric(count) ? +count : 0
       maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1

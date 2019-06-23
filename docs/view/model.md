@@ -2,20 +2,22 @@
 
 > alert 的基本用法
 
-    export default {
-        template: `
-            <div>
-                <Button type="info" on-click="open()">
-                    Alert
-                </Button>
-            </div>
-        `,
-        methods: {
-            open: function () {
-                this.$Alert('这是一段内容');
-            }
-        }
+```js
+export default {
+  template: `
+    <div>
+      <Button type="info" on-click="open()">
+        Alert
+      </Button>
+    </div>
+  `,
+  methods: {
+    open: function () {
+      this.$Alert('这是一段内容');
     }
+  }
+}
+```
 
 > 定制按钮话术
 

@@ -1,14 +1,22 @@
-import MsgboxTpl from './template/Msgbox.html'
-import ConfirmTpl from './template/Confirm.html'
-import { RAW_OBJECT, RAW_STRING, RAW_BOOLEAN, TRUE, RAW_FUNCTION, RAW_NUMERIC, FALSE } from '../constant'
+import MsgboxTpl from './template/Msgbox.hbs'
+import ConfirmTpl from './template/Confirm.hbs'
+import {
+  TRUE,
+  RAW_OBJECT,
+  RAW_STRING,
+  RAW_BOOLEAN,
+  RAW_FUNCTION,
+  RAW_NUMERIC,
+} from '../constant'
+import Yox, { data } from 'yox'
 
 let id = 0
 
-const createAlert = function (data) {
+const createAlert = function (data: data) {
 
   let namespace = '${prefix}msg-alert-' + id++
-  let body = Yox.dom.find('#${prefix}msgbox-wrapper')
-  let element = Yox.dom.createElement('div')
+  let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
+  let element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
@@ -109,17 +117,17 @@ const createAlert = function (data) {
   })
 }
 
-const createConfirm = function (data) {
+const createConfirm = function (data: data) {
 
   let namespace = '${prefix}msg-confirm-' + id++
-  let body = Yox.dom.find('#${prefix}msgbox-wrapper')
-  let element = Yox.dom.createElement('div')
+  let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
+  let element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
   let instance = new Yox({
     el: '#' + namespace,
-    replace: true,
+    replace: TRUE,
     template: ConfirmTpl,
     props: {
       title: data.title || data,
@@ -163,12 +171,12 @@ const createConfirm = function (data) {
     },
     data() {
       return {
-        isHidden: true
+        isHidden: TRUE
       }
     },
 
     methods: {
-      buttonClick(index) {
+      buttonClick(index: number) {
         this.get('buttons.' + index + '.action').call(instance)
       },
 
@@ -215,10 +223,10 @@ const createConfirm = function (data) {
   })
 }
 
-export const addAlert = function (data) {
+export const addAlert = function (data: data) {
   createAlert(data)
 }
 
-export const addConfirm = function (data) {
+export const addConfirm = function (data: data) {
   createConfirm(data)
 }

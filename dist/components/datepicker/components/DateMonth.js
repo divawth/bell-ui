@@ -2,7 +2,8 @@ import template from '../template/DateMonth.hbs';
 import { RAW_STRING } from '../../constant';
 import { MONTHS } from '../function/constant';
 import { isDate } from '../../util';
-export default {
+import Yox from 'yox';
+export default Yox.create({
     propTypes: {
         startDate: {
             type: isDate()
@@ -71,5 +72,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=DateMonth.js.map

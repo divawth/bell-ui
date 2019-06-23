@@ -1,16 +1,23 @@
 import { add } from './base'
+import Yox, { data } from 'yox'
 
-let config = {}
+interface Config {
+  duration?: number
+  top?: number
+}
 
-let addNotice = function (type, arg) {
-  let data = {}
+let config: Config = {}
+
+let addNotice = function (type: string, arg: data) {
+  let data: data = {}
   data.type = type
 
   if (Yox.is.string(arg)) {
     data.content = arg
   }
   else {
-    Yox.object.extend(data, arg, config)
+    Yox.object.extend(data, arg)
+    Yox.object.extend(data, config)
   }
 
   add(data)
@@ -27,22 +34,22 @@ let updateConfig = function (data) {
 }
 
 export default {
-  success: function (arg) {
+  success: function (arg: data) {
     addNotice('success', arg)
   },
-  info: function (arg) {
+  info: function (arg: data) {
     addNotice('info', arg)
   },
-  warning: function (arg) {
+  warning: function (arg: data) {
     addNotice('warning', arg)
   },
-  error: function (arg) {
+  error: function (arg: data) {
     addNotice('error', arg)
   },
-  loading: function (arg) {
+  loading: function (arg: data) {
     addNotice('loading', arg)
   },
-  config: function (options) {
+  config: function (options: data) {
     updateConfig(options)
   },
   destroy: function () {

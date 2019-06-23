@@ -1,5 +1,6 @@
-import template from './template/Notice.html';
-import { RAW_FUNCTION, RAW_STRING, RAW_NUMERIC } from '../constant';
+import template from './template/Notice.hbs';
+import { TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, } from '../constant';
+import Yox from 'yox';
 var id = 0;
 var createNotice = function (data) {
     var namespace = '${prefix}notice-' + id++;
@@ -9,7 +10,7 @@ var createNotice = function (data) {
     Yox.dom.append(body, element);
     var instance = new Yox({
         el: '#' + namespace,
-        replace: true,
+        replace: TRUE,
         template: template,
         props: {
             title: data.title,

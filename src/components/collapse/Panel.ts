@@ -3,17 +3,17 @@ import Yox from 'yox'
 import template from './template/Panel.hbs'
 
 import {
-  findComponentUpward
-} from '../util'
-
-import {
   NULL,
   TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC
+  RAW_NUMERIC,
 } from '../constant'
+
+import {
+  findComponentUpward,
+} from '../util'
 
 export default Yox.create({
 
@@ -122,7 +122,7 @@ export default Yox.create({
   },
 
   afterMount() {
-    let collapse = findComponentUpward(this, '${prefix}collapse')
+    let collapse = findComponentUpward(this.$parent, '${prefix}collapse')
     this.set('accordion', collapse.get('accordion'))
     this.watch(
       'isActive',

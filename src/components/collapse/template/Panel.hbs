@@ -1,4 +1,5 @@
-<div class="${prefix}collapse-item
+<div
+class="${prefix}collapse-item
 {{#if isOpen}} ${prefix}collapse-item-open{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -8,11 +9,13 @@
   <div class="${prefix}collapse-header" on-click="click()">
     <slot name="icon">
       {{#if showIcon}}
-      <Icon type="arrow-down"
-        className="${prefix}collapse-header-icon"
-      />
+        <Icon
+          type="arrow-down"
+          className="${prefix}collapse-header-icon"
+        />
       {{/if}}
     </slot>
+
     {{title}}
 
     {{#if hasSlot('extra')}}

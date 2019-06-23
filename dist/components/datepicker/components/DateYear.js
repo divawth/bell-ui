@@ -1,7 +1,8 @@
 import template from '../template/DateYear.hbs';
 import { RAW_STRING } from '../../constant';
 import { isDate } from '../../util';
-export default {
+import Yox from 'yox';
+export default Yox.create({
     propTypes: {
         startDate: {
             type: isDate()
@@ -77,5 +78,5 @@ export default {
             });
         }
     }
-};
+});
 //# sourceMappingURL=DateYear.js.map

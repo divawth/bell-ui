@@ -3,7 +3,8 @@ import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
 import template from '../template/Date.hbs';
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY } from '../../constant';
 import { isDate } from '../../util';
-export default {
+import Yox from 'yox';
+export default Yox.create({
     propTypes: {
         multiple: {
             type: RAW_BOOLEAN
@@ -137,8 +138,7 @@ export default {
             return data;
         },
         createRenderData: function (modeDate, currentDate, selectedDates) {
-            var me = this;
-            var firstDay = me.get('firstDay') || 0;
+            var firstDay = this.get('firstDay') || 0;
             var modeDateString = parseDate(modeDate);
             var startDate;
             var endDate;
@@ -151,22 +151,23 @@ export default {
             if (offset > 0) {
                 endDate += offset;
             }
-            var list = me.getDataSource(startDate, endDate, modeDate, currentDate, selectedDates);
+            var list = this.getDataSource(startDate, endDate, modeDate, currentDate, selectedDates);
             return formatList(list);
         }
     },
     afterMount: function () {
-        var value = this.get('value') ? simplifyDate(this.get('value')) : null;
-        this.set({
+        var me = this;
+        var value = me.get('value') ? simplifyDate(me.get('value')) : null;
+        me.set({
             currentDate: value,
-            dateList: this.createRenderData(this.get('modeDate'), value, this.get('selectedDates'))
+            dateList: me.createRenderData(me.get('modeDate'), value, me.get('selectedDates'))
         });
-        if (this.get('selected')) {
-            this.fire('change.date', {
+        if (me.get('selected')) {
+            me.fire('change.date', {
                 date: value,
-                selectedDates: this.get('selectedDates')
+                selectedDates: me.get('selectedDates')
             });
         }
     }
-};
+});
 //# sourceMappingURL=Date.js.map

@@ -58,7 +58,7 @@ export default Yox.create({
   },
 
   afterMount () {
-    let element = findComponentUpward(this, '${prefix}menu')
+    let element = findComponentUpward(this.$parent, '${prefix}menu')
     this.set({
       'mode': element.get('mode'),
       'isActive': element.get('activeName') === this.get('name')

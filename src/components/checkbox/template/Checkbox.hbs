@@ -1,4 +1,5 @@
-<label class="${prefix}checkbox
+<label
+class="${prefix}checkbox
 {{#if disabled}} ${prefix}checkbox-disabled{{/if}}
 {{#if type}} ${prefix}checkbox-{{type}}{{/if}}
 {{#if size}} ${prefix}checkbox-{{size}}{{/if}}
@@ -11,7 +12,8 @@
 
   <label class="${prefix}checkbox-wrapper">
     <span class="${prefix}checkbox-inner"></span>
-    <input class="${prefix}checkbox-input"
+    <input
+      class="${prefix}checkbox-input"
       type="checkbox"
       model="checked"
       name="{{name}}"

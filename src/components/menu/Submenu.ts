@@ -110,7 +110,7 @@ export default Yox.create({
   },
 
   afterMount () {
-    let element = findComponentUpward(this, '${prefix}menu')
+    let element = findComponentUpward(this.$parent, '${prefix}menu')
     this.set({
       'mode': element.get('mode'),
       'theme': element.get('theme'),

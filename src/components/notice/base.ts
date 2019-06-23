@@ -1,21 +1,27 @@
-import template from './template/Notice.html'
-import { RAW_FUNCTION, RAW_STRING, RAW_NUMERIC } from '../constant'
+import template from './template/Notice.hbs'
+import {
+  TRUE,
+  RAW_FUNCTION,
+  RAW_STRING,
+  RAW_NUMERIC,
+} from '../constant'
+import Yox, { data } from 'yox'
 
 let id = 0
 
-let createNotice = function (data) {
+let createNotice = function (data: data) {
 
   let namespace = '${prefix}notice-' + id++
-  let body = Yox.dom.find('#${prefix}notice-wrapper')
-  let element = Yox.dom.createElement('div')
+  let body = Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement
+  let element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
   let instance = new Yox({
     el: '#' + namespace,
-    replace: true,
+    replace: TRUE,
     template,
-    
+
     props: {
       title: data.title,
       content: data.content,
@@ -121,6 +127,6 @@ let createNotice = function (data) {
   })
 }
 
-export let add = function (data) {
+export let add = function (data: data) {
   createNotice(data)
 }

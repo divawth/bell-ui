@@ -28,7 +28,7 @@ export default Yox.create({
     },
     selected: {
       type: RAW_ARRAY,
-      value: function () {
+      value() {
         return []
       }
     },
@@ -63,8 +63,8 @@ export default Yox.create({
     },
     'change.checkbox': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
-        let me = this
-        let selected = me.copy(me.get('selected'))
+        const me: Yox = this
+        const selected = me.copy(me.get('selected'))
         if (data.checked) {
           if (!Yox.array.has(selected, data.value)) {
             selected.push(data.value)
@@ -79,7 +79,7 @@ export default Yox.create({
     }
   },
   watchers: {
-    selected (selected) {
+    selected(selected) {
       this.fire(
         'change.checkboxGroup',
         { selected },

@@ -4,7 +4,7 @@ import template from '../template/DateRange.hbs';
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '../../constant';
 import { isDate } from '../../util';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
-export default {
+export default Yox.create({
     propTypes: {
         splitPanel: {
             type: RAW_BOOLEAN
@@ -296,5 +296,5 @@ export default {
             endModeList: endModeList
         });
     }
-};
+});
 //# sourceMappingURL=DateRange.js.map

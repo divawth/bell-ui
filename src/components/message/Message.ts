@@ -1,23 +1,25 @@
 import { add } from './base'
+import Yox, { data } from 'yox'
 
 interface Config {
   duration?: number
   top?: number
 }
 
-type arg = string | Record<string, number>
+type arg = string | data
 
-let config: Config = {}
+const config: Config = {}
 
 let addMessage = function (type: string, arg: arg) {
-  let data = {}
+  let data: Record<string, string> = {}
   data.type = type
 
   if (Yox.is.string(arg)) {
-    data.content = arg
+    data.content = arg as string
   }
   else {
-    Yox.object.extend(data, arg, config)
+    Yox.object.extend(data, arg as data)
+    Yox.object.extend(data, config)
   }
 
   add(data)

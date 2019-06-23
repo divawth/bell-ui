@@ -1,8 +1,9 @@
 import template from '../template/DateYear.hbs'
 import { RAW_STRING } from '../../constant';
 import { isDate } from '../../util'
+import Yox from 'yox'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     startDate: {
@@ -90,4 +91,4 @@ export default {
       )
     }
   }
-}
+})

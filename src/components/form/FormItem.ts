@@ -64,7 +64,7 @@ export default Yox.create({
   },
 
   afterMount() {
-    let form = findComponentUpward(this, '${prefix}form')
+    let form = findComponentUpward(this.$parent, '${prefix}form')
     let prop = this.get('prop')
     let rules = form.get('rules')
     if (rules && prop) {

@@ -6,7 +6,7 @@ import {
   TRUE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC
+  RAW_NUMERIC,
 } from '../constant'
 
 export default Yox.create({

@@ -2,8 +2,6 @@ import Yox from 'yox'
 
 import template from './template/Button.hbs'
 
-import { oneOf } from '../util'
-
 import {
   RAW_TINY,
   RAW_SMALL,
@@ -13,6 +11,10 @@ import {
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY
 } from '../constant'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.create({
   propTypes: {

@@ -39,13 +39,13 @@ export default {
   template: `
     <Breadcrumb>
       <BreadcrumbItem to="/">
-        <Icon type="ios-home-outline"></Icon> Home
+        <Icon name="home"></Icon> Home
       </BreadcrumbItem>
       <BreadcrumbItem to="/components/breadcrumb">
-        <Icon type="social-buffer-outline"></Icon> Components
+        <Icon name="person"></Icon> Components
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <Icon type="pound"></Icon> Breadcrumb
+        <Icon name="star"></Icon> Breadcrumb
       </BreadcrumbItem>
     </Breadcrumb>
   `
@@ -74,9 +74,9 @@ export default {
 
 #### API
 
-> Attributes Props
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-hash | 添加链接 | string | - | -
+to | 添加链接 | string | - | -
 separator | 界定符 | string | - | '/'

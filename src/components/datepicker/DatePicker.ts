@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { listener } from 'yox'
 
 import Date from './components/Date'
 import DateRange from './components/DateRange'
@@ -8,13 +8,13 @@ import DateYear from './components/DateYear'
 
 import { lpad, simplifyDate } from './function/util'
 import { contains, oneOf, isDate } from '../util'
-import template from './template/DatePicker.html'
+import template from './template/DatePicker.hbs'
 import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, RAW_BOTTOM_START, RAW_FUNCTION, RAW_SIZE_ARRAY } from '../constant'
 
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
-export default {
+export default Yox.create({
 
   propTypes: {
     type: {
@@ -326,7 +326,8 @@ export default {
   },
 
   afterMount() {
-    let me = this
+    const me = this, doc = document
+
     if (!me.get('formatText')) {
       let formatText = ''
       switch (me.get('type')) {
@@ -349,9 +350,9 @@ export default {
       me.set({ formatText })
     }
 
-    me.documentClickHandler = function (e) {
+    const onClick: listener = function (event) {
       let element = me.$el
-      let target = e.originalEvent.target
+      let target = event.originalEvent.target
       if (contains(element, target)) {
         return
       }
@@ -359,18 +360,20 @@ export default {
     }
 
     Yox.dom.on(
-      document,
+      doc,
       'click',
-      me.documentClickHandler
+      onClick
     )
 
-  },
-
-  beforeDestroy() {
-    Yox.dom.off(
-      document,
-      'click',
-      this.documentClickHandler
+    me.on(
+      'beforeDestroy.hook',
+      function () {
+        Yox.dom.off(
+          doc,
+          'click',
+          onClick
+        )
+      }
     )
   }
-}
+})

@@ -1,4 +1,5 @@
-<div class="${prefix}badge{{#if status}}-status{{/if}}
+<div
+class="${prefix}badge{{#if status}}-status{{/if}}
 {{#if status || type}} ${prefix}badge-{{status || type}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -14,9 +15,10 @@
     {{/if}}
 
     {{#if text || isNumber(count)}}
-      <span class="${prefix}badge-count
-        {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}
-      ">
+      <span
+        class="${prefix}badge-count
+        {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}"
+      >
         {{text ? text : formatText(count, maxCount)}}
       </span>
     {{/if}}

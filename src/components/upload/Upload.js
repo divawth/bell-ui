@@ -1,4 +1,4 @@
-import template from './template/Upload.html'
+import template from './template/Upload.hbs'
 import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, FALSE, RAW_ARRAY } from '../constant'
 
 export default {
@@ -27,7 +27,7 @@ export default {
   template,
 
   watchers: {
-    
+
   },
 
   methods: {
@@ -35,7 +35,7 @@ export default {
       var me = this;
       me.inputElement = document.createElement('input');
       me.inputElement.type = 'file';
-      
+
       me.inputElement.multiple = me.get('multiple');
 
       var accept = me.get('accept');
@@ -49,12 +49,12 @@ export default {
       me.fileChange = function (event) {
 
         var files = event.target.files;
-        
+
         me.fire(
           'uploadstart',
           {
             file: files[ 0 ],
-          } 
+          }
         );
         me.upload(files[ 0 ]);
 
@@ -66,7 +66,7 @@ export default {
       var me = this;
       var xhr = new XMLHttpRequest();
       me.xhr = xhr;
-      
+
       xhr.open('post', me.get('action'), true);
       var formData = new FormData();
       var data = me.get('data');
@@ -85,7 +85,7 @@ export default {
               'uploadsuccess',
               JSON.parse(xhr.responseText)
             );
-          } 
+          }
           else {
             me.fire(
               'uploadsuccess',
@@ -94,8 +94,8 @@ export default {
           }
         }
       };
-    },  
-    
+    },
+
     click: function () {
       this.inputElement.click();
     }

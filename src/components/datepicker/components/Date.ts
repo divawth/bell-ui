@@ -19,8 +19,9 @@ import {
   RAW_ARRAY
 } from '../../constant'
 import { isDate } from '../../util'
+import Yox from 'yox'
 
-export default {
+export default Yox.create({
 
   propTypes: {
     multiple: {
@@ -189,12 +190,10 @@ export default {
       return data
     },
     createRenderData(modeDate, currentDate, selectedDates) {
-      let me = this
-      let firstDay = me.get('firstDay') || 0
+      let firstDay = this.get('firstDay') || 0
       let modeDateString = parseDate(modeDate)
       let startDate
       let endDate
-
       startDate = firstDateInWeek(firstDateInMonth(modeDateString), firstDay)
       endDate = lastDateInWeek(lastDateInMonth(modeDateString), firstDay)
 
@@ -207,7 +206,7 @@ export default {
       if (offset > 0) {
         endDate += offset
       }
-      let list = me.getDataSource(
+      let list = this.getDataSource(
         startDate,
         endDate,
         modeDate,
@@ -219,23 +218,24 @@ export default {
   },
 
   afterMount() {
-    let value = this.get('value') ? simplifyDate(this.get('value')) : null
-    this.set({
+    const me = this
+    let value = me.get('value') ? simplifyDate(me.get('value')) : null
+    me.set({
       currentDate: value,
-      dateList: this.createRenderData(
-        this.get('modeDate'),
+      dateList: me.createRenderData(
+        me.get('modeDate'),
         value,
-        this.get('selectedDates')
+        me.get('selectedDates')
       )
     })
-    if (this.get('selected')) {
-      this.fire(
+    if (me.get('selected')) {
+      me.fire(
         'change.date',
         {
           date: value,
-          selectedDates: this.get('selectedDates')
+          selectedDates: me.get('selectedDates')
         }
       )
     }
   }
-}
+})

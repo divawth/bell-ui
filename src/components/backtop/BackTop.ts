@@ -42,7 +42,7 @@ export default Yox.create({
 
   data() {
     return {
-      isShow: FALSE
+      hidden: FALSE
     }
   },
 
@@ -63,7 +63,7 @@ export default Yox.create({
     parentElement = me.$parent.$el,
     onRefresh = function () {
       me.set({
-        isShow: parentElement.scrollTop >= (me.get('height') || parentElement.clientHeight)
+        hidden: parentElement.scrollTop < (me.get('height') || parentElement.clientHeight)
       })
     }
     Yox.dom.on(parentElement, 'scroll', onRefresh)

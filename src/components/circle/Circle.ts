@@ -58,7 +58,9 @@ export default Yox.create({
 
   computed: {
     computedStrokeWidth() {
-      return this.get('percent') === 0 && this.get('dashboard') ? 0 : this.get('strokeWidth')
+      return this.get('percent') === 0 && this.get('dashboard')
+        ? 0
+        : this.get('strokeWidth')
     },
     trailStyle() {
       let style = []

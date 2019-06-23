@@ -69,7 +69,7 @@ export default Yox.create({
   },
 
   afterMount() {
-    let radiogroup = findComponentUpward(this, '${prefix}radiogroup')
+    let radiogroup = findComponentUpward(this.$parent, '${prefix}radiogroup')
     if (radiogroup) {
       this.set({
         name: radiogroup.get('name'),
