@@ -37,7 +37,7 @@ export default Yox.create({
   watchers: {
     accordion(accordion) {
       this.fire(
-        'accordionChanged',
+        'change.accordion',
         { accordion },
         TRUE
       )
@@ -45,14 +45,11 @@ export default Yox.create({
   },
 
   events: {
-    panelOpen(event, data) {
+    'change.opened': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
-          'panelOpen',
-          {
-            name: data.name,
-            isOpen: data.isOpen
-          },
+          'change.opened',
+          data,
           TRUE
         )
       }

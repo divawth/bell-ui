@@ -85,7 +85,7 @@ export default {
 }
 ```
 
-> bordered 
+> bordered
 
 ```js
 export default {
@@ -110,7 +110,7 @@ export default {
   `
 }
 ```
-  
+
 > showIcon 是否显示 icon 箭头。extra 设置右上角的内容。
 
 ```js
@@ -125,7 +125,7 @@ export default {
         </div>
         <template slot="extra">
           <Tooltip placement="left" content="内容管理">
-            <Icon type="alert" />
+            <Icon name="alert" />
           </Tooltip>
         </template>
       </Panel>
@@ -136,7 +136,7 @@ export default {
 
         <template slot="extra">
           <Tooltip placement="left" content="内容管理">
-            <Icon type="alert" />
+            <Icon name="alert" />
           </Tooltip>
         </template>
       </Panel>
@@ -145,7 +145,7 @@ export default {
 
         <template slot="extra">
           <Tooltip placement="left" content="内容管理">
-            <Icon type="alert" />
+            <Icon name="alert" />
           </Tooltip>
         </template>
       </Panel>

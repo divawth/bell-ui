@@ -1,6 +1,6 @@
 <div
 class="${prefix}collapse-item
-{{#if isOpen}} ${prefix}collapse-item-open{{/if}}
+{{#if opened}} ${prefix}collapse-item-open{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}} {{style}}{{/if}}
@@ -10,7 +10,7 @@ class="${prefix}collapse-item
     <slot name="icon">
       {{#if showIcon}}
         <Icon
-          type="arrow-down"
+          name="arrow-down"
           className="${prefix}collapse-header-icon"
         />
       {{/if}}
@@ -25,7 +25,7 @@ class="${prefix}collapse-item
     {{/if}}
   </div>
 
-  <div ref="panelContent" class="${prefix}collapse-content">
+  <div ref="content" class="${prefix}collapse-content">
     <div class="${prefix}collapse-content-box">
       <slot name="children" />
     </div>

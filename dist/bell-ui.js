@@ -7669,7 +7669,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 45 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-item"+(a("isOpen",!0)?" bell-collapse-item-open":"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&u(a("style",!0))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-header"),l("click","event.click","click()","click")},function(){q("$slot_icon",function(){a("showIcon",!0)?p({"tag":"Icon","isComponent":!0},!1,function(){f("type","arrow-down"),f("className","bell-collapse-header-icon")}):p({"isComment":!0,"text":""})}),e(u(a("title",!0))),d(a("hasSlot",!0),["extra"])?p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-header-extra")},function(){q("$slot_extra")}):p({"isComment":!0,"text":""})}),p({"tag":"div","ref":"panelContent"},!1,function(){g("className",1,"bell-collapse-content")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-content-box")},function(){q("$slot_children")})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-item"+(a("opened",!0)?" bell-collapse-item-open":"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&u(a("style",!0))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-header"),l("click","event.click","click()","click")},function(){q("$slot_icon",function(){a("showIcon",!0)?p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-down"),f("className","bell-collapse-header-icon")}):p({"isComment":!0,"text":""})}),e(u(a("title",!0))),d(a("hasSlot",!0),["extra"])?p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-header-extra")},function(){q("$slot_extra")}):p({"isComment":!0,"text":""})}),p({"tag":"div","ref":"content"},!1,function(){g("className",1,"bell-collapse-content")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-collapse-content-box")},function(){q("$slot_children")})})})};
 
 /***/ }),
 /* 46 */
@@ -12356,16 +12356,13 @@ var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
     template: Collapse_default.a,
     watchers: {
         accordion: function (accordion) {
-            this.fire('accordionChanged', { accordion: accordion }, TRUE);
+            this.fire('change.accordion', { accordion: accordion }, TRUE);
         }
     },
     events: {
-        panelOpen: function (event, data) {
+        'change.opened': function (event, data) {
             if (event.phase === yox_default.a.Event.PHASE_UPWARD) {
-                this.fire('panelOpen', {
-                    name: data.name,
-                    isOpen: data.isOpen
-                }, TRUE);
+                this.fire('change.opened', data, TRUE);
             }
         }
     }
@@ -12403,21 +12400,24 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
         }
     },
     template: Panel_default.a,
-    data: function () {
+    data: function (options) {
+        var collapse = findComponentUpward(options.parent, 'bell-collapse');
         return {
-            isOpen: FALSE,
-            accordion: FALSE,
+            opened: FALSE,
+            accordion: collapse
+                ? collapse.get('accordion')
+                : FALSE
         };
     },
     events: {
-        accordionChanged: function (_, data) {
+        'change.accordion': function (_, data) {
             this.set('accordion', data.accordion);
         },
-        panelOpen: function (event, data) {
+        'change.opened': function (event, data) {
             if (event.phase === yox_default.a.Event.PHASE_DOWNWARD) {
                 var me = this;
                 if (data.name === me.get('name')) {
-                    data.isOpen ? me.open() : me.close();
+                    data.opened ? me.open() : me.close();
                 }
                 else if (me.get('accordion')) {
                     me.close();
@@ -12427,60 +12427,78 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
     },
     methods: {
         click: function () {
-            this.fire('panelOpen', {
+            this.fire('change.opened', {
                 name: this.get('name'),
-                isOpen: !this.get('isOpen')
+                opened: !this.get('opened'),
             });
         },
         close: function () {
-            var me = this;
-            var element = me.$refs.panelContent;
-            element.style.height = element.clientHeight + 'px';
-            me.closeTimer = setTimeout(function () {
-                element.style.height = 0;
+            var me = this, opened = me.get('opened');
+            if (!opened) {
+                return;
+            }
+            me.removeTimer();
+            var content = me.$refs.content;
+            content.style.height = content.clientHeight + 'px';
+            me.toggleTimer = setTimeout(function () {
+                me.toggleTimer = UNDEFINED;
+                content.style.height = 0;
                 me.initTimer = setTimeout(function () {
-                    element.style.height = '';
-                    me.set('isOpen', FALSE);
+                    me.initTimer = UNDEFINED;
+                    content.style.height = '';
+                    me.set('opened', FALSE);
                 }, 100);
             });
         },
         open: function () {
-            var me = this;
-            me.set('isOpen', TRUE);
+            var me = this, opened = me.get('opened');
+            if (opened) {
+                return;
+            }
+            me.removeTimer();
+            me.set('opened', TRUE);
             me.nextTick(function () {
-                var element = me.$refs.panelContent;
-                var height = element.clientHeight;
-                element.style.height = 0;
-                me.openTimer = setTimeout(function () {
-                    element.style.height = height + 'px';
+                var content = me.$refs.content;
+                var height = content.clientHeight;
+                content.style.height = 0;
+                me.toggleTimer = setTimeout(function () {
+                    me.toggleTimer = UNDEFINED;
+                    content.style.height = height + 'px';
                     me.initTimer = setTimeout(function () {
-                        element.style.height = '';
+                        me.initTimer = UNDEFINED;
+                        content.style.height = '';
                     }, 100);
                 });
             });
+        },
+        removeTimer: function () {
+            var _a = this, toggleTimer = _a.toggleTimer, initTimer = _a.initTimer;
+            if (toggleTimer) {
+                clearTimeout(toggleTimer);
+                this.toggleTimer = UNDEFINED;
+            }
+            if (initTimer) {
+                clearTimeout(initTimer);
+                this.initTimer = UNDEFINED;
+            }
         }
     },
     afterMount: function () {
-        var collapse = findComponentUpward(this.$parent, 'bell-collapse');
-        this.set('accordion', collapse.get('accordion'));
         this.watch('isActive', {
             watcher: function (isActive) {
                 if (isActive == NULL) {
                     return;
                 }
-                this.fire('panelOpen', {
+                this.fire('change.opened', {
                     name: this.get('name'),
-                    isOpen: isActive
+                    opened: isActive
                 });
             },
             immediate: TRUE
         });
     },
     beforeDestroy: function () {
-        var me = this;
-        clearTimeout(me.closeTimer);
-        clearTimeout(me.initTimer);
-        clearTimeout(me.openTimer);
+        this.removeTimer();
     }
 }));
 

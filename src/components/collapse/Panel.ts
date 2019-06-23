@@ -9,6 +9,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  UNDEFINED,
 } from '../constant'
 
 import {
@@ -41,23 +42,25 @@ export default Yox.create({
 
   template,
 
-  data() {
+  data(options) {
+    const collapse = findComponentUpward(options.parent, '${prefix}collapse')
     return {
-      isOpen: FALSE,
-      accordion: FALSE,
+      opened: FALSE,
+      accordion: collapse
+        ? collapse.get('accordion')
+        : FALSE
     }
   },
 
   events: {
-    accordionChanged(_, data) {
+    'change.accordion': function (_, data) {
       this.set('accordion', data.accordion)
     },
-
-    panelOpen(event, data) {
+    'change.opened': function (event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         const me = this
         if (data.name === me.get('name')) {
-          data.isOpen ? me.open() : me.close()
+          data.opened ? me.open() : me.close()
         }
         else if (me.get('accordion')) {
           me.close()
@@ -70,72 +73,102 @@ export default Yox.create({
 
     click() {
       this.fire(
-        'panelOpen',
+        'change.opened',
         {
           name: this.get('name'),
-          isOpen: !this.get('isOpen')
+          opened: !this.get('opened'),
         }
       )
     },
 
     close() {
-      let me = this
-      let element = me.$refs.panelContent
-      element.style.height = element.clientHeight + 'px'
 
-      me.closeTimer = setTimeout(
-        () => {
-          element.style.height = 0
+      const me = this, opened = me.get('opened')
+      if (!opened) {
+        return
+      }
+
+      me.removeTimer()
+
+      const { content } = me.$refs
+      content.style.height = content.clientHeight + 'px'
+
+      me.toggleTimer = setTimeout(
+        function () {
+          me.toggleTimer = UNDEFINED
+          content.style.height = 0
           me.initTimer = setTimeout(
-            () => {
-              element.style.height = ''
-              me.set('isOpen', FALSE)
+            function () {
+              me.initTimer = UNDEFINED
+              content.style.height = ''
+              me.set('opened', FALSE)
             },
             100
           )
         }
       )
+
     },
 
     open() {
-      let me = this
-      me.set('isOpen', TRUE)
 
-      me.nextTick(() => {
-        let element = me.$refs.panelContent
-        let height = element.clientHeight
-        element.style.height = 0
+      const me = this, opened = me.get('opened')
+      if (opened) {
+        return
+      }
 
-        me.openTimer = setTimeout(
-          () => {
-            element.style.height = height + 'px'
+      me.removeTimer()
+
+      me.set('opened', TRUE)
+      me.nextTick(function () {
+
+        const { content } = me.$refs
+
+        const height = content.clientHeight
+        content.style.height = 0
+
+        me.toggleTimer = setTimeout(
+          function () {
+            me.toggleTimer = UNDEFINED
+            content.style.height = height + 'px'
             me.initTimer = setTimeout(
-              () => {
-                element.style.height = ''
+              function () {
+                me.initTimer = UNDEFINED
+                content.style.height = ''
               },
               100
             )
           }
         )
       })
+    },
+
+    removeTimer() {
+      const { toggleTimer, initTimer } = this
+      if (toggleTimer) {
+        clearTimeout(toggleTimer)
+        this.toggleTimer = UNDEFINED
+      }
+      if (initTimer) {
+        clearTimeout(initTimer)
+        this.initTimer = UNDEFINED
+      }
     }
   },
 
   afterMount() {
-    let collapse = findComponentUpward(this.$parent, '${prefix}collapse')
-    this.set('accordion', collapse.get('accordion'))
     this.watch(
       'isActive',
       {
-        watcher(isActive) {
+        watcher(isActive: boolean) {
           if (isActive == NULL) {
             return
           }
           this.fire(
-            'panelOpen',
+            'change.opened',
             {
               name: this.get('name'),
-              isOpen: isActive
+              opened: isActive
             }
           )
         },
@@ -145,9 +178,6 @@ export default Yox.create({
   },
 
   beforeDestroy() {
-    let me = this
-    clearTimeout(me.closeTimer)
-    clearTimeout(me.initTimer)
-    clearTimeout(me.openTimer)
+    this.removeTimer()
   }
 })
