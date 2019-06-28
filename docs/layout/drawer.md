@@ -32,7 +32,7 @@ export default {
   height: 400,
   template: `
   <div class="template">
-    <RadioGroup name="pos" model="position" vertical>
+    <RadioGroup name="pos" model="placement" vertical>
       <div style="padding: 10px 0">
         位置
       </div>
@@ -53,8 +53,8 @@ export default {
     <Button style="margin-top: 15px;" type="primary" on-click="open()">
       toggle drawer
     </Button>
-    <Drawer position="{{position}}" 
-      model="isOpen" 
+    <Drawer placement="{{placement}}"
+      model="isOpen"
       width="300"
       title="Basic Drawer"
     >
@@ -66,7 +66,7 @@ export default {
   `,
   data: function () {
     return {
-      position: 'left',
+      placement: 'left',
       isOpen: false
     }
   },
@@ -92,9 +92,9 @@ export default {
   template: `
     <div class="template">
       <Button on-click="this.set('value1', true)" type="primary">Open</Button>
-      <Drawer title="Create" 
+      <Drawer title="Create"
         maskClosable="{{false}}"
-        width="720" 
+        width="720"
         model="value1"
         on-close="close()"
       >
@@ -279,7 +279,7 @@ export default {
 }
 ```
 
-> 多层抽屉 
+> 多层抽屉
 
 在抽屉内打开新的抽屉，用以解决多分支任务的复杂状况。
 

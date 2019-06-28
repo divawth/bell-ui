@@ -1,9 +1,10 @@
 import Yox, { listener } from 'yox'
+
 import template from './template/Input.hbs'
 
 import {
-  FALSE,
   TRUE,
+  FALSE,
   RAW_BOOLEAN,
   RAW_STRING,
   RAW_NUMERIC,
@@ -102,9 +103,7 @@ export default Yox.create({
   },
 
   filters: {
-    isBoolean(value) {
-      return Yox.is.boolean(value)
-    }
+    isBoolean: Yox.is.boolean
   },
 
   watchers: {

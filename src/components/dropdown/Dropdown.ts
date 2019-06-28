@@ -11,7 +11,7 @@ import {
   RAW_CUSTOM,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
-  RAW_NUMERIC
+  RAW_NUMERIC,
 } from '../constant'
 
 import {

@@ -28,7 +28,14 @@ export const supportTransform = testCSS('transform') ? true : false
 
 export function onTransitionEnd(el, callback) {
   if (transitionEnd) {
-    Yox.dom.on(el, transitionEnd, callback)
+    Yox.dom.on(
+      el,
+      transitionEnd,
+      function (event) {
+        Yox.dom.off(el, transitionEnd, event.listener)
+        callback()
+      }
+    )
   }
   else {
     Yox.nextTick(callback)

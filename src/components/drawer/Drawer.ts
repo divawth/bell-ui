@@ -62,10 +62,15 @@ export default Yox.create({
 
   watchers: {
     open(isOpen) {
-      const element = this.$el
+      const me = this, element = this.$el
       if (isOpen) {
         Yox.dom.addClass(element, CLASS_OPEN)
-        this.fire('open.drawer')
+        onTransitionEnd(
+          element,
+          function () {
+            me.fire('open.drawer')
+          }
+        )
       }
       else {
         Yox.dom.addClass(element, CLASS_LEAVE)
@@ -74,9 +79,9 @@ export default Yox.create({
           function () {
             Yox.dom.removeClass(element, CLASS_OPEN)
             Yox.dom.removeClass(element, CLASS_LEAVE)
+            me.fire('close.drawer')
           }
         )
-        this.fire('close.drawer')
       }
     }
   },
@@ -105,6 +110,12 @@ export default Yox.create({
         }
       }
       return style
+    }
+  },
+
+  methods: {
+    close() {
+      this.set('open', FALSE)
     }
   },
 

@@ -18,6 +18,10 @@ const CLASS_LEAVE = '${prefix}dialog-leave'
 
 export default Yox.create({
   propTypes: {
+    title: {
+      type: RAW_STRING,
+      value: '温馨提示'
+    },
     open: {
       type: RAW_BOOLEAN
     },
@@ -57,10 +61,7 @@ export default Yox.create({
   },
 
   methods: {
-    maskClick: function () {
-      this.set('open', FALSE)
-    },
-    close: function () {
+    close() {
       this.set('open', FALSE)
     }
   },

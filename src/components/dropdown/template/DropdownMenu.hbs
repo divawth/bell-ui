@@ -1,10 +1,10 @@
-<ul 
+<ul
 class="${prefix}dropdown-menu
-{{#if className}} {{className}}{{/if}}
-" 
-{{#if style}} style="{{style}}"{{/if}}
->
+{{#if className}} {{className}}{{/if}}"
 
-  <slot name="children" />  
-  
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <slot name="children" />
 </ul>
