@@ -1,8 +1,8 @@
 import Yox from 'yox';
 import template from './template/Submenu.hbs';
-import { findComponentUpward, } from '../util';
+import { findComponentUpward, onTransitionEnd, } from '../util';
 import { NULL, FALSE, TRUE, RAW_STRING } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -33,14 +33,17 @@ export default Yox.create({
             var me = this;
             var element = me.$refs.menu.$el;
             element.style.height = element.clientHeight + 'px';
-            me.closeTimer = setTimeout(function () {
-                element.style.height = 0;
+            setTimeout(function () {
+                if (!element) {
+                    return;
+                }
+                element.style.height = '0px';
                 element.style.overflow = 'hidden';
-                me.initTimer = setTimeout(function () {
+                onTransitionEnd(element, function () {
                     element.style.height = '';
                     element.style.overflow = '';
                     me.set('isOpen', FALSE);
-                }, 100);
+                });
             });
         },
         open: function () {
@@ -49,12 +52,15 @@ export default Yox.create({
             me.nextTick(function () {
                 var element = me.$refs.menu.$el;
                 var height = element.clientHeight;
-                element.style.height = 0;
-                me.openTimer = setTimeout(function () {
+                element.style.height = '0px';
+                setTimeout(function () {
+                    if (!me.$el) {
+                        return;
+                    }
                     element.style.height = height + 'px';
-                    me.initTimer = setTimeout(function () {
+                    onTransitionEnd(element, function () {
                         element.style.height = '';
-                    }, 100);
+                    });
                 });
             });
         }
@@ -79,7 +85,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var element = findComponentUpward(this, '${prefix}menu');
+        var element = findComponentUpward(this.$parent, '${prefix}menu');
         this.set({
             'mode': element.get('mode'),
             'theme': element.get('theme'),

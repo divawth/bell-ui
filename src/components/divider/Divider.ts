@@ -20,7 +20,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     type: {
       type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),

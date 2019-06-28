@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Circle.hbs';
 import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
 import { oneOf, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         dashboard: {
             type: RAW_BOOLEAN
@@ -45,7 +45,9 @@ export default Yox.create({
     template: template,
     computed: {
         computedStrokeWidth: function () {
-            return this.get('percent') === 0 && this.get('dashboard') ? 0 : this.get('strokeWidth');
+            return this.get('percent') === 0 && this.get('dashboard')
+                ? 0
+                : this.get('strokeWidth');
         },
         trailStyle: function () {
             var style = [];

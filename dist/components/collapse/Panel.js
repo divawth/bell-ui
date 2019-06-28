@@ -1,8 +1,8 @@
 import Yox from 'yox';
 import template from './template/Panel.hbs';
-import { findComponentUpward } from '../util';
-import { NULL, TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant';
-export default Yox.create({
+import { NULL, TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
+import { findComponentUpward, onTransitionEnd, } from '../util';
+export default Yox.define({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -25,21 +25,24 @@ export default Yox.create({
         }
     },
     template: template,
-    data: function () {
+    data: function (options) {
+        var collapse = findComponentUpward(options.parent, '${prefix}collapse');
         return {
-            isOpen: FALSE,
-            accordion: FALSE,
+            opened: FALSE,
+            accordion: collapse
+                ? collapse.get('accordion')
+                : FALSE
         };
     },
     events: {
-        accordionChanged: function (_, data) {
+        'change.accordion': function (_, data) {
             this.set('accordion', data.accordion);
         },
-        panelOpen: function (event, data) {
+        'change.opened': function (event, data) {
             if (event.phase === Yox.Event.PHASE_DOWNWARD) {
                 var me = this;
                 if (data.name === me.get('name')) {
-                    data.isOpen ? me.open() : me.close();
+                    data.opened ? me.open() : me.close();
                 }
                 else if (me.get('accordion')) {
                     me.close();
@@ -49,60 +52,64 @@ export default Yox.create({
     },
     methods: {
         click: function () {
-            this.fire('panelOpen', {
+            this.fire('change.opened', {
                 name: this.get('name'),
-                isOpen: !this.get('isOpen')
+                opened: !this.get('opened'),
             });
         },
         close: function () {
-            var me = this;
-            var element = me.$refs.panelContent;
-            element.style.height = element.clientHeight + 'px';
-            me.closeTimer = setTimeout(function () {
-                element.style.height = 0;
-                me.initTimer = setTimeout(function () {
-                    element.style.height = '';
-                    me.set('isOpen', FALSE);
-                }, 100);
+            var me = this, opened = me.get('opened');
+            if (!opened) {
+                return;
+            }
+            var content = me.$refs.content;
+            content.style.height = content.clientHeight + 'px';
+            me.nextTick(function () {
+                if (!content) {
+                    return;
+                }
+                content.style.height = '0px';
+                onTransitionEnd(content, function () {
+                    content.style.height = '';
+                    me.set('opened', FALSE);
+                });
             });
         },
         open: function () {
-            var me = this;
-            me.set('isOpen', TRUE);
+            var me = this, opened = me.get('opened');
+            if (opened) {
+                return;
+            }
+            me.set('opened', TRUE);
             me.nextTick(function () {
-                var element = me.$refs.panelContent;
-                var height = element.clientHeight;
-                element.style.height = 0;
-                me.openTimer = setTimeout(function () {
-                    element.style.height = height + 'px';
-                    me.initTimer = setTimeout(function () {
-                        element.style.height = '';
-                    }, 100);
+                var content = me.$refs.content;
+                var height = content.clientHeight;
+                content.style.height = '0px';
+                setTimeout(function () {
+                    if (!content) {
+                        return;
+                    }
+                    content.style.height = height + 'px';
+                    onTransitionEnd(content, function () {
+                        content.style.height = '';
+                    });
                 });
             });
         }
     },
     afterMount: function () {
-        var collapse = findComponentUpward(this, '${prefix}collapse');
-        this.set('accordion', collapse.get('accordion'));
         this.watch('isActive', {
             watcher: function (isActive) {
                 if (isActive == NULL) {
                     return;
                 }
-                this.fire('panelOpen', {
+                this.fire('change.opened', {
                     name: this.get('name'),
-                    isOpen: isActive
+                    opened: isActive
                 });
             },
             immediate: TRUE
         });
-    },
-    beforeDestroy: function () {
-        var me = this;
-        clearTimeout(me.closeTimer);
-        clearTimeout(me.initTimer);
-        clearTimeout(me.openTimer);
     }
 });
 //# sourceMappingURL=Panel.js.map

@@ -1,4 +1,4 @@
-import template from './template/Upload.html';
+import template from './template/Upload.hbs';
 import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, FALSE, RAW_ARRAY } from '../constant';
 export default {
     propTypes: {

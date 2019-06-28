@@ -27,7 +27,7 @@ interface ModeDate {
   isCheckedDate: boolean
 }
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     splitPanel: {
@@ -71,16 +71,16 @@ export default Yox.create({
   },
 
   computed: {
-    startModeDateYear() {
+    startModeDateYear(): string {
       return simplifyDate(this.get('startModeDate')).year
     },
-    startModeDateMonth() {
+    startModeDateMonth(): string {
       return simplifyDate(this.get('startModeDate')).month
     },
-    endModeDateYear() {
+    endModeDateYear(): string {
       return simplifyDate(this.get('endModeDate')).year
     },
-    endModeDateMonth() {
+    endModeDateMonth(): string {
       return simplifyDate(this.get('endModeDate')).month
     }
   },

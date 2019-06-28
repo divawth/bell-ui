@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Slider.hbs';
 import { requestAnimationFrame } from '../util';
 import { TRUE, FALSE, RAW_ARRAY, RAW_NUMBER, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         type: {
             type: RAW_STRING
@@ -57,13 +57,13 @@ export default Yox.create({
             if (me.get('disabled')) {
                 return;
             }
-            me.setValue(event);
+            me.setValue(event.originalEvent);
             Yox.dom.on(document, 'touchmove', me.handleTouchMove);
             Yox.dom.on(document, 'touchup', me.handleTouchEnd);
             Yox.dom.on(document, 'touchend', me.handleTouchEnd);
             Yox.dom.on(document, 'touchcancel', me.handleTouchEnd);
             event.prevent();
-            me.onDragStart(event);
+            me.onDragStart();
         },
         handleTouchEnd: function (event) {
             var me = this;
@@ -75,20 +75,20 @@ export default Yox.create({
             Yox.dom.off(document, 'touchend', me.handleTouchEnd);
             Yox.dom.off(document, 'touchcancel', me.handleTouchEnd);
             event.prevent();
-            me.onDragStop(event);
+            me.onDragStop();
         },
         handleTouchMove: function (event) {
-            this.onDragUpdate(event);
+            this.onDragUpdate(event.originalEvent);
         },
         handleDragMouseMove: function (event) {
-            this.onDragUpdate(event);
+            this.onDragUpdate(event.originalEvent);
         },
         handleMouseDown: function (event) {
             var me = this;
             if (me.get('disabled')) {
                 return;
             }
-            me.setValue(event);
+            me.setValue(event.originalEvent);
             Yox.dom.on(document, 'mousemove', me.handleDragMouseMove);
             Yox.dom.on(document, 'mouseup', me.handleDragMouseEnd);
             event.prevent();
@@ -129,8 +129,9 @@ export default Yox.create({
             });
         },
         setValue: function (event) {
-            event = event.originalEvent;
-            var clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            var clientX = event.touches
+                ? event.touches[0].clientX
+                : event.clientX;
             var me = this;
             var element = me.$el;
             var oldValue = me.get('value');
@@ -156,13 +157,6 @@ export default Yox.create({
                 });
             }
         }
-    },
-    afterMount: function () {
-        var me = this;
-        me.handleDragMouseMove = me.handleDragMouseMove.bind(me);
-        me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me);
-        me.handleTouchMove = me.handleTouchMove.bind(me);
-        me.handleTouchEnd = me.handleTouchEnd.bind(me);
     }
 });
 //# sourceMappingURL=Slider.js.map

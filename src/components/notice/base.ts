@@ -5,11 +5,13 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
 } from '../constant'
-import Yox, { data } from 'yox'
+import Yox, { Data } from 'yox'
+import { clearTimeout } from 'timers';
+import { onTransitionEnd } from '../util';
 
 let id = 0
 
-let createNotice = function (data: data) {
+let createNotice = function (data: Data) {
 
   let namespace = '${prefix}notice-' + id++
   let body = Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement
@@ -60,7 +62,7 @@ let createNotice = function (data: data) {
     },
     data () {
       return {
-        isShow: false,
+        visible: false,
         rightSize: 15
       }
     },
@@ -70,10 +72,13 @@ let createNotice = function (data: data) {
       },
       fadeIn() {
         let me = this
-        me.fadeInTimer = setTimeout(
+        setTimeout(
           function () {
+            if (!me.$el) {
+              return
+            }
             me.set({
-              isShow: true,
+              visible: true,
               rightSize: me.get('right')
             })
             if (me.get('duration') == 0) {
@@ -86,9 +91,11 @@ let createNotice = function (data: data) {
       },
       fadeOut() {
         let me = this
-        me.showTimer = setTimeout(
+        setTimeout(
           function () {
-            me.hide()
+            if (me.$el) {
+              me.hide()
+            }
           },
           me.get('duration')
         )
@@ -96,18 +103,21 @@ let createNotice = function (data: data) {
       hide() {
         let me = this
         me.set({
-          isShow: false,
+          visible: false,
           rightSize: `-${me.$el.clientWidth}`
         })
-        me.fadeOutTimer = setTimeout(
-          function () {
-            me.get('onClose') && me.get('onClose')()
-            if (instance) {
-              instance.destroy()
+
+        me.nextTick(function () {
+          onTransitionEnd(
+            me.$el,
+            function () {
+              me.get('onClose') && me.get('onClose')()
+              if (me.$el) {
+                me.destroy()
+              }
             }
-          },
-          300
-        )
+          )
+        })
       }
     },
 
@@ -116,17 +126,10 @@ let createNotice = function (data: data) {
         rightSize: `-${this.$el.clientWidth}`
       })
       this.fadeIn()
-    },
-
-    beforeDestroy() {
-      let me = this
-      clearTimeout(me.fadeInTimer)
-      clearTimeout(me.showTimer)
-      clearTimeout(me.fadeOutTimer)
     }
   })
 }
 
-export let add = function (data: data) {
+export let add = function (data: Data) {
   createNotice(data)
 }

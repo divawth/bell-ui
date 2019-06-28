@@ -1,4 +1,4 @@
-import Yox, { listener } from 'yox'
+import Yox, { Listener } from 'yox'
 
 import template from './template/Page.hbs'
 
@@ -9,7 +9,7 @@ import {
   RAW_NUMERIC
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     size: {
@@ -192,7 +192,7 @@ export default Yox.create({
 
     me.updateCount()
 
-    const onKeydown: listener = function (event) {
+    const onKeydown: Listener = function (event) {
 
       let currentPage = +me.get('currentPage')
       let current = me.get('current')

@@ -1,9 +1,9 @@
-import Yox from 'yox'
+import Yox, { YoxInterface } from 'yox'
 
 import template from './template/Submenu.hbs'
 
 import {
-  findComponentUpward,
+  findComponentUpward, onTransitionEnd,
 } from '../util'
 
 import {
@@ -13,7 +13,7 @@ import {
   RAW_STRING
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     name: {
       type: RAW_STRING
@@ -46,20 +46,23 @@ export default Yox.create({
 
     close() {
       let me = this
-      let element = me.$refs.menu.$el
+      let element = (me.$refs.menu as YoxInterface).$el as HTMLElement
       element.style.height = element.clientHeight + 'px'
 
-      me.closeTimer = setTimeout(
+      setTimeout(
         function () {
-          element.style.height = 0
+          if (!element) {
+            return
+          }
+          element.style.height = '0px'
           element.style.overflow = 'hidden'
-          me.initTimer = setTimeout(
+          onTransitionEnd(
+            element,
             function () {
               element.style.height = ''
               element.style.overflow = ''
               me.set('isOpen', FALSE)
-            },
-            100
+            }
           )
         }
       )
@@ -70,18 +73,21 @@ export default Yox.create({
       me.set('isOpen', TRUE)
 
       me.nextTick(function () {
-        let element = me.$refs.menu.$el
+        let element = (me.$refs.menu as YoxInterface).$el as HTMLElement
         let height = element.clientHeight
-        element.style.height = 0
+        element.style.height = '0px'
 
-        me.openTimer = setTimeout(
+        setTimeout(
           function () {
+            if (!me.$el) {
+              return
+            }
             element.style.height = height + 'px'
-            me.initTimer = setTimeout(
+            onTransitionEnd(
+              element,
               function () {
                 element.style.height = ''
-              },
-              100
+              }
             )
           }
         )

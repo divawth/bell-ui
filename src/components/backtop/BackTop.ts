@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { YoxInterface } from 'yox'
 
 import template from './template/BackTop.hbs'
 
@@ -12,7 +12,7 @@ import {
   scrollTop,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     bottom: {
@@ -48,7 +48,7 @@ export default Yox.create({
 
   events: {
     click() {
-      const me: Yox = this, parentElement = me.$parent.$el
+      const me = this, parentElement = (me.$parent as YoxInterface).$el
       scrollTop(
         parentElement,
         parentElement.scrollTop,
@@ -59,7 +59,7 @@ export default Yox.create({
   },
 
   afterMount() {
-    const me: Yox = this,
+    const me = this,
     parentElement = me.$parent.$el,
     onRefresh = function () {
       me.set({

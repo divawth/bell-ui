@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/RadioGroup.hbs';
 import { TRUE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     name: '${prefix}radiogroup',
     propTypes: {
         className: {

@@ -2,12 +2,12 @@ import {
   addAlert,
   addConfirm
 } from './base'
-import { data } from 'yox'
+import { Data } from 'yox'
 
-const Alert = function (data: data) {
+const Alert = function (data: Data) {
   addAlert(data)
 }
-const Confirm = function (data: data) {
+const Confirm = function (data: Data) {
   addConfirm(data)
 }
 

@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Switch.hbs';
 import { RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         type: {
             type: RAW_STRING

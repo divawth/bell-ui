@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Select.hbs'
 
@@ -15,7 +15,7 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     clearable: {
       type: RAW_BOOLEAN
@@ -67,13 +67,13 @@ export default Yox.create({
   watchers: {
     value(value) {
       this.fire(
-        'optionSelectedChange',
+        'optionSelectedChange.select',
         { value },
         TRUE
       )
 
       this.fire(
-        'change',
+        'change.select',
         {
           value: value,
           text: this.get('selectedText'),
@@ -138,7 +138,7 @@ export default Yox.create({
       })
       this.fire('clear.select')
     },
-    setArrayValue(text, values) {
+    setArrayValue(text: string, values: string[]) {
 
       values = this.copy(values)
       if (Yox.is.array(values)) {
@@ -158,7 +158,7 @@ export default Yox.create({
 
     },
 
-    tagClose(event, text, index) {
+    tagClose(event: CustomEventInterface, text: string, index: number) {
       let me = this
 
       this.set({
@@ -236,7 +236,7 @@ export default Yox.create({
       )
     }
 
-    me.documentClickHandler = function (e) {
+    const documentClickHandler = function (e: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
@@ -251,12 +251,12 @@ export default Yox.create({
       })
     }
 
-    me.documentKeydownHander = function (e) {
+    const documentKeydownHander = function (e: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
 
-      switch (e.originalEvent.keyCode) {
+      switch ((e.originalEvent as KeyboardEvent).keyCode) {
         case 40:
           e.prevent()
           me.increaseHoverIndex()
@@ -276,26 +276,25 @@ export default Yox.create({
     Yox.dom.on(
       document,
       'click',
-      me.documentClickHandler
+      documentClickHandler
     )
     Yox.dom.on(
       document,
       'keydown',
-      me.documentKeydownHander
+      documentKeydownHander
     )
-  },
 
-  beforeDestroy() {
-    let me = this
-    Yox.dom.off(
-      document,
-      'click',
-      me.documentClickHandler
-    )
-    Yox.dom.off(
-      document,
-      'keydown',
-      me.documentKeydownHander
-    )
+    me.once('beforeDestroy.hook', function () {
+      Yox.dom.off(
+        document,
+        'click',
+        documentClickHandler
+      )
+      Yox.dom.off(
+        document,
+        'keydown',
+        documentKeydownHander
+      )
+    })
   }
 })

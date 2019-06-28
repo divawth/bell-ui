@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Option.hbs';
 import { TRUE, FALSE, RAW_STRING, RAW_NUMERIC, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMERIC]
@@ -33,7 +33,7 @@ export default Yox.create({
                 });
             }
         },
-        optionSelectedChange: function (_, data) {
+        'optionSelectedChange.select': function (_, data) {
             var value = this.get('value');
             var values = data.value;
             var isSelected = Yox.is.array(values) ? values.indexOf(value) >= 0 : values == value;

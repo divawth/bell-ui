@@ -1,8 +1,8 @@
 import Yox from 'yox';
 import template from './template/Dropdown.hbs';
-import { TRUE, FALSE, RAW_STRING, RAW_HOVER, RAW_CLICK, RAW_CUSTOM, RAW_PLACEMENT_ARRAY, RAW_BOTTOM, RAW_NUMERIC } from '../constant';
+import { TRUE, FALSE, RAW_STRING, RAW_HOVER, RAW_CLICK, RAW_CUSTOM, RAW_PLACEMENT_ARRAY, RAW_BOTTOM, RAW_NUMERIC, } from '../constant';
 import { oneOf, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         placement: {
             type: oneOf(RAW_PLACEMENT_ARRAY),

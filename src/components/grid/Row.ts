@@ -8,7 +8,7 @@ import {
   RAW_NUMERIC
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     gutter: {
       type: RAW_NUMERIC,

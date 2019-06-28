@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/BackTop.hbs';
 import { FALSE, RAW_STRING, RAW_NUMERIC, } from '../constant';
 import { scrollTop, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         bottom: {
             type: RAW_NUMERIC,
@@ -29,7 +29,7 @@ export default Yox.create({
     template: template,
     data: function () {
         return {
-            isShow: FALSE
+            hidden: FALSE
         };
     },
     events: {
@@ -41,7 +41,7 @@ export default Yox.create({
     afterMount: function () {
         var me = this, parentElement = me.$parent.$el, onRefresh = function () {
             me.set({
-                isShow: parentElement.scrollTop >= (me.get('height') || parentElement.clientHeight)
+                hidden: parentElement.scrollTop < (me.get('height') || parentElement.clientHeight)
             });
         };
         Yox.dom.on(parentElement, 'scroll', onRefresh);

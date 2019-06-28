@@ -12,7 +12,7 @@ import {
   RAW_BOOLEAN,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     name: {
       type: RAW_STRING

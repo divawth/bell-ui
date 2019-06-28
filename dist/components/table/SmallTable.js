@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/SmallTable.hbs';
-import { TRUE, NULL, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, } from '../constant';
-export default Yox.create({
+import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, NULL, } from '../constant';
+export default Yox.define({
     propTypes: {
         list: {
             type: RAW_ARRAY
@@ -92,42 +92,43 @@ export default Yox.create({
         },
         clearCurrentRow: function () {
             this.set({
-                'currentItem': null
+                currentItem: NULL
             });
         },
-        click: function (item, data, index) {
-            item.action(data, index);
+        click: function (row, item, index) {
+            row.action(item, index);
         },
-        rowClick: function (data, index) {
+        rowClick: function (item, index) {
             if (!this.get('highlightRow') || this.get('header')) {
                 return;
             }
-            data.index = index;
-            this.fire('currentChange', {
-                current: data,
+            this.fire('rowChange.table', {
+                index: index,
+                current: item,
                 oldCurrent: this.get('currentItem')
             });
             this.set({
-                'currentItem': data
+                currentIndex: index,
+                currentItem: item
             });
         },
         setChecked: function (value, force, index) {
             var list = this.copy(this.get('list'));
             list = list.map(function (item, key) {
-                if (force && index == null) {
+                if (force && index == NULL) {
                     item.checked = value;
                 }
-                else if (index != null) {
+                else if (index != NULL) {
                     if (key === index) {
                         item.checked = value;
                     }
                 }
                 else {
-                    item.checked = item.checked != null ? item.checked : value;
+                    item.checked = item.checked != NULL ? item.checked : value;
                 }
                 return item;
             });
-            this.fire('selectChange', list);
+            this.fire('selectChange.table', list);
             this.set({ list: list });
         }
     },
@@ -137,7 +138,7 @@ export default Yox.create({
             return;
         }
         if (me.get('selection')) {
-            me.setChecked();
+            me.setChecked(FALSE, TRUE);
         }
         var colWidths = [];
         me.get('columns').forEach(function (item) {

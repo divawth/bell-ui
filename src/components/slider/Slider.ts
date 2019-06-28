@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Slider.hbs'
 
@@ -13,7 +13,7 @@ import {
   RAW_BOOLEAN,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     type: {
       type: RAW_STRING
@@ -55,7 +55,7 @@ export default Yox.create({
   },
 
   computed: {
-    percent() {
+    percent(): number | string {
       let range = this.get('max') - this.get('min')
       let percentNum = range > 0
         ? (this.get('value') - this.get('min')) / range * 100
@@ -68,12 +68,12 @@ export default Yox.create({
   },
 
   methods: {
-    handleTouchStart(event) {
+    handleTouchStart(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return
       }
-      me.setValue(event)
+      me.setValue(event.originalEvent as TouchEvent)
       Yox.dom.on(
         document,
         'touchmove',
@@ -95,10 +95,10 @@ export default Yox.create({
         me.handleTouchEnd
       )
       event.prevent()
-      me.onDragStart(event)
+      me.onDragStart()
     },
 
-    handleTouchEnd(event) {
+    handleTouchEnd(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return
@@ -124,23 +124,23 @@ export default Yox.create({
         me.handleTouchEnd
       )
       event.prevent()
-      me.onDragStop(event)
+      me.onDragStop()
     },
 
-    handleTouchMove(event) {
-      this.onDragUpdate(event)
+    handleTouchMove(event: CustomEventInterface) {
+      this.onDragUpdate(event.originalEvent as TouchEvent)
     },
 
-    handleDragMouseMove(event) {
-      this.onDragUpdate(event)
+    handleDragMouseMove(event: CustomEventInterface) {
+      this.onDragUpdate(event.originalEvent as MouseEvent)
     },
 
-    handleMouseDown(event) {
+    handleMouseDown(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return
       }
-      me.setValue(event)
+      me.setValue(event.originalEvent as MouseEvent)
       Yox.dom.on(
         document,
         'mousemove',
@@ -187,7 +187,7 @@ export default Yox.create({
       this.fire('dragStop')
     },
 
-    onDragUpdate(event) {
+    onDragUpdate(event: TouchEvent | MouseEvent) {
       let me = this
       if (me.get('draging')) {
         return
@@ -202,10 +202,11 @@ export default Yox.create({
       })
     },
 
-    setValue(event) {
+    setValue(event: TouchEvent | MouseEvent) {
 
-      event = event.originalEvent
-      let clientX = event.touches ? event.touches[0].clientX : event.clientX
+      let clientX = (event as TouchEvent).touches
+        ? (event as TouchEvent).touches[0].clientX
+        : (event as MouseEvent).clientX
 
       let me = this
       let element = me.$el
@@ -237,14 +238,5 @@ export default Yox.create({
         )
       }
     }
-
-  },
-
-  afterMount() {
-    let me = this
-    me.handleDragMouseMove = me.handleDragMouseMove.bind(me)
-    me.handleDragMouseEnd = me.handleDragMouseEnd.bind(me)
-    me.handleTouchMove = me.handleTouchMove.bind(me)
-    me.handleTouchEnd = me.handleTouchEnd.bind(me)
   }
 })

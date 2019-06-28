@@ -1,8 +1,8 @@
 import Yox from 'yox';
-import template from './template/Tooltip.html';
-import { FALSE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
+import template from './template/Tooltip.hbs';
+import { FALSE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, NULL, } from '../constant';
 var timer;
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         content: {
             type: RAW_STRING
@@ -43,8 +43,9 @@ export default Yox.create({
         'hasItem.tootipItem': function () {
             var content = this.$refs.contents.getElementsByClassName('${prefix}tooltip-inner-content');
             if (content.length) {
+                var innerElement = this.$refs.innerElement;
                 for (var i = 0; i < content.length; i++) {
-                    Yox.dom.append(this.$refs.innerElement, content[i]);
+                    Yox.dom.append(innerElement, content[i]);
                 }
             }
         }
@@ -113,11 +114,10 @@ export default Yox.create({
             poperElement.style.marginTop = marginTop + 'px';
         },
         leave: function () {
-            var me = this;
-            if (me.get('mode') && me.get('mode') == 'click') {
+            if (this.get('mode') && this.get('mode') == 'click') {
                 return;
             }
-            me.set({
+            this.set({
                 isShow: false,
                 isHover: false
             });
@@ -158,7 +158,7 @@ export default Yox.create({
     beforeDestroy: function () {
         if (timer) {
             clearTimeout(timer);
-            timer = null;
+            timer = NULL;
         }
     }
 });

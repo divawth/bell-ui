@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Row.hbs';
 import { TRUE, RAW_STRING, RAW_NUMERIC } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         gutter: {
             type: RAW_NUMERIC,

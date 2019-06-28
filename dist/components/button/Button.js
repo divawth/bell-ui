@@ -1,8 +1,8 @@
 import Yox from 'yox';
 import template from './template/Button.hbs';
-import { oneOf } from '../util';
 import { RAW_TINY, RAW_SMALL, RAW_LARGE, RAW_DEFAULT, RAW_STRING, RAW_BOOLEAN, RAW_TYPE_ARRAY } from '../constant';
-export default Yox.create({
+import { oneOf, } from '../util';
+export default Yox.define({
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),

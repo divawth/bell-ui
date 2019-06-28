@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Select.hbs';
 import { contains } from '../util';
 import { NULL, FALSE, TRUE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         clearable: {
             type: RAW_BOOLEAN
@@ -50,8 +50,8 @@ export default Yox.create({
     },
     watchers: {
         value: function (value) {
-            this.fire('optionSelectedChange', { value: value }, TRUE);
-            this.fire('change', {
+            this.fire('optionSelectedChange.select', { value: value }, TRUE);
+            this.fire('change.select', {
                 value: value,
                 text: this.get('selectedText'),
                 index: this.get('selectedIndex')
@@ -173,7 +173,7 @@ export default Yox.create({
                 value: me.get('value')
             }, TRUE);
         }
-        me.documentClickHandler = function (e) {
+        var documentClickHandler = function (e) {
             if (!me.get('visible')) {
                 return;
             }
@@ -186,7 +186,7 @@ export default Yox.create({
                 visible: FALSE
             });
         };
-        me.documentKeydownHander = function (e) {
+        var documentKeydownHander = function (e) {
             if (!me.get('visible')) {
                 return;
             }
@@ -204,13 +204,12 @@ export default Yox.create({
                     break;
             }
         };
-        Yox.dom.on(document, 'click', me.documentClickHandler);
-        Yox.dom.on(document, 'keydown', me.documentKeydownHander);
-    },
-    beforeDestroy: function () {
-        var me = this;
-        Yox.dom.off(document, 'click', me.documentClickHandler);
-        Yox.dom.off(document, 'keydown', me.documentKeydownHander);
+        Yox.dom.on(document, 'click', documentClickHandler);
+        Yox.dom.on(document, 'keydown', documentKeydownHander);
+        me.once('beforeDestroy.hook', function () {
+            Yox.dom.off(document, 'click', documentClickHandler);
+            Yox.dom.off(document, 'keydown', documentKeydownHander);
+        });
     }
 });
 //# sourceMappingURL=Select.js.map

@@ -16,7 +16,7 @@ import {
   oneOf
 } from '../util.js'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     value: {
       type: RAW_OBJECT

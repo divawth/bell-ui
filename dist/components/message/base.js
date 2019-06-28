@@ -1,6 +1,7 @@
 import Yox from 'yox';
 import template from './template/Message.hbs';
 import { TRUE, RAW_BOOLEAN, RAW_STRING, FALSE } from '../constant';
+import { onTransitionEnd } from '../util';
 var id = 0;
 var createMessage = function (data) {
     var namespace = '${prefix}message-' + id++;
@@ -43,7 +44,8 @@ var createMessage = function (data) {
         data: function () {
             return {
                 marginLeft: 0,
-                top: 0,
+                top: data.top || 15,
+                showTime: data.duration || 1500,
                 isShow: FALSE,
                 close: function () {
                     if (instance) {
@@ -58,48 +60,41 @@ var createMessage = function (data) {
         methods: {
             fadeIn: function () {
                 var me = this;
-                me.fadeInFuc = setTimeout(function () {
+                setTimeout(function () {
+                    if (!me.$el) {
+                        return;
+                    }
                     me.set({
                         isShow: true,
-                        top: me.top
+                        top: me.get('top')
                     });
                     me.fadeOut();
-                }, me.fadeInTime);
+                }, 300);
             },
             fadeOut: function () {
                 var me = this;
-                me.showTimeFuc = setTimeout(function () {
+                setTimeout(function () {
+                    if (!me.$el) {
+                        return;
+                    }
                     me.set({
                         isShow: false,
                         top: 0
                     });
-                    me.fadeOutFuc = setTimeout(function () {
-                        if (instance) {
-                            instance.destroy();
-                        }
+                    onTransitionEnd(me.$el, function () {
                         if (Yox.is.func(data.onClose)) {
                             data.onClose();
                         }
-                    }, me.fadeOutTime);
-                }, me.showTime);
+                    });
+                }, me.get('showTime'));
             }
         },
         afterMount: function () {
             var me = this;
-            me.fadeInTime = 300;
-            me.fadeOutTime = 300;
-            me.showTime = data.duration || 1500;
-            me.top = data.top || 15;
             me.set({
                 marginLeft: me.$el.clientWidth
             });
             me.fadeIn();
-        },
-        beforeDestroy: function () {
-            var me = this;
-            clearTimeout(me.fadeInFuc);
-            clearTimeout(me.showTimeFuc);
-            clearTimeout(me.fadeOutFuc);
         }
     });
 };

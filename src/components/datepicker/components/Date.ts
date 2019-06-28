@@ -21,7 +21,7 @@ import {
 import { isDate } from '../../util'
 import Yox from 'yox'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     multiple: {

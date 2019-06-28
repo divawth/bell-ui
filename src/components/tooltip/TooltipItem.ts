@@ -4,7 +4,7 @@ import template from './template/TooltipItem.hbs'
 
 import { RAW_STRING } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     className: {

@@ -4,7 +4,7 @@ import template from './template/TimeLineItem.hbs'
 
 import { RAW_STRING } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     color: {
       type: RAW_STRING,

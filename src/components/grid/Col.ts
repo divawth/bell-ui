@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { Data } from 'yox'
 
 import template from './template/Col.hbs'
 
@@ -10,7 +10,7 @@ import {
 
 import { findComponentUpward } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     span: {
       type: RAW_NUMERIC
@@ -56,35 +56,35 @@ export default Yox.create({
     }
   },
   computed: {
-    xsClass() {
+    xsClass(): string {
       let data = this.get('xs')
       if (!data) {
         return
       }
       return this.getClass('xs', data)
     },
-    smClass() {
+    smClass(): string {
       let data = this.get('sm')
       if (!data) {
         return
       }
       return this.getClass('sm', data)
     },
-    mdClass() {
+    mdClass(): string {
       let data = this.get('md')
       if (!data) {
         return
       }
       return this.getClass('md', data)
     },
-    lgClass() {
+    lgClass(): string {
       let data = this.get('lg')
       if (!data) {
         return
       }
       return this.getClass('lg', data)
     },
-    inlineStyle() {
+    inlineStyle(): string {
       let gap = 0
       let style = ''
       if (this.get('style')
@@ -101,7 +101,7 @@ export default Yox.create({
   },
 
   methods: {
-    getClass(name, data) {
+    getClass(name: string, data: Data) {
       let classArr = []
       if (Yox.is.object(data)) {
         if (data.span) {

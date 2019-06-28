@@ -11,7 +11,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     size: {
       type: oneOf(['large', 'small', 'tiny'])

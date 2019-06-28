@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/TimePicker.hbs';
 import { RAW_STRING, RAW_NUMBER, RAW_FUNCTION, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         unit: {
             type: RAW_STRING,

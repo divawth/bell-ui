@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { Data } from 'yox'
 import template from './template/Message.hbs'
 import {
   TRUE,
@@ -6,10 +6,11 @@ import {
   RAW_STRING,
   FALSE
 } from '../constant'
+import { onTransitionEnd } from '../util';
 
 let id = 0
 
-const createMessage = function (data) {
+const createMessage = function (data: Data) {
 
   const namespace = '${prefix}message-' + id++
   const element = Yox.dom.createElement('div') as HTMLElement
@@ -53,7 +54,8 @@ const createMessage = function (data) {
     data() {
       return {
         marginLeft: 0,
-        top: 0,
+        top: data.top || 15,
+        showTime: data.duration || 1500,
         isShow: FALSE,
         close() {
           if (instance) {
@@ -69,66 +71,57 @@ const createMessage = function (data) {
     methods: {
       fadeIn() {
         let me = this
-        me.fadeInFuc = setTimeout(
+        setTimeout(
           function () {
+            if (!me.$el) {
+              return
+            }
             me.set({
               isShow: true,
-              top: me.top
+              top: me.get('top')
             })
             me.fadeOut()
           },
-          me.fadeInTime
+          300
         )
       },
       fadeOut() {
         let me = this
-        me.showTimeFuc = setTimeout(
+        setTimeout(
           function () {
+            if (!me.$el) {
+              return
+            }
             me.set({
               isShow: false,
               top: 0
             })
 
-            me.fadeOutFuc = setTimeout(
+            onTransitionEnd(
+              me.$el,
               function () {
-                if (instance) {
-                  instance.destroy()
-                }
                 if (Yox.is.func(data.onClose)) {
                   data.onClose()
                 }
-              },
-              me.fadeOutTime
+              }
             )
           },
-          me.showTime
+          me.get('showTime')
         )
       }
     },
 
     afterMount() {
       let me = this
-      me.fadeInTime = 300
-      me.fadeOutTime = 300
-      me.showTime = data.duration || 1500
-      me.top = data.top || 15
-
       me.set({
         marginLeft: me.$el.clientWidth
       })
 
       me.fadeIn()
-    },
-
-    beforeDestroy() {
-      let me = this
-      clearTimeout(me.fadeInFuc)
-      clearTimeout(me.showTimeFuc)
-      clearTimeout(me.fadeOutFuc)
     }
   })
 }
 
-export const add = function (data) {
+export const add = function (data: Data) {
   createMessage(data)
 }

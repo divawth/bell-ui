@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/FormItem.hbs';
 import { findComponentUpward, } from '../util';
 import { RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         prop: {
             type: RAW_STRING
@@ -50,7 +50,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var form = findComponentUpward(this, '${prefix}form');
+        var form = findComponentUpward(this.$parent, '${prefix}form');
         var prop = this.get('prop');
         var rules = form.get('rules');
         if (rules && prop) {

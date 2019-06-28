@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/DropdownItem.hbs';
 import { FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         divided: {
             type: RAW_BOOLEAN,

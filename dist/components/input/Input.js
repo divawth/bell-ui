@@ -1,12 +1,12 @@
 import Yox from 'yox';
 import template from './template/Input.hbs';
-import { FALSE, TRUE, RAW_BOOLEAN, RAW_STRING, RAW_NUMERIC, RAW_OBJECT, } from '../constant';
+import { TRUE, FALSE, RAW_BOOLEAN, RAW_STRING, RAW_NUMERIC, RAW_OBJECT, } from '../constant';
 import { oneOf, } from '../util';
 var TEXT_TYPE_PASSWORD = 'password';
 var TEXT_TYPE_TEXTAREA = 'textarea';
 var TEXT_TYPE_TEXT = 'text';
 var ROWS_HEIGHT = 22;
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         value: {
             type: RAW_STRING
@@ -85,9 +85,7 @@ export default Yox.create({
         };
     },
     filters: {
-        isBoolean: function (value) {
-            return Yox.is.boolean(value);
-        }
+        isBoolean: Yox.is.boolean
     },
     watchers: {
         value: function (value) {

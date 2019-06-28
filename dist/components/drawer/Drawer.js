@@ -4,7 +4,7 @@ import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
 import { onTransitionEnd, } from '../util';
 var CLASS_OPEN = '${prefix}drawer-open';
 var CLASS_LEAVE = '${prefix}drawer-leave';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -47,18 +47,20 @@ export default Yox.create({
     template: template,
     watchers: {
         open: function (isOpen) {
-            var element = this.$el;
+            var me = this, element = this.$el;
             if (isOpen) {
                 Yox.dom.addClass(element, CLASS_OPEN);
-                this.fire('open.drawer');
+                onTransitionEnd(element, function () {
+                    me.fire('open.drawer');
+                });
             }
             else {
                 Yox.dom.addClass(element, CLASS_LEAVE);
                 onTransitionEnd(element, function () {
                     Yox.dom.removeClass(element, CLASS_OPEN);
                     Yox.dom.removeClass(element, CLASS_LEAVE);
+                    me.fire('close.drawer');
                 });
-                this.fire('close.drawer');
             }
         }
     },
@@ -85,6 +87,11 @@ export default Yox.create({
                 }
             }
             return style;
+        }
+    },
+    methods: {
+        close: function () {
+            this.set('open', FALSE);
         }
     },
     afterMount: function () {

@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Rate.hbs';
 import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, RAW_ARRAY, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         count: {
             type: RAW_NUMERIC,

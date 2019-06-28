@@ -1,5 +1,5 @@
 import { add } from './base'
-import Yox, { data } from 'yox'
+import Yox, { Data } from 'yox'
 
 interface Config {
   duration?: number
@@ -8,8 +8,8 @@ interface Config {
 
 let config: Config = {}
 
-let addNotice = function (type: string, arg: data) {
-  let data: data = {}
+let addNotice = function (type: string, arg: Data) {
+  let data: Data = {}
   data.type = type
 
   if (Yox.is.string(arg)) {
@@ -34,22 +34,22 @@ let updateConfig = function (data) {
 }
 
 export default {
-  success: function (arg: data) {
+  success: function (arg: Data) {
     addNotice('success', arg)
   },
-  info: function (arg: data) {
+  info: function (arg: Data) {
     addNotice('info', arg)
   },
-  warning: function (arg: data) {
+  warning: function (arg: Data) {
     addNotice('warning', arg)
   },
-  error: function (arg: data) {
+  error: function (arg: Data) {
     addNotice('error', arg)
   },
-  loading: function (arg: data) {
+  loading: function (arg: Data) {
     addNotice('loading', arg)
   },
-  config: function (options: data) {
+  config: function (options: Data) {
     updateConfig(options)
   },
   destroy: function () {

@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/MenuGroup.hbs';
 import { findComponentUpward, } from '../util';
 import { NULL, RAW_STRING } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         title: {
             type: RAW_STRING
@@ -27,7 +27,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var element = findComponentUpward(this, '${prefix}menu');
+        var element = findComponentUpward(this.$parent, '${prefix}menu');
         this.set({
             'mode': element.get('mode'),
             'theme': element.get('theme'),

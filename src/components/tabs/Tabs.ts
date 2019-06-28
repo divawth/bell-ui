@@ -23,7 +23,7 @@ interface Tab {
   id: string
 }
 
-export default Yox.create({
+export default Yox.define({
 
   name: '${prefix}tabs',
 

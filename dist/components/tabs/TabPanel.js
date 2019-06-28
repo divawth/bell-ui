@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/TabPanel.hbs';
 import { findComponentUpward, } from '../util';
 import { FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -61,7 +61,7 @@ export default Yox.create({
         var me = this;
         var name = me.get('name');
         if (name == null) {
-            var element = findComponentUpward(me, '${prefix}tabs');
+            var element = findComponentUpward(me.$parent, '${prefix}tabs');
             name = Yox.array.indexOf(element.$children, me);
         }
         me.set('id', name);

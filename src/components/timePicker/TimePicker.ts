@@ -8,7 +8,7 @@ import {
   RAW_FUNCTION,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     unit: {
       type: RAW_STRING,

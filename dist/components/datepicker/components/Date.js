@@ -4,7 +4,7 @@ import template from '../template/Date.hbs';
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY } from '../../constant';
 import { isDate } from '../../util';
 import Yox from 'yox';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         multiple: {
             type: RAW_BOOLEAN

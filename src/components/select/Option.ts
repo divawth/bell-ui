@@ -9,7 +9,7 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     value: {
       type: [ RAW_STRING, RAW_NUMERIC ]
@@ -42,7 +42,7 @@ export default Yox.create({
       }
     },
 
-    optionSelectedChange(_, data) {
+    'optionSelectedChange.select': function (_, data) {
       let value = this.get('value')
       let values = data.value
 

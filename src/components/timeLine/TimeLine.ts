@@ -4,7 +4,7 @@ import template from './template/TimeLine.hbs'
 
 import { RAW_BOOLEAN } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     pending: {
       type: RAW_BOOLEAN

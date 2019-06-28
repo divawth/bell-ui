@@ -16,7 +16,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
 
   model: 'selected',
 
@@ -63,7 +63,7 @@ export default Yox.create({
     },
     'change.checkbox': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
-        const me: Yox = this
+        const me = this
         const selected = me.copy(me.get('selected'))
         if (data.checked) {
           if (!Yox.array.has(selected, data.value)) {

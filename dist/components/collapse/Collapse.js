@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Collapse.hbs';
-import { TRUE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC } from '../constant';
-export default Yox.create({
+import { TRUE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
+export default Yox.define({
     name: '${prefix}collapse',
     propTypes: {
         activeName: {
@@ -24,16 +24,13 @@ export default Yox.create({
     template: template,
     watchers: {
         accordion: function (accordion) {
-            this.fire('accordionChanged', { accordion: accordion }, TRUE);
+            this.fire('change.accordion', { accordion: accordion }, TRUE);
         }
     },
     events: {
-        panelOpen: function (event, data) {
+        'change.opened': function (event, data) {
             if (event.phase === Yox.Event.PHASE_UPWARD) {
-                this.fire('panelOpen', {
-                    name: data.name,
-                    isOpen: data.isOpen
-                }, TRUE);
+                this.fire('change.opened', data, TRUE);
             }
         }
     }

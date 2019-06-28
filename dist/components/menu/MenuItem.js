@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/MenuItem.hbs';
 import { findComponentUpward, } from '../util';
 import { NULL, FALSE, RAW_STRING, RAW_BOOLEAN } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         name: {
             type: RAW_STRING
@@ -43,7 +43,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var element = findComponentUpward(this, '${prefix}menu');
+        var element = findComponentUpward(this.$parent, '${prefix}menu');
         this.set({
             'mode': element.get('mode'),
             'isActive': element.get('activeName') === this.get('name')

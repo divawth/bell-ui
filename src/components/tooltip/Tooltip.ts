@@ -7,11 +7,12 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  NULL,
 } from '../constant'
 
-let timer
+let timer: any
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     content: {
       type: RAW_STRING
@@ -51,10 +52,11 @@ export default Yox.create({
 
   events: {
     'hasItem.tootipItem': function() {
-      let content = this.$refs.contents.getElementsByClassName('${prefix}tooltip-inner-content')
+      let content = (this.$refs.contents as HTMLElement).getElementsByClassName('${prefix}tooltip-inner-content')
       if (content.length) {
+        const innerElement = this.$refs.innerElement as HTMLElement
         for (let i = 0; i < content.length; i++) {
-          Yox.dom.append(this.$refs.innerElement, content[ i ])
+          Yox.dom.append(innerElement, content[ i ])
         }
       }
     }
@@ -79,7 +81,7 @@ export default Yox.create({
       let offsetX = me.get('offsetX') ? +me.get('offsetX') : 0
       let offsetY = me.get('offsetY') ? +me.get('offsetY') : 0
 
-      let poperElement = this.$refs.poperElement
+      let poperElement = this.$refs.poperElement as HTMLElement
       let placement = me.get('placement') || 'bottom'
       let poperElementWidth = poperElement.clientWidth
       let poperElementHeight = poperElement.clientHeight
@@ -132,12 +134,11 @@ export default Yox.create({
     },
 
     leave() {
-      let me = this
-      if (me.get('mode') && me.get('mode') == 'click') {
+      if (this.get('mode') && this.get('mode') == 'click') {
         return
       }
 
-      me.set({
+      this.set({
         isShow: false,
         isHover: false
       })
@@ -186,7 +187,7 @@ export default Yox.create({
   beforeDestroy() {
     if (timer) {
       clearTimeout(timer)
-      timer = null
+      timer = NULL
     }
   }
 })

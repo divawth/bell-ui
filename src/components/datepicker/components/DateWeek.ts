@@ -15,7 +15,7 @@ import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 import { isDate } from '../../util'
 import Yox from 'yox';
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     startDate: {
@@ -48,10 +48,10 @@ export default Yox.create({
   },
 
   computed: {
-    currentYear() {
+    currentYear(): string {
       return simplifyDate(this.get('modeDate')).year
     },
-    currentMonth() {
+    currentMonth(): string {
       return simplifyDate(this.get('modeDate')).month
     }
   },

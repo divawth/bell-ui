@@ -6,10 +6,10 @@ import DateMonth from './components/DateMonth';
 import DateYear from './components/DateYear';
 import { lpad, simplifyDate } from './function/util';
 import { contains, oneOf, isDate } from '../util';
-import template from './template/DatePicker.html';
+import template from './template/DatePicker.hbs';
 import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, RAW_BOTTOM_START, RAW_FUNCTION, RAW_SIZE_ARRAY } from '../constant';
 var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         type: {
             type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
@@ -152,18 +152,15 @@ export default Yox.create({
         close: function () {
             this.set('visible', false);
         },
-        formatDate: function (date) {
-            if (!date) {
+        formatDate: function (start, end) {
+            if (!start) {
                 return '';
             }
-            var argsLen = arguments.length;
             var result = '';
             var me = this;
             var startFormat = me.get('formatText').split('$')[0];
             var endFormat = me.get('formatText').split('$')[1];
-            if (argsLen > 1) {
-                var start = arguments[0];
-                var end = arguments[1];
+            if (end) {
                 var formatStart = startFormat
                     .replace(/yyyy/i, start.year)
                     .replace(/yy/i, +('' + start.year).substr(2))
@@ -184,13 +181,13 @@ export default Yox.create({
             }
             else {
                 result = startFormat
-                    .replace(/yyyy/i, date.year)
-                    .replace(/yy/i, +('' + date.year).substr(2))
-                    .replace(/MM/, lpad(date.month))
-                    .replace(/M/, date.month)
-                    .replace(/dd/i, lpad(date.date))
-                    .replace(/d/i, date.date)
-                    .replace(/w/, DAY_MAP[date.day]);
+                    .replace(/yyyy/i, start.year)
+                    .replace(/yy/i, +('' + start.year).substr(2))
+                    .replace(/MM/, lpad(start.month))
+                    .replace(/M/, start.month)
+                    .replace(/dd/i, lpad(start.date))
+                    .replace(/d/i, start.date)
+                    .replace(/w/, DAY_MAP[start.day]);
             }
             return result.trim();
         },

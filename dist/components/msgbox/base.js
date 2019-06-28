@@ -2,6 +2,7 @@ import MsgboxTpl from './template/Msgbox.hbs';
 import ConfirmTpl from './template/Confirm.hbs';
 import { TRUE, RAW_OBJECT, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_NUMERIC, } from '../constant';
 import Yox from 'yox';
+import { onTransitionEnd } from '../util';
 var id = 0;
 var createAlert = function (data) {
     var namespace = '${prefix}msg-alert-' + id++;
@@ -74,25 +75,25 @@ var createAlert = function (data) {
                 me.set({
                     isHidden: true
                 });
-                me.transTimer = setTimeout(function () {
-                    me.get('onClose') && me.get('onClose')();
-                    if (instance) {
-                        instance.destroy();
-                    }
-                }, 500);
+                me.nextTick(function () {
+                    onTransitionEnd(me.$el, function () {
+                        me.get('onClose') && me.get('onClose')();
+                        if (me.$el) {
+                            me.destroy();
+                        }
+                    });
+                });
             }
         },
         afterMount: function () {
             var me = this;
-            me.transTimer = setTimeout(function () {
-                me.set({
-                    isHidden: false
-                });
+            setTimeout(function () {
+                if (me.$el) {
+                    me.set({
+                        isHidden: false
+                    });
+                }
             }, 300);
-        },
-        beforeDestroy: function () {
-            var me = this;
-            clearTimeout(me.transTimer);
         }
     });
 };
@@ -166,25 +167,23 @@ var createConfirm = function (data) {
                 me.set({
                     isHidden: true
                 });
-                me.transTimer = setTimeout(function () {
-                    me.get('onClose') && me.get('onClose')();
-                    if (instance) {
-                        instance.destroy();
-                    }
-                }, 500);
+                me.nextTick(function () {
+                    onTransitionEnd(me.$el, function () {
+                        me.get('onClose') && me.get('onClose')();
+                        if (me.$el) {
+                            me.destroy();
+                        }
+                    });
+                });
             }
         },
         afterMount: function () {
             var me = this;
-            me.transTimer = setTimeout(function () {
+            setTimeout(function () {
                 me.set({
                     isHidden: false
                 });
             }, 300);
-        },
-        beforeDestroy: function () {
-            var me = this;
-            clearTimeout(me.transTimer);
         }
     });
 };

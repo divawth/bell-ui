@@ -6,7 +6,7 @@ import {
   RAW_STRING
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING

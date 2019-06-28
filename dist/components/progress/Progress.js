@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Progress.hbs';
 import { FALSE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         percent: {
             type: RAW_NUMERIC,

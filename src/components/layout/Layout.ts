@@ -9,7 +9,7 @@ import {
   RAW_BOOLEAN
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     fixed: {
       type: RAW_BOOLEAN
@@ -32,7 +32,7 @@ export default Yox.create({
 
   events: {
     hasSider(event) {
-      const me: Yox = this
+      const me = this
       if (event.phase === Yox.Event.PHASE_CURRENT) {
         return
       }

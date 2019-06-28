@@ -18,7 +18,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     placement: {
       type: oneOf(RAW_PLACEMENT_ARRAY),

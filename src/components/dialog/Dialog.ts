@@ -16,7 +16,7 @@ import {
 const CLASS_OPEN = '${prefix}dialog-open'
 const CLASS_LEAVE = '${prefix}dialog-leave'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING,

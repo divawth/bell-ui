@@ -80,7 +80,7 @@ class="${prefix}table
     {{else if !header}}
       {{#each list:index}}
         <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}
-            {{#if currentItem && currentItem.index == index}} ${prefix}table-active{{/if}}
+            {{#if currentItem && currentIndex == index}} ${prefix}table-active{{/if}}
             {{list.length}}
           "
           on-click="rowClick(this, index)"

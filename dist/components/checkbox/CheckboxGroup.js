@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/CheckboxGroup.hbs';
 import { TRUE, RAW_ARRAY, RAW_STRING, RAW_BOOLEAN, RAW_DEFAULT, RAW_TYPE_ARRAY, RAW_SIZE_ARRAY, } from '../constant';
 import { oneOf, } from '../util';
-export default Yox.create({
+export default Yox.define({
     model: 'selected',
     name: '${prefix}checkboxGroup',
     propTypes: {

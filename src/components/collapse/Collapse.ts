@@ -9,7 +9,7 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
 
   name: '${prefix}collapse',
 

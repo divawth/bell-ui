@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Table.hbs';
 import { TRUE, RAW_STRING, RAW_BOOLEAN, RAW_FUNCTION, RAW_ARRAY, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         list: {
             type: RAW_ARRAY

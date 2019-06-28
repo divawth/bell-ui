@@ -1,4 +1,4 @@
-import Yox, { listener } from 'yox'
+import Yox, { Listener } from 'yox'
 
 import Date from './components/Date'
 import DateRange from './components/DateRange'
@@ -14,7 +14,7 @@ import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, R
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     type: {
@@ -85,10 +85,10 @@ export default Yox.create({
   },
 
   computed: {
-    autoClose() {
+    autoClose(): boolean {
       return this.get('multiple') || this.get('confirm')
     },
-    isOpen() {
+    isOpen(): boolean {
       return this.get('visible') || this.get('open')
     }
   },
@@ -176,21 +176,17 @@ export default Yox.create({
       this.set('visible', false)
     },
 
-    formatDate(date) {
+    formatDate(start: any, end?: any) {
 
-      if (!date) {
+      if (!start) {
         return ''
       }
-      let argsLen = arguments.length
       let result = ''
       let me = this
       let startFormat = me.get('formatText').split('$')[0]
       let endFormat = me.get('formatText').split('$')[1]
 
-      if (argsLen > 1) {
-        let start = arguments[0]
-        let end = arguments[1]
-
+      if (end) {
         let formatStart = startFormat
           .replace(/yyyy/i, start.year)
           .replace(/yy/i, +('' + start.year).substr(2))
@@ -214,13 +210,13 @@ export default Yox.create({
       }
       else {
         result = startFormat
-          .replace(/yyyy/i, date.year)
-          .replace(/yy/i, +('' + date.year).substr(2))
-          .replace(/MM/, lpad(date.month))
-          .replace(/M/, date.month)
-          .replace(/dd/i, lpad(date.date))
-          .replace(/d/i, date.date)
-          .replace(/w/, DAY_MAP[date.day])
+          .replace(/yyyy/i, start.year)
+          .replace(/yy/i, +('' + start.year).substr(2))
+          .replace(/MM/, lpad(start.month))
+          .replace(/M/, start.month)
+          .replace(/dd/i, lpad(start.date))
+          .replace(/d/i, start.date)
+          .replace(/w/, DAY_MAP[start.day])
       }
       return result.trim()
     },
@@ -350,7 +346,7 @@ export default Yox.create({
       me.set({ formatText })
     }
 
-    const onClick: listener = function (event) {
+    const onClick: Listener = function (event) {
       let element = me.$el
       let target = event.originalEvent.target
       if (contains(element, target)) {

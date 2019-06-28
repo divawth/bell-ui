@@ -4,7 +4,7 @@ import { MONTHS } from '../function/constant'
 import { isDate } from '../../util'
 import Yox from 'yox'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     startDate: {

@@ -13,10 +13,10 @@ import {
 } from '../constant'
 
 import {
-  findComponentUpward,
+  findComponentUpward, onTransitionEnd,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     title: {
@@ -88,22 +88,21 @@ export default Yox.create({
         return
       }
 
-      me.removeTimer()
-
-      const { content } = me.$refs
+      const content = me.$refs.content as HTMLElement
       content.style.height = content.clientHeight + 'px'
 
-      me.toggleTimer = setTimeout(
+      me.nextTick(
         function () {
-          me.toggleTimer = UNDEFINED
-          content.style.height = 0
-          me.initTimer = setTimeout(
+          if (!content) {
+            return
+          }
+          content.style.height = '0px'
+          onTransitionEnd(
+            content,
             function () {
-              me.initTimer = UNDEFINED
               content.style.height = ''
               me.set('opened', FALSE)
-            },
-            100
+            }
           )
         }
       )
@@ -117,42 +116,29 @@ export default Yox.create({
         return
       }
 
-      me.removeTimer()
-
       me.set('opened', TRUE)
       me.nextTick(function () {
 
-        const { content } = me.$refs
+        const content = me.$refs.content as HTMLElement
 
         const height = content.clientHeight
-        content.style.height = 0
+        content.style.height = '0px'
 
-        me.toggleTimer = setTimeout(
+        setTimeout(
           function () {
-            me.toggleTimer = UNDEFINED
+            if (!content) {
+              return
+            }
             content.style.height = height + 'px'
-            me.initTimer = setTimeout(
+            onTransitionEnd(
+              content,
               function () {
-                me.initTimer = UNDEFINED
                 content.style.height = ''
-              },
-              100
+              }
             )
           }
         )
       })
-    },
-
-    removeTimer() {
-      const { toggleTimer, initTimer } = this
-      if (toggleTimer) {
-        clearTimeout(toggleTimer)
-        this.toggleTimer = UNDEFINED
-      }
-      if (initTimer) {
-        clearTimeout(initTimer)
-        this.initTimer = UNDEFINED
-      }
     }
   },
 
@@ -175,9 +161,5 @@ export default Yox.create({
         immediate: TRUE
       }
     )
-  },
-
-  beforeDestroy() {
-    this.removeTimer()
   }
 })

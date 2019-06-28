@@ -1,4 +1,4 @@
-import Yox, { listener } from 'yox'
+import Yox, { Listener } from 'yox'
 import template from './template/InputNumber.hbs'
 
 import {
@@ -15,7 +15,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     formatter: {
       type: RAW_FUNCTION
@@ -81,7 +81,7 @@ export default Yox.create({
   },
 
   computed: {
-    computedValue() {
+    computedValue(): number {
       if (this.get('formatter')) {
         return this.get('formatter')(this.get('value'))
       }
@@ -112,7 +112,7 @@ export default Yox.create({
 
     const me = this, doc = document
 
-    const onKeydown: listener = function (event) {
+    const onKeydown: Listener = function (event) {
       switch ((event.originalEvent as KeyboardEvent).keyCode) {
         case 38:
           me.up()

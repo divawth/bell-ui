@@ -19,7 +19,7 @@ import {
 
 const SPACE_HORIZONTAL = 8
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     shape: {
@@ -67,7 +67,7 @@ export default Yox.create({
 
   afterMount() {
     if (supportTransform) {
-      const me: Yox = this
+      const me = this
       me.watch(
         'text',
         {

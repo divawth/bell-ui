@@ -7,7 +7,7 @@ import {
   RAW_BOOLEAN
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     isCollapsed: {
       type: RAW_BOOLEAN

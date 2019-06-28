@@ -1,8 +1,8 @@
 import Yox from 'yox';
 import template from './template/ButtonGroup.hbs';
-import { oneOf, } from '../util';
 import { RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+import { oneOf, } from '../util';
+export default Yox.define({
     propTypes: {
         size: {
             type: oneOf(['large', 'small', 'tiny'])

@@ -4,7 +4,7 @@ import template from './template/OptionGroup.hbs'
 
 import { RAW_STRING } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     label: {
       type: RAW_STRING

@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Radio.hbs';
 import { FALSE, RAW_STRING, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant';
 import { findComponentUpward, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         label: {
             type: RAW_STRING
@@ -51,7 +51,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var radiogroup = findComponentUpward(this, '${prefix}radiogroup');
+        var radiogroup = findComponentUpward(this.$parent, '${prefix}radiogroup');
         if (radiogroup) {
             this.set({
                 name: radiogroup.get('name'),

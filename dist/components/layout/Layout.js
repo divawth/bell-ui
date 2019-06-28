@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Layout.hbs';
 import { FALSE, TRUE, RAW_STRING, RAW_BOOLEAN } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         fixed: {
             type: RAW_BOOLEAN

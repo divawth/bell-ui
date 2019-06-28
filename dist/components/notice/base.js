@@ -1,6 +1,7 @@
 import template from './template/Notice.hbs';
 import { TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, } from '../constant';
 import Yox from 'yox';
+import { onTransitionEnd } from '../util';
 var id = 0;
 var createNotice = function (data) {
     var namespace = '${prefix}notice-' + id++;
@@ -50,7 +51,7 @@ var createNotice = function (data) {
         },
         data: function () {
             return {
-                isShow: false,
+                visible: false,
                 rightSize: 15
             };
         },
@@ -60,9 +61,12 @@ var createNotice = function (data) {
             },
             fadeIn: function () {
                 var me = this;
-                me.fadeInTimer = setTimeout(function () {
+                setTimeout(function () {
+                    if (!me.$el) {
+                        return;
+                    }
                     me.set({
-                        isShow: true,
+                        visible: true,
                         rightSize: me.get('right')
                     });
                     if (me.get('duration') == 0) {
@@ -73,22 +77,26 @@ var createNotice = function (data) {
             },
             fadeOut: function () {
                 var me = this;
-                me.showTimer = setTimeout(function () {
-                    me.hide();
+                setTimeout(function () {
+                    if (me.$el) {
+                        me.hide();
+                    }
                 }, me.get('duration'));
             },
             hide: function () {
                 var me = this;
                 me.set({
-                    isShow: false,
+                    visible: false,
                     rightSize: "-" + me.$el.clientWidth
                 });
-                me.fadeOutTimer = setTimeout(function () {
-                    me.get('onClose') && me.get('onClose')();
-                    if (instance) {
-                        instance.destroy();
-                    }
-                }, 300);
+                me.nextTick(function () {
+                    onTransitionEnd(me.$el, function () {
+                        me.get('onClose') && me.get('onClose')();
+                        if (me.$el) {
+                            me.destroy();
+                        }
+                    });
+                });
             }
         },
         afterMount: function () {
@@ -96,12 +104,6 @@ var createNotice = function (data) {
                 rightSize: "-" + this.$el.clientWidth
             });
             this.fadeIn();
-        },
-        beforeDestroy: function () {
-            var me = this;
-            clearTimeout(me.fadeInTimer);
-            clearTimeout(me.showTimer);
-            clearTimeout(me.fadeOutTimer);
         }
     });
 };

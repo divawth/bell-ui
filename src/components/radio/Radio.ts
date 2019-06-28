@@ -13,7 +13,7 @@ import {
   findComponentUpward,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     label: {
       type: RAW_STRING

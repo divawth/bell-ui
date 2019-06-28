@@ -14,7 +14,7 @@ import {
   onTransitionEnd,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
 
   propTypes: {
     type: {
@@ -43,7 +43,7 @@ export default Yox.create({
   methods: {
     close() {
 
-      const me: Yox = this
+      const me = this
 
       Yox.dom.addClass(me.$el, '${prefix}hide')
 

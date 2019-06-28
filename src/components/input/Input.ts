@@ -1,4 +1,4 @@
-import Yox, { listener } from 'yox'
+import Yox, { Listener } from 'yox'
 
 import template from './template/Input.hbs'
 
@@ -20,7 +20,7 @@ const TEXT_TYPE_TEXTAREA = 'textarea'
 const TEXT_TYPE_TEXT = 'text'
 const ROWS_HEIGHT = 22
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     value: {
       type: RAW_STRING
@@ -171,9 +171,9 @@ export default Yox.create({
 
   afterMount() {
 
-    const me: Yox = this, doc = document
+    const me = this, doc = document
 
-    const onKeydown: listener = function (event) {
+    const onKeydown: Listener = function (event) {
       const { originalEvent } = event
       if (me.$refs && originalEvent.target == me.$refs.input) {
         me.fire('keydown.input')
@@ -182,13 +182,13 @@ export default Yox.create({
         }
       }
     }
-    const onKeyup: listener = function (event) {
+    const onKeyup: Listener = function (event) {
       const { originalEvent } = event
       if (me.$refs && originalEvent.target == me.$refs.input) {
         me.fire('keyup.input')
       }
     }
-    const onKeypress: listener = function (event) {
+    const onKeypress: Listener = function (event) {
       const { originalEvent } = event
       if (me.$refs && originalEvent.target == me.$refs.input) {
         me.fire('keypress.input')

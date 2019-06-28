@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Item.hbs';
 import { FALSE, RAW_BOOLEAN, RAW_STRING, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         disableHover: {
             type: RAW_BOOLEAN

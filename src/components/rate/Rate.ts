@@ -10,7 +10,7 @@ import {
   RAW_ARRAY,
 } from '../constant'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     count: {
       type: RAW_NUMERIC,

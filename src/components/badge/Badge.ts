@@ -15,7 +15,7 @@ import {
   oneOf,
 } from '../util'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     text: {
       type: RAW_STRING

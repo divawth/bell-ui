@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Alert.hbs';
 import { RAW_STRING, RAW_BOOLEAN, RAW_TYPE_ARRAY, RAW_TYPE_PRIMARY } from '../constant';
 import { oneOf, onTransitionEnd, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),

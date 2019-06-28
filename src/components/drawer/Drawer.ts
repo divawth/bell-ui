@@ -16,7 +16,7 @@ import {
 const CLASS_OPEN = '${prefix}drawer-open'
 const CLASS_LEAVE = '${prefix}drawer-leave'
 
-export default Yox.create({
+export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING

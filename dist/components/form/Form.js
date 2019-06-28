@@ -3,7 +3,7 @@ import { Validator } from './util/validate.js';
 import template from './template/Form.hbs';
 import { TRUE, RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, RAW_NUMERIC, } from '../constant.js';
 import { oneOf } from '../util.js';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         value: {
             type: RAW_OBJECT

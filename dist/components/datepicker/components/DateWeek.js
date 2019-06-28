@@ -4,7 +4,7 @@ import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant';
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant';
 import { isDate } from '../../util';
 import Yox from 'yox';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         startDate: {
             type: isDate()

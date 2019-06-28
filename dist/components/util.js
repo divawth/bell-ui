@@ -1,3 +1,4 @@
+import { UNDEFINED } from './constant';
 var element = document.createElement('div');
 var prefixs = ['Webkit', 'Moz', 'O', 'ms'];
 function testCSS(property) {
@@ -17,7 +18,10 @@ var transitionEnd = testCSS('transition') ? 'transitionend' : '';
 export var supportTransform = testCSS('transform') ? true : false;
 export function onTransitionEnd(el, callback) {
     if (transitionEnd) {
-        Yox.dom.on(el, transitionEnd, callback);
+        Yox.dom.on(el, transitionEnd, function (event) {
+            Yox.dom.off(el, transitionEnd, event.listener);
+            callback();
+        });
     }
     else {
         Yox.nextTick(callback);
@@ -38,19 +42,24 @@ export function contains(element, target) {
     }
     return false;
 }
-export function findComponentUpward(context, componentName) {
-    if (typeof componentName === 'string') {
+export function isDef(value) {
+    return value !== UNDEFINED;
+}
+export function findComponentUpward(parent, componentName) {
+    if (Yox.is.string(componentName)) {
         componentName = [componentName];
     }
     else {
         componentName = componentName;
     }
-    var parent = context.$parent;
-    var name = parent.$options.name;
-    while (parent && (!name || componentName.indexOf(name) < 0)) {
-        parent = parent.$parent;
-        if (parent)
-            name = parent.$options.name;
+    while (parent) {
+        var name_1 = parent.$options.name;
+        if (name_1 && Yox.array.has(componentName, name_1)) {
+            break;
+        }
+        else {
+            parent = parent.$parent;
+        }
     }
     return parent;
 }

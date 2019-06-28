@@ -1,7 +1,7 @@
 import Yox from 'yox';
 import template from './template/Tag.hbs';
 import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         size: {
             type: RAW_STRING,

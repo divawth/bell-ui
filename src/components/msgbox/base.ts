@@ -8,11 +8,12 @@ import {
   RAW_FUNCTION,
   RAW_NUMERIC,
 } from '../constant'
-import Yox, { data } from 'yox'
+import Yox, { Data } from 'yox'
+import { onTransitionEnd } from '../util';
 
 let id = 0
 
-const createAlert = function (data: data) {
+const createAlert = function (data: Data) {
 
   let namespace = '${prefix}msg-alert-' + id++
   let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
@@ -86,38 +87,37 @@ const createAlert = function (data: data) {
         me.set({
           isHidden: true
         })
-        me.transTimer = setTimeout(
-          function () {
-            me.get('onClose') && me.get('onClose')()
-            if (instance) {
-              instance.destroy()
+        me.nextTick(function () {
+          onTransitionEnd(
+            me.$el,
+            function () {
+              me.get('onClose') && me.get('onClose')()
+              if (me.$el) {
+                me.destroy()
+              }
             }
-          },
-          500
-        )
+          )
+        })
       }
     },
 
     afterMount() {
       let me = this
-      me.transTimer = setTimeout(
+      setTimeout(
         function () {
-          me.set({
-            isHidden: false
-          })
+          if (me.$el) {
+            me.set({
+              isHidden: false
+            })
+          }
         },
         300
       )
-    },
-
-    beforeDestroy() {
-      let me = this
-      clearTimeout(me.transTimer)
     }
   })
 }
 
-const createConfirm = function (data: data) {
+const createConfirm = function (data: Data) {
 
   let namespace = '${prefix}msg-confirm-' + id++
   let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
@@ -192,21 +192,23 @@ const createConfirm = function (data: data) {
         me.set({
           isHidden: true
         })
-        me.transTimer = setTimeout(
-          function () {
-            me.get('onClose') && me.get('onClose')()
-            if (instance) {
-              instance.destroy()
+        me.nextTick(function () {
+          onTransitionEnd(
+            me.$el,
+            function () {
+              me.get('onClose') && me.get('onClose')()
+              if (me.$el) {
+                me.destroy()
+              }
             }
-          },
-          500
-        )
+          )
+        })
       }
     },
 
     afterMount() {
       let me = this
-      me.transTimer = setTimeout(
+      setTimeout(
         function () {
           me.set({
             isHidden: false
@@ -214,19 +216,14 @@ const createConfirm = function (data: data) {
         },
         300
       )
-    },
-
-    beforeDestroy() {
-      let me = this
-      clearTimeout(me.transTimer)
     }
   })
 }
 
-export const addAlert = function (data: data) {
+export const addAlert = function (data: Data) {
   createAlert(data)
 }
 
-export const addConfirm = function (data: data) {
+export const addConfirm = function (data: Data) {
   createConfirm(data)
 }

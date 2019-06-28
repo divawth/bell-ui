@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/InputNumber.hbs';
 import { FALSE, TRUE, RAW_FUNCTION, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, RAW_TYPE_ARRAY, } from '../constant';
 import { oneOf, } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         formatter: {
             type: RAW_FUNCTION

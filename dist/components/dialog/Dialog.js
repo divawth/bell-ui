@@ -4,8 +4,12 @@ import { TRUE, FALSE, RAW_STRING, RAW_BOOLEAN, } from '../constant';
 import { onTransitionEnd, } from '../util';
 var CLASS_OPEN = '${prefix}dialog-open';
 var CLASS_LEAVE = '${prefix}dialog-leave';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
+        title: {
+            type: RAW_STRING,
+            value: '温馨提示'
+        },
         open: {
             type: RAW_BOOLEAN
         },
@@ -38,9 +42,6 @@ export default Yox.create({
         }
     },
     methods: {
-        maskClick: function () {
-            this.set('open', FALSE);
-        },
         close: function () {
             this.set('open', FALSE);
         }

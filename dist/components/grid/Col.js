@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Col.hbs';
 import { RAW_STRING, RAW_NUMERIC, RAW_OBJECT } from '../constant';
 import { findComponentUpward } from '../util';
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         span: {
             type: RAW_NUMERIC
@@ -123,7 +123,7 @@ export default Yox.create({
         }
     },
     afterMount: function () {
-        var row = findComponentUpward(this, '${prefix}raw');
+        var row = findComponentUpward(this.$parent, '${prefix}raw');
         this.set('gutter', row.get('gutter'));
     }
 });

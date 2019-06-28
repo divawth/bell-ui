@@ -2,7 +2,7 @@ import Yox from 'yox';
 import template from './template/Tabs.hbs';
 import { TRUE, FALSE, RAW_TINY, RAW_SMALL, RAW_LARGE, RAW_STRING, RAW_NUMERIC, RAW_BOOLEAN, } from '../constant';
 import { oneOf, } from '../util';
-export default Yox.create({
+export default Yox.define({
     name: '${prefix}tabs',
     propTypes: {
         type: {

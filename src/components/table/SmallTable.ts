@@ -1,18 +1,24 @@
-import Yox from 'yox'
+import Yox, { Data } from 'yox'
 
 import template from './template/SmallTable.hbs'
 
 import {
   TRUE,
-  NULL,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
   RAW_ARRAY,
+  NULL,
 } from '../constant'
 
-export default Yox.create({
+interface Row {
+  text: string,
+  size: string,
+  action: (item: Data, index: number) => void
+}
+
+export default Yox.define({
   propTypes: {
     list: {
       type: RAW_ARRAY
@@ -76,7 +82,7 @@ export default Yox.create({
   },
 
   computed: {
-    checkAll () {
+    checkAll(): boolean {
       return this.get('list').filter(function(item) {
         return item.checked
       }).length === this.get('list.length')
@@ -93,12 +99,12 @@ export default Yox.create({
   },
 
   methods: {
-    checkedChange(data, index) {
+    checkedChange(data: Data, index: number) {
       this.setChecked(data.isChecked, TRUE, index)
       data.index = index
       this.fire('select', data)
     },
-    checkedAllChange(_, data) {
+    checkedAllChange(_: any, data: Data) {
       this.setChecked(data.isChecked, TRUE)
       this.fire('selectAll', data)
     },
@@ -109,59 +115,61 @@ export default Yox.create({
     },
     clearCurrentRow() {
       this.set({
-        'currentItem': null
+        currentItem: NULL
       })
     },
-    click(item, data, index) {
-      item.action(data, index)
+    click(row: Row, item: Data, index: number) {
+      row.action(item, index)
     },
-    rowClick(data, index) {
+
+    rowClick(item: Data, index: number) {
       if (!this.get('highlightRow') || this.get('header')) {
         return
       }
-      data.index = index
-      this.fire('currentChange', {
-        current: data,
+      this.fire('rowChange.table', {
+        index: index,
+        current: item,
         oldCurrent: this.get('currentItem')
       })
       this.set({
-        'currentItem': data
+        currentIndex: index,
+        currentItem: item
       })
     },
 
-    setChecked(value, force, index) {
+    setChecked(value: boolean, force: boolean, index?: number) {
       let list = this.copy(this.get('list'))
-      list = list.map(function(item, key) {
-        if (force && index == null) {
+      list = list.map(function(item: Data, key: number) {
+        if (force && index == NULL) {
           item.checked = value
         }
-        else if (index != null) {
+        else if (index != NULL) {
           if (key === index) {
             item.checked = value
           }
         }
         else {
-          item.checked = item.checked != null ? item.checked : value
+          item.checked = item.checked != NULL ? item.checked : value
         }
         return item
       })
 
-      this.fire('selectChange', list)
+      this.fire('selectChange.table', list)
       this.set({ list })
     }
   },
 
-  afterMount: function () {
+  afterMount() {
     let me = this
     if (!me.get('columns').length) {
       return
     }
 
     if (me.get('selection')) {
-      me.setChecked()
+      me.setChecked(FALSE, TRUE)
     }
     let colWidths = []
-    me.get('columns').forEach(function(item) {
+    me.get('columns').forEach(function(item: Data) {
       let colWidth = me.$el.clientWidth / 3
       if (item.width) {
         colWidth = item.width

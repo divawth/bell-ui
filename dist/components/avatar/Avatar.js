@@ -3,7 +3,7 @@ import template from './template/Avatar.hbs';
 import { TRUE, RAW_STRING, RAW_NUMERIC, RAW_SIZE_ARRAY, RAW_DEFAULT, RAW_SHAPE_CIRCLE, RAW_SHAPE_ROUND, } from '../constant';
 import { oneOf, supportTransform, } from '../util';
 var SPACE_HORIZONTAL = 8;
-export default Yox.create({
+export default Yox.define({
     propTypes: {
         shape: {
             type: oneOf([RAW_SHAPE_CIRCLE, RAW_SHAPE_ROUND]),
