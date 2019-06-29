@@ -25,7 +25,8 @@ export default Yox.define({
       type: RAW_STRING
     },
     size: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
+      value: 14
     },
     color: {
       type: RAW_STRING

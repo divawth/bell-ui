@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { Data, CustomEventInterface } from 'yox'
 
 import template from './template/Collapse.hbs'
 
@@ -35,7 +35,7 @@ export default Yox.define({
   template,
 
   watchers: {
-    accordion(accordion) {
+    accordion(accordion: boolean) {
       this.fire(
         'change.accordion',
         { accordion },
@@ -45,7 +45,7 @@ export default Yox.define({
   },
 
   events: {
-    'change.opened': function (event, data) {
+    'change.opened': function (event: CustomEventInterface, data: Data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'change.opened',

@@ -38,7 +38,7 @@ export default Yox.define({
     },
     height: {
       type: RAW_NUMERIC,
-      value: 200
+      value: 280
     },
     className: {
       type: RAW_STRING
@@ -51,7 +51,7 @@ export default Yox.define({
   template,
 
   watchers: {
-    visible(isOpen) {
+    visible(isOpen: boolean) {
       this.set({ isOpen })
     }
   },

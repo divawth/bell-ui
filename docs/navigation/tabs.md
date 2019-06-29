@@ -61,12 +61,12 @@ export default {
   template: `
     <div>
       <RadioGroup model="size" type="info">
-        <Radio label="tiny" value="tiny" checked></Radio>
+        <Radio label="tiny" value="tiny"></Radio>
         <Radio label="small" value="small"></Radio>
-        <Radio label="default" value="default" checked></Radio>
-        <Radio label="large" value="large" checked></Radio>
+        <Radio label="default" value="default"></Radio>
+        <Radio label="large" value="large"></Radio>
       </RadioGroup>
-      <Tabs size="{{size}}">
+      <Tabs size="{{size}}" style="margin-top: 10px">
         {{#each tabsList}}
           <TabPanel label="{{name}}">{{content}}</TabPanel>
         {{/each}}
@@ -106,7 +106,7 @@ export default {
 
         <template slot="extra">
           <Button borderType="none" on-click="addTab()">
-            Add 
+            Add
           </Button>
         </template>
       </Tabs>

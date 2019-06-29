@@ -1,5 +1,4 @@
 {$selector-menu}
-
   display block
   width 100%
   margin 0
@@ -9,18 +8,18 @@
   position relative
   color $layout-menu-default-color
   font-size $layout-menu-default-font-size
-  transition background .3s, width .2s, height .2s
+  transition background .3s, width .2s, height .3s
   z-index $zindex-menu
   user-select none
 
   {$selector-menu},
   {$selector-menu}-group
     padding-left 16px
-    
+
   {$selector-menu}-dropdown
     display none
     position absolute
-    max-height 200px
+    max-height 280px
     min-width 200px
     overflow auto
     margin 0
@@ -29,10 +28,13 @@
     box-sizing border-box
     border-radius 4px
     box-shadow 0 1px 6px rgba(0,0,0,.2)
-    
+    transition height .3s
+
   {$selector-menu}-open
     {$selector-menu}-dropdown
       display block
+      margin-top 1px
+      left 0
 
 {$selector-menu-item}-disabled
 
@@ -48,15 +50,15 @@
   margin 0
   padding 0
 
-  > ul 
+  > ul
     line-height normal
     list-style none
     margin 0
     padding 0
-      
+
     {$selector-menu-submenu},
     {$selector-menu-item}
-      
+
       padding 7px 16px 8px
       color #515a6e
       line-height normal
@@ -101,7 +103,7 @@
     position relative
     cursor pointer
     transition all .2s ease-in-out
-        
+
   {$selector-menu-submenu}
 
     padding 0
@@ -120,17 +122,17 @@
     &{$selector-menu}-open
       > {$selector-menu}
         display block
-    
+
     {$selector-menu-group}
       {$selector-menu-item}
         padding 14px 24px
 
   &{$selector-menu}-collapsed
     width $layout-menu-collapsed-default-width
-    
+
     > {$selector-menu}-inline
       display none
-    
+
     {$selector-menu-submenu}-title-icon
       display none
 
@@ -160,7 +162,7 @@
     top 0
     left 100%
     margin-left 4px
-  
+
   {$selector-menu-submenu}
     {$selector-menu-submenu}-title-icon
       &::before
@@ -175,5 +177,4 @@
 
 
 {$selector-menu}
-
   ui-menu()

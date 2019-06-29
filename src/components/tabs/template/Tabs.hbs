@@ -18,7 +18,9 @@ class="${prefix}tabs ${prefix}tabs-{{type}}
       <span class="${prefix}tabs-tab-next"></span>
       <div class="${prefix}tabs-tab-wrap">
         <div class="${prefix}tabs-tab-scroll">
-          <div class="${prefix}tabs-nav ${prefix}tabs-animated">
+          <div class="${prefix}tabs-nav
+            {{#if closable}} ${prefix}tabs-nav-closable{{/if}}
+          ">
             {{#each tabsList}}
               <div class="${prefix}tabs-tab
                 {{#if disabled}} ${prefix}tabs-tab-disabled{{/if}}
@@ -28,18 +30,17 @@ class="${prefix}tabs ${prefix}tabs-{{type}}
                 {{#if this.icon}}
                   <Icon
                     className="${prefix}tabs-tab-icon"
-                    type="{{this.icon}}"
+                    name="{{this.icon}}"
                   />
                 {{/if}}
                 {{label}}
-                {{#if value === id && closable}}
-                  <div class="${prefix}tabs-tab-close-icon" on-click="close(this)">
-                    <Icon
-                      className="${prefix}tabs-tab-icon-close"
-                      type="close"
-                      size="20"
-                    />
-                  </div>
+                {{#if closable}}
+                  <Icon
+                    className="${prefix}tabs-tab-icon-close"
+                    name="close"
+                    size="22"
+                    on-click="close(this)"
+                  />
                 {{/if}}
               </div>
             {{/each}}

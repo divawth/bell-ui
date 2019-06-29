@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/Panel.hbs'
 
@@ -53,10 +53,12 @@ export default Yox.define({
   },
 
   events: {
-    'change.accordion': function (_, data) {
-      this.set('accordion', data.accordion)
+    'change.accordion': function (_: CustomEventInterface, data: Data) {
+      this.set({
+        accordion: data.accordion
+      })
     },
-    'change.opened': function (event, data) {
+    'change.opened': function (event: CustomEventInterface, data: Data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         const me = this
         if (data.name === me.get('name')) {
@@ -91,7 +93,7 @@ export default Yox.define({
       const content = me.$refs.content as HTMLElement
       content.style.height = content.clientHeight + 'px'
 
-      me.nextTick(
+      setTimeout(
         function () {
           if (!content) {
             return
@@ -100,8 +102,10 @@ export default Yox.define({
           onTransitionEnd(
             content,
             function () {
-              content.style.height = ''
               me.set('opened', FALSE)
+              me.nextTick(function () {
+                content.style.height = ''
+              })
             }
           )
         }

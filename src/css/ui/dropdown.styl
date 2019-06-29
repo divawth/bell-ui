@@ -4,8 +4,8 @@
 
   {$selector-dropdown-trigger}
     position relative
-    padding $dropdown-trigger-padding
-  
+    padding $dropdown-list-gap
+
   &[data-placement="top"]
     {$selector-dropdown-list}
       bottom 100%
@@ -36,7 +36,7 @@
     {$selector-dropdown-list}
       right 100%
       bottom 0
-  
+
   &[data-placement="right"]
     {$selector-dropdown-list}
       left 100%
@@ -52,7 +52,7 @@
     {$selector-dropdown-list}
       left 100%
       bottom 0
-  
+
   &[data-placement="bottom"]
     {$selector-dropdown-list}
       left 50%
@@ -65,12 +65,11 @@
       right 0
 
 {$selector-dropdown-list}
-
   width auto
   overflow auto
   box-sizing border-box
   position absolute
-  box-shadow $dropdown-box-shadow 
+  box-shadow $dropdown-box-shadow
   opacity 1
   max-height 0px
   z-index $zindex-dropdown
@@ -90,7 +89,7 @@
     min-width $dropdown-menu-min-width
 
   {$selector-dropdown}-item
-
+    line-height normal
     clear both
     white-space nowrap
     list-style none
@@ -115,7 +114,16 @@
     &{$selector-dropdown}-disabled
       color $brand-text-disabled
       cursor not-allowed
-    
+
     &{$selector-dropdown}-divided
       margin-top $dropdown-item-divider-margin-top
       border-top 1px solid $brand-border
+
+      &:before
+        content ""
+        height 5px
+        display block
+        margin 0 -16px
+        background-color #fff
+        position relative
+        top -7px

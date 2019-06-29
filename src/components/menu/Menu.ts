@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/Menu.hbs'
 
@@ -53,14 +53,14 @@ export default Yox.define({
   template,
 
   watchers: {
-    theme(theme) {
+    theme(theme: string) {
       this.fire(
         'themeChanged',
         { theme },
         TRUE
       )
     },
-    isCollapsed(isCollapsed) {
+    isCollapsed(isCollapsed: boolean) {
       this.fire(
         'isCollapsedChanged',
         { isCollapsed },
@@ -70,7 +70,7 @@ export default Yox.define({
   },
 
   events: {
-    menuItemSelected(event, data) {
+    menuItemSelected(event: CustomEventInterface, data: Data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'menuItemSelected',

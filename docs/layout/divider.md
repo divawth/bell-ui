@@ -12,7 +12,7 @@
 ```js
 export default {
   isViewFullBlock: true,
-  height: 300,
+  height: 500,
   template: `
     <div>
       <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
@@ -49,12 +49,12 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
-  height: 300,
+  height: 350,
   template: `
     <div>
-      <Divider align="ssss">Left Text</Divider>
+      <Divider align="left">Left Text</Divider>
       <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
-      <Divider align="right">Right Text</Divider>
+      <Divider align="center">Center Text</Divider>
       <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
       <Divider align="right" dashed>Right Text</Divider>
     </div>

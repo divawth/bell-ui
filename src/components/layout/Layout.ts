@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Layout.hbs'
 
@@ -31,7 +31,7 @@ export default Yox.define({
   },
 
   events: {
-    hasSider(event) {
+    hasSider(event: CustomEventInterface) {
       const me = this
       if (event.phase === Yox.Event.PHASE_CURRENT) {
         return

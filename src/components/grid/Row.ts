@@ -37,7 +37,7 @@ export default Yox.define({
 
   watchers: {
     gutter: {
-      watcher: function (value) {
+      watcher: function (value: number) {
         this.fire(
           'gutterChanged.row',
           {
@@ -51,7 +51,7 @@ export default Yox.define({
   },
 
   computed: {
-    inlineStyle() {
+    inlineStyle(): string {
       let gap = 0
       let style = ''
       if (this.get('style')

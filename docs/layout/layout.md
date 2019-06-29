@@ -1,4 +1,4 @@
-### Layout 布局 
+### Layout 布局
 
 协助进行页面级整体布局
 
@@ -31,7 +31,7 @@
 
 #### 组件概述
 - Layout 下面的组件只能在 Layout 中使用。
-- Header 顶部布局。 
+- Header 顶部布局。
 - Sider 侧边栏。
 - Content 内容部分。
 - Footer 底部布局。
@@ -41,6 +41,7 @@
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Layout className="layout-demo">
       <Header>
@@ -70,6 +71,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Layout className="layout-demo">
       <Header>
@@ -96,6 +98,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Layout className="layout-demo">
       <Header>
@@ -122,6 +125,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Layout className="layout-demo">
       <Sider>Sider</Sider>
@@ -142,6 +146,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 450,
   template: `
     <Layout className="layout-demo-wrapper">
       <Header>
@@ -150,19 +155,19 @@ export default {
         </template>
         <Menu mode="horizontal" theme="dark" active-name="1">
           <MenuItem name="1">
-            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+            <Icon style="margin-right: 6px;" name="navigate"></Icon>
             Item 1
           </MenuItem>
           <MenuItem name="2">
-            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+            <Icon style="margin-right: 6px;" name="keypad"></Icon>
             Item 2
           </MenuItem>
           <MenuItem name="3">
-            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+            <Icon style="margin-right: 6px;" name="analytics"></Icon>
             Item 3
           </MenuItem>
           <MenuItem name="4">
-            <Icon style="margin-right: 6px;" type="paper"></Icon>
+            <Icon style="margin-right: 6px;" name="paper"></Icon>
             Item 4
           </MenuItem>
         </Menu>
@@ -185,13 +190,14 @@ export default {
 }
 ```
 
-> 顶部-侧边布局-通栏 
+> 顶部-侧边布局-通栏
 
 同样拥有顶部导航及侧边栏，区别是两边未留边距，多用于应用型的网站
 
 ```js
 export default {
   isViewFullBlock: true,
+  height: 450,
   template: `
     <Layout className="layout-demo-wrapper">
       <Header>
@@ -200,19 +206,19 @@ export default {
         </template>
         <Menu mode="horizontal" theme="dark" active-name="1">
           <MenuItem name="1">
-            <Icon style="margin-right: 6px;" type="navigate"></Icon>
+            <Icon style="margin-right: 6px;" name="navigate"></Icon>
             Item 1
           </MenuItem>
           <MenuItem name="2">
-            <Icon style="margin-right: 6px;" type="keypad"></Icon>
+            <Icon style="margin-right: 6px;" name="keypad"></Icon>
             Item 2
           </MenuItem>
           <MenuItem name="3">
-            <Icon style="margin-right: 6px;" type="analytics"></Icon>
+            <Icon style="margin-right: 6px;" name="analytics"></Icon>
             Item 3
           </MenuItem>
           <MenuItem name="4">
-            <Icon style="margin-right: 6px;" type="paper"></Icon>
+            <Icon style="margin-right: 6px;" name="paper"></Icon>
             Item 4
           </MenuItem>
         </Menu>
@@ -221,19 +227,19 @@ export default {
         <Sider>
           <Menu mode="inline" theme="dark" active-name="1">
             <MenuItem name="1">
-              <Icon style="margin-right: 6px;" type="navigate"></Icon>
+              <Icon style="margin-right: 6px;" name="navigate"></Icon>
               Item 1
             </MenuItem>
             <MenuItem name="2">
-              <Icon style="margin-right: 6px;" type="keypad"></Icon>
+              <Icon style="margin-right: 6px;" name="keypad"></Icon>
               Item 2
             </MenuItem>
             <MenuItem name="3">
-              <Icon style="margin-right: 6px;" type="analytics"></Icon>
+              <Icon style="margin-right: 6px;" name="analytics"></Icon>
               Item 3
             </MenuItem>
             <MenuItem name="4">
-              <Icon style="margin-right: 6px;" type="paper"></Icon>
+              <Icon style="margin-right: 6px;" name="paper"></Icon>
               Item 4
             </MenuItem>
           </Menu>
@@ -263,27 +269,28 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 450,
   template: `
     <Layout className="layout-demo-wrapper">
       <Sider model="isCollapsed">
         <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
           <MenuItem name="4">
             {{#if !isCollapsed}}
-              <Icon style="margin-right: 6px;" type="paper" />
+              <Icon style="margin-right: 6px;" name="paper" />
               内容管理
             {{else}}
               <Tooltip placement="right" content="内容管理">
-                <Icon type="paper" size="32" />
+                <Icon name="paper" size="32" />
               </Tooltip>
             {{/if}}
           </MenuItem>
           <Submenu name="1">
             <template slot="title">
               {{#if !isCollapsed}}
-                <Icon style="margin-right: 6px;" type="paper" />
+                <Icon style="margin-right: 6px;" name="paper" />
                 内容管理
               {{else}}
-                <Icon type="paper" size="32" />
+                <Icon name="paper" size="32" />
               {{/if}}
             </template>
             <MenuItem name="1-1">文章管理</MenuItem>
@@ -293,16 +300,16 @@ export default {
           <Submenu name="2">
             <template slot="title">
               {{#if !isCollapsed}}
-                <Icon style="margin-right: 6px;" type="people" />
+                <Icon style="margin-right: 6px;" name="people" />
                 用户管理
               {{else}}
-                <Icon type="people" size="32" />
+                <Icon name="people" size="32" />
               {{/if}}
             </template>
             <MenuItem name="2-1">新增用户</MenuItem>
             <Submenu name="2-2">
               <template slot="title">
-                <Icon style="margin-right: 6px;" type="people" />
+                <Icon style="margin-right: 6px;" name="people" />
                 新增用户
               </template>
               <MenuItem name="2-2-1">新增用户2</MenuItem>
@@ -312,10 +319,10 @@ export default {
           <Submenu name="3">
               <template slot="title">
                   {{#if !isCollapsed}}
-                      <Icon style="margin-right: 6px;" type="stats" />
+                      <Icon style="margin-right: 6px;" name="stats" />
                       统计分析
                   {{else}}
-                      <Icon type="stats" size="32" />
+                      <Icon name="stats" size="32" />
                   {{/if}}
               </template>
               <MenuGroup title="使用">

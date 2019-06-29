@@ -1,13 +1,13 @@
 {$selector-tabs}
   box-sizing border-box
   margin 0
-  padding 0    
+  padding 0
   background-color #fff
 
   position relative
   overflow hidden
   line-height 1
-  
+
   font-size $tabs-size
   color $tabs-color
   ui-tabs()
@@ -30,7 +30,7 @@
       font-size $tabs-size
       margin-bottom -1px
       transition padding .3s cubic-bezier(.645,.045,.355,1)
-      
+
       {$selector-tabs-tab}-wrap
         overflow hidden
         margin-bottom -1px
@@ -62,7 +62,7 @@
         left 50%
         transform translateX(-50%)
         box-sizing border-box
-        height 2px    
+        height 2px
         width 0px
         background-color $tabs-tab-active-color
         transition width .2s
@@ -74,6 +74,7 @@
       &{$selector-tabs-tab}-active
 
         color $tabs-tab-active-color
+        border-color $tabs-tab-active-color
         font-weight 500
 
         &:after
@@ -133,21 +134,31 @@
 
       {$selector-tabs-tab}-icon
         margin-right 6px
-      
-      {$selector-tabs-tab}-close-icon
-        display inline-block
-        position relative
-        width $tabs-tab-close-size
-        height $tabs-tab-close-size
-        vertical-align middle
 
-        {$selector-tabs-tab}-icon-close
-          position absolute 
-          left 50%
-          top 50%
-          transform translate(-50%, -50%)
-  
   &{$selector-tabs}-animated
     {$selector-tabs-content}
       will-change transform
       transition transform .3s ease-in-out
+
+  {$selector-tabs}-nav-closable
+    position relative
+
+    {$selector-tabs-tab}-active
+      {$selector-tabs-tab}-icon-close
+        width 16px
+
+    {$selector-tabs-tab}
+      &{$selector-hover}
+        {$selector-tabs-tab}-icon-close
+          width 16px
+
+    {$selector-tabs-tab}-icon-close
+      display inline-block
+      width 0
+      height 22px
+      font-size 22px
+      margin-right -6px
+      text-align right
+      vertical-align middle
+      overflow hidden
+      transition width .3s ease-in-out

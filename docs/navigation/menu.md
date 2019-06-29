@@ -8,6 +8,7 @@
 ```js
 export default {
   isViewFullBlock: true,
+  height: 400,
   data: function () {
     return {
       theme: 'dark'
@@ -17,17 +18,17 @@ export default {
     <div class="bell-template">
       <Menu theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon type="paper"></Icon>
+          <Icon name="paper"></Icon>
           内容管理
         </MenuItem>
         <MenuItem name="2">
-          <Icon type="people"></Icon>
+          <Icon name="people"></Icon>
           用户管理
         </MenuItem>
         <Submenu name="3">
           <template slot="title">
-            <Icon type="stats" />
-            统计分析
+            <Icon name="stats" />
+            统计分析（子菜单）
           </template>
           <MenuGroup title="使用">
             <MenuItem name="3-1">新增和启动</MenuItem>
@@ -40,12 +41,14 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon type="settings"></Icon>
-          <a href="https://ng.ant.design" target="_blank">综合设置</a>
+          <Icon name="settings"></Icon>
+          <a href="https://yoxjs.github.io/yox/#/ts" target="_blank">
+            综合设置（外链）
+          </a>
         </MenuItem>
       </Menu>
       <br>
-      <p>切换主题</p>
+      <p style="margin-top: 140px">切换主题</p>
       <RadioGroup model="theme" type="info">
         <Radio label="light" value="light"></Radio>
         <Radio label="dark" value="dark" checked></Radio>
@@ -65,25 +68,26 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 440,
   data: function () {
     return {
       theme: 'dark'
     }
   },
   template: `
-    <div class="bell-template" style="width: 200px;">
+    <div class="bell-template" style="width: 280px;">
       <Menu mode="vertical" theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon type="paper"></Icon>
+          <Icon name="paper"></Icon>
           内容管理
         </MenuItem>
         <MenuItem name="2">
-          <Icon type="people"></Icon>
+          <Icon name="people"></Icon>
           用户管理
         </MenuItem>
         <Submenu name="3">
           <template slot="title">
-            <Icon type="stats" />
+            <Icon name="stats" />
             统计分析
           </template>
           <MenuGroup title="使用">
@@ -97,7 +101,7 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon type="settings"></Icon>
+          <Icon name="settings"></Icon>
           <a href="https://ng.ant.design" target="_blank">综合设置</a>
         </MenuItem>
       </Menu>
@@ -122,17 +126,18 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 600,
   data: function () {
     return {
       theme: 'dark'
     }
   },
   template: `
-    <div class="bell-template" style="width: 200px;">
+    <div class="bell-template" style="width: 280px;">
       <Menu theme="{{theme}}" mode="inline" activeName="1-3" openNames="{{["1", "2"]}}">
         <Submenu name="1">
           <template slot="title">
-            <Icon type="paper" />
+            <Icon name="paper" />
             内容管理
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
@@ -141,7 +146,7 @@ export default {
         </Submenu>
         <Submenu name="2">
           <template slot="title">
-            <Icon type="people" />
+            <Icon name="people" />
             用户管理
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
@@ -149,7 +154,7 @@ export default {
         </Submenu>
         <Submenu name="3">
           <template slot="title">
-            <Icon type="stats" />
+            <Icon name="stats" />
             统计分析
           </template>
           <MenuGroup title="使用">
@@ -195,21 +200,21 @@ export default {
       <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
         <MenuItem name="4">
           {{#if !isCollapsed}}
-            <Icon type="paper" />
+            <Icon name="paper" />
             内容管理
           {{else}}
             <Tooltip placement="right" content="内容管理">
-              <Icon type="paper" size="32" />
+              <Icon name="paper" size="32" />
             </Tooltip>
           {{/if}}
         </MenuItem>
         <Submenu name="1">
           <template slot="title">
             {{#if !isCollapsed}}
-              <Icon type="paper" />
+              <Icon name="paper" size="14" />
               内容管理
             {{else}}
-              <Icon type="paper" size="32" />
+              <Icon name="paper" size="32" />
             {{/if}}
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
@@ -219,16 +224,16 @@ export default {
         <Submenu name="2">
           <template slot="title">
             {{#if !isCollapsed}}
-              <Icon type="people" />
+              <Icon name="people" size="14" />
               用户管理
             {{else}}
-              <Icon type="people" size="32" />
+              <Icon name="people" size="32" />
             {{/if}}
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
           <Submenu name="2-2">
             <template slot="title">
-              <Icon type="people" />
+              <Icon name="people" />
               新增用户
             </template>
             <MenuItem name="2-2-1">新增用户2</MenuItem>
@@ -238,10 +243,10 @@ export default {
         <Submenu name="3">
           <template slot="title">
             {{#if !isCollapsed}}
-              <Icon type="stats" />
+              <Icon name="stats" size="14" />
               统计分析
             {{else}}
-              <Icon type="stats" size="32" />
+              <Icon name="stats" size="32" />
             {{/if}}
           </template>
           <MenuGroup title="使用">

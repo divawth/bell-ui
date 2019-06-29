@@ -15,13 +15,13 @@ class="${prefix}submenu
   <div class="${prefix}submenu-title" on-click="click()">
     <slot name="title" />
     <Icon
-      type="arrow-down"
+      name="arrow-down"
       className="${prefix}submenu-title-icon"
     />
   </div>
 
   {{#if mode != 'inline'}}
-    <div class="${prefix}menu-dropdown">
+    <div ref="menu" class="${prefix}menu-dropdown">
       <slot name="children" />
     </div>
   {{else}}

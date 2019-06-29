@@ -231,6 +231,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 600,
   template: `
     <div>
       <p>子元素向左排列</p>
@@ -300,6 +301,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 800,
   template: `
     <div>
       <p>顶部对齐</p>

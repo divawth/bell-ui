@@ -24,6 +24,7 @@ $button-group-direction = {
   'horizontal': true,
   'vertical': false
 }
+
 $button-hash = {
   'default-normal': {
     color: $brand-secondary,
@@ -38,7 +39,7 @@ $button-hash = {
     active-bg: $brand-bg,
     active-border-color: $brand-primary,
 
-    focus-border-color: rgba($brand-primary, .2),
+    focus-border-color: rgba(45,140,240, .2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -54,10 +55,10 @@ $button-hash = {
     hover-border-color: $brand-primary-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-primary-hover,
-    active-border-color: $brand-primary-hover,
+    active-bg: $brand-primary-active,
+    active-border-color: $brand-primary-active,
 
-    focus-border-color: rgba($brand-primary-hover, .2),
+    focus-border-color: rgba(45,140,240, .2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -73,10 +74,10 @@ $button-hash = {
     hover-border-color: $brand-success-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-success-hover,
-    active-border-color: $brand-success-hover,
+    active-bg: $brand-success-active,
+    active-border-color: $brand-success-active,
 
-    focus-border-color: rgba($brand-success-hover, .2),
+    focus-border-color: rgba(25,190,107,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -93,10 +94,10 @@ $button-hash = {
     hover-border-color: $brand-error-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-error-hover,
-    active-border-color: $brand-error-hover,
+    active-bg: $brand-error-active,
+    active-border-color: $brand-error-active,
 
-    focus-border-color: rgba($brand-error-hover, .2),
+    focus-border-color: rgba(237,64,20,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -113,10 +114,10 @@ $button-hash = {
     hover-border-color: $brand-info-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-info-hover,
-    active-border-color: $brand-info-hover,
+    active-bg: $brand-info-active,
+    active-border-color: $brand-info-active,
 
-    focus-border-color: rgba($brand-info-hover, .2),
+    focus-border-color: rgba(45,183,245,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -132,29 +133,10 @@ $button-hash = {
     hover-border-color: $brand-warning-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-warning-hover,
-    active-border-color: $brand-warning-hover,
+    active-bg: $brand-warning-active,
+    active-border-color: $brand-warning-active,
 
-    focus-border-color: rgba($brand-warning-hover, .2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
-  },
-  'danger-normal': {
-    color: $brand-white,
-    bg: $brand-danger,
-    border-color: $brand-danger,
-
-    hover-color: $brand-white,
-    hover-bg: $brand-danger-hover,
-    hover-border-color: $brand-danger-hover,
-
-    active-color: $brand-white,
-    active-bg: $brand-danger-hover,
-    active-border-color: $brand-danger-hover,
-
-    focus-border-color: rgba($brand-danger-hover, .2),
+    focus-border-color: rgba(255,153,0,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-bg: $brand-bg-disabled,
@@ -165,13 +147,13 @@ $button-hash = {
     color: $brand-white,
     border-color: $brand-white,
 
-    hover-color: $brand-secondary,
-    hover-border-color: $brand-secondary,
+    hover-color: $brand-info-hover,
+    hover-border-color: $brand-info-hover,
 
-    active-color: $brand-secondary,
-    active-border-color: $brand-secondary,
+    active-color: $brand-info-active,
+    active-border-color: $brand-info-active,
 
-    focus-border-color: rgba($brand-secondary, .2),
+    focus-border-color: rgba(45,183,245,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-border-color: $brand-border,
@@ -183,10 +165,10 @@ $button-hash = {
     hover-color: $brand-primary,
     hover-border-color: $brand-primary-hover,
 
-    active-color: $brand-primary,
-    active-border-color: $brand-primary-hover,
+    active-color: $brand-primary-active,
+    active-border-color: $brand-primary-active,
 
-    focus-border-color: rgba($brand-primary-hover, .2),
+    focus-border-color: rgba(45,140,240, .2),
 
     disabled-color: $brand-text-disabled,
     disabled-border-color: $brand-border,
@@ -195,13 +177,13 @@ $button-hash = {
     color: $brand-white,
     border-color: $brand-white,
 
-    hover-color: $brand-success,
+    hover-color: $brand-success-hover,
     hover-border-color: $brand-success-hover,
 
-    active-color: $brand-success,
-    active-border-color: $brand-success-hover,
+    active-color: $brand-success-active,
+    active-border-color: $brand-success-active,
 
-    focus-border-color: rgba($brand-success-hover, .2),
+    focus-border-color: rgba(25,190,107,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-border-color: $brand-border,
@@ -211,29 +193,29 @@ $button-hash = {
     color: $brand-white,
     border-color: $brand-white,
 
-    hover-color: $brand-error,
+    hover-color: $brand-error-hover,
     hover-border-color: $brand-error-hover,
 
-    active-color: $brand-error,
-    active-border-color: $brand-error-hover,
+    active-color: $brand-error-active,
+    active-border-color: $brand-error-active,
 
-    focus-border-color: rgba($brand-error-hover, .2),
+    focus-border-color: rgba(237,64,20,.2),
 
     disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    disabled-border-color: $brand-border
   },
 
   'info-ghost': {
     color: $brand-white,
     border-color: $brand-white,
 
-    hover-color: $brand-info,
+    hover-color: $brand-info-hover,
     hover-border-color: $brand-info-hover,
 
-    active-color: $brand-info,
-    active-border-color: $brand-info-hover,
+    active-color: $brand-info-active,
+    active-border-color: $brand-info-active,
 
-    focus-border-color: rgba($brand-info-hover, .2),
+    focus-border-color: rgba(45,183,245,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-border-color: $brand-border,
@@ -242,28 +224,13 @@ $button-hash = {
     color: $brand-white,
     border-color: $brand-white,
 
-    hover-color: $brand-warning,
+    hover-color: $brand-warning-hover,
     hover-border-color: $brand-warning-hover,
 
-    active-color: $brand-warning,
-    active-border-color: $brand-warning-hover,
+    active-color: $brand-warning-active,
+    active-border-color: $brand-warning-active,
 
-    focus-border-color: rgba($brand-warning-hover, .2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
-  },
-  'danger-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
-    hover-color: $brand-danger,
-    hover-border-color: $brand-danger-hover,
-
-    active-color: $brand-danger,
-    active-border-color: $brand-danger-hover,
-
-    focus-border-color: rgba($brand-danger-hover, .2),
+    focus-border-color: rgba(255,153,0,.2),
 
     disabled-color: $brand-text-disabled,
     disabled-border-color: $brand-border,

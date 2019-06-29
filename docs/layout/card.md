@@ -20,9 +20,8 @@ export default {
           <a>More</a>
         </template>
       </CardHeader>
-      
+
       <CardBody>
-        <p>Card content</p>
         <p>Card content</p>
         <p>Card content</p>
       </CardBody>
@@ -30,7 +29,7 @@ export default {
   `
 }
 ```
-    
+
 > 卡片示例
 
 ```js
@@ -78,7 +77,7 @@ export default {
 }
 ```
 
-> bordered 设置成 false 
+> bordered 设置成 false
 
 ```js
 export default {
@@ -93,7 +92,7 @@ export default {
             <a>More</a>
           </template>
         </CardHeader>
-        
+
         <CardBody>
           <p>Card content</p>
           <p>Card content</p>
@@ -104,8 +103,8 @@ export default {
   `
 }
 ```
-  
-> disHover 设置成 false 
+
+> disHover 设置成 false
 
 ```js
 export default {
@@ -120,7 +119,7 @@ export default {
             <a>More</a>
           </template>
         </CardHeader>
-        
+
         <CardBody>
           <p>Card content</p>
           <p>Card content</p>

@@ -7466,7 +7466,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"li"},!1,function(){g("className",1,"bell-submenu"+(a("className",!0)?" "+u(a("className",!0)):"")+(a("isOpen",!0)?" bell-menu-open":"")+(a("isActive",!0)?" bell-menu-active":"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1)),a("isCollapsed",!0)&&(l("mouseenter","event.mouseenter","set('isOpen', true)","set",function(v){return ["isOpen",true]}),l("mouseleave","event.mouseleave","set('isOpen', false)","set",function(v){return ["isOpen",false]}),h("mouseleave",300))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-submenu-title"),l("click","event.click","click()","click")},function(){q("$slot_title"),p({"tag":"Icon","isComponent":!0},!1,function(){f("type","arrow-down"),f("className","bell-submenu-title-icon")})}),a("mode",!0)!="inline"?p({"tag":"div"},!1,function(){g("className",1,"bell-menu-dropdown")},function(){q("$slot_children")}):p({"tag":"Menu","ref":"menu","isComponent":!0},!1,function(){f("mode",j("mode",a("mode",!0,!1,!0,!0))),f("theme",j("theme",a("theme",!0,!1,!0,!0)))},!1,{"$slot_children":function(){q("$slot_children")}})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"li"},!1,function(){g("className",1,"bell-submenu"+(a("className",!0)?" "+u(a("className",!0)):"")+(a("isOpen",!0)?" bell-menu-open":"")+(a("isActive",!0)?" bell-menu-active":"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1)),a("isCollapsed",!0)&&(l("mouseenter","event.mouseenter","set('isOpen', true)","set",function(v){return ["isOpen",true]}),l("mouseleave","event.mouseleave","set('isOpen', false)","set",function(v){return ["isOpen",false]}),h("mouseleave",300))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-submenu-title"),l("click","event.click","click()","click")},function(){q("$slot_title"),p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-down"),f("className","bell-submenu-title-icon")})}),a("mode",!0)!="inline"?p({"tag":"div","ref":"menu"},!1,function(){g("className",1,"bell-menu-dropdown")},function(){q("$slot_children")}):p({"tag":"Menu","ref":"menu","isComponent":!0},!1,function(){f("mode",j("mode",a("mode",!0,!1,!0,!0))),f("theme",j("theme",a("theme",!0,!1,!0,!0)))},!1,{"$slot_children":function(){q("$slot_children")}})})};
 
 /***/ }),
 /* 11 */
@@ -7760,7 +7760,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-tabs bell-tabs-"+u(a("type",!0))+(a("size",!0)?" bell-tabs-"+u(a("size",!0)):"")+(a("animated",!0)?" bell-tabs-animated":"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-bar")},function(){d(a("hasSlot",!0),["extra"])?p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-extra-container")},function(){q("$slot_extra")}):p({"isComment":!0,"text":""}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-nav-container")},function(){p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-tabs-tab-prev")}),p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-tabs-tab-next")}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab-wrap")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab-scroll")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-nav bell-tabs-animated")},function(){t(function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab"+(a("disabled",!0)?" bell-tabs-tab-disabled":"")+(a("value",!0)===a("id",!0)?" bell-tabs-tab-active":"")),l("click","event.click","click(this)","click",function(v){return [a("",!1,!1,!1,!1,v)]})},function(){a("icon")?p({"tag":"Icon","isComponent":!0},!1,function(){f("className","bell-tabs-tab-icon"),f("type",j("type",a("icon",!1,!1,!0,!0)))}):p({"isComment":!0,"text":""}),e(u(a("label",!0))),a("value",!0)===a("id",!0)&&a("closable",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab-close-icon"),l("click","event.click","close(this)","close",function(v){return [a("",!1,!1,!1,!1,v)]})},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("className","bell-tabs-tab-icon-close"),f("type","close"),f("size","20")})}):p({"isComment":!0,"text":""})})},a("tabsList",!0,!1,!0))})})})})}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-content"),g("style.cssText",1,"transform: translateX("+u(a("translateStyle",!0))+");")},function(){q("$slot_children")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-tabs bell-tabs-"+u(a("type",!0))+(a("size",!0)?" bell-tabs-"+u(a("size",!0)):"")+(a("animated",!0)?" bell-tabs-animated":"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-bar")},function(){d(a("hasSlot",!0),["extra"])?p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-extra-container")},function(){q("$slot_extra")}):p({"isComment":!0,"text":""}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-nav-container")},function(){p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-tabs-tab-prev")}),p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-tabs-tab-next")}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab-wrap")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab-scroll")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-nav"+(a("closable",!0)?" bell-tabs-nav-closable":""))},function(){t(function(){p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-tab"+(a("disabled",!0)?" bell-tabs-tab-disabled":"")+(a("value",!0)===a("id",!0)?" bell-tabs-tab-active":"")),l("click","event.click","click(this)","click",function(v){return [a("",!1,!1,!1,!1,v)]})},function(){a("icon")?p({"tag":"Icon","isComponent":!0},!1,function(){f("className","bell-tabs-tab-icon"),f("name",j("name",a("icon",!1,!1,!0,!0)))}):p({"isComment":!0,"text":""}),e(u(a("label",!0))),a("closable",!0)?p({"tag":"Icon","isComponent":!0},!1,function(){f("className","bell-tabs-tab-icon-close"),f("name","close"),f("size","22"),l("click","event.click","close(this)","close",function(v){return [a("",!1,!1,!1,!1,v)]})}):p({"isComment":!0,"text":""})})},a("tabsList",!0,!1,!0))})})})})}),p({"tag":"div"},!1,function(){g("className",1,"bell-tabs-content"),g("style.cssText",1,"transform: translateX("+u(a("translateStyle",!0))+");")},function(){q("$slot_children")})})};
 
 /***/ }),
 /* 60 */
@@ -7772,7 +7772,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown"+(a("isOpen",!0)?" bell-dropdown-open":"")+(a("disabled",!0)?" bell-dropdown-disabled":"")+(a("className",!0)?" "+u(a("className",!0)):"")),f("data-placement",j("data-placement",a("placement",!0,!1,!0,!0))),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1)),a("trigger",!0)===a("RAW_HOVER",!0)&&l("mouseenter","event.mouseenter","set('isOpen', TRUE)","set",function(v){return ["isOpen",a("TRUE",!0,!1,!1,!1,v)]}),a("trigger",!0)!==a("RAW_CUSTOM",!0)&&(l("mouseleave","event.mouseleave","set('isOpen', FALSE)","set",function(v){return ["isOpen",a("FALSE",!0,!1,!1,!1,v)]}),h("mouseleave",300))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown-trigger"),a("trigger",!0)===a("RAW_CLICK",!0)&&l("click","event.click","toggle('isOpen')","toggle",function(v){return ["isOpen"]})},function(){q("$slot_children")}),p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown-list"),a("isOpen",!0)&&a("height",!0)>0&&g("style.cssText",1,"max-height: "+u(a("height",!0))+"px;")},function(){q("$slot_list")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown"+(a("isOpen",!0)?" bell-dropdown-open":"")+(a("disabled",!0)?" bell-dropdown-disabled":"")+(a("className",!0)?" "+u(a("className",!0)):"")),f("data-placement",j("data-placement",a("placement",!0,!1,!0,!0))),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1)),a("trigger",!0)===a("RAW_HOVER",!0)&&(l("mouseenter","event.mouseenter","set('isOpen', TRUE)","set",function(v){return ["isOpen",a("TRUE",!0,!1,!1,!1,v)]}),l("mouseleave","event.mouseleave","set('isOpen', FALSE)","set",function(v){return ["isOpen",a("FALSE",!0,!1,!1,!1,v)]}),h("mouseleave",300))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown-trigger"),a("trigger",!0)===a("RAW_CLICK",!0)&&l("click","event.click","toggle('isOpen')","toggle",function(v){return ["isOpen"]})},function(){q("$slot_children")}),p({"tag":"div"},!1,function(){g("className",1,"bell-dropdown-list"),a("isOpen",!0)&&a("height",!0)>0&&g("style.cssText",1,"max-height: "+u(a("height",!0))+"px;")},function(){q("$slot_list")})})};
 
 /***/ }),
 /* 62 */
@@ -8861,44 +8861,73 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
             activeName: NULL,
             mode: NULL,
             theme: NULL,
-            isCollapsed: FALSE
+            isCollapsed: FALSE,
+            isAnimation: FALSE
         };
     },
     methods: {
         click: function () {
-            this.get('isOpen') ? this.close() : this.open();
+            if (this.get('isAnimation')) {
+                return;
+            }
+            if (this.get('isOpen')) {
+                this.close();
+            }
+            else {
+                this.open();
+            }
         },
         close: function () {
             var me = this;
-            var element = me.$refs.menu.$el;
-            element.style.height = element.clientHeight + 'px';
+            me.set({
+                isAnimation: TRUE
+            });
+            var element = me.$refs.menu;
+            if (me.get('mode') === 'inline') {
+                element = me.$refs.menu.$el;
+            }
+            element.style.height = element.clientHeight + "px";
+            element.style.overflow = 'hidden';
             setTimeout(function () {
                 if (!element) {
                     return;
                 }
                 element.style.height = '0px';
-                element.style.overflow = 'hidden';
                 onTransitionEnd(element, function () {
-                    element.style.height = '';
-                    element.style.overflow = '';
-                    me.set('isOpen', FALSE);
+                    me.set({
+                        isAnimation: FALSE,
+                        isOpen: FALSE
+                    });
+                    me.nextTick(function () {
+                        element.style.height = '';
+                    });
                 });
             });
         },
         open: function () {
             var me = this;
-            me.set('isOpen', TRUE);
+            me.set({
+                isAnimation: TRUE,
+                isOpen: TRUE
+            });
             me.nextTick(function () {
-                var element = me.$refs.menu.$el;
+                var element = me.$refs.menu;
+                if (me.get('mode') === 'inline') {
+                    element = me.$refs.menu.$el;
+                }
                 var height = element.clientHeight;
-                element.style.height = '0px';
+                element.style.height = "0px";
+                element.style.overflow = 'hidden';
                 setTimeout(function () {
                     if (!me.$el) {
                         return;
                     }
-                    element.style.height = height + 'px';
+                    element.style.height = height + "px";
                     onTransitionEnd(element, function () {
-                        element.style.height = '';
+                        me.set({
+                            isAnimation: FALSE
+                        });
+                        element.style.overflow = '';
                     });
                 });
             });
@@ -8918,7 +8947,7 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
             else if (event.phase === yox_esm["a" /* default */].Event.PHASE_UPWARD) {
                 this.set('activeName', data.name);
                 if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
-                    this.toggle('isOpen');
+                    this.click();
                 }
             }
         }
@@ -9147,7 +9176,8 @@ var Icon_default = /*#__PURE__*/__webpack_require__.n(Icon);
             type: RAW_STRING
         },
         size: {
-            type: RAW_NUMERIC
+            type: RAW_NUMERIC,
+            value: 14
         },
         color: {
             type: RAW_STRING
@@ -12427,7 +12457,9 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
     },
     events: {
         'change.accordion': function (_, data) {
-            this.set('accordion', data.accordion);
+            this.set({
+                accordion: data.accordion
+            });
         },
         'change.opened': function (event, data) {
             if (event.phase === yox_esm["a" /* default */].Event.PHASE_DOWNWARD) {
@@ -12455,14 +12487,16 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
             }
             var content = me.$refs.content;
             content.style.height = content.clientHeight + 'px';
-            me.nextTick(function () {
+            setTimeout(function () {
                 if (!content) {
                     return;
                 }
                 content.style.height = '0px';
                 onTransitionEnd(content, function () {
-                    content.style.height = '';
                     me.set('opened', FALSE);
+                    me.nextTick(function () {
+                        content.style.height = '';
+                    });
                 });
             });
         },
@@ -13416,7 +13450,7 @@ var Dropdown_default = /*#__PURE__*/__webpack_require__.n(Dropdown);
         },
         height: {
             type: RAW_NUMERIC,
-            value: 200
+            value: 280
         },
         className: {
             type: RAW_STRING

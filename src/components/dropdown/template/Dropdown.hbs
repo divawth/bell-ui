@@ -12,9 +12,6 @@ data-placement="{{placement}}"
 
 {{#if trigger === RAW_HOVER}}
   on-mouseenter="set('isOpen', TRUE)"
-{{/if}}
-
-{{#if trigger !== RAW_CUSTOM}}
   on-mouseleave="set('isOpen', FALSE)"
   lazy-mouseleave="300"
 {{/if}}

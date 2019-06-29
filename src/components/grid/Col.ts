@@ -1,4 +1,4 @@
-import Yox, { Data } from 'yox'
+import Yox, { Data, CustomEventInterface } from 'yox'
 
 import template from './template/Col.hbs'
 
@@ -129,7 +129,7 @@ export default Yox.define({
   },
 
   events: {
-    'gutterChanged.row': function (event, data) {
+    'gutterChanged.row': function (event: CustomEventInterface, data: Data) {
       this.set({
         gutter: data.gutter
       })

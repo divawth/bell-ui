@@ -1,9 +1,10 @@
-import Yox, { YoxInterface } from 'yox'
+import Yox, { YoxInterface, Data, CustomEventInterface } from 'yox'
 
 import template from './template/Submenu.hbs'
 
 import {
-  findComponentUpward, onTransitionEnd,
+  findComponentUpward,
+  onTransitionEnd,
 } from '../util'
 
 import {
@@ -35,33 +36,51 @@ export default Yox.define({
       activeName: NULL,
       mode: NULL,
       theme: NULL,
-      isCollapsed: FALSE
+      isCollapsed: FALSE,
+      isAnimation: FALSE
     }
   },
 
   methods: {
     click() {
-      this.get('isOpen') ? this.close() : this.open()
+      if (this.get('isAnimation')) {
+        return
+      }
+      if (this.get('isOpen')) {
+        this.close()
+      }
+      else {
+        this.open()
+      }
     },
 
     close() {
       let me = this
-      let element = (me.$refs.menu as YoxInterface).$el as HTMLElement
-      element.style.height = element.clientHeight + 'px'
-
+      me.set({
+        isAnimation: TRUE
+      })
+      let element = me.$refs.menu as HTMLElement
+      if (me.get('mode') === 'inline') {
+        element = (me.$refs.menu as YoxInterface).$el as HTMLElement
+      }
+      element.style.height = `${element.clientHeight}px`
+      element.style.overflow = 'hidden'
       setTimeout(
         function () {
           if (!element) {
             return
           }
           element.style.height = '0px'
-          element.style.overflow = 'hidden'
           onTransitionEnd(
             element,
             function () {
-              element.style.height = ''
-              element.style.overflow = ''
-              me.set('isOpen', FALSE)
+              me.set({
+                isAnimation: FALSE,
+                isOpen: FALSE
+              })
+              me.nextTick(function () {
+                element.style.height = ''
+              })
             }
           )
         }
@@ -70,23 +89,33 @@ export default Yox.define({
 
     open() {
       let me = this
-      me.set('isOpen', TRUE)
+      me.set({
+        isAnimation: TRUE,
+        isOpen: TRUE
+      })
 
       me.nextTick(function () {
-        let element = (me.$refs.menu as YoxInterface).$el as HTMLElement
+        let element = me.$refs.menu as HTMLElement
+        if (me.get('mode') === 'inline') {
+          element = (me.$refs.menu as YoxInterface).$el as HTMLElement
+        }
         let height = element.clientHeight
-        element.style.height = '0px'
+        element.style.height = `0px`
+        element.style.overflow = 'hidden'
 
         setTimeout(
           function () {
             if (!me.$el) {
               return
             }
-            element.style.height = height + 'px'
+            element.style.height = `${height}px`
             onTransitionEnd(
               element,
               function () {
-                element.style.height = ''
+                me.set({
+                  isAnimation: FALSE
+                })
+                element.style.overflow = ''
               }
             )
           }
@@ -96,20 +125,20 @@ export default Yox.define({
   },
 
   events: {
-    themeChanged(_, data) {
+    themeChanged(_: CustomEventInterface, data: Data) {
       this.set('theme', data.theme)
     },
-    isCollapsedChanged(_, data) {
+    isCollapsedChanged(_: CustomEventInterface, data: Data) {
       this.set('isCollapsed', data.isCollapsed)
     },
-    menuItemSelected(event, data) {
+    menuItemSelected(event: CustomEventInterface, data: Data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('activeName'))
       }
       else if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set('activeName', data.name)
         if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
-          this.toggle('isOpen')
+          this.click()
         }
       }
     }

@@ -90,7 +90,7 @@ export default {
         </a>
         <template slot="list">
           <DropdownMenu>
-            <p>常用于各种自定义下拉内容的场景。</p>
+            <p style="padding: 0 10px;">常用于各种自定义下拉内容的场景。</p>
             <div style="text-align: right;margin:10px;">
               <Button type="primary" on-click="handleClose()">关闭</Button>
             </div>

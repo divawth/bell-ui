@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/TabPanel.hbs'
 
@@ -45,7 +45,7 @@ export default Yox.define({
   },
 
   watchers: {
-    '*': function (newValue, oldValue, keypath) {
+    '*': function (newValue, oldValue, keypath: string) {
       let pathArray = ['name', 'icon', 'label', 'disabled']
       if (pathArray.indexOf(keypath) >= 0) {
         this.upsert('tabPanelUpdate')
@@ -54,7 +54,7 @@ export default Yox.define({
   },
 
   events: {
-    tabSelected(_, data) {
+    tabSelected(_: CustomEventInterface, data: Data) {
       this.set({
         isActive: this.get('id') == data.value
       })
@@ -62,7 +62,7 @@ export default Yox.define({
   },
 
   methods: {
-    upsert(name) {
+    upsert(name: string) {
       let me = this
       me.fire(
         name,
@@ -86,6 +86,7 @@ export default Yox.define({
     me.set('id', name)
     me.upsert('tabPanelAdd')
   },
+
   beforeDestroy() {
     this.upsert('tabPanelRemove')
   }

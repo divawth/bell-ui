@@ -1,4 +1,4 @@
-> 根据 type 显示按钮类型 
+> 根据 type 显示按钮类型
 
 ```js
 export default {
@@ -241,7 +241,7 @@ export default {
   template: `
     <div class="bell-buttons">
       <Button type="primary" shape="circle">
-        <Icon spin name="icon" size="18" type="refresh"></Icon>
+        <Icon spin size="18" name="refresh"></Icon>
       </Button>
 
       <Button type="primary"
@@ -305,30 +305,38 @@ export default {
       <br><br>
       <ButtonGroup>
         <Button type="primary">
-          <Icon name="arrow-back"></Icon>
+          <Icon name="arrow-back" style="margin-right: 6px;"></Icon>
           Backward
         </Button>
         <Button type="primary">
           Forward
-          <Icon name="arrow-forward"></Icon>
+          <Icon name="arrow-forward" style="margin-left: 6px;"></Icon>
         </Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup>
-        <Button icon="airplane"></Button>
-        <Button icon="alarm"></Button>
-        <Button icon="crop"></Button>
-        <Button icon="american-football"></Button>
+        <Button>
+          <Icon name="airplane" />
+        </Button>
+        <Button>
+          <Icon name="alarm" />
+        </Button>
+        <Button>
+          <Icon name="crop" />
+        </Button>
+        <Button>
+          <Icon name="american-football" />
+        </Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup shape="round">
         <Button type="primary">
-          <Icon name="arrow-back"></Icon>
+          <Icon name="arrow-back" style="margin-right: 8px;"></Icon>
           Backward
         </Button>
         <Button type="primary">
           Forward
-          <Icon name="arrow-forward"></Icon>
+          <Icon name="arrow-forward" style="margin-left: 8px;"></Icon>
         </Button>
       </ButtonGroup>
       <br><br>
