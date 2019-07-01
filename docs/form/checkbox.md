@@ -291,10 +291,6 @@ export default {
 export default {
   template: `
     <div>
-      <Checkbox size="tiny" model="single">
-        Checkbox
-      </Checkbox>
-      <br><br>
       <Checkbox size="small" model="single">
         Checkbox
       </Checkbox>
@@ -304,10 +300,6 @@ export default {
       </Checkbox>
       <br><br>
       <Checkbox size="large" model="single">
-        Checkbox
-      </Checkbox>
-      <br><br>
-      <Checkbox size="huge" model="single">
         Checkbox
       </Checkbox>
       <p>{{single}}</p>

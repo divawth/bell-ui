@@ -1,4 +1,4 @@
-import Yox, { Listener } from 'yox'
+import Yox, { Listener, CustomEventInterface, Data } from 'yox'
 
 import template from './template/Page.hbs'
 
@@ -6,27 +6,32 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC
+  RAW_NUMBER,
+  RAW_SIZE_ARRAY,
+  RAW_ARRAY,
+  RAW_BOTTOM,
+  RAW_TOP,
 } from '../constant'
+import { oneOf } from '../util'
 
 export default Yox.define({
 
   propTypes: {
     size: {
-      type: RAW_STRING
+      type: oneOf(RAW_SIZE_ARRAY)
     },
     simple: {
-      type: RAW_STRING
+      type: RAW_BOOLEAN
     },
     total: {
-      type: RAW_NUMERIC
+      type: RAW_NUMBER
     },
     current: {
-      type: RAW_NUMERIC,
+      type: RAW_NUMBER,
       value: 1
     },
     pageSize: {
-      type: RAW_NUMERIC,
+      type: RAW_NUMBER,
       value: 10
     },
     showSizer: {
@@ -34,7 +39,7 @@ export default Yox.define({
       value: FALSE
     },
     pageSizeOpts: {
-      type: 'array'
+      type: RAW_ARRAY
     },
     showElevator: {
       type: RAW_BOOLEAN,
@@ -45,6 +50,13 @@ export default Yox.define({
       value: FALSE
     },
     placement: {
+      type: oneOf([RAW_TOP, RAW_BOTTOM]),
+      value: RAW_BOTTOM
+    },
+    prevText: {
+      type: RAW_STRING
+    },
+    nextText: {
       type: RAW_STRING
     },
     className: {
@@ -85,7 +97,7 @@ export default Yox.define({
   },
 
   events: {
-    change: function (event) {
+    change: function (event: CustomEventInterface) {
       if (event.target != this) {
         event.stop()
       }
@@ -93,7 +105,7 @@ export default Yox.define({
   },
 
   watchers: {
-    current(value) {
+    current(value: number) {
       this.fire(
         'change.page',
         {
@@ -105,16 +117,30 @@ export default Yox.define({
 
   methods: {
 
+    showError(error: string) {
+      this.fire('error.page', {
+        errMsg: error
+      })
+    },
     elevator() {
       let page = this.get('elevatorPage')
       if (Yox.is.numeric(page)) {
-        this.changePage(+page)
+        page = +page
+        if (page > this.get('count')) {
+          this.showError(`输入页码值过大`)
+        }
+        else if (page <= 0) {
+          this.showError(`输入页码值过小`)
+        }
+        else {
+          this.changePage(page)
+        }
         return
       }
+      this.showError(`输入格式错误`)
     },
 
-    pageSizeChange(event, data) {
-
+    pageSizeChange(event: CustomEventInterface, data: Data) {
       this.updateCount()
       this.fire(
         'pageSizeChange.page',
@@ -164,7 +190,7 @@ export default Yox.define({
       }
     },
 
-    changePage(page) {
+    changePage(page: number) {
       this.set({
         current: page,
         currentPage: page

@@ -116,10 +116,12 @@ export default {
 export default {
   template: `
     <div>
-      <Badge dot type="success" />
-      <Badge dot type="error" />
-      <Badge dot type="info" />
-      <Badge dot type="warning" />
+      <Badge dot status="success" />
+      <Badge dot status="error" />
+      <Badge dot status="info" />
+      <Badge dot status="warning" />
+      <Badge dot status="default" />
+      <Badge dot status="processing" />
       <br />
       <Badge dot status="success" text="Success" />
       <br />
@@ -141,6 +143,7 @@ export default {
       <Badge hidden="{{hidden}}" count="212211" maxCount="999">
         <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
       </Badge>
+      <p> 点击图片不展示 badge </p>
     </div>
   `,
   data: {

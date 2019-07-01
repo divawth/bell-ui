@@ -6,7 +6,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC,
+  RAW_NUMBER,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
 } from '../constant'
@@ -21,10 +21,10 @@ export default Yox.define({
       type: RAW_STRING
     },
     count: {
-      type: RAW_NUMERIC
+      type: RAW_NUMBER
     },
     maxCount: {
-      type: RAW_NUMERIC,
+      type: RAW_NUMBER,
       value: 999
     },
     dot: {
@@ -54,7 +54,7 @@ export default Yox.define({
 
   filters: {
     isNumber: Yox.is.numeric,
-    formatText(count: any, maxCount: any) {
+    formatText(count: number, maxCount: number) {
       count = Yox.is.numeric(count) ? +count : 0
       maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1
       return maxCount < count

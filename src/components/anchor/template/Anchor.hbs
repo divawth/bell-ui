@@ -1,0 +1,15 @@
+<div
+class="${prefix}anchor-wrapper
+  {{#if isAffix}}${prefix}anchor-affix{{/if}}
+  {{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <div class="${prefix}anchor">
+    <div class="${prefix}anchor-ink">
+      <span class="${prefix}anchor-ink-ball" style="top: 8px;"></span>
+    </div>
+
+    <slot name="children" />
+  </div>
+</div>

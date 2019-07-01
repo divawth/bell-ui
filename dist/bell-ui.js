@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 82);
+/******/ 	return __webpack_require__(__webpack_require__.s = 84);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -7386,7 +7386,7 @@ function setResource(registry, name, value, formatValue) {
 /* harmony default export */ __webpack_exports__["a"] = (Yox);
 //# sourceMappingURL=yox.esm.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1), __webpack_require__(79).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1), __webpack_require__(81).setImmediate))
 
 /***/ }),
 /* 1 */
@@ -7580,7 +7580,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-page"+(a("size",!0)?" bell-page-"+u(a("size",!0)):"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){r("pageCenter",function(){a("current",!0)-5>=1?p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-item-prev"),l("click","event.click","fastPrev()","fastPrev")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")}),p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}):(a("current",!0)-3>1?p({"tag":"li","text":u(a("current",!0)-3)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 3)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-3]})}):p({"isComment":!0,"text":""}),a("current",!0)-4>1?p({"tag":"li","text":u(a("current",!0)-4)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 4)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-4]})}):p({"isComment":!0,"text":""})),a("current",!0)-2>1?p({"tag":"li","text":u(a("current",!0)-2)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 2)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-2]})}):p({"isComment":!0,"text":""}),a("current",!0)-1>1?p({"tag":"li","text":u(a("current",!0)-1)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 1)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-1]})}):p({"isComment":!0,"text":""}),a("current",!0)!=1&&a("current",!0)!=a("count",!0)?p({"tag":"li","text":u(a("current",!0))},!1,function(){g("className",1,"bell-page-item bell-active")}):p({"isComment":!0,"text":""}),a("current",!0)+1<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+1)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 1)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+1]})}):p({"isComment":!0,"text":""}),a("current",!0)+2<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+2)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 2)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+2]})}):p({"isComment":!0,"text":""}),a("current",!0)+5<=a("count",!0)?p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-item-next"),l("click","event.click","fastNext()","fastNext")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")}),p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})}):(a("current",!0)+3<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+3)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 3)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+3]})}):p({"isComment":!0,"text":""}),a("current",!0)+4<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+4)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 4)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+4]})}):p({"isComment":!0,"text":""}))}),a("showTotal",!0)?p({"tag":"span","text":"共 "+u(a("total",!0))+" 条"},!1,function(){g("className",1,"bell-page-total")}):p({"isComment":!0,"text":""}),a("showSizer",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-page-select")},function(){p({"tag":"Select","isComponent":!0},!1,function(){k(a("pageSize",!0,!1,!0,!0)),f("size",j("size",a("size",!0,!1,!0,!0))),f("placement",j("placement",a("placement",!0,!1,!0,!0))),l("change","event.change","pageSizeChange()","pageSizeChange")},!1,{"$slot_children":function(){t(function(){p({"tag":"Option","isComponent":!0},!1,function(){f("index",j("index",a("index",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0))),f("text",j("text",a("text",!0,!1,!0,!0)))},!1,{"$slot_children":function(){e(u(a("text",!0)))}})},a("pageList",!0,!1,!0),!1,!1,"index")}})}):p({"isComment":!0,"text":""}),!a("simple",!0)?p({"tag":"ul"},!1,function(){g("className",1,"bell-page-list")},function(){p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-prev"+(a("current",!0)<=1?" bell-disabled":"")),l("click","event.click","prev()","prev")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}),p({"tag":"li","text":"1"},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==1?" bell-active":"")),l("click","event.click","changePage(1)","changePage",function(v){return [1]})}),a("count",!0)>1?(s("pageCenter"),p({"tag":"li","text":u(a("count",!0))},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==a("count",!0)?" bell-active":"")),l("click","event.click","changePage(count)","changePage",function(v){return [a("count",!0,!1,!1,!1,v)]})})):p({"isComment":!0,"text":""}),p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-next"+(a("current",!0)>=a("count",!0)?" bell-disabled":"")),l("click","event.click","next()","next")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})})}):p({"tag":"div"},!1,function(){g("className",1,"bell-page-simple")},function(){p({"tag":"span"},!1,function(){g("className",1,"bell-page-item bell-page-prev"+(a("current",!0)<=1?" bell-disabled":"")),l("click","event.click","prev()","prev")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}),p({"tag":"div"},!1,function(){g("className",1,"bell-page-input")},function(){p({"tag":"Input","isComponent":!0},!1,function(){f("type","input"),f("size","small"),k(a("currentPage",!0,!1,!0,!0))})}),p({"tag":"span","text":u("/"+a("count",!0))},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==a("count",!0)?" bell-active":"")),l("click","event.click","changePage(count)","changePage",function(v){return [a("count",!0,!1,!1,!1,v)]})}),p({"tag":"span"},!1,function(){g("className",1,"bell-page-item bell-page-next"+(a("current",!0)>=a("count",!0)?" bell-disabled":"")),l("click","event.click","next()","next")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})})}),a("showElevator",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-page-elevator")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-page-input")},function(){p({"tag":"Input","isComponent":!0},!1,function(){f("type","input"),f("placeholder","请输入页码"),k(a("elevatorPage",!0,!1,!0,!0)),f("size",j("size",a("size",!0,!1,!0,!0)))})}),p({"tag":"Button","isComponent":!0},!1,function(){f("type","primary"),l("click","event.click","elevator()","elevator")},!1,{"$slot_children":function(){e("跳转")}})}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-page"+(a("size",!0)?" bell-page-"+u(a("size",!0)):"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){r("pageCenter",function(){a("current",!0)-5>=1?p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-item-prev"),l("click","event.click","fastPrev()","fastPrev")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")}),p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}):(a("current",!0)-3>1?p({"tag":"li","text":u(a("current",!0)-3)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 3)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-3]})}):p({"isComment":!0,"text":""}),a("current",!0)-4>1?p({"tag":"li","text":u(a("current",!0)-4)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 4)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-4]})}):p({"isComment":!0,"text":""})),a("current",!0)-2>1?p({"tag":"li","text":u(a("current",!0)-2)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 2)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-2]})}):p({"isComment":!0,"text":""}),a("current",!0)-1>1?p({"tag":"li","text":u(a("current",!0)-1)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current - 1)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)-1]})}):p({"isComment":!0,"text":""}),a("current",!0)!=1&&a("current",!0)!=a("count",!0)?p({"tag":"li","text":u(a("current",!0))},!1,function(){g("className",1,"bell-page-item bell-active")}):p({"isComment":!0,"text":""}),a("current",!0)+1<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+1)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 1)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+1]})}):p({"isComment":!0,"text":""}),a("current",!0)+2<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+2)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 2)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+2]})}):p({"isComment":!0,"text":""}),a("current",!0)+5<=a("count",!0)?p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-item-next"),l("click","event.click","fastNext()","fastNext")},function(){p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")}),p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})}):(a("current",!0)+3<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+3)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 3)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+3]})}):p({"isComment":!0,"text":""}),a("current",!0)+4<a("count",!0)?p({"tag":"li","text":u(a("current",!0)+4)},!1,function(){g("className",1,"bell-page-item"),l("click","event.click","changePage(current + 4)","changePage",function(v){return [a("current",!0,!1,!1,!1,v)+4]})}):p({"isComment":!0,"text":""}))}),a("showTotal",!0)?p({"tag":"span","text":"共 "+u(a("total",!0))+" 条"},!1,function(){g("className",1,"bell-page-total")}):p({"isComment":!0,"text":""}),a("showSizer",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-page-select")},function(){p({"tag":"Select","isComponent":!0},!1,function(){k(a("pageSize",!0,!1,!0,!0)),f("size",j("size",a("size",!0,!1,!0,!0))),f("placement",j("placement",a("placement",!0,!1,!0,!0))),l("change","event.change","pageSizeChange()","pageSizeChange")},!1,{"$slot_children":function(){t(function(){p({"tag":"Option","isComponent":!0},!1,function(){f("index",j("index",a("index",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0))),f("text",j("text",a("text",!0,!1,!0,!0)))},!1,{"$slot_children":function(){e(u(a("text",!0)))}})},a("pageList",!0,!1,!0),!1,!1,"index")}})}):p({"isComment":!0,"text":""}),!a("simple",!0)?p({"tag":"ul"},!1,function(){g("className",1,"bell-page-list")},function(){p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-prev"+(a("prevText",!0)?" bell-page-custom-prev":"")+(a("current",!0)<=1?" bell-disabled":"")),l("click","event.click","prev()","prev")},function(){a("prevText",!0)?e(u(a("prevText",!0))):p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}),p({"tag":"li","text":"1"},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==1?" bell-active":"")),l("click","event.click","changePage(1)","changePage",function(v){return [1]})}),a("count",!0)>1?(s("pageCenter"),p({"tag":"li","text":u(a("count",!0))},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==a("count",!0)?" bell-active":"")),l("click","event.click","changePage(count)","changePage",function(v){return [a("count",!0,!1,!1,!1,v)]})})):p({"isComment":!0,"text":""}),p({"tag":"li"},!1,function(){g("className",1,"bell-page-item bell-page-next"+(a("nextText",!0)?" bell-page-custom-next":"")+(a("current",!0)>=a("count",!0)?" bell-disabled":"")),l("click","event.click","next()","next")},function(){a("nextText",!0)?e(u(a("nextText",!0))):p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})})}):p({"tag":"div"},!1,function(){g("className",1,"bell-page-simple")},function(){p({"tag":"span"},!1,function(){g("className",1,"bell-page-item bell-page-prev"+(a("prevText",!0)?" bell-page-custom-prev":"")+(a("current",!0)<=1?" bell-disabled":"")),l("click","event.click","prev()","prev")},function(){a("prevText",!0)?e(u(a("prevText",!0))):p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-back")})}),p({"tag":"div"},!1,function(){g("className",1,"bell-page-input")},function(){p({"tag":"Input","isComponent":!0},!1,function(){f("type","input"),f("size","small"),k(a("currentPage",!0,!1,!0,!0))})}),p({"tag":"span"},!1,function(){g("className",1,"bell-page-item"+(a("current",!0)==a("count",!0)?" bell-active":"")),l("click","event.click","changePage(count)","changePage",function(v){return [a("count",!0,!1,!1,!1,v)]})},function(){p({"tag":"span","isStatic":!0,"text":"/"},!1,function(){g("className",1,"bell-page-gap")}),e(u(a("count",!0)))}),p({"tag":"span"},!1,function(){g("className",1,"bell-page-item bell-page-next"+(a("nextText",!0)?" bell-page-custom-next":"")+(a("current",!0)>=a("count",!0)?" bell-disabled":"")),l("click","event.click","next()","next")},function(){a("nextText",!0)?e(u(a("nextText",!0))):p({"tag":"Icon","isComponent":!0},!1,function(){f("name","arrow-forward")})})}),a("showElevator",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-page-elevator")},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-page-input")},function(){p({"tag":"Input","isComponent":!0},!1,function(){f("type","input"),f("placeholder","请输入页码"),k(a("elevatorPage",!0,!1,!0,!0)),f("size",j("size",a("size",!0,!1,!0,!0)))})}),p({"tag":"Button","isComponent":!0},!1,function(){f("type","primary"),l("click","event.click","elevator()","elevator")},!1,{"$slot_children":function(){e("跳转")}})}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 30 */
@@ -7616,7 +7616,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-badge"+(a("status",!0)?"-status":"")+(a("status",!0)||a("type",!0)?" bell-badge-"+u(a("status",!0)||a("type",!0)):"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){q("$slot_children"),!a("hidden",!0)?(a("dot",!0)?p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-badge-dot")}):p({"isComment":!0,"text":""}),a("text",!0)||d(a("isNumber",!0),[a("count",!0)])?p({"tag":"span","text":u(a("text",!0)?a("text",!0):d(a("formatText",!0),[a("count",!0),a("maxCount",!0)]))},!1,function(){g("className",1,"bell-badge-count"+(!d(a("hasSlot",!0),["children"])?" bell-badge-count-alone":""))}):p({"isComment":!0,"text":""})):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-badge"+(a("status",!0)?"-status":"")+(a("status",!0)||a("type",!0)?" bell-badge-"+u(a("status",!0)||a("type",!0)):"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){q("$slot_children"),!a("hidden",!0)?(a("dot",!0)?p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-badge-dot")}):p({"isComment":!0,"text":""}),a("status",!0)||a("text",!0)||d(a("isNumber",!0),[a("count",!0)])?p({"tag":"span","text":u(a("status",!0)||a("text",!0)?a("text",!0):d(a("formatText",!0),[a("count",!0),a("maxCount",!0)]))},!1,function(){g("className",1,"bell-badge-count"+(!d(a("hasSlot",!0),["children"])?" bell-badge-count-alone":""))}):p({"isComment":!0,"text":""})):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 36 */
@@ -7872,12 +7872,24 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 
 /***/ }),
 /* 78 */
+/***/ (function(module, exports) {
+
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-anchor-wrapper"+(a("isAffix",!0)?"bell-anchor-affix":"")+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"div"},!1,function(){g("className",1,"bell-anchor")},function(){p({"tag":"div","isStatic":!0},!1,function(){g("className",1,"bell-anchor-ink")},function(){p({"tag":"span","isStatic":!0},!1,function(){g("className",1,"bell-anchor-ink-ball"),g("style.cssText",1,"top: 8px;")})}),q("$slot_children")})})};
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-anchor-link"+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"a","text":u(a("title",!0))},!1,function(){g("className",1,"bell-anchor-link-title"),g("href",1,j("href",a("href",!0,!1,!0,!0),1)),g("title",1,j("title",a("title",!0,!1,!0,!0),1)),f("data-scroll-offset","0")}),q("$slot_children")})};
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -7933,7 +7945,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(80);
+__webpack_require__(82);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -7947,7 +7959,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1)))
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -8137,10 +8149,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1), __webpack_require__(81)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1), __webpack_require__(83)))
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -8330,14 +8342,14 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./src/css/index.styl
-var css = __webpack_require__(78);
+var css = __webpack_require__(80);
 
 // EXTERNAL MODULE: ./node_modules/yox/dist/standard/dev/yox.esm.js
 var yox_esm = __webpack_require__(0);
@@ -8424,6 +8436,7 @@ var RAW_PLACEMENT_ARRAY = [
     RAW_RIGHT_START,
     RAW_RIGHT_END
 ];
+var DOCUMENT = document;
 
 // CONCATENATED MODULE: ./src/components/layout/Layout.ts
 
@@ -8650,7 +8663,7 @@ function isDate() {
         Yox.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
     };
 }
-function scrollTop(element, from, to, duration, endCallback) {
+function util_scrollTop(element, from, to, duration, endCallback) {
     if (from === void 0) { from = 0; }
     if (duration === void 0) { duration = 500; }
     var difference = Math.abs(from - to);
@@ -8678,6 +8691,23 @@ function scrollTop(element, from, to, duration, endCallback) {
 }
 function getType(value) {
     return Object.prototype.toString.call(value).toLowerCase().slice(8, -1);
+}
+function debounce(fn, time, immediate) {
+    var timer;
+    return function () {
+        if (timer)
+            return;
+        var args = Array.prototype.slice.call(arguments);
+        if (immediate) {
+            fn.apply(NULL, args);
+        }
+        timer = setTimeout(function () {
+            if (!immediate)
+                fn.apply(NULL, args);
+            clearTimeout(timer);
+            timer = NULL;
+        }, time);
+    };
 }
 
 // CONCATENATED MODULE: ./src/components/menu/Menu.ts
@@ -10365,23 +10395,24 @@ var Page_default = /*#__PURE__*/__webpack_require__.n(Page);
 
 
 
+
 /* harmony default export */ var page_Page = (yox_esm["a" /* default */].define({
     propTypes: {
         size: {
-            type: RAW_STRING
+            type: oneOf(RAW_SIZE_ARRAY)
         },
         simple: {
-            type: RAW_STRING
+            type: RAW_BOOLEAN
         },
         total: {
-            type: RAW_NUMERIC
+            type: RAW_NUMBER
         },
         current: {
-            type: RAW_NUMERIC,
+            type: RAW_NUMBER,
             value: 1
         },
         pageSize: {
-            type: RAW_NUMERIC,
+            type: RAW_NUMBER,
             value: 10
         },
         showSizer: {
@@ -10389,7 +10420,7 @@ var Page_default = /*#__PURE__*/__webpack_require__.n(Page);
             value: FALSE
         },
         pageSizeOpts: {
-            type: 'array'
+            type: RAW_ARRAY
         },
         showElevator: {
             type: RAW_BOOLEAN,
@@ -10400,6 +10431,13 @@ var Page_default = /*#__PURE__*/__webpack_require__.n(Page);
             value: FALSE
         },
         placement: {
+            type: oneOf([RAW_TOP, RAW_BOTTOM]),
+            value: RAW_BOTTOM
+        },
+        prevText: {
+            type: RAW_STRING
+        },
+        nextText: {
             type: RAW_STRING
         },
         className: {
@@ -10447,12 +10485,27 @@ var Page_default = /*#__PURE__*/__webpack_require__.n(Page);
         }
     },
     methods: {
+        showError: function (error) {
+            this.fire('error.page', {
+                errMsg: error
+            });
+        },
         elevator: function () {
             var page = this.get('elevatorPage');
             if (yox_esm["a" /* default */].is.numeric(page)) {
-                this.changePage(+page);
+                page = +page;
+                if (page > this.get('count')) {
+                    this.showError("\u8F93\u5165\u9875\u7801\u503C\u8FC7\u5927");
+                }
+                else if (page <= 0) {
+                    this.showError("\u8F93\u5165\u9875\u7801\u503C\u8FC7\u5C0F");
+                }
+                else {
+                    this.changePage(page);
+                }
                 return;
             }
+            this.showError("\u8F93\u5165\u683C\u5F0F\u9519\u8BEF");
         },
         pageSizeChange: function (event, data) {
             this.updateCount();
@@ -10753,7 +10806,7 @@ var BackTop_default = /*#__PURE__*/__webpack_require__.n(BackTop);
     events: {
         click: function () {
             var me = this, parentElement = me.$parent.$el;
-            scrollTop(parentElement, parentElement.scrollTop, 0, me.get('duration'));
+            util_scrollTop(parentElement, parentElement.scrollTop, 0, me.get('duration'));
         }
     },
     afterMount: function () {
@@ -10861,10 +10914,10 @@ var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
             type: RAW_STRING
         },
         count: {
-            type: RAW_NUMERIC
+            type: RAW_NUMBER
         },
         maxCount: {
-            type: RAW_NUMERIC,
+            type: RAW_NUMBER,
             value: 999
         },
         dot: {
@@ -12186,7 +12239,7 @@ var Tooltip_default = /*#__PURE__*/__webpack_require__.n(Tooltip);
 
 
 
-var timer;
+var Tooltip_timer;
 /* harmony default export */ var tooltip_Tooltip = (yox_esm["a" /* default */].define({
     propTypes: {
         content: {
@@ -12318,7 +12371,7 @@ var timer;
             });
             yox_esm["a" /* default */].nextTick(function () {
                 me.setPosition();
-                timer = setTimeout(function () {
+                Tooltip_timer = setTimeout(function () {
                     if (me.get('isHover')) {
                         me.set({
                             isShow: true
@@ -12341,9 +12394,9 @@ var timer;
         }
     },
     beforeDestroy: function () {
-        if (timer) {
-            clearTimeout(timer);
-            timer = NULL;
+        if (Tooltip_timer) {
+            clearTimeout(Tooltip_timer);
+            Tooltip_timer = NULL;
         }
     }
 }));
@@ -14932,11 +14985,12 @@ var Msgbox_Confirm = function (data) {
     Confirm: Msgbox_Confirm
 });
 
-// EXTERNAL MODULE: ./src/components/loadingBar/template/LoadingBar.html
+// EXTERNAL MODULE: ./src/components/loadingBar/template/LoadingBar.hbs
 var LoadingBar = __webpack_require__(77);
 var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 
-// CONCATENATED MODULE: ./src/components/loadingBar/base.js
+// CONCATENATED MODULE: ./src/components/loadingBar/base.ts
+
 
 
 var base_namespace = 'bell-loadingbar';
@@ -14946,13 +15000,13 @@ var loadingBar_base_add = function (data) {
     if (base_instance) {
         remove();
     }
-    var body = Yox.dom.find('#bell-loadingbar-wrapper');
-    var element = Yox.dom.createElement('div');
-    Yox.dom.prop(element, 'id', base_namespace);
-    Yox.dom.append(body, element);
-    base_instance = new Yox({
+    var body = yox_esm["a" /* default */].dom.find('#bell-loadingbar-wrapper');
+    var element = yox_esm["a" /* default */].dom.createElement('div');
+    yox_esm["a" /* default */].dom.prop(element, 'id', base_namespace);
+    yox_esm["a" /* default */].dom.append(body, element);
+    base_instance = new yox_esm["a" /* default */]({
         el: '#' + base_namespace,
-        replace: true,
+        replace: TRUE,
         props: {
             percent: data.percent,
             height: data.height,
@@ -14965,11 +15019,11 @@ var loadingBar_base_add = function (data) {
                 type: RAW_STRING
             },
             height: {
-                type: RAW_NUMERIC,
+                type: RAW_NUMBER,
                 value: 2
             },
             percent: {
-                type: RAW_NUMERIC,
+                type: RAW_NUMBER,
                 value: 0
             },
             color: {
@@ -14987,7 +15041,7 @@ var loadingBar_base_add = function (data) {
                     if (me.get('percent') <= 98) {
                         timerStart();
                     }
-                }, 200);
+                }, 300);
             };
             timerStart();
         },
@@ -15004,10 +15058,10 @@ var remove = function () {
         base_instance.destroy();
         base_instance = NULL;
     }
-    var body = Yox.dom.find('#bell-loadingbar-wrapper');
-    var element = Yox.dom.find("#" + base_namespace);
+    var body = yox_esm["a" /* default */].dom.find('#bell-loadingbar-wrapper');
+    var element = yox_esm["a" /* default */].dom.find("#" + base_namespace);
     if (element) {
-        Yox.dom.remove(body, element);
+        yox_esm["a" /* default */].dom.remove(body, element);
     }
 };
 var update = function (config) {
@@ -15016,7 +15070,9 @@ var update = function (config) {
     }
 };
 
-// CONCATENATED MODULE: ./src/components/loadingBar/LoadingBar.js
+// CONCATENATED MODULE: ./src/components/loadingBar/LoadingBar.ts
+
+
 
 var LoadingBar_config = {};
 var LoadingBar_updateConfig = function (data) {
@@ -15027,7 +15083,7 @@ var LoadingBar_updateConfig = function (data) {
 /* harmony default export */ var loadingBar_LoadingBar = ({
     // 开始从 0 显示进度条，并自动加载进度
     start: function (options) {
-        return loadingBar_base_add(Yox.object.extend({}, options, LoadingBar_config));
+        return loadingBar_base_add(yox_esm["a" /* default */].object.extend(options, LoadingBar_config));
     },
     // 结束进度条，自动补全剩余进度
     finish: function () {
@@ -15046,10 +15102,143 @@ var LoadingBar_updateConfig = function (data) {
         LoadingBar_updateConfig(data);
     },
     destroy: function () {
-        LoadingBar_config = {};
-        element.remove();
+        LoadingBar_config = NULL;
     }
 });
+
+// EXTERNAL MODULE: ./src/components/anchor/template/Anchor.hbs
+var Anchor = __webpack_require__(78);
+var Anchor_default = /*#__PURE__*/__webpack_require__.n(Anchor);
+
+// CONCATENATED MODULE: ./src/components/anchor/Anchor.ts
+
+
+
+
+/* harmony default export */ var anchor_Anchor = (yox_esm["a" /* default */].define({
+    propTypes: {
+        affix: {
+            type: RAW_BOOLEAN
+        },
+        container: {
+            type: RAW_STRING
+        },
+        showInk: {
+            type: RAW_BOOLEAN
+        },
+        offsetTop: {
+            type: RAW_NUMBER,
+            value: 0
+        },
+        offsetBottom: {
+            type: RAW_NUMBER
+        },
+        bounds: {
+            type: RAW_NUMBER,
+            value: 5
+        },
+        className: {
+            type: RAW_STRING
+        },
+        style: {
+            type: RAW_STRING
+        }
+    },
+    template: Anchor_default.a,
+    data: function () {
+        return {
+            scrollElement: window,
+            isAffix: true
+        };
+    },
+    afterMount: function () {
+        var me = this;
+        if (!me.get('affix')) {
+            return;
+        }
+        var offsetTop = me.get('offsetTop');
+        var offsetBottom = me.get('offsetBottom');
+        var scrollElement = me.get('scrollElement');
+        if (yox_esm["a" /* default */].is.string(me.get('container'))) {
+            var element = document.querySelector(me.get('container'));
+            if (!element) {
+                return;
+            }
+            me.set({
+                scrollElement: element
+            });
+        }
+        else if (me.get('conatiner')) {
+            me.set({
+                scrollElement: me.get('container')
+            });
+        }
+        var handlerScroll = debounce(function (event) {
+            var scrollTop, scrollHeight, clientHeight;
+            var target = event.originalEvent.target;
+            if (target === DOCUMENT) {
+                scrollTop = window.scrollY;
+                scrollHeight = window.pageYOffset;
+                clientHeight = window.innerHeight;
+            }
+            else {
+                scrollTop = target.scrollTop;
+                scrollHeight = target.scrollHeight;
+                clientHeight = target.clientHeight;
+            }
+            var scrollBottom = scrollHeight - clientHeight - scrollTop;
+            if (scrollTop > offsetTop) {
+                me.set({
+                    isAffix: TRUE
+                });
+                console.log('触发顶部事件');
+            }
+            else if (scrollTop <= offsetTop) {
+                me.set({
+                    isAffix: FALSE
+                });
+            }
+            else if (offsetBottom && offsetBottom <= scrollBottom) {
+                console.log('触发底部事件');
+            }
+        }, 1000, TRUE);
+        var handlerHashChange = function () {
+            console.log(arguments);
+        };
+        yox_esm["a" /* default */].dom.on(me.get('scrollElement'), 'scroll', handlerScroll);
+        yox_esm["a" /* default */].dom.on(DOCUMENT, 'hashchange', handlerHashChange);
+        me.on('beforeDestroy.hook', function () {
+            yox_esm["a" /* default */].dom.off(scrollElement, 'scroll', handlerScroll);
+            yox_esm["a" /* default */].dom.off(DOCUMENT, 'hashchange', handlerHashChange);
+        });
+    }
+}));
+
+// EXTERNAL MODULE: ./src/components/anchor/template/AnchorLink.hbs
+var AnchorLink = __webpack_require__(79);
+var AnchorLink_default = /*#__PURE__*/__webpack_require__.n(AnchorLink);
+
+// CONCATENATED MODULE: ./src/components/anchor/AnchorLink.ts
+
+
+
+/* harmony default export */ var anchor_AnchorLink = (yox_esm["a" /* default */].define({
+    propTypes: {
+        href: {
+            type: RAW_STRING
+        },
+        title: {
+            type: RAW_STRING
+        },
+        className: {
+            type: RAW_STRING
+        },
+        style: {
+            type: RAW_STRING
+        }
+    },
+    template: AnchorLink_default.a
+}));
 
 // CONCATENATED MODULE: ./src/index.ts
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
@@ -15057,6 +15246,8 @@ var LoadingBar_updateConfig = function (data) {
  * @file 主模块
  * @author wangtianhua
  */
+
+
 
 
 
@@ -15194,7 +15385,9 @@ var components = {
     FormItem: form_FormItem,
     Dialog: dialog_Dialog,
     SmallTable: table_SmallTable,
-    Table: table_Table
+    Table: table_Table,
+    Anchor: anchor_Anchor,
+    AnchorLink: anchor_AnchorLink
 };
 var install = function (Yox) {
     var loadingbarElement = Yox.dom.createElement('div');

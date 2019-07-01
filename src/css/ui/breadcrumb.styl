@@ -4,19 +4,19 @@
 
   {$selector-breadcrumb}-gap
     display inline-block
-    margin 0 10px
+    margin-left $breadcrumb-gap-margin-left
 
   {$selector-breadcrumb}-link
+    font-weight normal
     cursor pointer
     text-decoration none
     color $breadcrumb-link-color
 
   {$selector-breadcrumb-item}
-
     &:last-child
       {$selector-breadcrumb}-link
-        font-weight bold
-        color #000
+        font-weight 700
+        color #515a6e
 
       {$selector-breadcrumb}-gap
         display none

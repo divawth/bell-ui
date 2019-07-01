@@ -102,10 +102,16 @@ class="${prefix}page
 
       <li
         class="${prefix}page-item ${prefix}page-prev
-        {{#if current <= 1}} ${prefix}disabled{{/if}}"
+          {{#if prevText}} ${prefix}page-custom-prev{{/if}}
+          {{#if current <= 1}} ${prefix}disabled{{/if}}
+        "
         on-click="prev()"
       >
-        <Icon name="arrow-back" />
+        {{#if prevText}}
+          {{prevText}}
+        {{else}}
+          <Icon name="arrow-back" />
+        {{/if}}
       </li>
 
       <li
@@ -129,10 +135,16 @@ class="${prefix}page
 
       <li
         class="${prefix}page-item ${prefix}page-next
-        {{#if current >= count}} ${prefix}disabled{{/if}}"
+          {{#if nextText}} ${prefix}page-custom-next{{/if}}
+          {{#if current >= count}} ${prefix}disabled{{/if}}
+        "
         on-click="next()"
       >
-        <Icon name="arrow-forward" />
+        {{#if nextText}}
+          {{nextText}}
+        {{else}}
+          <Icon name="arrow-forward" />
+        {{/if}}
       </li>
     </ul>
 
@@ -140,10 +152,16 @@ class="${prefix}page
     <div class="${prefix}page-simple">
       <span
         class="${prefix}page-item ${prefix}page-prev
-        {{#if current <= 1}} ${prefix}disabled{{/if}}"
+          {{#if prevText}} ${prefix}page-custom-prev{{/if}}
+          {{#if current <= 1}} ${prefix}disabled{{/if}}
+        "
         on-click="prev()"
       >
-        <Icon name="arrow-back" />
+        {{#if prevText}}
+          {{prevText}}
+        {{else}}
+          <Icon name="arrow-back" />
+        {{/if}}
       </span>
 
       <div class="${prefix}page-input">
@@ -158,15 +176,24 @@ class="${prefix}page
         {{#if current == count}} ${prefix}active{{/if}}"
         on-click="changePage(count)"
       >
-        {{'/' + count}}
+        <span class="${prefix}page-gap">
+          /
+        </span>
+        {{count}}
       </span>
 
       <span
         class="${prefix}page-item ${prefix}page-next
-        {{#if current >= count}} ${prefix}disabled{{/if}}"
+          {{#if nextText}} ${prefix}page-custom-next{{/if}}
+          {{#if current >= count}} ${prefix}disabled{{/if}}
+        "
         on-click="next()"
       >
-        <Icon name="arrow-forward" />
+        {{#if nextText}}
+          {{nextText}}
+        {{else}}
+          <Icon name="arrow-forward" />
+        {{/if}}
       </span>
     </div>
   {{/if}}

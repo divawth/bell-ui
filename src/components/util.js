@@ -1,4 +1,4 @@
-import { UNDEFINED } from './constant'
+import { UNDEFINED, NULL } from './constant'
 
 const element = document.createElement('div')
 
@@ -134,4 +134,20 @@ export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
 
 export function getType(value) {
   return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
+}
+
+export function debounce(fn, time, immediate) {
+  let timer
+  return function () {
+    if (timer) return
+    let args = Array.prototype.slice.call(arguments)
+    if (immediate) {
+      fn.apply(NULL, args)
+    }
+    timer = setTimeout(function () {
+      if (!immediate) fn.apply(NULL, args)
+      clearTimeout(timer)
+      timer = NULL
+    }, time)
+  }
 }

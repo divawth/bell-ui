@@ -205,6 +205,7 @@ export default {
         其他
       </Radio>
     </RadioGroup>
+    <br><br>
     <RadioGroup button name="country" model="value">
       <Radio value="china">
         中国
@@ -216,6 +217,7 @@ export default {
         其他
       </Radio>
     </RadioGroup>
+    <br><br>
     <RadioGroup size="small" button name="country" model="value">
       <Radio value="china">
         中国

@@ -30,17 +30,21 @@ switch-size-style(size)
       {$selector-switch-button}
         &:before
           ui-set('left', size[ 'before-left' ])
-        
+
 switch-brand-style(style)
 
   &{$selector-switch}-loading
     {$selector-switch-button}
       &:before
-        ui-set('border-left-color', style[ 'active-color' ])
-        
+        ui-set('border-left-color', style[ 'color' ])
+
   &{$selector-active}
-    ui-set('background-color', style[ 'active-color' ])
-    ui-set('border-color', style[ 'active-color' ])
+    ui-set('background-color', style[ 'color' ])
+    ui-set('border-color', style[ 'color' ])
+
+  &{$selector-focus}
+    outline none
+    ui-set('box-shadow', style[ 'box-shadow' ])
 
 ui-switch()
   ui-connect(

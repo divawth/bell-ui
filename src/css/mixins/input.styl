@@ -8,7 +8,7 @@ input-size(size)
       ui-set('height', size + 2)
 
   {$selector-input}-prefix,
-  {$selector-input}-suffix 
+  {$selector-input}-suffix
     ui-set('width', size)
     ui-set('height', size)
 
@@ -22,10 +22,10 @@ input-size(size)
       ui-set('line-height', size)
 
       &{$selector-input}-with-prefix
-        ui-set('padding-left', size - 15)
-        
-      &{$selector-input}-with-suffix 
-        ui-set('padding-right', size - 15)
+        ui-set('padding-left', size)
+
+      &{$selector-input}-with-suffix
+        ui-set('padding-right', size)
 
   &{$selector-input-wrapper}-clearable
     {$selector-input}-clear-icon

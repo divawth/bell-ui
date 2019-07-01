@@ -1,0 +1,15 @@
+<div
+class="${prefix}anchor-link
+  {{#if className}} {{className}}{{/if}}
+"
+{{#if style}} style="{{style}}"{{/if}}
+>
+  <a class="${prefix}anchor-link-title"
+    href="{{href}}"
+    title="{{title}}"
+    data-scroll-offset="0"
+  >
+    {{title}}
+  </a>
+  <slot name="children" />
+</div>

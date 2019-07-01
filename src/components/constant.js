@@ -54,10 +54,10 @@ export const RAW_ICON_IOS = 'ios'
 export const RAW_ICON_MD = 'md'
 
 export const RAW_TYPE_ARRAY = [
-  RAW_TYPE_PRIMARY, 
-  RAW_TYPE_INFO, 
-  RAW_TYPE_SUCCESS, 
-  RAW_TYPE_WARNING, 
+  RAW_TYPE_PRIMARY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
   RAW_TYPE_SECONDARY
 ]
@@ -76,7 +76,7 @@ export const RAW_ICON_TYPE_ARRAY = [
 ]
 
 export const RAW_PLACEMENT_ARRAY = [
-  RAW_TOP, 
+  RAW_TOP,
   RAW_TOP_START,
   RAW_TOP_END,
   RAW_BOTTOM,
@@ -89,3 +89,5 @@ export const RAW_PLACEMENT_ARRAY = [
   RAW_RIGHT_START,
   RAW_RIGHT_END
 ]
+
+export const DOCUMENT = document

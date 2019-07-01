@@ -38,16 +38,44 @@
 {$selector-badge-status}
   display inline-block
   position relative
-  
-  {$selector-badge-dot}   
-    border-radius 100%
-    position absolute
+
+  {$selector-badge-dot}
+    display inline-block
+    border-radius 50%
     height $badge-dot-size
     width $badge-dot-size
-    top 50%
-    transform translateY(-50%)
     z-index $zindex-badge
+    vertical-align middle
+    position relative
 
   {$selector-badge-count}
-    padding-left 16px
+    display inline-block
+    color $badge-status-text-color
+    font-size $badge-font-size
+    margin-left $badge-status-text-margin-left
     background-color transparent
+
+  &{$selector-badge}-processing
+    {$selector-badge}-dot
+      &:after
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        border-radius 50%
+        box-sizing border-box
+        border 1px solid #2d8cf0
+        content ""
+        animation statusProcessing 1.2s infinite ease-in-out
+
+@keyframes statusProcessing {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}

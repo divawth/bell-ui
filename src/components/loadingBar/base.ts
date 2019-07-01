@@ -1,22 +1,31 @@
-import template from './template/LoadingBar.html'
-import { NULL, RAW_STRING, RAW_NUMERIC } from '../constant'
+import template from './template/LoadingBar.hbs'
+import { NULL, RAW_STRING, RAW_NUMERIC, TRUE, RAW_NUMBER } from '../constant'
+import Yox from 'yox';
+
+interface Config {
+  type?: string,
+  color?: string,
+  height?: number,
+  percent?: number
+}
 
 let namespace = '${prefix}loadingbar'
 let instance = NULL
 let timer = NULL
 
-export const add = function(data) {
+
+export const add = function(data: Config) {
   if (instance) {
     remove()
   }
-  let body = Yox.dom.find('#${prefix}loadingbar-wrapper')
-  let element = Yox.dom.createElement('div')
+  let body = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
+  let element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
   instance = new Yox({
     el: '#' + namespace,
-    replace: true,
+    replace: TRUE,
     props: {
       percent: data.percent,
       height: data.height,
@@ -29,11 +38,11 @@ export const add = function(data) {
         type: RAW_STRING
       },
       height: {
-        type: RAW_NUMERIC,
+        type: RAW_NUMBER,
         value: 2
       },
       percent: {
-        type: RAW_NUMERIC,
+        type: RAW_NUMBER,
         value: 0
       },
       color: {
@@ -54,7 +63,7 @@ export const add = function(data) {
               timerStart()
             }
           },
-          200
+          300
         )
       }
       timerStart()
@@ -74,14 +83,14 @@ export const remove = function() {
     instance.destroy()
     instance = NULL
   }
-  let body = Yox.dom.find('#${prefix}loadingbar-wrapper')
+  let body = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
   let element = Yox.dom.find(`#${namespace}`)
   if (element) {
     Yox.dom.remove(body, element)
   }
 }
 
-export const update = function(config) {
+export const update = function(config: Config) {
   if (instance) {
     instance.set(config)
   }

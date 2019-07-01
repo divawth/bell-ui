@@ -1,8 +1,17 @@
 import { add, remove, update } from './base'
+import Yox from 'yox';
+import { NULL } from '../constant';
 
-let config = {}
+interface Config {
+  type?: string,
+  color?: string,
+  height?: number,
+  percent?: number
+}
 
-let updateConfig = function (data) {
+let config: Config = {}
+
+let updateConfig = function (data: Config) {
   config.type = data.type ? data.type : config.type
   config.color = data.color ? data.color : config.color
   config.height = data.height ? data.height : config.height
@@ -10,10 +19,9 @@ let updateConfig = function (data) {
 
 export default {
   // 开始从 0 显示进度条，并自动加载进度
-  start(options) {
+  start(options: Config) {
     return add(
       Yox.object.extend(
-        {},
         options,
         config
       )
@@ -32,14 +40,13 @@ export default {
     )
   },
   // 精确加载到指定的进度
-  update(data) {
+  update(data: Config) {
     return update(data)
   },
-  config(data) {
+  config(data: Config) {
     updateConfig(data)
   },
   destroy() {
-    config = {}
-    element.remove()
+    config = NULL
   }
 }

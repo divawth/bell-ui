@@ -16,7 +16,7 @@
 
       {$selector-input-el}
         cursor $cursor-disabled
-  
+
   &{$selector-input-wrapper}-clearable
     {$selector-input}-clear-icon
       position absolute
@@ -30,8 +30,8 @@
 
     &{$selector-hover}
       {$selector-input}-clear-icon
-        opacity 1 
-        
+        opacity 1
+
       .bell-input-suffix
         opacity 0
 
@@ -45,22 +45,26 @@
     background-color #fafafa
 
     {$selector-select}
-      margin -1px -11px
+      margin 0px -11px
+      vertical-align middle
 
       {$selector-select-button}
         border-color transparent
         box-shadow none
-    
+
     {$selector-button}
       margin -1px -12px
       border-color transparent
       box-shadow none
       cursor pointer
-    
+
     {$selector-input-wrapper}
       margin 0 -12px
 
   {$selector-input-append}
+    margin-left -1px
+    position relative
+
     {$selector-button}
       border-top-left-radius 0
       border-bottom-left-radius 0
@@ -81,7 +85,6 @@
       border-bottom-left-radius 0
 
   {$selector-input-append}
-    border-left 0
     border-top-right-radius $radius-base
     border-bottom-right-radius $radius-base
 
@@ -102,7 +105,6 @@
     transition border-color .3s, box-shadow .3s
     line-height 0
     vertical-align top
-    padding 0 15px
 
     {$selector-input-el}
       border none
@@ -117,6 +119,7 @@
       resize vertical
       font-size $input-el-size
       color $input-el-color
+      padding 0 15px
 
       &:-webkit-input-placeholder  /* WebKit browsers */
         color $input-el-placeholder-color
@@ -136,11 +139,11 @@
       left 0
       top 0
 
-      {$selector-input}-prefix-icon 
+      {$selector-input}-prefix-icon
         font-size 16px
         color #808695
 
-    {$selector-input}-suffix 
+    {$selector-input}-suffix
       position absolute
       right 0
       top 0
@@ -149,18 +152,17 @@
       justify-content center
       cursor pointer
 
-      {$selector-input}-suffix-icon 
+      {$selector-input}-suffix-icon
         font-size 16px
         color #808695
 
   ui-input()
 
-
   {$selector-textarea}
     {$selector-input-el}
       resize none
-      line-height 1.5 
-  
+      line-height 1.8
+
   &{$selector-input}-autosize
     {$selector-textarea}
       {$selector-input-el}

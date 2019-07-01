@@ -89,6 +89,8 @@ import Message from './components/message/Message'
 import Notice from './components/notice/Notice'
 import Msgbox from './components/msgbox/Msgbox'
 import LoadingBar from  './components/loadingBar/LoadingBar'
+import Anchor from  './components/anchor/Anchor'
+import AnchorLink from  './components/anchor/AnchorLink'
 
 const components = {
   Layout,
@@ -164,7 +166,9 @@ const components = {
   FormItem,
   Dialog,
   SmallTable,
-  Table
+  Table,
+  Anchor,
+  AnchorLink
 }
 
 export const install = function (Yox) {

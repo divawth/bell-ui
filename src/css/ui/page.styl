@@ -39,7 +39,6 @@
     &{$selector-page-item}-next,
     &{$selector-page-item}-prev
       border none
-
       &:after
         content "\2022\2022\2022"
         display block
@@ -59,6 +58,17 @@
           display inline-block
           margin-left 0
 
+    &{$selector-page}-custom-next,
+    &{$selector-page}-custom-prev
+      border none
+      width auto
+
+    &{$selector-page}-custom-prev
+      margin-right 10px
+
+    &{$selector-page}-custom-next
+      margin-left 10px
+
   {$selector-page}-select
     display inline-block
     width $page-item-width
@@ -69,7 +79,7 @@
     display inline-block
     margin-left 10px
 
-    {$selector-page}-input    
+    {$selector-page}-input
       vertical-align middle
       width $page-item-width
       display inline-block
@@ -100,14 +110,16 @@
 
       &{$selector-prefix}-active,
       &{$selector-hover}
-
         color $page-item-color
         border none
+
+  {$selector-page}-gap
+    margin-right 6px
+    margin-left -6px
 
 {$selector-page}-tiny
   {$selector-page}-list
     {$selector-page-item}
-
       border none
       color $page-item-color
 
