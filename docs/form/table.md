@@ -3,6 +3,7 @@
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Table columns="{{columns1}}" list="{{data1}}"></Table>
   `,
@@ -58,6 +59,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Table border columns="{{columns1}}" list="{{data1}}"></Table>
   `,
@@ -106,7 +108,7 @@ export default {
     }
   },
   methods: {
-    
+
   }
 }
 ```
@@ -116,6 +118,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Table stripe columns="{{columns1}}" list="{{data1}}"></Table>
   `,
@@ -165,7 +168,7 @@ export default {
   }
 }
 ```
-  
+
 > 自定义
 
 ```js
@@ -180,7 +183,7 @@ export default {
       <Table columns="{{columns9}}" list="{{data1}}"></Table>
       <p>Custom arbitrary cell styles:</p>
       <Table columns="{{columns1}}" list="{{data8}}"></Table>
-      <style> 
+      <style>
         {{{style}}}
       </style>
     </div>
@@ -315,6 +318,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
+  height: 300,
   template: `
     <Table border height="200" columns="{{columns1}}" list="{{data1}}"></Table>
   `,
@@ -365,7 +369,7 @@ export default {
 }
 ```
 
-> 固定列 
+> 固定列
 
 ```js
 export default {
@@ -469,7 +473,7 @@ export default {
 }
 ```
 
-> 单选 
+> 单选
 
 ```js
 export default {

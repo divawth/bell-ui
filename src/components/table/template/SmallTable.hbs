@@ -80,8 +80,7 @@ class="${prefix}table
     {{else if !header}}
       {{#each list:index}}
         <tr class="{{#if setRowClassName}}{{setRowClassName(this, index)}}{{/if}}
-            {{#if currentItem && currentIndex == index}} ${prefix}table-active{{/if}}
-            {{list.length}}
+          {{#if currentItem && currentIndex == index}} ${prefix}table-active{{/if}}
           "
           on-click="rowClick(this, index)"
         >
@@ -89,7 +88,6 @@ class="${prefix}table
             {{#if list[ index ][ key ]}}
               <td class="{{#if className}}{{className}}{{/if}}
                   {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
-                  {{list[ index ][ key ]}}-{{index}}
                 "
                 {{#if isObject(list[ index ][ key ]) && list[ index ][ key ][ 'rowSpan' ]}}
                   rowspan="{{list[ index ][ key ][ 'rowSpan' ]}}"

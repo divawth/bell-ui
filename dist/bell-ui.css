@@ -9528,6 +9528,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch.bell-switch.focus,
 .bell-switch:focus,
 .bell-switch.bell-focus {
+  outline: none;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-switch-success.bell-switch-loading .bell-switch-button:before {
@@ -9542,6 +9543,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch-success.bell-switch-success.focus,
 .bell-switch-success:focus,
 .bell-switch-success.bell-focus {
+  outline: none;
   box-shadow: 0 0 0 2px rgba(25,190,107,0.2);
 }
 .bell-switch-error.bell-switch-loading .bell-switch-button:before {
@@ -9556,6 +9558,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch-error.bell-switch-error.focus,
 .bell-switch-error:focus,
 .bell-switch-error.bell-focus {
+  outline: none;
   box-shadow: 0 0 0 2px rgba(237,64,20,0.2);
 }
 .bell-switch-warning.bell-switch-loading .bell-switch-button:before {
@@ -9570,6 +9573,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch-warning.bell-switch-warning.focus,
 .bell-switch-warning:focus,
 .bell-switch-warning.bell-focus {
+  outline: none;
   box-shadow: 0 0 0 2px rgba(255,153,0,0.2);
 }
 .bell-switch-info.bell-switch-loading .bell-switch-button:before {
@@ -9584,6 +9588,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch-info.bell-switch-info.focus,
 .bell-switch-info:focus,
 .bell-switch-info.bell-focus {
+  outline: none;
   box-shadow: 0 0 0 2px rgba(45,183,245,0.2);
 }
 @-webkit-keyframes switch-loading {
