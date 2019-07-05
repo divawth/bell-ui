@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import {
   firstDateInWeek,
@@ -13,19 +13,10 @@ import {
   formatList
 } from '../function/util'
 import template from '../template/DateRange.hbs'
-import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION } from '../../constant'
+import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION, NULL } from '../../constant'
 import { isDate } from '../../util'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
-
-interface ModeDate {
-  isCurrentMonth: boolean,
-  isPrevMonth: boolean,
-  isLastMonth: boolean,
-  isCurrentDate: boolean,
-  disabled: boolean,
-  isRangeDate: boolean,
-  isCheckedDate: boolean
-}
+import { DateType } from '../type';
 
 export default Yox.define({
 
@@ -71,22 +62,22 @@ export default Yox.define({
   },
 
   computed: {
-    startModeDateYear(): string {
+    startModeDateYear(): number {
       return simplifyDate(this.get('startModeDate')).year
     },
-    startModeDateMonth(): string {
+    startModeDateMonth(): number {
       return simplifyDate(this.get('startModeDate')).month
     },
-    endModeDateYear(): string {
+    endModeDateYear(): number {
       return simplifyDate(this.get('endModeDate')).year
     },
-    endModeDateMonth(): string {
+    endModeDateMonth(): number {
       return simplifyDate(this.get('endModeDate')).month
     }
   },
 
   events: {
-    'clear.datepicker': function (event) {
+    'clear.datepicker': function (event: CustomEventInterface) {
       this.set({
         checkedStartDate: '',
         checkedEndDate: '',
@@ -98,7 +89,7 @@ export default Yox.define({
   },
 
   methods: {
-    changeStartModeDate(offset) {
+    changeStartModeDate(offset: number) {
       let me = this
       let startModeDate = me.get('startModeDate')
       startModeDate = offsetMonth(startModeDate, offset)
@@ -115,7 +106,7 @@ export default Yox.define({
         me.changeEndModeDate(offset)
       }
     },
-    changeEndModeDate(offset) {
+    changeEndModeDate(offset: number) {
       let me = this
       let endModeDate = me.get('endModeDate')
       endModeDate = offsetMonth(endModeDate, offset)
@@ -168,7 +159,7 @@ export default Yox.define({
         this.changeStartModeDate(1)
       }
     },
-    hover(date) {
+    hover(date: DateType) {
       let me = this
       let startDate = me.get('checkedStartDate')
       let endDate = me.get('checkedEndDate')
@@ -177,7 +168,7 @@ export default Yox.define({
         return
       }
 
-      let rangDate = ''
+      let rangDate = NULL
       if (!startDate
         || me.get('checkedEndDate')
         || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))
@@ -192,7 +183,7 @@ export default Yox.define({
         getOffsetTime(parseDate(rangDate))
       )
     },
-    click(date) {
+    click(date: DateType) {
       let me = this
       let checkedStartDate = me.get('checkedStartDate')
       let checkedEndDate = me.get('checkedEndDate')
@@ -225,11 +216,11 @@ export default Yox.define({
         )
       }
     },
-    refresh(start, end) {
+    refresh(start: number, end: number) {
       let me = this
 
-      let startModeList: ModeDate[][] = me.copy(me.get('startModeList'))
-      let endModeList: ModeDate[][] = me.copy(me.get('endModeList'))
+      let startModeList: DateType[][] = me.copy(me.get('startModeList'))
+      let endModeList: DateType[][] = me.copy(me.get('endModeList'))
 
       if (end) {
         Yox.array.each(
@@ -299,9 +290,14 @@ export default Yox.define({
         endModeList: endModeList
       })
     },
-    getDataSource(start, end, date, checkedStartDate, checkedEndDate) {
+    getDataSource(
+      start: number,
+      end: number,
+      date: DateType,
+      checkedStartDate: DateType | '',
+      checkedEndDate: DateType | ''
+    ) {
       let data = []
-      date = simplifyDate(date)
 
       let checkedStart = getOffsetTime(
         parseDate(checkedStartDate)
@@ -325,19 +321,28 @@ export default Yox.define({
       }
       return data
     },
-    createRenderData(date, checkedStartDate, checkedEndDate) {
+
+    createRenderData(
+      date: Date,
+      checkedStartDate: DateType | '',
+      checkedEndDate: DateType | ''
+    ) {
       let me = this
       let firstDay = me.get('firstDay') || 0
       date = normalizeDate(date)
 
-      let startDate
-      let endDate
-
-      startDate = firstDateInWeek(firstDateInMonth(date), firstDay)
-      endDate = lastDateInWeek(lastDateInMonth(date), firstDay)
-
-      startDate = normalizeDate(startDate)
-      endDate = normalizeDate(endDate)
+      let startDate: number = normalizeDate(
+        firstDateInWeek(
+          firstDateInMonth(date),
+          firstDay
+        )
+      )
+      let endDate: number = normalizeDate(
+        lastDateInWeek(
+          lastDateInMonth(date),
+          firstDay
+        )
+      )
 
       let duration = endDate - startDate
       let offset = STABLE_DURATION - duration
@@ -348,7 +353,7 @@ export default Yox.define({
       let list = me.getDataSource(
         startDate,
         endDate,
-        date,
+        simplifyDate(date),
         checkedStartDate,
         checkedEndDate
       )
@@ -357,7 +362,7 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value) {
+    value(value: DateType[]) {
       let checkedStartDate = simplifyDate(value[ 0 ])
       let checkedEndDate = simplifyDate(value[ 1 ])
       let startModeList = this.createRenderData(

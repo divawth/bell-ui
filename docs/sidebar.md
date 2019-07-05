@@ -24,13 +24,11 @@
   - [Switch 开关](form/switch)
   - [Table 表格](form/table)
   - [Select 选择器](form/select)
-  - [Slider 滑块](form/slider)
   - [DatePicker 日期选择器](form/datepicker)
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
   - [Upload 上传](form/upload)
   - [Form 表单](form/form)
-  - [Table 表格](form/table)
   - [TimePicker 表格](form/timepicker)
 
 - [视图](layout)

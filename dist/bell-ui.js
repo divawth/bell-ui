@@ -7652,7 +7652,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker"+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"Dropdown","isComponent":!0},!1,function(){f("height",a("autoClose",!0)?230:320),f("className","bell-datepicker-dropdown"),f("placement",j("placement",a("placement",!0,!1,!0,!0))),f("trigger","custom"),f("visible",j("visible",a("isOpen",!0,!1,!0,!0)))},!1,{"$slot_children":function(){p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-el")},function(){q("$slot_children",function(){p({"tag":"Input","isComponent":!0},!1,function(){f("placeholder","请选择日期..."),k(a("formatDate",!0,!1,!0,!0)),f("type","input"),f("size",j("size",a("size",!0,!1,!0,!0))),l("focus","event.focus","focus()","focus"),f("suffix","calendar"),f("clearable",j("clearable",a("clearable",!0,!1,!0,!0)))})})})},"$slot_list":function(){a("shortcuts",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-sidebar")},function(){t(function(){p({"tag":"div","text":u(a("text",!0))},!1,function(){g("className",1,"bell-datepicker-shortcut"),l("click","event.click","shortcutClick(this)","shortcutClick",function(v){return [a("",!1,!1,!1,!1,v)]})})},a("shortcuts",!0,!1,!0))}):p({"isComment":!0,"text":""}),p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-poper"+(a("shortcuts",!0)?" bell-datepicker-poper-with-sidebar":""))},function(){a("type",!0)=="date"?p({"tag":"Date","isComponent":!0},!1,function(){f("multiple",j("multiple",a("multiple",!0,!1,!0,!0))),f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),a("multiple",!0)?f("selected",j("selected",a("value",!0,!1,!0,!0))):f("value",j("value",a("value",!0,!1,!0,!0))),f("disabledDate",j("disabledDate",a("disabledDate",!0,!1,!0,!0)))}):a("type",!0)=="dateRange"?p({"tag":"DateRange","isComponent":!0},!1,function(){f("splitPanel",j("splitPanel",a("splitPanel",!0,!1,!0,!0))),f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0))),f("disabledDate",j("disabledDate",a("disabledDate",!0,!1,!0,!0)))}):a("type",!0)=="week"?p({"tag":"DateWeek","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):a("type",!0)=="year"?p({"tag":"DateYear","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):a("type",!0)=="month"?p({"tag":"DateMonth","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):p({"isComment":!0,"text":""})}),a("autoClose",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-confirm")},function(){p({"tag":"Button","isComponent":!0},!1,function(){f("size","small"),f("type","primary"),l("click","event.click","ok()","ok")},!1,{"$slot_children":function(){e("确认")}}),p({"tag":"Button","isComponent":!0},!1,function(){f("size","small"),l("click","event.click","clear()","clear")},!1,{"$slot_children":function(){e("清空")}})}):p({"isComment":!0,"text":""})}})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u){return p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker"+(a("className",!0)?" "+u(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,!1,!0,!0),1))},function(){p({"tag":"Dropdown","isComponent":!0},!1,function(){f("height",a("autoClose",!0)?320:260),f("className","bell-datepicker-dropdown"),f("placement",j("placement",a("placement",!0,!1,!0,!0))),f("trigger","custom"),f("visible",j("visible",a("isOpen",!0,!1,!0,!0)))},!1,{"$slot_children":function(){p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-el")},function(){q("$slot_children",function(){p({"tag":"Input","isComponent":!0},!1,function(){f("placeholder","请选择日期..."),k(a("formatDate",!0,!1,!0,!0)),f("type","input"),f("size",j("size",a("size",!0,!1,!0,!0))),l("focus","event.focus","focus()","focus"),f("suffix","calendar"),f("clearable",j("clearable",a("clearable",!0,!1,!0,!0)))})})})},"$slot_list":function(){a("shortcuts",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-sidebar")},function(){t(function(){p({"tag":"div","text":u(a("text",!0))},!1,function(){g("className",1,"bell-datepicker-shortcut"),l("click","event.click","shortcutClick(this)","shortcutClick",function(v){return [a("",!1,!1,!1,!1,v)]})})},a("shortcuts",!0,!1,!0))}):p({"isComment":!0,"text":""}),p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-poper"+(a("shortcuts",!0)?" bell-datepicker-poper-with-sidebar":""))},function(){a("type",!0)=="date"?p({"tag":"Date","isComponent":!0},!1,function(){f("multiple",j("multiple",a("multiple",!0,!1,!0,!0))),f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),a("multiple",!0)?f("selected",j("selected",a("value",!0,!1,!0,!0))):f("value",j("value",a("value",!0,!1,!0,!0))),f("disabledDate",j("disabledDate",a("disabledDate",!0,!1,!0,!0)))}):a("type",!0)=="dateRange"?p({"tag":"DateRange","isComponent":!0},!1,function(){f("splitPanel",j("splitPanel",a("splitPanel",!0,!1,!0,!0))),f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0))),f("disabledDate",j("disabledDate",a("disabledDate",!0,!1,!0,!0)))}):a("type",!0)=="week"?p({"tag":"DateWeek","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):a("type",!0)=="year"?p({"tag":"DateYear","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):a("type",!0)=="month"?p({"tag":"DateMonth","isComponent":!0},!1,function(){f("startDate",j("startDate",a("startDate",!0,!1,!0,!0))),f("value",j("value",a("value",!0,!1,!0,!0)))}):p({"isComment":!0,"text":""})}),a("autoClose",!0)?p({"tag":"div"},!1,function(){g("className",1,"bell-datepicker-confirm")},function(){p({"tag":"Button","isComponent":!0},!1,function(){f("size","small"),f("type","primary"),l("click","event.click","ok()","ok")},!1,{"$slot_children":function(){e("确认")}}),p({"tag":"Button","isComponent":!0},!1,function(){f("size","small"),l("click","event.click","clear()","clear")},!1,{"$slot_children":function(){e("清空")}})}):p({"isComment":!0,"text":""})}})})};
 
 /***/ }),
 /* 42 */
@@ -8370,6 +8370,7 @@ var RAW_NUMERIC = 'numeric';
 var RAW_NUMBER = 'number';
 var RAW_OBJECT = 'object';
 var RAW_FUNCTION = 'function';
+var RAW_DATE = 'date';
 var RAW_HORIZONTAL = 'horizontal';
 var RAW_VERTICAL = 'vertical';
 var RAW_TINY = 'tiny';
@@ -8659,6 +8660,17 @@ function isDate() {
     return function (key, value) {
         if (value instanceof Date) {
             return true;
+        }
+        Yox.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
+    };
+}
+function isDateValue() {
+    return function (key, value) {
+        if (value instanceof Date) {
+            return true;
+        }
+        else if (Yox.is.array(value)) {
+            return value.filter(function (date) { return date instanceof Date; }).length === value.length;
         }
         Yox.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
     };
@@ -11143,7 +11155,7 @@ var Date_default = /*#__PURE__*/__webpack_require__.n(template_Date);
         }
         return {
             weeks: WEEKS,
-            currentDate: null,
+            currentDate: NULL,
             modeDate: simplifyDate(modeDate),
             dateList: [],
             selectedDates: selectedDates
@@ -11152,29 +11164,26 @@ var Date_default = /*#__PURE__*/__webpack_require__.n(template_Date);
     events: {
         'clear.datepicker': function (event) {
             this.set({
-                currentDate: null,
                 selectedDates: [],
-                dateList: this.createRenderData(this.get('modeDate'), null, [])
+                currentDate: NULL,
+                dateList: this.createRenderData(this.get('modeDate'), NULL, [])
             });
             event.stop();
         }
     },
     watchers: {
         value: function (date) {
-            var value = date ? simplifyDate(date) : null;
+            var value = date ? simplifyDate(date) : NULL;
             this.set({
                 currentDate: value,
                 dateList: this.createRenderData(this.get('modeDate'), value, this.get('selectedDates'))
             });
         },
-        currentDate: {
-            watcher: function (date) {
-                this.fire('change.date', {
-                    date: date,
-                    selectedDates: this.get('selectedDates')
-                });
-            },
-            sync: true
+        currentDate: function (date) {
+            this.fire('change.date', {
+                date: date,
+                selectedDates: this.get('selectedDates')
+            });
         }
     },
     methods: {
@@ -11257,7 +11266,7 @@ var Date_default = /*#__PURE__*/__webpack_require__.n(template_Date);
     },
     afterMount: function () {
         var me = this;
-        var value = me.get('value') ? simplifyDate(me.get('value')) : null;
+        var value = me.get('value') ? simplifyDate(me.get('value')) : NULL;
         me.set({
             currentDate: value,
             dateList: me.createRenderData(me.get('modeDate'), value, me.get('selectedDates'))
@@ -11413,7 +11422,7 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
             if (!startDate || endDate) {
                 return;
             }
-            var rangDate = '';
+            var rangDate = NULL;
             if (!startDate
                 || me.get('checkedEndDate')
                 || getOffsetTime(parseDate(date)) < getOffsetTime(parseDate(startDate))) {
@@ -11497,7 +11506,6 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
         },
         getDataSource: function (start, end, date, checkedStartDate, checkedEndDate) {
             var data = [];
-            date = simplifyDate(date);
             var checkedStart = getOffsetTime(parseDate(checkedStartDate));
             var checkedEnd = getOffsetTime(parseDate(checkedEndDate));
             for (var time = start, item = void 0; time <= end; time += DAY) {
@@ -11519,18 +11527,14 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
             var me = this;
             var firstDay = me.get('firstDay') || 0;
             date = normalizeDate(date);
-            var startDate;
-            var endDate;
-            startDate = firstDateInWeek(firstDateInMonth(date), firstDay);
-            endDate = lastDateInWeek(lastDateInMonth(date), firstDay);
-            startDate = normalizeDate(startDate);
-            endDate = normalizeDate(endDate);
+            var startDate = normalizeDate(firstDateInWeek(firstDateInMonth(date), firstDay));
+            var endDate = normalizeDate(lastDateInWeek(lastDateInMonth(date), firstDay));
             var duration = endDate - startDate;
             var offset = STABLE_DURATION - duration;
             if (offset > 0) {
                 endDate += offset;
             }
-            var list = me.getDataSource(startDate, endDate, date, checkedStartDate, checkedEndDate);
+            var list = me.getDataSource(startDate, endDate, simplifyDate(date), checkedStartDate, checkedEndDate);
             return formatList(list);
         }
     },
@@ -11617,10 +11621,12 @@ var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
     },
     computed: {
         currentYear: function () {
-            return simplifyDate(this.get('modeDate')).year;
+            var me = this;
+            return simplifyDate(me.get('modeDate')).year;
         },
         currentMonth: function () {
-            return simplifyDate(this.get('modeDate')).month;
+            var me = this;
+            return simplifyDate(me.get('modeDate')).month;
         }
     },
     methods: {
@@ -11790,8 +11796,8 @@ var DateMonth_default = /*#__PURE__*/__webpack_require__.n(DateMonth);
     },
     watchers: {
         value: function (value) {
-            var checkedMonth = '';
-            var checkedYear = '';
+            var checkedMonth = 0;
+            var checkedYear = 0;
             if (value) {
                 checkedYear = value.getFullYear();
                 checkedMonth = value.getMonth();
@@ -11938,7 +11944,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             type: oneOf(RAW_SIZE_ARRAY)
         },
         value: {
-            type: isDate()
+            type: isDateValue()
         },
         shortcuts: {
             type: RAW_ARRAY
@@ -11985,11 +11991,32 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
     model: 'value',
     template: DatePicker_default.a,
     data: function () {
+        var formatTextStr = this.get('formatText');
+        if (!this.get('formatText')) {
+            switch (this.get('type')) {
+                case 'date':
+                    formatTextStr = 'YYYY/MM/DD';
+                    break;
+                case 'dateRange':
+                    formatTextStr = 'YYYY/MM/DD $- YYYY/MM/DD';
+                    break;
+                case 'week':
+                    formatTextStr = 'YYYY/MM/DD $- YYYY/MM/DD';
+                    break;
+                case 'year':
+                    formatTextStr = 'YYYY';
+                    break;
+                case 'month':
+                    formatTextStr = 'YYYY/MM';
+                    break;
+            }
+        }
         return {
             date: NULL,
             start: NULL,
             end: NULL,
-            visible: FALSE
+            visible: FALSE,
+            formatTextStr: formatTextStr,
         };
     },
     computed: {
@@ -12021,11 +12048,6 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             this.dateChange(data.date);
             event.stop();
         },
-        change: function (_, data) {
-            if (!data.value) {
-                this.fire('clear.datePicker');
-            }
-        },
         'change.year': function (event, date) {
             this.dateChange(date);
             event.stop();
@@ -12051,8 +12073,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
                 return;
             }
             if (!yox_esm["a" /* default */].is.array(date)) {
-                date = simplifyDate(date);
-                this.dateChange(date);
+                this.dateChange(simplifyDate(date));
             }
             else {
                 this.dateRangeChange({
@@ -12077,8 +12098,8 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             }
             var result = '';
             var me = this;
-            var startFormat = me.get('formatText').split('$')[0];
-            var endFormat = me.get('formatText').split('$')[1];
+            var startFormat = me.get('formatTextStr').split('$')[0];
+            var endFormat = me.get('formatTextStr').split('$')[1];
             if (end) {
                 var formatStart = startFormat
                     .replace(/yyyy/i, start.year)
@@ -12194,28 +12215,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
         }
     },
     afterMount: function () {
-        var me = this, doc = document;
-        if (!me.get('formatText')) {
-            var formatText = '';
-            switch (me.get('type')) {
-                case 'date':
-                    formatText = 'YYYY/MM/DD';
-                    break;
-                case 'dateRange':
-                    formatText = 'YYYY/MM/DD $- YYYY/MM/DD';
-                    break;
-                case 'week':
-                    formatText = 'YYYY/MM/DD $- YYYY/MM/DD';
-                    break;
-                case 'year':
-                    formatText = 'YYYY';
-                    break;
-                case 'month':
-                    formatText = 'YYYY/MM';
-                    break;
-            }
-            me.set({ formatText: formatText });
-        }
+        var me = this, doc = DOCUMENT;
         var onClick = function (event) {
             var element = me.$el;
             var target = event.originalEvent.target;
@@ -13502,7 +13502,7 @@ var Dropdown_default = /*#__PURE__*/__webpack_require__.n(Dropdown);
             }
         },
         height: {
-            type: RAW_NUMERIC,
+            type: RAW_NUMBER,
             value: 280
         },
         className: {

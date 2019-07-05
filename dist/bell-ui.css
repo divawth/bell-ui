@@ -10068,6 +10068,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-datepicker .bell-datepicker-dropdown .bell-dropdown-trigger {
   padding: 0;
+  margin-bottom: 5px;
 }
 .bell-datepicker .bell-datepicker-dropdown .bell-datepicker-poper.bell-datepicker-poper-with-sidebar {
   padding-left: 92px;
@@ -10142,9 +10143,9 @@ button.bell-button-warning-ghost[disabled] {
   color: rgba(0,0,0,0.54);
   margin: 2px;
   border-radius: 4px;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
 }
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month,
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month,

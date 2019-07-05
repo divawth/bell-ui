@@ -16,10 +16,13 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
-  RAW_ARRAY
+  RAW_ARRAY,
+  NULL,
+  TRUE
 } from '../../constant'
 import { isDate } from '../../util'
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
+import { DateType } from '../type'
 
 export default Yox.define({
 
@@ -63,7 +66,7 @@ export default Yox.define({
     }
     return {
       weeks: WEEKS,
-      currentDate: null,
+      currentDate: NULL,
       modeDate: simplifyDate(modeDate),
 
       dateList: [],
@@ -72,19 +75,19 @@ export default Yox.define({
   },
 
   events: {
-    'clear.datepicker': function (event) {
+    'clear.datepicker': function (event: CustomEventInterface) {
       this.set({
-        currentDate: null,
         selectedDates: [],
-        dateList: this.createRenderData(this.get('modeDate'), null, [])
+        currentDate: NULL,
+        dateList: this.createRenderData(this.get('modeDate'), NULL, [])
       })
       event.stop()
     }
   },
 
   watchers: {
-    value(date) {
-      let value = date ? simplifyDate(date) : null
+    value(date: Date) {
+      let value = date ? simplifyDate(date) : NULL
       this.set({
         currentDate: value,
         dateList: this.createRenderData(
@@ -94,22 +97,19 @@ export default Yox.define({
         )
       })
     },
-    currentDate: {
-      watcher: function (date) {
-        this.fire(
-          'change.date',
-          {
-            date: date,
-            selectedDates: this.get('selectedDates')
-          }
-        )
-      },
-      sync: true
+    currentDate(date: DateType) {
+      this.fire(
+        'change.date',
+        {
+          date: date,
+          selectedDates: this.get('selectedDates')
+        }
+      )
     }
   },
 
   methods: {
-    changeDateList(offset) {
+    changeDateList(offset: number) {
       let me = this
       let modeDate = simplifyDate(
         offsetMonth(
@@ -128,7 +128,7 @@ export default Yox.define({
       })
     },
 
-    addDates(date) {
+    addDates(date: DateType) {
       let selectedDates = this.copy(this.get('selectedDates'))
       let index = this.getDateIndex(date, selectedDates)
       if (index < 0) {
@@ -142,7 +142,7 @@ export default Yox.define({
       this.set({ selectedDates })
     },
 
-    click(date) {
+    click(date: DateType) {
       let me = this
       me.get('multiple') && me.addDates(date)
       me.set({
@@ -155,14 +155,22 @@ export default Yox.define({
       })
     },
 
-    getDateString(date) {
+    getDateString(date: DateType) {
       return `${date.year}/${date.month}/${date.date}/${date.day}`
     },
-    getDateIndex(item, list) {
-      return list.indexOf(this.getDateString(item))
+    getDateIndex(item: DateType, list: string[]) {
+      return list.indexOf(
+        this.getDateString(item)
+      )
     },
 
-    getDataSource(start, end, modeDate, currentDate, selectedDates) {
+    getDataSource(
+      start: number,
+      end: number,
+      modeDate: DateType,
+      currentDate: DateType,
+      selectedDates: string[]
+    ) {
       let data = []
       for (let time = start, item; time <= end; time += DAY) {
         item = simplifyDate(time)
@@ -189,9 +197,10 @@ export default Yox.define({
       }
       return data
     },
-    createRenderData(modeDate, currentDate, selectedDates) {
+    createRenderData(modeDate: DateType, currentDate: DateType, selectedDates: string[]) {
       let firstDay = this.get('firstDay') || 0
       let modeDateString = parseDate(modeDate)
+
       let startDate
       let endDate
       startDate = firstDateInWeek(firstDateInMonth(modeDateString), firstDay)
@@ -219,7 +228,7 @@ export default Yox.define({
 
   afterMount() {
     const me = this
-    let value = me.get('value') ? simplifyDate(me.get('value')) : null
+    let value = me.get('value') ? simplifyDate(me.get('value')) : NULL
     me.set({
       currentDate: value,
       dateList: me.createRenderData(

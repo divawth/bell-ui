@@ -84,6 +84,7 @@ export default Yox.define({
         'touchup',
         me.handleTouchEnd
       )
+
       Yox.dom.on(
         document,
         'touchend',

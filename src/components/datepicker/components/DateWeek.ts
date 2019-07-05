@@ -14,6 +14,7 @@ import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant'
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
 import { isDate } from '../../util'
 import Yox from 'yox';
+import { DateType } from '../type';
 
 export default Yox.define({
 
@@ -49,15 +50,17 @@ export default Yox.define({
 
   computed: {
     currentYear(): string {
-      return simplifyDate(this.get('modeDate')).year
+      let me = this
+      return simplifyDate(me.get('modeDate')).year
     },
     currentMonth(): string {
-      return simplifyDate(this.get('modeDate')).month
+      let me = this
+      return simplifyDate(me.get('modeDate')).month
     }
   },
 
   methods: {
-    changeDate(offset) {
+    changeDate(offset: number) {
       let me = this
       let date = me.get('modeDate')
       date = offsetMonth(date, offset)
@@ -82,7 +85,7 @@ export default Yox.define({
     nextMonth() {
       this.changeDate(1)
     },
-    click(date) {
+    click(date: DateType[]) {
       this.fire(
         'change.week',
         {

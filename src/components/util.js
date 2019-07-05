@@ -104,6 +104,18 @@ export function isDate() {
   }
 }
 
+export function isDateValue() {
+  return function (key, value) {
+    if (value instanceof Date) {
+      return true
+    }
+    else if (Yox.is.array(value)) {
+      return value.filter(date => date instanceof Date).length === value.length
+    }
+    Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
+  }
+}
+
 export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
 
   const difference = Math.abs(from - to)

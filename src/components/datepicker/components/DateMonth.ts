@@ -43,9 +43,9 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value) {
-      let checkedMonth = ''
-      let checkedYear = ''
+    value(value: Date) {
+      let checkedMonth: number = 0
+      let checkedYear: number = 0
       if (value) {
         checkedYear = value.getFullYear()
         checkedMonth = value.getMonth()
@@ -58,8 +58,7 @@ export default Yox.define({
   },
 
   methods: {
-    click(month) {
-
+    click(month: number) {
       let year = this.get('modeYear')
 
       this.set({

@@ -11,7 +11,7 @@ import {
   RAW_CUSTOM,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
-  RAW_NUMERIC,
+  RAW_NUMBER,
 } from '../constant'
 
 import {
@@ -37,7 +37,7 @@ export default Yox.define({
       }
     },
     height: {
-      type: RAW_NUMERIC,
+      type: RAW_NUMBER,
       value: 280
     },
     className: {

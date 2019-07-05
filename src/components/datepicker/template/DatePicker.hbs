@@ -1,14 +1,14 @@
-<div 
+<div
 class="${prefix}datepicker
 {{#if className}} {{className}}{{/if}}
 "
 {{#if style}} style="{{style}}"{{/if}}
 >
 
-  <Dropdown height="{{autoClose ? 230 : 320}}" 
-    className="${prefix}datepicker-dropdown" 
-    placement="{{placement}}" 
-    trigger="custom" 
+  <Dropdown height="{{autoClose ? 320 : 260}}"
+    className="${prefix}datepicker-dropdown"
+    placement="{{placement}}"
+    trigger="custom"
     visible="{{isOpen}}"
   >
 
@@ -41,8 +41,8 @@ class="${prefix}datepicker
         {{#if shortcuts}} ${prefix}datepicker-poper-with-sidebar{{/if}}
       ">
         {{#if type == 'date'}}
-          <Date multiple="{{multiple}}" 
-            startDate="{{startDate}}" 
+          <Date multiple="{{multiple}}"
+            startDate="{{startDate}}"
             {{#if multiple}}
               selected="{{value}}"
             {{else}}
@@ -51,26 +51,26 @@ class="${prefix}datepicker
             disabledDate="{{disabledDate}}"
           />
         {{else if type == 'dateRange'}}
-          <DateRange 
-            splitPanel="{{splitPanel}}" 
-            startDate="{{startDate}}" 
+          <DateRange
+            splitPanel="{{splitPanel}}"
+            startDate="{{startDate}}"
             value="{{value}}"
             disabledDate="{{disabledDate}}"
           />
         {{else if type == 'week'}}
-          <DateWeek 
+          <DateWeek
             startDate="{{startDate}}"
-            value="{{value}}"  
+            value="{{value}}"
           />
         {{else if type == 'year'}}
           <DateYear
             startDate="{{startDate}}"
-            value="{{value}}"   
+            value="{{value}}"
           />
         {{else if type == 'month'}}
-          <DateMonth 
+          <DateMonth
             startDate="{{startDate}}"
-            value="{{value}}"   
+            value="{{value}}"
           />
         {{/if}}
       </div>
