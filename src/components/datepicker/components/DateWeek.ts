@@ -49,11 +49,11 @@ export default Yox.define({
   },
 
   computed: {
-    currentYear(): string {
+    currentYear(): number {
       let me = this
       return simplifyDate(me.get('modeDate')).year
     },
-    currentMonth(): string {
+    currentMonth(): number {
       let me = this
       return simplifyDate(me.get('modeDate')).month
     }
@@ -97,11 +97,11 @@ export default Yox.define({
         getOffsetTime(parseDate(date[ 0 ]))
       )
     },
-    refresh(start) {
+    refresh(start: number) {
       let me = this
       let dateList = me.get('dateList')
       let checkedIndex = undefined
-      let checkedDateTime = ''
+      let checkedDateTime = 0
       for (let i = 0; i < dateList.length; i++) {
         let item = dateList[i][0]
         let itemTime = getOffsetTime(parseDate(item))
@@ -116,11 +116,17 @@ export default Yox.define({
       })
     },
     // 获取渲染模板的数据
-    getDatasource(start, end, date, checkedDateTime) {
+    getDatasource(
+      start: number,
+      end: number,
+      date: DateType,
+      checkedDateTime: number
+    ) {
       let data = []
-      date = simplifyDate(date)
-      for (let time = start, item; time <= end; time += DAY) {
-        item = simplifyDate(time)
+      for (let time = start; time <= end; time += DAY) {
+        let item: DateType = simplifyDate(
+          new Date(time)
+        )
         item.isCurrentDate = checkedDateTime && checkedDateTime === getOffsetTime(parseDate(item))
         item.isPrevMonth = item.month < date.month
         item.isCurrentMonth = item.month == date.month
@@ -130,19 +136,17 @@ export default Yox.define({
       return data
 
     },
-    createRenderData(modeDate, checkedDateTime) {
+    createRenderData(modeDate: Date, checkedDateTime: number) {
       let me = this
       let firstDay = me.get('firstDay') || 0
-      modeDate = normalizeDate(modeDate)
+      let date = normalizeDate(modeDate)
 
-      let startDate
-      let endDate
-
-      startDate = firstDateInWeek(firstDateInMonth(modeDate), firstDay)
-      endDate = lastDateInWeek(lastDateInMonth(modeDate), firstDay)
-
-      startDate = normalizeDate(startDate)
-      endDate = normalizeDate(endDate)
+      let startDate = normalizeDate(
+        firstDateInWeek(firstDateInMonth(date), firstDay)
+      )
+      let endDate = normalizeDate(
+        lastDateInWeek(lastDateInMonth(date), firstDay)
+      )
 
       let duration = endDate - startDate
       let offset = STABLE_DURATION - duration
@@ -151,10 +155,17 @@ export default Yox.define({
         endDate += offset
       }
 
-      let list = me.getDatasource(startDate, endDate, modeDate, checkedDateTime)
+      let list = me.getDatasource(
+        startDate,
+        endDate,
+        simplifyDate(
+          new Date(date)
+        ),
+        checkedDateTime
+      )
       return me.format(list)
     },
-    format(list) {
+    format(list: DateType[]) {
       let me = this
       let result = []
       let arr = []

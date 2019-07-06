@@ -78,13 +78,23 @@ module.exports = {
       'Yox': 'yox'
     }
   },
+  externals: {
+    yox: {
+      root: 'Yox',
+      commonjs: 'yox',
+      commonjs2: 'yox',
+      amd: 'yox'
+    }
+  },
   optimization: {
     minimize: false,
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
         yox: {
+          name: 'yox',
           test: /[\\/]node_modules[\\/]yox[\\/]/,
-          priority: 10
+          priority: 30
         }
       }
     },

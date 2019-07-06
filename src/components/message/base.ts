@@ -4,13 +4,14 @@ import {
   TRUE,
   RAW_BOOLEAN,
   RAW_STRING,
-  FALSE
+  FALSE,
+  RAW_TYPE_ARRAY
 } from '../constant'
-import { onTransitionEnd } from '../util';
+import { onTransitionEnd, oneOf } from '../util';
 
 let id = 0
 
-const createMessage = function (data: Data) {
+function createMessage(data: Data) {
 
   const namespace = '${prefix}message-' + id++
   const element = Yox.dom.createElement('div') as HTMLElement
@@ -34,7 +35,7 @@ const createMessage = function (data: Data) {
         type: RAW_STRING
       },
       type: {
-        type: RAW_STRING
+        type: oneOf(RAW_TYPE_ARRAY)
       },
       showIcon: {
         type: RAW_BOOLEAN,
@@ -54,15 +55,15 @@ const createMessage = function (data: Data) {
     data() {
       return {
         marginLeft: 0,
-        top: data.top || 15,
+        top: 0,
         showTime: data.duration || 1500,
         isShow: FALSE,
         close() {
-          if (instance) {
-            instance.destroy()
-          }
           if (Yox.is.func(data.onClose)) {
             data.onClose()
+          }
+          if (instance) {
+            instance.destroy()
           }
         }
       }
@@ -77,8 +78,8 @@ const createMessage = function (data: Data) {
               return
             }
             me.set({
-              isShow: true,
-              top: me.get('top')
+              isShow: TRUE,
+              top: data.top || 15
             })
             me.fadeOut()
           },
@@ -103,6 +104,7 @@ const createMessage = function (data: Data) {
                 if (Yox.is.func(data.onClose)) {
                   data.onClose()
                 }
+                me.destroy()
               }
             )
           },
@@ -122,6 +124,6 @@ const createMessage = function (data: Data) {
   })
 }
 
-export const add = function (data: Data) {
+export function add(data: Data) {
   createMessage(data)
 }

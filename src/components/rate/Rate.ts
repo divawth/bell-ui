@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Rate.hbs'
 
@@ -64,20 +64,20 @@ export default Yox.define({
   },
 
   filters: {
-    getValue(index) {
+    getValue(index: number) {
       let texts = this.get('texts')
       return texts && texts[ index - 1 ]
     }
   },
 
   methods: {
-    handleMove(event, index) {
+    handleMove(event: CustomEventInterface, index: number) {
       if (this.get('readOnly')) {
         return
       }
 
-      event = event.originalEvent.originalEvent
-      let isHalf = event && event.target.getAttribute('data-type') == 'half'
+      let mouseEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
+      let isHalf = mouseEvent && (mouseEvent.target as HTMLElement).getAttribute('data-type') == 'half'
 
       if (isHalf) {
         index -= 0.5
@@ -98,14 +98,13 @@ export default Yox.define({
       })
     },
 
-    handleClick(event, index) {
+    handleClick(event: CustomEventInterface, index: number) {
       if (this.get('readOnly')) {
         return
       }
 
-      event = event.originalEvent.originalEvent
-
-      let isHalf = event && event.target.getAttribute('data-type') == 'half'
+      let clickEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
+      let isHalf = clickEvent && (clickEvent.target as HTMLElement).getAttribute('data-type') == 'half'
       if (isHalf) {
         index -= 0.5
       }

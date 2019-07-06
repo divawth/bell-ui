@@ -9,6 +9,7 @@ import {
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
+  DOCUMENT,
 } from '../constant'
 
 import {
@@ -72,7 +73,7 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value) {
+    value(value: number) {
       this.fire(
         'change.inputNumber',
         { value }
@@ -110,9 +111,12 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this, doc = document
+    const me = this, doc = DOCUMENT
 
     const onKeydown: Listener = function (event) {
+      if (!me.get('isFocus')) {
+        return
+      }
       switch ((event.originalEvent as KeyboardEvent).keyCode) {
         case 38:
           me.up()

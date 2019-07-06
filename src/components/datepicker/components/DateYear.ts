@@ -39,8 +39,8 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value) {
-      let checkedYear = ''
+    value(value: Date) {
+      let checkedYear: number = 0
       if (value) {
         checkedYear = value.getFullYear()
       }
@@ -57,7 +57,7 @@ export default Yox.define({
       this.increase('modeYear', 12)
       this.getYearList(this.get('modeYear'))
     },
-    click(year) {
+    click(year: number) {
       this.set({
         checkedYear: year
       })
@@ -68,7 +68,7 @@ export default Yox.define({
         }
       )
     },
-    getYearList(startYear) {
+    getYearList(startYear: number) {
       let years = []
       for (let item = startYear; item < startYear + 12; item++) {
         years.push(item)

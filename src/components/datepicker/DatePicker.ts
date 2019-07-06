@@ -167,7 +167,7 @@ export default Yox.define({
       }
       if (!Yox.is.array(date)) {
         this.dateChange(
-          simplifyDate(date)
+          simplifyDate(date as Date)
         )
       }
       else {

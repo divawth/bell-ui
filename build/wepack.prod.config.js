@@ -11,7 +11,7 @@ module.exports = merge(
       minimize: false,
     },
     plugins: [
-      // new CleanWebpackPlugin()
+      new CleanWebpackPlugin()
     ]
   }
 )

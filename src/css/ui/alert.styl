@@ -10,7 +10,7 @@
   padding $alert-padding
 
   ui-alert()
-  
+
   {$selector-alert-icon}
     font-size $alert-icon-size
     margin-right $alert-gap
@@ -27,7 +27,7 @@
 
   &{$selector-alert}-center
     text-align center
-  
+
 {$selector-alert-with-content}
 
   {$selector-alert-title}
@@ -36,15 +36,17 @@
   {$selector-alert-content}
     font-size 12px
     line-height 1.4
-    font-weight normal    
+    font-weight normal
     margin-top $alert-gap
 
   &{$selector-alert-with-icon}
     display flex
+
     {$selector-alert-icon}
       line-height 2
-      font-size $alert-with-content-icon-size
-    
+      {$selector-prefix}-icon
+        font-size $alert-with-content-icon-size !important
+
     {$selector-alert}-wrapper
       margin-left $alert-gap
       display flex

@@ -6,7 +6,11 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY
+  RAW_TYPE_PRIMARY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR
 } from '../constant'
 
 import {
@@ -39,6 +43,16 @@ export default Yox.define({
   },
 
   template,
+
+  data() {
+    return {
+      RAW_TYPE_PRIMARY,
+      RAW_TYPE_INFO,
+      RAW_TYPE_SUCCESS,
+      RAW_TYPE_WARNING,
+      RAW_TYPE_ERROR
+    }
+  },
 
   methods: {
     close() {

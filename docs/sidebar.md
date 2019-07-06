@@ -27,9 +27,7 @@
   - [DatePicker 日期选择器](form/datepicker)
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
-  - [Upload 上传](form/upload)
   - [Form 表单](form/form)
-  - [TimePicker 表格](form/timepicker)
 
 - [视图](layout)
   - [Alert 警告提示](view/alert)

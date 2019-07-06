@@ -6,7 +6,6 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 import Yox, { Data } from 'yox'
-import { clearTimeout } from 'timers';
 import { onTransitionEnd } from '../util';
 
 let id = 0
@@ -19,7 +18,7 @@ let createNotice = function (data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  let instance = new Yox({
+  new Yox({
     el: '#' + namespace,
     replace: TRUE,
     template,

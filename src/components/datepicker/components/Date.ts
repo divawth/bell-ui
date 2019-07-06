@@ -173,7 +173,9 @@ export default Yox.define({
     ) {
       let data = []
       for (let time = start, item; time <= end; time += DAY) {
-        item = simplifyDate(time)
+        item = simplifyDate(
+          new Date(time)
+        )
 
         if (this.get('multiple')) {
           if (this.getDateIndex(item, selectedDates) >= 0) {
@@ -200,7 +202,6 @@ export default Yox.define({
     createRenderData(modeDate: DateType, currentDate: DateType, selectedDates: string[]) {
       let firstDay = this.get('firstDay') || 0
       let modeDateString = parseDate(modeDate)
-
       let startDate
       let endDate
       startDate = firstDateInWeek(firstDateInMonth(modeDateString), firstDay)

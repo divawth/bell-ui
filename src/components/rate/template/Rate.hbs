@@ -12,8 +12,9 @@ on-mouseleave="handleLeave()"
 
   {{#each 1 => count}}
     <Icon name="{{icon}}"
+      size="{{20}}"
       className="${prefix}rate-star-full {{#if activeValue - this >= 0}} active{{/if}}"
-      on-mousemove="handleMove($event, this)"
+      on-mousemove.native="handleMove($event, this)"
       on-click="handleClick($event, this)"
     >
       {{#if half}}

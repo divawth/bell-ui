@@ -7,7 +7,7 @@
 ```js
 export default {
   isViewFullBlock: true,
-  height: 300,
+  height: 340,
   template: `
   <div>
     <Alert>An info prompt</Alert>
@@ -31,7 +31,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
-  height: 300,
+  height: 480,
   template: `
   <div>
     <Alert>
@@ -80,7 +80,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
-  height: 300,
+  height: 680,
   template: `
   <div>
     <Alert type="primary" showIcon>An info prompt</Alert>
@@ -89,9 +89,6 @@ export default {
     <Alert type="error" showIcon>An error prompt</Alert>
     <Alert type="primary" showIcon>
       An info prompt
-      <template slot="icon">
-        <Icon type="alarm" />
-      </template>
       <template slot="content">
         Content of prompt. Content of prompt. Content of prompt. Content of prompt.
       </template>
@@ -117,7 +114,7 @@ export default {
     <Alert showIcon closable>
       Custom icon
       <template slot="content">
-        Custom icon copywriting. Custom icon copywriting. Custom icon copywriting. 
+        Custom icon copywriting. Custom icon copywriting. Custom icon copywriting.
       </template>
     </Alert>
   </div>

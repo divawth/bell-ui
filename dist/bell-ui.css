@@ -8449,7 +8449,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-number.bell-input-number.focus,
 .bell-input-number:focus,
 .bell-input-number.bell-focus {
-  box-shadow: 0 0 0 2px #d2ecf1;
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-input-number .bell-input-number-actions .bell-input-number-icon.bell-input-number .bell-input-number-actions .bell-input-number-icon.hover,
 .bell-input-number .bell-input-number-actions .bell-input-number-icon:hover,
@@ -8469,7 +8469,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-number-success.bell-input-number-success.focus,
 .bell-input-number-success:focus,
 .bell-input-number-success.bell-focus {
-  box-shadow: 0 0 0 2px #d5eddb;
+  box-shadow: 0 0 0 2px rgba(25,190,107,0.2);
 }
 .bell-input-number-success .bell-input-number-actions .bell-input-number-icon.bell-input-number-success .bell-input-number-actions .bell-input-number-icon.hover,
 .bell-input-number-success .bell-input-number-actions .bell-input-number-icon:hover,
@@ -8489,7 +8489,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-number-error.bell-input-number-error.focus,
 .bell-input-number-error:focus,
 .bell-input-number-error.bell-focus {
-  box-shadow: 0 0 0 2px #f7d7db;
+  box-shadow: 0 0 0 2px rgba(237,64,20,0.2);
 }
 .bell-input-number-error .bell-input-number-actions .bell-input-number-icon.bell-input-number-error .bell-input-number-actions .bell-input-number-icon.hover,
 .bell-input-number-error .bell-input-number-actions .bell-input-number-icon:hover,
@@ -8509,7 +8509,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-number-info.bell-input-number-info.focus,
 .bell-input-number-info:focus,
 .bell-input-number-info.bell-focus {
-  box-shadow: 0 0 0 2px #d2ecf1;
+  box-shadow: 0 0 0 2px rgba(45,183,245,0.2);
 }
 .bell-input-number-info .bell-input-number-actions .bell-input-number-icon.bell-input-number-info .bell-input-number-actions .bell-input-number-icon.hover,
 .bell-input-number-info .bell-input-number-actions .bell-input-number-icon:hover,
@@ -8529,32 +8529,12 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-number-warning.bell-input-number-warning.focus,
 .bell-input-number-warning:focus,
 .bell-input-number-warning.bell-focus {
-  box-shadow: 0 0 0 2px #fff3cf;
+  box-shadow: 0 0 0 2px rgba(255,153,0,0.2);
 }
 .bell-input-number-warning .bell-input-number-actions .bell-input-number-icon.bell-input-number-warning .bell-input-number-actions .bell-input-number-icon.hover,
 .bell-input-number-warning .bell-input-number-actions .bell-input-number-icon:hover,
 .bell-input-number-warning .bell-input-number-actions .bell-input-number-icon.bell-hover {
   color: #ffad33;
-}
-.bell-input-number-danger {
-  border-color: #eee;
-  color: #515a6e;
-  background-color: #fff;
-}
-.bell-input-number-danger.bell-input-number-danger.hover,
-.bell-input-number-danger:hover,
-.bell-input-number-danger.bell-hover {
-  border-color: #ee3737;
-}
-.bell-input-number-danger.bell-input-number-danger.focus,
-.bell-input-number-danger:focus,
-.bell-input-number-danger.bell-focus {
-  box-shadow: 0 0 0 2px #f7d7db;
-}
-.bell-input-number-danger .bell-input-number-actions .bell-input-number-icon.bell-input-number-danger .bell-input-number-actions .bell-input-number-icon.hover,
-.bell-input-number-danger .bell-input-number-actions .bell-input-number-icon:hover,
-.bell-input-number-danger .bell-input-number-actions .bell-input-number-icon.bell-hover {
-  color: #ee3737;
 }
 .bell-input-number-disabled {
   border-color: #dddee1;
@@ -10800,7 +10780,9 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-alert-with-content.bell-alert-with-icon .bell-alert-icon {
   line-height: 2;
-  font-size: 28px;
+}
+.bell-alert-with-content.bell-alert-with-icon .bell-alert-icon .bell-icon {
+  font-size: 28px !important;
 }
 .bell-alert-with-content.bell-alert-with-icon .bell-alert-wrapper {
   margin-left: 6px;
@@ -10935,6 +10917,11 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-message.bell-show {
   opacity: 1;
+}
+.bell-message .bell-alert {
+  border-color: #fff;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
 }
 #bell-notice-wrapper {
   position: fixed;

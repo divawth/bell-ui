@@ -251,3 +251,101 @@ export default {
   `
 }
 ```
+
+> 手动控制组件
+
+```js
+export default {
+  isViewFullBlock: true,
+  height: 400,
+  template: `
+    <div style="height: 350px">
+      <DatePicker type="date"
+        confirm
+        open="{{open}}"
+        on-change="handleChange($data)"
+        on-clear="handleClear()"
+        on-ok="handleOk()"
+      >
+        <a href="javascript:void(0)" on-click="handleClick()">
+          <Icon type="ios-calendar-outline"></Icon>
+          {{#if value3 === ''}}
+            Select date
+          {{else}}
+            {{ value3 }}
+          {{/if}}
+        </a>
+      </DatePicker>
+    </div>
+  `,
+  data () {
+    return {
+      open: false,
+      value3: ''
+    }
+  },
+  methods: {
+    handleClick() {
+      this.toggle('open')
+    },
+    handleChange(data) {
+      this.set('value3', data.value.formatDate)
+    },
+    handleClear() {
+      this.set('value3', '')
+      this.set('open', false)
+    },
+    handleOk() {
+      this.set('open', false)
+    }
+  }
+}
+```
+
+
+> 尺寸
+
+```js
+export default {
+  isViewFullBlock: true,
+  height: 400,
+  template: `
+    <div style="height: 350px">
+      <DatePicker size="small" type="date" placeholder="Select date"></DatePicker>
+      <br><br>
+      <DatePicker type="date" placeholder="Select date"></DatePicker>
+      <br><br>
+      <DatePicker size="large" type="date" placeholder="Select date"></DatePicker>
+    </div>
+  `
+}
+```
+
+#### API
+
+> Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+type | 日期选择器类型 | string | date, dateRange, month, year | date
+value | 日期 | Date | - | -
+formatText | 可以用来格式化date | string | - | YYYY-MM-DD
+placement | 日期选择器出现的位置 | string | bottom-start
+placeholder | 占位文本 | string | -
+splitPanel | 开启后，左右面板不联动，仅在 daterange 下可用 | boolean | false
+multiple | 开启后，可以选择多个日期，仅在 date 下可用 | boolean | false
+shortcuts | 快捷方式 | Array | -
+startDate | 默认显示视图的日期 | Date | -
+confirm | 是否确认操作之后再关闭 | boolean | false
+open | 手动控制日期选择器的显示状态 | boolean | false
+size | 尺寸 | string | -
+disabledDate | 不可选择的日期 | Function | -
+clearable | 是否显示清除按钮 | boolean | false
+
+> Events
+
+事件名称 | 说明 | 回调参数
+---|---|---
+change | 值改变之后的回调 | 选中的值
+ok | confirm 的确认按钮的回调 | -
+clear | confirm 的清除按钮的回调 | -

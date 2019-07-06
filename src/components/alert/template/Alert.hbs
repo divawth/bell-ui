@@ -11,15 +11,19 @@ class="${prefix}alert
   {{#if showIcon || hasSlot('icon')}}
     <span class="${prefix}alert-icon">
       <slot name="icon">
-        {{#if type === 'primary'}}
-          <Icon name="information-circle" />
-        {{else if type === 'success'}}
-          <Icon name="checkmark-circle" />
-        {{else if type === 'warning'}}
-          <Icon name="alert" />
-        {{else if type === 'error'}}
-          <Icon name="close-circle" />
-        {{/if}}
+        <Icon
+          {{#if type === RAW_TYPE_PRIMARY}}
+            name="information-circle"
+          {{else if type === RAW_TYPE_SUCCESS}}
+            name="checkmark-circle"
+          {{else if type === RAW_TYPE_WARNING}}
+            name="alert"
+          {{else if type === RAW_TYPE_ERROR}}
+            name="close-circle"
+          {{else if type === RAW_TYPE_INFO}}
+            name="information-circle"
+          {{/if}}
+        />
       </slot>>
     </span>
   {{/if}}

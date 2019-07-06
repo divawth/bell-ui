@@ -81,8 +81,8 @@ export default Yox.define({
       this.set({
         checkedStartDate: '',
         checkedEndDate: '',
-        endModeList: this.createRenderData(this.get('endModeDate'), '', ''),
-        startModeList: this.createRenderData(this.get('startModeDate'), '', '')
+        endModeList: this.createRenderData(this.get('endModeDate')),
+        startModeList: this.createRenderData(this.get('startModeDate'))
       })
       event.stop()
     }
@@ -294,20 +294,28 @@ export default Yox.define({
       start: number,
       end: number,
       date: DateType,
-      checkedStartDate: DateType | '',
-      checkedEndDate: DateType | ''
+      checkedStartDate?: DateType,
+      checkedEndDate?: DateType
     ) {
       let data = []
 
-      let checkedStart = getOffsetTime(
-        parseDate(checkedStartDate)
-      )
-      let checkedEnd = getOffsetTime(
-        parseDate(checkedEndDate)
-      )
+      let checkedStart: number = 0
+      if (checkedStartDate) {
+        checkedStart = getOffsetTime(
+          parseDate(checkedStartDate)
+        )
+      }
+      let checkedEnd: number = 0
+      if (checkedEnd) {
+        checkedEnd = getOffsetTime(
+          parseDate(checkedEndDate)
+        )
+      }
 
-      for (let time = start, item; time <= end; time += DAY) {
-        item = simplifyDate(time)
+      for (let time = start; time <= end; time += DAY) {
+        let item: DateType = simplifyDate(
+          new Date(time)
+        )
         let itemTime = getOffsetTime(parseDate(item))
         item.isPrevMonth = item.month < date.month
         item.isCurrentMonth = item.month == date.month
@@ -324,22 +332,22 @@ export default Yox.define({
 
     createRenderData(
       date: Date,
-      checkedStartDate: DateType | '',
-      checkedEndDate: DateType | ''
+      checkedStartDate?: DateType,
+      checkedEndDate?: DateType
     ) {
       let me = this
       let firstDay = me.get('firstDay') || 0
-      date = normalizeDate(date)
+      let currentDate = normalizeDate(date)
 
       let startDate: number = normalizeDate(
         firstDateInWeek(
-          firstDateInMonth(date),
+          firstDateInMonth(currentDate),
           firstDay
         )
       )
       let endDate: number = normalizeDate(
         lastDateInWeek(
-          lastDateInMonth(date),
+          lastDateInMonth(currentDate),
           firstDay
         )
       )
@@ -353,7 +361,9 @@ export default Yox.define({
       let list = me.getDataSource(
         startDate,
         endDate,
-        simplifyDate(date),
+        simplifyDate(
+          new Date(currentDate)
+        ),
         checkedStartDate,
         checkedEndDate
       )
@@ -362,7 +372,7 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value: DateType[]) {
+    value(value: Date[]) {
       let checkedStartDate = simplifyDate(value[ 0 ])
       let checkedEndDate = simplifyDate(value[ 1 ])
       let startModeList = this.createRenderData(
