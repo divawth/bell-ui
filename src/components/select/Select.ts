@@ -242,7 +242,7 @@ export default Yox.define({
       }
 
       let element = me.$el
-      let target = e.originalEvent.target
+      let target = e.originalEvent.target as HTMLElement
       if (contains(element, target)) {
         return
       }

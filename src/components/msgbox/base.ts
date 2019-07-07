@@ -13,7 +13,7 @@ import { onTransitionEnd } from '../util';
 
 let id = 0
 
-const createAlert = function (data: Data) {
+function createAlert(data: Data) {
 
   let namespace = '${prefix}msg-alert-' + id++
   let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
@@ -21,7 +21,7 @@ const createAlert = function (data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  let instance = new Yox({
+  new Yox({
     el: '#' + namespace,
     replace: true,
     template: MsgboxTpl,
@@ -117,7 +117,7 @@ const createAlert = function (data: Data) {
   })
 }
 
-const createConfirm = function (data: Data) {
+function createConfirm(data: Data) {
 
   let namespace = '${prefix}msg-confirm-' + id++
   let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
@@ -125,7 +125,7 @@ const createConfirm = function (data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  let instance = new Yox({
+  new Yox({
     el: '#' + namespace,
     replace: TRUE,
     template: ConfirmTpl,
@@ -177,7 +177,7 @@ const createConfirm = function (data: Data) {
 
     methods: {
       buttonClick(index: number) {
-        this.get('buttons.' + index + '.action').call(instance)
+        this.get('buttons.' + index + '.action').call(this)
       },
 
       maskClick() {
@@ -220,10 +220,10 @@ const createConfirm = function (data: Data) {
   })
 }
 
-export const addAlert = function (data: Data) {
+export function addAlert(data: Data) {
   createAlert(data)
 }
 
-export const addConfirm = function (data: Data) {
+export function addConfirm(data: Data) {
   createConfirm(data)
 }

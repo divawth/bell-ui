@@ -1,6 +1,6 @@
 > 基础用法
 
-提供三种大小的头像
+提供五种大小的头像
 
 ```js
 export default {
@@ -15,7 +15,7 @@ export default {
 
         <Avatar size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
 
-        <Avatar size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />    
+        <Avatar size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
       </div>
       <div style="margin-top: 10px;">
         <Avatar shape="circle" size="huge" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
@@ -26,7 +26,7 @@ export default {
 
         <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
 
-        <Avatar shape="circle" size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />    
+        <Avatar shape="circle" size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
       </div>
     </div>
   `
@@ -39,12 +39,16 @@ export default {
 export default {
   template: `
     <div class="demo-avatar">
-      <Avatar icon="person" />
+      <Avatar>
+        <Icon name="person" size="26" slot="icon" />
+      </Avatar>
       <Avatar text="U" />
       <Avatar text="USER" />
       <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
       <Avatar bgColor="#fde3cf" color="#f56a00" text="U" />
-      <Avatar style="background-color: #87d068" icon="person" />
+      <Avatar style="background-color: #87d068">
+        <Icon name="person" size="26" slot="icon" />
+      </Avatar>
     </div>
   `
 }
@@ -57,17 +61,22 @@ export default {
   template: `
     <div class="demo-avatar-badge">
       <Badge count="1">
-        <Avatar icon="person" />
+        <Avatar>
+          <Icon name="person" size="26" slot="icon" />
+        </Avatar>
       </Badge>
+      <br><br>
       <Badge dot>
-        <Avatar icon="person" />
+        <Avatar>
+          <Icon name="person" size="26" slot="icon" />
+        </Avatar>
       </Badge>
     </div>
   `
-} 
+}
 ```
 
-> 自动调整字符大小 
+> 自动调整字符大小
 
 ```js
 export default {
@@ -87,7 +96,7 @@ export default {
     handleChange () {
       const USER_LIST = ['U', 'Lucy', 'Tom', 'Edward']
       const COLOR_LIST = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
-    
+
       const index = USER_LIST.indexOf(this.get('user'))
       let user = index < USER_LIST.length - 1 ? USER_LIST[ index + 1 ] : USER_LIST[ 0 ]
       let color = index < COLOR_LIST.length - 1 ? COLOR_LIST[ index + 1 ] : COLOR_LIST[ 0 ]
@@ -96,7 +105,7 @@ export default {
         color
       })
     }
-  }  
+  }
 }
 ```
 

@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import { Validator } from './util/validate.js'
+import { Validator } from './util/validate'
 
 import template from './template/Form.hbs'
 
@@ -10,11 +10,11 @@ import {
   RAW_OBJECT,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-} from '../constant.js'
+} from '../constant'
 
 import {
   oneOf
-} from '../util.js'
+} from '../util'
 
 export default Yox.define({
   propTypes: {

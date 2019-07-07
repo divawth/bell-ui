@@ -4,10 +4,10 @@ import {
 } from './base'
 import { Data } from 'yox'
 
-const Alert = function (data: Data) {
+function Alert(data: Data) {
   addAlert(data)
 }
-const Confirm = function (data: Data) {
+function Confirm(data: Data) {
   addConfirm(data)
 }
 

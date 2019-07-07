@@ -340,7 +340,7 @@ export default Yox.define({
 
     const onClick: Listener = function (event) {
       let element = me.$el
-      let target = event.originalEvent.target
+      let target = event.originalEvent.target as HTMLElement
       if (contains(element, target)) {
         return
       }

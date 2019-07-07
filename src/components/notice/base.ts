@@ -9,8 +9,7 @@ import Yox, { Data } from 'yox'
 import { onTransitionEnd } from '../util';
 
 let id = 0
-
-let createNotice = function (data: Data) {
+function createNotice(data: Data) {
 
   let namespace = '${prefix}notice-' + id++
   let body = Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement
@@ -129,6 +128,6 @@ let createNotice = function (data: Data) {
   })
 }
 
-export let add = function (data: Data) {
+export function add(data: Data) {
   createNotice(data)
 }

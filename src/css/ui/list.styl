@@ -11,13 +11,13 @@
   &{$selector-list}-border
     border $list-border
     border-radius $list-border-radius
-    
+
     {$selector-list-item}
       border-bottom $list-border
 
       &:last-child
         border-bottom none
-    
+
     {$selector-list}-header
       background-color #f8f8f8
 
@@ -32,7 +32,7 @@
   {$selector-list-item}-content
     position relative
     border-radius $list-border-radius
-  
+
   {$selector-list-item}-content-hover
     cursor $cursor-clickable
 
@@ -40,12 +40,12 @@
     position absolute
     top 50%
     transform translateY(-50%)
-    right 0px
+    right 15px
 
   {$selector-list-item}-nested
     display none
     padding 0 10px
-    
+
     &{$selector-prefix}-show
       display block
 

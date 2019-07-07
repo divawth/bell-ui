@@ -47,7 +47,6 @@
   - [Circle 进度环](other/circle)
 
 - [其它](layout)
-  - [Affix 图钉]()
   - [BackTop 返回顶部](other/backTop)
   - [Spin 加载中](other/spinner)
 

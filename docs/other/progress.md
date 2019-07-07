@@ -19,19 +19,18 @@ export default {
 ```js
 export default {
   template: `
-  <div style="height: 100px;">
-    <Progress vertical active percent="{{25}}"> 25%</Progress>
-    <Progress vertical percent="{{45}}" type="danger">45%</Progress>
-    <Progress vertical percent="{{65}}" type="success">65%</Progress>
-    <Progress vertical percent="{{100}}">100%</Progress>
-    <Progress vertical percent="{{25}}" hideInfo>25%</Progress>
-
-    <style>
-      .bell-progress-vertical {
-        width: 100px;
-      }
-    </style>
-  </div>
+    <div style="height: 100px;">
+      <Progress vertical active percent="{{25}}"> 25%</Progress>
+      <Progress vertical percent="{{45}}" type="danger">45%</Progress>
+      <Progress vertical percent="{{65}}" type="success">65%</Progress>
+      <Progress vertical percent="{{100}}">100%</Progress>
+      <Progress vertical percent="{{25}}" hideInfo>25%</Progress>
+      <style>
+        .bell-progress-vertical {
+          width: 100px;
+        }
+      </style>
+    </div>
   `
 }
 ```
@@ -59,8 +58,12 @@ export default {
       {{/if}}
     </Progress>
 
-    <Button icon="add" on-click="add()"></Button>
-    <Button icon="remove" on-click="minus()"></Button>
+    <Button on-click="add()">
+      <Icon name="add" />
+    </Button>
+    <Button on-click="minus()">
+      <Icon name="remove" />
+    </Button>
   </div>
   `,
   data: {

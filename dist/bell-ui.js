@@ -278,7 +278,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=voi
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-alert"+(a("type",!0)?" bell-alert-"+v(a("type",!0)):"")+(d(a("hasSlot",!0),["content"])?" bell-alert-with-content":"")+(a("showIcon",!0)||d(a("hasSlot",!0),["icon"])?" bell-alert-with-icon":"")+(a("center",!0)?" bell-alert-center":"")+(a("className",!0)?" "+v(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){a("showIcon",!0)||d(a("hasSlot",!0),["icon"])?p({"tag":"span"},z,function(){g("className",1,"bell-alert-icon")},function(){q("$slot_icon",function(){p({"tag":"Icon","isComponent":!0},z,function(){a("type",!0)==="primary"?f("name","information-circle"):a("type",!0)==="success"?f("name","checkmark-circle"):a("type",!0)==="warning"?f("name","alert"):a("type",!0)==="error"&&f("name","close-circle")})})}):p({"isComment":!0,"text":""}),p({"tag":"div"},z,function(){g("className",1,"bell-alert-wrapper")},function(){d(a("hasSlot",!0),["children"])?p({"tag":"div"},z,function(){g("className",1,"bell-alert-title")},function(){q("$slot_children")}):p({"isComment":!0,"text":""}),d(a("hasSlot",!0),["content"])?p({"tag":"div"},z,function(){g("className",1,"bell-alert-content")},function(){q("$slot_content")}):p({"isComment":!0,"text":""})}),a("closable",!0)||d(a("hasSlot",!0),["close"])?p({"tag":"span","ref":"close"},z,function(){g("className",1,"bell-alert-close"),l("click","event.click",z,"close()","close")},function(){q("$slot_close",function(){p({"tag":"Icon","isComponent":!0},z,function(){f("name","close"),f("size","24")})})}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-alert"+(a("type",!0)?" bell-alert-"+v(a("type",!0)):"")+(d(a("hasSlot",!0),["content"])?" bell-alert-with-content":"")+(a("showIcon",!0)||d(a("hasSlot",!0),["icon"])?" bell-alert-with-icon":"")+(a("center",!0)?" bell-alert-center":"")+(a("className",!0)?" "+v(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){a("showIcon",!0)||d(a("hasSlot",!0),["icon"])?p({"tag":"span"},z,function(){g("className",1,"bell-alert-icon")},function(){q("$slot_icon",function(){p({"tag":"Icon","isComponent":!0},z,function(){a("type",!0)===a("RAW_TYPE_PRIMARY",!0)?f("name","information-circle"):a("type",!0)===a("RAW_TYPE_SUCCESS",!0)?f("name","checkmark-circle"):a("type",!0)===a("RAW_TYPE_WARNING",!0)?f("name","alert"):a("type",!0)===a("RAW_TYPE_ERROR",!0)?f("name","close-circle"):a("type",!0)===a("RAW_TYPE_INFO",!0)&&f("name","information-circle")})})}):p({"isComment":!0,"text":""}),p({"tag":"div"},z,function(){g("className",1,"bell-alert-wrapper")},function(){d(a("hasSlot",!0),["children"])?p({"tag":"div"},z,function(){g("className",1,"bell-alert-title")},function(){q("$slot_children")}):p({"isComment":!0,"text":""}),d(a("hasSlot",!0),["content"])?p({"tag":"div"},z,function(){g("className",1,"bell-alert-content")},function(){q("$slot_content")}):p({"isComment":!0,"text":""})}),a("closable",!0)||d(a("hasSlot",!0),["close"])?p({"tag":"span","ref":"close"},z,function(){g("className",1,"bell-alert-close"),l("click","event.click",z,"close()","close")},function(){q("$slot_close",function(){p({"tag":"Icon","isComponent":!0},z,function(){f("name","close"),f("size","24")})})}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 31 */
@@ -434,7 +434,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=voi
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-tag"+(a("border",!0)?" bell-tag-border":"")+(a("dot",!0)?" bell-tag-dot":"")+(a("size",!0)?" bell-tag-"+v(a("size",!0)):"")+(a("type",!0)?" bell-tag-"+v(a("type",!0)):"")+(a("checked",!0)?" bell-tag-checked":"")+(a("closable",!0)?" bell-tag-closable":"")+(a("className",!0)?" "+v(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1)),l("click","event.click",z,"click()","click")},function(){a("dot",!0)?p({"tag":"span","isStatic":!0},z,function(){g("className",1,"bell-tag-dot-inner")}):p({"isComment":!0,"text":""}),p({"tag":"span"},z,function(){g("className",1,"bell-tag-text")},function(){q("$slot_children")}),a("closable",!0)?p({"tag":"Icon","isComponent":!0},z,function(){f("name","close"),f("className","bell-tag-close-icon"),l("click","event.click",z,"close()","close")}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-tag"+(a("border",!0)?" bell-tag-border":"")+(a("dot",!0)?" bell-tag-dot":"")+(a("size",!0)?" bell-tag-"+v(a("size",!0)):"")+(a("type",!0)?" bell-tag-"+v(a("type",!0)):"")+(a("checked",!0)?" bell-tag-checked":"")+(a("closable",!0)?" bell-tag-closable":"")+(a("className",!0)?" "+v(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1)),l("click","event.click",z,"click()","click")},function(){a("dot",!0)?p({"tag":"span","isStatic":!0},z,function(){g("className",1,"bell-tag-dot-inner")}):p({"isComment":!0,"text":""}),p({"tag":"span"},z,function(){g("className",1,"bell-tag-text")},function(){q("$slot_children")}),a("closable",!0)?p({"tag":"Icon","isComponent":!0},z,function(){f("size","20"),f("name","close"),f("className","bell-tag-close-icon"),l("click","event.click",z,"close()","close")}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 57 */
@@ -536,19 +536,19 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=voi
 /* 73 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-notice bell-notice-"+v(a("type",!0))+(a("visible",!0)?" bell-show":"")),g("style.cssText",1,"width: "+v(a("width",!0))+"px;"+(a("rightSize",!0)?"right: "+v(a("rightSize",!0))+"px;":""))},function(){p({"tag":"div","text":v(a("title",!0))},z,function(){g("className",1,"bell-notice-title")}),p({"tag":"div","text":v(a("content",!0))},z,function(){g("className",1,"bell-notice-desc")}),a("duration",!0)==0?p({"tag":"Icon","isComponent":!0},z,function(){f("name","close"),f("className","bell-notice-close"),l("click","event.click",z,"close()","close")}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-notice bell-notice-"+v(a("type",!0))+(a("visible",!0)?" bell-show":"")),g("style.cssText",1,"width: "+v(a("width",!0))+"px;"+(a("rightSize",!0)?"right: "+v(a("rightSize",!0))+"px;":""))},function(){p({"tag":"div","text":v(a("title",!0))},z,function(){g("className",1,"bell-notice-title")}),p({"tag":"div","text":v(a("content",!0))},z,function(){g("className",1,"bell-notice-desc")}),a("duration",!0)==0?p({"tag":"Icon","isComponent":!0},z,function(){f("name","close"),f("size",24),f("className","bell-notice-close"),l("click","event.click",z,"close()","close")}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-wrapper"+(a("isHidden",!0)?" bell-msg-alert-hidden":""))},function(){p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert"),a("width",!0)&&g("style.cssText",1,"width: "+v(a("width",!0))+"px;")},function(){a("closable",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-close"),l("click","event.click",z,"hide()","hide")},function(){p({"tag":"Icon","isComponent":!0},z,function(){f("name","close")})}):p({"isComment":!0,"text":""}),a("title",!0)?p({"tag":"div","html":v(a("title",!0))},z,function(){g("className",1,"bell-msg-alert-title")}):p({"isComment":!0,"text":""}),p({"tag":"div","html":v(a("content",!0))},z,function(){g("className",1,"bell-msg-alert-desc")}),p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-footer")},function(){p({"tag":"Button","isComponent":!0},z,function(){f("type",j("type",a("button.type",!0,z,!0,!0))),l("click","event.click",z,"hide()","hide")},z,{"$slot_children":function(){e(v(a("button.text",!0)))}})})}),a("mask",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-mask"),l("click","event.click",z,"maskClick()","maskClick")}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-wrapper"+(a("isHidden",!0)?" bell-msg-alert-hidden":""))},function(){p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert"),a("width",!0)&&g("style.cssText",1,"width: "+v(a("width",!0))+"px;")},function(){a("closable",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-close"),l("click","event.click",z,"hide()","hide")},function(){p({"tag":"Icon","isComponent":!0},z,function(){f("size",24),f("name","close")})}):p({"isComment":!0,"text":""}),a("title",!0)?p({"tag":"div","html":v(a("title",!0))},z,function(){g("className",1,"bell-msg-alert-title")}):p({"isComment":!0,"text":""}),p({"tag":"div","html":v(a("content",!0))},z,function(){g("className",1,"bell-msg-alert-desc")}),p({"tag":"div"},z,function(){g("className",1,"bell-msg-alert-footer")},function(){p({"tag":"Button","isComponent":!0},z,function(){f("type",j("type",a("button.type",!0,z,!0,!0))),l("click","event.click",z,"hide()","hide")},z,{"$slot_children":function(){e(v(a("button.text",!0)))}})})}),a("mask",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-mask"),l("click","event.click",z,"maskClick()","maskClick")}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-wrapper"+(a("isHidden",!0)?" bell-msg-confirm-hidden":""))},function(){p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm"),a("width",!0)&&g("style.cssText",1,"width: "+v(a("width",!0))+"px;")},function(){a("closable",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-close"),l("click","event.click",z,"hide()","hide")},function(){p({"tag":"Icon","isComponent":!0},z,function(){f("name","close")})}):p({"isComment":!0,"text":""}),a("title",!0)?p({"tag":"div","html":v(a("title",!0))},z,function(){g("className",1,"bell-msg-confirm-title")}):p({"isComment":!0,"text":""}),p({"tag":"div","html":v(a("content",!0))},z,function(){g("className",1,"bell-msg-confirm-desc")}),a("buttons",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-footer")},function(){t(function(){p({"tag":"Button","isComponent":!0},z,function(){f("type",j("type",a("type",!0,z,!0,!0))),l("click","event.click",z,"buttonClick(index)","buttonClick",function(w){return [a("index",!0,z,z,z,w)]})},z,{"$slot_children":function(){e(v(a("text",!0)))}})},a("buttons",!0,z,!0),"index")}):p({"isComment":!0,"text":""})}),a("mask",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-mask"),l("click","event.click",z,"maskClick()","maskClick")}):p({"isComment":!0,"text":""})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-wrapper"+(a("isHidden",!0)?" bell-msg-confirm-hidden":""))},function(){p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm"),a("width",!0)&&g("style.cssText",1,"width: "+v(a("width",!0))+"px;")},function(){a("closable",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-close"),l("click","event.click",z,"hide()","hide")},function(){p({"tag":"Icon","isComponent":!0},z,function(){f("size",24),f("name","close")})}):p({"isComment":!0,"text":""}),a("title",!0)?p({"tag":"div","html":v(a("title",!0))},z,function(){g("className",1,"bell-msg-confirm-title")}):p({"isComment":!0,"text":""}),p({"tag":"div","html":v(a("content",!0))},z,function(){g("className",1,"bell-msg-confirm-desc")}),a("buttons",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-confirm-footer")},function(){t(function(){p({"tag":"Button","isComponent":!0},z,function(){f("type",j("type",a("type",!0,z,!0,!0))),l("click","event.click",z,"buttonClick(index)","buttonClick",function(w){return [a("index",!0,z,z,z,w)]})},z,{"$slot_children":function(){e(v(a("text",!0)))}})},a("buttons",!0,z,!0),"index")}):p({"isComment":!0,"text":""})}),a("mask",!0)?p({"tag":"div"},z,function(){g("className",1,"bell-msg-mask"),l("click","event.click",z,"maskClick()","maskClick")}):p({"isComment":!0,"text":""})})};
 
 /***/ }),
 /* 76 */
@@ -592,7 +592,7 @@ var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default = /*#__PURE__*/
 var Layout = __webpack_require__(1);
 var Layout_default = /*#__PURE__*/__webpack_require__.n(Layout);
 
-// CONCATENATED MODULE: ./src/components/constant.js
+// CONCATENATED MODULE: ./src/components/constant.ts
 var TRUE = true;
 var FALSE = false;
 var NULL = null;
@@ -816,7 +816,8 @@ var Footer_default = /*#__PURE__*/__webpack_require__.n(Footer);
 var Menu = __webpack_require__(6);
 var Menu_default = /*#__PURE__*/__webpack_require__.n(Menu);
 
-// CONCATENATED MODULE: ./src/components/util.js
+// CONCATENATED MODULE: ./src/components/util.ts
+
 
 var util_element = document.createElement('div');
 var prefixs = ['Webkit', 'Moz', 'O', 'ms'];
@@ -837,18 +838,18 @@ var transitionEnd = testCSS('transition') ? 'transitionend' : '';
 var supportTransform = testCSS('transform') ? true : false;
 function onTransitionEnd(el, callback) {
     if (transitionEnd) {
-        Yox.dom.on(el, transitionEnd, function (event) {
-            Yox.dom.off(el, transitionEnd, event.listener);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(el, transitionEnd, function (event) {
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(el, transitionEnd, event.listener);
             callback();
         });
     }
     else {
-        Yox.nextTick(callback);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.nextTick(callback);
     }
 }
-var requestAnimationFrame = (window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
+var requestAnimationFrame = (window['webkitRequestAnimationFrame'] ||
+    window['mozRequestAnimationFrame'] ||
+    window['msRequestAnimationFrame'] ||
     function (callback) {
         return window.setTimeout(callback, 1000 / 60);
     });
@@ -865,7 +866,7 @@ function isDef(value) {
     return value !== UNDEFINED;
 }
 function findComponentUpward(parent, componentName) {
-    if (Yox.is.string(componentName)) {
+    if (typeof componentName === 'string') {
         componentName = [componentName];
     }
     else {
@@ -873,7 +874,7 @@ function findComponentUpward(parent, componentName) {
     }
     while (parent) {
         var name_1 = parent.$options.name;
-        if (name_1 && Yox.array.has(componentName, name_1)) {
+        if (name_1 && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(componentName, name_1)) {
             break;
         }
         else {
@@ -884,8 +885,8 @@ function findComponentUpward(parent, componentName) {
 }
 function oneOf(values) {
     return function (key, value) {
-        if (!Yox.array.has(values, value)) {
-            Yox.logger.warn(key + " \u671F\u671B\u662F " + values.join(',') + " \u4E2D\u7684\u503C\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
+        if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(values, value)) {
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.logger.warn(key + " \u671F\u671B\u662F " + values.join(',') + " \u4E2D\u7684\u503C\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
         }
         return true;
     };
@@ -895,7 +896,7 @@ function isDate() {
         if (value instanceof Date) {
             return true;
         }
-        Yox.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
     };
 }
 function isDateValue() {
@@ -903,10 +904,10 @@ function isDateValue() {
         if (value instanceof Date) {
             return true;
         }
-        else if (Yox.is.array(value)) {
+        else if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(value)) {
             return value.filter(function (date) { return date instanceof Date; }).length === value.length;
         }
-        Yox.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.logger.warn(key + " \u671F\u671B\u662F Date \u7C7B\u578B\uFF0C\u5B9E\u9645\u4F20\u503C " + value + "\u3002");
     };
 }
 function util_scrollTop(element, from, to, duration, endCallback) {
@@ -2969,6 +2970,15 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
         }
     },
     template: Alert_default.a,
+    data: function () {
+        return {
+            RAW_TYPE_PRIMARY: RAW_TYPE_PRIMARY,
+            RAW_TYPE_INFO: RAW_TYPE_INFO,
+            RAW_TYPE_SUCCESS: RAW_TYPE_SUCCESS,
+            RAW_TYPE_WARNING: RAW_TYPE_WARNING,
+            RAW_TYPE_ERROR: RAW_TYPE_ERROR
+        };
+    },
     methods: {
         close: function () {
             var me = this;
@@ -6032,7 +6042,7 @@ var TimeLineItem_default = /*#__PURE__*/__webpack_require__.n(TimeLineItem);
     template: TimeLineItem_default.a
 }));
 
-// CONCATENATED MODULE: ./src/components/form/util/validate.js
+// CONCATENATED MODULE: ./src/components/form/util/validate.ts
 
 
 function checkInteger(rule, value) {
@@ -6695,7 +6705,7 @@ function createMessage(data) {
                 type: RAW_STRING
             },
             type: {
-                type: RAW_STRING
+                type: oneOf(RAW_TYPE_ARRAY)
             },
             showIcon: {
                 type: RAW_BOOLEAN,
@@ -6718,11 +6728,11 @@ function createMessage(data) {
                 showTime: data.duration || 1500,
                 isShow: FALSE,
                 close: function () {
-                    if (instance) {
-                        instance.destroy();
-                    }
                     if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.func(data.onClose)) {
                         data.onClose();
+                    }
+                    if (instance) {
+                        instance.destroy();
                     }
                 }
             };
@@ -6831,7 +6841,7 @@ var Notice_default = /*#__PURE__*/__webpack_require__.n(Notice);
 
 
 var base_id = 0;
-var createNotice = function (data) {
+function createNotice(data) {
     var namespace = 'bell-notice-' + base_id++;
     var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notice-wrapper');
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
@@ -6934,10 +6944,10 @@ var createNotice = function (data) {
             this.fadeIn();
         }
     });
-};
-var base_add = function (data) {
+}
+function base_add(data) {
     createNotice(data);
-};
+}
 
 // CONCATENATED MODULE: ./src/components/notice/Notice.ts
 
@@ -7002,13 +7012,13 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
 
 
 var msgbox_base_id = 0;
-var createAlert = function (data) {
+function createAlert(data) {
     var namespace = 'bell-msg-alert-' + msgbox_base_id++;
     var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a({
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a({
         el: '#' + namespace,
         replace: true,
         template: Msgbox_default.a,
@@ -7094,14 +7104,14 @@ var createAlert = function (data) {
             }, 300);
         }
     });
-};
-var createConfirm = function (data) {
+}
+function createConfirm(data) {
     var namespace = 'bell-msg-confirm-' + msgbox_base_id++;
     var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a({
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a({
         el: '#' + namespace,
         replace: TRUE,
         template: Confirm_default.a,
@@ -7152,7 +7162,7 @@ var createConfirm = function (data) {
         },
         methods: {
             buttonClick: function (index) {
-                this.get('buttons.' + index + '.action').call(instance);
+                this.get('buttons.' + index + '.action').call(this);
             },
             maskClick: function () {
                 if (!this.get('maskClosable')) {
@@ -7184,22 +7194,22 @@ var createConfirm = function (data) {
             }, 300);
         }
     });
-};
-var addAlert = function (data) {
+}
+function addAlert(data) {
     createAlert(data);
-};
-var addConfirm = function (data) {
+}
+function addConfirm(data) {
     createConfirm(data);
-};
+}
 
 // CONCATENATED MODULE: ./src/components/msgbox/Msgbox.ts
 
-var Msgbox_Alert = function (data) {
+function Msgbox_Alert(data) {
     addAlert(data);
-};
-var Msgbox_Confirm = function (data) {
+}
+function Msgbox_Confirm(data) {
     addConfirm(data);
-};
+}
 /* harmony default export */ var msgbox_Msgbox = ({
     Alert: Msgbox_Alert,
     Confirm: Msgbox_Confirm

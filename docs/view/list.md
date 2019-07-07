@@ -3,7 +3,7 @@
 ```js
 export default {
   isViewFullBlock: true,
-  height: 600,
+  height: 800,
   template: `
   <div>
     <p>Small List</p>

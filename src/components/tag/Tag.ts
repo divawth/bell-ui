@@ -48,7 +48,7 @@ export default Yox.define({
   template,
 
   watchers: {
-    checked(value) {
+    checked(value: boolean) {
       this.fire(
         'change.tag',
         {

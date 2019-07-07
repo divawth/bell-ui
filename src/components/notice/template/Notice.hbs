@@ -15,7 +15,11 @@ style="width: {{width}}px;
   </div>
 
   {{#if duration == 0}}
-    <Icon name="close" className="${prefix}notice-close" on-click="close()" />
+    <Icon name="close"
+      size="{{24}}"
+      className="${prefix}notice-close"
+      on-click="close()"
+    />
   {{/if}}
 
 </div>

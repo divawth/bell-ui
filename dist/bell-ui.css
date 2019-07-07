@@ -10581,7 +10581,7 @@ button.bell-button-warning-ghost[disabled] {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  right: 0px;
+  right: 15px;
 }
 .bell-list .bell-list-item-nested {
   display: none;
@@ -10919,7 +10919,7 @@ button.bell-button-warning-ghost[disabled] {
   opacity: 1;
 }
 .bell-message .bell-alert {
-  border-color: #fff;
+  border: none;
   background-color: #fff;
   box-shadow: 0 1px 6px rgba(0,0,0,0.2);
 }
@@ -12833,6 +12833,7 @@ button.bell-button-warning-ghost[disabled] {
   padding: 1px 1px 10px 24px;
   font-size: 12px;
   top: -3px;
+  line-height: 1.5;
 }
 .bell-timeline .bell-timeline-item .bell-timeline-content p {
   padding: 0;
@@ -13033,6 +13034,7 @@ button.bell-button-warning-ghost[disabled] {
   position: relative;
   line-height: 32px;
   font-size: 12px;
+  display: inline-block;
 }
 .bell-form .bell-form-item .bell-form-item-content .bell-form-item-error-tip {
   position: absolute;
@@ -13116,7 +13118,7 @@ button.bell-button-warning-ghost[disabled] {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 5px 15px;
+  padding: 3px 15px;
 }
 .bell-dialog-content .bell-dialog-body {
   padding: 15px;

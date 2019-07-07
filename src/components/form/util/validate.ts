@@ -1,7 +1,8 @@
 import { RAW_STRING, RAW_ARRAY, RAW_OBJECT } from "../../constant"
 import { getType } from "../../util"
+import { Data } from "yox";
 
-function checkInteger(rule, value) {
+function checkInteger(rule: Data, value: any) {
   if (getType(value) !== 'number' || value % 1 !== 0) {
     return 'type'
   }
@@ -15,7 +16,7 @@ function checkInteger(rule, value) {
   }
 }
 
-function checkNumber(rule, value) {
+function checkNumber(rule: Data, value: any) {
   if (getType(value) !== 'number' || isNaN(value)) {
     return 'type'
   }
@@ -29,7 +30,7 @@ function checkNumber(rule, value) {
   }
 }
 
-function checkString(rule, value) {
+function checkString(rule: Data, value: any) {
   if (value == '') {
     if (rule.empty === true) {
       return
@@ -56,19 +57,19 @@ function checkString(rule, value) {
   }
 }
 
-function checkBoolean(rule, value) {
+function checkBoolean(rule: Data, value: any) {
   if (getType(value) !== 'boolean') {
     return 'type'
   }
 }
 
-function checkEnum(rule, value) {
+function checkEnum(rule: Data, value: any) {
   if (rule.values.indexOf(value) < 0) {
     return 'type'
   }
 }
 
-function checkArray(rule, value) {
+function checkArray(rule: Data, value: any) {
   if (!value || getType(value) !== RAW_ARRAY) {
     return 'type'
   }
@@ -94,16 +95,33 @@ function checkArray(rule, value) {
   }
 }
 
-function checkObject(rule, value) {
+function checkObject(rule: Data, value: any) {
   if (!value || getType(value) !== RAW_OBJECT) {
     return 'type'
   }
 }
 
+interface ValidateType {
+  int: (rule: Data, value: any) => string,
+  integer: (rule: Data, value: any) => string,
+  number: (rule: Data, value: any) => string,
+  string: (rule: Data, value: any) => string,
+  bool: (rule: Data, value: any) => string,
+  boolean: (rule: Data, value: any) => string,
+  enum: (rule: Data, value: any) => string,
+  array: (rule: Data, value: any) => string,
+  object: (rule: Data, value: any) => string
+}
+
+type TranslateType = (key: string, value: any, errorType: any, rule: Data) => void
+
 class Validator {
 
-  constructor(translate) {
+  rules: ValidateType
+  messages: Data
+  translate: TranslateType
 
+  constructor(translate?: TranslateType) {
     this.rules = {
       int: checkInteger,
       integer: checkInteger,
@@ -115,13 +133,11 @@ class Validator {
       array: checkArray,
       object: checkObject
     }
-
     this.messages = {}
     this.translate = translate
-
   }
 
-  validate(data, rules, messages) {
+  validate(data: Data, rules: Data, messages: Data) {
 
     var errors = { };
 

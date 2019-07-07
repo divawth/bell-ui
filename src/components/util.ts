@@ -1,10 +1,11 @@
 import { UNDEFINED, NULL } from './constant'
+import Yox, { CustomEventInterface, Listener, YoxInterface } from 'yox';
 
 const element = document.createElement('div')
 
 const prefixs = ['Webkit', 'Moz', 'O', 'ms']
 
-function testCSS(property) {
+function testCSS(property: string) {
 
   const upperCase = property.charAt(0).toUpperCase()
                 + property.slice(1)
@@ -26,13 +27,13 @@ const transitionEnd = testCSS('transition') ? 'transitionend' : ''
 
 export const supportTransform = testCSS('transform') ? true : false
 
-export function onTransitionEnd(el, callback) {
+export function onTransitionEnd(el: HTMLElement, callback: () => void) {
   if (transitionEnd) {
     Yox.dom.on(
       el,
       transitionEnd,
-      function (event) {
-        Yox.dom.off(el, transitionEnd, event.listener)
+      function (event: CustomEventInterface) {
+        Yox.dom.off(el, transitionEnd, event.listener as Listener)
         callback()
       }
     )
@@ -43,15 +44,15 @@ export function onTransitionEnd(el, callback) {
 }
 
 export const requestAnimationFrame = (
-  window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  window.msRequestAnimationFrame ||
+  window['webkitRequestAnimationFrame'] ||
+  window['mozRequestAnimationFrame'] ||
+  window['msRequestAnimationFrame'] ||
   function (callback) {
     return window.setTimeout(callback, 1000 / 60)
   }
 )
 
-export function contains(element, target) {
+export function contains(element: HTMLElement, target: HTMLElement) {
   if (element.contains && element.contains(target)) {
     return true
   }
@@ -61,12 +62,12 @@ export function contains(element, target) {
   return false
 }
 
-export function isDef(value) {
+export function isDef(value: any) {
   return value !== UNDEFINED
 }
 
-export function findComponentUpward(parent, componentName) {
-  if (Yox.is.string(componentName)) {
+export function findComponentUpward(parent, componentName: string | string[]) {
+  if (typeof componentName === 'string') {
     componentName = [ componentName ]
   }
   else {
@@ -86,8 +87,8 @@ export function findComponentUpward(parent, componentName) {
   return parent
 }
 
-export function oneOf(values) {
-  return function (key, value) {
+export function oneOf(values: string[]) {
+  return function (key: string, value: string) {
     if (!Yox.array.has(values, value)) {
       Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 ${value}。`)
     }
@@ -96,7 +97,7 @@ export function oneOf(values) {
 }
 
 export function isDate() {
-  return function (key, value) {
+  return function (key: string, value: Date) {
     if (value instanceof Date) {
       return true
     }
@@ -105,7 +106,7 @@ export function isDate() {
 }
 
 export function isDateValue() {
-  return function (key, value) {
+  return function (key: string, value: Date | Date[]) {
     if (value instanceof Date) {
       return true
     }
@@ -116,7 +117,13 @@ export function isDateValue() {
   }
 }
 
-export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
+export function scrollTop(
+  element: HTMLElement | Window,
+  from: number = 0,
+  to: number,
+  duration: number = 500,
+  endCallback?: () => void
+) {
 
   const difference = Math.abs(from - to)
   const step = Math.ceil(difference / duration * 50)
@@ -135,7 +142,7 @@ export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
     if (element === window) {
       window.scrollTo(duration, duration)
     } else {
-      element.scrollTop = duration
+      (element as HTMLElement).scrollTop = duration
     }
     requestAnimationFrame(function () {
       scroll(duration, end, step)
@@ -144,12 +151,16 @@ export function scrollTop(element, from = 0, to, duration = 500, endCallback) {
   scroll(from, to, step)
 }
 
-export function getType(value) {
+export function getType(value: any) {
   return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
 }
 
-export function debounce(fn, time, immediate) {
-  let timer
+export function debounce(
+  fn: (event: CustomEventInterface) => void,
+  time: number,
+  immediate: boolean
+) {
+  let timer: any
   return function () {
     if (timer) return
     let args = Array.prototype.slice.call(arguments)
