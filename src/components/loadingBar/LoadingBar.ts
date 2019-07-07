@@ -11,7 +11,7 @@ interface Config {
 
 let config: Config = {}
 
-let updateConfig = function (data: Config) {
+function updateConfig(data: Config) {
   config.type = data.type ? data.type : config.type
   config.color = data.color ? data.color : config.color
   config.height = data.height ? data.height : config.height
@@ -19,7 +19,7 @@ let updateConfig = function (data: Config) {
 
 export default {
   // 开始从 0 显示进度条，并自动加载进度
-  start(options: Config) {
+  start(options: Config = {}) {
     return add(
       Yox.object.extend(
         options,

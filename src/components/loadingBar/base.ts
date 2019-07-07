@@ -14,7 +14,7 @@ let instance = NULL
 let timer = NULL
 
 
-export const add = function(data: Config) {
+export function add(data: Config) {
   if (instance) {
     remove()
   }
