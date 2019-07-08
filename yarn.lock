@@ -3535,6 +3535,11 @@ sockjs@0.3.19:
     faye-websocket "^0.10.0"
     uuid "^3.0.1"
 
+soga@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/soga/-/soga-0.1.3.tgz#67b3a2e88cb607c9e51cd2429dd71dafed099fc7"
+  integrity sha512-DQtfi68nKjY/BVpVXbPIU5trntkaN96HznYI2ZlerO96RYM+usCg+31f7DWpwHq/wvWo8O9SB5TZJi0r5Il4tQ==
+
 sort-keys@^1.0.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"

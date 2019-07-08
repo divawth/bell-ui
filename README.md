@@ -2,7 +2,7 @@
 
 > A Yox.js UI Toolkit for Web.
 
-[Doc](https://angeltiva.github.io/bellUI/#/view/notice)
+[Doc](https://divawth.github.io/bell-ui/#/layout/layout)
 
 ## Install
 

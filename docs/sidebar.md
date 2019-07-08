@@ -28,6 +28,7 @@
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
   - [Form 表单](form/form)
+  - [Upload 上传](form/upload)
 
 - [视图](layout)
   - [Alert 警告提示](view/alert)

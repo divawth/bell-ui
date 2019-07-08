@@ -9,7 +9,9 @@
     "build": "webpack --config build/wepack.prod.config.js",
     "style": "stylus -w src/css/index.styl -o dist/bell-ui.css"
   },
-  "dependencies": {},
+  "dependencies": {
+    "soga": "^0.1.3"
+  },
   "author": "",
   "repository": {
     "type": "git",
