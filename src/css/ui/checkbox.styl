@@ -2,6 +2,7 @@
 
   user-select none
   display inline-block
+  vertical-align middle
   cursor $cursor-clickable
   position relative
 
@@ -18,14 +19,16 @@
 
     margin-top $checkbox-inner-size - $checkbox-font-size
 
-  {$selector-checkbox-inner}    
+  {$selector-checkbox-inner}
     display inline-block
+    vertical-align middle
     border-radius $radius-small
     border 1px solid $brand-border
     transition color .3s, background-color .3s, box-shadow .3s
 
     &:after
       display inline-block
+      vertical-align middle
       content " "
       position absolute
       border 2px solid #fff
@@ -41,7 +44,7 @@
     ui-fullscreen(absolute)
 
   {$selector-checkbox-label}
-    line-height 1    
+    line-height 1
     vertical-align middle
 
   &{$selector-checkbox}-active

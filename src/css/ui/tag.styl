@@ -1,12 +1,12 @@
 {$selector-tag}
   display inline-block
+  vertical-align middle
   opacity 1
   overflow hidden
   cursor $cursor-clickable
-  vertical-align middle
   position relative
   margin-right 10px
-  border 1px solid 
+  border 1px solid
   color $brand-muted
 
   border-radius $tag-radius
@@ -14,15 +14,15 @@
   padding $tag-padding
 
   transition background-color .3s, color .3s
-  
+
   &{$selector-tag-checked}
     color $tag-color
     border-color $brand-divider
     background-color $tag-bg-color
-  
+
   ui-tag()
 
-  &{$selector-tag}-closable   
+  &{$selector-tag}-closable
     {$selector-tag}-text
       padding-right $tag-font-size
 
@@ -42,12 +42,13 @@
   &{$selector-tag-border}
     background-color $tag-dot-bg-color
 
-    &{$selector-tag}-closable  
+    &{$selector-tag}-closable
       {$selector-tag}-text
         padding-right $tag-close-gap
 
       &:after
         display inline-block
+        vertical-align middle
         content ' '
         height 100%
         width 1px
@@ -66,9 +67,10 @@
 
     {$selector-tag}-text
       color $tag-color
-      
+
     {$selector-tag}-dot-inner
       display inline-block
+      vertical-align middle
       width $tag-font-size
       height $tag-font-size
       border-radius 100%
@@ -76,6 +78,5 @@
       top 1px
 
       background-color $tag-dot-color
-      margin-right $tag-dot-inner-gap 
-      
-  
+      margin-right $tag-dot-inner-gap
+

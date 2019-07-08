@@ -16,18 +16,17 @@
   margin $divider-horizontal-margin
 
 {$selector-divider}-vertical
-
   display inline-block
+  vertical-align middle
   position relative
   width 1px
   height .9em
   top -.06em
-  vertical-align middle
   margin $divider-vertical-margin
 
 {$selector-divider}-text
-
   display inline-block
+  vertical-align middle
   padding $divider-text-padding
 
 {$selector-divider}-dashed
@@ -38,9 +37,9 @@
   &{$selector-divider}-with-text-center,
   &{$selector-divider}-with-text-left,
   &{$selector-divider}-with-text-right
-    &:before   
+    &:before
       border-top-style dashed
-    &:after 
+    &:after
       border-top-style dashed
 
 {$selector-divider}-with-text-center,
@@ -51,14 +50,14 @@
   white-space nowrap
   text-align center
   background 0 0
-  font-weight 500    
+  font-weight 500
   border-top 0
 
   margin $divider-with-text-margin
   color $divider-with-text-color
   font-size $divider-with-text-size
 
-  &:before 
+  &:before
     content ''
     position relative
     display table-cell
@@ -75,14 +74,14 @@
     transform translateY(50%)
     top 50%
     width 50%
-  
+
   &{$selector-divider}-with-text-left
-    &:before 
+    &:before
       width 5%
-    &:after 
+    &:after
       width 95%
   &{$selector-divider}-with-text-right
-    &:before 
+    &:before
       width 95%
-    &:after 
+    &:after
       width 5%

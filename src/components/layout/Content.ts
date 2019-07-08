@@ -21,7 +21,7 @@ export default Yox.define({
   template,
 
   events: {
-    hasSider() {
+    'hasSider.layout': function() {
       this.set({
         hasSider: TRUE
       })

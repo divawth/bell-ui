@@ -84,20 +84,26 @@ export default {
 
 Upload
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-data | 上传需要的值 | object | - | -
 action | 上传的地址 | string | - | -
+headers | 上传头部信息 | object | - | -
+withCredentials | 上传是否携带 cookie 信息 | boolean | false
 multiple | 是否支持多选 | boolean | - | false
-accept | 文件类型 | array | - | -
+accept | 允许什么类型的文件上传 | array | - | -
+data | 上传需要的值 | object | - | -
+name | 上传文件的文件名 | name | - | -
+beforeUpload | 上传前执行的函数 | function | - | -
 
+> Events
 
-
-  // 已经上传的字节数
-  progress.uploaded
-  // 需要上传的总字节数
-  progress.total
-  // 上传进度 0-1
-  progress.percent
+事件名称 | 说明 | 回调参数
+---|---|---
+start | 开始上传的回调 | -
+end | 上传结束的回调 | -
+progress | 上传过程中的回调 | progress
+success | 上传成功的回调 | response
+error | 上传失败的回调 | -
+abort | 上传取消的回调 | -

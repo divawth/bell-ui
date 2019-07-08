@@ -6485,6 +6485,7 @@ button.bell-link {
 }
 .bell-button {
   display: inline-block;
+  vertical-align: middle;
   text-align: center;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -7013,6 +7014,12 @@ button.bell-button-warning-ghost[disabled] {
 .bell-button-none {
   border: none;
 }
+.bell-button-none.focus,
+.bell-button-none:focus,
+.bell-button-none.bell-focus {
+  outline: none;
+  box-shadow: none;
+}
 .bell-button-dashed {
   border: 1px dashed;
 }
@@ -7052,6 +7059,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-button-group {
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-button-group-horizontal .bell-button {
   z-index: 1;
@@ -7258,6 +7266,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-layout-header-center {
   margin: 0 auto;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-layout-sider {
   position: relative;
@@ -7304,15 +7313,16 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-divider-vertical {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
   width: 1px;
   height: 0.9em;
   top: -0.06em;
-  vertical-align: middle;
   margin: 0 8px;
 }
 .bell-divider-text {
   display: inline-block;
+  vertical-align: middle;
   padding: 0 10px;
 }
 .bell-divider-dashed {
@@ -7392,6 +7402,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-breadcrumb .bell-breadcrumb-gap {
   display: inline-block;
+  vertical-align: middle;
   margin-left: 8px;
 }
 .bell-breadcrumb .bell-breadcrumb-link {
@@ -7444,6 +7455,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-wrapper .bell-input-prepend,
 .bell-input-wrapper .bell-input-append {
   display: inline-block;
+  vertical-align: middle;
   border: 1px solid;
   font-size: 12px;
   padding: 0 11px;
@@ -7506,6 +7518,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-wrapper .bell-textarea,
 .bell-input-wrapper .bell-input {
   display: inline-block;
+  vertical-align: top;
   overflow: hidden;
   width: 100%;
   outline: none;
@@ -7514,13 +7527,13 @@ button.bell-button-warning-ghost[disabled] {
   border-radius: 4px;
   transition: border-color 0.3s, box-shadow 0.3s;
   line-height: 0;
-  vertical-align: top;
 }
 .bell-input-wrapper .bell-textarea .bell-input-el,
 .bell-input-wrapper .bell-input .bell-input-el {
+  display: inline-block;
+  vertical-align: middle;
   border: none;
   box-sizing: border-box;
-  display: inline-block;
   outline: none;
   width: 100%;
   background-image: none;
@@ -7839,6 +7852,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-menu .bell-menu,
 .bell-menu .bell-menu-group {
+  box-sizing: border-box;
   padding-left: 16px;
 }
 .bell-menu .bell-menu-dropdown {
@@ -7956,6 +7970,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-menu-inline.bell-menu-collapsed .bell-menu-open > .bell-menu {
   display: inline-block;
+  vertical-align: middle;
   position: absolute;
   width: 200px;
   left: 100%;
@@ -8397,6 +8412,7 @@ button.bell-button-warning-ghost[disabled] {
   box-sizing: content-box;
   border-radius: 4px;
   display: inline-block;
+  vertical-align: middle;
   border: 1px solid;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8638,6 +8654,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-radio-group {
   display: inline-block;
+  vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -8804,6 +8821,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-radio-group .bell-radio .bell-radio-inner:after {
   display: inline-block;
+  vertical-align: middle;
   content: ' ';
   border-radius: 100%;
   position: absolute;
@@ -8870,6 +8888,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-radio-button {
   display: inline-block;
+  vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -9055,6 +9074,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-radio-button .bell-radio {
   margin-right: 0;
   display: inline-block;
+  vertical-align: middle;
   border: 1px solid #eee;
   transition: border-color 0.15s, color 0.15s, background-color 0.15s;
   cursor: pointer;
@@ -9091,6 +9111,7 @@ button.bell-button-warning-ghost[disabled] {
       -ms-user-select: none;
           user-select: none;
   display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
   position: relative;
 }
@@ -9273,12 +9294,14 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-checkbox .bell-checkbox-inner {
   display: inline-block;
+  vertical-align: middle;
   border-radius: 3px;
   border: 1px solid #eee;
   transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 .bell-checkbox .bell-checkbox-inner:after {
   display: inline-block;
+  vertical-align: middle;
   content: " ";
   position: absolute;
   border: 2px solid #fff;
@@ -9331,13 +9354,14 @@ button.bell-button-warning-ghost[disabled] {
   margin-left: 0;
 }
 .bell-switch {
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  display: inline-block;
   box-sizing: border-box;
   border: 1px solid;
   font-size: 12px;
@@ -9361,6 +9385,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-switch .bell-switch-button {
   width: 100%;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-switch .bell-switch-button .bell-switch-inner {
   position: absolute;
@@ -9593,6 +9618,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-select {
   display: inline-block;
+  vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -9660,6 +9686,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-select .bell-select-button {
   width: 100%;
   display: inline-block;
+  vertical-align: middle;
   position: relative;
   outline: 0;
   cursor: pointer;
@@ -10038,6 +10065,7 @@ button.bell-button-warning-ghost[disabled] {
       -ms-user-select: none;
           user-select: none;
   display: inline-block;
+  vertical-align: middle;
   font-size: 12px;
 }
 .bell-datepicker .bell-datepicker-dropdown {
@@ -10162,6 +10190,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-datepicker-month .bell-datepicker-body .bell-datepicker-col,
 .bell-datepicker-year .bell-datepicker-body .bell-datepicker-col {
   display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
   box-sizing: border-box;
   width: 25%;
@@ -10290,6 +10319,7 @@ button.bell-button-warning-ghost[disabled] {
   padding: 0;
   margin: 0;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-page .bell-page-item {
   display: inline-block;
@@ -10354,6 +10384,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-page .bell-page-item.bell-page-item-next.bell-hover .bell-icon,
 .bell-page .bell-page-item.bell-page-item-prev.bell-hover .bell-icon {
   display: inline-block;
+  vertical-align: middle;
   margin-left: 0;
 }
 .bell-page .bell-page-item.bell-page-custom-next,
@@ -10369,18 +10400,19 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-page .bell-page-select {
   display: inline-block;
+  vertical-align: middle;
   width: 100px;
   margin-right: 10px;
-  vertical-align: middle;
 }
 .bell-page .bell-page-elevator {
   display: inline-block;
+  vertical-align: middle;
   margin-left: 10px;
 }
 .bell-page .bell-page-elevator .bell-page-input {
-  vertical-align: middle;
   width: 100px;
   display: inline-block;
+  vertical-align: middle;
   margin: 0 10px;
 }
 .bell-page .bell-page-elevator .bell-page-input .bell-input {
@@ -10392,10 +10424,12 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-page .bell-page-simple {
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-page .bell-page-simple .bell-page-input {
   width: 32px;
   display: inline-block;
+  vertical-align: middle;
   margin: 0 10px;
 }
 .bell-page .bell-page-simple .bell-page-input .bell-input {
@@ -10605,8 +10639,10 @@ button.bell-button-warning-ghost[disabled] {
 .bell-avatar {
   overflow: hidden;
   display: inline-block;
+  vertical-align: middle;
   text-align: center;
   position: relative;
+  vertical-align: middle;
   background-color: #ccc;
 }
 .bell-avatar {
@@ -10832,8 +10868,8 @@ button.bell-button-warning-ghost[disabled] {
   vertical-align: middle;
 }
 .bell-card-header .bell-card-header-detail {
-  vertical-align: middle;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-card-header .bell-card-header-title {
   font-size: 15px;
@@ -11126,6 +11162,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-badge {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
   line-height: 1;
 }
 .bell-badge-info .bell-badge-count {
@@ -11203,19 +11240,21 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-badge-status {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
 }
 .bell-badge-status .bell-badge-dot {
   display: inline-block;
+  vertical-align: middle;
   border-radius: 50%;
   height: 6px;
   width: 6px;
   z-index: 10;
-  vertical-align: middle;
   position: relative;
 }
 .bell-badge-status .bell-badge-count {
   display: inline-block;
+  vertical-align: middle;
   color: #515a6e;
   font-size: 12px;
   margin-left: 6px;
@@ -11319,6 +11358,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-tooltip {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-tooltip.bell-tooltip.hover .bell-tooltip-popper,
 .bell-tooltip:hover .bell-tooltip-popper,
@@ -11499,6 +11539,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-spinner {
   display: inline-block;
+  vertical-align: middle;
   text-align: center;
 }
 .bell-spinner {
@@ -11599,6 +11640,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-circle {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
 }
 .bell-circle .bell-circle-inner {
@@ -11665,10 +11707,10 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-progress .bell-progress-inner {
   display: inline-block;
+  vertical-align: middle;
   width: 100%;
   background-color: #f3f3f3;
   border-radius: 100px;
-  vertical-align: middle;
 }
 .bell-progress .bell-progress-bg {
   border-radius: 100px;
@@ -11678,6 +11720,7 @@ button.bell-button-warning-ghost[disabled] {
   height: 100%;
   width: auto;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-progress-vertical .bell-progress-outer,
 .bell-progress-vertical .bell-progress-inner {
@@ -11693,6 +11736,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-progress-vertical .bell-progress-inner-text {
   display: inline-block;
+  vertical-align: middle;
   text-align: center;
   width: 100%;
 }
@@ -11854,10 +11898,10 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-tag {
   display: inline-block;
+  vertical-align: middle;
   opacity: 1;
   overflow: hidden;
   cursor: pointer;
-  vertical-align: middle;
   position: relative;
   margin-right: 10px;
   border: 1px solid;
@@ -12048,6 +12092,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-tag.bell-tag-border.bell-tag-closable:after {
   display: inline-block;
+  vertical-align: middle;
   content: ' ';
   height: 100%;
   width: 1px;
@@ -12068,6 +12113,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-tag.bell-tag-dot .bell-tag-dot-inner {
   display: inline-block;
+  vertical-align: middle;
   width: 12px;
   height: 12px;
   border-radius: 100%;
@@ -12078,6 +12124,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-rate {
   display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
   font-size: 20px;
   line-height: 32px;
@@ -12155,13 +12202,13 @@ button.bell-button-warning-ghost[disabled] {
   color: #c7c7c7;
 }
 .bell-rate .bell-rate-star-full {
+  display: inline-block;
+  vertical-align: middle;
   position: relative;
   transition: color 0.3s, font-size 0.3s;
-  display: inline-block;
   width: 21px;
   height: 21px;
   line-height: 21px;
-  vertical-align: middle;
   color: #e9e9e9;
 }
 .bell-rate .bell-rate-star-full.hover,
@@ -12282,6 +12329,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-tabs .bell-tabs-bar .bell-tabs-nav-container .bell-tabs-nav {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
   box-sizing: border-box;
   margin: 0;
   padding-left: 0;
@@ -12291,6 +12339,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-tabs .bell-tabs-bar .bell-tabs-tab {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
   border-bottom: 2px solid #e8e8e8;
   color: rgba(0,0,0,0.65);
@@ -12399,17 +12448,18 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-tabs .bell-tabs-nav-closable .bell-tabs-tab-icon-close {
   display: inline-block;
+  vertical-align: middle;
   width: 0;
   height: 22px;
   font-size: 22px;
   margin-right: -6px;
   text-align: right;
-  vertical-align: middle;
   overflow: hidden;
   transition: width 0.3s ease-in-out;
 }
 .bell-dropdown {
   display: inline-block;
+  vertical-align: middle;
   position: relative;
 }
 .bell-dropdown .bell-dropdown-trigger {
@@ -12993,6 +13043,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-form.bell-form-inline .bell-form-item {
   display: inline-block;
+  vertical-align: middle;
   margin-right: 16px;
   margin-bottom: 0;
 }
@@ -13017,6 +13068,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-form .bell-form-item-required .bell-form-item-label:before {
   content: "*";
   display: inline-block;
+  vertical-align: middle;
   margin-right: 4px;
   line-height: 1;
   font-size: 12px;
@@ -13035,6 +13087,7 @@ button.bell-button-warning-ghost[disabled] {
   line-height: 32px;
   font-size: 12px;
   display: inline-block;
+  vertical-align: middle;
 }
 .bell-form .bell-form-item .bell-form-item-content .bell-form-item-error-tip {
   position: absolute;
@@ -13047,9 +13100,9 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-form .bell-form-item .bell-form-item-label {
   white-space: nowrap;
+  display: inline-block;
   vertical-align: middle;
   line-height: 1.5;
-  display: inline-block;
 }
 .bell-dialog {
   position: fixed;
@@ -13291,6 +13344,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-anchor-wrapper .bell-anchor .bell-anchor-ink .bell-anchor-ink-ball {
   display: inline-block;
+  vertical-align: middle;
   position: absolute;
   width: 8px;
   height: 8px;
@@ -13301,6 +13355,11 @@ button.bell-button-warning-ghost[disabled] {
   transition: top 0.2s ease-in-out;
   -webkit-transform: translate(-50%, 2px);
           transform: translate(-50%, 2px);
+}
+.bell-upload {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 

@@ -11,7 +11,8 @@ import {
   RAW_BOOLEAN,
 
   RAW_HORIZONTAL,
-  RAW_VERTICAL
+  RAW_VERTICAL,
+  RAW_INLINE
 } from '../constant'
 
 import {
@@ -24,7 +25,7 @@ export default Yox.define({
 
   propTypes: {
     mode: {
-      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
+      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL, RAW_INLINE]),
       value: RAW_HORIZONTAL
     },
     theme: {

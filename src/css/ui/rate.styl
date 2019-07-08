@@ -1,21 +1,23 @@
 {$selector-rate}
   display inline-block
+  vertical-align middle
   cursor pointer
   font-size $selector-rate-font-size
   ui-rate()
-  
+
   line-height $selector-rate-height
   height $selector-rate-height
   color $rate-color
 
   {$selector-rate-star-full}
+    display inline-block
+    vertical-align middle
     position relative
     transition color .3s, font-size .3s
-    display inline-block
     width $selector-rate-star-box-size
     height $selector-rate-star-box-size
     line-height $selector-rate-star-box-size
-    vertical-align middle
+
     color $rate-color
 
     {$selector-hover}

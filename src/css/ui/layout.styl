@@ -34,13 +34,14 @@
 {$selector-layout-header}-center
   margin 0 auto
   display inline-block
+  vertical-align middle
 
 {$selector-layout-sider}
   position relative
 
   &{$selector-layout-sider}-collapsed
-    {$selector-layout-sider}-trigger-icon  
-      &::before 
+    {$selector-layout-sider}-trigger-icon
+      &::before
         transition transform .2s
         transform rotate(-180deg)
 

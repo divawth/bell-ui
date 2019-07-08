@@ -3,6 +3,7 @@
 
   position relative
   display inline-block
+  vertical-align middle
   line-height 1
 
   {$selector-badge-dot}
@@ -37,19 +38,21 @@
 
 {$selector-badge-status}
   display inline-block
+  vertical-align middle
   position relative
 
   {$selector-badge-dot}
     display inline-block
+    vertical-align middle
     border-radius 50%
     height $badge-dot-size
     width $badge-dot-size
     z-index $zindex-badge
-    vertical-align middle
     position relative
 
   {$selector-badge-count}
     display inline-block
+    vertical-align middle
     color $badge-status-text-color
     font-size $badge-font-size
     margin-left $badge-status-text-margin-left

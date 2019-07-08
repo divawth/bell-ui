@@ -19,9 +19,6 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE
     },
-    maxSize: {
-      type: RAW_NUMBER
-    },
     accept: {
       type: RAW_ARRAY
     },

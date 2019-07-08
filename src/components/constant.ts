@@ -14,6 +14,7 @@ export const RAW_DATE = 'date'
 
 export const RAW_HORIZONTAL = 'horizontal'
 export const RAW_VERTICAL = 'vertical'
+export const RAW_INLINE = 'inline'
 
 export const RAW_TINY = 'tiny'
 export const RAW_SMALL = 'small'

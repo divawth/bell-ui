@@ -31,7 +31,7 @@ export default Yox.define({
   },
 
   events: {
-    hasSider(event: CustomEventInterface) {
+    'hasSider.sider': function(event: CustomEventInterface) {
       const me = this
       if (event.phase === Yox.Event.PHASE_CURRENT) {
         return
@@ -41,7 +41,7 @@ export default Yox.define({
           hasSider: TRUE
         })
         me.fire(
-          'hasSider',
+          'hasSider.layout',
           TRUE
         )
       }

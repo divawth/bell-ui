@@ -1,5 +1,6 @@
 {$selector-select}
   display inline-block
+  vertical-align middle
   user-select none
   text-align left
   width 100%
@@ -41,6 +42,7 @@
   {$selector-select-button}
     width 100%
     display inline-block
+    vertical-align middle
     position relative
     outline 0
     cursor pointer
@@ -65,8 +67,8 @@
       text-overflow ellipsis
       white-space nowrap
       color $brand-muted
-      padding-right $select-padding-right 
-      padding-left $select-padding-left 
+      padding-right $select-padding-right
+      padding-left $select-padding-left
 
       &{$selector-prefix}-hide
         display none
@@ -79,7 +81,7 @@
     {$selector-select}-option
       &{$selector-active}
         font-weight bold
-    
+
     {$selector-select}-option-title
       color $select-option-color
 
@@ -114,7 +116,7 @@
       transform translateY(-50%)
       transition opacity .3s
 
-    {$selector-hover}   
+    {$selector-hover}
       {$selector-select}-arrow
         display none
 

@@ -1,6 +1,6 @@
 {
   "name": "bell-ui",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "main": "dist/bell-ui.js",
   "description": "bell ui",
   "entry": "index.js",

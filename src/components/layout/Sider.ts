@@ -26,7 +26,7 @@ export default Yox.define({
 
   afterMount() {
     this.fire(
-      'hasSider'
+      'hasSider.sider'
     )
   }
 })

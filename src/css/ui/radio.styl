@@ -1,5 +1,6 @@
 {$selector-radio-group}
   display inline-block
+  vertical-align middle
   user-select none
   ui-radio-group()
   padding 0
@@ -31,6 +32,7 @@
 
       &:after
         display inline-block
+        vertical-align middle
         content ' '
         border-radius 100%
         ui-center()
@@ -67,11 +69,11 @@
 
       {$selector-radio}-inner
         background-color #f3f3f3
-      
+
       &{$selector-hover}
         {$selector-radio}-inner
           border-color $radio-border-color
-      
+
 {$selector-radio}-vertical
   margin-bottom - $radio-margin-gap
 
