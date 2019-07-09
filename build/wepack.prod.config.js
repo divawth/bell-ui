@@ -8,7 +8,7 @@ module.exports = merge(
   {
     mode: 'production',
     optimization: {
-      minimize: true,
+      minimize: false,
     },
     plugins: [
       new CleanWebpackPlugin()

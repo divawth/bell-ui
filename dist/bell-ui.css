@@ -7976,6 +7976,7 @@ button.bell-button-warning-ghost[disabled] {
   left: 100%;
   margin-left: 1px;
   top: 0;
+  border-radius: 4px;
 }
 .bell-menu-vertical {
   height: auto;
