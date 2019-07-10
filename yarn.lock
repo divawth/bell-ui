@@ -4296,12 +4296,12 @@ yargs@12.0.5, yargs@^12.0.5:
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
 
-yox-template-loader@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/yox-template-loader/-/yox-template-loader-0.1.4.tgz#8a71b4948664edb9fa16c0280b5c75ae905ec087"
-  integrity sha512-vWmEH9YnUWSuLFMsQTOy8gZej+uo/S0I7ExqWPhc3nSUddn2v4K3TkQx17l+E3VYFM81s3giVXCFfgPmlXN6LA==
+yox-template-loader@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/yox-template-loader/-/yox-template-loader-0.1.7.tgz#e0ce7ddaaaf6d071d91231058d1b80467b98a6bf"
+  integrity sha512-FRzOnQ6MWnuJC9to4h1EpesdODMkVXYDDJkcb1tRupExy5Q7ntBnx+S4DA3v3fJZnNvC0AhPHy4yZqoRiWv6JQ==
 
-yox@^1.0.0-alpha.85:
-  version "1.0.0-alpha.85"
-  resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.85.tgz#5c2bc069c43480204a2710b7749df347560b17ac"
-  integrity sha512-tLvdVrQdRCd/rWldHk2AfCUKhgXMzg37EilgrLv5955zeLlQNvWOw9JW2iH65Qujl1JZmntGcWN+keYJ5hY3pw==
+yox@^1.0.0-alpha.89:
+  version "1.0.0-alpha.89"
+  resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.89.tgz#5bd2379334eaad8cefa8f64323c0cd6a5d2c6883"
+  integrity sha512-AUxa5kKAv92iR6fg0XFouCsds+nqgkl5fNi1Ttg6yzSJpxxD7UPQxvteIAtAELevT/EBfYsqBctW7Z2FW4d9Gw==
