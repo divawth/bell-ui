@@ -11,6 +11,9 @@ import {
 
 export default Yox.define({
   propTypes: {
+    hasSider: {
+      type: RAW_BOOLEAN
+    },
     fixed: {
       type: RAW_BOOLEAN
     },
@@ -26,7 +29,7 @@ export default Yox.define({
 
   data () {
     return {
-      hasSider: FALSE
+      layoutHasSider: this.get('hasSider')
     }
   },
 
@@ -38,7 +41,7 @@ export default Yox.define({
       }
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         me.set({
-          hasSider: TRUE
+          layoutHasSider: TRUE
         })
         me.fire(
           'hasSider.layout',
