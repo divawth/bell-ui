@@ -13,9 +13,19 @@ export default {
     <div style="height: 350px;">
       <DatePicker type="date" placeholder="Select date" style="width: 280px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" placement="bottom-start" placeholder="Select date" style="width: 280px"></DatePicker>
+      <DatePicker type="dateRange"
+        placement="bottom-start"
+        placeholder="Select date"
+        style="width: 280px"
+        on-change="change()"
+      ></DatePicker>
     </div>
-  `
+  `,
+  methods: {
+    change(_, data) {
+      console.log(data)
+    }
+  }
 }
 ```
 

@@ -7186,6 +7186,7 @@ button.bell-button-warning-ghost[disabled] {
           flex-direction: row;
   -webkit-flex: 1;
           flex: 1;
+  width: 100%;
 }
 .bell-layout-header {
   -webkit-flex: 0 0 64px;
@@ -13208,6 +13209,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-table th,
 .bell-table-header th {
   border: none;
+  padding: 6px 13px;
 }
 .bell-table tr:nth-child(2n),
 .bell-table-header tr:nth-child(2n) {

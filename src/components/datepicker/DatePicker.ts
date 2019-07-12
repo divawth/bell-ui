@@ -123,6 +123,9 @@ export default Yox.define({
   },
 
   events: {
+    'change.input'(event: CustomEventInterface) {
+      event.stop()
+    },
     'clear.input': function (event: CustomEventInterface) {
       this.fire('clear.datepicker', true)
       event.stop()

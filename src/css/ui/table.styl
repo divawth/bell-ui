@@ -14,13 +14,14 @@
   td,
   th
     border none
+    padding 6px 13px
 
   tr:nth-child(2n)
     background-color #fff
 
     &{$selector-table}-active
       background-color #ebf7ff
-  
+
   {$selector-table}-active
     background-color #ebf7ff
 
@@ -39,7 +40,7 @@
     border 1px solid #ddd
 
 {$selector-table-header}
-  th 
+  th
     white-space nowrap
     overflow hidden
     text-align left
@@ -66,7 +67,7 @@
   position relative
 
   th,
-  td 
+  td
     word-break keep-all
     white-space nowrap
 
@@ -82,7 +83,7 @@
 
 {$selector-table-fixed-left}
   position absolute
-  left 0 
+  left 0
   top 0
   z-index 1
   box-shadow 2px 0 6px -2px rgba(0,0,0,.2)

@@ -22,9 +22,11 @@ style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}"
       />
     </div>
   {{/if}}
+
   <div class="${prefix}table-insert{{#if height}} ${prefix}table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>
     <SmallTable {{...this}} />
   </div>
+
   {{#if fixedRightList.length}}
     <div class="${prefix}table-fixed-right">
       <SmallTable

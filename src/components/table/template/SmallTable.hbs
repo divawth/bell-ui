@@ -29,7 +29,7 @@ class="${prefix}table
   <tbody class="${prefix}table-body">
     {{#if fixed}}
       {{#each list:index}}
-        <tr class="{{list.length}}">
+        <tr>
           {{#each columns}}
             {{#if actions && actions.length}}
               <td>
@@ -85,7 +85,7 @@ class="${prefix}table
           on-click="rowClick(this, index)"
         >
           {{#each columns}}
-            {{#if list[ index ][ key ]}}
+            {{#if list[ index ][ key ] != UNDEFINED}}
               <td class="{{#if className}}{{className}}{{/if}}
                   {{#if list[ index ].cellClassName && list[ index ].cellClassName[ this.key ]}} {{list[ index ].cellClassName[ this.key ]}}{{/if}}
                 "
@@ -108,8 +108,30 @@ class="${prefix}table
                     on-change="checkedChange($data, index)"
                   />
                 {{else if key != 'action'}}
-                  {{isObject(list[ index ][ key ]) ? list[ index ][ key ][ 'value' ] : list[ index ][ key ]}}
+                  {{#if isObject(list[ index ][ key ])}}
+                    {{list[ index ][ key ][ 'value' ]}}
+                  {{else if filter}}
+                    {{{filter(list[ index ][ key ])}}}
+                  {{else}}
+                    {{list[ index ][ key ]}}
+                  {{/if}}
                 {{/if}}
+              </td>
+            {{else}}
+              <td>
+                {{#each actions}}
+                  <Button
+                    on-click="click(this, list[ index ], index)"
+                    className="{{className}}"
+                    disabled="{{disabled}}"
+                    fluid="{{fluid}}"
+                    shape="{{shape}}"
+                    size="{{size}}"
+                    type="{{type}}"
+                  >
+                    {{text}}
+                  </Button>
+                {{/each}}
               </td>
             {{/if}}
           {{/each}}

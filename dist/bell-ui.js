@@ -104,7 +104,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-layout bell-row"+(a("hasSider",!0)?" bell-col-24":" column")+(a("fixed",!0)?" bell-layout-fixed":"")+(a("className",!0)?" "+w(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){q("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){var z=void 0;return p({"tag":"div"},z,function(){g("className",1,"bell-layout bell-row"+(a("layoutHasSider",!0)?" bell-col-24":" column")+(a("fixed",!0)?" bell-layout-fixed":"")+(a("className",!0)?" "+w(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){q("$slot_children")})};
 
 /***/ }),
 /* 2 */
@@ -1007,7 +1007,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){var z=v
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){var z=void 0;return p({"tag":"table"},z,function(){g("className",1,"bell-table"+(a("stripe",!0)?" bell-table-stripe":"")+(a("border",!0)?" bell-table-border":"")+(a("className",!0)?" "+w(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){p({"tag":"colgroup"},z,z,function(){t(function(){p({"tag":"col"},z,function(){f("align","left"),g("width",2,j("width",a("",z,z,!0,!0),2))})},a("colWidths",!0,z,!0))}),p({"tag":"thead"},z,function(){g("className",1,"bell-table-header")},function(){t(function(){p({"tag":"th"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a("fixed",!0)||a("height",!0)&&!a("header",!0)?" bell-table-hidden":""))},function(){a("key",!0)!=="checked"?e(w(a("title",!0))):p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",j("checked",a("checkAll",!0,z,!0,!0))),l("change","event.change",z,"checkedAllChange()","checkedAllChange")},z,{"$slot_children":function(){e(w(a("title",!0)))}})})},a("columns",!0,z,!0))}),p({"tag":"tbody"},z,function(){g("className",1,"bell-table-body")},function(){a("fixed",!0)?t(function(){p({"tag":"tr"},z,function(){g("className",1,j("className",a("list.length",!0,z,!0,!0),1))},function(){t(function(){a("actions",!0)&&a("actions.length",!0)?p({"tag":"td"},z,z,function(){t(function(){p({"tag":"Button","isComponent":!0},z,function(){l("click","event.click",z,"click(this, list[ index ], index)","click",function(x){return [a("",z,z,z,z,x),a(b("list",[a("index",!0,z,z,z,x)]),!0,z,z,z,x),a("index",!0,z,z,z,x)]}),f("className",j("className",a("className",!0,z,!0,!0))),f("disabled",j("disabled",a("disabled",!0,z,!0,!0))),f("fluid",j("fluid",a("fluid",!0,z,!0,!0))),f("shape",j("shape",a("shape",!0,z,!0,!0))),f("size",j("size",a("size",!0,z,!0,!0))),f("type",j("type",a("type",!0,z,!0,!0)))},z,{"$slot_children":function(){e(w(a("text",!0)))}})},a("actions",!0,z,!0))}):a(b("list",[a("index",!0),a("key",!0)]),!0)?p({"tag":"td"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a(b("list",[a("index",!0),"cellClassName"]),!0)&&a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)?" "+w(a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)):"")),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)&&f("rowspan",a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0)&&f("colspan",a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0))},function(){a("key",!0)=="index"?a("setIndex",!0)?e(w(d(a("setIndex",!0),[a(""),a("index",!0)]))):e(w(a("index",!0)+1)):a("key",!0)=="checked"?p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",a(b("list",[a("index",!0),a("key",!0)]),!0)),l("change","event.change",z,"checkedChange($data, index)","checkedChange",function(x){return [a("$data",!0,z,z,z,x),a("index",!0,z,z,z,x)]})}):a("key",!0)!="action"?e(w(d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])?a(b("list",[a("index",!0),a("key",!0),"value"]),!0):a(b("list",[a("index",!0),a("key",!0)]),!0))):p({"isComment":!0,"text":""})}):p({"isComment":!0,"text":""})},a("columns",!0,z,!0))})},a("list",!0,z,!0),"index"):!a("header",!0)?t(function(){p({"tag":"tr"},z,function(){g("className",1,(a("setRowClassName",!0)?w(d(a("setRowClassName",!0),[a(""),a("index",!0)])):"")+(a("currentItem",!0)&&a("currentIndex",!0)==a("index",!0)?" bell-table-active":"")),l("click","event.click",z,"rowClick(this, index)","rowClick",function(x){return [a("",z,z,z,z,x),a("index",!0,z,z,z,x)]})},function(){t(function(){a(b("list",[a("index",!0),a("key",!0)]),!0)?p({"tag":"td"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a(b("list",[a("index",!0),"cellClassName"]),!0)&&a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)?" "+w(a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)):"")),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)&&f("rowspan",a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0)&&f("colspan",a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0))},function(){a("key",!0)=="index"?a("setIndex",!0)?e(w(d(a("setIndex",!0),[a(""),a("index",!0)]))):e(w(a("index",!0)+1)):a("key",!0)=="checked"?p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",a(b("list",[a("index",!0),a("key",!0)]),!0)),l("change","event.change",z,"checkedChange($data, index)","checkedChange",function(x){return [a("$data",!0,z,z,z,x),a("index",!0,z,z,z,x)]})}):a("key",!0)!="action"?e(w(d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])?a(b("list",[a("index",!0),a("key",!0),"value"]),!0):a(b("list",[a("index",!0),a("key",!0)]),!0))):p({"isComment":!0,"text":""})}):p({"isComment":!0,"text":""})},a("columns",!0,z,!0))})},a("list",!0,z,!0),"index"):p({"isComment":!0,"text":""})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w){var z=void 0;return p({"tag":"table"},z,function(){g("className",1,"bell-table"+(a("stripe",!0)?" bell-table-stripe":"")+(a("border",!0)?" bell-table-border":"")+(a("className",!0)?" "+w(a("className",!0)):"")),a("style",!0)&&g("style.cssText",1,j("style.cssText",a("style",!0,z,!0,!0),1))},function(){p({"tag":"colgroup"},z,z,function(){t(function(){p({"tag":"col"},z,function(){f("align","left"),g("width",2,j("width",a("",z,z,!0,!0),2))})},a("colWidths",!0,z,!0))}),p({"tag":"thead"},z,function(){g("className",1,"bell-table-header")},function(){t(function(){p({"tag":"th"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a("fixed",!0)||a("height",!0)&&!a("header",!0)?" bell-table-hidden":""))},function(){a("key",!0)!=="checked"?e(w(a("title",!0))):p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",j("checked",a("checkAll",!0,z,!0,!0))),l("change","event.change",z,"checkedAllChange()","checkedAllChange")},z,{"$slot_children":function(){e(w(a("title",!0)))}})})},a("columns",!0,z,!0))}),p({"tag":"tbody"},z,function(){g("className",1,"bell-table-body")},function(){a("fixed",!0)?t(function(){p({"tag":"tr"},z,z,function(){t(function(){a("actions",!0)&&a("actions.length",!0)?p({"tag":"td"},z,z,function(){t(function(){p({"tag":"Button","isComponent":!0},z,function(){l("click","event.click",z,"click(this, list[ index ], index)","click",function(x){return [a("",z,z,z,z,x),a(b("list",[a("index",!0,z,z,z,x)]),!0,z,z,z,x),a("index",!0,z,z,z,x)]}),f("className",j("className",a("className",!0,z,!0,!0))),f("disabled",j("disabled",a("disabled",!0,z,!0,!0))),f("fluid",j("fluid",a("fluid",!0,z,!0,!0))),f("shape",j("shape",a("shape",!0,z,!0,!0))),f("size",j("size",a("size",!0,z,!0,!0))),f("type",j("type",a("type",!0,z,!0,!0)))},z,{"$slot_children":function(){e(w(a("text",!0)))}})},a("actions",!0,z,!0))}):a(b("list",[a("index",!0),a("key",!0)]),!0)?p({"tag":"td"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a(b("list",[a("index",!0),"cellClassName"]),!0)&&a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)?" "+w(a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)):"")),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)&&f("rowspan",a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0)&&f("colspan",a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0))},function(){a("key",!0)=="index"?a("setIndex",!0)?e(w(d(a("setIndex",!0),[a(""),a("index",!0)]))):e(w(a("index",!0)+1)):a("key",!0)=="checked"?p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",a(b("list",[a("index",!0),a("key",!0)]),!0)),l("change","event.change",z,"checkedChange($data, index)","checkedChange",function(x){return [a("$data",!0,z,z,z,x),a("index",!0,z,z,z,x)]})}):a("key",!0)!="action"?e(w(d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])?a(b("list",[a("index",!0),a("key",!0),"value"]),!0):a(b("list",[a("index",!0),a("key",!0)]),!0))):p({"isComment":!0,"text":""})}):p({"isComment":!0,"text":""})},a("columns",!0,z,!0))})},a("list",!0,z,!0),"index"):!a("header",!0)?t(function(){p({"tag":"tr"},z,function(){g("className",1,(a("setRowClassName",!0)?w(d(a("setRowClassName",!0),[a(""),a("index",!0)])):"")+(a("currentItem",!0)&&a("currentIndex",!0)==a("index",!0)?" bell-table-active":"")),l("click","event.click",z,"rowClick(this, index)","rowClick",function(x){return [a("",z,z,z,z,x),a("index",!0,z,z,z,x)]})},function(){t(function(){a(b("list",[a("index",!0),a("key",!0)]),!0)!=a("UNDEFINED",!0)?p({"tag":"td"},z,function(){g("className",1,(a("className",!0)?w(a("className",!0)):"")+(a(b("list",[a("index",!0),"cellClassName"]),!0)&&a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)?" "+w(a(b("list",[a("index",!0),"cellClassName",a("key")]),!0)):"")),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)&&f("rowspan",a(b("list",[a("index",!0),a("key",!0),"rowSpan"]),!0)),d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])&&a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0)&&f("colspan",a(b("list",[a("index",!0),a("key",!0),"colSpan"]),!0))},function(){a("key",!0)=="index"?a("setIndex",!0)?e(w(d(a("setIndex",!0),[a(""),a("index",!0)]))):e(w(a("index",!0)+1)):a("key",!0)=="checked"?p({"tag":"Checkbox","isComponent":!0},z,function(){f("checked",a(b("list",[a("index",!0),a("key",!0)]),!0)),l("change","event.change",z,"checkedChange($data, index)","checkedChange",function(x){return [a("$data",!0,z,z,z,x),a("index",!0,z,z,z,x)]})}):a("key",!0)!="action"?d(a("isObject",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)])?e(w(a(b("list",[a("index",!0),a("key",!0),"value"]),!0))):a("filter",!0)?e(w(d(a("filter",!0),[a(b("list",[a("index",!0),a("key",!0)]),!0)]))):e(w(a(b("list",[a("index",!0),a("key",!0)]),!0))):p({"isComment":!0,"text":""})}):p({"tag":"td"},z,z,function(){t(function(){p({"tag":"Button","isComponent":!0},z,function(){l("click","event.click",z,"click(this, list[ index ], index)","click",function(x){return [a("",z,z,z,z,x),a(b("list",[a("index",!0,z,z,z,x)]),!0,z,z,z,x),a("index",!0,z,z,z,x)]}),f("className",j("className",a("className",!0,z,!0,!0))),f("disabled",j("disabled",a("disabled",!0,z,!0,!0))),f("fluid",j("fluid",a("fluid",!0,z,!0,!0))),f("shape",j("shape",a("shape",!0,z,!0,!0))),f("size",j("size",a("size",!0,z,!0,!0))),f("type",j("type",a("type",!0,z,!0,!0)))},z,{"$slot_children":function(){e(w(a("text",!0)))}})},a("actions",!0,z,!0))})},a("columns",!0,z,!0))})},a("list",!0,z,!0),"index"):p({"isComment":!0,"text":""})})})};
 
 /***/ }),
 /* 72 */
@@ -1169,6 +1169,9 @@ var DOCUMENT = document;
 
 /* harmony default export */ var layout_Layout = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     propTypes: {
+        hasSider: {
+            type: RAW_BOOLEAN
+        },
         fixed: {
             type: RAW_BOOLEAN
         },
@@ -1182,7 +1185,7 @@ var DOCUMENT = document;
     template: Layout_default.a,
     data: function () {
         return {
-            hasSider: FALSE
+            layoutHasSider: this.get('hasSider')
         };
     },
     events: {
@@ -1193,7 +1196,7 @@ var DOCUMENT = document;
             }
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
                 me.set({
-                    hasSider: TRUE
+                    layoutHasSider: TRUE
                 });
                 me.fire('hasSider.layout', TRUE);
             }
@@ -3841,6 +3844,9 @@ function simplifyDate(date) {
     };
 }
 function getOffsetTime(date) {
+    if (!date) {
+        return 0;
+    }
     return date.getTime();
 }
 function lpad(num, length) {
@@ -4807,6 +4813,9 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
         DateYear: components_DateYear
     },
     events: {
+        'change.input': function (event) {
+            event.stop();
+        },
         'clear.input': function (event) {
             this.fire('clear.datepicker', true);
             event.stop();
@@ -7022,6 +7031,7 @@ var SmallTable_default = /*#__PURE__*/__webpack_require__.n(SmallTable);
         return {
             colWidths: [],
             currentItem: NULL,
+            UNDEFINED: UNDEFINED
         };
     },
     filters: {

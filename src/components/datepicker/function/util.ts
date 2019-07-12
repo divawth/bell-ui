@@ -111,6 +111,9 @@ export function simplifyDate(date: Date) {
 }
 
 export function getOffsetTime(date: Date) {
+  if (!date) {
+    return 0
+  }
   return date.getTime()
 }
 

@@ -10,6 +10,7 @@ import {
   RAW_FUNCTION,
   RAW_ARRAY,
   NULL,
+  UNDEFINED
 } from '../constant'
 
 interface Row {
@@ -72,6 +73,7 @@ export default Yox.define({
     return {
       colWidths: [],
       currentItem: NULL,
+      UNDEFINED
     }
   },
 
