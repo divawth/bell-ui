@@ -1,4 +1,4 @@
-import Yox, { Listener, CustomEventInterface, Data } from 'yox'
+import Yox, { Listener, CustomEvent, Data } from 'yox'
 
 import template from './template/Page.hbs'
 
@@ -97,7 +97,7 @@ export default Yox.define({
   },
 
   events: {
-    change: function (event: CustomEventInterface) {
+    change: function (event: CustomEvent) {
       if (event.target != this) {
         event.stop()
       }
@@ -140,7 +140,7 @@ export default Yox.define({
       this.showError(`输入格式错误`)
     },
 
-    pageSizeChange(event: CustomEventInterface, data: Data) {
+    pageSizeChange(event: CustomEvent, data: Data) {
       this.updateCount()
       this.fire(
         'pageSizeChange.page',
@@ -256,12 +256,14 @@ export default Yox.define({
 
     me.on(
       'beforeDestroy.hook',
-      function () {
-        Yox.dom.off(
-          doc,
-          'keydown',
-          onKeydown
-        )
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(
+            doc,
+            'keydown',
+            onKeydown
+          )
+        }
       }
     )
 

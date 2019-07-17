@@ -18,7 +18,7 @@ function createMessage(data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(document.body, element)
 
-  let instance = new Yox({
+  const options = Yox.define({
     el: '#' + namespace,
     replace: TRUE,
     template,
@@ -122,6 +122,7 @@ function createMessage(data: Data) {
       me.fadeIn()
     }
   })
+  const instance = new Yox(options)
 }
 
 export function add(data: Data) {

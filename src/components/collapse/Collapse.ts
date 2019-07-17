@@ -1,4 +1,4 @@
-import Yox, { Data, CustomEventInterface } from 'yox'
+import Yox, { Data, CustomEvent } from 'yox'
 
 import template from './template/Collapse.hbs'
 
@@ -45,7 +45,7 @@ export default Yox.define({
   },
 
   events: {
-    'change.opened': function (event: CustomEventInterface, data: Data) {
+    'change.opened': function (event: CustomEvent, data: Data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'change.opened',

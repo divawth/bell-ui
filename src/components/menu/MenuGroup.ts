@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEvent, Data } from 'yox'
 
 import template from './template/MenuGroup.hbs'
 
@@ -34,7 +34,7 @@ export default Yox.define({
   },
 
   events: {
-    themeChanged(_: CustomEventInterface, data: Data) {
+    themeChanged(_: CustomEvent, data: Data) {
       this.set('theme', data.theme)
     }
   },

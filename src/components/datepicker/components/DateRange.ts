@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox, { CustomEvent } from 'yox'
 
 import {
   firstDateInWeek,
@@ -77,7 +77,7 @@ export default Yox.define({
   },
 
   events: {
-    'clear.datepicker': function (event: CustomEventInterface) {
+    'clear.datepicker': function (event: CustomEvent) {
       this.set({
         checkedStartDate: '',
         checkedEndDate: '',

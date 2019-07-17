@@ -10160,8 +10160,20 @@ button.bell-button-warning-ghost[disabled] {
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month,
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month,
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled {
-  color: rgba(0,0,0,0.37);
+  color: #bbb;
   cursor: not-allowed;
+}
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month.bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month.hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month.bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month.hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled.bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled.hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month:hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month:hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled:hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month.bell-hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month.bell-hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled.bell-hover {
+  background-color: #fff;
+  color: #bbb;
 }
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month:hover {
   background-color: #1890ff;

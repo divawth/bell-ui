@@ -1,4 +1,4 @@
-import Yox, { Listener, CustomEventInterface, Data } from 'yox'
+import Yox, { Listener, CustomEvent, Data } from 'yox'
 
 import Date from './components/Date'
 import DateRange from './components/DateRange'
@@ -75,7 +75,7 @@ export default Yox.define({
   template,
 
   data() {
-    let formatTextStr = this.get('formatText')
+    let formatTextStr = this.get('formatText') as string
     if (!this.get('formatText')) {
       switch (this.get('type')) {
         case 'date':
@@ -123,14 +123,14 @@ export default Yox.define({
   },
 
   events: {
-    'change.input'(event: CustomEventInterface) {
+    'change.input': function (event: CustomEvent) {
       event.stop()
     },
-    'clear.input': function (event: CustomEventInterface) {
+    'clear.input': function (event: CustomEvent) {
       this.fire('clear.datepicker', true)
       event.stop()
     },
-    'change.date': function (event: CustomEventInterface, data: Data) {
+    'change.date': function (event: CustomEvent, data: Data) {
       if (data.selectedDates) {
         this.set({
           selectedDates: data.selectedDates
@@ -140,22 +140,22 @@ export default Yox.define({
       event.stop()
     },
 
-    'change.year': function (event: CustomEventInterface, date: DateType) {
+    'change.year': function (event: CustomEvent, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.month': function (event: CustomEventInterface, date: DateType) {
+    'change.month': function (event: CustomEvent, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.week': function (event: CustomEventInterface, date: DateRangeType) {
+    'change.week': function (event: CustomEvent, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     },
 
-    'change.daterange': function (event: CustomEventInterface, date: DateRangeType) {
+    'change.daterange': function (event: CustomEvent, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     }
@@ -355,15 +355,16 @@ export default Yox.define({
       'click',
       onClick
     )
-
     me.on(
       'beforeDestroy.hook',
-      function () {
-        Yox.dom.off(
-          doc,
-          'click',
-          onClick
-        )
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(
+            doc,
+            'click',
+            onClick
+          )
+        }
       }
     )
   }

@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEvent, Data } from 'yox'
 
 import template from './template/Tabs.hbs'
 
@@ -88,7 +88,7 @@ export default Yox.define({
   },
 
   events: {
-    tabPanelRemove(event: CustomEventInterface, data: Data) {
+    tabPanelRemove(event: CustomEvent, data: Data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let tabsList: Tab[] = this.copy(this.get('tabsList'))
         tabsList = tabsList.filter(function (item) {
@@ -97,7 +97,7 @@ export default Yox.define({
         this.set({ tabsList })
       }
     },
-    tabsValueUpdate(event: CustomEventInterface, data: Tab) {
+    tabsValueUpdate(event: CustomEvent, data: Tab) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let me = this
         let tabsList: Tab[] = me.copy(me.get('tabsList'))
@@ -109,7 +109,7 @@ export default Yox.define({
         me.set({ tabsList })
       }
     },
-    tabPanelAdd(event: CustomEventInterface, data: Tab) {
+    tabPanelAdd(event: CustomEvent, data: Tab) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.append('tabsList', data)
       }

@@ -39,10 +39,14 @@ export default Yox.define({
   template,
 
   data() {
+    let modeDate = new Date()
+    if (this.get('startDate')) {
+      modeDate = this.get('startDate')
+    }
     return {
       weeks: WEEKS,
       dateList: [],
-      modeDate: this.get('startDate') ? this.get('startDate') : new Date(),
+      modeDate: modeDate,
       checkedIndex: 0,
       checkedDateTime: -1
     }

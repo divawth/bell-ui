@@ -1,5 +1,5 @@
 import { UNDEFINED, NULL } from './constant'
-import Yox, { CustomEventInterface, Listener, YoxInterface } from 'yox';
+import Yox, { CustomEvent, Listener, YoxInterface } from 'yox';
 
 const element = document.createElement('div')
 
@@ -32,7 +32,7 @@ export function onTransitionEnd(el: HTMLElement, callback: () => void) {
     Yox.dom.on(
       el,
       transitionEnd,
-      function (event: CustomEventInterface) {
+      function (event: CustomEvent) {
         Yox.dom.off(el, transitionEnd, event.listener as Listener)
         callback()
       }
@@ -156,7 +156,7 @@ export function getType(value: any) {
 }
 
 export function debounce(
-  fn: (event: CustomEventInterface) => void,
+  fn: (event: CustomEvent) => void,
   time: number,
   immediate: boolean
 ) {

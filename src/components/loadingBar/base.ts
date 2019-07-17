@@ -23,7 +23,7 @@ export function add(data: Config) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  instance = new Yox({
+  const options = Yox.define({
     el: '#' + namespace,
     replace: TRUE,
     props: {
@@ -75,6 +75,7 @@ export function add(data: Config) {
       }
     }
   })
+  instance = new Yox(options)
   return instance
 }
 

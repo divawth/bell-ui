@@ -1,4 +1,4 @@
-import Yox, { YoxInterface, Data, CustomEventInterface } from 'yox'
+import Yox, { YoxInterface, Data, CustomEvent } from 'yox'
 
 import template from './template/Submenu.hbs'
 
@@ -125,13 +125,13 @@ export default Yox.define({
   },
 
   events: {
-    themeChanged(_: CustomEventInterface, data: Data) {
+    themeChanged(_: CustomEvent, data: Data) {
       this.set('theme', data.theme)
     },
-    isCollapsedChanged(_: CustomEventInterface, data: Data) {
+    isCollapsedChanged(_: CustomEvent, data: Data) {
       this.set('isCollapsed', data.isCollapsed)
     },
-    menuItemSelected(event: CustomEventInterface, data: Data) {
+    menuItemSelected(event: CustomEvent, data: Data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('activeName'))
       }

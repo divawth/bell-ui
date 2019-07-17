@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEvent, Data } from 'yox'
 
 import template from './template/Menu.hbs'
 
@@ -71,7 +71,7 @@ export default Yox.define({
   },
 
   events: {
-    menuItemSelected(event: CustomEventInterface, data: Data) {
+    menuItemSelected(event: CustomEvent, data: Data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'menuItemSelected',

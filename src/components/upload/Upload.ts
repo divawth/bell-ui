@@ -1,6 +1,6 @@
 import template from './template/Upload.hbs'
 import { RAW_STRING, RAW_OBJECT, RAW_BOOLEAN, FALSE, RAW_ARRAY, DOCUMENT, RAW_FUNCTION, NULL, RAW_NUMBER } from '../constant'
-import Yox, { CustomEventInterface, Data } from 'yox';
+import Yox, { CustomEvent, Data } from 'yox';
 import { AjaxUploader } from 'soga'
 
 export default Yox.define({
@@ -145,7 +145,7 @@ export default Yox.define({
     Yox.dom.on(
       inputElement,
       'change',
-      function (event: CustomEventInterface) {
+      function (event: CustomEvent) {
         var files = (event.originalEvent.target as HTMLInputElement).files
         me.upload(files)
       }

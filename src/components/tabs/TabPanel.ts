@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEvent, Data } from 'yox'
 
 import template from './template/TabPanel.hbs'
 
@@ -54,7 +54,7 @@ export default Yox.define({
   },
 
   events: {
-    tabSelected(_: CustomEventInterface, data: Data) {
+    tabSelected(_: CustomEvent, data: Data) {
       this.set({
         isActive: this.get('id') == data.value
       })

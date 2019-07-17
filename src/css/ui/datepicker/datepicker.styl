@@ -87,8 +87,12 @@
       &-prev-month,
       &-last-month,
       &-disabled
-        color $brand-muted
+        color $brand-link-disabled
         cursor $cursor-disabled
+
+        &{$selector-hover}
+          background-color $brand-bg
+          color $brand-link-disabled
 
       &-current-month
         &:hover

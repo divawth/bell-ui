@@ -21,7 +21,7 @@ function createAlert(data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  new Yox({
+  const options = Yox.define({
     el: '#' + namespace,
     replace: true,
     template: MsgboxTpl,
@@ -115,6 +115,7 @@ function createAlert(data: Data) {
       )
     }
   })
+  new Yox(options)
 }
 
 function createConfirm(data: Data) {
@@ -125,7 +126,7 @@ function createConfirm(data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  new Yox({
+  const options = Yox.define({
     el: '#' + namespace,
     replace: TRUE,
     template: ConfirmTpl,
@@ -218,6 +219,7 @@ function createConfirm(data: Data) {
       )
     }
   })
+  new Yox(options)
 }
 
 export function addAlert(data: Data) {

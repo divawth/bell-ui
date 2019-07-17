@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox, { CustomEvent } from 'yox'
 
 import template from './template/Anchor.hbs'
 
@@ -77,7 +77,7 @@ export default Yox.define({
       })
     }
     const handlerScroll = debounce(
-      function (event: CustomEventInterface) {
+      function (event: CustomEvent) {
         let scrollTop: number, scrollHeight: number, clientHeight: number
         let target = event.originalEvent.target
         if (target === DOCUMENT) {
@@ -126,17 +126,19 @@ export default Yox.define({
 
     me.on(
       'beforeDestroy.hook',
-      function () {
-        Yox.dom.off(
-          scrollElement,
-          'scroll',
-          handlerScroll
-        )
-        Yox.dom.off(
-          DOCUMENT,
-          'hashchange',
-          handlerHashChange
-        )
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(
+            scrollElement,
+            'scroll',
+            handlerScroll
+          )
+          Yox.dom.off(
+            DOCUMENT,
+            'hashchange',
+            handlerHashChange
+          )
+        }
       }
     )
   }

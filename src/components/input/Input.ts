@@ -213,22 +213,24 @@ export default Yox.define({
 
     me.on(
       'beforeDestroy.hook',
-      function () {
-        Yox.dom.off(
-          doc,
-          'keydown',
-          onKeydown
-        )
-        Yox.dom.off(
-          doc,
-          'keyup',
-          onKeyup
-        )
-        Yox.dom.off(
-          doc,
-          'keypress',
-          onKeypress
-        )
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(
+            doc,
+            'keydown',
+            onKeydown
+          )
+          Yox.dom.off(
+            doc,
+            'keyup',
+            onKeyup
+          )
+          Yox.dom.off(
+            doc,
+            'keypress',
+            onKeypress
+          )
+        }
       }
     )
 

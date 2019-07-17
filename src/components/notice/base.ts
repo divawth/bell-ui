@@ -17,7 +17,7 @@ function createNotice(data: Data) {
   Yox.dom.prop(element, 'id', namespace)
   Yox.dom.append(body, element)
 
-  new Yox({
+  const options = Yox.define({
     el: '#' + namespace,
     replace: TRUE,
     template,
@@ -31,6 +31,7 @@ function createNotice(data: Data) {
       right: data.right,
       onClose: data.onClose
     },
+
     propTypes: {
       title: {
         type: RAW_STRING,
@@ -58,12 +59,14 @@ function createNotice(data: Data) {
         type: RAW_FUNCTION
       }
     },
+
     data () {
       return {
         visible: false,
         rightSize: 15
       }
     },
+
     methods: {
       close() {
         this.hide()
@@ -126,6 +129,7 @@ function createNotice(data: Data) {
       this.fadeIn()
     }
   })
+  new Yox(options)
 }
 
 export function add(data: Data) {

@@ -21,7 +21,7 @@ import {
   TRUE
 } from '../../constant'
 import { isDate } from '../../util'
-import Yox, { CustomEventInterface } from 'yox'
+import Yox, { CustomEvent } from 'yox'
 import { DateType } from '../type'
 
 export default Yox.define({
@@ -56,7 +56,10 @@ export default Yox.define({
   template,
 
   data() {
-    let modeDate = this.get('startDate') ? this.get('startDate') : new Date()
+    let modeDate = new Date()
+    if (this.get('startDate')) {
+      modeDate = this.get('startDate')
+    }
     let selectedDates = []
     if (this.get('selected') && this.get('selected').length) {
       selectedDates = this.get('selected').map(function (item) {
@@ -75,7 +78,7 @@ export default Yox.define({
   },
 
   events: {
-    'clear.datepicker': function (event: CustomEventInterface) {
+    'clear.datepicker': function (event: CustomEvent) {
       this.set({
         selectedDates: [],
         currentDate: NULL,

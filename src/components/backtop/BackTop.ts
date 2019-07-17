@@ -70,9 +70,11 @@ export default Yox.define({
     Yox.dom.on(document, 'resize', onRefresh)
     me.once(
       'beforeDestroy.hook',
-      function () {
-        Yox.dom.off(parentElement, 'scroll', onRefresh)
-        Yox.dom.off(document, 'resize', onRefresh)
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(parentElement, 'scroll', onRefresh)
+          Yox.dom.off(document, 'resize', onRefresh)
+        }
       }
     )
   }
