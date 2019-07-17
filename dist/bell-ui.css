@@ -10157,6 +10157,12 @@ button.bell-button-warning-ghost[disabled] {
   height: 26px;
   line-height: 26px;
 }
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month.bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month.hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month:hover,
+.bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month.bell-hover {
+  background-color: #1890ff;
+  color: #fff;
+}
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-prev-month,
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-last-month,
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled {
@@ -10174,10 +10180,6 @@ button.bell-button-warning-ghost[disabled] {
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-disabled.bell-hover {
   background-color: #fff;
   color: #bbb;
-}
-.bell-datepicker .bell-datepicker-days .bell-datepicker-col-current-month:hover {
-  background-color: #1890ff;
-  color: #fff;
 }
 .bell-datepicker .bell-datepicker-days .bell-datepicker-col-checked {
   background-color: #1890ff;

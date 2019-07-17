@@ -84,6 +84,11 @@
       height $datepicker-date-size
       line-height $datepicker-date-size
 
+      &-current-month
+        &{$selector-hover}
+          background-color $datepicker-item-checked-background-color
+          color $datepicker-item-checked-color
+
       &-prev-month,
       &-last-month,
       &-disabled
@@ -93,11 +98,6 @@
         &{$selector-hover}
           background-color $brand-bg
           color $brand-link-disabled
-
-      &-current-month
-        &:hover
-          background-color $datepicker-item-checked-background-color
-          color $datepicker-item-checked-color
 
       &-checked
         background-color $datepicker-item-checked-background-color

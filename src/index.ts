@@ -73,8 +73,6 @@ import Dropdown from './components/dropdown/Dropdown'
 import DropdownItem from './components/dropdown/DropdownItem'
 import DropdownMenu from './components/dropdown/DropdownMenu'
 
-import Transfer from './components/transfer/Transfer'
-
 import TimePicker from './components/timePicker/TimePicker'
 import TimeLine from './components/timeline/TimeLine'
 import TimeLineItem from './components/timeline/TimeLineItem'
@@ -158,7 +156,6 @@ const components = {
   DropdownItem,
   DropdownMenu,
 
-  Transfer,
   TimePicker,
   TimeLine,
   TimeLineItem,

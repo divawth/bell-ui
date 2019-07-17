@@ -1,0 +1,22 @@
+import { DateType } from "../type";
+export declare function normalizeDate(date: Date): number;
+export declare function offsetSecond(date: Date | number, offset: number): Date;
+export declare function offsetMinute(date: Date | number, offset: number): Date;
+export declare function offsetHour(date: Date | number, offset: number): Date;
+export declare function offsetDate(date: Date | number, offset: number): Date;
+export declare function offsetMonth(date: Date | number, offset: number): Date;
+export declare function firstDateInWeek(date: Date | number, firstDay: number): Date;
+export declare function lastDateInWeek(date: Date | number, firstDay: number): Date;
+export declare function firstDateInMonth(date: Date | number): Date;
+export declare function lastDateInMonth(date: Date | number): Date;
+export declare function isValidDate(date: Date | number): boolean;
+export declare function parseDate(data: DateType): Date;
+export declare function simplifyDate(date: Date): {
+    year: number;
+    month: number;
+    date: number;
+    day: number;
+};
+export declare function getOffsetTime(date: Date): number;
+export declare function lpad(num: number, length?: number): string;
+export declare function formatList(list: DateType[]): any[];

@@ -6,11 +6,15 @@
     "outDir": "./dist/",
     "moduleResolution": "node",
 
-    "allowJs": true,
+    "allowJs": false,
     "sourceMap": true,
 
     "esModuleInterop": true,
-    "noImplicitThis": true
+    "noImplicitThis": true,
+
+    "declarationDir": "./types",
+    "declaration": true,
+    "declarationMap": false,
   },
   "include": [
     "src/**/*.ts",
