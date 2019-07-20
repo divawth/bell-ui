@@ -1,4 +1,4 @@
-import { CustomEvent } from 'yox';
+import { CustomEventInterface } from 'yox';
 export declare const supportTransform: boolean;
 export declare function onTransitionEnd(el: HTMLElement, callback: () => void): void;
 export declare const requestAnimationFrame: any;
@@ -10,4 +10,4 @@ export declare function isDate(): (key: string, value: Date) => boolean;
 export declare function isDateValue(): (key: string, value: Date | Date[]) => boolean;
 export declare function scrollTop(element: HTMLElement | Window, from: number, to: number, duration?: number, endCallback?: () => void): void;
 export declare function getType(value: any): any;
-export declare function debounce(fn: (event: CustomEvent) => void, time: number, immediate: boolean): () => void;
+export declare function debounce(fn: (event: CustomEventInterface) => void, time: number, immediate: boolean): () => void;

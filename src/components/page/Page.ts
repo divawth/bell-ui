@@ -1,4 +1,4 @@
-import Yox, { Listener, CustomEvent, Data } from 'yox'
+import Yox, { Listener, CustomEventInterface, Data } from 'yox'
 
 import template from './template/Page.hbs'
 
@@ -97,7 +97,7 @@ export default Yox.define({
   },
 
   events: {
-    change: function (event: CustomEvent) {
+    change: function (event: CustomEventInterface) {
       if (event.target != this) {
         event.stop()
       }
@@ -140,7 +140,7 @@ export default Yox.define({
       this.showError(`输入格式错误`)
     },
 
-    pageSizeChange(event: CustomEvent, data: Data) {
+    pageSizeChange(event: CustomEventInterface, data: Data) {
       this.updateCount()
       this.fire(
         'pageSizeChange.page',

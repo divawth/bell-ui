@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Dropdown.hbs'
 
@@ -12,11 +12,13 @@ import {
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
   RAW_NUMBER,
+  DOCUMENT,
 } from '../constant'
 
 import {
-  oneOf,
+  oneOf, contains,
 } from '../util'
+import DropdownItem from './DropdownItem';
 
 export default Yox.define({
   propTypes: {
@@ -72,6 +74,37 @@ export default Yox.define({
       this.set({
         isOpen: FALSE
       })
+    }
+  },
+
+  afterMount() {
+    const me = this
+    if (me.get('trigger') === RAW_CLICK) {
+      const dropdownClick = function (event: CustomEventInterface) {
+        let element = me.$el
+        let target = event.originalEvent.target as HTMLElement
+        if (contains(element, target)) {
+          return
+        }
+        me.set({
+          isOpen: FALSE
+        })
+      }
+      Yox.dom.on(
+        DOCUMENT,
+        'click',
+        dropdownClick
+      )
+      me.on(
+        'beforeDestroy.hook',
+        function (event) {
+          Yox.dom.off(
+            DOCUMENT,
+            'click',
+            dropdownClick
+          )
+        }
+      )
     }
   }
 })

@@ -2,7 +2,6 @@
 
 选择或输入日期，支持年、月、日期等类型，支持选择范围。
 
-
 > Date
 
 ```js
@@ -11,7 +10,7 @@ export default {
   height: 400,
   template: `
     <div style="height: 350px;">
-      <DatePicker type="date" placeholder="Select date" style="width: 280px"></DatePicker>
+      <DatePicker type="date" clearable placeholder="Select date" style="width: 280px" />
       <br><br>
       <DatePicker type="dateRange"
         placement="bottom-start"
@@ -229,7 +228,7 @@ export default {
     <div style="height: 350px">
       <DatePicker type="date" disabledDate="{{disabledDate1}}" placeholder="Select date" style="width: 200px"></DatePicker>
       <br><br>
-      <DatePicker type="dateRange" disabledDate="{{disabledDate2}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker type="dateRange" disabledDate="{{disabledDate1}}" placeholder="Select date" style="width: 200px"></DatePicker>
     </div>
   `,
   data() {

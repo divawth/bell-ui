@@ -10275,9 +10275,6 @@ button.bell-button-warning-ghost[disabled] {
   left: -4px;
   background-color: #e1f0fe;
 }
-.bell-datepicker-daterange-wrapper .bell-datepicker-days .bell-datepicker-col-disabled {
-  background-color: #f7f7f7;
-}
 .bell-datepicker-week {
   -webkit-user-select: none;
      -moz-user-select: none;

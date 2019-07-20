@@ -1,4 +1,4 @@
-import Yox, { CustomEvent } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Anchor.hbs'
 
@@ -77,7 +77,7 @@ export default Yox.define({
       })
     }
     const handlerScroll = debounce(
-      function (event: CustomEvent) {
+      function (event: CustomEventInterface) {
         let scrollTop: number, scrollHeight: number, clientHeight: number
         let target = event.originalEvent.target
         if (target === DOCUMENT) {

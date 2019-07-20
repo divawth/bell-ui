@@ -1,4 +1,4 @@
-import Yox, { CustomEvent, Data } from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/Panel.hbs'
 
@@ -53,12 +53,12 @@ export default Yox.define({
   },
 
   events: {
-    'change.accordion': function (_: CustomEvent, data: Data) {
+    'change.accordion': function (_: CustomEventInterface, data: Data) {
       this.set({
         accordion: data.accordion
       })
     },
-    'change.opened': function (event: CustomEvent, data: Data) {
+    'change.opened': function (event: CustomEventInterface, data: Data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         const me = this
         if (data.name === me.get('name')) {

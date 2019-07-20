@@ -1,4 +1,4 @@
-import { CustomEvent } from 'yox';
+import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
 }, {
@@ -9,7 +9,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }, {
     clear(): void;
     setArrayValue(text: string, values: string[]): any;
-    tagClose(event: CustomEvent, text: string, index: number): void;
+    tagClose(event: CustomEventInterface, text: string, index: number): void;
     toggleMenu(): void;
     decreaseHoverIndex(): void;
     increaseHoverIndex(): void;
@@ -17,7 +17,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }> & ThisType<{
     clear(): void;
     setArrayValue(text: string, values: string[]): any;
-    tagClose(event: CustomEvent, text: string, index: number): void;
+    tagClose(event: CustomEventInterface, text: string, index: number): void;
     toggleMenu(): void;
     decreaseHoverIndex(): void;
     increaseHoverIndex(): void;

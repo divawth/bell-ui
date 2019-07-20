@@ -21,7 +21,7 @@ import {
   TRUE
 } from '../../constant'
 import { isDate } from '../../util'
-import Yox, { CustomEvent } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 import { DateType } from '../type'
 
 export default Yox.define({
@@ -78,7 +78,7 @@ export default Yox.define({
   },
 
   events: {
-    'clear.datepicker': function (event: CustomEvent) {
+    'clear.datepicker': function (event: CustomEventInterface) {
       this.set({
         selectedDates: [],
         currentDate: NULL,

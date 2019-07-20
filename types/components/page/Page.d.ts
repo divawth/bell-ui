@@ -1,4 +1,4 @@
-import { CustomEvent } from 'yox';
+import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     current: unknown;
 }, {
@@ -6,7 +6,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }, {
     showError(error: string): void;
     elevator(): void;
-    pageSizeChange(event: CustomEvent, data: Record<string, any>): void;
+    pageSizeChange(event: CustomEventInterface, data: Record<string, any>): void;
     fastPrev(): void;
     fastNext(): void;
     prev(): void;
@@ -16,7 +16,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }> & ThisType<{
     showError(error: string): void;
     elevator(): void;
-    pageSizeChange(event: CustomEvent, data: Record<string, any>): void;
+    pageSizeChange(event: CustomEventInterface, data: Record<string, any>): void;
     fastPrev(): void;
     fastNext(): void;
     prev(): void;

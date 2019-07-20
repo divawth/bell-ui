@@ -1,4 +1,4 @@
-import Yox, { CustomEvent } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Select.hbs'
 
@@ -158,7 +158,7 @@ export default Yox.define({
 
     },
 
-    tagClose(event: CustomEvent, text: string, index: number) {
+    tagClose(event: CustomEventInterface, text: string, index: number) {
       let me = this
 
       this.set({
@@ -236,7 +236,7 @@ export default Yox.define({
       )
     }
 
-    const documentClickHandler = function (e: CustomEvent) {
+    const documentClickHandler = function (e: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
@@ -251,7 +251,7 @@ export default Yox.define({
       })
     }
 
-    const documentKeydownHander = function (e: CustomEvent) {
+    const documentKeydownHander = function (e: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }

@@ -1,4 +1,4 @@
-import Yox, { CustomEvent } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Slider.hbs'
 
@@ -68,7 +68,7 @@ export default Yox.define({
   },
 
   methods: {
-    handleTouchStart(event: CustomEvent) {
+    handleTouchStart(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return
@@ -99,7 +99,7 @@ export default Yox.define({
       me.onDragStart()
     },
 
-    handleTouchEnd(event: CustomEvent) {
+    handleTouchEnd(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return
@@ -128,15 +128,15 @@ export default Yox.define({
       me.onDragStop()
     },
 
-    handleTouchMove(event: CustomEvent) {
+    handleTouchMove(event: CustomEventInterface) {
       this.onDragUpdate(event.originalEvent as TouchEvent)
     },
 
-    handleDragMouseMove(event: CustomEvent) {
+    handleDragMouseMove(event: CustomEventInterface) {
       this.onDragUpdate(event.originalEvent as MouseEvent)
     },
 
-    handleMouseDown(event: CustomEvent) {
+    handleMouseDown(event: CustomEventInterface) {
       let me = this
       if (me.get('disabled')) {
         return

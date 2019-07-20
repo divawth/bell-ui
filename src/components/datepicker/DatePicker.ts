@@ -1,4 +1,4 @@
-import Yox, { Listener, CustomEvent, Data } from 'yox'
+import Yox, { Listener, CustomEventInterface, Data } from 'yox'
 
 import Date from './components/Date'
 import DateRange from './components/DateRange'
@@ -123,14 +123,14 @@ export default Yox.define({
   },
 
   events: {
-    'change.input': function (event: CustomEvent) {
+    'change.input': function (event: CustomEventInterface) {
       event.stop()
     },
-    'clear.input': function (event: CustomEvent) {
+    'clear.input': function (event: CustomEventInterface) {
       this.fire('clear.datepicker', true)
       event.stop()
     },
-    'change.date': function (event: CustomEvent, data: Data) {
+    'change.date': function (event: CustomEventInterface, data: Data) {
       if (data.selectedDates) {
         this.set({
           selectedDates: data.selectedDates
@@ -140,22 +140,22 @@ export default Yox.define({
       event.stop()
     },
 
-    'change.year': function (event: CustomEvent, date: DateType) {
+    'change.year': function (event: CustomEventInterface, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.month': function (event: CustomEvent, date: DateType) {
+    'change.month': function (event: CustomEventInterface, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.week': function (event: CustomEvent, date: DateRangeType) {
+    'change.week': function (event: CustomEventInterface, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     },
 
-    'change.daterange': function (event: CustomEvent, date: DateRangeType) {
+    'change.daterange': function (event: CustomEventInterface, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     }

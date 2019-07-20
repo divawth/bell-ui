@@ -1,4 +1,4 @@
-import Yox, { CustomEvent } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Rate.hbs'
 
@@ -71,12 +71,12 @@ export default Yox.define({
   },
 
   methods: {
-    handleMove(event: CustomEvent, index: number) {
+    handleMove(event: CustomEventInterface, index: number) {
       if (this.get('readOnly')) {
         return
       }
 
-      let mouseEvent = (event.originalEvent as CustomEvent).originalEvent as MouseEvent
+      let mouseEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
       let isHalf = mouseEvent && (mouseEvent.target as HTMLElement).getAttribute('data-type') == 'half'
 
       if (isHalf) {
@@ -98,12 +98,12 @@ export default Yox.define({
       })
     },
 
-    handleClick(event: CustomEvent, index: number) {
+    handleClick(event: CustomEventInterface, index: number) {
       if (this.get('readOnly')) {
         return
       }
 
-      let clickEvent = (event.originalEvent as CustomEvent).originalEvent as MouseEvent
+      let clickEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
       let isHalf = clickEvent && (clickEvent.target as HTMLElement).getAttribute('data-type') == 'half'
       if (isHalf) {
         index -= 0.5

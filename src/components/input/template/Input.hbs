@@ -107,15 +107,6 @@ class="${prefix}input-wrapper
         on-focus="focus()"
       />
 
-      {{#if clearable}}
-        <Icon
-          name="close-circle"
-          size="16"
-          className="${prefix}input-clear-icon"
-          on-click="clear()"
-        />
-      {{/if}}
-
       {{#if hasSlot('prefix') || prefix}}
         <span class="${prefix}input-prefix">
           <slot name="prefix">
@@ -163,6 +154,16 @@ class="${prefix}input-wrapper
             />
           </span>
         {{/if}}
+      {{/if}}
+
+
+      {{#if clearable}}
+        <Icon
+          name="close-circle"
+          size="16"
+          className="${prefix}input-clear-icon"
+          on-click="clear()"
+        />
       {{/if}}
 
     {{/if}}
