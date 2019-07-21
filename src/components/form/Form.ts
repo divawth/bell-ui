@@ -35,7 +35,7 @@ export default Yox.define({
       value: 'left'
     },
     labelWidth: {
-      type: RAW_NUMERIC,
+      type: RAW_STRING,
       value: 80
     },
     showMessage: {

@@ -4395,12 +4395,17 @@ yox-router@^1.0.0-alpha.40:
   dependencies:
     yox "^1.0.0-alpha.94"
 
-yox-template-loader@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.npmjs.org/yox-template-loader/-/yox-template-loader-0.1.7.tgz#e0ce7ddaaaf6d071d91231058d1b80467b98a6bf"
-  integrity sha512-FRzOnQ6MWnuJC9to4h1EpesdODMkVXYDDJkcb1tRupExy5Q7ntBnx+S4DA3v3fJZnNvC0AhPHy4yZqoRiWv6JQ==
+yox-template-loader@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.npmjs.org/yox-template-loader/-/yox-template-loader-0.1.10.tgz#dce94d7b99f1dbdf8e893e79ef27fa7cd8f89352"
+  integrity sha512-uBJXznEqaVdx+x9BoGmGhzE3k04XhwQxnCf2QpP2suyShBl7jY1QTd6+B1W1Tfx9zQ9WKiOWhbTKmQ+gQ3jHpg==
 
 yox@^1.0.0-alpha.94:
   version "1.0.0-alpha.94"
   resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.94.tgz#dddd6aa596c02cde2c58590e98b026925f8c132e"
   integrity sha512-uoomOBLGAsC3EKASm8ejFfpq9uYLA8sg77W9SOB7grQpKKOrE9HNmzBGOji/mjJe+ZLfVNl3Dlu1wHpT+z0uWQ==
+
+yox@^1.0.0-alpha.95:
+  version "1.0.0-alpha.95"
+  resolved "https://registry.npmjs.org/yox/-/yox-1.0.0-alpha.95.tgz#eb719e591733c8a4f955f2312126d14c1a7c48de"
+  integrity sha512-3H9ZL1W5XiEVBEwscSYIKJx1M9TJD2Y1R1teHolSC0J5WnvFAXJg5jBhiek28C4NgWEBgDwoC20bVmRnFY4TcQ==

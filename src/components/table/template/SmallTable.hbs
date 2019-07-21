@@ -111,9 +111,13 @@ class="${prefix}table
                   {{#if isObject(list[ index ][ key ])}}
                     {{list[ index ][ key ][ 'value' ]}}
                   {{else if filter}}
-                    {{{filter(list[ index ][ key ])}}}
+                    <span>
+                      {{{filter(list[ index ][ key ])}}}
+                    </span>
                   {{else}}
-                    {{list[ index ][ key ]}}
+                    <span>
+                      {{{list[ index ][ key ]}}}
+                    </span>
                   {{/if}}
                 {{/if}}
               </td>

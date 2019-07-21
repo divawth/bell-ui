@@ -1,3 +1,4 @@
+
 > 基础用法
 
 ```js
@@ -5,7 +6,7 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Table columns="{{columns1}}" list="{{data1}}"></Table>
+    <Table border columns="{{columns1}}" list="{{data1}}"></Table>
   `,
   data: function () {
     return {
@@ -23,9 +24,10 @@ export default {
           key: 'address'
         }
       ],
+      data2: [],
       data1: [
         {
-          name: 'John Brown',
+          name: '<span style="color: #f90">John Brown</span>',
           age: 18,
           address: 'New York No. 1 Lake Park',
           date: '2016-10-03'

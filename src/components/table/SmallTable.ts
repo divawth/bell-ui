@@ -176,7 +176,7 @@ export default Yox.define({
       if (item.width) {
         colWidth = item.width
       }
-      colWidths.push(colWidth)
+      colWidths.push(Math.ceil(colWidth))
     })
     me.set({ colWidths })
   }

@@ -1,14 +1,18 @@
 <div
-class="{{#if fixedLeftList.length || fixedRightList.length || height}}
+class="${prefix}table {{#if fixedLeftList.length || fixedRightList.length || height}}
 ${prefix}table-fixed
-{{/if}}"
+{{/if}}
+"
 
-style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}"
+style="
+{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}
+{{#if height}} height: {{height}};{{/if}}
+"
 >
 
   {{#if height}}
     <div class="${prefix}table-fixed-header">
-      <SmallTable {{...this}} header/>
+      <SmallTable {{...this}} header />
     </div>
   {{/if}}
 
@@ -23,8 +27,18 @@ style="{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}"
     </div>
   {{/if}}
 
-  <div class="${prefix}table-insert{{#if height}} ${prefix}table-insert{{/if}}"{{#if height}}style="height: {{height}}px; overflow-y: auto;"{{/if}}>
-    <SmallTable {{...this}} />
+  <div class="${prefix}table-insert"
+    {{#if height}}style="height: {{height}}; overflow-y: auto;"{{/if}}
+  >
+    {{#if list && list.length}}
+      <SmallTable {{...this}} />
+    {{else}}
+      <slot name="empty">
+        <div class="${prefix}table-empty">
+          暂无数据
+        </div>
+      </slot>
+    {{/if}}
   </div>
 
   {{#if fixedRightList.length}}

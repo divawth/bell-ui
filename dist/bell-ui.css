@@ -13293,6 +13293,11 @@ button.bell-button-warning-ghost[disabled] {
   z-index: 1;
   box-shadow: -2px 0 6px -2px rgba(0,0,0,0.2);
 }
+.bell-table-empty {
+  min-height: 200px;
+  line-height: 200px;
+  text-align: center;
+}
 .bell-backtop {
   position: fixed;
   z-index: 10;

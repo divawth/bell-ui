@@ -134,7 +134,7 @@ export default Yox.define({
 
     inputElement.multiple = me.get('multiple')
 
-    var accept = me.get('accept')
+    let accept = me.get('accept')
     if (accept) {
       inputElement.accept = me.get('accept').join(',')
     }
@@ -146,7 +146,7 @@ export default Yox.define({
       inputElement,
       'change',
       function (event: CustomEventInterface) {
-        var files = (event.originalEvent.target as HTMLInputElement).files
+        let files = (event.originalEvent.target as HTMLInputElement).files
         me.upload(files)
       }
     )
