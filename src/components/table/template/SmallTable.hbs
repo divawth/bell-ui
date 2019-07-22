@@ -112,7 +112,7 @@ class="${prefix}table
                     {{list[ index ][ key ][ 'value' ]}}
                   {{else if filter}}
                     <span>
-                      {{{filter(list[ index ][ key ])}}}
+                      {{{filter(list[ index ][ key ], list[ index ], index)}}}
                     </span>
                   {{else}}
                     <span>

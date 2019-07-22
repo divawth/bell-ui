@@ -1,4 +1,4 @@
-> 行内表单 
+> 行内表单
 
 设置属性 inline，表单元素可以水平排列。
 
@@ -12,14 +12,14 @@ export default {
       <FormItem prop="user">
         <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
           <template slot="prepend">
-            <Icon name="person" slot="prepend" style="color: #bbb;" /> 
+            <Icon name="person" slot="prepend" style="color: #bbb;" />
           </template>
         </Input>
       </FormItem>
       <FormItem prop="password">
         <Input type="password" status="{{#if errors.password}}error{{/if}}" model="formInline.password" placeholder="Password">
           <template slot="prepend">
-            <Icon name="lock" slot="prepend" style="color: #bbb;" /> 
+            <Icon name="lock" slot="prepend" style="color: #bbb;" />
           </template>
         </Input>
       </FormItem>
@@ -73,7 +73,7 @@ export default {
 }
 ```
 
-> 表单控件 
+> 表单控件
 
 ```js
 export default {

@@ -13030,6 +13030,8 @@ button.bell-button-warning-ghost[disabled] {
   font-size: 14px;
   line-height: 1.5;
   word-wrap: break-word;
+  overflow: auto;
+  max-height: calc(100% - 51px);
 }
 .bell-drawer .bell-drawer-content .bell-drawer-close {
   position: absolute;
@@ -13263,11 +13265,6 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-table-fixed {
   position: relative;
-}
-.bell-table-fixed th,
-.bell-table-fixed td {
-  word-break: keep-all;
-  white-space: nowrap;
 }
 .bell-table-hidden {
   visibility: hidden;
