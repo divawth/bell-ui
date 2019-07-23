@@ -7519,7 +7519,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-input-wrapper .bell-textarea,
 .bell-input-wrapper .bell-input {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
   overflow: hidden;
   width: 100%;
   outline: none;
@@ -9194,8 +9194,8 @@ button.bell-button-warning-ghost[disabled] {
   height: 14px;
 }
 .bell-checkbox .bell-checkbox-inner:after {
-  top: 3px;
-  left: 5px;
+  top: 1px;
+  left: 4px;
   width: 4px;
   height: 8px;
 }
@@ -9204,8 +9204,8 @@ button.bell-button-warning-ghost[disabled] {
   padding-left: 20px;
 }
 .bell-checkbox.bell-checkbox-indeterminate .bell-checkbox-inner:after {
-  top: 7px;
-  left: 3px;
+  top: 5px;
+  left: 2px;
   width: 8px;
 }
 .bell-checkbox-tiny .bell-checkbox-inner {
@@ -9232,8 +9232,8 @@ button.bell-button-warning-ghost[disabled] {
   height: 12px;
 }
 .bell-checkbox-small .bell-checkbox-inner:after {
-  top: 5px;
-  left: 5px;
+  top: 1px;
+  left: 4px;
   width: 3px;
   height: 7px;
 }
@@ -9251,7 +9251,7 @@ button.bell-button-warning-ghost[disabled] {
   height: 16px;
 }
 .bell-checkbox-large .bell-checkbox-inner:after {
-  top: 2px;
+  top: 1px;
   left: 5px;
   width: 5px;
   height: 10px;
@@ -9296,6 +9296,7 @@ button.bell-button-warning-ghost[disabled] {
 }
 .bell-checkbox .bell-checkbox-inner {
   display: inline-block;
+  position: relative;
   vertical-align: middle;
   border-radius: 3px;
   border: 1px solid #eee;
@@ -9315,7 +9316,7 @@ button.bell-button-warning-ghost[disabled] {
   transition: all 0.1s;
 }
 .bell-checkbox .bell-checkbox-input {
-  opacity: 0;
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -9729,6 +9730,9 @@ button.bell-button-warning-ghost[disabled] {
 .bell-select .bell-dropdown-list {
   min-width: 100%;
 }
+.bell-select .bell-dropdown-list .bell-select-option {
+  cursor: pointer;
+}
 .bell-select .bell-dropdown-list .bell-select-option.bell-select .bell-dropdown-list .bell-select-option.active,
 .bell-select .bell-dropdown-list .bell-select-option:active,
 .bell-select .bell-dropdown-list .bell-select-option.bell-active {
@@ -10107,6 +10111,7 @@ button.bell-button-warning-ghost[disabled] {
 .bell-datepicker .bell-datepicker-header {
   display: -webkit-flex;
   display: flex;
+  line-height: 1;
   padding: 8px 5px;
   border-bottom: 1px solid #f6f6f6;
 }
@@ -10116,6 +10121,7 @@ button.bell-button-warning-ghost[disabled] {
           flex: 1;
   text-align: center;
   cursor: pointer;
+  line-height: 1;
   transition: color 0.2s;
 }
 .bell-datepicker .bell-datepicker-header .bell-datepicker-header-button.hover,
@@ -13031,7 +13037,7 @@ button.bell-button-warning-ghost[disabled] {
   line-height: 1.5;
   word-wrap: break-word;
   overflow: auto;
-  max-height: calc(100% - 51px);
+  height: calc(100% - 55px);
 }
 .bell-drawer .bell-drawer-content .bell-drawer-close {
   position: absolute;

@@ -115,9 +115,6 @@ export default {
           <span slot="close">Off</span>
         </Switch>
       </FormItem>
-      <FormItem label="Slider">
-        <Slider model="formItem.slider" range></Slider>
-      </FormItem>
       <FormItem label="Text">
         <Input model="formItem.textarea" type="textarea" placeholder="Enter something..."></Input>
       </FormItem>

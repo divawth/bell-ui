@@ -17,10 +17,9 @@
     cursor pointer
     outline 0
 
-    margin-top $checkbox-inner-size - $checkbox-font-size
-
   {$selector-checkbox-inner}
     display inline-block
+    position relative
     vertical-align middle
     border-radius $radius-small
     border 1px solid $brand-border
@@ -40,7 +39,7 @@
       transition all .1s
 
   {$selector-checkbox-input}
-    opacity 0
+    display none
     ui-fullscreen(absolute)
 
   {$selector-checkbox-label}
