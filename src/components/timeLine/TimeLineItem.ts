@@ -8,8 +8,8 @@ export default Yox.define({
   propTypes: {
     color: {
       type: RAW_STRING,
-      value: '#348EED'
+      value: '#348EED',
     }
   },
-  template
+  template,
 })

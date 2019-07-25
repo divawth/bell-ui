@@ -14,19 +14,19 @@ import {
 export default Yox.define({
   propTypes: {
     size: {
-      type: oneOf(['large', 'small', 'tiny'])
+      type: oneOf(['large', 'small', 'tiny']),
     },
     shape: {
-      type: oneOf(['round', 'circle'])
+      type: oneOf(['round', 'circle']),
     },
     vertical: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
   template,

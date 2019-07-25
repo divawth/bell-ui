@@ -9292,7 +9292,6 @@ button.bell-button-warning-ghost[disabled] {
   white-space: nowrap;
   cursor: pointer;
   outline: 0;
-  margin-top: 2px;
 }
 .bell-checkbox .bell-checkbox-inner {
   display: inline-block;

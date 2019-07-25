@@ -7,8 +7,8 @@ import { RAW_BOOLEAN } from '../constant'
 export default Yox.define({
   propTypes: {
     pending: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     }
   },
-  template
+  template,
 })

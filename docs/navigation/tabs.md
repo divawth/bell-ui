@@ -235,7 +235,7 @@ value | 当前选中的 tab 的 name 值 | string, number | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onTabRemove | 删除 tab 的时候回调（仅开启 closable 时有效） | name
+tabRemove | 删除 tab 的时候回调（仅开启 closable 时有效） | name
 
 > TabPanel Props
 

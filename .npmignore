@@ -3,3 +3,4 @@ dep/
 build/
 src/
 type/
+yarn.*

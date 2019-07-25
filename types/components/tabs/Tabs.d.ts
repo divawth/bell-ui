@@ -1,7 +1,7 @@
 interface Tab {
     id: string;
-    label: string;
     icon: string;
+    label: string;
     disabled: boolean;
 }
 declare const _default: import("yox").ComponentOptions<{

@@ -9,11 +9,11 @@ import {
 export default Yox.define({
   propTypes: {
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template
+  template,
 })

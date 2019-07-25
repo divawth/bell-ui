@@ -24,7 +24,7 @@ export default Yox.define({
 
   propTypes: {
     name: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     selected: {
       type: RAW_ARRAY,
@@ -33,23 +33,23 @@ export default Yox.define({
       }
     },
     type: {
-      type: oneOf(RAW_TYPE_ARRAY)
+      type: oneOf(RAW_TYPE_ARRAY),
     },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
-      value: RAW_DEFAULT
+      value: RAW_DEFAULT,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     vertical: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 

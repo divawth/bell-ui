@@ -39,7 +39,7 @@ class="${prefix}select
         </Tag>
         {{/each}}
       {{else if defaultText}}
-        {{{defaultText}}}
+        {{defaultText}}
       {{else}}
         请选择...
       {{/if}}
@@ -50,11 +50,7 @@ class="${prefix}select
       {{#if value != null}} ${prefix}hide{{/if}}"
       on-click="toggleMenu()"
     >
-      {{#if defaultText}}
-        {{{defaultText}}}
-      {{else}}
-        请选择...
-      {{/if}}
+      {{defaultText || '请选择...'}}
     </div>
 
     <Icon name="arrow-down" className="${prefix}select-arrow" />

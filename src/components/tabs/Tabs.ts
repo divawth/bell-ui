@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Tabs.hbs'
 
@@ -21,9 +21,9 @@ import {
 
 interface Tab {
   id: string,
-  label: string,
   icon: string,
-  disabled: boolean
+  label: string,
+  disabled: boolean,
 }
 
 export default Yox.define({
@@ -51,10 +51,10 @@ export default Yox.define({
       value: 0
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -68,15 +68,16 @@ export default Yox.define({
 
   computed: {
     translateStyle() {
-      let me = this
-      let index = 0
-
+      const me = this
+      const value = me.get('value')
       const tabs: Tab[] = me.get('tabsList')
+
+      let index = 0
 
       Yox.array.each(
         tabs,
         (item, key) => {
-          if (item.id == me.get('value')) {
+          if (item.id == value) {
             index = key
             return FALSE
           }
@@ -88,7 +89,7 @@ export default Yox.define({
   },
 
   events: {
-    tabPanelRemove(event: CustomEventInterface, data: Data) {
+    tabPanelRemove(event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let tabsList: Tab[] = this.copy(this.get('tabsList'))
         tabsList = tabsList.filter(function (item) {
@@ -97,7 +98,7 @@ export default Yox.define({
         this.set({ tabsList })
       }
     },
-    tabsValueUpdate(event: CustomEventInterface, data: Tab) {
+    tabsValueUpdate(event, data: Tab) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         let me = this
         let tabsList: Tab[] = me.copy(me.get('tabsList'))
@@ -109,7 +110,7 @@ export default Yox.define({
         me.set({ tabsList })
       }
     },
-    tabPanelAdd(event: CustomEventInterface, data: Tab) {
+    tabPanelAdd(event, data: Tab) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.append('tabsList', data)
       }
@@ -119,7 +120,7 @@ export default Yox.define({
   watchers: {
     value(value) {
       this.fire(
-        'tabSelected',
+        'tabSelected.tabs',
         { value },
         TRUE
       )
@@ -127,11 +128,13 @@ export default Yox.define({
   },
 
   methods: {
-    close (data: Tab) {
-      this.fire('tabRemove', data)
+    close(data: Tab) {
+      this.fire('tabRemove.tabs', data)
     },
     click(data: Tab) {
-      if (data.disabled) return
+      if (data.disabled) {
+        return
+      }
       this.set({
         value: data.id
       })

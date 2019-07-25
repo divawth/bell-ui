@@ -15,7 +15,7 @@ export default Yox.define({
       value: '分'
     },
     onChange: {
-      type: RAW_FUNCTION
+      type: RAW_FUNCTION,
     },
     tens: {
       type: RAW_NUMBER,
@@ -43,16 +43,16 @@ export default Yox.define({
   },
 
   methods: {
-    upTens: function () {
+    upTens() {
       this.decrease('tens', 1, 0)
     },
-    downTens: function () {
+    downTens() {
       this.increase('tens', 1, 5)
     },
-    upOnes: function () {
+    upOnes() {
       this.decrease('ones', 1, 0)
     },
-    downOnes: function () {
+    downOnes() {
       this.increase('ones', 1, 9)
     }
   },

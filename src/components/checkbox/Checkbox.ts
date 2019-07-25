@@ -19,32 +19,32 @@ export default Yox.define({
 
   propTypes: {
     label: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     value: {
       type: [RAW_STRING, RAW_BOOLEAN],
-      required: TRUE
+      required: TRUE,
     },
     indeterminate: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     checked: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     type: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 

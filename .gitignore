@@ -7,3 +7,4 @@ router.js
 *.html
 docs/index.html
 *.html
+yarn.*

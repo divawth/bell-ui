@@ -9,7 +9,7 @@ import {
   RAW_DEFAULT,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY
+  RAW_TYPE_ARRAY,
 } from '../constant'
 
 import {
