@@ -42,7 +42,7 @@ export default Yox.define({
   model: 'checked',
 
   methods: {
-    click() {
+    handleClick() {
       this.fire(
         'change.switch',
         {

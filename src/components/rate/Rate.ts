@@ -8,44 +8,46 @@ import {
   RAW_BOOLEAN,
   RAW_NUMERIC,
   RAW_ARRAY,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 export default Yox.define({
   propTypes: {
     count: {
       type: RAW_NUMERIC,
-      value: 5
+      value: 5,
     },
     value: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     half: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     showTexts: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     texts: {
-      type: RAW_ARRAY
+      type: RAW_ARRAY,
     },
     type: {
       type: RAW_STRING,
-      value: 'warning'
+      value: RAW_TYPE_WARNING,
     },
     icon: {
       type: RAW_STRING,
-      value: 'star'
+      value: 'star',
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -53,71 +55,59 @@ export default Yox.define({
 
   data() {
     return {
-      hoverValue: -1
+      hoverValue: -1,
     }
   },
 
   computed: {
-    activeValue() {
-      return this.get('hoverValue') < 0 ? this.get('value') : this.get('hoverValue')
-    }
-  },
-
-  filters: {
-    getValue(index: number) {
-      let texts = this.get('texts')
-      return texts && texts[ index - 1 ]
+    activeValue(): number {
+      const hoverValue = this.get('hoverValue')
+      return hoverValue < 0
+        ? this.get('value')
+        : hoverValue
     }
   },
 
   methods: {
-    handleMove(event: CustomEventInterface, index: number) {
-      if (this.get('readOnly')) {
-        return
-      }
+    handleMove(event: CustomEventInterface, value: number) {
 
-      let mouseEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
-      let isHalf = mouseEvent && (mouseEvent.target as HTMLElement).getAttribute('data-type') == 'half'
-
-      if (isHalf) {
-        index -= 0.5
+      const mouseEvent = event.originalEvent as MouseEvent
+      if (this.hoverOnHalfIcon(mouseEvent.target as HTMLElement)) {
+        value -= 0.5
       }
 
       this.set({
-        hoverValue: index
+        hoverValue: value
       })
     },
 
     handleLeave() {
-      if (this.get('readOnly')) {
-        return
-      }
-
+      const value = this.get('value')
       this.set({
-        hoverValue: this.get('value') >= 0 ? this.get('value') : -1
+        hoverValue: value >= 0 ? value : -1
       })
     },
 
-    handleClick(event: CustomEventInterface, index: number) {
-      if (this.get('readOnly')) {
-        return
-      }
+    handleClick(event: CustomEventInterface, value: number) {
 
-      let clickEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
-      let isHalf = clickEvent && (clickEvent.target as HTMLElement).getAttribute('data-type') == 'half'
-      if (isHalf) {
-        index -= 0.5
+      const clickEvent = event.originalEvent as MouseEvent
+      if (this.hoverOnHalfIcon(clickEvent.target as HTMLElement)) {
+        value -= 0.5
       }
 
       this.set({
-        value: index
+        value
       })
       this.fire(
-        'change',
+        'change.rate',
         {
-          value: index
+          value
         }
       )
+    },
+
+    hoverOnHalfIcon(element: HTMLElement) {
+      return Yox.dom.attr(element, 'data-half') === '1'
     }
   }
 })

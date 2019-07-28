@@ -4,3 +4,4 @@ build/
 src/
 type/
 yarn.*
+global.d.ts

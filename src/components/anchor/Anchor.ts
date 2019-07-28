@@ -3,43 +3,45 @@ import Yox, { CustomEventInterface } from 'yox'
 import template from './template/Anchor.hbs'
 
 import {
-  RAW_STRING,
-  RAW_BOOLEAN,
-  DOCUMENT,
-  RAW_NUMBER,
   TRUE,
   FALSE,
+  WINDOW,
+  DOCUMENT,
+  RAW_STRING,
+  RAW_BOOLEAN,
+  RAW_NUMBER,
 } from '../constant'
-import { debounce } from '../util';
+
+import { debounce } from '../util'
 
 export default Yox.define({
 
   propTypes: {
     affix: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     container: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     showInk: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     offsetTop: {
       type: RAW_NUMBER,
       value: 0
     },
     offsetBottom: {
-      type: RAW_NUMBER
+      type: RAW_NUMBER,
     },
     bounds: {
       type: RAW_NUMBER,
-      value: 5
+      value: 5,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -47,8 +49,8 @@ export default Yox.define({
 
   data() {
     return {
-      scrollElement: window,
-      isAffix: true
+      scrollElement: WINDOW,
+      isAffix: true,
     }
   },
 
@@ -60,22 +62,23 @@ export default Yox.define({
 
     const offsetTop = me.get('offsetTop')
     const offsetBottom = me.get('offsetBottom')
-    const scrollElement = me.get('scrollElement')
-
     const container = me.get('container')
 
+    let scrollElement = me.get('scrollElement')
     if (Yox.is.string(container)) {
       let element = Yox.dom.find(container)
       if (!element) {
         return
       }
+      scrollElement = element
       me.set({
-        scrollElement: element
+        scrollElement
       })
     }
     else if (container) {
+      scrollElement = container
       me.set({
-        scrollElement: container
+        scrollElement
       })
     }
 
@@ -117,7 +120,7 @@ export default Yox.define({
       console.log(arguments)
     }
     Yox.dom.on(
-      me.get('scrollElement'),
+      scrollElement,
       'scroll',
       handlerScroll
     )

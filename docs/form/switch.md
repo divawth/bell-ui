@@ -5,8 +5,8 @@ export default {
   template: `
     <div>
       <Switch model="single" on-change="change()">
-        <template slot="checkedText">开</template>
-        <template slot="unCheckedText">关</template>
+        <template slot="on">开</template>
+        <template slot="off">关</template>
       </Switch>
       <p class="bell-text">{{single}}</p>
     </div>
@@ -30,9 +30,9 @@ export default {
 export default {
   template: `
   <div>
-    <Switch></Switch>
-    <Switch size="small"></Switch>
-    <Switch size="large"></Switch>
+    <Switch size="small" />
+    <Switch />
+    <Switch size="large" />
   </div>
   `
 }
@@ -44,11 +44,11 @@ export default {
 export default {
   template: `
     <div>
-      <Switch></Switch>
-      <Switch type="info"></Switch>
-      <Switch type="success"></Switch>
-      <Switch type="warning"></Switch>
-      <Switch type="error"></Switch>
+      <Switch />
+      <Switch type="info" />
+      <Switch type="success" />
+      <Switch type="warning" />
+      <Switch type="error" />
     </div>
   `
 }
@@ -61,27 +61,27 @@ export default {
   template: `
   <div>
     <Switch type="info">
-      <template slot="checkedText">开</template>
-      <template slot="unCheckedText">关</template>
+      <template slot="on">开</template>
+      <template slot="off">关</template>
     </Switch>
     <Switch size="large" type="info">
-      <template slot="checkedText">开</template>
-      <template slot="unCheckedText">关</template>
+      <template slot="on">开</template>
+      <template slot="off">关</template>
     </Switch>
     <br><br>
     <Switch size="large" type="info">
-      <template slot="checkedText">开启</template>
-      <template slot="unCheckedText">关闭</template>
+      <template slot="on">开启</template>
+      <template slot="off">关闭</template>
     </Switch>
     <Switch type="success">
-      <template slot="checkedText">开</template>
-      <template slot="unCheckedText">关</template>
+      <template slot="on">开</template>
+      <template slot="off">关</template>
     </Switch>
     <Switch size="large" type="warning">
-      <template slot="checkedText">ON</template>
-      <template slot="unCheckedText">OFF</template>
+      <template slot="on">ON</template>
+      <template slot="off">OFF</template>
     </Switch>
-    <Switch type="error"></Switch>
+    <Switch type="error" />
   </div>
   `
 }
@@ -93,10 +93,10 @@ export default {
 export default {
   template: `
     <div>
-      <Switch type="info" checked></Switch>
-      <Switch type="success" checked></Switch>
-      <Switch type="warning" checked></Switch>
-      <Switch type="error" checked></Switch>
+      <Switch type="info" checked />
+      <Switch type="success" checked />
+      <Switch type="warning" checked />
+      <Switch type="error" checked />
     </div>
   `
 }
@@ -152,8 +152,8 @@ loading | 加载中的开关 | boolean | - | false
 
 参数 | 说明
 ---|---
-checkedText | 自定义选中时的内容
-unCheckedText | 自定义未选中时的内容
+on | 自定义选中时的内容
+off | 自定义未选中时的内容
 
 > Events
 

@@ -4,11 +4,11 @@
 export default {
   template: `
     <div>
-      <Spinner size="small"></Spinner>
+      <Spinner size="small" />
       <br><br>
-      <Spinner></Spinner>
+      <Spinner />
       <br><br>
-      <Spinner size="large"></Spinner>
+      <Spinner size="large" />
     </div>
   `
 }
@@ -20,16 +20,16 @@ export default {
 export default {
   template: `
   <div>
-    <Spinner type="error"></Spinner>
+    <Spinner type="error" />
     <br><br>
-    <Spinner type="warning"></Spinner>
+    <Spinner type="warning" />
     <br><br>
-    <Spinner type="success"></Spinner>
+    <Spinner type="success" />
   </div>
   `
 }
 ```
- 
+
 > 状态切换
 
 ```js
@@ -48,12 +48,12 @@ export default {
           <p>总为浮云能蔽日，长安不见使人愁。</p>
         </article>
         {{#if spinShow}}
-        <Spinner size="large" fix></Spinner>
+        <Spinner size="large" fix />
         {{/if}}
       </div>
       <br>
       切换显示状态：
-      <Switch model="spinShow" onChange="{{onChange}}"></Switch>
+      <Switch model="spinShow" />
 
       <style>
         .demo-spin-article {
@@ -65,10 +65,7 @@ export default {
   `,
   data: function () {
     return {
-      spinShow: false,
-      onChange: function() {
-        this.toggle('spinShow')
-      }
+      spinShow: false
     }
   }
 }

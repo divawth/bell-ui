@@ -12,16 +12,16 @@ class="${prefix}switch
 {{/if}}
 
 {{#if !disabled && !loading}}
-  on-click="click()"
+  on-click="handleClick()"
 {{/if}}
 >
 
   <span class="${prefix}switch-button">
     <span class="${prefix}switch-inner">
       {{#if checked}}
-        <slot name="checkedText" />
+        <slot name="on" />
       {{else}}
-        <slot name="unCheckedText" />
+        <slot name="off" />
       {{/if}}
     </span>
   </span>

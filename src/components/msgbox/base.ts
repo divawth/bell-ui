@@ -2,20 +2,22 @@ import MsgboxTpl from './template/Msgbox.hbs'
 import ConfirmTpl from './template/Confirm.hbs'
 import {
   TRUE,
+  FALSE,
   RAW_OBJECT,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
   RAW_NUMERIC,
 } from '../constant'
+
 import Yox, { Data } from 'yox'
-import { onTransitionEnd } from '../util';
+import { onTransitionEnd } from '../util'
 
 let id = 0
 
 function createAlert(data: Data) {
 
-  let namespace = '${prefix}msg-alert-' + id++
+  let namespace = '${prefix}msg-alert-' + (++id)
   let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
   let element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
@@ -23,7 +25,7 @@ function createAlert(data: Data) {
 
   const options = Yox.define({
     el: '#' + namespace,
-    replace: true,
+    replace: TRUE,
     template: MsgboxTpl,
     props: {
       title: data.title,
@@ -71,7 +73,7 @@ function createAlert(data: Data) {
     },
     data() {
       return {
-        isHidden: true
+        isHidden: TRUE
       }
     },
 
@@ -85,7 +87,7 @@ function createAlert(data: Data) {
       hide() {
         let me = this
         me.set({
-          isHidden: true
+          isHidden: TRUE
         })
         me.nextTick(function () {
           onTransitionEnd(
@@ -107,7 +109,7 @@ function createAlert(data: Data) {
         function () {
           if (me.$el) {
             me.set({
-              isHidden: false
+              isHidden: FALSE
             })
           }
         },
@@ -191,7 +193,7 @@ function createConfirm(data: Data) {
       hide() {
         let me = this
         me.set({
-          isHidden: true
+          isHidden: TRUE
         })
         me.nextTick(function () {
           onTransitionEnd(
@@ -212,7 +214,7 @@ function createConfirm(data: Data) {
       setTimeout(
         function () {
           me.set({
-            isHidden: false
+            isHidden: FALSE
           })
         },
         300

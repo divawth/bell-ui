@@ -1,14 +1,16 @@
 <div
 class="${prefix}rate
-{{#if readOnly}} ${prefix}rate-readonly{{/if}}
 {{#if type}} ${prefix}rate-{{type}}{{/if}}
+{{#if readOnly}} ${prefix}rate-readonly{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 
-on-mouseleave="handleLeave()"
+{{#if !readOnly}}
+  on-mouseleave="handleLeave()"
+{{/if}}
 >
   <input type="hidden" model="value">
 
@@ -16,14 +18,21 @@ on-mouseleave="handleLeave()"
     <Icon
       name="{{icon}}"
       size="{{20}}"
-      className="${prefix}rate-star-full {{#if activeValue - this >= 0}} active{{/if}}"
-      on-mousemove.native="handleMove($event, this)"
-      on-click.native="handleClick($event, this)"
+      className="${prefix}rate-star-full
+      {{#if activeValue - this >= 0}} active{{/if}}"
+
+      {{#if !readOnly}}
+        on-mousemove.native="handleMove($event, this)"
+        on-click.native="handleClick($event, this)"
+      {{/if}}
     >
       {{#if half}}
-        <span data-type="half" class="${prefix}icon ${prefix}rate-star-content ${prefix}icon-ios-star-half
-          {{#if activeValue - this >= -0.5}} active{{/if}}">
-        </span>
+        <i
+          data-half="1"
+          class="${prefix}icon ${prefix}rate-star-content ${prefix}icon-ios-star-half
+          {{#if activeValue - this >= -0.5}} active{{/if}}"
+        >
+        </i>
       {{/if}}
     </Icon>
   {{/each}}
@@ -31,10 +40,10 @@ on-mouseleave="handleLeave()"
   {{#if showTexts}}
     <span class="${prefix}rate-text">
       <slot name="children">
-        {{#if !texts}}
-          {{value}} 星
+        {{#if texts}}
+          {{texts[activeValue - 1]}}
         {{else}}
-          {{getValue(activeValue)}}
+          {{value}} 星
         {{/if}}
       </slot>
     </span>

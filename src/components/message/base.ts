@@ -4,18 +4,18 @@ import template from './template/Message.hbs'
 
 import {
   TRUE,
+  FALSE,
+  DOCUMENT,
   RAW_BOOLEAN,
   RAW_STRING,
-  FALSE,
   RAW_TYPE_ARRAY,
-  DOCUMENT,
 } from '../constant'
 
 import { onTransitionEnd, oneOf } from '../util'
 
 let id = 0
 
-function createMessage(data: Data) {
+export function createMessage(data: Data) {
 
   const namespace = '${prefix}message-' + (++id)
   const element = Yox.dom.createElement('div') as HTMLElement
@@ -32,27 +32,28 @@ function createMessage(data: Data) {
       showIcon: data.showIcon,
       closable: data.closable,
       closeText: data.closeText,
-      center: data.center
+      center: data.center,
     },
     propTypes: {
       content: {
-        type: RAW_STRING
+        type: RAW_STRING,
       },
       type: {
-        type: oneOf(RAW_TYPE_ARRAY)
+        type: oneOf(RAW_TYPE_ARRAY),
       },
       showIcon: {
         type: RAW_BOOLEAN,
-        value: TRUE
+        value: TRUE,
       },
       closable: {
-        type: RAW_BOOLEAN
+        type: RAW_BOOLEAN,
+        value: FALSE,
       },
       closeText: {
-        type: RAW_STRING
+        type: RAW_STRING,
       },
       center: {
-        type: RAW_BOOLEAN
+        type: RAW_BOOLEAN,
       }
     },
 
@@ -62,62 +63,60 @@ function createMessage(data: Data) {
         top: 0,
         showTime: data.duration || 1500,
         isShow: FALSE,
-      }
-    },
-
-    events: {
-      'close.alert': function () {
-        if (Yox.is.func(data.onClose)) {
-          data.onClose()
-        }
-        if (this.$el) {
-          this.destroy()
+        close() {
+          this.hide()
         }
       }
     },
 
     methods: {
       fadeIn() {
-        let me = this
+        const me = this
         setTimeout(
           function () {
-            if (!me.$el) {
-              return
+            if (me.$el) {
+              me.show()
             }
-            me.set({
-              isShow: TRUE,
-              top: data.top || 15
-            })
-            me.fadeOut()
           },
           300
         )
       },
       fadeOut() {
-        let me = this
+        const me = this
         setTimeout(
           function () {
-            if (!me.$el) {
-              return
+            if (me.$el) {
+              me.hide()
             }
-            me.set({
-              isShow: false,
-              top: 0
-            })
-
-            onTransitionEnd(
-              me.$el,
-              function () {
-                if (Yox.is.func(data.onClose)) {
-                  data.onClose()
-                }
-                if (me.$el) {
-                  me.destroy()
-                }
-              }
-            )
           },
           me.get('showTime')
+        )
+      },
+      show() {
+        this.set({
+          isShow: TRUE,
+          top: data.top || 15
+        })
+        this.fadeOut()
+      },
+      hide() {
+        const me = this
+
+        me.set({
+          isShow: FALSE,
+          top: 0
+        })
+
+        onTransitionEnd(
+          me.$el,
+          function () {
+            if (Yox.is.func(data.onClose)) {
+              data.onClose()
+            }
+            if (me.$el) {
+              me.destroy()
+            }
+          }
         )
       }
     },
@@ -129,9 +128,7 @@ function createMessage(data: Data) {
       this.fadeIn()
     }
   })
-  new Yox(options)
-}
 
-export function add(data: Data) {
-  createMessage(data)
+  new Yox(options)
+
 }

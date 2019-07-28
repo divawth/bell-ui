@@ -18,8 +18,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "./type/image.d.ts",
-    "./type/style.d.ts",
-    "./type/template.d.ts"
+    "./global.d.ts"
   ]
 }

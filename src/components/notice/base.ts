@@ -6,10 +6,11 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 import Yox, { Data } from 'yox'
-import { onTransitionEnd } from '../util';
+import { onTransitionEnd } from '../util'
 
 let id = 0
-function createNotice(data: Data) {
+
+export function createNotice(data: Data) {
 
   let namespace = '${prefix}notice-' + id++
   let body = Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement
@@ -130,8 +131,4 @@ function createNotice(data: Data) {
     }
   })
   new Yox(options)
-}
-
-export function add(data: Data) {
-  createNotice(data)
 }

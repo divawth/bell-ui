@@ -1,8 +1,6 @@
-import { Data } from 'yox';
-declare function Alert(data: Data): void;
-declare function Confirm(data: Data): void;
+import { addAlert, addConfirm } from './base';
 declare const _default: {
-    Alert: typeof Alert;
-    Confirm: typeof Confirm;
+    Alert: typeof addAlert;
+    Confirm: typeof addConfirm;
 };
 export default _default;

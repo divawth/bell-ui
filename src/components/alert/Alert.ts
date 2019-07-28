@@ -10,7 +10,8 @@ import {
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
-  RAW_TYPE_ERROR
+  RAW_TYPE_ERROR,
+  RAW_FUNCTION
 } from '../constant'
 
 import {
@@ -33,6 +34,9 @@ export default Yox.define({
     },
     center: {
       type: RAW_BOOLEAN,
+    },
+    close: {
+      type: RAW_FUNCTION,
     },
     className: {
       type: RAW_STRING,
@@ -58,6 +62,13 @@ export default Yox.define({
     close() {
 
       const me = this
+
+      // 外部自定义关闭逻辑
+      const close = me.get('close')
+      if (close) {
+        close()
+        return
+      }
 
       Yox.dom.addClass(me.$el, '${prefix}hide')
 

@@ -1,4 +1,4 @@
-import { add } from './base'
+import { createNotice } from './base'
 import Yox, { Data } from 'yox'
 
 interface Config {
@@ -8,7 +8,7 @@ interface Config {
 
 let config: Config = {}
 
-let addNotice = function (type: string, arg: Data) {
+function addNotice(type: string, arg: Data) {
   let data: Data = {}
   data.type = type
 
@@ -20,10 +20,10 @@ let addNotice = function (type: string, arg: Data) {
     Yox.object.extend(data, config)
   }
 
-  add(data)
+  createNotice(data)
 }
 
-let updateConfig = function (data) {
+function updateConfig(data) {
   if (data.duration) {
     config.duration = data.duration
   }
@@ -34,25 +34,25 @@ let updateConfig = function (data) {
 }
 
 export default {
-  success: function (arg: Data) {
+  success(arg: Data) {
     addNotice('success', arg)
   },
-  info: function (arg: Data) {
+  info(arg: Data) {
     addNotice('info', arg)
   },
-  warning: function (arg: Data) {
+  warning(arg: Data) {
     addNotice('warning', arg)
   },
-  error: function (arg: Data) {
+  error(arg: Data) {
     addNotice('error', arg)
   },
-  loading: function (arg: Data) {
+  loading(arg: Data) {
     addNotice('loading', arg)
   },
-  config: function (options: Data) {
+  config(options: Data) {
     updateConfig(options)
   },
-  destroy: function () {
+  destroy() {
     config = {}
   }
 }

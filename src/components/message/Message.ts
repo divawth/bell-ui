@@ -1,4 +1,4 @@
-import { add } from './base'
+import { createMessage } from './base'
 import Yox, { Data } from 'yox'
 
 interface Config {
@@ -22,7 +22,7 @@ function addMessage(type: string, arg: Arg) {
     Yox.object.extend(data, config)
   }
 
-  add(data)
+  createMessage(data)
 }
 
 function updateConfig(data: Data) {

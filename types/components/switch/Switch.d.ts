@@ -1,6 +1,6 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
-    click(): void;
+    handleClick(): void;
 }> & ThisType<{
-    click(): void;
+    handleClick(): void;
 } & import("yox").YoxInterface>;
 export default _default;
