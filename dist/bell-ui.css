@@ -11384,29 +11384,25 @@ button.bell-button-warning-ghost[disabled] {
 .bell-progress .bell-progress-bg {
   background-color: #1890ff;
 }
-.bell-progress.success .bell-progress-bg {
+.bell-progress-success .bell-progress-bg {
   background-color: #19be6b;
 }
-.bell-progress.error .bell-progress-bg {
+.bell-progress-error .bell-progress-bg {
   background-color: #f5222d;
 }
-.bell-progress.warning .bell-progress-bg {
+.bell-progress-warning .bell-progress-bg {
   background-color: #f90;
 }
-.bell-progress.danger .bell-progress-bg {
+.bell-progress-danger .bell-progress-bg {
   background-color: #eb1111;
 }
-.bell-progress.info .bell-progress-bg {
+.bell-progress-info .bell-progress-bg {
   background-color: #2db7f5;
 }
-.bell-progress.bell-progress.active .bell-progress-inner,
-.bell-progress:active .bell-progress-inner,
-.bell-progress.bell-active .bell-progress-inner {
+.bell-progress.bell-progress-active .bell-progress-inner {
   position: relative;
 }
-.bell-progress.bell-progress.active .bell-progress-inner:before,
-.bell-progress:active .bell-progress-inner:before,
-.bell-progress.bell-active .bell-progress-inner:before {
+.bell-progress.bell-progress-active .bell-progress-inner:before {
   content: " ";
   opacity: 0;
   position: absolute;

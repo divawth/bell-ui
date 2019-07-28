@@ -1,6 +1,7 @@
 docs/
 dep/
 build/
+doc/
 src/
 type/
 yarn.*

@@ -87,8 +87,8 @@ export default {
 export default {
   template: `
     <div style="height: 100px;">
-      <Progress percent="{{25}}" strokeWidth="5">25</Progress>
-      <Progress percent="{{100}}" type="success">
+      <Progress percent="{{25}}" thickness="5">25</Progress>
+      <Progress percent="{{100}}" type="success" active>
         <Icon type="checkmark-circled" />
         <span style="margin-left: 10px;">成功</span>
       </Progress>
@@ -105,7 +105,7 @@ export default {
 ---|---|---|---|---
 percent | 百分比 | number | 0 | 0
 type | 类型 | string | - | -
-strokeWidth | 进度环的线宽 | number | 6 | 6
+thickness | 进度环的粗细 | number | 6 | 6
 hideInfo | 隐藏数值或状态图标 | boolean | - | false
 vertical | 是否在垂直方向显示 | boolean | - | false
 active | active | boolean | - | false
