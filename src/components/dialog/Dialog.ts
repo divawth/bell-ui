@@ -7,6 +7,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  DOCUMENT,
 } from '../constant'
 
 import {
@@ -20,20 +21,20 @@ export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING,
-      value: '温馨提示'
+      value: '温馨提示',
     },
     open: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: TRUE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -67,10 +68,10 @@ export default Yox.define({
   },
 
   afterMount() {
-    Yox.dom.append(document.body, this.$el)
+    Yox.dom.append(DOCUMENT.body, this.$el)
   },
 
   beforeDestroy() {
-    Yox.dom.remove(document.body, this.$el)
+    Yox.dom.remove(DOCUMENT.body, this.$el)
   }
 })

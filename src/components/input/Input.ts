@@ -9,6 +9,7 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_OBJECT,
+  DOCUMENT,
 } from '../constant'
 
 import {
@@ -65,7 +66,7 @@ export default Yox.define({
     suffix: {
       type: RAW_STRING
     },
-    autocomplete: {
+    autoComplete: {
       type: oneOf([ 'on', 'off' ])
     },
     wrap: {
@@ -74,7 +75,7 @@ export default Yox.define({
     spellcheck: {
       type: RAW_BOOLEAN
     },
-    readonly: {
+    readOnly: {
       type: RAW_BOOLEAN
     },
     maxLength: {
@@ -171,7 +172,7 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this, doc = document
+    const me = this
 
     const onKeydown: Listener = function (event) {
       const { originalEvent } = event
@@ -196,17 +197,17 @@ export default Yox.define({
     }
 
     Yox.dom.on(
-      doc,
+      DOCUMENT,
       'keydown',
       onKeydown
     )
     Yox.dom.on(
-      doc,
+      DOCUMENT,
       'keyup',
       onKeyup
     )
     Yox.dom.on(
-      doc,
+      DOCUMENT,
       'keypress',
       onKeypress
     )
@@ -216,17 +217,17 @@ export default Yox.define({
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
-            doc,
+            DOCUMENT,
             'keydown',
             onKeydown
           )
           Yox.dom.off(
-            doc,
+            DOCUMENT,
             'keyup',
             onKeyup
           )
           Yox.dom.off(
-            doc,
+            DOCUMENT,
             'keypress',
             onKeypress
           )

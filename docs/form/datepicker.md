@@ -50,7 +50,7 @@ export default {
             return new Date();
           },
           onClick: (picker) => {
-            this.$Message.info('Click today');
+            this.$message.info('Click today');
           }
         },
         {
@@ -61,7 +61,7 @@ export default {
             return date;
           },
           onClick: (picker) => {
-            this.$Message.info('Click yesterday');
+            this.$message.info('Click yesterday');
           }
         },
         {
@@ -72,7 +72,7 @@ export default {
             return date;
           },
           onClick: (picker) => {
-            this.$Message.info('Click a week ago');
+            this.$message.info('Click a week ago');
           }
         }
       ],
@@ -277,7 +277,7 @@ export default {
         on-ok="handleOk()"
       >
         <a href="javascript:void(0)" on-click="handleClick()">
-          <Icon type="ios-calendar-outline"></Icon>
+          <Icon type="ios-calendar-outline" />
           {{#if value3 === ''}}
             Select date
           {{else}}

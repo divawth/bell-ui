@@ -4,61 +4,64 @@ import template from './template/RadioGroup.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
 
 export default Yox.define({
-  name: '${prefix}radiogroup',
+  name: '${prefix}radioGroup',
   propTypes: {
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     name: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     value: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     type: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     vertical: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     button: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     }
   },
 
   template,
 
   events: {
-    radioValueChange(_, data) {
-      this.set({
+    'change.radio': function (event, data) {
+      event.stop()
+
+      const options = {
         value: data.value
-      })
+      }
+      this.set(options)
       this.fire(
-        'updateRadioValue',
-        {
-          value: data.value
-        },
+        'change.radioGroup',
+        options,
         TRUE
       )
       this.fire(
-        'change.radiogroup',
-        {
-          value: data.value
-        }
+        'change.radioGroup',
+        options
       )
     }
   }

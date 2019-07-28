@@ -44,8 +44,8 @@ class="${prefix}input-wrapper
           disabled
         {{/if}}
 
-        {{#if autocomplete}}
-          autocomplete="{{autocomplete}}"
+        {{#if autoComplete}}
+          autocomplete
         {{/if}}
 
         {{#if wrap}}
@@ -56,7 +56,7 @@ class="${prefix}input-wrapper
           spellcheck
         {{/if}}
 
-        {{#if readonly}}
+        {{#if readOnly}}
           readonly
         {{/if}}
 
@@ -74,7 +74,7 @@ class="${prefix}input-wrapper
           {{#if hasSlot('prefix') || prefix}} ${prefix}input-with-prefix{{/if}}
           {{#if hasSlot('suffix') || suffix}} ${prefix}input-with-suffix{{/if}}"
 
-        {{#if readonly}}
+        {{#if readOnly}}
           readonly
         {{/if}}
 
@@ -82,8 +82,8 @@ class="${prefix}input-wrapper
           maxlength="{{maxLength}}"
         {{/if}}
 
-        {{#if autocomplete}}
-          autocomplete="{{autocomplete}}"
+        {{#if autoComplete}}
+          autocomplete
         {{/if}}
 
         {{#if wrap}}
@@ -162,7 +162,7 @@ class="${prefix}input-wrapper
           name="close-circle"
           size="16"
           className="${prefix}input-clear-icon"
-          on-click="clear()"
+          on-click.native="clear()"
         />
       {{/if}}
 

@@ -19,28 +19,28 @@ export default Yox.define({
   propTypes: {
     type: {
       type: oneOf(RAW_ICON_TYPE_ARRAY),
-      value: RAW_ICON_IOS
+      value: RAW_ICON_IOS,
     },
     name: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     size: {
       type: RAW_NUMERIC,
-      value: 14
+      value: 14,
     },
     color: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     spin: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template
+  template,
 })

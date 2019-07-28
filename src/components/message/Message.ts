@@ -6,11 +6,11 @@ interface Config {
   top?: number
 }
 
-type arg = string | Data
+type Arg = string | Data
 
 const config: Config = {}
 
-let addMessage = function (type: string, arg: arg) {
+function addMessage(type: string, arg: Arg) {
   let data: Record<string, string> = {}
   data.type = type
 
@@ -25,36 +25,35 @@ let addMessage = function (type: string, arg: arg) {
   add(data)
 }
 
-let updateConfig = function (data: arg) {
-  if ((data as Data).duration) {
-    config.duration = (data as Data).duration
+function updateConfig(data: Data) {
+  if (data.duration) {
+    config.duration = data.duration
   }
-
-  if ((data as Data).top) {
-    config.top = (data as Data).top
+  if (data.top) {
+    config.top = data.top
   }
 }
 
 export default {
-  success: function(arg: arg) {
+  success(arg: Arg) {
     addMessage('success', arg)
   },
-  info: function(arg: arg) {
+  info(arg: Arg) {
     addMessage('info', arg)
   },
-  warning: function(arg: arg) {
+  warning(arg: Arg) {
     addMessage('warning', arg)
   },
-  error: function(arg: arg) {
+  error(arg: Arg) {
     addMessage('error', arg)
   },
-  loading: function(arg: arg) {
+  loading(arg: Arg) {
     addMessage('loading', arg)
   },
-  config: function (arg: arg) {
+  config(arg: Data) {
     updateConfig(arg)
   },
-  destroy: function () {
+  destroy() {
     console.log('destroy')
   }
 }

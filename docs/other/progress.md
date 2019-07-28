@@ -49,7 +49,7 @@ export default {
     {{/if}}
     strokeLinecap="round">
       {{#if percent == 100}}
-        <Icon type="checkmark-circled" style="color:#5cb85c"></Icon>
+        <Icon type="checkmark-circled" style="color:#5cb85c" />
         <span style="margin-left: 10px;">成功</span>
       {{else}}
         <span style="font-size:12px">
@@ -89,7 +89,7 @@ export default {
     <div style="height: 100px;">
       <Progress percent="{{25}}" strokeWidth="5">25</Progress>
       <Progress percent="{{100}}" type="success">
-        <Icon type="checkmark-circled"></Icon>
+        <Icon type="checkmark-circled" />
         <span style="margin-left: 10px;">成功</span>
       </Progress>
     </div>

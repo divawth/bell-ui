@@ -58,14 +58,14 @@ export default {
   },
   methods: {
     handleSubmit(name) {
-      this.$refs['formInline'].validate((isValid, errors) => {
+      this.$refs.formInline.validate((isValid, errors) => {
         this.set({
           errors: errors
         })
         if (isValid) {
-          this.$Message.success('提交成功!')
+          this.$message.success('提交成功!')
         } else {
-          this.$Message.error('表单验证失败!')
+          this.$message.error('表单验证失败!')
         }
       })
     }

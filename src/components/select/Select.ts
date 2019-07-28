@@ -13,6 +13,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  DOCUMENT,
 } from '../constant'
 
 export default Yox.define({
@@ -221,7 +222,7 @@ export default Yox.define({
   },
 
   afterMount() {
-    let me = this
+    const me = this
 
     if (me.get('value') != NULL
       && me.get('selectedText') == NULL
@@ -274,12 +275,12 @@ export default Yox.define({
     }
 
     Yox.dom.on(
-      document,
+      DOCUMENT,
       'click',
       documentClickHandler
     )
     Yox.dom.on(
-      document,
+      DOCUMENT,
       'keydown',
       documentKeydownHander
     )
@@ -289,12 +290,12 @@ export default Yox.define({
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
-            document,
+            DOCUMENT,
             'click',
             documentClickHandler
           )
           Yox.dom.off(
-            document,
+            DOCUMENT,
             'keydown',
             documentKeydownHander
           )

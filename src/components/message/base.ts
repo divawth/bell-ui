@@ -1,22 +1,26 @@
 import Yox, { Data } from 'yox'
+
 import template from './template/Message.hbs'
+
 import {
   TRUE,
   RAW_BOOLEAN,
   RAW_STRING,
   FALSE,
-  RAW_TYPE_ARRAY
+  RAW_TYPE_ARRAY,
+  DOCUMENT,
 } from '../constant'
-import { onTransitionEnd, oneOf } from '../util';
+
+import { onTransitionEnd, oneOf } from '../util'
 
 let id = 0
 
 function createMessage(data: Data) {
 
-  const namespace = '${prefix}message-' + id++
+  const namespace = '${prefix}message-' + (++id)
   const element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(document.body, element)
+  Yox.dom.append(DOCUMENT.body, element)
 
   const options = Yox.define({
     el: '#' + namespace,
@@ -58,13 +62,16 @@ function createMessage(data: Data) {
         top: 0,
         showTime: data.duration || 1500,
         isShow: FALSE,
-        close() {
-          if (Yox.is.func(data.onClose)) {
-            data.onClose()
-          }
-          if (instance) {
-            instance.destroy()
-          }
+      }
+    },
+
+    events: {
+      'close.alert': function () {
+        if (Yox.is.func(data.onClose)) {
+          data.onClose()
+        }
+        if (this.$el) {
+          this.destroy()
         }
       }
     },
@@ -104,7 +111,9 @@ function createMessage(data: Data) {
                 if (Yox.is.func(data.onClose)) {
                   data.onClose()
                 }
-                me.destroy()
+                if (me.$el) {
+                  me.destroy()
+                }
               }
             )
           },
@@ -114,15 +123,13 @@ function createMessage(data: Data) {
     },
 
     afterMount() {
-      let me = this
-      me.set({
-        marginLeft: me.$el.clientWidth
+      this.set({
+        marginLeft: this.$el.clientWidth
       })
-
-      me.fadeIn()
+      this.fadeIn()
     }
   })
-  const instance = new Yox(options)
+  new Yox(options)
 }
 
 export function add(data: Data) {

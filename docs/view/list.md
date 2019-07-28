@@ -129,10 +129,10 @@ export default {
   },
   methods: {
     edit: function () {
-      this.$Message.success('edit')
+      this.$message.success('edit')
     },
     cancel: function () {
-      this.$Message.success('cancel')
+      this.$message.success('cancel')
     },
     change: function () {
       let me = this
@@ -218,7 +218,7 @@ export default {
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
         <template slot="footer">
-          <Icon name="chatbubbles"></Icon>
+          <Icon name="chatbubbles" />
         </template>
         Junmer
       </Item>
@@ -227,7 +227,7 @@ export default {
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
         <template slot="footer">
-          <Icon name="chatbubbles"></Icon>
+          <Icon name="chatbubbles" />
         </template>
         Leon Lu
       </Item>
@@ -236,7 +236,7 @@ export default {
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
         <template slot="footer">
-          <Icon name="chatbubbles"></Icon>
+          <Icon name="chatbubbles" />
         </template>
         Zhiqiang Zhang
       </Item>
@@ -245,7 +245,7 @@ export default {
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
         <template slot="footer">
-          <Icon name="chatbubbles"></Icon>
+          <Icon name="chatbubbles" />
         </template>
         CK Yau
       </Item>
@@ -259,7 +259,7 @@ export default {
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
         <template slot="footer">
-          <Icon name="chatbubbles"></Icon>
+          <Icon name="chatbubbles" />
         </template>
         Huiquan Huang
       </Item>

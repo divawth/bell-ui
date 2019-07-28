@@ -12,7 +12,9 @@ style="{{#if text}}color: {{color}};{{/if}}
     <img
       class="${prefix}avatar-image"
       src="{{src}}"
-      {{#if srcset}} srcset="{{srcset}}"{{/if}}
+      {{#if srcset}}
+        srcset="{{srcset}}"
+      {{/if}}
       ondragstart="return false"
     />
   {{else if hasSlot('icon')}}

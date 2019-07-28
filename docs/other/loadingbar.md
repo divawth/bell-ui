@@ -15,13 +15,13 @@ export default {
   `,
   methods: {
     start: function () {
-      this.$LoadingBar.start()
+      this.$loadingBar.start()
     },
     finish: function () {
-      this.$LoadingBar.finish()
+      this.$loadingBar.finish()
     },
     error: function () {
-      this.$LoadingBar.start({
+      this.$loadingBar.start({
         percent: 40,
         type: 'error'
       })
@@ -34,9 +34,9 @@ export default {
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$LoadingBar.start(callback)
-- this.$LoadingBar.finish(callback)
-- this.$LoadingBar.update(data, callback)
+- this.$loadingBar.start(callback)
+- this.$loadingBar.finish(callback)
+- this.$loadingBar.update(data, callback)
 
 > Attributes
 

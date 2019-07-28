@@ -23,22 +23,22 @@ export default Yox.define({
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY
+      value: RAW_TYPE_PRIMARY,
     },
     closable: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     showIcon: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     center: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -50,7 +50,7 @@ export default Yox.define({
       RAW_TYPE_INFO,
       RAW_TYPE_SUCCESS,
       RAW_TYPE_WARNING,
-      RAW_TYPE_ERROR
+      RAW_TYPE_ERROR,
     }
   },
 
@@ -64,8 +64,10 @@ export default Yox.define({
       onTransitionEnd(
         me.$el,
         function () {
-          me.$el && me.$el.remove()
-          me.fire('close.alert')
+          if (me.$el) {
+            me.$el.remove()
+            me.fire('close.alert')
+          }
         }
       )
 

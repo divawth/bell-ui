@@ -13,7 +13,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Alert('这是一段内容');
+      this.$alert('这是一段内容');
     }
   }
 }
@@ -40,7 +40,7 @@ export default {
         `,
         methods: {
             open: function(type) {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     title: '标题名称',
                     button: {
@@ -76,7 +76,7 @@ export default {
         `,
         methods: {
             open: function(type) {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     width: 400,
                     title: '标题名称',
@@ -107,7 +107,7 @@ export default {
         `,
         methods: {
             open: function() {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     title: '标题名称',
                     button: {
@@ -121,7 +121,7 @@ export default {
                 });
             },
             open2: function() {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     title: '标题名称',
                     button: {
@@ -151,7 +151,7 @@ export default {
         `,
         methods: {
             open: function() {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     title: '标题名称',
                     button: {
@@ -166,7 +166,7 @@ export default {
                 });
             },
             open2: function() {
-                this.$Alert({
+                this.$alert({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     title: '标题名称',
                     button: {
@@ -183,7 +183,7 @@ export default {
 
 API
 
-通过直接调用以下方法来使用组件： this.$Alert(data);
+通过直接调用以下方法来使用组件： this.$alert(data);
 
 > data 参数
 
@@ -218,7 +218,7 @@ Confirm 的所有属性同 Alert 但是支持传入 buttons 对象
         `,
         methods: {
             open: function() {
-                this.$Confirm({
+                this.$confirm({
                     content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
                     width: 450,
                     title: '标题名称',
@@ -251,7 +251,7 @@ Confirm 的所有属性同 Alert 但是支持传入 buttons 对象
 
 API
 
-通过直接调用以下方法来使用组件： this.$Confirm(data);
+通过直接调用以下方法来使用组件： this.$confirm(data);
 
 > data 参数
 
@@ -268,4 +268,4 @@ width | 宽度 | number | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onClose | 关闭 alert 时触发的事件 | -
+close | 关闭 alert 时触发的事件 | -

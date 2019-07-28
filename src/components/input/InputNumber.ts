@@ -1,4 +1,5 @@
 import Yox, { Listener } from 'yox'
+
 import template from './template/InputNumber.hbs'
 
 import {
@@ -19,48 +20,48 @@ import {
 export default Yox.define({
   propTypes: {
     formatter: {
-      type: RAW_FUNCTION
+      type: RAW_FUNCTION,
     },
     status: {
-      type: oneOf(RAW_TYPE_ARRAY)
+      type: oneOf(RAW_TYPE_ARRAY),
     },
     max: {
       type: RAW_NUMERIC,
-      value: 100
+      value: 100,
     },
     min: {
       type: RAW_NUMERIC,
-      value: 0
+      value: 0,
     },
     value: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     step: {
       type: RAW_NUMERIC,
-      value: 1
+      value: 1,
     },
     size: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     editable: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: TRUE,
     },
-    readonly: {
+    readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     placeholder: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -68,7 +69,7 @@ export default Yox.define({
 
   data() {
     return {
-      isFocus: FALSE
+      isFocus: FALSE,
     }
   },
 
@@ -111,7 +112,7 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this, doc = DOCUMENT
+    const me = this
 
     const onKeydown: Listener = function (event) {
       if (!me.get('isFocus')) {
@@ -128,7 +129,7 @@ export default Yox.define({
     }
 
     Yox.dom.on(
-      doc,
+      DOCUMENT,
       'keydown',
       onKeydown
     )
@@ -138,7 +139,7 @@ export default Yox.define({
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
-            doc,
+            DOCUMENT,
             'keydown',
             onKeydown
           )

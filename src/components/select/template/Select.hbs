@@ -53,13 +53,17 @@ class="${prefix}select
       {{defaultText || '请选择...'}}
     </div>
 
-    <Icon name="arrow-down" className="${prefix}select-arrow" />
+    <Icon
+      name="arrow-down"
+      className="${prefix}select-arrow"
+    />
 
     {{#if clearable}}
-      <Icon name="close-circle"
+      <Icon
+        name="close-circle"
         size="16"
         className="${prefix}select-clear-icon"
-        on-click="clear()"
+        on-click.native="clear()"
       />
     {{/if}}
   </div>

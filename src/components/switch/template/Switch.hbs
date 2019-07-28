@@ -7,17 +7,28 @@ class="${prefix}switch
 {{#if loading}} ${prefix}switch-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}} on-click="click()"
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+
+{{#if !disabled && !loading}}
+  on-click="click()"
+{{/if}}
 >
 
   <span class="${prefix}switch-button">
     <span class="${prefix}switch-inner">
       {{#if checked}}
-      <slot name="checkedText" />
+        <slot name="checkedText" />
       {{else}}
-      <slot name="unCheckedText" />
+        <slot name="unCheckedText" />
       {{/if}}
     </span>
   </span>
-  <input class="${prefix}switch-input" type="hidden" value="{{value}}">
+
+  <input
+    class="${prefix}switch-input"
+    type="hidden"
+    value="{{value}}"
+  >
 </div>

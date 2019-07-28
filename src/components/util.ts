@@ -1,7 +1,7 @@
-import { UNDEFINED, NULL } from './constant'
+import { UNDEFINED, NULL, DOCUMENT } from './constant'
 import Yox, { CustomEventInterface, Listener, YoxInterface } from 'yox';
 
-const element = document.createElement('div')
+const element = DOCUMENT.createElement('div')
 
 const prefixs = ['Webkit', 'Moz', 'O', 'ms']
 

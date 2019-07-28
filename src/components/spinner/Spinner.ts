@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/Spinner.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
@@ -10,23 +11,24 @@ import {
 export default Yox.define({
   propTypes: {
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     text: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     fix: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     type: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template
+  template,
 })

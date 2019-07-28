@@ -20,32 +20,32 @@ export default Yox.define({
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_DEFAULT
+      value: RAW_DEFAULT,
     },
     size: {
       type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE ])
     },
     borderType: {
       type: oneOf(['solid', 'none', 'dashed']),
-      value: 'solid'
+      value: 'solid',
     },
     shape: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     fluid: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     ghost: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
   template,

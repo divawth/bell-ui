@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/Radio.hbs'
 
 import {
+  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -16,36 +17,38 @@ import {
 export default Yox.define({
   propTypes: {
     label: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     value: {
       type: [ RAW_NUMERIC, RAW_BOOLEAN, RAW_STRING ]
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     checked: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
   template,
 
   data() {
     return {
-      isChecked: FALSE,
       name: '',
-      isDisabled: this.get('disabled')
+      isChecked: FALSE,
+      isDisabled: this.get('disabled') === TRUE
     }
   },
 
   events: {
-    updateRadioValue(_, data) {
+    'change.radioGroup': function (_, data) {
       this.set({
         isChecked: data.value == this.get('value')
       })
@@ -54,27 +57,22 @@ export default Yox.define({
 
   methods: {
     click() {
-      let me = this
-      if (me.get('isDisabled')) {
-        return
-      }
-      me.fire(
-        'radioValueChange',
+      this.fire(
+        'change.radio',
         {
-          value: me.get('value')
+          value: this.get('value')
         }
       )
-      return
     }
   },
 
   afterMount() {
-    let radiogroup = findComponentUpward(this.$parent, '${prefix}radiogroup')
-    if (radiogroup) {
+    let radioGroup = findComponentUpward(this.$parent, '${prefix}radioGroup')
+    if (radioGroup) {
       this.set({
-        name: radiogroup.get('name'),
-        isDisabled: this.get('disabled') || radiogroup.get('disabled'),
-        isChecked: this.get('checked') || radiogroup.get('value') == this.get('value')
+        name: radioGroup.get('name'),
+        isDisabled: this.get('disabled') || radioGroup.get('disabled') === TRUE,
+        isChecked: this.get('checked') || radioGroup.get('value') == this.get('value')
       })
     }
   }

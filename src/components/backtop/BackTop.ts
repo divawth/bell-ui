@@ -1,4 +1,4 @@
-import Yox, { YoxInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/BackTop.hbs'
 
@@ -6,6 +6,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_NUMERIC,
+  WINDOW,
 } from '../constant'
 
 import {
@@ -17,24 +18,24 @@ export default Yox.define({
   propTypes: {
     bottom: {
       type: RAW_NUMERIC,
-      value: 30
+      value: 30,
     },
     right: {
       type: RAW_NUMERIC,
-      value: 30
+      value: 30,
     },
     height: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     duration: {
       type: RAW_NUMERIC,
-      value: 1000
+      value: 1000,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -48,32 +49,39 @@ export default Yox.define({
 
   events: {
     click() {
-      const me = this, parentElement = (me.$parent as YoxInterface).$el
+      const parent = this.$parent
+      if (!parent) {
+        return
+      }
+      const parentElement = parent.$el
       scrollTop(
         parentElement,
         parentElement.scrollTop,
         0,
-        me.get('duration')
+        this.get('duration')
       )
     }
   },
 
   afterMount() {
-    const me = this,
-    parentElement = me.$parent.$el,
+    const me = this, parent = me.$parent
+    if (!parent) {
+      return
+    }
+    const parentElement = parent.$el,
     onRefresh = function () {
       me.set({
         hidden: parentElement.scrollTop < (me.get('height') || parentElement.clientHeight)
       })
     }
     Yox.dom.on(parentElement, 'scroll', onRefresh)
-    Yox.dom.on(document, 'resize', onRefresh)
-    me.once(
+    Yox.dom.on(WINDOW, 'resize', onRefresh)
+    me.on(
       'beforeDestroy.hook',
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(parentElement, 'scroll', onRefresh)
-          Yox.dom.off(document, 'resize', onRefresh)
+          Yox.dom.off(WINDOW, 'resize', onRefresh)
         }
       }
     )

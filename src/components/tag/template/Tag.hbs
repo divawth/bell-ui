@@ -20,6 +20,11 @@ on-click="click()"
   </span>
 
   {{#if closable}}
-    <Icon size="20" name="close" className="${prefix}tag-close-icon" on-click="close()" />
+    <Icon
+      size="20"
+      name="close"
+      className="${prefix}tag-close-icon"
+      on-click.native="close()"
+    />
   {{/if}}
 </div>

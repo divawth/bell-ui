@@ -4,18 +4,21 @@ class="${prefix}rate
 {{#if type}} ${prefix}rate-{{type}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 
 on-mouseleave="handleLeave()"
 >
   <input type="hidden" model="value">
 
   {{#each 1 => count}}
-    <Icon name="{{icon}}"
+    <Icon
+      name="{{icon}}"
       size="{{20}}"
       className="${prefix}rate-star-full {{#if activeValue - this >= 0}} active{{/if}}"
       on-mousemove.native="handleMove($event, this)"
-      on-click="handleClick($event, this)"
+      on-click.native="handleClick($event, this)"
     >
       {{#if half}}
         <span data-type="half" class="${prefix}icon ${prefix}rate-star-content ${prefix}icon-ios-star-half

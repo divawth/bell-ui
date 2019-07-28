@@ -92,4 +92,5 @@ export const RAW_PLACEMENT_ARRAY = [
   RAW_RIGHT_END
 ]
 
+export const WINDOW = window
 export const DOCUMENT = document

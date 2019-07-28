@@ -18,11 +18,11 @@ export default {
     <div class="bell-template">
       <Menu theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon name="paper"></Icon>
+          <Icon name="paper" />
           内容管理
         </MenuItem>
         <MenuItem name="2">
-          <Icon name="people"></Icon>
+          <Icon name="people" />
           用户管理
         </MenuItem>
         <Submenu name="3">
@@ -41,7 +41,7 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon name="settings"></Icon>
+          <Icon name="settings" />
           <a href="https://yoxjs.github.io/yox/#/ts" target="_blank">
             综合设置（外链）
           </a>
@@ -78,11 +78,11 @@ export default {
     <div class="bell-template" style="width: 280px;">
       <Menu mode="vertical" theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon name="paper"></Icon>
+          <Icon name="paper" />
           内容管理
         </MenuItem>
         <MenuItem name="2">
-          <Icon name="people"></Icon>
+          <Icon name="people" />
           用户管理
         </MenuItem>
         <Submenu name="3">
@@ -101,7 +101,7 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon name="settings"></Icon>
+          <Icon name="settings" />
           <a href="https://ng.ant.design" target="_blank">综合设置</a>
         </MenuItem>
       </Menu>

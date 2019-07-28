@@ -7,9 +7,13 @@ class="${prefix}button-group
 {{else}} ${prefix}button-group-horizontal
 {{/if}}
 
-{{#if className}} {{className}}{{/if}}"
+{{#if className}}
+  {{className}}
+{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
 
   <slot name="children" />

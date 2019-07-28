@@ -144,14 +144,14 @@ export default {
     <div style="margin-top: 10px;">
       <div class="bell-buttons">
         <Button type="primary" shape="circle">
-          <Icon name="cloud-download"></Icon>
+          <Icon name="cloud-download" />
         </Button>
         <Button type="primary">
           搜索
         </Button>
         <Button type="primary" shape="round">
           <template slot="icon">
-            <Icon name="cloud-download" style="padding-right: 10px;" ></Icon>
+            <Icon name="cloud-download" style="padding-right: 10px;" />
           </template>
           搜索
         </Button>
@@ -163,7 +163,7 @@ export default {
       <div class="bell-buttons" style="margin-top: 10px;">
         <Button shape="circle">
           <template slot="icon">
-            <Icon name="cloud-download"></Icon>
+            <Icon name="cloud-download" />
           </template>
         </Button>
         <Button shape="round">
@@ -241,7 +241,7 @@ export default {
   template: `
     <div class="bell-buttons">
       <Button type="primary" shape="circle">
-        <Icon spin size="18" name="refresh"></Icon>
+        <Icon spin size="18" name="refresh" />
       </Button>
 
       <Button type="primary"
@@ -256,7 +256,7 @@ export default {
       <Button type="primary"
         on-click="toLoading2()"
       >
-        <Icon spin slot="icon" style="padding-right: 10px; vertical-align: top;" size="12" name="refresh"></Icon>
+        <Icon spin slot="icon" style="padding-right: 10px; vertical-align: top;" size="12" name="refresh" />
         {{#if !loading2}}
           Click me!
         {{else}}
@@ -305,12 +305,12 @@ export default {
       <br><br>
       <ButtonGroup>
         <Button type="primary">
-          <Icon name="arrow-back" style="margin-right: 6px;"></Icon>
+          <Icon name="arrow-back" style="margin-right: 6px;" />
           Backward
         </Button>
         <Button type="primary">
           Forward
-          <Icon name="arrow-forward" style="margin-left: 6px;"></Icon>
+          <Icon name="arrow-forward" style="margin-left: 6px;" />
         </Button>
       </ButtonGroup>
       <br><br>
@@ -331,12 +331,12 @@ export default {
       <br><br>
       <ButtonGroup shape="round">
         <Button type="primary">
-          <Icon name="arrow-back" style="margin-right: 8px;"></Icon>
+          <Icon name="arrow-back" style="margin-right: 8px;" />
           Backward
         </Button>
         <Button type="primary">
           Forward
-          <Icon name="arrow-forward" style="margin-left: 8px;"></Icon>
+          <Icon name="arrow-forward" style="margin-left: 8px;" />
         </Button>
       </ButtonGroup>
       <br><br>

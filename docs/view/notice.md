@@ -23,14 +23,14 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Notice.success({
+      this.$notice.success({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open1: function () {
-      this.$Notice.success({
+      this.$notice.success({
         title: '这是标题这是标题这是标题',
         width: 320
       })
@@ -64,28 +64,28 @@ export default {
 
   methods: {
     open: function () {
-      this.$Notice.success({
+      this.$notice.success({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open2: function () {
-      this.$Notice.info({
+      this.$notice.info({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open3: function () {
-      this.$Notice.warning({
+      this.$notice.warning({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open4: function () {
-      this.$Notice.error({
+      this.$notice.error({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
@@ -110,7 +110,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Notice.error({
+      this.$notice.error({
         title: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 0,
         width: 330
@@ -135,7 +135,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Notice.error({
+      this.$notice.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 10000
       })
@@ -159,7 +159,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Notice.error({
+      this.$notice.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         right: 100
       })
@@ -181,11 +181,11 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Notice.config({
+      this.$notice.config({
         right: 50,
         duration: 13000
       });
-      this.$Notice.error({
+      this.$notice.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         onClose: function () {
           console.log('close')
@@ -200,10 +200,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$Notice.info(content, duration, onClose)
-- this.$Notice.success(content, duration, onClose)
-- this.$Notice.warning(content, duration, onClose)
-- this.$Notice.error(content, duration, onClose)
+- this.$notice.info(content, duration, onClose)
+- this.$notice.success(content, duration, onClose)
+- this.$notice.warning(content, duration, onClose)
+- this.$notice.error(content, duration, onClose)
 
 > Props
 
@@ -218,11 +218,11 @@ duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onClose | 关闭 alert 时触发的事件 | -
+close | 关闭 alert 时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$Notice.config();
+- this.$notice.config();
 
 > Props
 

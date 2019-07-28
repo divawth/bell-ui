@@ -36,7 +36,7 @@ export default {
         "></a>
       </Badge>
       <Badge dot>
-        <Icon name="notifications-outline" size="26"></Icon>
+        <Icon name="notifications-outline" size="26" />
       </Badge>
       <Badge dot>
         <a href="#">可以是一个链接</a>

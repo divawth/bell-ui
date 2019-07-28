@@ -3,7 +3,9 @@ class="${prefix}badge{{#if status}}-status{{/if}}
 {{#if status || type}} ${prefix}badge-{{status || type}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
 
   <slot name="children" />
@@ -18,7 +20,11 @@ class="${prefix}badge{{#if status}}-status{{/if}}
       <span class="${prefix}badge-count
         {{#if !hasSlot('children')}} ${prefix}badge-count-alone{{/if}}"
       >
-        {{(status || text) ? text : formatText(count, maxCount)}}
+        {{
+          (status || text)
+          ? text
+          : formatText(count, maxCount)
+        }}
       </span>
     {{/if}}
 

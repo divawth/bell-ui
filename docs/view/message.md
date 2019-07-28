@@ -17,7 +17,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.success('恭喜你，这是一条成功消息')
+      this.$message.success('恭喜你，这是一条成功消息')
     }
   }
 }
@@ -48,16 +48,16 @@ export default {
 
   methods: {
     open: function () {
-      this.$Message.success('恭喜你，这是一条成功消息');
+      this.$message.success('恭喜你，这是一条成功消息');
     },
     open2: function () {
-      this.$Message.info('这是一条有 icon 的消息而已～');
+      this.$message.info('这是一条有 icon 的消息而已～');
     },
     open3: function () {
-      this.$Message.warning('警告哦，这是一条警告消息');
+      this.$message.warning('警告哦，这是一条警告消息');
     },
     open4: function () {
-      this.$Message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
+      this.$message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
     }
   }
 }
@@ -78,7 +78,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.error({
+      this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         closable: true
       })
@@ -102,7 +102,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.error({
+      this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         showIcon: true,
         closable: true,
@@ -128,7 +128,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.error({
+      this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         showIcon: true,
         duration: 10000
@@ -153,7 +153,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.error({
+      this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         showIcon: true,
         top: 100
@@ -176,11 +176,11 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$Message.config({
+      this.$message.config({
         top: 50,
         duration: 13000
       });
-      this.$Message.error({
+      this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         closable: true,
         closeText: 'Close me!',
@@ -197,10 +197,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$Message.info(content, duration, onClose)
-- this.$Message.success(content, duration, onClose)
-- this.$Message.warning(content, duration, onClose)
-- this.$Message.error(content, duration, onClose)
+- this.$message.info(content, duration, onClose)
+- this.$message.success(content, duration, onClose)
+- this.$message.warning(content, duration, onClose)
+- this.$message.error(content, duration, onClose)
 
 > props
 
@@ -218,11 +218,11 @@ duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-onClose | 关闭时触发的事件 | -
+close | 关闭时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$Message.config()
+- this.$message.config()
 
 > props
 

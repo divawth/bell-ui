@@ -5,11 +5,12 @@ class="${prefix}icon
 {{#if className}} {{className}}{{/if}}"
 
 style="font-size: {{size}}px;
-{{#if color}} color: {{color}};{{/if}}
-{{#if style}} {{style}}{{/if}}"
-
-on-click="click.icon"
-on-mousemove="mousemove.icon"
+{{#if color}}
+  color: {{color}};
+{{/if}}
+{{#if style}}
+  {{style}}
+{{/if}}"
 >
   <slot name="children" />
 </i>

@@ -1,7 +1,3 @@
-/*
- * @file 主模块
- * @author wangtianhua
- */
 import './css/index.styl'
 
 import Layout from './components/layout/Layout'
@@ -183,11 +179,11 @@ export const install = function (Yox) {
   Yox.dom.append(document.body, noticeElement)
 
   Yox.component(components)
-  Yox.prototype.$Message = Message
-  Yox.prototype.$Confirm = Msgbox.Confirm
-  Yox.prototype.$Alert = Msgbox.Alert
-  Yox.prototype.$Notice = Notice
-  Yox.prototype.$LoadingBar = LoadingBar
+  Yox.prototype.$message = Message
+  Yox.prototype.$confirm = Msgbox.Confirm
+  Yox.prototype.$alert = Msgbox.Alert
+  Yox.prototype.$notice = Notice
+  Yox.prototype.$loadingBar = LoadingBar
 }
 
 if (typeof window !== 'undefined' && window[ 'Yox' ]) {

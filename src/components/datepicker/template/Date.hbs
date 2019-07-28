@@ -1,7 +1,7 @@
-<div 
+<div
 class="${prefix}datepicker-date
-{{#if className}} {{className}}{{/if}}
-"
+{{#if className}} {{className}}{{/if}}"
+
 {{#if style}} {{style}}{{/if}}
 >
 
@@ -42,7 +42,7 @@ class="${prefix}datepicker-date
         <div class="${prefix}datepicker-row">
           {{#each this:index}}
             <div
-              class="{{#if isCurrentMonth && !disabled}} 
+              class="{{#if isCurrentMonth && !disabled}}
                 ${prefix}datepicker-col-current-month
               {{else if disabled}}
                 ${prefix}datepicker-col-disabled

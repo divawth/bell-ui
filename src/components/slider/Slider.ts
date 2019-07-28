@@ -11,6 +11,7 @@ import {
   RAW_NUMBER,
   RAW_STRING,
   RAW_BOOLEAN,
+  DOCUMENT,
 } from '../constant'
 
 export default Yox.define({
@@ -75,23 +76,23 @@ export default Yox.define({
       }
       me.setValue(event.originalEvent as TouchEvent)
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'touchmove',
         me.handleTouchMove
       )
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'touchup',
         me.handleTouchEnd
       )
 
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'touchend',
         me.handleTouchEnd
       )
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'touchcancel',
         me.handleTouchEnd
       )
@@ -105,22 +106,22 @@ export default Yox.define({
         return
       }
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'touchmove',
         me.handleTouchMove
       )
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'touchup',
         me.handleTouchEnd
       )
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'touchend',
         me.handleTouchEnd
       )
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'touchcancel',
         me.handleTouchEnd
       )
@@ -143,12 +144,12 @@ export default Yox.define({
       }
       me.setValue(event.originalEvent as MouseEvent)
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'mousemove',
         me.handleDragMouseMove
       )
       Yox.dom.on(
-        document,
+        DOCUMENT,
         'mouseup',
         me.handleDragMouseEnd
       )
@@ -162,12 +163,12 @@ export default Yox.define({
         return
       }
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'mousemove',
         me.handleDragMouseMove
       )
       Yox.dom.off(
-        document,
+        DOCUMENT,
         'mouseup',
         me.handleDragMouseEnd
       )

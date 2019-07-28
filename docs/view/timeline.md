@@ -42,7 +42,7 @@ export default {
   <div>
     <TimeLine>
       <TimeLineItem>
-        <Icon style="color: #19be6b;" name="trophy" slot="dot"></Icon>
+        <Icon style="color: #19be6b;" name="trophy" slot="dot" />
         <p class="time" style="font-size: 14px; font-weight: bold;">1976年</p>
         <p>Apple I 问世</p>
       </TimeLineItem>

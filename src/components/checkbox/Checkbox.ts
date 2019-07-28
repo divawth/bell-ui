@@ -4,6 +4,7 @@ import template from './template/Checkbox.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
@@ -27,12 +28,15 @@ export default Yox.define({
     },
     indeterminate: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     checked: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     type: {
       type: RAW_STRING,
@@ -52,14 +56,12 @@ export default Yox.define({
 
   events: {
     'change.checkboxGroup': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
-        this.set({
-          checked: Yox.array.has(
-            data.selected,
-            this.get('value')
-          )
-        })
-      }
+      this.set({
+        checked: Yox.array.has(
+          data.selected,
+          this.get('value')
+        )
+      })
     }
   },
 
@@ -68,7 +70,7 @@ export default Yox.define({
       this.fire(
         'change.checkbox',
         {
-          checked: checked,
+          checked,
           value: this.get('value')
         }
       )

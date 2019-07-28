@@ -39,13 +39,13 @@ export default {
   template: `
     <Breadcrumb>
       <BreadcrumbItem to="/">
-        <Icon name="home"></Icon> Home
+        <Icon name="home" /> Home
       </BreadcrumbItem>
       <BreadcrumbItem to="/components/breadcrumb">
-        <Icon name="person"></Icon> Components
+        <Icon name="person" /> Components
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <Icon name="star"></Icon> Breadcrumb
+        <Icon name="star" /> Breadcrumb
       </BreadcrumbItem>
     </Breadcrumb>
   `

@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/Switch.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
@@ -11,43 +12,41 @@ export default Yox.define({
 
   propTypes: {
     type: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     checked: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     loading: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
+
   template,
 
   model: 'checked',
 
   methods: {
     click() {
-      if (this.get('disabled')
-        || this.get('loading')
-      ) {
-        return
-      }
-      this.toggle('checked')
       this.fire(
         'change.switch',
         {
-          checked: this.get('checked')
+          checked: this.toggle('checked')
         }
       )
     }

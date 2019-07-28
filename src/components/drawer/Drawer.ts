@@ -7,6 +7,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  DOCUMENT,
 } from '../constant'
 
 import {
@@ -120,10 +121,10 @@ export default Yox.define({
   },
 
   afterMount() {
-    Yox.dom.append(document.body, this.$el)
+    Yox.dom.append(DOCUMENT.body, this.$el)
   },
 
   beforeDestroy() {
-    Yox.dom.remove(document.body, this.$el)
+    Yox.dom.remove(DOCUMENT.body, this.$el)
   }
 })

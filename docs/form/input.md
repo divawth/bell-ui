@@ -163,7 +163,7 @@ export default {
 }
 ```
 
-> 禁用状态 
+> 禁用状态
 
 ```js
 export default {
@@ -228,10 +228,10 @@ enterButton | 开启 search 时可用，是否有确认按钮，可设为按钮�
 rows | 行数, 仅在 textarea 类型下有效 | number | - | 2
 autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 } | Object | - | -
 secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
-autocomplete | 是否应该启用自动完成功能 | string | on, off | -
+autoComplete | 是否应该启用自动完成功能 | string | on, off | -
 wrap | wrap 属性规定当在表单中提交时，文本区域（text area）中的文本如何换行 | string | soft, hard | -
 spellcheck | 是否对元素内容进行拼写检查 | boolean | - | -
-readonly | 设置输入框为只读 | boolean | - | false
+readOnly | 设置输入框为只读 | boolean | - | false
 maxLength | 最大输入长度 | number | - | -
 
 > Events

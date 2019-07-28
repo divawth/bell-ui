@@ -18,35 +18,35 @@ import {
 export default Yox.define({
   propTypes: {
     text: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     count: {
-      type: RAW_NUMBER
+      type: RAW_NUMBER,
     },
     maxCount: {
       type: RAW_NUMBER,
-      value: 999
+      value: 999,
     },
     dot: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     hidden: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_ERROR
+      value: RAW_TYPE_ERROR,
     },
     status: {
-      type: oneOf(RAW_TYPE_ARRAY)
+      type: oneOf(RAW_TYPE_ARRAY),
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -54,7 +54,7 @@ export default Yox.define({
 
   filters: {
     isNumber: Yox.is.numeric,
-    formatText(count: number, maxCount: number) {
+    formatText(count: any, maxCount: any) {
       count = Yox.is.numeric(count) ? +count : 0
       maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1
       return maxCount < count

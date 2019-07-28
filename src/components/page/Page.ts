@@ -11,7 +11,9 @@ import {
   RAW_ARRAY,
   RAW_BOTTOM,
   RAW_TOP,
+  DOCUMENT,
 } from '../constant'
+
 import { oneOf } from '../util'
 
 export default Yox.define({
@@ -214,7 +216,7 @@ export default Yox.define({
 
   afterMount() {
 
-    let me = this, doc = document
+    const me = this
 
     me.updateCount()
 
@@ -249,7 +251,7 @@ export default Yox.define({
     }
 
     Yox.dom.on(
-      doc,
+      DOCUMENT,
       'keydown',
       onKeydown
     )
@@ -259,7 +261,7 @@ export default Yox.define({
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
-            doc,
+            DOCUMENT,
             'keydown',
             onKeydown
           )

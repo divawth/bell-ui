@@ -155,19 +155,19 @@ export default {
         </template>
         <Menu mode="horizontal" theme="dark" active-name="1">
           <MenuItem name="1">
-            <Icon style="margin-right: 6px;" name="navigate"></Icon>
+            <Icon style="margin-right: 6px;" name="navigate" />
             Item 1
           </MenuItem>
           <MenuItem name="2">
-            <Icon style="margin-right: 6px;" name="keypad"></Icon>
+            <Icon style="margin-right: 6px;" name="keypad" />
             Item 2
           </MenuItem>
           <MenuItem name="3">
-            <Icon style="margin-right: 6px;" name="analytics"></Icon>
+            <Icon style="margin-right: 6px;" name="analytics" />
             Item 3
           </MenuItem>
           <MenuItem name="4">
-            <Icon style="margin-right: 6px;" name="paper"></Icon>
+            <Icon style="margin-right: 6px;" name="paper" />
             Item 4
           </MenuItem>
         </Menu>
@@ -206,19 +206,19 @@ export default {
         </template>
         <Menu mode="horizontal" theme="dark" active-name="1">
           <MenuItem name="1">
-            <Icon style="margin-right: 6px;" name="navigate"></Icon>
+            <Icon style="margin-right: 6px;" name="navigate" />
             Item 1
           </MenuItem>
           <MenuItem name="2">
-            <Icon style="margin-right: 6px;" name="keypad"></Icon>
+            <Icon style="margin-right: 6px;" name="keypad" />
             Item 2
           </MenuItem>
           <MenuItem name="3">
-            <Icon style="margin-right: 6px;" name="analytics"></Icon>
+            <Icon style="margin-right: 6px;" name="analytics" />
             Item 3
           </MenuItem>
           <MenuItem name="4">
-            <Icon style="margin-right: 6px;" name="paper"></Icon>
+            <Icon style="margin-right: 6px;" name="paper" />
             Item 4
           </MenuItem>
         </Menu>
@@ -227,19 +227,19 @@ export default {
         <Sider>
           <Menu mode="inline" theme="dark" active-name="1">
             <MenuItem name="1">
-              <Icon style="margin-right: 6px;" name="navigate"></Icon>
+              <Icon style="margin-right: 6px;" name="navigate" />
               Item 1
             </MenuItem>
             <MenuItem name="2">
-              <Icon style="margin-right: 6px;" name="keypad"></Icon>
+              <Icon style="margin-right: 6px;" name="keypad" />
               Item 2
             </MenuItem>
             <MenuItem name="3">
-              <Icon style="margin-right: 6px;" name="analytics"></Icon>
+              <Icon style="margin-right: 6px;" name="analytics" />
               Item 3
             </MenuItem>
             <MenuItem name="4">
-              <Icon style="margin-right: 6px;" name="paper"></Icon>
+              <Icon style="margin-right: 6px;" name="paper" />
               Item 4
             </MenuItem>
           </Menu>

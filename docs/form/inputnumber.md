@@ -119,15 +119,15 @@ export default {
 }
 ```
 
-> readonly 只读。
+> readOnly 只读。
 
 ```js
 export default {
   template: `
   <div>
-    <InputNumber size="large" readonly min="1" model="value" />
-    <InputNumber readonly min="1" model="value" />
-    <InputNumber size="small" readonly min="1" model="value" />
+    <InputNumber size="large" readOnly min="1" model="value" />
+    <InputNumber readOnly min="1" model="value" />
+    <InputNumber size="small" readOnly min="1" model="value" />
     <style>
       .bell-input-number {
         margin-left: 10px;
@@ -180,7 +180,7 @@ size | 大小 | string | large, small, default | default
 status | 颜色风格 | string | info等 | primary
 disabled | 是否禁用 | boolean | - | false
 editable | 是否可编辑 | boolean | - | true
-readonly | 是否开启只读 | boolean | - | true
+readOnly | 是否开启只读 | boolean | - | true
 formatter | 指定输入框展示值的格式 | function | - | -
 placeholder | 占位文本 | string | - | -
 

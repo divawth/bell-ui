@@ -62,8 +62,10 @@ export default Yox.define({
     const offsetBottom = me.get('offsetBottom')
     const scrollElement = me.get('scrollElement')
 
-    if (Yox.is.string(me.get('container'))) {
-      let element = document.querySelector(me.get('container'))
+    const container = me.get('container')
+
+    if (Yox.is.string(container)) {
+      let element = Yox.dom.find(container)
       if (!element) {
         return
       }
@@ -71,11 +73,12 @@ export default Yox.define({
         scrollElement: element
       })
     }
-    else if (me.get('conatiner')) {
+    else if (container) {
       me.set({
-        scrollElement: me.get('container')
+        scrollElement: container
       })
     }
+
     const handlerScroll = debounce(
       function (event: CustomEventInterface) {
         let scrollTop: number, scrollHeight: number, clientHeight: number

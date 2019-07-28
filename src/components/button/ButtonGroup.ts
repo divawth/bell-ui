@@ -5,6 +5,11 @@ import template from './template/ButtonGroup.hbs'
 import {
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_LARGE,
+  RAW_SMALL,
+  RAW_TINY,
+  RAW_SHAPE_CIRCLE,
+  RAW_SHAPE_ROUND,
 } from '../constant'
 
 import {
@@ -14,10 +19,10 @@ import {
 export default Yox.define({
   propTypes: {
     size: {
-      type: oneOf(['large', 'small', 'tiny']),
+      type: oneOf([RAW_LARGE, RAW_SMALL, RAW_TINY]),
     },
     shape: {
-      type: oneOf(['round', 'circle']),
+      type: oneOf([RAW_SHAPE_ROUND, RAW_SHAPE_CIRCLE]),
     },
     vertical: {
       type: RAW_BOOLEAN,

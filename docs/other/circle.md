@@ -17,11 +17,11 @@ export default {
         <span class="demo-Circle-inner" style="font-size:24px">80%</span>
       </Circle>
       <Circle percent="80" size="100" strokeColor="#5cb85c" style="margin-left: 10px">
-        <Icon name="checkmark" size="60" style="color:#5cb85c"></Icon>
+        <Icon name="checkmark" size="60" style="color:#5cb85c" />
       </Circle>
       <Circle percent="40" size="100" strokeColor="#ff5500" style="margin-left: 10px">
         <span class="demo-Circle-inner">
-          <Icon name="close" size="50" style="color:#ff5500"></Icon>
+          <Icon name="close" size="50" style="color:#ff5500" />
         </span>
       </Circle>
     </div>
@@ -30,7 +30,7 @@ export default {
 ```
 
 
-> 配合外部组件使用 
+> 配合外部组件使用
 通过数据的联动和逻辑控制，实现交互效果。
 
 ```js
@@ -39,7 +39,7 @@ export default {
     <div>
       <Circle percent="{{percent}}" strokeLinecap="round">
         {{#if percent == 100}}
-          <Icon name="checkmark" size="{{60}}" style="color:#35D05E"></Icon>
+          <Icon name="checkmark" size="{{60}}" style="color:#35D05E" />
         {{else}}
           <span style="font-size:24px">
             {{ percent }}%
@@ -49,12 +49,12 @@ export default {
 
       <Button on-click="add()">
         <template slot="icon">
-          <Icon name="add"></Icon>
+          <Icon name="add" />
         </template>
       </Button>
       <Button on-click="minus()">
         <template slot="icon">
-          <Icon name="remove"></Icon>
+          <Icon name="remove" />
         </template>
       </Button>
     </div>
@@ -76,7 +76,7 @@ export default {
 }
 ```
 
-> 自定义更多样式 
+> 自定义更多样式
 
 ```js
 export default {
@@ -114,7 +114,7 @@ export default {
   `
 }
 ```
-  
+
 #### API
 
 > Props

@@ -4,6 +4,7 @@ import template from './template/CheckboxGroup.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -41,9 +42,11 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     vertical: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -62,20 +65,18 @@ export default Yox.define({
       }
     },
     'change.checkbox': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
-        const me = this
-        const selected = me.copy(me.get('selected'))
-        if (data.checked) {
-          if (!Yox.array.has(selected, data.value)) {
-            selected.push(data.value)
-          }
+      const me = this
+      const selected = me.copy(me.get('selected'))
+      if (data.checked) {
+        if (!Yox.array.has(selected, data.value)) {
+          selected.push(data.value)
         }
-        else {
-          Yox.array.remove(selected, data.value)
-        }
-        me.set({ selected })
-        event.stop()
       }
+      else {
+        Yox.array.remove(selected, data.value)
+      }
+      me.set({ selected })
+      event.stop()
     }
   },
   watchers: {
