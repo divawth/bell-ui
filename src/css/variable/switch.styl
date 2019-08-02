@@ -1,53 +1,51 @@
 $selector-switch =  $selector-prefix + '-switch'
-$selector-switch-button =  $selector-switch + '-button'
+$selector-switch-loading =  $selector-switch + '-loading'
+$selector-switch-enabled =  $selector-switch + '-enabled'
+$selector-switch-disabled =  $selector-switch + '-disabled'
+$selector-switch-active =  $selector-switch + '-active'
+$selector-switch-label =  $selector-switch + '-label'
 
-$switch-margin-gap = 8px
-$switch-font-size = 12px
-$switch-loading-zindex = $zindex-tiny
-$switch-loading-left = 3px
+$switch-loading-gap = 4px
+$switch-thumb-gap = 2px
+$switch-label-gap = 8px
 
-$switch-inner-left = 8px
+$switch-label-font-size = 12px
 
 $switch-size-hash = {
-  '' : {
+  'default' : {
     width: 44px,
     height: 22px,
-    after-size: 18px,
-    before-left: 25px
+    loading-size: 14px,
+    thumb-size: 18px,
   },
   'small': {
     width: 28px,
     height: 16px,
-    after-size: 12px,
-    before-left: 15px
+    loading-size: 8px,
+    thumb-size: 12px,
   },
   'large' : {
-    width: 56px
-    height: 22px,
-    after-size: 18px,
-    before-left: 37px
+    width: 60px
+    height: 26px,
+    loading-size: 18px,
+    thumb-size: 22px,
   }
 }
 
 $switch-brand-hash = {
-  '': {
+  'primary': {
     color: $brand-primary,
-    box-shadow: 0 0 0 2px rgba(45,140,240,.2)
   },
   'success': {
     color: $brand-success,
-    box-shadow: 0 0 0 2px rgba(25,190,107,.2)
   },
   'error': {
     color: $brand-error,
-    box-shadow: 0 0 0 2px rgba(237,64,20,.2)
   },
   'warning': {
     color: $brand-warning,
-    box-shadow: 0 0 0 2px rgba(255,153,0,.2)
   },
   'info': {
     color: $brand-info,
-    box-shadow: 0 0 0 2px rgba(45,183,245,.2)
   }
 }

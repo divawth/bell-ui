@@ -6,16 +6,30 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
+  RAW_SIZE_COMMON,
+  RAW_DEFAULT,
 } from '../constant'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
 
+  template,
+
+  model: 'checked',
+
   propTypes: {
     type: {
-      type: RAW_STRING,
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
     size: {
-      type: RAW_STRING,
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -36,10 +50,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
-
-  model: 'checked',
 
   methods: {
     handleClick() {

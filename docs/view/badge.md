@@ -43,7 +43,7 @@ export default {
       </Badge>
       <style>
         .bell-badge {
-          margin-right: 40px;
+          margin-right: 20px;
         }
       </style>
     </div>
@@ -51,17 +51,17 @@ export default {
 }
 ```
 
-> 设置 maxCount
+> 设置 max
 
 ```js
 export default {
   template: `
   <div>
-    <Badge count="212" maxCount="99">
+    <Badge count="212" max="99">
       <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
     </Badge>
     <br><br>
-    <Badge count="212211" maxCount="999">
+    <Badge count="212211" max="999">
       <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
     </Badge>
     <br><br>
@@ -82,6 +82,7 @@ export default {
   template: `
   <div>
     <Badge text="你好" />
+    <Badge type="primary" text="你好" />
     <Badge type="success" text="你好" />
     <Badge type="info" text="你好" />
     <Badge type="warning" text="你好" />
@@ -116,31 +117,64 @@ export default {
 export default {
   template: `
     <div>
+      <Badge dot status="primary" />
       <Badge dot status="success" />
       <Badge dot status="error" />
       <Badge dot status="info" />
       <Badge dot status="warning" />
-      <Badge dot status="default" />
-      <Badge dot status="processing" />
-      <br />
+      <br>
+      <Badge dot status="primary" text="Primary" />
+      <br>
       <Badge dot status="success" text="Success" />
-      <br />
+      <br>
       <Badge dot status="error" text="Error" />
-      <br />
+      <br>
       <Badge dot status="info" text="Info" />
-      <br />
+      <br>
       <Badge dot status="warning" text="Warning" />
+      <style>
+        .bell-badge-status {
+          margin-right: 20px;
+        }
+      </style>
     </div>
   `
 }
 ```
+
+> ripple
+
+```js
+export default {
+  template: `
+    <div>
+      <Badge status="primary" dot ripple />
+      <Badge status="success" dot ripple />
+      <Badge status="error" dot ripple />
+      <Badge status="info" dot ripple />
+      <Badge status="warning" dot ripple />
+      <br>
+      <Badge status="primary" dot ripple text="Primary" />
+      <br>
+      <Badge status="success" dot ripple text="Success" />
+      <br>
+      <Badge status="error" dot ripple text="Error" />
+      <br>
+      <Badge status="info" dot ripple text="Info" />
+      <br>
+      <Badge status="warning" dot ripple text="Warning" />
+    </div>
+  `
+}
+```
+
 > hidden 不展示
 
 ```js
 export default {
   template: `
     <div on-click="click()">
-      <Badge hidden="{{hidden}}" count="212211" maxCount="999">
+      <Badge hidden="{{hidden}}" count="212211" max="999">
         <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
       </Badge>
       <p> 点击图片不展示 badge </p>
@@ -165,8 +199,9 @@ export default {
 ---|---|---|---|---
 count | 显示的数字 | number | - | -
 text | 显示文本 | string | - | -
-maxCount | 展示封顶的数字值 | number | - | 999
+max | 展示封顶的数字值 | number | - | 999
 dot | 不展示数字，只有一个小红点 | boolean | - | false
 hidden | 是否隐藏 | boolean | - | false
-type | 风格 | string | info, success, warning, error | error
-status | 状态 | string | info, success, warning, error | error
+ripple | 是否有发散动画 | boolean | - | false
+type | 风格 | string | primary, info, success, warning, error | error
+status | 状态 | string | primary, info, success, warning, error | -

@@ -1,19 +1,20 @@
 $selector-badge = $selector-prefix + '-badge'
 $selector-badge-status = $selector-badge + '-status'
-
-$selector-badge-count = $selector-badge + '-count'
+$selector-badge-ripple = $selector-badge + '-ripple'
+$selector-badge-content = $selector-badge + '-content'
 $selector-badge-dot = $selector-badge + '-dot'
+$selector-badge-text = $selector-badge + '-text'
+$selector-badge-text-addon = $selector-badge-text + '-addon'
+$selector-badge-text-only = $selector-badge-text + '-only'
 
-$badge-dot-size = 6px
-$badge-box-shadow = 0 0 0 1px #ffffff
-$badge-radius = 10px
-$badge-color = #ffffff
-$badge-padding = 3px 6px
-$badge-font-size = 12px
-$badge-status-text-color = #515a6e
-$badge-status-text-margin-left = 6px
+$badge-dot-size = 8px
+$badge-text-height = 20px
+$badge-padding-horizontal = 6px
 
 $badge-brand-hash = {
+  'primary': {
+    color: $brand-primary
+  },
   'info': {
     color: $brand-info
   },
@@ -22,15 +23,6 @@ $badge-brand-hash = {
   },
   'success': {
     color: $brand-success
-  },
-  'default': {
-    color: #e6ebf1
-  },
-  'processing': {
-    color: $brand-primary
-  },
-  'primary': {
-    color: $brand-error
   },
   'warning': {
     color: $brand-warning

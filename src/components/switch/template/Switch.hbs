@@ -1,9 +1,14 @@
 <div
 class="${prefix}switch
+
 {{#if type}} ${prefix}switch-{{type}}{{/if}}
 {{#if size}} ${prefix}switch-{{size}}{{/if}}
-{{#if disabled}} ${prefix}switch-disabled{{/if}}
-{{#if checked}} ${prefix}active{{/if}}
+
+{{#if disabled}} ${prefix}switch-disabled
+{{else}} ${prefix}switch-enabled
+{{/if}}
+
+{{#if checked}} ${prefix}switch-active{{/if}}
 {{#if loading}} ${prefix}switch-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -16,19 +21,14 @@ class="${prefix}switch
 {{/if}}
 >
 
-  <span class="${prefix}switch-button">
-    <span class="${prefix}switch-inner">
+  {{#if hasSlot('on') || hasSlot('off')}}
+    <div class="${prefix}switch-label">
       {{#if checked}}
         <slot name="on" />
       {{else}}
         <slot name="off" />
       {{/if}}
-    </span>
-  </span>
+    </div>
+  {{/if}}
 
-  <input
-    class="${prefix}switch-input"
-    type="hidden"
-    value="{{value}}"
-  >
 </div>

@@ -1,57 +1,39 @@
 switch-size-style(size)
-  ui-set('height', size[ 'height' ])
   ui-set('width', size[ 'width' ])
+  ui-set('height', size[ 'height' ])
   ui-set('border-radius', size[ 'height' ])
 
-  &{$selector-active}
-    {$selector-switch-button}
-      &:after
-        ui-set('margin-left', - size[ 'after-size' ] - 1)
-
-  {$selector-switch-button}
-    ui-set('height', size[ 'height' ] - 2)
-
-    {$selector-switch}-inner
-      ui-set('line-height', size[ 'height' ] - 2)
-      ui-set('height', size[ 'height' ] - 2)
-      ui-set('left', size[ 'height' ])
+  &{$selector-switch-active}
+    &:before
+      ui-set('margin-left', - size[ 'thumb-size' ] - $switch-thumb-gap)
 
     &:after
-      ui-set('width', size[ 'after-size' ])
-      ui-set('height', size[ 'after-size' ])
+      ui-set('margin-left', - size[ 'loading-size' ] - $switch-loading-gap)
 
-  &{$selector-switch}-loading
-    {$selector-switch-button}
-      &:before
-        ui-set('width', size[ 'after-size' ] - 6)
-        ui-set('height', size[ 'after-size' ] - 6)
+  &:before
+    ui-set('width', size[ 'thumb-size' ])
+    ui-set('height', size[ 'thumb-size' ])
 
-    &{$selector-active}
-      {$selector-switch-button}
-        &:before
-          ui-set('left', size[ 'before-left' ])
+  &:after
+    ui-set('width', size[ 'loading-size' ])
+    ui-set('height', size[ 'loading-size' ])
+
+  > {$selector-switch-label}
+    ui-set('line-height', size[ 'height' ])
+    ui-set('height', size[ 'height' ])
 
 switch-brand-style(style)
+  &:after
+    ui-set('border-left-color', style[ 'color' ])
 
-  &{$selector-switch}-loading
-    {$selector-switch-button}
-      &:before
-        ui-set('border-left-color', style[ 'color' ])
-
-  &{$selector-active}
+  &{$selector-switch-active}
     ui-set('background-color', style[ 'color' ])
-    ui-set('border-color', style[ 'color' ])
-
-  &{$selector-focus}
-    outline none
-    ui-set('box-shadow', style[ 'box-shadow' ])
 
 ui-switch()
   ui-connect(
     hash: $switch-size-hash,
     each: switch-size-style
   )
-
   ui-connect(
     hash: $switch-brand-hash,
     each: switch-brand-style

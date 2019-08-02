@@ -16,6 +16,7 @@ import {
 } from '../util'
 
 export default Yox.define({
+  template,
   propTypes: {
     type: {
       type: oneOf(RAW_ICON_TYPE_ARRAY),
@@ -42,5 +43,4 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-  template,
 })

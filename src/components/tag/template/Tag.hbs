@@ -1,30 +1,51 @@
 <div
 class="${prefix}tag
-{{#if border}} ${prefix}tag-border{{/if}}
-{{#if dot}} ${prefix}tag-dot{{/if}}
-{{#if size}} ${prefix}tag-{{size}}{{/if}}
-{{#if type}} ${prefix}tag-{{type}}{{/if}}
-{{#if checked}} ${prefix}tag-checked{{/if}}
-{{#if closable}} ${prefix}tag-closable{{/if}}
-{{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
-on-click="click()"
->
-  {{#if dot}}
-    <span class="${prefix}tag-dot-inner"></span>
+{{#if type}} ${prefix}tag-{{type}}
+
+  {{!
+    border 和 dot 互斥
+  }}
+  {{#if dot}} ${prefix}tag-dot
+  {{else}}
+
+      {{#if border}} ${prefix}tag-border
+      {{else}} ${prefix}tag-unborder
+      {{/if}}
+
   {{/if}}
 
-  <span class="${prefix}tag-text">
-    <slot name="children" />
-  </span>
+{{else}}
+  {{#if dot}} ${prefix}tag-dot
+  {{else if border}} ${prefix}tag-border
+  {{/if}}
+{{/if}}
+
+{{#if size}} ${prefix}tag-{{size}}{{/if}}
+
+{{#if checkable}} ${prefix}tag-checkable{{/if}}
+{{#if closable}} ${prefix}tag-closable{{/if}}
+
+{{#if checked}} ${prefix}tag-checked{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+
+{{#if checkable}}
+  on-click="toggle('checked')"
+{{/if}}
+>
+
+  <slot name="children" />
 
   {{#if closable}}
     <Icon
       size="20"
       name="close"
       className="${prefix}tag-close-icon"
-      on-click.native="close()"
+      on-click.native="fire('close.tag')"
     />
   {{/if}}
 </div>

@@ -105,7 +105,7 @@ export default {
         {{/each}}
 
         <template slot="extra">
-          <Button borderType="none" on-click="addTab()">
+          <Button border="none" on-click="addTab()">
             Add
           </Button>
         </template>

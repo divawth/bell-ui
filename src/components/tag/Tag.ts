@@ -7,66 +7,62 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_SIZE_COMMON,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_SECONDARY,
+  RAW_DEFAULT,
 } from '../constant'
 
+import { oneOf } from '../util'
+
 export default Yox.define({
+
+  template,
+
   propTypes: {
-    size: {
-      type: RAW_STRING,
-      value: 'small'
-    },
-    closable: {
-      type: RAW_BOOLEAN,
-      value: FALSE
-    },
-    border: {
-      type: RAW_BOOLEAN,
-      value: FALSE
-    },
-    dot: {
-      type: RAW_BOOLEAN,
-      value: FALSE
-    },
     type: {
-      type: RAW_STRING
+      type: oneOf(RAW_TYPE_ARRAY),
+    },
+    size: {
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     checkable: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    border: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    dot: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     checked: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template,
 
   watchers: {
-    checked(value: boolean) {
+    checked(checked: boolean) {
       this.fire(
         'change.tag',
         {
-          value: value
+          checked
         }
       )
-    }
-  },
-
-  methods: {
-    click() {
-      if (!this.get('checkable')) {
-        return
-      }
-      this.toggle('checked')
-    },
-    close() {
-      this.fire('close.tag')
     }
   }
 })

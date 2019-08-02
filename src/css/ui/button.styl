@@ -1,36 +1,134 @@
 {$selector-button}
 
-  ui-button()
-
   display inline-block
-  vertical-align middle
   text-align center
   user-select none
   white-space nowrap
-  cursor pointer
-  background-image none
-  font-weight 400
   border 1px solid transparent
+  background-color transparent
+  outline 0
 
-  transition color .2s ease-out,
-    background-color .2s ease-out,
-    border .2s ease-out,
-    box-shadow .2s ease-out
+  transition color .2s, background-color .2s, border-color .2s, box-shadow .2s
+
+  ui-button()
 
   + {$selector-button}
+    margin-left $ui-horizontal-gap
 
-    margin-left 10px
+{$selector-button-ghost}
+  color $brand-white
+  border-color $brand-white
+  ui-button-ghost-brand()
 
-  {$selector-icon}
+{$selector-button-circle}
+  padding 0
+  border-radius 50%
+  ui-button-circle-size()
 
-    vertical-align middle
+{$selector-button-round}
+  // 给一个足够大的值就行了
+  border-radius 100px
+
+{$selector-button-enabled}
+  cursor $cursor-clickable
+
+{$selector-button-disabled}
+  cursor $cursor-disabled
+  opacity 0.6
+
+{$selector-button-fluid}
+  ui-fluid()
 
 {$selector-button-group}
-
   display inline-block
-  vertical-align middle
   ui-button-group()
 
-{$selector-button}-fluid
+{$selector-button-group-horizontal}
+  > {$selector-button}
 
-  ui-fluid()
+    + {$selector-button}
+      margin-left 0
+      border-left none
+
+    &:first-child:not(:last-child)
+      border-top-right-radius 0
+      border-bottom-right-radius 0
+
+    &:last-child:not(:first-child)
+      border-top-left-radius 0
+      border-bottom-left-radius 0
+
+    &:not(:first-child):not(:last-child)
+      border-radius 0
+
+  > {$selector-button-enabled}
+    position relative
+    &:before
+      content ' '
+      position absolute
+      border-left-width 1px
+      border-left-color transparent
+      border-top none
+      border-right none
+      border-bottom none
+      left -1px
+      top -1px
+      bottom -1px
+      transition border-color .2s
+
+    &:first-child:before
+      content none
+
+    &:hover,
+    &:focus,
+    &:active
+      z-index 1
+
+{$selector-button-group-vertical}
+  > {$selector-button}
+    display block
+    width 100%
+
+    + {$selector-button}
+      margin-left 0px
+      border-top none
+
+    &:first-child:not(:last-child)
+      border-bottom-left-radius 0
+      border-bottom-right-radius 0
+
+    &:last-child:not(:first-child)
+      border-top-left-radius 0
+      border-top-right-radius 0
+
+    &:not(:first-child):not(:last-child)
+      border-radius 0
+
+  > {$selector-button-enabled}
+    position relative
+    &:before
+      content ' '
+      position absolute
+      border-top-width 1px
+      border-top-color transparent
+      border-left none
+      border-right none
+      border-bottom none
+      left -1px
+      right -1px
+      top -1px
+      transition border-color .2s
+
+    &:first-child:before
+      content none
+
+    &:hover,
+    &:focus,
+    &:active
+      z-index 1
+
+{$selector-button-group-round}
+  ui-connect(
+    hash: $button-circle-size-hash,
+    each: button-group-round-size
+  )

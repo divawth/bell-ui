@@ -1,238 +1,186 @@
 $selector-button = $selector-prefix + '-button'
+$selector-button-enabled = $selector-button + '-enabled'
+$selector-button-disabled = $selector-button + '-disabled'
+$selector-button-normal = $selector-button + '-normal'
+$selector-button-ghost = $selector-button + '-ghost'
+$selector-button-none = $selector-button + '-none'
+$selector-button-circle = $selector-button + '-circle'
+$selector-button-round = $selector-button + '-round'
+$selector-button-fluid = $selector-button + '-fluid'
+
+
 $selector-buttons = $selector-prefix + '-buttons'
 $selector-button-group = $selector-button + '-group'
+$selector-button-group-round = $selector-button-group + '-round'
+$selector-button-group-horizontal = $selector-button-group + '-horizontal'
+$selector-button-group-vertical = $selector-button-group + '-vertical'
 
 $button-size-hash = $size-hash
 
-$button-radius-hash = $radius-hash
-
 $button-border-hash = {
-  'solid': 1px solid,
   'none': none,
-  'dashed': 1px dashed
+  'solid': solid,
+  'dashed': dashed
 }
 
 $button-circle-size-hash = {
-  '': 32px,
-  tiny: 20px,
-  small: 26px,
-  large: 36px,
-  huge: 44px
+  'default': 32px,
+  'tiny': 20px,
+  'small': 26px,
+  'large': 36px,
+  'huge': 44px
 }
 
-$button-group-direction = {
-  'horizontal': true,
-  'vertical': false
-}
-
-$button-hash = {
-  'default-normal': {
+$button-normal-hash = {
+  'secondary': {
     color: $brand-secondary,
-    bg: $brand-bg,
+    bg-color: $brand-bg,
     border-color: $brand-border,
 
     hover-color: $brand-primary,
-    hover-bg: $brand-bg,
+    hover-bg-color: $brand-bg,
     hover-border-color: $brand-primary,
 
     active-color: $brand-primary,
-    active-bg: $brand-bg,
+  active-bg-color: $brand-bg,
     active-border-color: $brand-primary,
 
-    focus-border-color: rgba(45,140,240, .2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-primary-shadow,
   },
-  'primary-normal': {
+  'primary': {
     color: $brand-white,
-    bg: $brand-primary,
+    bg-color: $brand-primary,
     border-color: $brand-primary,
 
     hover-color: $brand-white,
-    hover-bg: $brand-primary-hover,
+  hover-bg-color: $brand-primary-hover,
     hover-border-color: $brand-primary-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-primary-active,
+    active-bg-color: $brand-primary-active,
     active-border-color: $brand-primary-active,
 
-    focus-border-color: rgba(45,140,240, .2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-primary-shadow,
   },
-  'success-normal': {
+  'success': {
     color: $brand-white,
-    bg: $brand-success,
+  bg-color: $brand-success,
     border-color: $brand-success,
 
     hover-color: $brand-white,
-    hover-bg: $brand-success-hover,
+    hover-bg-color: $brand-success-hover,
     hover-border-color: $brand-success-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-success-active,
+    active-bg-color: $brand-success-active,
     active-border-color: $brand-success-active,
 
-    focus-border-color: rgba(25,190,107,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-success-shadow,
   },
 
-  'error-normal': {
+  'error': {
     color: $brand-white,
-    bg: $brand-error,
+    bg-color: $brand-error,
     border-color: $brand-error,
 
     hover-color: $brand-white,
-    hover-bg: $brand-error-hover,
+    hover-bg-color: $brand-error-hover,
     hover-border-color: $brand-error-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-error-active,
+    active-bg-color: $brand-error-active,
     active-border-color: $brand-error-active,
 
-    focus-border-color: rgba(237,64,20,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-error-shadow,
   },
 
-  'info-normal': {
+  'info': {
     color: $brand-white,
-    bg: $brand-info,
+    bg-color: $brand-info,
     border-color: $brand-info,
 
     hover-color: $brand-white,
-    hover-bg: $brand-info-hover,
-    hover-border-color: $brand-info-hover,
+    hover-bg-color: $brand-info-hover,
+  hover-border-color: $brand-info-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-info-active,
+    active-bg-color: $brand-info-active,
     active-border-color: $brand-info-active,
 
-    focus-border-color: rgba(45,183,245,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-info-shadow,
   },
-  'warning-normal': {
+'warning': {
     color: $brand-white,
-    bg: $brand-warning,
+    bg-color: $brand-warning,
     border-color: $brand-warning,
 
     hover-color: $brand-white,
-    hover-bg: $brand-warning-hover,
+    hover-bg-color: $brand-warning-hover,
     hover-border-color: $brand-warning-hover,
 
     active-color: $brand-white,
-    active-bg: $brand-warning-active,
+    active-bg-color: $brand-warning-active,
     active-border-color: $brand-warning-active,
 
-    focus-border-color: rgba(255,153,0,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-bg: $brand-bg-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-warning-shadow,
   },
+}
 
-  'default-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+$button-ghost-hash = {
+  'secondary': {
     hover-color: $brand-info-hover,
     hover-border-color: $brand-info-hover,
 
     active-color: $brand-info-active,
     active-border-color: $brand-info-active,
 
-    focus-border-color: rgba(45,183,245,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-info-shadow,
   },
-  'primary-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+  'primary': {
     hover-color: $brand-primary,
     hover-border-color: $brand-primary-hover,
 
     active-color: $brand-primary-active,
     active-border-color: $brand-primary-active,
 
-    focus-border-color: rgba(45,140,240, .2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-primary-shadow
   },
-  'success-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+  'success': {
     hover-color: $brand-success-hover,
     hover-border-color: $brand-success-hover,
 
     active-color: $brand-success-active,
     active-border-color: $brand-success-active,
 
-    focus-border-color: rgba(25,190,107,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-success-shadow,
   },
 
-  'error-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+  'error': {
     hover-color: $brand-error-hover,
     hover-border-color: $brand-error-hover,
 
     active-color: $brand-error-active,
     active-border-color: $brand-error-active,
 
-    focus-border-color: rgba(237,64,20,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border
+    shadow-color: $brand-error-shadow,
   },
 
-  'info-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+  'info': {
     hover-color: $brand-info-hover,
     hover-border-color: $brand-info-hover,
 
     active-color: $brand-info-active,
     active-border-color: $brand-info-active,
 
-    focus-border-color: rgba(45,183,245,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-info-shadow,
   },
-  'warning-ghost': {
-    color: $brand-white,
-    border-color: $brand-white,
-
+  'warning': {
     hover-color: $brand-warning-hover,
     hover-border-color: $brand-warning-hover,
 
     active-color: $brand-warning-active,
     active-border-color: $brand-warning-active,
 
-    focus-border-color: rgba(255,153,0,.2),
-
-    disabled-color: $brand-text-disabled,
-    disabled-border-color: $brand-border,
+    shadow-color: $brand-warning-shadow,
   }
 }

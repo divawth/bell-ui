@@ -1,83 +1,75 @@
 {$selector-radio-group}
   display inline-block
-  vertical-align middle
-  user-select none
   ui-radio-group()
-  padding 0
-  font-size $radio-font-size
-  line-height $radio-height
 
-  {$selector-radio}
-    position relative
-    cursor $cursor-clickable
-    margin-right $radio-margin-gap
-    font-size $radio-font-size
-    line-height 1.5
+{$selector-radio}
+  display inline-block
+  user-select none
+  position relative
 
-    {$selector-radio}-wrapper
-      position absolute
-      width $radio-inner-size
-      height $radio-inner-size
-      top 50%
-      left 0
-      transform translateY(-50%)
+  ui-radio()
 
-    {$selector-radio}-inner
-      position absolute
-      border-radius 100%
-      width $radio-inner-size
-      height $radio-inner-size
-      border 1px solid $radio-border-color
-      transition color .15s
+  + {$selector-radio}
+    margin-left $ui-horizontal-gap
 
-      &:after
-        display inline-block
-        vertical-align middle
-        content ' '
-        border-radius 100%
-        ui-center()
-        width 2px
-        height 2px
-        opacity 0
-        transform scale(0) translate(-50%, -50%)
-        transform-origin left top
-        border 1px solid
+{$selector-radio-active}
+  > {$selector-radio-icon}:after
+    opacity 1
+    transform scale(1)
+
+{$selector-radio-disabled}
+  > {$selector-radio-icon}
+    border-color $brand-border-disabled
+    background-color $brand-bg-disabled
+    &:after
+      background-color $brand-border-disabled
+
+{$selector-radio-icon}
+  position absolute
+  left 0
+  top 50%
+  border-radius 50%
+  box-sizing border-box
+  border 1px solid $brand-border
+  transition border-color 0.3s, box-shadow 0.3s
+
+  &:after
+    content ' '
+
+    position absolute
+    left 50%
+    top 50%
+
+    border-radius 50%
+    background-color $brand-border
+
+    opacity 0
+    transform scale(0)
+    transition transform .2s, opacity .2s
 
 
-    {$selector-radio}-input
-      opacity 0
+{$selector-radio-input}
+  position absolute
+  opacity 0
 
-    {$selector-radio}-label
-      font-size $radio-font-size
-      line-height $radio-font-size
-      padding-left $radio-label-padding-left
+{$selector-radio-enabled},
+{$selector-radio-enabled} input
+  cursor $cursor-clickable
 
-    &{$selector-active}
-      {$selector-radio}-inner
-        color #fff
-        &:after
-          opacity 1
-          transform scale(3) translate(-50%,-50%)
-          transition transform .3s, opacity .3s
+{$selector-radio-enabled}:hover
+  > {$selector-radio-icon}
+    border-color $brand-border-hover
 
-    &{$selector-radio}-disabled
-      cursor $cursor-disabled
+{$selector-radio-disabled},
+{$selector-radio-disabled} input
+  cursor $cursor-disabled
 
-      span,
-      input
-        cursor $cursor-disabled
+{$selector-radio-vertical}
 
-      {$selector-radio}-inner
-        background-color #f3f3f3
-
-      &{$selector-hover}
-        {$selector-radio}-inner
-          border-color $radio-border-color
-
-{$selector-radio}-vertical
-  margin-bottom - $radio-margin-gap
-
-  {$selector-radio}
+  > {$selector-radio}
     width 100%
     display block
-    line-height $radio-height
+
+    + {$selector-radio}
+      margin-left 0
+      margin-top $ui-vertical-gap

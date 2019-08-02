@@ -43,17 +43,25 @@ export const RAW_RIGHT_START = 'right-start'
 export const RAW_RIGHT_END = 'right-end'
 
 export const RAW_TYPE_PRIMARY = 'primary'
-export const RAW_TYPE_INFO = 'info'
 export const RAW_TYPE_SUCCESS = 'success'
 export const RAW_TYPE_WARNING = 'warning'
 export const RAW_TYPE_ERROR = 'error'
+export const RAW_TYPE_INFO = 'info'
+export const RAW_TYPE_DANGER = 'danger'
 export const RAW_TYPE_SECONDARY = 'secondary'
 
 export const RAW_SHAPE_CIRCLE = 'circle'
 export const RAW_SHAPE_ROUND = 'round'
 
+export const RAW_BORDER_NONE = 'none'
+export const RAW_BORDER_SOLID = 'solid'
+export const RAW_BORDER_DASHED = 'dashed'
+
 export const RAW_ICON_IOS = 'ios'
 export const RAW_ICON_MD = 'md'
+
+export const RAW_EVENT_CLICK = 'click'
+export const RAW_EVENT_KEYDOWN = 'keydown'
 
 export const RAW_TYPE_ARRAY = [
   RAW_TYPE_PRIMARY,
@@ -70,6 +78,12 @@ export const RAW_SIZE_ARRAY = [
   RAW_DEFAULT,
   RAW_LARGE,
   RAW_HUGE
+]
+
+export const RAW_SIZE_COMMON = [
+  RAW_SMALL,
+  RAW_DEFAULT,
+  RAW_LARGE,
 ]
 
 export const RAW_ICON_TYPE_ARRAY = [

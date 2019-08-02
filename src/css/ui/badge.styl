@@ -1,78 +1,81 @@
+{$selector-badge},
+{$selector-badge-status}
+  display inline-block
+  position relative
+  font-size 0
+
+{$selector-badge-dot}
+  border-radius 50%
+  height $badge-dot-size
+  width $badge-dot-size
+  box-sizing content-box
+
+{$selector-badge-content}
+  font-size 12px
+  line-height 1
+
+{$selector-badge-text}
+  font-size 12px
+  box-sizing border-box
+  white-space nowrap
+
 {$selector-badge}
   ui-badge()
 
-  position relative
-  display inline-block
-  vertical-align middle
-  line-height 1
-
-  {$selector-badge-dot}
-    height $badge-dot-size
-    width $badge-dot-size
+  > {$selector-badge-dot}
     position absolute
-    right - $badge-dot-size
-    top 0
-    transform translate(-50%, -50%)
-    border-radius 100%
-    z-index $zindex-badge
-    box-shadow $badge-box-shadow
+    right -0.5 * $badge-dot-size
+    top -0.5 * $badge-dot-size
+    box-shadow 0 0 0 1px #fff
 
-  {$selector-badge-count}
-    white-space nowrap
+  > {$selector-badge-text}
+    // 给一个足够大的值就行了
+    border-radius 100px
+    text-align center
+    color #fff
+    min-width $badge-text-height
+    height $badge-text-height
+    line-height $badge-text-height
+    padding 0 $badge-padding-horizontal
+    box-shadow 0 0 0 1px #fff
+
+  > {$selector-badge-text-addon}
     position absolute
     left 100%
     top 0
     transform translate(-50%, -50%)
-    text-align center
-    border-radius $badge-radius
-    color $badge-color
-    padding $badge-padding
-    font-size $badge-font-size
-    box-shadow $badge-box-shadow
-    z-index $zindex-badge
 
-  {$selector-badge-count}-alone
-
-    position relative
-    left 0
+  > {$selector-badge-text-only}
+    display inline-block
 
 {$selector-badge-status}
-  display inline-block
-  vertical-align middle
-  position relative
 
-  {$selector-badge-dot}
+  > {$selector-badge-dot}
     display inline-block
-    vertical-align middle
-    border-radius 50%
-    height $badge-dot-size
-    width $badge-dot-size
-    z-index $zindex-badge
-    position relative
 
-  {$selector-badge-count}
-    display inline-block
-    vertical-align middle
-    color $badge-status-text-color
-    font-size $badge-font-size
-    margin-left $badge-status-text-margin-left
+  > {$selector-badge-text}
+    color $brand-text
     background-color transparent
 
-  &{$selector-badge}-processing
-    {$selector-badge}-dot
-      &:after
-        position absolute
-        top 0
-        left 0
-        width 100%
-        height 100%
-        border-radius 50%
-        box-sizing border-box
-        border 1px solid #2d8cf0
-        content ""
-        animation statusProcessing 1.2s infinite ease-in-out
+  > {$selector-badge-dot} + {$selector-badge-text}
+    margin-left $ui-label-gap
 
-@keyframes statusProcessing {
+{$selector-badge-ripple}
+  > {$selector-badge-dot}
+    position relative
+    &:after
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      border-radius 50%
+      box-sizing border-box
+      border 1px solid
+      content ""
+      animation bell-badge-ripple 1.2s infinite ease-in-out
+
+@keyframes bell-badge-ripple {
   0% {
     transform: scale(0.8);
     opacity: 0.5;

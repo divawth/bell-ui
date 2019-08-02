@@ -36,31 +36,31 @@ class="${prefix}input-wrapper
           rows="{{rows}}"
         {{/if}}
 
-        {{#if placeholder}}
-          placeholder="{{placeholder}}"
-        {{/if}}
-
-        {{#if disabled}}
-          disabled
-        {{/if}}
-
-        {{#if autoComplete}}
-          autocomplete
-        {{/if}}
-
         {{#if wrap}}
           wrap="{{wrap}}"
         {{/if}}
 
-        {{#if spellcheck}}
-          spellcheck
+        {{#if placeholder}}
+          placeholder="{{placeholder}}"
         {{/if}}
 
         {{#if readOnly}}
           readonly
         {{/if}}
 
-        style="{{textComputedStyle}}"
+        {{#if autoComplete}}
+          autocomplete
+        {{/if}}
+
+        {{#if spellCheck}}
+          spellcheck
+        {{/if}}
+
+        {{#if disabled}}
+          disabled
+        {{/if}}
+
+        style="{{textareaStyle}}"
       >
       </textarea>
 
@@ -69,40 +69,40 @@ class="${prefix}input-wrapper
       <input
         ref="input"
         type="{{currentType}}"
+        model="value"
         class="${prefix}input-el
           {{#if size}} ${prefix}input-{{size}}{{/if}}
           {{#if hasSlot('prefix') || prefix}} ${prefix}input-with-prefix{{/if}}
           {{#if hasSlot('suffix') || suffix}} ${prefix}input-with-suffix{{/if}}"
 
-        {{#if readOnly}}
-          readonly
-        {{/if}}
-
         {{#if maxLength}}
           maxlength="{{maxLength}}"
-        {{/if}}
-
-        {{#if autoComplete}}
-          autocomplete
         {{/if}}
 
         {{#if wrap}}
           wrap="{{wrap}}"
         {{/if}}
 
-        {{#if spellcheck}}
-          spellcheck
-        {{/if}}
-
         {{#if placeholder}}
           placeholder="{{placeholder}}"
+        {{/if}}
+
+        {{#if readOnly}}
+          readonly
+        {{/if}}
+
+        {{#if autoComplete}}
+          autocomplete
+        {{/if}}
+
+        {{#if spellCheck}}
+          spellcheck
         {{/if}}
 
         {{#if disabled}}
           disabled
         {{/if}}
 
-        model="value"
         on-blur="blur()"
         on-focus="focus()"
       />
@@ -139,21 +139,12 @@ class="${prefix}input-wrapper
       {{/if}}
 
       {{#if secure}}
-        {{#if isSecure}}
-          <span class="${prefix}input-suffix" on-click="toggle('isSecure')">
-            <Icon
-              name="eye"
-              className="${prefix}input-suffix-icon"
-            />
-          </span>
-        {{else}}
-          <span class="${prefix}input-suffix" on-click="toggle('isSecure')">
-            <Icon
-              name="eye-off"
-              className="${prefix}input-suffix-icon"
-            />
-          </span>
-        {{/if}}
+        <span class="${prefix}input-suffix" on-click="toggle('isSecure')">
+          <Icon
+            name="{{isSecure ? 'eye' : 'eye-off'}}"
+            className="${prefix}input-suffix-icon"
+          />
+        </span>
       {{/if}}
 
 

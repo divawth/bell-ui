@@ -1,63 +1,56 @@
 $selector-input-number = $selector-prefix + '-input-number'
-$selector-input-number-actions = $selector-prefix + '-input-number-actions'
+$selector-input-number-enabled = $selector-input-number + '-enabled'
+$selector-input-number-disabled = $selector-input-number + '-disabled'
+$selector-input-number-focus = $selector-input-number + '-focus'
+$selector-input-number-up = $selector-input-number + '-up'
+$selector-input-number-down = $selector-input-number + '-down'
+$selector-input-number-el = $selector-input-number + '-el'
+$selector-input-number-actions = $selector-input-number + '-actions'
 
 $input-number-width = 90px
 
 $input-number-el-placeholder-color = #D2D2D2
-$input-number-font-size = 12px
+$input-number-el-padding = 0 7px
 
-$input-number-wrapper-padding = 0 10px
 $input-number-actions-border-color = $brand-border
 $input-number-actions-color = #999
-$input-number-actions-size = 22px
+$input-number-actions-bg-color = #fff
+$input-number-actions-width = 22px
 
-$input-number-hash = {
-  '': 30px,
-  'small': 22px,
-  'large': 38px
+$input-number-size-hash = {
+  'default': {
+    height: 30px,
+    font-size: 13px,
+  },
+  'small': {
+    height: 22px,
+    font-size: 12px,
+  }
+  'large': {
+    height: 38px,
+    font-size: 15px,
+  }
 }
 
-$input-number-color-hash = {
-  '': {
-    color: #515a6e,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-    border-color-hover: $brand-primary-hover,
-    box-shadow: 0 0 0 2px rgba(45,140,240,.2)
+$input-number-brand-hash = {
+  'primary': {
+    hover-color: $brand-primary-hover,
+    shadow-color: $brand-primary-shadow,
   },
   'success': {
-    color: #515a6e,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-    border-color-hover: $brand-success-hover,
-    box-shadow: 0 0 0 2px rgba(25,190,107,.2)
+    hover-color: $brand-success-hover,
+    shadow-color: $brand-success-shadow,
   },
   'error': {
-    color: #515a6e,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-    border-color-hover: $brand-error-hover,
-    box-shadow: 0 0 0 2px rgba(237,64,20,.2)
+    hover-color: $brand-error-hover,
+    shadow-color: $brand-error-shadow,
   },
   'info': {
-    color: #515a6e,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-    border-color-hover: $brand-info-hover,
-    box-shadow: 0 0 0 2px rgba(45,183,245,.2)
+    hover-color: $brand-info-hover,
+    shadow-color: $brand-info-shadow,
   },
   'warning': {
-    color: #515a6e,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-    border-color-hover: $brand-warning-hover,
-    box-shadow: 0 0 0 2px rgba(255,153,0,.2)
+    hover-color: $brand-warning-hover,
+    shadow-color: $brand-warning-shadow,
   },
-  'disabled': {
-    color: $brand-muted,
-    bg-color: #F7F7F7,
-    border-color: $brand-border-disabled,
-    border-color-hover: $brand-border-disabled,
-    box-shadow: none
-  }
 }

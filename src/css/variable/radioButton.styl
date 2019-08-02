@@ -1,54 +1,35 @@
 $selector-radio-button = $selector-prefix + '-radio-button'
 
-$radio-button-gap = 8px
-
 $radio-button-brand-hash = {
-  '': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-primary,
-    color: $brand-main,
-    color-hover: $brand-primary
+  'primary': {
+    color-hover: $brand-primary-hover,
+    color-active: $brand-primary-hover,
+    shadow-color: $brand-primary-shadow
   },
   'success': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-success,
-    color: $brand-main,
-    color-hover: $brand-success
+    color-hover: $brand-success-hover,
+    color-active: $brand-success-hover,
+    shadow-color: $brand-success-shadow
   },
   'warning': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-warning,
-    color: $brand-main,
-    color-hover: $brand-warning
+    color-hover: $brand-warning-hover,
+    color-active: $brand-warning-hover,
+    shadow-color: $brand-warning-shadow
   },
   'error': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-error,
-    color: $brand-main,
-    color-hover: $brand-error
-  },
-  'danger': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-danger,
-    color: $brand-main,
-    color-hover: $brand-danger
+    color-hover: $brand-error-hover,
+    color-active: $brand-error-hover,
+    shadow-color: $brand-error-shadow
   },
   'info': {
-    bg-color: $brand-bg,
-    bg-color-hover: $brand-info,
-    color: $brand-main,
-    color-hover: $brand-info
-  },
-  'disabled': {
-    bg-color: $brand-bg-disabled,
-    bg-color-hover: $brand-bg-disabled,
-    color: #ccc,
-    color-hover: #ccc
+    color-hover: $brand-info-hover,
+    color-active: $brand-info-hover,
+    shadow-color: $brand-info-shadow
   }
 }
 
 $radio-button-size-hash = {
-  '': {
+  'default': {
     font: 13px,
     padding: 0 18px,
     height: 32px
@@ -58,7 +39,6 @@ $radio-button-size-hash = {
     padding: 0 18px,
     height: 36px
   },
-
   'small': {
     font: 12px,
     padding: 0 12px,

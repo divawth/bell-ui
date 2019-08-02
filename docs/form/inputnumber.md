@@ -4,7 +4,12 @@
 export default {
   template: `
   <div>
-    <InputNumber max="10" min="1" model="value" placeholder="请输入" />
+    <InputNumber
+      max="10"
+      min="1"
+      model="value"
+      placeholder="请输入"
+    />
   </div>
   `,
 }
@@ -16,11 +21,16 @@ export default {
 export default {
   template: `
     <div>
-      <InputNumber max="100" min="1" model="value2" step="3" />
+      <InputNumber
+        max="100"
+        min="1"
+        model="value"
+        step="3"
+      />
     </div>
   `,
   data: {
-    value2: 3
+    value: 3
   }
 }
 ```
@@ -34,11 +44,6 @@ export default {
       <InputNumber size="large" max="10" min="1" model="value3" />
       <InputNumber max="10" min="1" model="value3" />
       <InputNumber size="small" max="10" min="1" model="value3" />
-      <style>
-        .bell-input-number {
-          margin-left: 10px;
-        }
-      </style>
     </div>
   `,
   data: {
@@ -47,20 +52,15 @@ export default {
 }
 ```
 
-> status 修改颜色风格
+> type 修改颜色风格
 
 ```js
 export default {
   template: `
     <div>
       <InputNumber max="10" min="1" model="value4" />
-      <InputNumber status="error" max="10" min="1" model="value4" />
-      <InputNumber status="success" max="10" min="1" model="value4" />
-      <style>
-        .bell-input-number {
-          margin-left: 10px;
-        }
-      </style>
+      <InputNumber type="error" max="10" min="1" model="value4" />
+      <InputNumber type="success" max="10" min="1" model="value4" />
     </div>
   `,
   data: {
@@ -82,11 +82,6 @@ export default {
       <Button type="primary" on-click="toggle('disabled')">
         toggle disabled
       </Button>
-      <style>
-        .bell-input-number {
-          margin-left: 10px;
-        }
-      </style>
     </div>
   `,
   data: {
@@ -105,11 +100,6 @@ export default {
     <InputNumber size="large" editable="{{editable}}" min="1" model="value" />
     <InputNumber editable="{{editable}}" min="1" model="value" />
     <InputNumber size="small" editable="{{editable}}" min="1" model="value" />
-    <style>
-      .bell-input-number {
-        margin-left: 10px;
-      }
-    </style>
   </div>
   `,
   data: {
@@ -128,11 +118,6 @@ export default {
     <InputNumber size="large" readOnly min="1" model="value" />
     <InputNumber readOnly min="1" model="value" />
     <InputNumber size="small" readOnly min="1" model="value" />
-    <style>
-      .bell-input-number {
-        margin-left: 10px;
-      }
-    </style>
   </div>
   `,
   data: {
@@ -150,11 +135,6 @@ export default {
     <InputNumber formatter="{{formatter}}" size="large" min="1" model="value" />
     <InputNumber formatter="{{formatter}}" min="1" model="value" />
     <InputNumber formatter="{{formatter}}" size="small" min="1" model="value" />
-    <style>
-      .bell-input-number {
-        margin-left: 10px;
-      }
-    </style>
   </div>
   `,
   data: {
@@ -175,9 +155,9 @@ export default {
 max | 最大值 | number | - | -
 min | 最小值 | number | - | -
 model | 当前值 | number | - | -
-step | 每次改变的步伐，可以是小数 | number | - | 1
-size | 大小 | string | large, small, default | default
-status | 颜色风格 | string | info等 | primary
+step | 每次改变的步进值 | number | - | 1
+size | 大小 | string | default,small,large | default
+type | 颜色风格 | string | primary,info,success,error,warning | primary
 disabled | 是否禁用 | boolean | - | false
 editable | 是否可编辑 | boolean | - | true
 readOnly | 是否开启只读 | boolean | - | true
@@ -188,6 +168,6 @@ placeholder | 占位文本 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | value
-focus | 聚焦的时候触发(仅 editable 为 true 的时候生效) | value
-blur | 失焦的时候触发(仅 editable 为 true 的时候生效) | value
+change | 值变化后回调 | value
+focus | 聚焦后触发 | value
+blur | 失焦后触发 | value

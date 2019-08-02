@@ -1,46 +1,55 @@
 {$selector-radio-button}
   display inline-block
-  vertical-align middle
-  user-select none
 
-  ui-radio-button-group()
+  + {$selector-radio-button}
+    margin-left $ui-horizontal-gap
 
-  +{$selector-radio-button}
-    margin-left $radio-button-gap
-
-  {$selector-radio}-wrapper
+  {$selector-radio-icon}
     display none
 
-  {$selector-radio}
-    margin-right 0
-    display inline-block
-    vertical-align middle
-    border 1px solid $brand-border
-    transition border-color .15s, color .15s, background-color .15s
-    cursor $cursor-clickable
-    position relative
+  > {$selector-radio}
+    border 1px solid
+    transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
 
-    &:after
+    &:first-child
+      border-top-left-radius $radius-base
+      border-bottom-left-radius $radius-base
+
+    &:last-child
+      border-top-right-radius $radius-base
+      border-bottom-right-radius $radius-base
+
+    + {$selector-radio}
+      margin-left 0
+      border-left none
+
+  > {$selector-radio-disabled}
+    border-color $brand-border-disabled
+    background-color $brand-bg-disabled
+    color $brand-text-disabled
+
+    &{$selector-radio-active}
+      background-color $brand-bg-checked-disabled
+
+  > {$selector-radio-enabled}
+    border-color $brand-border
+    background-color $brand-bg
+    color $brand-text
+
+    &:before
       content ' '
       position absolute
-      height 100%
       width 1px
-      right 0
-      top 0
+      left -1px
+      top -1px
+      bottom -1px
+      transition background-color .2s
 
-    +{$selector-radio}
-      margin-left -1px
-
-  {$selector-radio}:first-child
-    border-top-left-radius $radius-base
-    border-bottom-left-radius $radius-base
-
-  {$selector-radio}:last-child
-    border-top-right-radius $radius-base
-    border-bottom-right-radius $radius-base
-
-    &:after
+    &:first-child:before
       content none
 
-  {$selector-radio}-disabled
-    cursor $cursor-disabled
+    &{$selector-radio-active}
+      z-index 1
+
+  // 必须放最后
+  ui-radio-button-group()

@@ -5,21 +5,31 @@ import template from './template/Checkbox.hbs'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_DEFAULT,
+  RAW_TYPE_PRIMARY,
+  RAW_TYPE_ARRAY,
+  RAW_SIZE_COMMON,
 } from '../constant'
 
 import {
-  isDef,
+  oneOf,
   findComponentUpward,
 } from '../util'
 
 export default Yox.define({
 
+  template,
+
   model: 'checked',
 
   propTypes: {
     label: {
+      type: RAW_STRING,
+    },
+    name: {
       type: RAW_STRING,
     },
     value: {
@@ -39,10 +49,12 @@ export default Yox.define({
       value: FALSE,
     },
     type: {
-      type: RAW_STRING,
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
     size: {
-      type: RAW_STRING,
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     className: {
       type: RAW_STRING,
@@ -52,7 +64,11 @@ export default Yox.define({
     }
   },
 
-  template,
+  data() {
+    return {
+      isFocus: FALSE,
+    }
+  },
 
   events: {
     'change.checkboxGroup': function (event, data) {
@@ -77,21 +93,52 @@ export default Yox.define({
     }
   },
 
+  methods: {
+    handleFocus() {
+      this.set('isFocus', TRUE)
+    },
+    handleBlur() {
+      this.set('isFocus', FALSE)
+    }
+  },
+
   beforeCreate(options) {
+
+    const props = options.props || (options.props = {})
+
     const checkboxGroup = findComponentUpward(options.parent, '${prefix}checkboxGroup')
     if (checkboxGroup) {
-      const props = options.props || (options.props = {})
-      Yox.object.extend(
-        props,
-        {
-          type: isDef(props.type) ? props.type : checkboxGroup.get('type'),
-          disabled: isDef(props.disabled) ? props.disabled : checkboxGroup.get('disabled'),
-          checked: Yox.array.has(checkboxGroup.get('selected'), props.value),
-          name: isDef(props.name) ? props.name : checkboxGroup.get('name'),
-          size: isDef(props.size) ? props.size : checkboxGroup.get('size')
-        }
-      )
+
+      // 有 group，则 type 和 size 全听 group 的
+      if (props.type !== UNDEFINED) {
+        delete props.type
+      }
+      if (props.size !== UNDEFINED) {
+        delete props.size
+      }
+
+      if (props.name === UNDEFINED) {
+        props.name = checkboxGroup.get('name')
+      }
+
+      if (props.disabled === UNDEFINED) {
+        props.disabled = checkboxGroup.get('disabled')
+      }
+
+      if (props.checked === UNDEFINED) {
+        props.checked = Yox.array.has(checkboxGroup.get('selected'), props.value)
+      }
     }
+    else {
+      // 没有 group，则要给 type 和 size 默认值
+      if (props.type === UNDEFINED) {
+        props.type = RAW_TYPE_PRIMARY
+      }
+      if (props.size === UNDEFINED) {
+        props.size = RAW_DEFAULT
+      }
+    }
+
   }
 
 })

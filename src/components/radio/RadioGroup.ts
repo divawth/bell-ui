@@ -7,10 +7,22 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_DEFAULT,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
+  RAW_SIZE_COMMON,
 } from '../constant'
 
+import {
+  oneOf,
+} from '../util'
+
 export default Yox.define({
+
+  template,
+
   name: '${prefix}radioGroup',
+
   propTypes: {
     className: {
       type: RAW_STRING,
@@ -25,10 +37,12 @@ export default Yox.define({
       type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING,
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     type: {
-      type: RAW_STRING,
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -44,21 +58,37 @@ export default Yox.define({
     }
   },
 
-  template,
-
+  watchers: {
+    disabled(disabled) {
+      this.fire(
+        'change.radioGroup',
+        {
+          disabled,
+        },
+        TRUE
+      )
+    },
+    value(value) {
+      this.fire(
+        'change.radioGroup',
+        {
+          value,
+        },
+        TRUE
+      )
+    }
+  },
   events: {
     'change.radio': function (event, data) {
       event.stop()
-
+      // 只关心选中的
+      if (!data.checked) {
+        return
+      }
       const options = {
         value: data.value
       }
       this.set(options)
-      this.fire(
-        'change.radioGroup',
-        options,
-        TRUE
-      )
       this.fire(
         'change.radioGroup',
         options

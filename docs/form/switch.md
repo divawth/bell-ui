@@ -114,7 +114,7 @@ export default {
       <Switch type="error" disabled="{{disabled}}" />
       <br><br>
       <Button type="primary" on-click="toggle('disabled')">
-        {{disabled ? 'Undisabled' : 'Disabled'}}
+        {{disabled ? 'Enable' : 'Disable'}}
       </Button>
     </div>
   `
@@ -127,10 +127,26 @@ export default {
 export default {
   template: `
     <div>
+      <Switch loading size="small" />
+      <Switch loading size="small" checked />
+      <br>
       <Switch loading />
       <Switch loading checked />
-      <Switch loading size="small" checked />
+      <br>
+      <Switch loading size="large" />
       <Switch loading size="large" checked />
+      <br>
+      <Switch loading size="large" type="info" />
+      <Switch loading size="large" type="info" checked />
+      <br>
+      <Switch loading size="large" type="success" />
+      <Switch loading size="large" type="success" checked />
+      <br>
+      <Switch loading size="large" type="error" />
+      <Switch loading size="large" type="error" checked />
+      <br>
+      <Switch loading size="large" type="warning" />
+      <Switch loading size="large" type="warning" checked />
     </div>
   `
 }
@@ -142,11 +158,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked | 是否选中 | boolean | - | -
-size | switch 大小 | string | large, small, - | -
-type | 风格 | string | success, info, warning, error | -
+checked | 是否选中 | boolean | - | false
+size | 大小 | string | large, small, - | -
+type | 风格 | string | primary, info, warning, success, error | primary
 disabled | 是否禁用 | boolean | - | false
-loading | 加载中的开关 | boolean | - | false
+loading | 是否正在加载 | boolean | - | false
+className | 自定义类名 | string | - | -
+style | 自定义样式 | string | - | -
 
 > Slots
 
@@ -159,4 +177,4 @@ off | 自定义未选中时的内容
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | value
+change | 值变化后触发 | value

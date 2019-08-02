@@ -3,14 +3,18 @@ import Yox, { Listener } from 'yox'
 import template from './template/InputNumber.hbs'
 
 import {
-  FALSE,
   TRUE,
+  FALSE,
+  DOCUMENT,
+  UNDEFINED,
   RAW_FUNCTION,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
-  DOCUMENT,
+  RAW_TYPE_PRIMARY,
+  RAW_SIZE_COMMON,
+  RAW_DEFAULT,
 } from '../constant'
 
 import {
@@ -22,8 +26,13 @@ export default Yox.define({
     formatter: {
       type: RAW_FUNCTION,
     },
-    status: {
+    type: {
       type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
+    },
+    size: {
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     max: {
       type: RAW_NUMERIC,
@@ -40,9 +49,6 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 1,
     },
-    size: {
-      type: RAW_STRING,
-    },
     editable: {
       type: RAW_BOOLEAN,
       value: TRUE,
@@ -53,6 +59,7 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     placeholder: {
       type: RAW_STRING,
@@ -83,31 +90,55 @@ export default Yox.define({
   },
 
   computed: {
-    computedValue(): number {
-      if (this.get('formatter')) {
-        return this.get('formatter')(this.get('value'))
+    computedValue: {
+      get(): string {
+        const formatter = this.get('formatter')
+        const value = this.get('value')
+        return formatter
+          ? formatter(value)
+          : value
+      },
+      set(value: string) {
+        this.set('value', value)
       }
-      else {
-        return this.get('value')
-      }
+    },
+    upDisabled(): boolean {
+      const max = this.get('max')
+      return max != null
+        && max - this.get('value') < this.get('step')
+    },
+    downDisabled(): boolean {
+      const min = this.get('min')
+      return min != null
+        && this.get('value') - min < this.get('step')
     }
   },
 
   methods: {
     up() {
-      this.increase('value', +this.get('step'), +this.get('max'))
+      const max = this.get('max')
+      this.increase(
+        'value',
+        +this.get('step'),
+        Yox.is.numeric(max) ? +max : UNDEFINED
+      )
     },
     down() {
-      this.decrease('value', +this.get('step'), +this.get('min'))
+      const min = this.get('min')
+      this.decrease(
+        'value',
+        +this.get('step'),
+        Yox.is.numeric(min) ? +min : UNDEFINED
+      )
     },
-    blur() {
+    handleFocus() {
+      this.set('isFocus', TRUE)
+      this.fire('focus.inputNumber')
+    },
+    handleBlur() {
       this.set('isFocus', FALSE)
       this.fire('blur.inputNumber')
     },
-    focus() {
-      this.set('isFocus', TRUE)
-      this.fire('focus.inputNumber')
-    }
   },
 
   afterMount() {
@@ -118,12 +149,15 @@ export default Yox.define({
       if (!me.get('isFocus')) {
         return
       }
+      // 阻止事件默认行为，避免光标的跳动
       switch ((event.originalEvent as KeyboardEvent).keyCode) {
         case 38:
           me.up()
+          event.prevent()
           break
         case 40:
           me.down()
+          event.prevent()
           break
       }
     }

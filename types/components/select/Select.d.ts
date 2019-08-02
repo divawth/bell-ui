@@ -2,23 +2,21 @@ import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
 }, {
-    selectedOptionChange: unknown;
-    optionAdd: unknown;
-    optionRemove: unknown;
-    optionSelect: unknown;
+    'selected.selectOption': unknown;
+    'add.selectOption': unknown;
+    'remove.selectOption': unknown;
+    'click.selectOption': unknown;
 }, {
-    clear(): void;
-    setArrayValue(text: string, values: string[]): any;
-    tagClose(event: CustomEventInterface, text: string, index: number): void;
-    toggleMenu(): void;
+    handleToggleClick(): void;
+    handleClearClick(event: CustomEventInterface): void;
+    handleRemoveOption(event: CustomEventInterface, index: number): void;
     decreaseHoverIndex(): void;
     increaseHoverIndex(): void;
     selectOption(): void;
 }> & ThisType<{
-    clear(): void;
-    setArrayValue(text: string, values: string[]): any;
-    tagClose(event: CustomEventInterface, text: string, index: number): void;
-    toggleMenu(): void;
+    handleToggleClick(): void;
+    handleClearClick(event: CustomEventInterface): void;
+    handleRemoveOption(event: CustomEventInterface, index: number): void;
     decreaseHoverIndex(): void;
     increaseHoverIndex(): void;
     selectOption(): void;

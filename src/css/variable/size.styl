@@ -1,10 +1,20 @@
+// 多个相同 UI 的水平间距
+$ui-horizontal-gap = 14px
+// 多个相同 UI 的垂直间距
+$ui-vertical-gap = 8px
+// hover 或 focus 状态下的阴影大小
+$ui-shadow-radius = 2px
+// 图标和文本的间距
+$ui-label-gap = 6px
+
 $size-base = {
     font: 14px,
     line-height: 1.477,
     margin-horizontal: 8px,
     margin-vertical: 8px,
     padding-horizontal: 12px,
-    padding-vertical: 5px
+    padding-vertical: 5px,
+    border-radius: $radius-base,
 }
 
 $size-tiny = {
@@ -13,7 +23,8 @@ $size-tiny = {
     margin-horizontal: 4px,
     margin-vertical: 4px,
     padding-horizontal: 4px,
-    padding-vertical: 1px
+    padding-vertical: 1px,
+    border-radius: $radius-tiny,
 }
 
 $size-small = {
@@ -22,7 +33,8 @@ $size-small = {
     margin-horizontal: 6px,
     margin-vertical: 6px,
     padding-horizontal: 7px,
-    padding-vertical: 3px
+    padding-vertical: 3px,
+    border-radius: $radius-small,
 }
 
 $size-large = {
@@ -31,7 +43,8 @@ $size-large = {
     margin-horizontal: 12px,
     margin-vertical: 12px,
     padding-horizontal: 16px,
-    padding-vertical: 8px
+    padding-vertical: 8px,
+    border-radius: $radius-large,
 }
 
 $size-huge = {
@@ -40,12 +53,13 @@ $size-huge = {
     margin-horizontal: 14px,
     margin-vertical: 14px,
     padding-horizontal: 20px,
-    padding-vertical: 10px
+    padding-vertical: 10px,
+    border-radius: $radius-huge,
 }
 
 $size-hash = {
 
-    '': $size-base,
+    default: $size-base,
 
     tiny: $size-tiny,
     small: $size-small,

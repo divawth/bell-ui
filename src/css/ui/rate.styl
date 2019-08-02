@@ -1,70 +1,38 @@
 {$selector-rate}
   display inline-block
-  vertical-align middle
-  cursor pointer
-  font-size $selector-rate-font-size
   ui-rate()
 
-  line-height $selector-rate-height
-  height $selector-rate-height
-  color $rate-color
+{$selector-rate-icon-full}
+  color $rate-icon-color
+  display inline-block
+  line-height 1
+  position relative
+  transition color .3s
 
-  {$selector-rate-star-full}
-    display inline-block
-    vertical-align middle
-    position relative
-    transition color .3s, font-size .3s
-    width $selector-rate-star-box-size
-    height $selector-rate-star-box-size
-    line-height $selector-rate-star-box-size
+  + {$selector-rate-icon-full}
+    margin-left $rate-icon-gap
 
-    color $rate-color
+{$selector-rate-icon-half}
+  position absolute
+  left 0
+  top 0
+  width 50%
+  height 100%
+  overflow hidden
+  line-height 1
 
-    {$selector-hover}
-      font-size $selector-rate-hover-font-size
+  &:before
+    opacity 0
+    transition opacity .3s
 
-      {$selector-rate-star-content}
-        width $selector-rate-hover-font-size / 2 - 1
+  &{$selector-rate-icon-active}:before
+    opacity 1
 
-    &:before
-      cursor pointer
+{$selector-rate-text}
+  margin-left $rate-icon-gap
+  font-size $rate-text-font-size
+  color $rate-text-color
 
-    + {$selector-rate-star-full}
-      margin-left 0
-
-  {$selector-rate-star-content}
-    position absolute
-    left 0
-    top 0
-    height 100%
-    overflow hidden
-    line-height $selector-rate-star-box-size
-    ui-set('width', $selector-rate-font-size / 2 - 1)
-
-    &::before
-      opacity 0
-      cursor pointer
-      transition opacity .3s
-
-    {$selector-active}
-      &:before
-        opacity 1
-
-  {$selector-rate-text}
-    margin-left $selector-rate-margin-gap
-    font-size $selector-rate-text-font-size
-    color $rate-text-color
-
-  &{$selector-rate}-readonly
-    cursor default
-
-    {$selector-rate-star-full}
-      {$selector-hover}
-        font-size $selector-rate-font-size
-
-      &::before
-        cursor default
-
-    {$selector-rate-star-content}
-      &::before
-        cursor default
+{$selector-rate-live}
+  > {$selector-rate-icon-full}
+    cursor $cursor-clickable

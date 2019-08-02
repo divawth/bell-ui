@@ -1,12 +1,14 @@
 <li
 class="${prefix}select-option
-{{#if isHover}} ${prefix}hover{{/if}}
-{{#if isSelected}} ${prefix}active{{/if}}
+{{#if isHover}} ${prefix}select-option-hover{{/if}}
+{{#if isSelected}} ${prefix}select-option-active{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 
-on-click="click(index)"
+on-click="click.selectOption"
 >
   <slot name="children">
     {{text}}

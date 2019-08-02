@@ -1,11 +1,14 @@
 <div
-
 class="${prefix}input-number
+
+{{#if type}} ${prefix}input-number-{{type}}{{/if}}
 {{#if size}} ${prefix}input-number-{{size}}{{/if}}
-{{#if status}} ${prefix}input-number-{{status}}{{/if}}
-{{#if disabled}} ${prefix}input-number-disabled{{/if}}
-{{#if readOnly}} ${prefix}input-number-readonly{{/if}}
-{{#if isFocus}} ${prefix}focus{{/if}}
+
+{{#if disabled}} ${prefix}input-number-disabled
+{{else}} ${prefix}input-number-enabled
+{{/if}}
+
+{{#if isFocus}} ${prefix}input-number-focus{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -15,7 +18,7 @@ class="${prefix}input-number
 
   <input
     type="text"
-    class="${prefix}input"
+    class="${prefix}input-number-el"
     model="computedValue"
 
     {{#if placeholder}}
@@ -28,25 +31,35 @@ class="${prefix}input-number
 
     {{#if readOnly || !editable}}
       readonly
+    {{else}}
+      on-blur="handleBlur()"
+      on-focus="handleFocus()"
     {{/if}}
-
-    on-blur="blur()"
-    on-focus="focus()"
   >
 
-  <span class="${prefix}input-number-actions">
-    <Icon
-      name="arrow-up"
-      className="${prefix}input-number-icon
-      {{#if max != null && max - value < +step}} disabled{{/if}}"
-      on-click.native="up()"
-    />
-    <Icon
-      name="arrow-down"
-      className="${prefix}input-number-icon
-      {{#if min != null && value - min < +step}} disabled{{/if}}"
-      on-click.native="down()"
-    />
-  </span>
+  {{#if !disabled && !readOnly}}
+    <div class="${prefix}input-number-actions">
+      <div
+        {{#if upDisabled}}
+          class="${prefix}input-number-up ${prefix}input-number-up-disabled"
+        {{else}}
+          class="${prefix}input-number-up ${prefix}input-number-up-enabled"
+          on-click="up()"
+        {{/if}}
+      >
+        <Icon name="arrow-up" />
+      </div>
+      <div
+        {{#if downDisabled}}
+          class="${prefix}input-number-down ${prefix}input-number-down-disabled"
+        {{else}}
+          class="${prefix}input-number-down ${prefix}input-number-down-enabled"
+          on-click="down()"
+        {{/if}}
+      >
+        <Icon name="arrow-down" />
+      </div>
+    </div>
+  {{/if}}
 
 </div>

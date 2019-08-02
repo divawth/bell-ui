@@ -230,7 +230,7 @@ autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入�
 secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
 autoComplete | 是否应该启用自动完成功能 | string | on, off | -
 wrap | wrap 属性规定当在表单中提交时，文本区域（text area）中的文本如何换行 | string | soft, hard | -
-spellcheck | 是否对元素内容进行拼写检查 | boolean | - | -
+spellCheck | 是否对元素内容进行拼写检查 | boolean | - | -
 readOnly | 设置输入框为只读 | boolean | - | false
 maxLength | 最大输入长度 | number | - | -
 

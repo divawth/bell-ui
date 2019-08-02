@@ -1,32 +1,41 @@
 <label
 class="${prefix}radio
-{{#if isChecked}} ${prefix}active{{/if}}
-{{#if isDisabled}} ${prefix}radio-disabled{{/if}}
+
+{{#if type}} ${prefix}radio-{{type}}{{/if}}
+{{#if size}} ${prefix}radio-{{size}}{{/if}}
+
+{{#if disabled}} ${prefix}radio-disabled
+{{else}} ${prefix}radio-enabled
+{{/if}}
+
+{{#if checked}} ${prefix}radio-active{{/if}}
+{{#if isFocus}} ${prefix}radio-focus{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
+
+{{#if !disabled}}
+  on-click="handleClick()"
+{{/if}}
 >
 
-  <span
-    class="${prefix}radio-wrapper"
-    {{#if !isDisabled}}
-      on-click="click()"
-    {{/if}}
-  >
-    <span class="${prefix}radio-inner"></span>
+  <span class="${prefix}radio-icon">
     <input
       class="${prefix}radio-input"
       type="radio"
+      {{#if name}}
+        name="{{name}}"
+      {{/if}}
       value="{{value}}"
+      on-focus="handleFocus()"
+      on-blur="handleBlur()"
     >
   </span>
 
-  <span class="${prefix}radio-label">
-    <slot name="children">
-      {{label}}
-    </slot>
-  </span>
+  <slot name="children">
+    {{label}}
+  </slot>
 
 </label>

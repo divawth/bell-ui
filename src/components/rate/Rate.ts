@@ -12,6 +12,9 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
+  template,
+
   propTypes: {
     count: {
       type: RAW_NUMERIC,
@@ -43,6 +46,10 @@ export default Yox.define({
       type: RAW_STRING,
       value: 'star',
     },
+    size: {
+      type: RAW_NUMERIC,
+      value: 20,
+    },
     className: {
       type: RAW_STRING,
     },
@@ -50,8 +57,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     return {
@@ -107,7 +112,7 @@ export default Yox.define({
     },
 
     hoverOnHalfIcon(element: HTMLElement) {
-      return Yox.dom.attr(element, 'data-half') === '1'
+      return Yox.string.has(element.className, 'half')
     }
   }
 })

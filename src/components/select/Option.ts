@@ -9,7 +9,18 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 
+import {
+  findComponentUpward,
+} from '../util'
+
+function isOptionSelected(values: any[] | any, value: any) {
+  return Yox.is.array(values)
+    ? Yox.array.has(values, value, FALSE)
+    : values == value
+}
+
 export default Yox.define({
+  template,
   propTypes: {
     value: {
       type: [ RAW_STRING, RAW_NUMERIC ]
@@ -18,7 +29,7 @@ export default Yox.define({
       type: [ RAW_STRING, RAW_NUMERIC ]
     },
     index: {
-      type: [ RAW_STRING, RAW_NUMERIC ],
+      type: RAW_NUMERIC,
       required: TRUE
     },
     className: {
@@ -28,64 +39,45 @@ export default Yox.define({
       type: RAW_STRING
     }
   },
-  template,
   events: {
     optionHoveredChange(_, data) {
       let isHover = data.index == this.get('index')
       this.set({
         isHover: isHover
       })
-      if (isHover && !this.get('isSelected')) {
+      if (isHover && !this.get('Option')) {
         this.set({
-          isSelected: data.selected
+          Option: data.selected
         })
       }
     },
 
-    'optionSelectedChange.select': function (_, data) {
-      let value = this.get('value')
-      let values = data.value
-
-      let isSelected = Yox.is.array(values) ? values.indexOf(value) >= 0 : values == value
-      this.set({
-        isSelected: isSelected
-      })
-
-      if (isSelected) {
-        this.fire('selectedOptionChange')
+    'change.select': function (_, data) {
+      if (isOptionSelected(data.value, this.get('value'))) {
+        this.set('isSelected', TRUE)
+        this.fire('selected.selectOption')
+      }
+      else {
+        this.set('isSelected', FALSE)
       }
     }
   },
 
-  data() {
+  data(options) {
+    const select = findComponentUpward(options.parent, '${prefix}select')
     return {
-      isSelected: FALSE,
-      isHover: FALSE
-    }
-  },
-
-  methods: {
-    click() {
-      this.fire(
-        'optionSelect'
-      )
+      isSelected: select
+        ? isOptionSelected(select.get('value'), this.get('value'))
+        : FALSE,
+      isHover: FALSE,
     }
   },
 
   afterMount() {
-    this.fire(
-      'optionAdd',
-      {
-        value: this.get('value'),
-        text: this.get('text'),
-        index: this.get('index')
-      }
-    )
+    this.fire('add.selectOption')
   },
 
   beforeDestroy() {
-    this.fire(
-      'optionRemove'
-    )
+    this.fire('remove.selectOption')
   }
 })

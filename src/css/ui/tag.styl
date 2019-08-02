@@ -1,82 +1,59 @@
 {$selector-tag}
   display inline-block
-  vertical-align middle
-  opacity 1
-  overflow hidden
-  cursor $cursor-clickable
   position relative
-  margin-right 10px
-  border 1px solid
-  color $brand-muted
-
-  border-radius $tag-radius
+  border 1px solid $tag-border-color
+  background-color $tag-bg-color
+  color $tag-text-color
   font-size $tag-font-size
-  padding $tag-padding
+  border-radius $tag-radius
+  box-sizing border-box
 
-  transition background-color .3s, color .3s
+  transition background-color .3s, border-color .3s, color .3s
 
-  &{$selector-tag-checked}
-    color $tag-color
-    border-color $brand-divider
-    background-color $tag-bg-color
+  + {$selector-tag}
+    margin-left $ui-horizontal-gap
 
+
+{$selector-tag-checkable}
+  cursor $cursor-clickable
+
+{$selector-tag-close-icon}
+  position absolute
+  top 0
+  right 0
+  bottom 0
+  cursor $cursor-clickable
+  text-align center
+  color $tag-close-color
+  transition color .3s
+  &:hover
+    color $tag-close-color-hover
+
+{$selector-tag-border},
+{$selector-tag-dot}
+  border-color $tag-border-border-color
+  background-color $tag-border-bg-color
+
+{$selector-tag-border}
+  &{$selector-tag-closable}:after
+    content ' '
+    width 1px
+    position absolute
+    top 0
+    bottom 0
+    background-color $brand-divider
+
+{$selector-tag-unborder}
+  border none
+  background-color transparent
+
+{$selector-tag-dot}:before
+  content ' '
+  border-radius 50%
+  position absolute
+  top 50%
+  background-color $tag-dot-color
+
+// 放在最后，避免被覆盖
+{$selector-tag}
   ui-tag()
-
-  &{$selector-tag}-closable
-    {$selector-tag}-text
-      padding-right $tag-font-size
-
-    {$selector-tag-close-icon}
-      position absolute
-      top 0
-      right 0
-      cursor pointer
-      vertical-align middle
-
-      font-size $tag-close-font-size
-      padding $tag-close-padding
-      color $tag-close-color
-
-      transition color .3s
-
-  &{$selector-tag-border}
-    background-color $tag-dot-bg-color
-
-    &{$selector-tag}-closable
-      {$selector-tag}-text
-        padding-right $tag-close-gap
-
-      &:after
-        display inline-block
-        vertical-align middle
-        content ' '
-        height 100%
-        width 1px
-        position absolute
-        top 0
-        right $tag-close-font-size
-        background-color $brand-divider
-
-    {$selector-tag-close-icon}
-      margin-left $tag-close-gap
-        color $tag-color
-
-  &{$selector-tag}-dot
-    background-color $tag-dot-bg-color
-    border-color $tag-border-color
-
-    {$selector-tag}-text
-      color $tag-color
-
-    {$selector-tag}-dot-inner
-      display inline-block
-      vertical-align middle
-      width $tag-font-size
-      height $tag-font-size
-      border-radius 100%
-      position relative
-      top 1px
-
-      background-color $tag-dot-color
-      margin-right $tag-dot-inner-gap
-

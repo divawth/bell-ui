@@ -10,7 +10,8 @@ import {
   RAW_BOOLEAN,
   RAW_DEFAULT,
   RAW_TYPE_ARRAY,
-  RAW_SIZE_ARRAY,
+  RAW_TYPE_PRIMARY,
+  RAW_SIZE_COMMON,
 } from '../constant'
 
 import {
@@ -18,6 +19,8 @@ import {
 } from '../util'
 
 export default Yox.define({
+
+  template,
 
   model: 'selected',
 
@@ -35,9 +38,10 @@ export default Yox.define({
     },
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
     size: {
-      type: oneOf(RAW_SIZE_ARRAY),
+      type: oneOf(RAW_SIZE_COMMON),
       value: RAW_DEFAULT,
     },
     disabled: {
@@ -56,8 +60,6 @@ export default Yox.define({
     }
   },
 
-  template,
-
   events: {
     'change.checkboxGroup': function (event) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
@@ -65,8 +67,10 @@ export default Yox.define({
       }
     },
     'change.checkbox': function (event, data) {
-      const me = this
-      const selected = me.copy(me.get('selected'))
+      event.stop()
+
+      const selected = this.copy(this.get('selected'))
+      const { length } = selected
       if (data.checked) {
         if (!Yox.array.has(selected, data.value)) {
           selected.push(data.value)
@@ -75,8 +79,10 @@ export default Yox.define({
       else {
         Yox.array.remove(selected, data.value)
       }
-      me.set({ selected })
-      event.stop()
+
+      if (selected.length !== length) {
+        this.set({ selected })
+      }
     }
   },
   watchers: {

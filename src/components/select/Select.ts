@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/Select.hbs'
 
@@ -7,16 +7,23 @@ import {
 } from '../util'
 
 import {
-  NULL,
   FALSE,
   TRUE,
+  UNDEFINED,
+  DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  DOCUMENT,
+  RAW_EVENT_CLICK,
+  RAW_EVENT_KEYDOWN,
 } from '../constant'
 
 export default Yox.define({
+
+  template,
+
+  name: '${prefix}select',
+
   propTypes: {
     clearable: {
       type: RAW_BOOLEAN
@@ -53,128 +60,127 @@ export default Yox.define({
     }
   },
 
-  template,
-
   data() {
     return {
       count: 0,
       visible: FALSE,
       hoverIndex: 0,
-      selectedIndex: NULL,
-      selectedText: NULL,
+
+      selectedOptions: [],
     }
   },
 
   watchers: {
     value(value) {
       this.fire(
-        'optionSelectedChange.select',
+        'change.select',
         { value },
         TRUE
       )
-
       this.fire(
         'change.select',
-        {
-          value: value,
-          text: this.get('selectedText'),
-          index: this.get('selectedIndex')
-        }
+        { value }
       )
     }
   },
 
   events: {
-    selectedOptionChange(event) {
-      let option = event.target
-      if (!this.get('multiple')) {
-        this.set({
-          selectedIndex: option.get('index'),
-          selectedText: option.get('text')
-        })
+    'selected.selectOption': function (event) {
+      if (this.get('multiple')) {
+        return
       }
+      const { target } = event
+      const value = target.get('value')
+      const text = target.get('text')
+
+      const data: Data = { value }
+      const selectedOptions = this.get('selectedOptions')
+      if (!selectedOptions[0]
+        || selectedOptions[0].value !== value
+      ) {
+        data.selectedOptions = [{ value, text }]
+      }
+
+      this.set(data)
+
     },
 
-    optionAdd() {
+    'add.selectOption': function (event) {
+      event.stop()
       this.increase('count')
+      // 判断 option 的 isSelected
     },
 
-    optionRemove() {
+    'remove.selectOption': function (event) {
+      event.stop()
       this.decrease('count')
     },
 
-    optionSelect(event) {
-      let me = this
-      let option = event.target
+    'click.selectOption': function (event) {
+      event.stop()
 
-      let value = option.get('value')
-      let text = option.get('text')
-      let index = option.get('index')
+      const me = this
+
+      const { target } = event
+      const value = target.get('value')
 
       if (me.get('multiple')) {
+        let values = me.get('value')
+        if (Yox.is.array(values)) {
+          values = me.copy(values)
+        }
+        else {
+          values = []
+        }
+
+        const selectedIndex = Yox.array.indexOf(values, value)
+
+        // 取消选中
+        if (selectedIndex >= 0) {
+          values.splice(selectedIndex, 1)
+        }
+        // 选中
+        else {
+          values.push(value)
+        }
+
         me.set({
-          value: me.setArrayValue(value, me.get('value')),
-          selectedText: me.setArrayValue(text, me.get('selectedText')),
-          selectedIndex: index,
-          visible: TRUE
+          value: values,
+          visible: TRUE,
         })
       }
       else {
         me.set({
-          value: value,
-          selectedText: text,
-          selectedIndex: index,
-          visible: FALSE
+          value,
+          visible: FALSE,
         })
       }
     }
   },
 
   methods: {
-    clear() {
+
+    handleToggleClick() {
+      this.toggle('visible')
+    },
+
+    handleClearClick(event: CustomEventInterface) {
+      // 停止冒泡，否则会展开下拉框
+      event.stop()
       this.set({
-        value: NULL,
-        selectedText: NULL,
-        selectedIndex: NULL
+        value: UNDEFINED,
+        selectedOptions: [],
       })
       this.fire('clear.select')
     },
-    setArrayValue(text: string, values: string[]) {
 
-      values = this.copy(values)
-      if (Yox.is.array(values)) {
-        let index = values.indexOf(text)
-        if (index >= 0) {
-          values.splice(index, 1)
-        }
-        else {
-          values.push(text)
-        }
-      }
-      else {
-        values = [text]
-      }
+    handleRemoveOption(event: CustomEventInterface, index: number) {
 
-      return values.length ? values : NULL
-
-    },
-
-    tagClose(event: CustomEventInterface, text: string, index: number) {
-      let me = this
-
-      this.set({
-        value: me.setArrayValue(me.get('value')[index], me.get('value')),
-        selectedText: me.setArrayValue(text, me.get('selectedText'))
-      })
       event.stop()
 
-    },
+      this.removeAt('value', index)
+      this.removeAt('selectedOptions', index)
 
-    toggleMenu() {
-      if (this.get('disabled')) {
-        return
-      }
-      this.toggle('visible')
     },
 
     decreaseHoverIndex() {
@@ -224,47 +230,32 @@ export default Yox.define({
   afterMount() {
     const me = this
 
-    if (me.get('value') != NULL
-      && me.get('selectedText') == NULL
-      && me.get('selectedIndex') == NULL
-    ) {
-      me.fire(
-        'optionSelectedChange',
-        {
-          value: me.get('value')
-        },
-        TRUE
-      )
-    }
-
-    const documentClickHandler = function (e: CustomEventInterface) {
+    const onClick = function (event: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
-
-      let element = me.$el
-      let target = e.originalEvent.target as HTMLElement
+      const element = me.$el
+      const target = event.originalEvent.target as HTMLElement
       if (contains(element, target)) {
         return
       }
       me.set({
-        visible: FALSE
+        visible: FALSE,
       })
     }
 
-    const documentKeydownHander = function (e: CustomEventInterface) {
+    const onKeydown = function (event: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
-
-      switch ((e.originalEvent as KeyboardEvent).keyCode) {
+      switch ((event.originalEvent as KeyboardEvent).keyCode) {
         case 40:
-          e.prevent()
+          event.prevent()
           me.increaseHoverIndex()
           break
 
         case 38:
-          e.prevent()
+          event.prevent()
           me.decreaseHoverIndex()
           break
 
@@ -276,13 +267,13 @@ export default Yox.define({
 
     Yox.dom.on(
       DOCUMENT,
-      'click',
-      documentClickHandler
+      RAW_EVENT_CLICK,
+      onClick
     )
     Yox.dom.on(
       DOCUMENT,
-      'keydown',
-      documentKeydownHander
+      RAW_EVENT_KEYDOWN,
+      onKeydown
     )
 
     me.on(
@@ -291,13 +282,13 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
             DOCUMENT,
-            'click',
-            documentClickHandler
+            RAW_EVENT_CLICK,
+            onClick
           )
           Yox.dom.off(
             DOCUMENT,
-            'keydown',
-            documentKeydownHander
+            RAW_EVENT_KEYDOWN,
+            onKeydown
           )
         }
       }

@@ -1,77 +1,72 @@
 {$selector-checkbox}
-
-  user-select none
   display inline-block
-  vertical-align middle
-  cursor $cursor-clickable
+  user-select none
   position relative
 
   ui-checkbox()
 
   + {$selector-checkbox}
-    margin-left $checkbox-gap
+    margin-left $ui-horizontal-gap
 
-  {$selector-checkbox-wrapper}
-    position absolute
-    white-space nowrap
-    cursor pointer
-    outline 0
+{$selector-checkbox-active}
+  > {$selector-checkbox-icon}:after
+    transform rotate(45deg) scale(1)
 
-  {$selector-checkbox-inner}
-    display inline-block
-    position relative
-    vertical-align middle
-    border-radius $radius-small
-    border 1px solid $brand-border
-    transition color .3s, background-color .3s, box-shadow .3s
+{$selector-checkbox-indeterminate}
+  > {$selector-checkbox-icon}:after
+    transform rotate(0deg) scale(1)
+    height 1px
 
+{$selector-checkbox-disabled}
+  > {$selector-checkbox-icon}
+    border-color $brand-border-disabled
+    background-color $brand-bg-disabled
     &:after
-      display inline-block
-      vertical-align middle
-      content " "
-      position absolute
-      border 2px solid #fff
-      box-sizing border-box
-      border-top 0
-      border-left 0
+      border-color $brand-text-disabled
 
-      transform rotate(45deg) scale(0)
-      transition all .1s
+{$selector-checkbox-icon}
+  position absolute
+  left 0
+  top 50%
+  border-radius $radius-small
+  box-sizing border-box
+  border 1px solid $brand-border
+  transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
 
-  {$selector-checkbox-input}
-    display none
-    ui-fullscreen(absolute)
+  &:after
+    content ' '
 
-  {$selector-checkbox-label}
-    line-height 1
-    vertical-align middle
+    position absolute
 
-  &{$selector-checkbox}-active
-    {$selector-checkbox-inner}
-      &:after
-        transform rotate(45deg) scale(1)
+    border 1px solid #fff
+    box-sizing border-box
+    border-top 0
+    border-left 0
 
-  &{$selector-checkbox}-indeterminate
-    {$selector-checkbox-inner}
-      &:after
-        transform scale(1)
-        position absolute
-        height 2px
+    transform scale(0)
 
-{$selector-checkbox}-disabled
-  {$selector-checkbox-wrapper}
-  {$selector-checkbox-inner},
-  {$selector-checkbox-label},
-  {$selector-checkbox-input}
-    cursor not-allowed
+{$selector-checkbox-input}
+  position absolute
+  opacity 0
 
-{$selector-checkbox}-vertical
-  display flex
-  flex-direction column
+{$selector-checkbox-enabled},
+{$selector-checkbox-enabled} input
+  cursor $cursor-clickable
 
-  {$selector-checkbox}
-    flex 1
+{$selector-checkbox-enabled}:hover
+  > {$selector-checkbox-icon}
+    border-color $brand-border-hover
+
+{$selector-checkbox-disabled},
+{$selector-checkbox-disabled} input
+  cursor $cursor-disabled
+
+{$selector-checkbox-vertical}
+
+  > {$selector-checkbox}
+    width 100%
+    display block
 
     + {$selector-checkbox}
-      margin-top $checkbox-gap
       margin-left 0
+      margin-top $ui-vertical-gap

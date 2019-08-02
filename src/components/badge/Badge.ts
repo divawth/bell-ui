@@ -16,6 +16,9 @@ import {
 } from '../util'
 
 export default Yox.define({
+
+  template,
+
   propTypes: {
     text: {
       type: RAW_STRING,
@@ -23,7 +26,7 @@ export default Yox.define({
     count: {
       type: RAW_NUMBER,
     },
-    maxCount: {
+    max: {
       type: RAW_NUMBER,
       value: 999,
     },
@@ -32,6 +35,10 @@ export default Yox.define({
       value: FALSE,
     },
     hidden: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    ripple: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -50,16 +57,15 @@ export default Yox.define({
     }
   },
 
-  template,
-
   filters: {
     isNumber: Yox.is.numeric,
-    formatText(count: any, maxCount: any) {
+    formatText(count: any, max: any) {
       count = Yox.is.numeric(count) ? +count : 0
-      maxCount = Yox.is.numeric(maxCount) ? +maxCount : 1
-      return maxCount < count
-        ? maxCount + '+'
+      max = Yox.is.numeric(max) ? +max : 1
+      return max < count
+        ? max + '+'
         : count
     }
-  }
+  },
+
 })

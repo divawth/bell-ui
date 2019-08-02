@@ -39,13 +39,13 @@ export default {
   template: `
     <div class="bell-template">
       <div class="bell-buttons">
-        <Button borderType="solid">
+        <Button border="solid">
           Solid
         </Button>
-        <Button borderType="dashed">
+        <Button border="dashed">
           Dashed
         </Button>
-        <Button borderType="none">
+        <Button border="none">
           Text
         </Button>
       </div>
@@ -78,16 +78,16 @@ export default {
       </div>
 
       <div class="bell-buttons" style="margin-top: 10px;">
-        <Button ghost type="primary" borderType="dashed">
+        <Button ghost type="primary" border="dashed">
           Dashed
         </Button>
-        <Button ghost type="primary" borderType="none">
+        <Button ghost type="primary" border="none">
           Text
         </Button>
-        <Button ghost type="warning" borderType="none">
+        <Button ghost type="warning" border="none">
           Warning
         </Button>
-        <Button ghost type="success" borderType="none">
+        <Button ghost type="success" border="none">
           Success
         </Button>
       </div>
@@ -216,17 +216,17 @@ export default {
         Primary(Disabled)
       </Button>
       <br><br>
-      <Button borderType="dashed">
+      <Button border="dashed">
         Dashed
       </Button>
-      <Button borderType="dashed" disabled>
+      <Button border="dashed" disabled>
         Dashed(Disabled)
       </Button>
       <br><br>
-      <Button borderType="none">
+      <Button border="none">
         Text
       </Button>
-      <Button borderType="none" disabled>
+      <Button border="none" disabled>
         Text(Disabled)
       </Button>
     </div>
@@ -300,7 +300,7 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button borderType="dashed">R</Button>
+        <Button border="dashed">R</Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup>
@@ -344,7 +344,7 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button borderType="dashed">R</Button>
+        <Button border="dashed">R</Button>
       </ButtonGroup>
     </div>
   `
@@ -361,7 +361,7 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button borderType="dashed">R</Button>
+        <Button border="dashed">R</Button>
       </ButtonGroup>
     </div>
   `
@@ -375,7 +375,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 按钮类型 | string | primary、info、success、warning、error | -
-borderType | 边框类型 | string | solid、none、dashed | solid
+border | 边框类型 | string | solid、none、dashed | solid
 ghost | 是否是幽灵按钮 | boolean | true、false | false
 size | 按钮大小 | string | large、small、tiny | -
 shape | 按钮形状 | string | circle, round | -

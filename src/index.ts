@@ -164,7 +164,7 @@ const components = {
   AnchorLink
 }
 
-export const install = function (Yox) {
+export const install = function (Yox: any) {
   let loadingbarElement = Yox.dom.createElement('div')
   Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
   Yox.dom.append(document.body, loadingbarElement)

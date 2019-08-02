@@ -1,7 +1,11 @@
 <div
 class="${prefix}rate
 {{#if type}} ${prefix}rate-{{type}}{{/if}}
-{{#if readOnly}} ${prefix}rate-readonly{{/if}}
+
+{{#if readOnly}} ${prefix}rate-dead
+{{else}} ${prefix}rate-live
+{{/if}}
+
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -17,9 +21,9 @@ class="${prefix}rate
   {{#each 1 => count}}
     <Icon
       name="{{icon}}"
-      size="{{20}}"
-      className="${prefix}rate-star-full
-      {{#if activeValue - this >= 0}} active{{/if}}"
+      size="{{size}}"
+      className="${prefix}rate-icon-full
+      {{#if activeValue - this >= 0}} ${prefix}rate-icon-active{{/if}}"
 
       {{#if !readOnly}}
         on-mousemove.native="handleMove($event, this)"
@@ -27,12 +31,12 @@ class="${prefix}rate
       {{/if}}
     >
       {{#if half}}
-        <i
-          data-half="1"
-          class="${prefix}icon ${prefix}rate-star-content ${prefix}icon-ios-star-half
-          {{#if activeValue - this >= -0.5}} active{{/if}}"
-        >
-        </i>
+        <Icon
+          name="{{icon}}"
+          size="{{size}}"
+          className="${prefix}rate-icon-half
+          {{#if activeValue - this >= -0.5}} ${prefix}rate-icon-active{{/if}}"
+        />
       {{/if}}
     </Icon>
   {{/each}}

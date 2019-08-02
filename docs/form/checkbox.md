@@ -8,20 +8,33 @@
 export default {
   template: `
     <div>
-      <Checkbox model="single">
-        Checkbox
+      <Checkbox model="a">
+        A
       </Checkbox>
+      <p>
+        {{a}}
+      </p>
 
-      <Checkbox checked>
-        Checkbox
+      <Checkbox type="success" size="large" model="b">
+        B
       </Checkbox>
+      <p>
+        {{b}}
+      </p>
 
-      <p>{{single}}</p>
+      <Checkbox type="error" size="small" model="c">
+        C
+      </Checkbox>
+      <p>
+        {{c}}
+      </p>
     </div>
   `,
   data: function () {
     return {
-      single: false
+      a: false,
+      b: false,
+      c: false,
     }
   }
 }

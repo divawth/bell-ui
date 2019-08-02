@@ -1,50 +1,50 @@
 $selector-radio = $selector-prefix + '-radio'
 $selector-radio-group = $selector-radio + '-group'
-
-$radio-inner-size = 16px
-$radio-label-padding-left = 24px
-$radio-font-size = 12px
-$radio-wrapper-margin-top = 4px
-$radio-margin-gap = 10px
-$radio-height = 30px
-
-$radio-border-color = #dcdee2
+$selector-radio-icon = $selector-radio + '-icon'
+$selector-radio-input = $selector-radio + '-input'
+$selector-radio-enabled = $selector-radio + '-enabled'
+$selector-radio-disabled = $selector-radio + '-disabled'
+$selector-radio-active = $selector-radio + '-active'
+$selector-radio-focus = $selector-radio + '-focus'
+$selector-radio-vertical = $selector-radio + '-vertical'
 
 $radio-brand-hash = {
-  '': {
-    bg-color: $brand-bg,
-    hover-color: $brand-primary,
-    active-color: $brand-primary-active,
-    box-shadow: 0 0 0 2px rgba(45,140,240, .2)
+  'primary': {
+    color: $brand-primary,
+    shadow-color: $brand-primary-shadow,
   },
   'success': {
-    bg-color: $brand-bg,
-    hover-color: $brand-success,
-    active-color: $brand-success-active,
-    box-shadow: 0 0 0 2px rgba(25,190,107,.2)
+    color: $brand-success,
+    shadow-color: $brand-success-shadow,
   },
   'warning': {
-    bg-color: $brand-bg,
-    hover-color: $brand-warning,
-    active-color: $brand-warning-active,
-    box-shadow: 0 0 0 2px rgba(255,153,0,.2)
+    color: $brand-warning,
+    shadow-color: $brand-warning-shadow,
   },
   'error': {
-    bg-color: $brand-bg,
-    hover-color: $brand-error,
-    active-color: $brand-error-active,
-    box-shadow: 0 0 0 2px rgba(237,64,20,.2)
+    color: $brand-error,
+    shadow-color: $brand-error-shadow,
   },
   'info': {
-    bg-color: $brand-bg,
-    hover-color: $brand-info,
-    active-color: $brand-info-active,
-    box-shadow: 0 0 0 2px rgba(45,183,245,.2)
-  },
-  'disabled': {
-    bg-color: #f3f3f3,
-    hover-color: $brand-border,
-    active-color: $brand-border,
-    box-shadow: none
+    color: $brand-info,
+    shadow-color: $brand-info-shadow,
   }
+}
+
+$radio-size-hash = {
+  'default': {
+    box-size: 14px,
+    dot-size: 8px,
+    font-size: 12px,
+  },
+  'small': {
+    box-size: 12px,
+    dot-size: 6px,
+    font-size: 12px,
+  },
+  'large': {
+    box-size: 16px,
+    dot-size: 10px,
+    font-size: 14px,
+  },
 }

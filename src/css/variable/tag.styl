@@ -1,61 +1,66 @@
 $selector-tag = $selector-prefix + '-tag'
-$selector-tag-text = $selector-tag + '-text'
+$selector-tag-dot = $selector-tag + '-dot'
 $selector-tag-close-icon = $selector-tag + '-close-icon'
 $selector-tag-border = $selector-tag + '-border'
+$selector-tag-unborder = $selector-tag + '-unborder'
 $selector-tag-checked = $selector-tag + '-checked'
+$selector-tag-checkable = $selector-tag + '-checkable'
+$selector-tag-closable = $selector-tag + '-closable'
 
-$tag-radius = 2px
-$tag-color = #515a6e
-$tag-dot-bg-color = #fff
+$tag-bg-color = $brand-bg-disabled
+$tag-border-color = $brand-border
+$tag-text-color = $brand-text
+
+$tag-radius = 3px
 $tag-font-size = 12px
-$tag-padding = 0px 10px
-$tag-close-font-size = 22px
-$tag-close-color = #ccc
-$tag-close-padding = 0 8px
-$tag-close-gap = 20px
-$tag-dot-inner-gap = 8px
-$tag-dot-color = #e8eaec
-$tag-bg-color = #f7f7f7
-$tag-border-color = #e9eaec
 
-$selector-tag-size-hash = {
+$tag-border-bg-color = $brand-white
+$tag-border-border-color = $brand-border
+
+$tag-dot-color = #ccc
+$tag-close-color = #ccc
+$tag-close-color-hover = #aaa
+
+
+$tag-size-hash = {
+  'default': {
+    height: 22px,
+    dot-size: 8px,
+    close-width: 24px,
+    padding-horizontal: 8px,
+  },
   'large': {
-    height: 40px
-  },
-  '': {
-    height: 32px
-  },
-  'small': {
-    height: 22px
-  },
-  'tiny': {
-    height: 22px
+    height: 32px,
+    dot-size: 12px,
+    close-width: 34px,
+    padding-horizontal: 12px,
   }
 }
 
-$selector-tag-color-hash = {
+$tag-brand-hash = {
+  'primary': {
+    color: $brand-primary,
+    light-color: $brand-primary-hover,
+    text-color: $brand-white,
+  },
   'success': {
-    color: $brand-white,
-    active-color: $brand-success
+    color: $brand-success,
+    light-color: $brand-success-hover,
+    text-color: $brand-white,
   },
   'error': {
-    color: $brand-white,
-    active-color: $brand-error
+    color: $brand-error,
+    light-color: $brand-error-hover,
+    text-color: $brand-white,
   },
   'info': {
-    color: $brand-white,
-    active-color: $brand-info
-  },
-  'primary': {
-    color: $brand-white,
-    active-color: $brand-primary
+    color: $brand-info,
+    light-color: $brand-info-hover,
+    text-color: $brand-white,
   },
   'warning': {
-    color: $brand-white,
-    active-color: $brand-warning
+    color: $brand-warning,
+    light-color: $brand-warning-hover,
+    text-color: $brand-white,
   },
-  'danger': {
-    color: $brand-white,
-    active-color: $brand-danger
-  }
 }

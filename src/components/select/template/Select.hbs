@@ -15,6 +15,8 @@ class="${prefix}select
 
   <div class="${prefix}select-button">
 
+    <input type="hidden" model="value" />
+
     {{#if prefix || hasSlot('prefix')}}
       <div class="${prefix}select-prefix">
         <slot name="prefix">
@@ -23,47 +25,50 @@ class="${prefix}select
       </div>
     {{/if}}
 
-    <input type="hidden" model="value" />
+    {{#if selectedOptions.length === 0}}
 
-    <div
-      class="${prefix}select-value
-      {{#if value == null}} ${prefix}hide{{/if}}"
-      on-click="toggleMenu()"
-    >
-      {{#if selectedText && !multiple}}
-        {{selectedText}}
-      {{else if selectedText}}
-        {{#each selectedText:index}}
-        <Tag size="tiny" closable on-close="tagClose($event, this, index)">
-          {{this}}
-        </Tag>
-        {{/each}}
-      {{else if defaultText}}
-        {{defaultText}}
-      {{else}}
-        请选择...
-      {{/if}}
-    </div>
+      <div
+        class="${prefix}select-placeholder"
+        {{#if !disabled}}
+          on-click="handleToggleClick()"
+        {{/if}}
+      >
+        {{defaultText || '请选择...'}}
+      </div>
 
-    <div
-      class="${prefix}select-placeholder
-      {{#if value != null}} ${prefix}hide{{/if}}"
-      on-click="toggleMenu()"
-    >
-      {{defaultText || '请选择...'}}
-    </div>
+    {{else}}
+
+      <div class="${prefix}select-value"
+        {{#if !disabled}}
+          on-click="handleToggleClick()"
+        {{/if}}
+      >
+
+        {{#if multiple}}
+          {{#each selectedOptions:index}}
+          <Tag size="tiny" closable on-close="handleRemoveOption($event, index)">
+            {{this.text}}
+          </Tag>
+          {{/each}}
+        {{else}}
+          {{selectedOptions[0].text}}
+        {{/if}}
+
+      </div>
+
+    {{/if}}
 
     <Icon
       name="arrow-down"
       className="${prefix}select-arrow"
     />
 
-    {{#if clearable}}
+    {{#if clearable && selectedOptions.length}}
       <Icon
         name="close-circle"
         size="16"
         className="${prefix}select-clear-icon"
-        on-click.native="clear()"
+        on-click.native="handleClearClick()"
       />
     {{/if}}
   </div>
@@ -73,4 +78,5 @@ class="${prefix}select
       <slot name="children" />
     </ul>
   </div>
+
 </div>

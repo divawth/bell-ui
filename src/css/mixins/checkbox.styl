@@ -1,42 +1,44 @@
-checkbox-style(style)
-  ui-set('color', style['color'])
+checkbox-brand-style(style)
+  &{$selector-checkbox-enabled}
 
-  &{$selector-checkbox}-active,
-  &{$selector-checkbox}-indeterminate
-    {$selector-checkbox}-inner
-      ui-set('background-color', style[ 'color-active' ])
+    &:hover
+    &{$selector-checkbox-focus}
+      > {$selector-checkbox-icon}
+        if $ui-shadow-radius > 0
+          box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-  &{$selector-hover}
-    {$selector-checkbox}-inner
-      ui-set('box-shadow', style[ 'box-shadow' ])
+    &{$selector-checkbox-active},
+    &{$selector-checkbox-indeterminate}
+      > {$selector-checkbox-icon}
+        ui-set('background-color', style['color'])
+        ui-set('border-color', style['color'])
 
 checkbox-size-style(style)
-  {$selector-checkbox-inner}
-    ui-set('width', style[ 'size' ])
-    ui-set('height', style[ 'size' ])
-    
-    &:after
-      ui-set('top', style[ 'icon' ][ 'top' ])
-      ui-set('left', style[ 'icon' ][ 'left' ])
-      ui-set('width', style[ 'icon' ][ 'width' ])
-      ui-set('height', style[ 'icon' ][ 'height' ])
+  ui-set('font-size', style['font-size'])
+  ui-set('padding-left', style['box-size'] + $ui-label-gap)
 
-  {$selector-checkbox-label}
-    ui-set('font-size', style[ 'font-size' ])
-    ui-set('padding-left', style[ 'size' ] + 6px)
-  
-  &{$selector-checkbox}-indeterminate
-    {$selector-checkbox-inner}
+  > {$selector-checkbox-icon}
+    ui-set('width', style['box-size'])
+    ui-set('height', style['box-size'])
+    ui-set('margin-top', -0.5 * style['box-size'])
+
+    &:after
+      ui-set('top', style['icon-top'])
+      ui-set('left', style['icon-left'])
+      ui-set('width', style['icon-width'])
+      ui-set('height', style['icon-height'])
+
+  &{$selector-checkbox-indeterminate}
+    > {$selector-checkbox-icon}
       &:after
-        ui-set('top', style[ 'indeterminate' ][ 'top' ])
-        ui-set('left', style[ 'indeterminate' ][ 'left' ])
-        ui-set('width', style[ 'indeterminate' ][ 'width' ])
+        ui-set('top', style['indeterminate-top'])
+        ui-set('left', style['indeterminate-left'])
+        ui-set('width', style['indeterminate-width'])
 
 ui-checkbox()
-
   ui-connect(
     hash: $checkbox-brand-hash,
-    each: checkbox-style
+    each: checkbox-brand-style
   )
   ui-connect(
     hash: $checkbox-size-hash,

@@ -1,26 +1,61 @@
-radio-group-style(style)
-  {$selector-radio}
 
-    &{$selector-active}
-      {$selector-radio}-inner
-        ui-set('border-color', style[ 'hover-color' ])
-        ui-set('box-shadow', style[ 'box-shadow' ])
+radio-brand-style(style)
+  &:hover
+  &{$selector-radio-focus}
+    > {$selector-radio-icon}
+      if $ui-shadow-radius > 0
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-        &:after
-          ui-set('background-color', style[ 'active-color' ])
+  &{$selector-radio-active}
+    > {$selector-radio-icon}
+      ui-set('border-color', style['color'])
 
-    {$selector-radio}-inner
-      ui-set('background-color', style[ 'bg-color' ])
+  > {$selector-radio-icon}:after
+    ui-set('background-color', style['color'])
 
-      &:after
-        ui-set('background-color', style[ 'bg-color' ])
+radio-size-style(style)
+  ui-set('font-size', style['font-size'])
+  ui-set('padding-left', style['box-size'] + $ui-label-gap)
 
-    &{$selector-hover}
-      {$selector-radio}-inner
-        ui-set('border-color', style[ 'hover-color' ])
+  > {$selector-radio-icon}
+    ui-set('width', style['box-size'])
+    ui-set('height', style['box-size'])
+    ui-set('margin-top', -0.5 * style['box-size'])
+
+    &:after
+      ui-set('width', style['dot-size'])
+      ui-set('height', style['dot-size'])
+      ui-set('margin-top', -0.5 * style['dot-size'])
+      ui-set('margin-left', -0.5 * style['dot-size'])
+
+radio-group-brand-style(style)
+  > {$selector-radio-enabled}
+    radio-brand-style(style)
+
+radio-group-size-style(style)
+  > {$selector-radio}
+    radio-size-style(style)
+
+radio-single-brand-style(style)
+  &{$selector-radio-enabled}
+    radio-brand-style(style)
 
 ui-radio-group()
   ui-connect(
     hash: $radio-brand-hash,
-    each: radio-group-style
+    each: radio-group-brand-style
+  )
+  ui-connect(
+    hash: $radio-size-hash,
+    each: radio-group-size-style
+  )
+
+ui-radio()
+  ui-connect(
+    hash: $radio-brand-hash,
+    each: radio-single-brand-style
+  )
+  ui-connect(
+    hash: $radio-size-hash,
+    each: radio-size-style
   )

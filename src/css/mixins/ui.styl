@@ -12,7 +12,7 @@ ui-set(name, value, important = false)
     if value is a 'unit'
         apply()
 
-    else if value is not a 'null'
+    else if value
         apply()
 
 ui-opacity(value)
@@ -168,3 +168,17 @@ ui-center()
     text-align center
     transform translate(-50%,-50%)
     line-height 1
+
+ui-placeholder(color)
+
+    &::-webkit-input-placeholder  /* WebKit browsers */
+      color color
+
+    &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+      color color
+
+    &::-moz-placeholder  /* Mozilla Firefox 19+ */
+      color color
+
+    &:-ms-input-placeholder  /* Internet Explorer 10+ */
+      color color

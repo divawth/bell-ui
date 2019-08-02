@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<{
-    textComputedStyle: unknown;
+    textareaStyle: unknown;
 }, {
     value: unknown;
     isSecure: unknown;

@@ -1,25 +1,64 @@
-button-reset()
-  a&
-    ui-set('color', $brand-text)
-    text-decoration none
-
-  button&
-    background-color transparent
-    outline 0
-
 button-size(size)
+  ui-set('border-radius', size['border-radius'])
   ui-set('font-size', size['font'])
   ui-set('line-height', size['line-height'])
   ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
 
-button-group-size(size)
-  {$selector-button}
-    ui-set('font-size', size['font'])
-    ui-set('line-height', size['line-height'])
-    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+button-color(color, bg, borderColor)
+  ui-set('color', color)
+  ui-set('border-color', borderColor)
+  ui-set('background-color', bg)
 
-button-group-circle-size(size)
-  {$selector-button}
+button-border(border)
+  ui-set('border-style', border)
+
+  // 为 group 准备的
+  &:before
+    ui-set('border-style', border)
+
+button-circle-size(size)
+  ui-set('width', size)
+  ui-set('height', size)
+
+button-brand-style(style)
+  button-color(
+    style['color'],
+    style['bg-color'],
+    style['border-color']
+  )
+
+  &:active
+    button-color(
+      style['active-color'],
+      style['active-bg-color'],
+      style['active-border-color']
+    )
+
+  &{$selector-button-enabled}
+    &:hover
+      button-color(
+        style['hover-color'],
+        style['hover-bg-color'],
+        style['hover-border-color']
+      )
+
+    if $ui-shadow-radius > 0
+      &:focus
+        box-shadow 0 0 0 $ui-shadow-radius style[ 'shadow-color' ]
+
+    // 为 group 准备的
+    &:hover:before
+      ui-set('border-color', style['hover-border-color'])
+
+    &:active:before
+      ui-set('border-color', style['active-border-color'])
+
+button-group-size(size)
+  > {$selector-button}
+    button-size(size)
+
+button-group-round-size(size)
+  > {$selector-button}
 
     &:first-child:not(:last-child)
       ui-set('border-top-left-radius', size)
@@ -29,160 +68,34 @@ button-group-circle-size(size)
       ui-set('border-top-right-radius', size)
       ui-set('border-bottom-right-radius', size)
 
-button-radius(radius)
-  ui-set('border-radius', radius)
-
-button-color(color, bg, borderColor)
-  button&
-    ui-set('color', color)
-    ui-set('border-color', borderColor)
-    if bg
-      ui-set('background-color', bg)
-
-button-border(border)
-  ui-set('border', border)
-  if border == 'none'
-    {$selector-focus} {
-      outline none
-      box-shadow none
-    }
-
-button-circle-size(size)
-  padding: 0;
-  ui-set('width', size)
-  ui-set('height', size)
-
-button-style(style)
-  button-color(
-    style['color'],
-    style['bg'],
-    style['border-color']
+ui-button-ghost-brand()
+  ui-connect(
+    hash: $button-ghost-hash,
+    each: button-brand-style
   )
 
-  {$selector-hover} {
-    button-color(
-      style['hover-color'],
-      style['hover-bg'],
-      style['hover-border-color']
-    )
-  }
-
-  {$selector-active} {
-    outline none
-    button-color(
-      style['active-color'],
-      style['active-bg'],
-      style['active-border-color']
-    )
-  }
-
-  {$selector-focus} {
-    outline none
-    box-shadow 0 0 0 2px style['focus-border-color']
-  }
-
-  {$selector-disabled} {
-    ui-set('cursor', not-allowed, true)
-    button-color(
-      style['disabled-color'],
-      style['disabled-bg'],
-      style['disabled-border-color']
-    )
-  }
-
-button-group-direction(isHorizontal)
-  if isHorizontal
-    {$selector-button}
-      z-index: $zindex-tiny;
-
-      + {$selector-button}
-        margin-left: -1px;
-
-      &{$selector-hover},
-      &{$selector-active},
-      &{$selector-focus}
-        position: relative;
-        z-index: $zindex-small;
-
-      &:first-child:not(:last-child)
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-
-      &:last-child:not(:first-child)
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-
-      &:not(:first-child):not(:last-child)
-        border-radius: 0;
-  else
-    {$selector-button}
-      z-index: $zindex-tiny;
-      width: 100%;
-      margin-left: 0px;
-
-      + {$selector-button}
-        margin-top: -1px;
-
-      &{$selector-hover},
-      &{$selector-active},
-      &{$selector-focus}
-        position: relative;
-        z-index: $zindex-small;
-
-      &:first-child:not(:last-child)
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-
-      &:last-child:not(:first-child)
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-
-      &:not(:first-child):not(:last-child)
-        border-radius: 0;
-
-
 ui-button()
-  button-reset()
   ui-connect(
     hash: $button-size-hash,
     each: button-size
   )
   ui-connect(
-    hash: $button-radius-hash,
-    each: button-radius
-  )
-  ui-connect(
-    hash: $button-hash,
-    each: button-style
-  )
-  ui-connect(
     hash: $button-border-hash,
     each: button-border
   )
-
-  &{$selector-button}-circle
-    ui-connect(
-      hash: $button-circle-size-hash,
-      each: button-circle-size
-    )
-
-  > {$selector-text}
-    font inherit
-
-ui-button-group()
   ui-connect(
-    hash: $button-group-direction,
-    each: button-group-direction
+    hash: $button-normal-hash,
+    each: button-brand-style
   )
 
+ui-button-circle-size()
+  ui-connect(
+    hash: $button-circle-size-hash,
+    each: button-circle-size
+  )
+
+ui-button-group()
   ui-connect(
     hash: $button-size-hash,
     each: button-group-size
   )
-
-  &{$selector-button-group}-round
-    &{$selector-button-group}
-      ui-connect(
-        hash: $button-circle-size-hash,
-        each: button-group-circle-size
-      )

@@ -1,12 +1,6 @@
 rate-color-style(style)
-  {$selector-rate-star-full}
-    {$selector-hover}
-    {$selector-active}
-      ui-set('color', style[ 'active-color' ])
-
-  {$selector-rate-star-content}
-    {$selector-active}
-      ui-set('color', style[ 'active-color' ])
+  {$selector-rate-icon-active}
+    ui-set('color', style['color'])
 
 ui-rate()
   ui-connect(
