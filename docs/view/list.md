@@ -7,7 +7,7 @@ export default {
   template: `
   <div>
     <p>Small List</p>
-    <List border size="small">
+    <List border clickable size="small">
       <Item>
         Header
       </Item>
@@ -174,14 +174,14 @@ export default {
 ```js
 export default {
   template: `
-  <List border="{{false}}">
+  <List simple>
     <Item>
       <template slot="header">
         <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
       </template>
       1 号员工
     </Item>
-    <Item active="{{!!active}}">
+    <Item>
       <template slot="header">
         <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
       </template>
@@ -194,10 +194,7 @@ export default {
       3 号员工
     </Item>
   </List>
-  `,
-  data: {
-    active: false
-  }
+  `
 }
 ```
 
@@ -209,11 +206,11 @@ export default {
   height: 400,
   template: `
   <div class="list-wrapper">
-    <List border="{{false}}">
-      <template slot="subHeader">
+    <List clickable>
+      <template slot="header">
         最近聊天记录
       </template>
-      <Item>
+      <Item on-click="clickItem()">
         <template slot="header">
           <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"></Avatar>
         </template>
@@ -250,8 +247,8 @@ export default {
         CK Yau
       </Item>
     </List>
-    <List border="{{false}}">
-      <template slot="subHeader">
+    <List simple>
+      <template slot="header">
         历史聊天记录
       </template>
       <Item>
@@ -267,36 +264,40 @@ export default {
   </div>
   `,
   methods: {
-    itemClick: function (val) {
-      this.toggle('active');
+    clickItem: function (event) {
+      console.log(event, event.target)
     }
-  },
-  data: {
-    active: false
   }
 }
 ```
 
 #### API
 
-> Props
+> List Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-border | 是否有边框 | boolean | - | false
+simple | 是否是简洁风格 | boolean | - | false
 loading | 是否展示 loading | boolean | - | false
-size | 列表的大小 | string | small, large | -
+clickable | 列表项是否可点击 | boolean | - | false
+size | 列表的大小 | string | default, small, large | default
 
-> slots
+> List Slots
+
+参数 | 说明
+---|---
+header | 列表的 header
+empty | 列表为空时的内容
+
+> Item Slots
 
 参数 | 说明
 ---|---
 header | 列表的 item 的 header
 footer | 列表的 item 的 footer
-nested | 列表的 item 的子列表
 
-> Events
+> Item Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-click | 点击的时候触发 | -
+click | clickable 为 true 时，点击列表的 item 触发 | -

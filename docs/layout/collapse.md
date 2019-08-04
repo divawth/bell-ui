@@ -6,7 +6,7 @@ export default {
   height: 300,
   template: `
     <Collapse>
-      <Panel name="1" title="史蒂夫·乔布斯" isActive>
+      <Panel name="1" title="史蒂夫·乔布斯" active>
         <div>
           史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。
         </div>
@@ -93,7 +93,7 @@ export default {
   height: 300,
   template: `
     <Collapse simple>
-      <Panel name="1" title="史蒂夫·乔布斯" isActive>
+      <Panel name="1" title="史蒂夫·乔布斯" active>
         <div>
           史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。
         </div>
@@ -119,7 +119,7 @@ export default {
   height: 300,
   template: `
     <Collapse>
-      <Panel name="1" title="史蒂夫·乔布斯" isActive>
+      <Panel name="1" title="史蒂夫·乔布斯" active>
         <div>
           史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。
         </div>
@@ -167,7 +167,7 @@ simple | 是否是简洁风格 | boolean | - | false
 ---|---|---|---|---
 title | 标题 | string | - | -
 name | 唯一标识 | string | - | -
-isActive | 是否是展开状态 | boolean | - | false
+active | 是否是展开状态 | boolean | - | false
 
 > Panel Slot
 

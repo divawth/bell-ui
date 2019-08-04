@@ -1,29 +1,18 @@
-list-size(size)
-  {$selector-list-item}-content
-    ui-set('padding', size[ 'item-padding' ])
+list-size-style(size)
+  {$selector-list-header}
+    ui-set('padding', size['header-padding'])
 
-  {$selector-list-item}-header
-    ui-set('margin-right', size[ 'header-margin-right' ])
+  {$selector-list-item}
+    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
 
-list-color(color)
-  {$selector-list-item}-content
-    ui-set('background-color', color[ 'bg' ])
+  {$selector-list-item-header}
+    ui-set('margin-right', size['padding-horizontal'])
 
-    {$selector-active}
-      ui-set('background-color', color[ 'active-bg' ])
-      ui-set('color', color[ 'active-color' ])
-
-  {$selector-list-item}-content-hover
-    {$selector-hover}
-      ui-set('background-color', color[ 'hover-bg' ])
-      ui-set('color', color[ 'hover-color' ])
+  {$selector-list-item-footer}
+    ui-set('right', size['padding-horizontal'])
 
 ui-list()
   ui-connect(
     hash: $list-size-hash,
-    each: list-size
-  )
-  ui-connect(
-    hash: $list-color-hash,
-    each: list-color
+    each: list-size-style
   )

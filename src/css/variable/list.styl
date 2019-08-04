@@ -1,65 +1,36 @@
 $selector-list = $selector-prefix + '-list'
+$selector-list-simple = $selector-list + '-simple'
+$selector-list-bordered = $selector-list + '-bordered'
+$selector-list-header = $selector-list + '-header'
+$selector-list-empty-desc = $selector-list + '-empty-desc'
 $selector-list-item = $selector-list + '-item'
+$selector-list-item-clickable = $selector-list-item + '-clickable'
+$selector-list-item-active = $selector-list-item + '-active'
+$selector-list-item-header = $selector-list-item + '-header'
+$selector-list-item-content = $selector-list-item + '-content'
+$selector-list-item-footer = $selector-list-item + '-footer'
+$selector-list-item-text = $selector-list-item + '-text'
 
-$list-border = 1px solid #d9d9d9
 $list-border-radius = 4px
+$list-header-bg-color = #f8f8f8
+$list-header-font-size = 14px
+$list-header-padding-horizontal = 10px
+$list-header-padding-vertical = 10px
 
 $list-size-hash = {
-  '': {
-    item-padding: 12px 16px,
-    header-margin-right: 16px
+  'default': {
+    header-padding: 12px 16px,
+    padding-horizontal: 16px,
+    padding-vertical: 12px,
   },
   'large': {
-    item-padding: 16px 24px,
-    header-margin-right: 24px
+    header-padding: 14px 20px,
+    padding-horizontal: 20px,
+    padding-vertical: 16px,
   },
   'small': {
-    item-padding: 8px 15px,
-    header-margin-right: 15px
-  }
-}
-
-$list-color-hash = {
-  '': {
-    bg: $brand-bg,
-    hover-bg: $brand-bg-hover,
-    hover-color: $brand-secondary,
-    active-bg: $brand-bg-hover,
-    active-color: $brand-secondary
-  },
-  'success': {
-    bg: $brand-bg,
-    hover-bg: $brand-success,
-    hover-color: $brand-bg,
-    active-bg: $brand-success,
-    active-color: $brand-bg
-  },
-  'info': {
-    bg: $brand-bg,
-    hover-bg: $brand-info,
-    hover-color: $brand-bg,
-    active-bg: $brand-info,
-    active-color: $brand-bg
-  },
-  'primary': {
-    bg: $brand-bg,
-    hover-bg: $brand-primary,
-    hover-color: $brand-bg,
-    active-bg: $brand-primary,
-    active-color: $brand-bg
-  },
-  'warning': {
-    bg: $brand-bg,
-    hover-bg: $brand-warning,
-    hover-color: $brand-bg,
-    active-bg: $brand-warning,
-    active-color: $brand-bg
-  },
-  'danger': {
-    bg: $brand-bg,
-    hover-bg: $brand-danger,
-    hover-color: $brand-bg,
-    active-bg: $brand-danger,
-    active-color: $brand-bg
+    header-padding: 10px 14px,
+    padding-horizontal: 14px,
+    padding-vertical: 8px,
   }
 }

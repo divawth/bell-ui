@@ -1,8 +1,8 @@
 <div
 class="${prefix}spinner
-{{#if size}} ${prefix}spinner-{{size}}{{/if}}
 {{#if type}} ${prefix}spinner-{{type}}{{/if}}
-{{#if fix}} ${prefix}spinner-fix{{/if}}
+{{#if size}} ${prefix}spinner-{{size}}{{/if}}
+{{#if fixed}} ${prefix}spinner-fixed{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -11,12 +11,12 @@ class="${prefix}spinner
 >
 
   <slot name="children">
-    <div class="${prefix}spinner-main">
-      <span class="${prefix}spinner-dot"></span>
+    <div class="${prefix}spinner-content">
+      <div class="${prefix}spinner-dot"></div>
       {{#if text}}
-        <span class="${prefix}spinner-text">
+        <div class="${prefix}spinner-text">
           {{text}}
-        </span>
+        </div>
       {{/if}}
     </div>
   </slot>

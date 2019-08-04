@@ -27,7 +27,7 @@ export default Yox.define({
     name: {
       type: RAW_NUMERIC,
     },
-    isActive: {
+    active: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -148,17 +148,17 @@ export default Yox.define({
 
   afterMount() {
     this.watch(
-      'isActive',
+      'active',
       {
-        watcher(isActive: boolean) {
-          if (isActive == NULL) {
+        watcher(active: boolean) {
+          if (active == NULL) {
             return
           }
           this.fire(
             'open.panel',
             {
               name: this.get('name'),
-              opened: isActive,
+              opened: active,
             }
           )
         },

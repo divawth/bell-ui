@@ -284,7 +284,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-spinner"+(a("size",$2)?(" bell-spinner-"+y(a("size",$2))):"")+(a("type",$2)?(" bell-spinner-"+y(a("type",$2))):"")+(a("fix",$2)?" bell-spinner-fix":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children",function(){q("div",function(){g("className","bell-spinner-main")},function(){q("span",function(){g("className","bell-spinner-dot")},$0,$0,$2),a("text",$2)?(q("span",function(){g("className","bell-spinner-text")},$0,y(a("text",$2)))):p()})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-spinner"+(a("type",$2)?(" bell-spinner-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-spinner-"+y(a("size",$2))):"")+(a("fixed",$2)?" bell-spinner-fixed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children",function(){q("div",function(){g("className","bell-spinner-content")},function(){q("div",function(){g("className","bell-spinner-dot")},$0,$0,$2),a("text",$2)?(q("div",function(){g("className","bell-spinner-text")},$0,y(a("text",$2)))):p()})})})};
 
 /***/ }),
 /* 32 */
@@ -398,13 +398,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("ul",function(){g("className","bell-list"+(a("border",$2)?" bell-list-border":"")+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["subHeader"]))?(q("div",function(){g("className","bell-list-header")},function(){s("$slot_subHeader")})):p(),a("loading",$2)?(r("Spinner",function(){f("size","large"),f("fix",$2)})):p(),s("$slot_children",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){q("p",function(){g("className","bell-list-empty-description")},$0,"暂无数据",$2)})})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list"+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("simple",$2)?" bell-list-simple":" bell-list-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-header")},function(){s("$slot_header")})):p(),a("loading",$2)?(r("Spinner",function(){f("size","large"),f("fix",$2)})):p(),s("$slot_children",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){q("p",function(){g("className","bell-list-empty-desc")},$0,"暂无数据",$2)})})})})};
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("li",function(){g("className","bell-list-item"+(a("className",$2)?(" "+y(a("className",$2))):"")+((d(a("hasSlot",$2),["header"]))?" bell-list-item-has-header":"")+((d(a("hasSlot",$2),["footer"]))?" bell-list-item-has-footer":"")),(d(a("hasSlot",$2),["nested"]))&&m("click","event.click",$0,"click.item","click.item"),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-list-item-content"+((!a("disableHover",$2))?" bell-list-item-content-hover":"")+(a("active",$2)?" bell-active":""))},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-item-header")},function(){s("$slot_header")})):p(),(d(a("hasSlot",$2),["footer"]))?(q("div",function(){g("className","bell-list-item-footer")},function(){s("$slot_footer")})):p(),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-list-item-text")},function(){s("$slot_children")})):p()}),(d(a("hasSlot",$2),["nested"]))?(q("div",function(){g("className","bell-list-item-nested"+(a("nestedIsShow",$2)?" bell-show":""))},function(){s("$slot_nested")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list-item"+(a("clickable",$2)?" bell-list-item-clickable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),a("clickable",$2)&&m("click","event.click",$0,"click.listItem","click.listItem")},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-item-header")},function(){s("$slot_header")})):p(),(d(a("hasSlot",$2),["footer"]))?(q("div",function(){g("className","bell-list-item-footer")},function(){s("$slot_footer")})):p(),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-list-item-text")},function(){s("$slot_children")})):p()})};
 
 /***/ }),
 /* 52 */
@@ -3771,29 +3771,32 @@ var Spinner_default = /*#__PURE__*/__webpack_require__.n(Spinner);
 
 
 
+
 /* harmony default export */ var spinner_Spinner = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Spinner_default.a,
     propTypes: {
+        type: {
+            type: oneOf(RAW_TYPE_ARRAY),
+            value: RAW_TYPE_PRIMARY,
+        },
+        size: {
+            type: oneOf(RAW_SIZE_COMMON),
+            value: RAW_DEFAULT,
+        },
+        fixed: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
+        text: {
+            type: RAW_STRING,
+        },
         className: {
             type: RAW_STRING,
         },
         style: {
             type: RAW_STRING,
         },
-        size: {
-            type: RAW_STRING,
-        },
-        text: {
-            type: RAW_STRING,
-        },
-        fix: {
-            type: RAW_BOOLEAN,
-            value: FALSE,
-        },
-        type: {
-            type: RAW_STRING,
-        }
     },
-    template: Spinner_default.a,
 }));
 
 // EXTERNAL MODULE: ./src/components/backtop/template/BackTop.hbs
@@ -5510,7 +5513,7 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
         name: {
             type: RAW_NUMERIC,
         },
-        isActive: {
+        active: {
             type: RAW_BOOLEAN,
             value: FALSE,
         },
@@ -5601,14 +5604,14 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
         }
     },
     afterMount: function () {
-        this.watch('isActive', {
-            watcher: function (isActive) {
-                if (isActive == NULL) {
+        this.watch('active', {
+            watcher: function (active) {
+                if (active == NULL) {
                     return;
                 }
                 this.fire('open.panel', {
                     name: this.get('name'),
-                    opened: isActive,
+                    opened: active,
                 });
             },
             immediate: TRUE,
@@ -5738,27 +5741,34 @@ var List_default = /*#__PURE__*/__webpack_require__.n(List);
 
 
 
+
 /* harmony default export */ var list_List = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: List_default.a,
+    name: 'bell-list',
     propTypes: {
-        border: {
+        simple: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
         loading: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
+        },
+        clickable: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         size: {
-            type: RAW_STRING
+            type: oneOf(RAW_SIZE_COMMON),
+            value: RAW_DEFAULT,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: List_default.a
 }));
 
 // EXTERNAL MODULE: ./src/components/list/template/Item.hbs
@@ -5769,32 +5779,25 @@ var Item_default = /*#__PURE__*/__webpack_require__.n(Item);
 
 
 
+
 /* harmony default export */ var list_Item = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Item_default.a,
     propTypes: {
-        disableHover: {
-            type: RAW_BOOLEAN
-        },
-        active: {
-            type: RAW_BOOLEAN
-        },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Item_default.a,
-    data: function () {
+    data: function (options) {
+        var list = findComponentUpward(options.parent, 'bell-list');
         return {
-            nestedIsShow: FALSE
+            clickable: list
+                ? list.get('clickable')
+                : FALSE
         };
-    },
-    events: {
-        click: function () {
-            this.toggle('nestedIsShow');
-        }
-    },
+    }
 }));
 
 // EXTERNAL MODULE: ./src/components/divider/template/Divider.hbs

@@ -1,31 +1,32 @@
 $selector-spinner = $selector-prefix + '-spinner'
-$selector-spinner-fix = $selector-spinner + '-fix'
-$selector-spinner-dot = $selector-spinner + '-dot'
+$selector-spinner-fixed = $selector-spinner + '-fixed'
 
-$selector-spinner-mask-color = rgba(255,255,255,.8)
+$selector-spinner-content = $selector-spinner + '-content'
+$selector-spinner-dot = $selector-spinner + '-dot'
+$selector-spinner-text = $selector-spinner + '-text'
+
+$spinner-mask-color = rgba(255,255,255,.8)
+
 $spinner-brand-hash = {
-  '': {
-    bg-color: $brand-primary
+  'primary': {
+    color: $brand-primary
   },
   'success': {
-    bg-color: $brand-success
+    color: $brand-success
   },
   'info': {
-    bg-color: $brand-info
+    color: $brand-info
   },
   'error': {
-    bg-color: $brand-error
+    color: $brand-error
   },
   'warning': {
-    bg-color: $brand-warning
-  },
-  'danger': {
-    bg-color: $brand-danger
+    color: $brand-warning
   }
 }
 
 $spinner-size-hash = {
-  '': {
+  'default': {
     width: 20px,
     height: 20px,
     font-size: 14px,

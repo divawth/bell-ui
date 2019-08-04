@@ -1,22 +1,24 @@
-spinner-brand(color)
-  ui-set('color', color['bg-color'])
+spinner-brand-style(style)
+  ui-set('color', style['color'])
 
   {$selector-spinner-dot}
-    ui-set('background-color', color['bg-color'])
+    ui-set('background-color', style['color'])
 
-spinner-size(size)
+spinner-size-style(style)
   {$selector-spinner-dot}
-    ui-set('height', size['height'])
-    ui-set('width', size['width'])
-    ui-set('font-size', size['font-size'])
+    ui-set('width', style['width'])
+    ui-set('height', style['height'])
+
+  {$selector-spinner-text}
+    ui-set('font-size', style['font-size'])
 
 ui-spinner()
   ui-connect(
     hash: $spinner-brand-hash,
-    each: spinner-brand
+    each: spinner-brand-style
   )
 
   ui-connect(
     hash: $spinner-size-hash,
-    each: spinner-size
+    each: spinner-size-style
   )

@@ -14,17 +14,31 @@ export default {
 }
 ```
 
+> text
+
+```js
+export default {
+  template: `
+    <div>
+      <Spinner text="正在加载..." />
+    </div>
+  `
+}
+```
+
 > 设置类型
 
 ```js
 export default {
   template: `
   <div>
+    <Spinner type="success" />
+    <br><br>
     <Spinner type="error" />
     <br><br>
     <Spinner type="warning" />
     <br><br>
-    <Spinner type="success" />
+    <Spinner type="info" />
   </div>
   `
 }
@@ -48,7 +62,7 @@ export default {
           <p>总为浮云能蔽日，长安不见使人愁。</p>
         </article>
         {{#if spinShow}}
-        <Spinner size="large" fix />
+        <Spinner size="large" fixed />
         {{/if}}
       </div>
       <br>
@@ -77,7 +91,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-size | 大小 | string | small, tiny | -
+type | 风格 | string | primary, success, error, info, warning | primary
+size | 大小 | string | default, small, tiny | default
+fixed | 是否固定 | boolean | true, false | false
 text | 文字 | string | - | -
-fix | 是否固定 | string | - | -
-type | 风格 | string | circle, - | -
+
+> Slots
+
+参数 | 说明
+---|---
+children | 内容完全自定义

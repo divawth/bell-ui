@@ -4,38 +4,33 @@ import template from './template/Item.hbs'
 
 import {
   FALSE,
-  RAW_BOOLEAN,
   RAW_STRING,
 } from '../constant'
 
+import {
+  findComponentUpward,
+} from '../util'
+
 export default Yox.define({
-  propTypes: {
-    disableHover: {
-      type: RAW_BOOLEAN
-    },
-    active: {
-      type: RAW_BOOLEAN
-    },
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    }
-  },
 
   template,
 
-  data() {
-    return {
-      nestedIsShow: FALSE
+  propTypes: {
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
     }
   },
 
-  events: {
-    click() {
-      this.toggle('nestedIsShow')
+  data(options) {
+    const list = findComponentUpward(options.parent, '${prefix}list')
+    return {
+      clickable: list
+        ? list.get('clickable')
+        : FALSE
     }
-  },
+  }
 
 })

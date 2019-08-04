@@ -1,13 +1,17 @@
-<ul class="${prefix}list
-{{#if border}} ${prefix}list-border{{/if}}
+<div class="${prefix}list
 {{#if size}} ${prefix}list-{{size}}{{/if}}
+{{#if simple}} ${prefix}list-simple
+{{else}} ${prefix}list-bordered
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
-  {{#if hasSlot('subHeader')}}
+  {{#if hasSlot('header')}}
     <div class="${prefix}list-header">
-      <slot name="subHeader" />
+      <slot name="header" />
     </div>
   {{/if}}
 
@@ -18,10 +22,10 @@
   <slot name="children">
     <div class="${prefix}list-empty">
       <slot name="empty">
-        <p class="${prefix}list-empty-description">
+        <p class="${prefix}list-empty-desc">
           暂无数据
         </p>
       </slot>
     </div>
   </slot>
-</ul>
+</div>
