@@ -1,12 +1,17 @@
-size-style(style)
-
+size-size-style(style)
   {$selector-tabs-tab}
-    ui-set('padding', style[ 'padding' ])
-    ui-set('font-size', style[ 'size' ])
-    ui-set('line-height', style[ 'line-height' ])
+    ui-set('padding-left', style['padding-horizontal'])
+    ui-set('padding-right', style['padding-horizontal'])
+    ui-set('font-size', style['font-size'])
+    ui-set('height', style['height'])
+    ui-set('line-height', style['height'])
+
+  {$selector-tabs-tab-close-icon}
+    ui-set('margin-top', 0.5 * (style['height'] - $tabs-close-size))
+
 
 ui-tabs()
   ui-connect(
     hash: $tabs-bar-size-hash,
-    each: size-style
+    each: size-size-style
   )

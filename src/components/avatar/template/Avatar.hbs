@@ -1,5 +1,7 @@
 <div
-class="${prefix}avatar ${prefix}avatar-{{size}} ${prefix}avatar-{{shape}}
+class="${prefix}avatar
+{{#if size}} ${prefix}avatar-{{size}}{{/if}}
+{{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 style="{{#if text}}color: {{color}};{{/if}}
@@ -16,7 +18,7 @@ style="{{#if text}}color: {{color}};{{/if}}
         srcset="{{srcset}}"
       {{/if}}
       ondragstart="return false"
-    />
+    >
   {{else if hasSlot('icon')}}
     <span class="${prefix}avatar-icon">
       <slot name="icon" />

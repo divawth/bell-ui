@@ -7,6 +7,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_NUMERIC,
+  RAW_NUMBER,
 } from '../constant'
 
 import {
@@ -22,21 +23,21 @@ function isOptionSelected(values: any[] | any, value: any) {
 export default Yox.define({
   template,
   propTypes: {
-    value: {
-      type: [ RAW_STRING, RAW_NUMERIC ]
-    },
-    text: {
-      type: [ RAW_STRING, RAW_NUMERIC ]
-    },
     index: {
       type: RAW_NUMERIC,
-      required: TRUE
+      required: TRUE,
+    },
+    value: {
+      type: [RAW_STRING, RAW_NUMBER],
+    },
+    text: {
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
   events: {
@@ -52,12 +53,12 @@ export default Yox.define({
       }
     },
 
-    'change.select': function (_, data) {
-      if (isOptionSelected(data.value, this.get('value'))) {
-        this.set('isSelected', TRUE)
-        this.fire('selected.selectOption')
+    'sync.select': function (_, data) {
+      const { value, selected, multiple } = data
+      if (value === this.get('value')) {
+        this.set('isSelected', selected)
       }
-      else {
+      else if (selected && !multiple) {
         this.set('isSelected', FALSE)
       }
     }

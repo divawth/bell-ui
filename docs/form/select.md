@@ -323,8 +323,12 @@ export default {
             value: 4
           },
           {
-            text: '南昌',
+            text: '杭州',
             value: 5
+          },
+          {
+            text: '武汉',
+            value: 6
           }
         ]
       }
@@ -400,11 +404,11 @@ export default {
   template: `
   <div>
     <Select size="large" model="value">
-      <Option index="0" value="3" text="北京">
+      <Option index="0" value="1" text="北京">
         北京
         <span style="float:right;color:#ccc">中国</span>
       </Option>
-      <Option index="1" value="1" text="深圳">
+      <Option index="1" value="2" text="深圳">
         深圳
         <span style="float:right;color:#ccc">中国</span>
       </Option>
@@ -467,7 +471,7 @@ export default {
 }
 ```
 
-> 前缀图标 
+> 前缀图标
 
 ```js
 export default {

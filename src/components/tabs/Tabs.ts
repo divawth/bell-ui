@@ -5,14 +5,15 @@ import template from './template/Tabs.hbs'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
 
-  RAW_TINY,
   RAW_SMALL,
   RAW_LARGE,
 
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  RAW_DEFAULT,
 } from '../constant'
 
 import {
@@ -28,27 +29,29 @@ interface Tab {
 
 export default Yox.define({
 
+  template,
+
   name: '${prefix}tabs',
 
   propTypes: {
     type: {
-      type: oneOf(['line', 'card']),
-      value: 'line'
+      type: oneOf(['card']),
     },
     size: {
-      type: oneOf([ RAW_TINY, RAW_SMALL, RAW_LARGE, 'default' ])
+      type: oneOf([RAW_DEFAULT, RAW_SMALL, RAW_LARGE]),
+      value: RAW_DEFAULT,
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     animated: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: TRUE,
     },
     value: {
       type: RAW_NUMERIC,
-      value: 0
+      value: 0,
     },
     className: {
       type: RAW_STRING,
@@ -58,86 +61,147 @@ export default Yox.define({
     }
   },
 
-  template,
-
   data() {
     return {
-      tabsList: []
+      tabs: [],
     }
   },
 
   computed: {
-    translateStyle() {
-      const me = this
-      const value = me.get('value')
-      const tabs: Tab[] = me.get('tabsList')
-
-      let index = 0
-
-      Yox.array.each(
-        tabs,
-        (item, key) => {
-          if (item.id == value) {
-            index = key
-            return FALSE
-          }
-        }
-      )
-
-      return index * (-100) + '%'
+    translateStyle(): string {
+      return this.getActiveIndex() * -100 + '%'
     }
   },
 
   events: {
-    tabPanelRemove(event, data) {
+    'add.tabPanel': function (event) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
-        let tabsList: Tab[] = this.copy(this.get('tabsList'))
-        tabsList = tabsList.filter(function (item) {
-          return item.id !== data.id
-        })
-        this.set({ tabsList })
-      }
-    },
-    tabsValueUpdate(event, data: Tab) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
-        let me = this
-        let tabsList: Tab[] = me.copy(me.get('tabsList'))
-        tabsList.forEach(function (item) {
-          if (item.id === data.id) {
-            item = data
+        const { target } = event
+        this.append(
+          'tabs',
+          {
+            id: target.get('id'),
+            icon: target.get('icon'),
+            label: target.get('label'),
+            disabled: target.get('disabled'),
           }
-        })
-        me.set({ tabsList })
+        )
+        this.updateIndicator()
       }
     },
-    tabPanelAdd(event, data: Tab) {
+    'remove.tabPanel': function (event) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
-        this.append('tabsList', data)
+        const me = this
+        const { target } = event
+        const tabId = target.get('id')
+        const tabs: Tab[] = me.get('tabs')
+        const newTabs = tabs.filter(function (item) {
+          return item.id !== tabId
+        })
+        me.set({
+          tabs: newTabs
+        })
+        if (me.get('value') === tabId) {
+          me.set('value', newTabs[0] ? newTabs[0].id : UNDEFINED)
+        }
+        me.updateIndicator()
+      }
+    },
+    'update.tabPanel': function (event) {
+      if (event.phase === Yox.Event.PHASE_UPWARD) {
+
+        const me = this
+        const { target } = event
+        const tabId = target.get('id')
+        const tabs: Tab[] = me.get('tabs')
+
+        Yox.array.each(
+          tabs,
+          function (item, index) {
+            if (item.id === tabId) {
+              me.set(
+                `tabs.${index}`,
+                {
+                  id: tabId,
+                  icon: target.get('icon'),
+                  label: target.get('label'),
+                  disabled: target.get('disabled'),
+                }
+              )
+              me.updateIndicator()
+              return FALSE
+            }
+          }
+        )
+
       }
     }
   },
 
   watchers: {
     value(value) {
+      this.updateIndicator()
       this.fire(
-        'tabSelected.tabs',
+        'selected.tabs',
         { value },
         TRUE
       )
-    }
+    },
   },
 
   methods: {
-    close(data: Tab) {
-      this.fire('tabRemove.tabs', data)
+    handleCloseTab(tab: Tab) {
+      this.fire('tabRemove.tabs', tab)
     },
-    click(data: Tab) {
-      if (data.disabled) {
-        return
-      }
+    handleClickTab(tab: Tab) {
       this.set({
-        value: data.id
+        value: tab.id,
       })
+    },
+    updateIndicator() {
+      const me = this
+      me.nextTick(
+        function () {
+          const { $el, $refs } = me
+          if (!$el || !$refs) {
+            return
+          }
+          const { indicator } = $refs
+          if (!indicator) {
+            return
+          }
+          const index = me.getActiveIndex()
+          const result = $el.getElementsByClassName('${prefix}tabs-tab')
+          if (result[index]) {
+            const tabElement = result[index] as HTMLElement
+            const indicatorElement = indicator as HTMLElement
+            indicatorElement.style.left = tabElement.offsetLeft + 'px'
+            indicatorElement.style.width = tabElement.offsetWidth + 'px'
+          }
+        }
+      )
+    },
+    getActiveIndex() {
+      const value = this.get('value')
+      const tabs: Tab[] = this.get('tabs')
+
+      let index = 0
+
+      Yox.array.each(
+        tabs,
+        function (item, key) {
+          if (item.id === value) {
+            index = key
+            return FALSE
+          }
+        }
+      )
+      return index
+
     }
+  },
+
+  afterMount() {
+    this.updateIndicator()
   }
 })

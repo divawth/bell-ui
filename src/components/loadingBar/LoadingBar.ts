@@ -1,6 +1,6 @@
 import { add, remove, update } from './base'
-import Yox from 'yox';
-import { NULL } from '../constant';
+import Yox from 'yox'
+import { NULL } from '../constant'
 
 interface Config {
   type?: string,

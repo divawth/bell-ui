@@ -61,7 +61,6 @@ export default {
   template: `
     <div>
       <RadioGroup model="size" type="info">
-        <Radio label="tiny" value="tiny"></Radio>
         <Radio label="small" value="small"></Radio>
         <Radio label="default" value="default"></Radio>
         <Radio label="large" value="large"></Radio>
@@ -99,7 +98,7 @@ export default {
   },
   template: `
     <div>
-      <Tabs size="{{size}}">
+      <Tabs>
         {{#each tabsList}}
           <TabPanel label="{{name}}">{{content}}</TabPanel>
         {{/each}}
@@ -168,7 +167,7 @@ export default {
   },
   template: `
     <div>
-      <Tabs type="card" closable size="{{size}}" on-tab-remove="removeTab($data)">
+      <Tabs type="card" closable on-tab-remove="removeTab($data)">
         {{#each tabsList}}
           <TabPanel key="{{name}}" label="{{name}}">{{content}}</TabPanel>
         {{/each}}
@@ -225,8 +224,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | tabs 类型 | string | line 和 card | line
-size | 大小 | string | - | -
+type | tabs 类型 | string | card | -
+size | 大小 | string | default, small, large | default
 closable | 是否可以关闭页签，仅在 type="card" 时有效 | boolean | - | false
 animated | 是否有动画 | boolean | - | true
 value | 当前选中的 tab 的 name 值 | string, number | - | -

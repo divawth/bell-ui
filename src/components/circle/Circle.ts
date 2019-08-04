@@ -14,47 +14,47 @@ import {
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     dashboard: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     percent: {
       type: RAW_NUMERIC,
-      value: 0
+      value: 0,
     },
     size: {
       type: RAW_NUMERIC,
-      value: 120
+      value: 120,
     },
     strokeWidth: {
       type: RAW_NUMERIC,
-      value: 6
+      value: 6,
     },
     strokeColor: {
       type: RAW_STRING,
-      value: '#2db7f5'
+      value: '#2db7f5',
     },
     strokeLinecap: {
       type: oneOf(['square', 'round']),
-      value: 'round'
+      value: 'round',
     },
     trailWidth: {
       type: RAW_NUMERIC,
-      value: 5
+      value: 5,
     },
     trailColor: {
       type: RAW_STRING,
-      value: '#eaeef2'
+      value: '#eaeef2',
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template,
 
   computed: {
     computedStrokeWidth() {

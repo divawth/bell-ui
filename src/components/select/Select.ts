@@ -1,9 +1,9 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEventInterface, Data, YoxInterface } from 'yox'
 
 import template from './template/Select.hbs'
 
 import {
-  contains
+  contains, oneOf
 } from '../util'
 
 import {
@@ -16,6 +16,10 @@ import {
   RAW_NUMERIC,
   RAW_EVENT_CLICK,
   RAW_EVENT_KEYDOWN,
+  RAW_ARRAY,
+  RAW_NUMBER,
+  RAW_SIZE_COMMON,
+  RAW_DEFAULT,
 } from '../constant'
 
 export default Yox.define({
@@ -26,37 +30,36 @@ export default Yox.define({
 
   propTypes: {
     clearable: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     defaultText: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     value: {
-      type: [ RAW_NUMERIC, RAW_STRING ]
+      type: [ RAW_ARRAY, RAW_STRING, RAW_NUMBER ],
     },
     size: {
-      type: RAW_STRING
-    },
-    type: {
-      type: RAW_STRING
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     disabled: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     placement: {
-      type: RAW_STRING
+      type: RAW_STRING,
+      value: 'bottom',
     },
     multiple: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     prefix: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
@@ -65,7 +68,6 @@ export default Yox.define({
       count: 0,
       visible: FALSE,
       hoverIndex: 0,
-
       selectedOptions: [],
     }
   },
@@ -74,87 +76,82 @@ export default Yox.define({
     value(value) {
       this.fire(
         'change.select',
-        { value },
-        TRUE
-      )
-      this.fire(
-        'change.select',
         { value }
       )
     }
   },
 
   events: {
-    'selected.selectOption': function (event) {
-      if (this.get('multiple')) {
-        return
-      }
-      const { target } = event
-      const value = target.get('value')
-      const text = target.get('text')
-
-      const data: Data = { value }
-      const selectedOptions = this.get('selectedOptions')
-      if (!selectedOptions[0]
-        || selectedOptions[0].value !== value
-      ) {
-        data.selectedOptions = [{ value, text }]
-      }
-
-      this.set(data)
-
-    },
 
     'add.selectOption': function (event) {
       event.stop()
       this.increase('count')
-      // 判断 option 的 isSelected
+      const { target } = event
+      if (target.get('isSelected')) {
+        this.notifyOptionSelected(target)
+      }
     },
 
     'remove.selectOption': function (event) {
       event.stop()
       this.decrease('count')
+      const { target } = event
+      if (target.get('isSelected')) {
+        this.notifyOptionUnselected(target)
+      }
     },
 
     'click.selectOption': function (event) {
+
       event.stop()
 
       const me = this
 
+      // 这里是 option 和 select 沟通的地方
+      // 只是反向再告诉 option 它应该是选中还是取消选中
       const { target } = event
       const value = target.get('value')
+      const multiple = me.get('multiple')
 
-      if (me.get('multiple')) {
-        let values = me.get('value')
-        if (Yox.is.array(values)) {
-          values = me.copy(values)
+      if (multiple) {
+
+        const values = me.get('value')
+        const selected = Yox.is.array(values) && Yox.array.has(values, value)
+          ? FALSE
+          : TRUE
+
+        if (selected) {
+          me.notifyOptionSelected(target)
         }
         else {
-          values = []
+          me.notifyOptionUnselected(target)
         }
 
-        const selectedIndex = Yox.array.indexOf(values, value)
+        me.fire(
+          'sync.select',
+          {
+            value,
+            multiple,
+            selected,
+          },
+          TRUE
+        )
 
-        // 取消选中
-        if (selectedIndex >= 0) {
-          values.splice(selectedIndex, 1)
-        }
-        // 选中
-        else {
-          values.push(value)
-        }
-
-        me.set({
-          value: values,
-          visible: TRUE,
-        })
       }
       else {
-        me.set({
-          value,
-          visible: FALSE,
-        })
+        me.set('visible', FALSE)
+        me.notifyOptionSelected(target)
+        me.fire(
+          'sync.select',
+          {
+            value,
+            multiple,
+            selected: TRUE,
+          },
+          TRUE
+        )
       }
+
     }
   },
 
@@ -180,6 +177,71 @@ export default Yox.define({
 
       this.removeAt('value', index)
       this.removeAt('selectedOptions', index)
+
+    },
+
+    notifyOptionSelected(option: YoxInterface) {
+
+      const me = this
+      const value = option.get('value')
+      const text = option.get('text')
+
+      if (me.get('multiple')) {
+
+        const values = me.get('value')
+
+        if (Yox.is.array(values)
+          && Yox.array.has(values, value)
+        ) {
+          return
+        }
+
+        me.append('value', value)
+        me.append('selectedOptions', { value, text })
+
+      }
+      else {
+        const selectedOptions = me.get('selectedOptions')
+
+        me.set('value', value)
+
+        if (!selectedOptions[0]
+          || selectedOptions[0].value !== value
+        ) {
+          me.set('selectedOptions', [{ value, text }])
+        }
+      }
+
+    },
+
+    notifyOptionUnselected(option: YoxInterface) {
+
+      const me = this
+      const values = me.get('value')
+
+      const value = option.get('value')
+
+      if (me.get('multiple')) {
+
+        let selectedIndex = Yox.is.array(values) ? Yox.array.indexOf(values, value) : -1
+        if (selectedIndex < 0) {
+          return
+        }
+
+        me.removeAt('value', selectedIndex)
+        me.removeAt('selectedOptions', selectedIndex)
+
+      }
+      else {
+
+        if (values !== value) {
+          return
+        }
+
+        me.set('value', UNDEFINED)
+        me.set('selectedOptions', [])
+
+      }
 
     },
 

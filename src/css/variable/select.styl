@@ -1,92 +1,73 @@
 $selector-select = $selector-prefix + '-select'
-$selector-select-button = $selector-prefix + '-select-button'
+$selector-select-disabled = $selector-select + '-disabled'
+$selector-select-active = $selector-select + '-active'
+$selector-select-multiple = $selector-select + '-multiple'
+$selector-select-clearable = $selector-select + '-clearable'
+$selector-select-top = $selector-select + '-top'
+$selector-select-bottom = $selector-select + '-bottom'
 
-$select-option-color = #999
-$select-dropdown-height = 200px
-$select-padding-right = 24px
-$select-padding-left = 8px
-$select-icon-padding = 0px 8px
+$selector-select-prefix = $selector-select  + '-prefix'
+$selector-select-button = $selector-select  + '-button'
+$selector-select-value = $selector-select  + '-value'
+$selector-select-placeholder = $selector-select  + '-placeholder'
+$selector-select-arrow = $selector-select  + '-arrow'
+$selector-select-clear-icon = $selector-select  + '-clear-icon'
+
+$selector-select-option = $selector-select  + '-option'
+$selector-select-option-title = $selector-select-option  + '-title'
+$selector-select-option-active = $selector-select-option  + '-active'
+
+$select-button-padding-right = 24px
+$select-button-padding-left = 8px
+$select-arrow-width = 30px
+$select-arrow-color = $brand-muted
+$select-clear-color = #808695
+
+// 下拉框和按钮的间距
+$select-dropdown-list-gap = 2px
+// 下拉框的上下内边距
+$select-dropdown-list-padding-vertical = 6px
+
+$select-dropdown-list-height = 200px
+$select-option-title-text-color = #999
+$select-option-bg-hover = #f6f6f6
 
 $select-size-hash = {
-  '': {
-    font: 12px,
-    height: 32px,
-    option-padding: 10px 15px
+  'default': {
+    height: 30px,
+    font-size: 12px,
+    group-padding: 8px,
+    option-padding: 7px 16px
   },
   'small': {
-    font: 12px,
-    height: 24px,
-    option-padding: 6px 15px
+    height: 22px,
+    font-size: 12px,
+    group-padding: 7px 8px,
+    option-padding: 7px 16px
   },
   'large': {
-    font: 14px,
-    height: 40px,
-    option-padding: 12px 15px
+    height: 34px,
+    font-size: 14px,
+    group-padding: 10px 8px,
+    option-padding: 10px 16px
   }
 }
 
-$select-color-hash = {
-  '': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-primary-shadow,
-    border-color-hover: $brand-primary-hover,
-    box-shadow: 0 0 0 2px $brand-primary-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-primary
-  },
-  'success': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-success-shadow,
-    border-color-hover: $brand-success-hover,
-    box-shadow: 0 0 0 2px $brand-success-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-success
-  },
-  'error': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-error-shadow,
-    border-color-hover: $brand-error-hover,
-    box-shadow: 0 0 0 2px $brand-error-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-error
-  },
-  'info': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-info-shadow,
-    border-color-hover: $brand-info-hover,
-    box-shadow: 0 0 0 2px $brand-info-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-info
-  },
-  'warning': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-warning-shadow,
-    border-color-hover: $brand-warning-hover,
-    box-shadow: 0 0 0 2px $brand-warning-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-warning
-  },
-  'danger': {
-    border-color: $brand-border,
-    bg-color: $brand-bg,
-    brand-bg-hover: $brand-danger-shadow,
-    border-color-hover: $brand-danger-hover,
-    box-shadow: 0 0 0 2px $brand-danger-shadow,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-danger
-  },
-  'disabled': {
-    bg-color: #F7F7F7,
-    border-color: $brand-border-disabled,
-    brand-bg-hover: none,
-    border-color-hover: $brand-border-disabled,
-    box-shadow: none,
-    option-hover-bg: #f3f3f3,
-    option-hover-color: $brand-muted
-  }
-}
+// '': {
+//     border-color: $brand-border,
+//     bg-color: $brand-bg,
+//     brand-bg-hover: $brand-primary-shadow,
+//     border-color-hover: $brand-primary-hover,
+//     box-shadow: 0 0 0 2px $brand-primary-shadow,
+//     option-hover-bg: #f3f3f3,
+//     option-hover-color: $brand-primary
+//   },
+//   'disabled': {
+//     bg-color: #F7F7F7,
+//     border-color: $brand-border-disabled,
+//     brand-bg-hover: none,
+//     border-color-hover: $brand-border-disabled,
+//     box-shadow: none,
+//     option-hover-bg: #f3f3f3,
+//     option-hover-color: $brand-muted
+//   }

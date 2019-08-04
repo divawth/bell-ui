@@ -1,56 +1,76 @@
 <div
-class="${prefix}tabs ${prefix}tabs-{{type}}
+class="${prefix}tabs
+{{#if type}} ${prefix}tabs-{{type}}{{/if}}
 {{#if size}} ${prefix}tabs-{{size}}{{/if}}
 {{#if animated}} ${prefix}tabs-animated{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
 
   <div class="${prefix}tabs-bar">
+
     {{#if hasSlot('extra')}}
-      <div class="${prefix}tabs-extra-container">
+      <div class="${prefix}tabs-extra">
         <slot name="extra" />
       </div>
     {{/if}}
-    <div class="${prefix}tabs-nav-container">
-      <span class="${prefix}tabs-tab-prev"></span>
-      <span class="${prefix}tabs-tab-next"></span>
-      <div class="${prefix}tabs-tab-wrap">
-        <div class="${prefix}tabs-tab-scroll">
-          <div class="${prefix}tabs-nav
-            {{#if closable}} ${prefix}tabs-nav-closable{{/if}}
-          ">
-            {{#each tabsList}}
-              <div class="${prefix}tabs-tab
-                {{#if disabled}} ${prefix}tabs-tab-disabled{{/if}}
-                {{#if value === id}} ${prefix}tabs-tab-active{{/if}}
-              " on-click="click(this)"
-              >
-                {{#if this.icon}}
-                  <Icon
-                    className="${prefix}tabs-tab-icon"
-                    name="{{this.icon}}"
-                  />
-                {{/if}}
-                {{label}}
-                {{#if closable}}
-                  <Icon
-                    className="${prefix}tabs-tab-icon-close"
-                    name="close"
-                    size="22"
-                    on-click.native="close(this)"
-                  />
-                {{/if}}
-              </div>
-            {{/each}}
-          </div>
+
+    <div
+      class="${prefix}tabs-nav
+        {{#if closable}} ${prefix}tabs-nav-closable{{/if}}"
+    >
+      {{#if type !== 'card'}}
+        <div
+          ref="indicator"
+          class="${prefix}tabs-indicator"
+        >
         </div>
-      </div>
+      {{/if}}
+      {{#each tabs:index}}
+        <div
+          class="${prefix}tabs-tab
+            {{#if this.disabled}} ${prefix}tabs-tab-disabled
+            {{else}} ${prefix}tabs-tab-enabled
+            {{/if}}
+            {{#if this.id === ../value}} ${prefix}tabs-tab-active
+            {{else}} ${prefix}tabs-tab-unactive
+            {{/if}}"
+
+          {{#if !this.disabled}}
+            on-click="handleClickTab(this)"
+          {{/if}}
+        >
+          {{#if this.icon}}
+            <Icon
+              className="${prefix}tabs-tab-icon"
+              name="{{this.icon}}"
+            />
+          {{/if}}
+
+          {{this.label}}
+
+          {{#if ../closable}}
+            <Icon
+              className="${prefix}tabs-tab-close-icon"
+              name="close"
+              size="22"
+              on-click.native="handleCloseTab(this)"
+            />
+          {{/if}}
+
+        </div>
+      {{/each}}
     </div>
   </div>
 
-  <div class="${prefix}tabs-content" style="transform: translateX({{translateStyle}});">
+  <div
+    class="${prefix}tabs-content"
+    style="transform: translateX({{translateStyle}});"
+  >
     <slot name="children" />
   </div>
+
 </div>

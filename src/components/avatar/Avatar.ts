@@ -23,8 +23,7 @@ export default Yox.define({
 
   propTypes: {
     shape: {
-      type: oneOf([RAW_SHAPE_CIRCLE, RAW_SHAPE_ROUND]),
-      value: RAW_SHAPE_ROUND,
+      type: oneOf([RAW_SHAPE_CIRCLE]),
     },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
@@ -47,7 +46,7 @@ export default Yox.define({
     },
     color: {
       type: RAW_STRING,
-      value: '#FFF',
+      value: '#fff',
     },
     className: {
       type: RAW_STRING,

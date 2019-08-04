@@ -1,65 +1,26 @@
 select-size-style(size)
-  ui-set('height', size[ 'height' ])
 
-  {$selector-select}-prefix
-    ui-set('height', size[ 'height' ] - 2)
-    ui-set('line-height', size[ 'height' ] - 2)
+  > {$selector-select-button}
+    ui-set('font-size', size['font-size'])
+    ui-set('height', size['height'])
+    ui-set('line-height', size['height'])
 
-  {$selector-select}-button
-    ui-set('height', size[ 'height' ] - 2)
+  {$selector-select-prefix}
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
 
-    {$selector-select}-value,
-    {$selector-select}-placeholder
-      ui-set('font-size', size[ 'font' ])
-      ui-set('height', size[ 'height' ] - 2)
-      ui-set('line-height', size[ 'height' ] - 2)
+  {$selector-select-option},
+  {$selector-select-option-title}
+    ui-set('font-size', size['font-size'])
 
-    {$selector-select}-arrow
-      ui-set('line-height', size[ 'height' ] - 2)
+  {$selector-select-option}
+    ui-set('padding', size['option-padding'])
 
-  {$selector-prefix}-dropdown-list
-    {$selector-select}-option
-      ui-set('padding', size[ 'option-padding' ])
-      ui-set('font-size', size[ 'font' ])
-      line-height 1
-
-    {$selector-select}-option-title
-      ui-set('font-size', size[ 'font' ])
-      ui-set('height', size[ 'height' ] - 2)
-      ui-set('line-height', size[ 'height' ] - 2)
-      ui-set('padding-left', size[ 'padding-left' ])
-
-  &{$selector-select}-top
-    {$selector-prefix}-dropdown-list
-      ui-set('bottom', size[ 'height' ] + 8)
-
-select-color-style(color)
-  {$selector-select-button}
-    ui-set('border-color', color[ 'border-color' ])
-    ui-set('background-color', color[ 'bg-color' ])
-
-    &{$selector-hover}
-      ui-set('border-color', color[ 'border-color-hover' ])
-
-  &{$selector-active}
-    {$selector-select-button}
-      ui-set('border-color', color[ 'border-color-hover' ])
-      ui-set('box-shadow', color[ 'box-shadow' ])
-
-  {$selector-select}-option
-    &{$selector-hover}
-      ui-set('color', color[ 'option-hover-color' ])
-      ui-set('background-color', color[ 'option-hover-bg' ])
-
-    &{$selector-active}
-      ui-set('color', color[ 'option-hover-color' ])
+  {$selector-select-option-title}
+    ui-set('padding', size['group-padding'])
 
 ui-select()
   ui-connect(
     hash: $select-size-hash,
     each: select-size-style
-  )
-  ui-connect(
-    hash: $select-color-hash,
-    each: select-color-style
   )

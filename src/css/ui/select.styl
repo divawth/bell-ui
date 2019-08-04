@@ -1,6 +1,131 @@
+{$selector-select-button}
+
+  position relative
+  cursor $cursor-clickable
+  border 1px solid $brand-border
+  background-color $brand-bg
+
+  box-sizing border-box
+  border-radius $radius-base
+  transition border-color .3s, box-shadow .3s
+
+  &:hover
+    border-color $brand-primary
+
+{$selector-select-active}
+  > {$selector-select-button}
+    border-color $brand-primary
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+{$selector-select-value},
+{$selector-select-placeholder}
+  display inline-block
+  ui-ellipsis()
+  height 100%
+  max-width 90%
+  padding-left $select-button-padding-left
+  padding-right $select-arrow-width
+
+{$selector-select-placeholder}
+  color $brand-muted
+
+{$selector-select-value}
+  color $brand-important
+
+  > {$selector-tag}
+    margin 0px 4px 3px 0
+
+{$selector-select-arrow},
+{$selector-select-clear-icon}
+  position absolute
+  top 0
+  bottom 0
+  right 0
+  width $select-arrow-width
+  text-align center
+
+{$selector-select-arrow}
+  color $select-arrow-color
+  transform-origin center
+  transition transform .3s
+
+{$selector-select-clear-icon}
+  color $select-clear-color
+  display none
+
+{$selector-select-active}
+  > {$selector-dropdown-list}
+    max-height $select-dropdown-list-height
+    if $select-dropdown-list-padding-vertical > 0
+      padding-top $select-dropdown-list-padding-vertical
+      padding-bottom $select-dropdown-list-padding-vertical
+
+  {$selector-select-arrow}
+    transform rotate(-180deg)
+
+{$selector-select-option}
+  cursor $cursor-clickable
+  line-height 1
+  transition background-color .3s, color .3s
+  &:hover
+    background-color $select-option-bg-hover
+
+{$selector-select-option-active}
+  color $brand-primary
+  background-color $select-option-bg-hover
+
+{$selector-select-option-title}
+  color $select-option-title-text-color
+  line-height 1
+
+{$selector-select-disabled}
+  > {$selector-select-button}
+    background-color $brand-bg-disabled
+    border-color $brand-border-disabled
+    cursor $cursor-disabled
+
+    &:hover
+      border-color $brand-border-disabled
+
+    {$selector-select-placeholder},
+    {$selector-select-value}
+      color $brand-text-disabled
+
+
+{$selector-select-clearable}
+  > {$selector-select-button}:hover
+    {$selector-select-arrow}
+      display none
+    {$selector-select-clear-icon}
+      display block
+
+
+{$selector-select-top}
+  > {$selector-dropdown-list}
+    bottom 100%
+    margin-bottom $ui-shadow-radius + $select-dropdown-list-gap
+
+  > {$selector-select-button}
+    > {$selector-select-arrow}
+      transform rotate(-180deg)
+
+  &{$selector-select-active}
+    {$selector-select-arrow}
+      transform rotate(0)
+
+{$selector-select-bottom}
+  > {$selector-dropdown-list}
+    margin-top $ui-shadow-radius + $select-dropdown-list-gap
+
+{$selector-select-prefix}
+  margin-left $select-button-padding-left
+  line-height 1
+  display inline-block
+  vertical-align top
+
 {$selector-select}
   display inline-block
-  vertical-align middle
   user-select none
   text-align left
   width 100%
@@ -8,120 +133,7 @@
 
   ui-scrollbar()
 
-  &{$selector-active}
-    {$selector-prefix}-dropdown-list
-      max-height $select-dropdown-height
-
-    {$selector-select}-arrow
-      transform rotate(180deg)
-
-  &{$selector-select}-multiple
-    {$selector-select}-value,
-    {$selector-select}-placeholder
-      white-space normal
-      line-height 1.8
-
-      {$selector-tag}
-        margin 0px 4px 3px 0
-
-  &{$selector-select}-with-prefix
-    {$selector-select-button}
-      display flex
-      align-items center
-      justify-content center
-
-    {$selector-select}-value,
-    {$selector-select}-placeholder
-      flex 1
-
-    {$selector-select}-prefix
-      display flex
-      align-items center
-      padding-left 8px
-
-  {$selector-select-button}
-    width 100%
-    display inline-block
-    vertical-align middle
-    position relative
-    outline 0
-    cursor pointer
-    border 1px solid
-    border-radius $radius-base
-    transition border-color .3s, box-shadow .3s
-
-    {$selector-select}-arrow
-      position absolute
-      right 0
-      top 0
-      font-size 14px
-      color $brand-muted
-      transform-origin center
-      padding $select-icon-padding
-      transition transform .3s
-
-    {$selector-select}-value,
-    {$selector-select}-placeholder
-      display block
-      overflow hidden
-      text-overflow ellipsis
-      white-space nowrap
-      color $brand-muted
-      padding-right $select-padding-right
-      padding-left $select-padding-left
-
-      &{$selector-prefix}-hide
-        display none
-
-    {$selector-select}-value
-      color $brand-main
-
-  {$selector-prefix}-dropdown-list
+  > {$selector-dropdown-list}
     min-width 100%
-    {$selector-select}-option
-      cursor pointer
-      &{$selector-active}
-        font-weight bold
-
-    {$selector-select}-option-title
-      color $select-option-color
-
-  &{$selector-select}-disabled
-    {$selector-select}-button
-      cursor not-allowed
-
-      &{$selector-hover}
-        border-color $brand-border
-
-  &{$selector-select}-top
-    {$selector-prefix}-dropdown-list
-      top auto
-
-    {$selector-select}-button
-      {$selector-select}-arrow
-        transform rotate(180deg)
-
-    &{$selector-active}
-      {$selector-select}-arrow
-        transform rotate(0)
-
-  &{$selector-select}-clearable
-    {$selector-select}-clear-icon
-      font-size 16px
-      color #808695
-      position absolute
-      top 50%
-      right 0
-      opacity 0
-      padding 0 6px
-      transform translateY(-50%)
-      transition opacity .3s
-
-    {$selector-hover}
-      {$selector-select}-arrow
-        display none
-
-      {$selector-select}-clear-icon
-        opacity 1
 
   ui-select()

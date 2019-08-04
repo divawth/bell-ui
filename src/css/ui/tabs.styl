@@ -1,166 +1,127 @@
 {$selector-tabs}
-  box-sizing border-box
-  margin 0
-  padding 0
-  background-color #fff
-
-  position relative
-  overflow hidden
-  line-height 1
-
-  font-size $tabs-size
-  color $tabs-color
   ui-tabs()
 
-  {$selector-tabs-bar}
-    border-bottom 1px solid $tabs-border-color
-    outline 0
-    transition padding .3s cubic-bezier(.645,.045,.355,1)
-    margin $tabs-bar-margin
-    user-select none
+{$selector-tabs-bar}
+  border-bottom 1px solid $brand-border
 
-    {$selector-tabs-extra-container}
-      float right
+  + {$selector-tabs-content}
+    margin-top $tabs-nav-content-gap
 
-    {$selector-tabs-nav-container}
-      position relative
-      box-sizing border-box
-      overflow hidden
-      white-space nowrap
-      font-size $tabs-size
-      margin-bottom -1px
-      transition padding .3s cubic-bezier(.645,.045,.355,1)
+{$selector-tabs-nav}
+  margin-bottom -1px
+  position relative
+  overflow hidden
+  white-space nowrap
+  user-select none
 
-      {$selector-tabs-tab}-wrap
-        overflow hidden
-        margin-bottom -1px
+{$selector-tabs-indicator}
+  position absolute
+  bottom 0
+  height 2px
+  background-color $brand-primary
+  transition width .2s, left .2s
 
-      {$selector-tabs-tab}-scroll
-        overflow hidden
-        white-space nowrap
+{$selector-tabs-extra}
+  float right
 
-      {$selector-tabs-nav}
-        position relative
-        display inline-block
-        vertical-align middle
-        box-sizing border-box
-        margin 0
-        padding-left 0
-        transition transform .3s cubic-bezier(.645,.045,.355,1)
+{$selector-tabs-tab}
+  display inline-block
+  position relative
+  box-sizing content-box
 
-    {$selector-tabs-tab}
-      display inline-block
-      vertical-align middle
-      position relative
-      border-bottom 2px solid $tabs-border-color
-      color $tabs-color
-      cursor pointer
-      transition border .2s, color .2s
+{$selector-tabs-tab-icon}
+  margin-right $ui-label-gap
 
+{$selector-tabs-tab-close-icon}
+  color $tabs-close-color
+  cursor $cursor-clickable
+  vertical-align top
+  display inline-block
+  margin-right -6px
+  width 0
+  height $tabs-close-size
+  line-height $tabs-close-size
+  text-align center
+  overflow hidden
+  transition color .3s, width .3s
+
+  &:hover
+    color $tabs-close-color-hover
+
+{$selector-tabs-tab-enabled}
+  border-color $brand-border
+  color $brand-text
+  cursor $cursor-clickable
+
+  &:hover
+    color $brand-primary
+
+{$selector-tabs-tab-disabled}
+  border-color $brand-border-disabled
+  color $brand-text-disabled
+  cursor $cursor-disabled
+
+{$selector-tabs-tab-active}
+  color $brand-primary
+  border-color $brand-primary
+
+  &{$selector-tabs-tab-enabled}
+    cursor default
+
+  &:after
+    width 100%
+
+  {$selector-tabs-tab-close-icon}
+    width $tabs-close-size
+
+{$selector-tabs-tab-unactive}:hover
+  > {$selector-tabs-tab-close-icon}
+    width $tabs-close-size
+
+{$selector-tabs-content}
+  width 100%
+  overflow hidden
+  display flex
+  flex-direction row
+
+  ::-webkit-scrollbar
+    display none
+
+{$selector-tabs-panel}
+  outline 0
+  flex-shrink 0
+  width 100%
+  opacity 1
+  transition opacity .3s
+
+{$selector-tabs-panel-disabled}
+  opacity 0
+
+{$selector-tabs-card}
+
+  {$selector-tabs-tab}
+    border 1px solid $brand-border
+    border-radius $tabs-card-border-radius $tabs-card-border-radius 0 0
+    transition all .3s cubic-bezier(.645,.045,.355,1)
+
+    + {$selector-tabs-tab}
+      margin-left $tabs-card-gap
+
+    &{$selector-tabs-tab-active}
+      border-bottom-color $tabs-card-bg-color-active
+
+    &{$selector-tabs-tab-disabled}
+      border-color $brand-color-disabled
       &:after
-        content ' '
-        position absolute
-        bottom -1px
-        left 50%
-        transform translateX(-50%)
-        box-sizing border-box
-        height 2px
-        width 0px
-        background-color $tabs-tab-active-color
-        transition width .2s
+        background-color $brand-border-disabled
 
-      &{$selector-hover}
+    &{$selector-tabs-tab-enabled}
+      background-color $tabs-card-bg-color
+      &{$selector-tabs-tab-active}
+        background-color $tabs-card-bg-color-active
 
-        color $tabs-tab-active-color
-
-      &{$selector-tabs-tab}-active
-
-        color $tabs-tab-active-color
-        border-color $tabs-tab-active-color
-        font-weight 500
-
-        &:after
-          width 100%
-
-      &{$selector-tabs-tab}-disabled
-        border-color $tabs-border-color
-        color $tabs-disabled-color
-        cursor not-allowed
-
-      {$selector-tabs-tab}-icon
-        margin-right 6px
-
+{$selector-tabs-animated}
   {$selector-tabs-content}
-    width 100%
-    display flex
-    flex-direction row
+    will-change transform
+    transition transform .3s ease-in-out
 
-    ::-webkit-scrollbar
-      display none
-
-  {$selector-tabs-panel}
-    outline 0
-    flex-shrink 0
-    width 100%
-    opacity 1
-    transition opacity .3s
-
-    &{$selector-tabs-panel}-disabled
-      opacity 0
-
-  &{$selector-tabs}-card
-    {$selector-tabs-tab}
-      margin 0 2px 0 0
-      background #fafafa
-      border 1px solid $tabs-border-color
-      border-radius 4px 4px 0 0
-      transition all .3s cubic-bezier(.645,.045,.355,1)
-
-      &:after
-        display none
-
-      &{$selector-hover}
-
-        color $tabs-tab-active-color
-
-      &{$selector-tabs-tab}-active
-
-        color $tabs-tab-active-color
-        font-weight 500
-        background-color #fff
-
-      &{$selector-tabs-tab}-disabled
-        border-color $tabs-border-color
-        color $tabs-disabled-color
-        cursor not-allowed
-
-      {$selector-tabs-tab}-icon
-        margin-right 6px
-
-  &{$selector-tabs}-animated
-    {$selector-tabs-content}
-      will-change transform
-      transition transform .3s ease-in-out
-
-  {$selector-tabs}-nav-closable
-    position relative
-
-    {$selector-tabs-tab}-active
-      {$selector-tabs-tab}-icon-close
-        width 16px
-
-    {$selector-tabs-tab}
-      &{$selector-hover}
-        {$selector-tabs-tab}-icon-close
-          width 16px
-
-    {$selector-tabs-tab}-icon-close
-      display inline-block
-      vertical-align middle
-      width 0
-      height 22px
-      font-size 22px
-      margin-right -6px
-      text-align right
-      overflow hidden
-      transition width .3s ease-in-out

@@ -6,3 +6,5 @@ src/
 type/
 yarn.*
 global.d.ts
+tsconfig.json
+README.md
