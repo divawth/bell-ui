@@ -248,7 +248,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("type",$2)?(" bell-select-"+y(a("type",$2))):"")+(a("visible",$2)?" bell-active":"")+(a("disabled",$2)?" bell-select-disabled":"")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+((a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?" bell-select-with-prefix":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-button")},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2)))})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){e(y(a("defaultText",$2)||"请选择..."))})):(q("div",function(){g("className","bell-select-value"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("size","tiny"),f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("className","bell-select-arrow")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","16"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("ul",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("visible",$2)?" bell-select-active":"")+(a("disabled",$2)?" bell-select-disabled":"")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-button"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2)))})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("defaultText",$2)||"请选择..."))):(q("div",function(){g("className","bell-select-value")},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("className","bell-select-arrow")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","16"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("ul",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})})})};
 
 /***/ }),
 /* 26 */
@@ -296,7 +296,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar bell-avatar-"+y(a("size",$2))+" bell-avatar-"+y(a("shape",$2))+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",(a("text",$2)?"color: "+y(a("color",$2))+";":"")+(a("fontSize",$2)?"font-size: "+y(a("fontSize",$2))+"px;":"")+(a("bgColor",$2)?"background-color: "+y(a("bgColor",$2))+";":"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):(d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text"),(a("supportTransform",$2)&&a("transform",$2))?(g("style.cssText","transform: "+y(a("transform",$2)))):""},function(){e(y(a("text",$2)))},$0,$0,$0,$0,$0,$0,"textSpan")):p())})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar"+(a("size",$2)?(" bell-avatar-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-avatar-"+y(a("shape",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",(a("text",$2)?"color: "+y(a("color",$2))+";":"")+(a("fontSize",$2)?"font-size: "+y(a("fontSize",$2))+"px;":"")+(a("bgColor",$2)?"background-color: "+y(a("bgColor",$2))+";":"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):(d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text"),(a("supportTransform",$2)&&a("transform",$2))?(g("style.cssText","transform: "+y(a("transform",$2)))):""},function(){e(y(a("text",$2)))},$0,$0,$0,$0,$0,$0,"textSpan")):p())})};
 
 /***/ }),
 /* 34 */
@@ -356,13 +356,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 43 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse"+(a("bordered",$2)?" bell-collapse-bordered":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&a("style",$2)},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse"+(a("simple",$2)?" bell-collapse-simple":" bell-collapse-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse-item"+(a("opened",$2)?" bell-collapse-item-open":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&a("style",$2)},function(){q("div",function(){g("className","bell-collapse-header"),l("click","event.click",$0,"click()","click")},function(){s("$slot_icon",function(){a("showIcon",$2)?(r("Icon",function(){f("name","arrow-down"),f("className","bell-collapse-header-icon")})):p()}),e(y(a("title",$2))),(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-collapse-header-extra")},function(){s("$slot_extra")})):p()}),q("div",function(){g("className","bell-collapse-content")},function(){q("div",function(){g("className","bell-collapse-content-box")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"content")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse-panel"+(a("opened",$2)?" bell-collapse-open":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-collapse-header"),l("click","event.click",$0,"handleClick()","handleClick")},function(){(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-collapse-extra")},function(){s("$slot_extra")})):p(),s("$slot_icon",function(){r("Icon",function(){f("name","arrow-down"),f("className","bell-collapse-icon")})}),e(y(a("title",$2)))}),q("div",function(){g("className","bell-collapse-content")},function(){q("div",function(){g("className","bell-collapse-wrapper")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"content")})};
 
 /***/ }),
 /* 45 */
@@ -416,7 +416,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 53 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-circle"+(a("dashboard",$2)?" bell-circle-dashboard":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText","width: "+y(a("size",$2))+"px;\nheight: "+y(a("size",$2))+"px;"+(a("style",$2)?(y(a("style",$2))):""))},function(){q("svg",function(){f("viewBox","0 0 100 100")},function(){q("path",function(){f("d",j("d",a("path",$2,$0,$2,$2))),f("stroke",j("stroke",a("trailColor",$2,$0,$2,$2))),f("stroke-width",j("stroke-width",a("trailWidth",$2,$0,$2,$2))),f("fill-opacity","0"),f("style",j("style",a("trailStyle",$2,$0,$2,$2)))},$0,$0,$0,$0,$0,$2),q("path",function(){f("d",j("d",a("path",$2,$0,$2,$2))),f("stroke-linecap",j("stroke-linecap",a("strokeLinecap",$2,$0,$2,$2))),f("stroke",j("stroke",a("strokeColor",$2,$0,$2,$2))),f("stroke-width",j("stroke-width",a("strokeWidth",$2,$0,$2,$2))),f("fill-opacity","0"),f("style",j("style",a("pathStyle",$2,$0,$2,$2)))},$0,$0,$0,$0,$0,$2)},$0,$0,$0,$0,$2),q("div",function(){g("className","bell-circle-inner")},function(){s("$slot_children")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-circle"+(a("dashboard",$2)?" bell-circle-dashboard":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText","width: "+y(a("size",$2))+"px;\nheight: "+y(a("size",$2))+"px;"+(a("style",$2)?(y(a("style",$2))):""))},function(){q("svg",function(){f("viewBox","0 0 100 100")},function(){q("path",function(){f("d",j("d",a("path",$2,$0,$2,$2))),f("stroke",j("stroke",a("trailColor",$2,$0,$2,$2))),f("stroke-width",j("stroke-width",a("trailWidth",$2,$0,$2,$2))),f("fill-opacity","0"),f("style",j("style",a("trailStyle",$2,$0,$2,$2)))},$0,$0,$0,$0,$0,$2),q("path",function(){f("d",j("d",a("path",$2,$0,$2,$2))),f("stroke-linecap",j("stroke-linecap",a("strokeLinecap",$2,$0,$2,$2))),f("stroke",j("stroke",a("strokeColor",$2,$0,$2,$2))),f("stroke-width",j("stroke-width",a("strokeWidth",$2,$0,$2,$2))),f("fill-opacity","0"),f("style",j("style",a("pathStyle",$2,$0,$2,$2)))},$0,$0,$0,$0,$0,$2)},$0,$0,$0,$0,$2),q("div",function(){g("className","bell-circle-content")},function(){s("$slot_children")})})};
 
 /***/ }),
 /* 54 */
@@ -446,13 +446,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 58 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tabs bell-tabs-"+y(a("type",$2))+(a("size",$2)?(" bell-tabs-"+y(a("size",$2))):"")+(a("animated",$2)?" bell-tabs-animated":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tabs-bar")},function(){(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-tabs-extra-container")},function(){s("$slot_extra")})):p(),q("div",function(){g("className","bell-tabs-nav-container")},function(){q("span",function(){g("className","bell-tabs-tab-prev")},$0,$0,$2),q("span",function(){g("className","bell-tabs-tab-next")},$0,$0,$2),q("div",function(){g("className","bell-tabs-tab-wrap")},function(){q("div",function(){g("className","bell-tabs-tab-scroll")},function(){q("div",function(){g("className","bell-tabs-nav"+(a("closable",$2)?" bell-tabs-nav-closable":""))},function(){v(function(){q("div",function(){g("className","bell-tabs-tab"+(a("disabled",$2)?" bell-tabs-tab-disabled":"")+((a("value",$2)===a("id",$2))?" bell-tabs-tab-active":"")),l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})},function(){a("icon",$3)?(r("Icon",function(){f("className","bell-tabs-tab-icon"),f("name",j("name",a("icon",$3,$0,$2,$2)))})):p(),e(y(a("label",$2))),a("closable",$2)?(r("Icon",function(){f("className","bell-tabs-tab-icon-close"),f("name","close"),f("size","22"),l("click","event.click","native","close(this)","close",function(z){return [a("",$3,$0,$0,$0,z)]})})):p()})},a("tabsList",$2,$0,$2),$0)})})})})}),q("div",function(){g("className","bell-tabs-content"),g("style.cssText","transform: translateX("+y(a("translateStyle",$2))+");")},function(){s("$slot_children")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tabs"+(a("type",$2)?(" bell-tabs-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-tabs-"+y(a("size",$2))):"")+(a("animated",$2)?" bell-tabs-animated":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tabs-bar")},function(){(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-tabs-extra")},function(){s("$slot_extra")})):p(),q("div",function(){g("className","bell-tabs-nav"+(a("closable",$2)?" bell-tabs-nav-closable":""))},function(){(a("type",$2)!=="card")?(q("div",function(){g("className","bell-tabs-indicator")},$0,$0,$2,$0,$0,$0,$0,"indicator")):p(),v(function(){q("div",function(){g("className","bell-tabs-tab"+(a("disabled",$3)?" bell-tabs-tab-disabled":" bell-tabs-tab-enabled")+((a("id",$3)===a("value",$3,1))?" bell-tabs-tab-active":" bell-tabs-tab-unactive")),(!a("disabled",$3))?(l("click","event.click",$0,"handleClickTab(this)","handleClickTab",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){a("icon",$3)?(r("Icon",function(){f("className","bell-tabs-tab-icon"),f("name",j("name",a("icon",$3,$0,$2,$2)))})):p(),e(y(a("label",$3))),a("closable",$3,1)?(r("Icon",function(){f("className","bell-tabs-tab-close-icon"),f("name","close"),f("size","22"),l("click","event.click","native","handleCloseTab(this)","handleCloseTab",function(z){return [a("",$3,$0,$0,$0,z)]})})):p()})},a("tabs",$2,$0,$2),"index")})}),q("div",function(){g("className","bell-tabs-content"),g("style.cssText","transform: translateX("+y(a("translateStyle",$2))+");")},function(){s("$slot_children")})})};
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tabs-panel"+(a("disabled",$2)?" bell-tabs-panel-disabled":"")+(a("isActive",$2)?" bell-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tabs-panel"+(a("disabled",$2)?" bell-tabs-panel-disabled":"")+(a("isActive",$2)?" bell-tabs-panel-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 60 */
@@ -2520,37 +2520,36 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
     name: 'bell-select',
     propTypes: {
         clearable: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
         },
         defaultText: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         value: {
-            type: [RAW_NUMERIC, RAW_STRING]
+            type: [RAW_ARRAY, RAW_STRING, RAW_NUMBER],
         },
         size: {
-            type: RAW_STRING
-        },
-        type: {
-            type: RAW_STRING
+            type: oneOf(RAW_SIZE_COMMON),
+            value: RAW_DEFAULT,
         },
         disabled: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
         },
         placement: {
-            type: RAW_STRING
+            type: RAW_STRING,
+            value: 'bottom',
         },
         multiple: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
         },
         prefix: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
     data: function () {
@@ -2563,67 +2562,59 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
     },
     watchers: {
         value: function (value) {
-            this.fire('change.select', { value: value }, TRUE);
             this.fire('change.select', { value: value });
         }
     },
     events: {
-        'selected.selectOption': function (event) {
-            if (this.get('multiple')) {
-                return;
-            }
-            var target = event.target;
-            var value = target.get('value');
-            var text = target.get('text');
-            var data = { value: value };
-            var selectedOptions = this.get('selectedOptions');
-            if (!selectedOptions[0]
-                || selectedOptions[0].value !== value) {
-                data.selectedOptions = [{ value: value, text: text }];
-            }
-            this.set(data);
-        },
         'add.selectOption': function (event) {
             event.stop();
             this.increase('count');
-            // 判断 option 的 isSelected
+            var target = event.target;
+            if (target.get('isSelected')) {
+                this.notifyOptionSelected(target);
+            }
         },
         'remove.selectOption': function (event) {
             event.stop();
             this.decrease('count');
+            var target = event.target;
+            if (target.get('isSelected')) {
+                this.notifyOptionUnselected(target);
+            }
         },
         'click.selectOption': function (event) {
             event.stop();
             var me = this;
+            // 这里是 option 和 select 沟通的地方
+            // 只是反向再告诉 option 它应该是选中还是取消选中
             var target = event.target;
             var value = target.get('value');
-            if (me.get('multiple')) {
+            var multiple = me.get('multiple');
+            if (multiple) {
                 var values = me.get('value');
-                if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values)) {
-                    values = me.copy(values);
+                var selected = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values) && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(values, value)
+                    ? FALSE
+                    : TRUE;
+                if (selected) {
+                    me.notifyOptionSelected(target);
                 }
                 else {
-                    values = [];
+                    me.notifyOptionUnselected(target);
                 }
-                var selectedIndex = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(values, value);
-                // 取消选中
-                if (selectedIndex >= 0) {
-                    values.splice(selectedIndex, 1);
-                }
-                // 选中
-                else {
-                    values.push(value);
-                }
-                me.set({
-                    value: values,
-                    visible: TRUE,
-                });
+                me.fire('sync.select', {
+                    value: value,
+                    multiple: multiple,
+                    selected: selected,
+                }, TRUE);
             }
             else {
-                me.set({
+                me.set('visible', FALSE);
+                me.notifyOptionSelected(target);
+                me.fire('sync.select', {
                     value: value,
-                    visible: FALSE,
-                });
+                    multiple: multiple,
+                    selected: TRUE,
+                }, TRUE);
             }
         }
     },
@@ -2644,6 +2635,48 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
             event.stop();
             this.removeAt('value', index);
             this.removeAt('selectedOptions', index);
+        },
+        notifyOptionSelected: function (option) {
+            var me = this;
+            var value = option.get('value');
+            var text = option.get('text');
+            if (me.get('multiple')) {
+                var values = me.get('value');
+                if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values)
+                    && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(values, value)) {
+                    return;
+                }
+                me.append('value', value);
+                me.append('selectedOptions', { value: value, text: text });
+            }
+            else {
+                var selectedOptions = me.get('selectedOptions');
+                me.set('value', value);
+                if (!selectedOptions[0]
+                    || selectedOptions[0].value !== value) {
+                    me.set('selectedOptions', [{ value: value, text: text }]);
+                }
+            }
+        },
+        notifyOptionUnselected: function (option) {
+            var me = this;
+            var values = me.get('value');
+            var value = option.get('value');
+            if (me.get('multiple')) {
+                var selectedIndex = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values) ? external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(values, value) : -1;
+                if (selectedIndex < 0) {
+                    return;
+                }
+                me.removeAt('value', selectedIndex);
+                me.removeAt('selectedOptions', selectedIndex);
+            }
+            else {
+                if (values !== value) {
+                    return;
+                }
+                me.set('value', UNDEFINED);
+                me.set('selectedOptions', []);
+            }
         },
         decreaseHoverIndex: function () {
             var hoverIndex = this.get('hoverIndex');
@@ -2733,21 +2766,21 @@ function isOptionSelected(values, value) {
 /* harmony default export */ var select_Option = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Option_default.a,
     propTypes: {
-        value: {
-            type: [RAW_STRING, RAW_NUMERIC]
-        },
-        text: {
-            type: [RAW_STRING, RAW_NUMERIC]
-        },
         index: {
             type: RAW_NUMERIC,
-            required: TRUE
+            required: TRUE,
+        },
+        value: {
+            type: [RAW_STRING, RAW_NUMBER],
+        },
+        text: {
+            type: RAW_STRING,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
     events: {
@@ -2762,12 +2795,12 @@ function isOptionSelected(values, value) {
                 });
             }
         },
-        'change.select': function (_, data) {
-            if (isOptionSelected(data.value, this.get('value'))) {
-                this.set('isSelected', TRUE);
-                this.fire('selected.selectOption');
+        'sync.select': function (_, data) {
+            var value = data.value, selected = data.selected, multiple = data.multiple;
+            if (value === this.get('value')) {
+                this.set('isSelected', selected);
             }
-            else {
+            else if (selected && !multiple) {
                 this.set('isSelected', FALSE);
             }
         }
@@ -2798,18 +2831,18 @@ var OptionGroup_default = /*#__PURE__*/__webpack_require__.n(OptionGroup);
 
 
 /* harmony default export */ var select_OptionGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: OptionGroup_default.a,
     propTypes: {
         label: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: OptionGroup_default.a
 }));
 
 // EXTERNAL MODULE: ./src/components/page/template/Page.hbs
@@ -3846,8 +3879,7 @@ var SPACE_HORIZONTAL = 8;
 /* harmony default export */ var avatar_Avatar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     propTypes: {
         shape: {
-            type: oneOf([RAW_SHAPE_CIRCLE, RAW_SHAPE_ROUND]),
-            value: RAW_SHAPE_ROUND,
+            type: oneOf([RAW_SHAPE_CIRCLE]),
         },
         size: {
             type: oneOf(RAW_SIZE_ARRAY),
@@ -3870,7 +3902,7 @@ var SPACE_HORIZONTAL = 8;
         },
         color: {
             type: RAW_STRING,
-            value: '#FFF',
+            value: '#fff',
         },
         className: {
             type: RAW_STRING,
@@ -5428,35 +5460,33 @@ var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
 
 
 /* harmony default export */ var collapse_Collapse = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Collapse_default.a,
     name: 'bell-collapse',
     propTypes: {
-        activeName: {
-            type: RAW_NUMERIC
-        },
         accordion: {
-            type: RAW_BOOLEAN
-        },
-        bordered: {
             type: RAW_BOOLEAN,
-            value: TRUE
+            value: FALSE,
+        },
+        simple: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Collapse_default.a,
     watchers: {
         accordion: function (accordion) {
-            this.fire('change.accordion', { accordion: accordion }, TRUE);
+            this.fire('change.collapse', { accordion: accordion }, TRUE);
         }
     },
     events: {
-        'change.opened': function (event, data) {
+        'open.panel': function (event, data) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                this.fire('change.opened', data, TRUE);
+                this.fire('open.collapse', data, TRUE);
             }
         }
     }
@@ -5472,28 +5502,25 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
 
 
 /* harmony default export */ var collapse_Panel = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Panel_default.a,
     propTypes: {
         title: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         name: {
-            type: RAW_NUMERIC
+            type: RAW_NUMERIC,
         },
         isActive: {
-            type: RAW_BOOLEAN
-        },
-        showIcon: {
             type: RAW_BOOLEAN,
-            value: TRUE
+            value: FALSE,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Panel_default.a,
     data: function (options) {
         var collapse = findComponentUpward(options.parent, 'bell-collapse');
         return {
@@ -5504,26 +5531,29 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
         };
     },
     events: {
-        'change.accordion': function (_, data) {
+        'change.collapse': function (_, data) {
             this.set({
-                accordion: data.accordion
+                accordion: data.accordion,
             });
         },
-        'change.opened': function (event, data) {
-            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_DOWNWARD) {
-                var me = this;
-                if (data.name === me.get('name')) {
-                    data.opened ? me.open() : me.close();
+        'open.collapse': function (_, data) {
+            var me = this;
+            if (data.name === me.get('name')) {
+                if (data.opened) {
+                    me.open();
                 }
-                else if (me.get('accordion')) {
+                else {
                     me.close();
                 }
+            }
+            else if (me.get('accordion')) {
+                me.close();
             }
         }
     },
     methods: {
-        click: function () {
-            this.fire('change.opened', {
+        handleClick: function () {
+            this.fire('open.panel', {
                 name: this.get('name'),
                 opened: !this.get('opened'),
             });
@@ -5576,12 +5606,12 @@ var Panel_default = /*#__PURE__*/__webpack_require__.n(Panel);
                 if (isActive == NULL) {
                     return;
                 }
-                this.fire('change.opened', {
+                this.fire('open.panel', {
                     name: this.get('name'),
-                    opened: isActive
+                    opened: isActive,
                 });
             },
-            immediate: TRUE
+            immediate: TRUE,
         });
     }
 }));
@@ -5810,46 +5840,46 @@ var Circle_default = /*#__PURE__*/__webpack_require__.n(Circle);
 
 
 /* harmony default export */ var circle_Circle = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Circle_default.a,
     propTypes: {
         dashboard: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
         },
         percent: {
             type: RAW_NUMERIC,
-            value: 0
+            value: 0,
         },
         size: {
             type: RAW_NUMERIC,
-            value: 120
+            value: 120,
         },
         strokeWidth: {
             type: RAW_NUMERIC,
-            value: 6
+            value: 6,
         },
         strokeColor: {
             type: RAW_STRING,
-            value: '#2db7f5'
+            value: '#2db7f5',
         },
         strokeLinecap: {
             type: oneOf(['square', 'round']),
-            value: 'round'
+            value: 'round',
         },
         trailWidth: {
             type: RAW_NUMERIC,
-            value: 5
+            value: 5,
         },
         trailColor: {
             type: RAW_STRING,
-            value: '#eaeef2'
+            value: '#eaeef2',
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Circle_default.a,
     computed: {
         computedStrokeWidth: function () {
             return this.get('percent') === 0 && this.get('dashboard')
@@ -6280,26 +6310,27 @@ var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
 
 
 /* harmony default export */ var tabs_Tabs = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Tabs_default.a,
     name: 'bell-tabs',
     propTypes: {
         type: {
-            type: oneOf(['line', 'card']),
-            value: 'line'
+            type: oneOf(['card']),
         },
         size: {
-            type: oneOf([RAW_TINY, RAW_SMALL, RAW_LARGE, 'default'])
+            type: oneOf([RAW_DEFAULT, RAW_SMALL, RAW_LARGE]),
+            value: RAW_DEFAULT,
         },
         closable: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
         animated: {
             type: RAW_BOOLEAN,
-            value: TRUE
+            value: TRUE,
         },
         value: {
             type: RAW_NUMERIC,
-            value: 0
+            value: 0,
         },
         className: {
             type: RAW_STRING,
@@ -6308,72 +6339,119 @@ var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
             type: RAW_STRING,
         }
     },
-    template: Tabs_default.a,
     data: function () {
         return {
-            tabsList: []
+            tabs: [],
         };
     },
     computed: {
         translateStyle: function () {
-            var me = this;
-            var value = me.get('value');
-            var tabs = me.get('tabsList');
-            var index = 0;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(tabs, function (item, key) {
-                if (item.id == value) {
-                    index = key;
-                    return FALSE;
-                }
-            });
-            return index * (-100) + '%';
+            return this.getActiveIndex() * -100 + '%';
         }
     },
     events: {
-        tabPanelRemove: function (event, data) {
+        'add.tabPanel': function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                var tabsList = this.copy(this.get('tabsList'));
-                tabsList = tabsList.filter(function (item) {
-                    return item.id !== data.id;
+                var target = event.target;
+                this.append('tabs', {
+                    id: target.get('id'),
+                    icon: target.get('icon'),
+                    label: target.get('label'),
+                    disabled: target.get('disabled'),
                 });
-                this.set({ tabsList: tabsList });
+                this.updateIndicator();
             }
         },
-        tabsValueUpdate: function (event, data) {
+        'remove.tabPanel': function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
                 var me = this;
-                var tabsList = me.copy(me.get('tabsList'));
-                tabsList.forEach(function (item) {
-                    if (item.id === data.id) {
-                        item = data;
-                    }
+                var target = event.target;
+                var tabId_1 = target.get('id');
+                var tabs = me.get('tabs');
+                var newTabs = tabs.filter(function (item) {
+                    return item.id !== tabId_1;
                 });
-                me.set({ tabsList: tabsList });
+                me.set({
+                    tabs: newTabs
+                });
+                if (me.get('value') === tabId_1) {
+                    me.set('value', newTabs[0] ? newTabs[0].id : UNDEFINED);
+                }
+                me.updateIndicator();
             }
         },
-        tabPanelAdd: function (event, data) {
+        'update.tabPanel': function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                this.append('tabsList', data);
+                var me_1 = this;
+                var target_1 = event.target;
+                var tabId_2 = target_1.get('id');
+                var tabs = me_1.get('tabs');
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(tabs, function (item, index) {
+                    if (item.id === tabId_2) {
+                        me_1.set("tabs." + index, {
+                            id: tabId_2,
+                            icon: target_1.get('icon'),
+                            label: target_1.get('label'),
+                            disabled: target_1.get('disabled'),
+                        });
+                        me_1.updateIndicator();
+                        return FALSE;
+                    }
+                });
             }
         }
     },
     watchers: {
         value: function (value) {
-            this.fire('tabSelected.tabs', { value: value }, TRUE);
-        }
+            this.updateIndicator();
+            this.fire('selected.tabs', { value: value }, TRUE);
+        },
     },
     methods: {
-        close: function (data) {
-            this.fire('tabRemove.tabs', data);
+        handleCloseTab: function (tab) {
+            this.fire('tabRemove.tabs', tab);
         },
-        click: function (data) {
-            if (data.disabled) {
-                return;
-            }
+        handleClickTab: function (tab) {
             this.set({
-                value: data.id
+                value: tab.id,
             });
+        },
+        updateIndicator: function () {
+            var me = this;
+            me.nextTick(function () {
+                var $el = me.$el, $refs = me.$refs;
+                if (!$el || !$refs) {
+                    return;
+                }
+                var indicator = $refs.indicator;
+                if (!indicator) {
+                    return;
+                }
+                var index = me.getActiveIndex();
+                var result = $el.getElementsByClassName('bell-tabs-tab');
+                if (result[index]) {
+                    var tabElement = result[index];
+                    var indicatorElement = indicator;
+                    indicatorElement.style.left = tabElement.offsetLeft + 'px';
+                    indicatorElement.style.width = tabElement.offsetWidth + 'px';
+                }
+            });
+        },
+        getActiveIndex: function () {
+            var value = this.get('value');
+            var tabs = this.get('tabs');
+            var index = 0;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(tabs, function (item, key) {
+                if (item.id === value) {
+                    index = key;
+                    return FALSE;
+                }
+            });
+            return index;
         }
+    },
+    afterMount: function () {
+        this.updateIndicator();
     }
 }));
 
@@ -6387,72 +6465,60 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
 
 
 /* harmony default export */ var tabs_TabPanel = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: TabPanel_default.a,
     propTypes: {
         name: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         icon: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         label: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         disabled: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: TabPanel_default.a,
     data: function () {
         return {
             id: 0,
-            isActive: FALSE
+            isActive: FALSE,
         };
     },
     watchers: {
         '*': function (newValue, oldValue, keypath) {
-            var pathArray = ['name', 'icon', 'label', 'disabled'];
-            if (pathArray.indexOf(keypath) >= 0) {
-                this.upsert('tabPanelUpdate');
+            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(['name', 'icon', 'label', 'disabled'], keypath)) {
+                this.fire('update.tabPanel');
             }
         }
     },
     events: {
-        tabSelected: function (_, data) {
+        'selected.tabs': function (_, data) {
             this.set({
                 isActive: this.get('id') == data.value
-            });
-        }
-    },
-    methods: {
-        upsert: function (name) {
-            var me = this;
-            me.fire(name, {
-                label: me.get('label'),
-                icon: me.get('icon'),
-                disabled: me.get('disabled'),
-                id: me.get('id')
             });
         }
     },
     afterMount: function () {
         var me = this;
         var name = me.get('name');
-        if (name == null) {
-            var element = findComponentUpward(me.$parent, 'bell-tabs');
-            name = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(element.$children, me);
+        if (name == NULL) {
+            var tabs = findComponentUpward(me.$parent, 'bell-tabs');
+            name = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(tabs.$children, me);
         }
         me.set('id', name);
-        me.upsert('tabPanelAdd');
+        me.fire('add.tabPanel');
     },
     beforeDestroy: function () {
-        this.upsert('tabPanelRemove');
+        this.fire('remove.tabPanel');
     }
 }));
 

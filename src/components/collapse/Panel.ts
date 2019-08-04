@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Panel.hbs'
 
@@ -9,38 +9,35 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  UNDEFINED,
 } from '../constant'
 
 import {
-  findComponentUpward, onTransitionEnd,
+  findComponentUpward,
+  onTransitionEnd,
 } from '../util'
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     title: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     name: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     isActive: {
-      type: RAW_BOOLEAN
-    },
-    showIcon: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template,
 
   data(options) {
     const collapse = findComponentUpward(options.parent, '${prefix}collapse')
@@ -53,29 +50,32 @@ export default Yox.define({
   },
 
   events: {
-    'change.accordion': function (_: CustomEventInterface, data: Data) {
+    'change.collapse': function (_, data) {
       this.set({
-        accordion: data.accordion
+        accordion: data.accordion,
       })
     },
-    'change.opened': function (event: CustomEventInterface, data: Data) {
-      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
-        const me = this
-        if (data.name === me.get('name')) {
-          data.opened ? me.open() : me.close()
+    'open.collapse': function (_, data) {
+      const me = this
+      if (data.name === me.get('name')) {
+        if (data.opened) {
+          me.open()
         }
-        else if (me.get('accordion')) {
+        else {
           me.close()
         }
+      }
+      else if (me.get('accordion')) {
+        me.close()
       }
     }
   },
 
   methods: {
 
-    click() {
+    handleClick() {
       this.fire(
-        'change.opened',
+        'open.panel',
         {
           name: this.get('name'),
           opened: !this.get('opened'),
@@ -155,14 +155,14 @@ export default Yox.define({
             return
           }
           this.fire(
-            'change.opened',
+            'open.panel',
             {
               name: this.get('name'),
-              opened: isActive
+              opened: isActive,
             }
           )
         },
-        immediate: TRUE
+        immediate: TRUE,
       }
     )
   }

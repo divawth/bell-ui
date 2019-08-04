@@ -85,14 +85,14 @@ export default {
 }
 ```
 
-> bordered
+> simple
 
 ```js
 export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Collapse bordered="{{false}}">
+    <Collapse simple>
       <Panel name="1" title="史蒂夫·乔布斯" isActive>
         <div>
           史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。
@@ -111,7 +111,7 @@ export default {
 }
 ```
 
-> showIcon 是否显示 icon 箭头。extra 设置右上角的内容。
+> extra 设置右侧的内容。
 
 ```js
 export default {
@@ -119,7 +119,7 @@ export default {
   height: 300,
   template: `
     <Collapse>
-      <Panel name="1" title="史蒂夫·乔布斯" isActive showIcon="{{false}}">
+      <Panel name="1" title="史蒂夫·乔布斯" isActive>
         <div>
           史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。
         </div>
@@ -129,7 +129,7 @@ export default {
           </Tooltip>
         </template>
       </Panel>
-      <Panel name="2" title="斯蒂夫·盖瑞·沃兹尼亚克" showIcon="{{false}}">
+      <Panel name="2" title="斯蒂夫·盖瑞·沃兹尼亚克">
         <div>
           斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。
         </div>
@@ -140,7 +140,7 @@ export default {
           </Tooltip>
         </template>
       </Panel>
-      <Panel name="3" title="乔纳森·伊夫" showIcon="{{false}}">
+      <Panel name="3" title="乔纳森·伊夫">
         <div>乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</div>
 
         <template slot="extra">
@@ -159,7 +159,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 accordion | 是否使用手风琴效果 | boolean | - | false
-bordered | 是否具有边框 | boolean | - | true
+simple | 是否是简洁风格 | boolean | - | false
 
 > Panel Props
 
@@ -168,11 +168,9 @@ bordered | 是否具有边框 | boolean | - | true
 title | 标题 | string | - | -
 name | 唯一标识 | string | - | -
 isActive | 是否是展开状态 | boolean | - | false
-showIcon | 是否显示箭头 Icon | boolean | - | true
-
 
 > Panel Slot
 
 参数 | 说明
 ---|---
-extra | 自定义右上角内容
+extra | 自定义右侧内容

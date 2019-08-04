@@ -1,4 +1,4 @@
-import Yox, { Data, CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Collapse.hbs'
 
@@ -6,38 +6,36 @@ import {
   TRUE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC,
+  FALSE,
 } from '../constant'
 
 export default Yox.define({
 
+  template,
+
   name: '${prefix}collapse',
 
   propTypes: {
-    activeName: {
-      type: RAW_NUMERIC
-    },
     accordion: {
-      type: RAW_BOOLEAN
-    },
-    bordered: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: FALSE,
+    },
+    simple: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template,
 
   watchers: {
     accordion(accordion: boolean) {
       this.fire(
-        'change.accordion',
+        'change.collapse',
         { accordion },
         TRUE
       )
@@ -45,10 +43,10 @@ export default Yox.define({
   },
 
   events: {
-    'change.opened': function (event: CustomEventInterface, data: Data) {
+    'open.panel': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
-          'change.opened',
+          'open.collapse',
           data,
           TRUE
         )

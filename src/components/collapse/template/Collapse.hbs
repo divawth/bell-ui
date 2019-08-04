@@ -1,9 +1,13 @@
 <div
 class="${prefix}collapse
-{{#if bordered}} ${prefix}collapse-bordered{{/if}}
+{{#if simple}} ${prefix}collapse-simple
+{{else}} ${prefix}collapse-bordered
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} {{style}}{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <slot name="children" />
 </div>

@@ -9,14 +9,18 @@ declare const _default: import("yox").ComponentOptions<{
 }, {
     value: unknown;
 }, {
-    tabPanelRemove: unknown;
-    tabsValueUpdate: unknown;
-    tabPanelAdd: unknown;
+    'add.tabPanel': unknown;
+    'remove.tabPanel': unknown;
+    'update.tabPanel': unknown;
 }, {
-    close(data: Tab): void;
-    click(data: Tab): void;
+    handleCloseTab(tab: Tab): void;
+    handleClickTab(tab: Tab): void;
+    updateIndicator(): void;
+    getActiveIndex(): number;
 }> & ThisType<{
-    close(data: Tab): void;
-    click(data: Tab): void;
+    handleCloseTab(tab: Tab): void;
+    handleClickTab(tab: Tab): void;
+    updateIndicator(): void;
+    getActiveIndex(): number;
 } & import("yox").YoxInterface>;
 export default _default;

@@ -1,59 +1,60 @@
 {$selector-collapse}
+  overflow hidden
+  border 1px solid $brand-border
+  border-radius $collapse-border-radius
 
-    overflow hidden
-    border-radius $collapse-border-radius
+  {$selector-collapse}
+    border-top 1px solid $brand-border
 
-    &{$selector-collapse}-bordered
-        background-color $collapse-background-color
-        border 1px solid $collapse-border-color
+{$selector-collapse-simple}
+  border-left none
+  border-right none
 
-        {$selector-panel}
-            &:last-child
-                border-bottom none
+  {$selector-collapse-wrapper}
+    padding-top 0
 
-    {$selector-panel}
+{$selector-collapse-bordered}
 
-        border-bottom 1px solid $collapse-panel-border-color
+  > {$selector-collapse-panel} > {$selector-collapse-header}
+    background-color $collapse-header-bg-color
 
-        {$selector-panel-header}
-            width 100%
-            cursor pointer
-            user-select none
-            font-weight bold
+  > {$selector-collapse-open} > {$selector-collapse-header}
+    border-bottom 1px solid $brand-border
 
-            padding $collapse-panel-el-padding
-            font-size $collapse-panel-el-font-size
+{$selector-collapse-panel} + {$selector-collapse-panel}
+  border-top 1px solid $brand-border
 
-            {$selector-panel-header}-icon
+{$selector-collapse-header}
+  cursor $cursor-clickable
+  user-select none
+  padding $collapse-header-padding
+  font-size $collapse-header-font-size
 
-                margin-right $collapse-panel-el-icon-margin-right
-                font-size $collapse-panel-el-bell-icon-font-size
-                
-                &::before
-                    transition transform .1s
-                    transform-origin center
-                    transform rotate(-90deg)
+{$selector-collapse-icon}
+  margin-right $ui-label-gap
 
-            {$selector-panel-header}-extra
-                float right
+  &:before
+    transition transform .1s
+    transform-origin center
+    transform rotate(-90deg)
 
-        {$selector-panel-content}
+{$selector-collapse-extra}
+  float right
 
-            display none
-            transition height 0.1s linear
-            overflow hidden
-            font-size $collapse-panel-content-font-size
-            background-color $collapse-panel-content-background-color
+{$selector-collapse-content}
+  display none
+  overflow hidden
+  padding-left $collapse-content-padding-horizontal
+  padding-right $collapse-content-padding-horizontal
+  transition height .1s
 
-            {$selector-panel-content}-box
-                padding $collapse-panel-content-padding
+{$selector-collapse-wrapper}
+  padding-top $collapse-content-padding-vertical
+  padding-bottom $collapse-content-padding-vertical
 
-        &{$selector-panel}-open
+{$selector-collapse-open}
+  > {$selector-collapse-header} > {$selector-collapse-icon}:before
+    transform rotate(0)
 
-            > {$selector-panel-content}
-                display block
-
-            > {$selector-panel-header}
-                {$selector-panel-header}-icon
-                    &::before
-                        transform rotate(0)
+  > {$selector-collapse-content}
+    display block
