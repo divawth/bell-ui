@@ -3,13 +3,14 @@
   display inline-block
   text-align center
   user-select none
-  white-space nowrap
   border 1px solid transparent
   background-color transparent
   outline 0
+  padding 0
 
   transition color .2s, background-color .2s, border-color .2s, box-shadow .2s
 
+  ui-ellipsis()
   ui-button()
 
   + {$selector-button}

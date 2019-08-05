@@ -1,172 +1,143 @@
-{$selector-input-wrapper}
-  &{$selector-input}-has-append,
-  &{$selector-input}-has-prepend
-    {$selector-input}
-      width auto
-
-  &{$selector-input}-has-append
-    {$selector-input},
-    {$selector-input-number}
-      border-top-right-radius 0
-      border-bottom-right-radius 0
-
-  &{$selector-input-wrapper}-disabled
-    {$selector-input}
-      cursor $cursor-disabled
-
-      {$selector-input-el}
-        cursor $cursor-disabled
-
-  &{$selector-input-wrapper}-clearable
-    {$selector-input}-clear-icon
-      position absolute
-      right 0
-      text-align center
-      cursor $cursor-clickable
-      color $input-clearable-color
-
-      opacity 0
-      transition opacity .2s ease-in-out
-
-    &{$selector-hover}
-      {$selector-input}-clear-icon
-        opacity 1
-
-      .bell-input-suffix
-        opacity 0
-
-  {$selector-input-prepend},
-  {$selector-input-append}
-    display inline-block
-    vertical-align middle
-    border 1px solid
-    font-size $input-prepend-size
-    padding 0 11px
-    box-sizing content-box
-    background-color #fafafa
-
-    {$selector-select}
-      margin 0px -11px
-      vertical-align middle
-
-      {$selector-select-button}
-        border-color transparent
-        box-shadow none
-
-    {$selector-button}
-      margin -1px -12px
-      border-color transparent
-      box-shadow none
-      cursor pointer
-
-    {$selector-input-wrapper}
-      margin 0 -12px
-
-  {$selector-input-append}
-    margin-left -1px
-    position relative
-
-    {$selector-button}
-      border-top-left-radius 0
-      border-bottom-left-radius 0
-
-  {$selector-input-prepend}
-    border-right 0
-    border-top-left-radius $radius-base
-    border-bottom-left-radius $radius-base
-
-    {$selector-input},
-    {$selector-input-number}
-      box-shadow none !important
-      border none
-
-    + {$selector-input},
-    + {$selector-input-number}
-      border-top-left-radius 0
-      border-bottom-left-radius 0
-
-  {$selector-input-append}
-    border-top-right-radius $radius-base
-    border-bottom-right-radius $radius-base
-
-    {$selector-input},
-    {$selector-input-number}
-      box-shadow none !important
-      border none
-
-  {$selector-textarea},
-  {$selector-input}
-    display inline-block
-    vertical-align middle
-    overflow hidden
-    width 100%
-    outline none
-    position relative
-    border 1px solid transparent
-    border-radius $radius-base
-    transition border-color .3s, box-shadow .3s
-    line-height 0
-
-    {$selector-input-el}
-      display inline-block
-      vertical-align middle
-      border none
-      box-sizing border-box
-      outline none
-      width 100%
-      background-image none
-      position relative
-      cursor $cursor-text
-      background-color transparent
-      resize vertical
-      font-size $input-el-size
-      color $input-el-color
-      padding 0 15px
-
-      &:-webkit-input-placeholder  /* WebKit browsers */
-        color $input-el-placeholder-color
-
-      &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
-        color $input-el-placeholder-color
-
-      &::-moz-placeholder  /* Mozilla Firefox 19+ */
-        color $input-el-placeholder-color
-
-      &:-ms-input-placeholder  /* Internet Explorer 10+ */
-        color $input-el-placeholder-color
-
-    {$selector-input}-prefix
-      text-align center
-      position absolute
-      left 0
-      top 0
-
-      {$selector-input}-prefix-icon
-        font-size 16px
-        color #808695
-
-    {$selector-input}-suffix
-      position absolute
-      right 0
-      top 0
-      display flex
-      align-items center
-      justify-content center
-      cursor pointer
-
-      {$selector-input}-suffix-icon
-        font-size 16px
-        color #808695
-
+{$selector-input}
+  display table
   ui-input()
 
-  {$selector-textarea}
-    {$selector-input-el}
-      resize none
-      line-height 1.8
+{$selector-input-focus}
+  > {$selector-input-content}
+    border-color $brand-primary
 
-  &{$selector-input}-autosize
-    {$selector-textarea}
-      {$selector-input-el}
-        resize vertical
-        height auto
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+
+{$selector-input-enabled}
+  {$selector-input-suffix}:hover
+    color $input-icon-color-hover
+
+  {$selector-input-content}:hover
+    border-color $brand-primary
+
+{$selector-input-disabled}
+  background-color $brand-bg-disabled
+
+  > {$selector-input-content}
+    border-color $brand-border-disabled
+
+  {$selector-input-el},
+  {$selector-textarea-el}
+    cursor $cursor-disabled
+    color $brand-text-disabled
+
+{$selector-input-el},
+{$selector-textarea-el}
+  border none
+  outline none
+  box-sizing border-box
+  width 100%
+  height 100%
+  cursor $cursor-text
+  background-color transparent
+  font-size $input-el-font-size
+  color $brand-important
+
+  ui-placeholder($input-el-placeholder-color)
+
+{$selector-input-el}
+  padding 0 $input-el-padding-horizontal
+
+{$selector-textarea-el}
+  resize none
+  line-height 1.4
+  padding $input-el-padding-vertical $input-el-padding-horizontal
+
+{$selector-input-autosize}
+  resize vertical
+  height auto
+
+{$selector-input-prefix},
+{$selector-input-suffix}
+  position absolute
+  top 0
+  text-align center
+  color $input-icon-color
+
+{$selector-input-prefix}
+  left 0
+
+{$selector-input-suffix}
+  right 0
+  cursor $cursor-clickable
+
+{$selector-input-prepend},
+{$selector-input-append}
+  display table-cell
+  vertical-align middle
+  border 1px solid $brand-border
+  font-size $input-prepend-append-font-size
+  box-sizing border-box
+  color $input-prepend-append-color
+  background-color $input-prepend-append-bg-color
+  padding 0 $input-prepend-append-padding-horizontal
+
+  > {$selector-button-pure},
+  > {$selector-button-pure}:hover
+    color $brand-text
+    border-color $brand-border
+    background-color transparent
+
+  {$selector-button}
+    font-size $input-prepend-append-font-size
+    margin-top -1px
+    margin-bottom -1px
+
+{$selector-input-prepend}
+  border-right none
+  border-top-left-radius $radius-base
+  border-bottom-left-radius $radius-base
+
+  {$selector-button}
+    border-top-right-radius 0
+    border-bottom-right-radius 0
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+{$selector-input-append}
+  border-left none
+  border-top-right-radius $radius-base
+  border-bottom-right-radius $radius-base
+
+  > {$selector-button}
+    border-top-left-radius 0
+    border-bottom-left-radius 0
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+{$selector-input-append-button}
+  border none
+
+{$selector-input-content}
+  display table-cell
+  position relative
+  border 1px solid $brand-border
+  box-sizing  border-box
+  border-radius $radius-base
+  transition border-color .3s, box-shadow .3s
+
+{$selector-input-clear}
+  opacity 0
+  transition opacity .2s
+
+{$selector-input-clearable}:hover
+  {$selector-input-clear}
+    opacity 1
+
+{$selector-input-with-prepend}
+  margin-left -1px
+  border-top-left-radius 0
+  border-bottom-left-radius 0
+
+{$selector-input-with-append}
+  margin-right -1px
+  border-top-right-radius 0
+  border-bottom-right-radius 0
+

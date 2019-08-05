@@ -3,29 +3,27 @@ import Yox from 'yox'
 import template from './template/Card.hbs'
 
 import {
-  TRUE,
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
 
 export default Yox.define({
-
+  template,
   propTypes: {
-    bordered: {
+    simple: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: FALSE,
     },
     hoverDisabled: {
       type: RAW_BOOLEAN,
-      value: TRUE
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template
 })

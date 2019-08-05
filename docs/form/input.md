@@ -18,7 +18,7 @@ export default {
   template: `
     <div class="example-input">
       <Input placeholder="large size" size="large" />
-      <Input placeholder="default size" size="default" />
+      <Input placeholder="default size" />
       <Input placeholder="small size" size="small" />
     </div>
   `
@@ -34,46 +34,28 @@ export default {
   template: `
     <div>
       <Input model="value1">
-        <template slot="prepend">
-          <span>Http://</span>
-        </template>
+        <span slot="prepend">http://</span>
+        <span slot="append">.com</span>
       </Input>
-      <Input model="value2">
-        <template slot="prepend">
-          <Input model="value1" />
-        </template>
-      </Input>
-      <Input model="value3">
-        <template slot="append">
-          <Input model="value1" />
-        </template>
-      </Input>
-      <Input model="value4">
-        <template slot="prepend">
-          <Select model="select1" slot="prepend" style="width: 80px">
-            <Option value="http">http://</Option>
-            <Option value="https">https://</Option>
-          </Select>
-        </template>
-        <template slot="append">
-          <Select model="select2" slot="append" style="width: 70px">
-            <Option value="com">.com</Option>
-            <Option value="org">.org</Option>
-            <Option value="io">.io</Option>
-          </Select>
-        </template>
-      </Input>
-      <Input model="value5"
+      <Input
+        model="value2"
         type="text"
         placeholder="请输入..."
       >
-        <template slot="prepend">
-          <Button type="text">搜索</Button>
-        </template>
+        <Button slot="prepend">搜索</Button>
+        <Button slot="append" type="error">搜索</Button>
+      </Input>
+      <Input
+        model="value3"
+        type="text"
+        placeholder="请输入..."
+      >
+        <Button slot="prepend" type="info">搜索</Button>
+        <Button slot="append" type="success">搜索</Button>
       </Input>
 
       <style>
-        .bell-input-wrapper {
+        .bell-input + .bell-input {
           margin-top: 10px;
         }
       </style>
@@ -192,22 +174,6 @@ export default {
 }
 ```
 
-> 回调函数
-
-```js
-export default {
-  template: `
-  <div>
-    <Input ref="input" placeholder="请输入密码..."
-      type="password"
-      secure
-      style="width: 300px;"
-      model="value"
-    />
-  </div>
-  `
-}
-```
 
 #### API
 
@@ -216,8 +182,8 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 model | input 的值 | string | - | -
-type | 按钮类型 | string | text、password、textarea | text
-size | 按钮大小 | string | large、small | -
+type | 按钮类型 | string | text, password, textarea | text
+size | 按钮大小 | string | default, small, large | default
 placeholder | placeholder | string | - | -
 clearable | 清空按钮 | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false

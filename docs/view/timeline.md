@@ -15,7 +15,7 @@ export default {
 }
 ```
 
-> 设置 padding
+> 设置 pending
 
 ```js
 export default {
@@ -42,7 +42,7 @@ export default {
   <div>
     <TimeLine>
       <TimeLineItem>
-        <Icon style="color: #19be6b;" name="trophy" slot="dot" />
+        <Icon color="#19be6b" name="trophy" slot="dot" />
         <p class="time" style="font-size: 14px; font-weight: bold;">1976年</p>
         <p>Apple I 问世</p>
       </TimeLineItem>
@@ -72,18 +72,18 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-padding | 指定是否最后一个节点变成虚线表示省略 | boolean | - | false
+pending | 指定是否最后一个节点变成虚线表示省略 | boolean | - | false
 
 > TimeLineItem Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-color | 圈圈的颜色（color 支持的值都可以） | string | - | primary
+color | 圈圈的颜色（color 支持的值都可以） | string | - | #348EED
 
 > TimeLineItem slot
 
 名称 | 说明
 ---|---
 dot | 自定义时间锚点的内容
-- | 基本内容
+- | 内容
 

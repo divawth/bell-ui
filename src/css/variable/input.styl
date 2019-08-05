@@ -1,65 +1,54 @@
-$selector-input-wrapper = $selector-prefix + '-input-wrapper'
 $selector-input = $selector-prefix + '-input'
-$selector-input-el = $selector-input + '-el'
-$selector-input-prepend = $selector-input + '-prepend'
-$selector-input-append = $selector-input + '-append'
 $selector-textarea = $selector-prefix + '-textarea'
 
-$input-el-color = $brand-important
-$input-el-size = 14px
+$selector-input-focus = $selector-input + '-focus'
+$selector-input-enabled = $selector-input + '-enabled'
+$selector-input-disabled = $selector-input + '-disabled'
+$selector-input-clearable = $selector-input + '-clearable'
+$selector-input-has-prepend = $selector-input + '-has-prepend'
+$selector-input-has-append = $selector-input + '-has-append'
+
+
+$selector-input-with-prepend = $selector-input + '-with-prepend'
+$selector-input-with-append = $selector-input + '-with-append'
+
+$selector-input-el = $selector-input + '-el'
+$selector-textarea-el = $selector-textarea + '-el'
+
+$selector-input-el-with-prefix = $selector-input-el + '-with-prefix'
+$selector-input-el-with-suffix = $selector-input-el + '-with-suffix'
+
+$selector-input-content = $selector-input + '-content'
+$selector-input-prepend = $selector-input + '-prepend'
+$selector-input-append = $selector-input + '-append'
+$selector-input-append-button = $selector-input-append + '-button'
+$selector-input-prefix = $selector-input + '-prefix'
+$selector-input-suffix = $selector-input + '-suffix'
+$selector-input-clear = $selector-input + '-clear'
+$selector-input-autosize = $selector-input + '-autosize'
+
+$input-el-font-size = 14px
 $input-el-placeholder-color = #D2D2D2
+$input-el-padding-horizontal = 10px
+$input-el-padding-vertical = 6px
 
-$input-prepend-size = 12px
+$input-icon-color = #999
+$input-icon-color-hover = #666
 
-$input-clearable-color = #808695
+$input-prepend-append-font-size = 12px
+$input-prepend-append-color = #515a6e
+$input-prepend-append-bg-color = #fafafa
+$input-prepend-append-padding-horizontal = 10px
 
 $input-size-hash = {
-  '': 30px,
-  'small': 22px,
-  'large': 38px
+  'default': $size-default,
+  'small': $size-small,
+  'large': $size-large,
 }
 
-$input-color-hash = {
-  '': {
-    color: #515a6e,
-    bg-color: transparent,
-    border-color: #dcdee2,
-    border-hover-color: $brand-primary-hover,
-    box-shadow: 0 0 0 2px rgba(45,140,240,.2)
-  },
-  'success': {
-    color: #515a6e,
-    bg-color: transparent,
-    border-color: $brand-success-hover,
-    border-hover-color: $brand-success-hover,
-    box-shadow: 0 0 0 2px rgba(25,190,107,.2)
-  },
-  'error': {
-    color: #515a6e,
-    bg-color: transparent,
-    border-color: $brand-error-hover,
-    border-hover-color: $brand-error-hover,
-    box-shadow: 0 0 0 2px rgba(237,64,20,.2)
-  },
-  'info': {
-    color: #515a6e,
-    bg-color: transparent,
-    border-color: $brand-info-hover,
-    border-hover-color: $brand-info-hover,
-    box-shadow: 0 0 0 2px rgba(45,183,245,.2)
-  },
-  'warning': {
-    color: #515a6e,
-    bg-color: transparent,
-    border-color: $brand-warning-hover,
-    border-hover-color: $brand-warning-hover,
-    box-shadow: 0 0 0 2px rgba(255,153,0,.2)
-  },
-  'disabled': {
-    color: #ccc,
-    bg-color: #F7F7F7,
-    border-color: $brand-border-disabled,
-    border-hover-color: $brand-border-disabled,
-    box-shadow: none
-  }
+$input-brand-hash = {
+  'info': $brand-info,
+  'success': $brand-success,
+  'error': $brand-error,
+  'warning': $brand-warning,
 }

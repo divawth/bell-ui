@@ -61,7 +61,9 @@ export const RAW_ICON_IOS = 'ios'
 export const RAW_ICON_MD = 'md'
 
 export const RAW_EVENT_CLICK = 'click'
+export const RAW_EVENT_KEYPRESS = 'keypress'
 export const RAW_EVENT_KEYDOWN = 'keydown'
+export const RAW_EVENT_KEYUP = 'keyup'
 
 export const RAW_TYPE_ARRAY = [
   RAW_TYPE_PRIMARY,

@@ -16,9 +16,9 @@ import {
 } from '../constant'
 
 import {
-  oneOf, contains,
+  oneOf,
+  contains,
 } from '../util'
-import DropdownItem from './DropdownItem';
 
 export default Yox.define({
   propTypes: {

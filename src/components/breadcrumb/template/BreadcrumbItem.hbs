@@ -1,8 +1,10 @@
 <span
-class="${prefix}breadcrumb-item ${prefix}text
+class="${prefix}breadcrumb-item
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
 
   {{#if to}}
@@ -21,7 +23,7 @@ class="${prefix}breadcrumb-item ${prefix}text
     </span>
   {{/if}}
 
-  <span class="${prefix}breadcrumb-gap">
+  <span class="${prefix}breadcrumb-separator">
     {{separator}}
   </span>
 

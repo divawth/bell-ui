@@ -7,6 +7,7 @@ import {
 } from '../constant'
 
 export default Yox.define({
+  template,
   propTypes: {
     className: {
       type: RAW_STRING,
@@ -15,5 +16,4 @@ export default Yox.define({
       type: RAW_STRING,
     },
   },
-  template,
 })

@@ -1,69 +1,33 @@
-input-size(size)
-  {$selector-input}-prepend,
-  {$selector-input}-append
-    ui-set('height', size)
-    ui-set('line-height', size)
+input-size-style(style)
 
-    {$selector-button}
-      ui-set('height', size + 2)
+  > {$selector-input-prepend},
+  > {$selector-input-append}
+  > {$selector-input-content}
+    ui-set('height', style['height'])
 
-  {$selector-input}-prefix,
-  {$selector-input}-suffix
-    ui-set('width', size)
-    ui-set('height', size)
+  {$selector-input-prefix},
+  {$selector-input-suffix}
+    ui-set('width', style['height'] - 2)
+    ui-set('height', style['height'] - 2)
+    ui-set('line-height', style['height'] - 2)
 
-    {$selector-input}-prefix-icon,
-    {$selector-input}-suffix-icon
-      ui-set('line-height', size)
+  {$selector-input-el-with-prefix}
+    ui-set('padding-left', style['height'] - 2)
 
-  {$selector-input}
-    {$selector-input-el}
-      ui-set('height', size)
-      ui-set('line-height', size)
+  {$selector-input-el-with-suffix}
+    ui-set('padding-right', style['height'] - 2)
 
-      &{$selector-input}-with-prefix
-        ui-set('padding-left', size)
-
-      &{$selector-input}-with-suffix
-        ui-set('padding-right', size)
-
-  &{$selector-input-wrapper}-clearable
-    {$selector-input}-clear-icon
-      ui-set('height', size)
-      ui-set('width', size)
-      ui-set('line-height', size)
-
-    {$selector-input-el}
-      ui-set('padding-right', size - 15)
-
-input-inner-color(color)
-  {$selector-input}-prepend,
-  {$selector-input}-append
-    ui-set('border-color', color[ 'border-color' ])
-
-  {$selector-input}
-    ui-set('border-color', color[ 'border-color' ])
-    ui-set('background-color', color[ 'bg-color' ])
-
-    {$selector-input}-el
-      ui-set('color', color[ 'color' ])
-
-  &{$selector-hover}
-    {$selector-input}
-      ui-set('border-color', color[ 'border-hover-color' ])
-
-  &{$selector-prefix}-focus
-    {$selector-input}
-      ui-set('border-color', color[ 'border-hover-color' ])
-      ui-set('box-shadow', color[ 'box-shadow' ])
+input-brand-style(color)
+  > {$selector-input-content}
+    ui-set('border-color', color)
 
 ui-input()
   ui-connect(
     hash: $input-size-hash,
-    each: input-size
+    each: input-size-style
   )
   ui-connect(
-    hash: $input-color-hash,
-    each: input-inner-color
+    hash: $input-brand-hash,
+    each: input-brand-style
   )
 

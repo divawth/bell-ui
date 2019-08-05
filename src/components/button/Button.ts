@@ -22,11 +22,13 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_SECONDARY,
+      value: 'pure',
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
@@ -80,9 +82,6 @@ export default Yox.define({
     }
     else {
       // 没有 group，则要给 type 和 size 默认值
-      if (props.type === UNDEFINED) {
-        props.type = RAW_TYPE_SECONDARY
-      }
       if (props.size === UNDEFINED) {
         props.size = RAW_DEFAULT
       }

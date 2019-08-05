@@ -1,113 +1,94 @@
 {$selector-card}
-
   background $brand-bg
   border-radius $radius-base
-  font-size 14px
+  font-size $ui-font-size
   line-height 1.2
-  color $card-font-color
+  color $brand-text
   margin $card-margin
-  border 1px solid transparent
 
-  &{$selector-card}-hover
-    &{$selector-hover}
-      box-shadow 0 1px 4px rgba(0,0,0,0.1)
+{$selector-card-hover-enabled}:hover
+  box-shadow 0 1px 4px rgba(0,0,0,0.1)
 
-  &{$selector-card}-bordered
-    border-color $card-border-color
+{$selector-card-bordered}
+  border 1px solid $brand-border
 
 {$selector-card-header}
-
-  padding 10px $card-header-padding
-  border-bottom 1px solid $card-border-color
   position relative
+  padding $card-header-padding-vertical $card-padding-horizontal
 
   {$selector-avatar}
-
-    margin-right $card-header-avatar-margin-right
+    margin-right $ui-label-gap
     vertical-align middle
 
-  {$selector-card-header}-detail
-    display inline-block
-    vertical-align middle
+  + {$selector-card-body}
+    border-top 1px solid $brand-border
 
-  {$selector-card-header}-title
+{$selector-card-header-detail}
+  display inline-block
+  vertical-align middle
 
-    font-size $card-header-title-font-size
-    color $card-header-title-color
-    line-height 1.6
+{$selector-card-header-title}
+  font-size $card-header-title-font-size
+  color $brand-important
+  line-height 1.6
 
-  {$selector-card-header}-sub-title
+{$selector-card-header-sub-title}
+  font-size $card-header-title-font-size - 1
+  color $brand-muted
+  line-height 1.6
 
-    font-size $card-header-sub-title-font-size
-    color $card-header-sub-title-color
-    line-height 1.6
-
-  {$selector-card-header}-extra
-
-    position absolute
-    right $card-header-padding
-    top 50%
-    transform translateY(-50%)
+{$selector-card-header-extra}
+  position absolute
+  right $card-padding-horizontal
+  top 50%
+  transform translateY(-50%)
 
 {$selector-card-media}
-
   position relative
 
   > img
     display block
     width 100%
-    max-width 100%
 
-  {$selector-card-media}-detail
+{$selector-card-media-detail}
+  position absolute
+  left 0
+  right 0
+  bottom 0
+  padding $card-media-detail-padding
+  background-color $card-media-detail-bg-color
 
-    position absolute
-    right 0
-    bottom 0
-    left 0
-    padding $card-media-detail-padding
-    background-color $card-media-detail-background
+{$selector-card-media-title}
+  font-size $card-media-title-font-size
+  color $card-media-title-color
+  line-height 1.6
 
-  {$selector-card-media}-title
-
-    font-size $card-media-title-font-size
-    color $card-media-title-color
-    line-height 1.6
-
-  {$selector-card-media}-sub-title
-
-    font-size $card-media-sub-title-font-size
-    color $card-media-sub-title-color
-    line-height 1.6
+{$selector-card-media-sub-title}
+  font-size $card-media-sub-title-font-size
+  color $card-media-sub-title-color
+  line-height 1.6
 
 {$selector-card-title}
+  padding $card-title-padding-vertical $card-padding-horizontal
 
-  padding $card-title-padding
+{$selector-card-title-body}
+  font-size $card-title-font-size
+  color $card-title-color
+  line-height 1.6
 
-  {$selector-card-title}-body
+{$selector-card-title-sub-title}
+  font-size $card-sub-title-font-size
+  color $card-sub-title-color
+  line-height 1.6
 
-    font-size $card-title-font-size
-    color $card-title-color
-    line-height 1.6
+{$selector-card-body}
+  padding $card-body-padding-vertical $card-padding-horizontal
+  font-size $ui-font-size
+  color $brand-text
+  line-height 1.5
 
-  {$selector-card}-sub-title
+  + {$selector-card-actions}
+    padding-top 0
 
-    font-size $card-sub-title-font-size
-    color $card-sub-title-color
-    line-height 1.6
-
-{$selector-card}-body
-
-  padding $card-body-padding
-  font-size $card-body-font-size
-  color $card-body-color
-  line-height 1.4
-
-{$selector-card}-actions
-
-  padding $card-actions-padding
-
-  .bell-button
-
-    +.bell-button
-
-      margin-left 10px
+{$selector-card-actions}
+  padding $card-actions-padding-vertical $card-padding-horizontal

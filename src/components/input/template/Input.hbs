@@ -1,13 +1,14 @@
 <div
-class="${prefix}input-wrapper
-{{#if hasSlot('prepend')}} ${prefix}input-has-prepend{{/if}}
-{{#if hasSlot('append') || (search && enterButton)}} ${prefix}input-has-append{{/if}}
-{{#if size}} ${prefix}input-wrapper-{{size}}{{/if}}
-{{#if status}} ${prefix}input-wrapper-{{status}}{{/if}}
-{{#if isFocus}} ${prefix}focus{{/if}}
-{{#if autoSize}} ${prefix}input-autosize{{/if}}
-{{#if clearable}} ${prefix}input-wrapper-clearable{{/if}}
-{{#if disabled}} ${prefix}input-wrapper-disabled{{/if}}
+class="${prefix}input
+{{#if size}} ${prefix}input-{{size}}{{/if}}
+{{#if status}} ${prefix}input-{{status}}{{/if}}
+{{#if clearable}} ${prefix}input-clearable{{/if}}
+{{#if disabled}} ${prefix}input-disabled
+{{else}} ${prefix}input-enabled
+{{/if}}
+
+{{#if isFocus}} ${prefix}input-focus{{/if}}
+
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -22,14 +23,16 @@ class="${prefix}input-wrapper
   {{/if}}
 
   <div
-    class="${prefix}input
-    {{#if type === TEXT_TYPE_TEXTAREA}} ${prefix}textarea{{/if}}"
+    class="${prefix}input-content
+    {{#if hasSlot('prepend')}} ${prefix}input-with-prepend{{/if}}
+    {{#if hasSlot('append') || (search && enterButton)}} ${prefix}input-with-append{{/if}}"
   >
 
     {{#if type === TEXT_TYPE_TEXTAREA}}
 
       <textarea
-        class="${prefix}input-el"
+        class="${prefix}textarea-el
+        {{#if autoSize}} ${prefix}input-autosize{{/if}}"
         model="value"
 
         {{#if rows}}
@@ -58,6 +61,9 @@ class="${prefix}input-wrapper
 
         {{#if disabled}}
           disabled
+        {{else}}
+          on-blur="handleBlur()"
+          on-focus="handleFocus()"
         {{/if}}
 
         style="{{textareaStyle}}"
@@ -71,9 +77,11 @@ class="${prefix}input-wrapper
         type="{{currentType}}"
         model="value"
         class="${prefix}input-el
-          {{#if size}} ${prefix}input-{{size}}{{/if}}
-          {{#if hasSlot('prefix') || prefix}} ${prefix}input-with-prefix{{/if}}
-          {{#if hasSlot('suffix') || suffix}} ${prefix}input-with-suffix{{/if}}"
+        {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix
+        {{/if}}
+
+        {{#if hasSlot('suffix') || suffix || secure || clearable || search && !enterButton}} ${prefix}input-el-with-suffix
+        {{/if}}"
 
         {{#if maxLength}}
           maxlength="{{maxLength}}"
@@ -101,60 +109,47 @@ class="${prefix}input-wrapper
 
         {{#if disabled}}
           disabled
+        {{else}}
+          on-blur="handleBlur()"
+          on-focus="handleFocus()"
         {{/if}}
 
-        on-blur="blur()"
-        on-focus="focus()"
-      />
+      >
 
       {{#if hasSlot('prefix') || prefix}}
-        <span class="${prefix}input-prefix">
+        <div class="${prefix}input-prefix">
           <slot name="prefix">
-            <Icon
-              name="{{prefix}}"
-              className="${prefix}input-prefix-icon"
-            />
+            <Icon name="{{prefix}}" />
           </slot>
-        </span>
+        </div>
       {{/if}}
 
       {{#if hasSlot('suffix') || suffix}}
-        <span class="${prefix}input-suffix">
+        <div class="${prefix}input-suffix">
           <slot name="suffix">
             <Icon
               name="{{suffix}}"
-              className="${prefix}input-suffix-icon"
             />
           </slot>
-        </span>
-      {{/if}}
-
-      {{#if search && !enterButton}}
-        <span class="${prefix}input-suffix" on-click="search()">
-          <Icon
-            name="search"
-            className="${prefix}input-suffix-icon"
-          />
-        </span>
-      {{/if}}
-
-      {{#if secure}}
-        <span class="${prefix}input-suffix" on-click="toggle('isSecure')">
+        </div>
+      {{else if secure}}
+        <div class="${prefix}input-suffix" on-click="toggle('isSecure')">
           <Icon
             name="{{isSecure ? 'eye' : 'eye-off'}}"
-            className="${prefix}input-suffix-icon"
           />
-        </span>
-      {{/if}}
-
-
-      {{#if clearable}}
-        <Icon
-          name="close-circle"
-          size="16"
-          className="${prefix}input-clear-icon"
-          on-click.native="clear()"
-        />
+        </div>
+      {{else if clearable}}
+        <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
+          <Icon
+            name="close-circle"
+          />
+        </div>
+      {{else if search && !enterButton}}
+        <div class="${prefix}input-suffix" on-click="handleSearchClick()">
+          <Icon
+            name="search"
+          />
+        </div>
       {{/if}}
 
     {{/if}}
@@ -165,10 +160,8 @@ class="${prefix}input-wrapper
     <div class="${prefix}input-append">
       <slot name="append" />
     </div>
-  {{/if}}
-
-  {{#if search && enterButton}}
-    <div class="${prefix}input-append" on-click="search()">
+  {{else if search && enterButton}}
+    <div class="${prefix}input-append ${prefix}input-append-button" on-click="handleSearchClick()">
       <Button type="primary">
         {{#if isBoolean(enterButton)}}
           <Icon name="search" />

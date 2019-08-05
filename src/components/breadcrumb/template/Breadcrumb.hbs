@@ -1,8 +1,10 @@
 <div
-class="${prefix}breadcrumb ${prefix}texts
+class="${prefix}breadcrumb
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <slot name="children" />
 </div>

@@ -1,60 +1,47 @@
-{$selector-timeline}
-  list-style none
-  margin 0
-  padding 0
+{$selector-timeline-item}
+  padding-bottom $timeline-item-gap
+  position relative
 
-  &{$selector-timeline}-pending
-    {$selector-timeline-item}
-      &:nth-last-of-type(2)
-        {$selector-timeline}-tail
-          border-left 1px dotted
+  &:before
+    content ' '
+    height 100%
+    border-left 1px solid #e8eaec
+    position absolute
+    left 0.5 * $timeline-dot-size
+    top 0
 
-  {$selector-timeline-item}
+  &:last-child
+    padding-bottom 0
+    &:before
+      display none
+
+{$selector-timeline-dot}
+  position absolute
+  width $timeline-dot-size
+  height $timeline-dot-size
+  background-color $timeline-dot-bg-color
+  border-radius 50%
+  border 1px solid
+
+{$selector-timeline-custom}
+  text-align center
+  position absolute
+  background-color $timeline-custom-bg-color
+  width $timeline-custom-width
+  left $timeline-custom-left
+
+{$selector-timeline-content}
+  position relative
+  padding-left $timeline-content-padding-left
+  font-size $timeline-content-font-size
+  top -3px
+  line-height 1.6
+  p
+    padding 0
     margin 0
-    padding 0 0 12px
-    list-style none
-    position relative
 
-    {$selector-timeline}-tail
-      height 100%
-      border-left 1px solid #e8eaec
-      position absolute
-      left 6px
-      top 0
+{$selector-timeline-pending}
+  {$selector-timeline-item}
+    &:nth-last-of-type(2):before
+      border-left-style dotted
 
-    {$selector-timeline}-dot
-      position absolute
-      width $timeline-dot-size
-      height $timeline-dot-size
-      background-color #fff
-      border-radius 100%
-      border 1px solid
-
-    {$selector-timeline}-custom
-      height auto
-      text-align center
-      line-height 1
-      position absolute
-      border 0
-      border-radius 0
-      transform translateY(-50%)
-      background-color #ffffff
-
-      width $timeline-custom-width
-      margin-top $timeline-custom-margin-top
-      padding $timeline-custom-padding
-      left $timeline-custom-left
-
-    {$selector-timeline}-content
-      position relative
-      padding $timeline-content-padding
-      font-size $timeline-font-size
-      top -3px
-      line-height 1.5
-      p
-        padding 0
-        margin 0
-
-    &:last-child
-      {$selector-timeline}-tail
-        display none

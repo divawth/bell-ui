@@ -1,8 +1,9 @@
 <button
 class="${prefix}button ${prefix}button-{{border}}
 
-{{#if ghost}} ${prefix}button-ghost ${prefix}button-ghost-{{type}}
-{{else}} ${prefix}button-{{type}}
+{{#if ghost}} ${prefix}button-ghost
+  {{#if type}} ${prefix}button-ghost-{{type}}{{/if}}
+{{else if type}} ${prefix}button-{{type}}
 {{/if}}
 
 {{#if size}} ${prefix}button-{{size}}{{/if}}

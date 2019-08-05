@@ -10,6 +10,15 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_OBJECT,
+  RAW_EVENT_KEYDOWN,
+  RAW_EVENT_KEYPRESS,
+  RAW_EVENT_KEYUP,
+  RAW_SIZE_COMMON,
+  RAW_DEFAULT,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 import {
@@ -22,12 +31,16 @@ const TEXT_TYPE_TEXT = 'text'
 const ROW_HEIGHT = 22
 
 export default Yox.define({
+
+  template,
+
   propTypes: {
     value: {
       type: RAW_STRING,
     },
     size: {
-      type: RAW_STRING,
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     search: {
       type: RAW_BOOLEAN,
@@ -40,11 +53,11 @@ export default Yox.define({
       type: [ RAW_BOOLEAN, RAW_OBJECT ],
     },
     type: {
-      type: RAW_STRING,
-      value: 'text',
+      type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_TEXTAREA, TEXT_TYPE_PASSWORD]),
+      value: TEXT_TYPE_TEXT,
     },
     status: {
-      type: RAW_STRING,
+      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     placeholder: {
       type: RAW_STRING,
@@ -72,7 +85,8 @@ export default Yox.define({
       type: RAW_STRING,
     },
     autoComplete: {
-      type: oneOf(['on', 'off']),
+      type: RAW_BOOLEAN,
+      value: FALSE
     },
     wrap: {
       type: oneOf(['hard', 'soft']),
@@ -95,8 +109,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     return {
@@ -131,19 +143,19 @@ export default Yox.define({
   },
 
   methods: {
-    focus() {
+    handleFocus() {
       this.set('isFocus', TRUE)
       this.fire('focus.input')
     },
-    blur() {
+    handleBlur() {
       this.set('isFocus', FALSE)
       this.fire('blur.input')
     },
-    clear() {
+    handleClearClick() {
       this.set('value', '')
       this.fire('clear.input')
     },
-    search() {
+    handleSearchClick() {
       this.fire(
         'search.input',
         {
@@ -206,17 +218,17 @@ export default Yox.define({
 
     Yox.dom.on(
       DOCUMENT,
-      'keydown',
+      RAW_EVENT_KEYDOWN,
       onKeydown
     )
     Yox.dom.on(
       DOCUMENT,
-      'keyup',
+      RAW_EVENT_KEYUP,
       onKeyup
     )
     Yox.dom.on(
       DOCUMENT,
-      'keypress',
+      RAW_EVENT_KEYPRESS,
       onKeypress
     )
 
@@ -226,17 +238,17 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
             DOCUMENT,
-            'keydown',
+            RAW_EVENT_KEYDOWN,
             onKeydown
           )
           Yox.dom.off(
             DOCUMENT,
-            'keyup',
+            RAW_EVENT_KEYUP,
             onKeyup
           )
           Yox.dom.off(
             DOCUMENT,
-            'keypress',
+            RAW_EVENT_KEYPRESS,
             onKeypress
           )
         }

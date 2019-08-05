@@ -77,13 +77,13 @@ export default {
 }
 ```
 
-> bordered 设置成 false
+> simple
 
 ```js
 export default {
   template: `
     <div style="bell-template" style="background: #ccc; padding: 15px 0;">
-      <Card bordered="{{false}}" style="width: 300px;">
+      <Card simple style="width: 300px;">
         <CardHeader>
           <template slot="title">
             Card title
@@ -104,13 +104,13 @@ export default {
 }
 ```
 
-> disHover 设置成 false
+> hoverDisabled
 
 ```js
 export default {
   template: `
     <Row>
-      <Card disHover="{{false}}" style="width: 300px;">
+      <Card hoverDisabled style="width: 300px;">
         <CardHeader>
           <template slot="title">
             Card title
@@ -137,6 +137,6 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-bordered | 是否有边框 | boolean | - | true
-disHover | 通过设置 disHover 来禁用鼠标悬停显示阴影效果 | boolean | - | true
+simple | 是否是简洁风格（无边框） | boolean | - |  false
+hoverDisabled | 通过设置 hoverDisabled 来禁用鼠标悬停显示阴影效果 | boolean | - | false
 

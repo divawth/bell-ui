@@ -15,6 +15,7 @@ import {
   RAW_TYPE_PRIMARY,
   RAW_SIZE_COMMON,
   RAW_DEFAULT,
+  RAW_EVENT_KEYDOWN,
 } from '../constant'
 
 import {
@@ -22,6 +23,9 @@ import {
 } from '../util'
 
 export default Yox.define({
+
+  template,
+
   propTypes: {
     formatter: {
       type: RAW_FUNCTION,
@@ -71,8 +75,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     return {
@@ -164,7 +166,7 @@ export default Yox.define({
 
     Yox.dom.on(
       DOCUMENT,
-      'keydown',
+      RAW_EVENT_KEYDOWN,
       onKeydown
     )
 
@@ -174,7 +176,7 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
             DOCUMENT,
-            'keydown',
+            RAW_EVENT_KEYDOWN,
             onKeydown
           )
         }

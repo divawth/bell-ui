@@ -1,10 +1,19 @@
 <div
 class="${prefix}card
-{{#if bordered}} ${prefix}card-bordered{{/if}}
-{{#if hoverDisabled}} ${prefix}card-hover-disabled{{/if}}
+
+{{#if simple}} ${prefix}card-simple
+{{else}} ${prefix}card-bordered
+{{/if}}
+
+{{#if hoverDisabled}} ${prefix}card-hover-disabled
+{{else}} ${prefix}card-hover-enabled
+{{/if}}
+
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <slot name="children" />
 </div>

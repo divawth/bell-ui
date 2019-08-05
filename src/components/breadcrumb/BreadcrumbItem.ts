@@ -7,20 +7,20 @@ import {
 } from '../constant'
 
 export default Yox.define({
+  template,
   propTypes: {
     to: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     separator: {
       type: RAW_STRING,
       value: '/'
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template,
 })
