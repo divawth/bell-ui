@@ -75,10 +75,6 @@ export default {
       <Page total="100" size="small"></Page>
       <br><br>
       <Page total="100"></Page>
-      <br><br>
-      <Page total="100" size="tiny"></Page>
-      <br><br>
-      <Page showTotal showElevator total="100" size="tiny"></Page>
     </div>
   `
 }

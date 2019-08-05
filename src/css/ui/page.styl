@@ -1,134 +1,109 @@
+{$selector-page-list}
+  display inline-block
+
+{$selector-page-item}
+  display inline-block
+  text-align center
+  cursor $cursor-clickable
+  border-radius $radius-base
+  border 1px solid $brand-border
+  color $page-item-color
+  font-size $page-item-font-size
+  transition all .2s ease-in-out
+
+  + {$selector-page-item}
+    margin-left $page-item-gap
+
+{$selector-page-active}
+  cursor $cursor-text
+
+{$selector-page-item}:hover,
+{$selector-page-active}
+  color $brand-primary
+  border-color $brand-primary
+
+{$selector-page-disabled}
+  cursor $cursor-disabled
+  color $brand-text-disabled
+  border-color $brand-border-disabled
+
+  &:hover
+    color $brand-text-disabled
+    border-color $brand-border-disabled
+
+{$selector-page-item-prev}
+{$selector-page-item-next}
+  border none
+  &:after
+    content "\2022\2022\2022"
+    display block
+    letter-spacing 1px
+    color $brand-border
+    text-align center
+    font-size 12px
+
+  {$selector-icon}
+    display none
+
+  &:hover
+    &:after
+      display none
+
+    {$selector-icon}
+      display inline-block
+      vertical-align middle
+      margin-left 0
+
+{$selector-page-custom-prev},
+{$selector-page-custom-next}
+  border none
+  width auto !important
+
+{$selector-page-custom-next}
+  margin-right 14px
+
+{$selector-page-custom-prev}
+  margin-left 14px
+
 {$selector-page}
   user-select none
   ui-page()
 
-  {$selector-page}-list
-    list-style none
-    padding 0
-    margin 0
-    display inline-block
-    vertical-align middle
 
-  {$selector-page-item}
-    display inline-block
-    vertical-align middle
-    list-style none
-    text-align center
-    cursor pointer
-    border-radius $radius-base
-    border $page-item-border
-    font-size 12px
-    margin-right 4px
-    transition all .2s ease-in-out
 
-    color $page-item-color
 
-    &{$selector-prefix}-active,
-    &{$selector-hover}
-      color $page-item-hover-color
-      border-color $page-item-hover-color
 
-    &{$selector-prefix}-disabled
-      cursor not-allowed
-      color $page-item-disabled-color
-      border-color $brand-border
+{$selector-page-select}
+  width $page-item-width
+  margin-right $page-select-gap
+  vertical-align top
 
-      &{$selector-hover}
-        color $page-item-disabled-color
-        border-color $brand-border
+{$selector-page-elevator}
+  display inline-block
+  margin-left 10px
 
-    &{$selector-page-item}-next,
-    &{$selector-page-item}-prev
-      border none
-      &:after
-        content "\2022\2022\2022"
-        display block
-        letter-spacing 1px
-        color $brand-border
-        text-align center
-        font-size 12px
+{$selector-page-input}
+  width $page-input-width
+  display inline-block
+  vertical-align middle
 
-      {$selector-icon}
-        display none
+  {$selector-input}
+    padding 0 10px
 
-      &{$selector-hover}
-        &:after
-          display none
+{$selector-page-total}
+  font-size 14px
+  margin-right $page-total-gap
 
-        {$selector-icon}
-          display inline-block
-          vertical-align middle
-          margin-left 0
+{$selector-page-simple}
+  display inline-block
+  vertical-align middle
 
-    &{$selector-page}-custom-next,
-    &{$selector-page}-custom-prev
-      border none
-      width auto
+  > {$selector-page-prev}
+    margin-right 10px
 
-    &{$selector-page}-custom-prev
-      margin-right 10px
-
-    &{$selector-page}-custom-next
-      margin-left 10px
-
-  {$selector-page}-select
-    display inline-block
-    vertical-align middle
-    width $page-item-width
-    margin-right $page-item-margin
-
-  {$selector-page}-elevator
-    display inline-block
-    vertical-align middle
+  > {$selector-page-next}
     margin-left 10px
 
-    {$selector-page}-input
-      width $page-item-width
-      display inline-block
-      vertical-align middle
-      margin 0 $page-item-margin
-
-      {$selector-input}
-        padding 0 10px
-
-  {$selector-page}-total
-    font-size 14px
-    margin-right $page-item-margin
-
-  {$selector-page}-simple
-    display inline-block
-    vertical-align middle
-
-    {$selector-page}-input
-      width $page-input-width
-      display inline-block
-      vertical-align middle
-      margin 0 $page-item-margin
-
-      {$selector-input}
-        padding 0 10px
-
-    {$selector-page-item}
-      border none
-      color $page-item-color
-      padding $page-simple-item-padding
-
-      &{$selector-prefix}-active,
-      &{$selector-hover}
-        color $page-item-color
-        border none
-
-  {$selector-page}-gap
-    margin-right 6px
-    margin-left -6px
-
-{$selector-page}-tiny
-  {$selector-page}-list
-    {$selector-page-item}
-      border none
-      color $page-item-color
-
-      &{$selector-prefix}-active,
-      &{$selector-hover}
-        color $page-item-hover-color
-        border none
+{$selector-page-separator}
+  color $brand-muted
+  margin 0 $page-separator-gap

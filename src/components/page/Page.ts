@@ -12,6 +12,8 @@ import {
   RAW_BOTTOM,
   RAW_TOP,
   DOCUMENT,
+  RAW_DEFAULT,
+  RAW_SMALL,
 } from '../constant'
 
 import { oneOf } from '../util'
@@ -20,7 +22,8 @@ export default Yox.define({
 
   propTypes: {
     size: {
-      type: oneOf(RAW_SIZE_ARRAY)
+      type: oneOf([RAW_DEFAULT, RAW_SMALL]),
+      value: RAW_DEFAULT,
     },
     simple: {
       type: RAW_BOOLEAN

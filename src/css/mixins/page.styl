@@ -1,15 +1,14 @@
-page-size(size)
-  {$selector-page}-list
-    {$selector-page}-item
-      ui-set('width', size)
-      ui-set('height', size)
-      ui-set('line-height', size)
+page-size-style(style)
+  {$selector-page-item}
+    ui-set('width', style['height'])
+    ui-set('height', style['height'])
+    ui-set('line-height', style['height'])
 
-      > {$selector-icon}
-        ui-set('line-height', size - 2)
+    > {$selector-icon}
+      ui-set('line-height', style['height'] - 2)
 
 ui-page()
   ui-connect(
     hash: $page-size-hash,
-    each: page-size
+    each: page-size-style
   )
