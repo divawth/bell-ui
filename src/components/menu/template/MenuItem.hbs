@@ -1,12 +1,13 @@
-<li
+<div
 class="${prefix}menu-item
-{{#if className}} {{className}}{{/if}}
-{{#if isActive}} ${prefix}menu-active{{/if}}
-{{#if disabled}} ${prefix}menu-item-disabled{{/if}}"
+{{#if isActive}} ${prefix}menu-item-active{{/if}}
+{{#if disabled}} ${prefix}menu-item-disabled
+{{else}} ${prefix}menu-item-enabled
+{{/if}}
+{{#if className}} {{className}}{{/if}}"
 
 style="{{style}}"
-
 on-click="click.menuItem"
 >
   <slot name="children" />
-</li>
+</div>

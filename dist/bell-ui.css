@@ -1,4 +1,3522 @@
-@import './ionicons/ionicons.css';
+@charset "UTF-8";
+/*!
+  Ionicons, v4.5.6
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+
+  Android-style icons originally built by Google’s
+  Material Design Icons: https://github.com/google/material-design-icons
+  used under CC BY http://creativecommons.org/licenses/by/4.0/
+  Modified icons to fit ionicon’s grid from original.
+*/
+@font-face {
+  font-family: "Ionicons";
+  src: url(fonts/ionicons.eot);
+  src: url(fonts/ionicons.eot#iefix) format("embedded-opentype"), 
+  url(fonts/ionicons.woff2) format("woff2"), 
+  url(fonts/ionicons.woff) format("woff"), 
+  url(fonts/ionicons.ttf) format("truetype"), 
+  url(fonts/ionicons.svg#Ionicons) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ion, 
+.ionicons,
+.bell-icon-ios-add:before,
+.bell-icon-ios-add-circle:before,
+.bell-icon-ios-add-circle-outline:before,
+.bell-icon-ios-airplane:before,
+.bell-icon-ios-alarm:before,
+.bell-icon-ios-albums:before,
+.bell-icon-ios-alert:before,
+.bell-icon-ios-american-football:before,
+.bell-icon-ios-analytics:before,
+.bell-icon-ios-aperture:before,
+.bell-icon-ios-apps:before,
+.bell-icon-ios-appstore:before,
+.bell-icon-ios-archive:before,
+.bell-icon-ios-arrow-back:before,
+.bell-icon-ios-arrow-down:before,
+.bell-icon-ios-arrow-dropdown:before,
+.bell-icon-ios-arrow-dropdown-circle:before,
+.bell-icon-ios-arrow-dropleft:before,
+.bell-icon-ios-arrow-dropleft-circle:before,
+.bell-icon-ios-arrow-dropright:before,
+.bell-icon-ios-arrow-dropright-circle:before,
+.bell-icon-ios-arrow-dropup:before,
+.bell-icon-ios-arrow-dropup-circle:before,
+.bell-icon-ios-arrow-forward:before,
+.bell-icon-ios-arrow-round-back:before,
+.bell-icon-ios-arrow-round-down:before,
+.bell-icon-ios-arrow-round-forward:before,
+.bell-icon-ios-arrow-round-up:before,
+.bell-icon-ios-arrow-up:before,
+.bell-icon-ios-at:before,
+.bell-icon-ios-attach:before,
+.bell-icon-ios-backspace:before,
+.bell-icon-ios-barcode:before,
+.bell-icon-ios-baseball:before,
+.bell-icon-ios-basket:before,
+.bell-icon-ios-basketball:before,
+.bell-icon-ios-battery-charging:before,
+.bell-icon-ios-battery-dead:before,
+.bell-icon-ios-battery-full:before,
+.bell-icon-ios-beaker:before,
+.bell-icon-ios-bed:before,
+.bell-icon-ios-beer:before,
+.bell-icon-ios-bicycle:before,
+.bell-icon-ios-bluetooth:before,
+.bell-icon-ios-boat:before,
+.bell-icon-ios-body:before,
+.bell-icon-ios-bonfire:before,
+.bell-icon-ios-book:before,
+.bell-icon-ios-bookmark:before,
+.bell-icon-ios-bookmarks:before,
+.bell-icon-ios-bowtie:before,
+.bell-icon-ios-briefcase:before,
+.bell-icon-ios-browsers:before,
+.bell-icon-ios-brush:before,
+.bell-icon-ios-bug:before,
+.bell-icon-ios-build:before,
+.bell-icon-ios-bulb:before,
+.bell-icon-ios-bus:before,
+.bell-icon-ios-business:before,
+.bell-icon-ios-cafe:before,
+.bell-icon-ios-calculator:before,
+.bell-icon-ios-calendar:before,
+.bell-icon-ios-call:before,
+.bell-icon-ios-camera:before,
+.bell-icon-ios-car:before,
+.bell-icon-ios-card:before,
+.bell-icon-ios-cart:before,
+.bell-icon-ios-cash:before,
+.bell-icon-ios-cellular:before,
+.bell-icon-ios-chatboxes:before,
+.bell-icon-ios-chatbubbles:before,
+.bell-icon-ios-checkbox:before,
+.bell-icon-ios-checkbox-outline:before,
+.bell-icon-ios-checkmark:before,
+.bell-icon-ios-checkmark-circle:before,
+.bell-icon-ios-checkmark-circle-outline:before,
+.bell-icon-ios-clipboard:before,
+.bell-icon-ios-clock:before,
+.bell-icon-ios-close:before,
+.bell-icon-ios-close-circle:before,
+.bell-icon-ios-close-circle-outline:before,
+.bell-icon-ios-cloud:before,
+.bell-icon-ios-cloud-circle:before,
+.bell-icon-ios-cloud-done:before,
+.bell-icon-ios-cloud-download:before,
+.bell-icon-ios-cloud-outline:before,
+.bell-icon-ios-cloud-upload:before,
+.bell-icon-ios-cloudy:before,
+.bell-icon-ios-cloudy-night:before,
+.bell-icon-ios-code:before,
+.bell-icon-ios-code-download:before,
+.bell-icon-ios-code-working:before,
+.bell-icon-ios-cog:before,
+.bell-icon-ios-color-fill:before,
+.bell-icon-ios-color-filter:before,
+.bell-icon-ios-color-palette:before,
+.bell-icon-ios-color-wand:before,
+.bell-icon-ios-compass:before,
+.bell-icon-ios-construct:before,
+.bell-icon-ios-contact:before,
+.bell-icon-ios-contacts:before,
+.bell-icon-ios-contract:before,
+.bell-icon-ios-contrast:before,
+.bell-icon-ios-copy:before,
+.bell-icon-ios-create:before,
+.bell-icon-ios-crop:before,
+.bell-icon-ios-cube:before,
+.bell-icon-ios-cut:before,
+.bell-icon-ios-desktop:before,
+.bell-icon-ios-disc:before,
+.bell-icon-ios-document:before,
+.bell-icon-ios-done-all:before,
+.bell-icon-ios-download:before,
+.bell-icon-ios-easel:before,
+.bell-icon-ios-egg:before,
+.bell-icon-ios-exit:before,
+.bell-icon-ios-expand:before,
+.bell-icon-ios-eye:before,
+.bell-icon-ios-eye-off:before,
+.bell-icon-ios-fastforward:before,
+.bell-icon-ios-female:before,
+.bell-icon-ios-filing:before,
+.bell-icon-ios-film:before,
+.bell-icon-ios-finger-print:before,
+.bell-icon-ios-fitness:before,
+.bell-icon-ios-flag:before,
+.bell-icon-ios-flame:before,
+.bell-icon-ios-flash:before,
+.bell-icon-ios-flash-off:before,
+.bell-icon-ios-flashlight:before,
+.bell-icon-ios-flask:before,
+.bell-icon-ios-flower:before,
+.bell-icon-ios-folder:before,
+.bell-icon-ios-folder-open:before,
+.bell-icon-ios-football:before,
+.bell-icon-ios-funnel:before,
+.bell-icon-ios-gift:before,
+.bell-icon-ios-git-branch:before,
+.bell-icon-ios-git-commit:before,
+.bell-icon-ios-git-compare:before,
+.bell-icon-ios-git-merge:before,
+.bell-icon-ios-git-network:before,
+.bell-icon-ios-git-pull-request:before,
+.bell-icon-ios-glasses:before,
+.bell-icon-ios-globe:before,
+.bell-icon-ios-grid:before,
+.bell-icon-ios-hammer:before,
+.bell-icon-ios-hand:before,
+.bell-icon-ios-happy:before,
+.bell-icon-ios-headset:before,
+.bell-icon-ios-heart:before,
+.bell-icon-ios-heart-dislike:before,
+.bell-icon-ios-heart-empty:before,
+.bell-icon-ios-heart-half:before,
+.bell-icon-ios-help:before,
+.bell-icon-ios-help-buoy:before,
+.bell-icon-ios-help-circle:before,
+.bell-icon-ios-help-circle-outline:before,
+.bell-icon-ios-home:before,
+.bell-icon-ios-hourglass:before,
+.bell-icon-ios-ice-cream:before,
+.bell-icon-ios-image:before,
+.bell-icon-ios-images:before,
+.bell-icon-ios-infinite:before,
+.bell-icon-ios-information:before,
+.bell-icon-ios-information-circle:before,
+.bell-icon-ios-information-circle-outline:before,
+.bell-icon-ios-jet:before,
+.bell-icon-ios-journal:before,
+.bell-icon-ios-key:before,
+.bell-icon-ios-keypad:before,
+.bell-icon-ios-laptop:before,
+.bell-icon-ios-leaf:before,
+.bell-icon-ios-link:before,
+.bell-icon-ios-list:before,
+.bell-icon-ios-list-box:before,
+.bell-icon-ios-locate:before,
+.bell-icon-ios-lock:before,
+.bell-icon-ios-log-in:before,
+.bell-icon-ios-log-out:before,
+.bell-icon-ios-magnet:before,
+.bell-icon-ios-mail:before,
+.bell-icon-ios-mail-open:before,
+.bell-icon-ios-mail-unread:before,
+.bell-icon-ios-male:before,
+.bell-icon-ios-man:before,
+.bell-icon-ios-map:before,
+.bell-icon-ios-medal:before,
+.bell-icon-ios-medical:before,
+.bell-icon-ios-medkit:before,
+.bell-icon-ios-megaphone:before,
+.bell-icon-ios-menu:before,
+.bell-icon-ios-mic:before,
+.bell-icon-ios-mic-off:before,
+.bell-icon-ios-microphone:before,
+.bell-icon-ios-moon:before,
+.bell-icon-ios-more:before,
+.bell-icon-ios-move:before,
+.bell-icon-ios-musical-note:before,
+.bell-icon-ios-musical-notes:before,
+.bell-icon-ios-navigate:before,
+.bell-icon-ios-notifications:before,
+.bell-icon-ios-notifications-off:before,
+.bell-icon-ios-notifications-outline:before,
+.bell-icon-ios-nuclear:before,
+.bell-icon-ios-nutrition:before,
+.bell-icon-ios-open:before,
+.bell-icon-ios-options:before,
+.bell-icon-ios-outlet:before,
+.bell-icon-ios-paper:before,
+.bell-icon-ios-paper-plane:before,
+.bell-icon-ios-partly-sunny:before,
+.bell-icon-ios-pause:before,
+.bell-icon-ios-paw:before,
+.bell-icon-ios-people:before,
+.bell-icon-ios-person:before,
+.bell-icon-ios-person-add:before,
+.bell-icon-ios-phone-landscape:before,
+.bell-icon-ios-phone-portrait:before,
+.bell-icon-ios-photos:before,
+.bell-icon-ios-pie:before,
+.bell-icon-ios-pin:before,
+.bell-icon-ios-pint:before,
+.bell-icon-ios-pizza:before,
+.bell-icon-ios-planet:before,
+.bell-icon-ios-play:before,
+.bell-icon-ios-play-circle:before,
+.bell-icon-ios-podium:before,
+.bell-icon-ios-power:before,
+.bell-icon-ios-pricetag:before,
+.bell-icon-ios-pricetags:before,
+.bell-icon-ios-print:before,
+.bell-icon-ios-pulse:before,
+.bell-icon-ios-qr-scanner:before,
+.bell-icon-ios-quote:before,
+.bell-icon-ios-radio:before,
+.bell-icon-ios-radio-button-off:before,
+.bell-icon-ios-radio-button-on:before,
+.bell-icon-ios-rainy:before,
+.bell-icon-ios-recording:before,
+.bell-icon-ios-redo:before,
+.bell-icon-ios-refresh:before,
+.bell-icon-ios-refresh-circle:before,
+.bell-icon-ios-remove:before,
+.bell-icon-ios-remove-circle:before,
+.bell-icon-ios-remove-circle-outline:before,
+.bell-icon-ios-reorder:before,
+.bell-icon-ios-repeat:before,
+.bell-icon-ios-resize:before,
+.bell-icon-ios-restaurant:before,
+.bell-icon-ios-return-left:before,
+.bell-icon-ios-return-right:before,
+.bell-icon-ios-reverse-camera:before,
+.bell-icon-ios-rewind:before,
+.bell-icon-ios-ribbon:before,
+.bell-icon-ios-rocket:before,
+.bell-icon-ios-rose:before,
+.bell-icon-ios-sad:before,
+.bell-icon-ios-save:before,
+.bell-icon-ios-school:before,
+.bell-icon-ios-search:before,
+.bell-icon-ios-send:before,
+.bell-icon-ios-settings:before,
+.bell-icon-ios-share:before,
+.bell-icon-ios-share-alt:before,
+.bell-icon-ios-shirt:before,
+.bell-icon-ios-shuffle:before,
+.bell-icon-ios-skip-backward:before,
+.bell-icon-ios-skip-forward:before,
+.bell-icon-ios-snow:before,
+.bell-icon-ios-speedometer:before,
+.bell-icon-ios-square:before,
+.bell-icon-ios-square-outline:before,
+.bell-icon-ios-star:before,
+.bell-icon-ios-star-half:before,
+.bell-icon-ios-star-outline:before,
+.bell-icon-ios-stats:before,
+.bell-icon-ios-stopwatch:before,
+.bell-icon-ios-subway:before,
+.bell-icon-ios-sunny:before,
+.bell-icon-ios-swap:before,
+.bell-icon-ios-switch:before,
+.bell-icon-ios-sync:before,
+.bell-icon-ios-tablet-landscape:before,
+.bell-icon-ios-tablet-portrait:before,
+.bell-icon-ios-tennisball:before,
+.bell-icon-ios-text:before,
+.bell-icon-ios-thermometer:before,
+.bell-icon-ios-thumbs-down:before,
+.bell-icon-ios-thumbs-up:before,
+.bell-icon-ios-thunderstorm:before,
+.bell-icon-ios-time:before,
+.bell-icon-ios-timer:before,
+.bell-icon-ios-today:before,
+.bell-icon-ios-train:before,
+.bell-icon-ios-transgender:before,
+.bell-icon-ios-trash:before,
+.bell-icon-ios-trending-down:before,
+.bell-icon-ios-trending-up:before,
+.bell-icon-ios-trophy:before,
+.bell-icon-ios-tv:before,
+.bell-icon-ios-umbrella:before,
+.bell-icon-ios-undo:before,
+.bell-icon-ios-unlock:before,
+.bell-icon-ios-videocam:before,
+.bell-icon-ios-volume-high:before,
+.bell-icon-ios-volume-low:before,
+.bell-icon-ios-volume-mute:before,
+.bell-icon-ios-volume-off:before,
+.bell-icon-ios-walk:before,
+.bell-icon-ios-wallet:before,
+.bell-icon-ios-warning:before,
+.bell-icon-ios-watch:before,
+.bell-icon-ios-water:before,
+.bell-icon-ios-wifi:before,
+.bell-icon-ios-wine:before,
+.bell-icon-ios-woman:before,
+.bell-icon-logo-android:before,
+.bell-icon-logo-angular:before,
+.bell-icon-logo-apple:before,
+.bell-icon-logo-bitbucket:before,
+.bell-icon-logo-bitcoin:before,
+.bell-icon-logo-buffer:before,
+.bell-icon-logo-chrome:before,
+.bell-icon-logo-closed-captioning:before,
+.bell-icon-logo-codepen:before,
+.bell-icon-logo-css3:before,
+.bell-icon-logo-designernews:before,
+.bell-icon-logo-dribbble:before,
+.bell-icon-logo-dropbox:before,
+.bell-icon-logo-euro:before,
+.bell-icon-logo-facebook:before,
+.bell-icon-logo-flickr:before,
+.bell-icon-logo-foursquare:before,
+.bell-icon-logo-freebsd-devil:before,
+.bell-icon-logo-game-controller-a:before,
+.bell-icon-logo-game-controller-b:before,
+.bell-icon-logo-github:before,
+.bell-icon-logo-google:before,
+.bell-icon-logo-googleplus:before,
+.bell-icon-logo-hackernews:before,
+.bell-icon-logo-html5:before,
+.bell-icon-logo-instagram:before,
+.bell-icon-logo-ionic:before,
+.bell-icon-logo-ionitron:before,
+.bell-icon-logo-javascript:before,
+.bell-icon-logo-linkedin:before,
+.bell-icon-logo-markdown:before,
+.bell-icon-logo-model-s:before,
+.bell-icon-logo-no-smoking:before,
+.bell-icon-logo-nodejs:before,
+.bell-icon-logo-npm:before,
+.bell-icon-logo-octocat:before,
+.bell-icon-logo-pinterest:before,
+.bell-icon-logo-playstation:before,
+.bell-icon-logo-polymer:before,
+.bell-icon-logo-python:before,
+.bell-icon-logo-reddit:before,
+.bell-icon-logo-rss:before,
+.bell-icon-logo-sass:before,
+.bell-icon-logo-skype:before,
+.bell-icon-logo-slack:before,
+.bell-icon-logo-snapchat:before,
+.bell-icon-logo-steam:before,
+.bell-icon-logo-tumblr:before,
+.bell-icon-logo-tux:before,
+.bell-icon-logo-twitch:before,
+.bell-icon-logo-twitter:before,
+.bell-icon-logo-usd:before,
+.bell-icon-logo-vimeo:before,
+.bell-icon-logo-vk:before,
+.bell-icon-logo-whatsapp:before,
+.bell-icon-logo-windows:before,
+.bell-icon-logo-wordpress:before,
+.bell-icon-logo-xbox:before,
+.bell-icon-logo-xing:before,
+.bell-icon-logo-yahoo:before,
+.bell-icon-logo-yen:before,
+.bell-icon-logo-youtube:before,
+.bell-icon-md-add:before,
+.bell-icon-md-add-circle:before,
+.bell-icon-md-add-circle-outline:before,
+.bell-icon-md-airplane:before,
+.bell-icon-md-alarm:before,
+.bell-icon-md-albums:before,
+.bell-icon-md-alert:before,
+.bell-icon-md-american-football:before,
+.bell-icon-md-analytics:before,
+.bell-icon-md-aperture:before,
+.bell-icon-md-apps:before,
+.bell-icon-md-appstore:before,
+.bell-icon-md-archive:before,
+.bell-icon-md-arrow-back:before,
+.bell-icon-md-arrow-down:before,
+.bell-icon-md-arrow-dropdown:before,
+.bell-icon-md-arrow-dropdown-circle:before,
+.bell-icon-md-arrow-dropleft:before,
+.bell-icon-md-arrow-dropleft-circle:before,
+.bell-icon-md-arrow-dropright:before,
+.bell-icon-md-arrow-dropright-circle:before,
+.bell-icon-md-arrow-dropup:before,
+.bell-icon-md-arrow-dropup-circle:before,
+.bell-icon-md-arrow-forward:before,
+.bell-icon-md-arrow-round-back:before,
+.bell-icon-md-arrow-round-down:before,
+.bell-icon-md-arrow-round-forward:before,
+.bell-icon-md-arrow-round-up:before,
+.bell-icon-md-arrow-up:before,
+.bell-icon-md-at:before,
+.bell-icon-md-attach:before,
+.bell-icon-md-backspace:before,
+.bell-icon-md-barcode:before,
+.bell-icon-md-baseball:before,
+.bell-icon-md-basket:before,
+.bell-icon-md-basketball:before,
+.bell-icon-md-battery-charging:before,
+.bell-icon-md-battery-dead:before,
+.bell-icon-md-battery-full:before,
+.bell-icon-md-beaker:before,
+.bell-icon-md-bed:before,
+.bell-icon-md-beer:before,
+.bell-icon-md-bicycle:before,
+.bell-icon-md-bluetooth:before,
+.bell-icon-md-boat:before,
+.bell-icon-md-body:before,
+.bell-icon-md-bonfire:before,
+.bell-icon-md-book:before,
+.bell-icon-md-bookmark:before,
+.bell-icon-md-bookmarks:before,
+.bell-icon-md-bowtie:before,
+.bell-icon-md-briefcase:before,
+.bell-icon-md-browsers:before,
+.bell-icon-md-brush:before,
+.bell-icon-md-bug:before,
+.bell-icon-md-build:before,
+.bell-icon-md-bulb:before,
+.bell-icon-md-bus:before,
+.bell-icon-md-business:before,
+.bell-icon-md-cafe:before,
+.bell-icon-md-calculator:before,
+.bell-icon-md-calendar:before,
+.bell-icon-md-call:before,
+.bell-icon-md-camera:before,
+.bell-icon-md-car:before,
+.bell-icon-md-card:before,
+.bell-icon-md-cart:before,
+.bell-icon-md-cash:before,
+.bell-icon-md-cellular:before,
+.bell-icon-md-chatboxes:before,
+.bell-icon-md-chatbubbles:before,
+.bell-icon-md-checkbox:before,
+.bell-icon-md-checkbox-outline:before,
+.bell-icon-md-checkmark:before,
+.bell-icon-md-checkmark-circle:before,
+.bell-icon-md-checkmark-circle-outline:before,
+.bell-icon-md-clipboard:before,
+.bell-icon-md-clock:before,
+.bell-icon-md-close:before,
+.bell-icon-md-close-circle:before,
+.bell-icon-md-close-circle-outline:before,
+.bell-icon-md-cloud:before,
+.bell-icon-md-cloud-circle:before,
+.bell-icon-md-cloud-done:before,
+.bell-icon-md-cloud-download:before,
+.bell-icon-md-cloud-outline:before,
+.bell-icon-md-cloud-upload:before,
+.bell-icon-md-cloudy:before,
+.bell-icon-md-cloudy-night:before,
+.bell-icon-md-code:before,
+.bell-icon-md-code-download:before,
+.bell-icon-md-code-working:before,
+.bell-icon-md-cog:before,
+.bell-icon-md-color-fill:before,
+.bell-icon-md-color-filter:before,
+.bell-icon-md-color-palette:before,
+.bell-icon-md-color-wand:before,
+.bell-icon-md-compass:before,
+.bell-icon-md-construct:before,
+.bell-icon-md-contact:before,
+.bell-icon-md-contacts:before,
+.bell-icon-md-contract:before,
+.bell-icon-md-contrast:before,
+.bell-icon-md-copy:before,
+.bell-icon-md-create:before,
+.bell-icon-md-crop:before,
+.bell-icon-md-cube:before,
+.bell-icon-md-cut:before,
+.bell-icon-md-desktop:before,
+.bell-icon-md-disc:before,
+.bell-icon-md-document:before,
+.bell-icon-md-done-all:before,
+.bell-icon-md-download:before,
+.bell-icon-md-easel:before,
+.bell-icon-md-egg:before,
+.bell-icon-md-exit:before,
+.bell-icon-md-expand:before,
+.bell-icon-md-eye:before,
+.bell-icon-md-eye-off:before,
+.bell-icon-md-fastforward:before,
+.bell-icon-md-female:before,
+.bell-icon-md-filing:before,
+.bell-icon-md-film:before,
+.bell-icon-md-finger-print:before,
+.bell-icon-md-fitness:before,
+.bell-icon-md-flag:before,
+.bell-icon-md-flame:before,
+.bell-icon-md-flash:before,
+.bell-icon-md-flash-off:before,
+.bell-icon-md-flashlight:before,
+.bell-icon-md-flask:before,
+.bell-icon-md-flower:before,
+.bell-icon-md-folder:before,
+.bell-icon-md-folder-open:before,
+.bell-icon-md-football:before,
+.bell-icon-md-funnel:before,
+.bell-icon-md-gift:before,
+.bell-icon-md-git-branch:before,
+.bell-icon-md-git-commit:before,
+.bell-icon-md-git-compare:before,
+.bell-icon-md-git-merge:before,
+.bell-icon-md-git-network:before,
+.bell-icon-md-git-pull-request:before,
+.bell-icon-md-glasses:before,
+.bell-icon-md-globe:before,
+.bell-icon-md-grid:before,
+.bell-icon-md-hammer:before,
+.bell-icon-md-hand:before,
+.bell-icon-md-happy:before,
+.bell-icon-md-headset:before,
+.bell-icon-md-heart:before,
+.bell-icon-md-heart-dislike:before,
+.bell-icon-md-heart-empty:before,
+.bell-icon-md-heart-half:before,
+.bell-icon-md-help:before,
+.bell-icon-md-help-buoy:before,
+.bell-icon-md-help-circle:before,
+.bell-icon-md-help-circle-outline:before,
+.bell-icon-md-home:before,
+.bell-icon-md-hourglass:before,
+.bell-icon-md-ice-cream:before,
+.bell-icon-md-image:before,
+.bell-icon-md-images:before,
+.bell-icon-md-infinite:before,
+.bell-icon-md-information:before,
+.bell-icon-md-information-circle:before,
+.bell-icon-md-information-circle-outline:before,
+.bell-icon-md-jet:before,
+.bell-icon-md-journal:before,
+.bell-icon-md-key:before,
+.bell-icon-md-keypad:before,
+.bell-icon-md-laptop:before,
+.bell-icon-md-leaf:before,
+.bell-icon-md-link:before,
+.bell-icon-md-list:before,
+.bell-icon-md-list-box:before,
+.bell-icon-md-locate:before,
+.bell-icon-md-lock:before,
+.bell-icon-md-log-in:before,
+.bell-icon-md-log-out:before,
+.bell-icon-md-magnet:before,
+.bell-icon-md-mail:before,
+.bell-icon-md-mail-open:before,
+.bell-icon-md-mail-unread:before,
+.bell-icon-md-male:before,
+.bell-icon-md-man:before,
+.bell-icon-md-map:before,
+.bell-icon-md-medal:before,
+.bell-icon-md-medical:before,
+.bell-icon-md-medkit:before,
+.bell-icon-md-megaphone:before,
+.bell-icon-md-menu:before,
+.bell-icon-md-mic:before,
+.bell-icon-md-mic-off:before,
+.bell-icon-md-microphone:before,
+.bell-icon-md-moon:before,
+.bell-icon-md-more:before,
+.bell-icon-md-move:before,
+.bell-icon-md-musical-note:before,
+.bell-icon-md-musical-notes:before,
+.bell-icon-md-navigate:before,
+.bell-icon-md-notifications:before,
+.bell-icon-md-notifications-off:before,
+.bell-icon-md-notifications-outline:before,
+.bell-icon-md-nuclear:before,
+.bell-icon-md-nutrition:before,
+.bell-icon-md-open:before,
+.bell-icon-md-options:before,
+.bell-icon-md-outlet:before,
+.bell-icon-md-paper:before,
+.bell-icon-md-paper-plane:before,
+.bell-icon-md-partly-sunny:before,
+.bell-icon-md-pause:before,
+.bell-icon-md-paw:before,
+.bell-icon-md-people:before,
+.bell-icon-md-person:before,
+.bell-icon-md-person-add:before,
+.bell-icon-md-phone-landscape:before,
+.bell-icon-md-phone-portrait:before,
+.bell-icon-md-photos:before,
+.bell-icon-md-pie:before,
+.bell-icon-md-pin:before,
+.bell-icon-md-pint:before,
+.bell-icon-md-pizza:before,
+.bell-icon-md-planet:before,
+.bell-icon-md-play:before,
+.bell-icon-md-play-circle:before,
+.bell-icon-md-podium:before,
+.bell-icon-md-power:before,
+.bell-icon-md-pricetag:before,
+.bell-icon-md-pricetags:before,
+.bell-icon-md-print:before,
+.bell-icon-md-pulse:before,
+.bell-icon-md-qr-scanner:before,
+.bell-icon-md-quote:before,
+.bell-icon-md-radio:before,
+.bell-icon-md-radio-button-off:before,
+.bell-icon-md-radio-button-on:before,
+.bell-icon-md-rainy:before,
+.bell-icon-md-recording:before,
+.bell-icon-md-redo:before,
+.bell-icon-md-refresh:before,
+.bell-icon-md-refresh-circle:before,
+.bell-icon-md-remove:before,
+.bell-icon-md-remove-circle:before,
+.bell-icon-md-remove-circle-outline:before,
+.bell-icon-md-reorder:before,
+.bell-icon-md-repeat:before,
+.bell-icon-md-resize:before,
+.bell-icon-md-restaurant:before,
+.bell-icon-md-return-left:before,
+.bell-icon-md-return-right:before,
+.bell-icon-md-reverse-camera:before,
+.bell-icon-md-rewind:before,
+.bell-icon-md-ribbon:before,
+.bell-icon-md-rocket:before,
+.bell-icon-md-rose:before,
+.bell-icon-md-sad:before,
+.bell-icon-md-save:before,
+.bell-icon-md-school:before,
+.bell-icon-md-search:before,
+.bell-icon-md-send:before,
+.bell-icon-md-settings:before,
+.bell-icon-md-share:before,
+.bell-icon-md-share-alt:before,
+.bell-icon-md-shirt:before,
+.bell-icon-md-shuffle:before,
+.bell-icon-md-skip-backward:before,
+.bell-icon-md-skip-forward:before,
+.bell-icon-md-snow:before,
+.bell-icon-md-speedometer:before,
+.bell-icon-md-square:before,
+.bell-icon-md-square-outline:before,
+.bell-icon-md-star:before,
+.bell-icon-md-star-half:before,
+.bell-icon-md-star-outline:before,
+.bell-icon-md-stats:before,
+.bell-icon-md-stopwatch:before,
+.bell-icon-md-subway:before,
+.bell-icon-md-sunny:before,
+.bell-icon-md-swap:before,
+.bell-icon-md-switch:before,
+.bell-icon-md-sync:before,
+.bell-icon-md-tablet-landscape:before,
+.bell-icon-md-tablet-portrait:before,
+.bell-icon-md-tennisball:before,
+.bell-icon-md-text:before,
+.bell-icon-md-thermometer:before,
+.bell-icon-md-thumbs-down:before,
+.bell-icon-md-thumbs-up:before,
+.bell-icon-md-thunderstorm:before,
+.bell-icon-md-time:before,
+.bell-icon-md-timer:before,
+.bell-icon-md-today:before,
+.bell-icon-md-train:before,
+.bell-icon-md-transgender:before,
+.bell-icon-md-trash:before,
+.bell-icon-md-trending-down:before,
+.bell-icon-md-trending-up:before,
+.bell-icon-md-trophy:before,
+.bell-icon-md-tv:before,
+.bell-icon-md-umbrella:before,
+.bell-icon-md-undo:before,
+.bell-icon-md-unlock:before,
+.bell-icon-md-videocam:before,
+.bell-icon-md-volume-high:before,
+.bell-icon-md-volume-low:before,
+.bell-icon-md-volume-mute:before,
+.bell-icon-md-volume-off:before,
+.bell-icon-md-walk:before,
+.bell-icon-md-wallet:before,
+.bell-icon-md-warning:before,
+.bell-icon-md-watch:before,
+.bell-icon-md-water:before,
+.bell-icon-md-wifi:before,
+.bell-icon-md-wine:before,
+.bell-icon-md-woman:before {
+  display: inline-block;
+  font-family: "Ionicons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bell-icon-ios-add:before {
+  content: "\f102";
+}
+
+.bell-icon-ios-add-circle:before {
+  content: "\f101";
+}
+
+.bell-icon-ios-add-circle-outline:before {
+  content: "\f100";
+}
+
+.bell-icon-ios-airplane:before {
+  content: "\f137";
+}
+
+.bell-icon-ios-alarm:before {
+  content: "\f3c8";
+}
+
+.bell-icon-ios-albums:before {
+  content: "\f3ca";
+}
+
+.bell-icon-ios-alert:before {
+  content: "\f104";
+}
+
+.bell-icon-ios-american-football:before {
+  content: "\f106";
+}
+
+.bell-icon-ios-analytics:before {
+  content: "\f3ce";
+}
+
+.bell-icon-ios-aperture:before {
+  content: "\f108";
+}
+
+.bell-icon-ios-apps:before {
+  content: "\f10a";
+}
+
+.bell-icon-ios-appstore:before {
+  content: "\f10c";
+}
+
+.bell-icon-ios-archive:before {
+  content: "\f10e";
+}
+
+.bell-icon-ios-arrow-back:before {
+  content: "\f3cf";
+}
+
+.bell-icon-ios-arrow-down:before {
+  content: "\f3d0";
+}
+
+.bell-icon-ios-arrow-dropdown:before {
+  content: "\f110";
+}
+
+.bell-icon-ios-arrow-dropdown-circle:before {
+  content: "\f125";
+}
+
+.bell-icon-ios-arrow-dropleft:before {
+  content: "\f112";
+}
+
+.bell-icon-ios-arrow-dropleft-circle:before {
+  content: "\f129";
+}
+
+.bell-icon-ios-arrow-dropright:before {
+  content: "\f114";
+}
+
+.bell-icon-ios-arrow-dropright-circle:before {
+  content: "\f12b";
+}
+
+.bell-icon-ios-arrow-dropup:before {
+  content: "\f116";
+}
+
+.bell-icon-ios-arrow-dropup-circle:before {
+  content: "\f12d";
+}
+
+.bell-icon-ios-arrow-forward:before {
+  content: "\f3d1";
+}
+
+.bell-icon-ios-arrow-round-back:before {
+  content: "\f117";
+}
+
+.bell-icon-ios-arrow-round-down:before {
+  content: "\f118";
+}
+
+.bell-icon-ios-arrow-round-forward:before {
+  content: "\f119";
+}
+
+.bell-icon-ios-arrow-round-up:before {
+  content: "\f11a";
+}
+
+.bell-icon-ios-arrow-up:before {
+  content: "\f3d8";
+}
+
+.bell-icon-ios-at:before {
+  content: "\f3da";
+}
+
+.bell-icon-ios-attach:before {
+  content: "\f11b";
+}
+
+.bell-icon-ios-backspace:before {
+  content: "\f11d";
+}
+
+.bell-icon-ios-barcode:before {
+  content: "\f3dc";
+}
+
+.bell-icon-ios-baseball:before {
+  content: "\f3de";
+}
+
+.bell-icon-ios-basket:before {
+  content: "\f11f";
+}
+
+.bell-icon-ios-basketball:before {
+  content: "\f3e0";
+}
+
+.bell-icon-ios-battery-charging:before {
+  content: "\f120";
+}
+
+.bell-icon-ios-battery-dead:before {
+  content: "\f121";
+}
+
+.bell-icon-ios-battery-full:before {
+  content: "\f122";
+}
+
+.bell-icon-ios-beaker:before {
+  content: "\f124";
+}
+
+.bell-icon-ios-bed:before {
+  content: "\f139";
+}
+
+.bell-icon-ios-beer:before {
+  content: "\f126";
+}
+
+.bell-icon-ios-bicycle:before {
+  content: "\f127";
+}
+
+.bell-icon-ios-bluetooth:before {
+  content: "\f128";
+}
+
+.bell-icon-ios-boat:before {
+  content: "\f12a";
+}
+
+.bell-icon-ios-body:before {
+  content: "\f3e4";
+}
+
+.bell-icon-ios-bonfire:before {
+  content: "\f12c";
+}
+
+.bell-icon-ios-book:before {
+  content: "\f3e8";
+}
+
+.bell-icon-ios-bookmark:before {
+  content: "\f12e";
+}
+
+.bell-icon-ios-bookmarks:before {
+  content: "\f3ea";
+}
+
+.bell-icon-ios-bowtie:before {
+  content: "\f130";
+}
+
+.bell-icon-ios-briefcase:before {
+  content: "\f3ee";
+}
+
+.bell-icon-ios-browsers:before {
+  content: "\f3f0";
+}
+
+.bell-icon-ios-brush:before {
+  content: "\f132";
+}
+
+.bell-icon-ios-bug:before {
+  content: "\f134";
+}
+
+.bell-icon-ios-build:before {
+  content: "\f136";
+}
+
+.bell-icon-ios-bulb:before {
+  content: "\f138";
+}
+
+.bell-icon-ios-bus:before {
+  content: "\f13a";
+}
+
+.bell-icon-ios-business:before {
+  content: "\f1a3";
+}
+
+.bell-icon-ios-cafe:before {
+  content: "\f13c";
+}
+
+.bell-icon-ios-calculator:before {
+  content: "\f3f2";
+}
+
+.bell-icon-ios-calendar:before {
+  content: "\f3f4";
+}
+
+.bell-icon-ios-call:before {
+  content: "\f13e";
+}
+
+.bell-icon-ios-camera:before {
+  content: "\f3f6";
+}
+
+.bell-icon-ios-car:before {
+  content: "\f140";
+}
+
+.bell-icon-ios-card:before {
+  content: "\f142";
+}
+
+.bell-icon-ios-cart:before {
+  content: "\f3f8";
+}
+
+.bell-icon-ios-cash:before {
+  content: "\f144";
+}
+
+.bell-icon-ios-cellular:before {
+  content: "\f13d";
+}
+
+.bell-icon-ios-chatboxes:before {
+  content: "\f3fa";
+}
+
+.bell-icon-ios-chatbubbles:before {
+  content: "\f146";
+}
+
+.bell-icon-ios-checkbox:before {
+  content: "\f148";
+}
+
+.bell-icon-ios-checkbox-outline:before {
+  content: "\f147";
+}
+
+.bell-icon-ios-checkmark:before {
+  content: "\f3ff";
+}
+
+.bell-icon-ios-checkmark-circle:before {
+  content: "\f14a";
+}
+
+.bell-icon-ios-checkmark-circle-outline:before {
+  content: "\f149";
+}
+
+.bell-icon-ios-clipboard:before {
+  content: "\f14c";
+}
+
+.bell-icon-ios-clock:before {
+  content: "\f403";
+}
+
+.bell-icon-ios-close:before {
+  content: "\f406";
+}
+
+.bell-icon-ios-close-circle:before {
+  content: "\f14e";
+}
+
+.bell-icon-ios-close-circle-outline:before {
+  content: "\f14d";
+}
+
+.bell-icon-ios-cloud:before {
+  content: "\f40c";
+}
+
+.bell-icon-ios-cloud-circle:before {
+  content: "\f152";
+}
+
+.bell-icon-ios-cloud-done:before {
+  content: "\f154";
+}
+
+.bell-icon-ios-cloud-download:before {
+  content: "\f408";
+}
+
+.bell-icon-ios-cloud-outline:before {
+  content: "\f409";
+}
+
+.bell-icon-ios-cloud-upload:before {
+  content: "\f40b";
+}
+
+.bell-icon-ios-cloudy:before {
+  content: "\f410";
+}
+
+.bell-icon-ios-cloudy-night:before {
+  content: "\f40e";
+}
+
+.bell-icon-ios-code:before {
+  content: "\f157";
+}
+
+.bell-icon-ios-code-download:before {
+  content: "\f155";
+}
+
+.bell-icon-ios-code-working:before {
+  content: "\f156";
+}
+
+.bell-icon-ios-cog:before {
+  content: "\f412";
+}
+
+.bell-icon-ios-color-fill:before {
+  content: "\f159";
+}
+
+.bell-icon-ios-color-filter:before {
+  content: "\f414";
+}
+
+.bell-icon-ios-color-palette:before {
+  content: "\f15b";
+}
+
+.bell-icon-ios-color-wand:before {
+  content: "\f416";
+}
+
+.bell-icon-ios-compass:before {
+  content: "\f15d";
+}
+
+.bell-icon-ios-construct:before {
+  content: "\f15f";
+}
+
+.bell-icon-ios-contact:before {
+  content: "\f41a";
+}
+
+.bell-icon-ios-contacts:before {
+  content: "\f161";
+}
+
+.bell-icon-ios-contract:before {
+  content: "\f162";
+}
+
+.bell-icon-ios-contrast:before {
+  content: "\f163";
+}
+
+.bell-icon-ios-copy:before {
+  content: "\f41c";
+}
+
+.bell-icon-ios-create:before {
+  content: "\f165";
+}
+
+.bell-icon-ios-crop:before {
+  content: "\f41e";
+}
+
+.bell-icon-ios-cube:before {
+  content: "\f168";
+}
+
+.bell-icon-ios-cut:before {
+  content: "\f16a";
+}
+
+.bell-icon-ios-desktop:before {
+  content: "\f16c";
+}
+
+.bell-icon-ios-disc:before {
+  content: "\f16e";
+}
+
+.bell-icon-ios-document:before {
+  content: "\f170";
+}
+
+.bell-icon-ios-done-all:before {
+  content: "\f171";
+}
+
+.bell-icon-ios-download:before {
+  content: "\f420";
+}
+
+.bell-icon-ios-easel:before {
+  content: "\f173";
+}
+
+.bell-icon-ios-egg:before {
+  content: "\f175";
+}
+
+.bell-icon-ios-exit:before {
+  content: "\f177";
+}
+
+.bell-icon-ios-expand:before {
+  content: "\f178";
+}
+
+.bell-icon-ios-eye:before {
+  content: "\f425";
+}
+
+.bell-icon-ios-eye-off:before {
+  content: "\f17a";
+}
+
+.bell-icon-ios-fastforward:before {
+  content: "\f427";
+}
+
+.bell-icon-ios-female:before {
+  content: "\f17b";
+}
+
+.bell-icon-ios-filing:before {
+  content: "\f429";
+}
+
+.bell-icon-ios-film:before {
+  content: "\f42b";
+}
+
+.bell-icon-ios-finger-print:before {
+  content: "\f17c";
+}
+
+.bell-icon-ios-fitness:before {
+  content: "\f1ab";
+}
+
+.bell-icon-ios-flag:before {
+  content: "\f42d";
+}
+
+.bell-icon-ios-flame:before {
+  content: "\f42f";
+}
+
+.bell-icon-ios-flash:before {
+  content: "\f17e";
+}
+
+.bell-icon-ios-flash-off:before {
+  content: "\f12f";
+}
+
+.bell-icon-ios-flashlight:before {
+  content: "\f141";
+}
+
+.bell-icon-ios-flask:before {
+  content: "\f431";
+}
+
+.bell-icon-ios-flower:before {
+  content: "\f433";
+}
+
+.bell-icon-ios-folder:before {
+  content: "\f435";
+}
+
+.bell-icon-ios-folder-open:before {
+  content: "\f180";
+}
+
+.bell-icon-ios-football:before {
+  content: "\f437";
+}
+
+.bell-icon-ios-funnel:before {
+  content: "\f182";
+}
+
+.bell-icon-ios-gift:before {
+  content: "\f191";
+}
+
+.bell-icon-ios-git-branch:before {
+  content: "\f183";
+}
+
+.bell-icon-ios-git-commit:before {
+  content: "\f184";
+}
+
+.bell-icon-ios-git-compare:before {
+  content: "\f185";
+}
+
+.bell-icon-ios-git-merge:before {
+  content: "\f186";
+}
+
+.bell-icon-ios-git-network:before {
+  content: "\f187";
+}
+
+.bell-icon-ios-git-pull-request:before {
+  content: "\f188";
+}
+
+.bell-icon-ios-glasses:before {
+  content: "\f43f";
+}
+
+.bell-icon-ios-globe:before {
+  content: "\f18a";
+}
+
+.bell-icon-ios-grid:before {
+  content: "\f18c";
+}
+
+.bell-icon-ios-hammer:before {
+  content: "\f18e";
+}
+
+.bell-icon-ios-hand:before {
+  content: "\f190";
+}
+
+.bell-icon-ios-happy:before {
+  content: "\f192";
+}
+
+.bell-icon-ios-headset:before {
+  content: "\f194";
+}
+
+.bell-icon-ios-heart:before {
+  content: "\f443";
+}
+
+.bell-icon-ios-heart-dislike:before {
+  content: "\f13f";
+}
+
+.bell-icon-ios-heart-empty:before {
+  content: "\f19b";
+}
+
+.bell-icon-ios-heart-half:before {
+  content: "\f19d";
+}
+
+.bell-icon-ios-help:before {
+  content: "\f446";
+}
+
+.bell-icon-ios-help-buoy:before {
+  content: "\f196";
+}
+
+.bell-icon-ios-help-circle:before {
+  content: "\f198";
+}
+
+.bell-icon-ios-help-circle-outline:before {
+  content: "\f197";
+}
+
+.bell-icon-ios-home:before {
+  content: "\f448";
+}
+
+.bell-icon-ios-hourglass:before {
+  content: "\f103";
+}
+
+.bell-icon-ios-ice-cream:before {
+  content: "\f19a";
+}
+
+.bell-icon-ios-image:before {
+  content: "\f19c";
+}
+
+.bell-icon-ios-images:before {
+  content: "\f19e";
+}
+
+.bell-icon-ios-infinite:before {
+  content: "\f44a";
+}
+
+.bell-icon-ios-information:before {
+  content: "\f44d";
+}
+
+.bell-icon-ios-information-circle:before {
+  content: "\f1a0";
+}
+
+.bell-icon-ios-information-circle-outline:before {
+  content: "\f19f";
+}
+
+.bell-icon-ios-jet:before {
+  content: "\f1a5";
+}
+
+.bell-icon-ios-journal:before {
+  content: "\f189";
+}
+
+.bell-icon-ios-key:before {
+  content: "\f1a7";
+}
+
+.bell-icon-ios-keypad:before {
+  content: "\f450";
+}
+
+.bell-icon-ios-laptop:before {
+  content: "\f1a8";
+}
+
+.bell-icon-ios-leaf:before {
+  content: "\f1aa";
+}
+
+.bell-icon-ios-link:before {
+  content: "\f22a";
+}
+
+.bell-icon-ios-list:before {
+  content: "\f454";
+}
+
+.bell-icon-ios-list-box:before {
+  content: "\f143";
+}
+
+.bell-icon-ios-locate:before {
+  content: "\f1ae";
+}
+
+.bell-icon-ios-lock:before {
+  content: "\f1b0";
+}
+
+.bell-icon-ios-log-in:before {
+  content: "\f1b1";
+}
+
+.bell-icon-ios-log-out:before {
+  content: "\f1b2";
+}
+
+.bell-icon-ios-magnet:before {
+  content: "\f1b4";
+}
+
+.bell-icon-ios-mail:before {
+  content: "\f1b8";
+}
+
+.bell-icon-ios-mail-open:before {
+  content: "\f1b6";
+}
+
+.bell-icon-ios-mail-unread:before {
+  content: "\f145";
+}
+
+.bell-icon-ios-male:before {
+  content: "\f1b9";
+}
+
+.bell-icon-ios-man:before {
+  content: "\f1bb";
+}
+
+.bell-icon-ios-map:before {
+  content: "\f1bd";
+}
+
+.bell-icon-ios-medal:before {
+  content: "\f1bf";
+}
+
+.bell-icon-ios-medical:before {
+  content: "\f45c";
+}
+
+.bell-icon-ios-medkit:before {
+  content: "\f45e";
+}
+
+.bell-icon-ios-megaphone:before {
+  content: "\f1c1";
+}
+
+.bell-icon-ios-menu:before {
+  content: "\f1c3";
+}
+
+.bell-icon-ios-mic:before {
+  content: "\f461";
+}
+
+.bell-icon-ios-mic-off:before {
+  content: "\f45f";
+}
+
+.bell-icon-ios-microphone:before {
+  content: "\f1c6";
+}
+
+.bell-icon-ios-moon:before {
+  content: "\f468";
+}
+
+.bell-icon-ios-more:before {
+  content: "\f1c8";
+}
+
+.bell-icon-ios-move:before {
+  content: "\f1cb";
+}
+
+.bell-icon-ios-musical-note:before {
+  content: "\f46b";
+}
+
+.bell-icon-ios-musical-notes:before {
+  content: "\f46c";
+}
+
+.bell-icon-ios-navigate:before {
+  content: "\f46e";
+}
+
+.bell-icon-ios-notifications:before {
+  content: "\f1d3";
+}
+
+.bell-icon-ios-notifications-off:before {
+  content: "\f1d1";
+}
+
+.bell-icon-ios-notifications-outline:before {
+  content: "\f133";
+}
+
+.bell-icon-ios-nuclear:before {
+  content: "\f1d5";
+}
+
+.bell-icon-ios-nutrition:before {
+  content: "\f470";
+}
+
+.bell-icon-ios-open:before {
+  content: "\f1d7";
+}
+
+.bell-icon-ios-options:before {
+  content: "\f1d9";
+}
+
+.bell-icon-ios-outlet:before {
+  content: "\f1db";
+}
+
+.bell-icon-ios-paper:before {
+  content: "\f472";
+}
+
+.bell-icon-ios-paper-plane:before {
+  content: "\f1dd";
+}
+
+.bell-icon-ios-partly-sunny:before {
+  content: "\f1df";
+}
+
+.bell-icon-ios-pause:before {
+  content: "\f478";
+}
+
+.bell-icon-ios-paw:before {
+  content: "\f47a";
+}
+
+.bell-icon-ios-people:before {
+  content: "\f47c";
+}
+
+.bell-icon-ios-person:before {
+  content: "\f47e";
+}
+
+.bell-icon-ios-person-add:before {
+  content: "\f1e1";
+}
+
+.bell-icon-ios-phone-landscape:before {
+  content: "\f1e2";
+}
+
+.bell-icon-ios-phone-portrait:before {
+  content: "\f1e3";
+}
+
+.bell-icon-ios-photos:before {
+  content: "\f482";
+}
+
+.bell-icon-ios-pie:before {
+  content: "\f484";
+}
+
+.bell-icon-ios-pin:before {
+  content: "\f1e5";
+}
+
+.bell-icon-ios-pint:before {
+  content: "\f486";
+}
+
+.bell-icon-ios-pizza:before {
+  content: "\f1e7";
+}
+
+.bell-icon-ios-planet:before {
+  content: "\f1eb";
+}
+
+.bell-icon-ios-play:before {
+  content: "\f488";
+}
+
+.bell-icon-ios-play-circle:before {
+  content: "\f113";
+}
+
+.bell-icon-ios-podium:before {
+  content: "\f1ed";
+}
+
+.bell-icon-ios-power:before {
+  content: "\f1ef";
+}
+
+.bell-icon-ios-pricetag:before {
+  content: "\f48d";
+}
+
+.bell-icon-ios-pricetags:before {
+  content: "\f48f";
+}
+
+.bell-icon-ios-print:before {
+  content: "\f1f1";
+}
+
+.bell-icon-ios-pulse:before {
+  content: "\f493";
+}
+
+.bell-icon-ios-qr-scanner:before {
+  content: "\f1f3";
+}
+
+.bell-icon-ios-quote:before {
+  content: "\f1f5";
+}
+
+.bell-icon-ios-radio:before {
+  content: "\f1f9";
+}
+
+.bell-icon-ios-radio-button-off:before {
+  content: "\f1f6";
+}
+
+.bell-icon-ios-radio-button-on:before {
+  content: "\f1f7";
+}
+
+.bell-icon-ios-rainy:before {
+  content: "\f495";
+}
+
+.bell-icon-ios-recording:before {
+  content: "\f497";
+}
+
+.bell-icon-ios-redo:before {
+  content: "\f499";
+}
+
+.bell-icon-ios-refresh:before {
+  content: "\f49c";
+}
+
+.bell-icon-ios-refresh-circle:before {
+  content: "\f135";
+}
+
+.bell-icon-ios-remove:before {
+  content: "\f1fc";
+}
+
+.bell-icon-ios-remove-circle:before {
+  content: "\f1fb";
+}
+
+.bell-icon-ios-remove-circle-outline:before {
+  content: "\f1fa";
+}
+
+.bell-icon-ios-reorder:before {
+  content: "\f1fd";
+}
+
+.bell-icon-ios-repeat:before {
+  content: "\f1fe";
+}
+
+.bell-icon-ios-resize:before {
+  content: "\f1ff";
+}
+
+.bell-icon-ios-restaurant:before {
+  content: "\f201";
+}
+
+.bell-icon-ios-return-left:before {
+  content: "\f202";
+}
+
+.bell-icon-ios-return-right:before {
+  content: "\f203";
+}
+
+.bell-icon-ios-reverse-camera:before {
+  content: "\f49f";
+}
+
+.bell-icon-ios-rewind:before {
+  content: "\f4a1";
+}
+
+.bell-icon-ios-ribbon:before {
+  content: "\f205";
+}
+
+.bell-icon-ios-rocket:before {
+  content: "\f14b";
+}
+
+.bell-icon-ios-rose:before {
+  content: "\f4a3";
+}
+
+.bell-icon-ios-sad:before {
+  content: "\f207";
+}
+
+.bell-icon-ios-save:before {
+  content: "\f1a6";
+}
+
+.bell-icon-ios-school:before {
+  content: "\f209";
+}
+
+.bell-icon-ios-search:before {
+  content: "\f4a5";
+}
+
+.bell-icon-ios-send:before {
+  content: "\f20c";
+}
+
+.bell-icon-ios-settings:before {
+  content: "\f4a7";
+}
+
+.bell-icon-ios-share:before {
+  content: "\f211";
+}
+
+.bell-icon-ios-share-alt:before {
+  content: "\f20f";
+}
+
+.bell-icon-ios-shirt:before {
+  content: "\f213";
+}
+
+.bell-icon-ios-shuffle:before {
+  content: "\f4a9";
+}
+
+.bell-icon-ios-skip-backward:before {
+  content: "\f215";
+}
+
+.bell-icon-ios-skip-forward:before {
+  content: "\f217";
+}
+
+.bell-icon-ios-snow:before {
+  content: "\f218";
+}
+
+.bell-icon-ios-speedometer:before {
+  content: "\f4b0";
+}
+
+.bell-icon-ios-square:before {
+  content: "\f21a";
+}
+
+.bell-icon-ios-square-outline:before {
+  content: "\f15c";
+}
+
+.bell-icon-ios-star:before {
+  content: "\f4b3";
+}
+
+.bell-icon-ios-star-half:before {
+  content: "\f4b1";
+}
+
+.bell-icon-ios-star-outline:before {
+  content: "\f4b2";
+}
+
+.bell-icon-ios-stats:before {
+  content: "\f21c";
+}
+
+.bell-icon-ios-stopwatch:before {
+  content: "\f4b5";
+}
+
+.bell-icon-ios-subway:before {
+  content: "\f21e";
+}
+
+.bell-icon-ios-sunny:before {
+  content: "\f4b7";
+}
+
+.bell-icon-ios-swap:before {
+  content: "\f21f";
+}
+
+.bell-icon-ios-switch:before {
+  content: "\f221";
+}
+
+.bell-icon-ios-sync:before {
+  content: "\f222";
+}
+
+.bell-icon-ios-tablet-landscape:before {
+  content: "\f223";
+}
+
+.bell-icon-ios-tablet-portrait:before {
+  content: "\f24e";
+}
+
+.bell-icon-ios-tennisball:before {
+  content: "\f4bb";
+}
+
+.bell-icon-ios-text:before {
+  content: "\f250";
+}
+
+.bell-icon-ios-thermometer:before {
+  content: "\f252";
+}
+
+.bell-icon-ios-thumbs-down:before {
+  content: "\f254";
+}
+
+.bell-icon-ios-thumbs-up:before {
+  content: "\f256";
+}
+
+.bell-icon-ios-thunderstorm:before {
+  content: "\f4bd";
+}
+
+.bell-icon-ios-time:before {
+  content: "\f4bf";
+}
+
+.bell-icon-ios-timer:before {
+  content: "\f4c1";
+}
+
+.bell-icon-ios-today:before {
+  content: "\f14f";
+}
+
+.bell-icon-ios-train:before {
+  content: "\f258";
+}
+
+.bell-icon-ios-transgender:before {
+  content: "\f259";
+}
+
+.bell-icon-ios-trash:before {
+  content: "\f4c5";
+}
+
+.bell-icon-ios-trending-down:before {
+  content: "\f25a";
+}
+
+.bell-icon-ios-trending-up:before {
+  content: "\f25b";
+}
+
+.bell-icon-ios-trophy:before {
+  content: "\f25d";
+}
+
+.bell-icon-ios-tv:before {
+  content: "\f115";
+}
+
+.bell-icon-ios-umbrella:before {
+  content: "\f25f";
+}
+
+.bell-icon-ios-undo:before {
+  content: "\f4c7";
+}
+
+.bell-icon-ios-unlock:before {
+  content: "\f261";
+}
+
+.bell-icon-ios-videocam:before {
+  content: "\f4cd";
+}
+
+.bell-icon-ios-volume-high:before {
+  content: "\f11c";
+}
+
+.bell-icon-ios-volume-low:before {
+  content: "\f11e";
+}
+
+.bell-icon-ios-volume-mute:before {
+  content: "\f263";
+}
+
+.bell-icon-ios-volume-off:before {
+  content: "\f264";
+}
+
+.bell-icon-ios-walk:before {
+  content: "\f266";
+}
+
+.bell-icon-ios-wallet:before {
+  content: "\f18b";
+}
+
+.bell-icon-ios-warning:before {
+  content: "\f268";
+}
+
+.bell-icon-ios-watch:before {
+  content: "\f269";
+}
+
+.bell-icon-ios-water:before {
+  content: "\f26b";
+}
+
+.bell-icon-ios-wifi:before {
+  content: "\f26d";
+}
+
+.bell-icon-ios-wine:before {
+  content: "\f26f";
+}
+
+.bell-icon-ios-woman:before {
+  content: "\f271";
+}
+
+.bell-icon-logo-android:before {
+  content: "\f225";
+}
+
+.bell-icon-logo-angular:before {
+  content: "\f227";
+}
+
+.bell-icon-logo-apple:before {
+  content: "\f229";
+}
+
+.bell-icon-logo-bitbucket:before {
+  content: "\f193";
+}
+
+.bell-icon-logo-bitcoin:before {
+  content: "\f22b";
+}
+
+.bell-icon-logo-buffer:before {
+  content: "\f22d";
+}
+
+.bell-icon-logo-chrome:before {
+  content: "\f22f";
+}
+
+.bell-icon-logo-closed-captioning:before {
+  content: "\f105";
+}
+
+.bell-icon-logo-codepen:before {
+  content: "\f230";
+}
+
+.bell-icon-logo-css3:before {
+  content: "\f231";
+}
+
+.bell-icon-logo-designernews:before {
+  content: "\f232";
+}
+
+.bell-icon-logo-dribbble:before {
+  content: "\f233";
+}
+
+.bell-icon-logo-dropbox:before {
+  content: "\f234";
+}
+
+.bell-icon-logo-euro:before {
+  content: "\f235";
+}
+
+.bell-icon-logo-facebook:before {
+  content: "\f236";
+}
+
+.bell-icon-logo-flickr:before {
+  content: "\f107";
+}
+
+.bell-icon-logo-foursquare:before {
+  content: "\f237";
+}
+
+.bell-icon-logo-freebsd-devil:before {
+  content: "\f238";
+}
+
+.bell-icon-logo-game-controller-a:before {
+  content: "\f13b";
+}
+
+.bell-icon-logo-game-controller-b:before {
+  content: "\f181";
+}
+
+.bell-icon-logo-github:before {
+  content: "\f239";
+}
+
+.bell-icon-logo-google:before {
+  content: "\f23a";
+}
+
+.bell-icon-logo-googleplus:before {
+  content: "\f23b";
+}
+
+.bell-icon-logo-hackernews:before {
+  content: "\f23c";
+}
+
+.bell-icon-logo-html5:before {
+  content: "\f23d";
+}
+
+.bell-icon-logo-instagram:before {
+  content: "\f23e";
+}
+
+.bell-icon-logo-ionic:before {
+  content: "\f150";
+}
+
+.bell-icon-logo-ionitron:before {
+  content: "\f151";
+}
+
+.bell-icon-logo-javascript:before {
+  content: "\f23f";
+}
+
+.bell-icon-logo-linkedin:before {
+  content: "\f240";
+}
+
+.bell-icon-logo-markdown:before {
+  content: "\f241";
+}
+
+.bell-icon-logo-model-s:before {
+  content: "\f153";
+}
+
+.bell-icon-logo-no-smoking:before {
+  content: "\f109";
+}
+
+.bell-icon-logo-nodejs:before {
+  content: "\f242";
+}
+
+.bell-icon-logo-npm:before {
+  content: "\f195";
+}
+
+.bell-icon-logo-octocat:before {
+  content: "\f243";
+}
+
+.bell-icon-logo-pinterest:before {
+  content: "\f244";
+}
+
+.bell-icon-logo-playstation:before {
+  content: "\f245";
+}
+
+.bell-icon-logo-polymer:before {
+  content: "\f15e";
+}
+
+.bell-icon-logo-python:before {
+  content: "\f246";
+}
+
+.bell-icon-logo-reddit:before {
+  content: "\f247";
+}
+
+.bell-icon-logo-rss:before {
+  content: "\f248";
+}
+
+.bell-icon-logo-sass:before {
+  content: "\f249";
+}
+
+.bell-icon-logo-skype:before {
+  content: "\f24a";
+}
+
+.bell-icon-logo-slack:before {
+  content: "\f10b";
+}
+
+.bell-icon-logo-snapchat:before {
+  content: "\f24b";
+}
+
+.bell-icon-logo-steam:before {
+  content: "\f24c";
+}
+
+.bell-icon-logo-tumblr:before {
+  content: "\f24d";
+}
+
+.bell-icon-logo-tux:before {
+  content: "\f2ae";
+}
+
+.bell-icon-logo-twitch:before {
+  content: "\f2af";
+}
+
+.bell-icon-logo-twitter:before {
+  content: "\f2b0";
+}
+
+.bell-icon-logo-usd:before {
+  content: "\f2b1";
+}
+
+.bell-icon-logo-vimeo:before {
+  content: "\f2c4";
+}
+
+.bell-icon-logo-vk:before {
+  content: "\f10d";
+}
+
+.bell-icon-logo-whatsapp:before {
+  content: "\f2c5";
+}
+
+.bell-icon-logo-windows:before {
+  content: "\f32f";
+}
+
+.bell-icon-logo-wordpress:before {
+  content: "\f330";
+}
+
+.bell-icon-logo-xbox:before {
+  content: "\f34c";
+}
+
+.bell-icon-logo-xing:before {
+  content: "\f10f";
+}
+
+.bell-icon-logo-yahoo:before {
+  content: "\f34d";
+}
+
+.bell-icon-logo-yen:before {
+  content: "\f34e";
+}
+
+.bell-icon-logo-youtube:before {
+  content: "\f34f";
+}
+
+.bell-icon-md-add:before {
+  content: "\f273";
+}
+
+.bell-icon-md-add-circle:before {
+  content: "\f272";
+}
+
+.bell-icon-md-add-circle-outline:before {
+  content: "\f158";
+}
+
+.bell-icon-md-airplane:before {
+  content: "\f15a";
+}
+
+.bell-icon-md-alarm:before {
+  content: "\f274";
+}
+
+.bell-icon-md-albums:before {
+  content: "\f275";
+}
+
+.bell-icon-md-alert:before {
+  content: "\f276";
+}
+
+.bell-icon-md-american-football:before {
+  content: "\f277";
+}
+
+.bell-icon-md-analytics:before {
+  content: "\f278";
+}
+
+.bell-icon-md-aperture:before {
+  content: "\f279";
+}
+
+.bell-icon-md-apps:before {
+  content: "\f27a";
+}
+
+.bell-icon-md-appstore:before {
+  content: "\f27b";
+}
+
+.bell-icon-md-archive:before {
+  content: "\f27c";
+}
+
+.bell-icon-md-arrow-back:before {
+  content: "\f27d";
+}
+
+.bell-icon-md-arrow-down:before {
+  content: "\f27e";
+}
+
+.bell-icon-md-arrow-dropdown:before {
+  content: "\f280";
+}
+
+.bell-icon-md-arrow-dropdown-circle:before {
+  content: "\f27f";
+}
+
+.bell-icon-md-arrow-dropleft:before {
+  content: "\f282";
+}
+
+.bell-icon-md-arrow-dropleft-circle:before {
+  content: "\f281";
+}
+
+.bell-icon-md-arrow-dropright:before {
+  content: "\f284";
+}
+
+.bell-icon-md-arrow-dropright-circle:before {
+  content: "\f283";
+}
+
+.bell-icon-md-arrow-dropup:before {
+  content: "\f286";
+}
+
+.bell-icon-md-arrow-dropup-circle:before {
+  content: "\f285";
+}
+
+.bell-icon-md-arrow-forward:before {
+  content: "\f287";
+}
+
+.bell-icon-md-arrow-round-back:before {
+  content: "\f288";
+}
+
+.bell-icon-md-arrow-round-down:before {
+  content: "\f289";
+}
+
+.bell-icon-md-arrow-round-forward:before {
+  content: "\f28a";
+}
+
+.bell-icon-md-arrow-round-up:before {
+  content: "\f28b";
+}
+
+.bell-icon-md-arrow-up:before {
+  content: "\f28c";
+}
+
+.bell-icon-md-at:before {
+  content: "\f28d";
+}
+
+.bell-icon-md-attach:before {
+  content: "\f28e";
+}
+
+.bell-icon-md-backspace:before {
+  content: "\f28f";
+}
+
+.bell-icon-md-barcode:before {
+  content: "\f290";
+}
+
+.bell-icon-md-baseball:before {
+  content: "\f291";
+}
+
+.bell-icon-md-basket:before {
+  content: "\f292";
+}
+
+.bell-icon-md-basketball:before {
+  content: "\f293";
+}
+
+.bell-icon-md-battery-charging:before {
+  content: "\f294";
+}
+
+.bell-icon-md-battery-dead:before {
+  content: "\f295";
+}
+
+.bell-icon-md-battery-full:before {
+  content: "\f296";
+}
+
+.bell-icon-md-beaker:before {
+  content: "\f297";
+}
+
+.bell-icon-md-bed:before {
+  content: "\f160";
+}
+
+.bell-icon-md-beer:before {
+  content: "\f298";
+}
+
+.bell-icon-md-bicycle:before {
+  content: "\f299";
+}
+
+.bell-icon-md-bluetooth:before {
+  content: "\f29a";
+}
+
+.bell-icon-md-boat:before {
+  content: "\f29b";
+}
+
+.bell-icon-md-body:before {
+  content: "\f29c";
+}
+
+.bell-icon-md-bonfire:before {
+  content: "\f29d";
+}
+
+.bell-icon-md-book:before {
+  content: "\f29e";
+}
+
+.bell-icon-md-bookmark:before {
+  content: "\f29f";
+}
+
+.bell-icon-md-bookmarks:before {
+  content: "\f2a0";
+}
+
+.bell-icon-md-bowtie:before {
+  content: "\f2a1";
+}
+
+.bell-icon-md-briefcase:before {
+  content: "\f2a2";
+}
+
+.bell-icon-md-browsers:before {
+  content: "\f2a3";
+}
+
+.bell-icon-md-brush:before {
+  content: "\f2a4";
+}
+
+.bell-icon-md-bug:before {
+  content: "\f2a5";
+}
+
+.bell-icon-md-build:before {
+  content: "\f2a6";
+}
+
+.bell-icon-md-bulb:before {
+  content: "\f2a7";
+}
+
+.bell-icon-md-bus:before {
+  content: "\f2a8";
+}
+
+.bell-icon-md-business:before {
+  content: "\f1a4";
+}
+
+.bell-icon-md-cafe:before {
+  content: "\f2a9";
+}
+
+.bell-icon-md-calculator:before {
+  content: "\f2aa";
+}
+
+.bell-icon-md-calendar:before {
+  content: "\f2ab";
+}
+
+.bell-icon-md-call:before {
+  content: "\f2ac";
+}
+
+.bell-icon-md-camera:before {
+  content: "\f2ad";
+}
+
+.bell-icon-md-car:before {
+  content: "\f2b2";
+}
+
+.bell-icon-md-card:before {
+  content: "\f2b3";
+}
+
+.bell-icon-md-cart:before {
+  content: "\f2b4";
+}
+
+.bell-icon-md-cash:before {
+  content: "\f2b5";
+}
+
+.bell-icon-md-cellular:before {
+  content: "\f164";
+}
+
+.bell-icon-md-chatboxes:before {
+  content: "\f2b6";
+}
+
+.bell-icon-md-chatbubbles:before {
+  content: "\f2b7";
+}
+
+.bell-icon-md-checkbox:before {
+  content: "\f2b9";
+}
+
+.bell-icon-md-checkbox-outline:before {
+  content: "\f2b8";
+}
+
+.bell-icon-md-checkmark:before {
+  content: "\f2bc";
+}
+
+.bell-icon-md-checkmark-circle:before {
+  content: "\f2bb";
+}
+
+.bell-icon-md-checkmark-circle-outline:before {
+  content: "\f2ba";
+}
+
+.bell-icon-md-clipboard:before {
+  content: "\f2bd";
+}
+
+.bell-icon-md-clock:before {
+  content: "\f2be";
+}
+
+.bell-icon-md-close:before {
+  content: "\f2c0";
+}
+
+.bell-icon-md-close-circle:before {
+  content: "\f2bf";
+}
+
+.bell-icon-md-close-circle-outline:before {
+  content: "\f166";
+}
+
+.bell-icon-md-cloud:before {
+  content: "\f2c9";
+}
+
+.bell-icon-md-cloud-circle:before {
+  content: "\f2c2";
+}
+
+.bell-icon-md-cloud-done:before {
+  content: "\f2c3";
+}
+
+.bell-icon-md-cloud-download:before {
+  content: "\f2c6";
+}
+
+.bell-icon-md-cloud-outline:before {
+  content: "\f2c7";
+}
+
+.bell-icon-md-cloud-upload:before {
+  content: "\f2c8";
+}
+
+.bell-icon-md-cloudy:before {
+  content: "\f2cb";
+}
+
+.bell-icon-md-cloudy-night:before {
+  content: "\f2ca";
+}
+
+.bell-icon-md-code:before {
+  content: "\f2ce";
+}
+
+.bell-icon-md-code-download:before {
+  content: "\f2cc";
+}
+
+.bell-icon-md-code-working:before {
+  content: "\f2cd";
+}
+
+.bell-icon-md-cog:before {
+  content: "\f2cf";
+}
+
+.bell-icon-md-color-fill:before {
+  content: "\f2d0";
+}
+
+.bell-icon-md-color-filter:before {
+  content: "\f2d1";
+}
+
+.bell-icon-md-color-palette:before {
+  content: "\f2d2";
+}
+
+.bell-icon-md-color-wand:before {
+  content: "\f2d3";
+}
+
+.bell-icon-md-compass:before {
+  content: "\f2d4";
+}
+
+.bell-icon-md-construct:before {
+  content: "\f2d5";
+}
+
+.bell-icon-md-contact:before {
+  content: "\f2d6";
+}
+
+.bell-icon-md-contacts:before {
+  content: "\f2d7";
+}
+
+.bell-icon-md-contract:before {
+  content: "\f2d8";
+}
+
+.bell-icon-md-contrast:before {
+  content: "\f2d9";
+}
+
+.bell-icon-md-copy:before {
+  content: "\f2da";
+}
+
+.bell-icon-md-create:before {
+  content: "\f2db";
+}
+
+.bell-icon-md-crop:before {
+  content: "\f2dc";
+}
+
+.bell-icon-md-cube:before {
+  content: "\f2dd";
+}
+
+.bell-icon-md-cut:before {
+  content: "\f2de";
+}
+
+.bell-icon-md-desktop:before {
+  content: "\f2df";
+}
+
+.bell-icon-md-disc:before {
+  content: "\f2e0";
+}
+
+.bell-icon-md-document:before {
+  content: "\f2e1";
+}
+
+.bell-icon-md-done-all:before {
+  content: "\f2e2";
+}
+
+.bell-icon-md-download:before {
+  content: "\f2e3";
+}
+
+.bell-icon-md-easel:before {
+  content: "\f2e4";
+}
+
+.bell-icon-md-egg:before {
+  content: "\f2e5";
+}
+
+.bell-icon-md-exit:before {
+  content: "\f2e6";
+}
+
+.bell-icon-md-expand:before {
+  content: "\f2e7";
+}
+
+.bell-icon-md-eye:before {
+  content: "\f2e9";
+}
+
+.bell-icon-md-eye-off:before {
+  content: "\f2e8";
+}
+
+.bell-icon-md-fastforward:before {
+  content: "\f2ea";
+}
+
+.bell-icon-md-female:before {
+  content: "\f2eb";
+}
+
+.bell-icon-md-filing:before {
+  content: "\f2ec";
+}
+
+.bell-icon-md-film:before {
+  content: "\f2ed";
+}
+
+.bell-icon-md-finger-print:before {
+  content: "\f2ee";
+}
+
+.bell-icon-md-fitness:before {
+  content: "\f1ac";
+}
+
+.bell-icon-md-flag:before {
+  content: "\f2ef";
+}
+
+.bell-icon-md-flame:before {
+  content: "\f2f0";
+}
+
+.bell-icon-md-flash:before {
+  content: "\f2f1";
+}
+
+.bell-icon-md-flash-off:before {
+  content: "\f169";
+}
+
+.bell-icon-md-flashlight:before {
+  content: "\f16b";
+}
+
+.bell-icon-md-flask:before {
+  content: "\f2f2";
+}
+
+.bell-icon-md-flower:before {
+  content: "\f2f3";
+}
+
+.bell-icon-md-folder:before {
+  content: "\f2f5";
+}
+
+.bell-icon-md-folder-open:before {
+  content: "\f2f4";
+}
+
+.bell-icon-md-football:before {
+  content: "\f2f6";
+}
+
+.bell-icon-md-funnel:before {
+  content: "\f2f7";
+}
+
+.bell-icon-md-gift:before {
+  content: "\f199";
+}
+
+.bell-icon-md-git-branch:before {
+  content: "\f2fa";
+}
+
+.bell-icon-md-git-commit:before {
+  content: "\f2fb";
+}
+
+.bell-icon-md-git-compare:before {
+  content: "\f2fc";
+}
+
+.bell-icon-md-git-merge:before {
+  content: "\f2fd";
+}
+
+.bell-icon-md-git-network:before {
+  content: "\f2fe";
+}
+
+.bell-icon-md-git-pull-request:before {
+  content: "\f2ff";
+}
+
+.bell-icon-md-glasses:before {
+  content: "\f300";
+}
+
+.bell-icon-md-globe:before {
+  content: "\f301";
+}
+
+.bell-icon-md-grid:before {
+  content: "\f302";
+}
+
+.bell-icon-md-hammer:before {
+  content: "\f303";
+}
+
+.bell-icon-md-hand:before {
+  content: "\f304";
+}
+
+.bell-icon-md-happy:before {
+  content: "\f305";
+}
+
+.bell-icon-md-headset:before {
+  content: "\f306";
+}
+
+.bell-icon-md-heart:before {
+  content: "\f308";
+}
+
+.bell-icon-md-heart-dislike:before {
+  content: "\f167";
+}
+
+.bell-icon-md-heart-empty:before {
+  content: "\f1a1";
+}
+
+.bell-icon-md-heart-half:before {
+  content: "\f1a2";
+}
+
+.bell-icon-md-help:before {
+  content: "\f30b";
+}
+
+.bell-icon-md-help-buoy:before {
+  content: "\f309";
+}
+
+.bell-icon-md-help-circle:before {
+  content: "\f30a";
+}
+
+.bell-icon-md-help-circle-outline:before {
+  content: "\f16d";
+}
+
+.bell-icon-md-home:before {
+  content: "\f30c";
+}
+
+.bell-icon-md-hourglass:before {
+  content: "\f111";
+}
+
+.bell-icon-md-ice-cream:before {
+  content: "\f30d";
+}
+
+.bell-icon-md-image:before {
+  content: "\f30e";
+}
+
+.bell-icon-md-images:before {
+  content: "\f30f";
+}
+
+.bell-icon-md-infinite:before {
+  content: "\f310";
+}
+
+.bell-icon-md-information:before {
+  content: "\f312";
+}
+
+.bell-icon-md-information-circle:before {
+  content: "\f311";
+}
+
+.bell-icon-md-information-circle-outline:before {
+  content: "\f16f";
+}
+
+.bell-icon-md-jet:before {
+  content: "\f315";
+}
+
+.bell-icon-md-journal:before {
+  content: "\f18d";
+}
+
+.bell-icon-md-key:before {
+  content: "\f316";
+}
+
+.bell-icon-md-keypad:before {
+  content: "\f317";
+}
+
+.bell-icon-md-laptop:before {
+  content: "\f318";
+}
+
+.bell-icon-md-leaf:before {
+  content: "\f319";
+}
+
+.bell-icon-md-link:before {
+  content: "\f22e";
+}
+
+.bell-icon-md-list:before {
+  content: "\f31b";
+}
+
+.bell-icon-md-list-box:before {
+  content: "\f31a";
+}
+
+.bell-icon-md-locate:before {
+  content: "\f31c";
+}
+
+.bell-icon-md-lock:before {
+  content: "\f31d";
+}
+
+.bell-icon-md-log-in:before {
+  content: "\f31e";
+}
+
+.bell-icon-md-log-out:before {
+  content: "\f31f";
+}
+
+.bell-icon-md-magnet:before {
+  content: "\f320";
+}
+
+.bell-icon-md-mail:before {
+  content: "\f322";
+}
+
+.bell-icon-md-mail-open:before {
+  content: "\f321";
+}
+
+.bell-icon-md-mail-unread:before {
+  content: "\f172";
+}
+
+.bell-icon-md-male:before {
+  content: "\f323";
+}
+
+.bell-icon-md-man:before {
+  content: "\f324";
+}
+
+.bell-icon-md-map:before {
+  content: "\f325";
+}
+
+.bell-icon-md-medal:before {
+  content: "\f326";
+}
+
+.bell-icon-md-medical:before {
+  content: "\f327";
+}
+
+.bell-icon-md-medkit:before {
+  content: "\f328";
+}
+
+.bell-icon-md-megaphone:before {
+  content: "\f329";
+}
+
+.bell-icon-md-menu:before {
+  content: "\f32a";
+}
+
+.bell-icon-md-mic:before {
+  content: "\f32c";
+}
+
+.bell-icon-md-mic-off:before {
+  content: "\f32b";
+}
+
+.bell-icon-md-microphone:before {
+  content: "\f32d";
+}
+
+.bell-icon-md-moon:before {
+  content: "\f32e";
+}
+
+.bell-icon-md-more:before {
+  content: "\f1c9";
+}
+
+.bell-icon-md-move:before {
+  content: "\f331";
+}
+
+.bell-icon-md-musical-note:before {
+  content: "\f332";
+}
+
+.bell-icon-md-musical-notes:before {
+  content: "\f333";
+}
+
+.bell-icon-md-navigate:before {
+  content: "\f334";
+}
+
+.bell-icon-md-notifications:before {
+  content: "\f338";
+}
+
+.bell-icon-md-notifications-off:before {
+  content: "\f336";
+}
+
+.bell-icon-md-notifications-outline:before {
+  content: "\f337";
+}
+
+.bell-icon-md-nuclear:before {
+  content: "\f339";
+}
+
+.bell-icon-md-nutrition:before {
+  content: "\f33a";
+}
+
+.bell-icon-md-open:before {
+  content: "\f33b";
+}
+
+.bell-icon-md-options:before {
+  content: "\f33c";
+}
+
+.bell-icon-md-outlet:before {
+  content: "\f33d";
+}
+
+.bell-icon-md-paper:before {
+  content: "\f33f";
+}
+
+.bell-icon-md-paper-plane:before {
+  content: "\f33e";
+}
+
+.bell-icon-md-partly-sunny:before {
+  content: "\f340";
+}
+
+.bell-icon-md-pause:before {
+  content: "\f341";
+}
+
+.bell-icon-md-paw:before {
+  content: "\f342";
+}
+
+.bell-icon-md-people:before {
+  content: "\f343";
+}
+
+.bell-icon-md-person:before {
+  content: "\f345";
+}
+
+.bell-icon-md-person-add:before {
+  content: "\f344";
+}
+
+.bell-icon-md-phone-landscape:before {
+  content: "\f346";
+}
+
+.bell-icon-md-phone-portrait:before {
+  content: "\f347";
+}
+
+.bell-icon-md-photos:before {
+  content: "\f348";
+}
+
+.bell-icon-md-pie:before {
+  content: "\f349";
+}
+
+.bell-icon-md-pin:before {
+  content: "\f34a";
+}
+
+.bell-icon-md-pint:before {
+  content: "\f34b";
+}
+
+.bell-icon-md-pizza:before {
+  content: "\f354";
+}
+
+.bell-icon-md-planet:before {
+  content: "\f356";
+}
+
+.bell-icon-md-play:before {
+  content: "\f357";
+}
+
+.bell-icon-md-play-circle:before {
+  content: "\f174";
+}
+
+.bell-icon-md-podium:before {
+  content: "\f358";
+}
+
+.bell-icon-md-power:before {
+  content: "\f359";
+}
+
+.bell-icon-md-pricetag:before {
+  content: "\f35a";
+}
+
+.bell-icon-md-pricetags:before {
+  content: "\f35b";
+}
+
+.bell-icon-md-print:before {
+  content: "\f35c";
+}
+
+.bell-icon-md-pulse:before {
+  content: "\f35d";
+}
+
+.bell-icon-md-qr-scanner:before {
+  content: "\f35e";
+}
+
+.bell-icon-md-quote:before {
+  content: "\f35f";
+}
+
+.bell-icon-md-radio:before {
+  content: "\f362";
+}
+
+.bell-icon-md-radio-button-off:before {
+  content: "\f360";
+}
+
+.bell-icon-md-radio-button-on:before {
+  content: "\f361";
+}
+
+.bell-icon-md-rainy:before {
+  content: "\f363";
+}
+
+.bell-icon-md-recording:before {
+  content: "\f364";
+}
+
+.bell-icon-md-redo:before {
+  content: "\f365";
+}
+
+.bell-icon-md-refresh:before {
+  content: "\f366";
+}
+
+.bell-icon-md-refresh-circle:before {
+  content: "\f228";
+}
+
+.bell-icon-md-remove:before {
+  content: "\f368";
+}
+
+.bell-icon-md-remove-circle:before {
+  content: "\f367";
+}
+
+.bell-icon-md-remove-circle-outline:before {
+  content: "\f176";
+}
+
+.bell-icon-md-reorder:before {
+  content: "\f369";
+}
+
+.bell-icon-md-repeat:before {
+  content: "\f36a";
+}
+
+.bell-icon-md-resize:before {
+  content: "\f36b";
+}
+
+.bell-icon-md-restaurant:before {
+  content: "\f36c";
+}
+
+.bell-icon-md-return-left:before {
+  content: "\f36d";
+}
+
+.bell-icon-md-return-right:before {
+  content: "\f36e";
+}
+
+.bell-icon-md-reverse-camera:before {
+  content: "\f36f";
+}
+
+.bell-icon-md-rewind:before {
+  content: "\f370";
+}
+
+.bell-icon-md-ribbon:before {
+  content: "\f371";
+}
+
+.bell-icon-md-rocket:before {
+  content: "\f179";
+}
+
+.bell-icon-md-rose:before {
+  content: "\f372";
+}
+
+.bell-icon-md-sad:before {
+  content: "\f373";
+}
+
+.bell-icon-md-save:before {
+  content: "\f1a9";
+}
+
+.bell-icon-md-school:before {
+  content: "\f374";
+}
+
+.bell-icon-md-search:before {
+  content: "\f375";
+}
+
+.bell-icon-md-send:before {
+  content: "\f376";
+}
+
+.bell-icon-md-settings:before {
+  content: "\f377";
+}
+
+.bell-icon-md-share:before {
+  content: "\f379";
+}
+
+.bell-icon-md-share-alt:before {
+  content: "\f378";
+}
+
+.bell-icon-md-shirt:before {
+  content: "\f37a";
+}
+
+.bell-icon-md-shuffle:before {
+  content: "\f37b";
+}
+
+.bell-icon-md-skip-backward:before {
+  content: "\f37c";
+}
+
+.bell-icon-md-skip-forward:before {
+  content: "\f37d";
+}
+
+.bell-icon-md-snow:before {
+  content: "\f37e";
+}
+
+.bell-icon-md-speedometer:before {
+  content: "\f37f";
+}
+
+.bell-icon-md-square:before {
+  content: "\f381";
+}
+
+.bell-icon-md-square-outline:before {
+  content: "\f380";
+}
+
+.bell-icon-md-star:before {
+  content: "\f384";
+}
+
+.bell-icon-md-star-half:before {
+  content: "\f382";
+}
+
+.bell-icon-md-star-outline:before {
+  content: "\f383";
+}
+
+.bell-icon-md-stats:before {
+  content: "\f385";
+}
+
+.bell-icon-md-stopwatch:before {
+  content: "\f386";
+}
+
+.bell-icon-md-subway:before {
+  content: "\f387";
+}
+
+.bell-icon-md-sunny:before {
+  content: "\f388";
+}
+
+.bell-icon-md-swap:before {
+  content: "\f389";
+}
+
+.bell-icon-md-switch:before {
+  content: "\f38a";
+}
+
+.bell-icon-md-sync:before {
+  content: "\f38b";
+}
+
+.bell-icon-md-tablet-landscape:before {
+  content: "\f38c";
+}
+
+.bell-icon-md-tablet-portrait:before {
+  content: "\f38d";
+}
+
+.bell-icon-md-tennisball:before {
+  content: "\f38e";
+}
+
+.bell-icon-md-text:before {
+  content: "\f38f";
+}
+
+.bell-icon-md-thermometer:before {
+  content: "\f390";
+}
+
+.bell-icon-md-thumbs-down:before {
+  content: "\f391";
+}
+
+.bell-icon-md-thumbs-up:before {
+  content: "\f392";
+}
+
+.bell-icon-md-thunderstorm:before {
+  content: "\f393";
+}
+
+.bell-icon-md-time:before {
+  content: "\f394";
+}
+
+.bell-icon-md-timer:before {
+  content: "\f395";
+}
+
+.bell-icon-md-today:before {
+  content: "\f17d";
+}
+
+.bell-icon-md-train:before {
+  content: "\f396";
+}
+
+.bell-icon-md-transgender:before {
+  content: "\f397";
+}
+
+.bell-icon-md-trash:before {
+  content: "\f398";
+}
+
+.bell-icon-md-trending-down:before {
+  content: "\f399";
+}
+
+.bell-icon-md-trending-up:before {
+  content: "\f39a";
+}
+
+.bell-icon-md-trophy:before {
+  content: "\f39b";
+}
+
+.bell-icon-md-tv:before {
+  content: "\f17f";
+}
+
+.bell-icon-md-umbrella:before {
+  content: "\f39c";
+}
+
+.bell-icon-md-undo:before {
+  content: "\f39d";
+}
+
+.bell-icon-md-unlock:before {
+  content: "\f39e";
+}
+
+.bell-icon-md-videocam:before {
+  content: "\f39f";
+}
+
+.bell-icon-md-volume-high:before {
+  content: "\f123";
+}
+
+.bell-icon-md-volume-low:before {
+  content: "\f131";
+}
+
+.bell-icon-md-volume-mute:before {
+  content: "\f3a1";
+}
+
+.bell-icon-md-volume-off:before {
+  content: "\f3a2";
+}
+
+.bell-icon-md-walk:before {
+  content: "\f3a4";
+}
+
+.bell-icon-md-wallet:before {
+  content: "\f18f";
+}
+
+.bell-icon-md-warning:before {
+  content: "\f3a5";
+}
+
+.bell-icon-md-watch:before {
+  content: "\f3a6";
+}
+
+.bell-icon-md-water:before {
+  content: "\f3a7";
+}
+
+.bell-icon-md-wifi:before {
+  content: "\f3a8";
+}
+
+.bell-icon-md-wine:before {
+  content: "\f3a9";
+}
+
+.bell-icon-md-woman:before {
+  content: "\f3aa";
+}
+
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15; /* 1 */
@@ -29,7 +3547,8 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
 }
 b,
 strong {
@@ -2482,13 +6001,11 @@ template {
     order: 24;
   }
 }
-.bell-icon + .bell-icon {
-  margin-left: 6px;
+.bell-icon-spin:before {
+  -webkit-animation: 1s linear infinite bell-icon-spin;
+          animation: 1s linear infinite bell-icon-spin;
 }
-.bell-icon.bell-icon-spin:before {
-  animation: 1s linear infinite icon-spin;
-}
-@-moz-keyframes icon-spin {
+@-webkit-keyframes bell-icon-spin {
   0% {
     transform: rotate(0);
   }
@@ -2496,23 +6013,7 @@ template {
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes icon-spin {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes icon-spin {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes icon-spin {
+@keyframes bell-icon-spin {
   0% {
     transform: rotate(0);
   }
@@ -2747,7 +6248,10 @@ button.bell-link {
 .bell-button {
   display: inline-block;
   text-align: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   border: 1px solid transparent;
   background-color: transparent;
   outline: 0;
@@ -3608,7 +7112,10 @@ button.bell-link {
 }
 .bell-select {
   display: inline-block;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   text-align: left;
   width: 100%;
   position: relative;
@@ -3907,113 +7414,186 @@ button.bell-link {
 }
 .bell-menu {
   display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  list-style: none;
-  position: relative;
-  color: #515a6e;
   font-size: 14px;
-  transition: background 0.3s, width 0.2s, height 0.3s;
-  z-index: 1;
-  user-select: none;
-}
-.bell-menu .bell-menu,
-.bell-menu .bell-menu-group {
+  position: relative;
+  text-align: left;
   box-sizing: border-box;
-  padding-left: 16px;
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-.bell-menu .bell-menu-dropdown {
-  display: none;
-  position: absolute;
-  max-height: 280px;
-  min-width: 200px;
-  overflow: auto;
-  margin: 0;
-  padding: 0;
+.bell-menu-light {
   background-color: #fff;
+}
+.bell-menu-light .bell-menu-dropdown {
+  background-color: #fff;
+}
+.bell-menu-light .bell-menu-item-disabled {
+  color: $brand-disabled;
+}
+.bell-menu-light .bell-menu-item,
+.bell-menu-light .bell-submenu-title {
+  color: #515a6e;
+}
+.bell-menu-light .bell-menu-item:hover,
+.bell-menu-light .bell-submenu-title:hover {
+  color: #1890ff;
+}
+.bell-menu-light .bell-menu-group-title {
+  color: rgba(0,0,0,0.37);
+}
+.bell-menu-light.bell-menu-horizontal > .bell-menu-item-active {
+  color: #1890ff;
+}
+.bell-menu-light.bell-menu-vertical > .bell-menu-item-active {
+  color: #1890ff;
+  background-color: #f0faff;
+}
+.bell-menu-light .bell-menu-inline > .bell-menu-item-active {
+  color: #1890ff;
+  background-color: #f0faff;
+}
+.bell-menu-dark {
+  background-color: #515a6e;
+}
+.bell-menu-dark .bell-menu-dropdown {
+  background-color: #515a6e;
+}
+.bell-menu-dark .bell-menu-item-disabled {
+  color: $brand-disabled;
+}
+.bell-menu-dark > .bell-menu-item,
+.bell-menu-dark > .bell-submenu > .bell-submenu-title {
+  background-color: #515a6e;
+}
+.bell-menu-dark .bell-menu-inline {
+  background-color: #363e4f;
+}
+.bell-menu-dark .bell-menu-item,
+.bell-menu-dark .bell-submenu-title {
+  color: rgba(255,255,255,0.7);
+}
+.bell-menu-dark .bell-menu-item:hover,
+.bell-menu-dark .bell-submenu-title:hover {
+  color: #fff;
+}
+.bell-menu-dark .bell-menu-group-title {
+  color: rgba(255,255,255,0.36);
+}
+.bell-menu-dark.bell-menu-horizontal > .bell-menu-item-active {
+  color: #fff;
+}
+.bell-menu-dark.bell-menu-vertical > .bell-menu-item-active {
+  color: #1890ff;
+  background-color: #363e4f;
+}
+.bell-menu-dark .bell-menu-inline > .bell-menu-item-active {
+  color: #fff;
+  background-color: #1890ff;
+}
+.bell-menu-item,
+.bell-submenu,
+.bell-submenu-title {
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+.bell-menu-item,
+.bell-submenu-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.bell-menu-item > a,
+.bell-submenu-title > a {
+  color: inherit;
+  font-weight: normal;
+  text-decoration: none;
+}
+.bell-menu-item > .bell-icon:first-child,
+.bell-submenu-title > .bell-icon:first-child {
+  margin-right: 6px;
+}
+.bell-submenu-title-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.bell-submenu-title-icon:before {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+.bell-menu-dropdown,
+.bell-menu-collapsed > .bell-menu-open > .bell-menu-inline {
+  position: absolute;
+  overflow-y: auto;
   box-sizing: border-box;
   border-radius: 4px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.2);
   transition: height 0.3s;
 }
-.bell-menu .bell-menu-open .bell-menu-dropdown {
+.bell-menu-dropdown {
+  display: none;
+  max-height: 280px;
+  min-width: 200px;
+}
+.bell-menu-open .bell-menu-dropdown {
   display: block;
-  margin-top: 1px;
-  left: 0;
 }
-.bell-menu-item-disabled {
-  color: rgba(0,0,0,0.25) !important;
-  background: 0 0;
-  border-color: transparent !important;
-  cursor: not-allowed;
-}
-.bell-menu-group {
-  line-height: normal;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.bell-menu-group > ul {
-  line-height: normal;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.bell-menu-group > ul .bell-submenu,
-.bell-menu-group > ul .bell-menu-item {
-  padding: 7px 16px 8px;
-  color: #515a6e;
-  line-height: normal;
-  height: auto;
-}
-.bell-menu-group-title {
-  height: 30px;
-  line-height: 30px;
-  padding-left: 8px;
-  font-size: 12px;
-}
-.bell-submenu,
-.bell-menu-item {
-  display: block;
-  outline: 0;
-  list-style: none;
-  position: relative;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 0 20px;
-  transition: all 0.2s ease-in-out;
-}
-.bell-submenu > .bell-submenu-title .bell-submenu-title-icon,
-.bell-menu-item > .bell-submenu-title .bell-submenu-title-icon {
-  float: right;
-}
-.bell-submenu > .bell-submenu-title .bell-submenu-title-icon::before,
-.bell-menu-item > .bell-submenu-title .bell-submenu-title-icon::before {
-  transform: rotate(0deg);
-  transition: transform 0.2s;
-}
-.bell-submenu.bell-menu-open > .bell-submenu-title .bell-submenu-title-icon::before,
-.bell-menu-item.bell-menu-open > .bell-submenu-title .bell-submenu-title-icon::before {
+.bell-menu-open .bell-submenu-title-icon:before {
   transform: rotate(-180deg);
 }
-.bell-menu-inline .bell-menu-item {
-  padding: 14px 24px;
-  position: relative;
+.bell-menu-item-enabled,
+.bell-submenu-title {
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
-.bell-menu-inline .bell-submenu {
-  padding: 0;
+.bell-menu-item-disabled {
+  cursor: not-allowed;
 }
-.bell-menu-inline .bell-submenu .bell-submenu-title {
-  white-space: nowrap;
-  padding: 14px 24px;
-  position: relative;
-  cursor: pointer;
-  opacity: 1;
-  transition: all 0.2s ease-in-out;
+.bell-menu-group-title {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+}
+.bell-menu-horizontal > .bell-menu-item,
+.bell-menu-horizontal > .bell-submenu {
+  display: inline-block;
+  vertical-align: top;
+}
+.bell-menu-horizontal > .bell-menu-item,
+.bell-menu-horizontal > .bell-submenu > .bell-submenu-title {
+  height: 64px;
+  line-height: 64px;
+  padding: 0 20px;
+}
+.bell-menu-horizontal .bell-menu-dropdown {
+  left: 0;
+  margin-top: 4px;
+}
+.bell-menu-horizontal .bell-submenu-title-icon {
+  right: 0;
+}
+.bell-menu-inline > .bell-menu-item,
+.bell-menu-vertical > .bell-menu-item,
+.bell-menu-inline > .bell-submenu > .bell-submenu-title,
+.bell-menu-vertical > .bell-submenu > .bell-submenu-title {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+}
+.bell-menu-inline .bell-menu-dropdown,
+.bell-menu-vertical .bell-menu-dropdown,
+.bell-menu-inline.bell-menu-collapsed > .bell-menu-open > .bell-menu-inline,
+.bell-menu-vertical.bell-menu-collapsed > .bell-menu-open > .bell-menu-inline {
+  top: 0;
+  left: 100%;
+  margin-left: 4px;
+}
+.bell-menu-inline .bell-submenu-title-icon,
+.bell-menu-vertical .bell-submenu-title-icon {
+  right: 20px;
 }
 .bell-menu-inline .bell-submenu > .bell-menu {
   display: none;
@@ -4021,423 +7601,24 @@ button.bell-link {
 .bell-menu-inline .bell-submenu.bell-menu-open > .bell-menu {
   display: block;
 }
-.bell-menu-inline .bell-submenu .bell-menu-group .bell-menu-item {
-  padding: 14px 24px;
-}
 .bell-menu-inline.bell-menu-collapsed {
   width: 80px;
 }
-.bell-menu-inline.bell-menu-collapsed > .bell-menu-inline {
-  display: none;
-}
-.bell-menu-inline.bell-menu-collapsed .bell-submenu-title-icon {
-  display: none;
-}
-.bell-menu-inline.bell-menu-collapsed .bell-menu-open > .bell-menu {
-  display: inline-block;
-  vertical-align: middle;
-  position: absolute;
+.bell-menu-inline.bell-menu-collapsed > .bell-menu-open > .bell-menu-inline {
+  display: block;
   width: 200px;
-  left: 100%;
-  margin-left: 1px;
-  top: 0;
-  border-radius: 4px;
 }
-.bell-menu-vertical {
-  height: auto;
-  text-align: left;
+.bell-menu-collapsed > .bell-menu-item,
+.bell-menu-collapsed > .bell-submenu > .bell-submenu-title {
+  text-align: center;
 }
-.bell-menu-vertical .bell-submenu,
-.bell-menu-vertical .bell-menu-item {
-  padding: 14px 24px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+.bell-menu-collapsed > .bell-menu-item > .bell-icon:first-child,
+.bell-menu-collapsed > .bell-submenu > .bell-submenu-title > .bell-icon:first-child {
+  margin-right: 6px;
 }
-.bell-menu-vertical .bell-menu-dropdown {
-  top: 0;
-  left: 100%;
-  margin-left: 4px;
-}
-.bell-menu-vertical .bell-submenu .bell-submenu-title-icon::before {
-  transform: rotate(-90deg);
-}
-.bell-menu-vertical .bell-submenu.bell-menu-open > .bell-submenu-title .bell-submenu-title-icon::before {
-  transform: rotate(-90deg);
-}
-.bell-menu.bell-menu-horizontal {
-  height: 64px;
-  line-height: 64px;
-}
-.bell-menu.bell-menu-horizontal > .bell-menu-item {
-  display: inline-block;
-  vertical-align: bottom;
-  height: inherit;
-  line-height: inherit;
-}
-.bell-menu.bell-menu-horizontal > .bell-submenu {
-  display: inline-block;
-  vertical-align: bottom;
-  height: inherit;
-  line-height: inherit;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light {
-  background-color: #fff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item > a,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu > a {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item::after,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  transition: width 0.1s;
-  transform: translateX(-50%);
-  height: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item:hover,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu:hover,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-hover {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu:hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-hover > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-menu-active {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-menu-active > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-menu-item.bell-menu-active::after,
-.bell-menu.bell-menu-horizontal.bell-menu-light > .bell-submenu.bell-menu-active::after {
-  width: 90%;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light.bell-menu-horizontal::after {
-  content: " ";
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: #dcdee2;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-light .bell-menu-group {
-  background-color: #fff;
-  color: #515a6e;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark {
-  background-color: #515a6e;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item > a,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu > a {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item::after,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  transition: width 0.1s;
-  transform: translateX(-50%);
-  height: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item:hover,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu:hover,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-hover {
-  color: #fff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu:hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-hover > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-menu-active {
-  color: #fff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-menu-active > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-menu-item.bell-menu-active::after,
-.bell-menu.bell-menu-horizontal.bell-menu-dark > .bell-submenu.bell-menu-active::after {
-  width: 90%;
-}
-.bell-menu.bell-menu-horizontal.bell-menu-dark .bell-menu-group {
-  background-color: #515a6e;
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-vertical.bell-menu-light {
-  background-color: #fff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item > a,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu > a {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-submenu > .bell-submenu-title::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  height: 0;
-  transition: height 0.1s;
-  transform: translateY(-50%);
-  width: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item:hover,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu:hover,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-hover {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu:hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-hover > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu-active {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu-active > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-menu-item.bell-menu-active.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-vertical.bell-menu-light > .bell-submenu.bell-menu-active.bell-submenu > .bell-submenu-title::after {
-  height: 80%;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light.bell-menu-vertical::after {
-  content: " ";
-  display: block;
-  width: 1px;
-  height: 100%;
-  background: #dcdee2;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.bell-menu.bell-menu-vertical.bell-menu-light .bell-menu-group {
-  background-color: #fff;
-  color: #515a6e;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark {
-  background-color: #515a6e;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item > a,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu > a {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-submenu > .bell-submenu-title::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  height: 0;
-  transition: height 0.1s;
-  transform: translateY(-50%);
-  width: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item:hover,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu:hover,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-hover {
-  color: #fff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu:hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-hover > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu-active {
-  color: #fff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu-active > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-menu-item.bell-menu-active.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-vertical.bell-menu-dark > .bell-submenu.bell-menu-active.bell-submenu > .bell-submenu-title::after {
-  height: 80%;
-}
-.bell-menu.bell-menu-vertical.bell-menu-dark .bell-menu-group {
-  background-color: #515a6e;
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-inline.bell-menu-light {
-  background-color: #fff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item > a,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu > a {
-  color: #515a6e;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-submenu > .bell-submenu-title::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  height: 0;
-  transition: height 0.1s;
-  transform: translateY(-50%);
-  width: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item:hover,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu:hover,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-hover {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu:hover > a,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-hover > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu-active {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu-active > a {
-  color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-menu-item.bell-menu-active.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-inline.bell-menu-light > .bell-submenu.bell-menu-active.bell-submenu > .bell-submenu-title::after {
-  height: 80%;
-}
-.bell-menu.bell-menu-inline.bell-menu-light.bell-menu-inline::after {
-  content: " ";
-  display: block;
-  width: 1px;
-  height: 100%;
-  background: #dcdee2;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.bell-menu.bell-menu-inline.bell-menu-light .bell-menu-group {
-  background-color: #fff;
-  color: #515a6e;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark {
-  background-color: #515a6e;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item > a,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu > a {
-  color: rgba(255,255,255,0.7);
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-submenu > .bell-submenu-title::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  height: 0;
-  transition: height 0.1s;
-  transform: translateY(-50%);
-  width: 4px;
-  background-color: #1890ff;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item:hover,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu:hover,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-hover,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-hover {
-  color: #fff;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item:hover > a,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu:hover > a,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-hover > a,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-hover > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu-active,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu-active {
-  color: #fff;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu-active > a,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu-active > a {
-  color: #fff;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu-active.bell-menu-item::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-menu-item.bell-menu-active.bell-submenu > .bell-submenu-title::after,
-.bell-menu.bell-menu-inline.bell-menu-dark > .bell-submenu.bell-menu-active.bell-submenu > .bell-submenu-title::after {
-  height: 80%;
-}
-.bell-menu.bell-menu-inline.bell-menu-dark .bell-menu-group {
-  background-color: #515a6e;
-  color: rgba(255,255,255,0.7);
+.bell-menu-collapsed > .bell-menu-inline,
+.bell-menu-collapsed .bell-submenu-title-icon {
+  display: none;
 }
 .bell-input-number {
   position: relative;
@@ -4561,7 +7742,10 @@ button.bell-link {
   bottom: 0;
   right: 0;
   opacity: 0;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   transition: opacity 0.3s;
   width: 22px;
   border-left: 1px solid #eee;
@@ -4696,7 +7880,10 @@ button.bell-link {
 }
 .bell-radio {
   display: inline-block;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   position: relative;
 }
 .bell-radio-primary.bell-radio-enabled:hover > .bell-radio-icon,
@@ -4979,7 +8166,10 @@ button.bell-link {
 }
 .bell-checkbox {
   display: inline-block;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   position: relative;
 }
 .bell-checkbox-primary.bell-checkbox-enabled:hover > .bell-checkbox-icon,
@@ -5156,13 +8346,17 @@ button.bell-link {
   top: 4px;
   border: 1px solid transparent;
   box-sizing: border-box;
-  animation: bell-switch-loading 1s linear infinite;
+  -webkit-animation: bell-switch-loading 1s linear infinite;
+          animation: bell-switch-loading 1s linear infinite;
   transition: transform 0.3s;
 }
 .bell-switch {
   display: inline-block;
   position: relative;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   box-sizing: border-box;
   border-color: #ccc;
   background-color: #ccc;
@@ -5306,23 +8500,7 @@ button.bell-link {
 .bell-switch-disabled {
   opacity: 0.4;
 }
-@-moz-keyframes bell-switch-loading {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 @-webkit-keyframes bell-switch-loading {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes bell-switch-loading {
   0% {
     transform: rotate(0);
   }
@@ -5339,7 +8517,10 @@ button.bell-link {
   }
 }
 .bell-datepicker {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   display: inline-block;
   vertical-align: middle;
   font-size: 12px;
@@ -5455,11 +8636,17 @@ button.bell-link {
   padding: 8px;
 }
 .bell-datepicker-date {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-datepicker-month,
 .bell-datepicker-year {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-datepicker-month .bell-datepicker-body .bell-datepicker-col,
 .bell-datepicker-year .bell-datepicker-body .bell-datepicker-col {
@@ -5487,7 +8674,10 @@ button.bell-link {
   background-color: #e1f0fe;
 }
 .bell-datepicker-daterange {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-datepicker-daterange .bell-datepicker-header-month {
   margin-right: 30%;
@@ -5527,7 +8717,10 @@ button.bell-link {
   background-color: #e1f0fe;
 }
 .bell-datepicker-week {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-datepicker-week .bell-datepicker-row {
   cursor: pointer;
@@ -5577,48 +8770,50 @@ button.bell-link {
 }
 .bell-page-disabled {
   cursor: not-allowed;
-  color: #b7b7b7;
-  border-color: #dddee1;
 }
+.bell-page-disabled,
 .bell-page-disabled:hover {
   color: #b7b7b7;
   border-color: #dddee1;
 }
+.bell-page-custom-prev + .bell-page-item,
+.bell-page-custom-next {
+  margin-left: 10px;
+}
+.bell-page-item-prev,
 .bell-page-item-next {
   border: none;
 }
+.bell-page-item-prev:after,
 .bell-page-item-next:after {
   content: "\2022\2022\2022";
   display: block;
   letter-spacing: 1px;
   color: #eee;
   text-align: center;
-  font-size: 12px;
 }
-.bell-page-item-next .bell-icon {
+.bell-page-item-prev > .bell-icon,
+.bell-page-item-next > .bell-icon {
   display: none;
 }
+.bell-page-item-prev > .bell-icon + .bell-icon,
+.bell-page-item-next > .bell-icon + .bell-icon {
+  margin-left: 0;
+}
+.bell-page-item-prev:hover:after,
 .bell-page-item-next:hover:after {
   display: none;
 }
-.bell-page-item-next:hover .bell-icon {
+.bell-page-item-prev:hover > .bell-icon,
+.bell-page-item-next:hover > .bell-icon {
   display: inline-block;
-  vertical-align: middle;
-  margin-left: 0;
-}
-.bell-page-custom-prev,
-.bell-page-custom-next {
-  border: none;
-  width: auto !important;
-}
-.bell-page-custom-next {
-  margin-right: 14px;
-}
-.bell-page-custom-prev {
-  margin-left: 14px;
 }
 .bell-page {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 14px;
 }
 .bell-page-default .bell-page-item {
   width: 32px;
@@ -5636,6 +8831,11 @@ button.bell-link {
 .bell-page-small .bell-page-item > .bell-icon {
   line-height: 24px;
 }
+.bell-page .bell-page-custom-prev,
+.bell-page .bell-page-custom-next {
+  border: none;
+  width: auto;
+}
 .bell-page-select {
   width: 100px;
   margin-right: 10px;
@@ -5645,21 +8845,22 @@ button.bell-link {
   display: inline-block;
   margin-left: 10px;
 }
-.bell-page-input {
-  width: 40px;
+.bell-page-elevator-input {
+  width: 100px;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
+  margin-right: 6px;
 }
-.bell-page-input .bell-input {
-  padding: 0 10px;
+.bell-page-simple-input {
+  width: 50px;
+  display: inline-block;
+  vertical-align: top;
 }
 .bell-page-total {
-  font-size: 14px;
-  margin-right: 14px;
+  margin-right: 10px;
 }
 .bell-page-simple {
   display: inline-block;
-  vertical-align: middle;
 }
 .bell-page-simple > .bell-page-prev {
   margin-right: 10px;
@@ -5668,8 +8869,9 @@ button.bell-link {
   margin-left: 10px;
 }
 .bell-page-separator {
+  font-size: 90%;
   color: rgba(0,0,0,0.37);
-  margin: 0 8px;
+  margin: 0 6px;
 }
 .bell-list-header {
   font-size: 14px;
@@ -5680,7 +8882,10 @@ button.bell-link {
 }
 .bell-list-item-clickable {
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   transition: background-color 0.3s;
 }
 .bell-list-item-clickable:hover {
@@ -5828,7 +9033,10 @@ button.bell-link {
   border-radius: 50%;
 }
 .bell-alert {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   display: flex;
   align-items: center;
   transition: opacity 0.3s;
@@ -6053,7 +9261,10 @@ button.bell-link {
   left: 50%;
   opacity: 0;
   z-index: 1010;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   transition: opacity 0.15s, top 0.3s;
 }
 .bell-message.bell-show {
@@ -6366,29 +9577,10 @@ button.bell-link {
   box-sizing: border-box;
   border: 1px solid;
   content: "";
-  animation: bell-badge-ripple 1.2s infinite ease-in-out;
-}
-@-moz-keyframes bell-badge-ripple {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
+  -webkit-animation: bell-badge-ripple 1.2s infinite ease-in-out;
+          animation: bell-badge-ripple 1.2s infinite ease-in-out;
 }
 @-webkit-keyframes bell-badge-ripple {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
-}
-@-o-keyframes bell-badge-ripple {
   0% {
     transform: scale(0.8);
     opacity: 0.5;
@@ -6434,7 +9626,10 @@ button.bell-link {
 }
 .bell-collapse-header {
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   padding: 12px 15px;
   font-size: 14px;
 }
@@ -6709,7 +9904,8 @@ button.bell-link {
 .bell-spinner-dot {
   display: inline-block;
   border-radius: 50%;
-  animation: spin-bounce 1s 0s ease-in-out infinite;
+  -webkit-animation: spin-bounce 1s 0s ease-in-out infinite;
+          animation: spin-bounce 1s 0s ease-in-out infinite;
 }
 .bell-spinner-dot + .bell-spinner-text {
   margin-top: 6px;
@@ -6729,25 +9925,7 @@ button.bell-link {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@-moz-keyframes spin-bounce {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
 @-webkit-keyframes spin-bounce {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-@-o-keyframes spin-bounce {
   0% {
     transform: scale(0);
   }
@@ -6812,7 +9990,8 @@ button.bell-link {
   bottom: 0;
   background: #fff;
   border-radius: 10px;
-  animation: bell-progress-active 2s ease-in-out infinite;
+  -webkit-animation: bell-progress-active 2s ease-in-out infinite;
+          animation: bell-progress-active 2s ease-in-out infinite;
 }
 .bell-progress .bell-progress-outer {
   flex: 1;
@@ -6856,27 +10035,7 @@ button.bell-link {
   text-align: center;
   width: 100%;
 }
-@-moz-keyframes bell-progress-active {
-  0% {
-    opacity: 0.3;
-    width: 0;
-  }
-  100% {
-    opacity: 0;
-    width: 100%;
-  }
-}
 @-webkit-keyframes bell-progress-active {
-  0% {
-    opacity: 0.3;
-    width: 0;
-  }
-  100% {
-    opacity: 0;
-    width: 100%;
-  }
-}
-@-o-keyframes bell-progress-active {
   0% {
     opacity: 0.3;
     width: 0;
@@ -6931,7 +10090,10 @@ button.bell-link {
 }
 .bell-slider {
   width: 100%;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   outline: none;
   cursor: pointer;
 }
@@ -7395,7 +10557,10 @@ button.bell-link {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-tabs-indicator {
   position: absolute;
@@ -7855,133 +11020,134 @@ button.bell-link {
 }
 .bell-drawer {
   position: fixed;
-  top: 0;
-  left: 0;
   overflow: hidden;
 }
-.bell-drawer.bell-drawer-open .bell-drawer-mask {
+.bell-drawer-open > .bell-drawer-mask {
   opacity: 1;
 }
-.bell-drawer.bell-drawer-leave .bell-drawer-mask {
+.bell-drawer-leave > .bell-drawer-mask {
   opacity: 0;
 }
-.bell-drawer[data-placement="left"] {
-  width: 100%;
-  height: 0;
-}
-.bell-drawer[data-placement="left"].bell-drawer-open {
-  height: 100%;
-}
-.bell-drawer[data-placement="left"].bell-drawer-open .bell-drawer-content {
-  transform: translate(0);
-}
-.bell-drawer[data-placement="left"].bell-drawer-leave .bell-drawer-content {
-  transform: translate(-100%);
-}
-.bell-drawer[data-placement="left"] .bell-drawer-content {
-  transform: translate(-100%);
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-.bell-drawer[data-placement="right"] {
-  width: 100%;
-  height: 0;
-}
-.bell-drawer[data-placement="right"].bell-drawer-open {
-  height: 100%;
-}
-.bell-drawer[data-placement="right"].bell-drawer-open .bell-drawer-content {
-  transform: translate(0);
-}
-.bell-drawer[data-placement="right"].bell-drawer-leave .bell-drawer-content {
-  transform: translate(100%);
-}
-.bell-drawer[data-placement="right"] .bell-drawer-content {
-  transform: translate(100%);
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-.bell-drawer[data-placement="top"] {
-  width: 0;
-  height: 100%;
-}
-.bell-drawer[data-placement="top"].bell-drawer-open {
-  width: 100%;
-}
-.bell-drawer[data-placement="top"].bell-drawer-open .bell-drawer-content {
-  transform: translate(0);
-}
-.bell-drawer[data-placement="top"].bell-drawer-leave .bell-drawer-content {
-  transform: translateY(-100%);
-}
-.bell-drawer[data-placement="top"] .bell-drawer-content {
-  transform: translateY(-100%);
-  top: 0;
-  right: 0;
-  left: 0;
-}
-.bell-drawer[data-placement="bottom"] {
-  width: 0;
-  height: 100%;
-}
-.bell-drawer[data-placement="bottom"].bell-drawer-open {
-  width: 100%;
-}
-.bell-drawer[data-placement="bottom"].bell-drawer-open .bell-drawer-content {
-  transform: translate(0);
-}
-.bell-drawer[data-placement="bottom"].bell-drawer-leave .bell-drawer-content {
-  transform: translateY(100%);
-}
-.bell-drawer[data-placement="bottom"] .bell-drawer-content {
-  transform: translateY(100%);
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-.bell-drawer .bell-drawer-content {
+.bell-drawer-content {
   position: absolute;
   overflow-y: auto;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: transform 0.3s;
 }
-.bell-drawer .bell-drawer-content .bell-drawer-header {
+.bell-drawer-header {
   position: relative;
   padding: 16px 24px;
-  color: rgba(0,0,0,0.54);
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #eee;
 }
-.bell-drawer .bell-drawer-content .bell-drawer-header .bell-drawer-title {
-  font-weight: 500;
+.bell-drawer-title {
   color: rgba(0,0,0,0.87);
   font-size: 16px;
 }
-.bell-drawer .bell-drawer-content .bell-drawer-body {
+.bell-drawer-body {
+  position: relative;
   padding: 16px 24px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   word-wrap: break-word;
   overflow: auto;
-  height: calc(100% - 55px);
+  box-sizing: border-box;
+  height: calc(100% - 51px);
 }
-.bell-drawer .bell-drawer-content .bell-drawer-close {
+.bell-drawer-close {
   position: absolute;
-  right: 0;
-  top: 0;
-  padding: 3px 15px;
+  right: 18px;
+  top: 12px;
 }
-.bell-drawer .bell-drawer-mask {
+.bell-drawer-mask {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.37);
+  background-color: rgba(0,0,0,0.37);
   opacity: 0;
   transition: opacity 0.3s;
+}
+.bell-drawer-left {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.bell-drawer-left > .bell-drawer-content {
+  transform: translate(-100%);
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.bell-drawer-left.bell-drawer-open {
+  bottom: 0;
+}
+.bell-drawer-left.bell-drawer-open > .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer-left.bell-drawer-leave > .bell-drawer-content {
+  transform: translate(-100%);
+}
+.bell-drawer-right {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.bell-drawer-right > .bell-drawer-content {
+  transform: translate(100%);
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.bell-drawer-right.bell-drawer-open {
+  bottom: 0;
+}
+.bell-drawer-right.bell-drawer-open > .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer-right.bell-drawer-leave > .bell-drawer-content {
+  transform: translate(100%);
+}
+.bell-drawer-top {
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.bell-drawer-top > .bell-drawer-content {
+  transform: translateY(-100%);
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.bell-drawer-top.bell-drawer-open {
+  right: 0;
+}
+.bell-drawer-top.bell-drawer-open > .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer-top.bell-drawer-leave > .bell-drawer-content {
+  transform: translateY(-100%);
+}
+.bell-drawer-bottom {
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.bell-drawer-bottom > .bell-drawer-content {
+  transform: translateY(100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bell-drawer-bottom.bell-drawer-open {
+  right: 0;
+}
+.bell-drawer-bottom.bell-drawer-open > .bell-drawer-content {
+  transform: translate(0);
+}
+.bell-drawer-bottom.bell-drawer-leave > .bell-drawer-content {
+  transform: translateY(100%);
 }
 .bell-form {
   margin: 0;
@@ -8137,7 +11303,8 @@ button.bell-link {
   padding: 0;
   font-variant: tabular-nums;
   list-style: none;
-  font-feature-settings: 'tnum';
+  -webkit-font-feature-settings: 'tnum';
+          font-feature-settings: 'tnum';
   position: relative;
   clear: both;
   background-color: #fff;
@@ -8301,3 +11468,6 @@ button.bell-link {
   vertical-align: middle;
   cursor: pointer;
 }
+
+
+/*# sourceMappingURL=bell-ui.css.map*/

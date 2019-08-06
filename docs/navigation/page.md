@@ -132,9 +132,9 @@ pageSize | 每页条数 | string | - | 10
 pageSizeOpts | 每页条数配置 | array | - | -
 showSizer | 显示的每页数量选框 | boolean | - | false
 showElevator | 显示快速跳转 | boolean | - | false
-size | 大小 | string | small, tiny, null | null
+size | 大小 | string | default, small | default
 simple | 是否启用简洁版本 | boolean | - | false
-placement | 弹窗的展开方向 | string | bottom 和 top | -
+placement | 弹窗的展开方向 | string | bottom 和 top | bottom
 prevText | 替代图标显示的上一页文字 | string | - | -
 nextText | 替代图标显示的下一页文字 | string | - | -
 
@@ -142,6 +142,5 @@ nextText | 替代图标显示的下一页文字 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 页码改变的回调，返回改变后的页码 | data.value
-pageSizeChange | 页码改变的回调，返回改变后的页码 | data.value
-error | 错误信息 | data.errMsg
+change | current 或 pageSize 变化后触发 | data.current 或 data.pageSize
+error | 错误信息 | data.msg

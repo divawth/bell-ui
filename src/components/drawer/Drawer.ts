@@ -5,9 +5,9 @@ import template from './template/Drawer.hbs'
 import {
   TRUE,
   FALSE,
+  BODY,
   RAW_STRING,
   RAW_BOOLEAN,
-  DOCUMENT,
 } from '../constant'
 
 import {
@@ -18,52 +18,55 @@ const CLASS_OPEN = '${prefix}drawer-open'
 const CLASS_LEAVE = '${prefix}drawer-leave'
 
 export default Yox.define({
-  propTypes: {
-    title: {
-      type: RAW_STRING
-    },
-    width: {
-      type: RAW_STRING,
-      value: 256
-    },
-    height: {
-      type: RAW_STRING,
-      value: 256
-    },
-    maskClosable: {
-      type: RAW_BOOLEAN,
-      value: TRUE
-    },
-    closable: {
-      type: RAW_BOOLEAN,
-      value: FALSE
-    },
-    placement: {
-      type: RAW_STRING,
-      value: 'left'
-    },
-    mask: {
-      type: RAW_BOOLEAN,
-      value: TRUE
-    },
-    open: {
-      type: RAW_BOOLEAN
-    },
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    }
-  },
-
-  model: 'open',
 
   template,
 
+  model: 'open',
+
+  propTypes: {
+    title: {
+      type: RAW_STRING,
+    },
+    width: {
+      type: RAW_STRING,
+      value: 256,
+    },
+    height: {
+      type: RAW_STRING,
+      value: 256,
+    },
+    maskClosable: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    placement: {
+      type: RAW_STRING,
+      value: 'left',
+    },
+    mask: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
+    open: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    }
+  },
+
   watchers: {
     open(isOpen) {
-      const me = this, element = this.$el
+      const me = this
+      const element = this.$el
       if (isOpen) {
         Yox.dom.addClass(element, CLASS_OPEN)
         onTransitionEnd(
@@ -90,8 +93,9 @@ export default Yox.define({
   computed: {
     contentStyle() {
       let style = ''
-      if (this.get('placement') === 'left'
-        || this.get('placement') === 'right'
+      const placement = this.get('placement')
+      if (placement === 'left'
+        || placement === 'right'
       ) {
         let width = +this.get('width')
         if (width < 100) {
@@ -114,17 +118,12 @@ export default Yox.define({
     }
   },
 
-  methods: {
-    close() {
-      this.set('open', FALSE)
-    }
-  },
-
   afterMount() {
-    Yox.dom.append(DOCUMENT.body, this.$el)
+    Yox.dom.append(BODY, this.$el)
   },
 
   beforeDestroy() {
-    Yox.dom.remove(DOCUMENT.body, this.$el)
+    Yox.dom.remove(BODY, this.$el)
   }
+
 })

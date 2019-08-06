@@ -110,3 +110,4 @@ export const RAW_PLACEMENT_ARRAY = [
 
 export const WINDOW = window
 export const DOCUMENT = document
+export const BODY = DOCUMENT.body

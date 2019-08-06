@@ -1,183 +1,137 @@
 {$selector-menu}
   display block
-  width 100%
-  margin 0
-  padding 0
-  outline 0
-  list-style none
+  font-size $ui-font-size
   position relative
-  color $layout-menu-default-color
-  font-size $layout-menu-default-font-size
-  transition background .3s, width .2s, height .3s
-  z-index $zindex-menu
+  text-align left
+  box-sizing border-box
+  transition background-color .3s, width .3s, height .3s
   user-select none
+  ui-menu()
 
-  {$selector-menu},
-  {$selector-menu}-group
-    box-sizing border-box
-    padding-left 16px
-
-  {$selector-menu}-dropdown
-    display none
-    position absolute
-    max-height 280px
-    min-width 200px
-    overflow auto
-    margin 0
-    padding 0
-    background-color #fff
-    box-sizing border-box
-    border-radius 4px
-    box-shadow 0 1px 6px rgba(0,0,0,.2)
-    transition height .3s
-
-  {$selector-menu}-open
-    {$selector-menu}-dropdown
-      display block
-      margin-top 1px
-      left 0
-
-{$selector-menu-item}-disabled
-
-  color rgba(0,0,0,.25)!important
-  background 0 0
-  border-color transparent!important
-  cursor not-allowed
-
-{$selector-menu-group}
-
-  line-height normal
-  list-style none
-  margin 0
-  padding 0
-
-  > ul
-    line-height normal
-    list-style none
-    margin 0
-    padding 0
-
-    {$selector-menu-submenu},
-    {$selector-menu-item}
-
-      padding 7px 16px 8px
-      color #515a6e
-      line-height normal
-      height auto
-
-{$selector-menu-group}-title
-
-  height 30px
-  line-height 30px
-  padding-left 8px
-  font-size 12px
-
+{$selector-menu-item},
 {$selector-menu-submenu},
-{$selector-menu-item}
-
-  display block
-  outline 0
-  list-style none
+{$selector-menu-submenu-title}
   position relative
-  cursor pointer
-  font-size $layout-menu-default-font-size
-  padding $layout-menu-submenu-default-padding
-  transition all .2s ease-in-out
+  transition background-color .3s, color .3s
 
-  > {$selector-menu-submenu}-title
-    {$selector-menu-submenu}-title-icon
-      float right
-      &::before
-        transform rotate(0deg)
-        transition transform .2s
+{$selector-menu-item},
+{$selector-menu-submenu-title}
 
-  &{$selector-menu}-open
-    > {$selector-menu-submenu}-title
-      {$selector-menu-submenu}-title-icon
-        &::before
-          transform rotate(-180deg)
+  ui-ellipsis()
 
-{$selector-menu}-inline
+  > a
+    color inherit
+    font-weight normal
+    text-decoration none
 
-  {$selector-menu-item}
-    padding 14px 24px
-    position relative
-    cursor pointer
-    transition all .2s ease-in-out
+  > {$selector-icon}:first-child
+    margin-right $ui-label-gap
+
+{$selector-menu-submenu-title-icon}
+  position absolute
+  top 50%
+  transform translateY(-50%)
+
+  &:before
+    transform rotate(0deg)
+    transition transform .3s
+
+{$selector-menu-dropdown},
+{$selector-menu-collapsed} > {$selector-menu-open} > {$selector-menu-inline}
+  position absolute
+  overflow-y auto
+  box-sizing border-box
+  border-radius $radius-base
+  box-shadow $menu-dropdown-shadow
+  transition height .3s
+
+{$selector-menu-dropdown}
+  display none
+  max-height 280px
+  min-width 200px
+
+{$selector-menu-open}
+  {$selector-menu-dropdown}
+    display block
+
+  {$selector-menu-submenu-title-icon}:before
+    transform rotate(-180deg)
+
+{$selector-menu-item-enabled},
+{$selector-menu-submenu-title}
+  cursor $cursor-clickable
+
+{$selector-menu-item-disabled}
+  cursor $cursor-disabled
+
+{$selector-menu-group-title}
+  height $menu-vertical-item-height
+  line-height $menu-vertical-item-height
+  padding 0 $menu-vertical-padding
+
+{$selector-menu-horizontal}
+
+  > {$selector-menu-item},
+  > {$selector-menu-submenu}
+    display inline-block
+    vertical-align top
+
+  > {$selector-menu-item},
+  > {$selector-menu-submenu} > {$selector-menu-submenu-title}
+    height $menu-horizontal-item-height
+    line-height $menu-horizontal-item-height
+    padding 0 $menu-horizontal-padding
+
+  {$selector-menu-dropdown}
+    left 0
+    margin-top $menu-dropdown-offset
+
+  {$selector-menu-submenu-title-icon}
+    right 0
+
+{$selector-menu-inline},
+{$selector-menu-vertical}
+
+  > {$selector-menu-item},
+  > {$selector-menu-submenu} > {$selector-menu-submenu-title}
+    height $menu-vertical-item-height
+    line-height $menu-vertical-item-height
+    padding 0 $menu-vertical-padding
+
+  {$selector-menu-dropdown},
+  &{$selector-menu-collapsed} > {$selector-menu-open} > {$selector-menu-inline}
+    top 0
+    left 100%
+    margin-left $menu-dropdown-offset
+
+  {$selector-menu-submenu-title-icon}
+    right $menu-vertical-padding
+
+{$selector-menu-inline}
 
   {$selector-menu-submenu}
-
-    padding 0
-
-    {$selector-menu-submenu}-title
-      white-space nowrap
-      padding 14px 24px
-      position relative
-      cursor pointer
-      opacity 1
-      transition all .2s ease-in-out
 
     > {$selector-menu}
       display none
 
-    &{$selector-menu}-open
+    &{$selector-menu-open}
       > {$selector-menu}
         display block
 
-    {$selector-menu-group}
-      {$selector-menu-item}
-        padding 14px 24px
+  &{$selector-menu-collapsed}
+    width $menu-collapsed-width
 
-  &{$selector-menu}-collapsed
-    width $layout-menu-collapsed-default-width
+    > {$selector-menu-open} > {$selector-menu-inline}
+      display block
+      width 200px
 
-    > {$selector-menu}-inline
-      display none
+{$selector-menu-collapsed}
+  > {$selector-menu-item},
+  > {$selector-menu-submenu} > {$selector-menu-submenu-title}
+    text-align center
+    > {$selector-icon}:first-child
+      margin-right $ui-label-gap
 
-    {$selector-menu-submenu}-title-icon
-      display none
-
-    {$selector-menu}-open
-      > {$selector-menu}
-        display inline-block
-        vertical-align middle
-        position absolute
-        width 200px
-        left 100%
-        margin-left 1px
-        top 0
-        border-radius $radius-base
-
-{$selector-menu}-vertical
-
-  height auto
-  text-align left
-
-  {$selector-menu-submenu},
-  {$selector-menu}-item
-
-    padding 14px 24px
-    position relative
-    cursor pointer
-    transition all .2s ease-in-out
-
-  {$selector-menu}-dropdown
-    top 0
-    left 100%
-    margin-left 4px
-
-  {$selector-menu-submenu}
-    {$selector-menu-submenu}-title-icon
-      &::before
-        transform rotate(-90deg)
-
-
-    &{$selector-menu}-open
-      > {$selector-menu-submenu}-title
-        {$selector-menu-submenu}-title-icon
-          &::before
-            transform rotate(-90deg)
-
-
-{$selector-menu}
-  ui-menu()
+  > {$selector-menu-inline},
+  {$selector-menu-submenu-title-icon}
+    display none

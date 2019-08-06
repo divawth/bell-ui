@@ -7,18 +7,22 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
-  RAW_SIZE_ARRAY,
   RAW_ARRAY,
   RAW_BOTTOM,
   RAW_TOP,
   DOCUMENT,
   RAW_DEFAULT,
   RAW_SMALL,
+  RAW_EVENT_KEYDOWN,
 } from '../constant'
 
-import { oneOf } from '../util'
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
+
+  template,
 
   propTypes: {
     size: {
@@ -26,84 +30,95 @@ export default Yox.define({
       value: RAW_DEFAULT,
     },
     simple: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     total: {
-      type: RAW_NUMBER
+      type: RAW_NUMBER,
     },
     current: {
       type: RAW_NUMBER,
-      value: 1
+      value: 1,
     },
     pageSize: {
       type: RAW_NUMBER,
-      value: 10
+      value: 10,
     },
     showSizer: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     pageSizeOpts: {
-      type: RAW_ARRAY
+      type: RAW_ARRAY,
     },
     showElevator: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     showTotal: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     placement: {
       type: oneOf([RAW_TOP, RAW_BOTTOM]),
-      value: RAW_BOTTOM
+      value: RAW_BOTTOM,
     },
     prevText: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     nextText: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
-  template,
-
   data() {
-    let me = this
-    let getPageList = function () {
-      let pageList = []
-      if (me.get('showSizer')
-        && me.get('pageSizeOpts')
-      ) {
-        Yox.array.each(
-          me.get('pageSizeOpts'),
-          function (value) {
-            pageList.push({
-              text: value + ' 条/页',
-              value: value
-            })
-          }
-        )
-      }
-      return pageList
-    }
     return {
-      pageList: getPageList(),
-      count: 0,
       currentPage: 1,
       elevatorPage: ''
     }
   },
 
+  computed: {
+    pageList(): object[] {
+
+      const pageList = []
+      const pageSizeOpts = this.get('pageSizeOpts')
+
+      if (this.get('showSizer') && pageSizeOpts) {
+        Yox.array.each(
+          pageSizeOpts,
+          function (value) {
+            pageList.push({
+              text: value + ' 条/页',
+              value,
+            })
+          }
+        )
+      }
+
+      return pageList
+
+    },
+    count(): number {
+      const total = this.get('total')
+      if (total) {
+        const pageSize = this.get('pageSize')
+        return total > pageSize
+          ? Math.ceil(total / pageSize)
+          : 1
+      }
+      return 0
+    }
+  },
+
   events: {
-    change: function (event: CustomEventInterface) {
-      if (event.target != this) {
+    change(event) {
+      if (event.target !== this) {
         event.stop()
       }
     }
@@ -123,10 +138,14 @@ export default Yox.define({
   methods: {
 
     showError(error: string) {
-      this.fire('error.page', {
-        errMsg: error
-      })
+      this.fire(
+        'error.page',
+        {
+          msg: error,
+        }
+      )
     },
+
     elevator() {
       let page = this.get('elevatorPage')
       if (Yox.is.numeric(page)) {
@@ -146,14 +165,13 @@ export default Yox.define({
     },
 
     pageSizeChange(event: CustomEventInterface, data: Data) {
-      this.updateCount()
+      event.stop()
       this.fire(
-        'pageSizeChange.page',
+        'change.page',
         {
-          value: data.value
+          pageSize: data.value
         }
       )
-      event.stop()
     },
 
     fastPrev() {
@@ -177,11 +195,10 @@ export default Yox.define({
       if (me.get('current') < 1) {
         return
       }
-      me.decrease('current', 1, 1)
-
-      if (me.get('simple')) {
-        me.decrease('currentPage', 1, 1)
-      }
+      me.set(
+        'currentPage',
+        me.decrease('current', 1, 1)
+      )
     },
 
     next() {
@@ -189,10 +206,10 @@ export default Yox.define({
       if (me.get('current') >= me.get('count')) {
         return
       }
-      me.increase('current', 1, me.get('count'))
-      if (me.get('simple')) {
-        me.increase('currentPage', 1, me.get('count'))
-      }
+      me.set(
+        'currentPage',
+        me.increase('current', 1, me.get('count'))
+      )
     },
 
     changePage(page: number) {
@@ -201,40 +218,30 @@ export default Yox.define({
         currentPage: page
       })
     },
-
-    updateCount() {
-      let me = this
-      if (me.get('total')) {
-        let count = 1
-        if (me.get('total') > me.get('pageSize')) {
-          count = Math.ceil(me.get('total') / me.get('pageSize'))
-        }
-
-        me.set({
-          count: count
-        })
-      }
-    }
   },
 
   afterMount() {
 
     const me = this
 
-    me.updateCount()
-
     const onKeydown: Listener = function (event) {
+
+      const { target, keyCode } =  event.originalEvent as KeyboardEvent
+      const { simpleInput, elevatorInput } = me.$refs
+      if (target !== simpleInput && target !== elevatorInput) {
+        return
+      }
 
       let currentPage = +me.get('currentPage')
       let current = me.get('current')
       let count = me.get('count')
 
-      switch ((event.originalEvent as KeyboardEvent).keyCode) {
+      switch (keyCode) {
         case 40:
-          current = current + 1 > count ? count : current + 1
+          current = Math.min(current + 1, count)
           break
         case 38:
-          current = current > 1 ? current - 1 : 1
+          current = Math.max(current - 1, 1)
           break
         case 13:
           if (Yox.is.number(currentPage)
@@ -255,7 +262,7 @@ export default Yox.define({
 
     Yox.dom.on(
       DOCUMENT,
-      'keydown',
+      RAW_EVENT_KEYDOWN,
       onKeydown
     )
 
@@ -265,7 +272,7 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
             DOCUMENT,
-            'keydown',
+            RAW_EVENT_KEYDOWN,
             onKeydown
           )
         }

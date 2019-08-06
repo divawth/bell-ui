@@ -1,14 +1,8 @@
-{$selector-icon}
-
-  + {$selector-icon}
-    margin-left: $bell-icon-gap;
-
-  &{$selector-icon-spin}
-    &:before
-      animation: 1s linear infinite icon-spin;
+{$selector-icon-spin}:before
+  animation 1s linear infinite bell-icon-spin
 
 
-@keyframes icon-spin {
+@keyframes bell-icon-spin {
   0% {
     transform rotate(0)
   }

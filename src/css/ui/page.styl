@@ -24,14 +24,17 @@
 
 {$selector-page-disabled}
   cursor $cursor-disabled
+
+{$selector-page-disabled},
+{$selector-page-disabled}:hover
   color $brand-text-disabled
   border-color $brand-border-disabled
 
-  &:hover
-    color $brand-text-disabled
-    border-color $brand-border-disabled
+{$selector-page-custom-prev} + {$selector-page-item},
+{$selector-page-custom-next}
+  margin-left $page-element-gap
 
-{$selector-page-item-prev}
+{$selector-page-item-prev},
 {$selector-page-item-next}
   border none
   &:after
@@ -40,70 +43,66 @@
     letter-spacing 1px
     color $brand-border
     text-align center
-    font-size 12px
 
-  {$selector-icon}
+  > {$selector-icon}
     display none
+
+    + {$selector-icon}
+      margin-left 0
 
   &:hover
     &:after
       display none
 
-    {$selector-icon}
+    > {$selector-icon}
       display inline-block
-      vertical-align middle
-      margin-left 0
 
-{$selector-page-custom-prev},
-{$selector-page-custom-next}
-  border none
-  width auto !important
 
-{$selector-page-custom-next}
-  margin-right 14px
 
-{$selector-page-custom-prev}
-  margin-left 14px
 
 {$selector-page}
   user-select none
+  font-size $ui-font-size
   ui-page()
 
-
-
-
+  {$selector-page-custom-prev},
+  {$selector-page-custom-next}
+    border none
+    width auto
 
 {$selector-page-select}
-  width $page-item-width
-  margin-right $page-select-gap
+  width $page-select-width
+  margin-right $page-element-gap
   vertical-align top
 
 {$selector-page-elevator}
   display inline-block
-  margin-left 10px
+  margin-left $page-element-gap
 
-{$selector-page-input}
-  width $page-input-width
+{$selector-page-elevator-input}
+  width $page-elevator-input-width
   display inline-block
-  vertical-align middle
+  vertical-align top
+  margin-right $ui-label-gap
 
-  {$selector-input}
-    padding 0 10px
+{$selector-page-simple-input}
+  width $page-simple-input-width
+  display inline-block
+  vertical-align top
 
 {$selector-page-total}
-  font-size 14px
-  margin-right $page-total-gap
+  margin-right $page-element-gap
 
 {$selector-page-simple}
   display inline-block
-  vertical-align middle
 
   > {$selector-page-prev}
-    margin-right 10px
+    margin-right $page-element-gap
 
   > {$selector-page-next}
-    margin-left 10px
+    margin-left $page-element-gap
 
 {$selector-page-separator}
+  font-size 90%
   color $brand-muted
-  margin 0 $page-separator-gap
+  margin 0 $ui-label-gap

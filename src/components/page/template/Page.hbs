@@ -73,6 +73,7 @@ class="${prefix}page
       {{> prevPage}}
 
       <Input
+        ref="simpleInput"
         type="input"
         size="{{size}}"
         model="currentPage"
@@ -197,6 +198,7 @@ class="${prefix}page
   {{#if showElevator}}
     <div class="${prefix}page-elevator">
       <Input
+        ref="elevatorInput"
         type="input"
         placeholder="请输入页码"
         model="elevatorPage"

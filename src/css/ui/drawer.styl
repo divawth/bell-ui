@@ -1,135 +1,138 @@
 {$selector-drawer}
   position fixed
-  top 0
-  left 0
   overflow hidden
 
-  &{$selector-drawer}-open
-    {$selector-drawer-mask}
-      opacity 1
+{$selector-drawer-open}
+  > {$selector-drawer-mask}
+    opacity 1
 
-  &{$selector-drawer}-leave
-    {$selector-drawer-mask}
-      opacity 0
+{$selector-drawer-leave}
+  > {$selector-drawer-mask}
+    opacity 0
 
-  &[data-placement="left"]
-    width 100%
-    height 0
+{$selector-drawer-content}
+  position absolute
+  overflow-y auto
+  background-color $brand-bg
+  box-shadow $drawer-content-shadow
+  transition transform .3s
 
-    &{$selector-drawer}-open
-      height 100%
+{$selector-drawer-header}
+  position relative
+  padding $drawer-header-padding-vertical $drawer-padding-horizontal
+  border-bottom 1px solid $brand-border
 
-      {$selector-drawer-content}
-        transform translate(0)
+{$selector-drawer-title}
+  color $brand-important
+  font-size $drawer-title-font-size
 
-    &{$selector-drawer}-leave
-      {$selector-drawer-content}
-        transform translate(-100%)
+{$selector-drawer-body}
+  position relative
+  padding $drawer-body-padding-vertical $drawer-padding-horizontal
+  font-size $ui-font-size
+  line-height $ui-line-height
+  word-wrap break-word
+  overflow auto
+  box-sizing border-box
+  height calc(100% - 51px)
 
-    {$selector-drawer-content}
-      transform translate(-100%)
-      top 0
-      left 0
-      bottom 0
+{$selector-drawer-close}
+  position absolute
+  right $drawer-close-right
+  top $drawer-close-top
 
-  &[data-placement="right"]
-    width 100%
-    height 0
+{$selector-drawer-mask}
+  position absolute
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background-color $drawer-mask-bg-color
+  opacity 0
+  transition opacity .3s
 
-    &{$selector-drawer}-open
-      height 100%
+{$selector-drawer-left}
+  top 0
+  left 0
+  right 0
 
-      {$selector-drawer-content}
-        transform translate(0)
-
-    &{$selector-drawer}-leave
-      {$selector-drawer-content}
-        transform translate(100%)
-
-    {$selector-drawer-content}
-      transform translate(100%)
-      top 0
-      right 0
-      bottom 0
-
-  &[data-placement="top"]
-    width 0
-    height 100%
-
-    &{$selector-drawer}-open
-      width 100%
-
-      {$selector-drawer-content}
-        transform translate(0)
-
-    &{$selector-drawer}-leave
-      {$selector-drawer-content}
-        transform translateY(-100%)
-
-    {$selector-drawer-content}
-      transform translateY(-100%)
-      top 0
-      right 0
-      left 0
-
-  &[data-placement="bottom"]
-    width 0
-    height 100%
-
-    &{$selector-drawer}-open
-      width 100%
-
-      {$selector-drawer-content}
-        transform translate(0)
-
-    &{$selector-drawer}-leave
-      {$selector-drawer-content}
-        transform translateY(100%)
-
-    {$selector-drawer-content}
-      transform translateY(100%)
-      bottom 0
-      right 0
-      left 0
-
-  {$selector-drawer-content}
-    position absolute
-    overflow-y auto
-    background-color $brand-bg
-    box-shadow $drawer-shadow
-    transition transform .3s
-
-    {$selector-drawer-header}
-      position relative
-      padding $drawer-padding
-      color $brand-secondary
-      border-bottom 1px solid $drawer-border-color
-
-      {$selector-drawer-title}
-        font-weight 500
-        color $brand-important
-        font-size $drawer-title-size
-
-    {$selector-drawer}-body
-      padding $drawer-padding
-      font-size $drawer-body-size
-      line-height 1.5
-      word-wrap break-word
-      overflow auto
-      height calc(100% - 55px)
-
-    {$selector-drawer}-close
-      position absolute
-      right 0
-      top 0
-      padding 3px 15px
-
-  {$selector-drawer-mask}
-    position absolute
+  > {$selector-drawer-content}
+    transform translate(-100%)
     left 0
+    top 0
+    bottom 0
+
+  &{$selector-drawer-open}
+    bottom 0
+
+    > {$selector-drawer-content}
+      transform translate(0)
+
+  &{$selector-drawer-leave}
+    > {$selector-drawer-content}
+      transform translate(-100%)
+
+{$selector-drawer-right}
+  top 0
+  left 0
+  right 0
+
+  > {$selector-drawer-content}
+    transform translate(100%)
     right 0
     top 0
     bottom 0
-    background rgba(0,0,0,.37)
-    opacity 0
-    transition opacity .3s
+
+  &{$selector-drawer-open}
+    bottom 0
+
+    > {$selector-drawer-content}
+      transform translate(0)
+
+  &{$selector-drawer-leave}
+    > {$selector-drawer-content}
+      transform translate(100%)
+
+
+
+{$selector-drawer-top}
+  left 0
+  top 0
+  bottom 0
+
+  > {$selector-drawer-content}
+    transform translateY(-100%)
+    top 0
+    left 0
+    right 0
+
+  &{$selector-drawer-open}
+    right 0
+
+    > {$selector-drawer-content}
+      transform translate(0)
+
+  &{$selector-drawer-leave}
+    > {$selector-drawer-content}
+      transform translateY(-100%)
+
+{$selector-drawer-bottom}
+  left 0
+  top 0
+  bottom 0
+
+  > {$selector-drawer-content}
+    transform translateY(100%)
+    bottom 0
+    left 0
+    right 0
+
+  &{$selector-drawer-open}
+    right 0
+
+    > {$selector-drawer-content}
+      transform translate(0)
+
+  &{$selector-drawer-leave}
+    > {$selector-drawer-content}
+      transform translateY(100%)

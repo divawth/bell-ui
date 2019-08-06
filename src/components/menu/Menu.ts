@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Menu.hbs'
 
@@ -12,7 +12,7 @@ import {
 
   RAW_HORIZONTAL,
   RAW_VERTICAL,
-  RAW_INLINE
+  RAW_INLINE,
 } from '../constant'
 
 import {
@@ -21,46 +21,41 @@ import {
 
 export default Yox.define({
 
+  template,
+
   name: '${prefix}menu',
 
   propTypes: {
     mode: {
       type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL, RAW_INLINE]),
-      value: RAW_HORIZONTAL
+      value: RAW_HORIZONTAL,
     },
     theme: {
       type: oneOf(['dark', 'light']),
-      value: 'dark'
+      value: 'dark',
     },
     isCollapsed: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     activeName: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     openNames: {
       type: RAW_ARRAY,
-      value: []
+      value() {
+        return []
+      }
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
-  template,
-
   watchers: {
-    theme(theme: string) {
-      this.fire(
-        'themeChanged',
-        { theme },
-        TRUE
-      )
-    },
     isCollapsed(isCollapsed: boolean) {
       this.fire(
         'isCollapsedChanged',
@@ -71,7 +66,7 @@ export default Yox.define({
   },
 
   events: {
-    menuItemSelected(event: CustomEventInterface, data: Data) {
+    menuItemSelected(event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
           'menuItemSelected',

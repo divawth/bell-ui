@@ -1,139 +1,56 @@
-menu-style(style)
-  ui-set('background-color', style[ 'background-color' ]);
+menu-theme-style(style)
+  ui-set('background-color', style['bg-color'])
 
-  if (style[ 'item' ])
+  {$selector-menu-dropdown}
+    ui-set('background-color', style['bg-color'])
 
+  {$selector-menu-item-disabled}
+    ui-set('color', style['item-disabled-color'])
+
+  if style['item-bg-color']
     > {$selector-menu-item},
-    > {$selector-menu-submenu}
+    > {$selector-menu-submenu} > {$selector-menu-submenu-title}
+      ui-set('background-color', style['item-bg-color'])
 
-      if style[ 'item' ][ 'color' ]
-        ui-set('color', style[ 'item' ][ 'color' ]);
+  if style['inline-bg-color']
+    {$selector-menu-inline}
+      ui-set('background-color', style['inline-bg-color'])
 
-        > a
-          ui-set('color', style[ 'item' ][ 'color' ]);
+  {$selector-menu-item},
+  {$selector-menu-submenu-title}
 
-      if style[ 'item' ][ 'border-bottom' ]
-        &::after
-          content " "
-          display block
-          position absolute
-          bottom 0
-          left 50%
-          width 0
-          transition: width .1s;
-          transform: translateX(-50%);
+    if style['item-color']
+      ui-set('color', style['item-color'])
 
-          ui-set('height', style[ 'item' ][ 'border-bottom' ][ 'height' ]);
-          ui-set('background-color', style[ 'item' ][ 'border-bottom' ][ 'background-color' ]);
 
-      if style[ 'item' ][ 'border-right' ]
-        &{$selector-menu-item},
-        &{$selector-menu-submenu} > {$selector-menu-submenu}-title
-          &::after
-            content " "
-            display block
-            position absolute
-            top 50%
-            right 0
-            height 0
-            transition: height .1s;
-            transform: translateY(-50%);
+    if style['item-hover-color']
+      &:hover
+        ui-set('color', style['item-hover-color'])
 
-            ui-set('width', style[ 'item' ][ 'border-right' ][ 'width' ]);
-            ui-set('background-color', style[ 'item' ][ 'border-right' ][ 'background-color' ]);
+  {$selector-menu-group-title}
+    ui-set('color', style['group-title-color'])
 
-      &{$selector-hover}
+  > {$selector-menu-item-active}
+    ui-set('color', style['item-active-color'])
+    ui-set('background-color', style['item-active-bg-color'])
 
-        if style[ 'item' ][ 'color-hover' ]
-          ui-set('color', style[ 'item' ][ 'color-hover' ]);
+  &{$selector-menu-horizontal}
+    > {$selector-menu-item-active}
+      ui-set('color', style['horizontal-item-active-color'])
+      ui-set('background-color', style['horizontal-item-active-bg-color'])
 
-          > a
-            ui-set('color', style[ 'item' ][ 'color-hover' ]);
+  &{$selector-menu-vertical}
+    > {$selector-menu-item-active}
+      ui-set('color', style['vertical-item-active-color'])
+      ui-set('background-color', style['vertical-item-active-bg-color'])
 
-      &{$selector-menu}-active
-
-        if style[ 'item' ][ 'color-active' ]
-          ui-set('color', style[ 'item' ][ 'color-active' ]);
-
-          > a
-            ui-set('color', style[ 'item' ][ 'color-active' ]);
-
-        if style[ 'item' ][ 'border-bottom' ]
-          &::after
-            width 90%
-
-        if style[ 'item' ][ 'border-right' ]
-          &{$selector-menu-item},
-          &{$selector-menu-submenu} > {$selector-menu-submenu}-title
-            &::after
-              height 80%
-
-  if (style[ 'after' ] == 'horizontal')
-
-    &{$selector-menu}-{style[ 'after' ]}
-      &::after
-        content " "
-        display block
-        width 100%
-        height 1px
-        background #dcdee2
-        position absolute
-        bottom 0
-        left 0
-
-  else if (style[ 'after' ])
-    &{$selector-menu}-{style[ 'after' ]}
-      &::after
-        content " "
-        display block
-        width 1px
-        height 100%
-        background #dcdee2
-        position absolute
-        right 0
-        top 0
-
-  {$selector-menu-group}
-
-    ui-set('background-color', style[ 'background-color' ]);
-
-    if (style[ 'color' ])
-      ui-set('color', style[ 'color' ]);
-
-menu-direction-style(style)
-
-  if (style[ 'height' ])
-    ui-set('height', style[ 'height' ])
-
-  if (style[ 'line-height' ])
-    ui-set('line-height', style[ 'line-height' ])
-
-  if (style[ 'item' ])
-
-    > {$selector-menu-item}
-
-      ui-set('display', style[ 'item' ][ 'display' ])
-      ui-set('vertical-align', style[ 'item' ][ 'vertical-align' ])
-      ui-set('height', style[ 'item' ][ 'height' ])
-      ui-set('line-height', style[ 'item' ][ 'line-height' ])
-
-    > {$selector-menu-submenu}
-
-      ui-set('display', style[ 'item' ][ 'display' ])
-      ui-set('vertical-align', style[ 'item' ][ 'vertical-align' ])
-      ui-set('height', style[ 'item' ][ 'height' ])
-      ui-set('line-height', style[ 'item' ][ 'line-height' ])
-
-  if (style[ 'theme' ])
-    &{$selector-menu}
-      ui-connect(
-        hash: style[ 'theme' ],
-        each: menu-style
-      )
+  {$selector-menu-inline}
+    > {$selector-menu-item-active}
+      ui-set('color', style['inline-item-active-color'])
+      ui-set('background-color', style['inline-item-active-bg-color'])
 
 ui-menu()
-  &{$selector-menu}
-    ui-connect(
-      hash: $layout-menu-direction-hash,
-      each: menu-direction-style
-    )
+  ui-connect(
+    hash: $menu-theme-hash,
+    each: menu-theme-style
+  )

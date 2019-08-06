@@ -1,48 +1,61 @@
-import Yox, { YoxInterface, Data, CustomEventInterface } from 'yox'
+import Yox, { YoxInterface } from 'yox'
 
 import template from './template/Submenu.hbs'
+
+import {
+  NULL,
+  FALSE,
+  TRUE,
+  RAW_STRING,
+} from '../constant'
 
 import {
   findComponentUpward,
   onTransitionEnd,
 } from '../util'
 
-import {
-  NULL,
-  FALSE,
-  TRUE,
-  RAW_STRING
-} from '../constant'
-
 export default Yox.define({
-  propTypes: {
-    name: {
-      type: RAW_STRING
-    },
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    }
-  },
 
   template,
 
-  data() {
+  propTypes: {
+    name: {
+      type: RAW_STRING,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    }
+  },
+
+  data(options) {
+
+    const menu = findComponentUpward(options.parent, '${prefix}menu')
+    const name = this.get('name')
+
+    let isOpen = FALSE
+    let isActive = FALSE
+    if (Yox.array.has(menu.get('openNames'), name)) {
+      isOpen = TRUE
+    }
+    if (menu.get('activeName') === name) {
+      isActive = TRUE
+    }
+
     return {
-      isOpen: FALSE,
-      isActive: FALSE,
+      isOpen,
+      isActive,
+      mode: menu.get('mode'),
       activeName: NULL,
-      mode: NULL,
-      theme: NULL,
       isCollapsed: FALSE,
       isAnimation: FALSE
     }
   },
 
   methods: {
-    click() {
+    handleClick() {
       if (this.get('isAnimation')) {
         return
       }
@@ -125,32 +138,20 @@ export default Yox.define({
   },
 
   events: {
-    themeChanged(_: CustomEventInterface, data: Data) {
-      this.set('theme', data.theme)
-    },
-    isCollapsedChanged(_: CustomEventInterface, data: Data) {
+    isCollapsedChanged(_, data) {
       this.set('isCollapsed', data.isCollapsed)
     },
-    menuItemSelected(event: CustomEventInterface, data: Data) {
+    menuItemSelected(event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
         this.set('isActive', data.name === this.get('activeName'))
       }
       else if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set('activeName', data.name)
         if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
-          this.click()
+          this.handleClick()
         }
       }
     }
-  },
-
-  afterMount () {
-    let element = findComponentUpward(this.$parent, '${prefix}menu')
-    this.set({
-      'mode': element.get('mode'),
-      'theme': element.get('theme'),
-      'isActive': element.get('activeName') === this.get('name'),
-      'isOpen': element.get('openNames').indexOf(this.get('name')) >= 0
-    })
   }
+
 })

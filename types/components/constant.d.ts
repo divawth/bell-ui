@@ -59,3 +59,4 @@ export declare const RAW_ICON_TYPE_ARRAY: string[];
 export declare const RAW_PLACEMENT_ARRAY: string[];
 export declare const WINDOW: Window;
 export declare const DOCUMENT: Document;
+export declare const BODY: HTMLElement;

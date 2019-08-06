@@ -1,10 +1,12 @@
-<li
+<div
 class="${prefix}submenu
-{{#if className}} {{className}}{{/if}}
 {{#if isOpen}} ${prefix}menu-open{{/if}}
-{{#if isActive}} ${prefix}menu-active{{/if}}"
+{{#if isActive}} ${prefix}menu-active{{/if}}
+{{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 
 {{#if isCollapsed}}
   on-mouseenter="set('isOpen', true)"
@@ -12,21 +14,18 @@ class="${prefix}submenu
   lazy-mouseleave="300"
 {{/if}}
 >
-  <div class="${prefix}submenu-title" on-click="click()">
+  <div class="${prefix}submenu-title" on-click="handleClick()">
     <slot name="title" />
-    <Icon
-      name="arrow-down"
-      className="${prefix}submenu-title-icon"
-    />
+    <Icon name="arrow-down" className="${prefix}submenu-title-icon" />
   </div>
 
-  {{#if mode != 'inline'}}
+  {{#if mode !== 'inline'}}
     <div ref="menu" class="${prefix}menu-dropdown">
       <slot name="children" />
     </div>
   {{else}}
-    <Menu ref="menu" mode="{{mode}}" theme="{{theme}}">
+    <Menu ref="menu" mode="{{mode}}" theme="">
       <slot name="children" />
     </Menu>
   {{/if}}
-</li>
+</div>

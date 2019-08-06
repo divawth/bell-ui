@@ -1,5 +1,8 @@
 import { CustomEventInterface } from 'yox';
-declare const _default: import("yox").ComponentOptions<unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    pageList: unknown;
+    count: unknown;
+}, {
     current: unknown;
 }, {
     change: unknown;
@@ -12,7 +15,6 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     prev(): void;
     next(): void;
     changePage(page: number): void;
-    updateCount(): void;
 }> & ThisType<{
     showError(error: string): void;
     elevator(): void;
@@ -22,6 +24,5 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     prev(): void;
     next(): void;
     changePage(page: number): void;
-    updateCount(): void;
 } & import("yox").YoxInterface>;
 export default _default;

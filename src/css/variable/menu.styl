@@ -1,123 +1,83 @@
 
 $selector-menu = $selector-prefix + '-menu'
-$selector-menu-item = $selector-prefix + '-menu-item'
+$selector-menu-horizontal = $selector-menu + '-horizontal'
+$selector-menu-vertical = $selector-menu + '-vertical'
+$selector-menu-inline = $selector-menu + '-inline'
+$selector-menu-collapsed = $selector-menu + '-collapsed'
+
+$selector-menu-active = $selector-menu + '-active'
+$selector-menu-open = $selector-menu + '-open'
+$selector-menu-dropdown = $selector-menu + '-dropdown'
+
 $selector-menu-submenu = $selector-prefix + '-submenu'
-$selector-menu-group = $selector-prefix + '-menu-group'
+$selector-menu-submenu-title = $selector-menu-submenu + '-title'
+$selector-menu-submenu-title-icon = $selector-menu-submenu + '-title-icon'
 
-$layout-menu-default-color = #515a6e
-$layout-menu-default-font-size = 14px
-$layout-menu-submenu-default-padding = 0 20px
-$layout-menu-collapsed-default-width = 80px
+$selector-menu-group = $selector-menu + '-group'
+$selector-menu-group-title = $selector-menu-group + '-title'
 
-$layout-menu-direction-hash = {
-  'horizontal': {
-    height: 64px,
-    line-height: 64px,
-    item: {
-      display: inline-block,
-      vertical-align: bottom,
-      height: inherit,
-      line-height: inherit,
-    },
-    theme: {
-      'light': {
-        background-color: $brand-white,
-        color: $layout-menu-default-color,
-        item: {
-          color: $layout-menu-default-color,
-          border-bottom: {
-            height: 4px,
-            background-color: $brand-primary
-          },
+$selector-menu-item = $selector-menu + '-item'
+$selector-menu-item-active = $selector-menu-item + '-active'
+$selector-menu-item-enabled = $selector-menu-item + '-enabled'
+$selector-menu-item-disabled = $selector-menu-item + '-disabled'
 
-          color-hover: $brand-primary,
+$menu-horizontal-padding = 20px
+$menu-vertical-padding = 20px
+$menu-dropdown-offset = 4px
 
-          color-active: $brand-primary
-        },
-        after: horizontal,
-      },
-      'dark': {
-        background-color: $layout-menu-default-color,
-        color: hsla(0,0%,100%,.7),
-        item: {
-          color: hsla(0,0%,100%,.7),
-          border-bottom: {
-            height: 4px,
-            background-color: $brand-primary
-          },
-          color-hover: $brand-white,
+$menu-dark-fg = #515a6e
+$menu-dark-bg = #363e4f
 
-          color-active: $brand-white
-        }
-      }
-    }
+$menu-light-fg = $brand-white
+$menu-light-bg = #f0faff
+
+$menu-group-title-height = 34px
+$menu-horizontal-item-height = 64px
+$menu-vertical-item-height = 48px
+
+$menu-dropdown-shadow = 0 1px 6px rgba(0,0,0,.2)
+
+$menu-collapsed-width = 80px
+
+$menu-theme-hash = {
+  'light': {
+
+    text-color: $menu-dark-fg,
+    bg-color: $menu-light-fg,
+
+    item-color: $menu-dark-fg,
+    item-hover-color: $brand-primary,
+    item-disabled-color: $brand-disabled,
+
+    group-title-color: $brand-muted,
+
+    horizontal-item-active-color: $brand-primary,
+
+    vertical-item-active-color: $brand-primary,
+    vertical-item-active-bg-color: $menu-light-bg,
+
+    inline-item-active-color: $brand-primary,
+    inline-item-active-bg-color: $menu-light-bg,
   },
-  'vertical': {
-    theme: {
-      'light': {
-        background-color: $brand-white,
-          color: $layout-menu-default-color,
-        item: {
-          color: $layout-menu-default-color,
-          border-right: {
-            width: 4px,
-            background-color: $brand-primary,
-          },
+  'dark': {
+    text-color: hsla(0,0%,100%,.7),
+    bg-color: $menu-dark-fg,
 
-          color-hover: $brand-primary,
+    item-color: hsla(0,0%,100%,.7),
+    item-bg-color: $menu-dark-fg,
+    item-hover-color: $menu-light-fg,
+    item-disabled-color: $brand-disabled,
 
-          color-active: $brand-primary,
-        },
-        after: vertical,
-      },
-      'dark': {
-        background-color: $layout-menu-default-color,
-        color: hsla(0,0%,100%,.7),
-        item: {
-          color: hsla(0,0%,100%,.7),
-          border-right: {
-            width: 4px,
-            background-color: $brand-primary,
-          },
-          color-hover: $brand-white,
+    group-title-color: rgba(255, 255, 255, 0.36),
 
-          color-active: $brand-white,
-        }
-      },
-    }
-  },
-  'inline': {
-    theme: {
-      'light': {
-        background-color: $brand-white,
-        color: $layout-menu-default-color,
-        item: {
-          color: $layout-menu-default-color,
-          border-right: {
-            width: 4px,
-            background-color: $brand-primary,
-          },
+    horizontal-item-active-color: $menu-light-fg,
 
-          color-hover: $brand-primary,
+    vertical-item-active-color: $brand-primary,
+    vertical-item-active-bg-color: $menu-dark-bg,
 
-          color-active: $brand-primary
-        },
-        after: inline,
-      },
-      'dark': {
-        background-color: $layout-menu-default-color,
-        color: hsla(0,0%,100%,.7),
-        item: {
-          color: hsla(0,0%,100%,.7),
-          border-right: {
-            width: 4px,
-            background-color: $brand-primary,
-          },
-
-          color-hover: $brand-white,
-          color-active: $brand-white
-        }
-      },
-    }
+    inline-bg-color: $menu-dark-bg,
+    inline-item-active-color: $menu-light-fg,
+    inline-item-active-bg-color: $brand-primary,
   }
+
 }

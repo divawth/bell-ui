@@ -1,49 +1,36 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/MenuGroup.hbs'
+
+import {
+  RAW_STRING
+} from '../constant'
 
 import {
   findComponentUpward,
 } from '../util'
 
-import {
-  NULL,
-  RAW_STRING
-} from '../constant'
-
 export default Yox.define({
-  propTypes: {
-    title: {
-      type: RAW_STRING
-    },
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    }
-  },
 
   template,
 
-  data() {
+  propTypes: {
+    title: {
+      type: RAW_STRING,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    }
+  },
+
+  data(options) {
+    const menu = findComponentUpward(options.parent, '${prefix}menu')
     return {
-      mode: NULL,
-      theme: NULL
+      mode: menu.get('mode'),
     }
   },
 
-  events: {
-    themeChanged(_: CustomEventInterface, data: Data) {
-      this.set('theme', data.theme)
-    }
-  },
-
-  afterMount () {
-    let element = findComponentUpward(this.$parent, '${prefix}menu')
-    this.set({
-      'mode': element.get('mode'),
-      'theme': element.get('theme'),
-    })
-  }
 })
