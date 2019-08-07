@@ -45,62 +45,56 @@ export default {
       </div>
       <br><br>
       <div>
-        <Tooltip placement="right-start" content="这里是提示文字">
+        <Tooltip placement="right-start">
           <Button>右上</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
-        <Tooltip placement="right" content="这里是提示文字">
+        <Tooltip placement="right">
           <Button>右</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
-        <Tooltip placement="right-end" content="这里是提示文字">
+        <Tooltip placement="right-end">
           <Button>右下</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
       </div>
       <br><br>
       <div>
-        <Tooltip placement="left-start" content="这里是提示文字">
+        <Tooltip placement="left-start">
           <Button>左上</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
-        <Tooltip placement="left" content="这里是提示文字">
+        <Tooltip placement="left">
           <Button>左</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
-        <Tooltip placement="left-end" content="这里是提示文字">
+        <Tooltip placement="left-end">
           <Button>左下</Button>
-          <TooltipItem>
-            <div>
-              <p>显示多行信息</p>
-              <p><i>可以自定义样式</i></p>
-            </div>
-          </TooltipItem>
+          <div slot="content">
+            这里是提示文字
+            <p>显示多行信息</p>
+            <p><i>可以自定义样式</i></p>
+          </div>
         </Tooltip>
       </div>
     </div>
@@ -116,10 +110,11 @@ export default {
     <div style="margin: 60px;">
       <Tooltip placement="bottom">
         <Button>多行</Button>
-        <TooltipItem>
+        <div slot="content">
+          这里是提示文字
           <p>显示多行信息</p>
           <p><i>可以自定义样式</i></p>
-        </TooltipItem>
+        </div>
       </Tooltip>
     </div>
   `
@@ -184,14 +179,13 @@ export default {
 export default {
   template: `
     <div>
-      <Tooltip content="Tooltip 文字提示" mode="click" max-height="60">
+      <Tooltip mode="click" max-height="60">
         <Button>设置最大宽高</Button>
-        <TooltipItem>
-          <div>
-            <p>显示多行信息</p>
-            <p><i>可以自定义样式</i></p>
-          </div>
-        </TooltipItem>
+        <div slot="content">
+          这里是提示文字
+          <p>显示多行信息</p>
+          <p><i>可以自定义样式</i></p>
+        </div>
       </Tooltip>
     </div>
   `

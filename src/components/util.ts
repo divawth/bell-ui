@@ -66,6 +66,14 @@ export function isDef(value: any) {
   return value !== UNDEFINED
 }
 
+export function toNumber(value: any, defaultValue?: any) {
+  return Yox.is.numeric(value)
+    ? +value
+    : defaultValue !== UNDEFINED
+      ? defaultValue as number
+      : 0
+}
+
 export function findComponentUpward(parent, componentName: string | string[]) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ]

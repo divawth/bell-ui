@@ -4,6 +4,7 @@ export declare function onTransitionEnd(el: HTMLElement, callback: () => void): 
 export declare const requestAnimationFrame: any;
 export declare function contains(element: HTMLElement, target: HTMLElement): boolean;
 export declare function isDef(value: any): boolean;
+export declare function toNumber(value: any, defaultValue?: any): number;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
 export declare function oneOf(values: string[]): (key: string, value: string) => boolean;
 export declare function isDate(): (key: string, value: Date) => boolean;

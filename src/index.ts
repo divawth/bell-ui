@@ -43,7 +43,6 @@ import Badge from './components/badge/Badge'
 import DatePicker from './components/datepicker/DatePicker'
 
 import Tooltip from './components/tooltip/Tooltip'
-import TooltipItem from './components/tooltip/TooltipItem'
 
 import Collapse from './components/collapse/Collapse'
 import Panel from './components/collapse/Panel'
@@ -121,7 +120,6 @@ const components = {
   Upload,
 
   Tooltip,
-  TooltipItem,
 
   Alert,
   Spinner,
