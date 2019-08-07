@@ -21,7 +21,7 @@ export default {
           <Icon name="paper" />
           内容管理
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem name="2" disabled>
           <Icon name="people" />
           用户管理
         </MenuItem>
@@ -53,11 +53,6 @@ export default {
         <Radio label="light" value="light"></Radio>
         <Radio label="dark" value="dark" checked></Radio>
       </RadioGroup>
-      <style>
-        .bell-icon {
-          margin-right: 6px;
-        }
-      </style>
     </div>
   `,
 }
@@ -81,7 +76,7 @@ export default {
           <Icon name="paper" />
           内容管理
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem name="2" disabled>
           <Icon name="people" />
           用户管理
         </MenuItem>
@@ -111,11 +106,6 @@ export default {
         <Radio label="light" value="light"></Radio>
         <Radio label="dark" value="dark" checked></Radio>
       </RadioGroup>
-      <style>
-        .bell-icon {
-          margin-right: 6px;
-        }
-      </style>
     </div>
   `,
 }
@@ -141,7 +131,7 @@ export default {
             内容管理
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
-          <MenuItem name="1-2">评论管理</MenuItem>
+          <MenuItem name="1-2" disabled>评论管理</MenuItem>
           <MenuItem name="1-3">举报管理</MenuItem>
         </Submenu>
         <Submenu name="2">
@@ -175,11 +165,6 @@ export default {
         <Radio label="light" value="light"></Radio>
         <Radio label="dark" value="dark" checked></Radio>
       </RadioGroup>
-      <style>
-        .bell-icon {
-          margin-right: 6px;
-        }
-      </style>
     </div>
   `,
 }
@@ -193,28 +178,28 @@ export default {
   height: 400,
   template: `
     <div class="bell-template" style="width: 200px;">
-      <Button type="primary" on-click="toggle('isCollapsed')">
-        {{isCollapsed ? '展开' : '收起'}}
+      <Button type="primary" on-click="toggle('collapsed')">
+        {{collapsed ? '展开' : '收起'}}
       </Button>
       <br><br>
-      <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
+      <Menu theme="dark" mode="inline" collapsed="{{collapsed}}">
         <MenuItem name="4">
-          {{#if !isCollapsed}}
+          {{#if !collapsed}}
             <Icon name="paper" />
             内容管理
           {{else}}
             <Tooltip placement="right" content="内容管理">
-              <Icon name="paper" size="32" />
+              <Icon name="paper" size="24" />
             </Tooltip>
           {{/if}}
         </MenuItem>
         <Submenu name="1">
           <template slot="title">
-            {{#if !isCollapsed}}
+            {{#if !collapsed}}
               <Icon name="paper" size="14" />
               内容管理
             {{else}}
-              <Icon name="paper" size="32" />
+              <Icon name="paper" size="24" />
             {{/if}}
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
@@ -223,11 +208,11 @@ export default {
         </Submenu>
         <Submenu name="2">
           <template slot="title">
-            {{#if !isCollapsed}}
+            {{#if !collapsed}}
               <Icon name="people" size="14" />
               用户管理
             {{else}}
-              <Icon name="people" size="32" />
+              <Icon name="people" size="24" />
             {{/if}}
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
@@ -242,11 +227,11 @@ export default {
         </Submenu>
         <Submenu name="3">
           <template slot="title">
-            {{#if !isCollapsed}}
+            {{#if !collapsed}}
               <Icon name="stats" size="14" />
               统计分析
             {{else}}
-              <Icon name="stats" size="32" />
+              <Icon name="stats" size="24" />
             {{/if}}
           </template>
           <MenuGroup title="使用">
@@ -260,16 +245,11 @@ export default {
           </MenuGroup>
         </Submenu>
       </Menu>
-      <style>
-        .bell-icon {
-          margin-right: 6px;
-        }
-      </style>
     </div>
   `,
   data: function () {
     return {
-      isCollapsed: false
+      collapsed: false
     }
   }
 }
@@ -285,4 +265,4 @@ mode | 菜单类型 | string | horizontal, vertical, inline | horizontal
 theme | 主题 | string | light、dark | dark
 activeName | 默认选中菜单 | string | - | -
 openNames | 默认展开的 submenu | array | - | []
-isCollapsed | 在 mode 状态下, 收起菜单 | boolean | - | false
+collapsed | 在 mode 状态下, 收起菜单 | boolean | - | false

@@ -83,35 +83,35 @@ export default {
   height: 680,
   template: `
   <div>
-    <Alert type="primary" showIcon>An info prompt</Alert>
-    <Alert type="success" showIcon>A success prompt</Alert>
-    <Alert type="warning" showIcon>A warning prompt</Alert>
-    <Alert type="error" showIcon>An error prompt</Alert>
-    <Alert type="primary" showIcon>
+    <Alert type="primary" icon>An info prompt</Alert>
+    <Alert type="success" icon>A success prompt</Alert>
+    <Alert type="warning" icon>A warning prompt</Alert>
+    <Alert type="error" icon>An error prompt</Alert>
+    <Alert type="primary" icon>
       An info prompt
       <template slot="content">
         Content of prompt. Content of prompt. Content of prompt. Content of prompt.
       </template>
     </Alert>
-    <Alert type="success" showIcon>
+    <Alert type="success" icon>
       A success prompt
       <template slot="content">
         Content of prompt. Content of prompt. Content of prompt. Content of prompt.
       </template>
     </Alert>
-    <Alert type="warning" showIcon>
+    <Alert type="warning" icon>
       A warning prompt
       <template slot="content">
         Content of prompt. Content of prompt. Content of prompt.
       </template>
     </Alert>
-    <Alert type="error" showIcon>
+    <Alert type="error" icon>
       An error prompt
       <template slot="content">
         Custom error contentription copywriting.
       </template>
     </Alert>
-    <Alert showIcon closable>
+    <Alert icon closable>
       Custom icon
       <template slot="content">
         Custom icon copywriting. Custom icon copywriting. Custom icon copywriting.
@@ -130,10 +130,10 @@ export default {
   height: 300,
   template: `
   <div>
-    <Alert showIcon closable>An info prompt</Alert>
-    <Alert type="success" showIcon closable>A success prompt</Alert>
-    <Alert type="warning" showIcon closable>A warning prompt</Alert>
-    <Alert type="error" showIcon closable>An error prompt</Alert>
+    <Alert icon closable>An info prompt</Alert>
+    <Alert type="success" icon closable>A success prompt</Alert>
+    <Alert type="warning" icon closable>A warning prompt</Alert>
+    <Alert type="error" icon closable>An error prompt</Alert>
   </div>
   `
 }
@@ -178,19 +178,19 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 主题 | string | primary, info, warning, success, error | primary
-closable | 是否可以关闭 | boolean | - | false
+closable | 是否显示关闭按钮 | boolean | - | false
 center | 文字是否居中 | boolean | - | false
-showIcon | 是否显示图标 | boolean | - | false
+icon | 是否显示类型图标 | boolean | - | false
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-close | 关闭 alert 时触发的事件 | -
+close | 点击关闭按钮后触发 | -
 
 > Slots
 
 名称 | 说明
 ---|---
-icon | 设置提示 icon
-close | 设置关闭模板
+icon | 自定义状态图标
+close | 自定义关闭按钮

@@ -1,43 +1,39 @@
-$selector-notice = $selector-prefix + '-notice'
 $selector-notice-wrapper = '#bell-notice-wrapper'
+
+$selector-notice = $selector-prefix + '-notice'
+$selector-notice-title = $selector-notice + '-title'
+$selector-notice-content = $selector-notice + '-content'
+$selector-notice-close = $selector-notice + '-close'
+$selector-notice-visible = $selector-notice + '-visible'
 
 $notice-wrapper-top = 15px
 
 $notice-padding = 10px 15px
-$notice-border-radius = 4px
-$notice-box-shadow = 0 1px 6px rgba(0,0,0,.2)
-$notice-margin-top = 15px
+$notice-shadow = 0 1px 6px rgba(0,0,0,.2)
+$notice-gap = 15px
+$notice-type-width = 4px
 
-$notice-title-size = 14px
-$notice-title-color = rgba(0,0,0, 0.87)
-$notice-title-line-height = 24px
-$notice-title-margin = 10px
+$notice-title-content-gap = 5px
 
-$notice-desc-font-size = 12px
-$notice-desc-color = rgba(0,0,0, 0.54)
-$notice-desc-line-height = 20px
+$notice-close-font-size = 22px
+$notice-close-top = 10px
+$notice-close-right = 8px
 
-$notice-close-size = 22px
-$notice-close-padding = 8px 15px
-$notice-close-color = #999
 
 $notice-brand-hash = {
-  '': {
-    bg-color: $brand-primary
+  'primary': {
+    color: $brand-primary
   },
   'success': {
-    bg-color: $brand-success
+    color: $brand-success
   },
   'error': {
-    bg-color: $brand-error
+    color: $brand-error
   },
   'info': {
-    bg-color: $brand-info
+    color: $brand-info
   },
   'warning': {
-    bg-color: $brand-warning
-  },
-  'danger': {
-    bg-color: $brand-danger
+    color: $brand-warning
   }
 }

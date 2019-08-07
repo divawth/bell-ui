@@ -79,10 +79,10 @@ import Dialog from './components/dialog/Dialog'
 import SmallTable from './components/table/SmallTable'
 import Table from './components/table/Table'
 
-import Message from './components/message/Message'
-import Notice from './components/notice/Notice'
+import Message from './components/message/base'
+import Notice from './components/notice/base'
 import Msgbox from './components/msgbox/Msgbox'
-import LoadingBar from  './components/loadingBar/LoadingBar'
+import LoadingBar from  './components/loadingBar/base'
 import Anchor from  './components/anchor/Anchor'
 import AnchorLink from  './components/anchor/AnchorLink'
 

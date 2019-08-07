@@ -116,7 +116,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-layout-sider bell-col-6"+(a("className",$2)?(" "+y(a("className",$2))):"")+(a("isCollapsed",$2)?" bell-layout-sider-collapsed":"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-layout-sider-children")},function(){s("$slot_children")}),(a("isCollapsed",$2)!=$1)?(q("div",function(){g("className","bell-layout-sider-trigger"),l("click","event.click",$0,"toggle('isCollapsed')","toggle",function(z){return ["isCollapsed"]})},function(){s("$slot_trigger",function(){r("Icon",function(){f("name","arrow-back"),f("className","bell-layout-sider-trigger-icon")})})})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-layout-sider bell-col-6"+(a("className",$2)?(" "+y(a("className",$2))):"")+(a("collapsed",$2)?" bell-layout-sider-collapsed":"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-layout-sider-children")},function(){s("$slot_children")}),(a("collapsed",$2)!=$1)?(q("div",function(){g("className","bell-layout-sider-trigger"),l("click","event.click",$0,"toggle('collapsed')","toggle",function(z){return ["collapsed"]})},function(){s("$slot_trigger",function(){r("Icon",function(){f("name","arrow-back"),f("className","bell-layout-sider-trigger-icon")})})})):p()})};
 
 /***/ }),
 /* 4 */
@@ -134,13 +134,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu"+(a("mode",$2)?(" bell-menu-"+y(a("mode",$2))):"")+(a("theme",$2)?(" bell-menu-"+y(a("theme",$2))):"")+(a("isCollapsed",$2)?" bell-menu-collapsed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu"+(a("mode",$2)?(" bell-menu-"+y(a("mode",$2))):"")+(a("theme",$2)?(" bell-menu-"+y(a("theme",$2))):"")+(a("collapsed",$2)?" bell-menu-collapsed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu-item"+(a("isActive",$2)?" bell-menu-item-active":"")+(a("disabled",$2)?" bell-menu-item-disabled":" bell-menu-item-enabled")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),m("click","event.click",$0,"click.menuItem","click.menuItem")},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu-item"+(a("isActive",$2)?" bell-menu-item-active":"")+(a("disabled",$2)?" bell-menu-item-disabled":" bell-menu-item-enabled")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.menuItem","click.menuItem")},function(){s("$slot_children")})};
 
 /***/ }),
 /* 8 */
@@ -152,7 +152,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-submenu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),a("isCollapsed",$2)&&(l("mouseenter","event.mouseenter",$0,"set('isOpen', true)","set",function(z){return ["isOpen",$2]}),l("mouseleave","event.mouseleave",$0,"set('isOpen', false)","set",function(z){return ["isOpen",$3]}),h("mouseleave",300))},function(){q("div",function(){g("className","bell-submenu-title"),l("click","event.click",$0,"handleClick()","handleClick")},function(){s("$slot_title"),r("Icon",function(){f("name","arrow-down"),f("className","bell-submenu-title-icon")})}),(a("mode",$2)!=="inline")?(q("div",function(){g("className","bell-menu-dropdown")},function(){s("$slot_children")},$0,$0,$0,$0,$0,$0,"menu")):(r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("theme","")},{"$slot_children":function(){s("$slot_children")}},"menu"))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-submenu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),a("collapsed",$2)&&(l("mouseenter","event.mouseenter",$0,"set('isOpen', true)","set",function(z){return ["isOpen",$2]}),l("mouseleave","event.mouseleave",$0,"set('isOpen', false)","set",function(z){return ["isOpen",$3]}),h("mouseleave",300))},function(){q("div",function(){g("className","bell-submenu-title"),l("click","event.click",$0,"handleClick()","handleClick")},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down"),f("className","bell-submenu-title-icon")})):p()}),(a("mode",$2)!=="inline")?(q("div",function(){g("className","bell-menu-dropdown")},function(){s("$slot_children")},$0,$0,$0,$0,$0,$0,"menu")):(r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("theme","")},{"$slot_children":function(){s("$slot_children")}},"menu"))})};
 
 /***/ }),
 /* 10 */
@@ -170,13 +170,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("i",function(){g("className","bell-icon"+(a("name",$2)?(" bell-icon-"+y(a("type",$2))+"-"+y(a("name",$2))):"")+(a("spin",$2)?" bell-icon-spin":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText","font-size: "+y(a("size",$2))+"px;"+(a("color",$2)?(" color: "+y(a("color",$2))+";"):"")+(a("style",$2)?(" "+y(a("style",$2))):""))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("i",function(){g("className","bell-icon"+(a("name",$2)?(" bell-icon-"+y(a("type",$2))+"-"+y(a("name",$2))):"")+(a("spin",$2)?" bell-icon-spin":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(((a("size",$2)>0)||a("color",$2))||a("style",$2))&&g("style.cssText",((a("size",$2)>0)?("font-size: "+y(a("size",$2))+"px;"):"")+(a("color",$2)?("color: "+y(a("color",$2))+";"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-drawer bell-drawer-"+y(a("placement",$2))+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-drawer-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})):""})):p(),q("div",function(){g("className","bell-drawer-content"),g("style.cssText",j("style.cssText",a("contentStyle",$2,$0,$2,$2),1))},function(){(a("title",$2)||(d(a("hasSlot",$2),["title"])))?(q("div",function(){g("className","bell-drawer-header")},function(){q("div",function(){g("className","bell-drawer-title")},function(){s("$slot_title",function(){e(y(a("title",$2)))})})})):p(),q("div",function(){g("className","bell-drawer-body")},function(){s("$slot_children")}),a("closable",$2)?(r("Button",function(){f("className","bell-drawer-close"),f("size","small"),f("border","none"),l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})},{"$slot_icon":function(){r("Icon",function(){f("size","28"),f("name","close")})}})):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-drawer bell-drawer-"+y(a("placement",$2))+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-drawer-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})):""})):p(),q("div",function(){g("className","bell-drawer-wrapper"),g("style.cssText",j("style.cssText",a("wrapperStyle",$2,$0,$2,$2),1))},function(){(a("title",$2)||(d(a("hasSlot",$2),["title"])))?(q("div",function(){g("className","bell-drawer-header")},function(){s("$slot_title",function(){e(y(a("title",$2)))})})):p(),q("div",function(){g("className","bell-drawer-body")},function(){s("$slot_children")}),a("closable",$2)?(q("div",function(){g("className","bell-drawer-close"),l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","close"),f("size","0")})})):p()})})};
 
 /***/ }),
 /* 14 */
@@ -278,7 +278,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-alert"+(a("type",$2)?(" bell-alert-"+y(a("type",$2))):"")+((d(a("hasSlot",$2),["content"]))?" bell-alert-with-content":"")+((a("showIcon",$2)||(d(a("hasSlot",$2),["icon"])))?" bell-alert-with-icon":"")+(a("center",$2)?" bell-alert-center":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("showIcon",$2)||(d(a("hasSlot",$2),["icon"])))?(q("span",function(){g("className","bell-alert-icon")},function(){s("$slot_icon",function(){r("Icon",function(){(a("type",$2)===a("RAW_TYPE_PRIMARY",$2))?f("name","information-circle"):((a("type",$2)===a("RAW_TYPE_SUCCESS",$2))?f("name","checkmark-circle"):((a("type",$2)===a("RAW_TYPE_WARNING",$2))?f("name","alert"):((a("type",$2)===a("RAW_TYPE_ERROR",$2))?f("name","close-circle"):((a("type",$2)===a("RAW_TYPE_INFO",$2))?f("name","information-circle"):""))))})})})):p(),q("div",function(){g("className","bell-alert-wrapper")},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-alert-title")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-alert-content")},function(){s("$slot_content")})):p()}),(a("closable",$2)||(d(a("hasSlot",$2),["close"])))?(q("span",function(){g("className","bell-alert-close"),l("click","event.click",$0,"close()","close")},function(){s("$slot_close",function(){r("Icon",function(){f("name","close"),f("size","24")})})},$0,$0,$0,$0,$0,$0,"close")):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-alert"+(a("type",$2)?(" bell-alert-"+y(a("type",$2))):"")+((a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?" bell-alert-with-icon":"")+((d(a("hasSlot",$2),["content"]))?" bell-alert-with-content":"")+((a("closable",$2)||(d(a("hasSlot",$2),["close"])))?" bell-alert-with-close":"")+(a("center",$2)?" bell-alert-center":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?(q("span",function(){g("className","bell-alert-icon")},function(){s("$slot_icon",function(){r("Icon",function(){f("name",(a("type",$2)===a("RAW_TYPE_PRIMARY",$2))?"information-circle":((a("type",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkmark-circle":((a("type",$2)===a("RAW_TYPE_WARNING",$2))?"alert":((a("type",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle":"information-circle")))),f("size","0"),f("className","bell-alert-type-icon")})})})):p(),q("div",function(){g("className","bell-alert-wrapper")},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-alert-title")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-alert-content")},function(){s("$slot_content")})):p()}),(a("closable",$2)||(d(a("hasSlot",$2),["close"])))?(q("div",function(){g("className","bell-alert-close"),l("click","event.click",$0,"close()","close")},function(){s("$slot_close",function(){r("Icon",function(){f("name","close"),f("size","0"),f("className","bell-alert-close-icon")})})},$0,$0,$0,$0,$0,$0,"close")):p()})};
 
 /***/ }),
 /* 31 */
@@ -398,7 +398,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list"+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("simple",$2)?" bell-list-simple":" bell-list-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-header")},function(){s("$slot_header")})):p(),a("loading",$2)?(r("Spinner",function(){f("size","large"),f("fix",$2)})):p(),s("$slot_children",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){q("p",function(){g("className","bell-list-empty-desc")},$0,"暂无数据",$2)})})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list"+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("simple",$2)?" bell-list-simple":" bell-list-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-header")},function(){s("$slot_header")})):p(),a("loading",$2)?(r("Spinner",function(){f("size","large"),f("fixed",$2)})):p(),s("$slot_children",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){q("p",function(){g("className","bell-list-empty-desc")},$0,"暂无数据",$2)})})})})};
 
 /***/ }),
 /* 51 */
@@ -506,7 +506,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 68 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-dialog-mask"),l("click","event.click",$0,"close()","close")}),q("div",function(){g("className","bell-dialog-content")},function(){q("div",function(){g("className","bell-dialog-title")},function(){s("$slot_title",function(){e(y(a("title",$2)))}),a("closable",$2)?(r("Button",function(){f("className","bell-dialog-close"),f("size","small"),f("border","none"),l("click","event.click",$0,"close()","close")},{"$slot_icon":function(){r("Icon",function(){f("size","28"),f("name","close")})}})):p()}),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-dialog-body")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["actions"]))?(q("div",function(){g("className","bell-dialog-actions")},function(){s("$slot_actions")})):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-dialog-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""}),q("div",function(){g("className","bell-dialog-wrapper")},function(){q("div",function(){g("className","bell-dialog-title")},function(){a("title",$2)?(s("$slot_title",function(){e(y(a("title",$2)))})):p(),a("closable",$2)?(q("div",function(){g("className","bell-dialog-close"),l("click","event.click",$0,"close()","close")},function(){r("Icon",function(){f("size","0"),f("name","close"),f("className","bell-dialog-close-icon")})})):p()}),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-dialog-content")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["actions"]))?(q("div",function(){g("className","bell-dialog-actions")},function(){s("$slot_actions")})):p()})})};
 
 /***/ }),
 /* 69 */
@@ -524,13 +524,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-message bell-message-"+y(a("type",$2))+(a("isShow",$2)?" bell-show":"")),g("style.cssText","margin-left: -"+y(a("marginLeft",$2)/2)+"px;"+(a("top",$2)?("top: "+y(a("top",$2))+"px;"):""))},function(){r("Alert",function(){f("type",j("type",a("type",$2,$0,$2,$2))),f("center",j("center",a("center",$2,$0,$2,$2))),f("showIcon",j("showIcon",a("showIcon",$2,$0,$2,$2))),f("closeText",j("closeText",a("closeText",$2,$0,$2,$2))),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("close",j("close",a("close",$2,$0,$2,$2)))},{"$slot_children":function(){e(y(a("content",$2)))}})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Alert",function(){f("center",j("center",a("center",$2,$0,$2,$2))),f("type",j("type",a("type",$2,$0,$2,$2))),f("icon",j("icon",a("icon",$2,$0,$2,$2))),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("onClose",j("onClose",a("closeAlert",$2,$0,$2,$2))),f("className","bell-message")},{"$slot_children":function(){e(a("content",$2))}})};
 
 /***/ }),
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-notice bell-notice-"+y(a("type",$2))+(a("visible",$2)?" bell-show":"")),g("style.cssText","width: "+y(a("width",$2))+"px;"+(a("rightSize",$2)?("right: "+y(a("rightSize",$2))+"px;"):""))},function(){q("div",function(){g("className","bell-notice-title")},$0,y(a("title",$2))),q("div",function(){g("className","bell-notice-desc")},$0,y(a("content",$2))),(a("duration",$2)==0)?(r("Icon",function(){f("name","close"),f("size",24),f("className","bell-notice-close"),l("click","event.click","native","close()","close")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-notice"+(a("type",$2)?(" bell-notice-"+y(a("type",$2))):"")),g("style.cssText","width: "+y(a("width",$2))+"px;right: "+y(a("right",$2))+"px;")},function(){a("title",$2)?(q("div",function(){g("className","bell-notice-title")},$0,y(a("title",$2)))):p(),a("content",$2)?(q("div",function(){g("className","bell-notice-content")},$0,y(a("content",$2)))):p(),(a("duration",$2)==0)?(r("Icon",function(){f("name","close"),f("size","0"),f("className","bell-notice-close"),l("click","event.click","native","hide()","hide")})):p()})};
 
 /***/ }),
 /* 73 */
@@ -548,7 +548,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 75 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-loadingbar"+(a("type",$2)?(" bell-loadingbar-"+y(a("type",$2))):""))},function(){q("div",function(){g("className","bell-loadingbar-inner")},function(){q("div",function(){g("className","bell-loadingbar-bg"),g("style.cssText","width: "+y(a("percent",$2))+"%;\n        height: "+y(a("height",$2))+"px;"+(a("color",$2)?(" color: "+y(a("color",$2))+";"):""))})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-loadingbar"+(a("type",$2)?(" bell-loadingbar-"+y(a("type",$2))):""))},function(){q("div",function(){g("className","bell-loadingbar-bg"),g("style.cssText","width: "+y(a("percent",$2))+"%;height: "+y(a("height",$2))+"px;"+(a("color",$2)?("color: "+y(a("color",$2))+";"):""))})})};
 
 /***/ }),
 /* 76 */
@@ -763,7 +763,7 @@ var Sider_default = /*#__PURE__*/__webpack_require__.n(Sider);
 
 /* harmony default export */ var layout_Sider = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     propTypes: {
-        isCollapsed: {
+        collapsed: {
             type: RAW_BOOLEAN
         },
         className: {
@@ -773,7 +773,7 @@ var Sider_default = /*#__PURE__*/__webpack_require__.n(Sider);
             type: RAW_STRING
         }
     },
-    model: 'isCollapsed',
+    model: 'collapsed',
     template: Sider_default.a,
     afterMount: function () {
         this.fire('hasSider.sider');
@@ -994,7 +994,7 @@ function debounce(fn, time, immediate) {
             type: oneOf(['dark', 'light']),
             value: 'dark',
         },
-        isCollapsed: {
+        collapsed: {
             type: RAW_BOOLEAN,
             value: FALSE,
         },
@@ -1015,8 +1015,8 @@ function debounce(fn, time, immediate) {
         }
     },
     watchers: {
-        isCollapsed: function (isCollapsed) {
-            this.fire('isCollapsedChanged', { isCollapsed: isCollapsed }, TRUE);
+        collapsed: function (collapsed) {
+            this.fire('collapsedChanged', { collapsed: collapsed }, TRUE);
         }
     },
     events: {
@@ -1061,7 +1061,7 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
         return {
             mode: menu.get('mode'),
             isActive: menu.get('activeName') === this.get('name'),
-            isCollapsed: FALSE
+            collapsed: FALSE
         };
     },
     events: {
@@ -1070,8 +1070,8 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
                 this.set('isActive', data.name === this.get('name'));
             }
         },
-        isCollapsedChanged: function (_, data) {
-            this.set('isCollapsed', data.isCollapsed);
+        collapsedChanged: function (_, data) {
+            this.set('collapsed', data.collapsed);
         },
         'click.menuItem': function () {
             var name = this.get('name');
@@ -1148,7 +1148,7 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
             isActive: isActive,
             mode: menu.get('mode'),
             activeName: NULL,
-            isCollapsed: FALSE,
+            collapsed: FALSE,
             isAnimation: FALSE
         };
     },
@@ -1221,8 +1221,8 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
         }
     },
     events: {
-        isCollapsedChanged: function (_, data) {
-            this.set('isCollapsed', data.isCollapsed);
+        collapsedChanged: function (_, data) {
+            this.set('collapsed', data.collapsed);
         },
         menuItemSelected: function (event, data) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_DOWNWARD) {
@@ -1230,12 +1230,12 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
             }
             else if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
                 this.set('activeName', data.name);
-                if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
+                if (this.get('mode') !== 'inline' || this.get('collapsed')) {
                     this.handleClick();
                 }
             }
         }
-    }
+    },
 }));
 
 // EXTERNAL MODULE: ./src/components/grid/template/Row.hbs
@@ -1545,7 +1545,7 @@ var CLASS_LEAVE = 'bell-drawer-leave';
         }
     },
     computed: {
-        contentStyle: function () {
+        wrapperStyle: function () {
             var style = '';
             var placement = this.get('placement');
             if (placement === 'left'
@@ -3682,6 +3682,7 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
 
 
 /* harmony default export */ var alert_Alert = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Alert_default.a,
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -3689,14 +3690,17 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
         },
         closable: {
             type: RAW_BOOLEAN,
+            value: FALSE,
         },
-        showIcon: {
+        icon: {
             type: RAW_BOOLEAN,
+            value: FALSE,
         },
         center: {
             type: RAW_BOOLEAN,
+            value: FALSE,
         },
-        close: {
+        onClose: {
             type: RAW_FUNCTION,
         },
         className: {
@@ -3706,7 +3710,6 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
             type: RAW_STRING,
         }
     },
-    template: Alert_default.a,
     data: function () {
         return {
             RAW_TYPE_PRIMARY: RAW_TYPE_PRIMARY,
@@ -3720,17 +3723,19 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
         close: function () {
             var me = this;
             // 外部自定义关闭逻辑
-            var close = me.get('close');
-            if (close) {
-                close();
+            var onClose = me.get('onClose');
+            if (onClose) {
+                onClose();
                 return;
             }
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, 'bell-hide');
+            me.fire('close.alert');
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, 'bell-alert-hidden');
             onTransitionEnd(me.$el, function () {
-                if (me.$el) {
-                    me.$el.remove();
-                    me.fire('close.alert');
+                var element = me.$el;
+                if (!element) {
+                    return;
                 }
+                me.destroy();
             });
         }
     }
@@ -7058,6 +7063,8 @@ var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 var Dialog_CLASS_OPEN = 'bell-dialog-open';
 var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
 /* harmony default export */ var dialog_Dialog = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Dialog_default.a,
+    model: 'open',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -7065,10 +7072,15 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
         },
         open: {
             type: RAW_BOOLEAN,
+            value: FALSE,
         },
         closable: {
             type: RAW_BOOLEAN,
             value: TRUE,
+        },
+        maskClosable: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         className: {
             type: RAW_STRING,
@@ -7077,8 +7089,6 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
             type: RAW_STRING,
         }
     },
-    template: Dialog_default.a,
-    model: 'open',
     watchers: {
         open: function (isOpen) {
             var element = this.$el;
@@ -7100,10 +7110,10 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
         }
     },
     afterMount: function () {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(DOCUMENT.body, this.$el);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, this.$el);
     },
     beforeDestroy: function () {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.remove(DOCUMENT.body, this.$el);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.remove(BODY, this.$el);
     }
 }));
 
@@ -7366,157 +7376,139 @@ var Table_default = /*#__PURE__*/__webpack_require__.n(Table);
 var Message = __webpack_require__(71);
 var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 
+// CONCATENATED MODULE: ./src/components/message/Message.ts
+
+
+
+
+var CLASS_VISIBLE = 'bell-message-visible';
+/* harmony default export */ var message_Message = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Message_default.a,
+    propTypes: {
+        type: {
+            type: oneOf(RAW_TYPE_ARRAY),
+            value: RAW_TYPE_PRIMARY,
+        },
+        content: {
+            type: RAW_STRING,
+        },
+        icon: {
+            type: RAW_BOOLEAN,
+            value: TRUE,
+        },
+        closable: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
+        center: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
+        duration: {
+            type: RAW_NUMERIC,
+            value: 1500,
+        },
+        top: {
+            type: RAW_NUMERIC,
+            value: 15,
+        },
+        onClose: {
+            type: RAW_FUNCTION,
+        }
+    },
+    data: function () {
+        var me = this;
+        return {
+            closeAlert: function () {
+                me.hide();
+            }
+        };
+    },
+    methods: {
+        show: function () {
+            var me = this;
+            var element = me.$el;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_VISIBLE);
+            element.style.top = me.get('top') + 'px';
+            setTimeout(function () {
+                if (me.$el) {
+                    me.hide();
+                }
+            }, me.get('duration'));
+        },
+        hide: function () {
+            var me = this;
+            var element = me.$el;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+            element.style.top = '0px';
+            onTransitionEnd(element, function () {
+                if (me.$el) {
+                    var onClose = me.get('onClose');
+                    if (onClose) {
+                        onClose();
+                    }
+                    me.destroy();
+                }
+            });
+        }
+    },
+    afterMount: function () {
+        var me = this;
+        if (!supportTransform) {
+            var element = me.$el;
+            element.style.marginLeft = -0.5 * element.offsetWidth + 'px';
+        }
+        setTimeout(function () {
+            if (me.$el) {
+                me.show();
+            }
+        }, 300);
+    }
+}));
+
 // CONCATENATED MODULE: ./src/components/message/base.ts
 
 
 
-
-var id = 0;
-function createMessage(data) {
-    var namespace = 'bell-message-' + (++id);
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(DOCUMENT.body, element);
-    var options = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-        el: '#' + namespace,
-        replace: TRUE,
-        template: Message_default.a,
-        props: {
-            content: data.content,
-            type: data.type,
-            showIcon: data.showIcon,
-            closable: data.closable,
-            closeText: data.closeText,
-            center: data.center,
-        },
-        propTypes: {
-            content: {
-                type: RAW_STRING,
-            },
-            type: {
-                type: oneOf(RAW_TYPE_ARRAY),
-            },
-            showIcon: {
-                type: RAW_BOOLEAN,
-                value: TRUE,
-            },
-            closable: {
-                type: RAW_BOOLEAN,
-                value: FALSE,
-            },
-            closeText: {
-                type: RAW_STRING,
-            },
-            center: {
-                type: RAW_BOOLEAN,
-            }
-        },
-        data: function () {
-            return {
-                marginLeft: 0,
-                top: 0,
-                showTime: data.duration || 1500,
-                isShow: FALSE,
-                close: function () {
-                    this.hide();
-                }
-            };
-        },
-        methods: {
-            fadeIn: function () {
-                var me = this;
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.show();
-                    }
-                }, 300);
-            },
-            fadeOut: function () {
-                var me = this;
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.hide();
-                    }
-                }, me.get('showTime'));
-            },
-            show: function () {
-                this.set({
-                    isShow: TRUE,
-                    top: data.top || 15
-                });
-                this.fadeOut();
-            },
-            hide: function () {
-                var me = this;
-                me.set({
-                    isShow: FALSE,
-                    top: 0
-                });
-                onTransitionEnd(me.$el, function () {
-                    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.func(data.onClose)) {
-                        data.onClose();
-                    }
-                    if (me.$el) {
-                        me.destroy();
-                    }
-                });
-            }
-        },
-        afterMount: function () {
-            this.set({
-                marginLeft: this.$el.clientWidth
-            });
-            this.fadeIn();
-        }
-    });
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
-}
-
-// CONCATENATED MODULE: ./src/components/message/Message.ts
-
-
 var config = {};
-function addMessage(type, arg) {
-    var data = {};
-    data.type = type;
+function addMessage(type, arg, duration, onClose) {
+    var props = { type: type };
+    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, config);
     if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(arg)) {
-        data.content = arg;
+        props.content = arg;
     }
     else {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(data, arg);
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(data, config);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
-    createMessage(data);
+    if (duration > 0) {
+        props.duration = duration;
+    }
+    if (onClose) {
+        props.onClose = onClose;
+    }
+    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
+    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, element);
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: element,
+        replace: TRUE,
+        props: props,
+    }, message_Message));
 }
-function updateConfig(data) {
-    if (data.duration) {
-        config.duration = data.duration;
-    }
-    if (data.top) {
-        config.top = data.top;
-    }
-}
-/* harmony default export */ var message_Message = ({
-    success: function (arg) {
-        addMessage('success', arg);
+/* harmony default export */ var base = ({
+    success: function (arg, duration, onClose) {
+        addMessage('success', arg, duration, onClose);
     },
-    info: function (arg) {
-        addMessage('info', arg);
+    info: function (arg, duration, onClose) {
+        addMessage('info', arg, duration, onClose);
     },
-    warning: function (arg) {
-        addMessage('warning', arg);
+    warning: function (arg, duration, onClose) {
+        addMessage('warning', arg, duration, onClose);
     },
-    error: function (arg) {
-        addMessage('error', arg);
-    },
-    loading: function (arg) {
-        addMessage('loading', arg);
+    error: function (arg, duration, onClose) {
+        addMessage('error', arg, duration, onClose);
     },
     config: function (arg) {
-        updateConfig(arg);
-    },
-    destroy: function () {
-        console.log('destroy');
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(config, arg);
     }
 });
 
@@ -7524,163 +7516,123 @@ function updateConfig(data) {
 var Notice = __webpack_require__(72);
 var Notice_default = /*#__PURE__*/__webpack_require__.n(Notice);
 
-// CONCATENATED MODULE: ./src/components/notice/base.ts
-
-
-
-
-var base_id = 0;
-function createNotice(data) {
-    var namespace = 'bell-notice-' + base_id++;
-    var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notice-wrapper');
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var options = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-        el: '#' + namespace,
-        replace: TRUE,
-        template: Notice_default.a,
-        props: {
-            title: data.title,
-            content: data.content,
-            type: data.type,
-            duration: data.duration,
-            width: data.width,
-            right: data.right,
-            onClose: data.onClose
-        },
-        propTypes: {
-            title: {
-                type: RAW_STRING,
-                value: '温馨提示'
-            },
-            content: {
-                type: RAW_STRING
-            },
-            type: {
-                type: RAW_STRING
-            },
-            duration: {
-                type: RAW_NUMERIC,
-                value: 4500
-            },
-            width: {
-                type: RAW_NUMERIC,
-                value: 320
-            },
-            right: {
-                type: RAW_NUMERIC,
-                value: 15
-            },
-            onClose: {
-                type: RAW_FUNCTION
-            }
-        },
-        data: function () {
-            return {
-                visible: false,
-                rightSize: 15
-            };
-        },
-        methods: {
-            close: function () {
-                this.hide();
-            },
-            fadeIn: function () {
-                var me = this;
-                setTimeout(function () {
-                    if (!me.$el) {
-                        return;
-                    }
-                    me.set({
-                        visible: true,
-                        rightSize: me.get('right')
-                    });
-                    if (me.get('duration') == 0) {
-                        return;
-                    }
-                    me.fadeOut();
-                }, 300);
-            },
-            fadeOut: function () {
-                var me = this;
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.hide();
-                    }
-                }, me.get('duration'));
-            },
-            hide: function () {
-                var me = this;
-                me.set({
-                    visible: false,
-                    rightSize: "-" + me.$el.clientWidth
-                });
-                me.nextTick(function () {
-                    onTransitionEnd(me.$el, function () {
-                        me.get('onClose') && me.get('onClose')();
-                        if (me.$el) {
-                            me.destroy();
-                        }
-                    });
-                });
-            }
-        },
-        afterMount: function () {
-            this.set({
-                rightSize: "-" + this.$el.clientWidth
-            });
-            this.fadeIn();
-        }
-    });
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
-}
-
 // CONCATENATED MODULE: ./src/components/notice/Notice.ts
 
 
-var Notice_config = {};
-function addNotice(type, arg) {
-    var data = {};
-    data.type = type;
-    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(arg)) {
-        data.content = arg;
+
+
+var Notice_CLASS_VISIBLE = 'bell-notice-visible';
+/* harmony default export */ var notice_Notice = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Notice_default.a,
+    propTypes: {
+        title: {
+            type: RAW_STRING,
+            value: '温馨提示',
+        },
+        content: {
+            type: RAW_STRING,
+        },
+        type: {
+            type: oneOf(RAW_TYPE_ARRAY),
+            value: RAW_TYPE_PRIMARY,
+        },
+        duration: {
+            type: RAW_NUMERIC,
+            value: 4500,
+        },
+        width: {
+            type: RAW_NUMERIC,
+            value: 320,
+        },
+        right: {
+            type: RAW_NUMERIC,
+            value: 15,
+        },
+        onClose: {
+            type: RAW_FUNCTION,
+        }
+    },
+    methods: {
+        hide: function () {
+            var me = this;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notice_CLASS_VISIBLE);
+            me.nextTick(function () {
+                if (!me.$el) {
+                    return;
+                }
+                onTransitionEnd(me.$el, function () {
+                    if (me.$el) {
+                        var onClose = me.get('onClose');
+                        if (onClose) {
+                            onClose();
+                        }
+                        me.destroy();
+                    }
+                });
+            });
+        }
+    },
+    afterMount: function () {
+        var me = this;
+        setTimeout(function () {
+            var element = me.$el;
+            if (!element) {
+                return;
+            }
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notice_CLASS_VISIBLE);
+            var duration = me.get('duration');
+            if (duration == 0) {
+                return;
+            }
+            setTimeout(function () {
+                if (me.$el) {
+                    me.hide();
+                }
+            }, duration);
+        }, 300);
+    }
+}));
+
+// CONCATENATED MODULE: ./src/components/notice/base.ts
+
+
+var base_config = {};
+function addNotice(type, data, duration, onClose) {
+    var props = { type: type };
+    // 先写 config，可支持 data 覆盖全局配置
+    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, base_config);
+    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(data)) {
+        props.content = data;
     }
     else {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(data, arg);
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(data, Notice_config);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
     }
-    createNotice(data);
+    if (duration > 0) {
+        props.duration = duration;
+    }
+    if (onClose) {
+        props.onClose = onClose;
+    }
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notice-wrapper'),
+        props: props,
+    }, notice_Notice));
 }
-function Notice_updateConfig(data) {
-    if (data.duration) {
-        Notice_config.duration = data.duration;
-    }
-    if (data.top) {
-        Notice_config.top = data.top;
-    }
-}
-/* harmony default export */ var notice_Notice = ({
-    success: function (arg) {
-        addNotice('success', arg);
+/* harmony default export */ var notice_base = ({
+    success: function (props, duration, onClose) {
+        addNotice('success', props, duration, onClose);
     },
-    info: function (arg) {
-        addNotice('info', arg);
+    info: function (props, duration, onClose) {
+        addNotice('info', props, duration, onClose);
     },
-    warning: function (arg) {
-        addNotice('warning', arg);
+    warning: function (props, duration, onClose) {
+        addNotice('warning', props, duration, onClose);
     },
-    error: function (arg) {
-        addNotice('error', arg);
-    },
-    loading: function (arg) {
-        addNotice('loading', arg);
+    error: function (props, duration, onClose) {
+        addNotice('error', props, duration, onClose);
     },
     config: function (options) {
-        Notice_updateConfig(options);
-    },
-    destroy: function () {
-        Notice_config = {};
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(base_config, options);
     }
 });
 
@@ -7698,9 +7650,9 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
 
 
 
-var msgbox_base_id = 0;
+var id = 0;
 function createAlert(data) {
-    var namespace = 'bell-msg-alert-' + (++msgbox_base_id);
+    var namespace = 'bell-msg-alert-' + (++id);
     var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
@@ -7794,7 +7746,7 @@ function createAlert(data) {
     new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
 }
 function createConfirm(data) {
-    var namespace = 'bell-msg-confirm-' + msgbox_base_id++;
+    var namespace = 'bell-msg-confirm-' + id++;
     var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
@@ -7902,122 +7854,93 @@ function addConfirm(data) {
 var LoadingBar = __webpack_require__(75);
 var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 
-// CONCATENATED MODULE: ./src/components/loadingBar/base.ts
-
-
-
-var base_namespace = 'bell-loadingbar';
-var instance = NULL;
-var base_timer = NULL;
-function add(data) {
-    if (instance) {
-        remove();
-    }
-    var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', base_namespace);
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var options = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-        el: '#' + base_namespace,
-        replace: TRUE,
-        props: {
-            percent: data.percent,
-            height: data.height,
-            type: data.type,
-            color: data.color
-        },
-        template: LoadingBar_default.a,
-        propTypes: {
-            type: {
-                type: RAW_STRING
-            },
-            height: {
-                type: RAW_NUMBER,
-                value: 2
-            },
-            percent: {
-                type: RAW_NUMBER,
-                value: 0
-            },
-            color: {
-                type: RAW_STRING
-            }
-        },
-        afterMount: function () {
-            var me = this;
-            var timerStart = function () {
-                base_timer = setTimeout(function () {
-                    if (!base_timer || !me) {
-                        return;
-                    }
-                    me.increase('percent', Math.floor(Math.random() * 10), 98);
-                    if (me.get('percent') <= 98) {
-                        timerStart();
-                    }
-                }, 300);
-            };
-            timerStart();
-        },
-        beforeDestroy: function () {
-            if (base_timer) {
-                clearTimeout(base_timer);
-            }
-        }
-    });
-    instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
-    return instance;
-}
-var remove = function () {
-    if (instance) {
-        instance.destroy();
-        instance = NULL;
-    }
-    var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find("#" + base_namespace);
-    if (element) {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.remove(body, element);
-    }
-};
-var update = function (config) {
-    if (instance) {
-        instance.set(config);
-    }
-};
-
 // CONCATENATED MODULE: ./src/components/loadingBar/LoadingBar.ts
 
 
 
-var LoadingBar_config = {};
-function LoadingBar_updateConfig(data) {
-    LoadingBar_config.type = data.type ? data.type : LoadingBar_config.type;
-    LoadingBar_config.color = data.color ? data.color : LoadingBar_config.color;
-    LoadingBar_config.height = data.height ? data.height : LoadingBar_config.height;
+
+var LoadingBar_timer = NULL;
+/* harmony default export */ var loadingBar_LoadingBar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: LoadingBar_default.a,
+    propTypes: {
+        type: {
+            type: oneOf(RAW_TYPE_ARRAY),
+            value: RAW_TYPE_PRIMARY,
+        },
+        height: {
+            type: RAW_NUMBER,
+            value: 2,
+        },
+        percent: {
+            type: RAW_NUMBER,
+            value: 0,
+        },
+        color: {
+            type: RAW_STRING,
+        }
+    },
+    afterMount: function () {
+        var me = this;
+        var next = function () {
+            LoadingBar_timer = setTimeout(function () {
+                if (!LoadingBar_timer) {
+                    return;
+                }
+                me.increase('percent', Math.floor(Math.random() * 10), 98);
+                if (me.get('percent') < 98) {
+                    next();
+                }
+            }, 300);
+        };
+        next();
+    },
+    beforeDestroy: function () {
+        if (LoadingBar_timer) {
+            clearTimeout(LoadingBar_timer);
+            LoadingBar_timer = UNDEFINED;
+        }
+    }
+}));
+
+// CONCATENATED MODULE: ./src/components/loadingBar/base.ts
+
+
+
+var instance = NULL;
+function add(props) {
+    var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
+    instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: wrapper,
+        props: props,
+    }, loadingBar_LoadingBar));
+    return instance;
 }
-/* harmony default export */ var loadingBar_LoadingBar = ({
+function remove() {
+    if (instance) {
+        instance.destroy();
+        instance = NULL;
+    }
+}
+/* harmony default export */ var loadingBar_base = ({
     // 开始从 0 显示进度条，并自动加载进度
     start: function (options) {
-        if (options === void 0) { options = {}; }
-        return add(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(options, LoadingBar_config));
+        if (instance) {
+            remove();
+        }
+        return add(options);
     },
     // 结束进度条，自动补全剩余进度
     finish: function () {
-        update({
-            percent: 100
-        });
-        setTimeout(function () {
-            return remove();
-        }, 1000);
+        if (instance) {
+            instance.set('percent', 100);
+            setTimeout(remove, 300);
+        }
     },
     // 精确加载到指定的进度
     update: function (data) {
-        return update(data);
-    },
-    config: function (data) {
-        LoadingBar_updateConfig(data);
-    },
-    destroy: function () {
-        LoadingBar_config = NULL;
+        if (instance) {
+            instance.set(data);
+        }
     }
 });
 
@@ -8314,11 +8237,11 @@ var install = function (Yox) {
     Yox.dom.prop(noticeElement, 'id', 'bell-notice-wrapper');
     Yox.dom.append(document.body, noticeElement);
     Yox.component(components);
-    Yox.prototype.$message = message_Message;
+    Yox.prototype.$message = base;
     Yox.prototype.$confirm = msgbox_Msgbox.Confirm;
     Yox.prototype.$alert = msgbox_Msgbox.Alert;
-    Yox.prototype.$notice = notice_Notice;
-    Yox.prototype.$loadingBar = loadingBar_LoadingBar;
+    Yox.prototype.$notice = notice_base;
+    Yox.prototype.$loadingBar = loadingBar_base;
 };
 if (typeof window !== 'undefined' && window['Yox']) {
     install(window['Yox']);

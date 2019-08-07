@@ -7,17 +7,19 @@
 {$selector-notice}
   position relative
   overflow hidden
-  transition all .3s
   opacity 0
+  font-size $ui-font-size
   padding $notice-padding
-  border-radius $notice-border-radius
-  box-shadow $notice-box-shadow
+  border-radius $radius-base
+  box-sizing border-box
+  box-shadow $notice-shadow
   background-color $brand-bg
+  transition opacity .3s
 
   ui-notice()
 
-  +{$selector-notice}
-    margin-top $notice-margin-top
+  + {$selector-notice}
+    margin-top $notice-gap
 
   &:before
     content ' '
@@ -25,30 +27,34 @@
     top 0
     bottom 0
     left 0
-    width 4px
+    width $notice-type-width
 
-  &.bell-show
-    opacity 1
+{$selector-notice-visible}
+  opacity 1
 
-  {$selector-notice}-title
-    overflow hidden
-    text-overflow ellipsis
-    white-space nowrap
+{$selector-notice-title}
+  ui-ellipsis()
+  color $brand-important
+  line-height 1.6
 
-    font-size $notice-title-size
-    color $notice-title-color
-    line-height $notice-title-line-height
+  + {$selector-notice-content}
+    margin-top $notice-title-content-gap
 
-  {$selector-notice}-desc
-    font-size $notice-desc-font-size
-    color $notice-desc-color
-    line-height $notice-desc-line-height
+{$selector-notice-content}
+  font-size 90%
+  color $brand-secondary
+  line-height 1.6
 
-  {$selector-notice}-close
-    position absolute
-    right 0
-    top 0
-    cursor pointer
-    font-size $notice-close-size
-    padding $notice-close-padding
-    color $notice-close-color
+{$selector-notice-close}
+  position absolute
+  right $notice-close-right
+  top $notice-close-top
+  cursor $cursor-clickable
+  font-size $notice-close-font-size
+  width $notice-close-font-size
+  text-align center
+  color $brand-close-color
+  transition color .3s
+
+  &:hover
+    color $brand-close-color-hover

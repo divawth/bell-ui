@@ -2,13 +2,9 @@
 class="${prefix}loadingbar
 {{#if type}} ${prefix}loadingbar-{{type}}{{/if}}"
 >
-  <div class="${prefix}loadingbar-inner">
-    <div
-      class="${prefix}loadingbar-bg"
-      style="
-        width: {{percent}}%;
-        height: {{height}}px;
-        {{#if color}} color: {{color}};{{/if}}"
-    ></div>
-  </div>
+  <div
+    class="${prefix}loadingbar-bg"
+    style="width: {{percent}}%;height: {{height}}px;
+      {{#if color}}color: {{color}};{{/if}}"
+  ></div>
 </div>

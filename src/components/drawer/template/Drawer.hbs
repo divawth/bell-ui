@@ -18,16 +18,14 @@ class="${prefix}drawer ${prefix}drawer-{{placement}}
   {{/if}}
 
   <div
-    class="${prefix}drawer-content"
-    style="{{contentStyle}}"
+    class="${prefix}drawer-wrapper"
+    style="{{wrapperStyle}}"
   >
     {{#if title || hasSlot('title')}}
       <div class="${prefix}drawer-header">
-        <div class="${prefix}drawer-title">
-          <slot name="title">
-            {{title}}
-          </slot>
-        </div>
+        <slot name="title">
+          {{title}}
+        </slot>
       </div>
     {{/if}}
 
@@ -36,18 +34,9 @@ class="${prefix}drawer ${prefix}drawer-{{placement}}
     </div>
 
     {{#if closable}}
-      <Button
-        className="${prefix}drawer-close"
-        size="small"
-        border="none"
-        on-click="set('open', FALSE)"
-      >
-        <Icon
-          slot="icon"
-          size="28"
-          name="close"
-        />
-      </Button>
+      <div class="${prefix}drawer-close" on-click="set('open', FALSE)">
+        <Icon name="close" size="0" />
+      </div>
     {{/if}}
   </div>
 

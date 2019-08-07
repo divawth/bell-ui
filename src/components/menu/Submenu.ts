@@ -49,7 +49,7 @@ export default Yox.define({
       isActive,
       mode: menu.get('mode'),
       activeName: NULL,
-      isCollapsed: FALSE,
+      collapsed: FALSE,
       isAnimation: FALSE
     }
   },
@@ -138,8 +138,8 @@ export default Yox.define({
   },
 
   events: {
-    isCollapsedChanged(_, data) {
-      this.set('isCollapsed', data.isCollapsed)
+    collapsedChanged(_, data) {
+      this.set('collapsed', data.collapsed)
     },
     menuItemSelected(event, data) {
       if (event.phase === Yox.Event.PHASE_DOWNWARD) {
@@ -147,11 +147,11 @@ export default Yox.define({
       }
       else if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.set('activeName', data.name)
-        if (this.get('mode') !== 'inline' || this.get('isCollapsed')) {
+        if (this.get('mode') !== 'inline' || this.get('collapsed')) {
           this.handleClick()
         }
       }
     }
-  }
+  },
 
 })

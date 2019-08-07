@@ -1,14 +1,2 @@
-interface Config {
-    type?: string;
-    color?: string;
-    height?: number;
-    percent?: number;
-}
-declare const _default: {
-    start(options?: Config): any;
-    finish(): void;
-    update(data: Config): void;
-    config(data: Config): void;
-    destroy(): void;
-};
+declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

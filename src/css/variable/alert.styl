@@ -1,70 +1,71 @@
 $selector-alert = $selector-prefix + '-alert'
+$selector-alert-hidden = $selector-alert + '-hidden'
+$selector-alert-center = $selector-alert + '-center'
+$selector-alert-wrapper = $selector-alert + '-wrapper'
+
 $selector-alert-with-content = $selector-alert + '-with-content'
 $selector-alert-with-icon = $selector-alert + '-with-icon'
+$selector-alert-with-close = $selector-alert + '-with-close'
 
+$selector-alert-icon = $selector-alert + '-icon'
 $selector-alert-title = $selector-alert + '-title'
 $selector-alert-content = $selector-alert + '-content'
-$selector-alert-icon = $selector-alert + '-icon'
+$selector-alert-close = $selector-alert + '-close'
 
-$alert-size = 14px
-$alert-radius = $radius-base
-$alert-padding = 12px 16px
+$selector-alert-type-icon = $selector-alert + '-type-icon'
+$selector-alert-close-icon = $selector-alert + '-close-icon'
 
-$alert-icon-size = 16px
-$alert-gap = 6px
-$alert-with-content-icon-size = 28px
+$alert-title-font-size = 14px
+$alert-content-font-size = 12px
 
-$alert-close-padding = 10px
-$alert-close-size = 12px
-$alert-close-hover-color = #444
+$alert-padding-horizontal = 16px
+$alert-padding-vertical = 12px
+
+$alert-icon-wrapper-gap = 10px
+$alert-title-content-gap = 5px
+
+$alert-close-font-size = 14px
+$alert-close-icon-font-size = 22px
+$alert-close-icon-margin-top = -2px
+
+$alert-type-icon-size = 16px
+$alert-type-icon-size-with-content = 26px
 
 $alert-brand-hash = {
-  '': {
-    border: #BBDCFD,
+  'primary': {
+    border-color: #BBDCFD,
     bg-color: #CDE6FE,
     icon-color: $brand-primary,
-    color: #064283
+    text-color: #064283
   },
   'secondary': {
-    border: #D6D8DB,
+    border-color: #D6D8DB,
     bg-color: #E2E3E5,
     icon-color: $brand-secondary,
-    color: #383D41
+    text-: #383D41
   },
   'info': {
-    border: #BFE5EB,
+    border-color: #BFE5EB,
     bg-color: #D2ECF1,
     icon-color: $brand-info,
-    color: #11545F
+    text-color: #11545F
   },
   'success': {
-    border: #C4E6CC,
+    border-color: #C4E6CC,
     bg-color: #D5EDDB,
     icon-color: $brand-success,
-    color: #195627
+    text-color: #195627
   },
   'error': {
-    border: #F4C6CC,
+    border-color: #F4C6CC,
     bg-color: #F7D7DB,
     icon-color: $brand-danger,
-    color: #701D26
+    text-color: #701D26
   },
   'warning': {
-    border: #FEEDBD,
+    border-color: #FEEDBD,
     bg-color: #FFF3CF,
     icon-color: $brand-warning,
-    color: #846315
+    text-color: #846315
   },
-  'light': {
-    border: $brand-white,
-    bg-color: $brand-white,
-    icon-color: $brand-secondary-active,
-    color: $brand-secondary-active
-  },
-  'dark': {
-    border: $brand-secondary-hover,
-    bg-color: $brand-muted,
-    icon-color: #fff,
-    color: #fff
-  }
 }

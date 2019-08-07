@@ -45,12 +45,7 @@ export default {
 ---|---|---|---|---
 model | 表示是否展示 dialog | boolean | - | false
 closable | 是否展示关闭按钮 | boolean | - | true
-
-> Events
-
-事件名称 | 说明 | 回调参数
----|---|---
-change | dialog 状态发生改变的时候触发 | -
+maskClosable | 点击遮罩是否关闭 dialog | boolean | - | false
 
 > slots
 

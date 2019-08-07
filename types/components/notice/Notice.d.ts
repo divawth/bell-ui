@@ -1,10 +1,6 @@
-declare const _default: {
-    success(arg: Record<string, any>): void;
-    info(arg: Record<string, any>): void;
-    warning(arg: Record<string, any>): void;
-    error(arg: Record<string, any>): void;
-    loading(arg: Record<string, any>): void;
-    config(options: Record<string, any>): void;
-    destroy(): void;
-};
+declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
+    hide(): void;
+}> & ThisType<{
+    hide(): void;
+} & import("yox").YoxInterface>;
 export default _default;

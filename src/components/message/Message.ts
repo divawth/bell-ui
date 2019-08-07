@@ -1,59 +1,136 @@
-import { createMessage } from './base'
-import Yox, { Data } from 'yox'
+import Yox from 'yox'
 
-interface Config {
-  duration?: number
-  top?: number
-}
+import template from './template/Message.hbs'
 
-type Arg = string | Data
+import {
+  TRUE,
+  FALSE,
+  RAW_STRING,
+  RAW_BOOLEAN,
+  RAW_NUMERIC,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
+  RAW_FUNCTION,
+} from '../constant'
 
-const config: Config = {}
+import {
+  oneOf,
+  onTransitionEnd,
+  supportTransform,
+} from '../util'
 
-function addMessage(type: string, arg: Arg) {
-  let data: Record<string, string> = {}
-  data.type = type
+const CLASS_VISIBLE = '${prefix}message-visible'
 
-  if (Yox.is.string(arg)) {
-    data.content = arg as string
+export default Yox.define({
+
+  template,
+
+  propTypes: {
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
+    },
+    content: {
+      type: RAW_STRING,
+    },
+    icon: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
+    closable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    center: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    duration: {
+      type: RAW_NUMERIC,
+      value: 1500,
+    },
+    top: {
+      type: RAW_NUMERIC,
+      value: 15,
+    },
+    onClose: {
+      type: RAW_FUNCTION,
+    }
+  },
+
+  data() {
+    const me = this
+    return {
+      closeAlert() {
+        me.hide()
+      }
+    }
+  },
+
+  methods: {
+    show() {
+
+      const me = this
+
+      const element = me.$el
+      Yox.dom.addClass(element, CLASS_VISIBLE)
+      element.style.top = me.get('top') + 'px'
+
+      setTimeout(
+        function () {
+          if (me.$el) {
+            me.hide()
+          }
+        },
+        me.get('duration')
+      )
+
+    },
+    hide() {
+
+      const me = this
+
+      const element = me.$el
+      Yox.dom.removeClass(element, CLASS_VISIBLE)
+      element.style.top = '0px'
+
+      onTransitionEnd(
+        element,
+        function () {
+          if (me.$el) {
+
+            const onClose = me.get('onClose')
+            if (onClose) {
+              onClose()
+            }
+
+            me.destroy()
+
+          }
+        }
+      )
+    }
+  },
+
+  afterMount() {
+
+    const me = this
+
+    if (!supportTransform) {
+      const element = me.$el
+      element.style.marginLeft = -0.5 * element.offsetWidth + 'px'
+    }
+
+
+    setTimeout(
+      function () {
+        if (me.$el) {
+          me.show()
+        }
+      },
+      300
+    )
+
   }
-  else {
-    Yox.object.extend(data, arg as Data)
-    Yox.object.extend(data, config)
-  }
 
-  createMessage(data)
-}
-
-function updateConfig(data: Data) {
-  if (data.duration) {
-    config.duration = data.duration
-  }
-  if (data.top) {
-    config.top = data.top
-  }
-}
-
-export default {
-  success(arg: Arg) {
-    addMessage('success', arg)
-  },
-  info(arg: Arg) {
-    addMessage('info', arg)
-  },
-  warning(arg: Arg) {
-    addMessage('warning', arg)
-  },
-  error(arg: Arg) {
-    addMessage('error', arg)
-  },
-  loading(arg: Arg) {
-    addMessage('loading', arg)
-  },
-  config(arg: Data) {
-    updateConfig(arg)
-  },
-  destroy() {
-    console.log('destroy')
-  }
-}
+})

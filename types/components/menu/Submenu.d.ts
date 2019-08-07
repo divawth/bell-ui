@@ -1,6 +1,6 @@
 import { YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
-    isCollapsedChanged: unknown;
+    collapsedChanged: unknown;
     menuItemSelected: unknown;
 }, {
     handleClick(): void;

@@ -272,10 +272,10 @@ export default {
   height: 450,
   template: `
     <Layout className="layout-demo-wrapper">
-      <Sider model="isCollapsed">
-        <Menu theme="dark" mode="inline" isCollapsed="{{isCollapsed}}">
+      <Sider model="collapsed">
+        <Menu theme="dark" mode="inline" collapsed="{{collapsed}}">
           <MenuItem name="4">
-            {{#if !isCollapsed}}
+            {{#if !collapsed}}
               <Icon style="margin-right: 6px;" name="paper" />
               内容管理
             {{else}}
@@ -286,7 +286,7 @@ export default {
           </MenuItem>
           <Submenu name="1">
             <template slot="title">
-              {{#if !isCollapsed}}
+              {{#if !collapsed}}
                 <Icon style="margin-right: 6px;" name="paper" />
                 内容管理
               {{else}}
@@ -299,7 +299,7 @@ export default {
           </Submenu>
           <Submenu name="2">
             <template slot="title">
-              {{#if !isCollapsed}}
+              {{#if !collapsed}}
                 <Icon style="margin-right: 6px;" name="people" />
                 用户管理
               {{else}}
@@ -318,7 +318,7 @@ export default {
           </Submenu>
           <Submenu name="3">
               <template slot="title">
-                  {{#if !isCollapsed}}
+                  {{#if !collapsed}}
                       <Icon style="margin-right: 6px;" name="stats" />
                       统计分析
                   {{else}}
@@ -346,7 +346,7 @@ export default {
             <BreadcrumbItem>Layout</BreadcrumbItem>
           </Breadcrumb>
           <Card>
-            <div style="height: 300px">Content-{{isCollapsed}}</div>
+            <div style="height: 300px">Content-{{collapsed}}</div>
           </Card>
         </Content>
       </Layout>
@@ -354,7 +354,7 @@ export default {
   `,
   data: function () {
     return {
-      isCollapsed: false
+      collapsed: false
     }
   }
 }
@@ -373,5 +373,5 @@ center | 自定义中间内容
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-isCollapsed | 双向绑定，表示是否可以展开 | boolean | - | null
+collapsed | 双向绑定，表示是否可以展开 | boolean | - | null
 

@@ -1,4 +1,3 @@
-
 $selector-menu = $selector-prefix + '-menu'
 $selector-menu-horizontal = $selector-menu + '-horizontal'
 $selector-menu-vertical = $selector-menu + '-vertical'
@@ -24,6 +23,7 @@ $selector-menu-item-disabled = $selector-menu-item + '-disabled'
 $menu-horizontal-padding = 20px
 $menu-vertical-padding = 20px
 $menu-dropdown-offset = 4px
+$menu-icon-gap = 10px
 
 $menu-dark-fg = #515a6e
 $menu-dark-bg = #363e4f
@@ -37,17 +37,16 @@ $menu-vertical-item-height = 48px
 
 $menu-dropdown-shadow = 0 1px 6px rgba(0,0,0,.2)
 
-$menu-collapsed-width = 80px
+$menu-collapsed-width = 70px
 
 $menu-theme-hash = {
   'light': {
 
-    text-color: $menu-dark-fg,
     bg-color: $menu-light-fg,
 
     item-color: $menu-dark-fg,
     item-hover-color: $brand-primary,
-    item-disabled-color: $brand-disabled,
+    item-disabled-color: $brand-text-disabled,
 
     group-title-color: $brand-muted,
 
@@ -60,13 +59,12 @@ $menu-theme-hash = {
     inline-item-active-bg-color: $menu-light-bg,
   },
   'dark': {
-    text-color: hsla(0,0%,100%,.7),
     bg-color: $menu-dark-fg,
 
-    item-color: hsla(0,0%,100%,.7),
+    item-color: #cacaca,
     item-bg-color: $menu-dark-fg,
     item-hover-color: $menu-light-fg,
-    item-disabled-color: $brand-disabled,
+    item-disabled-color: #9b9b9b,
 
     group-title-color: rgba(255, 255, 255, 0.36),
 

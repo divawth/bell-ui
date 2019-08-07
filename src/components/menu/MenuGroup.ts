@@ -3,7 +3,7 @@ import Yox from 'yox'
 import template from './template/MenuGroup.hbs'
 
 import {
-  RAW_STRING
+  RAW_STRING,
 } from '../constant'
 
 import {

@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/Alert.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
@@ -11,7 +12,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
-  RAW_FUNCTION
+  RAW_FUNCTION,
 } from '../constant'
 
 import {
@@ -21,6 +22,8 @@ import {
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
@@ -28,14 +31,17 @@ export default Yox.define({
     },
     closable: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
-    showIcon: {
+    icon: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     center: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
-    close: {
+    onClose: {
       type: RAW_FUNCTION,
     },
     className: {
@@ -45,8 +51,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     return {
@@ -64,21 +68,24 @@ export default Yox.define({
       const me = this
 
       // 外部自定义关闭逻辑
-      const close = me.get('close')
-      if (close) {
-        close()
+      const onClose = me.get('onClose')
+      if (onClose) {
+        onClose()
         return
       }
 
-      Yox.dom.addClass(me.$el, '${prefix}hide')
+      me.fire('close.alert')
+
+      Yox.dom.addClass(me.$el, '${prefix}alert-hidden')
 
       onTransitionEnd(
         me.$el,
         function () {
-          if (me.$el) {
-            me.$el.remove()
-            me.fire('close.alert')
+          const element = me.$el
+          if (!element) {
+            return
           }
+          me.destroy()
         }
       )
 

@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<{
-    contentStyle: unknown;
+    wrapperStyle: unknown;
 }, {
     open: unknown;
 }, unknown, unknown> & ThisType<import("yox").YoxInterface>;

@@ -1,58 +1,113 @@
-import { createNotice } from './base'
-import Yox, { Data } from 'yox'
+import Yox from 'yox'
 
-interface Config {
-  duration?: number
-  top?: number
-}
+import template from './template/Notice.hbs'
 
-let config: Config = {}
+import {
+  TRUE,
+  FALSE,
+  RAW_FUNCTION,
+  RAW_STRING,
+  RAW_NUMERIC,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
+} from '../constant'
 
-function addNotice(type: string, arg: Data) {
-  let data: Data = {}
-  data.type = type
+import {
+  oneOf,
+  onTransitionEnd,
+} from '../util'
 
-  if (Yox.is.string(arg)) {
-    data.content = arg
+const CLASS_VISIBLE = '${prefix}notice-visible'
+
+export default Yox.define({
+
+  template,
+
+  propTypes: {
+    title: {
+      type: RAW_STRING,
+      value: '温馨提示',
+    },
+    content: {
+      type: RAW_STRING,
+    },
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
+    },
+    duration: {
+      type: RAW_NUMERIC,
+      value: 4500,
+    },
+    width: {
+      type: RAW_NUMERIC,
+      value: 320,
+    },
+    right: {
+      type: RAW_NUMERIC,
+      value: 15,
+    },
+    onClose: {
+      type: RAW_FUNCTION,
+    }
+  },
+
+  methods: {
+    hide() {
+      const me = this
+
+      Yox.dom.removeClass(me.$el, CLASS_VISIBLE)
+
+      me.nextTick(function () {
+        if (!me.$el) {
+          return
+        }
+        onTransitionEnd(
+          me.$el,
+          function () {
+            if (me.$el) {
+              const onClose = me.get('onClose')
+              if (onClose) {
+                onClose()
+              }
+              me.destroy()
+            }
+          }
+        )
+      })
+    }
+  },
+
+  afterMount() {
+    const me = this
+    setTimeout(
+      function () {
+
+        const element = me.$el
+        if (!element) {
+          return
+        }
+
+        Yox.dom.addClass(element, CLASS_VISIBLE)
+
+        const duration = me.get('duration')
+        if (duration == 0) {
+          return
+        }
+
+
+        setTimeout(
+          function () {
+            if (me.$el) {
+              me.hide()
+            }
+          },
+          duration
+        )
+
+      },
+      300
+    )
   }
-  else {
-    Yox.object.extend(data, arg)
-    Yox.object.extend(data, config)
-  }
 
-  createNotice(data)
-}
-
-function updateConfig(data) {
-  if (data.duration) {
-    config.duration = data.duration
-  }
-
-  if (data.top) {
-    config.top = data.top
-  }
-}
-
-export default {
-  success(arg: Data) {
-    addNotice('success', arg)
-  },
-  info(arg: Data) {
-    addNotice('info', arg)
-  },
-  warning(arg: Data) {
-    addNotice('warning', arg)
-  },
-  error(arg: Data) {
-    addNotice('error', arg)
-  },
-  loading(arg: Data) {
-    addNotice('loading', arg)
-  },
-  config(options: Data) {
-    updateConfig(options)
-  },
-  destroy() {
-    config = {}
-  }
-}
+})

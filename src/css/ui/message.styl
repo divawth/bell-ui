@@ -4,15 +4,17 @@
   left 50%
   opacity 0
   z-index $zindex-message
+  transform translateX(-50%)
 
+  border none
   user-select none
+  background-color $brand-white
+  box-shadow $message-shadow
   transition opacity .15s, top .3s
 
-  &.bell-show
-    opacity 1
+  > {$selector-alert-wrapper}
+    width auto
 
-  {$selector-prefix}-alert
-    border none
-    background-color $brand-white
-    box-shadow 0 1px 6px rgba(0,0,0,.2)
+{$selector-message-visible}
+  opacity 1
 

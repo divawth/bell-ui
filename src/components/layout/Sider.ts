@@ -9,7 +9,7 @@ import {
 
 export default Yox.define({
   propTypes: {
-    isCollapsed: {
+    collapsed: {
       type: RAW_BOOLEAN
     },
     className: {
@@ -20,7 +20,7 @@ export default Yox.define({
     }
   },
 
-  model: 'isCollapsed',
+  model: 'collapsed',
 
   template,
 

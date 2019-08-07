@@ -1,134 +1,61 @@
-import template from './template/Notice.hbs'
-import {
-  TRUE,
-  RAW_FUNCTION,
-  RAW_STRING,
-  RAW_NUMERIC,
-} from '../constant'
 import Yox, { Data } from 'yox'
-import { onTransitionEnd } from '../util'
 
-let id = 0
+import Notice from './Notice'
 
-export function createNotice(data: Data) {
+interface Config {
+  duration?: number
+  top?: number
+}
 
-  let namespace = '${prefix}notice-' + id++
-  let body = Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement
-  let element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(body, element)
+let config: Config = {}
 
-  const options = Yox.define({
-    el: '#' + namespace,
-    replace: TRUE,
-    template,
+function addNotice(type: string,  data: Data, duration?: number, onClose?: Function) {
 
-    props: {
-      title: data.title,
-      content: data.content,
-      type: data.type,
-      duration: data.duration,
-      width: data.width,
-      right: data.right,
-      onClose: data.onClose
-    },
+  let props: Data = { type }
 
-    propTypes: {
-      title: {
-        type: RAW_STRING,
-        value: '温馨提示'
+  // 先写 config，可支持 data 覆盖全局配置
+  Yox.object.extend(props, config)
+
+  if (Yox.is.string(data)) {
+    props.content = data
+  }
+  else {
+    Yox.object.extend(props, data)
+  }
+
+  if (duration > 0) {
+    props.duration = duration
+  }
+
+  if (onClose) {
+    props.onClose = onClose
+  }
+
+  new Yox(
+    Yox.object.extend(
+      {
+        el: Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement,
+        props,
       },
-      content: {
-        type: RAW_STRING
-      },
-      type: {
-        type: RAW_STRING
-      },
-      duration: {
-        type: RAW_NUMERIC,
-        value: 4500
-      },
-      width: {
-        type: RAW_NUMERIC,
-        value: 320
-      },
-      right: {
-        type: RAW_NUMERIC,
-        value: 15
-      },
-      onClose: {
-        type: RAW_FUNCTION
-      }
-    },
+      Notice
+    )
+  )
+}
 
-    data () {
-      return {
-        visible: false,
-        rightSize: 15
-      }
-    },
-
-    methods: {
-      close() {
-        this.hide()
-      },
-      fadeIn() {
-        let me = this
-        setTimeout(
-          function () {
-            if (!me.$el) {
-              return
-            }
-            me.set({
-              visible: true,
-              rightSize: me.get('right')
-            })
-            if (me.get('duration') == 0) {
-              return
-            }
-            me.fadeOut()
-          },
-          300
-        )
-      },
-      fadeOut() {
-        let me = this
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.hide()
-            }
-          },
-          me.get('duration')
-        )
-      },
-      hide() {
-        let me = this
-        me.set({
-          visible: false,
-          rightSize: `-${me.$el.clientWidth}`
-        })
-
-        me.nextTick(function () {
-          onTransitionEnd(
-            me.$el,
-            function () {
-              me.get('onClose') && me.get('onClose')()
-              if (me.$el) {
-                me.destroy()
-              }
-            }
-          )
-        })
-      }
-    },
-
-    afterMount() {
-      this.set({
-        rightSize: `-${this.$el.clientWidth}`
-      })
-      this.fadeIn()
-    }
-  })
-  new Yox(options)
+export default {
+  success(props: Data, duration?: number, onClose?: Function) {
+    addNotice('success', props, duration, onClose)
+  },
+  info(props: Data, duration?: number, onClose?: Function) {
+    addNotice('info', props, duration, onClose)
+  },
+  warning(props: Data, duration?: number, onClose?: Function) {
+    addNotice('warning', props, duration, onClose)
+  },
+  error(props: Data, duration?: number, onClose?: Function) {
+    addNotice('error', props, duration, onClose)
+  },
+  config(options: Data) {
+    Yox.object.extend(config, options)
+  }
 }

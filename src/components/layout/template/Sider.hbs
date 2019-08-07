@@ -1,15 +1,15 @@
 <div class="${prefix}layout-sider ${prefix}col-6
 {{#if className}} {{className}}{{/if}}
-{{#if isCollapsed}} ${prefix}layout-sider-collapsed{{/if}}"
+{{#if collapsed}} ${prefix}layout-sider-collapsed{{/if}}"
 
 {{#if style}}style="{{style}}"{{/if}}
 >
   <div class="${prefix}layout-sider-children">
     <slot name="children" />
   </div>
-  {{#if isCollapsed != null}}
+  {{#if collapsed != null}}
     <div class="${prefix}layout-sider-trigger"
-      on-click="toggle('isCollapsed')"
+      on-click="toggle('collapsed')"
     >
       <slot name="trigger">
         <Icon

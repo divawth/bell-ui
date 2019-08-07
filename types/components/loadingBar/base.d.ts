@@ -4,7 +4,9 @@ interface Config {
     height?: number;
     percent?: number;
 }
-export declare function add(data: Config): any;
-export declare const remove: () => void;
-export declare const update: (config: Config) => void;
-export {};
+declare const _default: {
+    start(options?: Config): any;
+    finish(): void;
+    update(data: Config): void;
+};
+export default _default;

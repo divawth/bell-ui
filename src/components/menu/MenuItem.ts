@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/MenuItem.hbs'
 
@@ -39,7 +39,7 @@ export default Yox.define({
     return {
       mode: menu.get('mode'),
       isActive: menu.get('activeName') === this.get('name'),
-      isCollapsed: FALSE
+      collapsed: FALSE
     }
   },
 
@@ -49,8 +49,8 @@ export default Yox.define({
         this.set('isActive', data.name === this.get('name'))
       }
     },
-    isCollapsedChanged(_, data) {
-      this.set('isCollapsed', data.isCollapsed)
+    collapsedChanged(_, data) {
+      this.set('collapsed', data.collapsed)
     },
     'click.menuItem': function () {
       let name = this.get('name')

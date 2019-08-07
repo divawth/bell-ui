@@ -34,15 +34,15 @@ export default {
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$loadingBar.start(callback)
-- this.$loadingBar.finish(callback)
-- this.$loadingBar.update(data, callback)
+- this.$loadingBar.start(props)
+- this.$loadingBar.finish()
+- this.$loadingBar.update(props)
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 color | 颜色 | string | - | -
-type | 类型 | string | - | -
+type | 类型 | string | primary, success, error, info, warning | primary
 height | 进度环的线宽 | number | 2 | 2
-percent | 百分比 | number | - | -
+percent | 百分比 | number | 0-100 | 0

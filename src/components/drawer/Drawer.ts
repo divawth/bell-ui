@@ -91,7 +91,7 @@ export default Yox.define({
   },
 
   computed: {
-    contentStyle() {
+    wrapperStyle() {
       let style = ''
       const placement = this.get('placement')
       if (placement === 'left'

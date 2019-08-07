@@ -10,21 +10,19 @@
   > {$selector-drawer-mask}
     opacity 0
 
-{$selector-drawer-content}
+{$selector-drawer-wrapper}
   position absolute
   overflow-y auto
   background-color $brand-bg
-  box-shadow $drawer-content-shadow
+  box-shadow $drawer-wrapper-shadow
   transition transform .3s
 
 {$selector-drawer-header}
   position relative
   padding $drawer-header-padding-vertical $drawer-padding-horizontal
   border-bottom 1px solid $brand-border
-
-{$selector-drawer-title}
   color $brand-important
-  font-size $drawer-title-font-size
+  font-size $drawer-header-font-size
 
 {$selector-drawer-body}
   position relative
@@ -40,6 +38,15 @@
   position absolute
   right $drawer-close-right
   top $drawer-close-top
+  font-size $drawer-close-font-size
+  width $drawer-close-font-size
+  text-align center
+  cursor $cursor-clickable
+  color $brand-close-color
+  transition color .3s
+
+  &:hover
+    color $brand-close-color-hover
 
 {$selector-drawer-mask}
   position absolute
@@ -56,7 +63,7 @@
   left 0
   right 0
 
-  > {$selector-drawer-content}
+  > {$selector-drawer-wrapper}
     transform translate(-100%)
     left 0
     top 0
@@ -65,11 +72,11 @@
   &{$selector-drawer-open}
     bottom 0
 
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(0)
 
   &{$selector-drawer-leave}
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(-100%)
 
 {$selector-drawer-right}
@@ -77,7 +84,7 @@
   left 0
   right 0
 
-  > {$selector-drawer-content}
+  > {$selector-drawer-wrapper}
     transform translate(100%)
     right 0
     top 0
@@ -86,11 +93,11 @@
   &{$selector-drawer-open}
     bottom 0
 
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(0)
 
   &{$selector-drawer-leave}
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(100%)
 
 
@@ -100,7 +107,7 @@
   top 0
   bottom 0
 
-  > {$selector-drawer-content}
+  > {$selector-drawer-wrapper}
     transform translateY(-100%)
     top 0
     left 0
@@ -109,11 +116,11 @@
   &{$selector-drawer-open}
     right 0
 
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(0)
 
   &{$selector-drawer-leave}
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translateY(-100%)
 
 {$selector-drawer-bottom}
@@ -121,7 +128,7 @@
   top 0
   bottom 0
 
-  > {$selector-drawer-content}
+  > {$selector-drawer-wrapper}
     transform translateY(100%)
     bottom 0
     left 0
@@ -130,9 +137,9 @@
   &{$selector-drawer-open}
     right 0
 
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translate(0)
 
   &{$selector-drawer-leave}
-    > {$selector-drawer-content}
+    > {$selector-drawer-wrapper}
       transform translateY(100%)

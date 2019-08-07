@@ -6,8 +6,13 @@ class="${prefix}menu-item
 {{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{style}}"
-on-click="click.menuItem"
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+
+{{#if !disabled}}
+  on-click="click.menuItem"
+{{/if}}
 >
   <slot name="children" />
 </div>

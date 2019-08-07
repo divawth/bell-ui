@@ -1,81 +1,85 @@
 {$selector-dialog}
   position fixed
   top 0
+  right 0
   left 0
-  width 100%
-  height 0
-  z-index $dialog-z-index
+  z-index $zindex-dialog
 
-  &{$selector-dialog}-open
-    height 100%
+{$selector-dialog-open}
+  height 100%
 
-    {$selector-dialog-content}
-      opacity 1
-      transform translate(-50%, -50%) scale(1)
+  > {$selector-dialog-wrapper}
+    opacity 1
+    transform translate(-50%, -50%) scale(1)
 
-    {$selector-dialog-mask}
-      opacity 1
-  
-  &{$selector-dialog}-leave
-    {$selector-dialog-content}
-      opacity 0
-      transform translate(-50%, -50%) scale(.4)
+  > {$selector-dialog-mask}
+    opacity 1
 
-    {$selector-dialog-mask}
-      opacity 0
+{$selector-dialog-leave}
+  > {$selector-dialog-wrapper}
+    opacity 0
+    transform translate(-50%, -50%) scale(.4)
+
+  > {$selector-dialog-mask}
+    opacity 0
 
 {$selector-dialog-mask}
-  opacity 0
   position absolute
-  width 100%
-  height 100%
-  background-color rgba(0,0,0,.54)
+  top 0
+  right 0
+  bottom 0
+  left 0
+
+  opacity 0
+  background-color $dialog-mask-color
   transition opacity .4s
 
-{$selector-dialog-content}
+{$selector-dialog-wrapper}
   max-height 100%
-  overflow auto
+  overflow hidden
   position absolute
   left 50%
   top 50%
   transform translate(-50%, -50%) scale(.4)
   opacity 0
 
-  min-width $dialog-min-width
-  background-color $dialog-content-background
-  transition transform .4s, opacity .4s 
+  border-radius $radius-base
+  min-width $dialog-wrapper-min-width
+  background-color $dialog-wrapper-bg-color
+  box-shadow $dialog-wrapper-shadow
+  transition transform .4s, opacity .4s
 
-  {$selector-dialog}-title,
-  {$selector-dialog}-actions
-    padding $dialog-padding
+{$selector-dialog-title}
+  ui-ellipsis()
 
-  {$selector-dialog}-title
-    overflow hidden
-    text-overflow ellipsis
-    white-space nowrap
-    font-weight 700
+  color $dialog-title-color
+  font-size $dialog-title-font-size
+  padding $dialog-title-padding-vertical $dialog-padding-horizontal
+  border-bottom 1px solid $brand-border
 
-    border 1px solid $dialog-border-color
-    font-size $dialog-title-size
-    color $dialog-title-color
+{$selector-dialog-close}
+  position absolute
+  right $dialog-close-right
+  top $dialog-close-top
+  font-size $dialog-close-font-size
+  width $dialog-close-font-size
+  text-align center
+  cursor $cursor-clickable
+  color $brand-close-color
+  transition color .3s
 
-    {$selector-dialog}-close
-      position absolute
-      right 0
-      top 0
-      padding $dialog-close-padding
+  &:hover
+    color $brand-close-color-hover
 
-  {$selector-dialog}-body
-    padding $dialog-padding
-    overflow-y auto
-    overflow-x hidden
-    font-size 12px
-    line-height 1.5
+{$selector-dialog-content}
+  font-size $dialog-content-font-size
+  line-height 1.6
+  overflow-y auto
+  padding $dialog-content-padding-vertical $dialog-padding-horizontal
 
-  {$selector-dialog}-actions
-    border-top 1px solid $dialog-border-color
-    text-align right
-    padding $dialog-actions-padding
+{$selector-dialog-actions}
+  border-top 1px solid $brand-border
+  text-align right
+  padding $dialog-actions-padding-vertical $dialog-padding-horizontal
 
 
-  

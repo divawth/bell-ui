@@ -57,7 +57,7 @@ export default {
       this.$message.warning('警告哦，这是一条警告消息');
     },
     open4: function () {
-      this.$message.error('Tiva 不想和 佳路 说话，并且向它抛出了一个异常')
+      this.$message.error('A 不想和 B 说话，并且向它抛出了一个异常')
     }
   }
 }
@@ -87,32 +87,6 @@ export default {
 }
 ```
 
-> 设置关闭文本
-
-设置关闭文本为 Close me!
-
-```js
-export default {
-  template: `
-  <div>
-    <Button on-click="open()">
-      Click me!
-    </Button>
-  </div>
-  `,
-  methods: {
-    open: function () {
-      this.$message.error({
-        content: '对方不想和你说话，并且向你抛出了一个异常',
-        showIcon: true,
-        closable: true,
-        closeText: 'Close me!'
-      })
-    }
-  }
-}
-```
-
 > 设置显示时长
 
 设置显示时长为 10s
@@ -130,7 +104,7 @@ export default {
     open: function () {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
-        showIcon: true,
+        icon: true,
         duration: 10000
       })
     }
@@ -155,7 +129,7 @@ export default {
     open: function () {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
-        showIcon: true,
+        icon: true,
         top: 100
       })
     }
@@ -183,7 +157,6 @@ export default {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         closable: true,
-        closeText: 'Close me!',
         onClose: function () {
           console.log('close')
         }
@@ -207,10 +180,9 @@ API
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
-showIcon | 是否显示图标 | boolean | - | false
+icon | 是否显示图标 | boolean | - | false
 closable | 是否可以关闭 | boolean | - | true
 center | 文字是否居中 | boolean | - | true
-closeText | 关闭按钮自定义文本 | string | - | -
 top | 提示组件距离顶端的距离，单位像素 | number | - | 15
 duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
 
@@ -218,7 +190,7 @@ duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-close | 关闭时触发的事件 | -
+close | 点击关闭按钮，或自动关闭时触发 | -
 
 > 另外提供了全局配置方法
 
@@ -229,6 +201,6 @@ close | 关闭时触发的事件 | -
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 top | 提示组件距离顶端的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
+duration | 默认自动关闭的延时，单位毫秒 | number | - | 1500
 
 

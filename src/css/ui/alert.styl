@@ -1,66 +1,72 @@
 {$selector-alert}
-
-  user-select none
-  display flex
-  align-items center
-  transition opacity .3s
-
   border 1px solid
-  border-radius $alert-radius
-  padding $alert-padding
+  position relative
+  box-sizing border-box
+  border-radius $radius-base
+  padding $alert-padding-vertical $alert-padding-horizontal
+  transition opacity .3s
 
   ui-alert()
 
-  {$selector-alert-icon}
-    font-size $alert-icon-size
-    margin-right $alert-gap
+{$selector-alert-hidden}
+  opacity 0
 
-  {$selector-alert-title}
-    font-size $alert-size
-    line-height $alert-icon-size
+{$selector-alert-center}
+  text-align center
 
-  &.bell-hide
-    opacity 0
-
-  {$selector-alert}-wrapper
-    flex 1
-
-  &{$selector-alert}-center
-    text-align center
+{$selector-alert-type-icon}
+  font-size $alert-type-icon-size
 
 {$selector-alert-with-content}
+  {$selector-alert-type-icon}
+    font-size $alert-type-icon-size-with-content
 
-  {$selector-alert-title}
-    font-weight bold
+{$selector-alert-title}
+  white-space nowrap
+  font-size $alert-title-font-size
 
-  {$selector-alert-content}
-    font-size 12px
-    line-height 1.4
-    font-weight normal
-    margin-top $alert-gap
+  + {$selector-alert-content}
+    margin-top $alert-title-content-gap
 
-  &{$selector-alert-with-icon}
-    display flex
+{$selector-alert-content}
+  font-size $alert-content-font-size
+  line-height 1.6
+  font-weight normal
 
-    {$selector-alert-icon}
-      line-height 2
-      {$selector-prefix}-icon
-        font-size $alert-with-content-icon-size !important
-
-    {$selector-alert}-wrapper
-      margin-left $alert-gap
-      display flex
-      flex-direction column
-      justify-content center
-
-{$selector-alert}-close
+{$selector-alert-close}
+  position absolute
+  right $alert-padding-horizontal
+  top $alert-padding-vertical
 
   text-align center
-  cursor pointer
-  height 100%
-  padding-left $alert-close-padding
-  font-size $alert-close-size
+  font-size $alert-close-font-size
+  color $brand-close-color
+  cursor $cursor-clickable
+  transition color .3s
 
-  > {$selector-icon}
-    &{$selector-hover}
-      color $alert-close-hover-color
+  &:hover
+    color $brand-close-color-hover
+
+{$selector-alert-close-icon}
+  display inline-block
+  font-size $alert-close-icon-font-size
+  width $alert-close-icon-font-size
+  margin-top $alert-close-icon-margin-top
+
+{$selector-alert-with-icon}
+  display table
+
+  > {$selector-alert-icon}
+  > {$selector-alert-wrapper}
+    display table-cell
+    vertical-align middle
+
+  > {$selector-alert-icon}
+    padding-right $alert-icon-wrapper-gap
+
+  > {$selector-alert-wrapper}
+    width 100%
+
+{$selector-alert-with-close}
+  {$selector-alert-title}
+    margin-right $alert-close-icon-font-size + $ui-label-gap

@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
-    isCollapsed: unknown;
+    collapsed: unknown;
 }, {
     menuItemSelected: unknown;
 }, unknown> & ThisType<import("yox").YoxInterface>;

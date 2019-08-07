@@ -1,134 +1,67 @@
 import Yox, { Data } from 'yox'
 
-import template from './template/Message.hbs'
-
 import {
   TRUE,
-  FALSE,
-  DOCUMENT,
-  RAW_BOOLEAN,
-  RAW_STRING,
-  RAW_TYPE_ARRAY,
+  BODY,
 } from '../constant'
 
-import { onTransitionEnd, oneOf } from '../util'
+import Message from './Message'
 
-let id = 0
+type Arg = string | Data
 
-export function createMessage(data: Data) {
+const config: Data = {}
 
-  const namespace = '${prefix}message-' + (++id)
+function addMessage(type: string, arg: Arg, duration?: number, onClose?: Function) {
+
+  const props: Data = { type }
+
+  Yox.object.extend(props, config)
+
+  if (Yox.is.string(arg)) {
+    props.content = arg as string
+  }
+  else {
+    Yox.object.extend(props, arg as Data)
+  }
+
+  if (duration > 0) {
+    props.duration = duration
+  }
+
+  if (onClose) {
+    props.onClose = onClose
+  }
+
   const element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(DOCUMENT.body, element)
+  Yox.dom.append(BODY, element)
 
-  const options = Yox.define({
-    el: '#' + namespace,
-    replace: TRUE,
-    template,
-    props: {
-      content: data.content,
-      type: data.type,
-      showIcon: data.showIcon,
-      closable: data.closable,
-      closeText: data.closeText,
-      center: data.center,
-    },
-    propTypes: {
-      content: {
-        type: RAW_STRING,
+  new Yox(
+    Yox.object.extend(
+      {
+        el: element,
+        replace: TRUE,
+        props,
       },
-      type: {
-        type: oneOf(RAW_TYPE_ARRAY),
-      },
-      showIcon: {
-        type: RAW_BOOLEAN,
-        value: TRUE,
-      },
-      closable: {
-        type: RAW_BOOLEAN,
-        value: FALSE,
-      },
-      closeText: {
-        type: RAW_STRING,
-      },
-      center: {
-        type: RAW_BOOLEAN,
-      }
-    },
+      Message
+    )
+  )
 
-    data() {
-      return {
-        marginLeft: 0,
-        top: 0,
-        showTime: data.duration || 1500,
-        isShow: FALSE,
-        close() {
-          this.hide()
-        }
-      }
-    },
+}
 
-    methods: {
-      fadeIn() {
-        const me = this
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.show()
-            }
-          },
-          300
-        )
-      },
-      fadeOut() {
-        const me = this
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.hide()
-            }
-          },
-          me.get('showTime')
-        )
-      },
-      show() {
-        this.set({
-          isShow: TRUE,
-          top: data.top || 15
-        })
-        this.fadeOut()
-      },
-      hide() {
-        const me = this
-
-        me.set({
-          isShow: FALSE,
-          top: 0
-        })
-
-        onTransitionEnd(
-          me.$el,
-          function () {
-            if (Yox.is.func(data.onClose)) {
-              data.onClose()
-            }
-            if (me.$el) {
-              me.destroy()
-            }
-          }
-        )
-      }
-    },
-
-    afterMount() {
-      this.set({
-        marginLeft: this.$el.clientWidth
-      })
-      this.fadeIn()
-    }
-  })
-
-  new Yox(options)
-
+export default {
+  success(arg: Arg, duration?: number, onClose?: Function) {
+    addMessage('success', arg, duration, onClose)
+  },
+  info(arg: Arg, duration?: number, onClose?: Function) {
+    addMessage('info', arg, duration, onClose)
+  },
+  warning(arg: Arg, duration?: number, onClose?: Function) {
+    addMessage('warning', arg, duration, onClose)
+  },
+  error(arg: Arg, duration?: number, onClose?: Function) {
+    addMessage('error', arg, duration, onClose)
+  },
+  config(arg: Data) {
+    Yox.object.extend(config, arg)
+  }
 }

@@ -1,15 +1,16 @@
 {$selector-loadingbar-wrapper}
   position fixed
   left 0
-  top 0
   right 0
+  top 0
   z-index $zindex-loadingbar
 
-  {$selector-loadingbar}
-    background-color $loadingbar-inner-background-color
-    border-radius $loadingbar-border-radius
-    ui-loadingbar()
+{$selector-loadingbar}
+  background-color $loadingbar-background-color
+  ui-loadingbar()
 
-    {$selector-loadingbar-bg}
-      border-radius $loadingbar-border-radius
-      transition width .2s linear
+{$selector-loadingbar-bg}
+  // 给一个足够大的值，使得右侧是半圆
+  border-top-right-radius 50px
+  border-bottom-right-radius 50px
+  transition width .3s

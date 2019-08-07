@@ -1,8 +1,10 @@
 <div class="${prefix}list
 {{#if size}} ${prefix}list-{{size}}{{/if}}
+
 {{#if simple}} ${prefix}list-simple
 {{else}} ${prefix}list-bordered
 {{/if}}
+
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -16,7 +18,7 @@
   {{/if}}
 
   {{#if loading}}
-    <Spinner size="large" fix />
+    <Spinner size="large" fixed />
   {{/if}}
 
   <slot name="children">

@@ -1,52 +1,67 @@
-import { add, remove, update } from './base'
 import Yox from 'yox'
-import { NULL } from '../constant'
 
-interface Config {
-  type?: string,
-  color?: string,
-  height?: number,
-  percent?: number
-}
+import template from './template/LoadingBar.hbs'
 
-let config: Config = {}
+import {
+  NULL,
+  UNDEFINED,
+  RAW_STRING,
+  RAW_NUMBER,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
+} from '../constant'
 
-function updateConfig(data: Config) {
-  config.type = data.type ? data.type : config.type
-  config.color = data.color ? data.color : config.color
-  config.height = data.height ? data.height : config.height
-}
+import {
+  oneOf,
+} from '../util'
 
-export default {
-  // 开始从 0 显示进度条，并自动加载进度
-  start(options: Config = {}) {
-    return add(
-      Yox.object.extend(
-        options,
-        config
+let timer = NULL
+
+export default Yox.define({
+
+  template,
+
+  propTypes: {
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
+    },
+    height: {
+      type: RAW_NUMBER,
+      value: 2,
+    },
+    percent: {
+      type: RAW_NUMBER,
+      value: 0,
+    },
+    color: {
+      type: RAW_STRING,
+    }
+  },
+
+  afterMount() {
+    const me = this
+    const next = function () {
+      timer = setTimeout(
+        function () {
+          if (!timer) {
+            return
+          }
+          me.increase('percent', Math.floor(Math.random() * 10), 98)
+          if (me.get('percent') < 98) {
+            next()
+          }
+        },
+        300
       )
-    )
+    }
+    next()
   },
-  // 结束进度条，自动补全剩余进度
-  finish() {
-    update({
-      percent: 100
-    })
-    setTimeout(
-      function () {
-        return remove()
-      },
-      1000
-    )
-  },
-  // 精确加载到指定的进度
-  update(data: Config) {
-    return update(data)
-  },
-  config(data: Config) {
-    updateConfig(data)
-  },
-  destroy() {
-    config = NULL
+
+  beforeDestroy() {
+    if (timer) {
+      clearTimeout(timer)
+      timer = UNDEFINED
+    }
   }
-}
+})

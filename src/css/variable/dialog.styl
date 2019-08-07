@@ -1,15 +1,35 @@
 $selector-dialog = $selector-prefix + '-dialog'
+
+$selector-dialog-open = $selector-dialog + '-open'
+$selector-dialog-leave = $selector-dialog + '-leave'
+
 $selector-dialog-mask = $selector-dialog + '-mask'
+$selector-dialog-wrapper = $selector-dialog + '-wrapper'
+
+$selector-dialog-title = $selector-dialog + '-title'
 $selector-dialog-content = $selector-dialog + '-content'
-
-$dialog-min-width = 320px
-$dialog-z-index = $zindex-dialog
-$dialog-content-background = $brand-white
-$dialog-padding = 15px
+$selector-dialog-actions = $selector-dialog + '-actions'
+$selector-dialog-close = $selector-dialog + '-close'
+$selector-dialog-close-icon = $selector-dialog + '-close-icon'
 
 
-$dialog-title-size = 14px
-$dialog-border-color = #efefec
-$dialog-title-color = #17233d
-$dialog-actions-padding = 12px $dialog-padding
-$dialog-close-padding = 3px 15px
+$dialog-padding-horizontal = 15px
+
+$dialog-mask-color = rgba(0,0,0,.54)
+
+$dialog-wrapper-min-width = 320px
+$dialog-wrapper-bg-color = $brand-white
+$dialog-wrapper-shadow = 0 4px 12px rgba(0,0,0,.15)
+
+$dialog-title-color = $brand-important
+$dialog-title-font-size = 14px
+$dialog-title-padding-vertical = 15px
+
+$dialog-content-font-size = 12px
+$dialog-content-padding-vertical = 20px
+
+$dialog-actions-padding-vertical = 10px
+
+$dialog-close-font-size = 22px
+$dialog-close-top = $dialog-title-padding-vertical - 3
+$dialog-close-right = $dialog-padding-horizontal

@@ -1,25 +1,28 @@
 <div
-class="${prefix}notice ${prefix}notice-{{type}}
-  {{#if visible}} ${prefix}show{{/if}}
-"
-style="width: {{width}}px;
-  {{#if rightSize}}right: {{rightSize}}px;{{/if}}
-">
+class="${prefix}notice
+{{#if type}} ${prefix}notice-{{type}}{{/if}}"
 
-  <div class="${prefix}notice-title">
-    {{title}}
-  </div>
+style="width: {{width}}px;right: {{right}}px;"
+>
 
-  <div class="${prefix}notice-desc">
-    {{content}}
-  </div>
+  {{#if title}}
+    <div class="${prefix}notice-title">
+      {{title}}
+    </div>
+  {{/if}}
+
+  {{#if content}}
+    <div class="${prefix}notice-content">
+      {{content}}
+    </div>
+  {{/if}}
 
   {{#if duration == 0}}
     <Icon
       name="close"
-      size="{{24}}"
+      size="0"
       className="${prefix}notice-close"
-      on-click.native="close()"
+      on-click.native="hide()"
     />
   {{/if}}
 

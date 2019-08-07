@@ -8,6 +8,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   DOCUMENT,
+  BODY,
 } from '../constant'
 
 import {
@@ -18,6 +19,11 @@ const CLASS_OPEN = '${prefix}dialog-open'
 const CLASS_LEAVE = '${prefix}dialog-leave'
 
 export default Yox.define({
+
+  template,
+
+  model: 'open',
+
   propTypes: {
     title: {
       type: RAW_STRING,
@@ -25,10 +31,15 @@ export default Yox.define({
     },
     open: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     closable: {
       type: RAW_BOOLEAN,
       value: TRUE,
+    },
+    maskClosable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -37,10 +48,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
-
-  model: 'open',
 
   watchers: {
     open(isOpen) {
@@ -68,10 +75,11 @@ export default Yox.define({
   },
 
   afterMount() {
-    Yox.dom.append(DOCUMENT.body, this.$el)
+    Yox.dom.append(BODY, this.$el)
   },
 
   beforeDestroy() {
-    Yox.dom.remove(DOCUMENT.body, this.$el)
+    Yox.dom.remove(BODY, this.$el)
   }
+
 })

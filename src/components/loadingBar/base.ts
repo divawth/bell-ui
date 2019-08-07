@@ -1,6 +1,8 @@
-import template from './template/LoadingBar.hbs'
-import { NULL, RAW_STRING, RAW_NUMERIC, TRUE, RAW_NUMBER } from '../constant'
-import Yox from 'yox';
+import Yox from 'yox'
+
+import { NULL, TRUE } from '../constant'
+
+import LoadingBar from './LoadingBar'
 
 interface Config {
   type?: string,
@@ -9,90 +11,54 @@ interface Config {
   percent?: number
 }
 
-let namespace = '${prefix}loadingbar'
 let instance = NULL
-let timer = NULL
 
+function add(props: Config | void) {
 
-export function add(data: Config) {
-  if (instance) {
-    remove()
-  }
-  let body = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
-  let element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(body, element)
+  const wrapper = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
 
-  const options = Yox.define({
-    el: '#' + namespace,
-    replace: TRUE,
-    props: {
-      percent: data.percent,
-      height: data.height,
-      type: data.type,
-      color: data.color
-    },
-    template,
-    propTypes: {
-      type: {
-        type: RAW_STRING
+  instance = new Yox(
+    Yox.object.extend(
+      {
+        el: wrapper,
+        props,
       },
-      height: {
-        type: RAW_NUMBER,
-        value: 2
-      },
-      percent: {
-        type: RAW_NUMBER,
-        value: 0
-      },
-      color: {
-        type: RAW_STRING
-      }
-    },
+      LoadingBar
+    )
+  )
 
-    afterMount() {
-      let me = this
-      let timerStart = function () {
-        timer = setTimeout(
-          function () {
-            if (!timer || !me) {
-              return
-            }
-            me.increase('percent', Math.floor(Math.random() * 10), 98)
-            if (me.get('percent') <= 98) {
-              timerStart()
-            }
-          },
-          300
-        )
-      }
-      timerStart()
-    },
-
-    beforeDestroy() {
-      if (timer) {
-        clearTimeout(timer)
-      }
-    }
-  })
-  instance = new Yox(options)
   return instance
+
 }
 
-export const remove = function() {
+function remove() {
   if (instance) {
     instance.destroy()
     instance = NULL
   }
-  let body = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
-  let element = Yox.dom.find(`#${namespace}`)
-  if (element) {
-    Yox.dom.remove(body, element)
+}
+
+export default {
+  // 开始从 0 显示进度条，并自动加载进度
+  start(options?: Config) {
+    if (instance) {
+      remove()
+    }
+    return add(options)
+  },
+  // 结束进度条，自动补全剩余进度
+  finish() {
+    if (instance) {
+      instance.set('percent', 100)
+      setTimeout(remove, 300)
+    }
+  },
+  // 精确加载到指定的进度
+  update(data: Config) {
+    if (instance) {
+      instance.set(data)
+    }
   }
 }
 
-export const update = function(config: Config) {
-  if (instance) {
-    instance.set(config)
-  }
-}
+

@@ -1,8 +1,9 @@
 <div
 class="${prefix}alert
 {{#if type}} ${prefix}alert-{{type}}{{/if}}
+{{#if icon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
 {{#if hasSlot('content')}} ${prefix}alert-with-content{{/if}}
-{{#if showIcon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
+{{#if closable || hasSlot('close')}} ${prefix}alert-with-close{{/if}}
 {{#if center}} ${prefix}alert-center{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -10,21 +11,23 @@ class="${prefix}alert
   style="{{style}}"
 {{/if}}
 >
-  {{#if showIcon || hasSlot('icon')}}
+  {{#if icon || hasSlot('icon')}}
     <span class="${prefix}alert-icon">
       <slot name="icon">
         <Icon
-          {{#if type === RAW_TYPE_PRIMARY}}
-            name="information-circle"
-          {{else if type === RAW_TYPE_SUCCESS}}
-            name="checkmark-circle"
-          {{else if type === RAW_TYPE_WARNING}}
-            name="alert"
-          {{else if type === RAW_TYPE_ERROR}}
-            name="close-circle"
-          {{else if type === RAW_TYPE_INFO}}
-            name="information-circle"
-          {{/if}}
+          name="{{
+            type === RAW_TYPE_PRIMARY
+            ? 'information-circle'
+            : type === RAW_TYPE_SUCCESS
+              ? 'checkmark-circle'
+              : type === RAW_TYPE_WARNING
+                ? 'alert'
+                : type === RAW_TYPE_ERROR
+                  ? 'close-circle'
+                  : 'information-circle'
+          }}"
+          size="0"
+          className="${prefix}alert-type-icon"
         />
       </slot>>
     </span>
@@ -47,11 +50,15 @@ class="${prefix}alert
   </div>
 
   {{#if closable || hasSlot('close')}}
-    <span ref="close" class="${prefix}alert-close" on-click="close()">
+    <div ref="close" class="${prefix}alert-close" on-click="close()">
       <slot name="close">
-        <Icon name="close" size="24" />
+        <Icon
+          name="close"
+          size="0"
+          className="${prefix}alert-close-icon"
+        />
       </slot>
-    </span>
+    </div>
   {{/if}}
 
 </div>

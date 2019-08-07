@@ -1,9 +1,9 @@
-loadingbar-style(color)
+loadingbar-brand-style(style)
   {$selector-loadingbar-bg}
-    ui-set('background-color', color[ 'bg-color' ])
+    ui-set('background-color', style['color'])
 
 ui-loadingbar()
   ui-connect(
     hash: $loadingbar-brand-hash,
-    each: loadingbar-style
+    each: loadingbar-brand-style
   )

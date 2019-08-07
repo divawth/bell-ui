@@ -8,7 +8,7 @@ class="${prefix}submenu
   style="{{style}}"
 {{/if}}
 
-{{#if isCollapsed}}
+{{#if collapsed}}
   on-mouseenter="set('isOpen', true)"
   on-mouseleave="set('isOpen', false)"
   lazy-mouseleave="300"
@@ -16,7 +16,9 @@ class="${prefix}submenu
 >
   <div class="${prefix}submenu-title" on-click="handleClick()">
     <slot name="title" />
-    <Icon name="arrow-down" className="${prefix}submenu-title-icon" />
+    {{#if !collapsed}}
+      <Icon name="arrow-down" className="${prefix}submenu-title-icon" />
+    {{/if}}
   </div>
 
   {{#if mode !== 'inline'}}

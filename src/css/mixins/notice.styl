@@ -1,9 +1,9 @@
-notice-style(style)
+notice-brand-style(style)
   &:before
-    ui-set('background-color', style[ 'bg-color' ])
+    ui-set('background-color', style['color'])
 
 ui-notice()
   ui-connect(
     hash: $notice-brand-hash,
-    each: notice-style
+    each: notice-brand-style
   )

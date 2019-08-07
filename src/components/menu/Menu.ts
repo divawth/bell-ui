@@ -34,7 +34,7 @@ export default Yox.define({
       type: oneOf(['dark', 'light']),
       value: 'dark',
     },
-    isCollapsed: {
+    collapsed: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -56,10 +56,10 @@ export default Yox.define({
   },
 
   watchers: {
-    isCollapsed(isCollapsed: boolean) {
+    collapsed(collapsed: boolean) {
       this.fire(
-        'isCollapsedChanged',
-        { isCollapsed },
+        'collapsedChanged',
+        { collapsed },
         TRUE
       )
     }
