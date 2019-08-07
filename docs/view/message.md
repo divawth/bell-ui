@@ -175,7 +175,7 @@ API
 - this.$message.warning(content, duration, onClose)
 - this.$message.error(content, duration, onClose)
 
-> props
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
@@ -196,7 +196,7 @@ close | 点击关闭按钮，或自动关闭时触发 | -
 
 - this.$message.config()
 
-> props
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---

@@ -344,7 +344,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("isVisible",$2)?" bell-tooltip-visible":"")+(a("isHover",$2)?" bell-tooltip-hover":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popper bell-tooltip-popper-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-inner"),g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?(" max-height: "+y(a("maxHeight",$2))+"px"):"")+";")},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popper")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("isVisible",$2)?" bell-tooltip-visible":"")+(a("isHover",$2)?" bell-tooltip-hover":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?(" max-height: "+y(a("maxHeight",$2))+"px"):"")+";")},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
 
 /***/ }),
 /* 42 */
@@ -5306,13 +5306,13 @@ var Tooltip_timer;
             var placement = me.get('placement');
             var offsetX = toNumber(me.get('offsetX'));
             var offsetY = toNumber(me.get('offsetY'));
-            var poperElement = this.$refs.popper;
-            var poperWidth = poperElement.offsetWidth;
-            var poperHeight = poperElement.offsetHeight;
+            var popupElement = this.$refs.popup;
+            var popupWidth = popupElement.offsetWidth;
+            var popupHeight = popupElement.offsetHeight;
             var marginLeft = 0;
             var marginTop = 0;
             if (placement === 'bottom') {
-                marginLeft = -(poperWidth / 2);
+                marginLeft = -(popupWidth / 2);
             }
             else if (placement === 'bottom-start') {
                 marginLeft = 0;
@@ -5321,30 +5321,30 @@ var Tooltip_timer;
                 marginLeft = 0;
             }
             else if (placement === 'top') {
-                marginLeft = -(poperWidth / 2);
-                marginTop = -poperHeight;
+                marginLeft = -(popupWidth / 2);
+                marginTop = -popupHeight;
             }
             else if (placement === 'top-start') {
-                marginTop = -poperHeight;
+                marginTop = -popupHeight;
             }
             else if (placement === 'top-end') {
-                marginTop = -poperHeight;
+                marginTop = -popupHeight;
             }
             else if (placement === 'left') {
-                marginLeft = -poperWidth;
-                marginTop = -(poperHeight / 2);
+                marginLeft = -popupWidth;
+                marginTop = -(popupHeight / 2);
             }
             else if (placement === 'left-start') {
-                marginLeft = -poperWidth;
+                marginLeft = -popupWidth;
             }
             else if (placement === 'left-end') {
-                marginLeft = -poperWidth;
+                marginLeft = -popupWidth;
             }
             else if (placement === 'right') {
-                marginTop = -(poperHeight / 2);
+                marginTop = -(popupHeight / 2);
             }
-            poperElement.style.marginLeft = (marginLeft + offsetX) + 'px';
-            poperElement.style.marginTop = (marginTop + offsetY) + 'px';
+            popupElement.style.marginLeft = (marginLeft + offsetX) + 'px';
+            popupElement.style.marginTop = (marginTop + offsetY) + 'px';
         },
         enter: function () {
             var me = this;

@@ -47,7 +47,7 @@ model | 表示是否展示 dialog | boolean | - | false
 closable | 是否展示关闭按钮 | boolean | - | true
 maskClosable | 点击遮罩是否关闭 dialog | boolean | - | false
 
-> slots
+> Slots
 
 名称 | 说明
 ---|---

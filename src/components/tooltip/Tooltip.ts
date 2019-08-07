@@ -77,15 +77,15 @@ export default Yox.define({
       const offsetX = toNumber(me.get('offsetX'))
       const offsetY = toNumber(me.get('offsetY'))
 
-      const poperElement = this.$refs.popper as HTMLElement
-      const poperWidth = poperElement.offsetWidth
-      const poperHeight = poperElement.offsetHeight
+      const popupElement = this.$refs.popup as HTMLElement
+      const popupWidth = popupElement.offsetWidth
+      const popupHeight = popupElement.offsetHeight
 
       let marginLeft = 0
       let marginTop = 0
 
       if (placement === 'bottom') {
-        marginLeft = -(poperWidth / 2)
+        marginLeft = -(popupWidth / 2)
       }
       else if (placement === 'bottom-start') {
         marginLeft = 0
@@ -94,31 +94,31 @@ export default Yox.define({
         marginLeft = 0
       }
       else if (placement === 'top') {
-        marginLeft = -(poperWidth / 2)
-        marginTop = -poperHeight
+        marginLeft = -(popupWidth / 2)
+        marginTop = -popupHeight
       }
       else if (placement === 'top-start') {
-        marginTop = -poperHeight
+        marginTop = -popupHeight
       }
       else if (placement === 'top-end') {
-        marginTop = -poperHeight
+        marginTop = -popupHeight
       }
       else if (placement === 'left') {
-        marginLeft = -poperWidth
-        marginTop = -(poperHeight / 2)
+        marginLeft = -popupWidth
+        marginTop = -(popupHeight / 2)
       }
       else if (placement === 'left-start') {
-        marginLeft = -poperWidth
+        marginLeft = -popupWidth
       }
       else if (placement === 'left-end') {
-        marginLeft = -poperWidth
+        marginLeft = -popupWidth
       }
       else if (placement === 'right') {
-        marginTop = -(poperHeight / 2)
+        marginTop = -(popupHeight / 2)
       }
 
-      poperElement.style.marginLeft = (marginLeft + offsetX) + 'px'
-      poperElement.style.marginTop = (marginTop + offsetY) + 'px'
+      popupElement.style.marginLeft = (marginLeft + offsetX) + 'px'
+      popupElement.style.marginTop = (marginTop + offsetY) + 'px'
 
     },
 

@@ -206,15 +206,21 @@ export default {
 }
 ```
 
-> Attributes
+> Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-title | 自定义文本 | string | - | -
-placement | Tooltip 的出现位置 | string | top, bottom, left, right | bottom
-delay | 显示延时 | string, number | - | delay
-mode | 交互模式 | string | click 和 hover | hover
+content | Tooltip 的文本 | string | - | -
+placement | Tooltip 的出现位置 | string | top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end | bottom
+delay | 显示延时 | string, number | - | 0
+mode | 交互模式 | string | click, hover | hover
 maxWidth | 浮层的最大宽度 | string, number | - | -
 maxHeight | 浮层的最大高度 | string, number | - | -
 offsetX | 浮层距离目标元素 x 轴的位置偏移 | number | - | -
 offsetY | 浮层距离目标元素 y 轴的位置偏移 | number | - | -
+
+> Slots
+
+名称 | 说明
+---|---
+content | 复杂的 content，如富文本

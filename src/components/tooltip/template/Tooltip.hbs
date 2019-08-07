@@ -20,13 +20,13 @@
   </div>
 
   <div
-    ref="popper"
-    class="${prefix}tooltip-popper ${prefix}tooltip-popper-{{placement}}
+    ref="popup"
+    class="${prefix}tooltip-popup ${prefix}tooltip-popup-{{placement}}
     {{#if disabled}} ${prefix}tooltip-disabled{{/if}}"
   >
     <div class="${prefix}tooltip-arrow"></div>
     <div
-      class="${prefix}tooltip-inner"
+      class="${prefix}tooltip-content"
       style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
         {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};"
     >

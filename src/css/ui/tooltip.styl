@@ -1,15 +1,3 @@
-
-
-{$selector-tooltip-hover}
-  {$selector-tooltip-popper}
-    display block
-    opacity 0
-
-{$selector-tooltip-visible}
-  {$selector-tooltip-popper}
-    display block
-    opacity 1
-
 {$selector-tooltip}
   position relative
   display inline-block
@@ -18,152 +6,169 @@
   position absolute
   width 0
   height 0
-  border $tooltip-arrow-border-width solid transparent
+  border $tooltip-arrow-size solid transparent
 
-{$selector-tooltip-popper}
+{$selector-tooltip-popup}
   position absolute
-  line-height 1.2
+  font-size 0
+  line-height 0
   display none
   transition opacity 0.3s
-
-  font-size $tooltip-font-size
   z-index $zindex-tooltip
 
   ui-scrollbar()
 
-  &{$selector-tooltip-disabled}
-    display none
+{$selector-tooltip-disabled}
+  display none
 
-{$selector-tooltip}-inner
+{$selector-tooltip-hover}
+  {$selector-tooltip-popup}
+    display block
+    opacity 0
+
+{$selector-tooltip-visible}
+  {$selector-tooltip-popup}
+    display block
+    opacity 1
+
+{$selector-tooltip-content}
+  color $tooltip-color
+  font-size $tooltip-font-size
+  line-height 1.2
+
   text-align left
   white-space nowrap
   overflow auto
 
   max-width $tooltip-max-width
   padding $tooltip-padding
-  color $tooltip-color
   background-color $tooltip-bg-color
   box-shadow $tooltip-box-shadow
   border-radius $radius-base
   box-sizing border-box
 
-{$selector-tooltip-popper}-bottom
+
+{$selector-tooltip-popup}-bottom,
+{$selector-tooltip-popup}-bottom-start,
+{$selector-tooltip-popup}-bottom-end
+  padding-top $tooltip-padding-inner
+
+  > {$selector-tooltip-arrow}
+    top $tooltip-arrow-offset
+    border-bottom-color $tooltip-bg-color
+
+
+{$selector-tooltip-popup}-bottom
   left 50%
-  padding $tooltip-placement-bottom-padding
 
-  {$selector-tooltip-arrow}
-    top $tooltip-placement-bottom-arrow-top
-    left $tooltip-placement-bottom-arrow-left
-    margin-left $tooltip-placement-bottom-arrow-margin-left
-    border-bottom-color $tooltip-placement-bottom-arrow-border-bottom-color
+  > {$selector-tooltip-arrow}
+    left 50%
+    margin-left - $tooltip-arrow-size
 
-{$selector-tooltip-popper}-bottom-start
+{$selector-tooltip-popup}-bottom-start
   left 0
-  padding $tooltip-placement-bottom-start-padding
 
-  {$selector-tooltip-arrow}
-    top $tooltip-placement-bottom-start-arrow-top
-    left $tooltip-placement-bottom-start-arrow-left
-    border-bottom-color $tooltip-placement-bottom-start-arrow-border-bottom-color
+  > {$selector-tooltip-arrow}
+    left $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-bottom-end
+{$selector-tooltip-popup}-bottom-end
   right 0
-  padding $tooltip-placement-bottom-end-padding
 
-  {$selector-tooltip-arrow}
-    right $tooltip-placement-bottom-end-arrow-right
-    top $tooltip-placement-bottom-end-arrow-top
-    border-bottom-color $tooltip-placement-bottom-end-arrow-border-bottom-color
+  > {$selector-tooltip-arrow}
+    right $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-top
+
+
+
+{$selector-tooltip-popup}-top,
+{$selector-tooltip-popup}-top-start,
+{$selector-tooltip-popup}-top-end
+  top 0
+  padding-bottom $tooltip-padding-inner
+
+  > {$selector-tooltip-arrow}
+    bottom $tooltip-arrow-offset
+    border-top-color $tooltip-bg-color
+
+
+{$selector-tooltip-popup}-top
   left 50%
-  top 0
-  padding $tooltip-placement-top-padding
 
-  {$selector-tooltip-arrow}
-    left $tooltip-placement-top-arrow-left
-    bottom $tooltip-placement-top-arrow-bottom
-    margin-left $tooltip-placement-top-arrow-margin-left
-    border-top-color $tooltip-placement-top-arrow-border-top-color
+  > {$selector-tooltip-arrow}
+    left 50%
+    margin-left - $tooltip-arrow-size
 
-{$selector-tooltip-popper}-top-start
+{$selector-tooltip-popup}-top-start
   left 0
-  top 0
-  padding $tooltip-placement-top-start-padding
 
-  {$selector-tooltip-arrow}
-    left $tooltip-placement-top-start-arrow-left
-    bottom $tooltip-placement-top-start-arrow-bottom
-    border-top-color $tooltip-placement-top-start-arrow-border-top-color
+  > {$selector-tooltip-arrow}
+    left $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-top-end
+{$selector-tooltip-popup}-top-end
   right 0
-  top 0
-  padding $tooltip-placement-top-end-padding
 
-  {$selector-tooltip-arrow}
-    right $tooltip-placement-top-end-arrow-right
-    bottom $tooltip-placement-top-end-arrow-bottom
-    border-top-color $tooltip-placement-top-end-arrow-border-top-color
+  > {$selector-tooltip-arrow}
+    right $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-left
+
+
+{$selector-tooltip-popup}-left,
+{$selector-tooltip-popup}-left-start,
+{$selector-tooltip-popup}-left-end
   left 0
+  padding-right $tooltip-padding-inner
+
+  > {$selector-tooltip-arrow}
+    right $tooltip-arrow-offset
+    border-left-color $tooltip-bg-color
+
+
+{$selector-tooltip-popup}-left
   top 50%
-  padding $tooltip-placement-left-padding
 
-  {$selector-tooltip-arrow}
-    right $tooltip-placement-left-arrow-right
-    top $tooltip-placement-left-arrow-top
-    margin-top $tooltip-placement-left-arrow-margin-top
-    border-left-color $tooltip-placement-left-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    top 50%
+    margin-top - $tooltip-arrow-size
 
-{$selector-tooltip-popper}-left-start
-  left 0
+{$selector-tooltip-popup}-left-start
   top 0
-  padding $tooltip-placement-left-start-padding
 
-  {$selector-tooltip-arrow}
-    right $tooltip-placement-left-start-arrow-right
-    top $tooltip-placement-left-start-arrow-top
-    border-left-color $tooltip-placement-left-start-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    top $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-left-end
-  left 0
+{$selector-tooltip-popup}-left-end
   bottom 0
-  padding $tooltip-placement-left-end-padding
 
-  {$selector-tooltip-arrow}
-    right $tooltip-placement-left-end-arrow-right
-    bottom $tooltip-placement-left-end-arrow-bottom
-    border-left-color $tooltip-placement-left-end-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    bottom $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-right
+
+
+{$selector-tooltip-popup}-right,
+{$selector-tooltip-popup}-right-start,
+{$selector-tooltip-popup}-right-end
   left 100%
+  padding-left $tooltip-padding-inner
+
+  > {$selector-tooltip-arrow}
+    left $tooltip-arrow-offset
+    border-right-color $tooltip-bg-color
+
+{$selector-tooltip-popup}-right
   top 50%
-  padding $tooltip-placement-right-padding
 
-  {$selector-tooltip-arrow}
-    left $tooltip-placement-right-arrow-left
-    top $tooltip-placement-right-arrow-top
-    margin-top $tooltip-placement-right-arrow-margin-top
-    border-right-color $tooltip-placement-right-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    top 50%
+    margin-top - $tooltip-arrow-size
 
-{$selector-tooltip-popper}-right-start
-  left 100%
+{$selector-tooltip-popup}-right-start
   top 0
-  padding $tooltip-placement-right-start-padding
 
-  {$selector-tooltip-arrow}
-    left $tooltip-placement-right-start-arrow-left
-    top $tooltip-placement-right-start-arrow-top
-    border-right-color $tooltip-placement-right-start-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    top $tooltip-arrow-gap
 
-{$selector-tooltip-popper}-right-end
-  left 100%
+{$selector-tooltip-popup}-right-end
   bottom 0
-  padding $tooltip-placement-right-end-padding
 
-  {$selector-tooltip-arrow}
-    left $tooltip-placement-right-end-arrow-left
-    bottom $tooltip-placement-right-end-arrow-bottom
-    border-right-color $tooltip-placement-right-end-arrow-border-left-color
+  > {$selector-tooltip-arrow}
+    bottom $tooltip-arrow-gap

@@ -4,8 +4,9 @@ $selector-tooltip-hover = $selector-tooltip + '-hover'
 
 $selector-tooltip-disabled = $selector-tooltip + '-disabled'
 
-$selector-tooltip-popper = $selector-tooltip + '-popper'
+$selector-tooltip-popup = $selector-tooltip + '-popup'
 $selector-tooltip-arrow = $selector-tooltip + '-arrow'
+$selector-tooltip-content = $selector-tooltip + '-content'
 
 $tooltip-font-size = 12px
 $tooltip-max-width = 250px
@@ -13,69 +14,9 @@ $tooltip-padding = 8px 12px
 $tooltip-color = $brand-white
 $tooltip-bg-color = rgba(0,0,0,0.6)
 $tooltip-box-shadow = 0 1px 6px rgba(0,0,0,.2)
-$tooltip-arrow-border-width = 5px
+$tooltip-padding-inner = 8px
 
-$tooltip-placement-bottom-arrow-top = -2px
-$tooltip-placement-bottom-padding = 8px 0
-$tooltip-placement-bottom-arrow-left = 50%
-$tooltip-placement-bottom-arrow-margin-left = -5px
-$tooltip-placement-bottom-arrow-border-bottom-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-bottom-start-arrow-top = -2px
-$tooltip-placement-bottom-start-padding = 8px 0
-$tooltip-placement-bottom-start-arrow-left = 10px
-$tooltip-placement-bottom-start-arrow-border-bottom-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-bottom-end-arrow-top = -2px
-$tooltip-placement-bottom-end-padding = 8px 0
-$tooltip-placement-bottom-end-arrow-right = 10px
-$tooltip-placement-bottom-end-arrow-border-bottom-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-top-padding = 8px 0
-$tooltip-placement-top-arrow-left = 50%
-$tooltip-placement-top-arrow-bottom = -2px
-$tooltip-placement-top-arrow-margin-left = -5px
-$tooltip-placement-top-arrow-border-top-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-top-start-padding = 8px 0
-$tooltip-placement-top-start-arrow-left = 10px
-$tooltip-placement-top-start-arrow-bottom = -2px
-$tooltip-placement-top-start-arrow-border-top-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-top-end-padding = 8px 0
-$tooltip-placement-top-end-arrow-right = 10px
-$tooltip-placement-top-end-arrow-bottom = -2px
-$tooltip-placement-top-end-arrow-border-top-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-left-padding = 0 8px
-$tooltip-placement-left-arrow-right = -2px
-$tooltip-placement-left-arrow-top = 50%
-$tooltip-placement-left-arrow-margin-top = -5px
-$tooltip-placement-left-arrow-border-left-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-left-start-padding = 0 8px
-$tooltip-placement-left-start-arrow-right = -2px
-$tooltip-placement-left-start-arrow-top = 10px
-$tooltip-placement-left-start-arrow-border-left-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-left-end-padding = 0 8px
-$tooltip-placement-left-end-arrow-right = -2px
-$tooltip-placement-left-end-arrow-bottom = 10px
-$tooltip-placement-left-end-arrow-border-left-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-right-padding = 0 8px
-$tooltip-placement-right-arrow-left = -2px
-$tooltip-placement-right-arrow-top = 50%
-$tooltip-placement-right-arrow-margin-top = -5px
-$tooltip-placement-right-arrow-border-left-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-right-start-padding = 0 8px
-$tooltip-placement-right-start-arrow-left = -2px
-$tooltip-placement-right-start-arrow-top = 10px
-$tooltip-placement-right-start-arrow-border-left-color = rgba(0,0,0,0.6)
-
-$tooltip-placement-right-end-padding = 0 8px
-$tooltip-placement-right-end-arrow-left = -2px
-$tooltip-placement-right-end-arrow-bottom = 10px
-$tooltip-placement-right-end-arrow-border-left-color = rgba(0,0,0,0.6)
-
+$tooltip-arrow-offset = -2px
+// 箭头与 tooltip 两侧的距离
+$tooltip-arrow-gap = 10px
+$tooltip-arrow-size = 5px
