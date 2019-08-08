@@ -27,8 +27,9 @@
     <div class="${prefix}tooltip-arrow"></div>
     <div
       class="${prefix}tooltip-content"
-      style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};
-        {{#if maxHeight}} max-height: {{maxHeight}}px{{/if}};"
+      {{#if maxWidth || maxHeight}}
+        style="{{#if maxWidth}}max-width: {{maxWidth}}px{{/if}};{{#if maxHeight}}max-height: {{maxHeight}}px{{/if}};"
+      {{/if}}
     >
       <slot name="content">
         {{content}}

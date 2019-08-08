@@ -43,9 +43,10 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-model | 表示是否展示 dialog | boolean | - | false
+model | 是否展示 dialog | boolean | - | false
+mask | 是否展示 mask | boolean | - | true
 closable | 是否展示关闭按钮 | boolean | - | true
-maskClosable | 点击遮罩是否关闭 dialog | boolean | - | false
+maskClosable | 点击 mask 是否关闭 dialog | boolean | - | false
 
 > Slots
 

@@ -1,71 +1,42 @@
 
 {$selector-divider}
-
   box-sizing border-box
-  padding 0
-  margin 0
   background-color $divider-border-color
 
-{$selector-divider}-horizontal
-
+{$selector-divider-horizontal}
   display block
   clear both
   width 100%
   height 1px
-  min-width 100%
-  margin $divider-horizontal-margin
+  margin $divider-horizontal-gap 0
 
-{$selector-divider}-vertical
+{$selector-divider-vertical}
   display inline-block
   vertical-align middle
   position relative
   width 1px
   height .9em
   top -.06em
-  margin $divider-vertical-margin
+  margin 0 $divider-vertical-gap
 
-{$selector-divider}-text
-  display inline-block
-  vertical-align middle
-  padding $divider-text-padding
+{$selector-divider-text}
+  margin 0 $divider-text-gap
 
-{$selector-divider}-dashed
-
-  background 0 0
+{$selector-divider-dashed}
+  background-color transparent
   border-top 1px dashed $divider-border-color
 
-  &{$selector-divider}-with-text-center,
-  &{$selector-divider}-with-text-left,
-  &{$selector-divider}-with-text-right
-    &:before
-      border-top-style dashed
-    &:after
-      border-top-style dashed
-
-{$selector-divider}-with-text-center,
-{$selector-divider}-with-text-left,
-{$selector-divider}-with-text-right
+{$selector-divider-with-text}
 
   display table
   white-space nowrap
-  text-align center
-  background 0 0
-  font-weight 500
+  background-color transparent
   border-top 0
 
-  margin $divider-with-text-margin
-  color $divider-with-text-color
-  font-size $divider-with-text-size
+  color $brand-text
+  font-size $ui-font-size
 
-  &:before
-    content ''
-    position relative
-    display table-cell
-    border-top 1px solid $divider-border-color
-    transform translateY(50%)
-    top 50%
-    width 50%
-
+  &:before,
   &:after
     content ''
     position relative
@@ -75,12 +46,18 @@
     top 50%
     width 50%
 
-  &{$selector-divider}-with-text-left
+  &{$selector-divider-dashed}
+    &:before,
+    &:after
+      border-top-style dashed
+
+  &{$selector-divider-left}
     &:before
       width 5%
     &:after
       width 95%
-  &{$selector-divider}-with-text-right
+
+  &{$selector-divider-right}
     &:before
       width 95%
     &:after

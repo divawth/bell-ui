@@ -21,25 +21,25 @@ import {
 } from '../util'
 
 export default Yox.define({
+  template,
   propTypes: {
     type: {
       type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
-      value: RAW_HORIZONTAL
+      value: RAW_HORIZONTAL,
     },
     dashed: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     align: {
       type: oneOf([RAW_CENTER, RAW_LEFT, RAW_RIGHT]),
-      value: RAW_CENTER
+      value: RAW_CENTER,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template
 })

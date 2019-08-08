@@ -3,12 +3,12 @@ import Yox from 'yox'
 import template from './template/Dialog.hbs'
 
 import {
+  BODY,
   TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  DOCUMENT,
-  BODY,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
@@ -16,7 +16,7 @@ import {
 } from '../util'
 
 const CLASS_OPEN = '${prefix}dialog-open'
-const CLASS_LEAVE = '${prefix}dialog-leave'
+const CLASS_FADE = '${prefix}dialog-fade'
 
 export default Yox.define({
 
@@ -33,6 +33,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    mask: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
     closable: {
       type: RAW_BOOLEAN,
       value: TRUE,
@@ -40,6 +44,10 @@ export default Yox.define({
     maskClosable: {
       type: RAW_BOOLEAN,
       value: FALSE,
+    },
+    width: {
+      type: RAW_NUMERIC,
+      value: 320,
     },
     className: {
       type: RAW_STRING,
@@ -51,17 +59,21 @@ export default Yox.define({
 
   watchers: {
     open(isOpen) {
-      const element = this.$el
+      const me = this
+      const element = me.$el
       if (isOpen) {
         Yox.dom.addClass(element, CLASS_OPEN)
       }
       else {
-        Yox.dom.addClass(element, CLASS_LEAVE)
+        Yox.dom.addClass(element, CLASS_FADE)
+        // 动画一般作用在 wrapper 上面
+        // 监听 $el 没用的
         onTransitionEnd(
-          element,
+          me.$refs.wrapper as HTMLElement,
           function () {
             Yox.dom.removeClass(element, CLASS_OPEN)
-            Yox.dom.removeClass(element, CLASS_LEAVE)
+            Yox.dom.removeClass(element, CLASS_FADE)
+            me.fire('close.dialog')
           }
         )
       }
@@ -69,13 +81,19 @@ export default Yox.define({
   },
 
   methods: {
+    open() {
+      this.set('open', TRUE)
+    },
     close() {
       this.set('open', FALSE)
     }
   },
 
   afterMount() {
-    Yox.dom.append(BODY, this.$el)
+    const element = this.$el
+    if (element.parentNode !== BODY) {
+      Yox.dom.append(BODY, element)
+    }
   },
 
   beforeDestroy() {

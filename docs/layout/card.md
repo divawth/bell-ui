@@ -104,13 +104,13 @@ export default {
 }
 ```
 
-> hoverDisabled
+> hoverable
 
 ```js
 export default {
   template: `
     <Row>
-      <Card hoverDisabled style="width: 300px;">
+      <Card hoverable style="width: 300px;">
         <CardHeader>
           <template slot="title">
             Card title
@@ -137,6 +137,6 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-simple | 是否是简洁风格（无边框） | boolean | - |  false
-hoverDisabled | 通过设置 hoverDisabled 来禁用鼠标悬停显示阴影效果 | boolean | - | false
+simple | 是否是简洁风格（无边框） | boolean | - | false
+hoverable | 鼠标悬停是否显示阴影效果 | boolean | - | false
 

@@ -34,7 +34,7 @@ function addNotice(type: string,  data: Data, duration?: number, onClose?: Funct
   new Yox(
     Yox.object.extend(
       {
-        el: Yox.dom.find('#${prefix}notice-wrapper') as HTMLElement,
+        el: '#${prefix}notice-wrapper',
         props,
       },
       Notice

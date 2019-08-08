@@ -1,233 +1,74 @@
-import MsgboxTpl from './template/Msgbox.hbs'
-import ConfirmTpl from './template/Confirm.hbs'
-import {
-  TRUE,
-  FALSE,
-  RAW_OBJECT,
-  RAW_STRING,
-  RAW_BOOLEAN,
-  RAW_FUNCTION,
-  RAW_NUMERIC,
-} from '../constant'
-
 import Yox, { Data } from 'yox'
-import { onTransitionEnd } from '../util'
 
-let id = 0
+import { BODY } from '../constant'
 
-function createAlert(data: Data) {
+import Alert from './Alert'
+import Confirm from './Confirm'
 
-  let namespace = '${prefix}msg-alert-' + (++id)
-  let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
-  let element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(body, element)
+type Arg = string | Data
 
-  const options = Yox.define({
-    el: '#' + namespace,
-    replace: TRUE,
-    template: MsgboxTpl,
-    props: {
-      title: data.title,
-      closable: data.closable,
-      content: data.content || data,
-      button: data.button,
-      maskClosable: data.maskClosable,
-      onClose: data.onClose,
-      width: data.width,
-      mask: data.mask
-    },
-    propTypes: {
-      title: {
-        type: RAW_STRING,
-        value: '温馨提示'
-      },
-      closable: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      mask: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      content: {
-        type: RAW_STRING
-      },
-      button: {
-        type: RAW_OBJECT,
-        value: {
-          text: '我知道了',
-          type: 'primary'
-        }
-      },
-      maskClosable: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      onClose: {
-        type: RAW_FUNCTION
-      },
-      width: {
-        type: RAW_NUMERIC
+export default {
+  addAlert(data: Arg) {
+
+    const props: Data = {}
+
+    if (Yox.is.object(data)) {
+      const obj = data as Data
+      props.dialog = {
+        title: obj.title,
+        closable: obj.closable,
+        maskClosable: obj.maskClosable,
+        onClose: obj.onClose,
+        width: obj.width,
+        mask: obj.mask,
       }
-    },
-    data() {
-      return {
-        isHidden: TRUE
-      }
-    },
-
-    methods: {
-      maskClick() {
-        if (!this.get('maskClosable')) {
-          return
-        }
-        this.hide()
-      },
-      hide() {
-        let me = this
-        me.set({
-          isHidden: TRUE
-        })
-        me.nextTick(function () {
-          onTransitionEnd(
-            me.$el,
-            function () {
-              me.get('onClose') && me.get('onClose')()
-              if (me.$el) {
-                me.destroy()
-              }
-            }
-          )
-        })
-      }
-    },
-
-    afterMount() {
-      let me = this
-      setTimeout(
-        function () {
-          if (me.$el) {
-            me.set({
-              isHidden: FALSE
-            })
-          }
-        },
-        300
-      )
+      props.content = obj.content
+      props.button = obj.button
+      props.onClose = obj.onClose
     }
-  })
-  new Yox(options)
-}
-
-function createConfirm(data: Data) {
-
-  let namespace = '${prefix}msg-confirm-' + id++
-  let body = Yox.dom.find('#${prefix}msgbox-wrapper') as HTMLElement
-  let element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.prop(element, 'id', namespace)
-  Yox.dom.append(body, element)
-
-  const options = Yox.define({
-    el: '#' + namespace,
-    replace: TRUE,
-    template: ConfirmTpl,
-    props: {
-      title: data.title || data,
-      closable: data.closable,
-      content: data.content || data,
-      buttons: data.buttons,
-      maskClosable: data.maskClosable,
-      onClose: data.onClose,
-      mask: data.mask,
-      width: data.width
-    },
-    propTypes: {
-      title: {
-        type: RAW_STRING,
-        value: '温馨提示'
-      },
-      closable: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      mask: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      content: {
-        type: RAW_STRING
-      },
-      buttons: {
-        type: RAW_OBJECT
-      },
-      maskClosable: {
-        type: RAW_BOOLEAN,
-        value: TRUE
-      },
-      onClose: {
-        type: RAW_FUNCTION
-      },
-      width: {
-        type: RAW_NUMERIC
-      }
-    },
-    data() {
-      return {
-        isHidden: TRUE
-      }
-    },
-
-    methods: {
-      buttonClick(index: number) {
-        this.get('buttons.' + index + '.action').call(this)
-      },
-
-      maskClick() {
-        if (!this.get('maskClosable')) {
-          return
-        }
-        this.hide()
-      },
-
-      hide() {
-        let me = this
-        me.set({
-          isHidden: TRUE
-        })
-        me.nextTick(function () {
-          onTransitionEnd(
-            me.$el,
-            function () {
-              me.get('onClose') && me.get('onClose')()
-              if (me.$el) {
-                me.destroy()
-              }
-            }
-          )
-        })
-      }
-    },
-
-    afterMount() {
-      let me = this
-      setTimeout(
-        function () {
-          me.set({
-            isHidden: FALSE
-          })
-        },
-        300
-      )
+    else {
+      props.content = data as string
     }
-  })
-  new Yox(options)
-}
 
-export function addAlert(data: Data) {
-  createAlert(data)
-}
+    new Yox(
+      Yox.object.extend(
+        {
+          el: BODY,
+          props,
+        },
+        Alert
+      )
+    )
+  },
+  addConfirm(data: Arg) {
 
-export function addConfirm(data: Data) {
-  createConfirm(data)
+    const props: Data = {}
+
+    if (Yox.is.object(data)) {
+      const obj = data as Data
+      props.dialog = {
+        title: obj.title,
+        closable: obj.closable,
+        maskClosable: obj.maskClosable,
+        width: obj.width,
+        mask: obj.mask,
+      }
+      props.content = obj.content
+      props.buttons = obj.buttons
+      props.onClose = obj.onClose
+    }
+    else {
+      props.content = data as string
+    }
+
+    new Yox(
+      Yox.object.extend(
+        {
+          el: BODY,
+          props,
+        },
+        Confirm
+      )
+    )
+  }
 }

@@ -10,6 +10,7 @@ import {
 } from '../constant'
 
 export default Yox.define({
+  template,
   propTypes: {
     percent: {
       type: RAW_NUMERIC,
@@ -41,5 +42,4 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-  template,
 })

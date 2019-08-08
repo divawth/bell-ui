@@ -344,7 +344,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("isVisible",$2)?" bell-tooltip-visible":"")+(a("isHover",$2)?" bell-tooltip-hover":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?(" max-height: "+y(a("maxHeight",$2))+"px"):"")+";")},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("isVisible",$2)?" bell-tooltip-visible":"")+(a("isHover",$2)?" bell-tooltip-hover":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),(a("maxWidth",$2)||a("maxHeight",$2))?(g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?("max-height: "+y(a("maxHeight",$2))+"px"):"")+";")):""},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
 
 /***/ }),
 /* 42 */
@@ -362,7 +362,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 44 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-card"+(a("simple",$2)?" bell-card-simple":" bell-card-bordered")+(a("hoverDisabled",$2)?" bell-card-hover-disabled":" bell-card-hover-enabled")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-card"+(a("simple",$2)?" bell-card-simple":" bell-card-bordered")+(a("hoverable",$2)?" bell-card-hover-enabled":" bell-card-hover-disabled")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 45 */
@@ -404,7 +404,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-divider bell-divider-"+y(a("type",$2))+((d(a("hasSlot",$2),["children"]))?(" bell-divider-with-text-"+y(a("align",$2))):"")+(a("dashed",$2)?" bell-divider-dashed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-divider-text")},function(){s("$slot_children")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-divider"+(a("type",$2)?(" bell-divider-"+y(a("type",$2))):"")+(a("align",$2)?(" bell-divider-"+y(a("align",$2))):"")+((d(a("hasSlot",$2),["children"]))?" bell-divider-with-text":"")+(a("dashed",$2)?" bell-divider-dashed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-divider-text")},function(){s("$slot_children")})):p()})};
 
 /***/ }),
 /* 52 */
@@ -500,7 +500,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-dialog-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""}),q("div",function(){g("className","bell-dialog-wrapper")},function(){q("div",function(){g("className","bell-dialog-title")},function(){a("title",$2)?(s("$slot_title",function(){e(y(a("title",$2)))})):p(),a("closable",$2)?(q("div",function(){g("className","bell-dialog-close"),l("click","event.click",$0,"close()","close")},function(){r("Icon",function(){f("size","0"),f("name","close"),f("className","bell-dialog-close-icon")})})):p()}),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-dialog-content")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["actions"]))?(q("div",function(){g("className","bell-dialog-actions")},function(){s("$slot_actions")})):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-dialog-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""})):p(),q("div",function(){g("className","bell-dialog-wrapper"),(a("width",$2)>0)?(g("style.cssText","width:"+y(a("width",$2))+"px")):""},function(){q("div",function(){g("className","bell-dialog-title")},function(){a("title",$2)?(s("$slot_title",function(){e(y(a("title",$2)))})):p(),a("closable",$2)?(q("div",function(){g("className","bell-dialog-close"),l("click","event.click",$0,"close()","close")},function(){r("Icon",function(){f("size","0"),f("name","close"),f("className","bell-dialog-close-icon")})})):p()}),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-dialog-content")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["actions"]))?(q("div",function(){g("className","bell-dialog-actions")},function(){s("$slot_actions")})):p()},$0,$0,$0,$0,$0,$0,"wrapper")})};
 
 /***/ }),
 /* 68 */
@@ -530,13 +530,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-msg-alert-wrapper"+(a("isHidden",$2)?" bell-msg-alert-hidden":""))},function(){q("div",function(){g("className","bell-msg-alert"),a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){a("closable",$2)?(q("div",function(){g("className","bell-msg-alert-close"),l("click","event.click",$0,"hide()","hide")},function(){r("Icon",function(){f("size",24),f("name","close")})})):p(),a("title",$2)?(q("div",function(){g("className","bell-msg-alert-title")},$0,$0,$0,$0,$0,$0,y(a("title",$2)))):p(),q("div",function(){g("className","bell-msg-alert-desc")},$0,$0,$0,$0,$0,$0,y(a("content",$2))),q("div",function(){g("className","bell-msg-alert-footer")},function(){r("Button",function(){f("type",j("type",a("button.type",$2,$0,$2,$2))),l("click","event.click",$0,"hide()","hide")},{"$slot_children":function(){e(y(a("button.text",$2)))}})})}),a("mask",$2)?(q("div",function(){g("className","bell-msg-mask"),l("click","event.click",$0,"maskClick()","maskClick")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){o(a("dialog",$2,$0,$2,$2)),f("className","bell-msg-alert"),l("close","event.close",$0,"closeDialog()","closeDialog")},{"$slot_children":function(){e(a("content",$2))},"$slot_actions":function(){r("Button",function(){f("type",j("type",a("button.type",$2,$0,$2,$2))),l("click","event.click",$0,"hide()","hide")},{"$slot_children":function(){e(a("button.text",$2))}})}},"dialog")};
 
 /***/ }),
 /* 73 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-msg-confirm-wrapper"+(a("isHidden",$2)?" bell-msg-confirm-hidden":""))},function(){q("div",function(){g("className","bell-msg-confirm"),a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){a("closable",$2)?(q("div",function(){g("className","bell-msg-confirm-close"),l("click","event.click",$0,"hide()","hide")},function(){r("Icon",function(){f("size",24),f("name","close")})})):p(),a("title",$2)?(q("div",function(){g("className","bell-msg-confirm-title")},$0,$0,$0,$0,$0,$0,y(a("title",$2)))):p(),q("div",function(){g("className","bell-msg-confirm-desc")},$0,$0,$0,$0,$0,$0,y(a("content",$2))),a("buttons",$2)?(q("div",function(){g("className","bell-msg-confirm-footer")},function(){v(function(){r("Button",function(){f("type",j("type",a("type",$2,$0,$2,$2))),l("click","event.click",$0,"buttonClick(index)","buttonClick",function(z){return [a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$2)))}})},a("buttons",$2,$0,$2),"index")})):p()}),a("mask",$2)?(q("div",function(){g("className","bell-msg-mask"),l("click","event.click",$0,"maskClick()","maskClick")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){o(a("dialog",$2,$0,$2,$2)),f("className","bell-msg-confirm"),l("close","event.close",$0,"closeDialog()","closeDialog")},{"$slot_children":function(){e(a("content",$2))},"$slot_actions":function(){v(function(){r("Button",function(){f("type",j("type",a("type",$3,$0,$2,$2))),l("click","event.click",$0,"buttonClick(index)","buttonClick",function(z){return [a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(a("text",$3))}})},a("buttons",$2,$0,$2),"index")}},"dialog")};
 
 /***/ }),
 /* 74 */
@@ -3859,6 +3859,7 @@ var Avatar_default = /*#__PURE__*/__webpack_require__.n(Avatar);
 
 var SPACE_HORIZONTAL = 8;
 /* harmony default export */ var avatar_Avatar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Avatar_default.a,
     propTypes: {
         shape: {
             type: oneOf([RAW_SHAPE_CIRCLE]),
@@ -3893,10 +3894,10 @@ var SPACE_HORIZONTAL = 8;
             type: RAW_STRING,
         }
     },
-    template: Avatar_default.a,
     data: function () {
         return {
             supportTransform: supportTransform,
+            transform: UNDEFINED,
         };
     },
     afterMount: function () {
@@ -5560,7 +5561,7 @@ var Card_default = /*#__PURE__*/__webpack_require__.n(Card);
             type: RAW_BOOLEAN,
             value: FALSE,
         },
-        hoverDisabled: {
+        hoverable: {
             type: RAW_BOOLEAN,
             value: FALSE,
         },
@@ -5736,27 +5737,27 @@ var Divider_default = /*#__PURE__*/__webpack_require__.n(Divider);
 
 
 /* harmony default export */ var divider_Divider = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Divider_default.a,
     propTypes: {
         type: {
             type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
-            value: RAW_HORIZONTAL
+            value: RAW_HORIZONTAL,
         },
         dashed: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
         align: {
             type: oneOf([RAW_CENTER, RAW_LEFT, RAW_RIGHT]),
-            value: RAW_CENTER
+            value: RAW_CENTER,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Divider_default.a
 }));
 
 // EXTERNAL MODULE: ./src/components/circle/template/Circle.hbs
@@ -5874,6 +5875,7 @@ var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
 
 
 /* harmony default export */ var progress_Progress = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Progress_default.a,
     propTypes: {
         percent: {
             type: RAW_NUMERIC,
@@ -5905,7 +5907,6 @@ var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
             type: RAW_STRING,
         }
     },
-    template: Progress_default.a,
 }));
 
 // EXTERNAL MODULE: ./src/components/slider/template/Slider.hbs
@@ -7009,7 +7010,7 @@ var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 
 
 var Dialog_CLASS_OPEN = 'bell-dialog-open';
-var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
+var CLASS_FADE = 'bell-dialog-fade';
 /* harmony default export */ var dialog_Dialog = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Dialog_default.a,
     model: 'open',
@@ -7022,6 +7023,10 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
             type: RAW_BOOLEAN,
             value: FALSE,
         },
+        mask: {
+            type: RAW_BOOLEAN,
+            value: TRUE,
+        },
         closable: {
             type: RAW_BOOLEAN,
             value: TRUE,
@@ -7029,6 +7034,10 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
         maskClosable: {
             type: RAW_BOOLEAN,
             value: FALSE,
+        },
+        width: {
+            type: RAW_NUMERIC,
+            value: 320,
         },
         className: {
             type: RAW_STRING,
@@ -7039,26 +7048,36 @@ var Dialog_CLASS_LEAVE = 'bell-dialog-leave';
     },
     watchers: {
         open: function (isOpen) {
-            var element = this.$el;
+            var me = this;
+            var element = me.$el;
             if (isOpen) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_OPEN);
             }
             else {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_LEAVE);
-                onTransitionEnd(element, function () {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_FADE);
+                // 动画一般作用在 wrapper 上面
+                // 监听 $el 没用的
+                onTransitionEnd(me.$refs.wrapper, function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_OPEN);
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_LEAVE);
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_FADE);
+                    me.fire('close.dialog');
                 });
             }
         }
     },
     methods: {
+        open: function () {
+            this.set('open', TRUE);
+        },
         close: function () {
             this.set('open', FALSE);
         }
     },
     afterMount: function () {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, this.$el);
+        var element = this.$el;
+        if (element.parentNode !== BODY) {
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, element);
+        }
     },
     beforeDestroy: function () {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.remove(BODY, this.$el);
@@ -7562,7 +7581,7 @@ function addNotice(type, data, duration, onClose) {
         props.onClose = onClose;
     }
     new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notice-wrapper'),
+        el: '#bell-notice-wrapper',
         props: props,
     }, notice_Notice));
 }
@@ -7584,218 +7603,148 @@ function addNotice(type, data, duration, onClose) {
     }
 });
 
-// EXTERNAL MODULE: ./src/components/msgbox/template/Msgbox.hbs
-var Msgbox = __webpack_require__(72);
-var Msgbox_default = /*#__PURE__*/__webpack_require__.n(Msgbox);
+// EXTERNAL MODULE: ./src/components/msgbox/template/Alert.hbs
+var template_Alert = __webpack_require__(72);
+var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
+
+// CONCATENATED MODULE: ./src/components/msgbox/Alert.ts
+
+
+
+/* harmony default export */ var msgbox_Alert = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: template_Alert_default.a,
+    propTypes: {
+        dialog: {
+            type: RAW_OBJECT,
+        },
+        content: {
+            type: RAW_STRING,
+        },
+        button: {
+            type: RAW_OBJECT,
+            value: {
+                text: '我知道了',
+                type: RAW_TYPE_PRIMARY,
+            }
+        },
+        onClose: {
+            type: RAW_FUNCTION,
+        }
+    },
+    methods: {
+        closeDialog: function () {
+            var onClose = this.get('onClose');
+            if (onClose) {
+                onClose();
+            }
+            this.destroy();
+        },
+        hide: function () {
+            this.$refs.dialog.close();
+        }
+    },
+    afterMount: function () {
+        this.$refs.dialog.open();
+    }
+}));
 
 // EXTERNAL MODULE: ./src/components/msgbox/template/Confirm.hbs
 var Confirm = __webpack_require__(73);
 var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
+
+// CONCATENATED MODULE: ./src/components/msgbox/Confirm.ts
+
+
+
+/* harmony default export */ var msgbox_Confirm = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Confirm_default.a,
+    propTypes: {
+        dialog: {
+            type: RAW_OBJECT,
+        },
+        content: {
+            type: RAW_STRING,
+        },
+        buttons: {
+            type: RAW_ARRAY,
+        },
+        onClose: {
+            type: RAW_FUNCTION,
+        }
+    },
+    methods: {
+        closeDialog: function () {
+            var onClose = this.get('onClose');
+            if (onClose) {
+                onClose();
+            }
+            this.destroy();
+        },
+        buttonClick: function (index) {
+            this.get('buttons.' + index + '.action').call(this);
+        },
+        hide: function () {
+            this.$refs.dialog.close();
+        }
+    },
+    afterMount: function () {
+        this.$refs.dialog.open();
+    }
+}));
 
 // CONCATENATED MODULE: ./src/components/msgbox/base.ts
 
 
 
 
-
-var id = 0;
-function createAlert(data) {
-    var namespace = 'bell-msg-alert-' + (++id);
-    var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var options = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-        el: '#' + namespace,
-        replace: TRUE,
-        template: Msgbox_default.a,
-        props: {
-            title: data.title,
-            closable: data.closable,
-            content: data.content || data,
-            button: data.button,
-            maskClosable: data.maskClosable,
-            onClose: data.onClose,
-            width: data.width,
-            mask: data.mask
-        },
-        propTypes: {
-            title: {
-                type: RAW_STRING,
-                value: '温馨提示'
-            },
-            closable: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            mask: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            content: {
-                type: RAW_STRING
-            },
-            button: {
-                type: RAW_OBJECT,
-                value: {
-                    text: '我知道了',
-                    type: 'primary'
-                }
-            },
-            maskClosable: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            onClose: {
-                type: RAW_FUNCTION
-            },
-            width: {
-                type: RAW_NUMERIC
-            }
-        },
-        data: function () {
-            return {
-                isHidden: TRUE
+/* harmony default export */ var msgbox_base = ({
+    addAlert: function (data) {
+        var props = {};
+        if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
+            var obj = data;
+            props.dialog = {
+                title: obj.title,
+                closable: obj.closable,
+                maskClosable: obj.maskClosable,
+                onClose: obj.onClose,
+                width: obj.width,
+                mask: obj.mask,
             };
-        },
-        methods: {
-            maskClick: function () {
-                if (!this.get('maskClosable')) {
-                    return;
-                }
-                this.hide();
-            },
-            hide: function () {
-                var me = this;
-                me.set({
-                    isHidden: TRUE
-                });
-                me.nextTick(function () {
-                    onTransitionEnd(me.$el, function () {
-                        me.get('onClose') && me.get('onClose')();
-                        if (me.$el) {
-                            me.destroy();
-                        }
-                    });
-                });
-            }
-        },
-        afterMount: function () {
-            var me = this;
-            setTimeout(function () {
-                if (me.$el) {
-                    me.set({
-                        isHidden: FALSE
-                    });
-                }
-            }, 300);
+            props.content = obj.content;
+            props.button = obj.button;
+            props.onClose = obj.onClose;
         }
-    });
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
-}
-function createConfirm(data) {
-    var namespace = 'bell-msg-confirm-' + id++;
-    var body = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-msgbox-wrapper');
-    var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.prop(element, 'id', namespace);
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(body, element);
-    var options = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-        el: '#' + namespace,
-        replace: TRUE,
-        template: Confirm_default.a,
-        props: {
-            title: data.title || data,
-            closable: data.closable,
-            content: data.content || data,
-            buttons: data.buttons,
-            maskClosable: data.maskClosable,
-            onClose: data.onClose,
-            mask: data.mask,
-            width: data.width
-        },
-        propTypes: {
-            title: {
-                type: RAW_STRING,
-                value: '温馨提示'
-            },
-            closable: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            mask: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            content: {
-                type: RAW_STRING
-            },
-            buttons: {
-                type: RAW_OBJECT
-            },
-            maskClosable: {
-                type: RAW_BOOLEAN,
-                value: TRUE
-            },
-            onClose: {
-                type: RAW_FUNCTION
-            },
-            width: {
-                type: RAW_NUMERIC
-            }
-        },
-        data: function () {
-            return {
-                isHidden: TRUE
+        else {
+            props.content = data;
+        }
+        new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+            el: BODY,
+            props: props,
+        }, msgbox_Alert));
+    },
+    addConfirm: function (data) {
+        var props = {};
+        if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
+            var obj = data;
+            props.dialog = {
+                title: obj.title,
+                closable: obj.closable,
+                maskClosable: obj.maskClosable,
+                width: obj.width,
+                mask: obj.mask,
             };
-        },
-        methods: {
-            buttonClick: function (index) {
-                this.get('buttons.' + index + '.action').call(this);
-            },
-            maskClick: function () {
-                if (!this.get('maskClosable')) {
-                    return;
-                }
-                this.hide();
-            },
-            hide: function () {
-                var me = this;
-                me.set({
-                    isHidden: TRUE
-                });
-                me.nextTick(function () {
-                    onTransitionEnd(me.$el, function () {
-                        me.get('onClose') && me.get('onClose')();
-                        if (me.$el) {
-                            me.destroy();
-                        }
-                    });
-                });
-            }
-        },
-        afterMount: function () {
-            var me = this;
-            setTimeout(function () {
-                me.set({
-                    isHidden: FALSE
-                });
-            }, 300);
+            props.content = obj.content;
+            props.buttons = obj.buttons;
+            props.onClose = obj.onClose;
         }
-    });
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(options);
-}
-function addAlert(data) {
-    createAlert(data);
-}
-function addConfirm(data) {
-    createConfirm(data);
-}
-
-// CONCATENATED MODULE: ./src/components/msgbox/Msgbox.ts
-
-/* harmony default export */ var msgbox_Msgbox = ({
-    Alert: addAlert,
-    Confirm: addConfirm,
+        else {
+            props.content = data;
+        }
+        new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+            el: BODY,
+            props: props,
+        }, msgbox_Confirm));
+    }
 });
 
 // EXTERNAL MODULE: ./src/components/loadingBar/template/LoadingBar.hbs
@@ -8176,16 +8125,13 @@ var install = function (Yox) {
     var loadingbarElement = Yox.dom.createElement('div');
     Yox.dom.prop(loadingbarElement, 'id', 'bell-loadingbar-wrapper');
     Yox.dom.append(document.body, loadingbarElement);
-    var msgboxElement = Yox.dom.createElement('div');
-    Yox.dom.prop(msgboxElement, 'id', 'bell-msgbox-wrapper');
-    Yox.dom.append(document.body, msgboxElement);
     var noticeElement = Yox.dom.createElement('div');
     Yox.dom.prop(noticeElement, 'id', 'bell-notice-wrapper');
     Yox.dom.append(document.body, noticeElement);
     Yox.component(components);
     Yox.prototype.$message = base;
-    Yox.prototype.$confirm = msgbox_Msgbox.Confirm;
-    Yox.prototype.$alert = msgbox_Msgbox.Alert;
+    Yox.prototype.$confirm = msgbox_base.addConfirm;
+    Yox.prototype.$alert = msgbox_base.addAlert;
     Yox.prototype.$notice = notice_base;
     Yox.prototype.$loadingBar = loadingBar_base;
 };

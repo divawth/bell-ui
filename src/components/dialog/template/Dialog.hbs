@@ -6,15 +6,24 @@ class="${prefix}dialog
   style="{{style}}"
 {{/if}}
 >
+
+  {{#if mask}}
+    <div
+      class="${prefix}dialog-mask"
+      {{#if maskClosable}}
+        on-click="close()"
+      {{/if}}
+    >
+    </div>
+  {{/if}}
+
   <div
-    class="${prefix}dialog-mask"
-    {{#if maskClosable}}
-      on-click="close()"
+    ref="wrapper"
+    class="${prefix}dialog-wrapper"
+    {{#if width > 0}}
+      style="width:{{width}}px"
     {{/if}}
   >
-  </div>
-
-  <div class="${prefix}dialog-wrapper">
     <div class="${prefix}dialog-title">
 
       {{#if title}}

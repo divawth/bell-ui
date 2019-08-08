@@ -9,7 +9,7 @@ import {
   RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
-  RAW_SHAPE_ROUND,
+  UNDEFINED,
 } from '../constant'
 
 import {
@@ -20,6 +20,8 @@ import {
 const SPACE_HORIZONTAL = 8
 
 export default Yox.define({
+
+  template,
 
   propTypes: {
     shape: {
@@ -56,11 +58,10 @@ export default Yox.define({
     }
   },
 
-  template,
-
   data() {
     return {
       supportTransform,
+      transform: UNDEFINED,
     }
   },
 

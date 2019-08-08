@@ -1,3 +1,5 @@
-import { Data } from 'yox';
-export declare function addAlert(data: Data): void;
-export declare function addConfirm(data: Data): void;
+declare const _default: {
+    addAlert(data: string | Record<string, any>): void;
+    addConfirm(data: string | Record<string, any>): void;
+};
+export default _default;

@@ -15,7 +15,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    hoverDisabled: {
+    hoverable: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

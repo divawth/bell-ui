@@ -1,0 +1,15 @@
+<Dialog
+  {{...dialog}}
+  ref="dialog"
+  className="${prefix}msg-alert"
+  on-close="closeDialog()"
+>
+  {{content}}
+  <Button
+    slot="actions"
+    type="{{button.type}}"
+    on-click="hide()"
+  >
+    {{button.text}}
+  </Button>
+</Dialog>

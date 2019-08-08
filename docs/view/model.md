@@ -128,6 +128,7 @@ export default {
                         type: 'warning',
                         text: '我知道了'
                     },
+                    closable: false,
                     onClose: function () {
                         console.log(1212)
                     }
@@ -173,6 +174,8 @@ export default {
                         type: 'warning',
                         text: '我知道了'
                     },
+                    maskClosable: false,
+                    closable: true,
                     onClose: function () {
                         console.log(1212)
                     }
@@ -263,9 +266,3 @@ buttons | 按钮 | array | - | -
 closable | 是否需要关闭按钮 | boolean | - | false
 maskClosable | 点击遮罩层关闭 | boolean | - | false
 width | 宽度 | number | - | -
-
-> Events
-
-事件名称 | 说明 | 回调参数
----|---|---
-close | 关闭 alert 时触发的事件 | -

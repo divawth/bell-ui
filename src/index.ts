@@ -80,7 +80,7 @@ import Table from './components/table/Table'
 
 import Message from './components/message/base'
 import Notice from './components/notice/base'
-import Msgbox from './components/msgbox/Msgbox'
+import Msgbox from './components/msgbox/base'
 import LoadingBar from  './components/loadingBar/base'
 import Anchor from  './components/anchor/Anchor'
 import AnchorLink from  './components/anchor/AnchorLink'
@@ -167,19 +167,14 @@ export const install = function (Yox: any) {
   Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
   Yox.dom.append(document.body, loadingbarElement)
 
-  let msgboxElement = Yox.dom.createElement('div')
-  Yox.dom.prop(msgboxElement, 'id', '${prefix}msgbox-wrapper')
-  Yox.dom.append(document.body, msgboxElement)
-
-
   let noticeElement = Yox.dom.createElement('div')
   Yox.dom.prop(noticeElement, 'id', '${prefix}notice-wrapper')
   Yox.dom.append(document.body, noticeElement)
 
   Yox.component(components)
   Yox.prototype.$message = Message
-  Yox.prototype.$confirm = Msgbox.Confirm
-  Yox.prototype.$alert = Msgbox.Alert
+  Yox.prototype.$confirm = Msgbox.addConfirm
+  Yox.prototype.$alert = Msgbox.addAlert
   Yox.prototype.$notice = Notice
   Yox.prototype.$loadingBar = LoadingBar
 }

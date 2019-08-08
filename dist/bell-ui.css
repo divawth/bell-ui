@@ -6869,8 +6869,6 @@ button.bell-link {
 }
 .bell-divider {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
   background-color: #e8eaec;
 }
 .bell-divider-horizontal {
@@ -6878,7 +6876,6 @@ button.bell-link {
   clear: both;
   width: 100%;
   height: 1px;
-  min-width: 100%;
   margin: 12px 0;
 }
 .bell-divider-vertical {
@@ -6891,40 +6888,22 @@ button.bell-link {
   margin: 0 8px;
 }
 .bell-divider-text {
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0 10px;
+  margin: 0 10px;
 }
 .bell-divider-dashed {
-  background: 0 0;
+  background-color: transparent;
   border-top: 1px dashed #e8eaec;
 }
-.bell-divider-dashed.bell-divider-with-text-center:before,
-.bell-divider-dashed.bell-divider-with-text-left:before,
-.bell-divider-dashed.bell-divider-with-text-right:before {
-  border-top-style: dashed;
-}
-.bell-divider-dashed.bell-divider-with-text-center:after,
-.bell-divider-dashed.bell-divider-with-text-left:after,
-.bell-divider-dashed.bell-divider-with-text-right:after {
-  border-top-style: dashed;
-}
-.bell-divider-with-text-center,
-.bell-divider-with-text-left,
-.bell-divider-with-text-right {
+.bell-divider-with-text {
   display: table;
   white-space: nowrap;
-  text-align: center;
-  background: 0 0;
-  font-weight: 500;
+  background-color: transparent;
   border-top: 0;
-  margin: 16px 0;
-  color: rgba(0,0,0,0.85);
-  font-size: 16px;
+  color: #555;
+  font-size: 14px;
 }
-.bell-divider-with-text-center:before,
-.bell-divider-with-text-left:before,
-.bell-divider-with-text-right:before {
+.bell-divider-with-text:before,
+.bell-divider-with-text:after {
   content: '';
   position: relative;
   display: table-cell;
@@ -6933,35 +6912,20 @@ button.bell-link {
   top: 50%;
   width: 50%;
 }
-.bell-divider-with-text-center:after,
-.bell-divider-with-text-left:after,
-.bell-divider-with-text-right:after {
-  content: '';
-  position: relative;
-  display: table-cell;
-  border-top: 1px solid #e8eaec;
-  transform: translateY(50%);
-  top: 50%;
-  width: 50%;
+.bell-divider-with-text.bell-divider-dashed:before,
+.bell-divider-with-text.bell-divider-dashed:after {
+  border-top-style: dashed;
 }
-.bell-divider-with-text-center.bell-divider-with-text-left:before,
-.bell-divider-with-text-left.bell-divider-with-text-left:before,
-.bell-divider-with-text-right.bell-divider-with-text-left:before {
+.bell-divider-with-text.bell-divider-left:before {
   width: 5%;
 }
-.bell-divider-with-text-center.bell-divider-with-text-left:after,
-.bell-divider-with-text-left.bell-divider-with-text-left:after,
-.bell-divider-with-text-right.bell-divider-with-text-left:after {
+.bell-divider-with-text.bell-divider-left:after {
   width: 95%;
 }
-.bell-divider-with-text-center.bell-divider-with-text-right:before,
-.bell-divider-with-text-left.bell-divider-with-text-right:before,
-.bell-divider-with-text-right.bell-divider-with-text-right:before {
+.bell-divider-with-text.bell-divider-right:before {
   width: 95%;
 }
-.bell-divider-with-text-center.bell-divider-with-text-right:after,
-.bell-divider-with-text-left.bell-divider-with-text-right:after,
-.bell-divider-with-text-right.bell-divider-with-text-right:after {
+.bell-divider-with-text.bell-divider-right:after {
   width: 5%;
 }
 .bell-breadcrumb {
@@ -9337,134 +9301,6 @@ button.bell-link {
 .bell-notice-close:hover {
   color: #444;
 }
-.bell-msg-alert-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  z-index: 1000;
-}
-.bell-msg-alert-wrapper.bell-msg-alert-hidden .bell-msg-alert {
-  margin-top: -100px;
-  opacity: 0;
-}
-.bell-msg-alert-wrapper.bell-msg-alert-hidden .bell-msg-mask {
-  opacity: 0;
-}
-.bell-msg-alert-wrapper .bell-msg-alert {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -80%);
-  max-width: 500px;
-  min-width: 320px;
-  border-radius: 4px;
-  background-color: #fff;
-  border: 1px solid #ebeef5;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-  z-index: 1000;
-  transition: opacity 0.15s, margin-top 0.15s;
-}
-.bell-msg-alert-wrapper .bell-msg-alert-desc {
-  text-align: left;
-  padding: 24px;
-  line-height: 1.5;
-  font-size: 14px;
-}
-.bell-msg-alert-wrapper .bell-msg-alert-footer {
-  padding: 10px 16px;
-  text-align: right;
-  border-top: 1px solid #e8e8e8;
-}
-.bell-msg-alert-wrapper .bell-msg-alert-title {
-  text-align: left;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px 24px;
-  border-bottom: 1px solid #e8e8e8;
-}
-.bell-msg-alert-wrapper .bell-msg-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.54);
-  transition: opacity 0.15s;
-}
-.bell-msg-alert-wrapper .bell-msg-alert-close {
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  padding: 10px 15px;
-  font-size: 28px;
-}
-.bell-msg-confirm-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  z-index: 1000;
-}
-.bell-msg-confirm-wrapper.bell-msg-confirm-hidden .bell-msg-confirm {
-  margin-top: -100px;
-  opacity: 0;
-}
-.bell-msg-confirm-wrapper.bell-msg-confirm-hidden .bell-msg-mask {
-  opacity: 0;
-}
-.bell-msg-confirm-wrapper .bell-msg-confirm {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -70%);
-  max-width: 700px;
-  min-width: 320px;
-  border-radius: 4px;
-  background-color: #fff;
-  border: 1px solid #ebeef5;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-  z-index: 1000;
-  transition: opacity 0.15s, margin-top 0.15s;
-}
-.bell-msg-confirm-wrapper .bell-msg-confirm-desc {
-  text-align: left;
-  padding: 24px;
-  line-height: 1.5;
-  font-size: 14px;
-}
-.bell-msg-confirm-wrapper .bell-msg-confirm-footer {
-  padding: 10px 16px;
-  text-align: right;
-  border-top: 1px solid #e8e8e8;
-}
-.bell-msg-confirm-wrapper .bell-msg-confirm-title {
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px 24px;
-  border-bottom: 1px solid #e8e8e8;
-  text-align: left;
-}
-.bell-msg-confirm-wrapper .bell-msg-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.54);
-  transition: opacity 0.15s;
-}
-.bell-msg-confirm-wrapper .bell-msg-confirm-close {
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  padding: 10px 15px;
-  font-size: 28px;
-}
 .bell-badge,
 .bell-badge-status {
   display: inline-block;
@@ -11233,11 +11069,11 @@ button.bell-link {
 .bell-dialog-open > .bell-dialog-mask {
   opacity: 1;
 }
-.bell-dialog-leave > .bell-dialog-wrapper {
+.bell-dialog-fade > .bell-dialog-wrapper {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.4);
 }
-.bell-dialog-leave > .bell-dialog-mask {
+.bell-dialog-fade > .bell-dialog-mask {
   opacity: 0;
 }
 .bell-dialog-mask {
