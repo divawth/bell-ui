@@ -491,7 +491,7 @@ export default {
     </Select>
     <Select model="value">
       <template slot="prefix">
-        <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="small" />
+        <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="small" style="vertical-align:middle" />
       </template>
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
@@ -572,4 +572,5 @@ clear | 清空按钮时候触发 | value
 index | 当前值的索引 | string, number | - | -
 value | 当前值 | string, number | - | -
 text | 选中时展示的文本 | string | - | -
+disabled | 是否禁用 | boolean | - | false
 

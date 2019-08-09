@@ -5,11 +5,6 @@ button-size(size)
   ui-set('padding-left', size['padding-horizontal'])
   ui-set('padding-right', size['padding-horizontal'])
 
-button-color(color, bg, borderColor)
-  ui-set('color', color)
-  ui-set('border-color', borderColor)
-  ui-set('background-color', bg)
-
 button-border(border)
   ui-set('border-style', border)
 
@@ -17,32 +12,36 @@ button-border(border)
   &:before
     ui-set('border-style', border)
 
-button-circle-size(size)
-  ui-set('width', size)
-  ui-set('height', size)
+button-circle-size(style)
+  ui-set('width', style['height'])
+  ui-set('height', style['height'])
 
 button-brand-style(style)
-  button-color(
-    style['color'],
-    style['bg-color'],
-    style['border-color']
-  )
+  &{$selector-button-normal}
+    ui-set('color', style['color'])
+    ui-set('border-color', style['border-color'])
+    ui-set('background-color', style['bg-color'])
 
-  &:active
-    button-color(
-      style['active-color'],
-      style['active-bg-color'],
-      style['active-border-color']
-    )
+    &:active
+      ui-set('color', style['active-color'])
+      ui-set('border-color', style['active-border-color'])
+      ui-set('background-color', style['active-bg-color'])
+
+    &{$selector-button-enabled}:hover
+      ui-set('color', style['hover-color'])
+      ui-set('border-color', style['hover-border-color'])
+      ui-set('background-color', style['hover-bg-color'])
+
+  &{$selector-button-ghost}
+    &:active
+      ui-set('color', style['active-border-color'])
+      ui-set('border-color', style['active-border-color'])
+
+    &{$selector-button-enabled}:hover
+      ui-set('color', style['hover-border-color'])
+      ui-set('border-color', style['hover-border-color'])
 
   &{$selector-button-enabled}
-    &:hover
-      button-color(
-        style['hover-color'],
-        style['hover-bg-color'],
-        style['hover-border-color']
-      )
-
     if $ui-shadow-radius > 0
       &:focus
         box-shadow 0 0 0 $ui-shadow-radius style[ 'shadow-color' ]
@@ -58,23 +57,6 @@ button-group-size(size)
   > {$selector-button}
     button-size(size)
 
-button-group-round-size(size)
-  > {$selector-button}
-
-    &:first-child:not(:last-child)
-      ui-set('border-top-left-radius', size)
-      ui-set('border-bottom-left-radius', size)
-
-    &:last-child:not(:first-child)
-      ui-set('border-top-right-radius', size)
-      ui-set('border-bottom-right-radius', size)
-
-ui-button-ghost-brand()
-  ui-connect(
-    hash: $button-ghost-hash,
-    each: button-brand-style
-  )
-
 ui-button()
   ui-connect(
     hash: $button-size-hash,
@@ -85,7 +67,7 @@ ui-button()
     each: button-border
   )
   ui-connect(
-    hash: $button-normal-hash,
+    hash: $button-brand-hash,
     each: button-brand-style
   )
 

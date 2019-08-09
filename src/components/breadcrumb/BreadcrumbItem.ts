@@ -3,7 +3,7 @@ import Yox from 'yox'
 import template from './template/BreadcrumbItem.hbs'
 
 import {
-  RAW_STRING
+  RAW_STRING,
 } from '../constant'
 
 export default Yox.define({
@@ -14,7 +14,7 @@ export default Yox.define({
     },
     separator: {
       type: RAW_STRING,
-      value: '/'
+      value: '/',
     },
     className: {
       type: RAW_STRING,

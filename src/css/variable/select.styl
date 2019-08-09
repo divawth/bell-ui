@@ -1,6 +1,6 @@
 $selector-select = $selector-prefix + '-select'
+$selector-select-enabled = $selector-select + '-enabled'
 $selector-select-disabled = $selector-select + '-disabled'
-$selector-select-active = $selector-select + '-active'
 $selector-select-multiple = $selector-select + '-multiple'
 $selector-select-clearable = $selector-select + '-clearable'
 $selector-select-top = $selector-select + '-top'
@@ -10,44 +10,48 @@ $selector-select-prefix = $selector-select  + '-prefix'
 $selector-select-button = $selector-select  + '-button'
 $selector-select-value = $selector-select  + '-value'
 $selector-select-placeholder = $selector-select  + '-placeholder'
-$selector-select-arrow = $selector-select  + '-arrow'
+
+$selector-select-prefix-icon = $selector-select  + '-prefix-icon'
+$selector-select-arrow-icon = $selector-select  + '-arrow-icon'
 $selector-select-clear-icon = $selector-select  + '-clear-icon'
 
-$selector-select-option = $selector-select  + '-option'
-$selector-select-option-title = $selector-select-option  + '-title'
-$selector-select-option-active = $selector-select-option  + '-active'
+$selector-select-option-title = $selector-select  + '-option-title'
 
 $select-button-padding-right = 24px
 $select-button-padding-left = 8px
-$select-arrow-width = 30px
-$select-arrow-color = $brand-muted
-$select-clear-color = #808695
+
+$select-prefix-icon-color = #666
+$select-prefix-icon-font-size = 14px
+
+$select-arrow-icon-width = 30px
+$select-arrow-icon-color = $brand-muted
+$select-arrow-icon-font-size = 14px
+
+$select-clear-icon-color = #999
+$select-clear-icon-font-size = 14px
 
 // 下拉框和按钮的间距
 $select-dropdown-list-gap = 2px
-// 下拉框的上下内边距
-$select-dropdown-list-padding-vertical = 6px
 
 $select-dropdown-list-height = 200px
 $select-option-title-text-color = #999
-$select-option-bg-hover = #f6f6f6
 
 $select-size-hash = {
   'default': {
     height: $size-default['height'],
     font-size: 12px,
     group-padding: 8px,
-    option-padding: 7px 16px
+    option-padding: 8px 16px
   },
   'small': {
     height: $size-small['height'],
     font-size: 12px,
-    group-padding: 7px 8px,
-    option-padding: 7px 16px
+    group-padding: 8px,
+    option-padding: 8px 16px
   },
   'large': {
     height: $size-large['height'],
-    font-size: 14px,
+    font-size: 13px,
     group-padding: 10px 8px,
     option-padding: 10px 16px
   }

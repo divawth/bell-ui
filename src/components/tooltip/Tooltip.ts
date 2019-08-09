@@ -1,17 +1,22 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Tooltip.hbs'
 
 import {
-  NULL,
+  TRUE,
   FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
   UNDEFINED,
-  TRUE,
+  RAW_CLICK,
+  RAW_HOVER,
 } from '../constant'
-import { toNumber } from '../util';
+
+import {
+  oneOf,
+  toNumber,
+} from '../util'
 
 let timer: any
 
@@ -35,7 +40,8 @@ export default Yox.define({
       type: RAW_NUMERIC,
     },
     mode: {
-      type: RAW_STRING,
+      type: oneOf([RAW_CLICK, RAW_HOVER]),
+      value: RAW_HOVER,
     },
     maxWidth: {
       type: RAW_NUMERIC,

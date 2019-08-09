@@ -13,7 +13,6 @@ import {
   RAW_BORDER_SOLID,
   RAW_BORDER_DASHED,
   RAW_SIZE_COMMON,
-  RAW_TYPE_SECONDARY,
 } from '../constant'
 
 import {

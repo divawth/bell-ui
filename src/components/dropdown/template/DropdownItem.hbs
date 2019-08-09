@@ -1,8 +1,10 @@
-<li
+<div
 class="${prefix}dropdown-item
-{{#if selected}} ${prefix}dropdown-selected{{/if}}
-{{#if disabled}} ${prefix}dropdown-disabled{{/if}}
-{{#if divided}} ${prefix}dropdown-divided{{/if}}
+{{#if divided}} ${prefix}dropdown-item-divided{{/if}}
+{{#if active}} ${prefix}dropdown-item-active{{/if}}
+{{#if disabled}} ${prefix}dropdown-item-disabled
+{{else}} ${prefix}dropdown-item-enabled
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -14,4 +16,4 @@ class="${prefix}dropdown-item
 {{/if}}
 >
   <slot name="children" />
-</li>
+</div>

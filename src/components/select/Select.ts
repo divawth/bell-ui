@@ -1,26 +1,33 @@
-import Yox, { CustomEventInterface, Data, YoxInterface } from 'yox'
+import Yox, { CustomEventInterface, YoxInterface } from 'yox'
 
 import template from './template/Select.hbs'
 
 import {
-  contains, oneOf
+  oneOf,
+  contains,
+  supportTransform,
+  onTransitionEnd,
 } from '../util'
 
 import {
-  FALSE,
   TRUE,
+  FALSE,
   UNDEFINED,
   DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC,
-  RAW_EVENT_CLICK,
+  RAW_CLICK,
   RAW_EVENT_KEYDOWN,
   RAW_ARRAY,
   RAW_NUMBER,
   RAW_SIZE_COMMON,
   RAW_DEFAULT,
+  RAW_BOTTOM,
+  RAW_TOP,
 } from '../constant'
+
+const CLASS_VISIBLE = '${prefix}dropdown-visible'
+const CLASS_FADE = '${prefix}dropdown-fade'
 
 export default Yox.define({
 
@@ -46,8 +53,8 @@ export default Yox.define({
       type: RAW_BOOLEAN,
     },
     placement: {
-      type: RAW_STRING,
-      value: 'bottom',
+      type: oneOf([RAW_TOP, RAW_BOTTOM]),
+      value: RAW_BOTTOM,
     },
     multiple: {
       type: RAW_BOOLEAN,
@@ -73,11 +80,41 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value) {
+    value(value: any) {
       this.fire(
         'change.select',
         { value }
       )
+    },
+    visible(visible: boolean) {
+      const me = this
+      const element = me.$el as HTMLElement
+      const list = me.$refs.list as HTMLElement
+      if (visible) {
+        Yox.dom.addClass(element, CLASS_VISIBLE)
+        if (supportTransform) {
+          setTimeout(
+            function () {
+              Yox.dom.addClass(element, CLASS_FADE)
+            },
+            20
+          )
+        }
+      }
+      else {
+        if (supportTransform) {
+          Yox.dom.removeClass(element, CLASS_FADE)
+          onTransitionEnd(
+            list,
+            function () {
+              Yox.dom.removeClass(element, CLASS_VISIBLE)
+            }
+          )
+        }
+        else {
+          Yox.dom.removeClass(element, CLASS_VISIBLE)
+        }
+      }
     }
   },
 
@@ -329,7 +366,7 @@ export default Yox.define({
 
     Yox.dom.on(
       DOCUMENT,
-      RAW_EVENT_CLICK,
+      RAW_CLICK,
       onClick
     )
     Yox.dom.on(
@@ -344,7 +381,7 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
             DOCUMENT,
-            RAW_EVENT_CLICK,
+            RAW_CLICK,
             onClick
           )
           Yox.dom.off(

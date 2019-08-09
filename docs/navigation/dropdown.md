@@ -179,8 +179,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-placement | tabs 类型 | string | line 和 card | line
-trigger | 触发方式, 需配合 visible 一起使用 | string | hover（悬停）click（点击）custom（自定义） | hover
+placement | 下拉框显示方位 | string | top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end | bottom
+trigger | 触发方式 | string | hover（悬停）click（点击）custom（自定义） | hover
 visible | 手动控制下拉框的显示，在 trigger = 'custom' 时使用 | boolean | - | false
 
 > DropdownItem Props
@@ -189,5 +189,5 @@ visible | 手动控制下拉框的显示，在 trigger = 'custom' 时使用 | bo
 ---|---|---|---|---
 divided | 显示分割线 | boolean | - | false
 disabled | 禁用该项 | boolean | - | false
-selected | 标记该项为选中状态 | boolean | - | false
+active | 标记该项为选中状态 | boolean | - | false
 name | 用来标识这一项 | string | - | false

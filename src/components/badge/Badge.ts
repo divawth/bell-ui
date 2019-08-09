@@ -58,7 +58,7 @@ export default Yox.define({
   },
 
   filters: {
-    isNumber: Yox.is.numeric,
+    isNumeric: Yox.is.numeric,
     formatText(count: any, max: any) {
       count = Yox.is.numeric(count) ? +count : 0
       max = Yox.is.numeric(max) ? +max : 1

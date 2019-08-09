@@ -16,13 +16,15 @@ class="${prefix}collapse-panel
       </div>
     {{/if}}
 
-    <slot name="icon">
-      <Icon
-        name="arrow-down"
-        className="${prefix}collapse-icon"
-      />
-    </slot>
-
+    <span class="${prefix}collapse-icon">
+      <slot name="icon">
+        <Icon
+          name="arrow-down"
+          size="0"
+          className="${prefix}collapse-arrow-icon"
+        />
+      </slot>
+    </span>
     {{title}}
 
   </div>

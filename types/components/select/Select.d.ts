@@ -1,6 +1,7 @@
 import { CustomEventInterface, YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
+    visible: unknown;
 }, {
     'add.selectOption': unknown;
     'remove.selectOption': unknown;

@@ -1,25 +1,25 @@
 {$selector-button}
-
   display inline-block
   text-align center
   user-select none
+  white-space nowrap
   border 1px solid transparent
-  background-color transparent
   outline 0
   padding 0
 
-  transition color .2s, background-color .2s, border-color .2s, box-shadow .2s
-
-  ui-ellipsis()
   ui-button()
 
   + {$selector-button}
     margin-left $ui-horizontal-gap
 
+{$selector-button-normal}
+  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
+
 {$selector-button-ghost}
   color $brand-white
   border-color $brand-white
-  ui-button-ghost-brand()
+  background-color transparent
+  transition color .2s, border-color .2s, box-shadow .2s
 
 {$selector-button-circle}
   padding 0
@@ -65,7 +65,7 @@
   > {$selector-button-enabled}
     position relative
     &:before
-      content ' '
+      content ''
       position absolute
       border-left-width 1px
       border-left-color transparent
@@ -129,7 +129,13 @@
       z-index 1
 
 {$selector-button-group-round}
-  ui-connect(
-    hash: $button-circle-size-hash,
-    each: button-group-round-size
-  )
+  > {$selector-button}
+
+    // 给一个足够大的值就行了
+    &:first-child:not(:last-child)
+      border-top-left-radius 100px
+      border-bottom-left-radius 100px
+
+    &:last-child:not(:first-child)
+      border-top-right-radius 100px
+      border-bottom-right-radius 100px

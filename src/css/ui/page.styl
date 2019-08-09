@@ -15,7 +15,7 @@
     margin-left $page-item-gap
 
 {$selector-page-active}
-  cursor $cursor-text
+  cursor $cursor-default
 
 {$selector-page-item}:hover,
 {$selector-page-active}
@@ -24,6 +24,7 @@
 
 {$selector-page-disabled}
   cursor $cursor-disabled
+  background-color $brand-bg-disabled
 
 {$selector-page-disabled},
 {$selector-page-disabled}:hover
@@ -69,6 +70,7 @@
   {$selector-page-custom-next}
     border none
     width auto
+    background-color transparent
 
 {$selector-page-select}
   width $page-select-width
@@ -83,7 +85,7 @@
   width $page-elevator-input-width
   display inline-block
   vertical-align top
-  margin-right $ui-label-gap
+  margin-right $ui-icon-text-gap
 
 {$selector-page-simple-input}
   width $page-simple-input-width
@@ -105,4 +107,4 @@
 {$selector-page-separator}
   font-size 90%
   color $brand-muted
-  margin 0 $ui-label-gap
+  margin 0 $ui-icon-text-gap

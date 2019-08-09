@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import { NULL, TRUE } from '../constant'
+import { UNDEFINED } from '../constant'
 
 import LoadingBar from './LoadingBar'
 
@@ -11,7 +11,7 @@ interface Config {
   percent?: number
 }
 
-let instance = NULL
+let instance = UNDEFINED
 
 function add(props: Config | void) {
 
@@ -34,7 +34,7 @@ function add(props: Config | void) {
 function remove() {
   if (instance) {
     instance.destroy()
-    instance = NULL
+    instance = UNDEFINED
   }
 }
 

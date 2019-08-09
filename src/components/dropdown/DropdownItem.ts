@@ -9,28 +9,28 @@ import {
 } from '../constant'
 
 export default Yox.define({
+  template,
   propTypes: {
+    name: {
+      type: RAW_STRING,
+    },
     divided: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
-    selected: {
+    active: {
       type: RAW_BOOLEAN,
-      value: FALSE
-    },
-    name: {
-      type: RAW_STRING
+      value: FALSE,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template
 })

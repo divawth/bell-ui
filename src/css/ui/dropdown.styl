@@ -1,130 +1,182 @@
 {$selector-dropdown}
   display inline-block
-  vertical-align middle
   position relative
 
-  {$selector-dropdown-trigger}
-    position relative
-    padding $dropdown-list-gap
+{$selector-dropdown-menu}
+  min-width $dropdown-menu-min-width
 
-  &[data-placement="top"]
-    {$selector-dropdown-list}
-      bottom 100%
-      left 50%
-      transform translateX(-50%)
+{$selector-dropdown-item}
+  ui-ellipsis()
+  padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
+  transition background-color .3s, color .3s
 
-  &[data-placement="top-start"]
-    {$selector-dropdown-list}
-      left 0
-      bottom 100%
+{$selector-dropdown-item-active}
+  background-color $brand-bg-active
 
-  &[data-placement="top-end"]
-    {$selector-dropdown-list}
-      right 0
-      bottom 100%
+{$selector-dropdown-item-enabled}
+  color $brand-text
+  cursor $cursor-clickable
 
-  &[data-placement="left"]
-    {$selector-dropdown-list}
-      right 100%
-      top 50%
-      transform translateY(-50%)
+  &:hover,
+  &{$selector-dropdown-item-hover}
+    background-color $brand-bg-hover
 
-  &[data-placement="left-start"]
-    {$selector-dropdown-list}
-      right 100%
-      top 0
-  &[data-placement="left-end"]
-    {$selector-dropdown-list}
-      right 100%
-      bottom 0
+{$selector-dropdown-item-disabled}
+  color $brand-text-disabled
+  cursor $cursor-disabled
 
-  &[data-placement="right"]
-    {$selector-dropdown-list}
-      left 100%
-      top 50%
-      transform translateY(-50%)
+{$selector-dropdown-item} + {$selector-dropdown-item-divided}
+  margin-top $dropdown-list-inset
+  border-top 1px solid $brand-divider
+  padding-top $dropdown-item-padding-vertical + $dropdown-list-inset
+  position relative
 
-  &[data-placement="right-start"]
-    {$selector-dropdown-list}
-      left 100%
-      top 0
-
-  &[data-placement="right-end"]
-    {$selector-dropdown-list}
-      left 100%
-      bottom 0
-
-  &[data-placement="bottom"]
-    {$selector-dropdown-list}
-      left 50%
-      transform translateX(-50%)
-  &[data-placement="bottom-start"]
-    {$selector-dropdown-list}
-      left 0
-  &[data-placement="bottom-end"]
-    {$selector-dropdown-list}
-      right 0
+  &:before
+    content " "
+    background-color $brand-bg
+    position absolute
+    top 0
+    left 0
+    right 0
+    height $dropdown-list-inset
 
 {$selector-dropdown-list}
-  width auto
-  overflow auto
+  font-size $dropdown-item-size
+  line-height $ui-single-line-height
+  padding $dropdown-list-inset 0
+
+  overflow-y auto
+  overflow-x hidden
+  user-select none
   box-sizing border-box
+
   position absolute
-  box-shadow $dropdown-box-shadow
-  opacity 1
-  max-height 0px
+  display none
+
   z-index $zindex-dropdown
-  transition max-height .3s, opacity .3s
+  transition transform .3s cubic-bezier(.23,1,.32,1),
+              opacity .3s cubic-bezier(.23,1,.32,1)
 
   background-color $brand-bg
   border-radius $radius-base
+  box-shadow $dropdown-list-shadow
 
-  &{$selector-prefix}-hide
+{$selector-dropdown-visible}
+  > {$selector-dropdown-list}
+    display block
     opacity 0
-    display none
 
-  {$selector-dropdown}-menu
-    list-style none
-    padding 0
-    margin 0
-    min-width $dropdown-menu-min-width
+{$selector-dropdown-fade}
+  > {$selector-dropdown-list}
+    opacity 1
 
-  {$selector-dropdown}-item
-    line-height normal
-    clear both
-    white-space nowrap
-    list-style none
-    cursor pointer
-    overflow hidden
-    text-overflow ellipsis
-    white-space nowrap
-    transition background-color .3s, color .3s, border-color .3s
+{$selector-select-top},
+{$selector-dropdown}-top,
+{$selector-dropdown}-top-start,
+{$selector-dropdown}-top-end
+  > {$selector-dropdown-list}
+    bottom 100%
+    margin-bottom $dropdown-trigger-list-gap
+    transform scaleY(0)
+    transform-origin center bottom
 
-    font-size $dropdown-item-size
-    color $dropdown-item-color
-    padding $dropdown-item-padding
+  &{$selector-dropdown-fade}
+    > {$selector-dropdown-list}
+      transform scaleY(1)
 
-    &{$selector-dropdown}-selected
-      font-weight 400
-      background-color $brand-bg-active
+{$selector-dropdown}-top
+  > {$selector-dropdown-list}
+    left 50%
 
-    &{$selector-hover}
-      font-weight 400
-      background-color $brand-bg-active
+{$selector-dropdown}-top-start
+  > {$selector-dropdown-list}
+    left 0
 
-    &{$selector-dropdown}-disabled
-      color $brand-text-disabled
-      cursor not-allowed
+{$selector-dropdown}-top-end
+  > {$selector-dropdown-list}
+    right 0
 
-    &{$selector-dropdown}-divided
-      margin-top $dropdown-item-divider-margin-top
-      border-top 1px solid $brand-border
 
-      &:before
-        content ""
-        height 5px
-        display block
-        margin 0 -16px
-        background-color #fff
-        position relative
-        top -7px
+
+
+{$selector-dropdown}-left,
+{$selector-dropdown}-left-start,
+{$selector-dropdown}-left-end
+  > {$selector-dropdown-list}
+    right 100%
+    margin-right $dropdown-trigger-list-gap
+    transform scaleX(0)
+    transform-origin right center
+
+  &{$selector-dropdown-fade}
+    > {$selector-dropdown-list}
+      transform scaleX(1)
+
+{$selector-dropdown}-left
+  > {$selector-dropdown-list}
+    top 50%
+
+{$selector-dropdown}-left-start
+  > {$selector-dropdown-list}
+    top 0
+
+{$selector-dropdown}-left-
+  > {$selector-dropdown-list}
+    bottom 0
+
+
+
+
+{$selector-dropdown}-right,
+{$selector-dropdown}-right-start,
+{$selector-dropdown}-right-end
+  > {$selector-dropdown-list}
+    left 100%
+    margin-left $dropdown-trigger-list-gap
+    transform scaleX(0)
+    transform-origin left center
+
+  &{$selector-dropdown-fade}
+    > {$selector-dropdown-list}
+      transform scaleX(1)
+
+{$selector-dropdown}-right
+  > {$selector-dropdown-list}
+    top 50%
+
+{$selector-dropdown}-right-start
+  > {$selector-dropdown-list}
+    top 0
+
+{$selector-dropdown}-right-end
+  > {$selector-dropdown-list}
+    bottom 0
+
+
+
+
+
+{$selector-select-bottom},
+{$selector-dropdown}-bottom,
+{$selector-dropdown}-bottom-start,
+{$selector-dropdown}-bottom-end
+  > {$selector-dropdown-list}
+    margin-top $dropdown-trigger-list-gap
+    transform scaleY(0)
+    transform-origin center top
+
+  &{$selector-dropdown-fade}
+    > {$selector-dropdown-list}
+      transform scaleY(1)
+
+{$selector-dropdown}-bottom
+  > {$selector-dropdown-list}
+    left 50%
+
+{$selector-dropdown}-bottom-start
+  > {$selector-dropdown-list}
+    left 0
+
+{$selector-dropdown}-bottom-end
+  > {$selector-dropdown-list}
+    right 0

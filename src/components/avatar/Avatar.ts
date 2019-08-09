@@ -9,7 +9,6 @@ import {
   RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
-  UNDEFINED,
 } from '../constant'
 
 import {
@@ -58,41 +57,34 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      supportTransform,
-      transform: UNDEFINED,
-    }
-  },
-
   afterMount() {
-    if (supportTransform) {
-      const me = this
-      me.watch(
-        'text',
-        function () {
-          me.nextTick(function () {
 
-            const { $el, $refs } = me
-            if (!$el || !$refs) {
-              return
-            }
-
-            const { textSpan } = $refs
-
-            const scale = textSpan && (textSpan as HTMLElement).offsetWidth
-              ? ($el.offsetWidth - SPACE_HORIZONTAL) / (textSpan as HTMLElement).offsetWidth
-              : 1
-
-            me.set(
-              'transform',
-              `scale(${Math.min(scale, 1)}) translateX(-50%)`
-            )
-
-          })
-        },
-        TRUE
-      )
+    if (!supportTransform) {
+      return
     }
+
+    const me = this
+
+    me.watch(
+      'text',
+      function () {
+        me.nextTick(function () {
+
+          const element = me.$refs && me.$refs.textSpan as HTMLElement
+          if (!element) {
+            return
+          }
+
+          const scale = element.offsetWidth
+            ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
+            : 1
+
+          element.style.transform = `scale(${Math.min(scale, 1)}) translateX(-50%)`
+
+        })
+      },
+      TRUE
+    )
+
   }
 })

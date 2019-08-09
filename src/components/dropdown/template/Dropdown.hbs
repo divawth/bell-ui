@@ -1,19 +1,9 @@
 <div
-class="${prefix}dropdown
-{{#if isOpen}} ${prefix}dropdown-open{{/if}}
-{{#if disabled}} ${prefix}dropdown-disabled{{/if}}
+class="${prefix}dropdown ${prefix}dropdown-{{placement}}
 {{#if className}} {{className}}{{/if}}"
-
-data-placement="{{placement}}"
 
 {{#if style}}
   style="{{style}}"
-{{/if}}
-
-{{#if trigger === RAW_HOVER}}
-  on-mouseenter="set('isOpen', TRUE)"
-  on-mouseleave="set('isOpen', FALSE)"
-  lazy-mouseleave="300"
 {{/if}}
 >
 
@@ -21,15 +11,24 @@ data-placement="{{placement}}"
     class="${prefix}dropdown-trigger"
     {{#if trigger === RAW_CLICK}}
       on-click="toggle('isOpen')"
+    {{else}}
+      on-mouseenter="enter()"
+      on-mouseleave="leave()"
     {{/if}}
   >
     <slot name="children" />
   </div>
 
   <div
+    ref="list"
     class="${prefix}dropdown-list"
-    {{#if isOpen && height > 0}}
+    {{#if height > 0}}
       style="max-height: {{height}}px;"
+    {{/if}}
+
+    {{#if trigger === RAW_HOVER}}
+      on-mouseenter="enter()"
+      on-mouseleave="leave()"
     {{/if}}
   >
     <slot name="list" />

@@ -8,6 +8,7 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_NUMBER,
+  RAW_BOOLEAN,
 } from '../constant'
 
 import {
@@ -29,6 +30,10 @@ export default Yox.define({
     },
     value: {
       type: [RAW_STRING, RAW_NUMBER],
+    },
+    disabled: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     text: {
       type: RAW_STRING,

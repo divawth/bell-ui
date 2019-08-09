@@ -48,7 +48,6 @@ export declare const RAW_BORDER_SOLID = "solid";
 export declare const RAW_BORDER_DASHED = "dashed";
 export declare const RAW_ICON_IOS = "ios";
 export declare const RAW_ICON_MD = "md";
-export declare const RAW_EVENT_CLICK = "click";
 export declare const RAW_EVENT_KEYPRESS = "keypress";
 export declare const RAW_EVENT_KEYDOWN = "keydown";
 export declare const RAW_EVENT_KEYUP = "keyup";

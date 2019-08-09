@@ -2,10 +2,10 @@
 class="${prefix}button ${prefix}button-{{border}}
 
 {{#if ghost}} ${prefix}button-ghost
-  {{#if type}} ${prefix}button-ghost-{{type}}{{/if}}
-{{else if type}} ${prefix}button-{{type}}
+{{else}} ${prefix}button-normal
 {{/if}}
 
+{{#if type}} ${prefix}button-{{type}}{{/if}}
 {{#if size}} ${prefix}button-{{size}}{{/if}}
 {{#if shape}} ${prefix}button-{{shape}} ${prefix}button-{{shape}}-{{size}}{{/if}}
 

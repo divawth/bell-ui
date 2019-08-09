@@ -3,7 +3,6 @@ import Yox from 'yox'
 import template from './template/LoadingBar.hbs'
 
 import {
-  NULL,
   UNDEFINED,
   RAW_STRING,
   RAW_NUMBER,
@@ -14,8 +13,6 @@ import {
 import {
   oneOf,
 } from '../util'
-
-let timer = NULL
 
 export default Yox.define({
 
@@ -40,15 +37,15 @@ export default Yox.define({
   },
 
   afterMount() {
-    const me = this
+    const me = this as any
     const next = function () {
-      timer = setTimeout(
+      me.timer = setTimeout(
         function () {
-          if (!timer) {
+          if (!me.timer) {
             return
           }
-          me.increase('percent', Math.floor(Math.random() * 10), 98)
-          if (me.get('percent') < 98) {
+          const value = me.increase('percent', Math.floor(Math.random() * 10), 98)
+          if (value < 98) {
             next()
           }
         },
@@ -59,9 +56,10 @@ export default Yox.define({
   },
 
   beforeDestroy() {
-    if (timer) {
-      clearTimeout(timer)
-      timer = UNDEFINED
+    const me = this as any
+    if (me.timer) {
+      clearTimeout(me.timer)
+      me.timer = UNDEFINED
     }
   }
 })

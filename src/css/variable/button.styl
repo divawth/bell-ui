@@ -25,14 +25,14 @@ $button-border-hash = {
 }
 
 $button-circle-size-hash = {
-  'default': 32px,
-  'tiny': 20px,
-  'small': 26px,
-  'large': 36px,
-  'huge': 44px
+  'default': $size-default,
+  'tiny': $size-tiny,
+  'small': $size-small,
+  'large': $size-large,
+  'huge': $size-huge
 }
 
-$button-normal-hash = {
+$button-brand-hash = {
   '': {
     color: $brand-secondary,
     bg-color: $brand-bg,
@@ -125,63 +125,4 @@ $button-normal-hash = {
 
     shadow-color: $brand-warning-shadow,
   },
-}
-
-$button-ghost-hash = {
-  'secondary': {
-    hover-color: $brand-info-hover,
-    hover-border-color: $brand-info-hover,
-
-    active-color: $brand-info-active,
-    active-border-color: $brand-info-active,
-
-    shadow-color: $brand-info-shadow,
-  },
-  'primary': {
-    hover-color: $brand-primary,
-    hover-border-color: $brand-primary-hover,
-
-    active-color: $brand-primary-active,
-    active-border-color: $brand-primary-active,
-
-    shadow-color: $brand-primary-shadow
-  },
-  'success': {
-    hover-color: $brand-success-hover,
-    hover-border-color: $brand-success-hover,
-
-    active-color: $brand-success-active,
-    active-border-color: $brand-success-active,
-
-    shadow-color: $brand-success-shadow,
-  },
-
-  'error': {
-    hover-color: $brand-error-hover,
-    hover-border-color: $brand-error-hover,
-
-    active-color: $brand-error-active,
-    active-border-color: $brand-error-active,
-
-    shadow-color: $brand-error-shadow,
-  },
-
-  'info': {
-    hover-color: $brand-info-hover,
-    hover-border-color: $brand-info-hover,
-
-    active-color: $brand-info-active,
-    active-border-color: $brand-info-active,
-
-    shadow-color: $brand-info-shadow,
-  },
-  'warning': {
-    hover-color: $brand-warning-hover,
-    hover-border-color: $brand-warning-hover,
-
-    active-color: $brand-warning-active,
-    active-border-color: $brand-warning-active,
-
-    shadow-color: $brand-warning-shadow,
-  }
 }

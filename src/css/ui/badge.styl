@@ -6,19 +6,19 @@
 
 {$selector-badge-dot}
   border-radius 50%
-  height $badge-dot-size
   width $badge-dot-size
+  height $badge-dot-size
   box-sizing content-box
 
 {$selector-badge-content}
-  font-size 12px
-  line-height 1
+  font-size $ui-font-size
 
 {$selector-badge-text}
-  font-size 12px
+  font-size $badge-text-font-size
   box-sizing border-box
   white-space nowrap
 
+// 漂浮的角标
 {$selector-badge}
   ui-badge()
 
@@ -58,12 +58,13 @@
     background-color transparent
 
   > {$selector-badge-dot} + {$selector-badge-text}
-    margin-left $ui-label-gap
+    margin-left $ui-icon-text-gap
 
 {$selector-badge-ripple}
   > {$selector-badge-dot}
     position relative
     &:after
+      content ""
       position absolute
       top 0
       left 0
@@ -72,7 +73,6 @@
       border-radius 50%
       box-sizing border-box
       border 1px solid
-      content ""
       animation bell-badge-ripple 1.2s infinite ease-in-out
 
 @keyframes bell-badge-ripple {

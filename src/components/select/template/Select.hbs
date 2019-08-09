@@ -1,8 +1,9 @@
 <div
 class="${prefix}select
 {{#if size}} ${prefix}select-{{size}}{{/if}}
-{{#if visible}} ${prefix}select-active{{/if}}
-{{#if disabled}} ${prefix}select-disabled{{/if}}
+{{#if disabled}} ${prefix}select-disabled
+{{else}} ${prefix}select-enabled
+{{/if}}
 {{#if placement}} ${prefix}select-{{placement}}{{/if}}
 {{#if multiple}} ${prefix}select-multiple{{/if}}
 {{#if clearable}} ${prefix}select-clearable{{/if}}
@@ -23,7 +24,11 @@ class="${prefix}select
     {{#if prefix || hasSlot('prefix')}}
       <div class="${prefix}select-prefix">
         <slot name="prefix">
-          <Icon name="{{prefix}}" />
+          <Icon
+            name="{{prefix}}"
+            size="0"
+            className="${prefix}select-prefix-icon"
+          />
         </slot>
       </div>
     {{/if}}
@@ -54,23 +59,24 @@ class="${prefix}select
 
     <Icon
       name="arrow-down"
-      className="${prefix}select-arrow"
+      size="0"
+      className="${prefix}select-arrow-icon"
     />
 
     {{#if clearable && selectedOptions.length}}
       <Icon
         name="close-circle"
-        size="16"
+        size="0"
         className="${prefix}select-clear-icon"
         on-click.native="handleClearClick()"
       />
     {{/if}}
   </div>
 
-  <div class="${prefix}dropdown-list">
-    <ul class="${prefix}dropdown-menu">
+  <div ref="list" class="${prefix}dropdown-list">
+    <div class="${prefix}dropdown-menu">
       <slot name="children" />
-    </ul>
+    </div>
   </div>
 
 </div>

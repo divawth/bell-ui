@@ -194,7 +194,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("button",function(){g("className","bell-button bell-button-"+y(a("border",$2))+(a("ghost",$2)?(" bell-button-ghost"+(a("type",$2)?(" bell-button-ghost-"+y(a("type",$2))):"")):((a("type",$2)?(" bell-button-"+y(a("type",$2))):"")))+(a("size",$2)?(" bell-button-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-button-"+y(a("shape",$2))+" bell-button-"+y(a("shape",$2))+"-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-button-disabled":" bell-button-enabled")+(a("fluid",$2)?" bell-button-fluid":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("disabled",$2)?g("disabled",$2):m("click","event.click",$0,"click.button","click.button"),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_icon"),s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("button",function(){g("className","bell-button bell-button-"+y(a("border",$2))+(a("ghost",$2)?" bell-button-ghost":" bell-button-normal")+(a("type",$2)?(" bell-button-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-button-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-button-"+y(a("shape",$2))+" bell-button-"+y(a("shape",$2))+"-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-button-disabled":" bell-button-enabled")+(a("fluid",$2)?" bell-button-fluid":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("disabled",$2)?g("disabled",$2):m("click","event.click",$0,"click.button","click.button"),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_icon"),s("$slot_children")})};
 
 /***/ }),
 /* 17 */
@@ -248,19 +248,19 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("visible",$2)?" bell-select-active":"")+(a("disabled",$2)?" bell-select-disabled":"")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-button"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2)))})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("defaultText",$2)||"请选择..."))):(q("div",function(){g("className","bell-select-value")},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("className","bell-select-arrow")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","16"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("ul",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-select-disabled":" bell-select-enabled")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-button"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2))),f("size","0"),f("className","bell-select-prefix-icon")})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("defaultText",$2)||"请选择..."))):(q("div",function(){g("className","bell-select-value")},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("size","0"),f("className","bell-select-arrow-icon")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","0"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("div",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"list")})};
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("li",function(){g("className","bell-select-option"+(a("isHover",$2)?" bell-select-option-hover":"")+(a("isSelected",$2)?" bell-select-option-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),m("click","event.click",$0,"click.selectOption","click.selectOption")},function(){s("$slot_children",function(){e(y(a("text",$2)))})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown-item"+(a("disabled",$2)?" bell-dropdown-item-disabled":" bell-dropdown-item-enabled")+(a("isHover",$2)?" bell-dropdown-item-hover":"")+(a("isSelected",$2)?" bell-dropdown-item-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.selectOption","click.selectOption")},function(){s("$slot_children",function(){e(y(a("text",$2)))})})};
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("li",function(){g("className","bell-select-option-group"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-option-title")},$0,y(a("label",$2))),s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select-option-group"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-option-title")},$0,y(a("label",$2))),s("$slot_children")})};
 
 /***/ }),
 /* 28 */
@@ -296,13 +296,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar"+(a("size",$2)?(" bell-avatar-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-avatar-"+y(a("shape",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",(a("text",$2)?("color: "+y(a("color",$2))+";"):"")+(a("fontSize",$2)?("font-size: "+y(a("fontSize",$2))+"px;"):"")+(a("bgColor",$2)?("background-color: "+y(a("bgColor",$2))+";"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):((d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text"),(a("supportTransform",$2)&&a("transform",$2))?(g("style.cssText","transform: "+y(a("transform",$2)))):""},function(){e(y(a("text",$2)))},$0,$0,$0,$0,$0,$0,"textSpan")):p()))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar"+(a("size",$2)?(" bell-avatar-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-avatar-"+y(a("shape",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",(a("text",$2)?("color: "+y(a("color",$2))+";"):"")+(a("fontSize",$2)?("font-size: "+y(a("fontSize",$2))+"px;"):"")+(a("bgColor",$2)?("background-color: "+y(a("bgColor",$2))+";"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):((d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text")},$0,y(a("text",$2)),$0,$0,$0,$0,$0,"textSpan")):p()))})};
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-badge"+(a("status",$2)?"-status":"")+((a("status",$2)||a("type",$2))?(" bell-badge-"+y(a("status",$2)||a("type",$2))):"")+(a("ripple",$2)?" bell-badge-ripple":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-badge-content")},function(){s("$slot_children")})):p(),(!a("hidden",$2))?((a("dot",$2)?(q("span",function(){g("className","bell-badge-dot")},$0,$0,$2)):p(),(a("text",$2)||(d(a("isNumber",$2),[a("count",$2)])))?(q("span",function(){g("className","bell-badge-text"+((d(a("hasSlot",$2),["children"]))?" bell-badge-text-addon":" bell-badge-text-only"))},$0,y(a("text",$2)||(d(a("formatText",$2),[a("count",$2),a("max",$2)]))))):p())):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-badge"+(a("status",$2)?"-status":"")+((a("status",$2)||a("type",$2))?(" bell-badge-"+y(a("status",$2)||a("type",$2))):"")+(a("ripple",$2)?" bell-badge-ripple":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-badge-content")},function(){s("$slot_children")})):p(),(!a("hidden",$2))?((a("dot",$2)?(q("span",function(){g("className","bell-badge-dot")},$0,$0,$2)):p(),(a("text",$2)||(d(a("isNumeric",$2),[a("count",$2)])))?(q("span",function(){g("className","bell-badge-text"+((d(a("hasSlot",$2),["children"]))?" bell-badge-text-addon":" bell-badge-text-only"))},$0,y(a("text",$2)||(d(a("formatText",$2),[a("count",$2),a("max",$2)]))))):p())):p()})};
 
 /***/ }),
 /* 35 */
@@ -356,7 +356,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 43 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse-panel"+(a("opened",$2)?" bell-collapse-open":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-collapse-header"),l("click","event.click",$0,"handleClick()","handleClick")},function(){(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-collapse-extra")},function(){s("$slot_extra")})):p(),s("$slot_icon",function(){r("Icon",function(){f("name","arrow-down"),f("className","bell-collapse-icon")})}),e(y(a("title",$2)))}),q("div",function(){g("className","bell-collapse-content")},function(){q("div",function(){g("className","bell-collapse-wrapper")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"content")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-collapse-panel"+(a("opened",$2)?" bell-collapse-open":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-collapse-header"),l("click","event.click",$0,"handleClick()","handleClick")},function(){(d(a("hasSlot",$2),["extra"]))?(q("div",function(){g("className","bell-collapse-extra")},function(){s("$slot_extra")})):p(),q("span",function(){g("className","bell-collapse-icon")},function(){s("$slot_icon",function(){r("Icon",function(){f("name","arrow-down"),f("size","0"),f("className","bell-collapse-arrow-icon")})})}),e(y(a("title",$2)))}),q("div",function(){g("className","bell-collapse-content")},function(){q("div",function(){g("className","bell-collapse-wrapper")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"content")})};
 
 /***/ }),
 /* 44 */
@@ -452,19 +452,19 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 59 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown"+(a("isOpen",$2)?" bell-dropdown-open":"")+(a("disabled",$2)?" bell-dropdown-disabled":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),f("data-placement",j("data-placement",a("placement",$2,$0,$2,$2))),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(a("trigger",$2)===a("RAW_HOVER",$2))&&(l("mouseenter","event.mouseenter",$0,"set('isOpen', TRUE)","set",function(z){return ["isOpen",a("TRUE",$2,$0,$0,$0,z)]}),l("mouseleave","event.mouseleave",$0,"set('isOpen', FALSE)","set",function(z){return ["isOpen",a("FALSE",$2,$0,$0,$0,z)]}),h("mouseleave",300))},function(){q("div",function(){g("className","bell-dropdown-trigger"),(a("trigger",$2)===a("RAW_CLICK",$2))?(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]})):""},function(){s("$slot_children")}),q("div",function(){g("className","bell-dropdown-list"),(a("isOpen",$2)&&(a("height",$2)>0))?(g("style.cssText","max-height: "+y(a("height",$2))+"px;")):""},function(){s("$slot_list")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown bell-dropdown-"+y(a("placement",$2))+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-dropdown-trigger"),(a("trigger",$2)===a("RAW_CLICK",$2))?(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]})):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-dropdown-list"),(a("height",$2)>0)?(g("style.cssText","max-height: "+y(a("height",$2))+"px;")):"",(a("trigger",$2)===a("RAW_HOVER",$2))?((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave"))):""},function(){s("$slot_list")},$0,$0,$0,$0,$0,$0,"list")})};
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("li",function(){g("className","bell-dropdown-item"+(a("selected",$2)?" bell-dropdown-selected":"")+(a("disabled",$2)?" bell-dropdown-disabled":"")+(a("divided",$2)?" bell-dropdown-divided":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.dropdownItem","click.dropdownItem")},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown-item"+(a("divided",$2)?" bell-dropdown-item-divided":"")+(a("active",$2)?" bell-dropdown-item-active":"")+(a("disabled",$2)?" bell-dropdown-item-disabled":" bell-dropdown-item-enabled")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.dropdownItem","click.dropdownItem")},function(){s("$slot_children")})};
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("ul",function(){g("className","bell-dropdown-menu"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown-menu"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 62 */
@@ -638,7 +638,6 @@ var RAW_BORDER_SOLID = 'solid';
 var RAW_BORDER_DASHED = 'dashed';
 var RAW_ICON_IOS = 'ios';
 var RAW_ICON_MD = 'md';
-var RAW_EVENT_CLICK = 'click';
 var RAW_EVENT_KEYPRESS = 'keypress';
 var RAW_EVENT_KEYDOWN = 'keydown';
 var RAW_EVENT_KEYUP = 'keyup';
@@ -1615,7 +1614,7 @@ var BreadcrumbItem_default = /*#__PURE__*/__webpack_require__.n(BreadcrumbItem);
         },
         separator: {
             type: RAW_STRING,
-            value: '/'
+            value: '/',
         },
         className: {
             type: RAW_STRING,
@@ -2494,6 +2493,8 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
 
 
 
+var CLASS_VISIBLE = 'bell-dropdown-visible';
+var CLASS_FADE = 'bell-dropdown-fade';
 /* harmony default export */ var select_Select = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Select_default.a,
     name: 'bell-select',
@@ -2515,8 +2516,8 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
             type: RAW_BOOLEAN,
         },
         placement: {
-            type: RAW_STRING,
-            value: 'bottom',
+            type: oneOf([RAW_TOP, RAW_BOTTOM]),
+            value: RAW_BOTTOM,
         },
         multiple: {
             type: RAW_BOOLEAN,
@@ -2542,6 +2543,30 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
     watchers: {
         value: function (value) {
             this.fire('change.select', { value: value });
+        },
+        visible: function (visible) {
+            var me = this;
+            var element = me.$el;
+            var list = me.$refs.list;
+            if (visible) {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_VISIBLE);
+                if (supportTransform) {
+                    setTimeout(function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_FADE);
+                    }, 20);
+                }
+            }
+            else {
+                if (supportTransform) {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_FADE);
+                    onTransitionEnd(list, function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+                    });
+                }
+                else {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+                }
+            }
         }
     },
     events: {
@@ -2717,11 +2742,11 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
                     break;
             }
         };
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_CLICK, onClick);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick);
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
         me.on('beforeDestroy.hook', function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_CURRENT) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_CLICK, onClick);
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_CLICK, onClick);
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
             }
         });
@@ -2751,6 +2776,10 @@ function isOptionSelected(values, value) {
         },
         value: {
             type: [RAW_STRING, RAW_NUMBER],
+        },
+        disabled: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         text: {
             type: RAW_STRING,
@@ -3894,29 +3923,23 @@ var SPACE_HORIZONTAL = 8;
             type: RAW_STRING,
         }
     },
-    data: function () {
-        return {
-            supportTransform: supportTransform,
-            transform: UNDEFINED,
-        };
-    },
     afterMount: function () {
-        if (supportTransform) {
-            var me_1 = this;
-            me_1.watch('text', function () {
-                me_1.nextTick(function () {
-                    var $el = me_1.$el, $refs = me_1.$refs;
-                    if (!$el || !$refs) {
-                        return;
-                    }
-                    var textSpan = $refs.textSpan;
-                    var scale = textSpan && textSpan.offsetWidth
-                        ? ($el.offsetWidth - SPACE_HORIZONTAL) / textSpan.offsetWidth
-                        : 1;
-                    me_1.set('transform', "scale(" + Math.min(scale, 1) + ") translateX(-50%)");
-                });
-            }, TRUE);
+        if (!supportTransform) {
+            return;
         }
+        var me = this;
+        me.watch('text', function () {
+            me.nextTick(function () {
+                var element = me.$refs && me.$refs.textSpan;
+                if (!element) {
+                    return;
+                }
+                var scale = element.offsetWidth
+                    ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
+                    : 1;
+                element.style.transform = "scale(" + Math.min(scale, 1) + ") translateX(-50%)";
+            });
+        }, TRUE);
     }
 }));
 
@@ -3969,7 +3992,7 @@ var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
         }
     },
     filters: {
-        isNumber: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric,
+        isNumeric: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric,
         formatText: function (count, max) {
             count = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(count) ? +count : 0;
             max = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(max) ? +max : 1;
@@ -5269,7 +5292,8 @@ var Tooltip_timer;
             type: RAW_NUMERIC,
         },
         mode: {
-            type: RAW_STRING,
+            type: oneOf([RAW_CLICK, RAW_HOVER]),
+            value: RAW_HOVER,
         },
         maxWidth: {
             type: RAW_NUMERIC,
@@ -6461,74 +6485,132 @@ var Dropdown_default = /*#__PURE__*/__webpack_require__.n(Dropdown);
 
 
 
+var Dropdown_CLASS_VISIBLE = 'bell-dropdown-visible';
+var Dropdown_CLASS_FADE = 'bell-dropdown-fade';
 /* harmony default export */ var dropdown_Dropdown = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Dropdown_default.a,
     propTypes: {
         placement: {
             type: oneOf(RAW_PLACEMENT_ARRAY),
-            value: RAW_BOTTOM
+            value: RAW_BOTTOM,
         },
         trigger: {
             type: oneOf([RAW_HOVER, RAW_CLICK, RAW_CUSTOM]),
-            value: RAW_HOVER
+            value: RAW_HOVER,
         },
         visible: {
-            type: function (props, key) {
-                if (props['trigger'] !== RAW_CUSTOM) {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.logger.warn(key + " \u671F\u671B\u5728 trigger \u53D6\u503C\u4E3A custom \u65F6\u4F20\u503C");
-                }
-                return true;
-            }
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         height: {
             type: RAW_NUMBER,
-            value: 280
+            value: 280,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: Dropdown_default.a,
     watchers: {
+        // 同步外部的传值
         visible: function (isOpen) {
             this.set({ isOpen: isOpen });
+        },
+        isOpen: function (isOpen) {
+            var me = this;
+            var element = me.$el;
+            var list = me.$refs.list;
+            if (isOpen) {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dropdown_CLASS_VISIBLE);
+                // 用 js 计算的原因
+                // 1. css transform 被动画占用了
+                // 2. 兼容 IE
+                var cssText = '';
+                var width = list.offsetWidth;
+                var height = list.offsetHeight;
+                switch (me.get('placement')) {
+                    case RAW_BOTTOM:
+                    case RAW_TOP:
+                        cssText = "margin-left:" + -0.5 * width + "px";
+                        break;
+                    case RAW_LEFT:
+                    case RAW_RIGHT:
+                        cssText = "margin-top:" + -0.5 * height + "px";
+                        break;
+                }
+                list.style.cssText = cssText;
+                if (supportTransform) {
+                    setTimeout(function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dropdown_CLASS_FADE);
+                    }, 20);
+                }
+            }
+            else {
+                if (supportTransform) {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_FADE);
+                    onTransitionEnd(list, function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_VISIBLE);
+                    });
+                }
+                else {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_VISIBLE);
+                }
+            }
         }
     },
     data: function () {
         return {
             isOpen: FALSE,
-            FALSE: FALSE,
-            TRUE: TRUE,
             RAW_HOVER: RAW_HOVER,
             RAW_CLICK: RAW_CLICK,
-            RAW_CUSTOM: RAW_CUSTOM
+            RAW_CUSTOM: RAW_CUSTOM,
         };
     },
     events: {
         'click.dropdownItem': function () {
-            this.set({
-                isOpen: FALSE
-            });
+            this.set('isOpen', FALSE);
+        }
+    },
+    methods: {
+        enter: function () {
+            var me = this;
+            if (me.leaveTimer) {
+                clearTimeout(me.leaveTimer);
+                me.leaveTimer = UNDEFINED;
+            }
+            else {
+                this.set('isOpen', TRUE);
+            }
+        },
+        leave: function () {
+            var me = this;
+            me.leaveTimer = setTimeout(function () {
+                me.leaveTimer = UNDEFINED;
+                me.set('isOpen', FALSE);
+            }, 300);
         }
     },
     afterMount: function () {
         var me = this;
         if (me.get('trigger') === RAW_CLICK) {
-            var dropdownClick_1 = function (event) {
+            var onClick_1 = function (event) {
+                if (!me.get('isOpen')) {
+                    return;
+                }
                 var element = me.$el;
                 var target = event.originalEvent.target;
                 if (contains(element, target)) {
                     return;
                 }
-                me.set({
-                    isOpen: FALSE
-                });
+                me.set('isOpen', FALSE);
             };
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, 'click', dropdownClick_1);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick_1);
             me.on('beforeDestroy.hook', function (event) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, 'click', dropdownClick_1);
+                if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_CURRENT) {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_CLICK, onClick_1);
+                }
             });
         }
     }
@@ -6543,30 +6625,30 @@ var DropdownItem_default = /*#__PURE__*/__webpack_require__.n(DropdownItem);
 
 
 /* harmony default export */ var dropdown_DropdownItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: DropdownItem_default.a,
     propTypes: {
+        name: {
+            type: RAW_STRING,
+        },
         divided: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
         disabled: {
             type: RAW_BOOLEAN,
-            value: FALSE
+            value: FALSE,
         },
-        selected: {
+        active: {
             type: RAW_BOOLEAN,
-            value: FALSE
-        },
-        name: {
-            type: RAW_STRING
+            value: FALSE,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: DropdownItem_default.a
 }));
 
 // EXTERNAL MODULE: ./src/components/dropdown/template/DropdownMenu.hbs
@@ -6578,15 +6660,15 @@ var DropdownMenu_default = /*#__PURE__*/__webpack_require__.n(DropdownMenu);
 
 
 /* harmony default export */ var dropdown_DropdownMenu = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: DropdownMenu_default.a,
     propTypes: {
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: DropdownMenu_default.a
 }));
 
 // EXTERNAL MODULE: ./src/components/timePicker/template/TimePicker.hbs
@@ -7010,7 +7092,7 @@ var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 
 
 var Dialog_CLASS_OPEN = 'bell-dialog-open';
-var CLASS_FADE = 'bell-dialog-fade';
+var Dialog_CLASS_FADE = 'bell-dialog-fade';
 /* harmony default export */ var dialog_Dialog = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Dialog_default.a,
     model: 'open',
@@ -7054,12 +7136,12 @@ var CLASS_FADE = 'bell-dialog-fade';
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_OPEN);
             }
             else {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_FADE);
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_FADE);
                 // 动画一般作用在 wrapper 上面
                 // 监听 $el 没用的
                 onTransitionEnd(me.$refs.wrapper, function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_OPEN);
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_FADE);
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_FADE);
                     me.fire('close.dialog');
                 });
             }
@@ -7348,7 +7430,7 @@ var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 
 
 
-var CLASS_VISIBLE = 'bell-message-visible';
+var Message_CLASS_VISIBLE = 'bell-message-visible';
 /* harmony default export */ var message_Message = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Message_default.a,
     propTypes: {
@@ -7395,7 +7477,7 @@ var CLASS_VISIBLE = 'bell-message-visible';
         show: function () {
             var me = this;
             var element = me.$el;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_VISIBLE);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Message_CLASS_VISIBLE);
             element.style.top = me.get('top') + 'px';
             setTimeout(function () {
                 if (me.$el) {
@@ -7406,7 +7488,7 @@ var CLASS_VISIBLE = 'bell-message-visible';
         hide: function () {
             var me = this;
             var element = me.$el;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Message_CLASS_VISIBLE);
             element.style.top = '0px';
             onTransitionEnd(element, function () {
                 if (me.$el) {
@@ -7756,7 +7838,6 @@ var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 
 
 
-var LoadingBar_timer = NULL;
 /* harmony default export */ var loadingBar_LoadingBar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: LoadingBar_default.a,
     propTypes: {
@@ -7779,12 +7860,12 @@ var LoadingBar_timer = NULL;
     afterMount: function () {
         var me = this;
         var next = function () {
-            LoadingBar_timer = setTimeout(function () {
-                if (!LoadingBar_timer) {
+            me.timer = setTimeout(function () {
+                if (!me.timer) {
                     return;
                 }
-                me.increase('percent', Math.floor(Math.random() * 10), 98);
-                if (me.get('percent') < 98) {
+                var value = me.increase('percent', Math.floor(Math.random() * 10), 98);
+                if (value < 98) {
                     next();
                 }
             }, 300);
@@ -7792,9 +7873,10 @@ var LoadingBar_timer = NULL;
         next();
     },
     beforeDestroy: function () {
-        if (LoadingBar_timer) {
-            clearTimeout(LoadingBar_timer);
-            LoadingBar_timer = UNDEFINED;
+        var me = this;
+        if (me.timer) {
+            clearTimeout(me.timer);
+            me.timer = UNDEFINED;
         }
     }
 }));
@@ -7803,7 +7885,7 @@ var LoadingBar_timer = NULL;
 
 
 
-var instance = NULL;
+var instance = UNDEFINED;
 function add(props) {
     var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
     instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
@@ -7815,7 +7897,7 @@ function add(props) {
 function remove() {
     if (instance) {
         instance.destroy();
-        instance = NULL;
+        instance = UNDEFINED;
     }
 }
 /* harmony default export */ var loadingBar_base = ({
