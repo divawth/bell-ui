@@ -82,7 +82,7 @@ export default {
 ```js
 export default {
   template: `
-    <div style="bell-template" style="background: #ccc; padding: 15px 0;">
+    <div style="bell-template" style="background: #ccc; padding: 15px;">
       <Card simple style="width: 300px;">
         <CardHeader>
           <template slot="title">

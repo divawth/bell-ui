@@ -19,10 +19,7 @@
 
 {$selector-radio-disabled}
   > {$selector-radio-icon}
-    border-color $brand-border-disabled
-    background-color $brand-bg-disabled
-    &:after
-      background-color $brand-border-disabled
+    opacity $ui-opacity-disabled
 
 {$selector-radio-icon}
   position absolute
@@ -65,7 +62,6 @@
   cursor $cursor-disabled
 
 {$selector-radio-vertical}
-
   > {$selector-radio}
     width 100%
     display block

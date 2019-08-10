@@ -1,17 +1,17 @@
 checkbox-brand-style(style)
-  &{$selector-checkbox-enabled}
 
-    &:hover
-    &{$selector-checkbox-focus}
-      > {$selector-checkbox-icon}
-        if $ui-shadow-radius > 0
+  &{$selector-checkbox-active},
+  &{$selector-checkbox-indeterminate}
+    > {$selector-checkbox-icon}
+      ui-set('background-color', style['color'])
+      ui-set('border-color', style['color'])
+
+  if $ui-shadow-radius > 0
+    &{$selector-checkbox-enabled}
+      &:hover
+      &{$selector-checkbox-focus}
+        > {$selector-checkbox-icon}
           box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
-
-    &{$selector-checkbox-active},
-    &{$selector-checkbox-indeterminate}
-      > {$selector-checkbox-icon}
-        ui-set('background-color', style['color'])
-        ui-set('border-color', style['color'])
 
 checkbox-size-style(style)
   ui-set('font-size', style['font-size'])

@@ -5,7 +5,7 @@ export default {
   template: `
   <div>
     <Progress active percent="{{25}}"> 25%</Progress>
-    <Progress percent="{{45}}" type="danger">45%</Progress>
+    <Progress percent="{{45}}" type="error">45%</Progress>
     <Progress percent="{{65}}" type="success">65%</Progress>
     <Progress percent="{{100}}">100%</Progress>
     <Progress percent="{{25}}" hideInfo>25%</Progress>
@@ -21,7 +21,7 @@ export default {
   template: `
     <div style="height: 100px;">
       <Progress vertical active percent="{{25}}"> 25%</Progress>
-      <Progress vertical percent="{{45}}" type="danger">45%</Progress>
+      <Progress vertical percent="{{45}}" type="error">45%</Progress>
       <Progress vertical percent="{{65}}" type="success">65%</Progress>
       <Progress vertical percent="{{100}}">100%</Progress>
       <Progress vertical percent="{{25}}" hideInfo>25%</Progress>

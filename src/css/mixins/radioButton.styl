@@ -1,4 +1,4 @@
-radio-button-group-style(style)
+radio-button-group-brand-style(style)
   > {$selector-radio-enabled}
     ui-set('background-color', style['bg-color'])
     ui-set('color', style['color'])
@@ -17,19 +17,20 @@ radio-button-group-style(style)
       &:before
         ui-set('background-color', style['color-active'])
 
-radio-button-group-size(size)
+radio-button-group-size-style(size)
   > {$selector-radio}
-    ui-set('font-size', size['font'])
-    ui-set('padding', size['padding'])
+    ui-set('font-size', size['font-size'])
+    ui-set('padding', 0 size['padding-horizontal'])
     ui-set('height', size['height'])
+    ui-set('min-width', size['height'])
     ui-set('line-height', size['height'])
 
 ui-radio-button-group()
   ui-connect(
     hash: $radio-button-brand-hash,
-    each: radio-button-group-style
+    each: radio-button-group-brand-style
   )
   ui-connect(
     hash: $radio-button-size-hash,
-    each: radio-button-group-size
+    each: radio-button-group-size-style
   )

@@ -7,7 +7,13 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  RAW_TYPE_ARRAY,
+  RAW_TYPE_PRIMARY,
 } from '../constant'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
   template,
@@ -17,7 +23,8 @@ export default Yox.define({
       value: 0,
     },
     type: {
-      type: RAW_STRING,
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
     thickness: {
       type: RAW_STRING,

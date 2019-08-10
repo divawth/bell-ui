@@ -1,22 +1,24 @@
-<div class="${prefix}layout-sider ${prefix}col-6
-{{#if className}} {{className}}{{/if}}
-{{#if collapsed}} ${prefix}layout-sider-collapsed{{/if}}"
+<div class="${prefix}layout-sider
+{{#if collapsed}} ${prefix}layout-sider-collapsed{{/if}}
+{{#if className}} {{className}}{{/if}}"
 
-{{#if style}}style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <div class="${prefix}layout-sider-children">
     <slot name="children" />
   </div>
+
   {{#if collapsed != null}}
-    <div class="${prefix}layout-sider-trigger"
+    <div
+      class="${prefix}layout-sider-trigger"
       on-click="toggle('collapsed')"
     >
-      <slot name="trigger">
-        <Icon
-          name="arrow-back"
-          className="${prefix}layout-sider-trigger-icon"
-        />
-      </slot>
+      <Icon
+        name="arrow-back"
+        className="${prefix}layout-sider-trigger-icon"
+      />
     </div>
   {{/if}}
 

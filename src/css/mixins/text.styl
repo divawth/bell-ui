@@ -1,61 +1,16 @@
-text-style(color)
+text-brand-style(color)
+  ui-set('color', color)
 
-    ui-set('color', color)
-
-text-size(size)
-
-    ui-set('font-size', size['font'])
-    ui-set('line-height', size['line-height'])
-
-text-header-style(size)
-    margin-bottom .5rem
-    font-family inherit
-    font-weight 500
-    line-height 1.2
-
-    ui-set('font-size', size)
-
-text-display-style(size)
-
-    ui-set('font-size', size['font-size'])
-    ui-set('font-weight', size['font-weight'])
-    ui-set('line-height', size['line-height'])
-
-text-alignment-style(align)
-
-    ui-set('text-align', align)
+text-size-style(size)
+  ui-set('font-size', size['font-size'])
+  ui-set('line-height', size['line-height'])
 
 ui-text()
-
-    ui-variant(
-        hash: $text-size-hash,
-        each: text-size
-    )
-    ui-variant(
-        hash: $text-brand-hash,
-        each: text-style
-    )
-    ui-variant(
-        hash: $text-header-hash,
-        each: text-header-style
-    )
-    ui-variant(
-        hash: $text-display-hash,
-        each: text-display-style
-    )
-    ui-variant(
-        hash: $text-alignment-hash,
-        each: text-alignment-style
-    )
-
-ui-texts()
-
-    ui-collection(
-        selector-item: $selector-text,
-        hash: $text-size-hash,
-        each: @(size) {
-            > {$selector-text} {
-                text-size(size)
-            }
-        }
-    )
+  ui-connect(
+      hash: $text-size-hash,
+      each: text-size-style
+  )
+  ui-connect(
+      hash: $text-brand-hash,
+      each: text-brand-style
+  )

@@ -71,7 +71,7 @@ export default Yox.define({
   },
 
   events: {
-    'change.checkboxGroup': function (event, data) {
+    'change.checkboxGroup': function (_, data) {
       this.set({
         checked: Yox.array.has(
           data.selected,

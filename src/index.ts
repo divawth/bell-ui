@@ -14,6 +14,7 @@ import Submenu from './components/menu/Submenu'
 import Row from './components/grid/Row'
 import Col from './components/grid/Col'
 import Icon from './components/icon/Icon'
+import Text from './components/text/Text'
 import Drawer from './components/drawer/Drawer'
 
 import Breadcrumb from './components/breadcrumb/Breadcrumb'
@@ -98,6 +99,7 @@ const components = {
   Row,
   Col,
   Icon,
+  Text,
   Drawer,
 
   Breadcrumb,

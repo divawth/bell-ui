@@ -19,10 +19,7 @@
 
 {$selector-checkbox-disabled}
   > {$selector-checkbox-icon}
-    border-color $brand-border-disabled
-    background-color $brand-bg-disabled
-    &:after
-      border-color $brand-text-disabled
+    opacity $ui-opacity-disabled
 
 {$selector-checkbox-icon}
   position absolute
@@ -62,7 +59,6 @@
   cursor $cursor-disabled
 
 {$selector-checkbox-vertical}
-
   > {$selector-checkbox}
     width 100%
     display block

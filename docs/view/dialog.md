@@ -11,8 +11,8 @@ export default {
           这里是弹框的内容呀
         </div>
         <template slot="actions">
-          <Button on-click="closeDialog()" variants="info">cancel</Button>
-          <Button on-click="closeDialog()" variants="danger">delete</Button>
+          <Button on-click="closeDialog()" type="info">cancel</Button>
+          <Button on-click="closeDialog()" type="error">delete</Button>
         </template>
       </Dialog>
     </div>

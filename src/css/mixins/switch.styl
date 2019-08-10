@@ -1,33 +1,32 @@
 switch-size-style(size)
-  ui-set('width', size[ 'width' ])
-  ui-set('height', size[ 'height' ])
-  ui-set('border-radius', size[ 'height' ])
+  ui-set('width', size['width'])
+  ui-set('height', size['height'])
 
   &{$selector-switch-active}
     &:before
-      ui-set('margin-left', - size[ 'thumb-size' ] - $switch-thumb-gap)
+      ui-set('margin-left', - (size['height'] - 4) - $switch-thumb-gap)
 
     &:after
-      ui-set('margin-left', - size[ 'loading-size' ] - $switch-loading-gap)
+      ui-set('margin-left', - (size['height'] - 8) - $switch-loading-gap)
 
   &:before
-    ui-set('width', size[ 'thumb-size' ])
-    ui-set('height', size[ 'thumb-size' ])
+    ui-set('width', size['height'] - 4)
+    ui-set('height', size['height'] - 4)
 
   &:after
-    ui-set('width', size[ 'loading-size' ])
-    ui-set('height', size[ 'loading-size' ])
+    ui-set('width', size['height'] - 8)
+    ui-set('height', size['height'] - 8)
 
   > {$selector-switch-label}
-    ui-set('line-height', size[ 'height' ])
-    ui-set('height', size[ 'height' ])
+    ui-set('line-height', size['height'])
+    ui-set('height', size['height'])
 
 switch-brand-style(style)
   &:after
-    ui-set('border-left-color', style[ 'color' ])
+    ui-set('border-left-color', style['color'])
 
   &{$selector-switch-active}
-    ui-set('background-color', style[ 'color' ])
+    ui-set('background-color', style['color'])
 
 ui-switch()
   ui-connect(

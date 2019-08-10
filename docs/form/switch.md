@@ -159,7 +159,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 checked | 是否选中 | boolean | - | false
-size | 大小 | string | large, small, - | -
+size | 大小 | string | default, large, small, - | default
 type | 风格 | string | primary, info, warning, success, error | primary
 disabled | 是否禁用 | boolean | - | false
 loading | 是否正在加载 | boolean | - | false

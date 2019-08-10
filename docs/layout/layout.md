@@ -43,7 +43,7 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Layout className="layout-demo">
+    <Layout vertical className="layout-demo">
       <Header>
         <template slot="left">
           Header Left
@@ -73,11 +73,11 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Layout className="layout-demo">
+    <Layout vertical className="layout-demo">
       <Header>
         Header
       </Header>
-      <Layout className="layout-demo" hasSider>
+      <Layout className="layout-demo">
         <Sider>
           Sider
         </Sider>
@@ -100,7 +100,7 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Layout className="layout-demo">
+    <Layout vertical className="layout-demo">
       <Header>
         Header
       </Header>
@@ -129,7 +129,7 @@ export default {
   template: `
     <Layout className="layout-demo">
       <Sider>Sider</Sider>
-      <Layout className="layout-demo">
+      <Layout vertical className="layout-demo">
         <Header>Header</Header>
         <Content>Content</Content>
         <Footer>Footer</Footer>
@@ -148,7 +148,7 @@ export default {
   isViewFullBlock: true,
   height: 450,
   template: `
-    <Layout className="layout-demo-wrapper">
+    <Layout vertical className="layout-demo-wrapper">
       <Header>
         <template slot="left">
           <div class="layout-logo"></div>
@@ -172,8 +172,8 @@ export default {
           </MenuItem>
         </Menu>
       </Header>
-      <Content :style="{padding: '0 50px'}">
-        <Breadcrumb :style="{margin: '20px 0'}">
+      <Content style="padding: 0 50px">
+        <Breadcrumb style="margin: 20px 0">
           <BreadcrumbItem>Home</BreadcrumbItem>
           <BreadcrumbItem>Components</BreadcrumbItem>
           <BreadcrumbItem>Layout</BreadcrumbItem>
@@ -199,7 +199,7 @@ export default {
   isViewFullBlock: true,
   height: 450,
   template: `
-    <Layout className="layout-demo-wrapper">
+    <Layout vertical className="layout-demo-wrapper">
       <Header>
         <template slot="left">
           <div class="layout-logo"></div>
@@ -244,7 +244,7 @@ export default {
             </MenuItem>
           </Menu>
         </Sider>
-        <Layout style="padding: 0 24px 24px">
+        <Layout vertical style="padding: 0 24px 24px">
           <Breadcrumb>
             <BreadcrumbItem>Home</BreadcrumbItem>
             <BreadcrumbItem>Components</BreadcrumbItem>
@@ -280,7 +280,7 @@ export default {
               内容管理
             {{else}}
               <Tooltip placement="right" content="内容管理">
-                <Icon name="paper" size="32" />
+                <Icon name="paper" size="22" />
               </Tooltip>
             {{/if}}
           </MenuItem>
@@ -290,7 +290,7 @@ export default {
                 <Icon style="margin-right: 6px;" name="paper" />
                 内容管理
               {{else}}
-                <Icon name="paper" size="32" />
+                <Icon name="paper" size="22" />
               {{/if}}
             </template>
             <MenuItem name="1-1">文章管理</MenuItem>
@@ -303,7 +303,7 @@ export default {
                 <Icon style="margin-right: 6px;" name="people" />
                 用户管理
               {{else}}
-                <Icon name="people" size="32" />
+                <Icon name="people" size="22" />
               {{/if}}
             </template>
             <MenuItem name="2-1">新增用户</MenuItem>
@@ -322,7 +322,7 @@ export default {
                       <Icon style="margin-right: 6px;" name="stats" />
                       统计分析
                   {{else}}
-                      <Icon name="stats" size="32" />
+                      <Icon name="stats" size="22" />
                   {{/if}}
               </template>
               <MenuGroup title="使用">
@@ -337,10 +337,10 @@ export default {
           </Submenu>
         </Menu>
       </Sider>
-      <Layout>
-        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
-        <Content :style="{padding: '0 16px 16px'}">
-          <Breadcrumb :style="{margin: '16px 0'}">
+      <Layout vertical>
+        <Header style="background: '#fff';boxShadow: 0 2px 3px 2px rgba(0,0,0,.1)"></Header>
+        <Content style="padding: 0 16px 16px">
+          <Breadcrumb style="margin: 16px 0">
             <BreadcrumbItem>Home</BreadcrumbItem>
             <BreadcrumbItem>Components</BreadcrumbItem>
             <BreadcrumbItem>Layout</BreadcrumbItem>

@@ -1,0 +1,12 @@
+<span
+class="${prefix}text
+{{#if type}} ${prefix}text-{{type}}{{/if}}
+{{#if size}} ${prefix}text-{{size}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <slot />
+</span>

@@ -47,7 +47,6 @@ export const RAW_TYPE_SUCCESS = 'success'
 export const RAW_TYPE_WARNING = 'warning'
 export const RAW_TYPE_ERROR = 'error'
 export const RAW_TYPE_INFO = 'info'
-export const RAW_TYPE_DANGER = 'danger'
 export const RAW_TYPE_SECONDARY = 'secondary'
 
 export const RAW_SHAPE_CIRCLE = 'circle'

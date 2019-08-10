@@ -1,36 +1,14 @@
 $selector-layout = $selector-prefix + '-layout'
+$selector-layout-horizontal = $selector-layout + '-horizontal'
+$selector-layout-vertical = $selector-layout + '-vertical'
+$selector-layout-fixed = $selector-layout + '-fixed'
 $selector-layout-header = $selector-layout + '-header'
 $selector-layout-sider = $selector-layout + '-sider'
-$selector-layout-has-sider = $selector-prefix + '-layout-has-sider'
-$selector-layout-fixed = $selector-layout + '-fixed'
+$selector-layout-content = $selector-layout + '-content'
+$selector-layout-footer = $selector-layout + '-footer'
 
-$layout-hash = {
-  header: {
-    flex: 0 0 64px,
-    line-height: 64px,
-    padding: 0 50px,
-    background-color: #515a6e,
-    color: #fff
-  },
-  content: {
-    flex: auto,
-    background-color: #f8f8f8
-  },
-  footer: {
-    flex: 0 0 auto,
-    background-color: #515A6F,
-    color: #f8f8f8,
-    padding: 24px 50px,
-  },
-  sider: {
-    flex: 0 0 200px,
-    background-color: #515a6e
-  },
-  sider-collapsed: {
-    flex: 0 0 80px,
-    background-color: #515a6e
-  },
-  trigger: {
-    color: #fff
-  }
-}
+$selector-layout-sider-collapsed = $selector-layout-sider + '-collapsed'
+$selector-layout-sider-children = $selector-layout-sider + '-children'
+$selector-layout-sider-trigger = $selector-layout-sider + '-trigger'
+
+$layout-sider-width = 200px

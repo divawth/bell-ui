@@ -3,17 +3,17 @@ import Yox from 'yox'
 import template from './template/Tag.hbs'
 
 import {
-  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_SIZE_COMMON,
   RAW_TYPE_ARRAY,
-  RAW_TYPE_SECONDARY,
   RAW_DEFAULT,
 } from '../constant'
 
-import { oneOf } from '../util'
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
 
