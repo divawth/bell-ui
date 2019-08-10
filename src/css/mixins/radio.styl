@@ -16,18 +16,18 @@ radio-brand-style(style)
 
 radio-size-style(style)
   ui-set('font-size', style['font-size'])
-  ui-set('padding-left', style['box-size'] + $ui-icon-text-gap)
+  ui-set('padding-left', style['font-size'] + $ui-icon-text-gap)
 
   > {$selector-radio-icon}
-    ui-set('width', style['box-size'])
-    ui-set('height', style['box-size'])
-    ui-set('margin-top', -0.5 * style['box-size'])
+    ui-set('width', style['font-size'])
+    ui-set('height', style['font-size'])
+    ui-set('margin-top', -0.5 * style['font-size'])
 
     &:after
-      ui-set('width', style['dot-size'])
-      ui-set('height', style['dot-size'])
-      ui-set('margin-top', -0.5 * style['dot-size'])
-      ui-set('margin-left', -0.5 * style['dot-size'])
+      ui-set('width', style['font-size'] - 6)
+      ui-set('height', style['font-size'] - 6)
+      ui-set('margin-top', -0.5 * (style['font-size'] - 6))
+      ui-set('margin-left', -0.5 * (style['font-size'] - 6))
 
 radio-group-brand-style(style)
   > {$selector-radio}

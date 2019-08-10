@@ -4,18 +4,18 @@ switch-size-style(size)
 
   &{$selector-switch-active}
     &:before
-      ui-set('margin-left', - (size['height'] - 4) - $switch-thumb-gap)
+      ui-set('margin-left', - (size['height'] - 2 * $switch-thumb-gap) - $switch-thumb-gap)
 
     &:after
-      ui-set('margin-left', - (size['height'] - 8) - $switch-loading-gap)
+      ui-set('margin-left', - (size['height'] - 2 * $switch-thumb-gap))
 
   &:before
-    ui-set('width', size['height'] - 4)
-    ui-set('height', size['height'] - 4)
+    ui-set('width', size['height'] - 2 * $switch-thumb-gap)
+    ui-set('height', size['height'] - 2 * $switch-thumb-gap)
 
   &:after
-    ui-set('width', size['height'] - 8)
-    ui-set('height', size['height'] - 8)
+    ui-set('width', size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap)
+    ui-set('height', size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap)
 
   > {$selector-switch-label}
     ui-set('line-height', size['height'])

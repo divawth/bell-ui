@@ -1,5 +1,4 @@
 checkbox-brand-style(style)
-
   &{$selector-checkbox-active},
   &{$selector-checkbox-indeterminate}
     > {$selector-checkbox-icon}
@@ -15,12 +14,12 @@ checkbox-brand-style(style)
 
 checkbox-size-style(style)
   ui-set('font-size', style['font-size'])
-  ui-set('padding-left', style['box-size'] + $ui-icon-text-gap)
+  ui-set('padding-left', style['font-size'] + $ui-icon-text-gap)
 
   > {$selector-checkbox-icon}
-    ui-set('width', style['box-size'])
-    ui-set('height', style['box-size'])
-    ui-set('margin-top', -0.5 * style['box-size'])
+    ui-set('width', style['font-size'])
+    ui-set('height', style['font-size'])
+    ui-set('margin-top', -0.5 * style['font-size'])
 
     &:after
       ui-set('top', style['icon-top'])

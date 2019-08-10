@@ -4,24 +4,24 @@
 
 > 基础用法
 
+单个 Radio
+
 ```js
 export default {
   template: `
   <div>
-    <Radio value="1" model="radio" on-change="change()">
+    <Radio value="cn" model="checked1" on-change="change()">
       中国
     </Radio>
-    <Radio type="success" size="large" value="2" model="radio" on-change="change()">
-      中国
-    </Radio>
-    <Radio type="error" value="2" model="radio" on-change="change()">
-      中国
+    <Radio type="success" value="usa" model="checked2" on-change="change()">
+      美国
     </Radio>
   </div>
   `,
   data: function () {
     return {
-      radio: ''
+      checked1: false,
+      checked2: false,
     }
   },
   watchers: {
@@ -37,21 +37,23 @@ export default {
 }
 ```
 
+RadioGroup
+
 ```js
 export default {
   template: `
-  <RadioGroup name="country" model="radio" on-change="change()">
-    <Radio value="china">
+  <RadioGroup name="country" model="value" on-change="change()">
+    <Radio value="cn">
       中国
     </Radio>
-    <Radio value="other">
-      外国
+    <Radio value="usa">
+      美国
     </Radio>
   </RadioGroup>
   `,
   data: function () {
     return {
-      radio: ''
+      value: ''
     }
   },
   methods: {

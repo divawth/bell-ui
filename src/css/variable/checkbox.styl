@@ -8,36 +8,32 @@ $selector-checkbox-disabled = $selector-checkbox + '-disabled'
 $selector-checkbox-vertical = $selector-checkbox + '-vertical'
 $selector-checkbox-indeterminate = $selector-checkbox + '-indeterminate'
 
-$checkbox-box-size = 14px
-
-
 $checkbox-brand-hash = {
-  'primary': {
+  primary: {
     color: $brand-primary,
     shadow-color: $brand-primary-shadow,
   },
-  'info': {
+  info: {
     color: $brand-info,
     shadow-color: $brand-info-shadow,
   },
-  'success': {
+  success: {
     color: $brand-success,
     shadow-color: $brand-success-shadow,
   },
-  'error': {
+  error: {
     color: $brand-error,
     shadow-color: $brand-error-shadow,
   },
-  'warning': {
+  warning: {
     color: $brand-warning,
     shadow-color: $brand-warning-shadow,
   }
 }
 
 $checkbox-size-hash = {
-  'default': {
-    box-size: 14px,
-    font-size: 12px,
+  default: {
+    font-size: $size-default['font-size'],
     icon-top: 1px,
     icon-left: 4px,
     icon-width: 4px,
@@ -48,9 +44,8 @@ $checkbox-size-hash = {
     indeterminate-top: 5px
 
   },
-  'small': {
-    box-size: 12px,
-    font-size: 12px,
+  small: {
+    font-size: $size-small['font-size'],
     icon-top: 0px,
     icon-left: 3.2px,
     icon-width: 4px,
@@ -61,9 +56,8 @@ $checkbox-size-hash = {
     indeterminate-top: 4px,
 
   },
-  'large': {
-    box-size: 16px,
-    font-size: 14px,
+  large: {
+    font-size: $size-large['font-size'],
     icon-top: 1px,
     icon-left: 4px,
     icon-width: 5px,
@@ -72,6 +66,5 @@ $checkbox-size-hash = {
     indeterminate-width: 8px,
     indeterminate-left: 3px,
     indeterminate-top: 6px,
-
   },
 }

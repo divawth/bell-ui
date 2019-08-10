@@ -39,7 +39,6 @@ export declare const RAW_TYPE_SUCCESS = "success";
 export declare const RAW_TYPE_WARNING = "warning";
 export declare const RAW_TYPE_ERROR = "error";
 export declare const RAW_TYPE_INFO = "info";
-export declare const RAW_TYPE_DANGER = "danger";
 export declare const RAW_TYPE_SECONDARY = "secondary";
 export declare const RAW_SHAPE_CIRCLE = "circle";
 export declare const RAW_SHAPE_ROUND = "round";
