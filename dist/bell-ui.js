@@ -350,7 +350,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("isVisible",$2)?" bell-tooltip-visible":"")+(a("isHover",$2)?" bell-tooltip-hover":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),(a("maxWidth",$2)||a("maxHeight",$2))?(g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?("max-height: "+y(a("maxHeight",$2))+"px"):"")+";")):""},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),(a("maxWidth",$2)||a("maxHeight",$2))?(g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?("max-height: "+y(a("maxHeight",$2))+"px"):"")+";")):""},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
 
 /***/ }),
 /* 43 */
@@ -5268,7 +5268,8 @@ var Tooltip_default = /*#__PURE__*/__webpack_require__.n(Tooltip);
 
 
 
-var Tooltip_timer;
+var Tooltip_CLASS_VISIBLE = 'bell-tooltip-visible';
+var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
 /* harmony default export */ var tooltip_Tooltip = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tooltip_default.a,
     propTypes: {
@@ -5318,6 +5319,30 @@ var Tooltip_timer;
     watchers: {
         disabled: function () {
             this.setPosition();
+        },
+        isVisible: function (visible) {
+            var element = this.$el;
+            var popup = this.$refs.popup;
+            if (visible) {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Tooltip_CLASS_VISIBLE);
+                this.setPosition();
+                if (supportTransform) {
+                    setTimeout(function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Tooltip_CLASS_FADE);
+                    }, 20);
+                }
+            }
+            else {
+                if (supportTransform) {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_FADE);
+                    onTransitionEnd(popup, function () {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_VISIBLE);
+                    });
+                }
+                else {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_VISIBLE);
+                }
+            }
         }
     },
     methods: {
@@ -5369,14 +5394,11 @@ var Tooltip_timer;
         enter: function () {
             var me = this;
             me.set('isHover', TRUE);
-            me.nextTick(function () {
-                me.setPosition();
-                Tooltip_timer = setTimeout(function () {
-                    if (me.get('isHover')) {
-                        me.set('isVisible', TRUE);
-                    }
-                }, toNumber(me.get('delay')));
-            });
+            me.timer = setTimeout(function () {
+                if (me.get('isHover')) {
+                    me.set('isVisible', TRUE);
+                }
+            }, toNumber(me.get('delay')));
         },
         leave: function () {
             this.set({
@@ -5385,17 +5407,13 @@ var Tooltip_timer;
             });
         },
         click: function () {
-            var me = this;
-            me.toggle('isVisible');
-            me.nextTick(function () {
-                me.setPosition();
-            });
+            this.toggle('isVisible');
         }
     },
     beforeDestroy: function () {
-        if (Tooltip_timer) {
-            clearTimeout(Tooltip_timer);
-            Tooltip_timer = UNDEFINED;
+        var me = this;
+        if (me.timer) {
+            clearTimeout(me.timer);
         }
     }
 }));

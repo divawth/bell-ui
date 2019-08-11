@@ -1,5 +1,6 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
     disabled: unknown;
+    isVisible: unknown;
 }, unknown, {
     setPosition(): void;
     enter(): void;

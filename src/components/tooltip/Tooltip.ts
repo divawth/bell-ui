@@ -5,10 +5,10 @@ import template from './template/Tooltip.hbs'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
-  UNDEFINED,
   RAW_CLICK,
   RAW_HOVER,
 } from '../constant'
@@ -16,9 +16,12 @@ import {
 import {
   oneOf,
   toNumber,
+  supportTransform,
+  onTransitionEnd,
 } from '../util'
 
-let timer: any
+const CLASS_VISIBLE = '${prefix}tooltip-visible'
+const CLASS_FADE = '${prefix}tooltip-fade'
 
 export default Yox.define({
 
@@ -73,6 +76,36 @@ export default Yox.define({
   watchers: {
     disabled() {
       this.setPosition()
+    },
+    isVisible(visible) {
+      const element = this.$el
+      const popup = this.$refs.popup as HTMLElement
+      if (visible) {
+        Yox.dom.addClass(element, CLASS_VISIBLE)
+        this.setPosition()
+        if (supportTransform) {
+          setTimeout(
+            function () {
+              Yox.dom.addClass(element, CLASS_FADE)
+            },
+            20
+          )
+        }
+      }
+      else {
+        if (supportTransform) {
+          Yox.dom.removeClass(element, CLASS_FADE)
+          onTransitionEnd(
+            popup,
+            function () {
+              Yox.dom.removeClass(element, CLASS_VISIBLE)
+            }
+          )
+        }
+        else {
+          Yox.dom.removeClass(element, CLASS_VISIBLE)
+        }
+      }
     }
   },
 
@@ -129,19 +162,16 @@ export default Yox.define({
     },
 
     enter() {
-      const me = this
+      const me = this as any
       me.set('isHover', TRUE)
-      me.nextTick(function () {
-        me.setPosition()
-        timer = setTimeout(
-          function () {
-            if (me.get('isHover')) {
-              me.set('isVisible', TRUE)
-            }
-          },
-          toNumber(me.get('delay'))
-        )
-      })
+      me.timer = setTimeout(
+        function () {
+          if (me.get('isHover')) {
+            me.set('isVisible', TRUE)
+          }
+        },
+        toNumber(me.get('delay'))
+      )
     },
 
     leave() {
@@ -152,18 +182,14 @@ export default Yox.define({
     },
 
     click() {
-      const me = this
-      me.toggle('isVisible')
-      me.nextTick(function () {
-        me.setPosition()
-      })
+      this.toggle('isVisible')
     }
   },
 
   beforeDestroy() {
-    if (timer) {
-      clearTimeout(timer)
-      timer = UNDEFINED
+    const me = this as any
+    if (me.timer) {
+      clearTimeout(me.timer)
     }
   }
 

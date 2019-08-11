@@ -9188,11 +9188,11 @@ button.bell-link {
 .bell-tooltip-disabled {
   display: none;
 }
-.bell-tooltip-hover .bell-tooltip-popup {
+.bell-tooltip-visible > .bell-tooltip-popup {
   display: block;
   opacity: 0;
 }
-.bell-tooltip-visible .bell-tooltip-popup {
+.bell-tooltip-fade > .bell-tooltip-popup {
   display: block;
   opacity: 1;
 }
