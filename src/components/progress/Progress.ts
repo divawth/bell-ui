@@ -30,10 +30,6 @@ export default Yox.define({
       type: RAW_STRING,
       value: 10,
     },
-    hideInfo: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     vertical: {
       type: RAW_BOOLEAN,
       value: FALSE,

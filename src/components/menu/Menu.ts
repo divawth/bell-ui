@@ -13,6 +13,8 @@ import {
   RAW_HORIZONTAL,
   RAW_VERTICAL,
   RAW_INLINE,
+  RAW_THEME_ARRAY,
+  RAW_DARK,
 } from '../constant'
 
 import {
@@ -31,8 +33,8 @@ export default Yox.define({
       value: RAW_HORIZONTAL,
     },
     theme: {
-      type: oneOf(['dark', 'light']),
-      value: 'dark',
+      type: oneOf(RAW_THEME_ARRAY),
+      value: RAW_DARK,
     },
     collapsed: {
       type: RAW_BOOLEAN,

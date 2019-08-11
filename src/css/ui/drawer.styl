@@ -1,17 +1,18 @@
 {$selector-drawer}
   position fixed
   overflow hidden
+  display none
 
-{$selector-drawer-open}
+{$selector-drawer-visible}
+  display block
+
+{$selector-drawer-fade}
   > {$selector-drawer-mask}
     opacity 1
 
-{$selector-drawer-leave}
-  > {$selector-drawer-mask}
-    opacity 0
-
 {$selector-drawer-wrapper}
   position absolute
+  overflow-x hidden
   overflow-y auto
   background-color $brand-bg
   box-shadow $drawer-wrapper-shadow
@@ -30,7 +31,8 @@
   font-size $ui-font-size
   line-height $ui-multiple-line-height
   word-wrap break-word
-  overflow auto
+  overflow-x hidden
+  overflow-y auto
   box-sizing border-box
   height calc(100% - 51px)
 
@@ -69,15 +71,12 @@
     top 0
     bottom 0
 
-  &{$selector-drawer-open}
+  &{$selector-drawer-visible}
     bottom 0
 
+  &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
-
-  &{$selector-drawer-leave}
-    > {$selector-drawer-wrapper}
-      transform translate(-100%)
 
 {$selector-drawer-right}
   top 0
@@ -90,15 +89,12 @@
     top 0
     bottom 0
 
-  &{$selector-drawer-open}
+  &{$selector-drawer-visible}
     bottom 0
 
+  &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
-
-  &{$selector-drawer-leave}
-    > {$selector-drawer-wrapper}
-      transform translate(100%)
 
 
 
@@ -113,15 +109,12 @@
     left 0
     right 0
 
-  &{$selector-drawer-open}
+  &{$selector-drawer-visible}
     right 0
 
+  &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
-
-  &{$selector-drawer-leave}
-    > {$selector-drawer-wrapper}
-      transform translateY(-100%)
 
 {$selector-drawer-bottom}
   left 0
@@ -134,12 +127,9 @@
     left 0
     right 0
 
-  &{$selector-drawer-open}
+  &{$selector-drawer-visible}
     right 0
 
+  &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
-
-  &{$selector-drawer-leave}
-    > {$selector-drawer-wrapper}
-      transform translateY(100%)

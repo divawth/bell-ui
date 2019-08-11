@@ -6,56 +6,61 @@ import template from './template/Form.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_OBJECT,
   RAW_BOOLEAN,
-  RAW_NUMERIC,
+  RAW_LEFT,
+  RAW_RIGHT,
+  RAW_TOP,
 } from '../constant'
 
 import {
-  oneOf
+  oneOf,
 } from '../util'
 
 export default Yox.define({
-  propTypes: {
-    value: {
-      type: RAW_OBJECT
-    },
-    rules: {
-      type: RAW_OBJECT
-    },
-    messages: {
-      type: RAW_OBJECT
-    },
-    inline: {
-      type: RAW_BOOLEAN
-    },
-    labelPosition: {
-      type: oneOf(['left', 'right', 'top']),
-      value: 'left'
-    },
-    labelWidth: {
-      type: RAW_STRING,
-      value: 80
-    },
-    showMessage: {
-      type: RAW_BOOLEAN,
-      value: TRUE
-    },
-    className: {
-      type: RAW_STRING
-    },
-    style: {
-      type: RAW_STRING
-    }
-  },
-
-  name: '${prefix}form',
 
   template,
 
+  name: '${prefix}form',
+
+  propTypes: {
+    value: {
+      type: RAW_OBJECT,
+    },
+    rules: {
+      type: RAW_OBJECT,
+    },
+    messages: {
+      type: RAW_OBJECT,
+    },
+    inline: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    labelPosition: {
+      type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
+      value: RAW_RIGHT,
+    },
+    labelWidth: {
+      type: RAW_STRING,
+      value: 80,
+    },
+    showMessage: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    }
+  },
+
   methods: {
-    validate(callback) {
+    validate(callback: Function) {
       let me = this
       const validator = new Validator()
       let errors = validator.validate(
@@ -65,7 +70,7 @@ export default Yox.define({
       )
       let isValid = !errors
       if (isValid) {
-        callback(true)
+        callback(TRUE)
       }
       else {
         me.fire(
@@ -73,7 +78,7 @@ export default Yox.define({
           { errors },
           TRUE
         )
-        callback(false, errors)
+        callback(FALSE, errors)
       }
     }
   }

@@ -23,7 +23,7 @@
 
 {$selector-alert-title}
   white-space nowrap
-  font-size $alert-title-font-size
+  font-size $ui-font-size
 
   + {$selector-alert-content}
     margin-top $alert-title-content-gap
@@ -38,6 +38,7 @@
   right $alert-padding-horizontal
   top $alert-padding-vertical
 
+  user-select none
   text-align center
   font-size $alert-close-font-size
   color $brand-close-color

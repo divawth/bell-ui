@@ -2,55 +2,54 @@ $selector-input-number = $selector-prefix + '-input-number'
 $selector-input-number-enabled = $selector-input-number + '-enabled'
 $selector-input-number-disabled = $selector-input-number + '-disabled'
 $selector-input-number-focus = $selector-input-number + '-focus'
-$selector-input-number-up = $selector-input-number + '-up'
-$selector-input-number-down = $selector-input-number + '-down'
 $selector-input-number-el = $selector-input-number + '-el'
 $selector-input-number-actions = $selector-input-number + '-actions'
+$selector-input-number-up = $selector-input-number + '-up'
+$selector-input-number-up-enabled = $selector-input-number-up + '-enabled'
+$selector-input-number-up-disabled = $selector-input-number-up + '-disabled'
+$selector-input-number-down = $selector-input-number + '-down'
+$selector-input-number-down-enabled = $selector-input-number-down + '-enabled'
+$selector-input-number-down-disabled = $selector-input-number-down + '-disabled'
 
 $input-number-width = 90px
-
-$input-number-el-placeholder-color = #D2D2D2
-$input-number-el-padding = 0 7px
-
-$input-number-actions-border-color = $brand-border
-$input-number-actions-color = #999
-$input-number-actions-bg-color = #fff
+$input-number-padding-horizontal = 7px
 $input-number-actions-width = 22px
+$input-number-actions-font-size = 14px
 
 $input-number-size-hash = {
-  'default': {
-    height: 30px,
-    font-size: 13px,
+  default: {
+    height: $size-default['height'],
+    font-size: $size-default['font-size'],
   },
-  'small': {
-    height: 22px,
-    font-size: 12px,
+  small: {
+    height: $size-small['height'],
+    font-size: $size-small['font-size'],
   }
-  'large': {
-    height: 38px,
-    font-size: 15px,
+  large: {
+    height: $size-large['height'],
+    font-size: $size-large['font-size'],
   }
 }
 
 $input-number-brand-hash = {
-  'primary': {
-    hover-color: $brand-primary-hover,
+  primary: {
+    color: $brand-primary,
     shadow-color: $brand-primary-shadow,
   },
-  'success': {
-    hover-color: $brand-success-hover,
+  success: {
+    color: $brand-success,
     shadow-color: $brand-success-shadow,
   },
-  'error': {
-    hover-color: $brand-error-hover,
+  error: {
+    color: $brand-error,
     shadow-color: $brand-error-shadow,
   },
-  'info': {
-    hover-color: $brand-info-hover,
+  info: {
+    color: $brand-info,
     shadow-color: $brand-info-shadow,
   },
-  'warning': {
-    hover-color: $brand-warning-hover,
+  warning: {
+    color: $brand-warning,
     shadow-color: $brand-warning-shadow,
   },
 }

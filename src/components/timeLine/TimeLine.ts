@@ -5,6 +5,7 @@ import template from './template/TimeLine.hbs'
 import {
   FALSE,
   RAW_BOOLEAN,
+  RAW_STRING,
 } from '../constant'
 
 export default Yox.define({
@@ -13,6 +14,12 @@ export default Yox.define({
     pending: {
       type: RAW_BOOLEAN,
       value: FALSE,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
     }
   },
 })

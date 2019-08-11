@@ -2,7 +2,10 @@
 class="${prefix}progress
 {{#if type}} ${prefix}progress-{{type}}{{/if}}
 {{#if active}} ${prefix}progress-active{{/if}}
-{{#if vertical}} ${prefix}progress-vertical{{/if}}
+{{#if vertical}} ${prefix}progress-vertical
+{{else}} ${prefix}progress-horizontal
+{{/if}}
+{{#if hasSlot('children')}} ${prefix}progress-with-text{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -14,7 +17,7 @@ class="${prefix}progress
       class="${prefix}progress-inner"
       style="{{#if vertical}}width: {{thickness}}px;{{/if}}"
     >
-      <div class="${prefix}progress-bg" style="
+      <div class="${prefix}progress-bar" style="
         {{#if !vertical}}
           width: {{percent}}%;
           height: {{thickness}}px;
@@ -26,12 +29,10 @@ class="${prefix}progress
     </div>
   </div>
 
-  {{#if !hideInfo}}
-    <span class="${prefix}progress-inner-text">
-      <slot name="children">
-        {{percent}}%
-      </slot>
-    </span>
+  {{#if hasSlot('children')}}
+    <div class="${prefix}progress-text">
+      <slot name="children" />
+    </div>
   {{/if}}
 
 </div>

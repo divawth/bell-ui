@@ -1,5 +1,10 @@
 <div class="${prefix}timeline
-{{#if pending}} ${prefix}timeline-pending{{/if}}"
+{{#if pending}} ${prefix}timeline-pending{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <slot name="children" />
 </div>

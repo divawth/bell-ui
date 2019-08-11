@@ -170,10 +170,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$message.info(content, duration, onClose)
-- this.$message.success(content, duration, onClose)
-- this.$message.warning(content, duration, onClose)
-- this.$message.error(content, duration, onClose)
+- this.$message.info(content, onClose)
+- this.$message.success(content, onClose)
+- this.$message.warning(content, onClose)
+- this.$message.error(content, onClose)
 
 > Props
 
@@ -184,7 +184,7 @@ icon | 是否显示图标 | boolean | - | false
 closable | 是否可以关闭 | boolean | - | true
 center | 文字是否居中 | boolean | - | true
 top | 提示组件距离顶端的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
+duration | 默认自动关闭的延时，单位毫秒 | number | - | 2000
 
 > Events
 

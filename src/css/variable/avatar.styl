@@ -4,32 +4,32 @@ $selector-avatar-image = $selector-avatar + '-image'
 $selector-avatar-text = $selector-avatar + '-text'
 $selector-avatar-icon = $selector-avatar + '-icon'
 
-$avatar-bg = #ccc
+$avatar-bg-color = #ccc
 
 $avatar-size-hash = {
-  'default': {
-    size: 32px,
-    border-radius: 4px,
+  default: {
+    size: $size-default['height'],
+    border-radius: $size-default['border-radius'],
     icon-size: 26px
   },
-  'tiny': {
-    size: 20px,
-    border-radius: 2px,
+  tiny: {
+    size: $size-tiny['height'],
+    border-radius: $size-default['border-radius'],
     icon-size: 14px
   },
-  'small': {
-    size: 24px,
-    border-radius: 3px,
+  small: {
+    size: $size-small['height'],
+    border-radius: $size-default['border-radius'],
     icon-size: 18px
   },
-  'large': {
-    size: 44px,
-    border-radius: 4px,
+  large: {
+    size: $size-large['height'],
+    border-radius: $size-default['border-radius'],
     icon-size: 34px
   },
-  'huge': {
-    size: 60px,
-    border-radius: 4px,
+  huge: {
+    size: $size-huge['height'],
+    border-radius: $size-default['border-radius'],
     icon-size: 40px
   }
 }

@@ -1,6 +1,6 @@
 <div
-class="${prefix}drawer ${prefix}drawer-{{placement}}
-
+class="${prefix}drawer
+{{#if placement}} ${prefix}drawer-{{placement}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -12,12 +12,13 @@ class="${prefix}drawer ${prefix}drawer-{{placement}}
     <div
       class="${prefix}drawer-mask"
       {{#if maskClosable}}
-        on-click="set('open', FALSE)"
+        on-click="close()"
       {{/if}}
     ></div>
   {{/if}}
 
   <div
+    ref="wrapper"
     class="${prefix}drawer-wrapper"
     style="{{wrapperStyle}}"
   >
@@ -34,7 +35,7 @@ class="${prefix}drawer ${prefix}drawer-{{placement}}
     </div>
 
     {{#if closable}}
-      <div class="${prefix}drawer-close" on-click="set('open', FALSE)">
+      <div class="${prefix}drawer-close" on-click="close()">
         <Icon name="close" size="0" />
       </div>
     {{/if}}

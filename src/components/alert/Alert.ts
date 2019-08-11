@@ -12,12 +12,10 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
-  RAW_FUNCTION,
 } from '../constant'
 
 import {
   oneOf,
-  onTransitionEnd,
 } from '../util'
 
 export default Yox.define({
@@ -41,9 +39,6 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    onClose: {
-      type: RAW_FUNCTION,
-    },
     className: {
       type: RAW_STRING,
     },
@@ -59,36 +54,6 @@ export default Yox.define({
       RAW_TYPE_SUCCESS,
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
-    }
-  },
-
-  methods: {
-    close() {
-
-      const me = this
-
-      // 外部自定义关闭逻辑
-      const onClose = me.get('onClose')
-      if (onClose) {
-        onClose()
-        return
-      }
-
-      me.fire('close.alert')
-
-      Yox.dom.addClass(me.$el, '${prefix}alert-hidden')
-
-      onTransitionEnd(
-        me.$el,
-        function () {
-          const element = me.$el
-          if (!element) {
-            return
-          }
-          me.destroy()
-        }
-      )
-
     }
   }
 })

@@ -14,6 +14,23 @@ export default {
 }
 ```
 
+> 主题
+
+```js
+export default {
+  template: `
+    <div style="margin: 60px;">
+      <Tooltip content="这里是提示文字">
+        <Button>Dark</Button>
+      </Tooltip>
+      <Tooltip content="这里是提示文字" theme="light">
+        <Button>Light</Button>
+      </Tooltip>
+    </div>
+  `
+}
+```
+
 > 组件提供 12 个不同的方向显示 Tooltip。
 
 ```js
@@ -211,6 +228,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 content | Tooltip 的文本 | string | - | -
+theme | 主题 | string | dark, light | dark
 placement | Tooltip 的出现位置 | string | top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end | bottom
 delay | 显示延时 | string, number | - | 0
 mode | 交互模式 | string | click, hover | hover

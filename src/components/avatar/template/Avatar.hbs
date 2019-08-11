@@ -4,10 +4,12 @@ class="${prefix}avatar
 {{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{#if text}}color: {{color}};{{/if}}
-{{#if fontSize}}font-size: {{fontSize}}px;{{/if}}
-{{#if bgColor}}background-color: {{bgColor}};{{/if}}
-{{#if style}}{{style}}{{/if}}"
+{{#if text || fontSize || bgColor || style}}
+  style="{{#if text}}color: {{color}};{{/if}}
+  {{#if fontSize}}font-size: {{fontSize}}px;{{/if}}
+  {{#if bgColor}}background-color: {{bgColor}};{{/if}}
+  {{#if style}}{{style}}{{/if}}"
+{{/if}}
 >
 
   {{#if src}}
@@ -25,7 +27,7 @@ style="{{#if text}}color: {{color}};{{/if}}
     </span>
   {{else if text}}
     <span
-      ref="textSpan"
+      ref="text"
       class="${prefix}avatar-text"
     >
       {{text}}

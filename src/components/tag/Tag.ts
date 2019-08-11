@@ -19,6 +19,8 @@ export default Yox.define({
 
   template,
 
+  model: 'checked',
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
@@ -56,11 +58,11 @@ export default Yox.define({
   },
 
   watchers: {
-    checked(checked: boolean) {
+    checked(checked) {
       this.fire(
         'change.tag',
         {
-          checked
+          checked,
         }
       )
     }

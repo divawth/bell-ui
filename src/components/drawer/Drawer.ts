@@ -8,14 +8,20 @@ import {
   BODY,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_LEFT,
+  RAW_RIGHT,
+  RAW_BOTTOM,
+  RAW_TOP,
 } from '../constant'
 
 import {
+  oneOf,
+  toNumber,
   onTransitionEnd,
 } from '../util'
 
-const CLASS_OPEN = '${prefix}drawer-open'
-const CLASS_LEAVE = '${prefix}drawer-leave'
+const CLASS_VISIBLE = '${prefix}drawer-visible'
+const CLASS_FADE = '${prefix}drawer-fade'
 
 export default Yox.define({
 
@@ -35,19 +41,19 @@ export default Yox.define({
       type: RAW_STRING,
       value: 256,
     },
-    maskClosable: {
-      type: RAW_BOOLEAN,
-      value: TRUE,
+    placement: {
+      type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP, RAW_BOTTOM]),
+      value: RAW_LEFT,
     },
     closable: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    placement: {
-      type: RAW_STRING,
-      value: 'left',
-    },
     mask: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
+    maskClosable: {
       type: RAW_BOOLEAN,
       value: TRUE,
     },
@@ -67,23 +73,28 @@ export default Yox.define({
     open(isOpen) {
       const me = this
       const element = this.$el
+      const wrapper = this.$refs.wrapper as HTMLElement
       if (isOpen) {
-        Yox.dom.addClass(element, CLASS_OPEN)
-        onTransitionEnd(
-          element,
+        Yox.dom.addClass(element, CLASS_VISIBLE)
+        setTimeout(
           function () {
-            me.fire('open.drawer')
-          }
+            if (me.$el) {
+              Yox.dom.addClass(element, CLASS_FADE)
+              me.fire('open.drawer')
+            }
+          },
+          20
         )
       }
       else {
-        Yox.dom.addClass(element, CLASS_LEAVE)
+        Yox.dom.removeClass(element, CLASS_FADE)
         onTransitionEnd(
-          element,
+          wrapper,
           function () {
-            Yox.dom.removeClass(element, CLASS_OPEN)
-            Yox.dom.removeClass(element, CLASS_LEAVE)
-            me.fire('close.drawer')
+            if (me.$el) {
+              Yox.dom.removeClass(element, CLASS_VISIBLE)
+              me.fire('close.drawer')
+            }
           }
         )
       }
@@ -94,10 +105,10 @@ export default Yox.define({
     wrapperStyle() {
       let style = ''
       const placement = this.get('placement')
-      if (placement === 'left'
-        || placement === 'right'
+      if (placement === RAW_LEFT
+        || placement === RAW_RIGHT
       ) {
-        let width = +this.get('width')
+        let width = toNumber(this.get('width'))
         if (width < 100) {
           style = `width: ${width}%;`
         }
@@ -106,7 +117,7 @@ export default Yox.define({
         }
       }
       else {
-        let height = +this.get('height')
+        let height = toNumber(this.get('height'))
         if (height < 100) {
           style = `height: ${height}%;`
         }
@@ -115,6 +126,12 @@ export default Yox.define({
         }
       }
       return style
+    }
+  },
+
+  methods: {
+    close() {
+      this.set('open', FALSE)
     }
   },
 

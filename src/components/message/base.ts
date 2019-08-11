@@ -11,7 +11,7 @@ type Arg = string | Data
 
 const config: Data = {}
 
-function addMessage(type: string, arg: Arg, duration?: number, onClose?: Function) {
+function addMessage(type: string, arg: Arg, onClose?: Function) {
 
   const props: Data = { type }
 
@@ -24,18 +24,10 @@ function addMessage(type: string, arg: Arg, duration?: number, onClose?: Functio
     Yox.object.extend(props, arg as Data)
   }
 
-  if (duration > 0) {
-    props.duration = duration
-  }
-
-  if (onClose) {
-    props.onClose = onClose
-  }
-
   const element = Yox.dom.createElement('div') as HTMLElement
   Yox.dom.append(BODY, element)
 
-  new Yox(
+  const instance: any = new Yox(
     Yox.object.extend(
       {
         el: element,
@@ -46,20 +38,36 @@ function addMessage(type: string, arg: Arg, duration?: number, onClose?: Functio
     )
   )
 
+  instance.on('hide.message', function () {
+    if (onClose) {
+      onClose()
+    }
+    instance.destroy()
+  })
+
+  setTimeout(
+    function () {
+      if (instance.$el) {
+        instance.show(props.top || 15, props.duration || 2000)
+      }
+    },
+    300
+  )
+
 }
 
 export default {
-  success(arg: Arg, duration?: number, onClose?: Function) {
-    addMessage('success', arg, duration, onClose)
+  success(arg: Arg, onClose?: Function) {
+    addMessage('success', arg, onClose)
   },
-  info(arg: Arg, duration?: number, onClose?: Function) {
-    addMessage('info', arg, duration, onClose)
+  info(arg: Arg, onClose?: Function) {
+    addMessage('info', arg, onClose)
   },
-  warning(arg: Arg, duration?: number, onClose?: Function) {
-    addMessage('warning', arg, duration, onClose)
+  warning(arg: Arg, onClose?: Function) {
+    addMessage('warning', arg, onClose)
   },
-  error(arg: Arg, duration?: number, onClose?: Function) {
-    addMessage('error', arg, duration, onClose)
+  error(arg: Arg, onClose?: Function) {
+    addMessage('error', arg, onClose)
   },
   config(arg: Data) {
     Yox.object.extend(config, arg)

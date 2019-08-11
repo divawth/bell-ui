@@ -82,7 +82,7 @@ export default {
   template: `
   <div>
     <Form model="formItem" labelWidth="80">
-      <FormItem label="Input">
+      <FormItem label="Input" required>
         <Input model="formItem.input" placeholder="Enter something..."></Input>
       </FormItem>
       <FormItem label="Select">
@@ -120,7 +120,7 @@ export default {
       </FormItem>
       <FormItem>
         <Button type="primary">Submit</Button>
-        <Button style="margin-left: 8px">Cancel</Button>
+        <Button>Cancel</Button>
       </FormItem>
     </Form>
   </div>

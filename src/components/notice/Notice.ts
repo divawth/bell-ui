@@ -3,9 +3,6 @@ import Yox from 'yox'
 import template from './template/Notice.hbs'
 
 import {
-  TRUE,
-  FALSE,
-  RAW_FUNCTION,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_TYPE_ARRAY,
@@ -15,6 +12,7 @@ import {
 import {
   oneOf,
   onTransitionEnd,
+  toNumber,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}notice-visible'
@@ -47,13 +45,33 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 15,
     },
-    onClose: {
-      type: RAW_FUNCTION,
-    }
   },
 
   methods: {
+
+    show() {
+
+      const me = this
+
+      Yox.dom.addClass(me.$el, CLASS_VISIBLE)
+
+      const duration = toNumber(me.get('duration'))
+
+      if (duration > 0) {
+        setTimeout(
+          function () {
+            if (me.$el) {
+              me.hide()
+            }
+          },
+          duration
+        )
+      }
+
+    },
+
     hide() {
+
       const me = this
 
       Yox.dom.removeClass(me.$el, CLASS_VISIBLE)
@@ -66,48 +84,12 @@ export default Yox.define({
           me.$el,
           function () {
             if (me.$el) {
-              const onClose = me.get('onClose')
-              if (onClose) {
-                onClose()
-              }
-              me.destroy()
+              me.fire('hide.notice')
             }
           }
         )
       })
     }
-  },
-
-  afterMount() {
-    const me = this
-    setTimeout(
-      function () {
-
-        const element = me.$el
-        if (!element) {
-          return
-        }
-
-        Yox.dom.addClass(element, CLASS_VISIBLE)
-
-        const duration = me.get('duration')
-        if (duration == 0) {
-          return
-        }
-
-
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.hide()
-            }
-          },
-          duration
-        )
-
-      },
-      300
-    )
   }
 
 })

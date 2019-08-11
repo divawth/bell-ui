@@ -10,13 +10,13 @@ import {
   RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
-  RAW_FUNCTION,
 } from '../constant'
 
 import {
   oneOf,
   onTransitionEnd,
   supportTransform,
+  toNumber,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}message-visible'
@@ -44,46 +44,33 @@ export default Yox.define({
     center: {
       type: RAW_BOOLEAN,
       value: FALSE,
-    },
-    duration: {
-      type: RAW_NUMERIC,
-      value: 1500,
-    },
-    top: {
-      type: RAW_NUMERIC,
-      value: 15,
-    },
-    onClose: {
-      type: RAW_FUNCTION,
-    }
-  },
-
-  data() {
-    const me = this
-    return {
-      closeAlert() {
-        me.hide()
-      }
     }
   },
 
   methods: {
-    show() {
+
+    closeAlert() {
+      this.hide()
+    },
+
+    show(top: number, duration: number) {
 
       const me = this
 
       const element = me.$el
       Yox.dom.addClass(element, CLASS_VISIBLE)
-      element.style.top = me.get('top') + 'px'
+      element.style.top = top + 'px'
 
-      setTimeout(
-        function () {
-          if (me.$el) {
-            me.hide()
-          }
-        },
-        me.get('duration')
-      )
+      if (duration > 0) {
+        setTimeout(
+          function () {
+            if (me.$el) {
+              me.hide()
+            }
+          },
+          duration
+        )
+      }
 
     },
     hide() {
@@ -98,14 +85,7 @@ export default Yox.define({
         element,
         function () {
           if (me.$el) {
-
-            const onClose = me.get('onClose')
-            if (onClose) {
-              onClose()
-            }
-
-            me.destroy()
-
+            me.fire('hide.message')
           }
         }
       )
@@ -114,22 +94,10 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this
-
     if (!supportTransform) {
-      const element = me.$el
+      const element = this.$el
       element.style.marginLeft = -0.5 * element.offsetWidth + 'px'
     }
-
-
-    setTimeout(
-      function () {
-        if (me.$el) {
-          me.show()
-        }
-      },
-      300
-    )
 
   }
 

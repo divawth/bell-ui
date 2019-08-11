@@ -1,32 +1,52 @@
-<div 
+<div
 class="${prefix}form-item
-{{#if required}} ${prefix}form-item-required{{/if}}
-{{#if className}} {{className}}{{/if}}
-"
-{{#if style}} style="{{style}}"{{/if}}
->
-  {{#if label || hasSlot('lable')}}
-  <label class="${prefix}form-item-label"
-    {{#if width}} style="width: {{width}}px;"{{/if}}
-    {{#if labelFor}} for="{{labelFor}}"{{/if}}
-  >
-    <slot name="label">
-      {{label}}
-    </slot>
-  </label>
-  {{/if}}
+{{#if className}} {{className}}{{/if}}"
 
-  <div class="${prefix}form-item-content"
-  {{#if (label || hasSlot('lable')) && width}} style="margin-left: {{width}}px;"{{/if}}
-  >
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  {{#if label || hasSlot('label')}}
+    <label
+      class="${prefix}form-item-label
+      {{#if required}} ${prefix}form-item-label-required{{/if}}"
+
+      {{#if labelFor}}
+        for="{{labelFor}}"
+      {{/if}}
+
+      {{#if width}}
+        style="width: {{width}}px;"
+      {{/if}}
+    >
+      <slot name="label">
+        {{label}}
+      </slot>
+    </label>
+
+    <div class="${prefix}form-item-wrapper">
+
+      <slot name="children" />
+
+      {{#if isShowError && (error || errorMsg)}}
+        <div class="${prefix}form-item-error">
+          {{error || errorMsg}}
+        </div>
+      {{/if}}
+
+    </div>
+
+  {{else}}
 
     <slot name="children" />
 
     {{#if isShowError && (error || errorMsg)}}
-    <div class="${prefix}form-item-error-tip">
-      {{error || errorMsg}}
-    </div>
+      <div class="${prefix}form-item-error">
+        {{error || errorMsg}}
+      </div>
     {{/if}}
 
-  </div>
+  {{/if}}
+
+
 </div>

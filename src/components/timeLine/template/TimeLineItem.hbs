@@ -1,4 +1,11 @@
-<div class="${prefix}timeline-item">
+<div
+class="${prefix}timeline-item
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
 
   {{#if hasSlot('dot')}}
     <div class="${prefix}timeline-custom">

@@ -4,21 +4,25 @@ input-number-size-style(style)
   > {$selector-input-number-el}
     ui-set('font-size', style['font-size'])
 
+  {$selector-input-number-up},
+  {$selector-input-number-down}
+    ui-set('line-height', 0.5 * (style['height'] - 2))
+
 input-number-brand-style(style)
   &{$selector-input-number-enabled}
 
     &:hover,
     &{$selector-input-number-focus}
-      ui-set('border-color', style['hover-color'])
+      ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
       &{$selector-input-number-focus}
-        box-shadow 0 0 0 $ui-shadow-radius style[ 'shadow-color' ]
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
     {$selector-input-number-up}-enabled,
     {$selector-input-number-down}-enabled
       &:hover
-        ui-set('color', style['hover-color'])
+        ui-set('color', style['color'])
 
 
 ui-input-number()

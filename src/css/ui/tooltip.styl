@@ -13,13 +13,11 @@
   font-size 0
   line-height 0
   display none
-  transition opacity 0.3s
   z-index $zindex-tooltip
+  transition transform .2s cubic-bezier(.23,1,.32,1),
+              opacity .2s cubic-bezier(.23,1,.32,1)
 
   ui-scrollbar()
-
-{$selector-tooltip-disabled}
-  display none
 
 {$selector-tooltip-visible}
   > {$selector-tooltip-popup}
@@ -28,11 +26,9 @@
 
 {$selector-tooltip-fade}
   > {$selector-tooltip-popup}
-    display block
     opacity 1
 
 {$selector-tooltip-content}
-  color $tooltip-color
   font-size $tooltip-font-size
   line-height $ui-single-line-height
 
@@ -42,133 +38,213 @@
 
   max-width $tooltip-max-width
   padding $tooltip-padding
-  background-color $tooltip-bg-color
   box-shadow $tooltip-box-shadow
   border-radius $radius-base
   box-sizing border-box
 
+{$selector-tooltip-dark}
+  {$selector-tooltip-arrow}
+    border-color $tooltip-bg-color-dark
 
-{$selector-tooltip-popup}-bottom,
-{$selector-tooltip-popup}-bottom-start,
-{$selector-tooltip-popup}-bottom-end
-  padding-top $tooltip-padding-inner
+  {$selector-tooltip-content}
+    color $tooltip-color-dark
+    background-color $tooltip-bg-color-dark
 
-  > {$selector-tooltip-arrow}
-    top $tooltip-arrow-offset
-    border-bottom-color $tooltip-bg-color
+{$selector-tooltip-light}
+  {$selector-tooltip-arrow}
+    border-color $tooltip-bg-color-light
+
+  {$selector-tooltip-content}
+    color $tooltip-color-light
+    background-color $tooltip-bg-color-light
 
 
-{$selector-tooltip-popup}-bottom
-  left 50%
+{$selector-tooltip}-bottom,
+{$selector-tooltip}-bottom-start,
+{$selector-tooltip}-bottom-end
 
-  > {$selector-tooltip-arrow}
+  > {$selector-tooltip-popup}
+    padding-top $tooltip-padding-inner
+    transform scaleY(0)
+    transform-origin center top
+
+    > {$selector-tooltip-arrow}
+      top $tooltip-arrow-offset
+      border-top-color transparent
+      border-left-color transparent
+      border-right-color transparent
+
+  &{$selector-tooltip-fade}
+    > {$selector-tooltip-popup}
+      transform scaleY(1)
+
+{$selector-tooltip}-bottom
+
+  > {$selector-tooltip-popup}
     left 50%
-    margin-left - $tooltip-arrow-size
 
-{$selector-tooltip-popup}-bottom-start
-  left 0
+    > {$selector-tooltip-arrow}
+      left 50%
+      margin-left - $tooltip-arrow-size
 
-  > {$selector-tooltip-arrow}
-    left $tooltip-arrow-gap
+{$selector-tooltip}-bottom-start
 
-{$selector-tooltip-popup}-bottom-end
-  right 0
+  > {$selector-tooltip-popup}
+    left 0
 
-  > {$selector-tooltip-arrow}
-    right $tooltip-arrow-gap
+    > {$selector-tooltip-arrow}
+      left $tooltip-arrow-gap
 
+{$selector-tooltip}-bottom-end
 
+  > {$selector-tooltip-popup}
+    right 0
 
-
-{$selector-tooltip-popup}-top,
-{$selector-tooltip-popup}-top-start,
-{$selector-tooltip-popup}-top-end
-  top 0
-  padding-bottom $tooltip-padding-inner
-
-  > {$selector-tooltip-arrow}
-    bottom $tooltip-arrow-offset
-    border-top-color $tooltip-bg-color
+    > {$selector-tooltip-arrow}
+      right $tooltip-arrow-gap
 
 
-{$selector-tooltip-popup}-top
-  left 50%
 
-  > {$selector-tooltip-arrow}
+
+{$selector-tooltip}-top,
+{$selector-tooltip}-top-start,
+{$selector-tooltip}-top-end
+
+  > {$selector-tooltip-popup}
+    top 0
+    padding-bottom $tooltip-padding-inner
+    transform scaleY(0)
+    transform-origin center bottom
+
+    > {$selector-tooltip-arrow}
+      bottom $tooltip-arrow-offset
+      border-bottom-color transparent
+      border-left-color transparent
+      border-right-color transparent
+
+  &{$selector-tooltip-fade}
+    > {$selector-tooltip-popup}
+      transform scaleY(1)
+
+
+{$selector-tooltip}-top
+
+  > {$selector-tooltip-popup}
     left 50%
-    margin-left - $tooltip-arrow-size
 
-{$selector-tooltip-popup}-top-start
-  left 0
+    > {$selector-tooltip-arrow}
+      left 50%
+      margin-left - $tooltip-arrow-size
 
-  > {$selector-tooltip-arrow}
-    left $tooltip-arrow-gap
+{$selector-tooltip}-top-start
 
-{$selector-tooltip-popup}-top-end
-  right 0
+  > {$selector-tooltip-popup}
+    left 0
 
-  > {$selector-tooltip-arrow}
-    right $tooltip-arrow-gap
+    > {$selector-tooltip-arrow}
+      left $tooltip-arrow-gap
 
+{$selector-tooltip}-top-end
 
+  > {$selector-tooltip-popup}
+    right 0
 
-{$selector-tooltip-popup}-left,
-{$selector-tooltip-popup}-left-start,
-{$selector-tooltip-popup}-left-end
-  left 0
-  padding-right $tooltip-padding-inner
-
-  > {$selector-tooltip-arrow}
-    right $tooltip-arrow-offset
-    border-left-color $tooltip-bg-color
+    > {$selector-tooltip-arrow}
+      right $tooltip-arrow-gap
 
 
-{$selector-tooltip-popup}-left
-  top 50%
 
-  > {$selector-tooltip-arrow}
+
+
+{$selector-tooltip}-left,
+{$selector-tooltip}-left-start,
+{$selector-tooltip}-left-end
+
+  > {$selector-tooltip-popup}
+    left 0
+    padding-right $tooltip-padding-inner
+    transform scaleX(0)
+    transform-origin right center
+
+    > {$selector-tooltip-arrow}
+      right $tooltip-arrow-offset
+      border-top-color transparent
+      border-bottom-color transparent
+      border-right-color transparent
+
+  &{$selector-tooltip-fade}
+    > {$selector-tooltip-popup}
+      transform scaleX(1)
+
+{$selector-tooltip}-left
+
+  > {$selector-tooltip-popup}
     top 50%
-    margin-top - $tooltip-arrow-size
 
-{$selector-tooltip-popup}-left-start
-  top 0
+    > {$selector-tooltip-arrow}
+      top 50%
+      margin-top - $tooltip-arrow-size
 
-  > {$selector-tooltip-arrow}
-    top $tooltip-arrow-gap
+{$selector-tooltip}-left-start
 
-{$selector-tooltip-popup}-left-end
-  bottom 0
+  > {$selector-tooltip-popup}
+    top 0
 
-  > {$selector-tooltip-arrow}
-    bottom $tooltip-arrow-gap
+    > {$selector-tooltip-arrow}
+      top $tooltip-arrow-gap
+
+{$selector-tooltip}-left-end
+
+  > {$selector-tooltip-popup}
+    bottom 0
+
+    > {$selector-tooltip-arrow}
+      bottom $tooltip-arrow-gap
 
 
 
-{$selector-tooltip-popup}-right,
-{$selector-tooltip-popup}-right-start,
-{$selector-tooltip-popup}-right-end
-  left 100%
-  padding-left $tooltip-padding-inner
+{$selector-tooltip}-right,
+{$selector-tooltip}-right-start,
+{$selector-tooltip}-right-end
 
-  > {$selector-tooltip-arrow}
-    left $tooltip-arrow-offset
-    border-right-color $tooltip-bg-color
+  > {$selector-tooltip-popup}
+    left 100%
+    padding-left $tooltip-padding-inner
+    transform scaleX(0)
+    transform-origin left center
 
-{$selector-tooltip-popup}-right
-  top 50%
+    > {$selector-tooltip-arrow}
+      left $tooltip-arrow-offset
+      border-top-color transparent
+      border-left-color transparent
+      border-bottom-color transparent
 
-  > {$selector-tooltip-arrow}
+  &{$selector-tooltip-fade}
+    > {$selector-tooltip-popup}
+      transform scaleX(1)
+
+
+{$selector-tooltip}-right
+
+  > {$selector-tooltip-popup}
     top 50%
-    margin-top - $tooltip-arrow-size
 
-{$selector-tooltip-popup}-right-start
-  top 0
+    > {$selector-tooltip-arrow}
+      top 50%
+      margin-top - $tooltip-arrow-size
 
-  > {$selector-tooltip-arrow}
-    top $tooltip-arrow-gap
+{$selector-tooltip}-right-start
 
-{$selector-tooltip-popup}-right-end
-  bottom 0
+  > {$selector-tooltip-popup}
+    top 0
 
-  > {$selector-tooltip-arrow}
-    bottom $tooltip-arrow-gap
+    > {$selector-tooltip-arrow}
+      top $tooltip-arrow-gap
+
+{$selector-tooltip}-right-end
+
+  > {$selector-tooltip-popup}
+    bottom 0
+
+    > {$selector-tooltip-arrow}
+      bottom $tooltip-arrow-gap

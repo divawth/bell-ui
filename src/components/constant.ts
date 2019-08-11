@@ -63,6 +63,14 @@ export const RAW_EVENT_KEYPRESS = 'keypress'
 export const RAW_EVENT_KEYDOWN = 'keydown'
 export const RAW_EVENT_KEYUP = 'keyup'
 
+export const RAW_DARK = 'dark'
+export const RAW_LIGHT = 'light'
+
+export const RAW_THEME_ARRAY = [
+  RAW_DARK,
+  RAW_LIGHT,
+]
+
 export const RAW_TYPE_ARRAY = [
   RAW_TYPE_PRIMARY,
   RAW_TYPE_INFO,
@@ -109,3 +117,5 @@ export const RAW_PLACEMENT_ARRAY = [
 export const WINDOW = window
 export const DOCUMENT = document
 export const BODY = DOCUMENT.body
+
+export const HOVER_DELAY = 100

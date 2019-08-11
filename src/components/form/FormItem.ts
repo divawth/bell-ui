@@ -10,39 +10,44 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  FALSE,
 } from '../constant'
 
 export default Yox.define({
+
+  template,
+
   propTypes: {
     prop: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     label: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     labelWidth: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     labelFor: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     required: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     showMessage: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     error: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-  template,
 
   data() {
     return {

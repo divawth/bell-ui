@@ -1,27 +1,42 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Tooltip.hbs'
 
 import {
   TRUE,
   FALSE,
-  UNDEFINED,
+  DOCUMENT,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_CLICK,
   RAW_HOVER,
+  RAW_PLACEMENT_ARRAY,
+  RAW_BOTTOM,
+  HOVER_DELAY,
+  RAW_RIGHT,
+  RAW_LEFT_END,
+  RAW_LEFT_START,
+  RAW_LEFT,
+  RAW_TOP_END,
+  RAW_TOP_START,
+  RAW_TOP,
+  RAW_BOTTOM_START,
+  RAW_BOTTOM_END,
+  RAW_THEME_ARRAY,
+  RAW_DARK,
 } from '../constant'
 
 import {
   oneOf,
   toNumber,
-  supportTransform,
+  contains,
   onTransitionEnd,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}tooltip-visible'
 const CLASS_FADE = '${prefix}tooltip-fade'
+const CLASS_DISABLED = '${prefix}tooltip-disabled'
 
 export default Yox.define({
 
@@ -31,9 +46,13 @@ export default Yox.define({
     content: {
       type: RAW_STRING,
     },
+    theme: {
+      type: oneOf(RAW_THEME_ARRAY),
+      value: RAW_DARK,
+    },
     placement: {
-      type: RAW_STRING,
-      value: 'bottom',
+      type: oneOf(RAW_PLACEMENT_ARRAY),
+      value: RAW_BOTTOM,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -41,6 +60,7 @@ export default Yox.define({
     },
     delay: {
       type: RAW_NUMERIC,
+      value: HOVER_DELAY,
     },
     mode: {
       type: oneOf([RAW_CLICK, RAW_HOVER]),
@@ -74,8 +94,14 @@ export default Yox.define({
   },
 
   watchers: {
-    disabled() {
-      this.setPosition()
+    disabled(disabled) {
+      if (disabled) {
+        Yox.dom.addClass(this.$el, CLASS_DISABLED)
+      }
+      else {
+        Yox.dom.removeClass(this.$el, CLASS_DISABLED)
+      }
+      this.set('isVisible', FALSE)
     },
     isVisible(visible) {
       const element = this.$el
@@ -83,28 +109,21 @@ export default Yox.define({
       if (visible) {
         Yox.dom.addClass(element, CLASS_VISIBLE)
         this.setPosition()
-        if (supportTransform) {
-          setTimeout(
-            function () {
-              Yox.dom.addClass(element, CLASS_FADE)
-            },
-            20
-          )
-        }
+        setTimeout(
+          function () {
+            Yox.dom.addClass(element, CLASS_FADE)
+          },
+          20
+        )
       }
       else {
-        if (supportTransform) {
-          Yox.dom.removeClass(element, CLASS_FADE)
-          onTransitionEnd(
-            popup,
-            function () {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
-            }
-          )
-        }
-        else {
-          Yox.dom.removeClass(element, CLASS_VISIBLE)
-        }
+        Yox.dom.removeClass(element, CLASS_FADE)
+        onTransitionEnd(
+          popup,
+          function () {
+            Yox.dom.removeClass(element, CLASS_VISIBLE)
+          }
+        )
       }
     }
   },
@@ -123,36 +142,36 @@ export default Yox.define({
       let marginLeft = 0
       let marginTop = 0
 
-      if (placement === 'bottom') {
+      if (placement === RAW_BOTTOM) {
         marginLeft = -(popupWidth / 2)
       }
-      else if (placement === 'bottom-start') {
+      else if (placement === RAW_BOTTOM_START) {
         marginLeft = 0
       }
-      else if (placement === 'bottom-end') {
+      else if (placement === RAW_BOTTOM_END) {
         marginLeft = 0
       }
-      else if (placement === 'top') {
+      else if (placement === RAW_TOP) {
         marginLeft = -(popupWidth / 2)
         marginTop = -popupHeight
       }
-      else if (placement === 'top-start') {
+      else if (placement === RAW_TOP_START) {
         marginTop = -popupHeight
       }
-      else if (placement === 'top-end') {
+      else if (placement === RAW_TOP_END) {
         marginTop = -popupHeight
       }
-      else if (placement === 'left') {
+      else if (placement === RAW_LEFT) {
         marginLeft = -popupWidth
         marginTop = -(popupHeight / 2)
       }
-      else if (placement === 'left-start') {
+      else if (placement === RAW_LEFT_START) {
         marginLeft = -popupWidth
       }
-      else if (placement === 'left-end') {
+      else if (placement === RAW_LEFT_END) {
         marginLeft = -popupWidth
       }
-      else if (placement === 'right') {
+      else if (placement === RAW_RIGHT) {
         marginTop = -(popupHeight / 2)
       }
 
@@ -163,15 +182,21 @@ export default Yox.define({
 
     enter() {
       const me = this as any
-      me.set('isHover', TRUE)
-      me.timer = setTimeout(
-        function () {
-          if (me.get('isHover')) {
-            me.set('isVisible', TRUE)
-          }
-        },
-        toNumber(me.get('delay'))
-      )
+      const delay = toNumber(me.get('delay'))
+      if (delay > 0) {
+        me.set('isHover', TRUE)
+        me.timer = setTimeout(
+          function () {
+            if (me.get('isHover')) {
+              me.set('isVisible', TRUE)
+            }
+          },
+          delay
+        )
+      }
+      else {
+        me.set('isVisible', TRUE)
+      }
     },
 
     leave() {
@@ -183,6 +208,45 @@ export default Yox.define({
 
     click() {
       this.toggle('isVisible')
+    }
+  },
+
+  afterMount() {
+
+    const me = this
+
+    if (me.get('mode') === RAW_CLICK) {
+
+      const onClick = function (event: CustomEventInterface) {
+        if (!me.get('isVisible')) {
+          return
+        }
+        const element = me.$el
+        const target = event.originalEvent.target as HTMLElement
+        if (contains(element, target)) {
+          return
+        }
+        me.set('isVisible', FALSE)
+      }
+
+      Yox.dom.on(
+        DOCUMENT,
+        RAW_CLICK,
+        onClick
+      )
+
+      me.on(
+        'beforeDestroy.hook',
+        function (event) {
+          if (event.phase === Yox.Event.PHASE_CURRENT) {
+            Yox.dom.off(
+              DOCUMENT,
+              RAW_CLICK,
+              onClick
+            )
+          }
+        }
+      )
     }
   },
 

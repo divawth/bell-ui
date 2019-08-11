@@ -136,13 +136,14 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 主题 | string | primary, info、success、warning、error | -
+model | 双向绑定 checked 属性 | - | - | -
+size | 尺寸 | string | default, large | default
+type | 颜色 | string | primary, info、success、warning、error | -
 closable | 是否可以关闭 | boolean | - | false
 checkable | 标签是否可以选择 | boolean | - | false
 border | 关闭按钮旁边加一个边框 | boolean | - | false
 dot |  标签左侧是否添加一个圆形 | boolean | - | false
 checked | 标签的选中状态 | boolean | - | false
-size | 尺寸 | string | large | -
 
 > Events
 

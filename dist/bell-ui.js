@@ -182,7 +182,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-drawer bell-drawer-"+y(a("placement",$2))+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-drawer-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})):""})):p(),q("div",function(){g("className","bell-drawer-wrapper"),g("style.cssText",j("style.cssText",a("wrapperStyle",$2,$0,$2,$2),1))},function(){(a("title",$2)||(d(a("hasSlot",$2),["title"])))?(q("div",function(){g("className","bell-drawer-header")},function(){s("$slot_title",function(){e(y(a("title",$2)))})})):p(),q("div",function(){g("className","bell-drawer-body")},function(){s("$slot_children")}),a("closable",$2)?(q("div",function(){g("className","bell-drawer-close"),l("click","event.click",$0,"set('open', FALSE)","set",function(z){return ["open",a("FALSE",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","close"),f("size","0")})})):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-drawer"+(a("placement",$2)?(" bell-drawer-"+y(a("placement",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-drawer-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""})):p(),q("div",function(){g("className","bell-drawer-wrapper"),g("style.cssText",j("style.cssText",a("wrapperStyle",$2,$0,$2,$2),1))},function(){(a("title",$2)||(d(a("hasSlot",$2),["title"])))?(q("div",function(){g("className","bell-drawer-header")},function(){s("$slot_title",function(){e(y(a("title",$2)))})})):p(),q("div",function(){g("className","bell-drawer-body")},function(){s("$slot_children")}),a("closable",$2)?(q("div",function(){g("className","bell-drawer-close"),l("click","event.click",$0,"close()","close")},function(){r("Icon",function(){f("name","close"),f("size","0")})})):p()},$0,$0,$0,$0,$0,$0,"wrapper")})};
 
 /***/ }),
 /* 15 */
@@ -218,7 +218,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input-number"+(a("type",$2)?(" bell-input-number-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-input-number-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-input-number-disabled":" bell-input-number-enabled")+(a("isFocus",$2)?" bell-input-number-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("input",function(){g("type","text"),g("className","bell-input-number-el"),k(a("computedValue",$2,$0,$2,$2)),a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("disabled",$2)?g("disabled",$2):"",(a("readOnly",$2)||(!a("editable",$2)))?g("readOnly",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))}),(!a("disabled",$2)&&(!a("readOnly",$2)))?(q("div",function(){g("className","bell-input-number-actions")},function(){q("div",function(){a("upDisabled",$2)?g("className","bell-input-number-up bell-input-number-up-disabled"):((g("className","bell-input-number-up bell-input-number-up-enabled"),l("click","event.click",$0,"up()","up")))},function(){r("Icon",function(){f("name","arrow-up")})}),q("div",function(){a("downDisabled",$2)?g("className","bell-input-number-down bell-input-number-down-disabled"):((g("className","bell-input-number-down bell-input-number-down-enabled"),l("click","event.click",$0,"down()","down")))},function(){r("Icon",function(){f("name","arrow-down")})})})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input-number"+(a("type",$2)?(" bell-input-number-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-input-number-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-input-number-disabled":" bell-input-number-enabled")+(a("isFocus",$2)?" bell-input-number-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("input",function(){g("type","text"),g("className","bell-input-number-el"),k(a("computedValue",$2,$0,$2,$2)),a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("disabled",$2)?g("disabled",$2):"",(a("readOnly",$2)||(!a("editable",$2)))?g("readOnly",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))}),(!a("disabled",$2)&&(!a("readOnly",$2)))?(q("div",function(){g("className","bell-input-number-actions")},function(){q("div",function(){a("upDisabled",$2)?g("className","bell-input-number-up bell-input-number-up-disabled"):((g("className","bell-input-number-up bell-input-number-up-enabled"),l("click","event.click",$0,"up()","up")))},function(){r("Icon",function(){f("name","arrow-up"),f("size","0")})}),q("div",function(){a("downDisabled",$2)?g("className","bell-input-number-down bell-input-number-down-disabled"):((g("className","bell-input-number-down bell-input-number-down-enabled"),l("click","event.click",$0,"down()","down")))},function(){r("Icon",function(){f("name","arrow-down"),f("size","0")})})})):p()})};
 
 /***/ }),
 /* 21 */
@@ -284,7 +284,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-alert"+(a("type",$2)?(" bell-alert-"+y(a("type",$2))):"")+((a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?" bell-alert-with-icon":"")+((d(a("hasSlot",$2),["content"]))?" bell-alert-with-content":"")+((a("closable",$2)||(d(a("hasSlot",$2),["close"])))?" bell-alert-with-close":"")+(a("center",$2)?" bell-alert-center":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?(q("span",function(){g("className","bell-alert-icon")},function(){s("$slot_icon",function(){r("Icon",function(){f("name",(a("type",$2)===a("RAW_TYPE_PRIMARY",$2))?"information-circle":((a("type",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkmark-circle":((a("type",$2)===a("RAW_TYPE_WARNING",$2))?"alert":((a("type",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle":"information-circle")))),f("size","0"),f("className","bell-alert-type-icon")})})})):p(),q("div",function(){g("className","bell-alert-wrapper")},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-alert-title")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-alert-content")},function(){s("$slot_content")})):p()}),(a("closable",$2)||(d(a("hasSlot",$2),["close"])))?(q("div",function(){g("className","bell-alert-close"),l("click","event.click",$0,"close()","close")},function(){s("$slot_close",function(){r("Icon",function(){f("name","close"),f("size","0"),f("className","bell-alert-close-icon")})})},$0,$0,$0,$0,$0,$0,"close")):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-alert"+(a("type",$2)?(" bell-alert-"+y(a("type",$2))):"")+((a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?" bell-alert-with-icon":"")+((d(a("hasSlot",$2),["content"]))?" bell-alert-with-content":"")+((a("closable",$2)||(d(a("hasSlot",$2),["close"])))?" bell-alert-with-close":"")+(a("center",$2)?" bell-alert-center":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("icon",$2)||(d(a("hasSlot",$2),["icon"])))?(q("span",function(){g("className","bell-alert-icon")},function(){s("$slot_icon",function(){r("Icon",function(){f("name",(a("type",$2)===a("RAW_TYPE_PRIMARY",$2))?"information-circle":((a("type",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkmark-circle":((a("type",$2)===a("RAW_TYPE_WARNING",$2))?"alert":((a("type",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle":"information-circle")))),f("size","0"),f("className","bell-alert-type-icon")})})})):p(),q("div",function(){g("className","bell-alert-wrapper")},function(){(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-alert-title")},function(){s("$slot_children")})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-alert-content")},function(){s("$slot_content")})):p()}),(a("closable",$2)||(d(a("hasSlot",$2),["close"])))?(q("div",function(){g("className","bell-alert-close"),l("click","event.click",$0,"fire('close.alert')","fire",function(z){return ["close.alert"]})},function(){s("$slot_close",function(){r("Icon",function(){f("name","close"),f("size","0"),f("className","bell-alert-close-icon")})})},$0,$0,$0,$0,$0,$0,"close")):p()})};
 
 /***/ }),
 /* 32 */
@@ -302,7 +302,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar"+(a("size",$2)?(" bell-avatar-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-avatar-"+y(a("shape",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText",(a("text",$2)?("color: "+y(a("color",$2))+";"):"")+(a("fontSize",$2)?("font-size: "+y(a("fontSize",$2))+"px;"):"")+(a("bgColor",$2)?("background-color: "+y(a("bgColor",$2))+";"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):((d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text")},$0,y(a("text",$2)),$0,$0,$0,$0,$0,"textSpan")):p()))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-avatar"+(a("size",$2)?(" bell-avatar-"+y(a("size",$2))):"")+(a("shape",$2)?(" bell-avatar-"+y(a("shape",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(((a("text",$2)||a("fontSize",$2))||a("bgColor",$2))||a("style",$2))&&g("style.cssText",(a("text",$2)?("color: "+y(a("color",$2))+";"):"")+(a("fontSize",$2)?("font-size: "+y(a("fontSize",$2))+"px;"):"")+(a("bgColor",$2)?("background-color: "+y(a("bgColor",$2))+";"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){a("src",$2)?(q("img",function(){g("className","bell-avatar-image"),g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcset",$2)?(f("srcset",j("srcset",a("srcset",$2,$0,$2,$2)))):"",f("ondragstart","return false")})):((d(a("hasSlot",$2),["icon"]))?(q("span",function(){g("className","bell-avatar-icon")},function(){s("$slot_icon")})):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text")},$0,y(a("text",$2)),$0,$0,$0,$0,$0,"text")):p()))})};
 
 /***/ }),
 /* 35 */
@@ -350,7 +350,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 42 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-popup-"+y(a("placement",$2))+(a("disabled",$2)?" bell-tooltip-disabled":""))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),(a("maxWidth",$2)||a("maxHeight",$2))?(g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?("max-height: "+y(a("maxHeight",$2))+"px"):"")+";")):""},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tooltip"+(a("theme",$2)?(" bell-tooltip-"+y(a("theme",$2))):"")+(a("placement",$2)?(" bell-tooltip-"+y(a("placement",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-tooltip-el"),(!a("disabled",$2))?((a("mode",$2)==="click")?(l("click","event.click",$0,"click()","click")):((l("mouseenter","event.mouseenter",$0,"enter()","enter"),l("mouseleave","event.mouseleave",$0,"leave()","leave")))):""},function(){s("$slot_children")}),q("div",function(){g("className","bell-tooltip-popup")},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content"),(a("maxWidth",$2)||a("maxHeight",$2))?(g("style.cssText",(a("maxWidth",$2)?("max-width: "+y(a("maxWidth",$2))+"px"):"")+";"+(a("maxHeight",$2)?("max-height: "+y(a("maxHeight",$2))+"px"):"")+";")):""},function(){s("$slot_content",function(){e(y(a("content",$2)))})})},$0,$0,$0,$0,$0,$0,"popup")})};
 
 /***/ }),
 /* 43 */
@@ -422,7 +422,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 54 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-progress"+(a("type",$2)?(" bell-progress-"+y(a("type",$2))):"")+(a("active",$2)?" bell-progress-active":"")+(a("vertical",$2)?" bell-progress-vertical":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-progress-outer")},function(){q("div",function(){g("className","bell-progress-inner"),g("style.cssText",a("vertical",$2)&&"width: "+a("thickness",$2)+"px;")},function(){q("div",function(){g("className","bell-progress-bg"),g("style.cssText",(!a("vertical",$2))?("width: "+a("percent",$2)+"%;\n          height: "+a("thickness",$2)+"px;"):("height: "+a("percent",$2)+"%;\n          width: "+a("thickness",$2)+"px;"))})})}),(!a("hideInfo",$2))?(q("span",function(){g("className","bell-progress-inner-text")},function(){s("$slot_children",function(){e(y(a("percent",$2))),e("%")})})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-progress"+(a("type",$2)?(" bell-progress-"+y(a("type",$2))):"")+(a("active",$2)?" bell-progress-active":"")+(a("vertical",$2)?" bell-progress-vertical":" bell-progress-horizontal")+((d(a("hasSlot",$2),["children"]))?" bell-progress-with-text":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-progress-outer")},function(){q("div",function(){g("className","bell-progress-inner"),g("style.cssText",a("vertical",$2)&&"width: "+a("thickness",$2)+"px;")},function(){q("div",function(){g("className","bell-progress-bar"),g("style.cssText",(!a("vertical",$2))?("width: "+a("percent",$2)+"%;\n          height: "+a("thickness",$2)+"px;"):("height: "+a("percent",$2)+"%;\n          width: "+a("thickness",$2)+"px;"))})})}),(d(a("hasSlot",$2),["children"]))?(q("div",function(){g("className","bell-progress-text")},function(){s("$slot_children")})):p()})};
 
 /***/ }),
 /* 55 */
@@ -434,7 +434,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tag"+(a("type",$2)?(" bell-tag-"+y(a("type",$2))+(a("dot",$2)?" bell-tag-dot":(a("border",$2)?" bell-tag-border":" bell-tag-unborder"))):(a("dot",$2)?" bell-tag-dot":(a("border",$2)?" bell-tag-border":"")))+(a("size",$2)?(" bell-tag-"+y(a("size",$2))):"")+(a("checkable",$2)?" bell-tag-checkable":"")+(a("closable",$2)?" bell-tag-closable":"")+(a("checked",$2)?" bell-tag-checked":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),a("checkable",$2)&&l("click","event.click",$0,"toggle('checked')","toggle",function(z){return ["checked"]})},function(){s("$slot_children"),a("closable",$2)?(r("Icon",function(){f("size","20"),f("name","close"),f("className","bell-tag-close-icon"),l("click","event.click","native","fire('close.tag')","fire",function(z){return ["close.tag"]})})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tag"+(a("type",$2)?(" bell-tag-"+y(a("type",$2))+(a("dot",$2)?" bell-tag-dot":(a("border",$2)?" bell-tag-border":" bell-tag-unborder"))):(a("dot",$2)?" bell-tag-dot":(a("border",$2)?" bell-tag-border":"")))+(a("size",$2)?(" bell-tag-"+y(a("size",$2))):"")+(a("checkable",$2)?" bell-tag-checkable":"")+(a("closable",$2)?" bell-tag-closable":"")+(a("checked",$2)?" bell-tag-checked":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),a("checkable",$2)&&l("click","event.click",$0,"toggle('checked')","toggle",function(z){return ["checked"]})},function(){s("$slot_children"),a("closable",$2)?(r("Icon",function(){f("size","0"),f("name","close"),f("className","bell-tag-close-icon"),l("click","event.click","native","fire('close.tag')","fire",function(z){return ["close.tag"]})})):p()})};
 
 /***/ }),
 /* 57 */
@@ -482,25 +482,25 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 64 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-timeline"+(a("pending",$2)?" bell-timeline-pending":""))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-timeline"+(a("pending",$2)?" bell-timeline-pending":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-timeline-item")},function(){(d(a("hasSlot",$2),["dot"]))?(q("div",function(){g("className","bell-timeline-custom")},function(){s("$slot_dot")})):(q("div",function(){g("className","bell-timeline-dot"),g("style.cssText","color: "+y(a("color",$2)))})),q("div",function(){g("className","bell-timeline-content")},function(){s("$slot_children")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-timeline-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["dot"]))?(q("div",function(){g("className","bell-timeline-custom")},function(){s("$slot_dot")})):(q("div",function(){g("className","bell-timeline-dot"),g("style.cssText","color: "+y(a("color",$2)))})),q("div",function(){g("className","bell-timeline-content")},function(){s("$slot_children")})})};
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form"+(a("inline",$2)?" bell-form-inline":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),f("data-position",j("data-position",a("labelPosition",$2,$0,$2,$2))),a("style",$2)&&a("style",$2)},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form"+(a("inline",$2)?" bell-form-inline":"")+(a("labelPosition",$2)?(" bell-form-label-"+y(a("labelPosition",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("required",$2)?" bell-form-item-required":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["lable"])))?(q("label",function(){g("className","bell-form-item-label"),a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):"",a("labelFor",$2)?(g("htmlFor",j("htmlFor",a("labelFor",$2,$0,$2,$2),1))):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})})):p(),q("div",function(){g("className","bell-form-item-content"),((a("label",$2)||(d(a("hasSlot",$2),["lable"])))&&a("width",$2))?(g("style.cssText","margin-left: "+y(a("width",$2))+"px;")):""},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error-tip")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["label"])))?((q("label",function(){g("className","bell-form-item-label"+(a("required",$2)?" bell-form-item-label-required":"")),a("labelFor",$2)?(g("htmlFor",j("htmlFor",a("labelFor",$2,$0,$2,$2),1))):"",a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})}),q("div",function(){g("className","bell-form-item-wrapper")},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))):((s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()))})};
 
 /***/ }),
 /* 68 */
@@ -524,7 +524,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 71 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Alert",function(){f("center",j("center",a("center",$2,$0,$2,$2))),f("type",j("type",a("type",$2,$0,$2,$2))),f("icon",j("icon",a("icon",$2,$0,$2,$2))),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("onClose",j("onClose",a("closeAlert",$2,$0,$2,$2))),f("className","bell-message")},{"$slot_children":function(){e(a("content",$2))}})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Alert",function(){f("center",j("center",a("center",$2,$0,$2,$2))),f("type",j("type",a("type",$2,$0,$2,$2))),f("icon",j("icon",a("icon",$2,$0,$2,$2))),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("className","bell-message"),l("close","event.close",$0,"closeAlert()","closeAlert")},{"$slot_children":function(){e(a("content",$2))}})};
 
 /***/ }),
 /* 72 */
@@ -646,6 +646,12 @@ var RAW_ICON_MD = 'md';
 var RAW_EVENT_KEYPRESS = 'keypress';
 var RAW_EVENT_KEYDOWN = 'keydown';
 var RAW_EVENT_KEYUP = 'keyup';
+var RAW_DARK = 'dark';
+var RAW_LIGHT = 'light';
+var RAW_THEME_ARRAY = [
+    RAW_DARK,
+    RAW_LIGHT,
+];
 var RAW_TYPE_ARRAY = [
     RAW_TYPE_PRIMARY,
     RAW_TYPE_INFO,
@@ -687,6 +693,7 @@ var RAW_PLACEMENT_ARRAY = [
 var WINDOW = window;
 var DOCUMENT = document;
 var BODY = DOCUMENT.body;
+var HOVER_DELAY = 100;
 
 // CONCATENATED MODULE: ./src/components/layout/Layout.ts
 
@@ -958,8 +965,8 @@ function debounce(fn, time, immediate) {
             value: RAW_HORIZONTAL,
         },
         theme: {
-            type: oneOf(['dark', 'light']),
-            value: 'dark',
+            type: oneOf(RAW_THEME_ARRAY),
+            value: RAW_DARK,
         },
         collapsed: {
             type: RAW_BOOLEAN,
@@ -1475,8 +1482,8 @@ var Drawer_default = /*#__PURE__*/__webpack_require__.n(Drawer);
 
 
 
-var CLASS_OPEN = 'bell-drawer-open';
-var CLASS_LEAVE = 'bell-drawer-leave';
+var CLASS_VISIBLE = 'bell-drawer-visible';
+var CLASS_FADE = 'bell-drawer-fade';
 /* harmony default export */ var drawer_Drawer = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Drawer_default.a,
     model: 'open',
@@ -1492,19 +1499,19 @@ var CLASS_LEAVE = 'bell-drawer-leave';
             type: RAW_STRING,
             value: 256,
         },
-        maskClosable: {
-            type: RAW_BOOLEAN,
-            value: TRUE,
+        placement: {
+            type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP, RAW_BOTTOM]),
+            value: RAW_LEFT,
         },
         closable: {
             type: RAW_BOOLEAN,
             value: FALSE,
         },
-        placement: {
-            type: RAW_STRING,
-            value: 'left',
-        },
         mask: {
+            type: RAW_BOOLEAN,
+            value: TRUE,
+        },
+        maskClosable: {
             type: RAW_BOOLEAN,
             value: TRUE,
         },
@@ -1523,18 +1530,23 @@ var CLASS_LEAVE = 'bell-drawer-leave';
         open: function (isOpen) {
             var me = this;
             var element = this.$el;
+            var wrapper = this.$refs.wrapper;
             if (isOpen) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_OPEN);
-                onTransitionEnd(element, function () {
-                    me.fire('open.drawer');
-                });
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_VISIBLE);
+                setTimeout(function () {
+                    if (me.$el) {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_FADE);
+                        me.fire('open.drawer');
+                    }
+                }, 20);
             }
             else {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_LEAVE);
-                onTransitionEnd(element, function () {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_OPEN);
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_LEAVE);
-                    me.fire('close.drawer');
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_FADE);
+                onTransitionEnd(wrapper, function () {
+                    if (me.$el) {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+                        me.fire('close.drawer');
+                    }
                 });
             }
         }
@@ -1543,9 +1555,9 @@ var CLASS_LEAVE = 'bell-drawer-leave';
         wrapperStyle: function () {
             var style = '';
             var placement = this.get('placement');
-            if (placement === 'left'
-                || placement === 'right') {
-                var width = +this.get('width');
+            if (placement === RAW_LEFT
+                || placement === RAW_RIGHT) {
+                var width = toNumber(this.get('width'));
                 if (width < 100) {
                     style = "width: " + width + "%;";
                 }
@@ -1554,7 +1566,7 @@ var CLASS_LEAVE = 'bell-drawer-leave';
                 }
             }
             else {
-                var height = +this.get('height');
+                var height = toNumber(this.get('height'));
                 if (height < 100) {
                     style = "height: " + height + "%;";
                 }
@@ -1563,6 +1575,11 @@ var CLASS_LEAVE = 'bell-drawer-leave';
                 }
             }
             return style;
+        }
+    },
+    methods: {
+        close: function () {
+            this.set('open', FALSE);
         }
     },
     afterMount: function () {
@@ -2488,8 +2505,8 @@ var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
 
 
 
-var CLASS_VISIBLE = 'bell-dropdown-visible';
-var CLASS_FADE = 'bell-dropdown-fade';
+var Select_CLASS_VISIBLE = 'bell-dropdown-visible';
+var Select_CLASS_FADE = 'bell-dropdown-fade';
 /* harmony default export */ var select_Select = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Select_default.a,
     name: 'bell-select',
@@ -2544,22 +2561,22 @@ var CLASS_FADE = 'bell-dropdown-fade';
             var element = me.$el;
             var list = me.$refs.list;
             if (visible) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_VISIBLE);
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Select_CLASS_VISIBLE);
                 if (supportTransform) {
                     setTimeout(function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_FADE);
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Select_CLASS_FADE);
                     }, 20);
                 }
             }
             else {
                 if (supportTransform) {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_FADE);
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_FADE);
                     onTransitionEnd(list, function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_VISIBLE);
                     });
                 }
                 else {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_VISIBLE);
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_VISIBLE);
                 }
             }
         }
@@ -3725,9 +3742,6 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
             type: RAW_BOOLEAN,
             value: FALSE,
         },
-        onClose: {
-            type: RAW_FUNCTION,
-        },
         className: {
             type: RAW_STRING,
         },
@@ -3743,26 +3757,6 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
             RAW_TYPE_WARNING: RAW_TYPE_WARNING,
             RAW_TYPE_ERROR: RAW_TYPE_ERROR,
         };
-    },
-    methods: {
-        close: function () {
-            var me = this;
-            // 外部自定义关闭逻辑
-            var onClose = me.get('onClose');
-            if (onClose) {
-                onClose();
-                return;
-            }
-            me.fire('close.alert');
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, 'bell-alert-hidden');
-            onTransitionEnd(me.$el, function () {
-                var element = me.$el;
-                if (!element) {
-                    return;
-                }
-                me.destroy();
-            });
-        }
     }
 }));
 
@@ -3919,22 +3913,22 @@ var SPACE_HORIZONTAL = 8;
         }
     },
     afterMount: function () {
-        if (!supportTransform) {
+        var me = this;
+        if (supportTransform) {
+            me.watch('text', function () {
+                me.nextTick(function () {
+                    var element = me.$refs && me.$refs.text;
+                    if (!element) {
+                        return;
+                    }
+                    var scale = element.offsetWidth
+                        ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
+                        : 1;
+                    element.style.transform = "scale(" + Math.min(scale, 1) + ") translateX(-50%)";
+                });
+            }, TRUE);
             return;
         }
-        var me = this;
-        me.watch('text', function () {
-            me.nextTick(function () {
-                var element = me.$refs && me.$refs.textSpan;
-                if (!element) {
-                    return;
-                }
-                var scale = element.offsetWidth
-                    ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
-                    : 1;
-                element.style.transform = "scale(" + Math.min(scale, 1) + ") translateX(-50%)";
-            });
-        }, TRUE);
     }
 }));
 
@@ -5270,15 +5264,20 @@ var Tooltip_default = /*#__PURE__*/__webpack_require__.n(Tooltip);
 
 var Tooltip_CLASS_VISIBLE = 'bell-tooltip-visible';
 var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
+var CLASS_DISABLED = 'bell-tooltip-disabled';
 /* harmony default export */ var tooltip_Tooltip = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tooltip_default.a,
     propTypes: {
         content: {
             type: RAW_STRING,
         },
+        theme: {
+            type: oneOf(RAW_THEME_ARRAY),
+            value: RAW_DARK,
+        },
         placement: {
-            type: RAW_STRING,
-            value: 'bottom',
+            type: oneOf(RAW_PLACEMENT_ARRAY),
+            value: RAW_BOTTOM,
         },
         disabled: {
             type: RAW_BOOLEAN,
@@ -5286,6 +5285,7 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
         },
         delay: {
             type: RAW_NUMERIC,
+            value: HOVER_DELAY,
         },
         mode: {
             type: oneOf([RAW_CLICK, RAW_HOVER]),
@@ -5317,8 +5317,14 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
         };
     },
     watchers: {
-        disabled: function () {
-            this.setPosition();
+        disabled: function (disabled) {
+            if (disabled) {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(this.$el, CLASS_DISABLED);
+            }
+            else {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(this.$el, CLASS_DISABLED);
+            }
+            this.set('isVisible', FALSE);
         },
         isVisible: function (visible) {
             var element = this.$el;
@@ -5326,22 +5332,15 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
             if (visible) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Tooltip_CLASS_VISIBLE);
                 this.setPosition();
-                if (supportTransform) {
-                    setTimeout(function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Tooltip_CLASS_FADE);
-                    }, 20);
-                }
+                setTimeout(function () {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Tooltip_CLASS_FADE);
+                }, 20);
             }
             else {
-                if (supportTransform) {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_FADE);
-                    onTransitionEnd(popup, function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_VISIBLE);
-                    });
-                }
-                else {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_FADE);
+                onTransitionEnd(popup, function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Tooltip_CLASS_VISIBLE);
-                }
+                });
             }
         }
     },
@@ -5356,36 +5355,36 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
             var popupHeight = popupElement.offsetHeight;
             var marginLeft = 0;
             var marginTop = 0;
-            if (placement === 'bottom') {
+            if (placement === RAW_BOTTOM) {
                 marginLeft = -(popupWidth / 2);
             }
-            else if (placement === 'bottom-start') {
+            else if (placement === RAW_BOTTOM_START) {
                 marginLeft = 0;
             }
-            else if (placement === 'bottom-end') {
+            else if (placement === RAW_BOTTOM_END) {
                 marginLeft = 0;
             }
-            else if (placement === 'top') {
+            else if (placement === RAW_TOP) {
                 marginLeft = -(popupWidth / 2);
                 marginTop = -popupHeight;
             }
-            else if (placement === 'top-start') {
+            else if (placement === RAW_TOP_START) {
                 marginTop = -popupHeight;
             }
-            else if (placement === 'top-end') {
+            else if (placement === RAW_TOP_END) {
                 marginTop = -popupHeight;
             }
-            else if (placement === 'left') {
+            else if (placement === RAW_LEFT) {
                 marginLeft = -popupWidth;
                 marginTop = -(popupHeight / 2);
             }
-            else if (placement === 'left-start') {
+            else if (placement === RAW_LEFT_START) {
                 marginLeft = -popupWidth;
             }
-            else if (placement === 'left-end') {
+            else if (placement === RAW_LEFT_END) {
                 marginLeft = -popupWidth;
             }
-            else if (placement === 'right') {
+            else if (placement === RAW_RIGHT) {
                 marginTop = -(popupHeight / 2);
             }
             popupElement.style.marginLeft = (marginLeft + offsetX) + 'px';
@@ -5393,12 +5392,18 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
         },
         enter: function () {
             var me = this;
-            me.set('isHover', TRUE);
-            me.timer = setTimeout(function () {
-                if (me.get('isHover')) {
-                    me.set('isVisible', TRUE);
-                }
-            }, toNumber(me.get('delay')));
+            var delay = toNumber(me.get('delay'));
+            if (delay > 0) {
+                me.set('isHover', TRUE);
+                me.timer = setTimeout(function () {
+                    if (me.get('isHover')) {
+                        me.set('isVisible', TRUE);
+                    }
+                }, delay);
+            }
+            else {
+                me.set('isVisible', TRUE);
+            }
         },
         leave: function () {
             this.set({
@@ -5408,6 +5413,28 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
         },
         click: function () {
             this.toggle('isVisible');
+        }
+    },
+    afterMount: function () {
+        var me = this;
+        if (me.get('mode') === RAW_CLICK) {
+            var onClick_1 = function (event) {
+                if (!me.get('isVisible')) {
+                    return;
+                }
+                var element = me.$el;
+                var target = event.originalEvent.target;
+                if (contains(element, target)) {
+                    return;
+                }
+                me.set('isVisible', FALSE);
+            };
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick_1);
+            me.on('beforeDestroy.hook', function (event) {
+                if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_CURRENT) {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_CLICK, onClick_1);
+                }
+            });
         }
     },
     beforeDestroy: function () {
@@ -5927,10 +5954,6 @@ var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
             type: RAW_STRING,
             value: 10,
         },
-        hideInfo: {
-            type: RAW_BOOLEAN,
-            value: FALSE,
-        },
         vertical: {
             type: RAW_BOOLEAN,
             value: FALSE,
@@ -6126,6 +6149,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
 
 /* harmony default export */ var tag_Tag = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tag_default.a,
+    model: 'checked',
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -6164,7 +6188,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
     watchers: {
         checked: function (checked) {
             this.fire('change.tag', {
-                checked: checked
+                checked: checked,
             });
         }
     }
@@ -6556,22 +6580,15 @@ var Dropdown_CLASS_FADE = 'bell-dropdown-fade';
                         break;
                 }
                 list.style.cssText = cssText;
-                if (supportTransform) {
-                    setTimeout(function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dropdown_CLASS_FADE);
-                    }, 20);
-                }
+                setTimeout(function () {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dropdown_CLASS_FADE);
+                }, 20);
             }
             else {
-                if (supportTransform) {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_FADE);
-                    onTransitionEnd(list, function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_VISIBLE);
-                    });
-                }
-                else {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_FADE);
+                onTransitionEnd(list, function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dropdown_CLASS_VISIBLE);
-                }
+                });
             }
         }
     },
@@ -6759,6 +6776,12 @@ var TimeLine_default = /*#__PURE__*/__webpack_require__.n(TimeLine);
         pending: {
             type: RAW_BOOLEAN,
             value: FALSE,
+        },
+        className: {
+            type: RAW_STRING,
+        },
+        style: {
+            type: RAW_STRING,
         }
     },
 }));
@@ -6777,6 +6800,12 @@ var TimeLineItem_default = /*#__PURE__*/__webpack_require__.n(TimeLineItem);
         color: {
             type: RAW_STRING,
             value: '#348EED',
+        },
+        className: {
+            type: RAW_STRING,
+        },
+        style: {
+            type: RAW_STRING,
         }
     },
 }));
@@ -6956,40 +6985,41 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
 
 
 /* harmony default export */ var form_Form = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Form_default.a,
+    name: 'bell-form',
     propTypes: {
         value: {
-            type: RAW_OBJECT
+            type: RAW_OBJECT,
         },
         rules: {
-            type: RAW_OBJECT
+            type: RAW_OBJECT,
         },
         messages: {
-            type: RAW_OBJECT
+            type: RAW_OBJECT,
         },
         inline: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         labelPosition: {
-            type: oneOf(['left', 'right', 'top']),
-            value: 'left'
+            type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
+            value: RAW_RIGHT,
         },
         labelWidth: {
             type: RAW_STRING,
-            value: 80
+            value: 80,
         },
         showMessage: {
             type: RAW_BOOLEAN,
-            value: TRUE
+            value: TRUE,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    name: 'bell-form',
-    template: Form_default.a,
     methods: {
         validate: function (callback) {
             var me = this;
@@ -6997,11 +7027,11 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             var errors = validator.validate(me.get('value'), me.get('rules'), me.get('messages'));
             var isValid = !errors;
             if (isValid) {
-                callback(true);
+                callback(TRUE);
             }
             else {
                 me.fire('validateError.form', { errors: errors }, TRUE);
-                callback(false, errors);
+                callback(FALSE, errors);
             }
         }
     }
@@ -7017,36 +7047,38 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
 
 
 /* harmony default export */ var form_FormItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: FormItem_default.a,
     propTypes: {
         prop: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         label: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         labelWidth: {
-            type: RAW_NUMERIC
+            type: RAW_NUMERIC,
         },
         labelFor: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         required: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         showMessage: {
-            type: RAW_BOOLEAN
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         error: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         className: {
-            type: RAW_STRING
+            type: RAW_STRING,
         },
         style: {
-            type: RAW_STRING
+            type: RAW_STRING,
         }
     },
-    template: FormItem_default.a,
     data: function () {
         return {
             rules: [],
@@ -7106,7 +7138,7 @@ var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 
 
 
-var Dialog_CLASS_OPEN = 'bell-dialog-open';
+var CLASS_OPEN = 'bell-dialog-open';
 var Dialog_CLASS_FADE = 'bell-dialog-fade';
 /* harmony default export */ var dialog_Dialog = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Dialog_default.a,
@@ -7148,14 +7180,14 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
             var me = this;
             var element = me.$el;
             if (isOpen) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_OPEN);
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, CLASS_OPEN);
             }
             else {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_FADE);
                 // 动画一般作用在 wrapper 上面
                 // 监听 $el 没用的
                 onTransitionEnd(me.$refs.wrapper, function () {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_OPEN);
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, CLASS_OPEN);
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_FADE);
                     me.fire('close.dialog');
                 });
@@ -7467,38 +7499,24 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
         center: {
             type: RAW_BOOLEAN,
             value: FALSE,
-        },
-        duration: {
-            type: RAW_NUMERIC,
-            value: 1500,
-        },
-        top: {
-            type: RAW_NUMERIC,
-            value: 15,
-        },
-        onClose: {
-            type: RAW_FUNCTION,
         }
     },
-    data: function () {
-        var me = this;
-        return {
-            closeAlert: function () {
-                me.hide();
-            }
-        };
-    },
     methods: {
-        show: function () {
+        closeAlert: function () {
+            this.hide();
+        },
+        show: function (top, duration) {
             var me = this;
             var element = me.$el;
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Message_CLASS_VISIBLE);
-            element.style.top = me.get('top') + 'px';
-            setTimeout(function () {
-                if (me.$el) {
-                    me.hide();
-                }
-            }, me.get('duration'));
+            element.style.top = top + 'px';
+            if (duration > 0) {
+                setTimeout(function () {
+                    if (me.$el) {
+                        me.hide();
+                    }
+                }, duration);
+            }
         },
         hide: function () {
             var me = this;
@@ -7507,26 +7525,16 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
             element.style.top = '0px';
             onTransitionEnd(element, function () {
                 if (me.$el) {
-                    var onClose = me.get('onClose');
-                    if (onClose) {
-                        onClose();
-                    }
-                    me.destroy();
+                    me.fire('hide.message');
                 }
             });
         }
     },
     afterMount: function () {
-        var me = this;
         if (!supportTransform) {
-            var element = me.$el;
+            var element = this.$el;
             element.style.marginLeft = -0.5 * element.offsetWidth + 'px';
         }
-        setTimeout(function () {
-            if (me.$el) {
-                me.show();
-            }
-        }, 300);
     }
 }));
 
@@ -7535,7 +7543,7 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
 
 
 var config = {};
-function addMessage(type, arg, duration, onClose) {
+function addMessage(type, arg, onClose) {
     var props = { type: type };
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, config);
     if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(arg)) {
@@ -7544,32 +7552,37 @@ function addMessage(type, arg, duration, onClose) {
     else {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
-    if (duration > 0) {
-        props.duration = duration;
-    }
-    if (onClose) {
-        props.onClose = onClose;
-    }
     var element = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, element);
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
         el: element,
         replace: TRUE,
         props: props,
     }, message_Message));
+    instance.on('hide.message', function () {
+        if (onClose) {
+            onClose();
+        }
+        instance.destroy();
+    });
+    setTimeout(function () {
+        if (instance.$el) {
+            instance.show(props.top || 15, props.duration || 2000);
+        }
+    }, 300);
 }
 /* harmony default export */ var base = ({
-    success: function (arg, duration, onClose) {
-        addMessage('success', arg, duration, onClose);
+    success: function (arg, onClose) {
+        addMessage('success', arg, onClose);
     },
-    info: function (arg, duration, onClose) {
-        addMessage('info', arg, duration, onClose);
+    info: function (arg, onClose) {
+        addMessage('info', arg, onClose);
     },
-    warning: function (arg, duration, onClose) {
-        addMessage('warning', arg, duration, onClose);
+    warning: function (arg, onClose) {
+        addMessage('warning', arg, onClose);
     },
-    error: function (arg, duration, onClose) {
-        addMessage('error', arg, duration, onClose);
+    error: function (arg, onClose) {
+        addMessage('error', arg, onClose);
     },
     config: function (arg) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(config, arg);
@@ -7612,11 +7625,20 @@ var Notice_CLASS_VISIBLE = 'bell-notice-visible';
             type: RAW_NUMERIC,
             value: 15,
         },
-        onClose: {
-            type: RAW_FUNCTION,
-        }
     },
     methods: {
+        show: function () {
+            var me = this;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, Notice_CLASS_VISIBLE);
+            var duration = toNumber(me.get('duration'));
+            if (duration > 0) {
+                setTimeout(function () {
+                    if (me.$el) {
+                        me.hide();
+                    }
+                }, duration);
+            }
+        },
         hide: function () {
             var me = this;
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notice_CLASS_VISIBLE);
@@ -7626,34 +7648,11 @@ var Notice_CLASS_VISIBLE = 'bell-notice-visible';
                 }
                 onTransitionEnd(me.$el, function () {
                     if (me.$el) {
-                        var onClose = me.get('onClose');
-                        if (onClose) {
-                            onClose();
-                        }
-                        me.destroy();
+                        me.fire('hide.notice');
                     }
                 });
             });
         }
-    },
-    afterMount: function () {
-        var me = this;
-        setTimeout(function () {
-            var element = me.$el;
-            if (!element) {
-                return;
-            }
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notice_CLASS_VISIBLE);
-            var duration = me.get('duration');
-            if (duration == 0) {
-                return;
-            }
-            setTimeout(function () {
-                if (me.$el) {
-                    me.hide();
-                }
-            }, duration);
-        }, 300);
     }
 }));
 
@@ -7661,7 +7660,7 @@ var Notice_CLASS_VISIBLE = 'bell-notice-visible';
 
 
 var base_config = {};
-function addNotice(type, data, duration, onClose) {
+function addNotice(type, data, onClose) {
     var props = { type: type };
     // 先写 config，可支持 data 覆盖全局配置
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, base_config);
@@ -7671,29 +7670,34 @@ function addNotice(type, data, duration, onClose) {
     else {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
     }
-    if (duration > 0) {
-        props.duration = duration;
-    }
-    if (onClose) {
-        props.onClose = onClose;
-    }
-    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
         el: '#bell-notice-wrapper',
         props: props,
     }, notice_Notice));
+    instance.on('hide.notice', function () {
+        if (onClose) {
+            onClose();
+        }
+        instance.destroy();
+    });
+    setTimeout(function () {
+        if (instance.$el) {
+            instance.show();
+        }
+    }, 300);
 }
 /* harmony default export */ var notice_base = ({
-    success: function (props, duration, onClose) {
-        addNotice('success', props, duration, onClose);
+    success: function (props, onClose) {
+        addNotice('success', props, onClose);
     },
-    info: function (props, duration, onClose) {
-        addNotice('info', props, duration, onClose);
+    info: function (props, onClose) {
+        addNotice('info', props, onClose);
     },
-    warning: function (props, duration, onClose) {
-        addNotice('warning', props, duration, onClose);
+    warning: function (props, onClose) {
+        addNotice('warning', props, onClose);
     },
-    error: function (props, duration, onClose) {
-        addNotice('error', props, duration, onClose);
+    error: function (props, onClose) {
+        addNotice('error', props, onClose);
     },
     config: function (options) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(base_config, options);
@@ -7900,40 +7904,40 @@ var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 
 
 
-var instance = UNDEFINED;
+var base_instance = UNDEFINED;
 function add(props) {
     var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
-    instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+    base_instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
         el: wrapper,
         props: props,
     }, loadingBar_LoadingBar));
-    return instance;
+    return base_instance;
 }
 function remove() {
-    if (instance) {
-        instance.destroy();
-        instance = UNDEFINED;
+    if (base_instance) {
+        base_instance.destroy();
+        base_instance = UNDEFINED;
     }
 }
 /* harmony default export */ var loadingBar_base = ({
     // 开始从 0 显示进度条，并自动加载进度
     start: function (options) {
-        if (instance) {
+        if (base_instance) {
             remove();
         }
         return add(options);
     },
     // 结束进度条，自动补全剩余进度
     finish: function () {
-        if (instance) {
-            instance.set('percent', 100);
+        if (base_instance) {
+            base_instance.set('percent', 100);
             setTimeout(remove, 300);
         }
     },
     // 精确加载到指定的进度
     update: function (data) {
-        if (instance) {
-            instance.set(data);
+        if (base_instance) {
+            base_instance.set(data);
         }
     }
 });

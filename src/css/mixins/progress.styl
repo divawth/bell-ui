@@ -1,9 +1,9 @@
-progress-style(style)
-  {$selector-progress-bg}
-    ui-set('background-color', style[ 'bg-color' ])
+progress-brand-style(style)
+  {$selector-progress-bar}
+    ui-set('background-color', style['color'])
 
 ui-progress()
   ui-connect(
     hash: $progress-brand-hash,
-    each: progress-style
+    each: progress-brand-style
   )

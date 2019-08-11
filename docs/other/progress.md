@@ -4,11 +4,11 @@
 export default {
   template: `
   <div>
-    <Progress active percent="{{25}}"> 25%</Progress>
-    <Progress percent="{{45}}" type="error">45%</Progress>
-    <Progress percent="{{65}}" type="success">65%</Progress>
-    <Progress percent="{{100}}">100%</Progress>
-    <Progress percent="{{25}}" hideInfo>25%</Progress>
+    <Progress active percent="25"> 25%</Progress>
+    <Progress percent="45" type="error">45%</Progress>
+    <Progress percent="65" type="success">65%</Progress>
+    <Progress percent="100">100%</Progress>
+    <Progress percent="25"></Progress>
   </div>
   `
 }
@@ -20,14 +20,14 @@ export default {
 export default {
   template: `
     <div style="height: 100px;">
-      <Progress vertical active percent="{{25}}"> 25%</Progress>
-      <Progress vertical percent="{{45}}" type="error">45%</Progress>
-      <Progress vertical percent="{{65}}" type="success">65%</Progress>
-      <Progress vertical percent="{{100}}">100%</Progress>
-      <Progress vertical percent="{{25}}" hideInfo>25%</Progress>
+      <Progress vertical active percent="25"> 25%</Progress>
+      <Progress vertical percent="45" type="error">45%</Progress>
+      <Progress vertical percent="65" type="success">65%</Progress>
+      <Progress vertical percent="100">100%</Progress>
+      <Progress vertical percent="25"></Progress>
       <style>
         .bell-progress-vertical {
-          width: 100px;
+          width: 50px;
         }
       </style>
     </div>
@@ -47,7 +47,7 @@ export default {
     {{else}}
       type="primary"
     {{/if}}
-    strokeLinecap="round">
+    >
       {{#if percent == 100}}
         <Icon type="checkmark-circled" style="color:#5cb85c" />
         <span style="margin-left: 10px;">成功</span>
@@ -57,7 +57,7 @@ export default {
         </span>
       {{/if}}
     </Progress>
-
+    <br>
     <Button on-click="add()">
       <Icon name="add" />
     </Button>
@@ -87,8 +87,8 @@ export default {
 export default {
   template: `
     <div style="height: 100px;">
-      <Progress percent="{{25}}" thickness="5">25</Progress>
-      <Progress percent="{{100}}" type="success" active>
+      <Progress percent="25" thickness="5">25</Progress>
+      <Progress percent="100" type="success" active>
         <Icon type="checkmark-circled" />
         <span style="margin-left: 10px;">成功</span>
       </Progress>
@@ -106,6 +106,5 @@ export default {
 percent | 百分比 | number | 0 | 0
 type | 类型 | string | - | -
 thickness | 进度环的粗细 | number | 6 | 6
-hideInfo | 隐藏数值或状态图标 | boolean | - | false
 vertical | 是否在垂直方向显示 | boolean | - | false
-active | active | boolean | - | false
+active | 是否有动画效果 | boolean | - | false

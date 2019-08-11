@@ -1,4 +1,6 @@
 <div class="${prefix}tooltip
+{{#if theme}} ${prefix}tooltip-{{theme}}{{/if}}
+{{#if placement}} ${prefix}tooltip-{{placement}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -7,11 +9,13 @@
 >
   <div
     class="${prefix}tooltip-el"
-    {{#if mode === 'click'}}
-      on-click="click()"
-    {{else}}
-      on-mouseenter="enter()"
-      on-mouseleave="leave()"
+    {{#if !disabled}}
+      {{#if mode === 'click'}}
+        on-click="click()"
+      {{else}}
+        on-mouseenter="enter()"
+        on-mouseleave="leave()"
+      {{/if}}
     {{/if}}
   >
     <slot name="children" />
@@ -19,8 +23,7 @@
 
   <div
     ref="popup"
-    class="${prefix}tooltip-popup ${prefix}tooltip-popup-{{placement}}
-    {{#if disabled}} ${prefix}tooltip-disabled{{/if}}"
+    class="${prefix}tooltip-popup"
   >
     <div class="${prefix}tooltip-arrow"></div>
     <div

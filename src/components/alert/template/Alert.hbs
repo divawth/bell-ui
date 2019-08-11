@@ -50,7 +50,7 @@ class="${prefix}alert
   </div>
 
   {{#if closable || hasSlot('close')}}
-    <div ref="close" class="${prefix}alert-close" on-click="close()">
+    <div ref="close" class="${prefix}alert-close" on-click="fire('close.alert')">
       <slot name="close">
         <Icon
           name="close"

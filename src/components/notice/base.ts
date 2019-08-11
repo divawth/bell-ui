@@ -9,7 +9,7 @@ interface Config {
 
 let config: Config = {}
 
-function addNotice(type: string,  data: Data, duration?: number, onClose?: Function) {
+function addNotice(type: string,  data: Data, onClose?: Function) {
 
   let props: Data = { type }
 
@@ -23,15 +23,7 @@ function addNotice(type: string,  data: Data, duration?: number, onClose?: Funct
     Yox.object.extend(props, data)
   }
 
-  if (duration > 0) {
-    props.duration = duration
-  }
-
-  if (onClose) {
-    props.onClose = onClose
-  }
-
-  new Yox(
+  const instance: any = new Yox(
     Yox.object.extend(
       {
         el: '#${prefix}notice-wrapper',
@@ -40,20 +32,37 @@ function addNotice(type: string,  data: Data, duration?: number, onClose?: Funct
       Notice
     )
   )
+
+  instance.on('hide.notice', function () {
+    if (onClose) {
+      onClose()
+    }
+    instance.destroy()
+  })
+
+  setTimeout(
+    function () {
+      if (instance.$el) {
+        instance.show()
+      }
+    },
+    300
+  )
+
 }
 
 export default {
-  success(props: Data, duration?: number, onClose?: Function) {
-    addNotice('success', props, duration, onClose)
+  success(props: Data, onClose?: Function) {
+    addNotice('success', props, onClose)
   },
-  info(props: Data, duration?: number, onClose?: Function) {
-    addNotice('info', props, duration, onClose)
+  info(props: Data, onClose?: Function) {
+    addNotice('info', props, onClose)
   },
-  warning(props: Data, duration?: number, onClose?: Function) {
-    addNotice('warning', props, duration, onClose)
+  warning(props: Data, onClose?: Function) {
+    addNotice('warning', props, onClose)
   },
-  error(props: Data, duration?: number, onClose?: Function) {
-    addNotice('error', props, duration, onClose)
+  error(props: Data, onClose?: Function) {
+    addNotice('error', props, onClose)
   },
   config(options: Data) {
     Yox.object.extend(config, options)

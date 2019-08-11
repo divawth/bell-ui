@@ -93,28 +93,21 @@ export default Yox.define({
 
         list.style.cssText = cssText
 
-        if (supportTransform) {
-          setTimeout(
-            function () {
-              Yox.dom.addClass(element, CLASS_FADE)
-            },
-            20
-          )
-        }
+        setTimeout(
+          function () {
+            Yox.dom.addClass(element, CLASS_FADE)
+          },
+          20
+        )
       }
       else {
-        if (supportTransform) {
-          Yox.dom.removeClass(element, CLASS_FADE)
-          onTransitionEnd(
-            list,
-            function () {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
-            }
-          )
-        }
-        else {
-          Yox.dom.removeClass(element, CLASS_VISIBLE)
-        }
+        Yox.dom.removeClass(element, CLASS_FADE)
+        onTransitionEnd(
+          list,
+          function () {
+            Yox.dom.removeClass(element, CLASS_VISIBLE)
+          }
+        )
       }
     }
   },

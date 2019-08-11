@@ -59,32 +59,32 @@ export default Yox.define({
 
   afterMount() {
 
-    if (!supportTransform) {
+    const me = this
+
+    if (supportTransform) {
+      me.watch(
+        'text',
+        function () {
+          me.nextTick(function () {
+
+            const element = me.$refs && me.$refs.text as HTMLElement
+            if (!element) {
+              return
+            }
+
+            const scale = element.offsetWidth
+              ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
+              : 1
+
+            element.style.transform = `scale(${Math.min(scale, 1)}) translateX(-50%)`
+
+          })
+        },
+        TRUE
+      )
       return
     }
 
-    const me = this
-
-    me.watch(
-      'text',
-      function () {
-        me.nextTick(function () {
-
-          const element = me.$refs && me.$refs.textSpan as HTMLElement
-          if (!element) {
-            return
-          }
-
-          const scale = element.offsetWidth
-            ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
-            : 1
-
-          element.style.transform = `scale(${Math.min(scale, 1)}) translateX(-50%)`
-
-        })
-      },
-      TRUE
-    )
 
   }
 })

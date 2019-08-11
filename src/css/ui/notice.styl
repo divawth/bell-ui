@@ -2,7 +2,7 @@
   position fixed
   right 0
   top $notice-wrapper-top
-  z-index $zindex-notification
+  z-index $zindex-notice
 
 {$selector-notice}
   position relative
@@ -14,7 +14,8 @@
   box-sizing border-box
   box-shadow $notice-shadow
   background-color $brand-bg
-  transition opacity .3s
+  transform translateX(100%)
+  transition opacity .3s, transform .3s
 
   ui-notice()
 
@@ -31,6 +32,7 @@
 
 {$selector-notice-visible}
   opacity 1
+  transform translateX(0)
 
 {$selector-notice-title}
   ui-ellipsis()

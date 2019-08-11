@@ -200,10 +200,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$notice.info(content, duration, onClose)
-- this.$notice.success(content, duration, onClose)
-- this.$notice.warning(content, duration, onClose)
-- this.$notice.error(content, duration, onClose)
+- this.$notice.info(content, onClose)
+- this.$notice.success(content, onClose)
+- this.$notice.warning(content, onClose)
+- this.$notice.error(content, onClose)
 
 > Props
 
@@ -211,8 +211,8 @@ API
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
 title | 自定义标题 | string | - | -
-top | 提示组件距离顶端的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
+right | 提示组件距离右侧的距离，单位像素 | number | - | 15
+duration | 默认自动关闭的延时，单位毫秒 | number | - | 4500
 
 > Events
 

@@ -3,8 +3,8 @@
   type="{{type}}"
   icon="{{icon}}"
   closable="{{closable}}"
-  onClose="{{closeAlert}}"
   className="${prefix}message"
+  on-close="closeAlert()"
 >
   {{content}}
 </Alert>

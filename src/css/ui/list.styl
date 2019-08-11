@@ -1,5 +1,10 @@
+{$selector-list}
+  color $brand-text
+  overflow-y auto
+  ui-list()
+
 {$selector-list-header}
-  font-size $list-header-font-size
+  font-size $ui-font-size
   line-height $ui-single-line-height
 
 {$selector-list-item}
@@ -28,17 +33,12 @@
   top 50%
   transform translateY(-50%)
 
-{$selector-list}
-  color $brand-text
-  overflow-y auto
-  ui-list()
-
 {$selector-list-empty-desc}
   text-align center
 
 {$selector-list-bordered}
   border 1px solid $brand-border
-  border-radius $list-border-radius
+  border-radius $radius-base
 
   > {$selector-list-header}
     background-color $list-header-bg-color
