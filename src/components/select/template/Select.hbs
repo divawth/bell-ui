@@ -1,15 +1,20 @@
 <div
 class="${prefix}select
 {{#if size}} ${prefix}select-{{size}}{{/if}}
+
 {{#if disabled}} ${prefix}select-disabled
 {{else}} ${prefix}select-enabled
 {{/if}}
+
 {{#if placement}} ${prefix}select-{{placement}}{{/if}}
 {{#if multiple}} ${prefix}select-multiple{{/if}}
 {{#if clearable}} ${prefix}select-clearable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if width || style}}
+  style="{{#if width}}width: {{width}}px{{/if}};
+  {{#if style}}{{style}}{{/if}}"
+{{/if}}
 >
 
   <div

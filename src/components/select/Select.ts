@@ -5,7 +5,6 @@ import template from './template/Select.hbs'
 import {
   oneOf,
   contains,
-  supportTransform,
   onTransitionEnd,
 } from '../util'
 
@@ -16,8 +15,8 @@ import {
   DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMERIC,
   RAW_CLICK,
-  RAW_EVENT_KEYDOWN,
   RAW_ARRAY,
   RAW_NUMBER,
   RAW_SIZE_COMMON,
@@ -36,14 +35,11 @@ export default Yox.define({
   name: '${prefix}select',
 
   propTypes: {
-    clearable: {
-      type: RAW_BOOLEAN,
-    },
     defaultText: {
       type: RAW_STRING,
     },
     value: {
-      type: [ RAW_ARRAY, RAW_STRING, RAW_NUMBER ],
+      type: [RAW_ARRAY, RAW_STRING, RAW_NUMBER],
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
@@ -51,6 +47,7 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     placement: {
       type: oneOf([RAW_TOP, RAW_BOTTOM]),
@@ -58,9 +55,17 @@ export default Yox.define({
     },
     multiple: {
       type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    clearable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     prefix: {
       type: RAW_STRING,
+    },
+    width: {
+      type: RAW_NUMERIC,
     },
     className: {
       type: RAW_STRING,
@@ -72,9 +77,7 @@ export default Yox.define({
 
   data() {
     return {
-      count: 0,
       visible: FALSE,
-      hoverIndex: 0,
       selectedOptions: [],
     }
   },
@@ -92,28 +95,21 @@ export default Yox.define({
       const list = me.$refs.list as HTMLElement
       if (visible) {
         Yox.dom.addClass(element, CLASS_VISIBLE)
-        if (supportTransform) {
-          setTimeout(
-            function () {
-              Yox.dom.addClass(element, CLASS_FADE)
-            },
-            20
-          )
-        }
+        setTimeout(
+          function () {
+            Yox.dom.addClass(element, CLASS_FADE)
+          },
+          20
+        )
       }
       else {
-        if (supportTransform) {
-          Yox.dom.removeClass(element, CLASS_FADE)
-          onTransitionEnd(
-            list,
-            function () {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
-            }
-          )
-        }
-        else {
-          Yox.dom.removeClass(element, CLASS_VISIBLE)
-        }
+        Yox.dom.removeClass(element, CLASS_FADE)
+        onTransitionEnd(
+          list,
+          function () {
+            Yox.dom.removeClass(element, CLASS_VISIBLE)
+          }
+        )
       }
     }
   },
@@ -122,7 +118,6 @@ export default Yox.define({
 
     'add.selectOption': function (event) {
       event.stop()
-      this.increase('count')
       const { target } = event
       if (target.get('isSelected')) {
         this.notifyOptionSelected(target)
@@ -131,7 +126,6 @@ export default Yox.define({
 
     'remove.selectOption': function (event) {
       event.stop()
-      this.decrease('count')
       const { target } = event
       if (target.get('isSelected')) {
         this.notifyOptionUnselected(target)
@@ -221,7 +215,7 @@ export default Yox.define({
 
       const me = this
       const value = option.get('value')
-      const text = option.get('text')
+      const text = (option as any).getText()
 
       if (me.get('multiple')) {
 
@@ -260,7 +254,10 @@ export default Yox.define({
 
       if (me.get('multiple')) {
 
-        let selectedIndex = Yox.is.array(values) ? Yox.array.indexOf(values, value) : -1
+        const selectedIndex = Yox.is.array(values)
+          ? Yox.array.indexOf(values, value)
+          : -1
+
         if (selectedIndex < 0) {
           return
         }
@@ -282,51 +279,10 @@ export default Yox.define({
 
     },
 
-    decreaseHoverIndex() {
-      let hoverIndex = this.get('hoverIndex')
-      hoverIndex = hoverIndex <= 0 ? (this.get('count') - 1) : hoverIndex - 1
-      this.set({
-        hoverIndex: hoverIndex
-      })
-      this.fire(
-        'optionHoveredChange',
-        {
-          index: hoverIndex
-        },
-        TRUE
-      )
-    },
-
-    increaseHoverIndex() {
-      let hoverIndex = this.get('hoverIndex')
-      hoverIndex = hoverIndex >= (this.get('count') - 1) ? 0 : hoverIndex + 1
-      this.set({
-        hoverIndex: hoverIndex
-      })
-
-      this.fire(
-        'optionHoveredChange',
-        {
-          index: hoverIndex
-        },
-        TRUE
-      )
-    },
-
-    selectOption() {
-      this.fire(
-        'optionHoveredChange',
-        {
-          index: this.get('hoverIndex'),
-          selected: TRUE
-        },
-        TRUE
-      )
-    }
-
   },
 
   afterMount() {
+
     const me = this
 
     const onClick = function (event: CustomEventInterface) {
@@ -338,41 +294,13 @@ export default Yox.define({
       if (contains(element, target)) {
         return
       }
-      me.set({
-        visible: FALSE,
-      })
-    }
-
-    const onKeydown = function (event: CustomEventInterface) {
-      if (!me.get('visible')) {
-        return
-      }
-      switch ((event.originalEvent as KeyboardEvent).keyCode) {
-        case 40:
-          event.prevent()
-          me.increaseHoverIndex()
-          break
-
-        case 38:
-          event.prevent()
-          me.decreaseHoverIndex()
-          break
-
-        case 13:
-          me.selectOption()
-          break
-      }
+      me.set('visible', FALSE)
     }
 
     Yox.dom.on(
       DOCUMENT,
       RAW_CLICK,
       onClick
-    )
-    Yox.dom.on(
-      DOCUMENT,
-      RAW_EVENT_KEYDOWN,
-      onKeydown
     )
 
     me.on(
@@ -383,11 +311,6 @@ export default Yox.define({
             DOCUMENT,
             RAW_CLICK,
             onClick
-          )
-          Yox.dom.off(
-            DOCUMENT,
-            RAW_EVENT_KEYDOWN,
-            onKeydown
           )
         }
       }

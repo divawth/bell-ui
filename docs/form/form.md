@@ -83,10 +83,10 @@ export default {
   <div>
     <Form model="formItem" labelWidth="80">
       <FormItem label="Input" required>
-        <Input model="formItem.input" placeholder="Enter something..."></Input>
+        <Input model="formItem.input" width="160" placeholder="Enter something..." />
       </FormItem>
       <FormItem label="Select">
-        <Select model="formItem.select">
+        <Select model="formItem.select" width="160">
           <Option value="beijing">New York</Option>
           <Option value="shanghai">London</Option>
           <Option value="shenzhen">Sydney</Option>

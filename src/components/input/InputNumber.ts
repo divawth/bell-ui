@@ -68,6 +68,9 @@ export default Yox.define({
     placeholder: {
       type: RAW_STRING,
     },
+    width: {
+      type: RAW_NUMERIC,
+    },
     className: {
       type: RAW_STRING,
     },

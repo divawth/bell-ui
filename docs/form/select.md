@@ -6,13 +6,13 @@ export default {
     <div>
       <Select model="value" on-change="change()">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
       </Select>
       <p>
-          value: {{value}}
+        value: {{value}}
       </p>
     </div>
   `,
@@ -55,7 +55,7 @@ export default {
     <div>
       <Select size="large" model="value">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -63,7 +63,7 @@ export default {
       <br>
       <Select model="value">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -71,7 +71,7 @@ export default {
       <br>
       <Select model="value" size="small">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -114,68 +114,6 @@ export default {
 }
 ```
 
-> 设置 type
-
-```js
-export default {
-  template: `
-    <div>
-      <Select type="success" model="value">
-        {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
-            {{text}}
-          </Option>
-        {{/each}}
-      </Select>
-      <br>
-      <Select type="warning" model="value">
-        {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
-            {{text}}
-          </Option>
-        {{/each}}
-      </Select>
-      <br>
-      <Select type="error" model="value" size="small">
-        {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
-            {{text}}
-          </Option>
-        {{/each}}
-      </Select>
-      <style>
-        .bell-select {
-          margin-bottom: 20px;
-        }
-      </style>
-    </div>
-  `,
-  data: function () {
-    return {
-      value: 1,
-      list: [
-        {
-          text: '深圳',
-          value: 1
-        },
-        {
-          text: '广州广州广州广州广州广州广州广州广州广州',
-          value: 2
-        },
-        {
-          text: '上海',
-          value: 3
-        },
-        {
-          text: '北京',
-          value: 4
-        }
-      ]
-    }
-  }
-}
-```
-
 > 使用 disabled 禁用状态
 
 ```js
@@ -183,7 +121,7 @@ export default {
   template: `
     <Select disabled model="value">
       {{#each list:index}}
-        <Option index="{{index}}" value="{{value}}" text="{{text}}">
+        <Option value="{{value}}">
           {{text}}
         </Option>
       {{/each}}
@@ -224,7 +162,7 @@ export default {
     <div style="margin-top: 200px;">
       <Select placement="top" size="large" model="value">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -232,7 +170,7 @@ export default {
       <br>
       <Select placement="top" model="value">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -240,7 +178,7 @@ export default {
       <br>
       <Select placement="top" model="value" size="small">
         {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -285,7 +223,7 @@ export default {
       <div>
         <Select multiple model="value" on-change="change()">
           {{#each list:index}}
-            <Option index="{{index}}" value="{{this.value}}" text="{{this.text}}">
+            <Option value="{{this.value}}" text="{{this.text}}">
               {{text}}
               {{#if isCurrentValue(this.value)}}
                 <Icon style="float: right;" type="md" name="checked" />
@@ -350,12 +288,16 @@ export default {
     <Select size="large" model="value">
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
     </Select>
@@ -429,8 +371,8 @@ export default {
   template: `
     <div>
       <Select clearable model="value" on-change="change()">
-        {{#each list:index}}
-          <Option index="{{index}}" value="{{value}}" text="{{text}}">
+        {{#each list}}
+          <Option value="{{value}}">
             {{text}}
           </Option>
         {{/each}}
@@ -480,27 +422,40 @@ export default {
     <Select model="value" prefix="home">
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
     </Select>
     <Select model="value">
       <template slot="prefix">
-        <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="small" style="vertical-align:middle" />
+        <Avatar
+          shape="circle"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          size="small"
+          style="vertical-align:middle"
+        />
       </template>
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}" text="{{label}}">{{ label }}</Option>
+          <Option value="{{value}}">
+            {{ label }}
+          </Option>
         {{/each}}
       </OptionGroup>
     </Select>
@@ -552,11 +507,11 @@ value | 选中值 | string | - | -
 multiple | 是否支持多选 | boolean | - | -
 disabled | 是否禁用 | boolean | - | false
 clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
-size | 大小 | string | small, large, - | -
-type | 风格 | string | success, error 等 | -
-placement | 弹窗的展开方向 | string | bottom 和 top | -
+size | 大小 | string | default, small, large | default
+placement | 弹窗的展开方向 | string | bottom, top | -
 defaultText | 选择框默认文字 | string | - | -
 prefix | 自定义 Select 内头部图标 | string | - | -
+width | 选择框宽度 | string, number | -
 
 > Select Events
 
@@ -569,8 +524,6 @@ clear | 清空按钮时候触发 | value
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-index | 当前值的索引 | string, number | - | -
 value | 当前值 | string, number | - | -
 text | 选中时展示的文本 | string | - | -
 disabled | 是否禁用 | boolean | - | false
-

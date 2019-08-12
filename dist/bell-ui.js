@@ -212,13 +212,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input"+(a("size",$2)?(" bell-input-"+y(a("size",$2))):"")+(a("status",$2)?(" bell-input-"+y(a("status",$2))):"")+(a("clearable",$2)?" bell-input-clearable":"")+(a("disabled",$2)?" bell-input-disabled":" bell-input-enabled")+(a("isFocus",$2)?" bell-input-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["prepend"]))?(q("div",function(){g("className","bell-input-prepend")},function(){s("$slot_prepend")})):p(),q("div",function(){g("className","bell-input-content"+((d(a("hasSlot",$2),["prepend"]))?" bell-input-with-prepend":"")+(((d(a("hasSlot",$2),["append"]))||(a("search",$2)&&a("enterButton",$2)))?" bell-input-with-append":""))},function(){(a("type",$2)===a("TEXT_TYPE_TEXTAREA",$2))?(q("textarea",function(){g("className","bell-textarea-el"+(a("autoSize",$2)?" bell-input-autosize":"")),k(a("value",$2,$0,$2,$2)),a("rows",$2)?(g("rows",j("rows",a("rows",$2,$0,$2,$2),2))):"",a("wrap",$2)?(g("wrap",j("wrap",a("wrap",$2,$0,$2,$2),1))):"",a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("readOnly",$2)?g("readOnly",$2):"",a("spellCheck",$2)?g("spellcheck",$2):"",a("disabled",$2)?g("disabled",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus"))),g("style.cssText",j("style.cssText",a("textareaStyle",$2,$0,$2,$2),1))})):((q("input",function(){g("type",j("type",a("currentType",$2,$0,$2,$2),1)),k(a("value",$2,$0,$2,$2)),g("className","bell-input-el"+(((d(a("hasSlot",$2),["prefix"]))||a("prefix",$2))?" bell-input-el-with-prefix":"")+((((((d(a("hasSlot",$2),["suffix"]))||a("suffix",$2))||a("secure",$2))||a("clearable",$2))||(a("search",$2)&&(!a("enterButton",$2))))?" bell-input-el-with-suffix":"")),a("maxLength",$2)?(g("maxLength",j("maxLength",a("maxLength",$2,$0,$2,$2),2))):"",a("wrap",$2)?(g("wrap",j("wrap",a("wrap",$2,$0,$2,$2),1))):"",a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("readOnly",$2)?g("readOnly",$2):"",a("spellCheck",$2)?g("spellcheck",$2):"",a("disabled",$2)?g("disabled",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))},$0,$0,$0,$0,$0,$0,$0,"input"),((d(a("hasSlot",$2),["prefix"]))||a("prefix",$2))?(q("div",function(){g("className","bell-input-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2)))})})})):p(),((d(a("hasSlot",$2),["suffix"]))||a("suffix",$2))?(q("div",function(){g("className","bell-input-suffix")},function(){s("$slot_suffix",function(){r("Icon",function(){f("name",j("name",a("suffix",$2,$0,$2,$2)))})})})):(a("secure",$2)?(q("div",function(){g("className","bell-input-suffix"),l("click","event.click",$0,"toggle('isSecure')","toggle",function(z){return ["isSecure"]})},function(){r("Icon",function(){f("name",a("isSecure",$2)?"eye":"eye-off")})})):(a("clearable",$2)?(q("div",function(){g("className","bell-input-suffix bell-input-clear"),l("click","event.click",$0,"handleClearClick()","handleClearClick")},function(){r("Icon",function(){f("name","close-circle")})})):((a("search",$2)&&(!a("enterButton",$2)))?(q("div",function(){g("className","bell-input-suffix"),l("click","event.click",$0,"handleSearchClick()","handleSearchClick")},function(){r("Icon",function(){f("name","search")})})):p())))))}),(d(a("hasSlot",$2),["append"]))?(q("div",function(){g("className","bell-input-append")},function(){s("$slot_append")})):((a("search",$2)&&a("enterButton",$2))?(q("div",function(){g("className","bell-input-append bell-input-append-button"),l("click","event.click",$0,"handleSearchClick()","handleSearchClick")},function(){r("Button",function(){f("type","primary")},{"$slot_children":function(){(d(a("isBoolean",$2),[a("enterButton",$2)]))?(r("Icon",function(){f("name","search")})):(e(y(a("enterButton",$2))))}})})):p())})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input"+(a("size",$2)?(" bell-input-"+y(a("size",$2))):"")+(a("status",$2)?(" bell-input-"+y(a("status",$2))):"")+(a("clearable",$2)?" bell-input-clearable":"")+(a("disabled",$2)?" bell-input-disabled":" bell-input-enabled")+(a("isFocus",$2)?" bell-input-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&g("style.cssText",(a("width",$2)?("width: "+y(a("width",$2))+"px"):"")+";"+(a("style",$2)?(y(a("style",$2))):""))},function(){(d(a("hasSlot",$2),["prepend"]))?(q("div",function(){g("className","bell-input-prepend")},function(){s("$slot_prepend")})):p(),q("div",function(){g("className","bell-input-content"+((d(a("hasSlot",$2),["prepend"]))?" bell-input-with-prepend":"")+(((d(a("hasSlot",$2),["append"]))||(a("search",$2)&&a("enterButton",$2)))?" bell-input-with-append":""))},function(){(a("type",$2)===a("TEXT_TYPE_TEXTAREA",$2))?(q("textarea",function(){g("className","bell-textarea-el"+(a("autoSize",$2)?" bell-input-autosize":"")),k(a("value",$2,$0,$2,$2)),a("rows",$2)?(g("rows",j("rows",a("rows",$2,$0,$2,$2),2))):"",a("wrap",$2)?(g("wrap",j("wrap",a("wrap",$2,$0,$2,$2),1))):"",a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("readOnly",$2)?g("readOnly",$2):"",a("spellCheck",$2)?g("spellcheck",$2):"",a("disabled",$2)?g("disabled",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus"))),g("style.cssText",j("style.cssText",a("textareaStyle",$2,$0,$2,$2),1))})):((q("input",function(){g("type",j("type",a("currentType",$2,$0,$2,$2),1)),k(a("value",$2,$0,$2,$2)),g("className","bell-input-el"+(((d(a("hasSlot",$2),["prefix"]))||a("prefix",$2))?" bell-input-el-with-prefix":"")+((((((d(a("hasSlot",$2),["suffix"]))||a("suffix",$2))||a("secure",$2))||a("clearable",$2))||(a("search",$2)&&(!a("enterButton",$2))))?" bell-input-el-with-suffix":"")),a("maxLength",$2)?(g("maxLength",j("maxLength",a("maxLength",$2,$0,$2,$2),2))):"",a("wrap",$2)?(g("wrap",j("wrap",a("wrap",$2,$0,$2,$2),1))):"",a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("readOnly",$2)?g("readOnly",$2):"",a("spellCheck",$2)?g("spellcheck",$2):"",a("disabled",$2)?g("disabled",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))},$0,$0,$0,$0,$0,$0,$0,"input"),((d(a("hasSlot",$2),["prefix"]))||a("prefix",$2))?(q("div",function(){g("className","bell-input-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2)))})})})):p(),((d(a("hasSlot",$2),["suffix"]))||a("suffix",$2))?(q("div",function(){g("className","bell-input-suffix")},function(){s("$slot_suffix",function(){r("Icon",function(){f("name",j("name",a("suffix",$2,$0,$2,$2)))})})})):(a("secure",$2)?(q("div",function(){g("className","bell-input-suffix"),l("click","event.click",$0,"toggle('isSecure')","toggle",function(z){return ["isSecure"]})},function(){r("Icon",function(){f("name",a("isSecure",$2)?"eye":"eye-off")})})):(a("clearable",$2)?(q("div",function(){g("className","bell-input-suffix bell-input-clear"),l("click","event.click",$0,"handleClearClick()","handleClearClick")},function(){r("Icon",function(){f("name","close-circle")})})):((a("search",$2)&&(!a("enterButton",$2)))?(q("div",function(){g("className","bell-input-suffix"),l("click","event.click",$0,"handleSearchClick()","handleSearchClick")},function(){r("Icon",function(){f("name","search")})})):p())))))}),(d(a("hasSlot",$2),["append"]))?(q("div",function(){g("className","bell-input-append")},function(){s("$slot_append")})):((a("search",$2)&&a("enterButton",$2))?(q("div",function(){g("className","bell-input-append bell-input-append-button"),l("click","event.click",$0,"handleSearchClick()","handleSearchClick")},function(){r("Button",function(){f("type","primary")},{"$slot_children":function(){(d(a("isBoolean",$2),[a("enterButton",$2)]))?(r("Icon",function(){f("name","search")})):(e(y(a("enterButton",$2))))}})})):p())})};
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input-number"+(a("type",$2)?(" bell-input-number-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-input-number-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-input-number-disabled":" bell-input-number-enabled")+(a("isFocus",$2)?" bell-input-number-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("input",function(){g("type","text"),g("className","bell-input-number-el"),k(a("computedValue",$2,$0,$2,$2)),a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("disabled",$2)?g("disabled",$2):"",(a("readOnly",$2)||(!a("editable",$2)))?g("readOnly",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))}),(!a("disabled",$2)&&(!a("readOnly",$2)))?(q("div",function(){g("className","bell-input-number-actions")},function(){q("div",function(){a("upDisabled",$2)?g("className","bell-input-number-up bell-input-number-up-disabled"):((g("className","bell-input-number-up bell-input-number-up-enabled"),l("click","event.click",$0,"up()","up")))},function(){r("Icon",function(){f("name","arrow-up"),f("size","0")})}),q("div",function(){a("downDisabled",$2)?g("className","bell-input-number-down bell-input-number-down-disabled"):((g("className","bell-input-number-down bell-input-number-down-enabled"),l("click","event.click",$0,"down()","down")))},function(){r("Icon",function(){f("name","arrow-down"),f("size","0")})})})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-input-number"+(a("type",$2)?(" bell-input-number-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-input-number-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-input-number-disabled":" bell-input-number-enabled")+(a("isFocus",$2)?" bell-input-number-focus":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&g("style.cssText",(a("width",$2)?("width: "+y(a("width",$2))+"px"):"")+";"+(a("style",$2)?(y(a("style",$2))):""))},function(){q("input",function(){g("type","text"),g("className","bell-input-number-el"),k(a("computedValue",$2,$0,$2,$2)),a("placeholder",$2)?(g("placeholder",j("placeholder",a("placeholder",$2,$0,$2,$2),1))):"",a("disabled",$2)?g("disabled",$2):"",(a("readOnly",$2)||(!a("editable",$2)))?g("readOnly",$2):((l("blur","event.blur",$0,"handleBlur()","handleBlur"),l("focus","event.focus",$0,"handleFocus()","handleFocus")))}),(!a("disabled",$2)&&(!a("readOnly",$2)))?(q("div",function(){g("className","bell-input-number-actions")},function(){q("div",function(){a("upDisabled",$2)?g("className","bell-input-number-up bell-input-number-up-disabled"):((g("className","bell-input-number-up bell-input-number-up-enabled"),l("click","event.click",$0,"up()","up")))},function(){r("Icon",function(){f("name","arrow-up"),f("size","0")})}),q("div",function(){a("downDisabled",$2)?g("className","bell-input-number-down bell-input-number-down-disabled"):((g("className","bell-input-number-down bell-input-number-down-enabled"),l("click","event.click",$0,"down()","down")))},function(){r("Icon",function(){f("name","arrow-down"),f("size","0")})})})):p()})};
 
 /***/ }),
 /* 21 */
@@ -254,13 +254,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-select-disabled":" bell-select-enabled")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-select-button"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2))),f("size","0"),f("className","bell-select-prefix-icon")})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("defaultText",$2)||"请选择..."))):(q("div",function(){g("className","bell-select-value")},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("size","0"),f("className","bell-select-arrow-icon")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","0"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("div",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"list")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-select"+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("disabled",$2)?" bell-select-disabled":" bell-select-enabled")+(a("placement",$2)?(" bell-select-"+y(a("placement",$2))):"")+(a("multiple",$2)?" bell-select-multiple":"")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&g("style.cssText",(a("width",$2)?("width: "+y(a("width",$2))+"px"):"")+";"+(a("style",$2)?(y(a("style",$2))):""))},function(){q("div",function(){g("className","bell-select-button"),(!a("disabled",$2))?(l("click","event.click",$0,"handleToggleClick()","handleToggleClick")):""},function(){q("input",function(){g("type","hidden"),k(a("value",$2,$0,$2,$2))}),(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2))),f("size","0"),f("className","bell-select-prefix-icon")})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("defaultText",$2)||"请选择..."))):(q("div",function(){g("className","bell-select-value")},function(){a("multiple",$2)?(v(function(){r("Tag",function(){f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")):(e(y(a("selectedOptions.0.text",$2))))})),r("Icon",function(){f("name","arrow-down"),f("size","0"),f("className","bell-select-arrow-icon")}),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle"),f("size","0"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p()}),q("div",function(){g("className","bell-dropdown-list")},function(){q("div",function(){g("className","bell-dropdown-menu")},function(){s("$slot_children")})},$0,$0,$0,$0,$0,$0,"list")})};
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown-item"+(a("disabled",$2)?" bell-dropdown-item-disabled":" bell-dropdown-item-enabled")+(a("isHover",$2)?" bell-dropdown-item-hover":"")+(a("isSelected",$2)?" bell-dropdown-item-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.selectOption","click.selectOption")},function(){s("$slot_children",function(){e(y(a("text",$2)))})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dropdown-item"+(a("disabled",$2)?" bell-dropdown-item-disabled":" bell-dropdown-item-enabled")+(a("isSelected",$2)?" bell-dropdown-item-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("disabled",$2))&&m("click","event.click",$0,"click.selectOption","click.selectOption")},function(){s("$slot_children",function(){e(y(a("text",$2)))})})};
 
 /***/ }),
 /* 28 */
@@ -1823,6 +1823,9 @@ var ROW_HEIGHT = 22;
         maxLength: {
             type: RAW_NUMERIC,
         },
+        width: {
+            type: RAW_NUMERIC,
+        },
         style: {
             type: RAW_STRING,
         },
@@ -1986,6 +1989,9 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         },
         placeholder: {
             type: RAW_STRING,
+        },
+        width: {
+            type: RAW_NUMERIC,
         },
         className: {
             type: RAW_STRING,
@@ -2511,9 +2517,6 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
     template: Select_default.a,
     name: 'bell-select',
     propTypes: {
-        clearable: {
-            type: RAW_BOOLEAN,
-        },
         defaultText: {
             type: RAW_STRING,
         },
@@ -2526,6 +2529,7 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
         },
         disabled: {
             type: RAW_BOOLEAN,
+            value: FALSE,
         },
         placement: {
             type: oneOf([RAW_TOP, RAW_BOTTOM]),
@@ -2533,9 +2537,17 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
         },
         multiple: {
             type: RAW_BOOLEAN,
+            value: FALSE,
+        },
+        clearable: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
         },
         prefix: {
             type: RAW_STRING,
+        },
+        width: {
+            type: RAW_NUMERIC,
         },
         className: {
             type: RAW_STRING,
@@ -2546,9 +2558,7 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
     },
     data: function () {
         return {
-            count: 0,
             visible: FALSE,
-            hoverIndex: 0,
             selectedOptions: [],
         };
     },
@@ -2562,29 +2572,21 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
             var list = me.$refs.list;
             if (visible) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Select_CLASS_VISIBLE);
-                if (supportTransform) {
-                    setTimeout(function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Select_CLASS_FADE);
-                    }, 20);
-                }
+                setTimeout(function () {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Select_CLASS_FADE);
+                }, 20);
             }
             else {
-                if (supportTransform) {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_FADE);
-                    onTransitionEnd(list, function () {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_VISIBLE);
-                    });
-                }
-                else {
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_FADE);
+                onTransitionEnd(list, function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Select_CLASS_VISIBLE);
-                }
+                });
             }
         }
     },
     events: {
         'add.selectOption': function (event) {
             event.stop();
-            this.increase('count');
             var target = event.target;
             if (target.get('isSelected')) {
                 this.notifyOptionSelected(target);
@@ -2592,7 +2594,6 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
         },
         'remove.selectOption': function (event) {
             event.stop();
-            this.decrease('count');
             var target = event.target;
             if (target.get('isSelected')) {
                 this.notifyOptionUnselected(target);
@@ -2655,7 +2656,7 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
         notifyOptionSelected: function (option) {
             var me = this;
             var value = option.get('value');
-            var text = option.get('text');
+            var text = option.getText();
             if (me.get('multiple')) {
                 var values = me.get('value');
                 if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values)
@@ -2679,7 +2680,9 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
             var values = me.get('value');
             var value = option.get('value');
             if (me.get('multiple')) {
-                var selectedIndex = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values) ? external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(values, value) : -1;
+                var selectedIndex = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values)
+                    ? external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(values, value)
+                    : -1;
                 if (selectedIndex < 0) {
                     return;
                 }
@@ -2694,32 +2697,6 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
                 me.set('selectedOptions', []);
             }
         },
-        decreaseHoverIndex: function () {
-            var hoverIndex = this.get('hoverIndex');
-            hoverIndex = hoverIndex <= 0 ? (this.get('count') - 1) : hoverIndex - 1;
-            this.set({
-                hoverIndex: hoverIndex
-            });
-            this.fire('optionHoveredChange', {
-                index: hoverIndex
-            }, TRUE);
-        },
-        increaseHoverIndex: function () {
-            var hoverIndex = this.get('hoverIndex');
-            hoverIndex = hoverIndex >= (this.get('count') - 1) ? 0 : hoverIndex + 1;
-            this.set({
-                hoverIndex: hoverIndex
-            });
-            this.fire('optionHoveredChange', {
-                index: hoverIndex
-            }, TRUE);
-        },
-        selectOption: function () {
-            this.fire('optionHoveredChange', {
-                index: this.get('hoverIndex'),
-                selected: TRUE
-            }, TRUE);
-        }
     },
     afterMount: function () {
         var me = this;
@@ -2732,34 +2709,12 @@ var Select_CLASS_FADE = 'bell-dropdown-fade';
             if (contains(element, target)) {
                 return;
             }
-            me.set({
-                visible: FALSE,
-            });
-        };
-        var onKeydown = function (event) {
-            if (!me.get('visible')) {
-                return;
-            }
-            switch (event.originalEvent.keyCode) {
-                case 40:
-                    event.prevent();
-                    me.increaseHoverIndex();
-                    break;
-                case 38:
-                    event.prevent();
-                    me.decreaseHoverIndex();
-                    break;
-                case 13:
-                    me.selectOption();
-                    break;
-            }
+            me.set('visible', FALSE);
         };
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick);
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
         me.on('beforeDestroy.hook', function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_CURRENT) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_CLICK, onClick);
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
             }
         });
     }
@@ -2782,10 +2737,6 @@ function isOptionSelected(values, value) {
 /* harmony default export */ var select_Option = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Option_default.a,
     propTypes: {
-        index: {
-            type: RAW_NUMERIC,
-            required: TRUE,
-        },
         value: {
             type: [RAW_STRING, RAW_NUMBER],
         },
@@ -2804,17 +2755,6 @@ function isOptionSelected(values, value) {
         }
     },
     events: {
-        optionHoveredChange: function (_, data) {
-            var isHover = data.index == this.get('index');
-            this.set({
-                isHover: isHover
-            });
-            if (isHover && !this.get('Option')) {
-                this.set({
-                    Option: data.selected
-                });
-            }
-        },
         'sync.select': function (_, data) {
             var value = data.value, selected = data.selected, multiple = data.multiple;
             if (value === this.get('value')) {
@@ -2831,8 +2771,12 @@ function isOptionSelected(values, value) {
             isSelected: select
                 ? isOptionSelected(select.get('value'), this.get('value'))
                 : FALSE,
-            isHover: FALSE,
         };
+    },
+    methods: {
+        getText: function () {
+            return this.get('text') || external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.text(this.$el);
+        }
     },
     afterMount: function () {
         this.fire('add.selectOption');

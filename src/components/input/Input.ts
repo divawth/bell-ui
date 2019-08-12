@@ -102,6 +102,9 @@ export default Yox.define({
     maxLength: {
       type: RAW_NUMERIC,
     },
+    width: {
+      type: RAW_NUMERIC,
+    },
     style: {
       type: RAW_STRING,
     },
