@@ -9,12 +9,29 @@ import DateYear from './components/DateYear'
 import { lpad, simplifyDate } from './function/util'
 import { contains, oneOf, isDate, isDateValue } from '../util'
 import template from './template/DatePicker.hbs'
-import { RAW_STRING, NULL, FALSE, RAW_PLACEMENT_ARRAY, RAW_ARRAY, RAW_BOOLEAN, RAW_BOTTOM_START, RAW_FUNCTION, RAW_SIZE_ARRAY, DOCUMENT, RAW_DATE } from '../constant'
+import {
+  NULL,
+  TRUE,
+  FALSE,
+  DOCUMENT,
+  RAW_STRING,
+  RAW_PLACEMENT_ARRAY,
+  RAW_ARRAY,
+  RAW_BOOLEAN,
+  RAW_BOTTOM_START,
+  RAW_FUNCTION,
+  RAW_SIZE_ARRAY,
+  RAW_DATE,
+  RAW_CLICK,
+} from '../constant'
+
 import { DateType, DateRangeType, ShortcutType } from './type'
 
 const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
 
 export default Yox.define({
+
+  template,
 
   propTypes: {
     type: {
@@ -70,10 +87,6 @@ export default Yox.define({
     }
   },
 
-  model: 'value',
-
-  template,
-
   data() {
     let formatTextStr = this.get('formatText') as string
     if (!this.get('formatText')) {
@@ -123,14 +136,14 @@ export default Yox.define({
   },
 
   events: {
-    'change.input': function (event: CustomEventInterface) {
+    'change.input': function (event) {
       event.stop()
     },
-    'clear.input': function (event: CustomEventInterface) {
-      this.fire('clear.datepicker', true)
+    'clear.input': function (event) {
+      this.fire('clear.datepicker', TRUE)
       event.stop()
     },
-    'change.date': function (event: CustomEventInterface, data: Data) {
+    'change.date': function (event, data) {
       if (data.selectedDates) {
         this.set({
           selectedDates: data.selectedDates
@@ -140,22 +153,22 @@ export default Yox.define({
       event.stop()
     },
 
-    'change.year': function (event: CustomEventInterface, date: DateType) {
+    'change.year': function (event, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.month': function (event: CustomEventInterface, date: DateType) {
+    'change.month': function (event, date: DateType) {
       this.dateChange(date)
       event.stop()
     },
 
-    'change.week': function (event: CustomEventInterface, date: DateRangeType) {
+    'change.week': function (event, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     },
 
-    'change.daterange': function (event: CustomEventInterface, date: DateRangeType) {
+    'change.daterange': function (event, date: DateRangeType) {
       this.dateRangeChange(date)
       event.stop()
     }
@@ -328,7 +341,7 @@ export default Yox.define({
     },
     clear() {
       this.set('formatDate', '')
-      this.fire('clear.datepicker', true)
+      this.fire('clear.datepicker', TRUE)
       this.fire('clear.datepicker')
       this.close()
     },
@@ -339,11 +352,12 @@ export default Yox.define({
   },
 
   afterMount() {
-    const me = this, doc = DOCUMENT
+
+    const me = this
 
     const onClick: Listener = function (event) {
-      let element = me.$el
-      let target = event.originalEvent.target as HTMLElement
+      const element = me.$el
+      const target = event.originalEvent.target as HTMLElement
       if (contains(element, target)) {
         return
       }
@@ -351,8 +365,8 @@ export default Yox.define({
     }
 
     Yox.dom.on(
-      doc,
-      'click',
+      DOCUMENT,
+      RAW_CLICK,
       onClick
     )
     me.on(
@@ -360,8 +374,8 @@ export default Yox.define({
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(
-            doc,
-            'click',
+            DOCUMENT,
+            RAW_CLICK,
             onClick
           )
         }

@@ -14,11 +14,11 @@ export interface DateType {
 
 export interface DateRangeType {
   start: DateType,
-  end: DateType
+  end: DateType,
 }
 
 export interface ShortcutType {
-  onClick: () => void,
   text: string,
-  value: () => Date | Date[]
+  value: () => Date | Date[],
+  onClick: () => void,
 }

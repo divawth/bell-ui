@@ -39,13 +39,12 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    labelPosition: {
+    labelAlign: {
       type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
       value: RAW_RIGHT,
     },
     labelWidth: {
       type: RAW_STRING,
-      value: 80,
     },
     showMessage: {
       type: RAW_BOOLEAN,
@@ -61,20 +60,19 @@ export default Yox.define({
 
   methods: {
     validate(callback: Function) {
-      let me = this
+      const me = this
       const validator = new Validator()
-      let errors = validator.validate(
+      const errors = validator.validate(
         me.get('value'),
         me.get('rules'),
         me.get('messages')
       )
-      let isValid = !errors
-      if (isValid) {
+      if (!errors) {
         callback(TRUE)
       }
       else {
         me.fire(
-          'validateError.form',
+          'validate.form',
           { errors },
           TRUE
         )

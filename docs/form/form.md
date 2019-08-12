@@ -110,9 +110,9 @@ export default {
         </CheckboxGroup>
       </FormItem>
       <FormItem label="Switch">
-        <Switch model="formItem.switch" size="large">
-          <span slot="open">On</span>
-          <span slot="close">Off</span>
+        <Switch model="formItem.switch">
+          <span slot="on">On</span>
+          <span slot="off">Off</span>
         </Switch>
       </FormItem>
       <FormItem label="Text">
@@ -143,7 +143,7 @@ export default {
 }
 ```
 
-> labelPosition
+> labelAlign
 
 ```js
 export default {
@@ -151,7 +151,7 @@ export default {
   height: 640,
   template: `
   <div>
-    <Form model="formLeft" labelPosition="left" labelWidth="100">
+    <Form model="formLeft" labelAlign="left" labelWidth="100">
       <FormItem label="Title">
         <Input model="formLeft.input1"></Input>
       </FormItem>
@@ -162,7 +162,7 @@ export default {
         <Input model="formLeft.input3"></Input>
       </FormItem>
     </Form>
-    <Form model="formRight" labelPosition="right" labelWidth="100">
+    <Form model="formRight" labelAlign="right" labelWidth="100">
       <FormItem label="Title">
         <Input model="formRight.input1"></Input>
       </FormItem>
@@ -173,7 +173,7 @@ export default {
         <Input model="formRight.input3"></Input>
       </FormItem>
     </Form>
-    <Form model="formTop" labelPosition="top">
+    <Form model="formTop" labelAlign="top">
       <FormItem label="Title">
         <Input model="formTop.input1"></Input>
       </FormItem>
@@ -244,7 +244,7 @@ model | 表单数据对象 | object | - | -
 rules | 表单验证规则 | object | - | -
 messages | 表单验证之后的错误提示 | object | - | -
 inline | 是否开启行内表单模式 | boolean | - | false
-labelPosition | 表单域标签的位置，可选值为 left、right、top | string | - | -
+labelAlign | 表单域标签的位置，可选值为 left、right、top | string | - | -
 labelWidth | 表单宽度 | number | - | -
 showMessage | 是否显示校验错误信息 | boolean | true | -
 

@@ -1,5 +1,5 @@
-import Yox from "yox"
-import { DateType } from "../type";
+import Yox from 'yox'
+import { DateType } from '../type'
 
 export function normalizeDate(date: Date) {
   return date.setHours(0, 0, 0, 0)

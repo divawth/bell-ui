@@ -1,4 +1,4 @@
-import { DateType } from "../type";
+import { DateType } from '../type';
 export declare function normalizeDate(date: Date): number;
 export declare function offsetSecond(date: Date | number, offset: number): Date;
 export declare function offsetMinute(date: Date | number, offset: number): Date;

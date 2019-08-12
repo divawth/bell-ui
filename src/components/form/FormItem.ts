@@ -7,10 +7,11 @@ import {
 } from '../util'
 
 import {
+  FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
-  FALSE,
 } from '../constant'
 
 export default Yox.define({
@@ -49,56 +50,51 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      rules: [],
-      messages: [],
-      defaultValue: '',
-      errorMsg: '',
-      isShowError: this.get('showMessage'),
+  data(options) {
 
-      width: this.get('labelWidth')
+    const form = findComponentUpward(options.parent, '${prefix}form')
+    const prop = this.get('prop')
+
+    let rules = form.get('rules')
+    let messages = form.get('messages')
+    if (rules && prop) {
+      rules = rules[ prop ]
+    }
+    if (messages && prop) {
+      messages = messages[ prop ]
+    }
+
+    let labelWidth = this.get('labelWidth')
+    let showMessage = this.get('showMessage')
+
+    if (labelWidth === UNDEFINED) {
+      labelWidth = form.get('labelWidth')
+    }
+    if (showMessage === UNDEFINED) {
+      showMessage = form.get('showMessage')
+    }
+
+    let required = this.get('required')
+    if (required === UNDEFINED && rules) {
+      required = rules.required
+    }
+
+    return {
+      rules: rules,
+      messages: messages,
+      defaultValue: form.get('value'),
+      errorMsg: '',
+      isShowError: showMessage,
+      isRequired: required,
+      width: labelWidth,
     }
   },
 
   events: {
-    'validateError.form': function (_, data) {
+    'validate.form': function (_, data) {
       let error = data.errors[ this.get('prop') ]
       this.set('errorMsg', error)
     }
-  },
-
-  afterMount() {
-    let form = findComponentUpward(this.$parent, '${prefix}form')
-    let prop = this.get('prop')
-    let rules = form.get('rules')
-    if (rules && prop) {
-      rules = form.get('rules')[ prop ]
-    }
-    let messages = form.get('messages')
-    if (messages && prop) {
-      messages = form.get('messages')[ prop ]
-    }
-    this.set({
-      'rules': rules,
-      'messages': messages,
-      'defaultValue': form.get('value')
-    })
-
-    if (!this.get('width')) {
-      this.set({
-        'width': form.get('labelWidth')
-      })
-    }
-    if (!this.get('isShowError')) {
-      this.set({
-        'isShowError': form.get('showMessage')
-      })
-    }
-    if (!this.get('required') && rules) {
-      this.set({
-        'required': rules[ 'required' ]
-      })
-    }
   }
+
 })

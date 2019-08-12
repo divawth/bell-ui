@@ -494,13 +494,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form"+(a("inline",$2)?" bell-form-inline":"")+(a("labelPosition",$2)?(" bell-form-label-"+y(a("labelPosition",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form"+(a("inline",$2)?" bell-form-inline":"")+(a("labelAlign",$2)?(" bell-form-label-"+y(a("labelAlign",$2))):"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["label"])))?((q("label",function(){g("className","bell-form-item-label"+(a("required",$2)?" bell-form-item-label-required":"")),a("labelFor",$2)?(g("htmlFor",j("htmlFor",a("labelFor",$2,$0,$2,$2),1))):"",a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})}),q("div",function(){g("className","bell-form-item-wrapper")},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))):((s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["label"])))?((q("label",function(){g("className","bell-form-item-label"+(a("isRequired",$2)?" bell-form-item-label-required":"")),a("labelFor",$2)?(g("htmlFor",j("htmlFor",a("labelFor",$2,$0,$2,$2),1))):"",a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})}),q("div",function(){g("className","bell-form-item-wrapper")},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))):(q("div",function(){a("width",$2)?(g("style.cssText","margin-left: "+y(a("width",$2))+"px;")):""},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))})};
 
 /***/ }),
 /* 68 */
@@ -4896,6 +4896,7 @@ var DatePicker_default = /*#__PURE__*/__webpack_require__.n(DatePicker);
 
 var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
 /* harmony default export */ var datepicker_DatePicker = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: DatePicker_default.a,
     propTypes: {
         type: {
             type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
@@ -4949,8 +4950,6 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             type: RAW_STRING
         }
     },
-    model: 'value',
-    template: DatePicker_default.a,
     data: function () {
         var formatTextStr = this.get('formatText');
         if (!this.get('formatText')) {
@@ -5000,7 +4999,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             event.stop();
         },
         'clear.input': function (event) {
-            this.fire('clear.datepicker', true);
+            this.fire('clear.datepicker', TRUE);
             event.stop();
         },
         'change.date': function (event, data) {
@@ -5169,7 +5168,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
         },
         clear: function () {
             this.set('formatDate', '');
-            this.fire('clear.datepicker', true);
+            this.fire('clear.datepicker', TRUE);
             this.fire('clear.datepicker');
             this.close();
         },
@@ -5179,7 +5178,7 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
         }
     },
     afterMount: function () {
-        var me = this, doc = DOCUMENT;
+        var me = this;
         var onClick = function (event) {
             var element = me.$el;
             var target = event.originalEvent.target;
@@ -5188,10 +5187,10 @@ var DAY_MAP = ['日', '一', '二', '三', '四', '五', '六'];
             }
             me.close();
         };
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(doc, 'click', onClick);
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick);
         me.on('beforeDestroy.hook', function (event) {
             if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_CURRENT) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(doc, 'click', onClick);
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_CLICK, onClick);
             }
         });
     }
@@ -6945,13 +6944,12 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             type: RAW_BOOLEAN,
             value: FALSE,
         },
-        labelPosition: {
+        labelAlign: {
             type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
             value: RAW_RIGHT,
         },
         labelWidth: {
             type: RAW_STRING,
-            value: 80,
         },
         showMessage: {
             type: RAW_BOOLEAN,
@@ -6969,12 +6967,11 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             var me = this;
             var validator = new validate_Validator();
             var errors = validator.validate(me.get('value'), me.get('rules'), me.get('messages'));
-            var isValid = !errors;
-            if (isValid) {
+            if (!errors) {
                 callback(TRUE);
             }
             else {
-                me.fire('validateError.form', { errors: errors }, TRUE);
+                me.fire('validate.form', { errors: errors }, TRUE);
                 callback(FALSE, errors);
             }
         }
@@ -7023,52 +7020,43 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
             type: RAW_STRING,
         }
     },
-    data: function () {
+    data: function (options) {
+        var form = findComponentUpward(options.parent, 'bell-form');
+        var prop = this.get('prop');
+        var rules = form.get('rules');
+        var messages = form.get('messages');
+        if (rules && prop) {
+            rules = rules[prop];
+        }
+        if (messages && prop) {
+            messages = messages[prop];
+        }
+        var labelWidth = this.get('labelWidth');
+        var showMessage = this.get('showMessage');
+        if (labelWidth === UNDEFINED) {
+            labelWidth = form.get('labelWidth');
+        }
+        if (showMessage === UNDEFINED) {
+            showMessage = form.get('showMessage');
+        }
+        var required = this.get('required');
+        if (required === UNDEFINED && rules) {
+            required = rules.required;
+        }
         return {
-            rules: [],
-            messages: [],
-            defaultValue: '',
+            rules: rules,
+            messages: messages,
+            defaultValue: form.get('value'),
             errorMsg: '',
-            isShowError: this.get('showMessage'),
-            width: this.get('labelWidth')
+            isShowError: showMessage,
+            isRequired: required,
+            width: labelWidth,
         };
     },
     events: {
-        'validateError.form': function (_, data) {
+        'validate.form': function (_, data) {
             var error = data.errors[this.get('prop')];
             this.set('errorMsg', error);
-        }
-    },
-    afterMount: function () {
-        var form = findComponentUpward(this.$parent, 'bell-form');
-        var prop = this.get('prop');
-        var rules = form.get('rules');
-        if (rules && prop) {
-            rules = form.get('rules')[prop];
-        }
-        var messages = form.get('messages');
-        if (messages && prop) {
-            messages = form.get('messages')[prop];
-        }
-        this.set({
-            'rules': rules,
-            'messages': messages,
-            'defaultValue': form.get('value')
-        });
-        if (!this.get('width')) {
-            this.set({
-                'width': form.get('labelWidth')
-            });
-        }
-        if (!this.get('isShowError')) {
-            this.set({
-                'isShowError': form.get('showMessage')
-            });
-        }
-        if (!this.get('required') && rules) {
-            this.set({
-                'required': rules['required']
-            });
         }
     }
 }));

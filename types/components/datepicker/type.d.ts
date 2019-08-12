@@ -16,7 +16,7 @@ export interface DateRangeType {
     end: DateType;
 }
 export interface ShortcutType {
-    onClick: () => void;
     text: string;
     value: () => Date | Date[];
+    onClick: () => void;
 }

@@ -4,7 +4,9 @@ class="${prefix}table
 {{#if border}} ${prefix}table-border{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} style="{{style}}"{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
   <colgroup>
     {{#each colWidths}}

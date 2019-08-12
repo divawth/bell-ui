@@ -9,7 +9,7 @@ class="${prefix}form-item
   {{#if label || hasSlot('label')}}
     <label
       class="${prefix}form-item-label
-      {{#if required}} ${prefix}form-item-label-required{{/if}}"
+      {{#if isRequired}} ${prefix}form-item-label-required{{/if}}"
 
       {{#if labelFor}}
         for="{{labelFor}}"
@@ -38,13 +38,19 @@ class="${prefix}form-item
 
   {{else}}
 
-    <slot name="children" />
+    <div
+      {{#if width}}
+        style="margin-left: {{width}}px;"
+      {{/if}}
+    >
+      <slot name="children" />
 
-    {{#if isShowError && (error || errorMsg)}}
-      <div class="${prefix}form-item-error">
-        {{error || errorMsg}}
-      </div>
-    {{/if}}
+      {{#if isShowError && (error || errorMsg)}}
+        <div class="${prefix}form-item-error">
+          {{error || errorMsg}}
+        </div>
+      {{/if}}
+    </div>
 
   {{/if}}
 
