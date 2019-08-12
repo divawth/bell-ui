@@ -500,7 +500,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 67 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["label"])))?((q("label",function(){g("className","bell-form-item-label"+(a("isRequired",$2)?" bell-form-item-label-required":"")),a("labelFor",$2)?(g("htmlFor",j("htmlFor",a("labelFor",$2,$0,$2,$2),1))):"",a("width",$2)?(g("style.cssText","width: "+y(a("width",$2))+"px;")):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})}),q("div",function(){g("className","bell-form-item-wrapper")},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))):(q("div",function(){a("width",$2)?(g("style.cssText","margin-left: "+y(a("width",$2))+"px;")):""},function(){s("$slot_children"),(a("isShowError",$2)&&(a("error",$2)||a("errorMsg",$2)))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("error",$2)||a("errorMsg",$2)))):p()}))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-form-item"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(a("label",$2)||(d(a("hasSlot",$2),["label"])))?((q("label",function(){g("className","bell-form-item-label"+(a("isRequired",$2)?" bell-form-item-label-required":"")),a("labelWidth",$2)?(g("style.cssText","width: "+y(a("labelWidth",$2))+"px;")):""},function(){s("$slot_label",function(){e(y(a("label",$2)))})}),q("div",function(){g("className","bell-form-item-wrapper")},function(){s("$slot_children"),(a("showError",$2)&&a("computedError",$2))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("computedError",$2)))):p()}))):(q("div",function(){a("labelWidth",$2)?(g("style.cssText","margin-left: "+y(a("labelWidth",$2))+"px;")):""},function(){s("$slot_children"),(a("showError",$2)&&a("computedError",$2))?(q("div",function(){g("className","bell-form-item-error")},$0,y(a("computedError",$2)))):p()}))})};
 
 /***/ }),
 /* 68 */
@@ -6967,12 +6967,12 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             var me = this;
             var validator = new validate_Validator();
             var errors = validator.validate(me.get('value'), me.get('rules'), me.get('messages'));
-            if (!errors) {
-                callback(TRUE);
+            me.fire('validate.form', { errors: errors }, TRUE);
+            if (errors) {
+                callback(FALSE, errors);
             }
             else {
-                me.fire('validate.form', { errors: errors }, TRUE);
-                callback(FALSE, errors);
+                callback(TRUE);
             }
         }
     }
@@ -6996,21 +6996,13 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
         label: {
             type: RAW_STRING,
         },
-        labelWidth: {
-            type: RAW_NUMERIC,
-        },
-        labelFor: {
-            type: RAW_STRING,
-        },
         required: {
             type: RAW_BOOLEAN,
-            value: FALSE,
         },
         showMessage: {
             type: RAW_BOOLEAN,
-            value: FALSE,
         },
-        error: {
+        message: {
             type: RAW_STRING,
         },
         className: {
@@ -7023,40 +7015,38 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
     data: function (options) {
         var form = findComponentUpward(options.parent, 'bell-form');
         var prop = this.get('prop');
-        var rules = form.get('rules');
-        var messages = form.get('messages');
-        if (rules && prop) {
-            rules = rules[prop];
-        }
-        if (messages && prop) {
-            messages = messages[prop];
-        }
-        var labelWidth = this.get('labelWidth');
         var showMessage = this.get('showMessage');
-        if (labelWidth === UNDEFINED) {
-            labelWidth = form.get('labelWidth');
-        }
         if (showMessage === UNDEFINED) {
             showMessage = form.get('showMessage');
         }
         var required = this.get('required');
-        if (required === UNDEFINED && rules) {
-            required = rules.required;
+        if (required === UNDEFINED) {
+            var rules = form.get('rules');
+            if (rules) {
+                required = rules.required;
+            }
         }
         return {
-            rules: rules,
-            messages: messages,
-            defaultValue: form.get('value'),
-            errorMsg: '',
-            isShowError: showMessage,
+            error: UNDEFINED,
+            showError: showMessage,
             isRequired: required,
-            width: labelWidth,
+            labelWidth: form.get('labelWidth'),
         };
+    },
+    computed: {
+        computedError: function () {
+            return this.get('error') || this.get('message');
+        }
     },
     events: {
         'validate.form': function (_, data) {
-            var error = data.errors[this.get('prop')];
-            this.set('errorMsg', error);
+            var errors = data.errors;
+            if (errors) {
+                this.set('error', errors[this.get('prop')]);
+            }
+            else {
+                this.set('error', UNDEFINED);
+            }
         }
     }
 }));

@@ -60,23 +60,27 @@ export default Yox.define({
 
   methods: {
     validate(callback: Function) {
+
       const me = this
+
       const validator = new Validator()
       const errors = validator.validate(
         me.get('value'),
         me.get('rules'),
         me.get('messages')
       )
-      if (!errors) {
-        callback(TRUE)
+
+      me.fire(
+        'validate.form',
+        { errors },
+        TRUE
+      )
+
+      if (errors) {
+        callback(FALSE, errors)
       }
       else {
-        me.fire(
-          'validate.form',
-          { errors },
-          TRUE
-        )
-        callback(FALSE, errors)
+        callback(TRUE)
       }
     }
   }

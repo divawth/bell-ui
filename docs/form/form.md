@@ -8,7 +8,7 @@ export default {
   height: 300,
   template: `
   <div>
-    <Form ref="formInline" model="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
+    <Form ref="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
       <FormItem prop="user">
         <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
           <template slot="prepend">
@@ -81,7 +81,7 @@ export default {
   height: 600,
   template: `
   <div>
-    <Form model="formItem" labelWidth="80">
+    <Form labelWidth="80">
       <FormItem label="Input" required>
         <Input model="formItem.input" width="160" placeholder="Enter something..." />
       </FormItem>
@@ -93,7 +93,7 @@ export default {
         </Select>
       </FormItem>
       <FormItem label="DatePicker">
-        <DatePicker type="date" placeholder="Select date" model="formItem.date"></DatePicker>
+        <DatePicker type="date" placeholder="Select date" model="formItem.date" />
       </FormItem>
       <FormItem label="Radio">
         <RadioGroup model="formItem.radio">
@@ -116,7 +116,7 @@ export default {
         </Switch>
       </FormItem>
       <FormItem label="Text">
-        <Input model="formItem.textarea" type="textarea" placeholder="Enter something..."></Input>
+        <Input model="formItem.textarea" type="textarea" placeholder="Enter something..." />
       </FormItem>
       <FormItem>
         <Button type="primary">Submit</Button>
@@ -151,7 +151,7 @@ export default {
   height: 640,
   template: `
   <div>
-    <Form model="formLeft" labelAlign="left" labelWidth="100">
+    <Form labelAlign="left" labelWidth="100">
       <FormItem label="Title">
         <Input model="formLeft.input1"></Input>
       </FormItem>
@@ -162,7 +162,7 @@ export default {
         <Input model="formLeft.input3"></Input>
       </FormItem>
     </Form>
-    <Form model="formRight" labelAlign="right" labelWidth="100">
+    <Form labelAlign="right" labelWidth="100">
       <FormItem label="Title">
         <Input model="formRight.input1"></Input>
       </FormItem>
@@ -173,7 +173,7 @@ export default {
         <Input model="formRight.input3"></Input>
       </FormItem>
     </Form>
-    <Form model="formTop" labelAlign="top">
+    <Form labelAlign="top">
       <FormItem label="Title">
         <Input model="formTop.input1"></Input>
       </FormItem>
@@ -195,7 +195,7 @@ export default {
 export default {
   template: `
     <div>
-      <Form ref="formCustom" model="formCustom">
+      <Form ref="formCustom">
         <FormItem label="Password" prop="passwd" error="{{errors[ 'passwd' ] && errors[ 'passwd' ]}}">
           <Input status="{{#if errors.passwd}}error{{/if}}" type="password" model="formCustom.passwd" />
         </FormItem>
@@ -244,8 +244,8 @@ model | 表单数据对象 | object | - | -
 rules | 表单验证规则 | object | - | -
 messages | 表单验证之后的错误提示 | object | - | -
 inline | 是否开启行内表单模式 | boolean | - | false
-labelAlign | 表单域标签的位置，可选值为 left、right、top | string | - | -
-labelWidth | 表单宽度 | number | - | -
+labelAlign | 表单域标签的位置 | string | left, right, top | right
+labelWidth | 表单域标签的宽度 | number | - | -
 showMessage | 是否显示校验错误信息 | boolean | true | -
 
 #### FormItem API
@@ -254,9 +254,7 @@ showMessage | 是否显示校验错误信息 | boolean | true | -
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-prop | 对应表单域 model 里的字段 | string | - | -
+prop | 表单域字段名 | string | - | -
 label | 标签文本 | string | - | -
-labelWidth | 表单域标签的的宽度 | number | - | -
-labelFor | 指定原生的 label 标签的 for 属性，配合控件的 element-id 属性，可以点击 label 时聚焦控件。 | string | - | -
-showMessage | 表单域标签的的宽度 | number | - | -
+showMessage | 是否显示校验错误信息 | boolean | - | -
 required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | - | -

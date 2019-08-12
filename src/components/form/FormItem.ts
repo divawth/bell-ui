@@ -25,21 +25,13 @@ export default Yox.define({
     label: {
       type: RAW_STRING,
     },
-    labelWidth: {
-      type: RAW_NUMERIC,
-    },
-    labelFor: {
-      type: RAW_STRING,
-    },
     required: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     showMessage: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
-    error: {
+    message: {
       type: RAW_STRING,
     },
     className: {
@@ -55,45 +47,42 @@ export default Yox.define({
     const form = findComponentUpward(options.parent, '${prefix}form')
     const prop = this.get('prop')
 
-    let rules = form.get('rules')
-    let messages = form.get('messages')
-    if (rules && prop) {
-      rules = rules[ prop ]
-    }
-    if (messages && prop) {
-      messages = messages[ prop ]
-    }
-
-    let labelWidth = this.get('labelWidth')
     let showMessage = this.get('showMessage')
-
-    if (labelWidth === UNDEFINED) {
-      labelWidth = form.get('labelWidth')
-    }
     if (showMessage === UNDEFINED) {
       showMessage = form.get('showMessage')
     }
 
     let required = this.get('required')
-    if (required === UNDEFINED && rules) {
-      required = rules.required
+    if (required === UNDEFINED) {
+      const rules = form.get('rules')
+      if (rules) {
+        required = rules.required
+      }
     }
 
     return {
-      rules: rules,
-      messages: messages,
-      defaultValue: form.get('value'),
-      errorMsg: '',
-      isShowError: showMessage,
+      error: UNDEFINED,
+      showError: showMessage,
       isRequired: required,
-      width: labelWidth,
+      labelWidth: form.get('labelWidth'),
+    }
+  },
+
+  computed: {
+    computedError(): string {
+      return this.get('error') || this.get('message')
     }
   },
 
   events: {
     'validate.form': function (_, data) {
-      let error = data.errors[ this.get('prop') ]
-      this.set('errorMsg', error)
+      const { errors } = data
+      if (errors) {
+        this.set('error', errors[this.get('prop')])
+      }
+      else {
+        this.set('error', UNDEFINED)
+      }
     }
   }
 

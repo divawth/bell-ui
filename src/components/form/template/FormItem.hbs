@@ -11,12 +11,8 @@ class="${prefix}form-item
       class="${prefix}form-item-label
       {{#if isRequired}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if labelFor}}
-        for="{{labelFor}}"
-      {{/if}}
-
-      {{#if width}}
-        style="width: {{width}}px;"
+      {{#if labelWidth}}
+        style="width: {{labelWidth}}px;"
       {{/if}}
     >
       <slot name="label">
@@ -28,9 +24,9 @@ class="${prefix}form-item
 
       <slot name="children" />
 
-      {{#if isShowError && (error || errorMsg)}}
+      {{#if showError && computedError}}
         <div class="${prefix}form-item-error">
-          {{error || errorMsg}}
+          {{computedError}}
         </div>
       {{/if}}
 
@@ -39,15 +35,15 @@ class="${prefix}form-item
   {{else}}
 
     <div
-      {{#if width}}
-        style="margin-left: {{width}}px;"
+      {{#if labelWidth}}
+        style="margin-left: {{labelWidth}}px;"
       {{/if}}
     >
       <slot name="children" />
 
-      {{#if isShowError && (error || errorMsg)}}
+      {{#if showError && computedError}}
         <div class="${prefix}form-item-error">
-          {{error || errorMsg}}
+          {{computedError}}
         </div>
       {{/if}}
     </div>
