@@ -1,60 +1,72 @@
-import template from '../template/DateYear.hbs'
-import { RAW_STRING } from '../../constant';
-import { isDate } from '../../util'
 import Yox from 'yox'
+
+import template from '../template/DateYear.hbs'
+
+import {
+  RAW_STRING,
+} from '../../constant'
+
+import {
+  isDate,
+} from '../../util'
+
+const SHOW_COUNT = 12
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     value: {
-      type: isDate()
+      type: isDate,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
-  template,
-
   data() {
-    let year = new Date().getFullYear()
-    if (this.get('startDate')) {
-      year = this.get('startDate').getFullYear()
-    }
+
+    let startDate = this.get('startDate')
+    let value = this.get('value')
+
+    let year = startDate
+      ? startDate.getFullYear()
+      : new Date().getFullYear()
+
     let checkedYear = ''
-    if (this.get('value')) {
-      checkedYear = this.get('value').getFullYear()
+    if (value) {
+      checkedYear = value.getFullYear()
     }
+
     return {
       modeYear: year,
-      checkedYear: checkedYear,
-      years: []
+      checkedYear,
+      years: [],
     }
   },
 
   watchers: {
     value(value: Date) {
-      let checkedYear: number = 0
-      if (value) {
-        checkedYear = value.getFullYear()
-      }
-      this.set({ checkedYear })
+      this.set({
+        checkedYear: value ? value.getFullYear() : 0
+      })
     }
   },
 
   methods: {
     prev() {
-      this.decrease('modeYear', 12)
+      this.decrease('modeYear', SHOW_COUNT)
       this.getYearList(this.get('modeYear'))
     },
     next() {
-      this.increase('modeYear', 12)
+      this.increase('modeYear', SHOW_COUNT)
       this.getYearList(this.get('modeYear'))
     },
     click(year: number) {
@@ -64,18 +76,18 @@ export default Yox.define({
       this.fire(
         'change.year',
         {
-          year: year
+          year,
         }
       )
     },
     getYearList(startYear: number) {
-      let years = []
-      for (let item = startYear; item < startYear + 12; item++) {
-        years.push(item)
+      const years = []
+      for (let i = startYear, endYear = startYear + SHOW_COUNT; i < endYear; i++) {
+        years.push(i)
       }
       this.set({
         modeYear: startYear,
-        years: years
+        years: years,
       })
     }
   },

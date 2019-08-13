@@ -1,3 +1,7 @@
+import Yox, { CustomEventInterface } from 'yox'
+
+import template from '../template/Date.hbs'
+
 import {
   firstDateInWeek,
   lastDateInWeek,
@@ -9,51 +13,61 @@ import {
   parseDate,
   formatList
 } from '../function/util'
-import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
-import template from '../template/Date.hbs'
+
 import {
+  WEEKS,
+  DAY,
+  STABLE_DURATION,
+} from '../function/constant'
+
+import {
+  NULL,
+  TRUE,
   RAW_NUMERIC,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
   RAW_ARRAY,
-  NULL,
-  TRUE
 } from '../../constant'
-import { isDate } from '../../util'
-import Yox, { CustomEventInterface } from 'yox'
-import { DateType } from '../type'
+
+import {
+  isDate,
+} from '../../util'
+
+import {
+  DateType,
+} from '../type'
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     multiple: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     value: {
-      type: isDate()
+      type: isDate,
     },
     selected: {
-      type: RAW_ARRAY
+      type: RAW_ARRAY,
     },
     disabledDate: {
-      type: RAW_FUNCTION
+      type: RAW_FUNCTION,
     },
     firstDay: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     let modeDate = new Date()

@@ -153,35 +153,35 @@ export default {
   <div>
     <Form labelAlign="left" labelWidth="100">
       <FormItem label="Title">
-        <Input model="formLeft.input1"></Input>
+        <Input model="formLeft.input1" />
       </FormItem>
       <FormItem label="Title name">
-        <Input model="formLeft.input2"></Input>
+        <Input model="formLeft.input2" />
       </FormItem>
       <FormItem label="Aligned title">
-        <Input model="formLeft.input3"></Input>
+        <Input model="formLeft.input3" />
       </FormItem>
     </Form>
     <Form labelAlign="right" labelWidth="100">
       <FormItem label="Title">
-        <Input model="formRight.input1"></Input>
+        <Input model="formRight.input1" />
       </FormItem>
       <FormItem label="Title name">
-        <Input model="formRight.input2"></Input>
+        <Input model="formRight.input2" />
       </FormItem>
       <FormItem label="Aligned title">
-        <Input model="formRight.input3"></Input>
+        <Input model="formRight.input3" />
       </FormItem>
     </Form>
     <Form labelAlign="top">
       <FormItem label="Title">
-        <Input model="formTop.input1"></Input>
+        <Input model="formTop.input1" />
       </FormItem>
       <FormItem label="Title name">
-        <Input model="formTop.input2"></Input>
+        <Input model="formTop.input2" />
       </FormItem>
       <FormItem label="Aligned title">
-        <Input model="formTop.input3"></Input>
+        <Input model="formTop.input3" />
       </FormItem>
     </Form>
   </div>

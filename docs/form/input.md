@@ -83,12 +83,13 @@ export default {
 ```js
 export default {
   template: `
-    <Input placeholder="请输入..."
-      style="width: 300px"
+    <Input
+      placeholder="请输入..."
+      width="300"
       type="input"
       model="value"
       clearable
-    ></Input>
+    />
   `
 }
 ```

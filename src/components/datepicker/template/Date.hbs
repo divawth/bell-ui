@@ -2,7 +2,9 @@
 class="${prefix}datepicker-date
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}} {{style}}{{/if}}
+{{#if style}}
+  style="{{style}}"
+{{/if}}
 >
 
   <div class="${prefix}datepicker-header">
@@ -42,16 +44,16 @@ class="${prefix}datepicker-date
         <div class="${prefix}datepicker-row">
           {{#each this:index}}
             <div
-              class="{{#if isCurrentMonth && !disabled}}
-                ${prefix}datepicker-col-current-month
-              {{else if disabled}}
-                ${prefix}datepicker-col-disabled
-              {{/if}} ${prefix}datepicker-col
+              class="${prefix}datepicker-col
+              {{#if isCurrentMonth && !disabled}} ${prefix}datepicker-col-current-month
+              {{else if disabled}} ${prefix}datepicker-col-disabled
+              {{/if}}
               {{#if isPrevMonth}} ${prefix}datepicker-col-prev-month{{/if}}
               {{#if isLastMonth}} ${prefix}datepicker-col-last-month{{/if}}
-              {{#if isCurrentDate}} ${prefix}datepicker-col-checked{{/if}}
-            "
-            {{#if isCurrentMonth && !disabled}} on-click="click(this)"{{/if}}
+              {{#if isCurrentDate}} ${prefix}datepicker-col-checked{{/if}}"
+              {{#if isCurrentMonth && !disabled}}
+                on-click="click(this)"
+              {{/if}}
             >
               {{date}}
             </div>

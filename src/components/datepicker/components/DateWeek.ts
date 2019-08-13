@@ -1,3 +1,7 @@
+import Yox from 'yox'
+
+import template from '../template/DateWeek.hbs'
+
 import {
   firstDateInWeek,
   lastDateInWeek,
@@ -7,36 +11,50 @@ import {
   simplifyDate,
   offsetMonth,
   parseDate,
-  getOffsetTime
+  getOffsetTime,
 } from '../function/util'
-import template from '../template/DateWeek.hbs'
-import { RAW_NUMERIC, RAW_STRING, UNDEFINED } from '../../constant'
-import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
-import { isDate } from '../../util'
-import Yox from 'yox';
-import { DateType } from '../type';
+
+import {
+  RAW_NUMERIC,
+  RAW_STRING,
+  UNDEFINED,
+} from '../../constant'
+
+import {
+  WEEKS,
+  DAY,
+  STABLE_DURATION,
+} from '../function/constant'
+
+import {
+  isDate,
+} from '../../util'
+
+import {
+  DateType,
+} from '../type'
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     date: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     firstDay: {
-      type: RAW_NUMERIC
+      type: RAW_NUMERIC,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     let modeDate = new Date()
@@ -54,12 +72,10 @@ export default Yox.define({
 
   computed: {
     currentYear(): number {
-      let me = this
-      return simplifyDate(me.get('modeDate')).year
+      return simplifyDate(this.get('modeDate')).year
     },
     currentMonth(): number {
-      let me = this
-      return simplifyDate(me.get('modeDate')).month
+      return simplifyDate(this.get('modeDate')).month
     }
   },
 

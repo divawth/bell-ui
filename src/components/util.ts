@@ -104,13 +104,11 @@ export function oneOf(values: string[]) {
   }
 }
 
-export function isDate() {
-  return function (key: string, value: Date) {
-    if (value instanceof Date) {
-      return true
-    }
-    Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
+export function isDate(key: string, value: Date) {
+  if (value instanceof Date) {
+    return true
   }
+  Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
 }
 
 export function isDateValue() {

@@ -1,17 +1,21 @@
-import template from '../template/DateMonth.hbs'
-import { RAW_STRING } from '../../constant'
-import { MONTHS } from '../function/constant'
-import { isDate } from '../../util'
 import Yox from 'yox'
+
+import template from '../template/DateMonth.hbs'
+
+import { RAW_STRING } from '../../constant'
+
+import { MONTHS } from '../function/constant'
+
+import { isDate } from '../../util'
 
 export default Yox.define({
 
   propTypes: {
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     value: {
-      type: isDate()
+      type: isDate,
     },
     className: {
       type: RAW_STRING

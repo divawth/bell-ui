@@ -1,5 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
+import template from '../template/DateRange.hbs'
+
 import {
   firstDateInWeek,
   lastDateInWeek,
@@ -12,11 +14,14 @@ import {
   getOffsetTime,
   formatList
 } from '../function/util'
-import template from '../template/DateRange.hbs'
+
 import { RAW_NUMERIC, RAW_STRING, RAW_BOOLEAN, RAW_ARRAY, RAW_FUNCTION, NULL } from '../../constant'
+
 import { isDate } from '../../util'
+
 import { WEEKS, DAY, STABLE_DURATION } from '../function/constant'
-import { DateType } from '../type';
+
+import { DateType } from '../type'
 
 export default Yox.define({
 
@@ -25,7 +30,7 @@ export default Yox.define({
       type: RAW_BOOLEAN
     },
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     value: {
       type: RAW_ARRAY

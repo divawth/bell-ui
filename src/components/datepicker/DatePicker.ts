@@ -60,30 +60,30 @@ export default Yox.define({
       value: RAW_BOTTOM_START
     },
     startDate: {
-      type: isDate()
+      type: isDate,
     },
     formatText: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     disabledDate: {
-      type: RAW_FUNCTION
+      type: RAW_FUNCTION,
     },
     confirm: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     clearable: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     open: {
-      type: RAW_BOOLEAN
+      type: RAW_BOOLEAN,
     },
     className: {
-      type: RAW_STRING
+      type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING
+      type: RAW_STRING,
     }
   },
 
