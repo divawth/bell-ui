@@ -1,111 +1,47 @@
 {$selector-datepicker}
-  user-select none
   display inline-block
-  vertical-align middle
-  font-size $datepicker-font-size
 
-  {$selector-datepicker}-dropdown
+  > {$selector-dropdown}
+    vertical-align top
+
+  > {$selector-dropdown},
+  > {$selector-dropdown} {$selector-input}
     width 100%
 
-    {$selector-datepicker-el}
-      width 100%
+  {$selector-dropdown-list}
+    padding 0
 
-    {$selector-prefix}-dropdown-trigger
-      padding 0
-      margin-bottom 5px
+  {$selector-datepicker-date},
+  {$selector-datepicker-month},
+  {$selector-datepicker-year},
+  {$selector-datepicker-week}
+    width $datepicker-dropdown-width
 
-    {$selector-datepicker-poper}
-      &{$selector-datepicker-poper}-with-sidebar
-        padding-left $datepicker-sidebar-width
+  {$selector-datepicker-daterange}
+    width $datepicker-date-range-dropdown-width
 
-  {$selector-datepicker-sidebar}
-    position absolute
-    top 0
-    bottom 0
-    overflow auto
 
-    width $datepicker-sidebar-width
-    background-color $datepicker-sidebar-background-color
-    border-right 1px solid $datepicker-sidebar-border-color
+{$selector-datepicker-shortcut}
+  position absolute
+  top 0
+  bottom 0
+  padding $datepicker-shortcut-padding-vertical 0
 
-    {$selector-datepicker-shortcut}
-      overflow hidden
-      text-overflow ellipsis
-      white-space nowrap
-      cursor pointer
-      padding $datepicker-shortcut-padding
+  box-sizing border-box
+  width $datepicker-shortcut-width
+  color $datepicker-item-color
+  font-size $datepicker-item-font-size
+  background-color $datepicker-shortcut-bg-color
+  border-right 1px solid $brand-divider
 
-      &{$selector-hover}
-        background-color $datepicker-sidebar-border-color
+{$selector-datepicker-shortcut-item}
+  ui-ellipsis()
+  cursor $cursor-clickable
+  padding $datepicker-shortcut-item-padding
 
-  {$selector-datepicker-header}
-    display flex
-    line-height 1
-    padding $datepicker-header-padding
-    border-bottom 1px solid $datepicker-border-color
+  &:hover
+    color $brand-primary
 
-    {$selector-datepicker-header}-button
-      color $brand-muted
-      flex 1
-      text-align center
-      cursor pointer
-      line-height 1
-      transition color .2s
-
-      {$selector-hover}
-        color $brand-primary
-
-      {$selector-icon}
-        margin 0
-
-  {$selector-datepicker}-body
-    margin $datepicker-body-margin
-
-  {$selector-datepicker}-weeks
-    display flex
-    margin 0 auto
-
-    {$selector-datepicker}-col
-      flex 1
-      text-align center
-      line-height 1.5
-
-  {$selector-datepicker}-days
-    {$selector-datepicker}-row
-      display flex
-      text-align center
-
-    {$selector-datepicker}-col
-      cursor pointer
-      flex 1
-      text-align center
-      color $brand-secondary
-      margin $datepicker-date-margin
-      border-radius $datepicker-date-radius
-      width $datepicker-date-size
-      height $datepicker-date-size
-      line-height $datepicker-date-size
-
-      &-current-month
-        &{$selector-hover}
-          background-color $datepicker-item-checked-background-color
-          color $datepicker-item-checked-color
-
-      &-prev-month,
-      &-last-month,
-      &-disabled
-        color $brand-link-disabled
-        cursor $cursor-disabled
-
-        &{$selector-hover}
-          background-color $brand-bg
-          color $brand-link-disabled
-
-      &-checked
-        background-color $datepicker-item-checked-background-color
-        color $datepicker-item-checked-color
-
-  {$selector-datepicker}-confirm
-    border-top 1px solid $datepicker-sidebar-border-color
-    text-align right
-    padding 8px
+{$selector-datepicker-shortcut} + {$selector-datepicker-panel},
+{$selector-datepicker-shortcut} + {$selector-datepicker-daterange}
+  margin-left $datepicker-shortcut-width

@@ -2,51 +2,52 @@ import Yox from 'yox'
 
 import template from '../template/DateWeek.hbs'
 
-import {
-  firstDateInWeek,
-  lastDateInWeek,
-  normalizeDate,
-  firstDateInMonth,
-  lastDateInMonth,
-  simplifyDate,
-  offsetMonth,
-  parseDate,
-  getOffsetTime,
-} from '../function/util'
+import backIconTemplate from '../template/backIcon.hbs'
+import forwardIconTemplate from '../template/forwardIcon.hbs'
 
-import {
-  RAW_NUMERIC,
-  RAW_STRING,
-  UNDEFINED,
-} from '../../constant'
+import DateMonth from './DateMonth'
+import DateYear from './DateYear'
 
 import {
   WEEKS,
-  DAY,
-  STABLE_DURATION,
-} from '../function/constant'
+  RAW_TYPE_WEEK,
+  RAW_TYPE_YEAR,
+  RAW_TYPE_MONTH,
+
+  DateRow,
+  SimpleDate,
+  toSimpleDate,
+  toTimestamp,
+  offsetMonth,
+  createDateViewDatasource,
+} from '../util'
 
 import {
-  isDate,
-} from '../../util'
-
-import {
-  DateType,
-} from '../type'
+  FALSE,
+  RAW_DATE,
+  RAW_STRING,
+  RAW_NUMBER,
+  RAW_BOOLEAN,
+} from '../../constant'
 
 export default Yox.define({
 
   template,
 
   propTypes: {
-    startDate: {
-      type: isDate,
+    defaultDate: {
+      type: [RAW_DATE, RAW_NUMBER],
     },
-    date: {
-      type: RAW_NUMERIC,
+    checkedDate: {
+      type: [RAW_DATE, RAW_NUMBER],
     },
-    firstDay: {
-      type: RAW_NUMERIC,
+    canPickYear: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    canPickMonth: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -56,181 +57,102 @@ export default Yox.define({
     }
   },
 
-  data() {
-    let modeDate = new Date()
-    if (this.get('startDate')) {
-      modeDate = this.get('startDate')
-    }
+  data(options) {
+    const props = options.props || {}
     return {
+      type: RAW_TYPE_WEEK,
+      RAW_TYPE_WEEK,
+      RAW_TYPE_YEAR,
+      RAW_TYPE_MONTH,
+
       weeks: WEEKS,
-      dateList: [],
-      modeDate: modeDate,
-      checkedIndex: 0,
-      checkedDateTime: -1
+      timestamp: toTimestamp(props.defaultDate || props.checkedDate),
     }
   },
 
   computed: {
-    currentYear(): number {
-      return simplifyDate(this.get('modeDate')).year
+    date(): SimpleDate {
+      return toSimpleDate(this.get('timestamp'))
     },
-    currentMonth(): number {
-      return simplifyDate(this.get('modeDate')).month
+    datasource(): DateRow[] {
+      return createDateViewDatasource(this.get('timestamp'))
+    },
+    checkedTimestamp(): number {
+      const checkedDate = this.get('checkedDate')
+      return checkedDate ? toTimestamp(checkedDate) : 0
+    },
+  },
+
+  components: {
+    DateYear,
+    DateMonth,
+  },
+
+  partials: {
+    backIcon: backIconTemplate,
+    forwardIcon: forwardIconTemplate,
+  },
+
+  filters: {
+    isEnabled(item: SimpleDate) {
+      return this.inCurrentMonth(item)
+    },
+  },
+
+  events: {
+    'change.year': function (event, data) {
+      event.stop()
+      const date = new Date(this.get('timestamp'))
+      date.setFullYear(data.year)
+      this.set({
+        type: RAW_TYPE_WEEK,
+        timestamp: date.getTime()
+      })
+    },
+    'change.month': function (event, data) {
+      event.stop()
+      const date = new Date(this.get('timestamp'))
+      date.setFullYear(data.year)
+      date.setMonth(data.month - 1)
+      this.set({
+        type: RAW_TYPE_WEEK,
+        timestamp: date.getTime()
+      })
     }
   },
 
   methods: {
-    changeDate(offset: number) {
-      let me = this
-      let date = me.get('modeDate')
-      date = offsetMonth(date, offset)
-      me.set({
-        checkedIndex: -1,
-        modeDate: date,
-        dateList: me.createRenderData(
-          date,
-          me.get('checkedDateTime')
-        )
-      })
+    inCurrentMonth(item: SimpleDate) {
+      const date = this.get('date')
+      return date.year === item.year && date.month === item.month
     },
-    prevYear() {
-      this.changeDate(-12)
+    offset(offset: number) {
+      this.set(
+        'timestamp',
+        offsetMonth(this.get('timestamp'), offset)
+      )
     },
-    prevMonth() {
-      this.changeDate(-1)
-    },
-    nextYear() {
-      this.changeDate(12)
-    },
-    nextMonth() {
-      this.changeDate(1)
-    },
-    click(date: DateType[]) {
+    click(row: DateRow) {
+
+      const { start, end } = row
+
+      // start 和 end 总得有一个在当前月份内，否则要更新视图月份
+      if (!this.inCurrentMonth(start) && !this.inCurrentMonth(end)) {
+        const date = new Date(this.get('timestamp'))
+        date.setFullYear(start.year)
+        date.setMonth(start.month - 1)
+        this.set('timestamp', date.getTime())
+      }
+
       this.fire(
         'change.week',
         {
-          start: date[ 0 ],
-          end: date[ date.length - 1 ]
+          start,
+          end,
         }
       )
-      this.refresh(
-        getOffsetTime(parseDate(date[ 0 ]))
-      )
-    },
-    refresh(start: number) {
-      let me = this
-      let dateList = me.get('dateList')
-      let checkedIndex = undefined
-      let checkedDateTime = 0
-      for (let i = 0; i < dateList.length; i++) {
-        let item = dateList[i][0]
-        let itemTime = getOffsetTime(parseDate(item))
-        if (itemTime == start) {
-          checkedDateTime = itemTime
-          checkedIndex = i
-        }
-      }
-      me.set({
-        checkedDateTime,
-        checkedIndex
-      })
-    },
-    // 获取渲染模板的数据
-    getDatasource(
-      start: number,
-      end: number,
-      date: DateType,
-      checkedDateTime: number
-    ) {
-      let data = []
-      for (let time = start; time <= end; time += DAY) {
-        let item: DateType = simplifyDate(
-          new Date(time)
-        )
-        item.isCurrentDate = checkedDateTime && checkedDateTime === getOffsetTime(parseDate(item))
-        item.isPrevMonth = item.month < date.month
-        item.isCurrentMonth = item.month == date.month
-        item.isLastMonth = item.month > date.month
-        data.push(item)
-      }
-      return data
 
     },
-    createRenderData(modeDate: Date, checkedDateTime: number) {
-      let me = this
-      let firstDay = me.get('firstDay') || 0
-      let date = normalizeDate(modeDate)
-
-      let startDate = normalizeDate(
-        firstDateInWeek(firstDateInMonth(date), firstDay)
-      )
-      let endDate = normalizeDate(
-        lastDateInWeek(lastDateInMonth(date), firstDay)
-      )
-
-      let duration = endDate - startDate
-      let offset = STABLE_DURATION - duration
-
-      if (offset > 0) {
-        endDate += offset
-      }
-
-      let list = me.getDatasource(
-        startDate,
-        endDate,
-        simplifyDate(
-          new Date(date)
-        ),
-        checkedDateTime
-      )
-      return me.format(list)
-    },
-    format(list: DateType[]) {
-      let me = this
-      let result = []
-      let arr = []
-      let checkedIndex = -1
-      for (let i = 0; i < list.length; i++) {
-        arr.push(list[i])
-        if (i % 7 == 6) {
-          if (getOffsetTime(parseDate(arr[0])) === me.get('checkedDateTime')) {
-            checkedIndex = result.length
-          }
-          result.push(arr)
-          arr = []
-        }
-      }
-      me.set({
-        checkedIndex: checkedIndex
-      })
-      return result
-    }
-  },
-
-  afterMount() {
-    const me = this
-    let today = new Date()
-    let date = me.get('modeDate')
-    date = date ? date : today
-    me.set({
-      modeDate: date,
-      dateList: me.createRenderData(
-        date,
-        me.get('checkedDateTime')
-      )
-    })
-    let start = me.get('value') ? me.get('value')[ 0 ] : UNDEFINED
-    if (start) {
-      me.refresh(
-        getOffsetTime(start)
-      )
-      this.fire(
-        'change.week',
-        {
-          start: simplifyDate(start),
-          end: simplifyDate(me.get('value')[ 1 ])
-        }
-      )
-    }
   }
+
 })

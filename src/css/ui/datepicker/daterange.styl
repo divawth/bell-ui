@@ -1,40 +1,5 @@
 {$selector-datepicker-daterange}
-  user-select none
 
-  {$selector-datepicker-header}-month
-    margin-right 30%
-
-{$selector-datepicker-daterange}-wrapper
-  display flex
-
-  {$selector-datepicker}-days
-    {$selector-datepicker}-col
-      &-range
-        position relative
-        border-radius 0
-        background-color $datepicker-item-range-background-color
-
-        &:before
-          position absolute
-          content ' '
-          height 100%
-          top 0
-          width $datepicker-poper-margin-gap
-          left - $datepicker-poper-margin-gap
-          background-color $datepicker-item-range-background-color
-
-        &{$selector-hover}
-          background-color $datepicker-item-range-background-color
-          color $brand-secondary
-
-        + {$selector-datepicker}-col-checked
-          position relative
-
-          &:before
-            position absolute
-            content ' '
-            height 100%
-            top 0
-            width $datepicker-poper-margin-gap
-            left - $datepicker-poper-margin-gap
-            background-color $datepicker-item-range-background-color
+  {$selector-datepicker-panel}
+    display inline-block
+    width 50%

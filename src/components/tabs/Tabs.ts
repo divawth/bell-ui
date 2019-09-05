@@ -45,10 +45,6 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    animated: {
-      type: RAW_BOOLEAN,
-      value: TRUE,
-    },
     value: {
       type: RAW_NUMERIC,
       value: 0,
@@ -64,12 +60,6 @@ export default Yox.define({
   data() {
     return {
       tabs: [],
-    }
-  },
-
-  computed: {
-    translateStyle(): string {
-      return this.getActiveIndex() * -100 + '%'
     }
   },
 

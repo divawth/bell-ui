@@ -11,7 +11,7 @@ class="${prefix}dropdown ${prefix}dropdown-{{placement}}
     class="${prefix}dropdown-trigger"
     {{#if trigger === RAW_CLICK}}
       on-click="toggle('isOpen')"
-    {{else}}
+    {{else if trigger === RAW_HOVER}}
       on-mouseenter="enter()"
       on-mouseleave="leave()"
     {{/if}}

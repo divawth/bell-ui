@@ -47,11 +47,18 @@ export default Yox.define({
   },
 
   watchers: {
-    '*': function (newValue, oldValue, keypath: string) {
-      if (Yox.array.has(['name', 'icon', 'label', 'disabled'], keypath)) {
-        this.fire('update.tabPanel')
-      }
-    }
+    name() {
+      this.fire('update.tabPanel')
+    },
+    icon() {
+      this.fire('update.tabPanel')
+    },
+    label() {
+      this.fire('update.tabPanel')
+    },
+    disabled() {
+      this.fire('update.tabPanel')
+    },
   },
 
   events: {
@@ -63,14 +70,22 @@ export default Yox.define({
   },
 
   afterMount() {
-    let me = this
+
+    const me = this
+    const tabs = findComponentUpward(me.$parent, '${prefix}tabs')
+
     let name = me.get('name')
     if (name == NULL) {
-      let tabs = findComponentUpward(me.$parent, '${prefix}tabs')
       name = Yox.array.indexOf(tabs.$children, me)
     }
-    me.set('id', name)
+
+    me.set({
+      id: name,
+      isActive: tabs.get('value') == name
+    })
+
     me.fire('add.tabPanel')
+
   },
 
   beforeDestroy() {

@@ -6,46 +6,45 @@
     <title>
         datapicker
     </title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
         .bell-app {
             margin: 20px 0;
         }
-
     </style>
 </head>
 <body>
     <script src="../../dep/base/base.js"></script>
-    <script src="../../dist/bell.js"></script>
+    <script src="../../dist/bell-ui.js"></script>
 
     <script id="template-1" type="text/plain">
         <div>
-            <Date></Date>
+            <Date checkedDate="{{checked}}"></Date>
         </div>
     </script>
 
     <script id="template-2" type="text/plain">
         <div>
-            <DateRange></DateRange>
+            <DateRange checkedStartDate="{{start}}" checkedEndDate="{{end}}"></DateRange>
         </div>
     </script>
 
     <script id="template-3" type="text/plain">
         <div>
-            <DateWeek></DateWeek>
+            <DateWeek checkedDate="{{checked}}"></DateWeek>
         </div>
     </script>
 
     <script id="template-4" type="text/plain">
         <div>
-            <DateMonth></DateMonth>
+            <DateMonth checkedYear="{{year}}" checkedMonth="{{month}}"></DateMonth>
         </div>
     </script>
 
     <script id="template-5" type="text/plain">
         <div>
-            <DateYear></DateYear>
+            <DateYear checkedYear="{{year}}"></DateYear>
         </div>
     </script>
 
@@ -60,8 +59,8 @@
             el: '#app-1',
             template: '#template-1',
             events: {
-                deteChange: function (event, data) {
-                    console.log(data)
+                change: function (event, data) {
+                    this.set('checked', data.date.timestamp)
                 }
             }
         });
@@ -69,8 +68,9 @@
             el: '#app-2',
             template: '#template-2',
             events: {
-                deteRangeChange: function (event, data) {
-                    console.log(data)
+                change: function (event, data) {
+                  this.set('start', data.start.timestamp)
+                  this.set('end', data.end.timestamp)
                 }
             }
         });
@@ -78,8 +78,8 @@
             el: '#app-3',
             template: '#template-3',
             events: {
-                weekRangeChange: function (event, data) {
-                    console.log(data)
+                change: function (event, data) {
+                    this.set('checked', data.start.timestamp)
                 }
             }
         });
@@ -87,8 +87,9 @@
             el: '#app-4',
             template: '#template-4',
             events: {
-                monthChange: function (event, data) {
-                    console.log(data)
+                change: function (event, data) {
+                    this.set('year', data.year)
+                    this.set('month', data.month)
                 }
             }
         });
@@ -96,8 +97,8 @@
             el: '#app-5',
             template: '#template-5',
             events: {
-                yearChange: function (event, data) {
-                    console.log(data)
+                change: function (event, data) {
+                    this.set('year', data.year)
                 }
             }
         });

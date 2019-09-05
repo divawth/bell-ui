@@ -1,24 +1,15 @@
+
 {$selector-datepicker-week}
-  user-select none
 
-  {$selector-datepicker}-row
-    cursor pointer
-    border-radius $datepicker-date-radius
-    margin-bottom $datepicker-week-margin
+  {$selector-datepicker-row}
+    cursor $cursor-clickable
+    border-radius 50px
 
-    &{$selector-hover}
-      background-color $datepicker-item-range-background-color
+    &:hover
+      background-color $datepicker-item-range-bg-color
 
-    {$selector-datepicker}-col
-      &{$selector-hover}
-        color $brand-secondary
-        background-color $datepicker-item-range-background-color
-     
-    &{$selector-datepicker}-row-checked
-      background-color $datepicker-item-range-background-color
+  {$selector-datepicker-col-enabled}:hover
+    color $datepicker-item-color
 
-      {$selector-datepicker}-col
-        &:first-child,
-        &:last-child
-          background-color $datepicker-item-checked-background-color
-          color $datepicker-item-checked-color
+  {$selector-datepicker-col-disabled}
+    cursor $cursor-clickable

@@ -4,9 +4,7 @@ interface Tab {
     label: string;
     disabled: boolean;
 }
-declare const _default: import("yox").ComponentOptions<{
-    translateStyle: unknown;
-}, {
+declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
 }, {
     'add.tabPanel': unknown;

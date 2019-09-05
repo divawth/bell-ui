@@ -1,14 +1,9 @@
-declare const _default: import("yox").ComponentOptions<unknown, {
-    value: unknown;
-}, unknown, {
-    prev(): void;
-    next(): void;
-    click(year: number): void;
-    getYearList(startYear: number): void;
+declare const _default: import("yox").ComponentOptions<{
+    datasource: unknown;
+    checkedYears: unknown;
+}, unknown, unknown, {
+    click(item: number): void;
 }> & ThisType<{
-    prev(): void;
-    next(): void;
-    click(year: number): void;
-    getYearList(startYear: number): void;
+    click(item: number): void;
 } & import("yox").YoxInterface>;
 export default _default;

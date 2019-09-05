@@ -1,8 +1,12 @@
-declare const _default: import("yox").ComponentOptions<unknown, {
-    value: unknown;
+import { SimpleMonth } from '../util';
+declare const _default: import("yox").ComponentOptions<{
+    datasource: unknown;
+    checkedTimestamps: unknown;
 }, unknown, {
-    click(month: number): void;
+    'change.year': unknown;
+}, {
+    click(item: SimpleMonth): void;
 }> & ThisType<{
-    click(month: number): void;
+    click(item: SimpleMonth): void;
 } & import("yox").YoxInterface>;
 export default _default;

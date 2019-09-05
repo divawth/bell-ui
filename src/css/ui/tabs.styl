@@ -78,24 +78,14 @@
   > {$selector-tabs-tab-close-icon}
     width $tabs-close-size
 
-{$selector-tabs-content}
-  width 100%
-  overflow hidden
-  display flex
-  flex-direction row
-
-  ::-webkit-scrollbar
-    display none
-
 {$selector-tabs-panel}
-  outline 0
-  flex-shrink 0
-  width 100%
-  opacity 1
-  transition opacity .3s
+  display none
+
+{$selector-tabs-panel-active}
+  display block
 
 {$selector-tabs-panel-disabled}
-  opacity 0
+  display none
 
 {$selector-tabs-card}
 
@@ -119,9 +109,4 @@
       background-color $tabs-card-bg-color
       &{$selector-tabs-tab-active}
         background-color $tabs-card-bg-color-active
-
-{$selector-tabs-animated}
-  {$selector-tabs-content}
-    will-change transform
-    transition transform .3s ease-in-out
 

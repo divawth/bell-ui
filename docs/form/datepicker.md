@@ -9,15 +9,21 @@ export default {
   isViewFullBlock: true,
   height: 400,
   template: `
-    <div style="height: 350px;">
-      <DatePicker type="date" clearable placeholder="Select date" style="width: 280px" />
+    <div style="height: 400px;">
+      <DatePicker
+        type="date"
+        clearable
+        placeholder="Select date"
+        width="280"
+      />
       <br><br>
-      <DatePicker type="dateRange"
+      <DatePicker
+        type="dateRange"
         placement="bottom-start"
         placeholder="Select date"
-        style="width: 280px"
+        width="280"
         on-change="change()"
-      ></DatePicker>
+      />
     </div>
   `,
   methods: {
@@ -36,9 +42,20 @@ export default {
   height: 400,
   template: `
     <div style="height: 350px">
-      <DatePicker type="date" shortcuts="{{shortcuts1}}" placeholder="Select date" style="width: 280px"></DatePicker>
+      <DatePicker
+        type="date"
+        shortcuts="{{shortcuts1}}"
+        placeholder="Select date"
+        width="280"
+      />
       <br><br>
-      <DatePicker type="dateRange" shortcuts="{{shortcuts2}}" placement="bottom-start" placeholder="Select date" style="width: 280px"></DatePicker>
+      <DatePicker
+        type="dateRange"
+        shortcuts="{{shortcuts2}}"
+        placement="bottom-start"
+        placeholder="Select date"
+        width="280"
+      />
     </div>
   `,
   data() {
@@ -46,62 +63,56 @@ export default {
       shortcuts1: [
         {
           text: 'Today',
-          value () {
-            return new Date();
-          },
-          onClick: (picker) => {
-            this.$message.info('Click today');
+          onClick() {
+            this.$message.info('Click today')
+            return new Date()
           }
         },
         {
           text: 'Yesterday',
-          value () {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24);
-            return date;
-          },
-          onClick: (picker) => {
-            this.$message.info('Click yesterday');
+          onClick() {
+            this.$message.info('Click yesterday')
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            return date
           }
         },
         {
           text: 'One week',
-          value () {
-            const date = new Date();
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-            return date;
-          },
-          onClick: (picker) => {
-            this.$message.info('Click a week ago');
+          onClick() {
+            this.$message.info('Click a week ago')
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            return date
           }
         }
       ],
       shortcuts2: [
         {
           text: '1 week',
-          value () {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-            return [start, end];
+          onClick() {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            return [start, end]
           }
         },
         {
           text: '1 month',
-          value () {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-            return [start, end];
+          onClick() {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            return [start, end]
           }
         },
         {
           text: '3 months',
-          value () {
-            const end = new Date();
-            const start = new Date();
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-            return [start, end];
+          onClick() {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            return [start, end]
           }
         }
       ]
@@ -118,7 +129,12 @@ export default {
   height: 400,
   template: `
     <div style="height: 300px;">
-      <DatePicker type="dateRange" splitPanel placeholder="Select date" style="width: 300px"></DatePicker>
+      <DatePicker
+        splitPanel
+        type="dateRange"
+        placeholder="Select date"
+        width="300"
+      />
     </div>
   `
 }
@@ -132,9 +148,20 @@ export default {
   height: 500,
   template: `
     <div style="height: 450px;">
-      <DatePicker type="date" multiple placeholder="Select date" style="width: 300px"></DatePicker>
+      <DatePicker
+        multiple
+        type="date"
+        placeholder="Select date"
+        width="300"
+      />
       <br><br>
-      <DatePicker type="date" value="{{value}}" multiple placeholder="Select date" style="width: 300px"></DatePicker>
+      <DatePicker
+        multiple
+        type="date"
+        value="{{value}}"
+        placeholder="Select date"
+        width="300"
+      />
     </div>
   `,
   data() {
@@ -145,7 +172,7 @@ export default {
 }
 ```
 
-> 起始日期
+> 类型
 
 ```js
 export default {
@@ -153,20 +180,49 @@ export default {
   height: 600,
   template: `
     <div style="height: 550px;">
-      <DatePicker type="date" startDate="{{startDate}}" placeholder="Select date" style="width: 240px"></DatePicker>
+      <DatePicker
+        type="date"
+        defaultDate="{{defaultDate}}"
+        placeholder="Select date"
+        width="240"
+      />
       <br><br>
-      <DatePicker type="dateRange" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 240px"></DatePicker>
+      <DatePicker
+        type="dateRange"
+        defaultDate="{{defaultDate}}"
+        placeholder="Select date range"
+        placement="bottom-start"
+        width="240"
+      />
       <br><br>
-      <DatePicker type="year" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 240px"></DatePicker>
+      <DatePicker
+        type="year"
+        defaultDate="{{defaultDate}}"
+        placeholder="Select year"
+        placement="bottom-start"
+        width="240"
+      />
       <br><br>
-      <DatePicker type="month" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 240px"></DatePicker>
+      <DatePicker
+        type="month"
+        defaultDate="{{defaultDate}}"
+        placeholder="Select month"
+        placement="bottom-start"
+        width="240"
+      />
       <br><br>
-      <DatePicker type="week" startDate="{{startDate}}" placement="bottom-start" placeholder="Select date" style="width: 240px"></DatePicker>
+      <DatePicker
+        type="week"
+        defaultDate="{{defaultDate}}"
+        placeholder="Select week"
+        placement="bottom-start"
+        width="240"
+      />
     </div>
   `,
   data() {
     return {
-      startDate: new Date('1991/4/14')
+      defaultDate: new Date('1991/4/14')
     }
   }
 }
@@ -180,15 +236,45 @@ export default {
   height: 600,
   template: `
     <div style="height: 550px">
-      <DatePicker value="{{value1}}" formatText="yyyy年MM月dd日" type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        value="{{value1}}"
+        format="yyyy年MM月dd日"
+        type="date"
+        placeholder="Select date"
+        width="200"
+      />
       <br><br>
-      <DatePicker value="{{value2}}" formatText="yyyy/MM/dd$-yyyy/MM/dd" type="dateRange" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        value="{{value2}}"
+        format="yyyy/MM/dd"
+        type="dateRange"
+        placeholder="Select date"
+        width="200"
+      />
       <br><br>
-      <DatePicker value="{{value3}}" formatText="yyyy年MM月" type="month" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        value="{{value3}}"
+        format="yyyy年MM月"
+        type="month"
+        placeholder="Select date"
+        width="200"
+      />
       <br><br>
-      <DatePicker value="{{value4}}" formatText="yyyy年" type="year" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        value="{{value4}}"
+        format="yyyy年"
+        type="year"
+        placeholder="Select date"
+        width="200"
+      />
       <br><br>
-      <DatePicker value="{{value2}}" formatText="yyyy/MM/dd$-yyyy/MM/dd" type="week" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        value="{{value5}}"
+        format="yyyy/MM/dd"
+        type="week"
+        placeholder="Select date"
+        width="200"
+      />
     </div>
   `,
   data() {
@@ -196,25 +282,10 @@ export default {
       value1: new Date('2019/1/1'),
       value2: [new Date('2019/1/1'), new Date('2019/2/16')],
       value3: new Date('2019/3/11'),
-      value4: new Date('2017/3/11')
+      value4: new Date('2017/3/11'),
+      value5: undefined,
     }
   }
-}
-```
-
-> 年和月
-
-```js
-export default {
-  isViewFullBlock: true,
-  height: 400,
-  template: `
-    <div style="height: 350px">
-      <DatePicker type="year" placeholder="Select year" style="width: 200px"></DatePicker>
-      <br><br>
-      <DatePicker type="month" placeholder="Select month" style="width: 200px"></DatePicker>
-    </div>
-  `
 }
 ```
 
@@ -226,9 +297,19 @@ export default {
   height: 400,
   template: `
     <div style="height: 350px">
-      <DatePicker type="date" disabledDate="{{disabledDate1}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        type="date"
+        disabledDate="{{disabledDate1}}"
+        placeholder="Select date"
+        width="200"
+      />
       <br><br>
-      <DatePicker type="dateRange" disabledDate="{{disabledDate1}}" placeholder="Select date" style="width: 200px"></DatePicker>
+      <DatePicker
+        type="dateRange"
+        disabledDate="{{disabledDate1}}"
+        placeholder="Select date"
+        width="200"
+      />
     </div>
   `,
   data() {
@@ -245,22 +326,6 @@ export default {
 }
 ```
 
-> 带有确认操作
-
-```js
-export default {
-  isViewFullBlock: true,
-  height: 500,
-  template: `
-    <div style="height: 450px">
-      <DatePicker type="date" confirm placeholder="Select date" style="width: 200px"></DatePicker>
-      <br><br>
-      <DatePicker type="dateRange" confirm placeholder="Select date" style="width: 200px"></DatePicker>
-    </div>
-  `
-}
-```
-
 > 手动控制组件
 
 ```js
@@ -269,12 +334,10 @@ export default {
   height: 400,
   template: `
     <div style="height: 350px">
-      <DatePicker type="date"
-        confirm
-        open="{{open}}"
+      <DatePicker
+        ref="picker"
+        type="date"
         on-change="handleChange($data)"
-        on-clear="handleClear()"
-        on-ok="handleOk()"
       >
         <a href="javascript:void(0)" on-click="handleClick()">
           <Icon type="ios-calendar-outline" />
@@ -289,23 +352,15 @@ export default {
   `,
   data () {
     return {
-      open: false,
       value3: ''
     }
   },
   methods: {
     handleClick() {
-      this.toggle('open')
+      this.$refs.picker.open()
     },
     handleChange(data) {
       this.set('value3', data.value.formatDate)
-    },
-    handleClear() {
-      this.set('value3', '')
-      this.set('open', false)
-    },
-    handleOk() {
-      this.set('open', false)
     }
   }
 }
@@ -320,11 +375,11 @@ export default {
   height: 400,
   template: `
     <div style="height: 350px">
-      <DatePicker size="small" type="date" placeholder="Select date"></DatePicker>
+      <DatePicker size="small" type="date" placeholder="Select date" />
       <br><br>
-      <DatePicker type="date" placeholder="Select date"></DatePicker>
+      <DatePicker type="date" placeholder="Select date" />
       <br><br>
-      <DatePicker size="large" type="date" placeholder="Select date"></DatePicker>
+      <DatePicker size="large" type="date" placeholder="Select date" />
     </div>
   `
 }
@@ -336,17 +391,15 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 日期选择器类型 | string | date, dateRange, month, year | date
+type | 日期选择器类型 | string | date, dateRange, month, year, week | date
 value | 日期 | Date | - | -
-formatText | 可以用来格式化date | string | - | YYYY-MM-DD
+format | 日期显示格式 | string | - | yyyy-MM-dd
 placement | 日期选择器出现的位置 | string | bottom-start
 placeholder | 占位文本 | string | -
-splitPanel | 开启后，左右面板不联动，仅在 daterange 下可用 | boolean | false
-multiple | 开启后，可以选择多个日期，仅在 date 下可用 | boolean | false
+splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | false
+multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | false
 shortcuts | 快捷方式 | Array | -
-startDate | 默认显示视图的日期 | Date | -
-confirm | 是否确认操作之后再关闭 | boolean | false
-open | 手动控制日期选择器的显示状态 | boolean | false
+defaultDate | 默认显示视图的日期 | Date | -
 size | 尺寸 | string | -
 disabledDate | 不可选择的日期 | Function | -
 clearable | 是否显示清除按钮 | boolean | false
@@ -356,5 +409,3 @@ clearable | 是否显示清除按钮 | boolean | false
 事件名称 | 说明 | 回调参数
 ---|---|---
 change | 值改变之后的回调 | 选中的值
-ok | confirm 的确认按钮的回调 | -
-clear | confirm 的清除按钮的回调 | -

@@ -1,33 +1,61 @@
-import Yox, { Listener, CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
-import Date from './components/Date'
+import DateView from './components/Date'
 import DateRange from './components/DateRange'
 import DateWeek from './components/DateWeek'
 import DateMonth from './components/DateMonth'
 import DateYear from './components/DateYear'
 
-import { lpad, simplifyDate } from './function/util'
-import { contains, oneOf, isDate, isDateValue } from '../util'
 import template from './template/DatePicker.hbs'
+
 import {
-  NULL,
   TRUE,
   FALSE,
   DOCUMENT,
+  UNDEFINED,
   RAW_STRING,
-  RAW_PLACEMENT_ARRAY,
+  RAW_DATE,
   RAW_ARRAY,
   RAW_BOOLEAN,
-  RAW_BOTTOM_START,
+  RAW_NUMERIC,
   RAW_FUNCTION,
-  RAW_SIZE_ARRAY,
-  RAW_DATE,
+  RAW_BOTTOM_START,
   RAW_CLICK,
+  RAW_SIZE_COMMON,
+  RAW_DEFAULT,
+  RAW_PLACEMENT_ARRAY,
 } from '../constant'
 
-import { DateType, DateRangeType, ShortcutType } from './type'
+import {
+  RAW_TYPE_DATE,
+  RAW_TYPE_DATE_RANGE,
+  RAW_TYPE_WEEK,
+  RAW_TYPE_YEAR,
+  RAW_TYPE_MONTH,
 
-const DAY_MAP = [ '日', '一', '二', '三', '四', '五', '六' ]
+  Shortcut,
+  formatDate,
+  SimpleDate,
+  SimpleRange,
+  toTimestamp,
+  toSimpleDate,
+} from './util'
+
+import {
+  oneOf,
+  contains,
+} from '../util'
+
+const YEAR_FORMAT = 'yyyy'
+const MONTH_FORMAT = 'yyyy/MM'
+const DATE_FORMAT = 'yyyy/MM/dd'
+
+const defaultFormat = {}
+defaultFormat[RAW_TYPE_DATE] = DATE_FORMAT
+defaultFormat[RAW_TYPE_DATE_RANGE] = DATE_FORMAT
+defaultFormat[RAW_TYPE_WEEK] = DATE_FORMAT
+defaultFormat[RAW_TYPE_MONTH] = MONTH_FORMAT
+defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT
 
 export default Yox.define({
 
@@ -35,49 +63,52 @@ export default Yox.define({
 
   propTypes: {
     type: {
-      type: oneOf(['date', 'dateRange', 'week', 'year', 'month']),
-      value: 'date'
+      type: oneOf([RAW_TYPE_DATE, RAW_TYPE_DATE_RANGE, RAW_TYPE_WEEK, RAW_TYPE_YEAR, RAW_TYPE_MONTH]),
+      value: RAW_TYPE_DATE,
     },
     size: {
-      type: oneOf(RAW_SIZE_ARRAY)
-    },
-    value: {
-      type: isDateValue()
-    },
-    shortcuts: {
-      type: RAW_ARRAY
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     splitPanel: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
+    },
+    defaultDate: {
+      type: RAW_DATE,
+    },
+    value: {
+      type: function (key: string, value: any) {
+
+      }
+    },
+    shortcuts: {
+      type: RAW_ARRAY,
     },
     multiple: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     placement: {
       type: oneOf(RAW_PLACEMENT_ARRAY),
-      value: RAW_BOTTOM_START
+      value: RAW_BOTTOM_START,
     },
-    startDate: {
-      type: isDate,
+    placeholder: {
+      type: RAW_STRING,
+      value: '请选择日期...'
     },
-    formatText: {
+    format: {
       type: RAW_STRING,
     },
     disabledDate: {
       type: RAW_FUNCTION,
     },
-    confirm: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     clearable: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    open: {
-      type: RAW_BOOLEAN,
+    width: {
+      type: RAW_NUMERIC,
     },
     className: {
       type: RAW_STRING,
@@ -87,52 +118,59 @@ export default Yox.define({
     }
   },
 
-  data() {
-    let formatTextStr = this.get('formatText') as string
-    if (!this.get('formatText')) {
-      switch (this.get('type')) {
-        case 'date':
-          formatTextStr = 'YYYY/MM/DD'
-          break
-        case 'dateRange':
-          formatTextStr = 'YYYY/MM/DD $- YYYY/MM/DD'
-          break
-        case 'week':
-          formatTextStr = 'YYYY/MM/DD $- YYYY/MM/DD'
-          break
-        case 'year':
-          formatTextStr = 'YYYY'
-          break
-        case 'month':
-          formatTextStr = 'YYYY/MM'
-          break
-      }
-    }
+  data(options) {
+    const props = options.props || {}
     return {
-      date: NULL,
-      start: NULL,
-      end: NULL,
+      RAW_TYPE_DATE,
+      RAW_TYPE_DATE_RANGE,
+      RAW_TYPE_WEEK,
+      RAW_TYPE_YEAR,
+      RAW_TYPE_MONTH,
 
       visible: FALSE,
-      formatTextStr,
-    }
-  },
-
-  computed: {
-    autoClose(): boolean {
-      return this.get('multiple') || this.get('confirm')
-    },
-    isOpen(): boolean {
-      return this.get('visible') || this.get('open')
+      formatText: props.format || defaultFormat[props.type || RAW_TYPE_DATE]
     }
   },
 
   components: {
-    Date,
+    DateView,
     DateRange,
     DateWeek,
     DateMonth,
-    DateYear
+    DateYear,
+  },
+
+  computed: {
+    defaultSimpleDate(): SimpleDate {
+      const defaultDate = this.get('defaultDate')
+      return toSimpleDate(toTimestamp(defaultDate))
+    },
+    dateText: {
+      get(): string {
+
+        const me = this
+        const type = me.get('type')
+        const value = me.get('value')
+        const formatText = me.get('formatText')
+
+        if (Yox.is.array(value)) {
+          const list = value.map(function (date: Date) {
+            return formatDate(date, formatText)
+          })
+          if (list.length === 2 && (type === RAW_TYPE_DATE_RANGE || type === RAW_TYPE_WEEK)) {
+            return `${list[0]} - ${list[1]}`
+          }
+          return list.join(', ')
+        }
+        else if (value) {
+          return formatDate(value, formatText)
+        }
+        return ''
+      },
+      set(text: string) {
+        console.log(text)
+      }
+    },
   },
 
   events: {
@@ -140,210 +178,125 @@ export default Yox.define({
       event.stop()
     },
     'clear.input': function (event) {
-      this.fire('clear.datepicker', TRUE)
       event.stop()
+      this.fire('clear.datepicker', TRUE)
     },
     'change.date': function (event, data) {
-      if (data.selectedDates) {
-        this.set({
-          selectedDates: data.selectedDates
-        })
-      }
-      this.dateChange(data.date)
       event.stop()
+      this.dateChange(data.timestamp)
+    },
+    'change.year': function (event, data) {
+      event.stop()
+      const date = new Date()
+      date.setFullYear(data.year)
+      this.dateChange(toTimestamp(date), YEAR_FORMAT)
+    },
+    'change.month': function (event, data: SimpleDate) {
+      event.stop()
+      const date = new Date()
+      date.setFullYear(data.year)
+      date.setMonth(data.month - 1)
+      this.dateChange(toTimestamp(date), MONTH_FORMAT)
     },
 
-    'change.year': function (event, date: DateType) {
-      this.dateChange(date)
+    'change.week': function (event, data: SimpleRange) {
       event.stop()
+      this.dateRangeChange(data.start.timestamp, data.end.timestamp)
     },
-
-    'change.month': function (event, date: DateType) {
-      this.dateChange(date)
+    'change.range': function (event, data: SimpleRange) {
       event.stop()
-    },
-
-    'change.week': function (event, date: DateRangeType) {
-      this.dateRangeChange(date)
-      event.stop()
-    },
-
-    'change.daterange': function (event, date: DateRangeType) {
-      this.dateRangeChange(date)
-      event.stop()
+      this.dateRangeChange(data.start.timestamp, data.end.timestamp)
     }
   },
 
   methods: {
-    shortcutClick(data: ShortcutType) {
-      let date = data.value && data.value()
-      if (!date) {
-        Yox.logger.warn(`shortcuts value 传值错误`)
-        return
-      }
-      if (!Yox.is.array(date)) {
-        this.dateChange(
-          simplifyDate(date as Date)
+    shortcutClick(data: Shortcut) {
+      const value = data.onClick.call(this)
+      if (Yox.is.array(value)) {
+        if (!value[0] || !value[1]) {
+          Yox.logger.warn(`shortcuts value 传值错误`)
+          return
+        }
+        this.dateRangeChange(
+          toTimestamp(value[0]),
+          toTimestamp(value[1])
         )
       }
       else {
-        this.dateRangeChange({
-          start: simplifyDate(date[ 0 ]),
-          end: simplifyDate(date[ 1 ])
-        })
+        if (!value) {
+          Yox.logger.warn(`shortcuts value 传值错误`)
+          return
+        }
+        const type = this.get('type')
+        if (type === RAW_TYPE_DATE_RANGE || type === RAW_TYPE_WEEK) {
+          Yox.logger.warn(`shortcuts value 需返回数组类型`)
+          return
+        }
+        this.dateChange(
+          toTimestamp(value as any)
+        )
       }
-      this.set({
-        value: date
-      })
-      data.onClick && data.onClick()
     },
 
-    focus() {
-      this.set('visible', true)
+    open() {
+      this.set('visible', TRUE)
     },
 
     close() {
-      this.set('visible', false)
+      this.set('visible', FALSE)
     },
 
-    formatDate(start: DateType, end?: DateType) {
+    dateChange(timestamp: number, dateFormat = DATE_FORMAT) {
 
-      if (!start) {
-        return ''
-      }
-      let result = ''
-      let me = this
-      let startFormat = me.get('formatTextStr').split('$')[0]
-      let endFormat = me.get('formatTextStr').split('$')[1]
+      const me = this
+      const value = me.get('value')
 
-      if (end) {
-        let formatStart = startFormat
-          .replace(/yyyy/i, start.year)
-          .replace(/yy/i, +('' + start.year).substr(2))
-          .replace(/MM/, lpad(start.month))
-          .replace(/M/, start.month)
-          .replace(/dd/i, lpad(start.date))
-          .replace(/d/i, start.date)
-          .replace(/w/, DAY_MAP[start.day])
+      const date = new Date(timestamp)
 
-        let formatEnd = endFormat
-          .replace(/yyyy/i, end.year)
-          .replace(/yy/i, +('' + end.year).substr(2))
-          .replace(/MM/, lpad(end.month))
-          .replace(/M/, end.month)
-          .replace(/dd/i, lpad(end.date))
-          .replace(/d/i, end.date)
-          .replace(/w/, DAY_MAP[end.day])
-
-        result = formatStart + formatEnd
-
-      }
-      else {
-        result = startFormat
-          .replace(/yyyy/i, start.year)
-          .replace(/yy/i, +('' + start.year).substr(2))
-          .replace(/MM/, lpad(start.month))
-          .replace(/M/, start.month)
-          .replace(/dd/i, lpad(start.date))
-          .replace(/d/i, start.date)
-          .replace(/w/, DAY_MAP[start.day])
-      }
-      return result.trim()
-    },
-
-    dateChange(date: DateType) {
-
-      let me = this
-      let multiple = me.get('multiple')
-
-      if (!multiple) {
-        let formatDate = me.get('formatDate')
-        let newFormateDate = me.formatDate(date)
-        if (newFormateDate !== formatDate) {
-          me.fire(
-            'change.datepicker',
-            {
-              value: {
-                formatDate: newFormateDate,
-                date: date,
-              },
-              oldValue: {
-                formatDate: formatDate,
-                date: me.get('date')
+      if (me.get('multiple')) {
+        if (Yox.is.array(value)) {
+          // 判断年月日是否存在
+          const format = formatDate(date, dateFormat)
+          let existed = FALSE
+          Yox.array.each(
+            value,
+            function (item: Date) {
+              if (format === formatDate(item, dateFormat)) {
+                existed = TRUE
+                return FALSE
               }
             }
           )
+          if (!existed) {
+            me.append('value', date)
+          }
         }
-        me.set({
-          date: date,
-          formatDate: newFormateDate
-        })
+        else {
+          me.append('value', date)
+        }
       }
       else {
-        let formatDateArray = []
-        let selectedDates = me.get('selectedDates')
-        selectedDates.forEach(item => {
-          let dateArray = item.split('/')
-          let date = {
-            year: dateArray[ 0 ],
-            month: dateArray[ 1 ],
-            date: dateArray[ 2 ],
-            day: dateArray[ 3 ],
-          }
-          formatDateArray.push(
-            me.formatDate(date)
-          )
-        });
-        me.set({
-          formatDate: formatDateArray.join(', ')
-        })
+        me.set('value', date)
       }
-      !me.get('autoClose') && me.close()
+
+      if (!me.get('multiple')) {
+        me.close()
+      }
+
     },
 
-    dateRangeChange(data: DateRangeType) {
+    dateRangeChange(start: number, end: number) {
 
-      let end = data.end
+      this.set('value', [new Date(start), new Date(end)])
 
-      if (!end) {
-        return
+      if (!this.get('multiple')) {
+        this.close()
       }
 
-      let me = this
-      let start = data.start
-
-      me.fire(
-        'change.datepicker',
-        {
-          value: {
-            start: start,
-            end: end,
-            startDate: me.formatDate(start),
-            endDate: me.formatDate(end),
-            formatDate: me.formatDate(start, end)
-          },
-          oldValue: {
-            start: me.get('start'),
-            end: me.get('end'),
-            startDate: me.formatDate(me.get('start')),
-            endDate: me.formatDate(me.get('end')),
-            formatDate: me.formatDate(me.get('start'), me.get('end'))
-          }
-        }
-      )
-
-      me.set({
-        start: start,
-        end: end,
-        formatDate: me.formatDate(start, end)
-      })
-      !me.get('autoClose') && me.close()
     },
     clear() {
-      this.set('formatDate', '')
-      this.fire('clear.datepicker', TRUE)
+      this.set('value', this.get('multiple') ? [] : UNDEFINED)
       this.fire('clear.datepicker')
-      this.close()
     },
     ok() {
       this.close()
@@ -355,7 +308,10 @@ export default Yox.define({
 
     const me = this
 
-    const onClick: Listener = function (event) {
+    const onClick = function (event: CustomEventInterface) {
+      if (!me.get('visible')) {
+        return
+      }
       const element = me.$el
       const target = event.originalEvent.target as HTMLElement
       if (contains(element, target)) {

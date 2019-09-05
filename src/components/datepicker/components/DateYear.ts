@@ -2,26 +2,31 @@ import Yox from 'yox'
 
 import template from '../template/DateYear.hbs'
 
+import backIconTemplate from '../template/backIcon.hbs'
+import forwardIconTemplate from '../template/forwardIcon.hbs'
+
 import {
+  toDate,
+  createYearViewDatasource,
+} from '../util'
+
+import {
+  RAW_DATE,
   RAW_STRING,
+  RAW_ARRAY,
+  RAW_NUMBER,
 } from '../../constant'
-
-import {
-  isDate,
-} from '../../util'
-
-const SHOW_COUNT = 12
 
 export default Yox.define({
 
   template,
 
   propTypes: {
-    startDate: {
-      type: isDate,
+    defaultDate: {
+      type: [RAW_DATE, RAW_NUMBER],
     },
-    value: {
-      type: isDate,
+    checkedDate: {
+      type: [RAW_DATE, RAW_NUMBER, RAW_ARRAY],
     },
     className: {
       type: RAW_STRING,
@@ -31,76 +36,59 @@ export default Yox.define({
     }
   },
 
-  data() {
-
-    let startDate = this.get('startDate')
-    let value = this.get('value')
-
-    let year = startDate
-      ? startDate.getFullYear()
-      : new Date().getFullYear()
-
-    let checkedYear = ''
-    if (value) {
-      checkedYear = value.getFullYear()
+  data(options) {
+    const props = options.props || {}
+    let date = props.defaultDate
+    if (!date) {
+      if (Yox.is.array(props.checkedDate)) {
+        date = props.checkedDate[0]
+      }
+      else {
+        date = props.checkedDate
+      }
     }
-
     return {
-      modeYear: year,
-      checkedYear,
-      years: [],
+      year: (toDate(date) || new Date()).getFullYear(),
+      count: 12,
     }
   },
 
-  watchers: {
-    value(value: Date) {
-      this.set({
-        checkedYear: value ? value.getFullYear() : 0
-      })
+  computed: {
+    datasource(): number[][] {
+      return createYearViewDatasource(this.get('year'), this.get('count'))
+    },
+    checkedYears(): number[] {
+      let checkedDate = this.get('checkedDate')
+      if (Yox.is.array(checkedDate)) {
+        return checkedDate.map(function (date: number | Date) {
+          return date ? toDate(date).getFullYear() : 0
+        })
+      }
+      return [checkedDate ? toDate(checkedDate).getFullYear() : 0]
+    }
+  },
+
+  partials: {
+    backIcon: backIconTemplate,
+    forwardIcon: forwardIconTemplate,
+  },
+
+  filters: {
+    isChecked(year: number) {
+      const checkedYears = this.get('checkedYears')
+      return Yox.array.has(checkedYears, year)
     }
   },
 
   methods: {
-    prev() {
-      this.decrease('modeYear', SHOW_COUNT)
-      this.getYearList(this.get('modeYear'))
-    },
-    next() {
-      this.increase('modeYear', SHOW_COUNT)
-      this.getYearList(this.get('modeYear'))
-    },
-    click(year: number) {
-      this.set({
-        checkedYear: year
-      })
+    click(item: number) {
       this.fire(
         'change.year',
         {
-          year,
-        }
-      )
-    },
-    getYearList(startYear: number) {
-      const years = []
-      for (let i = startYear, endYear = startYear + SHOW_COUNT; i < endYear; i++) {
-        years.push(i)
-      }
-      this.set({
-        modeYear: startYear,
-        years: years,
-      })
-    }
-  },
-
-  afterMount() {
-    this.getYearList(this.get('modeYear'))
-    if (this.get('value')) {
-      this.fire(
-        'change.year',
-        {
-          year: this.get('checkedYear')
+          year: item,
         }
       )
     }
   }
+
 })

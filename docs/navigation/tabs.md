@@ -200,24 +200,6 @@ export default {
 }
 ```
 
-> animated 去掉动画
-
-```js
-export default {
-  isViewFullBlock: true,
-  height: 300,
-  template: `
-    <Tabs animated="{{false}}" size="small" type="card">
-      <TabPanel label="标签一">标签一的内容</TabPanel>
-      <TabPanel label="标签二">标签二的内容</TabPanel>
-      <TabPanel label="标签三">标签三的内容</TabPanel>
-    </Tabs>
-  `
-}
-```
-
-
-
 #### API
 
 > Tabs Props
@@ -227,7 +209,6 @@ export default {
 type | tabs 类型 | string | card | -
 size | 大小 | string | default, small, large | default
 closable | 是否可以关闭页签，仅在 type="card" 时有效 | boolean | - | false
-animated | 是否有动画 | boolean | - | true
 value | 当前选中的 tab 的 name 值 | string, number | - | -
 
 > Tabs Events

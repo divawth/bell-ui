@@ -1,44 +1,27 @@
-import { DateType } from '../type';
+import { SimpleDate } from '../util';
 declare const _default: import("yox").ComponentOptions<{
-    startModeDateYear: unknown;
-    startModeDateMonth: unknown;
-    endModeDateYear: unknown;
-    endModeDateMonth: unknown;
+    startDate: unknown;
+    endDate: unknown;
+    startDatasource: unknown;
+    endDatasource: unknown;
+    checkedStartTimestamp: unknown;
+    checkedEndTimestamp: unknown;
+    computedCheckedStartTimestamp: unknown;
+    computedCheckedEndTimestamp: unknown;
 }, {
-    value: unknown;
-}, {
-    'clear.datepicker': unknown;
-}, {
-    changeStartModeDate(offset: number): void;
-    changeEndModeDate(offset: number): void;
-    startPrevYear(): void;
-    startPrevMonth(): void;
-    startNextYear(): void;
-    startNextMonth(): void;
-    endPrevYear(): void;
-    endPrevMonth(): void;
-    endNextYear(): void;
-    endNextMonth(): void;
-    hover(date: DateType): void;
-    click(date: DateType): void;
-    refresh(start: number, end: number): void;
-    getDataSource(start: number, end: number, date: DateType, checkedStartDate?: DateType, checkedEndDate?: DateType): any[];
-    createRenderData(date: Date, checkedStartDate?: DateType, checkedEndDate?: DateType): any[];
+    checkedStartDate: unknown;
+    checkedEndDate: unknown;
+}, unknown, {
+    offsetStart(offset: number): void;
+    offsetEnd(offset: number): void;
+    hover(item: SimpleDate): void;
+    leave(): void;
+    click(item: SimpleDate): void;
 }> & ThisType<{
-    changeStartModeDate(offset: number): void;
-    changeEndModeDate(offset: number): void;
-    startPrevYear(): void;
-    startPrevMonth(): void;
-    startNextYear(): void;
-    startNextMonth(): void;
-    endPrevYear(): void;
-    endPrevMonth(): void;
-    endNextYear(): void;
-    endNextMonth(): void;
-    hover(date: DateType): void;
-    click(date: DateType): void;
-    refresh(start: number, end: number): void;
-    getDataSource(start: number, end: number, date: DateType, checkedStartDate?: DateType, checkedEndDate?: DateType): any[];
-    createRenderData(date: Date, checkedStartDate?: DateType, checkedEndDate?: DateType): any[];
+    offsetStart(offset: number): void;
+    offsetEnd(offset: number): void;
+    hover(item: SimpleDate): void;
+    leave(): void;
+    click(item: SimpleDate): void;
 } & import("yox").YoxInterface>;
 export default _default;

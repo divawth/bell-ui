@@ -1,7 +1,7 @@
-import { DateType, DateRangeType, ShortcutType } from './type';
+import { Shortcut } from './util';
 declare const _default: import("yox").ComponentOptions<{
-    autoClose: unknown;
-    isOpen: unknown;
+    defaultSimpleDate: unknown;
+    dateText: unknown;
 }, unknown, {
     'change.input': unknown;
     'clear.input': unknown;
@@ -9,23 +9,21 @@ declare const _default: import("yox").ComponentOptions<{
     'change.year': unknown;
     'change.month': unknown;
     'change.week': unknown;
-    'change.daterange': unknown;
+    'change.range': unknown;
 }, {
-    shortcutClick(data: ShortcutType): void;
-    focus(): void;
+    shortcutClick(data: Shortcut): void;
+    open(): void;
     close(): void;
-    formatDate(start: DateType, end?: DateType): string;
-    dateChange(date: DateType): void;
-    dateRangeChange(data: DateRangeType): void;
+    dateChange(timestamp: number, dateFormat?: string): void;
+    dateRangeChange(start: number, end: number): void;
     clear(): void;
     ok(): void;
 }> & ThisType<{
-    shortcutClick(data: ShortcutType): void;
-    focus(): void;
+    shortcutClick(data: Shortcut): void;
+    open(): void;
     close(): void;
-    formatDate(start: DateType, end?: DateType): string;
-    dateChange(date: DateType): void;
-    dateRangeChange(data: DateRangeType): void;
+    dateChange(timestamp: number, dateFormat?: string): void;
+    dateRangeChange(start: number, end: number): void;
     clear(): void;
     ok(): void;
 } & import("yox").YoxInterface>;

@@ -74,6 +74,15 @@ export function toNumber(value: any, defaultValue?: any) {
       : 0
 }
 
+export function toString(value: any, defaultValue?: any) {
+  if (value == NULL) {
+    return defaultValue !== UNDEFINED
+      ? defaultValue as string
+      : ''
+  }
+  return '' + value
+}
+
 export function findComponentUpward(parent, componentName: string | string[]) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ]

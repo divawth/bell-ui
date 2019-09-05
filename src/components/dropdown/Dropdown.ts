@@ -24,7 +24,6 @@ import {
   oneOf,
   contains,
   onTransitionEnd,
-  supportTransform,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}dropdown-visible'

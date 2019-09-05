@@ -2,7 +2,6 @@
 class="${prefix}tabs
 {{#if type}} ${prefix}tabs-{{type}}{{/if}}
 {{#if size}} ${prefix}tabs-{{size}}{{/if}}
-{{#if animated}} ${prefix}tabs-animated{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -29,7 +28,7 @@ class="${prefix}tabs
         >
         </div>
       {{/if}}
-      {{#each tabs:index}}
+      {{#each tabs}}
         <div
           class="${prefix}tabs-tab
             {{#if this.disabled}} ${prefix}tabs-tab-disabled
@@ -66,10 +65,7 @@ class="${prefix}tabs
     </div>
   </div>
 
-  <div
-    class="${prefix}tabs-content"
-    style="transform: translateX({{translateStyle}});"
-  >
+  <div class="${prefix}tabs-content">
     <slot name="children" />
   </div>
 
