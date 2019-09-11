@@ -1,20 +1,28 @@
 <div
-class="{{#if button}}${prefix}radio-button{{else}}${prefix}radio-group{{/if}}
+class="{{#if button}}${prefix}radio-button
 
-{{#if type}}
-  {{#if button}} ${prefix}radio-button-{{type}}
-  {{else}} ${prefix}radio-group-{{type}}
+  {{#if type}} ${prefix}radio-button-{{type}}
   {{/if}}
-{{/if}}
 
-{{#if size}}
-  {{#if button}} ${prefix}radio-button-{{size}}
-  {{else}} ${prefix}radio-group-{{size}}
+  {{#if size}} ${prefix}radio-button-{{size}}
   {{/if}}
-{{/if}}
 
-{{#if disabled && button}} ${prefix}radio-button-disabled
-{{else if disabled}} ${prefix}radio-group-disabled
+  {{#if disabled}} ${prefix}radio-button-disabled
+  {{else}} ${prefix}radio-button-enable
+  {{/if}}
+
+{{else}}${prefix}radio-group
+
+  {{#if type}} ${prefix}radio-group-{{type}}
+  {{/if}}
+
+  {{#if size}} ${prefix}radio-group-{{size}}
+  {{/if}}
+
+  {{#if disabled}} ${prefix}radio-group-disabled
+  {{else}} ${prefix}radio-group-enabled
+  {{/if}}
+
 {{/if}}
 
 {{#if vertical}} ${prefix}radio-vertical{{/if}}

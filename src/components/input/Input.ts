@@ -1,4 +1,4 @@
-import Yox, { Listener } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Input.hbs'
 
@@ -28,7 +28,9 @@ import {
 const TEXT_TYPE_PASSWORD = 'password'
 const TEXT_TYPE_TEXTAREA = 'textarea'
 const TEXT_TYPE_TEXT = 'text'
-const ROW_HEIGHT = 22
+const ROW_HEIGHT = 21
+// 上下 5px padding + 1px border
+const PADDING_VERTICAL = 12
 
 export default Yox.define({
 
@@ -42,15 +44,8 @@ export default Yox.define({
       type: oneOf(RAW_SIZE_COMMON),
       value: RAW_DEFAULT,
     },
-    search: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
-    enterButton: {
-      type: [ RAW_BOOLEAN, RAW_STRING ],
-    },
     autoSize: {
-      type: [ RAW_BOOLEAN, RAW_OBJECT ],
+      type: [RAW_BOOLEAN, RAW_OBJECT],
     },
     type: {
       type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_TEXTAREA, TEXT_TYPE_PASSWORD]),
@@ -64,7 +59,7 @@ export default Yox.define({
     },
     rows: {
       type: RAW_NUMERIC,
-      value: 2
+      value: 1
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -86,7 +81,7 @@ export default Yox.define({
     },
     autoComplete: {
       type: RAW_BOOLEAN,
-      value: FALSE
+      value: FALSE,
     },
     wrap: {
       type: oneOf(['hard', 'soft']),
@@ -105,12 +100,12 @@ export default Yox.define({
     width: {
       type: RAW_NUMERIC,
     },
+    className: {
+      type: RAW_STRING,
+    },
     style: {
       type: RAW_STRING,
     },
-    className: {
-      type: RAW_STRING,
-    }
   },
 
   data() {
@@ -158,37 +153,25 @@ export default Yox.define({
       this.set('value', '')
       this.fire('clear.input')
     },
-    handleSearchClick() {
-      this.fire(
-        'search.input',
-        {
-          value: this.get('value')
-        }
-      )
-    }
   },
 
   computed: {
     textareaStyle() {
       let size = this.get('autoSize')
       if (size) {
-        let minRows = 2
-        let maxRows = 2
-        let rows = 2
+        let rows = this.get('rows')
         let value = this.get('value')
         if (Yox.is.object(size)) {
-          minRows = size.minRows
-          maxRows = size.maxRows
-          rows = value ? value.split('\n').length : minRows
-          return `min-height: ${minRows * ROW_HEIGHT}px;max-height: ${maxRows * ROW_HEIGHT}px;height: ${rows * ROW_HEIGHT}px;`
+          rows = value ? value.split('\n').length : size.minRows
+          return `min-height: ${size.minRows * ROW_HEIGHT + PADDING_VERTICAL}px;max-height: ${size.maxRows * ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
         }
         else {
-          rows = value ? value.split('\n').length : minRows
-          return `min-height: ${minRows * ROW_HEIGHT}px;height: ${rows * ROW_HEIGHT}px;`
+          rows = value ? value.split('\n').length : 1
+          return `min-height: ${ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
         }
       }
       else {
-        return `height: ${this.get('rows') * ROW_HEIGHT}px;`
+        return `height: ${this.get('rows') * ROW_HEIGHT + PADDING_VERTICAL}px;`
       }
     }
   },
@@ -197,7 +180,7 @@ export default Yox.define({
 
     const me = this
 
-    const onKeydown: Listener = function (event) {
+    const onKeydown = function (event: CustomEventInterface) {
       if (!me.get('isFocus')) {
         return
       }
@@ -206,13 +189,13 @@ export default Yox.define({
         me.fire('enter.input')
       }
     }
-    const onKeyup: Listener = function (event) {
+    const onKeyup = function () {
       if (!me.get('isFocus')) {
         return
       }
       me.fire('keyup.input')
     }
-    const onKeypress: Listener = function (event) {
+    const onKeypress = function () {
       if (!me.get('isFocus')) {
         return
       }

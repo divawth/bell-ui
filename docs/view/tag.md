@@ -17,8 +17,9 @@ export default {
 export default {
   template: `
     <div>
-      <Tag border>标签三</Tag>
-      <Tag border closable>标签四</Tag>
+      <Tag>标签三</Tag>
+      <Tag simple>标签四</Tag>
+      <Tag closable>标签四</Tag>
       <Tag dot>标签一</Tag>
       <Tag dot closable>标签二</Tag>
     </div>
@@ -32,18 +33,17 @@ export default {
 export default {
   template: `
   <div>
+    <Tag simple type="primary">标签</Tag>
+    <Tag simple type="success">标签</Tag>
+    <Tag simple type="error">标签</Tag>
+    <Tag simple type="warning">标签</Tag>
+    <Tag simple type="info">标签</Tag>
+    <br><br>
     <Tag type="primary">标签</Tag>
     <Tag type="success">标签</Tag>
     <Tag type="error">标签</Tag>
     <Tag type="warning">标签</Tag>
     <Tag type="info">标签</Tag>
-    <br><br>
-    <Tag border type="primary">标签</Tag>
-    <Tag border type="success">标签</Tag>
-    <Tag border type="error">标签</Tag>
-    <Tag border type="warning">标签</Tag>
-    <Tag border type="info">标签</Tag>
-    <br><br>
   </div>
   `
 }
@@ -57,15 +57,15 @@ export default {
   height: 300,
   template: `
     <div>
-      <Tag border type="primary">标签一</Tag>
-      <Tag border type="success">标签二</Tag>
-      <Tag border type="error">标签三</Tag>
-      <Tag border type="warning">标签四</Tag>
+      <Tag type="primary">标签一</Tag>
+      <Tag type="success">标签二</Tag>
+      <Tag type="error">标签三</Tag>
+      <Tag type="warning">标签四</Tag>
       <br><br>
-      <Tag border closable type="primary">标签一</Tag>
-      <Tag border closable type="success">标签二</Tag>
-      <Tag border closable type="error">标签三</Tag>
-      <Tag border closable type="warning">标签四</Tag>
+      <Tag closable type="primary">标签一</Tag>
+      <Tag closable type="success">标签二</Tag>
+      <Tag closable type="error">标签三</Tag>
+      <Tag closable type="warning">标签四</Tag>
     </div>
   `
 }
@@ -98,9 +98,9 @@ export default {
 export default {
   template: `
     <div>
-      <Tag checkable border type="error">标签</Tag>
-      <Tag checkable border type="warning">标签</Tag>
-      <Tag checkable border type="success">标签</Tag>
+      <Tag checkable simple type="error">标签</Tag>
+      <Tag checkable simple type="warning">标签</Tag>
+      <Tag checkable simple type="success">标签</Tag>
       <br><br>
       <Tag checkable type="error">标签</Tag>
       <Tag checkable type="warning">标签</Tag>
@@ -116,17 +116,17 @@ export default {
 export default {
   template: `
     <div>
-      <Tag type="info" border closable>标签</Tag>
-      <Tag type="error" checkable checked>标签</Tag>
-      <Tag type="warning" border>标签</Tag>
-      <Tag type="primary" dot>标签</Tag>
-      <Tag type="success" dot closable>标签</Tag>
+      <Tag type="info" closable>标签</Tag>
+      <Tag type="error" simple checkable checked>标签</Tag>
+      <Tag type="warning">标签</Tag>
+      <Tag type="primary" simple dot>标签</Tag>
+      <Tag type="success" simple dot closable>标签</Tag>
       <br><br>
-      <Tag size="large" type="info" border closable>标签</Tag>
-      <Tag size="large" type="error" checkable checked>标签</Tag>
-      <Tag size="large" type="warning" border>标签</Tag>
-      <Tag size="large" type="primary" dot>标签</Tag>
-      <Tag size="large" type="success" dot closable>标签</Tag>
+      <Tag size="large" type="info" closable>标签</Tag>
+      <Tag size="large" type="error" simple checkable checked>标签</Tag>
+      <Tag size="large" type="warning">标签</Tag>
+      <Tag size="large" type="primary" simple dot>标签</Tag>
+      <Tag size="large" type="success" simple dot closable>标签</Tag>
     </div>
   `
 }
@@ -141,7 +141,7 @@ size | 尺寸 | string | default, large | default
 type | 颜色 | string | primary, info、success、warning、error | -
 closable | 是否可以关闭 | boolean | - | false
 checkable | 标签是否可以选择 | boolean | - | false
-border | 关闭按钮旁边加一个边框 | boolean | - | false
+simple | 是否不要边框 | boolean | - | false
 dot |  标签左侧是否添加一个圆形 | boolean | - | false
 checked | 标签的选中状态 | boolean | - | false
 

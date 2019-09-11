@@ -27,6 +27,14 @@ export default Yox.define({
   name: '${prefix}checkboxGroup',
 
   propTypes: {
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
+    },
+    size: {
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
+    },
     name: {
       type: RAW_STRING,
     },
@@ -35,14 +43,6 @@ export default Yox.define({
       value() {
         return []
       }
-    },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
-    },
-    size: {
-      type: oneOf(RAW_SIZE_COMMON),
-      value: RAW_DEFAULT,
     },
     disabled: {
       type: RAW_BOOLEAN,

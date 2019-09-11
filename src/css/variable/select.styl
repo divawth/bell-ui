@@ -3,56 +3,53 @@ $selector-select-enabled = $selector-select + '-enabled'
 $selector-select-disabled = $selector-select + '-disabled'
 $selector-select-multiple = $selector-select + '-multiple'
 $selector-select-clearable = $selector-select + '-clearable'
-$selector-select-top = $selector-select + '-top'
-$selector-select-bottom = $selector-select + '-bottom'
 
-$selector-select-prefix = $selector-select  + '-prefix'
-$selector-select-button = $selector-select  + '-button'
-$selector-select-value = $selector-select  + '-value'
-$selector-select-placeholder = $selector-select  + '-placeholder'
+$selector-select-prefix = $selector-select + '-prefix'
+$selector-select-button = $selector-select + '-button'
+$selector-select-button-with-prefix = $selector-select-button + '-with-prefix'
+$selector-select-value = $selector-select + '-value'
+$selector-select-values = $selector-select + '-values'
+$selector-select-placeholder = $selector-select + '-placeholder'
 
-$selector-select-prefix-icon = $selector-select  + '-prefix-icon'
-$selector-select-arrow-icon = $selector-select  + '-arrow-icon'
-$selector-select-clear-icon = $selector-select  + '-clear-icon'
+$selector-select-prefix-icon = $selector-select + '-prefix-icon'
+$selector-select-arrow-icon = $selector-select + '-arrow-icon'
+$selector-select-clear-icon = $selector-select + '-clear-icon'
 
-$selector-select-option-title = $selector-select  + '-option-title'
-
-$select-button-padding-right = 24px
-$select-button-padding-left = 8px
+$selector-select-group-title = $selector-select + '-group-title'
 
 $select-prefix-icon-color = #666
-$select-prefix-icon-font-size = 14px
-
-$select-arrow-icon-width = 30px
 $select-arrow-icon-color = $brand-muted
-$select-arrow-icon-font-size = 14px
-
+$select-tag-color = #f6f6f6
 $select-clear-icon-color = #999
-$select-clear-icon-font-size = 14px
-
-// 下拉框和按钮的间距
-$select-dropdown-list-gap = 2px
 
 $select-dropdown-list-height = 200px
-$select-option-title-text-color = #999
 
 $select-size-hash = {
-  'default': {
-    height: $size-default['height'],
-    font-size: 12px,
-    group-padding: 8px,
-    option-padding: 8px 16px
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    button-padding-vertical: 4px,
+    button-padding-horizontal: $padding-horizontal-default,
+    tag-height: 22px,
+    tag-gap-vertical: 4px,
+    tag-gap-horizontal: 4px,
   },
-  'small': {
-    height: $size-small['height'],
-    font-size: 12px,
-    group-padding: 8px,
-    option-padding: 8px 16px
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    button-padding-vertical: 2px,
+    button-padding-horizontal: $padding-horizontal-small,
+    tag-height: 20px,
+    tag-gap-vertical: 2px,
+    tag-gap-horizontal: 2px,
   },
-  'large': {
-    height: $size-large['height'],
-    font-size: 13px,
-    group-padding: 10px 8px,
-    option-padding: 10px 16px
+  large: {
+    height: $height-large,
+    font-size: $font-size-large,
+    button-padding-vertical: 7px,
+    button-padding-horizontal: $padding-horizontal-large,
+    tag-height: 28px,
+    tag-gap-vertical: 6px,
+    tag-gap-horizontal: 6px,
   }
 }

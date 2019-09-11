@@ -3,10 +3,11 @@ import Yox from 'yox'
 import template from './template/CardBody.hbs'
 
 import {
-  RAW_STRING
+  RAW_STRING,
 } from '../constant'
 
 export default Yox.define({
+  template,
   propTypes: {
     className: {
       type: RAW_STRING,
@@ -15,5 +16,4 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-  template,
 })

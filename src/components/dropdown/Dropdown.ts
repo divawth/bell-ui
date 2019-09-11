@@ -153,38 +153,43 @@ export default Yox.define({
 
     const me = this
 
-    if (me.get('trigger') === RAW_CLICK) {
+    const triggerByCustom = me.get('trigger') === RAW_CUSTOM
 
-      const onClick = function (event: CustomEventInterface) {
-        if (!me.get('isOpen')) {
-          return
-        }
-        const element = me.$el
-        const target = event.originalEvent.target as HTMLElement
-        if (contains(element, target)) {
-          return
-        }
+    const onClick = function (event: CustomEventInterface) {
+      if (!me.get('isOpen')) {
+        return
+      }
+      const element = me.$el
+      const target = event.originalEvent.target as HTMLElement
+      if (contains(element, target)) {
+        return
+      }
+      if (triggerByCustom) {
+        me.fire('outside.dropdown')
+      }
+      else {
         me.set('isOpen', FALSE)
       }
-
-      Yox.dom.on(
-        DOCUMENT,
-        RAW_CLICK,
-        onClick
-      )
-
-      me.on(
-        'beforeDestroy.hook',
-        function (event) {
-          if (event.phase === Yox.Event.PHASE_CURRENT) {
-            Yox.dom.off(
-              DOCUMENT,
-              RAW_CLICK,
-              onClick
-            )
-          }
-        }
-      )
     }
+
+    Yox.dom.on(
+      DOCUMENT,
+      RAW_CLICK,
+      onClick
+    )
+
+    me.on(
+      'beforeDestroy.hook',
+      function (event) {
+        if (event.phase === Yox.Event.PHASE_CURRENT) {
+          Yox.dom.off(
+            DOCUMENT,
+            RAW_CLICK,
+            onClick
+          )
+        }
+      }
+    )
+
   }
 })

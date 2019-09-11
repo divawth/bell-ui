@@ -1,18 +1,23 @@
 <div
-class="${prefix}notice
-{{#if type}} ${prefix}notice-{{type}}{{/if}}"
+class="${prefix}notification
+
+{{#if type}} ${prefix}notification-{{type}}
+{{/if}}
+
+{{#if duration == 0}} ${prefix}notification-with-close
+{{/if}}"
 
 style="width: {{width}}px;right: {{right}}px;"
 >
 
   {{#if title}}
-    <div class="${prefix}notice-title">
+    <div class="${prefix}notification-title">
       {{title}}
     </div>
   {{/if}}
 
   {{#if content}}
-    <div class="${prefix}notice-content">
+    <div class="${prefix}notification-content">
       {{content}}
     </div>
   {{/if}}
@@ -21,7 +26,7 @@ style="width: {{width}}px;right: {{right}}px;"
     <Icon
       name="close"
       size="0"
-      className="${prefix}notice-close"
+      className="${prefix}notification-close"
       on-click.native="hide()"
     />
   {{/if}}

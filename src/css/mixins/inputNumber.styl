@@ -3,6 +3,10 @@ input-number-size-style(style)
 
   > {$selector-input-number-el}
     ui-set('font-size', style['font-size'])
+    ui-set('padding', 0 style['padding-horizontal'])
+
+  > {$selector-input-number-actions}
+    ui-set('width', style['actions-width'])
 
   {$selector-input-number-up},
   {$selector-input-number-down}
@@ -19,8 +23,8 @@ input-number-brand-style(style)
       &{$selector-input-number-focus}
         box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-    {$selector-input-number-up}-enabled,
-    {$selector-input-number-down}-enabled
+    {$selector-input-number-up-enabled},
+    {$selector-input-number-down-enabled}
       &:hover
         ui-set('color', style['color'])
 

@@ -14,14 +14,12 @@ export default {
         type="date"
         clearable
         placeholder="Select date"
-        width="280"
       />
       <br><br>
       <DatePicker
         type="dateRange"
         placement="bottom-start"
         placeholder="Select date"
-        width="280"
         on-change="change()"
       />
     </div>
@@ -41,12 +39,11 @@ export default {
   isViewFullBlock: true,
   height: 400,
   template: `
-    <div style="height: 350px">
+    <div style="height: 400px">
       <DatePicker
         type="date"
         shortcuts="{{shortcuts1}}"
         placeholder="Select date"
-        width="280"
       />
       <br><br>
       <DatePicker
@@ -54,7 +51,6 @@ export default {
         shortcuts="{{shortcuts2}}"
         placement="bottom-start"
         placeholder="Select date"
-        width="280"
       />
     </div>
   `,
@@ -128,12 +124,11 @@ export default {
   isViewFullBlock: true,
   height: 400,
   template: `
-    <div style="height: 300px;">
+    <div style="height: 400px;">
       <DatePicker
         splitPanel
         type="dateRange"
         placeholder="Select date"
-        width="300"
       />
     </div>
   `
@@ -403,6 +398,7 @@ defaultDate | 默认显示视图的日期 | Date | -
 size | 尺寸 | string | -
 disabledDate | 不可选择的日期 | Function | -
 clearable | 是否显示清除按钮 | boolean | false
+width | 宽度 | number | -
 
 > Events
 

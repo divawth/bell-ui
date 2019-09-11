@@ -49,7 +49,7 @@
         <p class="bell-text h6 white">Warning</p>
         <p class="bell-text white">#FEC740</p>
     </span>
-    <span class="bell-text bell-bg-danger rounded">
+    <span class="bell-text rounded">
         <p class="bell-text h6 white">Danger</p>
         <p class="bell-text white">#EB1111</p>
     </span>

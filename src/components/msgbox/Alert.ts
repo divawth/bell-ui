@@ -1,13 +1,12 @@
-import Yox, { YoxInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Alert.hbs'
 
 import {
-  TRUE,
   RAW_OBJECT,
-  RAW_TYPE_PRIMARY,
   RAW_STRING,
   RAW_FUNCTION,
+  RAW_TYPE_PRIMARY,
 } from '../constant'
 
 export default Yox.define({
@@ -47,7 +46,15 @@ export default Yox.define({
   },
 
   afterMount() {
-    (this.$refs.dialog as any).open()
+    const me = this
+    setTimeout(
+      function () {
+        if (me.$refs) {
+          (me.$refs.dialog as any).open()
+        }
+      },
+      30
+    )
   }
 
 })

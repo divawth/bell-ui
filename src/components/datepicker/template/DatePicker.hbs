@@ -1,86 +1,81 @@
-<div
-class="${prefix}datepicker
-{{#if className}} {{className}}{{/if}}"
+<Dropdown
+  trigger="custom"
+  visible="{{visible}}"
+  placement="{{placement}}"
+  on-outside="close()"
+  className="${prefix}datepicker
+  {{#if className}} {{className}}{{/if}}"
 
-{{#if width || style}}
-  style="{{#if width}}width: {{width}}px{{/if}};
-  {{#if style}}{{style}}{{/if}}"
-{{/if}}
+  {{#if width || style}}
+    style="{{#if width}}width: {{width}}px{{/if}};
+    {{#if style}}{{style}}{{/if}}"
+  {{/if}}
 >
 
-  <Dropdown
-    placement="{{placement}}"
-    trigger="custom"
-    visible="{{visible}}"
-  >
+  <slot name="children">
+    <Input
+      placeholder="{{placeholder}}"
+      model="dateText"
+      type="text"
+      size="{{size}}"
+      on-focus="open()"
+      suffix="calendar"
+      clearable="{{clearable}}"
+    />
+  </slot>
 
-    <slot name="children">
-      <Input
-        placeholder="{{placeholder}}"
-        model="dateText"
-        type="text"
-        size="{{size}}"
-        on-focus="open()"
-        suffix="calendar"
-        clearable="{{clearable}}"
+  <template slot="list">
+
+    {{#if shortcuts && shortcuts.length > 0}}
+      <div class="${prefix}datepicker-shortcut">
+        {{#each shortcuts}}
+          <div
+            class="${prefix}datepicker-shortcut-item"
+            on-click="shortcutClick(this)"
+          >
+            {{this.text}}
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    {{#if type === RAW_TYPE_DATE}}
+      <DateView
+        defaultDate="{{defaultSimpleDate.timestamp}}"
+        checkedDate="{{value}}"
+        disabledDate="{{disabledDate}}"
+        canPickYear
+        canPickMonth
       />
-    </slot>
+    {{else if type === RAW_TYPE_DATE_RANGE}}
+      <DateRange
+        splitPanel="{{splitPanel}}"
+        defaultStartDate="{{defaultSimpleDate.timestamp}}"
+        checkedStartDate="{{value[0]}}"
+        defaultEndDate="{{defaultSimpleDate.timestamp}}"
+        checkedEndDate="{{value[1]}}"
+        disabledDate="{{disabledDate}}"
+      />
+    {{else if type === RAW_TYPE_WEEK}}
+      <DateWeek
+        defaultDate="{{defaultSimpleDate.timestamp}}"
+        checkedDate="{{value[0]}}"
+        canPickYear
+        canPickMonth
+      />
+    {{else if type === RAW_TYPE_YEAR}}
+      <DateYear
+        defaultDate="{{defaultSimpleDate.timestamp}}"
+        checkedDate="{{value}}"
+      />
+    {{else if type === RAW_TYPE_MONTH}}
+      <DateMonth
+        defaultDate="{{defaultSimpleDate.timestamp}}"
+        checkedDate="{{value}}"
+        canPickYear
+      />
+    {{/if}}
 
-    <template slot="list">
+  </template>
 
-      {{#if shortcuts && shortcuts.length > 0}}
-        <div class="${prefix}datepicker-shortcut">
-          {{#each shortcuts}}
-            <div
-              class="${prefix}datepicker-shortcut-item"
-              on-click="shortcutClick(this)"
-            >
-              {{this.text}}
-            </div>
-          {{/each}}
-        </div>
-      {{/if}}
-
-      {{#if type === RAW_TYPE_DATE}}
-        <Date
-          defaultDate="{{defaultSimpleDate.timestamp}}"
-          checkedDate="{{value}}"
-          disabledDate="{{disabledDate}}"
-          canPickYear
-          canPickMonth
-        />
-      {{else if type === RAW_TYPE_DATE_RANGE}}
-        <DateRange
-          splitPanel="{{splitPanel}}"
-          defaultStartDate="{{defaultSimpleDate.timestamp}}"
-          checkedStartDate="{{value[0]}}"
-          defaultEndDate="{{defaultDate}}"
-          checkedEndDate="{{value[1]}}"
-          disabledDate="{{disabledDate}}"
-        />
-      {{else if type === RAW_TYPE_WEEK}}
-        <DateWeek
-          defaultDate="{{defaultSimpleDate.timestamp}}"
-          checkedDate="{{value[0]}}"
-          canPickYear
-          canPickMonth
-        />
-      {{else if type === RAW_TYPE_YEAR}}
-        <DateYear
-          defaultDate="{{defaultSimpleDate.timestamp}}"
-          checkedDate="{{value}}"
-        />
-      {{else if type === RAW_TYPE_MONTH}}
-        <DateMonth
-          defaultDate="{{defaultSimpleDate.timestamp}}"
-          checkedDate="{{value}}"
-          canPickYear
-        />
-      {{/if}}
-
-    </template>
-
-  </Dropdown>
-
-</div>
-
+</Dropdown>

@@ -1,6 +1,6 @@
 import Yox, { Data } from 'yox'
 
-import Notice from './Notice'
+import Notification from './Notification'
 
 interface Config {
   duration?: number
@@ -9,7 +9,7 @@ interface Config {
 
 let config: Config = {}
 
-function addNotice(type: string,  data: Data, onClose?: Function) {
+function addNotification(type: string,  data: Data, onClose?: Function) {
 
   let props: Data = { type }
 
@@ -26,14 +26,14 @@ function addNotice(type: string,  data: Data, onClose?: Function) {
   const instance: any = new Yox(
     Yox.object.extend(
       {
-        el: '#${prefix}notice-wrapper',
+        el: '#${prefix}notification-wrapper',
         props,
       },
-      Notice
+      Notification
     )
   )
 
-  instance.on('hide.notice', function () {
+  instance.on('hide.notification', function () {
     if (onClose) {
       onClose()
     }
@@ -53,16 +53,16 @@ function addNotice(type: string,  data: Data, onClose?: Function) {
 
 export default {
   success(props: Data, onClose?: Function) {
-    addNotice('success', props, onClose)
+    addNotification('success', props, onClose)
   },
   info(props: Data, onClose?: Function) {
-    addNotice('info', props, onClose)
+    addNotification('info', props, onClose)
   },
   warning(props: Data, onClose?: Function) {
-    addNotice('warning', props, onClose)
+    addNotification('warning', props, onClose)
   },
   error(props: Data, onClose?: Function) {
-    addNotice('error', props, onClose)
+    addNotification('error', props, onClose)
   },
   config(options: Data) {
     Yox.object.extend(config, options)

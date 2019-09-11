@@ -1,12 +1,8 @@
 <div
-class="${prefix}card
+class="${prefix}card ${prefix}card-shadow-{{shadow}}
 
 {{#if simple}} ${prefix}card-simple
 {{else}} ${prefix}card-bordered
-{{/if}}
-
-{{#if hoverable}} ${prefix}card-hover-enabled
-{{else}} ${prefix}card-hover-disabled
 {{/if}}
 
 {{#if className}} {{className}}{{/if}}"

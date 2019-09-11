@@ -4,10 +4,11 @@
 
 {$selector-dropdown-menu}
   min-width $dropdown-menu-min-width
+  ui-scrollbar()
 
 {$selector-dropdown-item}
   ui-ellipsis()
-  padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
+  padding $dropdown-list-item-padding-vertical $padding-horizontal-default
   transition background-color .3s, color .3s
 
 {$selector-dropdown-item-active}
@@ -28,11 +29,11 @@
 {$selector-dropdown-item} + {$selector-dropdown-item-divided}
   margin-top $dropdown-list-inset
   border-top 1px solid $brand-divider
-  padding-top $dropdown-item-padding-vertical + $dropdown-list-inset
+  padding-top $dropdown-list-item-padding-vertical + $dropdown-list-inset
   position relative
 
   &:before
-    content " "
+    content ''
     background-color $brand-bg
     position absolute
     top 0
@@ -41,7 +42,7 @@
     height $dropdown-list-inset
 
 {$selector-dropdown-list}
-  font-size $dropdown-item-size
+  font-size $ui-font-size
   line-height $ui-single-line-height
   padding $dropdown-list-inset 0
 
@@ -58,8 +59,8 @@
               opacity .3s cubic-bezier(.23,1,.32,1)
 
   background-color $brand-bg
-  border-radius $radius-base
-  box-shadow $dropdown-list-shadow
+  border-radius $border-radius-default
+  box-shadow $brand-layer-shadow
 
 {$selector-dropdown-visible}
   > {$selector-dropdown-list}
@@ -70,7 +71,6 @@
   > {$selector-dropdown-list}
     opacity 1
 
-{$selector-select-top},
 {$selector-dropdown}-top,
 {$selector-dropdown}-top-start,
 {$selector-dropdown}-top-end
@@ -156,7 +156,6 @@
 
 
 
-{$selector-select-bottom},
 {$selector-dropdown}-bottom,
 {$selector-dropdown}-bottom-start,
 {$selector-dropdown}-bottom-end

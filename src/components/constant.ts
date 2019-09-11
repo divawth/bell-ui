@@ -22,12 +22,16 @@ export const RAW_DEFAULT = 'default'
 export const RAW_LARGE = 'large'
 export const RAW_HUGE = 'huge'
 
+export const RAW_ALWAYS = 'always'
+export const RAW_NEVER = 'never'
+
 export const RAW_HOVER = 'hover'
 export const RAW_CLICK = 'click'
 export const RAW_CUSTOM = 'custom'
 
 
 export const RAW_CENTER = 'center'
+export const RAW_MIDDLE = 'middle'
 
 export const RAW_TOP = 'top'
 export const RAW_TOP_START = 'top-start'

@@ -1,87 +1,99 @@
-<div
-class="${prefix}select
-{{#if size}} ${prefix}select-{{size}}{{/if}}
 
-{{#if disabled}} ${prefix}select-disabled
-{{else}} ${prefix}select-enabled
-{{/if}}
+<Dropdown
 
-{{#if placement}} ${prefix}select-{{placement}}{{/if}}
-{{#if multiple}} ${prefix}select-multiple{{/if}}
-{{#if clearable}} ${prefix}select-clearable{{/if}}
-{{#if className}} {{className}}{{/if}}"
+  placement="{{placement}}"
+  trigger="custom"
+  visible="{{visible}}"
 
-{{#if width || style}}
-  style="{{#if width}}width: {{width}}px{{/if}};
-  {{#if style}}{{style}}{{/if}}"
-{{/if}}
+  on-outside="set('visible', false)"
+
+  className="${prefix}select
+  {{#if size}} ${prefix}select-{{size}}{{/if}}
+
+  {{#if disabled}} ${prefix}select-disabled
+  {{else}} ${prefix}select-enabled
+  {{/if}}
+
+  {{#if multiple}} ${prefix}select-multiple{{/if}}
+  {{#if clearable}} ${prefix}select-clearable{{/if}}
+  {{#if className}} {{className}}{{/if}}"
+
+  {{#if width || style}}
+    style="{{#if width}}width: {{width}}px{{/if}};
+    {{#if style}}{{style}}{{/if}}"
+  {{/if}}
 >
 
-  <div
-    class="${prefix}select-button"
-    {{#if !disabled}}
-      on-click="handleToggleClick()"
-    {{/if}}
-  >
+  <template slot="children">
+    <div
+      class="${prefix}select-button
+      {{#if prefix || hasSlot('prefix')}} ${prefix}select-button-with-prefix
+      {{/if}}
+      "
+      {{#if !disabled}}
+        on-click="handleToggleClick()"
+      {{/if}}
+    >
 
-    <input type="hidden" model="value" />
+      {{#if prefix || hasSlot('prefix')}}
+        <div class="${prefix}select-prefix">
+          <slot name="prefix">
+            <Icon
+              name="{{prefix}}"
+              size="0"
+              className="${prefix}select-prefix-icon"
+            />
+          </slot>
+        </div>
+      {{/if}}
 
-    {{#if prefix || hasSlot('prefix')}}
-      <div class="${prefix}select-prefix">
-        <slot name="prefix">
-          <Icon
-            name="{{prefix}}"
-            size="0"
-            className="${prefix}select-prefix-icon"
-          />
-        </slot>
-      </div>
-    {{/if}}
+      {{#if selectedOptions.length === 0}}
 
-    {{#if selectedOptions.length === 0}}
+        <div class="${prefix}select-placeholder">
+          {{placeholder || '请选择...'}}
+        </div>
 
-      <div class="${prefix}select-placeholder">
-        {{defaultText || '请选择...'}}
-      </div>
+      {{else if multiple}}
 
-    {{else}}
-
-      <div class="${prefix}select-value">
-
-        {{#if multiple}}
+        <div class="${prefix}select-values">
           {{#each selectedOptions:index}}
-            <Tag closable on-close="handleRemoveOption($event, index)">
+            <Tag
+              simple
+              closable
+              on-close="handleRemoveOption($event, index)"
+            >
               {{this.text}}
             </Tag>
           {{/each}}
-        {{else}}
+        </div>
+
+      {{else}}
+
+        <div class="${prefix}select-value">
           {{selectedOptions[0].text}}
-        {{/if}}
+        </div>
 
-      </div>
+      {{/if}}
 
-    {{/if}}
-
-    <Icon
-      name="arrow-down"
-      size="0"
-      className="${prefix}select-arrow-icon"
-    />
-
-    {{#if clearable && selectedOptions.length}}
       <Icon
-        name="close-circle"
+        name="arrow-down"
         size="0"
-        className="${prefix}select-clear-icon"
-        on-click.native="handleClearClick()"
+        className="${prefix}select-arrow-icon"
       />
-    {{/if}}
-  </div>
 
-  <div ref="list" class="${prefix}dropdown-list">
-    <div class="${prefix}dropdown-menu">
-      <slot name="children" />
+      {{#if clearable && selectedOptions.length}}
+        <Icon
+          name="close-circle"
+          size="0"
+          className="${prefix}select-clear-icon"
+          on-click.native="handleClearClick()"
+        />
+      {{/if}}
     </div>
-  </div>
+  </template>
 
-</div>
+  <template slot="list">
+    <slot name="children" />
+  </template>
+
+</Dropdown>

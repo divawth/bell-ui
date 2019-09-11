@@ -4,20 +4,20 @@ class="${prefix}tag
 {{#if type}} ${prefix}tag-{{type}}
 
   {{!
-    border 和 dot 互斥
+    simple 和 dot 互斥
   }}
   {{#if dot}} ${prefix}tag-dot
   {{else}}
 
-      {{#if border}} ${prefix}tag-border
-      {{else}} ${prefix}tag-unborder
+      {{#if simple}} ${prefix}tag-simple
+      {{else}} ${prefix}tag-bordered
       {{/if}}
 
   {{/if}}
 
 {{else}}
   {{#if dot}} ${prefix}tag-dot
-  {{else if border}} ${prefix}tag-border
+  {{else if simple}} ${prefix}tag-simple
   {{/if}}
 {{/if}}
 
@@ -42,8 +42,8 @@ class="${prefix}tag
 
   {{#if closable}}
     <Icon
-      size="0"
       name="close"
+      size="0"
       className="${prefix}tag-close-icon"
       on-click.native="fire('close.tag')"
     />

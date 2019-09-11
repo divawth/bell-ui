@@ -27,7 +27,7 @@ export default Yox.define({
 
   template,
 
-  model: 'open',
+  model: 'visible',
 
   propTypes: {
     title: {
@@ -57,7 +57,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: TRUE,
     },
-    open: {
+    visible: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -70,7 +70,7 @@ export default Yox.define({
   },
 
   watchers: {
-    open(isOpen) {
+    visible(isOpen) {
       const me = this
       const element = this.$el
       const wrapper = this.$refs.wrapper as HTMLElement
@@ -131,7 +131,7 @@ export default Yox.define({
 
   methods: {
     close() {
-      this.set('open', FALSE)
+      this.set('visible', FALSE)
     }
   },
 

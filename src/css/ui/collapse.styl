@@ -1,19 +1,19 @@
 {$selector-collapse}
   overflow hidden
   border 1px solid $brand-border
-  border-radius $radius-base
 
   {$selector-collapse}
-    border-top 1px solid $brand-border
+    margin-top $ui-vertical-gap
 
 {$selector-collapse-simple}
-  border-left none
-  border-right none
+  border-left 0
+  border-right 0
 
   {$selector-collapse-wrapper}
     padding-top 0
 
 {$selector-collapse-bordered}
+  border-radius $border-radius-default
 
   > {$selector-collapse-panel} > {$selector-collapse-header}
     background-color $collapse-header-bg-color
@@ -27,8 +27,8 @@
 {$selector-collapse-header}
   cursor $cursor-clickable
   user-select none
-  padding $collapse-header-padding-vertical $collapse-padding-horizontal
   font-size $ui-font-size
+  padding $collapse-header-padding-vertical $collapse-padding-horizontal
 
 {$selector-collapse-icon}
   margin-right $ui-icon-text-gap
@@ -47,6 +47,8 @@
 {$selector-collapse-content}
   display none
   overflow hidden
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
   padding 0 $collapse-padding-horizontal
   transition height .1s
 
@@ -55,7 +57,7 @@
   padding-bottom $collapse-content-padding-vertical
 
 {$selector-collapse-open}
-  {$selector-collapse-arrow-icon}:before
+  > {$selector-collapse-header} {$selector-collapse-arrow-icon}:before
     transform rotate(0)
 
   > {$selector-collapse-content}

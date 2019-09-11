@@ -28,16 +28,16 @@ export default {
 ```
 
 
-> type="vertical"
+> 垂直分割线
 
 ```js
 export default {
   template: `
     <div>
       Text
-      <Divider type="vertical" />
+      <Divider vertical />
       <a href="#">Link</a>
-      <Divider type="vertical" />
+      <Divider vertical />
       <a href="#">Link</a>
     </div>
   `
@@ -68,6 +68,6 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 水平还是垂直类型 | string | horizontal, vertical | horizontal
+vertical | 是否是垂直的分割线 | boolean | - | false
 dashed | 是否虚线 | boolean | - | false
 align | 分割线标题的位置 | string | center, left, right | center

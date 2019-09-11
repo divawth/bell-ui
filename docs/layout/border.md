@@ -83,9 +83,6 @@
     <span class="bell-border-warning">
         .bell-border-warning
     </span>
-    <span class="bell-border-danger">
-        .bell-border-danger
-    </span>
     <span class="bell-border-main">
         .bell-border-main
     </span>

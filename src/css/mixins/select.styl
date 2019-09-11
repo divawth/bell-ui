@@ -1,23 +1,33 @@
 select-size-style(size)
 
-  > {$selector-select-button}
+  {$selector-select-value},
+  {$selector-select-placeholder}
     ui-set('font-size', size['font-size'])
-    ui-set('height', size['height'])
-    ui-set('line-height', size['height'])
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
+    ui-set('padding-right', size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
+
+  {$selector-select-values}
+    ui-set(
+      'padding',
+      size['button-padding-vertical'] size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-horizontal']
+    )
+
+    > {$selector-tag}
+      ui-set('height', size['tag-height'])
+      ui-set('line-height', size['tag-height'])
+      ui-set('margin-right', size['tag-gap-horizontal'])
+      ui-set('margin-bottom', size['tag-gap-vertical'])
 
   {$selector-select-prefix}
     ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
 
-  {$selector-dropdown-item},
-  {$selector-select-option-title}
-    ui-set('font-size', size['font-size'])
-
-  {$selector-dropdown-item}
-    ui-set('padding', size['option-padding'])
-
-  {$selector-select-option-title}
-    ui-set('padding', size['group-padding'])
+  {$selector-select-arrow-icon},
+  {$selector-select-clear-icon}
+    ui-set('right', size['button-padding-horizontal'])
 
 ui-select()
   ui-connect(

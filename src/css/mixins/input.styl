@@ -1,33 +1,34 @@
-input-size-style(style)
+input-single-line-size-style(style)
 
   > {$selector-input-prepend},
-  > {$selector-input-append}
-  > {$selector-input-content}
+  > {$selector-input-append},
+  {$selector-input-el}
     ui-set('height', style['height'])
 
-  {$selector-input-prefix},
+  {$selector-input-prefix}
+    ui-set('left', style['padding-horizontal'])
+
   {$selector-input-suffix}
-    ui-set('width', style['height'] - 2)
-    ui-set('height', style['height'] - 2)
-    ui-set('line-height', style['height'] - 2)
+    ui-set('right', style['padding-horizontal'])
 
   {$selector-input-el-with-prefix}
-    ui-set('padding-left', style['height'] - 2)
+    ui-set('padding-left', style['padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
 
   {$selector-input-el-with-suffix}
-    ui-set('padding-right', style['height'] - 2)
+    ui-set('padding-right', style['padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
 
-input-brand-style(color)
-  > {$selector-input-content}
-    ui-set('border-color', color)
+input-border-style($selector, $color, $shadow-color)
+  {$selector}
+    ui-set('border-color', $color)
 
-ui-input()
-  ui-connect(
-    hash: $input-size-hash,
-    each: input-size-style
-  )
-  ui-connect(
-    hash: $input-brand-hash,
-    each: input-brand-style
-  )
+  {$selector}:focus
+    ui-set('border-color', $color)
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $shadow-color
+
+input-single-line-brand-style(style)
+  input-border-style($selector-input-el, style['color'], style['shadow-color'])
+
+input-multiple-line-brand-style(style)
+  input-border-style($selector-textarea-el, style['color'], style['shadow-color'])
 

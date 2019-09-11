@@ -50,6 +50,9 @@ export default Yox.define({
       else if (selected && !multiple) {
         this.set('isSelected', FALSE)
       }
+    },
+    'clear.select': function () {
+      this.set('isSelected', FALSE)
     }
   },
 

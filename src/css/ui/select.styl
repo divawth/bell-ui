@@ -1,64 +1,79 @@
+{$selector-select}
+  width $ui-form-element-width
+  box-sizing border-box
+  display inline-block
+  user-select none
+  text-align left
+  position relative
+
+  > {$selector-dropdown-list}
+    min-width 100%
+    max-height $select-dropdown-list-height
+
+  {$selector-dropdown-item-active}
+    color $brand-primary
+
+  ui-select()
+
 {$selector-select-button}
 
   position relative
   border 1px solid $brand-border
   background-color $brand-bg
+  line-height 0
 
   box-sizing border-box
-  border-radius $radius-base
+  border-radius $border-radius-default
   transition border-color .3s, box-shadow .3s
 
+{$selector-select-values}
+  width 100%
 
+  > {$selector-tag}
+    background-color $select-tag-color
 
 {$selector-select-value},
 {$selector-select-placeholder}
-  display inline-block
+  width 100%
   ui-ellipsis()
-  height 100%
-  max-width 90%
-  padding-left $select-button-padding-left
-  padding-right $select-arrow-icon-width
 
 {$selector-select-placeholder}
   color $brand-muted
 
 {$selector-select-value}
-  color $brand-important
-
-  > {$selector-tag}
-    margin 0px 4px 3px 0
+  color $brand-text
 
 {$selector-select-arrow-icon},
 {$selector-select-clear-icon}
   position absolute
-  top 0
-  bottom 0
-  right 0
-  width $select-arrow-icon-width
-  text-align center
+  top 50%
+  font-size $ui-icon-size
+  transform translateY(-50%)
 
 {$selector-select-arrow-icon}
   color $select-arrow-icon-color
-  font-size $select-arrow-icon-font-size
   transition transform .3s
+  transform-origin center center
 
 {$selector-select-clear-icon}
   color $select-clear-icon-color
-  font-size $select-clear-icon-font-size
   display none
 
-{$selector-select-option-title}
-  color $select-option-title-text-color
-  line-height 1
+{$selector-select-group-title}
+  background-color $brand-bg-light
+  color $brand-muted
+  font-size 90%
+  padding $dropdown-list-item-padding-vertical $padding-horizontal-default
 
 {$selector-select-enabled}
-  > {$selector-select-button}
+  {$selector-select-button}
     cursor $cursor-clickable
-    &:hover
-      border-color $brand-primary
+
+  {$selector-select-button}:hover
+    border-color $brand-primary
 
 {$selector-select-disabled}
-  > {$selector-select-button}
+  {$selector-select-button}
     background-color $brand-bg-disabled
     border-color $brand-border-disabled
     cursor $cursor-disabled
@@ -69,63 +84,45 @@
 
 
 {$selector-select-clearable}
-  > {$selector-select-button}:hover
+  {$selector-select-button}:hover
     {$selector-select-arrow-icon}
       display none
     {$selector-select-clear-icon}
       display block
 
+{$selector-select-button-with-prefix}
+  display table
+  width 100%
 
-{$selector-select-top}
-  > {$selector-dropdown-list}
-    margin-bottom $ui-shadow-radius + $select-dropdown-list-gap
-
-  > {$selector-select-button}
-    > {$selector-select-arrow-icon}
-      transform rotate(-180deg)
-
-  &{$selector-dropdown-fade}
-    {$selector-select-arrow-icon}
-      transform rotate(0)
-
-{$selector-select-bottom}
-  > {$selector-dropdown-list}
-    margin-top $ui-shadow-radius + $select-dropdown-list-gap
-
-  &{$selector-dropdown-fade}
-    {$selector-select-arrow-icon}
-      transform rotate(-180deg)
+  > {$selector-select-values},
+  > {$selector-select-value},
+  > {$selector-select-placeholder}
+    padding-left $ui-icon-text-gap
 
 {$selector-select-prefix}
-  margin-left $select-button-padding-left
-  line-height 1
-  display inline-block
-  vertical-align top
+  display table-cell
+  vertical-align middle
+  width 1px
 
 {$selector-select-prefix-icon}
   color $select-prefix-icon-color
-  font-size $select-prefix-icon-font-size
+  font-size $ui-icon-size
 
-{$selector-select}
-  display inline-block
-  user-select none
-  text-align left
-  width 100%
-  position relative
+{$selector-dropdown-fade}
+  {$selector-select-button}
+    border-color $brand-primary
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
-  ui-scrollbar()
+    {$selector-select-arrow-icon}
+      transform translateY(-50%) rotate(-180deg)
 
-  &{$selector-dropdown-visible}
-    > {$selector-select-button}
-      border-color $brand-primary
-      if $ui-shadow-radius > 0
-        box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+{$selector-dropdown}-top,
+{$selector-dropdown}-top-start,
+{$selector-dropdown}-top-end
+  {$selector-select-arrow-icon}
+    transform translateY(-50%) rotate(-180deg)
 
-  > {$selector-dropdown-list}
-    min-width 100%
-    max-height $select-dropdown-list-height
-
-  {$selector-dropdown-item-active}
-    color $brand-primary
-
-  ui-select()
+  &{$selector-dropdown-fade}
+    {$selector-select-arrow-icon}
+      transform translateY(-50%) rotate(0)

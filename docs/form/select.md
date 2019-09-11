@@ -160,7 +160,7 @@ export default {
   height: 400,
   template: `
     <div style="margin-top: 200px;">
-      <Select placement="top" size="large" model="value">
+      <Select placement="top-start" size="large" model="value">
         {{#each list:index}}
           <Option value="{{value}}">
             {{text}}
@@ -168,7 +168,7 @@ export default {
         {{/each}}
       </Select>
       <br>
-      <Select placement="top" model="value">
+      <Select placement="top-start" model="value">
         {{#each list:index}}
           <Option value="{{value}}">
             {{text}}
@@ -176,7 +176,7 @@ export default {
         {{/each}}
       </Select>
       <br>
-      <Select placement="top" model="value" size="small">
+      <Select placement="top-start" model="value" size="small">
         {{#each list:index}}
           <Option value="{{value}}">
             {{text}}
@@ -221,13 +221,24 @@ export default {
   export default {
     template: `
       <div>
-        <Select multiple model="value" on-change="change()">
+        <Select size="large" multiple model="value" on-change="change()" width="240">
           {{#each list:index}}
             <Option value="{{this.value}}" text="{{this.text}}">
               {{text}}
-              {{#if isCurrentValue(this.value)}}
-                <Icon style="float: right;" type="md" name="checked" />
-              {{/if}}
+            </Option>
+          {{/each}}
+        </Select>
+        <Select multiple model="value1" on-change="change()" width="240">
+          {{#each list:index}}
+            <Option value="{{this.value}}" text="{{this.text}}">
+              {{text}}
+            </Option>
+          {{/each}}
+        </Select>
+        <Select size="small" multiple model="value2" on-change="change()" width="240">
+          {{#each list:index}}
+            <Option value="{{this.value}}" text="{{this.text}}">
+              {{text}}
             </Option>
           {{/each}}
         </Select>
@@ -236,11 +247,6 @@ export default {
         </p>
       </div>
     `,
-    filters: {
-      isCurrentValue(value) {
-        return this.get('value') && this.get('value').indexOf(value) >= 0
-      }
-    },
     data: function () {
       return {
         list: [
@@ -509,7 +515,7 @@ disabled | 是否禁用 | boolean | - | false
 clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
 size | 大小 | string | default, small, large | default
 placement | 弹窗的展开方向 | string | bottom, top | -
-defaultText | 选择框默认文字 | string | - | -
+placeholder | 选择框默认文字 | string | - | -
 prefix | 自定义 Select 内头部图标 | string | - | -
 width | 选择框宽度 | string, number | -
 

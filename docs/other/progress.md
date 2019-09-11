@@ -4,11 +4,33 @@
 export default {
   template: `
   <div>
-    <Progress active percent="25"> 25%</Progress>
+    <Progress animated percent="25">25%</Progress>
+    <br><br>
     <Progress percent="45" type="error">45%</Progress>
+    <br><br>
     <Progress percent="65" type="success">65%</Progress>
+    <br><br>
     <Progress percent="100">100%</Progress>
+    <br><br>
     <Progress percent="25"></Progress>
+  </div>
+  `
+}
+```
+
+> 文本在内部
+
+```js
+export default {
+  template: `
+  <div>
+    <Progress inside thickness="20" percent="25">25%</Progress>
+    <br><br>
+    <Progress animated inside thickness="20" percent="45" type="error">45%</Progress>
+    <br><br>
+    <Progress inside thickness="20" percent="65" type="success">65%</Progress>
+    <br><br>
+    <Progress animated inside thickness="20" percent="100">100%</Progress>
   </div>
   `
 }
@@ -20,7 +42,7 @@ export default {
 export default {
   template: `
     <div style="height: 100px;">
-      <Progress vertical active percent="25"> 25%</Progress>
+      <Progress vertical animated percent="25">25%</Progress>
       <Progress vertical percent="45" type="error">45%</Progress>
       <Progress vertical percent="65" type="success">65%</Progress>
       <Progress vertical percent="100">100%</Progress>
@@ -88,7 +110,7 @@ export default {
   template: `
     <div style="height: 100px;">
       <Progress percent="25" thickness="5">25</Progress>
-      <Progress percent="100" type="success" active>
+      <Progress percent="100" type="success" animated>
         <Icon type="checkmark-circled" />
         <span style="margin-left: 10px;">成功</span>
       </Progress>
@@ -103,8 +125,9 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-percent | 百分比 | number | 0 | 0
-type | 类型 | string | - | -
-thickness | 进度环的粗细 | number | 6 | 6
-vertical | 是否在垂直方向显示 | boolean | - | false
-active | 是否有动画效果 | boolean | - | false
+type | 类型 | string | `primary`, `info`, `warning`, `success`, `error` | `primary`
+percent | 百分比 | number | - | `0`
+thickness | 进度环的粗细 | number | - | `10`
+inside | 内容是否显示在内部 | boolean | - | `false`
+vertical | 是否垂直 | boolean | - | `false`
+animated | 是否有动画效果 | boolean | - | `false`

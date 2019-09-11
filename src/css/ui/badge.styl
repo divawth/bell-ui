@@ -26,18 +26,18 @@
     position absolute
     right -0.5 * $badge-dot-size
     top -0.5 * $badge-dot-size
-    box-shadow 0 0 0 1px #fff
+    box-shadow 0 0 0 1px $brand-white
 
   > {$selector-badge-text}
     // 给一个足够大的值就行了
     border-radius 100px
     text-align center
-    color #fff
+    color $brand-white
     min-width $badge-text-height
     height $badge-text-height
     line-height $badge-text-height
     padding 0 $badge-padding-horizontal
-    box-shadow 0 0 0 1px #fff
+    box-shadow 0 0 0 1px $brand-white
 
   > {$selector-badge-text-addon}
     position absolute
@@ -64,7 +64,7 @@
   > {$selector-badge-dot}
     position relative
     &:after
-      content ""
+      content ''
       position absolute
       top 0
       left 0

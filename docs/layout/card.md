@@ -40,11 +40,11 @@ export default {
       <Card>
         <CardHeader>
           <template slot="title">
-            Myron Avatar
+            标题
           </template>
 
           <template slot="subTitle">
-            sub title
+            副标题
           </template>
 
           <template slot="avatar">
@@ -52,7 +52,7 @@ export default {
           </template>
         </CardHeader>
 
-        <CardMedia title="Image Title" subTitle="Image Sub Title">
+        <CardMedia title="标题" subTitle="副标题">
           <img src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
         </CardMedia>
 
@@ -104,13 +104,13 @@ export default {
 }
 ```
 
-> hoverable
+> 阴影
 
 ```js
 export default {
   template: `
     <Row>
-      <Card hoverable style="width: 300px;">
+      <Card shadow="hover" style="width: 300px;">
         <CardHeader>
           <template slot="title">
             Card title
@@ -137,6 +137,6 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-simple | 是否是简洁风格（无边框） | boolean | - | false
-hoverable | 鼠标悬停是否显示阴影效果 | boolean | - | false
+simple | 是否是简洁风格（无边框） | boolean | - | `false`
+shadow | 何时显示阴影 | string | `always`, `hover`, `never` | `always`
 

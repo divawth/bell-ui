@@ -49,23 +49,23 @@ export default {
     <div>
       <CheckboxGroup model="social">
         <Checkbox value="twitter">
-          <span>Twitter</span>
+          Twitter
         </Checkbox>
         <Checkbox value="facebook">
-          <span>Facebook</span>
+          Facebook
         </Checkbox>
         <Checkbox value="github">
-          <span>Github</span>
+          Github
         </Checkbox>
         <Checkbox value="snapchat">
-          <span>Snapchat</span>
+          Snapchat
         </Checkbox>
       </CheckboxGroup>
       <p> [ {{showArray(social)}} ] </p>
       <CheckboxGroup model="fruit">
-        <Checkbox value="香蕉"></Checkbox>
-        <Checkbox value="苹果"></Checkbox>
-        <Checkbox value="西瓜"></Checkbox>
+        <Checkbox value="香蕉" />
+        <Checkbox value="苹果" />
+        <Checkbox value="西瓜" />
       </CheckboxGroup>
       <p> [ {{showArray(fruit)}} ] </p>
     </div>
@@ -92,9 +92,9 @@ export default {
     <div>
       <Checkbox model="disabledSingle" disabled>Checkbox</Checkbox>
       <CheckboxGroup model="disabledGroup">
-        <Checkbox value="香蕉" disabled></Checkbox>
-        <Checkbox value="苹果" disabled></Checkbox>
-        <Checkbox value="西瓜"></Checkbox>
+        <Checkbox value="香蕉" disabled />
+        <Checkbox value="苹果" disabled />
+        <Checkbox value="西瓜" />
       </CheckboxGroup>
     </div>
   `,
@@ -144,33 +144,33 @@ export default {
     <div>
       <CheckboxGroup type="success" model="social" on-change="change()">
         <Checkbox value="twitter">
-          <span>Twitter</span>
+          Twitter
         </Checkbox>
         <Checkbox value="facebook">
-          <span>Facebook</span>
+          Facebook
         </Checkbox>
         <Checkbox value="github">
-          <span>Github</span>
+          Github
         </Checkbox>
         <Checkbox value="snapchat">
-          <span>Snapchat</span>
+          Snapchat
         </Checkbox>
       </CheckboxGroup>
       <br><br>
       <Checkbox type="success">
-        <span>success</span>
+        success
       </Checkbox>
       <br><br>
       <Checkbox type="info">
-        <span>info</span>
+        info
       </Checkbox>
       <br><br>
       <Checkbox type="warning">
-        <span>warning</span>
+        warning
       </Checkbox>
       <br><br>
       <Checkbox type="error">
-        <span>error</span>
+        error
       </Checkbox>
     </div>
   `,
@@ -263,23 +263,23 @@ export default {
     <div>
       <CheckboxGroup vertical model="social">
         <Checkbox value="twitter">
-          <span>Twitter</span>
+          Twitter
         </Checkbox>
         <Checkbox value="facebook">
-          <span>Facebook</span>
+          Facebook
         </Checkbox>
         <Checkbox value="github">
-          <span>Github</span>
+          Github
         </Checkbox>
         <Checkbox value="snapchat">
-          <span>Snapchat</span>
+          Snapchat
         </Checkbox>
       </CheckboxGroup>
       <p> [ {{showArray(social)}} ] </p>
       <CheckboxGroup vertical model="fruit">
-        <Checkbox value="香蕉"></Checkbox>
-        <Checkbox value="苹果"></Checkbox>
-        <Checkbox value="西瓜"></Checkbox>
+        <Checkbox value="香蕉" />
+        <Checkbox value="苹果" />
+        <Checkbox value="西瓜" />
       </CheckboxGroup>
       <p> [ {{showArray(fruit)}} ] </p>
     </div>
@@ -334,12 +334,12 @@ Checkbox
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked | 只在单独使用时有效。可以使用 model 双向绑定数据 | string | - | -
+type | 风格 | string | primary, success, info, warning, error | primary
+size | 大小 | string | default, large, small | default
 label | 文本描述 | string | - | -
 disabled | 是否禁用 | boolean | - | false
+checked | 只在单独使用时有效。可以使用 model 双向绑定数据 | string | - | -
 indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | false
-type | 风格 | string | success, info, warning, error, primary | primary
-size | 大小 | string | large, huge, small, tiny, default | default
 
 > Events
 
@@ -354,8 +354,8 @@ CheckboxGroup
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+type | 风格 | string | primary, success, info, warning, error | primary
 name | checkbox 的 name | string | - | -
-type | 风格 | string | success, info, warning, error, primary | primary
 disabled | 是否禁用 | boolean | - | false
 vertical | 是否使用垂直排版 | boolean | - | false
 selected | 只在单独使用时有效。可以使用 model 双向绑定数据 | Array | - | -

@@ -1,38 +1,74 @@
 <div
 class="${prefix}progress
 {{#if type}} ${prefix}progress-{{type}}{{/if}}
-{{#if active}} ${prefix}progress-active{{/if}}
+{{#if animated}} ${prefix}progress-animated{{/if}}
+
+{{#if inside}} ${prefix}progress-inside
+{{else}} ${prefix}progress-outside
+{{/if}}
+
 {{#if vertical}} ${prefix}progress-vertical
 {{else}} ${prefix}progress-horizontal
 {{/if}}
-{{#if hasSlot('children')}} ${prefix}progress-with-text{{/if}}
+
+{{#if !inside && !vertical && hasSlot('children')}} ${prefix}progress-with-text{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
-  <div class="${prefix}progress-outer">
+
+  {{#partial text}}
+    {{#if hasSlot('children')}}
+      <div class="${prefix}progress-text">
+        <slot name="children" />
+      </div>
+    {{/if}}
+  {{/partial}}
+
+  {{#partial track}}
     <div
-      class="${prefix}progress-inner"
-      style="{{#if vertical}}width: {{thickness}}px;{{/if}}"
+      class="${prefix}progress-track"
+      {{#if vertical}}
+        style="width: {{thickness}}px;"
+      {{else}}
+        style="height: {{thickness}}px;"
+      {{/if}}
     >
-      <div class="${prefix}progress-bar" style="
-        {{#if !vertical}}
-          width: {{percent}}%;
-          height: {{thickness}}px;
-        {{else}}
+      <div
+        class="${prefix}progress-bar"
+        style="
+        {{#if vertical}}
           height: {{percent}}%;
           width: {{thickness}}px;
+        {{else}}
+          width: {{percent}}%;
+          height: {{thickness}}px;
+          line-height: {{thickness}}px;
+        {{/if}}"
+      >
+        {{#if inside}}
+          {{> text}}
         {{/if}}
-      "></div>
+      </div>
     </div>
-  </div>
+  {{/partial}}
 
-  {{#if hasSlot('children')}}
-    <div class="${prefix}progress-text">
-      <slot name="children" />
-    </div>
+  {{#if inside}}
+    {{> track}}
+  {{else}}
+
+    {{#if !vertical && hasSlot('children')}}
+      <div class="${prefix}progress-fluid">
+        {{> track}}
+      </div>
+    {{else}}
+      {{> track}}
+    {{/if}}
+
+    {{> text}}
+
   {{/if}}
 
 </div>

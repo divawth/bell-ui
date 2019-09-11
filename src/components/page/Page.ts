@@ -4,13 +4,13 @@ import template from './template/Page.hbs'
 
 import {
   FALSE,
+  DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
   RAW_ARRAY,
   RAW_BOTTOM,
   RAW_TOP,
-  DOCUMENT,
   RAW_DEFAULT,
   RAW_SMALL,
   RAW_EVENT_KEYDOWN,

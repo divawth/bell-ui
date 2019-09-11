@@ -12,12 +12,12 @@
     transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
 
     &:first-child
-      border-top-left-radius $radius-base
-      border-bottom-left-radius $radius-base
+      border-top-left-radius $border-radius-default
+      border-bottom-left-radius $border-radius-default
 
     &:last-child
-      border-top-right-radius $radius-base
-      border-bottom-right-radius $radius-base
+      border-top-right-radius $border-radius-default
+      border-bottom-right-radius $border-radius-default
 
     + {$selector-radio}
       margin-left 0
@@ -37,7 +37,7 @@
     color $brand-text
 
     &:before
-      content ' '
+      content ''
       position absolute
       width 1px
       left -1px

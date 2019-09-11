@@ -11,8 +11,9 @@ class="${prefix}form-item
       class="${prefix}form-item-label
       {{#if isRequired}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if labelWidth}}
-        style="width: {{labelWidth}}px;"
+      {{#if labelWidth || labelAlign}}
+        style="{{#if labelWidth}}width: {{labelWidth}}px;{{/if}}
+        {{#if labelAlign}}vertical-align: {{labelAlign}};{{/if}}"
       {{/if}}
     >
       <slot name="label">
@@ -40,12 +41,6 @@ class="${prefix}form-item
       {{/if}}
     >
       <slot name="children" />
-
-      {{#if showError && computedError}}
-        <div class="${prefix}form-item-error">
-          {{computedError}}
-        </div>
-      {{/if}}
     </div>
 
   {{/if}}

@@ -1,11 +1,15 @@
 tag-size-style(style)
+  ui-set('font-size', style['font-size'])
   ui-set('height', style['height'])
-  ui-set('line-height', style['height'])
+  ui-set('line-height', style['height'] - 2)
   ui-set('padding-left', style['padding-horizontal'])
   ui-set('padding-right', style['padding-horizontal'])
 
+  &{$selector-tag-simple}
+    ui-set('line-height', style['height'])
+
   &{$selector-tag-dot}
-    ui-set('padding-left', style['padding-horizontal'] + style['dot-size'] + style['padding-horizontal'])
+    ui-set('padding-left', style['padding-horizontal'] + style['dot-size'] + $ui-icon-text-gap)
 
     // dot
     &:before
@@ -17,12 +21,6 @@ tag-size-style(style)
   &{$selector-tag-closable}
     ui-set('padding-right', style['close-width'])
 
-    &:after
-      ui-set('right', style['close-width'])
-
-    &{$selector-tag-border}
-      ui-set('padding-right', style['close-width'] + style['padding-horizontal'])
-
   > {$selector-tag-close-icon}
     ui-set('width', style['close-width'])
 
@@ -32,8 +30,8 @@ tag-brand-style(style)
   &{$selector-tag-dot}:before
     ui-set('background-color', style['color'])
 
-  &{$selector-tag-unborder},
-  &{$selector-tag-border}
+  &{$selector-tag-simple},
+  &{$selector-tag-bordered}
     ui-set('color', style['color'])
 
     &{$selector-tag-checked}
@@ -45,7 +43,7 @@ tag-brand-style(style)
       &:hover
         ui-set('color', style['color'])
 
-  &{$selector-tag-unborder}
+  &{$selector-tag-simple}
     &{$selector-tag-checked}
       ui-set('border-color', style['color'])
 
@@ -56,11 +54,8 @@ tag-brand-style(style)
       > {$selector-tag-close-icon}
         ui-set('color', style['text-color'])
 
-  &{$selector-tag-border}
+  &{$selector-tag-bordered}
     ui-set('border-color', style['color'])
-
-    &{$selector-tag-closable}:after
-      ui-set('background-color', style['color'])
 
 ui-tag()
   ui-connect(

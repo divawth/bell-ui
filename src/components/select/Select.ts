@@ -4,29 +4,22 @@ import template from './template/Select.hbs'
 
 import {
   oneOf,
-  contains,
-  onTransitionEnd,
 } from '../util'
 
 import {
   TRUE,
   FALSE,
   UNDEFINED,
-  DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  RAW_CLICK,
   RAW_ARRAY,
   RAW_NUMBER,
   RAW_SIZE_COMMON,
   RAW_DEFAULT,
-  RAW_BOTTOM,
-  RAW_TOP,
+  RAW_PLACEMENT_ARRAY,
+  RAW_BOTTOM_START,
 } from '../constant'
-
-const CLASS_VISIBLE = '${prefix}dropdown-visible'
-const CLASS_FADE = '${prefix}dropdown-fade'
 
 export default Yox.define({
 
@@ -35,8 +28,9 @@ export default Yox.define({
   name: '${prefix}select',
 
   propTypes: {
-    defaultText: {
+    placeholder: {
       type: RAW_STRING,
+      value: '请选择...'
     },
     value: {
       type: [RAW_ARRAY, RAW_STRING, RAW_NUMBER],
@@ -50,8 +44,8 @@ export default Yox.define({
       value: FALSE,
     },
     placement: {
-      type: oneOf([RAW_TOP, RAW_BOTTOM]),
-      value: RAW_BOTTOM,
+      type: oneOf(RAW_PLACEMENT_ARRAY),
+      value: RAW_BOTTOM_START,
     },
     multiple: {
       type: RAW_BOOLEAN,
@@ -89,29 +83,6 @@ export default Yox.define({
         { value }
       )
     },
-    visible(visible: boolean) {
-      const me = this
-      const element = me.$el as HTMLElement
-      const list = me.$refs.list as HTMLElement
-      if (visible) {
-        Yox.dom.addClass(element, CLASS_VISIBLE)
-        setTimeout(
-          function () {
-            Yox.dom.addClass(element, CLASS_FADE)
-          },
-          20
-        )
-      }
-      else {
-        Yox.dom.removeClass(element, CLASS_FADE)
-        onTransitionEnd(
-          list,
-          function () {
-            Yox.dom.removeClass(element, CLASS_VISIBLE)
-          }
-        )
-      }
-    }
   },
 
   events: {
@@ -193,21 +164,38 @@ export default Yox.define({
     },
 
     handleClearClick(event: CustomEventInterface) {
+
       // 停止冒泡，否则会展开下拉框
       event.stop()
+
       this.set({
         value: UNDEFINED,
         selectedOptions: [],
       })
+
+      this.fire('clear.select', TRUE)
       this.fire('clear.select')
+
     },
 
     handleRemoveOption(event: CustomEventInterface, index: number) {
 
       event.stop()
 
+      const value = this.get(`value.${index}`)
+
       this.removeAt('value', index)
       this.removeAt('selectedOptions', index)
+
+      this.fire(
+        'sync.select',
+        {
+          value,
+          multiple: TRUE,
+          selected: FALSE,
+        },
+        TRUE
+      )
 
     },
 
@@ -281,39 +269,4 @@ export default Yox.define({
 
   },
 
-  afterMount() {
-
-    const me = this
-
-    const onClick = function (event: CustomEventInterface) {
-      if (!me.get('visible')) {
-        return
-      }
-      const element = me.$el
-      const target = event.originalEvent.target as HTMLElement
-      if (contains(element, target)) {
-        return
-      }
-      me.set('visible', FALSE)
-    }
-
-    Yox.dom.on(
-      DOCUMENT,
-      RAW_CLICK,
-      onClick
-    )
-
-    me.on(
-      'beforeDestroy.hook',
-      function (event) {
-        if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(
-            DOCUMENT,
-            RAW_CLICK,
-            onClick
-          )
-        }
-      }
-    )
-  }
 })

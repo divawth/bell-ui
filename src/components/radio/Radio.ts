@@ -27,6 +27,12 @@ export default Yox.define({
   model: 'checked',
 
   propTypes: {
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+    },
+    size: {
+      type: oneOf(RAW_SIZE_COMMON),
+    },
     label: {
       type: RAW_STRING,
     },
@@ -35,12 +41,6 @@ export default Yox.define({
     },
     value: {
       type: [RAW_NUMERIC, RAW_BOOLEAN, RAW_STRING]
-    },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-    },
-    size: {
-      type: oneOf(RAW_SIZE_COMMON),
     },
     disabled: {
       type: RAW_BOOLEAN,

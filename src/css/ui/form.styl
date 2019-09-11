@@ -2,21 +2,25 @@
   color $brand-text
   text-align left
 
-{$selector-form-label-left}
+{$selector-form-label-left},
+{$selector-form-label-right}
   {$selector-form-item-label}
-    text-align left
+    padding-right $form-item-label-wrapper-gap
+
+  {$selector-form-item} + {$selector-form-item}
+    margin-top $form-item-vertical-gap
 
 {$selector-form-label-right}
   {$selector-form-item-label}
     text-align right
 
 {$selector-form-label-top}
-  {$selector-form-item-label}
-    text-align right
-    vertical-align top
-
+  {$selector-form-item-label},
   {$selector-form-item-wrapper}
-    vertical-align top
+    display block
+
+  {$selector-form-item} + {$selector-form-item}
+    margin-top $form-top-item-vertical-gap
 
 {$selector-form-item-label-required}
   &:before
@@ -26,18 +30,11 @@
     color $brand-error
     margin-right $ui-icon-text-gap
 
-{$selector-form-item}
-  font-size 0
-
-  + {$selector-form-item}
-    margin-top $form-item-vertical-gap
-
 {$selector-form-item-label}
   display inline-block
   font-size $ui-font-size
-  height $form-item-height
-  line-height $form-item-height
-  padding-right $form-item-label-wrapper-gap
+  height $height-default
+  line-height $height-default
   white-space nowrap
   vertical-align middle
 
@@ -62,7 +59,7 @@
 
     + {$selector-form-item}
       margin-top 0
-      margin-left $form-item-horizontal-gap
+      margin-left $ui-horizontal-gap
 
 
 

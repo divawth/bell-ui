@@ -15,21 +15,21 @@ import {
   onTransitionEnd,
 } from '../util'
 
-const CLASS_OPEN = '${prefix}dialog-open'
+const CLASS_VISIBLE = '${prefix}dialog-visible'
 const CLASS_FADE = '${prefix}dialog-fade'
 
 export default Yox.define({
 
   template,
 
-  model: 'open',
+  model: 'visible',
 
   propTypes: {
     title: {
       type: RAW_STRING,
       value: '温馨提示',
     },
-    open: {
+    visible: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -58,11 +58,11 @@ export default Yox.define({
   },
 
   watchers: {
-    open(isOpen) {
+    visible(isOpen) {
       const me = this
       const element = me.$el
       if (isOpen) {
-        Yox.dom.addClass(element, CLASS_OPEN)
+        Yox.dom.addClass(element, CLASS_VISIBLE)
       }
       else {
         Yox.dom.addClass(element, CLASS_FADE)
@@ -71,7 +71,7 @@ export default Yox.define({
         onTransitionEnd(
           me.$refs.wrapper as HTMLElement,
           function () {
-            Yox.dom.removeClass(element, CLASS_OPEN)
+            Yox.dom.removeClass(element, CLASS_VISIBLE)
             Yox.dom.removeClass(element, CLASS_FADE)
             me.fire('close.dialog')
           }
@@ -82,10 +82,10 @@ export default Yox.define({
 
   methods: {
     open() {
-      this.set('open', TRUE)
+      this.set('visible', TRUE)
     },
     close() {
-      this.set('open', FALSE)
+      this.set('visible', FALSE)
     }
   },
 

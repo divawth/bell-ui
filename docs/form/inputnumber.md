@@ -5,8 +5,8 @@ export default {
   template: `
   <div>
     <InputNumber
-      max="10"
       min="1"
+      max="10"
       model="value"
       placeholder="请输入"
     />
@@ -22,10 +22,10 @@ export default {
   template: `
     <div>
       <InputNumber
-        max="100"
         min="1"
-        model="value"
+        max="100"
         step="3"
+        model="value"
       />
     </div>
   `,
@@ -41,9 +41,25 @@ export default {
 export default {
   template: `
     <div>
-      <InputNumber size="large" max="10" min="1" model="value3" />
-      <InputNumber max="10" min="1" model="value3" />
-      <InputNumber size="small" max="10" min="1" model="value3" />
+      <InputNumber
+        size="large"
+        min="1"
+        max="10"
+        model="value3"
+      />
+      <br><br>
+      <InputNumber
+        min="1"
+        max="10"
+        model="value3"
+      />
+      <br><br>
+      <InputNumber
+        size="small"
+        min="1"
+        max="10"
+        model="value3"
+      />
     </div>
   `,
   data: {
@@ -58,13 +74,29 @@ export default {
 export default {
   template: `
     <div>
-      <InputNumber max="10" min="1" model="value4" />
-      <InputNumber type="error" max="10" min="1" model="value4" />
-      <InputNumber type="success" max="10" min="1" model="value4" />
+      <InputNumber
+        min="1"
+        max="10"
+        model="value"
+      />
+      <br><br>
+      <InputNumber
+        type="success"
+        min="1"
+        max="10"
+        model="value"
+      />
+      <br><br>
+      <InputNumber
+        type="error"
+        min="1"
+        max="10"
+        model="value"
+      />
     </div>
   `,
   data: {
-    value4: 3
+    value: 3
   }
 }
 ```
@@ -75,9 +107,25 @@ export default {
 export default {
   template: `
     <div>
-      <InputNumber size="large" disabled="{{disabled}}" min="1" model="value5" />
-      <InputNumber disabled="{{disabled}}" min="1" model="value5" />
-      <InputNumber size="small" disabled="{{disabled}}" min="1" model="value5" />
+      <InputNumber
+        disabled="{{disabled}}"
+        size="large"
+        min="1"
+        model="value"
+      />
+      <br><br>
+      <InputNumber
+        disabled="{{disabled}}"
+        min="1"
+        model="value"
+      />
+      <br><br>
+      <InputNumber
+        disabled="{{disabled}}"
+        size="small"
+        min="1"
+        model="value"
+      />
       <br><br>
       <Button type="primary" on-click="toggle('disabled')">
         toggle disabled
@@ -85,7 +133,7 @@ export default {
     </div>
   `,
   data: {
-    value5: 34,
+    value: 34,
     disabled: false
   }
 }
@@ -97,9 +145,25 @@ export default {
 export default {
   template: `
   <div>
-    <InputNumber size="large" editable="{{editable}}" min="1" model="value" />
-    <InputNumber editable="{{editable}}" min="1" model="value" />
-    <InputNumber size="small" editable="{{editable}}" min="1" model="value" />
+    <InputNumber
+      editable="{{editable}}"
+      size="large"
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      editable="{{editable}}"
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      editable="{{editable}}"
+      size="small"
+      min="1"
+      model="value"
+    />
   </div>
   `,
   data: {
@@ -115,9 +179,25 @@ export default {
 export default {
   template: `
   <div>
-    <InputNumber size="large" readOnly min="1" model="value" />
-    <InputNumber readOnly min="1" model="value" />
-    <InputNumber size="small" readOnly min="1" model="value" />
+    <InputNumber
+      readOnly
+      size="large"
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      readOnly
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      readOnly
+      size="small"
+      min="1"
+      model="value"
+    />
   </div>
   `,
   data: {
@@ -132,9 +212,25 @@ export default {
 export default {
   template: `
   <div>
-    <InputNumber formatter="{{formatter}}" size="large" min="1" model="value" />
-    <InputNumber formatter="{{formatter}}" min="1" model="value" />
-    <InputNumber formatter="{{formatter}}" size="small" min="1" model="value" />
+    <InputNumber
+      formatter="{{formatter}}"
+      size="large"
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      formatter="{{formatter}}"
+      min="1"
+      model="value"
+    />
+    <br><br>
+    <InputNumber
+      formatter="{{formatter}}"
+      size="small"
+      min="1"
+      model="value"
+    />
   </div>
   `,
   data: {

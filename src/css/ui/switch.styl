@@ -3,7 +3,7 @@
   opacity .4
 
   &:after
-    content " "
+    content ''
     border-radius 50%
     position absolute
     left $switch-thumb-gap + $switch-loading-gap
@@ -27,7 +27,7 @@
   ui-switch()
 
   &:before
-    content " "
+    content ''
     position absolute
     left $switch-thumb-gap
     top $switch-thumb-gap
@@ -63,8 +63,7 @@
   cursor $cursor-disabled
 
 {$selector-switch-disabled}
-  opacity .4
-
+  opacity $ui-opacity-disabled
 
 
 @keyframes bell-switch-loading {

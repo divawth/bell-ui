@@ -2,12 +2,18 @@
 class="${prefix}input
 {{#if size}} ${prefix}input-{{size}}{{/if}}
 {{#if status}} ${prefix}input-{{status}}{{/if}}
-{{#if clearable}} ${prefix}input-clearable{{/if}}
+
+{{#if type === TEXT_TYPE_TEXTAREA}} ${prefix}input-multiple-line
+{{else}} ${prefix}input-single-line
+{{/if}}
+
 {{#if disabled}} ${prefix}input-disabled
 {{else}} ${prefix}input-enabled
 {{/if}}
 
-{{#if isFocus}} ${prefix}input-focus{{/if}}
+{{#if !value}} ${prefix}input-no-value
+{{else}} ${prefix}input-has-value
+{{/if}}
 
 {{#if className}} {{className}}{{/if}}"
 
@@ -16,73 +22,63 @@ class="${prefix}input
   {{#if style}}{{style}}{{/if}}"
 {{/if}}
 >
+  {{#if type === TEXT_TYPE_TEXTAREA}}
 
-  {{#if hasSlot('prepend')}}
-    <div class="${prefix}input-prepend">
-      <slot name="prepend" />
-    </div>
-  {{/if}}
+    <textarea
+      class="${prefix}textarea-el
+      {{#if autoSize}} ${prefix}input-autosize{{/if}}"
+      model="value"
 
-  <div
-    class="${prefix}input-content
-    {{#if hasSlot('prepend')}} ${prefix}input-with-prepend{{/if}}
-    {{#if hasSlot('append') || (search && enterButton)}} ${prefix}input-with-append{{/if}}"
-  >
+      {{#if wrap}}
+        wrap="{{wrap}}"
+      {{/if}}
 
-    {{#if type === TEXT_TYPE_TEXTAREA}}
+      {{#if placeholder}}
+        placeholder="{{placeholder}}"
+      {{/if}}
 
-      <textarea
-        class="${prefix}textarea-el
-        {{#if autoSize}} ${prefix}input-autosize{{/if}}"
-        model="value"
+      {{#if readOnly}}
+        readonly
+      {{/if}}
 
-        {{#if rows}}
-          rows="{{rows}}"
-        {{/if}}
+      {{#if autoComplete}}
+        autocomplete
+      {{/if}}
 
-        {{#if wrap}}
-          wrap="{{wrap}}"
-        {{/if}}
+      {{#if spellCheck}}
+        spellcheck
+      {{/if}}
 
-        {{#if placeholder}}
-          placeholder="{{placeholder}}"
-        {{/if}}
+      {{#if disabled}}
+        disabled
+      {{else}}
+        on-blur="handleBlur()"
+        on-focus="handleFocus()"
+      {{/if}}
 
-        {{#if readOnly}}
-          readonly
-        {{/if}}
+      style="{{textareaStyle}}"
+    >
+    </textarea>
 
-        {{#if autoComplete}}
-          autocomplete
-        {{/if}}
+  {{else}}
 
-        {{#if spellCheck}}
-          spellcheck
-        {{/if}}
+    {{#if hasSlot('prepend')}}
+      <div class="${prefix}input-prepend">
+        <slot name="prepend" />
+      </div>
+    {{/if}}
 
-        {{#if disabled}}
-          disabled
-        {{else}}
-          on-blur="handleBlur()"
-          on-focus="handleFocus()"
-        {{/if}}
-
-        style="{{textareaStyle}}"
-      >
-      </textarea>
-
-    {{else}}
+    <div class="${prefix}input-content">
 
       <input
         ref="input"
         type="{{currentType}}"
         model="value"
         class="${prefix}input-el
-        {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix
-        {{/if}}
-
-        {{#if hasSlot('suffix') || suffix || secure || clearable || search && !enterButton}} ${prefix}input-el-with-suffix
-        {{/if}}"
+        {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix{{/if}}
+        {{#if hasSlot('suffix') || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
+        {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
+        {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
 
         {{#if maxLength}}
           maxlength="{{maxLength}}"
@@ -122,6 +118,8 @@ class="${prefix}input
           <slot name="prefix">
             <Icon
               name="{{prefix}}"
+              size="0"
+              className="${prefix}input-prefix-icon"
             />
           </slot>
         </div>
@@ -132,47 +130,36 @@ class="${prefix}input
           <slot name="suffix">
             <Icon
               name="{{suffix}}"
+              size="0"
+              className="${prefix}input-suffix-icon"
             />
           </slot>
         </div>
       {{else if secure}}
-        <div class="${prefix}input-suffix" on-click="toggle('isSecure')">
+        <div class="${prefix}input-suffix ${prefix}input-secure" on-click="toggle('isSecure')">
           <Icon
             name="{{isSecure ? 'eye' : 'eye-off'}}"
+            size="0"
+            className="${prefix}input-secure-icon"
           />
         </div>
-      {{else if clearable}}
+      {{else if clearable && !disabled}}
         <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
           <Icon
             name="close-circle"
-          />
-        </div>
-      {{else if search && !enterButton}}
-        <div class="${prefix}input-suffix" on-click="handleSearchClick()">
-          <Icon
-            name="search"
+            size="0"
+            className="${prefix}input-clear-icon"
           />
         </div>
       {{/if}}
 
+    </div>
+
+    {{#if hasSlot('append')}}
+      <div class="${prefix}input-append">
+        <slot name="append" />
+      </div>
     {{/if}}
 
-  </div>
-
-  {{#if hasSlot('append')}}
-    <div class="${prefix}input-append">
-      <slot name="append" />
-    </div>
-  {{else if search && enterButton}}
-    <div class="${prefix}input-append ${prefix}input-append-button" on-click="handleSearchClick()">
-      <Button type="primary">
-        {{#if isBoolean(enterButton)}}
-          <Icon name="search" />
-        {{else}}
-          {{enterButton}}
-        {{/if}}
-      </Button>
-    </div>
   {{/if}}
-
 </div>

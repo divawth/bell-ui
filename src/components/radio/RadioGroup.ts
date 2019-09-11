@@ -24,25 +24,19 @@ export default Yox.define({
   name: '${prefix}radioGroup',
 
   propTypes: {
-    className: {
-      type: RAW_STRING,
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_PRIMARY,
     },
-    style: {
-      type: RAW_STRING,
+    size: {
+      type: oneOf(RAW_SIZE_COMMON),
+      value: RAW_DEFAULT,
     },
     name: {
       type: RAW_STRING,
     },
     value: {
       type: RAW_STRING,
-    },
-    size: {
-      type: oneOf(RAW_SIZE_COMMON),
-      value: RAW_DEFAULT,
-    },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -55,7 +49,13 @@ export default Yox.define({
     button: {
       type: RAW_BOOLEAN,
       value: FALSE,
-    }
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    },
   },
 
   watchers: {

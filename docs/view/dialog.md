@@ -6,7 +6,7 @@ export default {
     <div>
       <Button on-click="openDialog()">Open</Button>
       <Button on-click="destroryDialog()">Destroy</Button>
-      <Dialog ref="dialog" model="open">
+      <Dialog ref="dialog" model="visible">
         <div>
           这里是弹框的内容呀
         </div>
@@ -25,12 +25,12 @@ export default {
     },
     openDialog: function () {
       this.set({
-        open: true
+        visible: true
       })
     },
     closeDialog: function () {
       this.set({
-        open: false
+        visible: false
       })
     }
   }
@@ -43,10 +43,12 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-model | 是否展示 dialog | boolean | - | false
-mask | 是否展示 mask | boolean | - | true
+visible / model | 是否显示对话框 | boolean | - | false
+mask | 是否显示遮罩 | boolean | - | true
 closable | 是否展示关闭按钮 | boolean | - | true
-maskClosable | 点击 mask 是否关闭 dialog | boolean | - | false
+maskClosable | 点击遮罩是否关闭对话框 | boolean | - | false
+title | 标题栏文字 | string | - | '温馨提示'
+width | 显示宽度 | number | - | 320
 
 > Slots
 

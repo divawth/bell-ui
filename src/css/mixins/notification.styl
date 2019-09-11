@@ -1,0 +1,9 @@
+notification-brand-style(style)
+  &:before
+    ui-set('background-color', style['color'])
+
+ui-notification()
+  ui-connect(
+    hash: $notification-brand-hash,
+    each: notification-brand-style
+  )

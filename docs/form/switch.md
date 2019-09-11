@@ -4,11 +4,17 @@
 export default {
   template: `
     <div>
-      <Switch model="single" on-change="change()">
-        <template slot="on">开</template>
-        <template slot="off">关</template>
+      <Switch model="checked" on-change="change()">
+        <template slot="on">
+          开
+        </template>
+        <template slot="off">
+          关
+        </template>
       </Switch>
-      <p class="bell-text">{{single}}</p>
+      <p class="bell-text">
+        {{checked}}
+      </p>
     </div>
   `,
   methods: {
@@ -18,27 +24,13 @@ export default {
   },
   data: function () {
     return {
-      single: true
+      checked: true
     }
   }
 }
 ```
 
-> 设置 size 为 large 或 small 使用大号和小号的开关
-
-```js
-export default {
-  template: `
-  <div>
-    <Switch size="small" />
-    <Switch />
-    <Switch size="large" />
-  </div>
-  `
-}
-```
-
-> 设置 type 修改风格颜色
+> 风格
 
 ```js
 export default {
@@ -54,7 +46,21 @@ export default {
 }
 ```
 
-> 修改文字和图标（建议使用文字字数相同）
+> 尺寸
+
+```js
+export default {
+  template: `
+  <div>
+    <Switch size="small" />
+    <Switch />
+    <Switch size="large" />
+  </div>
+  `
+}
+```
+
+> 修改描述
 
 ```js
 export default {
@@ -87,12 +93,13 @@ export default {
 }
 ```
 
-> checked 默认选中
+> 选中状态
 
 ```js
 export default {
   template: `
     <div>
+      <Switch checked />
       <Switch type="info" checked />
       <Switch type="success" checked />
       <Switch type="warning" checked />
@@ -102,7 +109,7 @@ export default {
 }
 ```
 
-> disabled 禁用
+> 禁用状态
 
 ```js
 export default {
@@ -158,20 +165,18 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked | 是否选中 | boolean | - | false
-size | 大小 | string | default, large, small, - | default
+checked / model | 是否选中 | boolean | - | false
+size | 大小 | string | default, large, small | default
 type | 风格 | string | primary, info, warning, success, error | primary
 disabled | 是否禁用 | boolean | - | false
 loading | 是否正在加载 | boolean | - | false
-className | 自定义类名 | string | - | -
-style | 自定义样式 | string | - | -
 
 > Slots
 
 参数 | 说明
 ---|---
-on | 自定义选中时的内容
-off | 自定义未选中时的内容
+on | 选中时的内容
+off | 未选中时的内容
 
 > Events
 

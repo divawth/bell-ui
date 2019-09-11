@@ -1,0 +1,65 @@
+{$selector-notification-wrapper}
+  position fixed
+  right 0
+  top $notification-wrapper-top
+  z-index $zindex-notification
+
+{$selector-notification}
+  position relative
+  overflow hidden
+  opacity 0
+  font-size $ui-font-size
+  padding $notification-padding-vertical $notification-padding-horizontal
+  border-radius $border-radius-default
+  box-sizing border-box
+  box-shadow $brand-layer-shadow
+  background-color $brand-bg
+  transform translateX(100%)
+  transition opacity .2s, transform .2s
+
+  ui-notification()
+
+  + {$selector-notification}
+    margin-top $notification-vertical-gap
+
+  &:before
+    content ''
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    width $notification-type-width
+
+{$selector-notification-with-close}
+  padding-right $notification-close-right + $notification-close-font-size
+
+{$selector-notification-visible}
+  opacity 1
+  transform translateX(0)
+
+{$selector-notification-title}
+  ui-ellipsis()
+  color $brand-important
+  line-height $ui-multiple-line-height
+
+  + {$selector-notification-content}
+    margin-top $notification-title-content-gap
+
+{$selector-notification-content}
+  font-size 90%
+  color $brand-secondary
+  line-height $ui-multiple-line-height
+
+{$selector-notification-close}
+  position absolute
+  right $notification-close-right
+  top $notification-close-top
+  cursor $cursor-clickable
+  font-size $notification-close-font-size
+  width $notification-close-font-size
+  text-align center
+  color $brand-close-color
+  transition color .3s
+
+  &:hover
+    color $brand-close-color-hover

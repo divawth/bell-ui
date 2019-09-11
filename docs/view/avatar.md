@@ -45,7 +45,7 @@ export default {
       <Avatar text="U" />
       <Avatar text="USER" />
       <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
-      <Avatar bgColor="#fde3cf" color="#f56a00" text="U" />
+      <Avatar backgroundColor="#fde3cf" color="#f56a00" text="U" />
       <Avatar style="background-color: #87d068">
         <Icon name="person" size="26" slot="icon" />
       </Avatar>
@@ -82,7 +82,7 @@ export default {
 export default {
   template: `
     <div class="demo-avatar">
-      <Avatar size="large" style="margin-right: 10px;" bgColor="{{color}}" text="{{user}}"></Avatar>
+      <Avatar size="large" style="margin-right: 10px;" backgroundColor="{{color}}" text="{{user}}"></Avatar>
       <Button size="small" on-click="handleChange()">Change</Button>
     </div>
   `,
@@ -120,7 +120,7 @@ shape | 形状 | string | circle | -
 text | 文字 | string | - | -
 src | 图片地址 | string | - | -
 srcset | srcset | string | - | -
-bgColor | 背景色 | string | - | -
+backgroundColor | 背景色 | string | - | -
 color | 文字颜色 | string | - | #fff
 fontSize | 图标大小 | number | - | -
 

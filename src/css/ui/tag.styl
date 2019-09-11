@@ -2,10 +2,9 @@
   display inline-block
   position relative
   border 1px solid $brand-border
-  background-color $tag-bg-color
+  background-color $brand-bg
   color $brand-text
-  font-size $tag-font-size
-  border-radius $radius-base
+  border-radius $border-radius-default
   box-sizing border-box
   transition background-color .3s, border-color .3s, color .3s
 
@@ -25,23 +24,8 @@
   &:hover
     color $brand-close-color-hover
 
-{$selector-tag-border},
-{$selector-tag-dot}
-  border-color $brand-border
-  background-color $tag-border-bg-color
-
-{$selector-tag-border}
-  &{$selector-tag-closable}:after
-    content ''
-    width 1px
-    position absolute
-    top 0
-    bottom 0
-    background-color $brand-divider
-
-{$selector-tag-unborder}
-  border none
-  background-color transparent
+{$selector-tag-simple}
+  border 0
 
 {$selector-tag-dot}:before
   content ''

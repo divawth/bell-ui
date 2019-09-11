@@ -9,7 +9,12 @@ import {
   RAW_NUMERIC,
   RAW_ARRAY,
   RAW_TYPE_WARNING,
+  RAW_TYPE_ARRAY,
 } from '../constant'
+
+import {
+  oneOf,
+} from '../util'
 
 export default Yox.define({
 
@@ -22,6 +27,7 @@ export default Yox.define({
     },
     value: {
       type: RAW_NUMERIC,
+      value: 0,
     },
     half: {
       type: RAW_BOOLEAN,
@@ -31,15 +37,11 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    showTexts: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     texts: {
       type: RAW_ARRAY,
     },
     type: {
-      type: RAW_STRING,
+      type: oneOf(RAW_TYPE_ARRAY),
       value: RAW_TYPE_WARNING,
     },
     icon: {
@@ -48,7 +50,7 @@ export default Yox.define({
     },
     size: {
       type: RAW_NUMERIC,
-      value: 20,
+      value: 18,
     },
     className: {
       type: RAW_STRING,
@@ -100,9 +102,8 @@ export default Yox.define({
         value -= 0.5
       }
 
-      this.set({
-        value
-      })
+      this.set('value', value)
+
       this.fire(
         'change.rate',
         {

@@ -1,11 +1,8 @@
 {$selector-progress}
   ui-progress()
+  vertical-align middle
 
-{$selector-progress-outer}
-  font-size 0
-  line-height 0
-
-{$selector-progress-inner}
+{$selector-progress-track}
   background-color $progress-bg-color
   border-radius 100px
 
@@ -15,38 +12,48 @@
 
 {$selector-progress-text}
   white-space nowrap
+  color $brand-text
   font-size $progress-text-font-size
-  line-height $ui-single-line-height
+
+{$selector-progress-inside}
+  {$selector-progress-track}
+    text-align right
+
+  {$selector-progress-text}
+    color $brand-white
+    margin-right $ui-icon-text-gap
+
+{$selector-progress-outside}
+  &{$selector-progress-horizontal}
+    > {$selector-progress-text}
+      padding-left $ui-icon-text-gap
+
+{$selector-progress-with-text}
+  display table
+
+{$selector-progress-fluid},
+{$selector-progress-fluid} + {$selector-progress-text}
+  display table-cell
+  vertical-align middle
+
+{$selector-progress-fluid}
+  width 100%
+
+{$selector-progress-fluid} + {$selector-progress-text}
+  width 1px
 
 {$selector-progress-horizontal}
   {$selector-progress-bar}
     position relative
-
-  > {$selector-progress-text}
-    padding-left $ui-icon-text-gap
-
-  &{$selector-progress-with-text}
-    display table
-
-    > {$selector-progress-outer},
-    > {$selector-progress-text}
-      display table-cell
-      vertical-align middle
-
-    > {$selector-progress-outer}
-      width 100%
 
 {$selector-progress-vertical}
   height 100%
   display inline-block
   text-align center
 
-  {$selector-progress-outer},
-  {$selector-progress-inner}
-    height 100%
-
-  {$selector-progress-inner}
+  {$selector-progress-track}
     position relative
+    height 100%
     margin 0 auto
 
   {$selector-progress-bar}
@@ -57,28 +64,28 @@
     text-align center
     margin-top $ui-icon-text-gap
 
-{$selector-progress-active}
+{$selector-progress-animated}
   {$selector-progress-bar}:before
-    content ""
+    content ''
     opacity 0
     position absolute
     left 0
     bottom 0
-    background #fff
+    background-color $brand-white
     border-radius 100px
 
   &{$selector-progress-horizontal}
     {$selector-progress-bar}:before
       top 0
-      animation bell-progress-horizontal-active 2s ease-in-out infinite
+      animation bell-progress-horizontal-animated 2s ease-in-out infinite
 
   &{$selector-progress-vertical}
     {$selector-progress-bar}:before
       right 0
-      animation bell-progress-vertical-active 2s ease-in-out infinite
+      animation bell-progress-vertical-animated 2s ease-in-out infinite
 
 
-@keyframes bell-progress-horizontal-active {
+@keyframes bell-progress-horizontal-animated {
   0% {
     opacity .3
     width 0
@@ -88,7 +95,7 @@
     width 100%
   }
 }
-@keyframes bell-progress-vertical-active {
+@keyframes bell-progress-vertical-animated {
   0% {
     opacity .3
     height 0

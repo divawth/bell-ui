@@ -2,14 +2,11 @@
   border 1px solid
   position relative
   box-sizing border-box
-  border-radius $radius-base
+  border-radius $border-radius-default
   padding $alert-padding-vertical $alert-padding-horizontal
   transition opacity .3s
 
   ui-alert()
-
-{$selector-alert-hidden}
-  opacity 0
 
 {$selector-alert-center}
   text-align center
@@ -63,6 +60,7 @@
     vertical-align middle
 
   > {$selector-alert-icon}
+    width 1px
     padding-right $alert-icon-wrapper-gap
 
   > {$selector-alert-wrapper}

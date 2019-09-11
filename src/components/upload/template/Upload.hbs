@@ -9,4 +9,11 @@ class="${prefix}upload
 on-click="click()"
 >
   <slot name="children" />
+  <input
+    ref="input"
+    type="file"
+    multiple="{{multiple}}"
+    accept="{{formatAccept(accept)}}"
+    on-change="changeFiles()"
+  >
 </div>

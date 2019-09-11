@@ -6,8 +6,8 @@ import {
   TRUE,
   RAW_STRING,
   RAW_NUMERIC,
-  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
+  RAW_SIZE_ARRAY,
   RAW_SHAPE_CIRCLE,
 } from '../constant'
 
@@ -42,7 +42,7 @@ export default Yox.define({
     fontSize: {
       type: RAW_NUMERIC,
     },
-    bgColor: {
+    backgroundColor: {
       type: RAW_STRING,
     },
     color: {
@@ -59,32 +59,32 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this
-
-    if (supportTransform) {
-      me.watch(
-        'text',
-        function () {
-          me.nextTick(function () {
-
-            const element = me.$refs && me.$refs.text as HTMLElement
-            if (!element) {
-              return
-            }
-
-            const scale = element.offsetWidth
-              ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
-              : 1
-
-            element.style.transform = `scale(${Math.min(scale, 1)}) translateX(-50%)`
-
-          })
-        },
-        TRUE
-      )
+    if (!supportTransform) {
       return
     }
 
+    const me = this
+
+    me.watch(
+      'text',
+      function () {
+        me.nextTick(function () {
+
+          const element = me.$refs && me.$refs.text as HTMLElement
+          if (!element) {
+            return
+          }
+
+          const scale = element.offsetWidth
+            ? (me.$el.offsetWidth - SPACE_HORIZONTAL) / element.offsetWidth
+            : 1
+
+          element.style.transform = `scale(${Math.min(scale, 1)}) translateX(-50%)`
+
+        })
+      },
+      TRUE
+    )
 
   }
 })

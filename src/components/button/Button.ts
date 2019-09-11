@@ -5,6 +5,9 @@ import template from './template/Button.hbs'
 import {
   FALSE,
   UNDEFINED,
+  RAW_TINY,
+  RAW_SMALL,
+  RAW_LARGE,
   RAW_DEFAULT,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -12,7 +15,8 @@ import {
   RAW_BORDER_NONE,
   RAW_BORDER_SOLID,
   RAW_BORDER_DASHED,
-  RAW_SIZE_COMMON,
+  RAW_SHAPE_ROUND,
+  RAW_SHAPE_CIRCLE,
 } from '../constant'
 
 import {
@@ -27,10 +31,9 @@ export default Yox.define({
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
-      value: 'pure',
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL, RAW_TINY]),
       value: RAW_DEFAULT,
     },
     border: {
@@ -38,17 +41,17 @@ export default Yox.define({
       value: RAW_BORDER_SOLID,
     },
     shape: {
-      type: RAW_STRING,
+      type: oneOf([RAW_SHAPE_ROUND, RAW_SHAPE_CIRCLE]),
+    },
+    ghost: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     fluid: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
     disabled: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
-    ghost: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

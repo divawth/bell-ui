@@ -1,6 +1,8 @@
 <div
 class="${prefix}divider
-{{#if type}} ${prefix}divider-{{type}}{{/if}}
+{{#if vertical}} ${prefix}divider-vertical
+{{else}} ${prefix}divider-horizontal
+{{/if}}
 {{#if align}} ${prefix}divider-{{align}}{{/if}}
 {{#if hasSlot('children')}} ${prefix}divider-with-text{{/if}}
 {{#if dashed}} ${prefix}divider-dashed{{/if}}

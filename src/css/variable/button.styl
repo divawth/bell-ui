@@ -7,8 +7,6 @@ $selector-button-none = $selector-button + '-none'
 $selector-button-circle = $selector-button + '-circle'
 $selector-button-round = $selector-button + '-round'
 $selector-button-fluid = $selector-button + '-fluid'
-$selector-button-pure = $selector-button + '-pure'
-
 
 $selector-buttons = $selector-prefix + '-buttons'
 $selector-button-group = $selector-button + '-group'
@@ -16,20 +14,61 @@ $selector-button-group-round = $selector-button-group + '-round'
 $selector-button-group-horizontal = $selector-button-group + '-horizontal'
 $selector-button-group-vertical = $selector-button-group + '-vertical'
 
-$button-size-hash = $size-hash
-
 $button-border-hash = {
-  'none': none,
-  'solid': solid,
-  'dashed': dashed
+  none: none,
+  solid: solid,
+  dashed: dashed
+}
+
+$button-size-hash = {
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    border-radius: $border-radius-default,
+    padding-horizontal: $padding-horizontal-default,
+  },
+  tiny: {
+    height: $height-tiny,
+    font-size: $font-size-tiny,
+    border-radius: $border-radius-tiny,
+    padding-horizontal: $padding-horizontal-tiny,
+  },
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    border-radius: $border-radius-small,
+    padding-horizontal: $padding-horizontal-small,
+  },
+  large: {
+    height: $height-large,
+    font-size: $font-size-large,
+    border-radius: $border-radius-large,
+    padding-horizontal: $padding-horizontal-large,
+  },
+  huge: {
+    height: $height-huge,
+    font-size: $font-size-huge,
+    border-radius: $border-radius-huge,
+    padding-horizontal: $padding-horizontal-huge,
+  },
 }
 
 $button-circle-size-hash = {
-  'default': $size-default,
-  'tiny': $size-tiny,
-  'small': $size-small,
-  'large': $size-large,
-  'huge': $size-huge
+  default: {
+    height: $height-default,
+  },
+  tiny: {
+    height: $height-tiny,
+  },
+  small: {
+    height: $height-small,
+  },
+  large: {
+    height: $height-large,
+  },
+  huge: {
+    height: $height-huge,
+  },
 }
 
 $button-brand-hash = {
@@ -54,7 +93,7 @@ $button-brand-hash = {
     border-color: $brand-primary,
 
     hover-color: $brand-white,
-  hover-bg-color: $brand-primary-hover,
+    hover-bg-color: $brand-primary-hover,
     hover-border-color: $brand-primary-hover,
 
     active-color: $brand-white,
@@ -65,7 +104,7 @@ $button-brand-hash = {
   },
   'success': {
     color: $brand-white,
-  bg-color: $brand-success,
+    bg-color: $brand-success,
     border-color: $brand-success,
 
     hover-color: $brand-white,
@@ -102,7 +141,7 @@ $button-brand-hash = {
 
     hover-color: $brand-white,
     hover-bg-color: $brand-info-hover,
-  hover-border-color: $brand-info-hover,
+    hover-border-color: $brand-info-hover,
 
     active-color: $brand-white,
     active-bg-color: $brand-info-active,
@@ -110,7 +149,7 @@ $button-brand-hash = {
 
     shadow-color: $brand-info-shadow,
   },
-'warning': {
+  'warning': {
     color: $brand-white,
     bg-color: $brand-warning,
     border-color: $brand-warning,

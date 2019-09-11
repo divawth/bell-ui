@@ -7,7 +7,6 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
 } from '../constant'
@@ -16,7 +15,6 @@ import {
   oneOf,
   onTransitionEnd,
   supportTransform,
-  toNumber,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}message-visible'

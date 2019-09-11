@@ -37,7 +37,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    border: {
+    simple: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

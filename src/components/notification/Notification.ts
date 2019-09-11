@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Notice.hbs'
+import template from './template/Notification.hbs'
 
 import {
   RAW_STRING,
@@ -15,7 +15,7 @@ import {
   toNumber,
 } from '../util'
 
-const CLASS_VISIBLE = '${prefix}notice-visible'
+const CLASS_VISIBLE = '${prefix}notification-visible'
 
 export default Yox.define({
 
@@ -84,7 +84,7 @@ export default Yox.define({
           me.$el,
           function () {
             if (me.$el) {
-              me.fire('hide.notice')
+              me.fire('hide.notification')
             }
           }
         )

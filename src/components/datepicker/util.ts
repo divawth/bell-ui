@@ -70,6 +70,11 @@ export function toDate(date: Date | number | void) {
 }
 
 export function toTimestamp(date: Date | number | void) {
+  const result = normalizeDate(date)
+  return result.getTime()
+}
+
+export function normalizeDate(date: Date | number | void) {
   let timestamp = 0
   if (date instanceof Date) {
     timestamp = date.getTime()
@@ -79,7 +84,7 @@ export function toTimestamp(date: Date | number | void) {
   }
   const result = timestamp ? new Date(timestamp) : new Date()
   result.setHours(0, 0, 0, 0)
-  return result.getTime()
+  return result
 }
 
 export function offsetMonth(timestamp: number, offset: number) {

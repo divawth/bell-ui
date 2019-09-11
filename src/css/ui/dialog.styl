@@ -5,7 +5,7 @@
   left 0
   z-index $zindex-dialog
 
-{$selector-dialog-open}
+{$selector-dialog-visible}
   height 100%
 
   > {$selector-dialog-wrapper}
@@ -31,8 +31,9 @@
   left 0
 
   opacity 0
-  background-color $dialog-mask-color
-  transition opacity .4s
+  user-select none
+  background-color $brand-mask
+  transition opacity .3s
 
 {$selector-dialog-wrapper}
   max-height 100%
@@ -43,11 +44,11 @@
   transform translate(-50%, -50%) scale(.4)
   opacity 0
 
-  border-radius $radius-base
+  border-radius $border-radius-default
   min-width $dialog-wrapper-min-width
   background-color $dialog-wrapper-bg-color
-  box-shadow $dialog-wrapper-shadow
-  transition transform .4s, opacity .4s
+  box-shadow $brand-card-shadow
+  transition transform .3s, opacity .3s
 
 {$selector-dialog-title}
   ui-ellipsis()

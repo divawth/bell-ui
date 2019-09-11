@@ -17,21 +17,17 @@
     transform rotate(0deg) scale(1)
     height 1px
 
-{$selector-checkbox-disabled}
-  > {$selector-checkbox-icon}
-    opacity $ui-opacity-disabled
-
 {$selector-checkbox-icon}
   position absolute
   left 0
   top 50%
-  border-radius $radius-small
+  border-radius $border-radius-small
   box-sizing border-box
   border 1px solid $brand-border
   transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
 
   &:after
-    content ' '
+    content ''
 
     position absolute
 
@@ -57,6 +53,10 @@
 {$selector-checkbox-disabled},
 {$selector-checkbox-disabled} input
   cursor $cursor-disabled
+
+{$selector-checkbox-disabled}
+  > {$selector-checkbox-icon}
+    opacity $ui-opacity-disabled
 
 {$selector-checkbox-vertical}
   > {$selector-checkbox}

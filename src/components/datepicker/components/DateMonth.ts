@@ -11,8 +11,8 @@ import {
   RAW_TYPE_YEAR,
   RAW_TYPE_MONTH,
   toDate,
-  toTimestamp,
   SimpleMonth,
+  normalizeDate,
   createMonthViewDatasource,
 } from '../util'
 
@@ -24,6 +24,15 @@ import {
   RAW_ARRAY,
   RAW_BOOLEAN,
 } from '../../constant'
+
+function toMonthTimestamp(date: Date | number | void) {
+  if (date) {
+    date = normalizeDate(date)
+    date.setDate(1)
+    return date.getTime()
+  }
+  return 0
+}
 
 export default Yox.define({
 
@@ -82,13 +91,11 @@ export default Yox.define({
       return createMonthViewDatasource(this.get('year'))
     },
     checkedTimestamps(): number[] {
-      let checkedDate = this.get('checkedDate')
+      const checkedDate = this.get('checkedDate')
       if (Yox.is.array(checkedDate)) {
-        return checkedDate.map(function (date: number | Date) {
-          return date ? toTimestamp(date) : 0
-        })
+        return checkedDate.map(toMonthTimestamp)
       }
-      return [checkedDate ? toTimestamp(checkedDate) : 0]
+      return [toMonthTimestamp(checkedDate)]
     }
   },
 

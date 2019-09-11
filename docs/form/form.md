@@ -10,21 +10,40 @@ export default {
   <div>
     <Form ref="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
       <FormItem prop="user">
-        <Input type="text" status="{{#if errors.user}}error{{/if}}" model="formInline.user" placeholder="Username">
-          <template slot="prepend">
-            <Icon name="person" slot="prepend" style="color: #bbb;" />
-          </template>
+        <Input
+          {{#if errors.user}}
+            status="error"
+          {{/if}}
+          model="formInline.user"
+          placeholder="Username"
+        >
+          <Icon
+            slot="prepend"
+            name="person"
+            color="#bbb"
+          />
         </Input>
       </FormItem>
       <FormItem prop="password">
-        <Input type="password" status="{{#if errors.password}}error{{/if}}" model="formInline.password" placeholder="Password">
-          <template slot="prepend">
-            <Icon name="lock" slot="prepend" style="color: #bbb;" />
-          </template>
+        <Input
+          {{#if errors.password}}
+            status="error"
+          {{/if}}
+          type="password"
+          model="formInline.password"
+          placeholder="Password"
+        >
+          <Icon
+            slot="append"
+            name="lock"
+            color="#bbb"
+          />
         </Input>
       </FormItem>
       <FormItem>
-        <Button type="primary" on-click="handleSubmit()">登录</Button>
+        <Button type="primary" on-click="handleSubmit()">
+          登录
+        </Button>
       </FormItem>
     </Form>
   </div>
@@ -64,7 +83,8 @@ export default {
         })
         if (isValid) {
           this.$message.success('提交成功!')
-        } else {
+        }
+        else {
           this.$message.error('表单验证失败!')
         }
       })
@@ -83,44 +103,84 @@ export default {
   <div>
     <Form labelWidth="80">
       <FormItem label="Input" required>
-        <Input model="formItem.input" width="160" placeholder="Enter something..." />
+        <Input
+          model="formItem.input"
+          placeholder="Enter something..."
+        />
       </FormItem>
       <FormItem label="Select">
-        <Select model="formItem.select" width="160">
-          <Option value="beijing">New York</Option>
-          <Option value="shanghai">London</Option>
-          <Option value="shenzhen">Sydney</Option>
+        <Select
+          model="formItem.select"
+          placeholder="请选择..."
+        >
+          <Option value="beijing">
+            北京
+          </Option>
+          <Option value="shanghai">
+            上海
+          </Option>
+          <Option value="shenzhen">
+            深圳
+          </Option>
         </Select>
       </FormItem>
       <FormItem label="DatePicker">
-        <DatePicker type="date" placeholder="Select date" model="formItem.date" />
+        <DatePicker
+          model="formItem.date"
+          placeholder="Select date"
+        />
       </FormItem>
       <FormItem label="Radio">
         <RadioGroup model="formItem.radio">
-          <Radio value="male">Male</Radio>
-          <Radio value="female">Female</Radio>
+          <Radio value="male">
+            Male
+          </Radio>
+          <Radio value="female">
+            Female
+          </Radio>
         </RadioGroup>
       </FormItem>
       <FormItem label="Checkbox">
         <CheckboxGroup model="formItem.checkbox">
-          <Checkbox value="Eat"></Checkbox>
-          <Checkbox value="Sleep"></Checkbox>
-          <Checkbox value="Run"></Checkbox>
-          <Checkbox value="Movie"></Checkbox>
+          <Checkbox value="eat">
+            Eat
+          </Checkbox>
+          <Checkbox value="sleep">
+            Sleep
+          </Checkbox>
+          <Checkbox value="run">
+            Run
+          </Checkbox>
+          <Checkbox value="movie">
+            Movie
+          </Checkbox>
         </CheckboxGroup>
       </FormItem>
       <FormItem label="Switch">
         <Switch model="formItem.switch">
-          <span slot="on">On</span>
-          <span slot="off">Off</span>
+          <template slot="on">
+            On
+          </template>
+          <template slot="off">
+            Off
+          </template>
         </Switch>
       </FormItem>
-      <FormItem label="Text">
-        <Input model="formItem.textarea" type="textarea" placeholder="Enter something..." />
+      <FormItem label="Text" labelAlign="top">
+        <Input
+          type="textarea"
+          rows="2"
+          model="formItem.textarea"
+          placeholder="Enter something..."
+        />
       </FormItem>
       <FormItem>
-        <Button type="primary">Submit</Button>
-        <Button>Cancel</Button>
+        <Button type="primary">
+          Submit
+        </Button>
+        <Button>
+          Cancel
+        </Button>
       </FormItem>
     </Form>
   </div>
@@ -162,6 +222,7 @@ export default {
         <Input model="formLeft.input3" />
       </FormItem>
     </Form>
+    <br><br><br><br>
     <Form labelAlign="right" labelWidth="100">
       <FormItem label="Title">
         <Input model="formRight.input1" />
@@ -173,6 +234,7 @@ export default {
         <Input model="formRight.input3" />
       </FormItem>
     </Form>
+    <br><br><br><br>
     <Form labelAlign="top">
       <FormItem label="Title">
         <Input model="formTop.input1" />
@@ -256,5 +318,6 @@ showMessage | 是否显示校验错误信息 | boolean | true | -
 ---|---|---|---|---
 prop | 表单域字段名 | string | - | -
 label | 标签文本 | string | - | -
+labelAlign | 表单域标签对齐方式 | string | middle, top, bottom | middle
 showMessage | 是否显示校验错误信息 | boolean | - | -
 required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | - | -

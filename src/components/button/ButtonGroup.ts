@@ -6,12 +6,12 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_LARGE,
-  RAW_SMALL,
   RAW_TINY,
+  RAW_SMALL,
+  RAW_LARGE,
+  RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
   RAW_SHAPE_ROUND,
-  RAW_DEFAULT,
 } from '../constant'
 
 import {
@@ -43,4 +43,5 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
+
 })

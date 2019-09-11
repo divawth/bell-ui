@@ -1,77 +1,87 @@
 {$selector-input}
-  display table
-  ui-input()
+  display inline-table
+  width $ui-form-element-width
 
-{$selector-input-focus}
-  > {$selector-input-content}
+  + {$selector-input}
+    margin-left $ui-horizontal-gap
+
+{$selector-input-single-line}
+  &{$selector-input}
+    ui-connect(
+      hash: $input-brand-hash,
+      each: input-single-line-brand-style
+    )
+    ui-connect(
+      hash: $input-size-hash,
+      each: input-single-line-size-style
+    )
+
+{$selector-input-multiple-line}
+  &{$selector-input}
+    ui-connect(
+      hash: $input-brand-hash,
+      each: input-multiple-line-brand-style
+    )
+
+{$selector-input-el},
+{$selector-textarea-el}
+  border 1px solid $brand-border
+  border-radius $border-radius-default
+  box-sizing border-box
+  background-color transparent
+  outline none
+  display block
+  width 100%
+  cursor $cursor-text
+  color $brand-important
+  font-size $ui-font-size
+  transition border-color .3s, box-shadow .3s
+
+  ui-placeholder($brand-placeholder)
+
+  &:hover
+    border-color $brand-primary
+
+  &:focus
     border-color $brand-primary
 
     if $ui-shadow-radius > 0
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
-
-
-{$selector-input-enabled}
-  {$selector-input-suffix}:hover
-    color $brand-close-color-hover
-
-  > {$selector-input-content}:hover
-    border-color $brand-primary
-
-{$selector-input-disabled}
-  background-color $brand-bg-disabled
-
-  > {$selector-input-content}
-    border-color $brand-border-disabled
-
-  {$selector-input-el},
-  {$selector-textarea-el}
-    cursor $cursor-disabled
-    color $brand-text-disabled
-
-{$selector-input-el},
-{$selector-textarea-el}
-  border none
-  outline none
-  box-sizing border-box
-  width 100%
-  height 100%
-  cursor $cursor-text
-  background-color transparent
-  font-size $ui-font-size
-  color $brand-important
-
-  ui-placeholder($brand-placeholder)
 
 {$selector-input-el}
   padding 0 $input-el-padding-horizontal
 
 {$selector-textarea-el}
   resize none
-  line-height 1.4
+  line-height 1.5
   padding $input-el-padding-vertical $input-el-padding-horizontal
-
-{$selector-input-autosize}
-  resize vertical
-  height auto
+  ui-scrollbar()
 
 {$selector-input-prefix},
 {$selector-input-suffix}
   position absolute
-  top 0
-  text-align center
+  top 50%
   color $brand-close-color
+  transform translateY(-50%)
 
-{$selector-input-prefix}
-  left 0
+{$selector-input-prefix-icon},
+{$selector-input-suffix-icon},
+{$selector-input-secure-icon},
+{$selector-input-clear-icon}
+  font-size $ui-icon-size
 
-{$selector-input-suffix}
-  right 0
-  cursor $cursor-clickable
+{$selector-input-secure-icon},
+{$selector-input-clear-icon}
+  transition color .3s
+
+  &:hover
+    color $brand-close-color-hover
 
 {$selector-input-prepend},
 {$selector-input-append}
   display table-cell
   vertical-align middle
+  width 1px
   border 1px solid $brand-border
   font-size $input-prepend-append-font-size
   box-sizing border-box
@@ -79,65 +89,84 @@
   background-color $input-prepend-append-bg-color
   padding 0 $input-prepend-append-padding-horizontal
 
-  > {$selector-button-pure},
-  > {$selector-button-pure}:hover
-    color $brand-text
-    border-color $brand-border
-    background-color transparent
-
+  {$selector-select-button},
   {$selector-button}
-    font-size $input-prepend-append-font-size
+    border-color transparent !important
+    box-shadow none !important
+    background-color transparent !important
+
+  {$selector-select-placeholder},
+  {$selector-select-value},
+  {$selector-button}
+    color inherit
+    font-size inherit
+
+  {$selector-select},
+  {$selector-button}
     margin-top -1px
     margin-bottom -1px
+    vertical-align top
+
+  {$selector-button}
+    height inherit
+    line-height inherit
+
+  {$selector-button}:hover
+    color $brand-text !important
 
 {$selector-input-prepend}
   border-right none
-  border-top-left-radius $radius-base
-  border-bottom-left-radius $radius-base
+  border-top-left-radius $border-radius-default
+  border-bottom-left-radius $border-radius-default
 
+  {$selector-select},
   {$selector-button}
-    border-top-right-radius 0
-    border-bottom-right-radius 0
-    margin-left - $input-prepend-append-padding-horizontal - 1
-    margin-right - $input-prepend-append-padding-horizontal - 1
+    margin-left - $input-prepend-append-padding-horizontal
+    margin-right - $input-prepend-append-padding-horizontal
 
 {$selector-input-append}
   border-left none
-  border-top-right-radius $radius-base
-  border-bottom-right-radius $radius-base
+  border-top-right-radius $border-radius-default
+  border-bottom-right-radius $border-radius-default
 
-  > {$selector-button}
-    border-top-left-radius 0
-    border-bottom-left-radius 0
-    margin-left - $input-prepend-append-padding-horizontal - 1
-    margin-right - $input-prepend-append-padding-horizontal - 1
-
-{$selector-input-append-button}
-  border none
+  {$selector-select},
+  {$selector-button}
+    margin-left - $input-prepend-append-padding-horizontal
+    margin-right - $input-prepend-append-padding-horizontal
 
 {$selector-input-content}
-  display table-cell
   position relative
-  border 1px solid $brand-border
-  box-sizing  border-box
-  border-radius $radius-base
-  transition border-color .3s, box-shadow .3s
+  box-sizing border-box
+
+{$selector-input-secure}
+  cursor $cursor-clickable
 
 {$selector-input-clear}
-  opacity 0
-  transition opacity .2s
+  cursor $cursor-clickable
+  display none
 
-{$selector-input-clearable}:hover
+{$selector-input-no-value}
   {$selector-input-clear}
-    opacity 1
+    display none
 
-{$selector-input-with-prepend}
-  margin-left -1px
+{$selector-input-has-value}
+  {$selector-input-el}:focus + {$selector-input-clear},
+  &:hover {$selector-input-clear}
+    display block
+
+{$selector-input-el-with-prepend}
   border-top-left-radius 0
   border-bottom-left-radius 0
 
-{$selector-input-with-append}
-  margin-right -1px
+{$selector-input-el-with-append}
   border-top-right-radius 0
   border-bottom-right-radius 0
 
+{$selector-input-disabled}
+  background-color $brand-bg-disabled
+
+  {$selector-input-el},
+  {$selector-textarea-el}
+    cursor $cursor-disabled
+    color $brand-text-disabled
+    border-color $brand-border-disabled

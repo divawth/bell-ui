@@ -1,16 +1,16 @@
 checkbox-brand-style(style)
   &{$selector-checkbox-active},
-  &{$selector-checkbox-indeterminate}
+  &{$selector-checkbox-indeterminate},
+  &{$selector-checkbox-active}:hover,
+  &{$selector-checkbox-indeterminate}:hover
     > {$selector-checkbox-icon}
       ui-set('background-color', style['color'])
       ui-set('border-color', style['color'])
 
   if $ui-shadow-radius > 0
-    &{$selector-checkbox-enabled}
-      &:hover
-      &{$selector-checkbox-focus}
-        > {$selector-checkbox-icon}
-          box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+    &{$selector-checkbox-enabled}:hover > {$selector-checkbox-icon},
+    &{$selector-checkbox-focus} > {$selector-checkbox-icon}
+      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
 checkbox-size-style(style)
   ui-set('font-size', style['font-size'])
@@ -21,18 +21,17 @@ checkbox-size-style(style)
     ui-set('height', style['font-size'])
     ui-set('margin-top', -0.5 * style['font-size'])
 
-    &:after
+  > {$selector-checkbox-icon}:after
       ui-set('top', style['icon-top'])
       ui-set('left', style['icon-left'])
       ui-set('width', style['icon-width'])
       ui-set('height', style['icon-height'])
 
   &{$selector-checkbox-indeterminate}
-    > {$selector-checkbox-icon}
-      &:after
-        ui-set('top', style['indeterminate-top'])
-        ui-set('left', style['indeterminate-left'])
-        ui-set('width', style['indeterminate-width'])
+    > {$selector-checkbox-icon}:after
+      ui-set('top', style['indeterminate-top'])
+      ui-set('left', style['indeterminate-left'])
+      ui-set('width', style['indeterminate-width'])
 
 ui-checkbox()
   ui-connect(

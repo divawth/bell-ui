@@ -5,7 +5,7 @@
   display inline-block
   text-align center
   cursor $cursor-clickable
-  border-radius $radius-base
+  border-radius $border-radius-default
   border 1px solid $brand-border
   color $page-item-color
   font-size $page-item-font-size
@@ -14,20 +14,20 @@
   + {$selector-page-item}
     margin-left $page-item-gap
 
-{$selector-page-active}
+{$selector-page-item-active}
   cursor $cursor-default
 
 {$selector-page-item}:hover,
-{$selector-page-active}
+{$selector-page-item-active}
   color $brand-primary
   border-color $brand-primary
 
-{$selector-page-disabled}
+{$selector-page-item-disabled}
   cursor $cursor-disabled
   background-color $brand-bg-disabled
 
-{$selector-page-disabled},
-{$selector-page-disabled}:hover
+{$selector-page-item-disabled},
+{$selector-page-item-disabled}:hover
   color $brand-text-disabled
   border-color $brand-border-disabled
 

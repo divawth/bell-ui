@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import DateView from './components/Date'
 import DateRange from './components/DateRange'
@@ -11,7 +11,6 @@ import template from './template/DatePicker.hbs'
 import {
   TRUE,
   FALSE,
-  DOCUMENT,
   UNDEFINED,
   RAW_STRING,
   RAW_DATE,
@@ -20,7 +19,6 @@ import {
   RAW_NUMERIC,
   RAW_FUNCTION,
   RAW_BOTTOM_START,
-  RAW_CLICK,
   RAW_SIZE_COMMON,
   RAW_DEFAULT,
   RAW_PLACEMENT_ARRAY,
@@ -43,7 +41,6 @@ import {
 
 import {
   oneOf,
-  contains,
 } from '../util'
 
 const YEAR_FORMAT = 'yyyy'
@@ -148,10 +145,9 @@ export default Yox.define({
     dateText: {
       get(): string {
 
-        const me = this
-        const type = me.get('type')
-        const value = me.get('value')
-        const formatText = me.get('formatText')
+        const type = this.get('type')
+        const value = this.get('value')
+        const formatText = this.get('formatText')
 
         if (Yox.is.array(value)) {
           const list = value.map(function (date: Date) {
@@ -304,38 +300,4 @@ export default Yox.define({
     }
   },
 
-  afterMount() {
-
-    const me = this
-
-    const onClick = function (event: CustomEventInterface) {
-      if (!me.get('visible')) {
-        return
-      }
-      const element = me.$el
-      const target = event.originalEvent.target as HTMLElement
-      if (contains(element, target)) {
-        return
-      }
-      me.close()
-    }
-
-    Yox.dom.on(
-      DOCUMENT,
-      RAW_CLICK,
-      onClick
-    )
-    me.on(
-      'beforeDestroy.hook',
-      function (event) {
-        if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(
-            DOCUMENT,
-            RAW_CLICK,
-            onClick
-          )
-        }
-      }
-    )
-  }
 })

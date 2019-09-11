@@ -1,4 +1,4 @@
-从场景上说，Model 的作用是美化系统自带的 alert、confirm 因此适合展示较为简单的内容。如果需要弹出较为复杂的内容，请使用 Dialog。
+从场景上说，Modal 的作用是美化系统自带的 alert、confirm 因此适合展示较为简单的内容。如果需要弹出较为复杂的内容，请使用 Dialog。
 
 > alert 的基本用法
 
@@ -192,9 +192,9 @@ API
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-content | 自定义文本 | string | - | -
-title | 是否显示图标 | boolean | - | false
-button | 按钮 | object | {text: 'xxxx', info: 'success, info, warning, text, error'} | {text: '我知道了', info: 'info'}
+title | 标题文本 | string | - | -
+content | 内容文本 | string | - | -
+button | 按钮 | object | - | {text: '我知道了', type: 'info'}
 closable | 是否需要关闭按钮 | boolean | - | false
 maskClosable | 点击遮罩层关闭 | boolean | - | false
 width | 宽度 | number | - | -
@@ -260,8 +260,8 @@ API
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-content | 自定义文本 | string | - | -
-title | 是否显示图标 | boolean | - | false
+title | 标题文本 | string | - | -
+content | 内容文本 | string | - | -
 buttons | 按钮 | array | - | -
 closable | 是否需要关闭按钮 | boolean | - | false
 maskClosable | 点击遮罩层关闭 | boolean | - | false

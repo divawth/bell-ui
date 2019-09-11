@@ -23,14 +23,14 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$notice.success({
+      this.$notification.success({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open1: function () {
-      this.$notice.success({
+      this.$notification.success({
         title: '这是标题这是标题这是标题',
         width: 320
       })
@@ -64,28 +64,28 @@ export default {
 
   methods: {
     open: function () {
-      this.$notice.success({
+      this.$notification.success({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open2: function () {
-      this.$notice.info({
+      this.$notification.info({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open3: function () {
-      this.$notice.warning({
+      this.$notification.warning({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
       })
     },
     open4: function () {
-      this.$notice.error({
+      this.$notification.error({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
         width: 320
@@ -110,7 +110,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$notice.error({
+      this.$notification.error({
         title: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 0,
         width: 330
@@ -135,7 +135,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$notice.error({
+      this.$notification.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 10000
       })
@@ -159,7 +159,7 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$notice.error({
+      this.$notification.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         right: 100
       })
@@ -181,11 +181,11 @@ export default {
   `,
   methods: {
     open: function () {
-      this.$notice.config({
+      this.$notification.config({
         right: 50,
         duration: 13000
       });
-      this.$notice.error({
+      this.$notification.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         onClose: function () {
           console.log('close')
@@ -200,10 +200,10 @@ API
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$notice.info(content, onClose)
-- this.$notice.success(content, onClose)
-- this.$notice.warning(content, onClose)
-- this.$notice.error(content, onClose)
+- this.$notification.info(content, onClose)
+- this.$notification.success(content, onClose)
+- this.$notification.warning(content, onClose)
+- this.$notification.error(content, onClose)
 
 > Props
 
@@ -222,7 +222,7 @@ close | 关闭 alert 时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$notice.config();
+- this.$notification.config();
 
 > Props
 

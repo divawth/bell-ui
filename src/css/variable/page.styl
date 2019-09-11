@@ -1,8 +1,8 @@
 $selector-page = $selector-prefix + '-page'
 $selector-page-list = $selector-page + '-list'
 $selector-page-item = $selector-page + '-item'
-$selector-page-active = $selector-page + '-active'
-$selector-page-disabled = $selector-page + '-disabled'
+$selector-page-item-active = $selector-page-item + '-active'
+$selector-page-item-disabled = $selector-page-item + '-disabled'
 
 $selector-page-prev = $selector-page + '-prev'
 $selector-page-next = $selector-page + '-next'
@@ -10,7 +10,6 @@ $selector-page-item-prev = $selector-page-item + '-prev'
 $selector-page-item-next = $selector-page-item + '-next'
 $selector-page-custom-prev = $selector-page + '-custom-prev'
 $selector-page-custom-next = $selector-page + '-custom-next'
-
 
 $selector-page-simple = $selector-page + '-simple'
 $selector-page-total = $selector-page + '-total'
@@ -35,6 +34,10 @@ $page-elevator-input-width = 100px
 $page-select-width = 100px
 
 $page-size-hash = {
-  'default': $size-default,
-  'small': $size-small,
+  default: {
+    height: $height-default,
+  },
+  small: {
+    height: $height-small,
+  },
 }

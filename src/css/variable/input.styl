@@ -1,49 +1,73 @@
 $selector-input = $selector-prefix + '-input'
 $selector-textarea = $selector-prefix + '-textarea'
 
-$selector-input-focus = $selector-input + '-focus'
 $selector-input-enabled = $selector-input + '-enabled'
 $selector-input-disabled = $selector-input + '-disabled'
-$selector-input-clearable = $selector-input + '-clearable'
-$selector-input-has-prepend = $selector-input + '-has-prepend'
-$selector-input-has-append = $selector-input + '-has-append'
-
-
-$selector-input-with-prepend = $selector-input + '-with-prepend'
-$selector-input-with-append = $selector-input + '-with-append'
+$selector-input-no-value = $selector-input + '-no-value'
+$selector-input-has-value = $selector-input + '-has-value'
+$selector-input-single-line = $selector-input + '-single-line'
+$selector-input-multiple-line = $selector-input + '-multiple-line'
 
 $selector-input-el = $selector-input + '-el'
 $selector-textarea-el = $selector-textarea + '-el'
 
 $selector-input-el-with-prefix = $selector-input-el + '-with-prefix'
 $selector-input-el-with-suffix = $selector-input-el + '-with-suffix'
+$selector-input-el-with-prepend = $selector-input-el + '-with-prepend'
+$selector-input-el-with-append = $selector-input-el + '-with-append'
 
 $selector-input-content = $selector-input + '-content'
 $selector-input-prepend = $selector-input + '-prepend'
 $selector-input-append = $selector-input + '-append'
-$selector-input-append-button = $selector-input-append + '-button'
 $selector-input-prefix = $selector-input + '-prefix'
 $selector-input-suffix = $selector-input + '-suffix'
+$selector-input-secure = $selector-input + '-secure'
 $selector-input-clear = $selector-input + '-clear'
 $selector-input-autosize = $selector-input + '-autosize'
 
+$selector-input-prefix-icon = $selector-input + '-prefix-icon'
+$selector-input-suffix-icon = $selector-input + '-suffix-icon'
+$selector-input-secure-icon = $selector-input + '-secure-icon'
+$selector-input-clear-icon = $selector-input + '-clear-icon'
+
 $input-el-padding-horizontal = 10px
-$input-el-padding-vertical = 6px
+$input-el-padding-vertical = 5px
 
 $input-prepend-append-font-size = 12px
-$input-prepend-append-color = #515a6e
-$input-prepend-append-bg-color = #fafafa
+$input-prepend-append-color = #909399
+$input-prepend-append-bg-color = #f5f7fa
 $input-prepend-append-padding-horizontal = 10px
 
 $input-size-hash = {
-  default: $size-default,
-  small: $size-small,
-  large: $size-large,
+  default: {
+    height: $height-default,
+    padding-horizontal: $padding-horizontal-default,
+  },
+  small: {
+    height: $height-small,
+    padding-horizontal: $padding-horizontal-small,
+  },
+  large: {
+    height: $height-large,
+    padding-horizontal: $padding-horizontal-large,
+  },
 }
 
 $input-brand-hash = {
-  info: $brand-info,
-  success: $brand-success,
-  error: $brand-error,
-  warning: $brand-warning,
+  info: {
+    color: $brand-info,
+    shadow-color: $brand-info-shadow,
+  },
+  success: {
+    color: $brand-success,
+    shadow-color: $brand-success-shadow,
+  },
+  error: {
+    color: $brand-error,
+    shadow-color: $brand-error-shadow,
+  },
+  warning: {
+    color: $brand-warning,
+    shadow-color: $brand-warning-shadow,
+  },
 }

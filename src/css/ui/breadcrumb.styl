@@ -7,16 +7,16 @@
 
 {$selector-breadcrumb-link}
   user-select none
-  color $breadcrumb-link-color
+  color $brand-text
   cursor $cursor-clickable
   transition color .3s
 
   &:hover
-    color $brand-primary
+    color $brand-link
 
 {$selector-breadcrumb-item}
   > a
-    color $breadcrumb-link-color
+    color $brand-text
     font-weight normal
     text-decoration none
 
@@ -24,8 +24,9 @@
     {$selector-breadcrumb-link}
       cursor $cursor-text
       font-weight bold
+
       &:hover
-        color $breadcrumb-link-color
+        color $brand-text
 
     {$selector-breadcrumb-separator}
       display none

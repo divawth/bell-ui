@@ -1,4 +1,3 @@
-import { YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
     closeDialog(): void;
     buttonClick(index: number): void;
@@ -7,5 +6,5 @@ declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown
     closeDialog(): void;
     buttonClick(index: number): void;
     hide(): void;
-} & YoxInterface>;
+} & import("yox").YoxInterface>;
 export default _default;

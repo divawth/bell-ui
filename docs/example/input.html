@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Input</title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
         .bell-app {
@@ -14,14 +14,21 @@
 </head>
 <body>
     <script src="../../dep/base/base.js"></script>
-    <script src="../../dist/bell.js"></script>
+    <script src="../../dist/bell-ui.js"></script>
 
     <script id="template-1" type="text/plain">
         <div>
-            <Input placeholder="请输入..."
-                style="width: 300px"
-                model="value"
-            ></Input>
+            <Input model="value1">
+              <Select slot="prepend" model="value">
+                <Option value="1">
+                    北京
+                </Option>
+                <Option value="2">
+                    上海
+                </Option>
+              </Select>
+              <Button slot="append">搜索</Button>
+            </Input>
         </div>
     </script>
 
@@ -92,7 +99,7 @@
             template: '#template-1',
             data: function () {
                 return {
-                    value: '2121'
+                    value: ''
                 }
             },
             watchers: {
@@ -101,42 +108,42 @@
                 }
             }
         });
-        new Yox({
-            el: '#app-2',
-            template: '#template-2',
-            data: function () {
-                return {
-                    value: '2121'
-                }
-            },
-            watchers: {
-                value: function (value) {
-                    console.log(value);
-                }
-            }
-        });
-        new Yox({
-            el: '#app-3',
-            template: '#template-3',
-            data: function () {
-                return {
-                    value: 'template-3'
-                }
-            },
-            methods: {
-                click: function () {
-                    console.log('click')
-                }
-            }
-        });
-        new Yox({
-            el: '#app-4',
-            template: '#template-4'
-        });
-        new Yox({
-            el: '#app-5',
-            template: '#template-5'
-        });
+        // new Yox({
+        //     el: '#app-2',
+        //     template: '#template-2',
+        //     data: function () {
+        //         return {
+        //             value: '2121'
+        //         }
+        //     },
+        //     watchers: {
+        //         value: function (value) {
+        //             console.log(value);
+        //         }
+        //     }
+        // });
+        // new Yox({
+        //     el: '#app-3',
+        //     template: '#template-3',
+        //     data: function () {
+        //         return {
+        //             value: 'template-3'
+        //         }
+        //     },
+        //     methods: {
+        //         click: function () {
+        //             console.log('click')
+        //         }
+        //     }
+        // });
+        // new Yox({
+        //     el: '#app-4',
+        //     template: '#template-4'
+        // });
+        // new Yox({
+        //     el: '#app-5',
+        //     template: '#template-5'
+        // });
     </script>
 
 </body>

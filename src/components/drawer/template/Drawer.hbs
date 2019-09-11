@@ -35,9 +35,12 @@ class="${prefix}drawer
     </div>
 
     {{#if closable}}
-      <div class="${prefix}drawer-close" on-click="close()">
-        <Icon name="close" size="0" />
-      </div>
+      <Icon
+        name="close"
+        size="0"
+        className="${prefix}drawer-close"
+        on-click.native="close()"
+      />
     {{/if}}
   </div>
 

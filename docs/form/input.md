@@ -4,8 +4,16 @@
 export default {
   template: `
   <div>
-    <Input placeholder="Basic usage" model="value" />
-    <Input placeholder="Basic usage" model="value" disabled />
+    <Input
+      placeholder="Basic usage"
+      model="value"
+    />
+    <br><br>
+    <Input
+      placeholder="Basic usage"
+      model="value"
+      disabled
+    />
   </div>
   `
 }
@@ -17,9 +25,19 @@ export default {
 export default {
   template: `
     <div class="example-input">
-      <Input placeholder="large size" size="large" />
-      <Input placeholder="default size" />
-      <Input placeholder="small size" size="small" />
+      <Input
+        placeholder="large size"
+        size="large"
+      />
+      <br><br>
+      <Input
+        placeholder="default size"
+      />
+      <br><br>
+      <Input
+        placeholder="small size"
+        size="small"
+      />
     </div>
   `
 }
@@ -33,32 +51,37 @@ export default {
   height: 300,
   template: `
     <div>
-      <Input model="value1">
-        <span slot="prepend">http://</span>
-        <span slot="append">.com</span>
+      <Input
+        model="value1"
+        placeholder="请输入..."
+        width="400"
+      >
+        <template slot="prepend">http://</template>
+        <template slot="append">.com</template>
       </Input>
+      <br><br>
       <Input
         model="value2"
-        type="text"
         placeholder="请输入..."
+        width="400"
       >
-        <Button slot="prepend">搜索</Button>
-        <Button slot="append" type="error">搜索</Button>
+        <Button slot="append">搜索</Button>
       </Input>
+      <br><br>
       <Input
         model="value3"
-        type="text"
         placeholder="请输入..."
+        width="400"
       >
-        <Button slot="prepend" type="info">搜索</Button>
-        <Button slot="append" type="success">搜索</Button>
+        <Select slot="prepend" width="90">
+          <Option value="www1">
+            www1
+          </Option>
+          <Option value="www2">
+            www2
+          </Option>
+        </Select>
       </Input>
-
-      <style>
-        .bell-input + .bell-input {
-          margin-top: 10px;
-        }
-      </style>
     </div>
   `
 }
@@ -70,9 +93,26 @@ export default {
 export default {
   template: `
   <div>
-    <Input search placeholder="Enter something..." />
-    <Input search enterButton placeholder="Enter something..." />
-    <Input search enterButton="Search" placeholder="Enter something..." />
+    <Input
+      prefix="search"
+      placeholder="Enter something..."
+    />
+  </div>
+  `
+}
+```
+
+> 密码框
+
+```js
+export default {
+  template: `
+  <div>
+    <Input
+      type="password"
+      secure
+      placeholder="Enter something..."
+    />
   </div>
   `
 }
@@ -86,7 +126,6 @@ export default {
     <Input
       placeholder="请输入..."
       width="300"
-      type="input"
       model="value"
       clearable
     />
@@ -94,15 +133,29 @@ export default {
 }
 ```
 
-> 带Icon的输入框
+> 带 Icon 的输入框
 
 ```js
 export default {
   template: `
   <div>
     <Input prefix="contact" />
+    <br><br>
     <Input suffix="calendar" />
-    <Input prefix="contact" suffix="calendar" />
+    <br><br>
+    <Input>
+      <Icon
+        slot="prefix"
+        name="contact"
+      />
+    </Input>
+    <br><br>
+    <Input>
+      <Icon
+        slot="suffix"
+        name="calendar"
+      />
+    </Input>
   </div>
   `
 }
@@ -114,12 +167,12 @@ export default {
 export default {
   template: `
   <div>
-    <Input model="value"
+    <Input
+      model="value"
       type="textarea"
-      rows="{{4}}"
+      rows="4"
       placeholder="请输入..."
-    >
-    </Input>
+    />
   </div>
   `
 }
@@ -131,8 +184,12 @@ export default {
 export default {
   template: `
   <div>
-    <Input model="value7" type="textarea" autoSize placeholder="Enter something..." />
-    <Input model="value8" type="textarea" autoSize="{{autoSize}}" placeholder="Enter something..." />
+    <Input
+      model="value"
+      type="textarea"
+      placeholder="Enter something..."
+      autoSize="{{autoSize}}"
+    />
   </div>
   `,
   data() {
@@ -152,8 +209,18 @@ export default {
 export default {
   template: `
   <div>
-    <Input model="value9" disabled placeholder="Enter something..." />
-    <Input model="value10" disabled type="textarea" placeholder="Enter something..." />
+    <Input
+      model="value1"
+      placeholder="Enter something..."
+      disabled
+    />
+    <br><br>
+    <Input
+      model="value2"
+      type="textarea"
+      placeholder="Enter something..."
+      disabled
+    />
   </div>
   `
 }
@@ -166,10 +233,29 @@ export default {
 export default {
   template: `
   <div>
-    <Input placeholder="info input" model="value" status="info" clearable />
-    <Input placeholder="success input" model="value" status="success" clearable />
-    <Input placeholder="error input" model="value" status="error" clearable />
-    <Input placeholder="warning input" model="value" status="warning" clearable />
+    <Input
+      model="value"
+      placeholder="info input"
+      status="info"
+    />
+    <br><br>
+    <Input
+      model="value"
+      placeholder="info input"
+      status="success"
+    />
+    <br><br>
+    <Input
+      model="value"
+      placeholder="info input"
+      status="error"
+    />
+    <br><br>
+    <Input
+      model="value"
+      placeholder="info input"
+      status="warning"
+    />
   </div>
   `
 }
@@ -190,9 +276,7 @@ clearable | 清空按钮 | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
-search | 是否显示为搜索型输入框 | boolean | - | false
-enterButton | 开启 search 时可用，是否有确认按钮，可设为按钮文字 | boolean, string | - | -
-rows | 行数, 仅在 textarea 类型下有效 | number | - | 2
+rows | 行数, 仅在 textarea 类型下有效 | number | - | 1
 autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 } | Object | - | -
 secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
 autoComplete | 是否应该启用自动完成功能 | string | on, off | -
@@ -205,15 +289,14 @@ maxLength | 最大输入长度 | number | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-enter | 按下回车键的时候触发 | -
+enter | 按下回车键时触发 | -
 keyup | 原生的 keyup 事件 | -
 keydown | 原生的 keyup 事件 | -
 keypress | 原生的 keypress 事件 | -
-change | 输入的时候值发生改变的时候回调 | value
-focus | 聚焦的时候触发 | -
-blur | 失焦的时候触发 | -
-search | 点击搜索按钮的时候的回调 | -
-clear | 点击清除时候的回调 | -
+change | 输入时值发生改变时触发 | value
+focus | 聚焦时触发 | -
+blur | 失焦时触发 | -
+clear | 点击清除时触发 | -
 
 > Slots
 

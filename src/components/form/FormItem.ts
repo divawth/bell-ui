@@ -3,16 +3,18 @@ import Yox from 'yox'
 import template from './template/FormItem.hbs'
 
 import {
-  findComponentUpward,
-} from '../util'
-
-import {
-  FALSE,
   UNDEFINED,
   RAW_STRING,
-  RAW_NUMERIC,
   RAW_BOOLEAN,
+  RAW_TOP,
+  RAW_BOTTOM,
+  RAW_MIDDLE,
 } from '../constant'
+
+import {
+  oneOf,
+  findComponentUpward,
+} from '../util'
 
 export default Yox.define({
 
@@ -27,6 +29,9 @@ export default Yox.define({
     },
     required: {
       type: RAW_BOOLEAN,
+    },
+    labelAlign: {
+      type: oneOf([RAW_TOP, RAW_BOTTOM, RAW_MIDDLE]),
     },
     showMessage: {
       type: RAW_BOOLEAN,
@@ -45,7 +50,6 @@ export default Yox.define({
   data(options) {
 
     const form = findComponentUpward(options.parent, '${prefix}form')
-    const prop = this.get('prop')
 
     let showMessage = this.get('showMessage')
     if (showMessage === UNDEFINED) {

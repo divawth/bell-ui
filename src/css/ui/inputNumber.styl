@@ -1,10 +1,10 @@
 {$selector-input-number}
   position relative
   box-sizing border-box
-  border-radius $radius-base
+  border-radius $border-radius-default
   display inline-block
   border 1px solid $brand-border
-  width $input-number-width
+  width $ui-form-element-width
   overflow hidden
   transition border-color .3s, box-shadow .3s
   ui-input-number()
@@ -23,7 +23,6 @@
   text-align left
   background-color $brand-bg
   color $brand-text
-  padding 0 $input-number-padding-horizontal
 
   ui-placeholder($brand-placeholder)
 
@@ -40,7 +39,6 @@
   opacity 0
   user-select none
   transition opacity .3s
-  width $input-number-actions-width
   border-left 1px solid $brand-border
 
 {$selector-input-number-up},
@@ -49,9 +47,9 @@
   left 0
   width 100%
   height 50%
-  font-size $input-number-actions-font-size
+  font-size $ui-icon-size
   text-align center
-  background-color #fff
+  background-color $brand-bg-light
   box-sizing border-box
   transition color .3s
 

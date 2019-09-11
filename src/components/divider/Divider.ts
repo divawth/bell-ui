@@ -11,9 +11,6 @@ import {
   RAW_LEFT,
   RAW_RIGHT,
   RAW_CENTER,
-
-  RAW_VERTICAL,
-  RAW_HORIZONTAL,
 } from '../constant'
 
 import {
@@ -23,9 +20,9 @@ import {
 export default Yox.define({
   template,
   propTypes: {
-    type: {
-      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
-      value: RAW_HORIZONTAL,
+    vertical: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     dashed: {
       type: RAW_BOOLEAN,

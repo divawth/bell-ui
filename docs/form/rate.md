@@ -8,12 +8,43 @@ export default {
 }
 ```
 
-> type
+> 风格
 
 ```js
 export default {
   template: `
-    <Rate showTexts texts="{{texts}}" type="primary" />
+    <div>
+      <Rate />
+      <br><br>
+      <Rate value="1" type="primary" />
+      <br><br>
+      <Rate value="2" type="info" />
+      <br><br>
+      <Rate value="3" type="success" />
+      <br><br>
+      <Rate value="4" type="error" />
+      <br><br>
+    </div>
+  `
+}
+```
+
+> 半星
+
+```js
+export default {
+  template: `
+    <Rate half />
+  `
+}
+```
+
+> 提示文字
+
+```js
+export default {
+  template: `
+    <Rate texts="{{texts}}" />
   `,
   data () {
     return {
@@ -23,23 +54,15 @@ export default {
 }
 ```
 
-> 半星
+> 自定义提示内容
 
 ```js
 export default {
   template: `
-    <Rate half /> 
-  `
-}
-```
-
-> 设置属性 showTexts 可以显示提示文字
-
-```js
-export default {
-  template: `
-    <Rate showTexts model="value" on-change="change()">
-      <span style="color: #f5a623">{{ value }} 分</span>
+    <Rate model="value" on-change="change()">
+      <span style="color: #f5a623">
+        {{ value }} 分
+      </span>
     </Rate>
   `,
   data: {
@@ -53,14 +76,12 @@ export default {
 }
 ```
 
-> 设置属性 readOnly 只读
+> 只读状态
 
 ```js
 export default {
   template: `
-    <Rate readOnly showTexts model="value">
-      <span style="color: #f5a623">3 分</span>
-    </Rate>
+    <Rate readOnly model="value" />
   `,
   data: function () {
     return {
@@ -75,7 +96,11 @@ export default {
 ```js
 export default {
   template: `
-    <Rate icon="heart" />
+    <div>
+      <Rate icon="heart" />
+      <br><br>
+      <Rate icon="heart" half />
+    </div>
   `
 }
 ```
@@ -86,14 +111,14 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+value / model | 当前 star 数 | number | - | 0
 count | star 总数 | number | - | 5
-model | 当前 star 数 | number | - | 0
 half | 是否允许半选 | boolean | - | false
 readOnly | 是否只读 | boolean | - | false
-showTexts | 是否提示文字 | boolean | - | false
 icon | 使用图标 | string | - | star
-texts | 提示文字组 | array | - | -
- 
+size | 图标尺寸 | numeric | - | 18
+type | 风格 | string | primary, info, warning, success, error | warning
+texts | 提示文字组 | string[] | - | -
 
 > Events
 

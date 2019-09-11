@@ -1,9 +1,8 @@
-import Yox, { YoxInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Confirm.hbs'
 
 import {
-  TRUE,
   RAW_OBJECT,
   RAW_ARRAY,
   RAW_STRING,
@@ -46,7 +45,15 @@ export default Yox.define({
   },
 
   afterMount() {
-    (this.$refs.dialog as any).open()
+    const me = this
+    setTimeout(
+      function () {
+        if (me.$refs) {
+          (me.$refs.dialog as any).open()
+        }
+      },
+      30
+    )
   }
 
 })

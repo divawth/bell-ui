@@ -4,10 +4,10 @@ class="${prefix}avatar
 {{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if text || fontSize || bgColor || style}}
+{{#if text || fontSize || backgroundColor || style}}
   style="{{#if text}}color: {{color}};{{/if}}
   {{#if fontSize}}font-size: {{fontSize}}px;{{/if}}
-  {{#if bgColor}}background-color: {{bgColor}};{{/if}}
+  {{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
   {{#if style}}{{style}}{{/if}}"
 {{/if}}
 >
@@ -19,6 +19,7 @@ class="${prefix}avatar
       {{#if srcset}}
         srcset="{{srcset}}"
       {{/if}}
+      loading="lazy"
       ondragstart="return false"
     >
   {{else if hasSlot('icon')}}

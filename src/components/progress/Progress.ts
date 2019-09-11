@@ -30,11 +30,15 @@ export default Yox.define({
       type: RAW_STRING,
       value: 10,
     },
+    inside: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     vertical: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    active: {
+    animated: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

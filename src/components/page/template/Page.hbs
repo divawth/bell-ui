@@ -12,7 +12,7 @@ class="${prefix}page
     <div
       class="${prefix}page-item ${prefix}page-prev
         {{#if prevText}} ${prefix}page-custom-prev{{/if}}
-        {{#if current <= 1}} ${prefix}page-disabled{{/if}}"
+        {{#if current <= 1}} ${prefix}page-item-disabled{{/if}}"
 
       {{#if current > 1}}
         on-click="prev()"
@@ -30,7 +30,7 @@ class="${prefix}page
     <div
       class="${prefix}page-item ${prefix}page-next
         {{#if nextText}} ${prefix}page-custom-next{{/if}}
-        {{#if current >= count}} ${prefix}page-disabled{{/if}}"
+        {{#if current >= count}} ${prefix}page-item-disabled{{/if}}"
 
       {{#if current < count}}
         on-click="next()"
@@ -100,7 +100,7 @@ class="${prefix}page
 
       <div
         class="${prefix}page-item
-        {{#if current === 1}} ${prefix}page-active{{/if}}"
+        {{#if current === 1}} ${prefix}page-item-active{{/if}}"
         {{#if current !== 1}}
           on-click="changePage(1)"
         {{/if}}
@@ -141,7 +141,7 @@ class="${prefix}page
         {{/if}}
 
         {{#if current != 1 && current != count}}
-          <div class="${prefix}page-item ${prefix}page-active">
+          <div class="${prefix}page-item ${prefix}page-item-active">
             {{ current }}
           </div>
         {{/if}}
@@ -179,7 +179,7 @@ class="${prefix}page
 
         <div
           class="${prefix}page-item
-          {{#if current === count}} ${prefix}page-active{{/if}}"
+          {{#if current === count}} ${prefix}page-item-active{{/if}}"
           {{#if current !== count}}
             on-click="changePage(count)"
           {{/if}}
