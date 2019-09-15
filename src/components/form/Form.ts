@@ -8,16 +8,18 @@ import {
   TRUE,
   FALSE,
   RAW_STRING,
-  RAW_OBJECT,
   RAW_BOOLEAN,
   RAW_LEFT,
   RAW_RIGHT,
   RAW_TOP,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
   oneOf,
 } from '../util'
+
+const validator = new Validator()
 
 export default Yox.define({
 
@@ -26,15 +28,6 @@ export default Yox.define({
   name: '${prefix}form',
 
   propTypes: {
-    value: {
-      type: RAW_OBJECT,
-    },
-    rules: {
-      type: RAW_OBJECT,
-    },
-    messages: {
-      type: RAW_OBJECT,
-    },
     inline: {
       type: RAW_BOOLEAN,
       value: FALSE,
@@ -44,11 +37,7 @@ export default Yox.define({
       value: RAW_RIGHT,
     },
     labelWidth: {
-      type: RAW_STRING,
-    },
-    showMessage: {
-      type: RAW_BOOLEAN,
-      value: TRUE,
+      type: RAW_NUMERIC,
     },
     className: {
       type: RAW_STRING,
@@ -59,29 +48,18 @@ export default Yox.define({
   },
 
   methods: {
-    validate(callback: Function) {
+    validate(value: object, rules: object, messages: object) {
 
-      const me = this
+      const errors = validator.validate(value, rules, messages)
 
-      const validator = new Validator()
-      const errors = validator.validate(
-        me.get('value'),
-        me.get('rules'),
-        me.get('messages')
-      )
-
-      me.fire(
+      this.fire(
         'validate.form',
         { errors },
         TRUE
       )
 
-      if (errors) {
-        callback(FALSE, errors)
-      }
-      else {
-        callback(TRUE)
-      }
+      return errors
+
     }
   }
 })

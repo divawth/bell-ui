@@ -227,7 +227,7 @@ export default {
 ```
 
 
-> 通过 status 设置状态
+> 状态
 
 ```js
 export default {
@@ -269,17 +269,17 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 model | input 的值 | string | - | -
-type | 按钮类型 | string | text, password, textarea | text
-size | 按钮大小 | string | default, small, large | default
+type | 类型 | string | `text`, `password`, `textarea` | `text`
+status | 状态 | string | `info`, `warning`, `success`, `error` | -
+size | 大小 | string | `default`, `small`, `large` | `default`
 placeholder | placeholder | string | - | -
 clearable | 清空按钮 | boolean | - | false
 disabled | 设置按钮为禁用状态 | boolean | - | false
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
-rows | 行数, 仅在 textarea 类型下有效 | number | - | 1
+rows | 行数, 仅在 `textarea` 类型下有效 | number | - | 1
 autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 } | Object | - | -
 secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
-autoComplete | 是否应该启用自动完成功能 | string | on, off | -
 wrap | wrap 属性规定当在表单中提交时，文本区域（text area）中的文本如何换行 | string | soft, hard | -
 spellCheck | 是否对元素内容进行拼写检查 | boolean | - | -
 readOnly | 设置输入框为只读 | boolean | - | false

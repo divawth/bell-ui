@@ -65,12 +65,22 @@
   cursor $cursor-clickable
   color $brand-close-color
 
+  &:hover
+    color $brand-close-color-hover
+
 {$selector-input-number-up-disabled},
 {$selector-input-number-down-disabled}
   cursor $cursor-disabled
   color $brand-border-disabled
 
-{$selector-input-number-enabled}
-  &:hover
-    {$selector-input-number-actions}
-      opacity 1
+{$selector-input-number-enabled}:hover
+  border-color $brand-primary
+
+  {$selector-input-number-actions}
+    opacity 1
+
+{$selector-input-number-focus}
+  border-color $brand-primary
+
+  if $ui-shadow-radius > 0
+    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

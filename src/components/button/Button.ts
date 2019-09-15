@@ -3,9 +3,7 @@ import Yox from 'yox'
 import template from './template/Button.hbs'
 
 import {
-  FALSE,
   UNDEFINED,
-  RAW_TINY,
   RAW_SMALL,
   RAW_LARGE,
   RAW_DEFAULT,
@@ -33,7 +31,7 @@ export default Yox.define({
       type: oneOf(RAW_TYPE_ARRAY),
     },
     size: {
-      type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL, RAW_TINY]),
+      type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
       value: RAW_DEFAULT,
     },
     border: {
@@ -45,15 +43,12 @@ export default Yox.define({
     },
     ghost: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     fluid: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,

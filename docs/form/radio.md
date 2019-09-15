@@ -13,7 +13,7 @@ export default {
     <Radio value="cn" model="checked1" on-change="change()">
       中国
     </Radio>
-    <Radio type="success" value="usa" model="checked2" on-change="change()">
+    <Radio status="success" value="usa" model="checked2" on-change="change()">
       美国
     </Radio>
   </div>
@@ -64,7 +64,7 @@ export default {
 }
 ```
 
-> type 修改类型
+> 状态
 
 ```js
 export default {
@@ -79,7 +79,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="success" name="single" model="radio">
+      <RadioGroup status="success" name="single" model="radio">
         <Radio value="china">
           中国
         </Radio>
@@ -88,7 +88,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="warning" name="single1" model="radio">
+      <RadioGroup status="warning" name="single1" model="radio">
         <Radio value="china">
           中国
         </Radio>
@@ -97,7 +97,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="info" name="single2" model="radio">
+      <RadioGroup status="info" name="single2" model="radio">
         <Radio value="china">
           中国
         </Radio>
@@ -106,7 +106,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="error" name="single3" model="radio">
+      <RadioGroup status="error" name="single3" model="radio">
         <Radio value="china">
           中国
         </Radio>
@@ -172,7 +172,7 @@ export default {
 export default {
   template: `
   <div>
-    <RadioGroup disabled type="success" name="countrydisabled" model="radio">
+    <RadioGroup disabled status="success" name="countrydisabled" model="radio">
       <Radio checked disabled value="china">
         中国
       </Radio>
@@ -181,7 +181,7 @@ export default {
       </Radio>
     </RadioGroup>
     <br>
-    <RadioGroup type="warning" name="countrydisabled2" model="radio">
+    <RadioGroup status="warning" name="countrydisabled2" model="radio">
       <Radio value="china" checked>
         中国
       </Radio>
@@ -343,7 +343,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="info" button name="country" model="value">
+      <RadioGroup status="info" button name="country" model="value">
         <Radio value="china">
           中国
         </Radio>
@@ -355,7 +355,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="success" button name="country" model="value">
+      <RadioGroup status="success" button name="country" model="value">
         <Radio value="china">
           中国
         </Radio>
@@ -367,7 +367,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="error" button name="country" model="value">
+      <RadioGroup status="error" button name="country" model="value">
         <Radio value="china">
           中国
         </Radio>
@@ -379,7 +379,7 @@ export default {
         </Radio>
       </RadioGroup>
       <br><br>
-      <RadioGroup type="warning" button name="country" model="value">
+      <RadioGroup status="warning" button name="country" model="value">
         <Radio value="china">
           中国
         </Radio>
@@ -439,7 +439,7 @@ value | value | string | - | -
 disabled | 是否禁用 | boolean | - | false
 checked | 是否选中 | boolean | - | false
 size | 大小 | string | default, small, large | default
-type | 风格 | string | primary, success, info, warning, error | primary
+status | 状态 | string | success, info, warning, error | -
 
 > Events
 
@@ -457,7 +457,7 @@ RadioGroup
 name | 当前选中 tab 的 value 值 | string | - | -
 model | 选中值 | string | - | -
 size | 大小 | string | default, small, large | default
-type | 风格 | string | primary, success, info, warning, error | primary
+status | 状态 | string | success, info, warning, error | -
 disabled | 是否禁用 | boolean | - | false
 checked | 是否选中 | boolean | - | false
 vertical | 是否垂直排列，按钮样式下无效 | boolean | - | false

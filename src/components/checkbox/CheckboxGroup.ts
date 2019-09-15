@@ -9,9 +9,11 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
-  RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY,
   RAW_SIZE_COMMON,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 import {
@@ -27,9 +29,8 @@ export default Yox.define({
   name: '${prefix}checkboxGroup',
 
   propTypes: {
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),

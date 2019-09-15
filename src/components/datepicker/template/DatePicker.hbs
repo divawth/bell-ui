@@ -2,8 +2,18 @@
   trigger="custom"
   visible="{{visible}}"
   placement="{{placement}}"
-  on-outside="close()"
+  on-outside="set('visible', false)"
   className="${prefix}datepicker
+
+  {{#if status}} ${prefix}datepicker-{{status}}{{/if}}
+  {{#if size}} ${prefix}datepicker-{{size}}{{/if}}
+
+  {{#if disabled}} ${prefix}datepicker-disabled
+  {{else}} ${prefix}datepicker-enabled
+  {{/if}}
+
+  {{#if clearable}} ${prefix}datepicker-clearable{{/if}}
+
   {{#if className}} {{className}}{{/if}}"
 
   {{#if width || style}}
@@ -12,17 +22,71 @@
   {{/if}}
 >
 
-  <slot name="children">
-    <Input
-      placeholder="{{placeholder}}"
-      model="dateText"
-      type="text"
-      size="{{size}}"
-      on-focus="open()"
-      suffix="calendar"
-      clearable="{{clearable}}"
+  <div
+    class="${prefix}datepicker-button"
+
+    {{#if !disabled}}
+      on-click="toggle('visible')"
+    {{/if}}
+  >
+
+    {{#if formatedValues.length > 0}}
+
+      {{#if multiple && type !== RAW_TYPE_DATE_RANGE && type !== RAW_TYPE_WEEK}}
+
+        <div class="${prefix}datepicker-values">
+          {{#each formatedValues:index}}
+            <Tag
+              simple
+              closable
+              size=""
+              on-close="handleRemoveItem($event, index)"
+            >
+              {{this}}
+            </Tag>
+          {{/each}}
+        </div>
+
+      {{else}}
+
+        <div class="${prefix}datepicker-value">
+          {{formatedValues[0]}}
+
+          <!-- week 和 daterange -->
+          {{#if formatedValues[1]}}
+            <span class="${prefix}datepicker-separator">
+              ~
+            </span>
+            {{formatedValues[1]}}
+          {{/if}}
+        </div>
+
+      {{/if}}
+
+    {{else}}
+
+      <div class="${prefix}datepicker-placeholder">
+        {{placeholder}}
+      </div>
+
+    {{/if}}
+
+    {{#if clearable && formatedValues.length}}
+      <Icon
+        name="close-circle"
+        size="0"
+        className="${prefix}datepicker-clear-icon"
+        on-click.native="handleClearClick()"
+      />
+    {{/if}}
+
+    <Icon
+      name="calendar"
+      size="0"
+      className="${prefix}datepicker-calendar-icon"
     />
-  </slot>
+
+  </div>
 
   <template slot="list">
 
@@ -31,7 +95,7 @@
         {{#each shortcuts}}
           <div
             class="${prefix}datepicker-shortcut-item"
-            on-click="shortcutClick(this)"
+            on-click="handleShortcutClick(this)"
           >
             {{this.text}}
           </div>

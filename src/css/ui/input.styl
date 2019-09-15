@@ -8,8 +8,10 @@
 {$selector-input-single-line}
   &{$selector-input}
     ui-connect(
-      hash: $input-brand-hash,
-      each: input-single-line-brand-style
+      hash: $status-brand-hash,
+      each: @(style) {
+        input-border-style($selector-input-el, style['color'], style['shadow-color'])
+      }
     )
     ui-connect(
       hash: $input-size-hash,
@@ -19,8 +21,10 @@
 {$selector-input-multiple-line}
   &{$selector-input}
     ui-connect(
-      hash: $input-brand-hash,
-      each: input-multiple-line-brand-style
+      hash: $status-brand-hash,
+      each: @(style) {
+        input-border-style($selector-textarea-el, style['color'], style['shadow-color'])
+      }
     )
 
 {$selector-input-el},
@@ -33,7 +37,7 @@
   display block
   width 100%
   cursor $cursor-text
-  color $brand-important
+  color $brand-text-important
   font-size $ui-font-size
   transition border-color .3s, box-shadow .3s
 
@@ -81,6 +85,7 @@
 {$selector-input-append}
   display table-cell
   vertical-align middle
+  text-align center
   width 1px
   border 1px solid $brand-border
   font-size $input-prepend-append-font-size

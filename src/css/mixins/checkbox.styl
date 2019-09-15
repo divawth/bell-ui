@@ -1,16 +1,16 @@
-checkbox-brand-style(style)
+checkbox-brand-style(color, shadow-color)
   &{$selector-checkbox-active},
   &{$selector-checkbox-indeterminate},
   &{$selector-checkbox-active}:hover,
   &{$selector-checkbox-indeterminate}:hover
     > {$selector-checkbox-icon}
-      ui-set('background-color', style['color'])
-      ui-set('border-color', style['color'])
+      ui-set('background-color', color)
+      ui-set('border-color', color)
 
   if $ui-shadow-radius > 0
     &{$selector-checkbox-enabled}:hover > {$selector-checkbox-icon},
     &{$selector-checkbox-focus} > {$selector-checkbox-icon}
-      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+      box-shadow 0 0 0 $ui-shadow-radius shadow-color
 
 checkbox-size-style(style)
   ui-set('font-size', style['font-size'])
@@ -36,7 +36,9 @@ checkbox-size-style(style)
 ui-checkbox()
   ui-connect(
     hash: $checkbox-brand-hash,
-    each: checkbox-brand-style
+    each: @(style) {
+      checkbox-brand-style(style['color'], style['shadow-color'])
+    }
   )
   ui-connect(
     hash: $checkbox-size-hash,

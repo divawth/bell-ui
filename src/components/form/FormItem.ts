@@ -9,6 +9,7 @@ import {
   RAW_TOP,
   RAW_BOTTOM,
   RAW_MIDDLE,
+  TRUE,
 } from '../constant'
 
 import {
@@ -35,6 +36,7 @@ export default Yox.define({
     },
     showMessage: {
       type: RAW_BOOLEAN,
+      value: TRUE,
     },
     message: {
       type: RAW_STRING,
@@ -51,29 +53,14 @@ export default Yox.define({
 
     const form = findComponentUpward(options.parent, '${prefix}form')
 
-    let showMessage = this.get('showMessage')
-    if (showMessage === UNDEFINED) {
-      showMessage = form.get('showMessage')
-    }
-
-    let required = this.get('required')
-    if (required === UNDEFINED) {
-      const rules = form.get('rules')
-      if (rules) {
-        required = rules.required
-      }
-    }
-
     return {
       error: UNDEFINED,
-      showError: showMessage,
-      isRequired: required,
-      labelWidth: form.get('labelWidth'),
+      itemLabelWidth: form.get('labelWidth'),
     }
   },
 
   computed: {
-    computedError(): string {
+    itemMessage(): string {
       return this.get('error') || this.get('message')
     }
   },

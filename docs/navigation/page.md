@@ -2,31 +2,66 @@
 
 ```js
 export default {
+  isViewFullBlock: true,
   template: `
-    <Page total="70" on-change="pageChange()"></Page>
+    <Page
+      model="page"
+      total="{{total}}"
+    />
   `,
-  methods: {
-    pageChange(event, data) {
-      console.log(`当前是第 ${data.value} 页`)
+  data: {
+    page: 1,
+    total: 50
+  },
+  watchers: {
+    page: function (page) {
+      console.log(page)
     }
   }
 }
 ```
 
-> showSizer 设置显示每页条数
+> 更多分页
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <div>
-      <Page total="{{total}}" showSizer pageSizeOpts="{{pageSizeOpts}}" on-pageSizeChange="change()"></Page>
-    </div>
+    <Page
+      model="page"
+      total="{{total}}"
+    />
+  `,
+  data: {
+    page: 1,
+    total: 1000000
+  },
+  watchers: {
+    page: function (page) {
+      console.log(page)
+    }
+  }
+}
+```
+
+> 设置每页条数
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <Page
+      total="{{total}}"
+      pageSize="{{pageSize}}"
+      pageSizeOptions="{{pageSizeOptions}}"
+      on-pageSizeChange="change()"
+    />
   `,
   data: function () {
     return {
-      pageSizeOpts: [10, 15, 20, 25, 40],
-      total: 100
+      total: 100,
+      pageSize: 15,
+      pageSizeOptions: [10, 15, 20, 25, 40],
     }
   },
   methods: {
@@ -37,34 +72,42 @@ export default {
 }
 ```
 
-> showElevator 显示快速跳转
+> 跳转
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <div>
-      <Page total="100" showElevator></Page>
-    </div>
-  `
+    <Page
+      total="100"
+      showJumper
+      on-pageChange="change()"
+    />
+  `,
+  methods: {
+    change: function (event, data) {
+      console.log(`当前是 ${data.value} 页`)
+    }
+  }
 }
 ```
 
-> showTotal 设置显示条数
+> 显示总条数
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <div>
-      <Page total="100" showTotal="{{true}}"></Page>
-    </div>
+    <Page
+      total="100"
+      showTotal
+    />
   `
 }
 ```
 
 
-> size 设置大小
+> 两种大小
 
 ```js
 export default {
@@ -72,50 +115,79 @@ export default {
   height: 300,
   template: `
     <div>
-      <Page total="100" size="small"></Page>
+      <Page
+        total="100"
+        size="small"
+      />
       <br><br>
-      <Page total="100"></Page>
+      <Page
+        total="100"
+      />
     </div>
   `
 }
 ```
 
-> placement 弹窗的展开方向
+> Select 的展开方向
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <div style="margin-top: 150px;">
-      <Page total="{{100}}" showSizer="{{true}}" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
-    </div>
+    <Page
+      total="{{100}}"
+      pageSizeOptions="{{pageSizeOptions}}"
+      placement="top"
+      style="margin-top: 150px;"
+    />
   `,
   data: function () {
     return {
-      pageSizeOpts: [10, 15, 20, 25, 40]
+      pageSizeOptions: [10, 15, 20, 25, 40]
     }
   }
 }
 ```
 
-> simple 显示简洁版本
+> 简洁版本
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <Page total="100" simple></Page>
+    <div>
+      <Page
+        total="100"
+        simple
+      />
+      <br><br>
+      <Page
+        total="100"
+        size="small"
+        simple
+      />
+    </div>
   `
 }
 ```
 
-> 上一页和下一页
+> 自定义上一页和下一页
 
 ```js
 export default {
   isViewFullBlock: true,
   template: `
-    <Page total="100" nextText="下一页" prevText="上一页"></Page>
+    <div>
+      <Page total="100">
+        <template slot="prev">
+          上一页
+        </template>
+        <template slot="next">
+          下一页
+        </template>
+      </Page>
+    </div>
+
   `
 }
 ```
@@ -126,21 +198,27 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-total | 设置条数，必选参数 | string | - | -
-current | 当前页码 | string | - | 1
-pageSize | 每页条数 | string | - | 10
-pageSizeOpts | 每页条数配置 | array | - | -
-showSizer | 显示的每页数量选框 | boolean | - | false
-showElevator | 显示快速跳转 | boolean | - | false
-size | 大小 | string | default, small | default
-simple | 是否启用简洁版本 | boolean | - | false
-placement | 弹窗的展开方向 | string | bottom 和 top | bottom
-prevText | 替代图标显示的上一页文字 | string | - | -
-nextText | 替代图标显示的下一页文字 | string | - | -
+current / model | 当前页码 | number | - | `1`
+total | 设置总条数 | number | - | -
+pageSize | 每页条数 | number | - | `10`
+pageSizeOptions | 每页条数配置项 | number[] | - | -
+showTotal | 是否显示总条数 | boolean | - | `false`
+showJumper | 是否显示跳转 | boolean | - | `false`
+size | 大小 | string | `default`, `small` | `default`
+simple | 是否使用简洁版本 | boolean | - | `false`
+placement | 弹窗的展开方向 | string | `bottom`, `top` | `bottom`
+
+> Slots
+
+参数 | 说明
+---|---
+prev | 上一页
+next | 下一页
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | current 或 pageSize 变化后触发 | data.current 或 data.pageSize
-error | 错误信息 | data.msg
+pageChange | current 变化后触发 | data.value
+pageSizeChange | pageSize 变化后触发 | data.value
+error | 输入框按下回车或点击跳转按钮时，页码出现错误触发 | `data.error` 可选值 `empty`, `pattern`, `min`, `max`

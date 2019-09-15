@@ -9,39 +9,79 @@ class="${prefix}page
 >
 
   {{#partial prevPage}}
-    <div
-      class="${prefix}page-item ${prefix}page-prev
-        {{#if prevText}} ${prefix}page-custom-prev{{/if}}
-        {{#if current <= 1}} ${prefix}page-item-disabled{{/if}}"
+    {{#if hasSlot('prev')}}
 
-      {{#if current > 1}}
-        on-click="prev()"
-      {{/if}}
-    >
-      {{#if prevText}}
-        {{prevText}}
-      {{else}}
-        <Icon name="arrow-back" />
-      {{/if}}
-    </div>
+      <button
+        key="prev"
+        class="${prefix}page-item ${prefix}page-custom-prev"
+
+        {{#if current > 1}}
+          on-click="decrease('current', 1, 1)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <slot name="prev" />
+      </button>
+
+    {{else}}
+
+      <button
+        key="prev"
+        class="${prefix}page-item ${prefix}page-prev"
+
+        {{#if current > 1}}
+          on-click="decrease('current', 1, 1)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <Icon
+          name="arrow-back"
+          size="0"
+          className="${prefix}page-icon"
+        />
+      </button>
+
+    {{/if}}
   {{/partial}}
 
   {{#partial nextPage}}
-    <div
-      class="${prefix}page-item ${prefix}page-next
-        {{#if nextText}} ${prefix}page-custom-next{{/if}}
-        {{#if current >= count}} ${prefix}page-item-disabled{{/if}}"
+    {{#if hasSlot('next')}}
 
-      {{#if current < count}}
-        on-click="next()"
-      {{/if}}
-    >
-      {{#if nextText}}
-        {{nextText}}
-      {{else}}
-        <Icon name="arrow-forward" />
-      {{/if}}
-    </div>
+      <button
+        key="next"
+        class="${prefix}page-item ${prefix}page-custom-next"
+
+        {{#if current < count}}
+          on-click="increase('current', 1, count)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <slot name="next" />
+      </button>
+
+    {{else}}
+
+      <button
+        key="next"
+        class="${prefix}page-item ${prefix}page-next"
+
+        {{#if current < count}}
+          on-click="increase('current', 1, count)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <Icon
+          name="arrow-forward"
+          size="0"
+          className="${prefix}page-icon"
+        />
+      </button>
+
+    {{/if}}
   {{/partial}}
 
   {{#if showTotal}}
@@ -50,7 +90,7 @@ class="${prefix}page
     </span>
   {{/if}}
 
-  {{#if showSizer}}
+  {{#if pageSizeList.length > 0}}
     <Select
       model="pageSize"
       size="{{size}}"
@@ -58,9 +98,9 @@ class="${prefix}page
       className="${prefix}page-select"
       on-change="pageSizeChange()"
     >
-      {{#each pageList:index}}
-        <Option index="{{index}}" value="{{value}}" text="{{text}}">
-          {{text}}
+      {{#each pageSizeList}}
+        <Option value="{{this.value}}" text="{{this.text}}">
+          {{this.text}}
         </Option>
       {{/each}}
     </Select>
@@ -76,7 +116,7 @@ class="${prefix}page
         ref="simpleInput"
         type="input"
         size="{{size}}"
-        model="currentPage"
+        model="tempPage"
         className="${prefix}page-simple-input"
       />
 
@@ -98,96 +138,62 @@ class="${prefix}page
 
       {{> prevPage}}
 
-      <div
-        class="${prefix}page-item
-        {{#if current === 1}} ${prefix}page-item-active{{/if}}"
-        {{#if current !== 1}}
-          on-click="changePage(1)"
-        {{/if}}
-      >
-        1
-      </div>
+      {{#each pageList}}
 
-      {{#if count > 1}}
+        {{#if this.prev}}
 
-        {{#if current - 5 >= 1}}
-          <div class="${prefix}page-item ${prefix}page-item-prev" on-click="fastPrev()">
-            <Icon name="arrow-back" />
-            <Icon name="arrow-back" />
-          </div>
+          <button
+            key="prev-ellipsis"
+            class="${prefix}page-item ${prefix}page-ellipsis"
+            on-click="decrease('current', 5, 1)"
+          >
+            <Icon
+              name="arrow-back"
+              size="0"
+              className="${prefix}page-icon"
+            />
+            <Icon
+              name="arrow-back"
+              size="0"
+              className="${prefix}page-icon"
+            />
+          </button>
+
+        {{else if this.next}}
+
+          <button
+            key="next-ellipsis"
+            class="${prefix}page-item ${prefix}page-ellipsis"
+            on-click="increase('current', 5, ../count)"
+          >
+            <Icon
+              name="arrow-forward"
+              size="0"
+              className="${prefix}page-icon"
+            />
+            <Icon
+              name="arrow-forward"
+              size="0"
+              className="${prefix}page-icon"
+            />
+          </button>
+
         {{else}}
-          {{#if current - 3 > 1}}
-            <div class="${prefix}page-item" on-click="changePage(current - 3)">
-              {{ current - 3 }}
-            </div>
-          {{/if}}
-          {{#if current - 4 > 1}}
-            <div class="${prefix}page-item" on-click="changePage(current - 4)">
-              {{ current - 4 }}
-            </div>
-          {{/if}}
+
+          <button
+            key="page{{this.value}}"
+            class="${prefix}page-item
+            {{#if this.active}} ${prefix}page-active{{/if}}"
+            {{#if !this.active}}
+              on-click="changePage(this.value)"
+            {{/if}}
+          >
+            {{this.value}}
+          </button>
+
         {{/if}}
 
-        {{#if current - 2 > 1}}
-          <div class="${prefix}page-item" on-click="changePage(current - 2)">
-            {{ current - 2 }}
-          </div>
-        {{/if}}
-
-        {{#if current - 1 > 1}}
-          <div class="${prefix}page-item" on-click="changePage(current - 1)">
-            {{ current - 1 }}
-          </div>
-        {{/if}}
-
-        {{#if current != 1 && current != count}}
-          <div class="${prefix}page-item ${prefix}page-item-active">
-            {{ current }}
-          </div>
-        {{/if}}
-
-        {{#if current + 1 < count}}
-          <div class="${prefix}page-item" on-click="changePage(current + 1)">
-            {{ current + 1 }}
-          </div>
-        {{/if}}
-
-        {{#if current + 2 < count}}
-          <div class="${prefix}page-item" on-click="changePage(current + 2)">
-            {{ current + 2 }}
-          </div>
-        {{/if}}
-
-        {{#if current + 5 <= count}}
-          <div class="${prefix}page-item ${prefix}page-item-next" on-click="fastNext()">
-            <Icon name="arrow-forward" />
-            <Icon name="arrow-forward" />
-          </div>
-        {{else}}
-          {{#if current + 3 < count}}
-            <div class="${prefix}page-item" on-click="changePage(current + 3)">
-              {{ current + 3 }}
-            </div>
-          {{/if}}
-
-          {{#if current + 4 < count}}
-            <div class="${prefix}page-item" on-click="changePage(current + 4)">
-              {{ current + 4 }}
-            </div>
-          {{/if}}
-        {{/if}}
-
-        <div
-          class="${prefix}page-item
-          {{#if current === count}} ${prefix}page-item-active{{/if}}"
-          {{#if current !== count}}
-            on-click="changePage(count)"
-          {{/if}}
-        >
-          {{count}}
-        </div>
-
-      {{/if}}
+      {{/each}}
 
       {{> nextPage}}
 
@@ -195,19 +201,19 @@ class="${prefix}page
 
   {{/if}}
 
-  {{#if showElevator}}
-    <div class="${prefix}page-elevator">
+  {{#if showJumper}}
+    <div class="${prefix}page-jumper">
       <Input
-        ref="elevatorInput"
+        ref="jumperInput"
         type="input"
         placeholder="请输入页码"
-        model="elevatorPage"
+        model="tempPage"
         size="{{size}}"
-        className="${prefix}page-elevator-input"
+        className="${prefix}page-jumper-input"
       />
       <Button
         type="primary"
-        on-click="elevator()"
+        on-click="jump()"
       >
         跳转
       </Button>

@@ -5,6 +5,10 @@ input-single-line-size-style(style)
   {$selector-input-el}
     ui-set('height', style['height'])
 
+  > {$selector-input-prepend},
+  > {$selector-input-append}
+    ui-set('min-width', style['height'])
+
   {$selector-input-prefix}
     ui-set('left', style['padding-horizontal'])
 
@@ -21,14 +25,9 @@ input-border-style($selector, $color, $shadow-color)
   {$selector}
     ui-set('border-color', $color)
 
-  {$selector}:focus
-    ui-set('border-color', $color)
-    if $ui-shadow-radius > 0
-      box-shadow 0 0 0 $ui-shadow-radius $shadow-color
+    &:focus
+      ui-set('border-color', $color)
+      if $ui-shadow-radius > 0
+        box-shadow 0 0 0 $ui-shadow-radius $shadow-color
 
-input-single-line-brand-style(style)
-  input-border-style($selector-input-el, style['color'], style['shadow-color'])
-
-input-multiple-line-brand-style(style)
-  input-border-style($selector-textarea-el, style['color'], style['shadow-color'])
 

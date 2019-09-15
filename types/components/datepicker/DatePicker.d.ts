@@ -1,7 +1,8 @@
+import { CustomEventInterface } from 'yox';
 import { Shortcut } from './util';
 declare const _default: import("yox").ComponentOptions<{
     defaultSimpleDate: unknown;
-    dateText: unknown;
+    formatedValues: unknown;
 }, unknown, {
     'change.input': unknown;
     'clear.input': unknown;
@@ -11,20 +12,16 @@ declare const _default: import("yox").ComponentOptions<{
     'change.week': unknown;
     'change.range': unknown;
 }, {
-    shortcutClick(data: Shortcut): void;
-    open(): void;
-    close(): void;
+    handleClearClick(event: CustomEventInterface): void;
+    handleRemoveItem(event: CustomEventInterface, index: number): void;
+    handleShortcutClick(data: Shortcut): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
-    clear(): void;
-    ok(): void;
 }> & ThisType<{
-    shortcutClick(data: Shortcut): void;
-    open(): void;
-    close(): void;
+    handleClearClick(event: CustomEventInterface): void;
+    handleRemoveItem(event: CustomEventInterface, index: number): void;
+    handleShortcutClick(data: Shortcut): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
-    clear(): void;
-    ok(): void;
 } & import("yox").YoxInterface>;
 export default _default;

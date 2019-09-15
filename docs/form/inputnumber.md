@@ -3,14 +3,12 @@
 ```js
 export default {
   template: `
-  <div>
-    <InputNumber
-      min="1"
-      max="10"
-      model="value"
-      placeholder="请输入"
-    />
-  </div>
+  <InputNumber
+    min="1"
+    max="10"
+    model="value"
+    placeholder="请输入"
+  />
   `,
 }
 ```
@@ -20,14 +18,12 @@ export default {
 ```js
 export default {
   template: `
-    <div>
-      <InputNumber
-        min="1"
-        max="100"
-        step="3"
-        model="value"
-      />
-    </div>
+    <InputNumber
+      min="1"
+      max="100"
+      step="3"
+      model="value"
+    />
   `,
   data: {
     value: 3
@@ -68,7 +64,7 @@ export default {
 }
 ```
 
-> type 修改颜色风格
+> 状态
 
 ```js
 export default {
@@ -81,14 +77,14 @@ export default {
       />
       <br><br>
       <InputNumber
-        type="success"
+        status="success"
         min="1"
         max="10"
         model="value"
       />
       <br><br>
       <InputNumber
-        type="error"
+        status="error"
         min="1"
         max="10"
         model="value"
@@ -248,12 +244,12 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+value / model | 当前值 | number | - | -
 max | 最大值 | number | - | -
 min | 最小值 | number | - | -
-model | 当前值 | number | - | -
 step | 每次改变的步进值 | number | - | 1
-size | 大小 | string | default,small,large | default
-type | 颜色风格 | string | primary,info,success,error,warning | primary
+size | 大小 | string | `default`, `small`, `large` | `default`
+status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | false
 editable | 是否可编辑 | boolean | - | true
 readOnly | 是否开启只读 | boolean | - | true

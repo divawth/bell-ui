@@ -1,13 +1,9 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
-    'change.collapse': unknown;
+    'accordion.collapse': unknown;
     'open.collapse': unknown;
 }, {
-    handleClick(): void;
-    close(): void;
-    open(): void;
+    click(): void;
 }> & ThisType<{
-    handleClick(): void;
-    close(): void;
-    open(): void;
+    click(): void;
 } & import("yox").YoxInterface>;
 export default _default;

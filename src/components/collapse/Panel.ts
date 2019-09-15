@@ -13,7 +13,6 @@ import {
 
 import {
   findComponentUpward,
-  onTransitionEnd,
 } from '../util'
 
 export default Yox.define({
@@ -50,7 +49,7 @@ export default Yox.define({
   },
 
   events: {
-    'change.collapse': function (_, data) {
+    'accordion.collapse': function (_, data) {
       this.set({
         accordion: data.accordion,
       })
@@ -58,22 +57,16 @@ export default Yox.define({
     'open.collapse': function (_, data) {
       const me = this
       if (data.name === me.get('name')) {
-        if (data.opened) {
-          me.open()
-        }
-        else {
-          me.close()
-        }
+        me.set('opened', data.opened)
       }
-      else if (me.get('accordion')) {
-        me.close()
+      else if (data.opened && me.get('accordion')) {
+        me.set('opened', FALSE)
       }
     }
   },
 
   methods: {
-
-    handleClick() {
+    click() {
       this.fire(
         'open.panel',
         {
@@ -82,68 +75,6 @@ export default Yox.define({
         }
       )
     },
-
-    close() {
-
-      const me = this, opened = me.get('opened')
-      if (!opened) {
-        return
-      }
-
-      const content = me.$refs.content as HTMLElement
-      content.style.height = content.clientHeight + 'px'
-
-      setTimeout(
-        function () {
-          if (!content) {
-            return
-          }
-          content.style.height = '0px'
-          onTransitionEnd(
-            content,
-            function () {
-              me.set('opened', FALSE)
-              me.nextTick(function () {
-                content.style.height = ''
-              })
-            }
-          )
-        }
-      )
-
-    },
-
-    open() {
-
-      const me = this, opened = me.get('opened')
-      if (opened) {
-        return
-      }
-
-      me.set('opened', TRUE)
-      me.nextTick(function () {
-
-        const content = me.$refs.content as HTMLElement
-
-        const height = content.clientHeight
-        content.style.height = '0px'
-
-        setTimeout(
-          function () {
-            if (!content) {
-              return
-            }
-            content.style.height = height + 'px'
-            onTransitionEnd(
-              content,
-              function () {
-                content.style.height = ''
-              }
-            )
-          }
-        )
-      })
-    }
   },
 
   afterMount() {

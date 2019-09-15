@@ -10,8 +10,11 @@ import {
   RAW_BOOLEAN,
   RAW_DEFAULT,
   RAW_TYPE_PRIMARY,
-  RAW_TYPE_ARRAY,
   RAW_SIZE_COMMON,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 import {
@@ -26,9 +29,8 @@ export default Yox.define({
   model: 'checked',
 
   propTypes: {
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
@@ -109,9 +111,9 @@ export default Yox.define({
     const checkboxGroup = findComponentUpward(options.parent, '${prefix}checkboxGroup')
     if (checkboxGroup) {
 
-      // 有 group，则 type 和 size 全听 group 的
-      if (props.type !== UNDEFINED) {
-        delete props.type
+      // 有 group，则 status 和 size 全听 group 的
+      if (props.status !== UNDEFINED) {
+        delete props.status
       }
       if (props.size !== UNDEFINED) {
         delete props.size
@@ -130,10 +132,7 @@ export default Yox.define({
       }
     }
     else {
-      // 没有 group，则要给 type 和 size 默认值
-      if (props.type === UNDEFINED) {
-        props.type = RAW_TYPE_PRIMARY
-      }
+      // 没有 group，则要给 size 默认值
       if (props.size === UNDEFINED) {
         props.size = RAW_DEFAULT
       }

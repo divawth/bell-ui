@@ -49,9 +49,9 @@ export default {
       </Menu>
       <br>
       <p style="margin-top: 140px">切换主题</p>
-      <RadioGroup model="theme" type="info">
-        <Radio label="light" value="light"></Radio>
-        <Radio label="dark" value="dark" checked></Radio>
+      <RadioGroup model="theme">
+        <Radio label="light" value="light" />
+        <Radio label="dark" value="dark" checked />
       </RadioGroup>
     </div>
   `,
@@ -102,9 +102,9 @@ export default {
       </Menu>
       <br>
       <p>切换主题</p>
-      <RadioGroup model="theme" type="info">
-        <Radio label="light" value="light"></Radio>
-        <Radio label="dark" value="dark" checked></Radio>
+      <RadioGroup model="theme">
+        <Radio label="light" value="light" />
+        <Radio label="dark" value="dark" checked />
       </RadioGroup>
     </div>
   `,
@@ -161,9 +161,9 @@ export default {
 
       <br>
       <p>切换主题</p>
-      <RadioGroup model="theme" type="info">
-        <Radio label="light" value="light"></Radio>
-        <Radio label="dark" value="dark" checked></Radio>
+      <RadioGroup model="theme">
+        <Radio label="light" value="light" />
+        <Radio label="dark" value="dark" checked />
       </RadioGroup>
     </div>
   `,

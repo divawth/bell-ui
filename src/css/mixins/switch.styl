@@ -1,21 +1,33 @@
 switch-size-style(size)
-  ui-set('width', size['width'])
+
+  $switch-thumb-width = size['height'] - 2 * $switch-thumb-gap
+  $switch-thumb-height = size['height'] - 2 * $switch-thumb-gap
+
+  $switch-loading-width = size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap
+  $switch-loading-height = size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap
+
+  ui-set('min-width', size['width'])
   ui-set('height', size['height'])
+  ui-set('padding-left', $switch-thumb-width + $switch-thumb-gap)
+
 
   &{$selector-switch-active}
+    ui-set('padding-left', 0)
+    ui-set('padding-right', $switch-thumb-width + $switch-thumb-gap)
+
     &:before
-      ui-set('margin-left', - (size['height'] - 2 * $switch-thumb-gap) - $switch-thumb-gap)
+      ui-set('margin-left', - ($switch-thumb-width + $switch-thumb-gap))
 
     &:after
-      ui-set('margin-left', - (size['height'] - 2 * $switch-thumb-gap))
+      ui-set('margin-left', - ($switch-loading-width + $switch-thumb-gap + $switch-loading-gap))
 
   &:before
-    ui-set('width', size['height'] - 2 * $switch-thumb-gap)
-    ui-set('height', size['height'] - 2 * $switch-thumb-gap)
+    ui-set('width', $switch-thumb-width)
+    ui-set('height', $switch-thumb-height)
 
   &:after
-    ui-set('width', size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap)
-    ui-set('height', size['height'] - 2 * $switch-thumb-gap - 2 * $switch-loading-gap)
+    ui-set('width', $switch-loading-width)
+    ui-set('height', $switch-loading-height)
 
   > {$selector-switch-label}
     ui-set('line-height', size['height'])

@@ -101,36 +101,28 @@ export default {
 ```js
 export default {
   template: `
-    <div class="template">
-      <div style="margin-top: 10px;">
-        <Button size="large">
-          Large
-        </Button>
-        <Button>
-          Default
-        </Button>
-        <Button size="small">
-          Small
-        </Button>
-        <Button size="tiny">
-          Tiny
-        </Button>
-      </div>
+    <div>
+      <Button size="large">
+        Large
+      </Button>
+      <Button>
+        Default
+      </Button>
+      <Button size="small">
+        Small
+      </Button>
 
-      <div style="margin-top: 10px;">
-        <Button shape="round" size="large">
-          Large
-        </Button>
-        <Button shape="round">
-          Default
-        </Button>
-        <Button shape="round" size="small">
-          Small
-        </Button>
-        <Button shape="round" size="tiny">
-          Tiny
-        </Button>
-      </div>
+      <br><br>
+
+      <Button shape="round" size="large">
+        Large
+      </Button>
+      <Button shape="round">
+        Default
+      </Button>
+      <Button shape="round" size="small">
+        Small
+      </Button>
     </div>
   `
 }
@@ -374,13 +366,15 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 按钮类型 | string | primary, info, success, warning, error | -
-border | 边框类型 | string | solid, none, dashed | solid
+type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
+border | 边框类型 | string | `solid`, `none`, `dashed` | `solid`
 ghost | 是否是幽灵按钮 | boolean | - | false
-size | 按钮大小 | string | default, large, small, tiny | default
-shape | 按钮形状 | string | circle, round | -
-fluid | 开启后，按钮的长度为 100% | boolean | - | false
-disabled | 设置按钮为禁用状态 | boolean | - | false
+size | 按钮大小 | string | `default`, `large`, `small` | `default`
+shape | 按钮形状 | string | `circle`, `round` | -
+fluid | 开启后，按钮的长度为 100% | boolean | - | `false`
+disabled | 设置按钮为禁用状态 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
@@ -399,7 +393,7 @@ icon | 自定义左边的 icon
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-size | 按钮大小 | string | default, large, small, tiny | default
-shape | 按钮形状 | string | round | -
-vertical | 是否纵向排列按钮组 | boolean | - | false
+size | 按钮大小 | string | `default`, `large`, `small` | `default`
+shape | 按钮形状 | string | `round` | -
+vertical | 是否纵向排列按钮组 | boolean | - | `false`
 

@@ -15,83 +15,14 @@
 
   ui-select()
 
-{$selector-select-button}
-
-  position relative
-  border 1px solid $brand-border
-  background-color $brand-bg
-  line-height 0
-
-  box-sizing border-box
-  border-radius $border-radius-default
-  transition border-color .3s, box-shadow .3s
-
-{$selector-select-values}
-  width 100%
-
-  > {$selector-tag}
-    background-color $select-tag-color
-
-{$selector-select-value},
-{$selector-select-placeholder}
-  width 100%
-  ui-ellipsis()
-
-{$selector-select-placeholder}
-  color $brand-muted
-
-{$selector-select-value}
-  color $brand-text
-
-{$selector-select-arrow-icon},
-{$selector-select-clear-icon}
-  position absolute
-  top 50%
-  font-size $ui-icon-size
-  transform translateY(-50%)
-
-{$selector-select-arrow-icon}
-  color $select-arrow-icon-color
-  transition transform .3s
-  transform-origin center center
-
-{$selector-select-clear-icon}
-  color $select-clear-icon-color
-  display none
-
 {$selector-select-group-title}
   background-color $brand-bg-light
-  color $brand-muted
+  color $brand-text-muted
   font-size 90%
   padding $dropdown-list-item-padding-vertical $padding-horizontal-default
 
-{$selector-select-enabled}
-  {$selector-select-button}
-    cursor $cursor-clickable
-
-  {$selector-select-button}:hover
-    border-color $brand-primary
-
-{$selector-select-disabled}
-  {$selector-select-button}
-    background-color $brand-bg-disabled
-    border-color $brand-border-disabled
-    cursor $cursor-disabled
-
-    {$selector-select-placeholder},
-    {$selector-select-value}
-      color $brand-text-disabled
-
-
-{$selector-select-clearable}
-  {$selector-select-button}:hover
-    {$selector-select-arrow-icon}
-      display none
-    {$selector-select-clear-icon}
-      display block
-
 {$selector-select-button-with-prefix}
-  display table
+  display inline-table
   width 100%
 
   > {$selector-select-values},
@@ -109,13 +40,8 @@
   font-size $ui-icon-size
 
 {$selector-dropdown-fade}
-  {$selector-select-button}
-    border-color $brand-primary
-    if $ui-shadow-radius > 0
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
-
-    {$selector-select-arrow-icon}
-      transform translateY(-50%) rotate(-180deg)
+  {$selector-select-arrow-icon}
+    transform translateY(-50%) rotate(-180deg)
 
 {$selector-dropdown}-top,
 {$selector-dropdown}-top-start,

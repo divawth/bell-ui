@@ -4,9 +4,9 @@ import template from './template/Collapse.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  FALSE,
 } from '../constant'
 
 export default Yox.define({
@@ -35,7 +35,7 @@ export default Yox.define({
   watchers: {
     accordion(accordion: boolean) {
       this.fire(
-        'change.collapse',
+        'accordion.collapse',
         { accordion },
         TRUE
       )

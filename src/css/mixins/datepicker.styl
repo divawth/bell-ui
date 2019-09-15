@@ -1,14 +1,15 @@
-select-size-style(size)
+// 从 select 拷来的
+datepicker-size-style(size)
 
-  {$selector-select-value},
-  {$selector-select-placeholder}
+  {$selector-datepicker-value},
+  {$selector-datepicker-placeholder}
     ui-set('font-size', size['font-size'])
     ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
 
-  {$selector-select-values}
+  {$selector-datepicker-values}
     ui-set(
       'padding',
       size['button-padding-vertical'] size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-horizontal']
@@ -20,34 +21,29 @@ select-size-style(size)
       ui-set('margin-right', size['tag-gap-horizontal'])
       ui-set('margin-bottom', size['tag-gap-vertical'])
 
-  {$selector-select-prefix}
-    ui-set('height', size['height'] - 2)
-    ui-set('line-height', size['height'] - 2)
-    ui-set('padding-left', size['button-padding-horizontal'])
-
-  {$selector-select-arrow-icon},
-  {$selector-select-clear-icon}
+  {$selector-datepicker-calendar-icon},
+  {$selector-datepicker-clear-icon}
     ui-set('right', size['button-padding-horizontal'])
 
-select-brand-style(style)
-  &{$selector-select-enabled} {$selector-select-button}
+datepicker-brand-style(style)
+  &{$selector-datepicker-enabled} {$selector-datepicker-button}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-dropdown-fade} {$selector-select-button}
+  &{$selector-dropdown-fade} {$selector-datepicker-button}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
       box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-ui-select()
+ui-datepicker()
   ui-connect(
     hash: $form-button-size-hash,
-    each: select-size-style
+    each: datepicker-size-style
   )
   ui-connect(
     hash: $status-brand-hash,
-    each: select-brand-style
+    each: datepicker-brand-style
   )

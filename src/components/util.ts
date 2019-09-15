@@ -166,10 +166,6 @@ export function scrollTop(
   scroll(from, to, step)
 }
 
-export function getType(value: any) {
-  return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
-}
-
 export function debounce(
   fn: (event: CustomEventInterface) => void,
   time: number,

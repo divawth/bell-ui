@@ -2,7 +2,7 @@
 
 选择或输入日期，支持年、月、日期等类型，支持选择范围。
 
-> Date
+> 基本用法
 
 ```js
 export default {
@@ -11,24 +11,59 @@ export default {
   template: `
     <div style="height: 400px;">
       <DatePicker
+        model="value"
         type="date"
         clearable
         placeholder="Select date"
       />
       <br><br>
       <DatePicker
-        type="dateRange"
-        placement="bottom-start"
+        type="date"
+        disabled
         placeholder="Select date"
-        on-change="change()"
       />
     </div>
   `,
-  methods: {
-    change(_, data) {
-      console.log(data)
+  data: {
+    value: null
+  },
+  watchers: {
+    value: function (value) {
+      console.log(value)
     }
   }
+}
+```
+
+> 状态
+
+```js
+export default {
+  isViewFullBlock: true,
+  height: 400,
+  template: `
+    <div style="height: 400px;">
+      <DatePicker
+        status="info"
+        placeholder="Select date"
+      />
+      <br><br>
+      <DatePicker
+        status="warning"
+        placeholder="Select date"
+      />
+      <br><br>
+      <DatePicker
+        status="success"
+        placeholder="Select date"
+      />
+      <br><br>
+      <DatePicker
+        status="error"
+        placeholder="Select date"
+      />
+    </div>
+  `
 }
 ```
 
@@ -321,46 +356,6 @@ export default {
 }
 ```
 
-> 手动控制组件
-
-```js
-export default {
-  isViewFullBlock: true,
-  height: 400,
-  template: `
-    <div style="height: 350px">
-      <DatePicker
-        ref="picker"
-        type="date"
-        on-change="handleChange($data)"
-      >
-        <a href="javascript:void(0)" on-click="handleClick()">
-          <Icon type="ios-calendar-outline" />
-          {{#if value3 === ''}}
-            Select date
-          {{else}}
-            {{ value3 }}
-          {{/if}}
-        </a>
-      </DatePicker>
-    </div>
-  `,
-  data () {
-    return {
-      value3: ''
-    }
-  },
-  methods: {
-    handleClick() {
-      this.$refs.picker.open()
-    },
-    handleChange(data) {
-      this.set('value3', data.value.formatDate)
-    }
-  }
-}
-```
-
 
 > 尺寸
 
@@ -387,15 +382,17 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 日期选择器类型 | string | date, dateRange, month, year, week | date
+size | 大小 | string | `default`, `small`, `large` | `default`
+status | 状态 | string | `info`, `warning`, `success`, `error` | -
 value | 日期 | Date | - | -
 format | 日期显示格式 | string | - | yyyy-MM-dd
 placement | 日期选择器出现的位置 | string | bottom-start
 placeholder | 占位文本 | string | -
 splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | false
 multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | false
+disabled | 禁用后无法再选择 | boolean | false
 shortcuts | 快捷方式 | Array | -
 defaultDate | 默认显示视图的日期 | Date | -
-size | 尺寸 | string | -
 disabledDate | 不可选择的日期 | Function | -
 clearable | 是否显示清除按钮 | boolean | false
 width | 宽度 | number | -

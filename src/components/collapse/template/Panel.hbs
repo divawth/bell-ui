@@ -8,11 +8,11 @@ class="${prefix}collapse-panel
 {{/if}}
 >
 
-  <div class="${prefix}collapse-header" on-click="handleClick()">
+  <div class="${prefix}collapse-header" on-click="click()">
 
     {{#if hasSlot('extra')}}
       <div class="${prefix}collapse-extra">
-        <slot name="extra"></slot>
+        <slot name="extra" />
       </div>
     {{/if}}
 
@@ -25,6 +25,7 @@ class="${prefix}collapse-panel
         />
       </slot>
     </span>
+
     {{title}}
 
   </div>

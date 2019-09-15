@@ -4,42 +4,51 @@
 {$selector-page-item}
   display inline-block
   text-align center
+  outline 0
+  padding 0 5px
   cursor $cursor-clickable
   border-radius $border-radius-default
   border 1px solid $brand-border
-  color $page-item-color
-  font-size $page-item-font-size
-  transition all .2s ease-in-out
+  color $brand-text
+  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
 
   + {$selector-page-item}
     margin-left $page-item-gap
 
-{$selector-page-item-active}
+  &:disabled
+    cursor $cursor-disabled
+    background-color $brand-bg-disabled
+
+  &:disabled,
+  &:disabled:hover
+    color $brand-text-disabled
+    border-color $brand-border-disabled
+
+{$selector-page-active}
   cursor $cursor-default
 
 {$selector-page-item}:hover,
-{$selector-page-item-active}
+{$selector-page-active}
   color $brand-primary
   border-color $brand-primary
 
-{$selector-page-item-disabled}
-  cursor $cursor-disabled
-  background-color $brand-bg-disabled
+if $ui-shadow-radius > 0
+  {$selector-page-item}:focus
+    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
-{$selector-page-item-disabled},
-{$selector-page-item-disabled}:hover
-  color $brand-text-disabled
-  border-color $brand-border-disabled
+  {$selector-page-custom-prev}:focus,
+  {$selector-page-custom-next}:focus,
+  {$selector-page-ellipsis}:focus
+    box-shadow none
 
 {$selector-page-custom-prev} + {$selector-page-item},
-{$selector-page-custom-next}
+{$selector-page-item} + {$selector-page-custom-next}
   margin-left $page-element-gap
 
-{$selector-page-item-prev},
-{$selector-page-item-next}
-  border none
+{$selector-page-ellipsis}
+  border 0
   &:after
-    content "\2022\2022\2022"
+    content '•••'
     display block
     letter-spacing 1px
     color $brand-border
@@ -47,9 +56,6 @@
 
   > {$selector-icon}
     display none
-
-    + {$selector-icon}
-      margin-left 0
 
   &:hover
     &:after
@@ -77,12 +83,12 @@
   margin-right $page-element-gap
   vertical-align top
 
-{$selector-page-elevator}
+{$selector-page-jumper}
   display inline-block
   margin-left $page-element-gap
 
-{$selector-page-elevator-input}
-  width $page-elevator-input-width
+{$selector-page-jumper-input}
+  width $page-jumper-input-width
   display inline-block
   vertical-align top
   margin-right $ui-icon-text-gap
@@ -106,5 +112,5 @@
 
 {$selector-page-separator}
   font-size 90%
-  color $brand-muted
+  color $brand-text-muted
   margin 0 $ui-icon-text-gap

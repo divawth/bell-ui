@@ -14,7 +14,7 @@ import {
   RAW_VERTICAL,
   RAW_INLINE,
   RAW_THEME_ARRAY,
-  RAW_DARK,
+  RAW_LIGHT,
 } from '../constant'
 
 import {
@@ -34,7 +34,7 @@ export default Yox.define({
     },
     theme: {
       type: oneOf(RAW_THEME_ARRAY),
-      value: RAW_DARK,
+      value: RAW_LIGHT,
     },
     collapsed: {
       type: RAW_BOOLEAN,
@@ -60,7 +60,7 @@ export default Yox.define({
   watchers: {
     collapsed(collapsed: boolean) {
       this.fire(
-        'collapsedChanged',
+        'collapse.menu',
         { collapsed },
         TRUE
       )
@@ -68,10 +68,10 @@ export default Yox.define({
   },
 
   events: {
-    menuItemSelected(event, data) {
+    'click.menuItem': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         this.fire(
-          'menuItemSelected',
+          'clickItem.menu',
           data,
           TRUE
         )

@@ -6,13 +6,11 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     'remove.selectOption': unknown;
     'click.selectOption': unknown;
 }, {
-    handleToggleClick(): void;
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveOption(event: CustomEventInterface, index: number): void;
     notifyOptionSelected(option: YoxInterface): void;
     notifyOptionUnselected(option: YoxInterface): void;
 }> & ThisType<{
-    handleToggleClick(): void;
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveOption(event: CustomEventInterface, index: number): void;
     notifyOptionSelected(option: YoxInterface): void;

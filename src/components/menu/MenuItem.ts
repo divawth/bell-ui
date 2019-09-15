@@ -20,9 +20,6 @@ export default Yox.define({
     name: {
       type: RAW_STRING,
     },
-    hash: {
-      type: RAW_STRING,
-    },
     disabled: {
       type: RAW_BOOLEAN,
     },
@@ -39,22 +36,27 @@ export default Yox.define({
     return {
       mode: menu.get('mode'),
       isActive: menu.get('activeName') === this.get('name'),
-      collapsed: FALSE
+      collapsed: FALSE,
     }
   },
 
   events: {
-    menuItemSelected(event, data) {
-      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
-        this.set('isActive', data.name === this.get('name'))
-      }
+    'clickItem.menu': function (_, data) {
+      this.set('isActive', data.name === this.get('name'))
     },
-    collapsedChanged(_, data) {
+    'collapse.menu': function (_, data) {
       this.set('collapsed', data.collapsed)
     },
-    'click.menuItem': function () {
-      let name = this.get('name')
-      this.fire('menuItemSelected', { name })
+  },
+
+  methods: {
+    click() {
+      this.fire(
+        'click.menuItem',
+        {
+          name: this.get('name')
+        }
+      )
     }
   }
 

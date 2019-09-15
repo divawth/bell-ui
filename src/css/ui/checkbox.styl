@@ -3,6 +3,8 @@
   user-select none
   position relative
 
+  checkbox-brand-style($brand-primary, $brand-primary-shadow)
+
   ui-checkbox()
 
   + {$selector-checkbox}
@@ -55,8 +57,7 @@
   cursor $cursor-disabled
 
 {$selector-checkbox-disabled}
-  > {$selector-checkbox-icon}
-    opacity $ui-opacity-disabled
+  opacity $ui-opacity-disabled
 
 {$selector-checkbox-vertical}
   > {$selector-checkbox}

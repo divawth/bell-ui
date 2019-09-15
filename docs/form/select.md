@@ -47,7 +47,7 @@ export default {
 }
 ```
 
-> 设置 size 大小
+> 大小
 
 ```js
 export default {
@@ -98,6 +98,76 @@ export default {
         },
         {
           text: '广州广州广州广州广州广州广州广州广州广州',
+          value: 2
+        },
+        {
+          text: '上海',
+          value: 3
+        },
+        {
+          text: '北京',
+          value: 4
+        }
+      ]
+    }
+  }
+}
+```
+
+> 状态
+
+```js
+export default {
+  template: `
+    <div>
+      <Select status="info" model="value">
+        {{#each list:index}}
+          <Option value="{{value}}">
+            {{text}}
+          </Option>
+        {{/each}}
+      </Select>
+      <br><br>
+      <Select status="warning" model="value">
+        {{#each list:index}}
+          <Option value="{{value}}">
+            {{text}}
+          </Option>
+        {{/each}}
+      </Select>
+      <br><br>
+      <Select status="success" model="value">
+        {{#each list:index}}
+          <Option value="{{value}}">
+            {{text}}
+          </Option>
+        {{/each}}
+      </Select>
+      <br><br>
+      <Select status="error" model="value">
+        {{#each list:index}}
+          <Option value="{{value}}">
+            {{text}}
+          </Option>
+        {{/each}}
+      </Select>
+    </div>
+  `,
+  watchers: {
+    value (value) {
+      console.log(value)
+    }
+  },
+  data: function () {
+    return {
+      value: 1,
+      list: [
+        {
+          text: '深圳',
+          value: 1
+        },
+        {
+          text: '广州',
           value: 2
         },
         {

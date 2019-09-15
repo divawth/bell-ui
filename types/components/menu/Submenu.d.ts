@@ -1,14 +1,7 @@
 import { YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
-    collapsedChanged: unknown;
-    menuItemSelected: unknown;
-}, {
-    handleClick(): void;
-    close(): void;
-    open(): void;
-}> & ThisType<{
-    handleClick(): void;
-    close(): void;
-    open(): void;
-} & YoxInterface>;
+    'collapse.menu': unknown;
+    'clickItem.menu': unknown;
+    'click.menuItem': unknown;
+}, unknown> & ThisType<YoxInterface>;
 export default _default;

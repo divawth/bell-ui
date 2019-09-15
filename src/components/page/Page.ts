@@ -1,10 +1,10 @@
-import Yox, { Listener, CustomEventInterface, Data } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Page.hbs'
 
 import {
+  TRUE,
   FALSE,
-  DOCUMENT,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
@@ -13,7 +13,6 @@ import {
   RAW_TOP,
   RAW_DEFAULT,
   RAW_SMALL,
-  RAW_EVENT_KEYDOWN,
 } from '../constant'
 
 import {
@@ -23,6 +22,8 @@ import {
 export default Yox.define({
 
   template,
+
+  model: 'current',
 
   propTypes: {
     size: {
@@ -43,14 +44,10 @@ export default Yox.define({
       type: RAW_NUMBER,
       value: 10,
     },
-    showSizer: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
-    pageSizeOpts: {
+    pageSizeOptions: {
       type: RAW_ARRAY,
     },
-    showElevator: {
+    showJumper: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -62,12 +59,6 @@ export default Yox.define({
       type: oneOf([RAW_TOP, RAW_BOTTOM]),
       value: RAW_BOTTOM,
     },
-    prevText: {
-      type: RAW_STRING,
-    },
-    nextText: {
-      type: RAW_STRING,
-    },
     className: {
       type: RAW_STRING,
     },
@@ -78,22 +69,81 @@ export default Yox.define({
 
   data() {
     return {
-      currentPage: 1,
-      elevatorPage: ''
+      tempPage: '',
     }
   },
 
   computed: {
     pageList(): object[] {
 
-      const pageList = []
-      const pageSizeOpts = this.get('pageSizeOpts')
+      const result = []
 
-      if (this.get('showSizer') && pageSizeOpts) {
+      const current = this.get('current')
+      const count = this.get('count')
+
+      if (count === 0) {
+        return result
+      }
+
+      // 先用 current 拆出中间的 5 个页码
+      let start = current - 2
+      let end = current + 2
+
+      if (start < 1) {
+        start = 1
+        end = Math.min(count, start + 4)
+      }
+      if (end > count) {
+        end = count
+        start = Math.max(1, end - 4)
+      }
+
+      for (let i = start; i <= end; i++) {
+        result.push({
+          value: i,
+          active: i === current,
+        })
+      }
+
+      if (start > 1) {
+        // 和第一页至少隔了一个页码
+        if (start - 1 > 1) {
+          result.unshift({
+            prev: TRUE,
+          })
+        }
+        result.unshift({
+          value: 1,
+          active: 1 === current,
+        })
+      }
+
+      if (end < count) {
+        // 和最后一页至少隔了一个页码
+        if (count - end > 1) {
+          result.push({
+            next: TRUE,
+          })
+        }
+        result.push({
+          value: count,
+          active: count === current,
+        })
+      }
+
+      return result
+
+    },
+    pageSizeList(): object[] {
+
+      const result = []
+      const pageSizeOptions = this.get('pageSizeOptions')
+
+      if (pageSizeOptions) {
         Yox.array.each(
-          pageSizeOpts,
+          pageSizeOptions,
           function (value) {
-            pageList.push({
+            result.push({
               text: value + ' 条/页',
               value,
             })
@@ -101,35 +151,53 @@ export default Yox.define({
         )
       }
 
-      return pageList
+      return result
 
     },
     count(): number {
       const total = this.get('total')
-      if (total) {
-        const pageSize = this.get('pageSize')
-        return total > pageSize
-          ? Math.ceil(total / pageSize)
-          : 1
-      }
-      return 0
+      const pageSize = this.get('pageSize')
+      return Math.ceil(total / pageSize)
     }
   },
 
   events: {
-    change(event) {
-      if (event.target !== this) {
-        event.stop()
+    'change.select': function (event, data) {
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
       }
+
+      event.stop()
+
+      this.fire(
+        'pageSizeChange.page',
+        {
+          value: data.value
+        }
+      )
+
+    },
+    'enter.input': function (event) {
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
+      }
+
+      event.stop()
+
+      this.jump()
+
     }
   },
 
   watchers: {
     current(value: number) {
+      this.set('tempPage', value)
       this.fire(
-        'change.page',
+        'pageChange.page',
         {
-          value: value
+          value,
         }
       )
     }
@@ -141,143 +209,38 @@ export default Yox.define({
       this.fire(
         'error.page',
         {
-          msg: error,
+          error,
         }
       )
     },
 
-    elevator() {
-      let page = this.get('elevatorPage')
-      if (Yox.is.numeric(page)) {
-        page = +page
-        if (page > this.get('count')) {
-          this.showError(`输入页码值过大`)
-        }
-        else if (page <= 0) {
-          this.showError(`输入页码值过小`)
+    jump() {
+      let page = this.get('tempPage')
+      if (page) {
+        if (Yox.is.numeric(page)) {
+          page = +page
+          if (page > this.get('count')) {
+            this.showError('max')
+          }
+          else if (page <= 0) {
+            this.showError('min')
+          }
+          else {
+            this.changePage(page)
+          }
         }
         else {
-          this.changePage(page)
+          this.showError('pattern')
         }
-        return
       }
-      this.showError(`输入格式错误`)
-    },
-
-    pageSizeChange(event: CustomEventInterface, data: Data) {
-      event.stop()
-      this.fire(
-        'change.page',
-        {
-          pageSize: data.value
-        }
-      )
-    },
-
-    fastPrev() {
-      let me = this
-      if (me.get('current') < 1) {
-        return
+      else {
+        this.showError('empty')
       }
-      me.decrease('current', 5, 1)
-    },
-
-    fastNext() {
-      let me = this
-      if (me.get('current') >= me.get('count')) {
-        return
-      }
-      me.increase('current', 5, me.get('count'))
-    },
-
-    prev() {
-      let me = this
-      if (me.get('current') < 1) {
-        return
-      }
-      me.set(
-        'currentPage',
-        me.decrease('current', 1, 1)
-      )
-    },
-
-    next() {
-      let me = this
-      if (me.get('current') >= me.get('count')) {
-        return
-      }
-      me.set(
-        'currentPage',
-        me.increase('current', 1, me.get('count'))
-      )
     },
 
     changePage(page: number) {
-      this.set({
-        current: page,
-        currentPage: page
-      })
+      this.set('current', page)
     },
   },
 
-  afterMount() {
-
-    const me = this
-
-    const onKeydown: Listener = function (event) {
-
-      const { target, keyCode } =  event.originalEvent as KeyboardEvent
-      const { simpleInput, elevatorInput } = me.$refs
-      if (target !== simpleInput && target !== elevatorInput) {
-        return
-      }
-
-      let currentPage = +me.get('currentPage')
-      let current = me.get('current')
-      let count = me.get('count')
-
-      switch (keyCode) {
-        case 40:
-          current = Math.min(current + 1, count)
-          break
-        case 38:
-          current = Math.max(current - 1, 1)
-          break
-        case 13:
-          if (Yox.is.number(currentPage)
-            && currentPage > 0
-            && currentPage <= count
-          ) {
-            current = currentPage
-          }
-          break
-      }
-
-      me.set({
-        current: current,
-        currentPage: current
-      })
-
-    }
-
-    Yox.dom.on(
-      DOCUMENT,
-      RAW_EVENT_KEYDOWN,
-      onKeydown
-    )
-
-    me.on(
-      'beforeDestroy.hook',
-      function (event) {
-        if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(
-            DOCUMENT,
-            RAW_EVENT_KEYDOWN,
-            onKeydown
-          )
-        }
-      }
-    )
-
-  }
 })

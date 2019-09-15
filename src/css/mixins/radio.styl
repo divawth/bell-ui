@@ -1,15 +1,15 @@
-radio-brand-style(style)
+radio-brand-style(color, shadow-color)
   &{$selector-radio-active} > {$selector-radio-icon},
   &{$selector-radio-active}:hover > {$selector-radio-icon}
-      ui-set('border-color', style['color'])
+    ui-set('border-color', color)
 
   > {$selector-radio-icon}:after
-    ui-set('background-color', style['color'])
+    ui-set('background-color', color)
 
   if $ui-shadow-radius > 0
     &{$selector-radio-enabled}:hover > {$selector-radio-icon},
     &{$selector-radio-focus} > {$selector-radio-icon}
-      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+      box-shadow 0 0 0 $ui-shadow-radius shadow-color
 
 radio-size-style(style)
   ui-set('font-size', style['font-size'])
@@ -28,14 +28,14 @@ radio-size-style(style)
 
 radio-group-brand-style(style)
   > {$selector-radio}
-    radio-brand-style(style)
+    radio-brand-style(style['color'], style['shadow-color'])
 
 radio-group-size-style(style)
   > {$selector-radio}
     radio-size-style(style)
 
 radio-single-brand-style(style)
-  radio-brand-style(style)
+  radio-brand-style(style['color'], style['shadow-color'])
 
 ui-radio-group()
   ui-connect(

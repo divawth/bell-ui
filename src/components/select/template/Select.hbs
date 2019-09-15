@@ -8,13 +8,13 @@
   on-outside="set('visible', false)"
 
   className="${prefix}select
+  {{#if status}} ${prefix}select-{{status}}{{/if}}
   {{#if size}} ${prefix}select-{{size}}{{/if}}
 
   {{#if disabled}} ${prefix}select-disabled
   {{else}} ${prefix}select-enabled
   {{/if}}
 
-  {{#if multiple}} ${prefix}select-multiple{{/if}}
   {{#if clearable}} ${prefix}select-clearable{{/if}}
   {{#if className}} {{className}}{{/if}}"
 
@@ -24,73 +24,73 @@
   {{/if}}
 >
 
-  <template slot="children">
-    <div
-      class="${prefix}select-button
-      {{#if prefix || hasSlot('prefix')}} ${prefix}select-button-with-prefix
-      {{/if}}
-      "
-      {{#if !disabled}}
-        on-click="handleToggleClick()"
-      {{/if}}
-    >
+  <div
+    class="${prefix}select-button
+    {{#if prefix || hasSlot('prefix')}} ${prefix}select-button-with-prefix
+    {{/if}}"
 
-      {{#if prefix || hasSlot('prefix')}}
-        <div class="${prefix}select-prefix">
-          <slot name="prefix">
-            <Icon
-              name="{{prefix}}"
-              size="0"
-              className="${prefix}select-prefix-icon"
-            />
-          </slot>
-        </div>
-      {{/if}}
+    {{#if !disabled}}
+      on-click="toggle('visible')"
+    {{/if}}
+  >
 
-      {{#if selectedOptions.length === 0}}
+    {{#if prefix || hasSlot('prefix')}}
+      <div class="${prefix}select-prefix">
+        <slot name="prefix">
+          <Icon
+            name="{{prefix}}"
+            size="0"
+            className="${prefix}select-prefix-icon"
+          />
+        </slot>
+      </div>
+    {{/if}}
 
-        <div class="${prefix}select-placeholder">
-          {{placeholder || '请选择...'}}
-        </div>
+    {{#if selectedOptions.length === 0}}
 
-      {{else if multiple}}
+      <div class="${prefix}select-placeholder">
+        {{placeholder}}
+      </div>
 
-        <div class="${prefix}select-values">
-          {{#each selectedOptions:index}}
-            <Tag
-              simple
-              closable
-              on-close="handleRemoveOption($event, index)"
-            >
-              {{this.text}}
-            </Tag>
-          {{/each}}
-        </div>
+    {{else if multiple}}
 
-      {{else}}
+      <div class="${prefix}select-values">
+        {{#each selectedOptions:index}}
+          <Tag
+            simple
+            closable
+            size=""
+            on-close="handleRemoveOption($event, index)"
+          >
+            {{this.text}}
+          </Tag>
+        {{/each}}
+      </div>
 
-        <div class="${prefix}select-value">
-          {{selectedOptions[0].text}}
-        </div>
+    {{else}}
 
-      {{/if}}
+      <div class="${prefix}select-value">
+        {{selectedOptions[0].text}}
+      </div>
 
+    {{/if}}
+
+    {{#if clearable && selectedOptions.length}}
       <Icon
-        name="arrow-down"
+        name="close-circle"
         size="0"
-        className="${prefix}select-arrow-icon"
+        className="${prefix}select-clear-icon"
+        on-click.native="handleClearClick()"
       />
+    {{/if}}
 
-      {{#if clearable && selectedOptions.length}}
-        <Icon
-          name="close-circle"
-          size="0"
-          className="${prefix}select-clear-icon"
-          on-click.native="handleClearClick()"
-        />
-      {{/if}}
-    </div>
-  </template>
+    <Icon
+      name="arrow-down"
+      size="0"
+      className="${prefix}select-arrow-icon"
+    />
+
+  </div>
 
   <template slot="list">
     <slot name="children" />

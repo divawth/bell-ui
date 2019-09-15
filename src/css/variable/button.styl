@@ -4,6 +4,8 @@ $selector-button-disabled = $selector-button + '-disabled'
 $selector-button-normal = $selector-button + '-normal'
 $selector-button-ghost = $selector-button + '-ghost'
 $selector-button-none = $selector-button + '-none'
+$selector-button-solid = $selector-button + '-solid'
+$selector-button-dashed = $selector-button + '-dashed'
 $selector-button-circle = $selector-button + '-circle'
 $selector-button-round = $selector-button + '-round'
 $selector-button-fluid = $selector-button + '-fluid'
@@ -14,24 +16,12 @@ $selector-button-group-round = $selector-button-group + '-round'
 $selector-button-group-horizontal = $selector-button-group + '-horizontal'
 $selector-button-group-vertical = $selector-button-group + '-vertical'
 
-$button-border-hash = {
-  none: none,
-  solid: solid,
-  dashed: dashed
-}
-
 $button-size-hash = {
   default: {
     height: $height-default,
     font-size: $font-size-default,
     border-radius: $border-radius-default,
     padding-horizontal: $padding-horizontal-default,
-  },
-  tiny: {
-    height: $height-tiny,
-    font-size: $font-size-tiny,
-    border-radius: $border-radius-tiny,
-    padding-horizontal: $padding-horizontal-tiny,
   },
   small: {
     height: $height-small,
@@ -45,35 +35,11 @@ $button-size-hash = {
     border-radius: $border-radius-large,
     padding-horizontal: $padding-horizontal-large,
   },
-  huge: {
-    height: $height-huge,
-    font-size: $font-size-huge,
-    border-radius: $border-radius-huge,
-    padding-horizontal: $padding-horizontal-huge,
-  },
-}
-
-$button-circle-size-hash = {
-  default: {
-    height: $height-default,
-  },
-  tiny: {
-    height: $height-tiny,
-  },
-  small: {
-    height: $height-small,
-  },
-  large: {
-    height: $height-large,
-  },
-  huge: {
-    height: $height-huge,
-  },
 }
 
 $button-brand-hash = {
   '': {
-    color: $brand-secondary,
+    color: $brand-text-secondary,
     bg-color: $brand-bg,
     border-color: $brand-border,
 

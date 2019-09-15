@@ -8,14 +8,16 @@ export default {
   height: 300,
   template: `
   <div>
-    <Form ref="formInline" rules="{{ruleInline}}" messages="{{messageInline}}" inline>
-      <FormItem prop="user">
+    <Form
+      ref="form"
+      inline
+      showMessage
+    >
+      <FormItem prop="username">
         <Input
-          {{#if errors.user}}
-            status="error"
-          {{/if}}
-          model="formInline.user"
+          model="form.username"
           placeholder="Username"
+          status="{{errors.username ? 'error' : ''}}"
         >
           <Icon
             slot="prepend"
@@ -26,12 +28,10 @@ export default {
       </FormItem>
       <FormItem prop="password">
         <Input
-          {{#if errors.password}}
-            status="error"
-          {{/if}}
           type="password"
-          model="formInline.password"
+          model="form.password"
           placeholder="Password"
+          status="{{errors.password ? 'error' : ''}}"
         >
           <Icon
             slot="append"
@@ -41,7 +41,10 @@ export default {
         </Input>
       </FormItem>
       <FormItem>
-        <Button type="primary" on-click="handleSubmit()">
+        <Button
+          type="primary"
+          on-click="handleSubmit()"
+        >
           登录
         </Button>
       </FormItem>
@@ -50,44 +53,50 @@ export default {
   `,
   data: {
     errors: null,
-    formInline: {
-      user: '',
+    form: {
+      username: '',
       password: ''
     },
-    ruleInline: {
-      user: {
-        type: 'string',
-        required: true,
-      },
-      password: {
-        required: true,
-        type: 'string',
-        min: 6
-      }
-    },
-    messageInline: {
-      user: {
-        empty: '请填写用户名'
-      },
-      password: {
-        empty: '请填写密码',
-        min: '密码长度不能小于 6 位'
-      }
-    }
   },
   methods: {
-    handleSubmit(name) {
-      this.$refs.formInline.validate((isValid, errors) => {
-        this.set({
-          errors: errors
-        })
-        if (isValid) {
-          this.$message.success('提交成功!')
+    handleSubmit() {
+      let errors = this.$refs.form.validate(
+        this.get('form'),
+        {
+          username: {
+            type: 'string',
+            required: true,
+            empty: false,
+          },
+          password: {
+            type: 'string',
+            required: true,
+            empty: false,
+            min: 6
+          }
+        },
+        {
+          username: {
+            required: '缺少用户名',
+            empty: '用户名不能是空字符串'
+          },
+          password: {
+            required: '缺少密码',
+            empty: '密码不能是空字符串',
+            min: '密码长度不能小于 6 位'
+          }
         }
-        else {
-          this.$message.error('表单验证失败!')
-        }
+      )
+      console.log(errors)
+      this.set({
+        errors: errors
       })
+      if (errors) {
+        this.$message.error('验证失败!')
+      }
+      else {
+        this.$message.success('提交成功!')
+      }
     }
   }
 }
@@ -101,16 +110,22 @@ export default {
   height: 600,
   template: `
   <div>
-    <Form labelWidth="80">
+    <Form labelWidth="120">
       <FormItem label="Input" required>
         <Input
-          model="formItem.input"
+          model="form.input"
+          placeholder="Enter something..."
+        />
+      </FormItem>
+      <FormItem label="InputNumber" required>
+        <InputNumber
+          model="form.number"
           placeholder="Enter something..."
         />
       </FormItem>
       <FormItem label="Select">
         <Select
-          model="formItem.select"
+          model="form.select"
           placeholder="请选择..."
         >
           <Option value="beijing">
@@ -126,12 +141,12 @@ export default {
       </FormItem>
       <FormItem label="DatePicker">
         <DatePicker
-          model="formItem.date"
+          model="form.date"
           placeholder="Select date"
         />
       </FormItem>
       <FormItem label="Radio">
-        <RadioGroup model="formItem.radio">
+        <RadioGroup model="form.radio">
           <Radio value="male">
             Male
           </Radio>
@@ -141,7 +156,7 @@ export default {
         </RadioGroup>
       </FormItem>
       <FormItem label="Checkbox">
-        <CheckboxGroup model="formItem.checkbox">
+        <CheckboxGroup model="form.checkbox">
           <Checkbox value="eat">
             Eat
           </Checkbox>
@@ -157,7 +172,7 @@ export default {
         </CheckboxGroup>
       </FormItem>
       <FormItem label="Switch">
-        <Switch model="formItem.switch">
+        <Switch model="form.switch">
           <template slot="on">
             On
           </template>
@@ -169,8 +184,8 @@ export default {
       <FormItem label="Text" labelAlign="top">
         <Input
           type="textarea"
-          rows="2"
-          model="formItem.textarea"
+          rows="3"
+          model="form.textarea"
           placeholder="Enter something..."
         />
       </FormItem>
@@ -187,8 +202,9 @@ export default {
   `,
   data() {
     return {
-      formItem: {
+      form: {
         input: '',
+        number: 0,
         select: '',
         radio: 'male',
         checkbox: [],
@@ -203,50 +219,65 @@ export default {
 }
 ```
 
-> labelAlign
+> labelAlign - left
 
 ```js
 export default {
   isViewFullBlock: true,
-  height: 640,
   template: `
-  <div>
-    <Form labelAlign="left" labelWidth="100">
-      <FormItem label="Title">
-        <Input model="formLeft.input1" />
-      </FormItem>
-      <FormItem label="Title name">
-        <Input model="formLeft.input2" />
-      </FormItem>
-      <FormItem label="Aligned title">
-        <Input model="formLeft.input3" />
-      </FormItem>
-    </Form>
-    <br><br><br><br>
-    <Form labelAlign="right" labelWidth="100">
-      <FormItem label="Title">
-        <Input model="formRight.input1" />
-      </FormItem>
-      <FormItem label="Title name">
-        <Input model="formRight.input2" />
-      </FormItem>
-      <FormItem label="Aligned title">
-        <Input model="formRight.input3" />
-      </FormItem>
-    </Form>
-    <br><br><br><br>
-    <Form labelAlign="top">
-      <FormItem label="Title">
-        <Input model="formTop.input1" />
-      </FormItem>
-      <FormItem label="Title name">
-        <Input model="formTop.input2" />
-      </FormItem>
-      <FormItem label="Aligned title">
-        <Input model="formTop.input3" />
-      </FormItem>
-    </Form>
-  </div>
+  <Form labelAlign="left" labelWidth="100">
+    <FormItem label="Title">
+      <Input />
+    </FormItem>
+    <FormItem label="Title name">
+      <Input />
+    </FormItem>
+    <FormItem label="Aligned title">
+      <Input />
+    </FormItem>
+  </Form>
+  `
+}
+```
+
+> labelAlign - right
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+  <Form labelAlign="right" labelWidth="100">
+    <FormItem label="Title">
+      <Input />
+    </FormItem>
+    <FormItem label="Title name">
+      <Input />
+    </FormItem>
+    <FormItem label="Aligned title">
+      <Input />
+    </FormItem>
+  </Form>
+  `
+}
+```
+
+> labelAlign - top
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+  <Form labelAlign="top" labelWidth="100">
+    <FormItem label="Title">
+      <Input />
+    </FormItem>
+    <FormItem label="Title name">
+      <Input />
+    </FormItem>
+    <FormItem label="Aligned title">
+      <Input />
+    </FormItem>
+  </Form>
   `
 }
 ```
@@ -257,40 +288,113 @@ export default {
 export default {
   template: `
     <div>
-      <Form ref="formCustom">
-        <FormItem label="Password" prop="passwd" error="{{errors[ 'passwd' ] && errors[ 'passwd' ]}}">
-          <Input status="{{#if errors.passwd}}error{{/if}}" type="password" model="formCustom.passwd" />
+      <Form ref="form" labelWidth="80" labelAlign="left">
+        <FormItem
+          prop="password"
+          label="Password"
+          message="{{errors.password}}"
+        >
+          <Input
+            type="password"
+            model="form.password"
+            status="{{errors.password ? 'error' : ''}}"
+          />
         </FormItem>
-        <FormItem label="Confirm" prop="passwdCheck">
-          <Input status="{{#if errors.passwdCheck}}error{{/if}}" type="password" model="formCustom.passwdCheck" />
+        <FormItem
+          prop="passwordConfirm"
+          label="Confirm"
+        >
+          <Input
+            type="password"
+            model="form.passwordConfirm"
+            status="{{errors.passwordConfirm ? 'error' : ''}}"
+          />
         </FormItem>
-        <FormItem label="Age" prop="age">
-          <Input status="{{#if errors.age}}error{{/if}}" type="text" model="formCustom.age" number />
+        <FormItem
+          prop="age"
+          label="Age"
+        >
+          <InputNumber
+            model="form.age"
+            status="{{errors.age ? 'error' : ''}}"
+          />
         </FormItem>
         <FormItem>
-          <Button type="primary" on-click="handleSubmit('formCustom')">Submit</Button>
+          <Button
+            type="primary"
+            on-click="handleSubmit()"
+          >
+            Submit
+          </Button>
         </FormItem>
     </Form>
     </div>
   `,
   data: {
     errors: {},
-    formCustom: {
-      passwd: '',
-      passwdCheck: '',
-      age: ''
+    form: {
+      password: '',
+      passwordConfirm: '',
+      age: 0
     }
   },
   methods: {
-    handleSubmit (name) {
-      let values = this.get('formCustom')
-      let errors = {}
-      for(key in values) {
-        if (key === 'passwd' && !values[ key ]) {
-          errors[ key ] = '填写密码'
+    handleSubmit() {
+      let errors = this.$refs.form.validate(
+        this.get('form'),
+        {
+          password: {
+            type: 'string',
+            required: true,
+            empty: false,
+            min: 6
+          },
+          // 自定义验证逻辑
+          passwordConfirm: {
+            required: true,
+            validate: function (value, data) {
+               if (!value) {
+                 return 'empty'
+               }
+               if (value !== data.password) {
+                 return 'equals'
+               }
+            }
+          },
+          age: {
+            type: 'int',
+            min: 1,
+            max: 100
+          }
+        },
+        {
+          password: {
+            required: '缺少密码',
+            empty: '密码不能是空字符串',
+            min: '密码长度不能小于 6 位'
+          },
+          passwordConfirm: {
+            required: '缺少密码验证',
+            empty: '密码验证不能是空字符串',
+            equals: '两次输入的密码不相同'
+          },
+          age: {
+            type: '请输入整数',
+            min: '年龄不能小于 1 岁',
+            max: '年龄不能大于 100 岁',
+          }
         }
+      )
+      console.log(errors)
+      this.set({
+        errors: errors
+      })
+      if (errors) {
+        this.$message.error('验证失败!')
       }
-      this.set({ errors })
+      else {
+        this.$message.success('提交成功!')
+      }
     }
   }
 }
@@ -302,13 +406,11 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-model | 表单数据对象 | object | - | -
-rules | 表单验证规则 | object | - | -
-messages | 表单验证之后的错误提示 | object | - | -
-inline | 是否开启行内表单模式 | boolean | - | false
-labelAlign | 表单域标签的位置 | string | left, right, top | right
+inline | 是否开启行内表单模式 | boolean | - | `false`
+labelAlign | 表单域标签的位置 | string | `left`, `right`, `top` | `right`
 labelWidth | 表单域标签的宽度 | number | - | -
-showMessage | 是否显示校验错误信息 | boolean | true | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 #### FormItem API
 
@@ -318,6 +420,9 @@ showMessage | 是否显示校验错误信息 | boolean | true | -
 ---|---|---|---|---
 prop | 表单域字段名 | string | - | -
 label | 标签文本 | string | - | -
-labelAlign | 表单域标签对齐方式 | string | middle, top, bottom | middle
-showMessage | 是否显示校验错误信息 | boolean | - | -
-required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | - | -
+labelAlign | 表单域标签垂直对齐方式 | string | `middle`, `top`, `bottom` | `middle`
+showMessage | 是否显示校验错误信息 | boolean | - | `true`
+message | 错误信息 | string | - | -
+required | 必填项会在 label 左侧添加一个红色 * | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

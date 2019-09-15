@@ -1,9 +1,17 @@
-import { RAW_STRING, RAW_ARRAY, RAW_OBJECT } from "../../constant"
-import { getType } from "../../util"
-import { Data } from "yox";
+import Yox, { Data } from 'yox'
+
+function getType(value: any) {
+  return Object.prototype.toString.call(value).toLowerCase().slice(8, -1)
+}
 
 function checkInteger(rule: Data, value: any) {
-  if (getType(value) !== 'number' || value % 1 !== 0) {
+  if (!Yox.is.numeric(value)) {
+    return 'type'
+  }
+
+  value = +value
+
+  if (value % 1 !== 0) {
     return 'type'
   }
 
@@ -17,9 +25,11 @@ function checkInteger(rule: Data, value: any) {
 }
 
 function checkNumber(rule: Data, value: any) {
-  if (getType(value) !== 'number' || isNaN(value)) {
+  if (!Yox.is.numeric(value)) {
     return 'type'
   }
+
+  value = +value
 
   if (rule.hasOwnProperty('min') && value < rule.min) {
     return 'min'
@@ -31,7 +41,9 @@ function checkNumber(rule: Data, value: any) {
 }
 
 function checkString(rule: Data, value: any) {
-  if (value == '') {
+
+  if (value === '') {
+    // 是否允许为空，默认不允许
     if (rule.empty === true) {
       return
     }
@@ -39,13 +51,15 @@ function checkString(rule: Data, value: any) {
       return 'empty'
     }
   }
-  if (getType(value) !== RAW_STRING) {
+
+  if (!Yox.is.string(value)) {
     return 'type'
   }
 
   if (rule.hasOwnProperty('min') && value.length < rule.min) {
     return 'min'
   }
+
   if (rule.hasOwnProperty('max') && value.length > rule.max) {
     return 'max'
   }
@@ -55,22 +69,24 @@ function checkString(rule: Data, value: any) {
   ) {
     return 'pattern'
   }
+
 }
 
 function checkBoolean(rule: Data, value: any) {
-  if (getType(value) !== 'boolean') {
+  if (!Yox.is.boolean(value)) {
     return 'type'
   }
 }
 
 function checkEnum(rule: Data, value: any) {
-  if (rule.values.indexOf(value) < 0) {
+  if (!Yox.array.has(rule.values, value)) {
     return 'type'
   }
 }
 
 function checkArray(rule: Data, value: any) {
-  if (!value || getType(value) !== RAW_ARRAY) {
+
+  if (!value || !Yox.is.array(value)) {
     return 'type'
   }
 
@@ -83,45 +99,31 @@ function checkArray(rule: Data, value: any) {
   if (rule.hasOwnProperty('max') && length < rule.max) {
     return 'max'
   }
-  const { itemType } = rule
 
+  const { itemType } = rule
   if (!itemType) {
     return
   }
-  for(let i = 0; i < length; i++) {
-    if (getType(value[ i ]) !== itemType) {
-      return 'itemType';
+
+  for (let i = 0; i < length; i++) {
+    if (getType(value[i]) !== itemType) {
+      return 'itemType'
     }
   }
+
 }
 
 function checkObject(rule: Data, value: any) {
-  if (!value || getType(value) !== RAW_OBJECT) {
+  if (!Yox.is.object(value)) {
     return 'type'
   }
 }
 
-interface ValidateType {
-  int: (rule: Data, value: any) => string,
-  integer: (rule: Data, value: any) => string,
-  number: (rule: Data, value: any) => string,
-  string: (rule: Data, value: any) => string,
-  bool: (rule: Data, value: any) => string,
-  boolean: (rule: Data, value: any) => string,
-  enum: (rule: Data, value: any) => string,
-  array: (rule: Data, value: any) => string,
-  object: (rule: Data, value: any) => string
-}
-
-type TranslateType = (key: string, value: any, errorType: any, rule: Data) => void
-
 class Validator {
 
-  rules: ValidateType
-  messages: Data
-  translate: TranslateType
+  rules: Record<string, (rule: Data, value: any) => string | void>
 
-  constructor(translate?: TranslateType) {
+  constructor() {
     this.rules = {
       int: checkInteger,
       integer: checkInteger,
@@ -131,90 +133,80 @@ class Validator {
       boolean: checkBoolean,
       enum: checkEnum,
       array: checkArray,
-      object: checkObject
+      object: checkObject,
     }
-    this.messages = {}
-    this.translate = translate
   }
 
   validate(data: Data, rules: Data, messages: Data) {
 
-    var errors = { };
+    const errors = {}
 
-    for (var key in rules) {
+    for (let key in rules) {
 
-      var value = data[key];
-      var rule = rules[key];
+      let rule = rules[key]
 
       switch (getType(rule)) {
-
-        case RAW_STRING:
-
+        case 'string':
           rule = {
-            type: rule
+            type: rule,
           }
+          break
 
-          break;
-
-        case RAW_ARRAY:
+        case 'array':
           rule = {
             type: 'enum',
-            value: rule
+            values: rule,
           }
-
-          break;
+          break
 
         case 'regexp':
-
           rule = {
-            type: RAW_STRING,
-            pattern: rule
+            type: 'string',
+            pattern: rule,
           }
-
-          break;
-
+          break
       }
 
-      if (getType(rule) != RAW_OBJECT
-        || !rule.type
-      ) {
+      if (!Yox.is.object(rule)) {
         throw new TypeError(`${key}'s rule is not found.`)
       }
 
-      var errorType;
+      let errorReason: string | void
+
       if (data.hasOwnProperty(key)) {
-        errorType = this.rules[ rule.type ](rule, value, data)
+        if (rule.validate) {
+          errorReason = rule.validate(data[key], data)
+        }
+        else {
+          errorReason = this.rules[rule.type](rule, data[key])
+        }
       }
       else {
+        // 默认必传
         if (rule.required !== false) {
-          errorType = 'required'
+          errorReason = 'required'
         }
         else {
           continue
         }
       }
 
-      if (errorType) {
-        var message = messages && messages[ key ] && messages[ key ][ errorType ]
-        if (getType(message) !== RAW_STRING) {
-          message = this.messages[ rule.type ] && this.messages[ rule.type ][ errorType ]
-        }
+      if (errorReason) {
 
-        if (getType(message) === RAW_STRING) {
-          errors[ key ] = message
-        }
-        else if (this.translate) {
-          errors[ key ] = this.translate(key, value, errorType, rule)
+        let message = messages && messages[key] && messages[key][errorReason]
+        if (Yox.is.string(message)) {
+          errors[key] = message
         }
         else {
-          errors[ key ] = errorType
+          errors[key] = errorReason
         }
+
       }
 
     }
 
     if (Object.keys(errors).length > 0) {
-      return errors;
+      return errors
     }
 
   }
@@ -228,5 +220,5 @@ export {
   checkBoolean,
   checkEnum,
   checkObject,
-  checkArray
+  checkArray,
 }

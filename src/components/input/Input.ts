@@ -79,10 +79,6 @@ export default Yox.define({
     suffix: {
       type: RAW_STRING,
     },
-    autoComplete: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     wrap: {
       type: oneOf(['hard', 'soft']),
     },
@@ -181,25 +177,44 @@ export default Yox.define({
     const me = this
 
     const onKeydown = function (event: CustomEventInterface) {
+
       if (!me.get('isFocus')) {
         return
       }
-      me.fire('keydown.input')
-      if ((event.originalEvent as KeyboardEvent).keyCode === 13) {
+
+      const originalEvent = event.originalEvent as KeyboardEvent
+      me.fire(
+        new Yox.Event('keydown.input', originalEvent)
+      )
+
+      if (originalEvent.keyCode === 13) {
         me.fire('enter.input')
       }
+
     }
-    const onKeyup = function () {
+    const onKeyup = function (event: CustomEventInterface) {
+
       if (!me.get('isFocus')) {
         return
       }
-      me.fire('keyup.input')
+
+      const originalEvent = event.originalEvent as KeyboardEvent
+      me.fire(
+        new Yox.Event('keyup.input', originalEvent)
+      )
+
     }
-    const onKeypress = function () {
+    const onKeypress = function (event: CustomEventInterface) {
+
       if (!me.get('isFocus')) {
         return
       }
-      me.fire('keypress.input')
+
+      const originalEvent = event.originalEvent as KeyboardEvent
+      me.fire(
+        new Yox.Event('keypress.input', originalEvent)
+      )
+
     }
 
     Yox.dom.on(

@@ -4,24 +4,12 @@
 export default {
   template: `
     <div>
-      <Switch model="checked" on-change="change()">
-        <template slot="on">
-          开
-        </template>
-        <template slot="off">
-          关
-        </template>
-      </Switch>
-      <p class="bell-text">
+      <Switch model="checked" />
+      <p>
         {{checked}}
       </p>
     </div>
   `,
-  methods: {
-    change: function (events, data) {
-      console.log(data.checked)
-    }
-  },
   data: function () {
     return {
       checked: true
@@ -30,23 +18,22 @@ export default {
 }
 ```
 
-> 风格
+> 状态
 
 ```js
 export default {
   template: `
     <div>
-      <Switch />
-      <Switch type="info" />
-      <Switch type="success" />
-      <Switch type="warning" />
-      <Switch type="error" />
+      <Switch checked status="info" />
+      <Switch checked status="success" />
+      <Switch checked status="warning" />
+      <Switch checked status="error" />
     </div>
   `
 }
 ```
 
-> 尺寸
+> 两种尺寸
 
 ```js
 export default {
@@ -54,7 +41,6 @@ export default {
   <div>
     <Switch size="small" />
     <Switch />
-    <Switch size="large" />
   </div>
   `
 }
@@ -66,28 +52,22 @@ export default {
 export default {
   template: `
   <div>
-    <Switch type="info">
-      <template slot="on">开</template>
-      <template slot="off">关</template>
+    <Switch>
+      <template slot="on">
+        开
+      </template>
+      <template slot="off">
+        关
+      </template>
     </Switch>
-    <Switch size="large" type="info">
-      <template slot="on">开</template>
-      <template slot="off">关</template>
+    <Switch>
+      <template slot="on">
+        开开开开
+      </template>
+      <template slot="off">
+        关关关关
+      </template>
     </Switch>
-    <br><br>
-    <Switch size="large" type="info">
-      <template slot="on">开启</template>
-      <template slot="off">关闭</template>
-    </Switch>
-    <Switch type="success">
-      <template slot="on">开</template>
-      <template slot="off">关</template>
-    </Switch>
-    <Switch size="large" type="warning">
-      <template slot="on">ON</template>
-      <template slot="off">OFF</template>
-    </Switch>
-    <Switch type="error" />
   </div>
   `
 }
@@ -98,13 +78,7 @@ export default {
 ```js
 export default {
   template: `
-    <div>
-      <Switch checked />
-      <Switch type="info" checked />
-      <Switch type="success" checked />
-      <Switch type="warning" checked />
-      <Switch type="error" checked />
-    </div>
+    <Switch checked />
   `
 }
 ```
@@ -115,10 +89,11 @@ export default {
 export default {
   template: `
     <div>
-      <Switch type="info" disabled="{{disabled}}" />
-      <Switch type="success" disabled="{{disabled}}" checked />
-      <Switch type="warning" disabled="{{disabled}}" checked />
-      <Switch type="error" disabled="{{disabled}}" />
+      <Switch disabled="{{disabled}}" />
+      <Switch status="info" disabled="{{disabled}}" />
+      <Switch status="success" disabled="{{disabled}}" />
+      <Switch status="warning" disabled="{{disabled}}" />
+      <Switch status="error" disabled="{{disabled}}" />
       <br><br>
       <Button type="primary" on-click="toggle('disabled')">
         {{disabled ? 'Enable' : 'Disable'}}
@@ -139,21 +114,6 @@ export default {
       <br>
       <Switch loading />
       <Switch loading checked />
-      <br>
-      <Switch loading size="large" />
-      <Switch loading size="large" checked />
-      <br>
-      <Switch loading size="large" type="info" />
-      <Switch loading size="large" type="info" checked />
-      <br>
-      <Switch loading size="large" type="success" />
-      <Switch loading size="large" type="success" checked />
-      <br>
-      <Switch loading size="large" type="error" />
-      <Switch loading size="large" type="error" checked />
-      <br>
-      <Switch loading size="large" type="warning" />
-      <Switch loading size="large" type="warning" checked />
     </div>
   `
 }
@@ -165,11 +125,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked / model | 是否选中 | boolean | - | false
-size | 大小 | string | default, large, small | default
-type | 风格 | string | primary, info, warning, success, error | primary
-disabled | 是否禁用 | boolean | - | false
-loading | 是否正在加载 | boolean | - | false
+checked / model | 是否选中 | boolean | - | `false`
+size | 大小 | string | `default`, `small` | `default`
+status | 状态 | string | `info`, `warning`, `success`, `error` | -
+disabled | 是否禁用 | boolean | - | `false`
+loading | 是否正在加载 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Slots
 
@@ -182,4 +144,4 @@ off | 未选中时的内容
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化后触发 | value
+change | 选中状态变化后触发 | data.checked

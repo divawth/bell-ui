@@ -15,14 +15,14 @@ export default {
         {{a}}
       </p>
 
-      <Checkbox type="success" size="large" model="b">
+      <Checkbox status="success" size="large" model="b">
         B
       </Checkbox>
       <p>
         {{b}}
       </p>
 
-      <Checkbox type="error" size="small" model="c">
+      <Checkbox status="error" size="small" model="c">
         C
       </Checkbox>
       <p>
@@ -136,13 +136,13 @@ export default {
 }
 ```
 
-> type 切换风格
+> 状态
 
 ```js
 export default {
   template: `
     <div>
-      <CheckboxGroup type="success" model="social" on-change="change()">
+      <CheckboxGroup status="success" model="social" on-change="change()">
         <Checkbox value="twitter">
           Twitter
         </Checkbox>
@@ -157,19 +157,19 @@ export default {
         </Checkbox>
       </CheckboxGroup>
       <br><br>
-      <Checkbox type="success">
+      <Checkbox status="success">
         success
       </Checkbox>
       <br><br>
-      <Checkbox type="info">
+      <Checkbox status="info">
         info
       </Checkbox>
       <br><br>
-      <Checkbox type="warning">
+      <Checkbox status="warning">
         warning
       </Checkbox>
       <br><br>
-      <Checkbox type="error">
+      <Checkbox status="error">
         error
       </Checkbox>
     </div>
@@ -198,7 +198,7 @@ export default {
           全选
         </Checkbox>
       </div>
-      <CheckboxGroup type="success" model="fruit" on-change="groupChange($data)">
+      <CheckboxGroup status="success" model="fruit" on-change="groupChange($data)">
         <Checkbox value="1">
           香蕉
         </Checkbox>
@@ -334,7 +334,7 @@ Checkbox
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 风格 | string | primary, success, info, warning, error | primary
+status | 状态 | string | success, info, warning, error | -
 size | 大小 | string | default, large, small | default
 label | 文本描述 | string | - | -
 disabled | 是否禁用 | boolean | - | false
@@ -354,7 +354,7 @@ CheckboxGroup
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 风格 | string | primary, success, info, warning, error | primary
+status | 状态 | string | success, info, warning, error | -
 name | checkbox 的 name | string | - | -
 disabled | 是否禁用 | boolean | - | false
 vertical | 是否使用垂直排版 | boolean | - | false

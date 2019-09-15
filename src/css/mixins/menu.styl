@@ -1,7 +1,7 @@
 menu-theme-style(style)
   ui-set('background-color', style['bg-color'])
 
-  {$selector-menu-dropdown}
+  {$selector-dropdown-list}
     ui-set('background-color', style['bg-color'])
 
   {$selector-menu-item-disabled}
@@ -9,7 +9,8 @@ menu-theme-style(style)
 
   if style['item-bg-color']
     > {$selector-menu-item},
-    > {$selector-menu-submenu} > {$selector-menu-submenu-title}
+    > {$selector-menu-submenu} > {$selector-menu-submenu-title},
+    > {$selector-menu-submenu} > {$selector-dropdown-trigger} > {$selector-menu-submenu-title}
       ui-set('background-color', style['item-bg-color'])
 
   if style['inline-bg-color']
@@ -44,8 +45,8 @@ menu-theme-style(style)
       ui-set('color', style['vertical-item-active-color'])
       ui-set('background-color', style['vertical-item-active-bg-color'])
 
-  {$selector-menu-inline}
-    > {$selector-menu-item-active}
+  &{$selector-menu-inline}
+    {$selector-menu-item-active}
       ui-set('color', style['inline-item-active-color'])
       ui-set('background-color', style['inline-item-active-bg-color'])
 

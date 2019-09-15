@@ -1,11 +1,11 @@
 page-size-style(style)
-  {$selector-page-item}
-    ui-set('width', style['height'])
-    ui-set('height', style['height'])
-    ui-set('line-height', style['height'])
+  ui-set('font-size', style['font-size'])
 
-    > {$selector-icon}
-      ui-set('line-height', style['height'] - 2)
+  {$selector-page-item}
+    ui-set('min-width', style['height'])
+    ui-set('height', style['height'])
+    ui-set('line-height', style['height'] - 2)
+    ui-set('font-size', style['font-size'])
 
 ui-page()
   ui-connect(

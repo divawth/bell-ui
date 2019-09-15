@@ -1,33 +1,79 @@
-<div
-class="${prefix}submenu
-{{#if isOpen}} ${prefix}menu-open{{/if}}
-{{#if isActive}} ${prefix}menu-active{{/if}}
-{{#if className}} {{className}}{{/if}}"
+{{#if mode === 'inline'}}
 
-{{#if style}}
-  style="{{style}}"
-{{/if}}
+  <div
 
-{{#if collapsed}}
-  on-mouseenter="set('isOpen', true)"
-  on-mouseleave="set('isOpen', false)"
-  lazy-mouseleave="300"
-{{/if}}
->
-  <div class="${prefix}submenu-title" on-click="handleClick()">
-    <slot name="title" />
-    {{#if !collapsed}}
-      <Icon name="arrow-down" className="${prefix}submenu-title-icon" />
+    class="${prefix}submenu
+    {{#if isOpen}} ${prefix}menu-open{{/if}}
+    {{#if isActive}} ${prefix}menu-active{{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if style}}
+      style="{{style}}"
     {{/if}}
-  </div>
 
-  {{#if mode !== 'inline'}}
-    <div ref="menu" class="${prefix}menu-dropdown">
-      <slot name="children" />
+  >
+
+    <div
+      class="${prefix}submenu-title"
+      {{#if !collapsed}}
+        on-click="toggle('isOpen')"
+        lazy-click="300"
+      {{/if}}
+    >
+      <slot name="title" />
+      {{#if !collapsed}}
+        <Icon
+          name="arrow-down"
+          size="0"
+          className="${prefix}submenu-arrow-icon"
+        />
+      {{/if}}
     </div>
-  {{else}}
+
     <Menu ref="menu" mode="{{mode}}" theme="">
       <slot name="children" />
     </Menu>
-  {{/if}}
-</div>
+
+  </div>
+
+{{else}}
+
+  <Dropdown
+
+    className="${prefix}submenu
+    {{#if isActive}} ${prefix}menu-active{{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if style}}
+      style="{{style}}"
+    {{/if}}
+
+    trigger="custom"
+    visible="{{isOpen}}"
+    placement="{{mode === 'horizontal' ? 'bottom' : 'right-start'}}"
+    on-outside="set('isOpen', false)"
+  >
+    <div
+      class="${prefix}submenu-title"
+      {{#if !collapsed}}
+        on-click="toggle('isOpen')"
+        lazy-click="300"
+      {{/if}}
+    >
+      <slot name="title" />
+      {{#if !collapsed}}
+        <Icon
+          name="arrow-down"
+          size="0"
+          className="${prefix}submenu-arrow-icon"
+        />
+      {{/if}}
+    </div>
+
+    <template slot="list">
+      <slot name="children" />
+    </template>
+
+  </Dropdown>
+
+{{/if}}

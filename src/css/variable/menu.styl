@@ -6,11 +6,10 @@ $selector-menu-collapsed = $selector-menu + '-collapsed'
 
 $selector-menu-active = $selector-menu + '-active'
 $selector-menu-open = $selector-menu + '-open'
-$selector-menu-dropdown = $selector-menu + '-dropdown'
 
 $selector-menu-submenu = $selector-prefix + '-submenu'
 $selector-menu-submenu-title = $selector-menu-submenu + '-title'
-$selector-menu-submenu-title-icon = $selector-menu-submenu + '-title-icon'
+$selector-menu-submenu-arrow-icon = $selector-menu-submenu + '-arrow-icon'
 
 $selector-menu-group = $selector-menu + '-group'
 $selector-menu-group-title = $selector-menu-group + '-title'
@@ -22,8 +21,11 @@ $selector-menu-item-disabled = $selector-menu-item + '-disabled'
 
 $menu-horizontal-padding = 20px
 $menu-vertical-padding = 20px
-$menu-dropdown-offset = 4px
-$menu-icon-gap = 10px
+$menu-icon-title-gap = 10px
+$menu-title-arrow-gap = 15px
+
+$menu-arrow-icon-size = 16px
+$menu-arrow-icon-top = 16px
 
 $menu-dark-fg = #515a6e
 $menu-dark-bg = #363e4f
@@ -34,8 +36,6 @@ $menu-light-bg = #f0faff
 $menu-group-title-height = 34px
 $menu-horizontal-item-height = 64px
 $menu-vertical-item-height = 48px
-
-$menu-dropdown-shadow = 0 1px 6px rgba(0,0,0,.2)
 
 $menu-collapsed-width = 70px
 
@@ -48,17 +48,18 @@ $menu-theme-hash = {
     item-hover-color: $brand-primary,
     item-disabled-color: $brand-text-disabled,
 
-    group-title-color: $brand-muted,
+    group-title-color: $brand-text-muted,
 
     horizontal-item-active-color: $brand-primary,
 
     vertical-item-active-color: $brand-primary,
     vertical-item-active-bg-color: $menu-light-bg,
 
-    inline-item-active-color: $brand-primary,
+  inline-item-active-color: $brand-primary,
     inline-item-active-bg-color: $menu-light-bg,
   },
-  'dark': {
+
+'dark': {
     bg-color: $menu-dark-fg,
 
     item-color: #cacaca,

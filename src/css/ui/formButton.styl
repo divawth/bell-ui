@@ -1,0 +1,118 @@
+{$selector-select-button},
+{$selector-datepicker-button}
+
+  position relative
+  border 1px solid $brand-border
+  background-color $brand-bg
+  line-height 0
+
+  box-sizing border-box
+  border-radius $border-radius-default
+  transition border-color .3s, box-shadow .3s
+
+{$selector-select-values},
+{$selector-datepicker-values}
+  width 100%
+  box-sizing border-box
+
+  > {$selector-tag}
+    cursor $cursor-text
+    font-size $font-size-tiny
+    background-color $brand-tag-bg-color
+    padding 0 $ui-icon-text-gap
+
+    > {$selector-tag-close-icon}
+      position static
+      margin-left $ui-icon-text-gap
+      vertical-align middle
+
+{$selector-select-value},
+{$selector-select-placeholder},
+{$selector-datepicker-value},
+{$selector-datepicker-placeholder}
+  width 100%
+  box-sizing border-box
+  ui-ellipsis()
+
+{$selector-select-placeholder},
+{$selector-datepicker-placeholder}
+  color $brand-text-muted
+
+{$selector-select-value},
+{$selector-datepicker-value}
+  color $brand-text
+
+{$selector-select-arrow-icon},
+{$selector-select-clear-icon},
+{$selector-datepicker-calendar-icon},
+{$selector-datepicker-clear-icon}
+  position absolute
+  top 50%
+  font-size $ui-icon-size
+  transform translateY(-50%)
+
+{$selector-select-arrow-icon},
+{$selector-datepicker-calendar-icon}
+  color $brand-indicator-icon-color
+  transition transform .3s
+  transform-origin center center
+
+{$selector-select-clear-icon},
+{$selector-datepicker-clear-icon}
+  color $brand-clear-icon-color
+  display none
+
+{$selector-select-enabled}
+  {$selector-select-button}
+    cursor $cursor-clickable
+
+  {$selector-select-button}:hover
+    border-color $brand-primary
+
+{$selector-datepicker-enabled}
+  {$selector-datepicker-button}
+    cursor $cursor-clickable
+
+  {$selector-datepicker-button}:hover
+    border-color $brand-primary
+
+{$selector-select-disabled}
+  {$selector-select-button}
+    background-color $brand-bg-disabled
+    border-color $brand-border-disabled
+    cursor $cursor-disabled
+
+  {$selector-select-placeholder},
+  {$selector-select-value}
+    color $brand-text-disabled
+
+{$selector-datepicker-disabled}
+  {$selector-datepicker-button}
+    background-color $brand-bg-disabled
+    border-color $brand-border-disabled
+    cursor $cursor-disabled
+
+  {$selector-datepicker-placeholder},
+  {$selector-datepicker-value}
+    color $brand-text-disabled
+
+{$selector-select-clearable}
+  {$selector-select-button}:hover
+    {$selector-select-clear-icon}
+      display block
+      + {$selector-select-arrow-icon}
+        display none
+
+{$selector-datepicker-clearable}
+  {$selector-datepicker-button}:hover
+    {$selector-datepicker-clear-icon}
+      display block
+      + {$selector-datepicker-calendar-icon}
+        display none
+
+{$selector-dropdown-fade}
+  {$selector-select-button},
+  {$selector-datepicker-button}
+    border-color $brand-primary
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

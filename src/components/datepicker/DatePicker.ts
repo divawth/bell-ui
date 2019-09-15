@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import DateView from './components/Date'
 import DateRange from './components/DateRange'
@@ -11,7 +11,6 @@ import template from './template/DatePicker.hbs'
 import {
   TRUE,
   FALSE,
-  UNDEFINED,
   RAW_STRING,
   RAW_DATE,
   RAW_ARRAY,
@@ -22,6 +21,11 @@ import {
   RAW_SIZE_COMMON,
   RAW_DEFAULT,
   RAW_PLACEMENT_ARRAY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_WARNING,
+  UNDEFINED,
 } from '../constant'
 
 import {
@@ -63,6 +67,9 @@ export default Yox.define({
       type: oneOf([RAW_TYPE_DATE, RAW_TYPE_DATE_RANGE, RAW_TYPE_WEEK, RAW_TYPE_YEAR, RAW_TYPE_MONTH]),
       value: RAW_TYPE_DATE,
     },
+    status: {
+      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
+    },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
       value: RAW_DEFAULT,
@@ -81,6 +88,10 @@ export default Yox.define({
     },
     shortcuts: {
       type: RAW_ARRAY,
+    },
+    disabled: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     multiple: {
       type: RAW_BOOLEAN,
@@ -142,30 +153,21 @@ export default Yox.define({
       const defaultDate = this.get('defaultDate')
       return toSimpleDate(toTimestamp(defaultDate))
     },
-    dateText: {
-      get(): string {
+    formatedValues(): string[] {
 
-        const type = this.get('type')
-        const value = this.get('value')
-        const formatText = this.get('formatText')
+      const value = this.get('value')
+      const formatText = this.get('formatText')
 
-        if (Yox.is.array(value)) {
-          const list = value.map(function (date: Date) {
-            return formatDate(date, formatText)
-          })
-          if (list.length === 2 && (type === RAW_TYPE_DATE_RANGE || type === RAW_TYPE_WEEK)) {
-            return `${list[0]} - ${list[1]}`
-          }
-          return list.join(', ')
-        }
-        else if (value) {
-          return formatDate(value, formatText)
-        }
-        return ''
-      },
-      set(text: string) {
-        console.log(text)
+      if (Yox.is.array(value)) {
+        return value.map(function (date: Date) {
+          return formatDate(date, formatText)
+        })
       }
+      else if (value) {
+        return [formatDate(value, formatText)]
+      }
+      return []
+
     },
   },
 
@@ -206,7 +208,30 @@ export default Yox.define({
   },
 
   methods: {
-    shortcutClick(data: Shortcut) {
+
+    handleClearClick(event: CustomEventInterface) {
+
+      // 停止冒泡，否则会展开下拉框
+      event.stop()
+
+      this.set({
+        value: this.get('multiple') ? [] : UNDEFINED,
+      })
+
+      this.fire('clear.datepicker', TRUE)
+      this.fire('clear.datepicker')
+
+    },
+
+    handleRemoveItem(event: CustomEventInterface, index: number) {
+
+      event.stop()
+
+      this.removeAt('value', index)
+
+    },
+
+    handleShortcutClick(data: Shortcut) {
       const value = data.onClick.call(this)
       if (Yox.is.array(value)) {
         if (!value[0] || !value[1]) {
@@ -232,14 +257,6 @@ export default Yox.define({
           toTimestamp(value as any)
         )
       }
-    },
-
-    open() {
-      this.set('visible', TRUE)
-    },
-
-    close() {
-      this.set('visible', FALSE)
     },
 
     dateChange(timestamp: number, dateFormat = DATE_FORMAT) {
@@ -276,7 +293,7 @@ export default Yox.define({
       }
 
       if (!me.get('multiple')) {
-        me.close()
+        me.set('visible', FALSE)
       }
 
     },
@@ -286,17 +303,9 @@ export default Yox.define({
       this.set('value', [new Date(start), new Date(end)])
 
       if (!this.get('multiple')) {
-        this.close()
+        this.set('visible', FALSE)
       }
 
-    },
-    clear() {
-      this.set('value', this.get('multiple') ? [] : UNDEFINED)
-      this.fire('clear.datepicker')
-    },
-    ok() {
-      this.close()
-      this.fire('ok.datepicker')
     }
   },
 

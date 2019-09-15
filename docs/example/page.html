@@ -46,15 +46,15 @@
 
     <script id="template-2" type="text/plain">
         <div>
-            <Page total="100" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}"></Page>
+            <Page total="100" showTotal="true" pageSizeOptions="{{pageSizeOptions}}"></Page>
 
-            <Page total="100" size="small" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}"></Page>
+            <Page total="100" size="small" showTotal="true" pageSizeOptions="{{pageSizeOptions}}"></Page>
         </div>
     </script>
 
     <script id="template-3" type="text/plain">
         <div>
-            <Page total="100" showElevator="true"></Page>
+            <Page total="100" showJumper></Page>
         </div>
     </script>
 
@@ -72,9 +72,9 @@
 
     <script id="template-6" type="text/plain">
         <div>
-            <Page total="100" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+            <Page total="100" showTotal="true" pageSizeOptions="{{pageSizeOptions}}" placement="top"></Page>
 
-            <Page total="100" size="small" showTotal="true" showSizer="true" pageSizeOpts="{{pageSizeOpts}}" placement="top"></Page>
+            <Page total="100" size="small" showTotal="true" pageSizeOptions="{{pageSizeOptions}}" placement="top"></Page>
         </div>
     </script>
 
@@ -88,7 +88,7 @@
             el: '#app-2',
             template: '#template-2',
             data: {
-                pageSizeOpts: [10, 15, 20, 25, 40]
+                pageSizeOptions: [10, 15, 20, 25, 40]
             }
         });
 
@@ -109,7 +109,7 @@
             el: '#app-6',
             template: '#template-6',
             data: {
-                pageSizeOpts: [10, 15, 20, 25, 40]
+                pageSizeOptions: [10, 15, 20, 25, 40]
             }
         });
     </script>

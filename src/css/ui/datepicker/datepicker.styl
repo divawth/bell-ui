@@ -1,9 +1,6 @@
 {$selector-datepicker}
-  display inline-block
   width $ui-form-element-width
-
-  {$selector-input}
-    width 100%
+  display inline-block
 
   {$selector-dropdown-list}
     padding 0
@@ -17,6 +14,10 @@
   {$selector-datepicker-daterange}
     width $datepicker-date-range-dropdown-width
 
+  ui-datepicker()
+
+{$selector-datepicker-separator}
+  margin 0 $datepicker-separator-gap
 
 {$selector-datepicker-shortcut}
   position absolute

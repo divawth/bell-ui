@@ -7,12 +7,13 @@ class="${prefix}form-item
 {{/if}}
 >
   {{#if label || hasSlot('label')}}
+
     <label
       class="${prefix}form-item-label
-      {{#if isRequired}} ${prefix}form-item-label-required{{/if}}"
+      {{#if required}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if labelWidth || labelAlign}}
-        style="{{#if labelWidth}}width: {{labelWidth}}px;{{/if}}
+      {{#if itemLabelWidth || labelAlign}}
+        style="{{#if itemLabelWidth}}width: {{itemLabelWidth}}px;{{/if}}
         {{#if labelAlign}}vertical-align: {{labelAlign}};{{/if}}"
       {{/if}}
     >
@@ -25,9 +26,9 @@ class="${prefix}form-item
 
       <slot name="children" />
 
-      {{#if showError && computedError}}
+      {{#if showMessage && itemMessage}}
         <div class="${prefix}form-item-error">
-          {{computedError}}
+          {{itemMessage}}
         </div>
       {{/if}}
 
@@ -36,11 +37,19 @@ class="${prefix}form-item
   {{else}}
 
     <div
-      {{#if labelWidth}}
-        style="margin-left: {{labelWidth}}px;"
+      class="${prefix}form-item-wrapper"
+      {{#if itemLabelWidth}}
+        style="margin-left: {{itemLabelWidth}}px;"
       {{/if}}
     >
       <slot name="children" />
+
+      {{#if showMessage && itemMessage}}
+        <div class="${prefix}form-item-error">
+          {{itemMessage}}
+        </div>
+      {{/if}}
+
     </div>
 
   {{/if}}

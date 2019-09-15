@@ -2,13 +2,9 @@ radio-button-group-brand-style(style)
   > {$selector-radio-enabled}:hover
     ui-set('color', style['color'])
 
-  > {$selector-radio-enabled}&{$selector-radio-active}
+  > {$selector-radio-active}
     ui-set('border-color', style['color'])
-    ui-set('color', style['color'])
-
-    if $ui-shadow-radius > 0
-      box-shadow -1px 0 0 $ui-shadow-radius style['shadow-color'],
-                  0 0 0 $ui-shadow-radius style['shadow-color']
+    ui-set('background-color', style['color'])
 
     &:before
       ui-set('background-color', style['color'])

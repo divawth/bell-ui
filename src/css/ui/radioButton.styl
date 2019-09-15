@@ -8,7 +8,9 @@
     display none
 
   > {$selector-radio}
-    border 1px solid
+    border 1px solid $brand-border
+    background-color $brand-bg
+    color $brand-text
     transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
 
     &:first-child
@@ -23,18 +25,14 @@
       margin-left 0
       border-left none
 
-  > {$selector-radio-disabled}
-    border-color $brand-border-disabled
-    background-color $brand-bg-disabled
-    color $brand-text-disabled
+    &{$selector-radio-active},
+    &{$selector-radio-active}:hover
+      color $brand-white
 
-    &{$selector-radio-active}
-      background-color $brand-bg-checked-disabled
+  > {$selector-radio-disabled}
+    opacity $ui-opacity-disabled
 
   > {$selector-radio-enabled}
-    border-color $brand-border
-    background-color $brand-bg
-    color $brand-text
 
     &:before
       content ''
@@ -50,6 +48,11 @@
 
     &{$selector-radio-active}
       z-index 1
+
+  radio-button-group-brand-style({
+    color: $brand-primary,
+    shadow-color: $brand-primary-shadow
+  })
 
   // 必须放最后
   ui-radio-button-group()

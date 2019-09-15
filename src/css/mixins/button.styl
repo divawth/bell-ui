@@ -3,15 +3,7 @@ button-size(size)
   ui-set('font-size', size['font-size'])
   ui-set('height', size['height'])
   ui-set('min-width', size['height'])
-  ui-set('padding-left', size['padding-horizontal'])
-  ui-set('padding-right', size['padding-horizontal'])
-
-button-border(border)
-  ui-set('border-style', border)
-
-  // 为 group 准备的
-  &:before
-    ui-set('border-style', border)
+  ui-set('padding', 0 size['padding-horizontal'])
 
 button-circle-size(style)
   ui-set('width', style['height'])
@@ -44,7 +36,8 @@ button-brand-style(style)
 
   &{$selector-button-enabled}
     if $ui-shadow-radius > 0
-      &:focus
+      &{$selector-button-solid}:focus,
+      &{$selector-button-dashed}:focus
         box-shadow 0 0 0 $ui-shadow-radius style[ 'shadow-color' ]
 
     // 为 group 准备的
@@ -64,17 +57,13 @@ ui-button()
     each: button-size
   )
   ui-connect(
-    hash: $button-border-hash,
-    each: button-border
-  )
-  ui-connect(
     hash: $button-brand-hash,
     each: button-brand-style
   )
 
 ui-button-circle-size()
   ui-connect(
-    hash: $button-circle-size-hash,
+    hash: $button-size-hash,
     each: button-circle-size
   )
 

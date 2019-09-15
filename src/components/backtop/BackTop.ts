@@ -15,6 +15,8 @@ import {
 
 export default Yox.define({
 
+  template,
+
   propTypes: {
     bottom: {
       type: RAW_NUMERIC,
@@ -38,8 +40,6 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-
-  template,
 
   data() {
     return {

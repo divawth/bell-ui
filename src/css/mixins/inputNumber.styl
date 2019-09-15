@@ -14,20 +14,16 @@ input-number-size-style(style)
 
 input-number-brand-style(style)
   &{$selector-input-number-enabled}
+    ui-set('border-color', style['color'])
 
-    &:hover,
+    &:hover
+      ui-set('border-color', style['color'])
+
     &{$selector-input-number-focus}
       ui-set('border-color', style['color'])
 
-    if $ui-shadow-radius > 0
-      &{$selector-input-number-focus}
+      if $ui-shadow-radius > 0
         box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
-
-    {$selector-input-number-up-enabled},
-    {$selector-input-number-down-enabled}
-      &:hover
-        ui-set('color', style['color'])
-
 
 ui-input-number()
   ui-connect(
@@ -35,7 +31,7 @@ ui-input-number()
     each: input-number-size-style
   )
   ui-connect(
-    hash: $input-number-brand-hash,
+    hash: $status-brand-hash,
     each: input-number-brand-style
   )
 

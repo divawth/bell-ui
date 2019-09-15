@@ -19,6 +19,10 @@ import {
   RAW_DEFAULT,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM_START,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 export default Yox.define({
@@ -34,6 +38,9 @@ export default Yox.define({
     },
     value: {
       type: [RAW_ARRAY, RAW_STRING, RAW_NUMBER],
+    },
+    status: {
+      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
@@ -158,10 +165,6 @@ export default Yox.define({
   },
 
   methods: {
-
-    handleToggleClick() {
-      this.toggle('visible')
-    },
 
     handleClearClick(event: CustomEventInterface) {
 
