@@ -1,13 +1,11 @@
 <div
 class="${prefix}avatar
 {{#if size}} ${prefix}avatar-{{size}}{{/if}}
-{{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
+{{#if circle}} ${prefix}avatar-circle{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if text || fontSize || backgroundColor || style}}
-  style="{{#if text}}color: {{color}};{{/if}}
-  {{#if fontSize}}font-size: {{fontSize}}px;{{/if}}
-  {{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
+{{#if backgroundColor || style}}
+  style="{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
   {{#if style}}{{style}}{{/if}}"
 {{/if}}
 >
@@ -16,11 +14,15 @@ class="${prefix}avatar
     <img
       class="${prefix}avatar-image"
       src="{{src}}"
-      {{#if srcset}}
-        srcset="{{srcset}}"
+      {{#if srcSet}}
+        srcset="{{srcSet}}"
+      {{/if}}
+      {{#if alt}}
+        alt="{{alt}}"
       {{/if}}
       loading="lazy"
       ondragstart="return false"
+      on-error="error.avatar"
     >
   {{else if hasSlot('icon')}}
     <span class="${prefix}avatar-icon">
@@ -30,6 +32,10 @@ class="${prefix}avatar
     <span
       ref="text"
       class="${prefix}avatar-text"
+      {{#if color || fontSize}}
+        style="{{#if color}}color: {{color}};{{/if}}
+        {{#if fontSize}}font-size: {{fontSize}}px;{{/if}}"
+      {{/if}}
     >
       {{text}}
     </span>

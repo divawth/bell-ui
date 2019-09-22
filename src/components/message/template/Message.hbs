@@ -1,10 +1,33 @@
-<Alert
-  center="{{center}}"
-  type="{{type}}"
-  icon="{{icon}}"
-  closable="{{closable}}"
-  className="${prefix}message"
-  on-close="closeAlert()"
+<div
+class="${prefix}message
+{{#if status}} ${prefix}message-{{status}}{{/if}}
+{{#if center}} ${prefix}message-center{{/if}}
+{{#if closable}} ${prefix}message-with-close{{/if}}"
 >
-  {{content}}
-</Alert>
+  <Icon
+    name="{{
+      status === RAW_TYPE_SUCCESS
+        ? 'checkmark-circle'
+        : status === RAW_TYPE_WARNING
+          ? 'alert'
+          : status === RAW_TYPE_ERROR
+            ? 'close-circle'
+            : 'information-circle'
+    }}"
+    size="0"
+    className="${prefix}message-icon"
+  />
+
+  <span class="${prefix}message-text">
+    {{content}}
+  </span>
+
+  {{#if closable}}
+    <Icon
+      name="close"
+      size="0"
+      className="${prefix}message-close"
+      on-click.native="hide()"
+    />
+  {{/if}}
+</div>

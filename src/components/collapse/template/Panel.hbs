@@ -1,6 +1,9 @@
 <div
 class="${prefix}collapse-panel
 {{#if opened}} ${prefix}collapse-open{{/if}}
+{{#if disabled}} ${prefix}collapse-disabled
+{{else}} ${prefix}collapse-enabled
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -8,7 +11,12 @@ class="${prefix}collapse-panel
 {{/if}}
 >
 
-  <div class="${prefix}collapse-header" on-click="click()">
+  <div
+    class="${prefix}collapse-header"
+    {{#if !disabled}}
+      on-click="click()"
+    {{/if}}
+  >
 
     {{#if hasSlot('extra')}}
       <div class="${prefix}collapse-extra">
@@ -31,9 +39,7 @@ class="${prefix}collapse-panel
   </div>
 
   <div ref="content" class="${prefix}collapse-content">
-    <div class="${prefix}collapse-wrapper">
-      <slot name="children" />
-    </div>
+    <slot name="children" />
   </div>
 
 </div>

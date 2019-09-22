@@ -1,9 +1,10 @@
 $selector-alert = $selector-prefix + '-alert'
 $selector-alert-center = $selector-alert + '-center'
+$selector-alert-banner = $selector-alert + '-banner'
 
 $selector-alert-with-icon = $selector-alert + '-with-icon'
 $selector-alert-with-close = $selector-alert + '-with-close'
-$selector-alert-with-content = $selector-alert + '-with-content'
+$selector-alert-with-title = $selector-alert + '-with-title'
 
 $selector-alert-icon = $selector-alert + '-icon'
 $selector-alert-close = $selector-alert + '-close'
@@ -11,59 +12,48 @@ $selector-alert-wrapper = $selector-alert + '-wrapper'
 $selector-alert-title = $selector-alert + '-title'
 $selector-alert-content = $selector-alert + '-content'
 
-$selector-alert-type-icon = $selector-alert + '-type-icon'
+$selector-alert-status-icon = $selector-alert + '-status-icon'
 $selector-alert-close-icon = $selector-alert + '-close-icon'
 
 $alert-content-font-size = $font-size-small
 
-$alert-padding-horizontal = 16px
-$alert-padding-vertical = 12px
+$alert-padding-horizontal = 15px
+$alert-padding-vertical = 8px
 
 $alert-icon-wrapper-gap = 10px
 $alert-title-content-gap = 4px
 
 $alert-close-font-size = 14px
 $alert-close-icon-font-size = 22px
-$alert-close-icon-margin-top = -2px
 
-$alert-type-icon-size = 16px
-$alert-type-icon-size-with-content = 24px
+$alert-status-icon-size = 20px
+$alert-status-icon-margin-top = 2px
+$alert-status-icon-size-with-title = 24px
+$alert-status-icon-margin-top-with-title = 0
 
 $alert-brand-hash = {
-  primary: {
-    border-color: #BBDCFD,
-    bg-color: #CDE6FE,
-    icon-color: $brand-primary,
-    text-color: #064283
-  },
-  secondary: {
-    border-color: #D6D8DB,
-    bg-color: #E2E3E5,
-    icon-color: $brand-text-secondary,
-    text-: #383D41
-  },
   info: {
-    border-color: #BFE5EB,
-    bg-color: #D2ECF1,
-    icon-color: $brand-info,
-    text-color: #11545F
+    border-color: $brand-info-border,
+    bg-color: $brand-info-bg,
+    hover-color: $brand-info-hover,
+    color: $brand-info,
   },
   success: {
-    border-color: #C4E6CC,
-    bg-color: #D5EDDB,
-    icon-color: $brand-success,
-    text-color: #195627
+    border-color: $brand-success-border,
+    bg-color: $brand-success-bg,
+    hover-color: $brand-success-hover,
+    color: $brand-success,
   },
   error: {
-    border-color: #F4C6CC,
-    bg-color: #F7D7DB,
-    icon-color: #EB1111,
-    text-color: #701D26
+    border-color: $brand-error-border,
+    bg-color: $brand-error-bg,
+    hover-color: $brand-error-hover,
+    color: $brand-error,
   },
   warning: {
-    border-color: #FEEDBD,
-    bg-color: #FFF3CF,
-    icon-color: $brand-warning,
-    text-color: #846315
+    border-color: $brand-warning-border,
+    bg-color: $brand-warning-bg,
+    hover-color: $brand-warning-hover,
+    color: $brand-warning,
   },
 }

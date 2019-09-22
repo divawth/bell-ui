@@ -1,9 +1,6 @@
 <label
 class="${prefix}checkbox
 
-{{#if status}} ${prefix}checkbox-{{status}}{{/if}}
-{{#if size}} ${prefix}checkbox-{{size}}{{/if}}
-
 {{#if disabled}} ${prefix}checkbox-disabled
 {{else}} ${prefix}checkbox-enabled
 {{/if}}
@@ -25,8 +22,8 @@ class="${prefix}checkbox
       model="checked"
       name="{{name}}"
       disabled="{{disabled}}"
-      on-focus="handleFocus()"
-      on-blur="handleBlur()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
     >
   </span>
 

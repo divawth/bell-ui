@@ -1,4 +1,4 @@
-input-single-line-size-style(style)
+input-size-style(style)
 
   > {$selector-input-prepend},
   > {$selector-input-append},
@@ -8,6 +8,10 @@ input-single-line-size-style(style)
   > {$selector-input-prepend},
   > {$selector-input-append}
     ui-set('min-width', style['height'])
+
+  {$selector-input-el}
+    ui-set('font-size', style['font-size'])
+    ui-set('padding', 0 style['padding-horizontal'])
 
   {$selector-input-prefix}
     ui-set('left', style['padding-horizontal'])
@@ -21,13 +25,22 @@ input-single-line-size-style(style)
   {$selector-input-el-with-suffix}
     ui-set('padding-right', style['padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
 
-input-border-style($selector, $color, $shadow-color)
-  {$selector}
-    ui-set('border-color', $color)
+
+input-brand-style(style)
+  {$selector-input-el}
+    ui-set('border-color', style['color'])
 
     &:focus
-      ui-set('border-color', $color)
+      ui-set('border-color', style['color'])
       if $ui-shadow-radius > 0
-        box-shadow 0 0 0 $ui-shadow-radius $shadow-color
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-
+ui-input()
+  ui-connect(
+    hash: $status-brand-hash,
+    each: input-brand-style
+  )
+  ui-connect(
+    hash: $input-size-hash,
+    each: input-size-style
+  )

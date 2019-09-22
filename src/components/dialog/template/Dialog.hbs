@@ -49,9 +49,9 @@ class="${prefix}dialog
       </div>
     {{/if}}
 
-    {{#if hasSlot('actions')}}
-      <div class="${prefix}dialog-actions">
-        <slot name="actions" />
+    {{#if hasSlot('footer')}}
+      <div class="${prefix}dialog-footer">
+        <slot name="footer" />
       </div>
     {{/if}}
   </div>

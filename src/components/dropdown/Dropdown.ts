@@ -18,6 +18,7 @@ import {
   RAW_TOP,
   RAW_RIGHT,
   RAW_LEFT,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
@@ -47,7 +48,7 @@ export default Yox.define({
       value: FALSE,
     },
     height: {
-      type: RAW_NUMBER,
+      type: RAW_NUMERIC,
       value: 280,
     },
     className: {

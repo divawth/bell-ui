@@ -4,16 +4,16 @@
 
 {$selector-progress-track}
   background-color $progress-bg-color
-  border-radius 100px
+  border-radius $border-radius-round
 
 {$selector-progress-bar}
-  border-radius 100px
+  border-radius $border-radius-round
   transition height .2s, width .2s
 
 {$selector-progress-text}
   white-space nowrap
   color $brand-text
-  font-size $progress-text-font-size
+  font-size $font-size-default
 
 {$selector-progress-inside}
   {$selector-progress-track}
@@ -21,12 +21,12 @@
 
   {$selector-progress-text}
     color $brand-white
-    margin-right $ui-icon-text-gap
+    margin-right $ui-horizontal-gap
 
 {$selector-progress-outside}
   &{$selector-progress-horizontal}
     > {$selector-progress-text}
-      padding-left $ui-icon-text-gap
+      padding-left $ui-horizontal-gap
 
 {$selector-progress-with-text}
   display table
@@ -62,9 +62,9 @@
 
   > {$selector-progress-text}
     text-align center
-    margin-top $ui-icon-text-gap
+    margin-top $ui-horizontal-gap
 
-{$selector-progress-animated}
+{$selector-progress-active}
   {$selector-progress-bar}:before
     content ''
     opacity 0
@@ -72,7 +72,7 @@
     left 0
     bottom 0
     background-color $brand-white
-    border-radius 100px
+    border-radius $border-radius-round
 
   &{$selector-progress-horizontal}
     {$selector-progress-bar}:before

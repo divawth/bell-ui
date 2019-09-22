@@ -3,9 +3,9 @@ class="${prefix}divider
 {{#if vertical}} ${prefix}divider-vertical
 {{else}} ${prefix}divider-horizontal
 {{/if}}
+{{#if dashed}} ${prefix}divider-dashed{{/if}}
 {{#if align}} ${prefix}divider-{{align}}{{/if}}
 {{#if hasSlot('children')}} ${prefix}divider-with-text{{/if}}
-{{#if dashed}} ${prefix}divider-dashed{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

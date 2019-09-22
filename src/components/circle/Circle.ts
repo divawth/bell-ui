@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/Circle.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
@@ -19,6 +20,7 @@ export default Yox.define({
   propTypes: {
     dashboard: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     percent: {
       type: RAW_NUMERIC,
@@ -84,7 +86,8 @@ export default Yox.define({
           `stroke-dashoffset: -${75 / 2}px`,
           'transition: stroke-dashoffset .3s ease 0s, stroke-dasharray .6s ease 0s, stroke .6s, stroke-width .06s ease .6s'
         ]
-      } else {
+      }
+      else {
         style = [
           `stroke-dasharray: ${len}px ${len}px`,
           `stroke-dashoffset: ${((100 - percent) / 100 * len)}px`,

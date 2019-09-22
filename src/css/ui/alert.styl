@@ -8,25 +8,33 @@
 
   ui-alert()
 
+{$selector-alert-banner}
+  border 0
+  border-radius 0
+
 {$selector-alert-center}
   text-align center
 
-{$selector-alert-type-icon}
-  font-size $alert-type-icon-size
+{$selector-alert-status-icon}
+  font-size $alert-status-icon-size
+  margin-top $alert-status-icon-margin-top
 
-{$selector-alert-with-content}
-  {$selector-alert-type-icon}
-    font-size $alert-type-icon-size-with-content
+{$selector-alert-with-title}
+  {$selector-alert-status-icon}
+    font-size $alert-status-icon-size-with-title
+    margin-top $alert-status-icon-margin-top-with-title
 
 {$selector-alert-title}
   white-space nowrap
-  font-size $ui-font-size
+  font-size $font-size-default
+  font-weight bold
 
   + {$selector-alert-content}
+    font-size $alert-content-font-size
     margin-top $alert-title-content-gap
 
 {$selector-alert-content}
-  font-size $alert-content-font-size
+  font-size $font-size-default
   line-height $ui-multiple-line-height
   font-weight normal
 
@@ -38,18 +46,14 @@
   user-select none
   text-align center
   font-size $alert-close-font-size
-  color $brand-close-color
+  line-height $ui-single-line-height
   cursor $cursor-clickable
   transition color .3s
-
-  &:hover
-    color $brand-close-color-hover
 
 {$selector-alert-close-icon}
   display inline-block
   font-size $alert-close-icon-font-size
   width $alert-close-icon-font-size
-  margin-top $alert-close-icon-margin-top
 
 {$selector-alert-with-icon}
   display table
@@ -57,7 +61,7 @@
   > {$selector-alert-icon}
   > {$selector-alert-wrapper}
     display table-cell
-    vertical-align middle
+    vertical-align top
 
   > {$selector-alert-icon}
     width 1px

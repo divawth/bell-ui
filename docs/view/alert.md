@@ -10,12 +10,18 @@ export default {
   height: 340,
   template: `
   <div>
-    <Alert>An info prompt</Alert>
-    <Alert type="secondary">An secondary prompt</Alert>
-    <Alert type="success">A success prompt</Alert>
-    <Alert type="warning">A warning prompt</Alert>
-    <Alert type="info">An info prompt</Alert>
-    <Alert type="error">An error prompt</Alert>
+    <Alert status="success">
+      提示内容
+    </Alert>
+    <Alert status="error">
+      提示内容
+    </Alert>
+    <Alert status="info">
+      提示内容
+    </Alert>
+    <Alert status="warning">
+      提示内容
+    </Alert>
     <style>
       .bell-alert {
         margin-bottom: 10px;
@@ -26,56 +32,44 @@ export default {
 }
 ```
 
-> 添加描述
+> 标题
 
 ```js
 export default {
   isViewFullBlock: true,
-  height: 480,
+  height: 340,
   template: `
   <div>
-    <Alert>
-      An info prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+    <Alert status="success">
+      <template slot="title">
+        标题
       </template>
+      提示内容
     </Alert>
-    <Alert type="secondary">
-      An secondary prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+    <Alert status="error">
+      <template slot="title">
+        标题
       </template>
+      提示内容
     </Alert>
-    <Alert type="success">
-      A success prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+    <Alert status="info">
+      <template slot="title">
+        标题
       </template>
+      提示内容
     </Alert>
-    <Alert type="warning">
-      A warning prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
+    <Alert status="warning">
+      <template slot="title">
+        标题
       </template>
-    </Alert>
-    <Alert type="info">
-      An info prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
-      </template>
-    </Alert>
-    <Alert type="error">
-      An error prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
-      </template>
+      提示内容
     </Alert>
   </div>
   `
 }
 ```
 
-> 显示 icon
+> 图标
 
 ```js
 export default {
@@ -83,46 +77,49 @@ export default {
   height: 680,
   template: `
   <div>
-    <Alert type="primary" icon>An info prompt</Alert>
-    <Alert type="success" icon>A success prompt</Alert>
-    <Alert type="warning" icon>A warning prompt</Alert>
-    <Alert type="error" icon>An error prompt</Alert>
-    <Alert type="primary" icon>
-      An info prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
-      </template>
+    <Alert status="success" icon>
+      内容内容内容内容
     </Alert>
-    <Alert type="success" icon>
-      A success prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt. Content of prompt.
-      </template>
+    <Alert status="error" icon>
+      内容内容内容内容
     </Alert>
-    <Alert type="warning" icon>
-      A warning prompt
-      <template slot="content">
-        Content of prompt. Content of prompt. Content of prompt.
-      </template>
+    <Alert status="info" icon>
+      内容内容内容内容
     </Alert>
-    <Alert type="error" icon>
-      An error prompt
-      <template slot="content">
-        Custom error contentription copywriting.
-      </template>
+    <Alert status="warning" icon>
+      内容内容内容内容
     </Alert>
-    <Alert icon closable>
-      Custom icon
-      <template slot="content">
-        Custom icon copywriting. Custom icon copywriting. Custom icon copywriting.
+
+    <Alert status="success" icon>
+      <template slot="title">
+        标题
       </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="error" icon>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="info" icon>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="warning" icon>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
   </div>
   `
 }
 ```
 
-> 显示关闭按钮
+> 关闭按钮
 
 ```js
 export default {
@@ -130,43 +127,83 @@ export default {
   height: 300,
   template: `
   <div>
-    <Alert icon closable>An info prompt</Alert>
-    <Alert type="success" icon closable>A success prompt</Alert>
-    <Alert type="warning" icon closable>A warning prompt</Alert>
-    <Alert type="error" icon closable>An error prompt</Alert>
+    <Alert status="success" icon closable>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="error" icon closable>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="info" icon closable>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="warning" icon closable>
+      <template slot="title">
+        标题
+      </template>
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </Alert>
   </div>
   `
 }
 ```
 
+> 居中
 
-> 自定义关闭按钮
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+  <Alert status="success" closable center>
+    内容内容内容内容内容内容内容
+  </Alert>
+  `
+}
+```
+
+> banner
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+  <Alert status="success" closable banner>
+    内容内容内容内容内容内容内容
+  </Alert>
+  `
+}
+```
+
+
+> 各种自定义
 
 ```js
 export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-  <div>
-    <Alert>
-      An info prompt
-      <template slot="icon">
-        <Icon type="alarm" />
-      </template>
-      <template slot="close">
-        No longer prompt
-      </template>
-    </Alert>
-    <Alert type="success">
-      An info prompt
-      <template slot="icon">
-        <Icon type="alarm" />
-      </template>
-      <template slot="close">
-        No longer prompt
-      </template>
-    </Alert>
-  </div>
+  <Alert icon closable>
+    <template slot="title">
+      标题
+    </template>
+    <Icon
+      slot="icon"
+      name="chatbubbles"
+      size="22"
+    />
+    <template slot="close">
+      No longer prompt
+    </template>
+    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+  </Alert>
   `
 }
 ```
@@ -177,10 +214,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 主题 | string | primary, info, warning, success, error | primary
-closable | 是否显示关闭按钮 | boolean | - | false
-center | 文字是否居中 | boolean | - | false
-icon | 是否显示类型图标 | boolean | - | false
+status | 颜色 | string | `info`, `warning`, `success`, `error` | `warning`
+icon | 是否显示类型图标 | boolean | - | `false`
+closable | 是否显示关闭按钮 | boolean | - | `false`
+center | 文字是否居中 | boolean | - | `false`
+banner | 是否为页面顶部通告 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
@@ -194,3 +234,5 @@ close | 点击关闭按钮后触发 | -
 ---|---
 icon | 自定义左侧图标
 close | 自定义关闭按钮
+title | 自定义标题
+children | 自定义内容

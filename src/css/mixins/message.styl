@@ -1,0 +1,9 @@
+message-brand-style(style)
+  > {$selector-message-icon}
+    ui-set('color', style['color'])
+
+ui-message()
+  ui-connect(
+    hash: $status-brand-hash,
+    each: message-brand-style
+  )

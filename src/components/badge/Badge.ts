@@ -6,9 +6,10 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_NUMBER,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
+  RAW_STATUS_ARRAY,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
@@ -20,15 +21,22 @@ export default Yox.define({
   template,
 
   propTypes: {
+    type: {
+      type: oneOf(RAW_TYPE_ARRAY),
+      value: RAW_TYPE_ERROR,
+    },
+    status: {
+      type: oneOf(RAW_STATUS_ARRAY),
+    },
     text: {
       type: RAW_STRING,
     },
     count: {
-      type: RAW_NUMBER,
+      type: RAW_NUMERIC,
     },
     max: {
-      type: RAW_NUMBER,
-      value: 999,
+      type: RAW_NUMERIC,
+      value: 99,
     },
     dot: {
       type: RAW_BOOLEAN,
@@ -41,13 +49,6 @@ export default Yox.define({
     ripple: {
       type: RAW_BOOLEAN,
       value: FALSE,
-    },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_ERROR,
-    },
-    status: {
-      type: oneOf(RAW_TYPE_ARRAY),
     },
     className: {
       type: RAW_STRING,

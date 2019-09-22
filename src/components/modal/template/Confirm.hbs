@@ -1,0 +1,27 @@
+<Dialog
+  ref="dialog"
+  mask
+  maskClosable="{{false}}"
+  closable="{{closable}}"
+  title="{{title}}"
+  width="400"
+  className="${prefix}modal-confirm"
+>
+  {{content}}
+  <template slot="footer">
+    <Button
+      slot="footer"
+      type="{{cancelType}}"
+      on-click="cancel()"
+    >
+      {{cancelText}}
+    </Button>
+    <Button
+      slot="footer"
+      type="{{okType}}"
+      on-click="ok()"
+    >
+      {{okText}}
+    </Button>
+  </template>
+</Dialog>

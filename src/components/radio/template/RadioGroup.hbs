@@ -1,9 +1,9 @@
 <div
 class="{{#if button}}${prefix}radio-button
 
-  {{#if status}} ${prefix}radio-button-{{status}}
-  {{/if}}
-
+  {{!
+    size 只有在 button 状态时生效
+  }}
   {{#if size}} ${prefix}radio-button-{{size}}
   {{/if}}
 
@@ -12,12 +12,6 @@ class="{{#if button}}${prefix}radio-button
   {{/if}}
 
 {{else}}${prefix}radio-group
-
-  {{#if status}} ${prefix}radio-group-{{status}}
-  {{/if}}
-
-  {{#if size}} ${prefix}radio-group-{{size}}
-  {{/if}}
 
   {{#if disabled}} ${prefix}radio-group-disabled
   {{else}} ${prefix}radio-group-enabled

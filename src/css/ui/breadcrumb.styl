@@ -1,32 +1,29 @@
 {$selector-breadcrumb}
   font-size $ui-font-size
+  line-height $ui-single-line-height
 
 {$selector-breadcrumb-separator}
+  user-select none
   color $breadcrumb-separator-color
   margin 0 $breadcrumb-separator-gap
 
 {$selector-breadcrumb-link}
   user-select none
-  color $brand-text
+  color $brand-text-secondary
   cursor $cursor-clickable
+  font-weight bold
   transition color .3s
 
   &:hover
     color $brand-link
 
-{$selector-breadcrumb-item}
-  > a
-    color $brand-text
-    font-weight normal
-    text-decoration none
+{$selector-breadcrumb-text}
+  color $brand-text-secondary
+  cursor $cursor-text
 
-  &:last-child
-    {$selector-breadcrumb-link}
-      cursor $cursor-text
-      font-weight bold
+{$selector-breadcrumb-icon}
+  margin-right $ui-icon-text-gap
 
-      &:hover
-        color $brand-text
-
-    {$selector-breadcrumb-separator}
-      display none
+{$selector-breadcrumb-item} > a
+  color $brand-text-secondary
+  text-decoration none

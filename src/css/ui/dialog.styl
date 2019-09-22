@@ -15,14 +15,6 @@
   > {$selector-dialog-mask}
     opacity 1
 
-{$selector-dialog-fade}
-  > {$selector-dialog-wrapper}
-    opacity 0
-    transform translate(-50%, -50%) scale(.4)
-
-  > {$selector-dialog-mask}
-    opacity 0
-
 {$selector-dialog-mask}
   position absolute
   top 0
@@ -45,7 +37,6 @@
   opacity 0
 
   border-radius $border-radius-default
-  min-width $dialog-wrapper-min-width
   background-color $dialog-wrapper-bg-color
   box-shadow $brand-card-shadow
   transition transform .3s, opacity .3s
@@ -53,8 +44,9 @@
 {$selector-dialog-title}
   ui-ellipsis()
 
-  color $dialog-title-color
-  font-size $dialog-title-font-size
+  color $brand-text-important
+  font-size $font-size-large
+  font-weight 500
   padding $dialog-title-padding-vertical $dialog-padding-horizontal
   border-bottom 1px solid $brand-border
 
@@ -73,14 +65,14 @@
     color $brand-close-color-hover
 
 {$selector-dialog-content}
-  font-size $dialog-content-font-size
+  font-size $font-size-default
   line-height $ui-multiple-line-height
   overflow-y auto
   padding $dialog-content-padding-vertical $dialog-padding-horizontal
 
-{$selector-dialog-actions}
+{$selector-dialog-footer}
   border-top 1px solid $brand-border
   text-align right
-  padding $dialog-actions-padding-vertical $dialog-padding-horizontal
+  padding $dialog-footer-padding-vertical $dialog-footer-padding-horizontal
 
 

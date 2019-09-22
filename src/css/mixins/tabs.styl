@@ -1,10 +1,9 @@
 size-size-style(style)
   {$selector-tabs-tab}
-    ui-set('padding-left', style['padding-horizontal'])
-    ui-set('padding-right', style['padding-horizontal'])
     ui-set('font-size', style['font-size'])
     ui-set('height', style['height'])
     ui-set('line-height', style['height'])
+    ui-set('padding', 0 style['padding-horizontal'])
 
   {$selector-tabs-tab-close-icon}
     ui-set('margin-top', 0.5 * (style['height'] - $tabs-close-size))

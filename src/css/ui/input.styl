@@ -5,27 +5,7 @@
   + {$selector-input}
     margin-left $ui-horizontal-gap
 
-{$selector-input-single-line}
-  &{$selector-input}
-    ui-connect(
-      hash: $status-brand-hash,
-      each: @(style) {
-        input-border-style($selector-input-el, style['color'], style['shadow-color'])
-      }
-    )
-    ui-connect(
-      hash: $input-size-hash,
-      each: input-single-line-size-style
-    )
-
-{$selector-input-multiple-line}
-  &{$selector-input}
-    ui-connect(
-      hash: $status-brand-hash,
-      each: @(style) {
-        input-border-style($selector-textarea-el, style['color'], style['shadow-color'])
-      }
-    )
+  ui-input()
 
 {$selector-input-el},
 {$selector-textarea-el}
@@ -51,15 +31,6 @@
 
     if $ui-shadow-radius > 0
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
-
-{$selector-input-el}
-  padding 0 $input-el-padding-horizontal
-
-{$selector-textarea-el}
-  resize none
-  line-height 1.5
-  padding $input-el-padding-vertical $input-el-padding-horizontal
-  ui-scrollbar()
 
 {$selector-input-prefix},
 {$selector-input-suffix}
@@ -167,11 +138,12 @@
   border-top-right-radius 0
   border-bottom-right-radius 0
 
-{$selector-input-disabled}
+{$selector-input-disabled},
+{$selector-textarea-disabled}
   background-color $brand-bg-disabled
 
-  {$selector-input-el},
-  {$selector-textarea-el}
-    cursor $cursor-disabled
-    color $brand-text-disabled
-    border-color $brand-border-disabled
+{$selector-input-disabled} {$selector-input-el},
+{$selector-textarea-disabled} {$selector-textarea-el}
+  cursor $cursor-disabled
+  color $brand-text-disabled
+  border-color $brand-border-disabled

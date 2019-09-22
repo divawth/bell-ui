@@ -9,9 +9,9 @@ interface Config {
 
 let config: Config = {}
 
-function addNotification(type: string,  data: Data, onClose?: Function) {
+function addNotification(status: string,  data: Data, onClose?: Function) {
 
-  let props: Data = { type }
+  let props: Data = { status }
 
   // 先写 config，可支持 data 覆盖全局配置
   Yox.object.extend(props, config)

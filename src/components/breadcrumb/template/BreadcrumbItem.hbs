@@ -7,24 +7,42 @@ class="${prefix}breadcrumb-item
 {{/if}}
 >
 
-  {{#if to}}
+  {{#partial content}}
+    {{#if hasSlot('icon')}}
+      <span class="${prefix}breadcrumb-icon">
+        <slot name="icon" />
+      </span>
+    {{/if}}
+    <slot name="children" />
+  {{/partial}}
+
+  {{#if href && !last}}
     <a
       class="${prefix}breadcrumb-link"
-      href="{{to}}"
+      href="{{href}}"
+      {{#if target}}
+        target="{{target}}"
+      {{/if}}
     >
-      <slot name="children" />
+      {{> content}}
     </a>
   {{else}}
     <span
-      class="${prefix}breadcrumb-link"
-      on-click="click.breadcrumbItem"
+      {{#if last}}
+        class="${prefix}breadcrumb-text"
+      {{else}}
+        class="${prefix}breadcrumb-link"
+        on-click="click.breadcrumbItem"
+      {{/if}}
     >
-      <slot name="children" />
+      {{> content}}
     </span>
   {{/if}}
 
-  <span class="${prefix}breadcrumb-separator">
-    {{separator}}
-  </span>
+  {{#if !last}}
+    <span class="${prefix}breadcrumb-separator">
+      {{separator}}
+    </span>
+  {{/if}}
 
 </span>

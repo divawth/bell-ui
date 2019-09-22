@@ -66,7 +66,7 @@ export default {
     </Badge>
     <br><br>
     <Badge count="212211">
-      <Button type="info">
+      <Button type="primary">
         按钮
       </Button>
     </Badge>
@@ -117,13 +117,11 @@ export default {
 export default {
   template: `
     <div>
-      <Badge dot status="primary" />
       <Badge dot status="success" />
       <Badge dot status="error" />
       <Badge dot status="info" />
       <Badge dot status="warning" />
       <br>
-      <Badge dot status="primary" text="Primary" />
       <br>
       <Badge dot status="success" text="Success" />
       <br>
@@ -148,13 +146,10 @@ export default {
 export default {
   template: `
     <div>
-      <Badge status="primary" dot ripple />
       <Badge status="success" dot ripple />
       <Badge status="error" dot ripple />
       <Badge status="info" dot ripple />
       <Badge status="warning" dot ripple />
-      <br>
-      <Badge status="primary" dot ripple text="Primary" />
       <br>
       <Badge status="success" dot ripple text="Success" />
       <br>
@@ -197,11 +192,19 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-count | 显示的数字 | number | - | -
-text | 显示文本 | string | - | -
-max | 展示封顶的数字值 | number | - | 999
-dot | 不展示数字，只有一个小红点 | boolean | - | false
-hidden | 是否隐藏 | boolean | - | false
-ripple | 是否有发散动画 | boolean | - | false
-type | 风格 | string | primary, info, success, warning, error | error
-status | 状态 | string | primary, info, success, warning, error | -
+count | 数值 | numeric | - | -
+max | 封顶的数值，超过显示为 `${max}+` | numeric | - | `99`
+text | 文本 | string | - | -
+dot | 不展示数值，只有一个小红点 | boolean | - | `false`
+hidden | 是否隐藏 | boolean | - | `false`
+ripple | 是否有发散动画 | boolean | - | `false`
+type | 风格 | string | `primary`, `info`, `success`, `warning`, `error` | `error`
+status | 状态 | string | `info`, `success`, `warning`, `error` | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> Slots
+
+名称 | 说明
+---|---
+children | 需要在右上角加徽标的内容

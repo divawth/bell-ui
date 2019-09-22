@@ -20,18 +20,16 @@
   height 100%
   overflow hidden
   line-height 1
+  opacity 0
+  transition opacity .3s
 
-  &:before
-    opacity 0
-    transition opacity .3s
-
-  &{$selector-rate-icon-active}:before
+  &{$selector-rate-icon-active}
     opacity 1
 
 {$selector-rate-text}
   margin-left $rate-icon-gap
-  font-size $rate-text-font-size
-  color $rate-text-color
+  font-size $font-size-default
+  color $brand-text
   vertical-align top
 
 {$selector-rate-live}

@@ -39,7 +39,17 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts',
+            outputPath: 'font',
+          }
+        }
+      },
+      {
+        test: /\.png$/i,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'img',
           }
         }
       },
@@ -77,7 +87,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts'],
     alias: {
-      'Yox': 'yox'
+      'Yox': 'yox',
+      '@css': path.resolve(__dirname, '..', 'src', 'css')
     }
   },
   externals: {

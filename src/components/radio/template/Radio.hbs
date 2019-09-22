@@ -1,9 +1,6 @@
 <label
 class="${prefix}radio
 
-{{#if status}} ${prefix}radio-{{status}}{{/if}}
-{{#if size}} ${prefix}radio-{{size}}{{/if}}
-
 {{#if disabled}} ${prefix}radio-disabled
 {{else}} ${prefix}radio-enabled
 {{/if}}
@@ -17,7 +14,7 @@ class="${prefix}radio
 {{/if}}
 
 {{#if !disabled}}
-  on-click="handleClick()"
+  on-click="set('checked', true)"
 {{/if}}
 >
 
@@ -30,8 +27,8 @@ class="${prefix}radio
       {{/if}}
       value="{{value}}"
       disabled="{{disabled}}"
-      on-focus="handleFocus()"
-      on-blur="handleBlur()"
+      on-focus="set('isFocus', true)"
+      on-blur="set('isFocus', false)"
     >
   </span>
 

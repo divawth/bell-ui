@@ -26,11 +26,7 @@ import {
 } from '../util'
 
 const TEXT_TYPE_PASSWORD = 'password'
-const TEXT_TYPE_TEXTAREA = 'textarea'
 const TEXT_TYPE_TEXT = 'text'
-const ROW_HEIGHT = 21
-// 上下 5px padding + 1px border
-const PADDING_VERTICAL = 12
 
 export default Yox.define({
 
@@ -44,11 +40,8 @@ export default Yox.define({
       type: oneOf(RAW_SIZE_COMMON),
       value: RAW_DEFAULT,
     },
-    autoSize: {
-      type: [RAW_BOOLEAN, RAW_OBJECT],
-    },
     type: {
-      type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_TEXTAREA, TEXT_TYPE_PASSWORD]),
+      type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_PASSWORD]),
       value: TEXT_TYPE_TEXT,
     },
     status: {
@@ -56,10 +49,6 @@ export default Yox.define({
     },
     placeholder: {
       type: RAW_STRING,
-    },
-    rows: {
-      type: RAW_NUMERIC,
-      value: 1
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -78,9 +67,6 @@ export default Yox.define({
     },
     suffix: {
       type: RAW_STRING,
-    },
-    wrap: {
-      type: oneOf(['hard', 'soft']),
     },
     spellCheck: {
       type: RAW_BOOLEAN,
@@ -111,13 +97,8 @@ export default Yox.define({
       currentType: this.get('type'),
 
       TEXT_TYPE_TEXT,
-      TEXT_TYPE_TEXTAREA,
       TEXT_TYPE_PASSWORD,
     }
-  },
-
-  filters: {
-    isBoolean: Yox.is.boolean
   },
 
   watchers: {
@@ -149,27 +130,6 @@ export default Yox.define({
       this.set('value', '')
       this.fire('clear.input')
     },
-  },
-
-  computed: {
-    textareaStyle() {
-      let size = this.get('autoSize')
-      if (size) {
-        let rows = this.get('rows')
-        let value = this.get('value')
-        if (Yox.is.object(size)) {
-          rows = value ? value.split('\n').length : size.minRows
-          return `min-height: ${size.minRows * ROW_HEIGHT + PADDING_VERTICAL}px;max-height: ${size.maxRows * ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
-        }
-        else {
-          rows = value ? value.split('\n').length : 1
-          return `min-height: ${ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
-        }
-      }
-      else {
-        return `height: ${this.get('rows') * ROW_HEIGHT + PADDING_VERTICAL}px;`
-      }
-    }
   },
 
   afterMount() {

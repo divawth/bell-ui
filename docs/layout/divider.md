@@ -15,13 +15,23 @@ export default {
   height: 500,
   template: `
     <div>
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
       <Divider />
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
-      <Divider>With Text</Divider>
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
+      <Divider>
+        With Text
+      </Divider>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
       <Divider dashed />
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
     </div>
   `
 }
@@ -36,15 +46,19 @@ export default {
     <div>
       Text
       <Divider vertical />
-      <a href="#">Link</a>
+      <a href="#">
+        Link
+      </a>
       <Divider vertical />
-      <a href="#">Link</a>
+      <a href="#">
+        Link
+      </a>
     </div>
   `
 }
 ```
 
-> align 设置文字的位置
+> 文字的位置
 
 ```js
 export default {
@@ -52,11 +66,25 @@ export default {
   height: 350,
   template: `
     <div>
-      <Divider align="left">Left Text</Divider>
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
-      <Divider align="center">Center Text</Divider>
-      <p>Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.</p>
-      <Divider align="right" dashed>Right Text</Divider>
+      <Divider align="left">
+        Left Text
+      </Divider>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
+      <Divider align="center">
+        <Icon
+          name="alert"
+          size="16"
+          color="#999"
+        />
+      </Divider>
+      <p>
+        Steven Paul Jobs was an American entrepreneur and business magnate. He was the chairman, chief executive officer, and a co-founder of Apple Inc.
+      </p>
+      <Divider align="right" dashed>
+        Right Text
+      </Divider>
     </div>
   `
 }
@@ -68,6 +96,14 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-vertical | 是否是垂直的分割线 | boolean | - | false
-dashed | 是否虚线 | boolean | - | false
-align | 分割线标题的位置 | string | center, left, right | center
+vertical | 是否是垂直分割线 | boolean | - | `false`
+dashed | 分割线是否是虚线 | boolean | - | `false`
+align | 分割线内容的位置 | string | `center`, `left`, `right` | `center`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> Slots
+
+参数 | 说明
+---|---
+children | 自定义内容

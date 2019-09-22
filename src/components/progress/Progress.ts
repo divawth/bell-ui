@@ -9,6 +9,7 @@ import {
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
+  RAW_STATUS_ARRAY,
 } from '../constant'
 
 import {
@@ -22,13 +23,12 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 0,
     },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf(RAW_STATUS_ARRAY),
     },
     thickness: {
       type: RAW_STRING,
-      value: 10,
+      value: 8,
     },
     inside: {
       type: RAW_BOOLEAN,
@@ -38,7 +38,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    animated: {
+    active: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

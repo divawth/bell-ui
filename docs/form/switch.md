@@ -4,7 +4,7 @@
 export default {
   template: `
     <div>
-      <Switch model="checked" />
+      <Switch model="checked" on-change="change()" />
       <p>
         {{checked}}
       </p>
@@ -14,26 +14,21 @@ export default {
     return {
       checked: true
     }
+  },
+  watchers: {
+    checked: function (value) {
+      console.log(value)
+    }
+  },
+  methods: {
+    change: function (event, data) {
+      console.log(event, data)
+    }
   }
 }
 ```
 
-> 状态
-
-```js
-export default {
-  template: `
-    <div>
-      <Switch checked status="info" />
-      <Switch checked status="success" />
-      <Switch checked status="warning" />
-      <Switch checked status="error" />
-    </div>
-  `
-}
-```
-
-> 两种尺寸
+> 两种大小
 
 ```js
 export default {
@@ -62,10 +57,10 @@ export default {
     </Switch>
     <Switch>
       <template slot="on">
-        开开开开
+        On
       </template>
       <template slot="off">
-        关关关关
+        Off
       </template>
     </Switch>
   </div>
@@ -89,15 +84,8 @@ export default {
 export default {
   template: `
     <div>
-      <Switch disabled="{{disabled}}" />
-      <Switch status="info" disabled="{{disabled}}" />
-      <Switch status="success" disabled="{{disabled}}" />
-      <Switch status="warning" disabled="{{disabled}}" />
-      <Switch status="error" disabled="{{disabled}}" />
-      <br><br>
-      <Button type="primary" on-click="toggle('disabled')">
-        {{disabled ? 'Enable' : 'Disable'}}
-      </Button>
+      <Switch disabled />
+      <Switch disabled checked />
     </div>
   `
 }
@@ -111,7 +99,7 @@ export default {
     <div>
       <Switch loading size="small" />
       <Switch loading size="small" checked />
-      <br>
+      <br><br>
       <Switch loading />
       <Switch loading checked />
     </div>
@@ -125,9 +113,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked / model | 是否选中 | boolean | - | `false`
+checked / `model` | 是否选中 | boolean | - | `false`
 size | 大小 | string | `default`, `small` | `default`
-status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | `false`
 loading | 是否正在加载 | boolean | - | `false`
 className | 自定义类名 | string | - | -
@@ -144,4 +131,4 @@ off | 未选中时的内容
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 选中状态变化后触发 | data.checked
+change | `checked` 变化后触发 | `data.checked`

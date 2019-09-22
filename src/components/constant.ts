@@ -75,6 +75,13 @@ export const RAW_THEME_ARRAY = [
   RAW_LIGHT,
 ]
 
+export const RAW_STATUS_ARRAY = [
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR,
+]
+
 export const RAW_TYPE_ARRAY = [
   RAW_TYPE_PRIMARY,
   RAW_TYPE_INFO,

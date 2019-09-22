@@ -4,11 +4,12 @@ import template from './template/Avatar.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_DEFAULT,
   RAW_SIZE_ARRAY,
-  RAW_SHAPE_CIRCLE,
+  RAW_BOOLEAN,
 } from '../constant'
 
 import {
@@ -23,12 +24,13 @@ export default Yox.define({
   template,
 
   propTypes: {
-    shape: {
-      type: oneOf([RAW_SHAPE_CIRCLE]),
-    },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
+    },
+    circle: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     text: {
       type: RAW_STRING,
@@ -36,7 +38,13 @@ export default Yox.define({
     src: {
       type: RAW_STRING,
     },
-    srcset: {
+    srcSet: {
+      type: RAW_STRING,
+    },
+    alt: {
+      type: RAW_STRING,
+    },
+    color: {
       type: RAW_STRING,
     },
     fontSize: {
@@ -44,10 +52,6 @@ export default Yox.define({
     },
     backgroundColor: {
       type: RAW_STRING,
-    },
-    color: {
-      type: RAW_STRING,
-      value: '#fff',
     },
     className: {
       type: RAW_STRING,

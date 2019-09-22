@@ -3,7 +3,6 @@ import Yox from 'yox'
 import template from './template/Dialog.hbs'
 
 import {
-  BODY,
   TRUE,
   FALSE,
   RAW_STRING,
@@ -16,7 +15,6 @@ import {
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}dialog-visible'
-const CLASS_FADE = '${prefix}dialog-fade'
 
 export default Yox.define({
 
@@ -27,7 +25,6 @@ export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING,
-      value: '温馨提示',
     },
     visible: {
       type: RAW_BOOLEAN,
@@ -43,11 +40,11 @@ export default Yox.define({
     },
     maskClosable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
+      value: TRUE,
     },
     width: {
       type: RAW_NUMERIC,
-      value: 320,
+      value: 500,
     },
     className: {
       type: RAW_STRING,
@@ -65,14 +62,12 @@ export default Yox.define({
         Yox.dom.addClass(element, CLASS_VISIBLE)
       }
       else {
-        Yox.dom.addClass(element, CLASS_FADE)
+        Yox.dom.removeClass(element, CLASS_VISIBLE)
         // 动画一般作用在 wrapper 上面
         // 监听 $el 没用的
         onTransitionEnd(
           me.$refs.wrapper as HTMLElement,
           function () {
-            Yox.dom.removeClass(element, CLASS_VISIBLE)
-            Yox.dom.removeClass(element, CLASS_FADE)
             me.fire('close.dialog')
           }
         )
@@ -88,16 +83,5 @@ export default Yox.define({
       this.set('visible', FALSE)
     }
   },
-
-  afterMount() {
-    const element = this.$el
-    if (element.parentNode !== BODY) {
-      Yox.dom.append(BODY, element)
-    }
-  },
-
-  beforeDestroy() {
-    Yox.dom.remove(BODY, this.$el)
-  }
 
 })

@@ -22,6 +22,8 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 name | 图标名称 | string | - | -
-size | 图标的大小，单位是 px | string | - | 14
+size | 图标的大小，单位是 px | string | - | `14`
 color | 图标的颜色 | string | - | -
-spin | 是否展示图标动画 | boolean | - | false
+spin | 是否展示图标动画 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

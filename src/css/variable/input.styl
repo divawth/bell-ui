@@ -1,15 +1,10 @@
 $selector-input = $selector-prefix + '-input'
-$selector-textarea = $selector-prefix + '-textarea'
 
-$selector-input-enabled = $selector-input + '-enabled'
 $selector-input-disabled = $selector-input + '-disabled'
 $selector-input-no-value = $selector-input + '-no-value'
 $selector-input-has-value = $selector-input + '-has-value'
-$selector-input-single-line = $selector-input + '-single-line'
-$selector-input-multiple-line = $selector-input + '-multiple-line'
 
 $selector-input-el = $selector-input + '-el'
-$selector-textarea-el = $selector-textarea + '-el'
 
 $selector-input-el-with-prefix = $selector-input-el + '-with-prefix'
 $selector-input-el-with-suffix = $selector-input-el + '-with-suffix'
@@ -23,15 +18,11 @@ $selector-input-prefix = $selector-input + '-prefix'
 $selector-input-suffix = $selector-input + '-suffix'
 $selector-input-secure = $selector-input + '-secure'
 $selector-input-clear = $selector-input + '-clear'
-$selector-input-autosize = $selector-input + '-autosize'
 
 $selector-input-prefix-icon = $selector-input + '-prefix-icon'
 $selector-input-suffix-icon = $selector-input + '-suffix-icon'
 $selector-input-secure-icon = $selector-input + '-secure-icon'
 $selector-input-clear-icon = $selector-input + '-clear-icon'
-
-$input-el-padding-horizontal = 10px
-$input-el-padding-vertical = 5px
 
 $input-prepend-append-font-size = 12px
 $input-prepend-append-color = #909399
@@ -41,14 +32,20 @@ $input-prepend-append-padding-horizontal = 10px
 $input-size-hash = {
   default: {
     height: $height-default,
+    font-size: $font-size-default,
+    padding-vertical: $padding-vertical-default,
     padding-horizontal: $padding-horizontal-default,
   },
   small: {
     height: $height-small,
+    font-size: $font-size-small,
+    padding-vertical: $padding-vertical-small,
     padding-horizontal: $padding-horizontal-small,
   },
   large: {
     height: $height-large,
+    font-size: $font-size-large,
+    padding-vertical: $padding-vertical-large,
     padding-horizontal: $padding-horizontal-large,
   },
 }

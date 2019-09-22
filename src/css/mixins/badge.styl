@@ -3,6 +3,10 @@ badge-brand-style(style)
   > {$selector-badge-dot}
     ui-set('background-color', style['color'])
 
+badge-status-brand-style(style)
+  > {$selector-badge-dot}
+    ui-set('background-color', style['color'])
+
   &{$selector-badge-ripple}
     > {$selector-badge-dot}:after
       ui-set('border-color', style['color'])
@@ -11,4 +15,10 @@ ui-badge()
   ui-connect(
     hash: $badge-brand-hash,
     each: badge-brand-style
+  )
+
+ui-badge-status()
+  ui-connect(
+    hash: $status-brand-hash,
+    each: badge-status-brand-style
   )

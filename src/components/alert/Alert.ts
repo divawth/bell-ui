@@ -6,12 +6,13 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY,
+  RAW_STATUS_ARRAY,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
+  RAW_THEME_ARRAY,
+  RAW_LIGHT,
 } from '../constant'
 
 import {
@@ -23,15 +24,19 @@ export default Yox.define({
   template,
 
   propTypes: {
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf(RAW_STATUS_ARRAY),
+      value: RAW_TYPE_WARNING,
     },
-    closable: {
+    icon: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    icon: {
+    banner: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    closable: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -49,7 +54,6 @@ export default Yox.define({
 
   data() {
     return {
-      RAW_TYPE_PRIMARY,
       RAW_TYPE_INFO,
       RAW_TYPE_SUCCESS,
       RAW_TYPE_WARNING,

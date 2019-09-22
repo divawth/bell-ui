@@ -6,13 +6,11 @@
 
 {$selector-notification}
   position relative
-  overflow hidden
   opacity 0
-  font-size $ui-font-size
   padding $notification-padding-vertical $notification-padding-horizontal
   border-radius $border-radius-default
   box-sizing border-box
-  box-shadow $brand-layer-shadow
+  box-shadow $brand-message-shadow
   background-color $brand-bg
   transform translateX(100%)
   transition opacity .2s, transform .2s
@@ -22,13 +20,8 @@
   + {$selector-notification}
     margin-top $notification-vertical-gap
 
-  &:before
-    content ''
-    position absolute
-    top 0
-    bottom 0
-    left 0
-    width $notification-type-width
+{$selector-notification-with-icon}
+  padding-left $notification-padding-horizontal + $notification-icon-font-size + $ui-icon-text-gap
 
 {$selector-notification-with-close}
   padding-right $notification-close-right + $notification-close-font-size
@@ -40,15 +33,22 @@
 {$selector-notification-title}
   ui-ellipsis()
   color $brand-text-important
-  line-height $ui-multiple-line-height
+  font-size $font-size-large
+  line-height $ui-single-line-height
 
   + {$selector-notification-content}
     margin-top $notification-title-content-gap
 
 {$selector-notification-content}
-  font-size 90%
-  color $brand-text-secondary
+  color $brand-text
+  font-size $font-size-default
   line-height $ui-multiple-line-height
+
+{$selector-notification-icon}
+  position absolute
+  left $notification-padding-horizontal
+  top $notification-icon-top
+  font-size $notification-icon-font-size
 
 {$selector-notification-close}
   position absolute

@@ -7,26 +7,59 @@ export default {
   template: `
     <div>
       <div>
-        <Avatar size="huge" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          size="huge"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar size="large" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          size="large"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          size="small"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          size="tiny"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
       </div>
       <div style="margin-top: 10px;">
-        <Avatar shape="circle" size="huge" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          circle
+          size="huge"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar shape="circle" size="large" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          circle
+          size="large"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar shape="circle" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          circle
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar shape="circle" size="small" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          circle
+          size="small"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
 
-        <Avatar shape="circle" size="tiny" src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+        <Avatar
+          circle
+          size="tiny"
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        />
       </div>
     </div>
   `
@@ -38,37 +71,53 @@ export default {
 ```js
 export default {
   template: `
-    <div class="demo-avatar">
+    <div>
       <Avatar>
-        <Icon name="person" size="26" slot="icon" />
+        <Icon
+          slot="icon"
+          name="person"
+          size="26"
+        />
       </Avatar>
       <Avatar text="U" />
       <Avatar text="USER" />
       <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
       <Avatar backgroundColor="#fde3cf" color="#f56a00" text="U" />
-      <Avatar style="background-color: #87d068">
-        <Icon name="person" size="26" slot="icon" />
+      <Avatar backgroundColor="#87d068">
+        <Icon
+          slot="icon"
+          name="person"
+          size="26"
+        />
       </Avatar>
     </div>
   `
 }
 ```
 
-> 带徽标的头像
+> 带角标的头像
 
 ```js
 export default {
   template: `
-    <div class="demo-avatar-badge">
+    <div>
       <Badge count="1">
         <Avatar>
-          <Icon name="person" size="26" slot="icon" />
+          <Icon
+            slot="icon"
+            name="person"
+            size="26"
+          />
         </Avatar>
       </Badge>
       <br><br>
       <Badge dot>
         <Avatar>
-          <Icon name="person" size="26" slot="icon" />
+          <Icon
+            slot="icon"
+            name="person"
+            size="26"
+          />
         </Avatar>
       </Badge>
     </div>
@@ -82,8 +131,16 @@ export default {
 export default {
   template: `
     <div class="demo-avatar">
-      <Avatar size="large" style="margin-right: 10px;" backgroundColor="{{color}}" text="{{user}}"></Avatar>
-      <Button size="small" on-click="handleChange()">Change</Button>
+      <Avatar
+        size="large"
+        text="{{user}}"
+        backgroundColor="{{color}}"
+        style="margin-right: 10px;"
+      />
+      <br><br>
+      <Button size="small" on-click="handleChange()">
+        Change
+      </Button>
     </div>
   `,
   data () {
@@ -101,8 +158,8 @@ export default {
       let user = index < USER_LIST.length - 1 ? USER_LIST[ index + 1 ] : USER_LIST[ 0 ]
       let color = index < COLOR_LIST.length - 1 ? COLOR_LIST[ index + 1 ] : COLOR_LIST[ 0 ]
       this.set({
-        user,
-        color
+        user: user,
+        color: color
       })
     }
   }
@@ -115,17 +172,26 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-size | 大小 | string | default, huge, large, small, tiny | default
-shape | 形状 | string | circle | -
+size | 大小 | string | `default`, `huge`, `large`, `small`, `tiny` | `default`
+circle | 是否为圆形 | boolean | - | `false`
 text | 文字 | string | - | -
 src | 图片地址 | string | - | -
-srcset | srcset | string | - | -
+srcSet | 原生 `srcset` 属性 | string | - | -
+alt | 原生 `alt` 属性 | string | - | -
+color | 文字颜色 | string | - | -
+fontSize | 文字大小 | numeric | - | -
 backgroundColor | 背景色 | string | - | -
-color | 文字颜色 | string | - | #fff
-fontSize | 图标大小 | number | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Slots
 
 名称 | 说明
 ---|---
 icon | 设置 icon
+
+> Events
+
+名称 | 说明
+---|---
+error | 图片加载失败时触发

@@ -129,6 +129,9 @@ export default Yox.define({
   },
 
   watchers: {
+    size() {
+      this.updateIndicator()
+    },
     value(value) {
       this.updateIndicator()
       this.fire(

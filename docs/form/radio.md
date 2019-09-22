@@ -9,23 +9,17 @@
 ```js
 export default {
   template: `
-  <div>
-    <Radio value="cn" model="checked1" on-change="change()">
-      中国
-    </Radio>
-    <Radio status="success" value="usa" model="checked2" on-change="change()">
-      美国
-    </Radio>
-  </div>
+  <Radio value="cn" model="checked" on-change="change()">
+    中国
+  </Radio>
   `,
   data: function () {
     return {
-      checked1: false,
-      checked2: false,
+      checked: false,
     }
   },
   watchers: {
-    radio: function (value) {
+    checked: function (value) {
       console.log(value)
     }
   },
@@ -64,364 +58,151 @@ export default {
 }
 ```
 
-> 状态
-
-```js
-export default {
-  template: `
-    <div>
-      <RadioGroup name="single" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="success" name="single" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="warning" name="single1" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="info" name="single2" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="error" name="single3" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-    </div>
-  `,
-  data: function () {
-    return {
-      radio: ''
-    }
-  }
-}
-```
-
-> size 修改 大小
-
-```js
-export default {
-  template: `
-    <div>
-      <RadioGroup size="small" name="single" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup name="single" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup size="large" name="single" model="radio">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="other">
-          非中国
-        </Radio>
-      </RadioGroup>
-    </div>
-  `,
-  data: function () {
-    return {
-      radio: ''
-    }
-  }
-}
-```
-
-> disabled 禁用状态
+> 禁用状态
 
 ```js
 export default {
   template: `
   <div>
-    <RadioGroup disabled status="success" name="countrydisabled" model="radio">
-      <Radio checked disabled value="china">
-        中国
-      </Radio>
-      <Radio value="other">
-        非中国
-      </Radio>
-    </RadioGroup>
-    <br>
-    <RadioGroup status="warning" name="countrydisabled2" model="radio">
-      <Radio value="china" checked>
-        中国
-      </Radio>
-      <Radio value="feiChina" disabled>
-        非中国
-      </Radio>
-    </RadioGroup>
+    <Radio checked disabled value="china">
+      中国
+    </Radio>
+    <Radio checked value="usa">
+      美国
+    </Radio>
+    <br><br>
+    <Radio disabled value="china">
+      中国
+    </Radio>
+    <Radio value="usa">
+      美国
+    </Radio>
   </div>
-  `,
-  data: function () {
-    return {
-      radio: ''
-    }
-  }
+  `
 }
 ```
 
-> vertical 垂直显示
+> 垂直显示
 
 ```js
 export default {
   template: `
-  <RadioGroup name="single" model="radio" vertical>
-    <Radio value="china" checked>
-      中国
-    </Radio>
-    <Radio value="Am">
-      非洲
+  <RadioGroup name="single" model="value" vertical>
+    <Radio value="1" checked>
+      亚洲
     </Radio>
     <Radio value="2">
-      Am
+      欧洲
+    </Radio>
+    <Radio value="3">
+      非洲
     </Radio>
   </RadioGroup>
   `,
   data: function () {
     return {
-      radio: ''
+      value: ''
     }
   }
 }
 ```
 
-> 设置默认选中状态
+> 按钮形态
 
 ```js
 export default {
   template: `
-  <RadioGroup name="single" model="radio" vertical>
-    <Radio value="china" checked>
-      中国
-    </Radio>
-    <Radio value="Am">
-      非洲
+  <RadioGroup button name="single" model="value">
+    <Radio value="1" checked>
+      亚洲
     </Radio>
     <Radio value="2">
-      Am
+      欧洲
     </Radio>
-  </RadioGroup>
-  `,
-  data: function () {
-    return {
-      radio: ''
-    }
-  }
-}
-```
-
-> 设置按钮形态
-
-```js
-export default {
-  template: `
-  <RadioGroup button name="single" model="country">
-    <Radio value="c">
-      中国
-    </Radio>
-    <Radio value="f">
+    <Radio value="3">
       非洲
     </Radio>
-    <Radio value="l">
-      菲律宾
-    </Radio>
   </RadioGroup>
   `,
   data: function () {
     return {
-      country: ''
+      value: ''
     }
   }
 }
 ```
 
-> 设置按钮形态下的按钮大小
+> 按钮形态下的按钮大小
 
 ```js
 export default {
   template: `
   <div>
-    <RadioGroup size="large" button name="country" model="value">
-      <Radio value="china">
-        中国
+    <RadioGroup size="large" button name="single" model="value">
+      <Radio value="1" checked>
+        亚洲
       </Radio>
-      <Radio value="feizhou">
+      <Radio value="2">
+        欧洲
+      </Radio>
+      <Radio value="3">
         非洲
-      </Radio>
-      <Radio value="other">
-        其他
       </Radio>
     </RadioGroup>
     <br><br>
-    <RadioGroup button name="country" model="value">
-      <Radio value="china">
-        中国
+    <RadioGroup button name="single" model="value">
+      <Radio value="1" checked>
+        亚洲
       </Radio>
-      <Radio value="feizhou">
+      <Radio value="2">
+        欧洲
+      </Radio>
+      <Radio value="3">
         非洲
-      </Radio>
-      <Radio value="other">
-        其他
       </Radio>
     </RadioGroup>
     <br><br>
-    <RadioGroup size="small" button name="country" model="value">
-      <Radio value="china">
-        中国
+    <RadioGroup size="small" button name="single" model="value">
+      <Radio value="1" checked>
+        亚洲
       </Radio>
-      <Radio value="feizhou">
+      <Radio value="2">
+        欧洲
+      </Radio>
+      <Radio value="3">
         非洲
-      </Radio>
-      <Radio value="other">
-        其他
       </Radio>
     </RadioGroup>
   </div>
   `,
   data: function () {
     return {
-      country: ''
+      value: ''
     }
   }
 }
 ```
 
-> 设置按钮形态下的风格
+> 按钮形态下的禁用
 
 ```js
 export default {
   template: `
-    <div>
-      <RadioGroup button name="country" model="value">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="feizhou">
-          非洲
-        </Radio>
-        <Radio value="other">
-          其他
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="info" button name="country" model="value">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="feizhou">
-          非洲
-        </Radio>
-        <Radio value="other">
-          其他
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="success" button name="country" model="value">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="feizhou">
-          非洲
-        </Radio>
-        <Radio value="other">
-          其他
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="error" button name="country" model="value">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="feizhou">
-          非洲
-        </Radio>
-        <Radio value="other">
-          其他
-        </Radio>
-      </RadioGroup>
-      <br><br>
-      <RadioGroup status="warning" button name="country" model="value">
-        <Radio value="china">
-          中国
-        </Radio>
-        <Radio value="feizhou">
-          非洲
-        </Radio>
-        <Radio value="other">
-          其他
-        </Radio>
-      </RadioGroup>
-    </div>
+  <RadioGroup button disabled name="single" model="value">
+    <Radio value="1" checked>
+      亚洲
+    </Radio>
+    <Radio value="2">
+      欧洲
+    </Radio>
+    <Radio value="3">
+      非洲
+    </Radio>
+  </RadioGroup>
   `,
   data: function () {
     return {
-      country: ''
-    }
-  }
-}
-```
-
-> 设置按钮形态下的禁用
-
-```js
-export default {
-  template: `
-  <div>
-    <RadioGroup button name="country" model="value" disabled>
-      <Radio value="china">
-        中国
-      </Radio>
-      <Radio value="feizhou" checked>
-        非洲
-      </Radio>
-      <Radio value="other">
-        其他
-      </Radio>
-    </RadioGroup>
-  </div>
-  `,
-  data: function () {
-    return {
-      country: ''
+      value: ''
     }
   }
 }
@@ -435,17 +216,19 @@ Radio
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+checked / `model` | 是否选中 | boolean | - | `false`
+label | 标签文本 | string | - | -
+name | 原生属性 `name` | string | - | -
 value | value | string | - | -
-disabled | 是否禁用 | boolean | - | false
-checked | 是否选中 | boolean | - | false
-size | 大小 | string | default, small, large | default
-status | 状态 | string | success, info, warning, error | -
+disabled | 是否禁用 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | checked 发生变化时触发 | value
+change | `checked` 发生变化时触发 | `data.checked`, `data.value`
 
 
 RadioGroup
@@ -454,18 +237,18 @@ RadioGroup
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-name | 当前选中 tab 的 value 值 | string | - | -
-model | 选中值 | string | - | -
-size | 大小 | string | default, small, large | default
-status | 状态 | string | success, info, warning, error | -
-disabled | 是否禁用 | boolean | - | false
-checked | 是否选中 | boolean | - | false
-vertical | 是否垂直排列，按钮样式下无效 | boolean | - | false
-button | 按钮形式 | boolean | - | false
+value / `model` | 当前选中的值 | string | - | -
+name | 原生属性 `name` | string | - | -
+size | 大小, 按钮状态下生效 | string | `default`, `small`, `large` | `default`
+disabled | 是否禁用 | boolean | - | `false`
+vertical | 是否垂直排列，按钮样式下无效 | boolean | - | `false`
+button | 按钮形式 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | value 发生变化时触发 | value
+change | `value` 发生变化时触发 | `data.value`
 

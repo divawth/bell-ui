@@ -37,17 +37,12 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    simple: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
-    dot: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     checked: {
       type: RAW_BOOLEAN,
       value: FALSE,
+    },
+    color: {
+      type: RAW_STRING,
     },
     className: {
       type: RAW_STRING,
@@ -67,4 +62,5 @@ export default Yox.define({
       )
     }
   }
+
 })

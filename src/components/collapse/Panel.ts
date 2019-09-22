@@ -30,6 +30,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    disabled: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     className: {
       type: RAW_STRING,
     },
@@ -49,18 +53,25 @@ export default Yox.define({
   },
 
   events: {
-    'accordion.collapse': function (_, data) {
+    'accordion.collapse': function (event, data) {
+      // 只接收父级事件，再上一级的就不管了
+      if (event.target !== this.$parent) {
+        return
+      }
       this.set({
         accordion: data.accordion,
       })
     },
-    'open.collapse': function (_, data) {
-      const me = this
-      if (data.name === me.get('name')) {
-        me.set('opened', data.opened)
+    'open.collapse': function (event, data) {
+      // 只接收父级事件，再上一级的就不管了
+      if (event.target !== this.$parent) {
+        return
       }
-      else if (data.opened && me.get('accordion')) {
-        me.set('opened', FALSE)
+      if (data.name === this.get('name')) {
+        this.set('opened', data.opened)
+      }
+      else if (data.opened && this.get('accordion')) {
+        this.set('opened', FALSE)
       }
     }
   },
@@ -81,7 +92,7 @@ export default Yox.define({
     this.watch(
       'active',
       {
-        watcher(active: boolean) {
+        watcher(active) {
           if (active == NULL) {
             return
           }

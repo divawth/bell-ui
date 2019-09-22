@@ -184,7 +184,7 @@ export default {
       this.$notification.config({
         right: 50,
         duration: 13000
-      });
+      })
       this.$notification.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
         onClose: function () {
@@ -196,7 +196,7 @@ export default {
 }
 ```
 
-API
+# API
 
 > 通过直接调用以下方法来使用组件：
 
@@ -211,8 +211,8 @@ API
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
 title | 自定义标题 | string | - | -
-right | 提示组件距离右侧的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 4500
+right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
+duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
 
 > Events
 
@@ -222,13 +222,13 @@ close | 关闭 alert 时触发的事件 | -
 
 > 另外提供了全局配置方法
 
-- this.$notification.config();
+- this.$notification.config()
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-right | 提示组件距离右侧的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 150
+right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
+duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
 
 

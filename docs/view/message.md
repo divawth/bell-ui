@@ -4,7 +4,7 @@
 
 > 基础用法
 
-从顶部出现，1.5 秒后自动消失。
+从顶部出现，2.5 秒后自动消失。
 
 ```js
 export default {
@@ -31,32 +31,32 @@ export default {
 export default {
   template: `
   <div>
-    <Button type="success" on-click="open()">
+    <Button type="success" on-click="success()">
       Success
     </Button>
-    <Button type="info" on-click="open2()">
+    <Button type="info" on-click="info()">
       Info
     </Button>
-    <Button type="warning" on-click="open3()">
+    <Button type="warning" on-click="warning()">
       Warning
     </Button>
-    <Button type="error" on-click="open4()">
+    <Button type="error" on-click="error()">
       Error
     </Button>
   </div>
   `,
 
   methods: {
-    open: function () {
+    success: function () {
       this.$message.success('恭喜你，这是一条成功消息');
     },
-    open2: function () {
+    info: function () {
       this.$message.info('这是一条有 icon 的消息而已～');
     },
-    open3: function () {
+    warning: function () {
       this.$message.warning('警告哦，这是一条警告消息');
     },
-    open4: function () {
+    error: function () {
       this.$message.error('A 不想和 B 说话，并且向它抛出了一个异常')
     }
   }
@@ -104,7 +104,6 @@ export default {
     open: function () {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
-        icon: true,
         duration: 10000
       })
     }
@@ -129,7 +128,6 @@ export default {
     open: function () {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
-        icon: true,
         top: 100
       })
     }
@@ -166,7 +164,7 @@ export default {
 }
 ```
 
-API
+# API
 
 > 通过直接调用以下方法来使用组件：
 
@@ -180,27 +178,21 @@ API
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
-icon | 是否显示图标 | boolean | - | false
-closable | 是否可以关闭 | boolean | - | true
-center | 文字是否居中 | boolean | - | true
-top | 提示组件距离顶端的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 2000
-
-> Events
-
-事件名称 | 说明 | 回调参数
----|---|---
-close | 点击关闭按钮，或自动关闭时触发 | -
+closable | 是否显示关闭按钮 | boolean | - | `false`
+center | 文字是否居中 | boolean | - | `false`
+top | 提示组件距离顶端的距离，单位像素 | number | - | `15`
+duration | 默认自动关闭的延时，单位毫秒 | number | - | `2000`
+onClose | 关闭时调用 | Function | - | -
 
 > 另外提供了全局配置方法
 
-- this.$message.config()
+- this.$message.config(data)
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-top | 提示组件距离顶端的距离，单位像素 | number | - | 15
-duration | 默认自动关闭的延时，单位毫秒 | number | - | 1500
+top | 提示组件距离顶端的距离，单位像素 | number | - | `15`
+duration | 默认自动关闭的延时，单位毫秒 | number | - | `2000`
 
 

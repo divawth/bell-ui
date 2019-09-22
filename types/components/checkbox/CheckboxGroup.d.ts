@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
-    selected: unknown;
+    value: unknown;
 }, {
     'change.checkboxGroup': unknown;
     'change.checkbox': unknown;

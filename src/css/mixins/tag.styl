@@ -2,21 +2,10 @@ tag-size-style(style)
   ui-set('font-size', style['font-size'])
   ui-set('height', style['height'])
   ui-set('line-height', style['height'] - 2)
-  ui-set('padding-left', style['padding-horizontal'])
-  ui-set('padding-right', style['padding-horizontal'])
+  ui-set('padding', 0 style['padding-horizontal'])
 
-  &{$selector-tag-simple}
+  &{$selector-tag-pure}
     ui-set('line-height', style['height'])
-
-  &{$selector-tag-dot}
-    ui-set('padding-left', style['padding-horizontal'] + style['dot-size'] + $ui-icon-text-gap)
-
-    // dot
-    &:before
-      ui-set('width', style['dot-size'])
-      ui-set('height', style['dot-size'])
-      ui-set('margin-top', -0.5 * style['dot-size'])
-      ui-set('left', style['padding-horizontal'])
 
   &{$selector-tag-closable}
     ui-set('padding-right', style['close-width'])
@@ -25,37 +14,20 @@ tag-size-style(style)
     ui-set('width', style['close-width'])
 
 tag-brand-style(style)
+  ui-set('background-color', style['bg-color'])
+  ui-set('border-color', style['border-color'])
+  ui-set('color', style['color'])
 
-  // dot
-  &{$selector-tag-dot}:before
-    ui-set('background-color', style['color'])
-
-  &{$selector-tag-simple},
-  &{$selector-tag-bordered}
+  > {$selector-tag-close-icon}
     ui-set('color', style['color'])
 
-    &{$selector-tag-checked}
-      ui-set('background-color', style['color'])
-      ui-set('color', style['text-color'])
+  &{$selector-tag-checked}
+    ui-set('background-color', style['color'])
+    ui-set('border-color', style['color'])
+    ui-set('color', style['text-color'])
 
     > {$selector-tag-close-icon}
-      ui-set('color', style['color'])
-      &:hover
-        ui-set('color', style['hover-color'])
-
-  &{$selector-tag-simple}
-    &{$selector-tag-checked}
-      ui-set('border-color', style['color'])
-
-      // dot
-      &:before
-        ui-set('background-color', style['text-color'])
-
-      > {$selector-tag-close-icon}
-        ui-set('color', style['text-color'])
-
-  &{$selector-tag-bordered}
-    ui-set('border-color', style['color'])
+      ui-set('color', style['text-color'])
 
 ui-tag()
   ui-connect(

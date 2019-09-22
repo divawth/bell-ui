@@ -5,8 +5,11 @@ import template from './template/Notification.hbs'
 import {
   RAW_STRING,
   RAW_NUMERIC,
-  RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY,
+  RAW_STATUS_ARRAY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR,
 } from '../constant'
 
 import {
@@ -29,9 +32,8 @@ export default Yox.define({
     content: {
       type: RAW_STRING,
     },
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf(RAW_STATUS_ARRAY),
     },
     duration: {
       type: RAW_NUMERIC,
@@ -45,6 +47,15 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 15,
     },
+  },
+
+  data() {
+    return {
+      RAW_TYPE_INFO,
+      RAW_TYPE_SUCCESS,
+      RAW_TYPE_WARNING,
+      RAW_TYPE_ERROR,
+    }
   },
 
   methods: {

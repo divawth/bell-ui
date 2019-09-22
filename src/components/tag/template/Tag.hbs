@@ -1,36 +1,29 @@
 <div
 class="${prefix}tag
 
-{{#if type}} ${prefix}tag-{{type}}
-
-  {{!
-    simple 和 dot 互斥
-  }}
-  {{#if dot}} ${prefix}tag-dot
-  {{else}}
-
-      {{#if simple}} ${prefix}tag-simple
-      {{else}} ${prefix}tag-bordered
-      {{/if}}
-
-  {{/if}}
-
-{{else}}
-  {{#if dot}} ${prefix}tag-dot
-  {{else if simple}} ${prefix}tag-simple
-  {{/if}}
-{{/if}}
-
+{{#if type}} ${prefix}tag-{{type}}{{/if}}
 {{#if size}} ${prefix}tag-{{size}}{{/if}}
 
 {{#if checkable}} ${prefix}tag-checkable{{/if}}
 {{#if closable}} ${prefix}tag-closable{{/if}}
+{{#if color}} ${prefix}tag-pure{{/if}}
 
 {{#if checked}} ${prefix}tag-checked{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}}
-  style="{{style}}"
+{{#if color || style}}
+  style="{{#if color}}
+    {{#if checkable}}
+      {{#if checked}}
+        background-color: {{color}};
+      {{else}}
+        color: {{color}};
+      {{/if}}
+    {{else}}
+      background-color: {{color}};
+    {{/if}}
+  {{/if}}
+  {{#if style}}{{style}}{{/if}}"
 {{/if}}
 
 {{#if checkable}}
@@ -45,7 +38,7 @@ class="${prefix}tag
       name="close"
       size="0"
       className="${prefix}tag-close-icon"
-      on-click.native="fire('close.tag')"
+      on-click.native="close.tag"
     />
   {{/if}}
 

@@ -12,13 +12,14 @@
   - [Menu 导航菜单](navigation/menu)
   - [Tabs 标签页](navigation/tabs)
   - [Dropdown 下拉框](navigation/dropdown)
-  - [Page 分页](navigation/page)
+  - [Pagination 分页](navigation/pagination)
   - [Breadcrumb 面包屑](navigation/breadcrumb)
   - [Badge 徽标数](view/badge)
   - [LoadingBar 加载条](other/loadingbar)
 
 - [表单](layout)
   - [Input 输入框](form/input)
+  - [Textarea 输入框](form/textarea)
   - [Radio 单选框](form/radio)
   - [Checkbox 多选框](form/checkbox)
   - [Switch 开关](form/switch)
@@ -42,6 +43,7 @@
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
+  - [Empty 空状态](view/empty)
   - [Timeline 时间轴](view/timeline)
 
 - [图表](layout)
@@ -49,6 +51,6 @@
 
 - [其它](layout)
   - [BackTop 返回顶部](other/backTop)
-  - [Spin 加载中](other/spinner)
+  - [Spinner 加载中](other/spinner)
 
 

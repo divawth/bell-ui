@@ -5,6 +5,7 @@ interface Tab {
     disabled: boolean;
 }
 declare const _default: import("yox").ComponentOptions<unknown, {
+    size: unknown;
     value: unknown;
 }, {
     'add.tabPanel': unknown;

@@ -1,7 +1,6 @@
 import Yox, { Data } from 'yox'
 
 import {
-  TRUE,
   BODY,
 } from '../constant'
 
@@ -11,9 +10,9 @@ type Arg = string | Data
 
 const config: Data = {}
 
-function addMessage(type: string, arg: Arg, onClose?: Function) {
+function addMessage(status: string, arg: Arg, onClose?: Function) {
 
-  const props: Data = { type }
+  const props: Data = { status }
 
   Yox.object.extend(props, config)
 
@@ -24,14 +23,10 @@ function addMessage(type: string, arg: Arg, onClose?: Function) {
     Yox.object.extend(props, arg as Data)
   }
 
-  const element = Yox.dom.createElement('div') as HTMLElement
-  Yox.dom.append(BODY, element)
-
   const instance: any = new Yox(
     Yox.object.extend(
       {
-        el: element,
-        replace: TRUE,
+        el: BODY,
         props,
       },
       Message

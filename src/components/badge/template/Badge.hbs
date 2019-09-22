@@ -1,6 +1,10 @@
 <div
 class="${prefix}badge{{#if status}}-status{{/if}}
-{{#if status || type}} ${prefix}badge-{{status || type}}{{/if}}
+
+{{#if status}} ${prefix}badge-status-{{status}}
+{{else if type}} ${prefix}badge-{{type}}
+{{/if}}
+
 {{#if ripple}} ${prefix}badge-ripple{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -9,11 +13,7 @@ class="${prefix}badge{{#if status}}-status{{/if}}
 {{/if}}
 >
 
-  {{#if hasSlot('children')}}
-    <div class="${prefix}badge-content">
-      <slot name="children" />
-    </div>
-  {{/if}}
+  <slot name="children" />
 
   {{#if !hidden}}
 
@@ -24,8 +24,7 @@ class="${prefix}badge{{#if status}}-status{{/if}}
     {{#if text || isNumeric(count)}}
       <span
         class="${prefix}badge-text
-          {{#if hasSlot('children')}} ${prefix}badge-text-addon
-          {{else}} ${prefix}badge-text-only{{/if}}"
+          {{#if hasSlot('children')}} ${prefix}badge-text-append{{/if}}"
       >
         {{text || formatText(count, max)}}
       </span>

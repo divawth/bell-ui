@@ -8,33 +8,22 @@
 export default {
   template: `
     <div>
-      <Checkbox model="a">
-        A
+      <Checkbox model="checked" on-change="change()">
+        Checkbox
       </Checkbox>
       <p>
-        {{a}}
-      </p>
-
-      <Checkbox status="success" size="large" model="b">
-        B
-      </Checkbox>
-      <p>
-        {{b}}
-      </p>
-
-      <Checkbox status="error" size="small" model="c">
-        C
-      </Checkbox>
-      <p>
-        {{c}}
+        {{checked}}
       </p>
     </div>
   `,
   data: function () {
     return {
-      a: false,
-      b: false,
-      c: false,
+      checked: true
+    }
+  },
+  methods: {
+    change: function (event, data) {
+      console.log(event, data)
     }
   }
 }
@@ -47,7 +36,7 @@ export default {
 export default {
   template: `
     <div>
-      <CheckboxGroup model="social">
+      <CheckboxGroup model="social" on-change="change()">
         <Checkbox value="twitter">
           Twitter
         </Checkbox>
@@ -57,152 +46,40 @@ export default {
         <Checkbox value="github">
           Github
         </Checkbox>
-        <Checkbox value="snapchat">
-          Snapchat
-        </Checkbox>
       </CheckboxGroup>
-      <p> [ {{showArray(social)}} ] </p>
-      <CheckboxGroup model="fruit">
-        <Checkbox value="香蕉" />
-        <Checkbox value="苹果" />
-        <Checkbox value="西瓜" />
-      </CheckboxGroup>
-      <p> [ {{showArray(fruit)}} ] </p>
+      <p>
+        {{social}}
+      </p>
     </div>
   `,
   data: function () {
     return {
-      social: [ "snapchat" ],
-      fruit: [ "香蕉" ]
-    }
-  },
-  filters: {
-    showArray: function (arr) {
-      return arr.join(', ');
-    }
-  }
-}
-```
-
-> 不可用
-
-```js
-export default {
-  template: `
-    <div>
-      <Checkbox model="disabledSingle" disabled>Checkbox</Checkbox>
-      <CheckboxGroup model="disabledGroup">
-        <Checkbox value="香蕉" disabled />
-        <Checkbox value="苹果" disabled />
-        <Checkbox value="西瓜" />
-      </CheckboxGroup>
-    </div>
-  `,
-  data () {
-    return {
-      disabledSingle: true,
-      disabledGroup: ['苹果']
-    }
-  }
-}
-```
-
-> 与其它组件通信
-
-```js
-export default {
-  template: `
-    <div>
-      <Checkbox model="checked" disabled="{{disabled}}">
-        <span>{{Checked ? 'Checked' : 'Unchecked'}}</span>
-        -
-        <span>{{disabled ? 'Disabled' : 'Usable'}}</span>
-      </Checkbox>
-      <br/><br/>
-      <Button type="primary" on-click="toggle('checked')">
-        <span>{{Checked ? 'Checked' : 'Unchecked'}}</span>
-      </Button>
-      <Button type="primary" on-click="toggle('disabled')">
-        <span>{{disabled ? 'Disabled' : 'Usable'}}</span>
-      </Button>
-    </div>
-  `,
-  data () {
-    return {
-      disabledSingle: true,
-      disabledGroup: ['苹果']
-    }
-  }
-}
-```
-
-> 状态
-
-```js
-export default {
-  template: `
-    <div>
-      <CheckboxGroup status="success" model="social" on-change="change()">
-        <Checkbox value="twitter">
-          Twitter
-        </Checkbox>
-        <Checkbox value="facebook">
-          Facebook
-        </Checkbox>
-        <Checkbox value="github">
-          Github
-        </Checkbox>
-        <Checkbox value="snapchat">
-          Snapchat
-        </Checkbox>
-      </CheckboxGroup>
-      <br><br>
-      <Checkbox status="success">
-        success
-      </Checkbox>
-      <br><br>
-      <Checkbox status="info">
-        info
-      </Checkbox>
-      <br><br>
-      <Checkbox status="warning">
-        warning
-      </Checkbox>
-      <br><br>
-      <Checkbox status="error">
-        error
-      </Checkbox>
-    </div>
-  `,
-  data () {
-    return {
-      social: []
+      social: [ ]
     }
   },
   methods: {
-    change: function (events, data) {
-      console.log(data.selected)
+    change: function (event, data) {
+      console.log(event, data)
     }
   }
 }
 ```
 
-> 添加全选
+> 禁用状态
 
 ```js
 export default {
   template: `
     <div>
-      <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px; margin-bottom:6px;">
-        <Checkbox indeterminate="{{indeterminate}}" model="checkAll" on-change="checkAllChange($data)">
-          全选
-        </Checkbox>
-      </div>
-      <CheckboxGroup status="success" model="fruit" on-change="groupChange($data)">
-        <Checkbox value="1">
+      <Checkbox model="single" disabled>
+        Checkbox
+      </Checkbox>
+      <br><br>
+      <CheckboxGroup model="group">
+        <Checkbox value="1" disabled>
           香蕉
         </Checkbox>
-        <Checkbox value="2">
+        <Checkbox value="2" disabled>
           苹果
         </Checkbox>
         <Checkbox value="3">
@@ -211,47 +88,32 @@ export default {
       </CheckboxGroup>
     </div>
   `,
-
-  methods: {
-    checkAllChange: function (data) {
-      let indeterminate = this.get('fruit').length >= 1 && this.get('fruit').length < 3
-      if (data.checked) {
-        this.set('fruit', ['1', '2', '3'])
-      } else if (!indeterminate) {
-        this.set('fruit', [])
-      }
-      this.set('indeterminate', indeterminate)
-    },
-    groupChange: function (data) {
-      let value = data.selected
-      if (value.length === 3) {
-        this.set({
-          checkAll: true,
-          indeterminate: false
-        })
-      } else if (value.length > 0) {
-        this.set({
-          checkAll: false,
-          indeterminate: true
-        })
-      } else {
-        this.set({
-          checkAll: false,
-          indeterminate: false
-        })
-      }
-
-      console.log('groupChange')
-    }
-  },
-
-  data: function () {
+  data () {
     return {
-      indeterminate: false,
-      checkAll: false,
-      fruit: ['1']
+      single: true,
+      group: ['1']
     }
   }
+}
+```
+
+> indeterminate
+
+```js
+export default {
+  template: `
+  <div>
+    <Checkbox>
+      全选
+    </Checkbox>
+    <Checkbox indeterminate>
+      全选
+    </Checkbox>
+    <Checkbox checked>
+      全选
+    </Checkbox>
+  </div>
+  `
 }
 ```
 
@@ -261,7 +123,7 @@ export default {
 export default {
   template: `
     <div>
-      <CheckboxGroup vertical model="social">
+      <CheckboxGroup model="social" vertical>
         <Checkbox value="twitter">
           Twitter
         </Checkbox>
@@ -271,56 +133,15 @@ export default {
         <Checkbox value="github">
           Github
         </Checkbox>
-        <Checkbox value="snapchat">
-          Snapchat
-        </Checkbox>
       </CheckboxGroup>
-      <p> [ {{showArray(social)}} ] </p>
-      <CheckboxGroup vertical model="fruit">
-        <Checkbox value="香蕉" />
-        <Checkbox value="苹果" />
-        <Checkbox value="西瓜" />
-      </CheckboxGroup>
-      <p> [ {{showArray(fruit)}} ] </p>
+      <p>
+        {{social}}
+      </p>
     </div>
   `,
   data: function () {
     return {
-      social: [ "snapchat" ],
-      fruit: [ "香蕉" ]
-    }
-  },
-  filters: {
-    showArray: function (arr) {
-      return arr.join(', ');
-    }
-  }
-}
-```
-
-> 设置 size
-
-```js
-export default {
-  template: `
-    <div>
-      <Checkbox size="small" model="single">
-        Checkbox
-      </Checkbox>
-      <br><br>
-      <Checkbox size="default" model="single">
-        Checkbox
-      </Checkbox>
-      <br><br>
-      <Checkbox size="large" model="single">
-        Checkbox
-      </Checkbox>
-      <p>{{single}}</p>
-    </div>
-  `,
-  data: function () {
-    return {
-      single: false
+      social: [  ]
     }
   }
 }
@@ -334,18 +155,20 @@ Checkbox
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-status | 状态 | string | success, info, warning, error | -
-size | 大小 | string | default, large, small | default
-label | 文本描述 | string | - | -
-disabled | 是否禁用 | boolean | - | false
-checked | 只在单独使用时有效。可以使用 model 双向绑定数据 | string | - | -
-indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | false
+checked / `model` | 只在单独使用时有效 | boolean | - | -
+label | 标签文本 | string | - | -
+name | 原生属性 `name` | string | - | -
+value | value | string | - | -
+disabled | 是否禁用 | boolean | - | `false`
+indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | checked, value
+change | `checked` 变化的时候回调 | `data.checked`, `data.value`
 
 
 CheckboxGroup
@@ -354,15 +177,16 @@ CheckboxGroup
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-status | 状态 | string | success, info, warning, error | -
-name | checkbox 的 name | string | - | -
-disabled | 是否禁用 | boolean | - | false
-vertical | 是否使用垂直排版 | boolean | - | false
-selected | 只在单独使用时有效。可以使用 model 双向绑定数据 | Array | - | -
+value / `model` | 选中的项 | string[] | - | -
+name | 原生属性 `name` | string | - | -
+disabled | 是否禁用 | boolean | - | `false`
+vertical | 是否垂直排列 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | 值变化的时候回调 | selected
+change | `value` 变化的时候回调 | `data.value`
 

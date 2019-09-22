@@ -3,18 +3,19 @@ class="${prefix}circle
 {{#if dashboard}} ${prefix}circle-dashboard{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="width: {{size}}px;
-height: {{size}}px;
+style="width: {{size}}px;height: {{size}}px;
 {{#if style}}{{style}}{{/if}}"
 >
   <svg viewBox="0 0 100 100">
-    <path d="{{path}}"
+    <path
+      d="{{path}}"
       stroke="{{trailColor}}"
       stroke-width="{{trailWidth}}"
       fill-opacity="0"
       style="{{trailStyle}}"
     />
-    <path d="{{path}}"
+    <path
+      d="{{path}}"
       stroke-linecap="{{strokeLinecap}}"
       stroke="{{strokeColor}}"
       stroke-width="{{strokeWidth}}"

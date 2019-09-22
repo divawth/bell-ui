@@ -4,27 +4,13 @@
 export default {
   template: `
     <Breadcrumb>
-      <BreadcrumbItem>Home</BreadcrumbItem>
-      <BreadcrumbItem>Components</BreadcrumbItem>
-      <BreadcrumbItem>Layout</BreadcrumbItem>
-    </Breadcrumb>
-  `
-}
-```
-
-> 使用 to 跳转
-
-```js
-export default {
-  template: `
-    <Breadcrumb>
-      <BreadcrumbItem to="/docs/#/form/input">
+      <BreadcrumbItem>
         Home
       </BreadcrumbItem>
-      <BreadcrumbItem to="/docs/#/form/select">
+      <BreadcrumbItem>
         Components
       </BreadcrumbItem>
-      <BreadcrumbItem>
+      <BreadcrumbItem last>
         Layout
       </BreadcrumbItem>
     </Breadcrumb>
@@ -32,51 +18,123 @@ export default {
 }
 ```
 
-> 带图标的
+> 链接
 
 ```js
 export default {
   template: `
     <Breadcrumb>
-      <BreadcrumbItem to="/">
-        <Icon name="home" /> Home
+      <BreadcrumbItem href="/docs/#/form/input">
+        Home
       </BreadcrumbItem>
-      <BreadcrumbItem to="/components/breadcrumb">
-        <Icon name="person" /> Components
+      <BreadcrumbItem href="/docs/#/form/select" target="_blank">
+        Components
       </BreadcrumbItem>
-      <BreadcrumbItem>
-        <Icon name="star" /> Breadcrumb
+      <BreadcrumbItem last>
+        Layout
       </BreadcrumbItem>
     </Breadcrumb>
   `
 }
 ```
 
-> 使用 separator 修改界定符
+> 带图标
 
 ```js
 export default {
   template: `
     <Breadcrumb>
-      <BreadcrumbItem separator="=>">
+      <BreadcrumbItem href="/">
+        <Icon slot="icon" name="home" />
         Home
       </BreadcrumbItem>
-      <BreadcrumbItem separator="=>">
+      <BreadcrumbItem href="/components/breadcrumb">
+        <Icon slot="icon" name="person" />
         Components
       </BreadcrumbItem>
+      <BreadcrumbItem last>
+        <Icon slot="icon" name="star" />
+        Breadcrumb
+      </BreadcrumbItem>
+    </Breadcrumb>
+  `
+}
+```
+
+> 修改分隔符
+
+```js
+export default {
+  template: `
+    <Breadcrumb separator="=>">
       <BreadcrumbItem>
+        Home
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        Components
+      </BreadcrumbItem>
+      <BreadcrumbItem last>
         Layout
       </BreadcrumbItem>
     </Breadcrumb>
   `
+}
+```
+
+> 监听点击事件
+
+```js
+export default {
+  template: `
+    <Breadcrumb>
+      <BreadcrumbItem on-click="clickItem(1)">
+        Home
+      </BreadcrumbItem>
+      <BreadcrumbItem on-click="clickItem(2)">
+        Components
+      </BreadcrumbItem>
+      <BreadcrumbItem on-click="clickItem(3)" last>
+        Layout
+      </BreadcrumbItem>
+    </Breadcrumb>
+  `,
+  methods: {
+    clickItem: function (index) {
+      console.log(index)
+    }
+  }
 }
 ```
 
 #### API
 
-> Props
+> Breadcrumb Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-to | 添加链接 | string | - | -
-separator | 界定符 | string | - | '/'
+separator | 分隔符 | string | - | `/`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> BreadcrumbItem Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+href | `<a>` 原生 `href` 属性 | string | - | -
+target | `<a>` 原生 `target` 属性 | string | - | -
+last | 是否为最后一项，最后一项不可点击，且没有分隔符 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> BreadcrumbItem Slots
+
+参数 | 说明
+---|---
+icon | 图标
+children | 内容
+
+> BreadcrumbItem Events
+
+参数 | 说明
+---|---
+click | 点击后触发

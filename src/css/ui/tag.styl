@@ -2,7 +2,7 @@
   display inline-block
   position relative
   border 1px solid $brand-border
-  background-color $brand-bg
+  background-color $tag-bg-color
   color $brand-text
   border-radius $border-radius-default
   box-sizing border-box
@@ -10,6 +10,7 @@
 
 {$selector-tag-checkable}
   cursor $cursor-clickable
+  user-select none
 
 {$selector-tag-close-icon}
   position absolute
@@ -20,20 +21,21 @@
   text-align center
   color $brand-close-color
   font-size $tag-close-font-size
+  line-height inherit
   transition color .3s
+
   &:hover
     color $brand-close-color-hover
-
-{$selector-tag-simple}
-  border 0
-
-{$selector-tag-dot}:before
-  content ''
-  border-radius 50%
-  position absolute
-  top 50%
-  background-color $tag-dot-color
 
 // 放在最后，避免被覆盖
 {$selector-tag}
   ui-tag()
+
+{$selector-tag-pure}
+  border 0
+  background-color transparent
+  color $brand-white
+
+  > {$selector-tag-close-icon},
+  > {$selector-tag-close-icon}:hover
+    color inherit

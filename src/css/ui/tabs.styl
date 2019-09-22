@@ -27,26 +27,26 @@
 {$selector-tabs-tab}
   display inline-block
   position relative
-  box-sizing content-box
+  box-sizing border-box
 
 {$selector-tabs-tab-icon}
   margin-right $ui-icon-text-gap
 
 {$selector-tabs-tab-close-icon}
-  color $tabs-close-color
+  color $brand-close-color
   cursor $cursor-clickable
   vertical-align top
   display inline-block
   margin-right -6px
-  width 0
+  width $tabs-close-size
   height $tabs-close-size
   line-height $tabs-close-size
   text-align center
   overflow hidden
-  transition color .3s, width .3s
+  transition color .3s
 
   &:hover
-    color $tabs-close-color-hover
+    color $brand-close-color-hover
 
 {$selector-tabs-tab-enabled}
   border-color $brand-border
@@ -71,13 +71,6 @@
   &:after
     width 100%
 
-  {$selector-tabs-tab-close-icon}
-    width $tabs-close-size
-
-{$selector-tabs-tab-unactive}:hover
-  > {$selector-tabs-tab-close-icon}
-    width $tabs-close-size
-
 {$selector-tabs-panel}
   display none
 
@@ -101,7 +94,7 @@
       border-bottom-color $tabs-card-bg-color-active
 
     &{$selector-tabs-tab-disabled}
-      border-color $brand-color-disabled
+      border-color $brand-border-disabled
       &:after
         background-color $brand-border-disabled
 

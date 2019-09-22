@@ -45,6 +45,7 @@ export default Yox.define({
   events: {
     'open.panel': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
+        event.stop()
         this.fire(
           'open.collapse',
           data,

@@ -4,10 +4,8 @@ import template from './template/Divider.hbs'
 
 import {
   FALSE,
-
   RAW_STRING,
   RAW_BOOLEAN,
-
   RAW_LEFT,
   RAW_RIGHT,
   RAW_CENTER,

@@ -3,10 +3,6 @@ class="${prefix}input
 {{#if size}} ${prefix}input-{{size}}{{/if}}
 {{#if status}} ${prefix}input-{{status}}{{/if}}
 
-{{#if type === TEXT_TYPE_TEXTAREA}} ${prefix}input-multiple-line
-{{else}} ${prefix}input-single-line
-{{/if}}
-
 {{#if disabled}} ${prefix}input-disabled
 {{else}} ${prefix}input-enabled
 {{/if}}
@@ -18,19 +14,31 @@ class="${prefix}input
 {{#if className}} {{className}}{{/if}}"
 
 {{#if width || style}}
-  style="{{#if width}}width: {{width}}px{{/if}};
+  style="{{#if width}}width: {{width}}px;{{/if}}
   {{#if style}}{{style}}{{/if}}"
 {{/if}}
 >
-  {{#if type === TEXT_TYPE_TEXTAREA}}
 
-    <textarea
-      class="${prefix}textarea-el
-      {{#if autoSize}} ${prefix}input-autosize{{/if}}"
+  {{#if hasSlot('prepend')}}
+    <div class="${prefix}input-prepend">
+      <slot name="prepend" />
+    </div>
+  {{/if}}
+
+  <div class="${prefix}input-content">
+
+    <input
+      ref="input"
+      type="{{currentType}}"
       model="value"
+      class="${prefix}input-el
+      {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix{{/if}}
+      {{#if hasSlot('suffix') || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
+      {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
+      {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
 
-      {{#if wrap}}
-        wrap="{{wrap}}"
+      {{#if maxLength}}
+        maxlength="{{maxLength}}"
       {{/if}}
 
       {{#if placeholder}}
@@ -52,106 +60,54 @@ class="${prefix}input
         on-focus="handleFocus()"
       {{/if}}
 
-      style="{{textareaStyle}}"
     >
-    </textarea>
 
-  {{else}}
-
-    {{#if hasSlot('prepend')}}
-      <div class="${prefix}input-prepend">
-        <slot name="prepend" />
+    {{#if hasSlot('prefix') || prefix}}
+      <div class="${prefix}input-prefix">
+        <slot name="prefix">
+          <Icon
+            name="{{prefix}}"
+            size="0"
+            className="${prefix}input-prefix-icon"
+          />
+        </slot>
       </div>
     {{/if}}
 
-    <div class="${prefix}input-content">
-
-      <input
-        ref="input"
-        type="{{currentType}}"
-        model="value"
-        class="${prefix}input-el
-        {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix{{/if}}
-        {{#if hasSlot('suffix') || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
-        {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
-        {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
-
-        {{#if maxLength}}
-          maxlength="{{maxLength}}"
-        {{/if}}
-
-        {{#if wrap}}
-          wrap="{{wrap}}"
-        {{/if}}
-
-        {{#if placeholder}}
-          placeholder="{{placeholder}}"
-        {{/if}}
-
-        {{#if readOnly}}
-          readonly
-        {{/if}}
-
-        {{#if spellCheck}}
-          spellcheck
-        {{/if}}
-
-        {{#if disabled}}
-          disabled
-        {{else}}
-          on-blur="handleBlur()"
-          on-focus="handleFocus()"
-        {{/if}}
-
-      >
-
-      {{#if hasSlot('prefix') || prefix}}
-        <div class="${prefix}input-prefix">
-          <slot name="prefix">
-            <Icon
-              name="{{prefix}}"
-              size="0"
-              className="${prefix}input-prefix-icon"
-            />
-          </slot>
-        </div>
-      {{/if}}
-
-      {{#if hasSlot('suffix') || suffix}}
-        <div class="${prefix}input-suffix">
-          <slot name="suffix">
-            <Icon
-              name="{{suffix}}"
-              size="0"
-              className="${prefix}input-suffix-icon"
-            />
-          </slot>
-        </div>
-      {{else if secure}}
-        <div class="${prefix}input-suffix ${prefix}input-secure" on-click="toggle('isSecure')">
+    {{#if hasSlot('suffix') || suffix}}
+      <div class="${prefix}input-suffix">
+        <slot name="suffix">
           <Icon
-            name="{{isSecure ? 'eye' : 'eye-off'}}"
+            name="{{suffix}}"
             size="0"
-            className="${prefix}input-secure-icon"
+            className="${prefix}input-suffix-icon"
           />
-        </div>
-      {{else if clearable && !disabled}}
-        <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
-          <Icon
-            name="close-circle"
-            size="0"
-            className="${prefix}input-clear-icon"
-          />
-        </div>
-      {{/if}}
+        </slot>
+      </div>
+    {{else if secure}}
+      <div class="${prefix}input-suffix ${prefix}input-secure" on-click="toggle('isSecure')">
+        <Icon
+          name="{{isSecure ? 'eye' : 'eye-off'}}"
+          size="0"
+          className="${prefix}input-secure-icon"
+        />
+      </div>
+    {{else if clearable && !disabled}}
+      <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
+        <Icon
+          name="close-circle"
+          size="0"
+          className="${prefix}input-clear-icon"
+        />
+      </div>
+    {{/if}}
 
+  </div>
+
+  {{#if hasSlot('append')}}
+    <div class="${prefix}input-append">
+      <slot name="append" />
     </div>
-
-    {{#if hasSlot('append')}}
-      <div class="${prefix}input-append">
-        <slot name="append" />
-      </div>
-    {{/if}}
-
   {{/if}}
+
 </div>

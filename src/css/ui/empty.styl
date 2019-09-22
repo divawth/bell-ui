@@ -1,0 +1,23 @@
+{$selector-empty}
+  color $brand-text-muted
+  font-size $font-size-default
+  text-align center
+
+  padding-top 80px
+  background url('~@css/images/empty-default.png') no-repeat 50% 0
+  background-image -webkit-image-set(
+    url('~@css/images/empty-default@2x.png') 2x
+  )
+
+{$selector-empty-with-content}
+  padding-top 80 + $empty-icon-content-gap
+
+{$selector-empty-simple}
+  padding-top 41px
+  background-image url('~@css/images/empty-simple.png')
+  background-image -webkit-image-set(
+    url('~@css/images/empty-simple@2x.png') 2x
+  )
+
+  &{$selector-empty-with-content}
+    padding-top 41 + $empty-icon-content-gap

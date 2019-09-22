@@ -1,10 +1,11 @@
 <div
 class="${prefix}alert
-{{#if type}} ${prefix}alert-{{type}}{{/if}}
-{{#if icon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
-{{#if hasSlot('content')}} ${prefix}alert-with-content{{/if}}
-{{#if closable || hasSlot('close')}} ${prefix}alert-with-close{{/if}}
+{{#if status}} ${prefix}alert-{{status}}{{/if}}
+{{#if banner}} ${prefix}alert-banner{{/if}}
 {{#if center}} ${prefix}alert-center{{/if}}
+{{#if icon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
+{{#if hasSlot('title')}} ${prefix}alert-with-title{{/if}}
+{{#if closable || hasSlot('close')}} ${prefix}alert-with-close{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -16,41 +17,39 @@ class="${prefix}alert
       <slot name="icon">
         <Icon
           name="{{
-            type === RAW_TYPE_PRIMARY
-            ? 'information-circle'
-            : type === RAW_TYPE_SUCCESS
+            status === RAW_TYPE_SUCCESS
               ? 'checkmark-circle'
-              : type === RAW_TYPE_WARNING
+              : status === RAW_TYPE_WARNING
                 ? 'alert'
-                : type === RAW_TYPE_ERROR
+                : status === RAW_TYPE_ERROR
                   ? 'close-circle'
                   : 'information-circle'
           }}"
           size="0"
-          className="${prefix}alert-type-icon"
+          className="${prefix}alert-status-icon"
         />
-      </slot>>
+      </slot>
     </span>
   {{/if}}
 
   <div class="${prefix}alert-wrapper">
 
-    {{#if hasSlot('children')}}
+    {{#if hasSlot('title')}}
       <div class="${prefix}alert-title">
-        <slot name="children" />
+        <slot name="title" />
       </div>
     {{/if}}
 
-    {{#if hasSlot('content')}}
+    {{#if hasSlot('children')}}
       <div class="${prefix}alert-content">
-        <slot name="content" />
+        <slot name="children" />
       </div>
     {{/if}}
 
   </div>
 
   {{#if closable || hasSlot('close')}}
-    <div ref="close" class="${prefix}alert-close" on-click="fire('close.alert')">
+    <div ref="close" class="${prefix}alert-close" on-click="close.alert">
       <slot name="close">
         <Icon
           name="close"

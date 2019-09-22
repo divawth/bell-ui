@@ -24,6 +24,7 @@ import Button from './components/button/Button'
 import ButtonGroup from './components/button/ButtonGroup'
 import Input from './components/input/Input'
 import InputNumber from './components/input/InputNumber'
+import Textarea from './components/input/Textarea'
 import Radio from './components/radio/Radio'
 import RadioGroup from './components/radio/RadioGroup'
 import Checkbox from './components/checkbox/Checkbox'
@@ -33,7 +34,7 @@ import Select from './components/select/Select'
 import Option from './components/select/Option'
 import OptionGroup from './components/select/OptionGroup'
 
-import Page from './components/page/Page'
+import Pagination from './components/pagination/Pagination'
 import Upload from './components/upload/Upload'
 
 import Alert from './components/alert/Alert'
@@ -52,10 +53,11 @@ import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
 import CardMedia from './components/card/CardMedia'
 import CardBody from './components/card/CardBody'
-import CardActions from './components/card/CardActions'
+import CardFooter from './components/card/CardFooter'
 
 import List from './components/list/List'
 import Item from './components/list/Item'
+import Empty from './components/empty/Empty'
 import Divider from './components/divider/Divider'
 
 import Circle from './components/circle/Circle'
@@ -81,7 +83,7 @@ import Table from './components/table/Table'
 
 import Message from './components/message/base'
 import Notification from './components/notification/base'
-import Msgbox from './components/msgbox/base'
+import Modal from './components/modal/base'
 import LoadingBar from  './components/loadingBar/base'
 import Anchor from  './components/anchor/Anchor'
 import AnchorLink from  './components/anchor/AnchorLink'
@@ -109,6 +111,7 @@ const components = {
   ButtonGroup,
   Input,
   InputNumber,
+  Textarea,
   Radio,
   RadioGroup,
   Checkbox,
@@ -117,7 +120,7 @@ const components = {
   Select,
   Option,
   OptionGroup,
-  Page,
+  Pagination,
   DatePicker,
   Upload,
 
@@ -133,12 +136,13 @@ const components = {
   CardHeader,
   CardMedia,
   CardBody,
-  CardActions,
+  CardFooter,
 
   Collapse,
   Panel,
   List,
   Item,
+  Empty,
   Divider,
   Circle,
   Progress,
@@ -175,8 +179,8 @@ export const install = function (Yox: any) {
 
   Yox.component(components)
   Yox.prototype.$message = Message
-  Yox.prototype.$confirm = Msgbox.addConfirm
-  Yox.prototype.$alert = Msgbox.addAlert
+  Yox.prototype.$confirm = Modal.addConfirm
+  Yox.prototype.$alert = Modal.addAlert
   Yox.prototype.$notification = Notification
   Yox.prototype.$loadingBar = LoadingBar
 }

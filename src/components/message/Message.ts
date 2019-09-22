@@ -7,8 +7,11 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY,
+  RAW_STATUS_ARRAY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR,
 } from '../constant'
 
 import {
@@ -24,16 +27,13 @@ export default Yox.define({
   template,
 
   propTypes: {
-    type: {
-      type: oneOf(RAW_TYPE_ARRAY),
-      value: RAW_TYPE_PRIMARY,
+    status: {
+      type: oneOf(RAW_STATUS_ARRAY),
+      value: RAW_TYPE_INFO,
     },
     content: {
       type: RAW_STRING,
-    },
-    icon: {
-      type: RAW_BOOLEAN,
-      value: TRUE,
+      required: TRUE,
     },
     closable: {
       type: RAW_BOOLEAN,
@@ -45,11 +45,16 @@ export default Yox.define({
     }
   },
 
-  methods: {
+  data() {
+    return {
+      RAW_TYPE_INFO,
+      RAW_TYPE_SUCCESS,
+      RAW_TYPE_WARNING,
+      RAW_TYPE_ERROR,
+    }
+  },
 
-    closeAlert() {
-      this.hide()
-    },
+  methods: {
 
     show(top: number, duration: number) {
 

@@ -1,0 +1,116 @@
+{$selector-pagination-list}
+  display inline-block
+
+{$selector-pagination-item}
+  display inline-block
+  text-align center
+  outline 0
+  padding 0
+  cursor $cursor-clickable
+  border-radius $border-radius-default
+  border 1px solid $brand-border
+  color $brand-text
+  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
+
+  + {$selector-pagination-item}
+    margin-left $ui-horizontal-gap
+
+  &:disabled
+    cursor $cursor-disabled
+    background-color $brand-bg-disabled
+
+  &:disabled,
+  &:disabled:hover
+    color $brand-text-disabled
+    border-color $brand-border-disabled
+
+{$selector-pagination-active}
+  cursor $cursor-default
+
+{$selector-pagination-item}:hover,
+{$selector-pagination-active}
+  color $brand-primary
+  border-color $brand-primary
+
+if $ui-shadow-radius > 0
+  {$selector-pagination-item}:focus
+    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+  {$selector-pagination-custom-prev}:focus,
+  {$selector-pagination-custom-next}:focus,
+  {$selector-pagination-ellipsis}:focus
+    box-shadow none
+
+{$selector-pagination-custom-prev} + {$selector-pagination-item},
+{$selector-pagination-item} + {$selector-pagination-custom-next}
+  margin-left $pagination-element-gap
+
+{$selector-pagination-ellipsis}
+  border 0
+  &:after
+    content '•••'
+    display block
+    letter-spacing 1px
+    color $brand-border
+    text-align center
+
+  > {$selector-icon}
+    display none
+
+  &:hover
+    &:after
+      display none
+
+    > {$selector-icon}
+      display inline-block
+
+
+
+
+{$selector-pagination}
+  user-select none
+  font-size $ui-font-size
+  ui-pagination()
+
+  {$selector-pagination-custom-prev},
+  {$selector-pagination-custom-next}
+    border 0
+    width auto
+    padding 0
+    background-color transparent
+
+{$selector-pagination-select}
+  width $pagination-select-width
+  margin-right $pagination-element-gap
+  vertical-align top
+
+{$selector-pagination-jumper}
+  display inline-block
+  margin-left $pagination-element-gap
+
+{$selector-pagination-jumper-input}
+  width $pagination-jumper-input-width
+  display inline-block
+  vertical-align top
+  margin-right $ui-icon-text-gap
+
+{$selector-pagination-simple-input}
+  width $pagination-simple-input-width
+  display inline-block
+  vertical-align top
+
+{$selector-pagination-total}
+  margin-right $pagination-element-gap
+
+{$selector-pagination-simple}
+  display inline-block
+
+  > {$selector-pagination-prev}
+    margin-right $pagination-element-gap
+
+  > {$selector-pagination-next}
+    margin-left $pagination-element-gap
+
+{$selector-pagination-separator}
+  color $brand-text-muted
+  margin 0 $ui-icon-text-gap

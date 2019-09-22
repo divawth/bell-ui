@@ -5,8 +5,7 @@ class="${prefix}icon
 {{#if className}} {{className}}{{/if}}"
 
 {{#if size > 0 || color || style}}
-  style="
-  {{#if size > 0}}font-size: {{size}}px;{{/if}}
+  style="{{#if size > 0}}font-size: {{size}}px;{{/if}}
   {{#if color}}color: {{color}};{{/if}}
   {{#if style}}{{style}}{{/if}}"
 {{/if}}

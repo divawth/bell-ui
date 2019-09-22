@@ -9,10 +9,6 @@ import {
   RAW_BOOLEAN,
   RAW_DEFAULT,
   RAW_SIZE_COMMON,
-  RAW_TYPE_INFO,
-  RAW_TYPE_SUCCESS,
-  RAW_TYPE_ERROR,
-  RAW_TYPE_WARNING,
 } from '../constant'
 
 import {
@@ -26,15 +22,13 @@ export default Yox.define({
   name: '${prefix}radioGroup',
 
   propTypes: {
-    status: {
-      type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
-    },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
       value: RAW_DEFAULT,
     },
     name: {
       type: RAW_STRING,
+      required: TRUE,
     },
     value: {
       type: RAW_STRING,

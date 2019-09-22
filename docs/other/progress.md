@@ -4,15 +4,19 @@
 export default {
   template: `
   <div>
-    <Progress animated percent="25">25%</Progress>
+    <Progress percent="25" status="success">
+      25%
+    </Progress>
     <br><br>
-    <Progress percent="45" type="error">45%</Progress>
+    <Progress percent="45" status="error">
+      45%
+    </Progress>
     <br><br>
-    <Progress percent="65" type="success">65%</Progress>
+    <Progress percent="65" status="info">
+      65%
+    </Progress>
     <br><br>
-    <Progress percent="100">100%</Progress>
-    <br><br>
-    <Progress percent="25"></Progress>
+    <Progress percent="100" status="warning" />
   </div>
   `
 }
@@ -24,29 +28,40 @@ export default {
 export default {
   template: `
   <div>
-    <Progress inside thickness="20" percent="25">25%</Progress>
+    <Progress inside thickness="18" percent="25" status="success">
+      25%
+    </Progress>
     <br><br>
-    <Progress animated inside thickness="20" percent="45" type="error">45%</Progress>
+    <Progress inside thickness="18" percent="45" status="error">
+      45%
+    </Progress>
     <br><br>
-    <Progress inside thickness="20" percent="65" type="success">65%</Progress>
+    <Progress inside thickness="18" percent="65" status="info">
+      65%
+    </Progress>
     <br><br>
-    <Progress animated inside thickness="20" percent="100">100%</Progress>
+    <Progress inside thickness="18" percent="100" status="warning" />
   </div>
   `
 }
 ```
 
-> 垂直方向
+> 垂直
 
 ```js
 export default {
   template: `
-    <div style="height: 100px;">
-      <Progress vertical animated percent="25">25%</Progress>
-      <Progress vertical percent="45" type="error">45%</Progress>
-      <Progress vertical percent="65" type="success">65%</Progress>
-      <Progress vertical percent="100">100%</Progress>
-      <Progress vertical percent="25"></Progress>
+    <div style="height: 150px;">
+      <Progress vertical percent="25" status="success">
+        25%
+      </Progress>
+      <Progress vertical percent="45" status="error">
+        45%
+      </Progress>
+      <Progress vertical percent="65" status="info">
+        65%
+      </Progress>
+      <Progress vertical percent="100" status="warning" />
       <style>
         .bell-progress-vertical {
           width: 50px;
@@ -57,29 +72,50 @@ export default {
 }
 ```
 
-> 配合外部组件使用
+> 动画
+
+```js
+export default {
+  template: `
+    <div style="height: 150px;">
+      <Progress active percent="50" status="success">
+        25%
+      </Progress>
+      <Progress active vertical percent="50" status="success">
+        25%
+      </Progress>
+    </div>
+  `
+}
+```
+
+> 外部控制
 
 ```js
 export default {
   template: `
   <div>
-    <Progress percent="{{percent}}"
-    {{#if percent == 100}}
-      type="success"
-    {{else}}
-      type="primary"
-    {{/if}}
-    >
+    <Progress
+      percent="{{percent}}"
       {{#if percent == 100}}
-        <Icon type="checkmark-circled" style="color:#5cb85c" />
-        <span style="margin-left: 10px;">成功</span>
+        status="success"
       {{else}}
-        <span style="font-size:12px">
-          {{ percent }}%
+        status="info"
+      {{/if}}
+    >
+      {{#if percent === 100}}
+        <Icon
+          name="checkmark-circle"
+          size="18"
+          style="color:#5cb85c"
+        />
+      {{else}}
+        <span>
+          {{percent}}%
         </span>
       {{/if}}
     </Progress>
-    <br>
+    <br><br>
     <Button on-click="add()">
       <Icon name="add" />
     </Button>
@@ -103,31 +139,17 @@ export default {
 }
 ```
 
-> 自定义
-
-```js
-export default {
-  template: `
-    <div style="height: 100px;">
-      <Progress percent="25" thickness="5">25</Progress>
-      <Progress percent="100" type="success" animated>
-        <Icon type="checkmark-circled" />
-        <span style="margin-left: 10px;">成功</span>
-      </Progress>
-    </div>
-  `
-}
-```
-
 #### API
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 类型 | string | `primary`, `info`, `warning`, `success`, `error` | `primary`
+status | 类型 | string | `info`, `warning`, `success`, `error` | -
 percent | 百分比 | number | - | `0`
-thickness | 进度环的粗细 | number | - | `10`
+thickness | 进度环的粗细 | number | - | `8`
 inside | 内容是否显示在内部 | boolean | - | `false`
 vertical | 是否垂直 | boolean | - | `false`
-animated | 是否有动画效果 | boolean | - | `false`
+active | 是否有动画效果 | boolean | - | `false`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

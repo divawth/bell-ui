@@ -56,6 +56,7 @@ export declare const RAW_EVENT_KEYUP = "keyup";
 export declare const RAW_DARK = "dark";
 export declare const RAW_LIGHT = "light";
 export declare const RAW_THEME_ARRAY: string[];
+export declare const RAW_STATUS_ARRAY: string[];
 export declare const RAW_TYPE_ARRAY: string[];
 export declare const RAW_SIZE_ARRAY: string[];
 export declare const RAW_SIZE_COMMON: string[];

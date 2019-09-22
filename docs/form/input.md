@@ -161,67 +161,16 @@ export default {
 }
 ```
 
-> type 设置为 textarea, 通过 rows 设置显示行数
-
-```js
-export default {
-  template: `
-  <div>
-    <Input
-      model="value"
-      type="textarea"
-      rows="4"
-      placeholder="请输入..."
-    />
-  </div>
-  `
-}
-```
-
-> 适应文本高度的文本域
-
-```js
-export default {
-  template: `
-  <div>
-    <Input
-      model="value"
-      type="textarea"
-      placeholder="Enter something..."
-      autoSize="{{autoSize}}"
-    />
-  </div>
-  `,
-  data() {
-    return {
-      autoSize: {
-        minRows: 2,
-        maxRows: 5
-      }
-    }
-  }
-}
-```
-
 > 禁用状态
 
 ```js
 export default {
   template: `
-  <div>
-    <Input
-      model="value1"
-      placeholder="Enter something..."
-      disabled
-    />
-    <br><br>
-    <Input
-      model="value2"
-      type="textarea"
-      placeholder="Enter something..."
-      disabled
-    />
-  </div>
+  <Input
+    model="value1"
+    placeholder="Enter something..."
+    disabled
+  />
   `
 }
 ```
@@ -268,22 +217,22 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-model | input 的值 | string | - | -
-type | 类型 | string | `text`, `password`, `textarea` | `text`
+value / `model` | 输入框的值 | string | - | -
+type | 类型 | string | `text`, `password` | `text`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
-placeholder | placeholder | string | - | -
-clearable | 清空按钮 | boolean | - | false
-disabled | 设置按钮为禁用状态 | boolean | - | false
+placeholder | 输入框内容为空时的提示文本 | string | - | -
+disabled | 禁用输入框 | boolean | - | `false`
+clearable | 是否显示清空按钮 | boolean | - | `false`
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
-rows | 行数, 仅在 `textarea` 类型下有效 | number | - | 1
-autoSize | 自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 } | Object | - | -
-secure | 是否可以隐藏显示（仅在 password 下有效） | boolean | - | false
-wrap | wrap 属性规定当在表单中提交时，文本区域（text area）中的文本如何换行 | string | soft, hard | -
-spellCheck | 是否对元素内容进行拼写检查 | boolean | - | -
-readOnly | 设置输入框为只读 | boolean | - | false
-maxLength | 最大输入长度 | number | - | -
+secure | 是否可以隐藏显示（仅在 `password` 下有效） | boolean | - | `false`
+spellCheck | 原生 `spellcheck` 属性 | boolean | - | -
+readOnly | 原生 `readonly` 属性 | boolean | - | -
+maxLength | 原生 `maxlength` 属性 | numeric | - | -
+width | 显示宽度 | numeric | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 

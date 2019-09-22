@@ -1,14 +1,13 @@
 {$selector-checkbox}
   display inline-block
   user-select none
+  color $brand-text
+  font-size $font-size-default
+  padding-left $font-size-default + $ui-icon-text-gap
   position relative
 
-  checkbox-brand-style($brand-primary, $brand-primary-shadow)
-
-  ui-checkbox()
-
   + {$selector-checkbox}
-    margin-left $ui-horizontal-gap
+    margin-left $checkbox-gap-horizontal
 
 {$selector-checkbox-active}
   > {$selector-checkbox-icon}:after
@@ -17,12 +16,19 @@
 {$selector-checkbox-indeterminate}
   > {$selector-checkbox-icon}:after
     transform rotate(0deg) scale(1)
-    height 1px
+
+    top $checkbox-indeterminate-top
+    left $checkbox-indeterminate-left
+    width $checkbox-indeterminate-width
+    height $checkbox-indeterminate-height
 
 {$selector-checkbox-icon}
   position absolute
   left 0
   top 50%
+  width $font-size-default
+  height $font-size-default
+  margin-top -0.5 * $font-size-default
   border-radius $border-radius-small
   box-sizing border-box
   border 1px solid $brand-border
@@ -32,13 +38,18 @@
     content ''
 
     position absolute
+    top $checkbox-icon-top
+    left $checkbox-icon-left
+    width $checkbox-icon-width
+    height $checkbox-icon-height
 
-    border 1px solid #fff
+    border 1px solid $brand-white
     box-sizing border-box
     border-top 0
     border-left 0
 
     transform scale(0)
+
 
 {$selector-checkbox-input}
   position absolute
@@ -48,16 +59,34 @@
 {$selector-checkbox-enabled} input
   cursor $cursor-clickable
 
-{$selector-checkbox-enabled}:hover
-  > {$selector-checkbox-icon}
-    border-color $brand-border-hover
-
 {$selector-checkbox-disabled},
 {$selector-checkbox-disabled} input
   cursor $cursor-disabled
 
+{$selector-checkbox-enabled}:hover
+  > {$selector-checkbox-icon}
+    border-color $brand-primary
+
+{$selector-checkbox-active},
+{$selector-checkbox-indeterminate}
+  > {$selector-checkbox-icon}
+    background-color $brand-primary
+    border-color $brand-primary
+
 {$selector-checkbox-disabled}
-  opacity $ui-opacity-disabled
+  color $brand-text-disabled
+
+  > {$selector-checkbox-icon}
+    background-color $brand-bg-disabled
+    border-color $brand-border-disabled
+
+    &:after
+      border-color $brand-text-disabled
+
+if $ui-shadow-radius > 0
+  {$selector-checkbox-focus}
+    > {$selector-checkbox-icon}
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 {$selector-checkbox-vertical}
   > {$selector-checkbox}

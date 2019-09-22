@@ -1,18 +1,16 @@
 {$selector-radio-group}
   display inline-block
-  ui-radio-group()
 
 {$selector-radio}
   display inline-block
   user-select none
   position relative
-
-  radio-brand-style($brand-primary, $brand-primary-shadow)
-
-  ui-radio()
+  color $brand-text
+  font-size $font-size-default
+  padding-left $font-size-default + $ui-icon-text-gap
 
   + {$selector-radio}
-    margin-left $ui-horizontal-gap
+    margin-left $radio-gap-horizontal
 
 {$selector-radio-active}
   > {$selector-radio-icon}:after
@@ -23,7 +21,10 @@
   position absolute
   left 0
   top 50%
-  border-radius 50%
+  width $font-size-default
+  height $font-size-default
+  margin-top -0.5 * $font-size-default
+  border-radius $border-radius-circle
   box-sizing border-box
   border 1px solid $brand-border
   transition border-color 0.3s, box-shadow 0.3s
@@ -35,7 +36,13 @@
     left 50%
     top 50%
 
-    border-radius 50%
+    width $font-size-default - 6
+    height $font-size-default - 6
+
+    margin-top -0.5 * ($font-size-default - 6)
+    margin-left -0.5 * ($font-size-default - 6)
+
+    border-radius $border-radius-circle
     background-color $brand-border
 
     opacity 0
@@ -51,16 +58,32 @@
 {$selector-radio-enabled} input
   cursor $cursor-clickable
 
-{$selector-radio-enabled}:hover
-  > {$selector-radio-icon}
-    border-color $brand-border-hover
-
 {$selector-radio-disabled},
 {$selector-radio-disabled} input
   cursor $cursor-disabled
 
+{$selector-radio-enabled}:hover,
+{$selector-radio-active}
+  > {$selector-radio-icon}
+    border-color $brand-primary
+
+{$selector-radio-enabled}
+  > {$selector-radio-icon}:after
+    background-color $brand-primary
+
 {$selector-radio-disabled}
-  opacity $ui-opacity-disabled
+  color $brand-text-disabled
+
+  > {$selector-radio-icon}
+    border-color $brand-border-disabled
+
+    &:after
+      background-color $brand-text-disabled
+
+if $ui-shadow-radius > 0
+  &{$selector-radio-focus}
+    > {$selector-radio-icon}
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 {$selector-radio-vertical}
   > {$selector-radio}

@@ -9,6 +9,7 @@ import {
   RAW_ALWAYS,
   RAW_HOVER,
   RAW_NEVER,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
@@ -25,6 +26,9 @@ export default Yox.define({
     shadow: {
       type: oneOf([RAW_ALWAYS, RAW_HOVER, RAW_NEVER]),
       value: RAW_ALWAYS,
+    },
+    width: {
+      type: RAW_NUMERIC,
     },
     className: {
       type: RAW_STRING,

@@ -106,7 +106,7 @@ export default {
             <Button on-click="cancel()">cancel</Button>
           </template>
           <div style="font-weight: bold;">{{title}}</div>
-          <div style="line-height: 1.8">{{title}}</div>
+          <div>{{title}}</div>
         </Item>
       {{/each}}
     </List>

@@ -1,0 +1,53 @@
+<div
+class="${prefix}textarea
+{{#if size}} ${prefix}textarea-{{size}}{{/if}}
+{{#if status}} ${prefix}textarea-{{status}}{{/if}}
+
+{{#if disabled}} ${prefix}textarea-disabled
+{{else}} ${prefix}textarea-enabled
+{{/if}}
+
+{{#if className}} {{className}}{{/if}}"
+
+{{#if width || style}}
+  style="{{#if width}}width: {{width}}px;{{/if}}
+  {{#if style}}{{style}}{{/if}}"
+{{/if}}
+>
+
+  <textarea
+    class="${prefix}textarea-el"
+    model="value"
+
+    {{#if wrap}}
+      wrap="{{wrap}}"
+    {{/if}}
+
+    {{#if placeholder}}
+      placeholder="{{placeholder}}"
+    {{/if}}
+
+    {{#if maxLength}}
+      maxlength="{{maxLength}}"
+    {{/if}}
+
+    {{#if readOnly}}
+      readonly
+    {{/if}}
+
+    {{#if spellCheck}}
+      spellcheck
+    {{/if}}
+
+    {{#if disabled}}
+      disabled
+    {{else}}
+      on-blur="handleBlur()"
+      on-focus="handleFocus()"
+    {{/if}}
+
+    style="{{textareaStyle}}"
+  >
+  </textarea>
+
+</div>

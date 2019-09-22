@@ -3,18 +3,24 @@ import Yox from 'yox'
 import template from './template/BreadcrumbItem.hbs'
 
 import {
+  FALSE,
   RAW_STRING,
+  RAW_BOOLEAN,
 } from '../constant'
+import { findComponentUpward } from '../util'
 
 export default Yox.define({
   template,
   propTypes: {
-    to: {
+    href: {
       type: RAW_STRING,
     },
-    separator: {
+    target: {
       type: RAW_STRING,
-      value: '/',
+    },
+    last: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -23,4 +29,10 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
+  data(options) {
+    const breadcrumb = findComponentUpward(options.parent, '${prefix}breadcrumb')
+    return {
+      separator: breadcrumb.get('separator')
+    }
+  }
 })

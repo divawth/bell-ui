@@ -1,7 +1,7 @@
 <div
 class="${prefix}notification
 
-{{#if type}} ${prefix}notification-{{type}}
+{{#if status}} ${prefix}notification-{{status}} ${prefix}notification-with-icon
 {{/if}}
 
 {{#if duration == 0}} ${prefix}notification-with-close
@@ -9,6 +9,22 @@ class="${prefix}notification
 
 style="width: {{width}}px;right: {{right}}px;"
 >
+
+  {{#if status}}
+    <Icon
+      name="{{
+        status === RAW_TYPE_SUCCESS
+          ? 'checkmark-circle'
+          : status === RAW_TYPE_WARNING
+            ? 'alert'
+            : status === RAW_TYPE_ERROR
+              ? 'close-circle'
+              : 'information-circle'
+      }}"
+      size="0"
+      className="${prefix}notification-icon"
+    />
+  {{/if}}
 
   {{#if title}}
     <div class="${prefix}notification-title">

@@ -1,0 +1,18 @@
+<Dialog
+  ref="dialog"
+  mask
+  maskClosable="{{false}}"
+  closable="{{closable}}"
+  title="{{title}}"
+  width="400"
+  className="${prefix}modal-alert"
+>
+  {{content}}
+  <Button
+    slot="footer"
+    type="{{okType}}"
+    on-click="ok()"
+  >
+    {{okText}}
+  </Button>
+</Dialog>

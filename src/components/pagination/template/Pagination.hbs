@@ -1,0 +1,223 @@
+<div
+class="${prefix}pagination
+{{#if size}} ${prefix}pagination-{{size}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  {{#partial prevPage}}
+    {{#if hasSlot('prev')}}
+
+      <button
+        key="prev"
+        class="${prefix}pagination-item ${prefix}pagination-custom-prev"
+
+        {{#if current > 1}}
+          on-click="decrease('current', 1, 1)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <slot name="prev" />
+      </button>
+
+    {{else}}
+
+      <button
+        key="prev"
+        class="${prefix}pagination-item ${prefix}pagination-prev"
+
+        {{#if current > 1}}
+          on-click="decrease('current', 1, 1)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <Icon
+          name="arrow-back"
+          size="0"
+          className="${prefix}pagination-icon"
+        />
+      </button>
+
+    {{/if}}
+  {{/partial}}
+
+  {{#partial nextPage}}
+    {{#if hasSlot('next')}}
+
+      <button
+        key="next"
+        class="${prefix}pagination-item ${prefix}pagination-custom-next"
+
+        {{#if current < count}}
+          on-click="increase('current', 1, count)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <slot name="next" />
+      </button>
+
+    {{else}}
+
+      <button
+        key="next"
+        class="${prefix}pagination-item ${prefix}pagination-next"
+
+        {{#if current < count}}
+          on-click="increase('current', 1, count)"
+        {{else}}
+          disabled
+        {{/if}}
+      >
+        <Icon
+          name="arrow-forward"
+          size="0"
+          className="${prefix}pagination-icon"
+        />
+      </button>
+
+    {{/if}}
+  {{/partial}}
+
+  {{#if showTotal}}
+    <span class="${prefix}pagination-total">
+      共 {{total}} 条
+    </span>
+  {{/if}}
+
+  {{#if pageSizeList.length > 0}}
+    <Select
+      model="pageSize"
+      size="{{size}}"
+      placement="{{placement}}"
+      className="${prefix}pagination-select"
+      on-change="pageSizeChange()"
+    >
+      {{#each pageSizeList}}
+        <Option value="{{this.value}}" text="{{this.text}}">
+          {{this.text}}
+        </Option>
+      {{/each}}
+    </Select>
+  {{/if}}
+
+  {{#if simple}}
+
+    <div class="${prefix}pagination-simple">
+
+      {{> prevPage}}
+
+      <Input
+        ref="simpleInput"
+        type="input"
+        size="{{size}}"
+        model="page"
+        className="${prefix}pagination-simple-input"
+      />
+
+      <span class="${prefix}pagination-separator">
+        /
+      </span>
+
+      <span class="${prefix}pagination-count">
+        {{count}}
+      </span>
+
+      {{> nextPage}}
+
+    </div>
+
+  {{else}}
+
+    <div class="${prefix}pagination-list">
+
+      {{> prevPage}}
+
+      {{#each pageList}}
+
+        {{#if this.prev}}
+
+          <button
+            key="prev-ellipsis"
+            class="${prefix}pagination-item ${prefix}pagination-ellipsis"
+            on-click="decrease('current', 5, 1)"
+          >
+            <Icon
+              name="arrow-back"
+              size="0"
+              className="${prefix}pagination-icon"
+            />
+            <Icon
+              name="arrow-back"
+              size="0"
+              className="${prefix}pagination-icon"
+            />
+          </button>
+
+        {{else if this.next}}
+
+          <button
+            key="next-ellipsis"
+            class="${prefix}pagination-item ${prefix}pagination-ellipsis"
+            on-click="increase('current', 5, ../count)"
+          >
+            <Icon
+              name="arrow-forward"
+              size="0"
+              className="${prefix}pagination-icon"
+            />
+            <Icon
+              name="arrow-forward"
+              size="0"
+              className="${prefix}pagination-icon"
+            />
+          </button>
+
+        {{else}}
+
+          <button
+            key="page{{this.value}}"
+            class="${prefix}pagination-item
+            {{#if this.active}} ${prefix}pagination-active{{/if}}"
+            {{#if !this.active}}
+              on-click="set('current', this.value)"
+            {{/if}}
+          >
+            {{this.value}}
+          </button>
+
+        {{/if}}
+
+      {{/each}}
+
+      {{> nextPage}}
+
+    </div>
+
+  {{/if}}
+
+  {{#if showJumper}}
+    <div class="${prefix}pagination-jumper">
+      <Input
+        ref="jumperInput"
+        type="input"
+        placeholder="请输入页码"
+        model="page"
+        size="{{size}}"
+        className="${prefix}pagination-jumper-input"
+      />
+      <Button
+        type="primary"
+        on-click="jump()"
+      >
+        跳转
+      </Button>
+    </div>
+  {{/if}}
+
+</div>
