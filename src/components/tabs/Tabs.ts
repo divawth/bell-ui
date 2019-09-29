@@ -11,9 +11,9 @@ import {
   RAW_LARGE,
 
   RAW_STRING,
-  RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_DEFAULT,
+  RAW_NUMBER,
 } from '../constant'
 
 import {
@@ -46,7 +46,7 @@ export default Yox.define({
       value: FALSE,
     },
     value: {
-      type: RAW_NUMERIC,
+      type: [RAW_STRING, RAW_NUMBER],
       value: 0,
     },
     className: {

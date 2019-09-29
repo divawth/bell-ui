@@ -4,41 +4,48 @@
 
   &:before
     content ''
-    height 100%
     border-left $timeline-line-width solid $timeline-line-color
     position absolute
-    left 0.5 * $timeline-dot-size
-    top 0
+    left $timeline-line-left
+    top $timeline-dot-size
+    bottom 0
 
   &:last-child
     padding-bottom 0
     &:before
       display none
 
-{$selector-timeline-dot}
+{$selector-timeline-dot},
+{$selector-timeline-custom}
   position absolute
   width $timeline-dot-size
   height $timeline-dot-size
-  background-color $timeline-dot-bg-color
+
+{$selector-timeline-dot}
   border-radius $border-radius-circle
-  border 1px solid
+  border $timeline-line-width solid $timeline-line-color
 
 {$selector-timeline-custom}
   text-align center
-  position absolute
-  background-color $timeline-custom-bg-color
-  width $timeline-custom-width
-  left $timeline-custom-left
+
+  > {$selector-icon}
+    vertical-align top
 
 {$selector-timeline-content}
+
   position relative
+  top $timeline-content-top
   padding-left $timeline-content-padding-left
-  font-size $timeline-content-font-size
-  top -3px
+
+  color $brand-text
+  font-size $font-size-default
   line-height $ui-multiple-line-height
+
   p
     padding 0
     margin 0
+    font-size $font-size-default
+    line-height $ui-multiple-line-height
 
 {$selector-timeline-pending}
   {$selector-timeline-item}

@@ -31,6 +31,10 @@ class="${prefix}textarea
       maxlength="{{maxLength}}"
     {{/if}}
 
+    {{#if autoFocus}}
+      autofocus
+    {{/if}}
+
     {{#if readOnly}}
       readonly
     {{/if}}

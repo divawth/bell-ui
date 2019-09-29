@@ -252,8 +252,9 @@ size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | false
 editable | 是否可编辑 | boolean | - | true
-readOnly | 是否开启只读 | boolean | - | true
-formatter | 指定输入框展示值的格式 | function | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
+readOnly | 原生 `readonly` 属性 | boolean | - | `false`
+formatter | 指定输入框展示值的格式 | Function | - | -
 placeholder | 占位文本 | string | - | -
 
 > Events

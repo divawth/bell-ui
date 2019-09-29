@@ -45,6 +45,10 @@ class="${prefix}input
         placeholder="{{placeholder}}"
       {{/if}}
 
+      {{#if autoFocus}}
+        autofocus
+      {{/if}}
+
       {{#if readOnly}}
         readonly
       {{/if}}

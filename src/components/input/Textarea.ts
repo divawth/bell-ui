@@ -70,6 +70,10 @@ export default Yox.define({
     wrap: {
       type: oneOf(['hard', 'soft']),
     },
+    autoFocus: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     spellCheck: {
       type: RAW_BOOLEAN,
       value: FALSE,

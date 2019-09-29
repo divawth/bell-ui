@@ -7,6 +7,9 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_ARRAY,
+  RAW_NUMBER,
+  UNDEFINED,
 } from '../constant'
 
 export default Yox.define({
@@ -16,6 +19,9 @@ export default Yox.define({
   name: '${prefix}collapse',
 
   propTypes: {
+    value: {
+      type: [RAW_STRING, RAW_NUMBER, RAW_ARRAY],
+    },
     accordion: {
       type: RAW_BOOLEAN,
       value: FALSE,
@@ -33,24 +39,43 @@ export default Yox.define({
   },
 
   watchers: {
-    accordion(accordion: boolean) {
+    value(value) {
       this.fire(
-        'accordion.collapse',
-        { accordion },
+        'change.collapse',
+        {
+          value,
+        },
         TRUE
       )
     }
   },
 
   events: {
-    'open.panel': function (event, data) {
+    'open.collapseItem': function (event, data) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         event.stop()
-        this.fire(
-          'open.collapse',
-          data,
-          TRUE
-        )
+
+        let { name, opened } = data
+
+        let value = this.get('value')
+
+        if (this.get('accordion')) {
+          value = opened ? name : UNDEFINED
+        }
+        else {
+          value = Yox.is.array(value) ? this.copy(value) : []
+          if (opened) {
+            if (!Yox.array.has(value, name, FALSE)) {
+              value.push(name)
+            }
+          }
+          else {
+            Yox.array.remove(value, name, FALSE)
+          }
+        }
+
+        this.set('value', value)
+
       }
     }
   }

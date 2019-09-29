@@ -22,16 +22,14 @@ class="${prefix}drawer
     class="${prefix}drawer-wrapper"
     style="{{wrapperStyle}}"
   >
-    {{#if title || hasSlot('title')}}
+    {{#if  hasSlot('title')}}
       <div class="${prefix}drawer-header">
-        <slot name="title">
-          {{title}}
-        </slot>
+        <slot name="title" />
       </div>
     {{/if}}
 
     <div class="${prefix}drawer-body">
-      <slot name="children" />
+      <slot name="content" />
     </div>
 
     {{#if closable}}

@@ -1,5 +1,5 @@
 <div
-class="${prefix}collapse-panel
+class="${prefix}collapse-item
 {{#if opened}} ${prefix}collapse-open{{/if}}
 {{#if disabled}} ${prefix}collapse-disabled
 {{else}} ${prefix}collapse-enabled
@@ -25,20 +25,18 @@ class="${prefix}collapse-panel
     {{/if}}
 
     <span class="${prefix}collapse-icon">
-      <slot name="icon">
-        <Icon
-          name="arrow-down"
-          size="0"
-          className="${prefix}collapse-arrow-icon"
-        />
-      </slot>
+      <Icon
+        name="arrow-down"
+        size="0"
+        className="${prefix}collapse-arrow-icon"
+      />
     </span>
 
     {{title}}
 
   </div>
 
-  <div ref="content" class="${prefix}collapse-content">
+  <div class="${prefix}collapse-content">
     <slot name="children" />
   </div>
 

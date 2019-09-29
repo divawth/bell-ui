@@ -25,9 +25,7 @@ class="${prefix}avatar
       on-error="error.avatar"
     >
   {{else if hasSlot('icon')}}
-    <span class="${prefix}avatar-icon">
-      <slot name="icon" />
-    </span>
+    <slot name="icon" />
   {{else if text}}
     <span
       ref="text"

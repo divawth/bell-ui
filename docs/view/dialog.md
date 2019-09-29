@@ -10,10 +10,19 @@ export default {
       <Button on-click="destrory()">
         Destroy
       </Button>
-      <Dialog ref="dialog" model="visible">
-        <div>
-          这里是弹框的内容呀
-        </div>
+      <Dialog
+        ref="dialog"
+        model="visible"
+      >
+
+        <template slot="title">
+          标题
+        </template>
+
+        <template slot="content">
+          内容
+        </template>
+
         <template slot="footer">
           <Button on-click="close()">
             取消
@@ -22,9 +31,24 @@ export default {
             确定
           </Button>
         </template>
+
       </Dialog>
     </div>
   `,
+  events: {
+    open: function () {
+      console.log('open')
+    },
+    opened: function () {
+      console.log('opened')
+    },
+    close: function () {
+      console.log('close')
+    },
+    closed: function () {
+      console.log('closed')
+    }
+  },
   methods: {
     destrory: function () {
       if (this.$refs.dialog) {
@@ -55,12 +79,23 @@ visible / `model` | 是否显示对话框 | boolean | - | `false`
 mask | 是否显示遮罩 | boolean | - | `true`
 closable | 是否展示关闭按钮 | boolean | - | `true`
 maskClosable | 点击遮罩是否关闭对话框 | boolean | - | `true`
-title | 标题栏文字 | string | - | '温馨提示'
-width | 显示宽度 | number | - | 520
+width | 显示宽度 | numeric | - | `500`
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Slots
 
 名称 | 说明
 ---|---
-title | 设置 title
-footer | 设置 footer
+title | 标题
+content | 内容
+footer | 底部的内容
+
+> Events
+
+事件名称 | 说明 | 回调参数
+---|---|---
+open | 打开时触发 | -
+opened | 打开动画结束后触发 | -
+close | 关闭时触发 | -
+closed | 关闭动画结束后触发 | -

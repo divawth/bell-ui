@@ -1,6 +1,6 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
-    accordion: unknown;
+    value: unknown;
 }, {
-    'open.panel': unknown;
+    'open.collapseItem': unknown;
 }, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

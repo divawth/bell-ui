@@ -68,6 +68,10 @@ export default Yox.define({
     suffix: {
       type: RAW_STRING,
     },
+    autoFocus: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     spellCheck: {
       type: RAW_BOOLEAN,
       value: FALSE,

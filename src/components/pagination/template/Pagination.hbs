@@ -11,18 +11,17 @@ class="${prefix}pagination
   {{#partial prevPage}}
     {{#if hasSlot('prev')}}
 
-      <button
+      <div
         key="prev"
-        class="${prefix}pagination-item ${prefix}pagination-custom-prev"
+        class="${prefix}pagination-custom-prev
+        {{#if current === 1}} ${prefix}pagination-custom-disabled{{/if}}"
 
         {{#if current > 1}}
           on-click="decrease('current', 1, 1)"
-        {{else}}
-          disabled
         {{/if}}
       >
         <slot name="prev" />
-      </button>
+      </div>
 
     {{else}}
 
@@ -49,18 +48,17 @@ class="${prefix}pagination
   {{#partial nextPage}}
     {{#if hasSlot('next')}}
 
-      <button
+      <div
         key="next"
-        class="${prefix}pagination-item ${prefix}pagination-custom-next"
+        class="${prefix}pagination-custom-next
+        {{#if current === count}} ${prefix}pagination-custom-disabled{{/if}}"
 
         {{#if current < count}}
           on-click="increase('current', 1, count)"
-        {{else}}
-          disabled
         {{/if}}
       >
         <slot name="next" />
-      </button>
+      </div>
 
     {{else}}
 
@@ -142,9 +140,9 @@ class="${prefix}pagination
 
         {{#if this.prev}}
 
-          <button
+          <div
             key="prev-ellipsis"
-            class="${prefix}pagination-item ${prefix}pagination-ellipsis"
+            class="${prefix}pagination-ellipsis"
             on-click="decrease('current', 5, 1)"
           >
             <Icon
@@ -157,13 +155,13 @@ class="${prefix}pagination
               size="0"
               className="${prefix}pagination-icon"
             />
-          </button>
+          </div>
 
         {{else if this.next}}
 
-          <button
+          <div
             key="next-ellipsis"
-            class="${prefix}pagination-item ${prefix}pagination-ellipsis"
+            class="${prefix}pagination-ellipsis"
             on-click="increase('current', 5, ../count)"
           >
             <Icon
@@ -176,7 +174,7 @@ class="${prefix}pagination
               size="0"
               className="${prefix}pagination-icon"
             />
-          </button>
+          </div>
 
         {{else}}
 

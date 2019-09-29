@@ -24,28 +24,16 @@ class="${prefix}dialog
       style="width:{{width}}px"
     {{/if}}
   >
-    <div class="${prefix}dialog-title">
 
-      {{#if title}}
-        <slot name="title">
-          {{title}}
-        </slot>
-      {{/if}}
+    {{#if hasSlot('title')}}
+      <div class="${prefix}dialog-header">
+        <slot name="title" />
+      </div>
+    {{/if}}
 
-      {{#if closable}}
-        <div class="${prefix}dialog-close" on-click="close()">
-          <Icon
-            name="close"
-            size="0"
-            className="${prefix}dialog-close-icon"
-          />
-        </div>
-      {{/if}}
-    </div>
-
-    {{#if hasSlot('children')}}
-      <div class="${prefix}dialog-content">
-        <slot name="children" />
+    {{#if hasSlot('content')}}
+      <div class="${prefix}dialog-body">
+        <slot name="content" />
       </div>
     {{/if}}
 
@@ -54,5 +42,15 @@ class="${prefix}dialog
         <slot name="footer" />
       </div>
     {{/if}}
+
+    {{#if closable}}
+      <Icon
+        name="close"
+        size="0"
+        className="${prefix}dialog-close"
+        on-click.native="close()"
+      />
+    {{/if}}
+
   </div>
 </div>

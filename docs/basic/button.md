@@ -176,11 +176,11 @@ export default {
 export default {
   template: `
     <div>
-      <Button type="success" fluid>
+      <Button type="success" block>
         确认提交
       </Button>
       <br><br>
-      <Button type="error" fluid>
+      <Button type="error" block>
         确认删除
       </Button>
     </div>
@@ -371,7 +371,7 @@ border | 边框类型 | string | `solid`, `none`, `dashed` | `solid`
 ghost | 是否是幽灵按钮 | boolean | - | false
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `circle`, `round` | -
-fluid | 开启后，按钮的长度为 100% | boolean | - | `false`
+block | 开启后，按钮的长度为 100% | boolean | - | `false`
 disabled | 设置按钮为禁用状态 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

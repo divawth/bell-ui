@@ -12,7 +12,12 @@ class="${prefix}timeline-item
       <slot name="dot" />
     </div>
   {{else}}
-    <div class="${prefix}timeline-dot" style="color: {{color}}">
+    <div
+      class="${prefix}timeline-dot"
+      {{#if color}}
+        style="border-color: {{color}}"
+      {{/if}}
+    >
     </div>
   {{/if}}
 

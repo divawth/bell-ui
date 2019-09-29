@@ -15,6 +15,7 @@ import {
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}dialog-visible'
+const CLASS_FADE = '${prefix}dialog-fade'
 
 export default Yox.define({
 
@@ -23,9 +24,6 @@ export default Yox.define({
   model: 'visible',
 
   propTypes: {
-    title: {
-      type: RAW_STRING,
-    },
     visible: {
       type: RAW_BOOLEAN,
       value: FALSE,
@@ -56,21 +54,49 @@ export default Yox.define({
 
   watchers: {
     visible(isOpen) {
+
       const me = this
       const element = me.$el
+      const wrapper = me.$refs.wrapper as HTMLElement
+
       if (isOpen) {
+
+        // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
+        me.fire('open.dialog')
+
+        setTimeout(
+          function () {
+            Yox.dom.addClass(element, CLASS_FADE)
+
+            onTransitionEnd(
+              wrapper,
+              function () {
+                if (me.$el) {
+                  me.fire('opened.dialog')
+                }
+              }
+            )
+          },
+          30
+        )
+
       }
       else {
-        Yox.dom.removeClass(element, CLASS_VISIBLE)
-        // 动画一般作用在 wrapper 上面
-        // 监听 $el 没用的
+
+        Yox.dom.removeClass(element, CLASS_FADE)
+        me.fire('close.dialog')
+
         onTransitionEnd(
-          me.$refs.wrapper as HTMLElement,
+          wrapper,
           function () {
-            me.fire('close.dialog')
+            if (me.$el) {
+              Yox.dom.removeClass(element, CLASS_VISIBLE)
+              me.fire('closed.dialog')
+            }
           }
         )
+
       }
     }
   },

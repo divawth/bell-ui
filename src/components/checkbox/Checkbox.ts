@@ -22,10 +22,6 @@ export default Yox.define({
   model: 'checked',
 
   propTypes: {
-    label: {
-      type: RAW_STRING,
-      required: TRUE,
-    },
     name: {
       type: RAW_STRING,
     },

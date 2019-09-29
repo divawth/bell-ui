@@ -1,13 +1,20 @@
 <Dialog
-  ref="dialog"
   mask
+  ref="dialog"
+  width="{{width}}"
   maskClosable="{{false}}"
   closable="{{closable}}"
-  title="{{title}}"
-  width="400"
-  className="${prefix}modal-alert"
+  className="${prefix}modal"
 >
-  {{content}}
+
+  <template slot="title">
+    {{title}}
+  </template>
+
+  <template slot="content">
+    {{content}}
+  </template>
+
   <Button
     slot="footer"
     type="{{okType}}"
@@ -15,4 +22,5 @@
   >
     {{okText}}
   </Button>
+
 </Dialog>

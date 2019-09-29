@@ -27,7 +27,6 @@ export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING,
-      value: '温馨提示',
     },
     content: {
       type: RAW_STRING,

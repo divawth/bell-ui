@@ -227,8 +227,9 @@ clearable | 是否显示清空按钮 | boolean | - | `false`
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
 secure | 是否可以隐藏显示（仅在 `password` 下有效） | boolean | - | `false`
-spellCheck | 原生 `spellcheck` 属性 | boolean | - | -
-readOnly | 原生 `readonly` 属性 | boolean | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
+spellCheck | 原生 `spellcheck` 属性 | boolean | - | `false`
+readOnly | 原生 `readonly` 属性 | boolean | - | `false`
 maxLength | 原生 `maxlength` 属性 | numeric | - | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

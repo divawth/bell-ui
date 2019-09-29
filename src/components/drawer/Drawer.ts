@@ -5,7 +5,6 @@ import template from './template/Drawer.hbs'
 import {
   TRUE,
   FALSE,
-  BODY,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_LEFT,
@@ -30,9 +29,6 @@ export default Yox.define({
   model: 'visible',
 
   propTypes: {
-    title: {
-      type: RAW_STRING,
-    },
     width: {
       type: RAW_STRING,
       value: 256,
@@ -47,7 +43,7 @@ export default Yox.define({
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
+      value: TRUE,
     },
     mask: {
       type: RAW_BOOLEAN,
@@ -71,32 +67,48 @@ export default Yox.define({
 
   watchers: {
     visible(isOpen) {
+
       const me = this
       const element = this.$el
       const wrapper = this.$refs.wrapper as HTMLElement
+
       if (isOpen) {
+
+        // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
+        me.fire('open.drawer')
+
         setTimeout(
           function () {
-            if (me.$el) {
-              Yox.dom.addClass(element, CLASS_FADE)
-              me.fire('open.drawer')
-            }
+            Yox.dom.addClass(element, CLASS_FADE)
+            onTransitionEnd(
+              wrapper,
+              function () {
+                if (me.$el) {
+                  me.fire('opened.drawer')
+                }
+              }
+            )
           },
-          20
+          30
         )
+
       }
       else {
+
         Yox.dom.removeClass(element, CLASS_FADE)
+        me.fire('close.drawer')
+
         onTransitionEnd(
           wrapper,
           function () {
             if (me.$el) {
               Yox.dom.removeClass(element, CLASS_VISIBLE)
-              me.fire('close.drawer')
+              me.fire('closed.drawer')
             }
           }
         )
+
       }
     }
   },
@@ -108,39 +120,24 @@ export default Yox.define({
       if (placement === RAW_LEFT
         || placement === RAW_RIGHT
       ) {
-        let width = toNumber(this.get('width'))
-        if (width < 100) {
-          style = `width: ${width}%;`
-        }
-        else {
-          style = `width: ${width}px;`
-        }
+        const width = toNumber(this.get('width'))
+        style = `width: ${width}px;`
       }
       else {
-        let height = toNumber(this.get('height'))
-        if (height < 100) {
-          style = `height: ${height}%;`
-        }
-        else {
-          style = `height: ${height}px;`
-        }
+        const height = toNumber(this.get('height'))
+        style = `height: ${height}px;`
       }
       return style
     }
   },
 
   methods: {
+    open() {
+      this.set('visible', TRUE)
+    },
     close() {
       this.set('visible', FALSE)
     }
-  },
-
-  afterMount() {
-    Yox.dom.append(BODY, this.$el)
-  },
-
-  beforeDestroy() {
-    Yox.dom.remove(BODY, this.$el)
   }
 
 })

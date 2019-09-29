@@ -7,8 +7,6 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY,
-  RAW_TYPE_PRIMARY,
   RAW_STATUS_ARRAY,
 } from '../constant'
 

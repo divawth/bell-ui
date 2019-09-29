@@ -53,10 +53,20 @@ export default {
       />
     </CardHeader>
 
-    <CardMedia title="标题" subTitle="副标题">
+    <CardMedia>
+
+      <template slot="title">
+        标题
+      </template>
+
+      <template slot="subTitle">
+        副标题
+      </template>
+
       <img
         src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
       />
+
     </CardMedia>
 
     <CardBody>
@@ -145,3 +155,73 @@ width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
+> Card Slots
+
+参数 | 说明
+---|---
+children | 内容
+
+
+
+> CardHeader Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> CardHeader Slots
+
+参数 | 说明
+---|---
+title | 标题
+subTitle | 子标题
+extra | 标题栏右侧的内容
+avatar | 头像
+
+
+
+> CardBody Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> CardBody Slots
+
+参数 | 说明
+---|---
+children | 内容
+
+
+
+> CardMedia Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> CardMedia Slots
+
+参数 | 说明
+---|---
+title | 标题
+subTitle | 子标题
+children | 内容
+
+
+
+> CardFooter Props
+
+参数 | 说明 | 类型 | 可选值 | 默认值
+---|---|---|---|---
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
+
+> CardFooter Slots
+
+参数 | 说明
+---|---
+children | 内容

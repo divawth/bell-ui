@@ -15,13 +15,13 @@
 {$selector-collapse-bordered}
   border-radius $border-radius-default
 
-  > {$selector-collapse-panel} > {$selector-collapse-header}
+  > {$selector-collapse-item} > {$selector-collapse-header}
     background-color $collapse-header-bg-color
 
   > {$selector-collapse-open} > {$selector-collapse-header}
     border-bottom 1px solid $brand-border
 
-{$selector-collapse-panel} + {$selector-collapse-panel}
+{$selector-collapse-item} + {$selector-collapse-item}
   border-top 1px solid $brand-border
 
 {$selector-collapse-header}

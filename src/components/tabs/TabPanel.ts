@@ -84,6 +84,7 @@ export default Yox.define({
       isActive: tabs.get('value') == name
     })
 
+    console.log('add')
     me.fire('add.tabPanel')
 
   },

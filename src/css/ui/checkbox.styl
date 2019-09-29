@@ -1,13 +1,24 @@
 {$selector-checkbox}
   display inline-block
   user-select none
-  color $brand-text
-  font-size $font-size-default
-  padding-left $font-size-default + $ui-icon-text-gap
-  position relative
+  box-sizing border-box
+  vertical-align middle
 
   + {$selector-checkbox}
     margin-left $checkbox-gap-horizontal
+
+{$selector-checkbox-with-label}
+  position relative
+  color $brand-text
+  font-size $font-size-default
+  line-height $ui-single-line-height
+  padding-left $font-size-default + $ui-icon-text-gap
+
+  > {$selector-checkbox-icon}
+    position absolute
+    left 0
+    top 50%
+    margin-top -0.5 * $font-size-default
 
 {$selector-checkbox-active}
   > {$selector-checkbox-icon}:after
@@ -23,15 +34,14 @@
     height $checkbox-indeterminate-height
 
 {$selector-checkbox-icon}
-  position absolute
-  left 0
-  top 50%
+  display inline-block
+  position relative
   width $font-size-default
   height $font-size-default
-  margin-top -0.5 * $font-size-default
   border-radius $border-radius-small
   box-sizing border-box
   border 1px solid $brand-border
+  background-color $brand-bg
   transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
 
   &:after

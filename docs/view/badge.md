@@ -8,13 +8,17 @@
 export default {
   template: `
     <Badge count="3">
-      <a href="#" class="demo-badge" style="
-        width: 42px;
-        height: 42px;
-        background: #eee;
-        border-radius: 6px;
-        display: inline-block;
-      "></a>
+      <a
+        href="#"
+        class="demo-badge"
+        style="
+          width: 42px;
+          height: 42px;
+          background: #eee;
+          border-radius: 6px;
+          display: inline-block;
+        "
+      ></a>
     </Badge>
   `
 }
@@ -27,19 +31,28 @@ export default {
   template: `
     <div>
       <Badge dot>
-        <a href="#" class="demo-badge" style="
-          width: 42px;
-          height: 42px;
-          background: #eee;
-          border-radius: 6px;
-          display: inline-block;
-        "></a>
+        <a
+          href="#"
+          class="demo-badge"
+          style="
+            width: 42px;
+            height: 42px;
+            background: #eee;
+            border-radius: 6px;
+            display: inline-block;
+          "
+        ></a>
       </Badge>
       <Badge dot>
-        <Icon name="notifications-outline" size="26" />
+        <Icon
+          name="notifications-outline"
+          size="26"
+        />
       </Badge>
       <Badge dot>
-        <a href="#">可以是一个链接</a>
+        <a href="#">
+          可以是一个链接
+        </a>
       </Badge>
       <style>
         .bell-badge {
@@ -51,18 +64,24 @@ export default {
 }
 ```
 
-> 设置 max
+> 超过最大值显示为 `{max}+`
 
 ```js
 export default {
   template: `
   <div>
     <Badge count="212" max="99">
-      <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
+      <Avatar
+        src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        size="large"
+      />
     </Badge>
     <br><br>
     <Badge count="212211" max="999">
-      <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
+      <Avatar
+        src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+        size="large"
+      />
     </Badge>
     <br><br>
     <Badge count="212211">
@@ -75,7 +94,7 @@ export default {
 }
 ```
 
-> 独立 text 使用 使用 type 改变风格
+> 独立使用
 
 ```js
 export default {
@@ -87,26 +106,6 @@ export default {
     <Badge type="info" text="你好" />
     <Badge type="warning" text="你好" />
   </div>
-  `
-}
-```
-
-> dot 不展示数字，只有一个点
-
-```js
-export default {
-  template: `
-    <div>
-      <Badge dot count="你好">
-        <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
-      </Badge>
-      <Badge dot type="success" count="你好">
-        你好哦
-      </Badge>
-      <Badge dot type="info" count="你好">
-        <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
-      </Badge>
-    </div>
   `
 }
 ```
@@ -140,7 +139,7 @@ export default {
 }
 ```
 
-> ripple
+> 涟漪动画
 
 ```js
 export default {
@@ -163,25 +162,25 @@ export default {
 }
 ```
 
-> hidden 不展示
+> 隐藏
 
 ```js
 export default {
   template: `
-    <div on-click="click()">
+    <div on-click="toggle('hidden')">
       <Badge hidden="{{hidden}}" count="212211" max="999">
-        <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" size="large" />
+        <Avatar
+          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          size="large"
+        />
       </Badge>
-      <p> 点击图片不展示 badge </p>
+      <p>
+        点击图片不展示 badge
+      </p>
     </div>
   `,
   data: {
     hidden: false
-  },
-  methods: {
-    click: function () {
-      this.toggle('hidden')
-    }
   }
 }
 ```

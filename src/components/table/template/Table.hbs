@@ -1,53 +1,137 @@
 <div
-class="${prefix}table {{#if fixedLeftList.length || fixedRightList.length || height}}
-${prefix}table-fixed
-{{/if}}"
+class="${prefix}table
+
+{{#if stripe}} ${prefix}table-stripe{{/if}}
+
+{{#if simple}} ${prefix}table-simple
+{{else}} ${prefix}table-bordered
+{{/if}}
+
+{{#if className}} {{className}}{{/if}}"
 
 style="
-{{#if width}} width: {{width}}px; overflow-x: auto;{{/if}}
-{{#if height}} height: {{height}};{{/if}}
-"
+{{#if width}}width: {{width}}px; overflow-x: auto;{{/if}}
+{{#if height}}height: {{height}}px; overflow-y: auto;{{/if}}
+{{#if style}}{{style}}{{/if}}"
 >
 
-  {{#if height}}
-    <div class="${prefix}table-fixed-header">
-      <SmallTable {{...this}} header />
-    </div>
-  {{/if}}
+{{#if colWidths}}
 
-  {{#if fixedLeftList.length}}
-    <div class="${prefix}table-fixed-left">
-      <SmallTable
-        {{...this}}
-        fixed
-        columns="{{fixedLeftList}}"
-        list="{{list}}"
-      />
-    </div>
-  {{/if}}
+<table>
+  <colgroup>
+    {{#each columns:index}}
+      <col width="{{../colWidths[index]}}">
+    {{/each}}
+  </colgroup>
 
-  <div class="${prefix}table-insert"
-    {{#if height}}style="height: {{height}}; overflow-y: auto;"{{/if}}
-  >
-    {{#if list && list.length}}
-      <SmallTable {{...this}} />
-    {{else}}
-      <slot name="empty">
-        <div class="${prefix}table-empty">
-          暂无数据
-        </div>
+  <thead class="${prefix}table-header">
+    <tr>
+      {{#each columns}}
+      <td
+        {{#if this.align}}
+          class="${prefix}table-{{this.align}}"
+        {{/if}}
+      >
+        {{#if this.key === 'selection'}}
+          <Checkbox
+            checked="{{../allChecked}}"
+            on-change="allCheckedChange()"
+          />
+        {{else}}
+          {{this.title}}
+        {{/if}}
+      </td>
+      {{/each}}
+    </tr>
+  </thead>
+
+  {{#if list.length > 0}}
+    <tbody class="${prefix}table-body">
+      <slot name="children">
+        {{#each list:index}}
+        <tr>
+          {{#each ../columns}}
+
+            {{#if this.actions && this.actions.length}}
+
+            <td
+              {{#if this.align}}
+                class="${prefix}table-{{this.align}}"
+              {{/if}}
+            >
+              {{#each this.actions}}
+                <Button
+                  on-click="clickButton(this, list[index], index)"
+                  className="{{this.className}}"
+                  disabled="{{this.disabled}}"
+                  block="{{this.block}}"
+                  shape="{{this.shape}}"
+                  size="{{this.size}}"
+                  type="{{this.type}}"
+                >
+                  {{this.text}}
+                </Button>
+              {{/each}}
+            </td>
+
+            {{else if list[ index ][ this.key ]}}
+
+              <td
+                {{#if this.align}}
+                  class="${prefix}table-{{this.align}}"
+                {{/if}}
+              >
+                {{#if this.dangerous}}
+                  <div>
+                    {{{list[ index ][ this.key ]}}}
+                  </div>
+                {{else}}
+                  {{list[ index ][ this.key ]}}
+                {{/if}}
+              </td>
+
+            {{else if this.key === 'selection'}}
+
+              <td
+                {{#if this.align}}
+                  class="${prefix}table-{{this.align}}"
+                {{/if}}
+              >
+                <Checkbox
+                  checked="{{inArray(selection, list[ index ].key)}}"
+                  on-change="rowCheckedChange($event, $data, index)"
+                />
+              </td>
+
+            {{else}}
+
+              <td
+                {{#if this.align}}
+                  class="${prefix}table-{{this.align}}"
+                {{/if}}
+              >
+                {{this.key}} is not found.
+              </td>
+
+            {{/if}}
+          {{/each}}
+        </tr>
+        {{/each}}
       </slot>
-    {{/if}}
-  </div>
-
-  {{#if fixedRightList.length}}
-    <div class="${prefix}table-fixed-right">
-      <SmallTable
-        {{...this}}
-        fixed
-        columns="{{fixedRightList}}"
-        list="{{list}}"
-      />
-    </div>
+    </tbody>
   {{/if}}
+</table>
+
+{{#if list.length === 0}}
+  <div class="${prefix}table-empty">
+    <slot name="empty">
+      <Empty>
+        暂无数据
+      </Empty>
+    </slot>
+  </div>
+{{/if}}
+
+{{/if}}
+
 </div>

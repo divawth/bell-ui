@@ -5,6 +5,13 @@ button-size(size)
   ui-set('min-width', size['height'])
   ui-set('padding', 0 size['padding-horizontal'])
 
+  &{$selector-button-solid},
+  &{$selector-button-dashed}
+    ui-set('line-height', size['height'] - 2)
+
+  &{$selector-button-none}
+    ui-set('line-height', size['height'])
+
 button-circle-size(style)
   ui-set('width', style['height'])
   ui-set('height', style['height'])

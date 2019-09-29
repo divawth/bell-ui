@@ -10,17 +10,20 @@ export default {
   height: 340,
   template: `
   <div>
+    <Alert>
+      默认 warning
+    </Alert>
     <Alert status="success">
-      提示内容
+      成功信息
     </Alert>
     <Alert status="error">
-      提示内容
+      错误信息
     </Alert>
     <Alert status="info">
-      提示内容
+      提示信息
     </Alert>
     <Alert status="warning">
-      提示内容
+      警告信息
     </Alert>
     <style>
       .bell-alert {
@@ -44,25 +47,25 @@ export default {
       <template slot="title">
         标题
       </template>
-      提示内容
+      内容
     </Alert>
     <Alert status="error">
       <template slot="title">
         标题
       </template>
-      提示内容
+      内容
     </Alert>
     <Alert status="info">
       <template slot="title">
         标题
       </template>
-      提示内容
+      内容
     </Alert>
     <Alert status="warning">
       <template slot="title">
         标题
       </template>
-      提示内容
+      内容
     </Alert>
   </div>
   `
@@ -77,38 +80,38 @@ export default {
   height: 680,
   template: `
   <div>
-    <Alert status="success" icon>
-      内容内容内容内容
+    <Alert status="success" showIcon>
+      内容
     </Alert>
-    <Alert status="error" icon>
-      内容内容内容内容
+    <Alert status="error" showIcon>
+      内容
     </Alert>
-    <Alert status="info" icon>
-      内容内容内容内容
+    <Alert status="info" showIcon>
+      内容
     </Alert>
-    <Alert status="warning" icon>
-      内容内容内容内容
+    <Alert status="warning" showIcon>
+      内容
     </Alert>
 
-    <Alert status="success" icon>
+    <Alert status="success" showIcon>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="error" icon>
+    <Alert status="error" showIcon>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="info" icon>
+    <Alert status="info" showIcon>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="warning" icon>
+    <Alert status="warning" showIcon>
       <template slot="title">
         标题
       </template>
@@ -127,25 +130,25 @@ export default {
   height: 300,
   template: `
   <div>
-    <Alert status="success" icon closable>
+    <Alert status="success" showIcon closable>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="error" icon closable>
+    <Alert status="error" showIcon closable>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="info" icon closable>
+    <Alert status="info" showIcon closable>
       <template slot="title">
         标题
       </template>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="warning" icon closable>
+    <Alert status="warning" showIcon closable>
       <template slot="title">
         标题
       </template>
@@ -162,14 +165,16 @@ export default {
 export default {
   isViewFullBlock: true,
   template: `
-  <Alert status="success" closable center>
-    内容内容内容内容内容内容内容
-  </Alert>
+  <div>
+    <Alert status="success" closable center>
+      内容内容内容内容内容内容内容
+    </Alert>
+  </div>
   `
 }
 ```
 
-> banner
+> 顶部通告
 
 ```js
 export default {
@@ -183,28 +188,25 @@ export default {
 ```
 
 
-> 各种自定义
+> 自定义关闭按钮
 
 ```js
 export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-  <Alert icon closable>
-    <template slot="title">
-      标题
-    </template>
-    <Icon
-      slot="icon"
-      name="chatbubbles"
-      size="22"
-    />
+  <Alert closable on-close="close()">
+    设置了回调的 alert
     <template slot="close">
-      No longer prompt
+      知道了
     </template>
-    内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
   </Alert>
-  `
+  `,
+  methods: {
+    close: function () {
+      console.log('close')
+    }
+  }
 }
 ```
 
@@ -215,7 +217,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 status | 颜色 | string | `info`, `warning`, `success`, `error` | `warning`
-icon | 是否显示类型图标 | boolean | - | `false`
+showIcon | 是否显示状态图标 | boolean | - | `false`
 closable | 是否显示关闭按钮 | boolean | - | `false`
 center | 文字是否居中 | boolean | - | `false`
 banner | 是否为页面顶部通告 | boolean | - | `false`
@@ -232,7 +234,6 @@ close | 点击关闭按钮后触发 | -
 
 名称 | 说明
 ---|---
-icon | 自定义左侧图标
-close | 自定义关闭按钮
-title | 自定义标题
-children | 自定义内容
+close | 关闭按钮
+title | 标题
+children | 内容

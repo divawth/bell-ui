@@ -19,20 +19,26 @@ export default {
       <Button on-click="open1()">
         提醒（仅标题）
       </Button>
+      <Button on-click="open2()">
+        提醒（仅内容）
+      </Button>
     </div>
   `,
   methods: {
     open: function () {
       this.$notification.success({
         title: '这是标题这是标题这是标题',
-        content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
-        width: 320
+        content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息'
       })
     },
     open1: function () {
       this.$notification.success({
-        title: '这是标题这是标题这是标题',
-        width: 320
+        title: '这是标题这是标题这是标题'
+      })
+    },
+    open2: function () {
+      this.$notification.success({
+        content: '这是标题这是标题这是标题'
       })
     }
   }

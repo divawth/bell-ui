@@ -44,7 +44,7 @@ export default Yox.define({
     ghost: {
       type: RAW_BOOLEAN,
     },
-    fluid: {
+    block: {
       type: RAW_BOOLEAN,
     },
     disabled: {

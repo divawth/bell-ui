@@ -47,7 +47,7 @@ import DatePicker from './components/datepicker/DatePicker'
 import Tooltip from './components/tooltip/Tooltip'
 
 import Collapse from './components/collapse/Collapse'
-import Panel from './components/collapse/Panel'
+import CollapseItem from './components/collapse/CollapseItem'
 
 import Card from './components/card/Card'
 import CardHeader from './components/card/CardHeader'
@@ -55,8 +55,6 @@ import CardMedia from './components/card/CardMedia'
 import CardBody from './components/card/CardBody'
 import CardFooter from './components/card/CardFooter'
 
-import List from './components/list/List'
-import Item from './components/list/Item'
 import Empty from './components/empty/Empty'
 import Divider from './components/divider/Divider'
 
@@ -71,22 +69,18 @@ import Dropdown from './components/dropdown/Dropdown'
 import DropdownItem from './components/dropdown/DropdownItem'
 import DropdownMenu from './components/dropdown/DropdownMenu'
 
-import TimePicker from './components/timePicker/TimePicker'
 import TimeLine from './components/timeline/TimeLine'
 import TimeLineItem from './components/timeline/TimeLineItem'
 
 import Form from './components/form/Form'
 import FormItem from './components/form/FormItem'
 import Dialog from './components/dialog/Dialog'
-import SmallTable from './components/table/SmallTable'
 import Table from './components/table/Table'
 
 import Message from './components/message/base'
 import Notification from './components/notification/base'
 import Modal from './components/modal/base'
 import LoadingBar from  './components/loadingBar/base'
-import Anchor from  './components/anchor/Anchor'
-import AnchorLink from  './components/anchor/AnchorLink'
 
 const components = {
   Layout,
@@ -139,9 +133,7 @@ const components = {
   CardFooter,
 
   Collapse,
-  Panel,
-  List,
-  Item,
+  CollapseItem,
   Empty,
   Divider,
   Circle,
@@ -156,16 +148,12 @@ const components = {
   DropdownItem,
   DropdownMenu,
 
-  TimePicker,
   TimeLine,
   TimeLineItem,
   Form,
   FormItem,
   Dialog,
-  SmallTable,
   Table,
-  Anchor,
-  AnchorLink
 }
 
 export const install = function (Yox: any) {

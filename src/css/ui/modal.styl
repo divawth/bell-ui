@@ -1,11 +1,13 @@
+{$selector-modal}
 
-{$selector-modal-alert},
-{$selector-modal-confirm}
-  {$selector-dialog-title}
+  {$selector-dialog-header}
     border-bottom 0
     padding-bottom 0
+    padding-top $dialog-padding-horizontal
+
+  {$selector-dialog-close}
+    top $dialog-padding-horizontal
 
   {$selector-dialog-footer}
     border-top 0
-    padding-top 0
-    padding-bottom $dialog-footer-padding-horizontal
+    padding 0 $dialog-padding-horizontal $dialog-padding-horizontal

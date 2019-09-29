@@ -32,8 +32,9 @@ export default {
         title: '标题名称',
         content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
         closable: true,
+        width: 500,
         okText: 'OK',
-        okType: 'info',
+        okType: 'error',
         onOk: function () {
           console.log('ok')
         }
@@ -75,6 +76,7 @@ export default {
         title: '标题名称',
         content: '这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容',
         closable: true,
+        width: 500,
         okText: 'OK',
         okType: 'success',
         onOk: function () {

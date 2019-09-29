@@ -3,12 +3,12 @@ import Yox from 'yox'
 import template from './template/Radio.hbs'
 
 import {
+  TRUE,
   FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
-  TRUE,
 } from '../constant'
 
 import {
@@ -22,10 +22,6 @@ export default Yox.define({
   model: 'checked',
 
   propTypes: {
-    label: {
-      type: RAW_STRING,
-      required: TRUE,
-    },
     name: {
       type: RAW_STRING,
     },

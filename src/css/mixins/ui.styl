@@ -28,7 +28,7 @@ ui-ellipsis()
     text-overflow ellipsis
     word-break keep-all
 
-ui-fluid(isImportant = false)
+ui-block(isImportant = false)
 
     if (isImportant) {
         display block !important
@@ -105,7 +105,7 @@ ui-collection(selector-item, hash = $size-hash, each = null)
                 + {selector-item} {
                     ui-set('margin-left', size['margin-horizontal'])
 
-                    &{$selector-fluid} {
+                    &{$selector-block} {
                         margin-left 0
                         ui-set('margin-top', size['margin-vertical'])
                     }
@@ -128,7 +128,7 @@ ui-collection-tight(selector-item, gap-item = 0)
     > {selector-item}
         + {selector-item}
             margin-left gap-item
-            &{selector-fluid}
+            &{selector-block}
                 if gap-item != 0
                     margin-left 0
                 margin-top 0

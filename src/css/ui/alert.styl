@@ -3,6 +3,7 @@
   position relative
   box-sizing border-box
   border-radius $border-radius-default
+  line-height $ui-multiple-line-height
   padding $alert-padding-vertical $alert-padding-horizontal
   transition opacity .3s
 
@@ -15,14 +16,26 @@
 {$selector-alert-center}
   text-align center
 
+{$selector-alert-icon}
+  position absolute
+  left $alert-padding-horizontal
+  top $alert-padding-vertical + $alert-status-icon-top
+
 {$selector-alert-status-icon}
   font-size $alert-status-icon-size
-  margin-top $alert-status-icon-margin-top
 
 {$selector-alert-with-title}
+  {$selector-alert-icon}
+    top $alert-padding-vertical + $alert-status-icon-top-with-title
+
   {$selector-alert-status-icon}
     font-size $alert-status-icon-size-with-title
-    margin-top $alert-status-icon-margin-top-with-title
+
+{$selector-alert-with-icon}
+  padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-icon-wrapper-gap
+
+  &{$selector-alert-with-title}
+    padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-icon-wrapper-gap
 
 {$selector-alert-title}
   white-space nowrap
@@ -35,7 +48,6 @@
 
 {$selector-alert-content}
   font-size $font-size-default
-  line-height $ui-multiple-line-height
   font-weight normal
 
 {$selector-alert-close}
@@ -43,33 +55,24 @@
   right $alert-padding-horizontal
   top $alert-padding-vertical
 
+  font-size $alert-close-font-size
+  height $alert-close-height
+  line-height $alert-close-height
+
+  cursor $cursor-clickable
   user-select none
   text-align center
-  font-size $alert-close-font-size
-  line-height $ui-single-line-height
-  cursor $cursor-clickable
   transition color .3s
 
 {$selector-alert-close-icon}
   display inline-block
   font-size $alert-close-icon-font-size
-  width $alert-close-icon-font-size
-
-{$selector-alert-with-icon}
-  display table
-
-  > {$selector-alert-icon}
-  > {$selector-alert-wrapper}
-    display table-cell
-    vertical-align top
-
-  > {$selector-alert-icon}
-    width 1px
-    padding-right $alert-icon-wrapper-gap
-
-  > {$selector-alert-wrapper}
-    width 100%
+  width $alert-close-height
 
 {$selector-alert-with-close}
-  {$selector-alert-title}
+  {$selector-alert-title},
+  {$selector-alert-content}
     margin-right $alert-close-icon-font-size + $ui-icon-text-gap
+
+  {$selector-alert-title} + {$selector-alert-content}
+    margin-right 0

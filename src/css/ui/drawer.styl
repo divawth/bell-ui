@@ -1,6 +1,9 @@
 {$selector-drawer}
   position fixed
-  overflow hidden
+  left 0
+  right 0
+  top 0
+  bottom 0
   display none
 
 {$selector-drawer-visible}
@@ -12,37 +15,37 @@
 
 {$selector-drawer-wrapper}
   position absolute
-  overflow-x hidden
-  overflow-y auto
   background-color $brand-bg
   box-shadow $brand-card-shadow
   transition transform .3s
 
 {$selector-drawer-header}
-  position relative
+  ui-ellipsis()
+  color $brand-text-important
+  font-size $font-size-large
+  line-height $ui-single-line-height
+  font-weight bold
   padding $drawer-header-padding-vertical $drawer-padding-horizontal
   border-bottom 1px solid $brand-border
-  color $brand-text-important
-  font-size $drawer-header-font-size
-  font-weight 500
 
 {$selector-drawer-body}
-  position relative
   padding $drawer-body-padding-vertical $drawer-padding-horizontal
-  font-size $drawer-body-font-size
+  color $brand-text
+  font-size $font-size-default
   line-height $ui-multiple-line-height
   word-wrap break-word
-  overflow-x hidden
   overflow-y auto
   box-sizing border-box
-  height calc(100% - 51px)
+  height calc(100% - 50px)
 
 {$selector-drawer-close}
   position absolute
-  right $drawer-close-right
-  top $drawer-close-top
+  right $drawer-padding-horizontal
+  top $drawer-header-padding-vertical
   font-size $drawer-close-font-size
-  width $drawer-close-font-size
+  width $drawer-close-size
+  height $drawer-close-size
+  line-height $drawer-close-size
   text-align center
   cursor $cursor-clickable
   color $brand-close-color
@@ -61,28 +64,21 @@
   opacity 0
   transition opacity .3s
 
-{$selector-drawer-left}
-  top 0
-  left 0
-  right 0
 
+
+{$selector-drawer-left}
   > {$selector-drawer-wrapper}
     transform translate(-100%)
     left 0
     top 0
     bottom 0
 
-  &{$selector-drawer-visible}
-    bottom 0
-
   &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
 
+
 {$selector-drawer-right}
-  top 0
-  left 0
-  right 0
 
   > {$selector-drawer-wrapper}
     transform translate(100%)
@@ -90,19 +86,12 @@
     top 0
     bottom 0
 
-  &{$selector-drawer-visible}
-    bottom 0
-
   &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
 
 
-
 {$selector-drawer-top}
-  left 0
-  top 0
-  bottom 0
 
   > {$selector-drawer-wrapper}
     transform translateY(-100%)
@@ -110,25 +99,17 @@
     left 0
     right 0
 
-  &{$selector-drawer-visible}
-    right 0
-
   &{$selector-drawer-fade}
     > {$selector-drawer-wrapper}
       transform translate(0)
 
+
 {$selector-drawer-bottom}
-  left 0
-  top 0
-  bottom 0
 
   > {$selector-drawer-wrapper}
     transform translateY(100%)
     bottom 0
     left 0
-    right 0
-
-  &{$selector-drawer-visible}
     right 0
 
   &{$selector-drawer-fade}

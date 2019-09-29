@@ -3,7 +3,7 @@ class="${prefix}alert
 {{#if status}} ${prefix}alert-{{status}}{{/if}}
 {{#if banner}} ${prefix}alert-banner{{/if}}
 {{#if center}} ${prefix}alert-center{{/if}}
-{{#if icon || hasSlot('icon')}} ${prefix}alert-with-icon{{/if}}
+{{#if showIcon}} ${prefix}alert-with-icon{{/if}}
 {{#if hasSlot('title')}} ${prefix}alert-with-title{{/if}}
 {{#if closable || hasSlot('close')}} ${prefix}alert-with-close{{/if}}
 {{#if className}} {{className}}{{/if}}"
@@ -12,43 +12,37 @@ class="${prefix}alert
   style="{{style}}"
 {{/if}}
 >
-  {{#if icon || hasSlot('icon')}}
+  {{#if showIcon}}
     <span class="${prefix}alert-icon">
-      <slot name="icon">
-        <Icon
-          name="{{
-            status === RAW_TYPE_SUCCESS
-              ? 'checkmark-circle'
-              : status === RAW_TYPE_WARNING
-                ? 'alert'
-                : status === RAW_TYPE_ERROR
-                  ? 'close-circle'
-                  : 'information-circle'
-          }}"
-          size="0"
-          className="${prefix}alert-status-icon"
-        />
-      </slot>
+      <Icon
+        name="{{
+          status === RAW_TYPE_SUCCESS
+            ? 'checkmark-circle'
+            : status === RAW_TYPE_WARNING
+              ? 'alert'
+              : status === RAW_TYPE_ERROR
+                ? 'close-circle'
+                : 'information-circle'
+        }}"
+        size="0"
+        className="${prefix}alert-status-icon"
+      />
     </span>
   {{/if}}
 
-  <div class="${prefix}alert-wrapper">
+  {{#if hasSlot('title')}}
+    <div class="${prefix}alert-title">
+      <slot name="title" />
+    </div>
+  {{/if}}
 
-    {{#if hasSlot('title')}}
-      <div class="${prefix}alert-title">
-        <slot name="title" />
-      </div>
-    {{/if}}
+  {{#if hasSlot('children')}}
+    <div class="${prefix}alert-content">
+      <slot name="children" />
+    </div>
+  {{/if}}
 
-    {{#if hasSlot('children')}}
-      <div class="${prefix}alert-content">
-        <slot name="children" />
-      </div>
-    {{/if}}
-
-  </div>
-
-  {{#if closable || hasSlot('close')}}
+  {{#if closable}}
     <div ref="close" class="${prefix}alert-close" on-click="close.alert">
       <slot name="close">
         <Icon

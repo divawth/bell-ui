@@ -10,6 +10,7 @@ import {
   RAW_FUNCTION,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
+  RAW_NUMERIC,
 } from '../constant'
 
 import {
@@ -32,6 +33,10 @@ export default Yox.define({
     closable: {
       type: RAW_BOOLEAN,
       value: FALSE,
+    },
+    width: {
+      type: RAW_NUMERIC,
+      value: 400,
     },
     okText: {
       type: RAW_STRING,
@@ -57,7 +62,7 @@ export default Yox.define({
   },
 
   events: {
-    'close.dialog': function (event) {
+    'closed.dialog': function (event) {
       event.stop()
       this.destroy()
     }

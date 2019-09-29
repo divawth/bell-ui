@@ -11,8 +11,6 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
-  RAW_THEME_ARRAY,
-  RAW_LIGHT,
 } from '../constant'
 
 import {
@@ -28,7 +26,7 @@ export default Yox.define({
       type: oneOf(RAW_STATUS_ARRAY),
       value: RAW_TYPE_WARNING,
     },
-    icon: {
+    showIcon: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

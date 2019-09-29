@@ -4,13 +4,24 @@
 {$selector-radio}
   display inline-block
   user-select none
-  position relative
-  color $brand-text
-  font-size $font-size-default
-  padding-left $font-size-default + $ui-icon-text-gap
+  box-sizing border-box
+  vertical-align middle
 
   + {$selector-radio}
     margin-left $radio-gap-horizontal
+
+{$selector-radio-with-label}
+  position relative
+  color $brand-text
+  font-size $font-size-default
+  line-height $ui-single-line-height
+  padding-left $font-size-default + $ui-icon-text-gap
+
+  > {$selector-radio-icon}
+    position absolute
+    left 0
+    top 50%
+    margin-top -0.5 * $font-size-default
 
 {$selector-radio-active}
   > {$selector-radio-icon}:after
@@ -18,15 +29,14 @@
     transform scale(1)
 
 {$selector-radio-icon}
-  position absolute
-  left 0
-  top 50%
+  display inline-block
+  position relative
   width $font-size-default
   height $font-size-default
-  margin-top -0.5 * $font-size-default
   border-radius $border-radius-circle
   box-sizing border-box
   border 1px solid $brand-border
+  background-color $brand-bg
   transition border-color 0.3s, box-shadow 0.3s
 
   &:after

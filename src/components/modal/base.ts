@@ -17,6 +17,7 @@ export default {
       props.closable = obj.closable
       props.title = obj.title
       props.content = obj.content
+      props.width = obj.width
       props.okText = obj.okText
       props.okType = obj.okType
       props.onOk = obj.onOk
@@ -45,6 +46,7 @@ export default {
       props.closable = obj.closable
       props.title = obj.title
       props.content = obj.content
+      props.width = obj.width
       props.okText = obj.okText
       props.okType = obj.okType
       props.onOk = obj.onOk

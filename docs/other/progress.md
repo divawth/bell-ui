@@ -106,7 +106,7 @@ export default {
       {{#if percent === 100}}
         <Icon
           name="checkmark-circle"
-          size="18"
+          size="14"
           style="color:#5cb85c"
         />
       {{else}}
@@ -146,10 +146,10 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 status | 类型 | string | `info`, `warning`, `success`, `error` | -
-percent | 百分比 | number | - | `0`
-thickness | 进度环的粗细 | number | - | `8`
+percent | 百分比，取值范围 `0-100` | numeric | - | `0`
+thickness | 进度环的粗细 | numeric | - | `8`
 inside | 内容是否显示在内部 | boolean | - | `false`
-vertical | 是否垂直 | boolean | - | `false`
+vertical | 是否是垂直进度条 | boolean | - | `false`
 active | 是否有动画效果 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

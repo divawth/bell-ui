@@ -30,6 +30,10 @@ class="${prefix}input-number
       disabled
     {{/if}}
 
+    {{#if autoFocus}}
+      autofocus
+    {{/if}}
+
     {{#if readOnly || !editable}}
       readonly
     {{else}}

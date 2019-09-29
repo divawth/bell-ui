@@ -9,20 +9,22 @@ class="${prefix}card-media
 
   <slot name="children" />
 
-  <div class="${prefix}card-media-detail">
+  {{#if hasSlot('title') || hasSlot('subTitle')}}
+    <div class="${prefix}card-media-detail">
 
-    {{#if title}}
-      <div class="${prefix}card-media-title">
-        {{title}}
-      </div>
-    {{/if}}
+      {{#if hasSlot('title')}}
+        <div class="${prefix}card-media-title">
+          <slot name="title" />
+        </div>
+      {{/if}}
 
-    {{#if subTitle}}
-      <div class="${prefix}card-media-sub-title">
-        {{subTitle}}
-      </div>
-    {{/if}}
+      {{#if hasSlot('subTitle')}}
+        <div class="${prefix}card-media-sub-title">
+          <slot name="subTitle" />
+        </div>
+      {{/if}}
 
-  </div>
+    </div>
+  {{/if}}
 
 </div>

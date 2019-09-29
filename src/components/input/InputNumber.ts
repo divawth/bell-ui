@@ -58,6 +58,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: TRUE,
     },
+    autoFocus: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     readOnly: {
       type: RAW_BOOLEAN,
       value: FALSE,

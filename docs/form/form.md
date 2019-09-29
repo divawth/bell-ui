@@ -182,8 +182,7 @@ export default {
         </Switch>
       </FormItem>
       <FormItem label="Text" labelAlign="top">
-        <Input
-          type="textarea"
+        <Textarea
           rows="3"
           model="form.textarea"
           placeholder="Enter something..."

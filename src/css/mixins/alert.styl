@@ -4,13 +4,8 @@ alert-brand-style(style)
   ui-set('background-color', style['bg-color'])
   ui-set('color', style['color'])
 
-  > {$selector-alert-icon}
-    ui-set('color', style['color'])
-
-  > {$selector-alert-close}
-    ui-set('color', style['color'])
-    &:hover
-      ui-set('color', style['hover-color'])
+  > {$selector-alert-close}:hover
+    ui-set('color', style['hover-color'])
 
 ui-alert()
   ui-connect(

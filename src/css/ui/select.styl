@@ -7,7 +7,7 @@
   position relative
 
   > {$selector-dropdown-list}
-    min-width 100%
+    width 100%
     max-height $select-dropdown-list-height
 
   {$selector-dropdown-item-active}
@@ -15,8 +15,12 @@
 
   ui-select()
 
+{$selector-select-group} + {$selector-select-group}
+  border-top 1px solid $brand-divider
+  margin-top $dropdown-list-inset
+  padding-top $dropdown-list-inset
+
 {$selector-select-group-title}
-  background-color $brand-bg-light
   color $brand-text-muted
   font-size 90%
   padding $dropdown-list-item-padding-vertical $padding-horizontal-default

@@ -133,8 +133,9 @@ disabled | 禁用输入框 | boolean | - | `false`
 rows | 行数 | number | - | 3
 autoSize | 自适应内容高度，格式如 `{ minRows: 2, maxRows: 6 }` | Object | - | -
 wrap | 原生 `wrap` 属性 | string | soft, hard | -
-spellCheck | 原生 `spellcheck` 属性 | boolean | - | -
-readOnly | 原生 `readonly` 属性 | boolean | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
+spellCheck | 原生 `spellcheck` 属性 | boolean | - | `false`
+readOnly | 原生 `readonly` 属性 | boolean | - | `false`
 maxLength | 原生 `maxlength` 属性 | numeric | - | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

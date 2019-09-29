@@ -9,12 +9,6 @@ import {
 export default Yox.define({
   template,
   propTypes: {
-    title: {
-      type: RAW_STRING,
-    },
-    subTitle: {
-      type: RAW_STRING,
-    },
     className: {
       type: RAW_STRING,
     },
