@@ -1,4 +1,4 @@
-import './css/index.styl'
+import './index.styl'
 
 import Layout from './components/layout/Layout'
 import Header from './components/layout/Header'
@@ -69,8 +69,8 @@ import Dropdown from './components/dropdown/Dropdown'
 import DropdownItem from './components/dropdown/DropdownItem'
 import DropdownMenu from './components/dropdown/DropdownMenu'
 
-import TimeLine from './components/timeline/TimeLine'
-import TimeLineItem from './components/timeline/TimeLineItem'
+import Timeline from './components/timeline/Timeline'
+import TimelineItem from './components/timeline/TimelineItem'
 
 import Form from './components/form/Form'
 import FormItem from './components/form/FormItem'
@@ -148,8 +148,8 @@ const components = {
   DropdownItem,
   DropdownMenu,
 
-  TimeLine,
-  TimeLineItem,
+  Timeline,
+  TimelineItem,
   Form,
   FormItem,
   Dialog,

@@ -1,2 +1,2 @@
-import './css/index.styl';
+import './index.styl';
 export declare const install: (Yox: any) => void;

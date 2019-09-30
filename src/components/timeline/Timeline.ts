@@ -1,16 +1,19 @@
 import Yox from 'yox'
 
-import template from './template/TimeLineItem.hbs'
+import template from './template/Timeline.hbs'
 
 import {
+  FALSE,
+  RAW_BOOLEAN,
   RAW_STRING,
 } from '../constant'
 
 export default Yox.define({
   template,
   propTypes: {
-    color: {
-      type: RAW_STRING,
+    pending: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
     },
     className: {
       type: RAW_STRING,
