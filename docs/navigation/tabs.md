@@ -145,10 +145,16 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-    <Tabs size="small" type="card">
-      <TabPanel label="标签一">标签一的内容</TabPanel>
-      <TabPanel label="标签二">标签二的内容</TabPanel>
-      <TabPanel label="标签三">标签三的内容</TabPanel>
+    <Tabs type="card">
+      <TabPanel label="标签一">
+        标签一的内容
+      </TabPanel>
+      <TabPanel label="标签二">
+        标签二的内容
+      </TabPanel>
+      <TabPanel label="标签三">
+        标签三的内容
+      </TabPanel>
     </Tabs>
   `
 }

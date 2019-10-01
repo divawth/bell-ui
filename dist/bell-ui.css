@@ -8750,33 +8750,33 @@ template {
 }
 .bell-tag-default {
   font-size: 12px;
-  height: 22px;
-  line-height: 20px;
-  padding: 0 7px;
+  height: 24px;
+  line-height: 22px;
+  padding: 0 8px;
 }
 .bell-tag-default.bell-tag-pure {
-  line-height: 22px;
+  line-height: 24px;
 }
 .bell-tag-default.bell-tag-closable {
-  padding-right: 20px;
+  padding-right: 22px;
 }
 .bell-tag-default > .bell-tag-close-icon {
-  width: 20px;
+  width: 22px;
 }
 .bell-tag-large {
-  font-size: 12px;
-  height: 26px;
-  line-height: 24px;
-  padding: 0 9px;
+  font-size: 14px;
+  height: 28px;
+  line-height: 26px;
+  padding: 0 10px;
 }
 .bell-tag-large.bell-tag-pure {
-  line-height: 26px;
+  line-height: 28px;
 }
 .bell-tag-large.bell-tag-closable {
-  padding-right: 24px;
+  padding-right: 26px;
 }
 .bell-tag-large > .bell-tag-close-icon {
-  width: 24px;
+  width: 26px;
 }
 .bell-tag-primary {
   background-color: #ecf5ff;
@@ -8922,7 +8922,7 @@ template {
   font-size: 14px;
   height: 40px;
   line-height: 40px;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 .bell-tabs-default .bell-tabs-tab-close-icon {
   margin-top: 9px;
@@ -8940,7 +8940,7 @@ template {
   font-size: 16px;
   height: 48px;
   line-height: 48px;
-  padding: 0 16px;
+  padding: 0 24px;
 }
 .bell-tabs-large .bell-tabs-tab-close-icon {
   margin-top: 13px;
@@ -8960,13 +8960,6 @@ template {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-}
-.bell-tabs-indicator {
-  position: absolute;
-  bottom: 0;
-  height: 2px;
-  background-color: #409eff;
-  transition: width 0.2s, left 0.2s;
 }
 .bell-tabs-extra {
   float: right;
@@ -9029,11 +9022,11 @@ template {
 }
 .bell-tabs-card .bell-tabs-tab {
   border: 1px solid #e8e8e8;
-  border-radius: 4px 4px 0 0;
+  border-left: 0;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.bell-tabs-card .bell-tabs-tab + .bell-tabs-tab {
-  margin-left: 2px;
+.bell-tabs-card .bell-tabs-tab:first-child {
+  border-left-width: 1px;
 }
 .bell-tabs-card .bell-tabs-tab.bell-tabs-tab-active {
   border-bottom-color: #fff;

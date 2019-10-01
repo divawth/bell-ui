@@ -76,7 +76,6 @@ export default Yox.define({
             disabled: target.get('disabled'),
           }
         )
-        this.updateIndicator()
       }
     },
     'remove.tabPanel': function (event) {
@@ -94,7 +93,6 @@ export default Yox.define({
         if (me.get('value') === tabId) {
           me.set('value', newTabs[0] ? newTabs[0].id : UNDEFINED)
         }
-        me.updateIndicator()
       }
     },
     'update.tabPanel': function (event) {
@@ -118,7 +116,6 @@ export default Yox.define({
                   disabled: target.get('disabled'),
                 }
               )
-              me.updateIndicator()
               return FALSE
             }
           }
@@ -129,11 +126,7 @@ export default Yox.define({
   },
 
   watchers: {
-    size() {
-      this.updateIndicator()
-    },
     value(value) {
-      this.updateIndicator()
       this.fire(
         'selected.tabs',
         { value },
@@ -150,29 +143,6 @@ export default Yox.define({
       this.set({
         value: tab.id,
       })
-    },
-    updateIndicator() {
-      const me = this
-      me.nextTick(
-        function () {
-          const { $el, $refs } = me
-          if (!$el || !$refs) {
-            return
-          }
-          const { indicator } = $refs
-          if (!indicator) {
-            return
-          }
-          const index = me.getActiveIndex()
-          const result = $el.getElementsByClassName('${prefix}tabs-tab')
-          if (result[index]) {
-            const tabElement = result[index] as HTMLElement
-            const indicatorElement = indicator as HTMLElement
-            indicatorElement.style.left = tabElement.offsetLeft + 'px'
-            indicatorElement.style.width = tabElement.offsetWidth + 'px'
-          }
-        }
-      )
     },
     getActiveIndex() {
       const value = this.get('value')
@@ -192,9 +162,6 @@ export default Yox.define({
       return index
 
     }
-  },
-
-  afterMount() {
-    this.updateIndicator()
   }
+
 })

@@ -14,13 +14,6 @@
   white-space nowrap
   user-select none
 
-{$selector-tabs-indicator}
-  position absolute
-  bottom 0
-  height 2px
-  background-color $brand-primary
-  transition width .2s, left .2s
-
 {$selector-tabs-extra}
   float right
 
@@ -84,11 +77,11 @@
 
   {$selector-tabs-tab}
     border 1px solid $brand-border
-    border-radius $tabs-card-border-radius $tabs-card-border-radius 0 0
+    border-left-width 0
     transition all .3s cubic-bezier(.645,.045,.355,1)
 
-    + {$selector-tabs-tab}
-      margin-left $tabs-card-gap
+    &:first-child
+      border-left-width 1px
 
     &{$selector-tabs-tab-active}
       border-bottom-color $tabs-card-bg-color-active

@@ -5,7 +5,6 @@ interface Tab {
     disabled: boolean;
 }
 declare const _default: import("yox").ComponentOptions<unknown, {
-    size: unknown;
     value: unknown;
 }, {
     'add.tabPanel': unknown;
@@ -14,12 +13,10 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }, {
     handleCloseTab(tab: Tab): void;
     handleClickTab(tab: Tab): void;
-    updateIndicator(): void;
     getActiveIndex(): number;
 }> & ThisType<{
     handleCloseTab(tab: Tab): void;
     handleClickTab(tab: Tab): void;
-    updateIndicator(): void;
     getActiveIndex(): number;
 } & import("yox").YoxInterface>;
 export default _default;

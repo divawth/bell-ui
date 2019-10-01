@@ -21,13 +21,6 @@ class="${prefix}tabs
       class="${prefix}tabs-nav
         {{#if closable}} ${prefix}tabs-nav-closable{{/if}}"
     >
-      {{#if type !== 'card'}}
-        <div
-          ref="indicator"
-          class="${prefix}tabs-indicator"
-        >
-        </div>
-      {{/if}}
       {{#each tabs}}
         <div
           class="${prefix}tabs-tab
