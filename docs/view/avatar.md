@@ -75,8 +75,8 @@ export default {
       <Avatar>
         <Icon
           slot="icon"
-          name="person"
-          size="26"
+          name="user-2-fill"
+          size="22"
         />
       </Avatar>
       <Avatar text="U" />
@@ -86,8 +86,8 @@ export default {
       <Avatar backgroundColor="#87d068">
         <Icon
           slot="icon"
-          name="person"
-          size="26"
+          name="user-2-fill"
+          size="22"
         />
       </Avatar>
     </div>
@@ -105,8 +105,8 @@ export default {
         <Avatar>
           <Icon
             slot="icon"
-            name="person"
-            size="26"
+            name="user-2-fill"
+            size="22"
           />
         </Avatar>
       </Badge>
@@ -115,8 +115,8 @@ export default {
         <Avatar>
           <Icon
             slot="icon"
-            name="person"
-            size="26"
+            name="user-2-fill"
+            size="22"
           />
         </Avatar>
       </Badge>

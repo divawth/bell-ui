@@ -21,10 +21,21 @@
     margin-top $notification-vertical-gap
 
 {$selector-notification-with-icon}
-  padding-left $notification-padding-horizontal + $notification-icon-font-size + $ui-icon-text-gap
+  padding-left $notification-padding-horizontal + $notification-icon-size + $notification-icon-gap
 
 {$selector-notification-with-close}
-  padding-right $notification-close-right + $notification-close-font-size
+  padding-right $notification-close-icon-right + $close-icon-size
+
+{$selector-notification-with-title}
+  &{$selector-notification-with-icon}
+    padding-left $notification-padding-horizontal + $notification-icon-size-with-title + $notification-icon-gap-with-title
+
+  {$selector-notification-icon}
+    top $notification-icon-top-with-title
+    font-size $notification-icon-size-with-title
+
+  {$selector-notification-close}
+    top $notification-close-icon-top-with-title
 
 {$selector-notification-visible}
   opacity 1
@@ -32,7 +43,7 @@
 
 {$selector-notification-title}
   ui-ellipsis()
-  color $brand-text-important
+  color $brand-title
   font-size $font-size-large
   line-height $ui-single-line-height
 
@@ -40,7 +51,7 @@
     margin-top $notification-title-content-gap
 
 {$selector-notification-content}
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
 
@@ -48,15 +59,14 @@
   position absolute
   left $notification-padding-horizontal
   top $notification-icon-top
-  font-size $notification-icon-font-size
+  font-size $notification-icon-size
 
 {$selector-notification-close}
   position absolute
-  right $notification-close-right
-  top $notification-close-top
+  right $notification-close-icon-right
+  top $notification-close-icon-top
   cursor $cursor-clickable
-  font-size $notification-close-font-size
-  width $notification-close-font-size
+  font-size $close-icon-size
   text-align center
   color $brand-close-color
   transition color .3s

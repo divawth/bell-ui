@@ -67,8 +67,8 @@ export default Yox.define({
       this.fire(
         'change.radio',
         {
-          value: this.get('value'),
           checked,
+          value: this.get('value'),
         }
       )
     }

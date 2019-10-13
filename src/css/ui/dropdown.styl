@@ -7,14 +7,14 @@
 
 {$selector-dropdown-item}
   ui-ellipsis()
-  padding $dropdown-list-item-padding-vertical $padding-horizontal-default
+  padding $dropdown-list-item-padding-vertical $dropdown-list-item-padding-horizontal
   transition background-color .3s, color .3s
 
 {$selector-dropdown-item-active}
   background-color $brand-bg-active
 
 {$selector-dropdown-item-enabled}
-  color $brand-text
+  color $brand-content
   cursor $cursor-clickable
 
   &:hover,
@@ -22,7 +22,7 @@
     background-color $brand-bg-hover
 
 {$selector-dropdown-item-disabled}
-  color $brand-text-disabled
+  color $brand-disabled
   cursor $cursor-disabled
 
 {$selector-dropdown-item} + {$selector-dropdown-item-divided}

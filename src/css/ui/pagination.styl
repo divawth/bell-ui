@@ -6,7 +6,7 @@
 {$selector-pagination-custom-next}
   display inline-block
   text-align center
-  color $brand-text
+  color $brand-content
   cursor $cursor-clickable
 
 {$selector-pagination-item}
@@ -19,8 +19,8 @@
 
   &:disabled
     cursor $cursor-disabled
-    color $brand-text-disabled
-    border-color $brand-border-disabled
+    color $brand-disabled
+    border-color $brand-border
     background-color $brand-bg-disabled
 
   + {$selector-pagination-item}
@@ -33,7 +33,7 @@
 
 {$selector-pagination-custom-disabled}
   cursor $cursor-disabled
-  color $brand-text-disabled
+  color $brand-disabled
 
 {$selector-pagination-active}
   cursor $cursor-default
@@ -44,8 +44,8 @@
   border-color $brand-primary
 
   &:disabled
-    color $brand-text-disabled
-    border-color $brand-border-disabled
+    color $brand-disabled
+    border-color $brand-border
 
 if $ui-shadow-radius > 0
   {$selector-pagination-item}:focus
@@ -121,8 +121,8 @@ if $ui-shadow-radius > 0
     margin-left $pagination-element-gap
 
 {$selector-pagination-separator}
-  color $brand-text-muted
+  color $brand-muted
   margin 0 $ui-icon-text-gap
 
 {$selector-pagination-count}
-  color $brand-text
+  color $brand-content

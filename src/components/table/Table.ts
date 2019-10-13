@@ -159,6 +159,10 @@ export default Yox.define({
             colWidths[index] = col.width
             widthSum += col.width
           }
+          else if (col.key === 'selection') {
+            colWidths[index] = 50
+            widthSum += 50
+          }
           else {
             noWidths.push(index)
           }

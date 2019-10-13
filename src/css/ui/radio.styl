@@ -12,7 +12,7 @@
 
 {$selector-radio-with-label}
   position relative
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-single-line-height
   padding-left $font-size-default + $ui-icon-text-gap
@@ -82,13 +82,13 @@
     background-color $brand-primary
 
 {$selector-radio-disabled}
-  color $brand-text-disabled
+  color $brand-disabled
 
   > {$selector-radio-icon}
-    border-color $brand-border-disabled
+    border-color $brand-border
 
     &:after
-      background-color $brand-text-disabled
+      background-color $brand-disabled
 
 if $ui-shadow-radius > 0
   &{$selector-radio-focus}

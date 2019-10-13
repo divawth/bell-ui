@@ -1,4 +1,6 @@
 {$selector-icon-spin}
+  // 不加这句没法让 transform 动画生效
+  display inline-block
   animation 1s linear infinite bell-icon-spin
 
 
@@ -6,8 +8,7 @@
   0% {
     transform rotate(0)
   }
-
   100% {
-    transform: rotate(360deg);
+    transform rotate(360deg)
   }
 }

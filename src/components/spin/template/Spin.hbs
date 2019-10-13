@@ -1,0 +1,27 @@
+<div
+class="${prefix}spin
+{{#if type}} ${prefix}spin-{{type}}{{/if}}
+{{#if size}} ${prefix}spin-{{size}}{{/if}}
+{{#if fixed}} ${prefix}spin-fixed{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <div ref="content" class="${prefix}spin-content">
+    <slot name="children">
+        <Icon
+          spin
+          name="{{icon}}"
+          size="0"
+          className="${prefix}spin-icon"
+        />
+        {{#if text}}
+          <div class="${prefix}spin-text">
+            {{text}}
+          </div>
+        {{/if}}
+    </slot>
+  </div>
+</div>

@@ -7,21 +7,11 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  RAW_ICON_TYPE_ARRAY,
-  RAW_ICON_IOS,
 } from '../constant'
-
-import {
-  oneOf,
-} from '../util'
 
 export default Yox.define({
   template,
   propTypes: {
-    type: {
-      type: oneOf(RAW_ICON_TYPE_ARRAY),
-      value: RAW_ICON_IOS,
-    },
     name: {
       type: RAW_STRING,
     },

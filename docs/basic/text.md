@@ -51,8 +51,8 @@ export default {
       <Text type="success">text</Text>
       <Text type="info">text</Text>
       <Text type="warning">text</Text>
-      <Text type="important">text</Text>
-      <Text type="secondary">text</Text>
+      <Text type="title">text</Text>
+      <Text type="content">text</Text>
       <Text type="muted">text</Text>
     </div>
   `
@@ -65,5 +65,5 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 文本颜色 | primary, success, error, info, warning, important, secondary, muted | - | -
+type | 文本颜色 | primary, success, error, info, warning, title, content, muted | - | -
 size | 文本大小 | default, tiny, small, large, huge | - | default

@@ -6,14 +6,15 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
   RAW_STATUS_ARRAY,
-  RAW_NUMERIC,
 } from '../constant'
 
 import {
   oneOf,
+  supportTransform,
 } from '../util'
 
 export default Yox.define({
@@ -68,5 +69,35 @@ export default Yox.define({
         : count
     }
   },
+
+  watchers: {
+    count() {
+      this.updatePosition()
+    },
+    max() {
+      this.updatePosition()
+    },
+    hidden() {
+      this.updatePosition()
+    }
+  },
+
+  methods: {
+    updatePosition() {
+      if (supportTransform) {
+        return
+      }
+      const append = this.$refs.append as HTMLElement
+      if (!append || !Yox.string.has(append.className, '${prefix}badge-text-append')) {
+        return
+      }
+      append.style.marginLeft = -0.5 * append.offsetWidth + 'px'
+      append.style.marginTop = -0.5 * append.offsetHeight + 'px'
+    }
+  },
+
+  afterMount() {
+    this.updatePosition()
+  }
 
 })

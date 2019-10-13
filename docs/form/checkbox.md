@@ -168,7 +168,7 @@ style | 自定义内联样式 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | `checked` 变化的时候回调 | `data.checked`, `data.value`
+change | `checked` 变化的时候回调 | `{checked: '', value: ''}`
 
 
 CheckboxGroup
@@ -183,10 +183,3 @@ disabled | 是否禁用 | boolean | - | `false`
 vertical | 是否垂直排列 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
-
-> Events
-
-事件名称 | 说明 | 回调参数
----|---|---
-change | `value` 变化的时候回调 | `data.value`
-

@@ -18,7 +18,7 @@
   > {$selector-collapse-item} > {$selector-collapse-header}
     background-color $collapse-header-bg-color
 
-  > {$selector-collapse-open} > {$selector-collapse-header}
+  > {$selector-collapse-opened} > {$selector-collapse-header}
     border-bottom 1px solid $brand-border
 
 {$selector-collapse-item} + {$selector-collapse-item}
@@ -30,14 +30,13 @@
   line-height $ui-single-line-height
   padding $collapse-header-padding-vertical $collapse-padding-horizontal
 
-{$selector-collapse-icon}
-  margin-right $ui-icon-text-gap
-
 {$selector-collapse-arrow-icon}
   color inherit
-  font-size $collapse-arrow-icon-font-size
-  transition transform .1s
-  transform rotate(-90deg)
+  display inline-block
+  font-size $collapse-arrow-icon-size
+  margin-right $ui-icon-text-gap
+  vertical-align top
+  transition transform .2s
 
 {$selector-collapse-extra}
   float right
@@ -45,15 +44,15 @@
 {$selector-collapse-content}
   display none
   overflow hidden
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
   padding $collapse-content-padding-vertical $collapse-padding-horizontal
   transition height .1s
 
-{$selector-collapse-open}
-  > {$selector-collapse-header} {$selector-collapse-arrow-icon}
-    transform rotate(0)
+{$selector-collapse-opened}
+  > {$selector-collapse-header} > {$selector-collapse-arrow-icon}
+    transform rotate(90deg)
 
   > {$selector-collapse-content}
     display block
@@ -61,9 +60,9 @@
 {$selector-collapse-enabled}
   > {$selector-collapse-header}
     cursor $cursor-clickable
-    color $brand-text-important
+    color $brand-title
 
 {$selector-collapse-disabled}
   > {$selector-collapse-header}
     cursor $cursor-disabled
-    color $brand-text-disabled
+    color $brand-disabled

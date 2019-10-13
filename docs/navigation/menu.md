@@ -18,16 +18,16 @@ export default {
     <div class="bell-template">
       <Menu theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon name="paper" />
+          <Icon name="windows-fill" />
           内容管理
         </MenuItem>
         <MenuItem name="2" disabled>
-          <Icon name="people" />
+          <Icon name="apple-fill" />
           用户管理
         </MenuItem>
         <Submenu name="3">
           <template slot="title">
-            <Icon name="stats" />
+            <Icon name="google-fill" />
             统计分析（子菜单）
           </template>
           <MenuGroup title="使用">
@@ -41,7 +41,7 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon name="settings" />
+          <Icon name="settings-4-fill" />
           <a href="https://yoxjs.github.io/yox/#/ts" target="_blank">
             综合设置（外链）
           </a>
@@ -50,8 +50,12 @@ export default {
       <br>
       <p style="margin-top: 140px">切换主题</p>
       <RadioGroup model="theme">
-        <Radio label="light" value="light" />
-        <Radio label="dark" value="dark" checked />
+        <Radio value="light">
+          light
+        </Radio>
+        <Radio value="dark" checked>
+          dark
+        </Radio>
       </RadioGroup>
     </div>
   `,
@@ -73,16 +77,16 @@ export default {
     <div class="bell-template" style="width: 280px;">
       <Menu mode="vertical" theme="{{theme}}" activeName="1">
         <MenuItem name="1">
-          <Icon name="paper" />
+          <Icon name="windows-fill" />
           内容管理
         </MenuItem>
         <MenuItem name="2" disabled>
-          <Icon name="people" />
+          <Icon name="apple-fill" />
           用户管理
         </MenuItem>
         <Submenu name="3">
           <template slot="title">
-            <Icon name="stats" />
+            <Icon name="google-fill" />
             统计分析
           </template>
           <MenuGroup title="使用">
@@ -96,15 +100,19 @@ export default {
           </MenuGroup>
         </Submenu>
         <MenuItem name="4">
-          <Icon name="settings" />
+          <Icon name="settings-4-fill" />
           <a href="https://ng.ant.design" target="_blank">综合设置</a>
         </MenuItem>
       </Menu>
       <br>
       <p>切换主题</p>
       <RadioGroup model="theme">
-        <Radio label="light" value="light" />
-        <Radio label="dark" value="dark" checked />
+        <Radio value="light">
+          light
+        </Radio>
+        <Radio value="dark" checked>
+          dark
+        </Radio>
       </RadioGroup>
     </div>
   `,
@@ -127,7 +135,7 @@ export default {
       <Menu theme="{{theme}}" mode="inline" activeName="1-3" openNames="{{["1", "2"]}}">
         <Submenu name="1">
           <template slot="title">
-            <Icon name="paper" />
+            <Icon name="windows-fill" />
             内容管理
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
@@ -136,7 +144,7 @@ export default {
         </Submenu>
         <Submenu name="2">
           <template slot="title">
-            <Icon name="people" />
+            <Icon name="apple-fill" />
             用户管理
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
@@ -144,7 +152,7 @@ export default {
         </Submenu>
         <Submenu name="3">
           <template slot="title">
-            <Icon name="stats" />
+            <Icon name="google-fill" />
             统计分析
           </template>
           <MenuGroup title="使用">
@@ -162,8 +170,12 @@ export default {
       <br>
       <p>切换主题</p>
       <RadioGroup model="theme">
-        <Radio label="light" value="light" />
-        <Radio label="dark" value="dark" checked />
+        <Radio value="light">
+          light
+        </Radio>
+        <Radio value="dark" checked>
+          dark
+        </Radio>
       </RadioGroup>
     </div>
   `,
@@ -185,21 +197,21 @@ export default {
       <Menu theme="dark" mode="inline" collapsed="{{collapsed}}">
         <MenuItem name="4">
           {{#if !collapsed}}
-            <Icon name="paper" />
+            <Icon name="windows-fill" />
             内容管理
           {{else}}
             <Tooltip placement="right" content="内容管理">
-              <Icon name="paper" size="24" />
+              <Icon name="windows-fill" size="24" />
             </Tooltip>
           {{/if}}
         </MenuItem>
         <Submenu name="1">
           <template slot="title">
             {{#if !collapsed}}
-              <Icon name="paper" size="14" />
+              <Icon name="windows-fill" size="14" />
               内容管理
             {{else}}
-              <Icon name="paper" size="24" />
+              <Icon name="windows-fill" size="24" />
             {{/if}}
           </template>
           <MenuItem name="1-1">文章管理</MenuItem>
@@ -209,16 +221,16 @@ export default {
         <Submenu name="2">
           <template slot="title">
             {{#if !collapsed}}
-              <Icon name="people" size="14" />
+              <Icon name="apple-fill" size="14" />
               用户管理
             {{else}}
-              <Icon name="people" size="24" />
+              <Icon name="apple-fill" size="24" />
             {{/if}}
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
           <Submenu name="2-2">
             <template slot="title">
-              <Icon name="people" />
+              <Icon name="apple-fill" />
               新增用户
             </template>
             <MenuItem name="2-2-1">新增用户2</MenuItem>
@@ -228,10 +240,10 @@ export default {
         <Submenu name="3">
           <template slot="title">
             {{#if !collapsed}}
-              <Icon name="stats" size="14" />
+              <Icon name="google-fill" size="14" />
               统计分析
             {{else}}
-              <Icon name="stats" size="24" />
+              <Icon name="google-fill" size="24" />
             {{/if}}
           </template>
           <MenuGroup title="使用">

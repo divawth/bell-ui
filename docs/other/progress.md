@@ -105,7 +105,7 @@ export default {
     >
       {{#if percent === 100}}
         <Icon
-          name="checkmark-circle"
+          name="checkbox-circle-fill"
           size="14"
           style="color:#5cb85c"
         />
@@ -117,10 +117,10 @@ export default {
     </Progress>
     <br><br>
     <Button on-click="add()">
-      <Icon name="add" />
+      <Icon name="add-line" />
     </Button>
     <Button on-click="minus()">
-      <Icon name="remove" />
+      <Icon name="subtract-line" />
     </Button>
   </div>
   `,

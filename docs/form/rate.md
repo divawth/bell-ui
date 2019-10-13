@@ -14,8 +14,6 @@ export default {
 export default {
   template: `
     <div>
-      <Rate />
-      <br><br>
       <Rate value="1" type="primary" />
       <br><br>
       <Rate value="2" type="info" />
@@ -24,6 +22,7 @@ export default {
       <br><br>
       <Rate value="4" type="error" />
       <br><br>
+      <Rate value="4" type="warning" />
     </div>
   `
 }
@@ -60,9 +59,9 @@ export default {
 export default {
   template: `
     <Rate model="value" on-change="change()">
-      <span style="color: #f5a623">
-        {{ value }} 分
-      </span>
+      <Text type="primary">
+        {{value}} 分
+      </Text>
     </Rate>
   `,
   data: {
@@ -81,7 +80,7 @@ export default {
 ```js
 export default {
   template: `
-    <Rate readOnly model="value" />
+    <Rate readOnly value="{{value}}" />
   `,
   data: function () {
     return {
@@ -97,9 +96,9 @@ export default {
 export default {
   template: `
     <div>
-      <Rate icon="heart" />
+      <Rate iconName="apple-fill" />
       <br><br>
-      <Rate icon="heart" half />
+      <Rate iconName="apple-fill" half />
     </div>
   `
 }
@@ -111,13 +110,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-value / model | 当前 star 数 | number | - | 0
-count | star 总数 | number | - | 5
-half | 是否允许半选 | boolean | - | false
-readOnly | 是否只读 | boolean | - | false
-icon | 使用图标 | string | - | star
-size | 图标尺寸 | numeric | - | 18
-type | 风格 | string | primary, info, warning, success, error | warning
+value / `model` | 当前 star 数 | numeric | - | `0`
+count | star 总数 | numeric | - | `5`
+half | 是否允许半选 | boolean | - | `false`
+readOnly | 是否只读 | boolean | - | `false`
+iconName | 图标名称 | string | - | `star`
+iconSize | 图标尺寸 | numeric | - | `18`
+type | 风格 | string | `primary`, `info`, `warning`, `success`, `error` | `warning`
 texts | 提示文字组 | string[] | - | -
 
 > Events

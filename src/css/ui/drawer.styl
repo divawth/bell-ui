@@ -4,6 +4,7 @@
   right 0
   top 0
   bottom 0
+  z-index $zindex-drawer
   display none
 
 {$selector-drawer-visible}
@@ -11,7 +12,7 @@
 
 {$selector-drawer-fade}
   > {$selector-drawer-mask}
-    opacity 1
+    opacity $ui-opacity-mask
 
 {$selector-drawer-wrapper}
   position absolute
@@ -21,7 +22,7 @@
 
 {$selector-drawer-header}
   ui-ellipsis()
-  color $brand-text-important
+  color $brand-title
   font-size $font-size-large
   line-height $ui-single-line-height
   font-weight bold
@@ -30,7 +31,7 @@
 
 {$selector-drawer-body}
   padding $drawer-body-padding-vertical $drawer-padding-horizontal
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
   word-wrap break-word
@@ -60,7 +61,7 @@
   right 0
   top 0
   bottom 0
-  background-color $brand-mask
+  background-color #000
   opacity 0
   transition opacity .3s
 

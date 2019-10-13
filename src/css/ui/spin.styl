@@ -1,0 +1,23 @@
+{$selector-spin}
+  display inline-block
+  text-align center
+  ui-spin()
+
+{$selector-spin-content}
+  text-align center
+
+{$selector-spin-icon} + {$selector-spin-text}
+  margin-top $ui-icon-text-gap
+
+{$selector-spin-fixed}
+
+  ui-fullscreen(absolute)
+  background-color $spin-mask-color
+  opacity $spin-mask-opacity
+  z-index 1
+
+  > {$selector-spin-content}
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)

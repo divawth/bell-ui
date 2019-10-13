@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Dialog.hbs'
 
 import {
@@ -109,5 +110,9 @@ export default Yox.define({
       this.set('visible', FALSE)
     }
   },
+
+  components: {
+    Icon,
+  }
 
 })

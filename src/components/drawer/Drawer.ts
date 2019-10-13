@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Drawer.hbs'
 
 import {
@@ -138,6 +139,10 @@ export default Yox.define({
     close() {
       this.set('visible', FALSE)
     }
+  },
+
+  components: {
+    Icon,
   }
 
 })

@@ -44,11 +44,6 @@ export default Yox.define({
   },
 
   events: {
-    'change.checkboxGroup': function (event) {
-      if (event.phase === Yox.Event.PHASE_DOWNWARD) {
-        event.stop()
-      }
-    },
     'change.checkbox': function (event, data) {
       event.stop()
 

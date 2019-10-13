@@ -9,7 +9,7 @@
 
 {$selector-breadcrumb-link}
   user-select none
-  color $brand-text-secondary
+  color $brand-content
   cursor $cursor-clickable
   font-weight bold
   transition color .3s
@@ -18,12 +18,14 @@
     color $brand-link
 
 {$selector-breadcrumb-text}
-  color $brand-text-secondary
+  color $brand-content
   cursor $cursor-text
 
-{$selector-breadcrumb-icon}
-  margin-right $ui-icon-text-gap
+{$selector-breadcrumb-item}
 
-{$selector-breadcrumb-item} > a
-  color $brand-text-secondary
-  text-decoration none
+  {$selector-icon}
+    margin-right $ui-icon-text-gap
+
+  > a
+    color $brand-content
+    text-decoration none

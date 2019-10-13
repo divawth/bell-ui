@@ -48,8 +48,8 @@ import {
 } from '../util'
 
 const YEAR_FORMAT = 'yyyy'
-const MONTH_FORMAT = 'yyyy/MM'
-const DATE_FORMAT = 'yyyy/MM/dd'
+const MONTH_FORMAT = 'yyyy-MM'
+const DATE_FORMAT = 'yyyy-MM-dd'
 
 const defaultFormat = {}
 defaultFormat[RAW_TYPE_DATE] = DATE_FORMAT
@@ -293,7 +293,11 @@ export default Yox.define({
       }
 
       if (!me.get('multiple')) {
-        me.set('visible', FALSE)
+        me.nextTick(
+          function () {
+            me.set('visible', FALSE)
+          }
+        )
       }
 
     },
@@ -303,7 +307,11 @@ export default Yox.define({
       this.set('value', [new Date(start), new Date(end)])
 
       if (!this.get('multiple')) {
-        this.set('visible', FALSE)
+        this.nextTick(
+          function () {
+            this.set('visible', FALSE)
+          }
+        )
       }
 
     }

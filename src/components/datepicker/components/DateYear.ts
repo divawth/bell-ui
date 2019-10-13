@@ -1,14 +1,7 @@
 import Yox from 'yox'
 
+import Icon from '../../icon/Icon'
 import template from '../template/DateYear.hbs'
-
-import backIconTemplate from '../template/backIcon.hbs'
-import forwardIconTemplate from '../template/forwardIcon.hbs'
-
-import {
-  toDate,
-  createYearViewDatasource,
-} from '../util'
 
 import {
   RAW_DATE,
@@ -16,6 +9,11 @@ import {
   RAW_ARRAY,
   RAW_NUMBER,
 } from '../../constant'
+
+import {
+  toDate,
+  createYearViewDatasource,
+} from '../util'
 
 export default Yox.define({
 
@@ -68,11 +66,6 @@ export default Yox.define({
     }
   },
 
-  partials: {
-    backIcon: backIconTemplate,
-    forwardIcon: forwardIconTemplate,
-  },
-
   filters: {
     isChecked(year: number) {
       const checkedYears = this.get('checkedYears')
@@ -89,6 +82,10 @@ export default Yox.define({
         }
       )
     }
+  },
+
+  components: {
+    Icon,
   }
 
 })

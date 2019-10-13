@@ -462,7 +462,6 @@ export default {
       columns: [
         {
           key: 'selection',
-          width: 46,
         },
         {
           title: 'Name',
@@ -674,3 +673,5 @@ stripe | 间隔显示不同颜色 | boolean | - | `false`
 simple | 是否使用简洁版本 | boolean | - | `false`
 width | 设置表格的宽度 | numeric | - | -
 height | 设置表格的高度 | numeric | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

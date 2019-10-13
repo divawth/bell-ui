@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Sider.hbs'
 
 import {
@@ -23,6 +24,10 @@ export default Yox.define({
     style: {
       type: RAW_STRING,
     }
+  },
+
+  components: {
+    Icon,
   }
 
 })

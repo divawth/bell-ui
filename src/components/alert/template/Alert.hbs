@@ -17,12 +17,12 @@ class="${prefix}alert
       <Icon
         name="{{
           status === RAW_TYPE_SUCCESS
-            ? 'checkmark-circle'
+            ? 'checkbox-circle-fill'
             : status === RAW_TYPE_WARNING
-              ? 'alert'
+              ? 'error-warning-fill'
               : status === RAW_TYPE_ERROR
-                ? 'close-circle'
-                : 'information-circle'
+                ? 'close-circle-fill'
+                : 'information-fill'
         }}"
         size="0"
         className="${prefix}alert-status-icon"
@@ -46,7 +46,7 @@ class="${prefix}alert
     <div ref="close" class="${prefix}alert-close" on-click="close.alert">
       <slot name="close">
         <Icon
-          name="close"
+          name="close-line"
           size="0"
           className="${prefix}alert-close-icon"
         />

@@ -93,46 +93,6 @@ ui-connect(hash, each)
             }
         )
 
-ui-collection(selector-item, hash = $size-hash, each = null)
-
-    font-size 0
-
-    ui-variant(
-        hash: hash,
-        each: @(size, name) {
-
-            > {selector-item} {
-                + {selector-item} {
-                    ui-set('margin-left', size['margin-horizontal'])
-
-                    &{$selector-block} {
-                        margin-left 0
-                        ui-set('margin-top', size['margin-vertical'])
-                    }
-                }
-            }
-
-            if (each) {
-                ui-apply(
-                    style: @() {
-                        each(size, name)
-                    }
-                )
-            }
-
-        }
-    )
-
-ui-collection-tight(selector-item, gap-item = 0)
-
-    > {selector-item}
-        + {selector-item}
-            margin-left gap-item
-            &{selector-block}
-                if gap-item != 0
-                    margin-left 0
-                margin-top 0
-
 ui-scrollbar()
 
     &::-webkit-scrollbar

@@ -7,17 +7,14 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
-import { findComponentUpward } from '../util'
+
+import {
+  findComponentUpward,
+} from '../util'
 
 export default Yox.define({
   template,
   propTypes: {
-    href: {
-      type: RAW_STRING,
-    },
-    target: {
-      type: RAW_STRING,
-    },
     last: {
       type: RAW_BOOLEAN,
       value: FALSE,

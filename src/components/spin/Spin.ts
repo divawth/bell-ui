@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
-import template from './template/Spinner.hbs'
+import Icon from '../icon/Icon'
+import template from './template/Spin.hbs'
 
 import {
   FALSE,
@@ -14,10 +15,13 @@ import {
 
 import {
   oneOf,
+  supportTransform,
 } from '../util'
 
 export default Yox.define({
+
   template,
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),
@@ -31,6 +35,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    icon: {
+      type: RAW_STRING,
+      value: 'loader-line',
+    },
     text: {
       type: RAW_STRING,
     },
@@ -41,4 +49,27 @@ export default Yox.define({
       type: RAW_STRING,
     },
   },
+
+  methods: {
+    updatePosition() {
+      if (supportTransform) {
+        return
+      }
+      if (!this.get('fixed')) {
+        return
+      }
+      const content = this.$refs.content as HTMLElement
+      content.style.marginLeft = -0.5 * content.offsetWidth + 'px'
+      content.style.marginTop = -0.5 * content.offsetHeight + 'px'
+    }
+  },
+
+  components: {
+    Icon,
+  },
+
+  afterMount() {
+    this.updatePosition()
+  }
+
 })

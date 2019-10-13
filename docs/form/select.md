@@ -4,11 +4,9 @@
 export default {
   template: `
     <div>
-      <Select model="value" on-change="change()">
+      <Select model="value">
         {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <p>
@@ -24,7 +22,7 @@ export default {
           value: 1
         },
         {
-          text: '广州广州广州广州广州广州广州广州广州广州',
+          text: '广州',
           value: 2
         },
         {
@@ -39,11 +37,11 @@ export default {
       value: 2
     }
   },
-  methods: {
-    change: function (events, data) {
-      console.log(data);
+  watchers: {
+    value: function (value) {
+      console.log(value)
     }
-  }
+  },
 }
 ```
 
@@ -53,51 +51,48 @@ export default {
 export default {
   template: `
     <div>
-      <Select size="large" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+      <Select size="large" model="value1">
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <br>
-      <Select model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+      <br><br>
+      <Select model="value2">
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <br>
-      <Select model="value" size="small">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+      <br><br>
+      <Select size="small" model="value3">
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <style>
-        .bell-select {
-          margin-bottom: 20px;
-        }
-      </style>
     </div>
   `,
   watchers: {
-    value (value) {
-      console.log(value)
+    value1: function (value) {
+      console.log('value1', value)
+    },
+    value2: function (value) {
+      console.log('value2', value)
+    },
+    value3: function (value) {
+      console.log('value3', value)
     }
   },
   data: function () {
     return {
-      value: 1,
+      value1: 1,
+      value2: 2,
+      value3: 3,
       list: [
         {
           text: '深圳',
           value: 1
         },
         {
-          text: '广州广州广州广州广州广州广州广州广州广州',
+          text: '广州',
           value: 2
         },
         {
@@ -121,40 +116,32 @@ export default {
   template: `
     <div>
       <Select status="info" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <br><br>
       <Select status="warning" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <br><br>
       <Select status="success" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <br><br>
       <Select status="error" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
     </div>
   `,
   watchers: {
-    value (value) {
+    value: function (value) {
       console.log(value)
     }
   },
@@ -190,10 +177,8 @@ export default {
 export default {
   template: `
     <Select disabled model="value">
-      {{#each list:index}}
-        <Option value="{{value}}">
-          {{text}}
-        </Option>
+      {{#each list}}
+        <Option value="{{this.value}}" text="{{this.text}}" />
       {{/each}}
     </Select>
   `,
@@ -205,7 +190,7 @@ export default {
           value: 1
         },
         {
-          text: '广州广州广州广州广州广州广州广州广州广州',
+          text: '广州',
           value: 2
         },
         {
@@ -231,33 +216,22 @@ export default {
   template: `
     <div style="margin-top: 200px;">
       <Select placement="top-start" size="large" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <br>
+      <br><br>
       <Select placement="top-start" model="value">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <br>
-      <Select placement="top-start" model="value" size="small">
-        {{#each list:index}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+      <br><br>
+      <Select placement="top-start" size="small" model="value">
+        {{#each list}}
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
-      <style>
-        .bell-select {
-          margin-bottom: 20px;
-        }
-      </style>
     </div>
   `,
   data: function () {
@@ -268,7 +242,7 @@ export default {
           value: 1
         },
         {
-          text: '广州广州广州广州广州广州广州广州广州广州',
+          text: '广州',
           value: 2
         },
         {
@@ -285,31 +259,27 @@ export default {
 }
 ```
 
-> 使用 multiple 支持多选
+> 多选
 
 ```js
   export default {
     template: `
       <div>
         <Select size="large" multiple model="value" on-change="change()" width="240">
-          {{#each list:index}}
-            <Option value="{{this.value}}" text="{{this.text}}">
-              {{text}}
-            </Option>
+          {{#each list}}
+            <Option value="{{this.value}}" text="{{this.text}}" />
           {{/each}}
         </Select>
+        <br><br>
         <Select multiple model="value1" on-change="change()" width="240">
-          {{#each list:index}}
-            <Option value="{{this.value}}" text="{{this.text}}">
-              {{text}}
-            </Option>
+          {{#each list}}
+            <Option value="{{this.value}}" text="{{this.text}}" />
           {{/each}}
         </Select>
+        <br><br>
         <Select size="small" multiple model="value2" on-change="change()" width="240">
-          {{#each list:index}}
-            <Option value="{{this.value}}" text="{{this.text}}">
-              {{text}}
-            </Option>
+          {{#each list}}
+            <Option value="{{this.value}}" text="{{this.text}}" />
           {{/each}}
         </Select>
         <p>
@@ -348,7 +318,7 @@ export default {
       }
     },
     methods: {
-      change: function (events, data) {
+      change: function (event, data) {
         console.log(data);
       }
     }
@@ -364,16 +334,12 @@ export default {
     <Select size="large" model="value">
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
     </Select>
@@ -381,35 +347,35 @@ export default {
   `,
   data () {
     return {
+      value: 'London',
       cityList1: [
         {
           value: 'New York',
-          label: 'New York'
+          text: 'New York'
         },
         {
           value: 'London',
-          label: 'London'
+          text: 'London'
         },
         {
           value: 'Sydney',
-          label: 'Sydney'
+          text: 'Sydney'
         }
       ],
       cityList2: [
         {
           value: 'Ottawa',
-          label: 'Ottawa'
+          text: 'Ottawa'
         },
         {
           value: 'Paris',
-          label: 'Paris'
+          text: 'Paris'
         },
         {
           value: 'Canberra',
-          label: 'Canberra'
+          text: 'Canberra'
         }
       ],
-      model7: ''
     }
   }
 }
@@ -423,16 +389,22 @@ export default {
   <div>
     <Select size="large" model="value">
       <Option index="0" value="1" text="北京">
+        <span style="float:right;color:#ccc">
+          中国
+        </span>
         北京
-        <span style="float:right;color:#ccc">中国</span>
       </Option>
       <Option index="1" value="2" text="深圳">
+        <span style="float:right;color:#ccc">
+          中国
+        </span>
         深圳
-        <span style="float:right;color:#ccc">中国</span>
       </Option>
       <Option index="2" value="3" text="石家庄">
+        <span style="float:right;color:#ccc">
+          中国
+        </span>
         石家庄
-        <span style="float:right;color:#ccc">中国</span>
       </Option>
     </Select>
   </div>
@@ -448,9 +420,7 @@ export default {
     <div>
       <Select clearable model="value" on-change="change()">
         {{#each list}}
-          <Option value="{{value}}">
-            {{text}}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <p>
@@ -466,7 +436,7 @@ export default {
           value: 1
         },
         {
-          text: '广州广州广州广州广州广州广州广州广州广州',
+          text: '广州',
           value: 2
         },
         {
@@ -482,8 +452,8 @@ export default {
     }
   },
   methods: {
-    change: function (events, data) {
-      console.log(data);
+    change: function (event, data) {
+      console.log(data)
     }
   }
 }
@@ -495,43 +465,35 @@ export default {
 export default {
   template: `
   <div>
-    <Select model="value" prefix="home">
+    <Select model="value" prefix="home-heart-fill">
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
     </Select>
+    <br><br>
     <Select model="value">
       <template slot="prefix">
         <Avatar
           shape="circle"
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
           size="small"
-          style="vertical-align:middle"
         />
       </template>
       <OptionGroup label="Hot Cities">
         {{#each cityList1}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
       <OptionGroup label="Other Cities">
         {{#each cityList2}}
-          <Option value="{{value}}">
-            {{ label }}
-          </Option>
+          <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </OptionGroup>
     </Select>
@@ -542,29 +504,29 @@ export default {
       cityList1: [
         {
           value: 'New York',
-          label: 'New York'
+          text: 'New York'
         },
         {
           value: 'London',
-          label: 'London'
+          text: 'London'
         },
         {
           value: 'Sydney',
-          label: 'Sydney'
+          text: 'Sydney'
         }
       ],
       cityList2: [
         {
           value: 'Ottawa',
-          label: 'Ottawa'
+          text: 'Ottawa'
         },
         {
           value: 'Paris',
-          label: 'Paris'
+          text: 'Paris'
         },
         {
           value: 'Canberra',
-          label: 'Canberra'
+          text: 'Canberra'
         }
       ],
       model7: ''

@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Message.hbs'
 
 import {
@@ -93,6 +94,10 @@ export default Yox.define({
         }
       )
     }
+  },
+
+  components: {
+    Icon,
   },
 
   afterMount() {

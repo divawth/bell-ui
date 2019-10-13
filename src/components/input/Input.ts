@@ -1,5 +1,6 @@
 import Yox, { CustomEventInterface } from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Input.hbs'
 
 import {
@@ -9,7 +10,6 @@ import {
   RAW_BOOLEAN,
   RAW_STRING,
   RAW_NUMERIC,
-  RAW_OBJECT,
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
   RAW_EVENT_KEYUP,
@@ -134,6 +134,10 @@ export default Yox.define({
       this.set('value', '')
       this.fire('clear.input')
     },
+  },
+
+  components: {
+    Icon,
   },
 
   afterMount() {

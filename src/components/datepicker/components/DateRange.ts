@@ -1,9 +1,7 @@
 import Yox from 'yox'
 
+import Icon from '../../icon/Icon'
 import template from '../template/DateRange.hbs'
-
-import backIconTemplate from '../template/backIcon.hbs'
-import forwardIconTemplate from '../template/forwardIcon.hbs'
 
 import {
   WEEKS,
@@ -128,11 +126,6 @@ export default Yox.define({
     },
   },
 
-  partials: {
-    backIcon: backIconTemplate,
-    forwardIcon: forwardIconTemplate,
-  },
-
   watchers: {
     checkedStartDate(value) {
       if (value) {
@@ -249,6 +242,10 @@ export default Yox.define({
 
     },
 
+  },
+
+  components: {
+    Icon,
   }
 
 })

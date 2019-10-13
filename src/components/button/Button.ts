@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Button.hbs'
 
 import {
@@ -10,9 +11,6 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
-  RAW_BORDER_NONE,
-  RAW_BORDER_SOLID,
-  RAW_BORDER_DASHED,
   RAW_SHAPE_ROUND,
   RAW_SHAPE_CIRCLE,
 } from '../constant'
@@ -34,10 +32,6 @@ export default Yox.define({
       type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
       value: RAW_DEFAULT,
     },
-    border: {
-      type: oneOf([RAW_BORDER_NONE, RAW_BORDER_SOLID, RAW_BORDER_DASHED]),
-      value: RAW_BORDER_SOLID,
-    },
     shape: {
       type: oneOf([RAW_SHAPE_ROUND, RAW_SHAPE_CIRCLE]),
     },
@@ -45,6 +39,9 @@ export default Yox.define({
       type: RAW_BOOLEAN,
     },
     block: {
+      type: RAW_BOOLEAN,
+    },
+    loading: {
       type: RAW_BOOLEAN,
     },
     disabled: {
@@ -56,6 +53,10 @@ export default Yox.define({
     style: {
       type: RAW_STRING,
     }
+  },
+
+  components: {
+    Icon,
   },
 
   beforeCreate(options) {

@@ -1,5 +1,6 @@
 import Yox, { CustomEventInterface } from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Rate.hbs'
 
 import {
@@ -44,11 +45,11 @@ export default Yox.define({
       type: oneOf(RAW_TYPE_ARRAY),
       value: RAW_TYPE_WARNING,
     },
-    icon: {
+    iconName: {
       type: RAW_STRING,
-      value: 'star',
+      value: 'star-fill',
     },
-    size: {
+    iconSize: {
       type: RAW_NUMERIC,
       value: 18,
     },
@@ -115,5 +116,10 @@ export default Yox.define({
     hoverOnHalfIcon(element: HTMLElement) {
       return Yox.string.has(element.className, 'half')
     }
+  },
+
+  components: {
+    Icon,
   }
+
 })

@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Alert.hbs'
 
 import {
@@ -57,5 +58,10 @@ export default Yox.define({
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
     }
+  },
+
+  components: {
+    Icon,
   }
+
 })

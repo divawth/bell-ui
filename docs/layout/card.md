@@ -16,12 +16,12 @@ export default {
         <template slot="title">
           Card title
         </template>
-        <a
+        <Button
           slot="extra"
-          href="xx"
+          type="link"
         >
           More
-        </a>
+        </Button>
       </CardHeader>
       <CardBody>
         Card content
@@ -100,12 +100,12 @@ export default {
           <template slot="title">
             Card title
           </template>
-          <a
+          <Button
             slot="extra"
-            href="xx"
+            type="link"
           >
             More
-          </a>
+          </Button>
         </CardHeader>
 
         <CardBody>
@@ -127,12 +127,12 @@ export default {
       <template slot="title">
         Card title
       </template>
-      <a
+      <Button
         slot="extra"
-        href="xx"
+        type="link"
       >
         More
-      </a>
+      </Button>
     </CardHeader>
 
     <CardBody>

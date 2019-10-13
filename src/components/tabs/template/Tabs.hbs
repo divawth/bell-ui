@@ -11,12 +11,6 @@ class="${prefix}tabs
 
   <div class="${prefix}tabs-bar">
 
-    {{#if hasSlot('extra')}}
-      <div class="${prefix}tabs-extra">
-        <slot name="extra" />
-      </div>
-    {{/if}}
-
     <div
       class="${prefix}tabs-nav
         {{#if closable}} ${prefix}tabs-nav-closable{{/if}}"
@@ -27,7 +21,8 @@ class="${prefix}tabs
             {{#if this.disabled}} ${prefix}tabs-tab-disabled
             {{else}} ${prefix}tabs-tab-enabled
             {{/if}}
-            {{#if this.id === ../value}} ${prefix}tabs-tab-active
+
+            {{#if this.name === ../value}} ${prefix}tabs-tab-active
             {{/if}}"
 
           {{#if !this.disabled}}
@@ -46,8 +41,8 @@ class="${prefix}tabs
           {{#if ../closable}}
             <Icon
               className="${prefix}tabs-tab-close-icon"
-              name="close"
-              size="22"
+              name="close-line"
+              size="0"
               on-click.native="handleCloseTab(this)"
             />
           {{/if}}

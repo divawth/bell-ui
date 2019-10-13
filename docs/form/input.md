@@ -56,8 +56,12 @@ export default {
         placeholder="请输入..."
         width="400"
       >
-        <template slot="prepend">http://</template>
-        <template slot="append">.com</template>
+        <template slot="prepend">
+          http://
+        </template>
+        <template slot="append">
+          .com
+        </template>
       </Input>
       <br><br>
       <Input
@@ -65,7 +69,9 @@ export default {
         placeholder="请输入..."
         width="400"
       >
-        <Button slot="append">搜索</Button>
+        <Button slot="append">
+          搜索
+        </Button>
       </Input>
       <br><br>
       <Input
@@ -74,12 +80,8 @@ export default {
         width="400"
       >
         <Select slot="prepend" width="90">
-          <Option value="www1">
-            www1
-          </Option>
-          <Option value="www2">
-            www2
-          </Option>
+          <Option value="www1" text="www1" />
+          <Option value="www2" text="www2" />
         </Select>
       </Input>
     </div>
@@ -92,12 +94,10 @@ export default {
 ```js
 export default {
   template: `
-  <div>
-    <Input
-      prefix="search"
-      placeholder="Enter something..."
-    />
-  </div>
+  <Input
+    prefix="search-line"
+    placeholder="Enter something..."
+  />
   `
 }
 ```
@@ -107,13 +107,11 @@ export default {
 ```js
 export default {
   template: `
-  <div>
-    <Input
-      type="password"
-      secure
-      placeholder="Enter something..."
-    />
-  </div>
+  <Input
+    type="password"
+    secure
+    placeholder="Enter something..."
+  />
   `
 }
 ```
@@ -123,39 +121,33 @@ export default {
 ```js
 export default {
   template: `
-    <Input
-      placeholder="请输入..."
-      width="300"
-      model="value"
-      clearable
-    />
+  <Input
+    placeholder="请输入..."
+    width="300"
+    model="value"
+    clearable
+  />
   `
 }
 ```
 
-> 带 Icon 的输入框
+> 带图标的输入框
 
 ```js
 export default {
   template: `
   <div>
-    <Input prefix="contact" />
+    <Input size="small" prefix="contacts-book-2-line" />
     <br><br>
-    <Input suffix="calendar" />
+    <Input prefix="contacts-book-2-line" />
     <br><br>
-    <Input>
-      <Icon
-        slot="prefix"
-        name="contact"
-      />
-    </Input>
+    <Input size="large" prefix="contacts-book-2-line" />
     <br><br>
-    <Input>
-      <Icon
-        slot="suffix"
-        name="calendar"
-      />
-    </Input>
+    <Input size="small" suffix="calendar-line" />
+    <br><br>
+    <Input suffix="calendar-line" />
+    <br><br>
+    <Input size="large" suffix="calendar-line" />
   </div>
   `
 }
@@ -190,19 +182,19 @@ export default {
     <br><br>
     <Input
       model="value"
-      placeholder="info input"
+      placeholder="success input"
       status="success"
     />
     <br><br>
     <Input
       model="value"
-      placeholder="info input"
+      placeholder="error input"
       status="error"
     />
     <br><br>
     <Input
       model="value"
-      placeholder="info input"
+      placeholder="warning input"
       status="warning"
     />
   </div>
@@ -254,5 +246,3 @@ clear | 点击清除时触发 | -
 ---|---
 prepend | 自定义前插槽
 append | 自定义后插槽
-prefix | 输入框头部图标
-suffix | 输入框尾部图标

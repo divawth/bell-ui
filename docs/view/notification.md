@@ -17,9 +17,6 @@ export default {
         提醒
       </Button>
       <Button on-click="open1()">
-        提醒（仅标题）
-      </Button>
-      <Button on-click="open2()">
         提醒（仅内容）
       </Button>
     </div>
@@ -32,11 +29,6 @@ export default {
       })
     },
     open1: function () {
-      this.$notification.success({
-        title: '这是标题这是标题这是标题'
-      })
-    },
-    open2: function () {
       this.$notification.success({
         content: '这是标题这是标题这是标题'
       })
@@ -117,7 +109,8 @@ export default {
   methods: {
     open: function () {
       this.$notification.error({
-        title: '对方不想和你说话，并且向你抛出了一个异常',
+        title: '标题',
+        content: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 0,
         width: 330
       })
@@ -219,6 +212,7 @@ content | 自定义文本 | string | - | -
 title | 自定义标题 | string | - | -
 right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
 duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
+width | 显示宽度 | number | - | `320`
 
 > Events
 
@@ -236,5 +230,5 @@ close | 关闭 alert 时触发的事件 | -
 ---|---|---|---|---
 right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
 duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
-
+width | 显示宽度 | number | - | `320`
 

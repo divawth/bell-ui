@@ -1,102 +1,90 @@
-> 根据 type 显示按钮类型
+> 按钮类型
 
 ```js
 export default {
   template: `
-    <div class="bell-template">
-      <div class="bell-buttons">
-        <Button>
-          Default
-        </Button>
-        <Button type="primary">
-          Primary
-        </Button>
-        <Button type="warning">
-          Warning
-        </Button>
-        <Button type="success">
-          Success
-        </Button>
-      </div>
+    <div>
+      <Button>
+        Default
+      </Button>
+      <Button type="primary">
+        Primary
+      </Button>
 
-      <div class="bell-buttons" style="margin-top: 10px;">
-        <Button type="error">
-          Error
-        </Button>
-        <Button type="info">
-          Info
-        </Button>
-      </div>
+      <br><br>
+
+      <Button type="success">
+        Success
+      </Button>
+      <Button type="error">
+        Error
+      </Button>
+      <Button type="info">
+        Info
+      </Button>
+      <Button type="warning">
+        Warning
+      </Button>
+
+      <br><br>
+
+      <Button type="dashed">
+        Dashed
+      </Button>
+      <Button type="link">
+        Link
+      </Button>
     </div>
   `
 }
 ```
 
-> 设置按钮的边框
+> 幽灵按钮
+
+幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
 
 ```js
 export default {
   template: `
-    <div class="bell-template">
-      <div class="bell-buttons">
-        <Button border="solid">
-          Solid
-        </Button>
-        <Button border="dashed">
-          Dashed
-        </Button>
-        <Button border="none">
-          Text
-        </Button>
-      </div>
+    <div style="background-color: rgb(190, 200, 200); padding: 8px;">
+
+      <Button ghost>
+        Default
+      </Button>
+      <Button ghost type="primary">
+        Primary
+      </Button>
+
+      <br><br>
+
+      <Button ghost type="success">
+        Success
+      </Button>
+      <Button ghost type="error">
+        Error
+      </Button>
+      <Button ghost type="info">
+        Info
+      </Button>
+      <Button ghost type="warning">
+        Warning
+      </Button>
+
+      <br><br>
+
+      <Button ghost type="dashed">
+        Dashed
+      </Button>
+      <Button ghost type="link">
+        Link
+      </Button>
+
     </div>
   `
 }
 ```
 
-> 设置幽灵按钮
-
-幽灵按钮将其他按钮的内容反色，背景变为透明，常用在有色背景上。
-
-```js
-export default {
-  template: `
-    <div class="bell-template" style="background-color: rgb(190, 200, 200); padding: 8px;">
-      <div class="bell-buttons">
-        <Button ghost>
-          Default
-        </Button>
-        <Button ghost type="primary">
-          Primary
-        </Button>
-        <Button ghost type="warning">
-          Warning
-        </Button>
-        <Button ghost type="success">
-          Success
-        </Button>
-      </div>
-
-      <div class="bell-buttons" style="margin-top: 10px;">
-        <Button ghost type="primary" border="dashed">
-          Dashed
-        </Button>
-        <Button ghost type="primary" border="none">
-          Text
-        </Button>
-        <Button ghost type="warning" border="none">
-          Warning
-        </Button>
-        <Button ghost type="success" border="none">
-          Success
-        </Button>
-      </div>
-    </div>
-  `
-}
-```
-
-> 根据 size 显示按钮大小
+> 三种尺寸
 
 ```js
 export default {
@@ -128,43 +116,45 @@ export default {
 }
 ```
 
-> 根据 shape 显示按钮形态
+> 按钮形态
 
 ```js
 export default {
   template: `
-    <div style="margin-top: 10px;">
-      <div class="bell-buttons">
-        <Button type="primary" shape="circle">
-          <Icon name="cloud-download" />
-        </Button>
-        <Button type="primary">
-          搜索
-        </Button>
-        <Button type="primary" shape="round">
-          <template slot="icon">
-            <Icon name="cloud-download" style="padding-right: 10px;" />
-          </template>
-          搜索
-        </Button>
-        <Button type="primary" shape="round">
-          圆角按钮
-        </Button>
-      </div>
+    <div>
+      <Button type="primary" shape="circle">
+        <Icon name="download-line" />
+      </Button>
+      <Button type="primary" shape="round">
+        <template slot="prefix">
+          <Icon name="download-line" />
+        </template>
+        搜索
+      </Button>
+      <Button type="primary" shape="round">
+        圆角按钮
+        <template slot="suffix">
+          <Icon name="download-line" />
+        </template>
+      </Button>
 
-      <div class="bell-buttons" style="margin-top: 10px;">
-        <Button shape="circle">
-          <template slot="icon">
-            <Icon name="cloud-download" />
-          </template>
-        </Button>
-        <Button shape="round">
-          搜索
-        </Button>
-        <Button shape="round">
-          圆角按钮
-        </Button>
-      </div>
+      <br><br>
+
+      <Button shape="circle">
+        <Icon name="download-line" />
+      </Button>
+      <Button shape="round">
+        <template slot="prefix">
+          <Icon name="download-line" />
+        </template>
+        搜索
+      </Button>
+      <Button shape="round">
+        圆角按钮
+        <template slot="suffix">
+          <Icon name="download-line" />
+        </template>
+      </Button>
     </div>
   `
 }
@@ -179,7 +169,6 @@ export default {
       <Button type="success" block>
         确认提交
       </Button>
-      <br><br>
       <Button type="error" block>
         确认删除
       </Button>
@@ -194,32 +183,26 @@ export default {
 export default {
   template: `
     <div>
-      <Button>
+      <Button disabled>
         Default
       </Button>
-      <Button disabled>
-        Default(Disabled)
-      </Button>
-      <br><br>
-      <Button type="primary">
+      <Button disabled type="primary">
         Primary
       </Button>
-      <Button type="primary" disabled>
-        Primary(Disabled)
-      </Button>
+
       <br><br>
-      <Button border="dashed">
+
+      <Button disabled type="dashed">
         Dashed
       </Button>
-      <Button border="dashed" disabled>
-        Dashed(Disabled)
+      <Button disabled type="link">
+        Link
       </Button>
+
       <br><br>
-      <Button border="none">
-        Text
-      </Button>
-      <Button border="none" disabled>
-        Text(Disabled)
+
+      <Button disabled ghost>
+        Ghost
       </Button>
     </div>
   `
@@ -231,25 +214,19 @@ export default {
 ```js
 export default {
   template: `
-    <div class="bell-buttons">
-      <Button type="primary" shape="circle">
-        <Icon spin size="18" name="refresh" />
-      </Button>
+    <div>
+      <Button
+        type="primary"
+        shape="circle"
+        loading
+      />
 
-      <Button type="primary"
-        on-click="toLoading()">
-        {{#if !loading}}
-          Click me!
-        {{else}}
-          Loading...
-        {{/if}}
-      </Button>
-
-      <Button type="primary"
-        on-click="toLoading2()"
+      <Button
+        type="primary"
+        loading="{{loading}}"
+        on-click="toggle('loading')"
       >
-        <Icon spin slot="icon" style="padding-right: 10px; vertical-align: top;" size="12" name="refresh" />
-        {{#if !loading2}}
+        {{#if !loading}}
           Click me!
         {{else}}
           Loading...
@@ -260,21 +237,6 @@ export default {
   data: function () {
     return {
       loading: false
-    }
-  },
-  events: {
-    click () {
-      console.log(arguments);
-    }
-  },
-  methods: {
-    toLoading: function () {
-      var me = this;
-      me.set('loading', !me.get('loading'));
-    },
-    toLoading2: function () {
-      var me = this;
-      me.set('loading2', !me.get('loading2'));
     }
   }
 }
@@ -292,43 +254,55 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button border="dashed">R</Button>
+        <Button type="dashed">R</Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup>
         <Button type="primary">
-          <Icon name="arrow-back" style="margin-right: 6px;" />
           Backward
+          <Icon
+            slot="prefix"
+            name="arrow-left-s-line"
+          />
         </Button>
         <Button type="primary">
           Forward
-          <Icon name="arrow-forward" style="margin-left: 6px;" />
+          <Icon
+            slot="suffix"
+            name="arrow-right-s-line"
+          />
         </Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup>
         <Button>
-          <Icon name="airplane" />
+          <Icon name="windows-fill" />
         </Button>
         <Button>
-          <Icon name="alarm" />
+          <Icon name="apple-fill" />
         </Button>
         <Button>
-          <Icon name="crop" />
+          <Icon name="google-fill" />
         </Button>
         <Button>
-          <Icon name="american-football" />
+          <Icon name="twitter-fill" />
         </Button>
       </ButtonGroup>
       <br><br>
       <ButtonGroup shape="round">
-        <Button type="primary">
-          <Icon name="arrow-back" style="margin-right: 8px;" />
+        <Button>
           Backward
+          <Icon
+            slot="prefix"
+            name="arrow-left-s-line"
+          />
         </Button>
-        <Button type="primary">
+        <Button>
           Forward
-          <Icon name="arrow-forward" style="margin-left: 8px;" />
+          <Icon
+            slot="suffix"
+            name="arrow-right-s-line"
+          />
         </Button>
       </ButtonGroup>
       <br><br>
@@ -336,7 +310,7 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button border="dashed">R</Button>
+        <Button type="dashed">R</Button>
       </ButtonGroup>
     </div>
   `
@@ -353,7 +327,7 @@ export default {
         <Button type="primary">L</Button>
         <Button>M</Button>
         <Button>M</Button>
-        <Button border="dashed">R</Button>
+        <Button type="dashed">R</Button>
       </ButtonGroup>
     </div>
   `
@@ -366,13 +340,13 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
-border | 边框类型 | string | `solid`, `none`, `dashed` | `solid`
-ghost | 是否是幽灵按钮 | boolean | - | false
+type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error`, `dashed`, `link` | -
+ghost | 是否是幽灵按钮 | boolean | - | `false`
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `circle`, `round` | -
 block | 开启后，按钮的长度为 100% | boolean | - | `false`
-disabled | 设置按钮为禁用状态 | boolean | - | `false`
+loading |  是否为正在加载状态 | boolean | - | `false`
+disabled | 是否为禁用状态 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -380,14 +354,15 @@ style | 自定义内联样式 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-click | 点击按钮的回调 | -
+click | 点击按钮时触发 | -
 
 > Slots
 
 参数 | 说明
 ---|---
-children | 自定义内容
-icon | 自定义左边的 icon
+children | 自定义整个内容
+prefix | 自定义左边的内容，常用于左侧图标
+suffix | 自定义右边的内容，常用于右侧图标
 
 > ButtonGroup Props
 

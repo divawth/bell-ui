@@ -12,12 +12,19 @@ class="${prefix}datepicker-daterange
 
       <div class="${prefix}datepicker-prev">
         <span class="${prefix}datepicker-header-button" on-click="offsetStart(-12)">
-          {{> backIcon}}
-          {{> backIcon}}
+          <Icon
+            name="arrow-left-s-fill"
+            size="0"
+            className="${prefix}datepicker-header-icon"
+          />
         </span>
 
         <span class="${prefix}datepicker-header-button" on-click="offsetStart(-1)">
-          {{> backIcon}}
+          <Icon
+            name="arrow-left-s-line"
+            size="0"
+            className="${prefix}datepicker-header-icon"
+          />
         </span>
       </div>
 
@@ -26,12 +33,19 @@ class="${prefix}datepicker-daterange
       {{#if splitPanel}}
         <div class="${prefix}datepicker-next">
           <span class="${prefix}datepicker-header-button" on-click="offsetStart(1)">
-            {{> forwardIcon}}
+            <Icon
+              name="arrow-right-s-line"
+              size="0"
+              className="${prefix}datepicker-header-icon"
+            />
           </span>
 
           <span class="${prefix}datepicker-header-button" on-click="offsetStart(12)">
-            {{> forwardIcon}}
-            {{> forwardIcon}}
+            <Icon
+              name="arrow-right-s-fill"
+              size="0"
+              className="${prefix}datepicker-header-icon"
+            />
           </span>
         </div>
       {{/if}}
@@ -93,12 +107,19 @@ class="${prefix}datepicker-daterange
       {{#if splitPanel}}
         <div class="${prefix}datepicker-prev">
           <span class="${prefix}datepicker-header-button" on-click="offsetEnd(-12)">
-            {{> backIcon}}
-            {{> backIcon}}
+            <Icon
+              name="arrow-left-s-fill"
+              size="0"
+              className="${prefix}datepicker-header-icon"
+            />
           </span>
 
           <span class="${prefix}datepicker-header-button" on-click="offsetEnd(-1)">
-            {{> backIcon}}
+            <Icon
+              name="arrow-left-s-line"
+              size="0"
+              className="${prefix}datepicker-header-icon"
+            />
           </span>
         </div>
       {{/if}}
@@ -107,12 +128,19 @@ class="${prefix}datepicker-daterange
 
       <div class="${prefix}datepicker-next">
         <span class="${prefix}datepicker-header-button" on-click="offsetEnd(1)">
-          {{> forwardIcon}}
+          <Icon
+            name="arrow-right-s-line"
+            size="0"
+            className="${prefix}datepicker-header-icon"
+          />
         </span>
 
         <span class="${prefix}datepicker-header-button" on-click="offsetEnd(12)">
-          {{> forwardIcon}}
-          {{> forwardIcon}}
+          <Icon
+            name="arrow-right-s-fill"
+            size="0"
+            className="${prefix}datepicker-header-icon"
+          />
         </span>
       </div>
 

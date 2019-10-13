@@ -16,7 +16,7 @@
     transform translate(-50%, -50%) scale(1)
 
   > {$selector-dialog-mask}
-    opacity 1
+    opacity $ui-opacity-mask
 
 {$selector-dialog-mask}
   position absolute
@@ -27,7 +27,7 @@
 
   opacity 0
   user-select none
-  background-color $brand-mask
+  background-color #000
   transition opacity .3s
 
 {$selector-dialog-wrapper}
@@ -46,7 +46,7 @@
 
 {$selector-dialog-header}
   ui-ellipsis()
-  color $brand-text-important
+  color $brand-title
   font-size $font-size-large
   line-height $ui-single-line-height
   font-weight bold

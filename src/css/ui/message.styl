@@ -18,7 +18,7 @@
   ui-message()
 
 {$selector-message-with-close}
-  padding-right $message-padding-horizontal + $message-close-font-size
+  padding-right $message-close-icon-right + $close-icon-size + $ui-icon-text-gap
 
 {$selector-message-visible}
   opacity 1
@@ -27,7 +27,7 @@
   text-align center
 
 {$selector-message-icon}
-  font-size $message-icon-font-size
+  font-size $message-icon-size
   margin-right $ui-icon-text-gap
   vertical-align middle
 
@@ -36,12 +36,12 @@
 
 {$selector-message-close}
   position absolute
-  right $message-padding-horizontal
-  top $message-padding-vertical
+  right $message-close-icon-right
+  top $message-close-icon-top
 
   cursor $cursor-clickable
   color $brand-close-color
-  font-size $message-close-font-size
+  font-size $close-icon-size
   transition color .3s
 
   &:hover

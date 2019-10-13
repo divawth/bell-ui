@@ -20,8 +20,8 @@ class="${prefix}rate
 
   {{#each 1 => count}}
     <Icon
-      name="{{icon}}"
-      size="{{size}}"
+      name="{{iconName}}"
+      size="{{iconSize}}"
       className="${prefix}rate-icon-full
       {{#if activeValue - this >= 0}} ${prefix}rate-icon-active{{/if}}"
 
@@ -32,8 +32,8 @@ class="${prefix}rate
     >
       {{#if half}}
         <Icon
-          name="{{icon}}"
-          size="{{size}}"
+          name="{{iconName}}"
+          size="{{iconSize}}"
           className="${prefix}rate-icon-half
           {{#if activeValue - this >= -0.5}} ${prefix}rate-icon-active{{/if}}"
         />
@@ -45,7 +45,7 @@ class="${prefix}rate
     <span
       class="${prefix}rate-text"
       {{! 只要设置相同的 line-height 就能居中对齐 }}
-      style="line-height: {{size}}px"
+      style="line-height: {{iconSize}}px"
     >
       <slot name="children">
         {{texts[activeValue - 1]}}

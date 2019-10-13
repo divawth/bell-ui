@@ -1,5 +1,6 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Tabs.hbs'
 
 import {
@@ -13,7 +14,6 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
-  RAW_NUMBER,
 } from '../constant'
 
 import {
@@ -21,7 +21,7 @@ import {
 } from '../util'
 
 interface Tab {
-  id: string,
+  name: string,
   icon: string,
   label: string,
   disabled: boolean,
@@ -46,8 +46,7 @@ export default Yox.define({
       value: FALSE,
     },
     value: {
-      type: [RAW_STRING, RAW_NUMBER],
-      value: 0,
+      type: RAW_STRING,
     },
     className: {
       type: RAW_STRING,
@@ -64,71 +63,90 @@ export default Yox.define({
   },
 
   events: {
-    'add.tabPanel': function (event) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
-        const { target } = event
-        this.append(
-          'tabs',
-          {
-            id: target.get('id'),
-            icon: target.get('icon'),
-            label: target.get('label'),
-            disabled: target.get('disabled'),
-          }
-        )
+    'add.tabPanel': function (event, data) {
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
       }
+
+      const { target } = event
+      const tabName = target.get('name')
+
+      this.append(
+        'tabs',
+        {
+          name: tabName,
+          icon: target.get('icon'),
+          label: target.get('label'),
+          disabled: target.get('disabled'),
+        }
+      )
+
+      if (data.isActive) {
+        this.set({
+          value: tabName,
+        })
+      }
+
     },
     'remove.tabPanel': function (event) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
-        const me = this
-        const { target } = event
-        const tabId = target.get('id')
-        const tabs: Tab[] = me.get('tabs')
-        const newTabs = tabs.filter(function (item) {
-          return item.id !== tabId
-        })
-        me.set({
-          tabs: newTabs
-        })
-        if (me.get('value') === tabId) {
-          me.set('value', newTabs[0] ? newTabs[0].id : UNDEFINED)
-        }
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
       }
+
+      const { target } = event
+      const tabName = target.get('name')
+
+      const tabs: Tab[] = this.get('tabs')
+      const newTabs = tabs.filter(function (item) {
+        return item.name !== tabName
+      })
+      this.set({
+        tabs: newTabs
+      })
+
+      if (this.get('value') === tabName) {
+        this.set('value', newTabs[0] ? newTabs[0].name : UNDEFINED)
+      }
+
     },
     'update.tabPanel': function (event) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
 
-        const me = this
-        const { target } = event
-        const tabId = target.get('id')
-        const tabs: Tab[] = me.get('tabs')
-
-        Yox.array.each(
-          tabs,
-          function (item, index) {
-            if (item.id === tabId) {
-              me.set(
-                `tabs.${index}`,
-                {
-                  id: tabId,
-                  icon: target.get('icon'),
-                  label: target.get('label'),
-                  disabled: target.get('disabled'),
-                }
-              )
-              return FALSE
-            }
-          }
-        )
-
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
       }
+
+      const me = this
+      const { target } = event
+      const tabName = target.get('name')
+      const tabs: Tab[] = me.get('tabs')
+
+      Yox.array.each(
+        tabs,
+        function (item, index) {
+          if (item.name === tabName) {
+            me.set(
+              `tabs.${index}`,
+              {
+                name: tabName,
+                icon: target.get('icon'),
+                label: target.get('label'),
+                disabled: target.get('disabled'),
+              }
+            )
+            return FALSE
+          }
+        }
+      )
+
     }
   },
 
   watchers: {
     value(value) {
       this.fire(
-        'selected.tabs',
+        'change.tabs',
         { value },
         TRUE
       )
@@ -137,31 +155,22 @@ export default Yox.define({
 
   methods: {
     handleCloseTab(tab: Tab) {
-      this.fire('tabRemove.tabs', tab)
+      this.fire(
+        'tabRemove.tabs',
+        {
+          name: tab.name
+        }
+      )
     },
     handleClickTab(tab: Tab) {
       this.set({
-        value: tab.id,
+        value: tab.name,
       })
-    },
-    getActiveIndex() {
-      const value = this.get('value')
-      const tabs: Tab[] = this.get('tabs')
-
-      let index = 0
-
-      Yox.array.each(
-        tabs,
-        function (item, key) {
-          if (item.id === value) {
-            index = key
-            return FALSE
-          }
-        }
-      )
-      return index
-
     }
+  },
+
+  components: {
+    Icon,
   }
 
 })

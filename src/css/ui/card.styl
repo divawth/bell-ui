@@ -1,7 +1,7 @@
 {$selector-card}
   background-color $brand-bg
   border-radius $border-radius-default
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-single-line-height
 
@@ -20,7 +20,7 @@
   padding $card-header-padding-vertical $card-padding-horizontal
 
   {$selector-avatar}
-    margin-right $ui-icon-text-gap
+    margin-right $card-header-avatar-title-gap
     vertical-align middle
 
   + {$selector-card-body}
@@ -31,13 +31,13 @@
   vertical-align middle
 
 {$selector-card-header-title}
-  color $brand-text-important
+  color $brand-title
   font-size $card-header-title-font-size
   font-weight bold
   line-height $ui-single-line-height
 
 {$selector-card-header-sub-title}
-  color $brand-text-muted
+  color $brand-muted
   font-size $card-header-sub-title-font-size
   line-height $ui-single-line-height
   margin-top $card-header-sub-title-gap
@@ -77,7 +77,7 @@
 {$selector-card-body}
   padding $card-body-padding-vertical $card-padding-horizontal
   font-size $font-size-default
-  color $brand-text
+  color $brand-content
   line-height $ui-multiple-line-height
 
   + {$selector-card-footer}

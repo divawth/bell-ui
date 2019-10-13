@@ -24,7 +24,6 @@
 
     > {$selector-tag-close-icon}
       position static
-      margin-left $ui-icon-text-gap
       vertical-align middle
 
 {$selector-select-value},
@@ -37,12 +36,12 @@
 
 {$selector-select-placeholder},
 {$selector-datepicker-placeholder}
-  color $brand-text-muted
+  color $brand-muted
   user-select none
 
 {$selector-select-value},
 {$selector-datepicker-value}
-  color $brand-text
+  color $brand-content
   user-select none
 
 {$selector-select-arrow-icon},
@@ -51,12 +50,20 @@
 {$selector-datepicker-clear-icon}
   position absolute
   top 50%
-  font-size $ui-icon-size
-  transform translateY(-50%)
+
+{$selector-select-arrow-icon}
+  font-size $select-arrow-icon-size
+  margin-top -0.5 * $select-arrow-icon-size
+
+{$selector-select-clear-icon},
+{$selector-datepicker-clear-icon},
+{$selector-datepicker-calendar-icon}
+  font-size $form-button-icon-size
+  margin-top -0.5 * $form-button-icon-size
 
 {$selector-select-arrow-icon},
 {$selector-datepicker-calendar-icon}
-  color $brand-indicator-icon-color
+  color $brand-muted
   transition transform .3s
   transform-origin center center
 
@@ -82,22 +89,22 @@
 {$selector-select-disabled}
   {$selector-select-button}
     background-color $brand-bg-disabled
-    border-color $brand-border-disabled
+    border-color $brand-border
     cursor $cursor-disabled
 
   {$selector-select-placeholder},
   {$selector-select-value}
-    color $brand-text-disabled
+    color $brand-disabled
 
 {$selector-datepicker-disabled}
   {$selector-datepicker-button}
     background-color $brand-bg-disabled
-    border-color $brand-border-disabled
+    border-color $brand-border
     cursor $cursor-disabled
 
   {$selector-datepicker-placeholder},
   {$selector-datepicker-value}
-    color $brand-text-disabled
+    color $brand-disabled
 
 {$selector-select-clearable}
   {$selector-select-button}:hover

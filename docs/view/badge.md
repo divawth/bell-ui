@@ -45,7 +45,7 @@ export default {
       </Badge>
       <Badge dot>
         <Icon
-          name="notifications-outline"
+          name="notification-3-fill"
           size="26"
         />
       </Badge>

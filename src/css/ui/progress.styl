@@ -5,7 +5,6 @@
 {$selector-progress-track}
   background-color $progress-bg-color
   border-radius $border-radius-round
-  box-shadow inset 0 1px 2px rgba(0,0,0,0.05)
 
 {$selector-progress-bar}
   border-radius $border-radius-round
@@ -13,7 +12,7 @@
 
 {$selector-progress-text}
   white-space nowrap
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
 
 {$selector-progress-inside}
@@ -79,15 +78,15 @@
   &{$selector-progress-horizontal}
     {$selector-progress-bar}:before
       top 0
-      animation bell-progress-horizontal-animated 2s ease-in-out infinite
+      animation bell-progress-horizontal-active 2s ease-in-out infinite
 
   &{$selector-progress-vertical}
     {$selector-progress-bar}:before
       right 0
-      animation bell-progress-vertical-animated 2s ease-in-out infinite
+      animation bell-progress-vertical-active 2s ease-in-out infinite
 
 
-@keyframes bell-progress-horizontal-animated {
+@keyframes bell-progress-horizontal-active {
   0% {
     opacity .3
     width 0
@@ -97,7 +96,7 @@
     width 100%
   }
 }
-@keyframes bell-progress-vertical-animated {
+@keyframes bell-progress-vertical-active {
   0% {
     opacity .3
     height 0

@@ -1,5 +1,6 @@
 import Yox, { Listener } from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/InputNumber.hbs'
 
 import {
@@ -91,7 +92,7 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value: number) {
+    value(value) {
       this.fire(
         'change.inputNumber',
         { value }
@@ -114,12 +115,12 @@ export default Yox.define({
     },
     upDisabled(): boolean {
       const max = this.get('max')
-      return max != null
+      return Yox.is.numeric(max)
         && max - this.get('value') < this.get('step')
     },
     downDisabled(): boolean {
       const min = this.get('min')
-      return min != null
+      return Yox.is.numeric(min)
         && this.get('value') - min < this.get('step')
     }
   },
@@ -149,6 +150,10 @@ export default Yox.define({
       this.set('isFocus', FALSE)
       this.fire('blur.inputNumber')
     },
+  },
+
+  components: {
+    Icon,
   },
 
   afterMount() {

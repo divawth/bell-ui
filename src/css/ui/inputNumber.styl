@@ -13,7 +13,7 @@
     margin-left $ui-horizontal-gap
 
 {$selector-input-number-disabled}
-  border-color $brand-border-disabled
+  border-color $brand-border
 
 {$selector-input-number-el}
   outline none
@@ -22,14 +22,14 @@
   height 100%
   text-align left
   background-color $brand-bg
-  color $brand-text
+  color $brand-content
 
   ui-placeholder($brand-placeholder)
 
   &:disabled
     cursor $cursor-disabled
     background-color $brand-bg-disabled
-    color $brand-text-disabled
+    color $brand-disabled
 
 {$selector-input-number-actions}
   position absolute
@@ -75,7 +75,7 @@
 {$selector-input-number-up-disabled},
 {$selector-input-number-down-disabled}
   cursor $cursor-disabled
-  color $brand-border-disabled
+  color $brand-disabled
 
 {$selector-input-number-enabled}:hover
   border-color $brand-primary

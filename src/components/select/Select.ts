@@ -1,5 +1,6 @@
 import Yox, { CustomEventInterface, YoxInterface } from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Select.hbs'
 
 import {
@@ -271,5 +272,9 @@ export default Yox.define({
     },
 
   },
+
+  components: {
+    Icon,
+  }
 
 })

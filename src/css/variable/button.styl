@@ -1,14 +1,16 @@
 $selector-button = $selector-prefix + '-button'
 $selector-button-enabled = $selector-button + '-enabled'
 $selector-button-disabled = $selector-button + '-disabled'
-$selector-button-normal = $selector-button + '-normal'
 $selector-button-ghost = $selector-button + '-ghost'
-$selector-button-none = $selector-button + '-none'
-$selector-button-solid = $selector-button + '-solid'
+$selector-button-link = $selector-button + '-link'
 $selector-button-dashed = $selector-button + '-dashed'
 $selector-button-circle = $selector-button + '-circle'
 $selector-button-round = $selector-button + '-round'
 $selector-button-block = $selector-button + '-block'
+
+$selector-button-primary = $selector-button + '-primary'
+$selector-button-loading = $selector-button + '-loading'
+$selector-button-loading-icon = $selector-button-loading + '-icon'
 
 $selector-buttons = $selector-prefix + '-buttons'
 $selector-button-group = $selector-button + '-group'
@@ -16,43 +18,33 @@ $selector-button-group-round = $selector-button-group + '-round'
 $selector-button-group-horizontal = $selector-button-group + '-horizontal'
 $selector-button-group-vertical = $selector-button-group + '-vertical'
 
+$button-group-separator-color = rgba(255,255,255,0.4)
+
 $button-size-hash = {
   default: {
     height: $height-default,
     font-size: $font-size-default,
+    loading-size: $font-size-default + 2,
     border-radius: $border-radius-default,
     padding-horizontal: $padding-horizontal-default,
   },
   small: {
     height: $height-small,
     font-size: $font-size-small,
+    loading-size: $font-size-small + 2,
     border-radius: $border-radius-small,
     padding-horizontal: $padding-horizontal-small,
   },
   large: {
     height: $height-large,
     font-size: $font-size-large,
+    loading-size: $font-size-large + 2,
     border-radius: $border-radius-large,
     padding-horizontal: $padding-horizontal-large,
   },
 }
 
 $button-brand-hash = {
-  '': {
-    color: $brand-text-secondary,
-    bg-color: $brand-bg,
-    border-color: $brand-border,
-
-    hover-color: $brand-primary,
-    hover-bg-color: $brand-bg,
-    hover-border-color: $brand-primary,
-
-    active-color: $brand-primary,
-    active-bg-color: $brand-bg,
-    active-border-color: $brand-primary,
-
-    shadow-color: $brand-primary-shadow,
-  },
   'primary': {
     color: $brand-white,
     bg-color: $brand-primary,

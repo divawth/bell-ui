@@ -3,7 +3,7 @@
   user-select none
 
 {$selector-datepicker-header}
-  color $brand-text
+  color $brand-content
   font-size $datepicker-header-font-size
   font-weight 400
   height $datepicker-header-height
@@ -24,7 +24,7 @@
   right 0
 
 {$selector-datepicker-header-icon}
-  font-size $datepicker-header-icon-font-size
+  font-size $datepicker-header-icon-size
 
 {$selector-datepicker-header-link}
   transition color .3s
@@ -48,12 +48,12 @@
     color $brand-close-color-hover
 
 {$selector-datepicker-weeks}
-  border-bottom 1px solid $brand-divider
-  height $datepicker-week-height
+  background-color $datepicker-week-bg-color
   line-height $datepicker-week-height
 
   > {$selector-datepicker-col}
     padding 0
+    vertical-align top
 
 {$selector-datepicker-row}
   margin-top $datepicker-row-gap
@@ -68,7 +68,7 @@
   display inline-block
   box-sizing border-box
   text-align center
-  padding $datepicker-item-padding
+  padding 0 $datepicker-item-padding
 
 {$selector-datepicker-col-checked}
   border-radius $border-radius-round
@@ -94,7 +94,7 @@
     color $brand-primary
 
 {$selector-datepicker-col-disabled}
-  color $brand-link-disabled
+  color $brand-disabled
   cursor $cursor-disabled
 
 {$selector-datepicker-text}
@@ -109,8 +109,8 @@
     background-color $datepicker-item-checked-bg-color
 
 {$selector-datepicker-panel}
-  padding $datepicker-panel-padding
   box-sizing border-box
+  padding $datepicker-panel-padding
 
   + {$selector-datepicker-panel}
     position relative

@@ -64,7 +64,7 @@ export default {
       <TimelineItem>
         <Icon
           slot="dot"
-          name="happy"
+          name="apple-fill"
           color="red"
         />
         <p>

@@ -21,8 +21,9 @@ export default {
         >
           <Icon
             slot="prepend"
-            name="person"
-            color="#bbb"
+            name="user-2-fill"
+            color="#999"
+            size="16"
           />
         </Input>
       </FormItem>
@@ -35,8 +36,9 @@ export default {
         >
           <Icon
             slot="append"
-            name="lock"
-            color="#bbb"
+            name="lock-fill"
+            color="#999"
+            size="16"
           />
         </Input>
       </FormItem>
@@ -87,7 +89,6 @@ export default {
           }
         }
       )
-      console.log(errors)
       this.set({
         errors: errors
       })
@@ -111,13 +112,13 @@ export default {
   template: `
   <div>
     <Form labelWidth="120">
-      <FormItem label="Input" required>
+      <FormItem label="Input" showRequiredMark>
         <Input
           model="form.input"
           placeholder="Enter something..."
         />
       </FormItem>
-      <FormItem label="InputNumber" required>
+      <FormItem label="InputNumber" showRequiredMark>
         <InputNumber
           model="form.number"
           placeholder="Enter something..."
@@ -422,6 +423,6 @@ label | 标签文本 | string | - | -
 labelAlign | 表单域标签垂直对齐方式 | string | `middle`, `top`, `bottom` | `middle`
 showMessage | 是否显示校验错误信息 | boolean | - | `true`
 message | 错误信息 | string | - | -
-required | 必填项会在 label 左侧添加一个红色 * | boolean | - | `false`
+showRequiredMark | 是否在 label 左侧添加一个红色 * | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

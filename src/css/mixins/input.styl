@@ -11,6 +11,7 @@ input-size-style(style)
 
   {$selector-input-el}
     ui-set('font-size', style['font-size'])
+    ui-set('line-height', style['height'])
     ui-set('padding', 0 style['padding-horizontal'])
 
   {$selector-input-prefix}
@@ -20,15 +21,27 @@ input-size-style(style)
     ui-set('right', style['padding-horizontal'])
 
   {$selector-input-el-with-prefix}
-    ui-set('padding-left', style['padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
+    ui-set('padding-left', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
 
   {$selector-input-el-with-suffix}
-    ui-set('padding-right', style['padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
+    ui-set('padding-right', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
 
+  {$selector-input-prefix},
+  {$selector-input-suffix}
+    ui-set('margin-top', -0.5 * style['font-size'])
+
+  {$selector-input-prefix-icon},
+  {$selector-input-suffix-icon},
+  {$selector-input-secure-icon},
+  {$selector-input-clear-icon}
+    ui-set('font-size', style['font-size'])
 
 input-brand-style(style)
   {$selector-input-el}
     ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
 
     &:focus
       ui-set('border-color', style['color'])

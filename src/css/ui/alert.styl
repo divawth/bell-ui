@@ -39,16 +39,16 @@
 
 {$selector-alert-title}
   white-space nowrap
+  color $brand-title
   font-size $font-size-default
-  font-weight bold
 
   + {$selector-alert-content}
-    font-size $alert-content-font-size
+    font-size $font-size-small
     margin-top $alert-title-content-gap
 
 {$selector-alert-content}
+  color $brand-content
   font-size $font-size-default
-  font-weight normal
 
 {$selector-alert-close}
   position absolute
@@ -56,23 +56,31 @@
   top $alert-padding-vertical
 
   font-size $alert-close-font-size
+  min-width $alert-close-height
   height $alert-close-height
   line-height $alert-close-height
 
   cursor $cursor-clickable
+  color $brand-close-color
   user-select none
   text-align center
   transition color .3s
 
+  &:hover
+    color $brand-close-color-hover
+
 {$selector-alert-close-icon}
-  display inline-block
-  font-size $alert-close-icon-font-size
-  width $alert-close-height
+  position absolute
+  left 50%
+  top 50%
+  margin-left -0.5 * $close-icon-size
+  margin-top -0.5 * $close-icon-size
+  font-size $close-icon-size
 
 {$selector-alert-with-close}
   {$selector-alert-title},
   {$selector-alert-content}
-    margin-right $alert-close-icon-font-size + $ui-icon-text-gap
+    margin-right $close-icon-size + $ui-icon-text-gap
 
   {$selector-alert-title} + {$selector-alert-content}
     margin-right 0

@@ -1,15 +1,29 @@
 > 所有图标
 
-使用 <a target="_blank" href="//ionicons.com/">ionicons</a>
+使用 <a target="_blank" href="https://remixicon.com">Remix Icon</a>
 
 ```
 export default {
   template: `
-  <div class="bell-template">
-    <Icon name="happy" />
-    <Icon name="happy" size="18" />
-    <Icon name="happy" size="18" color="#f90" />
-    <Icon name="happy" size="18" spin />
+  <div>
+    <Icon
+      name="apple-fill"
+    />
+    <Icon
+      name="apple-fill"
+      size="18"
+    />
+    <Icon
+      name="apple-fill"
+      size="18"
+      color="#f90"
+    />
+    <Icon
+      name="apple-fill"
+      size="18"
+      color="#da82d6"
+      spin
+    />
   </div>
   `
 }

@@ -17,7 +17,7 @@
   display block
   width 100%
   cursor $cursor-text
-  color $brand-text-important
+  color $brand-title
   font-size $ui-font-size
   transition border-color .3s, box-shadow .3s
 
@@ -37,16 +37,11 @@
   position absolute
   top 50%
   color $brand-close-color
-  transform translateY(-50%)
+  line-height 0
 
-{$selector-input-prefix-icon},
-{$selector-input-suffix-icon},
-{$selector-input-secure-icon},
-{$selector-input-clear-icon}
-  font-size $ui-icon-size
-
-{$selector-input-secure-icon},
-{$selector-input-clear-icon}
+{$selector-input-secure},
+{$selector-input-clear}
+  cursor $cursor-clickable
   transition color .3s
 
   &:hover
@@ -88,7 +83,7 @@
     line-height inherit
 
   {$selector-button}:hover
-    color $brand-text !important
+    color $brand-content !important
 
 {$selector-input-prepend}
   border-right none
@@ -114,11 +109,7 @@
   position relative
   box-sizing border-box
 
-{$selector-input-secure}
-  cursor $cursor-clickable
-
 {$selector-input-clear}
-  cursor $cursor-clickable
   display none
 
 {$selector-input-no-value}
@@ -145,5 +136,5 @@
 {$selector-input-disabled} {$selector-input-el},
 {$selector-textarea-disabled} {$selector-textarea-el}
   cursor $cursor-disabled
-  color $brand-text-disabled
-  border-color $brand-border-disabled
+  color $brand-disabled
+  border-color $brand-border

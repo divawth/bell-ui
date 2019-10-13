@@ -1,13 +1,11 @@
 <button
-class="${prefix}button ${prefix}button-{{border}}
-
-{{#if ghost}} ${prefix}button-ghost
-{{else}} ${prefix}button-normal
-{{/if}}
+class="${prefix}button
 
 {{#if type}} ${prefix}button-{{type}}{{/if}}
 {{#if size}} ${prefix}button-{{size}}{{/if}}
 {{#if shape}} ${prefix}button-{{shape}}{{/if}}
+{{#if ghost}} ${prefix}button-ghost{{/if}}
+{{#if loading}} ${prefix}button-loading{{/if}}
 
 {{#if disabled}} ${prefix}button-disabled
 {{else}} ${prefix}button-enabled
@@ -18,7 +16,7 @@ class="${prefix}button ${prefix}button-{{border}}
 
 {{#if disabled}}
   disabled
-{{else}}
+{{else if !loading}}
   on-click="click.button"
 {{/if}}
 
@@ -27,7 +25,27 @@ class="${prefix}button ${prefix}button-{{border}}
 {{/if}}
 >
 
-  <slot name="icon" />
-  <slot name="children" />
+  <slot name="prefix">
+    {{#if loading}}
+      <Icon
+        spin
+        size="0"
+        name="loader-5-line"
+        className="${prefix}button-loading-icon"
+      />
+    {{/if}}
+  </slot>
+
+  {{#if hasSlot('children')}}
+    {{#if loading || hasSlot('prefix') || hasSlot('suffix')}}
+      <span>
+        <slot name="children" />
+      </span>
+    {{else}}
+      <slot name="children" />
+    {{/if}}
+  {{/if}}
+
+  <slot name="suffix" />
 
 </button>

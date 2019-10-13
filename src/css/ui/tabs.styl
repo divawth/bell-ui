@@ -14,26 +14,35 @@
   white-space nowrap
   user-select none
 
-{$selector-tabs-extra}
-  float right
-
 {$selector-tabs-tab}
   display inline-block
   position relative
   box-sizing border-box
 
+  if $tabs-indicator-height > 0
+    &:after
+      content ''
+      position absolute
+      bottom 0
+      left 0
+      right 0
+      height 0
+      background-color $brand-primary
+      transition height .4s
+
 {$selector-tabs-tab-icon}
   margin-right $ui-icon-text-gap
+  line-height inherit
+  vertical-align top
 
 {$selector-tabs-tab-close-icon}
   color $brand-close-color
   cursor $cursor-clickable
+  line-height inherit
   vertical-align top
-  display inline-block
   margin-right -6px
-  width $tabs-close-size
-  height $tabs-close-size
-  line-height $tabs-close-size
+  margin-left $ui-icon-text-gap
+  font-size $tabs-close-icon-size
   text-align center
   overflow hidden
   transition color .3s
@@ -43,35 +52,35 @@
 
 {$selector-tabs-tab-enabled}
   border-color $brand-border
-  color $brand-text
+  color $brand-content
   cursor $cursor-clickable
 
   &:hover
     color $brand-primary
-
-{$selector-tabs-tab-disabled}
-  border-color $brand-border-disabled
-  color $brand-text-disabled
-  cursor $cursor-disabled
 
 {$selector-tabs-tab-active}
   color $brand-primary
   border-color $brand-primary
 
   &{$selector-tabs-tab-enabled}
-    cursor default
+    cursor $cursor-default
+
+  if $tabs-indicator-height > 0
+    &:after
+      height $tabs-indicator-height
+
+{$selector-tabs-tab-disabled}
+  color $brand-disabled
+  cursor $cursor-disabled
 
   &:after
-    width 100%
+    background-color $brand-disabled
 
 {$selector-tabs-panel}
   display none
 
 {$selector-tabs-panel-active}
   display block
-
-{$selector-tabs-panel-disabled}
-  display none
 
 {$selector-tabs-card}
 
@@ -83,16 +92,12 @@
     &:first-child
       border-left-width 1px
 
-    &{$selector-tabs-tab-active}
-      border-bottom-color $tabs-card-bg-color-active
-
-    &{$selector-tabs-tab-disabled}
-      border-color $brand-border-disabled
-      &:after
-        background-color $brand-border-disabled
+    &:after
+      display none
 
     &{$selector-tabs-tab-enabled}
       background-color $tabs-card-bg-color
-      &{$selector-tabs-tab-active}
-        background-color $tabs-card-bg-color-active
 
+    &{$selector-tabs-tab-active}
+      border-bottom-color $tabs-card-bg-color-active
+      background-color $tabs-card-bg-color-active

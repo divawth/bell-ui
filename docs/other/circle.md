@@ -21,7 +21,7 @@ export default {
       </Circle>
       <Circle percent="40" size="100" strokeColor="#ff5500" style="margin-left: 10px">
         <span class="demo-Circle-inner">
-          <Icon name="close" size="50" style="color:#ff5500" />
+          <Icon name="close-line" size="50" style="color:#ff5500" />
         </span>
       </Circle>
     </div>

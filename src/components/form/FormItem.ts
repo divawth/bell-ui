@@ -3,13 +3,14 @@ import Yox from 'yox'
 import template from './template/FormItem.hbs'
 
 import {
+  TRUE,
+  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TOP,
   RAW_BOTTOM,
   RAW_MIDDLE,
-  TRUE,
 } from '../constant'
 
 import {
@@ -24,12 +25,14 @@ export default Yox.define({
   propTypes: {
     prop: {
       type: RAW_STRING,
+      required: TRUE,
     },
     label: {
       type: RAW_STRING,
     },
-    required: {
+    showRequiredMark: {
       type: RAW_BOOLEAN,
+      value: FALSE,
     },
     labelAlign: {
       type: oneOf([RAW_TOP, RAW_BOTTOM, RAW_MIDDLE]),
@@ -68,12 +71,12 @@ export default Yox.define({
   events: {
     'validate.form': function (_, data) {
       const { errors } = data
-      if (errors) {
-        this.set('error', errors[this.get('prop')])
-      }
-      else {
-        this.set('error', UNDEFINED)
-      }
+      this.set(
+        'error',
+        errors
+        ? errors[this.get('prop')]
+        : UNDEFINED
+      )
     }
   }
 

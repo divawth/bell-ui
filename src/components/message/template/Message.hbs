@@ -7,12 +7,12 @@ class="${prefix}message
   <Icon
     name="{{
       status === RAW_TYPE_SUCCESS
-        ? 'checkmark-circle'
+        ? 'checkbox-circle-fill'
         : status === RAW_TYPE_WARNING
-          ? 'alert'
+          ? 'error-warning-fill'
           : status === RAW_TYPE_ERROR
-            ? 'close-circle'
-            : 'information-circle'
+            ? 'close-circle-fill'
+            : 'information-fill'
     }}"
     size="0"
     className="${prefix}message-icon"
@@ -24,7 +24,7 @@ class="${prefix}message
 
   {{#if closable}}
     <Icon
-      name="close"
+      name="close-line"
       size="0"
       className="${prefix}message-close"
       on-click.native="hide()"

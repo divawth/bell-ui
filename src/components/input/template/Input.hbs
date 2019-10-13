@@ -32,8 +32,8 @@ class="${prefix}input
       type="{{currentType}}"
       model="value"
       class="${prefix}input-el
-      {{#if hasSlot('prefix') || prefix}} ${prefix}input-el-with-prefix{{/if}}
-      {{#if hasSlot('suffix') || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
+      {{#if prefix}} ${prefix}input-el-with-prefix{{/if}}
+      {{#if suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
       {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
       {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
 
@@ -66,32 +66,28 @@ class="${prefix}input
 
     >
 
-    {{#if hasSlot('prefix') || prefix}}
+    {{#if prefix}}
       <div class="${prefix}input-prefix">
-        <slot name="prefix">
-          <Icon
-            name="{{prefix}}"
-            size="0"
-            className="${prefix}input-prefix-icon"
-          />
-        </slot>
+        <Icon
+          name="{{prefix}}"
+          size="0"
+          className="${prefix}input-prefix-icon"
+        />
       </div>
     {{/if}}
 
-    {{#if hasSlot('suffix') || suffix}}
+    {{#if suffix}}
       <div class="${prefix}input-suffix">
-        <slot name="suffix">
-          <Icon
-            name="{{suffix}}"
-            size="0"
-            className="${prefix}input-suffix-icon"
-          />
-        </slot>
+        <Icon
+          name="{{suffix}}"
+          size="0"
+          className="${prefix}input-suffix-icon"
+        />
       </div>
     {{else if secure}}
       <div class="${prefix}input-suffix ${prefix}input-secure" on-click="toggle('isSecure')">
         <Icon
-          name="{{isSecure ? 'eye' : 'eye-off'}}"
+          name="{{isSecure ? 'eye-close-line' : 'eye-line'}}"
           size="0"
           className="${prefix}input-secure-icon"
         />
@@ -99,7 +95,7 @@ class="${prefix}input
     {{else if clearable && !disabled}}
       <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
         <Icon
-          name="close-circle"
+          name="close-circle-fill"
           size="0"
           className="${prefix}input-clear-icon"
         />

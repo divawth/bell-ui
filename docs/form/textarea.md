@@ -67,16 +67,16 @@ export default {
   <div>
     <Textarea
       size="small"
-      placeholder="input"
+      placeholder="small input"
     />
     <br><br>
     <Textarea
-      placeholder="input"
+      placeholder="default input"
     />
     <br><br>
     <Textarea
       size="large"
-      placeholder="input"
+      placeholder="large input"
     />
   </div>
   `

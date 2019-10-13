@@ -10,7 +10,7 @@
   > {$selector-radio}
     border 1px solid $brand-border
     background-color $brand-bg
-    color $brand-text
+    color $brand-content
     transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
 
     &:first-child
@@ -26,9 +26,9 @@
       border-left none
 
   > {$selector-radio-disabled}
-    border-color $brand-border-disabled
+    border-color $brand-border
     background-color $brand-bg-disabled
-    color $brand-text-disabled
+    color $brand-disabled
 
     &{$selector-radio-active}
       background-color $brand-bg-checked-disabled

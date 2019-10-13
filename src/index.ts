@@ -38,7 +38,7 @@ import Pagination from './components/pagination/Pagination'
 import Upload from './components/upload/Upload'
 
 import Alert from './components/alert/Alert'
-import Spinner from './components/spinner/Spinner'
+import Spin from './components/spin/Spin'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
 import Badge from './components/badge/Badge'
@@ -121,7 +121,7 @@ const components = {
   Tooltip,
 
   Alert,
-  Spinner,
+  Spin,
   BackTop,
   Avatar,
   Badge,

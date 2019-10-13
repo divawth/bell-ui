@@ -228,7 +228,7 @@ style | 自定义内联样式 | string | - | -
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-change | `checked` 发生变化时触发 | `data.checked`, `data.value`
+change | `checked` 变化的时候回调 | `{checked: '', value: ''}`
 
 
 RadioGroup
@@ -245,10 +245,3 @@ vertical | 是否垂直排列，按钮样式下无效 | boolean | - | `false`
 button | 按钮形式 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
-
-> Events
-
-事件名称 | 说明 | 回调参数
----|---|---
-change | `value` 发生变化时触发 | `data.value`
-

@@ -80,14 +80,7 @@ export default Yox.define({
       if (!data.checked) {
         return
       }
-      const options = {
-        value: data.value
-      }
-      this.set(options)
-      this.fire(
-        'change.radioGroup',
-        options
-      )
+      this.set('value', data.value)
     }
   }
 })

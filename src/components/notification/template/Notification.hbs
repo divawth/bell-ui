@@ -4,6 +4,8 @@ class="${prefix}notification
 {{#if status}} ${prefix}notification-{{status}} ${prefix}notification-with-icon
 {{/if}}
 
+{{#if title}} ${prefix}notification-with-title{{/if}}
+
 {{#if duration == 0}} ${prefix}notification-with-close
 {{/if}}"
 
@@ -14,12 +16,12 @@ style="width: {{width}}px;right: {{right}}px;"
     <Icon
       name="{{
         status === RAW_TYPE_SUCCESS
-          ? 'checkmark-circle'
+          ? 'checkbox-circle-fill'
           : status === RAW_TYPE_WARNING
-            ? 'alert'
+            ? 'error-warning-fill'
             : status === RAW_TYPE_ERROR
-              ? 'close-circle'
-              : 'information-circle'
+              ? 'close-circle-fill'
+              : 'information-fill'
       }}"
       size="0"
       className="${prefix}notification-icon"
@@ -40,7 +42,7 @@ style="width: {{width}}px;right: {{right}}px;"
 
   {{#if duration == 0}}
     <Icon
-      name="close"
+      name="close-line"
       size="0"
       className="${prefix}notification-close"
       on-click.native="hide()"

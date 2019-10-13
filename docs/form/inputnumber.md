@@ -7,13 +7,13 @@ export default {
     min="1"
     max="10"
     model="value"
-    placeholder="请输入"
+    placeholder="请输入..."
   />
   `,
 }
 ```
 
-> step 修改步值（这里暂时不支持小数）
+> 修改步值（不支持小数）
 
 ```js
 export default {
@@ -31,7 +31,7 @@ export default {
 }
 ```
 
-> size 修改大小
+> 三种大小
 
 ```js
 export default {
@@ -41,25 +41,25 @@ export default {
         size="large"
         min="1"
         max="10"
-        model="value3"
+        model="value"
       />
       <br><br>
       <InputNumber
         min="1"
         max="10"
-        model="value3"
+        model="value"
       />
       <br><br>
       <InputNumber
         size="small"
         min="1"
         max="10"
-        model="value3"
+        model="value"
       />
     </div>
   `,
   data: {
-    value3: 34
+    value: 34
   }
 }
 ```
@@ -70,12 +70,6 @@ export default {
 export default {
   template: `
     <div>
-      <InputNumber
-        min="1"
-        max="10"
-        model="value"
-      />
-      <br><br>
       <InputNumber
         status="success"
         min="1"
@@ -89,6 +83,20 @@ export default {
         max="10"
         model="value"
       />
+      <br><br>
+      <InputNumber
+        status="info"
+        min="1"
+        max="10"
+        model="value"
+      />
+      <br><br>
+      <InputNumber
+        status="warning"
+        min="1"
+        max="10"
+        model="value"
+      />
     </div>
   `,
   data: {
@@ -97,7 +105,7 @@ export default {
 }
 ```
 
-> disabled 禁用
+> 禁用状态
 
 ```js
 export default {
@@ -135,7 +143,7 @@ export default {
 }
 ```
 
-> editable 是否能编辑。
+> 是否可编辑
 
 ```js
 export default {
@@ -169,7 +177,7 @@ export default {
 }
 ```
 
-> readOnly 只读。
+> 只读状态
 
 ```js
 export default {
@@ -244,10 +252,10 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-value / model | 当前值 | number | - | -
-max | 最大值 | number | - | -
-min | 最小值 | number | - | -
-step | 每次改变的步进值 | number | - | 1
+value / `model` | 当前值 | numeric | - | -
+max | 最大值 | numeric | - | -
+min | 最小值 | numeric | - | -
+step | 每次改变的步进值 | numeric | - | `1`
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | false
@@ -256,6 +264,9 @@ autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
 readOnly | 原生 `readonly` 属性 | boolean | - | `false`
 formatter | 指定输入框展示值的格式 | Function | - | -
 placeholder | 占位文本 | string | - | -
+width | 显示宽度 | numeric | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Events
 

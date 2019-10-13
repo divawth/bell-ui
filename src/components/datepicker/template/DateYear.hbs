@@ -9,13 +9,21 @@ class="${prefix}datepicker-year ${prefix}datepicker-panel
 
   <div class="${prefix}datepicker-header">
     <span class="${prefix}datepicker-header-button ${prefix}datepicker-prev" on-click="decrease('year', count)">
-      {{> backIcon}}
+      <Icon
+        name="arrow-left-s-line"
+        size="0"
+        className="${prefix}datepicker-header-icon"
+      />
     </span>
 
     {{year}} 年 - {{year + count - 1}} 年
 
     <span class="${prefix}datepicker-header-button ${prefix}datepicker-next" on-click="increase('year', count)">
-      {{> forwardIcon}}
+      <Icon
+        name="arrow-right-s-line"
+        size="0"
+        className="${prefix}datepicker-header-icon"
+      />
     </span>
   </div>
 

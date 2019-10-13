@@ -1,6 +1,6 @@
 <div
 class="${prefix}collapse-item
-{{#if opened}} ${prefix}collapse-open{{/if}}
+{{#if opened}} ${prefix}collapse-opened{{/if}}
 {{#if disabled}} ${prefix}collapse-disabled
 {{else}} ${prefix}collapse-enabled
 {{/if}}
@@ -24,13 +24,11 @@ class="${prefix}collapse-item
       </div>
     {{/if}}
 
-    <span class="${prefix}collapse-icon">
-      <Icon
-        name="arrow-down"
-        size="0"
-        className="${prefix}collapse-arrow-icon"
-      />
-    </span>
+    <Icon
+      name="arrow-right-s-line"
+      size="0"
+      className="${prefix}collapse-arrow-icon"
+    />
 
     {{title}}
 

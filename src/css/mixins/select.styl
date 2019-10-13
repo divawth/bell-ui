@@ -6,12 +6,12 @@ select-size-style(size)
     ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
-    ui-set('padding-right', size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap)
+    ui-set('padding-right', size['icon-right'] + $form-button-icon-size)
 
   {$selector-select-values}
     ui-set(
       'padding',
-      size['button-padding-vertical'] size['button-padding-horizontal'] + $ui-icon-size + $ui-icon-text-gap size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
+      size['button-padding-vertical'] size['icon-right'] + $form-button-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
     )
 
     > {$selector-tag}
@@ -27,7 +27,7 @@ select-size-style(size)
 
   {$selector-select-arrow-icon},
   {$selector-select-clear-icon}
-    ui-set('right', size['button-padding-horizontal'])
+    ui-set('right', size['icon-right'])
 
 select-brand-style(style)
   &{$selector-select-enabled} {$selector-select-button}

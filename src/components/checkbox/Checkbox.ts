@@ -72,7 +72,7 @@ export default Yox.define({
         'change.checkbox',
         {
           checked,
-          value: this.get('value')
+          value: this.get('value'),
         }
       )
     }

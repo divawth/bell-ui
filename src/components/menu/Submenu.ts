@@ -1,5 +1,6 @@
-import Yox, { YoxInterface } from 'yox'
+import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/Submenu.hbs'
 
 import {
@@ -64,5 +65,9 @@ export default Yox.define({
       }
     }
   },
+
+  components: {
+    Icon,
+  }
 
 })

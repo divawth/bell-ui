@@ -1,12 +1,13 @@
 import Yox from 'yox'
 
+import Icon from '../icon/Icon'
 import template from './template/BackTop.hbs'
 
 import {
   FALSE,
+  WINDOW,
   RAW_STRING,
   RAW_NUMERIC,
-  WINDOW,
 } from '../constant'
 
 import {
@@ -61,6 +62,10 @@ export default Yox.define({
         this.get('duration')
       )
     }
+  },
+
+  components: {
+    Icon,
   },
 
   afterMount() {

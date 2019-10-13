@@ -10,7 +10,7 @@ class="${prefix}form-item
 
     <label
       class="${prefix}form-item-label
-      {{#if required}} ${prefix}form-item-label-required{{/if}}"
+      {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
 
       {{#if itemLabelWidth || labelAlign}}
         style="{{#if itemLabelWidth}}width: {{itemLabelWidth}}px;{{/if}}

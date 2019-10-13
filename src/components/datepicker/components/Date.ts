@@ -1,9 +1,7 @@
 import Yox from 'yox'
 
+import Icon from '../../icon/Icon'
 import template from '../template/Date.hbs'
-
-import backIconTemplate from '../template/backIcon.hbs'
-import forwardIconTemplate from '../template/forwardIcon.hbs'
 
 import DateMonth from './DateMonth'
 import DateYear from './DateYear'
@@ -104,13 +102,9 @@ export default Yox.define({
   },
 
   components: {
+    Icon,
     DateYear,
     DateMonth,
-  },
-
-  partials: {
-    backIcon: backIconTemplate,
-    forwardIcon: forwardIconTemplate,
   },
 
   filters: {

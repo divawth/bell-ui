@@ -9,7 +9,7 @@
 
 {$selector-checkbox-with-label}
   position relative
-  color $brand-text
+  color $brand-content
   font-size $font-size-default
   line-height $ui-single-line-height
   padding-left $font-size-default + $ui-icon-text-gap
@@ -84,14 +84,14 @@
     border-color $brand-primary
 
 {$selector-checkbox-disabled}
-  color $brand-text-disabled
+  color $brand-disabled
 
   > {$selector-checkbox-icon}
     background-color $brand-bg-disabled
-    border-color $brand-border-disabled
+    border-color $brand-border
 
     &:after
-      border-color $brand-text-disabled
+      border-color $brand-disabled
 
 if $ui-shadow-radius > 0
   {$selector-checkbox-focus}

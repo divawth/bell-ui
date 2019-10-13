@@ -3,15 +3,16 @@ import Yox from 'yox'
 import template from './template/TabPanel.hbs'
 
 import {
-  findComponentUpward,
-} from '../util'
-
-import {
-  NULL,
+  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  NULL,
 } from '../constant'
+
+import {
+  findComponentUpward,
+} from '../util'
 
 export default Yox.define({
 
@@ -26,6 +27,7 @@ export default Yox.define({
     },
     label: {
       type: RAW_STRING,
+      required: TRUE,
     },
     disabled: {
       type: RAW_BOOLEAN,
@@ -41,7 +43,6 @@ export default Yox.define({
 
   data() {
     return {
-      id: 0,
       isActive: FALSE,
     }
   },
@@ -62,33 +63,45 @@ export default Yox.define({
   },
 
   events: {
-    'selected.tabs': function (_, data) {
+    'change.tabs': function (_, data) {
       this.set({
-        isActive: this.get('id') == data.value
+        isActive: this.get('name') == data.value
       })
     }
   },
 
   afterMount() {
 
-    const me = this
-    const tabs = findComponentUpward(me.$parent, '${prefix}tabs')
+    const tabs = findComponentUpward(this.$parent, '${prefix}tabs')
 
-    let name = me.get('name')
-    if (name == NULL) {
-      name = Yox.array.indexOf(tabs.$children, me)
+    const index = Yox.array.indexOf(tabs.$children, this)
+
+    let value = tabs.get('value')
+    if (value == NULL) {
+      value = '0'
     }
 
-    me.set({
-      id: name,
-      isActive: tabs.get('value') == name
-    })
+    let name = this.get('name')
+    if (name == NULL) {
+      name = '' + index
+      this.set('name', name)
+    }
 
-    me.fire('add.tabPanel')
+    const isActive = value === name
+
+    this.set('isActive', isActive)
+
+    this.fire(
+      'add.tabPanel',
+      {
+        isActive,
+      }
+    )
 
   },
 
   beforeDestroy() {
     this.fire('remove.tabPanel')
   }
+
 })
