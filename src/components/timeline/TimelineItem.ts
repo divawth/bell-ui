@@ -7,7 +7,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}timelineItem',
+
   propTypes: {
     color: {
       type: RAW_STRING,

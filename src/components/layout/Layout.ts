@@ -12,6 +12,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}layout',
+
   propTypes: {
     vertical: {
       type: RAW_BOOLEAN,

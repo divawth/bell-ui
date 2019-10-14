@@ -24,6 +24,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}table',
+
   propTypes: {
     list: {
       type: RAW_ARRAY,

@@ -22,6 +22,8 @@ export default Yox.define({
 
   model: 'checked',
 
+  name: '${prefix}tag',
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),

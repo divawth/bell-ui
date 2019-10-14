@@ -84,6 +84,16 @@ export default {
           <Option value="www2" text="www2" />
         </Select>
       </Input>
+      <br><br>
+      <Input
+        model="value4"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Button slot="append" type="primary">
+          搜索
+        </Button>
+      </Input>
     </div>
   `
 }

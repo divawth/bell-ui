@@ -13,12 +13,12 @@ import {
   RAW_CUSTOM,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
-  RAW_NUMBER,
   RAW_BOOLEAN,
   RAW_TOP,
   RAW_RIGHT,
   RAW_LEFT,
   RAW_NUMERIC,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -33,6 +33,8 @@ const CLASS_FADE = '${prefix}dropdown-fade'
 export default Yox.define({
 
   template,
+
+  name: '${prefix}dropdown',
 
   propTypes: {
     placement: {
@@ -180,7 +182,7 @@ export default Yox.define({
     )
 
     me.on(
-      'beforeDestroy.hook',
+      RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(

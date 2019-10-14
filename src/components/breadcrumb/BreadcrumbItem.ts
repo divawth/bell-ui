@@ -13,7 +13,11 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}breadcrumbItem',
+
   propTypes: {
     last: {
       type: RAW_BOOLEAN,
@@ -26,10 +30,12 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
+
   data(options) {
     const breadcrumb = findComponentUpward(options.parent, '${prefix}breadcrumb')
     return {
       separator: breadcrumb.get('separator')
     }
   }
+
 })

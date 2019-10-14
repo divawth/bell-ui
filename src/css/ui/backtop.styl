@@ -1,20 +1,26 @@
 {$selector-backtop}
   position fixed
   z-index $zindex-backtop
+  cursor pointer
+  background-color #000
+  opacity 0
+  display none
+  text-align center
+  box-shadow $brand-message-shadow
+  width $backtop-size
+  height $backtop-size
+  line-height $backtop-size
+  border-radius $border-radius-circle
+  transition opacity .3s
 
-  &{$selector-backtop}-hide
-    display none
+{$selector-backtop-visible}
+  display block
 
-  {$selector-backtop-inner}
-    cursor pointer
-    display flex
-    align-items center
-    justify-content center
-    background-color $backtop-color
-    box-shadow $backtop-shadow
-    font-size $backtop-font-size
-    width $backtop-size
-    height $backtop-size
-    line-height $backtop-size
-    border-radius $backtop-radius
-    color #ffffff
+{$selector-backtop-fade}
+  opacity $backtop-opacity
+
+{$selector-backtop-icon}
+  color $brand-white
+  font-size $backtop-icon-size
+  line-height inherit
+

@@ -14,7 +14,11 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}text',
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),

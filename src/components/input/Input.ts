@@ -9,6 +9,7 @@ import {
   DOCUMENT,
   RAW_BOOLEAN,
   RAW_STRING,
+  RAW_NUMBER,
   RAW_NUMERIC,
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
@@ -19,6 +20,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -32,9 +34,11 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}input',
+
   propTypes: {
     value: {
-      type: RAW_STRING,
+      type: [RAW_STRING, RAW_NUMBER],
     },
     size: {
       type: oneOf(RAW_SIZE_COMMON),
@@ -202,7 +206,7 @@ export default Yox.define({
     )
 
     me.on(
-      'beforeDestroy.hook',
+      RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(

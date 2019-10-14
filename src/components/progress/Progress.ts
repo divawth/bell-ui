@@ -15,7 +15,11 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}progress',
+
   propTypes: {
     percent: {
       type: RAW_NUMERIC,

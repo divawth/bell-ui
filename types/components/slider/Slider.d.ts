@@ -10,8 +10,8 @@ declare const _default: import("yox").ComponentOptions<{
     handleDragMouseEnd(): void;
     onDragStart(): void;
     onDragStop(): void;
-    onDragUpdate(event: TouchEvent | MouseEvent): void;
-    setValue(event: TouchEvent | MouseEvent): void;
+    onDragUpdate(event: MouseEvent | TouchEvent): void;
+    setValue(event: MouseEvent | TouchEvent): void;
 }> & ThisType<{
     handleTouchStart(event: CustomEventInterface): void;
     handleTouchEnd(event: CustomEventInterface): void;
@@ -21,7 +21,7 @@ declare const _default: import("yox").ComponentOptions<{
     handleDragMouseEnd(): void;
     onDragStart(): void;
     onDragStop(): void;
-    onDragUpdate(event: TouchEvent | MouseEvent): void;
-    setValue(event: TouchEvent | MouseEvent): void;
+    onDragUpdate(event: MouseEvent | TouchEvent): void;
+    setValue(event: MouseEvent | TouchEvent): void;
 } & import("yox").YoxInterface>;
 export default _default;

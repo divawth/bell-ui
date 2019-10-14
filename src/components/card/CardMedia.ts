@@ -7,7 +7,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}cardMedia',
+
   propTypes: {
     className: {
       type: RAW_STRING,

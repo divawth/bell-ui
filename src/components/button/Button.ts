@@ -10,9 +10,15 @@ import {
   RAW_DEFAULT,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY,
   RAW_SHAPE_ROUND,
   RAW_SHAPE_CIRCLE,
+  RAW_TYPE_PRIMARY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_DASHED,
+  RAW_TYPE_LINK,
 } from '../constant'
 
 import {
@@ -24,9 +30,20 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}button',
+
   propTypes: {
     type: {
-      type: oneOf(RAW_TYPE_ARRAY),
+      type: oneOf([
+        RAW_TYPE_PRIMARY,
+        RAW_TYPE_INFO,
+        RAW_TYPE_SUCCESS,
+        RAW_TYPE_WARNING,
+        RAW_TYPE_ERROR,
+        RAW_TYPE_DASHED,
+        RAW_TYPE_LINK,
+      ]),
+      value: 'pure'
     },
     size: {
       type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),

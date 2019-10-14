@@ -17,6 +17,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}circle',
+
   propTypes: {
     dashboard: {
       type: RAW_BOOLEAN,

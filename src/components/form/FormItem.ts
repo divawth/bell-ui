@@ -22,6 +22,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}formItem',
+
   propTypes: {
     prop: {
       type: RAW_STRING,

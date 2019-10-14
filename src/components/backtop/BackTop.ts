@@ -5,18 +5,27 @@ import template from './template/BackTop.hbs'
 
 import {
   FALSE,
+  BODY,
   WINDOW,
   RAW_STRING,
   RAW_NUMERIC,
+  RAW_EVENT_SCROLL,
+  RAW_EVENT_RESIZE,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
-  scrollTop,
+  scrollTop, onTransitionEnd,
 } from '../util'
+
+const CLASS_VISIBLE = '${prefix}backtop-visible'
+const CLASS_FADE = '${prefix}backtop-fade'
 
 export default Yox.define({
 
   template,
+
+  name: '${prefix}backtop',
 
   propTypes: {
     bottom: {
@@ -44,23 +53,62 @@ export default Yox.define({
 
   data() {
     return {
-      hidden: FALSE
+      visible: FALSE
     }
   },
 
   events: {
     click() {
-      const parent = this.$parent
-      if (!parent) {
-        return
+
+      let parentElement = this.$parent && this.$parent.$el
+      if (!parentElement || parentElement === this.$el) {
+        parentElement = BODY
       }
-      const parentElement = parent.$el
+
       scrollTop(
         parentElement,
         parentElement.scrollTop,
         0,
         this.get('duration')
       )
+
+    }
+  },
+
+  watchers: {
+    visible(visible) {
+
+      const me = this
+      const element = me.$el
+
+      if (visible) {
+
+        // 设置为 display block
+        Yox.dom.addClass(element, CLASS_VISIBLE)
+
+        setTimeout(
+          function () {
+            Yox.dom.addClass(element, CLASS_FADE)
+          },
+          30
+        )
+
+      }
+      else {
+
+        Yox.dom.removeClass(element, CLASS_FADE)
+
+        onTransitionEnd(
+          element,
+          function () {
+            if (me.$el) {
+              Yox.dom.removeClass(element, CLASS_VISIBLE)
+            }
+          }
+        )
+
+      }
+
     }
   },
 
@@ -69,27 +117,33 @@ export default Yox.define({
   },
 
   afterMount() {
-    const me = this, parent = me.$parent
-    if (!parent) {
-      return
+
+    let me = this, parentElement = me.$parent && me.$parent.$el
+    if (!parentElement || parentElement === me.$el) {
+      parentElement = BODY
     }
-    const parentElement = parent.$el,
+
+    const height = me.get('height'),
+
     onRefresh = function () {
       me.set({
-        hidden: parentElement.scrollTop < (me.get('height') || parentElement.clientHeight)
+        visible: parentElement.scrollTop >= (height || parentElement.clientHeight)
       })
     }
-    Yox.dom.on(parentElement, 'scroll', onRefresh)
-    Yox.dom.on(WINDOW, 'resize', onRefresh)
+
+    Yox.dom.on(parentElement, RAW_EVENT_SCROLL, onRefresh)
+    Yox.dom.on(WINDOW, RAW_EVENT_RESIZE, onRefresh)
+
     me.on(
-      'beforeDestroy.hook',
+      RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(parentElement, 'scroll', onRefresh)
-          Yox.dom.off(WINDOW, 'resize', onRefresh)
+          Yox.dom.off(parentElement, RAW_EVENT_SCROLL, onRefresh)
+          Yox.dom.off(WINDOW, RAW_EVENT_RESIZE, onRefresh)
         }
       }
     )
+
   }
 
 })

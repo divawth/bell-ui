@@ -17,7 +17,11 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}card',
+
   propTypes: {
     simple: {
       type: RAW_BOOLEAN,

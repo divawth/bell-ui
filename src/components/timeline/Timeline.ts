@@ -9,7 +9,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}timeline',
+
   propTypes: {
     pending: {
       type: RAW_BOOLEAN,

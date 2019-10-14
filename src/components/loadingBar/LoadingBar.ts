@@ -18,6 +18,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}loadingBar',
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),

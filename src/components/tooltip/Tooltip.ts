@@ -25,6 +25,7 @@ import {
   RAW_BOTTOM_END,
   RAW_THEME_ARRAY,
   RAW_DARK,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -41,6 +42,8 @@ const CLASS_DISABLED = '${prefix}tooltip-disabled'
 export default Yox.define({
 
   template,
+
+  name: '${prefix}tooltip',
 
   propTypes: {
     content: {
@@ -236,7 +239,7 @@ export default Yox.define({
       )
 
       me.on(
-        'beforeDestroy.hook',
+        RAW_EVENT_BEFORE_DESTROY,
         function (event) {
           if (event.phase === Yox.Event.PHASE_CURRENT) {
             Yox.dom.off(

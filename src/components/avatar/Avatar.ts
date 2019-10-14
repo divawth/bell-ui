@@ -23,6 +23,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}avatar',
+
   propTypes: {
     size: {
       type: oneOf(RAW_SIZE_ARRAY),

@@ -3,10 +3,8 @@ import Yox from 'yox'
 import template from './template/Option.hbs'
 
 import {
-  TRUE,
   FALSE,
   RAW_STRING,
-  RAW_NUMERIC,
   RAW_NUMBER,
   RAW_BOOLEAN,
 } from '../constant'
@@ -22,7 +20,11 @@ function isOptionSelected(values: any[] | any, value: any) {
 }
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}option',
+
   propTypes: {
     value: {
       type: [RAW_STRING, RAW_NUMBER],

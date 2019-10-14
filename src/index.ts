@@ -1,18 +1,10 @@
 import './index.styl'
 
-import Layout from './components/layout/Layout'
-import Header from './components/layout/Header'
-import Sider from './components/layout/Sider'
-import Content from './components/layout/Content'
-import Footer from './components/layout/Footer'
-
 import Menu from './components/menu/Menu'
 import MenuItem from './components/menu/MenuItem'
 import MenuGroup from './components/menu/MenuGroup'
 import Submenu from './components/menu/Submenu'
 
-import Row from './components/grid/Row'
-import Col from './components/grid/Col'
 import Icon from './components/icon/Icon'
 import Text from './components/text/Text'
 import Drawer from './components/drawer/Drawer'
@@ -60,7 +52,6 @@ import Divider from './components/divider/Divider'
 
 import Circle from './components/circle/Circle'
 import Progress from './components/progress/Progress'
-import Slider from './components/slider/Slider'
 import Tag from './components/tag/Tag'
 import Rate from './components/rate/Rate'
 import Tabs from './components/tabs/Tabs'
@@ -83,17 +74,10 @@ import Modal from './components/modal/base'
 import LoadingBar from  './components/loadingBar/base'
 
 const components = {
-  Layout,
-  Header,
-  Sider,
-  Content,
-  Footer,
   Menu,
   MenuItem,
   MenuGroup,
   Submenu,
-  Row,
-  Col,
   Icon,
   Text,
   Drawer,
@@ -138,7 +122,6 @@ const components = {
   Divider,
   Circle,
   Progress,
-  Slider,
   Tag,
   Rate,
   Tabs,

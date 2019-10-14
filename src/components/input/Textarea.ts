@@ -21,6 +21,7 @@ import {
   RAW_DEFAULT,
   RAW_SMALL,
   RAW_LARGE,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -41,6 +42,8 @@ fontSizes[RAW_LARGE] = 16
 export default Yox.define({
 
   template,
+
+  name: '${prefix}textarea',
 
   propTypes: {
     value: {
@@ -214,7 +217,7 @@ export default Yox.define({
     )
 
     me.on(
-      'beforeDestroy.hook',
+      RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(

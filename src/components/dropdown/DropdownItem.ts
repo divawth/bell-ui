@@ -9,7 +9,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}dropdownItem',
+
   propTypes: {
     name: {
       type: RAW_STRING,

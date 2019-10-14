@@ -19,6 +19,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}collapseItem',
+
   propTypes: {
     title: {
       type: RAW_STRING,

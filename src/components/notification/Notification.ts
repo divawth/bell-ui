@@ -25,6 +25,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}notification',
+
   propTypes: {
     title: {
       type: RAW_STRING,

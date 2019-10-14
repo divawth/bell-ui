@@ -15,6 +15,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
+  template,
+
+  name: '${prefix}slider',
+
   propTypes: {
     type: {
       type: RAW_STRING
@@ -46,8 +51,6 @@ export default Yox.define({
       type: RAW_STRING
     }
   },
-
-  template,
 
   data() {
     return {

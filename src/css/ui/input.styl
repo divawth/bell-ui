@@ -61,14 +61,14 @@
   padding 0 $input-prepend-append-padding-horizontal
 
   {$selector-select-button},
-  {$selector-button}
+  {$selector-button-pure}
     border-color transparent !important
     box-shadow none !important
     background-color transparent !important
 
   {$selector-select-placeholder},
   {$selector-select-value},
-  {$selector-button}
+  {$selector-button-pure}
     color inherit
     font-size inherit
 
@@ -81,8 +81,9 @@
   {$selector-button}
     height inherit
     line-height inherit
+    position relative
 
-  {$selector-button}:hover
+  {$selector-button-pure}:hover
     color $brand-content !important
 
 {$selector-input-prepend}
@@ -92,8 +93,12 @@
 
   {$selector-select},
   {$selector-button}
-    margin-left - $input-prepend-append-padding-horizontal
-    margin-right - $input-prepend-append-padding-horizontal
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+  {$selector-button}
+    border-top-right-radius 0
+    border-bottom-right-radius 0
 
 {$selector-input-append}
   border-left none
@@ -102,8 +107,12 @@
 
   {$selector-select},
   {$selector-button}
-    margin-left - $input-prepend-append-padding-horizontal
-    margin-right - $input-prepend-append-padding-horizontal
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+  {$selector-button}
+    border-top-left-radius 0
+    border-bottom-left-radius 0
 
 {$selector-input-content}
   position relative

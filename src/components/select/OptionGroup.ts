@@ -7,7 +7,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}optionGroup',
+
   propTypes: {
     label: {
       type: RAW_STRING,

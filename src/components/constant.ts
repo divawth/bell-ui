@@ -51,21 +51,18 @@ export const RAW_TYPE_SUCCESS = 'success'
 export const RAW_TYPE_WARNING = 'warning'
 export const RAW_TYPE_ERROR = 'error'
 export const RAW_TYPE_INFO = 'info'
-export const RAW_TYPE_SECONDARY = 'secondary'
+export const RAW_TYPE_DASHED = 'dashed'
+export const RAW_TYPE_LINK = 'link'
 
 export const RAW_SHAPE_CIRCLE = 'circle'
 export const RAW_SHAPE_ROUND = 'round'
 
-export const RAW_BORDER_NONE = 'none'
-export const RAW_BORDER_SOLID = 'solid'
-export const RAW_BORDER_DASHED = 'dashed'
-
-export const RAW_ICON_IOS = 'ios'
-export const RAW_ICON_MD = 'md'
-
 export const RAW_EVENT_KEYPRESS = 'keypress'
 export const RAW_EVENT_KEYDOWN = 'keydown'
 export const RAW_EVENT_KEYUP = 'keyup'
+export const RAW_EVENT_SCROLL = 'scroll'
+export const RAW_EVENT_RESIZE = 'resize'
+export const RAW_EVENT_BEFORE_DESTROY = 'beforeDestroy.hook'
 
 export const RAW_DARK = 'dark'
 export const RAW_LIGHT = 'light'
@@ -88,7 +85,6 @@ export const RAW_TYPE_ARRAY = [
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
-  RAW_TYPE_SECONDARY
 ]
 
 export const RAW_SIZE_ARRAY = [
@@ -103,11 +99,6 @@ export const RAW_SIZE_COMMON = [
   RAW_SMALL,
   RAW_DEFAULT,
   RAW_LARGE,
-]
-
-export const RAW_ICON_TYPE_ARRAY = [
-  RAW_ICON_IOS,
-  RAW_ICON_MD
 ]
 
 export const RAW_PLACEMENT_ARRAY = [

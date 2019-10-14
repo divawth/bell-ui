@@ -20,6 +20,8 @@ export default Yox.define({
 
   model: 'checked',
 
+  name: '${prefix}switch',
+
   propTypes: {
     size: {
       type: oneOf([RAW_DEFAULT, RAW_SMALL]),

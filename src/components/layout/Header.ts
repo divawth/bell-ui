@@ -7,7 +7,11 @@ import {
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}header',
+
   propTypes: {
     className: {
       type: RAW_STRING,

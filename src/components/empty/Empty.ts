@@ -12,6 +12,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}empty',
+
   propTypes: {
     simple: {
       type: RAW_BOOLEAN,

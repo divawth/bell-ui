@@ -16,6 +16,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}menuItem',
+
   propTypes: {
     name: {
       type: RAW_STRING,

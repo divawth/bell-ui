@@ -24,6 +24,8 @@ export default Yox.define({
 
   model: 'visible',
 
+  name: '${prefix}dialog',
+
   propTypes: {
     visible: {
       type: RAW_BOOLEAN,

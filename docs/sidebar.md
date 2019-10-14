@@ -3,8 +3,6 @@
   - [Button 按钮](basic/button)
   - [Icon 图标](basic/icon)
 - [布局](layout)
-  <!-- - [Grid 栅格布局](layout/grid) -->
-  <!-- - [Layout 布局](layout/layout) -->
   - [Card 卡片](layout/card)
   - [Collapse 折叠面板](layout/collapse)
   - [Divider 分割线](layout/divider)

@@ -62,6 +62,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}datePicker',
+
   propTypes: {
     type: {
       type: oneOf([RAW_TYPE_DATE, RAW_TYPE_DATE_RANGE, RAW_TYPE_WEEK, RAW_TYPE_YEAR, RAW_TYPE_MONTH]),

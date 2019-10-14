@@ -18,6 +18,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}submenu',
+
   propTypes: {
     name: {
       type: RAW_STRING,

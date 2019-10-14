@@ -14,6 +14,8 @@ export default Yox.define({
 
   model: 'collapsed',
 
+  name: '${prefix}sider',
+
   propTypes: {
     collapsed: {
       type: RAW_BOOLEAN,

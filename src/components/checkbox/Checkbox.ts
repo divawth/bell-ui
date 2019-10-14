@@ -21,6 +21,8 @@ export default Yox.define({
 
   model: 'checked',
 
+  name: '${prefix}checkbox',
+
   propTypes: {
     name: {
       type: RAW_STRING,

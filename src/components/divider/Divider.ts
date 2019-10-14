@@ -16,7 +16,11 @@ import {
 } from '../util'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}divider',
+
   propTypes: {
     vertical: {
       type: RAW_BOOLEAN,

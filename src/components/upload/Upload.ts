@@ -20,6 +20,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}upload',
+
   propTypes: {
     action: {
       type: RAW_STRING,

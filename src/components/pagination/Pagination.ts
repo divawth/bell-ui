@@ -27,6 +27,8 @@ export default Yox.define({
 
   model: 'current',
 
+  name: '${prefix}pagination',
+
   propTypes: {
     size: {
       type: oneOf([RAW_DEFAULT, RAW_SMALL]),

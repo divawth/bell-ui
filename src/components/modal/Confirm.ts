@@ -21,6 +21,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}confirm',
+
   propTypes: {
     title: {
       type: RAW_STRING,

@@ -3,11 +3,11 @@ import Yox from 'yox'
 import template from './template/TabPanel.hbs'
 
 import {
+  NULL,
   TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  NULL,
 } from '../constant'
 
 import {
@@ -17,6 +17,8 @@ import {
 export default Yox.define({
 
   template,
+
+  name: '${prefix}tabPanel',
 
   propTypes: {
     name: {
@@ -76,15 +78,15 @@ export default Yox.define({
 
     const index = Yox.array.indexOf(tabs.$children, this)
 
-    let value = tabs.get('value')
-    if (value == NULL) {
-      value = '0'
-    }
-
     let name = this.get('name')
     if (name == NULL) {
       name = '' + index
       this.set('name', name)
+    }
+
+    let value = tabs.get('value')
+    if (value == NULL && index === 0) {
+      value = name
     }
 
     const isActive = value === name

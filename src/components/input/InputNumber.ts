@@ -19,6 +19,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -28,6 +29,8 @@ import {
 export default Yox.define({
 
   template,
+
+  name: '${prefix}inputNumber',
 
   propTypes: {
     formatter: {
@@ -184,7 +187,7 @@ export default Yox.define({
     )
 
     me.on(
-      'beforeDestroy.hook',
+      RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
           Yox.dom.off(

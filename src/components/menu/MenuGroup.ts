@@ -14,6 +14,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}menuGroup',
+
   propTypes: {
     title: {
       type: RAW_STRING,

@@ -27,6 +27,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}message',
+
   propTypes: {
     status: {
       type: oneOf(RAW_STATUS_ARRAY),

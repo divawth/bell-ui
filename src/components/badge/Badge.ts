@@ -21,6 +21,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}badge',
+
   propTypes: {
     type: {
       type: oneOf(RAW_TYPE_ARRAY),

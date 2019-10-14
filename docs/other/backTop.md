@@ -1,7 +1,15 @@
 
-<a href="./example/backTop.html">
-    BackTop
-</a>
+> 基础用法
+
+```js
+export default {
+  template: `
+  <BackTop
+    height="10"
+  />
+  `
+}
+```
 
 #### API
 

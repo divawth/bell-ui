@@ -29,6 +29,8 @@ export default Yox.define({
 
   model: 'visible',
 
+  name: '${prefix}drawer',
+
   propTypes: {
     width: {
       type: RAW_STRING,

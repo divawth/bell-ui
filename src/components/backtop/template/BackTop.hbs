@@ -1,6 +1,5 @@
 <div
 class="${prefix}backtop
-{{#if hidden}} ${prefix}backtop-hide{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 style="bottom: {{bottom}}px;
@@ -9,9 +8,9 @@ right: {{right}}px;
 
 on-click="click.backTop"
 >
-  <div class="${prefix}backtop-inner">
-    <slot name="children">
-      <Icon name="arrow-up-line" />
-    </slot>
-  </div>
+  <Icon
+    size="0"
+    name="arrow-up-line"
+    className="${prefix}backtop-icon"
+  />
 </div>

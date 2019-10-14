@@ -21,6 +21,8 @@ export default Yox.define({
 
   template,
 
+  name: '${prefix}rate',
+
   propTypes: {
     count: {
       type: RAW_NUMERIC,

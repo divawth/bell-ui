@@ -7,13 +7,19 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  TRUE,
 } from '../constant'
 
 export default Yox.define({
+
   template,
+
+  name: '${prefix}icon',
+
   propTypes: {
     name: {
       type: RAW_STRING,
+      required: TRUE,
     },
     size: {
       type: RAW_NUMERIC,
