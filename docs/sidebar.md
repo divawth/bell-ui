@@ -41,6 +41,7 @@
   - [Avatar 头像](view/avatar)
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
+  - [List 列表](view/list)
   - [Empty 空状态](view/empty)
   - [Timeline 时间轴](view/timeline)
 

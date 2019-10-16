@@ -1,15 +1,17 @@
-## Bell
+## bell ui
 
 > A Yox.js UI Toolkit for Web.
 
-[Doc](https://divawth.github.io/bell-ui/#/layout/layout)
+[Doc](https://divawth.github.io/bell-ui)
 
 ## Install
 
-```shell
-npm install bell-ui -S
+```
+npm install bell-ui
 ```
 
-![](https://ws3.sinaimg.cn/large/006tKfTcly1frze18x1csj31kw0x7n3u.jpg)
-![](https://ws1.sinaimg.cn/large/006tKfTcly1frze28zjfcj31kw0u9gsi.jpg)
-![](https://ws4.sinaimg.cn/large/006tKfTcly1frze2rmq27j31kw0tc47z.jpg)
+or
+
+```
+yarn add bell-ui
+```

@@ -34,6 +34,9 @@ export default {
       <Button type="link">
         Link
       </Button>
+      <Button type="text">
+        Text
+      </Button>
     </div>
   `
 }
@@ -198,6 +201,9 @@ export default {
       <Button disabled type="link">
         Link
       </Button>
+      <Button disabled type="text">
+        Text
+      </Button>
 
       <br><br>
 
@@ -340,7 +346,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error`, `dashed`, `link` | -
+type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error`, `dashed`, `link`, `text` | -
 ghost | 是否是幽灵按钮 | boolean | - | `false`
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `circle`, `round` | -

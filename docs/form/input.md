@@ -19,6 +19,22 @@ export default {
 }
 ```
 
+> block
+
+```js
+export default {
+  template: `
+  <div>
+    <Input
+      placeholder="Basic usage"
+      model="value"
+      block
+    />
+  </div>
+  `
+}
+```
+
 > 三种大小
 
 ```js
@@ -226,6 +242,7 @@ size | 大小 | string | `default`, `small`, `large` | `default`
 placeholder | 输入框内容为空时的提示文本 | string | - | -
 disabled | 禁用输入框 | boolean | - | `false`
 clearable | 是否显示清空按钮 | boolean | - | `false`
+block | 是否为块级元素 | boolean | - | `false`
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
 secure | 是否可以隐藏显示（仅在 `password` 下有效） | boolean | - | `false`

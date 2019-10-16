@@ -47,6 +47,9 @@ import CardMedia from './components/card/CardMedia'
 import CardBody from './components/card/CardBody'
 import CardFooter from './components/card/CardFooter'
 
+import List from './components/list/List'
+import ListItem from './components/list/ListItem'
+
 import Empty from './components/empty/Empty'
 import Divider from './components/divider/Divider'
 
@@ -118,6 +121,8 @@ const components = {
 
   Collapse,
   CollapseItem,
+  List,
+  ListItem,
   Empty,
   Divider,
   Circle,

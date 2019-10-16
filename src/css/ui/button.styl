@@ -19,17 +19,16 @@
     background-color transparent !important
     transition color .2s, border-color .2s, box-shadow .2s
 
+  &{$selector-button-text},
   &{$selector-button-link}
     border 0
-    padding 0
-    color $brand-primary
     background-color transparent
-
-    &:hover
-      color $brand-primary-hover
 
     &:focus
       box-shadow none
+
+  &{$selector-button-link}
+    color $brand-primary
 
   ui-button()
 
@@ -64,6 +63,9 @@
 
   ui-button-group-separator($brand-primary, $brand-primary)
 
+  &{$selector-button-link}:hover
+    color $brand-primary-hover
+
   &:hover,
   &:active
     color $brand-primary
@@ -79,6 +81,7 @@
   background-color $brand-bg-disabled
   color $brand-disabled
 
+  &{$selector-button-text},
   &{$selector-button-link}
     color $brand-disabled
 

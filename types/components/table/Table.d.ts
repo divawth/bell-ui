@@ -1,5 +1,5 @@
 import { Data, CustomEventInterface } from 'yox';
-interface Button {
+interface ButtonConfig {
     type: string | void;
     text: string | void;
     size: string | void;
@@ -13,12 +13,12 @@ declare const _default: import("yox").ComponentOptions<{
 }, unknown, {
     allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
     rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
-    clickButton(button: Button, item: Record<string, any>, index: number): void;
+    clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
     updateColWidths(): void;
 }> & ThisType<{
     allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
     rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
-    clickButton(button: Button, item: Record<string, any>, index: number): void;
+    clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
     updateColWidths(): void;
 } & import("yox").YoxInterface>;
 export default _default;

@@ -1,0 +1,39 @@
+{$selector-list}
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+  overflow-y auto
+  position relative
+  ui-list()
+
+{$selector-list-empty}
+  padding $list-empty-padding-vertical 0
+
+{$selector-list-header}
+  color $brand-title
+  font-size $font-size-default
+
+{$selector-list-item}
+  position relative
+
+  > {$selector-avatar}
+    vertical-align middle
+    margin-right $ui-horizontal-gap
+
+{$selector-list-item-clickable}
+  cursor $cursor-clickable
+  user-select none
+  transition background-color .3s
+  &:hover
+    background-color $brand-bg-hover
+
+{$selector-list-bordered}
+  border 1px solid $brand-border
+  border-radius $border-radius-default
+
+  > {$selector-list-header}
+    background-color $brand-bg-light
+    border-bottom 1px solid $brand-border
+
+  > {$selector-list-item} + {$selector-list-item}
+    border-top 1px solid $brand-border

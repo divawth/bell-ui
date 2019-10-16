@@ -1,6 +1,10 @@
 import Yox from 'yox'
 
 import Icon from '../icon/Icon'
+import Input from '../input/Input'
+import Button from '../button/Button'
+import Select from '../select/Select'
+
 import template from './template/Pagination.hbs'
 
 import {
@@ -257,6 +261,9 @@ export default Yox.define({
 
   components: {
     Icon,
+    Input,
+    Button,
+    Select,
   }
 
 })

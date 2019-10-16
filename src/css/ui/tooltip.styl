@@ -2,11 +2,15 @@
   position relative
   display inline-block
 
-{$selector-tooltip-arrow}
+{$selector-tooltip-arrow},
+{$selector-tooltip-arrow}:before
   position absolute
   width 0
   height 0
   border $tooltip-arrow-size solid transparent
+
+{$selector-tooltip-arrow}:before
+  content ''
 
 {$selector-tooltip-popup}
   position absolute
@@ -14,10 +18,7 @@
   line-height 0
   display none
   z-index $zindex-tooltip
-  transition transform .2s cubic-bezier(.23,1,.32,1),
-              opacity .2s cubic-bezier(.23,1,.32,1)
-
-  ui-scrollbar()
+  transition opacity .3s
 
 {$selector-tooltip-visible}
   > {$selector-tooltip-popup}
@@ -29,34 +30,41 @@
     opacity 1
 
 {$selector-tooltip-content}
-  font-size $tooltip-font-size
-  line-height $ui-single-line-height
+  font-size $font-size-tiny
+  line-height $ui-multiple-line-height
 
   text-align left
   white-space nowrap
   overflow auto
 
-  max-width $tooltip-max-width
+  border 1px solid transparent
   padding $tooltip-padding
-  box-shadow $brand-layer-shadow
+  box-shadow $brand-message-shadow
   border-radius $border-radius-default
   box-sizing border-box
+  ui-scrollbar()
 
 {$selector-tooltip-dark}
   {$selector-tooltip-arrow}
-    border-color $tooltip-bg-color-dark
+    border-color $tooltip-dark-border-color
+    &:before
+      border-color $tooltip-dark-bg-color
 
   {$selector-tooltip-content}
-    color $tooltip-color-dark
-    background-color $tooltip-bg-color-dark
+    color $tooltip-dark-color
+    border-color $tooltip-dark-border-color
+    background-color $tooltip-dark-bg-color
 
 {$selector-tooltip-light}
   {$selector-tooltip-arrow}
-    border-color $tooltip-bg-color-light
+    border-color $tooltip-light-border-color
+    &:before
+      border-color $tooltip-light-bg-color
 
   {$selector-tooltip-content}
-    color $tooltip-color-light
-    background-color $tooltip-bg-color-light
+    color $tooltip-light-color
+    border-color $tooltip-light-border-color
+    background-color $tooltip-light-bg-color
 
 
 {$selector-tooltip}-bottom,
@@ -65,18 +73,19 @@
 
   > {$selector-tooltip-popup}
     padding-top $tooltip-padding-inner
-    transform scaleY(0)
-    transform-origin center top
 
-    > {$selector-tooltip-arrow}
-      top $tooltip-arrow-offset
+    > {$selector-tooltip-arrow},
+    > {$selector-tooltip-arrow}:before
       border-top-color transparent
       border-left-color transparent
       border-right-color transparent
 
-  &{$selector-tooltip-fade}
-    > {$selector-tooltip-popup}
-      transform scaleY(1)
+    > {$selector-tooltip-arrow}
+      top $tooltip-arrow-offset
+
+    > {$selector-tooltip-arrow}:before
+      left -1 * $tooltip-arrow-size
+      top -1 * ($tooltip-arrow-size - 1)
 
 {$selector-tooltip}-bottom
 
@@ -113,18 +122,19 @@
   > {$selector-tooltip-popup}
     top 0
     padding-bottom $tooltip-padding-inner
-    transform scaleY(0)
-    transform-origin center bottom
 
-    > {$selector-tooltip-arrow}
-      bottom $tooltip-arrow-offset
+    > {$selector-tooltip-arrow},
+    > {$selector-tooltip-arrow}:before
       border-bottom-color transparent
       border-left-color transparent
       border-right-color transparent
 
-  &{$selector-tooltip-fade}
-    > {$selector-tooltip-popup}
-      transform scaleY(1)
+    > {$selector-tooltip-arrow}
+      bottom $tooltip-arrow-offset
+
+    > {$selector-tooltip-arrow}:before
+      left -1 * $tooltip-arrow-size
+      bottom -1 * ($tooltip-arrow-size - 1)
 
 
 {$selector-tooltip}-top
@@ -163,18 +173,19 @@
   > {$selector-tooltip-popup}
     left 0
     padding-right $tooltip-padding-inner
-    transform scaleX(0)
-    transform-origin right center
 
-    > {$selector-tooltip-arrow}
-      right $tooltip-arrow-offset
+    > {$selector-tooltip-arrow},
+    > {$selector-tooltip-arrow}:before
       border-top-color transparent
       border-bottom-color transparent
       border-right-color transparent
 
-  &{$selector-tooltip-fade}
-    > {$selector-tooltip-popup}
-      transform scaleX(1)
+    > {$selector-tooltip-arrow}
+      right $tooltip-arrow-offset
+
+    > {$selector-tooltip-arrow}:before
+      top -1 * $tooltip-arrow-size
+      right -1 * ($tooltip-arrow-size - 1)
 
 {$selector-tooltip}-left
 
@@ -210,18 +221,19 @@
   > {$selector-tooltip-popup}
     left 100%
     padding-left $tooltip-padding-inner
-    transform scaleX(0)
-    transform-origin left center
 
-    > {$selector-tooltip-arrow}
-      left $tooltip-arrow-offset
+    > {$selector-tooltip-arrow},
+    > {$selector-tooltip-arrow}:before
       border-top-color transparent
       border-left-color transparent
       border-bottom-color transparent
 
-  &{$selector-tooltip-fade}
-    > {$selector-tooltip-popup}
-      transform scaleX(1)
+    > {$selector-tooltip-arrow}
+      left $tooltip-arrow-offset
+
+    > {$selector-tooltip-arrow}:before
+      top -1 * $tooltip-arrow-size
+      left -1 * ($tooltip-arrow-size - 1)
 
 
 {$selector-tooltip}-right

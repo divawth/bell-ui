@@ -54,6 +54,10 @@ export default Yox.define({
     placeholder: {
       type: RAW_STRING,
     },
+    block: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     disabled: {
       type: RAW_BOOLEAN,
       value: FALSE,

@@ -160,7 +160,7 @@ label | 标签文本 | string | - | -
 name | 原生属性 `name` | string | - | -
 value | value | string | - | -
 disabled | 是否禁用 | boolean | - | `false`
-indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | `false`
+indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | - | `false`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

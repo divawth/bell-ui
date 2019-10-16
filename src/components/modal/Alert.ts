@@ -1,5 +1,7 @@
 import Yox from 'yox'
 
+import Button from '../button/Button'
+import Dialog from '../dialog/Dialog'
 import template from './template/Alert.hbs'
 
 import {
@@ -68,6 +70,11 @@ export default Yox.define({
         onOk()
       }
     }
+  },
+
+  components: {
+    Button,
+    Dialog,
   },
 
   afterMount() {

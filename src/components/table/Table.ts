@@ -1,5 +1,9 @@
 import Yox, { Data, CustomEventInterface } from 'yox'
 
+import Empty from '../empty/Empty'
+import Button from '../button/Button'
+import Checkbox from '../checkbox/Checkbox'
+
 import template from './template/Table.hbs'
 
 import {
@@ -12,7 +16,7 @@ import {
   RAW_NUMERIC,
 } from '../constant'
 
-interface Button {
+interface ButtonConfig {
   type: string | void,
   text: string | void,
   size: string | void,
@@ -131,7 +135,7 @@ export default Yox.define({
       }
 
     },
-    clickButton(button: Button, item: Data, index: number) {
+    clickButton(button: ButtonConfig, item: Data, index: number) {
       button.onClick(item, index)
     },
 
@@ -190,6 +194,12 @@ export default Yox.define({
 
     }
 
+  },
+
+  components: {
+    Empty,
+    Button,
+    Checkbox,
   },
 
   afterMount() {

@@ -1,7 +1,7 @@
 {$selector-backtop}
   position fixed
   z-index $zindex-backtop
-  cursor pointer
+  cursor $cursor-clickable
   background-color #000
   opacity 0
   display none
@@ -10,7 +10,7 @@
   width $backtop-size
   height $backtop-size
   line-height $backtop-size
-  border-radius $border-radius-circle
+  border-radius $border-radius-default
   transition opacity .3s
 
 {$selector-backtop-visible}

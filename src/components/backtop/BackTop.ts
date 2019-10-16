@@ -5,8 +5,8 @@ import template from './template/BackTop.hbs'
 
 import {
   FALSE,
-  BODY,
   WINDOW,
+  DOCUMENT,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_EVENT_SCROLL,
@@ -15,7 +15,8 @@ import {
 } from '../constant'
 
 import {
-  scrollTop, onTransitionEnd,
+  scrollTop,
+  onTransitionEnd,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}backtop-visible'
@@ -25,9 +26,12 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}backtop',
+  name: '${prefix}backTop',
 
   propTypes: {
+    target: {
+      type: RAW_STRING,
+    },
     bottom: {
       type: RAW_NUMERIC,
       value: 30,
@@ -38,6 +42,7 @@ export default Yox.define({
     },
     height: {
       type: RAW_NUMERIC,
+      value: 0,
     },
     duration: {
       type: RAW_NUMERIC,
@@ -54,24 +59,6 @@ export default Yox.define({
   data() {
     return {
       visible: FALSE
-    }
-  },
-
-  events: {
-    click() {
-
-      let parentElement = this.$parent && this.$parent.$el
-      if (!parentElement || parentElement === this.$el) {
-        parentElement = BODY
-      }
-
-      scrollTop(
-        parentElement,
-        parentElement.scrollTop,
-        0,
-        this.get('duration')
-      )
-
     }
   },
 
@@ -118,27 +105,45 @@ export default Yox.define({
 
   afterMount() {
 
-    let me = this, parentElement = me.$parent && me.$parent.$el
-    if (!parentElement || parentElement === me.$el) {
-      parentElement = BODY
+    const me = this
+
+    let container: Document | HTMLElement = DOCUMENT
+    let containerElement = DOCUMENT.documentElement
+
+    const target = me.get('target')
+    if (target) {
+      containerElement = Yox.dom.find(target) as HTMLElement
+      if (!containerElement) {
+        Yox.logger.fatal(`target is not existed: ${target}`)
+        return
+      }
+      container = containerElement
     }
 
-    const height = me.get('height'),
-
-    onRefresh = function () {
+    const height = me.get('height')
+    const onRefresh = function () {
       me.set({
-        visible: parentElement.scrollTop >= (height || parentElement.clientHeight)
+        visible: containerElement.scrollTop >= height
       })
     }
 
-    Yox.dom.on(parentElement, RAW_EVENT_SCROLL, onRefresh)
+    me.on('click', function () {
+      scrollTop(
+        containerElement,
+        containerElement.scrollTop,
+        0,
+        this.get('duration')
+      )
+    })
+
+    Yox.dom.on(container, RAW_EVENT_SCROLL, onRefresh)
     Yox.dom.on(WINDOW, RAW_EVENT_RESIZE, onRefresh)
 
     me.on(
       RAW_EVENT_BEFORE_DESTROY,
       function (event) {
         if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(parentElement, RAW_EVENT_SCROLL, onRefresh)
+          Yox.dom.off(container, RAW_EVENT_SCROLL, onRefresh)
           Yox.dom.off(WINDOW, RAW_EVENT_RESIZE, onRefresh)
         }
       }

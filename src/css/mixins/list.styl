@@ -1,0 +1,13 @@
+list-size-style(size)
+  {$selector-list-header}
+    ui-set('padding', size['header-padding'])
+
+  {$selector-list-item}
+    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+
+
+ui-list()
+  ui-connect(
+    hash: $list-size-hash,
+    each: list-size-style
+  )

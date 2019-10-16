@@ -1,5 +1,7 @@
 import Yox from 'yox'
 
+import Button from '../button/Button'
+import Dialog from '../dialog/Dialog'
 import template from './template/Confirm.hbs'
 
 import {
@@ -85,6 +87,11 @@ export default Yox.define({
         onCancel()
       }
     },
+  },
+
+  components: {
+    Button,
+    Dialog,
   },
 
   afterMount() {
