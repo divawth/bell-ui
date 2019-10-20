@@ -11,17 +11,8 @@
   style="{{style}}"
 {{/if}}
 >
-  {{#if hasSlot('header')}}
-    <div class="${prefix}list-header">
-      <slot name="header" />
-    </div>
-  {{/if}}
 
-  {{#if loading}}
-    <Spin size="large" fixed />
-  {{/if}}
-
-  <slot name="children">
+  {{#partial empty}}
     <div class="${prefix}list-empty">
       <slot name="empty">
         <Empty>
@@ -29,5 +20,25 @@
         </Empty>
       </slot>
     </div>
-  </slot>
+  {{/partial}}
+
+  {{#if hasSlot('header')}}
+    <div class="${prefix}list-header">
+      <slot name="header" />
+    </div>
+    <div class="${prefix}list-body">
+      <slot name="children">
+        {{> empty}}
+      </slot>
+    </div>
+  {{else}}
+    <slot name="children">
+      {{> empty}}
+    </slot>
+  {{/if}}
+
+  {{#if loading}}
+    <Spin size="large" fixed />
+  {{/if}}
+
 </div>

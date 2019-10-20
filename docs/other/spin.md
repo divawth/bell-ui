@@ -19,9 +19,7 @@ export default {
 ```js
 export default {
   template: `
-    <div>
-      <Spin text="正在加载..." />
-    </div>
+    <Spin text="正在加载..." />
   `
 }
 ```
@@ -74,13 +72,13 @@ export default {
           <p>三山半落青天外，二水中分白鹭洲。</p>
           <p>总为浮云能蔽日，长安不见使人愁。</p>
         </article>
-        {{#if spinShow}}
-        <Spin size="large" fixed />
+        {{#if visible}}
+          <Spin size="large" fixed />
         {{/if}}
       </div>
       <br>
       切换显示状态：
-      <Switch model="spinShow" />
+      <Switch model="visible" />
 
       <style>
         .demo-spin-article {
@@ -92,7 +90,7 @@ export default {
   `,
   data: function () {
     return {
-      spinShow: false
+      visible: false
     }
   }
 }
@@ -105,7 +103,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 风格 | string | `primary`, `success`, `error`, `info`, `warning` | `primary`
-size | 大小 | string | `default`, `small`, `tiny` | `default`
+size | 大小 | string | `default`, `small`, `large` | `default`
 fixed | 是否固定 | boolean | - | `false`
 icon | 图标 | string | - | `loader-line`
 text | 文字 | string | - | -

@@ -25,9 +25,11 @@ class="${prefix}dialog
     {{/if}}
   >
 
-    {{#if hasSlot('title')}}
+    {{#if title || hasSlot('title')}}
       <div class="${prefix}dialog-header">
-        <slot name="title" />
+        <slot name="title">
+          {{title}}
+        </slot>
       </div>
     {{/if}}
 

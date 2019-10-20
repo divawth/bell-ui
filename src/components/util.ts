@@ -1,5 +1,5 @@
-import { UNDEFINED, NULL, DOCUMENT } from './constant'
-import Yox, { CustomEventInterface, Listener, YoxInterface } from 'yox';
+import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW } from './constant'
+import Yox, { CustomEventInterface, Listener } from 'yox'
 
 const element = DOCUMENT.createElement('div')
 
@@ -23,9 +23,11 @@ function testCSS(property: string) {
 
 }
 
+export const screenWidth = WINDOW.screen.availWidth
+
 const transitionEnd = testCSS('transition') ? 'transitionend' : ''
 
-export const supportTransform = testCSS('transform') ? true : false
+export const supportTransform = testCSS('transform') ? TRUE : FALSE
 
 export function onTransitionEnd(el: HTMLElement, callback: () => void) {
   if (transitionEnd) {
@@ -44,11 +46,11 @@ export function onTransitionEnd(el: HTMLElement, callback: () => void) {
 }
 
 export const requestAnimationFrame = (
-  window['webkitRequestAnimationFrame'] ||
-  window['mozRequestAnimationFrame'] ||
-  window['msRequestAnimationFrame'] ||
+  WINDOW['webkitRequestAnimationFrame'] ||
+  WINDOW['mozRequestAnimationFrame'] ||
+  WINDOW['msRequestAnimationFrame'] ||
   function (callback) {
-    return window.setTimeout(callback, 1000 / 60)
+    return WINDOW.setTimeout(callback, 1000 / 60)
   }
 )
 
@@ -154,9 +156,10 @@ export function scrollTop(
       duration = (start - step < end) ? end : start - step
     }
 
-    if (element === window) {
-      window.scrollTo(duration, duration)
-    } else {
+    if (element === WINDOW) {
+      WINDOW.scrollTo(duration, duration)
+    }
+    else {
       (element as HTMLElement).scrollTop = duration
     }
     requestAnimationFrame(function () {

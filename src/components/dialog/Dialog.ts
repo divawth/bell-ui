@@ -27,6 +27,9 @@ export default Yox.define({
   name: '${prefix}dialog',
 
   propTypes: {
+    title: {
+      type: RAW_STRING,
+    },
     visible: {
       type: RAW_BOOLEAN,
       value: FALSE,

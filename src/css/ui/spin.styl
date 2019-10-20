@@ -13,8 +13,11 @@
 
   ui-fullscreen(absolute)
   background-color $spin-mask-color
-  opacity $spin-mask-opacity
   z-index 1
+
+  &{$selector-spin-legacy}
+    background-color $spin-mask-color-legacy
+    opacity $spin-mask-opacity-legacy
 
   > {$selector-spin-content}
     position absolute

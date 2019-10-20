@@ -52,6 +52,12 @@ export default Yox.define({
     },
   },
 
+  data() {
+    return {
+      legacy: !supportTransform,
+    }
+  },
+
   methods: {
     updatePosition() {
       if (supportTransform) {

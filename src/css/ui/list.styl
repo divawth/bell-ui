@@ -4,6 +4,7 @@
   line-height $ui-multiple-line-height
   overflow-y auto
   position relative
+  box-sizing border-box
   ui-list()
 
 {$selector-list-empty}
@@ -15,6 +16,10 @@
 
 {$selector-list-item}
   position relative
+  border-top 1px solid $brand-border
+
+  &:first-child
+    border-top 0
 
   > {$selector-avatar}
     vertical-align middle
@@ -34,6 +39,3 @@
   > {$selector-list-header}
     background-color $brand-bg-light
     border-bottom 1px solid $brand-border
-
-  > {$selector-list-item} + {$selector-list-item}
-    border-top 1px solid $brand-border

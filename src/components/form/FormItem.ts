@@ -27,7 +27,6 @@ export default Yox.define({
   propTypes: {
     prop: {
       type: RAW_STRING,
-      required: TRUE,
     },
     label: {
       type: RAW_STRING,

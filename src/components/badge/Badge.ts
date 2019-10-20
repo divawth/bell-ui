@@ -6,6 +6,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMBER,
   RAW_NUMERIC,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
@@ -32,7 +33,7 @@ export default Yox.define({
       type: oneOf(RAW_STATUS_ARRAY),
     },
     text: {
-      type: RAW_STRING,
+      type: [RAW_STRING, RAW_NUMBER],
     },
     count: {
       type: RAW_NUMERIC,

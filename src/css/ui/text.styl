@@ -3,6 +3,8 @@
 
 body
   font-family "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif
+  color $brand-content
+  font-size $font-size-default
 
 a
   color $brand-primary
@@ -11,3 +13,20 @@ a
 
   &:hover
     color $brand-primary-hover
+
+::-webkit-scrollbar
+  width 4px
+
+::-webkit-scrollbar
+  height 4px
+
+::-webkit-scrollbar-track
+  background-color rgba(0,0,0,0)
+
+::-webkit-scrollbar-thumb
+  background-color #d1d1d1
+  border-radius 10px
+  transition background-color .3s
+
+::-webkit-scrollbar-thumb:hover
+  background-color #b3b3b3

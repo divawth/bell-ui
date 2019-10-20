@@ -1,4 +1,5 @@
 import { CustomEventInterface } from 'yox';
+export declare const screenWidth: number;
 export declare const supportTransform: boolean;
 export declare function onTransitionEnd(el: HTMLElement, callback: () => void): void;
 export declare const requestAnimationFrame: any;

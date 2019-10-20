@@ -17,6 +17,7 @@ import {
 
 import {
   oneOf,
+  screenWidth,
 } from '../util'
 
 export default Yox.define({
@@ -28,7 +29,6 @@ export default Yox.define({
   propTypes: {
     title: {
       type: RAW_STRING,
-      value: '提示',
     },
     content: {
       type: RAW_STRING,
@@ -40,7 +40,7 @@ export default Yox.define({
     },
     width: {
       type: RAW_NUMERIC,
-      value: 400,
+      value: screenWidth > 1024 ? 400 : 300,
     },
     okText: {
       type: RAW_STRING,

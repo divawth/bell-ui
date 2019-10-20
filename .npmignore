@@ -5,6 +5,7 @@ doc/
 src/
 type/
 yarn.*
+*.sketch
 global.d.ts
 tsconfig.json
 README.md

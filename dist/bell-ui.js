@@ -254,7 +254,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-spin"+(a("type",$2)?(" bell-spin-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-spin-"+y(a("size",$2))):"")+(a("fixed",$2)?" bell-spin-fixed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-spin-content")},function(){s("$slot_children",function(){r("Icon",function(){f("spin",$2),f("name",j("name",a("icon",$2,$0,$2,$2))),f("size","0"),f("className","bell-spin-icon")}),a("text",$2)?(q("div",function(){g("className","bell-spin-text")},$0,y(a("text",$2)))):p()})},$0,$0,$0,$0,$0,$0,"content")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-spin"+(a("type",$2)?(" bell-spin-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-spin-"+y(a("size",$2))):"")+(a("fixed",$2)?" bell-spin-fixed":"")+(a("legacy",$2)?" bell-spin-legacy":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-spin-content")},function(){s("$slot_children",function(){r("Icon",function(){f("spin",$2),f("name",j("name",a("icon",$2,$0,$2,$2))),f("size","0"),f("className","bell-spin-icon")}),a("text",$2)?(q("div",function(){g("className","bell-spin-text")},$0,y(a("text",$2)))):p()})},$0,$0,$0,$0,$0,$0,"content")})};
 
 /***/ }),
 /* 27 */
@@ -368,7 +368,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 45 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list"+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("simple",$2)?" bell-list-simple":" bell-list-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){(d(a("hasSlot",$2),["header"]))?(q("div",function(){g("className","bell-list-header")},function(){s("$slot_header")})):p(),a("loading",$2)?(r("Spin",function(){f("size","large"),f("fixed",$2)})):p(),s("$slot_children",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){r("Empty",$0,{"$slot_children":function(){e("暂无数据")}})})})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-list"+(a("size",$2)?(" bell-list-"+y(a("size",$2))):"")+(a("simple",$2)?" bell-list-simple":" bell-list-bordered")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){t("empty",function(){q("div",function(){g("className","bell-list-empty")},function(){s("$slot_empty",function(){r("Empty",$0,{"$slot_children":function(){e("暂无数据")}})})})}),(d(a("hasSlot",$2),["header"]))?((q("div",function(){g("className","bell-list-header")},function(){s("$slot_header")}),q("div",function(){g("className","bell-list-body")},function(){s("$slot_children",function(){u("empty")})}))):(s("$slot_children",function(){u("empty")})),a("loading",$2)?(r("Spin",function(){f("size","large"),f("fixed",$2)})):p()})};
 
 /***/ }),
 /* 46 */
@@ -464,7 +464,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 61 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-dialog-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""})):p(),q("div",function(){g("className","bell-dialog-wrapper"),a("width",$2)?(g("style.cssText","width:"+y(a("width",$2))+"px")):""},function(){(d(a("hasSlot",$2),["title"]))?(q("div",function(){g("className","bell-dialog-header")},function(){s("$slot_title")})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-dialog-body")},function(){s("$slot_content")})):p(),(d(a("hasSlot",$2),["footer"]))?(q("div",function(){g("className","bell-dialog-footer")},function(){s("$slot_footer")})):p(),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-dialog-close"),l("click","event.click","native","close()","close")})):p()},$0,$0,$0,$0,$0,$0,"wrapper")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-dialog"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){a("mask",$2)?(q("div",function(){g("className","bell-dialog-mask"),a("maskClosable",$2)?(l("click","event.click",$0,"close()","close")):""})):p(),q("div",function(){g("className","bell-dialog-wrapper"),a("width",$2)?(g("style.cssText","width:"+y(a("width",$2))+"px")):""},function(){(a("title",$2)||(d(a("hasSlot",$2),["title"])))?(q("div",function(){g("className","bell-dialog-header")},function(){s("$slot_title",function(){e(y(a("title",$2)))})})):p(),(d(a("hasSlot",$2),["content"]))?(q("div",function(){g("className","bell-dialog-body")},function(){s("$slot_content")})):p(),(d(a("hasSlot",$2),["footer"]))?(q("div",function(){g("className","bell-dialog-footer")},function(){s("$slot_footer")})):p(),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-dialog-close"),l("click","event.click","native","close()","close")})):p()},$0,$0,$0,$0,$0,$0,"wrapper")})};
 
 /***/ }),
 /* 62 */
@@ -488,13 +488,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){f("mask",$2),f("width",j("width",a("width",$2,$0,$2,$2))),f("maskClosable",$3),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("className","bell-modal")},{"$slot_title":function(){e(a("title",$2))},"$slot_content":function(){e(a("content",$2))},"$slot_footer":function(){r("Button",function(){f("type",j("type",a("okType",$2,$0,$2,$2))),l("click","event.click",$0,"ok()","ok")},{"$slot_children":function(){e(a("okText",$2))}})}},"dialog")};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){f("mask",$2),f("width",j("width",a("width",$2,$0,$2,$2))),f("title",j("title",a("title",$2,$0,$2,$2))),f("maskClosable",$3),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("className","bell-modal")},{"$slot_content":function(){e(a("content",$2))},"$slot_footer":function(){r("Button",function(){f("type",j("type",a("okType",$2,$0,$2,$2))),l("click","event.click",$0,"ok()","ok")},{"$slot_children":function(){e(a("okText",$2))}})}},"dialog")};
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){f("mask",$2),f("width",j("width",a("width",$2,$0,$2,$2))),f("maskClosable",$3),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("className","bell-modal")},{"$slot_title":function(){e(a("title",$2))},"$slot_content":function(){e(a("content",$2))},"$slot_footer":function(){r("Button",function(){f("type",j("type",a("cancelType",$2,$0,$2,$2))),l("click","event.click",$0,"cancel()","cancel")},{"$slot_children":function(){e(a("cancelText",$2))}}),r("Button",function(){f("type",j("type",a("okType",$2,$0,$2,$2))),l("click","event.click",$0,"ok()","ok")},{"$slot_children":function(){e(a("okText",$2))}})}},"dialog")};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dialog",function(){f("mask",$2),f("width",j("width",a("width",$2,$0,$2,$2))),f("title",j("title",a("title",$2,$0,$2,$2))),f("maskClosable",$3),f("closable",j("closable",a("closable",$2,$0,$2,$2))),f("className","bell-modal")},{"$slot_title":function(){e(a("title",$2))},"$slot_content":function(){e(a("content",$2))},"$slot_footer":function(){r("Button",function(){f("type",j("type",a("cancelType",$2,$0,$2,$2))),l("click","event.click",$0,"cancel()","cancel")},{"$slot_children":function(){e(a("cancelText",$2))}}),r("Button",function(){f("type",j("type",a("okType",$2,$0,$2,$2))),l("click","event.click",$0,"ok()","ok")},{"$slot_children":function(){e(a("okText",$2))}})}},"dialog")};
 
 /***/ }),
 /* 67 */
@@ -580,6 +580,9 @@ var RAW_TYPE_ERROR = 'error';
 var RAW_TYPE_INFO = 'info';
 var RAW_TYPE_DASHED = 'dashed';
 var RAW_TYPE_LINK = 'link';
+var RAW_TYPE_TITLE = 'title';
+var RAW_TYPE_CONTENT = 'content';
+var RAW_TYPE_MUTED = 'muted';
 var RAW_SHAPE_CIRCLE = 'circle';
 var RAW_SHAPE_ROUND = 'round';
 var RAW_EVENT_KEYPRESS = 'keypress';
@@ -656,8 +659,9 @@ function testCSS(property) {
         }
     }
 }
+var screenWidth = WINDOW.screen.availWidth;
 var transitionEnd = testCSS('transition') ? 'transitionend' : '';
-var supportTransform = testCSS('transform') ? true : false;
+var supportTransform = testCSS('transform') ? TRUE : FALSE;
 function onTransitionEnd(el, callback) {
     if (transitionEnd) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(el, transitionEnd, function (event) {
@@ -669,11 +673,11 @@ function onTransitionEnd(el, callback) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.nextTick(callback);
     }
 }
-var requestAnimationFrame = (window['webkitRequestAnimationFrame'] ||
-    window['mozRequestAnimationFrame'] ||
-    window['msRequestAnimationFrame'] ||
+var requestAnimationFrame = (WINDOW['webkitRequestAnimationFrame'] ||
+    WINDOW['mozRequestAnimationFrame'] ||
+    WINDOW['msRequestAnimationFrame'] ||
     function (callback) {
-        return window.setTimeout(callback, 1000 / 60);
+        return WINDOW.setTimeout(callback, 1000 / 60);
     });
 function contains(element, target) {
     if (element.contains && element.contains(target)) {
@@ -759,8 +763,8 @@ function scrollTop(element, from, to, duration, endCallback) {
         if (start > end) {
             duration = (start - step < end) ? end : start - step;
         }
-        if (element === window) {
-            window.scrollTo(duration, duration);
+        if (element === WINDOW) {
+            WINDOW.scrollTo(duration, duration);
         }
         else {
             element.scrollTop = duration;
@@ -1032,7 +1036,16 @@ var Text_default = /*#__PURE__*/__webpack_require__.n(Text);
     name: 'bell-text',
     propTypes: {
         type: {
-            type: oneOf(RAW_TYPE_ARRAY),
+            type: oneOf([
+                RAW_TYPE_PRIMARY,
+                RAW_TYPE_INFO,
+                RAW_TYPE_SUCCESS,
+                RAW_TYPE_WARNING,
+                RAW_TYPE_ERROR,
+                RAW_TYPE_TITLE,
+                RAW_TYPE_CONTENT,
+                RAW_TYPE_MUTED,
+            ]),
         },
         size: {
             type: oneOf(RAW_SIZE_ARRAY),
@@ -3330,6 +3343,11 @@ var Spin_default = /*#__PURE__*/__webpack_require__.n(Spin);
             type: RAW_STRING,
         },
     },
+    data: function () {
+        return {
+            legacy: !supportTransform,
+        };
+    },
     methods: {
         updatePosition: function () {
             if (supportTransform) {
@@ -3546,7 +3564,7 @@ var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
             type: oneOf(RAW_STATUS_ARRAY),
         },
         text: {
-            type: RAW_STRING,
+            type: [RAW_STRING, RAW_NUMBER],
         },
         count: {
             type: RAW_NUMERIC,
@@ -6157,7 +6175,6 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
     propTypes: {
         prop: {
             type: RAW_STRING,
-            required: TRUE,
         },
         label: {
             type: RAW_STRING,
@@ -6222,6 +6239,9 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
     model: 'visible',
     name: 'bell-dialog',
     propTypes: {
+        title: {
+            type: RAW_STRING,
+        },
         visible: {
             type: RAW_BOOLEAN,
             value: FALSE,
@@ -6717,7 +6737,6 @@ var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
     propTypes: {
         title: {
             type: RAW_STRING,
-            value: '提示',
         },
         content: {
             type: RAW_STRING,
@@ -6729,7 +6748,7 @@ var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
         },
         width: {
             type: RAW_NUMERIC,
-            value: 400,
+            value: screenWidth > 1024 ? 400 : 300,
         },
         okText: {
             type: RAW_STRING,
@@ -6789,7 +6808,6 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
     propTypes: {
         title: {
             type: RAW_STRING,
-            value: '提示',
         },
         content: {
             type: RAW_STRING,
@@ -6801,7 +6819,7 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
         },
         width: {
             type: RAW_NUMERIC,
-            value: 400,
+            value: screenWidth > 1024 ? 400 : 300,
         },
         okText: {
             type: RAW_STRING,

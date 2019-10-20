@@ -4,9 +4,16 @@ import template from './template/Text.hbs'
 
 import {
   RAW_STRING,
-  RAW_TYPE_ARRAY,
-  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
+  RAW_SIZE_ARRAY,
+  RAW_TYPE_PRIMARY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
+  RAW_TYPE_ERROR,
+  RAW_TYPE_CONTENT,
+  RAW_TYPE_TITLE,
+  RAW_TYPE_MUTED,
 } from '../constant'
 
 import {
@@ -21,7 +28,16 @@ export default Yox.define({
 
   propTypes: {
     type: {
-      type: oneOf(RAW_TYPE_ARRAY),
+      type: oneOf([
+        RAW_TYPE_PRIMARY,
+        RAW_TYPE_INFO,
+        RAW_TYPE_SUCCESS,
+        RAW_TYPE_WARNING,
+        RAW_TYPE_ERROR,
+        RAW_TYPE_TITLE,
+        RAW_TYPE_CONTENT,
+        RAW_TYPE_MUTED,
+      ]),
     },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
