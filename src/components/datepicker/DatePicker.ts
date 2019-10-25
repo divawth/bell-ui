@@ -1,5 +1,6 @@
 import Yox, { CustomEventInterface } from 'yox'
 
+import Tag from '../tag/Tag'
 import DateView from './components/Date'
 import DateRange from './components/DateRange'
 import DateWeek from './components/DateWeek'
@@ -11,6 +12,7 @@ import template from './template/DatePicker.hbs'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_DATE,
   RAW_ARRAY,
@@ -25,7 +27,6 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
-  UNDEFINED,
 } from '../constant'
 
 import {
@@ -143,6 +144,7 @@ export default Yox.define({
   },
 
   components: {
+    Tag,
     DateView,
     DateRange,
     DateWeek,

@@ -84,7 +84,7 @@ export default Yox.define({
               }
             )
           },
-          30
+          50
         )
 
       }

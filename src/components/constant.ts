@@ -16,11 +16,9 @@ export const RAW_HORIZONTAL = 'horizontal'
 export const RAW_VERTICAL = 'vertical'
 export const RAW_INLINE = 'inline'
 
-export const RAW_TINY = 'tiny'
 export const RAW_SMALL = 'small'
 export const RAW_DEFAULT = 'default'
 export const RAW_LARGE = 'large'
-export const RAW_HUGE = 'huge'
 
 export const RAW_ALWAYS = 'always'
 export const RAW_NEVER = 'never'
@@ -91,11 +89,9 @@ export const RAW_TYPE_ARRAY = [
 ]
 
 export const RAW_SIZE_ARRAY = [
-  RAW_TINY,
   RAW_SMALL,
   RAW_DEFAULT,
   RAW_LARGE,
-  RAW_HUGE
 ]
 
 export const RAW_SIZE_COMMON = [

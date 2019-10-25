@@ -31,7 +31,7 @@ export default Yox.define({
     }
   },
 
-  name: '${prefix}raw',
+  name: '${prefix}row',
 
   template,
 

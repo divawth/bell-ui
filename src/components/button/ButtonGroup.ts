@@ -6,7 +6,6 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TINY,
   RAW_SMALL,
   RAW_LARGE,
   RAW_DEFAULT,
@@ -26,7 +25,7 @@ export default Yox.define({
 
   propTypes: {
     size: {
-      type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL, RAW_TINY]),
+      type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
       value: RAW_DEFAULT,
     },
     shape: {

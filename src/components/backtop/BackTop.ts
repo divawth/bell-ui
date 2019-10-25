@@ -77,7 +77,7 @@ export default Yox.define({
           function () {
             Yox.dom.addClass(element, CLASS_FADE)
           },
-          30
+          50
         )
 
       }

@@ -1,5 +1,6 @@
 import Yox, { CustomEventInterface, YoxInterface } from 'yox'
 
+import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
 import template from './template/Select.hbs'
 
@@ -85,81 +86,50 @@ export default Yox.define({
   },
 
   watchers: {
-    value(value: any) {
+    value(value) {
+
+      // 在这同步 selectedOptions，可兼顾内外的改动
+      this.updateSelectedOptions(value)
+
       this.fire(
         'change.select',
         { value }
       )
+
     },
   },
 
   events: {
 
-    'add.selectOption': function (event) {
+    'add.selectOption': function (event, data) {
       event.stop()
-      const { target } = event
-      if (target.get('isSelected')) {
-        this.notifyOptionSelected(target)
+      if (data.isSelected) {
+        this.selectOption(data.value)
       }
     },
 
-    'remove.selectOption': function (event) {
+    'remove.selectOption': function (event, data) {
       event.stop()
-      const { target } = event
-      if (target.get('isSelected')) {
-        this.notifyOptionUnselected(target)
+      if (data.isSelected) {
+        this.deselectOption(data.value)
       }
     },
 
-    'click.selectOption': function (event) {
+    'update.selectOption': function (event, data) {
 
       event.stop()
 
       const me = this
 
-      // 这里是 option 和 select 沟通的地方
-      // 只是反向再告诉 option 它应该是选中还是取消选中
-      const { target } = event
-      const value = target.get('value')
-      const multiple = me.get('multiple')
-
-      if (multiple) {
-
-        const values = me.get('value')
-        const selected = Yox.is.array(values) && Yox.array.has(values, value)
-          ? FALSE
-          : TRUE
-
-        if (selected) {
-          me.notifyOptionSelected(target)
-        }
-        else {
-          me.notifyOptionUnselected(target)
-        }
-
-        me.fire(
-          'sync.select',
-          {
-            value,
-            multiple,
-            selected,
-          },
-          TRUE
-        )
-
+      if (data.isSelected) {
+        me.selectOption(data.value)
       }
       else {
+        me.deselectOption(data.value)
+      }
+
+      if (!me.get('multiple')) {
         me.set('visible', FALSE)
-        me.notifyOptionSelected(target)
-        me.fire(
-          'sync.select',
-          {
-            value,
-            multiple,
-            selected: TRUE,
-          },
-          TRUE
-        )
       }
 
     }
@@ -172,12 +142,16 @@ export default Yox.define({
       // 停止冒泡，否则会展开下拉框
       event.stop()
 
-      this.set({
-        value: UNDEFINED,
-        selectedOptions: [],
-      })
+      this.set('value', UNDEFINED)
 
-      this.fire('clear.select', TRUE)
+      this.fire(
+        'change.select',
+        {
+          value: UNDEFINED,
+        },
+        TRUE
+      )
+
       this.fire('clear.select')
 
     },
@@ -186,28 +160,21 @@ export default Yox.define({
 
       event.stop()
 
-      const value = this.get(`value.${index}`)
-
       this.removeAt('value', index)
-      this.removeAt('selectedOptions', index)
 
       this.fire(
-        'sync.select',
+        'change.select',
         {
-          value,
-          multiple: TRUE,
-          selected: FALSE,
+          value: this.get('value')
         },
         TRUE
       )
 
     },
 
-    notifyOptionSelected(option: YoxInterface) {
+    selectOption(value: any) {
 
       const me = this
-      const value = option.get('value')
-      const text = (option as any).getText()
 
       if (me.get('multiple')) {
 
@@ -220,29 +187,18 @@ export default Yox.define({
         }
 
         me.append('value', value)
-        me.append('selectedOptions', { value, text })
 
       }
       else {
-        const selectedOptions = me.get('selectedOptions')
-
         me.set('value', value)
-
-        if (!selectedOptions[0]
-          || selectedOptions[0].value !== value
-        ) {
-          me.set('selectedOptions', [{ value, text }])
-        }
       }
 
     },
 
-    notifyOptionUnselected(option: YoxInterface) {
+    deselectOption(value: any) {
 
       const me = this
       const values = me.get('value')
-
-      const value = option.get('value')
 
       if (me.get('multiple')) {
 
@@ -255,7 +211,6 @@ export default Yox.define({
         }
 
         me.removeAt('value', selectedIndex)
-        me.removeAt('selectedOptions', selectedIndex)
 
       }
       else {
@@ -265,16 +220,37 @@ export default Yox.define({
         }
 
         me.set('value', UNDEFINED)
-        me.set('selectedOptions', [])
 
       }
 
     },
 
+    updateSelectedOptions(value: any) {
+
+      let selectedOptions = []
+
+      this.fire(
+        'change.select',
+        {
+          value,
+          selectedOptions,
+        },
+        TRUE
+      )
+
+      this.set('selectedOptions', selectedOptions)
+
+    }
+
   },
 
   components: {
     Icon,
+    Tag,
+  },
+
+  afterMount() {
+    this.updateSelectedOptions(this.get('value'))
   }
 
 })

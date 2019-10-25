@@ -99,7 +99,7 @@ export default Yox.define({
           function () {
             Yox.dom.addClass(element, CLASS_FADE)
           },
-          20
+          50
         )
       }
       else {

@@ -76,6 +76,8 @@ import Notification from './components/notification/base'
 import Modal from './components/modal/base'
 import LoadingBar from  './components/loadingBar/base'
 
+import { BODY } from './components/constant'
+
 const components = {
   Menu,
   MenuItem,
@@ -147,11 +149,11 @@ const components = {
 export const install = function (Yox: any) {
   let loadingbarElement = Yox.dom.createElement('div')
   Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
-  Yox.dom.append(document.body, loadingbarElement)
+  Yox.dom.append(BODY, loadingbarElement)
 
   let notificationElement = Yox.dom.createElement('div')
   Yox.dom.prop(notificationElement, 'id', '${prefix}notification-wrapper')
-  Yox.dom.append(document.body, notificationElement)
+  Yox.dom.append(BODY, notificationElement)
 
   Yox.component(components)
   Yox.prototype.$message = Message

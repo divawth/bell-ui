@@ -41,7 +41,7 @@ export default {
     value: function (value) {
       console.log(value)
     }
-  },
+  }
 }
 ```
 
@@ -550,6 +550,8 @@ placement | 弹窗的展开方向 | string | bottom, top | -
 placeholder | 选择框默认文字 | string | - | -
 prefix | 自定义 Select 内头部图标 | string | - | -
 width | 选择框宽度 | string, number | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -
 
 > Select Events
 

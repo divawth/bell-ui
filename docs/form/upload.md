@@ -33,7 +33,7 @@ export default {
   template: `
     <div>
       {{#if avatarUrl}}
-        <Avatar size="huge" src="{{avatarUrl}}" />
+        <Avatar src="{{avatarUrl}}" />
       {{/if}}
       <Upload
         action="https://jsonplaceholder.typicode.com/posts/"

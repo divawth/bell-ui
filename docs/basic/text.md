@@ -23,11 +23,9 @@ body {
 export default {
   template: `
     <div>
-      <Text size="tiny">text</Text>
       <Text size="small">text</Text>
       <Text>text</Text>
       <Text size="large">text</Text>
-      <Text size="huge">text</Text>
 
       <style>
         .bell-text + .bell-text {
@@ -66,4 +64,4 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 文本颜色 | primary, success, error, info, warning, title, content, muted | - | -
-size | 文本大小 | default, tiny, small, large, huge | - | default
+size | 文本大小 | default, small, large | - | default

@@ -13,21 +13,19 @@ class="${prefix}alert
 {{/if}}
 >
   {{#if showIcon}}
-    <span class="${prefix}alert-icon">
-      <Icon
-        name="{{
-          status === RAW_TYPE_SUCCESS
-            ? 'checkbox-circle-fill'
-            : status === RAW_TYPE_WARNING
-              ? 'error-warning-fill'
-              : status === RAW_TYPE_ERROR
-                ? 'close-circle-fill'
-                : 'information-fill'
-        }}"
-        size="0"
-        className="${prefix}alert-status-icon"
-      />
-    </span>
+    <Icon
+      name="{{
+        status === RAW_TYPE_SUCCESS
+          ? 'checkbox-circle-fill'
+          : status === RAW_TYPE_WARNING
+            ? 'error-warning-fill'
+            : status === RAW_TYPE_ERROR
+              ? 'close-circle-fill'
+              : 'information-fill'
+      }}"
+      size="0"
+      className="${prefix}alert-status-icon"
+    />
   {{/if}}
 
   {{#if hasSlot('title')}}

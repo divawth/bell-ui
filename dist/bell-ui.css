@@ -5300,21 +5300,13 @@ template {
   font-size: 14px;
   line-height: 1.477;
 }
-.bell-text-tiny {
-  font-size: 12px;
-  line-height: 1.333333333333333;
-}
 .bell-text-small {
-  font-size: 13px;
-  line-height: 1.3846;
+  font-size: 12px;
+  line-height: 1.333;
 }
 .bell-text-large {
   font-size: 16px;
   line-height: 1.625;
-}
-.bell-text-huge {
-  font-size: 18px;
-  line-height: 2;
 }
 .bell-text-white {
   color: #fff;
@@ -5445,7 +5437,7 @@ a:hover {
 }
 .bell-button-small {
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 12px;
   height: 24px;
   line-height: 22px;
   min-width: 24px;
@@ -5456,7 +5448,7 @@ a:hover {
   line-height: 24px;
 }
 .bell-button-small .bell-button-loading-icon {
-  font-size: 15px;
+  font-size: 14px;
 }
 .bell-button-large {
   border-radius: 4px;
@@ -5769,7 +5761,7 @@ a:hover {
 }
 .bell-button-group-small > .bell-button {
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 12px;
   height: 24px;
   line-height: 22px;
   min-width: 24px;
@@ -5780,7 +5772,7 @@ a:hover {
   line-height: 24px;
 }
 .bell-button-group-small > .bell-button .bell-button-loading-icon {
-  font-size: 15px;
+  font-size: 14px;
 }
 .bell-button-group-large > .bell-button {
   border-radius: 4px;
@@ -6057,7 +6049,7 @@ a:hover {
 }
 .bell-select-small .bell-select-value,
 .bell-select-small .bell-select-placeholder {
-  font-size: 13px;
+  font-size: 12px;
   height: 22px;
   line-height: 22px;
   padding-left: 7px;
@@ -6283,7 +6275,7 @@ a:hover {
   min-width: 24px;
 }
 .bell-input-small .bell-input-el {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 24px;
   padding: 0 7px;
 }
@@ -6294,20 +6286,20 @@ a:hover {
   right: 7px;
 }
 .bell-input-small .bell-input-el-with-prefix {
-  padding-left: 25px;
+  padding-left: 24px;
 }
 .bell-input-small .bell-input-el-with-suffix {
-  padding-right: 25px;
+  padding-right: 24px;
 }
 .bell-input-small .bell-input-prefix,
 .bell-input-small .bell-input-suffix {
-  margin-top: -6.5px;
+  margin-top: -6px;
 }
 .bell-input-small .bell-input-prefix-icon,
 .bell-input-small .bell-input-suffix-icon,
 .bell-input-small .bell-input-secure-icon,
 .bell-input-small .bell-input-clear-icon {
-  font-size: 13px;
+  font-size: 12px;
 }
 .bell-input-large > .bell-input-prepend,
 .bell-input-large > .bell-input-append,
@@ -6716,7 +6708,7 @@ a:hover {
   height: 24px;
 }
 .bell-input-number-small > .bell-input-number-el {
-  font-size: 13px;
+  font-size: 12px;
   padding: 0 7px;
 }
 .bell-input-number-small > .bell-input-number-actions {
@@ -6909,8 +6901,8 @@ a:hover {
   padding: 5px 12px;
 }
 .bell-textarea-small > .bell-textarea-el {
-  font-size: 13px;
-  padding: 3px 7px;
+  font-size: 12px;
+  padding: 2px 7px;
 }
 .bell-textarea-large > .bell-textarea-el {
   font-size: 16px;
@@ -7096,7 +7088,7 @@ a:hover {
   padding: 0 15px;
 }
 .bell-radio-button-small > .bell-radio {
-  font-size: 13px;
+  font-size: 12px;
   height: 24px;
   line-height: 22px;
   min-width: 24px;
@@ -7392,7 +7384,7 @@ a:hover {
 }
 .bell-datepicker-small .bell-datepicker-value,
 .bell-datepicker-small .bell-datepicker-placeholder {
-  font-size: 13px;
+  font-size: 12px;
   height: 22px;
   line-height: 22px;
   padding-left: 7px;
@@ -7759,13 +7751,13 @@ a:hover {
   padding: 0 8px;
 }
 .bell-pagination-small {
-  font-size: 13px;
+  font-size: 12px;
 }
 .bell-pagination-small .bell-pagination-item {
   min-width: 24px;
   height: 24px;
   line-height: 22px;
-  font-size: 13px;
+  font-size: 12px;
   padding: 0 6px;
 }
 .bell-pagination-select {
@@ -7821,11 +7813,6 @@ a:hover {
   height: 32px;
   line-height: 32px;
 }
-.bell-avatar-tiny {
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-}
 .bell-avatar-small {
   width: 24px;
   height: 24px;
@@ -7835,11 +7822,6 @@ a:hover {
   width: 40px;
   height: 40px;
   line-height: 40px;
-}
-.bell-avatar-huge {
-  width: 48px;
-  height: 48px;
-  line-height: 48px;
 }
 .bell-avatar + .bell-avatar {
   margin-left: 8px;
@@ -7867,33 +7849,33 @@ a:hover {
   box-sizing: border-box;
   border-radius: 4px;
   line-height: 1.57;
-  padding: 8px 15px;
+  padding: 9px 16px;
   transition: opacity 0.3s;
 }
 .bell-alert-info {
-  border-color: #abdcff;
-  background-color: #f0faff;
+  border-color: #91d5ff;
+  background-color: #e6f7ff;
 }
 .bell-alert-info .bell-alert-status-icon {
   color: #2db7f5;
 }
 .bell-alert-success {
   border-color: #8ce6b0;
-  background-color: #edfff3;
+  background-color: #f6ffed;
 }
 .bell-alert-success .bell-alert-status-icon {
   color: #19be6b;
 }
 .bell-alert-error {
-  border-color: #ffb08f;
-  background-color: #ffefe6;
+  border-color: #ffa39e;
+  background-color: #fff1f0;
 }
 .bell-alert-error .bell-alert-status-icon {
   color: #ed4014;
 }
 .bell-alert-warning {
-  border-color: #ffd77a;
-  background-color: #fff9e6;
+  border-color: #ffe58f;
+  background-color: #fffbe6;
 }
 .bell-alert-warning .bell-alert-status-icon {
   color: #f90;
@@ -7905,25 +7887,21 @@ a:hover {
 .bell-alert-center {
   text-align: center;
 }
-.bell-alert-icon {
-  position: absolute;
-  left: 15px;
-  top: 9px;
-}
 .bell-alert-status-icon {
+  position: absolute;
+  left: 16px;
+  top: 11px;
   font-size: 16px;
 }
-.bell-alert-with-title .bell-alert-icon {
-  top: 10px;
-}
-.bell-alert-with-title .bell-alert-status-icon {
-  font-size: 20px;
+.bell-alert-with-title > .bell-alert-status-icon {
+  top: 11px;
+  font-size: 22px;
 }
 .bell-alert-with-icon {
-  padding-left: 37px;
+  padding-left: 40px;
 }
 .bell-alert-with-icon.bell-alert-with-title {
-  padding-left: 41px;
+  padding-left: 50px;
 }
 .bell-alert-title {
   white-space: nowrap;
@@ -7940,14 +7918,14 @@ a:hover {
 }
 .bell-alert-close {
   position: absolute;
-  right: 15px;
-  top: 8px;
+  right: 16px;
+  top: 9px;
   font-size: 12px;
   min-width: 21px;
   height: 21px;
   line-height: 21px;
   cursor: pointer;
-  color: #aaa;
+  color: #2d8cf0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -7956,7 +7934,7 @@ a:hover {
   transition: color 0.3s;
 }
 .bell-alert-close:hover {
-  color: #666;
+  color: #57a3f3;
 }
 .bell-alert-close-icon {
   position: absolute;
@@ -7964,7 +7942,11 @@ a:hover {
   top: 50%;
   margin-left: -8px;
   margin-top: -8px;
+  color: #aaa;
   font-size: 16px;
+}
+.bell-alert-close-icon:hover {
+  color: #666;
 }
 .bell-alert-with-close .bell-alert-title,
 .bell-alert-with-close .bell-alert-content {
@@ -8698,7 +8680,7 @@ a:hover {
   font-size: 16px;
 }
 .bell-spin-small .bell-spin-text {
-  font-size: 13px;
+  font-size: 12px;
 }
 .bell-spin-large .bell-spin-icon {
   font-size: 30px;
@@ -9049,7 +9031,7 @@ a:hover {
   color: #fff;
 }
 .bell-tag-success {
-  background-color: #edfff3;
+  background-color: #f6ffed;
   border-color: #8ce6b0;
   color: #19be6b;
 }
@@ -9065,8 +9047,8 @@ a:hover {
   color: #fff;
 }
 .bell-tag-error {
-  background-color: #ffefe6;
-  border-color: #ffb08f;
+  background-color: #fff1f0;
+  border-color: #ffa39e;
   color: #ed4014;
 }
 .bell-tag-error > .bell-tag-close-icon {
@@ -9081,8 +9063,8 @@ a:hover {
   color: #fff;
 }
 .bell-tag-info {
-  background-color: #f0faff;
-  border-color: #abdcff;
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
   color: #2db7f5;
 }
 .bell-tag-info > .bell-tag-close-icon {
@@ -9097,8 +9079,8 @@ a:hover {
   color: #fff;
 }
 .bell-tag-warning {
-  background-color: #fff9e6;
-  border-color: #ffd77a;
+  background-color: #fffbe6;
+  border-color: #ffe58f;
   color: #f90;
 }
 .bell-tag-warning > .bell-tag-close-icon {
@@ -9672,7 +9654,7 @@ a:hover {
 }
 .bell-form-inline .bell-form-item + .bell-form-item {
   margin-top: 0;
-  margin-left: 8px;
+  margin-left: 16px;
 }
 .bell-dialog {
   position: fixed;

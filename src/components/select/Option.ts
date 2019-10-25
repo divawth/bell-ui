@@ -3,10 +3,12 @@ import Yox from 'yox'
 import template from './template/Option.hbs'
 
 import {
+  TRUE,
   FALSE,
   RAW_STRING,
   RAW_NUMBER,
   RAW_BOOLEAN,
+  UNDEFINED,
 } from '../constant'
 
 import {
@@ -43,42 +45,64 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
-  events: {
-    'sync.select': function (_, data) {
-      const { value, selected, multiple } = data
-      if (value === this.get('value')) {
-        this.set('isSelected', selected)
-      }
-      else if (selected && !multiple) {
-        this.set('isSelected', FALSE)
-      }
-    },
-    'clear.select': function () {
-      this.set('isSelected', FALSE)
+
+  data(options) {
+
+    const select = findComponentUpward(options.parent, '${prefix}select')
+
+    const props = options.props || {}
+
+    return {
+      isSelected: select
+        ? isOptionSelected(select.get('value'), props.value)
+        : FALSE
     }
   },
 
-  data(options) {
-    const select = findComponentUpward(options.parent, '${prefix}select')
-    return {
-      isSelected: select
-        ? isOptionSelected(select.get('value'), this.get('value'))
-        : FALSE,
+  watchers: {
+    isSelected(isSelected) {
+      this.fireEvent(isSelected)
     }
+  },
+
+  events: {
+    'change.select': function (_, data) {
+
+      const { value, selectedOptions } = data
+
+      const isSelected = isOptionSelected(value, this.get('value'))
+
+      this.set('isSelected', isSelected)
+
+      if (isSelected) {
+        selectedOptions.push({
+          text: this.getText(),
+          value: this.get('value')
+        })
+      }
+    },
   },
 
   methods: {
-    getText() {
+    clickOption(): void {
+      this.fireEvent(TRUE)
+    },
+    getText(): string {
       return this.get('text') || Yox.dom.text(this.$el)
+    },
+    fireEvent(isSelected: boolean) {
+      this.fire(
+        'update.selectOption',
+        {
+          isSelected,
+          value: this.get('value'),
+        }
+      )
     }
   },
 
-  afterMount() {
-    this.fire('add.selectOption')
-  },
-
   beforeDestroy() {
-    this.fire('remove.selectOption')
+    this.fireEvent(FALSE)
   }
 
 })

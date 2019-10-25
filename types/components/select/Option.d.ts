@@ -1,5 +1,14 @@
-declare const _default: import("yox").ComponentOptions<unknown, unknown, {
-    'sync.select': unknown;
-    'clear.select': unknown;
-}, unknown> & ThisType<import("yox").YoxInterface>;
+declare const _default: import("yox").ComponentOptions<unknown, {
+    isSelected: unknown;
+}, {
+    'change.select': unknown;
+}, {
+    clickOption(): void;
+    getText(): string;
+    fireEvent(isSelected: boolean): void;
+}> & ThisType<{
+    clickOption(): void;
+    getText(): string;
+    fireEvent(isSelected: boolean): void;
+} & import("yox").YoxInterface>;
 export default _default;

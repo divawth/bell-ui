@@ -16,26 +16,22 @@
 {$selector-alert-center}
   text-align center
 
-{$selector-alert-icon}
+{$selector-alert-status-icon}
   position absolute
   left $alert-padding-horizontal
   top $alert-padding-vertical + $alert-status-icon-top
-
-{$selector-alert-status-icon}
   font-size $alert-status-icon-size
 
 {$selector-alert-with-title}
-  {$selector-alert-icon}
+  > {$selector-alert-status-icon}
     top $alert-padding-vertical + $alert-status-icon-top-with-title
-
-  {$selector-alert-status-icon}
     font-size $alert-status-icon-size-with-title
 
 {$selector-alert-with-icon}
-  padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-icon-wrapper-gap
+  padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-status-icon-gap
 
   &{$selector-alert-with-title}
-    padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-icon-wrapper-gap
+    padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-status-icon-gap-with-title
 
 {$selector-alert-title}
   white-space nowrap
@@ -43,7 +39,7 @@
   font-size $font-size-default
 
   + {$selector-alert-content}
-    font-size $font-size-tiny
+    font-size $font-size-small
     margin-top $alert-title-content-gap
 
 {$selector-alert-content}
@@ -61,13 +57,13 @@
   line-height $alert-close-height
 
   cursor $cursor-clickable
-  color $brand-close-color
+  color $brand-primary
   user-select none
   text-align center
   transition color .3s
 
   &:hover
-    color $brand-close-color-hover
+    color $brand-primary-hover
 
 {$selector-alert-close-icon}
   position absolute
@@ -75,7 +71,11 @@
   top 50%
   margin-left -0.5 * $close-icon-size
   margin-top -0.5 * $close-icon-size
+  color $brand-close-color
   font-size $close-icon-size
+
+  &:hover
+    color $brand-close-color-hover
 
 {$selector-alert-with-close}
   {$selector-alert-title},

@@ -1,16 +1,12 @@
 > 基础用法
 
-提供五种大小的头像
+提供 4 种大小的头像
 
 ```js
 export default {
   template: `
     <div>
       <div>
-        <Avatar
-          size="huge"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
-        />
 
         <Avatar
           size="large"
@@ -26,17 +22,8 @@ export default {
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
         />
 
-        <Avatar
-          size="tiny"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
-        />
       </div>
       <div style="margin-top: 10px;">
-        <Avatar
-          circle
-          size="huge"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
-        />
 
         <Avatar
           circle
@@ -55,11 +42,6 @@ export default {
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
         />
 
-        <Avatar
-          circle
-          size="tiny"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
-        />
       </div>
     </div>
   `
@@ -172,7 +154,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-size | 大小 | string | `default`, `huge`, `large`, `small`, `tiny` | `default`
+size | 大小 | string | `default`, `large`, `small` | `default`
 circle | 是否为圆形 | boolean | - | `false`
 text | 文字 | string | - | -
 src | 图片地址 | string | - | -
