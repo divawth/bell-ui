@@ -1,4 +1,4 @@
-import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW } from './constant'
+import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW, BODY } from './constant'
 import Yox, { CustomEventInterface, Listener } from 'yox'
 
 const element = DOCUMENT.createElement('div')
@@ -45,6 +45,26 @@ export function onTransitionEnd(el: HTMLElement, callback: () => void) {
   }
 }
 
+
+const supportPageOffset = WINDOW.pageXOffset !== UNDEFINED
+const isCSS1Compat = (DOCUMENT.compatMode || '') === 'CSS1Compat'
+
+export function getPageX() {
+  return supportPageOffset
+    ? WINDOW.pageXOffset
+    : isCSS1Compat
+      ? DOCUMENT.documentElement.scrollLeft
+      : BODY.scrollLeft
+}
+
+export function getPageY() {
+  return supportPageOffset
+    ? WINDOW.pageYOffset
+    : isCSS1Compat
+      ? DOCUMENT.documentElement.scrollTop
+      : BODY.scrollTop
+}
+
 export const requestAnimationFrame = (
   WINDOW['webkitRequestAnimationFrame'] ||
   WINDOW['mozRequestAnimationFrame'] ||
@@ -62,10 +82,6 @@ export function contains(element: HTMLElement, target: HTMLElement) {
     return true
   }
   return false
-}
-
-export function isDef(value: any) {
-  return value !== UNDEFINED
 }
 
 export function toNumber(value: any, defaultValue?: any) {
@@ -167,24 +183,4 @@ export function scrollTop(
     })
   }
   scroll(from, to, step)
-}
-
-export function debounce(
-  fn: (event: CustomEventInterface) => void,
-  time: number,
-  immediate: boolean
-) {
-  let timer: any
-  return function () {
-    if (timer) return
-    let args = Array.prototype.slice.call(arguments)
-    if (immediate) {
-      fn.apply(NULL, args)
-    }
-    timer = setTimeout(function () {
-      if (!immediate) fn.apply(NULL, args)
-      clearTimeout(timer)
-      timer = NULL
-    }, time)
-  }
 }

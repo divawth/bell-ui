@@ -1,0 +1,47 @@
+<div
+class="${prefix}result
+{{#if status}} ${prefix}result-{{status}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}result-icon">
+    <slot name="icon">
+      <Icon
+        name="{{
+          status === RAW_TYPE_SUCCESS
+            ? 'checkbox-circle-fill'
+            : status === RAW_TYPE_WARNING
+              ? 'error-warning-fill'
+              : status === RAW_TYPE_ERROR
+                ? 'close-circle-fill'
+                : 'information-fill'
+        }}"
+        size="0"
+        className="${prefix}result-status-icon"
+      />
+    </slot>
+  </div>
+
+  {{#if title}}
+    <div class="${prefix}result-title">
+      {{title}}
+    </div>
+  {{/if}}
+
+  {{#if content}}
+    <div class="${prefix}result-content">
+      {{content}}
+    </div>
+  {{/if}}
+
+  {{#if hasSlot('extra')}}
+    <div class="${prefix}result-extra">
+      <slot name="extra" />
+    </div>
+  {{/if}}
+
+</div>

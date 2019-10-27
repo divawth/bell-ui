@@ -19,6 +19,7 @@ import {
   RAW_TYPE_ERROR,
   RAW_TYPE_DASHED,
   RAW_TYPE_LINK,
+  RAW_TYPE_TEXT,
 } from '../constant'
 
 import {
@@ -42,6 +43,7 @@ export default Yox.define({
         RAW_TYPE_ERROR,
         RAW_TYPE_DASHED,
         RAW_TYPE_LINK,
+        RAW_TYPE_TEXT,
       ]),
       value: 'pure'
     },

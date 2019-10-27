@@ -1,27 +1,12 @@
-import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
     percent: unknown;
-}, unknown, unknown, {
-    handleTouchStart(event: CustomEventInterface): void;
-    handleTouchEnd(event: CustomEventInterface): void;
-    handleTouchMove(event: CustomEventInterface): void;
-    handleDragMouseMove(event: CustomEventInterface): void;
-    handleMouseDown(event: CustomEventInterface): void;
-    handleDragMouseEnd(): void;
-    onDragStart(): void;
-    onDragStop(): void;
-    onDragUpdate(event: MouseEvent | TouchEvent): void;
-    setValue(event: MouseEvent | TouchEvent): void;
+    stops: unknown;
+}, {
+    value: unknown;
+    tooltipVisible: unknown;
+}, unknown, {
+    updateTooltipPosition(tooltip: HTMLElement): void;
 }> & ThisType<{
-    handleTouchStart(event: CustomEventInterface): void;
-    handleTouchEnd(event: CustomEventInterface): void;
-    handleTouchMove(event: CustomEventInterface): void;
-    handleDragMouseMove(event: CustomEventInterface): void;
-    handleMouseDown(event: CustomEventInterface): void;
-    handleDragMouseEnd(): void;
-    onDragStart(): void;
-    onDragStop(): void;
-    onDragUpdate(event: MouseEvent | TouchEvent): void;
-    setValue(event: MouseEvent | TouchEvent): void;
+    updateTooltipPosition(tooltip: HTMLElement): void;
 } & import("yox").YoxInterface>;
 export default _default;

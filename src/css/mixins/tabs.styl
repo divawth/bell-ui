@@ -5,9 +5,8 @@ size-size-style(style)
     ui-set('line-height', style['height'])
     ui-set('padding', 0 style['padding-horizontal'])
 
-  {$selector-tabs-tab-close-icon}
-    ui-set('margin-top', 0.5 * (style['height'] - $tabs-close-icon-size))
-
+  &{$selector-tabs-card} {$selector-tabs-tab}
+    ui-set('line-height', style['height'] - 2)
 
 ui-tabs()
   ui-connect(

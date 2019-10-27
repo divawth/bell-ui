@@ -37,7 +37,6 @@ import {
 
 const CLASS_VISIBLE = '${prefix}tooltip-visible'
 const CLASS_FADE = '${prefix}tooltip-fade'
-const CLASS_DISABLED = '${prefix}tooltip-disabled'
 
 export default Yox.define({
 
@@ -97,34 +96,27 @@ export default Yox.define({
   },
 
   watchers: {
-    disabled(disabled) {
-      if (disabled) {
-        Yox.dom.addClass(this.$el, CLASS_DISABLED)
-      }
-      else {
-        Yox.dom.removeClass(this.$el, CLASS_DISABLED)
-      }
+    disabled() {
       this.set('isVisible', FALSE)
     },
     isVisible(visible) {
-      const element = this.$el
       const popup = this.$refs.popup as HTMLElement
       if (visible) {
-        Yox.dom.addClass(element, CLASS_VISIBLE)
+        Yox.dom.addClass(popup, CLASS_VISIBLE)
         this.setPosition()
         setTimeout(
           function () {
-            Yox.dom.addClass(element, CLASS_FADE)
+            Yox.dom.addClass(popup, CLASS_FADE)
           },
           50
         )
       }
       else {
-        Yox.dom.removeClass(element, CLASS_FADE)
+        Yox.dom.removeClass(popup, CLASS_FADE)
         onTransitionEnd(
           popup,
           function () {
-            Yox.dom.removeClass(element, CLASS_VISIBLE)
+            Yox.dom.removeClass(popup, CLASS_VISIBLE)
           }
         )
       }

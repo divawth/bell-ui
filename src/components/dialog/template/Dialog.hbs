@@ -20,8 +20,10 @@ class="${prefix}dialog
   <div
     ref="wrapper"
     class="${prefix}dialog-wrapper"
-    {{#if width}}
-      style="width:{{width}}px"
+    {{#if width || height}}
+      style="
+        {{#if width}}width:{{width}}px;{{/if}}
+        {{#if height}}height:{{height}}px;{{/if}}"
     {{/if}}
   >
 

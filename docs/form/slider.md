@@ -5,9 +5,10 @@ export default {
   isViewFullBlock: true,
   height: 300,
   template: `
-  <div style="margin: 30px;">
+  <div style="padding-top: 50px">
     <Slider model="value" />
-    <Slider model="value" disabled></Slider>
+    <br><br>
+    <Slider model="value" disabled />
     <p>{{ value }}</p>
   </div>
   `,
@@ -19,72 +20,69 @@ export default {
 }
 ```
 
-> 设置最大最小值和步长
+> 最大值、最小值、步长
 
 ```js
 export default {
   template: `
-  <div style="margin: 30px;">
-    <Slider model="value2" min="{{60}}" max="{{100}}" step="{{10}}" />
+  <div style="padding-top: 50px">
+    <Slider
+      model="value"
+      min="10"
+      max="90"
+      step="10"
+    />
   </div>
   `,
   data: function () {
     return {
-      value2: 10
+      value: 50
     }
   }
 }
 ```
 
-> 设置type
+> 显示断点
 
 ```js
 export default {
   template: `
-  <div>
-    <Slider model="value2" type="error" />
-    <Slider model="value2" type="warning" />
-    <Slider model="value2" type="info" />
-    <Slider model="value2" type="success" />
+  <div style="padding-top: 50px">
+    <Slider
+      model="value"
+      min="10"
+      max="90"
+      step="10"
+      showStops
+    />
   </div>
   `,
   data: function () {
     return {
-      value2: 20
+      value: 50
     }
   }
 }
 ```
 
-> 和其他组件一起使用
+> 垂直滑块
 
 ```js
 export default {
   template: `
-  <div style="margin-top: 30px;">
-    <InputNumber model="value"
-      type="text"
-      placeholder="请输入..."
-      style="margin-bottom: 10px;"
-    >
-      <template slot="prepend">
-        <span>输入 percent:</span>
-      </template>
-      <template slot="append">
-        <span>%</span>
-      </template>
-    </InputNumber>
-    <Slider model="value" on-change="change()" />
+  <div style="padding-top: 50px;height: 200px;">
+    <Slider
+      model="value"
+      min="10"
+      max="90"
+      step="10"
+      vertical
+    />
   </div>
   `,
-  methods: {
-    change: function (event, data) {
-      console.log(data)
-    }
-  },
   data: function () {
     return {
-      value: 10
+      value: 50
     }
   }
 }
@@ -96,17 +94,11 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-value | 滑块选定的值 | number | - | -
-max | 最大值 | number | - | -
-min | 最小值 | number | - | -
-step | 步长 | number | - | 1
-disabled | 是否禁用 | boolean | - | false
-type | 类型 | string | - | -
+value / `model` | 滑块选定的值 | numeric | - | 0
+max | 最大值 | numeric | - | 100
+min | 最小值 | numeric | - | 0
+step | 步长 | numeric | - | 1
+showStops | 是否显示断点 | boolean | - | `false`
+vertical | 是否垂直 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | `false`
 
-> Slider events
-
-方法 | 说明 | 参数
----|---|--- 
-dragStart | 开始拖拽时回调 | -
-dragStop | 结束拖拽时回调 | -
-change | 值改变时回调 | percent

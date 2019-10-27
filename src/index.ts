@@ -22,6 +22,7 @@ import RadioGroup from './components/radio/RadioGroup'
 import Checkbox from './components/checkbox/Checkbox'
 import CheckboxGroup from './components/checkbox/CheckboxGroup'
 import Switch from './components/switch/Switch'
+import Slider from './components/slider/Slider'
 import Select from './components/select/Select'
 import Option from './components/select/Option'
 import OptionGroup from './components/select/OptionGroup'
@@ -51,6 +52,7 @@ import List from './components/list/List'
 import ListItem from './components/list/ListItem'
 
 import Empty from './components/empty/Empty'
+import Result from './components/result/Result'
 import Divider from './components/divider/Divider'
 
 import Circle from './components/circle/Circle'
@@ -100,6 +102,7 @@ const components = {
   Checkbox,
   CheckboxGroup,
   Switch,
+  Slider,
   Select,
   Option,
   OptionGroup,
@@ -126,6 +129,7 @@ const components = {
   List,
   ListItem,
   Empty,
+  Result,
   Divider,
   Circle,
   Progress,

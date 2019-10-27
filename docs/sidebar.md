@@ -23,6 +23,7 @@
   - [Switch 开关](form/switch)
   - [Table 表格](form/table)
   - [Select 选择器](form/select)
+  - [Slider 滑块](form/slider)
   - [DatePicker 日期选择器](form/datepicker)
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
@@ -43,6 +44,7 @@
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
   - [Empty 空状态](view/empty)
+  - [Result 结果页](view/result)
   - [Timeline 时间轴](view/timeline)
 
 - [其它](layout)

@@ -1,50 +1,105 @@
 {$selector-slider}
-  ui-slider()
-
-  width 100%
   user-select none
-  outline none
-  cursor $cursor-clickable
 
-  &{$selector-slider-dragging}
-    {$selector-slider-thumb}
-      transform scale(1.5)
+{$selector-slider-track}
+  background-color $slider-bg-color
+  border-radius $border-radius-round
+  position relative
 
-  &{$selector-slider}-disabled
-    cursor not-allowed
+{$selector-slider-bar}
+  background-color $brand-primary
+  border-radius $border-radius-round
+  position absolute
+  left 0
 
-    {$selector-slider-thumb}
-      cursor not-allowed
-      &:hover
-        transform scale(1)
+{$selector-slider-stop}
+  width $slider-thickness
+  height $slider-thickness
+  border-radius $border-radius-circle
+  background-color $brand-white
+  position absolute
 
-  {$selector-slider-bg}
-    width 100%
-    height $slider-height
-    border-radius $border-radius-default
-    background-color $brand-border
-    position relative
+{$selector-slider-thumb}
+  width $slider-thumb-size
+  height $slider-thumb-size
+  border-radius $border-radius-circle
+  background-color $brand-bg
+  box-sizing border-box
 
-  {$selector-slider-fill}
-    position absolute
-    left 0
-    top 0
+  position absolute
+
+  border 2px solid $brand-primary
+  transition transform .3s
+
+{$selector-tooltip-popup}
+  top auto
+
+{$selector-slider-vertical}
+  height 100%
+  width $slider-thickness
+  padding 0 0.5 * ($slider-thumb-size - $slider-thickness)
+
+  {$selector-slider-track}
+    width $slider-thickness
     height 100%
-    border-radius $border-radius-default
-    border-top-right-radius 0
-    border-bottom-right-radius 0
+
+  {$selector-slider-bar}
+    width $slider-thickness
+    bottom 0
+
+  {$selector-slider-stop}
+    left 0
 
   {$selector-slider-thumb}
-    width $slider-thumb-size
-    height $slider-thumb-size
-    position absolute
+    left 50%
+    margin-bottom -0.5 * $slider-thumb-size
+    margin-left -0.5 * $slider-thumb-size
+
+  {$selector-tooltip-popup}
+    left 0.5 * $slider-thumb-size + $slider-tooltip-gap
+
+{$selector-slider-horizontal}
+  width 100%
+  height $slider-thickness
+  padding 0.5 * ($slider-thumb-size - $slider-thickness) 0
+
+  {$selector-slider-track}
+    height $slider-thickness
+    width 100%
+
+  {$selector-slider-bar}
+    height $slider-thickness
+    top 0
+
+  {$selector-slider-stop}
+    top 0
+
+  {$selector-slider-thumb}
     top 50%
-    margin-top - $slider-height - 1
-    border-radius $border-radius-circle
-    background-color $brand-bg
-    border 2px solid transparent
-    margin-left -1px
-    transition transform .3s
+    margin-top -0.5 * $slider-thumb-size
+    margin-left -0.5 * $slider-thumb-size
+
+  {$selector-tooltip-popup}
+    bottom 0.5 * $slider-thumb-size + $slider-tooltip-gap
+
+{$selector-slider-enabled}
+  {$selector-slider-track}
+    cursor $cursor-clickable
+
+  {$selector-slider-thumb}
+    cursor $cursor-clickable
 
     &:hover
-      transform scale(1.5)
+      transform scale(1.3)
+
+{$selector-slider-disabled}
+  {$selector-slider-bar}
+    background-color $brand-disabled
+
+  {$selector-slider-thumb}
+    cursor $cursor-disabled
+    border-color $brand-disabled
+
+{$selector-slider-dragging}
+  {$selector-slider-thumb}
+    transform scale(1.3)

@@ -18,6 +18,7 @@
   display inline-block
   position relative
   box-sizing border-box
+  vertical-align bottom
 
   if $tabs-indicator-height > 0
     &:after
@@ -32,14 +33,10 @@
 
 {$selector-tabs-tab-icon}
   margin-right $ui-icon-text-gap
-  line-height inherit
-  vertical-align top
 
 {$selector-tabs-tab-close-icon}
   color $brand-close-color
   cursor $cursor-clickable
-  line-height inherit
-  vertical-align top
   margin-right -6px
   margin-left $ui-icon-text-gap
   font-size $tabs-close-icon-size

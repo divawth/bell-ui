@@ -50,6 +50,9 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 500,
     },
+    height: {
+      type: RAW_NUMERIC,
+    },
     className: {
       type: RAW_STRING,
     },

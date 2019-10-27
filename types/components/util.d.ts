@@ -1,10 +1,10 @@
-import { CustomEventInterface } from 'yox';
 export declare const screenWidth: number;
 export declare const supportTransform: boolean;
 export declare function onTransitionEnd(el: HTMLElement, callback: () => void): void;
+export declare function getPageX(): number;
+export declare function getPageY(): number;
 export declare const requestAnimationFrame: any;
 export declare function contains(element: HTMLElement, target: HTMLElement): boolean;
-export declare function isDef(value: any): boolean;
 export declare function toNumber(value: any, defaultValue?: any): number;
 export declare function toString(value: any, defaultValue?: any): string;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
@@ -12,4 +12,3 @@ export declare function oneOf(values: string[]): (key: string, value: string) =>
 export declare function isDate(key: string, value: Date): boolean;
 export declare function isDateValue(): (key: string, value: Date | Date[]) => boolean;
 export declare function scrollTop(element: HTMLElement | Window, from: number, to: number, duration?: number, endCallback?: () => void): void;
-export declare function debounce(fn: (event: CustomEventInterface) => void, time: number, immediate: boolean): () => void;

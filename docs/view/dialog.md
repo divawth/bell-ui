@@ -80,6 +80,7 @@ mask | 是否显示遮罩 | boolean | - | `true`
 closable | 是否展示关闭按钮 | boolean | - | `true`
 maskClosable | 点击遮罩是否关闭对话框 | boolean | - | `true`
 width | 显示宽度 | numeric | - | `500`
+height | 显示高度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

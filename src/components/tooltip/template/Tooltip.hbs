@@ -1,6 +1,5 @@
 <div class="${prefix}tooltip
-{{#if theme}} ${prefix}tooltip-{{theme}}{{/if}}
-{{#if placement}} ${prefix}tooltip-{{placement}}{{/if}}
+{{#if disabled}} ${prefix}tooltip-disabled{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -23,7 +22,9 @@
 
   <div
     ref="popup"
-    class="${prefix}tooltip-popup"
+    class="${prefix}tooltip-popup
+    {{#if theme}} ${prefix}tooltip-{{theme}}{{/if}}
+    {{#if placement}} ${prefix}tooltip-{{placement}}{{/if}}"
   >
     <div class="${prefix}tooltip-arrow"></div>
     <div
