@@ -8989,10 +8989,12 @@ a:hover {
   transition: width 0.3s;
 }
 .bell-slider {
+  display: inline-block;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  box-sizing: border-box;
 }
 .bell-slider-track {
   background-color: #e8eaec;
@@ -9019,6 +9021,7 @@ a:hover {
   background-color: #fff;
   box-sizing: border-box;
   position: absolute;
+  margin-left: -6px;
   border: 2px solid #2d8cf0;
   transition: transform 0.3s;
 }
@@ -9026,9 +9029,8 @@ a:hover {
   top: auto;
 }
 .bell-slider-vertical {
-  height: 100%;
-  width: 4px;
-  padding: 0 4px;
+  height: 200px;
+  padding: 6px 4px;
 }
 .bell-slider-vertical .bell-slider-track {
   width: 4px;
@@ -9040,19 +9042,18 @@ a:hover {
 }
 .bell-slider-vertical .bell-slider-stop {
   left: 0;
+  margin-bottom: -2px;
 }
 .bell-slider-vertical .bell-slider-thumb {
   left: 50%;
   margin-bottom: -6px;
-  margin-left: -6px;
 }
 .bell-slider-vertical .bell-tooltip-popup {
   left: 11px;
 }
 .bell-slider-horizontal {
-  width: 100%;
-  height: 4px;
-  padding: 4px 0;
+  width: 200px;
+  padding: 4px 6px;
 }
 .bell-slider-horizontal .bell-slider-track {
   height: 4px;
@@ -9064,11 +9065,11 @@ a:hover {
 }
 .bell-slider-horizontal .bell-slider-stop {
   top: 0;
+  margin-left: -2px;
 }
 .bell-slider-horizontal .bell-slider-thumb {
   top: 50%;
   margin-top: -6px;
-  margin-left: -6px;
 }
 .bell-slider-horizontal .bell-tooltip-popup {
   bottom: 11px;
@@ -9091,6 +9092,12 @@ a:hover {
 }
 .bell-slider-dragging .bell-slider-thumb {
   transform: scale(1.3);
+}
+.bell-slider-block {
+  display: block;
+}
+.bell-slider-block.bell-slider-horizontal {
+  width: 100%;
 }
 .bell-tag {
   display: inline-block;

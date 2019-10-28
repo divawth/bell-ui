@@ -8,12 +8,18 @@
 {{else}} ${prefix}slider-enabled
 {{/if}}
 
+{{#if block}} ${prefix}slider-block{{/if}}
+
 {{#if thumbIsDragging}} ${prefix}slider-dragging{{/if}}
 
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}}
-  style="{{style}}"
+{{#if width || height || style}}
+  style="
+  {{#if width}}width:{{width}}px;{{/if}}
+  {{#if height}}height:{{height}}px;{{/if}}
+  {{#if style}}{{style}}{{/if}}
+  "
 {{/if}}
 >
 
@@ -72,24 +78,30 @@
     >
     </div>
 
-    <div
-      ref="tooltip"
-      class="${prefix}tooltip-popup ${prefix}tooltip-dark
-      {{#if vertical}} ${prefix}tooltip-right
-      {{else}} ${prefix}tooltip-top
-      {{/if}}"
-      style="
-      {{#if vertical}}
-        bottom: {{percent}}%;
-      {{else}}
-        left: {{percent}}%;
-      {{/if}}"
-    >
-      <div class="${prefix}tooltip-arrow"></div>
-      <div class="${prefix}tooltip-content">
-        {{value}}
+    {{#if showTooltip}}
+      <div
+        ref="tooltip"
+        class="${prefix}tooltip-popup ${prefix}tooltip-dark
+        {{#if vertical}} ${prefix}tooltip-right
+        {{else}} ${prefix}tooltip-top
+        {{/if}}"
+        style="
+        {{#if vertical}}
+          bottom: {{percent}}%;
+        {{else}}
+          left: {{percent}}%;
+        {{/if}}"
+      >
+        <div class="${prefix}tooltip-arrow"></div>
+        <div class="${prefix}tooltip-content">
+          {{#if formatTooltip}}
+            {{formatTooltip(value)}}
+          {{else}}
+            {{value}}
+          {{/if}}
+        </div>
       </div>
-    </div>
+    {{/if}}
 
   </div>
 

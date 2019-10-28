@@ -2,8 +2,6 @@
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 300,
   template: `
   <div style="padding-top: 50px">
     <Slider model="value" />
@@ -65,18 +63,72 @@ export default {
 }
 ```
 
+> 显示 tooltip
+
+```js
+export default {
+  template: `
+  <div style="padding-top: 50px">
+    <Slider
+      model="value"
+      min="10"
+      max="90"
+      step="10"
+      showStops
+      showTooltip
+    />
+  </div>
+  `,
+  data: function () {
+    return {
+      value: 50
+    }
+  }
+}
+```
+
+> 格式化 tooltip
+
+```js
+export default {
+  template: `
+  <div style="padding-top: 50px">
+    <Slider
+      model="value"
+      min="10"
+      max="90"
+      step="10"
+      showStops
+      showTooltip
+      formatTooltip="{{formatTooltip}}"
+    />
+  </div>
+  `,
+  data: function () {
+    return {
+      value: 50,
+      formatTooltip: function (value) {
+        return '音量: ' + value
+      }
+    }
+  }
+}
+```
+
 > 垂直滑块
 
 ```js
 export default {
   template: `
-  <div style="padding-top: 50px;height: 200px;">
+  <div>
     <Slider
       model="value"
       min="10"
       max="90"
       step="10"
       vertical
+      showStops
+      showTooltip
     />
   </div>
   `,
@@ -99,6 +151,12 @@ max | 最大值 | numeric | - | 100
 min | 最小值 | numeric | - | 0
 step | 步长 | numeric | - | 1
 showStops | 是否显示断点 | boolean | - | `false`
+showTooltip | 是否显示 tooltip | boolean | - | `false`
 vertical | 是否垂直 | boolean | - | `false`
 disabled | 是否禁用 | boolean | - | `false`
-
+block | 是否为块级元素 | boolean | - | `false`
+formatTooltip | 格式化 tooltip 内容 | Function | - | -
+width | 显示宽度 | numeric | - | -
+height | 显示高度 | numeric | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

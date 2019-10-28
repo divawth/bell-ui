@@ -146,6 +146,15 @@ export default {
           placeholder="Select date"
         />
       </FormItem>
+      <FormItem label="Slider">
+        <Slider
+          model="form.slider"
+          min="0"
+          max="10"
+          showStops
+          showTooltip
+        />
+      </FormItem>
       <FormItem label="Radio">
         <RadioGroup model="form.radio">
           <Radio value="male">
@@ -211,7 +220,7 @@ export default {
         switch: true,
         date: '',
         time: '',
-        slider: [20, 50],
+        slider: 5,
         textarea: ''
       }
     }

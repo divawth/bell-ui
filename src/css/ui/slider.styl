@@ -1,5 +1,7 @@
 {$selector-slider}
+  display inline-block
   user-select none
+  box-sizing border-box
 
 {$selector-slider-track}
   background-color $slider-bg-color
@@ -27,7 +29,7 @@
   box-sizing border-box
 
   position absolute
-
+  margin-left -0.5 * $slider-thumb-size
   border 2px solid $brand-primary
   transition transform .3s
 
@@ -35,9 +37,8 @@
   top auto
 
 {$selector-slider-vertical}
-  height 100%
-  width $slider-thickness
-  padding 0 0.5 * ($slider-thumb-size - $slider-thickness)
+  height $ui-form-element-width
+  padding 0.5 * $slider-thumb-size 0.5 * ($slider-thumb-size - $slider-thickness)
 
   {$selector-slider-track}
     width $slider-thickness
@@ -49,19 +50,18 @@
 
   {$selector-slider-stop}
     left 0
+    margin-bottom -0.5 * $slider-thickness
 
   {$selector-slider-thumb}
     left 50%
     margin-bottom -0.5 * $slider-thumb-size
-    margin-left -0.5 * $slider-thumb-size
 
   {$selector-tooltip-popup}
     left 0.5 * $slider-thumb-size + $slider-tooltip-gap
 
 {$selector-slider-horizontal}
-  width 100%
-  height $slider-thickness
-  padding 0.5 * ($slider-thumb-size - $slider-thickness) 0
+  width $ui-form-element-width
+  padding 0.5 * ($slider-thumb-size - $slider-thickness) 0.5 * $slider-thumb-size
 
   {$selector-slider-track}
     height $slider-thickness
@@ -73,11 +73,11 @@
 
   {$selector-slider-stop}
     top 0
+    margin-left -0.5 * $slider-thickness
 
   {$selector-slider-thumb}
     top 50%
     margin-top -0.5 * $slider-thumb-size
-    margin-left -0.5 * $slider-thumb-size
 
   {$selector-tooltip-popup}
     bottom 0.5 * $slider-thumb-size + $slider-tooltip-gap
@@ -103,3 +103,9 @@
 {$selector-slider-dragging}
   {$selector-slider-thumb}
     transform scale(1.3)
+
+{$selector-slider-block}
+  display block
+
+  &{$selector-slider-horizontal}
+    width 100%

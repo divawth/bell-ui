@@ -218,7 +218,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-slider"+(a("vertical",$2)?" bell-slider-vertical":" bell-slider-horizontal")+(a("disabled",$2)?" bell-slider-disabled":" bell-slider-enabled")+(a("thumbIsDragging",$2)?" bell-slider-dragging":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-slider-track"),(!a("disabled",$2))?m("click","event.click",$0,"trackClick.slider","trackClick.slider"):""},function(){q("div",function(){g("className","bell-slider-bar"),g("style.cssText",a("vertical",$2)?("height: "+a("percent",$2)+"%;"):("width: "+a("percent",$2)+"%;"))}),a("showStops",$2)?(v(function(){q("div",function(){g("className","bell-slider-stop"),g("style.cssText",a("vertical",$2)?("bottom: "+a("",$3)+"%;"):("left: "+a("",$3)+"%;"))},$0,$0,$0,$0,$0,$0,$0,$0,a("",$3))},a("stops",$2,$0,$2),$0)):p(),q("div",function(){g("className","bell-slider-thumb"),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;")),m("mouseenter","event.mouseenter",$0,"thumbMouseEnter.slider","thumbMouseEnter.slider"),m("mouseleave","event.mouseleave",$0,"thumbMouseLeave.slider","thumbMouseLeave.slider"),h("mouseenter",100),h("mouseleave",100),(!a("disabled",$2))?m("mousedown","event.mousedown",$0,"thumbMouseDown.slider","thumbMouseDown.slider"):""}),q("div",function(){g("className","bell-tooltip-popup bell-tooltip-dark"+(a("vertical",$2)?" bell-tooltip-right":" bell-tooltip-top")),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;"))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content")},$0,y(a("value",$2)))},$0,$0,$0,$0,$0,$0,"tooltip")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-slider"+(a("vertical",$2)?" bell-slider-vertical":" bell-slider-horizontal")+(a("disabled",$2)?" bell-slider-disabled":" bell-slider-enabled")+(a("block",$2)?" bell-slider-block":"")+(a("thumbIsDragging",$2)?" bell-slider-dragging":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),((a("width",$2)||a("height",$2))||a("style",$2))&&g("style.cssText",(a("width",$2)?("width:"+y(a("width",$2))+"px;"):"")+(a("height",$2)?("height:"+y(a("height",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){q("div",function(){g("className","bell-slider-track"),(!a("disabled",$2))?m("click","event.click",$0,"trackClick.slider","trackClick.slider"):""},function(){q("div",function(){g("className","bell-slider-bar"),g("style.cssText",a("vertical",$2)?("height: "+a("percent",$2)+"%;"):("width: "+a("percent",$2)+"%;"))}),a("showStops",$2)?(v(function(){q("div",function(){g("className","bell-slider-stop"),g("style.cssText",a("vertical",$2)?("bottom: "+a("",$3)+"%;"):("left: "+a("",$3)+"%;"))},$0,$0,$0,$0,$0,$0,$0,$0,a("",$3))},a("stops",$2,$0,$2),$0)):p(),q("div",function(){g("className","bell-slider-thumb"),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;")),m("mouseenter","event.mouseenter",$0,"thumbMouseEnter.slider","thumbMouseEnter.slider"),m("mouseleave","event.mouseleave",$0,"thumbMouseLeave.slider","thumbMouseLeave.slider"),h("mouseenter",100),h("mouseleave",100),(!a("disabled",$2))?m("mousedown","event.mousedown",$0,"thumbMouseDown.slider","thumbMouseDown.slider"):""}),a("showTooltip",$2)?(q("div",function(){g("className","bell-tooltip-popup bell-tooltip-dark"+(a("vertical",$2)?" bell-tooltip-right":" bell-tooltip-top")),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;"))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content")},function(){a("formatTooltip",$2)?(e(y(d(a("formatTooltip",$2),[a("value",$2)])))):(e(y(a("value",$2))))})},$0,$0,$0,$0,$0,$0,"tooltip")):p()})})};
 
 /***/ }),
 /* 21 */
@@ -2169,6 +2169,10 @@ var Slider_CLASS_FADE = 'bell-tooltip-fade';
             type: RAW_NUMERIC,
             value: 1,
         },
+        block: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
         vertical: {
             type: RAW_BOOLEAN,
             value: FALSE,
@@ -2180,6 +2184,19 @@ var Slider_CLASS_FADE = 'bell-tooltip-fade';
         showStops: {
             type: RAW_BOOLEAN,
             value: FALSE,
+        },
+        showTooltip: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
+        formatTooltip: {
+            type: RAW_FUNCTION,
+        },
+        width: {
+            type: RAW_NUMERIC,
+        },
+        height: {
+            type: RAW_NUMERIC,
         },
         className: {
             type: RAW_STRING,
@@ -2197,10 +2214,17 @@ var Slider_CLASS_FADE = 'bell-tooltip-fade';
     },
     watchers: {
         value: function () {
-            this.updateTooltipPosition(this.$refs.tooltip);
+            var tooltip = this.$refs.tooltip;
+            if (!tooltip) {
+                return;
+            }
+            this.updateTooltipPosition(tooltip);
         },
         tooltipVisible: function (visible) {
             var tooltip = this.$refs.tooltip;
+            if (!tooltip) {
+                return;
+            }
             if (visible) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(tooltip, Slider_CLASS_VISIBLE);
                 this.updateTooltipPosition(tooltip);

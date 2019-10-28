@@ -11,6 +11,7 @@ import {
   RAW_NUMERIC,
   RAW_EVENT_MOUSEMOVE,
   RAW_EVENT_MOUSEUP,
+  RAW_FUNCTION,
 } from '../constant'
 
 import {
@@ -46,6 +47,10 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 1,
     },
+    block: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     vertical: {
       type: RAW_BOOLEAN,
       value: FALSE,
@@ -57,6 +62,19 @@ export default Yox.define({
     showStops: {
       type: RAW_BOOLEAN,
       value: FALSE,
+    },
+    showTooltip: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    formatTooltip: {
+      type: RAW_FUNCTION,
+    },
+    width: {
+      type: RAW_NUMERIC,
+    },
+    height: {
+      type: RAW_NUMERIC,
     },
     className: {
       type: RAW_STRING,
@@ -76,12 +94,22 @@ export default Yox.define({
 
   watchers: {
     value() {
-      this.updateTooltipPosition(
-        this.$refs.tooltip as HTMLElement
-      )
+
+      const tooltip = this.$refs.tooltip as HTMLElement
+      if (!tooltip) {
+        return
+      }
+
+      this.updateTooltipPosition(tooltip)
+
     },
     tooltipVisible(visible) {
+
       const tooltip = this.$refs.tooltip as HTMLElement
+      if (!tooltip) {
+        return
+      }
+
       if (visible) {
         Yox.dom.addClass(tooltip, CLASS_VISIBLE)
         this.updateTooltipPosition(tooltip)
@@ -101,6 +129,7 @@ export default Yox.define({
           }
         )
       }
+
     }
   },
 
