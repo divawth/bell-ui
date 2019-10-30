@@ -13,7 +13,7 @@ import {
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
   RAW_EVENT_KEYUP,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
@@ -50,7 +50,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     autoSize: {
@@ -82,6 +82,10 @@ export default Yox.define({
       value: FALSE,
     },
     readOnly: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    block: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

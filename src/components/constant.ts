@@ -98,12 +98,6 @@ export const RAW_SIZE_ARRAY = [
   RAW_LARGE,
 ]
 
-export const RAW_SIZE_COMMON = [
-  RAW_SMALL,
-  RAW_DEFAULT,
-  RAW_LARGE,
-]
-
 export const RAW_PLACEMENT_ARRAY = [
   RAW_TOP,
   RAW_TOP_START,

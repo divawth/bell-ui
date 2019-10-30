@@ -62,13 +62,13 @@ export default Yox.define({
   },
 
   watchers: {
-    visible(isOpen) {
+    visible(visible, oldVisible) {
 
       const me = this
       const element = me.$el
       const wrapper = me.$refs.wrapper as HTMLElement
 
-      if (isOpen) {
+      if (visible) {
 
         // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
@@ -91,7 +91,7 @@ export default Yox.define({
         )
 
       }
-      else {
+      else if (oldVisible) {
 
         Yox.dom.removeClass(element, CLASS_FADE)
         me.fire('close.dialog')

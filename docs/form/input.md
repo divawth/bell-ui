@@ -24,13 +24,11 @@ export default {
 ```js
 export default {
   template: `
-  <div>
-    <Input
-      placeholder="Basic usage"
-      model="value"
-      block
-    />
-  </div>
+  <Input
+    placeholder="Basic usage"
+    model="value"
+    block
+  />
   `
 }
 ```

@@ -12,7 +12,7 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_EVENT_KEYDOWN,
   RAW_TYPE_INFO,
@@ -40,7 +40,7 @@ export default Yox.define({
       type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     max: {
@@ -71,6 +71,10 @@ export default Yox.define({
       value: FALSE,
     },
     disabled: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    block: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },

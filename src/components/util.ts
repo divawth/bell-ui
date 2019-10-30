@@ -66,6 +66,7 @@ export function getPageY() {
 }
 
 export const requestAnimationFrame = (
+  WINDOW.requestAnimationFrame ||
   WINDOW['webkitRequestAnimationFrame'] ||
   WINDOW['mozRequestAnimationFrame'] ||
   WINDOW['msRequestAnimationFrame'] ||
@@ -76,12 +77,12 @@ export const requestAnimationFrame = (
 
 export function contains(element: HTMLElement, target: HTMLElement) {
   if (element.contains && element.contains(target)) {
-    return true
+    return TRUE
   }
   else if (element.compareDocumentPosition && element.compareDocumentPosition(target) > 16) {
-    return true
+    return TRUE
   }
-  return false
+  return FALSE
 }
 
 export function toNumber(value: any, defaultValue?: any) {
@@ -123,30 +124,11 @@ export function findComponentUpward(parent, componentName: string | string[]) {
 }
 
 export function oneOf(values: string[]) {
-  return function (key: string, value: string) {
+  return function (key: string, value: string, componentName: string | undefined) {
     if (!Yox.array.has(values, value)) {
-      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 ${value}。`)
+      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 [${value}]。`, componentName)
     }
-    return true
-  }
-}
-
-export function isDate(key: string, value: Date) {
-  if (value instanceof Date) {
-    return true
-  }
-  Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
-}
-
-export function isDateValue() {
-  return function (key: string, value: Date | Date[]) {
-    if (value instanceof Date) {
-      return true
-    }
-    else if (Yox.is.array(value)) {
-      return value.filter(date => date instanceof Date).length === value.length
-    }
-    Yox.logger.warn(`${key} 期望是 Date 类型，实际传值 ${value}。`)
+    return TRUE
   }
 }
 

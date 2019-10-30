@@ -99,7 +99,7 @@ export default Yox.define({
     disabled() {
       this.set('isVisible', FALSE)
     },
-    isVisible(visible) {
+    isVisible(visible, oldVisible) {
       const popup = this.$refs.popup as HTMLElement
       if (visible) {
         Yox.dom.addClass(popup, CLASS_VISIBLE)
@@ -111,7 +111,7 @@ export default Yox.define({
           50
         )
       }
-      else {
+      else if (oldVisible) {
         Yox.dom.removeClass(popup, CLASS_FADE)
         onTransitionEnd(
           popup,

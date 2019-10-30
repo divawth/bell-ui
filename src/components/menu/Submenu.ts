@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import Icon from '../icon/Icon'
+import Dropdown from '../dropdown/Dropdown'
 import template from './template/Submenu.hbs'
 
 import {
@@ -70,6 +71,7 @@ export default Yox.define({
 
   components: {
     Icon,
+    Dropdown,
   }
 
 })

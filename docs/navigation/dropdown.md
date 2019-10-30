@@ -4,41 +4,46 @@
 
 > 基础用法
 
-需要配合 DropdownMenu 和 DropdownItem 两个组件来使用。设置 slot 为 list。本例还展示了禁用项和分隔线。
+需要配合 DropdownMenu 和 DropdownItem 两个组件来使用。设置 slot 为 overlay。本例还展示了禁用项和分隔线。
 
 ```js
 export default {
   template: `
     <div>
-      <Dropdown>
+      <Dropdown
+        visible="{{visible1}}"
+        on-open="set('visible1', true)"
+        on-close="set('visible1', false)"
+      >
         <a href="javascript:void(0)">
           下拉菜单
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
-      <Dropdown style="margin-left: 20px">
+      <Dropdown
+        visible="{{visible2}}"
+        on-open="set('visible2', true)"
+        on-close="set('visible2', false)"
+        style="margin-left: 20px"
+      >
         <Button type="primary">
           下拉菜单
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </Button>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
     </div>
   `
@@ -53,49 +58,57 @@ export default {
 export default {
   template: `
     <div>
-      <Dropdown>
+      <Dropdown
+        visible="{{visible1}}"
+        on-open="set('visible1', true)"
+        on-close="set('visible1', false)"
+      >
         <a href="javascript:void(0)">
           hover 触发
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
-      <Dropdown trigger="click" style="margin-left: 20px">
+      <Dropdown
+        visible="{{visible2}}"
+        on-open="set('visible2', true)"
+        on-close="set('visible2', false)"
+        trigger="click"
+        style="margin-left: 20px"
+      >
         <a href="javascript:void(0)">
           click 触发
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
-      <Dropdown trigger="custom" visible="{{visible}}" style="margin-left: 20px">
-        <a href="javascript:void(0)" on-click="handleOpen()">
+      <Dropdown
+        visible="{{visible3}}"
+        trigger="custom"
+        style="margin-left: 20px"
+      >
+        <a href="javascript:void(0)" on-click="set('visible3', true)">
           custom 触发
-          <Icon type="arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <p style="padding: 0 10px;">常用于各种自定义下拉内容的场景。</p>
-            <div style="text-align: right;margin:10px;">
-              <Button type="primary" on-click="handleClose()">关闭</Button>
-            </div>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <p style="padding: 0 10px;">常用于各种自定义下拉内容的场景。</p>
+          <div style="text-align: right;margin:10px;">
+            <Button type="primary" on-click="set('visible3', false)">关闭</Button>
+          </div>
+        </DropdownMenu>
       </Dropdown>
       <style>
         p {
@@ -106,14 +119,6 @@ export default {
       </style>
     </div>
   `,
-  methods: {
-    handleOpen () {
-      this.set('visible', true)
-    },
-    handleClose () {
-      this.set('visible', false)
-    }
-  }
 }
 ```
 > 对齐方式
@@ -124,50 +129,60 @@ export default {
 export default {
   template: `
     <div>
-      <Dropdown placement="bottom-start">
+      <Dropdown
+        visible="{{visible1}}"
+        on-open="set('visible1', true)"
+        on-close="set('visible1', false)"
+        placement="bottom-start"
+      >
         <a href="javascript:void(0)">
           菜单(左)
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
-      <Dropdown style="margin-left: 20px">
+      <Dropdown
+        visible="{{visible2}}"
+        on-open="set('visible2', true)"
+        on-close="set('visible2', false)"
+        style="margin-left: 20px"
+      >
         <a href="javascript:void(0)">
           菜单(居中)
-          <Icon type="ios-arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
-      <Dropdown style="margin-left: 20px" placement="bottom-end">
+      <Dropdown
+        visible="{{visible3}}"
+        on-open="set('visible3', true)"
+        on-close="set('visible3', false)"
+        placement="bottom-end"
+        style="margin-left: 20px"
+      >
         <a href="javascript:void(0)">
           菜单(右)
-          <Icon type="arrow-down" />
+          <Icon name="arrow-down-s-line" />
         </a>
-        <template slot="list">
-          <DropdownMenu>
-            <DropdownItem>驴打滚</DropdownItem>
-            <DropdownItem>炸酱面</DropdownItem>
-            <DropdownItem disabled>豆汁儿</DropdownItem>
-            <DropdownItem>冰糖葫芦</DropdownItem>
-            <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-        </template>
+        <DropdownMenu slot="overlay">
+          <DropdownItem>驴打滚</DropdownItem>
+          <DropdownItem>炸酱面</DropdownItem>
+          <DropdownItem disabled>豆汁儿</DropdownItem>
+          <DropdownItem>冰糖葫芦</DropdownItem>
+          <DropdownItem divided>北京烤鸭</DropdownItem>
+        </DropdownMenu>
       </Dropdown>
     </div>
   `
@@ -179,9 +194,23 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-placement | 下拉框显示方位 | string | top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end | bottom
-trigger | 触发方式 | string | hover（悬停）click（点击）custom（自定义） | hover
-visible | 手动控制下拉框的显示，在 trigger = 'custom' 时使用 | boolean | - | false
+placement | 下拉框显示方位 | string | top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end | `bottom`
+trigger | 触发方式 | string | hover（悬停）click（点击）custom（自定义） | `hover`
+visible | 下拉框是否展开 | boolean | - | `false`
+
+> Events
+
+事件名称 | 说明 | 回调参数
+---|---|---
+open | 展开时触发 | -
+close | 关闭时触发 | -
+
+> Dropdown slots
+
+参数 | 说明
+---|---
+children | 触发 open/close 的元素
+overlay | open/close 的元素
 
 > DropdownItem Props
 

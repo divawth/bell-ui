@@ -45,6 +45,43 @@ export default {
 }
 ```
 
+> block
+
+```js
+export default {
+  template: `
+    <Select model="value" block>
+      {{#each list:index}}
+        <Option value="{{this.value}}" text="{{this.text}}" />
+      {{/each}}
+    </Select>
+  `,
+  data: function () {
+    return {
+      list: [
+        {
+          text: '深圳',
+          value: 1
+        },
+        {
+          text: '广州',
+          value: 2
+        },
+        {
+          text: '上海',
+          value: 3
+        },
+        {
+          text: '北京',
+          value: 4
+        }
+      ],
+      value: 2
+    }
+  }
+}
+```
+
 > 大小
 
 ```js
@@ -543,13 +580,14 @@ export default {
 ---|---|---|---|---
 value | 选中值 | string | - | -
 multiple | 是否支持多选 | boolean | - | -
-disabled | 是否禁用 | boolean | - | false
+disabled | 是否禁用 | boolean | - | `false`
 clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
-size | 大小 | string | default, small, large | default
-placement | 弹窗的展开方向 | string | bottom, top | -
+block | 是否为块级元素 | boolean | - | `false`
+size | 大小 | string | `default`, `small`, `large` | `default`
+placement | 弹窗的展开方向 | string | `bottom`, `top` | -
 placeholder | 选择框默认文字 | string | - | -
 prefix | 自定义 Select 内头部图标 | string | - | -
-width | 选择框宽度 | string, number | -
+width | 选择框宽度 | numeric | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

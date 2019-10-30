@@ -8,7 +8,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
 } from '../constant'
 
 import {
@@ -23,7 +23,7 @@ export default Yox.define({
 
   propTypes: {
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     name: {

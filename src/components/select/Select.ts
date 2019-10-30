@@ -1,7 +1,8 @@
-import Yox, { CustomEventInterface, YoxInterface } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
+import Dropdown from '../dropdown/Dropdown'
 import template from './template/Select.hbs'
 
 import {
@@ -17,7 +18,7 @@ import {
   RAW_NUMERIC,
   RAW_ARRAY,
   RAW_NUMBER,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM_START,
@@ -45,7 +46,7 @@ export default Yox.define({
       type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     disabled: {
@@ -61,6 +62,10 @@ export default Yox.define({
       value: FALSE,
     },
     clearable: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    block: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -245,8 +250,9 @@ export default Yox.define({
   },
 
   components: {
-    Icon,
     Tag,
+    Icon,
+    Dropdown,
   },
 
   afterMount() {

@@ -9,9 +9,9 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  RAW_FUNCTION,
   RAW_EVENT_MOUSEMOVE,
   RAW_EVENT_MOUSEUP,
-  RAW_FUNCTION,
 } from '../constant'
 
 import {
@@ -103,7 +103,7 @@ export default Yox.define({
       this.updateTooltipPosition(tooltip)
 
     },
-    tooltipVisible(visible) {
+    tooltipVisible(visible, oldVisible) {
 
       const tooltip = this.$refs.tooltip as HTMLElement
       if (!tooltip) {
@@ -120,7 +120,7 @@ export default Yox.define({
           50
         )
       }
-      else {
+      else if (oldVisible) {
         Yox.dom.removeClass(tooltip, CLASS_FADE)
         onTransitionEnd(
           tooltip,

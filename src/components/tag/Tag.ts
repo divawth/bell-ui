@@ -7,7 +7,7 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_TYPE_ARRAY,
   RAW_DEFAULT,
 } from '../constant'
@@ -29,7 +29,7 @@ export default Yox.define({
       type: oneOf(RAW_TYPE_ARRAY),
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     checkable: {

@@ -10,7 +10,7 @@ class="${prefix}dropdown ${prefix}dropdown-{{placement}}
   <div
     class="${prefix}dropdown-trigger"
     {{#if trigger === RAW_CLICK}}
-      on-click="toggle('isOpen')"
+      on-click="toggleVisible()"
     {{else if trigger === RAW_HOVER}}
       on-mouseenter="enter()"
       on-mouseleave="leave()"
@@ -20,8 +20,8 @@ class="${prefix}dropdown ${prefix}dropdown-{{placement}}
   </div>
 
   <div
-    ref="list"
-    class="${prefix}dropdown-list"
+    ref="overlay"
+    class="${prefix}dropdown-overlay"
     {{#if height > 0}}
       style="max-height: {{height}}px;"
     {{/if}}
@@ -31,7 +31,7 @@ class="${prefix}dropdown ${prefix}dropdown-{{placement}}
       on-mouseleave="leave()"
     {{/if}}
   >
-    <slot name="list" />
+    <slot name="overlay" />
   </div>
 
 </div>

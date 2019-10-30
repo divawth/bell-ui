@@ -13,6 +13,22 @@ export default {
 }
 ```
 
+> block
+
+```js
+export default {
+  template: `
+  <InputNumber
+    block
+    min="1"
+    max="10"
+    model="value"
+    placeholder="请输入..."
+  />
+  `,
+}
+```
+
 > 修改步值（不支持小数）
 
 ```js
@@ -258,8 +274,9 @@ min | 最小值 | numeric | - | -
 step | 每次改变的步进值 | numeric | - | `1`
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
-disabled | 是否禁用 | boolean | - | false
-editable | 是否可编辑 | boolean | - | true
+disabled | 是否禁用 | boolean | - | `false`
+editable | 是否可编辑 | boolean | - | `true`
+block | 是否为块级元素 | boolean | - | `false`
 autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
 readOnly | 原生 `readonly` 属性 | boolean | - | `false`
 formatter | 指定输入框展示值的格式 | Function | - | -

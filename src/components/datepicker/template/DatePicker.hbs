@@ -7,6 +7,7 @@
 
   {{#if status}} ${prefix}datepicker-{{status}}{{/if}}
   {{#if size}} ${prefix}datepicker-{{size}}{{/if}}
+  {{#if block}} ${prefix}datepicker-block{{/if}}
 
   {{#if disabled}} ${prefix}datepicker-disabled
   {{else}} ${prefix}datepicker-enabled
@@ -87,7 +88,7 @@
 
   </div>
 
-  <template slot="list">
+  <template slot="overlay">
 
     {{#if shortcuts && shortcuts.length > 0}}
       <div class="${prefix}datepicker-shortcut">

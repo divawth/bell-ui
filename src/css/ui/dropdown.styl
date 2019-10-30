@@ -7,7 +7,7 @@
 
 {$selector-dropdown-item}
   ui-ellipsis()
-  padding $dropdown-list-item-padding-vertical $dropdown-list-item-padding-horizontal
+  padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
   transition background-color .3s, color .3s
 
 {$selector-dropdown-item-active}
@@ -26,9 +26,9 @@
   cursor $cursor-disabled
 
 {$selector-dropdown-item} + {$selector-dropdown-item-divided}
-  margin-top $dropdown-list-inset
+  margin-top $dropdown-overlay-inset
   border-top 1px solid $brand-divider
-  padding-top $dropdown-list-item-padding-vertical + $dropdown-list-inset
+  padding-top $dropdown-item-padding-vertical + $dropdown-overlay-inset
   position relative
 
   &:before
@@ -38,12 +38,12 @@
     top 0
     left 0
     right 0
-    height $dropdown-list-inset
+    height $dropdown-overlay-inset
 
-{$selector-dropdown-list}
+{$selector-dropdown-overlay}
   font-size $ui-font-size
   line-height $ui-single-line-height
-  padding $dropdown-list-inset 0
+  padding $dropdown-overlay-inset 0
 
   overflow-y auto
   overflow-x hidden
@@ -62,37 +62,37 @@
   box-shadow $brand-layer-shadow
 
 {$selector-dropdown-visible}
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     display block
     opacity 0
 
 {$selector-dropdown-fade}
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     opacity 1
 
 {$selector-dropdown}-top,
 {$selector-dropdown}-top-start,
 {$selector-dropdown}-top-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     bottom 100%
-    margin-bottom $dropdown-trigger-list-gap
+    margin-bottom $dropdown-trigger-overlay-gap
     transform scaleY(0)
     transform-origin center bottom
 
   &{$selector-dropdown-fade}
-    > {$selector-dropdown-list}
+    > {$selector-dropdown-overlay}
       transform scaleY(1)
 
 {$selector-dropdown}-top
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     left 50%
 
 {$selector-dropdown}-top-start
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     left 0
 
 {$selector-dropdown}-top-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     right 0
 
 
@@ -101,26 +101,26 @@
 {$selector-dropdown}-left,
 {$selector-dropdown}-left-start,
 {$selector-dropdown}-left-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     right 100%
-    margin-right $dropdown-trigger-list-gap
+    margin-right $dropdown-trigger-overlay-gap
     transform scaleX(0)
     transform-origin right center
 
   &{$selector-dropdown-fade}
-    > {$selector-dropdown-list}
+    > {$selector-dropdown-overlay}
       transform scaleX(1)
 
 {$selector-dropdown}-left
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     top 50%
 
 {$selector-dropdown}-left-start
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     top 0
 
 {$selector-dropdown}-left-
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     bottom 0
 
 
@@ -129,26 +129,26 @@
 {$selector-dropdown}-right,
 {$selector-dropdown}-right-start,
 {$selector-dropdown}-right-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     left 100%
-    margin-left $dropdown-trigger-list-gap
+    margin-left $dropdown-trigger-overlay-gap
     transform scaleX(0)
     transform-origin left center
 
   &{$selector-dropdown-fade}
-    > {$selector-dropdown-list}
+    > {$selector-dropdown-overlay}
       transform scaleX(1)
 
 {$selector-dropdown}-right
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     top 50%
 
 {$selector-dropdown}-right-start
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     top 0
 
 {$selector-dropdown}-right-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     bottom 0
 
 
@@ -158,23 +158,23 @@
 {$selector-dropdown}-bottom,
 {$selector-dropdown}-bottom-start,
 {$selector-dropdown}-bottom-end
-  > {$selector-dropdown-list}
-    margin-top $dropdown-trigger-list-gap
+  > {$selector-dropdown-overlay}
+    margin-top $dropdown-trigger-overlay-gap
     transform scaleY(0)
     transform-origin center top
 
   &{$selector-dropdown-fade}
-    > {$selector-dropdown-list}
+    > {$selector-dropdown-overlay}
       transform scaleY(1)
 
 {$selector-dropdown}-bottom
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     left 50%
 
 {$selector-dropdown}-bottom-start
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     left 0
 
 {$selector-dropdown}-bottom-end
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     right 0

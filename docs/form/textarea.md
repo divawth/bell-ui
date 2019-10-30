@@ -11,6 +11,20 @@ export default {
 }
 ```
 
+> block
+
+```js
+export default {
+  template: `
+  <Textarea
+    model="value"
+    placeholder="请输入..."
+    block
+  />
+  `
+}
+```
+
 > 禁用状态
 
 ```js
@@ -132,11 +146,12 @@ placeholder | 输入框内容为空时的提示文本 | string | - | -
 disabled | 禁用输入框 | boolean | - | `false`
 rows | 行数 | number | - | 3
 autoSize | 自适应内容高度，格式如 `{ minRows: 2, maxRows: 6 }` | Object | - | -
-wrap | 原生 `wrap` 属性 | string | soft, hard | -
+block | 是否为块级元素 | boolean | - | `false`
 autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
 spellCheck | 原生 `spellcheck` 属性 | boolean | - | `false`
 readOnly | 原生 `readonly` 属性 | boolean | - | `false`
 maxLength | 原生 `maxlength` 属性 | numeric | - | -
+wrap | 原生 `wrap` 属性 | string | soft, hard | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

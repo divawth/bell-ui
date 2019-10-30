@@ -63,7 +63,7 @@ export default Yox.define({
   },
 
   watchers: {
-    visible(visible) {
+    visible(visible, oldVisible) {
 
       const me = this
       const element = me.$el
@@ -81,7 +81,7 @@ export default Yox.define({
         )
 
       }
-      else {
+      else if (oldVisible) {
 
         Yox.dom.removeClass(element, CLASS_FADE)
 

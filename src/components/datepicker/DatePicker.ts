@@ -1,6 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import Tag from '../tag/Tag'
+import Dropdown from '../dropdown/Dropdown'
 import DateView from './components/Date'
 import DateRange from './components/DateRange'
 import DateWeek from './components/DateWeek'
@@ -20,7 +21,7 @@ import {
   RAW_NUMERIC,
   RAW_FUNCTION,
   RAW_BOTTOM_START,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_PLACEMENT_ARRAY,
   RAW_TYPE_INFO,
@@ -74,7 +75,7 @@ export default Yox.define({
       type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     splitPanel: {
@@ -97,6 +98,10 @@ export default Yox.define({
       value: FALSE,
     },
     multiple: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
+    block: {
       type: RAW_BOOLEAN,
       value: FALSE,
     },
@@ -145,6 +150,7 @@ export default Yox.define({
 
   components: {
     Tag,
+    Dropdown,
     DateView,
     DateRange,
     DateWeek,

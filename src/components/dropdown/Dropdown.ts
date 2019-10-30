@@ -3,7 +3,6 @@ import Yox, { CustomEventInterface } from 'yox'
 import template from './template/Dropdown.hbs'
 
 import {
-  TRUE,
   FALSE,
   UNDEFINED,
   DOCUMENT,
@@ -63,14 +62,11 @@ export default Yox.define({
 
   watchers: {
     // 同步外部的传值
-    visible(isOpen: boolean) {
-      this.set({ isOpen })
-    },
-    isOpen(isOpen: boolean) {
+    visible(visible, oldVisible) {
       const me = this
       const element = me.$el as HTMLElement
-      const list = me.$refs.list as HTMLElement
-      if (isOpen) {
+      const overlay = me.$refs.overlay as HTMLElement
+      if (visible) {
 
         Yox.dom.addClass(element, CLASS_VISIBLE)
 
@@ -80,8 +76,8 @@ export default Yox.define({
 
         let cssText = ''
 
-        const width = list.offsetWidth
-        const height = list.offsetHeight
+        const width = overlay.offsetWidth
+        const height = overlay.offsetHeight
         switch (me.get('placement')) {
           case RAW_BOTTOM:
           case RAW_TOP:
@@ -93,7 +89,7 @@ export default Yox.define({
             break
         }
 
-        list.style.cssText = cssText
+        overlay.style.cssText = cssText
 
         setTimeout(
           function () {
@@ -102,10 +98,10 @@ export default Yox.define({
           50
         )
       }
-      else {
+      else if (oldVisible) {
         Yox.dom.removeClass(element, CLASS_FADE)
         onTransitionEnd(
-          list,
+          overlay,
           function () {
             Yox.dom.removeClass(element, CLASS_VISIBLE)
           }
@@ -116,7 +112,6 @@ export default Yox.define({
 
   data() {
     return {
-      isOpen: FALSE,
       RAW_HOVER,
       RAW_CLICK,
       RAW_CUSTOM,
@@ -125,7 +120,7 @@ export default Yox.define({
 
   events: {
     'click.dropdownItem': function () {
-      this.set('isOpen', FALSE)
+      this.fire('close.dropdown')
     }
   },
 
@@ -137,18 +132,28 @@ export default Yox.define({
         me.leaveTimer = UNDEFINED
       }
       else {
-        this.set('isOpen', TRUE)
+        this.fire('open.dropdown')
       }
     },
     leave() {
       const me = this as any
       me.leaveTimer = setTimeout(
         function () {
-          me.leaveTimer = UNDEFINED
-          me.set('isOpen', FALSE)
+          if (me.$el) {
+            me.leaveTimer = UNDEFINED
+            me.fire('close.dropdown')
+          }
         },
         300
       )
+    },
+    toggleVisible() {
+      if (this.get('visible')) {
+        this.fire('close.dropdown')
+      }
+      else {
+        this.fire('open.dropdown')
+      }
     }
   },
 
@@ -156,10 +161,8 @@ export default Yox.define({
 
     const me = this
 
-    const triggerByCustom = me.get('trigger') === RAW_CUSTOM
-
     const onClick = function (event: CustomEventInterface) {
-      if (!me.get('isOpen')) {
+      if (!me.get('visible')) {
         return
       }
       const element = me.$el
@@ -167,11 +170,11 @@ export default Yox.define({
       if (contains(element, target)) {
         return
       }
-      if (triggerByCustom) {
+      if (me.get('trigger') === RAW_CUSTOM) {
         me.fire('outside.dropdown')
       }
       else {
-        me.set('isOpen', FALSE)
+        me.fire('close.dropdown')
       }
     }
 

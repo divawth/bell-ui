@@ -10,6 +10,7 @@
   className="${prefix}select
   {{#if status}} ${prefix}select-{{status}}{{/if}}
   {{#if size}} ${prefix}select-{{size}}{{/if}}
+  {{#if block}} ${prefix}select-block{{/if}}
 
   {{#if disabled}} ${prefix}select-disabled
   {{else}} ${prefix}select-enabled
@@ -91,7 +92,7 @@
 
   </div>
 
-  <template slot="list">
+  <template slot="overlay">
     <slot name="children" />
   </template>
 

@@ -14,7 +14,7 @@ import {
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
   RAW_EVENT_KEYUP,
-  RAW_SIZE_COMMON,
+  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
@@ -41,7 +41,7 @@ export default Yox.define({
       type: [RAW_STRING, RAW_NUMBER],
     },
     size: {
-      type: oneOf(RAW_SIZE_COMMON),
+      type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
     type: {

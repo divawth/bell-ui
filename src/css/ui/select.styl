@@ -6,23 +6,27 @@
   text-align left
   position relative
 
-  > {$selector-dropdown-list}
+  > {$selector-dropdown-overlay}
     width 100%
-    max-height $select-dropdown-list-height
+    max-height $select-dropdown-overlay-height
 
   {$selector-dropdown-item-active}
     color $brand-primary
 
   ui-select()
 
+{$selector-select-block}
+  display block
+  width 100%
+
 {$selector-select-group}
   {$selector-dropdown-item}
-    padding-left $select-group-item-inset + $dropdown-list-item-padding-horizontal
+    padding-left $select-group-item-inset + $dropdown-item-padding-horizontal
 
 {$selector-select-group-title}
   color $brand-muted
   font-size 90%
-  padding $dropdown-list-item-padding-vertical $dropdown-list-item-padding-horizontal
+  padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
 
 {$selector-select-button-with-prefix}
   display inline-table
