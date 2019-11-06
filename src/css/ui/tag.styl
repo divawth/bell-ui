@@ -9,20 +9,20 @@
   transition background-color .3s, border-color .3s, color .3s
 
 {$selector-tag-checkable}
-  cursor $cursor-clickable
   user-select none
+  ui-clickable()
 
 {$selector-tag-close-icon}
   position absolute
   top 0
   right 0
   bottom 0
-  cursor $cursor-clickable
   text-align center
   color $brand-close-color
   font-size $tag-close-icon-size
   line-height inherit
   transition color .3s
+  ui-clickable()
 
   &:hover
     color $brand-close-color-hover

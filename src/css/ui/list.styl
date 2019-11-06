@@ -26,9 +26,10 @@
     margin-right $ui-horizontal-gap
 
 {$selector-list-item-clickable}
-  cursor $cursor-clickable
   user-select none
   transition background-color .3s
+  ui-clickable()
+
   &:hover
     background-color $brand-bg-hover
 

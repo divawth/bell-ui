@@ -28,7 +28,8 @@
 
 {$selector-datepicker-header-link}
   transition color .3s
-  cursor $cursor-clickable
+  ui-clickable()
+
   &:hover
     color $brand-primary
 
@@ -37,12 +38,12 @@
 
 {$selector-datepicker-header-button}
   color $brand-close-color
-  cursor $cursor-clickable
   display inline-block
   width $datepicker-header-button-width
   height $datepicker-header-button-height
   line-height $datepicker-header-button-height
   transition color .3s
+  ui-clickable()
 
   &:hover
     color $brand-close-color-hover
@@ -89,7 +90,7 @@
   background-color $datepicker-item-range-bg-color
 
 {$selector-datepicker-col-enabled}
-  cursor $cursor-clickable
+  ui-clickable()
   &:hover
     color $brand-primary
 

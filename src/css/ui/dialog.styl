@@ -62,9 +62,9 @@
   height $dialog-close-size
   line-height $dialog-close-size
   text-align center
-  cursor $cursor-clickable
   color $brand-close-color
   transition color .2s
+  ui-clickable()
 
   &:hover
     color $brand-close-color-hover
@@ -72,7 +72,6 @@
 {$selector-dialog-body}
   font-size $font-size-default
   line-height $ui-multiple-line-height
-  overflow-y auto
   padding $dialog-body-padding-vertical $dialog-padding-horizontal
 
 {$selector-dialog-footer}

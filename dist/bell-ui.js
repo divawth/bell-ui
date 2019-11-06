@@ -224,7 +224,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-slider"+(a("vertical",$2)?" bell-slider-vertical":" bell-slider-horizontal")+(a("disabled",$2)?" bell-slider-disabled":" bell-slider-enabled")+(a("block",$2)?" bell-slider-block":"")+(a("thumbIsDragging",$2)?" bell-slider-dragging":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),((a("width",$2)||a("height",$2))||a("style",$2))&&g("style.cssText",(a("width",$2)?("width:"+y(a("width",$2))+"px;"):"")+(a("height",$2)?("height:"+y(a("height",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){q("div",function(){g("className","bell-slider-track"),(!a("disabled",$2))?m("click","event.click",$0,"trackClick.slider","trackClick.slider"):""},function(){q("div",function(){g("className","bell-slider-bar"),g("style.cssText",a("vertical",$2)?("height: "+a("percent",$2)+"%;"):("width: "+a("percent",$2)+"%;"))}),a("showStops",$2)?(v(function(){q("div",function(){g("className","bell-slider-stop"),g("style.cssText",a("vertical",$2)?("bottom: "+a("",$3)+"%;"):("left: "+a("",$3)+"%;"))},$0,$0,$0,$0,$0,$0,$0,$0,a("",$3))},a("stops",$2,$0,$2),$0)):p(),q("div",function(){g("className","bell-slider-thumb"),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;")),m("mouseenter","event.mouseenter",$0,"thumbMouseEnter.slider","thumbMouseEnter.slider"),m("mouseleave","event.mouseleave",$0,"thumbMouseLeave.slider","thumbMouseLeave.slider"),h("mouseenter",100),h("mouseleave",100),(!a("disabled",$2))?m("mousedown","event.mousedown",$0,"thumbMouseDown.slider","thumbMouseDown.slider"):""}),a("showTooltip",$2)?(q("div",function(){g("className","bell-tooltip-popup bell-tooltip-dark"+(a("vertical",$2)?" bell-tooltip-right":" bell-tooltip-top")),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;"))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content")},function(){a("formatTooltip",$2)?(e(y(d(a("formatTooltip",$2),[a("value",$2)])))):(e(y(a("value",$2))))})},$0,$0,$0,$0,$0,$0,"tooltip")):p()})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-slider"+(a("vertical",$2)?" bell-slider-vertical":" bell-slider-horizontal")+(a("disabled",$2)?" bell-slider-disabled":" bell-slider-enabled")+(a("block",$2)?" bell-slider-block":"")+(a("thumbIsDragging",$2)?" bell-slider-dragging":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),((a("width",$2)||a("height",$2))||a("style",$2))&&g("style.cssText",(a("width",$2)?("width:"+y(a("width",$2))+"px;"):"")+(a("height",$2)?("height:"+y(a("height",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},function(){q("div",function(){g("className","bell-slider-track"),(!a("disabled",$2))?m("click","event.click",$0,"trackClick.slider","trackClick.slider"):""},function(){q("div",function(){g("className","bell-slider-bar"),g("style.cssText",a("vertical",$2)?("height: "+a("percent",$2)+"%;"):("width: "+a("percent",$2)+"%;"))}),a("showStops",$2)?(v(function(){q("div",function(){g("className","bell-slider-stop"),g("style.cssText",a("vertical",$2)?("bottom: "+a("",$3)+"%;"):("left: "+a("",$3)+"%;"))},$0,$0,$0,$0,$0,$0,$0,$0,a("",$3))},a("stops",$2,$0,$2),$0)):p(),q("div",function(){g("className","bell-slider-thumb"),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;")),m("mouseenter","event.mouseenter",$0,"thumbMouseEnter.slider","thumbMouseEnter.slider"),m("mouseleave","event.mouseleave",$0,"thumbMouseLeave.slider","thumbMouseLeave.slider"),h("mouseenter",500),h("mouseleave",500),(!a("disabled",$2))?m("mousedown","event.mousedown",$0,"thumbMouseDown.slider","thumbMouseDown.slider"):""}),a("showTooltip",$2)?(q("div",function(){g("className","bell-tooltip-popup bell-tooltip-dark"+(a("vertical",$2)?" bell-tooltip-right":" bell-tooltip-top")),g("style.cssText",a("vertical",$2)?("bottom: "+a("percent",$2)+"%;"):("left: "+a("percent",$2)+"%;"))},function(){q("div",function(){g("className","bell-tooltip-arrow")},$0,$0,$2),q("div",function(){g("className","bell-tooltip-content")},function(){a("formatTooltip",$2)?(e(y(d(a("formatTooltip",$2),[a("value",$2)])))):(e(y(a("value",$2))))})},$0,$0,$0,$0,$0,$0,"tooltip")):p()})})};
 
 /***/ }),
 /* 22 */
@@ -3066,7 +3066,7 @@ var Upload_default = /*#__PURE__*/__webpack_require__.n(Upload);
 
 // CONCATENATED MODULE: ./node_modules/soga/dist/soga.esm.js
 /**
- * soga.js v0.1.7
+ * soga.js v0.1.8
  * (c) 2017-2019 musicode
  * Released under the MIT License.
  */
@@ -3195,7 +3195,6 @@ function fetch(url, options = {}) {
     });
 }
 
-const blobSlice = File.prototype.slice || File.prototype['webkitSlice'] || File.prototype['mozSlice'];
 class AjaxUploader {
     static support() {
         const xhr = new XMLHttpRequest();
@@ -3341,6 +3340,7 @@ class AjaxUploader {
             headers[key] = options.headers[key];
         }
         setRequestHeaders(xhr, headers);
+        const blobSlice = File.prototype.slice || File.prototype['webkitSlice'] || File.prototype['mozSlice'];
         xhr.send(blobSlice.call(file, start, end));
     }
     /**
@@ -6550,7 +6550,7 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
         },
         width: {
             type: RAW_NUMERIC,
-            value: 500,
+            value: screenWidth > 1024 ? 500 : 300,
         },
         height: {
             type: RAW_NUMERIC,

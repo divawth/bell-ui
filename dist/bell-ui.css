@@ -5317,6 +5317,7 @@ template {
 .bell-dropdown-item-enabled {
   color: #515a6e;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-dropdown-item-enabled:hover,
 .bell-dropdown-item-enabled.bell-dropdown-item-hover {
@@ -5852,6 +5853,7 @@ a:hover {
 }
 .bell-button-enabled {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-button-enabled:hover:before,
 .bell-button-enabled:hover + .bell-button:before {
@@ -6179,8 +6181,9 @@ a:hover {
       -ms-user-select: none;
           user-select: none;
   color: #515a6e;
-  cursor: pointer;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-breadcrumb-link:hover {
   color: #2d8cf0;
@@ -6587,8 +6590,9 @@ a:hover {
 }
 .bell-input-secure,
 .bell-input-clear {
-  cursor: pointer;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-input-secure:hover,
 .bell-input-clear:hover {
@@ -6809,6 +6813,7 @@ a:hover {
 .bell-menu-item-enabled,
 .bell-submenu-title {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-menu-item-disabled {
   cursor: not-allowed;
@@ -7044,8 +7049,9 @@ a:hover {
 }
 .bell-input-number-up-enabled,
 .bell-input-number-down-enabled {
-  cursor: pointer;
   color: #aaa;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-input-number-up-enabled:hover,
 .bell-input-number-down-enabled:hover {
@@ -7183,6 +7189,7 @@ a:hover {
 .bell-radio-enabled,
 .bell-radio-enabled input {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-radio-disabled,
 .bell-radio-disabled input {
@@ -7366,6 +7373,7 @@ a:hover {
 .bell-checkbox-enabled,
 .bell-checkbox-enabled input {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-checkbox-disabled,
 .bell-checkbox-disabled input {
@@ -7525,6 +7533,7 @@ a:hover {
 .bell-switch-enabled,
 .bell-switch-enabled:before {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-switch-disabled,
 .bell-switch-disabled:before,
@@ -7696,6 +7705,7 @@ a:hover {
   text-overflow: ellipsis;
   word-break: keep-all;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   padding: 8px 10px;
 }
 .bell-datepicker-shortcut-item:hover {
@@ -7739,6 +7749,7 @@ a:hover {
 .bell-datepicker-header-link {
   transition: color 0.3s;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-datepicker-header-link:hover {
   color: #2d8cf0;
@@ -7748,12 +7759,13 @@ a:hover {
 }
 .bell-datepicker-header-button {
   color: #aaa;
-  cursor: pointer;
   display: inline-block;
   width: 26px;
   height: 26px;
   line-height: 26px;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-datepicker-header-button:hover {
   color: #666;
@@ -7801,6 +7813,7 @@ a:hover {
 }
 .bell-datepicker-col-enabled {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-datepicker-col-enabled:hover {
   color: #2d8cf0;
@@ -7852,6 +7865,7 @@ a:hover {
 }
 .bell-datepicker-week .bell-datepicker-row {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   border-radius: 100px;
 }
 .bell-datepicker-week .bell-datepicker-row:hover {
@@ -7862,6 +7876,7 @@ a:hover {
 }
 .bell-datepicker-week .bell-datepicker-col-disabled {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-pagination-list {
   display: inline-block;
@@ -7873,6 +7888,7 @@ a:hover {
   text-align: center;
   color: #515a6e;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-pagination-item {
   outline: 0;
@@ -7922,10 +7938,11 @@ a:hover {
 }
 .bell-pagination-ellipsis {
   display: inline-block;
-  cursor: pointer;
   width: 18px;
   text-align: center;
   margin: 0 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-pagination-ellipsis:after {
   content: '•••';
@@ -8134,7 +8151,6 @@ a:hover {
   min-width: 21px;
   height: 21px;
   line-height: 21px;
-  cursor: pointer;
   color: #2d8cf0;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8142,6 +8158,8 @@ a:hover {
           user-select: none;
   text-align: center;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-alert-close:hover {
   color: #57a3f3;
@@ -8306,10 +8324,11 @@ a:hover {
   position: absolute;
   right: 12px;
   top: 12px;
-  cursor: pointer;
   color: #aaa;
   font-size: 16px;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-message-close:hover {
   color: #666;
@@ -8393,11 +8412,12 @@ a:hover {
   position: absolute;
   right: 12px;
   top: 21px;
-  cursor: pointer;
   font-size: 16px;
   text-align: center;
   color: #aaa;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-notification-close:hover {
   color: #666;
@@ -8608,8 +8628,9 @@ a:hover {
   display: block;
 }
 .bell-collapse-enabled > .bell-collapse-header {
-  cursor: pointer;
   color: #17233d;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-collapse-disabled > .bell-collapse-header {
   cursor: not-allowed;
@@ -9114,12 +9135,13 @@ a:hover {
   margin-right: 8px;
 }
 .bell-list-item-clickable {
-  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   transition: background-color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-list-item-clickable:hover {
   background-color: #f5f7fa;
@@ -9250,9 +9272,11 @@ a:hover {
 }
 .bell-slider-enabled .bell-slider-track {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-slider-enabled .bell-slider-thumb {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-slider-enabled .bell-slider-thumb:hover {
   transform: scale(1.3);
@@ -9284,23 +9308,25 @@ a:hover {
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 .bell-tag-checkable {
-  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-tag-close-icon {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  cursor: pointer;
   text-align: center;
   color: #aaa;
   font-size: 14px;
   line-height: inherit;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-tag-close-icon:hover {
   color: #666;
@@ -9474,6 +9500,7 @@ a:hover {
 }
 .bell-rate-live > .bell-rate-icon-full {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-tabs-default .bell-tabs-tab {
   font-size: 14px;
@@ -9539,13 +9566,14 @@ a:hover {
 }
 .bell-tabs-tab-close-icon {
   color: #aaa;
-  cursor: pointer;
   margin-right: -6px;
   margin-left: 5px;
   font-size: 16px;
   text-align: center;
   overflow: hidden;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-tabs-tab-close-icon:hover {
   color: #666;
@@ -9554,6 +9582,7 @@ a:hover {
   border-color: #dcdee2;
   color: #515a6e;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-tabs-tab-enabled:hover {
   color: #2d8cf0;
@@ -9703,9 +9732,10 @@ a:hover {
   height: 18px;
   line-height: 18px;
   text-align: center;
-  cursor: pointer;
   color: #aaa;
   transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-drawer-close:hover {
   color: #666;
@@ -9883,9 +9913,10 @@ a:hover {
   height: 18px;
   line-height: 18px;
   text-align: center;
-  cursor: pointer;
   color: #aaa;
   transition: color 0.2s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-dialog-close:hover {
   color: #666;
@@ -9893,7 +9924,6 @@ a:hover {
 .bell-dialog-body {
   font-size: 14px;
   line-height: 1.57;
-  overflow-y: auto;
   padding: 24px 24px;
 }
 .bell-dialog-footer {
@@ -9972,7 +10002,6 @@ a:hover {
 .bell-backtop {
   position: fixed;
   z-index: 4;
-  cursor: pointer;
   background-color: #000;
   opacity: 0;
   display: none;
@@ -9983,6 +10012,8 @@ a:hover {
   line-height: 40px;
   border-radius: 4px;
   transition: opacity 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-backtop-visible {
   display: block;
@@ -9998,6 +10029,7 @@ a:hover {
 .bell-upload {
   display: inline-block;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-upload > input {
   display: none;
@@ -10087,12 +10119,14 @@ a:hover {
 }
 .bell-select-enabled .bell-select-button {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-select-enabled .bell-select-button:hover {
   border-color: #2d8cf0;
 }
 .bell-datepicker-enabled .bell-datepicker-button {
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-datepicker-enabled .bell-datepicker-button:hover {
   border-color: #2d8cf0;

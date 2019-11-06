@@ -12,6 +12,7 @@ import {
 } from '../constant'
 
 import {
+  screenWidth,
   onTransitionEnd,
 } from '../util'
 
@@ -48,7 +49,7 @@ export default Yox.define({
     },
     width: {
       type: RAW_NUMERIC,
-      value: 500,
+      value: screenWidth > 1024 ? 500 : 300,
     },
     height: {
       type: RAW_NUMERIC,

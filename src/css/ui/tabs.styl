@@ -36,13 +36,13 @@
 
 {$selector-tabs-tab-close-icon}
   color $brand-close-color
-  cursor $cursor-clickable
   margin-right -6px
   margin-left $ui-icon-text-gap
   font-size $tabs-close-icon-size
   text-align center
   overflow hidden
   transition color .3s
+  ui-clickable()
 
   &:hover
     color $brand-close-color-hover
@@ -50,7 +50,7 @@
 {$selector-tabs-tab-enabled}
   border-color $brand-border
   color $brand-content
-  cursor $cursor-clickable
+  ui-clickable()
 
   &:hover
     color $brand-primary
