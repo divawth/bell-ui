@@ -4,12 +4,11 @@ import template from './template/Avatar.hbs'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_DEFAULT,
   RAW_SIZE_ARRAY,
-  RAW_BOOLEAN,
+  RAW_SHAPE_CIRCLE,
 } from '../constant'
 
 import {
@@ -30,9 +29,8 @@ export default Yox.define({
       type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
-    circle: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
+    shape: {
+      type: oneOf([RAW_SHAPE_CIRCLE]),
     },
     text: {
       type: RAW_STRING,

@@ -17,10 +17,6 @@
   color $brand-content
   ui-clickable()
 
-  &:hover,
-  &{$selector-dropdown-item-hover}
-    background-color $brand-bg-hover
-
 {$selector-dropdown-item-disabled}
   color $brand-disabled
   cursor $cursor-disabled
@@ -60,6 +56,13 @@
   background-color $brand-bg
   border-radius $border-radius-default
   box-shadow $brand-layer-shadow
+  ui-scrollbar()
+
+  &:hover {$selector-dropdown-item-active}
+    background-color transparent
+
+  {$selector-dropdown-item-enabled}:hover
+    background-color $brand-bg-hover
 
 {$selector-dropdown-visible}
   > {$selector-dropdown-overlay}
@@ -119,7 +122,7 @@
   > {$selector-dropdown-overlay}
     top 0
 
-{$selector-dropdown}-left-
+{$selector-dropdown}-left-end
   > {$selector-dropdown-overlay}
     bottom 0
 

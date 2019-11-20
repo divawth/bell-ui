@@ -12,8 +12,8 @@
 
 {$selector-dialog-fade}
   > {$selector-dialog-wrapper}
+    margin-top 0
     opacity 1
-    transform translate(-50%, -50%) scale(1)
 
   > {$selector-dialog-mask}
     opacity $ui-opacity-mask
@@ -36,13 +36,16 @@
   position absolute
   left 50%
   top 50%
-  transform translate(-50%, -50%) scale(.4)
+
+  transform translate(-50%, -50%)
+  margin-top -20px
   opacity 0
 
   border-radius $border-radius-default
   background-color $brand-bg
   box-shadow $brand-dialog-shadow
-  transition transform .2s, opacity .2s
+  transition margin-top .6s cubic-bezier(.23,1,.32,1),
+              opacity .6s cubic-bezier(.23,1,.32,1)
 
 {$selector-dialog-header}
   ui-ellipsis()

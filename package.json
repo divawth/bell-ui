@@ -1,6 +1,6 @@
 {
   "name": "bell-ui",
-  "version": "0.10.7",
+  "version": "0.10.8",
   "main": "dist/bell-ui.js",
   "types": "dist/bell-ui.d.ts",
   "description": "bell ui",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "readme": "README",
   "dependencies": {
-    "soga": "^0.1.8",
+    "soga": "^0.1.9",
     "yox": "^1.0.0-alpha.118"
   },
   "devDependencies": {

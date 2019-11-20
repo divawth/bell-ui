@@ -3,6 +3,9 @@
   user-select none
   box-sizing border-box
 
+  {$selector-tooltip-popup}
+    top auto
+
 {$selector-slider-track}
   background-color $slider-bg-color
   border-radius $border-radius-round
@@ -32,9 +35,6 @@
   margin-left -0.5 * $slider-thumb-size
   border 2px solid $brand-primary
   transition transform .3s
-
-{$selector-tooltip-popup}
-  top auto
 
 {$selector-slider-vertical}
   height $ui-form-element-width

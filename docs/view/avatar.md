@@ -26,18 +26,18 @@ export default {
       <div style="margin-top: 10px;">
 
         <Avatar
-          circle
+          shape="circle"
           size="large"
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
         />
 
         <Avatar
-          circle
+          shape="circle"
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
         />
 
         <Avatar
-          circle
+          shape="circle"
           size="small"
           src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
         />
@@ -155,7 +155,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 size | 大小 | string | `default`, `large`, `small` | `default`
-circle | 是否为圆形 | boolean | - | `false`
+shape | 形状 | string | `circle`, `default` | `default`
 text | 文字 | string | - | -
 src | 图片地址 | string | - | -
 srcSet | 原生 `srcset` 属性 | string | - | -

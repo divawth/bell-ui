@@ -6,9 +6,11 @@
   color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
+  ui-scrollbar()
 
   > table
     box-sizing border-box
+    border-collapse collapse
     width 100%
     border 0
     margin 0
@@ -27,6 +29,10 @@
   tbody
     > tr:nth-child(2n)
       background-color $brand-bg-light
+
+      &:hover
+        background-color $table-row-highlight
+
 
 {$selector-table-bordered}
   border 1px solid $brand-border
@@ -50,7 +56,7 @@
 {$selector-table-body}
 
   tr:hover
-      background-color $table-row-highlight
+    background-color $table-row-highlight
 
   tr + tr
     border-top 1px solid $brand-divider

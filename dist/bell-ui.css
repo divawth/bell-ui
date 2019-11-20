@@ -5319,10 +5319,6 @@ template {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.bell-dropdown-item-enabled:hover,
-.bell-dropdown-item-enabled.bell-dropdown-item-hover {
-  background-color: #f5f7fa;
-}
 .bell-dropdown-item-disabled {
   color: #c5c8ce;
   cursor: not-allowed;
@@ -5359,7 +5355,30 @@ template {
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+.bell-dropdown-overlay::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-dropdown-overlay::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-dropdown-overlay::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-dropdown-overlay::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-dropdown-overlay::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
+.bell-dropdown-overlay:hover .bell-dropdown-item-active {
+  background-color: transparent;
+}
+.bell-dropdown-overlay .bell-dropdown-item-enabled:hover {
+  background-color: #f5f7fa;
 }
 .bell-dropdown-visible > .bell-dropdown-overlay {
   display: block;
@@ -5409,7 +5428,7 @@ template {
 .bell-dropdown-left-start > .bell-dropdown-overlay {
   top: 0;
 }
-.bell-dropdown-left- > .bell-dropdown-overlay {
+.bell-dropdown-left-end > .bell-dropdown-overlay {
   bottom: 0;
 }
 .bell-dropdown-right > .bell-dropdown-overlay,
@@ -5527,23 +5546,6 @@ a {
 }
 a:hover {
   color: #57a3f3;
-}
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar {
-  height: 4px;
-}
-::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,0);
-}
-::-webkit-scrollbar-thumb {
-  background-color: #d1d1d1;
-  border-radius: 10px;
-  transition: background-color 0.3s;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #b3b3b3;
 }
 .bell-button {
   display: inline-block;
@@ -6390,6 +6392,9 @@ a:hover {
 .bell-input + .bell-input {
   margin-left: 8px;
 }
+.bell-input + .bell-input-block {
+  margin-left: 0;
+}
 .bell-input-info .bell-input-el {
   border-color: #2db7f5;
 }
@@ -6787,6 +6792,23 @@ a:hover {
 .bell-menu-dark.bell-menu-inline .bell-menu-item-active {
   color: #fff;
   background-color: #2d8cf0;
+}
+.bell-menu::-webkit-scrollbar {
+  width: 0;
+}
+.bell-menu::-webkit-scrollbar {
+  height: 0;
+}
+.bell-menu::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-menu::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-menu::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
 }
 .bell-menu > .bell-dropdown {
   display: block;
@@ -8202,7 +8224,7 @@ a:hover {
 }
 .bell-card-header {
   position: relative;
-  padding: 12px 15px;
+  padding: 18px 24px;
 }
 .bell-card-header .bell-avatar {
   margin-right: 8px;
@@ -8229,7 +8251,7 @@ a:hover {
 }
 .bell-card-header-extra {
   position: absolute;
-  right: 15px;
+  right: 24px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -8245,7 +8267,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 8px 15px;
+  padding: 12px 24px;
   background-color: rgba(0,0,0,0.54);
 }
 .bell-card-media-title {
@@ -8257,10 +8279,10 @@ a:hover {
   font-size: 12px;
   color: #ccc;
   line-height: 1.15;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .bell-card-body {
-  padding: 12px 15px;
+  padding: 24px 24px;
   font-size: 14px;
   color: #515a6e;
   line-height: 1.57;
@@ -8269,7 +8291,7 @@ a:hover {
   padding-top: 0;
 }
 .bell-card-footer {
-  padding: 15px 15px;
+  padding: 24px 24px;
 }
 .bell-message {
   position: fixed;
@@ -9116,6 +9138,23 @@ a:hover {
 .bell-list-small .bell-list-item {
   padding: 8px 16px;
 }
+.bell-list::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-list::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-list::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-list::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-list::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
 .bell-list-empty {
   padding: 60px 0;
 }
@@ -9192,6 +9231,9 @@ a:hover {
           user-select: none;
   box-sizing: border-box;
 }
+.bell-slider .bell-tooltip-popup {
+  top: auto;
+}
 .bell-slider-track {
   background-color: #e8eaec;
   border-radius: 100px;
@@ -9220,9 +9262,6 @@ a:hover {
   margin-left: -6px;
   border: 2px solid #2d8cf0;
   transition: transform 0.3s;
-}
-.bell-tooltip-popup {
-  top: auto;
 }
 .bell-slider-vertical {
   height: 200px;
@@ -9723,6 +9762,23 @@ a:hover {
   box-sizing: border-box;
   height: calc(100% - 50px);
 }
+.bell-drawer-body::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-drawer-body::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-drawer-body::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-drawer-body::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-drawer-body::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
 .bell-drawer-close {
   position: absolute;
   right: 24px;
@@ -9859,8 +9915,8 @@ a:hover {
   display: block;
 }
 .bell-dialog-fade > .bell-dialog-wrapper {
+  margin-top: 0;
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 .bell-dialog-fade > .bell-dialog-mask {
   opacity: 0.5;
@@ -9885,12 +9941,13 @@ a:hover {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0.4);
+  transform: translate(-50%, -50%);
+  margin-top: -20px;
   opacity: 0;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.2s, opacity 0.2s;
+  transition: margin-top 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .bell-dialog-header {
   overflow: hidden;
@@ -9939,8 +9996,26 @@ a:hover {
   font-size: 14px;
   line-height: 1.57;
 }
+.bell-table::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-table::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-table::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-table::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-table::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
 .bell-table > table {
   box-sizing: border-box;
+  border-collapse: collapse;
   width: 100%;
   border: 0;
   margin: 0;
@@ -9956,6 +10031,9 @@ a:hover {
 }
 .bell-table-stripe tbody > tr:nth-child(2n) {
   background-color: #f8f8f8;
+}
+.bell-table-stripe tbody > tr:nth-child(2n):hover {
+  background-color: #ebf7ff;
 }
 .bell-table-bordered {
   border: 1px solid #dcdee2;

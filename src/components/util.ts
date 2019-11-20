@@ -30,7 +30,8 @@ const transitionEnd = testCSS('transition') ? 'transitionend' : ''
 export const supportTransform = testCSS('transform') ? TRUE : FALSE
 
 export function onTransitionEnd(el: HTMLElement, callback: () => void) {
-  if (transitionEnd) {
+  // 如果 el 已经被隐藏，则直接调用 callback
+  if (transitionEnd && (el.offsetWidth || el.offsetWidth)) {
     Yox.dom.on(
       el,
       transitionEnd,
