@@ -48,11 +48,14 @@ import CardMedia from './components/card/CardMedia'
 import CardBody from './components/card/CardBody'
 import CardFooter from './components/card/CardFooter'
 
+import PageHeader from './components/page/PageHeader'
+
 import List from './components/list/List'
 import ListItem from './components/list/ListItem'
 
 import Empty from './components/empty/Empty'
 import Result from './components/result/Result'
+import Exception from './components/exception/Exception'
 import Divider from './components/divider/Divider'
 
 import Circle from './components/circle/Circle'
@@ -76,7 +79,7 @@ import Table from './components/table/Table'
 import Message from './components/message/base'
 import Notification from './components/notification/base'
 import Modal from './components/modal/base'
-import LoadingBar from  './components/loadingBar/base'
+import LoadingBar from  './components/loading-bar/base'
 
 import { BODY } from './components/constant'
 
@@ -124,12 +127,15 @@ const components = {
   CardBody,
   CardFooter,
 
+  PageHeader,
+
   Collapse,
   CollapseItem,
   List,
   ListItem,
   Empty,
   Result,
+  Exception,
   Divider,
   Circle,
   Progress,

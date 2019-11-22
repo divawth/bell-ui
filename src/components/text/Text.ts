@@ -14,6 +14,7 @@ import {
   RAW_TYPE_CONTENT,
   RAW_TYPE_TITLE,
   RAW_TYPE_MUTED,
+  RAW_BOOLEAN,
 } from '../constant'
 
 import {
@@ -42,6 +43,12 @@ export default Yox.define({
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
+    },
+    bold: {
+      type: RAW_BOOLEAN,
+    },
+    block: {
+      type: RAW_BOOLEAN,
     },
     className: {
       type: RAW_STRING,

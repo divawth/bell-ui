@@ -26,7 +26,7 @@ export default Yox.define({
     title: {
       type: RAW_STRING,
     },
-    content: {
+    subTitle: {
       type: RAW_STRING,
     },
     status: {

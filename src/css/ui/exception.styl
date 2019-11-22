@@ -1,0 +1,35 @@
+{$selector-exception}
+  text-align center
+  // 顶部固定一张高度为 294 的图，再加上间距
+  padding $exception-padding-vertical + $result-icon-gap + 294 $exception-padding-horizontal $exception-padding-vertical
+
+{$selector-exception-403}
+  background url('~@css/images/exception-403.png') no-repeat 50% $exception-padding-vertical
+  background-image -webkit-image-set(
+    url('~@css/images/exception-403@2x.png') 2x
+  )
+
+{$selector-exception-404}
+  background url('~@css/images/exception-404.png') no-repeat 50% $exception-padding-vertical
+  background-image -webkit-image-set(
+    url('~@css/images/exception-404@2x.png') 2x
+  )
+
+{$selector-exception-500}
+  background url('~@css/images/exception-500.png') no-repeat 50% $exception-padding-vertical
+  background-image -webkit-image-set(
+    url('~@css/images/exception-500@2x.png') 2x
+  )
+
+{$selector-exception-title}
+  color $brand-title
+  font-size $exception-title-font-size
+  line-height 1.8
+
+{$selector-exception-sub-title}
+  color $brand-content
+  font-size $font-size-default
+  line-height 1.6
+
+{$selector-exception-extra}
+  margin-top $exception-extra-gap

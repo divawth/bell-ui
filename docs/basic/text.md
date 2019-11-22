@@ -7,12 +7,6 @@ export default {
       <Text size="small">text</Text>
       <Text>text</Text>
       <Text size="large">text</Text>
-
-      <style>
-        .bell-text + .bell-text {
-          margin-left: 5px;
-        }
-      </style>
     </div>
   `
 }
@@ -38,6 +32,29 @@ export default {
 }
 ```
 
+> 粗体
+
+```
+export default {
+  template: `
+    <Text bold>text</Text>
+  `
+}
+```
+
+> 块级
+
+```
+export default {
+  template: `
+    <div>
+      <Text block>text</Text>
+      <Text block>text</Text>
+    </div>
+  `
+}
+```
+
 #### API
 
 > Props
@@ -46,3 +63,5 @@ export default {
 ---|---|---|---|---
 type | 文本颜色 | primary, success, error, info, warning, title, content, muted | - | -
 size | 文本大小 | default, small, large | - | default
+bold | 是否粗体 | boolean | - | -
+block | 是否块级 | boolean | - | -

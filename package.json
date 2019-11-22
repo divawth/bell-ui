@@ -1,6 +1,6 @@
 {
   "name": "bell-ui",
-  "version": "0.10.8",
+  "version": "0.10.9",
   "main": "dist/bell-ui.js",
   "types": "dist/bell-ui.d.ts",
   "description": "bell ui",
@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "webpack --config build/wepack.prod.config.js && npm run dts",
-    "style": "stylus -w src/css/index.styl -o dist/bell-ui.css",
+    "style": "stylus -w src/index.styl -o dist/bell-ui.css",
     "dts": "./node_modules/.bin/dts-bundle-generator -o dist/bell-ui.d.ts types/index.d.ts"
   },
   "author": "",

@@ -80,7 +80,7 @@ style="
               {{/each}}
             </td>
 
-            {{else if list[ index ][ this.key ]}}
+            {{else if list[ index ][ this.key ] !== undefined}}
 
               <td
                 {{#if this.align}}

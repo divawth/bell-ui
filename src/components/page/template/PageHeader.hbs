@@ -1,0 +1,37 @@
+<div
+class="${prefix}page-header
+{{#if showBack}} ${prefix}page-header-with-back{{/if}}
+{{#if hasSlot('extra')}} ${prefix}page-header-with-extra{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <slot name="breadcrumb" />
+
+  <div class="${prefix}page-header-header">
+
+    {{#if showBack}}
+      <Icon
+        name="arrow-left-line"
+        size="0"
+        className="${prefix}page-header-back"
+        on-click.native="back.pageHeader"
+      />
+    {{/if}}
+    <div class="${prefix}page-header-title">
+      {{title}}
+    </div>
+    {{#if hasSlot('extra')}}
+      <div class="${prefix}page-header-extra">
+        <slot name="extra" />
+      </div>
+    {{/if}}
+
+  </div>
+
+  <slot name="content" />
+
+</div>

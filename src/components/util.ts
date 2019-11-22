@@ -124,8 +124,8 @@ export function findComponentUpward(parent, componentName: string | string[]) {
   return parent
 }
 
-export function oneOf(values: string[]) {
-  return function (key: string, value: string, componentName: string | undefined) {
+export function oneOf(values: any[]) {
+  return function (key: string, value: any, componentName: string | undefined) {
     if (!Yox.array.has(values, value)) {
       Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 [${value}]。`, componentName)
     }

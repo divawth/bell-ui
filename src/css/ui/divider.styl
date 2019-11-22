@@ -1,6 +1,6 @@
 {$selector-divider}
   box-sizing border-box
-  background-color $brand-border
+  background-color $brand-divider
 
 {$selector-divider-horizontal}
   display block
@@ -23,7 +23,7 @@
 
 {$selector-divider-dashed}
   background-color transparent
-  border-top 1px dashed $brand-border
+  border-top 1px dashed $brand-divider
 
 {$selector-divider-with-text}
 
@@ -32,15 +32,16 @@
   background-color transparent
   border-top 0
 
-  color $brand-content
+  color $brand-title
   font-size $font-size-default
+  font-weight 500
 
   &:before,
   &:after
     content ''
     position relative
     display table-cell
-    border-top 1px solid $brand-border
+    border-top 1px solid $brand-divider
     transform translateY(50%)
     top 50%
     width 50%

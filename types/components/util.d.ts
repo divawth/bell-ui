@@ -8,5 +8,5 @@ export declare function contains(element: HTMLElement, target: HTMLElement): boo
 export declare function toNumber(value: any, defaultValue?: any): number;
 export declare function toString(value: any, defaultValue?: any): string;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
-export declare function oneOf(values: string[]): (key: string, value: string, componentName: string) => boolean;
+export declare function oneOf(values: any[]): (key: string, value: any, componentName: string) => boolean;
 export declare function scrollTop(element: HTMLElement | Window, from: number, to: number, duration?: number, endCallback?: () => void): void;

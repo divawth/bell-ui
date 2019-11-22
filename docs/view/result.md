@@ -8,7 +8,7 @@ export default {
     <Result
       status="success"
       title="Successfully Purchased Cloud Server ECS!"
-      content="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+      subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
     >
       <template slot="extra">
         <Button type="primary">
@@ -33,7 +33,7 @@ export default {
     <Result
       status="error"
       title="Submission Failed"
-      content="Please check and modify the following information before resubmitting."
+      subTitle="Please check and modify the following information before resubmitting."
     >
       <template slot="extra">
         <Button type="primary">
@@ -122,7 +122,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 title | 标题 | string | - | -
-content | 内容 | string | - | -
+subTitle | 内容 | string | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

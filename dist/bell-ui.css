@@ -5534,6 +5534,12 @@ template {
 .bell-text-muted {
   color: #808695;
 }
+.bell-text-bold {
+  font-weight: bold;
+}
+.bell-text-block {
+  display: block;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   color: #515a6e;
@@ -6093,10 +6099,9 @@ a:hover {
 .bell-result-title {
   color: #17233d;
   font-size: 24px;
-  font-weight: bold;
   line-height: 1.8;
 }
-.bell-result-content {
+.bell-result-sub-title {
   color: #515a6e;
   font-size: 14px;
   line-height: 1.6;
@@ -6104,9 +6109,38 @@ a:hover {
 .bell-result-extra {
   margin-top: 32px;
 }
+.bell-exception {
+  text-align: center;
+  padding: 366px 32px 48px;
+}
+.bell-exception-403 {
+  background: url(img/exception-403.png) no-repeat 50% 48px;
+  background-image: -webkit-image-set(url(img/exception-403@2x.png) 2x);
+}
+.bell-exception-404 {
+  background: url(img/exception-404.png) no-repeat 50% 48px;
+  background-image: -webkit-image-set(url(img/exception-404@2x.png) 2x);
+}
+.bell-exception-500 {
+  background: url(img/exception-500.png) no-repeat 50% 48px;
+  background-image: -webkit-image-set(url(img/exception-500@2x.png) 2x);
+}
+.bell-exception-title {
+  color: #17233d;
+  font-size: 24px;
+  line-height: 1.8;
+}
+.bell-exception-sub-title {
+  color: #515a6e;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.bell-exception-extra {
+  margin-top: 32px;
+}
 .bell-divider {
   box-sizing: border-box;
-  background-color: #dcdee2;
+  background-color: #e8eaec;
 }
 .bell-divider-horizontal {
   display: block;
@@ -6129,22 +6163,23 @@ a:hover {
 }
 .bell-divider-dashed {
   background-color: transparent;
-  border-top: 1px dashed #dcdee2;
+  border-top: 1px dashed #e8eaec;
 }
 .bell-divider-with-text {
   display: table;
   white-space: nowrap;
   background-color: transparent;
   border-top: 0;
-  color: #515a6e;
+  color: #17233d;
   font-size: 14px;
+  font-weight: 500;
 }
 .bell-divider-with-text:before,
 .bell-divider-with-text:after {
   content: '';
   position: relative;
   display: table-cell;
-  border-top: 1px solid #dcdee2;
+  border-top: 1px solid #e8eaec;
   transform: translateY(50%);
   top: 50%;
   width: 50%;
@@ -8078,9 +8113,12 @@ a:hover {
 .bell-avatar > .bell-icon {
   vertical-align: middle;
 }
-.bell-avatar-image {
+.bell-avatar > img {
   width: 100%;
   height: 100%;
+}
+.bell-avatar-image {
+  background-color: transparent;
 }
 .bell-avatar-text {
   color: #fff;
@@ -8286,6 +8324,7 @@ a:hover {
   font-size: 14px;
   color: #515a6e;
   line-height: 1.57;
+  position: relative;
 }
 .bell-card-body + .bell-card-footer {
   padding-top: 0;
@@ -8462,6 +8501,9 @@ a:hover {
 }
 .bell-badge {
   position: relative;
+}
+.bell-badge > .bell-avatar {
+  vertical-align: middle;
 }
 .bell-badge-dot {
   display: inline-block;
@@ -9719,6 +9761,58 @@ a:hover {
 .bell-timeline-pending .bell-timeline-item:nth-last-of-type(2):before {
   border-left-style: dotted;
 }
+.bell-page-header {
+  padding: 16px 24px;
+}
+.bell-page-header > .bell-breadcrumb {
+  margin-bottom: 10px;
+}
+.bell-page-header-with-back .bell-page-header-header,
+.bell-page-header-with-extra .bell-page-header-header {
+  display: table;
+}
+.bell-page-header-with-back .bell-page-header-back,
+.bell-page-header-with-extra .bell-page-header-back,
+.bell-page-header-with-back .bell-page-header-title,
+.bell-page-header-with-extra .bell-page-header-title,
+.bell-page-header-with-back .bell-page-header-extra,
+.bell-page-header-with-extra .bell-page-header-extra {
+  display: table-cell;
+  vertical-align: middle;
+}
+.bell-page-header-with-back .bell-page-header-title,
+.bell-page-header-with-extra .bell-page-header-title {
+  width: 100%;
+}
+.bell-page-header-title {
+  color: #17233d;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.bell-page-header-back {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  color: #17233d;
+  font-size: 20px;
+  padding-right: 10px;
+  transition: color 0.3s;
+  position: relative;
+  left: -3px;
+}
+.bell-page-header-back:hover {
+  color: #2d8cf0;
+}
+.bell-page-header-extra {
+  white-space: nowrap;
+}
+.bell-page-header-back,
+.bell-page-header-extra {
+  width: 1px;
+}
+.bell-page-header-header {
+  margin-bottom: 16px;
+}
 .bell-drawer {
   position: fixed;
   left: 0;
@@ -9992,6 +10086,7 @@ a:hover {
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
+  position: relative;
   color: #515a6e;
   font-size: 14px;
   line-height: 1.57;

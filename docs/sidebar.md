@@ -12,6 +12,7 @@
   - [Dropdown 下拉框](navigation/dropdown)
   - [Pagination 分页](navigation/pagination)
   - [Breadcrumb 面包屑](navigation/breadcrumb)
+  - [PageHeader 页头](navigation/pageheader)
   - [Badge 徽标数](view/badge)
   - [LoadingBar 加载条](other/loadingbar)
 
@@ -45,6 +46,7 @@
   - [List 列表](view/list)
   - [Empty 空状态](view/empty)
   - [Result 结果页](view/result)
+  - [Exception 异常页](view/exception)
   - [Timeline 时间轴](view/timeline)
 
 - [其它](layout)

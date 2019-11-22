@@ -5,6 +5,10 @@
 {$selector-badge}
   position relative
 
+  // 避免底部有空隙，即 badge height > avatar height
+  > {$selector-avatar}
+    vertical-align middle
+
 {$selector-badge-dot}
   display inline-block
   box-sizing border-box
@@ -76,13 +80,12 @@
       border 1px solid
       animation bell-badge-ripple 1.2s infinite ease-in-out
 
-@keyframes bell-badge-ripple {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
-}
+@keyframes bell-badge-ripple
+  0%
+    transform scale(0.8)
+    opacity 0.5
+
+  100%
+    transform scale(2.4)
+    opacity 0
+

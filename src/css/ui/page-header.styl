@@ -1,0 +1,52 @@
+{$selector-page-header}
+  padding $page-header-padding-vertical $page-header-padding-horizontal
+
+  > {$selector-breadcrumb}
+    margin-bottom $page-header-breadcrumb-header-gap
+
+{$selector-page-header-with-back},
+{$selector-page-header-with-extra}
+  {$selector-page-header-header}
+    display table
+
+  {$selector-page-header-back},
+  {$selector-page-header-title},
+  {$selector-page-header-extra}
+    display table-cell
+    vertical-align middle
+
+  {$selector-page-header-title}
+    width 100%
+
+{$selector-page-header-title}
+  color $brand-title
+  font-size $page-header-title-font-size
+  font-weight 500
+  line-height $ui-single-line-height
+
+{$selector-page-header-back}
+  ui-clickable()
+
+  color $brand-title
+  font-size $page-header-back-icon-size
+  padding-right $page-header-back-title-gap
+  transition color .3s
+
+  // 图标有一些 padding-left
+  position relative
+  left -3px
+
+  &:hover
+    color $brand-primary
+
+
+{$selector-page-header-extra}
+  white-space nowrap
+
+{$selector-page-header-back},
+{$selector-page-header-extra}
+  width 1px
+
+{$selector-page-header-header}
+  margin-bottom $page-header-body-margin-top
+

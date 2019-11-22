@@ -1,0 +1,29 @@
+<div
+class="${prefix}exception
+{{#if status}} ${prefix}exception-{{status}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  {{#if title}}
+    <div class="${prefix}exception-title">
+      {{title}}
+    </div>
+  {{/if}}
+
+  {{#if subTitle}}
+    <div class="${prefix}exception-sub-title">
+      {{subTitle}}
+    </div>
+  {{/if}}
+
+  {{#if hasSlot('extra')}}
+    <div class="${prefix}exception-extra">
+      <slot name="extra" />
+    </div>
+  {{/if}}
+
+</div>
