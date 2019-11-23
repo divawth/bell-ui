@@ -3,7 +3,7 @@ badge-brand-style(style)
   > {$selector-badge-dot}
     ui-set('background-color', style['color'])
 
-badge-status-brand-style(style)
+badge-status-style(style)
   > {$selector-badge-dot}
     ui-set('background-color', style['color'])
 
@@ -19,6 +19,6 @@ ui-badge()
 
 ui-badge-status()
   ui-connect(
-    hash: $status-brand-hash,
-    each: badge-status-brand-style
+    hash: $badge-status-hash,
+    each: badge-status-style
   )

@@ -1,10 +1,9 @@
 import Yox from 'yox'
 
 import Icon from '../icon/Icon'
-import template from './template/PageHeader.hbs'
+import template from './template/Article.hbs'
 
 import {
-  TRUE,
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
@@ -13,15 +12,20 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}page-header',
+  name: '${prefix}article',
 
   propTypes: {
     title: {
       type: RAW_STRING,
-      required: TRUE,
     },
-    showBack: {
+    showLink: {
       type: RAW_BOOLEAN,
+    },
+    subTitle: {
+      type: RAW_STRING,
+    },
+    signature: {
+      type: RAW_STRING,
     },
     className: {
       type: RAW_STRING,

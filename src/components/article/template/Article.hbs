@@ -1,0 +1,47 @@
+<div
+class="${prefix}article
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  {{#if title}}
+    <div class="${prefix}article-title">
+      {{title}}
+
+      {{#if showLink}}
+        <Icon
+          name="links-line"
+          size="0"
+          className="${prefix}article-link"
+          on-click.native="link.article"
+        />
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if subTitle}}
+    <div class="${prefix}article-sub-title">
+      {{subTitle}}
+    </div>
+  {{/if}}
+
+  {{#if hasSlot('cover')}}
+    <div class="${prefix}article-cover">
+      <slot name="cover" />
+    </div>
+  {{/if}}
+
+  <div class="${prefix}article-content">
+    <slot name="content" />
+  </div>
+
+  {{#if signature}}
+    <div class="${prefix}article-signature">
+      {{signature}}
+    </div>
+  {{/if}}
+
+</div>

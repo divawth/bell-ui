@@ -116,11 +116,17 @@ export default {
 export default {
   template: `
     <div>
+      <Badge dot status="default" />
+      <Badge dot status="processing" />
       <Badge dot status="success" />
       <Badge dot status="error" />
       <Badge dot status="info" />
       <Badge dot status="warning" />
       <br>
+      <br>
+      <Badge dot status="default" text="Default" />
+      <br>
+      <Badge dot status="processing" text="Processing" />
       <br>
       <Badge dot status="success" text="Success" />
       <br>
@@ -145,10 +151,16 @@ export default {
 export default {
   template: `
     <div>
+      <Badge status="default" dot ripple />
+      <Badge status="processing" dot ripple />
       <Badge status="success" dot ripple />
       <Badge status="error" dot ripple />
       <Badge status="info" dot ripple />
       <Badge status="warning" dot ripple />
+      <br>
+      <Badge status="default" dot ripple text="Default" />
+      <br>
+      <Badge status="processing" dot ripple text="Processing" />
       <br>
       <Badge status="success" dot ripple text="Success" />
       <br>
@@ -198,7 +210,7 @@ dot | 不展示数值，只有一个小红点 | boolean | - | `false`
 hidden | 是否隐藏 | boolean | - | `false`
 ripple | 是否有发散动画 | boolean | - | `false`
 type | 风格 | string | `primary`, `info`, `success`, `warning`, `error` | `error`
-status | 状态 | string | `info`, `success`, `warning`, `error` | -
+status | 状态 | string | `default`, `processing`, `info`, `success`, `warning`, `error` | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

@@ -5541,7 +5541,8 @@ template {
   display: block;
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-family: "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
   color: #515a6e;
   font-size: 14px;
 }
@@ -8243,6 +8244,68 @@ a:hover {
 .bell-alert-with-close .bell-alert-title + .bell-alert-content {
   margin-right: 0;
 }
+.bell-article img {
+  max-width: 100%;
+}
+.bell-article-title {
+  color: #17233d;
+  line-height: 1.5;
+  font-size: 28px;
+}
+.bell-article-link {
+  color: #2d8cf0;
+  font-size: 16px;
+  margin-left: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-article-link:hover {
+  color: #57a3f3;
+}
+.bell-article-sub-title {
+  color: #808695;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+.bell-article-cover {
+  margin: 30px auto;
+}
+.bell-article-cover img {
+  border-radius: 8px;
+  vertical-align: top;
+}
+.bell-article-content {
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #17233d;
+}
+.bell-article-content img {
+  display: block;
+  margin: 10px auto;
+}
+.bell-article-content p {
+  margin: 15px 0;
+}
+.bell-article-content blockquote {
+  border-left: 4px solid #2d8cf0;
+  font-size: 14px;
+  padding: 12px 18px;
+  margin: 19px 0;
+  background-color: #f8f8f8;
+}
+.bell-article-signature {
+  color: #808695;
+  font-size: 14px;
+  margin-top: 30px;
+  line-height: 1.8;
+}
 .bell-card {
   background-color: #fff;
   border-radius: 4px;
@@ -8567,23 +8630,35 @@ a:hover {
 .bell-badge-status-info.bell-badge-ripple > .bell-badge-dot:after {
   border-color: #2db7f5;
 }
-.bell-badge-status-success > .bell-badge-dot {
-  background-color: #19be6b;
-}
-.bell-badge-status-success.bell-badge-ripple > .bell-badge-dot:after {
-  border-color: #19be6b;
-}
 .bell-badge-status-error > .bell-badge-dot {
   background-color: #ed4014;
 }
 .bell-badge-status-error.bell-badge-ripple > .bell-badge-dot:after {
   border-color: #ed4014;
 }
+.bell-badge-status-success > .bell-badge-dot {
+  background-color: #19be6b;
+}
+.bell-badge-status-success.bell-badge-ripple > .bell-badge-dot:after {
+  border-color: #19be6b;
+}
 .bell-badge-status-warning > .bell-badge-dot {
   background-color: #f90;
 }
 .bell-badge-status-warning.bell-badge-ripple > .bell-badge-dot:after {
   border-color: #f90;
+}
+.bell-badge-status-processing > .bell-badge-dot {
+  background-color: #2d8cf0;
+}
+.bell-badge-status-processing.bell-badge-ripple > .bell-badge-dot:after {
+  border-color: #2d8cf0;
+}
+.bell-badge-status-default > .bell-badge-dot {
+  background-color: #c5c8ce;
+}
+.bell-badge-status-default.bell-badge-ripple > .bell-badge-dot:after {
+  border-color: #c5c8ce;
 }
 .bell-badge-status > .bell-badge-dot {
   width: 6px;
@@ -9768,21 +9843,32 @@ a:hover {
   margin-bottom: 10px;
 }
 .bell-page-header-with-back .bell-page-header-header,
+.bell-page-header-with-tags .bell-page-header-header,
 .bell-page-header-with-extra .bell-page-header-header {
   display: table;
 }
 .bell-page-header-with-back .bell-page-header-back,
+.bell-page-header-with-tags .bell-page-header-back,
 .bell-page-header-with-extra .bell-page-header-back,
 .bell-page-header-with-back .bell-page-header-title,
+.bell-page-header-with-tags .bell-page-header-title,
 .bell-page-header-with-extra .bell-page-header-title,
+.bell-page-header-with-back .bell-page-header-tags,
+.bell-page-header-with-tags .bell-page-header-tags,
+.bell-page-header-with-extra .bell-page-header-tags,
 .bell-page-header-with-back .bell-page-header-extra,
+.bell-page-header-with-tags .bell-page-header-extra,
 .bell-page-header-with-extra .bell-page-header-extra {
   display: table-cell;
   vertical-align: middle;
+  white-space: nowrap;
 }
 .bell-page-header-with-back .bell-page-header-title,
 .bell-page-header-with-extra .bell-page-header-title {
   width: 100%;
+}
+.bell-page-header-with-tags .bell-page-header-title {
+  width: 1px;
 }
 .bell-page-header-title {
   color: #17233d;
@@ -9803,15 +9889,19 @@ a:hover {
 .bell-page-header-back:hover {
   color: #2d8cf0;
 }
-.bell-page-header-extra {
-  white-space: nowrap;
+.bell-page-header-tags {
+  width: 100%;
+  padding-left: 12px;
+}
+.bell-page-header-tags > .bell-tag + .bell-tag {
+  margin-left: 8px;
 }
 .bell-page-header-back,
 .bell-page-header-extra {
   width: 1px;
 }
-.bell-page-header-header {
-  margin-bottom: 16px;
+.bell-page-header-body {
+  margin-top: 16px;
 }
 .bell-drawer {
   position: fixed;

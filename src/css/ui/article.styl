@@ -1,0 +1,60 @@
+{$selector-article}
+  img
+    max-width 100%
+
+{$selector-article-title}
+  color: $brand-title
+  line-height 1.5
+  font-size $article-title-font-size
+
+{$selector-article-link}
+  color $brand-link
+  font-size $font-size-large
+  margin-left $article-title-link-gap
+  user-select none
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-link-hover
+
+{$selector-article-sub-title}
+  color $brand-muted
+  font-size $font-size-large
+  line-height 1.8
+  margin-top $article-title-sub-title-gap
+
+{$selector-article-cover}
+  margin $article-title-content-gap auto
+
+  img
+    border-radius $article-cover-border-radius
+    vertical-align top
+
+{$selector-article-content}
+  margin-top $article-title-content-gap
+
+  font-size $font-size-large
+  line-height 1.9
+  color $brand-title
+
+  img
+    display block
+    margin $article-image-gap auto
+
+  p
+    margin $article-paragraph-gap 0
+
+  blockquote
+    border-left $article-blockquote-border-width solid $brand-primary
+    font-size $font-size-default
+    padding $article-blockquote-padding-vertical $article-blockquote-padding-horizontal
+    // p 有些行间距，所以视觉上段落的边和文字还有一些距离
+    margin $article-paragraph-gap + 4 0
+    background-color $brand-bg-light
+
+{$selector-article-signature}
+  color $brand-muted
+  font-size $font-size-default
+  margin-top $article-title-content-gap
+  line-height 1.8

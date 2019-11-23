@@ -31,6 +31,7 @@ import Pagination from './components/pagination/Pagination'
 import Upload from './components/upload/Upload'
 
 import Alert from './components/alert/Alert'
+import Article from './components/article/Article'
 import Spin from './components/spin/Spin'
 import BackTop from './components/backtop/BackTop'
 import Avatar from './components/avatar/Avatar'
@@ -116,6 +117,7 @@ const components = {
   Tooltip,
 
   Alert,
+  Article,
   Spin,
   BackTop,
   Avatar,

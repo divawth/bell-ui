@@ -24,6 +24,15 @@ export default {
         </Breadcrumb>
       </template>
 
+      <template slot="tags">
+        <Tag type="success">
+          成功
+        </Tag>
+        <Tag type="error">
+          失败
+        </Tag>
+      </template>
+
       <template slot="extra">
         <Button>
           取消
@@ -61,6 +70,7 @@ style | 自定义内联样式 | string | - | -
 参数 | 说明
 ---|---
 breadcrumb | 面包屑
+tags | 自定义标签
 extra | 自定义右侧内容
 
 > Event

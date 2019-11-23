@@ -8,9 +8,12 @@ import {
   RAW_BOOLEAN,
   RAW_NUMBER,
   RAW_NUMERIC,
+  RAW_DEFAULT,
   RAW_TYPE_ARRAY,
   RAW_TYPE_ERROR,
-  RAW_STATUS_ARRAY,
+  RAW_TYPE_INFO,
+  RAW_TYPE_SUCCESS,
+  RAW_TYPE_WARNING,
 } from '../constant'
 
 import {
@@ -30,7 +33,14 @@ export default Yox.define({
       value: RAW_TYPE_ERROR,
     },
     status: {
-      type: oneOf(RAW_STATUS_ARRAY),
+      type: oneOf([
+        RAW_TYPE_INFO,
+        RAW_TYPE_SUCCESS,
+        RAW_TYPE_ERROR,
+        RAW_TYPE_WARNING,
+        RAW_DEFAULT,
+        'processing',
+      ]),
     },
     text: {
       type: [RAW_STRING, RAW_NUMBER],

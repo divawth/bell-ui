@@ -1,6 +1,7 @@
 <div
 class="${prefix}page-header
 {{#if showBack}} ${prefix}page-header-with-back{{/if}}
+{{#if hasSlot('tags')}} ${prefix}page-header-with-tags{{/if}}
 {{#if hasSlot('extra')}} ${prefix}page-header-with-extra{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -21,9 +22,17 @@ class="${prefix}page-header
         on-click.native="back.pageHeader"
       />
     {{/if}}
+
     <div class="${prefix}page-header-title">
       {{title}}
     </div>
+
+    {{#if hasSlot('tags')}}
+      <div class="${prefix}page-header-tags">
+        <slot name="tags" />
+      </div>
+    {{/if}}
+
     {{#if hasSlot('extra')}}
       <div class="${prefix}page-header-extra">
         <slot name="extra" />
@@ -32,6 +41,10 @@ class="${prefix}page-header
 
   </div>
 
-  <slot name="content" />
+  {{#if hasSlot('content')}}
+    <div class="${prefix}page-header-body">
+      <slot name="content" />
+    </div>
+  {{/if}}
 
 </div>

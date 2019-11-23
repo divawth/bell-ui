@@ -5,18 +5,27 @@
     margin-bottom $page-header-breadcrumb-header-gap
 
 {$selector-page-header-with-back},
+{$selector-page-header-with-tags},
 {$selector-page-header-with-extra}
   {$selector-page-header-header}
     display table
 
   {$selector-page-header-back},
   {$selector-page-header-title},
+  {$selector-page-header-tags},
   {$selector-page-header-extra}
     display table-cell
     vertical-align middle
+    white-space nowrap
 
+{$selector-page-header-with-back},
+{$selector-page-header-with-extra}
   {$selector-page-header-title}
     width 100%
+
+{$selector-page-header-with-tags}
+  {$selector-page-header-title}
+    width 1px
 
 {$selector-page-header-title}
   color $brand-title
@@ -39,14 +48,17 @@
   &:hover
     color $brand-primary
 
+{$selector-page-header-tags}
+  width 100%
+  padding-left $page-header-title-tags-gap
 
-{$selector-page-header-extra}
-  white-space nowrap
+  > {$selector-tag} + {$selector-tag}
+    margin-left $ui-horizontal-gap
 
 {$selector-page-header-back},
 {$selector-page-header-extra}
   width 1px
 
-{$selector-page-header-header}
-  margin-bottom $page-header-body-margin-top
+{$selector-page-header-body}
+  margin-top $page-header-header-body-gap
 
