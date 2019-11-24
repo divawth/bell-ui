@@ -69,6 +69,7 @@ import Dropdown from './components/dropdown/Dropdown'
 import DropdownItem from './components/dropdown/DropdownItem'
 import DropdownMenu from './components/dropdown/DropdownMenu'
 
+import Thumbnail from './components/thumbnail/Thumbnail'
 import Timeline from './components/timeline/Timeline'
 import TimelineItem from './components/timeline/TimelineItem'
 
@@ -150,6 +151,7 @@ const components = {
   DropdownItem,
   DropdownMenu,
 
+  Thumbnail,
   Timeline,
   TimelineItem,
   Form,

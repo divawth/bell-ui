@@ -1,23 +1,24 @@
 {$selector-spin}
   display inline-block
   text-align center
+  line-height 1.7
   ui-spin()
 
 {$selector-spin-content}
   text-align center
 
-{$selector-spin-icon} + {$selector-spin-text}
-  margin-top $ui-icon-text-gap
+{$selector-spin-icon}
+  vertical-align top
 
 {$selector-spin-fixed}
 
   ui-fullscreen(absolute)
-  background-color $spin-mask-color
+  background-color $brand-mask-light-color
   z-index 1
 
   &{$selector-spin-legacy}
-    background-color $spin-mask-color-legacy
-    opacity $spin-mask-opacity-legacy
+    background-color $brand-mask-light-color-legacy
+    opacity $brand-mask-light-opacity-legacy
 
   > {$selector-spin-content}
     position absolute

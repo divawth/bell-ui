@@ -1,0 +1,64 @@
+{$selector-thumbnail}
+  display inline-block
+  border 1px solid $brand-border
+  background-color $brand-white
+  padding $thumbnail-padding
+  border-radius $thumbnail-border-radius
+  text-align center
+  position relative
+
+  &:hover
+    {$selector-thumbnail-mask}
+      opacity 1
+
+  > {$selector-spin-fixed}
+    top $thumbnail-padding
+    left $thumbnail-padding
+    right $thumbnail-padding
+    bottom $thumbnail-padding
+    border-radius $thumbnail-image-border-radius
+    background-color $brand-mask-dark-color
+
+  {$selector-spin-icon}
+    color $brand-white
+
+{$selector-thumbnail-loading}:hover
+  {$selector-thumbnail-mask}
+    opacity 0
+
+{$selector-thumbnail-image},
+{$selector-thumbnail-placeholder}
+  width 100%
+  height 100%
+  border-radius $thumbnail-image-border-radius
+  background-color $thumbnail-image-background-color
+  vertical-align top
+
+{$selector-thumbnail-mask}
+  opacity 0
+  background-color $brand-mask-dark-color
+  position absolute
+  top $thumbnail-padding
+  left $thumbnail-padding
+  right $thumbnail-padding
+  bottom $thumbnail-padding
+  border-radius $thumbnail-image-border-radius
+  transition opacity .3s
+
+  > {$selector-icon}
+    color $brand-white
+    font-size $thumbnail-icon-size
+    transition color .1s
+    ui-clickable()
+
+    + {$selector-icon}
+      margin-left $thumbnail-icon-gap
+
+    &:hover
+      color $brand-primary
+
+{$selector-thumbnail-placeholder},
+{$selector-thumbnail-mask}
+  display flex
+  align-items center
+  justify-content center

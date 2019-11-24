@@ -12,17 +12,17 @@ class="${prefix}spin
 >
   <div ref="content" class="${prefix}spin-content">
     <slot name="children">
-        <Icon
-          spin
-          name="{{icon}}"
-          size="0"
-          className="${prefix}spin-icon"
-        />
-        {{#if text}}
-          <div class="${prefix}spin-text">
-            {{text}}
-          </div>
-        {{/if}}
+      <Icon
+        spin
+        name="{{icon}}"
+        size="0"
+        className="${prefix}spin-icon"
+      />
+      {{#if text}}
+        <div class="${prefix}spin-text">
+          {{text}}
+        </div>
+      {{/if}}
     </slot>
   </div>
 </div>

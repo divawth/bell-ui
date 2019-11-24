@@ -24,15 +24,21 @@
   line-height 1.8
   margin-top $article-title-sub-title-gap
 
+  + {$selector-article-content}
+    margin-top $article-title-content-gap
+
 {$selector-article-cover}
-  margin $article-title-content-gap auto
+  margin $article-title-content-gap 0
+  text-align center
 
   img
     border-radius $article-cover-border-radius
     vertical-align top
 
+  + {$selector-article-content}
+    margin-top $article-title-content-gap
+
 {$selector-article-content}
-  margin-top $article-title-content-gap
 
   font-size $font-size-large
   line-height 1.9

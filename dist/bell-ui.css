@@ -8273,15 +8273,21 @@ a:hover {
   line-height: 1.8;
   margin-top: 10px;
 }
+.bell-article-sub-title + .bell-article-content {
+  margin-top: 30px;
+}
 .bell-article-cover {
-  margin: 30px auto;
+  margin: 30px 0;
+  text-align: center;
 }
 .bell-article-cover img {
   border-radius: 8px;
   vertical-align: top;
 }
-.bell-article-content {
+.bell-article-cover + .bell-article-content {
   margin-top: 30px;
+}
+.bell-article-content {
   font-size: 16px;
   line-height: 1.9;
   color: #17233d;
@@ -9024,6 +9030,7 @@ a:hover {
 .bell-spin {
   display: inline-block;
   text-align: center;
+  line-height: 1.7;
 }
 .bell-spin-primary {
   color: #2d8cf0;
@@ -9061,8 +9068,8 @@ a:hover {
 .bell-spin-content {
   text-align: center;
 }
-.bell-spin-icon + .bell-spin-text {
-  margin-top: 5px;
+.bell-spin-icon {
+  vertical-align: top;
 }
 .bell-spin-fixed {
   position: absolute;
@@ -9074,7 +9081,7 @@ a:hover {
   z-index: 1;
 }
 .bell-spin-fixed.bell-spin-legacy {
-  background-color: #fff;
+  background-color: #000;
   opacity: 0.8;
 }
 .bell-spin-fixed > .bell-spin-content {
@@ -9783,6 +9790,70 @@ a:hover {
 .bell-tabs-card .bell-tabs-tab.bell-tabs-tab-active {
   border-bottom-color: #fff;
   background-color: #fff;
+}
+.bell-thumbnail {
+  display: inline-block;
+  border: 1px solid #dcdee2;
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+}
+.bell-thumbnail:hover .bell-thumbnail-mask {
+  opacity: 1;
+}
+.bell-thumbnail > .bell-spin-fixed {
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 3px;
+  background-color: rgba(0,0,0,0.3);
+}
+.bell-thumbnail .bell-spin-icon {
+  color: #fff;
+}
+.bell-thumbnail-loading:hover .bell-thumbnail-mask {
+  opacity: 0;
+}
+.bell-thumbnail-image,
+.bell-thumbnail-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  vertical-align: top;
+}
+.bell-thumbnail-mask {
+  opacity: 0;
+  background-color: rgba(0,0,0,0.3);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 3px;
+  transition: opacity 0.3s;
+}
+.bell-thumbnail-mask > .bell-icon {
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.1s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-thumbnail-mask > .bell-icon + .bell-icon {
+  margin-left: 12px;
+}
+.bell-thumbnail-mask > .bell-icon:hover {
+  color: #2d8cf0;
+}
+.bell-thumbnail-placeholder,
+.bell-thumbnail-mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bell-timeline-item {
   padding-bottom: 20px;

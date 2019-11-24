@@ -1,0 +1,63 @@
+<div
+class="${prefix}thumbnail
+{{#if loading}} ${prefix}thumbnail-loading{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
+{{#if style}}{{style}}{{/if}}"
+>
+
+  {{#if src}}
+    <img
+      class="${prefix}thumbnail-image"
+      src="{{src}}"
+      {{#if srcSet}}
+        srcset="{{srcSet}}"
+      {{/if}}
+      {{#if alt}}
+        alt="{{alt}}"
+      {{/if}}
+      ondragstart="return false"
+      on-error="error.thumbnail"
+    >
+
+    {{#if showZoom || showDownload || showDelete}}
+      <div class="${prefix}thumbnail-mask">
+        {{#if showZoom}}
+          <Icon
+            name="zoom-in-line"
+            size="0"
+            on-click.native="zoom.thumbnail"
+          />
+        {{/if}}
+        {{#if showDownload}}
+          <Icon
+            name="download-2-line"
+            size="0"
+            on-click.native="download.thumbnail"
+          />
+        {{/if}}
+        {{#if showDelete}}
+          <Icon
+            name="delete-bin-line"
+            size="0"
+            on-click.native="delete.thumbnail"
+          />
+        {{/if}}
+      </div>
+    {{/if}}
+
+  {{else}}
+    <div class="${prefix}thumbnail-placeholder">
+      <slot name="placeholder" />
+    </div>
+  {{/if}}
+
+  {{#if loading}}
+    <Spin
+      size="large"
+      fixed
+    />
+  {{/if}}
+
+</div>
