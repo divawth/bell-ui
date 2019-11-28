@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Text.hbs'
+import template from './template/Link.hbs'
 
 import {
   RAW_STRING,
@@ -25,7 +25,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}text',
+  name: '${prefix}link',
 
   propTypes: {
     type: {
@@ -39,16 +39,23 @@ export default Yox.define({
         RAW_TYPE_CONTENT,
         RAW_TYPE_MUTED,
       ]),
+      value: RAW_TYPE_PRIMARY,
     },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
     },
-    bold: {
+    underline: {
       type: RAW_BOOLEAN,
     },
-    block: {
+    disabled: {
       type: RAW_BOOLEAN,
+    },
+    href: {
+      type: RAW_STRING,
+    },
+    target: {
+      type: RAW_STRING,
     },
     className: {
       type: RAW_STRING,

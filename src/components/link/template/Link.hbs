@@ -1,0 +1,23 @@
+<a
+class="${prefix}link
+{{#if type}} ${prefix}link-{{type}}{{/if}}
+{{#if size}} ${prefix}link-{{size}}{{/if}}
+{{#if underline}} ${prefix}link-underline{{/if}}
+{{#if disabled}} ${prefix}link-disabled
+{{else}} ${prefix}link-enabled
+{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+href="{{href || 'javascript:void(0)'}}"
+{{#if target}} target="{{target}}"{{/if}}
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+
+{{#if !href && !disabled}}
+  on-click="click.link"
+{{/if}}
+>
+  <slot />
+</a>

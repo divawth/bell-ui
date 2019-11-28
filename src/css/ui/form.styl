@@ -52,6 +52,7 @@
   color $brand-error
   font-size $ui-font-size - 2
   margin-top $form-item-error-gap
+  white-space nowrap
 
 {$selector-form-inline}
   {$selector-form-item}
@@ -61,3 +62,10 @@
     + {$selector-form-item}
       margin-top 0
       margin-left $form-item-horizontal-gap
+
+{$selector-form-colon}
+  {$selector-form-item-label}:after
+    content ':'
+    position relative
+    top -0.5px
+    margin-left 4px

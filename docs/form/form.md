@@ -111,7 +111,7 @@ export default {
   height: 600,
   template: `
   <div>
-    <Form labelWidth="120">
+    <Form labelWidth="120" showColon>
       <FormItem label="Input" showRequiredMark>
         <Input
           model="form.input"
@@ -416,6 +416,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 inline | 是否开启行内表单模式 | boolean | - | `false`
+showColon | 是否显示 label 后面的冒号 | boolean | - | `false`
 labelAlign | 表单域标签的位置 | string | `left`, `right`, `top` | `right`
 labelWidth | 表单域标签的宽度 | number | - | -
 className | 自定义类名 | string | - | -

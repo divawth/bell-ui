@@ -4,9 +4,15 @@
 export default {
   template: `
     <div>
-      <Text size="small">text</Text>
-      <Text>text</Text>
-      <Text size="large">text</Text>
+      <Text size="small">
+        text
+      </Text>
+      <Text>
+        text
+      </Text>
+      <Text size="large">
+        text
+      </Text>
     </div>
   `
 }
@@ -18,15 +24,33 @@ export default {
 export default {
   template: `
     <div>
-      <Text>text</Text>
-      <Text type="primary">text</Text>
-      <Text type="error">text</Text>
-      <Text type="success">text</Text>
-      <Text type="info">text</Text>
-      <Text type="warning">text</Text>
-      <Text type="title">text</Text>
-      <Text type="content">text</Text>
-      <Text type="muted">text</Text>
+      <Text>
+        text
+      </Text>
+      <Text type="primary">
+        text
+      </Text>
+      <Text type="error">
+        text
+      </Text>
+      <Text type="success">
+        text
+      </Text>
+      <Text type="info">
+        text
+      </Text>
+      <Text type="warning">
+        text
+      </Text>
+      <Text type="title">
+        text
+      </Text>
+      <Text type="content">
+        text
+      </Text>
+      <Text type="muted">
+        text
+      </Text>
     </div>
   `
 }
@@ -37,7 +61,9 @@ export default {
 ```
 export default {
   template: `
-    <Text bold>text</Text>
+    <Text bold>
+      text
+    </Text>
   `
 }
 ```
@@ -48,8 +74,12 @@ export default {
 export default {
   template: `
     <div>
-      <Text block>text</Text>
-      <Text block>text</Text>
+      <Text block>
+        text
+      </Text>
+      <Text block>
+        text
+      </Text>
     </div>
   `
 }
@@ -61,7 +91,9 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 文本颜色 | primary, success, error, info, warning, title, content, muted | - | -
-size | 文本大小 | default, small, large | - | default
+type | 文本颜色 | string | primary, success, error, info, warning, title, content, muted | -
+size | 文本大小 | string | default, small, large | `default`
 bold | 是否粗体 | boolean | - | -
 block | 是否块级 | boolean | - | -
+className | 自定义类名 | string | - | -
+style | 自定义内联样式 | string | - | -

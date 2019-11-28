@@ -7,11 +7,13 @@ export default {
     <Pagination
       model="page"
       total="{{total}}"
+      pageSize="{{pageSize}}"
     />
   `,
   data: {
     page: 1,
-    total: 50
+    total: 24,
+    pageSize: 20
   },
   watchers: {
     page: function (page) {
@@ -201,6 +203,29 @@ export default {
 }
 ```
 
+> 小于 1 页时是否隐藏
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+    <div>
+      是否隐藏：<Switch model="hideOnSinglePage" />
+
+      <br><br>
+
+      <Pagination
+        hideOnSinglePage="{{hideOnSinglePage}}"
+        total="15"
+        pageSize="20"
+      />
+
+    </div>
+
+  `
+}
+```
+
 #### API
 
 > Props
@@ -213,6 +238,7 @@ pageSize | 每页条数 | numeric | - | `10`
 pageSizeOptions | 配置每页条数 | numeric[] | - | -
 showTotal | 是否显示总条数 | boolean | - | `false`
 showJumper | 是否显示跳转 | boolean | - | `false`
+hideOnSinglePage | 小于 1 页时是否隐藏 | boolean | - | `false`
 size | 大小 | string | `default`, `small` | `default`
 simple | 是否使用简洁版本 | boolean | - | `false`
 placement | 选择每页条数的浮层的展开方向 | string | `bottom`, `top` | `bottom`

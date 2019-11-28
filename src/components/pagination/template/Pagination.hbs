@@ -1,6 +1,7 @@
 <div
 class="${prefix}pagination
 {{#if size}} ${prefix}pagination-{{size}}{{/if}}
+{{#if hideOnSinglePage && count <= 1}} ${prefix}pagination-hidden{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

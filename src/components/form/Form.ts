@@ -32,6 +32,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    showColon: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     labelAlign: {
       type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
       value: RAW_RIGHT,

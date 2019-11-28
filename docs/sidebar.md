@@ -1,5 +1,6 @@
 - [通用](README)
   - [Text 字体](basic/text)
+  - [Link 链接](basic/link)
   - [Button 按钮](basic/button)
   - [Icon 图标](basic/icon)
 - [布局](layout)

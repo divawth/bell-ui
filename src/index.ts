@@ -51,6 +51,7 @@ import CardFooter from './components/card/CardFooter'
 
 import PageHeader from './components/page/PageHeader'
 
+import Link from './components/link/Link'
 import List from './components/list/List'
 import ListItem from './components/list/ListItem'
 
@@ -134,6 +135,7 @@ const components = {
 
   Collapse,
   CollapseItem,
+  Link,
   List,
   ListItem,
   Empty,

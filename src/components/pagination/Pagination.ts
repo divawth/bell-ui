@@ -65,6 +65,10 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    hideOnSinglePage: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     placement: {
       type: oneOf([RAW_TOP, RAW_BOTTOM]),
       value: RAW_BOTTOM,
