@@ -7,10 +7,12 @@ import {
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_SIZE_ARRAY,
   RAW_DEFAULT,
+  RAW_LIGHT,
+  RAW_SIZE_ARRAY,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
+  RAW_THEME_ARRAY,
 } from '../constant'
 
 import {
@@ -32,6 +34,10 @@ export default Yox.define({
     size: {
       type: oneOf(RAW_SIZE_ARRAY),
       value: RAW_DEFAULT,
+    },
+    theme: {
+      type: oneOf(RAW_THEME_ARRAY),
+      value: RAW_LIGHT,
     },
     fixed: {
       type: RAW_BOOLEAN,

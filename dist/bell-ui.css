@@ -7174,6 +7174,23 @@ body {
   resize: none;
   line-height: 1.5;
 }
+.bell-textarea-el::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-textarea-el::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-textarea-el::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-textarea-el::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-textarea-el::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
 .bell-radio-group {
   display: inline-block;
 }
@@ -7185,6 +7202,8 @@ body {
           user-select: none;
   box-sizing: border-box;
   vertical-align: middle;
+  height: 32px;
+  line-height: 32px;
 }
 .bell-radio + .bell-radio {
   margin-left: 16px;
@@ -7193,7 +7212,6 @@ body {
   position: relative;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.15;
   padding-left: 19px;
 }
 .bell-radio-with-label > .bell-radio-icon {
@@ -7270,7 +7288,6 @@ body {
 }
 .bell-radio-vertical > .bell-radio + .bell-radio {
   margin-left: 0;
-  margin-top: 10px;
 }
 .bell-radio-button {
   display: inline-block;
@@ -7365,6 +7382,8 @@ body {
           user-select: none;
   box-sizing: border-box;
   vertical-align: middle;
+  height: 32px;
+  line-height: 32px;
 }
 .bell-checkbox + .bell-checkbox {
   margin-left: 16px;
@@ -7373,7 +7392,6 @@ body {
   position: relative;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.15;
   padding-left: 19px;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
@@ -7456,7 +7474,6 @@ body {
 }
 .bell-checkbox-vertical > .bell-checkbox + .bell-checkbox {
   margin-left: 0;
-  margin-top: 10px;
 }
 .bell-switch-loading {
   opacity: 0.5;
@@ -9072,18 +9089,27 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255,255,255,0.5);
   z-index: 1;
-}
-.bell-spin-fixed.bell-spin-legacy {
-  background-color: #000;
-  opacity: 0.8;
 }
 .bell-spin-fixed > .bell-spin-content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.bell-spin-fixed.bell-spin-light {
+  background-color: rgba(255,255,255,0.5);
+}
+.bell-spin-fixed.bell-spin-light.bell-spin-legacy {
+  background-color: #fff;
+  opacity: 0.5;
+}
+.bell-spin-fixed.bell-spin-dark {
+  background-color: rgba(0,0,0,0.2);
+}
+.bell-spin-fixed.bell-spin-dark.bell-spin-legacy {
+  background-color: #000;
+  opacity: 0.2;
 }
 .bell-circle {
   display: inline-block;
@@ -9868,7 +9894,7 @@ a:hover {
   right: 2px;
   bottom: 2px;
   border-radius: 3px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.2);
 }
 .bell-thumbnail .bell-spin-icon {
   color: #fff;
@@ -9886,7 +9912,7 @@ a:hover {
 }
 .bell-thumbnail-mask {
   opacity: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.2);
   position: absolute;
   top: 2px;
   left: 2px;

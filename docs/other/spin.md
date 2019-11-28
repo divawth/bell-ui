@@ -73,12 +73,18 @@ export default {
           <p>总为浮云能蔽日，长安不见使人愁。</p>
         </article>
         {{#if visible}}
-          <Spin size="large" fixed />
+          <Spin
+            size="large"
+            theme="{{isDark ? 'dark' : 'light'}}"
+            fixed
+          />
         {{/if}}
       </div>
       <br>
       切换显示状态：
       <Switch model="visible" />
+      切换主题：
+      <Switch model="isDark" />
 
       <style>
         .demo-spin-article {
@@ -90,7 +96,8 @@ export default {
   `,
   data: function () {
     return {
-      visible: false
+      visible: false,
+      isDark: false
     }
   }
 }
@@ -104,6 +111,7 @@ export default {
 ---|---|---|---|---
 type | 风格 | string | `primary`, `success`, `error`, `info`, `warning` | `primary`
 size | 大小 | string | `default`, `small`, `large` | `default`
+theme | fixed 状态下的主题 | string | `light`, `dark` | `light`
 fixed | 是否固定 | boolean | - | `false`
 icon | 图标 | string | - | `loader-line`
 text | 文字 | string | - | -

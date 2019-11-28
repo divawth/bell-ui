@@ -4,11 +4,9 @@ import template from './template/Upload.hbs'
 
 import {
   FALSE,
-  UNDEFINED,
   RAW_STRING,
   RAW_OBJECT,
   RAW_BOOLEAN,
-  RAW_ARRAY,
   RAW_FUNCTION,
 } from '../constant'
 
@@ -38,7 +36,7 @@ export default Yox.define({
       value: FALSE,
     },
     accept: {
-      type: RAW_ARRAY,
+      type: RAW_STRING,
     },
     data: {
       type: RAW_OBJECT,
@@ -55,12 +53,6 @@ export default Yox.define({
     },
     style: {
       type: RAW_STRING,
-    }
-  },
-
-  filters: {
-    formatAccept(accept): string {
-      return accept ? accept.join(',') : UNDEFINED
     }
   },
 
@@ -137,8 +129,10 @@ export default Yox.define({
             me.fire('progress.upload', progress)
           },
           onSuccess(response: Data) {
-            response._file = file
-            me.fire('success.upload', response)
+            me.fire('success.upload', {
+              response,
+              file,
+            })
           }
         }
       )

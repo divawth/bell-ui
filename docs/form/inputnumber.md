@@ -5,11 +5,11 @@ export default {
   template: `
   <InputNumber
     min="1"
-    max="10"
+    max="100"
     model="value"
     placeholder="请输入..."
   />
-  `,
+  `
 }
 ```
 
@@ -226,41 +226,6 @@ export default {
 }
 ```
 
-> formatter
-
-```js
-export default {
-  template: `
-  <div>
-    <InputNumber
-      formatter="{{formatter}}"
-      size="large"
-      min="1"
-      model="value"
-    />
-    <br><br>
-    <InputNumber
-      formatter="{{formatter}}"
-      min="1"
-      model="value"
-    />
-    <br><br>
-    <InputNumber
-      formatter="{{formatter}}"
-      size="small"
-      min="1"
-      model="value"
-    />
-  </div>
-  `,
-  data: {
-    value: 34,
-    formatter: function (value) {
-      return `${value} %`
-    }
-  }
-}
-```
 
 #### API
 
@@ -279,7 +244,6 @@ editable | 是否可编辑 | boolean | - | `true`
 block | 是否为块级元素 | boolean | - | `false`
 autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
 readOnly | 原生 `readonly` 属性 | boolean | - | `false`
-formatter | 指定输入框展示值的格式 | Function | - | -
 placeholder | 占位文本 | string | - | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

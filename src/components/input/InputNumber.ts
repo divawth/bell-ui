@@ -24,6 +24,7 @@ import {
 
 import {
   oneOf,
+  toNumber,
 } from '../util'
 
 export default Yox.define({
@@ -33,9 +34,6 @@ export default Yox.define({
   name: '${prefix}inputNumber',
 
   propTypes: {
-    formatter: {
-      type: RAW_FUNCTION,
-    },
     status: {
       type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
     },
@@ -45,11 +43,9 @@ export default Yox.define({
     },
     max: {
       type: RAW_NUMERIC,
-      value: 100,
     },
     min: {
       type: RAW_NUMERIC,
-      value: 0,
     },
     value: {
       type: RAW_NUMERIC,
@@ -110,14 +106,10 @@ export default Yox.define({
   computed: {
     computedValue: {
       get(): string {
-        const formatter = this.get('formatter')
-        const value = this.get('value')
-        return formatter
-          ? formatter(value)
-          : value
+        return this.get('value')
       },
       set(value: string) {
-        this.set('value', value)
+        this.set('value', toNumber(value, 0))
       }
     },
     upDisabled(): boolean {
@@ -135,17 +127,19 @@ export default Yox.define({
   methods: {
     up() {
       const max = this.get('max')
+      const step = this.get('step')
       this.increase(
         'value',
-        +this.get('step'),
+        toNumber(step),
         Yox.is.numeric(max) ? +max : UNDEFINED
       )
     },
     down() {
       const min = this.get('min')
+      const step = this.get('step')
       this.decrease(
         'value',
-        +this.get('step'),
+        toNumber(step),
         Yox.is.numeric(min) ? +min : UNDEFINED
       )
     },

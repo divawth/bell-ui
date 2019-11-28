@@ -13,15 +13,25 @@
 {$selector-spin-fixed}
 
   ui-fullscreen(absolute)
-  background-color $brand-mask-light-color
-  z-index 1
 
-  &{$selector-spin-legacy}
-    background-color $brand-mask-light-color-legacy
-    opacity $brand-mask-light-opacity-legacy
+  z-index 1
 
   > {$selector-spin-content}
     position absolute
     top 50%
     left 50%
     transform translate(-50%, -50%)
+
+  &{$selector-spin-light}
+    background-color $brand-mask-light-color
+
+    &{$selector-spin-legacy}
+      background-color $brand-mask-light-color-legacy
+      opacity $brand-mask-light-opacity-legacy
+
+  &{$selector-spin-dark}
+    background-color $brand-mask-dark-color
+
+    &{$selector-spin-legacy}
+      background-color $brand-mask-dark-color-legacy
+      opacity $brand-mask-dark-opacity-legacy

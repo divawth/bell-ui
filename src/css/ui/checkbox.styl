@@ -3,6 +3,8 @@
   user-select none
   box-sizing border-box
   vertical-align middle
+  height $height-default
+  line-height $height-default
 
   + {$selector-checkbox}
     margin-left $checkbox-gap-horizontal
@@ -11,7 +13,6 @@
   position relative
   color $brand-content
   font-size $font-size-default
-  line-height $ui-single-line-height
   padding-left $font-size-default + $ui-icon-text-gap
 
   > {$selector-checkbox-icon}
@@ -105,4 +106,3 @@ if $ui-shadow-radius > 0
 
     + {$selector-checkbox}
       margin-left 0
-      margin-top $ui-vertical-gap

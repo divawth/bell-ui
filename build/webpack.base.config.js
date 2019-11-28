@@ -97,6 +97,12 @@ module.exports = {
       commonjs: 'yox',
       commonjs2: 'yox',
       amd: 'yox'
+    },
+    soga: {
+      root: 'Soga',
+      commonjs: 'soga',
+      commonjs2: 'soga',
+      amd: 'soga'
     }
   },
   optimization: {
