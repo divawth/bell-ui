@@ -19,7 +19,7 @@ export default {
 ---|---|---|---|---
 bottom | 组件距离底部的距离 | number | - | 30
 right | 组件距离右部的距离 | number | - | 30
-duration | 页面滚动高度达到滚动动画持续时间，单位 毫秒 | number | - | 1000
+duration | 页面滚动高度达到滚动动画持续时间，单位 毫秒 | number | - | 500
 height | 页面滚动高度达到该值时才显示 BackTop 组件 | number | - | 0
 
 > Events

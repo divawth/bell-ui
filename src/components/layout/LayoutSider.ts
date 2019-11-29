@@ -1,11 +1,12 @@
 import Yox from 'yox'
 
 import Icon from '../icon/Icon'
-import template from './template/Sider.hbs'
+import template from './template/LayoutSider.hbs'
 
 import {
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMERIC,
 } from '../constant'
 
 export default Yox.define({
@@ -14,11 +15,18 @@ export default Yox.define({
 
   model: 'collapsed',
 
-  name: '${prefix}sider',
+  name: '${prefix}layoutSider',
 
   propTypes: {
+    showTrigger: {
+      type: RAW_BOOLEAN,
+    },
     collapsed: {
       type: RAW_BOOLEAN,
+    },
+    width: {
+      type: RAW_NUMERIC,
+      value: 200
     },
     className: {
       type: RAW_STRING,

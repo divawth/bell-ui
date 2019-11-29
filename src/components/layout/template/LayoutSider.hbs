@@ -1,0 +1,48 @@
+<div class="${prefix}layout-sider
+{{#if collapsed}} ${prefix}layout-sider-collapsed{{/if}}
+{{#if showTrigger}} ${prefix}layout-sider-with-trigger{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if collapsed || width || style}}
+  style="
+  {{#if collapsed}}
+    flex: 0 0 80px;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+  {{else if width}}
+    flex: 0 0 {{width}}px;
+    width: {{width}}px;
+    min-width: {{width}}px;
+    max-width: {{width}}px;
+  {{/if}}
+  {{#if style}}
+    {{style}}
+  {{/if}}"
+{{/if}}
+>
+
+  {{#if hasSlot('logo')}}
+    <div class="${prefix}layout-sider-logo">
+      <slot name="logo" />
+    </div>
+  {{/if}}
+
+  <slot />
+
+  {{#if showTrigger}}
+
+    <div
+      class="${prefix}layout-sider-trigger"
+      on-click="toggle('collapsed')"
+    >
+      <Icon
+        name="arrow-left-s-line"
+        size="0"
+        className="${prefix}layout-sider-trigger-icon"
+      />
+    </div>
+
+  {{/if}}
+
+</div>

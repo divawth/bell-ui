@@ -1,16 +1,16 @@
 import Yox from 'yox'
 
-import template from './template/Footer.hbs'
+import template from './template/LayoutContent.hbs'
 
 import {
-  RAW_STRING,
+  RAW_STRING
 } from '../constant'
 
 export default Yox.define({
 
   template,
 
-  name: '${prefix}footer',
+  name: '${prefix}layoutContent',
 
   propTypes: {
     className: {

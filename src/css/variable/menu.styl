@@ -27,24 +27,21 @@ $menu-title-arrow-gap = 15px
 $menu-arrow-icon-size = 16px
 $menu-arrow-icon-top = 16px
 
-$menu-dark-fg = #515a6e
 $menu-dark-bg = #363e4f
-
-$menu-light-fg = $brand-white
 $menu-light-bg = #f0faff
 
 $menu-group-title-height = 34px
 $menu-horizontal-item-height = 64px
 $menu-vertical-item-height = 48px
 
-$menu-collapsed-width = 60px
+$menu-collapsed-width = 80px
 
 $menu-theme-hash = {
   light: {
 
-    bg-color: $menu-light-fg,
+    bg-color: $layout-light-bg-color,
 
-    item-color: $menu-dark-fg,
+    item-color: $layout-dark-bg-color,
     item-hover-color: $brand-primary,
     item-disabled-color: $brand-disabled,
 
@@ -60,22 +57,22 @@ $menu-theme-hash = {
   },
 
 dark: {
-    bg-color: $menu-dark-fg,
+    bg-color: $layout-dark-bg-color,
 
     item-color: #cacaca,
-    item-bg-color: $menu-dark-fg,
-    item-hover-color: $menu-light-fg,
+    item-bg-color: $layout-dark-bg-color,
+    item-hover-color: $layout-light-bg-color,
     item-disabled-color: #9b9b9b,
 
     group-title-color: rgba(255, 255, 255, 0.36),
 
-    horizontal-item-active-color: $menu-light-fg,
+    horizontal-item-active-color: $layout-light-bg-color,
 
     vertical-item-active-color: $brand-primary,
     vertical-item-active-bg-color: $menu-dark-bg,
 
     inline-bg-color: $menu-dark-bg,
-    inline-item-active-color: $menu-light-fg,
+    inline-item-active-color: $layout-light-bg-color,
     inline-item-active-bg-color: $brand-primary,
   }
 

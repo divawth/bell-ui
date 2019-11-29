@@ -51,6 +51,12 @@ import CardFooter from './components/card/CardFooter'
 
 import PageHeader from './components/page/PageHeader'
 
+import Layout from './components/layout/Layout'
+import LayoutHeader from './components/layout/LayoutHeader'
+import LayoutContent from './components/layout/LayoutContent'
+import LayoutFooter from './components/layout/LayoutFooter'
+import LayoutSider from './components/layout/LayoutSider'
+
 import Link from './components/link/Link'
 import List from './components/list/List'
 import ListItem from './components/list/ListItem'
@@ -132,6 +138,11 @@ const components = {
   CardFooter,
 
   PageHeader,
+  Layout,
+  LayoutHeader,
+  LayoutContent,
+  LayoutFooter,
+  LayoutSider,
 
   Collapse,
   CollapseItem,

@@ -6416,6 +6416,8 @@ body {
 .bell-input {
   display: inline-table;
   width: 200px;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 .bell-input + .bell-input {
   margin-left: 8px;
@@ -6913,7 +6915,7 @@ body {
   display: block;
 }
 .bell-menu-inline.bell-menu-collapsed {
-  width: 60px;
+  width: 80px;
 }
 .bell-menu-inline.bell-menu-collapsed .bell-menu-open > .bell-menu {
   display: none;
@@ -6941,6 +6943,7 @@ body {
   border: 1px solid #dcdee2;
   width: 200px;
   overflow: hidden;
+  vertical-align: middle;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 .bell-input-number-default {
@@ -7043,6 +7046,7 @@ body {
   text-align: left;
   background-color: #fff;
   color: #515a6e;
+  box-sizing: border-box;
 }
 .bell-input-number-el::-webkit-input-placeholder {
   color: #d2d2d2;
@@ -7125,6 +7129,7 @@ body {
 .bell-textarea {
   display: inline-block;
   width: 200px;
+  box-sizing: border-box;
 }
 .bell-textarea-info > .bell-textarea-el {
   border-color: #2db7f5;
@@ -8393,12 +8398,22 @@ body {
   font-size: 18px;
   color: #fbfbfb;
   line-height: 1.15;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
 }
 .bell-card-media-sub-title {
   font-size: 12px;
   color: #ccc;
   line-height: 1.15;
   margin-top: 6px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
 }
 .bell-card-body {
   padding: 24px 24px;
@@ -9077,9 +9092,6 @@ body {
 .bell-spin-large .bell-spin-text {
   font-size: 16px;
 }
-.bell-spin-content {
-  text-align: center;
-}
 .bell-spin-icon {
   vertical-align: top;
 }
@@ -9257,9 +9269,92 @@ body {
     height: 100%;
   }
 }
+.bell-layout {
+  display: flex;
+  flex: auto;
+  box-sizing: border-box;
+  background-color: #f0f2f5;
+}
+.bell-layout-horizontal {
+  flex-direction: row;
+}
+.bell-layout-vertical {
+  flex-direction: column;
+}
+.bell-layout-header {
+  flex: 0 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  line-height: 64px;
+}
+.bell-layout-header-extra {
+  float: right;
+}
+.bell-layout-sider {
+  background-color: #515a6e;
+  transition: all 0.3s;
+}
+.bell-layout-sider::-webkit-scrollbar {
+  width: 0px;
+}
+.bell-layout-sider::-webkit-scrollbar {
+  height: 0px;
+}
+.bell-layout-sider::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-layout-sider::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+.bell-layout-sider::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
+.bell-layout-sider-with-trigger {
+  position: relative;
+  padding-bottom: 48px;
+}
+.bell-layout-sider-logo {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+}
+.bell-layout-sider-collapsed .bell-layout-sider-trigger-icon {
+  transform: rotate(180deg);
+}
+.bell-layout-sider-trigger {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  line-height: 48px;
+  background-color: #515a6e;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-layout-sider-trigger-icon {
+  display: inline-block;
+  font-size: 22px;
+  line-height: inherit;
+}
+.bell-layout-content {
+  flex: auto;
+}
+.bell-layout-footer {
+  flex: 0 0 auto;
+  padding: 24px;
+  color: #808695;
+  font-size: 14px;
+  line-height: 1.57;
+  text-align: center;
+}
 a {
   color: #2d8cf0;
-  link-decoration: none;
+  text-decoration: none;
   transition: color 0.2s;
 }
 a:hover {
@@ -9884,6 +9979,7 @@ a:hover {
   border-radius: 4px;
   text-align: center;
   position: relative;
+  box-sizing: content-box;
 }
 .bell-thumbnail:hover .bell-thumbnail-mask {
   opacity: 1;
@@ -10428,7 +10524,6 @@ a:hover {
 .bell-backtop {
   position: fixed;
   z-index: 4;
-  background-color: #000;
   opacity: 0;
   display: none;
   text-align: center;
@@ -10438,14 +10533,20 @@ a:hover {
   line-height: 40px;
   border-radius: 4px;
   transition: opacity 0.3s;
+  box-sizing: border-box;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  background-color: rgba(0,0,0,0.6);
+}
+.bell-backtop.bell-backtop-legacy {
+  background-color: #000;
+  opacity: 0.6;
 }
 .bell-backtop-visible {
   display: block;
 }
 .bell-backtop-fade {
-  opacity: 0.6;
+  opacity: 1;
 }
 .bell-backtop-icon {
   color: #fff;
@@ -10457,7 +10558,7 @@ a:hover {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.bell-upload > input {
+.bell-upload > form {
   display: none;
 }
 .bell-select-button,

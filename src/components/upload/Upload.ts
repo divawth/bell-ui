@@ -14,6 +14,15 @@ import {
   AjaxUploader,
 } from 'soga'
 
+// 为每次选择的文件提供一个全局唯一的 id，便于外部知道触发的事件对应哪次上传
+
+type UploadFile = {
+  id: number,
+  file: File,
+}
+
+let guid = 0
+
 export default Yox.define({
 
   template,
@@ -57,13 +66,11 @@ export default Yox.define({
   },
 
   methods: {
-    upload(files: any) {
+    upload(files: UploadFile[]) {
 
       const me = this
 
       const beforeUpload = me.get('beforeUpload')
-
-      files = Yox.array.toArray(files)
 
       if (beforeUpload) {
         let currentFile = beforeUpload(files)
@@ -73,12 +80,12 @@ export default Yox.define({
             if (Yox.is.array(result)) {
               Yox.array.each(
                 result,
-                function (item) {
+                function (item: UploadFile) {
                   me.uploadFile(item)
                 }
               )
             }
-            else {
+            else if (result) {
               me.uploadFile(result)
             }
           })
@@ -87,12 +94,12 @@ export default Yox.define({
           if (Yox.is.array(currentFile)) {
             Yox.array.each(
               currentFile,
-              function (item) {
+              function (item: UploadFile) {
                 me.uploadFile(item)
               }
             )
           }
-          else {
+          else if (currentFile) {
             me.uploadFile(currentFile)
           }
         }
@@ -108,31 +115,60 @@ export default Yox.define({
 
     },
 
-    uploadFile(file: any) {
+    uploadFile(file: UploadFile) {
       const me = this
       const ajaxUploader = new AjaxUploader(
-        file,
+        file.file,
         {
           onStart() {
-            me.fire('start.upload')
+            me.fire(
+              'start.upload',
+              file
+            )
           },
           onEnd() {
-            me.fire('end.upload')
+
+            me.fire(
+              'end.upload',
+              file
+            )
+
+            // 重置一下，这样再次选择相同文件才能生效
+            const form = me.$refs.form as HTMLFormElement
+            form.reset()
+
           },
           onAbort() {
-            me.fire('abort.upload')
+            me.fire(
+              'abort.upload',
+              file
+            )
           },
           onError() {
-            me.fire('error.upload')
+            me.fire(
+              'error.upload',
+              file
+            )
           },
           onProgress(progress) {
-            me.fire('progress.upload', progress)
+            me.fire(
+              'progress.upload',
+              {
+                id: file.id,
+                file: file.file,
+                progress,
+              }
+            )
           },
-          onSuccess(response: Data) {
-            me.fire('success.upload', {
-              response,
-              file,
-            })
+          onSuccess(response) {
+            me.fire(
+              'success.upload',
+              {
+                id: file.id,
+                file: file.file,
+                response,
+              }
+            )
           }
         }
       )
@@ -151,8 +187,20 @@ export default Yox.define({
     },
 
     changeFiles(event: CustomEventInterface) {
-      const files = (event.originalEvent.target as HTMLInputElement).files
-      this.upload(files)
+
+      const files = Yox.array.toArray(
+        (event.originalEvent.target as HTMLInputElement).files
+      )
+
+      this.upload(
+        files.map(function (file) {
+          return {
+            file,
+            id: ++guid,
+          }
+        })
+      )
+
     }
 
   },

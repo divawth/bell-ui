@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import template from './template/Header.hbs'
+import template from './template/LayoutHeader.hbs'
 
 import {
   RAW_STRING,
@@ -10,7 +10,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}header',
+  name: '${prefix}layoutHeader',
 
   propTypes: {
     className: {

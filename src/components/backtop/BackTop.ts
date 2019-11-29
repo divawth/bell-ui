@@ -15,8 +15,10 @@ import {
 } from '../constant'
 
 import {
+  toNumber,
   scrollTop,
   onTransitionEnd,
+  supportTransform,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}backtop-visible'
@@ -46,7 +48,7 @@ export default Yox.define({
     },
     duration: {
       type: RAW_NUMERIC,
-      value: 1000,
+      value: 500,
     },
     className: {
       type: RAW_STRING,
@@ -58,7 +60,8 @@ export default Yox.define({
 
   data() {
     return {
-      visible: FALSE
+      visible: FALSE,
+      legacy: !supportTransform,
     }
   },
 
@@ -120,19 +123,20 @@ export default Yox.define({
       container = containerElement
     }
 
-    const height = me.get('height')
+    const height = toNumber(me.get('height'))
     const onRefresh = function () {
       me.set({
         visible: containerElement.scrollTop >= height
       })
     }
 
+    const duration = toNumber(this.get('duration'))
     me.on('click', function () {
       scrollTop(
         containerElement,
         containerElement.scrollTop,
         0,
-        this.get('duration')
+        duration
       )
     })
 

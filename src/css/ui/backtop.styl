@@ -1,7 +1,6 @@
 {$selector-backtop}
   position fixed
   z-index $zindex-backtop
-  background-color #000
   opacity 0
   display none
   text-align center
@@ -11,14 +10,21 @@
   line-height $backtop-size
   border-radius $border-radius-default
   transition opacity .3s
+  box-sizing border-box
 
   ui-clickable()
+
+  background-color $backtop-bg-color
+
+  &{$selector-backtop-legacy}
+    background-color $backtop-bg-color-legacy
+    opacity $backtop-bg-opacity-legacy
 
 {$selector-backtop-visible}
   display block
 
 {$selector-backtop-fade}
-  opacity $backtop-opacity
+  opacity 1
 
 {$selector-backtop-icon}
   color $brand-white
