@@ -9289,10 +9289,13 @@ body {
 }
 .bell-layout-header-extra {
   float: right;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 .bell-layout-sider {
   background-color: #515a6e;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 .bell-layout-sider::-webkit-scrollbar {
   width: 0px;
@@ -9324,7 +9327,7 @@ body {
   transform: rotate(180deg);
 }
 .bell-layout-sider-trigger {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
@@ -9333,6 +9336,7 @@ body {
   background-color: #515a6e;
   color: #fff;
   text-align: center;
+  transition: width 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }

@@ -35,6 +35,13 @@
     <div
       class="${prefix}layout-sider-trigger"
       on-click="toggle('collapsed')"
+      style="
+      {{#if collapsed}}
+        width: 80px;
+      {{else if width}}
+        width: {{width}}px;
+      {{/if}}
+      "
     >
       <Icon
         name="arrow-left-s-line"

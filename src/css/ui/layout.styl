@@ -18,10 +18,13 @@
 
 {$selector-layout-header-extra}
   float right
+  height $layout-header-height
+  display flex
+  align-items center
 
 {$selector-layout-sider}
   background-color $layout-dark-bg-color
-  transition all .3s
+  transition all .2s
   ui-scrollbar(0px)
 
 {$selector-layout-sider-with-trigger}
@@ -39,7 +42,7 @@
     transform rotate(180deg)
 
 {$selector-layout-sider-trigger}
-  position absolute
+  position fixed
   bottom 0
   left 0
   right 0
@@ -48,6 +51,7 @@
   background-color $layout-dark-bg-color
   color $brand-white
   text-align center
+  transition width .2s
   ui-clickable()
 
 {$selector-layout-sider-trigger-icon}
