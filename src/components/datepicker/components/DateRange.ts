@@ -140,11 +140,11 @@ export default Yox.define({
   },
 
   filters: {
-    isEnabled(item: SimpleDate, base: SimpleDate) {
-      const isEnabled = base.year === item.year && base.month === item.month
-      if (!isEnabled) {
-        return FALSE
-      }
+    isCurrentMonth(item: SimpleDate, base: SimpleDate) {
+      return base.year === item.year && base.month === item.month
+    },
+
+    isEnabled(item: SimpleDate) {
       const disabledDate = this.get('disabledDate')
       return disabledDate
         ? disabledDate(item)

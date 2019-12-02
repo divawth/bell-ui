@@ -50,8 +50,8 @@ export interface Shortcut {
   onClick: () => Date | Date[],
 }
 
-export function toSimpleDate(timestamp: number): SimpleDate {
-  const result = new Date(timestamp)
+export function toSimpleDate(date: Date | number): SimpleDate {
+  const result = toDate(date)
   return {
     year: result.getFullYear(),
     month: result.getMonth() + 1,
@@ -60,31 +60,29 @@ export function toSimpleDate(timestamp: number): SimpleDate {
   }
 }
 
-export function toDate(date: Date | number | void) {
+export function toDate(date: Date | number) {
+
+  let result: Date
+
   if (date instanceof Date) {
-    return date
+    result = date
   }
-  if (date) {
-    return new Date(date)
+  else {
+    result = new Date(date)
   }
+
+  // 碰到过夏令时问题，问题描述如下：
+  // time 每次递增 DAY，期望下次的时分秒是相同的，即 00:00:00
+  // 但是碰到夏令时问题后，小时会有不同，非常坑爹
+  // 因此这里要检查小时是否为 0
+  result.setHours(0, 0, 0, 0)
+
+  return result
+
 }
 
 export function toTimestamp(date: Date | number | void) {
-  const result = normalizeDate(date)
-  return result.getTime()
-}
-
-export function normalizeDate(date: Date | number | void) {
-  let timestamp = 0
-  if (date instanceof Date) {
-    timestamp = date.getTime()
-  }
-  else if (date) {
-    timestamp = date
-  }
-  const result = timestamp ? new Date(timestamp) : new Date()
-  result.setHours(0, 0, 0, 0)
-  return result
+  return toDate(date || new Date()).getTime()
 }
 
 export function offsetMonth(timestamp: number, offset: number) {

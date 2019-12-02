@@ -1,0 +1,65 @@
+@import '../../../env'
+
+$message-padding-vertical = 10px
+$message-padding-horizontal = 16px
+
+$message-icon-size = 18px
+$message-close-icon-right = 12px
+$message-close-icon-top = 12px
+
+message-brand-style(style)
+  > {$selector-prefix + '-message-icon'}
+    ui-set('color', style['color'])
+
+{$selector-prefix + '-message'}
+  position fixed
+  top 0
+  left 50%
+  opacity 0
+  z-index $zindex-message
+  transform translateX(-50%)
+
+  user-select none
+  background-color $brand-white
+  padding $message-padding-vertical $message-padding-horizontal
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-single-line-height
+  border-radius $border-radius-default
+  box-shadow $brand-message-shadow
+  transition opacity .15s, top .3s
+
+  ui-connect(
+    hash: $status-brand-hash,
+    each: message-brand-style
+  )
+
+{$selector-prefix + '-message-with-close'}
+  padding-right $message-close-icon-right + $close-icon-size + $ui-icon-text-gap
+
+{$selector-prefix + '-message-visible'}
+  opacity 1
+
+{$selector-prefix + '-message-center'}
+  text-align center
+
+{$selector-prefix + '-message-icon'}
+  font-size $message-icon-size
+  margin-right $ui-icon-text-gap
+  vertical-align middle
+
+{$selector-prefix + '-message-text'}
+  vertical-align middle
+
+{$selector-prefix + '-message-close'}
+  position absolute
+  right $message-close-icon-right
+  top $message-close-icon-top
+
+  color $brand-close-color
+  font-size $close-icon-size
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover

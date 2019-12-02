@@ -46,7 +46,7 @@ export default Yox.define({
       }
     }
     return {
-      year: (toDate(date) || new Date()).getFullYear(),
+      year: (date ? toDate(date) : new Date()).getFullYear(),
       count: 12,
     }
   },

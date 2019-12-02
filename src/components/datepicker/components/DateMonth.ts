@@ -10,7 +10,6 @@ import {
   RAW_TYPE_MONTH,
   toDate,
   SimpleMonth,
-  normalizeDate,
   createMonthViewDatasource,
 } from '../util'
 
@@ -25,7 +24,7 @@ import {
 
 function toMonthTimestamp(date: Date | number | void) {
   if (date) {
-    date = normalizeDate(date)
+    date = toDate(date)
     date.setDate(1)
     return date.getTime()
   }
@@ -71,7 +70,7 @@ export default Yox.define({
       RAW_TYPE_YEAR,
       RAW_TYPE_MONTH,
 
-      year: (toDate(date) || new Date()).getFullYear(),
+      year: (date ? toDate(date) : new Date()).getFullYear(),
     }
   },
 

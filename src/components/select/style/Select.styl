@@ -1,0 +1,141 @@
+@import '../../../env'
+
+$select-icon-size = 14px
+
+$select-prefix-icon-size = 16px
+$select-prefix-icon-color = #666
+
+$select-dropdown-overlay-height = 200px
+$select-group-item-inset = 10px
+
+select-size-style(size)
+
+  {$selector-prefix + '-select-value'},
+  {$selector-prefix + '-select-placeholder'}
+    ui-set('font-size', size['font-size'])
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
+    ui-set('padding-right', size['icon-right'] + $select-icon-size)
+
+  {$selector-prefix + '-select-values'}
+    ui-set(
+      'padding',
+      size['button-padding-vertical'] size['icon-right'] + $select-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
+    )
+
+    > {$selector-prefix + '-tag'}
+      ui-set('height', size['tag-height'])
+      ui-set('line-height', size['tag-height'])
+      ui-set('margin-right', size['tag-gap-horizontal'])
+      ui-set('margin-bottom', size['tag-gap-vertical'])
+
+  {$selector-prefix + '-select-prefix'}
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
+
+  {$selector-prefix + '-select-arrow-icon'},
+  {$selector-prefix + '-select-clear-icon'}
+    ui-set('right', size['icon-right'])
+
+select-brand-style(style)
+  &{$selector-prefix + '-select-enabled'} {$selector-prefix + '-select-button'}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-select-button'}
+    ui-set('border-color', style['color'])
+
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+{$selector-prefix + '-select'}
+  width $ui-form-element-width
+  box-sizing border-box
+  display inline-block
+  user-select none
+  text-align left
+  position relative
+
+  > {$selector-prefix + '-dropdown-overlay'}
+    width 100%
+    max-height $select-dropdown-overlay-height
+
+  {$selector-prefix + '-dropdown-item-active'}
+    color $brand-primary
+
+  ui-connect(
+    hash: $form-button-size-hash,
+    each: select-size-style
+  )
+  ui-connect(
+    hash: $status-brand-hash,
+    each: select-brand-style
+  )
+
+{$selector-prefix + '-select-block'}
+  display block
+  width 100%
+
+{$selector-prefix + '-select-group'}
+  {$selector-prefix + '-dropdown-item'}
+    padding-left $select-group-item-inset + $dropdown-item-padding-horizontal
+
+{$selector-prefix + '-select-group-title'}
+  color $brand-muted
+  font-size 90%
+  padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
+
+{$selector-prefix + '-select-button-with-prefix'}
+  display inline-table
+  width 100%
+
+  > {$selector-prefix + '-select-values'},
+  > {$selector-prefix + '-select-value'},
+  > {$selector-prefix + '-select-placeholder'}
+    padding-left $ui-icon-text-gap
+
+{$selector-prefix + '-select-prefix'}
+  display table-cell
+  vertical-align middle
+  width 1px
+
+  // 不用 block 位置会偏一些
+  > {$selector-prefix + '-avatar'},
+  > {$selector-prefix + '-icon'}
+    display block
+
+{$selector-prefix + '-select-prefix-icon'}
+  color $select-prefix-icon-color
+  font-size $select-prefix-icon-size
+
+{$selector-prefix + '-dropdown-fade'}
+  {$selector-prefix + '-select-arrow-icon'}
+    transform rotate(-180deg)
+
+{$selector-prefix + '-dropdown-top'},
+{$selector-prefix + '-dropdown-top-start'},
+{$selector-prefix + '-dropdown-top-end'}
+  {$selector-prefix + '-select-arrow-icon'}
+    transform rotate(-180deg)
+
+  &{$selector-prefix + '-dropdown-fade'}
+    {$selector-prefix + '-select-arrow-icon'}
+      transform rotate(0)
+
+ui-form-button(
+  $selector-prefix + '-select-enabled',
+  $selector-prefix + '-select-disabled',
+  $selector-prefix + '-select-clearable',
+  $selector-prefix + '-select-button',
+  $selector-prefix + '-select-values',
+  $selector-prefix + '-select-value',
+  $selector-prefix + '-select-placeholder',
+  $selector-prefix + '-select-arrow-icon',
+  $selector-prefix + '-select-clear-icon',
+  $select-icon-size,
+  $select-icon-size
+)

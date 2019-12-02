@@ -1,0 +1,79 @@
+@import '../../../env'
+
+$form-item-vertical-gap = 26px
+$form-item-horizontal-gap = 16px
+$form-top-item-vertical-gap = 14px
+$form-item-label-wrapper-gap = 12px
+$form-item-error-gap = 4px
+
+{$selector-prefix + '-form'}
+  color $brand-content
+  text-align left
+
+{$selector-prefix + '-form-label-left'},
+{$selector-prefix + '-form-label-right'}
+  {$selector-prefix + '-form-item-label'}
+    padding-right $form-item-label-wrapper-gap
+
+  {$selector-prefix + '-form-item'} + {$selector-prefix + '-form-item'}
+    margin-top $form-item-vertical-gap
+
+{$selector-prefix + '-form-label-right'}
+  {$selector-prefix + '-form-item-label'}
+    text-align right
+
+{$selector-prefix + '-form-label-top'}
+  {$selector-prefix + '-form-item-label'},
+  {$selector-prefix + '-form-item-wrapper'}
+    display block
+
+  {$selector-prefix + '-form-item'} + {$selector-prefix + '-form-item'}
+    margin-top $form-top-item-vertical-gap
+
+{$selector-prefix + '-form-item-label-required'}
+  &:before
+    content "*"
+    font-size 80%
+    font-family SimSun
+    color $brand-error
+    margin-right $ui-icon-text-gap
+
+{$selector-prefix + '-form-item-label'}
+  display inline-block
+  font-size $ui-font-size
+  height $height-default
+  line-height $height-default
+  box-sizing border-box
+  white-space nowrap
+  vertical-align middle
+
+{$selector-prefix + '-form-item-wrapper'}
+  display inline-block
+  font-size 0
+  position relative
+  vertical-align middle
+
+{$selector-prefix + '-form-item-error'}
+  position absolute
+  top 100%
+  left 0
+  color $brand-error
+  font-size $ui-font-size - 2
+  margin-top $form-item-error-gap
+  white-space nowrap
+
+{$selector-prefix + '-form-inline'}
+  {$selector-prefix + '-form-item'}
+    display inline-block
+    vertical-align middle
+
+    + {$selector-prefix + '-form-item'}
+      margin-top 0
+      margin-left $form-item-horizontal-gap
+
+{$selector-prefix + '-form-colon'}
+  {$selector-prefix + '-form-item-label'}:after
+    content ':'
+    position relative
+    top -0.5px
+    margin-left 4px

@@ -1,11 +1,12 @@
 import Yox from 'yox'
 
+import template from './template/Pagination.hbs'
+// import './style/Pagination.styl'
+
 import Icon from '../icon/Icon'
 import Input from '../input/Input'
 import Button from '../button/Button'
 import Select from '../select/Select'
-
-import template from './template/Pagination.hbs'
 
 import {
   TRUE,

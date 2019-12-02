@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Article.hbs'
+// import './style/Article.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   RAW_STRING,

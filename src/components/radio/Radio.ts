@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Radio.hbs'
+// import './style/Radio.styl'
 
 import {
   TRUE,

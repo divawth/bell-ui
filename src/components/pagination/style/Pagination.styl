@@ -1,0 +1,166 @@
+@import '../../../env'
+
+$pagination-element-gap = 10px
+
+$pagination-simple-input-width = 55px
+$pagination-jumper-input-width = 100px
+$pagination-select-width = 100px
+$pagination-ellipsis-width = 22px
+
+$pagination-size-hash = {
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    padding-horizontal: 8px,
+  },
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    padding-horizontal: 6px,
+  },
+}
+
+pagination-size-style(style)
+  ui-set('font-size', style['font-size'])
+
+  {$selector-prefix + '-pagination-item'}
+    ui-set('min-width', style['height'])
+    ui-set('height', style['height'])
+    ui-set('line-height', style['height'] - 2)
+    ui-set('font-size', style['font-size'])
+    ui-set('padding', 0 style['padding-horizontal'])
+
+{$selector-prefix + '-pagination-list'}
+  display inline-block
+
+{$selector-prefix + '-pagination-hidden'}
+  display none
+
+{$selector-prefix + '-pagination-item'},
+{$selector-prefix + '-pagination-custom-prev'},
+{$selector-prefix + '-pagination-custom-next'}
+  display inline-block
+  text-align center
+  color $brand-content
+  ui-clickable()
+
+{$selector-prefix + '-pagination-item'}
+  outline 0
+  padding 0
+  border-radius $border-radius-default
+  border 1px solid $brand-border
+  background-color $brand-bg
+  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
+
+  &:disabled
+    color $brand-disabled
+    border-color $brand-border
+    background-color $brand-bg-disabled
+    ui-disabled()
+
+  + {$selector-prefix + '-pagination-item'}
+    margin-left $ui-horizontal-gap
+
+{$selector-prefix + '-pagination-custom-prev'},
+{$selector-prefix + '-pagination-custom-next'}
+  border 0
+  background-color transparent
+
+{$selector-prefix + '-pagination-custom-disabled'}
+  color $brand-disabled
+  ui-disabled()
+
+{$selector-prefix + '-pagination-active'}
+  cursor default
+
+{$selector-prefix + '-pagination-item'}:hover,
+{$selector-prefix + '-pagination-active'}
+  color $brand-primary
+  border-color $brand-primary
+
+  &:disabled
+    color $brand-disabled
+    border-color $brand-border
+
+if $ui-shadow-radius > 0
+  {$selector-prefix + '-pagination-item'}:focus
+    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+{$selector-prefix + '-pagination-custom-prev'} + {$selector-prefix + '-pagination-item'},
+{$selector-prefix + '-pagination-item'} + {$selector-prefix + '-pagination-custom-next'}
+  margin-left $pagination-element-gap
+
+{$selector-prefix + '-pagination-ellipsis'}
+  display inline-block
+  width $pagination-ellipsis-width
+  text-align center
+  margin 0  $ui-horizontal-gap
+  ui-clickable()
+
+  &:after
+    content '•••'
+    display block
+    letter-spacing 1px
+    color $brand-border
+    text-align center
+
+  > {$selector-prefix + '-icon'}
+    color $brand-primary
+    display none
+
+  &:hover
+
+    &:after
+      display none
+
+    > {$selector-prefix + '-icon'}
+      display inline-block
+
+
+
+
+{$selector-prefix + '-pagination'}
+  user-select none
+  ui-connect(
+    hash: $pagination-size-hash,
+    each: pagination-size-style
+  )
+
+  {$selector-prefix + '-select'}
+    width $pagination-select-width
+    margin-right $pagination-element-gap
+    vertical-align top
+
+{$selector-prefix + '-pagination-jumper'}
+  display inline-block
+  margin-left $pagination-element-gap
+
+{$selector-prefix + '-pagination-jumper-input'}
+  width $pagination-jumper-input-width
+  display inline-block
+  vertical-align top
+  margin-right $ui-icon-text-gap
+
+{$selector-prefix + '-pagination-simple-input'}
+  width $pagination-simple-input-width
+  display inline-block
+  vertical-align top
+
+{$selector-prefix + '-pagination-total'}
+  margin-right $pagination-element-gap
+
+{$selector-prefix + '-pagination-simple'}
+  display inline-block
+
+  > {$selector-prefix + '-pagination-prev'}
+    margin-right $pagination-element-gap
+
+  > {$selector-prefix + '-pagination-next'}
+    margin-left $pagination-element-gap
+
+{$selector-prefix + '-pagination-separator'}
+  color $brand-muted
+  margin 0 $ui-icon-text-gap
+
+{$selector-prefix + '-pagination-count'}
+  color $brand-content

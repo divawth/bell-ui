@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Exception.hbs'
+// import './style/Exception.styl'
 
 import {
   RAW_STRING,

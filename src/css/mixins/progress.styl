@@ -1,9 +1,0 @@
-progress-brand-style(style)
-  {$selector-progress-bar}
-    ui-set('background-color', style['color'])
-
-ui-progress()
-  ui-connect(
-    hash: $status-brand-hash,
-    each: progress-brand-style
-  )

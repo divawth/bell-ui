@@ -1,6 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Slider.hbs'
+// import './style/Slider.styl'
 
 import {
   TRUE,

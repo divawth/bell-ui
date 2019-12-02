@@ -1,6 +1,7 @@
-import Yox, { CustomEventInterface, Data } from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Upload.hbs'
+// import './style/Upload.styl'
 
 import {
   FALSE,

@@ -66,18 +66,23 @@ class="${prefix}datepicker-daterange
               <div
                 class="${prefix}datepicker-col
 
-                {{#if isEnabled(this, ../../startDate)}} ${prefix}datepicker-col-enabled
-                  {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}datepicker-col-checked
-                    {{#if ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-start
-                    {{else}} ${prefix}datepicker-col-range
+                {{#if isEnabled(this)}} ${prefix}datepicker-col-enabled
+                  {{#if isCurrentMonth(this, ../../startDate)}} ${prefix}datepicker-col-current-month
+
+                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}datepicker-col-checked
+                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-start
+                      {{else}} ${prefix}datepicker-col-range
+                      {{/if}}
                     {{/if}}
-                  {{/if}}
 
-                  {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
-                  {{/if}}
+                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
+                    {{/if}}
 
-                  {{#if ../../computedCheckedStartTimestamp < this.timestamp
-                    && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}datepicker-col-range
+                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
+                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}datepicker-col-range
+                    {{/if}}
+
+                  {{else}} ${prefix}datepicker-col-adjacent-month
                   {{/if}}
                 {{else}} ${prefix}datepicker-col-disabled
                 {{/if}}"
@@ -86,7 +91,7 @@ class="${prefix}datepicker-daterange
                   on-mouseenter="hover(this)"
                 {{/if}}
 
-                {{#if isEnabled(this, ../../startDate)}}
+                {{#if isEnabled(this)}}
                   on-click="click(this)"
                 {{/if}}
               >
@@ -160,19 +165,25 @@ class="${prefix}datepicker-daterange
               <div
                 class="${prefix}datepicker-col
 
-                {{#if isEnabled(this, ../../endDate)}} ${prefix}datepicker-col-enabled
-                  {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}datepicker-col-checked
-                    {{#if ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-start
-                    {{else}} ${prefix}datepicker-col-range
+                {{#if isEnabled(this)}} ${prefix}datepicker-col-enabled
+                  {{#if isCurrentMonth(this, ../../endDate)}} ${prefix}datepicker-col-current-month
+
+                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}datepicker-col-checked
+                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-start
+                      {{else}} ${prefix}datepicker-col-range
+                      {{/if}}
                     {{/if}}
+
+                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
+                    {{/if}}
+
+                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
+                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}datepicker-col-range
+                    {{/if}}
+
+                  {{else}} ${prefix}datepicker-col-adjacent-month
                   {{/if}}
 
-                  {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
-                  {{/if}}
-
-                  {{#if ../../computedCheckedStartTimestamp < this.timestamp
-                    && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}datepicker-col-range
-                  {{/if}}
                 {{else}} ${prefix}datepicker-col-disabled
                 {{/if}}"
 
@@ -180,7 +191,7 @@ class="${prefix}datepicker-daterange
                   on-mouseenter="hover(this)"
                 {{/if}}
 
-                {{#if isEnabled(this, ../../endDate)}}
+                {{#if isEnabled(this)}}
                   on-click="click(this)"
                 {{/if}}
               >

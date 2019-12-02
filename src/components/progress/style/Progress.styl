@@ -1,0 +1,122 @@
+@import '../../../env'
+
+$progress-bg-color = #e8eaec
+
+progress-brand-style(style)
+  {$selector-prefix + '-progress-bar'}
+    ui-set('background-color', style['color'])
+
+ui-progress()
+  ui-connect(
+    hash: $status-brand-hash,
+    each: progress-brand-style
+  )
+
+{$selector-prefix + '-progress'}
+  ui-progress()
+  vertical-align middle
+
+{$selector-prefix + '-progress-track'}
+  background-color $progress-bg-color
+  border-radius $border-radius-round
+
+{$selector-prefix + '-progress-bar'}
+  border-radius $border-radius-round
+  transition height .2s, width .2s
+
+{$selector-prefix + '-progress-text'}
+  white-space nowrap
+  color $brand-content
+  font-size $font-size-default
+
+{$selector-prefix + '-progress-inside'}
+  {$selector-prefix + '-progress-track'}
+    text-align right
+
+  {$selector-prefix + '-progress-text'}
+    color $brand-white
+    font-size 80%
+    margin-right $ui-horizontal-gap
+
+{$selector-prefix + '-progress-outside'}
+  &{$selector-prefix + '-progress-horizontal'}
+    > {$selector-prefix + '-progress-text'}
+      padding-left $ui-horizontal-gap
+
+{$selector-prefix + '-progress-with-text'}
+  display table
+
+{$selector-prefix + '-progress-block'},
+{$selector-prefix + '-progress-block'} + {$selector-prefix + '-progress-text'}
+  display table-cell
+  vertical-align middle
+
+{$selector-prefix + '-progress-block'}
+  width 100%
+
+{$selector-prefix + '-progress-block'} + {$selector-prefix + '-progress-text'}
+  width 1px
+
+{$selector-prefix + '-progress-horizontal'}
+  {$selector-prefix + '-progress-bar'}
+    position relative
+
+{$selector-prefix + '-progress-vertical'}
+  height 100%
+  display inline-block
+  text-align center
+
+  {$selector-prefix + '-progress-track'}
+    position relative
+    height 100%
+    margin 0 auto
+
+  {$selector-prefix + '-progress-bar'}
+    position absolute
+    bottom 0
+
+  > {$selector-prefix + '-progress-text'}
+    text-align center
+    margin-top $ui-horizontal-gap
+
+{$selector-prefix + '-progress-active'}
+  {$selector-prefix + '-progress-bar'}:before
+    content ''
+    opacity 0
+    position absolute
+    left 0
+    bottom 0
+    background-color $brand-white
+    border-radius $border-radius-round
+
+  &{$selector-prefix + '-progress-horizontal'}
+    {$selector-prefix + '-progress-bar'}:before
+      top 0
+      animation bell-progress-horizontal-active 2s ease-in-out infinite
+
+  &{$selector-prefix + '-progress-vertical'}
+    {$selector-prefix + '-progress-bar'}:before
+      right 0
+      animation bell-progress-vertical-active 2s ease-in-out infinite
+
+
+@keyframes bell-progress-horizontal-active
+  0%
+    opacity .3
+    width 0
+
+  100%
+    opacity 0
+    width 100%
+
+
+@keyframes bell-progress-vertical-active
+  0%
+    opacity .3
+    height 0
+
+  100%
+    opacity 0
+    height 100%
+
+

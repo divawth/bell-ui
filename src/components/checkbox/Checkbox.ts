@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Checkbox.hbs'
+// import './style/Checkbox.styl'
 
 import {
   TRUE,

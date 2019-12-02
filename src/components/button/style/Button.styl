@@ -1,0 +1,396 @@
+@import '../../../env'
+
+$button-group-separator-color = rgba(255,255,255,0.4)
+
+$button-size-hash = {
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    loading-size: $font-size-default + 2,
+    border-radius: $border-radius-default,
+    padding-horizontal: $padding-horizontal-default,
+  },
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    loading-size: $font-size-small + 2,
+    border-radius: $border-radius-small,
+    padding-horizontal: $padding-horizontal-small,
+  },
+  large: {
+    height: $height-large,
+    font-size: $font-size-large,
+    loading-size: $font-size-large + 2,
+    border-radius: $border-radius-large,
+    padding-horizontal: $padding-horizontal-large,
+  },
+}
+
+$button-brand-hash = {
+  primary: {
+    color: $brand-white,
+    bg-color: $brand-primary,
+    border-color: $brand-primary,
+
+    hover-color: $brand-white,
+    hover-bg-color: $brand-primary-hover,
+    hover-border-color: $brand-primary-hover,
+
+    active-color: $brand-white,
+    active-bg-color: $brand-primary-active,
+    active-border-color: $brand-primary-active,
+
+    shadow-color: $brand-primary-shadow,
+  },
+  success: {
+    color: $brand-white,
+    bg-color: $brand-success,
+    border-color: $brand-success,
+
+    hover-color: $brand-white,
+    hover-bg-color: $brand-success-hover,
+    hover-border-color: $brand-success-hover,
+
+    active-color: $brand-white,
+    active-bg-color: $brand-success-active,
+    active-border-color: $brand-success-active,
+
+    shadow-color: $brand-success-shadow,
+  },
+
+  error: {
+    color: $brand-white,
+    bg-color: $brand-error,
+    border-color: $brand-error,
+
+    hover-color: $brand-white,
+    hover-bg-color: $brand-error-hover,
+    hover-border-color: $brand-error-hover,
+
+    active-color: $brand-white,
+    active-bg-color: $brand-error-active,
+    active-border-color: $brand-error-active,
+
+    shadow-color: $brand-error-shadow,
+  },
+
+  info: {
+    color: $brand-white,
+    bg-color: $brand-info,
+    border-color: $brand-info,
+
+    hover-color: $brand-white,
+    hover-bg-color: $brand-info-hover,
+    hover-border-color: $brand-info-hover,
+
+    active-color: $brand-white,
+    active-bg-color: $brand-info-active,
+    active-border-color: $brand-info-active,
+
+    shadow-color: $brand-info-shadow,
+  },
+  warning: {
+    color: $brand-white,
+    bg-color: $brand-warning,
+    border-color: $brand-warning,
+
+    hover-color: $brand-white,
+    hover-bg-color: $brand-warning-hover,
+    hover-border-color: $brand-warning-hover,
+
+    active-color: $brand-white,
+    active-bg-color: $brand-warning-active,
+    active-border-color: $brand-warning-active,
+
+    shadow-color: $brand-warning-shadow,
+  },
+}
+
+button-size(size)
+  ui-set('border-radius', size['border-radius'])
+  ui-set('font-size', size['font-size'])
+  ui-set('height', size['height'])
+  ui-set('line-height', size['height'] - 2)
+  ui-set('min-width', size['height'])
+  ui-set('padding', 0 size['padding-horizontal'])
+
+  &{$selector-prefix + '-button-text'},
+  &{$selector-prefix + '-button-link'}
+    ui-set('line-height', size['height'])
+
+  {$selector-prefix + '-button-loading-icon'}
+    ui-set('font-size', size['loading-size'])
+
+button-circle-size(style)
+  ui-set('width', style['height'])
+  ui-set('height', style['height'])
+
+button-brand-style(style)
+  ui-set('color', style['color'])
+  ui-set('border-color', style['border-color'])
+  ui-set('background-color', style['bg-color'])
+
+  &{$selector-prefix + '-button-enabled'}
+    &:hover
+      ui-set('color', style['hover-color'])
+      ui-set('border-color', style['hover-border-color'])
+      ui-set('background-color', style['hover-bg-color'])
+
+    &:active
+      ui-set('color', style['active-color'])
+      ui-set('border-color', style['active-border-color'])
+      ui-set('background-color', style['active-bg-color'])
+
+    if $ui-shadow-radius > 0
+      &:focus
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+    ui-button-group-separator(style['hover-border-color'], style['active-border-color'])
+
+  &{$selector-prefix + '-button-ghost'}
+    ui-set('color', style['border-color'])
+    ui-set('border-color', style['border-color'])
+
+    &{$selector-prefix + '-button-enabled'}
+      &:hover
+        ui-set('color', style['hover-border-color'])
+        ui-set('border-color', style['hover-border-color'])
+
+      &:active
+        ui-set('color', style['active-border-color'])
+        ui-set('border-color', style['active-border-color'])
+
+button-group-size(size)
+  > {$selector-prefix + '-button'}
+    button-size(size)
+
+ui-button-group-separator(hoverColor, activeColor)
+  &:hover:before,
+  &:hover + {$selector-prefix + '-button'}:before
+    ui-set('border-color', hoverColor)
+
+  &:active:before,
+  &:active + {$selector-prefix + '-button'}:before
+    ui-set('border-color', activeColor)
+
+{$selector-prefix + '-button'}
+  display inline-block
+  text-align center
+  user-select none
+  white-space nowrap
+  box-sizing border-box
+  outline 0
+  padding 0
+
+  border 1px solid $brand-border
+  color $brand-content
+  background-color $brand-bg
+
+  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
+
+  &{$selector-prefix + '-button-ghost'}
+    color $brand-white
+    border-color $brand-white
+    background-color transparent !important
+    transition color .2s, border-color .2s, box-shadow .2s
+
+  &{$selector-prefix + '-button-text'},
+  &{$selector-prefix + '-button-link'}
+    border 0
+    background-color transparent
+
+    &:focus
+      box-shadow none
+
+  &{$selector-prefix + '-button-link'}
+    color $brand-primary
+
+  ui-connect(
+    hash: $button-size-hash,
+    each: button-size
+  )
+  ui-connect(
+    hash: $button-brand-hash,
+    each: button-brand-style
+  )
+
+  + {$selector-prefix + '-button'}
+    margin-left $ui-horizontal-gap
+
+  > {$selector-prefix + '-icon'} + span,
+  > span + {$selector-prefix + '-icon'}
+    margin-left $ui-icon-text-gap
+
+  {$selector-prefix + '-icon'}
+    line-height inherit
+
+  {$selector-prefix + '-icon'},
+  > span
+    display inline-block
+    vertical-align top
+
+{$selector-prefix + '-button-dashed'}
+  border-style dashed
+
+{$selector-prefix + '-button-circle'}
+  padding 0
+  border-radius $border-radius-circle
+  ui-connect(
+    hash: $button-size-hash,
+    each: button-circle-size
+  )
+
+{$selector-prefix + '-button-round'}
+  border-radius $border-radius-round
+
+{$selector-prefix + '-button-enabled'}
+  ui-clickable()
+  ui-button-group-separator($brand-primary, $brand-primary)
+
+  &{$selector-prefix + '-button-link'}:hover
+    color $brand-primary-hover
+
+  &:hover,
+  &:active
+    color $brand-primary
+    border-color $brand-primary
+
+  if $ui-shadow-radius > 0
+    &:focus
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+{$selector-prefix + '-button-disabled'}
+  border-color $brand-border
+  background-color $brand-bg-disabled
+  color $brand-disabled
+  ui-disabled()
+
+  &{$selector-prefix + '-button-text'},
+  &{$selector-prefix + '-button-link'}
+    color $brand-disabled
+
+  &{$selector-prefix + '-button-ghost'}
+    border-color $brand-border
+    color $brand-disabled
+
+{$selector-prefix + '-button-loading'}
+  cursor default
+  opacity $ui-opacity-disabled
+
+{$selector-prefix + '-button-block'}
+  display block
+
+  + {$selector-prefix + '-button-block'}
+    margin-left 0
+    margin-top $ui-vertical-gap
+
+{$selector-prefix + '-button-group'}
+  display inline-block
+  ui-connect(
+    hash: $button-size-hash,
+    each: button-group-size
+  )
+
+  {$selector-prefix + '-button-dashed'}:before
+    border-style dashed
+
+{$selector-prefix + '-button'}:before
+  border-style solid
+  border-color transparent
+
+{$selector-prefix + '-button-primary'} + {$selector-prefix + '-button-primary'}
+  &:before
+    border-color $button-group-separator-color
+
+{$selector-prefix + '-button-group-horizontal'}
+  > {$selector-prefix + '-button'}
+
+    + {$selector-prefix + '-button'}
+      margin-left 0
+      border-left none
+
+    &:first-child:not(:last-child)
+      border-top-right-radius 0
+      border-bottom-right-radius 0
+
+    &:last-child:not(:first-child)
+      border-top-left-radius 0
+      border-bottom-left-radius 0
+
+    &:not(:first-child):not(:last-child)
+      border-radius 0
+
+  > {$selector-prefix + '-button-enabled'}
+    position relative
+    &:before
+      content ''
+      position absolute
+      border-left-width 1px
+      border-top none
+      border-right none
+      border-bottom none
+      left -1px
+      top -1px
+      bottom -1px
+      transition border-color .2s
+
+    &:first-child:before
+      content none
+
+    &:hover,
+    &:focus,
+    &:active
+      z-index $zindex-normal
+
+{$selector-prefix + '-button-group-vertical'}
+  > {$selector-prefix + '-button'}
+    display block
+    width 100%
+
+    + {$selector-prefix + '-button'}
+      margin-left 0px
+      border-top none
+
+    &:first-child:not(:last-child)
+      border-bottom-left-radius 0
+      border-bottom-right-radius 0
+
+    &:last-child:not(:first-child)
+      border-top-left-radius 0
+      border-top-right-radius 0
+
+    &:not(:first-child):not(:last-child)
+      border-radius 0
+
+  > {$selector-prefix + '-button-enabled'}
+    position relative
+    &:before
+      content ' '
+      position absolute
+      border-top-width 1px
+      border-left none
+      border-right none
+      border-bottom none
+      left -1px
+      right -1px
+      top -1px
+      transition border-color .2s
+
+    &:first-child:before
+      content none
+
+    &:hover,
+    &:focus,
+    &:active
+      z-index $zindex-normal
+
+{$selector-prefix + '-button-group-round'}
+  > {$selector-prefix + '-button'}
+
+    &:first-child:not(:last-child)
+      border-top-left-radius $border-radius-round
+      border-bottom-left-radius $border-radius-round
+
+    &:last-child:not(:first-child)
+      border-top-right-radius $border-radius-round
+      border-bottom-right-radius $border-radius-round

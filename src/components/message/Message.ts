@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Message.hbs'
+// import './style/Message.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   TRUE,

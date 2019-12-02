@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Divider.hbs'
+// import './style/Divider.styl'
 
 import {
   FALSE,

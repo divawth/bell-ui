@@ -1,0 +1,68 @@
+@import '../../../env'
+
+$rate-icon-gap = 8px
+
+$rate-icon-color = #e9e9e9
+
+$rate-brand-hash = {
+  primary: {
+    color: $brand-primary
+  },
+  success: {
+    color: $brand-success
+  },
+  error: {
+    color: $brand-error
+  },
+  info: {
+    color: $brand-info
+  },
+  warning: {
+    color: $brand-warning
+  }
+}
+
+rate-brand-style(style)
+  {$selector-prefix + '-rate-icon-active'}
+    ui-set('color', style['color'])
+
+{$selector-prefix + '-rate'}
+  display inline-block
+  ui-connect(
+    hash: $rate-brand-hash,
+    each: rate-brand-style
+  )
+
+{$selector-prefix + '-rate-icon-full'}
+  color $rate-icon-color
+  display inline-block
+  line-height 1
+  position relative
+  transition color .3s
+
+  + {$selector-prefix + '-rate-icon-full'}
+    margin-left $rate-icon-gap
+
+{$selector-prefix + '-rate-icon-half'}
+  position absolute
+  left 0
+  top 0
+  width 50%
+  height 100%
+  overflow hidden
+  line-height 1
+  opacity 0
+  transition opacity .3s
+
+  &{$selector-prefix + '-rate-icon-active'}
+    opacity 1
+
+{$selector-prefix + '-rate-text'}
+  margin-left $rate-icon-gap
+  font-size $font-size-default
+  color $brand-content
+  vertical-align top
+
+{$selector-prefix + '-rate-live'}
+  > {$selector-prefix + '-rate-icon-full'}
+    ui-clickable()

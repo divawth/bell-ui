@@ -1,10 +1,11 @@
 import Yox, { Data, CustomEventInterface } from 'yox'
 
+import template from './template/Table.hbs'
+// import './style/Table.styl'
+
 import Empty from '../empty/Empty'
 import Button from '../button/Button'
 import Checkbox from '../checkbox/Checkbox'
-
-import template from './template/Table.hbs'
 
 import {
   TRUE,

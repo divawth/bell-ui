@@ -1,0 +1,81 @@
+@import '../../../env'
+
+$article-title-font-size = 28px
+
+$article-title-link-gap = 10px
+$article-title-sub-title-gap = 10px
+$article-title-content-gap = 30px
+$article-paragraph-gap = 15px
+$article-image-gap = 10px
+
+$article-cover-border-radius = 8px
+$article-blockquote-border-width = 4px
+$article-blockquote-padding-vertical = 12px
+$article-blockquote-padding-horizontal = 18px
+
+{$selector-prefix + '-article'}
+  img
+    max-width 100%
+
+{$selector-prefix + '-article-title'}
+  color: $brand-title
+  line-height 1.5
+  font-size $article-title-font-size
+
+{$selector-prefix + '-article-link'}
+  color $brand-link
+  font-size $font-size-large
+  margin-left $article-title-link-gap
+  user-select none
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-link-hover
+
+{$selector-prefix + '-article-sub-title'}
+  color $brand-muted
+  font-size $font-size-large
+  line-height 1.8
+  margin-top $article-title-sub-title-gap
+
+  + {$selector-prefix + '-article-content'}
+    margin-top $article-title-content-gap
+
+{$selector-prefix + '-article-cover'}
+  margin $article-title-content-gap 0
+  text-align center
+
+  img
+    border-radius $article-cover-border-radius
+    vertical-align top
+
+  + {$selector-prefix + '-article-content'}
+    margin-top $article-title-content-gap
+
+{$selector-prefix + '-article-content'}
+
+  font-size $font-size-large
+  line-height 1.9
+  color $brand-title
+
+  img
+    display block
+    margin $article-image-gap auto
+
+  p
+    margin $article-paragraph-gap 0
+
+  blockquote
+    border-left $article-blockquote-border-width solid $brand-primary
+    font-size $font-size-default
+    padding $article-blockquote-padding-vertical $article-blockquote-padding-horizontal
+    // p 有些行间距，所以视觉上段落的边和文字还有一些距离
+    margin $article-paragraph-gap + 4 0
+    background-color $brand-bg-light
+
+{$selector-prefix + '-article-signature'}
+  color $brand-muted
+  font-size $font-size-default
+  margin-top $article-title-content-gap
+  line-height 1.8

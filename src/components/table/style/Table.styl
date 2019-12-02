@@ -1,0 +1,93 @@
+@import '../../../css/brand'
+@import '../../../css/size'
+@import '../../../css/selector'
+@import '../../../css/mixin'
+
+$table-header-cell-padding-vertical = 12px
+$table-header-cell-padding-horizontal = 18px
+$table-body-cell-padding-vertical = 13px
+$table-body-cell-padding-horizontal = 18px
+$table-empty-padding-vertical = 100px
+$table-row-highlight = #ebf7ff
+
+{$selector-prefix + '-table'}
+  width 100%
+  box-sizing border-box
+  background-color $brand-bg
+  // 让 Spin 组件可以 fixed 在表格内部
+  position relative
+
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+  ui-scrollbar()
+
+  > table
+    box-sizing border-box
+    border-collapse collapse
+    width 100%
+    border 0
+    margin 0
+    padding 0
+
+  td
+    border 0
+    box-sizing border-box
+
+  tr
+    border 0
+    background-color transparent
+
+
+{$selector-prefix + '-table-stripe'}
+  tbody
+    > tr:nth-child(2n)
+      background-color $brand-bg-light
+
+      &:hover
+        background-color $table-row-highlight
+
+
+{$selector-prefix + '-table-bordered'}
+  border 1px solid $brand-border
+
+  td + td
+    border-left 1px solid $brand-divider
+
+{$selector-prefix + '-table-header'}
+  border-bottom 1px solid $brand-divider
+
+  td
+    color $brand-title
+    font-size $font-size-large
+    line-height $ui-single-line-height
+    font-weight bold
+    white-space nowrap
+    overflow hidden
+    background-color $brand-bg-light
+    padding $table-header-cell-padding-vertical $table-header-cell-padding-horizontal
+
+{$selector-prefix + '-table-body'}
+
+  tr:hover
+    background-color $table-row-highlight
+
+  tr + tr
+    border-top 1px solid $brand-divider
+
+  td
+    text-overflow ellipsis
+    vertical-align middle
+    padding $table-body-cell-padding-vertical $table-body-cell-padding-horizontal
+
+{$selector-prefix + '-table-empty'}
+  padding $table-empty-padding-vertical 0
+
+{$selector-prefix + '-table-left'}
+  text-align left
+
+{$selector-prefix + '-table-center'}
+  text-align center
+
+{$selector-prefix + '-table-right'}
+  text-align right

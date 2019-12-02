@@ -35,10 +35,9 @@ export interface Shortcut {
     text: string;
     onClick: () => Date | Date[];
 }
-export declare function toSimpleDate(timestamp: number): SimpleDate;
-export declare function toDate(date: Date | number | void): Date;
+export declare function toSimpleDate(date: Date | number): SimpleDate;
+export declare function toDate(date: Date | number): Date;
 export declare function toTimestamp(date: Date | number | void): number;
-export declare function normalizeDate(date: Date | number | void): Date;
 export declare function offsetMonth(timestamp: number, offset: number): number;
 export declare function createYearViewDatasource(startYear: number, count: number): number[][];
 export declare function createMonthViewDatasource(year: number): SimpleMonth[][];

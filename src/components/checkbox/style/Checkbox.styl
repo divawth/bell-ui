@@ -1,0 +1,122 @@
+@import '../../../env'
+
+$checkbox-gap-horizontal = 16px
+
+$checkbox-icon-top = 1px
+$checkbox-icon-left = 4px
+$checkbox-icon-width = 4px
+$checkbox-icon-height = 8px
+
+$checkbox-indeterminate-top = 5px
+$checkbox-indeterminate-left = 2px
+$checkbox-indeterminate-width = 8px
+$checkbox-indeterminate-height = 1px
+
+{$selector-prefix + '-checkbox'}
+  display inline-block
+  user-select none
+  box-sizing border-box
+  vertical-align middle
+  height $height-default
+  line-height $height-default
+
+  + {$selector-prefix + '-checkbox'}
+    margin-left $checkbox-gap-horizontal
+
+{$selector-prefix + '-checkbox-with-label'}
+  position relative
+  color $brand-content
+  font-size $font-size-default
+  padding-left $font-size-default + $ui-icon-text-gap
+
+  > {$selector-prefix + '-checkbox-icon'}
+    position absolute
+    left 0
+    top 50%
+    margin-top -0.5 * $font-size-default
+
+{$selector-prefix + '-checkbox-active'}
+  > {$selector-prefix + '-checkbox-icon'}:after
+    transform rotate(45deg) scale(1)
+
+{$selector-prefix + '-checkbox-indeterminate'}
+  > {$selector-prefix + '-checkbox-icon'}:after
+    transform rotate(0deg) scale(1)
+
+    top $checkbox-indeterminate-top
+    left $checkbox-indeterminate-left
+    width $checkbox-indeterminate-width
+    height $checkbox-indeterminate-height
+
+{$selector-prefix + '-checkbox-icon'}
+  display inline-block
+  position relative
+  width $font-size-default
+  height $font-size-default
+  border-radius $border-radius-small
+  box-sizing border-box
+  border 1px solid $brand-border
+  background-color $brand-bg
+  transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
+
+  &:after
+    content ''
+
+    position absolute
+    top $checkbox-icon-top
+    left $checkbox-icon-left
+    width $checkbox-icon-width
+    height $checkbox-icon-height
+
+    border 1px solid $brand-white
+    box-sizing border-box
+    border-top 0
+    border-left 0
+
+    transform scale(0)
+
+
+{$selector-prefix + '-checkbox-input'}
+  position absolute
+  opacity 0
+
+{$selector-prefix + '-checkbox-enabled'},
+{$selector-prefix + '-checkbox-enabled'} input
+  ui-clickable()
+
+{$selector-prefix + '-checkbox-disabled'},
+{$selector-prefix + '-checkbox-disabled'} input
+  ui-disabled()
+
+{$selector-prefix + '-checkbox-enabled'}:hover
+  > {$selector-prefix + '-checkbox-icon'}
+    border-color $brand-primary
+
+{$selector-prefix + '-checkbox-active'},
+{$selector-prefix + '-checkbox-indeterminate'}
+  > {$selector-prefix + '-checkbox-icon'}
+    background-color $brand-primary
+    border-color $brand-primary
+
+{$selector-prefix + '-checkbox-disabled'}
+  color $brand-disabled
+
+  > {$selector-prefix + '-checkbox-icon'}
+    background-color $brand-bg-disabled
+    border-color $brand-border
+
+    &:after
+      border-color $brand-disabled
+
+if $ui-shadow-radius > 0
+  {$selector-prefix + '-checkbox-focus'}
+    > {$selector-prefix + '-checkbox-icon'}
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+{$selector-prefix + '-checkbox-vertical'}
+  > {$selector-prefix + '-checkbox'}
+    width 100%
+    display block
+
+    + {$selector-prefix + '-checkbox'}
+      margin-left 0

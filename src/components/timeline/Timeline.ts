@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Timeline.hbs'
+// import './style/Timeline.styl'
 
 import {
   FALSE,

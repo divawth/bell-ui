@@ -1,0 +1,128 @@
+@import '../../../env'
+
+$drawer-padding-horizontal = 24px
+$drawer-header-padding-vertical = 16px
+$drawer-body-padding-vertical = 16px
+
+$drawer-close-font-size = 20px
+$drawer-close-size = 18px
+
+{$selector-prefix + '-drawer'}
+  position fixed
+  left 0
+  right 0
+  top 0
+  bottom 0
+  z-index $zindex-drawer
+  display none
+
+{$selector-prefix + '-drawer-visible'}
+  display block
+
+{$selector-prefix + '-drawer-fade'}
+  > {$selector-prefix + '-drawer-mask'}
+    opacity $ui-opacity-mask
+
+{$selector-prefix + '-drawer-wrapper'}
+  position absolute
+  background-color $brand-bg
+  box-shadow $brand-dialog-shadow
+  transition transform .3s
+
+{$selector-prefix + '-drawer-header'}
+  ui-ellipsis()
+  color $brand-title
+  font-size $font-size-large
+  line-height $ui-single-line-height
+  font-weight bold
+  padding $drawer-header-padding-vertical $drawer-padding-horizontal
+  border-bottom 1px solid $brand-border
+
+{$selector-prefix + '-drawer-body'}
+  padding $drawer-body-padding-vertical $drawer-padding-horizontal
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+  word-wrap break-word
+  overflow-y auto
+  box-sizing border-box
+  height calc(100% - 50px)
+  ui-scrollbar()
+
+{$selector-prefix + '-drawer-close'}
+  position absolute
+  right $drawer-padding-horizontal
+  top $drawer-header-padding-vertical
+  font-size $drawer-close-font-size
+  width $drawer-close-size
+  height $drawer-close-size
+  line-height $drawer-close-size
+  text-align center
+  color $brand-close-color
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover
+
+{$selector-prefix + '-drawer-mask'}
+  position absolute
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background-color #000
+  opacity 0
+  transition opacity .3s
+
+
+
+{$selector-prefix + '-drawer-left'}
+  > {$selector-prefix + '-drawer-wrapper'}
+    transform translate(-100%)
+    left 0
+    top 0
+    bottom 0
+
+  &{$selector-prefix + '-drawer-fade'}
+    > {$selector-prefix + '-drawer-wrapper'}
+      transform translate(0)
+
+
+{$selector-prefix + '-drawer-right'}
+
+  > {$selector-prefix + '-drawer-wrapper'}
+    transform translate(100%)
+    right 0
+    top 0
+    bottom 0
+
+  &{$selector-prefix + '-drawer-fade'}
+    > {$selector-prefix + '-drawer-wrapper'}
+      transform translate(0)
+
+
+{$selector-prefix + '-drawer-top'}
+
+  > {$selector-prefix + '-drawer-wrapper'}
+    transform translateY(-100%)
+    top 0
+    left 0
+    right 0
+
+  &{$selector-prefix + '-drawer-fade'}
+    > {$selector-prefix + '-drawer-wrapper'}
+      transform translate(0)
+
+
+{$selector-prefix + '-drawer-bottom'}
+
+  > {$selector-prefix + '-drawer-wrapper'}
+    transform translateY(100%)
+    bottom 0
+    left 0
+    right 0
+
+  &{$selector-prefix + '-drawer-fade'}
+    > {$selector-prefix + '-drawer-wrapper'}
+      transform translate(0)

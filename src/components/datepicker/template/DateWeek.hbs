@@ -72,27 +72,32 @@
         {{/each}}
       </div>
       <div class="${prefix}datepicker-days">
-        {{#each datasource}}
+        {{#each datasource:rowIndex}}
           <div
             class="${prefix}datepicker-row"
-            on-click="click(this)"
           >
-            {{#each this.list:index}}
+            {{#each this.list:colIndex}}
               <div
                 class="${prefix}datepicker-col
-
                 {{#if isEnabled(this)}} ${prefix}datepicker-col-enabled
+                  {{#if isCurrentMonth(this)}} ${prefix}datepicker-col-current-month
+                  {{else}} ${prefix}datepicker-col-adjacent-month
+                  {{/if}}
                 {{else}} ${prefix}datepicker-col-disabled
                 {{/if}}
 
                 {{#if ../../checkedTimestamp >= ../start.timestamp
                   && ../../checkedTimestamp < ../end.timestamp}}
-                  {{#if index === 0}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-start
-                  {{else if index === $length - 1}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
+                  {{#if colIndex === 0}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-start
+                  {{else if colIndex === $length - 1}} ${prefix}datepicker-col-checked ${prefix}datepicker-col-end
                   {{else}} ${prefix}datepicker-col-range
                   {{/if}}
                 {{/if}}
                 "
+
+                {{#if isEnabled(this)}}
+                  on-click="click(../rowIndex)"
+                {{/if}}
               >
                 <div class="${prefix}datepicker-text">
                   {{this.date}}

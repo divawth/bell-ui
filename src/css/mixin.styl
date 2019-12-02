@@ -1,0 +1,253 @@
+ui-set(name, value, important = false)
+
+  apply = @() {
+    if (important) {
+      {name} value !important
+    }
+    else {
+      {name} value
+    }
+  }
+
+  if value is a 'unit'
+    apply()
+
+  else if value
+    apply()
+
+ui-opacity(value)
+  ui-set('opacity', value)
+
+ui-ellipsis()
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+  word-break keep-all
+
+ui-column()
+  display flex
+  flex-direction column
+
+ui-row()
+  display flex
+  flex-direction row
+
+ui-justified(selector-item)
+  display table
+
+  > {selector-item}
+    display table-cell
+    width 1%
+
+ui-apply(style, selector = '')
+  if selector
+    {selector}
+      style()
+  else
+    style()
+
+ui-variant(hash, each)
+  for name in hash
+
+    selector = '&'
+
+    if name
+      selector += '.' + name
+
+    ui-apply(
+      selector: selector,
+      style: @() {
+        each(hash[name], name)
+      }
+    )
+
+ui-connect(hash, each)
+  for name in hash
+
+    selector = '&'
+
+    if name
+      selector += '-' + name
+
+    ui-apply(
+      selector: selector,
+      style: @() {
+        each(hash[name], name)
+      }
+    )
+
+ui-clickable()
+  cursor pointer
+  -webkit-tap-highlight-color rgba(0,0,0,0)
+
+ui-disabled()
+  cursor not-allowed
+
+ui-input()
+  border 1px solid $brand-border
+  border-radius $border-radius-default
+  box-sizing border-box
+  background-color transparent
+  outline none
+  display block
+  width 100%
+  cursor text
+  color $brand-title
+  font-size $ui-font-size
+  transition border-color .3s, box-shadow .3s
+
+  ui-placeholder($brand-placeholder)
+
+  &:hover
+    border-color $brand-primary
+
+  &:focus
+    border-color $brand-primary
+
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+ui-input-disabled($selector)
+  background-color $brand-bg-disabled
+
+  {$selector}
+    color $brand-disabled
+    border-color $brand-border
+    ui-disabled()
+
+ui-placeholder(color)
+
+  &::-webkit-input-placeholder  /* WebKit browsers */
+    color color
+
+  &:-moz-placeholder  /* Mozilla Firefox 4 to 18 */
+    color color
+
+  &::-moz-placeholder  /* Mozilla Firefox 19+ */
+    color color
+
+  &:-ms-input-placeholder  /* Internet Explorer 10+ */
+    color color
+
+ui-scrollbar(size = 4px)
+
+  &::-webkit-scrollbar
+    width size
+
+  &::-webkit-scrollbar
+    height size
+
+  &::-webkit-scrollbar-track
+    background-color rgba(0,0,0,0)
+
+  &::-webkit-scrollbar-thumb
+    background-color #d1d1d1
+    border-radius 10px
+    transition background-color .3s
+
+  &::-webkit-scrollbar-thumb:hover
+    background-color #b3b3b3
+
+
+ui-form-button(
+  $selector-enabled,
+  $selector-disabled,
+  $selector-clearable,
+  $selector-button,
+  $selector-values,
+  $selector-value,
+  $selector-placeholder,
+  $selector-right-icon,
+  $selector-clear-icon,
+  $right-icon-size,
+  $clear-icon-size)
+
+  {$selector-button}
+
+    position relative
+    border 1px solid $brand-border
+    background-color $brand-bg
+    line-height 0
+
+    box-sizing border-box
+    border-radius $border-radius-default
+    transition border-color .3s, box-shadow .3s
+
+  {$selector-values}
+
+    width 100%
+    box-sizing border-box
+
+    > {$selector-prefix + '-tag'}
+      border 0
+      cursor text
+      font-size $font-size-small
+      background-color $brand-tag-bg-color
+      padding 0 $ui-icon-text-gap !important
+
+      > {$selector-prefix + '-tag-close-icon'}
+        position static
+        vertical-align middle
+
+  {$selector-value},
+  {$selector-placeholder}
+    width 100%
+    box-sizing border-box
+    ui-ellipsis()
+
+  {$selector-value}
+    color $brand-content
+    user-select none
+
+  {$selector-placeholder}
+    color $brand-placeholder
+    user-select none
+
+  {$selector-right-icon},
+  {$selector-clear-icon}
+    position absolute
+    top 50%
+
+  {$selector-right-icon}
+    font-size $right-icon-size
+    margin-top -0.5 * $right-icon-size
+    color $brand-muted
+    transition transform .3s
+    transform-origin center center
+
+  {$selector-clear-icon}
+    font-size $clear-icon-size
+    margin-top -0.5 * $clear-icon-size
+    color $brand-clear-icon-color
+    display none
+
+  {$selector-enabled}
+    {$selector-button}
+      ui-clickable()
+
+    {$selector-button}:hover
+      border-color $brand-primary
+
+  {$selector-disabled}
+
+    {$selector-button}
+      background-color $brand-bg-disabled
+      border-color $brand-border
+      ui-disabled()
+
+    {$selector-value},
+    {$selector-placeholder}
+      color $brand-disabled
+
+  {$selector-clearable}
+    {$selector-button}:hover
+    {$selector-clear-icon}
+      display block
+      + {$selector-right-icon}
+        display none
+
+  {$selector-prefix + '-dropdown-fade'}
+    {$selector-button}
+      border-color $brand-primary
+      if $ui-shadow-radius > 0
+        box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

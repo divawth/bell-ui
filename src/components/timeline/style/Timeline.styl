@@ -1,0 +1,67 @@
+@import '../../../env'
+
+$timeline-item-gap = 20px
+
+$timeline-line-width = 2px
+$timeline-line-color = #e8eaec
+$timeline-line-left = 6px
+
+$timeline-dot-size = 14px
+
+$timeline-content-top = -4px
+$timeline-content-padding-left = 24px
+
+{$selector-prefix + '-timeline-item'}
+  padding-bottom $timeline-item-gap
+  position relative
+
+  &:before
+    content ''
+    border-left $timeline-line-width solid $timeline-line-color
+    position absolute
+    left $timeline-line-left
+    top $timeline-dot-size
+    bottom 0
+
+  &:last-child
+    padding-bottom 0
+    &:before
+      display none
+
+{$selector-prefix + '-timeline-dot'},
+{$selector-prefix + '-timeline-custom'}
+  position absolute
+  width $timeline-dot-size
+  height $timeline-dot-size
+
+{$selector-prefix + '-timeline-dot'}
+  box-sizing border-box
+  border-radius $border-radius-circle
+  border $timeline-line-width solid $timeline-line-color
+
+{$selector-prefix + '-timeline-custom'}
+  text-align center
+
+  > {$selector-prefix + '-icon'}
+    vertical-align top
+
+{$selector-prefix + '-timeline-content'}
+
+  position relative
+  top $timeline-content-top
+  padding-left $timeline-content-padding-left
+
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+
+  p
+    padding 0
+    margin 0
+    font-size $font-size-default
+    line-height $ui-multiple-line-height
+
+{$selector-prefix + '-timeline-pending'}
+  {$selector-prefix + '-timeline-item'}
+    &:nth-last-of-type(2):before
+      border-left-style dotted

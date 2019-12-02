@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Dialog.hbs'
+// import './style/Dialog.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   TRUE,

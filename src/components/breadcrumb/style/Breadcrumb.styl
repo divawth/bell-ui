@@ -1,0 +1,35 @@
+@import '../../../env'
+
+$breadcrumb-separator-gap = 10px
+
+{$selector-prefix + '-breadcrumb'}
+  font-size $ui-font-size
+  line-height $ui-single-line-height
+
+{$selector-prefix + '-breadcrumb-separator'}
+  user-select none
+  color $brand-border
+  margin 0 $breadcrumb-separator-gap
+
+{$selector-prefix + '-breadcrumb-link'}
+  user-select none
+  color $brand-content
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-link
+
+{$selector-prefix + '-breadcrumb-text'}
+  color $brand-content
+  cursor text
+  font-weight bold
+
+{$selector-prefix + '-breadcrumb-item'}
+
+  {$selector-prefix + '-icon'}
+    margin-right $ui-icon-text-gap
+
+  > a
+    color $brand-content
+    text-decoration none

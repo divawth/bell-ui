@@ -1,0 +1,40 @@
+@import '../../../env'
+
+$result-padding-vertical = 48px
+$result-padding-horizontal = 32px
+
+$result-icon-gap = 24px
+$result-icon-size = 70px
+$result-title-font-size = 24px
+$result-extra-gap = 32px
+
+result-brand-style(style)
+  > {$selector-prefix + '-result-icon'}
+    ui-set('color', style['color'])
+
+{$selector-prefix + '-result'}
+  text-align center
+  padding $result-padding-vertical $result-padding-horizontal
+  ui-connect(
+    hash: $status-brand-hash,
+    each: result-brand-style
+  )
+
+{$selector-prefix + '-result-icon'}
+  margin-bottom $result-icon-gap
+
+{$selector-prefix + '-result-status-icon'}
+  font-size $result-icon-size
+
+{$selector-prefix + '-result-title'}
+  color $brand-title
+  font-size $result-title-font-size
+  line-height 1.8
+
+{$selector-prefix + '-result-sub-title'}
+  color $brand-content
+  font-size $font-size-default
+  line-height 1.6
+
+{$selector-prefix + '-result-extra'}
+  margin-top $result-extra-gap

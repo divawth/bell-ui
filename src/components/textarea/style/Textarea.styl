@@ -1,0 +1,63 @@
+@import '../../../env'
+
+$textarea-size-hash = {
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    padding-vertical: $padding-vertical-default,
+    padding-horizontal: $padding-horizontal-default,
+  },
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    padding-vertical: $padding-vertical-small,
+    padding-horizontal: $padding-horizontal-small,
+  },
+  large: {
+    height: $height-large,
+    font-size: $font-size-large,
+    padding-vertical: $padding-vertical-large,
+    padding-horizontal: $padding-horizontal-large,
+  },
+}
+
+textarea-size-style(style)
+  > {$selector-prefix + '-textarea-el'}
+    ui-set('font-size', style['font-size'])
+    ui-set('padding', style['padding-vertical'] style['padding-horizontal'])
+
+textarea-brand-style(style)
+  > {$selector-prefix + '-textarea-el'}
+    ui-set('border-color', style['color'])
+
+    &:focus
+      ui-set('border-color', style['color'])
+      if $ui-shadow-radius > 0
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+{$selector-prefix + '-textarea'}
+  display inline-block
+  box-sizing border-box
+  width $ui-form-element-width
+  ui-connect(
+    hash: $status-brand-hash,
+    each: textarea-brand-style
+  )
+  ui-connect(
+    hash: $textarea-size-hash,
+    each: textarea-size-style
+  )
+
+{$selector-prefix + '-textarea-block'}
+  display block
+  width 100%
+
+{$selector-prefix + '-textarea-el'}
+  resize none
+  // 不用 $ui-mutiple-line-height，方便计算出一个整数
+  line-height 1.5
+  ui-input()
+  ui-scrollbar()
+
+{$selector-prefix + '-textarea-disabled'}
+  ui-input-disabled($selector-prefix + '-textarea-el')

@@ -1,9 +1,11 @@
 import Yox, { CustomEventInterface } from 'yox'
 
+import template from './template/Select.hbs'
+// import './style/Select.styl'
+
 import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
 import Dropdown from '../dropdown/Dropdown'
-import template from './template/Select.hbs'
 
 import {
   oneOf,

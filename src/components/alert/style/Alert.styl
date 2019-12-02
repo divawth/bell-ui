@@ -1,0 +1,138 @@
+@import '../../../env'
+
+$alert-padding-horizontal = 16px
+$alert-padding-vertical = 9px
+
+$alert-title-content-gap = 2px
+
+$alert-close-height = 21px
+$alert-close-font-size = 12px
+
+$alert-status-icon-gap = 8px
+$alert-status-icon-size = 16px
+$alert-status-icon-top = 2px
+
+$alert-status-icon-gap-with-title = 12px
+$alert-status-icon-size-with-title = 22px
+$alert-status-icon-top-with-title = 2px
+
+$alert-brand-hash = {
+  info: {
+    border-color: $brand-info-border,
+    bg-color: $brand-info-bg,
+    color: $brand-info,
+  },
+  success: {
+    border-color: $brand-success-border,
+    bg-color: $brand-success-bg,
+    color: $brand-success,
+  },
+  error: {
+    border-color: $brand-error-border,
+    bg-color: $brand-error-bg,
+    color: $brand-error,
+  },
+  warning: {
+    border-color: $brand-warning-border,
+    bg-color: $brand-warning-bg,
+    color: $brand-warning,
+  },
+}
+
+alert-brand-style(style)
+  ui-set('border-color', style['border-color'])
+  ui-set('background-color', style['bg-color'])
+
+  {$selector-prefix + '-alert-status-icon'}
+    ui-set('color', style['color'])
+
+{$selector-prefix + '-alert'}
+  border 1px solid
+  position relative
+  box-sizing border-box
+  border-radius $border-radius-default
+  line-height $ui-multiple-line-height
+  padding $alert-padding-vertical $alert-padding-horizontal
+  transition opacity .3s
+
+  ui-connect(
+    hash: $alert-brand-hash,
+    each: alert-brand-style
+  )
+
+{$selector-prefix + '-alert-banner'}
+  border 0
+  border-radius 0
+
+{$selector-prefix + '-alert-center'}
+  text-align center
+
+{$selector-prefix + '-alert-status-icon'}
+  position absolute
+  left $alert-padding-horizontal
+  top $alert-padding-vertical + $alert-status-icon-top
+  font-size $alert-status-icon-size
+
+{$selector-prefix + '-alert-with-title'}
+  > {$selector-prefix + '-alert-status-icon'}
+    top $alert-padding-vertical + $alert-status-icon-top-with-title
+    font-size $alert-status-icon-size-with-title
+
+{$selector-prefix + '-alert-with-icon'}
+  padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-status-icon-gap
+
+  &{$selector-prefix + '-alert-with-title'}
+    padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-status-icon-gap-with-title
+
+{$selector-prefix + '-alert-title'}
+  white-space nowrap
+  color $brand-title
+  font-size $font-size-default
+
+  + {$selector-prefix + '-alert-content'}
+    font-size $font-size-small
+    margin-top $alert-title-content-gap
+
+{$selector-prefix + '-alert-content'}
+  color $brand-content
+  font-size $font-size-default
+
+{$selector-prefix + '-alert-close'}
+  position absolute
+  right $alert-padding-horizontal
+  top $alert-padding-vertical
+
+  font-size $alert-close-font-size
+  min-width $alert-close-height
+  height $alert-close-height
+  line-height $alert-close-height
+
+  color $brand-primary
+  user-select none
+  text-align center
+  transition color .3s
+
+  ui-clickable()
+
+  &:hover
+    color $brand-primary-hover
+
+{$selector-prefix + '-alert-close-icon'}
+  position absolute
+  left 50%
+  top 50%
+  margin-left -0.5 * $close-icon-size
+  margin-top -0.5 * $close-icon-size
+  color $brand-close-color
+  font-size $close-icon-size
+
+  &:hover
+    color $brand-close-color-hover
+
+{$selector-prefix + '-alert-with-close'}
+  {$selector-prefix + '-alert-title'},
+  {$selector-prefix + '-alert-content'}
+    margin-right $close-icon-size + $ui-icon-text-gap
+
+  {$selector-prefix + '-alert-title'} + {$selector-prefix + '-alert-content'}
+    margin-right 0

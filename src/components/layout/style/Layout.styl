@@ -1,0 +1,79 @@
+@import '../../../env'
+
+$layout-bg-color = #f0f2f5
+$layout-header-height = 64px
+$layout-sider-trigger-height = 48px
+$layout-sider-trigger-icon-size = 22px
+
+{$selector-prefix + '-layout'}
+  display flex
+  flex auto
+  box-sizing border-box
+  background-color $layout-bg-color
+
+{$selector-prefix + '-layout-horizontal'}
+  flex-direction row
+
+{$selector-prefix + '-layout-vertical'}
+  flex-direction column
+
+{$selector-prefix + '-layout-header'}
+  flex 0 0 auto
+  padding 0 $layout-padding-horizontal
+  height $layout-header-height
+  line-height $layout-header-height
+
+{$selector-prefix + '-layout-header-extra'}
+  float right
+  height $layout-header-height
+  display flex
+  align-items center
+
+{$selector-prefix + '-layout-sider'}
+  background-color $layout-dark-bg-color
+  transition all .2s
+  ui-scrollbar(0)
+
+{$selector-prefix + '-layout-sider-with-trigger'}
+  position relative
+  padding-bottom $layout-sider-trigger-height
+
+{$selector-prefix + '-layout-sider-logo'}
+  height $layout-header-height
+  line-height $layout-header-height
+  text-align center
+
+{$selector-prefix + '-layout-sider-collapsed'}
+
+  {$selector-prefix + '-layout-sider-trigger-icon'}
+    transform rotate(180deg)
+
+{$selector-prefix + '-layout-sider-trigger'}
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  height $layout-sider-trigger-height
+  line-height $layout-sider-trigger-height
+  background-color $layout-dark-bg-color
+  color $brand-white
+  text-align center
+  transition width .2s
+  ui-clickable()
+
+{$selector-prefix + '-layout-sider-trigger-icon'}
+  display inline-block
+  font-size $layout-sider-trigger-icon-size
+  line-height inherit
+
+{$selector-prefix + '-layout-content'}
+  flex auto
+
+{$selector-prefix + '-layout-footer'}
+  flex 0 0 auto
+  padding $layout-padding-horizontal
+  color $brand-muted
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+  text-align center
+

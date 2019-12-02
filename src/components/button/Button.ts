@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Button.hbs'
+// import './style/Button.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   UNDEFINED,

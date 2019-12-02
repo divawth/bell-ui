@@ -1,0 +1,51 @@
+@import '../../../env'
+
+$text-brand-hash = {
+  white: $brand-white,
+  primary: $brand-primary,
+  success: $brand-success,
+  error: $brand-error,
+  info: $brand-info,
+  warning: $brand-warning,
+  title: $brand-title,
+  content: $brand-content,
+  muted: $brand-muted,
+}
+
+$text-size-hash = {
+  default: {
+    font-size: $font-size-default,
+    line-height: 1.477,
+  },
+  small: {
+    font-size: $font-size-small,
+    line-height: 1.333
+  },
+  large: {
+    font-size: $font-size-large,
+    line-height: 1.625
+  },
+}
+
+text-brand-style(color)
+  ui-set('color', color)
+
+text-size-style(size)
+  ui-set('font-size', size['font-size'])
+  ui-set('line-height', size['line-height'])
+
+{$selector-prefix + '-text'}
+  ui-connect(
+    hash: $text-size-hash,
+    each: text-size-style
+  )
+  ui-connect(
+    hash: $text-brand-hash,
+    each: text-brand-style
+  )
+
+{$selector-prefix + '-text-bold'}
+  font-weight bold
+
+{$selector-prefix + '-text-block'}
+  display block

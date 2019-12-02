@@ -1,6 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Tooltip.hbs'
+// import './style/Tooltip.styl'
 
 import {
   TRUE,

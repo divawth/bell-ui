@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Card.hbs'
+// import './style/Card.styl'
 
 import {
   FALSE,

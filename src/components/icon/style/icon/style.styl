@@ -1,0 +1,5331 @@
+@import "variables"
+
+@font-face
+  font-family 'bell-icon'
+  src url('~@components/icon/style/icon/fonts/bell-icon.eot?nz1xfy')
+  src url('~@components/icon/style/icon/fonts/bell-icon.eot?nz1xfy#iefix') format('embedded-opentype'), url('~@components/icon/style/icon/fonts/bell-icon.ttf?nz1xfy') format('truetype'), url('~@components/icon/style/icon/fonts/bell-icon.woff?nz1xfy') format('woff'), url('~@components/icon/style/icon/fonts/bell-icon.svg?nz1xfy#bell-icon') format('svg')
+  font-weight normal
+  font-style normal
+  font-display block
+
+.bell-icon
+  font-family 'bell-icon' !important
+  speak none
+  font-style normal
+  font-weight normal
+  font-variant normal
+  text-transform none
+  line-height 1
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+.bell-icon-celsius-fill
+  &:before
+    content bell-icon-celsius-fill
+.bell-icon-celsius-line
+  &:before
+    content bell-icon-celsius-line
+.bell-icon-cloud-windy-fill
+  &:before
+    content bell-icon-cloud-windy-fill
+.bell-icon-cloud-windy-line
+  &:before
+    content bell-icon-cloud-windy-line
+.bell-icon-cloudy-2-fill
+  &:before
+    content bell-icon-cloudy-2-fill
+.bell-icon-cloudy-2-line
+  &:before
+    content bell-icon-cloudy-2-line
+.bell-icon-cloudy-fill
+  &:before
+    content bell-icon-cloudy-fill
+.bell-icon-cloudy-line
+  &:before
+    content bell-icon-cloudy-line
+.bell-icon-drizzle-fill
+  &:before
+    content bell-icon-drizzle-fill
+.bell-icon-drizzle-line
+  &:before
+    content bell-icon-drizzle-line
+.bell-icon-fahrenheit-fill
+  &:before
+    content bell-icon-fahrenheit-fill
+.bell-icon-fahrenheit-line
+  &:before
+    content bell-icon-fahrenheit-line
+.bell-icon-flashlight-fill
+  &:before
+    content bell-icon-flashlight-fill
+.bell-icon-flashlight-line
+  &:before
+    content bell-icon-flashlight-line
+.bell-icon-foggy-fill
+  &:before
+    content bell-icon-foggy-fill
+.bell-icon-foggy-line
+  &:before
+    content bell-icon-foggy-line
+.bell-icon-hail-fill
+  &:before
+    content bell-icon-hail-fill
+.bell-icon-hail-line
+  &:before
+    content bell-icon-hail-line
+.bell-icon-haze-fill
+  &:before
+    content bell-icon-haze-fill
+.bell-icon-haze-line
+  &:before
+    content bell-icon-haze-line
+.bell-icon-heavy-showers-fill
+  &:before
+    content bell-icon-heavy-showers-fill
+.bell-icon-heavy-showers-line
+  &:before
+    content bell-icon-heavy-showers-line
+.bell-icon-mist-fill
+  &:before
+    content bell-icon-mist-fill
+.bell-icon-mist-line
+  &:before
+    content bell-icon-mist-line
+.bell-icon-moon-clear-fill
+  &:before
+    content bell-icon-moon-clear-fill
+.bell-icon-moon-clear-line
+  &:before
+    content bell-icon-moon-clear-line
+.bell-icon-moon-cloudy-fill
+  &:before
+    content bell-icon-moon-cloudy-fill
+.bell-icon-moon-cloudy-line
+  &:before
+    content bell-icon-moon-cloudy-line
+.bell-icon-moon-fill
+  &:before
+    content bell-icon-moon-fill
+.bell-icon-moon-foggy-fill
+  &:before
+    content bell-icon-moon-foggy-fill
+.bell-icon-moon-foggy-line
+  &:before
+    content bell-icon-moon-foggy-line
+.bell-icon-moon-line
+  &:before
+    content bell-icon-moon-line
+.bell-icon-rainy-fill
+  &:before
+    content bell-icon-rainy-fill
+.bell-icon-rainy-line
+  &:before
+    content bell-icon-rainy-line
+.bell-icon-showers-fill
+  &:before
+    content bell-icon-showers-fill
+.bell-icon-showers-line
+  &:before
+    content bell-icon-showers-line
+.bell-icon-snowy-fill
+  &:before
+    content bell-icon-snowy-fill
+.bell-icon-snowy-line
+  &:before
+    content bell-icon-snowy-line
+.bell-icon-sun-cloudy-fill
+  &:before
+    content bell-icon-sun-cloudy-fill
+.bell-icon-sun-cloudy-line
+  &:before
+    content bell-icon-sun-cloudy-line
+.bell-icon-sun-fill
+  &:before
+    content bell-icon-sun-fill
+.bell-icon-sun-foggy-fill
+  &:before
+    content bell-icon-sun-foggy-fill
+.bell-icon-sun-foggy-line
+  &:before
+    content bell-icon-sun-foggy-line
+.bell-icon-sun-line
+  &:before
+    content bell-icon-sun-line
+.bell-icon-temp-cold-fill
+  &:before
+    content bell-icon-temp-cold-fill
+.bell-icon-temp-cold-line
+  &:before
+    content bell-icon-temp-cold-line
+.bell-icon-temp-hot-fill
+  &:before
+    content bell-icon-temp-hot-fill
+.bell-icon-temp-hot-line
+  &:before
+    content bell-icon-temp-hot-line
+.bell-icon-thunderstorms-fill
+  &:before
+    content bell-icon-thunderstorms-fill
+.bell-icon-thunderstorms-line
+  &:before
+    content bell-icon-thunderstorms-line
+.bell-icon-tornado-fill
+  &:before
+    content bell-icon-tornado-fill
+.bell-icon-tornado-line
+  &:before
+    content bell-icon-tornado-line
+.bell-icon-windy-fill
+  &:before
+    content bell-icon-windy-fill
+.bell-icon-windy-line
+  &:before
+    content bell-icon-windy-line
+.bell-icon-account-box-fill
+  &:before
+    content bell-icon-account-box-fill
+.bell-icon-account-box-line
+  &:before
+    content bell-icon-account-box-line
+.bell-icon-account-circle-fill
+  &:before
+    content bell-icon-account-circle-fill
+.bell-icon-account-circle-line
+  &:before
+    content bell-icon-account-circle-line
+.bell-icon-account-pin-box-fill
+  &:before
+    content bell-icon-account-pin-box-fill
+.bell-icon-account-pin-box-line
+  &:before
+    content bell-icon-account-pin-box-line
+.bell-icon-account-pin-circle-fill
+  &:before
+    content bell-icon-account-pin-circle-fill
+.bell-icon-account-pin-circle-line
+  &:before
+    content bell-icon-account-pin-circle-line
+.bell-icon-admin-fill
+  &:before
+    content bell-icon-admin-fill
+.bell-icon-admin-line
+  &:before
+    content bell-icon-admin-line
+.bell-icon-contacts-fill
+  &:before
+    content bell-icon-contacts-fill
+.bell-icon-contacts-line
+  &:before
+    content bell-icon-contacts-line
+.bell-icon-emotion-2-fill
+  &:before
+    content bell-icon-emotion-2-fill
+.bell-icon-emotion-2-line
+  &:before
+    content bell-icon-emotion-2-line
+.bell-icon-emotion-fill
+  &:before
+    content bell-icon-emotion-fill
+.bell-icon-emotion-happy-fill
+  &:before
+    content bell-icon-emotion-happy-fill
+.bell-icon-emotion-happy-line
+  &:before
+    content bell-icon-emotion-happy-line
+.bell-icon-emotion-line
+  &:before
+    content bell-icon-emotion-line
+.bell-icon-emotion-normal-fill
+  &:before
+    content bell-icon-emotion-normal-fill
+.bell-icon-emotion-normal-line
+  &:before
+    content bell-icon-emotion-normal-line
+.bell-icon-emotion-unhappy-fill
+  &:before
+    content bell-icon-emotion-unhappy-fill
+.bell-icon-emotion-unhappy-line
+  &:before
+    content bell-icon-emotion-unhappy-line
+.bell-icon-genderless-fill
+  &:before
+    content bell-icon-genderless-fill
+.bell-icon-genderless-line
+  &:before
+    content bell-icon-genderless-line
+.bell-icon-group-2-fill
+  &:before
+    content bell-icon-group-2-fill
+.bell-icon-group-2-line
+  &:before
+    content bell-icon-group-2-line
+.bell-icon-group-fill
+  &:before
+    content bell-icon-group-fill
+.bell-icon-group-line
+  &:before
+    content bell-icon-group-line
+.bell-icon-men-fill
+  &:before
+    content bell-icon-men-fill
+.bell-icon-men-line
+  &:before
+    content bell-icon-men-line
+.bell-icon-open-arm-fill
+  &:before
+    content bell-icon-open-arm-fill
+.bell-icon-open-arm-line
+  &:before
+    content bell-icon-open-arm-line
+.bell-icon-parent-fill
+  &:before
+    content bell-icon-parent-fill
+.bell-icon-parent-line
+  &:before
+    content bell-icon-parent-line
+.bell-icon-robot-fill
+  &:before
+    content bell-icon-robot-fill
+.bell-icon-robot-line
+  &:before
+    content bell-icon-robot-line
+.bell-icon-skull-fill
+  &:before
+    content bell-icon-skull-fill
+.bell-icon-skull-line
+  &:before
+    content bell-icon-skull-line
+.bell-icon-travesti-fill
+  &:before
+    content bell-icon-travesti-fill
+.bell-icon-travesti-line
+  &:before
+    content bell-icon-travesti-line
+.bell-icon-user-2-fill
+  &:before
+    content bell-icon-user-2-fill
+.bell-icon-user-2-line
+  &:before
+    content bell-icon-user-2-line
+.bell-icon-user-3-fill
+  &:before
+    content bell-icon-user-3-fill
+.bell-icon-user-3-line
+  &:before
+    content bell-icon-user-3-line
+.bell-icon-user-4-fill
+  &:before
+    content bell-icon-user-4-fill
+.bell-icon-user-4-line
+  &:before
+    content bell-icon-user-4-line
+.bell-icon-user-5-fill
+  &:before
+    content bell-icon-user-5-fill
+.bell-icon-user-5-line
+  &:before
+    content bell-icon-user-5-line
+.bell-icon-user-add-fill
+  &:before
+    content bell-icon-user-add-fill
+.bell-icon-user-add-line
+  &:before
+    content bell-icon-user-add-line
+.bell-icon-user-fill
+  &:before
+    content bell-icon-user-fill
+.bell-icon-user-follow-fill
+  &:before
+    content bell-icon-user-follow-fill
+.bell-icon-user-follow-line
+  &:before
+    content bell-icon-user-follow-line
+.bell-icon-user-line
+  &:before
+    content bell-icon-user-line
+.bell-icon-user-location-fill
+  &:before
+    content bell-icon-user-location-fill
+.bell-icon-user-location-line
+  &:before
+    content bell-icon-user-location-line
+.bell-icon-user-received-2-fill
+  &:before
+    content bell-icon-user-received-2-fill
+.bell-icon-user-received-2-line
+  &:before
+    content bell-icon-user-received-2-line
+.bell-icon-user-received-fill
+  &:before
+    content bell-icon-user-received-fill
+.bell-icon-user-received-line
+  &:before
+    content bell-icon-user-received-line
+.bell-icon-user-search-fill
+  &:before
+    content bell-icon-user-search-fill
+.bell-icon-user-search-line
+  &:before
+    content bell-icon-user-search-line
+.bell-icon-user-settings-fill
+  &:before
+    content bell-icon-user-settings-fill
+.bell-icon-user-settings-line
+  &:before
+    content bell-icon-user-settings-line
+.bell-icon-user-shared-2-fill
+  &:before
+    content bell-icon-user-shared-2-fill
+.bell-icon-user-shared-2-line
+  &:before
+    content bell-icon-user-shared-2-line
+.bell-icon-user-shared-fill
+  &:before
+    content bell-icon-user-shared-fill
+.bell-icon-user-shared-line
+  &:before
+    content bell-icon-user-shared-line
+.bell-icon-user-smile-fill
+  &:before
+    content bell-icon-user-smile-fill
+.bell-icon-user-smile-line
+  &:before
+    content bell-icon-user-smile-line
+.bell-icon-user-star-fill
+  &:before
+    content bell-icon-user-star-fill
+.bell-icon-user-star-line
+  &:before
+    content bell-icon-user-star-line
+.bell-icon-user-unfollow-fill
+  &:before
+    content bell-icon-user-unfollow-fill
+.bell-icon-user-unfollow-line
+  &:before
+    content bell-icon-user-unfollow-line
+.bell-icon-user-voice-fill
+  &:before
+    content bell-icon-user-voice-fill
+.bell-icon-user-voice-line
+  &:before
+    content bell-icon-user-voice-line
+.bell-icon-women-fill
+  &:before
+    content bell-icon-women-fill
+.bell-icon-women-line
+  &:before
+    content bell-icon-women-line
+.bell-icon-add-box-fill
+  &:before
+    content bell-icon-add-box-fill
+.bell-icon-add-box-line
+  &:before
+    content bell-icon-add-box-line
+.bell-icon-add-circle-fill
+  &:before
+    content bell-icon-add-circle-fill
+.bell-icon-add-circle-line
+  &:before
+    content bell-icon-add-circle-line
+.bell-icon-add-fill
+  &:before
+    content bell-icon-add-fill
+.bell-icon-add-line
+  &:before
+    content bell-icon-add-line
+.bell-icon-alarm-fill
+  &:before
+    content bell-icon-alarm-fill
+.bell-icon-alarm-line
+  &:before
+    content bell-icon-alarm-line
+.bell-icon-alarm-warning-fill
+  &:before
+    content bell-icon-alarm-warning-fill
+.bell-icon-alarm-warning-line
+  &:before
+    content bell-icon-alarm-warning-line
+.bell-icon-alert-fill
+  &:before
+    content bell-icon-alert-fill
+.bell-icon-alert-line
+  &:before
+    content bell-icon-alert-line
+.bell-icon-apps-2-fill
+  &:before
+    content bell-icon-apps-2-fill
+.bell-icon-apps-2-line
+  &:before
+    content bell-icon-apps-2-line
+.bell-icon-apps-fill
+  &:before
+    content bell-icon-apps-fill
+.bell-icon-apps-line
+  &:before
+    content bell-icon-apps-line
+.bell-icon-arrow-down-circle-fill
+  &:before
+    content bell-icon-arrow-down-circle-fill
+.bell-icon-arrow-down-circle-line
+  &:before
+    content bell-icon-arrow-down-circle-line
+.bell-icon-arrow-down-fill
+  &:before
+    content bell-icon-arrow-down-fill
+.bell-icon-arrow-down-line
+  &:before
+    content bell-icon-arrow-down-line
+.bell-icon-arrow-down-s-fill
+  &:before
+    content bell-icon-arrow-down-s-fill
+.bell-icon-arrow-down-s-line
+  &:before
+    content bell-icon-arrow-down-s-line
+.bell-icon-arrow-drop-down-fill
+  &:before
+    content bell-icon-arrow-drop-down-fill
+.bell-icon-arrow-drop-down-line
+  &:before
+    content bell-icon-arrow-drop-down-line
+.bell-icon-arrow-drop-left-fill
+  &:before
+    content bell-icon-arrow-drop-left-fill
+.bell-icon-arrow-drop-left-line
+  &:before
+    content bell-icon-arrow-drop-left-line
+.bell-icon-arrow-drop-right-fill
+  &:before
+    content bell-icon-arrow-drop-right-fill
+.bell-icon-arrow-drop-right-line
+  &:before
+    content bell-icon-arrow-drop-right-line
+.bell-icon-arrow-drop-up-fill
+  &:before
+    content bell-icon-arrow-drop-up-fill
+.bell-icon-arrow-drop-up-line
+  &:before
+    content bell-icon-arrow-drop-up-line
+.bell-icon-arrow-go-back-fill
+  &:before
+    content bell-icon-arrow-go-back-fill
+.bell-icon-arrow-go-back-line
+  &:before
+    content bell-icon-arrow-go-back-line
+.bell-icon-arrow-go-forward-fill
+  &:before
+    content bell-icon-arrow-go-forward-fill
+.bell-icon-arrow-go-forward-line
+  &:before
+    content bell-icon-arrow-go-forward-line
+.bell-icon-arrow-left-circle-fill
+  &:before
+    content bell-icon-arrow-left-circle-fill
+.bell-icon-arrow-left-circle-line
+  &:before
+    content bell-icon-arrow-left-circle-line
+.bell-icon-arrow-left-down-fill
+  &:before
+    content bell-icon-arrow-left-down-fill
+.bell-icon-arrow-left-down-line
+  &:before
+    content bell-icon-arrow-left-down-line
+.bell-icon-arrow-left-fill
+  &:before
+    content bell-icon-arrow-left-fill
+.bell-icon-arrow-left-line
+  &:before
+    content bell-icon-arrow-left-line
+.bell-icon-arrow-left-s-fill
+  &:before
+    content bell-icon-arrow-left-s-fill
+.bell-icon-arrow-left-s-line
+  &:before
+    content bell-icon-arrow-left-s-line
+.bell-icon-arrow-left-up-fill
+  &:before
+    content bell-icon-arrow-left-up-fill
+.bell-icon-arrow-left-up-line
+  &:before
+    content bell-icon-arrow-left-up-line
+.bell-icon-arrow-right-circle-fill
+  &:before
+    content bell-icon-arrow-right-circle-fill
+.bell-icon-arrow-right-circle-line
+  &:before
+    content bell-icon-arrow-right-circle-line
+.bell-icon-arrow-right-down-fill
+  &:before
+    content bell-icon-arrow-right-down-fill
+.bell-icon-arrow-right-down-line
+  &:before
+    content bell-icon-arrow-right-down-line
+.bell-icon-arrow-right-fill
+  &:before
+    content bell-icon-arrow-right-fill
+.bell-icon-arrow-right-line
+  &:before
+    content bell-icon-arrow-right-line
+.bell-icon-arrow-right-s-fill
+  &:before
+    content bell-icon-arrow-right-s-fill
+.bell-icon-arrow-right-s-line
+  &:before
+    content bell-icon-arrow-right-s-line
+.bell-icon-arrow-right-up-fill
+  &:before
+    content bell-icon-arrow-right-up-fill
+.bell-icon-arrow-right-up-line
+  &:before
+    content bell-icon-arrow-right-up-line
+.bell-icon-arrow-up-circle-fill
+  &:before
+    content bell-icon-arrow-up-circle-fill
+.bell-icon-arrow-up-circle-line
+  &:before
+    content bell-icon-arrow-up-circle-line
+.bell-icon-arrow-up-fill
+  &:before
+    content bell-icon-arrow-up-fill
+.bell-icon-arrow-up-line
+  &:before
+    content bell-icon-arrow-up-line
+.bell-icon-arrow-up-s-fill
+  &:before
+    content bell-icon-arrow-up-s-fill
+.bell-icon-arrow-up-s-line
+  &:before
+    content bell-icon-arrow-up-s-line
+.bell-icon-barcode-box-fill
+  &:before
+    content bell-icon-barcode-box-fill
+.bell-icon-barcode-box-line
+  &:before
+    content bell-icon-barcode-box-line
+.bell-icon-barcode-fill
+  &:before
+    content bell-icon-barcode-fill
+.bell-icon-barcode-line
+  &:before
+    content bell-icon-barcode-line
+.bell-icon-base-station-fill
+  &:before
+    content bell-icon-base-station-fill
+.bell-icon-base-station-line
+  &:before
+    content bell-icon-base-station-line
+.bell-icon-bluetooth-connect-fill
+  &:before
+    content bell-icon-bluetooth-connect-fill
+.bell-icon-bluetooth-connect-line
+  &:before
+    content bell-icon-bluetooth-connect-line
+.bell-icon-bluetooth-fill
+  &:before
+    content bell-icon-bluetooth-fill
+.bell-icon-bluetooth-line
+  &:before
+    content bell-icon-bluetooth-line
+.bell-icon-check-double-fill
+  &:before
+    content bell-icon-check-double-fill
+.bell-icon-check-double-line
+  &:before
+    content bell-icon-check-double-line
+.bell-icon-check-fill
+  &:before
+    content bell-icon-check-fill
+.bell-icon-check-line
+  &:before
+    content bell-icon-check-line
+.bell-icon-checkbox-blank-circle-fill
+  &:before
+    content bell-icon-checkbox-blank-circle-fill
+.bell-icon-checkbox-blank-circle-line
+  &:before
+    content bell-icon-checkbox-blank-circle-line
+.bell-icon-checkbox-blank-fill
+  &:before
+    content bell-icon-checkbox-blank-fill
+.bell-icon-checkbox-blank-line
+  &:before
+    content bell-icon-checkbox-blank-line
+.bell-icon-checkbox-circle-fill
+  &:before
+    content bell-icon-checkbox-circle-fill
+.bell-icon-checkbox-circle-line
+  &:before
+    content bell-icon-checkbox-circle-line
+.bell-icon-checkbox-fill
+  &:before
+    content bell-icon-checkbox-fill
+.bell-icon-checkbox-indeterminate-fill
+  &:before
+    content bell-icon-checkbox-indeterminate-fill
+.bell-icon-checkbox-indeterminate-line
+  &:before
+    content bell-icon-checkbox-indeterminate-line
+.bell-icon-checkbox-line
+  &:before
+    content bell-icon-checkbox-line
+.bell-icon-checkbox-multiple-blank-fill
+  &:before
+    content bell-icon-checkbox-multiple-blank-fill
+.bell-icon-checkbox-multiple-blank-line
+  &:before
+    content bell-icon-checkbox-multiple-blank-line
+.bell-icon-checkbox-multiple-fill
+  &:before
+    content bell-icon-checkbox-multiple-fill
+.bell-icon-checkbox-multiple-line
+  &:before
+    content bell-icon-checkbox-multiple-line
+.bell-icon-close-circle-fill
+  &:before
+    content bell-icon-close-circle-fill
+.bell-icon-close-circle-line
+  &:before
+    content bell-icon-close-circle-line
+.bell-icon-close-fill
+  &:before
+    content bell-icon-close-fill
+.bell-icon-close-line
+  &:before
+    content bell-icon-close-line
+.bell-icon-copyright-fill
+  &:before
+    content bell-icon-copyright-fill
+.bell-icon-copyright-line
+  &:before
+    content bell-icon-copyright-line
+.bell-icon-dashboard-fill
+  &:before
+    content bell-icon-dashboard-fill
+.bell-icon-dashboard-line
+  &:before
+    content bell-icon-dashboard-line
+.bell-icon-delete-back-2-fill
+  &:before
+    content bell-icon-delete-back-2-fill
+.bell-icon-delete-back-2-line
+  &:before
+    content bell-icon-delete-back-2-line
+.bell-icon-delete-back-fill
+  &:before
+    content bell-icon-delete-back-fill
+.bell-icon-delete-back-line
+  &:before
+    content bell-icon-delete-back-line
+.bell-icon-delete-bin-2-fill
+  &:before
+    content bell-icon-delete-bin-2-fill
+.bell-icon-delete-bin-2-line
+  &:before
+    content bell-icon-delete-bin-2-line
+.bell-icon-delete-bin-3-fill
+  &:before
+    content bell-icon-delete-bin-3-fill
+.bell-icon-delete-bin-3-line
+  &:before
+    content bell-icon-delete-bin-3-line
+.bell-icon-delete-bin-4-fill
+  &:before
+    content bell-icon-delete-bin-4-fill
+.bell-icon-delete-bin-4-line
+  &:before
+    content bell-icon-delete-bin-4-line
+.bell-icon-delete-bin-5-fill
+  &:before
+    content bell-icon-delete-bin-5-fill
+.bell-icon-delete-bin-5-line
+  &:before
+    content bell-icon-delete-bin-5-line
+.bell-icon-delete-bin-6-fill
+  &:before
+    content bell-icon-delete-bin-6-fill
+.bell-icon-delete-bin-6-line
+  &:before
+    content bell-icon-delete-bin-6-line
+.bell-icon-delete-bin-7-fill
+  &:before
+    content bell-icon-delete-bin-7-fill
+.bell-icon-delete-bin-7-line
+  &:before
+    content bell-icon-delete-bin-7-line
+.bell-icon-delete-bin-fill
+  &:before
+    content bell-icon-delete-bin-fill
+.bell-icon-delete-bin-line
+  &:before
+    content bell-icon-delete-bin-line
+.bell-icon-divide-fill
+  &:before
+    content bell-icon-divide-fill
+.bell-icon-divide-line
+  &:before
+    content bell-icon-divide-line
+.bell-icon-download-2-fill
+  &:before
+    content bell-icon-download-2-fill
+.bell-icon-download-2-line
+  &:before
+    content bell-icon-download-2-line
+.bell-icon-download-cloud-2-fill
+  &:before
+    content bell-icon-download-cloud-2-fill
+.bell-icon-download-cloud-2-line
+  &:before
+    content bell-icon-download-cloud-2-line
+.bell-icon-download-cloud-fill
+  &:before
+    content bell-icon-download-cloud-fill
+.bell-icon-download-cloud-line
+  &:before
+    content bell-icon-download-cloud-line
+.bell-icon-download-fill
+  &:before
+    content bell-icon-download-fill
+.bell-icon-download-line
+  &:before
+    content bell-icon-download-line
+.bell-icon-error-warning-fill
+  &:before
+    content bell-icon-error-warning-fill
+.bell-icon-error-warning-line
+  &:before
+    content bell-icon-error-warning-line
+.bell-icon-external-link-fill
+  &:before
+    content bell-icon-external-link-fill
+.bell-icon-external-link-line
+  &:before
+    content bell-icon-external-link-line
+.bell-icon-eye-close-fill
+  &:before
+    content bell-icon-eye-close-fill
+.bell-icon-eye-close-line
+  &:before
+    content bell-icon-eye-close-line
+.bell-icon-eye-fill
+  &:before
+    content bell-icon-eye-fill
+.bell-icon-eye-line
+  &:before
+    content bell-icon-eye-line
+.bell-icon-eye-off-fill
+  &:before
+    content bell-icon-eye-off-fill
+.bell-icon-eye-off-line
+  &:before
+    content bell-icon-eye-off-line
+.bell-icon-filter-2-fill
+  &:before
+    content bell-icon-filter-2-fill
+.bell-icon-filter-2-line
+  &:before
+    content bell-icon-filter-2-line
+.bell-icon-filter-3-fill
+  &:before
+    content bell-icon-filter-3-fill
+.bell-icon-filter-3-line
+  &:before
+    content bell-icon-filter-3-line
+.bell-icon-filter-fill
+  &:before
+    content bell-icon-filter-fill
+.bell-icon-filter-line
+  &:before
+    content bell-icon-filter-line
+.bell-icon-find-replace-fill
+  &:before
+    content bell-icon-find-replace-fill
+.bell-icon-find-replace-line
+  &:before
+    content bell-icon-find-replace-line
+.bell-icon-fingerprint-2-fill
+  &:before
+    content bell-icon-fingerprint-2-fill
+.bell-icon-fingerprint-2-line
+  &:before
+    content bell-icon-fingerprint-2-line
+.bell-icon-fingerprint-fill
+  &:before
+    content bell-icon-fingerprint-fill
+.bell-icon-fingerprint-line
+  &:before
+    content bell-icon-fingerprint-line
+.bell-icon-forbid-2-fill
+  &:before
+    content bell-icon-forbid-2-fill
+.bell-icon-forbid-2-line
+  &:before
+    content bell-icon-forbid-2-line
+.bell-icon-forbid-fill
+  &:before
+    content bell-icon-forbid-fill
+.bell-icon-forbid-line
+  &:before
+    content bell-icon-forbid-line
+.bell-icon-function-fill
+  &:before
+    content bell-icon-function-fill
+.bell-icon-function-line
+  &:before
+    content bell-icon-function-line
+.bell-icon-gps-fill
+  &:before
+    content bell-icon-gps-fill
+.bell-icon-gps-line
+  &:before
+    content bell-icon-gps-line
+.bell-icon-heart-2-fill
+  &:before
+    content bell-icon-heart-2-fill
+.bell-icon-heart-2-line
+  &:before
+    content bell-icon-heart-2-line
+.bell-icon-heart-fill
+  &:before
+    content bell-icon-heart-fill
+.bell-icon-heart-line
+  &:before
+    content bell-icon-heart-line
+.bell-icon-indeterminate-circle-fill
+  &:before
+    content bell-icon-indeterminate-circle-fill
+.bell-icon-indeterminate-circle-line
+  &:before
+    content bell-icon-indeterminate-circle-line
+.bell-icon-information-fill
+  &:before
+    content bell-icon-information-fill
+.bell-icon-information-line
+  &:before
+    content bell-icon-information-line
+.bell-icon-list-settings-fill
+  &:before
+    content bell-icon-list-settings-fill
+.bell-icon-list-settings-line
+  &:before
+    content bell-icon-list-settings-line
+.bell-icon-loader-2-fill
+  &:before
+    content bell-icon-loader-2-fill
+.bell-icon-loader-2-line
+  &:before
+    content bell-icon-loader-2-line
+.bell-icon-loader-3-fill
+  &:before
+    content bell-icon-loader-3-fill
+.bell-icon-loader-3-line
+  &:before
+    content bell-icon-loader-3-line
+.bell-icon-loader-4-fill
+  &:before
+    content bell-icon-loader-4-fill
+.bell-icon-loader-4-line
+  &:before
+    content bell-icon-loader-4-line
+.bell-icon-loader-5-fill
+  &:before
+    content bell-icon-loader-5-fill
+.bell-icon-loader-5-line
+  &:before
+    content bell-icon-loader-5-line
+.bell-icon-loader-fill
+  &:before
+    content bell-icon-loader-fill
+.bell-icon-loader-line
+  &:before
+    content bell-icon-loader-line
+.bell-icon-lock-2-fill
+  &:before
+    content bell-icon-lock-2-fill
+.bell-icon-lock-2-line
+  &:before
+    content bell-icon-lock-2-line
+.bell-icon-lock-fill
+  &:before
+    content bell-icon-lock-fill
+.bell-icon-lock-line
+  &:before
+    content bell-icon-lock-line
+.bell-icon-lock-password-fill
+  &:before
+    content bell-icon-lock-password-fill
+.bell-icon-lock-password-line
+  &:before
+    content bell-icon-lock-password-line
+.bell-icon-lock-unlock-fill
+  &:before
+    content bell-icon-lock-unlock-fill
+.bell-icon-lock-unlock-line
+  &:before
+    content bell-icon-lock-unlock-line
+.bell-icon-login-box-fill
+  &:before
+    content bell-icon-login-box-fill
+.bell-icon-login-box-line
+  &:before
+    content bell-icon-login-box-line
+.bell-icon-login-circle-fill
+  &:before
+    content bell-icon-login-circle-fill
+.bell-icon-login-circle-line
+  &:before
+    content bell-icon-login-circle-line
+.bell-icon-logout-box-fill
+  &:before
+    content bell-icon-logout-box-fill
+.bell-icon-logout-box-line
+  &:before
+    content bell-icon-logout-box-line
+.bell-icon-logout-box-r-fill
+  &:before
+    content bell-icon-logout-box-r-fill
+.bell-icon-logout-box-r-line
+  &:before
+    content bell-icon-logout-box-r-line
+.bell-icon-logout-circle-fill
+  &:before
+    content bell-icon-logout-circle-fill
+.bell-icon-logout-circle-line
+  &:before
+    content bell-icon-logout-circle-line
+.bell-icon-logout-circle-r-fill
+  &:before
+    content bell-icon-logout-circle-r-fill
+.bell-icon-logout-circle-r-line
+  &:before
+    content bell-icon-logout-circle-r-line
+.bell-icon-menu-2-fill
+  &:before
+    content bell-icon-menu-2-fill
+.bell-icon-menu-2-line
+  &:before
+    content bell-icon-menu-2-line
+.bell-icon-menu-3-fill
+  &:before
+    content bell-icon-menu-3-fill
+.bell-icon-menu-3-line
+  &:before
+    content bell-icon-menu-3-line
+.bell-icon-menu-fill
+  &:before
+    content bell-icon-menu-fill
+.bell-icon-menu-line
+  &:before
+    content bell-icon-menu-line
+.bell-icon-more-2-fill
+  &:before
+    content bell-icon-more-2-fill
+.bell-icon-more-2-line
+  &:before
+    content bell-icon-more-2-line
+.bell-icon-more-fill
+  &:before
+    content bell-icon-more-fill
+.bell-icon-more-line
+  &:before
+    content bell-icon-more-line
+.bell-icon-notification-badge-fill
+  &:before
+    content bell-icon-notification-badge-fill
+.bell-icon-notification-badge-line
+  &:before
+    content bell-icon-notification-badge-line
+.bell-icon-qr-code-fill
+  &:before
+    content bell-icon-qr-code-fill
+.bell-icon-qr-code-line
+  &:before
+    content bell-icon-qr-code-line
+.bell-icon-qr-scan-2-fill
+  &:before
+    content bell-icon-qr-scan-2-fill
+.bell-icon-qr-scan-2-line
+  &:before
+    content bell-icon-qr-scan-2-line
+.bell-icon-qr-scan-fill
+  &:before
+    content bell-icon-qr-scan-fill
+.bell-icon-qr-scan-line
+  &:before
+    content bell-icon-qr-scan-line
+.bell-icon-question-fill
+  &:before
+    content bell-icon-question-fill
+.bell-icon-question-line
+  &:before
+    content bell-icon-question-line
+.bell-icon-radio-button-fill
+  &:before
+    content bell-icon-radio-button-fill
+.bell-icon-radio-button-line
+  &:before
+    content bell-icon-radio-button-line
+.bell-icon-refresh-fill
+  &:before
+    content bell-icon-refresh-fill
+.bell-icon-refresh-line
+  &:before
+    content bell-icon-refresh-line
+.bell-icon-restart-fill
+  &:before
+    content bell-icon-restart-fill
+.bell-icon-restart-line
+  &:before
+    content bell-icon-restart-line
+.bell-icon-rss-fill
+  &:before
+    content bell-icon-rss-fill
+.bell-icon-rss-line
+  &:before
+    content bell-icon-rss-line
+.bell-icon-scan-2-fill
+  &:before
+    content bell-icon-scan-2-fill
+.bell-icon-scan-2-line
+  &:before
+    content bell-icon-scan-2-line
+.bell-icon-scan-fill
+  &:before
+    content bell-icon-scan-fill
+.bell-icon-scan-line
+  &:before
+    content bell-icon-scan-line
+.bell-icon-search-2-fill
+  &:before
+    content bell-icon-search-2-fill
+.bell-icon-search-2-line
+  &:before
+    content bell-icon-search-2-line
+.bell-icon-search-eye-fill
+  &:before
+    content bell-icon-search-eye-fill
+.bell-icon-search-eye-line
+  &:before
+    content bell-icon-search-eye-line
+.bell-icon-search-fill
+  &:before
+    content bell-icon-search-fill
+.bell-icon-search-line
+  &:before
+    content bell-icon-search-line
+.bell-icon-settings-2-fill
+  &:before
+    content bell-icon-settings-2-fill
+.bell-icon-settings-2-line
+  &:before
+    content bell-icon-settings-2-line
+.bell-icon-settings-3-fill
+  &:before
+    content bell-icon-settings-3-fill
+.bell-icon-settings-3-line
+  &:before
+    content bell-icon-settings-3-line
+.bell-icon-settings-4-fill
+  &:before
+    content bell-icon-settings-4-fill
+.bell-icon-settings-4-line
+  &:before
+    content bell-icon-settings-4-line
+.bell-icon-settings-5-fill
+  &:before
+    content bell-icon-settings-5-fill
+.bell-icon-settings-5-line
+  &:before
+    content bell-icon-settings-5-line
+.bell-icon-settings-6-fill
+  &:before
+    content bell-icon-settings-6-fill
+.bell-icon-settings-6-line
+  &:before
+    content bell-icon-settings-6-line
+.bell-icon-settings-fill
+  &:before
+    content bell-icon-settings-fill
+.bell-icon-settings-line
+  &:before
+    content bell-icon-settings-line
+.bell-icon-share-box-fill
+  &:before
+    content bell-icon-share-box-fill
+.bell-icon-share-box-line
+  &:before
+    content bell-icon-share-box-line
+.bell-icon-share-circle-fill
+  &:before
+    content bell-icon-share-circle-fill
+.bell-icon-share-circle-line
+  &:before
+    content bell-icon-share-circle-line
+.bell-icon-share-fill
+  &:before
+    content bell-icon-share-fill
+.bell-icon-share-forward-2-fill
+  &:before
+    content bell-icon-share-forward-2-fill
+.bell-icon-share-forward-2-line
+  &:before
+    content bell-icon-share-forward-2-line
+.bell-icon-share-forward-box-fill
+  &:before
+    content bell-icon-share-forward-box-fill
+.bell-icon-share-forward-box-line
+  &:before
+    content bell-icon-share-forward-box-line
+.bell-icon-share-forward-fill
+  &:before
+    content bell-icon-share-forward-fill
+.bell-icon-share-forward-line
+  &:before
+    content bell-icon-share-forward-line
+.bell-icon-share-line
+  &:before
+    content bell-icon-share-line
+.bell-icon-shield-cross-fill
+  &:before
+    content bell-icon-shield-cross-fill
+.bell-icon-shield-cross-line
+  &:before
+    content bell-icon-shield-cross-line
+.bell-icon-shield-fill
+  &:before
+    content bell-icon-shield-fill
+.bell-icon-shield-flash-fill
+  &:before
+    content bell-icon-shield-flash-fill
+.bell-icon-shield-flash-line
+  &:before
+    content bell-icon-shield-flash-line
+.bell-icon-shield-keyhole-fill
+  &:before
+    content bell-icon-shield-keyhole-fill
+.bell-icon-shield-keyhole-line
+  &:before
+    content bell-icon-shield-keyhole-line
+.bell-icon-shield-line
+  &:before
+    content bell-icon-shield-line
+.bell-icon-shield-star-fill
+  &:before
+    content bell-icon-shield-star-fill
+.bell-icon-shield-star-line
+  &:before
+    content bell-icon-shield-star-line
+.bell-icon-shield-user-fill
+  &:before
+    content bell-icon-shield-user-fill
+.bell-icon-shield-user-line
+  &:before
+    content bell-icon-shield-user-line
+.bell-icon-shut-down-fill
+  &:before
+    content bell-icon-shut-down-fill
+.bell-icon-shut-down-line
+  &:before
+    content bell-icon-shut-down-line
+.bell-icon-side-bar-fill
+  &:before
+    content bell-icon-side-bar-fill
+.bell-icon-side-bar-line
+  &:before
+    content bell-icon-side-bar-line
+.bell-icon-spam-2-fill
+  &:before
+    content bell-icon-spam-2-fill
+.bell-icon-spam-2-line
+  &:before
+    content bell-icon-spam-2-line
+.bell-icon-spam-3-fill
+  &:before
+    content bell-icon-spam-3-fill
+.bell-icon-spam-3-line
+  &:before
+    content bell-icon-spam-3-line
+.bell-icon-spam-fill
+  &:before
+    content bell-icon-spam-fill
+.bell-icon-spam-line
+  &:before
+    content bell-icon-spam-line
+.bell-icon-star-fill
+  &:before
+    content bell-icon-star-fill
+.bell-icon-star-half-fill
+  &:before
+    content bell-icon-star-half-fill
+.bell-icon-star-half-line
+  &:before
+    content bell-icon-star-half-line
+.bell-icon-star-half-s-fill
+  &:before
+    content bell-icon-star-half-s-fill
+.bell-icon-star-half-s-line
+  &:before
+    content bell-icon-star-half-s-line
+.bell-icon-star-line
+  &:before
+    content bell-icon-star-line
+.bell-icon-star-s-fill
+  &:before
+    content bell-icon-star-s-fill
+.bell-icon-star-s-line
+  &:before
+    content bell-icon-star-s-line
+.bell-icon-subtract-fill
+  &:before
+    content bell-icon-subtract-fill
+.bell-icon-subtract-line
+  &:before
+    content bell-icon-subtract-line
+.bell-icon-thumb-down-fill
+  &:before
+    content bell-icon-thumb-down-fill
+.bell-icon-thumb-down-line
+  &:before
+    content bell-icon-thumb-down-line
+.bell-icon-thumb-up-fill
+  &:before
+    content bell-icon-thumb-up-fill
+.bell-icon-thumb-up-line
+  &:before
+    content bell-icon-thumb-up-line
+.bell-icon-time-fill
+  &:before
+    content bell-icon-time-fill
+.bell-icon-time-line
+  &:before
+    content bell-icon-time-line
+.bell-icon-timer-2-fill
+  &:before
+    content bell-icon-timer-2-fill
+.bell-icon-timer-2-line
+  &:before
+    content bell-icon-timer-2-line
+.bell-icon-timer-fill
+  &:before
+    content bell-icon-timer-fill
+.bell-icon-timer-flash-fill
+  &:before
+    content bell-icon-timer-flash-fill
+.bell-icon-timer-flash-line
+  &:before
+    content bell-icon-timer-flash-line
+.bell-icon-timer-line
+  &:before
+    content bell-icon-timer-line
+.bell-icon-toggle-fill
+  &:before
+    content bell-icon-toggle-fill
+.bell-icon-toggle-line
+  &:before
+    content bell-icon-toggle-line
+.bell-icon-upload-2-fill
+  &:before
+    content bell-icon-upload-2-fill
+.bell-icon-upload-2-line
+  &:before
+    content bell-icon-upload-2-line
+.bell-icon-upload-cloud-2-fill
+  &:before
+    content bell-icon-upload-cloud-2-fill
+.bell-icon-upload-cloud-2-line
+  &:before
+    content bell-icon-upload-cloud-2-line
+.bell-icon-upload-cloud-fill
+  &:before
+    content bell-icon-upload-cloud-fill
+.bell-icon-upload-cloud-line
+  &:before
+    content bell-icon-upload-cloud-line
+.bell-icon-upload-fill
+  &:before
+    content bell-icon-upload-fill
+.bell-icon-upload-line
+  &:before
+    content bell-icon-upload-line
+.bell-icon-wifi-fill
+  &:before
+    content bell-icon-wifi-fill
+.bell-icon-wifi-line
+  &:before
+    content bell-icon-wifi-line
+.bell-icon-wifi-off-fill
+  &:before
+    content bell-icon-wifi-off-fill
+.bell-icon-wifi-off-line
+  &:before
+    content bell-icon-wifi-off-line
+.bell-icon-zoom-in-fill
+  &:before
+    content bell-icon-zoom-in-fill
+.bell-icon-zoom-in-line
+  &:before
+    content bell-icon-zoom-in-line
+.bell-icon-zoom-out-fill
+  &:before
+    content bell-icon-zoom-out-fill
+.bell-icon-zoom-out-line
+  &:before
+    content bell-icon-zoom-out-line
+.bell-icon-k-fill
+  &:before
+    content bell-icon-k-fill
+.bell-icon-k-line
+  &:before
+    content bell-icon-k-line
+.bell-icon-album-fill
+  &:before
+    content bell-icon-album-fill
+.bell-icon-album-line
+  &:before
+    content bell-icon-album-line
+.bell-icon-broadcast-fill
+  &:before
+    content bell-icon-broadcast-fill
+.bell-icon-broadcast-line
+  &:before
+    content bell-icon-broadcast-line
+.bell-icon-camera-2-fill
+  &:before
+    content bell-icon-camera-2-fill
+.bell-icon-camera-2-line
+  &:before
+    content bell-icon-camera-2-line
+.bell-icon-camera-3-fill
+  &:before
+    content bell-icon-camera-3-fill
+.bell-icon-camera-3-line
+  &:before
+    content bell-icon-camera-3-line
+.bell-icon-camera-fill
+  &:before
+    content bell-icon-camera-fill
+.bell-icon-camera-lens-fill
+  &:before
+    content bell-icon-camera-lens-fill
+.bell-icon-camera-lens-line
+  &:before
+    content bell-icon-camera-lens-line
+.bell-icon-camera-line
+  &:before
+    content bell-icon-camera-line
+.bell-icon-camera-off-fill
+  &:before
+    content bell-icon-camera-off-fill
+.bell-icon-camera-off-line
+  &:before
+    content bell-icon-camera-off-line
+.bell-icon-camera-switch-fill
+  &:before
+    content bell-icon-camera-switch-fill
+.bell-icon-camera-switch-line
+  &:before
+    content bell-icon-camera-switch-line
+.bell-icon-clapperboard-fill
+  &:before
+    content bell-icon-clapperboard-fill
+.bell-icon-clapperboard-line
+  &:before
+    content bell-icon-clapperboard-line
+.bell-icon-disc-fill
+  &:before
+    content bell-icon-disc-fill
+.bell-icon-disc-line
+  &:before
+    content bell-icon-disc-line
+.bell-icon-dv-fill
+  &:before
+    content bell-icon-dv-fill
+.bell-icon-dv-line
+  &:before
+    content bell-icon-dv-line
+.bell-icon-dvd-fill
+  &:before
+    content bell-icon-dvd-fill
+.bell-icon-dvd-line
+  &:before
+    content bell-icon-dvd-line
+.bell-icon-eject-fill
+  &:before
+    content bell-icon-eject-fill
+.bell-icon-eject-line
+  &:before
+    content bell-icon-eject-line
+.bell-icon-equalizer-fill
+  &:before
+    content bell-icon-equalizer-fill
+.bell-icon-equalizer-line
+  &:before
+    content bell-icon-equalizer-line
+.bell-icon-film-fill
+  &:before
+    content bell-icon-film-fill
+.bell-icon-film-line
+  &:before
+    content bell-icon-film-line
+.bell-icon-fullscreen-exit-fill
+  &:before
+    content bell-icon-fullscreen-exit-fill
+.bell-icon-fullscreen-exit-line
+  &:before
+    content bell-icon-fullscreen-exit-line
+.bell-icon-fullscreen-fill
+  &:before
+    content bell-icon-fullscreen-fill
+.bell-icon-fullscreen-line
+  &:before
+    content bell-icon-fullscreen-line
+.bell-icon-gallery-fill
+  &:before
+    content bell-icon-gallery-fill
+.bell-icon-gallery-line
+  &:before
+    content bell-icon-gallery-line
+.bell-icon-hd-fill
+  &:before
+    content bell-icon-hd-fill
+.bell-icon-hd-line
+  &:before
+    content bell-icon-hd-line
+.bell-icon-headphone-fill
+  &:before
+    content bell-icon-headphone-fill
+.bell-icon-headphone-line
+  &:before
+    content bell-icon-headphone-line
+.bell-icon-hq-fill
+  &:before
+    content bell-icon-hq-fill
+.bell-icon-hq-line
+  &:before
+    content bell-icon-hq-line
+.bell-icon-image-2-fill
+  &:before
+    content bell-icon-image-2-fill
+.bell-icon-image-2-line
+  &:before
+    content bell-icon-image-2-line
+.bell-icon-image-fill
+  &:before
+    content bell-icon-image-fill
+.bell-icon-image-line
+  &:before
+    content bell-icon-image-line
+.bell-icon-landscape-fill
+  &:before
+    content bell-icon-landscape-fill
+.bell-icon-landscape-line
+  &:before
+    content bell-icon-landscape-line
+.bell-icon-mic-2-fill
+  &:before
+    content bell-icon-mic-2-fill
+.bell-icon-mic-2-line
+  &:before
+    content bell-icon-mic-2-line
+.bell-icon-mic-fill
+  &:before
+    content bell-icon-mic-fill
+.bell-icon-mic-line
+  &:before
+    content bell-icon-mic-line
+.bell-icon-mic-off-fill
+  &:before
+    content bell-icon-mic-off-fill
+.bell-icon-mic-off-line
+  &:before
+    content bell-icon-mic-off-line
+.bell-icon-movie-2-fill
+  &:before
+    content bell-icon-movie-2-fill
+.bell-icon-movie-2-line
+  &:before
+    content bell-icon-movie-2-line
+.bell-icon-movie-fill
+  &:before
+    content bell-icon-movie-fill
+.bell-icon-movie-line
+  &:before
+    content bell-icon-movie-line
+.bell-icon-music-2-fill
+  &:before
+    content bell-icon-music-2-fill
+.bell-icon-music-2-line
+  &:before
+    content bell-icon-music-2-line
+.bell-icon-music-fill
+  &:before
+    content bell-icon-music-fill
+.bell-icon-music-line
+  &:before
+    content bell-icon-music-line
+.bell-icon-mv-fill
+  &:before
+    content bell-icon-mv-fill
+.bell-icon-mv-line
+  &:before
+    content bell-icon-mv-line
+.bell-icon-notification-2-fill
+  &:before
+    content bell-icon-notification-2-fill
+.bell-icon-notification-2-line
+  &:before
+    content bell-icon-notification-2-line
+.bell-icon-notification-3-fill
+  &:before
+    content bell-icon-notification-3-fill
+.bell-icon-notification-3-line
+  &:before
+    content bell-icon-notification-3-line
+.bell-icon-notification-4-fill
+  &:before
+    content bell-icon-notification-4-fill
+.bell-icon-notification-4-line
+  &:before
+    content bell-icon-notification-4-line
+.bell-icon-notification-fill
+  &:before
+    content bell-icon-notification-fill
+.bell-icon-notification-line
+  &:before
+    content bell-icon-notification-line
+.bell-icon-notification-off-fill
+  &:before
+    content bell-icon-notification-off-fill
+.bell-icon-notification-off-line
+  &:before
+    content bell-icon-notification-off-line
+.bell-icon-order-play-fill
+  &:before
+    content bell-icon-order-play-fill
+.bell-icon-order-play-line
+  &:before
+    content bell-icon-order-play-line
+.bell-icon-pause-circle-fill
+  &:before
+    content bell-icon-pause-circle-fill
+.bell-icon-pause-circle-line
+  &:before
+    content bell-icon-pause-circle-line
+.bell-icon-pause-fill
+  &:before
+    content bell-icon-pause-fill
+.bell-icon-pause-line
+  &:before
+    content bell-icon-pause-line
+.bell-icon-pause-mini-fill
+  &:before
+    content bell-icon-pause-mini-fill
+.bell-icon-pause-mini-line
+  &:before
+    content bell-icon-pause-mini-line
+.bell-icon-phone-camera-fill
+  &:before
+    content bell-icon-phone-camera-fill
+.bell-icon-phone-camera-line
+  &:before
+    content bell-icon-phone-camera-line
+.bell-icon-play-circle-fill
+  &:before
+    content bell-icon-play-circle-fill
+.bell-icon-play-circle-line
+  &:before
+    content bell-icon-play-circle-line
+.bell-icon-play-fill
+  &:before
+    content bell-icon-play-fill
+.bell-icon-play-line
+  &:before
+    content bell-icon-play-line
+.bell-icon-play-list-add-fill
+  &:before
+    content bell-icon-play-list-add-fill
+.bell-icon-play-list-add-line
+  &:before
+    content bell-icon-play-list-add-line
+.bell-icon-play-list-fill
+  &:before
+    content bell-icon-play-list-fill
+.bell-icon-play-list-line
+  &:before
+    content bell-icon-play-list-line
+.bell-icon-play-mini-fill
+  &:before
+    content bell-icon-play-mini-fill
+.bell-icon-play-mini-line
+  &:before
+    content bell-icon-play-mini-line
+.bell-icon-polaroid-2-fill
+  &:before
+    content bell-icon-polaroid-2-fill
+.bell-icon-polaroid-2-line
+  &:before
+    content bell-icon-polaroid-2-line
+.bell-icon-polaroid-fill
+  &:before
+    content bell-icon-polaroid-fill
+.bell-icon-polaroid-line
+  &:before
+    content bell-icon-polaroid-line
+.bell-icon-radio-2-fill
+  &:before
+    content bell-icon-radio-2-fill
+.bell-icon-radio-2-line
+  &:before
+    content bell-icon-radio-2-line
+.bell-icon-radio-fill
+  &:before
+    content bell-icon-radio-fill
+.bell-icon-radio-line
+  &:before
+    content bell-icon-radio-line
+.bell-icon-record-circle-fill
+  &:before
+    content bell-icon-record-circle-fill
+.bell-icon-record-circle-line
+  &:before
+    content bell-icon-record-circle-line
+.bell-icon-repeat-2-fill
+  &:before
+    content bell-icon-repeat-2-fill
+.bell-icon-repeat-2-line
+  &:before
+    content bell-icon-repeat-2-line
+.bell-icon-repeat-fill
+  &:before
+    content bell-icon-repeat-fill
+.bell-icon-repeat-line
+  &:before
+    content bell-icon-repeat-line
+.bell-icon-repeat-one-fill
+  &:before
+    content bell-icon-repeat-one-fill
+.bell-icon-repeat-one-line
+  &:before
+    content bell-icon-repeat-one-line
+.bell-icon-rewind-fill
+  &:before
+    content bell-icon-rewind-fill
+.bell-icon-rewind-line
+  &:before
+    content bell-icon-rewind-line
+.bell-icon-rewind-mini-fill
+  &:before
+    content bell-icon-rewind-mini-fill
+.bell-icon-rewind-mini-line
+  &:before
+    content bell-icon-rewind-mini-line
+.bell-icon-rhythm-fill
+  &:before
+    content bell-icon-rhythm-fill
+.bell-icon-rhythm-line
+  &:before
+    content bell-icon-rhythm-line
+.bell-icon-shuffle-fill
+  &:before
+    content bell-icon-shuffle-fill
+.bell-icon-shuffle-line
+  &:before
+    content bell-icon-shuffle-line
+.bell-icon-skip-back-fill
+  &:before
+    content bell-icon-skip-back-fill
+.bell-icon-skip-back-line
+  &:before
+    content bell-icon-skip-back-line
+.bell-icon-skip-back-mini-fill
+  &:before
+    content bell-icon-skip-back-mini-fill
+.bell-icon-skip-back-mini-line
+  &:before
+    content bell-icon-skip-back-mini-line
+.bell-icon-skip-forward-fill
+  &:before
+    content bell-icon-skip-forward-fill
+.bell-icon-skip-forward-line
+  &:before
+    content bell-icon-skip-forward-line
+.bell-icon-skip-forward-mini-fill
+  &:before
+    content bell-icon-skip-forward-mini-fill
+.bell-icon-skip-forward-mini-line
+  &:before
+    content bell-icon-skip-forward-mini-line
+.bell-icon-sound-module-fill
+  &:before
+    content bell-icon-sound-module-fill
+.bell-icon-sound-module-line
+  &:before
+    content bell-icon-sound-module-line
+.bell-icon-speaker-2-fill
+  &:before
+    content bell-icon-speaker-2-fill
+.bell-icon-speaker-2-line
+  &:before
+    content bell-icon-speaker-2-line
+.bell-icon-speaker-3-fill
+  &:before
+    content bell-icon-speaker-3-fill
+.bell-icon-speaker-3-line
+  &:before
+    content bell-icon-speaker-3-line
+.bell-icon-speaker-fill
+  &:before
+    content bell-icon-speaker-fill
+.bell-icon-speaker-line
+  &:before
+    content bell-icon-speaker-line
+.bell-icon-speed-fill
+  &:before
+    content bell-icon-speed-fill
+.bell-icon-speed-line
+  &:before
+    content bell-icon-speed-line
+.bell-icon-speed-mini-fill
+  &:before
+    content bell-icon-speed-mini-fill
+.bell-icon-speed-mini-line
+  &:before
+    content bell-icon-speed-mini-line
+.bell-icon-stop-circle-fill
+  &:before
+    content bell-icon-stop-circle-fill
+.bell-icon-stop-circle-line
+  &:before
+    content bell-icon-stop-circle-line
+.bell-icon-stop-fill
+  &:before
+    content bell-icon-stop-fill
+.bell-icon-stop-line
+  &:before
+    content bell-icon-stop-line
+.bell-icon-stop-mini-fill
+  &:before
+    content bell-icon-stop-mini-fill
+.bell-icon-stop-mini-line
+  &:before
+    content bell-icon-stop-mini-line
+.bell-icon-surround-sound-fill
+  &:before
+    content bell-icon-surround-sound-fill
+.bell-icon-surround-sound-line
+  &:before
+    content bell-icon-surround-sound-line
+.bell-icon-tape-fill
+  &:before
+    content bell-icon-tape-fill
+.bell-icon-tape-line
+  &:before
+    content bell-icon-tape-line
+.bell-icon-video-fill
+  &:before
+    content bell-icon-video-fill
+.bell-icon-video-line
+  &:before
+    content bell-icon-video-line
+.bell-icon-vidicon-2-fill
+  &:before
+    content bell-icon-vidicon-2-fill
+.bell-icon-vidicon-2-line
+  &:before
+    content bell-icon-vidicon-2-line
+.bell-icon-vidicon-fill
+  &:before
+    content bell-icon-vidicon-fill
+.bell-icon-vidicon-line
+  &:before
+    content bell-icon-vidicon-line
+.bell-icon-voiceprint-fill
+  &:before
+    content bell-icon-voiceprint-fill
+.bell-icon-voiceprint-line
+  &:before
+    content bell-icon-voiceprint-line
+.bell-icon-volume-down-fill
+  &:before
+    content bell-icon-volume-down-fill
+.bell-icon-volume-down-line
+  &:before
+    content bell-icon-volume-down-line
+.bell-icon-volume-mute-fill
+  &:before
+    content bell-icon-volume-mute-fill
+.bell-icon-volume-mute-line
+  &:before
+    content bell-icon-volume-mute-line
+.bell-icon-volume-up-fill
+  &:before
+    content bell-icon-volume-up-fill
+.bell-icon-volume-up-line
+  &:before
+    content bell-icon-volume-up-line
+.bell-icon-webcam-fill
+  &:before
+    content bell-icon-webcam-fill
+.bell-icon-webcam-line
+  &:before
+    content bell-icon-webcam-line
+.bell-icon-anchor-fill
+  &:before
+    content bell-icon-anchor-fill
+.bell-icon-anchor-line
+  &:before
+    content bell-icon-anchor-line
+.bell-icon-barricade-fill
+  &:before
+    content bell-icon-barricade-fill
+.bell-icon-barricade-line
+  &:before
+    content bell-icon-barricade-line
+.bell-icon-bike-fill
+  &:before
+    content bell-icon-bike-fill
+.bell-icon-bike-line
+  &:before
+    content bell-icon-bike-line
+.bell-icon-bus-2-fill
+  &:before
+    content bell-icon-bus-2-fill
+.bell-icon-bus-2-line
+  &:before
+    content bell-icon-bus-2-line
+.bell-icon-bus-fill
+  &:before
+    content bell-icon-bus-fill
+.bell-icon-bus-line
+  &:before
+    content bell-icon-bus-line
+.bell-icon-car-fill
+  &:before
+    content bell-icon-car-fill
+.bell-icon-car-line
+  &:before
+    content bell-icon-car-line
+.bell-icon-car-washing-fill
+  &:before
+    content bell-icon-car-washing-fill
+.bell-icon-car-washing-line
+  &:before
+    content bell-icon-car-washing-line
+.bell-icon-charging-pile-2-fill
+  &:before
+    content bell-icon-charging-pile-2-fill
+.bell-icon-charging-pile-2-line
+  &:before
+    content bell-icon-charging-pile-2-line
+.bell-icon-charging-pile-fill
+  &:before
+    content bell-icon-charging-pile-fill
+.bell-icon-charging-pile-line
+  &:before
+    content bell-icon-charging-pile-line
+.bell-icon-china-railway-fill
+  &:before
+    content bell-icon-china-railway-fill
+.bell-icon-china-railway-line
+  &:before
+    content bell-icon-china-railway-line
+.bell-icon-compass-2-fill
+  &:before
+    content bell-icon-compass-2-fill
+.bell-icon-compass-2-line
+  &:before
+    content bell-icon-compass-2-line
+.bell-icon-compass-3-fill
+  &:before
+    content bell-icon-compass-3-fill
+.bell-icon-compass-3-line
+  &:before
+    content bell-icon-compass-3-line
+.bell-icon-compass-4-fill
+  &:before
+    content bell-icon-compass-4-fill
+.bell-icon-compass-4-line
+  &:before
+    content bell-icon-compass-4-line
+.bell-icon-compass-discover-fill
+  &:before
+    content bell-icon-compass-discover-fill
+.bell-icon-compass-discover-line
+  &:before
+    content bell-icon-compass-discover-line
+.bell-icon-compass-fill
+  &:before
+    content bell-icon-compass-fill
+.bell-icon-compass-line
+  &:before
+    content bell-icon-compass-line
+.bell-icon-cup-fill
+  &:before
+    content bell-icon-cup-fill
+.bell-icon-cup-line
+  &:before
+    content bell-icon-cup-line
+.bell-icon-direction-fill
+  &:before
+    content bell-icon-direction-fill
+.bell-icon-direction-line
+  &:before
+    content bell-icon-direction-line
+.bell-icon-e-bike-2-fill
+  &:before
+    content bell-icon-e-bike-2-fill
+.bell-icon-e-bike-2-line
+  &:before
+    content bell-icon-e-bike-2-line
+.bell-icon-e-bike-fill
+  &:before
+    content bell-icon-e-bike-fill
+.bell-icon-e-bike-line
+  &:before
+    content bell-icon-e-bike-line
+.bell-icon-earth-fill
+  &:before
+    content bell-icon-earth-fill
+.bell-icon-earth-line
+  &:before
+    content bell-icon-earth-line
+.bell-icon-flight-land-fill
+  &:before
+    content bell-icon-flight-land-fill
+.bell-icon-flight-land-line
+  &:before
+    content bell-icon-flight-land-line
+.bell-icon-flight-takeoff-fill
+  &:before
+    content bell-icon-flight-takeoff-fill
+.bell-icon-flight-takeoff-line
+  &:before
+    content bell-icon-flight-takeoff-line
+.bell-icon-footprint-fill
+  &:before
+    content bell-icon-footprint-fill
+.bell-icon-footprint-line
+  &:before
+    content bell-icon-footprint-line
+.bell-icon-gas-station-fill
+  &:before
+    content bell-icon-gas-station-fill
+.bell-icon-gas-station-line
+  &:before
+    content bell-icon-gas-station-line
+.bell-icon-globe-fill
+  &:before
+    content bell-icon-globe-fill
+.bell-icon-globe-line
+  &:before
+    content bell-icon-globe-line
+.bell-icon-goblet-fill
+  &:before
+    content bell-icon-goblet-fill
+.bell-icon-goblet-line
+  &:before
+    content bell-icon-goblet-line
+.bell-icon-guide-fill
+  &:before
+    content bell-icon-guide-fill
+.bell-icon-guide-line
+  &:before
+    content bell-icon-guide-line
+.bell-icon-hotel-bed-fill
+  &:before
+    content bell-icon-hotel-bed-fill
+.bell-icon-hotel-bed-line
+  &:before
+    content bell-icon-hotel-bed-line
+.bell-icon-map-2-fill
+  &:before
+    content bell-icon-map-2-fill
+.bell-icon-map-2-line
+  &:before
+    content bell-icon-map-2-line
+.bell-icon-map-fill
+  &:before
+    content bell-icon-map-fill
+.bell-icon-map-line
+  &:before
+    content bell-icon-map-line
+.bell-icon-map-pin-2-fill
+  &:before
+    content bell-icon-map-pin-2-fill
+.bell-icon-map-pin-2-line
+  &:before
+    content bell-icon-map-pin-2-line
+.bell-icon-map-pin-3-fill
+  &:before
+    content bell-icon-map-pin-3-fill
+.bell-icon-map-pin-3-line
+  &:before
+    content bell-icon-map-pin-3-line
+.bell-icon-map-pin-4-fill
+  &:before
+    content bell-icon-map-pin-4-fill
+.bell-icon-map-pin-4-line
+  &:before
+    content bell-icon-map-pin-4-line
+.bell-icon-map-pin-5-fill
+  &:before
+    content bell-icon-map-pin-5-fill
+.bell-icon-map-pin-5-line
+  &:before
+    content bell-icon-map-pin-5-line
+.bell-icon-map-pin-add-fill
+  &:before
+    content bell-icon-map-pin-add-fill
+.bell-icon-map-pin-add-line
+  &:before
+    content bell-icon-map-pin-add-line
+.bell-icon-map-pin-fill
+  &:before
+    content bell-icon-map-pin-fill
+.bell-icon-map-pin-line
+  &:before
+    content bell-icon-map-pin-line
+.bell-icon-map-pin-range-fill
+  &:before
+    content bell-icon-map-pin-range-fill
+.bell-icon-map-pin-range-line
+  &:before
+    content bell-icon-map-pin-range-line
+.bell-icon-map-pin-time-fill
+  &:before
+    content bell-icon-map-pin-time-fill
+.bell-icon-map-pin-time-line
+  &:before
+    content bell-icon-map-pin-time-line
+.bell-icon-map-pin-user-fill
+  &:before
+    content bell-icon-map-pin-user-fill
+.bell-icon-map-pin-user-line
+  &:before
+    content bell-icon-map-pin-user-line
+.bell-icon-motorbike-fill
+  &:before
+    content bell-icon-motorbike-fill
+.bell-icon-motorbike-line
+  &:before
+    content bell-icon-motorbike-line
+.bell-icon-navigation-fill
+  &:before
+    content bell-icon-navigation-fill
+.bell-icon-navigation-line
+  &:before
+    content bell-icon-navigation-line
+.bell-icon-oil-fill
+  &:before
+    content bell-icon-oil-fill
+.bell-icon-oil-line
+  &:before
+    content bell-icon-oil-line
+.bell-icon-parking-box-fill
+  &:before
+    content bell-icon-parking-box-fill
+.bell-icon-parking-box-line
+  &:before
+    content bell-icon-parking-box-line
+.bell-icon-parking-fill
+  &:before
+    content bell-icon-parking-fill
+.bell-icon-parking-line
+  &:before
+    content bell-icon-parking-line
+.bell-icon-pin-distance-fill
+  &:before
+    content bell-icon-pin-distance-fill
+.bell-icon-pin-distance-line
+  &:before
+    content bell-icon-pin-distance-line
+.bell-icon-plane-fill
+  &:before
+    content bell-icon-plane-fill
+.bell-icon-plane-line
+  &:before
+    content bell-icon-plane-line
+.bell-icon-police-car-fill
+  &:before
+    content bell-icon-police-car-fill
+.bell-icon-police-car-line
+  &:before
+    content bell-icon-police-car-line
+.bell-icon-push-pin-2-fill
+  &:before
+    content bell-icon-push-pin-2-fill
+.bell-icon-push-pin-2-line
+  &:before
+    content bell-icon-push-pin-2-line
+.bell-icon-push-pin-fill
+  &:before
+    content bell-icon-push-pin-fill
+.bell-icon-push-pin-line
+  &:before
+    content bell-icon-push-pin-line
+.bell-icon-restaurant-2-fill
+  &:before
+    content bell-icon-restaurant-2-fill
+.bell-icon-restaurant-2-line
+  &:before
+    content bell-icon-restaurant-2-line
+.bell-icon-restaurant-fill
+  &:before
+    content bell-icon-restaurant-fill
+.bell-icon-restaurant-line
+  &:before
+    content bell-icon-restaurant-line
+.bell-icon-riding-fill
+  &:before
+    content bell-icon-riding-fill
+.bell-icon-riding-line
+  &:before
+    content bell-icon-riding-line
+.bell-icon-road-map-fill
+  &:before
+    content bell-icon-road-map-fill
+.bell-icon-road-map-line
+  &:before
+    content bell-icon-road-map-line
+.bell-icon-roadster-fill
+  &:before
+    content bell-icon-roadster-fill
+.bell-icon-roadster-line
+  &:before
+    content bell-icon-roadster-line
+.bell-icon-rocket-2-fill
+  &:before
+    content bell-icon-rocket-2-fill
+.bell-icon-rocket-2-line
+  &:before
+    content bell-icon-rocket-2-line
+.bell-icon-rocket-fill
+  &:before
+    content bell-icon-rocket-fill
+.bell-icon-rocket-line
+  &:before
+    content bell-icon-rocket-line
+.bell-icon-route-fill
+  &:before
+    content bell-icon-route-fill
+.bell-icon-route-line
+  &:before
+    content bell-icon-route-line
+.bell-icon-run-fill
+  &:before
+    content bell-icon-run-fill
+.bell-icon-run-line
+  &:before
+    content bell-icon-run-line
+.bell-icon-sailboat-fill
+  &:before
+    content bell-icon-sailboat-fill
+.bell-icon-sailboat-line
+  &:before
+    content bell-icon-sailboat-line
+.bell-icon-ship-2-fill
+  &:before
+    content bell-icon-ship-2-fill
+.bell-icon-ship-2-line
+  &:before
+    content bell-icon-ship-2-line
+.bell-icon-ship-fill
+  &:before
+    content bell-icon-ship-fill
+.bell-icon-ship-line
+  &:before
+    content bell-icon-ship-line
+.bell-icon-signal-tower-fill
+  &:before
+    content bell-icon-signal-tower-fill
+.bell-icon-signal-tower-line
+  &:before
+    content bell-icon-signal-tower-line
+.bell-icon-space-ship-fill
+  &:before
+    content bell-icon-space-ship-fill
+.bell-icon-space-ship-line
+  &:before
+    content bell-icon-space-ship-line
+.bell-icon-steering-2-fill
+  &:before
+    content bell-icon-steering-2-fill
+.bell-icon-steering-2-line
+  &:before
+    content bell-icon-steering-2-line
+.bell-icon-steering-fill
+  &:before
+    content bell-icon-steering-fill
+.bell-icon-steering-line
+  &:before
+    content bell-icon-steering-line
+.bell-icon-subway-fill
+  &:before
+    content bell-icon-subway-fill
+.bell-icon-subway-line
+  &:before
+    content bell-icon-subway-line
+.bell-icon-taxi-fill
+  &:before
+    content bell-icon-taxi-fill
+.bell-icon-taxi-line
+  &:before
+    content bell-icon-taxi-line
+.bell-icon-traffic-light-fill
+  &:before
+    content bell-icon-traffic-light-fill
+.bell-icon-traffic-light-line
+  &:before
+    content bell-icon-traffic-light-line
+.bell-icon-train-fill
+  &:before
+    content bell-icon-train-fill
+.bell-icon-train-line
+  &:before
+    content bell-icon-train-line
+.bell-icon-treasure-map-fill
+  &:before
+    content bell-icon-treasure-map-fill
+.bell-icon-treasure-map-line
+  &:before
+    content bell-icon-treasure-map-line
+.bell-icon-truck-fill
+  &:before
+    content bell-icon-truck-fill
+.bell-icon-truck-line
+  &:before
+    content bell-icon-truck-line
+.bell-icon-walk-fill
+  &:before
+    content bell-icon-walk-fill
+.bell-icon-walk-line
+  &:before
+    content bell-icon-walk-line
+.bell-icon-alipay-fill
+  &:before
+    content bell-icon-alipay-fill
+.bell-icon-alipay-line
+  &:before
+    content bell-icon-alipay-line
+.bell-icon-amazon-fill
+  &:before
+    content bell-icon-amazon-fill
+.bell-icon-amazon-line
+  &:before
+    content bell-icon-amazon-line
+.bell-icon-android-fill
+  &:before
+    content bell-icon-android-fill
+.bell-icon-android-line
+  &:before
+    content bell-icon-android-line
+.bell-icon-angularjs-fill
+  &:before
+    content bell-icon-angularjs-fill
+.bell-icon-angularjs-line
+  &:before
+    content bell-icon-angularjs-line
+.bell-icon-apple-fill
+  &:before
+    content bell-icon-apple-fill
+.bell-icon-apple-line
+  &:before
+    content bell-icon-apple-line
+.bell-icon-baidu-fill
+  &:before
+    content bell-icon-baidu-fill
+.bell-icon-baidu-line
+  &:before
+    content bell-icon-baidu-line
+.bell-icon-behance-fill
+  &:before
+    content bell-icon-behance-fill
+.bell-icon-behance-line
+  &:before
+    content bell-icon-behance-line
+.bell-icon-bilibili-fill
+  &:before
+    content bell-icon-bilibili-fill
+.bell-icon-bilibili-line
+  &:before
+    content bell-icon-bilibili-line
+.bell-icon-chrome-fill
+  &:before
+    content bell-icon-chrome-fill
+.bell-icon-chrome-line
+  &:before
+    content bell-icon-chrome-line
+.bell-icon-codepen-fill
+  &:before
+    content bell-icon-codepen-fill
+.bell-icon-codepen-line
+  &:before
+    content bell-icon-codepen-line
+.bell-icon-coreos-fill
+  &:before
+    content bell-icon-coreos-fill
+.bell-icon-coreos-line
+  &:before
+    content bell-icon-coreos-line
+.bell-icon-dingding-fill
+  &:before
+    content bell-icon-dingding-fill
+.bell-icon-dingding-line
+  &:before
+    content bell-icon-dingding-line
+.bell-icon-discord-fill
+  &:before
+    content bell-icon-discord-fill
+.bell-icon-discord-line
+  &:before
+    content bell-icon-discord-line
+.bell-icon-douban-fill
+  &:before
+    content bell-icon-douban-fill
+.bell-icon-douban-line
+  &:before
+    content bell-icon-douban-line
+.bell-icon-dribbble-fill
+  &:before
+    content bell-icon-dribbble-fill
+.bell-icon-dribbble-line
+  &:before
+    content bell-icon-dribbble-line
+.bell-icon-drive-fill
+  &:before
+    content bell-icon-drive-fill
+.bell-icon-drive-line
+  &:before
+    content bell-icon-drive-line
+.bell-icon-dropbox-fill
+  &:before
+    content bell-icon-dropbox-fill
+.bell-icon-dropbox-line
+  &:before
+    content bell-icon-dropbox-line
+.bell-icon-edge-fill
+  &:before
+    content bell-icon-edge-fill
+.bell-icon-edge-line
+  &:before
+    content bell-icon-edge-line
+.bell-icon-evernote-fill
+  &:before
+    content bell-icon-evernote-fill
+.bell-icon-evernote-line
+  &:before
+    content bell-icon-evernote-line
+.bell-icon-facebook-box-fill
+  &:before
+    content bell-icon-facebook-box-fill
+.bell-icon-facebook-box-line
+  &:before
+    content bell-icon-facebook-box-line
+.bell-icon-facebook-circle-fill
+  &:before
+    content bell-icon-facebook-circle-fill
+.bell-icon-facebook-circle-line
+  &:before
+    content bell-icon-facebook-circle-line
+.bell-icon-facebook-fill
+  &:before
+    content bell-icon-facebook-fill
+.bell-icon-facebook-line
+  &:before
+    content bell-icon-facebook-line
+.bell-icon-firefox-fill
+  &:before
+    content bell-icon-firefox-fill
+.bell-icon-firefox-line
+  &:before
+    content bell-icon-firefox-line
+.bell-icon-github-fill
+  &:before
+    content bell-icon-github-fill
+.bell-icon-github-line
+  &:before
+    content bell-icon-github-line
+.bell-icon-gitlab-fill
+  &:before
+    content bell-icon-gitlab-fill
+.bell-icon-gitlab-line
+  &:before
+    content bell-icon-gitlab-line
+.bell-icon-google-fill
+  &:before
+    content bell-icon-google-fill
+.bell-icon-google-line
+  &:before
+    content bell-icon-google-line
+.bell-icon-ie-fill
+  &:before
+    content bell-icon-ie-fill
+.bell-icon-ie-line
+  &:before
+    content bell-icon-ie-line
+.bell-icon-instagram-fill
+  &:before
+    content bell-icon-instagram-fill
+.bell-icon-instagram-line
+  &:before
+    content bell-icon-instagram-line
+.bell-icon-invision-fill
+  &:before
+    content bell-icon-invision-fill
+.bell-icon-invision-line
+  &:before
+    content bell-icon-invision-line
+.bell-icon-kakao-talk-fill
+  &:before
+    content bell-icon-kakao-talk-fill
+.bell-icon-kakao-talk-line
+  &:before
+    content bell-icon-kakao-talk-line
+.bell-icon-line-fill
+  &:before
+    content bell-icon-line-fill
+.bell-icon-line-line
+  &:before
+    content bell-icon-line-line
+.bell-icon-linkedin-box-fill
+  &:before
+    content bell-icon-linkedin-box-fill
+.bell-icon-linkedin-box-line
+  &:before
+    content bell-icon-linkedin-box-line
+.bell-icon-linkedin-fill
+  &:before
+    content bell-icon-linkedin-fill
+.bell-icon-linkedin-line
+  &:before
+    content bell-icon-linkedin-line
+.bell-icon-mastercard-fill
+  &:before
+    content bell-icon-mastercard-fill
+.bell-icon-mastercard-line
+  &:before
+    content bell-icon-mastercard-line
+.bell-icon-mastodon-fill
+  &:before
+    content bell-icon-mastodon-fill
+.bell-icon-mastodon-line
+  &:before
+    content bell-icon-mastodon-line
+.bell-icon-medium-fill
+  &:before
+    content bell-icon-medium-fill
+.bell-icon-medium-line
+  &:before
+    content bell-icon-medium-line
+.bell-icon-messenger-fill
+  &:before
+    content bell-icon-messenger-fill
+.bell-icon-messenger-line
+  &:before
+    content bell-icon-messenger-line
+.bell-icon-mini-program-fill
+  &:before
+    content bell-icon-mini-program-fill
+.bell-icon-mini-program-line
+  &:before
+    content bell-icon-mini-program-line
+.bell-icon-netease-cloud-music-fill
+  &:before
+    content bell-icon-netease-cloud-music-fill
+.bell-icon-netease-cloud-music-line
+  &:before
+    content bell-icon-netease-cloud-music-line
+.bell-icon-netflix-fill
+  &:before
+    content bell-icon-netflix-fill
+.bell-icon-netflix-line
+  &:before
+    content bell-icon-netflix-line
+.bell-icon-opera-fill
+  &:before
+    content bell-icon-opera-fill
+.bell-icon-opera-line
+  &:before
+    content bell-icon-opera-line
+.bell-icon-patreon-fill
+  &:before
+    content bell-icon-patreon-fill
+.bell-icon-patreon-line
+  &:before
+    content bell-icon-patreon-line
+.bell-icon-paypal-fill
+  &:before
+    content bell-icon-paypal-fill
+.bell-icon-paypal-line
+  &:before
+    content bell-icon-paypal-line
+.bell-icon-pinterest-fill
+  &:before
+    content bell-icon-pinterest-fill
+.bell-icon-pinterest-line
+  &:before
+    content bell-icon-pinterest-line
+.bell-icon-playstation-fill
+  &:before
+    content bell-icon-playstation-fill
+.bell-icon-playstation-line
+  &:before
+    content bell-icon-playstation-line
+.bell-icon-product-hunt-fill
+  &:before
+    content bell-icon-product-hunt-fill
+.bell-icon-product-hunt-line
+  &:before
+    content bell-icon-product-hunt-line
+.bell-icon-qq-fill
+  &:before
+    content bell-icon-qq-fill
+.bell-icon-qq-line
+  &:before
+    content bell-icon-qq-line
+.bell-icon-reactjs-fill
+  &:before
+    content bell-icon-reactjs-fill
+.bell-icon-reactjs-line
+  &:before
+    content bell-icon-reactjs-line
+.bell-icon-reddit-fill
+  &:before
+    content bell-icon-reddit-fill
+.bell-icon-reddit-line
+  &:before
+    content bell-icon-reddit-line
+.bell-icon-remixicon-fill
+  &:before
+    content bell-icon-remixicon-fill
+.bell-icon-remixicon-line
+  &:before
+    content bell-icon-remixicon-line
+.bell-icon-safari-fill
+  &:before
+    content bell-icon-safari-fill
+.bell-icon-safari-line
+  &:before
+    content bell-icon-safari-line
+.bell-icon-skype-fill
+  &:before
+    content bell-icon-skype-fill
+.bell-icon-skype-line
+  &:before
+    content bell-icon-skype-line
+.bell-icon-slack-fill
+  &:before
+    content bell-icon-slack-fill
+.bell-icon-slack-line
+  &:before
+    content bell-icon-slack-line
+.bell-icon-snapchat-fill
+  &:before
+    content bell-icon-snapchat-fill
+.bell-icon-snapchat-line
+  &:before
+    content bell-icon-snapchat-line
+.bell-icon-spotify-fill
+  &:before
+    content bell-icon-spotify-fill
+.bell-icon-spotify-line
+  &:before
+    content bell-icon-spotify-line
+.bell-icon-stack-overflow-fill
+  &:before
+    content bell-icon-stack-overflow-fill
+.bell-icon-stack-overflow-line
+  &:before
+    content bell-icon-stack-overflow-line
+.bell-icon-switch-fill
+  &:before
+    content bell-icon-switch-fill
+.bell-icon-switch-line
+  &:before
+    content bell-icon-switch-line
+.bell-icon-taobao-fill
+  &:before
+    content bell-icon-taobao-fill
+.bell-icon-taobao-line
+  &:before
+    content bell-icon-taobao-line
+.bell-icon-telegram-fill
+  &:before
+    content bell-icon-telegram-fill
+.bell-icon-telegram-line
+  &:before
+    content bell-icon-telegram-line
+.bell-icon-trello-fill
+  &:before
+    content bell-icon-trello-fill
+.bell-icon-trello-line
+  &:before
+    content bell-icon-trello-line
+.bell-icon-tumblr-fill
+  &:before
+    content bell-icon-tumblr-fill
+.bell-icon-tumblr-line
+  &:before
+    content bell-icon-tumblr-line
+.bell-icon-twitch-fill
+  &:before
+    content bell-icon-twitch-fill
+.bell-icon-twitch-line
+  &:before
+    content bell-icon-twitch-line
+.bell-icon-twitter-fill
+  &:before
+    content bell-icon-twitter-fill
+.bell-icon-twitter-line
+  &:before
+    content bell-icon-twitter-line
+.bell-icon-ubuntu-fill
+  &:before
+    content bell-icon-ubuntu-fill
+.bell-icon-ubuntu-line
+  &:before
+    content bell-icon-ubuntu-line
+.bell-icon-visa-fill
+  &:before
+    content bell-icon-visa-fill
+.bell-icon-visa-line
+  &:before
+    content bell-icon-visa-line
+.bell-icon-vuejs-fill
+  &:before
+    content bell-icon-vuejs-fill
+.bell-icon-vuejs-line
+  &:before
+    content bell-icon-vuejs-line
+.bell-icon-wechat-2-fill
+  &:before
+    content bell-icon-wechat-2-fill
+.bell-icon-wechat-2-line
+  &:before
+    content bell-icon-wechat-2-line
+.bell-icon-wechat-fill
+  &:before
+    content bell-icon-wechat-fill
+.bell-icon-wechat-line
+  &:before
+    content bell-icon-wechat-line
+.bell-icon-wechat-pay-fill
+  &:before
+    content bell-icon-wechat-pay-fill
+.bell-icon-wechat-pay-line
+  &:before
+    content bell-icon-wechat-pay-line
+.bell-icon-weibo-fill
+  &:before
+    content bell-icon-weibo-fill
+.bell-icon-weibo-line
+  &:before
+    content bell-icon-weibo-line
+.bell-icon-whatsapp-fill
+  &:before
+    content bell-icon-whatsapp-fill
+.bell-icon-whatsapp-line
+  &:before
+    content bell-icon-whatsapp-line
+.bell-icon-windows-fill
+  &:before
+    content bell-icon-windows-fill
+.bell-icon-windows-line
+  &:before
+    content bell-icon-windows-line
+.bell-icon-xbox-fill
+  &:before
+    content bell-icon-xbox-fill
+.bell-icon-xbox-line
+  &:before
+    content bell-icon-xbox-line
+.bell-icon-xing-fill
+  &:before
+    content bell-icon-xing-fill
+.bell-icon-xing-line
+  &:before
+    content bell-icon-xing-line
+.bell-icon-youtube-fill
+  &:before
+    content bell-icon-youtube-fill
+.bell-icon-youtube-line
+  &:before
+    content bell-icon-youtube-line
+.bell-icon-zcool-fill
+  &:before
+    content bell-icon-zcool-fill
+.bell-icon-zcool-line
+  &:before
+    content bell-icon-zcool-line
+.bell-icon-zhihu-fill
+  &:before
+    content bell-icon-zhihu-fill
+.bell-icon-zhihu-line
+  &:before
+    content bell-icon-zhihu-line
+.bell-icon-door-lock-box-fill
+  &:before
+    content bell-icon-door-lock-box-fill
+.bell-icon-door-lock-box-line
+  &:before
+    content bell-icon-door-lock-box-line
+.bell-icon-door-lock-fill
+  &:before
+    content bell-icon-door-lock-fill
+.bell-icon-door-lock-line
+  &:before
+    content bell-icon-door-lock-line
+.bell-icon-fire-fill
+  &:before
+    content bell-icon-fire-fill
+.bell-icon-fire-line
+  &:before
+    content bell-icon-fire-line
+.bell-icon-key-2-fill
+  &:before
+    content bell-icon-key-2-fill
+.bell-icon-key-2-line
+  &:before
+    content bell-icon-key-2-line
+.bell-icon-key-fill
+  &:before
+    content bell-icon-key-fill
+.bell-icon-key-line
+  &:before
+    content bell-icon-key-line
+.bell-icon-lightbulb-fill
+  &:before
+    content bell-icon-lightbulb-fill
+.bell-icon-lightbulb-flash-fill
+  &:before
+    content bell-icon-lightbulb-flash-fill
+.bell-icon-lightbulb-flash-line
+  &:before
+    content bell-icon-lightbulb-flash-line
+.bell-icon-lightbulb-line
+  &:before
+    content bell-icon-lightbulb-line
+.bell-icon-outlet-2-fill
+  &:before
+    content bell-icon-outlet-2-fill
+.bell-icon-outlet-2-line
+  &:before
+    content bell-icon-outlet-2-line
+.bell-icon-outlet-fill
+  &:before
+    content bell-icon-outlet-fill
+.bell-icon-outlet-line
+  &:before
+    content bell-icon-outlet-line
+.bell-icon-plug-2-fill
+  &:before
+    content bell-icon-plug-2-fill
+.bell-icon-plug-2-line
+  &:before
+    content bell-icon-plug-2-line
+.bell-icon-plug-fill
+  &:before
+    content bell-icon-plug-fill
+.bell-icon-plug-line
+  &:before
+    content bell-icon-plug-line
+.bell-icon-reserved-fill
+  &:before
+    content bell-icon-reserved-fill
+.bell-icon-reserved-line
+  &:before
+    content bell-icon-reserved-line
+.bell-icon-shirt-fill
+  &:before
+    content bell-icon-shirt-fill
+.bell-icon-shirt-line
+  &:before
+    content bell-icon-shirt-line
+.bell-icon-t-shirt-fill
+  &:before
+    content bell-icon-t-shirt-fill
+.bell-icon-t-shirt-line
+  &:before
+    content bell-icon-t-shirt-line
+.bell-icon-umbrella-fill
+  &:before
+    content bell-icon-umbrella-fill
+.bell-icon-umbrella-line
+  &:before
+    content bell-icon-umbrella-line
+.bell-icon-auction-fill
+  &:before
+    content bell-icon-auction-fill
+.bell-icon-auction-line
+  &:before
+    content bell-icon-auction-line
+.bell-icon-bank-card-2-fill
+  &:before
+    content bell-icon-bank-card-2-fill
+.bell-icon-bank-card-2-line
+  &:before
+    content bell-icon-bank-card-2-line
+.bell-icon-bank-card-fill
+  &:before
+    content bell-icon-bank-card-fill
+.bell-icon-bank-card-line
+  &:before
+    content bell-icon-bank-card-line
+.bell-icon-bit-coin-fill
+  &:before
+    content bell-icon-bit-coin-fill
+.bell-icon-bit-coin-line
+  &:before
+    content bell-icon-bit-coin-line
+.bell-icon-copper-coin-fill
+  &:before
+    content bell-icon-copper-coin-fill
+.bell-icon-copper-coin-line
+  &:before
+    content bell-icon-copper-coin-line
+.bell-icon-copper-diamond-fill
+  &:before
+    content bell-icon-copper-diamond-fill
+.bell-icon-copper-diamond-line
+  &:before
+    content bell-icon-copper-diamond-line
+.bell-icon-coupon-2-fill
+  &:before
+    content bell-icon-coupon-2-fill
+.bell-icon-coupon-2-line
+  &:before
+    content bell-icon-coupon-2-line
+.bell-icon-coupon-3-fill
+  &:before
+    content bell-icon-coupon-3-fill
+.bell-icon-coupon-3-line
+  &:before
+    content bell-icon-coupon-3-line
+.bell-icon-coupon-4-fill
+  &:before
+    content bell-icon-coupon-4-fill
+.bell-icon-coupon-4-line
+  &:before
+    content bell-icon-coupon-4-line
+.bell-icon-coupon-5-fill
+  &:before
+    content bell-icon-coupon-5-fill
+.bell-icon-coupon-5-line
+  &:before
+    content bell-icon-coupon-5-line
+.bell-icon-coupon-fill
+  &:before
+    content bell-icon-coupon-fill
+.bell-icon-coupon-line
+  &:before
+    content bell-icon-coupon-line
+.bell-icon-currency-fill
+  &:before
+    content bell-icon-currency-fill
+.bell-icon-currency-line
+  &:before
+    content bell-icon-currency-line
+.bell-icon-exchange-box-fill
+  &:before
+    content bell-icon-exchange-box-fill
+.bell-icon-exchange-box-line
+  &:before
+    content bell-icon-exchange-box-line
+.bell-icon-exchange-cny-fill
+  &:before
+    content bell-icon-exchange-cny-fill
+.bell-icon-exchange-cny-line
+  &:before
+    content bell-icon-exchange-cny-line
+.bell-icon-exchange-dollar-fill
+  &:before
+    content bell-icon-exchange-dollar-fill
+.bell-icon-exchange-dollar-line
+  &:before
+    content bell-icon-exchange-dollar-line
+.bell-icon-exchange-fill
+  &:before
+    content bell-icon-exchange-fill
+.bell-icon-exchange-funds-fill
+  &:before
+    content bell-icon-exchange-funds-fill
+.bell-icon-exchange-funds-line
+  &:before
+    content bell-icon-exchange-funds-line
+.bell-icon-exchange-line
+  &:before
+    content bell-icon-exchange-line
+.bell-icon-funds-box-fill
+  &:before
+    content bell-icon-funds-box-fill
+.bell-icon-funds-box-line
+  &:before
+    content bell-icon-funds-box-line
+.bell-icon-funds-fill
+  &:before
+    content bell-icon-funds-fill
+.bell-icon-funds-line
+  &:before
+    content bell-icon-funds-line
+.bell-icon-increase-decrease-fill
+  &:before
+    content bell-icon-increase-decrease-fill
+.bell-icon-increase-decrease-line
+  &:before
+    content bell-icon-increase-decrease-line
+.bell-icon-money-cny-box-fill
+  &:before
+    content bell-icon-money-cny-box-fill
+.bell-icon-money-cny-box-line
+  &:before
+    content bell-icon-money-cny-box-line
+.bell-icon-money-cny-circle-fill
+  &:before
+    content bell-icon-money-cny-circle-fill
+.bell-icon-money-cny-circle-line
+  &:before
+    content bell-icon-money-cny-circle-line
+.bell-icon-money-dollar-box-fill
+  &:before
+    content bell-icon-money-dollar-box-fill
+.bell-icon-money-dollar-box-line
+  &:before
+    content bell-icon-money-dollar-box-line
+.bell-icon-money-dollar-circle-fill
+  &:before
+    content bell-icon-money-dollar-circle-fill
+.bell-icon-money-dollar-circle-line
+  &:before
+    content bell-icon-money-dollar-circle-line
+.bell-icon-money-euro-box-fill
+  &:before
+    content bell-icon-money-euro-box-fill
+.bell-icon-money-euro-box-line
+  &:before
+    content bell-icon-money-euro-box-line
+.bell-icon-money-euro-circle-fill
+  &:before
+    content bell-icon-money-euro-circle-fill
+.bell-icon-money-euro-circle-line
+  &:before
+    content bell-icon-money-euro-circle-line
+.bell-icon-money-pound-box-fill
+  &:before
+    content bell-icon-money-pound-box-fill
+.bell-icon-money-pound-box-line
+  &:before
+    content bell-icon-money-pound-box-line
+.bell-icon-money-pound-circle-fill
+  &:before
+    content bell-icon-money-pound-circle-fill
+.bell-icon-money-pound-circle-line
+  &:before
+    content bell-icon-money-pound-circle-line
+.bell-icon-percent-fill
+  &:before
+    content bell-icon-percent-fill
+.bell-icon-percent-line
+  &:before
+    content bell-icon-percent-line
+.bell-icon-price-tag-2-fill
+  &:before
+    content bell-icon-price-tag-2-fill
+.bell-icon-price-tag-2-line
+  &:before
+    content bell-icon-price-tag-2-line
+.bell-icon-price-tag-3-fill
+  &:before
+    content bell-icon-price-tag-3-fill
+.bell-icon-price-tag-3-line
+  &:before
+    content bell-icon-price-tag-3-line
+.bell-icon-price-tag-fill
+  &:before
+    content bell-icon-price-tag-fill
+.bell-icon-price-tag-line
+  &:before
+    content bell-icon-price-tag-line
+.bell-icon-red-packet-fill
+  &:before
+    content bell-icon-red-packet-fill
+.bell-icon-red-packet-line
+  &:before
+    content bell-icon-red-packet-line
+.bell-icon-refund-fill
+  &:before
+    content bell-icon-refund-fill
+.bell-icon-refund-line
+  &:before
+    content bell-icon-refund-line
+.bell-icon-safe-2-fill
+  &:before
+    content bell-icon-safe-2-fill
+.bell-icon-safe-2-line
+  &:before
+    content bell-icon-safe-2-line
+.bell-icon-safe-fill
+  &:before
+    content bell-icon-safe-fill
+.bell-icon-safe-line
+  &:before
+    content bell-icon-safe-line
+.bell-icon-shopping-bag-2-fill
+  &:before
+    content bell-icon-shopping-bag-2-fill
+.bell-icon-shopping-bag-2-line
+  &:before
+    content bell-icon-shopping-bag-2-line
+.bell-icon-shopping-bag-3-fill
+  &:before
+    content bell-icon-shopping-bag-3-fill
+.bell-icon-shopping-bag-3-line
+  &:before
+    content bell-icon-shopping-bag-3-line
+.bell-icon-shopping-bag-fill
+  &:before
+    content bell-icon-shopping-bag-fill
+.bell-icon-shopping-bag-line
+  &:before
+    content bell-icon-shopping-bag-line
+.bell-icon-shopping-cart-2-fill
+  &:before
+    content bell-icon-shopping-cart-2-fill
+.bell-icon-shopping-cart-2-line
+  &:before
+    content bell-icon-shopping-cart-2-line
+.bell-icon-shopping-cart-fill
+  &:before
+    content bell-icon-shopping-cart-fill
+.bell-icon-shopping-cart-line
+  &:before
+    content bell-icon-shopping-cart-line
+.bell-icon-stock-fill
+  &:before
+    content bell-icon-stock-fill
+.bell-icon-stock-line
+  &:before
+    content bell-icon-stock-line
+.bell-icon-swap-box-fill
+  &:before
+    content bell-icon-swap-box-fill
+.bell-icon-swap-box-line
+  &:before
+    content bell-icon-swap-box-line
+.bell-icon-swap-fill
+  &:before
+    content bell-icon-swap-fill
+.bell-icon-swap-line
+  &:before
+    content bell-icon-swap-line
+.bell-icon-trophy-fill
+  &:before
+    content bell-icon-trophy-fill
+.bell-icon-trophy-line
+  &:before
+    content bell-icon-trophy-line
+.bell-icon-vip-crown-2-fill
+  &:before
+    content bell-icon-vip-crown-2-fill
+.bell-icon-vip-crown-2-line
+  &:before
+    content bell-icon-vip-crown-2-line
+.bell-icon-vip-crown-fill
+  &:before
+    content bell-icon-vip-crown-fill
+.bell-icon-vip-crown-line
+  &:before
+    content bell-icon-vip-crown-line
+.bell-icon-vip-diamond-fill
+  &:before
+    content bell-icon-vip-diamond-fill
+.bell-icon-vip-diamond-line
+  &:before
+    content bell-icon-vip-diamond-line
+.bell-icon-vip-fill
+  &:before
+    content bell-icon-vip-fill
+.bell-icon-vip-line
+  &:before
+    content bell-icon-vip-line
+.bell-icon-wallet-2-fill
+  &:before
+    content bell-icon-wallet-2-fill
+.bell-icon-wallet-2-line
+  &:before
+    content bell-icon-wallet-2-line
+.bell-icon-wallet-3-fill
+  &:before
+    content bell-icon-wallet-3-fill
+.bell-icon-wallet-3-line
+  &:before
+    content bell-icon-wallet-3-line
+.bell-icon-wallet-fill
+  &:before
+    content bell-icon-wallet-fill
+.bell-icon-wallet-line
+  &:before
+    content bell-icon-wallet-line
+.bell-icon-water-flash-fill
+  &:before
+    content bell-icon-water-flash-fill
+.bell-icon-water-flash-line
+  &:before
+    content bell-icon-water-flash-line
+.bell-icon-align-bottom
+  &:before
+    content bell-icon-align-bottom
+.bell-icon-align-center
+  &:before
+    content bell-icon-align-center
+.bell-icon-align-justify
+  &:before
+    content bell-icon-align-justify
+.bell-icon-align-left
+  &:before
+    content bell-icon-align-left
+.bell-icon-align-right
+  &:before
+    content bell-icon-align-right
+.bell-icon-align-top
+  &:before
+    content bell-icon-align-top
+.bell-icon-align-vertically
+  &:before
+    content bell-icon-align-vertically
+.bell-icon-asterisk
+  &:before
+    content bell-icon-asterisk
+.bell-icon-attachment-2
+  &:before
+    content bell-icon-attachment-2
+.bell-icon-bold
+  &:before
+    content bell-icon-bold
+.bell-icon-code-view
+  &:before
+    content bell-icon-code-view
+.bell-icon-double-quotes-l
+  &:before
+    content bell-icon-double-quotes-l
+.bell-icon-double-quotes-r
+  &:before
+    content bell-icon-double-quotes-r
+.bell-icon-emphasis
+  &:before
+    content bell-icon-emphasis
+.bell-icon-font-color
+  &:before
+    content bell-icon-font-color
+.bell-icon-font-size-2
+  &:before
+    content bell-icon-font-size-2
+.bell-icon-font-size
+  &:before
+    content bell-icon-font-size
+.bell-icon-format-clear
+  &:before
+    content bell-icon-format-clear
+.bell-icon-functions
+  &:before
+    content bell-icon-functions
+.bell-icon-hashtag
+  &:before
+    content bell-icon-hashtag
+.bell-icon-heading
+  &:before
+    content bell-icon-heading
+.bell-icon-indent-decrease
+  &:before
+    content bell-icon-indent-decrease
+.bell-icon-indent-increase
+  &:before
+    content bell-icon-indent-increase
+.bell-icon-italic
+  &:before
+    content bell-icon-italic
+.bell-icon-line-height
+  &:before
+    content bell-icon-line-height
+.bell-icon-link-m
+  &:before
+    content bell-icon-link-m
+.bell-icon-link-unlink-m
+  &:before
+    content bell-icon-link-unlink-m
+.bell-icon-link-unlink
+  &:before
+    content bell-icon-link-unlink
+.bell-icon-link
+  &:before
+    content bell-icon-link
+.bell-icon-list-check-2
+  &:before
+    content bell-icon-list-check-2
+.bell-icon-list-check
+  &:before
+    content bell-icon-list-check
+.bell-icon-list-ordered
+  &:before
+    content bell-icon-list-ordered
+.bell-icon-list-unordered
+  &:before
+    content bell-icon-list-unordered
+.bell-icon-number-0
+  &:before
+    content bell-icon-number-0
+.bell-icon-number-1
+  &:before
+    content bell-icon-number-1
+.bell-icon-number-2
+  &:before
+    content bell-icon-number-2
+.bell-icon-number-3
+  &:before
+    content bell-icon-number-3
+.bell-icon-number-4
+  &:before
+    content bell-icon-number-4
+.bell-icon-number-5
+  &:before
+    content bell-icon-number-5
+.bell-icon-number-6
+  &:before
+    content bell-icon-number-6
+.bell-icon-number-7
+  &:before
+    content bell-icon-number-7
+.bell-icon-number-8
+  &:before
+    content bell-icon-number-8
+.bell-icon-number-9
+  &:before
+    content bell-icon-number-9
+.bell-icon-omega
+  &:before
+    content bell-icon-omega
+.bell-icon-page-separator
+  &:before
+    content bell-icon-page-separator
+.bell-icon-paragraph
+  &:before
+    content bell-icon-paragraph
+.bell-icon-separator
+  &:before
+    content bell-icon-separator
+.bell-icon-single-quotes-l
+  &:before
+    content bell-icon-single-quotes-l
+.bell-icon-single-quotes-r
+  &:before
+    content bell-icon-single-quotes-r
+.bell-icon-space
+  &:before
+    content bell-icon-space
+.bell-icon-strikethrough-2
+  &:before
+    content bell-icon-strikethrough-2
+.bell-icon-strikethrough
+  &:before
+    content bell-icon-strikethrough
+.bell-icon-subscript-2
+  &:before
+    content bell-icon-subscript-2
+.bell-icon-subscript
+  &:before
+    content bell-icon-subscript
+.bell-icon-superscript-2
+  &:before
+    content bell-icon-superscript-2
+.bell-icon-superscript
+  &:before
+    content bell-icon-superscript
+.bell-icon-table-2
+  &:before
+    content bell-icon-table-2
+.bell-icon-text-direction-l
+  &:before
+    content bell-icon-text-direction-l
+.bell-icon-text-direction-r
+  &:before
+    content bell-icon-text-direction-r
+.bell-icon-text-spacing
+  &:before
+    content bell-icon-text-spacing
+.bell-icon-text-wrap
+  &:before
+    content bell-icon-text-wrap
+.bell-icon-text
+  &:before
+    content bell-icon-text
+.bell-icon-translate-2
+  &:before
+    content bell-icon-translate-2
+.bell-icon-translate
+  &:before
+    content bell-icon-translate
+.bell-icon-underline
+  &:before
+    content bell-icon-underline
+.bell-icon-article-fill
+  &:before
+    content bell-icon-article-fill
+.bell-icon-article-line
+  &:before
+    content bell-icon-article-line
+.bell-icon-bill-fill
+  &:before
+    content bell-icon-bill-fill
+.bell-icon-bill-line
+  &:before
+    content bell-icon-bill-line
+.bell-icon-book-2-fill
+  &:before
+    content bell-icon-book-2-fill
+.bell-icon-book-2-line
+  &:before
+    content bell-icon-book-2-line
+.bell-icon-book-3-fill
+  &:before
+    content bell-icon-book-3-fill
+.bell-icon-book-3-line
+  &:before
+    content bell-icon-book-3-line
+.bell-icon-book-fill
+  &:before
+    content bell-icon-book-fill
+.bell-icon-book-line
+  &:before
+    content bell-icon-book-line
+.bell-icon-book-mark-fill
+  &:before
+    content bell-icon-book-mark-fill
+.bell-icon-book-mark-line
+  &:before
+    content bell-icon-book-mark-line
+.bell-icon-book-open-fill
+  &:before
+    content bell-icon-book-open-fill
+.bell-icon-book-open-line
+  &:before
+    content bell-icon-book-open-line
+.bell-icon-book-read-fill
+  &:before
+    content bell-icon-book-read-fill
+.bell-icon-book-read-line
+  &:before
+    content bell-icon-book-read-line
+.bell-icon-clipboard-fill
+  &:before
+    content bell-icon-clipboard-fill
+.bell-icon-clipboard-line
+  &:before
+    content bell-icon-clipboard-line
+.bell-icon-contacts-book-2-fill
+  &:before
+    content bell-icon-contacts-book-2-fill
+.bell-icon-contacts-book-2-line
+  &:before
+    content bell-icon-contacts-book-2-line
+.bell-icon-contacts-book-fill
+  &:before
+    content bell-icon-contacts-book-fill
+.bell-icon-contacts-book-line
+  &:before
+    content bell-icon-contacts-book-line
+.bell-icon-file-2-fill
+  &:before
+    content bell-icon-file-2-fill
+.bell-icon-file-2-line
+  &:before
+    content bell-icon-file-2-line
+.bell-icon-file-3-fill
+  &:before
+    content bell-icon-file-3-fill
+.bell-icon-file-3-line
+  &:before
+    content bell-icon-file-3-line
+.bell-icon-file-4-fill
+  &:before
+    content bell-icon-file-4-fill
+.bell-icon-file-4-line
+  &:before
+    content bell-icon-file-4-line
+.bell-icon-file-add-fill
+  &:before
+    content bell-icon-file-add-fill
+.bell-icon-file-add-line
+  &:before
+    content bell-icon-file-add-line
+.bell-icon-file-chart-2-fill
+  &:before
+    content bell-icon-file-chart-2-fill
+.bell-icon-file-chart-2-line
+  &:before
+    content bell-icon-file-chart-2-line
+.bell-icon-file-chart-fill
+  &:before
+    content bell-icon-file-chart-fill
+.bell-icon-file-chart-line
+  &:before
+    content bell-icon-file-chart-line
+.bell-icon-file-code-fill
+  &:before
+    content bell-icon-file-code-fill
+.bell-icon-file-code-line
+  &:before
+    content bell-icon-file-code-line
+.bell-icon-file-copy-2-fill
+  &:before
+    content bell-icon-file-copy-2-fill
+.bell-icon-file-copy-2-line
+  &:before
+    content bell-icon-file-copy-2-line
+.bell-icon-file-copy-fill
+  &:before
+    content bell-icon-file-copy-fill
+.bell-icon-file-copy-line
+  &:before
+    content bell-icon-file-copy-line
+.bell-icon-file-damage-fill
+  &:before
+    content bell-icon-file-damage-fill
+.bell-icon-file-damage-line
+  &:before
+    content bell-icon-file-damage-line
+.bell-icon-file-download-fill
+  &:before
+    content bell-icon-file-download-fill
+.bell-icon-file-download-line
+  &:before
+    content bell-icon-file-download-line
+.bell-icon-file-edit-fill
+  &:before
+    content bell-icon-file-edit-fill
+.bell-icon-file-edit-line
+  &:before
+    content bell-icon-file-edit-line
+.bell-icon-file-excel-2-fill
+  &:before
+    content bell-icon-file-excel-2-fill
+.bell-icon-file-excel-2-line
+  &:before
+    content bell-icon-file-excel-2-line
+.bell-icon-file-excel-fill
+  &:before
+    content bell-icon-file-excel-fill
+.bell-icon-file-excel-line
+  &:before
+    content bell-icon-file-excel-line
+.bell-icon-file-fill
+  &:before
+    content bell-icon-file-fill
+.bell-icon-file-forbid-fill
+  &:before
+    content bell-icon-file-forbid-fill
+.bell-icon-file-forbid-line
+  &:before
+    content bell-icon-file-forbid-line
+.bell-icon-file-info-fill
+  &:before
+    content bell-icon-file-info-fill
+.bell-icon-file-info-line
+  &:before
+    content bell-icon-file-info-line
+.bell-icon-file-line
+  &:before
+    content bell-icon-file-line
+.bell-icon-file-list-2-fill
+  &:before
+    content bell-icon-file-list-2-fill
+.bell-icon-file-list-2-line
+  &:before
+    content bell-icon-file-list-2-line
+.bell-icon-file-list-3-fill
+  &:before
+    content bell-icon-file-list-3-fill
+.bell-icon-file-list-3-line
+  &:before
+    content bell-icon-file-list-3-line
+.bell-icon-file-list-fill
+  &:before
+    content bell-icon-file-list-fill
+.bell-icon-file-list-line
+  &:before
+    content bell-icon-file-list-line
+.bell-icon-file-lock-fill
+  &:before
+    content bell-icon-file-lock-fill
+.bell-icon-file-lock-line
+  &:before
+    content bell-icon-file-lock-line
+.bell-icon-file-mark-fill
+  &:before
+    content bell-icon-file-mark-fill
+.bell-icon-file-mark-line
+  &:before
+    content bell-icon-file-mark-line
+.bell-icon-file-music-fill
+  &:before
+    content bell-icon-file-music-fill
+.bell-icon-file-music-line
+  &:before
+    content bell-icon-file-music-line
+.bell-icon-file-paper-fill
+  &:before
+    content bell-icon-file-paper-fill
+.bell-icon-file-paper-line
+  &:before
+    content bell-icon-file-paper-line
+.bell-icon-file-pdf-fill
+  &:before
+    content bell-icon-file-pdf-fill
+.bell-icon-file-pdf-line
+  &:before
+    content bell-icon-file-pdf-line
+.bell-icon-file-ppt-2-fill
+  &:before
+    content bell-icon-file-ppt-2-fill
+.bell-icon-file-ppt-2-line
+  &:before
+    content bell-icon-file-ppt-2-line
+.bell-icon-file-ppt-fill
+  &:before
+    content bell-icon-file-ppt-fill
+.bell-icon-file-ppt-line
+  &:before
+    content bell-icon-file-ppt-line
+.bell-icon-file-reduce-fill
+  &:before
+    content bell-icon-file-reduce-fill
+.bell-icon-file-reduce-line
+  &:before
+    content bell-icon-file-reduce-line
+.bell-icon-file-search-fill
+  &:before
+    content bell-icon-file-search-fill
+.bell-icon-file-search-line
+  &:before
+    content bell-icon-file-search-line
+.bell-icon-file-settings-fill
+  &:before
+    content bell-icon-file-settings-fill
+.bell-icon-file-settings-line
+  &:before
+    content bell-icon-file-settings-line
+.bell-icon-file-shield-2-fill
+  &:before
+    content bell-icon-file-shield-2-fill
+.bell-icon-file-shield-2-line
+  &:before
+    content bell-icon-file-shield-2-line
+.bell-icon-file-shield-fill
+  &:before
+    content bell-icon-file-shield-fill
+.bell-icon-file-shield-line
+  &:before
+    content bell-icon-file-shield-line
+.bell-icon-file-shred-fill
+  &:before
+    content bell-icon-file-shred-fill
+.bell-icon-file-shred-line
+  &:before
+    content bell-icon-file-shred-line
+.bell-icon-file-text-fill
+  &:before
+    content bell-icon-file-text-fill
+.bell-icon-file-text-line
+  &:before
+    content bell-icon-file-text-line
+.bell-icon-file-transfer-fill
+  &:before
+    content bell-icon-file-transfer-fill
+.bell-icon-file-transfer-line
+  &:before
+    content bell-icon-file-transfer-line
+.bell-icon-file-unknow-fill
+  &:before
+    content bell-icon-file-unknow-fill
+.bell-icon-file-unknow-line
+  &:before
+    content bell-icon-file-unknow-line
+.bell-icon-file-upload-fill
+  &:before
+    content bell-icon-file-upload-fill
+.bell-icon-file-upload-line
+  &:before
+    content bell-icon-file-upload-line
+.bell-icon-file-user-fill
+  &:before
+    content bell-icon-file-user-fill
+.bell-icon-file-user-line
+  &:before
+    content bell-icon-file-user-line
+.bell-icon-file-warning-fill
+  &:before
+    content bell-icon-file-warning-fill
+.bell-icon-file-warning-line
+  &:before
+    content bell-icon-file-warning-line
+.bell-icon-file-word-2-fill
+  &:before
+    content bell-icon-file-word-2-fill
+.bell-icon-file-word-2-line
+  &:before
+    content bell-icon-file-word-2-line
+.bell-icon-file-word-fill
+  &:before
+    content bell-icon-file-word-fill
+.bell-icon-file-word-line
+  &:before
+    content bell-icon-file-word-line
+.bell-icon-file-zip-fill
+  &:before
+    content bell-icon-file-zip-fill
+.bell-icon-file-zip-line
+  &:before
+    content bell-icon-file-zip-line
+.bell-icon-folder-2-fill
+  &:before
+    content bell-icon-folder-2-fill
+.bell-icon-folder-2-line
+  &:before
+    content bell-icon-folder-2-line
+.bell-icon-folder-3-fill
+  &:before
+    content bell-icon-folder-3-fill
+.bell-icon-folder-3-line
+  &:before
+    content bell-icon-folder-3-line
+.bell-icon-folder-4-fill
+  &:before
+    content bell-icon-folder-4-fill
+.bell-icon-folder-4-line
+  &:before
+    content bell-icon-folder-4-line
+.bell-icon-folder-5-fill
+  &:before
+    content bell-icon-folder-5-fill
+.bell-icon-folder-5-line
+  &:before
+    content bell-icon-folder-5-line
+.bell-icon-folder-add-fill
+  &:before
+    content bell-icon-folder-add-fill
+.bell-icon-folder-add-line
+  &:before
+    content bell-icon-folder-add-line
+.bell-icon-folder-chart-2-fill
+  &:before
+    content bell-icon-folder-chart-2-fill
+.bell-icon-folder-chart-2-line
+  &:before
+    content bell-icon-folder-chart-2-line
+.bell-icon-folder-chart-fill
+  &:before
+    content bell-icon-folder-chart-fill
+.bell-icon-folder-chart-line
+  &:before
+    content bell-icon-folder-chart-line
+.bell-icon-folder-download-fill
+  &:before
+    content bell-icon-folder-download-fill
+.bell-icon-folder-download-line
+  &:before
+    content bell-icon-folder-download-line
+.bell-icon-folder-fill
+  &:before
+    content bell-icon-folder-fill
+.bell-icon-folder-forbid-fill
+  &:before
+    content bell-icon-folder-forbid-fill
+.bell-icon-folder-forbid-line
+  &:before
+    content bell-icon-folder-forbid-line
+.bell-icon-folder-info-fill
+  &:before
+    content bell-icon-folder-info-fill
+.bell-icon-folder-info-line
+  &:before
+    content bell-icon-folder-info-line
+.bell-icon-folder-line
+  &:before
+    content bell-icon-folder-line
+.bell-icon-folder-lock-fill
+  &:before
+    content bell-icon-folder-lock-fill
+.bell-icon-folder-lock-line
+  &:before
+    content bell-icon-folder-lock-line
+.bell-icon-folder-music-fill
+  &:before
+    content bell-icon-folder-music-fill
+.bell-icon-folder-music-line
+  &:before
+    content bell-icon-folder-music-line
+.bell-icon-folder-open-fill
+  &:before
+    content bell-icon-folder-open-fill
+.bell-icon-folder-open-line
+  &:before
+    content bell-icon-folder-open-line
+.bell-icon-folder-received-fill
+  &:before
+    content bell-icon-folder-received-fill
+.bell-icon-folder-received-line
+  &:before
+    content bell-icon-folder-received-line
+.bell-icon-folder-reduce-fill
+  &:before
+    content bell-icon-folder-reduce-fill
+.bell-icon-folder-reduce-line
+  &:before
+    content bell-icon-folder-reduce-line
+.bell-icon-folder-settings-fill
+  &:before
+    content bell-icon-folder-settings-fill
+.bell-icon-folder-settings-line
+  &:before
+    content bell-icon-folder-settings-line
+.bell-icon-folder-shared-fill
+  &:before
+    content bell-icon-folder-shared-fill
+.bell-icon-folder-shared-line
+  &:before
+    content bell-icon-folder-shared-line
+.bell-icon-folder-shield-2-fill
+  &:before
+    content bell-icon-folder-shield-2-fill
+.bell-icon-folder-shield-2-line
+  &:before
+    content bell-icon-folder-shield-2-line
+.bell-icon-folder-shield-fill
+  &:before
+    content bell-icon-folder-shield-fill
+.bell-icon-folder-shield-line
+  &:before
+    content bell-icon-folder-shield-line
+.bell-icon-folder-transfer-fill
+  &:before
+    content bell-icon-folder-transfer-fill
+.bell-icon-folder-transfer-line
+  &:before
+    content bell-icon-folder-transfer-line
+.bell-icon-folder-unknow-fill
+  &:before
+    content bell-icon-folder-unknow-fill
+.bell-icon-folder-unknow-line
+  &:before
+    content bell-icon-folder-unknow-line
+.bell-icon-folder-upload-fill
+  &:before
+    content bell-icon-folder-upload-fill
+.bell-icon-folder-upload-line
+  &:before
+    content bell-icon-folder-upload-line
+.bell-icon-folder-user-fill
+  &:before
+    content bell-icon-folder-user-fill
+.bell-icon-folder-user-line
+  &:before
+    content bell-icon-folder-user-line
+.bell-icon-folder-warning-fill
+  &:before
+    content bell-icon-folder-warning-fill
+.bell-icon-folder-warning-line
+  &:before
+    content bell-icon-folder-warning-line
+.bell-icon-folders-fill
+  &:before
+    content bell-icon-folders-fill
+.bell-icon-folders-line
+  &:before
+    content bell-icon-folders-line
+.bell-icon-keynote-fill
+  &:before
+    content bell-icon-keynote-fill
+.bell-icon-keynote-line
+  &:before
+    content bell-icon-keynote-line
+.bell-icon-markdown-fill
+  &:before
+    content bell-icon-markdown-fill
+.bell-icon-markdown-line
+  &:before
+    content bell-icon-markdown-line
+.bell-icon-newspaper-fill
+  &:before
+    content bell-icon-newspaper-fill
+.bell-icon-newspaper-line
+  &:before
+    content bell-icon-newspaper-line
+.bell-icon-numbers-fill
+  &:before
+    content bell-icon-numbers-fill
+.bell-icon-numbers-line
+  &:before
+    content bell-icon-numbers-line
+.bell-icon-pages-fill
+  &:before
+    content bell-icon-pages-fill
+.bell-icon-pages-line
+  &:before
+    content bell-icon-pages-line
+.bell-icon-sticky-note-2-fill
+  &:before
+    content bell-icon-sticky-note-2-fill
+.bell-icon-sticky-note-2-line
+  &:before
+    content bell-icon-sticky-note-2-line
+.bell-icon-sticky-note-fill
+  &:before
+    content bell-icon-sticky-note-fill
+.bell-icon-sticky-note-line
+  &:before
+    content bell-icon-sticky-note-line
+.bell-icon-task-fill
+  &:before
+    content bell-icon-task-fill
+.bell-icon-task-line
+  &:before
+    content bell-icon-task-line
+.bell-icon-todo-fill
+  &:before
+    content bell-icon-todo-fill
+.bell-icon-todo-line
+  &:before
+    content bell-icon-todo-line
+.bell-icon-airplay-fill
+  &:before
+    content bell-icon-airplay-fill
+.bell-icon-airplay-line
+  &:before
+    content bell-icon-airplay-line
+.bell-icon-battery-2-charge-fill
+  &:before
+    content bell-icon-battery-2-charge-fill
+.bell-icon-battery-2-charge-line
+  &:before
+    content bell-icon-battery-2-charge-line
+.bell-icon-battery-2-fill
+  &:before
+    content bell-icon-battery-2-fill
+.bell-icon-battery-2-line
+  &:before
+    content bell-icon-battery-2-line
+.bell-icon-battery-charge-fill
+  &:before
+    content bell-icon-battery-charge-fill
+.bell-icon-battery-charge-line
+  &:before
+    content bell-icon-battery-charge-line
+.bell-icon-battery-fill
+  &:before
+    content bell-icon-battery-fill
+.bell-icon-battery-line
+  &:before
+    content bell-icon-battery-line
+.bell-icon-battery-low-fill
+  &:before
+    content bell-icon-battery-low-fill
+.bell-icon-battery-low-line
+  &:before
+    content bell-icon-battery-low-line
+.bell-icon-cast-fill
+  &:before
+    content bell-icon-cast-fill
+.bell-icon-cast-line
+  &:before
+    content bell-icon-cast-line
+.bell-icon-cellphone-fill
+  &:before
+    content bell-icon-cellphone-fill
+.bell-icon-cellphone-line
+  &:before
+    content bell-icon-cellphone-line
+.bell-icon-computer-fill
+  &:before
+    content bell-icon-computer-fill
+.bell-icon-computer-line
+  &:before
+    content bell-icon-computer-line
+.bell-icon-cpu-fill
+  &:before
+    content bell-icon-cpu-fill
+.bell-icon-cpu-line
+  &:before
+    content bell-icon-cpu-line
+.bell-icon-database-2-fill
+  &:before
+    content bell-icon-database-2-fill
+.bell-icon-database-2-line
+  &:before
+    content bell-icon-database-2-line
+.bell-icon-database-fill
+  &:before
+    content bell-icon-database-fill
+.bell-icon-database-line
+  &:before
+    content bell-icon-database-line
+.bell-icon-device-fill
+  &:before
+    content bell-icon-device-fill
+.bell-icon-device-line
+  &:before
+    content bell-icon-device-line
+.bell-icon-gradienter-fill
+  &:before
+    content bell-icon-gradienter-fill
+.bell-icon-gradienter-line
+  &:before
+    content bell-icon-gradienter-line
+.bell-icon-hard-drive-2-fill
+  &:before
+    content bell-icon-hard-drive-2-fill
+.bell-icon-hard-drive-2-line
+  &:before
+    content bell-icon-hard-drive-2-line
+.bell-icon-hard-drive-fill
+  &:before
+    content bell-icon-hard-drive-fill
+.bell-icon-hard-drive-line
+  &:before
+    content bell-icon-hard-drive-line
+.bell-icon-keyboard-box-fill
+  &:before
+    content bell-icon-keyboard-box-fill
+.bell-icon-keyboard-box-line
+  &:before
+    content bell-icon-keyboard-box-line
+.bell-icon-keyboard-fill
+  &:before
+    content bell-icon-keyboard-fill
+.bell-icon-keyboard-line
+  &:before
+    content bell-icon-keyboard-line
+.bell-icon-mac-fill
+  &:before
+    content bell-icon-mac-fill
+.bell-icon-mac-line
+  &:before
+    content bell-icon-mac-line
+.bell-icon-macbook-fill
+  &:before
+    content bell-icon-macbook-fill
+.bell-icon-macbook-line
+  &:before
+    content bell-icon-macbook-line
+.bell-icon-mouse-fill
+  &:before
+    content bell-icon-mouse-fill
+.bell-icon-mouse-line
+  &:before
+    content bell-icon-mouse-line
+.bell-icon-phone-fill
+  &:before
+    content bell-icon-phone-fill
+.bell-icon-phone-line
+  &:before
+    content bell-icon-phone-line
+.bell-icon-radar-fill
+  &:before
+    content bell-icon-radar-fill
+.bell-icon-radar-line
+  &:before
+    content bell-icon-radar-line
+.bell-icon-router-fill
+  &:before
+    content bell-icon-router-fill
+.bell-icon-router-line
+  &:before
+    content bell-icon-router-line
+.bell-icon-save-2-fill
+  &:before
+    content bell-icon-save-2-fill
+.bell-icon-save-2-line
+  &:before
+    content bell-icon-save-2-line
+.bell-icon-save-3-fill
+  &:before
+    content bell-icon-save-3-fill
+.bell-icon-save-3-line
+  &:before
+    content bell-icon-save-3-line
+.bell-icon-save-fill
+  &:before
+    content bell-icon-save-fill
+.bell-icon-save-line
+  &:before
+    content bell-icon-save-line
+.bell-icon-sd-card-fill
+  &:before
+    content bell-icon-sd-card-fill
+.bell-icon-sd-card-line
+  &:before
+    content bell-icon-sd-card-line
+.bell-icon-sd-card-mini-fill
+  &:before
+    content bell-icon-sd-card-mini-fill
+.bell-icon-sd-card-mini-line
+  &:before
+    content bell-icon-sd-card-mini-line
+.bell-icon-sensor-fill
+  &:before
+    content bell-icon-sensor-fill
+.bell-icon-sensor-line
+  &:before
+    content bell-icon-sensor-line
+.bell-icon-server-fill
+  &:before
+    content bell-icon-server-fill
+.bell-icon-server-line
+  &:before
+    content bell-icon-server-line
+.bell-icon-sim-card-2-fill
+  &:before
+    content bell-icon-sim-card-2-fill
+.bell-icon-sim-card-2-line
+  &:before
+    content bell-icon-sim-card-2-line
+.bell-icon-sim-card-fill
+  &:before
+    content bell-icon-sim-card-fill
+.bell-icon-sim-card-line
+  &:before
+    content bell-icon-sim-card-line
+.bell-icon-smartphone-fill
+  &:before
+    content bell-icon-smartphone-fill
+.bell-icon-smartphone-line
+  &:before
+    content bell-icon-smartphone-line
+.bell-icon-tablet-fill
+  &:before
+    content bell-icon-tablet-fill
+.bell-icon-tablet-line
+  &:before
+    content bell-icon-tablet-line
+.bell-icon-tv-2-fill
+  &:before
+    content bell-icon-tv-2-fill
+.bell-icon-tv-2-line
+  &:before
+    content bell-icon-tv-2-line
+.bell-icon-tv-fill
+  &:before
+    content bell-icon-tv-fill
+.bell-icon-tv-line
+  &:before
+    content bell-icon-tv-line
+.bell-icon-u-disk-fill
+  &:before
+    content bell-icon-u-disk-fill
+.bell-icon-u-disk-line
+  &:before
+    content bell-icon-u-disk-line
+.bell-icon-braces-fill
+  &:before
+    content bell-icon-braces-fill
+.bell-icon-braces-line
+  &:before
+    content bell-icon-braces-line
+.bell-icon-brackets-fill
+  &:before
+    content bell-icon-brackets-fill
+.bell-icon-brackets-line
+  &:before
+    content bell-icon-brackets-line
+.bell-icon-bug-2-fill
+  &:before
+    content bell-icon-bug-2-fill
+.bell-icon-bug-2-line
+  &:before
+    content bell-icon-bug-2-line
+.bell-icon-bug-fill
+  &:before
+    content bell-icon-bug-fill
+.bell-icon-bug-line
+  &:before
+    content bell-icon-bug-line
+.bell-icon-code-box-fill
+  &:before
+    content bell-icon-code-box-fill
+.bell-icon-code-box-line
+  &:before
+    content bell-icon-code-box-line
+.bell-icon-code-fill
+  &:before
+    content bell-icon-code-fill
+.bell-icon-code-line
+  &:before
+    content bell-icon-code-line
+.bell-icon-code-s-fill
+  &:before
+    content bell-icon-code-s-fill
+.bell-icon-code-s-line
+  &:before
+    content bell-icon-code-s-line
+.bell-icon-code-s-slash-fill
+  &:before
+    content bell-icon-code-s-slash-fill
+.bell-icon-code-s-slash-line
+  &:before
+    content bell-icon-code-s-slash-line
+.bell-icon-command-fill
+  &:before
+    content bell-icon-command-fill
+.bell-icon-command-line
+  &:before
+    content bell-icon-command-line
+.bell-icon-css3-fill
+  &:before
+    content bell-icon-css3-fill
+.bell-icon-css3-line
+  &:before
+    content bell-icon-css3-line
+.bell-icon-cursor-fill
+  &:before
+    content bell-icon-cursor-fill
+.bell-icon-cursor-line
+  &:before
+    content bell-icon-cursor-line
+.bell-icon-git-branch-fill
+  &:before
+    content bell-icon-git-branch-fill
+.bell-icon-git-branch-line
+  &:before
+    content bell-icon-git-branch-line
+.bell-icon-git-commit-fill
+  &:before
+    content bell-icon-git-commit-fill
+.bell-icon-git-commit-line
+  &:before
+    content bell-icon-git-commit-line
+.bell-icon-git-merge-fill
+  &:before
+    content bell-icon-git-merge-fill
+.bell-icon-git-merge-line
+  &:before
+    content bell-icon-git-merge-line
+.bell-icon-git-pull-request-fill
+  &:before
+    content bell-icon-git-pull-request-fill
+.bell-icon-git-pull-request-line
+  &:before
+    content bell-icon-git-pull-request-line
+.bell-icon-git-repository-commits-fill
+  &:before
+    content bell-icon-git-repository-commits-fill
+.bell-icon-git-repository-commits-line
+  &:before
+    content bell-icon-git-repository-commits-line
+.bell-icon-git-repository-fill
+  &:before
+    content bell-icon-git-repository-fill
+.bell-icon-git-repository-line
+  &:before
+    content bell-icon-git-repository-line
+.bell-icon-git-repository-private-fill
+  &:before
+    content bell-icon-git-repository-private-fill
+.bell-icon-git-repository-private-line
+  &:before
+    content bell-icon-git-repository-private-line
+.bell-icon-html5-fill
+  &:before
+    content bell-icon-html5-fill
+.bell-icon-html5-line
+  &:before
+    content bell-icon-html5-line
+.bell-icon-parentheses-fill
+  &:before
+    content bell-icon-parentheses-fill
+.bell-icon-parentheses-line
+  &:before
+    content bell-icon-parentheses-line
+.bell-icon-share-stack-fill
+  &:before
+    content bell-icon-share-stack-fill
+.bell-icon-share-stack-line
+  &:before
+    content bell-icon-share-stack-line
+.bell-icon-terminal-box-fill
+  &:before
+    content bell-icon-terminal-box-fill
+.bell-icon-terminal-box-line
+  &:before
+    content bell-icon-terminal-box-line
+.bell-icon-terminal-fill
+  &:before
+    content bell-icon-terminal-fill
+.bell-icon-terminal-line
+  &:before
+    content bell-icon-terminal-line
+.bell-icon-terminal-window-fill
+  &:before
+    content bell-icon-terminal-window-fill
+.bell-icon-terminal-window-line
+  &:before
+    content bell-icon-terminal-window-line
+.bell-icon-anticlockwise-2-fill
+  &:before
+    content bell-icon-anticlockwise-2-fill
+.bell-icon-anticlockwise-2-line
+  &:before
+    content bell-icon-anticlockwise-2-line
+.bell-icon-anticlockwise-fill
+  &:before
+    content bell-icon-anticlockwise-fill
+.bell-icon-anticlockwise-line
+  &:before
+    content bell-icon-anticlockwise-line
+.bell-icon-artboard-2-fill
+  &:before
+    content bell-icon-artboard-2-fill
+.bell-icon-artboard-2-line
+  &:before
+    content bell-icon-artboard-2-line
+.bell-icon-artboard-fill
+  &:before
+    content bell-icon-artboard-fill
+.bell-icon-artboard-line
+  &:before
+    content bell-icon-artboard-line
+.bell-icon-ball-pen-fill
+  &:before
+    content bell-icon-ball-pen-fill
+.bell-icon-ball-pen-line
+  &:before
+    content bell-icon-ball-pen-line
+.bell-icon-blur-off-fill
+  &:before
+    content bell-icon-blur-off-fill
+.bell-icon-blur-off-line
+  &:before
+    content bell-icon-blur-off-line
+.bell-icon-brush-2-fill
+  &:before
+    content bell-icon-brush-2-fill
+.bell-icon-brush-2-line
+  &:before
+    content bell-icon-brush-2-line
+.bell-icon-brush-3-fill
+  &:before
+    content bell-icon-brush-3-fill
+.bell-icon-brush-3-line
+  &:before
+    content bell-icon-brush-3-line
+.bell-icon-brush-4-fill
+  &:before
+    content bell-icon-brush-4-fill
+.bell-icon-brush-4-line
+  &:before
+    content bell-icon-brush-4-line
+.bell-icon-brush-fill
+  &:before
+    content bell-icon-brush-fill
+.bell-icon-brush-line
+  &:before
+    content bell-icon-brush-line
+.bell-icon-clockwise-2-fill
+  &:before
+    content bell-icon-clockwise-2-fill
+.bell-icon-clockwise-2-line
+  &:before
+    content bell-icon-clockwise-2-line
+.bell-icon-clockwise-fill
+  &:before
+    content bell-icon-clockwise-fill
+.bell-icon-clockwise-line
+  &:before
+    content bell-icon-clockwise-line
+.bell-icon-compasses-2-fill
+  &:before
+    content bell-icon-compasses-2-fill
+.bell-icon-compasses-2-line
+  &:before
+    content bell-icon-compasses-2-line
+.bell-icon-compasses-fill
+  &:before
+    content bell-icon-compasses-fill
+.bell-icon-compasses-line
+  &:before
+    content bell-icon-compasses-line
+.bell-icon-contrast-2-fill
+  &:before
+    content bell-icon-contrast-2-fill
+.bell-icon-contrast-2-line
+  &:before
+    content bell-icon-contrast-2-line
+.bell-icon-contrast-drop-2-fill
+  &:before
+    content bell-icon-contrast-drop-2-fill
+.bell-icon-contrast-drop-2-line
+  &:before
+    content bell-icon-contrast-drop-2-line
+.bell-icon-contrast-drop-fill
+  &:before
+    content bell-icon-contrast-drop-fill
+.bell-icon-contrast-drop-line
+  &:before
+    content bell-icon-contrast-drop-line
+.bell-icon-contrast-fill
+  &:before
+    content bell-icon-contrast-fill
+.bell-icon-contrast-line
+  &:before
+    content bell-icon-contrast-line
+.bell-icon-crop-2-fill
+  &:before
+    content bell-icon-crop-2-fill
+.bell-icon-crop-2-line
+  &:before
+    content bell-icon-crop-2-line
+.bell-icon-crop-fill
+  &:before
+    content bell-icon-crop-fill
+.bell-icon-crop-line
+  &:before
+    content bell-icon-crop-line
+.bell-icon-drag-move-2-fill
+  &:before
+    content bell-icon-drag-move-2-fill
+.bell-icon-drag-move-2-line
+  &:before
+    content bell-icon-drag-move-2-line
+.bell-icon-drag-move-fill
+  &:before
+    content bell-icon-drag-move-fill
+.bell-icon-drag-move-line
+  &:before
+    content bell-icon-drag-move-line
+.bell-icon-drop-fill
+  &:before
+    content bell-icon-drop-fill
+.bell-icon-drop-line
+  &:before
+    content bell-icon-drop-line
+.bell-icon-edit-2-fill
+  &:before
+    content bell-icon-edit-2-fill
+.bell-icon-edit-2-line
+  &:before
+    content bell-icon-edit-2-line
+.bell-icon-edit-box-fill
+  &:before
+    content bell-icon-edit-box-fill
+.bell-icon-edit-box-line
+  &:before
+    content bell-icon-edit-box-line
+.bell-icon-edit-circle-fill
+  &:before
+    content bell-icon-edit-circle-fill
+.bell-icon-edit-circle-line
+  &:before
+    content bell-icon-edit-circle-line
+.bell-icon-edit-fill
+  &:before
+    content bell-icon-edit-fill
+.bell-icon-edit-line
+  &:before
+    content bell-icon-edit-line
+.bell-icon-eraser-fill
+  &:before
+    content bell-icon-eraser-fill
+.bell-icon-eraser-line
+  &:before
+    content bell-icon-eraser-line
+.bell-icon-focus-2-fill
+  &:before
+    content bell-icon-focus-2-fill
+.bell-icon-focus-2-line
+  &:before
+    content bell-icon-focus-2-line
+.bell-icon-focus-fill
+  &:before
+    content bell-icon-focus-fill
+.bell-icon-focus-line
+  &:before
+    content bell-icon-focus-line
+.bell-icon-grid-fill
+  &:before
+    content bell-icon-grid-fill
+.bell-icon-grid-line
+  &:before
+    content bell-icon-grid-line
+.bell-icon-hammer-fill
+  &:before
+    content bell-icon-hammer-fill
+.bell-icon-hammer-line
+  &:before
+    content bell-icon-hammer-line
+.bell-icon-input-method-fill
+  &:before
+    content bell-icon-input-method-fill
+.bell-icon-input-method-line
+  &:before
+    content bell-icon-input-method-line
+.bell-icon-layout-column-fill
+  &:before
+    content bell-icon-layout-column-fill
+.bell-icon-layout-column-line
+  &:before
+    content bell-icon-layout-column-line
+.bell-icon-layout-fill
+  &:before
+    content bell-icon-layout-fill
+.bell-icon-layout-line
+  &:before
+    content bell-icon-layout-line
+.bell-icon-layout-row-fill
+  &:before
+    content bell-icon-layout-row-fill
+.bell-icon-layout-row-line
+  &:before
+    content bell-icon-layout-row-line
+.bell-icon-magic-fill
+  &:before
+    content bell-icon-magic-fill
+.bell-icon-magic-line
+  &:before
+    content bell-icon-magic-line
+.bell-icon-mark-pen-fill
+  &:before
+    content bell-icon-mark-pen-fill
+.bell-icon-mark-pen-line
+  &:before
+    content bell-icon-mark-pen-line
+.bell-icon-markup-fill
+  &:before
+    content bell-icon-markup-fill
+.bell-icon-markup-line
+  &:before
+    content bell-icon-markup-line
+.bell-icon-paint-brush-fill
+  &:before
+    content bell-icon-paint-brush-fill
+.bell-icon-paint-brush-line
+  &:before
+    content bell-icon-paint-brush-line
+.bell-icon-paint-fill
+  &:before
+    content bell-icon-paint-fill
+.bell-icon-paint-line
+  &:before
+    content bell-icon-paint-line
+.bell-icon-palette-fill
+  &:before
+    content bell-icon-palette-fill
+.bell-icon-palette-line
+  &:before
+    content bell-icon-palette-line
+.bell-icon-pantone-fill
+  &:before
+    content bell-icon-pantone-fill
+.bell-icon-pantone-line
+  &:before
+    content bell-icon-pantone-line
+.bell-icon-pen-nib-fill
+  &:before
+    content bell-icon-pen-nib-fill
+.bell-icon-pen-nib-line
+  &:before
+    content bell-icon-pen-nib-line
+.bell-icon-pencil-fill
+  &:before
+    content bell-icon-pencil-fill
+.bell-icon-pencil-line
+  &:before
+    content bell-icon-pencil-line
+.bell-icon-pencil-ruler-2-fill
+  &:before
+    content bell-icon-pencil-ruler-2-fill
+.bell-icon-pencil-ruler-2-line
+  &:before
+    content bell-icon-pencil-ruler-2-line
+.bell-icon-pencil-ruler-fill
+  &:before
+    content bell-icon-pencil-ruler-fill
+.bell-icon-pencil-ruler-line
+  &:before
+    content bell-icon-pencil-ruler-line
+.bell-icon-quill-pen-fill
+  &:before
+    content bell-icon-quill-pen-fill
+.bell-icon-quill-pen-line
+  &:before
+    content bell-icon-quill-pen-line
+.bell-icon-ruler-2-fill
+  &:before
+    content bell-icon-ruler-2-fill
+.bell-icon-ruler-2-line
+  &:before
+    content bell-icon-ruler-2-line
+.bell-icon-ruler-fill
+  &:before
+    content bell-icon-ruler-fill
+.bell-icon-ruler-line
+  &:before
+    content bell-icon-ruler-line
+.bell-icon-scissors-2-fill
+  &:before
+    content bell-icon-scissors-2-fill
+.bell-icon-scissors-2-line
+  &:before
+    content bell-icon-scissors-2-line
+.bell-icon-scissors-cut-fill
+  &:before
+    content bell-icon-scissors-cut-fill
+.bell-icon-scissors-cut-line
+  &:before
+    content bell-icon-scissors-cut-line
+.bell-icon-scissors-fill
+  &:before
+    content bell-icon-scissors-fill
+.bell-icon-scissors-line
+  &:before
+    content bell-icon-scissors-line
+.bell-icon-screenshot-2-fill
+  &:before
+    content bell-icon-screenshot-2-fill
+.bell-icon-screenshot-2-line
+  &:before
+    content bell-icon-screenshot-2-line
+.bell-icon-screenshot-fill
+  &:before
+    content bell-icon-screenshot-fill
+.bell-icon-screenshot-line
+  &:before
+    content bell-icon-screenshot-line
+.bell-icon-shape-2-fill
+  &:before
+    content bell-icon-shape-2-fill
+.bell-icon-shape-2-line
+  &:before
+    content bell-icon-shape-2-line
+.bell-icon-shape-fill
+  &:before
+    content bell-icon-shape-fill
+.bell-icon-shape-line
+  &:before
+    content bell-icon-shape-line
+.bell-icon-sip-fill
+  &:before
+    content bell-icon-sip-fill
+.bell-icon-sip-line
+  &:before
+    content bell-icon-sip-line
+.bell-icon-slice-fill
+  &:before
+    content bell-icon-slice-fill
+.bell-icon-slice-line
+  &:before
+    content bell-icon-slice-line
+.bell-icon-t-box-fill
+  &:before
+    content bell-icon-t-box-fill
+.bell-icon-t-box-line
+  &:before
+    content bell-icon-t-box-line
+.bell-icon-table-fill
+  &:before
+    content bell-icon-table-fill
+.bell-icon-table-line
+  &:before
+    content bell-icon-table-line
+.bell-icon-tools-fill
+  &:before
+    content bell-icon-tools-fill
+.bell-icon-tools-line
+  &:before
+    content bell-icon-tools-line
+.bell-icon-chat-1-fill
+  &:before
+    content bell-icon-chat-1-fill
+.bell-icon-chat-1-line
+  &:before
+    content bell-icon-chat-1-line
+.bell-icon-chat-2-fill
+  &:before
+    content bell-icon-chat-2-fill
+.bell-icon-chat-2-line
+  &:before
+    content bell-icon-chat-2-line
+.bell-icon-chat-3-fill
+  &:before
+    content bell-icon-chat-3-fill
+.bell-icon-chat-3-line
+  &:before
+    content bell-icon-chat-3-line
+.bell-icon-chat-4-fill
+  &:before
+    content bell-icon-chat-4-fill
+.bell-icon-chat-4-line
+  &:before
+    content bell-icon-chat-4-line
+.bell-icon-chat-check-fill
+  &:before
+    content bell-icon-chat-check-fill
+.bell-icon-chat-check-line
+  &:before
+    content bell-icon-chat-check-line
+.bell-icon-chat-delete-fill
+  &:before
+    content bell-icon-chat-delete-fill
+.bell-icon-chat-delete-line
+  &:before
+    content bell-icon-chat-delete-line
+.bell-icon-chat-download-fill
+  &:before
+    content bell-icon-chat-download-fill
+.bell-icon-chat-download-line
+  &:before
+    content bell-icon-chat-download-line
+.bell-icon-chat-forward-fill
+  &:before
+    content bell-icon-chat-forward-fill
+.bell-icon-chat-forward-line
+  &:before
+    content bell-icon-chat-forward-line
+.bell-icon-chat-heart-fill
+  &:before
+    content bell-icon-chat-heart-fill
+.bell-icon-chat-heart-line
+  &:before
+    content bell-icon-chat-heart-line
+.bell-icon-chat-new-fill
+  &:before
+    content bell-icon-chat-new-fill
+.bell-icon-chat-new-line
+  &:before
+    content bell-icon-chat-new-line
+.bell-icon-chat-off-fill
+  &:before
+    content bell-icon-chat-off-fill
+.bell-icon-chat-off-line
+  &:before
+    content bell-icon-chat-off-line
+.bell-icon-chat-settings-fill
+  &:before
+    content bell-icon-chat-settings-fill
+.bell-icon-chat-settings-line
+  &:before
+    content bell-icon-chat-settings-line
+.bell-icon-chat-smile-2-fill
+  &:before
+    content bell-icon-chat-smile-2-fill
+.bell-icon-chat-smile-2-line
+  &:before
+    content bell-icon-chat-smile-2-line
+.bell-icon-chat-smile-3-fill
+  &:before
+    content bell-icon-chat-smile-3-fill
+.bell-icon-chat-smile-3-line
+  &:before
+    content bell-icon-chat-smile-3-line
+.bell-icon-chat-smile-fill
+  &:before
+    content bell-icon-chat-smile-fill
+.bell-icon-chat-smile-line
+  &:before
+    content bell-icon-chat-smile-line
+.bell-icon-chat-upload-fill
+  &:before
+    content bell-icon-chat-upload-fill
+.bell-icon-chat-upload-line
+  &:before
+    content bell-icon-chat-upload-line
+.bell-icon-chat-voice-fill
+  &:before
+    content bell-icon-chat-voice-fill
+.bell-icon-chat-voice-line
+  &:before
+    content bell-icon-chat-voice-line
+.bell-icon-discuss-fill
+  &:before
+    content bell-icon-discuss-fill
+.bell-icon-discuss-line
+  &:before
+    content bell-icon-discuss-line
+.bell-icon-feedback-fill
+  &:before
+    content bell-icon-feedback-fill
+.bell-icon-feedback-line
+  &:before
+    content bell-icon-feedback-line
+.bell-icon-message-2-fill
+  &:before
+    content bell-icon-message-2-fill
+.bell-icon-message-2-line
+  &:before
+    content bell-icon-message-2-line
+.bell-icon-message-3-fill
+  &:before
+    content bell-icon-message-3-fill
+.bell-icon-message-3-line
+  &:before
+    content bell-icon-message-3-line
+.bell-icon-message-fill
+  &:before
+    content bell-icon-message-fill
+.bell-icon-message-line
+  &:before
+    content bell-icon-message-line
+.bell-icon-question-answer-fill
+  &:before
+    content bell-icon-question-answer-fill
+.bell-icon-question-answer-line
+  &:before
+    content bell-icon-question-answer-line
+.bell-icon-questionnaire-fill
+  &:before
+    content bell-icon-questionnaire-fill
+.bell-icon-questionnaire-line
+  &:before
+    content bell-icon-questionnaire-line
+.bell-icon-video-chat-fill
+  &:before
+    content bell-icon-video-chat-fill
+.bell-icon-video-chat-line
+  &:before
+    content bell-icon-video-chat-line
+.bell-icon-archive-drawer-fill
+  &:before
+    content bell-icon-archive-drawer-fill
+.bell-icon-archive-drawer-line
+  &:before
+    content bell-icon-archive-drawer-line
+.bell-icon-archive-fill
+  &:before
+    content bell-icon-archive-fill
+.bell-icon-archive-line
+  &:before
+    content bell-icon-archive-line
+.bell-icon-at-fill
+  &:before
+    content bell-icon-at-fill
+.bell-icon-at-line
+  &:before
+    content bell-icon-at-line
+.bell-icon-attachment-fill
+  &:before
+    content bell-icon-attachment-fill
+.bell-icon-attachment-line
+  &:before
+    content bell-icon-attachment-line
+.bell-icon-award-fill
+  &:before
+    content bell-icon-award-fill
+.bell-icon-award-line
+  &:before
+    content bell-icon-award-line
+.bell-icon-bar-chart-2-fill
+  &:before
+    content bell-icon-bar-chart-2-fill
+.bell-icon-bar-chart-2-line
+  &:before
+    content bell-icon-bar-chart-2-line
+.bell-icon-bar-chart-box-fill
+  &:before
+    content bell-icon-bar-chart-box-fill
+.bell-icon-bar-chart-box-line
+  &:before
+    content bell-icon-bar-chart-box-line
+.bell-icon-bar-chart-fill
+  &:before
+    content bell-icon-bar-chart-fill
+.bell-icon-bar-chart-grouped-fill
+  &:before
+    content bell-icon-bar-chart-grouped-fill
+.bell-icon-bar-chart-grouped-line
+  &:before
+    content bell-icon-bar-chart-grouped-line
+.bell-icon-bar-chart-horizontal-fill
+  &:before
+    content bell-icon-bar-chart-horizontal-fill
+.bell-icon-bar-chart-horizontal-line
+  &:before
+    content bell-icon-bar-chart-horizontal-line
+.bell-icon-bar-chart-line
+  &:before
+    content bell-icon-bar-chart-line
+.bell-icon-bookmark-2-fill
+  &:before
+    content bell-icon-bookmark-2-fill
+.bell-icon-bookmark-2-line
+  &:before
+    content bell-icon-bookmark-2-line
+.bell-icon-bookmark-3-fill
+  &:before
+    content bell-icon-bookmark-3-fill
+.bell-icon-bookmark-3-line
+  &:before
+    content bell-icon-bookmark-3-line
+.bell-icon-bookmark-fill
+  &:before
+    content bell-icon-bookmark-fill
+.bell-icon-bookmark-line
+  &:before
+    content bell-icon-bookmark-line
+.bell-icon-briefcase-2-fill
+  &:before
+    content bell-icon-briefcase-2-fill
+.bell-icon-briefcase-2-line
+  &:before
+    content bell-icon-briefcase-2-line
+.bell-icon-briefcase-3-fill
+  &:before
+    content bell-icon-briefcase-3-fill
+.bell-icon-briefcase-3-line
+  &:before
+    content bell-icon-briefcase-3-line
+.bell-icon-briefcase-4-fill
+  &:before
+    content bell-icon-briefcase-4-fill
+.bell-icon-briefcase-4-line
+  &:before
+    content bell-icon-briefcase-4-line
+.bell-icon-briefcase-5-fill
+  &:before
+    content bell-icon-briefcase-5-fill
+.bell-icon-briefcase-5-line
+  &:before
+    content bell-icon-briefcase-5-line
+.bell-icon-briefcase-fill
+  &:before
+    content bell-icon-briefcase-fill
+.bell-icon-briefcase-line
+  &:before
+    content bell-icon-briefcase-line
+.bell-icon-calculator-fill
+  &:before
+    content bell-icon-calculator-fill
+.bell-icon-calculator-line
+  &:before
+    content bell-icon-calculator-line
+.bell-icon-calendar-2-fill
+  &:before
+    content bell-icon-calendar-2-fill
+.bell-icon-calendar-2-line
+  &:before
+    content bell-icon-calendar-2-line
+.bell-icon-calendar-check-fill
+  &:before
+    content bell-icon-calendar-check-fill
+.bell-icon-calendar-check-line
+  &:before
+    content bell-icon-calendar-check-line
+.bell-icon-calendar-event-fill
+  &:before
+    content bell-icon-calendar-event-fill
+.bell-icon-calendar-event-line
+  &:before
+    content bell-icon-calendar-event-line
+.bell-icon-calendar-fill
+  &:before
+    content bell-icon-calendar-fill
+.bell-icon-calendar-line
+  &:before
+    content bell-icon-calendar-line
+.bell-icon-calendar-todo-fill
+  &:before
+    content bell-icon-calendar-todo-fill
+.bell-icon-calendar-todo-line
+  &:before
+    content bell-icon-calendar-todo-line
+.bell-icon-cloud-fill
+  &:before
+    content bell-icon-cloud-fill
+.bell-icon-cloud-line
+  &:before
+    content bell-icon-cloud-line
+.bell-icon-cloud-off-fill
+  &:before
+    content bell-icon-cloud-off-fill
+.bell-icon-cloud-off-line
+  &:before
+    content bell-icon-cloud-off-line
+.bell-icon-customer-service-2-fill
+  &:before
+    content bell-icon-customer-service-2-fill
+.bell-icon-customer-service-2-line
+  &:before
+    content bell-icon-customer-service-2-line
+.bell-icon-customer-service-fill
+  &:before
+    content bell-icon-customer-service-fill
+.bell-icon-customer-service-line
+  &:before
+    content bell-icon-customer-service-line
+.bell-icon-flag-2-fill
+  &:before
+    content bell-icon-flag-2-fill
+.bell-icon-flag-2-line
+  &:before
+    content bell-icon-flag-2-line
+.bell-icon-flag-fill
+  &:before
+    content bell-icon-flag-fill
+.bell-icon-flag-line
+  &:before
+    content bell-icon-flag-line
+.bell-icon-global-fill
+  &:before
+    content bell-icon-global-fill
+.bell-icon-global-line
+  &:before
+    content bell-icon-global-line
+.bell-icon-honour-fill
+  &:before
+    content bell-icon-honour-fill
+.bell-icon-honour-line
+  &:before
+    content bell-icon-honour-line
+.bell-icon-inbox-archive-fill
+  &:before
+    content bell-icon-inbox-archive-fill
+.bell-icon-inbox-archive-line
+  &:before
+    content bell-icon-inbox-archive-line
+.bell-icon-inbox-fill
+  &:before
+    content bell-icon-inbox-fill
+.bell-icon-inbox-line
+  &:before
+    content bell-icon-inbox-line
+.bell-icon-links-fill
+  &:before
+    content bell-icon-links-fill
+.bell-icon-links-line
+  &:before
+    content bell-icon-links-line
+.bell-icon-mail-add-fill
+  &:before
+    content bell-icon-mail-add-fill
+.bell-icon-mail-add-line
+  &:before
+    content bell-icon-mail-add-line
+.bell-icon-mail-check-fill
+  &:before
+    content bell-icon-mail-check-fill
+.bell-icon-mail-check-line
+  &:before
+    content bell-icon-mail-check-line
+.bell-icon-mail-close-fill
+  &:before
+    content bell-icon-mail-close-fill
+.bell-icon-mail-close-line
+  &:before
+    content bell-icon-mail-close-line
+.bell-icon-mail-download-fill
+  &:before
+    content bell-icon-mail-download-fill
+.bell-icon-mail-download-line
+  &:before
+    content bell-icon-mail-download-line
+.bell-icon-mail-fill
+  &:before
+    content bell-icon-mail-fill
+.bell-icon-mail-forbid-fill
+  &:before
+    content bell-icon-mail-forbid-fill
+.bell-icon-mail-forbid-line
+  &:before
+    content bell-icon-mail-forbid-line
+.bell-icon-mail-line
+  &:before
+    content bell-icon-mail-line
+.bell-icon-mail-lock-fill
+  &:before
+    content bell-icon-mail-lock-fill
+.bell-icon-mail-lock-line
+  &:before
+    content bell-icon-mail-lock-line
+.bell-icon-mail-open-fill
+  &:before
+    content bell-icon-mail-open-fill
+.bell-icon-mail-open-line
+  &:before
+    content bell-icon-mail-open-line
+.bell-icon-mail-send-fill
+  &:before
+    content bell-icon-mail-send-fill
+.bell-icon-mail-send-line
+  &:before
+    content bell-icon-mail-send-line
+.bell-icon-mail-settings-fill
+  &:before
+    content bell-icon-mail-settings-fill
+.bell-icon-mail-settings-line
+  &:before
+    content bell-icon-mail-settings-line
+.bell-icon-mail-star-fill
+  &:before
+    content bell-icon-mail-star-fill
+.bell-icon-mail-star-line
+  &:before
+    content bell-icon-mail-star-line
+.bell-icon-mail-unread-fill
+  &:before
+    content bell-icon-mail-unread-fill
+.bell-icon-mail-unread-line
+  &:before
+    content bell-icon-mail-unread-line
+.bell-icon-pie-chart-2-fill
+  &:before
+    content bell-icon-pie-chart-2-fill
+.bell-icon-pie-chart-2-line
+  &:before
+    content bell-icon-pie-chart-2-line
+.bell-icon-pie-chart-box-fill
+  &:before
+    content bell-icon-pie-chart-box-fill
+.bell-icon-pie-chart-box-line
+  &:before
+    content bell-icon-pie-chart-box-line
+.bell-icon-pie-chart-fill
+  &:before
+    content bell-icon-pie-chart-fill
+.bell-icon-pie-chart-line
+  &:before
+    content bell-icon-pie-chart-line
+.bell-icon-printer-fill
+  &:before
+    content bell-icon-printer-fill
+.bell-icon-printer-line
+  &:before
+    content bell-icon-printer-line
+.bell-icon-profile-fill
+  &:before
+    content bell-icon-profile-fill
+.bell-icon-profile-line
+  &:before
+    content bell-icon-profile-line
+.bell-icon-projector-2-fill
+  &:before
+    content bell-icon-projector-2-fill
+.bell-icon-projector-2-line
+  &:before
+    content bell-icon-projector-2-line
+.bell-icon-projector-fill
+  &:before
+    content bell-icon-projector-fill
+.bell-icon-projector-line
+  &:before
+    content bell-icon-projector-line
+.bell-icon-record-mail-fill
+  &:before
+    content bell-icon-record-mail-fill
+.bell-icon-record-mail-line
+  &:before
+    content bell-icon-record-mail-line
+.bell-icon-reply-fill
+  &:before
+    content bell-icon-reply-fill
+.bell-icon-reply-line
+  &:before
+    content bell-icon-reply-line
+.bell-icon-send-plane-2-fill
+  &:before
+    content bell-icon-send-plane-2-fill
+.bell-icon-send-plane-2-line
+  &:before
+    content bell-icon-send-plane-2-line
+.bell-icon-send-plane-fill
+  &:before
+    content bell-icon-send-plane-fill
+.bell-icon-send-plane-line
+  &:before
+    content bell-icon-send-plane-line
+.bell-icon-slideshow-2-fill
+  &:before
+    content bell-icon-slideshow-2-fill
+.bell-icon-slideshow-2-line
+  &:before
+    content bell-icon-slideshow-2-line
+.bell-icon-slideshow-3-fill
+  &:before
+    content bell-icon-slideshow-3-fill
+.bell-icon-slideshow-3-line
+  &:before
+    content bell-icon-slideshow-3-line
+.bell-icon-slideshow-4-fill
+  &:before
+    content bell-icon-slideshow-4-fill
+.bell-icon-slideshow-4-line
+  &:before
+    content bell-icon-slideshow-4-line
+.bell-icon-slideshow-fill
+  &:before
+    content bell-icon-slideshow-fill
+.bell-icon-slideshow-line
+  &:before
+    content bell-icon-slideshow-line
+.bell-icon-stack-fill
+  &:before
+    content bell-icon-stack-fill
+.bell-icon-stack-line
+  &:before
+    content bell-icon-stack-line
+.bell-icon-window-2-fill
+  &:before
+    content bell-icon-window-2-fill
+.bell-icon-window-2-line
+  &:before
+    content bell-icon-window-2-line
+.bell-icon-window-fill
+  &:before
+    content bell-icon-window-fill
+.bell-icon-window-line
+  &:before
+    content bell-icon-window-line
+.bell-icon-bank-fill
+  &:before
+    content bell-icon-bank-fill
+.bell-icon-bank-line
+  &:before
+    content bell-icon-bank-line
+.bell-icon-building-2-fill
+  &:before
+    content bell-icon-building-2-fill
+.bell-icon-building-2-line
+  &:before
+    content bell-icon-building-2-line
+.bell-icon-building-3-fill
+  &:before
+    content bell-icon-building-3-fill
+.bell-icon-building-3-line
+  &:before
+    content bell-icon-building-3-line
+.bell-icon-building-4-fill
+  &:before
+    content bell-icon-building-4-fill
+.bell-icon-building-4-line
+  &:before
+    content bell-icon-building-4-line
+.bell-icon-building-fill
+  &:before
+    content bell-icon-building-fill
+.bell-icon-building-line
+  &:before
+    content bell-icon-building-line
+.bell-icon-community-fill
+  &:before
+    content bell-icon-community-fill
+.bell-icon-community-line
+  &:before
+    content bell-icon-community-line
+.bell-icon-government-fill
+  &:before
+    content bell-icon-government-fill
+.bell-icon-government-line
+  &:before
+    content bell-icon-government-line
+.bell-icon-home-2-fill
+  &:before
+    content bell-icon-home-2-fill
+.bell-icon-home-2-line
+  &:before
+    content bell-icon-home-2-line
+.bell-icon-home-3-fill
+  &:before
+    content bell-icon-home-3-fill
+.bell-icon-home-3-line
+  &:before
+    content bell-icon-home-3-line
+.bell-icon-home-4-fill
+  &:before
+    content bell-icon-home-4-fill
+.bell-icon-home-4-line
+  &:before
+    content bell-icon-home-4-line
+.bell-icon-home-5-fill
+  &:before
+    content bell-icon-home-5-fill
+.bell-icon-home-5-line
+  &:before
+    content bell-icon-home-5-line
+.bell-icon-home-6-fill
+  &:before
+    content bell-icon-home-6-fill
+.bell-icon-home-6-line
+  &:before
+    content bell-icon-home-6-line
+.bell-icon-home-7-fill
+  &:before
+    content bell-icon-home-7-fill
+.bell-icon-home-7-line
+  &:before
+    content bell-icon-home-7-line
+.bell-icon-home-8-fill
+  &:before
+    content bell-icon-home-8-fill
+.bell-icon-home-8-line
+  &:before
+    content bell-icon-home-8-line
+.bell-icon-home-fill
+  &:before
+    content bell-icon-home-fill
+.bell-icon-home-gear-fill
+  &:before
+    content bell-icon-home-gear-fill
+.bell-icon-home-gear-line
+  &:before
+    content bell-icon-home-gear-line
+.bell-icon-home-heart-fill
+  &:before
+    content bell-icon-home-heart-fill
+.bell-icon-home-heart-line
+  &:before
+    content bell-icon-home-heart-line
+.bell-icon-home-line
+  &:before
+    content bell-icon-home-line
+.bell-icon-home-smile-2-fill
+  &:before
+    content bell-icon-home-smile-2-fill
+.bell-icon-home-smile-2-line
+  &:before
+    content bell-icon-home-smile-2-line
+.bell-icon-home-smile-fill
+  &:before
+    content bell-icon-home-smile-fill
+.bell-icon-home-smile-line
+  &:before
+    content bell-icon-home-smile-line
+.bell-icon-home-wifi-fill
+  &:before
+    content bell-icon-home-wifi-fill
+.bell-icon-home-wifi-line
+  &:before
+    content bell-icon-home-wifi-line
+.bell-icon-hospital-fill
+  &:before
+    content bell-icon-hospital-fill
+.bell-icon-hospital-line
+  &:before
+    content bell-icon-hospital-line
+.bell-icon-hotel-fill
+  &:before
+    content bell-icon-hotel-fill
+.bell-icon-hotel-line
+  &:before
+    content bell-icon-hotel-line
+.bell-icon-store-2-fill
+  &:before
+    content bell-icon-store-2-fill
+.bell-icon-store-2-line
+  &:before
+    content bell-icon-store-2-line
+.bell-icon-store-3-fill
+  &:before
+    content bell-icon-store-3-fill
+.bell-icon-store-3-line
+  &:before
+    content bell-icon-store-3-line
+.bell-icon-store-fill
+  &:before
+    content bell-icon-store-fill
+.bell-icon-store-line
+  &:before
+    content bell-icon-store-line
+

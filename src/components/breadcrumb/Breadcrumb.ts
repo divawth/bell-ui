@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Breadcrumb.hbs'
+// import './style/Breadcrumb.styl'
 
 import {
   RAW_STRING,

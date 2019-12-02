@@ -1,0 +1,27 @@
+@import '../../../env'
+
+$empty-icon-content-gap = 10px
+
+{$selector-prefix + '-empty'}
+  color $brand-muted
+  font-size $font-size-default
+  text-align center
+
+  padding-top 80px
+  background url('~@components/empty/image/empty-default.png') no-repeat 50% 0
+  background-image -webkit-image-set(
+    url('~@components/empty/image/empty-default@2x.png') 2x
+  )
+
+{$selector-prefix + '-empty-with-content'}
+  padding-top 80 + $empty-icon-content-gap
+
+{$selector-prefix + '-empty-simple'}
+  padding-top 41px
+  background-image url('~@components/empty/image/empty-simple.png')
+  background-image -webkit-image-set(
+    url('~@components/empty/image/empty-simple@2x.png') 2x
+  )
+
+  &{$selector-prefix + '-empty-with-content'}
+    padding-top 41 + $empty-icon-content-gap

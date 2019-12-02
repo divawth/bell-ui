@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Alert.hbs'
+// import './style/Alert.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   FALSE,

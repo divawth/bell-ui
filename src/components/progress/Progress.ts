@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Progress.hbs'
+// import './style/Progress.styl'
 
 import {
   FALSE,

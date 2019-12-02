@@ -1,4 +1,3 @@
-import { DateRow, SimpleDate } from '../util';
 declare const _default: import("yox").ComponentOptions<{
     date: unknown;
     datasource: unknown;
@@ -7,12 +6,10 @@ declare const _default: import("yox").ComponentOptions<{
     'change.year': unknown;
     'change.month': unknown;
 }, {
-    inCurrentMonth(item: SimpleDate): boolean;
     offset(offset: number): void;
-    click(row: DateRow): void;
+    click(colIndex: number): void;
 }> & ThisType<{
-    inCurrentMonth(item: SimpleDate): boolean;
     offset(offset: number): void;
-    click(row: DateRow): void;
+    click(colIndex: number): void;
 } & import("yox").YoxInterface>;
 export default _default;

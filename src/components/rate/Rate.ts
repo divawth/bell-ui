@@ -1,7 +1,9 @@
 import Yox, { CustomEventInterface } from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Rate.hbs'
+// import './style/Rate.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   FALSE,

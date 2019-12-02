@@ -1,0 +1,117 @@
+@import '../../../env'
+
+$card-padding-horizontal = 24px
+
+$card-header-padding-vertical = 18px
+$card-header-title-font-size = 14px
+$card-header-sub-title-font-size = 12px
+$card-header-sub-title-gap = 3px
+
+$card-header-avatar-title-gap = 8px
+
+$card-media-detail-bg-color = rgba(0,0,0,.54)
+$card-media-detail-padding = 12px 24px
+$card-media-title-font-size = 18px
+$card-media-title-color = #fbfbfb
+$card-media-sub-title-font-size = 12px
+$card-media-sub-title-color = #ccc
+$card-media-sub-title-gap = 6px
+
+// 因为 body 有些行间距，body 要设置的稍微小一点点，才会看起来相等
+$card-body-padding-vertical = 24px
+
+$card-footer-padding-vertical = 24px
+
+
+{$selector-prefix + '-card'}
+  background-color $brand-bg
+  border-radius $border-radius-default
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-single-line-height
+
+{$selector-prefix + '-card-shadow-hover'}
+  transition box-shadow .3s
+
+{$selector-prefix + '-card-shadow-always'},
+{$selector-prefix + '-card-shadow-hover'}:hover
+  box-shadow $brand-card-shadow
+
+{$selector-prefix + '-card-bordered'}
+  border 1px solid $brand-border
+
+{$selector-prefix + '-card-header'}
+  position relative
+  padding $card-header-padding-vertical $card-padding-horizontal
+
+  {$selector-prefix + '-avatar'}
+    margin-right $card-header-avatar-title-gap
+    vertical-align middle
+
+  + {$selector-prefix + '-card-body'}
+    border-top 1px solid $brand-divider
+
+{$selector-prefix + '-card-header-detail'}
+  display inline-block
+  vertical-align middle
+
+{$selector-prefix + '-card-header-title'}
+  color $brand-title
+  font-size $card-header-title-font-size
+  font-weight bold
+  line-height $ui-single-line-height
+
+{$selector-prefix + '-card-header-sub-title'}
+  color $brand-muted
+  font-size $card-header-sub-title-font-size
+  line-height $ui-single-line-height
+  margin-top $card-header-sub-title-gap
+
+{$selector-prefix + '-card-header-extra'}
+  position absolute
+  right $card-padding-horizontal
+  top 50%
+  transform translateY(-50%)
+
+{$selector-prefix + '-card-media'}
+  position relative
+
+  > img
+    display block
+    width 100%
+
+{$selector-prefix + '-card-media-detail'}
+  position absolute
+  left 0
+  right 0
+  bottom 0
+  padding $card-media-detail-padding
+  background-color $card-media-detail-bg-color
+
+{$selector-prefix + '-card-media-title'}
+  font-size $card-media-title-font-size
+  color $card-media-title-color
+  line-height $ui-single-line-height
+  max-width 100%
+  ui-ellipsis()
+
+{$selector-prefix + '-card-media-sub-title'}
+  font-size $card-media-sub-title-font-size
+  color $card-media-sub-title-color
+  line-height $ui-single-line-height
+  margin-top $card-media-sub-title-gap
+  max-width 100%
+  ui-ellipsis()
+
+{$selector-prefix + '-card-body'}
+  padding $card-body-padding-vertical $card-padding-horizontal
+  font-size $font-size-default
+  color $brand-content
+  line-height $ui-multiple-line-height
+  position relative
+
+  + {$selector-prefix + '-card-footer'}
+    padding-top 0
+
+{$selector-prefix + '-card-footer'}
+  padding $card-footer-padding-vertical $card-padding-horizontal

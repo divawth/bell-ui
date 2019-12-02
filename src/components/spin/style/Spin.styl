@@ -1,0 +1,91 @@
+@import '../../../env'
+
+$spin-brand-hash = {
+  primary: {
+    color: $brand-primary
+  },
+  success: {
+    color: $brand-success
+  },
+  info: {
+    color: $brand-info
+  },
+  error: {
+    color: $brand-error
+  },
+  warning: {
+    color: $brand-warning
+  }
+}
+
+$spin-size-hash = {
+  default: {
+    icon-size: 20px,
+    font-size: $font-size-default,
+  },
+  small: {
+    icon-size: 16px,
+    font-size: $font-size-small,
+  },
+  large: {
+    icon-size: 30px,
+    font-size: $font-size-large,
+  }
+}
+
+
+spin-brand-style(style)
+  ui-set('color', style['color'])
+
+spin-size-style(style)
+  {$selector-prefix + '-spin-icon'}
+    ui-set('font-size', style['icon-size'])
+
+  {$selector-prefix + '-spin-text'}
+    ui-set('font-size', style['font-size'])
+
+{$selector-prefix + '-spin'}
+  display inline-block
+  text-align center
+  line-height 1.7
+  ui-connect(
+    hash: $spin-brand-hash,
+    each: spin-brand-style
+  )
+  ui-connect(
+    hash: $spin-size-hash,
+    each: spin-size-style
+  )
+
+{$selector-prefix + '-spin-icon'}
+  vertical-align top
+
+{$selector-prefix + '-spin-fixed'}
+
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+  z-index $zindex-normal
+
+  > {$selector-prefix + '-spin-content'}
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+
+  &{$selector-prefix + '-spin-light'}
+    background-color $brand-mask-light-color
+
+    &{$selector-prefix + '-spin-legacy'}
+      background-color $brand-mask-light-color-legacy
+      opacity $brand-mask-light-opacity-legacy
+
+  &{$selector-prefix + '-spin-dark'}
+    background-color $brand-mask-dark-color
+
+    &{$selector-prefix + '-spin-legacy'}
+      background-color $brand-mask-dark-color-legacy
+      opacity $brand-mask-dark-opacity-legacy

@@ -1,0 +1,76 @@
+@import '../../../env'
+
+$list-empty-padding-vertical = 60px
+
+$list-size-hash = {
+  default: {
+    header-padding: 12px 20px,
+    padding-horizontal: 20px,
+    padding-vertical: 12px,
+  },
+  large: {
+    header-padding: 16px 24px,
+    padding-horizontal: 24px,
+    padding-vertical: 16px,
+  },
+  small: {
+    header-padding: 8px 16px,
+    padding-horizontal: 16px,
+    padding-vertical: 8px,
+  }
+}
+
+list-size-style(size)
+  {$selector-prefix + '-list-header'}
+    ui-set('padding', size['header-padding'])
+
+  {$selector-prefix + '-list-item'}
+    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+
+
+{$selector-prefix + '-list'}
+  color $brand-content
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+  overflow-y auto
+  position relative
+  box-sizing border-box
+  ui-connect(
+    hash: $list-size-hash,
+    each: list-size-style
+  )
+  ui-scrollbar()
+
+{$selector-prefix + '-list-empty'}
+  padding $list-empty-padding-vertical 0
+
+{$selector-prefix + '-list-header'}
+  color $brand-title
+  font-size $font-size-default
+
+{$selector-prefix + '-list-item'}
+  position relative
+  border-top 1px solid $brand-border
+
+  &:first-child
+    border-top 0
+
+  > {$selector-prefix + '-avatar'}
+    vertical-align middle
+    margin-right $ui-horizontal-gap
+
+{$selector-prefix + '-list-item-clickable'}
+  user-select none
+  transition background-color .3s
+  ui-clickable()
+
+  &:hover
+    background-color $brand-bg-hover
+
+{$selector-prefix + '-list-bordered'}
+  border 1px solid $brand-border
+  border-radius $border-radius-default
+
+  > {$selector-prefix + '-list-header'}
+    background-color $brand-bg-light
+    border-bottom 1px solid $brand-border

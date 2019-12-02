@@ -1,0 +1,44 @@
+@import '../../../env'
+
+$backtop-size = 40px
+$backtop-icon-size = 24px
+
+$backtop-bg-color = rgba(0,0,0,0.6)
+$backtop-bg-color-legacy = #000
+$backtop-bg-opacity-legacy = 0.6
+
+{$selector-prefix + '-backtop'}
+  position fixed
+  z-index $zindex-backtop
+  opacity 0
+  display none
+  text-align center
+  box-shadow $brand-message-shadow
+  width $backtop-size
+  height $backtop-size
+  line-height $backtop-size
+  border-radius $border-radius-default
+  transition opacity .3s
+  box-sizing border-box
+
+  ui-clickable()
+
+  background-color $backtop-bg-color
+
+  {$selector-prefix + '-icon'}
+    color $brand-white
+    font-size $backtop-icon-size
+    line-height inherit
+
+  &{$selector-prefix + '-backtop-legacy'}
+    background-color $backtop-bg-color-legacy
+    opacity $backtop-bg-opacity-legacy
+
+{$selector-prefix + '-backtop-visible'}
+  display block
+
+{$selector-prefix + '-backtop-fade'}
+  opacity 1
+
+
+

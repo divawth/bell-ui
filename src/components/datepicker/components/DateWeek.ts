@@ -21,11 +21,13 @@ import {
 } from '../util'
 
 import {
+  TRUE,
   FALSE,
   RAW_DATE,
   RAW_STRING,
   RAW_NUMBER,
   RAW_BOOLEAN,
+  RAW_FUNCTION,
 } from '../../constant'
 
 export default Yox.define({
@@ -38,6 +40,9 @@ export default Yox.define({
     },
     checkedDate: {
       type: [RAW_DATE, RAW_NUMBER],
+    },
+    disabledDate: {
+      type: RAW_FUNCTION,
     },
     canPickYear: {
       type: RAW_BOOLEAN,
@@ -70,10 +75,16 @@ export default Yox.define({
 
   computed: {
     date(): SimpleDate {
-      return toSimpleDate(this.get('timestamp'))
+      const checkedDate = this.get('checkedDate')
+      return toSimpleDate(
+        checkedDate
+          ? toTimestamp(checkedDate)
+          : this.get('timestamp')
+      )
     },
     datasource(): DateRow[] {
-      return createDateViewDatasource(this.get('timestamp'))
+      const date = this.get('date')
+      return createDateViewDatasource(date.timestamp)
     },
     checkedTimestamp(): number {
       const checkedDate = this.get('checkedDate')
@@ -88,8 +99,16 @@ export default Yox.define({
   },
 
   filters: {
+    isCurrentMonth(item: SimpleDate) {
+      const date = this.get('date')
+      return date.year === item.year && date.month === item.month
+    },
+
     isEnabled(item: SimpleDate) {
-      return this.inCurrentMonth(item)
+      const disabledDate = this.get('disabledDate')
+      return disabledDate
+        ? disabledDate(item)
+        : TRUE
     },
   },
 
@@ -116,27 +135,15 @@ export default Yox.define({
   },
 
   methods: {
-    inCurrentMonth(item: SimpleDate) {
-      const date = this.get('date')
-      return date.year === item.year && date.month === item.month
-    },
     offset(offset: number) {
       this.set(
         'timestamp',
         offsetMonth(this.get('timestamp'), offset)
       )
     },
-    click(row: DateRow) {
+    click(colIndex: number) {
 
-      const { start, end } = row
-
-      // start 和 end 总得有一个在当前月份内，否则要更新视图月份
-      if (!this.inCurrentMonth(start) && !this.inCurrentMonth(end)) {
-        const date = new Date(this.get('timestamp'))
-        date.setFullYear(start.year)
-        date.setMonth(start.month - 1)
-        this.set('timestamp', date.getTime())
-      }
+      const { start, end } = this.get(`datasource.${colIndex}`)
 
       this.fire(
         'change.week',

@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Switch.hbs'
+// import './style/Switch.styl'
 
 import {
   FALSE,

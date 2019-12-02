@@ -1,0 +1,300 @@
+@import '../../../env'
+
+$datepicker-icon-size = 14px
+
+$datepicker-separator-gap = 5px
+
+$datepicker-dropdown-width = 260px
+$datepicker-date-range-dropdown-width = 520px
+
+$datepicker-grid-gap-vertical = 8px
+$datepicker-panel-padding = 5px 12px $datepicker-grid-gap-vertical
+
+$datepicker-header-height = 36px
+$datepicker-header-font-size = 15px
+
+$datepicker-header-icon-size = 14px
+
+$datepicker-header-button-width = 26px
+$datepicker-header-button-height = 26px
+
+$datepicker-week-height = 28px
+$datepicker-week-bg-color = #f9f9f9
+
+$datepicker-row-gap = 5px
+
+$datepicker-item-color = #666
+$datepicker-item-font-size = 12px
+$datepicker-item-height = 30px
+$datepicker-item-padding = 4px
+$datepicker-item-text-padding-horizontal = 9px
+$datepicker-item-checked-color = #fff
+$datepicker-item-checked-bg-color = $brand-primary
+$datepicker-item-range-bg-color = #f2f6fc
+
+$datepicker-month-row-gap = 10px
+
+$datepicker-shortcut-width = 90px
+$datepicker-shortcut-padding-vertical = 10px
+$datepicker-shortcut-bg-color = #f8f8f9
+$datepicker-shortcut-item-padding = 8px 10px
+
+// 从 select 拷来的
+datepicker-size-style(size)
+
+  {$selector-prefix + '-datepicker-value'},
+  {$selector-prefix + '-datepicker-placeholder'}
+    ui-set('font-size', size['font-size'])
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
+    ui-set('padding-right', size['icon-right'] + $datepicker-icon-size)
+
+  {$selector-prefix + '-datepicker-values'}
+    ui-set(
+      'padding',
+      size['button-padding-vertical'] size['icon-right'] + $datepicker-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
+    )
+
+    > {$selector-prefix + '-tag'}
+      ui-set('height', size['tag-height'])
+      ui-set('line-height', size['tag-height'])
+      ui-set('margin-right', size['tag-gap-horizontal'])
+      ui-set('margin-bottom', size['tag-gap-vertical'])
+
+  {$selector-prefix + '-datepicker-calendar-icon'},
+  {$selector-prefix + '-datepicker-clear-icon'}
+    ui-set('right', size['icon-right'])
+
+datepicker-brand-style(style)
+  &{$selector-prefix + '-datepicker-enabled'} {$selector-prefix + '-datepicker-button'}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-datepicker-button'}
+    ui-set('border-color', style['color'])
+
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+{$selector-prefix + '-datepicker'}
+  width $ui-form-element-width
+  display inline-block
+
+  {$selector-prefix + '-dropdown-overlay'}
+    padding 0
+
+  {$selector-prefix + '-datepicker-date'},
+  {$selector-prefix + '-datepicker-month'},
+  {$selector-prefix + '-datepicker-year'},
+  {$selector-prefix + '-datepicker-week'}
+    width $datepicker-dropdown-width
+
+  {$selector-prefix + '-datepicker-daterange'}
+    width $datepicker-date-range-dropdown-width
+
+  ui-connect(
+    hash: $form-button-size-hash,
+    each: datepicker-size-style
+  )
+  ui-connect(
+    hash: $status-brand-hash,
+    each: datepicker-brand-style
+  )
+
+{$selector-prefix + '-datepicker-block'}
+  display block
+  width 100%
+
+{$selector-prefix + '-datepicker-separator'}
+  margin 0 $datepicker-separator-gap
+
+{$selector-prefix + '-datepicker-shortcut'}
+  position absolute
+  left 0
+  top 0
+  bottom 0
+  padding $datepicker-shortcut-padding-vertical 0
+
+  box-sizing border-box
+  width $datepicker-shortcut-width
+  color $datepicker-item-color
+  font-size $datepicker-item-font-size
+  background-color $datepicker-shortcut-bg-color
+  border-right 1px solid $brand-divider
+
+{$selector-prefix + '-datepicker-shortcut-item'}
+  ui-ellipsis()
+  ui-clickable()
+  padding $datepicker-shortcut-item-padding
+
+  &:hover
+    color $brand-primary
+
+{$selector-prefix + '-datepicker-shortcut'} + {$selector-prefix + '-datepicker-panel'},
+{$selector-prefix + '-datepicker-shortcut'} + {$selector-prefix + '-datepicker-daterange'}
+  margin-left $datepicker-shortcut-width
+
+{$selector-prefix + '-datepicker-header'},
+{$selector-prefix + '-datepicker-body'}
+  user-select none
+
+{$selector-prefix + '-datepicker-header'}
+  color $brand-content
+  font-size $datepicker-header-font-size
+  font-weight 400
+  height $datepicker-header-height
+  line-height $datepicker-header-height
+  text-align center
+  position relative
+
+{$selector-prefix + '-datepicker-prev'},
+{$selector-prefix + '-datepicker-next'}
+  position absolute
+  top 0.5 * ($datepicker-header-height - $datepicker-header-button-height)
+  line-height 0
+
+{$selector-prefix + '-datepicker-prev'}
+  left 0
+
+{$selector-prefix + '-datepicker-next'}
+  right 0
+
+{$selector-prefix + '-datepicker-header-icon'}
+  font-size $datepicker-header-icon-size
+
+{$selector-prefix + '-datepicker-header-link'}
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-primary
+
+  + {$selector-prefix + '-datepicker-header-link'}
+    margin-left $ui-horizontal-gap
+
+{$selector-prefix + '-datepicker-header-button'}
+  color $brand-close-color
+  display inline-block
+  width $datepicker-header-button-width
+  height $datepicker-header-button-height
+  line-height $datepicker-header-button-height
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover
+
+{$selector-prefix + '-datepicker-weeks'}
+  background-color $datepicker-week-bg-color
+  line-height $datepicker-week-height
+
+  > {$selector-prefix + '-datepicker-col'}
+    padding 0
+    vertical-align top
+
+{$selector-prefix + '-datepicker-row'}
+  margin-top $datepicker-row-gap
+
+  &:first-child
+    margin-top $datepicker-grid-gap-vertical
+
+{$selector-prefix + '-datepicker-col'}
+  width 14.285%
+  color $datepicker-item-color
+  font-size $datepicker-item-font-size
+  display inline-block
+  box-sizing border-box
+  text-align center
+  padding 0 $datepicker-item-padding
+
+{$selector-prefix + '-datepicker-col-checked'}
+  border-radius $border-radius-round
+
+{$selector-prefix + '-datepicker-col-start'},
+{$selector-prefix + '-datepicker-col-end'}
+  background-color $datepicker-item-range-bg-color
+
+{$selector-prefix + '-datepicker-col-start'}
+  border-top-right-radius 0
+  border-bottom-right-radius 0
+
+{$selector-prefix + '-datepicker-col-end'}
+  border-top-left-radius 0
+  border-bottom-left-radius 0
+
+{$selector-prefix + '-datepicker-col-range'}
+  background-color $datepicker-item-range-bg-color
+
+{$selector-prefix + '-datepicker-col-enabled'}
+  ui-clickable()
+  &:hover
+    color $brand-primary
+
+{$selector-prefix + '-datepicker-col-disabled'}
+  color $brand-disabled
+  ui-disabled()
+
+{$selector-prefix + '-datepicker-col-adjacent-month'}
+  color $brand-disabled
+
+{$selector-prefix + '-datepicker-text'}
+  border-radius $border-radius-round
+  box-sizing border-box
+  height $datepicker-item-height - 2 * $datepicker-item-padding
+  line-height $datepicker-item-height - 2 * $datepicker-item-padding
+
+{$selector-prefix + '-datepicker-col-checked'}
+  > {$selector-prefix + '-datepicker-text'}
+    color $datepicker-item-checked-color
+    background-color $datepicker-item-checked-bg-color
+
+{$selector-prefix + '-datepicker-panel'}
+  box-sizing border-box
+  padding $datepicker-panel-padding
+
+  + {$selector-prefix + '-datepicker-panel'}
+    position relative
+    &:before
+      content ''
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 1px
+      background-color $brand-divider
+
+{$selector-prefix + '-datepicker-daterange'},
+{$selector-prefix + '-datepicker-week'}
+  {$selector-prefix + '-datepicker-col'}
+    padding $datepicker-item-padding
+
+{$selector-prefix + '-datepicker-daterange'}
+  {$selector-prefix + '-datepicker-panel'}
+    display inline-block
+    width 50%
+
+{$selector-prefix + '-datepicker-month'},
+{$selector-prefix + '-datepicker-year'}
+
+  {$selector-prefix + '-datepicker-row'} + {$selector-prefix + '-datepicker-row'}
+    margin-top $datepicker-month-row-gap
+
+  {$selector-prefix + '-datepicker-col'}
+    width 25%
+
+ui-form-button(
+  $selector-prefix + '-datepicker-enabled',
+  $selector-prefix + '-datepicker-disabled',
+  $selector-prefix + '-datepicker-clearable',
+  $selector-prefix + '-datepicker-button',
+  $selector-prefix + '-datepicker-values',
+  $selector-prefix + '-datepicker-value',
+  $selector-prefix + '-datepicker-placeholder',
+  $selector-prefix + '-datepicker-calendar-icon',
+  $selector-prefix + '-datepicker-clear-icon',
+  $datepicker-icon-size,
+  $datepicker-icon-size
+)

@@ -3,9 +3,7 @@ class="${prefix}link
 {{#if type}} ${prefix}link-{{type}}{{/if}}
 {{#if size}} ${prefix}link-{{size}}{{/if}}
 {{#if underline}} ${prefix}link-underline{{/if}}
-{{#if disabled}} ${prefix}link-disabled
-{{else}} ${prefix}link-enabled
-{{/if}}
+{{#if disabled}} ${prefix}link-disabled{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 href="{{href || 'javascript:void(0)'}}"

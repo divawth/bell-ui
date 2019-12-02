@@ -1,8 +1,10 @@
 import Yox from 'yox'
 
+import template from './template/Thumbnail.hbs'
+// import './style/Thumbnail.styl'
+
 import Icon from '../icon/Icon'
 import Spin from '../spin/Spin'
-import template from './template/Thumbnail.hbs'
 
 import {
   TRUE,

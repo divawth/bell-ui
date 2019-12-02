@@ -108,17 +108,18 @@ export default Yox.define({
   },
 
   filters: {
-    isEnabled(item: SimpleDate) {
+    isCurrentMonth(item: SimpleDate) {
       const date = this.get('date')
-      const isEnabled = date.year === item.year && date.month === item.month
-      if (!isEnabled) {
-        return FALSE
-      }
+      return date.year === item.year && date.month === item.month
+    },
+
+    isEnabled(item: SimpleDate) {
       const disabledDate = this.get('disabledDate')
       return disabledDate
         ? disabledDate(item)
         : TRUE
     },
+
     isChecked(item: SimpleDate) {
       const checkedTimestamps = this.get('checkedTimestamps')
       return Yox.array.has(checkedTimestamps, item.timestamp)

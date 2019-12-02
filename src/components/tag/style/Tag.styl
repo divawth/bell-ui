@@ -1,0 +1,133 @@
+@import '../../../env'
+
+$tag-bg-color = #fafafa
+$tag-close-icon-size = 14px
+
+$tag-size-hash = {
+  default: {
+    height: 24px,
+    font-size: 12px,
+    close-width: 22px,
+    padding-horizontal: 8px,
+  },
+  large: {
+    height: 28px,
+    font-size: 14px,
+    close-width: 26px,
+    padding-horizontal: 10px,
+  }
+}
+
+$tag-brand-hash = {
+  primary: {
+    color: $brand-primary,
+    bg-color: $brand-primary-bg,
+    border-color: $brand-primary-border,
+    text-color: $brand-white,
+  },
+  success: {
+    color: $brand-success,
+    bg-color: $brand-success-bg,
+    border-color: $brand-success-border,
+    text-color: $brand-white,
+  },
+  error: {
+    color: $brand-error,
+    bg-color: $brand-error-bg,
+    border-color: $brand-error-border,
+    text-color: $brand-white,
+  },
+  info: {
+    color: $brand-info,
+    bg-color: $brand-info-bg,
+    border-color: $brand-info-border,
+    text-color: $brand-white,
+  },
+  warning: {
+    color: $brand-warning,
+    bg-color: $brand-warning-bg,
+    border-color: $brand-warning-border,
+    text-color: $brand-white,
+  },
+}
+
+
+tag-size-style(style)
+  ui-set('font-size', style['font-size'])
+  ui-set('height', style['height'])
+  ui-set('line-height', style['height'] - 2)
+  ui-set('padding', 0 style['padding-horizontal'])
+
+  &{$selector-prefix + '-tag-pure'}
+    ui-set('line-height', style['height'])
+
+  &{$selector-prefix + '-tag-closable'}
+    ui-set('padding-right', style['close-width'])
+
+  > {$selector-prefix + '-tag-close-icon'}
+    ui-set('width', style['close-width'])
+
+tag-brand-style(style)
+  ui-set('background-color', style['bg-color'])
+  ui-set('border-color', style['border-color'])
+  ui-set('color', style['color'])
+
+  > {$selector-prefix + '-tag-close-icon'}
+    ui-set('color', style['color'])
+
+  &{$selector-prefix + '-tag-checked'}
+    ui-set('background-color', style['color'])
+    ui-set('border-color', style['color'])
+    ui-set('color', style['text-color'])
+
+    > {$selector-prefix + '-tag-close-icon'}
+      ui-set('color', style['text-color'])
+
+{$selector-prefix + '-tag'}
+  display inline-block
+  position relative
+  border 1px solid $brand-border
+  background-color $tag-bg-color
+  color $brand-content
+  border-radius $border-radius-default
+  box-sizing border-box
+  transition background-color .3s, border-color .3s, color .3s
+
+{$selector-prefix + '-tag-checkable'}
+  user-select none
+  ui-clickable()
+
+{$selector-prefix + '-tag-close-icon'}
+  position absolute
+  top 0
+  right 0
+  bottom 0
+  text-align center
+  color $brand-close-color
+  font-size $tag-close-icon-size
+  line-height inherit
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover
+
+// 放在最后，避免被覆盖
+{$selector-prefix + '-tag'}
+  ui-connect(
+    hash: $tag-size-hash,
+    each: tag-size-style
+  )
+  ui-connect(
+    hash: $tag-brand-hash,
+    each: tag-brand-style
+  )
+
+{$selector-prefix + '-tag-pure'}
+  border 0
+  background-color transparent
+  color $brand-white
+
+  > {$selector-prefix + '-tag-close-icon'},
+  > {$selector-prefix + '-tag-close-icon'}:hover
+    color inherit

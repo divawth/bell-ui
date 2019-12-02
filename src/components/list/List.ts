@@ -1,8 +1,10 @@
 import Yox from 'yox'
 
+import template from './template/List.hbs'
+// import './style/List.styl'
+
 import Spin from '../spin/Spin'
 import Empty from '../empty/Empty'
-import template from './template/List.hbs'
 
 import {
   FALSE,

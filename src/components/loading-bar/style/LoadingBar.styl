@@ -1,0 +1,45 @@
+@import '../../../env'
+
+$loadingbar-bg-color = #f8f8f8
+
+$loadingbar-brand-hash = {
+  primary: {
+    color: $brand-primary
+  },
+  success: {
+    color: $brand-success
+  },
+  error: {
+    color: $brand-error
+  },
+  info: {
+    color: $brand-info
+  },
+  warning: {
+    color: $brand-warning
+  }
+}
+
+loadingbar-brand-style(style)
+  {$selector-prefix + '-loadingbar-indicator'}
+    ui-set('background-color', style['color'])
+
+#bell-loadingbar-wrapper
+  position fixed
+  left 0
+  right 0
+  top 0
+  z-index $zindex-loadingbar
+
+{$selector-prefix + '-loadingbar'}
+  background-color $loadingbar-bg-color
+  ui-connect(
+    hash: $loadingbar-brand-hash,
+    each: loadingbar-brand-style
+  )
+
+{$selector-prefix + '-loadingbar-indicator'}
+  // 给一个足够大的值，使得右侧是半圆
+  border-top-right-radius 50px
+  border-bottom-right-radius 50px
+  transition width .3s

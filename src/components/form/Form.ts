@@ -3,6 +3,7 @@ import Yox from 'yox'
 import { Validator } from './util/validate'
 
 import template from './template/Form.hbs'
+// import './style/Form.styl'
 
 import {
   TRUE,

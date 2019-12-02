@@ -1,8 +1,9 @@
 import Yox from 'yox'
 
+import template from './template/Alert.hbs'
+
 import Button from '../button/Button'
 import Dialog from '../dialog/Dialog'
-import template from './template/Alert.hbs'
 
 import {
   TRUE,

@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Badge.hbs'
+// import './style/Badge.styl'
 
 import {
   FALSE,

@@ -1,0 +1,119 @@
+@import '../../../env'
+
+$slider-bg-color = #e8eaec
+
+$slider-thickness = 4px
+$slider-thumb-size = 12px
+$slider-tooltip-gap = 5px
+
+{$selector-prefix + '-slider'}
+  display inline-block
+  user-select none
+  box-sizing border-box
+
+  {$selector-prefix + '-tooltip-popup'}
+    top auto
+
+{$selector-prefix + '-slider-track'}
+  background-color $slider-bg-color
+  border-radius $border-radius-round
+  position relative
+
+{$selector-prefix + '-slider-bar'}
+  background-color $brand-primary
+  border-radius $border-radius-round
+  position absolute
+  left 0
+
+{$selector-prefix + '-slider-stop'}
+  width $slider-thickness
+  height $slider-thickness
+  border-radius $border-radius-circle
+  background-color $brand-white
+  position absolute
+
+{$selector-prefix + '-slider-thumb'}
+  width $slider-thumb-size
+  height $slider-thumb-size
+  border-radius $border-radius-circle
+  background-color $brand-bg
+  box-sizing border-box
+
+  position absolute
+  margin-left -0.5 * $slider-thumb-size
+  border 2px solid $brand-primary
+  transition transform .3s
+
+{$selector-prefix + '-slider-vertical'}
+  height $ui-form-element-width
+  padding 0.5 * $slider-thumb-size 0.5 * ($slider-thumb-size - $slider-thickness)
+
+  {$selector-prefix + '-slider-track'}
+    width $slider-thickness
+    height 100%
+
+  {$selector-prefix + '-slider-bar'}
+    width $slider-thickness
+    bottom 0
+
+  {$selector-prefix + '-slider-stop'}
+    left 0
+    margin-bottom -0.5 * $slider-thickness
+
+  {$selector-prefix + '-slider-thumb'}
+    left 50%
+    margin-bottom -0.5 * $slider-thumb-size
+
+  {$selector-prefix + '-tooltip-popup'}
+    left 0.5 * $slider-thumb-size + $slider-tooltip-gap
+
+{$selector-prefix + '-slider-horizontal'}
+  width $ui-form-element-width
+  padding 0.5 * ($slider-thumb-size - $slider-thickness) 0.5 * $slider-thumb-size
+
+  {$selector-prefix + '-slider-track'}
+    height $slider-thickness
+    width 100%
+
+  {$selector-prefix + '-slider-bar'}
+    height $slider-thickness
+    top 0
+
+  {$selector-prefix + '-slider-stop'}
+    top 0
+    margin-left -0.5 * $slider-thickness
+
+  {$selector-prefix + '-slider-thumb'}
+    top 50%
+    margin-top -0.5 * $slider-thumb-size
+
+  {$selector-prefix + '-tooltip-popup'}
+    bottom 0.5 * $slider-thumb-size + $slider-tooltip-gap
+
+{$selector-prefix + '-slider-enabled'}
+  {$selector-prefix + '-slider-track'}
+    ui-clickable()
+
+  {$selector-prefix + '-slider-thumb'}
+    ui-clickable()
+
+    &:hover
+      transform scale(1.3)
+
+{$selector-prefix + '-slider-disabled'}
+  {$selector-prefix + '-slider-bar'}
+    background-color $brand-disabled
+
+  {$selector-prefix + '-slider-thumb'}
+    border-color $brand-disabled
+    ui-disabled()
+
+{$selector-prefix + '-slider-dragging'}
+  {$selector-prefix + '-slider-thumb'}
+    transform scale(1.3)
+
+{$selector-prefix + '-slider-block'}
+  display block
+
+  &{$selector-prefix + '-slider-horizontal'}
+    width 100%

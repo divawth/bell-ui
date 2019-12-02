@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Collapse.hbs'
+// import './style/Collapse.styl'
 
 import {
   TRUE,

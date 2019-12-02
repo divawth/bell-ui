@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Text.hbs'
+// import './style/Text.styl'
 
 import {
   RAW_STRING,

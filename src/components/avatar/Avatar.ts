@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Avatar.hbs'
+// import './style/Avatar.styl'
 
 import {
   TRUE,

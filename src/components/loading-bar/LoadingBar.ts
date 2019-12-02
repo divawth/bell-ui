@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/LoadingBar.hbs'
+// import './style/LoadingBar.styl'
 
 import {
   UNDEFINED,

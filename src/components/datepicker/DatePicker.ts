@@ -9,6 +9,7 @@ import DateMonth from './components/DateMonth'
 import DateYear from './components/DateYear'
 
 import template from './template/DatePicker.hbs'
+// import './style/DatePicker.styl'
 
 import {
   TRUE,

@@ -1,9 +1,0 @@
-notification-brand-style(style)
-  > {$selector-notification-icon}
-    ui-set('color', style['color'])
-
-ui-notification()
-  ui-connect(
-    hash: $status-brand-hash,
-    each: notification-brand-style
-  )

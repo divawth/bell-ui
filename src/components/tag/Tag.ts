@@ -1,7 +1,9 @@
 import Yox from 'yox'
 
-import Icon from '../icon/Icon'
 import template from './template/Tag.hbs'
+// import './style/Tag.styl'
+
+import Icon from '../icon/Icon'
 
 import {
   FALSE,

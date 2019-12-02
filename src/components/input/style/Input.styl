@@ -1,0 +1,215 @@
+@import '../../../env'
+
+$input-prepend-append-font-size = 12px
+$input-prepend-append-color = #666
+$input-prepend-append-bg-color = #f5f7fa
+$input-prepend-append-padding-horizontal = 10px
+
+$input-size-hash = {
+  default: {
+    height: $height-default,
+    font-size: $font-size-default,
+    padding-vertical: $padding-vertical-default,
+    padding-horizontal: $padding-horizontal-default,
+  },
+  small: {
+    height: $height-small,
+    font-size: $font-size-small,
+    padding-vertical: $padding-vertical-small,
+    padding-horizontal: $padding-horizontal-small,
+  },
+  large: {
+    height: $height-large,
+    font-size: $font-size-large,
+    padding-vertical: $padding-vertical-large,
+    padding-horizontal: $padding-horizontal-large,
+  },
+}
+
+input-size-style(style)
+
+  > {$selector-prefix + '-input-prepend'},
+  > {$selector-prefix + '-input-append'},
+  {$selector-prefix + '-input-el'}
+    ui-set('height', style['height'])
+
+  > {$selector-prefix + '-input-prepend'},
+  > {$selector-prefix + '-input-append'}
+    ui-set('min-width', style['height'])
+
+  {$selector-prefix + '-input-el'}
+    ui-set('font-size', style['font-size'])
+    ui-set('line-height', style['height'])
+    ui-set('padding', 0 style['padding-horizontal'])
+
+  {$selector-prefix + '-input-prefix'}
+    ui-set('left', style['padding-horizontal'])
+
+  {$selector-prefix + '-input-suffix'}
+    ui-set('right', style['padding-horizontal'])
+
+  {$selector-prefix + '-input-el-with-prefix'}
+    ui-set('padding-left', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
+
+  {$selector-prefix + '-input-el-with-suffix'}
+    ui-set('padding-right', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
+
+  {$selector-prefix + '-input-prefix'},
+  {$selector-prefix + '-input-suffix'}
+    ui-set('margin-top', -0.5 * style['font-size'])
+
+  {$selector-prefix + '-input-prefix-icon'},
+  {$selector-prefix + '-input-suffix-icon'},
+  {$selector-prefix + '-input-secure-icon'},
+  {$selector-prefix + '-input-clear-icon'}
+    ui-set('font-size', style['font-size'])
+
+input-brand-style(style)
+  {$selector-prefix + '-input-el'}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+    &:focus
+      ui-set('border-color', style['color'])
+      if $ui-shadow-radius > 0
+        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+{$selector-prefix + '-input'}
+  display inline-table
+  width $ui-form-element-width
+  vertical-align middle
+  box-sizing border-box
+
+  + {$selector-prefix + '-input'}
+    margin-left $ui-horizontal-gap
+
+  + {$selector-prefix + '-input-block'}
+    margin-left 0
+
+  ui-connect(
+    hash: $status-brand-hash,
+    each: input-brand-style
+  )
+  ui-connect(
+    hash: $input-size-hash,
+    each: input-size-style
+  )
+
+{$selector-prefix + '-input-block'}
+  display block
+  width 100%
+
+{$selector-prefix + '-input-el'}
+  ui-input()
+
+{$selector-prefix + '-input-prefix'},
+{$selector-prefix + '-input-suffix'}
+  position absolute
+  top 50%
+  color $brand-close-color
+  line-height 0
+
+{$selector-prefix + '-input-secure'},
+{$selector-prefix + '-input-clear'}
+  transition color .3s
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover
+
+{$selector-prefix + '-input-prepend'},
+{$selector-prefix + '-input-append'}
+  display table-cell
+  vertical-align middle
+  text-align center
+  width 1px
+  border 1px solid $brand-border
+  font-size $input-prepend-append-font-size
+  box-sizing border-box
+  color $input-prepend-append-color
+  background-color $input-prepend-append-bg-color
+  padding 0 $input-prepend-append-padding-horizontal
+
+  {$selector-prefix + '-select-button'},
+  {$selector-prefix + '-button-pure'}
+    border-color transparent !important
+    box-shadow none !important
+    background-color transparent !important
+
+  {$selector-prefix + '-select-placeholder'},
+  {$selector-prefix + '-select-value'},
+  {$selector-prefix + '-button-pure'}
+    color inherit
+    font-size inherit
+
+  {$selector-prefix + '-select'},
+  {$selector-prefix + '-button'}
+    margin-top -1px
+    margin-bottom -1px
+    vertical-align top
+
+  {$selector-prefix + '-button'}
+    height inherit
+    line-height inherit
+    position relative
+
+  {$selector-prefix + '-button-pure'}:hover
+    color $brand-content !important
+
+{$selector-prefix + '-input-prepend'}
+  border-right none
+  border-top-left-radius $border-radius-default
+  border-bottom-left-radius $border-radius-default
+
+  {$selector-prefix + '-select'},
+  {$selector-prefix + '-button'}
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+  {$selector-prefix + '-button'}
+    border-top-right-radius 0
+    border-bottom-right-radius 0
+
+{$selector-prefix + '-input-append'}
+  border-left none
+  border-top-right-radius $border-radius-default
+  border-bottom-right-radius $border-radius-default
+
+  {$selector-prefix + '-select'},
+  {$selector-prefix + '-button'}
+    margin-left - $input-prepend-append-padding-horizontal - 1
+    margin-right - $input-prepend-append-padding-horizontal - 1
+
+  {$selector-prefix + '-button'}
+    border-top-left-radius 0
+    border-bottom-left-radius 0
+
+{$selector-prefix + '-input-content'}
+  position relative
+  box-sizing border-box
+
+{$selector-prefix + '-input-clear'}
+  display none
+
+{$selector-prefix + '-input-no-value'}
+  {$selector-prefix + '-input-clear'}
+    display none
+
+{$selector-prefix + '-input-has-value'}
+  {$selector-prefix + '-input-el'}:focus + {$selector-prefix + '-input-clear'},
+  &:hover {$selector-prefix + '-input-clear'}
+    display block
+
+{$selector-prefix + '-input-el-with-prepend'}
+  border-top-left-radius 0
+  border-bottom-left-radius 0
+
+{$selector-prefix + '-input-el-with-append'}
+  border-top-right-radius 0
+  border-bottom-right-radius 0
+
+{$selector-prefix + '-input-disabled'}
+  ui-input-disabled($selector-prefix + '-input-el')
+

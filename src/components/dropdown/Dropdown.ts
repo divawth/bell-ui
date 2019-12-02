@@ -1,6 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Dropdown.hbs'
+// import './style/Dropdown.styl'
 
 import {
   FALSE,

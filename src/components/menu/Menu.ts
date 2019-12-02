@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import template from './template/Menu.hbs'
+// import './style/Menu.styl'
 
 import {
   TRUE,

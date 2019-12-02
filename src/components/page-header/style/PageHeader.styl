@@ -1,0 +1,75 @@
+@import '../../../env'
+
+$page-header-padding-vertical = 16px
+
+$page-header-back-icon-size = 20px
+$page-header-title-font-size = 20px
+
+$page-header-breadcrumb-header-gap = 10px
+$page-header-back-title-gap = 10px
+$page-header-title-tags-gap = 12px
+$page-header-header-body-gap = 16px
+
+{$selector-prefix + '-page-header'}
+  padding $page-header-padding-vertical $layout-padding-horizontal
+
+  > {$selector-prefix + '-breadcrumb'}
+    margin-bottom $page-header-breadcrumb-header-gap
+
+{$selector-prefix + '-page-header-with-back'},
+{$selector-prefix + '-page-header-with-tags'},
+{$selector-prefix + '-page-header-with-extra'}
+  {$selector-prefix + '-page-header-header'}
+    display table
+
+  {$selector-prefix + '-page-header-back'},
+  {$selector-prefix + '-page-header-title'},
+  {$selector-prefix + '-page-header-tags'},
+  {$selector-prefix + '-page-header-extra'}
+    display table-cell
+    vertical-align middle
+    white-space nowrap
+
+{$selector-prefix + '-page-header-with-back'},
+{$selector-prefix + '-page-header-with-extra'}
+  {$selector-prefix + '-page-header-title'}
+    width 100%
+
+{$selector-prefix + '-page-header-with-tags'}
+  {$selector-prefix + '-page-header-title'}
+    width 1px
+
+{$selector-prefix + '-page-header-title'}
+  color $brand-title
+  font-size $page-header-title-font-size
+  font-weight 500
+  line-height $ui-single-line-height
+
+{$selector-prefix + '-page-header-back'}
+  ui-clickable()
+
+  color $brand-title
+  font-size $page-header-back-icon-size
+  padding-right $page-header-back-title-gap
+  transition color .3s
+
+  // 图标有一些 padding-left
+  position relative
+  left -3px
+
+  &:hover
+    color $brand-primary
+
+{$selector-prefix + '-page-header-tags'}
+  width 100%
+  padding-left $page-header-title-tags-gap
+
+  > {$selector-prefix + '-tag'} + {$selector-prefix + '-tag'}
+    margin-left $ui-horizontal-gap
+
+{$selector-prefix + '-page-header-back'},
+{$selector-prefix + '-page-header-extra'}
+  width 1px
+
+{$selector-prefix + '-page-header-body'}
+  margin-top $page-header-header-body-gap
