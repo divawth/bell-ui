@@ -62,36 +62,18 @@ export default {
   },
   methods: {
     handleSubmit() {
-      let errors = this.$refs.form.validate(
-        this.get('form'),
-        {
-          username: {
-            type: 'string',
-            required: true,
-            empty: false,
-          },
-          password: {
-            type: 'string',
-            required: true,
-            empty: false,
-            min: 6
-          }
-        },
-        {
-          username: {
-            required: '缺少用户名',
-            empty: '用户名不能是空字符串'
-          },
-          password: {
-            required: '缺少密码',
-            empty: '密码不能是空字符串',
-            min: '密码长度不能小于 6 位'
-          }
-        }
-      )
+
+      // 通过第三方校验器获得一个校验结果，推荐使用 x-validator
+      let errors = {
+        username: 'username 错误',
+        password: 'password 错误'
+      }
+
+      this.$refs.form.validate(errors)
       this.set({
         errors: errors
       })
+
       if (errors) {
         this.$message.error('验证失败!')
       }
@@ -288,124 +270,6 @@ export default {
     </FormItem>
   </Form>
   `
-}
-```
-
-> 自定义验证
-
-```js
-export default {
-  template: `
-    <div>
-      <Form ref="form" labelWidth="80" labelAlign="left">
-        <FormItem
-          prop="password"
-          label="Password"
-          message="{{errors.password}}"
-        >
-          <Input
-            type="password"
-            model="form.password"
-            status="{{errors.password ? 'error' : ''}}"
-          />
-        </FormItem>
-        <FormItem
-          prop="passwordConfirm"
-          label="Confirm"
-        >
-          <Input
-            type="password"
-            model="form.passwordConfirm"
-            status="{{errors.passwordConfirm ? 'error' : ''}}"
-          />
-        </FormItem>
-        <FormItem
-          prop="age"
-          label="Age"
-        >
-          <InputNumber
-            model="form.age"
-            status="{{errors.age ? 'error' : ''}}"
-          />
-        </FormItem>
-        <FormItem>
-          <Button
-            type="primary"
-            on-click="handleSubmit()"
-          >
-            Submit
-          </Button>
-        </FormItem>
-    </Form>
-    </div>
-  `,
-  data: {
-    errors: {},
-    form: {
-      password: '',
-      passwordConfirm: '',
-      age: 0
-    }
-  },
-  methods: {
-    handleSubmit() {
-      let errors = this.$refs.form.validate(
-        this.get('form'),
-        {
-          password: {
-            type: 'string',
-            required: true,
-            empty: false,
-            min: 6
-          },
-          // 自定义验证逻辑
-          passwordConfirm: {
-            required: true,
-            validate: function (value, data) {
-               if (!value) {
-                 return 'empty'
-               }
-               if (value !== data.password) {
-                 return 'equals'
-               }
-            }
-          },
-          age: {
-            type: 'int',
-            min: 1,
-            max: 100
-          }
-        },
-        {
-          password: {
-            required: '缺少密码',
-            empty: '密码不能是空字符串',
-            min: '密码长度不能小于 6 位'
-          },
-          passwordConfirm: {
-            required: '缺少密码验证',
-            empty: '密码验证不能是空字符串',
-            equals: '两次输入的密码不相同'
-          },
-          age: {
-            type: '请输入整数',
-            min: '年龄不能小于 1 岁',
-            max: '年龄不能大于 100 岁',
-          }
-        }
-      )
-      console.log(errors)
-      this.set({
-        errors: errors
-      })
-      if (errors) {
-        this.$message.error('验证失败!')
-      }
-      else {
-        this.$message.success('提交成功!')
-      }
-    }
-  }
 }
 ```
 

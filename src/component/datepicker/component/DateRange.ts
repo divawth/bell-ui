@@ -24,6 +24,22 @@ import {
   RAW_BOOLEAN,
 } from '../../constant'
 
+function getEndTimestamp(startTimestamp: number, endTimestamp: number) {
+
+  const startDate = new Date(startTimestamp)
+  const endDate = new Date(endTimestamp)
+
+  startDate.setDate(1)
+  endDate.setDate(1)
+
+  if (endDate.getTime() > startDate.getTime()) {
+    return endDate.getTime()
+  }
+
+  return offsetMonth(endTimestamp, 1)
+
+}
+
 export default Yox.define({
 
   template,
@@ -67,9 +83,7 @@ export default Yox.define({
       weeks: WEEKS,
 
       startTimestamp,
-      endTimestamp: endTimestamp <= startTimestamp
-        ? offsetMonth(startTimestamp, 1)
-        : endTimestamp,
+      endTimestamp: getEndTimestamp(startTimestamp, endTimestamp),
 
       // 点击后钉住的日期
       pinDate: UNDEFINED,
@@ -133,8 +147,12 @@ export default Yox.define({
       }
     },
     checkedEndDate(value) {
-      if (value) {
-        this.set('endTimestamp', toTimestamp(value))
+      const startTimestamp = this.get('startTimestamp')
+      if (startTimestamp && value) {
+        this.set(
+          'endTimestamp',
+          getEndTimestamp(startTimestamp, toTimestamp(value))
+        )
       }
     }
   },

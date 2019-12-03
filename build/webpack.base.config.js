@@ -88,7 +88,7 @@ module.exports = {
     extensions: ['.js', '.ts'],
     alias: {
       'Yox': 'yox',
-      '@components': path.resolve(__dirname, '..', 'src', 'components'),
+      '@component': path.resolve(__dirname, '..', 'src', 'component'),
       '@css': path.resolve(__dirname, '..', 'src', 'css')
     }
   },

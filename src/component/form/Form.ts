@@ -1,6 +1,4 @@
-import Yox from 'yox'
-
-import { Validator } from './util/validate'
+import Yox, { Data } from 'yox'
 
 import template from './template/Form.hbs'
 // import './style/Form.styl'
@@ -19,8 +17,6 @@ import {
 import {
   oneOf,
 } from '../util'
-
-const validator = new Validator()
 
 export default Yox.define({
 
@@ -53,18 +49,12 @@ export default Yox.define({
   },
 
   methods: {
-    validate(value: object, rules: object, messages: object) {
-
-      const errors = validator.validate(value, rules, messages)
-
+    validate(errors: Data | void) {
       this.fire(
         'validate.form',
         { errors },
         TRUE
       )
-
-      return errors
-
-    }
+    },
   }
 })

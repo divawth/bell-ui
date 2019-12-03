@@ -607,11 +607,11 @@ var src = __webpack_require__(82);
 var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_ = __webpack_require__(0);
 var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default = /*#__PURE__*/__webpack_require__.n(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_);
 
-// EXTERNAL MODULE: ./src/components/menu/template/Menu.hbs
+// EXTERNAL MODULE: ./src/component/menu/template/Menu.hbs
 var Menu = __webpack_require__(1);
 var Menu_default = /*#__PURE__*/__webpack_require__.n(Menu);
 
-// CONCATENATED MODULE: ./src/components/constant.ts
+// CONCATENATED MODULE: ./src/component/constant.ts
 var TRUE = true;
 var FALSE = false;
 var NULL = null;
@@ -714,7 +714,7 @@ var DOCUMENT = document;
 var BODY = DOCUMENT.body;
 var HOVER_DELAY = 100;
 
-// CONCATENATED MODULE: ./src/components/util.ts
+// CONCATENATED MODULE: ./src/component/util.ts
 
 
 var util_element = DOCUMENT.createElement('div');
@@ -847,7 +847,7 @@ function scrollTop(element, from, to, duration, endCallback) {
     scroll(from, to, step);
 }
 
-// CONCATENATED MODULE: ./src/components/menu/Menu.ts
+// CONCATENATED MODULE: ./src/component/menu/Menu.ts
 
 
 // import './style/Menu.styl'
@@ -903,11 +903,11 @@ function scrollTop(element, from, to, duration, endCallback) {
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/menu/template/MenuItem.hbs
+// EXTERNAL MODULE: ./src/component/menu/template/MenuItem.hbs
 var MenuItem = __webpack_require__(2);
 var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
 
-// CONCATENATED MODULE: ./src/components/menu/MenuItem.ts
+// CONCATENATED MODULE: ./src/component/menu/MenuItem.ts
 
 
 
@@ -954,11 +954,11 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/menu/template/MenuGroup.hbs
+// EXTERNAL MODULE: ./src/component/menu/template/MenuGroup.hbs
 var MenuGroup = __webpack_require__(3);
 var MenuGroup_default = /*#__PURE__*/__webpack_require__.n(MenuGroup);
 
-// CONCATENATED MODULE: ./src/components/menu/MenuGroup.ts
+// CONCATENATED MODULE: ./src/component/menu/MenuGroup.ts
 
 
 
@@ -985,11 +985,11 @@ var MenuGroup_default = /*#__PURE__*/__webpack_require__.n(MenuGroup);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/icon/template/Icon.hbs
+// EXTERNAL MODULE: ./src/component/icon/template/Icon.hbs
 var Icon = __webpack_require__(4);
 var Icon_default = /*#__PURE__*/__webpack_require__.n(Icon);
 
-// CONCATENATED MODULE: ./src/components/icon/Icon.ts
+// CONCATENATED MODULE: ./src/component/icon/Icon.ts
 
 
 // import './style/Icon.styl'
@@ -1022,11 +1022,11 @@ var Icon_default = /*#__PURE__*/__webpack_require__.n(Icon);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/dropdown/template/Dropdown.hbs
+// EXTERNAL MODULE: ./src/component/dropdown/template/Dropdown.hbs
 var Dropdown = __webpack_require__(5);
 var Dropdown_default = /*#__PURE__*/__webpack_require__.n(Dropdown);
 
-// CONCATENATED MODULE: ./src/components/dropdown/Dropdown.ts
+// CONCATENATED MODULE: ./src/component/dropdown/Dropdown.ts
 
 
 // import './style/Dropdown.styl'
@@ -1166,11 +1166,11 @@ var CLASS_FADE = 'bell-dropdown-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/menu/template/Submenu.hbs
+// EXTERNAL MODULE: ./src/component/menu/template/Submenu.hbs
 var Submenu = __webpack_require__(6);
 var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
 
-// CONCATENATED MODULE: ./src/components/menu/Submenu.ts
+// CONCATENATED MODULE: ./src/component/menu/Submenu.ts
 
 
 
@@ -1228,11 +1228,11 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/text/template/Text.hbs
+// EXTERNAL MODULE: ./src/component/text/template/Text.hbs
 var Text = __webpack_require__(7);
 var Text_default = /*#__PURE__*/__webpack_require__.n(Text);
 
-// CONCATENATED MODULE: ./src/components/text/Text.ts
+// CONCATENATED MODULE: ./src/component/text/Text.ts
 
 
 // import './style/Text.styl'
@@ -1273,11 +1273,11 @@ var Text_default = /*#__PURE__*/__webpack_require__.n(Text);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/drawer/template/Drawer.hbs
+// EXTERNAL MODULE: ./src/component/drawer/template/Drawer.hbs
 var Drawer = __webpack_require__(8);
 var Drawer_default = /*#__PURE__*/__webpack_require__.n(Drawer);
 
-// CONCATENATED MODULE: ./src/components/drawer/Drawer.ts
+// CONCATENATED MODULE: ./src/component/drawer/Drawer.ts
 
 
 // import './style/Drawer.styl'
@@ -1385,11 +1385,11 @@ var Drawer_CLASS_FADE = 'bell-drawer-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/breadcrumb/template/Breadcrumb.hbs
+// EXTERNAL MODULE: ./src/component/breadcrumb/template/Breadcrumb.hbs
 var Breadcrumb = __webpack_require__(9);
 var Breadcrumb_default = /*#__PURE__*/__webpack_require__.n(Breadcrumb);
 
-// CONCATENATED MODULE: ./src/components/breadcrumb/Breadcrumb.ts
+// CONCATENATED MODULE: ./src/component/breadcrumb/Breadcrumb.ts
 
 
 // import './style/Breadcrumb.styl'
@@ -1411,11 +1411,11 @@ var Breadcrumb_default = /*#__PURE__*/__webpack_require__.n(Breadcrumb);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/breadcrumb/template/BreadcrumbItem.hbs
+// EXTERNAL MODULE: ./src/component/breadcrumb/template/BreadcrumbItem.hbs
 var BreadcrumbItem = __webpack_require__(10);
 var BreadcrumbItem_default = /*#__PURE__*/__webpack_require__.n(BreadcrumbItem);
 
-// CONCATENATED MODULE: ./src/components/breadcrumb/BreadcrumbItem.ts
+// CONCATENATED MODULE: ./src/component/breadcrumb/BreadcrumbItem.ts
 
 
 
@@ -1443,11 +1443,11 @@ var BreadcrumbItem_default = /*#__PURE__*/__webpack_require__.n(BreadcrumbItem);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/button/template/Button.hbs
+// EXTERNAL MODULE: ./src/component/button/template/Button.hbs
 var Button = __webpack_require__(11);
 var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
 
-// CONCATENATED MODULE: ./src/components/button/Button.ts
+// CONCATENATED MODULE: ./src/component/button/Button.ts
 
 
 // import './style/Button.styl'
@@ -1524,11 +1524,11 @@ var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/button/template/ButtonGroup.hbs
+// EXTERNAL MODULE: ./src/component/button/template/ButtonGroup.hbs
 var ButtonGroup = __webpack_require__(12);
 var ButtonGroup_default = /*#__PURE__*/__webpack_require__.n(ButtonGroup);
 
-// CONCATENATED MODULE: ./src/components/button/ButtonGroup.ts
+// CONCATENATED MODULE: ./src/component/button/ButtonGroup.ts
 
 
 
@@ -1557,11 +1557,11 @@ var ButtonGroup_default = /*#__PURE__*/__webpack_require__.n(ButtonGroup);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/input/template/Input.hbs
+// EXTERNAL MODULE: ./src/component/input/template/Input.hbs
 var Input = __webpack_require__(13);
 var Input_default = /*#__PURE__*/__webpack_require__.n(Input);
 
-// CONCATENATED MODULE: ./src/components/input/Input.ts
+// CONCATENATED MODULE: ./src/component/input/Input.ts
 
 
 // import './style/Input.styl'
@@ -1715,11 +1715,11 @@ var TEXT_TYPE_TEXT = 'text';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/input-number/template/InputNumber.hbs
+// EXTERNAL MODULE: ./src/component/input-number/template/InputNumber.hbs
 var InputNumber = __webpack_require__(14);
 var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
 
-// CONCATENATED MODULE: ./src/components/input-number/InputNumber.ts
+// CONCATENATED MODULE: ./src/component/input-number/InputNumber.ts
 
 
 // import './style/InputNumber.styl'
@@ -1863,11 +1863,11 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/textarea/template/Textarea.hbs
+// EXTERNAL MODULE: ./src/component/textarea/template/Textarea.hbs
 var Textarea = __webpack_require__(15);
 var Textarea_default = /*#__PURE__*/__webpack_require__.n(Textarea);
 
-// CONCATENATED MODULE: ./src/components/textarea/Textarea.ts
+// CONCATENATED MODULE: ./src/component/textarea/Textarea.ts
 
 
 // import './style/Textarea.styl'
@@ -2022,11 +2022,11 @@ fontSizes[RAW_LARGE] = 16;
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/radio/template/Radio.hbs
+// EXTERNAL MODULE: ./src/component/radio/template/Radio.hbs
 var Radio = __webpack_require__(16);
 var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
 
-// CONCATENATED MODULE: ./src/components/radio/Radio.ts
+// CONCATENATED MODULE: ./src/component/radio/Radio.ts
 
 
 // import './style/Radio.styl'
@@ -2099,11 +2099,11 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/radio/template/RadioGroup.hbs
+// EXTERNAL MODULE: ./src/component/radio/template/RadioGroup.hbs
 var RadioGroup = __webpack_require__(17);
 var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
 
-// CONCATENATED MODULE: ./src/components/radio/RadioGroup.ts
+// CONCATENATED MODULE: ./src/component/radio/RadioGroup.ts
 
 
 
@@ -2166,11 +2166,11 @@ var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/checkbox/template/Checkbox.hbs
+// EXTERNAL MODULE: ./src/component/checkbox/template/Checkbox.hbs
 var Checkbox = __webpack_require__(18);
 var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
 
-// CONCATENATED MODULE: ./src/components/checkbox/Checkbox.ts
+// CONCATENATED MODULE: ./src/component/checkbox/Checkbox.ts
 
 
 // import './style/Checkbox.styl'
@@ -2244,11 +2244,11 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/checkbox/template/CheckboxGroup.hbs
+// EXTERNAL MODULE: ./src/component/checkbox/template/CheckboxGroup.hbs
 var CheckboxGroup = __webpack_require__(19);
 var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
 
-// CONCATENATED MODULE: ./src/components/checkbox/CheckboxGroup.ts
+// CONCATENATED MODULE: ./src/component/checkbox/CheckboxGroup.ts
 
 
 
@@ -2306,11 +2306,11 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/switch/template/Switch.hbs
+// EXTERNAL MODULE: ./src/component/switch/template/Switch.hbs
 var Switch = __webpack_require__(20);
 var Switch_default = /*#__PURE__*/__webpack_require__.n(Switch);
 
-// CONCATENATED MODULE: ./src/components/switch/Switch.ts
+// CONCATENATED MODULE: ./src/component/switch/Switch.ts
 
 
 // import './style/Switch.styl'
@@ -2353,11 +2353,11 @@ var Switch_default = /*#__PURE__*/__webpack_require__.n(Switch);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/slider/template/Slider.hbs
+// EXTERNAL MODULE: ./src/component/slider/template/Slider.hbs
 var Slider = __webpack_require__(21);
 var Slider_default = /*#__PURE__*/__webpack_require__.n(Slider);
 
-// CONCATENATED MODULE: ./src/components/slider/Slider.ts
+// CONCATENATED MODULE: ./src/component/slider/Slider.ts
 
 
 // import './style/Slider.styl'
@@ -2606,15 +2606,15 @@ var Slider_CLASS_FADE = 'bell-tooltip-fade';
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/select/template/Select.hbs
+// EXTERNAL MODULE: ./src/component/select/template/Select.hbs
 var Select = __webpack_require__(22);
 var Select_default = /*#__PURE__*/__webpack_require__.n(Select);
 
-// EXTERNAL MODULE: ./src/components/tag/template/Tag.hbs
+// EXTERNAL MODULE: ./src/component/tag/template/Tag.hbs
 var Tag = __webpack_require__(23);
 var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
 
-// CONCATENATED MODULE: ./src/components/tag/Tag.ts
+// CONCATENATED MODULE: ./src/component/tag/Tag.ts
 
 
 // import './style/Tag.styl'
@@ -2667,7 +2667,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/select/Select.ts
+// CONCATENATED MODULE: ./src/component/select/Select.ts
 
 
 // import './style/Select.styl'
@@ -2836,11 +2836,11 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/select/template/Option.hbs
+// EXTERNAL MODULE: ./src/component/select/template/Option.hbs
 var Option = __webpack_require__(24);
 var Option_default = /*#__PURE__*/__webpack_require__.n(Option);
 
-// CONCATENATED MODULE: ./src/components/select/Option.ts
+// CONCATENATED MODULE: ./src/component/select/Option.ts
 
 
 
@@ -2917,11 +2917,11 @@ function isOptionSelected(values, value) {
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/select/template/OptionGroup.hbs
+// EXTERNAL MODULE: ./src/component/select/template/OptionGroup.hbs
 var OptionGroup = __webpack_require__(25);
 var OptionGroup_default = /*#__PURE__*/__webpack_require__.n(OptionGroup);
 
-// CONCATENATED MODULE: ./src/components/select/OptionGroup.ts
+// CONCATENATED MODULE: ./src/component/select/OptionGroup.ts
 
 
 
@@ -2941,11 +2941,11 @@ var OptionGroup_default = /*#__PURE__*/__webpack_require__.n(OptionGroup);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/pagination/template/Pagination.hbs
+// EXTERNAL MODULE: ./src/component/pagination/template/Pagination.hbs
 var Pagination = __webpack_require__(26);
 var Pagination_default = /*#__PURE__*/__webpack_require__.n(Pagination);
 
-// CONCATENATED MODULE: ./src/components/pagination/Pagination.ts
+// CONCATENATED MODULE: ./src/component/pagination/Pagination.ts
 
 
 // import './style/Pagination.styl'
@@ -3151,14 +3151,14 @@ var Pagination_default = /*#__PURE__*/__webpack_require__.n(Pagination);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/upload/template/Upload.hbs
+// EXTERNAL MODULE: ./src/component/upload/template/Upload.hbs
 var Upload = __webpack_require__(27);
 var Upload_default = /*#__PURE__*/__webpack_require__.n(Upload);
 
 // EXTERNAL MODULE: external {"root":"Soga","commonjs":"soga","commonjs2":"soga","amd":"soga"}
 var external_root_Soga_commonjs_soga_commonjs2_soga_amd_soga_ = __webpack_require__(28);
 
-// CONCATENATED MODULE: ./src/components/upload/Upload.ts
+// CONCATENATED MODULE: ./src/component/upload/Upload.ts
 
 
 // import './style/Upload.styl'
@@ -3294,11 +3294,11 @@ var guid = 0;
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/alert/template/Alert.hbs
+// EXTERNAL MODULE: ./src/component/alert/template/Alert.hbs
 var Alert = __webpack_require__(29);
 var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
 
-// CONCATENATED MODULE: ./src/components/alert/Alert.ts
+// CONCATENATED MODULE: ./src/component/alert/Alert.ts
 
 
 // import './style/Alert.styl'
@@ -3349,11 +3349,11 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/article/template/Article.hbs
+// EXTERNAL MODULE: ./src/component/article/template/Article.hbs
 var Article = __webpack_require__(30);
 var Article_default = /*#__PURE__*/__webpack_require__.n(Article);
 
-// CONCATENATED MODULE: ./src/components/article/Article.ts
+// CONCATENATED MODULE: ./src/component/article/Article.ts
 
 
 // import './style/Article.styl'
@@ -3387,11 +3387,11 @@ var Article_default = /*#__PURE__*/__webpack_require__.n(Article);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/spin/template/Spin.hbs
+// EXTERNAL MODULE: ./src/component/spin/template/Spin.hbs
 var Spin = __webpack_require__(31);
 var Spin_default = /*#__PURE__*/__webpack_require__.n(Spin);
 
-// CONCATENATED MODULE: ./src/components/spin/Spin.ts
+// CONCATENATED MODULE: ./src/component/spin/Spin.ts
 
 
 // import './style/Spin.styl'
@@ -3458,11 +3458,11 @@ var Spin_default = /*#__PURE__*/__webpack_require__.n(Spin);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/backtop/template/BackTop.hbs
+// EXTERNAL MODULE: ./src/component/backtop/template/BackTop.hbs
 var BackTop = __webpack_require__(32);
 var BackTop_default = /*#__PURE__*/__webpack_require__.n(BackTop);
 
-// CONCATENATED MODULE: ./src/components/backtop/BackTop.ts
+// CONCATENATED MODULE: ./src/component/backtop/BackTop.ts
 
 
 // import './style/BackTop.styl'
@@ -3565,11 +3565,11 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/avatar/template/Avatar.hbs
+// EXTERNAL MODULE: ./src/component/avatar/template/Avatar.hbs
 var Avatar = __webpack_require__(33);
 var Avatar_default = /*#__PURE__*/__webpack_require__.n(Avatar);
 
-// CONCATENATED MODULE: ./src/components/avatar/Avatar.ts
+// CONCATENATED MODULE: ./src/component/avatar/Avatar.ts
 
 
 // import './style/Avatar.styl'
@@ -3635,11 +3635,11 @@ var SPACE_HORIZONTAL = 8;
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/badge/template/Badge.hbs
+// EXTERNAL MODULE: ./src/component/badge/template/Badge.hbs
 var Badge = __webpack_require__(34);
 var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
 
-// CONCATENATED MODULE: ./src/components/badge/Badge.ts
+// CONCATENATED MODULE: ./src/component/badge/Badge.ts
 
 
 // import './style/Badge.styl'
@@ -3731,19 +3731,19 @@ var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/Date.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/Date.hbs
 var template_Date = __webpack_require__(35);
 var Date_default = /*#__PURE__*/__webpack_require__.n(template_Date);
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/DateMonth.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/DateMonth.hbs
 var DateMonth = __webpack_require__(36);
 var DateMonth_default = /*#__PURE__*/__webpack_require__.n(DateMonth);
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/DateYear.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/DateYear.hbs
 var DateYear = __webpack_require__(37);
 var DateYear_default = /*#__PURE__*/__webpack_require__.n(DateYear);
 
-// CONCATENATED MODULE: ./src/components/datepicker/util.ts
+// CONCATENATED MODULE: ./src/component/datepicker/util.ts
 
 var WEEKS = ['日', '一', '二', '三', '四', '五', '六'];
 var SECOND = 1000;
@@ -3885,13 +3885,13 @@ function formatDate(date, format) {
         .replace(/d/i, util_toString(date.getDate()));
 }
 
-// CONCATENATED MODULE: ./src/components/datepicker/components/DateYear.ts
+// CONCATENATED MODULE: ./src/component/datepicker/component/DateYear.ts
 
 
 
 
 
-/* harmony default export */ var components_DateYear = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+/* harmony default export */ var component_DateYear = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DateYear_default.a,
     propTypes: {
         defaultDate: {
@@ -3955,7 +3955,7 @@ function formatDate(date, format) {
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/datepicker/components/DateMonth.ts
+// CONCATENATED MODULE: ./src/component/datepicker/component/DateMonth.ts
 
 
 
@@ -3970,7 +3970,7 @@ function toMonthTimestamp(date) {
     }
     return 0;
 }
-/* harmony default export */ var components_DateMonth = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+/* harmony default export */ var component_DateMonth = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DateMonth_default.a,
     propTypes: {
         defaultDate: {
@@ -4010,7 +4010,7 @@ function toMonthTimestamp(date) {
     },
     components: {
         Icon: icon_Icon,
-        DateYear: components_DateYear,
+        DateYear: component_DateYear,
     },
     computed: {
         datasource: function () {
@@ -4046,7 +4046,7 @@ function toMonthTimestamp(date) {
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/datepicker/components/Date.ts
+// CONCATENATED MODULE: ./src/component/datepicker/component/Date.ts
 
 
 
@@ -4054,7 +4054,7 @@ function toMonthTimestamp(date) {
 
 
 
-/* harmony default export */ var components_Date = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+/* harmony default export */ var component_Date = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Date_default.a,
     propTypes: {
         defaultDate: {
@@ -4120,8 +4120,8 @@ function toMonthTimestamp(date) {
     },
     components: {
         Icon: icon_Icon,
-        DateYear: components_DateYear,
-        DateMonth: components_DateMonth,
+        DateYear: component_DateYear,
+        DateMonth: component_DateMonth,
     },
     filters: {
         isCurrentMonth: function (item) {
@@ -4170,17 +4170,27 @@ function toMonthTimestamp(date) {
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/DateRange.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/DateRange.hbs
 var DateRange = __webpack_require__(38);
 var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
 
-// CONCATENATED MODULE: ./src/components/datepicker/components/DateRange.ts
+// CONCATENATED MODULE: ./src/component/datepicker/component/DateRange.ts
 
 
 
 
 
-/* harmony default export */ var components_DateRange = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+function getEndTimestamp(startTimestamp, endTimestamp) {
+    var startDate = new Date(startTimestamp);
+    var endDate = new Date(endTimestamp);
+    startDate.setDate(1);
+    endDate.setDate(1);
+    if (endDate.getTime() > startDate.getTime()) {
+        return endDate.getTime();
+    }
+    return offsetMonth(endTimestamp, 1);
+}
+/* harmony default export */ var component_DateRange = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DateRange_default.a,
     propTypes: {
         splitPanel: {
@@ -4216,9 +4226,7 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
         return {
             weeks: WEEKS,
             startTimestamp: startTimestamp,
-            endTimestamp: endTimestamp <= startTimestamp
-                ? offsetMonth(startTimestamp, 1)
-                : endTimestamp,
+            endTimestamp: getEndTimestamp(startTimestamp, endTimestamp),
             // 点击后钉住的日期
             pinDate: UNDEFINED,
             // 当 pinDate 存在时，tempDate 是 hover 时临时选中的开始或结束日期
@@ -4278,8 +4286,9 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
             }
         },
         checkedEndDate: function (value) {
-            if (value) {
-                this.set('endTimestamp', toTimestamp(value));
+            var startTimestamp = this.get('startTimestamp');
+            if (startTimestamp && value) {
+                this.set('endTimestamp', getEndTimestamp(startTimestamp, toTimestamp(value)));
             }
         }
     },
@@ -4352,11 +4361,11 @@ var DateRange_default = /*#__PURE__*/__webpack_require__.n(DateRange);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/DateWeek.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/DateWeek.hbs
 var DateWeek = __webpack_require__(39);
 var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
 
-// CONCATENATED MODULE: ./src/components/datepicker/components/DateWeek.ts
+// CONCATENATED MODULE: ./src/component/datepicker/component/DateWeek.ts
 
 
 
@@ -4364,7 +4373,7 @@ var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
 
 
 
-/* harmony default export */ var components_DateWeek = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+/* harmony default export */ var component_DateWeek = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DateWeek_default.a,
     propTypes: {
         defaultDate: {
@@ -4420,8 +4429,8 @@ var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
     },
     components: {
         Icon: icon_Icon,
-        DateYear: components_DateYear,
-        DateMonth: components_DateMonth,
+        DateYear: component_DateYear,
+        DateMonth: component_DateMonth,
     },
     filters: {
         isCurrentMonth: function (item) {
@@ -4470,11 +4479,11 @@ var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/datepicker/template/DatePicker.hbs
+// EXTERNAL MODULE: ./src/component/datepicker/template/DatePicker.hbs
 var DatePicker = __webpack_require__(40);
 var DatePicker_default = /*#__PURE__*/__webpack_require__.n(DatePicker);
 
-// CONCATENATED MODULE: ./src/components/datepicker/DatePicker.ts
+// CONCATENATED MODULE: ./src/component/datepicker/DatePicker.ts
 
 
 
@@ -4581,11 +4590,11 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
     components: {
         Tag: tag_Tag,
         Dropdown: dropdown_Dropdown,
-        DateView: components_Date,
-        DateRange: components_DateRange,
-        DateWeek: components_DateWeek,
-        DateMonth: components_DateMonth,
-        DateYear: components_DateYear,
+        DateView: component_Date,
+        DateRange: component_DateRange,
+        DateWeek: component_DateWeek,
+        DateMonth: component_DateMonth,
+        DateYear: component_DateYear,
     },
     computed: {
         defaultSimpleDate: function () {
@@ -4720,11 +4729,11 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/tooltip/template/Tooltip.hbs
+// EXTERNAL MODULE: ./src/component/tooltip/template/Tooltip.hbs
 var Tooltip = __webpack_require__(41);
 var Tooltip_default = /*#__PURE__*/__webpack_require__.n(Tooltip);
 
-// CONCATENATED MODULE: ./src/components/tooltip/Tooltip.ts
+// CONCATENATED MODULE: ./src/component/tooltip/Tooltip.ts
 
 
 // import './style/Tooltip.styl'
@@ -4906,11 +4915,11 @@ var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/collapse/template/Collapse.hbs
+// EXTERNAL MODULE: ./src/component/collapse/template/Collapse.hbs
 var Collapse = __webpack_require__(42);
 var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
 
-// CONCATENATED MODULE: ./src/components/collapse/Collapse.ts
+// CONCATENATED MODULE: ./src/component/collapse/Collapse.ts
 
 
 // import './style/Collapse.styl'
@@ -4970,11 +4979,11 @@ var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/collapse/template/CollapseItem.hbs
+// EXTERNAL MODULE: ./src/component/collapse/template/CollapseItem.hbs
 var CollapseItem = __webpack_require__(43);
 var CollapseItem_default = /*#__PURE__*/__webpack_require__.n(CollapseItem);
 
-// CONCATENATED MODULE: ./src/components/collapse/CollapseItem.ts
+// CONCATENATED MODULE: ./src/component/collapse/CollapseItem.ts
 
 
 
@@ -5043,11 +5052,11 @@ var CollapseItem_default = /*#__PURE__*/__webpack_require__.n(CollapseItem);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/card/template/Card.hbs
+// EXTERNAL MODULE: ./src/component/card/template/Card.hbs
 var Card = __webpack_require__(44);
 var Card_default = /*#__PURE__*/__webpack_require__.n(Card);
 
-// CONCATENATED MODULE: ./src/components/card/Card.ts
+// CONCATENATED MODULE: ./src/component/card/Card.ts
 
 
 // import './style/Card.styl'
@@ -5077,11 +5086,11 @@ var Card_default = /*#__PURE__*/__webpack_require__.n(Card);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/card/template/CardHeader.hbs
+// EXTERNAL MODULE: ./src/component/card/template/CardHeader.hbs
 var CardHeader = __webpack_require__(45);
 var CardHeader_default = /*#__PURE__*/__webpack_require__.n(CardHeader);
 
-// CONCATENATED MODULE: ./src/components/card/CardHeader.ts
+// CONCATENATED MODULE: ./src/component/card/CardHeader.ts
 
 
 
@@ -5098,11 +5107,11 @@ var CardHeader_default = /*#__PURE__*/__webpack_require__.n(CardHeader);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/card/template/CardMedia.hbs
+// EXTERNAL MODULE: ./src/component/card/template/CardMedia.hbs
 var CardMedia = __webpack_require__(46);
 var CardMedia_default = /*#__PURE__*/__webpack_require__.n(CardMedia);
 
-// CONCATENATED MODULE: ./src/components/card/CardMedia.ts
+// CONCATENATED MODULE: ./src/component/card/CardMedia.ts
 
 
 
@@ -5119,11 +5128,11 @@ var CardMedia_default = /*#__PURE__*/__webpack_require__.n(CardMedia);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/card/template/CardBody.hbs
+// EXTERNAL MODULE: ./src/component/card/template/CardBody.hbs
 var CardBody = __webpack_require__(47);
 var CardBody_default = /*#__PURE__*/__webpack_require__.n(CardBody);
 
-// CONCATENATED MODULE: ./src/components/card/CardBody.ts
+// CONCATENATED MODULE: ./src/component/card/CardBody.ts
 
 
 
@@ -5140,11 +5149,11 @@ var CardBody_default = /*#__PURE__*/__webpack_require__.n(CardBody);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/card/template/CardFooter.hbs
+// EXTERNAL MODULE: ./src/component/card/template/CardFooter.hbs
 var CardFooter = __webpack_require__(48);
 var CardFooter_default = /*#__PURE__*/__webpack_require__.n(CardFooter);
 
-// CONCATENATED MODULE: ./src/components/card/CardFooter.ts
+// CONCATENATED MODULE: ./src/component/card/CardFooter.ts
 
 
 
@@ -5161,11 +5170,11 @@ var CardFooter_default = /*#__PURE__*/__webpack_require__.n(CardFooter);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/page-header/template/PageHeader.hbs
+// EXTERNAL MODULE: ./src/component/page-header/template/PageHeader.hbs
 var PageHeader = __webpack_require__(49);
 var PageHeader_default = /*#__PURE__*/__webpack_require__.n(PageHeader);
 
-// CONCATENATED MODULE: ./src/components/page-header/PageHeader.ts
+// CONCATENATED MODULE: ./src/component/page-header/PageHeader.ts
 
 
 // import './style/PageHeader.styl'
@@ -5194,11 +5203,11 @@ var PageHeader_default = /*#__PURE__*/__webpack_require__.n(PageHeader);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/layout/template/Layout.hbs
+// EXTERNAL MODULE: ./src/component/layout/template/Layout.hbs
 var Layout = __webpack_require__(50);
 var Layout_default = /*#__PURE__*/__webpack_require__.n(Layout);
 
-// CONCATENATED MODULE: ./src/components/layout/Layout.ts
+// CONCATENATED MODULE: ./src/component/layout/Layout.ts
 
 
 // import './style/Layout.styl'
@@ -5220,11 +5229,11 @@ var Layout_default = /*#__PURE__*/__webpack_require__.n(Layout);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/layout/template/LayoutHeader.hbs
+// EXTERNAL MODULE: ./src/component/layout/template/LayoutHeader.hbs
 var LayoutHeader = __webpack_require__(51);
 var LayoutHeader_default = /*#__PURE__*/__webpack_require__.n(LayoutHeader);
 
-// CONCATENATED MODULE: ./src/components/layout/LayoutHeader.ts
+// CONCATENATED MODULE: ./src/component/layout/LayoutHeader.ts
 
 
 
@@ -5241,11 +5250,11 @@ var LayoutHeader_default = /*#__PURE__*/__webpack_require__.n(LayoutHeader);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/layout/template/LayoutContent.hbs
+// EXTERNAL MODULE: ./src/component/layout/template/LayoutContent.hbs
 var LayoutContent = __webpack_require__(52);
 var LayoutContent_default = /*#__PURE__*/__webpack_require__.n(LayoutContent);
 
-// CONCATENATED MODULE: ./src/components/layout/LayoutContent.ts
+// CONCATENATED MODULE: ./src/component/layout/LayoutContent.ts
 
 
 
@@ -5262,11 +5271,11 @@ var LayoutContent_default = /*#__PURE__*/__webpack_require__.n(LayoutContent);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/layout/template/LayoutFooter.hbs
+// EXTERNAL MODULE: ./src/component/layout/template/LayoutFooter.hbs
 var LayoutFooter = __webpack_require__(53);
 var LayoutFooter_default = /*#__PURE__*/__webpack_require__.n(LayoutFooter);
 
-// CONCATENATED MODULE: ./src/components/layout/LayoutFooter.ts
+// CONCATENATED MODULE: ./src/component/layout/LayoutFooter.ts
 
 
 
@@ -5283,11 +5292,11 @@ var LayoutFooter_default = /*#__PURE__*/__webpack_require__.n(LayoutFooter);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/layout/template/LayoutSider.hbs
+// EXTERNAL MODULE: ./src/component/layout/template/LayoutSider.hbs
 var LayoutSider = __webpack_require__(54);
 var LayoutSider_default = /*#__PURE__*/__webpack_require__.n(LayoutSider);
 
-// CONCATENATED MODULE: ./src/components/layout/LayoutSider.ts
+// CONCATENATED MODULE: ./src/component/layout/LayoutSider.ts
 
 
 
@@ -5319,11 +5328,11 @@ var LayoutSider_default = /*#__PURE__*/__webpack_require__.n(LayoutSider);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/link/template/Link.hbs
+// EXTERNAL MODULE: ./src/component/link/template/Link.hbs
 var Link = __webpack_require__(55);
 var Link_default = /*#__PURE__*/__webpack_require__.n(Link);
 
-// CONCATENATED MODULE: ./src/components/link/Link.ts
+// CONCATENATED MODULE: ./src/component/link/Link.ts
 
 
 // import './style/Link.styl'
@@ -5371,15 +5380,15 @@ var Link_default = /*#__PURE__*/__webpack_require__.n(Link);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/list/template/List.hbs
+// EXTERNAL MODULE: ./src/component/list/template/List.hbs
 var List = __webpack_require__(56);
 var List_default = /*#__PURE__*/__webpack_require__.n(List);
 
-// EXTERNAL MODULE: ./src/components/empty/template/Empty.hbs
+// EXTERNAL MODULE: ./src/component/empty/template/Empty.hbs
 var Empty = __webpack_require__(57);
 var Empty_default = /*#__PURE__*/__webpack_require__.n(Empty);
 
-// CONCATENATED MODULE: ./src/components/empty/Empty.ts
+// CONCATENATED MODULE: ./src/component/empty/Empty.ts
 
 
 // import './style/Empty.styl'
@@ -5401,7 +5410,7 @@ var Empty_default = /*#__PURE__*/__webpack_require__.n(Empty);
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/list/List.ts
+// CONCATENATED MODULE: ./src/component/list/List.ts
 
 
 // import './style/List.styl'
@@ -5442,11 +5451,11 @@ var Empty_default = /*#__PURE__*/__webpack_require__.n(Empty);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/list/template/ListItem.hbs
+// EXTERNAL MODULE: ./src/component/list/template/ListItem.hbs
 var ListItem = __webpack_require__(58);
 var ListItem_default = /*#__PURE__*/__webpack_require__.n(ListItem);
 
-// CONCATENATED MODULE: ./src/components/list/ListItem.ts
+// CONCATENATED MODULE: ./src/component/list/ListItem.ts
 
 
 
@@ -5472,11 +5481,11 @@ var ListItem_default = /*#__PURE__*/__webpack_require__.n(ListItem);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/result/template/Result.hbs
+// EXTERNAL MODULE: ./src/component/result/template/Result.hbs
 var Result = __webpack_require__(59);
 var Result_default = /*#__PURE__*/__webpack_require__.n(Result);
 
-// CONCATENATED MODULE: ./src/components/result/Result.ts
+// CONCATENATED MODULE: ./src/component/result/Result.ts
 
 
 // import './style/Result.styl'
@@ -5516,11 +5525,11 @@ var Result_default = /*#__PURE__*/__webpack_require__.n(Result);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/exception/template/Exception.hbs
+// EXTERNAL MODULE: ./src/component/exception/template/Exception.hbs
 var Exception = __webpack_require__(60);
 var Exception_default = /*#__PURE__*/__webpack_require__.n(Exception);
 
-// CONCATENATED MODULE: ./src/components/exception/Exception.ts
+// CONCATENATED MODULE: ./src/component/exception/Exception.ts
 
 
 // import './style/Exception.styl'
@@ -5548,11 +5557,11 @@ var Exception_default = /*#__PURE__*/__webpack_require__.n(Exception);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/divider/template/Divider.hbs
+// EXTERNAL MODULE: ./src/component/divider/template/Divider.hbs
 var Divider = __webpack_require__(61);
 var Divider_default = /*#__PURE__*/__webpack_require__.n(Divider);
 
-// CONCATENATED MODULE: ./src/components/divider/Divider.ts
+// CONCATENATED MODULE: ./src/component/divider/Divider.ts
 
 
 // import './style/Divider.styl'
@@ -5583,11 +5592,11 @@ var Divider_default = /*#__PURE__*/__webpack_require__.n(Divider);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/circle/template/Circle.hbs
+// EXTERNAL MODULE: ./src/component/circle/template/Circle.hbs
 var Circle = __webpack_require__(62);
 var Circle_default = /*#__PURE__*/__webpack_require__.n(Circle);
 
-// CONCATENATED MODULE: ./src/components/circle/Circle.ts
+// CONCATENATED MODULE: ./src/component/circle/Circle.ts
 
 
 // import './style/Circle.styl'
@@ -5692,11 +5701,11 @@ var Circle_default = /*#__PURE__*/__webpack_require__.n(Circle);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/progress/template/Progress.hbs
+// EXTERNAL MODULE: ./src/component/progress/template/Progress.hbs
 var Progress = __webpack_require__(63);
 var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
 
-// CONCATENATED MODULE: ./src/components/progress/Progress.ts
+// CONCATENATED MODULE: ./src/component/progress/Progress.ts
 
 
 // import './style/Progress.styl'
@@ -5738,11 +5747,11 @@ var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/rate/template/Rate.hbs
+// EXTERNAL MODULE: ./src/component/rate/template/Rate.hbs
 var Rate = __webpack_require__(64);
 var Rate_default = /*#__PURE__*/__webpack_require__.n(Rate);
 
-// CONCATENATED MODULE: ./src/components/rate/Rate.ts
+// CONCATENATED MODULE: ./src/component/rate/Rate.ts
 
 
 // import './style/Rate.styl'
@@ -5839,11 +5848,11 @@ var Rate_default = /*#__PURE__*/__webpack_require__.n(Rate);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/tabs/template/Tabs.hbs
+// EXTERNAL MODULE: ./src/component/tabs/template/Tabs.hbs
 var Tabs = __webpack_require__(65);
 var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
 
-// CONCATENATED MODULE: ./src/components/tabs/Tabs.ts
+// CONCATENATED MODULE: ./src/component/tabs/Tabs.ts
 
 
 // import './style/Tabs.styl'
@@ -5959,11 +5968,11 @@ var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/tabs/template/TabPanel.hbs
+// EXTERNAL MODULE: ./src/component/tabs/template/TabPanel.hbs
 var TabPanel = __webpack_require__(66);
 var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
 
-// CONCATENATED MODULE: ./src/components/tabs/TabPanel.ts
+// CONCATENATED MODULE: ./src/component/tabs/TabPanel.ts
 
 
 
@@ -6042,11 +6051,11 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/dropdown/template/DropdownItem.hbs
+// EXTERNAL MODULE: ./src/component/dropdown/template/DropdownItem.hbs
 var DropdownItem = __webpack_require__(67);
 var DropdownItem_default = /*#__PURE__*/__webpack_require__.n(DropdownItem);
 
-// CONCATENATED MODULE: ./src/components/dropdown/DropdownItem.ts
+// CONCATENATED MODULE: ./src/component/dropdown/DropdownItem.ts
 
 
 
@@ -6078,11 +6087,11 @@ var DropdownItem_default = /*#__PURE__*/__webpack_require__.n(DropdownItem);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/dropdown/template/DropdownMenu.hbs
+// EXTERNAL MODULE: ./src/component/dropdown/template/DropdownMenu.hbs
 var DropdownMenu = __webpack_require__(68);
 var DropdownMenu_default = /*#__PURE__*/__webpack_require__.n(DropdownMenu);
 
-// CONCATENATED MODULE: ./src/components/dropdown/DropdownMenu.ts
+// CONCATENATED MODULE: ./src/component/dropdown/DropdownMenu.ts
 
 
 
@@ -6099,11 +6108,11 @@ var DropdownMenu_default = /*#__PURE__*/__webpack_require__.n(DropdownMenu);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/thumbnail/template/Thumbnail.hbs
+// EXTERNAL MODULE: ./src/component/thumbnail/template/Thumbnail.hbs
 var Thumbnail = __webpack_require__(69);
 var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
 
-// CONCATENATED MODULE: ./src/components/thumbnail/Thumbnail.ts
+// CONCATENATED MODULE: ./src/component/thumbnail/Thumbnail.ts
 
 
 // import './style/Thumbnail.styl'
@@ -6156,11 +6165,11 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/timeline/template/Timeline.hbs
+// EXTERNAL MODULE: ./src/component/timeline/template/Timeline.hbs
 var Timeline = __webpack_require__(70);
 var Timeline_default = /*#__PURE__*/__webpack_require__.n(Timeline);
 
-// CONCATENATED MODULE: ./src/components/timeline/Timeline.ts
+// CONCATENATED MODULE: ./src/component/timeline/Timeline.ts
 
 
 // import './style/Timeline.styl'
@@ -6182,11 +6191,11 @@ var Timeline_default = /*#__PURE__*/__webpack_require__.n(Timeline);
     },
 }));
 
-// EXTERNAL MODULE: ./src/components/timeline/template/TimelineItem.hbs
+// EXTERNAL MODULE: ./src/component/timeline/template/TimelineItem.hbs
 var TimelineItem = __webpack_require__(71);
 var TimelineItem_default = /*#__PURE__*/__webpack_require__.n(TimelineItem);
 
-// CONCATENATED MODULE: ./src/components/timeline/TimelineItem.ts
+// CONCATENATED MODULE: ./src/component/timeline/TimelineItem.ts
 
 
 
@@ -6206,186 +6215,16 @@ var TimelineItem_default = /*#__PURE__*/__webpack_require__.n(TimelineItem);
     },
 }));
 
-// CONCATENATED MODULE: ./src/components/form/util/validate.ts
-
-function getType(value) {
-    return Object.prototype.toString.call(value).toLowerCase().slice(8, -1);
-}
-function checkInteger(rule, value) {
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(value)) {
-        return 'type';
-    }
-    value = +value;
-    if (value % 1 !== 0) {
-        return 'type';
-    }
-    if (rule.hasOwnProperty('min') && value < rule.min) {
-        return 'min';
-    }
-    if (rule.hasOwnProperty('max') && value > rule.max) {
-        return 'max';
-    }
-}
-function checkNumber(rule, value) {
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(value)) {
-        return 'type';
-    }
-    value = +value;
-    if (rule.hasOwnProperty('min') && value < rule.min) {
-        return 'min';
-    }
-    if (rule.hasOwnProperty('max') && value > rule.max) {
-        return 'max';
-    }
-}
-function checkString(rule, value) {
-    if (value === '') {
-        // 是否允许为空，默认不允许
-        if (rule.empty === true) {
-            return;
-        }
-        else {
-            return 'empty';
-        }
-    }
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(value)) {
-        return 'type';
-    }
-    if (rule.hasOwnProperty('min') && value.length < rule.min) {
-        return 'min';
-    }
-    if (rule.hasOwnProperty('max') && value.length > rule.max) {
-        return 'max';
-    }
-    if (rule.hasOwnProperty('pattern')
-        && !rule.pattern.test(value)) {
-        return 'pattern';
-    }
-}
-function checkBoolean(rule, value) {
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.boolean(value)) {
-        return 'type';
-    }
-}
-function checkEnum(rule, value) {
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(rule.values, value)) {
-        return 'type';
-    }
-}
-function checkArray(rule, value) {
-    if (!value || !external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(value)) {
-        return 'type';
-    }
-    var length = value.length;
-    if (rule.hasOwnProperty('min') && length < rule.min) {
-        return 'min';
-    }
-    if (rule.hasOwnProperty('max') && length < rule.max) {
-        return 'max';
-    }
-    var itemType = rule.itemType;
-    if (!itemType) {
-        return;
-    }
-    for (var i = 0; i < length; i++) {
-        if (getType(value[i]) !== itemType) {
-            return 'itemType';
-        }
-    }
-}
-function checkObject(rule, value) {
-    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(value)) {
-        return 'type';
-    }
-}
-var validate_Validator = /** @class */ (function () {
-    function Validator() {
-        this.rules = {
-            int: checkInteger,
-            integer: checkInteger,
-            number: checkNumber,
-            string: checkString,
-            bool: checkBoolean,
-            boolean: checkBoolean,
-            enum: checkEnum,
-            array: checkArray,
-            object: checkObject,
-        };
-    }
-    Validator.prototype.validate = function (data, rules, messages) {
-        var errors = {};
-        for (var key in rules) {
-            var rule = rules[key];
-            switch (getType(rule)) {
-                case 'string':
-                    rule = {
-                        type: rule,
-                    };
-                    break;
-                case 'array':
-                    rule = {
-                        type: 'enum',
-                        values: rule,
-                    };
-                    break;
-                case 'regexp':
-                    rule = {
-                        type: 'string',
-                        pattern: rule,
-                    };
-                    break;
-            }
-            if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(rule)) {
-                throw new TypeError(key + "'s rule is not found.");
-            }
-            var errorReason = void 0;
-            if (data.hasOwnProperty(key)) {
-                if (rule.validate) {
-                    errorReason = rule.validate(data[key], data);
-                }
-                else {
-                    errorReason = this.rules[rule.type](rule, data[key]);
-                }
-            }
-            else {
-                // 默认必传
-                if (rule.required !== false) {
-                    errorReason = 'required';
-                }
-                else {
-                    continue;
-                }
-            }
-            if (errorReason) {
-                var message = messages && messages[key] && messages[key][errorReason];
-                if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(message)) {
-                    errors[key] = message;
-                }
-                else {
-                    errors[key] = errorReason;
-                }
-            }
-        }
-        if (Object.keys(errors).length > 0) {
-            return errors;
-        }
-    };
-    return Validator;
-}());
-
-
-// EXTERNAL MODULE: ./src/components/form/template/Form.hbs
+// EXTERNAL MODULE: ./src/component/form/template/Form.hbs
 var Form = __webpack_require__(72);
 var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
 
-// CONCATENATED MODULE: ./src/components/form/Form.ts
-
+// CONCATENATED MODULE: ./src/component/form/Form.ts
 
 
 // import './style/Form.styl'
 
 
-var validator = new validate_Validator();
 /* harmony default export */ var form_Form = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Form_default.a,
     name: 'bell-form',
@@ -6413,19 +6252,17 @@ var validator = new validate_Validator();
         }
     },
     methods: {
-        validate: function (value, rules, messages) {
-            var errors = validator.validate(value, rules, messages);
+        validate: function (errors) {
             this.fire('validate.form', { errors: errors }, TRUE);
-            return errors;
-        }
+        },
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/form/template/FormItem.hbs
+// EXTERNAL MODULE: ./src/component/form/template/FormItem.hbs
 var FormItem = __webpack_require__(73);
 var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
 
-// CONCATENATED MODULE: ./src/components/form/FormItem.ts
+// CONCATENATED MODULE: ./src/component/form/FormItem.ts
 
 
 
@@ -6483,11 +6320,11 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/dialog/template/Dialog.hbs
+// EXTERNAL MODULE: ./src/component/dialog/template/Dialog.hbs
 var Dialog = __webpack_require__(74);
 var Dialog_default = /*#__PURE__*/__webpack_require__.n(Dialog);
 
-// CONCATENATED MODULE: ./src/components/dialog/Dialog.ts
+// CONCATENATED MODULE: ./src/component/dialog/Dialog.ts
 
 
 // import './style/Dialog.styl'
@@ -6577,11 +6414,11 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/table/template/Table.hbs
+// EXTERNAL MODULE: ./src/component/table/template/Table.hbs
 var Table = __webpack_require__(75);
 var Table_default = /*#__PURE__*/__webpack_require__.n(Table);
 
-// CONCATENATED MODULE: ./src/components/table/Table.ts
+// CONCATENATED MODULE: ./src/component/table/Table.ts
 
 
 // import './style/Table.styl'
@@ -6735,11 +6572,11 @@ var Table_default = /*#__PURE__*/__webpack_require__.n(Table);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/message/template/Message.hbs
+// EXTERNAL MODULE: ./src/component/message/template/Message.hbs
 var Message = __webpack_require__(76);
 var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 
-// CONCATENATED MODULE: ./src/components/message/Message.ts
+// CONCATENATED MODULE: ./src/component/message/Message.ts
 
 
 // import './style/Message.styl'
@@ -6813,7 +6650,7 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/message/base.ts
+// CONCATENATED MODULE: ./src/component/message/base.ts
 
 
 
@@ -6861,11 +6698,11 @@ function addMessage(status, arg, onClose) {
     }
 });
 
-// EXTERNAL MODULE: ./src/components/notification/template/Notification.hbs
+// EXTERNAL MODULE: ./src/component/notification/template/Notification.hbs
 var Notification = __webpack_require__(77);
 var Notification_default = /*#__PURE__*/__webpack_require__.n(Notification);
 
-// CONCATENATED MODULE: ./src/components/notification/Notification.ts
+// CONCATENATED MODULE: ./src/component/notification/Notification.ts
 
 
 // import './style/Notification.styl'
@@ -6940,7 +6777,7 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/notification/base.ts
+// CONCATENATED MODULE: ./src/component/notification/base.ts
 
 
 var base_config = {};
@@ -6988,11 +6825,11 @@ function addNotification(status, data, onClose) {
     }
 });
 
-// EXTERNAL MODULE: ./src/components/modal/template/Alert.hbs
+// EXTERNAL MODULE: ./src/component/modal/template/Alert.hbs
 var template_Alert = __webpack_require__(78);
 var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
 
-// CONCATENATED MODULE: ./src/components/modal/Alert.ts
+// CONCATENATED MODULE: ./src/component/modal/Alert.ts
 
 
 
@@ -7059,11 +6896,11 @@ var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
     }
 }));
 
-// EXTERNAL MODULE: ./src/components/modal/template/Confirm.hbs
+// EXTERNAL MODULE: ./src/component/modal/template/Confirm.hbs
 var Confirm = __webpack_require__(79);
 var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
 
-// CONCATENATED MODULE: ./src/components/modal/Confirm.ts
+// CONCATENATED MODULE: ./src/component/modal/Confirm.ts
 
 
 
@@ -7147,7 +6984,7 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/modal/base.ts
+// CONCATENATED MODULE: ./src/component/modal/base.ts
 
 
 
@@ -7198,11 +7035,11 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
     }
 });
 
-// EXTERNAL MODULE: ./src/components/loading-bar/template/LoadingBar.hbs
+// EXTERNAL MODULE: ./src/component/loading-bar/template/LoadingBar.hbs
 var LoadingBar = __webpack_require__(80);
 var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 
-// CONCATENATED MODULE: ./src/components/loading-bar/LoadingBar.ts
+// CONCATENATED MODULE: ./src/component/loading-bar/LoadingBar.ts
 
 
 // import './style/LoadingBar.styl'
@@ -7252,7 +7089,7 @@ var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
     }
 }));
 
-// CONCATENATED MODULE: ./src/components/loading-bar/base.ts
+// CONCATENATED MODULE: ./src/component/loading-bar/base.ts
 
 
 
@@ -7371,7 +7208,7 @@ function remove() {
 
 
 
-var components = {
+var component = {
     Menu: menu_Menu,
     MenuItem: menu_MenuItem,
     MenuGroup: menu_MenuGroup,
@@ -7449,7 +7286,7 @@ var install = function (Yox) {
     var notificationElement = Yox.dom.createElement('div');
     Yox.dom.prop(notificationElement, 'id', 'bell-notification-wrapper');
     Yox.dom.append(BODY, notificationElement);
-    Yox.component(components);
+    Yox.component(component);
     Yox.prototype.$message = base;
     Yox.prototype.$confirm = modal_base.addConfirm;
     Yox.prototype.$alert = modal_base.addAlert;
