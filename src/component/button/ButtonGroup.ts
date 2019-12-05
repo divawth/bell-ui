@@ -21,7 +21,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}buttonGroup',
+  name: '${prefix}ButtonGroup',
 
   propTypes: {
     size: {

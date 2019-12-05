@@ -10,7 +10,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}timelineItem',
+  name: '${prefix}TimelineItem',
 
   propTypes: {
     color: {

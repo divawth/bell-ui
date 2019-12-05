@@ -10,7 +10,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}cardBody',
+  name: '${prefix}CardBody',
 
   propTypes: {
     className: {

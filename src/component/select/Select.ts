@@ -34,7 +34,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}select',
+  name: '${prefix}Select',
 
   propTypes: {
     placeholder: {

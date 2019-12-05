@@ -70,8 +70,8 @@ menu-theme-style(style)
 
   if style['item-bg-color']
     > {$selector-prefix + '-menu-item'},
-    > {$selector-prefix + '-submenu'} > {$selector-prefix + '-submenu-title'},
-    > {$selector-prefix + '-submenu'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-submenu-title'}
+    > {$selector-prefix + '-sub-menu'} > {$selector-prefix + '-sub-menu-title'},
+    > {$selector-prefix + '-sub-menu'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-sub-menu-title'}
       ui-set('background-color', style['item-bg-color'])
 
   if style['inline-bg-color']
@@ -79,7 +79,7 @@ menu-theme-style(style)
       ui-set('background-color', style['inline-bg-color'])
 
   {$selector-prefix + '-menu-item-enabled'},
-  {$selector-prefix + '-submenu-title'}
+  {$selector-prefix + '-sub-menu-title'}
 
     if style['item-color']
       ui-set('color', style['item-color'])
@@ -129,13 +129,13 @@ menu-theme-style(style)
     display block
 
 {$selector-prefix + '-menu-item'},
-{$selector-prefix + '-submenu'},
-{$selector-prefix + '-submenu-title'}
+{$selector-prefix + '-sub-menu'},
+{$selector-prefix + '-sub-menu-title'}
   position relative
   transition background-color .3s, color .3s
 
 {$selector-prefix + '-menu-item'},
-{$selector-prefix + '-submenu-title'}
+{$selector-prefix + '-sub-menu-title'}
   > a
     color inherit
     font-weight normal
@@ -148,7 +148,7 @@ menu-theme-style(style)
   min-width 180px
 
 {$selector-prefix + '-menu-item-enabled'},
-{$selector-prefix + '-submenu-title'}
+{$selector-prefix + '-sub-menu-title'}
   ui-clickable()
 
 {$selector-prefix + '-menu-item-disabled'}
@@ -159,36 +159,36 @@ menu-theme-style(style)
   line-height $menu-vertical-item-height
   padding 0 $menu-vertical-padding
 
-{$selector-prefix + '-submenu-arrow-icon'}
+{$selector-prefix + '-sub-menu-arrow-icon'}
   font-size $menu-arrow-icon-size
   transition transform .3s
 
 {$selector-prefix + '-menu-horizontal'}
 
   > {$selector-prefix + '-menu-item'},
-  > {$selector-prefix + '-submenu'}
+  > {$selector-prefix + '-sub-menu'}
     display inline-block
     vertical-align top
 
   {$selector-prefix + '-menu-item'},
-  {$selector-prefix + '-submenu-title'}
+  {$selector-prefix + '-sub-menu-title'}
     height $menu-horizontal-item-height
     line-height $menu-horizontal-item-height
     padding 0 $menu-horizontal-padding
 
-  {$selector-prefix + '-submenu-arrow-icon'}
+  {$selector-prefix + '-sub-menu-arrow-icon'}
     margin-left $menu-title-arrow-gap
 
 {$selector-prefix + '-menu-inline'},
 {$selector-prefix + '-menu-vertical'}
 
   {$selector-prefix + '-menu-item'},
-  {$selector-prefix + '-submenu-title'}
+  {$selector-prefix + '-sub-menu-title'}
     height $menu-vertical-item-height
     line-height $menu-vertical-item-height
     padding 0 $menu-vertical-padding
 
-  {$selector-prefix + '-submenu-arrow-icon'}
+  {$selector-prefix + '-sub-menu-arrow-icon'}
     position absolute
     top $menu-arrow-icon-top
     right $menu-vertical-padding
@@ -196,7 +196,7 @@ menu-theme-style(style)
 
 {$selector-prefix + '-menu-inline'}
 
-  {$selector-prefix + '-submenu'}
+  {$selector-prefix + '-sub-menu'}
 
     > {$selector-prefix + '-menu'}
       display none
@@ -212,14 +212,14 @@ menu-theme-style(style)
       > {$selector-prefix + '-menu'}
         display none
 
-{$selector-prefix + '-menu-open'} > {$selector-prefix + '-submenu-title'} > {$selector-prefix + '-submenu-arrow-icon'},
-{$selector-prefix + '-dropdown-fade'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-submenu-title'} > {$selector-prefix + '-submenu-arrow-icon'}
+{$selector-prefix + '-menu-open'} > {$selector-prefix + '-sub-menu-title'} > {$selector-prefix + '-sub-menu-arrow-icon'},
+{$selector-prefix + '-dropdown-fade'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-sub-menu-title'} > {$selector-prefix + '-sub-menu-arrow-icon'}
   transform rotate(-180deg)
 
 {$selector-prefix + '-menu-collapsed'}
   > {$selector-prefix + '-menu-item'},
-  > {$selector-prefix + '-submenu'} > {$selector-prefix + '-submenu-title'},
-  > {$selector-prefix + '-submenu'} > {$selector-prefix + '-dropdown'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-submenu-title'}
+  > {$selector-prefix + '-sub-menu'} > {$selector-prefix + '-sub-menu-title'},
+  > {$selector-prefix + '-sub-menu'} > {$selector-prefix + '-dropdown'} > {$selector-prefix + '-dropdown-trigger'} > {$selector-prefix + '-sub-menu-title'}
     text-align center
     > {$selector-prefix + '-icon'}:first-child
       margin-right 0

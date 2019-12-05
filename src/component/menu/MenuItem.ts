@@ -3,9 +3,8 @@ import Yox from 'yox'
 import template from './template/MenuItem.hbs'
 
 import {
-  FALSE,
   RAW_STRING,
-  RAW_BOOLEAN
+  RAW_BOOLEAN,
 } from '../constant'
 
 import {
@@ -16,7 +15,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}menuItem',
+  name: '${prefix}MenuItem',
 
   propTypes: {
     name: {
@@ -34,20 +33,15 @@ export default Yox.define({
   },
 
   data(options) {
-    const menu = findComponentUpward(options.parent, '${prefix}menu')
+    const menu = findComponentUpward(options.parent, '${prefix}Menu')
     return {
-      mode: menu.get('mode'),
       isActive: menu.get('activeName') === this.get('name'),
-      collapsed: FALSE,
     }
   },
 
   events: {
-    'clickItem.menu': function (_, data) {
-      this.set('isActive', data.name === this.get('name'))
-    },
-    'collapse.menu': function (_, data) {
-      this.set('collapsed', data.collapsed)
+    'activeName.menu': function (_, data) {
+      this.set('isActive', data.activeName === this.get('name'))
     },
   },
 

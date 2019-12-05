@@ -24,7 +24,7 @@ export default Yox.define({
 
   model: 'checked',
 
-  name: '${prefix}tag',
+  name: '${prefix}Tag',
 
   propTypes: {
     type: {

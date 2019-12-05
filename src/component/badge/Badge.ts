@@ -26,7 +26,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}badge',
+  name: '${prefix}Badge',
 
   propTypes: {
     type: {

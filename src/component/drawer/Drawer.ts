@@ -31,7 +31,7 @@ export default Yox.define({
 
   model: 'visible',
 
-  name: '${prefix}drawer',
+  name: '${prefix}Drawer',
 
   propTypes: {
     width: {

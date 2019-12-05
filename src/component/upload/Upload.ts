@@ -28,7 +28,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}upload',
+  name: '${prefix}Upload',
 
   propTypes: {
     action: {

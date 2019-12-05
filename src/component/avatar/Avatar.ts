@@ -23,7 +23,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}avatar',
+  name: '${prefix}Avatar',
 
   propTypes: {
     size: {

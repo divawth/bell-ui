@@ -14,7 +14,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}article',
+  name: '${prefix}Article',
 
   propTypes: {
     title: {

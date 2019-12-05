@@ -27,7 +27,7 @@ export default Yox.define({
 
   model: 'visible',
 
-  name: '${prefix}dialog',
+  name: '${prefix}Dialog',
 
   propTypes: {
     title: {

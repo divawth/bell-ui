@@ -10,7 +10,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}layoutFooter',
+  name: '${prefix}LayoutFooter',
 
   propTypes: {
     className: {

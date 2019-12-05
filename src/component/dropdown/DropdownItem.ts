@@ -12,7 +12,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}dropdownItem',
+  name: '${prefix}DropdownItem',
 
   propTypes: {
     name: {

@@ -15,7 +15,7 @@ import {
   RAW_VERTICAL,
   RAW_INLINE,
   RAW_LIGHT,
-  RAW_DARK,
+  RAW_THEME_ARRAY,
 } from '../constant'
 
 import {
@@ -26,7 +26,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}menu',
+  name: '${prefix}Menu',
 
   propTypes: {
     mode: {
@@ -34,11 +34,7 @@ export default Yox.define({
       value: RAW_HORIZONTAL,
     },
     theme: {
-      type: oneOf([
-        RAW_DARK,
-        RAW_LIGHT,
-        ''
-      ]),
+      type: oneOf(RAW_THEME_ARRAY),
       value: RAW_LIGHT,
     },
     collapsed: {
@@ -54,6 +50,10 @@ export default Yox.define({
         return []
       }
     },
+    inner: {
+      type: RAW_BOOLEAN,
+      value: FALSE,
+    },
     className: {
       type: RAW_STRING,
     },
@@ -63,9 +63,23 @@ export default Yox.define({
   },
 
   watchers: {
+    activeName(activeName: boolean) {
+      this.fire(
+        'activeName.menu',
+        { activeName },
+        TRUE
+      )
+    },
+    openNames(openNames: boolean) {
+      this.fire(
+        'openNames.menu',
+        { openNames },
+        TRUE
+      )
+    },
     collapsed(collapsed: boolean) {
       this.fire(
-        'collapse.menu',
+        'collapsed.menu',
         { collapsed },
         TRUE
       )
@@ -74,12 +88,46 @@ export default Yox.define({
 
   events: {
     'click.menuItem': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
+      if (event.phase === Yox.Event.PHASE_UPWARD
+        && !this.get('inner')
+      ) {
         this.fire(
-          'clickItem.menu',
-          data,
-          TRUE
+          'change.menu',
+          {
+            activeName: data.name
+          }
         )
+      }
+    },
+    'isOpen.subMenu': function (event, data) {
+      if (event.phase === Yox.Event.PHASE_UPWARD
+        && !this.get('inner')
+      ) {
+
+        const { isOpen, name } = data
+
+        let openNames = this.get('openNames')
+        if (openNames) {
+          openNames = this.copy(openNames)
+        }
+        else {
+          openNames = []
+        }
+
+        if (isOpen) {
+          openNames.push(name)
+        }
+        else {
+          Yox.array.remove(openNames, name)
+        }
+
+        this.fire(
+          'change.menu',
+          {
+            openNames,
+          }
+        )
+
       }
     }
   }

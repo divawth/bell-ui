@@ -16,7 +16,7 @@ export default {
   },
   template: `
     <div class="bell-template">
-      <Menu theme="{{theme}}" activeName="1">
+      <Menu theme="{{theme}}" activeName="1" on-change="change()">
         <MenuItem name="1">
           <Icon name="windows-fill" />
           内容管理
@@ -25,7 +25,7 @@ export default {
           <Icon name="apple-fill" />
           用户管理
         </MenuItem>
-        <Submenu name="3">
+        <SubMenu name="3">
           <template slot="title">
             <Icon name="google-fill" />
             统计分析（子菜单）
@@ -39,7 +39,7 @@ export default {
             <MenuItem name="3-4">用户留存</MenuItem>
             <MenuItem name="3-5">流失用户</MenuItem>
           </MenuGroup>
-        </Submenu>
+        </SubMenu>
         <MenuItem name="4">
           <Icon name="settings-4-fill" />
           <a href="https://yoxjs.github.io/yox/#/ts" target="_blank">
@@ -59,6 +59,11 @@ export default {
       </RadioGroup>
     </div>
   `,
+  methods: {
+    change(event, data) {
+      console.log(data)
+    }
+  }
 }
 ```
 
@@ -84,7 +89,7 @@ export default {
           <Icon name="apple-fill" />
           用户管理
         </MenuItem>
-        <Submenu name="3">
+        <SubMenu name="3">
           <template slot="title">
             <Icon name="google-fill" />
             统计分析
@@ -98,7 +103,7 @@ export default {
             <MenuItem name="3-4">用户留存</MenuItem>
             <MenuItem name="3-5">流失用户</MenuItem>
           </MenuGroup>
-        </Submenu>
+        </SubMenu>
         <MenuItem name="4">
           <Icon name="settings-4-fill" />
           <a href="https://ng.ant.design" target="_blank">综合设置</a>
@@ -133,7 +138,7 @@ export default {
   template: `
     <div class="bell-template" style="width: 280px;">
       <Menu theme="{{theme}}" mode="inline" activeName="1-3" openNames="{{["1", "2"]}}">
-        <Submenu name="1">
+        <SubMenu name="1">
           <template slot="title">
             <Icon name="windows-fill" />
             内容管理
@@ -141,16 +146,16 @@ export default {
           <MenuItem name="1-1">文章管理</MenuItem>
           <MenuItem name="1-2" disabled>评论管理</MenuItem>
           <MenuItem name="1-3">举报管理</MenuItem>
-        </Submenu>
-        <Submenu name="2">
+        </SubMenu>
+        <SubMenu name="2">
           <template slot="title">
             <Icon name="apple-fill" />
             用户管理
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
           <MenuItem name="2-2">活跃用户</MenuItem>
-        </Submenu>
-        <Submenu name="3">
+        </SubMenu>
+        <SubMenu name="3">
           <template slot="title">
             <Icon name="google-fill" />
             统计分析
@@ -164,7 +169,7 @@ export default {
             <MenuItem name="3-4">用户留存</MenuItem>
             <MenuItem name="3-5">流失用户</MenuItem>
           </MenuGroup>
-        </Submenu>
+        </SubMenu>
       </Menu>
 
       <br>
@@ -205,7 +210,7 @@ export default {
             </Tooltip>
           {{/if}}
         </MenuItem>
-        <Submenu name="1">
+        <SubMenu name="1">
           <template slot="title">
             {{#if !collapsed}}
               <Icon name="windows-fill" size="14" />
@@ -217,8 +222,8 @@ export default {
           <MenuItem name="1-1">文章管理</MenuItem>
           <MenuItem name="1-2">评论管理</MenuItem>
           <MenuItem name="1-3">举报管理</MenuItem>
-        </Submenu>
-        <Submenu name="2">
+        </SubMenu>
+        <SubMenu name="2">
           <template slot="title">
             {{#if !collapsed}}
               <Icon name="apple-fill" size="14" />
@@ -228,16 +233,16 @@ export default {
             {{/if}}
           </template>
           <MenuItem name="2-1">新增用户</MenuItem>
-          <Submenu name="2-2">
+          <SubMenu name="2-2">
             <template slot="title">
               <Icon name="apple-fill" />
               新增用户
             </template>
             <MenuItem name="2-2-1">新增用户2</MenuItem>
             <MenuItem name="2-2-2">新增用户2</MenuItem>
-          </Submenu>
-        </Submenu>
-        <Submenu name="3">
+          </SubMenu>
+        </SubMenu>
+        <SubMenu name="3">
           <template slot="title">
             {{#if !collapsed}}
               <Icon name="google-fill" size="14" />
@@ -255,7 +260,7 @@ export default {
             <MenuItem name="3-4">用户留存</MenuItem>
             <MenuItem name="3-5">流失用户</MenuItem>
           </MenuGroup>
-        </Submenu>
+        </SubMenu>
       </Menu>
     </div>
   `,
@@ -276,5 +281,5 @@ export default {
 mode | 菜单类型 | string | horizontal, vertical, inline | horizontal
 theme | 主题 | string | light、dark | dark
 activeName | 默认选中菜单 | string | - | -
-openNames | 默认展开的 submenu | array | - | []
+openNames | 默认展开的 sub menu | array | - | []
 collapsed | 在 mode 状态下, 收起菜单 | boolean | - | false

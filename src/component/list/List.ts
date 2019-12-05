@@ -22,7 +22,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}list',
+  name: '${prefix}List',
 
   propTypes: {
     simple: {

@@ -33,7 +33,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}button',
+  name: '${prefix}Button',
 
   propTypes: {
     type: {
@@ -84,7 +84,7 @@ export default Yox.define({
 
     const props = options.props || (options.props = {})
 
-    const buttonGroup = findComponentUpward(options.parent, '${prefix}buttonGroup')
+    const buttonGroup = findComponentUpward(options.parent, '${prefix}ButtonGroup')
     if (buttonGroup) {
 
       // 有 group，则 size、shape 全听 group 的

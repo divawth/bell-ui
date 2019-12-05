@@ -24,7 +24,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}confirm',
+  name: '${prefix}Confirm',
 
   propTypes: {
     title: {

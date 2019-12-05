@@ -65,7 +65,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}datePicker',
+  name: '${prefix}DatePicker',
 
   propTypes: {
     type: {

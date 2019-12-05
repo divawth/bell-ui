@@ -15,7 +15,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}page-header',
+  name: '${prefix}PageHeader',
 
   propTypes: {
     title: {

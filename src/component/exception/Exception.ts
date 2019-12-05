@@ -15,7 +15,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}exception',
+  name: '${prefix}Exception',
 
   propTypes: {
     title: {

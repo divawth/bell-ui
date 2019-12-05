@@ -27,7 +27,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}notification',
+  name: '${prefix}Notification',
 
   propTypes: {
     title: {

@@ -17,7 +17,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}collapse',
+  name: '${prefix}Collapse',
 
   propTypes: {
     value: {

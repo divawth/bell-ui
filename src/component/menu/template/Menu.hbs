@@ -1,7 +1,7 @@
 <div
 class="${prefix}menu
 {{#if mode}} ${prefix}menu-{{mode}}{{/if}}
-{{#if theme}} ${prefix}menu-{{theme}}{{/if}}
+{{#if !inner && theme}} ${prefix}menu-{{theme}}{{/if}}
 {{#if collapsed}} ${prefix}menu-collapsed{{/if}}
 {{#if className}} {{className}}{{/if}}"
 

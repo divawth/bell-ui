@@ -11,7 +11,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}breadcrumb',
+  name: '${prefix}Breadcrumb',
 
   propTypes: {
     separator: {

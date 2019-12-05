@@ -18,7 +18,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}circle',
+  name: '${prefix}Circle',
 
   propTypes: {
     dashboard: {

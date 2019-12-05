@@ -23,7 +23,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}rate',
+  name: '${prefix}Rate',
 
   propTypes: {
     count: {

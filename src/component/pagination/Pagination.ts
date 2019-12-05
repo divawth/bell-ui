@@ -32,7 +32,7 @@ export default Yox.define({
 
   model: 'current',
 
-  name: '${prefix}pagination',
+  name: '${prefix}Pagination',
 
   propTypes: {
     size: {

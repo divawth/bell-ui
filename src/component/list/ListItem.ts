@@ -15,7 +15,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}listItem',
+  name: '${prefix}ListItem',
 
   propTypes: {
     className: {
@@ -27,7 +27,7 @@ export default Yox.define({
   },
 
   data(options) {
-    const list = findComponentUpward(options.parent, '${prefix}list')
+    const list = findComponentUpward(options.parent, '${prefix}List')
     return {
       clickable: list
         ? list.get('clickable')

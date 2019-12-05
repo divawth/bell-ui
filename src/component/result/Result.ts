@@ -22,7 +22,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}result',
+  name: '${prefix}Result',
 
   propTypes: {
     title: {

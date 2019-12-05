@@ -3,7 +3,7 @@ import './index.styl'
 import Menu from './component/menu/Menu'
 import MenuItem from './component/menu/MenuItem'
 import MenuGroup from './component/menu/MenuGroup'
-import Submenu from './component/menu/Submenu'
+import SubMenu from './component/menu/SubMenu'
 
 import Icon from './component/icon/Icon'
 import Text from './component/text/Text'
@@ -85,10 +85,10 @@ import FormItem from './component/form/FormItem'
 import Dialog from './component/dialog/Dialog'
 import Table from './component/table/Table'
 
-import Message from './component/message/base'
-import Notification from './component/notification/base'
-import Modal from './component/modal/base'
-import LoadingBar from  './component/loading-bar/base'
+import './component/loading-bar'
+import './component/message'
+import './component/modal'
+import './component/notification'
 
 import { BODY } from './component/constant'
 
@@ -96,7 +96,7 @@ const component = {
   Menu,
   MenuItem,
   MenuGroup,
-  Submenu,
+  SubMenu,
   Icon,
   Text,
   Drawer,
@@ -183,11 +183,6 @@ export const install = function (Yox: any) {
   Yox.dom.append(BODY, notificationElement)
 
   Yox.component(component)
-  Yox.prototype.$message = Message
-  Yox.prototype.$confirm = Modal.addConfirm
-  Yox.prototype.$alert = Modal.addAlert
-  Yox.prototype.$notification = Notification
-  Yox.prototype.$loadingBar = LoadingBar
 }
 
 if (typeof window !== 'undefined' && window[ 'Yox' ]) {

@@ -24,7 +24,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}alert',
+  name: '${prefix}Alert',
 
   propTypes: {
     status: {

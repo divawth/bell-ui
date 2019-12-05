@@ -13,7 +13,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}timeline',
+  name: '${prefix}Timeline',
 
   propTypes: {
     pending: {

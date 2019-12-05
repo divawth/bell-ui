@@ -22,7 +22,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}form',
+  name: '${prefix}Form',
 
   propTypes: {
     inline: {

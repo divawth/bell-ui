@@ -26,7 +26,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}link',
+  name: '${prefix}Link',
 
   propTypes: {
     type: {

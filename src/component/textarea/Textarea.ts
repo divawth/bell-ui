@@ -44,7 +44,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}textarea',
+  name: '${prefix}Textarea',
 
   propTypes: {
     value: {

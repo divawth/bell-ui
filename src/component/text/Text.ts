@@ -26,7 +26,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}text',
+  name: '${prefix}Text',
 
   propTypes: {
     type: {

@@ -104,7 +104,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu"+(a("mode",$2)?(" bell-menu-"+y(a("mode",$2))):"")+(a("theme",$2)?(" bell-menu-"+y(a("theme",$2))):"")+(a("collapsed",$2)?" bell-menu-collapsed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu"+(a("mode",$2)?(" bell-menu-"+y(a("mode",$2))):"")+((!a("inner",$2)&&a("theme",$2))?(" bell-menu-"+y(a("theme",$2))):"")+(a("collapsed",$2)?" bell-menu-collapsed":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){s("$slot_children")})};
 
 /***/ }),
 /* 2 */
@@ -116,7 +116,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu-group"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-menu-group-title")},$0,y(a("title",$2))),(d(a("hasSlot",$2),["children"]))?(r("Menu",function(){f("theme",""),f("mode",(a("mode",$2)==="inline")?"inline":"vertical")},{"$slot_children":function(){s("$slot_children")}})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-menu-group"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-menu-group-title")},$0,y(a("title",$2))),(d(a("hasSlot",$2),["children"]))?(r("Menu",function(){f("inner",$2),f("mode",(a("mode",$2)==="inline")?"inline":"vertical")},{"$slot_children":function(){s("$slot_children")}})):p()})};
 
 /***/ }),
 /* 4 */
@@ -134,7 +134,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("mode",$2)==="inline")?(q("div",function(){g("className","bell-submenu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-submenu-title"),(!a("collapsed",$2))?((l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))):""},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-submenu-arrow-icon")})):p()}),r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("theme","")},{"$slot_children":function(){s("$slot_children")}},"menu")})):(r("Dropdown",function(){f("className","bell-submenu"+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&f("style",j("style",a("style",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("isOpen",$2,$0,$2,$2))),f("placement",(a("mode",$2)==="horizontal")?"bottom":"right-start"),l("outside","event.outside",$0,"set('isOpen', false)","set",function(z){return ["isOpen",$3]})},{"$slot_children":function(){q("div",function(){g("className","bell-submenu-title"),(!a("collapsed",$2))&&(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-submenu-arrow-icon")})):p()})},"$slot_overlay":function(){s("$slot_children")}}))};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("mode",$2)==="inline")?(q("div",function(){g("className","bell-sub-menu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))?((l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))):""},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()}),r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("inner",$2)},{"$slot_children":function(){s("$slot_children")}},"menu")})):(r("Dropdown",function(){f("className","bell-sub-menu"+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&f("style",j("style",a("style",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("isOpen",$2,$0,$2,$2))),f("placement",(a("mode",$2)==="horizontal")?"bottom":"right-start"),l("outside","event.outside",$0,"set('isOpen', false)","set",function(z){return ["isOpen",$3]})},{"$slot_children":function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))&&(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()})},"$slot_overlay":function(){s("$slot_children")}}))};
 
 /***/ }),
 /* 7 */
@@ -308,31 +308,31 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_DATE",$2))?(q("div",function(){g("className","bell-datepicker-date bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-12)","offset",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-1)","offset",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){e(y(a("date.year",$2))),e(" 年")}),q("span",function(){a("canPickMonth",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_MONTH)","set",function(z){return ["type",a("RAW_TYPE_MONTH",$2,$0,$0,$0,z)]}))):""},function(){e(y(a("date.month",$2))),e(" 月")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(1)","offset",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(12)","offset",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3)]))?(" bell-datepicker-col-current-month"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2))),f("checkedMonth",j("checkedMonth",a("date.month",$2,$0,$2,$2)))})):p()))};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_DATE",$2))?(q("div",function(){g("className","bell-datepicker-date bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-12)","offset",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-1)","offset",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("date.year",$2))),e("年")}),q("span",function(){a("canPickMonth",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_MONTH)","set",function(z){return ["type",a("RAW_TYPE_MONTH",$2,$0,$0,$0,z)]}))):""},function(){q("span",function(){g("className","bell-datepicker-header-month")},$0,y(a("date.month",$2))),e("月")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(1)","offset",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(12)","offset",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3)]))?(" bell-datepicker-col-current-month"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2))),f("checkedMonth",j("checkedMonth",a("date.month",$2,$0,$2,$2)))})):p()))};
 
 /***/ }),
 /* 36 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_MONTH",$2))?(q("div",function(){g("className","bell-datepicker-month bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"decrease('year', 10)","decrease",function(z){return ["year",10]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"decrease('year', 1)","decrease",function(z){return ["year",1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){e(y(a("year",$2))),e(" 年")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"increase('year', 1)","increase",function(z){return ["year",1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"increase('year', 10)","increase",function(z){return ["year",10]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col bell-datepicker-col-enabled"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")),l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("text",$3)))})},a("",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("year",$2,$0,$2,$2)))})):p())};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_MONTH",$2))?(q("div",function(){g("className","bell-datepicker-month bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"decrease('year', 10)","decrease",function(z){return ["year",10]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"decrease('year', 1)","decrease",function(z){return ["year",1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("year",$2))),e("年")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"increase('year', 1)","increase",function(z){return ["year",1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"increase('year', 10)","increase",function(z){return ["year",10]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col bell-datepicker-col-enabled"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")),l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("text",$3)))})},a("",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("year",$2,$0,$2,$2)))})):p())};
 
 /***/ }),
 /* 37 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-datepicker-year bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("span",function(){g("className","bell-datepicker-header-button bell-datepicker-prev"),l("click","event.click",$0,"decrease('year', count)","decrease",function(z){return ["year",a("count",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),e(y(a("year",$2))),e(" 年 - "),e(y((a("year",$2)+a("count",$2))-1)),e(" 年"),q("span",function(){g("className","bell-datepicker-header-button bell-datepicker-next"),l("click","event.click",$0,"increase('year', count)","increase",function(z){return ["year",a("count",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("div",function(){g("className","bell-datepicker-body")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col bell-datepicker-col-enabled"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")),l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("",$3)))})},a("",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-datepicker-year bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("span",function(){g("className","bell-datepicker-header-button bell-datepicker-prev"),l("click","event.click",$0,"decrease('year', count)","decrease",function(z){return ["year",a("count",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("year",$2))),e("年"),q("span",function(){g("className","bell-datepicker-header-separator")},$0,"-",$2),q("span",function(){g("className","bell-datepicker-header-year")},$0,y((a("year",$2)+a("count",$2))-1)),e("年"),q("span",function(){g("className","bell-datepicker-header-button bell-datepicker-next"),l("click","event.click",$0,"increase('year', count)","increase",function(z){return ["year",a("count",$2,$0,$0,$0,z)]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("div",function(){g("className","bell-datepicker-body")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col bell-datepicker-col-enabled"+((d(a("isChecked",$2),[a("",$3)]))?" bell-datepicker-col-checked":"")),l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("",$3)))})},a("",$3,$0,$2),$0)})},a("datasource",$2,$0,$2),$0)})})};
 
 /***/ }),
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-datepicker-daterange"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-panel")},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(-12)","offsetStart",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(-1)","offsetStart",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),e(y(a("startDate.year",$2))),e(" 年 "),e(y(a("startDate.month",$2))),e(" 月"),a("splitPanel",$2)?(q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(1)","offsetStart",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(12)","offsetStart",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})):p()}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days"),l("mouseleave","event.mouseleave",$0,"leave()","leave")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3),a("startDate",$3,2)]))?(" bell-datepicker-col-current-month"+((a("timestamp",$3)===a("computedCheckedStartTimestamp",$3,2))?(" bell-datepicker-col-checked"+(a("computedCheckedEndTimestamp",$3,2)?" bell-datepicker-col-start":" bell-datepicker-col-range")):"")+((a("timestamp",$3)===a("computedCheckedEndTimestamp",$3,2))?" bell-datepicker-col-checked bell-datepicker-col-end":"")+(((a("computedCheckedStartTimestamp",$3,2)<a("timestamp",$3))&&(a("computedCheckedEndTimestamp",$3,2)>a("timestamp",$3)))?" bell-datepicker-col-range":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),a("pinDate",$3,2)?(l("mouseenter","event.mouseenter",$0,"hover(this)","hover",function(z){return [a("",$3,$0,$0,$0,z)]})):"",(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("startDatasource",$2,$0,$2),$0)})})}),q("div",function(){g("className","bell-datepicker-panel")},function(){q("div",function(){g("className","bell-datepicker-header")},function(){a("splitPanel",$2)?(q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(-12)","offsetEnd",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(-1)","offsetEnd",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})})):p(),e(y(a("endDate.year",$2))),e(" 年 "),e(y(a("endDate.month",$2))),e(" 月"),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(1)","offsetEnd",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(12)","offsetEnd",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days"),l("mouseleave","event.mouseleave",$0,"leave()","leave")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3),a("endDate",$3,2)]))?(" bell-datepicker-col-current-month"+((a("timestamp",$3)===a("computedCheckedStartTimestamp",$3,2))?(" bell-datepicker-col-checked"+(a("computedCheckedEndTimestamp",$3,2)?" bell-datepicker-col-start":" bell-datepicker-col-range")):"")+((a("timestamp",$3)===a("computedCheckedEndTimestamp",$3,2))?" bell-datepicker-col-checked bell-datepicker-col-end":"")+(((a("computedCheckedStartTimestamp",$3,2)<a("timestamp",$3))&&(a("computedCheckedEndTimestamp",$3,2)>a("timestamp",$3)))?" bell-datepicker-col-range":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),a("pinDate",$3,2)?(l("mouseenter","event.mouseenter",$0,"hover(this)","hover",function(z){return [a("",$3,$0,$0,$0,z)]})):"",(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("endDatasource",$2,$0,$2),$0)})})})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-datepicker-daterange"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-panel")},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(-12)","offsetStart",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(-1)","offsetStart",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("startDate.year",$2))),e("年"),q("span",function(){g("className","bell-datepicker-header-month")},$0,y(a("startDate.month",$2))),e("月"),a("splitPanel",$2)?(q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(1)","offsetStart",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetStart(12)","offsetStart",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})):p()}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days"),l("mouseleave","event.mouseleave",$0,"leave()","leave")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3),a("startDate",$3,2)]))?(" bell-datepicker-col-current-month"+((a("timestamp",$3)===a("computedCheckedStartTimestamp",$3,2))?(" bell-datepicker-col-checked"+(a("computedCheckedEndTimestamp",$3,2)?" bell-datepicker-col-start":" bell-datepicker-col-range")):"")+((a("timestamp",$3)===a("computedCheckedEndTimestamp",$3,2))?" bell-datepicker-col-checked bell-datepicker-col-end":"")+(((a("computedCheckedStartTimestamp",$3,2)<a("timestamp",$3))&&(a("computedCheckedEndTimestamp",$3,2)>a("timestamp",$3)))?" bell-datepicker-col-range":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),a("pinDate",$3,2)?(l("mouseenter","event.mouseenter",$0,"hover(this)","hover",function(z){return [a("",$3,$0,$0,$0,z)]})):"",(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("startDatasource",$2,$0,$2),$0)})})}),q("div",function(){g("className","bell-datepicker-panel")},function(){q("div",function(){g("className","bell-datepicker-header")},function(){a("splitPanel",$2)?(q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(-12)","offsetEnd",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(-1)","offsetEnd",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})})):p(),q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("endDate.year",$2))),e("年"),q("span",function(){g("className","bell-datepicker-header-month")},$0,y(a("endDate.month",$2))),e("月"),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(1)","offsetEnd",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offsetEnd(12)","offsetEnd",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days"),l("mouseleave","event.mouseleave",$0,"leave()","leave")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3),a("endDate",$3,2)]))?(" bell-datepicker-col-current-month"+((a("timestamp",$3)===a("computedCheckedStartTimestamp",$3,2))?(" bell-datepicker-col-checked"+(a("computedCheckedEndTimestamp",$3,2)?" bell-datepicker-col-start":" bell-datepicker-col-range")):"")+((a("timestamp",$3)===a("computedCheckedEndTimestamp",$3,2))?" bell-datepicker-col-checked bell-datepicker-col-end":"")+(((a("computedCheckedStartTimestamp",$3,2)<a("timestamp",$3))&&(a("computedCheckedEndTimestamp",$3,2)>a("timestamp",$3)))?" bell-datepicker-col-range":"")):" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")),a("pinDate",$3,2)?(l("mouseenter","event.mouseenter",$0,"hover(this)","hover",function(z){return [a("",$3,$0,$0,$0,z)]})):"",(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(this)","click",function(z){return [a("",$3,$0,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),$0)})},a("endDatasource",$2,$0,$2),$0)})})})})};
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_WEEK",$2))?(q("div",function(){g("className","bell-datepicker-week bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-12)","offset",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-1)","offset",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){e(y(a("date.year",$2))),e(" 年")}),q("span",function(){a("canPickMonth",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_MONTH)","set",function(z){return ["type",a("RAW_TYPE_MONTH",$2,$0,$0,$0,z)]}))):""},function(){e(y(a("date.month",$2))),e(" 月")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(12)","offset",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(1)","offset",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3)]))?" bell-datepicker-col-current-month":" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")+(((a("checkedTimestamp",$3,2)>=a("start.timestamp",$3,1))&&(a("checkedTimestamp",$3,2)<a("end.timestamp",$3,1)))?((a("colIndex",$2)===0)?" bell-datepicker-col-checked bell-datepicker-col-start":((a("colIndex",$2)===(a("$length",$2)-1))?" bell-datepicker-col-checked bell-datepicker-col-end":" bell-datepicker-col-range")):"")),(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(../rowIndex)","click",function(z){return [a("rowIndex",$3,1,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),"colIndex")})},a("datasource",$2,$0,$2),"rowIndex")})})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2))),f("checkedMonth",j("checkedMonth",a("date.month",$2,$0,$2,$2)))})):p()))};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("type",$2)===a("RAW_TYPE_WEEK",$2))?(q("div",function(){g("className","bell-datepicker-week bell-datepicker-panel"+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-datepicker-header")},function(){q("div",function(){g("className","bell-datepicker-prev")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-12)","offset",function(z){return [-12]})},function(){r("Icon",function(){f("name","arrow-left-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(-1)","offset",function(z){return [-1]})},function(){r("Icon",function(){f("name","arrow-left-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})})}),q("span",function(){a("canPickYear",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_YEAR)","set",function(z){return ["type",a("RAW_TYPE_YEAR",$2,$0,$0,$0,z)]}))):""},function(){q("span",function(){g("className","bell-datepicker-header-year")},$0,y(a("date.year",$2))),e("年")}),q("span",function(){a("canPickMonth",$2)?((g("className","bell-datepicker-header-link"),l("click","event.click",$0,"set('type', RAW_TYPE_MONTH)","set",function(z){return ["type",a("RAW_TYPE_MONTH",$2,$0,$0,$0,z)]}))):""},function(){q("span",function(){g("className","bell-datepicker-header-month")},$0,y(a("date.month",$2))),e("月")}),q("div",function(){g("className","bell-datepicker-next")},function(){q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(12)","offset",function(z){return [12]})},function(){r("Icon",function(){f("name","arrow-right-s-line"),f("size","0"),f("className","bell-datepicker-header-icon")})}),q("span",function(){g("className","bell-datepicker-header-button"),l("click","event.click",$0,"offset(1)","offset",function(z){return [1]})},function(){r("Icon",function(){f("name","arrow-right-s-fill"),f("size","0"),f("className","bell-datepicker-header-icon")})})})}),q("div",function(){g("className","bell-datepicker-body")},function(){q("div",function(){g("className","bell-datepicker-weeks")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col")},$0,y(a("",$3)))},a("weeks",$2,$0,$2),$0)}),q("div",function(){g("className","bell-datepicker-days")},function(){v(function(){q("div",function(){g("className","bell-datepicker-row")},function(){v(function(){q("div",function(){g("className","bell-datepicker-col"+((d(a("isEnabled",$2),[a("",$3)]))?(" bell-datepicker-col-enabled"+((d(a("isCurrentMonth",$2),[a("",$3)]))?" bell-datepicker-col-current-month":" bell-datepicker-col-adjacent-month")):" bell-datepicker-col-disabled")+(((a("checkedTimestamp",$3,2)>=a("start.timestamp",$3,1))&&(a("checkedTimestamp",$3,2)<a("end.timestamp",$3,1)))?((a("colIndex",$2)===0)?" bell-datepicker-col-checked bell-datepicker-col-start":((a("colIndex",$2)===(a("$length",$2)-1))?" bell-datepicker-col-checked bell-datepicker-col-end":" bell-datepicker-col-range")):"")),(d(a("isEnabled",$2),[a("",$3)]))?(l("click","event.click",$0,"click(../rowIndex)","click",function(z){return [a("rowIndex",$3,1,$0,$0,z)]})):""},function(){q("div",function(){g("className","bell-datepicker-text")},$0,y(a("date",$3)))})},a("list",$3,$0,$2),"colIndex")})},a("datasource",$2,$0,$2),"rowIndex")})})})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("checkedYear",j("checkedYear",a("date.year",$2,$0,$2,$2))),f("checkedMonth",j("checkedMonth",a("date.month",$2,$0,$2,$2)))})):p()))};
 
 /***/ }),
 /* 40 */
@@ -428,7 +428,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("a",function(){g("className","bell-link"+(a("type",$2)?(" bell-link-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-link-"+y(a("size",$2))):"")+(a("underline",$2)?" bell-link-underline":"")+(a("disabled",$2)?" bell-link-disabled":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("href",a("href",$2)||"javascript:void(0)"),a("target",$2)&&g("target",j("target",a("target",$2,$0,$2,$2),1)),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("href",$2)&&(!a("disabled",$2)))&&m("click","event.click",$0,"click.link","click.link")},function(){s("$slot_children")})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("a",function(){g("className","bell-link"+(a("type",$2)?(" bell-link-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-link-"+y(a("size",$2))):"")+(a("underline",$2)?" bell-link-underline":"")+(a("disabled",$2)?" bell-link-disabled":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("href",a("href",$2)||"javascript:void(0)"),a("target",$2)&&g("target",j("target",a("target",$2,$0,$2,$2),1)),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1)),(!a("href",$2)&&(!a("disabled",$2)))&&m("click","event.click",$0,"click.link","click.link"),f("ondragstart","return false")},function(){s("$slot_children")})};
 
 /***/ }),
 /* 56 */
@@ -554,13 +554,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 76 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-message"+(a("status",$2)?(" bell-message-"+y(a("status",$2))):"")+(a("center",$2)?" bell-message-center":"")+(a("closable",$2)?" bell-message-with-close":""))},function(){r("Icon",function(){f("name",(a("status",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkbox-circle-fill":((a("status",$2)===a("RAW_TYPE_WARNING",$2))?"error-warning-fill":((a("status",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle-fill":"information-fill"))),f("size","0"),f("className","bell-message-icon")}),q("span",function(){g("className","bell-message-text")},$0,y(a("content",$2))),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-message-close"),l("click","event.click","native","hide()","hide")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-loadingbar"+(a("type",$2)?(" bell-loadingbar-"+y(a("type",$2))):""))},function(){q("div",function(){g("className","bell-loadingbar-indicator"),g("style.cssText","width: "+y(a("percent",$2))+"%;height: "+y(a("height",$2))+"px;"+(a("color",$2)?("color: "+y(a("color",$2))+";"):""))})})};
 
 /***/ }),
 /* 77 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-notification"+(a("status",$2)?(" bell-notification-"+y(a("status",$2))+" bell-notification-with-icon"):"")+(a("title",$2)?" bell-notification-with-title":"")+((a("duration",$2)==0)?" bell-notification-with-close":"")),g("style.cssText","width: "+y(a("width",$2))+"px;right: "+y(a("right",$2))+"px;")},function(){a("status",$2)?(r("Icon",function(){f("name",(a("status",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkbox-circle-fill":((a("status",$2)===a("RAW_TYPE_WARNING",$2))?"error-warning-fill":((a("status",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle-fill":"information-fill"))),f("size","0"),f("className","bell-notification-icon")})):p(),a("title",$2)?(q("div",function(){g("className","bell-notification-title")},$0,y(a("title",$2)))):p(),a("content",$2)?(q("div",function(){g("className","bell-notification-content")},$0,y(a("content",$2)))):p(),(a("duration",$2)==0)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-notification-close"),l("click","event.click","native","hide()","hide")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-message"+(a("status",$2)?(" bell-message-"+y(a("status",$2))):"")+(a("center",$2)?" bell-message-center":"")+(a("closable",$2)?" bell-message-with-close":""))},function(){r("Icon",function(){f("name",(a("status",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkbox-circle-fill":((a("status",$2)===a("RAW_TYPE_WARNING",$2))?"error-warning-fill":((a("status",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle-fill":"information-fill"))),f("size","0"),f("className","bell-message-icon")}),q("span",function(){g("className","bell-message-text")},$0,y(a("content",$2))),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-message-close"),l("click","event.click","native","hide()","hide")})):p()})};
 
 /***/ }),
 /* 78 */
@@ -578,7 +578,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 80 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-loadingbar"+(a("type",$2)?(" bell-loadingbar-"+y(a("type",$2))):""))},function(){q("div",function(){g("className","bell-loadingbar-indicator"),g("style.cssText","width: "+y(a("percent",$2))+"%;height: "+y(a("height",$2))+"px;"+(a("color",$2)?("color: "+y(a("color",$2))+";"):""))})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-notification"+(a("status",$2)?(" bell-notification-"+y(a("status",$2))+" bell-notification-with-icon"):"")+(a("title",$2)?" bell-notification-with-title":"")+((a("duration",$2)==0)?" bell-notification-with-close":"")),g("style.cssText","width: "+y(a("width",$2))+"px;right: "+y(a("right",$2))+"px;")},function(){a("status",$2)?(r("Icon",function(){f("name",(a("status",$2)===a("RAW_TYPE_SUCCESS",$2))?"checkbox-circle-fill":((a("status",$2)===a("RAW_TYPE_WARNING",$2))?"error-warning-fill":((a("status",$2)===a("RAW_TYPE_ERROR",$2))?"close-circle-fill":"information-fill"))),f("size","0"),f("className","bell-notification-icon")})):p(),a("title",$2)?(q("div",function(){g("className","bell-notification-title")},$0,y(a("title",$2)))):p(),a("content",$2)?(q("div",function(){g("className","bell-notification-content")},$0,y(a("content",$2)))):p(),(a("duration",$2)==0)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-notification-close"),l("click","event.click","native","hide()","hide")})):p()})};
 
 /***/ }),
 /* 81 */
@@ -855,18 +855,14 @@ function scrollTop(element, from, to, duration, endCallback) {
 
 /* harmony default export */ var menu_Menu = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Menu_default.a,
-    name: 'bell-menu',
+    name: 'bell-Menu',
     propTypes: {
         mode: {
             type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL, RAW_INLINE]),
             value: RAW_HORIZONTAL,
         },
         theme: {
-            type: oneOf([
-                RAW_DARK,
-                RAW_LIGHT,
-                ''
-            ]),
+            type: oneOf(RAW_THEME_ARRAY),
             value: RAW_LIGHT,
         },
         collapsed: {
@@ -882,6 +878,10 @@ function scrollTop(element, from, to, duration, endCallback) {
                 return [];
             }
         },
+        inner: {
+            type: RAW_BOOLEAN,
+            value: FALSE,
+        },
         className: {
             type: RAW_STRING,
         },
@@ -890,14 +890,45 @@ function scrollTop(element, from, to, duration, endCallback) {
         }
     },
     watchers: {
+        activeName: function (activeName) {
+            this.fire('activeName.menu', { activeName: activeName }, TRUE);
+        },
+        openNames: function (openNames) {
+            this.fire('openNames.menu', { openNames: openNames }, TRUE);
+        },
         collapsed: function (collapsed) {
-            this.fire('collapse.menu', { collapsed: collapsed }, TRUE);
+            this.fire('collapsed.menu', { collapsed: collapsed }, TRUE);
         }
     },
     events: {
         'click.menuItem': function (event, data) {
-            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                this.fire('clickItem.menu', data, TRUE);
+            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
+                && !this.get('inner')) {
+                this.fire('change.menu', {
+                    activeName: data.name
+                });
+            }
+        },
+        'isOpen.subMenu': function (event, data) {
+            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
+                && !this.get('inner')) {
+                var isOpen = data.isOpen, name_1 = data.name;
+                var openNames = this.get('openNames');
+                if (openNames) {
+                    openNames = this.copy(openNames);
+                }
+                else {
+                    openNames = [];
+                }
+                if (isOpen) {
+                    openNames.push(name_1);
+                }
+                else {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(openNames, name_1);
+                }
+                this.fire('change.menu', {
+                    openNames: openNames,
+                });
             }
         }
     }
@@ -914,7 +945,7 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
 
 /* harmony default export */ var menu_MenuItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: MenuItem_default.a,
-    name: 'bell-menuItem',
+    name: 'bell-MenuItem',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -930,19 +961,14 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
         }
     },
     data: function (options) {
-        var menu = findComponentUpward(options.parent, 'bell-menu');
+        var menu = findComponentUpward(options.parent, 'bell-Menu');
         return {
-            mode: menu.get('mode'),
             isActive: menu.get('activeName') === this.get('name'),
-            collapsed: FALSE,
         };
     },
     events: {
-        'clickItem.menu': function (_, data) {
-            this.set('isActive', data.name === this.get('name'));
-        },
-        'collapse.menu': function (_, data) {
-            this.set('collapsed', data.collapsed);
+        'activeName.menu': function (_, data) {
+            this.set('isActive', data.activeName === this.get('name'));
         },
     },
     methods: {
@@ -965,7 +991,7 @@ var MenuGroup_default = /*#__PURE__*/__webpack_require__.n(MenuGroup);
 
 /* harmony default export */ var menu_MenuGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: MenuGroup_default.a,
-    name: 'bell-menuGroup',
+    name: 'bell-MenuGroup',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -978,7 +1004,7 @@ var MenuGroup_default = /*#__PURE__*/__webpack_require__.n(MenuGroup);
         }
     },
     data: function (options) {
-        var menu = findComponentUpward(options.parent, 'bell-menu');
+        var menu = findComponentUpward(options.parent, 'bell-Menu');
         return {
             mode: menu.get('mode'),
         };
@@ -996,7 +1022,7 @@ var Icon_default = /*#__PURE__*/__webpack_require__.n(Icon);
 
 /* harmony default export */ var icon_Icon = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Icon_default.a,
-    name: 'bell-icon',
+    name: 'bell-Icon',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -1036,7 +1062,7 @@ var CLASS_VISIBLE = 'bell-dropdown-visible';
 var CLASS_FADE = 'bell-dropdown-fade';
 /* harmony default export */ var dropdown_Dropdown = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Dropdown_default.a,
-    name: 'bell-dropdown',
+    name: 'bell-Dropdown',
     propTypes: {
         placement: {
             type: oneOf(RAW_PLACEMENT_ARRAY),
@@ -1166,20 +1192,20 @@ var CLASS_FADE = 'bell-dropdown-fade';
     }
 }));
 
-// EXTERNAL MODULE: ./src/component/menu/template/Submenu.hbs
-var Submenu = __webpack_require__(6);
-var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
+// EXTERNAL MODULE: ./src/component/menu/template/SubMenu.hbs
+var SubMenu = __webpack_require__(6);
+var SubMenu_default = /*#__PURE__*/__webpack_require__.n(SubMenu);
 
-// CONCATENATED MODULE: ./src/component/menu/Submenu.ts
-
-
+// CONCATENATED MODULE: ./src/component/menu/SubMenu.ts
 
 
 
 
-/* harmony default export */ var menu_Submenu = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-    template: Submenu_default.a,
-    name: 'bell-submenu',
+
+
+/* harmony default export */ var menu_SubMenu = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: SubMenu_default.a,
+    name: 'bell-SubMenu',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -1192,29 +1218,36 @@ var Submenu_default = /*#__PURE__*/__webpack_require__.n(Submenu);
         }
     },
     data: function (options) {
-        var menu = findComponentUpward(options.parent, 'bell-menu');
+        var menu = findComponentUpward(options.parent, 'bell-Menu');
         var name = this.get('name');
-        var isOpen = FALSE;
-        var isActive = FALSE;
-        if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(menu.get('openNames'), name)) {
-            isOpen = TRUE;
-        }
-        if (menu.get('activeName') === name) {
-            isActive = TRUE;
-        }
+        var openNames = menu.get('openNames');
         return {
-            isOpen: isOpen,
-            isActive: isActive,
+            isOpen: openNames && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(openNames, name),
+            isActive: menu.get('activeName') === name,
             mode: menu.get('mode'),
             collapsed: menu.get('collapsed'),
         };
     },
+    watchers: {
+        isOpen: function (isOpen) {
+            var name = this.get('name');
+            if (name) {
+                this.fire('isOpen.subMenu', {
+                    isOpen: isOpen,
+                    name: name,
+                });
+            }
+        }
+    },
     events: {
-        'collapse.menu': function (_, data) {
-            this.set('collapsed', data.collapsed);
+        'activeName.menu': function (_, data) {
+            this.set('isActive', data.activeName === this.get('name'));
         },
-        'clickItem.menu': function (_, data) {
-            this.set('isActive', data.name === this.get('name'));
+        'openNames.menu': function (_, data) {
+            this.set('isOpen', data.openNames && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.openNames, this.get('name')));
+        },
+        'collapsed.menu': function (_, data) {
+            this.set('collapsed', data.collapsed);
         },
         'click.menuItem': function () {
             if (this.get('mode') !== RAW_INLINE) {
@@ -1240,7 +1273,7 @@ var Text_default = /*#__PURE__*/__webpack_require__.n(Text);
 
 /* harmony default export */ var text_Text = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Text_default.a,
-    name: 'bell-text',
+    name: 'bell-Text',
     propTypes: {
         type: {
             type: oneOf([
@@ -1289,7 +1322,7 @@ var Drawer_CLASS_FADE = 'bell-drawer-fade';
 /* harmony default export */ var drawer_Drawer = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Drawer_default.a,
     model: 'visible',
-    name: 'bell-drawer',
+    name: 'bell-Drawer',
     propTypes: {
         width: {
             type: RAW_STRING,
@@ -1396,7 +1429,7 @@ var Breadcrumb_default = /*#__PURE__*/__webpack_require__.n(Breadcrumb);
 
 /* harmony default export */ var breadcrumb_Breadcrumb = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Breadcrumb_default.a,
-    name: 'bell-breadcrumb',
+    name: 'bell-Breadcrumb',
     propTypes: {
         separator: {
             type: RAW_STRING,
@@ -1422,7 +1455,7 @@ var BreadcrumbItem_default = /*#__PURE__*/__webpack_require__.n(BreadcrumbItem);
 
 /* harmony default export */ var breadcrumb_BreadcrumbItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: BreadcrumbItem_default.a,
-    name: 'bell-breadcrumbItem',
+    name: 'bell-BreadcrumbItem',
     propTypes: {
         last: {
             type: RAW_BOOLEAN,
@@ -1436,7 +1469,7 @@ var BreadcrumbItem_default = /*#__PURE__*/__webpack_require__.n(BreadcrumbItem);
         }
     },
     data: function (options) {
-        var breadcrumb = findComponentUpward(options.parent, 'bell-breadcrumb');
+        var breadcrumb = findComponentUpward(options.parent, 'bell-Breadcrumb');
         return {
             separator: breadcrumb.get('separator')
         };
@@ -1456,7 +1489,7 @@ var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
 
 /* harmony default export */ var button_Button = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Button_default.a,
-    name: 'bell-button',
+    name: 'bell-Button',
     propTypes: {
         type: {
             type: oneOf([
@@ -1502,7 +1535,7 @@ var Button_default = /*#__PURE__*/__webpack_require__.n(Button);
     },
     beforeCreate: function (options) {
         var props = options.props || (options.props = {});
-        var buttonGroup = findComponentUpward(options.parent, 'bell-buttonGroup');
+        var buttonGroup = findComponentUpward(options.parent, 'bell-ButtonGroup');
         if (buttonGroup) {
             // 有 group，则 size、shape 全听 group 的
             if (props.size !== UNDEFINED) {
@@ -1535,7 +1568,7 @@ var ButtonGroup_default = /*#__PURE__*/__webpack_require__.n(ButtonGroup);
 
 /* harmony default export */ var button_ButtonGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: ButtonGroup_default.a,
-    name: 'bell-buttonGroup',
+    name: 'bell-ButtonGroup',
     propTypes: {
         size: {
             type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
@@ -1572,7 +1605,7 @@ var TEXT_TYPE_PASSWORD = 'password';
 var TEXT_TYPE_TEXT = 'text';
 /* harmony default export */ var input_Input = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Input_default.a,
-    name: 'bell-input',
+    name: 'bell-Input',
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMBER],
@@ -1728,7 +1761,7 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
 
 /* harmony default export */ var input_number_InputNumber = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: InputNumber_default.a,
-    name: 'bell-inputNumber',
+    name: 'bell-InputNumber',
     propTypes: {
         status: {
             type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
@@ -1883,7 +1916,7 @@ fontSizes[RAW_SMALL] = 12;
 fontSizes[RAW_LARGE] = 16;
 /* harmony default export */ var textarea_Textarea = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Textarea_default.a,
-    name: 'bell-textarea',
+    name: 'bell-Textarea',
     propTypes: {
         value: {
             type: RAW_STRING,
@@ -2035,7 +2068,7 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
 /* harmony default export */ var radio_Radio = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Radio_default.a,
     model: 'checked',
-    name: 'bell-radio',
+    name: 'bell-Radio',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -2084,7 +2117,7 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
     },
     beforeCreate: function (options) {
         var props = options.props || (options.props = {});
-        var radioGroup = findComponentUpward(options.parent, 'bell-radioGroup');
+        var radioGroup = findComponentUpward(options.parent, 'bell-RadioGroup');
         if (radioGroup) {
             if (props.name === UNDEFINED) {
                 props.name = radioGroup.get('name');
@@ -2110,7 +2143,7 @@ var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
 
 /* harmony default export */ var radio_RadioGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: RadioGroup_default.a,
-    name: 'bell-radioGroup',
+    name: 'bell-RadioGroup',
     propTypes: {
         size: {
             type: oneOf(RAW_SIZE_ARRAY),
@@ -2179,7 +2212,7 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
 /* harmony default export */ var checkbox_Checkbox = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Checkbox_default.a,
     model: 'checked',
-    name: 'bell-checkbox',
+    name: 'bell-Checkbox',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -2229,7 +2262,7 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
     },
     beforeCreate: function (options) {
         var props = options.props || (options.props = {});
-        var checkboxGroup = findComponentUpward(options.parent, 'bell-checkboxGroup');
+        var checkboxGroup = findComponentUpward(options.parent, 'bell-CheckboxGroup');
         if (checkboxGroup) {
             if (props.name === UNDEFINED) {
                 props.name = checkboxGroup.get('name');
@@ -2254,7 +2287,7 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
 
 /* harmony default export */ var checkbox_CheckboxGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CheckboxGroup_default.a,
-    name: 'bell-checkboxGroup',
+    name: 'bell-CheckboxGroup',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -2319,7 +2352,7 @@ var Switch_default = /*#__PURE__*/__webpack_require__.n(Switch);
 /* harmony default export */ var switch_Switch = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Switch_default.a,
     model: 'checked',
-    name: 'bell-switch',
+    name: 'bell-Switch',
     propTypes: {
         size: {
             type: oneOf([RAW_DEFAULT, RAW_SMALL]),
@@ -2367,7 +2400,7 @@ var Slider_CLASS_VISIBLE = 'bell-tooltip-visible';
 var Slider_CLASS_FADE = 'bell-tooltip-fade';
 /* harmony default export */ var slider_Slider = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Slider_default.a,
-    name: 'bell-slider',
+    name: 'bell-Slider',
     propTypes: {
         value: {
             type: RAW_NUMERIC,
@@ -2624,7 +2657,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
 /* harmony default export */ var tag_Tag = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tag_default.a,
     model: 'checked',
-    name: 'bell-tag',
+    name: 'bell-Tag',
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -2678,7 +2711,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
 
 /* harmony default export */ var select_Select = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Select_default.a,
-    name: 'bell-select',
+    name: 'bell-Select',
     propTypes: {
         placeholder: {
             type: RAW_STRING,
@@ -2852,7 +2885,7 @@ function isOptionSelected(values, value) {
 }
 /* harmony default export */ var select_Option = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Option_default.a,
-    name: 'bell-option',
+    name: 'bell-Option',
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMBER],
@@ -2872,7 +2905,7 @@ function isOptionSelected(values, value) {
         }
     },
     data: function (options) {
-        var select = findComponentUpward(options.parent, 'bell-select');
+        var select = findComponentUpward(options.parent, 'bell-Select');
         var props = options.props || {};
         return {
             isSelected: select
@@ -2927,7 +2960,7 @@ var OptionGroup_default = /*#__PURE__*/__webpack_require__.n(OptionGroup);
 
 /* harmony default export */ var select_OptionGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: OptionGroup_default.a,
-    name: 'bell-optionGroup',
+    name: 'bell-OptionGroup',
     propTypes: {
         label: {
             type: RAW_STRING,
@@ -2958,7 +2991,7 @@ var Pagination_default = /*#__PURE__*/__webpack_require__.n(Pagination);
 /* harmony default export */ var pagination_Pagination = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Pagination_default.a,
     model: 'current',
-    name: 'bell-pagination',
+    name: 'bell-Pagination',
     propTypes: {
         size: {
             type: oneOf([RAW_DEFAULT, RAW_SMALL]),
@@ -3167,7 +3200,7 @@ var external_root_Soga_commonjs_soga_commonjs2_soga_amd_soga_ = __webpack_requir
 var guid = 0;
 /* harmony default export */ var upload_Upload = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Upload_default.a,
-    name: 'bell-upload',
+    name: 'bell-Upload',
     propTypes: {
         action: {
             type: RAW_STRING,
@@ -3307,7 +3340,7 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
 
 /* harmony default export */ var alert_Alert = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Alert_default.a,
-    name: 'bell-alert',
+    name: 'bell-Alert',
     propTypes: {
         status: {
             type: oneOf(RAW_STATUS_ARRAY),
@@ -3361,7 +3394,7 @@ var Article_default = /*#__PURE__*/__webpack_require__.n(Article);
 
 /* harmony default export */ var article_Article = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Article_default.a,
-    name: 'bell-article',
+    name: 'bell-Article',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -3400,7 +3433,7 @@ var Spin_default = /*#__PURE__*/__webpack_require__.n(Spin);
 
 /* harmony default export */ var spin_Spin = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Spin_default.a,
-    name: 'bell-spin',
+    name: 'bell-Spin',
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -3473,7 +3506,7 @@ var BackTop_CLASS_VISIBLE = 'bell-backtop-visible';
 var BackTop_CLASS_FADE = 'bell-backtop-fade';
 /* harmony default export */ var backtop_BackTop = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: BackTop_default.a,
-    name: 'bell-backTop',
+    name: 'bell-BackTop',
     propTypes: {
         target: {
             type: RAW_STRING,
@@ -3578,7 +3611,7 @@ var Avatar_default = /*#__PURE__*/__webpack_require__.n(Avatar);
 var SPACE_HORIZONTAL = 8;
 /* harmony default export */ var avatar_Avatar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Avatar_default.a,
-    name: 'bell-avatar',
+    name: 'bell-Avatar',
     propTypes: {
         size: {
             type: oneOf(RAW_SIZE_ARRAY),
@@ -3647,7 +3680,7 @@ var Badge_default = /*#__PURE__*/__webpack_require__.n(Badge);
 
 /* harmony default export */ var badge_Badge = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Badge_default.a,
-    name: 'bell-badge',
+    name: 'bell-Badge',
     propTypes: {
         type: {
             type: oneOf(RAW_TYPE_ARRAY),
@@ -4508,7 +4541,7 @@ defaultFormat[RAW_TYPE_MONTH] = MONTH_FORMAT;
 defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
 /* harmony default export */ var datepicker_DatePicker = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DatePicker_default.a,
-    name: 'bell-datePicker',
+    name: 'bell-DatePicker',
     propTypes: {
         type: {
             type: oneOf([RAW_TYPE_DATE, RAW_TYPE_DATE_RANGE, RAW_TYPE_WEEK, RAW_TYPE_YEAR, RAW_TYPE_MONTH]),
@@ -4743,7 +4776,7 @@ var Tooltip_CLASS_VISIBLE = 'bell-tooltip-visible';
 var Tooltip_CLASS_FADE = 'bell-tooltip-fade';
 /* harmony default export */ var tooltip_Tooltip = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tooltip_default.a,
-    name: 'bell-tooltip',
+    name: 'bell-Tooltip',
     propTypes: {
         content: {
             type: RAW_STRING,
@@ -4926,7 +4959,7 @@ var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
 
 /* harmony default export */ var collapse_Collapse = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Collapse_default.a,
-    name: 'bell-collapse',
+    name: 'bell-Collapse',
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMBER, RAW_ARRAY],
@@ -4991,7 +5024,7 @@ var CollapseItem_default = /*#__PURE__*/__webpack_require__.n(CollapseItem);
 
 /* harmony default export */ var collapse_CollapseItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CollapseItem_default.a,
-    name: 'bell-collapseItem',
+    name: 'bell-CollapseItem',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -5013,7 +5046,7 @@ var CollapseItem_default = /*#__PURE__*/__webpack_require__.n(CollapseItem);
         }
     },
     data: function (options) {
-        var collapse = findComponentUpward(options.parent, 'bell-collapse');
+        var collapse = findComponentUpward(options.parent, 'bell-Collapse');
         var opened = FALSE;
         if (collapse) {
             var name_1 = this.get('name');
@@ -5064,7 +5097,7 @@ var Card_default = /*#__PURE__*/__webpack_require__.n(Card);
 
 /* harmony default export */ var card_Card = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Card_default.a,
-    name: 'bell-card',
+    name: 'bell-Card',
     propTypes: {
         simple: {
             type: RAW_BOOLEAN,
@@ -5096,7 +5129,7 @@ var CardHeader_default = /*#__PURE__*/__webpack_require__.n(CardHeader);
 
 /* harmony default export */ var card_CardHeader = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CardHeader_default.a,
-    name: 'bell-cardHeader',
+    name: 'bell-CardHeader',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5117,7 +5150,7 @@ var CardMedia_default = /*#__PURE__*/__webpack_require__.n(CardMedia);
 
 /* harmony default export */ var card_CardMedia = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CardMedia_default.a,
-    name: 'bell-cardMedia',
+    name: 'bell-CardMedia',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5138,7 +5171,7 @@ var CardBody_default = /*#__PURE__*/__webpack_require__.n(CardBody);
 
 /* harmony default export */ var card_CardBody = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CardBody_default.a,
-    name: 'bell-cardBody',
+    name: 'bell-CardBody',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5159,7 +5192,7 @@ var CardFooter_default = /*#__PURE__*/__webpack_require__.n(CardFooter);
 
 /* harmony default export */ var card_CardFooter = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CardFooter_default.a,
-    name: 'bell-cardFooter',
+    name: 'bell-CardFooter',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5182,7 +5215,7 @@ var PageHeader_default = /*#__PURE__*/__webpack_require__.n(PageHeader);
 
 /* harmony default export */ var page_header_PageHeader = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: PageHeader_default.a,
-    name: 'bell-page-header',
+    name: 'bell-PageHeader',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -5214,7 +5247,7 @@ var Layout_default = /*#__PURE__*/__webpack_require__.n(Layout);
 
 /* harmony default export */ var layout_Layout = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Layout_default.a,
-    name: 'bell-layout',
+    name: 'bell-Layout',
     propTypes: {
         vertical: {
             type: RAW_BOOLEAN,
@@ -5239,7 +5272,7 @@ var LayoutHeader_default = /*#__PURE__*/__webpack_require__.n(LayoutHeader);
 
 /* harmony default export */ var layout_LayoutHeader = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: LayoutHeader_default.a,
-    name: 'bell-layoutHeader',
+    name: 'bell-LayoutHeader',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5260,7 +5293,7 @@ var LayoutContent_default = /*#__PURE__*/__webpack_require__.n(LayoutContent);
 
 /* harmony default export */ var layout_LayoutContent = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: LayoutContent_default.a,
-    name: 'bell-layoutContent',
+    name: 'bell-LayoutContent',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5281,7 +5314,7 @@ var LayoutFooter_default = /*#__PURE__*/__webpack_require__.n(LayoutFooter);
 
 /* harmony default export */ var layout_LayoutFooter = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: LayoutFooter_default.a,
-    name: 'bell-layoutFooter',
+    name: 'bell-LayoutFooter',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5304,7 +5337,7 @@ var LayoutSider_default = /*#__PURE__*/__webpack_require__.n(LayoutSider);
 /* harmony default export */ var layout_LayoutSider = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: LayoutSider_default.a,
     model: 'collapsed',
-    name: 'bell-layoutSider',
+    name: 'bell-LayoutSider',
     propTypes: {
         showTrigger: {
             type: RAW_BOOLEAN,
@@ -5340,7 +5373,7 @@ var Link_default = /*#__PURE__*/__webpack_require__.n(Link);
 
 /* harmony default export */ var link_Link = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Link_default.a,
-    name: 'bell-link',
+    name: 'bell-Link',
     propTypes: {
         type: {
             type: oneOf([
@@ -5395,7 +5428,7 @@ var Empty_default = /*#__PURE__*/__webpack_require__.n(Empty);
 
 /* harmony default export */ var empty_Empty = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Empty_default.a,
-    name: 'bell-empty',
+    name: 'bell-Empty',
     propTypes: {
         simple: {
             type: RAW_BOOLEAN,
@@ -5420,7 +5453,7 @@ var Empty_default = /*#__PURE__*/__webpack_require__.n(Empty);
 
 /* harmony default export */ var list_List = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: List_default.a,
-    name: 'bell-list',
+    name: 'bell-List',
     propTypes: {
         simple: {
             type: RAW_BOOLEAN,
@@ -5462,7 +5495,7 @@ var ListItem_default = /*#__PURE__*/__webpack_require__.n(ListItem);
 
 /* harmony default export */ var list_ListItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: ListItem_default.a,
-    name: 'bell-listItem',
+    name: 'bell-ListItem',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -5472,7 +5505,7 @@ var ListItem_default = /*#__PURE__*/__webpack_require__.n(ListItem);
         }
     },
     data: function (options) {
-        var list = findComponentUpward(options.parent, 'bell-list');
+        var list = findComponentUpward(options.parent, 'bell-List');
         return {
             clickable: list
                 ? list.get('clickable')
@@ -5494,7 +5527,7 @@ var Result_default = /*#__PURE__*/__webpack_require__.n(Result);
 
 /* harmony default export */ var result_Result = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Result_default.a,
-    name: 'bell-result',
+    name: 'bell-Result',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -5537,7 +5570,7 @@ var Exception_default = /*#__PURE__*/__webpack_require__.n(Exception);
 
 /* harmony default export */ var exception_Exception = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Exception_default.a,
-    name: 'bell-exception',
+    name: 'bell-Exception',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -5569,7 +5602,7 @@ var Divider_default = /*#__PURE__*/__webpack_require__.n(Divider);
 
 /* harmony default export */ var divider_Divider = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Divider_default.a,
-    name: 'bell-divider',
+    name: 'bell-Divider',
     propTypes: {
         vertical: {
             type: RAW_BOOLEAN,
@@ -5604,7 +5637,7 @@ var Circle_default = /*#__PURE__*/__webpack_require__.n(Circle);
 
 /* harmony default export */ var circle_Circle = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Circle_default.a,
-    name: 'bell-circle',
+    name: 'bell-Circle',
     propTypes: {
         dashboard: {
             type: RAW_BOOLEAN,
@@ -5713,7 +5746,7 @@ var Progress_default = /*#__PURE__*/__webpack_require__.n(Progress);
 
 /* harmony default export */ var progress_Progress = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Progress_default.a,
-    name: 'bell-progress',
+    name: 'bell-Progress',
     propTypes: {
         percent: {
             type: RAW_NUMERIC,
@@ -5760,7 +5793,7 @@ var Rate_default = /*#__PURE__*/__webpack_require__.n(Rate);
 
 /* harmony default export */ var rate_Rate = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Rate_default.a,
-    name: 'bell-rate',
+    name: 'bell-Rate',
     propTypes: {
         count: {
             type: RAW_NUMERIC,
@@ -5861,7 +5894,7 @@ var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
 
 /* harmony default export */ var tabs_Tabs = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tabs_default.a,
-    name: 'bell-tabs',
+    name: 'bell-Tabs',
     propTypes: {
         type: {
             type: oneOf(['card']),
@@ -5979,7 +6012,7 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
 
 /* harmony default export */ var tabs_TabPanel = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: TabPanel_default.a,
-    name: 'bell-tabPanel',
+    name: 'bell-TabPanel',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -6029,7 +6062,7 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
         }
     },
     afterMount: function () {
-        var tabs = findComponentUpward(this.$parent, 'bell-tabs');
+        var tabs = findComponentUpward(this.$parent, 'bell-Tabs');
         var index = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.indexOf(tabs.$children, this);
         var name = this.get('name');
         if (name == NULL) {
@@ -6061,7 +6094,7 @@ var DropdownItem_default = /*#__PURE__*/__webpack_require__.n(DropdownItem);
 
 /* harmony default export */ var dropdown_DropdownItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DropdownItem_default.a,
-    name: 'bell-dropdownItem',
+    name: 'bell-DropdownItem',
     propTypes: {
         name: {
             type: RAW_STRING,
@@ -6097,7 +6130,7 @@ var DropdownMenu_default = /*#__PURE__*/__webpack_require__.n(DropdownMenu);
 
 /* harmony default export */ var dropdown_DropdownMenu = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: DropdownMenu_default.a,
-    name: 'bell-dropdownMenu',
+    name: 'bell-DropdownMenu',
     propTypes: {
         className: {
             type: RAW_STRING,
@@ -6121,7 +6154,7 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
 
 /* harmony default export */ var thumbnail_Thumbnail = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Thumbnail_default.a,
-    name: 'bell-thumbnail',
+    name: 'bell-Thumbnail',
     propTypes: {
         width: {
             type: RAW_NUMERIC,
@@ -6176,7 +6209,7 @@ var Timeline_default = /*#__PURE__*/__webpack_require__.n(Timeline);
 
 /* harmony default export */ var timeline_Timeline = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Timeline_default.a,
-    name: 'bell-timeline',
+    name: 'bell-Timeline',
     propTypes: {
         pending: {
             type: RAW_BOOLEAN,
@@ -6201,7 +6234,7 @@ var TimelineItem_default = /*#__PURE__*/__webpack_require__.n(TimelineItem);
 
 /* harmony default export */ var timeline_TimelineItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: TimelineItem_default.a,
-    name: 'bell-timelineItem',
+    name: 'bell-TimelineItem',
     propTypes: {
         color: {
             type: RAW_STRING,
@@ -6227,7 +6260,7 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
 
 /* harmony default export */ var form_Form = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Form_default.a,
-    name: 'bell-form',
+    name: 'bell-Form',
     propTypes: {
         inline: {
             type: RAW_BOOLEAN,
@@ -6269,7 +6302,7 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
 
 /* harmony default export */ var form_FormItem = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: FormItem_default.a,
-    name: 'bell-formItem',
+    name: 'bell-FormItem',
     propTypes: {
         prop: {
             type: RAW_STRING,
@@ -6299,7 +6332,7 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
         }
     },
     data: function (options) {
-        var form = findComponentUpward(options.parent, 'bell-form');
+        var form = findComponentUpward(options.parent, 'bell-Form');
         return {
             error: UNDEFINED,
             itemLabelWidth: form.get('labelWidth'),
@@ -6336,7 +6369,7 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
 /* harmony default export */ var dialog_Dialog = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Dialog_default.a,
     model: 'visible',
-    name: 'bell-dialog',
+    name: 'bell-Dialog',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -6428,7 +6461,7 @@ var Table_default = /*#__PURE__*/__webpack_require__.n(Table);
 
 /* harmony default export */ var table_Table = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Table_default.a,
-    name: 'bell-table',
+    name: 'bell-Table',
     propTypes: {
         list: {
             type: RAW_ARRAY,
@@ -6572,8 +6605,104 @@ var Table_default = /*#__PURE__*/__webpack_require__.n(Table);
     }
 }));
 
+// EXTERNAL MODULE: ./src/component/loading-bar/template/LoadingBar.hbs
+var LoadingBar = __webpack_require__(76);
+var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
+
+// CONCATENATED MODULE: ./src/component/loading-bar/LoadingBar.ts
+
+
+// import './style/LoadingBar.styl'
+
+
+/* harmony default export */ var loading_bar_LoadingBar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: LoadingBar_default.a,
+    name: 'bell-LoadingBar',
+    propTypes: {
+        type: {
+            type: oneOf(RAW_TYPE_ARRAY),
+            value: RAW_TYPE_PRIMARY,
+        },
+        height: {
+            type: RAW_NUMBER,
+            value: 2,
+        },
+        percent: {
+            type: RAW_NUMBER,
+            value: 0,
+        },
+        color: {
+            type: RAW_STRING,
+        }
+    },
+    afterMount: function () {
+        var me = this;
+        var next = function () {
+            me.timer = setTimeout(function () {
+                if (!me.timer) {
+                    return;
+                }
+                var value = me.increase('percent', Math.floor(Math.random() * 10), 98);
+                if (value < 98) {
+                    next();
+                }
+            }, 300);
+        };
+        next();
+    },
+    beforeDestroy: function () {
+        var me = this;
+        if (me.timer) {
+            clearTimeout(me.timer);
+            me.timer = UNDEFINED;
+        }
+    }
+}));
+
+// CONCATENATED MODULE: ./src/component/loading-bar/index.ts
+
+
+
+var loading_bar_instance = UNDEFINED;
+function add(props) {
+    var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
+    loading_bar_instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: wrapper,
+        props: props,
+    }, loading_bar_LoadingBar));
+    return loading_bar_instance;
+}
+function remove() {
+    if (loading_bar_instance) {
+        loading_bar_instance.destroy();
+        loading_bar_instance = UNDEFINED;
+    }
+}
+external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$loadingBar = {
+    // 开始从 0 显示进度条，并自动加载进度
+    start: function (options) {
+        if (loading_bar_instance) {
+            remove();
+        }
+        return add(options);
+    },
+    // 结束进度条，自动补全剩余进度
+    finish: function () {
+        if (loading_bar_instance) {
+            loading_bar_instance.set('percent', 100);
+            setTimeout(remove, 300);
+        }
+    },
+    // 精确加载到指定的进度
+    update: function (data) {
+        if (loading_bar_instance) {
+            loading_bar_instance.set(data);
+        }
+    }
+};
+
 // EXTERNAL MODULE: ./src/component/message/template/Message.hbs
-var Message = __webpack_require__(76);
+var Message = __webpack_require__(77);
 var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 
 // CONCATENATED MODULE: ./src/component/message/Message.ts
@@ -6586,7 +6715,7 @@ var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 var Message_CLASS_VISIBLE = 'bell-message-visible';
 /* harmony default export */ var message_Message = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Message_default.a,
-    name: 'bell-message',
+    name: 'bell-Message',
     propTypes: {
         status: {
             type: oneOf(RAW_STATUS_ARRAY),
@@ -6650,7 +6779,7 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
     }
 }));
 
-// CONCATENATED MODULE: ./src/component/message/base.ts
+// CONCATENATED MODULE: ./src/component/message/index.ts
 
 
 
@@ -6680,7 +6809,7 @@ function addMessage(status, arg, onClose) {
         }
     }, 300);
 }
-/* harmony default export */ var base = ({
+external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$message = {
     success: function (arg, onClose) {
         addMessage('success', arg, onClose);
     },
@@ -6696,134 +6825,7 @@ function addMessage(status, arg, onClose) {
     config: function (arg) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(config, arg);
     }
-});
-
-// EXTERNAL MODULE: ./src/component/notification/template/Notification.hbs
-var Notification = __webpack_require__(77);
-var Notification_default = /*#__PURE__*/__webpack_require__.n(Notification);
-
-// CONCATENATED MODULE: ./src/component/notification/Notification.ts
-
-
-// import './style/Notification.styl'
-
-
-
-var Notification_CLASS_VISIBLE = 'bell-notification-visible';
-/* harmony default export */ var notification_Notification = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-    template: Notification_default.a,
-    name: 'bell-notification',
-    propTypes: {
-        title: {
-            type: RAW_STRING,
-        },
-        content: {
-            type: RAW_STRING,
-        },
-        status: {
-            type: oneOf(RAW_STATUS_ARRAY),
-        },
-        duration: {
-            type: RAW_NUMERIC,
-            value: 4500,
-        },
-        width: {
-            type: RAW_NUMERIC,
-            value: 320,
-        },
-        right: {
-            type: RAW_NUMERIC,
-            value: 15,
-        },
-    },
-    data: function () {
-        return {
-            RAW_TYPE_INFO: RAW_TYPE_INFO,
-            RAW_TYPE_SUCCESS: RAW_TYPE_SUCCESS,
-            RAW_TYPE_WARNING: RAW_TYPE_WARNING,
-            RAW_TYPE_ERROR: RAW_TYPE_ERROR,
-        };
-    },
-    methods: {
-        show: function () {
-            var me = this;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, Notification_CLASS_VISIBLE);
-            var duration = toNumber(me.get('duration'));
-            if (duration > 0) {
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.hide();
-                    }
-                }, duration);
-            }
-        },
-        hide: function () {
-            var me = this;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notification_CLASS_VISIBLE);
-            me.nextTick(function () {
-                if (!me.$el) {
-                    return;
-                }
-                onTransitionEnd(me.$el, function () {
-                    if (me.$el) {
-                        me.fire('hide.notification');
-                    }
-                });
-            });
-        }
-    },
-    components: {
-        Icon: icon_Icon,
-    }
-}));
-
-// CONCATENATED MODULE: ./src/component/notification/base.ts
-
-
-var base_config = {};
-function addNotification(status, data, onClose) {
-    var props = { status: status };
-    // 先写 config，可支持 data 覆盖全局配置
-    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, base_config);
-    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(data)) {
-        props.content = data;
-    }
-    else {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
-    }
-    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: '#bell-notification-wrapper',
-        props: props,
-    }, notification_Notification));
-    instance.on('hide.notification', function () {
-        if (onClose) {
-            onClose();
-        }
-        instance.destroy();
-    });
-    setTimeout(function () {
-        if (instance.$el) {
-            instance.show();
-        }
-    }, 300);
-}
-/* harmony default export */ var notification_base = ({
-    success: function (props, onClose) {
-        addNotification('success', props, onClose);
-    },
-    info: function (props, onClose) {
-        addNotification('info', props, onClose);
-    },
-    warning: function (props, onClose) {
-        addNotification('warning', props, onClose);
-    },
-    error: function (props, onClose) {
-        addNotification('error', props, onClose);
-    },
-    config: function (options) {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(base_config, options);
-    }
-});
+};
 
 // EXTERNAL MODULE: ./src/component/modal/template/Alert.hbs
 var template_Alert = __webpack_require__(78);
@@ -6838,7 +6840,7 @@ var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
 
 /* harmony default export */ var modal_Alert = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: template_Alert_default.a,
-    name: 'bell-alert',
+    name: 'bell-Alert',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -6909,7 +6911,7 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
 
 /* harmony default export */ var modal_Confirm = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Confirm_default.a,
-    name: 'bell-confirm',
+    name: 'bell-Confirm',
     propTypes: {
         title: {
             type: RAW_STRING,
@@ -6984,152 +6986,182 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
     }
 }));
 
-// CONCATENATED MODULE: ./src/component/modal/base.ts
+// CONCATENATED MODULE: ./src/component/modal/index.ts
 
 
 
 
-/* harmony default export */ var modal_base = ({
-    addAlert: function (data) {
-        var props = {};
-        if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
-            var obj = data;
-            props.closable = obj.closable;
-            props.title = obj.title;
-            props.content = obj.content;
-            props.width = obj.width;
-            props.okText = obj.okText;
-            props.okType = obj.okType;
-            props.onOk = obj.onOk;
-        }
-        else {
-            props.content = data;
-        }
-        new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-            el: BODY,
-            props: props,
-        }, modal_Alert));
-    },
-    addConfirm: function (data) {
-        var props = {};
-        if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
-            var obj = data;
-            props.closable = obj.closable;
-            props.title = obj.title;
-            props.content = obj.content;
-            props.width = obj.width;
-            props.okText = obj.okText;
-            props.okType = obj.okType;
-            props.onOk = obj.onOk;
-            props.cancelText = obj.cancelText;
-            props.cancelType = obj.cancelType;
-            props.onCancel = obj.onCancel;
-        }
-        else {
-            props.content = data;
-        }
-        new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-            el: BODY,
-            props: props,
-        }, modal_Confirm));
+var modal_prototype = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype;
+modal_prototype.$alert = function (data) {
+    var props = {};
+    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
+        var obj = data;
+        props.closable = obj.closable;
+        props.title = obj.title;
+        props.content = obj.content;
+        props.width = obj.width;
+        props.okText = obj.okText;
+        props.okType = obj.okType;
+        props.onOk = obj.onOk;
     }
-});
+    else {
+        props.content = data;
+    }
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: BODY,
+        props: props,
+    }, modal_Alert));
+};
+modal_prototype.$confirm = function (data) {
+    var props = {};
+    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.object(data)) {
+        var obj = data;
+        props.closable = obj.closable;
+        props.title = obj.title;
+        props.content = obj.content;
+        props.width = obj.width;
+        props.okText = obj.okText;
+        props.okType = obj.okType;
+        props.onOk = obj.onOk;
+        props.cancelText = obj.cancelText;
+        props.cancelType = obj.cancelType;
+        props.onCancel = obj.onCancel;
+    }
+    else {
+        props.content = data;
+    }
+    new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: BODY,
+        props: props,
+    }, modal_Confirm));
+};
 
-// EXTERNAL MODULE: ./src/component/loading-bar/template/LoadingBar.hbs
-var LoadingBar = __webpack_require__(80);
-var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
+// EXTERNAL MODULE: ./src/component/notification/template/Notification.hbs
+var Notification = __webpack_require__(80);
+var Notification_default = /*#__PURE__*/__webpack_require__.n(Notification);
 
-// CONCATENATED MODULE: ./src/component/loading-bar/LoadingBar.ts
-
-
-// import './style/LoadingBar.styl'
+// CONCATENATED MODULE: ./src/component/notification/Notification.ts
 
 
-/* harmony default export */ var loading_bar_LoadingBar = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-    template: LoadingBar_default.a,
-    name: 'bell-loadingBar',
+// import './style/Notification.styl'
+
+
+
+var Notification_CLASS_VISIBLE = 'bell-notification-visible';
+/* harmony default export */ var notification_Notification = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Notification_default.a,
+    name: 'bell-Notification',
     propTypes: {
-        type: {
-            type: oneOf(RAW_TYPE_ARRAY),
-            value: RAW_TYPE_PRIMARY,
-        },
-        height: {
-            type: RAW_NUMBER,
-            value: 2,
-        },
-        percent: {
-            type: RAW_NUMBER,
-            value: 0,
-        },
-        color: {
+        title: {
             type: RAW_STRING,
-        }
+        },
+        content: {
+            type: RAW_STRING,
+        },
+        status: {
+            type: oneOf(RAW_STATUS_ARRAY),
+        },
+        duration: {
+            type: RAW_NUMERIC,
+            value: 4500,
+        },
+        width: {
+            type: RAW_NUMERIC,
+            value: 320,
+        },
+        right: {
+            type: RAW_NUMERIC,
+            value: 15,
+        },
     },
-    afterMount: function () {
-        var me = this;
-        var next = function () {
-            me.timer = setTimeout(function () {
-                if (!me.timer) {
+    data: function () {
+        return {
+            RAW_TYPE_INFO: RAW_TYPE_INFO,
+            RAW_TYPE_SUCCESS: RAW_TYPE_SUCCESS,
+            RAW_TYPE_WARNING: RAW_TYPE_WARNING,
+            RAW_TYPE_ERROR: RAW_TYPE_ERROR,
+        };
+    },
+    methods: {
+        show: function () {
+            var me = this;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, Notification_CLASS_VISIBLE);
+            var duration = toNumber(me.get('duration'));
+            if (duration > 0) {
+                setTimeout(function () {
+                    if (me.$el) {
+                        me.hide();
+                    }
+                }, duration);
+            }
+        },
+        hide: function () {
+            var me = this;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notification_CLASS_VISIBLE);
+            me.nextTick(function () {
+                if (!me.$el) {
                     return;
                 }
-                var value = me.increase('percent', Math.floor(Math.random() * 10), 98);
-                if (value < 98) {
-                    next();
-                }
-            }, 300);
-        };
-        next();
-    },
-    beforeDestroy: function () {
-        var me = this;
-        if (me.timer) {
-            clearTimeout(me.timer);
-            me.timer = UNDEFINED;
+                onTransitionEnd(me.$el, function () {
+                    if (me.$el) {
+                        me.fire('hide.notification');
+                    }
+                });
+            });
         }
+    },
+    components: {
+        Icon: icon_Icon,
     }
 }));
 
-// CONCATENATED MODULE: ./src/component/loading-bar/base.ts
+// CONCATENATED MODULE: ./src/component/notification/index.ts
 
 
-
-var base_instance = UNDEFINED;
-function add(props) {
-    var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
-    base_instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: wrapper,
+var notification_config = {};
+function addNotification(status, data, onClose) {
+    var props = { status: status };
+    // 先写 config，可支持 data 覆盖全局配置
+    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, notification_config);
+    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(data)) {
+        props.content = data;
+    }
+    else {
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
+    }
+    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: '#bell-notification-wrapper',
         props: props,
-    }, loading_bar_LoadingBar));
-    return base_instance;
+    }, notification_Notification));
+    instance.on('hide.notification', function () {
+        if (onClose) {
+            onClose();
+        }
+        instance.destroy();
+    });
+    setTimeout(function () {
+        if (instance.$el) {
+            instance.show();
+        }
+    }, 300);
 }
-function remove() {
-    if (base_instance) {
-        base_instance.destroy();
-        base_instance = UNDEFINED;
-    }
-}
-/* harmony default export */ var loading_bar_base = ({
-    // 开始从 0 显示进度条，并自动加载进度
-    start: function (options) {
-        if (base_instance) {
-            remove();
-        }
-        return add(options);
+external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notification = {
+    success: function (props, onClose) {
+        addNotification('success', props, onClose);
     },
-    // 结束进度条，自动补全剩余进度
-    finish: function () {
-        if (base_instance) {
-            base_instance.set('percent', 100);
-            setTimeout(remove, 300);
-        }
+    info: function (props, onClose) {
+        addNotification('info', props, onClose);
     },
-    // 精确加载到指定的进度
-    update: function (data) {
-        if (base_instance) {
-            base_instance.set(data);
-        }
+    warning: function (props, onClose) {
+        addNotification('warning', props, onClose);
+    },
+    error: function (props, onClose) {
+        addNotification('error', props, onClose);
+    },
+    config: function (options) {
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(notification_config, options);
     }
-});
+};
 
 // CONCATENATED MODULE: ./src/index.ts
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
@@ -7212,7 +7244,7 @@ var component = {
     Menu: menu_Menu,
     MenuItem: menu_MenuItem,
     MenuGroup: menu_MenuGroup,
-    Submenu: menu_Submenu,
+    SubMenu: menu_SubMenu,
     Icon: icon_Icon,
     Text: text_Text,
     Drawer: drawer_Drawer,
@@ -7287,11 +7319,6 @@ var install = function (Yox) {
     Yox.dom.prop(notificationElement, 'id', 'bell-notification-wrapper');
     Yox.dom.append(BODY, notificationElement);
     Yox.component(component);
-    Yox.prototype.$message = base;
-    Yox.prototype.$confirm = modal_base.addConfirm;
-    Yox.prototype.$alert = modal_base.addAlert;
-    Yox.prototype.$notification = notification_base;
-    Yox.prototype.$loadingBar = loading_bar_base;
 };
 if (typeof window !== 'undefined' && window['Yox']) {
     install(window['Yox']);

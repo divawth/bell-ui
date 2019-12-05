@@ -10,7 +10,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}optionGroup',
+  name: '${prefix}OptionGroup',
 
   propTypes: {
     label: {

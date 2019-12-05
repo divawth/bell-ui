@@ -34,7 +34,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}dropdown',
+  name: '${prefix}Dropdown',
 
   propTypes: {
     placement: {

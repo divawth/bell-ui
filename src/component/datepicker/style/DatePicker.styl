@@ -172,8 +172,21 @@ datepicker-brand-style(style)
   &:hover
     color $brand-primary
 
-  + {$selector-prefix + '-datepicker-header-link'}
-    margin-left $ui-horizontal-gap
+// 定宽，右对齐，避免数字变动时，整个元素在跳动
+{$selector-prefix + '-datepicker-header-year'},
+{$selector-prefix + '-datepicker-header-month'}
+  margin-right $ui-icon-text-gap
+  text-align right
+  display inline-block
+
+{$selector-prefix + '-datepicker-header-year'}
+  width 36px
+
+{$selector-prefix + '-datepicker-header-month'}
+  width 22px
+
+{$selector-prefix + '-datepicker-header-separator'}
+  margin 0 $datepicker-separator-gap
 
 {$selector-prefix + '-datepicker-header-button'}
   color $brand-close-color

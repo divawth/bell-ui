@@ -8,7 +8,6 @@ import {
   RAW_STRING,
   RAW_NUMBER,
   RAW_BOOLEAN,
-  UNDEFINED,
 } from '../constant'
 
 import {
@@ -25,7 +24,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}option',
+  name: '${prefix}Option',
 
   propTypes: {
     value: {
@@ -48,7 +47,7 @@ export default Yox.define({
 
   data(options) {
 
-    const select = findComponentUpward(options.parent, '${prefix}select')
+    const select = findComponentUpward(options.parent, '${prefix}Select')
 
     const props = options.props || {}
 

@@ -33,7 +33,10 @@
           on-click="set('type', RAW_TYPE_YEAR)"
         {{/if}}
       >
-        {{date.year}} 年
+        <span class="${prefix}datepicker-header-year">
+          {{date.year}}
+        </span>
+        年
       </span>
       <span
         {{#if canPickMonth}}
@@ -41,7 +44,10 @@
           on-click="set('type', RAW_TYPE_MONTH)"
         {{/if}}
       >
-        {{date.month}} 月
+        <span class="${prefix}datepicker-header-month">
+          {{date.month}}
+        </span>
+        月
       </span>
 
       <div class="${prefix}datepicker-next">

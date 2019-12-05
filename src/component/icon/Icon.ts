@@ -15,7 +15,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}icon',
+  name: '${prefix}Icon',
 
   propTypes: {
     name: {

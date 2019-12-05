@@ -29,7 +29,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}message',
+  name: '${prefix}Message',
 
   propTypes: {
     status: {

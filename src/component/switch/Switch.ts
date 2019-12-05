@@ -21,7 +21,7 @@ export default Yox.define({
 
   model: 'checked',
 
-  name: '${prefix}switch',
+  name: '${prefix}Switch',
 
   propTypes: {
     size: {

@@ -16,6 +16,8 @@ href="{{href || 'javascript:void(0)'}}"
 {{#if !href && !disabled}}
   on-click="click.link"
 {{/if}}
+
+ondragstart="return false"
 >
   <slot />
 </a>

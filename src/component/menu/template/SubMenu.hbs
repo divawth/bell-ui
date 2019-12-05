@@ -2,7 +2,7 @@
 
   <div
 
-    class="${prefix}submenu
+    class="${prefix}sub-menu
     {{#if isOpen}} ${prefix}menu-open{{/if}}
     {{#if isActive}} ${prefix}menu-active{{/if}}
     {{#if className}} {{className}}{{/if}}"
@@ -14,7 +14,7 @@
   >
 
     <div
-      class="${prefix}submenu-title"
+      class="${prefix}sub-menu-title"
       {{#if !collapsed}}
         on-click="toggle('isOpen')"
         lazy-click="300"
@@ -25,12 +25,12 @@
         <Icon
           name="arrow-down-s-line"
           size="0"
-          className="${prefix}submenu-arrow-icon"
+          className="${prefix}sub-menu-arrow-icon"
         />
       {{/if}}
     </div>
 
-    <Menu ref="menu" mode="{{mode}}" theme="">
+    <Menu ref="menu" mode="{{mode}}" inner>
       <slot name="children" />
     </Menu>
 
@@ -40,7 +40,7 @@
 
   <Dropdown
 
-    className="${prefix}submenu
+    className="${prefix}sub-menu
     {{#if isActive}} ${prefix}menu-active{{/if}}
     {{#if className}} {{className}}{{/if}}"
 
@@ -52,9 +52,10 @@
     visible="{{isOpen}}"
     placement="{{mode === 'horizontal' ? 'bottom' : 'right-start'}}"
     on-outside="set('isOpen', false)"
+
   >
     <div
-      class="${prefix}submenu-title"
+      class="${prefix}sub-menu-title"
       {{#if !collapsed}}
         on-click="toggle('isOpen')"
         lazy-click="300"
@@ -65,7 +66,7 @@
         <Icon
           name="arrow-down-s-line"
           size="0"
-          className="${prefix}submenu-arrow-icon"
+          className="${prefix}sub-menu-arrow-icon"
         />
       {{/if}}
     </div>

@@ -19,7 +19,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}progress',
+  name: '${prefix}Progress',
 
   propTypes: {
     percent: {

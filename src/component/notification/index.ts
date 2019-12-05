@@ -51,7 +51,7 @@ function addNotification(status: string,  data: Data, onClose?: Function) {
 
 }
 
-export default {
+(Yox.prototype as any).$notification = {
   success(props: Data, onClose?: Function) {
     addNotification('success', props, onClose)
   },

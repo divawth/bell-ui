@@ -21,7 +21,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}card',
+  name: '${prefix}Card',
 
   propTypes: {
     simple: {

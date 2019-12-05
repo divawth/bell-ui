@@ -33,7 +33,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}tabs',
+  name: '${prefix}Tabs',
 
   propTypes: {
     type: {

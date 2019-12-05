@@ -13,7 +13,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}empty',
+  name: '${prefix}Empty',
 
   propTypes: {
     simple: {

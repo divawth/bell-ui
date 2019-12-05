@@ -14,7 +14,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}menuGroup',
+  name: '${prefix}MenuGroup',
 
   propTypes: {
     title: {
@@ -29,7 +29,7 @@ export default Yox.define({
   },
 
   data(options) {
-    const menu = findComponentUpward(options.parent, '${prefix}menu')
+    const menu = findComponentUpward(options.parent, '${prefix}Menu')
     return {
       mode: menu.get('mode'),
     }

@@ -16,7 +16,19 @@ class="${prefix}datepicker-year ${prefix}datepicker-panel
       />
     </span>
 
-    {{year}} 年 - {{year + count - 1}} 年
+    <span class="${prefix}datepicker-header-year">
+      {{year}}
+    </span>
+    年
+
+    <span class="${prefix}datepicker-header-separator">
+      -
+    </span>
+
+    <span class="${prefix}datepicker-header-year">
+      {{year + count - 1}}
+    </span>
+    年
 
     <span class="${prefix}datepicker-header-button ${prefix}datepicker-next" on-click="increase('year', count)">
       <Icon

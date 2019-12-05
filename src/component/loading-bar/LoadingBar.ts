@@ -19,7 +19,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}loadingBar',
+  name: '${prefix}LoadingBar',
 
   propTypes: {
     type: {

@@ -17,7 +17,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}thumbnail',
+  name: '${prefix}Thumbnail',
 
   propTypes: {
     width: {

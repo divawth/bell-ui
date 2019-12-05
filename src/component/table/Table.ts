@@ -29,7 +29,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}table',
+  name: '${prefix}Table',
 
   propTypes: {
     list: {

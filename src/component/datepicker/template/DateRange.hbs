@@ -28,7 +28,15 @@ class="${prefix}datepicker-daterange
         </span>
       </div>
 
-      {{startDate.year}} 年 {{startDate.month}} 月
+      <span class="${prefix}datepicker-header-year">
+        {{startDate.year}}
+      </span>
+      年
+
+      <span class="${prefix}datepicker-header-month">
+        {{startDate.month}}
+      </span>
+      月
 
       {{#if splitPanel}}
         <div class="${prefix}datepicker-next">
@@ -129,7 +137,15 @@ class="${prefix}datepicker-daterange
         </div>
       {{/if}}
 
-      {{endDate.year}} 年 {{endDate.month}} 月
+      <span class="${prefix}datepicker-header-year">
+        {{endDate.year}}
+      </span>
+      年
+
+      <span class="${prefix}datepicker-header-month">
+        {{endDate.month}}
+      </span>
+      月
 
       <div class="${prefix}datepicker-next">
         <span class="${prefix}datepicker-header-button" on-click="offsetEnd(1)">

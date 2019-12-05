@@ -15,7 +15,7 @@ export default Yox.define({
 
   model: 'collapsed',
 
-  name: '${prefix}layoutSider',
+  name: '${prefix}LayoutSider',
 
   propTypes: {
     showTrigger: {

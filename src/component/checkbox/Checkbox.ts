@@ -22,7 +22,7 @@ export default Yox.define({
 
   model: 'checked',
 
-  name: '${prefix}checkbox',
+  name: '${prefix}Checkbox',
 
   propTypes: {
     name: {
@@ -85,7 +85,7 @@ export default Yox.define({
 
     const props = options.props || (options.props = {})
 
-    const checkboxGroup = findComponentUpward(options.parent, '${prefix}checkboxGroup')
+    const checkboxGroup = findComponentUpward(options.parent, '${prefix}CheckboxGroup')
     if (checkboxGroup) {
       if (props.name === UNDEFINED) {
         props.name = checkboxGroup.get('name')

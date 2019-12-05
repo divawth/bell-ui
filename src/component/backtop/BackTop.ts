@@ -30,7 +30,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}backTop',
+  name: '${prefix}BackTop',
 
   propTypes: {
     target: {

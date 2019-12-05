@@ -29,7 +29,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}slider',
+  name: '${prefix}Slider',
 
   propTypes: {
     value: {

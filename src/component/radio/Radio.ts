@@ -22,7 +22,7 @@ export default Yox.define({
 
   model: 'checked',
 
-  name: '${prefix}radio',
+  name: '${prefix}Radio',
 
   propTypes: {
     name: {
@@ -81,7 +81,7 @@ export default Yox.define({
 
     const props = options.props || (options.props = {})
 
-    const radioGroup = findComponentUpward(options.parent, '${prefix}radioGroup')
+    const radioGroup = findComponentUpward(options.parent, '${prefix}RadioGroup')
     if (radioGroup) {
       if (props.name === UNDEFINED) {
         props.name = radioGroup.get('name')

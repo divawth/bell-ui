@@ -18,7 +18,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}tabPanel',
+  name: '${prefix}TabPanel',
 
   propTypes: {
     name: {
@@ -74,7 +74,7 @@ export default Yox.define({
 
   afterMount() {
 
-    const tabs = findComponentUpward(this.$parent, '${prefix}tabs')
+    const tabs = findComponentUpward(this.$parent, '${prefix}Tabs')
 
     const index = Yox.array.indexOf(tabs.$children, this)
 

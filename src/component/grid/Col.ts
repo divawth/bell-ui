@@ -138,7 +138,7 @@ export default Yox.define({
   },
 
   afterMount() {
-    let row = findComponentUpward(this.$parent, '${prefix}raw')
+    let row = findComponentUpward(this.$parent, '${prefix}Row')
     this.set('gutter', row.get('gutter'))
   }
 })

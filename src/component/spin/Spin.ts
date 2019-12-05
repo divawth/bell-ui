@@ -26,7 +26,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}spin',
+  name: '${prefix}Spin',
 
   propTypes: {
     type: {

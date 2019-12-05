@@ -22,7 +22,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}formItem',
+  name: '${prefix}FormItem',
 
   propTypes: {
     prop: {
@@ -55,7 +55,7 @@ export default Yox.define({
 
   data(options) {
 
-    const form = findComponentUpward(options.parent, '${prefix}form')
+    const form = findComponentUpward(options.parent, '${prefix}Form')
 
     return {
       error: UNDEFINED,

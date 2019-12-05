@@ -38,7 +38,7 @@ function remove() {
   }
 }
 
-export default {
+(Yox.prototype as any).$loadingBar = {
   // 开始从 0 显示进度条，并自动加载进度
   start(options?: Config) {
     if (instance) {

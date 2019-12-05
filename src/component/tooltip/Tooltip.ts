@@ -43,7 +43,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}tooltip',
+  name: '${prefix}Tooltip',
 
   propTypes: {
     content: {

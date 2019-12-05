@@ -36,7 +36,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}input',
+  name: '${prefix}Input',
 
   propTypes: {
     value: {

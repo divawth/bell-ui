@@ -19,7 +19,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}radioGroup',
+  name: '${prefix}RadioGroup',
 
   propTypes: {
     size: {

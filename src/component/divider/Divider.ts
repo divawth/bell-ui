@@ -20,7 +20,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}divider',
+  name: '${prefix}Divider',
 
   propTypes: {
     vertical: {

@@ -16,7 +16,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}breadcrumbItem',
+  name: '${prefix}BreadcrumbItem',
 
   propTypes: {
     last: {
@@ -32,7 +32,7 @@ export default Yox.define({
   },
 
   data(options) {
-    const breadcrumb = findComponentUpward(options.parent, '${prefix}breadcrumb')
+    const breadcrumb = findComponentUpward(options.parent, '${prefix}Breadcrumb')
     return {
       separator: breadcrumb.get('separator')
     }

@@ -13,7 +13,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}layout',
+  name: '${prefix}Layout',
 
   propTypes: {
     vertical: {

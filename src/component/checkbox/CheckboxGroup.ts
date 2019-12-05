@@ -14,7 +14,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}checkboxGroup',
+  name: '${prefix}CheckboxGroup',
 
   propTypes: {
     name: {

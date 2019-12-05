@@ -51,7 +51,7 @@ function addMessage(status: string, arg: Arg, onClose?: Function) {
 
 }
 
-export default {
+(Yox.prototype as any).$message = {
   success(arg: Arg, onClose?: Function) {
     addMessage('success', arg, onClose)
   },

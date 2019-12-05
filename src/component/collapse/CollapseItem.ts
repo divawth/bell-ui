@@ -19,7 +19,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}collapseItem',
+  name: '${prefix}CollapseItem',
 
   propTypes: {
     title: {
@@ -44,7 +44,7 @@ export default Yox.define({
 
   data(options) {
 
-    const collapse = findComponentUpward(options.parent, '${prefix}collapse')
+    const collapse = findComponentUpward(options.parent, '${prefix}Collapse')
 
     let opened = FALSE
 
