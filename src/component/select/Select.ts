@@ -108,20 +108,6 @@ export default Yox.define({
 
   events: {
 
-    'add.selectOption': function (event, data) {
-      event.stop()
-      if (data.isSelected) {
-        this.selectOption(data.value)
-      }
-    },
-
-    'remove.selectOption': function (event, data) {
-      event.stop()
-      if (data.isSelected) {
-        this.deselectOption(data.value)
-      }
-    },
-
     'update.selectOption': function (event, data) {
 
       event.stop()
@@ -179,13 +165,20 @@ export default Yox.define({
 
     },
 
+    handleOutsideClick(event: CustomEventInterface) {
+
+      event.stop()
+
+      this.set('visible', FALSE)
+
+    },
+
     selectOption(value: any) {
 
       const me = this
+      const values = me.get('value')
 
       if (me.get('multiple')) {
-
-        const values = me.get('value')
 
         if (Yox.is.array(values)
           && Yox.array.has(values, value)
@@ -197,7 +190,15 @@ export default Yox.define({
 
       }
       else {
-        me.set('value', value)
+
+        if (values !== value) {
+          me.set('value', value)
+        }
+        // 更新 UI，因为 watcher 不会被触发
+        else {
+          this.updateSelectedOptions(value)
+        }
+
       }
 
     },
@@ -234,6 +235,7 @@ export default Yox.define({
 
     updateSelectedOptions(value: any) {
 
+      // 用一个空数组，通过事件流收集选中的 option
       let selectedOptions = []
 
       this.fire(
@@ -258,7 +260,9 @@ export default Yox.define({
   },
 
   afterMount() {
-    this.updateSelectedOptions(this.get('value'))
+    this.updateSelectedOptions(
+      this.get('value')
+    )
   }
 
 })

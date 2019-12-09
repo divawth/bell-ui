@@ -15,12 +15,14 @@ declare const _default: import("yox").ComponentOptions<{
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveItem(event: CustomEventInterface, index: number): void;
     handleShortcutClick(data: Shortcut): void;
+    handleOutsideClick(event: CustomEventInterface): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
 }> & ThisType<{
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveItem(event: CustomEventInterface, index: number): void;
     handleShortcutClick(data: Shortcut): void;
+    handleOutsideClick(event: CustomEventInterface): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
 } & import("yox").YoxInterface>;

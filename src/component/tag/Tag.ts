@@ -22,8 +22,6 @@ export default Yox.define({
 
   template,
 
-  model: 'checked',
-
   name: '${prefix}Tag',
 
   propTypes: {
@@ -57,12 +55,12 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    checked(checked) {
+  methods: {
+    toggleChecked() {
       this.fire(
         'change.tag',
         {
-          checked,
+          checked: !this.get('checked'),
         }
       )
     }

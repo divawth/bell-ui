@@ -59,6 +59,10 @@ select-brand-style(style)
   user-select none
   text-align left
   position relative
+  vertical-align middle
+
+  + {$selector-prefix + '-select'}
+    margin-left $ui-horizontal-gap
 
   > {$selector-prefix + '-dropdown-overlay'}
     width 100%
@@ -79,6 +83,10 @@ select-brand-style(style)
 {$selector-prefix + '-select-block'}
   display block
   width 100%
+
+  + {$selector-prefix + '-select-block'}
+    margin-left 0
+    margin-top $ui-vertical-gap
 
 {$selector-prefix + '-select-group'}
   {$selector-prefix + '-dropdown-item'}
@@ -112,18 +120,19 @@ select-brand-style(style)
   color $select-prefix-icon-color
   font-size $select-prefix-icon-size
 
+// 必须写具体路径，否则 select 嵌套在一个 dropdown 下面，会被影响
 {$selector-prefix + '-dropdown-fade'}
-  {$selector-prefix + '-select-arrow-icon'}
+  > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
 {$selector-prefix + '-dropdown-top'},
 {$selector-prefix + '-dropdown-top-start'},
 {$selector-prefix + '-dropdown-top-end'}
-  {$selector-prefix + '-select-arrow-icon'}
+  > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
   &{$selector-prefix + '-dropdown-fade'}
-    {$selector-prefix + '-select-arrow-icon'}
+    > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
       transform rotate(0)
 
 ui-form-button(

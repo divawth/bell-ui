@@ -159,7 +159,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked / `model` | 标签是否已选中 | - | - | `false`
+checked | 标签是否已选中 | - | - | `false`
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
 size | 大小 | string | `default`, `large` | `default`
 closable | 是否可以关闭 | boolean | - | `false`

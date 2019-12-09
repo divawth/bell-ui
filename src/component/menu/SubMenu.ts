@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import Icon from '../icon/Icon'
 import Dropdown from '../dropdown/Dropdown'
@@ -75,6 +75,13 @@ export default Yox.define({
       if (this.get('mode') !== RAW_INLINE) {
         this.set('isOpen', FALSE)
       }
+    }
+  },
+
+  methods: {
+    handleOutsideClick(event: CustomEventInterface) {
+      event.stop()
+      this.set('isOpen', FALSE)
     }
   },
 

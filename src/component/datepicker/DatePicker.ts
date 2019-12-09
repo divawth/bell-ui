@@ -270,6 +270,14 @@ export default Yox.define({
       }
     },
 
+    handleOutsideClick(event: CustomEventInterface) {
+
+      event.stop()
+
+      this.set('visible', FALSE)
+
+    },
+
     dateChange(timestamp: number, dateFormat = DATE_FORMAT) {
 
       const me = this

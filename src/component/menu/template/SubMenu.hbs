@@ -51,7 +51,7 @@
     trigger="custom"
     visible="{{isOpen}}"
     placement="{{mode === 'horizontal' ? 'bottom' : 'right-start'}}"
-    on-outside="set('isOpen', false)"
+    on-outside="handleOutsideClick()"
 
   >
     <div

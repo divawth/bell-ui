@@ -134,7 +134,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("mode",$2)==="inline")?(q("div",function(){g("className","bell-sub-menu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))?((l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))):""},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()}),r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("inner",$2)},{"$slot_children":function(){s("$slot_children")}},"menu")})):(r("Dropdown",function(){f("className","bell-sub-menu"+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&f("style",j("style",a("style",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("isOpen",$2,$0,$2,$2))),f("placement",(a("mode",$2)==="horizontal")?"bottom":"right-start"),l("outside","event.outside",$0,"set('isOpen', false)","set",function(z){return ["isOpen",$3]})},{"$slot_children":function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))&&(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()})},"$slot_overlay":function(){s("$slot_children")}}))};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return (a("mode",$2)==="inline")?(q("div",function(){g("className","bell-sub-menu"+(a("isOpen",$2)?" bell-menu-open":"")+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))},function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))?((l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))):""},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()}),r("Menu",function(){f("mode",j("mode",a("mode",$2,$0,$2,$2))),f("inner",$2)},{"$slot_children":function(){s("$slot_children")}},"menu")})):(r("Dropdown",function(){f("className","bell-sub-menu"+(a("isActive",$2)?" bell-menu-active":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),a("style",$2)&&f("style",j("style",a("style",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("isOpen",$2,$0,$2,$2))),f("placement",(a("mode",$2)==="horizontal")?"bottom":"right-start"),l("outside","event.outside",$0,"handleOutsideClick()","handleOutsideClick")},{"$slot_children":function(){q("div",function(){g("className","bell-sub-menu-title"),(!a("collapsed",$2))&&(l("click","event.click",$0,"toggle('isOpen')","toggle",function(z){return ["isOpen"]}),h("click",300))},function(){s("$slot_title"),(!a("collapsed",$2))?(r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-sub-menu-arrow-icon")})):p()})},"$slot_overlay":function(){s("$slot_children")}}))};
 
 /***/ }),
 /* 7 */
@@ -230,13 +230,13 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dropdown",function(){f("placement",j("placement",a("placement",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("visible",$2,$0,$2,$2))),l("outside","event.outside",$0,"set('visible', false)","set",function(z){return ["visible",$3]}),f("className","bell-select"+(a("status",$2)?(" bell-select-"+y(a("status",$2))):"")+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("block",$2)?" bell-select-block":"")+(a("disabled",$2)?" bell-select-disabled":" bell-select-enabled")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&f("style",(a("width",$2)?("width: "+y(a("width",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},{"$slot_children":function(){q("div",function(){g("className","bell-select-button"+((a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?" bell-select-button-with-prefix":"")),(!a("disabled",$2))&&l("click","event.click",$0,"toggle('visible')","toggle",function(z){return ["visible"]})},function(){(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2))),f("size","0"),f("className","bell-select-prefix-icon")})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("placeholder",$2)))):(a("multiple",$2)?(q("div",function(){g("className","bell-select-values")},function(){v(function(){r("Tag",function(){f("simple",$2),f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")})):(q("div",function(){g("className","bell-select-value")},$0,y(a("selectedOptions.0.text",$2))))),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle-fill"),f("size","0"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p(),r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-select-arrow-icon")})})},"$slot_overlay":function(){s("$slot_children")}})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dropdown",function(){f("placement",j("placement",a("placement",$2,$0,$2,$2))),f("trigger","custom"),f("visible",j("visible",a("visible",$2,$0,$2,$2))),l("outside","event.outside",$0,"handleOutsideClick()","handleOutsideClick"),f("className","bell-select"+(a("status",$2)?(" bell-select-"+y(a("status",$2))):"")+(a("size",$2)?(" bell-select-"+y(a("size",$2))):"")+(a("block",$2)?" bell-select-block":"")+(a("disabled",$2)?" bell-select-disabled":" bell-select-enabled")+(a("clearable",$2)?" bell-select-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&f("style",(a("width",$2)?("width: "+y(a("width",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},{"$slot_children":function(){q("div",function(){g("className","bell-select-button"+((a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?" bell-select-button-with-prefix":"")),(!a("disabled",$2))&&l("click","event.click",$0,"toggle('visible')","toggle",function(z){return ["visible"]})},function(){(a("prefix",$2)||(d(a("hasSlot",$2),["prefix"])))?(q("div",function(){g("className","bell-select-prefix")},function(){s("$slot_prefix",function(){r("Icon",function(){f("name",j("name",a("prefix",$2,$0,$2,$2))),f("size","0"),f("className","bell-select-prefix-icon")})})})):p(),(a("selectedOptions.length",$2)===0)?(q("div",function(){g("className","bell-select-placeholder")},$0,y(a("placeholder",$2)))):(a("multiple",$2)?(q("div",function(){g("className","bell-select-values")},function(){v(function(){r("Tag",function(){f("simple",$2),f("closable",$2),l("close","event.close",$0,"handleRemoveOption($event, index)","handleRemoveOption",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("text",$3)))}})},a("selectedOptions",$2,$0,$2),"index")})):(q("div",function(){g("className","bell-select-value")},$0,y(a("selectedOptions.0.text",$2))))),(a("clearable",$2)&&a("selectedOptions.length",$2))?(r("Icon",function(){f("name","close-circle-fill"),f("size","0"),f("className","bell-select-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p(),r("Icon",function(){f("name","arrow-down-s-line"),f("size","0"),f("className","bell-select-arrow-icon")})})},"$slot_overlay":function(){s("$slot_children")}})};
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tag"+(a("type",$2)?(" bell-tag-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-tag-"+y(a("size",$2))):"")+(a("checkable",$2)?" bell-tag-checkable":"")+(a("closable",$2)?" bell-tag-closable":"")+(a("color",$2)?" bell-tag-pure":"")+(a("checked",$2)?" bell-tag-checked":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("color",$2)||a("style",$2))&&g("style.cssText",(a("color",$2)?(a("checkable",$2)?(a("checked",$2)?("background-color: "+y(a("color",$2))+";"):("color: "+y(a("color",$2))+";")):("background-color: "+y(a("color",$2))+";")):"")+(a("style",$2)?(y(a("style",$2))):"")),a("checkable",$2)&&l("click","event.click",$0,"toggle('checked')","toggle",function(z){return ["checked"]})},function(){s("$slot_children"),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-tag-close-icon"),m("click","event.click","native","close.tag","close.tag")})):p()})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-tag"+(a("type",$2)?(" bell-tag-"+y(a("type",$2))):"")+(a("size",$2)?(" bell-tag-"+y(a("size",$2))):"")+(a("checkable",$2)?" bell-tag-checkable":"")+(a("closable",$2)?" bell-tag-closable":"")+(a("color",$2)?" bell-tag-pure":"")+(a("checked",$2)?" bell-tag-checked":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("color",$2)||a("style",$2))&&g("style.cssText",(a("color",$2)?(a("checkable",$2)?(a("checked",$2)?("background-color: "+y(a("color",$2))+";"):("color: "+y(a("color",$2))+";")):("background-color: "+y(a("color",$2))+";")):"")+(a("style",$2)?(y(a("style",$2))):"")),a("checkable",$2)&&l("click","event.click",$0,"toggleChecked()","toggleChecked")},function(){s("$slot_children"),a("closable",$2)?(r("Icon",function(){f("name","close-line"),f("size","0"),f("className","bell-tag-close-icon"),m("click","event.click","native","close.tag","close.tag")})):p()})};
 
 /***/ }),
 /* 24 */
@@ -290,7 +290,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-backtop"+(a("legacy",$2)?" bell-backtop-legacy":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),g("style.cssText","bottom: "+y(a("bottom",$2))+"px;\nright: "+y(a("right",$2))+"px;"+(a("style",$2)?(" "+y(a("style",$2))):"")),m("click","event.click",$0,"click.backTop","click.backTop")},function(){r("Icon",function(){f("size","0"),f("name","arrow-up-line")})})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className","bell-backtop"+(a("legacy",$2)?" bell-backtop-legacy":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),((a("bottom",$2)||a("right",$2))||a("style",$2))&&g("style.cssText",(a("bottom",$2)?("bottom: "+y(a("bottom",$2))+"px;"):"")+(a("right",$2)?("right: "+y(a("right",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):"")),m("click","event.click",$0,"click.backTop","click.backTop")},function(){r("Icon",function(){f("size","0"),f("name","arrow-up-line")})})};
 
 /***/ }),
 /* 33 */
@@ -338,7 +338,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dropdown",function(){f("trigger","custom"),f("visible",j("visible",a("visible",$2,$0,$2,$2))),f("placement",j("placement",a("placement",$2,$0,$2,$2))),l("outside","event.outside",$0,"set('visible', false)","set",function(z){return ["visible",$3]}),f("className","bell-datepicker"+(a("status",$2)?(" bell-datepicker-"+y(a("status",$2))):"")+(a("size",$2)?(" bell-datepicker-"+y(a("size",$2))):"")+(a("block",$2)?" bell-datepicker-block":"")+(a("disabled",$2)?" bell-datepicker-disabled":" bell-datepicker-enabled")+(a("clearable",$2)?" bell-datepicker-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&f("style",(a("width",$2)?("width: "+y(a("width",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},{"$slot_children":function(){q("div",function(){g("className","bell-datepicker-button"),(!a("disabled",$2))&&l("click","event.click",$0,"toggle('visible')","toggle",function(z){return ["visible"]})},function(){(a("formatedValues.length",$2)>0)?((a("multiple",$2)&&((a("type",$2)!==a("RAW_TYPE_DATE_RANGE",$2))&&(a("type",$2)!==a("RAW_TYPE_WEEK",$2))))?(q("div",function(){g("className","bell-datepicker-values")},function(){v(function(){r("Tag",function(){f("simple",$2),f("closable",$2),l("close","event.close",$0,"handleRemoveItem($event, index)","handleRemoveItem",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("",$3)))}})},a("formatedValues",$2,$0,$2),"index")})):(q("div",function(){g("className","bell-datepicker-value")},function(){e(y(a("formatedValues.0",$2))),a("formatedValues.1",$2)?((q("span",function(){g("className","bell-datepicker-separator")},$0,"~",$2),e(y(a("formatedValues.1",$2))))):p()}))):(q("div",function(){g("className","bell-datepicker-placeholder")},$0,y(a("placeholder",$2)))),(a("clearable",$2)&&a("formatedValues.length",$2))?(r("Icon",function(){f("name","close-circle-fill"),f("size","0"),f("className","bell-datepicker-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p(),r("Icon",function(){f("name","calendar-line"),f("size","0"),f("className","bell-datepicker-calendar-icon")})})},"$slot_overlay":function(){(a("shortcuts",$2)&&(a("shortcuts.length",$2)>0))?(q("div",function(){g("className","bell-datepicker-shortcut")},function(){v(function(){q("div",function(){g("className","bell-datepicker-shortcut-item"),l("click","event.click",$0,"handleShortcutClick(this)","handleShortcutClick",function(z){return [a("",$3,$0,$0,$0,z)]})},$0,y(a("text",$3)))},a("shortcuts",$2,$0,$2),$0)})):p(),(a("type",$2)===a("RAW_TYPE_DATE",$2))?(r("DateView",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2))),f("disabledDate",j("disabledDate",a("disabledDate",$2,$0,$2,$2))),f("canPickYear",$2),f("canPickMonth",$2)})):((a("type",$2)===a("RAW_TYPE_DATE_RANGE",$2))?(r("DateRange",function(){f("splitPanel",j("splitPanel",a("splitPanel",$2,$0,$2,$2))),f("defaultStartDate",j("defaultStartDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedStartDate",j("checkedStartDate",a("value.0",$2,$0,$2,$2))),f("defaultEndDate",j("defaultEndDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedEndDate",j("checkedEndDate",a("value.1",$2,$0,$2,$2))),f("disabledDate",j("disabledDate",a("disabledDate",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_WEEK",$2))?(r("DateWeek",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value.0",$2,$0,$2,$2))),f("canPickYear",$2),f("canPickMonth",$2)})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2))),f("canPickYear",$2)})):p()))))}})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y){var $0=void 0,$1=null,$2=!0,$3=!1;return r("Dropdown",function(){f("trigger","custom"),f("visible",j("visible",a("visible",$2,$0,$2,$2))),f("placement",j("placement",a("placement",$2,$0,$2,$2))),l("outside","event.outside",$0,"handleOutsideClick()","handleOutsideClick"),f("className","bell-datepicker"+(a("status",$2)?(" bell-datepicker-"+y(a("status",$2))):"")+(a("size",$2)?(" bell-datepicker-"+y(a("size",$2))):"")+(a("block",$2)?" bell-datepicker-block":"")+(a("disabled",$2)?" bell-datepicker-disabled":" bell-datepicker-enabled")+(a("clearable",$2)?" bell-datepicker-clearable":"")+(a("className",$2)?(" "+y(a("className",$2))):"")),(a("width",$2)||a("style",$2))&&f("style",(a("width",$2)?("width: "+y(a("width",$2))+"px;"):"")+(a("style",$2)?(y(a("style",$2))):""))},{"$slot_children":function(){q("div",function(){g("className","bell-datepicker-button"),(!a("disabled",$2))&&l("click","event.click",$0,"toggle('visible')","toggle",function(z){return ["visible"]})},function(){(a("formatedValues.length",$2)>0)?((a("multiple",$2)&&((a("type",$2)!==a("RAW_TYPE_DATE_RANGE",$2))&&(a("type",$2)!==a("RAW_TYPE_WEEK",$2))))?(q("div",function(){g("className","bell-datepicker-values")},function(){v(function(){r("Tag",function(){f("simple",$2),f("closable",$2),l("close","event.close",$0,"handleRemoveItem($event, index)","handleRemoveItem",function(z){return [a("$event",$2,$0,$0,$0,z),a("index",$2,$0,$0,$0,z)]})},{"$slot_children":function(){e(y(a("",$3)))}})},a("formatedValues",$2,$0,$2),"index")})):(q("div",function(){g("className","bell-datepicker-value")},function(){e(y(a("formatedValues.0",$2))),a("formatedValues.1",$2)?((q("span",function(){g("className","bell-datepicker-separator")},$0,"~",$2),e(y(a("formatedValues.1",$2))))):p()}))):(q("div",function(){g("className","bell-datepicker-placeholder")},$0,y(a("placeholder",$2)))),(a("clearable",$2)&&a("formatedValues.length",$2))?(r("Icon",function(){f("name","close-circle-fill"),f("size","0"),f("className","bell-datepicker-clear-icon"),l("click","event.click","native","handleClearClick()","handleClearClick")})):p(),r("Icon",function(){f("name","calendar-line"),f("size","0"),f("className","bell-datepicker-calendar-icon")})})},"$slot_overlay":function(){(a("shortcuts",$2)&&(a("shortcuts.length",$2)>0))?(q("div",function(){g("className","bell-datepicker-shortcut")},function(){v(function(){q("div",function(){g("className","bell-datepicker-shortcut-item"),l("click","event.click",$0,"handleShortcutClick(this)","handleShortcutClick",function(z){return [a("",$3,$0,$0,$0,z)]})},$0,y(a("text",$3)))},a("shortcuts",$2,$0,$2),$0)})):p(),(a("type",$2)===a("RAW_TYPE_DATE",$2))?(r("DateView",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2))),f("disabledDate",j("disabledDate",a("disabledDate",$2,$0,$2,$2))),f("canPickYear",$2),f("canPickMonth",$2)})):((a("type",$2)===a("RAW_TYPE_DATE_RANGE",$2))?(r("DateRange",function(){f("splitPanel",j("splitPanel",a("splitPanel",$2,$0,$2,$2))),f("defaultStartDate",j("defaultStartDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedStartDate",j("checkedStartDate",a("value.0",$2,$0,$2,$2))),f("defaultEndDate",j("defaultEndDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedEndDate",j("checkedEndDate",a("value.1",$2,$0,$2,$2))),f("disabledDate",j("disabledDate",a("disabledDate",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_WEEK",$2))?(r("DateWeek",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value.0",$2,$0,$2,$2))),f("canPickYear",$2),f("canPickMonth",$2)})):((a("type",$2)===a("RAW_TYPE_YEAR",$2))?(r("DateYear",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2)))})):((a("type",$2)===a("RAW_TYPE_MONTH",$2))?(r("DateMonth",function(){f("defaultDate",j("defaultDate",a("defaultSimpleDate.timestamp",$2,$0,$2,$2))),f("checkedDate",j("checkedDate",a("value",$2,$0,$2,$2))),f("canPickYear",$2)})):p()))))}})};
 
 /***/ }),
 /* 41 */
@@ -1253,6 +1253,12 @@ var SubMenu_default = /*#__PURE__*/__webpack_require__.n(SubMenu);
             if (this.get('mode') !== RAW_INLINE) {
                 this.set('isOpen', FALSE);
             }
+        }
+    },
+    methods: {
+        handleOutsideClick: function (event) {
+            event.stop();
+            this.set('isOpen', FALSE);
         }
     },
     components: {
@@ -2656,7 +2662,6 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
 
 /* harmony default export */ var tag_Tag = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Tag_default.a,
-    model: 'checked',
     name: 'bell-Tag',
     propTypes: {
         type: {
@@ -2688,10 +2693,10 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
             type: RAW_STRING,
         }
     },
-    watchers: {
-        checked: function (checked) {
+    methods: {
+        toggleChecked: function () {
             this.fire('change.tag', {
-                checked: checked,
+                checked: !this.get('checked'),
             });
         }
     },
@@ -2774,18 +2779,6 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
         },
     },
     events: {
-        'add.selectOption': function (event, data) {
-            event.stop();
-            if (data.isSelected) {
-                this.selectOption(data.value);
-            }
-        },
-        'remove.selectOption': function (event, data) {
-            event.stop();
-            if (data.isSelected) {
-                this.deselectOption(data.value);
-            }
-        },
         'update.selectOption': function (event, data) {
             event.stop();
             var me = this;
@@ -2817,10 +2810,14 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
                 value: this.get('value')
             }, TRUE);
         },
+        handleOutsideClick: function (event) {
+            event.stop();
+            this.set('visible', FALSE);
+        },
         selectOption: function (value) {
             var me = this;
+            var values = me.get('value');
             if (me.get('multiple')) {
-                var values = me.get('value');
                 if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(values)
                     && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(values, value)) {
                     return;
@@ -2828,7 +2825,13 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
                 me.append('value', value);
             }
             else {
-                me.set('value', value);
+                if (values !== value) {
+                    me.set('value', value);
+                }
+                // 更新 UI，因为 watcher 不会被触发
+                else {
+                    this.updateSelectedOptions(value);
+                }
             }
         },
         deselectOption: function (value) {
@@ -2851,6 +2854,7 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
             }
         },
         updateSelectedOptions: function (value) {
+            // 用一个空数组，通过事件流收集选中的 option
             var selectedOptions = [];
             this.fire('change.select', {
                 value: value,
@@ -2944,6 +2948,9 @@ function isOptionSelected(values, value) {
                 value: this.get('value'),
             });
         }
+    },
+    afterMount: function () {
+        this.fireEvent(this.get('isSelected'));
     },
     beforeDestroy: function () {
         this.fireEvent(FALSE);
@@ -3513,11 +3520,9 @@ var BackTop_CLASS_FADE = 'bell-backtop-fade';
         },
         bottom: {
             type: RAW_NUMERIC,
-            value: 30,
         },
         right: {
             type: RAW_NUMERIC,
-            value: 30,
         },
         height: {
             type: RAW_NUMERIC,
@@ -4717,6 +4722,10 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
                 }
                 this.dateChange(toTimestamp(value));
             }
+        },
+        handleOutsideClick: function (event) {
+            event.stop();
+            this.set('visible', FALSE);
         },
         dateChange: function (timestamp, dateFormat) {
             if (dateFormat === void 0) { dateFormat = DATE_FORMAT; }

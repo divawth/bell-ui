@@ -2,7 +2,7 @@
   trigger="custom"
   visible="{{visible}}"
   placement="{{placement}}"
-  on-outside="set('visible', false)"
+  on-outside="handleOutsideClick()"
   className="${prefix}datepicker
 
   {{#if status}} ${prefix}datepicker-{{status}}{{/if}}

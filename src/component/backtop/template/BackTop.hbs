@@ -3,9 +3,12 @@ class="${prefix}backtop
 {{#if legacy}} ${prefix}backtop-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="bottom: {{bottom}}px;
-right: {{right}}px;
-{{#if style}} {{style}}{{/if}}"
+{{#if bottom || right || style}}
+style="
+{{#if bottom}}bottom: {{bottom}}px;{{/if}}
+{{#if right}}right: {{right}}px;{{/if}}
+{{#if style}}{{style}}{{/if}}"
+{{/if}}
 
 on-click="click.backTop"
 >

@@ -38,11 +38,9 @@ export default Yox.define({
     },
     bottom: {
       type: RAW_NUMERIC,
-      value: 30,
     },
     right: {
       type: RAW_NUMERIC,
-      value: 30,
     },
     height: {
       type: RAW_NUMERIC,

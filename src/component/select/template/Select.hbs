@@ -5,7 +5,7 @@
   trigger="custom"
   visible="{{visible}}"
 
-  on-outside="set('visible', false)"
+  on-outside="handleOutsideClick()"
 
   className="${prefix}select
   {{#if status}} ${prefix}select-{{status}}{{/if}}

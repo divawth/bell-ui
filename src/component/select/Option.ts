@@ -100,6 +100,10 @@ export default Yox.define({
     }
   },
 
+  afterMount() {
+    this.fireEvent(this.get('isSelected'))
+  },
+
   beforeDestroy() {
     this.fireEvent(FALSE)
   }
