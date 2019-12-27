@@ -1,19325 +1,7570 @@
-
-/*!
- * jQuery JavaScript Library v1.10.2
- * http://jquery.com/
- *
- * Includes Sizzle.js
- * http://sizzlejs.com/
- *
- * Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
- *
- * Date: 2013-07-03T13:48Z
- */
-/*!
- * jQuery JavaScript Library v1.11.1
- * http://jquery.com/
- *
- * Includes Sizzle.js
- * http://sizzlejs.com/
- *
- * Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
- *
- * Date: 2014-05-01T17:42Z
- */
-
-(function(global, factory) {
-
-    if (typeof module === "object" && typeof module.exports === "object") {
-        // For CommonJS and CommonJS-like environments where a proper window is present,
-        // execute the factory and get jQuery
-        // For environments that do not inherently posses a window with a document
-        // (such as Node.js), expose a jQuery-making factory as module.exports
-        // This accentuates the need for the creation of a real window
-        // e.g. var jQuery = require("jquery")(window);
-        // See ticket #14549 for more info
-        module.exports = global.document ?
-            factory(global, true) :
-            function(w) {
-                if (!w.document) {
-                    throw new Error("jQuery requires a window with a document");
-                }
-                return factory(w);
-            };
-    } else {
-        factory(global);
-    }
-
-    // Pass this if window is not defined yet
-}(typeof window !== "undefined" ? window : this, function(window, noGlobal) {
-
-    // Can't do this because several apps including ASP.NET trace
-    // the stack via arguments.caller.callee and Firefox dies if
-    // you try to trace through "use strict" call chains. (#13335)
-    // Support: Firefox 18+
-    //
-
-    var deletedIds = [];
-
-    var slice = deletedIds.slice;
-
-    var concat = deletedIds.concat;
-
-    var push = deletedIds.push;
-
-    var indexOf = deletedIds.indexOf;
-
-    var class2type = {};
-
-    var toString = class2type.toString;
-
-    var hasOwn = class2type.hasOwnProperty;
-
-    var support = {};
-
-
-
-    var
-        version = "1.11.1",
-
-    // Define a local copy of jQuery
-        jQuery = function(selector, context) {
-            // The jQuery object is actually just the init constructor 'enhanced'
-            // Need init if jQuery is called (just allow error to be thrown if not included)
-            return new jQuery.fn.init(selector, context);
-        },
-
-    // Support: Android<4.1, IE<9
-    // Make sure we trim BOM and NBSP
-        rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
-
-    // Matches dashed string for camelizing
-        rmsPrefix = /^-ms-/,
-        rdashAlpha = /-([\da-z])/gi,
-
-    // Used by jQuery.camelCase as callback to replace()
-        fcamelCase = function(all, letter) {
-            return letter.toUpperCase();
-        };
-
-    jQuery.fn = jQuery.prototype = {
-        // The current version of jQuery being used
-        jquery: version,
-
-        constructor: jQuery,
-
-        // Start with an empty selector
-        selector: "",
-
-        // The default length of a jQuery object is 0
-        length: 0,
-
-        toArray: function() {
-            return slice.call(this);
-        },
-
-        // Get the Nth element in the matched element set OR
-        // Get the whole matched element set as a clean array
-        get: function(num) {
-            return num != null ?
-
-                // Return just the one element from the set
-                (num < 0 ? this[num + this.length] : this[num]) :
-
-                // Return all the elements in a clean array
-                slice.call(this);
-        },
-
-        // Take an array of elements and push it onto the stack
-        // (returning the new matched element set)
-        pushStack: function(elems) {
-
-            // Build a new jQuery matched element set
-            var ret = jQuery.merge(this.constructor(), elems);
-
-            // Add the old object onto the stack (as a reference)
-            ret.prevObject = this;
-            ret.context = this.context;
-
-            // Return the newly-formed element set
-            return ret;
-        },
-
-        // Execute a callback for every element in the matched set.
-        // (You can seed the arguments with an array of args, but this is
-        // only used internally.)
-        each: function(callback, args) {
-            return jQuery.each(this, callback, args);
-        },
-
-        map: function(callback) {
-            return this.pushStack(jQuery.map(this, function(elem, i) {
-                return callback.call(elem, i, elem);
-            }));
-        },
-
-        slice: function() {
-            return this.pushStack(slice.apply(this, arguments));
-        },
-
-        first: function() {
-            return this.eq(0);
-        },
-
-        last: function() {
-            return this.eq(-1);
-        },
-
-        eq: function(i) {
-            var len = this.length,
-                j = +i + (i < 0 ? len : 0);
-            return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
-        },
-
-        end: function() {
-            return this.prevObject || this.constructor(null);
-        },
-
-        // For internal use only.
-        // Behaves like an Array's method, not like a jQuery method.
-        push: push,
-        sort: deletedIds.sort,
-        splice: deletedIds.splice
-    };
-
-    jQuery.extend = jQuery.fn.extend = function() {
-        var src, copyIsArray, copy, name, options, clone,
-            target = arguments[0] || {},
-            i = 1,
-            length = arguments.length,
-            deep = false;
-
-        // Handle a deep copy situation
-        if (typeof target === "boolean") {
-            deep = target;
-
-            // skip the boolean and the target
-            target = arguments[i] || {};
-            i++;
-        }
-
-        // Handle case when target is a string or something (possible in deep copy)
-        if (typeof target !== "object" && !jQuery.isFunction(target)) {
-            target = {};
-        }
-
-        // extend jQuery itself if only one argument is passed
-        if (i === length) {
-            target = this;
-            i--;
-        }
-
-        for (; i < length; i++) {
-            // Only deal with non-null/undefined values
-            if ((options = arguments[i]) != null) {
-                // Extend the base object
-                for (name in options) {
-                    src = target[name];
-                    copy = options[name];
-
-                    // Prevent never-ending loop
-                    if (target === copy) {
-                        continue;
-                    }
-
-                    // Recurse if we're merging plain objects or arrays
-                    if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)))) {
-                        if (copyIsArray) {
-                            copyIsArray = false;
-                            clone = src && jQuery.isArray(src) ? src : [];
-
-                        } else {
-                            clone = src && jQuery.isPlainObject(src) ? src : {};
-                        }
-
-                        // Never move original objects, clone them
-                        target[name] = jQuery.extend(deep, clone, copy);
-
-                        // Don't bring in undefined values
-                    } else if (copy !== undefined) {
-                        target[name] = copy;
-                    }
-                }
-            }
-        }
-
-        // Return the modified object
-        return target;
-    };
-
-    jQuery.extend({
-        // Unique for each copy of jQuery on the page
-        expando: "jQuery" + (version + Math.random()).replace(/\D/g, ""),
-
-        // Assume jQuery is ready without the ready module
-        isReady: true,
-
-        error: function(msg) {
-            throw new Error(msg);
-        },
-
-        noop: function() {},
-
-        // See test/unit/core.js for details concerning isFunction.
-        // Since version 1.3, DOM methods and functions like alert
-        // aren't supported. They return false on IE (#2968).
-        isFunction: function(obj) {
-            return jQuery.type(obj) === "function";
-        },
-
-        isArray: Array.isArray || function(obj) {
-            return jQuery.type(obj) === "array";
-        },
-
-        isWindow: function(obj) {
-            /* jshint eqeqeq: false */
-            return obj != null && obj == obj.window;
-        },
-
-        isNumeric: function(obj) {
-            // parseFloat NaNs numeric-cast false positives (null|true|false|"")
-            // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-            // subtraction forces infinities to NaN
-            return !jQuery.isArray(obj) && obj - parseFloat(obj) >= 0;
-        },
-
-        isEmptyObject: function(obj) {
-            var name;
-            for (name in obj) {
-                return false;
-            }
-            return true;
-        },
-
-        isPlainObject: function(obj) {
-            var key;
-
-            // Must be an Object.
-            // Because of IE, we also have to check the presence of the constructor property.
-            // Make sure that DOM nodes and window objects don't pass through, as well
-            if (!obj || jQuery.type(obj) !== "object" || obj.nodeType || jQuery.isWindow(obj)) {
-                return false;
-            }
-
-            try {
-                // Not own constructor property must be Object
-                if (obj.constructor &&
-                    !hasOwn.call(obj, "constructor") &&
-                    !hasOwn.call(obj.constructor.prototype, "isPrototypeOf")) {
-                    return false;
-                }
-            } catch (e) {
-                // IE8,9 Will throw exceptions on certain host objects #9897
-                return false;
-            }
-
-            // Support: IE<9
-            // Handle iteration over inherited properties before own properties.
-            if (support.ownLast) {
-                for (key in obj) {
-                    return hasOwn.call(obj, key);
-                }
-            }
-
-            // Own properties are enumerated firstly, so to speed up,
-            // if last one is own, then all properties are own.
-            for (key in obj) {}
-
-            return key === undefined || hasOwn.call(obj, key);
-        },
-
-        type: function(obj) {
-            if (obj == null) {
-                return obj + "";
-            }
-            return typeof obj === "object" || typeof obj === "function" ?
-            class2type[toString.call(obj)] || "object" :
-                typeof obj;
-        },
-
-        // Evaluates a script in a global context
-        // Workarounds based on findings by Jim Driscoll
-        // http://weblogs.java.net/blog/driscoll/archive/2009/09/08/eval-javascript-global-context
-        globalEval: function(data) {
-            if (data && jQuery.trim(data)) {
-                // We use execScript on Internet Explorer
-                // We use an anonymous function so that context is window
-                // rather than jQuery in Firefox
-                (window.execScript || function(data) {
-                    window["eval"].call(window, data);
-                })(data);
-            }
-        },
-
-        // Convert dashed to camelCase; used by the css and data modules
-        // Microsoft forgot to hump their vendor prefix (#9572)
-        camelCase: function(string) {
-            return string.replace(rmsPrefix, "ms-").replace(rdashAlpha, fcamelCase);
-        },
-
-        nodeName: function(elem, name) {
-            return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
-        },
-
-        // args is for internal usage only
-        each: function(obj, callback, args) {
-            var value,
-                i = 0,
-                length = obj.length,
-                isArray = isArraylike(obj);
-
-            if (args) {
-                if (isArray) {
-                    for (; i < length; i++) {
-                        value = callback.apply(obj[i], args);
-
-                        if (value === false) {
-                            break;
-                        }
-                    }
-                } else {
-                    for (i in obj) {
-                        value = callback.apply(obj[i], args);
-
-                        if (value === false) {
-                            break;
-                        }
-                    }
-                }
-
-                // A special, fast, case for the most common use of each
-            } else {
-                if (isArray) {
-                    for (; i < length; i++) {
-                        value = callback.call(obj[i], i, obj[i]);
-
-                        if (value === false) {
-                            break;
-                        }
-                    }
-                } else {
-                    for (i in obj) {
-                        value = callback.call(obj[i], i, obj[i]);
-
-                        if (value === false) {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return obj;
-        },
-
-        // Support: Android<4.1, IE<9
-        trim: function(text) {
-            return text == null ?
-                "" :
-                (text + "").replace(rtrim, "");
-        },
-
-        // results is for internal usage only
-        makeArray: function(arr, results) {
-            var ret = results || [];
-
-            if (arr != null) {
-                if (isArraylike(Object(arr))) {
-                    jQuery.merge(ret,
-                        typeof arr === "string" ?
-                            [arr] : arr
-                    );
-                } else {
-                    push.call(ret, arr);
-                }
-            }
-
-            return ret;
-        },
-
-        inArray: function(elem, arr, i) {
-            var len;
-
-            if (arr) {
-                if (indexOf) {
-                    return indexOf.call(arr, elem, i);
-                }
-
-                len = arr.length;
-                i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
-
-                for (; i < len; i++) {
-                    // Skip accessing in sparse arrays
-                    if (i in arr && arr[i] === elem) {
-                        return i;
-                    }
-                }
-            }
-
-            return -1;
-        },
-
-        merge: function(first, second) {
-            var len = +second.length,
-                j = 0,
-                i = first.length;
-
-            while (j < len) {
-                first[i++] = second[j++];
-            }
-
-            // Support: IE<9
-            // Workaround casting of .length to NaN on otherwise arraylike objects (e.g., NodeLists)
-            if (len !== len) {
-                while (second[j] !== undefined) {
-                    first[i++] = second[j++];
-                }
-            }
-
-            first.length = i;
-
-            return first;
-        },
-
-        grep: function(elems, callback, invert) {
-            var callbackInverse,
-                matches = [],
-                i = 0,
-                length = elems.length,
-                callbackExpect = !invert;
-
-            // Go through the array, only saving the items
-            // that pass the validator function
-            for (; i < length; i++) {
-                callbackInverse = !callback(elems[i], i);
-                if (callbackInverse !== callbackExpect) {
-                    matches.push(elems[i]);
-                }
-            }
-
-            return matches;
-        },
-
-        // arg is for internal usage only
-        map: function(elems, callback, arg) {
-            var value,
-                i = 0,
-                length = elems.length,
-                isArray = isArraylike(elems),
-                ret = [];
-
-            // Go through the array, translating each of the items to their new values
-            if (isArray) {
-                for (; i < length; i++) {
-                    value = callback(elems[i], i, arg);
-
-                    if (value != null) {
-                        ret.push(value);
-                    }
-                }
-
-                // Go through every key on the object,
-            } else {
-                for (i in elems) {
-                    value = callback(elems[i], i, arg);
-
-                    if (value != null) {
-                        ret.push(value);
-                    }
-                }
-            }
-
-            // Flatten any nested arrays
-            return concat.apply([], ret);
-        },
-
-        // A global GUID counter for objects
-        guid: 1,
-
-        // Bind a function to a context, optionally partially applying any
-        // arguments.
-        proxy: function(fn, context) {
-            var args, proxy, tmp;
-
-            if (typeof context === "string") {
-                tmp = fn[context];
-                context = fn;
-                fn = tmp;
-            }
-
-            // Quick check to determine if target is callable, in the spec
-            // this throws a TypeError, but we will just return undefined.
-            if (!jQuery.isFunction(fn)) {
-                return undefined;
-            }
-
-            // Simulated bind
-            args = slice.call(arguments, 2);
-            proxy = function() {
-                return fn.apply(context || this, args.concat(slice.call(arguments)));
-            };
-
-            // Set the guid of unique handler to the same of original handler, so it can be removed
-            proxy.guid = fn.guid = fn.guid || jQuery.guid++;
-
-            return proxy;
-        },
-
-        now: function() {
-            return +(new Date());
-        },
-
-        // jQuery.support is not used in Core but other projects attach their
-        // properties to it so it needs to exist.
-        support: support
-    });
-
-    // Populate the class2type map
-    jQuery.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(i, name) {
-        class2type["[object " + name + "]"] = name.toLowerCase();
-    });
-
-    function isArraylike(obj) {
-        var length = obj.length,
-            type = jQuery.type(obj);
-
-        if (type === "function" || jQuery.isWindow(obj)) {
-            return false;
-        }
-
-        if (obj.nodeType === 1 && length) {
-            return true;
-        }
-
-        return type === "array" || length === 0 ||
-            typeof length === "number" && length > 0 && (length - 1) in obj;
-    }
-    var Sizzle =
-        /*!
-         * Sizzle CSS Selector Engine v1.10.19
-         * http://sizzlejs.com/
-         *
-         * Copyright 2013 jQuery Foundation, Inc. and other contributors
-         * Released under the MIT license
-         * http://jquery.org/license
-         *
-         * Date: 2014-04-18
-         */
-        (function(window) {
-
-            var i,
-                support,
-                Expr,
-                getText,
-                isXML,
-                tokenize,
-                compile,
-                select,
-                outermostContext,
-                sortInput,
-                hasDuplicate,
-
-            // Local document vars
-                setDocument,
-                document,
-                docElem,
-                documentIsHTML,
-                rbuggyQSA,
-                rbuggyMatches,
-                matches,
-                contains,
-
-            // Instance-specific data
-                expando = "sizzle" + -(new Date()),
-                preferredDoc = window.document,
-                dirruns = 0,
-                done = 0,
-                classCache = createCache(),
-                tokenCache = createCache(),
-                compilerCache = createCache(),
-                sortOrder = function(a, b) {
-                    if (a === b) {
-                        hasDuplicate = true;
-                    }
-                    return 0;
-                },
-
-            // General-purpose constants
-                strundefined = typeof undefined,
-                MAX_NEGATIVE = 1 << 31,
-
-            // Instance methods
-                hasOwn = ({}).hasOwnProperty,
-                arr = [],
-                pop = arr.pop,
-                push_native = arr.push,
-                push = arr.push,
-                slice = arr.slice,
-            // Use a stripped-down indexOf if we can't use a native one
-                indexOf = arr.indexOf || function(elem) {
-                        var i = 0,
-                            len = this.length;
-                        for (; i < len; i++) {
-                            if (this[i] === elem) {
-                                return i;
-                            }
-                        }
-                        return -1;
-                    },
-
-                booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
-
-            // Regular expressions
-
-            // Whitespace characters http://www.w3.org/TR/css3-selectors/#whitespace
-                whitespace = "[\\x20\\t\\r\\n\\f]",
-            // http://www.w3.org/TR/css3-syntax/#characters
-                characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
-
-            // Loosely modeled on CSS identifier characters
-            // An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
-            // Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
-                identifier = characterEncoding.replace("w", "w#"),
-
-            // Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
-                attributes = "\\[" + whitespace + "*(" + characterEncoding + ")(?:" + whitespace +
-                    // Operator (capture 2)
-                    "*([*^$|!~]?=)" + whitespace +
-                    // "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
-                    "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
-                    "*\\]",
-
-                pseudos = ":(" + characterEncoding + ")(?:\\((" +
-                    // To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
-                    // 1. quoted (capture 3; capture 4 or capture 5)
-                    "('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
-                    // 2. simple (capture 6)
-                    "((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
-                    // 3. anything else (capture 2)
-                    ".*" +
-                    ")\\)|)",
-
-            // Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-                rtrim = new RegExp("^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g"),
-
-                rcomma = new RegExp("^" + whitespace + "*," + whitespace + "*"),
-                rcombinators = new RegExp("^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*"),
-
-                rattributeQuotes = new RegExp("=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g"),
-
-                rpseudo = new RegExp(pseudos),
-                ridentifier = new RegExp("^" + identifier + "$"),
-
-                matchExpr = {
-                    "ID": new RegExp("^#(" + characterEncoding + ")"),
-                    "CLASS": new RegExp("^\\.(" + characterEncoding + ")"),
-                    "TAG": new RegExp("^(" + characterEncoding.replace("w", "w*") + ")"),
-                    "ATTR": new RegExp("^" + attributes),
-                    "PSEUDO": new RegExp("^" + pseudos),
-                    "CHILD": new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
-                        "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
-                        "*(\\d+)|))" + whitespace + "*\\)|)", "i"),
-                    "bool": new RegExp("^(?:" + booleans + ")$", "i"),
-                    // For use in libraries implementing .is()
-                    // We use this for POS matching in `select`
-                    "needsContext": new RegExp("^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
-                        whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i")
-                },
-
-                rinputs = /^(?:input|select|textarea|button)$/i,
-                rheader = /^h\d$/i,
-
-                rnative = /^[^{]+\{\s*\[native \w/,
-
-            // Easily-parseable/retrievable ID or TAG or CLASS selectors
-                rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
-
-                rsibling = /[+~]/,
-                rescape = /'|\\/g,
-
-            // CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-                runescape = new RegExp("\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig"),
-                funescape = function(_, escaped, escapedWhitespace) {
-                    var high = "0x" + escaped - 0x10000;
-                    // NaN means non-codepoint
-                    // Support: Firefox<24
-                    // Workaround erroneous numeric interpretation of +"0x"
-                    return high !== high || escapedWhitespace ?
-                        escaped :
-                        high < 0 ?
-                            // BMP codepoint
-                            String.fromCharCode(high + 0x10000) :
-                            // Supplemental Plane codepoint (surrogate pair)
-                            String.fromCharCode(high >> 10 | 0xD800, high & 0x3FF | 0xDC00);
-                };
-
-            // Optimize for push.apply( _, NodeList )
-            try {
-                push.apply(
-                    (arr = slice.call(preferredDoc.childNodes)),
-                    preferredDoc.childNodes
-                );
-                // Support: Android<4.0
-                // Detect silently failing push.apply
-                arr[preferredDoc.childNodes.length].nodeType;
-            } catch (e) {
-                push = {
-                    apply: arr.length ?
-
-                        // Leverage slice if possible
-                        function(target, els) {
-                            push_native.apply(target, slice.call(els));
-                        } :
-
-                        // Support: IE<9
-                        // Otherwise append directly
-                        function(target, els) {
-                            var j = target.length,
-                                i = 0;
-                            // Can't trust NodeList.length
-                            while ((target[j++] = els[i++])) {}
-                            target.length = j - 1;
-                        }
-                };
-            }
-
-            function Sizzle(selector, context, results, seed) {
-                var match, elem, m, nodeType,
-                // QSA vars
-                    i, groups, old, nid, newContext, newSelector;
-
-                if ((context ? context.ownerDocument || context : preferredDoc) !== document) {
-                    setDocument(context);
-                }
-
-                context = context || document;
-                results = results || [];
-
-                if (!selector || typeof selector !== "string") {
-                    return results;
-                }
-
-                if ((nodeType = context.nodeType) !== 1 && nodeType !== 9) {
-                    return [];
-                }
-
-                if (documentIsHTML && !seed) {
-
-                    // Shortcuts
-                    if ((match = rquickExpr.exec(selector))) {
-                        // Speed-up: Sizzle("#ID")
-                        if ((m = match[1])) {
-                            if (nodeType === 9) {
-                                elem = context.getElementById(m);
-                                // Check parentNode to catch when Blackberry 4.6 returns
-                                // nodes that are no longer in the document (jQuery #6963)
-                                if (elem && elem.parentNode) {
-                                    // Handle the case where IE, Opera, and Webkit return items
-                                    // by name instead of ID
-                                    if (elem.id === m) {
-                                        results.push(elem);
-                                        return results;
-                                    }
-                                } else {
-                                    return results;
-                                }
-                            } else {
-                                // Context is not a document
-                                if (context.ownerDocument && (elem = context.ownerDocument.getElementById(m)) &&
-                                    contains(context, elem) && elem.id === m) {
-                                    results.push(elem);
-                                    return results;
-                                }
-                            }
-
-                            // Speed-up: Sizzle("TAG")
-                        } else if (match[2]) {
-                            push.apply(results, context.getElementsByTagName(selector));
-                            return results;
-
-                            // Speed-up: Sizzle(".CLASS")
-                        } else if ((m = match[3]) && support.getElementsByClassName && context.getElementsByClassName) {
-                            push.apply(results, context.getElementsByClassName(m));
-                            return results;
-                        }
-                    }
-
-                    // QSA path
-                    if (support.qsa && (!rbuggyQSA || !rbuggyQSA.test(selector))) {
-                        nid = old = expando;
-                        newContext = context;
-                        newSelector = nodeType === 9 && selector;
-
-                        // qSA works strangely on Element-rooted queries
-                        // We can work around this by specifying an extra ID on the root
-                        // and working up from there (Thanks to Andrew Dupont for the technique)
-                        // IE 8 doesn't work on object elements
-                        if (nodeType === 1 && context.nodeName.toLowerCase() !== "object") {
-                            groups = tokenize(selector);
-
-                            if ((old = context.getAttribute("id"))) {
-                                nid = old.replace(rescape, "\\$&");
-                            } else {
-                                context.setAttribute("id", nid);
-                            }
-                            nid = "[id='" + nid + "'] ";
-
-                            i = groups.length;
-                            while (i--) {
-                                groups[i] = nid + toSelector(groups[i]);
-                            }
-                            newContext = rsibling.test(selector) && testContext(context.parentNode) || context;
-                            newSelector = groups.join(",");
-                        }
-
-                        if (newSelector) {
-                            try {
-                                push.apply(results,
-                                    newContext.querySelectorAll(newSelector)
-                                );
-                                return results;
-                            } catch (qsaError) {} finally {
-                                if (!old) {
-                                    context.removeAttribute("id");
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // All others
-                return select(selector.replace(rtrim, "$1"), context, results, seed);
-            }
-
-            /**
-             * Create key-value caches of limited size
-             * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
-             *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
-             *  deleting the oldest entry
-             */
-            function createCache() {
-                var keys = [];
-
-                function cache(key, value) {
-                    // Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
-                    if (keys.push(key + " ") > Expr.cacheLength) {
-                        // Only keep the most recent entries
-                        delete cache[keys.shift()];
-                    }
-                    return (cache[key + " "] = value);
-                }
-                return cache;
-            }
-
-            /**
-             * Mark a function for special use by Sizzle
-             * @param {Function} fn The function to mark
-             */
-            function markFunction(fn) {
-                fn[expando] = true;
-                return fn;
-            }
-
-            /**
-             * Support testing using an element
-             * @param {Function} fn Passed the created div and expects a boolean result
-             */
-            function assert(fn) {
-                var div = document.createElement("div");
-
-                try {
-                    return !!fn(div);
-                } catch (e) {
-                    return false;
-                } finally {
-                    // Remove from its parent by default
-                    if (div.parentNode) {
-                        div.parentNode.removeChild(div);
-                    }
-                    // release memory in IE
-                    div = null;
-                }
-            }
-
-            /**
-             * Adds the same handler for all of the specified attrs
-             * @param {String} attrs Pipe-separated list of attributes
-             * @param {Function} handler The method that will be applied
-             */
-            function addHandle(attrs, handler) {
-                var arr = attrs.split("|"),
-                    i = attrs.length;
-
-                while (i--) {
-                    Expr.attrHandle[arr[i]] = handler;
-                }
-            }
-
-            /**
-             * Checks document order of two siblings
-             * @param {Element} a
-             * @param {Element} b
-             * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
-             */
-            function siblingCheck(a, b) {
-                var cur = b && a,
-                    diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
-                        (~b.sourceIndex || MAX_NEGATIVE) -
-                        (~a.sourceIndex || MAX_NEGATIVE);
-
-                // Use IE sourceIndex if available on both nodes
-                if (diff) {
-                    return diff;
-                }
-
-                // Check if b follows a
-                if (cur) {
-                    while ((cur = cur.nextSibling)) {
-                        if (cur === b) {
-                            return -1;
-                        }
-                    }
-                }
-
-                return a ? 1 : -1;
-            }
-
-            /**
-             * Returns a function to use in pseudos for input types
-             * @param {String} type
-             */
-            function createInputPseudo(type) {
-                return function(elem) {
-                    var name = elem.nodeName.toLowerCase();
-                    return name === "input" && elem.type === type;
-                };
-            }
-
-            /**
-             * Returns a function to use in pseudos for buttons
-             * @param {String} type
-             */
-            function createButtonPseudo(type) {
-                return function(elem) {
-                    var name = elem.nodeName.toLowerCase();
-                    return (name === "input" || name === "button") && elem.type === type;
-                };
-            }
-
-            /**
-             * Returns a function to use in pseudos for positionals
-             * @param {Function} fn
-             */
-            function createPositionalPseudo(fn) {
-                return markFunction(function(argument) {
-                    argument = +argument;
-                    return markFunction(function(seed, matches) {
-                        var j,
-                            matchIndexes = fn([], seed.length, argument),
-                            i = matchIndexes.length;
-
-                        // Match elements found at the specified indexes
-                        while (i--) {
-                            if (seed[(j = matchIndexes[i])]) {
-                                seed[j] = !(matches[j] = seed[j]);
-                            }
-                        }
-                    });
-                });
-            }
-
-            /**
-             * Checks a node for validity as a Sizzle context
-             * @param {Element|Object=} context
-             * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
-             */
-            function testContext(context) {
-                return context && typeof context.getElementsByTagName !== strundefined && context;
-            }
-
-            // Expose support vars for convenience
-            support = Sizzle.support = {};
-
-            /**
-             * Detects XML nodes
-             * @param {Element|Object} elem An element or a document
-             * @returns {Boolean} True iff elem is a non-HTML XML node
-             */
-            isXML = Sizzle.isXML = function(elem) {
-                // documentElement is verified for cases where it doesn't yet exist
-                // (such as loading iframes in IE - #4833)
-                var documentElement = elem && (elem.ownerDocument || elem).documentElement;
-                return documentElement ? documentElement.nodeName !== "HTML" : false;
-            };
-
-            /**
-             * Sets document-related variables once based on the current document
-             * @param {Element|Object} [doc] An element or document object to use to set the document
-             * @returns {Object} Returns the current document
-             */
-            setDocument = Sizzle.setDocument = function(node) {
-                var hasCompare,
-                    doc = node ? node.ownerDocument || node : preferredDoc,
-                    parent = doc.defaultView;
-
-                // If no document and documentElement is available, return
-                if (doc === document || doc.nodeType !== 9 || !doc.documentElement) {
-                    return document;
-                }
-
-                // Set our document
-                document = doc;
-                docElem = doc.documentElement;
-
-                // Support tests
-                documentIsHTML = !isXML(doc);
-
-                // Support: IE>8
-                // If iframe document is assigned to "document" variable and if iframe has been reloaded,
-                // IE will throw "permission denied" error when accessing "document" variable, see jQuery #13936
-                // IE6-8 do not support the defaultView property so parent will be undefined
-                if (parent && parent !== parent.top) {
-                    // IE11 does not have attachEvent, so all must suffer
-                    if (parent.addEventListener) {
-                        parent.addEventListener("unload", function() {
-                            setDocument();
-                        }, false);
-                    } else if (parent.attachEvent) {
-                        parent.attachEvent("onunload", function() {
-                            setDocument();
-                        });
-                    }
-                }
-
-                /* Attributes
-                 ---------------------------------------------------------------------- */
-
-                // Support: IE<8
-                // Verify that getAttribute really returns attributes and not properties (excepting IE8 booleans)
-                support.attributes = assert(function(div) {
-                    div.className = "i";
-                    return !div.getAttribute("className");
-                });
-
-                /* getElement(s)By*
-                 ---------------------------------------------------------------------- */
-
-                // Check if getElementsByTagName("*") returns only elements
-                support.getElementsByTagName = assert(function(div) {
-                    div.appendChild(doc.createComment(""));
-                    return !div.getElementsByTagName("*").length;
-                });
-
-                // Check if getElementsByClassName can be trusted
-                support.getElementsByClassName = rnative.test(doc.getElementsByClassName) && assert(function(div) {
-                        div.innerHTML = "<div class='a'></div><div class='a i'></div>";
-
-                        // Support: Safari<4
-                        // Catch class over-caching
-                        div.firstChild.className = "i";
-                        // Support: Opera<10
-                        // Catch gEBCN failure to find non-leading classes
-                        return div.getElementsByClassName("i").length === 2;
-                    });
-
-                // Support: IE<10
-                // Check if getElementById returns elements by name
-                // The broken getElementById methods don't pick up programatically-set names,
-                // so use a roundabout getElementsByName test
-                support.getById = assert(function(div) {
-                    docElem.appendChild(div).id = expando;
-                    return !doc.getElementsByName || !doc.getElementsByName(expando).length;
-                });
-
-                // ID find and filter
-                if (support.getById) {
-                    Expr.find["ID"] = function(id, context) {
-                        if (typeof context.getElementById !== strundefined && documentIsHTML) {
-                            var m = context.getElementById(id);
-                            // Check parentNode to catch when Blackberry 4.6 returns
-                            // nodes that are no longer in the document #6963
-                            return m && m.parentNode ? [m] : [];
-                        }
-                    };
-                    Expr.filter["ID"] = function(id) {
-                        var attrId = id.replace(runescape, funescape);
-                        return function(elem) {
-                            return elem.getAttribute("id") === attrId;
-                        };
-                    };
-                } else {
-                    // Support: IE6/7
-                    // getElementById is not reliable as a find shortcut
-                    delete Expr.find["ID"];
-
-                    Expr.filter["ID"] = function(id) {
-                        var attrId = id.replace(runescape, funescape);
-                        return function(elem) {
-                            var node = typeof elem.getAttributeNode !== strundefined && elem.getAttributeNode("id");
-                            return node && node.value === attrId;
-                        };
-                    };
-                }
-
-                // Tag
-                Expr.find["TAG"] = support.getElementsByTagName ?
-                    function(tag, context) {
-                        if (typeof context.getElementsByTagName !== strundefined) {
-                            return context.getElementsByTagName(tag);
-                        }
-                    } :
-                    function(tag, context) {
-                        var elem,
-                            tmp = [],
-                            i = 0,
-                            results = context.getElementsByTagName(tag);
-
-                        // Filter out possible comments
-                        if (tag === "*") {
-                            while ((elem = results[i++])) {
-                                if (elem.nodeType === 1) {
-                                    tmp.push(elem);
-                                }
-                            }
-
-                            return tmp;
-                        }
-                        return results;
-                    };
-
-                // Class
-                Expr.find["CLASS"] = support.getElementsByClassName && function(className, context) {
-                        if (typeof context.getElementsByClassName !== strundefined && documentIsHTML) {
-                            return context.getElementsByClassName(className);
-                        }
-                    };
-
-                /* QSA/matchesSelector
-                 ---------------------------------------------------------------------- */
-
-                // QSA and matchesSelector support
-
-                // matchesSelector(:active) reports false when true (IE9/Opera 11.5)
-                rbuggyMatches = [];
-
-                // qSa(:focus) reports false when true (Chrome 21)
-                // We allow this because of a bug in IE8/9 that throws an error
-                // whenever `document.activeElement` is accessed on an iframe
-                // So, we allow :focus to pass through QSA all the time to avoid the IE error
-                // See http://bugs.jquery.com/ticket/13378
-                rbuggyQSA = [];
-
-                if ((support.qsa = rnative.test(doc.querySelectorAll))) {
-                    // Build QSA regex
-                    // Regex strategy adopted from Diego Perini
-                    assert(function(div) {
-                        // Select is set to empty string on purpose
-                        // This is to test IE's treatment of not explicitly
-                        // setting a boolean content attribute,
-                        // since its presence should be enough
-                        // http://bugs.jquery.com/ticket/12359
-                        div.innerHTML = "<select msallowclip=''><option selected=''></option></select>";
-
-                        // Support: IE8, Opera 11-12.16
-                        // Nothing should be selected when empty strings follow ^= or $= or *=
-                        // The test attribute must be unknown in Opera but "safe" for WinRT
-                        // http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
-                        if (div.querySelectorAll("[msallowclip^='']").length) {
-                            rbuggyQSA.push("[*^$]=" + whitespace + "*(?:''|\"\")");
-                        }
-
-                        // Support: IE8
-                        // Boolean attributes and "value" are not treated correctly
-                        if (!div.querySelectorAll("[selected]").length) {
-                            rbuggyQSA.push("\\[" + whitespace + "*(?:value|" + booleans + ")");
-                        }
-
-                        // Webkit/Opera - :checked should return selected option elements
-                        // http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-                        // IE8 throws error here and will not see later tests
-                        if (!div.querySelectorAll(":checked").length) {
-                            rbuggyQSA.push(":checked");
-                        }
-                    });
-
-                    assert(function(div) {
-                        // Support: Windows 8 Native Apps
-                        // The type and name attributes are restricted during .innerHTML assignment
-                        var input = doc.createElement("input");
-                        input.setAttribute("type", "hidden");
-                        div.appendChild(input).setAttribute("name", "D");
-
-                        // Support: IE8
-                        // Enforce case-sensitivity of name attribute
-                        if (div.querySelectorAll("[name=d]").length) {
-                            rbuggyQSA.push("name" + whitespace + "*[*^$|!~]?=");
-                        }
-
-                        // FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
-                        // IE8 throws error here and will not see later tests
-                        if (!div.querySelectorAll(":enabled").length) {
-                            rbuggyQSA.push(":enabled", ":disabled");
-                        }
-
-                        // Opera 10-11 does not throw on post-comma invalid pseudos
-                        div.querySelectorAll("*,:x");
-                        rbuggyQSA.push(",.*:");
-                    });
-                }
-
-                if ((support.matchesSelector = rnative.test((matches = docElem.matches ||
-                        docElem.webkitMatchesSelector ||
-                        docElem.mozMatchesSelector ||
-                        docElem.oMatchesSelector ||
-                        docElem.msMatchesSelector)))) {
-
-                    assert(function(div) {
-                        // Check to see if it's possible to do matchesSelector
-                        // on a disconnected node (IE 9)
-                        support.disconnectedMatch = matches.call(div, "div");
-
-                        // This should fail with an exception
-                        // Gecko does not error, returns false instead
-                        matches.call(div, "[s!='']:x");
-                        rbuggyMatches.push("!=", pseudos);
-                    });
-                }
-
-                rbuggyQSA = rbuggyQSA.length && new RegExp(rbuggyQSA.join("|"));
-                rbuggyMatches = rbuggyMatches.length && new RegExp(rbuggyMatches.join("|"));
-
-                /* Contains
-                 ---------------------------------------------------------------------- */
-                hasCompare = rnative.test(docElem.compareDocumentPosition);
-
-                // Element contains another
-                // Purposefully does not implement inclusive descendent
-                // As in, an element does not contain itself
-                contains = hasCompare || rnative.test(docElem.contains) ?
-                    function(a, b) {
-                        var adown = a.nodeType === 9 ? a.documentElement : a,
-                            bup = b && b.parentNode;
-                        return a === bup || !!(bup && bup.nodeType === 1 && (
-                                adown.contains ?
-                                    adown.contains(bup) :
-                                a.compareDocumentPosition && a.compareDocumentPosition(bup) & 16
-                            ));
-                    } :
-                    function(a, b) {
-                        if (b) {
-                            while ((b = b.parentNode)) {
-                                if (b === a) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    };
-
-                /* Sorting
-                 ---------------------------------------------------------------------- */
-
-                // Document order sorting
-                sortOrder = hasCompare ?
-                    function(a, b) {
-
-                        // Flag for duplicate removal
-                        if (a === b) {
-                            hasDuplicate = true;
-                            return 0;
-                        }
-
-                        // Sort on method existence if only one input has compareDocumentPosition
-                        var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
-                        if (compare) {
-                            return compare;
-                        }
-
-                        // Calculate position if both inputs belong to the same document
-                        compare = (a.ownerDocument || a) === (b.ownerDocument || b) ?
-                            a.compareDocumentPosition(b) :
-
-                            // Otherwise we know they are disconnected
-                            1;
-
-                        // Disconnected nodes
-                        if (compare & 1 ||
-                            (!support.sortDetached && b.compareDocumentPosition(a) === compare)) {
-
-                            // Choose the first element that is related to our preferred document
-                            if (a === doc || a.ownerDocument === preferredDoc && contains(preferredDoc, a)) {
-                                return -1;
-                            }
-                            if (b === doc || b.ownerDocument === preferredDoc && contains(preferredDoc, b)) {
-                                return 1;
-                            }
-
-                            // Maintain original order
-                            return sortInput ?
-                                (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) :
-                                0;
-                        }
-
-                        return compare & 4 ? -1 : 1;
-                    } :
-                    function(a, b) {
-                        // Exit early if the nodes are identical
-                        if (a === b) {
-                            hasDuplicate = true;
-                            return 0;
-                        }
-
-                        var cur,
-                            i = 0,
-                            aup = a.parentNode,
-                            bup = b.parentNode,
-                            ap = [a],
-                            bp = [b];
-
-                        // Parentless nodes are either documents or disconnected
-                        if (!aup || !bup) {
-                            return a === doc ? -1 :
-                                b === doc ? 1 :
-                                    aup ? -1 :
-                                        bup ? 1 :
-                                            sortInput ?
-                                                (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) :
-                                                0;
-
-                            // If the nodes are siblings, we can do a quick check
-                        } else if (aup === bup) {
-                            return siblingCheck(a, b);
-                        }
-
-                        // Otherwise we need full lists of their ancestors for comparison
-                        cur = a;
-                        while ((cur = cur.parentNode)) {
-                            ap.unshift(cur);
-                        }
-                        cur = b;
-                        while ((cur = cur.parentNode)) {
-                            bp.unshift(cur);
-                        }
-
-                        // Walk down the tree looking for a discrepancy
-                        while (ap[i] === bp[i]) {
-                            i++;
-                        }
-
-                        return i ?
-                            // Do a sibling check if the nodes have a common ancestor
-                            siblingCheck(ap[i], bp[i]) :
-
-                            // Otherwise nodes in our document sort first
-                            ap[i] === preferredDoc ? -1 :
-                                bp[i] === preferredDoc ? 1 :
-                                    0;
-                    };
-
-                return doc;
-            };
-
-            Sizzle.matches = function(expr, elements) {
-                return Sizzle(expr, null, null, elements);
-            };
-
-            Sizzle.matchesSelector = function(elem, expr) {
-                // Set document vars if needed
-                if ((elem.ownerDocument || elem) !== document) {
-                    setDocument(elem);
-                }
-
-                // Make sure that attribute selectors are quoted
-                expr = expr.replace(rattributeQuotes, "='$1']");
-
-                if (support.matchesSelector && documentIsHTML &&
-                    (!rbuggyMatches || !rbuggyMatches.test(expr)) &&
-                    (!rbuggyQSA || !rbuggyQSA.test(expr))) {
-
-                    try {
-                        var ret = matches.call(elem, expr);
-
-                        // IE 9's matchesSelector returns false on disconnected nodes
-                        if (ret || support.disconnectedMatch ||
-                            // As well, disconnected nodes are said to be in a document
-                            // fragment in IE 9
-                            elem.document && elem.document.nodeType !== 11) {
-                            return ret;
-                        }
-                    } catch (e) {}
-                }
-
-                return Sizzle(expr, document, null, [elem]).length > 0;
-            };
-
-            Sizzle.contains = function(context, elem) {
-                // Set document vars if needed
-                if ((context.ownerDocument || context) !== document) {
-                    setDocument(context);
-                }
-                return contains(context, elem);
-            };
-
-            Sizzle.attr = function(elem, name) {
-                // Set document vars if needed
-                if ((elem.ownerDocument || elem) !== document) {
-                    setDocument(elem);
-                }
-
-                var fn = Expr.attrHandle[name.toLowerCase()],
-                // Don't get fooled by Object.prototype properties (jQuery #13807)
-                    val = fn && hasOwn.call(Expr.attrHandle, name.toLowerCase()) ?
-                        fn(elem, name, !documentIsHTML) :
-                        undefined;
-
-                return val !== undefined ?
-                    val :
-                    support.attributes || !documentIsHTML ?
-                        elem.getAttribute(name) :
-                        (val = elem.getAttributeNode(name)) && val.specified ?
-                            val.value :
-                            null;
-            };
-
-            Sizzle.error = function(msg) {
-                throw new Error("Syntax error, unrecognized expression: " + msg);
-            };
-
-            /**
-             * Document sorting and removing duplicates
-             * @param {ArrayLike} results
-             */
-            Sizzle.uniqueSort = function(results) {
-                var elem,
-                    duplicates = [],
-                    j = 0,
-                    i = 0;
-
-                // Unless we *know* we can detect duplicates, assume their presence
-                hasDuplicate = !support.detectDuplicates;
-                sortInput = !support.sortStable && results.slice(0);
-                results.sort(sortOrder);
-
-                if (hasDuplicate) {
-                    while ((elem = results[i++])) {
-                        if (elem === results[i]) {
-                            j = duplicates.push(i);
-                        }
-                    }
-                    while (j--) {
-                        results.splice(duplicates[j], 1);
-                    }
-                }
-
-                // Clear input after sorting to release objects
-                // See https://github.com/jquery/sizzle/pull/225
-                sortInput = null;
-
-                return results;
-            };
-
-            /**
-             * Utility function for retrieving the text value of an array of DOM nodes
-             * @param {Array|Element} elem
-             */
-            getText = Sizzle.getText = function(elem) {
-                var node,
-                    ret = "",
-                    i = 0,
-                    nodeType = elem.nodeType;
-
-                if (!nodeType) {
-                    // If no nodeType, this is expected to be an array
-                    while ((node = elem[i++])) {
-                        // Do not traverse comment nodes
-                        ret += getText(node);
-                    }
-                } else if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
-                    // Use textContent for elements
-                    // innerText usage removed for consistency of new lines (jQuery #11153)
-                    if (typeof elem.textContent === "string") {
-                        return elem.textContent;
-                    } else {
-                        // Traverse its children
-                        for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
-                            ret += getText(elem);
-                        }
-                    }
-                } else if (nodeType === 3 || nodeType === 4) {
-                    return elem.nodeValue;
-                }
-                // Do not include comment or processing instruction nodes
-
-                return ret;
-            };
-
-            Expr = Sizzle.selectors = {
-
-                // Can be adjusted by the user
-                cacheLength: 50,
-
-                createPseudo: markFunction,
-
-                match: matchExpr,
-
-                attrHandle: {},
-
-                find: {},
-
-                relative: {
-                    ">": {
-                        dir: "parentNode",
-                        first: true
-                    },
-                    " ": {
-                        dir: "parentNode"
-                    },
-                    "+": {
-                        dir: "previousSibling",
-                        first: true
-                    },
-                    "~": {
-                        dir: "previousSibling"
-                    }
-                },
-
-                preFilter: {
-                    "ATTR": function(match) {
-                        match[1] = match[1].replace(runescape, funescape);
-
-                        // Move the given value to match[3] whether quoted or unquoted
-                        match[3] = (match[3] || match[4] || match[5] || "").replace(runescape, funescape);
-
-                        if (match[2] === "~=") {
-                            match[3] = " " + match[3] + " ";
-                        }
-
-                        return match.slice(0, 4);
-                    },
-
-                    "CHILD": function(match) {
-                        /* matches from matchExpr["CHILD"]
-                         1 type (only|nth|...)
-                         2 what (child|of-type)
-                         3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
-                         4 xn-component of xn+y argument ([+-]?\d*n|)
-                         5 sign of xn-component
-                         6 x of xn-component
-                         7 sign of y-component
-                         8 y of y-component
-                         */
-                        match[1] = match[1].toLowerCase();
-
-                        if (match[1].slice(0, 3) === "nth") {
-                            // nth-* requires argument
-                            if (!match[3]) {
-                                Sizzle.error(match[0]);
-                            }
-
-                            // numeric x and y parameters for Expr.filter.CHILD
-                            // remember that false/true cast respectively to 0/1
-                            match[4] = +(match[4] ? match[5] + (match[6] || 1) : 2 * (match[3] === "even" || match[3] === "odd"));
-                            match[5] = +((match[7] + match[8]) || match[3] === "odd");
-
-                            // other types prohibit arguments
-                        } else if (match[3]) {
-                            Sizzle.error(match[0]);
-                        }
-
-                        return match;
-                    },
-
-                    "PSEUDO": function(match) {
-                        var excess,
-                            unquoted = !match[6] && match[2];
-
-                        if (matchExpr["CHILD"].test(match[0])) {
-                            return null;
-                        }
-
-                        // Accept quoted arguments as-is
-                        if (match[3]) {
-                            match[2] = match[4] || match[5] || "";
-
-                            // Strip excess characters from unquoted arguments
-                        } else if (unquoted && rpseudo.test(unquoted) &&
-                            // Get excess from tokenize (recursively)
-                            (excess = tokenize(unquoted, true)) &&
-                            // advance to the next closing parenthesis
-                            (excess = unquoted.indexOf(")", unquoted.length - excess) - unquoted.length)) {
-
-                            // excess is a negative index
-                            match[0] = match[0].slice(0, excess);
-                            match[2] = unquoted.slice(0, excess);
-                        }
-
-                        // Return only captures needed by the pseudo filter method (type and argument)
-                        return match.slice(0, 3);
-                    }
-                },
-
-                filter: {
-
-                    "TAG": function(nodeNameSelector) {
-                        var nodeName = nodeNameSelector.replace(runescape, funescape).toLowerCase();
-                        return nodeNameSelector === "*" ?
-                            function() {
-                                return true;
-                            } :
-                            function(elem) {
-                                return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
-                            };
-                    },
-
-                    "CLASS": function(className) {
-                        var pattern = classCache[className + " "];
-
-                        return pattern ||
-                            (pattern = new RegExp("(^|" + whitespace + ")" + className + "(" + whitespace + "|$)")) &&
-                            classCache(className, function(elem) {
-                                return pattern.test(typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== strundefined && elem.getAttribute("class") || "");
-                            });
-                    },
-
-                    "ATTR": function(name, operator, check) {
-                        return function(elem) {
-                            var result = Sizzle.attr(elem, name);
-
-                            if (result == null) {
-                                return operator === "!=";
-                            }
-                            if (!operator) {
-                                return true;
-                            }
-
-                            result += "";
-
-                            return operator === "=" ? result === check :
-                                operator === "!=" ? result !== check :
-                                    operator === "^=" ? check && result.indexOf(check) === 0 :
-                                        operator === "*=" ? check && result.indexOf(check) > -1 :
-                                            operator === "$=" ? check && result.slice(-check.length) === check :
-                                                operator === "~=" ? (" " + result + " ").indexOf(check) > -1 :
-                                                    operator === "|=" ? result === check || result.slice(0, check.length + 1) === check + "-" :
-                                                        false;
-                        };
-                    },
-
-                    "CHILD": function(type, what, argument, first, last) {
-                        var simple = type.slice(0, 3) !== "nth",
-                            forward = type.slice(-4) !== "last",
-                            ofType = what === "of-type";
-
-                        return first === 1 && last === 0 ?
-
-                            // Shortcut for :nth-*(n)
-                            function(elem) {
-                                return !!elem.parentNode;
-                            } :
-
-                            function(elem, context, xml) {
-                                var cache, outerCache, node, diff, nodeIndex, start,
-                                    dir = simple !== forward ? "nextSibling" : "previousSibling",
-                                    parent = elem.parentNode,
-                                    name = ofType && elem.nodeName.toLowerCase(),
-                                    useCache = !xml && !ofType;
-
-                                if (parent) {
-
-                                    // :(first|last|only)-(child|of-type)
-                                    if (simple) {
-                                        while (dir) {
-                                            node = elem;
-                                            while ((node = node[dir])) {
-                                                if (ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) {
-                                                    return false;
-                                                }
-                                            }
-                                            // Reverse direction for :only-* (if we haven't yet done so)
-                                            start = dir = type === "only" && !start && "nextSibling";
-                                        }
-                                        return true;
-                                    }
-
-                                    start = [forward ? parent.firstChild : parent.lastChild];
-
-                                    // non-xml :nth-child(...) stores cache data on `parent`
-                                    if (forward && useCache) {
-                                        // Seek `elem` from a previously-cached index
-                                        outerCache = parent[expando] || (parent[expando] = {});
-                                        cache = outerCache[type] || [];
-                                        nodeIndex = cache[0] === dirruns && cache[1];
-                                        diff = cache[0] === dirruns && cache[2];
-                                        node = nodeIndex && parent.childNodes[nodeIndex];
-
-                                        while ((node = ++nodeIndex && node && node[dir] ||
-
-                                            // Fallback to seeking `elem` from the start
-                                            (diff = nodeIndex = 0) || start.pop())) {
-
-                                            // When found, cache indexes on `parent` and break
-                                            if (node.nodeType === 1 && ++diff && node === elem) {
-                                                outerCache[type] = [dirruns, nodeIndex, diff];
-                                                break;
-                                            }
-                                        }
-
-                                        // Use previously-cached element index if available
-                                    } else if (useCache && (cache = (elem[expando] || (elem[expando] = {}))[type]) && cache[0] === dirruns) {
-                                        diff = cache[1];
-
-                                        // xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
-                                    } else {
-                                        // Use the same loop as above to seek `elem` from the start
-                                        while ((node = ++nodeIndex && node && node[dir] ||
-                                            (diff = nodeIndex = 0) || start.pop())) {
-
-                                            if ((ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) && ++diff) {
-                                                // Cache the index of each encountered element
-                                                if (useCache) {
-                                                    (node[expando] || (node[expando] = {}))[type] = [dirruns, diff];
-                                                }
-
-                                                if (node === elem) {
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    // Incorporate the offset, then check against cycle size
-                                    diff -= last;
-                                    return diff === first || (diff % first === 0 && diff / first >= 0);
-                                }
-                            };
-                    },
-
-                    "PSEUDO": function(pseudo, argument) {
-                        // pseudo-class names are case-insensitive
-                        // http://www.w3.org/TR/selectors/#pseudo-classes
-                        // Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
-                        // Remember that setFilters inherits from pseudos
-                        var args,
-                            fn = Expr.pseudos[pseudo] || Expr.setFilters[pseudo.toLowerCase()] ||
-                                Sizzle.error("unsupported pseudo: " + pseudo);
-
-                        // The user may use createPseudo to indicate that
-                        // arguments are needed to create the filter function
-                        // just as Sizzle does
-                        if (fn[expando]) {
-                            return fn(argument);
-                        }
-
-                        // But maintain support for old signatures
-                        if (fn.length > 1) {
-                            args = [pseudo, pseudo, "", argument];
-                            return Expr.setFilters.hasOwnProperty(pseudo.toLowerCase()) ?
-                                markFunction(function(seed, matches) {
-                                    var idx,
-                                        matched = fn(seed, argument),
-                                        i = matched.length;
-                                    while (i--) {
-                                        idx = indexOf.call(seed, matched[i]);
-                                        seed[idx] = !(matches[idx] = matched[i]);
-                                    }
-                                }) :
-                                function(elem) {
-                                    return fn(elem, 0, args);
-                                };
-                        }
-
-                        return fn;
-                    }
-                },
-
-                pseudos: {
-                    // Potentially complex pseudos
-                    "not": markFunction(function(selector) {
-                        // Trim the selector passed to compile
-                        // to avoid treating leading and trailing
-                        // spaces as combinators
-                        var input = [],
-                            results = [],
-                            matcher = compile(selector.replace(rtrim, "$1"));
-
-                        return matcher[expando] ?
-                            markFunction(function(seed, matches, context, xml) {
-                                var elem,
-                                    unmatched = matcher(seed, null, xml, []),
-                                    i = seed.length;
-
-                                // Match elements unmatched by `matcher`
-                                while (i--) {
-                                    if ((elem = unmatched[i])) {
-                                        seed[i] = !(matches[i] = elem);
-                                    }
-                                }
-                            }) :
-                            function(elem, context, xml) {
-                                input[0] = elem;
-                                matcher(input, null, xml, results);
-                                return !results.pop();
-                            };
-                    }),
-
-                    "has": markFunction(function(selector) {
-                        return function(elem) {
-                            return Sizzle(selector, elem).length > 0;
-                        };
-                    }),
-
-                    "contains": markFunction(function(text) {
-                        return function(elem) {
-                            return (elem.textContent || elem.innerText || getText(elem)).indexOf(text) > -1;
-                        };
-                    }),
-
-                    // "Whether an element is represented by a :lang() selector
-                    // is based solely on the element's language value
-                    // being equal to the identifier C,
-                    // or beginning with the identifier C immediately followed by "-".
-                    // The matching of C against the element's language value is performed case-insensitively.
-                    // The identifier C does not have to be a valid language name."
-                    // http://www.w3.org/TR/selectors/#lang-pseudo
-                    "lang": markFunction(function(lang) {
-                        // lang value must be a valid identifier
-                        if (!ridentifier.test(lang || "")) {
-                            Sizzle.error("unsupported lang: " + lang);
-                        }
-                        lang = lang.replace(runescape, funescape).toLowerCase();
-                        return function(elem) {
-                            var elemLang;
-                            do {
-                                if ((elemLang = documentIsHTML ?
-                                        elem.lang :
-                                    elem.getAttribute("xml:lang") || elem.getAttribute("lang"))) {
-
-                                    elemLang = elemLang.toLowerCase();
-                                    return elemLang === lang || elemLang.indexOf(lang + "-") === 0;
-                                }
-                            } while ((elem = elem.parentNode) && elem.nodeType === 1);
-                            return false;
-                        };
-                    }),
-
-                    // Miscellaneous
-                    "target": function(elem) {
-                        var hash = window.location && window.location.hash;
-                        return hash && hash.slice(1) === elem.id;
-                    },
-
-                    "root": function(elem) {
-                        return elem === docElem;
-                    },
-
-                    "focus": function(elem) {
-                        return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
-                    },
-
-                    // Boolean properties
-                    "enabled": function(elem) {
-                        return elem.disabled === false;
-                    },
-
-                    "disabled": function(elem) {
-                        return elem.disabled === true;
-                    },
-
-                    "checked": function(elem) {
-                        // In CSS3, :checked should return both checked and selected elements
-                        // http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-                        var nodeName = elem.nodeName.toLowerCase();
-                        return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
-                    },
-
-                    "selected": function(elem) {
-                        // Accessing this property makes selected-by-default
-                        // options in Safari work properly
-                        if (elem.parentNode) {
-                            elem.parentNode.selectedIndex;
-                        }
-
-                        return elem.selected === true;
-                    },
-
-                    // Contents
-                    "empty": function(elem) {
-                        // http://www.w3.org/TR/selectors/#empty-pseudo
-                        // :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
-                        //   but not by others (comment: 8; processing instruction: 7; etc.)
-                        // nodeType < 6 works because attributes (2) do not appear as children
-                        for (elem = elem.firstChild; elem; elem = elem.nextSibling) {
-                            if (elem.nodeType < 6) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    },
-
-                    "parent": function(elem) {
-                        return !Expr.pseudos["empty"](elem);
-                    },
-
-                    // Element/input types
-                    "header": function(elem) {
-                        return rheader.test(elem.nodeName);
-                    },
-
-                    "input": function(elem) {
-                        return rinputs.test(elem.nodeName);
-                    },
-
-                    "button": function(elem) {
-                        var name = elem.nodeName.toLowerCase();
-                        return name === "input" && elem.type === "button" || name === "button";
-                    },
-
-                    "text": function(elem) {
-                        var attr;
-                        return elem.nodeName.toLowerCase() === "input" &&
-                            elem.type === "text" &&
-
-                            // Support: IE<8
-                            // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-                            ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
-                    },
-
-                    // Position-in-collection
-                    "first": createPositionalPseudo(function() {
-                        return [0];
-                    }),
-
-                    "last": createPositionalPseudo(function(matchIndexes, length) {
-                        return [length - 1];
-                    }),
-
-                    "eq": createPositionalPseudo(function(matchIndexes, length, argument) {
-                        return [argument < 0 ? argument + length : argument];
-                    }),
-
-                    "even": createPositionalPseudo(function(matchIndexes, length) {
-                        var i = 0;
-                        for (; i < length; i += 2) {
-                            matchIndexes.push(i);
-                        }
-                        return matchIndexes;
-                    }),
-
-                    "odd": createPositionalPseudo(function(matchIndexes, length) {
-                        var i = 1;
-                        for (; i < length; i += 2) {
-                            matchIndexes.push(i);
-                        }
-                        return matchIndexes;
-                    }),
-
-                    "lt": createPositionalPseudo(function(matchIndexes, length, argument) {
-                        var i = argument < 0 ? argument + length : argument;
-                        for (; --i >= 0;) {
-                            matchIndexes.push(i);
-                        }
-                        return matchIndexes;
-                    }),
-
-                    "gt": createPositionalPseudo(function(matchIndexes, length, argument) {
-                        var i = argument < 0 ? argument + length : argument;
-                        for (; ++i < length;) {
-                            matchIndexes.push(i);
-                        }
-                        return matchIndexes;
-                    })
-                }
-            };
-
-            Expr.pseudos["nth"] = Expr.pseudos["eq"];
-
-            // Add button/input type pseudos
-            for (i in {
-                radio: true,
-                checkbox: true,
-                file: true,
-                password: true,
-                image: true
-            }) {
-                Expr.pseudos[i] = createInputPseudo(i);
-            }
-            for (i in {
-                submit: true,
-                reset: true
-            }) {
-                Expr.pseudos[i] = createButtonPseudo(i);
-            }
-
-            // Easy API for creating new setFilters
-            function setFilters() {}
-            setFilters.prototype = Expr.filters = Expr.pseudos;
-            Expr.setFilters = new setFilters();
-
-            tokenize = Sizzle.tokenize = function(selector, parseOnly) {
-                var matched, match, tokens, type,
-                    soFar, groups, preFilters,
-                    cached = tokenCache[selector + " "];
-
-                if (cached) {
-                    return parseOnly ? 0 : cached.slice(0);
-                }
-
-                soFar = selector;
-                groups = [];
-                preFilters = Expr.preFilter;
-
-                while (soFar) {
-
-                    // Comma and first run
-                    if (!matched || (match = rcomma.exec(soFar))) {
-                        if (match) {
-                            // Don't consume trailing commas as valid
-                            soFar = soFar.slice(match[0].length) || soFar;
-                        }
-                        groups.push((tokens = []));
-                    }
-
-                    matched = false;
-
-                    // Combinators
-                    if ((match = rcombinators.exec(soFar))) {
-                        matched = match.shift();
-                        tokens.push({
-                            value: matched,
-                            // Cast descendant combinators to space
-                            type: match[0].replace(rtrim, " ")
-                        });
-                        soFar = soFar.slice(matched.length);
-                    }
-
-                    // Filters
-                    for (type in Expr.filter) {
-                        if ((match = matchExpr[type].exec(soFar)) && (!preFilters[type] ||
-                            (match = preFilters[type](match)))) {
-                            matched = match.shift();
-                            tokens.push({
-                                value: matched,
-                                type: type,
-                                matches: match
-                            });
-                            soFar = soFar.slice(matched.length);
-                        }
-                    }
-
-                    if (!matched) {
-                        break;
-                    }
-                }
-
-                // Return the length of the invalid excess
-                // if we're just parsing
-                // Otherwise, throw an error or return tokens
-                return parseOnly ?
-                    soFar.length :
-                    soFar ?
-                        Sizzle.error(selector) :
-                        // Cache the tokens
-                        tokenCache(selector, groups).slice(0);
-            };
-
-            function toSelector(tokens) {
-                var i = 0,
-                    len = tokens.length,
-                    selector = "";
-                for (; i < len; i++) {
-                    selector += tokens[i].value;
-                }
-                return selector;
-            }
-
-            function addCombinator(matcher, combinator, base) {
-                var dir = combinator.dir,
-                    checkNonElements = base && dir === "parentNode",
-                    doneName = done++;
-
-                return combinator.first ?
-                    // Check against closest ancestor/preceding element
-                    function(elem, context, xml) {
-                        while ((elem = elem[dir])) {
-                            if (elem.nodeType === 1 || checkNonElements) {
-                                return matcher(elem, context, xml);
-                            }
-                        }
-                    } :
-
-                    // Check against all ancestor/preceding elements
-                    function(elem, context, xml) {
-                        var oldCache, outerCache,
-                            newCache = [dirruns, doneName];
-
-                        // We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
-                        if (xml) {
-                            while ((elem = elem[dir])) {
-                                if (elem.nodeType === 1 || checkNonElements) {
-                                    if (matcher(elem, context, xml)) {
-                                        return true;
-                                    }
-                                }
-                            }
-                        } else {
-                            while ((elem = elem[dir])) {
-                                if (elem.nodeType === 1 || checkNonElements) {
-                                    outerCache = elem[expando] || (elem[expando] = {});
-                                    if ((oldCache = outerCache[dir]) &&
-                                        oldCache[0] === dirruns && oldCache[1] === doneName) {
-
-                                        // Assign to newCache so results back-propagate to previous elements
-                                        return (newCache[2] = oldCache[2]);
-                                    } else {
-                                        // Reuse newcache so results back-propagate to previous elements
-                                        outerCache[dir] = newCache;
-
-                                        // A match means we're done; a fail means we have to keep checking
-                                        if ((newCache[2] = matcher(elem, context, xml))) {
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    };
-            }
-
-            function elementMatcher(matchers) {
-                return matchers.length > 1 ?
-                    function(elem, context, xml) {
-                        var i = matchers.length;
-                        while (i--) {
-                            if (!matchers[i](elem, context, xml)) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    } :
-                    matchers[0];
-            }
-
-            function multipleContexts(selector, contexts, results) {
-                var i = 0,
-                    len = contexts.length;
-                for (; i < len; i++) {
-                    Sizzle(selector, contexts[i], results);
-                }
-                return results;
-            }
-
-            function condense(unmatched, map, filter, context, xml) {
-                var elem,
-                    newUnmatched = [],
-                    i = 0,
-                    len = unmatched.length,
-                    mapped = map != null;
-
-                for (; i < len; i++) {
-                    if ((elem = unmatched[i])) {
-                        if (!filter || filter(elem, context, xml)) {
-                            newUnmatched.push(elem);
-                            if (mapped) {
-                                map.push(i);
-                            }
-                        }
-                    }
-                }
-
-                return newUnmatched;
-            }
-
-            function setMatcher(preFilter, selector, matcher, postFilter, postFinder, postSelector) {
-                if (postFilter && !postFilter[expando]) {
-                    postFilter = setMatcher(postFilter);
-                }
-                if (postFinder && !postFinder[expando]) {
-                    postFinder = setMatcher(postFinder, postSelector);
-                }
-                return markFunction(function(seed, results, context, xml) {
-                    var temp, i, elem,
-                        preMap = [],
-                        postMap = [],
-                        preexisting = results.length,
-
-                    // Get initial elements from seed or context
-                        elems = seed || multipleContexts(selector || "*", context.nodeType ? [context] : context, []),
-
-                    // Prefilter to get matcher input, preserving a map for seed-results synchronization
-                        matcherIn = preFilter && (seed || !selector) ?
-                            condense(elems, preMap, preFilter, context, xml) :
-                            elems,
-
-                        matcherOut = matcher ?
-                            // If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-                            postFinder || (seed ? preFilter : preexisting || postFilter) ?
-
-                                // ...intermediate processing is necessary
-                                [] :
-
-                                // ...otherwise use results directly
-                                results :
-                            matcherIn;
-
-                    // Find primary matches
-                    if (matcher) {
-                        matcher(matcherIn, matcherOut, context, xml);
-                    }
-
-                    // Apply postFilter
-                    if (postFilter) {
-                        temp = condense(matcherOut, postMap);
-                        postFilter(temp, [], context, xml);
-
-                        // Un-match failing elements by moving them back to matcherIn
-                        i = temp.length;
-                        while (i--) {
-                            if ((elem = temp[i])) {
-                                matcherOut[postMap[i]] = !(matcherIn[postMap[i]] = elem);
-                            }
-                        }
-                    }
-
-                    if (seed) {
-                        if (postFinder || preFilter) {
-                            if (postFinder) {
-                                // Get the final matcherOut by condensing this intermediate into postFinder contexts
-                                temp = [];
-                                i = matcherOut.length;
-                                while (i--) {
-                                    if ((elem = matcherOut[i])) {
-                                        // Restore matcherIn since elem is not yet a final match
-                                        temp.push((matcherIn[i] = elem));
-                                    }
-                                }
-                                postFinder(null, (matcherOut = []), temp, xml);
-                            }
-
-                            // Move matched elements from seed to results to keep them synchronized
-                            i = matcherOut.length;
-                            while (i--) {
-                                if ((elem = matcherOut[i]) &&
-                                    (temp = postFinder ? indexOf.call(seed, elem) : preMap[i]) > -1) {
-
-                                    seed[temp] = !(results[temp] = elem);
-                                }
-                            }
-                        }
-
-                        // Add elements to results, through postFinder if defined
-                    } else {
-                        matcherOut = condense(
-                            matcherOut === results ?
-                                matcherOut.splice(preexisting, matcherOut.length) :
-                                matcherOut
-                        );
-                        if (postFinder) {
-                            postFinder(null, results, matcherOut, xml);
-                        } else {
-                            push.apply(results, matcherOut);
-                        }
-                    }
-                });
-            }
-
-            function matcherFromTokens(tokens) {
-                var checkContext, matcher, j,
-                    len = tokens.length,
-                    leadingRelative = Expr.relative[tokens[0].type],
-                    implicitRelative = leadingRelative || Expr.relative[" "],
-                    i = leadingRelative ? 1 : 0,
-
-                // The foundational matcher ensures that elements are reachable from top-level context(s)
-                    matchContext = addCombinator(function(elem) {
-                        return elem === checkContext;
-                    }, implicitRelative, true),
-                    matchAnyContext = addCombinator(function(elem) {
-                        return indexOf.call(checkContext, elem) > -1;
-                    }, implicitRelative, true),
-                    matchers = [function(elem, context, xml) {
-                        return (!leadingRelative && (xml || context !== outermostContext)) || (
-                                (checkContext = context).nodeType ?
-                                    matchContext(elem, context, xml) :
-                                    matchAnyContext(elem, context, xml));
-                    }];
-
-                for (; i < len; i++) {
-                    if ((matcher = Expr.relative[tokens[i].type])) {
-                        matchers = [addCombinator(elementMatcher(matchers), matcher)];
-                    } else {
-                        matcher = Expr.filter[tokens[i].type].apply(null, tokens[i].matches);
-
-                        // Return special upon seeing a positional matcher
-                        if (matcher[expando]) {
-                            // Find the next relative operator (if any) for proper handling
-                            j = ++i;
-                            for (; j < len; j++) {
-                                if (Expr.relative[tokens[j].type]) {
-                                    break;
-                                }
-                            }
-                            return setMatcher(
-                                i > 1 && elementMatcher(matchers),
-                                i > 1 && toSelector(
-                                    // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                                    tokens.slice(0, i - 1).concat({
-                                        value: tokens[i - 2].type === " " ? "*" : ""
-                                    })
-                                ).replace(rtrim, "$1"),
-                                matcher,
-                                i < j && matcherFromTokens(tokens.slice(i, j)),
-                                j < len && matcherFromTokens((tokens = tokens.slice(j))),
-                                j < len && toSelector(tokens)
-                            );
-                        }
-                        matchers.push(matcher);
-                    }
-                }
-
-                return elementMatcher(matchers);
-            }
-
-            function matcherFromGroupMatchers(elementMatchers, setMatchers) {
-                var bySet = setMatchers.length > 0,
-                    byElement = elementMatchers.length > 0,
-                    superMatcher = function(seed, context, xml, results, outermost) {
-                        var elem, j, matcher,
-                            matchedCount = 0,
-                            i = "0",
-                            unmatched = seed && [],
-                            setMatched = [],
-                            contextBackup = outermostContext,
-                        // We must always have either seed elements or outermost context
-                            elems = seed || byElement && Expr.find["TAG"]("*", outermost),
-                        // Use integer dirruns iff this is the outermost matcher
-                            dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1),
-                            len = elems.length;
-
-                        if (outermost) {
-                            outermostContext = context !== document && context;
-                        }
-
-                        // Add elements passing elementMatchers directly to results
-                        // Keep `i` a string if there are no elements so `matchedCount` will be "00" below
-                        // Support: IE<9, Safari
-                        // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-                        for (; i !== len && (elem = elems[i]) != null; i++) {
-                            if (byElement && elem) {
-                                j = 0;
-                                while ((matcher = elementMatchers[j++])) {
-                                    if (matcher(elem, context, xml)) {
-                                        results.push(elem);
-                                        break;
-                                    }
-                                }
-                                if (outermost) {
-                                    dirruns = dirrunsUnique;
-                                }
-                            }
-
-                            // Track unmatched elements for set filters
-                            if (bySet) {
-                                // They will have gone through all possible matchers
-                                if ((elem = !matcher && elem)) {
-                                    matchedCount--;
-                                }
-
-                                // Lengthen the array for every element, matched or not
-                                if (seed) {
-                                    unmatched.push(elem);
-                                }
-                            }
-                        }
-
-                        // Apply set filters to unmatched elements
-                        matchedCount += i;
-                        if (bySet && i !== matchedCount) {
-                            j = 0;
-                            while ((matcher = setMatchers[j++])) {
-                                matcher(unmatched, setMatched, context, xml);
-                            }
-
-                            if (seed) {
-                                // Reintegrate element matches to eliminate the need for sorting
-                                if (matchedCount > 0) {
-                                    while (i--) {
-                                        if (!(unmatched[i] || setMatched[i])) {
-                                            setMatched[i] = pop.call(results);
-                                        }
-                                    }
-                                }
-
-                                // Discard index placeholder values to get only actual matches
-                                setMatched = condense(setMatched);
-                            }
-
-                            // Add matches to results
-                            push.apply(results, setMatched);
-
-                            // Seedless set matches succeeding multiple successful matchers stipulate sorting
-                            if (outermost && !seed && setMatched.length > 0 &&
-                                (matchedCount + setMatchers.length) > 1) {
-
-                                Sizzle.uniqueSort(results);
-                            }
-                        }
-
-                        // Override manipulation of globals by nested matchers
-                        if (outermost) {
-                            dirruns = dirrunsUnique;
-                            outermostContext = contextBackup;
-                        }
-
-                        return unmatched;
-                    };
-
-                return bySet ?
-                    markFunction(superMatcher) :
-                    superMatcher;
-            }
-
-            compile = Sizzle.compile = function(selector, match /* Internal Use Only */ ) {
-                var i,
-                    setMatchers = [],
-                    elementMatchers = [],
-                    cached = compilerCache[selector + " "];
-
-                if (!cached) {
-                    // Generate a function of recursive functions that can be used to check each element
-                    if (!match) {
-                        match = tokenize(selector);
-                    }
-                    i = match.length;
-                    while (i--) {
-                        cached = matcherFromTokens(match[i]);
-                        if (cached[expando]) {
-                            setMatchers.push(cached);
-                        } else {
-                            elementMatchers.push(cached);
-                        }
-                    }
-
-                    // Cache the compiled function
-                    cached = compilerCache(selector, matcherFromGroupMatchers(elementMatchers, setMatchers));
-
-                    // Save selector and tokenization
-                    cached.selector = selector;
-                }
-                return cached;
-            };
-
-            /**
-             * A low-level selection function that works with Sizzle's compiled
-             *  selector functions
-             * @param {String|Function} selector A selector or a pre-compiled
-             *  selector function built with Sizzle.compile
-             * @param {Element} context
-             * @param {Array} [results]
-             * @param {Array} [seed] A set of elements to match against
-             */
-            select = Sizzle.select = function(selector, context, results, seed) {
-                var i, tokens, token, type, find,
-                    compiled = typeof selector === "function" && selector,
-                    match = !seed && tokenize((selector = compiled.selector || selector));
-
-                results = results || [];
-
-                // Try to minimize operations if there is no seed and only one group
-                if (match.length === 1) {
-
-                    // Take a shortcut and set the context if the root selector is an ID
-                    tokens = match[0] = match[0].slice(0);
-                    if (tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-                        support.getById && context.nodeType === 9 && documentIsHTML &&
-                        Expr.relative[tokens[1].type]) {
-
-                        context = (Expr.find["ID"](token.matches[0].replace(runescape, funescape), context) || [])[0];
-                        if (!context) {
-                            return results;
-
-                            // Precompiled matchers will still verify ancestry, so step up a level
-                        } else if (compiled) {
-                            context = context.parentNode;
-                        }
-
-                        selector = selector.slice(tokens.shift().value.length);
-                    }
-
-                    // Fetch a seed set for right-to-left matching
-                    i = matchExpr["needsContext"].test(selector) ? 0 : tokens.length;
-                    while (i--) {
-                        token = tokens[i];
-
-                        // Abort if we hit a combinator
-                        if (Expr.relative[(type = token.type)]) {
-                            break;
-                        }
-                        if ((find = Expr.find[type])) {
-                            // Search, expanding context for leading sibling combinators
-                            if ((seed = find(
-                                    token.matches[0].replace(runescape, funescape),
-                                    rsibling.test(tokens[0].type) && testContext(context.parentNode) || context
-                                ))) {
-
-                                // If seed is empty or no tokens remain, we can return early
-                                tokens.splice(i, 1);
-                                selector = seed.length && toSelector(tokens);
-                                if (!selector) {
-                                    push.apply(results, seed);
-                                    return results;
-                                }
-
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // Compile and execute a filtering function if one is not provided
-                // Provide `match` to avoid retokenization if we modified the selector above
-                (compiled || compile(selector, match))(
-                    seed,
-                    context, !documentIsHTML,
-                    results,
-                    rsibling.test(selector) && testContext(context.parentNode) || context
-                );
-                return results;
-            };
-
-            // One-time assignments
-
-            // Sort stability
-            support.sortStable = expando.split("").sort(sortOrder).join("") === expando;
-
-            // Support: Chrome<14
-            // Always assume duplicates if they aren't passed to the comparison function
-            support.detectDuplicates = !!hasDuplicate;
-
-            // Initialize against the default document
-            setDocument();
-
-            // Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
-            // Detached nodes confoundingly follow *each other*
-            support.sortDetached = assert(function(div1) {
-                // Should return 1, but returns 4 (following)
-                return div1.compareDocumentPosition(document.createElement("div")) & 1;
-            });
-
-            // Support: IE<8
-            // Prevent attribute/property "interpolation"
-            // http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
-            if (!assert(function(div) {
-                    div.innerHTML = "<a href='#'></a>";
-                    return div.firstChild.getAttribute("href") === "#";
-                })) {
-                addHandle("type|href|height|width", function(elem, name, isXML) {
-                    if (!isXML) {
-                        return elem.getAttribute(name, name.toLowerCase() === "type" ? 1 : 2);
-                    }
-                });
-            }
-
-            // Support: IE<9
-            // Use defaultValue in place of getAttribute("value")
-            if (!support.attributes || !assert(function(div) {
-                    div.innerHTML = "<input/>";
-                    div.firstChild.setAttribute("value", "");
-                    return div.firstChild.getAttribute("value") === "";
-                })) {
-                addHandle("value", function(elem, name, isXML) {
-                    if (!isXML && elem.nodeName.toLowerCase() === "input") {
-                        return elem.defaultValue;
-                    }
-                });
-            }
-
-            // Support: IE<9
-            // Use getAttributeNode to fetch booleans when getAttribute lies
-            if (!assert(function(div) {
-                    return div.getAttribute("disabled") == null;
-                })) {
-                addHandle(booleans, function(elem, name, isXML) {
-                    var val;
-                    if (!isXML) {
-                        return elem[name] === true ? name.toLowerCase() :
-                            (val = elem.getAttributeNode(name)) && val.specified ?
-                                val.value :
-                                null;
-                    }
-                });
-            }
-
-            return Sizzle;
-
-        })(window);
-
-
-
-    jQuery.find = Sizzle;
-    jQuery.expr = Sizzle.selectors;
-    jQuery.expr[":"] = jQuery.expr.pseudos;
-    jQuery.unique = Sizzle.uniqueSort;
-    jQuery.text = Sizzle.getText;
-    jQuery.isXMLDoc = Sizzle.isXML;
-    jQuery.contains = Sizzle.contains;
-
-
-
-    var rneedsContext = jQuery.expr.match.needsContext;
-
-    var rsingleTag = (/^<(\w+)\s*\/?>(?:<\/\1>|)$/);
-
-
-
-    var risSimple = /^.[^:#\[\.,]*$/;
-
-    // Implement the identical functionality for filter and not
-    function winnow(elements, qualifier, not) {
-        if (jQuery.isFunction(qualifier)) {
-            return jQuery.grep(elements, function(elem, i) {
-                /* jshint -W018 */
-                return !!qualifier.call(elem, i, elem) !== not;
-            });
-
-        }
-
-        if (qualifier.nodeType) {
-            return jQuery.grep(elements, function(elem) {
-                return (elem === qualifier) !== not;
-            });
-
-        }
-
-        if (typeof qualifier === "string") {
-            if (risSimple.test(qualifier)) {
-                return jQuery.filter(qualifier, elements, not);
-            }
-
-            qualifier = jQuery.filter(qualifier, elements);
-        }
-
-        return jQuery.grep(elements, function(elem) {
-            return (jQuery.inArray(elem, qualifier) >= 0) !== not;
-        });
-    }
-
-    jQuery.filter = function(expr, elems, not) {
-        var elem = elems[0];
-
-        if (not) {
-            expr = ":not(" + expr + ")";
-        }
-
-        return elems.length === 1 && elem.nodeType === 1 ?
-            jQuery.find.matchesSelector(elem, expr) ? [elem] : [] :
-            jQuery.find.matches(expr, jQuery.grep(elems, function(elem) {
-                return elem.nodeType === 1;
-            }));
-    };
-
-    jQuery.fn.extend({
-        find: function(selector) {
-            var i,
-                ret = [],
-                self = this,
-                len = self.length;
-
-            if (typeof selector !== "string") {
-                return this.pushStack(jQuery(selector).filter(function() {
-                    for (i = 0; i < len; i++) {
-                        if (jQuery.contains(self[i], this)) {
-                            return true;
-                        }
-                    }
-                }));
-            }
-
-            for (i = 0; i < len; i++) {
-                jQuery.find(selector, self[i], ret);
-            }
-
-            // Needed because $( selector, context ) becomes $( context ).find( selector )
-            ret = this.pushStack(len > 1 ? jQuery.unique(ret) : ret);
-            ret.selector = this.selector ? this.selector + " " + selector : selector;
-            return ret;
-        },
-        filter: function(selector) {
-            return this.pushStack(winnow(this, selector || [], false));
-        },
-        not: function(selector) {
-            return this.pushStack(winnow(this, selector || [], true));
-        },
-        is: function(selector) {
-            return !!winnow(
-                this,
-
-                // If this is a positional/relative selector, check membership in the returned set
-                // so $("p:first").is("p:last") won't return true for a doc with two "p".
-                typeof selector === "string" && rneedsContext.test(selector) ?
-                    jQuery(selector) :
-                selector || [],
-                false
-            ).length;
-        }
-    });
-
-
-    // Initialize a jQuery object
-
-
-    // A central reference to the root jQuery(document)
-    var rootjQuery,
-
-    // Use the correct document accordingly with window argument (sandbox)
-        document = window.document,
-
-    // A simple way to check for HTML strings
-    // Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
-    // Strict HTML recognition (#11290: must start with <)
-        rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
-
-        init = jQuery.fn.init = function(selector, context) {
-            var match, elem;
-
-            // HANDLE: $(""), $(null), $(undefined), $(false)
-            if (!selector) {
-                return this;
-            }
-
-            // Handle HTML strings
-            if (typeof selector === "string") {
-                if (selector.charAt(0) === "<" && selector.charAt(selector.length - 1) === ">" && selector.length >= 3) {
-                    // Assume that strings that start and end with <> are HTML and skip the regex check
-                    match = [null, selector, null];
-
-                } else {
-                    match = rquickExpr.exec(selector);
-                }
-
-                // Match html or make sure no context is specified for #id
-                if (match && (match[1] || !context)) {
-
-                    // HANDLE: $(html) -> $(array)
-                    if (match[1]) {
-                        context = context instanceof jQuery ? context[0] : context;
-
-                        // scripts is true for back-compat
-                        // Intentionally let the error be thrown if parseHTML is not present
-                        jQuery.merge(this, jQuery.parseHTML(
-                            match[1],
-                            context && context.nodeType ? context.ownerDocument || context : document,
-                            true
-                        ));
-
-                        // HANDLE: $(html, props)
-                        if (rsingleTag.test(match[1]) && jQuery.isPlainObject(context)) {
-                            for (match in context) {
-                                // Properties of context are called as methods if possible
-                                if (jQuery.isFunction(this[match])) {
-                                    this[match](context[match]);
-
-                                    // ...and otherwise set as attributes
-                                } else {
-                                    this.attr(match, context[match]);
-                                }
-                            }
-                        }
-
-                        return this;
-
-                        // HANDLE: $(#id)
-                    } else {
-                        elem = document.getElementById(match[2]);
-
-                        // Check parentNode to catch when Blackberry 4.6 returns
-                        // nodes that are no longer in the document #6963
-                        if (elem && elem.parentNode) {
-                            // Handle the case where IE and Opera return items
-                            // by name instead of ID
-                            if (elem.id !== match[2]) {
-                                return rootjQuery.find(selector);
-                            }
-
-                            // Otherwise, we inject the element directly into the jQuery object
-                            this.length = 1;
-                            this[0] = elem;
-                        }
-
-                        this.context = document;
-                        this.selector = selector;
-                        return this;
-                    }
-
-                    // HANDLE: $(expr, $(...))
-                } else if (!context || context.jquery) {
-                    return (context || rootjQuery).find(selector);
-
-                    // HANDLE: $(expr, context)
-                    // (which is just equivalent to: $(context).find(expr)
-                } else {
-                    return this.constructor(context).find(selector);
-                }
-
-                // HANDLE: $(DOMElement)
-            } else if (selector.nodeType) {
-                this.context = this[0] = selector;
-                this.length = 1;
-                return this;
-
-                // HANDLE: $(function)
-                // Shortcut for document ready
-            } else if (jQuery.isFunction(selector)) {
-                return typeof rootjQuery.ready !== "undefined" ?
-                    rootjQuery.ready(selector) :
-                    // Execute immediately if ready is not present
-                    selector(jQuery);
-            }
-
-            if (selector.selector !== undefined) {
-                this.selector = selector.selector;
-                this.context = selector.context;
-            }
-
-            return jQuery.makeArray(selector, this);
-        };
-
-    // Give the init function the jQuery prototype for later instantiation
-    init.prototype = jQuery.fn;
-
-    // Initialize central reference
-    rootjQuery = jQuery(document);
-
-
-    var rparentsprev = /^(?:parents|prev(?:Until|All))/,
-    // methods guaranteed to produce a unique set when starting from a unique set
-        guaranteedUnique = {
-            children: true,
-            contents: true,
-            next: true,
-            prev: true
-        };
-
-    jQuery.extend({
-        dir: function(elem, dir, until) {
-            var matched = [],
-                cur = elem[dir];
-
-            while (cur && cur.nodeType !== 9 && (until === undefined || cur.nodeType !== 1 || !jQuery(cur).is(until))) {
-                if (cur.nodeType === 1) {
-                    matched.push(cur);
-                }
-                cur = cur[dir];
-            }
-            return matched;
-        },
-
-        sibling: function(n, elem) {
-            var r = [];
-
-            for (; n; n = n.nextSibling) {
-                if (n.nodeType === 1 && n !== elem) {
-                    r.push(n);
-                }
-            }
-
-            return r;
-        }
-    });
-
-    jQuery.fn.extend({
-        has: function(target) {
-            var i,
-                targets = jQuery(target, this),
-                len = targets.length;
-
-            return this.filter(function() {
-                for (i = 0; i < len; i++) {
-                    if (jQuery.contains(this, targets[i])) {
-                        return true;
-                    }
-                }
-            });
-        },
-
-        closest: function(selectors, context) {
-            var cur,
-                i = 0,
-                l = this.length,
-                matched = [],
-                pos = rneedsContext.test(selectors) || typeof selectors !== "string" ?
-                    jQuery(selectors, context || this.context) :
-                    0;
-
-            for (; i < l; i++) {
-                for (cur = this[i]; cur && cur !== context; cur = cur.parentNode) {
-                    // Always skip document fragments
-                    if (cur.nodeType < 11 && (pos ?
-                        pos.index(cur) > -1 :
-
-                            // Don't pass non-elements to Sizzle
-                        cur.nodeType === 1 &&
-                        jQuery.find.matchesSelector(cur, selectors))) {
-
-                        matched.push(cur);
-                        break;
-                    }
-                }
-            }
-
-            return this.pushStack(matched.length > 1 ? jQuery.unique(matched) : matched);
-        },
-
-        // Determine the position of an element within
-        // the matched set of elements
-        index: function(elem) {
-
-            // No argument, return index in parent
-            if (!elem) {
-                return (this[0] && this[0].parentNode) ? this.first().prevAll().length : -1;
-            }
-
-            // index in selector
-            if (typeof elem === "string") {
-                return jQuery.inArray(this[0], jQuery(elem));
-            }
-
-            // Locate the position of the desired element
-            return jQuery.inArray(
-                // If it receives a jQuery object, the first element is used
-                elem.jquery ? elem[0] : elem, this);
-        },
-
-        add: function(selector, context) {
-            return this.pushStack(
-                jQuery.unique(
-                    jQuery.merge(this.get(), jQuery(selector, context))
-                )
-            );
-        },
-
-        addBack: function(selector) {
-            return this.add(selector == null ?
-                this.prevObject : this.prevObject.filter(selector)
-            );
-        }
-    });
-
-    function sibling(cur, dir) {
-        do {
-            cur = cur[dir];
-        } while (cur && cur.nodeType !== 1);
-
-        return cur;
-    }
-
-    jQuery.each({
-        parent: function(elem) {
-            var parent = elem.parentNode;
-            return parent && parent.nodeType !== 11 ? parent : null;
-        },
-        parents: function(elem) {
-            return jQuery.dir(elem, "parentNode");
-        },
-        parentsUntil: function(elem, i, until) {
-            return jQuery.dir(elem, "parentNode", until);
-        },
-        next: function(elem) {
-            return sibling(elem, "nextSibling");
-        },
-        prev: function(elem) {
-            return sibling(elem, "previousSibling");
-        },
-        nextAll: function(elem) {
-            return jQuery.dir(elem, "nextSibling");
-        },
-        prevAll: function(elem) {
-            return jQuery.dir(elem, "previousSibling");
-        },
-        nextUntil: function(elem, i, until) {
-            return jQuery.dir(elem, "nextSibling", until);
-        },
-        prevUntil: function(elem, i, until) {
-            return jQuery.dir(elem, "previousSibling", until);
-        },
-        siblings: function(elem) {
-            return jQuery.sibling((elem.parentNode || {}).firstChild, elem);
-        },
-        children: function(elem) {
-            return jQuery.sibling(elem.firstChild);
-        },
-        contents: function(elem) {
-            return jQuery.nodeName(elem, "iframe") ?
-            elem.contentDocument || elem.contentWindow.document :
-                jQuery.merge([], elem.childNodes);
-        }
-    }, function(name, fn) {
-        jQuery.fn[name] = function(until, selector) {
-            var ret = jQuery.map(this, fn, until);
-
-            if (name.slice(-5) !== "Until") {
-                selector = until;
-            }
-
-            if (selector && typeof selector === "string") {
-                ret = jQuery.filter(selector, ret);
-            }
-
-            if (this.length > 1) {
-                // Remove duplicates
-                if (!guaranteedUnique[name]) {
-                    ret = jQuery.unique(ret);
-                }
-
-                // Reverse order for parents* and prev-derivatives
-                if (rparentsprev.test(name)) {
-                    ret = ret.reverse();
-                }
-            }
-
-            return this.pushStack(ret);
-        };
-    });
-    var rnotwhite = (/\S+/g);
-
-
-
-    // String to Object options format cache
-    var optionsCache = {};
-
-    // Convert String-formatted options into Object-formatted ones and store in cache
-    function createOptions(options) {
-        var object = optionsCache[options] = {};
-        jQuery.each(options.match(rnotwhite) || [], function(_, flag) {
-            object[flag] = true;
-        });
-        return object;
-    }
-
-    /*
-     * Create a callback list using the following parameters:
-     *
-     *  options: an optional list of space-separated options that will change how
-     *          the callback list behaves or a more traditional option object
-     *
-     * By default a callback list will act like an event callback list and can be
-     * "fired" multiple times.
-     *
-     * Possible options:
-     *
-     *  once:           will ensure the callback list can only be fired once (like a Deferred)
-     *
-     *  memory:         will keep track of previous values and will call any callback added
-     *                  after the list has been fired right away with the latest "memorized"
-     *                  values (like a Deferred)
-     *
-     *  unique:         will ensure a callback can only be added once (no duplicate in the list)
-     *
-     *  stopOnFalse:    interrupt callings when a callback returns false
-     *
-     */
-    jQuery.Callbacks = function(options) {
-
-        // Convert options from String-formatted to Object-formatted if needed
-        // (we check in cache first)
-        options = typeof options === "string" ?
-            (optionsCache[options] || createOptions(options)) :
-            jQuery.extend({}, options);
-
-        var // Flag to know if list is currently firing
-            firing,
-        // Last fire value (for non-forgettable lists)
-            memory,
-        // Flag to know if list was already fired
-            fired,
-        // End of the loop when firing
-            firingLength,
-        // Index of currently firing callback (modified by remove if needed)
-            firingIndex,
-        // First callback to fire (used internally by add and fireWith)
-            firingStart,
-        // Actual callback list
-            list = [],
-        // Stack of fire calls for repeatable lists
-            stack = !options.once && [],
-        // Fire callbacks
-            fire = function(data) {
-                memory = options.memory && data;
-                fired = true;
-                firingIndex = firingStart || 0;
-                firingStart = 0;
-                firingLength = list.length;
-                firing = true;
-                for (; list && firingIndex < firingLength; firingIndex++) {
-                    if (list[firingIndex].apply(data[0], data[1]) === false && options.stopOnFalse) {
-                        memory = false; // To prevent further calls using add
-                        break;
-                    }
-                }
-                firing = false;
-                if (list) {
-                    if (stack) {
-                        if (stack.length) {
-                            fire(stack.shift());
-                        }
-                    } else if (memory) {
-                        list = [];
-                    } else {
-                        self.disable();
-                    }
-                }
-            },
-        // Actual Callbacks object
-            self = {
-                // Add a callback or a collection of callbacks to the list
-                add: function() {
-                    if (list) {
-                        // First, we save the current length
-                        var start = list.length;
-                        (function add(args) {
-                            jQuery.each(args, function(_, arg) {
-                                var type = jQuery.type(arg);
-                                if (type === "function") {
-                                    if (!options.unique || !self.has(arg)) {
-                                        list.push(arg);
-                                    }
-                                } else if (arg && arg.length && type !== "string") {
-                                    // Inspect recursively
-                                    add(arg);
-                                }
-                            });
-                        })(arguments);
-                        // Do we need to add the callbacks to the
-                        // current firing batch?
-                        if (firing) {
-                            firingLength = list.length;
-                            // With memory, if we're not firing then
-                            // we should call right away
-                        } else if (memory) {
-                            firingStart = start;
-                            fire(memory);
-                        }
-                    }
-                    return this;
-                },
-                // Remove a callback from the list
-                remove: function() {
-                    if (list) {
-                        jQuery.each(arguments, function(_, arg) {
-                            var index;
-                            while ((index = jQuery.inArray(arg, list, index)) > -1) {
-                                list.splice(index, 1);
-                                // Handle firing indexes
-                                if (firing) {
-                                    if (index <= firingLength) {
-                                        firingLength--;
-                                    }
-                                    if (index <= firingIndex) {
-                                        firingIndex--;
-                                    }
-                                }
-                            }
-                        });
-                    }
-                    return this;
-                },
-                // Check if a given callback is in the list.
-                // If no argument is given, return whether or not list has callbacks attached.
-                has: function(fn) {
-                    return fn ? jQuery.inArray(fn, list) > -1 : !!(list && list.length);
-                },
-                // Remove all callbacks from the list
-                empty: function() {
-                    list = [];
-                    firingLength = 0;
-                    return this;
-                },
-                // Have the list do nothing anymore
-                disable: function() {
-                    list = stack = memory = undefined;
-                    return this;
-                },
-                // Is it disabled?
-                disabled: function() {
-                    return !list;
-                },
-                // Lock the list in its current state
-                lock: function() {
-                    stack = undefined;
-                    if (!memory) {
-                        self.disable();
-                    }
-                    return this;
-                },
-                // Is it locked?
-                locked: function() {
-                    return !stack;
-                },
-                // Call all callbacks with the given context and arguments
-                fireWith: function(context, args) {
-                    if (list && (!fired || stack)) {
-                        args = args || [];
-                        args = [context, args.slice ? args.slice() : args];
-                        if (firing) {
-                            stack.push(args);
-                        } else {
-                            fire(args);
-                        }
-                    }
-                    return this;
-                },
-                // Call all the callbacks with the given arguments
-                fire: function() {
-                    self.fireWith(this, arguments);
-                    return this;
-                },
-                // To know if the callbacks have already been called at least once
-                fired: function() {
-                    return !!fired;
-                }
-            };
-
-        return self;
-    };
-
-
-    jQuery.extend({
-
-        Deferred: function(func) {
-            var tuples = [
-                    // action, add listener, listener list, final state
-                    ["resolve", "done", jQuery.Callbacks("once memory"), "resolved"],
-                    ["reject", "fail", jQuery.Callbacks("once memory"), "rejected"],
-                    ["notify", "progress", jQuery.Callbacks("memory")]
-                ],
-                state = "pending",
-                promise = {
-                    state: function() {
-                        return state;
-                    },
-                    always: function() {
-                        deferred.done(arguments).fail(arguments);
-                        return this;
-                    },
-                    then: function( /* fnDone, fnFail, fnProgress */ ) {
-                        var fns = arguments;
-                        return jQuery.Deferred(function(newDefer) {
-                            jQuery.each(tuples, function(i, tuple) {
-                                var fn = jQuery.isFunction(fns[i]) && fns[i];
-                                // deferred[ done | fail | progress ] for forwarding actions to newDefer
-                                deferred[tuple[1]](function() {
-                                    var returned = fn && fn.apply(this, arguments);
-                                    if (returned && jQuery.isFunction(returned.promise)) {
-                                        returned.promise()
-                                            .done(newDefer.resolve)
-                                            .fail(newDefer.reject)
-                                            .progress(newDefer.notify);
-                                    } else {
-                                        newDefer[tuple[0] + "With"](this === promise ? newDefer.promise() : this, fn ? [returned] : arguments);
-                                    }
-                                });
-                            });
-                            fns = null;
-                        }).promise();
-                    },
-                    // Get a promise for this deferred
-                    // If obj is provided, the promise aspect is added to the object
-                    promise: function(obj) {
-                        return obj != null ? jQuery.extend(obj, promise) : promise;
-                    }
-                },
-                deferred = {};
-
-            // Keep pipe for back-compat
-            promise.pipe = promise.then;
-
-            // Add list-specific methods
-            jQuery.each(tuples, function(i, tuple) {
-                var list = tuple[2],
-                    stateString = tuple[3];
-
-                // promise[ done | fail | progress ] = list.add
-                promise[tuple[1]] = list.add;
-
-                // Handle state
-                if (stateString) {
-                    list.add(function() {
-                        // state = [ resolved | rejected ]
-                        state = stateString;
-
-                        // [ reject_list | resolve_list ].disable; progress_list.lock
-                    }, tuples[i ^ 1][2].disable, tuples[2][2].lock);
-                }
-
-                // deferred[ resolve | reject | notify ]
-                deferred[tuple[0]] = function() {
-                    deferred[tuple[0] + "With"](this === deferred ? promise : this, arguments);
-                    return this;
-                };
-                deferred[tuple[0] + "With"] = list.fireWith;
-            });
-
-            // Make the deferred a promise
-            promise.promise(deferred);
-
-            // Call given func if any
-            if (func) {
-                func.call(deferred, deferred);
-            }
-
-            // All done!
-            return deferred;
-        },
-
-        // Deferred helper
-        when: function(subordinate /* , ..., subordinateN */ ) {
-            var i = 0,
-                resolveValues = slice.call(arguments),
-                length = resolveValues.length,
-
-            // the count of uncompleted subordinates
-                remaining = length !== 1 || (subordinate && jQuery.isFunction(subordinate.promise)) ? length : 0,
-
-            // the master Deferred. If resolveValues consist of only a single Deferred, just use that.
-                deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
-
-            // Update function for both resolve and progress values
-                updateFunc = function(i, contexts, values) {
-                    return function(value) {
-                        contexts[i] = this;
-                        values[i] = arguments.length > 1 ? slice.call(arguments) : value;
-                        if (values === progressValues) {
-                            deferred.notifyWith(contexts, values);
-
-                        } else if (!(--remaining)) {
-                            deferred.resolveWith(contexts, values);
-                        }
-                    };
-                },
-
-                progressValues, progressContexts, resolveContexts;
-
-            // add listeners to Deferred subordinates; treat others as resolved
-            if (length > 1) {
-                progressValues = new Array(length);
-                progressContexts = new Array(length);
-                resolveContexts = new Array(length);
-                for (; i < length; i++) {
-                    if (resolveValues[i] && jQuery.isFunction(resolveValues[i].promise)) {
-                        resolveValues[i].promise()
-                            .done(updateFunc(i, resolveContexts, resolveValues))
-                            .fail(deferred.reject)
-                            .progress(updateFunc(i, progressContexts, progressValues));
-                    } else {
-                        --remaining;
-                    }
-                }
-            }
-
-            // if we're not waiting on anything, resolve the master
-            if (!remaining) {
-                deferred.resolveWith(resolveContexts, resolveValues);
-            }
-
-            return deferred.promise();
-        }
-    });
-
-
-    // The deferred used on DOM ready
-    var readyList;
-
-    jQuery.fn.ready = function(fn) {
-        // Add the callback
-        jQuery.ready.promise().done(fn);
-
-        return this;
-    };
-
-    jQuery.extend({
-        // Is the DOM ready to be used? Set to true once it occurs.
-        isReady: false,
-
-        // A counter to track how many items to wait for before
-        // the ready event fires. See #6781
-        readyWait: 1,
-
-        // Hold (or release) the ready event
-        holdReady: function(hold) {
-            if (hold) {
-                jQuery.readyWait++;
-            } else {
-                jQuery.ready(true);
-            }
-        },
-
-        // Handle when the DOM is ready
-        ready: function(wait) {
-
-            // Abort if there are pending holds or we're already ready
-            if (wait === true ? --jQuery.readyWait : jQuery.isReady) {
-                return;
-            }
-
-            // Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
-            if (!document.body) {
-                return setTimeout(jQuery.ready);
-            }
-
-            // Remember that the DOM is ready
-            jQuery.isReady = true;
-
-            // If a normal DOM Ready event fired, decrement, and wait if need be
-            if (wait !== true && --jQuery.readyWait > 0) {
-                return;
-            }
-
-            // If there are functions bound, to execute
-            readyList.resolveWith(document, [jQuery]);
-
-            // Trigger any bound ready events
-            if (jQuery.fn.triggerHandler) {
-                jQuery(document).triggerHandler("ready");
-                jQuery(document).off("ready");
-            }
-        }
-    });
-
-    /**
-     * Clean-up method for dom ready events
-     */
-    function detach() {
-        if (document.addEventListener) {
-            document.removeEventListener("DOMContentLoaded", completed, false);
-            window.removeEventListener("load", completed, false);
-
-        } else {
-            document.detachEvent("onreadystatechange", completed);
-            window.detachEvent("onload", completed);
-        }
-    }
-
-    /**
-     * The ready event handler and self cleanup method
-     */
-    function completed() {
-        // readyState === "complete" is good enough for us to call the dom ready in oldIE
-        if (document.addEventListener || event.type === "load" || document.readyState === "complete") {
-            detach();
-            jQuery.ready();
-        }
-    }
-
-    jQuery.ready.promise = function(obj) {
-        if (!readyList) {
-
-            readyList = jQuery.Deferred();
-
-            // Catch cases where $(document).ready() is called after the browser event has already occurred.
-            // we once tried to use readyState "interactive" here, but it caused issues like the one
-            // discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
-            if (document.readyState === "complete") {
-                // Handle it asynchronously to allow scripts the opportunity to delay ready
-                setTimeout(jQuery.ready);
-
-                // Standards-based browsers support DOMContentLoaded
-            } else if (document.addEventListener) {
-                // Use the handy event callback
-                document.addEventListener("DOMContentLoaded", completed, false);
-
-                // A fallback to window.onload, that will always work
-                window.addEventListener("load", completed, false);
-
-                // If IE event model is used
-            } else {
-                // Ensure firing before onload, maybe late but safe also for iframes
-                document.attachEvent("onreadystatechange", completed);
-
-                // A fallback to window.onload, that will always work
-                window.attachEvent("onload", completed);
-
-                // If IE and not a frame
-                // continually check to see if the document is ready
-                var top = false;
-
-                try {
-                    top = window.frameElement == null && document.documentElement;
-                } catch (e) {}
-
-                if (top && top.doScroll) {
-                    (function doScrollCheck() {
-                        if (!jQuery.isReady) {
-
-                            try {
-                                // Use the trick by Diego Perini
-                                // http://javascript.nwbox.com/IEContentLoaded/
-                                top.doScroll("left");
-                            } catch (e) {
-                                return setTimeout(doScrollCheck, 50);
-                            }
-
-                            // detach all dom ready events
-                            detach();
-
-                            // and execute any waiting functions
-                            jQuery.ready();
-                        }
-                    })();
-                }
-            }
-        }
-        return readyList.promise(obj);
-    };
-
-
-    var strundefined = typeof undefined;
-
-
-
-    // Support: IE<9
-    // Iteration over object's inherited properties before its own
-    var i;
-    for (i in jQuery(support)) {
-        break;
-    }
-    support.ownLast = i !== "0";
-
-    // Note: most support tests are defined in their respective modules.
-    // false until the test is run
-    support.inlineBlockNeedsLayout = false;
-
-    // Execute ASAP in case we need to set body.style.zoom
-    jQuery(function() {
-        // Minified: var a,b,c,d
-        var val, div, body, container;
-
-        body = document.getElementsByTagName("body")[0];
-        if (!body || !body.style) {
-            // Return for frameset docs that don't have a body
-            return;
-        }
-
-        // Setup
-        div = document.createElement("div");
-        container = document.createElement("div");
-        container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-        body.appendChild(container).appendChild(div);
-
-        if (typeof div.style.zoom !== strundefined) {
-            // Support: IE<8
-            // Check if natively block-level elements act like inline-block
-            // elements when setting their display to 'inline' and giving
-            // them layout
-            div.style.cssText = "display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1";
-
-            support.inlineBlockNeedsLayout = val = div.offsetWidth === 3;
-            if (val) {
-                // Prevent IE 6 from affecting layout for positioned elements #11048
-                // Prevent IE from shrinking the body in IE 7 mode #12869
-                // Support: IE<8
-                body.style.zoom = 1;
-            }
-        }
-
-        body.removeChild(container);
-    });
-
-
-
-    (function() {
-        var div = document.createElement("div");
-
-        // Execute the test only if not already executed in another module.
-        if (support.deleteExpando == null) {
-            // Support: IE<9
-            support.deleteExpando = true;
-            try {
-                delete div.test;
-            } catch (e) {
-                support.deleteExpando = false;
-            }
-        }
-
-        // Null elements to avoid leaks in IE.
-        div = null;
-    })();
-
-
-    /**
-     * Determines whether an object can have data
-     */
-    jQuery.acceptData = function(elem) {
-        var noData = jQuery.noData[(elem.nodeName + " ").toLowerCase()],
-            nodeType = +elem.nodeType || 1;
-
-        // Do not set data on non-element DOM nodes because it will not be cleared (#8335).
-        return nodeType !== 1 && nodeType !== 9 ?
-            false :
-
-            // Nodes accept data unless otherwise specified; rejection can be conditional
-        !noData || noData !== true && elem.getAttribute("classid") === noData;
-    };
-
-
-    var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
-        rmultiDash = /([A-Z])/g;
-
-    function dataAttr(elem, key, data) {
-        // If nothing was found internally, try to fetch any
-        // data from the HTML5 data-* attribute
-        if (data === undefined && elem.nodeType === 1) {
-
-            var name = "data-" + key.replace(rmultiDash, "-$1").toLowerCase();
-
-            data = elem.getAttribute(name);
-
-            if (typeof data === "string") {
-                try {
-                    data = data === "true" ? true :
-                        data === "false" ? false :
-                            data === "null" ? null :
-                                // Only convert to a number if it doesn't change the string
-                                +data + "" === data ? +data :
-                                    rbrace.test(data) ? jQuery.parseJSON(data) :
-                                        data;
-                } catch (e) {}
-
-                // Make sure we set the data so it isn't changed later
-                jQuery.data(elem, key, data);
-
-            } else {
-                data = undefined;
-            }
-        }
-
-        return data;
-    }
-
-    // checks a cache object for emptiness
-    function isEmptyDataObject(obj) {
-        var name;
-        for (name in obj) {
-
-            // if the public data object is empty, the private is still empty
-            if (name === "data" && jQuery.isEmptyObject(obj[name])) {
-                continue;
-            }
-            if (name !== "toJSON") {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    function internalData(elem, name, data, pvt /* Internal Use Only */ ) {
-        if (!jQuery.acceptData(elem)) {
-            return;
-        }
-
-        var ret, thisCache,
-            internalKey = jQuery.expando,
-
-        // We have to handle DOM nodes and JS objects differently because IE6-7
-        // can't GC object references properly across the DOM-JS boundary
-            isNode = elem.nodeType,
-
-        // Only DOM nodes need the global jQuery cache; JS object data is
-        // attached directly to the object so GC can occur automatically
-            cache = isNode ? jQuery.cache : elem,
-
-        // Only defining an ID for JS objects if its cache already exists allows
-        // the code to shortcut on the same path as a DOM node with no cache
-            id = isNode ? elem[internalKey] : elem[internalKey] && internalKey;
-
-        // Avoid doing any more work than we need to when trying to get data on an
-        // object that has no data at all
-        if ((!id || !cache[id] || (!pvt && !cache[id].data)) && data === undefined && typeof name === "string") {
-            return;
-        }
-
-        if (!id) {
-            // Only DOM nodes need a new unique ID for each element since their data
-            // ends up in the global cache
-            if (isNode) {
-                id = elem[internalKey] = deletedIds.pop() || jQuery.guid++;
-            } else {
-                id = internalKey;
-            }
-        }
-
-        if (!cache[id]) {
-            // Avoid exposing jQuery metadata on plain JS objects when the object
-            // is serialized using JSON.stringify
-            cache[id] = isNode ? {} : {
-                toJSON: jQuery.noop
-            };
-        }
-
-        // An object can be passed to jQuery.data instead of a key/value pair; this gets
-        // shallow copied over onto the existing cache
-        if (typeof name === "object" || typeof name === "function") {
-            if (pvt) {
-                cache[id] = jQuery.extend(cache[id], name);
-            } else {
-                cache[id].data = jQuery.extend(cache[id].data, name);
-            }
-        }
-
-        thisCache = cache[id];
-
-        // jQuery data() is stored in a separate object inside the object's internal data
-        // cache in order to avoid key collisions between internal data and user-defined
-        // data.
-        if (!pvt) {
-            if (!thisCache.data) {
-                thisCache.data = {};
-            }
-
-            thisCache = thisCache.data;
-        }
-
-        if (data !== undefined) {
-            thisCache[jQuery.camelCase(name)] = data;
-        }
-
-        // Check for both converted-to-camel and non-converted data property names
-        // If a data property was specified
-        if (typeof name === "string") {
-
-            // First Try to find as-is property data
-            ret = thisCache[name];
-
-            // Test for null|undefined property data
-            if (ret == null) {
-
-                // Try to find the camelCased property
-                ret = thisCache[jQuery.camelCase(name)];
-            }
-        } else {
-            ret = thisCache;
-        }
-
-        return ret;
-    }
-
-    function internalRemoveData(elem, name, pvt) {
-        if (!jQuery.acceptData(elem)) {
-            return;
-        }
-
-        var thisCache, i,
-            isNode = elem.nodeType,
-
-        // See jQuery.data for more information
-            cache = isNode ? jQuery.cache : elem,
-            id = isNode ? elem[jQuery.expando] : jQuery.expando;
-
-        // If there is already no cache entry for this object, there is no
-        // purpose in continuing
-        if (!cache[id]) {
-            return;
-        }
-
-        if (name) {
-
-            thisCache = pvt ? cache[id] : cache[id].data;
-
-            if (thisCache) {
-
-                // Support array or space separated string names for data keys
-                if (!jQuery.isArray(name)) {
-
-                    // try the string as a key before any manipulation
-                    if (name in thisCache) {
-                        name = [name];
-                    } else {
-
-                        // split the camel cased version by spaces unless a key with the spaces exists
-                        name = jQuery.camelCase(name);
-                        if (name in thisCache) {
-                            name = [name];
-                        } else {
-                            name = name.split(" ");
-                        }
-                    }
-                } else {
-                    // If "name" is an array of keys...
-                    // When data is initially created, via ("key", "val") signature,
-                    // keys will be converted to camelCase.
-                    // Since there is no way to tell _how_ a key was added, remove
-                    // both plain key and camelCase key. #12786
-                    // This will only penalize the array argument path.
-                    name = name.concat(jQuery.map(name, jQuery.camelCase));
-                }
-
-                i = name.length;
-                while (i--) {
-                    delete thisCache[name[i]];
-                }
-
-                // If there is no data left in the cache, we want to continue
-                // and let the cache object itself get destroyed
-                if (pvt ? !isEmptyDataObject(thisCache) : !jQuery.isEmptyObject(thisCache)) {
-                    return;
-                }
-            }
-        }
-
-        // See jQuery.data for more information
-        if (!pvt) {
-            delete cache[id].data;
-
-            // Don't destroy the parent cache unless the internal data object
-            // had been the only thing left in it
-            if (!isEmptyDataObject(cache[id])) {
-                return;
-            }
-        }
-
-        // Destroy the cache
-        if (isNode) {
-            jQuery.cleanData([elem], true);
-
-            // Use delete when supported for expandos or `cache` is not a window per isWindow (#10080)
-            /* jshint eqeqeq: false */
-        } else if (support.deleteExpando || cache != cache.window) {
-            /* jshint eqeqeq: true */
-            delete cache[id];
-
-            // When all else fails, null
-        } else {
-            cache[id] = null;
-        }
-    }
-
-    jQuery.extend({
-        cache: {},
-
-        // The following elements (space-suffixed to avoid Object.prototype collisions)
-        // throw uncatchable exceptions if you attempt to set expando properties
-        noData: {
-            "applet ": true,
-            "embed ": true,
-            // ...but Flash objects (which have this classid) *can* handle expandos
-            "object ": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-        },
-
-        hasData: function(elem) {
-            elem = elem.nodeType ? jQuery.cache[elem[jQuery.expando]] : elem[jQuery.expando];
-            return !!elem && !isEmptyDataObject(elem);
-        },
-
-        data: function(elem, name, data) {
-            return internalData(elem, name, data);
-        },
-
-        removeData: function(elem, name) {
-            return internalRemoveData(elem, name);
-        },
-
-        // For internal use only.
-        _data: function(elem, name, data) {
-            return internalData(elem, name, data, true);
-        },
-
-        _removeData: function(elem, name) {
-            return internalRemoveData(elem, name, true);
-        }
-    });
-
-    jQuery.fn.extend({
-        data: function(key, value) {
-            var i, name, data,
-                elem = this[0],
-                attrs = elem && elem.attributes;
-
-            // Special expections of .data basically thwart jQuery.access,
-            // so implement the relevant behavior ourselves
-
-            // Gets all values
-            if (key === undefined) {
-                if (this.length) {
-                    data = jQuery.data(elem);
-
-                    if (elem.nodeType === 1 && !jQuery._data(elem, "parsedAttrs")) {
-                        i = attrs.length;
-                        while (i--) {
-
-                            // Support: IE11+
-                            // The attrs elements can be null (#14894)
-                            if (attrs[i]) {
-                                name = attrs[i].name;
-                                if (name.indexOf("data-") === 0) {
-                                    name = jQuery.camelCase(name.slice(5));
-                                    dataAttr(elem, name, data[name]);
-                                }
-                            }
-                        }
-                        jQuery._data(elem, "parsedAttrs", true);
-                    }
-                }
-
-                return data;
-            }
-
-            // Sets multiple values
-            if (typeof key === "object") {
-                return this.each(function() {
-                    jQuery.data(this, key);
-                });
-            }
-
-            return arguments.length > 1 ?
-
-                // Sets one value
-                this.each(function() {
-                    jQuery.data(this, key, value);
-                }) :
-
-                // Gets one value
-                // Try to fetch any internally stored data first
-                elem ? dataAttr(elem, key, jQuery.data(elem, key)) : undefined;
-        },
-
-        removeData: function(key) {
-            return this.each(function() {
-                jQuery.removeData(this, key);
-            });
-        }
-    });
-
-
-    jQuery.extend({
-        queue: function(elem, type, data) {
-            var queue;
-
-            if (elem) {
-                type = (type || "fx") + "queue";
-                queue = jQuery._data(elem, type);
-
-                // Speed up dequeue by getting out quickly if this is just a lookup
-                if (data) {
-                    if (!queue || jQuery.isArray(data)) {
-                        queue = jQuery._data(elem, type, jQuery.makeArray(data));
-                    } else {
-                        queue.push(data);
-                    }
-                }
-                return queue || [];
-            }
-        },
-
-        dequeue: function(elem, type) {
-            type = type || "fx";
-
-            var queue = jQuery.queue(elem, type),
-                startLength = queue.length,
-                fn = queue.shift(),
-                hooks = jQuery._queueHooks(elem, type),
-                next = function() {
-                    jQuery.dequeue(elem, type);
-                };
-
-            // If the fx queue is dequeued, always remove the progress sentinel
-            if (fn === "inprogress") {
-                fn = queue.shift();
-                startLength--;
-            }
-
-            if (fn) {
-
-                // Add a progress sentinel to prevent the fx queue from being
-                // automatically dequeued
-                if (type === "fx") {
-                    queue.unshift("inprogress");
-                }
-
-                // clear up the last queue stop function
-                delete hooks.stop;
-                fn.call(elem, next, hooks);
-            }
-
-            if (!startLength && hooks) {
-                hooks.empty.fire();
-            }
-        },
-
-        // not intended for public consumption - generates a queueHooks object, or returns the current one
-        _queueHooks: function(elem, type) {
-            var key = type + "queueHooks";
-            return jQuery._data(elem, key) || jQuery._data(elem, key, {
-                    empty: jQuery.Callbacks("once memory").add(function() {
-                        jQuery._removeData(elem, type + "queue");
-                        jQuery._removeData(elem, key);
-                    })
-                });
-        }
-    });
-
-    jQuery.fn.extend({
-        queue: function(type, data) {
-            var setter = 2;
-
-            if (typeof type !== "string") {
-                data = type;
-                type = "fx";
-                setter--;
-            }
-
-            if (arguments.length < setter) {
-                return jQuery.queue(this[0], type);
-            }
-
-            return data === undefined ?
-                this :
-                this.each(function() {
-                    var queue = jQuery.queue(this, type, data);
-
-                    // ensure a hooks for this queue
-                    jQuery._queueHooks(this, type);
-
-                    if (type === "fx" && queue[0] !== "inprogress") {
-                        jQuery.dequeue(this, type);
-                    }
-                });
-        },
-        dequeue: function(type) {
-            return this.each(function() {
-                jQuery.dequeue(this, type);
-            });
-        },
-        clearQueue: function(type) {
-            return this.queue(type || "fx", []);
-        },
-        // Get a promise resolved when queues of a certain type
-        // are emptied (fx is the type by default)
-        promise: function(type, obj) {
-            var tmp,
-                count = 1,
-                defer = jQuery.Deferred(),
-                elements = this,
-                i = this.length,
-                resolve = function() {
-                    if (!(--count)) {
-                        defer.resolveWith(elements, [elements]);
-                    }
-                };
-
-            if (typeof type !== "string") {
-                obj = type;
-                type = undefined;
-            }
-            type = type || "fx";
-
-            while (i--) {
-                tmp = jQuery._data(elements[i], type + "queueHooks");
-                if (tmp && tmp.empty) {
-                    count++;
-                    tmp.empty.add(resolve);
-                }
-            }
-            resolve();
-            return defer.promise(obj);
-        }
-    });
-    var pnum = (/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/).source;
-
-    var cssExpand = ["Top", "Right", "Bottom", "Left"];
-
-    var isHidden = function(elem, el) {
-        // isHidden might be called from jQuery#filter function;
-        // in that case, element will be second argument
-        elem = el || elem;
-        return jQuery.css(elem, "display") === "none" || !jQuery.contains(elem.ownerDocument, elem);
-    };
-
-
-
-    // Multifunctional method to get and set values of a collection
-    // The value/s can optionally be executed if it's a function
-    var access = jQuery.access = function(elems, fn, key, value, chainable, emptyGet, raw) {
-        var i = 0,
-            length = elems.length,
-            bulk = key == null;
-
-        // Sets many values
-        if (jQuery.type(key) === "object") {
-            chainable = true;
-            for (i in key) {
-                jQuery.access(elems, fn, i, key[i], true, emptyGet, raw);
-            }
-
-            // Sets one value
-        } else if (value !== undefined) {
-            chainable = true;
-
-            if (!jQuery.isFunction(value)) {
-                raw = true;
-            }
-
-            if (bulk) {
-                // Bulk operations run against the entire set
-                if (raw) {
-                    fn.call(elems, value);
-                    fn = null;
-
-                    // ...except when executing function values
-                } else {
-                    bulk = fn;
-                    fn = function(elem, key, value) {
-                        return bulk.call(jQuery(elem), value);
-                    };
-                }
-            }
-
-            if (fn) {
-                for (; i < length; i++) {
-                    fn(elems[i], key, raw ? value : value.call(elems[i], i, fn(elems[i], key)));
-                }
-            }
-        }
-
-        return chainable ?
-            elems :
-
-            // Gets
-            bulk ?
-                fn.call(elems) :
-                length ? fn(elems[0], key) : emptyGet;
-    };
-    var rcheckableType = (/^(?:checkbox|radio)$/i);
-
-
-
-    (function() {
-        // Minified: var a,b,c
-        var input = document.createElement("input"),
-            div = document.createElement("div"),
-            fragment = document.createDocumentFragment();
-
-        // Setup
-        div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
-
-        // IE strips leading whitespace when .innerHTML is used
-        support.leadingWhitespace = div.firstChild.nodeType === 3;
-
-        // Make sure that tbody elements aren't automatically inserted
-        // IE will insert them into empty tables
-        support.tbody = !div.getElementsByTagName("tbody").length;
-
-        // Make sure that link elements get serialized correctly by innerHTML
-        // This requires a wrapper element in IE
-        support.htmlSerialize = !!div.getElementsByTagName("link").length;
-
-        // Makes sure cloning an html5 element does not cause problems
-        // Where outerHTML is undefined, this still works
-        support.html5Clone =
-            document.createElement("nav").cloneNode(true).outerHTML !== "<:nav></:nav>";
-
-        // Check if a disconnected checkbox will retain its checked
-        // value of true after appended to the DOM (IE6/7)
-        input.type = "checkbox";
-        input.checked = true;
-        fragment.appendChild(input);
-        support.appendChecked = input.checked;
-
-        // Make sure textarea (and checkbox) defaultValue is properly cloned
-        // Support: IE6-IE11+
-        div.innerHTML = "<textarea>x</textarea>";
-        support.noCloneChecked = !!div.cloneNode(true).lastChild.defaultValue;
-
-        // #11217 - WebKit loses check when the name is after the checked attribute
-        fragment.appendChild(div);
-        div.innerHTML = "<input type='radio' checked='checked' name='t'/>";
-
-        // Support: Safari 5.1, iOS 5.1, Android 4.x, Android 2.3
-        // old WebKit doesn't clone checked state correctly in fragments
-        support.checkClone = div.cloneNode(true).cloneNode(true).lastChild.checked;
-
-        // Support: IE<9
-        // Opera does not clone events (and typeof div.attachEvent === undefined).
-        // IE9-10 clones events bound via attachEvent, but they don't trigger with .click()
-        support.noCloneEvent = true;
-        if (div.attachEvent) {
-            div.attachEvent("onclick", function() {
-                support.noCloneEvent = false;
-            });
-
-            div.cloneNode(true).click();
-        }
-
-        // Execute the test only if not already executed in another module.
-        if (support.deleteExpando == null) {
-            // Support: IE<9
-            support.deleteExpando = true;
-            try {
-                delete div.test;
-            } catch (e) {
-                support.deleteExpando = false;
-            }
-        }
-    })();
-
-
-    (function() {
-        var i, eventName,
-            div = document.createElement("div");
-
-        // Support: IE<9 (lack submit/change bubble), Firefox 23+ (lack focusin event)
-        for (i in {
-            submit: true,
-            change: true,
-            focusin: true
-        }) {
-            eventName = "on" + i;
-
-            if (!(support[i + "Bubbles"] = eventName in window)) {
-                // Beware of CSP restrictions (https://developer.mozilla.org/en/Security/CSP)
-                div.setAttribute(eventName, "t");
-                support[i + "Bubbles"] = div.attributes[eventName].expando === false;
-            }
-        }
-
-        // Null elements to avoid leaks in IE.
-        div = null;
-    })();
-
-
-    var rformElems = /^(?:input|select|textarea)$/i,
-        rkeyEvent = /^key/,
-        rmouseEvent = /^(?:mouse|pointer|contextmenu)|click/,
-        rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
-        rtypenamespace = /^([^.]*)(?:\.(.+)|)$/;
-
-    function returnTrue() {
-        return true;
-    }
-
-    function returnFalse() {
-        return false;
-    }
-
-    function safeActiveElement() {
-        try {
-            return document.activeElement;
-        } catch (err) {}
-    }
-
-    /*
-     * Helper functions for managing events -- not part of the public interface.
-     * Props to Dean Edwards' addEvent library for many of the ideas.
-     */
-    jQuery.event = {
-
-        global: {},
-
-        add: function(elem, types, handler, data, selector) {
-            var tmp, events, t, handleObjIn,
-                special, eventHandle, handleObj,
-                handlers, type, namespaces, origType,
-                elemData = jQuery._data(elem);
-
-            // Don't attach events to noData or text/comment nodes (but allow plain objects)
-            if (!elemData) {
-                return;
-            }
-
-            // Caller can pass in an object of custom data in lieu of the handler
-            if (handler.handler) {
-                handleObjIn = handler;
-                handler = handleObjIn.handler;
-                selector = handleObjIn.selector;
-            }
-
-            // Make sure that the handler has a unique ID, used to find/remove it later
-            if (!handler.guid) {
-                handler.guid = jQuery.guid++;
-            }
-
-            // Init the element's event structure and main handler, if this is the first
-            if (!(events = elemData.events)) {
-                events = elemData.events = {};
-            }
-            if (!(eventHandle = elemData.handle)) {
-                eventHandle = elemData.handle = function(e) {
-                    // Discard the second event of a jQuery.event.trigger() and
-                    // when an event is called after a page has unloaded
-                    return typeof jQuery !== strundefined && (!e || jQuery.event.triggered !== e.type) ?
-                        jQuery.event.dispatch.apply(eventHandle.elem, arguments) :
-                        undefined;
-                };
-                // Add elem as a property of the handle fn to prevent a memory leak with IE non-native events
-                eventHandle.elem = elem;
-            }
-
-            // Handle multiple events separated by a space
-            types = (types || "").match(rnotwhite) || [""];
-            t = types.length;
-            while (t--) {
-                tmp = rtypenamespace.exec(types[t]) || [];
-                type = origType = tmp[1];
-                namespaces = (tmp[2] || "").split(".").sort();
-
-                // There *must* be a type, no attaching namespace-only handlers
-                if (!type) {
-                    continue;
-                }
-
-                // If event changes its type, use the special event handlers for the changed type
-                special = jQuery.event.special[type] || {};
-
-                // If selector defined, determine special event api type, otherwise given type
-                type = (selector ? special.delegateType : special.bindType) || type;
-
-                // Update special based on newly reset type
-                special = jQuery.event.special[type] || {};
-
-                // handleObj is passed to all event handlers
-                handleObj = jQuery.extend({
-                    type: type,
-                    origType: origType,
-                    data: data,
-                    handler: handler,
-                    guid: handler.guid,
-                    selector: selector,
-                    needsContext: selector && jQuery.expr.match.needsContext.test(selector),
-                    namespace: namespaces.join(".")
-                }, handleObjIn);
-
-                // Init the event handler queue if we're the first
-                if (!(handlers = events[type])) {
-                    handlers = events[type] = [];
-                    handlers.delegateCount = 0;
-
-                    // Only use addEventListener/attachEvent if the special events handler returns false
-                    if (!special.setup || special.setup.call(elem, data, namespaces, eventHandle) === false) {
-                        // Bind the global event handler to the element
-                        if (elem.addEventListener) {
-                            elem.addEventListener(type, eventHandle, false);
-
-                        } else if (elem.attachEvent) {
-                            elem.attachEvent("on" + type, eventHandle);
-                        }
-                    }
-                }
-
-                if (special.add) {
-                    special.add.call(elem, handleObj);
-
-                    if (!handleObj.handler.guid) {
-                        handleObj.handler.guid = handler.guid;
-                    }
-                }
-
-                // Add to the element's handler list, delegates in front
-                if (selector) {
-                    handlers.splice(handlers.delegateCount++, 0, handleObj);
-                } else {
-                    handlers.push(handleObj);
-                }
-
-                // Keep track of which events have ever been used, for event optimization
-                jQuery.event.global[type] = true;
-            }
-
-            // Nullify elem to prevent memory leaks in IE
-            elem = null;
-        },
-
-        // Detach an event or set of events from an element
-        remove: function(elem, types, handler, selector, mappedTypes) {
-            var j, handleObj, tmp,
-                origCount, t, events,
-                special, handlers, type,
-                namespaces, origType,
-                elemData = jQuery.hasData(elem) && jQuery._data(elem);
-
-            if (!elemData || !(events = elemData.events)) {
-                return;
-            }
-
-            // Once for each type.namespace in types; type may be omitted
-            types = (types || "").match(rnotwhite) || [""];
-            t = types.length;
-            while (t--) {
-                tmp = rtypenamespace.exec(types[t]) || [];
-                type = origType = tmp[1];
-                namespaces = (tmp[2] || "").split(".").sort();
-
-                // Unbind all events (on this namespace, if provided) for the element
-                if (!type) {
-                    for (type in events) {
-                        jQuery.event.remove(elem, type + types[t], handler, selector, true);
-                    }
-                    continue;
-                }
-
-                special = jQuery.event.special[type] || {};
-                type = (selector ? special.delegateType : special.bindType) || type;
-                handlers = events[type] || [];
-                tmp = tmp[2] && new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)");
-
-                // Remove matching events
-                origCount = j = handlers.length;
-                while (j--) {
-                    handleObj = handlers[j];
-
-                    if ((mappedTypes || origType === handleObj.origType) &&
-                        (!handler || handler.guid === handleObj.guid) &&
-                        (!tmp || tmp.test(handleObj.namespace)) &&
-                        (!selector || selector === handleObj.selector || selector === "**" && handleObj.selector)) {
-                        handlers.splice(j, 1);
-
-                        if (handleObj.selector) {
-                            handlers.delegateCount--;
-                        }
-                        if (special.remove) {
-                            special.remove.call(elem, handleObj);
-                        }
-                    }
-                }
-
-                // Remove generic event handler if we removed something and no more handlers exist
-                // (avoids potential for endless recursion during removal of special event handlers)
-                if (origCount && !handlers.length) {
-                    if (!special.teardown || special.teardown.call(elem, namespaces, elemData.handle) === false) {
-                        jQuery.removeEvent(elem, type, elemData.handle);
-                    }
-
-                    delete events[type];
-                }
-            }
-
-            // Remove the expando if it's no longer used
-            if (jQuery.isEmptyObject(events)) {
-                delete elemData.handle;
-
-                // removeData also checks for emptiness and clears the expando if empty
-                // so use it instead of delete
-                jQuery._removeData(elem, "events");
-            }
-        },
-
-        trigger: function(event, data, elem, onlyHandlers) {
-            var handle, ontype, cur,
-                bubbleType, special, tmp, i,
-                eventPath = [elem || document],
-                type = hasOwn.call(event, "type") ? event.type : event,
-                namespaces = hasOwn.call(event, "namespace") ? event.namespace.split(".") : [];
-
-            cur = tmp = elem = elem || document;
-
-            // Don't do events on text and comment nodes
-            if (elem.nodeType === 3 || elem.nodeType === 8) {
-                return;
-            }
-
-            // focus/blur morphs to focusin/out; ensure we're not firing them right now
-            if (rfocusMorph.test(type + jQuery.event.triggered)) {
-                return;
-            }
-
-            if (type.indexOf(".") >= 0) {
-                // Namespaced trigger; create a regexp to match event type in handle()
-                namespaces = type.split(".");
-                type = namespaces.shift();
-                namespaces.sort();
-            }
-            ontype = type.indexOf(":") < 0 && "on" + type;
-
-            // Caller can pass in a jQuery.Event object, Object, or just an event type string
-            event = event[jQuery.expando] ?
-                event :
-                new jQuery.Event(type, typeof event === "object" && event);
-
-            // Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
-            event.isTrigger = onlyHandlers ? 2 : 3;
-            event.namespace = namespaces.join(".");
-            event.namespace_re = event.namespace ?
-                new RegExp("(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)") :
-                null;
-
-            // Clean up the event in case it is being reused
-            event.result = undefined;
-            if (!event.target) {
-                event.target = elem;
-            }
-
-            // Clone any incoming data and prepend the event, creating the handler arg list
-            data = data == null ?
-                [event] :
-                jQuery.makeArray(data, [event]);
-
-            // Allow special events to draw outside the lines
-            special = jQuery.event.special[type] || {};
-            if (!onlyHandlers && special.trigger && special.trigger.apply(elem, data) === false) {
-                return;
-            }
-
-            // Determine event propagation path in advance, per W3C events spec (#9951)
-            // Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
-            if (!onlyHandlers && !special.noBubble && !jQuery.isWindow(elem)) {
-
-                bubbleType = special.delegateType || type;
-                if (!rfocusMorph.test(bubbleType + type)) {
-                    cur = cur.parentNode;
-                }
-                for (; cur; cur = cur.parentNode) {
-                    eventPath.push(cur);
-                    tmp = cur;
-                }
-
-                // Only add window if we got to document (e.g., not plain obj or detached DOM)
-                if (tmp === (elem.ownerDocument || document)) {
-                    eventPath.push(tmp.defaultView || tmp.parentWindow || window);
-                }
-            }
-
-            // Fire handlers on the event path
-            i = 0;
-            while ((cur = eventPath[i++]) && !event.isPropagationStopped()) {
-
-                event.type = i > 1 ?
-                    bubbleType :
-                special.bindType || type;
-
-                // jQuery handler
-                handle = (jQuery._data(cur, "events") || {})[event.type] && jQuery._data(cur, "handle");
-                if (handle) {
-                    handle.apply(cur, data);
-                }
-
-                // Native handler
-                handle = ontype && cur[ontype];
-                if (handle && handle.apply && jQuery.acceptData(cur)) {
-                    event.result = handle.apply(cur, data);
-                    if (event.result === false) {
-                        event.preventDefault();
-                    }
-                }
-            }
-            event.type = type;
-
-            // If nobody prevented the default action, do it now
-            if (!onlyHandlers && !event.isDefaultPrevented()) {
-
-                if ((!special._default || special._default.apply(eventPath.pop(), data) === false) &&
-                    jQuery.acceptData(elem)) {
-
-                    // Call a native DOM method on the target with the same name name as the event.
-                    // Can't use an .isFunction() check here because IE6/7 fails that test.
-                    // Don't do default actions on window, that's where global variables be (#6170)
-                    if (ontype && elem[type] && !jQuery.isWindow(elem)) {
-
-                        // Don't re-trigger an onFOO event when we call its FOO() method
-                        tmp = elem[ontype];
-
-                        if (tmp) {
-                            elem[ontype] = null;
-                        }
-
-                        // Prevent re-triggering of the same event, since we already bubbled it above
-                        jQuery.event.triggered = type;
-                        try {
-                            elem[type]();
-                        } catch (e) {
-                            // IE<9 dies on focus/blur to hidden element (#1486,#12518)
-                            // only reproducible on winXP IE8 native, not IE9 in IE8 mode
-                        }
-                        jQuery.event.triggered = undefined;
-
-                        if (tmp) {
-                            elem[ontype] = tmp;
-                        }
-                    }
-                }
-            }
-
-            return event.result;
-        },
-
-        dispatch: function(event) {
-
-            // Make a writable jQuery.Event from the native event object
-            event = jQuery.event.fix(event);
-
-            var i, ret, handleObj, matched, j,
-                handlerQueue = [],
-                args = slice.call(arguments),
-                handlers = (jQuery._data(this, "events") || {})[event.type] || [],
-                special = jQuery.event.special[event.type] || {};
-
-            // Use the fix-ed jQuery.Event rather than the (read-only) native event
-            args[0] = event;
-            event.delegateTarget = this;
-
-            // Call the preDispatch hook for the mapped type, and let it bail if desired
-            if (special.preDispatch && special.preDispatch.call(this, event) === false) {
-                return;
-            }
-
-            // Determine handlers
-            handlerQueue = jQuery.event.handlers.call(this, event, handlers);
-
-            // Run delegates first; they may want to stop propagation beneath us
-            i = 0;
-            while ((matched = handlerQueue[i++]) && !event.isPropagationStopped()) {
-                event.currentTarget = matched.elem;
-
-                j = 0;
-                while ((handleObj = matched.handlers[j++]) && !event.isImmediatePropagationStopped()) {
-
-                    // Triggered event must either 1) have no namespace, or
-                    // 2) have namespace(s) a subset or equal to those in the bound event (both can have no namespace).
-                    if (!event.namespace_re || event.namespace_re.test(handleObj.namespace)) {
-
-                        event.handleObj = handleObj;
-                        event.data = handleObj.data;
-
-                        ret = ((jQuery.event.special[handleObj.origType] || {}).handle || handleObj.handler)
-                            .apply(matched.elem, args);
-
-                        if (ret !== undefined) {
-                            if ((event.result = ret) === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Call the postDispatch hook for the mapped type
-            if (special.postDispatch) {
-                special.postDispatch.call(this, event);
-            }
-
-            return event.result;
-        },
-
-        handlers: function(event, handlers) {
-            var sel, handleObj, matches, i,
-                handlerQueue = [],
-                delegateCount = handlers.delegateCount,
-                cur = event.target;
-
-            // Find delegate handlers
-            // Black-hole SVG <use> instance trees (#13180)
-            // Avoid non-left-click bubbling in Firefox (#3861)
-            if (delegateCount && cur.nodeType && (!event.button || event.type !== "click")) {
-
-                /* jshint eqeqeq: false */
-                for (; cur != this; cur = cur.parentNode || this) {
-                    /* jshint eqeqeq: true */
-
-                    // Don't check non-elements (#13208)
-                    // Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
-                    if (cur.nodeType === 1 && (cur.disabled !== true || event.type !== "click")) {
-                        matches = [];
-                        for (i = 0; i < delegateCount; i++) {
-                            handleObj = handlers[i];
-
-                            // Don't conflict with Object.prototype properties (#13203)
-                            sel = handleObj.selector + " ";
-
-                            if (matches[sel] === undefined) {
-                                matches[sel] = handleObj.needsContext ?
-                                jQuery(sel, this).index(cur) >= 0 :
-                                    jQuery.find(sel, this, null, [cur]).length;
-                            }
-                            if (matches[sel]) {
-                                matches.push(handleObj);
-                            }
-                        }
-                        if (matches.length) {
-                            handlerQueue.push({
-                                elem: cur,
-                                handlers: matches
-                            });
-                        }
-                    }
-                }
-            }
-
-            // Add the remaining (directly-bound) handlers
-            if (delegateCount < handlers.length) {
-                handlerQueue.push({
-                    elem: this,
-                    handlers: handlers.slice(delegateCount)
-                });
-            }
-
-            return handlerQueue;
-        },
-
-        fix: function(event) {
-            if (event[jQuery.expando]) {
-                return event;
-            }
-
-            // Create a writable copy of the event object and normalize some properties
-            var i, prop, copy,
-                type = event.type,
-                originalEvent = event,
-                fixHook = this.fixHooks[type];
-
-            if (!fixHook) {
-                this.fixHooks[type] = fixHook =
-                    rmouseEvent.test(type) ? this.mouseHooks :
-                        rkeyEvent.test(type) ? this.keyHooks : {};
-            }
-            copy = fixHook.props ? this.props.concat(fixHook.props) : this.props;
-
-            event = new jQuery.Event(originalEvent);
-
-            i = copy.length;
-            while (i--) {
-                prop = copy[i];
-                event[prop] = originalEvent[prop];
-            }
-
-            // Support: IE<9
-            // Fix target property (#1925)
-            if (!event.target) {
-                event.target = originalEvent.srcElement || document;
-            }
-
-            // Support: Chrome 23+, Safari?
-            // Target should not be a text node (#504, #13143)
-            if (event.target.nodeType === 3) {
-                event.target = event.target.parentNode;
-            }
-
-            // Support: IE<9
-            // For mouse/key events, metaKey==false if it's undefined (#3368, #11328)
-            event.metaKey = !!event.metaKey;
-
-            return fixHook.filter ? fixHook.filter(event, originalEvent) : event;
-        },
-
-        // Includes some event props shared by KeyEvent and MouseEvent
-        props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
-
-        fixHooks: {},
-
-        keyHooks: {
-            props: "char charCode key keyCode".split(" "),
-            filter: function(event, original) {
-
-                // Add which for key events
-                if (event.which == null) {
-                    event.which = original.charCode != null ? original.charCode : original.keyCode;
-                }
-
-                return event;
-            }
-        },
-
-        mouseHooks: {
-            props: "button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "),
-            filter: function(event, original) {
-                var body, eventDoc, doc,
-                    button = original.button,
-                    fromElement = original.fromElement;
-
-                // Calculate pageX/Y if missing and clientX/Y available
-                if (event.pageX == null && original.clientX != null) {
-                    eventDoc = event.target.ownerDocument || document;
-                    doc = eventDoc.documentElement;
-                    body = eventDoc.body;
-
-                    event.pageX = original.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
-                    event.pageY = original.clientY + (doc && doc.scrollTop || body && body.scrollTop || 0) - (doc && doc.clientTop || body && body.clientTop || 0);
-                }
-
-                // Add relatedTarget, if necessary
-                if (!event.relatedTarget && fromElement) {
-                    event.relatedTarget = fromElement === event.target ? original.toElement : fromElement;
-                }
-
-                // Add which for click: 1 === left; 2 === middle; 3 === right
-                // Note: button is not normalized, so don't use it
-                if (!event.which && button !== undefined) {
-                    event.which = (button & 1 ? 1 : (button & 2 ? 3 : (button & 4 ? 2 : 0)));
-                }
-
-                return event;
-            }
-        },
-
-        special: {
-            load: {
-                // Prevent triggered image.load events from bubbling to window.load
-                noBubble: true
-            },
-            focus: {
-                // Fire native event if possible so blur/focus sequence is correct
-                trigger: function() {
-                    if (this !== safeActiveElement() && this.focus) {
-                        try {
-                            this.focus();
-                            return false;
-                        } catch (e) {
-                            // Support: IE<9
-                            // If we error on focus to hidden element (#1486, #12518),
-                            // let .trigger() run the handlers
-                        }
-                    }
-                },
-                delegateType: "focusin"
-            },
-            blur: {
-                trigger: function() {
-                    if (this === safeActiveElement() && this.blur) {
-                        this.blur();
-                        return false;
-                    }
-                },
-                delegateType: "focusout"
-            },
-            click: {
-                // For checkbox, fire native event so checked state will be right
-                trigger: function() {
-                    if (jQuery.nodeName(this, "input") && this.type === "checkbox" && this.click) {
-                        this.click();
-                        return false;
-                    }
-                },
-
-                // For cross-browser consistency, don't fire native .click() on links
-                _default: function(event) {
-                    return jQuery.nodeName(event.target, "a");
-                }
-            },
-
-            beforeunload: {
-                postDispatch: function(event) {
-
-                    // Support: Firefox 20+
-                    // Firefox doesn't alert if the returnValue field is not set.
-                    if (event.result !== undefined && event.originalEvent) {
-                        event.originalEvent.returnValue = event.result;
-                    }
-                }
-            }
-        },
-
-        simulate: function(type, elem, event, bubble) {
-            // Piggyback on a donor event to simulate a different one.
-            // Fake originalEvent to avoid donor's stopPropagation, but if the
-            // simulated event prevents default then we do the same on the donor.
-            var e = jQuery.extend(
-                new jQuery.Event(),
-                event, {
-                    type: type,
-                    isSimulated: true,
-                    originalEvent: {}
-                }
-            );
-            if (bubble) {
-                jQuery.event.trigger(e, null, elem);
-            } else {
-                jQuery.event.dispatch.call(elem, e);
-            }
-            if (e.isDefaultPrevented()) {
-                event.preventDefault();
-            }
-        }
-    };
-
-    jQuery.removeEvent = document.removeEventListener ?
-        function(elem, type, handle) {
-            if (elem.removeEventListener) {
-                elem.removeEventListener(type, handle, false);
-            }
-        } :
-        function(elem, type, handle) {
-            var name = "on" + type;
-
-            if (elem.detachEvent) {
-
-                // #8545, #7054, preventing memory leaks for custom events in IE6-8
-                // detachEvent needed property on element, by name of that event, to properly expose it to GC
-                if (typeof elem[name] === strundefined) {
-                    elem[name] = null;
-                }
-
-                elem.detachEvent(name, handle);
-            }
-        };
-
-    jQuery.Event = function(src, props) {
-        // Allow instantiation without the 'new' keyword
-        if (!(this instanceof jQuery.Event)) {
-            return new jQuery.Event(src, props);
-        }
-
-        // Event object
-        if (src && src.type) {
-            this.originalEvent = src;
-            this.type = src.type;
-
-            // Events bubbling up the document may have been marked as prevented
-            // by a handler lower down the tree; reflect the correct value.
-            this.isDefaultPrevented = src.defaultPrevented ||
-            src.defaultPrevented === undefined &&
-            // Support: IE < 9, Android < 4.0
-            src.returnValue === false ?
-                returnTrue :
-                returnFalse;
-
-            // Event type
-        } else {
-            this.type = src;
-        }
-
-        // Put explicitly provided properties onto the event object
-        if (props) {
-            jQuery.extend(this, props);
-        }
-
-        // Create a timestamp if incoming event doesn't have one
-        this.timeStamp = src && src.timeStamp || jQuery.now();
-
-        // Mark it as fixed
-        this[jQuery.expando] = true;
-    };
-
-    // jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
-    // http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
-    jQuery.Event.prototype = {
-        isDefaultPrevented: returnFalse,
-        isPropagationStopped: returnFalse,
-        isImmediatePropagationStopped: returnFalse,
-
-        preventDefault: function() {
-            var e = this.originalEvent;
-
-            this.isDefaultPrevented = returnTrue;
-            if (!e) {
-                return;
-            }
-
-            // If preventDefault exists, run it on the original event
-            if (e.preventDefault) {
-                e.preventDefault();
-
-                // Support: IE
-                // Otherwise set the returnValue property of the original event to false
-            } else {
-                e.returnValue = false;
-            }
-        },
-        stopPropagation: function() {
-            var e = this.originalEvent;
-
-            this.isPropagationStopped = returnTrue;
-            if (!e) {
-                return;
-            }
-            // If stopPropagation exists, run it on the original event
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-
-            // Support: IE
-            // Set the cancelBubble property of the original event to true
-            e.cancelBubble = true;
-        },
-        stopImmediatePropagation: function() {
-            var e = this.originalEvent;
-
-            this.isImmediatePropagationStopped = returnTrue;
-
-            if (e && e.stopImmediatePropagation) {
-                e.stopImmediatePropagation();
-            }
-
-            this.stopPropagation();
-        }
-    };
-
-    // Create mouseenter/leave events using mouseover/out and event-time checks
-    jQuery.each({
-        mouseenter: "mouseover",
-        mouseleave: "mouseout",
-        pointerenter: "pointerover",
-        pointerleave: "pointerout"
-    }, function(orig, fix) {
-        jQuery.event.special[orig] = {
-            delegateType: fix,
-            bindType: fix,
-
-            handle: function(event) {
-                var ret,
-                    target = this,
-                    related = event.relatedTarget,
-                    handleObj = event.handleObj;
-
-                // For mousenter/leave call the handler if related is outside the target.
-                // NB: No relatedTarget if the mouse left/entered the browser window
-                if (!related || (related !== target && !jQuery.contains(target, related))) {
-                    event.type = handleObj.origType;
-                    ret = handleObj.handler.apply(this, arguments);
-                    event.type = fix;
-                }
-                return ret;
-            }
-        };
-    });
-
-    // IE submit delegation
-    if (!support.submitBubbles) {
-
-        jQuery.event.special.submit = {
-            setup: function() {
-                // Only need this for delegated form submit events
-                if (jQuery.nodeName(this, "form")) {
-                    return false;
-                }
-
-                // Lazy-add a submit handler when a descendant form may potentially be submitted
-                jQuery.event.add(this, "click._submit keypress._submit", function(e) {
-                    // Node name check avoids a VML-related crash in IE (#9807)
-                    var elem = e.target,
-                        form = jQuery.nodeName(elem, "input") || jQuery.nodeName(elem, "button") ? elem.form : undefined;
-                    if (form && !jQuery._data(form, "submitBubbles")) {
-                        jQuery.event.add(form, "submit._submit", function(event) {
-                            event._submit_bubble = true;
-                        });
-                        jQuery._data(form, "submitBubbles", true);
-                    }
-                });
-                // return undefined since we don't need an event listener
-            },
-
-            postDispatch: function(event) {
-                // If form was submitted by the user, bubble the event up the tree
-                if (event._submit_bubble) {
-                    delete event._submit_bubble;
-                    if (this.parentNode && !event.isTrigger) {
-                        jQuery.event.simulate("submit", this.parentNode, event, true);
-                    }
-                }
-            },
-
-            teardown: function() {
-                // Only need this for delegated form submit events
-                if (jQuery.nodeName(this, "form")) {
-                    return false;
-                }
-
-                // Remove delegated handlers; cleanData eventually reaps submit handlers attached above
-                jQuery.event.remove(this, "._submit");
-            }
-        };
-    }
-
-    // IE change delegation and checkbox/radio fix
-    if (!support.changeBubbles) {
-
-        jQuery.event.special.change = {
-
-            setup: function() {
-
-                if (rformElems.test(this.nodeName)) {
-                    // IE doesn't fire change on a check/radio until blur; trigger it on click
-                    // after a propertychange. Eat the blur-change in special.change.handle.
-                    // This still fires onchange a second time for check/radio after blur.
-                    if (this.type === "checkbox" || this.type === "radio") {
-                        jQuery.event.add(this, "propertychange._change", function(event) {
-                            if (event.originalEvent.propertyName === "checked") {
-                                this._just_changed = true;
-                            }
-                        });
-                        jQuery.event.add(this, "click._change", function(event) {
-                            if (this._just_changed && !event.isTrigger) {
-                                this._just_changed = false;
-                            }
-                            // Allow triggered, simulated change events (#11500)
-                            jQuery.event.simulate("change", this, event, true);
-                        });
-                    }
-                    return false;
-                }
-                // Delegated event; lazy-add a change handler on descendant inputs
-                jQuery.event.add(this, "beforeactivate._change", function(e) {
-                    var elem = e.target;
-
-                    if (rformElems.test(elem.nodeName) && !jQuery._data(elem, "changeBubbles")) {
-                        jQuery.event.add(elem, "change._change", function(event) {
-                            if (this.parentNode && !event.isSimulated && !event.isTrigger) {
-                                jQuery.event.simulate("change", this.parentNode, event, true);
-                            }
-                        });
-                        jQuery._data(elem, "changeBubbles", true);
-                    }
-                });
-            },
-
-            handle: function(event) {
-                var elem = event.target;
-
-                // Swallow native change events from checkbox/radio, we already triggered them above
-                if (this !== elem || event.isSimulated || event.isTrigger || (elem.type !== "radio" && elem.type !== "checkbox")) {
-                    return event.handleObj.handler.apply(this, arguments);
-                }
-            },
-
-            teardown: function() {
-                jQuery.event.remove(this, "._change");
-
-                return !rformElems.test(this.nodeName);
-            }
-        };
-    }
-
-    // Create "bubbling" focus and blur events
-    if (!support.focusinBubbles) {
-        jQuery.each({
-            focus: "focusin",
-            blur: "focusout"
-        }, function(orig, fix) {
-
-            // Attach a single capturing handler on the document while someone wants focusin/focusout
-            var handler = function(event) {
-                jQuery.event.simulate(fix, event.target, jQuery.event.fix(event), true);
-            };
-
-            jQuery.event.special[fix] = {
-                setup: function() {
-                    var doc = this.ownerDocument || this,
-                        attaches = jQuery._data(doc, fix);
-
-                    if (!attaches) {
-                        doc.addEventListener(orig, handler, true);
-                    }
-                    jQuery._data(doc, fix, (attaches || 0) + 1);
-                },
-                teardown: function() {
-                    var doc = this.ownerDocument || this,
-                        attaches = jQuery._data(doc, fix) - 1;
-
-                    if (!attaches) {
-                        doc.removeEventListener(orig, handler, true);
-                        jQuery._removeData(doc, fix);
-                    } else {
-                        jQuery._data(doc, fix, attaches);
-                    }
-                }
-            };
-        });
-    }
-
-    jQuery.fn.extend({
-
-        on: function(types, selector, data, fn, /*INTERNAL*/ one) {
-            var type, origFn;
-
-            // Types can be a map of types/handlers
-            if (typeof types === "object") {
-                // ( types-Object, selector, data )
-                if (typeof selector !== "string") {
-                    // ( types-Object, data )
-                    data = data || selector;
-                    selector = undefined;
-                }
-                for (type in types) {
-                    this.on(type, selector, data, types[type], one);
-                }
-                return this;
-            }
-
-            if (data == null && fn == null) {
-                // ( types, fn )
-                fn = selector;
-                data = selector = undefined;
-            } else if (fn == null) {
-                if (typeof selector === "string") {
-                    // ( types, selector, fn )
-                    fn = data;
-                    data = undefined;
-                } else {
-                    // ( types, data, fn )
-                    fn = data;
-                    data = selector;
-                    selector = undefined;
-                }
-            }
-            if (fn === false) {
-                fn = returnFalse;
-            } else if (!fn) {
-                return this;
-            }
-
-            if (one === 1) {
-                origFn = fn;
-                fn = function(event) {
-                    // Can use an empty set, since event contains the info
-                    jQuery().off(event);
-                    return origFn.apply(this, arguments);
-                };
-                // Use same guid so caller can remove using origFn
-                fn.guid = origFn.guid || (origFn.guid = jQuery.guid++);
-            }
-            return this.each(function() {
-                jQuery.event.add(this, types, fn, data, selector);
-            });
-        },
-        one: function(types, selector, data, fn) {
-            return this.on(types, selector, data, fn, 1);
-        },
-        off: function(types, selector, fn) {
-            var handleObj, type;
-            if (types && types.preventDefault && types.handleObj) {
-                // ( event )  dispatched jQuery.Event
-                handleObj = types.handleObj;
-                jQuery(types.delegateTarget).off(
-                    handleObj.namespace ? handleObj.origType + "." + handleObj.namespace : handleObj.origType,
-                    handleObj.selector,
-                    handleObj.handler
-                );
-                return this;
-            }
-            if (typeof types === "object") {
-                // ( types-object [, selector] )
-                for (type in types) {
-                    this.off(type, selector, types[type]);
-                }
-                return this;
-            }
-            if (selector === false || typeof selector === "function") {
-                // ( types [, fn] )
-                fn = selector;
-                selector = undefined;
-            }
-            if (fn === false) {
-                fn = returnFalse;
-            }
-            return this.each(function() {
-                jQuery.event.remove(this, types, fn, selector);
-            });
-        },
-
-        trigger: function(type, data) {
-            return this.each(function() {
-                jQuery.event.trigger(type, data, this);
-            });
-        },
-        triggerHandler: function(type, data) {
-            var elem = this[0];
-            if (elem) {
-                return jQuery.event.trigger(type, data, elem, true);
-            }
-        }
-    });
-
-
-    function createSafeFragment(document) {
-        var list = nodeNames.split("|"),
-            safeFrag = document.createDocumentFragment();
-
-        if (safeFrag.createElement) {
-            while (list.length) {
-                safeFrag.createElement(
-                    list.pop()
-                );
-            }
-        }
-        return safeFrag;
-    }
-
-    var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|" +
-            "header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",
-        rinlinejQuery = / jQuery\d+="(?:null|\d+)"/g,
-        rnoshimcache = new RegExp("<(?:" + nodeNames + ")[\\s/>]", "i"),
-        rleadingWhitespace = /^\s+/,
-        rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
-        rtagName = /<([\w:]+)/,
-        rtbody = /<tbody/i,
-        rhtml = /<|&#?\w+;/,
-        rnoInnerhtml = /<(?:script|style|link)/i,
-    // checked="checked" or checked
-        rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
-        rscriptType = /^$|\/(?:java|ecma)script/i,
-        rscriptTypeMasked = /^true\/(.*)/,
-        rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g,
-
-    // We have to close these tags to support XHTML (#13200)
-        wrapMap = {
-            option: [1, "<select multiple='multiple'>", "</select>"],
-            legend: [1, "<fieldset>", "</fieldset>"],
-            area: [1, "<map>", "</map>"],
-            param: [1, "<object>", "</object>"],
-            thead: [1, "<table>", "</table>"],
-            tr: [2, "<table><tbody>", "</tbody></table>"],
-            col: [2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"],
-            td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
-
-            // IE6-8 can't serialize link, script, style, or any html5 (NoScope) tags,
-            // unless wrapped in a div with non-breaking characters in front of it.
-            _default: support.htmlSerialize ? [0, "", ""] : [1, "X<div>", "</div>"]
-        },
-        safeFragment = createSafeFragment(document),
-        fragmentDiv = safeFragment.appendChild(document.createElement("div"));
-
-    wrapMap.optgroup = wrapMap.option;
-    wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
-    wrapMap.th = wrapMap.td;
-
-    function getAll(context, tag) {
-        var elems, elem,
-            i = 0,
-            found = typeof context.getElementsByTagName !== strundefined ? context.getElementsByTagName(tag || "*") :
-                typeof context.querySelectorAll !== strundefined ? context.querySelectorAll(tag || "*") :
-                    undefined;
-
-        if (!found) {
-            for (found = [], elems = context.childNodes || context;
-                 (elem = elems[i]) != null; i++) {
-                if (!tag || jQuery.nodeName(elem, tag)) {
-                    found.push(elem);
-                } else {
-                    jQuery.merge(found, getAll(elem, tag));
-                }
-            }
-        }
-
-        return tag === undefined || tag && jQuery.nodeName(context, tag) ?
-            jQuery.merge([context], found) :
-            found;
-    }
-
-    // Used in buildFragment, fixes the defaultChecked property
-    function fixDefaultChecked(elem) {
-        if (rcheckableType.test(elem.type)) {
-            elem.defaultChecked = elem.checked;
-        }
-    }
-
-    // Support: IE<8
-    // Manipulating tables requires a tbody
-    function manipulationTarget(elem, content) {
-        return jQuery.nodeName(elem, "table") &&
-        jQuery.nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr") ?
-
-        elem.getElementsByTagName("tbody")[0] ||
-        elem.appendChild(elem.ownerDocument.createElement("tbody")) :
-            elem;
-    }
-
-    // Replace/restore the type attribute of script elements for safe DOM manipulation
-    function disableScript(elem) {
-        elem.type = (jQuery.find.attr(elem, "type") !== null) + "/" + elem.type;
-        return elem;
-    }
-
-    function restoreScript(elem) {
-        var match = rscriptTypeMasked.exec(elem.type);
-        if (match) {
-            elem.type = match[1];
-        } else {
-            elem.removeAttribute("type");
-        }
-        return elem;
-    }
-
-    // Mark scripts as having already been evaluated
-    function setGlobalEval(elems, refElements) {
-        var elem,
-            i = 0;
-        for (;
-            (elem = elems[i]) != null; i++) {
-            jQuery._data(elem, "globalEval", !refElements || jQuery._data(refElements[i], "globalEval"));
-        }
-    }
-
-    function cloneCopyEvent(src, dest) {
-
-        if (dest.nodeType !== 1 || !jQuery.hasData(src)) {
-            return;
-        }
-
-        var type, i, l,
-            oldData = jQuery._data(src),
-            curData = jQuery._data(dest, oldData),
-            events = oldData.events;
-
-        if (events) {
-            delete curData.handle;
-            curData.events = {};
-
-            for (type in events) {
-                for (i = 0, l = events[type].length; i < l; i++) {
-                    jQuery.event.add(dest, type, events[type][i]);
-                }
-            }
-        }
-
-        // make the cloned public data object a copy from the original
-        if (curData.data) {
-            curData.data = jQuery.extend({}, curData.data);
-        }
-    }
-
-    function fixCloneNodeIssues(src, dest) {
-        var nodeName, e, data;
-
-        // We do not need to do anything for non-Elements
-        if (dest.nodeType !== 1) {
-            return;
-        }
-
-        nodeName = dest.nodeName.toLowerCase();
-
-        // IE6-8 copies events bound via attachEvent when using cloneNode.
-        if (!support.noCloneEvent && dest[jQuery.expando]) {
-            data = jQuery._data(dest);
-
-            for (e in data.events) {
-                jQuery.removeEvent(dest, e, data.handle);
-            }
-
-            // Event data gets referenced instead of copied if the expando gets copied too
-            dest.removeAttribute(jQuery.expando);
-        }
-
-        // IE blanks contents when cloning scripts, and tries to evaluate newly-set text
-        if (nodeName === "script" && dest.text !== src.text) {
-            disableScript(dest).text = src.text;
-            restoreScript(dest);
-
-            // IE6-10 improperly clones children of object elements using classid.
-            // IE10 throws NoModificationAllowedError if parent is null, #12132.
-        } else if (nodeName === "object") {
-            if (dest.parentNode) {
-                dest.outerHTML = src.outerHTML;
-            }
-
-            // This path appears unavoidable for IE9. When cloning an object
-            // element in IE9, the outerHTML strategy above is not sufficient.
-            // If the src has innerHTML and the destination does not,
-            // copy the src.innerHTML into the dest.innerHTML. #10324
-            if (support.html5Clone && (src.innerHTML && !jQuery.trim(dest.innerHTML))) {
-                dest.innerHTML = src.innerHTML;
-            }
-
-        } else if (nodeName === "input" && rcheckableType.test(src.type)) {
-            // IE6-8 fails to persist the checked state of a cloned checkbox
-            // or radio button. Worse, IE6-7 fail to give the cloned element
-            // a checked appearance if the defaultChecked value isn't also set
-
-            dest.defaultChecked = dest.checked = src.checked;
-
-            // IE6-7 get confused and end up setting the value of a cloned
-            // checkbox/radio button to an empty string instead of "on"
-            if (dest.value !== src.value) {
-                dest.value = src.value;
-            }
-
-            // IE6-8 fails to return the selected option to the default selected
-            // state when cloning options
-        } else if (nodeName === "option") {
-            dest.defaultSelected = dest.selected = src.defaultSelected;
-
-            // IE6-8 fails to set the defaultValue to the correct value when
-            // cloning other types of input fields
-        } else if (nodeName === "input" || nodeName === "textarea") {
-            dest.defaultValue = src.defaultValue;
-        }
-    }
-
-    jQuery.extend({
-        clone: function(elem, dataAndEvents, deepDataAndEvents) {
-            var destElements, node, clone, i, srcElements,
-                inPage = jQuery.contains(elem.ownerDocument, elem);
-
-            if (support.html5Clone || jQuery.isXMLDoc(elem) || !rnoshimcache.test("<" + elem.nodeName + ">")) {
-                clone = elem.cloneNode(true);
-
-                // IE<=8 does not properly clone detached, unknown element nodes
-            } else {
-                fragmentDiv.innerHTML = elem.outerHTML;
-                fragmentDiv.removeChild(clone = fragmentDiv.firstChild);
-            }
-
-            if ((!support.noCloneEvent || !support.noCloneChecked) &&
-                (elem.nodeType === 1 || elem.nodeType === 11) && !jQuery.isXMLDoc(elem)) {
-
-                // We eschew Sizzle here for performance reasons: http://jsperf.com/getall-vs-sizzle/2
-                destElements = getAll(clone);
-                srcElements = getAll(elem);
-
-                // Fix all IE cloning issues
-                for (i = 0;
-                     (node = srcElements[i]) != null; ++i) {
-                    // Ensure that the destination node is not null; Fixes #9587
-                    if (destElements[i]) {
-                        fixCloneNodeIssues(node, destElements[i]);
-                    }
-                }
-            }
-
-            // Copy the events from the original to the clone
-            if (dataAndEvents) {
-                if (deepDataAndEvents) {
-                    srcElements = srcElements || getAll(elem);
-                    destElements = destElements || getAll(clone);
-
-                    for (i = 0;
-                         (node = srcElements[i]) != null; i++) {
-                        cloneCopyEvent(node, destElements[i]);
-                    }
-                } else {
-                    cloneCopyEvent(elem, clone);
-                }
-            }
-
-            // Preserve script evaluation history
-            destElements = getAll(clone, "script");
-            if (destElements.length > 0) {
-                setGlobalEval(destElements, !inPage && getAll(elem, "script"));
-            }
-
-            destElements = srcElements = node = null;
-
-            // Return the cloned set
-            return clone;
-        },
-
-        buildFragment: function(elems, context, scripts, selection) {
-            var j, elem, contains,
-                tmp, tag, tbody, wrap,
-                l = elems.length,
-
-            // Ensure a safe fragment
-                safe = createSafeFragment(context),
-
-                nodes = [],
-                i = 0;
-
-            for (; i < l; i++) {
-                elem = elems[i];
-
-                if (elem || elem === 0) {
-
-                    // Add nodes directly
-                    if (jQuery.type(elem) === "object") {
-                        jQuery.merge(nodes, elem.nodeType ? [elem] : elem);
-
-                        // Convert non-html into a text node
-                    } else if (!rhtml.test(elem)) {
-                        nodes.push(context.createTextNode(elem));
-
-                        // Convert html into DOM nodes
-                    } else {
-                        tmp = tmp || safe.appendChild(context.createElement("div"));
-
-                        // Deserialize a standard representation
-                        tag = (rtagName.exec(elem) || ["", ""])[1].toLowerCase();
-                        wrap = wrapMap[tag] || wrapMap._default;
-
-                        tmp.innerHTML = wrap[1] + elem.replace(rxhtmlTag, "<$1></$2>") + wrap[2];
-
-                        // Descend through wrappers to the right content
-                        j = wrap[0];
-                        while (j--) {
-                            tmp = tmp.lastChild;
-                        }
-
-                        // Manually add leading whitespace removed by IE
-                        if (!support.leadingWhitespace && rleadingWhitespace.test(elem)) {
-                            nodes.push(context.createTextNode(rleadingWhitespace.exec(elem)[0]));
-                        }
-
-                        // Remove IE's autoinserted <tbody> from table fragments
-                        if (!support.tbody) {
-
-                            // String was a <table>, *may* have spurious <tbody>
-                            elem = tag === "table" && !rtbody.test(elem) ?
-                                tmp.firstChild :
-
-                                // String was a bare <thead> or <tfoot>
-                                wrap[1] === "<table>" && !rtbody.test(elem) ?
-                                    tmp :
-                                    0;
-
-                            j = elem && elem.childNodes.length;
-                            while (j--) {
-                                if (jQuery.nodeName((tbody = elem.childNodes[j]), "tbody") && !tbody.childNodes.length) {
-                                    elem.removeChild(tbody);
-                                }
-                            }
-                        }
-
-                        jQuery.merge(nodes, tmp.childNodes);
-
-                        // Fix #12392 for WebKit and IE > 9
-                        tmp.textContent = "";
-
-                        // Fix #12392 for oldIE
-                        while (tmp.firstChild) {
-                            tmp.removeChild(tmp.firstChild);
-                        }
-
-                        // Remember the top-level container for proper cleanup
-                        tmp = safe.lastChild;
-                    }
-                }
-            }
-
-            // Fix #11356: Clear elements from fragment
-            if (tmp) {
-                safe.removeChild(tmp);
-            }
-
-            // Reset defaultChecked for any radios and checkboxes
-            // about to be appended to the DOM in IE 6/7 (#8060)
-            if (!support.appendChecked) {
-                jQuery.grep(getAll(nodes, "input"), fixDefaultChecked);
-            }
-
-            i = 0;
-            while ((elem = nodes[i++])) {
-
-                // #4087 - If origin and destination elements are the same, and this is
-                // that element, do not do anything
-                if (selection && jQuery.inArray(elem, selection) !== -1) {
-                    continue;
-                }
-
-                contains = jQuery.contains(elem.ownerDocument, elem);
-
-                // Append to fragment
-                tmp = getAll(safe.appendChild(elem), "script");
-
-                // Preserve script evaluation history
-                if (contains) {
-                    setGlobalEval(tmp);
-                }
-
-                // Capture executables
-                if (scripts) {
-                    j = 0;
-                    while ((elem = tmp[j++])) {
-                        if (rscriptType.test(elem.type || "")) {
-                            scripts.push(elem);
-                        }
-                    }
-                }
-            }
-
-            tmp = null;
-
-            return safe;
-        },
-
-        cleanData: function(elems, /* internal */ acceptData) {
-            var elem, type, id, data,
-                i = 0,
-                internalKey = jQuery.expando,
-                cache = jQuery.cache,
-                deleteExpando = support.deleteExpando,
-                special = jQuery.event.special;
-
-            for (;
-                (elem = elems[i]) != null; i++) {
-                if (acceptData || jQuery.acceptData(elem)) {
-
-                    id = elem[internalKey];
-                    data = id && cache[id];
-
-                    if (data) {
-                        if (data.events) {
-                            for (type in data.events) {
-                                if (special[type]) {
-                                    jQuery.event.remove(elem, type);
-
-                                    // This is a shortcut to avoid jQuery.event.remove's overhead
-                                } else {
-                                    jQuery.removeEvent(elem, type, data.handle);
-                                }
-                            }
-                        }
-
-                        // Remove cache only if it was not already removed by jQuery.event.remove
-                        if (cache[id]) {
-
-                            delete cache[id];
-
-                            // IE does not allow us to delete expando properties from nodes,
-                            // nor does it have a removeAttribute function on Document nodes;
-                            // we must handle all of these cases
-                            if (deleteExpando) {
-                                delete elem[internalKey];
-
-                            } else if (typeof elem.removeAttribute !== strundefined) {
-                                elem.removeAttribute(internalKey);
-
-                            } else {
-                                elem[internalKey] = null;
-                            }
-
-                            deletedIds.push(id);
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    jQuery.fn.extend({
-        text: function(value) {
-            return access(this, function(value) {
-                return value === undefined ?
-                    jQuery.text(this) :
-                    this.empty().append((this[0] && this[0].ownerDocument || document).createTextNode(value));
-            }, null, value, arguments.length);
-        },
-
-        append: function() {
-            return this.domManip(arguments, function(elem) {
-                if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
-                    var target = manipulationTarget(this, elem);
-                    target.appendChild(elem);
-                }
-            });
-        },
-
-        prepend: function() {
-            return this.domManip(arguments, function(elem) {
-                if (this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9) {
-                    var target = manipulationTarget(this, elem);
-                    target.insertBefore(elem, target.firstChild);
-                }
-            });
-        },
-
-        before: function() {
-            return this.domManip(arguments, function(elem) {
-                if (this.parentNode) {
-                    this.parentNode.insertBefore(elem, this);
-                }
-            });
-        },
-
-        after: function() {
-            return this.domManip(arguments, function(elem) {
-                if (this.parentNode) {
-                    this.parentNode.insertBefore(elem, this.nextSibling);
-                }
-            });
-        },
-
-        remove: function(selector, keepData /* Internal Use Only */ ) {
-            var elem,
-                elems = selector ? jQuery.filter(selector, this) : this,
-                i = 0;
-
-            for (;
-                (elem = elems[i]) != null; i++) {
-
-                if (!keepData && elem.nodeType === 1) {
-                    jQuery.cleanData(getAll(elem));
-                }
-
-                if (elem.parentNode) {
-                    if (keepData && jQuery.contains(elem.ownerDocument, elem)) {
-                        setGlobalEval(getAll(elem, "script"));
-                    }
-                    elem.parentNode.removeChild(elem);
-                }
-            }
-
-            return this;
-        },
-
-        empty: function() {
-            var elem,
-                i = 0;
-
-            for (;
-                (elem = this[i]) != null; i++) {
-                // Remove element nodes and prevent memory leaks
-                if (elem.nodeType === 1) {
-                    jQuery.cleanData(getAll(elem, false));
-                }
-
-                // Remove any remaining nodes
-                while (elem.firstChild) {
-                    elem.removeChild(elem.firstChild);
-                }
-
-                // If this is a select, ensure that it displays empty (#12336)
-                // Support: IE<9
-                if (elem.options && jQuery.nodeName(elem, "select")) {
-                    elem.options.length = 0;
-                }
-            }
-
-            return this;
-        },
-
-        clone: function(dataAndEvents, deepDataAndEvents) {
-            dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-            deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
-
-            return this.map(function() {
-                return jQuery.clone(this, dataAndEvents, deepDataAndEvents);
-            });
-        },
-
-        html: function(value) {
-            return access(this, function(value) {
-                var elem = this[0] || {},
-                    i = 0,
-                    l = this.length;
-
-                if (value === undefined) {
-                    return elem.nodeType === 1 ?
-                        elem.innerHTML.replace(rinlinejQuery, "") :
-                        undefined;
-                }
-
-                // See if we can take a shortcut and just use innerHTML
-                if (typeof value === "string" && !rnoInnerhtml.test(value) &&
-                    (support.htmlSerialize || !rnoshimcache.test(value)) &&
-                    (support.leadingWhitespace || !rleadingWhitespace.test(value)) &&
-                    !wrapMap[(rtagName.exec(value) || ["", ""])[1].toLowerCase()]) {
-
-                    value = value.replace(rxhtmlTag, "<$1></$2>");
-
-                    try {
-                        for (; i < l; i++) {
-                            // Remove element nodes and prevent memory leaks
-                            elem = this[i] || {};
-                            if (elem.nodeType === 1) {
-                                jQuery.cleanData(getAll(elem, false));
-                                elem.innerHTML = value;
-                            }
-                        }
-
-                        elem = 0;
-
-                        // If using innerHTML throws an exception, use the fallback method
-                    } catch (e) {}
-                }
-
-                if (elem) {
-                    this.empty().append(value);
-                }
-            }, null, value, arguments.length);
-        },
-
-        replaceWith: function() {
-            var arg = arguments[0];
-
-            // Make the changes, replacing each context element with the new content
-            this.domManip(arguments, function(elem) {
-                arg = this.parentNode;
-
-                jQuery.cleanData(getAll(this));
-
-                if (arg) {
-                    arg.replaceChild(elem, this);
-                }
-            });
-
-            // Force removal if there was no new content (e.g., from empty arguments)
-            return arg && (arg.length || arg.nodeType) ? this : this.remove();
-        },
-
-        detach: function(selector) {
-            return this.remove(selector, true);
-        },
-
-        domManip: function(args, callback) {
-
-            // Flatten any nested arrays
-            args = concat.apply([], args);
-
-            var first, node, hasScripts,
-                scripts, doc, fragment,
-                i = 0,
-                l = this.length,
-                set = this,
-                iNoClone = l - 1,
-                value = args[0],
-                isFunction = jQuery.isFunction(value);
-
-            // We can't cloneNode fragments that contain checked, in WebKit
-            if (isFunction ||
-                (l > 1 && typeof value === "string" &&
-                !support.checkClone && rchecked.test(value))) {
-                return this.each(function(index) {
-                    var self = set.eq(index);
-                    if (isFunction) {
-                        args[0] = value.call(this, index, self.html());
-                    }
-                    self.domManip(args, callback);
-                });
-            }
-
-            if (l) {
-                fragment = jQuery.buildFragment(args, this[0].ownerDocument, false, this);
-                first = fragment.firstChild;
-
-                if (fragment.childNodes.length === 1) {
-                    fragment = first;
-                }
-
-                if (first) {
-                    scripts = jQuery.map(getAll(fragment, "script"), disableScript);
-                    hasScripts = scripts.length;
-
-                    // Use the original fragment for the last item instead of the first because it can end up
-                    // being emptied incorrectly in certain situations (#8070).
-                    for (; i < l; i++) {
-                        node = fragment;
-
-                        if (i !== iNoClone) {
-                            node = jQuery.clone(node, true, true);
-
-                            // Keep references to cloned scripts for later restoration
-                            if (hasScripts) {
-                                jQuery.merge(scripts, getAll(node, "script"));
-                            }
-                        }
-
-                        callback.call(this[i], node, i);
-                    }
-
-                    if (hasScripts) {
-                        doc = scripts[scripts.length - 1].ownerDocument;
-
-                        // Reenable scripts
-                        jQuery.map(scripts, restoreScript);
-
-                        // Evaluate executable scripts on first document insertion
-                        for (i = 0; i < hasScripts; i++) {
-                            node = scripts[i];
-                            if (rscriptType.test(node.type || "") &&
-                                !jQuery._data(node, "globalEval") && jQuery.contains(doc, node)) {
-
-                                if (node.src) {
-                                    // Optional AJAX dependency, but won't run scripts if not present
-                                    if (jQuery._evalUrl) {
-                                        jQuery._evalUrl(node.src);
-                                    }
-                                } else {
-                                    jQuery.globalEval((node.text || node.textContent || node.innerHTML || "").replace(rcleanScript, ""));
-                                }
-                            }
-                        }
-                    }
-
-                    // Fix #11809: Avoid leaking memory
-                    fragment = first = null;
-                }
-            }
-
-            return this;
-        }
-    });
-
-    jQuery.each({
-        appendTo: "append",
-        prependTo: "prepend",
-        insertBefore: "before",
-        insertAfter: "after",
-        replaceAll: "replaceWith"
-    }, function(name, original) {
-        jQuery.fn[name] = function(selector) {
-            var elems,
-                i = 0,
-                ret = [],
-                insert = jQuery(selector),
-                last = insert.length - 1;
-
-            for (; i <= last; i++) {
-                elems = i === last ? this : this.clone(true);
-                jQuery(insert[i])[original](elems);
-
-                // Modern browsers can apply jQuery collections as arrays, but oldIE needs a .get()
-                push.apply(ret, elems.get());
-            }
-
-            return this.pushStack(ret);
-        };
-    });
-
-
-    var iframe,
-        elemdisplay = {};
-
-    /**
-     * Retrieve the actual display of a element
-     * @param {String} name nodeName of the element
-     * @param {Object} doc Document object
-     */
-    // Called only from within defaultDisplay
-    function actualDisplay(name, doc) {
-        var style,
-            elem = jQuery(doc.createElement(name)).appendTo(doc.body),
-
-        // getDefaultComputedStyle might be reliably used only on attached element
-            display = window.getDefaultComputedStyle && (style = window.getDefaultComputedStyle(elem[0])) ?
-
-                // Use of this method is a temporary fix (more like optmization) until something better comes along,
-                // since it was removed from specification and supported only in FF
-                style.display : jQuery.css(elem[0], "display");
-
-        // We don't have any data stored on the element,
-        // so use "detach" method as fast way to get rid of the element
-        elem.detach();
-
-        return display;
-    }
-
-    /**
-     * Try to determine the default display value of an element
-     * @param {String} nodeName
-     */
-    function defaultDisplay(nodeName) {
-        var doc = document,
-            display = elemdisplay[nodeName];
-
-        if (!display) {
-            display = actualDisplay(nodeName, doc);
-
-            // If the simple way fails, read from inside an iframe
-            if (display === "none" || !display) {
-
-                // Use the already-created iframe if possible
-                iframe = (iframe || jQuery("<iframe frameborder='0' width='0' height='0'/>")).appendTo(doc.documentElement);
-
-                // Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
-                doc = (iframe[0].contentWindow || iframe[0].contentDocument).document;
-
-                // Support: IE
-                doc.write();
-                doc.close();
-
-                display = actualDisplay(nodeName, doc);
-                iframe.detach();
-            }
-
-            // Store the correct default display
-            elemdisplay[nodeName] = display;
-        }
-
-        return display;
-    }
-
-
-    (function() {
-        var shrinkWrapBlocksVal;
-
-        support.shrinkWrapBlocks = function() {
-            if (shrinkWrapBlocksVal != null) {
-                return shrinkWrapBlocksVal;
-            }
-
-            // Will be changed later if needed.
-            shrinkWrapBlocksVal = false;
-
-            // Minified: var b,c,d
-            var div, body, container;
-
-            body = document.getElementsByTagName("body")[0];
-            if (!body || !body.style) {
-                // Test fired too early or in an unsupported environment, exit.
-                return;
-            }
-
-            // Setup
-            div = document.createElement("div");
-            container = document.createElement("div");
-            container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-            body.appendChild(container).appendChild(div);
-
-            // Support: IE6
-            // Check if elements with layout shrink-wrap their children
-            if (typeof div.style.zoom !== strundefined) {
-                // Reset CSS: box-sizing; display; margin; border
-                div.style.cssText =
-                    // Support: Firefox<29, Android 2.3
-                    // Vendor-prefix box-sizing
-                    "-webkit-box-sizing:content-box;-moz-box-sizing:content-box;" +
-                    "box-sizing:content-box;display:block;margin:0;border:0;" +
-                    "padding:1px;width:1px;zoom:1";
-                div.appendChild(document.createElement("div")).style.width = "5px";
-                shrinkWrapBlocksVal = div.offsetWidth !== 3;
-            }
-
-            body.removeChild(container);
-
-            return shrinkWrapBlocksVal;
-        };
-
-    })();
-    var rmargin = (/^margin/);
-
-    var rnumnonpx = new RegExp("^(" + pnum + ")(?!px)[a-z%]+$", "i");
-
-
-
-    var getStyles, curCSS,
-        rposition = /^(top|right|bottom|left)$/;
-
-    if (window.getComputedStyle) {
-        getStyles = function(elem) {
-            return elem.ownerDocument.defaultView.getComputedStyle(elem, null);
-        };
-
-        curCSS = function(elem, name, computed) {
-            var width, minWidth, maxWidth, ret,
-                style = elem.style;
-
-            computed = computed || getStyles(elem);
-
-            // getPropertyValue is only needed for .css('filter') in IE9, see #12537
-            ret = computed ? computed.getPropertyValue(name) || computed[name] : undefined;
-
-            if (computed) {
-
-                if (ret === "" && !jQuery.contains(elem.ownerDocument, elem)) {
-                    ret = jQuery.style(elem, name);
-                }
-
-                // A tribute to the "awesome hack by Dean Edwards"
-                // Chrome < 17 and Safari 5.0 uses "computed value" instead of "used value" for margin-right
-                // Safari 5.1.7 (at least) returns percentage for a larger set of values, but width seems to be reliably pixels
-                // this is against the CSSOM draft spec: http://dev.w3.org/csswg/cssom/#resolved-values
-                if (rnumnonpx.test(ret) && rmargin.test(name)) {
-
-                    // Remember the original values
-                    width = style.width;
-                    minWidth = style.minWidth;
-                    maxWidth = style.maxWidth;
-
-                    // Put in the new values to get a computed value out
-                    style.minWidth = style.maxWidth = style.width = ret;
-                    ret = computed.width;
-
-                    // Revert the changed values
-                    style.width = width;
-                    style.minWidth = minWidth;
-                    style.maxWidth = maxWidth;
-                }
-            }
-
-            // Support: IE
-            // IE returns zIndex value as an integer.
-            return ret === undefined ?
-                ret :
-            ret + "";
-        };
-    } else if (document.documentElement.currentStyle) {
-        getStyles = function(elem) {
-            return elem.currentStyle;
-        };
-
-        curCSS = function(elem, name, computed) {
-            var left, rs, rsLeft, ret,
-                style = elem.style;
-
-            computed = computed || getStyles(elem);
-            ret = computed ? computed[name] : undefined;
-
-            // Avoid setting ret to empty string here
-            // so we don't default to auto
-            if (ret == null && style && style[name]) {
-                ret = style[name];
-            }
-
-            // From the awesome hack by Dean Edwards
-            // http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
-
-            // If we're not dealing with a regular pixel number
-            // but a number that has a weird ending, we need to convert it to pixels
-            // but not position css attributes, as those are proportional to the parent element instead
-            // and we can't measure the parent instead because it might trigger a "stacking dolls" problem
-            if (rnumnonpx.test(ret) && !rposition.test(name)) {
-
-                // Remember the original values
-                left = style.left;
-                rs = elem.runtimeStyle;
-                rsLeft = rs && rs.left;
-
-                // Put in the new values to get a computed value out
-                if (rsLeft) {
-                    rs.left = elem.currentStyle.left;
-                }
-                style.left = name === "fontSize" ? "1em" : ret;
-                ret = style.pixelLeft + "px";
-
-                // Revert the changed values
-                style.left = left;
-                if (rsLeft) {
-                    rs.left = rsLeft;
-                }
-            }
-
-            // Support: IE
-            // IE returns zIndex value as an integer.
-            return ret === undefined ?
-                ret :
-            ret + "" || "auto";
-        };
-    }
-
-
-
-    function addGetHookIf(conditionFn, hookFn) {
-        // Define the hook, we'll check on the first run if it's really needed.
-        return {
-            get: function() {
-                var condition = conditionFn();
-
-                if (condition == null) {
-                    // The test was not ready at this point; screw the hook this time
-                    // but check again when needed next time.
-                    return;
-                }
-
-                if (condition) {
-                    // Hook not needed (or it's not possible to use it due to missing dependency),
-                    // remove it.
-                    // Since there are no other hooks for marginRight, remove the whole object.
-                    delete this.get;
-                    return;
-                }
-
-                // Hook needed; redefine it so that the support test is not executed again.
-
-                return (this.get = hookFn).apply(this, arguments);
-            }
-        };
-    }
-
-
-    (function() {
-        // Minified: var b,c,d,e,f,g, h,i
-        var div, style, a, pixelPositionVal, boxSizingReliableVal,
-            reliableHiddenOffsetsVal, reliableMarginRightVal;
-
-        // Setup
-        div = document.createElement("div");
-        div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
-        a = div.getElementsByTagName("a")[0];
-        style = a && a.style;
-
-        // Finish early in limited (non-browser) environments
-        if (!style) {
-            return;
-        }
-
-        style.cssText = "float:left;opacity:.5";
-
-        // Support: IE<9
-        // Make sure that element opacity exists (as opposed to filter)
-        support.opacity = style.opacity === "0.5";
-
-        // Verify style float existence
-        // (IE uses styleFloat instead of cssFloat)
-        support.cssFloat = !!style.cssFloat;
-
-        div.style.backgroundClip = "content-box";
-        div.cloneNode(true).style.backgroundClip = "";
-        support.clearCloneStyle = div.style.backgroundClip === "content-box";
-
-        // Support: Firefox<29, Android 2.3
-        // Vendor-prefix box-sizing
-        support.boxSizing = style.boxSizing === "" || style.MozBoxSizing === "" ||
-            style.WebkitBoxSizing === "";
-
-        jQuery.extend(support, {
-            reliableHiddenOffsets: function() {
-                if (reliableHiddenOffsetsVal == null) {
-                    computeStyleTests();
-                }
-                return reliableHiddenOffsetsVal;
-            },
-
-            boxSizingReliable: function() {
-                if (boxSizingReliableVal == null) {
-                    computeStyleTests();
-                }
-                return boxSizingReliableVal;
-            },
-
-            pixelPosition: function() {
-                if (pixelPositionVal == null) {
-                    computeStyleTests();
-                }
-                return pixelPositionVal;
-            },
-
-            // Support: Android 2.3
-            reliableMarginRight: function() {
-                if (reliableMarginRightVal == null) {
-                    computeStyleTests();
-                }
-                return reliableMarginRightVal;
-            }
-        });
-
-        function computeStyleTests() {
-            // Minified: var b,c,d,j
-            var div, body, container, contents;
-
-            body = document.getElementsByTagName("body")[0];
-            if (!body || !body.style) {
-                // Test fired too early or in an unsupported environment, exit.
-                return;
-            }
-
-            // Setup
-            div = document.createElement("div");
-            container = document.createElement("div");
-            container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-            body.appendChild(container).appendChild(div);
-
-            div.style.cssText =
-                // Support: Firefox<29, Android 2.3
-                // Vendor-prefix box-sizing
-                "-webkit-box-sizing:border-box;-moz-box-sizing:border-box;" +
-                "box-sizing:border-box;display:block;margin-top:1%;top:1%;" +
-                "border:1px;padding:1px;width:4px;position:absolute";
-
-            // Support: IE<9
-            // Assume reasonable values in the absence of getComputedStyle
-            pixelPositionVal = boxSizingReliableVal = false;
-            reliableMarginRightVal = true;
-
-            // Check for getComputedStyle so that this code is not run in IE<9.
-            if (window.getComputedStyle) {
-                pixelPositionVal = (window.getComputedStyle(div, null) || {}).top !== "1%";
-                boxSizingReliableVal =
-                    (window.getComputedStyle(div, null) || {
-                        width: "4px"
-                    }).width === "4px";
-
-                // Support: Android 2.3
-                // Div with explicit width and no margin-right incorrectly
-                // gets computed margin-right based on width of container (#3333)
-                // WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-                contents = div.appendChild(document.createElement("div"));
-
-                // Reset CSS: box-sizing; display; margin; border; padding
-                contents.style.cssText = div.style.cssText =
-                    // Support: Firefox<29, Android 2.3
-                    // Vendor-prefix box-sizing
-                    "-webkit-box-sizing:content-box;-moz-box-sizing:content-box;" +
-                    "box-sizing:content-box;display:block;margin:0;border:0;padding:0";
-                contents.style.marginRight = contents.style.width = "0";
-                div.style.width = "1px";
-
-                reliableMarginRightVal = !parseFloat((window.getComputedStyle(contents, null) || {}).marginRight);
-            }
-
-            // Support: IE8
-            // Check if table cells still have offsetWidth/Height when they are set
-            // to display:none and there are still other visible table cells in a
-            // table row; if so, offsetWidth/Height are not reliable for use when
-            // determining if an element has been hidden directly using
-            // display:none (it is still safe to use offsets if a parent element is
-            // hidden; don safety goggles and see bug #4512 for more information).
-            div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
-            contents = div.getElementsByTagName("td");
-            contents[0].style.cssText = "margin:0;border:0;padding:0;display:none";
-            reliableHiddenOffsetsVal = contents[0].offsetHeight === 0;
-            if (reliableHiddenOffsetsVal) {
-                contents[0].style.display = "";
-                contents[1].style.display = "none";
-                reliableHiddenOffsetsVal = contents[0].offsetHeight === 0;
-            }
-
-            body.removeChild(container);
-        }
-
-    })();
-
-
-    // A method for quickly swapping in/out CSS properties to get correct calculations.
-    jQuery.swap = function(elem, options, callback, args) {
-        var ret, name,
-            old = {};
-
-        // Remember the old values, and insert the new ones
-        for (name in options) {
-            old[name] = elem.style[name];
-            elem.style[name] = options[name];
-        }
-
-        ret = callback.apply(elem, args || []);
-
-        // Revert the old values
-        for (name in options) {
-            elem.style[name] = old[name];
-        }
-
-        return ret;
-    };
-
-
-    var
-        ralpha = /alpha\([^)]*\)/i,
-        ropacity = /opacity\s*=\s*([^)]*)/,
-
-    // swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
-    // see here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-        rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-        rnumsplit = new RegExp("^(" + pnum + ")(.*)$", "i"),
-        rrelNum = new RegExp("^([+-])=(" + pnum + ")", "i"),
-
-        cssShow = {
-            position: "absolute",
-            visibility: "hidden",
-            display: "block"
-        },
-        cssNormalTransform = {
-            letterSpacing: "0",
-            fontWeight: "400"
-        },
-
-        cssPrefixes = ["Webkit", "O", "Moz", "ms"];
-
-
-    // return a css property mapped to a potentially vendor prefixed property
-    function vendorPropName(style, name) {
-
-        // shortcut for names that are not vendor prefixed
-        if (name in style) {
-            return name;
-        }
-
-        // check for vendor prefixed names
-        var capName = name.charAt(0).toUpperCase() + name.slice(1),
-            origName = name,
-            i = cssPrefixes.length;
-
-        while (i--) {
-            name = cssPrefixes[i] + capName;
-            if (name in style) {
-                return name;
-            }
-        }
-
-        return origName;
-    }
-
-    function showHide(elements, show) {
-        var display, elem, hidden,
-            values = [],
-            index = 0,
-            length = elements.length;
-
-        for (; index < length; index++) {
-            elem = elements[index];
-            if (!elem.style) {
-                continue;
-            }
-
-            values[index] = jQuery._data(elem, "olddisplay");
-            display = elem.style.display;
-            if (show) {
-                // Reset the inline display of this element to learn if it is
-                // being hidden by cascaded rules or not
-                if (!values[index] && display === "none") {
-                    elem.style.display = "";
-                }
-
-                // Set elements which have been overridden with display: none
-                // in a stylesheet to whatever the default browser style is
-                // for such an element
-                if (elem.style.display === "" && isHidden(elem)) {
-                    values[index] = jQuery._data(elem, "olddisplay", defaultDisplay(elem.nodeName));
-                }
-            } else {
-                hidden = isHidden(elem);
-
-                if (display && display !== "none" || !hidden) {
-                    jQuery._data(elem, "olddisplay", hidden ? display : jQuery.css(elem, "display"));
-                }
-            }
-        }
-
-        // Set the display of most of the elements in a second loop
-        // to avoid the constant reflow
-        for (index = 0; index < length; index++) {
-            elem = elements[index];
-            if (!elem.style) {
-                continue;
-            }
-            if (!show || elem.style.display === "none" || elem.style.display === "") {
-                elem.style.display = show ? values[index] || "" : "none";
-            }
-        }
-
-        return elements;
-    }
-
-    function setPositiveNumber(elem, value, subtract) {
-        var matches = rnumsplit.exec(value);
-        return matches ?
-            // Guard against undefined "subtract", e.g., when used as in cssHooks
-        Math.max(0, matches[1] - (subtract || 0)) + (matches[2] || "px") :
-            value;
-    }
-
-    function augmentWidthOrHeight(elem, name, extra, isBorderBox, styles) {
-        var i = extra === (isBorderBox ? "border" : "content") ?
-                // If we already have the right measurement, avoid augmentation
-                4 :
-                // Otherwise initialize for horizontal or vertical properties
-                name === "width" ? 1 : 0,
-
-            val = 0;
-
-        for (; i < 4; i += 2) {
-            // both box models exclude margin, so add it if we want it
-            if (extra === "margin") {
-                val += jQuery.css(elem, extra + cssExpand[i], true, styles);
-            }
-
-            if (isBorderBox) {
-                // border-box includes padding, so remove it if we want content
-                if (extra === "content") {
-                    val -= jQuery.css(elem, "padding" + cssExpand[i], true, styles);
-                }
-
-                // at this point, extra isn't border nor margin, so remove border
-                if (extra !== "margin") {
-                    val -= jQuery.css(elem, "border" + cssExpand[i] + "Width", true, styles);
-                }
-            } else {
-                // at this point, extra isn't content, so add padding
-                val += jQuery.css(elem, "padding" + cssExpand[i], true, styles);
-
-                // at this point, extra isn't content nor padding, so add border
-                if (extra !== "padding") {
-                    val += jQuery.css(elem, "border" + cssExpand[i] + "Width", true, styles);
-                }
-            }
-        }
-
-        return val;
-    }
-
-    function getWidthOrHeight(elem, name, extra) {
-
-        // Start with offset property, which is equivalent to the border-box value
-        var valueIsBorderBox = true,
-            val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
-            styles = getStyles(elem),
-            isBorderBox = support.boxSizing && jQuery.css(elem, "boxSizing", false, styles) === "border-box";
-
-        // some non-html elements return undefined for offsetWidth, so check for null/undefined
-        // svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
-        // MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
-        if (val <= 0 || val == null) {
-            // Fall back to computed then uncomputed css if necessary
-            val = curCSS(elem, name, styles);
-            if (val < 0 || val == null) {
-                val = elem.style[name];
-            }
-
-            // Computed unit is not pixels. Stop here and return.
-            if (rnumnonpx.test(val)) {
-                return val;
-            }
-
-            // we need the check for style in case a browser which returns unreliable values
-            // for getComputedStyle silently falls back to the reliable elem.style
-            valueIsBorderBox = isBorderBox && (support.boxSizingReliable() || val === elem.style[name]);
-
-            // Normalize "", auto, and prepare for extra
-            val = parseFloat(val) || 0;
-        }
-
-        // use the active box-sizing model to add/subtract irrelevant styles
-        return (val +
-                augmentWidthOrHeight(
-                    elem,
-                    name,
-                    extra || (isBorderBox ? "border" : "content"),
-                    valueIsBorderBox,
-                    styles
-                )
-            ) + "px";
-    }
-
-    jQuery.extend({
-        // Add in style property hooks for overriding the default
-        // behavior of getting and setting a style property
-        cssHooks: {
-            opacity: {
-                get: function(elem, computed) {
-                    if (computed) {
-                        // We should always get a number back from opacity
-                        var ret = curCSS(elem, "opacity");
-                        return ret === "" ? "1" : ret;
-                    }
-                }
-            }
-        },
-
-        // Don't automatically add "px" to these possibly-unitless properties
-        cssNumber: {
-            "columnCount": true,
-            "fillOpacity": true,
-            "flexGrow": true,
-            "flexShrink": true,
-            "fontWeight": true,
-            "lineHeight": true,
-            "opacity": true,
-            "order": true,
-            "orphans": true,
-            "widows": true,
-            "zIndex": true,
-            "zoom": true
-        },
-
-        // Add in properties whose names you wish to fix before
-        // setting or getting the value
-        cssProps: {
-            // normalize float css property
-            "float": support.cssFloat ? "cssFloat" : "styleFloat"
-        },
-
-        // Get and set the style property on a DOM Node
-        style: function(elem, name, value, extra) {
-            // Don't set styles on text and comment nodes
-            if (!elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style) {
-                return;
-            }
-
-            // Make sure that we're working with the right name
-            var ret, type, hooks,
-                origName = jQuery.camelCase(name),
-                style = elem.style;
-
-            name = jQuery.cssProps[origName] || (jQuery.cssProps[origName] = vendorPropName(style, origName));
-
-            // gets hook for the prefixed version
-            // followed by the unprefixed version
-            hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
-
-            // Check if we're setting a value
-            if (value !== undefined) {
-                type = typeof value;
-
-                // convert relative number strings (+= or -=) to relative numbers. #7345
-                if (type === "string" && (ret = rrelNum.exec(value))) {
-                    value = (ret[1] + 1) * ret[2] + parseFloat(jQuery.css(elem, name));
-                    // Fixes bug #9237
-                    type = "number";
-                }
-
-                // Make sure that null and NaN values aren't set. See: #7116
-                if (value == null || value !== value) {
-                    return;
-                }
-
-                // If a number was passed in, add 'px' to the (except for certain CSS properties)
-                if (type === "number" && !jQuery.cssNumber[origName]) {
-                    value += "px";
-                }
-
-                // Fixes #8908, it can be done more correctly by specifing setters in cssHooks,
-                // but it would mean to define eight (for every problematic property) identical functions
-                if (!support.clearCloneStyle && value === "" && name.indexOf("background") === 0) {
-                    style[name] = "inherit";
-                }
-
-                // If a hook was provided, use that value, otherwise just set the specified value
-                if (!hooks || !("set" in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
-
-                    // Support: IE
-                    // Swallow errors from 'invalid' CSS values (#5509)
-                    try {
-                        style[name] = value;
-                    } catch (e) {}
-                }
-
-            } else {
-                // If a hook was provided get the non-computed value from there
-                if (hooks && "get" in hooks && (ret = hooks.get(elem, false, extra)) !== undefined) {
-                    return ret;
-                }
-
-                // Otherwise just get the value from the style object
-                return style[name];
-            }
-        },
-
-        css: function(elem, name, extra, styles) {
-            var num, val, hooks,
-                origName = jQuery.camelCase(name);
-
-            // Make sure that we're working with the right name
-            name = jQuery.cssProps[origName] || (jQuery.cssProps[origName] = vendorPropName(elem.style, origName));
-
-            // gets hook for the prefixed version
-            // followed by the unprefixed version
-            hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
-
-            // If a hook was provided get the computed value from there
-            if (hooks && "get" in hooks) {
-                val = hooks.get(elem, true, extra);
-            }
-
-            // Otherwise, if a way to get the computed value exists, use that
-            if (val === undefined) {
-                val = curCSS(elem, name, styles);
-            }
-
-            //convert "normal" to computed value
-            if (val === "normal" && name in cssNormalTransform) {
-                val = cssNormalTransform[name];
-            }
-
-            // Return, converting to number if forced or a qualifier was provided and val looks numeric
-            if (extra === "" || extra) {
-                num = parseFloat(val);
-                return extra === true || jQuery.isNumeric(num) ? num || 0 : val;
-            }
-            return val;
-        }
-    });
-
-    jQuery.each(["height", "width"], function(i, name) {
-        jQuery.cssHooks[name] = {
-            get: function(elem, computed, extra) {
-                if (computed) {
-                    // certain elements can have dimension info if we invisibly show them
-                    // however, it must have a current display style that would benefit from this
-                    return rdisplayswap.test(jQuery.css(elem, "display")) && elem.offsetWidth === 0 ?
-                        jQuery.swap(elem, cssShow, function() {
-                            return getWidthOrHeight(elem, name, extra);
-                        }) :
-                        getWidthOrHeight(elem, name, extra);
-                }
-            },
-
-            set: function(elem, value, extra) {
-                var styles = extra && getStyles(elem);
-                return setPositiveNumber(elem, value, extra ?
-                    augmentWidthOrHeight(
-                        elem,
-                        name,
-                        extra,
-                        support.boxSizing && jQuery.css(elem, "boxSizing", false, styles) === "border-box",
-                        styles
-                    ) : 0
-                );
-            }
-        };
-    });
-
-    if (!support.opacity) {
-        jQuery.cssHooks.opacity = {
-            get: function(elem, computed) {
-                // IE uses filters for opacity
-                return ropacity.test((computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || "") ?
-                (0.01 * parseFloat(RegExp.$1)) + "" :
-                    computed ? "1" : "";
-            },
-
-            set: function(elem, value) {
-                var style = elem.style,
-                    currentStyle = elem.currentStyle,
-                    opacity = jQuery.isNumeric(value) ? "alpha(opacity=" + value * 100 + ")" : "",
-                    filter = currentStyle && currentStyle.filter || style.filter || "";
-
-                // IE has trouble with opacity if it does not have layout
-                // Force it by setting the zoom level
-                style.zoom = 1;
-
-                // if setting opacity to 1, and no other filters exist - attempt to remove filter attribute #6652
-                // if value === "", then remove inline opacity #12685
-                if ((value >= 1 || value === "") &&
-                    jQuery.trim(filter.replace(ralpha, "")) === "" &&
-                    style.removeAttribute) {
-
-                    // Setting style.filter to null, "" & " " still leave "filter:" in the cssText
-                    // if "filter:" is present at all, clearType is disabled, we want to avoid this
-                    // style.removeAttribute is IE Only, but so apparently is this code path...
-                    style.removeAttribute("filter");
-
-                    // if there is no filter style applied in a css rule or unset inline opacity, we are done
-                    if (value === "" || currentStyle && !currentStyle.filter) {
-                        return;
-                    }
-                }
-
-                // otherwise, set new filter values
-                style.filter = ralpha.test(filter) ?
-                    filter.replace(ralpha, opacity) :
-                filter + " " + opacity;
-            }
-        };
-    }
-
-    jQuery.cssHooks.marginRight = addGetHookIf(support.reliableMarginRight,
-        function(elem, computed) {
-            if (computed) {
-                // WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-                // Work around by temporarily setting element display to inline-block
-                return jQuery.swap(elem, {
-                        "display": "inline-block"
-                    },
-                    curCSS, [elem, "marginRight"]);
-            }
-        }
-    );
-
-    // These hooks are used by animate to expand properties
-    jQuery.each({
-        margin: "",
-        padding: "",
-        border: "Width"
-    }, function(prefix, suffix) {
-        jQuery.cssHooks[prefix + suffix] = {
-            expand: function(value) {
-                var i = 0,
-                    expanded = {},
-
-                // assumes a single number if not a string
-                    parts = typeof value === "string" ? value.split(" ") : [value];
-
-                for (; i < 4; i++) {
-                    expanded[prefix + cssExpand[i] + suffix] =
-                        parts[i] || parts[i - 2] || parts[0];
-                }
-
-                return expanded;
-            }
-        };
-
-        if (!rmargin.test(prefix)) {
-            jQuery.cssHooks[prefix + suffix].set = setPositiveNumber;
-        }
-    });
-
-    jQuery.fn.extend({
-        css: function(name, value) {
-            return access(this, function(elem, name, value) {
-                var styles, len,
-                    map = {},
-                    i = 0;
-
-                if (jQuery.isArray(name)) {
-                    styles = getStyles(elem);
-                    len = name.length;
-
-                    for (; i < len; i++) {
-                        map[name[i]] = jQuery.css(elem, name[i], false, styles);
-                    }
-
-                    return map;
-                }
-
-                return value !== undefined ?
-                    jQuery.style(elem, name, value) :
-                    jQuery.css(elem, name);
-            }, name, value, arguments.length > 1);
-        },
-        show: function() {
-            return showHide(this, true);
-        },
-        hide: function() {
-            return showHide(this);
-        },
-        toggle: function(state) {
-            if (typeof state === "boolean") {
-                return state ? this.show() : this.hide();
-            }
-
-            return this.each(function() {
-                if (isHidden(this)) {
-                    jQuery(this).show();
-                } else {
-                    jQuery(this).hide();
-                }
-            });
-        }
-    });
-
-
-    function Tween(elem, options, prop, end, easing) {
-        return new Tween.prototype.init(elem, options, prop, end, easing);
-    }
-    jQuery.Tween = Tween;
-
-    Tween.prototype = {
-        constructor: Tween,
-        init: function(elem, options, prop, end, easing, unit) {
-            this.elem = elem;
-            this.prop = prop;
-            this.easing = easing || "swing";
-            this.options = options;
-            this.start = this.now = this.cur();
-            this.end = end;
-            this.unit = unit || (jQuery.cssNumber[prop] ? "" : "px");
-        },
-        cur: function() {
-            var hooks = Tween.propHooks[this.prop];
-
-            return hooks && hooks.get ?
-                hooks.get(this) :
-                Tween.propHooks._default.get(this);
-        },
-        run: function(percent) {
-            var eased,
-                hooks = Tween.propHooks[this.prop];
-
-            if (this.options.duration) {
-                this.pos = eased = jQuery.easing[this.easing](
-                    percent, this.options.duration * percent, 0, 1, this.options.duration
-                );
-            } else {
-                this.pos = eased = percent;
-            }
-            this.now = (this.end - this.start) * eased + this.start;
-
-            if (this.options.step) {
-                this.options.step.call(this.elem, this.now, this);
-            }
-
-            if (hooks && hooks.set) {
-                hooks.set(this);
-            } else {
-                Tween.propHooks._default.set(this);
-            }
-            return this;
-        }
-    };
-
-    Tween.prototype.init.prototype = Tween.prototype;
-
-    Tween.propHooks = {
-        _default: {
-            get: function(tween) {
-                var result;
-
-                if (tween.elem[tween.prop] != null &&
-                    (!tween.elem.style || tween.elem.style[tween.prop] == null)) {
-                    return tween.elem[tween.prop];
-                }
-
-                // passing an empty string as a 3rd parameter to .css will automatically
-                // attempt a parseFloat and fallback to a string if the parse fails
-                // so, simple values such as "10px" are parsed to Float.
-                // complex values such as "rotate(1rad)" are returned as is.
-                result = jQuery.css(tween.elem, tween.prop, "");
-                // Empty strings, null, undefined and "auto" are converted to 0.
-                return !result || result === "auto" ? 0 : result;
-            },
-            set: function(tween) {
-                // use step hook for back compat - use cssHook if its there - use .style if its
-                // available and use plain properties where available
-                if (jQuery.fx.step[tween.prop]) {
-                    jQuery.fx.step[tween.prop](tween);
-                } else if (tween.elem.style && (tween.elem.style[jQuery.cssProps[tween.prop]] != null || jQuery.cssHooks[tween.prop])) {
-                    jQuery.style(tween.elem, tween.prop, tween.now + tween.unit);
-                } else {
-                    tween.elem[tween.prop] = tween.now;
-                }
-            }
-        }
-    };
-
-    // Support: IE <=9
-    // Panic based approach to setting things on disconnected nodes
-
-    Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
-        set: function(tween) {
-            if (tween.elem.nodeType && tween.elem.parentNode) {
-                tween.elem[tween.prop] = tween.now;
-            }
-        }
-    };
-
-    jQuery.easing = {
-        linear: function(p) {
-            return p;
-        },
-        swing: function(p) {
-            return 0.5 - Math.cos(p * Math.PI) / 2;
-        }
-    };
-
-    jQuery.fx = Tween.prototype.init;
-
-    // Back Compat <1.8 extension point
-    jQuery.fx.step = {};
-
-
-
-    var
-        fxNow, timerId,
-        rfxtypes = /^(?:toggle|show|hide)$/,
-        rfxnum = new RegExp("^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i"),
-        rrun = /queueHooks$/,
-        animationPrefilters = [defaultPrefilter],
-        tweeners = {
-            "*": [function(prop, value) {
-                var tween = this.createTween(prop, value),
-                    target = tween.cur(),
-                    parts = rfxnum.exec(value),
-                    unit = parts && parts[3] || (jQuery.cssNumber[prop] ? "" : "px"),
-
-                // Starting value computation is required for potential unit mismatches
-                    start = (jQuery.cssNumber[prop] || unit !== "px" && +target) &&
-                        rfxnum.exec(jQuery.css(tween.elem, prop)),
-                    scale = 1,
-                    maxIterations = 20;
-
-                if (start && start[3] !== unit) {
-                    // Trust units reported by jQuery.css
-                    unit = unit || start[3];
-
-                    // Make sure we update the tween properties later on
-                    parts = parts || [];
-
-                    // Iteratively approximate from a nonzero starting point
-                    start = +target || 1;
-
-                    do {
-                        // If previous iteration zeroed out, double until we get *something*
-                        // Use a string for doubling factor so we don't accidentally see scale as unchanged below
-                        scale = scale || ".5";
-
-                        // Adjust and apply
-                        start = start / scale;
-                        jQuery.style(tween.elem, prop, start + unit);
-
-                        // Update scale, tolerating zero or NaN from tween.cur()
-                        // And breaking the loop if scale is unchanged or perfect, or if we've just had enough
-                    } while (scale !== (scale = tween.cur() / target) && scale !== 1 && --maxIterations);
-                }
-
-                // Update tween properties
-                if (parts) {
-                    start = tween.start = +start || +target || 0;
-                    tween.unit = unit;
-                    // If a +=/-= token was provided, we're doing a relative animation
-                    tween.end = parts[1] ?
-                    start + (parts[1] + 1) * parts[2] :
-                        +parts[2];
-                }
-
-                return tween;
-            }]
-        };
-
-    // Animations created synchronously will run synchronously
-    function createFxNow() {
-        setTimeout(function() {
-            fxNow = undefined;
-        });
-        return (fxNow = jQuery.now());
-    }
-
-    // Generate parameters to create a standard animation
-    function genFx(type, includeWidth) {
-        var which,
-            attrs = {
-                height: type
-            },
-            i = 0;
-
-        // if we include width, step value is 1 to do all cssExpand values,
-        // if we don't include width, step value is 2 to skip over Left and Right
-        includeWidth = includeWidth ? 1 : 0;
-        for (; i < 4; i += 2 - includeWidth) {
-            which = cssExpand[i];
-            attrs["margin" + which] = attrs["padding" + which] = type;
-        }
-
-        if (includeWidth) {
-            attrs.opacity = attrs.width = type;
-        }
-
-        return attrs;
-    }
-
-    function createTween(value, prop, animation) {
-        var tween,
-            collection = (tweeners[prop] || []).concat(tweeners["*"]),
-            index = 0,
-            length = collection.length;
-        for (; index < length; index++) {
-            if ((tween = collection[index].call(animation, prop, value))) {
-
-                // we're done with this property
-                return tween;
-            }
-        }
-    }
-
-    function defaultPrefilter(elem, props, opts) {
-        /* jshint validthis: true */
-        var prop, value, toggle, tween, hooks, oldfire, display, checkDisplay,
-            anim = this,
-            orig = {},
-            style = elem.style,
-            hidden = elem.nodeType && isHidden(elem),
-            dataShow = jQuery._data(elem, "fxshow");
-
-        // handle queue: false promises
-        if (!opts.queue) {
-            hooks = jQuery._queueHooks(elem, "fx");
-            if (hooks.unqueued == null) {
-                hooks.unqueued = 0;
-                oldfire = hooks.empty.fire;
-                hooks.empty.fire = function() {
-                    if (!hooks.unqueued) {
-                        oldfire();
-                    }
-                };
-            }
-            hooks.unqueued++;
-
-            anim.always(function() {
-                // doing this makes sure that the complete handler will be called
-                // before this completes
-                anim.always(function() {
-                    hooks.unqueued--;
-                    if (!jQuery.queue(elem, "fx").length) {
-                        hooks.empty.fire();
-                    }
-                });
-            });
-        }
-
-        // height/width overflow pass
-        if (elem.nodeType === 1 && ("height" in props || "width" in props)) {
-            // Make sure that nothing sneaks out
-            // Record all 3 overflow attributes because IE does not
-            // change the overflow attribute when overflowX and
-            // overflowY are set to the same value
-            opts.overflow = [style.overflow, style.overflowX, style.overflowY];
-
-            // Set display property to inline-block for height/width
-            // animations on inline elements that are having width/height animated
-            display = jQuery.css(elem, "display");
-
-            // Test default display if display is currently "none"
-            checkDisplay = display === "none" ?
-            jQuery._data(elem, "olddisplay") || defaultDisplay(elem.nodeName) : display;
-
-            if (checkDisplay === "inline" && jQuery.css(elem, "float") === "none") {
-
-                // inline-level elements accept inline-block;
-                // block-level elements need to be inline with layout
-                if (!support.inlineBlockNeedsLayout || defaultDisplay(elem.nodeName) === "inline") {
-                    style.display = "inline-block";
-                } else {
-                    style.zoom = 1;
-                }
-            }
-        }
-
-        if (opts.overflow) {
-            style.overflow = "hidden";
-            if (!support.shrinkWrapBlocks()) {
-                anim.always(function() {
-                    style.overflow = opts.overflow[0];
-                    style.overflowX = opts.overflow[1];
-                    style.overflowY = opts.overflow[2];
-                });
-            }
-        }
-
-        // show/hide pass
-        for (prop in props) {
-            value = props[prop];
-            if (rfxtypes.exec(value)) {
-                delete props[prop];
-                toggle = toggle || value === "toggle";
-                if (value === (hidden ? "hide" : "show")) {
-
-                    // If there is dataShow left over from a stopped hide or show and we are going to proceed with show, we should pretend to be hidden
-                    if (value === "show" && dataShow && dataShow[prop] !== undefined) {
-                        hidden = true;
-                    } else {
-                        continue;
-                    }
-                }
-                orig[prop] = dataShow && dataShow[prop] || jQuery.style(elem, prop);
-
-                // Any non-fx value stops us from restoring the original display value
-            } else {
-                display = undefined;
-            }
-        }
-
-        if (!jQuery.isEmptyObject(orig)) {
-            if (dataShow) {
-                if ("hidden" in dataShow) {
-                    hidden = dataShow.hidden;
-                }
-            } else {
-                dataShow = jQuery._data(elem, "fxshow", {});
-            }
-
-            // store state if its toggle - enables .stop().toggle() to "reverse"
-            if (toggle) {
-                dataShow.hidden = !hidden;
-            }
-            if (hidden) {
-                jQuery(elem).show();
-            } else {
-                anim.done(function() {
-                    jQuery(elem).hide();
-                });
-            }
-            anim.done(function() {
-                var prop;
-                jQuery._removeData(elem, "fxshow");
-                for (prop in orig) {
-                    jQuery.style(elem, prop, orig[prop]);
-                }
-            });
-            for (prop in orig) {
-                tween = createTween(hidden ? dataShow[prop] : 0, prop, anim);
-
-                if (!(prop in dataShow)) {
-                    dataShow[prop] = tween.start;
-                    if (hidden) {
-                        tween.end = tween.start;
-                        tween.start = prop === "width" || prop === "height" ? 1 : 0;
-                    }
-                }
-            }
-
-            // If this is a noop like .hide().hide(), restore an overwritten display value
-        } else if ((display === "none" ? defaultDisplay(elem.nodeName) : display) === "inline") {
-            style.display = display;
-        }
-    }
-
-    function propFilter(props, specialEasing) {
-        var index, name, easing, value, hooks;
-
-        // camelCase, specialEasing and expand cssHook pass
-        for (index in props) {
-            name = jQuery.camelCase(index);
-            easing = specialEasing[name];
-            value = props[index];
-            if (jQuery.isArray(value)) {
-                easing = value[1];
-                value = props[index] = value[0];
-            }
-
-            if (index !== name) {
-                props[name] = value;
-                delete props[index];
-            }
-
-            hooks = jQuery.cssHooks[name];
-            if (hooks && "expand" in hooks) {
-                value = hooks.expand(value);
-                delete props[name];
-
-                // not quite $.extend, this wont overwrite keys already present.
-                // also - reusing 'index' from above because we have the correct "name"
-                for (index in value) {
-                    if (!(index in props)) {
-                        props[index] = value[index];
-                        specialEasing[index] = easing;
-                    }
-                }
-            } else {
-                specialEasing[name] = easing;
-            }
-        }
-    }
-
-    function Animation(elem, properties, options) {
-        var result,
-            stopped,
-            index = 0,
-            length = animationPrefilters.length,
-            deferred = jQuery.Deferred().always(function() {
-                // don't match elem in the :animated selector
-                delete tick.elem;
-            }),
-            tick = function() {
-                if (stopped) {
-                    return false;
-                }
-                var currentTime = fxNow || createFxNow(),
-                    remaining = Math.max(0, animation.startTime + animation.duration - currentTime),
-                // archaic crash bug won't allow us to use 1 - ( 0.5 || 0 ) (#12497)
-                    temp = remaining / animation.duration || 0,
-                    percent = 1 - temp,
-                    index = 0,
-                    length = animation.tweens.length;
-
-                for (; index < length; index++) {
-                    animation.tweens[index].run(percent);
-                }
-
-                deferred.notifyWith(elem, [animation, percent, remaining]);
-
-                if (percent < 1 && length) {
-                    return remaining;
-                } else {
-                    deferred.resolveWith(elem, [animation]);
-                    return false;
-                }
-            },
-            animation = deferred.promise({
-                elem: elem,
-                props: jQuery.extend({}, properties),
-                opts: jQuery.extend(true, {
-                    specialEasing: {}
-                }, options),
-                originalProperties: properties,
-                originalOptions: options,
-                startTime: fxNow || createFxNow(),
-                duration: options.duration,
-                tweens: [],
-                createTween: function(prop, end) {
-                    var tween = jQuery.Tween(elem, animation.opts, prop, end,
-                        animation.opts.specialEasing[prop] || animation.opts.easing);
-                    animation.tweens.push(tween);
-                    return tween;
-                },
-                stop: function(gotoEnd) {
-                    var index = 0,
-                    // if we are going to the end, we want to run all the tweens
-                    // otherwise we skip this part
-                        length = gotoEnd ? animation.tweens.length : 0;
-                    if (stopped) {
-                        return this;
-                    }
-                    stopped = true;
-                    for (; index < length; index++) {
-                        animation.tweens[index].run(1);
-                    }
-
-                    // resolve when we played the last frame
-                    // otherwise, reject
-                    if (gotoEnd) {
-                        deferred.resolveWith(elem, [animation, gotoEnd]);
-                    } else {
-                        deferred.rejectWith(elem, [animation, gotoEnd]);
-                    }
-                    return this;
-                }
-            }),
-            props = animation.props;
-
-        propFilter(props, animation.opts.specialEasing);
-
-        for (; index < length; index++) {
-            result = animationPrefilters[index].call(animation, elem, props, animation.opts);
-            if (result) {
-                return result;
-            }
-        }
-
-        jQuery.map(props, createTween, animation);
-
-        if (jQuery.isFunction(animation.opts.start)) {
-            animation.opts.start.call(elem, animation);
-        }
-
-        jQuery.fx.timer(
-            jQuery.extend(tick, {
-                elem: elem,
-                anim: animation,
-                queue: animation.opts.queue
-            })
-        );
-
-        // attach callbacks from options
-        return animation.progress(animation.opts.progress)
-            .done(animation.opts.done, animation.opts.complete)
-            .fail(animation.opts.fail)
-            .always(animation.opts.always);
-    }
-
-    jQuery.Animation = jQuery.extend(Animation, {
-        tweener: function(props, callback) {
-            if (jQuery.isFunction(props)) {
-                callback = props;
-                props = ["*"];
-            } else {
-                props = props.split(" ");
-            }
-
-            var prop,
-                index = 0,
-                length = props.length;
-
-            for (; index < length; index++) {
-                prop = props[index];
-                tweeners[prop] = tweeners[prop] || [];
-                tweeners[prop].unshift(callback);
-            }
-        },
-
-        prefilter: function(callback, prepend) {
-            if (prepend) {
-                animationPrefilters.unshift(callback);
-            } else {
-                animationPrefilters.push(callback);
-            }
-        }
-    });
-
-    jQuery.speed = function(speed, easing, fn) {
-        var opt = speed && typeof speed === "object" ? jQuery.extend({}, speed) : {
-            complete: fn || !fn && easing ||
-            jQuery.isFunction(speed) && speed,
-            duration: speed,
-            easing: fn && easing || easing && !jQuery.isFunction(easing) && easing
-        };
-
-        opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ? opt.duration :
-            opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[opt.duration] : jQuery.fx.speeds._default;
-
-        // normalize opt.queue - true/undefined/null -> "fx"
-        if (opt.queue == null || opt.queue === true) {
-            opt.queue = "fx";
-        }
-
-        // Queueing
-        opt.old = opt.complete;
-
-        opt.complete = function() {
-            if (jQuery.isFunction(opt.old)) {
-                opt.old.call(this);
-            }
-
-            if (opt.queue) {
-                jQuery.dequeue(this, opt.queue);
-            }
-        };
-
-        return opt;
-    };
-
-    jQuery.fn.extend({
-        fadeTo: function(speed, to, easing, callback) {
-
-            // show any hidden elements after setting opacity to 0
-            return this.filter(isHidden).css("opacity", 0).show()
-
-            // animate to the value specified
-                .end().animate({
-                    opacity: to
-                }, speed, easing, callback);
-        },
-        animate: function(prop, speed, easing, callback) {
-            var empty = jQuery.isEmptyObject(prop),
-                optall = jQuery.speed(speed, easing, callback),
-                doAnimation = function() {
-                    // Operate on a copy of prop so per-property easing won't be lost
-                    var anim = Animation(this, jQuery.extend({}, prop), optall);
-
-                    // Empty animations, or finishing resolves immediately
-                    if (empty || jQuery._data(this, "finish")) {
-                        anim.stop(true);
-                    }
-                };
-            doAnimation.finish = doAnimation;
-
-            return empty || optall.queue === false ?
-                this.each(doAnimation) :
-                this.queue(optall.queue, doAnimation);
-        },
-        stop: function(type, clearQueue, gotoEnd) {
-            var stopQueue = function(hooks) {
-                var stop = hooks.stop;
-                delete hooks.stop;
-                stop(gotoEnd);
-            };
-
-            if (typeof type !== "string") {
-                gotoEnd = clearQueue;
-                clearQueue = type;
-                type = undefined;
-            }
-            if (clearQueue && type !== false) {
-                this.queue(type || "fx", []);
-            }
-
-            return this.each(function() {
-                var dequeue = true,
-                    index = type != null && type + "queueHooks",
-                    timers = jQuery.timers,
-                    data = jQuery._data(this);
-
-                if (index) {
-                    if (data[index] && data[index].stop) {
-                        stopQueue(data[index]);
-                    }
-                } else {
-                    for (index in data) {
-                        if (data[index] && data[index].stop && rrun.test(index)) {
-                            stopQueue(data[index]);
-                        }
-                    }
-                }
-
-                for (index = timers.length; index--;) {
-                    if (timers[index].elem === this && (type == null || timers[index].queue === type)) {
-                        timers[index].anim.stop(gotoEnd);
-                        dequeue = false;
-                        timers.splice(index, 1);
-                    }
-                }
-
-                // start the next in the queue if the last step wasn't forced
-                // timers currently will call their complete callbacks, which will dequeue
-                // but only if they were gotoEnd
-                if (dequeue || !gotoEnd) {
-                    jQuery.dequeue(this, type);
-                }
-            });
-        },
-        finish: function(type) {
-            if (type !== false) {
-                type = type || "fx";
-            }
-            return this.each(function() {
-                var index,
-                    data = jQuery._data(this),
-                    queue = data[type + "queue"],
-                    hooks = data[type + "queueHooks"],
-                    timers = jQuery.timers,
-                    length = queue ? queue.length : 0;
-
-                // enable finishing flag on private data
-                data.finish = true;
-
-                // empty the queue first
-                jQuery.queue(this, type, []);
-
-                if (hooks && hooks.stop) {
-                    hooks.stop.call(this, true);
-                }
-
-                // look for any active animations, and finish them
-                for (index = timers.length; index--;) {
-                    if (timers[index].elem === this && timers[index].queue === type) {
-                        timers[index].anim.stop(true);
-                        timers.splice(index, 1);
-                    }
-                }
-
-                // look for any animations in the old queue and finish them
-                for (index = 0; index < length; index++) {
-                    if (queue[index] && queue[index].finish) {
-                        queue[index].finish.call(this);
-                    }
-                }
-
-                // turn off finishing flag
-                delete data.finish;
-            });
-        }
-    });
-
-    jQuery.each(["toggle", "show", "hide"], function(i, name) {
-        var cssFn = jQuery.fn[name];
-        jQuery.fn[name] = function(speed, easing, callback) {
-            return speed == null || typeof speed === "boolean" ?
-                cssFn.apply(this, arguments) :
-                this.animate(genFx(name, true), speed, easing, callback);
-        };
-    });
-
-    // Generate shortcuts for custom animations
-    jQuery.each({
-        slideDown: genFx("show"),
-        slideUp: genFx("hide"),
-        slideToggle: genFx("toggle"),
-        fadeIn: {
-            opacity: "show"
-        },
-        fadeOut: {
-            opacity: "hide"
-        },
-        fadeToggle: {
-            opacity: "toggle"
-        }
-    }, function(name, props) {
-        jQuery.fn[name] = function(speed, easing, callback) {
-            return this.animate(props, speed, easing, callback);
-        };
-    });
-
-    jQuery.timers = [];
-    jQuery.fx.tick = function() {
-        var timer,
-            timers = jQuery.timers,
-            i = 0;
-
-        fxNow = jQuery.now();
-
-        for (; i < timers.length; i++) {
-            timer = timers[i];
-            // Checks the timer has not already been removed
-            if (!timer() && timers[i] === timer) {
-                timers.splice(i--, 1);
-            }
-        }
-
-        if (!timers.length) {
-            jQuery.fx.stop();
-        }
-        fxNow = undefined;
-    };
-
-    jQuery.fx.timer = function(timer) {
-        jQuery.timers.push(timer);
-        if (timer()) {
-            jQuery.fx.start();
-        } else {
-            jQuery.timers.pop();
-        }
-    };
-
-    jQuery.fx.interval = 13;
-
-    jQuery.fx.start = function() {
-        if (!timerId) {
-            timerId = setInterval(jQuery.fx.tick, jQuery.fx.interval);
-        }
-    };
-
-    jQuery.fx.stop = function() {
-        clearInterval(timerId);
-        timerId = null;
-    };
-
-    jQuery.fx.speeds = {
-        slow: 600,
-        fast: 200,
-        // Default speed
-        _default: 400
-    };
-
-
-    // Based off of the plugin by Clint Helfers, with permission.
-    // http://blindsignals.com/index.php/2009/07/jquery-delay/
-    jQuery.fn.delay = function(time, type) {
-        time = jQuery.fx ? jQuery.fx.speeds[time] || time : time;
-        type = type || "fx";
-
-        return this.queue(type, function(next, hooks) {
-            var timeout = setTimeout(next, time);
-            hooks.stop = function() {
-                clearTimeout(timeout);
-            };
-        });
-    };
-
-
-    (function() {
-        // Minified: var a,b,c,d,e
-        var input, div, select, a, opt;
-
-        // Setup
-        div = document.createElement("div");
-        div.setAttribute("className", "t");
-        div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
-        a = div.getElementsByTagName("a")[0];
-
-        // First batch of tests.
-        select = document.createElement("select");
-        opt = select.appendChild(document.createElement("option"));
-        input = div.getElementsByTagName("input")[0];
-
-        a.style.cssText = "top:1px";
-
-        // Test setAttribute on camelCase class. If it works, we need attrFixes when doing get/setAttribute (ie6/7)
-        support.getSetAttribute = div.className !== "t";
-
-        // Get the style information from getAttribute
-        // (IE uses .cssText instead)
-        support.style = /top/.test(a.getAttribute("style"));
-
-        // Make sure that URLs aren't manipulated
-        // (IE normalizes it by default)
-        support.hrefNormalized = a.getAttribute("href") === "/a";
-
-        // Check the default checkbox/radio value ("" on WebKit; "on" elsewhere)
-        support.checkOn = !!input.value;
-
-        // Make sure that a selected-by-default option has a working selected property.
-        // (WebKit defaults to false instead of true, IE too, if it's in an optgroup)
-        support.optSelected = opt.selected;
-
-        // Tests for enctype support on a form (#6743)
-        support.enctype = !!document.createElement("form").enctype;
-
-        // Make sure that the options inside disabled selects aren't marked as disabled
-        // (WebKit marks them as disabled)
-        select.disabled = true;
-        support.optDisabled = !opt.disabled;
-
-        // Support: IE8 only
-        // Check if we can trust getAttribute("value")
-        input = document.createElement("input");
-        input.setAttribute("value", "");
-        support.input = input.getAttribute("value") === "";
-
-        // Check if an input maintains its value after becoming a radio
-        input.value = "t";
-        input.setAttribute("type", "radio");
-        support.radioValue = input.value === "t";
-    })();
-
-
-    var rreturn = /\r/g;
-
-    jQuery.fn.extend({
-        val: function(value) {
-            var hooks, ret, isFunction,
-                elem = this[0];
-
-            if (!arguments.length) {
-                if (elem) {
-                    hooks = jQuery.valHooks[elem.type] || jQuery.valHooks[elem.nodeName.toLowerCase()];
-
-                    if (hooks && "get" in hooks && (ret = hooks.get(elem, "value")) !== undefined) {
-                        return ret;
-                    }
-
-                    ret = elem.value;
-
-                    return typeof ret === "string" ?
-                        // handle most common string cases
-                        ret.replace(rreturn, "") :
-                        // handle cases where value is null/undef or number
-                        ret == null ? "" : ret;
-                }
-
-                return;
-            }
-
-            isFunction = jQuery.isFunction(value);
-
-            return this.each(function(i) {
-                var val;
-
-                if (this.nodeType !== 1) {
-                    return;
-                }
-
-                if (isFunction) {
-                    val = value.call(this, i, jQuery(this).val());
-                } else {
-                    val = value;
-                }
-
-                // Treat null/undefined as ""; convert numbers to string
-                if (val == null) {
-                    val = "";
-                } else if (typeof val === "number") {
-                    val += "";
-                } else if (jQuery.isArray(val)) {
-                    val = jQuery.map(val, function(value) {
-                        return value == null ? "" : value + "";
-                    });
-                }
-
-                hooks = jQuery.valHooks[this.type] || jQuery.valHooks[this.nodeName.toLowerCase()];
-
-                // If set returns undefined, fall back to normal setting
-                if (!hooks || !("set" in hooks) || hooks.set(this, val, "value") === undefined) {
-                    this.value = val;
-                }
-            });
-        }
-    });
-
-    jQuery.extend({
-        valHooks: {
-            option: {
-                get: function(elem) {
-                    var val = jQuery.find.attr(elem, "value");
-                    return val != null ?
-                        val :
-                        // Support: IE10-11+
-                        // option.text throws exceptions (#14686, #14858)
-                        jQuery.trim(jQuery.text(elem));
-                }
-            },
-            select: {
-                get: function(elem) {
-                    var value, option,
-                        options = elem.options,
-                        index = elem.selectedIndex,
-                        one = elem.type === "select-one" || index < 0,
-                        values = one ? null : [],
-                        max = one ? index + 1 : options.length,
-                        i = index < 0 ?
-                            max :
-                            one ? index : 0;
-
-                    // Loop through all the selected options
-                    for (; i < max; i++) {
-                        option = options[i];
-
-                        // oldIE doesn't update selected after form reset (#2551)
-                        if ((option.selected || i === index) &&
-                            // Don't return options that are disabled or in a disabled optgroup
-                            (support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) &&
-                            (!option.parentNode.disabled || !jQuery.nodeName(option.parentNode, "optgroup"))) {
-
-                            // Get the specific value for the option
-                            value = jQuery(option).val();
-
-                            // We don't need an array for one selects
-                            if (one) {
-                                return value;
-                            }
-
-                            // Multi-Selects return an array
-                            values.push(value);
-                        }
-                    }
-
-                    return values;
-                },
-
-                set: function(elem, value) {
-                    var optionSet, option,
-                        options = elem.options,
-                        values = jQuery.makeArray(value),
-                        i = options.length;
-
-                    while (i--) {
-                        option = options[i];
-
-                        if (jQuery.inArray(jQuery.valHooks.option.get(option), values) >= 0) {
-
-                            // Support: IE6
-                            // When new option element is added to select box we need to
-                            // force reflow of newly added node in order to workaround delay
-                            // of initialization properties
-                            try {
-                                option.selected = optionSet = true;
-
-                            } catch (_) {
-
-                                // Will be executed only in IE6
-                                option.scrollHeight;
-                            }
-
-                        } else {
-                            option.selected = false;
-                        }
-                    }
-
-                    // Force browsers to behave consistently when non-matching value is set
-                    if (!optionSet) {
-                        elem.selectedIndex = -1;
-                    }
-
-                    return options;
-                }
-            }
-        }
-    });
-
-    // Radios and checkboxes getter/setter
-    jQuery.each(["radio", "checkbox"], function() {
-        jQuery.valHooks[this] = {
-            set: function(elem, value) {
-                if (jQuery.isArray(value)) {
-                    return (elem.checked = jQuery.inArray(jQuery(elem).val(), value) >= 0);
-                }
-            }
-        };
-        if (!support.checkOn) {
-            jQuery.valHooks[this].get = function(elem) {
-                // Support: Webkit
-                // "" is returned instead of "on" if a value isn't specified
-                return elem.getAttribute("value") === null ? "on" : elem.value;
-            };
-        }
-    });
-
-
-
-    var nodeHook, boolHook,
-        attrHandle = jQuery.expr.attrHandle,
-        ruseDefault = /^(?:checked|selected)$/i,
-        getSetAttribute = support.getSetAttribute,
-        getSetInput = support.input;
-
-    jQuery.fn.extend({
-        attr: function(name, value) {
-            return access(this, jQuery.attr, name, value, arguments.length > 1);
-        },
-
-        removeAttr: function(name) {
-            return this.each(function() {
-                jQuery.removeAttr(this, name);
-            });
-        }
-    });
-
-    jQuery.extend({
-        attr: function(elem, name, value) {
-            var hooks, ret,
-                nType = elem.nodeType;
-
-            // don't get/set attributes on text, comment and attribute nodes
-            if (!elem || nType === 3 || nType === 8 || nType === 2) {
-                return;
-            }
-
-            // Fallback to prop when attributes are not supported
-            if (typeof elem.getAttribute === strundefined) {
-                return jQuery.prop(elem, name, value);
-            }
-
-            // All attributes are lowercase
-            // Grab necessary hook if one is defined
-            if (nType !== 1 || !jQuery.isXMLDoc(elem)) {
-                name = name.toLowerCase();
-                hooks = jQuery.attrHooks[name] ||
-                    (jQuery.expr.match.bool.test(name) ? boolHook : nodeHook);
-            }
-
-            if (value !== undefined) {
-
-                if (value === null) {
-                    jQuery.removeAttr(elem, name);
-
-                } else if (hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== undefined) {
-                    return ret;
-
-                } else {
-                    elem.setAttribute(name, value + "");
-                    return value;
-                }
-
-            } else if (hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null) {
-                return ret;
-
-            } else {
-                ret = jQuery.find.attr(elem, name);
-
-                // Non-existent attributes return null, we normalize to undefined
-                return ret == null ?
-                    undefined :
-                    ret;
-            }
-        },
-
-        removeAttr: function(elem, value) {
-            var name, propName,
-                i = 0,
-                attrNames = value && value.match(rnotwhite);
-
-            if (attrNames && elem.nodeType === 1) {
-                while ((name = attrNames[i++])) {
-                    propName = jQuery.propFix[name] || name;
-
-                    // Boolean attributes get special treatment (#10870)
-                    if (jQuery.expr.match.bool.test(name)) {
-                        // Set corresponding property to false
-                        if (getSetInput && getSetAttribute || !ruseDefault.test(name)) {
-                            elem[propName] = false;
-                            // Support: IE<9
-                            // Also clear defaultChecked/defaultSelected (if appropriate)
-                        } else {
-                            elem[jQuery.camelCase("default-" + name)] =
-                                elem[propName] = false;
-                        }
-
-                        // See #9699 for explanation of this approach (setting first, then removal)
-                    } else {
-                        jQuery.attr(elem, name, "");
-                    }
-
-                    elem.removeAttribute(getSetAttribute ? name : propName);
-                }
-            }
-        },
-
-        attrHooks: {
-            type: {
-                set: function(elem, value) {
-                    if (!support.radioValue && value === "radio" && jQuery.nodeName(elem, "input")) {
-                        // Setting the type on a radio button after the value resets the value in IE6-9
-                        // Reset value to default in case type is set after value during creation
-                        var val = elem.value;
-                        elem.setAttribute("type", value);
-                        if (val) {
-                            elem.value = val;
-                        }
-                        return value;
-                    }
-                }
-            }
-        }
-    });
-
-    // Hook for boolean attributes
-    boolHook = {
-        set: function(elem, value, name) {
-            if (value === false) {
-                // Remove boolean attributes when set to false
-                jQuery.removeAttr(elem, name);
-            } else if (getSetInput && getSetAttribute || !ruseDefault.test(name)) {
-                // IE<8 needs the *property* name
-                elem.setAttribute(!getSetAttribute && jQuery.propFix[name] || name, name);
-
-                // Use defaultChecked and defaultSelected for oldIE
-            } else {
-                elem[jQuery.camelCase("default-" + name)] = elem[name] = true;
-            }
-
-            return name;
-        }
-    };
-
-    // Retrieve booleans specially
-    jQuery.each(jQuery.expr.match.bool.source.match(/\w+/g), function(i, name) {
-
-        var getter = attrHandle[name] || jQuery.find.attr;
-
-        attrHandle[name] = getSetInput && getSetAttribute || !ruseDefault.test(name) ?
-            function(elem, name, isXML) {
-                var ret, handle;
-                if (!isXML) {
-                    // Avoid an infinite loop by temporarily removing this function from the getter
-                    handle = attrHandle[name];
-                    attrHandle[name] = ret;
-                    ret = getter(elem, name, isXML) != null ?
-                        name.toLowerCase() :
-                        null;
-                    attrHandle[name] = handle;
-                }
-                return ret;
-            } :
-            function(elem, name, isXML) {
-                if (!isXML) {
-                    return elem[jQuery.camelCase("default-" + name)] ?
-                        name.toLowerCase() :
-                        null;
-                }
-            };
-    });
-
-    // fix oldIE attroperties
-    if (!getSetInput || !getSetAttribute) {
-        jQuery.attrHooks.value = {
-            set: function(elem, value, name) {
-                if (jQuery.nodeName(elem, "input")) {
-                    // Does not return so that setAttribute is also used
-                    elem.defaultValue = value;
-                } else {
-                    // Use nodeHook if defined (#1954); otherwise setAttribute is fine
-                    return nodeHook && nodeHook.set(elem, value, name);
-                }
-            }
-        };
-    }
-
-    // IE6/7 do not support getting/setting some attributes with get/setAttribute
-    if (!getSetAttribute) {
-
-        // Use this for any attribute in IE6/7
-        // This fixes almost every IE6/7 issue
-        nodeHook = {
-            set: function(elem, value, name) {
-                // Set the existing or create a new attribute node
-                var ret = elem.getAttributeNode(name);
-                if (!ret) {
-                    elem.setAttributeNode(
-                        (ret = elem.ownerDocument.createAttribute(name))
-                    );
-                }
-
-                ret.value = value += "";
-
-                // Break association with cloned elements by also using setAttribute (#9646)
-                if (name === "value" || value === elem.getAttribute(name)) {
-                    return value;
-                }
-            }
-        };
-
-        // Some attributes are constructed with empty-string values when not defined
-        attrHandle.id = attrHandle.name = attrHandle.coords =
-            function(elem, name, isXML) {
-                var ret;
-                if (!isXML) {
-                    return (ret = elem.getAttributeNode(name)) && ret.value !== "" ?
-                        ret.value :
-                        null;
-                }
-            };
-
-        // Fixing value retrieval on a button requires this module
-        jQuery.valHooks.button = {
-            get: function(elem, name) {
-                var ret = elem.getAttributeNode(name);
-                if (ret && ret.specified) {
-                    return ret.value;
-                }
-            },
-            set: nodeHook.set
-        };
-
-        // Set contenteditable to false on removals(#10429)
-        // Setting to empty string throws an error as an invalid value
-        jQuery.attrHooks.contenteditable = {
-            set: function(elem, value, name) {
-                nodeHook.set(elem, value === "" ? false : value, name);
-            }
-        };
-
-        // Set width and height to auto instead of 0 on empty string( Bug #8150 )
-        // This is for removals
-        jQuery.each(["width", "height"], function(i, name) {
-            jQuery.attrHooks[name] = {
-                set: function(elem, value) {
-                    if (value === "") {
-                        elem.setAttribute(name, "auto");
-                        return value;
-                    }
-                }
-            };
-        });
-    }
-
-    if (!support.style) {
-        jQuery.attrHooks.style = {
-            get: function(elem) {
-                // Return undefined in the case of empty string
-                // Note: IE uppercases css property names, but if we were to .toLowerCase()
-                // .cssText, that would destroy case senstitivity in URL's, like in "background"
-                return elem.style.cssText || undefined;
-            },
-            set: function(elem, value) {
-                return (elem.style.cssText = value + "");
-            }
-        };
-    }
-
-
-
-    var rfocusable = /^(?:input|select|textarea|button|object)$/i,
-        rclickable = /^(?:a|area)$/i;
-
-    jQuery.fn.extend({
-        prop: function(name, value) {
-            return access(this, jQuery.prop, name, value, arguments.length > 1);
-        },
-
-        removeProp: function(name) {
-            name = jQuery.propFix[name] || name;
-            return this.each(function() {
-                // try/catch handles cases where IE balks (such as removing a property on window)
-                try {
-                    this[name] = undefined;
-                    delete this[name];
-                } catch (e) {}
-            });
-        }
-    });
-
-    jQuery.extend({
-        propFix: {
-            "for": "htmlFor",
-            "class": "className"
-        },
-
-        prop: function(elem, name, value) {
-            var ret, hooks, notxml,
-                nType = elem.nodeType;
-
-            // don't get/set properties on text, comment and attribute nodes
-            if (!elem || nType === 3 || nType === 8 || nType === 2) {
-                return;
-            }
-
-            notxml = nType !== 1 || !jQuery.isXMLDoc(elem);
-
-            if (notxml) {
-                // Fix name and attach hooks
-                name = jQuery.propFix[name] || name;
-                hooks = jQuery.propHooks[name];
-            }
-
-            if (value !== undefined) {
-                return hooks && "set" in hooks && (ret = hooks.set(elem, value, name)) !== undefined ?
-                    ret :
-                    (elem[name] = value);
-
-            } else {
-                return hooks && "get" in hooks && (ret = hooks.get(elem, name)) !== null ?
-                    ret :
-                    elem[name];
-            }
-        },
-
-        propHooks: {
-            tabIndex: {
-                get: function(elem) {
-                    // elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
-                    // http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
-                    // Use proper attribute retrieval(#12072)
-                    var tabindex = jQuery.find.attr(elem, "tabindex");
-
-                    return tabindex ?
-                        parseInt(tabindex, 10) :
-                        rfocusable.test(elem.nodeName) || rclickable.test(elem.nodeName) && elem.href ?
-                            0 :
-                            -1;
-                }
-            }
-        }
-    });
-
-    // Some attributes require a special call on IE
-    // http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
-    if (!support.hrefNormalized) {
-        // href/src property should get the full normalized URL (#10299/#12915)
-        jQuery.each(["href", "src"], function(i, name) {
-            jQuery.propHooks[name] = {
-                get: function(elem) {
-                    return elem.getAttribute(name, 4);
-                }
-            };
-        });
-    }
-
-    // Support: Safari, IE9+
-    // mis-reports the default selected property of an option
-    // Accessing the parent's selectedIndex property fixes it
-    if (!support.optSelected) {
-        jQuery.propHooks.selected = {
-            get: function(elem) {
-                var parent = elem.parentNode;
-
-                if (parent) {
-                    parent.selectedIndex;
-
-                    // Make sure that it also works with optgroups, see #5701
-                    if (parent.parentNode) {
-                        parent.parentNode.selectedIndex;
-                    }
-                }
-                return null;
-            }
-        };
-    }
-
-    jQuery.each([
-        "tabIndex",
-        "readOnly",
-        "maxLength",
-        "cellSpacing",
-        "cellPadding",
-        "rowSpan",
-        "colSpan",
-        "useMap",
-        "frameBorder",
-        "contentEditable"
-    ], function() {
-        jQuery.propFix[this.toLowerCase()] = this;
-    });
-
-    // IE6/7 call enctype encoding
-    if (!support.enctype) {
-        jQuery.propFix.enctype = "encoding";
-    }
-
-
-
-    var rclass = /[\t\r\n\f]/g;
-
-    jQuery.fn.extend({
-        addClass: function(value) {
-            var classes, elem, cur, clazz, j, finalValue,
-                i = 0,
-                len = this.length,
-                proceed = typeof value === "string" && value;
-
-            if (jQuery.isFunction(value)) {
-                return this.each(function(j) {
-                    jQuery(this).addClass(value.call(this, j, this.className));
-                });
-            }
-
-            if (proceed) {
-                // The disjunction here is for better compressibility (see removeClass)
-                classes = (value || "").match(rnotwhite) || [];
-
-                for (; i < len; i++) {
-                    elem = this[i];
-                    cur = elem.nodeType === 1 && (elem.className ?
-                                (" " + elem.className + " ").replace(rclass, " ") :
-                                " "
-                        );
-
-                    if (cur) {
-                        j = 0;
-                        while ((clazz = classes[j++])) {
-                            if (cur.indexOf(" " + clazz + " ") < 0) {
-                                cur += clazz + " ";
-                            }
-                        }
-
-                        // only assign if different to avoid unneeded rendering.
-                        finalValue = jQuery.trim(cur);
-                        if (elem.className !== finalValue) {
-                            elem.className = finalValue;
-                        }
-                    }
-                }
-            }
-
-            return this;
-        },
-
-        removeClass: function(value) {
-            var classes, elem, cur, clazz, j, finalValue,
-                i = 0,
-                len = this.length,
-                proceed = arguments.length === 0 || typeof value === "string" && value;
-
-            if (jQuery.isFunction(value)) {
-                return this.each(function(j) {
-                    jQuery(this).removeClass(value.call(this, j, this.className));
-                });
-            }
-            if (proceed) {
-                classes = (value || "").match(rnotwhite) || [];
-
-                for (; i < len; i++) {
-                    elem = this[i];
-                    // This expression is here for better compressibility (see addClass)
-                    cur = elem.nodeType === 1 && (elem.className ?
-                                (" " + elem.className + " ").replace(rclass, " ") :
-                                ""
-                        );
-
-                    if (cur) {
-                        j = 0;
-                        while ((clazz = classes[j++])) {
-                            // Remove *all* instances
-                            while (cur.indexOf(" " + clazz + " ") >= 0) {
-                                cur = cur.replace(" " + clazz + " ", " ");
-                            }
-                        }
-
-                        // only assign if different to avoid unneeded rendering.
-                        finalValue = value ? jQuery.trim(cur) : "";
-                        if (elem.className !== finalValue) {
-                            elem.className = finalValue;
-                        }
-                    }
-                }
-            }
-
-            return this;
-        },
-
-        toggleClass: function(value, stateVal) {
-            var type = typeof value;
-
-            if (typeof stateVal === "boolean" && type === "string") {
-                return stateVal ? this.addClass(value) : this.removeClass(value);
-            }
-
-            if (jQuery.isFunction(value)) {
-                return this.each(function(i) {
-                    jQuery(this).toggleClass(value.call(this, i, this.className, stateVal), stateVal);
-                });
-            }
-
-            return this.each(function() {
-                if (type === "string") {
-                    // toggle individual class names
-                    var className,
-                        i = 0,
-                        self = jQuery(this),
-                        classNames = value.match(rnotwhite) || [];
-
-                    while ((className = classNames[i++])) {
-                        // check each className given, space separated list
-                        if (self.hasClass(className)) {
-                            self.removeClass(className);
-                        } else {
-                            self.addClass(className);
-                        }
-                    }
-
-                    // Toggle whole class name
-                } else if (type === strundefined || type === "boolean") {
-                    if (this.className) {
-                        // store className if set
-                        jQuery._data(this, "__className__", this.className);
-                    }
-
-                    // If the element has a class name or if we're passed "false",
-                    // then remove the whole classname (if there was one, the above saved it).
-                    // Otherwise bring back whatever was previously saved (if anything),
-                    // falling back to the empty string if nothing was stored.
-                    this.className = this.className || value === false ? "" : jQuery._data(this, "__className__") || "";
-                }
-            });
-        },
-
-        hasClass: function(selector) {
-            var className = " " + selector + " ",
-                i = 0,
-                l = this.length;
-            for (; i < l; i++) {
-                if (this[i].nodeType === 1 && (" " + this[i].className + " ").replace(rclass, " ").indexOf(className) >= 0) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    });
-
-
-
-    // Return jQuery for attributes-only inclusion
-
-
-    jQuery.each(("blur focus focusin focusout load resize scroll unload click dblclick " +
-    "mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
-    "change select submit keydown keypress keyup error contextmenu").split(" "), function(i, name) {
-
-        // Handle event binding
-        jQuery.fn[name] = function(data, fn) {
-            return arguments.length > 0 ?
-                this.on(name, null, data, fn) :
-                this.trigger(name);
-        };
-    });
-
-    jQuery.fn.extend({
-        hover: function(fnOver, fnOut) {
-            return this.mouseenter(fnOver).mouseleave(fnOut || fnOver);
-        },
-
-        bind: function(types, data, fn) {
-            return this.on(types, null, data, fn);
-        },
-        unbind: function(types, fn) {
-            return this.off(types, null, fn);
-        },
-
-        delegate: function(selector, types, data, fn) {
-            return this.on(types, selector, data, fn);
-        },
-        undelegate: function(selector, types, fn) {
-            // ( namespace ) or ( selector, types [, fn] )
-            return arguments.length === 1 ? this.off(selector, "**") : this.off(types, selector || "**", fn);
-        }
-    });
-
-
-    var nonce = jQuery.now();
-
-    var rquery = (/\?/);
-
-
-
-    var rvalidtokens = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g;
-
-    jQuery.parseJSON = function(data) {
-        // Attempt to parse using the native JSON parser first
-        if (window.JSON && window.JSON.parse) {
-            // Support: Android 2.3
-            // Workaround failure to string-cast null input
-            return window.JSON.parse(data + "");
-        }
-
-        var requireNonComma,
-            depth = null,
-            str = jQuery.trim(data + "");
-
-        // Guard against invalid (and possibly dangerous) input by ensuring that nothing remains
-        // after removing valid tokens
-        return str && !jQuery.trim(str.replace(rvalidtokens, function(token, comma, open, close) {
-
-            // Force termination if we see a misplaced comma
-            if (requireNonComma && comma) {
-                depth = 0;
-            }
-
-            // Perform no more replacements after returning to outermost depth
-            if (depth === 0) {
-                return token;
-            }
-
-            // Commas must not follow "[", "{", or ","
-            requireNonComma = open || comma;
-
-            // Determine new depth
-            // array/object open ("[" or "{"): depth += true - false (increment)
-            // array/object close ("]" or "}"): depth += false - true (decrement)
-            // other cases ("," or primitive): depth += true - true (numeric cast)
-            depth += !close - !open;
-
-            // Remove this token
-            return "";
-        })) ?
-            (Function("return " + str))() :
-            jQuery.error("Invalid JSON: " + data);
-    };
-
-
-    // Cross-browser xml parsing
-    jQuery.parseXML = function(data) {
-        var xml, tmp;
-        if (!data || typeof data !== "string") {
-            return null;
-        }
-        try {
-            if (window.DOMParser) { // Standard
-                tmp = new DOMParser();
-                xml = tmp.parseFromString(data, "text/xml");
-            } else { // IE
-                xml = new ActiveXObject("Microsoft.XMLDOM");
-                xml.async = "false";
-                xml.loadXML(data);
-            }
-        } catch (e) {
-            xml = undefined;
-        }
-        if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
-            jQuery.error("Invalid XML: " + data);
-        }
-        return xml;
-    };
-
-
-    var
-    // Document location
-        ajaxLocParts,
-        ajaxLocation,
-
-        rhash = /#.*$/,
-        rts = /([?&])_=[^&]*/,
-        rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
-    // #7653, #8125, #8152: local protocol detection
-        rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
-        rnoContent = /^(?:GET|HEAD)$/,
-        rprotocol = /^\/\//,
-        rurl = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,
-
-    /* Prefilters
-     * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
-     * 2) These are called:
-     *    - BEFORE asking for a transport
-     *    - AFTER param serialization (s.data is a string if s.processData is true)
-     * 3) key is the dataType
-     * 4) the catchall symbol "*" can be used
-     * 5) execution will start with transport dataType and THEN continue down to "*" if needed
-     */
-        prefilters = {},
-
-    /* Transports bindings
-     * 1) key is the dataType
-     * 2) the catchall symbol "*" can be used
-     * 3) selection will start with transport dataType and THEN go to "*" if needed
-     */
-        transports = {},
-
-    // Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
-        allTypes = "*/".concat("*");
-
-    // #8138, IE may throw an exception when accessing
-    // a field from window.location if document.domain has been set
-    try {
-        ajaxLocation = location.href;
-    } catch (e) {
-        // Use the href attribute of an A element
-        // since IE will modify it given document.location
-        ajaxLocation = document.createElement("a");
-        ajaxLocation.href = "";
-        ajaxLocation = ajaxLocation.href;
-    }
-
-    // Segment location into parts
-    ajaxLocParts = rurl.exec(ajaxLocation.toLowerCase()) || [];
-
-    // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
-    function addToPrefiltersOrTransports(structure) {
-
-        // dataTypeExpression is optional and defaults to "*"
-        return function(dataTypeExpression, func) {
-
-            if (typeof dataTypeExpression !== "string") {
-                func = dataTypeExpression;
-                dataTypeExpression = "*";
-            }
-
-            var dataType,
-                i = 0,
-                dataTypes = dataTypeExpression.toLowerCase().match(rnotwhite) || [];
-
-            if (jQuery.isFunction(func)) {
-                // For each dataType in the dataTypeExpression
-                while ((dataType = dataTypes[i++])) {
-                    // Prepend if requested
-                    if (dataType.charAt(0) === "+") {
-                        dataType = dataType.slice(1) || "*";
-                        (structure[dataType] = structure[dataType] || []).unshift(func);
-
-                        // Otherwise append
-                    } else {
-                        (structure[dataType] = structure[dataType] || []).push(func);
-                    }
-                }
-            }
-        };
-    }
-
-    // Base inspection function for prefilters and transports
-    function inspectPrefiltersOrTransports(structure, options, originalOptions, jqXHR) {
-
-        var inspected = {},
-            seekingTransport = (structure === transports);
-
-        function inspect(dataType) {
-            var selected;
-            inspected[dataType] = true;
-            jQuery.each(structure[dataType] || [], function(_, prefilterOrFactory) {
-                var dataTypeOrTransport = prefilterOrFactory(options, originalOptions, jqXHR);
-                if (typeof dataTypeOrTransport === "string" && !seekingTransport && !inspected[dataTypeOrTransport]) {
-                    options.dataTypes.unshift(dataTypeOrTransport);
-                    inspect(dataTypeOrTransport);
-                    return false;
-                } else if (seekingTransport) {
-                    return !(selected = dataTypeOrTransport);
-                }
-            });
-            return selected;
-        }
-
-        return inspect(options.dataTypes[0]) || !inspected["*"] && inspect("*");
-    }
-
-    // A special extend for ajax options
-    // that takes "flat" options (not to be deep extended)
-    // Fixes #9887
-    function ajaxExtend(target, src) {
-        var deep, key,
-            flatOptions = jQuery.ajaxSettings.flatOptions || {};
-
-        for (key in src) {
-            if (src[key] !== undefined) {
-                (flatOptions[key] ? target : (deep || (deep = {})))[key] = src[key];
-            }
-        }
-        if (deep) {
-            jQuery.extend(true, target, deep);
-        }
-
-        return target;
-    }
-
-    /* Handles responses to an ajax request:
-     * - finds the right dataType (mediates between content-type and expected dataType)
-     * - returns the corresponding response
-     */
-    function ajaxHandleResponses(s, jqXHR, responses) {
-        var firstDataType, ct, finalDataType, type,
-            contents = s.contents,
-            dataTypes = s.dataTypes;
-
-        // Remove auto dataType and get content-type in the process
-        while (dataTypes[0] === "*") {
-            dataTypes.shift();
-            if (ct === undefined) {
-                ct = s.mimeType || jqXHR.getResponseHeader("Content-Type");
-            }
-        }
-
-        // Check if we're dealing with a known content-type
-        if (ct) {
-            for (type in contents) {
-                if (contents[type] && contents[type].test(ct)) {
-                    dataTypes.unshift(type);
-                    break;
-                }
-            }
-        }
-
-        // Check to see if we have a response for the expected dataType
-        if (dataTypes[0] in responses) {
-            finalDataType = dataTypes[0];
-        } else {
-            // Try convertible dataTypes
-            for (type in responses) {
-                if (!dataTypes[0] || s.converters[type + " " + dataTypes[0]]) {
-                    finalDataType = type;
-                    break;
-                }
-                if (!firstDataType) {
-                    firstDataType = type;
-                }
-            }
-            // Or just use first one
-            finalDataType = finalDataType || firstDataType;
-        }
-
-        // If we found a dataType
-        // We add the dataType to the list if needed
-        // and return the corresponding response
-        if (finalDataType) {
-            if (finalDataType !== dataTypes[0]) {
-                dataTypes.unshift(finalDataType);
-            }
-            return responses[finalDataType];
-        }
-    }
-
-    /* Chain conversions given the request and the original response
-     * Also sets the responseXXX fields on the jqXHR instance
-     */
-    function ajaxConvert(s, response, jqXHR, isSuccess) {
-        var conv2, current, conv, tmp, prev,
-            converters = {},
-        // Work with a copy of dataTypes in case we need to modify it for conversion
-            dataTypes = s.dataTypes.slice();
-
-        // Create converters map with lowercased keys
-        if (dataTypes[1]) {
-            for (conv in s.converters) {
-                converters[conv.toLowerCase()] = s.converters[conv];
-            }
-        }
-
-        current = dataTypes.shift();
-
-        // Convert to each sequential dataType
-        while (current) {
-
-            if (s.responseFields[current]) {
-                jqXHR[s.responseFields[current]] = response;
-            }
-
-            // Apply the dataFilter if provided
-            if (!prev && isSuccess && s.dataFilter) {
-                response = s.dataFilter(response, s.dataType);
-            }
-
-            prev = current;
-            current = dataTypes.shift();
-
-            if (current) {
-
-                // There's only work to do if current dataType is non-auto
-                if (current === "*") {
-
-                    current = prev;
-
-                    // Convert response if prev dataType is non-auto and differs from current
-                } else if (prev !== "*" && prev !== current) {
-
-                    // Seek a direct converter
-                    conv = converters[prev + " " + current] || converters["* " + current];
-
-                    // If none found, seek a pair
-                    if (!conv) {
-                        for (conv2 in converters) {
-
-                            // If conv2 outputs current
-                            tmp = conv2.split(" ");
-                            if (tmp[1] === current) {
-
-                                // If prev can be converted to accepted input
-                                conv = converters[prev + " " + tmp[0]] ||
-                                    converters["* " + tmp[0]];
-                                if (conv) {
-                                    // Condense equivalence converters
-                                    if (conv === true) {
-                                        conv = converters[conv2];
-
-                                        // Otherwise, insert the intermediate dataType
-                                    } else if (converters[conv2] !== true) {
-                                        current = tmp[0];
-                                        dataTypes.unshift(tmp[1]);
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    // Apply converter (if not an equivalence)
-                    if (conv !== true) {
-
-                        // Unless errors are allowed to bubble, catch and return them
-                        if (conv && s["throws"]) {
-                            response = conv(response);
-                        } else {
-                            try {
-                                response = conv(response);
-                            } catch (e) {
-                                return {
-                                    state: "parsererror",
-                                    error: conv ? e : "No conversion from " + prev + " to " + current
-                                };
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return {
-            state: "success",
-            data: response
-        };
-    }
-
-    jQuery.extend({
-
-        // Counter for holding the number of active queries
-        active: 0,
-
-        // Last-Modified header cache for next request
-        lastModified: {},
-        etag: {},
-
-        ajaxSettings: {
-            url: ajaxLocation,
-            type: "GET",
-            isLocal: rlocalProtocol.test(ajaxLocParts[1]),
-            global: true,
-            processData: true,
-            async: true,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            /*
-             timeout: 0,
-             data: null,
-             dataType: null,
-             username: null,
-             password: null,
-             cache: null,
-             throws: false,
-             traditional: false,
-             headers: {},
-             */
-
-            accepts: {
-                "*": allTypes,
-                text: "text/plain",
-                html: "text/html",
-                xml: "application/xml, text/xml",
-                json: "application/json, text/javascript"
-            },
-
-            contents: {
-                xml: /xml/,
-                html: /html/,
-                json: /json/
-            },
-
-            responseFields: {
-                xml: "responseXML",
-                text: "responseText",
-                json: "responseJSON"
-            },
-
-            // Data converters
-            // Keys separate source (or catchall "*") and destination types with a single space
-            converters: {
-
-                // Convert anything to text
-                "* text": String,
-
-                // Text to html (true = no transformation)
-                "text html": true,
-
-                // Evaluate text as a json expression
-                "text json": jQuery.parseJSON,
-
-                // Parse text as xml
-                "text xml": jQuery.parseXML
-            },
-
-            // For options that shouldn't be deep extended:
-            // you can add your own custom options here if
-            // and when you create one that shouldn't be
-            // deep extended (see ajaxExtend)
-            flatOptions: {
-                url: true,
-                context: true
-            }
-        },
-
-        // Creates a full fledged settings object into target
-        // with both ajaxSettings and settings fields.
-        // If target is omitted, writes into ajaxSettings.
-        ajaxSetup: function(target, settings) {
-            return settings ?
-
-                // Building a settings object
-                ajaxExtend(ajaxExtend(target, jQuery.ajaxSettings), settings) :
-
-                // Extending ajaxSettings
-                ajaxExtend(jQuery.ajaxSettings, target);
-        },
-
-        ajaxPrefilter: addToPrefiltersOrTransports(prefilters),
-        ajaxTransport: addToPrefiltersOrTransports(transports),
-
-        // Main method
-        ajax: function(url, options) {
-
-            // If url is an object, simulate pre-1.5 signature
-            if (typeof url === "object") {
-                options = url;
-                url = undefined;
-            }
-
-            // Force options to be an object
-            options = options || {};
-
-            var // Cross-domain detection vars
-                parts,
-            // Loop variable
-                i,
-            // URL without anti-cache param
-                cacheURL,
-            // Response headers as string
-                responseHeadersString,
-            // timeout handle
-                timeoutTimer,
-
-            // To know if global events are to be dispatched
-                fireGlobals,
-
-                transport,
-            // Response headers
-                responseHeaders,
-            // Create the final options object
-                s = jQuery.ajaxSetup({}, options),
-            // Callbacks context
-                callbackContext = s.context || s,
-            // Context for global events is callbackContext if it is a DOM node or jQuery collection
-                globalEventContext = s.context && (callbackContext.nodeType || callbackContext.jquery) ?
-                    jQuery(callbackContext) :
-                    jQuery.event,
-            // Deferreds
-                deferred = jQuery.Deferred(),
-                completeDeferred = jQuery.Callbacks("once memory"),
-            // Status-dependent callbacks
-                statusCode = s.statusCode || {},
-            // Headers (they are sent all at once)
-                requestHeaders = {},
-                requestHeadersNames = {},
-            // The jqXHR state
-                state = 0,
-            // Default abort message
-                strAbort = "canceled",
-            // Fake xhr
-                jqXHR = {
-                    readyState: 0,
-
-                    // Builds headers hashtable if needed
-                    getResponseHeader: function(key) {
-                        var match;
-                        if (state === 2) {
-                            if (!responseHeaders) {
-                                responseHeaders = {};
-                                while ((match = rheaders.exec(responseHeadersString))) {
-                                    responseHeaders[match[1].toLowerCase()] = match[2];
-                                }
-                            }
-                            match = responseHeaders[key.toLowerCase()];
-                        }
-                        return match == null ? null : match;
-                    },
-
-                    // Raw string
-                    getAllResponseHeaders: function() {
-                        return state === 2 ? responseHeadersString : null;
-                    },
-
-                    // Caches the header
-                    setRequestHeader: function(name, value) {
-                        var lname = name.toLowerCase();
-                        if (!state) {
-                            name = requestHeadersNames[lname] = requestHeadersNames[lname] || name;
-                            requestHeaders[name] = value;
-                        }
-                        return this;
-                    },
-
-                    // Overrides response content-type header
-                    overrideMimeType: function(type) {
-                        if (!state) {
-                            s.mimeType = type;
-                        }
-                        return this;
-                    },
-
-                    // Status-dependent callbacks
-                    statusCode: function(map) {
-                        var code;
-                        if (map) {
-                            if (state < 2) {
-                                for (code in map) {
-                                    // Lazy-add the new callback in a way that preserves old ones
-                                    statusCode[code] = [statusCode[code], map[code]];
-                                }
-                            } else {
-                                // Execute the appropriate callbacks
-                                jqXHR.always(map[jqXHR.status]);
-                            }
-                        }
-                        return this;
-                    },
-
-                    // Cancel the request
-                    abort: function(statusText) {
-                        var finalText = statusText || strAbort;
-                        if (transport) {
-                            transport.abort(finalText);
-                        }
-                        done(0, finalText);
-                        return this;
-                    }
-                };
-
-            // Attach deferreds
-            deferred.promise(jqXHR).complete = completeDeferred.add;
-            jqXHR.success = jqXHR.done;
-            jqXHR.error = jqXHR.fail;
-
-            // Remove hash character (#7531: and string promotion)
-            // Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
-            // Handle falsy url in the settings object (#10093: consistency with old signature)
-            // We also use the url parameter if available
-            s.url = ((url || s.url || ajaxLocation) + "").replace(rhash, "").replace(rprotocol, ajaxLocParts[1] + "//");
-
-            // Alias method option to type as per ticket #12004
-            s.type = options.method || options.type || s.method || s.type;
-
-            // Extract dataTypes list
-            s.dataTypes = jQuery.trim(s.dataType || "*").toLowerCase().match(rnotwhite) || [""];
-
-            // A cross-domain request is in order when we have a protocol:host:port mismatch
-            if (s.crossDomain == null) {
-                parts = rurl.exec(s.url.toLowerCase());
-                s.crossDomain = !!(parts &&
-                    (parts[1] !== ajaxLocParts[1] || parts[2] !== ajaxLocParts[2] ||
-                    (parts[3] || (parts[1] === "http:" ? "80" : "443")) !==
-                    (ajaxLocParts[3] || (ajaxLocParts[1] === "http:" ? "80" : "443")))
-                );
-            }
-
-            // Convert data if not already a string
-            if (s.data && s.processData && typeof s.data !== "string") {
-                s.data = jQuery.param(s.data, s.traditional);
-            }
-
-            // Apply prefilters
-            inspectPrefiltersOrTransports(prefilters, s, options, jqXHR);
-
-            // If request was aborted inside a prefilter, stop there
-            if (state === 2) {
-                return jqXHR;
-            }
-
-            // We can fire global events as of now if asked to
-            fireGlobals = s.global;
-
-            // Watch for a new set of requests
-            if (fireGlobals && jQuery.active++ === 0) {
-                jQuery.event.trigger("ajaxStart");
-            }
-
-            // Uppercase the type
-            s.type = s.type.toUpperCase();
-
-            // Determine if request has content
-            s.hasContent = !rnoContent.test(s.type);
-
-            // Save the URL in case we're toying with the If-Modified-Since
-            // and/or If-None-Match header later on
-            cacheURL = s.url;
-
-            // More options handling for requests with no content
-            if (!s.hasContent) {
-
-                // If data is available, append data to url
-                if (s.data) {
-                    cacheURL = (s.url += (rquery.test(cacheURL) ? "&" : "?") + s.data);
-                    // #9682: remove data so that it's not used in an eventual retry
-                    delete s.data;
-                }
-
-                // Add anti-cache in url if needed
-                if (s.cache === false) {
-                    s.url = rts.test(cacheURL) ?
-
-                        // If there is already a '_' parameter, set its value
-                        cacheURL.replace(rts, "$1_=" + nonce++) :
-
-                        // Otherwise add one to the end
-                    cacheURL + (rquery.test(cacheURL) ? "&" : "?") + "_=" + nonce++;
-                }
-            }
-
-            // Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
-            if (s.ifModified) {
-                if (jQuery.lastModified[cacheURL]) {
-                    jqXHR.setRequestHeader("If-Modified-Since", jQuery.lastModified[cacheURL]);
-                }
-                if (jQuery.etag[cacheURL]) {
-                    jqXHR.setRequestHeader("If-None-Match", jQuery.etag[cacheURL]);
-                }
-            }
-
-            // Set the correct header, if data is being sent
-            if (s.data && s.hasContent && s.contentType !== false || options.contentType) {
-                jqXHR.setRequestHeader("Content-Type", s.contentType);
-            }
-
-            // Set the Accepts header for the server, depending on the dataType
-            jqXHR.setRequestHeader(
-                "Accept",
-                s.dataTypes[0] && s.accepts[s.dataTypes[0]] ?
-                s.accepts[s.dataTypes[0]] + (s.dataTypes[0] !== "*" ? ", " + allTypes + "; q=0.01" : "") :
-                    s.accepts["*"]
-            );
-
-            // Check for headers option
-            for (i in s.headers) {
-                jqXHR.setRequestHeader(i, s.headers[i]);
-            }
-
-            // Allow custom headers/mimetypes and early abort
-            if (s.beforeSend && (s.beforeSend.call(callbackContext, jqXHR, s) === false || state === 2)) {
-                // Abort if not done already and return
-                return jqXHR.abort();
-            }
-
-            // aborting is no longer a cancellation
-            strAbort = "abort";
-
-            // Install callbacks on deferreds
-            for (i in {
-                success: 1,
-                error: 1,
-                complete: 1
-            }) {
-                jqXHR[i](s[i]);
-            }
-
-            // Get transport
-            transport = inspectPrefiltersOrTransports(transports, s, options, jqXHR);
-
-            // If no transport, we auto-abort
-            if (!transport) {
-                done(-1, "No Transport");
-            } else {
-                jqXHR.readyState = 1;
-
-                // Send global event
-                if (fireGlobals) {
-                    globalEventContext.trigger("ajaxSend", [jqXHR, s]);
-                }
-                // Timeout
-                if (s.async && s.timeout > 0) {
-                    timeoutTimer = setTimeout(function() {
-                        jqXHR.abort("timeout");
-                    }, s.timeout);
-                }
-
-                try {
-                    state = 1;
-                    transport.send(requestHeaders, done);
-                } catch (e) {
-                    // Propagate exception as error if not done
-                    if (state < 2) {
-                        done(-1, e);
-                        // Simply rethrow otherwise
-                    } else {
-                        throw e;
-                    }
-                }
-            }
-
-            // Callback for when everything is done
-            function done(status, nativeStatusText, responses, headers) {
-                var isSuccess, success, error, response, modified,
-                    statusText = nativeStatusText;
-
-                // Called once
-                if (state === 2) {
-                    return;
-                }
-
-                // State is "done" now
-                state = 2;
-
-                // Clear timeout if it exists
-                if (timeoutTimer) {
-                    clearTimeout(timeoutTimer);
-                }
-
-                // Dereference transport for early garbage collection
-                // (no matter how long the jqXHR object will be used)
-                transport = undefined;
-
-                // Cache response headers
-                responseHeadersString = headers || "";
-
-                // Set readyState
-                jqXHR.readyState = status > 0 ? 4 : 0;
-
-                // Determine if successful
-                isSuccess = status >= 200 && status < 300 || status === 304;
-
-                // Get response data
-                if (responses) {
-                    response = ajaxHandleResponses(s, jqXHR, responses);
-                }
-
-                // Convert no matter what (that way responseXXX fields are always set)
-                response = ajaxConvert(s, response, jqXHR, isSuccess);
-
-                // If successful, handle type chaining
-                if (isSuccess) {
-
-                    // Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
-                    if (s.ifModified) {
-                        modified = jqXHR.getResponseHeader("Last-Modified");
-                        if (modified) {
-                            jQuery.lastModified[cacheURL] = modified;
-                        }
-                        modified = jqXHR.getResponseHeader("etag");
-                        if (modified) {
-                            jQuery.etag[cacheURL] = modified;
-                        }
-                    }
-
-                    // if no content
-                    if (status === 204 || s.type === "HEAD") {
-                        statusText = "nocontent";
-
-                        // if not modified
-                    } else if (status === 304) {
-                        statusText = "notmodified";
-
-                        // If we have data, let's convert it
-                    } else {
-                        statusText = response.state;
-                        success = response.data;
-                        error = response.error;
-                        isSuccess = !error;
-                    }
-                } else {
-                    // We extract error from statusText
-                    // then normalize statusText and status for non-aborts
-                    error = statusText;
-                    if (status || !statusText) {
-                        statusText = "error";
-                        if (status < 0) {
-                            status = 0;
-                        }
-                    }
-                }
-
-                // Set data for the fake xhr object
-                jqXHR.status = status;
-                jqXHR.statusText = (nativeStatusText || statusText) + "";
-
-                // Success/Error
-                if (isSuccess) {
-                    deferred.resolveWith(callbackContext, [success, statusText, jqXHR]);
-                } else {
-                    deferred.rejectWith(callbackContext, [jqXHR, statusText, error]);
-                }
-
-                // Status-dependent callbacks
-                jqXHR.statusCode(statusCode);
-                statusCode = undefined;
-
-                if (fireGlobals) {
-                    globalEventContext.trigger(isSuccess ? "ajaxSuccess" : "ajaxError", [jqXHR, s, isSuccess ? success : error]);
-                }
-
-                // Complete
-                completeDeferred.fireWith(callbackContext, [jqXHR, statusText]);
-
-                if (fireGlobals) {
-                    globalEventContext.trigger("ajaxComplete", [jqXHR, s]);
-                    // Handle the global AJAX counter
-                    if (!(--jQuery.active)) {
-                        jQuery.event.trigger("ajaxStop");
-                    }
-                }
-            }
-
-            return jqXHR;
-        },
-
-        getJSON: function(url, data, callback) {
-            return jQuery.get(url, data, callback, "json");
-        },
-
-        getScript: function(url, callback) {
-            return jQuery.get(url, undefined, callback, "script");
-        }
-    });
-
-    jQuery.each(["get", "post"], function(i, method) {
-        jQuery[method] = function(url, data, callback, type) {
-            // shift arguments if data argument was omitted
-            if (jQuery.isFunction(data)) {
-                type = type || callback;
-                callback = data;
-                data = undefined;
-            }
-
-            return jQuery.ajax({
-                url: url,
-                type: method,
-                dataType: type,
-                data: data,
-                success: callback
-            });
-        };
-    });
-
-    // Attach a bunch of functions for handling common AJAX events
-    jQuery.each(["ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend"], function(i, type) {
-        jQuery.fn[type] = function(fn) {
-            return this.on(type, fn);
-        };
-    });
-
-
-    jQuery._evalUrl = function(url) {
-        return jQuery.ajax({
-            url: url,
-            type: "GET",
-            dataType: "script",
-            async: false,
-            global: false,
-            "throws": true
-        });
-    };
-
-
-    jQuery.fn.extend({
-        wrapAll: function(html) {
-            if (jQuery.isFunction(html)) {
-                return this.each(function(i) {
-                    jQuery(this).wrapAll(html.call(this, i));
-                });
-            }
-
-            if (this[0]) {
-                // The elements to wrap the target around
-                var wrap = jQuery(html, this[0].ownerDocument).eq(0).clone(true);
-
-                if (this[0].parentNode) {
-                    wrap.insertBefore(this[0]);
-                }
-
-                wrap.map(function() {
-                    var elem = this;
-
-                    while (elem.firstChild && elem.firstChild.nodeType === 1) {
-                        elem = elem.firstChild;
-                    }
-
-                    return elem;
-                }).append(this);
-            }
-
-            return this;
-        },
-
-        wrapInner: function(html) {
-            if (jQuery.isFunction(html)) {
-                return this.each(function(i) {
-                    jQuery(this).wrapInner(html.call(this, i));
-                });
-            }
-
-            return this.each(function() {
-                var self = jQuery(this),
-                    contents = self.contents();
-
-                if (contents.length) {
-                    contents.wrapAll(html);
-
-                } else {
-                    self.append(html);
-                }
-            });
-        },
-
-        wrap: function(html) {
-            var isFunction = jQuery.isFunction(html);
-
-            return this.each(function(i) {
-                jQuery(this).wrapAll(isFunction ? html.call(this, i) : html);
-            });
-        },
-
-        unwrap: function() {
-            return this.parent().each(function() {
-                if (!jQuery.nodeName(this, "body")) {
-                    jQuery(this).replaceWith(this.childNodes);
-                }
-            }).end();
-        }
-    });
-
-
-    jQuery.expr.filters.hidden = function(elem) {
-        // Support: Opera <= 12.12
-        // Opera reports offsetWidths and offsetHeights less than zero on some elements
-        return elem.offsetWidth <= 0 && elem.offsetHeight <= 0 ||
-            (!support.reliableHiddenOffsets() &&
-            ((elem.style && elem.style.display) || jQuery.css(elem, "display")) === "none");
-    };
-
-    jQuery.expr.filters.visible = function(elem) {
-        return !jQuery.expr.filters.hidden(elem);
-    };
-
-
-
-    var r20 = /%20/g,
-        rbracket = /\[\]$/,
-        rCRLF = /\r?\n/g,
-        rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
-        rsubmittable = /^(?:input|select|textarea|keygen)/i;
-
-    function buildParams(prefix, obj, traditional, add) {
-        var name;
-
-        if (jQuery.isArray(obj)) {
-            // Serialize array item.
-            jQuery.each(obj, function(i, v) {
-                if (traditional || rbracket.test(prefix)) {
-                    // Treat each array item as a scalar.
-                    add(prefix, v);
-
-                } else {
-                    // Item is non-scalar (array or object), encode its numeric index.
-                    buildParams(prefix + "[" + (typeof v === "object" ? i : "") + "]", v, traditional, add);
-                }
-            });
-
-        } else if (!traditional && jQuery.type(obj) === "object") {
-            // Serialize object item.
-            for (name in obj) {
-                buildParams(prefix + "[" + name + "]", obj[name], traditional, add);
-            }
-
-        } else {
-            // Serialize scalar item.
-            add(prefix, obj);
-        }
-    }
-
-    // Serialize an array of form elements or a set of
-    // key/values into a query string
-    jQuery.param = function(a, traditional) {
-        var prefix,
-            s = [],
-            add = function(key, value) {
-                // If value is a function, invoke it and return its value
-                value = jQuery.isFunction(value) ? value() : (value == null ? "" : value);
-                s[s.length] = encodeURIComponent(key) + "=" + encodeURIComponent(value);
-            };
-
-        // Set traditional to true for jQuery <= 1.3.2 behavior.
-        if (traditional === undefined) {
-            traditional = jQuery.ajaxSettings && jQuery.ajaxSettings.traditional;
-        }
-
-        // If an array was passed in, assume that it is an array of form elements.
-        if (jQuery.isArray(a) || (a.jquery && !jQuery.isPlainObject(a))) {
-            // Serialize the form elements
-            jQuery.each(a, function() {
-                add(this.name, this.value);
-            });
-
-        } else {
-            // If traditional, encode the "old" way (the way 1.3.2 or older
-            // did it), otherwise encode params recursively.
-            for (prefix in a) {
-                buildParams(prefix, a[prefix], traditional, add);
-            }
-        }
-
-        // Return the resulting serialization
-        return s.join("&").replace(r20, "+");
-    };
-
-    jQuery.fn.extend({
-        serialize: function() {
-            return jQuery.param(this.serializeArray());
-        },
-        serializeArray: function() {
-            return this.map(function() {
-                // Can add propHook for "elements" to filter or add form elements
-                var elements = jQuery.prop(this, "elements");
-                return elements ? jQuery.makeArray(elements) : this;
-            })
-                .filter(function() {
-                    var type = this.type;
-                    // Use .is(":disabled") so that fieldset[disabled] works
-                    return this.name && !jQuery(this).is(":disabled") &&
-                        rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) &&
-                        (this.checked || !rcheckableType.test(type));
-                })
-                .map(function(i, elem) {
-                    var val = jQuery(this).val();
-
-                    return val == null ?
-                        null :
-                        jQuery.isArray(val) ?
-                            jQuery.map(val, function(val) {
-                                return {
-                                    name: elem.name,
-                                    value: val.replace(rCRLF, "\r\n")
-                                };
-                            }) : {
-                            name: elem.name,
-                            value: val.replace(rCRLF, "\r\n")
-                        };
-                }).get();
-        }
-    });
-
-
-    // Create the request object
-    // (This is still attached to ajaxSettings for backward compatibility)
-    jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
-        // Support: IE6+
-        function() {
-
-            // XHR cannot access local files, always use ActiveX for that case
-            return !this.isLocal &&
-
-                // Support: IE7-8
-                // oldIE XHR does not support non-RFC2616 methods (#13240)
-                // See http://msdn.microsoft.com/en-us/library/ie/ms536648(v=vs.85).aspx
-                // and http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9
-                // Although this check for six methods instead of eight
-                // since IE also does not support "trace" and "connect"
-                /^(get|post|head|put|delete|options)$/i.test(this.type) &&
-
-                createStandardXHR() || createActiveXHR();
-        } :
-        // For all other browsers, use the standard XMLHttpRequest object
-        createStandardXHR;
-
-    var xhrId = 0,
-        xhrCallbacks = {},
-        xhrSupported = jQuery.ajaxSettings.xhr();
-
-    // Support: IE<10
-    // Open requests must be manually aborted on unload (#5280)
-    if (window.ActiveXObject) {
-        jQuery(window).on("unload", function() {
-            for (var key in xhrCallbacks) {
-                xhrCallbacks[key](undefined, true);
-            }
-        });
-    }
-
-    // Determine support properties
-    support.cors = !!xhrSupported && ("withCredentials" in xhrSupported);
-    xhrSupported = support.ajax = !!xhrSupported;
-
-    // Create transport if the browser can provide an xhr
-    if (xhrSupported) {
-
-        jQuery.ajaxTransport(function(options) {
-            // Cross domain only allowed if supported through XMLHttpRequest
-            if (!options.crossDomain || support.cors) {
-
-                var callback;
-
-                return {
-                    send: function(headers, complete) {
-                        var i,
-                            xhr = options.xhr(),
-                            id = ++xhrId;
-
-                        // Open the socket
-                        xhr.open(options.type, options.url, options.async, options.username, options.password);
-
-                        // Apply custom fields if provided
-                        if (options.xhrFields) {
-                            for (i in options.xhrFields) {
-                                xhr[i] = options.xhrFields[i];
-                            }
-                        }
-
-                        // Override mime type if needed
-                        if (options.mimeType && xhr.overrideMimeType) {
-                            xhr.overrideMimeType(options.mimeType);
-                        }
-
-                        // X-Requested-With header
-                        // For cross-domain requests, seeing as conditions for a preflight are
-                        // akin to a jigsaw puzzle, we simply never set it to be sure.
-                        // (it can always be set on a per-request basis or even using ajaxSetup)
-                        // For same-domain requests, won't change header if already provided.
-                        if (!options.crossDomain && !headers["X-Requested-With"]) {
-                            headers["X-Requested-With"] = "XMLHttpRequest";
-                        }
-
-                        // Set headers
-                        for (i in headers) {
-                            // Support: IE<9
-                            // IE's ActiveXObject throws a 'Type Mismatch' exception when setting
-                            // request header to a null-value.
-                            //
-                            // To keep consistent with other XHR implementations, cast the value
-                            // to string and ignore `undefined`.
-                            if (headers[i] !== undefined) {
-                                xhr.setRequestHeader(i, headers[i] + "");
-                            }
-                        }
-
-                        // Do send the request
-                        // This may raise an exception which is actually
-                        // handled in jQuery.ajax (so no try/catch here)
-                        xhr.send((options.hasContent && options.data) || null);
-
-                        // Listener
-                        callback = function(_, isAbort) {
-                            var status, statusText, responses;
-
-                            // Was never called and is aborted or complete
-                            if (callback && (isAbort || xhr.readyState === 4)) {
-                                // Clean up
-                                delete xhrCallbacks[id];
-                                callback = undefined;
-                                xhr.onreadystatechange = jQuery.noop;
-
-                                // Abort manually if needed
-                                if (isAbort) {
-                                    if (xhr.readyState !== 4) {
-                                        xhr.abort();
-                                    }
-                                } else {
-                                    responses = {};
-                                    status = xhr.status;
-
-                                    // Support: IE<10
-                                    // Accessing binary-data responseText throws an exception
-                                    // (#11426)
-                                    if (typeof xhr.responseText === "string") {
-                                        responses.text = xhr.responseText;
-                                    }
-
-                                    // Firefox throws an exception when accessing
-                                    // statusText for faulty cross-domain requests
-                                    try {
-                                        statusText = xhr.statusText;
-                                    } catch (e) {
-                                        // We normalize with Webkit giving an empty statusText
-                                        statusText = "";
-                                    }
-
-                                    // Filter status for non standard behaviors
-
-                                    // If the request is local and we have data: assume a success
-                                    // (success with no data won't get notified, that's the best we
-                                    // can do given current implementations)
-                                    if (!status && options.isLocal && !options.crossDomain) {
-                                        status = responses.text ? 200 : 404;
-                                        // IE - #1450: sometimes returns 1223 when it should be 204
-                                    } else if (status === 1223) {
-                                        status = 204;
-                                    }
-                                }
-                            }
-
-                            // Call complete if needed
-                            if (responses) {
-                                complete(status, statusText, responses, xhr.getAllResponseHeaders());
-                            }
-                        };
-
-                        if (!options.async) {
-                            // if we're in sync mode we fire the callback
-                            callback();
-                        } else if (xhr.readyState === 4) {
-                            // (IE6 & IE7) if it's in cache and has been
-                            // retrieved directly we need to fire the callback
-                            setTimeout(callback);
-                        } else {
-                            // Add to the list of active xhr callbacks
-                            xhr.onreadystatechange = xhrCallbacks[id] = callback;
-                        }
-                    },
-
-                    abort: function() {
-                        if (callback) {
-                            callback(undefined, true);
-                        }
-                    }
-                };
-            }
-        });
-    }
-
-    // Functions to create xhrs
-    function createStandardXHR() {
-        try {
-            return new window.XMLHttpRequest();
-        } catch (e) {}
-    }
-
-    function createActiveXHR() {
-        try {
-            return new window.ActiveXObject("Microsoft.XMLHTTP");
-        } catch (e) {}
-    }
-
-
-
-    // Install script dataType
-    jQuery.ajaxSetup({
-        accepts: {
-            script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
-        },
-        contents: {
-            script: /(?:java|ecma)script/
-        },
-        converters: {
-            "text script": function(text) {
-                jQuery.globalEval(text);
-                return text;
-            }
-        }
-    });
-
-    // Handle cache's special case and global
-    jQuery.ajaxPrefilter("script", function(s) {
-        if (s.cache === undefined) {
-            s.cache = false;
-        }
-        if (s.crossDomain) {
-            s.type = "GET";
-            s.global = false;
-        }
-    });
-
-    // Bind script tag hack transport
-    jQuery.ajaxTransport("script", function(s) {
-
-        // This transport only deals with cross domain requests
-        if (s.crossDomain) {
-
-            var script,
-                head = document.head || jQuery("head")[0] || document.documentElement;
-
-            return {
-
-                send: function(_, callback) {
-
-                    script = document.createElement("script");
-
-                    script.async = true;
-
-                    if (s.scriptCharset) {
-                        script.charset = s.scriptCharset;
-                    }
-
-                    script.src = s.url;
-
-                    // Attach handlers for all browsers
-                    script.onload = script.onreadystatechange = function(_, isAbort) {
-
-                        if (isAbort || !script.readyState || /loaded|complete/.test(script.readyState)) {
-
-                            // Handle memory leak in IE
-                            script.onload = script.onreadystatechange = null;
-
-                            // Remove the script
-                            if (script.parentNode) {
-                                script.parentNode.removeChild(script);
-                            }
-
-                            // Dereference the script
-                            script = null;
-
-                            // Callback if not abort
-                            if (!isAbort) {
-                                callback(200, "success");
-                            }
-                        }
-                    };
-
-                    // Circumvent IE6 bugs with base elements (#2709 and #4378) by prepending
-                    // Use native DOM manipulation to avoid our domManip AJAX trickery
-                    head.insertBefore(script, head.firstChild);
-                },
-
-                abort: function() {
-                    if (script) {
-                        script.onload(undefined, true);
-                    }
-                }
-            };
-        }
-    });
-
-
-
-    var oldCallbacks = [],
-        rjsonp = /(=)\?(?=&|$)|\?\?/;
-
-    // Default jsonp settings
-    jQuery.ajaxSetup({
-        jsonp: "callback",
-        jsonpCallback: function() {
-            var callback = oldCallbacks.pop() || (jQuery.expando + "_" + (nonce++));
-            this[callback] = true;
-            return callback;
-        }
-    });
-
-    // Detect, normalize options and install callbacks for jsonp requests
-    jQuery.ajaxPrefilter("json jsonp", function(s, originalSettings, jqXHR) {
-
-        var callbackName, overwritten, responseContainer,
-            jsonProp = s.jsonp !== false && (rjsonp.test(s.url) ?
-                        "url" :
-                    typeof s.data === "string" && !(s.contentType || "").indexOf("application/x-www-form-urlencoded") && rjsonp.test(s.data) && "data"
-                );
-
-        // Handle iff the expected data type is "jsonp" or we have a parameter to set
-        if (jsonProp || s.dataTypes[0] === "jsonp") {
-
-            // Get callback name, remembering preexisting value associated with it
-            callbackName = s.jsonpCallback = jQuery.isFunction(s.jsonpCallback) ?
-                s.jsonpCallback() :
-                s.jsonpCallback;
-
-            // Insert callback into url or form data
-            if (jsonProp) {
-                s[jsonProp] = s[jsonProp].replace(rjsonp, "$1" + callbackName);
-            } else if (s.jsonp !== false) {
-                s.url += (rquery.test(s.url) ? "&" : "?") + s.jsonp + "=" + callbackName;
-            }
-
-            // Use data converter to retrieve json after script execution
-            s.converters["script json"] = function() {
-                if (!responseContainer) {
-                    jQuery.error(callbackName + " was not called");
-                }
-                return responseContainer[0];
-            };
-
-            // force json dataType
-            s.dataTypes[0] = "json";
-
-            // Install callback
-            overwritten = window[callbackName];
-            window[callbackName] = function() {
-                responseContainer = arguments;
-            };
-
-            // Clean-up function (fires after converters)
-            jqXHR.always(function() {
-                // Restore preexisting value
-                window[callbackName] = overwritten;
-
-                // Save back as free
-                if (s[callbackName]) {
-                    // make sure that re-using the options doesn't screw things around
-                    s.jsonpCallback = originalSettings.jsonpCallback;
-
-                    // save the callback name for future use
-                    oldCallbacks.push(callbackName);
-                }
-
-                // Call if it was a function and we have a response
-                if (responseContainer && jQuery.isFunction(overwritten)) {
-                    overwritten(responseContainer[0]);
-                }
-
-                responseContainer = overwritten = undefined;
-            });
-
-            // Delegate to script
-            return "script";
-        }
-    });
-
-
-
-    // data: string of html
-    // context (optional): If specified, the fragment will be created in this context, defaults to document
-    // keepScripts (optional): If true, will include scripts passed in the html string
-    jQuery.parseHTML = function(data, context, keepScripts) {
-        if (!data || typeof data !== "string") {
-            return null;
-        }
-        if (typeof context === "boolean") {
-            keepScripts = context;
-            context = false;
-        }
-        context = context || document;
-
-        var parsed = rsingleTag.exec(data),
-            scripts = !keepScripts && [];
-
-        // Single tag
-        if (parsed) {
-            return [context.createElement(parsed[1])];
-        }
-
-        parsed = jQuery.buildFragment([data], context, scripts);
-
-        if (scripts && scripts.length) {
-            jQuery(scripts).remove();
-        }
-
-        return jQuery.merge([], parsed.childNodes);
-    };
-
-
-    // Keep a copy of the old load method
-    var _load = jQuery.fn.load;
-
-    /**
-     * Load a url into a page
-     */
-    jQuery.fn.load = function(url, params, callback) {
-        if (typeof url !== "string" && _load) {
-            return _load.apply(this, arguments);
-        }
-
-        var selector, response, type,
-            self = this,
-            off = url.indexOf(" ");
-
-        if (off >= 0) {
-            selector = jQuery.trim(url.slice(off, url.length));
-            url = url.slice(0, off);
-        }
-
-        // If it's a function
-        if (jQuery.isFunction(params)) {
-
-            // We assume that it's the callback
-            callback = params;
-            params = undefined;
-
-            // Otherwise, build a param string
-        } else if (params && typeof params === "object") {
-            type = "POST";
-        }
-
-        // If we have elements to modify, make the request
-        if (self.length > 0) {
-            jQuery.ajax({
-                url: url,
-
-                // if "type" variable is undefined, then "GET" method will be used
-                type: type,
-                dataType: "html",
-                data: params
-            }).done(function(responseText) {
-
-                // Save response for use in complete callback
-                response = arguments;
-
-                self.html(selector ?
-
-                    // If a selector was specified, locate the right elements in a dummy div
-                    // Exclude scripts to avoid IE 'Permission Denied' errors
-                    jQuery("<div>").append(jQuery.parseHTML(responseText)).find(selector) :
-
-                    // Otherwise use the full result
-                    responseText);
-
-            }).complete(callback && function(jqXHR, status) {
-                    self.each(callback, response || [jqXHR.responseText, status, jqXHR]);
-                });
-        }
-
-        return this;
-    };
-
-
-
-    jQuery.expr.filters.animated = function(elem) {
-        return jQuery.grep(jQuery.timers, function(fn) {
-            return elem === fn.elem;
-        }).length;
-    };
-
-
-
-    var docElem = window.document.documentElement;
-
-    /**
-     * Gets a window from an element
-     */
-    function getWindow(elem) {
-        return jQuery.isWindow(elem) ?
-            elem :
-            elem.nodeType === 9 ?
-            elem.defaultView || elem.parentWindow :
-                false;
-    }
-
-    jQuery.offset = {
-        setOffset: function(elem, options, i) {
-            var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
-                position = jQuery.css(elem, "position"),
-                curElem = jQuery(elem),
-                props = {};
-
-            // set position first, in-case top/left are set even on static elem
-            if (position === "static") {
-                elem.style.position = "relative";
-            }
-
-            curOffset = curElem.offset();
-            curCSSTop = jQuery.css(elem, "top");
-            curCSSLeft = jQuery.css(elem, "left");
-            calculatePosition = (position === "absolute" || position === "fixed") &&
-                jQuery.inArray("auto", [curCSSTop, curCSSLeft]) > -1;
-
-            // need to be able to calculate position if either top or left is auto and position is either absolute or fixed
-            if (calculatePosition) {
-                curPosition = curElem.position();
-                curTop = curPosition.top;
-                curLeft = curPosition.left;
-            } else {
-                curTop = parseFloat(curCSSTop) || 0;
-                curLeft = parseFloat(curCSSLeft) || 0;
-            }
-
-            if (jQuery.isFunction(options)) {
-                options = options.call(elem, i, curOffset);
-            }
-
-            if (options.top != null) {
-                props.top = (options.top - curOffset.top) + curTop;
-            }
-            if (options.left != null) {
-                props.left = (options.left - curOffset.left) + curLeft;
-            }
-
-            if ("using" in options) {
-                options.using.call(elem, props);
-            } else {
-                curElem.css(props);
-            }
-        }
-    };
-
-    jQuery.fn.extend({
-        offset: function(options) {
-            if (arguments.length) {
-                return options === undefined ?
-                    this :
-                    this.each(function(i) {
-                        jQuery.offset.setOffset(this, options, i);
-                    });
-            }
-
-            var docElem, win,
-                box = {
-                    top: 0,
-                    left: 0
-                },
-                elem = this[0],
-                doc = elem && elem.ownerDocument;
-
-            if (!doc) {
-                return;
-            }
-
-            docElem = doc.documentElement;
-
-            // Make sure it's not a disconnected DOM node
-            if (!jQuery.contains(docElem, elem)) {
-                return box;
-            }
-
-            // If we don't have gBCR, just use 0,0 rather than error
-            // BlackBerry 5, iOS 3 (original iPhone)
-            if (typeof elem.getBoundingClientRect !== strundefined) {
-                box = elem.getBoundingClientRect();
-            }
-            win = getWindow(doc);
-            return {
-                top: box.top + (win.pageYOffset || docElem.scrollTop) - (docElem.clientTop || 0),
-                left: box.left + (win.pageXOffset || docElem.scrollLeft) - (docElem.clientLeft || 0)
-            };
-        },
-
-        position: function() {
-            if (!this[0]) {
-                return;
-            }
-
-            var offsetParent, offset,
-                parentOffset = {
-                    top: 0,
-                    left: 0
-                },
-                elem = this[0];
-
-            // fixed elements are offset from window (parentOffset = {top:0, left: 0}, because it is its only offset parent
-            if (jQuery.css(elem, "position") === "fixed") {
-                // we assume that getBoundingClientRect is available when computed position is fixed
-                offset = elem.getBoundingClientRect();
-            } else {
-                // Get *real* offsetParent
-                offsetParent = this.offsetParent();
-
-                // Get correct offsets
-                offset = this.offset();
-                if (!jQuery.nodeName(offsetParent[0], "html")) {
-                    parentOffset = offsetParent.offset();
-                }
-
-                // Add offsetParent borders
-                parentOffset.top += jQuery.css(offsetParent[0], "borderTopWidth", true);
-                parentOffset.left += jQuery.css(offsetParent[0], "borderLeftWidth", true);
-            }
-
-            // Subtract parent offsets and element margins
-            // note: when an element has margin: auto the offsetLeft and marginLeft
-            // are the same in Safari causing offset.left to incorrectly be 0
-            return {
-                top: offset.top - parentOffset.top - jQuery.css(elem, "marginTop", true),
-                left: offset.left - parentOffset.left - jQuery.css(elem, "marginLeft", true)
-            };
-        },
-
-        offsetParent: function() {
-            return this.map(function() {
-                var offsetParent = this.offsetParent || docElem;
-
-                while (offsetParent && (!jQuery.nodeName(offsetParent, "html") && jQuery.css(offsetParent, "position") === "static")) {
-                    offsetParent = offsetParent.offsetParent;
-                }
-                return offsetParent || docElem;
-            });
-        }
-    });
-
-    // Create scrollLeft and scrollTop methods
-    jQuery.each({
-        scrollLeft: "pageXOffset",
-        scrollTop: "pageYOffset"
-    }, function(method, prop) {
-        var top = /Y/.test(prop);
-
-        jQuery.fn[method] = function(val) {
-            return access(this, function(elem, method, val) {
-                var win = getWindow(elem);
-
-                if (val === undefined) {
-                    return win ? (prop in win) ? win[prop] :
-                        win.document.documentElement[method] :
-                        elem[method];
-                }
-
-                if (win) {
-                    win.scrollTo(!top ? val : jQuery(win).scrollLeft(),
-                        top ? val : jQuery(win).scrollTop()
-                    );
-
-                } else {
-                    elem[method] = val;
-                }
-            }, method, val, arguments.length, null);
-        };
-    });
-
-    // Add the top/left cssHooks using jQuery.fn.position
-    // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
-    // getComputedStyle returns percent when specified for top/left/bottom/right
-    // rather than make the css module depend on the offset module, we just check for it here
-    jQuery.each(["top", "left"], function(i, prop) {
-        jQuery.cssHooks[prop] = addGetHookIf(support.pixelPosition,
-            function(elem, computed) {
-                if (computed) {
-                    computed = curCSS(elem, prop);
-                    // if curCSS returns percentage, fallback to offset
-                    return rnumnonpx.test(computed) ?
-                    jQuery(elem).position()[prop] + "px" :
-                        computed;
-                }
-            }
-        );
-    });
-
-
-    // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-    jQuery.each({
-        Height: "height",
-        Width: "width"
-    }, function(name, type) {
-        jQuery.each({
-            padding: "inner" + name,
-            content: type,
-            "": "outer" + name
-        }, function(defaultExtra, funcName) {
-            // margin is only for outerHeight, outerWidth
-            jQuery.fn[funcName] = function(margin, value) {
-                var chainable = arguments.length && (defaultExtra || typeof margin !== "boolean"),
-                    extra = defaultExtra || (margin === true || value === true ? "margin" : "border");
-
-                return access(this, function(elem, type, value) {
-                    var doc;
-
-                    if (jQuery.isWindow(elem)) {
-                        // As of 5/8/2012 this will yield incorrect results for Mobile Safari, but there
-                        // isn't a whole lot we can do. See pull request at this URL for discussion:
-                        // https://github.com/jquery/jquery/pull/764
-                        return elem.document.documentElement["client" + name];
-                    }
-
-                    // Get document width or height
-                    if (elem.nodeType === 9) {
-                        doc = elem.documentElement;
-
-                        // Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height], whichever is greatest
-                        // unfortunately, this causes bug #3838 in IE6/8 only, but there is currently no good, small way to fix it.
-                        return Math.max(
-                            elem.body["scroll" + name], doc["scroll" + name],
-                            elem.body["offset" + name], doc["offset" + name],
-                            doc["client" + name]
-                        );
-                    }
-
-                    return value === undefined ?
-                        // Get width or height on the element, requesting but not forcing parseFloat
-                        jQuery.css(elem, type, extra) :
-
-                        // Set width or height on the element
-                        jQuery.style(elem, type, value, extra);
-                }, type, chainable ? margin : undefined, chainable, null);
-            };
-        });
-    });
-
-
-    // The number of elements contained in the matched element set
-    jQuery.fn.size = function() {
-        return this.length;
-    };
-
-    jQuery.fn.andSelf = jQuery.fn.addBack;
-
-
-
-    // Register as a named AMD module, since jQuery can be concatenated with other
-    // files that may use define, but not via a proper concatenation script that
-    // understands anonymous AMD modules. A named AMD is safest and most robust
-    // way to register. Lowercase jquery is used because AMD module names are
-    // derived from file names, and jQuery is normally delivered in a lowercase
-    // file name. Do this after creating the global so that if an AMD module wants
-    // to call noConflict to hide this version of jQuery, it will work.
-
-    // Note that for maximum portability, libraries that are not jQuery should
-    // declare themselves as anonymous modules, and avoid setting a global if an
-    // AMD loader is present. jQuery is a special case. For more information, see
-    // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
-
-    if (typeof define === "function" && define.amd) {
-        define("jquery", [], function() {
-            return jQuery;
-        });
-    }
-
-
-
-    var
-    // Map over jQuery in case of overwrite
-        _jQuery = window.jQuery,
-
-    // Map over the $ in case of overwrite
-        _$ = window.$;
-
-    jQuery.noConflict = function(deep) {
-        if (window.$ === jQuery) {
-            window.$ = _$;
-        }
-
-        if (deep && window.jQuery === jQuery) {
-            window.jQuery = _jQuery;
-        }
-
-        return jQuery;
-    };
-
-    // Expose jQuery and $ identifiers, even in
-    // AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-    // and CommonJS for browser emulators (#13566)
-    if (typeof noGlobal === strundefined) {
-        window.jQuery = window.$ = jQuery;
-    }
-
-
-
-    return jQuery;
-
-}));
-/*
- * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
- *
- * Uses the built in easing capabilities added In jQuery 1.1
- * to offer multiple easing options
- *
- * TERMS OF USE - EASING EQUATIONS
- *
- * Open source under the BSD License.
- *
- * Copyright 脗漏 2001 Robert Penner
- * All rights reserved.
- *
- * TERMS OF USE - jQuery Easing
- *
- * Open source under the BSD License.
- *
- * Copyright 脗漏 2008 George McGinley Smith
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- * Redistributions of source code must retain the above copyright notice, this list of
- * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list
- * of conditions and the following disclaimer in the documentation and/or other materials
- * provided with the distribution.
- *
- * Neither the name of the author nor the names of contributors may be used to endorse
- * or promote products derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
- * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- */
-jQuery.easing.jswing = jQuery.easing.swing;
-jQuery.extend(jQuery.easing, {
-    def: "easeOutQuad",
-    swing: function(e, f, a, h, g) {
-        return jQuery.easing[jQuery.easing.def](e, f, a, h, g)
-    },
-    easeInQuad: function(e, f, a, h, g) {
-        return h * (f /= g) * f + a
-    },
-    easeOutQuad: function(e, f, a, h, g) {
-        return -h * (f /= g) * (f - 2) + a
-    },
-    easeInOutQuad: function(e, f, a, h, g) {
-        if ((f /= g / 2) < 1) {
-            return h / 2 * f * f + a
-        }
-        return -h / 2 * ((--f) * (f - 2) - 1) + a
-    },
-    easeInCubic: function(e, f, a, h, g) {
-        return h * (f /= g) * f * f + a
-    },
-    easeOutCubic: function(e, f, a, h, g) {
-        return h * ((f = f / g - 1) * f * f + 1) + a
-    },
-    easeInOutCubic: function(e, f, a, h, g) {
-        if ((f /= g / 2) < 1) {
-            return h / 2 * f * f * f + a
-        }
-        return h / 2 * ((f -= 2) * f * f + 2) + a
-    },
-    easeInQuart: function(e, f, a, h, g) {
-        return h * (f /= g) * f * f * f + a
-    },
-    easeOutQuart: function(e, f, a, h, g) {
-        return -h * ((f = f / g - 1) * f * f * f - 1) + a
-    },
-    easeInOutQuart: function(e, f, a, h, g) {
-        if ((f /= g / 2) < 1) {
-            return h / 2 * f * f * f * f + a
-        }
-        return -h / 2 * ((f -= 2) * f * f * f - 2) + a
-    },
-    easeInQuint: function(e, f, a, h, g) {
-        return h * (f /= g) * f * f * f * f + a
-    },
-    easeOutQuint: function(e, f, a, h, g) {
-        return h * ((f = f / g - 1) * f * f * f * f + 1) + a
-    },
-    easeInOutQuint: function(e, f, a, h, g) {
-        if ((f /= g / 2) < 1) {
-            return h / 2 * f * f * f * f * f + a
-        }
-        return h / 2 * ((f -= 2) * f * f * f * f + 2) + a
-    },
-    easeInSine: function(e, f, a, h, g) {
-        return -h * Math.cos(f / g * (Math.PI / 2)) + h + a
-    },
-    easeOutSine: function(e, f, a, h, g) {
-        return h * Math.sin(f / g * (Math.PI / 2)) + a
-    },
-    easeInOutSine: function(e, f, a, h, g) {
-        return -h / 2 * (Math.cos(Math.PI * f / g) - 1) + a
-    },
-    easeInExpo: function(e, f, a, h, g) {
-        return (f == 0) ? a : h * Math.pow(2, 10 * (f / g - 1)) + a
-    },
-    easeOutExpo: function(e, f, a, h, g) {
-        return (f == g) ? a + h : h * (-Math.pow(2, -10 * f / g) + 1) + a
-    },
-    easeInOutExpo: function(e, f, a, h, g) {
-        if (f == 0) {
-            return a
-        }
-        if (f == g) {
-            return a + h
-        }
-        if ((f /= g / 2) < 1) {
-            return h / 2 * Math.pow(2, 10 * (f - 1)) + a
-        }
-        return h / 2 * (-Math.pow(2, -10 * --f) + 2) + a
-    },
-    easeInCirc: function(e, f, a, h, g) {
-        return -h * (Math.sqrt(1 - (f /= g) * f) - 1) + a
-    },
-    easeOutCirc: function(e, f, a, h, g) {
-        return h * Math.sqrt(1 - (f = f / g - 1) * f) + a
-    },
-    easeInOutCirc: function(e, f, a, h, g) {
-        if ((f /= g / 2) < 1) {
-            return -h / 2 * (Math.sqrt(1 - f * f) - 1) + a
-        }
-        return h / 2 * (Math.sqrt(1 - (f -= 2) * f) + 1) + a
-    },
-    easeInElastic: function(f, h, e, l, k) {
-        var i = 1.70158;
-        var j = 0;
-        var g = l;
-        if (h == 0) {
-            return e
-        }
-        if ((h /= k) == 1) {
-            return e + l
-        }
-        if (!j) {
-            j = k * 0.3
-        }
-        if (g < Math.abs(l)) {
-            g = l;
-            var i = j / 4
-        } else {
-            var i = j / (2 * Math.PI) * Math.asin(l / g)
-        }
-        return -(g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
-    },
-    easeOutElastic: function(f, h, e, l, k) {
-        var i = 1.70158;
-        var j = 0;
-        var g = l;
-        if (h == 0) {
-            return e
-        }
-        if ((h /= k) == 1) {
-            return e + l
-        }
-        if (!j) {
-            j = k * 0.3
-        }
-        if (g < Math.abs(l)) {
-            g = l;
-            var i = j / 4
-        } else {
-            var i = j / (2 * Math.PI) * Math.asin(l / g)
-        }
-        return g * Math.pow(2, -10 * h) * Math.sin((h * k - i) * (2 * Math.PI) / j) + l + e
-    },
-    easeInOutElastic: function(f, h, e, l, k) {
-        var i = 1.70158;
-        var j = 0;
-        var g = l;
-        if (h == 0) {
-            return e
-        }
-        if ((h /= k / 2) == 2) {
-            return e + l
-        }
-        if (!j) {
-            j = k * (0.3 * 1.5)
-        }
-        if (g < Math.abs(l)) {
-            g = l;
-            var i = j / 4
-        } else {
-            var i = j / (2 * Math.PI) * Math.asin(l / g)
-        }
-        if (h < 1) {
-            return -0.5 * (g * Math.pow(2, 10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j)) + e
-        }
-        return g * Math.pow(2, -10 * (h -= 1)) * Math.sin((h * k - i) * (2 * Math.PI) / j) * 0.5 + l + e
-    },
-    easeInBack: function(e, f, a, i, h, g) {
-        if (g == undefined) {
-            g = 1.70158
-        }
-        return i * (f /= h) * f * ((g + 1) * f - g) + a
-    },
-    easeOutBack: function(e, f, a, i, h, g) {
-        if (g == undefined) {
-            g = 1.70158
-        }
-        return i * ((f = f / h - 1) * f * ((g + 1) * f + g) + 1) + a
-    },
-    easeInOutBack: function(e, f, a, i, h, g) {
-        if (g == undefined) {
-            g = 1.70158
-        }
-        if ((f /= h / 2) < 1) {
-            return i / 2 * (f * f * (((g *= (1.525)) + 1) * f - g)) + a
-        }
-        return i / 2 * ((f -= 2) * f * (((g *= (1.525)) + 1) * f + g) + 2) + a
-    },
-    easeInBounce: function(e, f, a, h, g) {
-        return h - jQuery.easing.easeOutBounce(e, g - f, 0, h, g) + a
-    },
-    easeOutBounce: function(e, f, a, h, g) {
-        if ((f /= g) < (1 / 2.75)) {
-            return h * (7.5625 * f * f) + a
-        } else {
-            if (f < (2 / 2.75)) {
-                return h * (7.5625 * (f -= (1.5 / 2.75)) * f + 0.75) + a
-            } else {
-                if (f < (2.5 / 2.75)) {
-                    return h * (7.5625 * (f -= (2.25 / 2.75)) * f + 0.9375) + a
-                } else {
-                    return h * (7.5625 * (f -= (2.625 / 2.75)) * f + 0.984375) + a
-                }
-            }
-        }
-    },
-    easeInOutBounce: function(e, f, a, h, g) {
-        if (f < g / 2) {
-            return jQuery.easing.easeInBounce(e, f * 2, 0, h, g) * 0.5 + a
-        }
-        return jQuery.easing.easeOutBounce(e, f * 2 - g, 0, h, g) * 0.5 + h * 0.5 + a
-    }
-});
-
 /**
- * ESL (Enterprise Standard Loader)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file Browser端标准加载器，符合AMD规范
- * @author errorrik(errorrik@gmail.com)
- *         Firede(firede@firede.us)
+ * yox.js v1.0.0-alpha.120
+ * (c) 2017-2019 musicode
+ * Released under the MIT License.
  */
 
-/* eslint-disable no-unused-vars */
-/* jshint ignore:start */
-var define;
-var require;
-var esl;
-/* jshint ignore:end */
-/* eslint-enable no-unused-vars */
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = global || self, global.Yox = factory());
+  }(this, function () { 'use strict';
 
-/* eslint-disable guard-for-in */
-/* eslint-env amd:false */
-
-(function(global) {
-    // "mod"开头的变量或函数为内部模块管理函数
-    // 为提高压缩率，不使用function或object包装
-
-    /**
-     * 模块容器
-     *
-     * @inner
-     * @type {Object}
-     */
-    var modModules = {};
-
-    // 模块状态枚举量
-    var MODULE_PRE_DEFINED = 1;
-    var MODULE_ANALYZED = 2;
-    var MODULE_PREPARED = 3;
-    var MODULE_DEFINED = 4;
-
-    /**
-     * 自动定义的模块表
-     *
-     * 模块define factory是用到时才执行，但是以下几种情况需要自动马上执行：
-     * 1. require([moduleId], callback)
-     * 2. plugin module and plugin resource: require('plugin!resource')
-     * 3. shim module
-     *
-     * @inner
-     * @type {Object}
-     */
-    var modAutoDefineModules = {};
+    var SYNTAX_IF = '#if';
+    var SYNTAX_ELSE = 'else';
+    var SYNTAX_ELSE_IF = 'else if';
+    var SYNTAX_EACH = '#each';
+    var SYNTAX_PARTIAL = '#partial';
+    var SYNTAX_IMPORT = '>';
+    var SYNTAX_SPREAD = '...';
+    var SYNTAX_COMMENT = /^!(?:\s|--)/;
+    var SLOT_DATA_PREFIX = '$slot_';
+    var SLOT_NAME_DEFAULT = 'children';
+    var HINT_STRING = 1;
+    var HINT_NUMBER = 2;
+    var HINT_BOOLEAN = 3;
+    var DIRECTIVE_ON = 'on';
+    var DIRECTIVE_LAZY = 'lazy';
+    var DIRECTIVE_MODEL = 'model';
+    var DIRECTIVE_EVENT = 'event';
+    var DIRECTIVE_BINDING = 'binding';
+    var DIRECTIVE_CUSTOM = 'o';
+    var MODIFER_NATIVE = 'native';
+    var MODEL_PROP_DEFAULT = 'value';
+    var NAMESPACE_HOOK = '.hook';
+    var HOOK_BEFORE_CREATE = 'beforeCreate';
+    var HOOK_AFTER_CREATE = 'afterCreate';
+    var HOOK_BEFORE_MOUNT = 'beforeMount';
+    var HOOK_AFTER_MOUNT = 'afterMount';
+    var HOOK_BEFORE_UPDATE = 'beforeUpdate';
+    var HOOK_AFTER_UPDATE = 'afterUpdate';
+    var HOOK_BEFORE_DESTROY = 'beforeDestroy';
+    var HOOK_AFTER_DESTROY = 'afterDestroy';
+    var HOOK_BEFORE_PROPS_UPDATE = 'beforePropsUpdate';
 
     /**
-     * 标记模块自动进行定义
-     *
-     * @inner
-     * @param {string} id 模块id
+     * 为了压缩，定义的常量
      */
-    function modFlagAutoDefine(id) {
-        if (!modIs(id, MODULE_DEFINED)) {
-            modAutoDefineModules[id] = 1;
-        }
-    }
-
+    var TRUE = true;
+    var FALSE = false;
+    var NULL = null;
+    var UNDEFINED = void 0;
+    var MINUS_ONE = -1;
+    var RAW_TRUE = 'true';
+    var RAW_FALSE = 'false';
+    var RAW_NULL = 'null';
+    var RAW_UNDEFINED = 'undefined';
+    var RAW_KEY = 'key';
+    var RAW_REF = 'ref';
+    var RAW_SLOT = 'slot';
+    var RAW_NAME = 'name';
+    var RAW_FILTER = 'filter';
+    var RAW_PARTIAL = 'partial';
+    var RAW_COMPONENT = 'component';
+    var RAW_DIRECTIVE = 'directive';
+    var RAW_TRANSITION = 'transition';
+    var RAW_THIS = 'this';
+    var RAW_VALUE = 'value';
+    var RAW_LENGTH = 'length';
+    var RAW_FUNCTION = 'function';
+    var RAW_TEMPLATE = 'template';
+    var RAW_WILDCARD = '*';
+    var RAW_DOT = '.';
+    var RAW_SLASH = '/';
+    var KEYPATH_PARENT = '..';
+    var KEYPATH_CURRENT = RAW_THIS;
     /**
-     * 内建module名称集合
-     *
-     * @inner
-     * @type {Object}
+     * Single instance for window in browser
      */
-    var BUILDIN_MODULE = {
-        require: globalRequire,
-        exports: 1,
-        module: 1
+    var WINDOW = typeof window !== RAW_UNDEFINED ? window : UNDEFINED;
+    /**
+     * Single instance for document in browser
+     */
+    var DOCUMENT = typeof document !== RAW_UNDEFINED ? document : UNDEFINED;
+    /**
+     * Single instance for global in nodejs or browser
+     */
+    var GLOBAL = typeof global !== RAW_UNDEFINED ? global : WINDOW;
+    /**
+     * tap 事件
+     *
+     * 非常有用的抽象事件，比如 pc 端是 click 事件，移动端是 touchend 事件
+     *
+     * 这样只需 on-tap="handler" 就可以完美兼容各端
+     *
+     * 框架未实现此事件，通过 Yox.dom.addSpecialEvent 提供给外部扩展
+     *
+     */
+    var EVENT_TAP = 'tap';
+    /**
+     * 点击事件
+     */
+    var EVENT_CLICK = 'click';
+    /**
+     * 输入事件
+     */
+    var EVENT_INPUT = 'input';
+    /**
+     * 变化事件
+     */
+    var EVENT_CHANGE = 'change';
+    /**
+     * 唯一内置的特殊事件：model
+     */
+    var EVENT_MODEL = 'model';
+    /**
+     * Single instance for noop function
+     */
+    var EMPTY_FUNCTION = function () {
+        /** yox */
     };
+    /**
+     * 空对象，很多地方会用到，比如 `a || EMPTY_OBJECT` 确保是个对象
+     */
+    var EMPTY_OBJECT = Object.freeze({});
+    /**
+     * 空数组
+     */
+    var EMPTY_ARRAY = Object.freeze([]);
+    /**
+     * 空字符串
+     */
+    var EMPTY_STRING = '';
 
     /**
-     * 全局require函数
+     * Check if value is a function.
      *
-     * @inner
-     * @type {Function}
+     * @param value
+     * @return
      */
-    var actualGlobalRequire = createLocalRequire();
-
-    // #begin-ignore
+    function func(value) {
+        return typeof value === RAW_FUNCTION;
+    }
     /**
-     * 超时提醒定时器
+     * Check if value is an array.
      *
-     * @inner
-     * @type {number}
+     * @param value
+     * @return
      */
-    var waitTimeout;
-    // #end-ignore
+    function array(value) {
+        return Array.isArray(value);
+    }
+    /**
+     * Check if value is an object.
+     *
+     * @param value
+     * @return
+     */
+    function object(value) {
+        // 低版本 IE 会把 null 当作 object
+        return value !== NULL && typeof value === 'object';
+    }
+    /**
+     * Check if value is a string.
+     *
+     * @param value
+     * @return
+     */
+    function string(value) {
+        return typeof value === 'string';
+    }
+    /**
+     * Check if value is a number.
+     *
+     * @param value
+     * @return
+     */
+    function number(value) {
+        return typeof value === 'number' && !isNaN(value);
+    }
+    /**
+     * Check if value is boolean.
+     *
+     * @param value
+     * @return
+     */
+    function boolean(value) {
+        return typeof value === 'boolean';
+    }
+    /**
+     * Check if value is numeric.
+     *
+     * @param value
+     * @return
+     */
+    function numeric(value) {
+        return number(value)
+            || (string(value) && !isNaN(parseFloat(value)) && isFinite(value));
+    }
+
+    var is = /*#__PURE__*/Object.freeze({
+      func: func,
+      array: array,
+      object: object,
+      string: string,
+      number: number,
+      boolean: boolean,
+      numeric: numeric
+    });
 
     /**
-     * require配置
+     * 任性地执行一个函数，不管它有没有、是不是
      *
-     * @inner
-     * @type {Object}
+     * @param fn 调用的函数
+     * @param context 执行函数时的 this 指向
+     * @param args 调用函数的参数，多参数时传入数组
+     * @return 调用函数的返回值
      */
-    var requireConf = {
-        baseUrl: './',
-        paths: {},
-        config: {},
-        map: {},
-        packages: [],
-        shim: {},
-        // #begin-ignore
-        waitSeconds: 0,
-        // #end-ignore
-        bundles: {},
-        urlArgs: {}
-    };
+    function execute (fn, context, args) {
+        if (func(fn)) {
+            return array(args)
+                ? fn.apply(context, args)
+                : context !== UNDEFINED
+                    ? fn.call(context, args)
+                    : args !== UNDEFINED
+                        ? fn(args)
+                        : fn();
+        }
+    }
 
-    /**
-     * 加载模块
-     *
-     * @param {string|Array} requireId 模块id或模块id数组，
-     * @param {Function=} callback 加载完成的回调函数
-     * @return {*} requireId为string时返回模块暴露对象
-     */
-    function globalRequire(requireId, callback) {
-        // #begin-ignore
-        // #begin assertNotContainRelativeId
-        // 确定require的模块id不包含相对id。用于global require，提前预防难以跟踪的错误出现
-        var invalidIds = [];
-
+    var CustomEvent = /** @class */ (function () {
         /**
-         * 监测模块id是否relative id
+         * 构造函数
          *
-         * @inner
-         * @param {string} id 模块id
+         * 可以传事件名称，也可以传原生事件对象
          */
-        function monitor(id) {
-            if (id.indexOf('.') === 0) {
-                invalidIds.push(id);
+        function CustomEvent(type, originalEvent) {
+            // 这里不设置命名空间
+            // 因为有没有命名空间取决于 Emitter 的构造函数有没有传 true
+            // CustomEvent 自己无法决定
+            this.type = type;
+            this.phase = CustomEvent.PHASE_CURRENT;
+            if (originalEvent) {
+                this.originalEvent = originalEvent;
             }
         }
-
-        if (typeof requireId === 'string') {
-            monitor(requireId);
-        } else {
-            each(
-                requireId,
-                function(id) {
-                    monitor(id);
-                }
-            );
-        }
-
-        // 包含相对id时，直接抛出错误
-        if (invalidIds.length > 0) {
-            throw new Error(
-                '[REQUIRE_FATAL]Relative ID is not allowed in global require: ' + invalidIds.join(', ')
-            );
-        }
-        // #end assertNotContainRelativeId
-
-        // 超时提醒
-        var timeout = requireConf.waitSeconds;
-        if (timeout && (requireId instanceof Array)) {
-            if (waitTimeout) {
-                clearTimeout(waitTimeout);
-            }
-            waitTimeout = setTimeout(waitTimeoutNotice, timeout * 1000);
-        }
-        // #end-ignore
-
-        return actualGlobalRequire(requireId, callback);
-    }
-
-    /**
-     * 版本号
-     *
-     * @type {string}
-     */
-    globalRequire.version = '2.1.4';
-
-    /**
-     * loader名称
-     *
-     * @type {string}
-     */
-    globalRequire.loader = 'esl';
-
-    /**
-     * 将模块标识转换成相对的url
-     *
-     * @param {string} id 模块标识
-     * @return {string}
-     */
-    globalRequire.toUrl = actualGlobalRequire.toUrl;
-
-    // #begin-ignore
-    /**
-     * 超时提醒函数
-     *
-     * @inner
-     */
-    function waitTimeoutNotice() {
-        var hangModules = [];
-        var missModules = [];
-        var hangModulesMap = {};
-        var missModulesMap = {};
-        var visited = {};
-
         /**
-         * 检查模块的加载错误
-         *
-         * @inner
-         * @param {string} id 模块id
-         * @param {boolean} hard 是否装载时依赖
+         * 阻止事件的默认行为
          */
-        function checkError(id, hard) {
-            if (visited[id] || modIs(id, MODULE_DEFINED)) {
-                return;
-            }
-
-            visited[id] = 1;
-            var mod = modModules[id];
-            if (!mod) {
-                if (!missModulesMap[id]) {
-                    missModulesMap[id] = 1;
-                    missModules.push(id);
+        CustomEvent.prototype.preventDefault = function () {
+            var instance = this;
+            if (!instance.isPrevented) {
+                var originalEvent = instance.originalEvent;
+                if (originalEvent) {
+                    originalEvent.preventDefault();
                 }
-            } else if (hard || !modIs(id, MODULE_PREPARED) || mod.hang) {
-                if (!hangModulesMap[id]) {
-                    hangModulesMap[id] = 1;
-                    hangModules.push(id);
-                }
-
-                each(
-                    mod.depMs,
-                    function(dep) {
-                        checkError(dep.absId, dep.hard);
-                    }
-                );
+                instance.isPrevented = TRUE;
             }
-        }
-
-        for (var id in modAutoDefineModules) {
-            checkError(id, 1);
-        }
-
-        if (hangModules.length || missModules.length) {
-            throw new Error(
-                '[MODULE_TIMEOUT]Hang(' + (hangModules.join(', ') || 'none') + ') Miss(' + (missModules.join(', ') || 'none') + ')'
-            );
-        }
-
-
-    }
-    // #end-ignore
-
-    /**
-     * 未预定义的模块集合
-     * 主要存储匿名方式define的模块
-     *
-     * @inner
-     * @type {Array}
-     */
-    var wait4PreDefine = [];
-
-    /**
-     * 完成模块预定义，此时处理的模块是匿名define的模块
-     *
-     * @inner
-     * @param {string} currentId 匿名define的模块的id
-     */
-    function modCompletePreDefine(currentId) {
-        // HACK: 这里在IE下有个性能陷阱，不能使用任何变量。
-        //       否则貌似会形成变量引用和修改的读写锁，导致wait4PreDefine释放困难
-        each(wait4PreDefine, function(mod) {
-            modPreDefine(
-                currentId,
-                mod.deps,
-                mod.factory
-            );
-        });
-
-        wait4PreDefine.length = 0;
-    }
-
-    /**
-     * 定义模块
-     *
-     * @param {string=} id 模块标识
-     * @param {Array=} dependencies 依赖模块列表
-     * @param {Function=} factory 创建模块的工厂方法
-     */
-    function globalDefine(id, dependencies, factory) {
-        // define(factory)
-        // define(dependencies, factory)
-        // define(id, factory)
-        // define(id, dependencies, factory)
-        if (factory == null) {
-            if (dependencies == null) {
-                factory = id;
-                id = null;
-            } else {
-                factory = dependencies;
-                dependencies = null;
-                if (id instanceof Array) {
-                    dependencies = id;
-                    id = null;
-                }
-            }
-        }
-
-        if (factory == null) {
-            return;
-        }
-
-        var opera = window.opera;
-
-        // IE下通过current script的data-require-id获取当前id
-        if (!id && document.attachEvent && (!(opera && opera.toString() === '[object Opera]'))) {
-            var currentScript = getCurrentScript();
-            id = currentScript && currentScript.getAttribute('data-require-id');
-        }
-
-        if (id) {
-            modPreDefine(id, dependencies, factory);
-        } else {
-            // 纪录到共享变量中，在load或readystatechange中处理
-            // 标准浏览器下，使用匿名define时，将进入这个分支
-            wait4PreDefine[0] = {
-                deps: dependencies,
-                factory: factory
-            };
-        }
-    }
-
-    globalDefine.amd = {};
-
-    /**
-     * 模块配置获取函数
-     *
-     * @inner
-     * @return {Object} 模块配置对象
-     */
-    function moduleConfigGetter() {
-        var conf = requireConf.config[this.id];
-        if (conf && typeof conf === 'object') {
-            return conf;
-        }
-
-        return {};
-    }
-
-    /**
-     * 预定义模块
-     *
-     * @inner
-     * @param {string} id 模块标识
-     * @param {Array.<string>} dependencies 显式声明的依赖模块列表
-     * @param {*} factory 模块定义函数或模块对象
-     */
-    function modPreDefine(id, dependencies, factory) {
-        // 将模块存入容器
-        //
-        // 模块内部信息包括
-        // -----------------------------------
-        // id: module id
-        // depsDec: 模块定义时声明的依赖
-        // deps: 模块依赖，默认为['require', 'exports', 'module']
-        // factory: 初始化函数或对象
-        // factoryDeps: 初始化函数的参数依赖
-        // exports: 模块的实际暴露对象（AMD定义）
-        // config: 用于获取模块配置信息的函数（AMD定义）
-        // state: 模块当前状态
-        // require: local require函数
-        // depMs: 实际依赖的模块集合，数组形式
-        // depMkv: 实际依赖的模块集合，表形式，便于查找
-        // depRs: 实际依赖的资源集合
-        // ------------------------------------
-        if (!modModules[id]) {
-            modModules[id] = {
-                id: id,
-                depsDec: dependencies,
-                deps: dependencies || ['require', 'exports', 'module'],
-                factoryDeps: [],
-                factory: factory,
-                exports: {},
-                config: moduleConfigGetter,
-                state: MODULE_PRE_DEFINED,
-                require: createLocalRequire(id),
-                depMs: [],
-                depMkv: {},
-                depRs: [],
-                hang: 0
-            };
-        }
-    }
-
-    /**
-     * 开始执行模块定义前的准备工作
-     *
-     * 首先，完成对factory中声明依赖的分析提取
-     * 然后，尝试加载"资源加载所需模块"
-     *
-     * 需要先加载模块的原因是：如果模块不存在，无法进行resourceId normalize化
-     *
-     * @inner
-     * @param {string} id 模块id
-     */
-    function modPrepare(id) {
-        var mod = modModules[id];
-        if (!mod || modIs(id, MODULE_ANALYZED)) {
-            return;
-        }
-
-        var deps = mod.deps;
-        var factory = mod.factory;
-        var hardDependsCount = 0;
-
-        // 分析function body中的require
-        // 如果包含显式依赖声明，根据AMD规定和性能考虑，可以不分析factoryBody
-        if (typeof factory === 'function') {
-            hardDependsCount = Math.min(factory.length, deps.length);
-
-            // If the dependencies argument is present, the module loader
-            // SHOULD NOT scan for dependencies within the factory function.
-            !mod.depsDec && factory.toString()
-                .replace(/(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg, '')
-                .replace(/require\(\s*(['"])([^'"]+)\1\s*\)/g,
-                    function($0, $1, depId) {
-                        deps.push(depId);
-                    }
-                );
-        }
-
-        var requireModules = [];
-        var depResources = [];
-        each(deps, function(depId, index) {
-            var idInfo = parseId(depId);
-            var absId = normalize(idInfo.mod, id);
-            var moduleInfo;
-            var resInfo;
-
-            if (absId && !BUILDIN_MODULE[absId]) {
-                // 如果依赖是一个资源，将其信息添加到module.depRs
-                //
-                // module.depRs中的项有可能是重复的。
-                // 在这个阶段，加载resource的module可能还未defined，
-                // 导致此时resource id无法被normalize。
-                //
-                // 比如对a/b/c而言，下面几个resource可能指的是同一个资源：
-                // - js!../name.js
-                // - js!a/name.js
-                // - ../../js!../name.js
-                //
-                // 所以加载资源的module ready时，需要遍历module.depRs进行处理
-                if (idInfo.res) {
-                    resInfo = {
-                        id: depId,
-                        mod: absId,
-                        res: idInfo.res
-                    };
-                    depResources.push(depId);
-                    mod.depRs.push(resInfo);
-                }
-
-                // 对依赖模块的id normalize能保证正确性，在此处进行去重
-                moduleInfo = mod.depMkv[absId];
-                if (!moduleInfo) {
-                    moduleInfo = {
-                        id: idInfo.mod,
-                        absId: absId,
-                        hard: index < hardDependsCount
-                    };
-                    mod.depMs.push(moduleInfo);
-                    mod.depMkv[absId] = moduleInfo;
-                    requireModules.push(absId);
-                }
-            } else {
-                moduleInfo = {
-                    absId: absId
-                };
-            }
-
-            // 如果当前正在分析的依赖项是define中声明的，
-            // 则记录到module.factoryDeps中
-            // 在factory invoke前将用于生成invoke arguments
-            if (index < hardDependsCount) {
-                mod.factoryDeps.push(resInfo || moduleInfo);
-            }
-        });
-
-        mod.state = MODULE_ANALYZED;
-        modInitFactoryInvoker(id);
-        nativeAsyncRequire(requireModules);
-        depResources.length && mod.require(
-            depResources,
-            function() {
-                each(mod.depRs, function(res) {
-                    if (!res.absId) {
-                        res.absId = normalize(res.id, id);
-                    }
-                });
-                modAutoDefine();
-            }
-        );
-    }
-
-    /**
-     * 对一些需要自动定义的模块进行自动定义
-     *
-     * @inner
-     */
-    function modAutoDefine() {
-        for (var id in modAutoDefineModules) {
-            modPrepare(id);
-            modUpdatePreparedState(id);
-            modTryInvokeFactory(id);
-        }
-    }
-
-    /**
-     * 更新模块的准备状态
-     *
-     * @inner
-     * @param {string} id 模块id
-     */
-    function modUpdatePreparedState(id) {
-        var updatingModules = {};
-        update(id);
-
-        function update(id) {
-            modPrepare(id);
-            if (!modIs(id, MODULE_ANALYZED)) {
-                return false;
-            }
-
-            if (modIs(id, MODULE_PREPARED) || updatingModules[id]) {
-                return true;
-            }
-
-            updatingModules[id] = 1;
-            var mod = modModules[id];
-            var prepared = true;
-
-            each(
-                mod.depMs,
-                function(dep) {
-                    // return (prepared = update(dep.absId));
-                    prepared = update(dep.absId) && prepared;
-                }
-            );
-
-            // 判断resource是否加载完成。如果resource未加载完成，则认为未准备好
-            /* jshint ignore:start */
-            prepared && each(
-                mod.depRs,
-                function(dep) {
-                    prepared = !!dep.absId;
-                    return prepared;
-                }
-            );
-            /* jshint ignore:end */
-
-            if (prepared && !modIs(id, MODULE_PREPARED)) {
-                mod.state = MODULE_PREPARED;
-            }
-            updatingModules[id] = 0;
-            return prepared;
-        }
-    }
-
-    /**
-     * 初始化模块定义时所需的factory执行器
-     *
-     * @inner
-     * @param {string} id 模块id
-     */
-    function modInitFactoryInvoker(id) {
-        var mod = modModules[id];
-        var invoking;
-
-        mod.invokeFactory = invokeFactory;
-
-        /**
-         * 初始化模块
-         *
-         * @inner
-         */
-        function invokeFactory() {
-            if (invoking || mod.state !== MODULE_PREPARED) {
-                return;
-            }
-
-            invoking = 1;
-
-            // 拼接factory invoke所需的arguments
-            var factoryReady = 1;
-            each(
-                mod.factoryDeps,
-                function(dep) {
-                    var depId = dep.absId;
-
-                    if (!BUILDIN_MODULE[depId]) {
-                        modTryInvokeFactory(depId);
-                        return (factoryReady = modIs(depId, MODULE_DEFINED));
-                    }
-                }
-            );
-
-            if (factoryReady) {
-                try {
-                    // 调用factory函数初始化module
-                    var factory = mod.factory;
-                    var exports = typeof factory === 'function' ? factory.apply(global, modGetModulesExports(
-                        mod.factoryDeps, {
-                            require: mod.require,
-                            exports: mod.exports,
-                            module: mod
-                        }
-                    )) : factory;
-
-                    if (exports != null) {
-                        mod.exports = exports;
-                    }
-
-                    mod.invokeFactory = null;
-                } catch (ex) {
-                    mod.hang = 1;
-                    throw ex;
-                }
-
-                // 完成define
-                // 不放在try里，避免后续的运行错误被这里吞掉
-                modDefined(id);
-            }
-        }
-    }
-
-    /**
-     * 判断模块是否完成相应的状态
-     *
-     * @inner
-     * @param {string} id 模块标识
-     * @param {number} state 状态码，使用时传入相应的枚举变量，比如`MODULE_DEFINED`
-     * @return {boolean} 是否完成相应的状态
-     */
-    function modIs(id, state) {
-        return modModules[id] && modModules[id].state >= state;
-    }
-
-    /**
-     * 尝试执行模块factory函数，进行模块初始化
-     *
-     * @inner
-     * @param {string} id 模块id
-     */
-    function modTryInvokeFactory(id) {
-        var mod = modModules[id];
-
-        if (mod && mod.invokeFactory) {
-            mod.invokeFactory();
-        }
-    }
-
-    /**
-     * 根据模块id数组，获取其的exports数组
-     * 用于模块初始化的factory参数或require的callback参数生成
-     *
-     * @inner
-     * @param {Array} modules 模块id数组
-     * @param {Object} buildinModules 内建模块对象
-     * @return {Array} 模块exports数组
-     */
-    function modGetModulesExports(modules, buildinModules) {
-        var args = [];
-        each(
-            modules,
-            function(id, index) {
-                if (typeof id === 'object') {
-                    id = id.absId;
-                }
-                args[index] = buildinModules[id] || modModules[id].exports;
-            }
-        );
-
-        return args;
-    }
-
-    /**
-     * 模块定义完成事件监听器容器
-     *
-     * @inner
-     * @type {Object}
-     */
-    var modDefinedListeners = {};
-
-    /**
-     * 添加模块定义完成时间的监听器
-     *
-     * @inner
-     * @param {string} id 模块标识
-     * @param {Function} listener 监听函数
-     */
-    function modAddDefinedListener(id, listener) {
-        if (modIs(id, MODULE_DEFINED)) {
-            listener();
-            return;
-        }
-
-        var listeners = modDefinedListeners[id];
-        if (!listeners) {
-            listeners = modDefinedListeners[id] = [];
-        }
-
-        listeners.push(listener);
-    }
-
-    /**
-     * 模块状态切换为定义完成
-     * 因为需要触发事件，MODULE_DEFINED状态切换通过该函数
-     *
-     * @inner
-     * @param {string} id 模块标识
-     */
-    function modDefined(id) {
-        var mod = modModules[id];
-        mod.state = MODULE_DEFINED;
-        delete modAutoDefineModules[id];
-
-        var listeners = modDefinedListeners[id] || [];
-        var len = listeners.length;
-        while (len--) {
-            // 这里不做function类型的检测
-            // 因为listener都是通过modOn传入的，modOn为内部调用
-            listeners[len]();
-        }
-
-        // 清理listeners
-        listeners.length = 0;
-        modDefinedListeners[id] = null;
-    }
-
-    /**
-     * 异步加载模块
-     * 内部使用，模块ID必须是经过normalize的Top-Level ID
-     *
-     * @inner
-     * @param {Array} ids 模块名称或模块名称列表
-     * @param {Function=} callback 获取模块完成时的回调函数
-     * @param {string} baseId 基础id，用于当ids是relative id时的normalize
-     */
-    function nativeAsyncRequire(ids, callback, baseId) {
-        var isCallbackCalled = 0;
-
-        each(ids, function(id) {
-            if (!(BUILDIN_MODULE[id] || modIs(id, MODULE_DEFINED))) {
-                modAddDefinedListener(id, tryFinishRequire);
-                (id.indexOf('!') > 0 ? loadResource : loadModule)(id, baseId);
-            }
-        });
-        tryFinishRequire();
-
-        /**
-         * 尝试完成require，调用callback
-         * 在模块与其依赖模块都加载完时调用
-         *
-         * @inner
-         */
-        function tryFinishRequire() {
-            if (typeof callback === 'function' && !isCallbackCalled) {
-                var isAllCompleted = 1;
-                each(ids, function(id) {
-                    if (!BUILDIN_MODULE[id]) {
-                        return (isAllCompleted = !!modIs(id, MODULE_DEFINED));
-                    }
-                });
-
-                // 检测并调用callback
-                if (isAllCompleted) {
-                    isCallbackCalled = 1;
-
-                    callback.apply(
-                        global,
-                        modGetModulesExports(ids, BUILDIN_MODULE)
-                    );
-                }
-            }
-        }
-    }
-
-    /**
-     * 正在加载的模块列表
-     *
-     * @inner
-     * @type {Object}
-     */
-    var loadingModules = {};
-
-    /**
-     * 加载模块
-     *
-     * @inner
-     * @param {string} moduleId 模块标识
-     */
-    function loadModule(moduleId) {
-        // 加载过的模块，就不要再继续了
-        if (loadingModules[moduleId] || modModules[moduleId]) {
-            return;
-        }
-        loadingModules[moduleId] = 1;
-
-        // 初始化相关 shim 的配置
-        var shimConf = requireConf.shim[moduleId];
-        if (shimConf instanceof Array) {
-            requireConf.shim[moduleId] = shimConf = {
-                deps: shimConf
-            };
-        }
-
-        // shim依赖的模块需要自动标识为shim
-        // 无论是纯正的shim模块还是hybird模块
-        var shimDeps = shimConf && (shimConf.deps || []);
-        if (shimDeps) {
-            each(shimDeps, function(dep) {
-                if (!requireConf.shim[dep]) {
-                    requireConf.shim[dep] = {};
-                }
-            });
-            actualGlobalRequire(shimDeps, load);
-        } else {
-            load();
-        }
-
-        /**
-         * 发送请求去加载模块
-         *
-         * @inner
-         */
-        function load() {
-            /* eslint-disable no-use-before-define */
-            var bundleModuleId = bundlesIndex[moduleId];
-            createScript(bundleModuleId || moduleId, loaded);
-            /* eslint-enable no-use-before-define */
-        }
-
-        /**
-         * script标签加载完成的事件处理函数
-         *
-         * @inner
-         */
-        function loaded() {
-            if (shimConf) {
-                var exports;
-                if (typeof shimConf.init === 'function') {
-                    exports = shimConf.init.apply(
-                        global,
-                        modGetModulesExports(shimDeps, BUILDIN_MODULE)
-                    );
-                }
-
-                if (exports == null && shimConf.exports) {
-                    exports = global;
-                    each(
-                        shimConf.exports.split('.'),
-                        function(prop) {
-                            exports = exports[prop];
-                            return !!exports;
-                        }
-                    );
-                }
-
-                globalDefine(moduleId, shimDeps, function() {
-                    return exports || {};
-                });
-            } else {
-                modCompletePreDefine(moduleId);
-            }
-
-            modAutoDefine();
-        }
-    }
-
-    /**
-     * 加载资源
-     *
-     * @inner
-     * @param {string} pluginAndResource 插件与资源标识
-     * @param {string} baseId 当前环境的模块标识
-     */
-    function loadResource(pluginAndResource, baseId) {
-        if (modModules[pluginAndResource]) {
-            return;
-        }
-
-        /* eslint-disable no-use-before-define */
-        var bundleModuleId = bundlesIndex[pluginAndResource];
-        if (bundleModuleId) {
-            loadModule(bundleModuleId);
-            return;
-        }
-        /* eslint-enable no-use-before-define */
-
-        var idInfo = parseId(pluginAndResource);
-        var resource = {
-            id: pluginAndResource,
-            state: MODULE_ANALYZED
+            return instance;
         };
-        modModules[pluginAndResource] = resource;
-
         /**
-         * plugin加载完成的回调函数
-         *
-         * @inner
-         * @param {*} value resource的值
+         * 停止事件广播
          */
-        function pluginOnload(value) {
-            resource.exports = value || true;
-            modDefined(pluginAndResource);
-        }
-
-        /* jshint ignore:start */
-        /**
-         * 该方法允许plugin使用加载的资源声明模块
-         *
-         * @param {string} id 模块id
-         * @param {string} text 模块声明字符串
-         */
-        pluginOnload.fromText = function(id, text) {
-            new Function(text)();
-            modCompletePreDefine(id);
+        CustomEvent.prototype.stopPropagation = function () {
+            var instance = this;
+            if (!instance.isStoped) {
+                var originalEvent = instance.originalEvent;
+                if (originalEvent) {
+                    originalEvent.stopPropagation();
+                }
+                instance.isStoped = TRUE;
+            }
+            return instance;
         };
-        /* jshint ignore:end */
-
-        /**
-         * 加载资源
-         *
-         * @inner
-         * @param {Object} plugin 用于加载资源的插件模块
-         */
-        function load(plugin) {
-            var pluginRequire = baseId ? modModules[baseId].require : actualGlobalRequire;
-
-            plugin.load(
-                idInfo.res,
-                pluginRequire,
-                pluginOnload,
-                moduleConfigGetter.call({
-                    id: pluginAndResource
-                })
-            );
-        }
-
-        load(actualGlobalRequire(idInfo.mod));
-    }
+        CustomEvent.prototype.prevent = function () {
+            return this.preventDefault();
+        };
+        CustomEvent.prototype.stop = function () {
+            return this.stopPropagation();
+        };
+        CustomEvent.PHASE_CURRENT = 0;
+        CustomEvent.PHASE_UPWARD = 1;
+        CustomEvent.PHASE_DOWNWARD = MINUS_ONE;
+        return CustomEvent;
+    }());
 
     /**
-     * 配置require
+     * 遍历数组
      *
-     * @param {Object} conf 配置对象
+     * @param array
+     * @param callback 返回 false 可停止遍历
+     * @param reversed 是否逆序遍历
      */
-    globalRequire.config = function(conf) {
-        if (conf) {
-            for (var key in requireConf) {
-                var newValue = conf[key];
-                var oldValue = requireConf[key];
-
-                if (!newValue) {
-                    continue;
-                }
-
-                if (key === 'urlArgs' && typeof newValue === 'string') {
-                    requireConf.urlArgs['*'] = newValue;
-                } else {
-                    // 简单的多处配置还是需要支持，所以配置实现为支持二级mix
-                    if (oldValue instanceof Array) {
-                        oldValue.push.apply(oldValue, newValue);
-                    } else if (typeof oldValue === 'object') {
-                        for (var k in newValue) {
-                            oldValue[k] = newValue[k];
-                        }
-                    } else {
-                        requireConf[key] = newValue;
+    function each(array, callback, reversed) {
+        var length = array.length;
+        if (length) {
+            if (reversed) {
+                for (var i = length - 1; i >= 0; i--) {
+                    if (callback(array[i], i) === FALSE) {
+                        break;
                     }
                 }
             }
-
-            createConfIndex();
-        }
-        return conf;
-    };
-
-    // 初始化时需要创建配置索引
-    createConfIndex();
-
-    /**
-     * paths内部索引
-     *
-     * @inner
-     * @type {Array}
-     */
-    var pathsIndex;
-
-    /**
-     * packages内部索引
-     *
-     * @inner
-     * @type {Array}
-     */
-    var packagesIndex;
-
-    /**
-     * mapping内部索引
-     *
-     * @inner
-     * @type {Array}
-     */
-    var mappingIdIndex;
-
-    /**
-     * bundles内部索引
-     *
-     * @inner
-     * @type {Object}
-     */
-    var bundlesIndex;
-
-    /**
-     * urlArgs内部索引
-     *
-     * @inner
-     * @type {Array}
-     */
-    var urlArgsIndex;
-
-    /**
-     * 将key为module id prefix的Object，生成数组形式的索引，并按照长度和字面排序
-     *
-     * @inner
-     * @param {Object} value 源值
-     * @param {boolean} allowAsterisk 是否允许*号表示匹配所有
-     * @return {Array} 索引对象
-     */
-    function createKVSortedIndex(value, allowAsterisk) {
-        var index = kv2List(value, 1, allowAsterisk);
-        index.sort(descSorterByKOrName);
-        return index;
-    }
-
-    /**
-     * 创建配置信息内部索引
-     *
-     * @inner
-     */
-    function createConfIndex() {
-        requireConf.baseUrl = requireConf.baseUrl.replace(/\/$/, '') + '/';
-
-        // create paths index
-        pathsIndex = createKVSortedIndex(requireConf.paths);
-
-        // create mappingId index
-        mappingIdIndex = createKVSortedIndex(requireConf.map, 1);
-        each(
-            mappingIdIndex,
-            function(item) {
-                item.v = createKVSortedIndex(item.v);
-            }
-        );
-
-        var lastMapItem = mappingIdIndex[mappingIdIndex.length - 1];
-        if (lastMapItem && lastMapItem.k === '*') {
-            each(
-                mappingIdIndex,
-                function(item) {
-                    if (item != lastMapItem) {
-                        item.v = item.v.concat(lastMapItem.v);
+            else {
+                for (var i = 0; i < length; i++) {
+                    if (callback(array[i], i) === FALSE) {
+                        break;
                     }
                 }
-            );
-        }
-
-        // create packages index
-        packagesIndex = [];
-        each(
-            requireConf.packages,
-            function(packageConf) {
-                var pkg = packageConf;
-                if (typeof packageConf === 'string') {
-                    pkg = {
-                        name: packageConf.split('/')[0],
-                        location: packageConf,
-                        main: 'main'
-                    };
-                }
-
-                pkg.location = pkg.location || pkg.name;
-                pkg.main = (pkg.main || 'main').replace(/\.js$/i, '');
-                pkg.reg = createPrefixRegexp(pkg.name);
-                packagesIndex.push(pkg);
             }
-        );
-        packagesIndex.sort(descSorterByKOrName);
-
-        // create urlArgs index
-        urlArgsIndex = createKVSortedIndex(requireConf.urlArgs, 1);
-
-        // create bundles index
-        bundlesIndex = {};
-        /* eslint-disable no-use-before-define */
-        function bundlesIterator(id) {
-            bundlesIndex[resolvePackageId(id)] = key;
-        }
-        /* eslint-enable no-use-before-define */
-        for (var key in requireConf.bundles) {
-            each(requireConf.bundles[key], bundlesIterator);
         }
     }
-
-    /**
-     * 对配置信息的索引进行检索
-     *
-     * @inner
-     * @param {string} value 要检索的值
-     * @param {Array} index 索引对象
-     * @param {Function} hitBehavior 索引命中的行为函数
-     */
-    function indexRetrieve(value, index, hitBehavior) {
-        each(index, function(item) {
-            if (item.reg.test(value)) {
-                hitBehavior(item.v, item.k, item);
-                return false;
-            }
-        });
+    function nativePush(array, item) {
+        array[array.length] = item;
     }
-
+    function nativeUnshift(array, item) {
+        array.unshift(item);
+    }
     /**
-     * 将`模块标识+'.extension'`形式的字符串转换成相对的url
+     * 添加
      *
-     * @inner
-     * @param {string} source 源字符串
-     * @param {string} baseId 当前module id
-     * @return {string} url
+     * @param array
+     * @param value
+     * @param action
      */
-    function toUrl(source, baseId) {
-        // 分离 模块标识 和 .extension
-        var extReg = /(\.[a-z0-9]+)$/i;
-        var queryReg = /(\?[^#]*)$/;
-        var extname = '';
-        var id = source;
-        var query = '';
-
-        if (queryReg.test(source)) {
-            query = RegExp.$1;
-            source = source.replace(queryReg, '');
-        }
-
-        if (extReg.test(source)) {
-            extname = RegExp.$1;
-            id = source.replace(extReg, '');
-        }
-
-        if (baseId != null) {
-            id = normalize(id, baseId);
-        }
-
-        var url = id;
-
-        // paths处理和匹配
-        var isPathMap;
-        indexRetrieve(id, pathsIndex, function(value, key) {
-            url = url.replace(key, value);
-            isPathMap = 1;
-        });
-
-        // packages处理和匹配
-        if (!isPathMap) {
-            indexRetrieve(id, packagesIndex, function(value, key, item) {
-                url = url.replace(item.name, item.location);
+    function addItem(array$1, value, action) {
+        if (array(value)) {
+            each(value, function (item) {
+                action(array$1, item);
             });
         }
-
-        // 相对路径时，附加baseUrl
-        if (!/^([a-z]{2,10}:\/)?\//i.test(url)) {
-            url = requireConf.baseUrl + url;
+        else {
+            action(array$1, value);
         }
-
-        // 附加 .extension 和 query
-        url += extname + query;
-
-        // urlArgs处理和匹配
-        indexRetrieve(id, urlArgsIndex, function(value) {
-            url += (url.indexOf('?') > 0 ? '&' : '?') + value;
+    }
+    /**
+     * 往后加
+     *
+     * @param array
+     * @param target
+     */
+    function push(array, target) {
+        addItem(array, target, nativePush);
+    }
+    /**
+     * 往前加
+     *
+     * @param array
+     * @param target
+     */
+    function unshift(array, target) {
+        addItem(array, target, nativeUnshift);
+    }
+    /**
+     * 数组项在数组中的位置
+     *
+     * @param array 数组
+     * @param target 数组项
+     * @param strict 是否全等判断，默认是全等
+     * @return 如果未找到，返回 -1
+     */
+    function indexOf(array, target, strict) {
+        var result = MINUS_ONE;
+        each(array, function (item, index) {
+            if (strict === FALSE ? item == target : item === target) {
+                result = index;
+                return FALSE;
+            }
         });
-
-        return url;
+        return result;
     }
-
     /**
-     * 创建local require函数
+     * 获取数组最后一项
      *
-     * @inner
-     * @param {number} baseId 当前module id
-     * @return {Function} local require函数
+     * @param array 数组
+     * @return
      */
-    function createLocalRequire(baseId) {
-        var requiredCache = {};
-
-        function req(requireId, callback) {
-            if (typeof requireId === 'string') {
-                if (!requiredCache[requireId]) {
-                    var topLevelId = normalize(requireId, baseId);
-
-                    // 根据 https://github.com/amdjs/amdjs-api/wiki/require
-                    // It MUST throw an error if the module has not
-                    // already been loaded and evaluated.
-                    modTryInvokeFactory(topLevelId);
-                    if (!modIs(topLevelId, MODULE_DEFINED)) {
-                        throw new Error('[MODULE_MISS]"' + topLevelId + '" is not exists!');
-                    }
-
-                    requiredCache[requireId] = modModules[topLevelId].exports;
-                }
-
-                return requiredCache[requireId];
-            } else if (requireId instanceof Array) {
-                // 分析是否有resource，取出pluginModule先
-                var pureModules = [];
-                var normalizedIds = [];
-
-                each(
-                    requireId,
-                    function(id, i) {
-                        var idInfo = parseId(id);
-                        var absId = normalize(idInfo.mod, baseId);
-                        var resId = idInfo.res;
-                        var normalizedId = absId;
-
-                        if (resId) {
-                            var trueResId = absId + '!' + resId;
-                            if (resId.indexOf('.') !== 0 && bundlesIndex[trueResId]) {
-                                absId = normalizedId = trueResId;
-                            } else {
-                                normalizedId = null;
-                            }
-                        }
-
-                        normalizedIds[i] = normalizedId;
-                        modFlagAutoDefine(absId);
-                        pureModules.push(absId);
-                    }
-                );
-
-                // 加载模块
-                nativeAsyncRequire(
-                    pureModules,
-                    function() {
-                        /* jshint ignore:start */
-                        each(normalizedIds, function(id, i) {
-                            if (id == null) {
-                                id = normalizedIds[i] = normalize(requireId[i], baseId);
-                                modFlagAutoDefine(id);
-                            }
-                        });
-                        /* jshint ignore:end */
-
-                        // modAutoDefine中，factory invoke可能发生错误
-                        // 从而导致nativeAsyncRequire没有被调用，callback没挂上
-                        // 所以nativeAsyncRequire要先运行
-                        nativeAsyncRequire(normalizedIds, callback, baseId);
-                        modAutoDefine();
-                    },
-                    baseId
-                );
-                modAutoDefine();
+    function last(array) {
+        var length = array.length;
+        if (length > 0) {
+            return array[length - 1];
+        }
+    }
+    /**
+     * 弹出数组最后一项
+     *
+     * 项目里用的太多，仅用于节省字符...
+     *
+     * @param array 数组
+     * @return 弹出的数组项
+     */
+    function pop(array) {
+        var length = array.length;
+        if (length > 0) {
+            return array.pop();
+        }
+    }
+    /**
+     * 删除数组项
+     *
+     * @param array 数组
+     * @param item 待删除项
+     * @param strict 是否全等判断，默认是全等
+     * @return 删除的数量
+     */
+    function remove(array, target, strict) {
+        var result = 0;
+        each(array, function (item, index) {
+            if (strict === FALSE ? item == target : item === target) {
+                array.splice(index, 1);
+                result++;
             }
-        }
-
-        /**
-         * 将[module ID] + '.extension'格式的字符串转换成url
-         *
-         * @inner
-         * @param {string} id 符合描述格式的源字符串
-         * @return {string} url
-         */
-        req.toUrl = function(id) {
-            return toUrl(id, baseId || '');
-        };
-
-        return req;
+        }, TRUE);
+        return result;
+    }
+    /**
+     * 数组是否包含 item
+     *
+     * @param array 数组
+     * @param target 可能包含的数组项
+     * @param strict 是否全等判断，默认是全等
+     * @return
+     */
+    function has(array, target, strict) {
+        return indexOf(array, target, strict) >= 0;
+    }
+    /**
+     * 把类数组转成数组
+     *
+     * @param array 类数组
+     * @return
+     */
+    function toArray(array$1) {
+        return array(array$1)
+            ? array$1
+            : execute(EMPTY_ARRAY.slice, array$1);
+    }
+    /**
+     * 把数组转成对象
+     *
+     * @param array 数组
+     * @param key 数组项包含的字段名称，如果数组项是基本类型，可不传
+     * @param value
+     * @return
+     */
+    function toObject(array, key, value) {
+        var result = {};
+        each(array, function (item) {
+            result[key ? item[key] : item] = value || item;
+        });
+        return result;
+    }
+    /**
+     * 把数组合并成字符串
+     *
+     * @param array
+     * @param separator
+     * @return
+     */
+    function join(array, separator) {
+        return array.join(separator);
+    }
+    /**
+     * 用于判断长度大于 0 的数组
+     *
+     * @param array
+     * @return
+     */
+    function falsy(array$1) {
+        return !array(array$1) || !array$1.length;
     }
 
+    var array$1 = /*#__PURE__*/Object.freeze({
+      each: each,
+      push: push,
+      unshift: unshift,
+      indexOf: indexOf,
+      last: last,
+      pop: pop,
+      remove: remove,
+      has: has,
+      toArray: toArray,
+      toObject: toObject,
+      join: join,
+      falsy: falsy
+    });
+
+    var camelizePattern = /-([a-z])/gi, hyphenatePattern = /\B([A-Z])/g, capitalizePattern = /^[a-z]/, camelizeCache = {}, hyphenateCache = {}, capitalizeCache = {};
     /**
-     * id normalize化
+     * 连字符转成驼峰
      *
-     * @inner
-     * @param {string} id 需要normalize的模块标识
-     * @param {string} baseId 当前环境的模块标识
-     * @return {string} normalize结果
+     * @param str
+     * @return 驼峰格式的字符串
      */
-    function normalize(id, baseId) {
-        if (!id) {
-            return '';
+    function camelize(str) {
+        if (!camelizeCache[str]) {
+            camelizeCache[str] = str.replace(camelizePattern, function ($0, $1) {
+                return upper($1);
+            });
         }
-
-        baseId = baseId || '';
-        var idInfo = parseId(id);
-        if (!idInfo) {
-            return id;
+        return camelizeCache[str];
+    }
+    /**
+     * 驼峰转成连字符
+     *
+     * @param str
+     * @return 连字符格式的字符串
+     */
+    function hyphenate(str) {
+        if (!hyphenateCache[str]) {
+            hyphenateCache[str] = str.replace(hyphenatePattern, function ($0, $1) {
+                return '-' + lower($1);
+            });
         }
+        return hyphenateCache[str];
+    }
+    /**
+     * 首字母大写
+     *
+     * @param str
+     * @return
+     */
+    function capitalize(str) {
+        if (!capitalizeCache[str]) {
+            capitalizeCache[str] = str.replace(capitalizePattern, upper);
+        }
+        return capitalizeCache[str];
+    }
+    /**
+     * 清除两侧空白符
+     *
+     * @param str
+     * @return 清除两侧空白符的字符串
+     */
+    function trim(str) {
+        return falsy$1(str)
+            ? EMPTY_STRING
+            : str.trim();
+    }
+    /**
+     * 截取字符串
+     *
+     * @param str
+     * @param start
+     * @param end
+     * @return
+     */
+    function slice(str, start, end) {
+        return number(end)
+            ? start === end
+                ? EMPTY_STRING
+                : str.slice(start, end)
+            : str.slice(start);
+    }
+    /**
+     * 获取子串的起始位置
+     *
+     * @param str
+     * @param part
+     * @param start
+     * @return
+     */
+    function indexOf$1(str, part, start) {
+        return str.indexOf(part, start !== UNDEFINED ? start : 0);
+    }
+    /**
+     * 获取子串的起始位置
+     *
+     * @param str
+     * @param part
+     * @param end
+     * @return
+     */
+    function lastIndexOf(str, part, end) {
+        return str.lastIndexOf(part, end !== UNDEFINED ? end : str.length);
+    }
+    /**
+     * str 是否以 part 开头
+     *
+     * @param str
+     * @param part
+     * @return
+     */
+    function startsWith(str, part) {
+        return indexOf$1(str, part) === 0;
+    }
+    /**
+     * str 是否以 part 结束
+     *
+     * @param str
+     * @param part
+     * @return
+     */
+    function endsWith(str, part) {
+        var offset = str.length - part.length;
+        return offset >= 0 && lastIndexOf(str, part) === offset;
+    }
+    /**
+     * 获取某个位置的字符
+     */
+    function charAt(str, index) {
+        return str.charAt(index || 0);
+    }
+    /**
+     * 获取某个位置的字符编码
+     */
+    function codeAt(str, index) {
+        return str.charCodeAt(index || 0);
+    }
+    /**
+     * 大写格式
+     */
+    function upper(str) {
+        return str.toUpperCase();
+    }
+    /**
+     * 小写格式
+     */
+    function lower(str) {
+        return str.toLowerCase();
+    }
+    /**
+     * str 是否包含 part
+     *
+     * @param str
+     * @param part
+     * @return 是否包含
+     */
+    function has$1(str, part) {
+        return indexOf$1(str, part) >= 0;
+    }
+    /**
+     * 判断长度大于 0 的字符串
+     *
+     * @param str
+     * @return
+     */
+    function falsy$1(str) {
+        return !string(str) || !str.length;
+    }
 
-        var resourceId = idInfo.res;
-        var moduleId = relative2absolute(idInfo.mod, baseId);
+    var string$1 = /*#__PURE__*/Object.freeze({
+      camelize: camelize,
+      hyphenate: hyphenate,
+      capitalize: capitalize,
+      trim: trim,
+      slice: slice,
+      indexOf: indexOf$1,
+      lastIndexOf: lastIndexOf,
+      startsWith: startsWith,
+      endsWith: endsWith,
+      charAt: charAt,
+      codeAt: codeAt,
+      upper: upper,
+      lower: lower,
+      has: has$1,
+      falsy: falsy$1
+    });
 
-        // 根据config中的map配置进行module id mapping
-        indexRetrieve(
-            baseId,
-            mappingIdIndex,
-            function(value) {
-                indexRetrieve(
-                    moduleId,
-                    value,
-                    function(mdValue, mdKey) {
-                        moduleId = moduleId.replace(mdKey, mdValue);
-                    }
-                );
+    var dotPattern = /\./g, asteriskPattern = /\*/g, doubleAsteriskPattern = /\*\*/g, splitCache = {}, patternCache = {};
+    /**
+     * 判断 keypath 是否以 prefix 开头，如果是，返回匹配上的前缀长度，否则返回 -1
+     *
+     * @param keypath
+     * @param prefix
+     * @return
+     */
+    function match(keypath, prefix) {
+        if (keypath === prefix) {
+            return prefix.length;
+        }
+        prefix += RAW_DOT;
+        return startsWith(keypath, prefix)
+            ? prefix.length
+            : MINUS_ONE;
+    }
+    /**
+     * 遍历 keypath 的每个部分
+     *
+     * @param keypath
+     * @param callback 返回 false 可中断遍历
+     */
+    function each$1(keypath, callback) {
+        // 如果 keypath 是 toString 之类的原型字段
+        // splitCache[keypath] 会取到原型链上的对象
+        // is.array() 比 splitCache.hasOwnProperty(keypath) 快一些
+        // 虽然不如后者严谨，但在这里够用了
+        var list;
+        if (array(splitCache[keypath])) {
+            list = splitCache[keypath];
+        }
+        else {
+            if (indexOf$1(keypath, RAW_DOT) < 0) {
+                list = [keypath];
             }
-        );
-
-        moduleId = resolvePackageId(moduleId);
-
-        if (resourceId) {
-            var mod = modIs(moduleId, MODULE_DEFINED) && actualGlobalRequire(moduleId);
-            resourceId = mod && mod.normalize ? mod.normalize(
-                resourceId,
-                function(resId) {
-                    return normalize(resId, baseId);
-                }
-            ) : normalize(resourceId, baseId);
-
-            moduleId += '!' + resourceId;
-        }
-
-        return moduleId;
-    }
-
-    /**
-     * 对id进行package解析
-     * 如果是package，则附加主模块id
-     *
-     * @inner
-     * @param {string} id 模块id
-     * @return {string} 解析后的id
-     */
-    function resolvePackageId(id) {
-        each(
-            packagesIndex,
-            function(packageConf) {
-                var name = packageConf.name;
-                if (name === id) {
-                    id = name + '/' + packageConf.main;
-                    return false;
-                }
+            else {
+                list = keypath.split(RAW_DOT);
             }
-        );
-
-        return id;
-    }
-
-    /**
-     * 相对id转换成绝对id
-     *
-     * @inner
-     * @param {string} id 要转换的相对id
-     * @param {string} baseId 当前所在环境id
-     * @return {string} 绝对id
-     */
-    function relative2absolute(id, baseId) {
-        if (id.indexOf('.') !== 0) {
-            return id;
+            splitCache[keypath] = list;
         }
-
-        var segs = baseId.split('/').slice(0, -1).concat(id.split('/'));
-        var res = [];
-        for (var i = 0; i < segs.length; i++) {
-            var seg = segs[i];
-
-            switch (seg) {
-                case '.':
-                    break;
-                case '..':
-                    if (res.length && res[res.length - 1] !== '..') {
-                        res.pop();
-                    } else { // allow above root
-                        res.push(seg);
-                    }
-                    break;
-                default:
-                    seg && res.push(seg);
-            }
-        }
-
-        return res.join('/');
-    }
-
-    /**
-     * 解析id，返回带有module和resource属性的Object
-     *
-     * @inner
-     * @param {string} id 标识
-     * @return {Object} id解析结果对象
-     */
-    function parseId(id) {
-        var segs = id.split('!');
-
-        if (segs[0]) {
-            return {
-                mod: segs[0],
-                res: segs[1]
-            };
-        }
-    }
-
-    /**
-     * 将对象数据转换成数组，数组每项是带有k和v的Object
-     *
-     * @inner
-     * @param {Object} source 对象数据
-     * @param {boolean} keyMatchable key是否允许被前缀匹配
-     * @param {boolean} allowAsterisk 是否支持*匹配所有
-     * @return {Array.<Object>} 对象转换数组
-     */
-    function kv2List(source, keyMatchable, allowAsterisk) {
-        var list = [];
-        for (var key in source) {
-            if (source.hasOwnProperty(key)) {
-                var item = {
-                    k: key,
-                    v: source[key]
-                };
-                list.push(item);
-
-                if (keyMatchable) {
-                    item.reg = key === '*' && allowAsterisk ? /^/ : createPrefixRegexp(key);
-                }
-            }
-        }
-
-        return list;
-    }
-
-
-
-    /**
-     * 创建id前缀匹配的正则对象
-     *
-     * @inner
-     * @param {string} prefix id前缀
-     * @return {RegExp} 前缀匹配的正则对象
-     */
-    function createPrefixRegexp(prefix) {
-        return new RegExp('^' + prefix + '(/|$)');
-    }
-
-    /**
-     * 循环遍历数组集合
-     *
-     * @inner
-     * @param {Array} source 数组源
-     * @param {function(Array,Number):boolean} iterator 遍历函数
-     */
-    function each(source, iterator) {
-        if (source instanceof Array) {
-            for (var i = 0, len = source.length; i < len; i++) {
-                if (iterator(source[i], i) === false) {
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * 根据元素的k或name项进行数组字符数逆序的排序函数
-     *
-     * @inner
-     * @param {Object} a 要比较的对象a
-     * @param {Object} b 要比较的对象b
-     * @return {number} 比较结果
-     */
-    function descSorterByKOrName(a, b) {
-        var aValue = a.k || a.name;
-        var bValue = b.k || b.name;
-
-        if (bValue === '*') {
-            return -1;
-        }
-
-        if (aValue === '*') {
-            return 1;
-        }
-
-        return bValue.length - aValue.length;
-    }
-
-    // 感谢requirejs，通过currentlyAddingScript兼容老旧ie
-    //
-    // For some cache cases in IE 6-8, the script executes before the end
-    // of the appendChild execution, so to tie an anonymous define
-    // call to the module name (which is stored on the node), hold on
-    // to a reference to this node, but clear after the DOM insertion.
-    var currentlyAddingScript;
-    var interactiveScript;
-
-    /**
-     * 获取当前script标签
-     * 用于ie下define未指定module id时获取id
-     *
-     * @inner
-     * @return {HTMLScriptElement} 当前script标签
-     */
-    function getCurrentScript() {
-        if (currentlyAddingScript) {
-            return currentlyAddingScript;
-        } else if (
-            interactiveScript && interactiveScript.readyState === 'interactive'
-        ) {
-            return interactiveScript;
-        }
-
-        var scripts = document.getElementsByTagName('script');
-        var scriptLen = scripts.length;
-        while (scriptLen--) {
-            var script = scripts[scriptLen];
-            if (script.readyState === 'interactive') {
-                interactiveScript = script;
-                return script;
-            }
-        }
-    }
-
-    var headElement = document.getElementsByTagName('head')[0];
-    var baseElement = document.getElementsByTagName('base')[0];
-    if (baseElement) {
-        headElement = baseElement.parentNode;
-    }
-
-    function createScript(moduleId, onload) {
-        // 创建script标签
-        //
-        // 这里不挂接onerror的错误处理
-        // 因为高级浏览器在devtool的console面板会报错
-        // 再throw一个Error多此一举了
-        var script = document.createElement('script');
-        script.setAttribute('data-require-id', moduleId);
-        script.src = toUrl(moduleId + '.js');
-        script.async = true;
-        if (script.readyState) {
-            script.onreadystatechange = innerOnload;
-        } else {
-            script.onload = innerOnload;
-        }
-
-        function innerOnload() {
-            var readyState = script.readyState;
-            if (
-                typeof readyState === 'undefined' || /^(loaded|complete)$/.test(readyState)
-            ) {
-                script.onload = script.onreadystatechange = null;
-                script = null;
-
-                onload();
-            }
-        }
-        currentlyAddingScript = script;
-
-        // If BASE tag is in play, using appendChild is a problem for IE6.
-        // See: http://dev.jquery.com/ticket/2709
-        baseElement
-            ? headElement.insertBefore(script, baseElement) : headElement.appendChild(script);
-
-        currentlyAddingScript = null;
-    }
-
-    // 暴露全局对象
-    if (!define) {
-        define = globalDefine;
-
-        // 可能碰到其他形式的loader，所以，不要覆盖人家
-        if (!require) {
-            require = globalRequire;
-        }
-
-        // 如果存在其他版本的esl，在define那里就判断过了，不会进入这个分支
-        // 所以这里就不判断了，直接写
-        esl = globalRequire;
-    }
-
-    // data-main
-    var mainModule;
-    (function() {
-        var scripts = document.getElementsByTagName('script');
-        var len = scripts.length;
-
-        while (len--) {
-            var script = scripts[len];
-            if ((mainModule = script.getAttribute('data-main'))) {
+        for (var i = 0, lastIndex = list.length - 1; i <= lastIndex; i++) {
+            if (callback(list[i], i, lastIndex) === FALSE) {
                 break;
             }
         }
-    })();
-
-    mainModule && setTimeout(function() {
-        globalRequire([mainModule]);
-    }, 4);
-})(this);
-
-// 构建环境暂不支持分析，为了能合并该plugin到loader里，
-// 只能暂时使用具名id
-define('js', {
-    load: function(resourceId, req, load) {
-
-        var script = document.createElement('script');
-        script.src = req.toUrl(resourceId);
-        script.async = true;
-        if (script.readyState) {
-            script.onreadystatechange = onload;
-        } else {
-            script.onload = onload;
+    }
+    /**
+     * 遍历 keypath 的每个部分
+     *
+     * @param keypath1
+     * @param keypath2
+     */
+    function join$1(keypath1, keypath2) {
+        return keypath1 && keypath2
+            ? keypath1 + RAW_DOT + keypath2
+            : keypath1 || keypath2;
+    }
+    /**
+     * 是否模糊匹配
+     *
+     * @param keypath
+     */
+    function isFuzzy(keypath) {
+        return has$1(keypath, RAW_WILDCARD);
+    }
+    /**
+     * 模糊匹配 keypath
+     *
+     * @param keypath
+     * @param pattern
+     */
+    function matchFuzzy(keypath, pattern) {
+        var cache = patternCache[pattern];
+        if (!cache) {
+            var str = pattern
+                .replace(dotPattern, '\\.')
+                .replace(asteriskPattern, '(\\w+)')
+                .replace(doubleAsteriskPattern, '([\.\\w]+?)');
+            cache = patternCache[pattern] = new RegExp("^" + str + "$");
         }
+        var result = keypath.match(cache);
+        if (result) {
+            return result[1];
+        }
+    }
 
-        function onload() {
-            var readyState = script.readyState;
-            if (
-                typeof readyState === 'undefined' || /^(loaded|complete)$/.test(readyState)
-            ) {
-                script.onload = script.onreadystatechange = null;
-                script = null;
-                load(true);
+    /**
+     * 全局 value holder，避免频繁的创建临时对象
+     */
+    var holder = {
+        value: UNDEFINED
+    };
+
+    /**
+     * 获取对象的 key 的数组
+     *
+     * @param object
+     * @return
+     */
+    function keys(object) {
+        return Object.keys(object);
+    }
+    /**
+     * 遍历对象
+     *
+     * @param object
+     * @param callback 返回 false 可停止遍历
+     */
+    function each$2(object, callback) {
+        for (var key in object) {
+            if (callback(object[key], key) === FALSE) {
+                break;
             }
         }
-
-        $('head').append(script);
-
     }
-});
-
-define('css', {
-    load: function(resourceId, req, load) {
-
-        $('head').append(
-            '<link rel="stylesheet" href="' + req.toUrl(resourceId) + '" />'
-        );
-
-        load(true);
-    }
-});
-
-(function() {
-
-    function createTextLoader(trimBlankline) {
-
-        var cache = {};
-
-        var onload = function(path, text, callback) {
-            if (typeof cache[path] !== 'string') {
-                if (trimBlankline) {
-                    text = text.replace(/\n\s*/g, '');
-                }
-                cache[path] = text;
-            }
-            callback(text);
-        };
-
-        return {
-            load: function(resourceId, req, load) {
-
-                var path = req.toUrl(resourceId);
-
-                var text = cache[path];
-                if (text) {
-                    if (text.done) {
-                        text.done(function(text) {
-                            onload(path, text, load);
-                        });
-                    } else {
-                        load(text);
-                    }
-                } else {
-                    cache[path] =
-                        $.ajax({
-                            url: path,
-                            dataType: 'text'
-                        })
-                            .done(function(text) {
-                                onload(path, text, load);
-                            });
-                }
-
-            }
-        };
-
-    }
-
-    define('text', ['module'], function(module) {
-        return createTextLoader();
-    });
-
-    define('tpl', ['module'], function(module) {
-        return createTextLoader(true);
-    });
-
-})();
-
-
-(function (global, factory) {
-  (global.Yox = factory());
-}(this, (function () { 'use strict';
-
-if (!Object.keys) {
-  Object.keys = function (obj) {
-    var result = [];
-    for (var key in obj) {
-      push(result, key);
-    }
-    return result;
-  };
-  Object.create = function (proto, descriptor) {
-    function Class() {}
-    Class.prototype = proto;
-    proto = new Class();
-    var constructor = descriptor && descriptor.constructor;
-    if (constructor) {
-      proto.constructor = constructor.value;
-    }
-    return proto;
-  };
-}
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s*|\s*$/g, '');
-  };
-}
-if (!Array.prototype.map) {
-  Array.prototype.indexOf = function (target) {
-    var result = -1;
-    each(this, function (item, index) {
-      if (item === target) {
-        result = index;
-        return FALSE;
-      }
-    });
-    return result;
-  };
-  Array.prototype.map = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      result.push(fn(item, index));
-    });
-    return result;
-  };
-  Array.prototype.filter = function (fn) {
-    var result = [];
-    each(this, function (item, index) {
-      if (fn(item, index)) {
-        result.push(item);
-      }
-    });
-    return result;
-  };
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new Error("Cannot call a class as a function");
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new Error("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-
-
-
-
-
-
-
-
-
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-/**
- * 为了压缩，定义的常量
- */
-var TRUE = true;
-var FALSE = false;
-var NULL = null;
-var UNDEFINED = undefined;
-
-var RAW_TRUE = 'true';
-var RAW_FALSE = 'false';
-var RAW_NULL = 'null';
-var RAW_UNDEFINED = 'undefined';
-
-var RAW_THIS = 'this';
-var RAW_FUNCTION = 'function';
-
-/**
- * 浏览器环境下的 window 对象
- *
- * @type {?Window}
- */
-var win = typeof window !== RAW_UNDEFINED ? window : NULL;
-
-/**
- * 浏览器环境下的 document 对象
- *
- * @type {?Document}
- */
-var doc = typeof document !== RAW_UNDEFINED ? document : NULL;
-
-/**
- * 空函数
- *
- * @type {Function}
- */
-function noop() {
-  /** yox */
-}
-
-var isDef = function (target) {
-  return target !== UNDEFINED;
-};
-
-function is(value, type) {
-  return type === 'numeric' ? numeric(value) : Object.prototype.toString.call(value).toLowerCase() === '[object ' + type + ']';
-}
-
-function func(value) {
-  return is(value, RAW_FUNCTION);
-}
-
-function array(value) {
-  return is(value, 'array');
-}
-
-function object(value) {
-  // 低版本 IE 会把 null 和 undefined 当作 object
-  return value && is(value, 'object');
-}
-
-function string(value) {
-  return is(value, 'string');
-}
-
-function number(value) {
-  return is(value, 'number');
-}
-
-function boolean(value) {
-  return is(value, 'boolean');
-}
-
-function numeric(value) {
-  return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-function primitive(value) {
-  return string(value) || number(value) || boolean(value) || value == NULL;
-}
-
-var is$1 = {
-  is: is,
-  func: func,
-  array: array,
-  object: object,
-  string: string,
-  number: number,
-  boolean: boolean,
-  numeric: numeric,
-  primitive: primitive
-};
-
-/**
- * 任性地执行一个函数，不管它有没有、是不是
- *
- * @param {?Function} fn 调用的函数
- * @param {*} context 执行函数时的 this 指向
- * @param {*} args 调用函数的参数，多参数时传入数组
- * @return {*} 调用函数的返回值
- */
-var execute = function (fn, context, args) {
-  if (func(fn)) {
-    return array(args) ? fn.apply(context, args) : fn.call(context, args);
-  }
-};
-
-var Event = function () {
-  function Event(event) {
-    classCallCheck(this, Event);
-
-    if (event.type) {
-      this.type = event.type;
-      this.originalEvent = event;
-    } else {
-      this.type = event;
-    }
-  }
-
-  Event.prototype.prevent = function () {
-    var instance = this;
-    if (!instance.isPrevented) {
-      var originalEvent = instance.originalEvent;
-
-      if (originalEvent) {
-        if (func(originalEvent.prevent)) {
-          originalEvent.prevent();
-        } else if (func(originalEvent.preventDefault)) {
-          originalEvent.preventDefault();
-        }
-      }
-      instance.isPrevented = TRUE;
-    }
-    return instance;
-  };
-
-  Event.prototype.stop = function () {
-    var instance = this;
-    if (!instance.isStoped) {
-      var originalEvent = instance.originalEvent;
-
-      if (originalEvent) {
-        if (func(originalEvent.stop)) {
-          originalEvent.stop();
-        } else if (func(originalEvent.stopPropagation)) {
-          originalEvent.stopPropagation();
-        }
-      }
-      instance.isStoped = TRUE;
-    }
-    return instance;
-  };
-
-  return Event;
-}();
-
-Event.is = function (target) {
-  return target instanceof Event;
-};
-
-/**
- * 为了压缩，定义的常用字符
- */
-
-function charAt(str, index) {
-  return str.charAt(index || 0);
-}
-
-function codeAt(str, index) {
-  return str.charCodeAt(index || 0);
-}
-
-var CHAR_BLANK = '';
-
-var CHAR_DOT = '.';
-var CODE_DOT = codeAt(CHAR_DOT);
-
-var CHAR_HASH = '#';
-var CODE_HASH = codeAt(CHAR_HASH);
-
-var CHAR_DASH = '-';
-var CODE_DASH = codeAt(CHAR_DASH);
-
-var CHAR_EQUAL = '=';
-var CODE_EQUAL = codeAt(CHAR_EQUAL);
-
-var CHAR_SLASH = '/';
-var CODE_SLASH = codeAt(CHAR_SLASH);
-
-var CHAR_COMMA = ',';
-var CODE_COMMA = codeAt(CHAR_COMMA);
-
-var CHAR_COLON = ':';
-var CODE_COLON = codeAt(CHAR_COLON);
-
-var CHAR_SEMCOL = ';';
-var CODE_SEMCOL = codeAt(CHAR_SEMCOL);
-
-var CHAR_SQUOTE = "'";
-var CODE_SQUOTE = codeAt(CHAR_SQUOTE);
-
-var CHAR_DQUOTE = '"';
-var CODE_DQUOTE = codeAt(CHAR_DQUOTE);
-
-var CHAR_OPAREN = '(';
-var CODE_OPAREN = codeAt(CHAR_OPAREN);
-
-var CHAR_CPAREN = ')';
-var CODE_CPAREN = codeAt(CHAR_CPAREN);
-
-var CHAR_OBRACK = '[';
-var CODE_OBRACK = codeAt(CHAR_OBRACK);
-
-var CHAR_CBRACK = ']';
-var CODE_CBRACK = codeAt(CHAR_CBRACK);
-
-var CHAR_OBRACE = '{';
-var CODE_OBRACE = codeAt(CHAR_OBRACE);
-
-var CHAR_CBRACE = '}';
-var CODE_CBRACE = codeAt(CHAR_CBRACE);
-
-var CHAR_LEFT = '<';
-var CODE_LEFT = codeAt(CHAR_LEFT);
-
-var CHAR_RIGHT = '>';
-var CODE_RIGHT = codeAt(CHAR_RIGHT);
-
-var CHAR_QUMARK = '?';
-var CODE_QUMARK = codeAt(CHAR_QUMARK);
-
-var CHAR_TAB = '\t';
-var CODE_TAB = codeAt(CHAR_TAB);
-
-var CHAR_BREAKLINE = '\n';
-var CODE_BREAKLINE = codeAt(CHAR_BREAKLINE);
-
-var CHAR_WHITESPACE = ' ';
-var CODE_WHITESPACE = codeAt(CHAR_WHITESPACE);
-
-/**
- * 遍历数组
- *
- * @param {Array} array
- * @param {Function} callback 返回 false 可停止遍历
- * @param {?boolean} reversed 是否逆序遍历
- */
-function each(array$$1, callback, reversed) {
-  var length = array$$1.length;
-
-  if (length) {
-    if (reversed) {
-      for (var i = length - 1; i >= 0; i--) {
-        if (callback(array$$1[i], i) === FALSE) {
-          break;
-        }
-      }
-    } else {
-      for (var _i = 0; _i < length; _i++) {
-        if (callback(array$$1[_i], _i) === FALSE) {
-          break;
-        }
-      }
-    }
-  }
-}
-
-/**
- * 合并两个数组
- *
- * @param {Array} array1
- * @param {Array} array2
- * @return {Array}
- */
-function merge(array1, array2) {
-  return array1.concat(array2);
-}
-
-/**
- * 添加
- *
- * @param {Array} original
- * @param {*} value
- * @param {string} action
- */
-function addItem(original, value, action) {
-  if (array(value)) {
-    each(value, function (item) {
-      original[action](item);
-    });
-  } else {
-    original[action](value);
-  }
-}
-
-/**
- * 往后加
- *
- * @param {Array} original
- * @param {*} item
- */
-function push(original, item) {
-  addItem(original, item, 'push');
-}
-
-/**
- * 往前加
- *
- * @param {Array} original
- * @param {*} item
- */
-function unshift(original, item) {
-  addItem(original, item, 'unshift');
-}
-
-/**
- * 把类数组转成数组
- *
- * @param {Array|ArrayLike} array 类数组
- * @return {Array}
- */
-function toArray$1(array$$1) {
-  return array(array$$1) ? array$$1 : execute([].slice, array$$1);
-}
-
-/**
- * 把数组转成对象
- *
- * @param {Array} array 数组
- * @param {?string} key 数组项包含的字段名称，如果数组项是基本类型，可不传
- * @param {?*} value
- * @return {Object}
- */
-function toObject(array$$1, key, value) {
-  var result = {},
-      hasValue = arguments.length === 3;
-  each(array$$1, function (item, index) {
-    result[key ? item[key] : item] = hasValue ? value : item;
-  });
-  return result;
-}
-
-/**
- * 数组项在数组中的位置
- *
- * @param {Array} array 数组
- * @param {*} item 数组项
- * @param {?boolean} strict 是否全等判断，默认是全等
- * @return {number} 如果未找到，返回 -1
- */
-function indexOf(array$$1, item, strict) {
-  if (strict !== FALSE) {
-    return array$$1.indexOf(item);
-  } else {
-    for (var i = 0, len = array$$1.length; i < len; i++) {
-      if (array$$1[i] == item) {
-        return i;
-      }
-    }
-    return -1;
-  }
-}
-
-/**
- * 数组是否包含 item
- *
- * @param {Array} array 数组
- * @param {*} item 可能包含的数组项
- * @param {?boolean} strict 是否全等判断，默认是全等
- * @return {boolean}
- */
-function has(array$$1, item, strict) {
-  return indexOf(array$$1, item, strict) >= 0;
-}
-
-/**
- * 获取数组最后一项
- *
- * @param {Array} array 数组
- * @return {*}
- */
-function last(array$$1) {
-  return array$$1[array$$1.length - 1];
-}
-
-/**
- * 弹出数组最后一项
- *
- * 项目里用的太多，仅用于节省字符...
- *
- * @param {Array} array 数组
- * @return {*}
- */
-function pop(array$$1) {
-  return array$$1.pop();
-}
-
-/**
- * 删除数组项
- *
- * @param {Array} array 数组
- * @param {*} item 待删除项
- * @param {?boolean} strict 是否全等判断，默认是全等
- * @return {number} 删除的数量
- */
-function remove(array$$1, item, strict) {
-  var result = 0;
-  each(array$$1, function (value, index) {
-    if (strict === FALSE ? value == item : value === item) {
-      array$$1.splice(index, 1);
-      result++;
-    }
-  }, TRUE);
-  return result;
-}
-
-/**
- * 用于判断长度大于 0 的数组
- *
- * @param {*} array
- * @return {boolean}
- */
-function falsy(array$$1) {
-  return !array(array$$1) || array$$1.length === 0;
-}
-
-var array$1 = {
-  each: each,
-  merge: merge,
-  push: push,
-  unshift: unshift,
-  toArray: toArray$1,
-  toObject: toObject,
-  indexOf: indexOf,
-  has: has,
-  last: last,
-  pop: pop,
-  remove: remove,
-  falsy: falsy
-};
-
-/**
- * 连字符转成驼峰
- *
- * @param {string} str
- * @return {string}
- */
-function camelCase(str) {
-  if (has$2(str, CHAR_DASH)) {
-    return str.replace(/-([a-z])/gi, function ($0, $1) {
-      return $1.toUpperCase();
-    });
-  }
-  return str;
-}
-
-/**
- * 删除两侧空白符
- *
- * @param {*} str
- * @return {string}
- */
-function trim(str) {
-  return falsy$1(str) ? CHAR_BLANK : str.trim();
-}
-
-/**
- * 截取字符串
- *
- * @param {string} str
- * @param {number} start
- * @param {?number} end
- * @return {string}
- */
-function slice(str, start, end) {
-  return number(end) ? str.slice(start, end) : str.slice(start);
-}
-
-/**
- * 分割字符串
- *
- * @param {string} str
- * @param {string} delimiter
- * @return {Array}
- */
-function split(str, delimiter) {
-  return falsy$1(str) ? [] : str.split(new RegExp('\\s*' + delimiter.replace(/[.*?]/g, '\\$&') + '\\s*'));
-}
-
-/**
- * 获取子串的起始位置
- *
- * @param {string} str
- * @param {string} part
- * @return {number}
- */
-function indexOf$1(str, part) {
-  return str.indexOf(part);
-}
-
-/**
- * str 是否包含 part
- *
- * @param {string} str
- * @param {string} part
- * @return {boolean}
- */
-function has$2(str, part) {
-  return indexOf$1(str, part) >= 0;
-}
-
-/**
- * str 是否以 part 开始
- *
- * @param {string} str
- * @param {string} part
- * @return {boolean}
- */
-function startsWith(str, part) {
-  return indexOf$1(str, part) === 0;
-}
-
-/**
- * str 是否以 part 结束
- *
- * @param {string} str
- * @param {string} part
- * @return {boolean}
- */
-function endsWith(str, part) {
-  var offset = str.length - part.length;
-  return offset >= 0 && str.lastIndexOf(part) === offset;
-}
-
-/**
- * 判断长度大于 0 的字符串
- *
- * @param {*} str
- * @return {boolean}
- */
-function falsy$1(str) {
-  return !string(str) || str === CHAR_BLANK;
-}
-
-var string$1 = {
-  camelCase: camelCase,
-  trim: trim,
-  slice: slice,
-  split: split,
-  indexOf: indexOf$1,
-  has: has$2,
-  startsWith: startsWith,
-  endsWith: endsWith,
-  falsy: falsy$1
-};
-
-var SEPARATOR_KEY = '.';
-
-var normalizeCache = {};
-
-function normalize(str) {
-  if (!falsy$1(str)) {
-    var start = indexOf$1(str, CHAR_OBRACK);
-    if (start > 0 && indexOf$1(str, CHAR_CBRACK) > start) {
-      if (!normalizeCache[str]) {
-        normalizeCache[str] = str.replace(/\[\s*?([^\]]+)\s*?\]/g, function ($0, $1) {
-          var code = codeAt($1);
-          if (code === CODE_SQUOTE || code === CODE_DQUOTE) {
-            $1 = slice($1, 1, -1);
-          }
-          return '' + SEPARATOR_KEY + $1;
+    /**
+     * 清空对象所有的键值对
+     *
+     * @param object
+     */
+    function clear(object) {
+        each$2(object, function (_, key) {
+            delete object[key];
         });
-      }
-      return normalizeCache[str];
     }
-  }
-  return str;
-}
-
-function filter(term) {
-  return term !== CHAR_BLANK && term !== RAW_THIS;
-}
-
-function parse(str) {
-  var filterable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : TRUE;
-
-  var result = normalize(str).split(SEPARATOR_KEY);
-  return filterable ? result.filter(filter) : result;
-}
-
-function stringify(keypaths) {
-  var filterable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : TRUE;
-
-  if (filterable) {
-    keypaths = keypaths.filter(filter);
-  }
-  return keypaths.join(SEPARATOR_KEY);
-}
-
-function startsWith$1(keypath, prefix) {
-  var temp;
-  if (keypath === prefix) {
-    return prefix.length;
-  } else if (startsWith(keypath, temp = prefix + SEPARATOR_KEY)) {
-    return temp.length;
-  } else {
-    return FALSE;
-  }
-}
-
-
-
-function join(keypath1, keypath2) {
-  // keypath 可以是两种形式
-  // 1. 非空字符串
-  // 2. 数字
-  var result = [];
-  if (!falsy$1(keypath1) || number(keypath1)) {
-    push(result, keypath1);
-  }
-  if (!falsy$1(keypath2) || number(keypath2)) {
-    push(result, keypath2);
-  }
-  return stringify(result, FALSE);
-}
-
-/**
- * 获取对象的 key 的数组
- *
- * @param {Object} object
- * @return {Array}
- */
-function keys(object$$1) {
-  return Object.keys(object$$1);
-}
-
-function sortByAsc(a, b) {
-  return a.length - b.length;
-}
-
-function sortByDesc(a, b) {
-  return b.length - a.length;
-}
-
-/**
- * 排序对象的 key
- *
- * @param {Object} object
- * @param {Object} desc 是否逆序，默认从小到大排序
- * @return {Array.<string>}
- */
-function sort(object$$1, desc) {
-  return keys(object$$1).sort(desc ? sortByDesc : sortByAsc);
-}
-
-/**
- * 遍历对象
- *
- * @param {Object} object
- * @param {Function} callback 返回 false 可停止遍历
- */
-function each$1(object$$1, callback) {
-  each(keys(object$$1), function (key) {
-    return callback(object$$1[key], key);
-  });
-}
-
-/**
- * 对象是否包含某个 key
- *
- * @param {Object} object
- * @param {string} key
- * @return {boolean}
- */
-function has$1(object$$1, key) {
-  return object$$1.hasOwnProperty(key);
-}
-
-/**
- * 本来想用 in，无奈关键字...
- *
- * @param {Object} object
- * @param {string} key
- * @return {boolean}
- */
-function exists(object$$1, key) {
-  return primitive(object$$1) ? has$1(object$$1, key) : key in object$$1;
-}
-
-/**
- * 清空对象所有的值
- *
- * @param {Object} object
- */
-function clear(object$$1) {
-  each$1(object$$1, function (value, key) {
-    delete object$$1[key];
-  });
-}
-
-/**
- * 扩展对象
- *
- * @return {Object}
- */
-function extend(original, object1, object2, object3) {
-  // 尽量不用 arguments
-  // 提供三个扩展对象足够了吧...
-  each([object1, object2, object3], function (object$$1) {
-    if (object(object$$1)) {
-      each$1(object$$1, function (value, key) {
-        original[key] = value;
-      });
+    /**
+     * 扩展对象
+     *
+     * @return
+     */
+    function extend(original, object) {
+        each$2(object, function (value, key) {
+            original[key] = value;
+        });
+        return original;
     }
-  });
-  return original;
-}
-
-/**
- * 拷贝对象
- *
- * @param {*} object
- * @param {?boolean} deep 是否需要深拷贝
- * @return {*}
- */
-function copy(object$$1, deep) {
-  var result = object$$1;
-  if (array(object$$1)) {
-    result = [];
-    each(object$$1, function (item, index) {
-      result[index] = deep ? copy(item, deep) : item;
-    });
-  } else if (object(object$$1)) {
-    result = {};
-    each$1(object$$1, function (value, key) {
-      result[key] = deep ? copy(value, deep) : value;
-    });
-  }
-  return result;
-}
-
-/**
- * 从对象中查找一个 keypath
- *
- * 返回值是对象时，表示找了值
- * 返回值是空时，表示没找到值
- *
- * @param {Object} object
- * @param {string|number} keypath
- * @return {?Object}
- */
-function get$1(object$$1, keypath) {
-
-  if (!falsy$1(keypath) && !exists(object$$1, keypath) && indexOf$1(keypath, CHAR_DOT) > 0) {
-    var list = parse(keypath);
-    for (var i = 0, len = list.length; i < len; i++) {
-      if (i < len - 1) {
-        object$$1 = object$$1[list[i]];
-        if (object$$1 == NULL) {
-          return;
-        } else if (func(object$$1) && object$$1.getter) {
-          object$$1 = object$$1();
-        }
-      } else {
-        keypath = list[i];
-      }
+    /**
+     * 合并对象
+     *
+     * @return
+     */
+    function merge(object1, object2) {
+        return object1 && object2
+            ? extend(extend({}, object1), object2)
+            : object1 || object2;
     }
-  }
-
-  if (exists(object$$1, keypath)) {
-    var value = object$$1[keypath];
-    if (func(value) && value.getter) {
-      value = value();
-    }
-    return {
-      value: value
-    };
-  }
-}
-
-/**
- * 为对象设置一个键值对
- *
- * @param {Object} object
- * @param {string|number} keypath
- * @param {*} value
- * @param {?boolean} autofill 是否自动填充不存在的对象，默认自动填充
- */
-function set$1(object$$1, keypath, value, autofill) {
-  if (!falsy$1(keypath) && !exists(object$$1, keypath) && indexOf$1(keypath, CHAR_DOT) > 0) {
-    var originalObject = object$$1;
-    var list = parse(keypath);
-    var name = pop(list);
-    each(list, function (item, index) {
-      if (object$$1[item]) {
-        object$$1 = object$$1[item];
-      } else if (autofill !== FALSE) {
-        object$$1 = object$$1[item] = {};
-      } else {
-        return object$$1 = FALSE;
-      }
-    });
-    if (object$$1 && object$$1 !== originalObject) {
-      object$$1[name] = value;
-    }
-  } else {
-    object$$1[keypath] = value;
-  }
-}
-
-var object$1 = {
-  keys: keys,
-  sort: sort,
-  each: each$1,
-  has: has$1,
-  exists: exists,
-  clear: clear,
-  extend: extend,
-  copy: copy,
-  get: get$1,
-  set: set$1
-};
-
-var guid = 0;
-
-var Emitter = function () {
-
-  /**
-   *
-   * @param {boolean} namespace 是否需要命名空间
-   */
-  function Emitter(namespace) {
-    classCallCheck(this, Emitter);
-
-    this.namespace = namespace;
-    this.listeners = {};
-  }
-
-  Emitter.prototype.fire = function (type, data, context) {
-    var namespace = this.namespace,
-        listeners = this.listeners;
-
-    var _parseType = parseType(type, namespace),
-        name = _parseType.name,
-        space = _parseType.space;
-
-    var isComplete = TRUE,
-        list = listeners[name];
-    if (list) {
-
-      var event = array(data) ? data[0] : data,
-          isEvent = Event.is(event),
-          fireId = guid++,
-          i = -1,
-          j,
-          item,
-          result;
-
-      while (item = list[++i]) {
-
-        // 当前执行 id
-        item.id = fireId;
-
-        if (space && item.space && space !== item.space) {
-          continue;
-        }
-
-        result = execute(item.func, isDef(context) ? context : item.context, data);
-
-        // 执行次数
-        if (item.count > 0) {
-          item.count++;
-        } else {
-          item.count = 1;
-        }
-
-        // 注册的 listener 可以指定最大执行次数
-        if (item.count === item.max) {
-          list.splice(i, 1);
-        }
-
-        // 如果没有返回 false，而是调用了 event.stop 也算是返回 false
-        if (isEvent) {
-          if (result === FALSE) {
-            event.prevent().stop();
-          } else if (event.isStoped) {
-            result = FALSE;
-          }
-        }
-
-        if (result === FALSE) {
-          return isComplete = FALSE;
-        }
-
-        // 解绑了一些 event handler
-        // 则往回找最远的未执行的 item
-        if (i >= 0 && item !== list[i]) {
-          j = i;
-          while (item = list[i]) {
-            if (item.id !== fireId) {
-              j = i;
+    /**
+     * 拷贝对象
+     *
+     * @param object
+     * @param deep 是否需要深拷贝
+     * @return
+     */
+    function copy(object$1, deep) {
+        var result = object$1;
+        if (array(object$1)) {
+            if (deep) {
+                result = [];
+                each(object$1, function (item, index) {
+                    result[index] = copy(item, deep);
+                });
             }
-            i--;
-          }
-          i = j - 1;
-        }
-      }
-
-      if (!list.length) {
-        delete listeners[name];
-      }
-    }
-
-    return isComplete;
-  };
-
-  Emitter.prototype.has = function (type, listener) {
-    var namespace = this.namespace,
-        listeners = this.listeners,
-        _parseType2 = parseType(type, namespace),
-        name = _parseType2.name,
-        space = _parseType2.space,
-        result = TRUE;
-
-    var each$$1 = function (list) {
-      each(list, function (item, index) {
-        if ((!space || space === item.space) && (!listener || listener === item.func)) {
-          return result = FALSE;
-        }
-      });
-      return result;
-    };
-
-    if (name) {
-      var list = listeners[name];
-      if (list) {
-        each$$1(list);
-      }
-    } else if (space) {
-      each$1(listeners, each$$1);
-    }
-
-    return !result;
-  };
-
-  return Emitter;
-}();
-
-extend(Emitter.prototype, {
-  on: on(),
-  once: on({ max: 1 }),
-  off: function off(type, listener) {
-
-    var instance = this;
-
-    if (type == NULL) {
-      instance.listeners = {};
-    } else {
-      var _parseType3 = parseType(type, instance.namespace),
-          name = _parseType3.name,
-          space = _parseType3.space;
-
-      var each$$1 = function (list, name) {
-        each(list, function (item, index) {
-          if ((!space || space === item.space) && (!listener || listener === item.func)) {
-            list.splice(index, 1);
-          }
-        }, TRUE);
-        if (!list.length) {
-          delete _listeners[name];
-        }
-      };
-
-      var _listeners = instance.listeners;
-
-      if (name) {
-        var list = _listeners[name];
-        if (list) {
-          each$$1(list, name);
-        }
-      } else if (space) {
-        each$1(_listeners, each$$1);
-      }
-    }
-  }
-});
-
-function on(data) {
-  return function (type, listener) {
-    var namespace = this.namespace,
-        listeners = this.listeners;
-
-
-    var addListener = function (item, type) {
-      if (func(item)) {
-        item = { func: item };
-      }
-      if (object(item) && func(item.func)) {
-        if (data) {
-          extend(item, data);
-        }
-
-        var _parseType4 = parseType(type, namespace),
-            name = _parseType4.name,
-            space = _parseType4.space;
-
-        item.space = space;
-        push(listeners[name] || (listeners[name] = []), item);
-      }
-    };
-
-    if (object(type)) {
-      each$1(type, addListener);
-    } else if (string(type)) {
-      addListener(listener, type);
-    }
-  };
-}
-
-function parseType(type, namespace) {
-  var result = {
-    name: type,
-    space: CHAR_BLANK
-  };
-  if (namespace) {
-    var index = indexOf$1(type, CHAR_DOT);
-    if (index >= 0) {
-      result.name = slice(type, 0, index);
-      result.space = slice(type, index + 1);
-    }
-  }
-  return result;
-}
-
-var toString = function (str) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : CHAR_BLANK;
-
-  if (str != NULL && str.toString) {
-    return str.toString();
-  }
-  return defaultValue;
-};
-
-/**
- * 是否有原生的日志特性，没有必要单独实现
- *
- * @type {?Object}
- */
-var Console = typeof console !== RAW_UNDEFINED ? console : NULL;
-
-var debug = /yox/.test(toString(noop));
-
-// 全局可覆盖
-// 比如开发环境，开了 debug 模式，但是有时候觉得看着一堆日志特烦，想强制关掉
-// 比如线上环境，关了 debug 模式，为了调试，想强制打开
-function isDebug() {
-  if (win) {
-    var DEBUG = win.DEBUG;
-
-    if (boolean(DEBUG)) {
-      return DEBUG;
-    }
-  }
-  return debug;
-}
-
-/**
- * 打印普通日志
- *
- * @param {string} msg
- */
-function log(msg) {
-  if (Console && isDebug()) {
-    Console.log('[Yox log]: ' + msg);
-  }
-}
-
-/**
- * 打印警告日志
- *
- * @param {string} msg
- */
-function warn(msg) {
-  if (Console && isDebug()) {
-    Console.warn('[Yox warn]: ' + msg);
-  }
-}
-
-/**
- * 打印错误日志
- *
- * @param {string} msg
- */
-function error$1(msg) {
-  if (Console) {
-    Console.error('[Yox error]: ' + msg);
-  }
-}
-
-/**
- * 致命错误，中断程序
- *
- * @param {string} msg
- */
-function fatal(msg) {
-  throw new Error('[Yox fatal]: ' + msg);
-}
-
-
-
-var logger = {
-  log: log,
-  warn: warn,
-  error: error$1,
-  fatal: fatal
-};
-
-var isNative = function (fn) {
-  if (func(fn)) {
-    return has$2(fn.toString(), '[native code]');
-  }
-};
-
-var nextTick;
-if (typeof Promise === RAW_FUNCTION && isNative(Promise)) {
-  var promise = Promise.resolve();
-  nextTick = function nextTick(fn) {
-    promise.then(fn);
-    setTimeout(noop);
-  };
-} else if (typeof MutationObserver === RAW_FUNCTION) {
-  nextTick = function nextTick(fn) {
-    var observer = new MutationObserver(fn);
-    var textNode = doc.createTextNode(CHAR_BLANK);
-    observer.observe(textNode, {
-      characterData: TRUE
-    });
-    textNode.data = CHAR_WHITESPACE;
-  };
-} else if (typeof setImmediate === RAW_FUNCTION) {
-  nextTick = setImmediate;
-} else {
-  nextTick = setTimeout;
-}
-
-var nextTick$1 = function (fn) {
-  nextTick(fn);
-};
-
-var nextTasks = [];
-
-function runTasks() {
-  var currentTasks = nextTasks;
-  nextTasks = [];
-  each(currentTasks, function (task) {
-    task();
-  });
-}
-
-function addTask(name, task) {
-  if (!nextTasks.length) {
-    nextTick$1(runTasks);
-  }
-  array$1[name](nextTasks, task);
-}
-
-/**
- * 在队尾添加异步任务
- *
- * @param {Function} task
- */
-function append(task) {
-  addTask('push', task);
-}
-
-/**
- * 在队首添加异步任务
- *
- * @param {Function} task
- */
-function prepend(task) {
-  addTask('unshift', task);
-}
-
-function createAttrs(vnode) {
-  var el = vnode.el,
-      component = vnode.component,
-      attrs = vnode.attrs,
-      api = this;
-
-  if (!component && attrs) {
-    each$1(attrs, function (value, name) {
-      api.setAttr(el, name, value);
-    });
-  }
-}
-
-function updateAttrs(vnode, oldVnode) {
-  var el = vnode.el,
-      component = vnode.component,
-      attrs = vnode.attrs,
-      oldAttrs = oldVnode.attrs,
-      api = this;
-
-  if (component || !attrs && !oldAttrs) {
-    return;
-  }
-
-  oldAttrs = oldAttrs || {};
-  attrs = attrs || {};
-
-  each$1(attrs, function (value, name) {
-    if (!has$1(oldAttrs, name) || value !== oldAttrs[name]) {
-      api.setAttr(el, name, value);
-    }
-  });
-
-  each$1(oldAttrs, function (value, name) {
-    if (!has$1(attrs, name)) {
-      api.removeAttr(el, name);
-    }
-  });
-}
-
-var attrs = {
-  create: createAttrs,
-  update: updateAttrs
-};
-
-function createProps(vnode, oldVnode) {
-  var component = vnode.component,
-      props = vnode.props;
-
-  if (!component && props) {
-    var api = this,
-        oldProps = oldVnode && oldVnode.props || {};
-    each$1(props, function (value, name) {
-      if (value !== oldProps[name]) {
-        api.setProp(vnode.el, name, value);
-      }
-    });
-  }
-}
-
-function removeProps(vnode, oldVnode) {
-  var component = vnode.component,
-      props = vnode.props,
-      oldProps = oldVnode.props,
-      api = this;
-
-  if (!component && oldProps) {
-    props = props || {};
-    each$1(oldProps, function (value, name) {
-      // 现在只有 innerText 和 innerHTML 会走进这里
-      // 对于这两种属性，为了确保兼容性，不能设为 null 或 undefined，因为 IE 会认为是字符串 null 或 undefined
-      // 但我们真实想要的是置为空字符串
-      if (!has$1(props, name)) {
-        api.setProp(vnode.el, name, CHAR_BLANK);
-      }
-    });
-  }
-}
-
-//
-// 旧 [ child1, child2 ]
-// 新 innerHTML
-//
-// 这种情况，要让外部先把 child1 child2 正常移除掉，再用 innerHTML 覆盖，否则指令无法销毁
-//
-// 旧 innerHTML
-// 新 [ child1, child2 ]
-//
-// 这种情况，先用 innerHTML 覆盖，再处理 child1 child2
-//
-var props = {
-  create: createProps,
-  update: removeProps,
-  postpatch: createProps
-};
-
-function bindDirective(vnode, key, api) {
-  var el = vnode.el,
-      tag = vnode.tag,
-      attrs = vnode.attrs,
-      directives = vnode.directives,
-      component = vnode.component,
-      instance = vnode.instance;
-
-
-  var node = directives[key],
-      options = {
-    el: el,
-    node: node,
-    instance: instance,
-    directives: directives,
-    attrs: attrs || {}
-  };
-
-  if (component) {
-    options.component = api.getComponent(el);
-  }
-
-  var bind = instance.directive(node.name),
-      unbind = bind && bind(options);
-
-  if (func(unbind)) {
-    return unbind;
-  }
-}
-
-function unbindDirective(vnode, key) {
-  var unbinds = vnode.unbinds;
-
-  if (unbinds && unbinds[key]) {
-    unbinds[key]();
-    delete unbinds[key];
-  }
-}
-
-function updateDirectives(vnode, oldVnode) {
-
-  var newDirectives = vnode.directives;
-  var oldDirectives = oldVnode && oldVnode.directives;
-
-  if (!newDirectives && !oldDirectives) {
-    return;
-  }
-
-  newDirectives = newDirectives || {};
-  oldDirectives = oldDirectives || {};
-
-  var api = this,
-      newUnbinds;
-
-  each$1(newDirectives, function (directive, key) {
-    var unbind;
-    if (has$1(oldDirectives, key)) {
-      var oldDirective = oldDirectives[key];
-      if (directive.value !== oldDirective.value || directive.keypath !== oldDirective.keypath || directive.context.data !== oldDirective.context.data) {
-        unbindDirective(oldVnode, key);
-        unbind = bindDirective(vnode, key, api);
-      }
-    } else {
-      unbind = bindDirective(vnode, key, api);
-    }
-    if (unbind) {
-      (newUnbinds || (newUnbinds = {}))[key] = unbind;
-    }
-  });
-
-  each$1(oldDirectives, function (directive, key) {
-    if (!has$1(newDirectives, key)) {
-      unbindDirective(oldVnode, key);
-    }
-  });
-
-  var oldUnbinds = oldVnode && oldVnode.unbinds;
-  if (oldUnbinds) {
-    if (newUnbinds) {
-      extend(newUnbinds, oldUnbinds);
-    } else {
-      newUnbinds = oldUnbinds;
-    }
-  }
-
-  if (newUnbinds) {
-    vnode.unbinds = newUnbinds;
-  }
-}
-
-function destroyDirectives(vnode) {
-  var unbinds = vnode.unbinds;
-
-  if (unbinds) {
-    each$1(unbinds, function (unbind) {
-      unbind();
-    });
-  }
-}
-
-var directives = {
-  create: updateDirectives,
-  update: updateDirectives,
-  destroy: destroyDirectives
-};
-
-function setRef(instance, ref, value) {
-  if (ref) {
-    var refs = instance.$refs || (instance.$refs = {});
-    refs[ref] = value;
-  }
-}
-
-function removeRef(instance, ref) {
-  if (ref) {
-    delete instance.$refs[ref];
-  }
-}
-
-function createComponent(vnode) {
-  var el = vnode.el,
-      component = vnode.component,
-      instance = vnode.instance,
-      ref = vnode.ref;
-
-  if (component) {
-    el = this.getComponent(el);
-  }
-  setRef(instance, ref, el);
-}
-
-function updateComponent(vnode, oldVnode) {
-  var el = vnode.el,
-      component = vnode.component,
-      instance = vnode.instance,
-      ref = vnode.ref;
-
-
-  if (component) {
-    el = this.getComponent(el);
-    el.set(vnode.attrs);
-  }
-
-  if (oldVnode && oldVnode.ref !== ref) {
-    removeRef(instance, oldVnode.ref);
-    setRef(instance, ref, el);
-  }
-}
-
-function destroyComponent(vnode) {
-  removeRef(vnode.instance, vnode.ref);
-}
-
-var component = {
-  create: createComponent,
-  postpatch: updateComponent,
-  destroy: destroyComponent
-};
-
-var TAG_COMMENT = '!';
-
-var HOOK_CREATE = 'create';
-var HOOK_UPDATE = 'update';
-var HOOK_POSTPATCH = 'postpatch';
-var HOOK_DESTROY = 'destroy';
-
-var modules = [component, attrs, props, directives];
-
-var moduleEmitter = new Emitter();
-
-each([HOOK_CREATE, HOOK_UPDATE, HOOK_POSTPATCH, HOOK_DESTROY], function (hook) {
-  each(modules, function (item) {
-    moduleEmitter.on(hook, item[hook]);
-  });
-});
-
-modules = NULL;
-
-function isPatchable(vnode1, vnode2) {
-  return vnode1.key === vnode2.key && vnode1.tag === vnode2.tag;
-}
-
-function createKeyToIndex(vnodes, startIndex, endIndex) {
-  var result = {},
-      key;
-  while (startIndex <= endIndex) {
-    key = vnodes[startIndex].key;
-    if (isDef(key)) {
-      result[key] = startIndex;
-    }
-    startIndex++;
-  }
-  return result;
-}
-
-function createCommentVnode(text) {
-  return {
-    tag: TAG_COMMENT,
-    text: toString(text)
-  };
-}
-
-function createTextVnode(text) {
-  return {
-    text: toString(text)
-  };
-}
-
-function isTextVnode(vnode) {
-  return vnode && has$1(vnode, 'text') && !has$1(vnode, 'tag');
-}
-
-function createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, key, ref, instance) {
-  return {
-    tag: tag,
-    attrs: attrs$$1,
-    props: props$$1,
-    directives: directives$$1,
-    children: children,
-    key: key,
-    ref: ref,
-    instance: instance,
-    text: UNDEFINED
-  };
-}
-
-function createComponentVnode(tag, attrs$$1, props$$1, directives$$1, children, key, ref, instance) {
-  var vnode = createElementVnode(tag, attrs$$1, props$$1, directives$$1, children, key, ref, instance);
-  vnode.component = TRUE;
-  return vnode;
-}
-
-function init(api) {
-
-  var createElement = function (parentNode, vnode) {
-    var _vnode = vnode,
-        el = _vnode.el,
-        tag = _vnode.tag,
-        component$$1 = _vnode.component,
-        children = _vnode.children,
-        text = _vnode.text,
-        instance = _vnode.instance;
-
-
-    if (falsy$1(tag)) {
-      return vnode.el = api.createText(text);
-    }
-
-    if (tag === TAG_COMMENT) {
-      return vnode.el = api.createComment(text);
-    }
-
-    // 不管是组件还是元素，必须先有一个元素
-    el = vnode.el = api.createElement(component$$1 ? 'div' : tag, parentNode);
-
-    if (component$$1) {
-
-      api.setComponent(el, vnode);
-
-      instance.component(tag, function (options) {
-
-        if (!options) {
-          fatal('"' + tag + '" component is not found.');
-        }
-
-        vnode = api.getComponent(el);
-
-        if (vnode && tag === vnode.tag) {
-          component$$1 = (vnode.parent || vnode.instance).create(options, {
-            el: el,
-            props: vnode.attrs,
-            replace: TRUE
-          });
-          el = component$$1.$el;
-          if (!el) {
-            fatal('"' + tag + '" component must have a root element.');
-          }
-
-          vnode.el = el;
-          api.setComponent(el, component$$1);
-
-          moduleEmitter.fire(HOOK_CREATE, vnode, api);
-        }
-      });
-    } else {
-
-      if (array(children)) {
-        addVnodes(el, children, 0, children.length - 1);
-      } else if (string(text)) {
-        api.append(el, api.createText(text));
-      }
-
-      moduleEmitter.fire(HOOK_CREATE, vnode, api);
-    }
-
-    return el;
-  };
-
-  var addVnodes = function (parentNode, vnodes, startIndex, endIndex, before) {
-    while (startIndex <= endIndex) {
-      addVnode(parentNode, vnodes[startIndex], before);
-      startIndex++;
-    }
-  };
-
-  var addVnode = function (parentNode, vnode, before) {
-    var el = createElement(parentNode, vnode);
-    if (el) {
-      api.before(parentNode, el, before);
-    }
-  };
-
-  var removeVnodes = function (parentNode, vnodes, startIndex, endIndex) {
-    var vnode;
-    while (startIndex <= endIndex) {
-      vnode = vnodes[startIndex];
-      if (vnode) {
-        removeVnode(parentNode, vnode);
-      }
-      startIndex++;
-    }
-  };
-
-  var removeVnode = function (parentNode, vnode) {
-    var tag = vnode.tag,
-        el = vnode.el,
-        component$$1 = vnode.component;
-
-    if (tag) {
-      if (!destroyVnode(vnode)) {
-        api.remove(parentNode, el);
-      }
-    } else if (el) {
-      api.remove(parentNode, el);
-    }
-  };
-
-  var destroyVnode = function (vnode) {
-    var el = vnode.el,
-        component$$1 = vnode.component,
-        children = vnode.children;
-
-    if (component$$1) {
-      component$$1 = api.getComponent(el);
-      if (component$$1.set) {
-        moduleEmitter.fire(HOOK_DESTROY, vnode, api);
-        api.setComponent(el, NULL);
-        component$$1.destroy();
-        return true;
-      }
-      api.setComponent(el, NULL);
-    } else if (children) {
-      each(children, function (child) {
-        destroyVnode(child);
-      });
-    }
-    moduleEmitter.fire(HOOK_DESTROY, vnode, api);
-  };
-
-  var replaceVnode = function (parentNode, oldVnode, vnode) {
-    api.before(parentNode, vnode.el, oldVnode.el);
-    removeVnode(parentNode, oldVnode);
-  };
-
-  var updateChildren = function (parentNode, oldChildren, newChildren) {
-
-    var oldStartIndex = 0;
-    var oldEndIndex = oldChildren.length - 1;
-    var oldStartVnode = oldChildren[oldStartIndex];
-    var oldEndVnode = oldChildren[oldEndIndex];
-
-    var newStartIndex = 0;
-    var newEndIndex = newChildren.length - 1;
-    var newStartVnode = newChildren[newStartIndex];
-    var newEndVnode = newChildren[newEndIndex];
-
-    var oldKeyToIndex,
-        oldIndex,
-        activeVnode;
-
-    while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
-
-      // 下面有设为 NULL 的逻辑
-      if (!oldStartVnode) {
-        oldStartVnode = oldChildren[++oldStartIndex]; // Vnode has been moved left
-      } else if (!oldEndVnode) {
-        oldEndVnode = oldChildren[--oldEndIndex];
-      }
-
-      // 从头到尾比较，位置相同且值得 patch
-      else if (isPatchable(oldStartVnode, newStartVnode)) {
-          patchVnode(oldStartVnode, newStartVnode);
-          oldStartVnode = oldChildren[++oldStartIndex];
-          newStartVnode = newChildren[++newStartIndex];
-        }
-
-        // 从尾到头比较，位置相同且值得 patch
-        else if (isPatchable(oldEndVnode, newEndVnode)) {
-            patchVnode(oldEndVnode, newEndVnode);
-            oldEndVnode = oldChildren[--oldEndIndex];
-            newEndVnode = newChildren[--newEndIndex];
-          }
-
-          // 比较完两侧的节点，剩下就是 位置发生改变的节点 和 全新的节点
-
-          // 当 oldStartVnode 和 newEndVnode 值得 patch
-          // 说明元素被移到右边了
-          else if (isPatchable(oldStartVnode, newEndVnode)) {
-              patchVnode(oldStartVnode, newEndVnode);
-              api.before(parentNode, oldStartVnode.el, api.next(oldEndVnode.el));
-              oldStartVnode = oldChildren[++oldStartIndex];
-              newEndVnode = newChildren[--newEndIndex];
+            else {
+                result = object$1.slice();
             }
-
-            // 当 oldEndVnode 和 newStartVnode 值得 patch
-            // 说明元素被移到左边了
-            else if (isPatchable(oldEndVnode, newStartVnode)) {
-                patchVnode(oldEndVnode, newStartVnode);
-                api.before(parentNode, oldEndVnode.el, oldStartVnode.el);
-                oldEndVnode = oldChildren[--oldEndIndex];
-                newStartVnode = newChildren[++newStartIndex];
-              }
-
-              // 尝试同级元素的 key
-              else {
-
-                  if (!oldKeyToIndex) {
-                    oldKeyToIndex = createKeyToIndex(oldChildren, oldStartIndex, oldEndIndex);
-                  }
-
-                  oldIndex = oldKeyToIndex[newStartVnode.key];
-
-                  // 移动元素
-                  if (number(oldIndex)) {
-                    activeVnode = oldChildren[oldIndex];
-                    patchVnode(activeVnode, newStartVnode);
-                    oldChildren[oldIndex] = NULL;
-                  }
-                  // 新元素
-                  else {
-                      activeVnode = createElement(parentNode, newStartVnode);
-                      if (activeVnode) {
-                        activeVnode = newStartVnode;
-                      }
-                    }
-
-                  if (activeVnode) {
-                    api.before(parentNode, activeVnode.el, oldStartVnode.el);
-                  }
-
-                  newStartVnode = newChildren[++newStartIndex];
+        }
+        else if (object(object$1)) {
+            result = {};
+            each$2(object$1, function (value, key) {
+                result[key] = deep ? copy(value, deep) : value;
+            });
+        }
+        return result;
+    }
+    /**
+     * 从对象中查找一个 keypath
+     *
+     * 返回值是空时，表示没找到值
+     *
+     * @param object
+     * @param keypath
+     * @return
+     */
+    function get(object, keypath) {
+        each$1(keypath, function (key, index, lastIndex) {
+            if (object != NULL) {
+                // 先直接取值
+                var value = object[key],
+                // 紧接着判断值是否存在
+                // 下面会处理计算属性的值，不能在它后面设置 hasValue
+                hasValue = value !== UNDEFINED;
+                // 如果是计算属性，取计算属性的值
+                if (value && func(value.get)) {
+                    value = value.get();
                 }
+                if (index === lastIndex) {
+                    if (hasValue) {
+                        holder.value = value;
+                        object = holder;
+                    }
+                    else {
+                        object = UNDEFINED;
+                    }
+                }
+                else {
+                    object = value;
+                }
+            }
+            else {
+                object = UNDEFINED;
+                return FALSE;
+            }
+        });
+        return object;
+    }
+    /**
+     * 为对象设置一个键值对
+     *
+     * @param object
+     * @param keypath
+     * @param value
+     * @param autofill 是否自动填充不存在的对象，默认自动填充
+     */
+    function set(object, keypath, value, autofill) {
+        each$1(keypath, function (key, index, lastIndex) {
+            if (index === lastIndex) {
+                object[key] = value;
+            }
+            else if (object[key]) {
+                object = object[key];
+            }
+            else if (autofill) {
+                object = object[key] = {};
+            }
+            else {
+                return FALSE;
+            }
+        });
+    }
+    /**
+     * 对象是否包含某个 key
+     *
+     * @param object
+     * @param key
+     * @return
+     */
+    function has$2(object, key) {
+        // 不用 hasOwnProperty，性能差
+        return object[key] !== UNDEFINED;
+    }
+    /**
+     * 是否是空对象
+     *
+     * @param object
+     * @return
+     */
+    function falsy$2(object$1) {
+        return !object(object$1)
+            || array(object$1)
+            || !keys(object$1).length;
     }
 
-    if (oldStartIndex > oldEndIndex) {
-      activeVnode = newChildren[newEndIndex + 1];
-      addVnodes(parentNode, newChildren, newStartIndex, newEndIndex, activeVnode ? activeVnode.el : NULL);
-    } else if (newStartIndex > newEndIndex) {
-      removeVnodes(parentNode, oldChildren, oldStartIndex, oldEndIndex);
-    }
-  };
+    var object$1 = /*#__PURE__*/Object.freeze({
+      keys: keys,
+      each: each$2,
+      clear: clear,
+      extend: extend,
+      merge: merge,
+      copy: copy,
+      get: get,
+      set: set,
+      has: has$2,
+      falsy: falsy$2
+    });
 
-  var patchVnode = function (oldVnode, vnode) {
-
-    if (oldVnode === vnode) {
-      return;
-    }
-
-    var el = oldVnode.el,
-        component$$1 = oldVnode.component;
-
-    vnode.el = el;
-
-    if (!isPatchable(oldVnode, vnode)) {
-      var parentNode = api.parent(el);
-      if (createElement(parentNode, vnode)) {
-        parentNode && replaceVnode(parentNode, oldVnode, vnode);
-      }
-      return;
+    function toString (target, defaultValue) {
+        return target != NULL && target.toString
+            ? target.toString()
+            : defaultValue !== UNDEFINED
+                ? defaultValue
+                : EMPTY_STRING;
     }
 
-    if (component$$1) {
-      component$$1 = api.getComponent(el);
-      if (!component$$1.set) {
-        api.setComponent(el, vnode);
-        return;
-      }
-    }
-
-    var args = [vnode, oldVnode];
-    moduleEmitter.fire(HOOK_UPDATE, args, api);
-
-    var newText = vnode.text;
-    var newChildren = vnode.children;
-
-    var oldText = oldVnode.text;
-    var oldChildren = oldVnode.children;
-
-    if (string(newText)) {
-      if (newText !== oldText) {
-        api.text(el, newText);
-      }
-    } else {
-      // 两个都有需要 diff
-      if (newChildren && oldChildren) {
-        if (newChildren !== oldChildren) {
-          updateChildren(el, oldChildren, newChildren);
+    var DEBUG = 1;
+    var INFO = 2;
+    var WARN = 3;
+    var ERROR = 4;
+    var FATAL = 5;
+    /**
+     * 是否有原生的日志特性，没有必要单独实现
+     */
+    var nativeConsole = typeof console !== RAW_UNDEFINED ? console : NULL,
+    /**
+     * 当前是否是源码调试，如果开启了代码压缩，empty function 里的注释会被干掉
+     * 源码模式默认选 INFO，因为 DEBUG 输出的日志太多，会导致性能急剧下降
+     */
+    defaultLogLevel = /yox/.test(toString(EMPTY_FUNCTION)) ? INFO : WARN,
+    /**
+     * console 样式前缀
+     * ie 和 edge 不支持 console.log 样式
+     */
+    stylePrefix = WINDOW && /edge|msie|trident/i.test(WINDOW.navigator.userAgent)
+        ? EMPTY_STRING
+        : '%c',
+    /**
+     * 日志打印函数
+     */
+    printLog = nativeConsole
+        ? stylePrefix
+            ? function (tag, msg, style) {
+                nativeConsole.log(stylePrefix + tag, style, msg);
+            }
+            : function (tag, msg) {
+                nativeConsole.log(tag, msg);
+            }
+        : EMPTY_FUNCTION;
+    /**
+     * 全局调试开关
+     */
+    function getLogLevel() {
+        if (GLOBAL) {
+            var logLevel = GLOBAL['YOX_LOG_LEVEL'];
+            if (logLevel >= DEBUG && logLevel <= FATAL) {
+                return logLevel;
+            }
         }
-      }
-      // 有新的没旧的 - 新增节点
-      else if (newChildren) {
-          if (string(oldText)) {
-            api.text(el, CHAR_BLANK);
-          }
-          addVnodes(el, newChildren, 0, newChildren.length - 1);
+        return defaultLogLevel;
+    }
+    function getStyle(backgroundColor) {
+        return "background-color:" + backgroundColor + ";border-radius:12px;color:#fff;font-size:10px;padding:3px 6px;";
+    }
+    /**
+     * 打印 debug 日志
+     *
+     * @param msg
+     */
+    function debug(msg, tag) {
+        if (getLogLevel() <= DEBUG) {
+            printLog(tag || 'Yox debug', msg, getStyle('#999'));
+        }
+    }
+    /**
+     * 打印 info 日志
+     *
+     * @param msg
+     */
+    function info(msg, tag) {
+        if (getLogLevel() <= INFO) {
+            printLog(tag || 'Yox info', msg, getStyle('#2db7f5'));
+        }
+    }
+    /**
+     * 打印 warn 日志
+     *
+     * @param msg
+     */
+    function warn(msg, tag) {
+        if (getLogLevel() <= WARN) {
+            printLog(tag || 'Yox warn', msg, getStyle('#f90'));
+        }
+    }
+    /**
+     * 打印 error 日志
+     *
+     * @param msg
+     */
+    function error(msg, tag) {
+        if (getLogLevel() <= ERROR) {
+            printLog(tag || 'Yox error', msg, getStyle('#ed4014'));
+        }
+    }
+    /**
+     * 致命错误，中断程序
+     *
+     * @param msg
+     */
+    function fatal(msg, tag) {
+        if (getLogLevel() <= FATAL) {
+            throw new Error("[" + (tag || 'Yox fatal') + "]: " + msg);
+        }
+    }
+
+    var logger = /*#__PURE__*/Object.freeze({
+      DEBUG: DEBUG,
+      INFO: INFO,
+      WARN: WARN,
+      ERROR: ERROR,
+      FATAL: FATAL,
+      debug: debug,
+      info: info,
+      warn: warn,
+      error: error,
+      fatal: fatal
+    });
+
+    var Emitter = /** @class */ (function () {
+        function Emitter(ns) {
+            this.ns = ns || FALSE;
+            this.listeners = {};
+        }
+        /**
+         * 发射事件
+         *
+         * @param type 事件名称或命名空间
+         * @param args 事件处理函数的参数列表
+         * @param filter 自定义过滤器
+         */
+        Emitter.prototype.fire = function (type, args, filter) {
+            var instance = this, namespace = string(type) ? instance.parse(type) : type, list = instance.listeners[namespace.type], isComplete = TRUE;
+            if (list) {
+                // 避免遍历过程中，数组发生变化，比如增删了
+                list = copy(list);
+                // 判断是否是发射事件
+                // 如果 args 的第一个参数是 CustomEvent 类型，表示发射事件
+                // 因为事件处理函数的参数列表是 (event, data)
+                var event = args && args[0] instanceof CustomEvent
+                    ? args[0]
+                    : UNDEFINED;
+                // 这里不用 array.each，减少函数调用
+                for (var i = 0, length = list.length; i < length; i++) {
+                    var options = list[i];
+                    // 命名空间不匹配
+                    if (!matchNamespace(namespace.ns, options)
+                        // 在 fire 过程中被移除了
+                        || !has(list, options)
+                        // 传了 filter，则用 filter 判断是否过滤此 options
+                        || (filter && !filter(namespace, args, options))) {
+                        continue;
+                    }
+                    // 为 event 对象加上当前正在处理的 listener
+                    // 这样方便业务层移除事件绑定
+                    // 比如 on('xx', function) 这样定义了匿名 listener
+                    // 在这个 listener 里面获取不到当前 listener 的引用
+                    // 为了能引用到，有时候会先定义 var listener = function
+                    // 然后再 on('xx', listener) 这样其实是没有必要的
+                    if (event) {
+                        event.listener = options.fn;
+                    }
+                    var result = execute(options.fn, options.ctx, args);
+                    if (event) {
+                        event.listener = UNDEFINED;
+                    }
+                    // 执行次数
+                    options.num = options.num ? (options.num + 1) : 1;
+                    // 注册的 listener 可以指定最大执行次数
+                    if (options.num === options.max) {
+                        instance.off(namespace, options.fn);
+                    }
+                    // 如果没有返回 false，而是调用了 event.stop 也算是返回 false
+                    if (event) {
+                        if (result === FALSE) {
+                            event.prevent().stop();
+                        }
+                        else if (event.isStoped) {
+                            result = FALSE;
+                        }
+                    }
+                    if (result === FALSE) {
+                        isComplete = FALSE;
+                        break;
+                    }
+                }
+            }
+            return isComplete;
+        };
+        /**
+         * 注册监听
+         *
+         * @param type
+         * @param listener
+         */
+        Emitter.prototype.on = function (type, listener) {
+            var instance = this, listeners = instance.listeners, options = func(listener)
+                ? { fn: listener }
+                : listener;
+            if (object(options) && func(options.fn)) {
+                var namespace = string(type) ? instance.parse(type) : type;
+                options.ns = namespace.ns;
+                push(listeners[namespace.type] || (listeners[namespace.type] = []), options);
+            }
+            else {
+                fatal("emitter.on(type, listener) invoke failed\uFF1A\n\n\"listener\" is expected to be a Function or an EmitterOptions.\n");
+            }
+        };
+        /**
+         * 取消监听
+         *
+         * @param type
+         * @param listener
+         */
+        Emitter.prototype.off = function (type, listener) {
+            var instance = this, listeners = instance.listeners;
+            if (type) {
+                var namespace = string(type) ? instance.parse(type) : type, name = namespace.type, ns_1 = namespace.ns, matchListener_1 = createMatchListener(listener), each$1 = function (list, name) {
+                    each(list, function (options, index) {
+                        if (matchListener_1(options) && matchNamespace(ns_1, options)) {
+                            list.splice(index, 1);
+                        }
+                    }, TRUE);
+                    if (!list.length) {
+                        delete listeners[name];
+                    }
+                };
+                if (name) {
+                    if (listeners[name]) {
+                        each$1(listeners[name], name);
+                    }
+                }
+                else if (ns_1) {
+                    each$2(listeners, each$1);
+                }
+                // 在开发阶段进行警告，比如传了 listener 进来，listener 是个空值
+                // 但你不知道它是空值
+                {
+                    if (arguments.length > 1 && listener == NULL) {
+                        warn("emitter.off(type, listener) is invoked, but \"listener\" is " + listener + ".");
+                    }
+                }
+            }
+            else {
+                // 清空
+                instance.listeners = {};
+                // 在开发阶段进行警告，比如传了 type 进来，type 是个空值
+                // 但你不知道它是空值
+                {
+                    if (arguments.length > 0) {
+                        warn("emitter.off(type) is invoked, but \"type\" is " + type + ".");
+                    }
+                }
+            }
+        };
+        /**
+         * 是否已监听某个事件
+         *
+         * @param type
+         * @param listener
+         */
+        Emitter.prototype.has = function (type, listener) {
+            var instance = this, listeners = instance.listeners, namespace = string(type) ? instance.parse(type) : type, name = namespace.type, ns = namespace.ns, result = TRUE, matchListener = createMatchListener(listener), each$1 = function (list) {
+                each(list, function (options) {
+                    if (matchListener(options) && matchNamespace(ns, options)) {
+                        return result = FALSE;
+                    }
+                });
+                return result;
+            };
+            if (name) {
+                if (listeners[name]) {
+                    each$1(listeners[name]);
+                }
+            }
+            else if (ns) {
+                each$2(listeners, each$1);
+            }
+            return !result;
+        };
+        /**
+         * 把事件类型解析成命名空间格式
+         *
+         * @param type
+         */
+        Emitter.prototype.parse = function (type) {
+            // 这里 ns 必须为字符串
+            // 用于区分 event 对象是否已完成命名空间的解析
+            var result = {
+                type: type,
+                ns: EMPTY_STRING
+            };
+            // 是否开启命名空间
+            if (this.ns) {
+                var index = indexOf$1(type, RAW_DOT);
+                if (index >= 0) {
+                    result.type = slice(type, 0, index);
+                    result.ns = slice(type, index + 1);
+                }
+            }
+            return result;
+        };
+        return Emitter;
+    }());
+    function matchTrue() {
+        return TRUE;
+    }
+    /**
+     * 外部会传入 Function 或 EmitterOptions 或 空
+     *
+     * 这里根据传入值的不同类型，创建不同的判断函数
+     *
+     * 如果传入的是 EmitterOptions，则全等判断
+     *
+     * 如果传入的是 Function，则判断函数是否全等
+     *
+     * 如果传入的是空，则直接返回 true
+     *
+     * @param listener
+     */
+    function createMatchListener(listener) {
+        return func(listener)
+            ? function (options) {
+                return listener === options.fn;
+            }
+            : matchTrue;
+    }
+    /**
+     * 判断 options 是否能匹配命名空间
+     *
+     * 如果 namespace 和 options.ns 都不为空，则需完全匹配
+     *
+     * 如果他们两个其中任何一个为空，则不判断命名空间
+     *
+     * @param namespace
+     * @param options
+     */
+    function matchNamespace(namespace, options) {
+        var ns = options.ns;
+        return ns && namespace
+            ? ns === namespace
+            : TRUE;
+    }
+
+    function isNative (target) {
+        return func(target)
+            && has$1(toString(target), '[native code]');
+    }
+
+    var nextTick;
+    // IE (10+) 和 node
+    if (typeof setImmediate === RAW_FUNCTION && isNative(setImmediate)) {
+        nextTick = setImmediate;
+    }
+    // 用 MessageChannel 去做 setImmediate 的 polyfill
+    // 原理是将新的 message 事件加入到原有的 dom events 之后
+    // 兼容性 IE10+ 和其他标准浏览器
+    if (typeof MessageChannel === RAW_FUNCTION && isNative(MessageChannel)) {
+        nextTick = function (fn) {
+            var channel = new MessageChannel();
+            channel.port1.onmessage = fn;
+            channel.port2.postMessage(1);
+        };
+    }
+    else {
+        nextTick = setTimeout;
+    }
+    var nextTick$1 = nextTick;
+
+    var shared;
+    var NextTask = /** @class */ (function () {
+        function NextTask() {
+            this.tasks = [];
+        }
+        /**
+         * 全局单例
+         */
+        NextTask.shared = function () {
+            return shared || (shared = new NextTask());
+        };
+        /**
+         * 在队尾添加异步任务
+         */
+        NextTask.prototype.append = function (func, context) {
+            var instance = this, tasks = instance.tasks;
+            push(tasks, {
+                fn: func,
+                ctx: context
+            });
+            if (tasks.length === 1) {
+                nextTick$1(function () {
+                    instance.run();
+                });
+            }
+        };
+        /**
+         * 在队首添加异步任务
+         */
+        NextTask.prototype.prepend = function (func, context) {
+            var instance = this, tasks = instance.tasks;
+            unshift(tasks, {
+                fn: func,
+                ctx: context
+            });
+            if (tasks.length === 1) {
+                nextTick$1(function () {
+                    instance.run();
+                });
+            }
+        };
+        /**
+         * 清空异步队列
+         */
+        NextTask.prototype.clear = function () {
+            this.tasks.length = 0;
+        };
+        /**
+         * 立即执行异步任务，并清空队列
+         */
+        NextTask.prototype.run = function () {
+            var tasks = this.tasks;
+            if (tasks.length) {
+                this.tasks = [];
+                each(tasks, function (task) {
+                    execute(task.fn, task.ctx);
+                });
+            }
+        };
+        return NextTask;
+    }());
+
+    // vnode.data 内部使用的几个字段
+    var ID = '$id';
+    var VNODE = '$vnode';
+    var LOADING = '$loading';
+    var COMPONENT = '$component';
+    var LEAVING = '$leaving';
+
+    function update(api, vnode, oldVnode) {
+        var node = vnode.node, nativeAttrs = vnode.nativeAttrs, oldNativeAttrs = oldVnode && oldVnode.nativeAttrs;
+        if (nativeAttrs || oldNativeAttrs) {
+            var newValue = nativeAttrs || EMPTY_OBJECT, oldValue = oldNativeAttrs || EMPTY_OBJECT;
+            for (var name in newValue) {
+                if (oldValue[name] === UNDEFINED
+                    || newValue[name] !== oldValue[name]) {
+                    api.attr(node, name, newValue[name]);
+                }
+            }
+            for (var name in oldValue) {
+                if (newValue[name] === UNDEFINED) {
+                    api.removeAttr(node, name);
+                }
+            }
+        }
+    }
+
+    function update$1(api, vnode, oldVnode) {
+        var node = vnode.node, nativeProps = vnode.nativeProps, oldNativeProps = oldVnode && oldVnode.nativeProps;
+        if (nativeProps || oldNativeProps) {
+            var newValue = nativeProps || EMPTY_OBJECT, oldValue = oldNativeProps || EMPTY_OBJECT;
+            for (var name in newValue) {
+                if (oldValue[name] === UNDEFINED
+                    || newValue[name] !== oldValue[name]) {
+                    api.prop(node, name, newValue[name]);
+                }
+            }
+            for (var name in oldValue) {
+                if (newValue[name] === UNDEFINED) {
+                    api.removeProp(node, name);
+                }
+            }
+        }
+    }
+
+    function update$2(vnode, oldVnode) {
+        var data = vnode.data, directives = vnode.directives, oldDirectives = oldVnode && oldVnode.directives;
+        if (directives || oldDirectives) {
+            var node = data[COMPONENT] || vnode.node, isKeypathChange = oldVnode && vnode.keypath !== oldVnode.keypath, newValue = directives || EMPTY_OBJECT, oldValue = oldDirectives || EMPTY_OBJECT;
+            for (var name in newValue) {
+                var directive = newValue[name], _a = directive.hooks, once = _a.once, bind = _a.bind, unbind = _a.unbind;
+                if (!oldValue[name]) {
+                    bind(node, directive, vnode);
+                }
+                else if (once
+                    || directive.value !== oldValue[name].value
+                    || isKeypathChange) {
+                    if (unbind) {
+                        unbind(node, oldValue[name], oldVnode);
+                    }
+                    bind(node, directive, vnode);
+                }
+            }
+            for (var name in oldValue) {
+                if (!newValue[name]) {
+                    var unbind = oldValue[name].hooks.unbind;
+                    if (unbind) {
+                        unbind(node, oldValue[name], oldVnode);
+                    }
+                }
+            }
+        }
+    }
+    function remove$1(vnode) {
+        var directives = vnode.directives;
+        if (directives) {
+            var node = vnode.data[COMPONENT] || vnode.node;
+            for (var name in directives) {
+                var unbind = directives[name].hooks.unbind;
+                if (unbind) {
+                    unbind(node, directives[name], vnode);
+                }
+            }
+        }
+    }
+
+    function update$3(vnode, oldVnode) {
+        var data = vnode.data, ref = vnode.ref, props = vnode.props, slots = vnode.slots, directives = vnode.directives, context = vnode.context, node;
+        if (vnode.isComponent) {
+            node = data[COMPONENT];
+            // 更新时才要 set
+            // 因为初始化时，所有这些都经过构造函数完成了
+            if (oldVnode) {
+                var model = directives && directives[DIRECTIVE_MODEL];
+                if (model) {
+                    if (!props) {
+                        props = {};
+                    }
+                    props[node.$model] = model.value;
+                }
+                {
+                    if (props) {
+                        each$2(props, function (value, key) {
+                            node.checkProp(key, value);
+                        });
+                    }
+                }
+                var result = merge(props, slots);
+                if (result) {
+                    node.forceUpdate(result);
+                }
+            }
+        }
+        else {
+            node = vnode.node;
+        }
+        if (ref) {
+            var refs = context.$refs;
+            if (refs) {
+                refs[ref] = node;
+            }
+        }
+    }
+
+    function isPatchable(vnode, oldVnode) {
+        return vnode.tag === oldVnode.tag
+            && vnode.key === oldVnode.key;
+    }
+    function createKeyToIndex(vnodes, startIndex, endIndex) {
+        var result, vnode, key;
+        while (startIndex <= endIndex) {
+            vnode = vnodes[startIndex];
+            if (vnode && (key = vnode.key)) {
+                if (!result) {
+                    result = {};
+                }
+                result[key] = startIndex;
+            }
+            startIndex++;
+        }
+        return result || EMPTY_OBJECT;
+    }
+    function insertBefore(api, parentNode, node, referenceNode) {
+        if (referenceNode) {
+            api.before(parentNode, node, referenceNode);
+        }
+        else {
+            api.append(parentNode, node);
+        }
+    }
+    function createComponent(vnode, options) {
+        var child = (vnode.parent || vnode.context).createComponent(options, vnode);
+        vnode.data[COMPONENT] = child;
+        vnode.data[LOADING] = FALSE;
+        update$2(vnode);
+        update$3(vnode);
+        return child;
+    }
+    var guid = 0;
+    function createData() {
+        var data = {};
+        data[ID] = ++guid;
+        return data;
+    }
+    function createVnode(api, vnode) {
+        var tag = vnode.tag, node = vnode.node, data = vnode.data, isComponent = vnode.isComponent, isComment = vnode.isComment, isText = vnode.isText, isStyle = vnode.isStyle, isOption = vnode.isOption, children = vnode.children, text = vnode.text, html = vnode.html, context = vnode.context;
+        if (node && data) {
+            return;
+        }
+        data = createData();
+        vnode.data = data;
+        if (isText) {
+            vnode.node = api.createText(text);
+            return;
+        }
+        if (isComment) {
+            vnode.node = api.createComment(text);
+            return;
+        }
+        if (isComponent) {
+            var componentOptions_1 = UNDEFINED;
+            // 动态组件，tag 可能为空
+            if (tag) {
+                context.loadComponent(tag, function (options) {
+                    if (has$2(data, LOADING)) {
+                        // 异步组件
+                        if (data[LOADING]) {
+                            // 尝试使用最新的 vnode
+                            if (data[VNODE]) {
+                                vnode = data[VNODE];
+                                // 用完就删掉
+                                delete data[VNODE];
+                            }
+                            enterVnode(vnode, createComponent(vnode, options));
+                        }
+                    }
+                    // 同步组件
+                    else {
+                        componentOptions_1 = options;
+                    }
+                });
+            }
+            // 不论是同步还是异步组件，都需要一个占位元素
+            vnode.node = api.createComment(RAW_COMPONENT);
+            if (componentOptions_1) {
+                createComponent(vnode, componentOptions_1);
+            }
+            else {
+                data[LOADING] = TRUE;
+            }
+        }
+        else {
+            node = vnode.node = api.createElement(vnode.tag, vnode.isSvg);
+            if (children) {
+                addVnodes(api, node, children);
+            }
+            else if (text) {
+                api.text(node, text, isStyle, isOption);
+            }
+            else if (html) {
+                api.html(node, html, isStyle, isOption);
+            }
+            update(api, vnode);
+            update$1(api, vnode);
+            update$2(vnode);
+            update$3(vnode);
+        }
+    }
+    function addVnodes(api, parentNode, vnodes, startIndex, endIndex, before) {
+        var vnode, start = startIndex || 0, end = endIndex !== UNDEFINED ? endIndex : vnodes.length - 1;
+        while (start <= end) {
+            vnode = vnodes[start];
+            createVnode(api, vnode);
+            insertVnode(api, parentNode, vnode, before);
+            start++;
+        }
+    }
+    function insertVnode(api, parentNode, vnode, before) {
+        var node = vnode.node, data = vnode.data, context = vnode.context, hasParent = api.parent(node);
+        // 这里不调用 insertBefore，避免判断两次
+        if (before) {
+            api.before(parentNode, node, before.node);
+        }
+        else {
+            api.append(parentNode, node);
+        }
+        // 普通元素和组件的占位节点都会走到这里
+        // 但是占位节点不用 enter，而是等组件加载回来之后再调 enter
+        if (!hasParent) {
+            var enter = UNDEFINED;
+            if (vnode.isComponent) {
+                var component_1 = data[COMPONENT];
+                if (component_1) {
+                    enter = function () {
+                        enterVnode(vnode, component_1);
+                    };
+                }
+            }
+            else if (!vnode.isStatic && !vnode.isText && !vnode.isComment) {
+                enter = function () {
+                    enterVnode(vnode);
+                };
+            }
+            if (enter) {
+                // 执行到这时，组件还没有挂载到 DOM 树
+                // 如果此时直接触发 enter，外部还需要做多余的工作，比如 setTimeout
+                // 索性这里直接等挂载到 DOM 数之后再触发
+                // 注意：YoxInterface 没有声明 $observer，因为不想让外部访问，
+                // 但是这里要用一次，所以加了 as any
+                context.$observer.nextTask.prepend(enter);
+            }
+        }
+    }
+    function removeVnodes(api, parentNode, vnodes, startIndex, endIndex) {
+        var vnode, start = startIndex || 0, end = endIndex !== UNDEFINED ? endIndex : vnodes.length - 1;
+        while (start <= end) {
+            vnode = vnodes[start];
+            if (vnode) {
+                removeVnode(api, parentNode, vnode);
+            }
+            start++;
+        }
+    }
+    function removeVnode(api, parentNode, vnode) {
+        var node = vnode.node;
+        if (vnode.isStatic || vnode.isText || vnode.isComment) {
+            api.remove(parentNode, node);
+        }
+        else {
+            var done = function () {
+                destroyVnode(api, vnode);
+                api.remove(parentNode, node);
+            }, component_2;
+            if (vnode.isComponent) {
+                component_2 = vnode.data[COMPONENT];
+                // 异步组件，还没加载成功就被删除了
+                if (!component_2) {
+                    done();
+                    return;
+                }
+            }
+            leaveVnode(vnode, component_2, done);
+        }
+    }
+    function destroyVnode(api, vnode) {
+        /**
+         * 如果一个子组件的模板是这样写的：
+         *
+         * <div>
+         *   {{#if visible}}
+         *      <slot name="children"/>
+         *   {{/if}}
+         * </div>
+         *
+         * 当 visible 从 true 变为 false 时，不能销毁 slot 导入的任何 vnode
+         * 不论是组件或是元素，都不能销毁，只能简单的 remove，
+         * 否则子组件下一次展现它们时，会出问题
+         */
+        var data = vnode.data, children = vnode.children, parent = vnode.parent, slot = vnode.slot;
+        // 销毁插槽组件
+        // 如果宿主组件正在销毁，$vnode 属性会在调 destroy() 之前被删除
+        // 这里表示的是宿主组件还没被销毁
+        // 如果宿主组件被销毁了，则它的一切都要进行销毁
+        if (slot && parent && parent.$vnode) {
+            // 如果更新时，父组件没有传入该 slot，则子组件需要销毁该 slot
+            var slots = parent.get(slot);
+            // slots 要么没有，要么是数组，不可能是别的
+            if (slots && has(slots, vnode)) {
+                return;
+            }
+        }
+        if (vnode.isComponent) {
+            var component_3 = data[COMPONENT];
+            if (component_3) {
+                remove$1(vnode);
+                component_3.destroy();
+            }
+            else
+                { [
+                    data[LOADING] = FALSE
+                ]; }
+        }
+        else {
+            remove$1(vnode);
+            if (children) {
+                each(children, function (child) {
+                    destroyVnode(api, child);
+                });
+            }
+        }
+    }
+    /**
+     * vnode 触发 enter hook 时，外部一般会做一些淡入动画
+     */
+    function enterVnode(vnode, component) {
+        // 如果组件根元素和组件本身都写了 transition
+        // 优先用外面定义的
+        // 因为这明确是在覆盖配置
+        var data = vnode.data, transition = vnode.transition;
+        if (component && !transition) {
+            // 再看组件根元素是否有 transition
+            transition = component.$vnode.transition;
+        }
+        execute(data[LEAVING]);
+        if (transition) {
+            var enter = transition.enter;
+            if (enter) {
+                enter(vnode.node);
+                return;
+            }
+        }
+    }
+    /**
+     * vnode 触发 leave hook 时，外部一般会做一些淡出动画
+     * 动画结束后才能移除节点，否则无法产生动画
+     * 这里由外部调用 done 来通知内部动画结束
+     */
+    function leaveVnode(vnode, component, done) {
+        // 如果组件根元素和组件本身都写了 transition
+        // 优先用外面定义的
+        // 因为这明确是在覆盖配置
+        var data = vnode.data, transition = vnode.transition;
+        if (component && !transition) {
+            // 再看组件根元素是否有 transition
+            transition = component.$vnode.transition;
+        }
+        if (transition) {
+            var leave = transition.leave;
+            if (leave) {
+                leave(vnode.node, data[LEAVING] = function () {
+                    if (data[LEAVING]) {
+                        done();
+                        data[LEAVING] = UNDEFINED;
+                    }
+                });
+                return;
+            }
+        }
+        // 如果没有淡出动画，直接结束
+        done();
+    }
+    function updateChildren(api, parentNode, children, oldChildren) {
+        var startIndex = 0, endIndex = children.length - 1, startVnode = children[startIndex], endVnode = children[endIndex], oldStartIndex = 0, oldEndIndex = oldChildren.length - 1, oldStartVnode = oldChildren[oldStartIndex], oldEndVnode = oldChildren[oldEndIndex], oldKeyToIndex, oldIndex;
+        while (oldStartIndex <= oldEndIndex && startIndex <= endIndex) {
+            // 下面有设为 UNDEFINED 的逻辑
+            if (!startVnode) {
+                startVnode = children[++startIndex];
+            }
+            else if (!endVnode) {
+                endVnode = children[--endIndex];
+            }
+            else if (!oldStartVnode) {
+                oldStartVnode = oldChildren[++oldStartIndex];
+            }
+            else if (!oldEndVnode) {
+                oldEndVnode = oldChildren[--oldEndIndex];
+            }
+            // 从头到尾比较，位置相同且值得 patch
+            else if (isPatchable(startVnode, oldStartVnode)) {
+                patch(api, startVnode, oldStartVnode);
+                startVnode = children[++startIndex];
+                oldStartVnode = oldChildren[++oldStartIndex];
+            }
+            // 从尾到头比较，位置相同且值得 patch
+            else if (isPatchable(endVnode, oldEndVnode)) {
+                patch(api, endVnode, oldEndVnode);
+                endVnode = children[--endIndex];
+                oldEndVnode = oldChildren[--oldEndIndex];
+            }
+            // 比较完两侧的节点，剩下就是 位置发生改变的节点 和 全新的节点
+            // 当 endVnode 和 oldStartVnode 值得 patch
+            // 说明元素被移到右边了
+            else if (isPatchable(endVnode, oldStartVnode)) {
+                patch(api, endVnode, oldStartVnode);
+                insertBefore(api, parentNode, oldStartVnode.node, api.next(oldEndVnode.node));
+                endVnode = children[--endIndex];
+                oldStartVnode = oldChildren[++oldStartIndex];
+            }
+            // 当 oldEndVnode 和 startVnode 值得 patch
+            // 说明元素被移到左边了
+            else if (isPatchable(startVnode, oldEndVnode)) {
+                patch(api, startVnode, oldEndVnode);
+                insertBefore(api, parentNode, oldEndVnode.node, oldStartVnode.node);
+                startVnode = children[++startIndex];
+                oldEndVnode = oldChildren[--oldEndIndex];
+            }
+            // 尝试同级元素的 key
+            else {
+                if (!oldKeyToIndex) {
+                    oldKeyToIndex = createKeyToIndex(oldChildren, oldStartIndex, oldEndIndex);
+                }
+                // 新节点之前的位置
+                oldIndex = startVnode.key
+                    ? oldKeyToIndex[startVnode.key]
+                    : UNDEFINED;
+                // 移动元素
+                if (oldIndex !== UNDEFINED) {
+                    patch(api, startVnode, oldChildren[oldIndex]);
+                    oldChildren[oldIndex] = UNDEFINED;
+                }
+                // 新元素
+                else {
+                    createVnode(api, startVnode);
+                }
+                insertVnode(api, parentNode, startVnode, oldStartVnode);
+                startVnode = children[++startIndex];
+            }
+        }
+        if (oldStartIndex > oldEndIndex) {
+            addVnodes(api, parentNode, children, startIndex, endIndex, children[endIndex + 1]);
+        }
+        else if (startIndex > endIndex) {
+            removeVnodes(api, parentNode, oldChildren, oldStartIndex, oldEndIndex);
+        }
+    }
+    function patch(api, vnode, oldVnode) {
+        if (vnode === oldVnode) {
+            return;
+        }
+        var node = oldVnode.node, data = oldVnode.data;
+        // 如果不能 patch，则删除重建
+        if (!isPatchable(vnode, oldVnode)) {
+            // 同步加载的组件，初始化时不会传入占位节点
+            // 它内部会自动生成一个注释节点，当它的根 vnode 和注释节点对比时，必然无法 patch
+            // 于是走进此分支，为新组件创建一个 DOM 节点，然后继续 createComponent 后面的流程
+            var parentNode = api.parent(node);
+            createVnode(api, vnode);
+            if (parentNode) {
+                insertVnode(api, parentNode, vnode, oldVnode);
+                removeVnode(api, parentNode, oldVnode);
+            }
+            return;
+        }
+        vnode.node = node;
+        vnode.data = data;
+        // 组件正在异步加载，更新为最新的 vnode
+        // 当异步加载完成时才能用上最新的 vnode
+        if (oldVnode.isComponent && data[LOADING]) {
+            data[VNODE] = vnode;
+            return;
+        }
+        update(api, vnode, oldVnode);
+        update$1(api, vnode, oldVnode);
+        // 先处理 directive 再处理 component
+        // 因为组件只是单纯的更新 props，而 directive 则有可能要销毁
+        // 如果顺序反过来，会导致某些本该销毁的指令先被数据的变化触发执行了
+        update$2(vnode, oldVnode);
+        update$3(vnode, oldVnode);
+        var text = vnode.text, html = vnode.html, children = vnode.children, isStyle = vnode.isStyle, isOption = vnode.isOption, oldText = oldVnode.text, oldHtml = oldVnode.html, oldChildren = oldVnode.children;
+        if (string(text)) {
+            if (text !== oldText) {
+                api.text(node, text, isStyle, isOption);
+            }
+        }
+        else if (string(html)) {
+            if (html !== oldHtml) {
+                api.html(node, html, isStyle, isOption);
+            }
+        }
+        // 两个都有需要 diff
+        else if (children && oldChildren) {
+            if (children !== oldChildren) {
+                updateChildren(api, node, children, oldChildren);
+            }
+        }
+        // 有新的没旧的 - 新增节点
+        else if (children) {
+            if (string(oldText) || string(oldHtml)) {
+                api.text(node, EMPTY_STRING, isStyle);
+            }
+            addVnodes(api, node, children);
         }
         // 有旧的没新的 - 删除节点
         else if (oldChildren) {
-            removeVnodes(el, oldChildren, 0, oldChildren.length - 1);
-          }
-          // 有旧的 text 没有新的 text
-          else if (string(oldText)) {
-              api.text(el, CHAR_BLANK);
-            }
-    }
-
-    moduleEmitter.fire(HOOK_POSTPATCH, args, api);
-  };
-
-  return function (oldVnode, vnode) {
-
-    patchVnode(api.isElement(oldVnode) ? {
-      el: oldVnode,
-      tag: api.tag(oldVnode)
-    } : oldVnode, vnode);
-
-    return vnode;
-  };
-}
-
-var snabbdom = {
-  createCommentVnode: createCommentVnode,
-  createTextVnode: createTextVnode,
-  isTextVnode: isTextVnode,
-  createElementVnode: createElementVnode,
-  createComponentVnode: createComponentVnode,
-  init: init
-};
-
-var SYNTAX_IF = '#if';
-var SYNTAX_ELSE = 'else';
-var SYNTAX_ELSE_IF = 'else if';
-var SYNTAX_EACH = '#each';
-var SYNTAX_PARTIAL = '#partial';
-var SYNTAX_IMPORT = '>';
-var SYNTAX_SPREAD = '...';
-var SYNTAX_COMMENT = /^!\s/;
-
-var SPECIAL_EVENT = '$event';
-var SPECIAL_KEYPATH = '$keypath';
-var SPECIAL_CHILDREN = '$children';
-
-var DIRECTIVE_CUSTOM_PREFIX = 'o-';
-var DIRECTIVE_EVENT_PREFIX = 'on-';
-
-var DIRECTIVE_LAZY = 'lazy';
-var DIRECTIVE_MODEL = 'model';
-var DIRECTIVE_EVENT = 'event';
-var DIRECTIVE_BINDING = 'binding';
-
-var KEYWORD_REF = 'ref';
-var KEYWORD_UNIQUE = 'key';
-
-var HOOK_BEFORE_CREATE = 'beforeCreate';
-var HOOK_AFTER_CREATE = 'afterCreate';
-var HOOK_BEFORE_MOUNT = 'beforeMount';
-var HOOK_AFTER_MOUNT = 'afterMount';
-var HOOK_BEFORE_UPDATE = 'beforeUpdate';
-var HOOK_AFTER_UPDATE = 'afterUpdate';
-var HOOK_BEFORE_DESTROY = 'beforeDestroy';
-var HOOK_AFTER_DESTROY = 'afterDestroy';
-
-/**
- * 字面量
- *
- * @type {number}
- */
-var LITERAL = 1;
-
-/**
- * 标识符
- *
- * @type {number}
- */
-var IDENTIFIER = 2;
-
-/**
- * 对象属性或数组下标
- *
- * @type {number}
- */
-var MEMBER = 3;
-
-/**
- * 一元表达式，如 - a
- *
- * @type {number}
- */
-var UNARY = 4;
-
-/**
- * 二元表达式，如 a + b
- *
- * @type {number}
- */
-var BINARY = 5;
-
-/**
- * 三元表达式，如 a ? b : c
- *
- * @type {number}
- */
-var TERNARY = 6;
-
-/**
- * 数组表达式，如 [ 1, 2, 3 ]
- *
- * @type {number}
- */
-var ARRAY = 7;
-
-/**
- * 对象表达式
- *
- * @type {number}
- */
-var OBJECT = 8;
-
-/**
- * 函数调用表达式，如 a()
- *
- * @type {number}
- */
-var CALL = 9;
-
-var PLUS = '+';
-var MINUS = '-';
-var MULTIPLY = '*';
-var DIVIDE = '/';
-var MODULO = '%';
-var WAVE = '~';
-
-var AND = '&&';
-var OR = '||';
-var NOT = '!';
-var BOOLEAN = '!!';
-
-var SE = '===';
-var SNE = '!==';
-var LE = '==';
-var LNE = '!=';
-var LT = '<';
-var LTE = '<=';
-var GT = '>';
-var GTE = '>=';
-
-var unaryMap = {};
-
-unaryMap[PLUS] = unaryMap[MINUS] = unaryMap[NOT] = unaryMap[WAVE] = unaryMap[BOOLEAN] = TRUE;
-
-var unaryList = sort(unaryMap, TRUE);
-
-// 操作符和对应的优先级，数字越大优先级越高
-var binaryMap = {};
-
-binaryMap[OR] = 1;
-
-binaryMap[AND] = 2;
-
-binaryMap[LE] = binaryMap[LNE] = binaryMap[SE] = binaryMap[SNE] = 3;
-
-binaryMap[LT] = binaryMap[LTE] = binaryMap[GT] = binaryMap[GTE] = 4;
-
-binaryMap[PLUS] = binaryMap[MINUS] = 5;
-
-binaryMap[MULTIPLY] = binaryMap[DIVIDE] = binaryMap[MODULO] = 6;
-
-var binaryList = sort(binaryMap, TRUE);
-
-/**
- * 节点基类
- */
-
-var Node = function (type, raw) {
-  classCallCheck(this, Node);
-
-  this.type = type;
-  this.raw = trim(raw);
-};
-
-/**
- * Array 节点
- *
- * @param {string} raw 源码
- * @param {Array.<Node>} elements 数组元素
- */
-
-var Array$1 = function (_Node) {
-  inherits(Array, _Node);
-
-  function Array(raw, elements) {
-    classCallCheck(this, Array);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, ARRAY, raw));
-
-    _this.elements = elements;
-    return _this;
-  }
-
-  return Array;
-}(Node);
-
-/**
- * Object 节点
- *
- * @param {string} raw 源码
- * @param {Array.<string>} keys
- * @param {Array.<Node>} values
- */
-
-var Object$1 = function (_Node) {
-  inherits(Object, _Node);
-
-  function Object(raw, keys, values) {
-    classCallCheck(this, Object);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, OBJECT, raw));
-
-    _this.keys = keys;
-    _this.values = values;
-    return _this;
-  }
-
-  return Object;
-}(Node);
-
-/**
- * Binary 节点
- *
- * @param {string} raw
- * @param {Node} left
- * @param {string} operator
- * @param {Node} right
- */
-
-var Binary = function (_Node) {
-  inherits(Binary, _Node);
-
-  function Binary(raw, left, operator, right) {
-    classCallCheck(this, Binary);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, BINARY, raw));
-
-    _this.left = left;
-    _this.operator = operator;
-    _this.right = right;
-    return _this;
-  }
-
-  return Binary;
-}(Node);
-
-/**
- * Call 节点
- *
- * @param {string} raw
- * @param {Node} callee
- * @param {Array.<Node>} args
- */
-
-var Call = function (_Node) {
-  inherits(Call, _Node);
-
-  function Call(raw, callee, args) {
-    classCallCheck(this, Call);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, CALL, raw));
-
-    _this.callee = callee;
-    _this.args = args;
-    return _this;
-  }
-
-  return Call;
-}(Node);
-
-/**
- * Ternary 节点
- *
- * @param {string} raw
- * @param {Node} test
- * @param {Node} yes
- * @param {Node} no
- */
-
-var Ternary = function (_Node) {
-  inherits(Ternary, _Node);
-
-  function Ternary(raw, test, yes, no) {
-    classCallCheck(this, Ternary);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, TERNARY, raw));
-
-    _this.test = test;
-    _this.yes = yes;
-    _this.no = no;
-    return _this;
-  }
-
-  return Ternary;
-}(Node);
-
-/**
- * Identifier 节点
- *
- * @param {string} raw
- * @param {string} name
- */
-
-var Identifier = function (_Node) {
-  inherits(Identifier, _Node);
-
-  function Identifier(raw, name) {
-    classCallCheck(this, Identifier);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, IDENTIFIER, raw));
-
-    _this.name = name;
-    _this.keypath = name;
-    return _this;
-  }
-
-  return Identifier;
-}(Node);
-
-/**
- * Literal 节点
- *
- * @param {string} raw
- * @param {*} value
- */
-
-var Literal = function (_Node) {
-  inherits(Literal, _Node);
-
-  function Literal(raw, value) {
-    classCallCheck(this, Literal);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, LITERAL, raw));
-
-    _this.value = value;
-    return _this;
-  }
-
-  return Literal;
-}(Node);
-
-/**
- * Member 节点
- *
- * @param {string} raw
- * @param {Node} object
- * @param {Node} prop
- */
-
-var Member = function (_Node) {
-  inherits(Member, _Node);
-
-  function Member(raw, object, prop) {
-    classCallCheck(this, Member);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, MEMBER, raw));
-
-    var props = [];
-    if (object.type === MEMBER) {
-      push(props, object.props);
-    } else {
-      push(props, object);
-    }
-
-    push(props, prop);
-
-    _this.props = props;
-
-    if (object.keypath && prop.type === LITERAL) {
-      _this.keypath = join(object.keypath, prop.value);
-    }
-
-    return _this;
-  }
-
-  return Member;
-}(Node);
-
-/**
- * Unary 节点
- *
- * @param {string} raw
- * @param {string} operator
- * @param {Node} arg
- */
-
-var Unary = function (_Node) {
-  inherits(Unary, _Node);
-
-  function Unary(raw, operator, arg) {
-    classCallCheck(this, Unary);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, UNARY, raw));
-
-    _this.operator = operator;
-    _this.arg = arg;
-    return _this;
-  }
-
-  return Unary;
-}(Node);
-
-// 区分关键字和普通变量
-// 举个例子：a === true
-// 从解析器的角度来说，a 和 true 是一样的 token
-var keywords = {};
-
-keywords[RAW_TRUE] = TRUE;
-keywords[RAW_FALSE] = FALSE;
-keywords[RAW_NULL] = NULL;
-keywords[RAW_UNDEFINED] = UNDEFINED;
-
-// 缓存编译结果
-var compileCache$1 = {};
-
-/**
- * 是否是数字
- *
- * @param {number} charCode
- * @return {boolean}
- */
-function isDigit(charCode) {
-  return charCode >= 48 && charCode <= 57; // 0...9
-}
-
-/**
- * 变量开始字符必须是 字母、下划线、$
- *
- * @param {number} charCode
- * @return {boolean}
- */
-function isIdentifierStart(charCode) {
-  return charCode === 36 // $
-  || charCode === 95 // _
-  || charCode >= 97 && charCode <= 122 // a...z
-  || charCode >= 65 && charCode <= 90; // A...Z
-}
-
-/**
- * 变量剩余的字符必须是 字母、下划线、$、数字
- *
- * @param {number} charCode
- * @return {boolean}
- */
-function isIdentifierPart(charCode) {
-  return isIdentifierStart(charCode) || isDigit(charCode);
-}
-
-/**
- * 把表达式编译成抽象语法树
- *
- * @param {string} content 表达式字符串
- * @return {Object}
- */
-function compile$1(content) {
-
-  if (compileCache$1[content]) {
-    return compileCache$1[content];
-  }
-
-  var length = content.length,
-      index = 0,
-      charCode;
-
-  var throwError = function () {
-    fatal('Failed to compile expression: ' + CHAR_BREAKLINE + content);
-  };
-
-  var getCharCode = function () {
-    return codeAt(content, index);
-  };
-
-  var cutString = function (start, end) {
-    return content.substring(start, end == NULL ? index : end);
-  };
-
-  var skipWhitespace = function () {
-    while ((charCode = getCharCode()) && (charCode === CODE_WHITESPACE || charCode === CODE_TAB)) {
-      index++;
-    }
-  };
-
-  var skipNumber = function () {
-    if (getCharCode() === CODE_DOT) {
-      skipDecimal();
-    } else {
-      skipDigit();
-      if (getCharCode() === CODE_DOT) {
-        skipDecimal();
-      }
-    }
-  };
-
-  var skipDigit = function () {
-    do {
-      index++;
-    } while (isDigit(getCharCode()));
-  };
-
-  var skipDecimal = function () {
-    // 跳过点号
-    index++;
-    // 后面必须紧跟数字
-    if (isDigit(getCharCode())) {
-      skipDigit();
-    } else {
-      throwError();
-    }
-  };
-
-  var skipString = function () {
-
-    var quote = getCharCode();
-
-    // 跳过引号
-    index++;
-    while (index < length) {
-      index++;
-      if (codeAt(content, index - 1) === quote) {
-        return;
-      }
-    }
-
-    throwError();
-  };
-
-  var skipIdentifier = function () {
-    // 第一个字符一定是经过 isIdentifierStart 判断的
-    // 因此循环至少要执行一次
-    do {
-      index++;
-    } while (isIdentifierPart(getCharCode()));
-  };
-
-  var parseIdentifier = function (careKeyword) {
-
-    var start = index;
-    skipIdentifier();
-
-    var literal = cutString(start);
-    if (literal) {
-      return careKeyword && has$1(keywords, literal) ? new Literal(literal, keywords[literal]) : new Identifier(literal, literal);
-    }
-
-    throwError();
-  };
-
-  var parseTuple = function (delimiter) {
-
-    var list = [];
-
-    // 跳过开始字符，如 [、(
-    index++;
-
-    while (index < length) {
-      charCode = getCharCode();
-      if (charCode === delimiter) {
-        index++;
-        return list;
-      } else if (charCode === CODE_COMMA) {
-        index++;
-      } else {
-        push(list, parseExpression());
-      }
-    }
-
-    throwError();
-  };
-
-  var parseObject = function () {
-
-    var keys$$1 = [],
-        values = [],
-        current = keys$$1;
-
-    // 跳过开始字符 {
-    index++;
-
-    while (index < length) {
-      charCode = getCharCode();
-      // }
-      if (charCode === CODE_CBRACE) {
-        index++;
-        if (keys$$1.length !== values.length) {
-          throwError();
+            removeVnodes(api, node, oldChildren);
         }
+        // 有旧的 text 没有新的 text
+        else if (string(oldText) || string(oldHtml)) {
+            api.text(node, EMPTY_STRING, isStyle);
+        }
+    }
+    function create(api, node, context, keypath) {
         return {
-          keys: keys$$1.map(function (item) {
-            if (item.type === IDENTIFIER) {
-              return item.name;
-            } else if (item.type === LITERAL) {
-              return item.value;
-            } else {
-              throwError();
-            }
-          }),
-          values: values
+            tag: api.tag(node),
+            data: createData(),
+            node: node,
+            context: context,
+            keypath: keypath
         };
-      }
-      // :
-      else if (charCode === CODE_COLON) {
-          current = values;
-          index++;
-        }
-        // ,
-        else if (charCode === CODE_COMMA) {
-            current = keys$$1;
-            index++;
-          } else {
-            push(current, parseExpression());
-          }
     }
-
-    throwError();
-  };
-
-  var parseOperator = function (sortedOperatorList) {
-
-    skipWhitespace();
-
-    var value = slice(content, index),
-        match;
-    each(sortedOperatorList, function (prefix) {
-      if (startsWith(value, prefix)) {
-        match = prefix;
-        return FALSE;
-      }
-    });
-
-    if (match) {
-      index += match.length;
-      return match;
-    }
-  };
-
-  var parseVariable = function () {
-
-    var start = index,
-        node = parseIdentifier(TRUE),
-        temp;
-
-    while (index < length) {
-      // a(x)
-      charCode = getCharCode();
-      if (charCode === CODE_OPAREN) {
-        temp = parseTuple(CODE_CPAREN);
-        return new Call(cutString(start), node, temp);
-      }
-      // a.x
-      else if (charCode === CODE_DOT) {
-          index++;
-          temp = parseIdentifier();
-          node = new Member(cutString(start), node, new Literal(temp.raw, temp.name));
-        }
-        // a[x]
-        else if (charCode === CODE_OBRACK) {
-            temp = parseExpression(CODE_CBRACK);
-            node = new Member(cutString(start), node, temp);
-          } else {
-            break;
-          }
-    }
-
-    return node;
-  };
-
-  var parseToken = function () {
-
-    skipWhitespace();
-
-    charCode = getCharCode();
-
-    var start = index,
-        temp;
-
-    // 'xx' 或 "xx"
-    if (charCode === CODE_SQUOTE || charCode === CODE_DQUOTE) {
-      // 截出的字符串包含引号
-      skipString();
-      temp = cutString(start);
-      return new Literal(temp, slice(temp, 1, -1));
-    }
-    // 1.1 或 .1
-    else if (isDigit(charCode) || charCode === CODE_DOT) {
-        skipNumber();
-        temp = cutString(start);
-        return new Literal(temp, parseFloat(temp));
-      }
-      // [xx, xx]
-      else if (charCode === CODE_OBRACK) {
-          temp = parseTuple(CODE_CBRACK);
-          return new Array$1(cutString(start), temp);
-        } else if (charCode === CODE_OBRACE) {
-          temp = parseObject();
-          return new Object$1(cutString(start), temp.keys, temp.values);
-        }
-        // (xx)
-        else if (charCode === CODE_OPAREN) {
-            return parseExpression(CODE_CPAREN);
-          }
-          // 变量
-          else if (isIdentifierStart(charCode)) {
-              return parseVariable();
+    function destroy(api, vnode, isRemove) {
+        if (isRemove) {
+            var parentNode = api.parent(vnode.node);
+            if (parentNode) {
+                removeVnode(api, parentNode, vnode);
             }
-    // 一元操作
-    var action = parseOperator(unaryList);
-    if (action) {
-      temp = parseToken();
-      return new Unary(cutString(start), action, temp);
-    }
-    throwError();
-  };
-
-  var parseBinary = function () {
-
-    var stack = [index, parseToken(), index],
-        next,
-        length;
-
-    // stack 的结构必须是 token 之后跟一个 index
-    // 这样在裁剪原始字符串时，才有据可查
-
-    // 处理优先级，确保循环结束时，是相同的优先级操作
-    while (next = parseOperator(binaryList)) {
-
-      length = stack.length;
-
-      if (length > 7 && binaryMap[next] < stack[length - 4]) {
-        stack.splice(length - 7, 6, new Binary(cutString(stack[length - 8], stack[length - 1]), stack[length - 7], stack[length - 5], stack[length - 2]));
-      }
-
-      push(stack, next);
-      push(stack, binaryMap[next]);
-      push(stack, index);
-      push(stack, parseToken());
-      push(stack, index);
-    }
-
-    while (TRUE) {
-      length = stack.length;
-      if (length > 8 && stack[length - 4] > stack[length - 9]) {
-        stack.splice(length - 7, 6, new Binary(cutString(stack[length - 8], stack[length - 1]), stack[length - 7], stack[length - 5], stack[length - 2]));
-      } else if (length > 7) {
-        stack.splice(1, 6, new Binary(cutString(stack[0], stack[7]), stack[1], stack[3], stack[6]));
-      } else {
-        return stack[1];
-      }
-    }
-  };
-
-  var parseExpression = function (delimiter) {
-
-    // 主要是区分三元和二元表达式
-    // 三元表达式可以认为是 3 个二元表达式组成的
-    // test ? yes : no
-
-    // 跳过开始字符
-    if (delimiter) {
-      index++;
-    }
-
-    // 保证调用 parseExpression() 之后无需再次调用 skipWhitespace()
-    var start = index,
-        test = parseBinary();
-    skipWhitespace();
-
-    if (getCharCode() === CODE_QUMARK) {
-      index++;
-
-      var yes = parseBinary();
-      skipWhitespace();
-
-      if (getCharCode() === CODE_COLON) {
-        index++;
-
-        var no = parseBinary();
-        skipWhitespace();
-
-        return new Ternary(cutString(start), test, yes, no);
-      } else {
-        throwError();
-      }
-    }
-
-    if (delimiter) {
-      if (getCharCode() === delimiter) {
-        index++;
-      } else {
-        throwError();
-      }
-    }
-
-    return test;
-  };
-
-  return compileCache$1[content] = parseExpression();
-}
-
-/**
- * 元素 节点
- *
- * @type {number}
- */
-var ELEMENT = 1;
-
-/**
- * 属性 节点
- *
- * @type {number}
- */
-var ATTRIBUTE = 2;
-
-/**
- * 文本 节点
- *
- * @type {number}
- */
-var TEXT = 3;
-
-/**
- * 指令 节点
- *
- * @type {number}
- */
-var DIRECTIVE = 4;
-
-/**
- * if 节点
- *
- * @type {number}
- */
-var IF = 5;
-
-/**
- * else if 节点
- *
- * @type {number}
- */
-var ELSE_IF = 6;
-
-/**
- * else 节点
- *
- * @type {number}
- */
-var ELSE = 7;
-
-/**
- * each 节点
- *
- * @type {number}
- */
-var EACH = 8;
-
-/**
- * partial 节点
- *
- * @type {number}
- */
-var PARTIAL = 9;
-
-/**
- * import 节点
- *
- * @type {number}
- */
-var IMPORT = 10;
-
-/**
- * 表达式 节点
- *
- * @type {number}
- */
-var EXPRESSION = 11;
-
-/**
- * 延展操作 节点
- *
- * @type {number}
- */
-var SPREAD = 12;
-
-// if 带条件的
-var ifTypes = {};
-// if 分支的
-var elseTypes = {};
-// html 层级的节点类型
-var htmlTypes = {};
-// 叶子节点类型
-var leafTypes = {};
-// 内置指令，无需加前缀
-var builtInDirectives = {};
-// 名称 -> 类型的映射
-var name2Type = {};
-// 类型 -> 名称的映射
-var type2Name = {};
-
-ifTypes[IF] = ifTypes[ELSE_IF] = elseTypes[ELSE_IF] = elseTypes[ELSE] = htmlTypes[ELEMENT] = htmlTypes[ATTRIBUTE] = htmlTypes[DIRECTIVE] = leafTypes[TEXT] = leafTypes[IMPORT] = leafTypes[SPREAD] = leafTypes[EXPRESSION] = builtInDirectives[DIRECTIVE_LAZY] = builtInDirectives[DIRECTIVE_MODEL] = TRUE;
-
-name2Type['if'] = IF;
-name2Type['each'] = EACH;
-name2Type['partial'] = PARTIAL;
-
-each$1(name2Type, function (type, name) {
-  type2Name[type] = name;
-});
-
-/**
- * 节点基类
- */
-var Node$2 = function (type) {
-  classCallCheck(this, Node$2);
-
-  this.type = type;
-};
-
-/**
- * 属性节点
- *
- * @param {string|Expression} name 属性名
- */
-
-var Attribute = function (_Node) {
-  inherits(Attribute, _Node);
-
-  function Attribute(name) {
-    classCallCheck(this, Attribute);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, ATTRIBUTE));
-
-    _this.name = name;
-    return _this;
-  }
-
-  return Attribute;
-}(Node$2);
-
-/**
- * 指令节点
- *
- * on-click="submit"  name 是 event, modifier 是 click
- *
- * @param {string} name 指令名
- * @param {?string} modifier 指令修饰符
- */
-
-var Directive = function (_Node) {
-  inherits(Directive, _Node);
-
-  function Directive(name, modifier) {
-    classCallCheck(this, Directive);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, DIRECTIVE));
-
-    _this.name = name;
-    if (modifier) {
-      _this.modifier = modifier;
-    }
-    return _this;
-  }
-
-  return Directive;
-}(Node$2);
-
-/**
- * each 节点
- *
- * @param {Expression} expr
- * @param {?string} index 遍历索引值，对于数组来说是 0,1,2,...，对于对象来说是 key
- */
-
-var Each = function (_Node) {
-  inherits(Each, _Node);
-
-  function Each(expr, index) {
-    classCallCheck(this, Each);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, EACH));
-
-    _this.expr = expr;
-    if (index) {
-      _this.index = index;
-    }
-    return _this;
-  }
-
-  return Each;
-}(Node$2);
-
-/**
- * 元素节点
- *
- * @param {string} name
- * @param {?boolean} component 是否是组件
- */
-
-var Element = function (_Node) {
-  inherits(Element, _Node);
-
-  function Element(name, component) {
-    classCallCheck(this, Element);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, ELEMENT));
-
-    _this.name = name;
-    if (component) {
-      _this.component = component;
-    }
-    return _this;
-  }
-
-  return Element;
-}(Node$2);
-
-/**
- * else 节点
- */
-
-var Else = function (_Node) {
-  inherits(Else, _Node);
-
-  function Else() {
-    classCallCheck(this, Else);
-    return possibleConstructorReturn(this, _Node.call(this, ELSE));
-  }
-
-  return Else;
-}(Node$2);
-
-/**
- * else if 节点
- *
- * @param {Expression} expr 判断条件
- */
-
-var ElseIf = function (_Node) {
-  inherits(ElseIf, _Node);
-
-  function ElseIf(expr, then) {
-    classCallCheck(this, ElseIf);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, ELSE_IF));
-
-    _this.expr = expr;
-    return _this;
-  }
-
-  return ElseIf;
-}(Node$2);
-
-/**
- * 表达式节点
- *
- * @param {string} expr
- * @param {boolean} safe
- */
-
-var Expression = function (_Node) {
-  inherits(Expression, _Node);
-
-  function Expression(expr, safe) {
-    classCallCheck(this, Expression);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, EXPRESSION));
-
-    _this.expr = expr;
-    _this.safe = safe;
-    return _this;
-  }
-
-  return Expression;
-}(Node$2);
-
-/**
- * if 节点
- *
- * @param {Expression} expr 判断条件
- */
-
-var If = function (_Node) {
-  inherits(If, _Node);
-
-  function If(expr) {
-    classCallCheck(this, If);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, IF));
-
-    _this.expr = expr;
-    return _this;
-  }
-
-  return If;
-}(Node$2);
-
-/**
- * import 节点
- *
- * @param {string} name
- */
-
-var Import = function (_Node) {
-  inherits(Import, _Node);
-
-  function Import(name) {
-    classCallCheck(this, Import);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, IMPORT));
-
-    _this.name = name;
-    return _this;
-  }
-
-  return Import;
-}(Node$2);
-
-/**
- * Partial 节点
- *
- * @param {string} name
- */
-
-var Partial = function (_Node) {
-  inherits(Partial, _Node);
-
-  function Partial(name) {
-    classCallCheck(this, Partial);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, PARTIAL));
-
-    _this.name = name;
-    return _this;
-  }
-
-  return Partial;
-}(Node$2);
-
-/**
- * 延展操作 节点
- *
- * @param {Expression} expr
- */
-
-var Spread = function (_Node) {
-  inherits(Spread, _Node);
-
-  function Spread(expr) {
-    classCallCheck(this, Spread);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, SPREAD));
-
-    _this.expr = expr;
-    return _this;
-  }
-
-  return Spread;
-}(Node$2);
-
-/**
- * 文本节点
- *
- * @param {*} content
- */
-
-var Text = function (_Node) {
-  inherits(Text, _Node);
-
-  function Text(text) {
-    classCallCheck(this, Text);
-
-    var _this = possibleConstructorReturn(this, _Node.call(this, TEXT));
-
-    _this.text = text;
-    return _this;
-  }
-
-  return Text;
-}(Node$2);
-
-var delimiterPattern = /(\{?\{\{)\s*([^\}]+?)\s*(\}\}\}?)/;
-var openingTagPattern = /<(\/)?([a-z][-a-z0-9]*)/i;
-var closingTagPattern = /^\s*(\/)?>/;
-var attributePattern = /^\s*([-:\w]+)(?:=(['"]))?/;
-var componentNamePattern = /[-A-Z]/;
-var selfClosingTagNames = ['area', 'base', 'embed', 'track', 'source', 'param', 'input', 'col', 'img', 'br', 'hr'];
-
-// 缓存编译结果
-var compileCache = {};
-
-/**
- * 截取前缀之后的字符串
- *
- * @param {string} str
- * @param {string} prefix
- * @return {string}
- */
-function slicePrefix(str, prefix) {
-  return trim(slice(str, prefix.length));
-}
-
-/**
- * 是否是纯粹的换行
- *
- * @param {string} content
- * @return {boolean}
- */
-function isBreakline(content) {
-  return has$2(content, CHAR_BREAKLINE) && !trim(content);
-}
-
-/**
- * trim 文本开始和结束位置的换行符
- *
- * 换行符比较神奇，有时候你明明看不到换行符，却真的存在一个，那就是 \r
- *
- * @param {string} content
- * @return {string}
- */
-function trimBreakline(content) {
-  return content.replace(/^\s*[\n\r]\s*|\s*[\n\r]\s*$/g, CHAR_BLANK);
-}
-
-/**
- * 把一堆插值优化成表达式
- *
- * @param {Array} children
- */
-function optimizeExpression(children) {
-
-  // "xxx{{name}}" => 优化成 {{ 'xxx' + name }}
-  // "xxx{{name1}}{{name2}} => 优化成 {{ 'xxx' + name1 + name2 }}"
-
-  var current,
-      blankString = new Literal(CHAR_BLANK, CHAR_BLANK);
-
-  var addNode = function (node) {
-    if (!current) {
-      current = node;
-    } else {
-      // 为了确保是字符串拼接，而不是加法，多个相加时，第一个必须确保是空字符串
-      if (current.type !== BINARY || current.raw !== CHAR_BLANK) {
-        current = new Binary(CHAR_BLANK, blankString, '+', current);
-      }
-      current = new Binary(CHAR_BLANK, current, '+', node);
-    }
-  };
-
-  each(children, function (child) {
-    var _child = child,
-        type = _child.type,
-        expr = _child.expr,
-        text = _child.text;
-
-    if (type === EXPRESSION && expr.raw !== SPECIAL_CHILDREN) {
-      addNode(child.expr);
-    } else if (type === TEXT) {
-      addNode(new Literal(CHAR_BLANK, text));
-    } else if (type === IF) {
-
-      var list = [],
-          _children;
-
-      var append = function (node) {
-        var last$$1 = last(list);
-        if (last$$1) {
-          last$$1.no = node;
+            else {
+                fatal("The vnode can't be destroyed without a parent node.");
+            }
         }
-        push(list, node);
-      };
-
-      while (child) {
-        _children = child.children;
-        if (_children) {
-          _children = optimizeExpression(_children);
-          if (_children) {
-            _children = _children.expr;
-          } else {
-            current = NULL;
-            return FALSE;
-          }
+        else {
+            destroyVnode(api, vnode);
         }
-        if (!_children) {
-          _children = blankString;
-        }
-        if (child.expr) {
-          append(new Ternary(CHAR_BLANK, child.expr, _children, blankString));
-        } else {
-          append(_children);
-        }
-        child = child.next;
-      }
-
-      addNode(list[0]);
-    } else {
-      current = NULL;
-      return FALSE;
     }
-  });
-
-  if (current) {
-    return new Expression(current, TRUE);
-  }
-}
-
-/**
- * 把模板编译为抽象语法树
- *
- * @param {string} content
- * @return {Array}
- */
-function compile(content) {
-
-  var nodeList = compileCache[content];
-  if (nodeList) {
-    return nodeList;
-  }
-  nodeList = [];
-
-  var nodeStack = [],
-      ifStack = [],
-      htmlStack = [],
-      currentQuote;
-
-  var throwError = function (msg) {
-    fatal('Error compiling template:' + CHAR_BREAKLINE + content + CHAR_BREAKLINE + '- ' + msg);
-  };
-
-  var popSelfClosingElementIfNeeded = function (popingTagName) {
-    var lastNode = last(nodeStack);
-    if (lastNode && lastNode.type === ELEMENT && lastNode.name !== popingTagName && has(selfClosingTagNames, lastNode.name)) {
-      popStack(ELEMENT, lastNode.name);
-    }
-  };
-
-  var popStack = function (type, expectedTagName) {
 
     /**
-     * <div>
-     *    <input>
-     * </div>
+     * 元素 节点
      */
-    if (expectedTagName) {
-      popSelfClosingElementIfNeeded(expectedTagName);
+    var ELEMENT = 1;
+    /**
+     * 属性 节点
+     */
+    var ATTRIBUTE = 2;
+    /**
+     * 指令 节点
+     */
+    var DIRECTIVE = 3;
+    /**
+     * 属性 节点
+     */
+    var PROPERTY = 4;
+    /**
+     * 文本 节点
+     */
+    var TEXT = 5;
+    /**
+     * if 节点
+     */
+    var IF = 6;
+    /**
+     * else if 节点
+     */
+    var ELSE_IF = 7;
+    /**
+     * else 节点
+     */
+    var ELSE = 8;
+    /**
+     * each 节点
+     */
+    var EACH = 9;
+    /**
+     * partial 节点
+     */
+    var PARTIAL = 10;
+    /**
+     * import 节点
+     */
+    var IMPORT = 11;
+    /**
+     * 表达式 节点
+     */
+    var EXPRESSION = 12;
+    /**
+     * 延展操作 节点
+     */
+    var SPREAD = 13;
+
+    // 特殊标签
+    var specialTags = {};
+    // 特殊属性
+    var specialAttrs = {};
+    // 名称 -> 类型的映射
+    var name2Type = {};
+    specialTags[RAW_SLOT] =
+        specialTags[RAW_TEMPLATE] =
+            specialAttrs[RAW_KEY] =
+                specialAttrs[RAW_REF] =
+                    specialAttrs[RAW_SLOT] = TRUE;
+    name2Type['if'] = IF;
+    name2Type['each'] = EACH;
+    name2Type['partial'] = PARTIAL;
+
+    function createAttribute(name) {
+        return {
+            type: ATTRIBUTE,
+            isStatic: TRUE,
+            name: name
+        };
+    }
+    function createDirective(name, ns, modifier) {
+        return {
+            type: DIRECTIVE,
+            ns: ns,
+            name: name,
+            key: join$1(ns, name),
+            modifier: modifier
+        };
+    }
+    function createProperty(name, hint, value, expr, children) {
+        return {
+            type: PROPERTY,
+            isStatic: TRUE,
+            name: name,
+            hint: hint,
+            value: value,
+            expr: expr,
+            children: children
+        };
+    }
+    function createEach(from, to, equal, index) {
+        return {
+            type: EACH,
+            from: from,
+            to: to,
+            equal: equal,
+            index: index
+        };
+    }
+    function createElement(tag, isSvg, isStyle, isComponent) {
+        return {
+            type: ELEMENT,
+            tag: tag,
+            isSvg: isSvg,
+            isStyle: isStyle,
+            // 只有 <option> 没有 value 属性时才为 true
+            isOption: FALSE,
+            isComponent: isComponent,
+            isStatic: !isComponent && tag !== RAW_SLOT
+        };
+    }
+    function createElse() {
+        return {
+            type: ELSE
+        };
+    }
+    function createElseIf(expr) {
+        return {
+            type: ELSE_IF,
+            expr: expr
+        };
+    }
+    function createExpression(expr, safe) {
+        return {
+            type: EXPRESSION,
+            expr: expr,
+            safe: safe,
+            isLeaf: TRUE
+        };
+    }
+    function createIf(expr) {
+        return {
+            type: IF,
+            expr: expr
+        };
+    }
+    function createImport(name) {
+        return {
+            type: IMPORT,
+            name: name,
+            isLeaf: TRUE
+        };
+    }
+    function createPartial(name) {
+        return {
+            type: PARTIAL,
+            name: name
+        };
+    }
+    function createSpread(expr, binding) {
+        return {
+            type: SPREAD,
+            expr: expr,
+            binding: binding,
+            isLeaf: TRUE
+        };
+    }
+    function createText(text) {
+        return {
+            type: TEXT,
+            text: text,
+            isStatic: TRUE,
+            isLeaf: TRUE
+        };
     }
 
-    var target;
-
-    each(nodeStack, function (node, i) {
-      if (node.type === type) {
-        target = nodeStack.splice(i, 1)[0];
-        return FALSE;
-      }
-    }, TRUE);
-
-    if (target) {
-      var _target = target,
-          name = _target.name,
-          divider = _target.divider,
-          children = _target.children,
-          component = _target.component;
-
-      if (type === ELEMENT && expectedTagName && name !== expectedTagName) {
-        throwError('end tag expected </' + name + '> to be </' + expectedTagName + '>.');
-      }
-
-      if (number(divider)) {
-        delete target.divider;
-      }
-
-      // ==========================================
-      // 以下是性能优化的逻辑
-      // ==========================================
-
-      // 如果 children 没实际的数据，删掉它
-      // 避免在渲染阶段增加计算量
-      if (children && !children.length) {
-        children = NULL;
-        delete target.children;
-      }
-
-      if (!children) {
-        return;
-      }
-
-      if (type === ELEMENT) {
-
-        var realChildren = children.slice(divider);
-        if (realChildren.length > 1) {
-          var result = optimizeExpression(realChildren);
-          if (result) {
-            children.length = divider;
-            push(children, result);
-          }
-        }
-
-        if (children.length - divider === 1) {
-          var singleChild = last(children);
-          if (singleChild.type === TEXT) {
-            if (component) {
-              var attr = new Attribute(SPECIAL_CHILDREN);
-              attr.children = [singleChild];
-              children[divider] = attr;
-            } else {
-              target.props = {
-                textContent: singleChild.text
-              };
-              pop(children);
-            }
-          } else if (singleChild.type === EXPRESSION && singleChild.expr.raw !== SPECIAL_CHILDREN) {
-            if (component) {
-              var _attr = new Attribute(SPECIAL_CHILDREN);
-              _attr.children = [singleChild];
-              children[divider] = _attr;
-            } else {
-              var props = {};
-              if (singleChild.safe === FALSE) {
-                props.innerHTML = singleChild.expr;
-              } else {
-                props.textContent = singleChild.expr;
-              }
-              target.props = props;
-              pop(children);
-            }
-          }
-
-          if (!children.length) {
-            delete target.children;
-          }
-        }
-      } else {
-
-        if (children.length > 1) {
-          var _result = optimizeExpression(children);
-          if (_result) {
-            children.length = 0;
-            push(children, _result);
-          }
-        }
-
-        var _singleChild = children.length === 1 && children[0];
-
-        if (type === ATTRIBUTE) {
-          // <div key="xx">
-          // <div ref="xx">
-          if (name === KEYWORD_UNIQUE || name === KEYWORD_REF) {
-            // 把数据从属性中提出来，减少渲染时的遍历
-            var element = last(htmlStack);
-            remove(element.children, target);
-            if (!element.children.length) {
-              delete element.children;
-            }
-            if (_singleChild) {
-              // 为了提升性能，这些特殊属性不支持插值
-              if (_singleChild.type === TEXT) {
-                element[name] = _singleChild.text;
-              } else if (_singleChild.type === EXPRESSION) {
-                element[name] = _singleChild.expr;
-              }
-            }
-            return;
-          }
-        }
-
-        if (_singleChild) {
-          if (_singleChild.type === TEXT) {
-            // 指令的值如果是纯文本，可以预编译表达式，提升性能
-            var text = _singleChild.text;
-
-            if (type === DIRECTIVE) {
-              target.expr = compile$1(text);
-              target.value = text;
-              delete target.children;
-            }
-            // 属性的值如果是纯文本，直接获取文本值
-            // 减少渲染时的遍历
-            else if (type === ATTRIBUTE) {
-                target.value = text;
-                delete target.children;
-              }
-          }
-          // <div class="{{className}}">
-          // 把 Attribute 转成 单向绑定 指令，可实现精确更新视图
-          else if (type === ATTRIBUTE && _singleChild.type === EXPRESSION) {
-              var expr = _singleChild.expr;
-
-              target.expr = expr;
-              delete target.children;
-              if (string(expr.keypath)) {
-                target.binding = expr.keypath;
-              }
-            }
-        }
-      }
-    } else {
-      throwError('{{/' + type2Name[type] + '}} is not a pair.');
+    // 首字母大写，或中间包含 -
+    var componentNamePattern = /^[$A-Z]|-/,
+    // HTML 实体（中间最多 6 位，没见过更长的）
+    htmlEntityPattern = /&[#\w\d]{2,6};/,
+    // 常见的自闭合标签
+    selfClosingTagNames = 'area,base,embed,track,source,param,input,col,img,br,hr'.split(','),
+    // 常见的 svg 标签
+    svgTagNames = 'svg,g,defs,desc,metadata,symbol,use,image,path,rect,circle,line,ellipse,polyline,polygon,text,tspan,tref,textpath,marker,pattern,clippath,mask,filter,cursor,view,animate,font,font-face,glyph,missing-glyph,foreignObject'.split(','),
+    // 常见的字符串类型的属性
+    // 注意：autocomplete,autocapitalize 不是布尔类型
+    stringProperyNames = 'id,class,name,value,for,accesskey,title,style,src,type,href,target,alt,placeholder,preload,poster,wrap,accept,pattern,dir,autocomplete,autocapitalize'.split(','),
+    // 常见的数字类型的属性
+    numberProperyNames = 'min,minlength,max,maxlength,step,width,height,size,rows,cols,tabindex'.split(','),
+    // 常见的布尔类型的属性
+    booleanProperyNames = 'disabled,checked,required,multiple,readonly,autofocus,autoplay,controls,loop,muted,novalidate,draggable,hidden,spellcheck'.split(','),
+    // 某些属性 attribute name 和 property name 不同
+    attr2Prop = {};
+    // 列举几个常见的
+    attr2Prop['for'] = 'htmlFor';
+    attr2Prop['class'] = 'className';
+    attr2Prop['accesskey'] = 'accessKey';
+    attr2Prop['style'] = 'style.cssText';
+    attr2Prop['novalidate'] = 'noValidate';
+    attr2Prop['readonly'] = 'readOnly';
+    attr2Prop['tabindex'] = 'tabIndex';
+    attr2Prop['minlength'] = 'minLength';
+    attr2Prop['maxlength'] = 'maxLength';
+    function isSelfClosing(tagName) {
+        return has(selfClosingTagNames, tagName);
     }
-  };
+    function createAttribute$1(element, name) {
+        // 组件用驼峰格式
+        if (element.isComponent) {
+            return createAttribute(camelize(name));
+        }
+        // 原生 dom 属性
+        else {
+            // 把 attr 优化成 prop
+            var lowerName = lower(name);
+            // <slot> 、<template> 或 svg 中的属性不用识别为 property
+            if (specialTags[element.tag] || element.isSvg) {
+                return createAttribute(name);
+            }
+            // 尝试识别成 property
+            else if (has(stringProperyNames, lowerName)) {
+                return createProperty(attr2Prop[lowerName] || lowerName, HINT_STRING);
+            }
+            else if (has(numberProperyNames, lowerName)) {
+                return createProperty(attr2Prop[lowerName] || lowerName, HINT_NUMBER);
+            }
+            else if (has(booleanProperyNames, lowerName)) {
+                return createProperty(attr2Prop[lowerName] || lowerName, HINT_BOOLEAN);
+            }
+            // 没辙，还是个 attribute
+            return createAttribute(name);
+        }
+    }
+    function getAttributeDefaultValue(element, name) {
+        // 比如 <Dog isLive>
+        if (element.isComponent) {
+            return TRUE;
+        }
+        // <div data-name checked>
+        else {
+            return startsWith(name, 'data-')
+                ? EMPTY_STRING
+                : name;
+        }
+    }
+    function createElement$1(tagName) {
+        var isSvg = has(svgTagNames, tagName), isComponent = FALSE;
+        // 是 svg 就不可能是组件
+        // 加这个判断的原因是，svg 某些标签含有 连字符 和 大写字母，比较蛋疼
+        if (!isSvg && componentNamePattern.test(tagName)) {
+            isComponent = TRUE;
+        }
+        return createElement(tagName, isSvg, tagName === 'style', isComponent);
+    }
+    function compatElement(element) {
+        var tag = element.tag, attrs = element.attrs, hasType = FALSE, hasValue = FALSE;
+        if (attrs) {
+            each(attrs, function (attr) {
+                var name = attr.type === PROPERTY
+                    ? attr.name
+                    : UNDEFINED;
+                if (name === 'type') {
+                    hasType = TRUE;
+                }
+                else if (name === RAW_VALUE) {
+                    hasValue = TRUE;
+                }
+            });
+        }
+        // 补全 style 标签的 type
+        // style 如果没有 type 则加一个 type="text/css"
+        // 因为低版本 IE 没这个属性，没法正常渲染样式
+        if (element.isStyle && !hasType) {
+            push(element.attrs || (element.attrs = []), createProperty('type', HINT_STRING, 'text/css'));
+        }
+        // 低版本 IE 需要给 option 标签强制加 value
+        else if (tag === 'option' && !hasValue) {
+            element.isOption = TRUE;
+        }
+    }
+    function setElementText(element, text) {
+        if (htmlEntityPattern.test(text)) {
+            element.html = text;
+            return TRUE;
+        }
+    }
 
-  var addChild = function (node) {
-    var type = node.type,
-        text = node.text;
-
-
-    if (type === TEXT) {
-      if (isBreakline(text) || !(text = trimBreakline(text))) {
-        return;
-      }
-      node.text = text;
+    function toNumber (target, defaultValue) {
+        return numeric(target)
+            ? +target
+            : defaultValue !== UNDEFINED
+                ? defaultValue
+                : 0;
     }
 
     /**
-     * <div>
-     *    <input>
-     *    <div></div>
-     * </div>
+     * 字面量
+     */
+    var LITERAL = 1;
+    /**
+     * 标识符
+     */
+    var IDENTIFIER = 2;
+    /**
+     * 对象属性或数组下标
+     */
+    var MEMBER = 3;
+    /**
+     * 一元表达式，如 - a
+     */
+    var UNARY = 4;
+    /**
+     * 二元表达式，如 a + b
+     */
+    var BINARY = 5;
+    /**
+     * 三元表达式，如 a ? b : c
+     */
+    var TERNARY = 6;
+    /**
+     * 数组表达式，如 [ 1, 2, 3 ]
+     */
+    var ARRAY = 7;
+    /**
+     * 对象表达式，如 { name: 'yox' }
+     */
+    var OBJECT = 8;
+    /**
+     * 函数调用表达式，如 a()
+     */
+    var CALL = 9;
+
+    function isDef (target) {
+        return target !== UNDEFINED;
+    }
+
+    function createArray(nodes, raw) {
+        return {
+            type: ARRAY,
+            raw: raw,
+            nodes: nodes
+        };
+    }
+    function createBinary(left, operator, right, raw) {
+        return {
+            type: BINARY,
+            raw: raw,
+            left: left,
+            operator: operator,
+            right: right
+        };
+    }
+    function createCall(name, args, raw) {
+        return {
+            type: CALL,
+            raw: raw,
+            name: name,
+            args: args
+        };
+    }
+    function createIdentifier(raw, name, isProp) {
+        var lookup = TRUE, offset = 0;
+        if (name === KEYPATH_CURRENT
+            || name === KEYPATH_PARENT) {
+            lookup = FALSE;
+            if (name === KEYPATH_PARENT) {
+                offset = 1;
+            }
+            name = EMPTY_STRING;
+        }
+        // 对象属性需要区分 a.b 和 a[b]
+        // 如果不借用 Literal 无法实现这个判断
+        // 同理，如果用了这种方式，就无法区分 a.b 和 a['b']，但是无所谓，这两种表示法本就一个意思
+        return isProp
+            ? createLiteral(name, raw)
+            : createIdentifierInner(raw, name, lookup, offset);
+    }
+    function createLiteral(value, raw) {
+        return {
+            type: LITERAL,
+            raw: raw,
+            value: value
+        };
+    }
+    function createObject(keys, values, raw) {
+        return {
+            type: OBJECT,
+            raw: raw,
+            keys: keys,
+            values: values
+        };
+    }
+    function createTernary(test, yes, no, raw) {
+        return {
+            type: TERNARY,
+            raw: raw,
+            test: test,
+            yes: yes,
+            no: no
+        };
+    }
+    function createUnary(operator, node, raw) {
+        return {
+            type: UNARY,
+            raw: raw,
+            operator: operator,
+            node: node
+        };
+    }
+    /**
+     * 通过判断 nodes 来决定是否需要创建 Member
      *
-     * <div>
-     *    <input>xxx
-     * </div>
+     * 创建 Member 至少需要 nodes 有两个节点
      */
-    if (!htmlStack.length) {
-      popSelfClosingElementIfNeeded();
-    }
-
-    if (elseTypes[type]) {
-      var ifNode = pop(ifStack);
-      ifNode.next = node;
-      popStack(ifNode.type);
-      push(ifStack, node);
-      push(nodeStack, node);
-      return;
-    }
-
-    var prevNode;
-
-    var currentNode = last(nodeStack);
-    if (currentNode) {
-      var children = currentNode.children,
-          divider = currentNode.divider;
-
-      if (children) {
-        if (children.length !== divider) {
-          prevNode = children[children.length - 1];
-        }
-      } else {
-        children = currentNode.children = [];
-      }
-      push(children, node);
-    } else {
-      prevNode = last(nodeList);
-      push(nodeList, node);
-    }
-
-    // 上一个 if 节点没有 else 分支
-    // 在渲染时，如果这种 if 分支为 false，需要加上注释节点
-    if (prevNode && ifTypes[prevNode.type] && !htmlStack.length) {
-      prevNode.stump = TRUE;
-    }
-
-    if (ifTypes[type]) {
-      push(ifStack, node);
-    } else if (htmlTypes[type]) {
-      push(htmlStack, node);
-    }
-
-    if (!leafTypes[type]) {
-      push(nodeStack, node);
-    }
-  };
-
-  var htmlParsers = [function (content) {
-    if (!htmlStack.length) {
-      var _match = content.match(openingTagPattern);
-      // 必须以 <tag 开头才能继续
-      if (_match && !_match.index) {
-        var tagName = _match[2];
-        if (_match[1] === CHAR_SLASH) {
-          popStack(ELEMENT, tagName);
-        } else {
-          addChild(new Element(tagName, componentNamePattern.test(tagName)));
-        }
-        return _match[0];
-      }
-    }
-  }, function (content) {
-    var match = content.match(closingTagPattern);
-    if (match) {
-      if (htmlStack.length === 1) {
-        var element = last(htmlStack);
-        element.divider = element.children ? element.children.length : 0;
-        if (match[1] === CHAR_SLASH) {
-          popStack(ELEMENT);
-        }
-        pop(htmlStack);
-      }
-      return match[0];
-    }
-  }, function (content) {
-    if (htmlStack.length === 1) {
-      var _match2 = content.match(attributePattern);
-      if (_match2) {
-        var name = _match2[1];
-        if (builtInDirectives[name]) {
-          addChild(new Directive(camelCase(name)));
-        } else if (startsWith(name, DIRECTIVE_EVENT_PREFIX)) {
-          name = slice(name, DIRECTIVE_EVENT_PREFIX.length);
-          addChild(new Directive(DIRECTIVE_EVENT, camelCase(name)));
-        } else if (startsWith(name, DIRECTIVE_CUSTOM_PREFIX)) {
-          name = slice(name, DIRECTIVE_CUSTOM_PREFIX.length);
-          addChild(new Directive(camelCase(name)));
-        } else {
-          addChild(new Attribute(htmlStack[0].component ? camelCase(name) : name));
-        }
-        currentQuote = _match2[2];
-        if (!currentQuote) {
-          popStack(pop(htmlStack).type);
-        }
-        return _match2[0];
-      }
-    }
-  }, function (content) {
-    if (htmlStack.length === 2) {
-      var index = 0,
-          currentChar,
-          closed;
-      while (currentChar = charAt(content, index)) {
-        if (currentChar === currentQuote) {
-          closed = TRUE;
-          break;
-        }
-        index++;
-      }
-      var text = CHAR_BLANK;
-      if (index) {
-        text = slice(content, 0, index);
-        addChild(new Text(text));
-      }
-      if (closed) {
-        text += currentQuote;
-        closed = pop(htmlStack);
-        if (!closed.children) {
-          closed.value = CHAR_BLANK;
-        }
-        popStack(closed.type);
-      }
-      return text;
-    } else {
-      var _match3 = content.match(openingTagPattern);
-      if (_match3 && _match3.index) {
-        content = slice(content, 0, _match3.index);
-      }
-      // 属性级别的空字符串是没有意义的
-      // 比如 <div      class="xx">
-      if (htmlStack.length !== 1 || trim(content)) {
-        addChild(new Text(content));
-      }
-      return content;
-    }
-  }];
-
-  var delimiterParsers = [function (source, all) {
-    if (startsWith(source, SYNTAX_EACH)) {
-      var terms = split(slicePrefix(source, SYNTAX_EACH), CHAR_COLON);
-      if (terms[0]) {
-        return new Each(compile$1(trim(terms[0])), trim(terms[1]));
-      }
-      throwError('invalid each: ' + all);
-    }
-  }, function (source, all) {
-    if (startsWith(source, SYNTAX_IMPORT)) {
-      source = slicePrefix(source, SYNTAX_IMPORT);
-      return source ? new Import(source) : throwError('invalid import: ' + all);
-    }
-  }, function (source, all) {
-    if (startsWith(source, SYNTAX_PARTIAL)) {
-      source = slicePrefix(source, SYNTAX_PARTIAL);
-      return source ? new Partial(source) : throwError('invalid partial: ' + all);
-    }
-  }, function (source, all) {
-    if (startsWith(source, SYNTAX_IF)) {
-      source = slicePrefix(source, SYNTAX_IF);
-      return source ? new If(compile$1(source)) : throwError('invalid if: ' + all);
-    }
-  }, function (source, all) {
-    if (startsWith(source, SYNTAX_ELSE_IF)) {
-      source = slicePrefix(source, SYNTAX_ELSE_IF);
-      return source ? new ElseIf(compile$1(source)) : throwError('invalid else if: ' + all);
-    }
-  }, function (source) {
-    if (startsWith(source, SYNTAX_ELSE)) {
-      return new Else();
-    }
-  }, function (source, all) {
-    if (startsWith(source, SYNTAX_SPREAD)) {
-      source = slicePrefix(source, SYNTAX_SPREAD);
-      return source ? new Spread(compile$1(source)) : throwError('invalid spread: ' + all);
-    }
-  }, function (source, all) {
-    if (!SYNTAX_COMMENT.test(source)) {
-      source = trim(source);
-      return source ? new Expression(compile$1(source), !endsWith(all, '}}}')) : throwError('invalid expression: ' + all);
-    }
-  }];
-
-  var parseHtml = function (content) {
-    if (content) {
-      (function () {
-        var tpl = content;
-        while (tpl) {
-          each(htmlParsers, function (parse, match) {
-            match = parse(tpl);
-            if (match) {
-              tpl = slice(tpl, match.length);
-              return FALSE;
-            }
-          });
-        }
-        str = slice(str, content.length);
-      })();
-    }
-  };
-
-  var parseDelimiter = function (content, all) {
-    if (content) {
-      if (charAt(content) === CHAR_SLASH) {
-        var name = slice(content, 1),
-            type = name2Type[name];
-        if (ifTypes[type]) {
-          type = pop(ifStack).type;
-        }
-        popStack(type);
-      } else {
-        each(delimiterParsers, function (parse, node) {
-          node = parse(content, all);
-          if (node) {
-            addChild(node);
-            return FALSE;
-          }
-        });
-      }
-    }
-    str = slice(str, all.length);
-  };
-
-  var str = content,
-      match;
-
-  // 干掉 html 注释
-  str = str.replace(/<!--[\s\S]*?-->/g, function () {
-    return CHAR_BLANK;
-  });
-
-  while (str) {
-    match = str.match(delimiterPattern);
-    if (match) {
-      parseHtml(slice(str, 0, match.index));
-      // 避免手误写成 {{{ name }}
-      if (match[1].length === match[3].length) {
-        parseDelimiter(match[2], match[0]);
-      } else {
-        throwError('invalid syntax: ' + match[0]);
-      }
-    } else {
-      parseHtml(str);
-    }
-  }
-
-  return compileCache[content] = nodeList;
-}
-
-var unary = {};
-
-unary[PLUS] = function (a) {
-  return +a;
-};
-unary[MINUS] = function (a) {
-  return -a;
-};
-unary[NOT] = function (a) {
-  return !a;
-};
-unary[WAVE] = function (a) {
-  return ~a;
-};
-unary[BOOLEAN] = function (a) {
-  return !!a;
-};
-
-var binary = {};
-
-binary[OR] = function (a, b) {
-  return a || b;
-};
-binary[AND] = function (a, b) {
-  return a && b;
-};
-binary[SE] = function (a, b) {
-  return a === b;
-};
-binary[SNE] = function (a, b) {
-  return a !== b;
-};
-binary[LE] = function (a, b) {
-  return a == b;
-};
-binary[LNE] = function (a, b) {
-  return a != b;
-};
-binary[LT] = function (a, b) {
-  return a < b;
-};
-binary[LTE] = function (a, b) {
-  return a <= b;
-};
-binary[GT] = function (a, b) {
-  return a > b;
-};
-binary[GTE] = function (a, b) {
-  return a >= b;
-};
-binary[PLUS] = function (a, b) {
-  return a + b;
-};
-binary[MINUS] = function (a, b) {
-  return a - b;
-};
-binary[MULTIPLY] = function (a, b) {
-  return a * b;
-};
-binary[DIVIDE] = function (a, b) {
-  return a / b;
-};
-binary[MODULO] = function (a, b) {
-  return a % b;
-};
-
-var executor = {};
-
-executor[LITERAL] = function (node) {
-  return node.value;
-};
-
-executor[IDENTIFIER] = function (node, getter) {
-  return getter(node.name);
-};
-
-executor[MEMBER] = function (node, getter, context) {
-  var keypath = node.keypath;
-
-  if (!keypath) {
-    var keypaths = node.props.map(function (node, index) {
-      var type = node.type;
-
-      if (type !== LITERAL) {
-        if (index > 0) {
-          return execute$1(node, getter, context);
-        } else if (type === IDENTIFIER) {
-          return node.name;
-        }
-      } else {
-        return node.value;
-      }
-    });
-    keypath = stringify(keypaths, FALSE);
-  }
-  return getter(keypath);
-};
-
-executor[UNARY] = function (node, getter, context) {
-  return unary[node.operator](execute$1(node.arg, getter, context));
-};
-
-executor[BINARY] = function (node, getter, context) {
-  return binary[node.operator](execute$1(node.left, getter, context), execute$1(node.right, getter, context));
-};
-
-executor[TERNARY] = function (node, getter, context) {
-  return execute$1(node.test, getter, context) ? execute$1(node.yes, getter, context) : execute$1(node.no, getter, context);
-};
-
-executor[ARRAY] = function (node, getter, context) {
-  return node.elements.map(function (node) {
-    return execute$1(node, getter, context);
-  });
-};
-
-executor[OBJECT] = function (node, getter, context) {
-  var result = {};
-  each(node.keys, function (key, index) {
-    result[key] = execute$1(node.values[index], getter, context);
-  });
-  return result;
-};
-
-executor[CALL] = function (node, getter, context) {
-  return execute(execute$1(node.callee, getter, context), context, node.args.map(function (node) {
-    return execute$1(node, getter, context);
-  }));
-};
-
-/**
- * 表达式求值
- *
- * @param {Node} node 表达式抽象节点
- * @param {Function} getter 读取数据的方法
- * @param {*} context 表达式函数调用的执行上下文
- * @return {*}
- */
-function execute$1(node, getter, context) {
-  return executor[node.type](node, getter, context);
-}
-
-var Context = function () {
-
-  /**
-   * @param {Object} context
-   * @param {string} keypath
-   * @param {?Context} parent
-   */
-  function Context(data, keypath, parent) {
-    classCallCheck(this, Context);
-
-
-    var instance = this,
-        temp = {};
-    temp[SPECIAL_KEYPATH] = keypath;
-
-    instance.data = data;
-    instance.temp = temp;
-    instance.cache = {};
-
-    if (parent) {
-      instance.parent = parent;
-    }
-  }
-
-  Context.prototype.push = function (data, keypath) {
-    return new Context(data, keypath, this);
-  };
-
-  Context.prototype.pop = function () {
-    return this.parent;
-  };
-
-  Context.prototype.set = function (key, value) {
-    var temp = this.temp,
-        cache = this.cache;
-
-    var _formatKeypath = formatKeypath(key),
-        keypath = _formatKeypath.keypath;
-
-    if (keypath) {
-      if (has$1(cache, keypath)) {
-        delete cache[keypath];
-      }
-      temp[keypath] = value;
-    }
-  };
-
-  Context.prototype.get = function (key) {
-
-    var instance = this;
-    var _instance = instance,
-        data = _instance.data,
-        temp = _instance.temp,
-        cache = _instance.cache;
-
-    var _formatKeypath2 = formatKeypath(key),
-        keypath = _formatKeypath2.keypath,
-        lookup = _formatKeypath2.lookup;
-
-    if (!has$1(cache, keypath)) {
-
-      var result;
-
-      if (keypath) {
-
-        var getValue = function (instance, keypath) {
-          var data = instance.data,
-              temp = instance.temp,
-              result;
-
-          if (exists(temp, keypath)) {
-            result = {
-              temp: TRUE,
-              value: temp[keypath]
-            };
-          } else {
-            result = get$1(data, keypath);
-            if (result && isNative(result.value)) {
-              warn('find a native function by ' + keypath + '.');
-            }
-          }
-          return result;
-        };
-
-        if (lookup) {
-          while (instance) {
-            result = getValue(instance, keypath);
-            if (result) {
-              break;
-            } else {
-              instance = instance.parent;
-            }
-          }
-        } else {
-          result = getValue(instance, keypath);
-        }
-      } else {
-        result = {
-          value: data
-        };
-      }
-
-      if (result) {
-        result.keypath = join(instance.temp[SPECIAL_KEYPATH], keypath);
-        cache[keypath] = result;
-      }
-    }
-
-    cache = cache[keypath];
-    if (cache) {
-      return cache;
-    }
-
-    return {
-      keypath: join(temp[SPECIAL_KEYPATH], keypath)
-    };
-  };
-
-  return Context;
-}();
-
-function formatKeypath(keypath) {
-  keypath = normalize(keypath);
-  var lookup = TRUE,
-      length = startsWith$1(keypath, RAW_THIS);
-  if (number(length)) {
-    keypath = slice(keypath, length);
-    lookup = FALSE;
-  }
-  return { keypath: keypath, lookup: lookup };
-}
-
-var TEXT$1 = 'text';
-var VALUE = 'value';
-
-/**
- * 渲染抽象语法树
- *
- * @param {Object} ast 编译出来的抽象语法树
- * @param {Object} data 渲染模板的数据
- * @param {Yox} instance 组件实例
- * @return {Object}
- */
-function render(ast, data, instance) {
-
-  // 为了减少字符，一个 let 定义完所有变量
-  // 这里不考虑是否一行过长
-  var keypath = CHAR_BLANK,
-      keypathList = [],
-      context = new Context(data, keypath),
-      nodeStack = [],
-      htmlStack = [],
-      partials = {},
-      deps = {},
-      enter = {},
-      leave = {},
-      cache,
-      prevCache,
-      currentCache,
-      cacheDeps;
-
-  var updateKeypath = function () {
-    keypath = stringify(keypathList);
-  };
-
-  var addChild = function (parent, child) {
-
-    if (parent && isDef(child)) {
-
-      if (parent.type === ELEMENT) {
-
-        var children = parent.children || (parent.children = []);
-        var prevChild = last(children);
-
-        if (array(child)) {
-          each(child, function (item) {
-            if (has$1(item, TEXT$1)) {
-              item.parent = instance;
-              children.push(item);
-            }
-          });
-        } else if (object(child)) {
-          if (has$1(child, TEXT$1)) {
-            children.push(child);
-          }
-        } else {
-          if (isTextVnode(prevChild)) {
-            prevChild[TEXT$1] += toString(child);
-          } else {
-            children.push(createTextVnode(child));
-          }
-        }
-      } else {
-        if (has$1(parent, VALUE)) {
-          parent.value += child;
-        } else {
-          parent.value = child;
-        }
-      }
-    }
-  };
-
-  var addAttr = function (parent, key, value) {
-    var attrs = parent.attrs || (parent.attrs = {});
-    attrs[key] = value;
-  };
-
-  var addDirective = function (parent, name, modifier, value) {
-    var directives = parent.directives || (parent.directives = {});
-    return directives[join(name, modifier)] = {
-      name: name,
-      modifier: modifier,
-      context: context,
-      keypath: keypath,
-      value: value
-    };
-  };
-
-  var getValue = function (element, source, output) {
-    var value;
-    if (has$1(output, VALUE)) {
-      value = output.value;
-    } else if (has$1(source, VALUE)) {
-      value = source.value;
-    } else if (source.expr) {
-      value = executeExpr(source.expr, source.binding || source.type === DIRECTIVE);
-    }
-    if (!isDef(value)) {
-      if (source.expr || source.children) {
-        value = CHAR_BLANK;
-      } else if (element.component) {
-        value = TRUE;
-      } else {
-        value = source.name;
-      }
-    }
-    return value;
-  };
-
-  var pushStack = function (source) {
-    var type = source.type,
-        children = source.children;
-
-
-    var parent = last(nodeStack),
-        output = { type: type, source: source, parent: parent };
-
-    if (execute(enter[type], NULL, [source, output]) === FALSE) {
-      return;
-    }
-
-    push(nodeStack, output);
-
-    if (htmlTypes[type]) {
-      push(htmlStack, output);
-    }
-
-    if (children) {
-      each(children, function (node, index) {
-        pushStack(node);
-      });
-    }
-
-    execute(leave[type], NULL, [source, output]);
-
-    if (htmlTypes[source.type]) {
-      pop(htmlStack);
-    }
-
-    pop(nodeStack);
-
-    return output;
-  };
-
-  // 缓存节点只处理一层，不支持下面这种多层缓存
-  // <div key="{{xx}}">
-  //     <div key="{{yy}}"></div>
-  // </div>
-
-  var executeExpr = function (expr, filter) {
-    return execute$1(expr, function (key) {
-      var _context$get = context.get(key),
-          keypath = _context$get.keypath,
-          value = _context$get.value,
-          temp = _context$get.temp;
-
-      if (!filter && !temp) {
-        deps[keypath] = value;
-        if (cacheDeps) {
-          cacheDeps[key] = value;
-        }
-      }
-      return value;
-    }, instance);
-  };
-
-  enter[PARTIAL] = function (source) {
-    partials[source.name] = source.children;
-    return FALSE;
-  };
-
-  enter[IMPORT] = function (source) {
-    var name = source.name;
-
-    var partial = partials[name] || instance.importPartial(name);
-    if (partial) {
-      if (array(partial)) {
-        pushStack({
-          children: partial
-        });
-      } else {
-        pushStack(partial);
-      }
-      return FALSE;
-    }
-    fatal('"' + name + '" partial is not found.');
-  };
-
-  // 条件判断失败就没必要往下走了
-  // 但如果失败的点原本是一个 DOM 元素
-  // 就需要用注释节点来占位，否则 virtual dom 无法正常工作
-  enter[IF] = function (source) {
-    var _source = source,
-        stump = _source.stump;
-
-    while (TRUE) {
-      // 有判断条件
-      if (source.expr) {
-        if (executeExpr(source.expr)) {
-          pushStack({
-            children: source.children
-          });
-          break;
-        } else {
-          if (source.next) {
-            source = source.next;
-          } else {
-            if (stump) {
-              addChild(last(htmlStack), createCommentVnode());
-            }
-            break;
-          }
-        }
-      }
-      // 无判断条件，即 else
-      else {
-          pushStack({
-            children: source.children
-          });
-          break;
-        }
-    }
-    return FALSE;
-  };
-
-  enter[EACH] = function (source) {
-    var expr = source.expr,
-        index = source.index,
-        children = source.children;
-
-    var value = executeExpr(expr),
-        each$$1;
-
-    if (array(value)) {
-      each$$1 = each;
-    } else if (object(value)) {
-      each$$1 = each$1;
-    }
-
-    if (each$$1) {
-
-      var eachKeypath = expr.keypath;
-      if (isDef(eachKeypath)) {
-        push(keypathList, eachKeypath);
-        updateKeypath();
-      }
-      context = context.push(value, keypath);
-
-      each$$1(value, function (value, i) {
-
-        push(keypathList, i);
-        updateKeypath();
-
-        context = context.push(value, keypath);
-        if (index) {
-          context.set(index, i);
-        }
-
-        pushStack({
-          children: children
-        });
-
-        context = context.pop();
-        pop(keypathList);
-        updateKeypath();
-      });
-
-      context = context.pop();
-      if (isDef(eachKeypath)) {
-        pop(keypathList);
-        updateKeypath();
-      }
-    }
-
-    return FALSE;
-  };
-
-  var getKeywordValue = function (value) {
-    if (string(value)) {
-      return value;
-    } else if (object(value)) {
-      return executeExpr(value);
-    }
-  };
-
-  enter[ELEMENT] = function (source, output) {
-    var name = source.name,
-        key = source.key,
-        ref = source.ref;
-
-    if (key) {
-      var trackBy = getKeywordValue(key);
-      if (isDef(trackBy)) {
-
-        if (!currentCache) {
-          prevCache = instance.$templateCache || {};
-          currentCache = instance.$templateCache = {};
-        }
-
-        var _cache = prevCache[trackBy];
-
-        if (_cache) {
-          var isSame = _cache.keypath === keypath;
-          if (isSame) {
-            each$1(_cache.deps, function (oldValue, key) {
-              var _context$get2 = context.get(key),
-                  keypath = _context$get2.keypath,
-                  value = _context$get2.value;
-
-              if (value === oldValue) {
-                deps[keypath] = value;
-              } else {
-                return isSame = FALSE;
-              }
-            });
-          }
-          if (isSame) {
-            currentCache[trackBy] = _cache;
-            addChild(last(htmlStack), _cache.vnode);
-            return FALSE;
-          }
-        }
-
-        cacheDeps = {};
-        output.key = trackBy;
-        currentCache[trackBy] = {
-          keypath: keypath
-        };
-      }
-    }
-    if (ref) {
-      output.ref = getKeywordValue(ref);
-    }
-  };
-
-  leave[ELEMENT] = function (source, output) {
-    var component = source.component,
-        key = output.key,
-        ref = output.ref,
-        attrs = output.attrs,
-        children = output.children,
-        props,
-        vnode,
-        create;
-
-    if (source.props) {
-      props = {};
-      each$1(source.props, function (expr, key) {
-        var value;
-        if (primitive(expr)) {
-          value = expr;
-        } else {
-          var _keypath = expr.keypath;
-
-          value = executeExpr(expr, _keypath);
-          if (_keypath) {
-            addDirective(output, DIRECTIVE_BINDING, key, _keypath).prop = TRUE;
-          }
-        }
-        props[key] = value;
-      });
-    }
-
-    if (component) {
-      create = 'createComponentVnode';
-      if (children) {
-        if (!attrs) {
-          attrs = {};
-        }
-        attrs[SPECIAL_CHILDREN] = children;
-        children = UNDEFINED;
-      }
-    } else {
-      create = 'createElementVnode';
-    }
-
-    vnode = snabbdom[create](source.name, attrs, props, output.directives, children, key, ref, instance);
-
-    if (isDef(key)) {
-      currentCache[key].deps = cacheDeps;
-      currentCache[key].vnode = vnode;
-      cacheDeps = NULL;
-    }
-
-    addChild(htmlStack[htmlStack.length - 2], vnode);
-  };
-
-  leave[TEXT] = function (source) {
-    addChild(last(htmlStack), source.text);
-  };
-
-  leave[EXPRESSION] = function (source) {
-    addChild(last(htmlStack), executeExpr(source.expr));
-  };
-
-  leave[ATTRIBUTE] = function (source, output) {
-    var element = htmlStack[htmlStack.length - 2];
-    var name = source.name,
-        binding = source.binding;
-
-    addAttr(element, name, getValue(element, source, output));
-    if (binding) {
-      addDirective(element, DIRECTIVE_BINDING, name, binding);
-    }
-  };
-
-  leave[DIRECTIVE] = function (source, output) {
-
-    // 1.如果指令的值是纯文本，会在编译阶段转成表达式抽象语法树
-    //   on-click="submit()"
-    //   ref="child"
-    //
-    // 2.如果指令的值包含插值语法，则会拼接出最终值
-    //   on-click="haha{{name}}"
-
-    var element = htmlStack[htmlStack.length - 2];
-
-    addDirective(element, source.name, source.modifier, getValue(element, source, output)).expr = source.expr;
-  };
-
-  leave[SPREAD] = function (source, output) {
-
-    // 1. <Component {{...props}} />
-    //    把 props.xx 当做单向绑定指令，无需收集依赖
-    //
-    // 2. <Component {{... a ? aProps : bProps }}/>
-    //    复杂的表达式，需要收集依赖
-
-    var expr = source.expr,
-        spreadKeypath = expr.keypath,
-        value = executeExpr(expr, spreadKeypath);
-
-    if (object(value)) {
-      var element = last(htmlStack);
-      each$1(value, function (value, name) {
-        addAttr(element, name, value);
-        if (spreadKeypath) {
-          addDirective(element, DIRECTIVE_BINDING, name, join(spreadKeypath, name));
-        }
-      });
-    } else {
-      fatal('"' + expr.raw + '" spread expected to be an object.');
-    }
-  };
-
-  var result = pushStack({
-    type: ELEMENT,
-    children: array(ast) ? ast : [ast]
-  });
-
-  return {
-    nodes: result.children,
-    deps: deps
-  };
-}
-
-var toNumber = function (str) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-  if (numeric(str)) {
-    return +str;
-  }
-  return defaultValue;
-};
-
-var Observer = function () {
-
-  /**
-   * @param {Object} options
-   * @property {Object} options.data
-   * @property {?Object} options.computed
-   * @property {?*} options.context 执行 watcher 函数的 this 指向
-   * @property {?Function} options.beforeFlush
-   * @property {?Function} options.afterFlush
-   */
-  function Observer(options) {
-    classCallCheck(this, Observer);
-
-
-    var instance = this;
-
-    instance.data = options.data || {};
-    instance.context = options.context || instance;
-    instance.emitter = new Emitter();
-    instance.beforeFlush = options.beforeFlush;
-    instance.afterFlush = options.afterFlush;
-
-    // 谁依赖了谁
-    instance.deps = {};
-    // 谁被谁依赖
-    instance.invertedDeps = {};
-    // 谁被谁依赖
-    instance.invertedFuzzyDeps = {};
-
-    // 把计算属性拆为 getter 和 setter
-    instance.computedGetters = {};
-    instance.computedSetters = {};
-
-    // 计算属性的缓存值
-    instance.computedCache = {};
-
-    // 辅助获取计算属性的依赖
-    instance.computedStack = [];
-
-    // 正在监听的 keypath
-    instance.watchKeypaths = {};
-    // 模糊监听，如 user.*
-    instance.watchFuzzyKeypaths = {};
-
-    // 计算属性也是数据
-    if (object(options.computed)) {
-      each$1(options.computed, function (item, keypath) {
-        instance.addComputed(keypath, item);
-      });
-    }
-  }
-
-  /**
-   * 添加计算属性
-   *
-   * @param {string} keypath
-   * @param {Function|Object} computed
-   */
-
-
-  Observer.prototype.addComputed = function (keypath, computed) {
-
-    var instance = this,
-        cache = TRUE,
-        get$$1,
-        set$$1,
-        deps;
-
-    if (func(computed)) {
-      get$$1 = computed;
-    } else if (object(computed)) {
-      if (boolean(computed.cache)) {
-        cache = computed.cache;
-      }
-      if (func(computed.get)) {
-        get$$1 = computed.get;
-      }
-      if (func(computed.set)) {
-        set$$1 = computed.set;
-      }
-      if (computed.deps) {
-        deps = computed.deps;
-      }
-    }
-
-    if (get$$1) {
-
-      var needDeps;
-
-      if (deps) {
-        needDeps = FALSE;
-        if (array(deps)) {
-          instance.setDeps(keypath, deps);
-        }
-      } else {
-        needDeps = cache;
-      }
-
-      var getter = function () {
-
-        if (cache && has$1(instance.computedCache, keypath)) {
-          return instance.computedCache[keypath];
-        }
-
-        if (needDeps) {
-          instance.computedStack.push([]);
-        }
-
-        var value = execute(get$$1, instance.context);
-        instance.computedCache[keypath] = value;
-
-        if (needDeps) {
-          instance.setDeps(keypath, pop(instance.computedStack));
-        }
-
-        return value;
-      };
-
-      getter.getter = TRUE;
-      instance.computedGetters[keypath] = getter;
-    }
-
-    if (set$$1) {
-      var setter = function (value) {
-        set$$1.call(instance.context, value);
-      };
-      setter.setter = TRUE;
-      instance.computedSetters[keypath] = setter;
-    }
-  };
-
-  /**
-   * 获取数据
-   *
-   * @param {string} keypath
-   * @param {?*} defaultValue
-   * @return {?*}
-   */
-
-
-  Observer.prototype.get = function (keypath, defaultValue) {
-
-    var instance = this,
-        result;
-
-    // 传入 '' 获取整个 data
-    if (keypath === CHAR_BLANK) {
-      return instance.data;
-    }
-
-    keypath = normalize(keypath);
-
-    // 收集计算属性依赖
-    var list = last(instance.computedStack);
-    if (list) {
-      push(list, keypath);
-    }
-
-    var _matchBestGetter = matchBestGetter(instance.computedGetters, keypath),
-        getter = _matchBestGetter.getter,
-        prop = _matchBestGetter.prop;
-
-    if (getter) {
-      getter = getter();
-      if (prop) {
-        if (exists(getter, prop)) {
-          result = { value: getter[prop] };
-        } else if (!primitive(getter)) {
-          result = get$1(getter, prop);
-        }
-      } else {
-        result = { value: getter };
-      }
-    }
-
-    if (!result) {
-      result = get$1(instance.data, keypath);
-    }
-
-    return result ? result.value : defaultValue;
-  };
-
-  /**
-   * 更新数据
-   *
-   * @param {string|Object} keypath
-   * @param {?*} value
-   */
-
-
-  Observer.prototype.set = function (keypath, value) {
-
-    var instance = this,
-        outerDifferences = {};
-
-    // 数据监听有两种
-    // 1. 类似计算属性的依赖关系，如计算属性 A 的依赖是 B 和 C，当 B 或 C 变了，必须检测 A 是否变了
-    // 2. watch/watchOnce，只监听单一 keypath 的变化
-    //
-    // 当我们修改一项数据时
-    // 如果是基本类型的数据，需要判断是否有 watcher 正在监听它，以及它是否命中模糊匹配，以及它是否是别的数据的依赖
-    // 如果是引用类型的数据，除了有基本类型的判断，还得判断它的属性是否变化，如监听 user.name，修改了 user，也得判断 user.name 是否变化，此外，子属性的变化又会带来一次递归判断
-    //
-    // 一旦数据发生变化，如果它影响了计算属性，则需立即清除计算属性的缓存，才可获取最新值
-    // 而 watcher 的触发则需等到 nextTick 后
-    // 也就是说，你必须在设值时知道它会导致哪些数据发生变化，而不是在 nextTick 批量计算
-
-    var addInverted = function (differences, inverted) {
-      each$1(inverted, function (count, invertedKeypath) {
-        addDifference(differences, invertedKeypath, UNDEFINED, instance.get(invertedKeypath), TRUE);
-      });
-    };
-
-    var addDifference = function (differences, keypath, newValue, oldValue, force) {
-      if (force || oldValue !== newValue) {
-        if (has$1(differences, keypath)) {
-          return;
-        }
-        // 自己
-        differences[keypath] = oldValue;
-
-        // 依赖
-        var inverted = instance.invertedDeps[keypath];
-        if (inverted) {
-          addInverted(differences, inverted);
-        }
-
-        each$1(instance.invertedFuzzyDeps, function (inverted, fuzzyKeypath) {
-          if (matchKeypath(keypath, fuzzyKeypath)) {
-            addInverted(differences, inverted);
-          }
-        });
-
-        // 我们认为 $ 开头的变量是不可递归的
-        // 比如浏览器中常见的 $0 表示当前选中元素
-        // DOM 元素是不能递归的
-        if (startsWith(keypath, '$')) {
-          return;
-        }
-
-        // 子属性
-        var oldIsObject = object(oldValue),
-            newIsObject = object(newValue);
-        if (oldIsObject || newIsObject) {
-          var keys$$1;
-          if (oldIsObject) {
-            keys$$1 = keys(oldValue);
-            if (newIsObject) {
-              each(keys(newValue), function (key) {
-                if (!has(keys$$1, key)) {
-                  push(keys$$1, key);
+    function createMemberIfNeeded(raw, nodes) {
+        // 第一个节点要特殊处理
+        var firstNode = nodes.shift(),
+        // 是否向上查找
+        lookup = TRUE,
+        // 偏移量，默认从当前 context 开始查找
+        offset = 0;
+        // 表示传入的 nodes 至少有两个节点（弹出了一个）
+        if (nodes.length > 0) {
+            // 处理剩下的 nodes
+            // 这里要做两手准备：
+            // 1. 如果全是 literal 节点，则编译时 join
+            // 2. 如果不全是 literal 节点，则运行时 join
+            // 是否全是 Literal 节点
+            var isLiteral_1 = TRUE,
+            // 静态节点
+            staticNodes_1 = [],
+            // 对于 this.a.b[c] 这样的
+            // 要还原静态部分 this.a.b 的 raw
+            // 虽然 raw 没什么大用吧，谁让我是洁癖呢
+            staticRaw_1 = EMPTY_STRING,
+            // 动态节点
+            dynamicNodes_1 = [];
+            each(nodes, function (node) {
+                if (isLiteral_1) {
+                    if (node.type === LITERAL) {
+                        if (node.raw === KEYPATH_PARENT) {
+                            offset += 1;
+                            staticRaw_1 = staticRaw_1
+                                ? staticRaw_1 + RAW_SLASH + KEYPATH_PARENT
+                                : KEYPATH_PARENT;
+                            return;
+                        }
+                        if (node.raw !== KEYPATH_CURRENT) {
+                            var value = toString(node.value);
+                            push(staticNodes_1, value);
+                            if (staticRaw_1) {
+                                staticRaw_1 += endsWith(staticRaw_1, KEYPATH_PARENT)
+                                    ? RAW_SLASH
+                                    : RAW_DOT;
+                            }
+                            staticRaw_1 += value;
+                        }
+                    }
+                    else {
+                        isLiteral_1 = FALSE;
+                    }
                 }
-              });
-            }
-          } else {
-            keys$$1 = keys(newValue);
-          }
-          if (keys$$1) {
-            each(keys$$1, function (key) {
-              addDifference(differences, join(keypath, key), newIsObject ? newValue[key] : UNDEFINED, oldIsObject ? oldValue[key] : UNDEFINED);
-            });
-          }
-        } else {
-          var oldIsArray = array(oldValue),
-              newIsArray = array(newValue);
-          var oldLength = oldIsArray || string(oldValue) ? oldValue.length : UNDEFINED;
-          var newLength = newIsArray || string(newValue) ? newValue.length : UNDEFINED;
-          if (number(oldLength) || number(newLength)) {
-            addDifference(differences, join(keypath, 'length'), newLength, oldLength);
-            if (oldIsArray || newIsArray) {
-              for (var i = 0, length = getMax(newLength, oldLength); i < length; i++) {
-                addDifference(differences, join(keypath, i), newIsArray ? newValue[i] : UNDEFINED, oldIsArray ? oldValue[i] : UNDEFINED);
-              }
-            }
-          }
-        }
-      }
-    };
-
-    var setValue = function (newValue, keypath) {
-
-      keypath = normalize(keypath);
-
-      var oldValue = instance.get(keypath),
-          innerDifferences = {};
-
-      addDifference(innerDifferences, keypath, newValue, oldValue);
-
-      var setter = instance.computedSetters[keypath];
-      if (setter) {
-        setter(newValue);
-      } else {
-        var _matchBestGetter2 = matchBestGetter(instance.computedGetters, keypath),
-            getter = _matchBestGetter2.getter,
-            prop = _matchBestGetter2.prop;
-
-        if (getter && prop) {
-          getter = getter();
-          if (primitive(getter)) {
-            return;
-          } else {
-            set$1(getter, prop, newValue);
-          }
-        } else {
-          set$1(instance.data, keypath, newValue);
-        }
-      }
-
-      if (newValue !== oldValue) {
-
-        var computedKeypaths = keys(instance.computedCache);
-
-        each$1(innerDifferences, function (oldValue, keypath) {
-          var newValue = instance.get(keypath);
-          if (isChange(newValue, oldValue, instance.deps[keypath])) {
-            outerDifferences[keypath] = oldValue;
-
-            var invertedKeypaths = instance.invertedDeps[keypath];
-            var invertedFuzzyKeypaths = [];
-
-            each$1(instance.invertedFuzzyDeps, function (invertedKeypaths, fuzzyKeypath) {
-              if (matchKeypath(keypath, fuzzyKeypath)) {
-                push(invertedFuzzyKeypaths, fuzzyKeypath);
-              }
-            });
-
-            // 计算属性要立即生效，否则取值会出问题
-            each(computedKeypaths, function (computedKeypath, index) {
-              var needRemove;
-              if (computedKeypath === keypath || invertedKeypaths && invertedKeypaths[computedKeypath]) {
-                needRemove = TRUE;
-              } else {
-                each(invertedFuzzyKeypaths, function (fuzzyKeypath) {
-                  if (instance.invertedFuzzyDeps[fuzzyKeypath][computedKeypath]) {
-                    needRemove = TRUE;
-                    return FALSE;
-                  }
-                });
-              }
-              if (needRemove) {
-                computedKeypaths.splice(index, 1);
-                delete instance.computedCache[computedKeypath];
-              }
-            }, TRUE);
-          }
-        });
-      }
-    };
-
-    if (string(keypath)) {
-      setValue(value, keypath);
-    } else if (object(keypath)) {
-      each$1(keypath, setValue);
-    }
-
-    var result = [],
-        differences = instance.differences;
-
-    each$1(outerDifferences, function (oldValue, keypath) {
-      var newValue = instance.get(keypath);
-      if (isChange(newValue, oldValue, instance.deps[keypath])) {
-        push(result, keypath);
-        if (!differences) {
-          differences = instance.differences = {};
-        }
-        if (!has$1(differences, keypath)) {
-          differences[keypath] = oldValue;
-        }
-      }
-    });
-
-    if (result.length) {
-      instance.flushAsync();
-    }
-
-    return result;
-  };
-
-  Observer.prototype.flush = function () {
-
-    var instance = this;
-
-    if (instance.pending) {
-      delete instance.pending;
-    }
-
-    var differences = instance.differences;
-
-
-    if (differences) {
-      delete instance.differences;
-    } else {
-      return;
-    }
-
-    // 确定待 flush 的数据
-    var flushing = {};
-
-    each$1(differences, function (oldValue, keypath) {
-      var newValue = instance.get(keypath);
-      if (isChange(newValue, oldValue, instance.deps[keypath])) {
-        flushing[keypath] = [newValue, oldValue, keypath];
-      }
-    });
-
-    execute(instance.beforeFlush, instance, flushing);
-
-    each$1(flushing, function (args, keypath) {
-
-      instance.emitter.fire(keypath, args);
-
-      each$1(instance.watchFuzzyKeypaths, function (value, key) {
-        var match = matchKeypath(keypath, key);
-        if (match) {
-          var newArgs = copy(args);
-          push(newArgs, match);
-          instance.emitter.fire(key, newArgs);
-        }
-      });
-    });
-
-    execute(instance.afterFlush, instance, flushing);
-  };
-
-  Observer.prototype.flushAsync = function () {
-    var instance = this;
-    if (!instance.pending) {
-      instance.pending = TRUE;
-      append(function () {
-        if (instance.pending) {
-          instance.flush();
-        }
-      });
-    }
-  };
-
-  Observer.prototype.setDeps = function (keypath, value) {
-    var deps = this.deps,
-        invertedDeps = this.invertedDeps,
-        invertedFuzzyDeps = this.invertedFuzzyDeps;
-
-    var oldValue = deps[keypath];
-    if (oldValue !== value) {
-
-      var added = [],
-          removed = [];
-
-      if (oldValue) {
-        each([oldValue, value], function (deps) {
-          each(deps, function (dep) {
-            if (has(value, dep)) {
-              if (!has(oldValue, dep)) {
-                push(added, dep);
-              }
-            } else if (has(oldValue, dep)) {
-              push(removed, dep);
-            }
-          });
-        });
-      } else {
-        added = value;
-      }
-
-      if (removed.length) {
-
-        var remove$$1 = function (dep, key) {
-
-          var isFuzzy = isFuzzyKeypath(dep);
-          var tempDeps = isFuzzy ? invertedFuzzyDeps : invertedDeps;
-
-          var target = tempDeps[dep];
-          if (target[key] > 0) {
-            target[key]--;
-            if (tempDeps[key]) {
-              each$1(tempDeps[key], function (count, key) {
-                remove$$1(dep, key);
-              });
-            }
-          }
-
-          if (!target[key]) {
-            delete target[key];
-          }
-        };
-
-        each(removed, function (dep) {
-          remove$$1(dep, keypath);
-        });
-      }
-
-      if (added.length) {
-
-        var add = function (dep, key, autoCreate) {
-
-          var isFuzzy = isFuzzyKeypath(dep);
-          var tempDeps = isFuzzy ? invertedFuzzyDeps : invertedDeps;
-
-          // dep 是 key 的一个依赖
-          var target = tempDeps[dep];
-          if (!target && autoCreate) {
-            target = tempDeps[dep] = {};
-          }
-          if (target) {
-            if (number(target[key])) {
-              target[key]++;
-            } else {
-              target[key] = 1;
-              if (key === keypath && invertedDeps[key]) {
-                each$1(invertedDeps[key], function (value, parentKey) {
-                  add(dep, parentKey);
-                });
-              }
-            }
-            // dep 同样是 key 的父级的依赖
-            if (deps[dep]) {
-              each$1(deps[dep], function (subKey) {
-                add(subKey, key);
-              });
-            }
-          }
-        };
-
-        each(added, function (dep) {
-          add(dep, keypath, TRUE);
-        });
-      }
-
-      deps[keypath] = value;
-    }
-  };
-
-  /**
-   * 取反 keypath 对应的数据
-   *
-   * 不管 keypath 对应的数据是什么类型，操作后都是布尔型
-   *
-   * @param {string} keypath
-   * @return {boolean} 取反后的布尔值
-   */
-
-
-  Observer.prototype.toggle = function (keypath) {
-    var value = !this.get(keypath);
-    this.set(keypath, value);
-    return value;
-  };
-
-  /**
-   * 递增 keypath 对应的数据
-   *
-   * 注意，最好是整型的加法，如果涉及浮点型，不保证计算正确
-   *
-   * @param {string} keypath 值必须能转型成数字，如果不能，则默认从 0 开始递增
-   * @param {?number} step 步进值，默认是 1
-   * @param {?number} min 可以递增到的最小值，默认不限制
-   * @return {number} 返回递增后的值
-   */
-
-
-  Observer.prototype.increase = function (keypath, step, max) {
-    var value = toNumber(this.get(keypath), 0) + (numeric(step) ? step : 1);
-    if (!numeric(max) || value <= max) {
-      this.set(keypath, value);
-    }
-    return value;
-  };
-
-  /**
-   * 递减 keypath 对应的数据
-   *
-   * 注意，最好是整型的减法，如果涉及浮点型，不保证计算正确
-   *
-   * @param {string} keypath 值必须能转型成数字，如果不能，则默认从 0 开始递减
-   * @param {?number} step 步进值，默认是 1
-   * @param {?number} min 可以递减到的最小值，默认不限制
-   * @return {number} 返回递减后的值
-   */
-
-
-  Observer.prototype.decrease = function (keypath, step, min) {
-    var value = toNumber(this.get(keypath), 0) - (numeric(step) ? step : 1);
-    if (!numeric(min) || value >= min) {
-      this.set(keypath, value);
-    }
-    return value;
-  };
-
-  /**
-   * 在数组指定位置插入元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @param {number} index
-   * @return {?boolean} 是否插入成功
-   */
-
-
-  Observer.prototype.insert = function (keypath, item, index) {
-
-    var list = this.get(keypath);
-    if (!array(list)) {
-      list = [];
-    } else {
-      list = copy(list);
-    }
-
-    var _list = list,
-        length = _list.length;
-
-    if (index === TRUE || index === length) {
-      list.push(item);
-    } else if (index === FALSE || index === 0) {
-      list.unshift(item);
-    } else if (index > 0 && index < length) {
-      list.splice(index, 0, item);
-    } else {
-      return;
-    }
-
-    this.set(keypath, list);
-
-    return TRUE;
-  };
-
-  /**
-   * 通过索引移除数组中的元素
-   *
-   * @param {string} keypath
-   * @param {number} index
-   * @return {?boolean} 是否移除成功
-   */
-
-
-  Observer.prototype.removeAt = function (keypath, index) {
-    var list = this.get(keypath);
-    if (array(list) && index >= 0 && index < list.length) {
-      list = copy(list);
-      list.splice(index, 1);
-      this.set(keypath, list);
-      return TRUE;
-    }
-  };
-
-  /**
-   * 直接移除数组中的元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @return {?boolean} 是否移除成功
-   */
-
-
-  Observer.prototype.remove = function (keypath, item) {
-    var list = this.get(keypath);
-    if (array(list)) {
-      list = copy(list);
-      if (remove(list, item)) {
-        this.set(keypath, list);
-        return TRUE;
-      }
-    }
-  };
-
-  Observer.prototype.nextTick = function (fn) {
-    append(fn);
-  };
-
-  /**
-   * 销毁
-   */
-
-
-  Observer.prototype.destroy = function () {
-    this.emitter.off();
-    clear(this);
-  };
-
-  return Observer;
-}();
-
-extend(Observer.prototype, {
-
-  /**
-   * 监听数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   * @param {?boolean} sync
-   */
-  watch: createWatch('on'),
-
-  /**
-   * 监听一次数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   * @param {?boolean} sync
-   */
-  watchOnce: createWatch('once'),
-
-  /**
-   * 取消监听数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   */
-  unwatch: function unwatch(keypath, watcher) {
-    var instance = this;
-    if (string(keypath)) {
-      _unwatch(instance, keypath, watcher);
-    } else if (object(keypath)) {
-      each$1(keypath, function (watcher, keypath) {
-        _unwatch(instance, keypath, watcher);
-      });
-    }
-  }
-
-});
-
-function watch(instance, action, keypath, watcher, sync) {
-  var emitter = instance.emitter,
-      context = instance.context;
-
-
-  var isFuzzy = isFuzzyKeypath(keypath);
-
-  if (!emitter.has(keypath)) {
-    if (isFuzzy) {
-      instance.watchFuzzyKeypaths[keypath] = TRUE;
-    } else {
-      instance.watchKeypaths[keypath] = TRUE;
-    }
-  }
-
-  emitter[action](keypath, {
-    func: watcher,
-    context: context
-  });
-
-  if (sync && !isFuzzy) {
-    execute(watcher, context, [instance.get(keypath), UNDEFINED, keypath]);
-  }
-}
-
-function _unwatch(instance, keypath, watcher) {
-  var emitter = instance.emitter;
-
-  if (emitter.has(keypath)) {
-    emitter.off(keypath, watcher);
-    if (!emitter.has(keypath)) {
-      if (isFuzzyKeypath(keypath)) {
-        delete instance.watchFuzzyKeypaths[keypath];
-      } else {
-        delete instance.watchKeypaths[keypath];
-      }
-    }
-  }
-}
-
-function createWatch(action) {
-
-  return function (keypath, watcher, sync) {
-
-    var instance = this;
-
-    if (string(keypath)) {
-      watch(instance, action, keypath, watcher, sync);
-    } else {
-      if (watcher === TRUE) {
-        sync = watcher;
-      }
-      each$1(keypath, function (value, keypath) {
-        var watcher = value,
-            innerSync = sync;
-        if (object(value)) {
-          watcher = value.watcher;
-          if (boolean(value.sync)) {
-            innerSync = value.sync;
-          }
-        }
-        watch(instance, action, keypath, watcher, innerSync);
-      });
-    }
-  };
-}
-
-var patternCache = {};
-
-/**
- * 模糊匹配 Keypath
- *
- * @param {string} keypath
- * @param {string} pattern
- * @return {?Array.<string>}
- */
-function matchKeypath(keypath, pattern) {
-  var cache = patternCache[pattern];
-  if (!cache) {
-    cache = pattern.replace(/\./g, '\\.').replace(/\*\*/g, '([\.\\w]+?)').replace(/\*/g, '(\\w+)');
-    cache = patternCache[pattern] = new RegExp('^' + cache + '$');
-  }
-  var match = keypath.match(cache);
-  if (match) {
-    return toArray$1(match).slice(1);
-  }
-}
-
-/**
- * 是否模糊匹配
- *
- * @param {string} keypath
- * @return {boolean}
- */
-function isFuzzyKeypath(keypath) {
-  return has$2(keypath, '*');
-}
-
-/**
- * 从 getter 对象的所有 key 中，选择和 keypath 最匹配的那一个
- *
- * @param {Object} getters
- * @param {string} keypath
- * @return {Object}
- */
-function matchBestGetter(getters, keypath) {
-
-  var result = {};
-
-  each(sort(getters, TRUE), function (prefix) {
-    var length = startsWith$1(keypath, prefix);
-    if (length !== FALSE) {
-      result.getter = getters[prefix];
-      result.prop = slice(keypath, length);
-      return FALSE;
-    }
-  });
-
-  return result;
-}
-
-/**
- * 获取最大值
- *
- * @param {number|undefined} a
- * @param {number|undefined} b
- * @return {number}
- */
-function getMax(a, b) {
-  var max;
-  if (a >= 0) {
-    max = a;
-    if (b > a) {
-      max = b;
-    }
-  } else if (b >= 0) {
-    max = b;
-  }
-  return max;
-}
-
-/**
- * 新旧值变化有两种情况：
- *
- * 1. 值不同
- * 2. 值相同，都是 undefined，并且有依赖，这通常表示一个虚拟值
- *
- * @param {*} newValue
- * @param {*} oldValue
- * @param {*} deps
- * @return {boolean}
- */
-function isChange(newValue, oldValue, deps) {
-  return newValue !== oldValue || newValue === UNDEFINED && deps;
-}
-
-/**
- * html 标签
- *
- * @type {RegExp}
- */
-var tag = /<[^>]+>/;
-
-/**
- * 选择器
- *
- * @type {RegExp}
- */
-var selector = /^[#.][-\w+]+$/;
-
-var attr2Prop = {};
-attr2Prop['for'] = 'htmlFor';
-attr2Prop['value'] = 'value';
-attr2Prop['class'] = 'className';
-attr2Prop['style'] = 'style.cssText';
-attr2Prop['nohref'] = 'noHref';
-attr2Prop['noshade'] = 'noShade';
-attr2Prop['noresize'] = 'noResize';
-attr2Prop['readonly'] = 'readOnly';
-attr2Prop['defaultchecked'] = 'defaultChecked';
-attr2Prop['defaultmuted'] = 'defaultMuted';
-attr2Prop['defaultselected'] = 'defaultSelected';
-
-function createElement(tagName, parentNode) {
-  var SVGElement = win.SVGElement;
-
-  return tagName === 'svg' || parentNode && SVGElement && parentNode instanceof SVGElement ? doc.createElementNS('http://www.w3.org/2000/svg', tagName) : doc.createElement(tagName);
-}
-
-function createText(text) {
-  return doc.createTextNode(text || CHAR_BLANK);
-}
-
-function createComment(text) {
-  return doc.createComment(text || CHAR_BLANK);
-}
-
-function createEvent(event) {
-  return event;
-}
-
-function isElement(node) {
-  return node.nodeType === 1;
-}
-
-function setProp(node, name, value) {
-  set$1(node, name, value, FALSE);
-}
-
-function removeProp(node, name) {
-  setProp(node, name, string(node[name]) ? CHAR_BLANK : NULL);
-}
-
-function setAttr(node, name, value) {
-  var isBoolean = boolean(node[name]);
-  if (isBoolean) {
-    value = value === TRUE || value === RAW_TRUE || value === name;
-  }
-  if (attr2Prop[name]) {
-    setProp(node, attr2Prop[name], value);
-  } else if (isBoolean) {
-    setProp(node, name, value);
-  } else {
-    node.setAttribute(name, value);
-  }
-}
-
-function removeAttr(node, name) {
-  if (attr2Prop[name]) {
-    removeProp(node, attr2Prop[name]);
-  } else if (boolean(node[name])) {
-    removeProp(node, name);
-  } else {
-    node.removeAttribute(name);
-  }
-}
-
-function before(parentNode, newNode, referenceNode) {
-  if (referenceNode) {
-    parentNode.insertBefore(newNode, referenceNode);
-  } else {
-    append$1(parentNode, newNode);
-  }
-}
-
-function append$1(parentNode, child) {
-  parentNode.appendChild(child);
-}
-
-function replace(parentNode, newNode, oldNode) {
-  parentNode.replaceChild(newNode, oldNode);
-}
-
-function remove$1(parentNode, child) {
-  parentNode.removeChild(child);
-}
-
-function parent(node) {
-  return node.parentNode;
-}
-
-function next(node) {
-  return node.nextSibling;
-}
-
-function tag$1(node) {
-  var tagName = node.tagName;
-
-  return falsy$1(tagName) ? CHAR_BLANK : tagName.toLowerCase();
-}
-
-function children(node) {
-  return node.childNodes;
-}
-
-function text(node, content) {
-  return content == NULL ? node.nodeValue : node.nodeValue = content;
-}
-
-function html(node, content) {
-  return content == NULL ? node.innerHTML : node.innerHTML = content;
-}
-
-function find(selector, context) {
-  return (context || doc).querySelector(selector);
-}
-
-function on$1(element, type, listener) {
-  element.addEventListener(type, listener, FALSE);
-}
-
-function off(element, type, listener) {
-  element.removeEventListener(type, listener, FALSE);
-}
-
-function getComponent(element) {
-  return element.component;
-}
-
-function setComponent(element, component) {
-  return element.component = component;
-}
-
-var domApi = {
-  createElement: createElement,
-  createText: createText,
-  createComment: createComment,
-  createEvent: createEvent,
-  isElement: isElement,
-  setProp: setProp,
-  removeProp: removeProp,
-  setAttr: setAttr,
-  removeAttr: removeAttr,
-  before: before,
-  append: append$1,
-  replace: replace,
-  remove: remove$1,
-  parent: parent,
-  next: next,
-  tag: tag$1,
-  children: children,
-  text: text,
-  html: html,
-  find: find,
-  on: on$1,
-  off: off,
-  getComponent: getComponent,
-  setComponent: setComponent
-};
-
-/**
- * tap 事件
- *
- * 非常有用的抽象事件，比如 pc 端是 click 事件，移动端是 touchend 事件
- *
- * 这样只需 on-tap="handler" 就可以完美兼容各端
- *
- * 框架未实现此事件，通过 Yox.dom.specialEvents 提供给外部扩展
- *
- * @type {string}
- */
-var TAP = 'tap';
-
-/**
- * 点击事件
- *
- * @type {string}
- */
-var CLICK = 'click';
-
-/**
- * 输入事件
- *
- * @type {string}
- */
-var INPUT = 'input';
-
-/**
- * 表单控件的修改事件
- *
- * @type {string}
- */
-var CHANGE = 'change';
-
-/**
- * 跟输入事件配套使用的事件
- *
- * @type {string}
- */
-var COMPOSITION_START = 'compositionstart';
-
-/**
- * 跟输入事件配套使用的事件
- *
- * @type {string}
- */
-var COMPOSITION_END = 'compositionend';
-
-/**
- * IE 模拟输入事件的特殊事件
- *
- * @type {string}
- */
-var PROPERTY_CHANGE = 'propertychange';
-
-var IEEvent = function () {
-  function IEEvent(event, element) {
-    classCallCheck(this, IEEvent);
-
-
-    extend(this, event);
-
-    this.currentTarget = element;
-    this.target = event.srcElement || element;
-    this.originalEvent = event;
-  }
-
-  IEEvent.prototype.preventDefault = function () {
-    this.originalEvent.returnValue = FALSE;
-  };
-
-  IEEvent.prototype.stopPropagation = function () {
-    this.originalEvent.cancelBubble = TRUE;
-  };
-
-  return IEEvent;
-}();
-
-function addInputListener(element, listener) {
-  listener.$listener = function (e) {
-    if (e.propertyName === 'value') {
-      e = new Event(e);
-      e.type = INPUT;
-      listener.call(this, e);
-    }
-  };
-  on$2(element, PROPERTY_CHANGE, listener.$listener);
-}
-
-function removeInputListener(element, listener) {
-  off$1(element, PROPERTY_CHANGE, listener.$listener);
-  delete listener.$listener;
-}
-
-function addChangeListener(element, listener) {
-  listener.$listener = function (e) {
-    e = new Event(e);
-    e.type = CHANGE;
-    listener.call(this, e);
-  };
-  on$2(element, CLICK, listener.$listener);
-}
-
-function removeChangeListener(element, listener) {
-  off$1(element, CLICK, listener.$listener);
-  delete listener.$listener;
-}
-
-function isBox(element) {
-  return element.tagName === 'INPUT' && (element.type === 'radio' || element.type === 'checkbox');
-}
-
-function on$2(element, type, listener) {
-  if (type === INPUT) {
-    addInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    addChangeListener(element, listener);
-  } else {
-    element.attachEvent('on' + type, listener);
-  }
-}
-
-function off$1(element, type, listener) {
-  if (type === INPUT) {
-    removeInputListener(element, listener);
-  } else if (type === CHANGE && isBox(element)) {
-    removeChangeListener(element, listener);
-  } else {
-    element.detachEvent('on' + type, listener);
-  }
-}
-
-function createEvent$1(event, element) {
-  return new IEEvent(event, element);
-}
-
-function find$1(selector, context) {
-  context = context || doc;
-  return context.querySelector ? context.querySelector(selector) : context.getElementById(slice(selector, 1));
-}
-
-function setProp$1(element, name, value) {
-  try {
-    if (name === 'textContent' && !exists(element, name)) {
-      name = 'innerText';
-    }
-    set$1(element, name, value);
-  } catch (e) {
-    if (element.tagName === 'STYLE' && (name === 'innerHTML' || name === 'innerText')) {
-      element.setAttribute('type', 'text/css');
-      element.styleSheet.cssText = value;
-    }
-  }
-}
-
-
-
-var oldApi = {
-  on: on$2,
-  off: off$1,
-  createEvent: createEvent$1,
-  find: find$1,
-  setProp: setProp$1
-};
-
-var api = copy(domApi);
-
-if (doc && !doc.addEventListener) {
-  extend(api, oldApi);
-}
-
-var _on = api.on;
-var _off = api.off;
-
-/**
- * 特殊事件，外部可扩展
- *
- * @type {Object}
- */
-
-api.specialEvents = {
-  input: {
-    on: function on$$1(el, listener) {
-      var locked = FALSE;
-      api.on(el, COMPOSITION_START, listener[COMPOSITION_START] = function () {
-        locked = TRUE;
-      });
-      api.on(el, COMPOSITION_END, listener[COMPOSITION_END] = function (e) {
-        locked = FALSE;
-        listener(e, INPUT);
-      });
-      _on(el, INPUT, listener[INPUT] = function (e) {
-        if (!locked) {
-          listener(e);
-        }
-      });
-    },
-    off: function off$$1(el, listener) {
-      api.off(el, COMPOSITION_START, listener[COMPOSITION_START]);
-      api.off(el, COMPOSITION_END, listener[COMPOSITION_END]);
-      _off(el, INPUT, listener[INPUT]);
-      listener[COMPOSITION_START] = listener[COMPOSITION_END] = listener[INPUT] = NULL;
-    }
-  }
-};
-
-var EMITTER_KEY = '_emitter';
-
-/**
- * 绑定事件
- *
- * @param {HTMLElement} element
- * @param {string} type
- * @param {Function} listener
- * @param {?*} context
- */
-api.on = function (element, type, listener, context) {
-  var emitter = element[EMITTER_KEY] || (element[EMITTER_KEY] = new Emitter());
-  if (!emitter.has(type)) {
-    var nativeListener = function (e, type) {
-      if (!Event.is(e)) {
-        e = new Event(api.createEvent(e, element));
-      }
-      if (type) {
-        e.type = type;
-      }
-      emitter.fire(e.type, e, context);
-    };
-    emitter[type] = nativeListener;
-    var special = api.specialEvents[type];
-    if (special) {
-      special.on(element, nativeListener);
-    } else {
-      _on(element, type, nativeListener);
-    }
-  }
-  emitter.on(type, listener);
-};
-
-/**
- * 解绑事件
- *
- * @param {HTMLElement} element
- * @param {string} type
- * @param {Function} listener
- *
- */
-api.off = function (element, type, listener) {
-  var emitter = element[EMITTER_KEY];
-  var types = keys(emitter.listeners);
-  // emitter 会根据 type 和 listener 参数进行适当的删除
-  emitter.off(type, listener);
-  // 根据 emitter 的删除结果来操作这里的事件 listener
-  each(types, function (type, index) {
-    if (emitter[type] && !emitter.has(type)) {
-      var nativeListener = emitter[type];
-      var special = api.specialEvents[type];
-      if (special) {
-        special.off(element, nativeListener);
-      } else {
-        _off(element, type, nativeListener);
-      }
-      delete emitter[type];
-      types.splice(index, 1);
-    }
-  }, TRUE);
-  if (!types.length) {
-    api.removeProp(element, EMITTER_KEY);
-  }
-};
-
-/**
- * 节流调用
- *
- * @param {Function} fn 需要节制调用的函数
- * @param {number} delay 调用的时间间隔
- * @param {?boolean} sync 是否立即触发
- * @return {Function}
- */
-var debounce = function (fn, delay, sync) {
-
-  var timer;
-
-  return function () {
-
-    if (!timer) {
-
-      var args = toArray$1(arguments);
-      if (sync) {
-        execute(fn, NULL, args);
-      }
-
-      timer = setTimeout(function () {
-        timer = NULL;
-        if (!sync) {
-          execute(fn, NULL, args);
-        }
-      }, delay);
-    }
-  };
-};
-
-// 避免连续多次点击，主要用于提交表单场景
-// 移动端的 tap 事件可自行在业务层打补丁实现
-var syncTypes = [CLICK, TAP];
-
-var bindEvent = function (_ref) {
-  var el = _ref.el,
-      node = _ref.node,
-      instance = _ref.instance,
-      component = _ref.component,
-      directives = _ref.directives,
-      type = _ref.type,
-      listener = _ref.listener;
-
-
-  if (!type) {
-    type = node.modifier;
-  }
-
-  var destroy = noop;
-
-  if (!listener) {
-    var result = instance.compileDirective(node);
-    if (result) {
-      listener = result.listener;
-      if (result.destroy) {
-        destroy = result.destroy;
-      }
-    }
-  }
-
-  if (type && listener) {
-    var lazy = directives.lazy;
-
-    if (lazy) {
-      var value = lazy.value;
-
-      if (numeric(value) && value >= 0) {
-        listener = debounce(listener, value, has(syncTypes, type));
-      } else if (type === INPUT) {
-        type = CHANGE;
-      }
-    }
-
-    if (component) {
-      component.on(type, listener);
-      return function () {
-        component.off(type, listener);
-        destroy();
-      };
-    } else {
-      api.on(el, type, listener);
-      return function () {
-        api.off(el, type, listener);
-        destroy();
-      };
-    }
-  }
-};
-
-var VALUE$1 = 'value';
-
-var inputControl = {
-  set: function set$$1(el, keypath, instance) {
-    var value = toString(instance.get(keypath));
-    if (value !== el.value) {
-      el.value = value;
-    }
-  },
-  sync: function sync(el, keypath, instance) {
-    instance.set(keypath, el.value);
-  },
-
-  attr: VALUE$1
-};
-
-var selectControl = {
-  set: function set$$1(el, keypath, instance) {
-    var value = toString(instance.get(keypath));
-    var options = el.options,
-        selectedIndex = el.selectedIndex;
-
-    var selectedOption = options[selectedIndex];
-    if (selectedOption && value !== selectedOption.value) {
-      each(options, function (option, index) {
-        if (option.value === value) {
-          el.selectedIndex = index;
-          return FALSE;
-        }
-      });
-    }
-  },
-  sync: function sync(el, keypath, instance) {
-    var value = el.options[el.selectedIndex].value;
-
-    instance.set(keypath, value);
-  }
-};
-
-var radioControl = {
-  set: function set$$1(el, keypath, instance) {
-    el.checked = el.value === toString(instance.get(keypath));
-  },
-  sync: function sync(el, keypath, instance) {
-    if (el.checked) {
-      instance.set(keypath, el.value);
-    }
-  },
-
-  attr: 'checked'
-};
-
-var checkboxControl = {
-  set: function set$$1(el, keypath, instance) {
-    var value = instance.get(keypath);
-    el.checked = array(value) ? has(value, el.value, FALSE) : boolean(value) ? value : !!value;
-  },
-  sync: function sync(el, keypath, instance) {
-    var value = instance.get(keypath);
-    if (array(value)) {
-      if (el.checked) {
-        instance.append(keypath, el.value);
-      } else {
-        instance.removeAt(keypath, indexOf(value, el.value, FALSE));
-      }
-    } else {
-      instance.set(keypath, el.checked);
-    }
-  },
-
-  attr: 'checked'
-};
-
-var componentControl = {
-  set: function set$$1(component, keypath, instance) {
-    component.set(component.$model, instance.get(keypath));
-  },
-  sync: function sync(component, keypath, instance) {
-    instance.set(keypath, component.get(component.$model));
-  }
-};
-
-var specialControls = {
-  radio: radioControl,
-  checkbox: checkboxControl,
-  select: selectControl
-};
-
-var model = function (_ref) {
-  var el = _ref.el,
-      node = _ref.node,
-      instance = _ref.instance,
-      directives = _ref.directives,
-      attrs = _ref.attrs,
-      component = _ref.component;
-  var value = node.value,
-      context = node.context;
-
-  if (falsy$1(value)) {
-    return;
-  }
-
-  var _context$get = context.get(value),
-      keypath = _context$get.keypath;
-
-  var set$$1 = function () {
-    if (control) {
-      control.set(target, keypath, instance);
-    }
-  };
-  var sync = function () {
-    control.sync(target, keypath, instance);
-  };
-
-  var target,
-      control,
-      unbindTarget,
-      unbindInstance;
-  if (component) {
-
-    target = component;
-    control = componentControl;
-
-    var field = component.$model = component.$options.model || VALUE$1;
-
-    if (!has$1(attrs, field)) {
-      set$$1();
-    }
-    component.watch(field, sync);
-    unbindTarget = function unbindTarget() {
-      component.unwatch(field, sync);
-      delete component.$model;
-    };
-  } else {
-
-    target = el;
-    control = specialControls[el.type] || specialControls[api.tag(el)];
-
-    var type = CHANGE;
-    if (!control) {
-      control = inputControl;
-      if (exists(el, 'autofocus')) {
-        type = INPUT;
-      }
-    }
-
-    if (!control.attr || !has$1(attrs, control.attr)) {
-      set$$1();
-    }
-
-    unbindTarget = bindEvent({
-      el: el,
-      node: node,
-      instance: instance,
-      directives: directives,
-      type: type,
-      listener: sync
-    });
-  }
-
-  prepend(function () {
-    if (set$$1) {
-      instance.watch(keypath, set$$1);
-      unbindInstance = function unbindInstance() {
-        instance.unwatch(keypath, set$$1);
-      };
-    }
-  });
-
-  return function () {
-    unbindTarget && unbindTarget();
-    unbindInstance && unbindInstance();
-    set$$1 = NULL;
-  };
-};
-
-var binding = function (_ref) {
-  var el = _ref.el,
-      node = _ref.node,
-      instance = _ref.instance,
-      component = _ref.component;
-
-  var _node$context$get = node.context.get(node.value),
-      keypath = _node$context$get.keypath;
-
-  var set = function (value) {
-    var name = node.modifier;
-    if (node.prop) {
-      api.setProp(el, name, value);
-    } else {
-      if (component) {
-        component.set(name, value);
-      } else {
-        api.setAttr(el, name, value);
-      }
-    }
-  };
-
-  // 同批次的修改
-  // 不应该响应 watch
-  // 因为模板已经全量更新
-  prepend(function () {
-    if (set) {
-      instance.watch(keypath, set);
-    }
-  });
-
-  return function () {
-    instance.unwatch(keypath, set);
-    set = NULL;
-  };
-};
-
-var TEMPLATE_KEY = '_template';
-var TEMPLATE_VALUE = 9;
-
-var patch = init(api);
-
-var Yox = function () {
-  function Yox(options) {
-    classCallCheck(this, Yox);
-
-
-    var instance = this;
-
-    if (!object(options)) {
-      options = {};
-    }
-
-    // 如果不绑着，其他方法调不到钩子
-    instance.$options = options;
-
-    execute(options[HOOK_BEFORE_CREATE], instance, options);
-
-    var _options = options,
-        el = _options.el,
-        data = _options.data,
-        props = _options.props,
-        parent = _options.parent,
-        replace = _options.replace,
-        computed = _options.computed,
-        template = _options.template,
-        components = _options.components,
-        directives = _options.directives,
-        partials = _options.partials,
-        filters = _options.filters,
-        events = _options.events,
-        watchers = _options.watchers,
-        methods = _options.methods,
-        propTypes = _options.propTypes,
-        extensions = _options.extensions;
-
-
-    extensions && extend(instance, extensions);
-
-    var source;
-    if (object(propTypes)) {
-      source = Yox.validate(props || {}, propTypes);
-      // validate 可能过滤 $children 字段
-      // 这里确保外面传入的 $children 还在
-      if (props && has$1(props, SPECIAL_CHILDREN)) {
-        source[SPECIAL_CHILDREN] = props[SPECIAL_CHILDREN];
-      }
-    } else {
-      source = props || {};
-    }
-
-    // 如果传了 props，则 data 应该是个 function
-    if (props && object(data)) {
-      warn('"data" option expected to be a function.');
-    }
-
-    // 先放 props
-    // 当 data 是函数时，可以通过 this.get() 获取到外部数据
-    instance.$observer = new Observer({
-      context: instance,
-      data: source,
-      computed: computed,
-      beforeFlush: function beforeFlush(flushing) {
-        // 疑似变化
-        if (has$1(flushing, TEMPLATE_KEY)) {
-
-          var updateView = function () {
-            instance.updateView(instance.$node, instance.render());
-          };
-
-          // 强制更新
-          if (flushing[TEMPLATE_KEY][1] === TEMPLATE_VALUE) {
-            updateView();
-          }
-          // 排查依赖
-          else {
-              each(this.deps[TEMPLATE_KEY], function (dep) {
-                if (flushing[dep]) {
-                  updateView();
-                  return FALSE;
+                if (!isLiteral_1) {
+                    push(dynamicNodes_1, node);
                 }
-              });
+            });
+            // lookup 要求第一位元素是 Identifier，且它的 lookup 是 true 才为 true
+            // 其他情况都为 false，如 "11".length 第一位元素是 Literal，不存在向上寻找的需求
+            // 优化 1：计算 keypath
+            //
+            // 计算 keypath 的唯一方式是，第一位元素是 Identifier，后面都是 Literal
+            // 否则就表示中间包含动态元素，这会导致无法计算静态路径
+            // 如 a.b.c 可以算出 static keypath，而 a[b].c 则不行，因为 b 是动态的
+            // 优化 2：计算 offset 并智能转成 Identifier
+            //
+            // 比如 xx 这样的表达式，应优化成 offset = 2，并转成 Identifier
+            // 处理第一个节点
+            if (firstNode.type === IDENTIFIER) {
+                lookup = firstNode.lookup;
+                offset += firstNode.offset;
+                var firstName = firstNode.name;
+                // 不是 KEYPATH_THIS 或 KEYPATH_PARENT
+                if (firstName) {
+                    unshift(staticNodes_1, firstName);
+                }
+                // 转成 Identifier
+                firstName = join(staticNodes_1, RAW_DOT);
+                // a.b.c
+                if (isLiteral_1) {
+                    firstNode = createIdentifierInner(raw, firstName, lookup, offset);
+                }
+                // a[b]
+                // this.a[b]
+                else {
+                    // 当 isLiteral 为 false 时
+                    // 需要为 lead 节点创建合适的 raw
+                    var firstRaw = firstNode.raw;
+                    if (staticRaw_1) {
+                        firstRaw += (firstRaw === KEYPATH_PARENT
+                            ? RAW_SLASH
+                            : RAW_DOT) + staticRaw_1;
+                    }
+                    firstNode = createMemberInner(raw, createIdentifierInner(firstRaw, firstName, lookup, offset), UNDEFINED, dynamicNodes_1, lookup, offset);
+                }
             }
-
-          delete flushing[TEMPLATE_KEY];
+            else {
+                // 例子：
+                // "xxx".length
+                // format().a.b
+                if (isLiteral_1) {
+                    firstNode = createMemberInner(raw, firstNode, join(staticNodes_1, RAW_DOT), UNDEFINED, lookup, offset);
+                }
+                // 例子：
+                // "xxx"[length]
+                // format()[a]
+                else {
+                    firstNode = createMemberInner(raw, firstNode, UNDEFINED, dynamicNodes_1, lookup, offset);
+                }
+            }
         }
-      }
-    });
-
-    // 后放 data
-    var extend$$1 = func(data) ? execute(data, instance, options) : data;
-    if (object(extend$$1)) {
-      each$1(extend$$1, function (value, key) {
-        if (has$1(source, key)) {
-          warn('"' + key + '" is already defined as a prop. Use prop default value instead.');
-        } else {
-          source[key] = value;
-        }
-      });
+        return firstNode;
     }
-
-    // 监听各种事件
-    // 支持命名空间
-    instance.$emitter = new Emitter(TRUE);
-
-    var templateError = '"template" option expected to have just one root element.';
-
-    // 检查 template
-    if (string(template)) {
-      if (selector.test(template)) {
-        template = api.html(api.find(template));
-      }
-      if (!tag.test(template)) {
-        error$1(templateError);
-      }
-    } else {
-      template = NULL;
-    }
-
-    // 检查 el
-    if (string(el)) {
-      if (selector.test(el)) {
-        el = api.find(el);
-      }
-    }
-    if (el) {
-      if (api.isElement(el)) {
-        if (!replace) {
-          api.html(el, '<div></div>');
-          el = api.children(el)[0];
-        }
-      } else {
-        error$1('"el" option expected to be a html element.');
-      }
-    }
-
-    if (parent) {
-      instance.$parent = parent;
-    }
-
-    if (methods) {
-      each$1(methods, function (fn, name) {
-        if (has$1(prototype, name)) {
-          fatal('"' + name + '" method is conflicted with built-in methods.');
-        }
-        instance[name] = fn;
-      });
-    }
-
-    // 聪明的 set...
-    var smartSet = function (key, value) {
-      if (func(value)) {
-        instance[key](execute(value, instance));
-      } else if (object(value)) {
-        instance[key](value);
-      }
-    };
-
-    smartSet('component', components);
-    smartSet('directive', directives);
-    smartSet('partial', partials);
-    smartSet('filter', filters);
-
-    execute(options[HOOK_AFTER_CREATE], instance);
-
-    if (template) {
-      // 确保组件根元素有且只有一个
-      template = Yox.compile(template);
-      if (template.length > 1) {
-        fatal(templateError);
-      }
-      instance.$template = template[0];
-      // 首次渲染
-      instance.updateView(el || api.createElement('div'), instance.render());
-    }
-
-    // 确保早于 AFTER_MOUNT 执行
-    if (watchers || events) {
-      prepend(function () {
-        if (instance.$emitter) {
-          watchers && instance.watch(watchers);
-          events && instance.on(events);
-        }
-      });
-    }
-  }
-
-  /**
-   * 添加计算属性
-   *
-   * @param {string} keypath
-   * @param {Function|Object} computed
-   */
-
-
-  Yox.prototype.addComputed = function (keypath, computed) {
-    return this.$observer.addComputed(keypath, computed);
-  };
-
-  /**
-   * 取值
-   *
-   * @param {string} keypath
-   * @param {*} defaultValue
-   * @return {?*}
-   */
-
-
-  Yox.prototype.get = function (keypath, defaultValue) {
-    return this.$observer.get(keypath, defaultValue);
-  };
-
-  /**
-   * 设值
-   *
-   * @param {string|Object} keypath
-   * @param {?*} value
-   * @return {boolean} 是否会引起视图更新
-   */
-
-
-  Yox.prototype.set = function (keypath, value) {
-    return has(this.$observer.set(keypath, value), TEMPLATE_KEY);
-  };
-
-  /**
-   * 监听事件
-   *
-   * @param {string|Object} type
-   * @param {?Function} listener
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.on = function (type, listener) {
-    this.$emitter.on(type, listener);
-    return this;
-  };
-
-  /**
-   * 监听一次事件
-   *
-   * @param {string|Object} type
-   * @param {?Function} listener
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.once = function (type, listener) {
-    this.$emitter.once(type, listener);
-    return this;
-  };
-
-  /**
-   * 取消监听事件
-   *
-   * @param {string|Object} type
-   * @param {?Function} listener
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.off = function (type, listener) {
-    this.$emitter.off(type, listener);
-    return this;
-  };
-
-  /**
-   * 触发事件
-   *
-   * @param {string} type
-   * @param {?*} data 事件数据
-   * @param {?boolean} downward 向下发事件
-   * @return {boolean} 是否正常结束
-   */
-
-
-  Yox.prototype.fire = function (type, data, downward) {
-
-    // 外部为了使用方便，fire(type) 或 fire(type, data) 就行了
-    // 内部为了保持格式统一
-    // 需要转成 Event，这样还能知道 target 是哪个组件
-    var event = type;
-    if (string(type)) {
-      event = new Event(type);
-    }
-
-    var instance = this;
-    if (!event.target) {
-      event.target = instance;
-    }
-
-    var args = [event];
-    if (object(data)) {
-      push(args, data);
-    }
-
-    var $parent = instance.$parent,
-        $children = instance.$children,
-        $emitter = instance.$emitter;
-
-    var isComplete = $emitter.fire(event.type, args, instance);
-    if (isComplete) {
-      if (downward) {
-        if ($children) {
-          each($children, function (child) {
-            return isComplete = child.fire(event, data, TRUE);
-          });
-        }
-      } else if ($parent) {
-        isComplete = $parent.fire(event, data);
-      }
-    }
-
-    return isComplete;
-  };
-
-  /**
-   * 监听数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   * @param {?boolean} sync
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.watch = function (keypath, watcher, sync) {
-    this.$observer.watch(keypath, watcher, sync);
-    return this;
-  };
-
-  /**
-   * 监听一次数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   * @param {?boolean} sync
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.watchOnce = function (keypath, watcher, sync) {
-    this.$observer.watchOnce(keypath, watcher, sync);
-    return this;
-  };
-
-  /**
-   * 取消监听数据变化
-   *
-   * @param {string|Object} keypath
-   * @param {?Function} watcher
-   * @return {Yox} 支持链式
-   */
-
-
-  Yox.prototype.unwatch = function (keypath, watcher) {
-    this.$observer.unwatch(keypath, watcher);
-    return this;
-  };
-
-  /**
-   * 对于某些特殊场景，修改了数据，但是模板的依赖中并没有这一项
-   * 而你非常确定需要更新模板，强制刷新正是你需要的
-   */
-
-
-  Yox.prototype.forceUpdate = function (sync) {
-    var $observer = this.$observer;
-    var differences = $observer.differences;
-
-    if (!differences) {
-      differences = $observer.differences = {};
-    }
-
-    differences[TEMPLATE_KEY] = TEMPLATE_VALUE;
-    if (sync) {
-      $observer.flush();
-    } else {
-      $observer.flushAsync();
-    }
-  };
-
-  /**
-   * 把模板抽象语法树渲染成 virtual dom
-   *
-   * @return {Object}
-   */
-
-
-  Yox.prototype.render = function () {
-
-    var instance = this;
-    var $template = instance.$template,
-        $observer = instance.$observer,
-        $context = instance.$context;
-
-
-    if (!$context) {
-      $context = instance.$context = extend({}, registry.filter, instance.$filters);
-    }
-
-    extend($context, $observer.data, $observer.computedGetters);
-
-    var _renderTemplate = render($template, $context, instance),
-        nodes = _renderTemplate.nodes,
-        deps = _renderTemplate.deps;
-
-    $observer.setDeps(TEMPLATE_KEY, keys(deps));
-
-    return nodes[0];
-  };
-
-  /**
-   * 更新 virtual dom
-   *
-   * @param {HTMLElement|Vnode} oldNode
-   * @param {Vnode} newNode
-   */
-
-
-  Yox.prototype.updateView = function (oldNode, newNode) {
-
-    var instance = this,
-        afterHook;
-
-    var $node = instance.$node,
-        $options = instance.$options;
-
-
-    if ($node) {
-      execute($options[HOOK_BEFORE_UPDATE], instance);
-      instance.$node = patch(oldNode, newNode);
-      afterHook = HOOK_AFTER_UPDATE;
-    } else {
-      execute($options[HOOK_BEFORE_MOUNT], instance);
-      $node = patch(oldNode, newNode);
-      instance.$el = $node.el;
-      instance.$node = $node;
-      afterHook = HOOK_AFTER_MOUNT;
-    }
-
-    // 跟 nextTask 保持一个节奏
-    // 这样可以预留一些优化的余地
-    append(function () {
-      if (instance.$node) {
-        execute($options[afterHook], instance);
-      }
-    });
-  };
-
-  /**
-   * 创建子组件
-   *
-   * @param {Object} options 组件配置
-   * @param {?Object} extra 添加进组件配置，但不修改配置的数据，比如 el、props 等
-   * @return {Yox} 子组件实例
-   */
-
-
-  Yox.prototype.create = function (options, extra) {
-    options = extend({}, options, extra);
-    options.parent = this;
-    var child = new Yox(options);
-    push(this.$children || (this.$children = []), child);
-    return child;
-  };
-
-  /**
-   * 导入编译后的子模板
-   *
-   * @param {string} name
-   * @return {Array}
-   */
-
-
-  Yox.prototype.importPartial = function (name) {
-    return Yox.compile(this.partial(name));
-  };
-
-  /**
-   * 把指令中的表达式编译成函数
-   *
-   * @param {Directive} directive
-   * @return {Function}
-   */
-
-
-  Yox.prototype.compileDirective = function (directive) {
-
-    var instance = this;
-    var value = directive.value,
-        expr = directive.expr,
-        keypath = directive.keypath,
-        context = directive.context;
-
-
-    if (expr && expr.type === CALL) {
-      var callee = expr.callee,
-          args = expr.args,
-          method = instance[callee.name];
-
-      if (method) {
-
-        var getValue = function (node) {
-          return execute$1(node, function (keypath) {
-            return context.get(keypath).value;
-          }, instance);
-        };
-
-        var watchKeypath = join(keypath, '**');
-        var watchHandler = function (newValue, oldValue, absoluteKeypath) {
-
-          if (keypath) {
-            var length = startsWith$1(absoluteKeypath, keypath);
-            context.set(absoluteKeypath.substr(length), newValue);
-          } else {
-            context.set(absoluteKeypath, newValue);
-          }
-        };
-
-        instance.watch(watchKeypath, watchHandler);
-
+    function createIdentifierInner(raw, name, lookup, offset) {
         return {
-          destroy: function destroy() {
-            instance.unwatch(watchKeypath, watchHandler);
-          },
-
-          listener: function listener(event) {
-            var isEvent = Event.is(event),
-                result;
-            if (!args.length) {
-              if (isEvent) {
-                result = execute(method, instance, event);
-              }
-            } else {
-              if (isEvent) {
-                context.set(SPECIAL_EVENT, event);
-              }
-              result = execute(method, instance, args.map(getValue));
-            }
-            if (result === FALSE && isEvent) {
-              event.prevent().stop();
-            }
-          }
+            type: IDENTIFIER,
+            raw: raw,
+            name: name,
+            lookup: lookup,
+            offset: offset
         };
-      }
-    } else if (value) {
-      return {
-        listener: function listener(event, data) {
-          if (event.type !== value) {
-            event = new Event(event);
-            event.type = value;
-          }
-          instance.fire(event, data);
+    }
+    function createMemberInner(raw, lead, keypath, nodes, lookup, offset) {
+        return {
+            type: MEMBER,
+            raw: raw,
+            lead: lead,
+            keypath: keypath,
+            nodes: nodes,
+            lookup: lookup,
+            offset: offset
+        };
+    }
+
+    var unary = {
+        '+': TRUE,
+        '-': TRUE,
+        '~': TRUE,
+        '!': TRUE,
+        '!!': TRUE
+    };
+    // 参考 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+    var binary = {
+        '*': 14,
+        '/': 14,
+        '%': 14,
+        '+': 13,
+        '-': 13,
+        '<<': 12,
+        '>>': 12,
+        '>>>': 12,
+        '<': 11,
+        '<=': 11,
+        '>': 11,
+        '>=': 11,
+        '==': 10,
+        '!=': 10,
+        '===': 10,
+        '!==': 10,
+        '&': 9,
+        '^': 8,
+        '|': 7,
+        '&&': 6,
+        '||': 5
+    };
+
+    function compile(content) {
+        if (!cache[content]) {
+            var parser = new Parser(content);
+            cache[content] = parser.scanTernary(CODE_EOF);
         }
-      };
+        return cache[content];
     }
-  };
-
-  /**
-   * 销毁组件
-   */
-
-
-  Yox.prototype.destroy = function () {
-
-    var instance = this;
-
-    var $options = instance.$options,
-        $node = instance.$node,
-        $parent = instance.$parent,
-        $emitter = instance.$emitter,
-        $observer = instance.$observer;
-
-
-    execute($options[HOOK_BEFORE_DESTROY], instance);
-
-    if ($parent && $parent.$children) {
-      remove($parent.$children, instance);
-    }
-
-    if ($node) {
-      patch($node, { text: CHAR_BLANK });
-    }
-
-    $emitter.off();
-    $observer.destroy();
-
-    clear(instance);
-
-    execute($options[HOOK_AFTER_DESTROY], instance);
-  };
-
-  /**
-   * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
-   *
-   * @param {Function} fn
-   */
-
-
-  Yox.prototype.nextTick = function (fn) {
-    this.$observer.nextTick(fn);
-  };
-
-  /**
-   * 取反 keypath 对应的数据
-   *
-   * 不管 keypath 对应的数据是什么类型，操作后都是布尔型
-   *
-   * @param {string} keypath
-   * @return {boolean} 取反后的布尔值
-   */
-
-
-  Yox.prototype.toggle = function (keypath) {
-    return this.$observer.toggle(keypath);
-  };
-
-  /**
-   * 递增 keypath 对应的数据
-   *
-   * 注意，最好是整型的加法，如果涉及浮点型，不保证计算正确
-   *
-   * @param {string} keypath 值必须能转型成数字，如果不能，则默认从 0 开始递增
-   * @param {?number} step 步进值，默认是 1
-   * @param {?number} min 可以递增到的最小值，默认不限制
-   * @return {number} 返回递增后的值
-   */
-
-
-  Yox.prototype.increase = function (keypath, step, max) {
-    return this.$observer.increase(keypath, step, max);
-  };
-
-  /**
-   * 递减 keypath 对应的数据
-   *
-   * 注意，最好是整型的减法，如果涉及浮点型，不保证计算正确
-   *
-   * @param {string} keypath 值必须能转型成数字，如果不能，则默认从 0 开始递减
-   * @param {?number} step 步进值，默认是 1
-   * @param {?number} min 可以递减到的最小值，默认不限制
-   * @return {number} 返回递减后的值
-   */
-
-
-  Yox.prototype.decrease = function (keypath, step, min) {
-    return this.$observer.decrease(keypath, step, min);
-  };
-
-  /**
-   * 拷贝任意数据，支持深拷贝
-   *
-   * @param {*} data
-   * @param {?boolean} deep 是否深拷贝
-   * @return {*}
-   */
-
-
-  Yox.prototype.copy = function (data, deep) {
-    return copy(data, deep);
-  };
-
-  /**
-   * 在数组指定位置插入元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @param {number} index
-   * @return {?boolean} 是否插入成功
-   */
-
-
-  Yox.prototype.insert = function (keypath, item, index) {
-    return this.$observer.insert(keypath, item, index);
-  };
-
-  /**
-   * 在数组尾部添加元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @return {?boolean} 是否添加成功
-   */
-
-
-  Yox.prototype.append = function (keypath, item) {
-    return this.$observer.insert(keypath, item, TRUE);
-  };
-
-  /**
-   * 在数组首部添加元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @return {?boolean} 是否添加成功
-   */
-
-
-  Yox.prototype.prepend = function (keypath, item) {
-    return this.$observer.insert(keypath, item, FALSE);
-  };
-
-  /**
-   * 通过索引移除数组中的元素
-   *
-   * @param {string} keypath
-   * @param {number} index
-   * @return {?boolean} 是否移除成功
-   */
-
-
-  Yox.prototype.removeAt = function (keypath, index) {
-    return this.$observer.removeAt(keypath, index);
-  };
-
-  /**
-   * 直接移除数组中的元素
-   *
-   * @param {string} keypath
-   * @param {*} item
-   * @return {?boolean} 是否移除成功
-   */
-
-
-  Yox.prototype.remove = function (keypath, item) {
-    return this.$observer.remove(keypath, item);
-  };
-
-  return Yox;
-}();
-
-Yox.version = '0.55.0';
-
-/**
- * 工具，便于扩展、插件使用
- */
-Yox.is = is$1;
-Yox.dom = api;
-Yox.array = array$1;
-Yox.object = object$1;
-Yox.string = string$1;
-Yox.logger = logger;
-Yox.Event = Event;
-Yox.Emitter = Emitter;
-
-var prototype = Yox.prototype;
-
-// 全局注册
-
-var registry = {};
-
-var COMPONENT = 'component';
-
-function getResourceAsync(data, name, callback) {
-  var value = data[name];
-  if (func(value)) {
-    var $pending = value.$pending;
-
-    if (!$pending) {
-      $pending = value.$pending = [callback];
-      value(function (replacement) {
-        delete value.$pending;
-        data[name] = replacement;
-        each($pending, function (callback) {
-          callback(replacement);
-        });
-      });
-    } else {
-      push($pending, callback);
-    }
-  } else {
-    callback(value);
-  }
-}
-
-function setResource(data, name, value) {
-  if (object(name)) {
-    each$1(name, function (value, key) {
-      data[key] = value;
-    });
-  } else {
-    data[name] = value;
-  }
-}
-
-/**
- * 全局/本地注册
- *
- * @param {Object|string} name
- * @param {?Object} value
- */
-each([COMPONENT, 'directive', 'partial', 'filter'], function (type) {
-  prototype[type] = function (name, value) {
-    var instance = this,
-        prop = '$' + type + 's',
-        data = instance[prop];
-    if (string(name)) {
-      var length = arguments.length,
-          hasValue = data && has$1(data, name);
-      if (length === 1) {
-        return hasValue ? data[name] : Yox[type](name);
-      } else if (length === 2 && type === COMPONENT && func(value)) {
-        return hasValue ? getResourceAsync(data, name, value) : Yox[type](name, value);
-      }
-    }
-    setResource(data || (instance[prop] = {}), name, value);
-  };
-  Yox[type] = function (name, value) {
-    var data = registry[type];
-    if (string(name)) {
-      var length = arguments.length,
-          hasValue = data && has$1(data, name);
-      if (length === 1) {
-        return hasValue ? data[name] : UNDEFINED;
-      } else if (length === 2 && type === COMPONENT && func(value)) {
-        return hasValue ? getResourceAsync(data, name, value) : value();
-      }
-    }
-    setResource(data || (registry[type] = {}), name, value);
-  };
-});
-
-/**
- * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
- *
- * @param {Function} fn
- */
-Yox.nextTick = append;
-
-/**
- * 编译模板，暴露出来是为了打包阶段的模板预编译
- *
- * @param {string} template
- * @return {Array}
- */
-Yox.compile = function (template) {
-  return string(template) ? compile(template) : template;
-};
-
-/**
- * 验证 props，无爱请重写
- *
- * @param {Object} props 传递的数据
- * @param {Object} propTypes 数据格式
- * @return {Object} 验证通过的数据
- */
-Yox.validate = function (props, propTypes) {
-  var result = {};
-  each$1(propTypes, function (rule, key) {
-    var type = rule.type,
-        value = rule.value,
-        required = rule.required;
-
-
-    required = required === TRUE || func(required) && required(props);
-
-    if (isDef(props[key])) {
-      // 如果不写 type 或 type 不是 字符串 或 数组
-      // 就当做此规则无效，和没写一样
-      if (type) {
-        var target = props[key],
-            matched;
-        // 比较类型
-        if (!falsy$1(type)) {
-          matched = is(target, type);
-        } else if (!falsy(type)) {
-          each(type, function (t) {
-            if (is(target, t)) {
-              matched = TRUE;
-              return FALSE;
+    var Parser = /** @class */ (function () {
+        function Parser(content) {
+            var instance = this, length = content.length;
+            instance.index = MINUS_ONE;
+            instance.end = length;
+            instance.code = CODE_EOF;
+            instance.content = content;
+            instance.go();
+        }
+        /**
+         * 移动一个字符
+         */
+        Parser.prototype.go = function (step) {
+            var instance = this, index = instance.index, end = instance.end;
+            index += step || 1;
+            if (index >= 0 && index < end) {
+                instance.code = codeAt(instance.content, index);
+                instance.index = index;
             }
-          });
-        } else if (func(type)) {
-          // 有时候做判断需要参考其他数据
-          // 比如当 a 有值时，b 可以为空之类的
-          matched = type(target, props);
-        }
-        if (matched === TRUE) {
-          result[key] = target;
-        } else {
-          warn('"' + key + '" prop\'s type is not matched.');
-        }
-      }
-    } else if (required) {
-      warn('"' + key + '" prop is not found.');
-    } else if (has$1(rule, 'value')) {
-      if (type === RAW_FUNCTION) {
-        result[key] = value;
-      } else {
-        result[key] = func(value) ? value(props) : value;
-      }
+            else {
+                instance.code = CODE_EOF;
+                instance.index = index < 0 ? MINUS_ONE : end;
+            }
+        };
+        /**
+         * 跳过空白符
+         */
+        Parser.prototype.skip = function (step) {
+            var instance = this, reversed = step && step < 0;
+            // 如果表达式是 "   xyz   "，到达结尾后，如果希望 skip(-1) 回到最后一个非空白符
+            // 必须先判断最后一个字符是空白符，否则碰到 "xyz" 这样结尾不是空白符的，其实不应该回退
+            if (instance.code === CODE_EOF) {
+                var oldIndex = instance.index;
+                instance.go(step);
+                // 如果跳一位之后不是空白符，还原，然后返回
+                if (!isWhitespace(instance.code)) {
+                    instance.go(oldIndex - instance.index);
+                    return;
+                }
+            }
+            // 逆向时，只有位置真的发生过变化才需要在停止时正向移动一位
+            // 比如 (a) 如果调用 skip 前位于 )，调用 skip(-1) ，结果应该是原地不动
+            // 为了解决这个问题，应该首先判断当前是不是空白符，如果不是，直接返回
+            else if (!isWhitespace(instance.code)) {
+                return;
+            }
+            // 如果是正向的，停在第一个非空白符左侧
+            // 如果是逆向的，停在第一个非空白符右侧
+            while (TRUE) {
+                if (isWhitespace(instance.code)) {
+                    instance.go(step);
+                }
+                else {
+                    if (reversed) {
+                        instance.go();
+                    }
+                    break;
+                }
+            }
+        };
+        /**
+         * 判断当前字符
+         */
+        Parser.prototype.is = function (code) {
+            return this.code === code;
+        };
+        /**
+         * 截取一段字符串
+         */
+        Parser.prototype.pick = function (startIndex, endIndex) {
+            return slice(this.content, startIndex, isDef(endIndex) ? endIndex : this.index);
+        };
+        /**
+         * 尝试解析下一个 token
+         */
+        Parser.prototype.scanToken = function () {
+            var instance = this, code = instance.code, index = instance.index;
+            if (isIdentifierStart(code)) {
+                return instance.scanTail(index, [
+                    instance.scanIdentifier(index)
+                ]);
+            }
+            if (isDigit(code)) {
+                return instance.scanNumber(index);
+            }
+            switch (code) {
+                case CODE_EOF:
+                    return;
+                // 'x' "x"
+                case CODE_SQUOTE:
+                case CODE_DQUOTE:
+                    return instance.scanTail(index, [
+                        instance.scanString(index, code)
+                    ]);
+                // .1  ./  ../
+                case CODE_DOT:
+                    instance.go();
+                    return isDigit(instance.code)
+                        ? instance.scanNumber(index)
+                        : instance.scanPath(index);
+                // (xx)
+                case CODE_OPAREN:
+                    instance.go();
+                    return instance.scanTernary(CODE_CPAREN);
+                // [xx, xx]
+                case CODE_OBRACK:
+                    return instance.scanTail(index, [
+                        createArray(instance.scanTuple(index, CODE_CBRACK), instance.pick(index))
+                    ]);
+                // { a: 'x', b: 'x' }
+                case CODE_OBRACE:
+                    return instance.scanObject(index);
+            }
+            // 因为 scanOperator 会导致 index 发生变化，只能放在最后尝试
+            var operator = instance.scanOperator(index);
+            if (operator && unary[operator]) {
+                var node = instance.scanTernary();
+                if (node) {
+                    if (node.type === LITERAL) {
+                        var value = node.value;
+                        if (number(value)) {
+                            // 类似 ' -1 ' 这样的右侧有空格，需要撤回来
+                            instance.skip(MINUS_ONE);
+                            return createLiteral(-value, instance.pick(index));
+                        }
+                    }
+                    // 类似 ' -a ' 这样的右侧有空格，需要撤回来
+                    instance.skip(MINUS_ONE);
+                    return createUnary(operator, node, instance.pick(index));
+                }
+                {
+                    // 一元运算只有操作符没有表达式？
+                    instance.fatal(index, "Expression expected.");
+                }
+            }
+        };
+        /**
+         * 扫描数字
+         *
+         * 支持整数和小数
+         *
+         * @param startIndex
+         * @return
+         */
+        Parser.prototype.scanNumber = function (startIndex) {
+            var instance = this;
+            while (isNumber(instance.code)) {
+                instance.go();
+            }
+            var raw = instance.pick(startIndex);
+            // 尝试转型，如果转型失败，则确定是个错误的数字
+            if (numeric(raw)) {
+                return createLiteral(+raw, raw);
+            }
+            {
+                instance.fatal(startIndex, "Number expected.");
+            }
+        };
+        /**
+         * 扫描字符串
+         *
+         * 支持反斜线转义引号
+         *
+         * @param startIndex
+         * @param endCode
+         */
+        Parser.prototype.scanString = function (startIndex, endCode) {
+            var instance = this;
+            loop: while (TRUE) {
+                // 这句有两个作用：
+                // 1. 跳过开始的引号
+                // 2. 驱动 index 前进
+                instance.go();
+                switch (instance.code) {
+                    // \" \'
+                    case CODE_BACKSLASH:
+                        instance.go();
+                        break;
+                    case endCode:
+                        instance.go();
+                        break loop;
+                    case CODE_EOF:
+                        {
+                            // 到头了，字符串还没解析完呢？
+                            instance.fatal(startIndex, 'Unexpected end of text.');
+                        }
+                        break loop;
+                }
+            }
+            // new Function 处理字符转义
+            var raw = instance.pick(startIndex);
+            return createLiteral(new Function("return " + raw)(), raw);
+        };
+        /**
+         * 扫描对象字面量
+         *
+         * @param startIndex
+         */
+        Parser.prototype.scanObject = function (startIndex) {
+            var instance = this, keys = [], values = [], isKey = TRUE, node;
+            // 跳过 {
+            instance.go();
+            loop: while (TRUE) {
+                switch (instance.code) {
+                    case CODE_CBRACE:
+                        instance.go();
+                        {
+                            // 对象的 keys 和 values 的长度不一致
+                            if (keys.length !== values.length) {
+                                instance.fatal(startIndex, 'The number of keys and values must be equal.');
+                            }
+                        }
+                        break loop;
+                    case CODE_EOF:
+                        {
+                            // 到头了，对象还没解析完呢？
+                            instance.fatal(startIndex, 'Unexpected end of text.');
+                        }
+                        break loop;
+                    // :
+                    case CODE_COLON:
+                        instance.go();
+                        isKey = FALSE;
+                        break;
+                    // ,
+                    case CODE_COMMA:
+                        instance.go();
+                        isKey = TRUE;
+                        break;
+                    default:
+                        // 解析 key 的时候，node 可以为空，如 { } 或 { name: 'xx', }
+                        // 解析 value 的时候，node 不能为空
+                        node = instance.scanTernary();
+                        if (isKey) {
+                            if (node) {
+                                // 处理 { key : value } key 后面的空格
+                                instance.skip();
+                                if (node.type === IDENTIFIER) {
+                                    push(keys, node.name);
+                                }
+                                else if (node.type === LITERAL) {
+                                    push(keys, node.value);
+                                }
+                                else {
+                                    {
+                                        // 对象的 key 必须是字面量或标识符
+                                        instance.fatal(startIndex, 'The key of an object must be a literal or identifier.');
+                                    }
+                                    break loop;
+                                }
+                            }
+                        }
+                        else if (node) {
+                            // 处理 { key : value } value 后面的空格
+                            instance.skip();
+                            push(values, node);
+                        }
+                        // 类似这样 { key: }
+                        else {
+                            {
+                                // 对象的值没找到
+                                instance.fatal(startIndex, "The value of the object was not found.");
+                            }
+                            break loop;
+                        }
+                }
+            }
+            return createObject(keys, values, instance.pick(startIndex));
+        };
+        /**
+         * 扫描元组，即 `a, b, c` 这种格式，可以是参数列表，也可以是数组
+         *
+         * @param startIndex
+         * @param endCode 元组的结束字符编码
+         */
+        Parser.prototype.scanTuple = function (startIndex, endCode) {
+            var instance = this, nodes = [], node;
+            // 跳过开始字符，如 [ 和 (
+            instance.go();
+            loop: while (TRUE) {
+                switch (instance.code) {
+                    case endCode:
+                        instance.go();
+                        break loop;
+                    case CODE_EOF:
+                        {
+                            // 到头了，tuple 还没解析完呢？
+                            instance.fatal(startIndex, 'Unexpected end of text.');
+                        }
+                        break loop;
+                    case CODE_COMMA:
+                        instance.go();
+                        break;
+                    default:
+                        // 1. ( )
+                        // 2. (1, 2, )
+                        // 这三个例子都会出现 scanTernary 为空的情况
+                        // 但是不用报错
+                        node = instance.scanTernary();
+                        if (node) {
+                            // 为了解决 1 , 2 , 3 这样的写法
+                            // 当解析出值后，先跳过后面的空格
+                            instance.skip();
+                            push(nodes, node);
+                        }
+                }
+            }
+            return nodes;
+        };
+        /**
+         * 扫描路径，如 `./` 和 `../`
+         *
+         * 路径必须位于开头，如 ./../ 或 ，不存在 a/../b/../c 这样的情况，因为路径是用来切换或指定 context 的
+         *
+         * @param startIndex
+         * @param prevNode
+         */
+        Parser.prototype.scanPath = function (startIndex) {
+            var instance = this, nodes = [], name;
+            // 进入此函数时，已确定前一个 code 是 CODE_DOT
+            // 此时只需判断接下来是 ./ 还是 / 就行了
+            while (TRUE) {
+                // 要么是 current 要么是 parent
+                name = KEYPATH_CURRENT;
+                // ../
+                if (instance.is(CODE_DOT)) {
+                    instance.go();
+                    name = KEYPATH_PARENT;
+                }
+                push(nodes, createIdentifier(name, name, nodes.length > 0));
+                // 如果以 / 结尾，则命中 ./ 或 ../
+                if (instance.is(CODE_SLASH)) {
+                    instance.go();
+                    // 没写错，这里不必强调 isIdentifierStart，数字开头也可以吧
+                    if (isIdentifierPart(instance.code)) {
+                        push(nodes, instance.scanIdentifier(instance.index, TRUE));
+                        return instance.scanTail(startIndex, nodes);
+                    }
+                    else if (instance.is(CODE_DOT)) {
+                        // 先跳过第一个 .
+                        instance.go();
+                        // 继续循环
+                    }
+                    else {
+                        // 类似 ./ 或 ../ 这样后面不跟标识符是想干嘛？报错可好？
+                        {
+                            instance.fatal(startIndex, last(nodes).raw + "/ must be followed by an identifier.");
+                        }
+                        break;
+                    }
+                }
+                // 类似 . 或 ..，可能就是想读取层级对象
+                // 此处不用关心后面跟的具体是什么字符，那是其他函数的事情，就算报错也让别的函数去报
+                // 此处也不用关心延展操作符，即 ...object，因为表达式引擎管不了这事，它没法把对象变成 attr1=value1 attr2=value2 的格式
+                // 这应该是模板引擎该做的事
+                else {
+                    break;
+                }
+            }
+        };
+        /**
+         * 扫描变量
+         */
+        Parser.prototype.scanTail = function (startIndex, nodes) {
+            var instance = this, node;
+            /**
+             * 标识符后面紧着的字符，可以是 ( . [，此外还存在各种组合，感受一下：
+             *
+             * a.b.c().length
+             * a[b].c()()
+             * a[b][c]()[d](e, f, g).length
+             * [].length
+             */
+            loop: while (TRUE) {
+                switch (instance.code) {
+                    // a(x)
+                    case CODE_OPAREN:
+                        nodes = [
+                            createCall(createMemberIfNeeded(instance.pick(startIndex), nodes), instance.scanTuple(instance.index, CODE_CPAREN), instance.pick(startIndex))
+                        ];
+                        break;
+                    // a.x
+                    case CODE_DOT:
+                        instance.go();
+                        // 接下来的字符，可能是数字，也可能是标识符，如果不是就报错
+                        if (isIdentifierPart(instance.code)) {
+                            // 无需识别关键字
+                            push(nodes, instance.scanIdentifier(instance.index, TRUE));
+                            break;
+                        }
+                        else {
+                            {
+                                // . 后面跟的都是啥玩意啊
+                                instance.fatal(startIndex, 'Identifier or number expected.');
+                            }
+                            break loop;
+                        }
+                    // a[]
+                    case CODE_OBRACK:
+                        // 过掉 [
+                        instance.go();
+                        node = instance.scanTernary(CODE_CBRACK);
+                        if (node) {
+                            push(nodes, node);
+                            break;
+                        }
+                        else {
+                            // [] 内部不能为空
+                            {
+                                instance.fatal(startIndex, "[] is not allowed.");
+                            }
+                            break loop;
+                        }
+                    default:
+                        break loop;
+                }
+            }
+            return createMemberIfNeeded(instance.pick(startIndex), nodes);
+        };
+        /**
+         * 扫描标识符
+         *
+         * @param startIndex
+         * @param isProp 是否是对象的属性
+         * @return
+         */
+        Parser.prototype.scanIdentifier = function (startIndex, isProp) {
+            var instance = this;
+            while (isIdentifierPart(instance.code)) {
+                instance.go();
+            }
+            var raw = instance.pick(startIndex);
+            return !isProp && raw in keywordLiterals
+                ? createLiteral(keywordLiterals[raw], raw)
+                : createIdentifier(raw, raw, isProp);
+        };
+        /**
+         * 扫描运算符
+         *
+         * @param startIndex
+         */
+        Parser.prototype.scanOperator = function (startIndex) {
+            var instance = this;
+            switch (instance.code) {
+                // /、%、~、^
+                case CODE_DIVIDE:
+                case CODE_MODULO:
+                case CODE_WAVE:
+                case CODE_XOR:
+                    instance.go();
+                    break;
+                // *
+                case CODE_MULTIPLY:
+                    instance.go();
+                    break;
+                // +
+                case CODE_PLUS:
+                    instance.go();
+                    {
+                        // ++
+                        if (instance.is(CODE_PLUS)) {
+                            instance.fatal(startIndex, 'The operator "++" is not supported.');
+                        }
+                    }
+                    break;
+                // -
+                case CODE_MINUS:
+                    instance.go();
+                    {
+                        // --
+                        if (instance.is(CODE_MINUS)) {
+                            instance.fatal(startIndex, 'The operator "--" is not supported.');
+                        }
+                    }
+                    break;
+                // !、!!、!=、!==
+                case CODE_NOT:
+                    instance.go();
+                    if (instance.is(CODE_NOT)) {
+                        instance.go();
+                    }
+                    else if (instance.is(CODE_EQUAL)) {
+                        instance.go();
+                        if (instance.is(CODE_EQUAL)) {
+                            instance.go();
+                        }
+                    }
+                    break;
+                // &、&&
+                case CODE_AND:
+                    instance.go();
+                    if (instance.is(CODE_AND)) {
+                        instance.go();
+                    }
+                    break;
+                // |、||
+                case CODE_OR:
+                    instance.go();
+                    if (instance.is(CODE_OR)) {
+                        instance.go();
+                    }
+                    break;
+                // ==、===
+                case CODE_EQUAL:
+                    instance.go();
+                    if (instance.is(CODE_EQUAL)) {
+                        instance.go();
+                        if (instance.is(CODE_EQUAL)) {
+                            instance.go();
+                        }
+                    }
+                    // 一个等号要报错
+                    else {
+                        instance.fatal(startIndex, 'Assignment statements are not supported.');
+                    }
+                    break;
+                // <、<=、<<
+                case CODE_LESS:
+                    instance.go();
+                    if (instance.is(CODE_EQUAL)
+                        || instance.is(CODE_LESS)) {
+                        instance.go();
+                    }
+                    break;
+                // >、>=、>>、>>>
+                case CODE_GREAT:
+                    instance.go();
+                    if (instance.is(CODE_EQUAL)) {
+                        instance.go();
+                    }
+                    else if (instance.is(CODE_GREAT)) {
+                        instance.go();
+                        if (instance.is(CODE_GREAT)) {
+                            instance.go();
+                        }
+                    }
+                    break;
+            }
+            if (instance.index > startIndex) {
+                return instance.pick(startIndex);
+            }
+        };
+        /**
+         * 扫描二元运算
+         */
+        Parser.prototype.scanBinary = function (startIndex) {
+            // 二元运算，如 a + b * c / d，这里涉及运算符的优先级
+            // 算法参考 https://en.wikipedia.org/wiki/Shunting-yard_algorithm
+            var instance = this,
+            // 格式为 [ index1, node1, index2, node2, ... ]
+            output = [], token, index, operator, operatorPrecedence, lastOperator, lastOperatorPrecedence;
+            while (TRUE) {
+                instance.skip();
+                push(output, instance.index);
+                token = instance.scanToken();
+                if (token) {
+                    push(output, token);
+                    push(output, instance.index);
+                    instance.skip();
+                    operator = instance.scanOperator(instance.index);
+                    // 必须是二元运算符，一元不行
+                    if (operator && (operatorPrecedence = binary[operator])) {
+                        // 比较前一个运算符
+                        index = output.length - 4;
+                        // 如果前一个运算符的优先级 >= 现在这个，则新建 Binary
+                        // 如 a + b * c / d，当从左到右读取到 / 时，发现和前一个 * 优先级相同，则把 b * c 取出用于创建 Binary
+                        if ((lastOperator = output[index])
+                            && (lastOperatorPrecedence = binary[lastOperator])
+                            && lastOperatorPrecedence >= operatorPrecedence) {
+                            output.splice(index - 2, 5, createBinary(output[index - 2], lastOperator, output[index + 2], instance.pick(output[index - 3], output[index + 3])));
+                        }
+                        push(output, operator);
+                        continue;
+                    }
+                    else {
+                        operator = UNDEFINED;
+                    }
+                }
+                // 比如不支持的表达式，a++ 之类的
+                else {
+                    if (operator) {
+                        instance.fatal(startIndex, 'Invalid syntax.');
+                    }
+                }
+                // 没匹配到 token 或 operator 则跳出循环
+                break;
+            }
+            // 类似 a + b * c 这种走到这会有 11 个
+            // 此时需要从后往前遍历，因为确定后面的优先级肯定大于前面的
+            while (TRUE) {
+                // 最少的情况是 a + b，它有 7 个元素
+                if (output.length >= 7) {
+                    index = output.length - 4;
+                    output.splice(index - 2, 5, createBinary(output[index - 2], output[index], output[index + 2], instance.pick(output[index - 3], output[index + 3])));
+                }
+                else {
+                    return output[1];
+                }
+            }
+        };
+        /**
+         * 扫描三元运算
+         *
+         * @param endCode
+         */
+        Parser.prototype.scanTernary = function (endCode) {
+            /**
+             * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+             *
+             * ?: 运算符的优先级几乎是最低的，比它低的只有四种： 赋值、yield、延展、逗号
+             * 我们不支持这四种，因此可认为 ?: 优先级最低
+             */
+            var instance = this;
+            instance.skip();
+            var index = instance.index, test = instance.scanBinary(index), yes, no;
+            if (instance.is(CODE_QUESTION)) {
+                // 跳过 ?
+                instance.go();
+                yes = instance.scanTernary();
+                if (instance.is(CODE_COLON)) {
+                    // 跳过 :
+                    instance.go();
+                    no = instance.scanTernary();
+                }
+                if (test && yes && no) {
+                    // 类似 ' a ? 1 : 0 ' 这样的右侧有空格，需要撤回来
+                    instance.skip(MINUS_ONE);
+                    test = createTernary(test, yes, no, instance.pick(index));
+                }
+                else {
+                    // 三元表达式语法错误
+                    instance.fatal(index, "Invalid ternary syntax.");
+                }
+            }
+            // 过掉结束字符
+            if (isDef(endCode)) {
+                instance.skip();
+                if (instance.is(endCode)) {
+                    instance.go();
+                }
+                // 没匹配到结束字符要报错
+                else {
+                    instance.fatal(index, "\"" + String.fromCharCode(endCode) + "\" expected, \"" + String.fromCharCode(instance.code) + "\" actually.");
+                }
+            }
+            return test;
+        };
+        Parser.prototype.fatal = function (start, message) {
+            {
+                fatal("Error compiling expression\n\n" + this.content + "\n\nmessage: " + message + "\n");
+            }
+        };
+        return Parser;
+    }());
+    var cache = {}, CODE_EOF = 0, //
+    CODE_DOT = 46, // .
+    CODE_COMMA = 44, // ,
+    CODE_SLASH = 47, // /
+    CODE_BACKSLASH = 92, // \
+    CODE_SQUOTE = 39, // '
+    CODE_DQUOTE = 34, // "
+    CODE_OPAREN = 40, // (
+    CODE_CPAREN = 41, // )
+    CODE_OBRACK = 91, // [
+    CODE_CBRACK = 93, // ]
+    CODE_OBRACE = 123, // {
+    CODE_CBRACE = 125, // }
+    CODE_QUESTION = 63, // ?
+    CODE_COLON = 58, // :
+    CODE_PLUS = 43, // +
+    CODE_MINUS = 45, // -
+    CODE_MULTIPLY = 42, // *
+    CODE_DIVIDE = 47, // /
+    CODE_MODULO = 37, // %
+    CODE_WAVE = 126, // ~
+    CODE_AND = 38, // &
+    CODE_OR = 124, // |
+    CODE_XOR = 94, // ^
+    CODE_NOT = 33, // !
+    CODE_LESS = 60, // <
+    CODE_EQUAL = 61, // =
+    CODE_GREAT = 62, // >
+    /**
+     * 区分关键字和普通变量
+     * 举个例子：a === true
+     * 从解析器的角度来说，a 和 true 是一样的 token
+     */
+    keywordLiterals = {};
+    keywordLiterals[RAW_TRUE] = TRUE;
+    keywordLiterals[RAW_FALSE] = FALSE;
+    keywordLiterals[RAW_NULL] = NULL;
+    keywordLiterals[RAW_UNDEFINED] = UNDEFINED;
+    /**
+     * 是否是空白符，用下面的代码在浏览器测试一下
+     *
+     * ```
+     * for (var i = 0; i < 200; i++) {
+     *   console.log(i, String.fromCharCode(i))
+     * }
+     * ```
+     *
+     * 从 0 到 32 全是空白符，100 往上分布比较散且较少用，唯一需要注意的是 160
+     *
+     * 160 表示 non-breaking space
+     * http://www.adamkoch.com/2009/07/25/white-space-and-character-160/
+     */
+    function isWhitespace(code) {
+        return (code > 0 && code < 33) || code === 160;
     }
-  });
-  return result;
-};
+    /**
+     * 是否是数字
+     */
+    function isDigit(code) {
+        return code > 47 && code < 58; // 0...9
+    }
+    /**
+     * 是否是数字
+     */
+    function isNumber(code) {
+        return isDigit(code) || code === CODE_DOT;
+    }
+    /**
+     * 变量开始字符必须是 字母、下划线、$
+     */
+    function isIdentifierStart(code) {
+        return code === 36 // $
+            || code === 95 // _
+            || (code > 96 && code < 123) // a...z
+            || (code > 64 && code < 91); // A...Z
+    }
+    /**
+     * 变量剩余的字符必须是 字母、下划线、$、数字
+     */
+    function isIdentifierPart(code) {
+        return isIdentifierStart(code) || isDigit(code);
+    }
 
-/**
- * 安装插件
- *
- * 插件必须暴露 install 方法
- *
- * @param {Object} plugin
- */
-Yox.use = function (plugin) {
-  plugin.install(Yox);
-};
+    // 当前不位于 block 之间
+    var BLOCK_MODE_NONE = 1,
+    // {{ x }}
+    BLOCK_MODE_SAFE = 2,
+    // {{{ x }}}
+    BLOCK_MODE_UNSAFE = 3,
+    // 缓存编译正则
+    patternCache$1 = {},
+    // 指令分隔符，如 on-click 和 lazy-click
+    directiveSeparator = '-',
+    // 调用的方法
+    methodPattern = /^[_$a-z]([\w]+)?$/,
+    // 没有命名空间的事件
+    eventPattern = /^[_$a-z]([\w]+)?$/i,
+    // 有命名空间的事件
+    eventNamespacePattern = /^[_$a-z]([\w]+)?\.[_$a-z]([\w]+)?$/i,
+    // 换行符
+    // 比较神奇是，有时候你明明看不到换行符，却真的存在一个，那就是 \r
+    breaklinePattern = /^\s*[\n\r]\s*|\s*[\n\r]\s*$/g,
+    // 区间遍历
+    rangePattern = /\s*(=>|->)\s*/,
+    // 标签
+    tagPattern = /<(\/)?([$a-z][-a-z0-9]*)/i,
+    // 注释
+    commentPattern = /<!--[\s\S]*?-->/g,
+    // 开始注释
+    openCommentPattern = /^([\s\S]*?)<!--/,
+    // 结束注释
+    closeCommentPattern = /-->([\s\S]*?)$/,
+    // 属性的 name
+    // 支持 on-click.namespace="" 或 on-get-out="" 或 xml:xx=""
+    attributePattern = /^\s*([-$.:\w]+)(['"])?(?:=(['"]))?/,
+    // 自闭合标签
+    selfClosingTagPattern = /^\s*(\/)?>/;
+    /**
+     * 截取前缀之后的字符串
+     */
+    function slicePrefix(str, prefix) {
+        return trim(slice(str, prefix.length));
+    }
+    function compile$1(content) {
+        var nodeList = [], nodeStack = [],
+        // 持有 if/elseif/else 节点
+        ifStack = [], currentElement, currentAttribute, length = content.length,
+        // 当前处理的位置
+        index = 0,
+        // 下一段开始的位置
+        nextIndex = 0,
+        // 开始定界符的位置，表示的是 {{ 的右侧位置
+        openBlockIndex = 0,
+        // 结束定界符的位置，表示的是 }} 的左侧位置
+        closeBlockIndex = 0,
+        // 当前正在处理或即将处理的 block 类型
+        blockMode = BLOCK_MODE_NONE,
+        // mustache 注释可能出现嵌套插值的情况
+        blockStack = [], indexList = [], code, startQuote, fatal$1 = function (msg) {
+            {
+                fatal("Error compiling template\n\n" + content + "\n\nmessage: " + msg);
+            }
+        },
+        /**
+         * 常见的两种情况：
+         *
+         * <div>
+         *    <input>1
+         * </div>
+         *
+         * <div>
+         *    <input>
+         * </div>
+         */
+        popSelfClosingElementIfNeeded = function (popingTagName) {
+            var lastNode = last(nodeStack);
+            if (lastNode && lastNode.type === ELEMENT) {
+                var element = lastNode;
+                if (element.tag !== popingTagName
+                    && isSelfClosing(element.tag)) {
+                    popStack(element.type, element.tag);
+                }
+            }
+        }, popStack = function (type, tagName) {
+            var node = pop(nodeStack);
+            if (node && node.type === type) {
+                var children = node.children,
+                // 优化单个子节点
+                child = children && children.length === 1 && children[0], isElement = type === ELEMENT, isAttribute = type === ATTRIBUTE, isProperty = type === PROPERTY, isDirective = type === DIRECTIVE;
+                var currentBranch = last(nodeStack);
+                if (currentBranch) {
+                    if (currentBranch.isStatic && !node.isStatic) {
+                        currentBranch.isStatic = FALSE;
+                    }
+                }
+                {
+                    if (isElement) {
+                        var element = node;
+                        if (tagName && element.tag !== tagName) {
+                            fatal$1("End tag is \"" + tagName + "\"\uFF0Cbut start tag is \"" + element.tag + "\".");
+                        }
+                    }
+                }
+                // 除了 helper.specialAttrs 里指定的特殊属性，attrs 里的任何节点都不能单独拎出来赋给 element
+                // 因为 attrs 可能存在 if，所以每个 attr 最终都不一定会存在
+                if (child) {
+                    switch (child.type) {
+                        case TEXT:
+                            // 属性的值如果是纯文本，直接获取文本值
+                            // 减少渲染时的遍历
+                            if (isElement) {
+                                processElementSingleText(node, child);
+                            }
+                            else if (isAttribute) {
+                                processAttributeSingleText(node, child);
+                            }
+                            else if (isProperty) {
+                                processPropertySingleText(node, child);
+                            }
+                            else if (isDirective) {
+                                processDirectiveSingleText(node, child);
+                            }
+                            break;
+                        case EXPRESSION:
+                            if (isElement) {
+                                processElementSingleExpression(node, child);
+                            }
+                            else if (isAttribute) {
+                                processAttributeSingleExpression(node, child);
+                            }
+                            else if (isProperty) {
+                                processPropertySingleExpression(node, child);
+                            }
+                            else if (isDirective) {
+                                processDirectiveSingleExpression();
+                            }
+                            break;
+                    }
+                }
+                // 大于 1 个子节点，即有插值或 if 写法
+                else if (children) {
+                    if (isDirective) {
+                        processDirectiveMultiChildren();
+                    }
+                    // 元素层级
+                    else if (!currentElement) {
+                        removeComment(children);
+                        if (!children.length) {
+                            node.children = UNDEFINED;
+                        }
+                    }
+                }
+                // 0 个子节点
+                else if (currentElement) {
+                    if (isAttribute) {
+                        processAttributeEmptyChildren(currentElement, node);
+                    }
+                    else if (isProperty) {
+                        processPropertyEmptyChildren(currentElement, node);
+                    }
+                    else if (isDirective) {
+                        processDirectiveEmptyChildren(currentElement, node);
+                    }
+                }
+                if (type === EACH) {
+                    checkEach(node);
+                }
+                else if (type === PARTIAL) {
+                    checkPartial(node);
+                }
+                else if (isElement) {
+                    checkElement(node);
+                }
+                else if (currentElement) {
+                    if (isAttribute) {
+                        if (isSpecialAttr(currentElement, node)) {
+                            bindSpecialAttr(currentElement, node);
+                        }
+                    }
+                    else if (isDirective) {
+                        checkDirective(currentElement, node);
+                    }
+                }
+                return node;
+            }
+            // 出栈节点类型不匹配
+            {
+                fatal$1("The type of poping node is not expected.");
+            }
+        }, removeComment = function (children) {
+            // 类似 <!-- xx {{name}} yy {{age}} zz --> 这样的注释里包含插值
+            // 按照目前的解析逻辑，是根据定界符进行模板分拆
+            // 一旦出现插值，children 长度必然大于 1
+            var openIndex = MINUS_ONE, openText = EMPTY_STRING, closeIndex = MINUS_ONE, closeText = EMPTY_STRING;
+            each(children, function (child, index) {
+                if (child.type === TEXT) {
+                    // 有了结束 index，这里的任务是配对开始 index
+                    if (closeIndex >= 0) {
+                        openText = child.text;
+                        // 处理 <!-- <!-- 这样有多个的情况
+                        while (openCommentPattern.test(openText)) {
+                            openText = RegExp.$1;
+                            openIndex = index;
+                        }
+                        if (openIndex >= 0) {
+                            // openIndex 肯定小于 closeIndex，因为完整的注释在解析过程中会被干掉
+                            // 只有包含插值的注释才会走进这里
+                            var startIndex = openIndex, endIndex = closeIndex;
+                            // 现在要确定开始和结束的文本节点，是否包含正常文本
+                            if (openText) {
+                                children[openIndex].text = openText;
+                                startIndex++;
+                            }
+                            if (closeText) {
+                                // 合并开始和结束文本，如 1<!-- {{x}}{{y}} -->2
+                                // 这里要把 1 和 2 两个文本节点合并成一个
+                                if (openText) {
+                                    children[openIndex].text += closeText;
+                                }
+                                else {
+                                    children[closeIndex].text = closeText;
+                                    endIndex--;
+                                }
+                            }
+                            children.splice(startIndex, endIndex - startIndex + 1);
+                            // 重置，再继续寻找结束 index
+                            openIndex = closeIndex = MINUS_ONE;
+                        }
+                    }
+                    else {
+                        // 从后往前遍历
+                        // 一旦发现能匹配 --> 就可以断定这是注释的结束 index
+                        // 剩下的就是找开始 index
+                        closeText = child.text;
+                        // 处理 --> --> 这样有多个的情况
+                        while (closeCommentPattern.test(closeText)) {
+                            closeText = RegExp.$1;
+                            closeIndex = index;
+                        }
+                    }
+                }
+            }, TRUE);
+        }, processDirectiveMultiChildren = function () {
+            // 不支持 on-click="1{{xx}}2" 或是 on-click="1{{#if x}}x{{else}}y{{/if}}2"
+            // 1. 很难做性能优化
+            // 2. 全局搜索不到事件名，不利于代码维护
+            // 3. 不利于编译成静态函数
+            {
+                fatal$1('For performance, "{{" and "}}" are not allowed in directive value.');
+            }
+        }, processElementSingleText = function (element, child) {
+            // processElementSingleText 和 processElementSingleExpression
+            // 不把元素子节点智能转换为 textContent property
+            // 因为子节点还有 <div>1{{a}}{{b}}</div> 这样的情况
+            // 还是在序列化的时候统一处理比较好
+            // 唯独需要在这特殊处理的是 html 实体
+            // 但这只是 WEB 平台的特殊逻辑，所以丢给 platform 处理
+            if (!element.isComponent
+                && !specialTags[element.tag]
+                && setElementText(element, child.text)) {
+                element.children = UNDEFINED;
+            }
+        }, processElementSingleExpression = function (element, child) {
+            if (!element.isComponent
+                && !specialTags[element.tag]
+                && !child.safe) {
+                element.html = child.expr;
+                element.children = UNDEFINED;
+            }
+        }, processPropertyEmptyChildren = function (element, prop) {
+            if (prop.hint === HINT_BOOLEAN) {
+                prop.value = TRUE;
+            }
+            else {
+                // string 或 number 类型的属性，如果不写值，直接忽略
+                replaceChild(prop);
+            }
+        }, processPropertySingleText = function (prop, child) {
+            var text = child.text;
+            // 这里需要严格校验格式，比如 width="100%" 要打印报错信息，提示用户类型错误
+            if (prop.hint === HINT_NUMBER) {
+                {
+                    if (numeric(text)) {
+                        prop.value = +text;
+                    }
+                    else {
+                        fatal$1("The value of \"" + prop.name + "\" is not a number: " + text + ".");
+                    }
+                }
+            }
+            else if (prop.hint === HINT_BOOLEAN) {
+                prop.value = text === RAW_TRUE || text === prop.name;
+            }
+            else {
+                prop.value = text;
+            }
+            prop.children = UNDEFINED;
+        }, processPropertySingleExpression = function (prop, child) {
+            var expr = child.expr;
+            prop.expr = expr;
+            prop.children = UNDEFINED;
+            // 对于有静态路径的表达式，可转为单向绑定指令，可实现精确更新视图，如下
+            // <div class="{{className}}">
+            if (expr.type === IDENTIFIER) {
+                prop.binding = TRUE;
+            }
+        }, processAttributeEmptyChildren = function (element, attr) {
+            if (isSpecialAttr(element, attr)) {
+                {
+                    fatal$1("The value of \"" + attr.name + "\" is empty.");
+                }
+            }
+            else {
+                attr.value = getAttributeDefaultValue(element, attr.name);
+            }
+        }, processAttributeSingleText = function (attr, child) {
+            attr.value = child.text;
+            attr.children = UNDEFINED;
+        }, processAttributeSingleExpression = function (attr, child) {
+            var expr = child.expr;
+            attr.expr = expr;
+            attr.children = UNDEFINED;
+            // 对于有静态路径的表达式，可转为单向绑定指令，可实现精确更新视图，如下
+            // <div class="{{className}}">
+            if (expr.type === IDENTIFIER) {
+                attr.binding = TRUE;
+            }
+        }, processDirectiveEmptyChildren = function (element, directive) {
+            directive.value = TRUE;
+        }, processDirectiveSingleText = function (directive, child) {
+            var text = child.text,
+            // model="xx" model="this.x" 值只能是标识符或 Member
+            isModel = directive.ns === DIRECTIVE_MODEL,
+            // lazy 的值必须是大于 0 的数字
+            isLazy = directive.ns === DIRECTIVE_LAZY,
+            // 校验事件名称
+            // 且命名空间不能用 native
+            isEvent = directive.ns === DIRECTIVE_EVENT,
+            // 自定义指令运行不合法的表达式
+            isCustom = directive.ns === DIRECTIVE_CUSTOM,
+            // 指令的值是纯文本，可以预编译表达式，提升性能
+            expr, error;
+            try {
+                expr = compile(text);
+            }
+            catch (e) {
+                error = e;
+            }
+            if (expr) {
+                {
+                    var raw = expr.raw;
+                    if (isLazy) {
+                        if (expr.type !== LITERAL
+                            || !number(expr.value)
+                            || expr.value <= 0) {
+                            fatal$1('The value of lazy must be a number greater than 0.');
+                        }
+                    }
+                    // 如果指令表达式是函数调用，则只能调用方法（难道还有别的可以调用的吗？）
+                    else if (expr.type === CALL) {
+                        var methodName = expr.name;
+                        if (methodName.type !== IDENTIFIER) {
+                            fatal$1('Invalid method name.');
+                        }
+                        // 函数调用调用方法，因此不能是 a.b() 的形式
+                        else if (!methodPattern.test(methodName.name)) {
+                            fatal$1('Invalid method name.');
+                        }
+                    }
+                    // 上面检测过方法调用，接下来事件指令只需要判断是否以下两种格式：
+                    // on-click="name" 或 on-click="name.namespace"
+                    else if (isEvent) {
+                        if (eventPattern.test(raw) || eventNamespacePattern.test(raw)) {
+                            // native 有特殊用处，不能给业务层用
+                            if (eventNamespacePattern.test(raw)
+                                && raw.split(RAW_DOT)[1] === MODIFER_NATIVE) {
+                                fatal$1("The event namespace \"" + MODIFER_NATIVE + "\" is not permitted.");
+                            }
+                            // <Button on-click="click"> 这种写法没有意义
+                            if (currentElement
+                                && currentElement.isComponent
+                                && directive.name === raw) {
+                                fatal$1("The event name listened and fired can't be the same.");
+                            }
+                        }
+                        // 事件转换名称只能是 [name] 或 [name.namespace] 格式
+                        else {
+                            fatal$1('The event name and namespace must be an identifier.');
+                        }
+                    }
+                    if (isModel && expr.type !== IDENTIFIER) {
+                        fatal$1('The value of the model must be an identifier.');
+                    }
+                }
+                directive.expr = expr;
+                directive.value = expr.type === LITERAL
+                    ? expr.value
+                    : text;
+            }
+            else {
+                // 自定义指令支持错误的表达式
+                // 反正是自定义的规则，爱怎么写就怎么写
+                {
+                    if (!isCustom) {
+                        throw error;
+                    }
+                }
+                directive.value = text;
+            }
+            directive.children = UNDEFINED;
+        }, processDirectiveSingleExpression = function (directive, child) {
+            {
+                fatal$1('For performance, "{{" and "}}" are not allowed in directive value.');
+            }
+        }, checkCondition = function (condition) {
+            // 这里会去掉没有子节点的空分支
+            // 从最后一个节点往前遍历
+            var currentNode = condition, prevNode, hasChildren, hasNext;
+            while (TRUE) {
+                // 当前分支有子节点
+                if (currentNode.children) {
+                    // 从后往前遍历第一次发现非空分支
+                    // 此时，可以删掉后面的空分支
+                    if (!hasNext) {
+                        if (currentNode.next) {
+                            delete currentNode.next;
+                        }
+                    }
+                    hasChildren = hasNext = TRUE;
+                }
+                prevNode = currentNode.prev;
+                if (prevNode) {
+                    // prev 仅在 checkCondition 函数中用作逆向遍历
+                    // 用完就可以删掉了
+                    delete currentNode.prev;
+                    currentNode = prevNode;
+                }
+                else {
+                    break;
+                }
+            }
+            // 所有分支都没有子节点，删掉整个 if
+            if (!hasChildren) {
+                replaceChild(currentNode);
+                return;
+            }
+        }, checkEach = function (each) {
+            // 没内容就干掉
+            if (!each.children) {
+                replaceChild(each);
+            }
+        }, checkPartial = function (partial) {
+            // 没内容就干掉
+            if (!partial.children) {
+                replaceChild(partial);
+            }
+        }, checkElement = function (element) {
+            var tag = element.tag, slot = element.slot, isTemplate = tag === RAW_TEMPLATE;
+            {
+                if (isTemplate) {
+                    if (element.key) {
+                        fatal$1("The \"key\" is not supported in <template>.");
+                    }
+                    else if (element.ref) {
+                        fatal$1("The \"ref\" is not supported in <template>.");
+                    }
+                    else if (element.attrs) {
+                        fatal$1("The attributes and directives are not supported in <template>.");
+                    }
+                    else if (!slot) {
+                        fatal$1("The \"slot\" is required in <template>.");
+                    }
+                }
+            }
+            // 没有子节点，则意味着这个插槽没任何意义
+            if (isTemplate && slot && !element.children) {
+                replaceChild(element);
+            }
+            // <slot /> 如果没写 name，自动加上默认名称
+            else if (tag === RAW_SLOT && !element.name) {
+                element.name = SLOT_NAME_DEFAULT;
+            }
+            else {
+                compatElement(element);
+            }
+        }, checkDirective = function (element, directive) {
+            {
+                // model 不能写在 if 里，影响节点的静态结构
+                if (directive.ns === DIRECTIVE_MODEL) {
+                    if (last(nodeStack) !== element) {
+                        fatal$1("The \"model\" can't be used in an if block.");
+                    }
+                }
+            }
+        }, bindSpecialAttr = function (element, attr) {
+            var name = attr.name, value = attr.value,
+            // 这三个属性值要求是字符串
+            isStringValueRequired = name === RAW_NAME || name === RAW_SLOT;
+            {
+                // 因为要拎出来给 element，所以不能用 if
+                if (last(nodeStack) !== element) {
+                    fatal$1("The \"" + name + "\" can't be used in an if block.");
+                }
+                // 对于所有特殊属性来说，空字符串是肯定不行的，没有任何意义
+                if (value === EMPTY_STRING) {
+                    fatal$1("The value of \"" + name + "\" is empty.");
+                }
+                else if (isStringValueRequired && falsy$1(value)) {
+                    fatal$1("The value of \"" + name + "\" can only be a string literal.");
+                }
+            }
+            element[name] = isStringValueRequired ? value : attr;
+            replaceChild(attr);
+        }, isSpecialAttr = function (element, attr) {
+            return specialAttrs[attr.name]
+                || element.tag === RAW_SLOT && attr.name === RAW_NAME;
+        }, replaceChild = function (oldNode, newNode) {
+            var currentBranch = last(nodeStack), isAttr, list, index;
+            if (currentBranch) {
+                isAttr = currentElement && currentElement === currentBranch;
+                list = isAttr
+                    ? currentBranch.attrs
+                    : currentBranch.children;
+            }
+            else {
+                list = nodeList;
+            }
+            if (list) {
+                index = indexOf(list, oldNode);
+                if (index >= 0) {
+                    if (newNode) {
+                        list[index] = newNode;
+                    }
+                    else {
+                        list.splice(index, 1);
+                        if (currentBranch && !list.length) {
+                            if (isAttr) {
+                                delete currentBranch.attrs;
+                            }
+                            else {
+                                currentBranch.children = UNDEFINED;
+                            }
+                        }
+                    }
+                }
+            }
+        }, addChild = function (node) {
+            /**
+             * <div>
+             *    <input>
+             *    <div></div>
+             * </div>
+             *
+             * <div>
+             *    <input>xxx
+             * </div>
+             */
+            if (!currentElement) {
+                popSelfClosingElementIfNeeded();
+            }
+            var type = node.type, currentBranch = last(nodeStack);
+            // else 系列只是 if 的递进节点，不需要加入 nodeList
+            if (type === ELSE || type === ELSE_IF) {
+                var lastNode = pop(ifStack);
+                if (lastNode) {
+                    // 方便 checkCondition 逆向遍历
+                    node.prev = lastNode;
+                    // lastNode 只能是 if 或 else if 节点
+                    if (lastNode.type === ELSE_IF || lastNode.type === IF) {
+                        lastNode.next = node;
+                        popStack(lastNode.type);
+                        push(ifStack, node);
+                    }
+                    else if (type === ELSE_IF) {
+                        {
+                            fatal$1('The "else" block must not be followed by an "else if" block.');
+                        }
+                    }
+                    else {
+                        fatal$1("The \"else\" block can't appear more than once in a conditional statement.");
+                    }
+                }
+                else {
+                    fatal$1('The "if" block is required.');
+                }
+            }
+            else {
+                if (currentBranch) {
+                    // 这里不能写 currentElement && !currentAttribute，举个例子
+                    //
+                    // <div id="x" {{#if}} name="xx" alt="xx" {{/if}}
+                    //
+                    // 当 name 属性结束后，条件满足，但此时已不是元素属性层级了
+                    if (currentElement && currentBranch.type === ELEMENT) {
+                        // 属性层级不能使用危险插值
+                        {
+                            if (type === EXPRESSION
+                                && !node.safe) {
+                                fatal$1('The dangerous interpolation must be the only child of a HTML element.');
+                            }
+                        }
+                        // node 没法转型，一堆可能的类型怎么转啊...
+                        push(currentElement.attrs || (currentElement.attrs = []), node);
+                    }
+                    else {
+                        var children = currentBranch.children || (currentBranch.children = []), lastChild = last(children);
+                        // 如果表达式是安全插值的字面量，可以优化成字符串
+                        if (type === EXPRESSION
+                            // 在元素的子节点中，则直接转成字符串
+                            && (!currentElement
+                                // 在元素的属性中，如果同级节点大于 0 个（即已经存在一个），则可以转成字符串
+                                || (currentAttribute && children.length > 0))) {
+                            var textNode = toTextNode(node);
+                            if (textNode) {
+                                node = textNode;
+                                type = textNode.type;
+                            }
+                        }
+                        // 连续添加文本节点，则直接合并
+                        if (lastChild
+                            && type === TEXT) {
+                            // 合并两个文本节点
+                            if (lastChild.type === TEXT) {
+                                lastChild.text += node.text;
+                                return;
+                            }
+                            // 前一个是字面量的表达式，也可以合并节点
+                            if (lastChild.type === EXPRESSION) {
+                                var textNode = toTextNode(lastChild);
+                                if (textNode) {
+                                    children[children.length - 1] = textNode;
+                                    textNode.text += node.text;
+                                    return;
+                                }
+                            }
+                        }
+                        {
+                            if (type === EXPRESSION
+                                && !node.safe) {
+                                // 前面不能有别的 child，危险插值必须独占父元素
+                                if (lastChild) {
+                                    fatal$1('The dangerous interpolation must be the only child of a HTML element.');
+                                }
+                                // 危险插值的父节点必须是 html element
+                                else if (currentBranch.type !== ELEMENT
+                                    || currentBranch.isComponent
+                                    || specialTags[currentBranch.tag]) {
+                                    fatal$1('The dangerous interpolation must be the only child of a HTML element.');
+                                }
+                            }
+                            // 后面不能有别的 child，危险插值必须独占父元素
+                            else if (lastChild
+                                && lastChild.type === EXPRESSION
+                                && !lastChild.safe) {
+                                fatal$1('The dangerous interpolation must be the only child of a HTML element.');
+                            }
+                        }
+                        push(children, node);
+                    }
+                }
+                else {
+                    {
+                        if (type === EXPRESSION
+                            && !node.safe) {
+                            fatal$1('The dangerous interpolation must be under a HTML element.');
+                        }
+                    }
+                    push(nodeList, node);
+                }
+                if (type === IF) {
+                    push(ifStack, node);
+                }
+            }
+            if (node.isLeaf) {
+                // 当前树枝节点如果是静态的，一旦加入了一个非静态子节点，改变当前树枝节点的 isStatic
+                // 这里不处理树枝节点的进栈，因为当树枝节点出栈时，还有一次处理机会，那时它的 isStatic 已确定下来，不会再变
+                if (currentBranch) {
+                    if (currentBranch.isStatic && !node.isStatic) {
+                        currentBranch.isStatic = FALSE;
+                    }
+                }
+            }
+            else {
+                push(nodeStack, node);
+            }
+        }, addTextChild = function (text) {
+            // [注意]
+            // 这里不能随便删掉
+            // 因为收集组件的子节点会受影响，举个例子：
+            // <Component>
+            //
+            // </Component>
+            // 按现在的逻辑，这样的组件是没有子节点的，因为在这里过滤掉了，因此该组件没有 slot
+            // 如果这里放开了，组件就会有一个 slot
+            // trim 文本开始和结束位置的换行符
+            text = text.replace(breaklinePattern, EMPTY_STRING);
+            if (text) {
+                addChild(createText(text));
+            }
+        }, toTextNode = function (node) {
+            if (node.safe
+                && node.expr.type === LITERAL) {
+                return createText(toString(node.expr.value));
+            }
+        }, htmlParsers = [
+            function (content) {
+                if (!currentElement) {
+                    var match = content.match(tagPattern);
+                    // 必须以 <tag 开头才能继续
+                    // 如果 <tag 前面有别的字符，会走进第四个 parser
+                    if (match && match.index === 0) {
+                        var tag = match[2];
+                        if (match[1] === RAW_SLASH) {
+                            /**
+                             * 处理可能存在的自闭合元素，如下
+                             *
+                             * <div>
+                             *    <input>
+                             * </div>
+                             */
+                            popSelfClosingElementIfNeeded(tag);
+                            // 等到 > 字符才算真正的结束
+                            currentElement = popStack(ELEMENT, tag);
+                        }
+                        else {
+                            /**
+                             * template 只能写在组件的第一级，如下：
+                             *
+                             * <Component>
+                             *   <template slot="xx">
+                             *     111
+                             *   </template>
+                             * </Component>
+                             */
+                            {
+                                if (tag === RAW_TEMPLATE) {
+                                    var lastNode = last(nodeStack);
+                                    if (!lastNode || !lastNode.isComponent) {
+                                        fatal$1('<template> can only be used within an component children.');
+                                    }
+                                }
+                            }
+                            var node = createElement$1(tag);
+                            addChild(node);
+                            currentElement = node;
+                        }
+                        return match[0];
+                    }
+                }
+            },
+            // 处理标签的 > 或 />，不论开始还是结束标签
+            function (content) {
+                var match = content.match(selfClosingTagPattern);
+                if (match) {
+                    // 处理开始标签的 > 或 />
+                    // 处理结束标签的 >
+                    if (currentElement && !currentAttribute) {
+                        // 自闭合标签
+                        if (match[1] === RAW_SLASH) {
+                            popStack(currentElement.type, currentElement.tag);
+                        }
+                        currentElement = UNDEFINED;
+                        return match[0];
+                    }
+                    // 如果只是写了一个 > 字符
+                    // 比如 <div>></div>
+                    // 则交给其他 parser 处理
+                }
+            },
+            // 处理 attribute directive 的 name 部分
+            function (content) {
+                // 当前在 element 层级
+                if (currentElement && !currentAttribute) {
+                    var match = content.match(attributePattern);
+                    if (match) {
+                        // <div class="11 name="xxx"></div>
+                        // 这里会匹配上 xxx"，match[2] 就是那个引号
+                        {
+                            if (match[2]) {
+                                fatal$1("The previous attribute is not end.");
+                            }
+                        }
+                        var node = void 0, name = match[1];
+                        if (name === DIRECTIVE_MODEL || name === RAW_TRANSITION) {
+                            node = createDirective(EMPTY_STRING, name);
+                        }
+                        // 这里要用 on- 判断前缀，否则 on 太容易重名了
+                        else if (startsWith(name, DIRECTIVE_ON + directiveSeparator)) {
+                            var event = slicePrefix(name, DIRECTIVE_ON + directiveSeparator);
+                            {
+                                if (!event) {
+                                    fatal$1('The event name is required.');
+                                }
+                            }
+                            var _a = camelize(event).split(RAW_DOT), directiveName = _a[0], diectiveModifier = _a[1], extra = _a[2];
+                            node = createDirective(directiveName, DIRECTIVE_EVENT, diectiveModifier);
+                            // on-a.b.c
+                            {
+                                if (string(extra)) {
+                                    fatal$1('Invalid event namespace.');
+                                }
+                            }
+                        }
+                        // 当一个元素绑定了多个事件时，可分别指定每个事件的 lazy
+                        // 当只有一个事件时，可简写成 lazy
+                        // <div on-click="xx" lazy-click
+                        else if (startsWith(name, DIRECTIVE_LAZY)) {
+                            var lazy = slicePrefix(name, DIRECTIVE_LAZY);
+                            if (startsWith(lazy, directiveSeparator)) {
+                                lazy = slicePrefix(lazy, directiveSeparator);
+                            }
+                            node = createDirective(lazy ? camelize(lazy) : EMPTY_STRING, DIRECTIVE_LAZY);
+                        }
+                        // 这里要用 o- 判断前缀，否则 o 太容易重名了
+                        else if (startsWith(name, DIRECTIVE_CUSTOM + directiveSeparator)) {
+                            var custom = slicePrefix(name, DIRECTIVE_CUSTOM + directiveSeparator);
+                            {
+                                if (!custom) {
+                                    fatal$1('The directive name is required.');
+                                }
+                            }
+                            var _b = camelize(custom).split(RAW_DOT), directiveName = _b[0], diectiveModifier = _b[1], extra = _b[2];
+                            node = createDirective(directiveName, DIRECTIVE_CUSTOM, diectiveModifier);
+                            // o-a.b.c
+                            {
+                                if (string(extra)) {
+                                    fatal$1('Invalid directive modifier.');
+                                }
+                            }
+                        }
+                        else {
+                            node = createAttribute$1(currentElement, name);
+                        }
+                        addChild(node);
+                        // 这里先记下，下一个 handler 要匹配结束引号
+                        startQuote = match[3];
+                        // 有属性值才需要设置 currentAttribute，便于后续收集属性值
+                        if (startQuote) {
+                            currentAttribute = node;
+                        }
+                        else {
+                            popStack(node.type);
+                        }
+                        return match[0];
+                    }
+                }
+            },
+            function (content) {
+                var text, match;
+                // 处理 attribute directive 的 value 部分
+                if (currentAttribute && startQuote) {
+                    match = content.match(patternCache$1[startQuote] || (patternCache$1[startQuote] = new RegExp(startQuote)));
+                    // 有结束引号
+                    if (match) {
+                        text = slice(content, 0, match.index);
+                        addTextChild(text);
+                        text += startQuote;
+                        // attribute directive 结束了
+                        // 此时如果一个值都没收集到，需设置一个空字符串
+                        // 否则无法区分 <div a b=""> 中的 a 和 b
+                        if (!currentAttribute.children) {
+                            addChild(createText(EMPTY_STRING));
+                        }
+                        popStack(currentAttribute.type);
+                        currentAttribute = UNDEFINED;
+                    }
+                    // 没有结束引号，整段匹配
+                    // 如 id="1{{x}}2" 中的 1
+                    else if (blockMode !== BLOCK_MODE_NONE) {
+                        text = content;
+                        addTextChild(text);
+                    }
+                    // 没找到结束引号
+                    else {
+                        fatal$1("Unterminated quoted string in \"" + currentAttribute.name + "\".");
+                    }
+                }
+                // 如果不加判断，类似 <div {{...obj}}> 这样写，会把空格当做一个属性
+                // 收集文本只有两处：属性值、元素内容
+                // 属性值通过上面的 if 处理过了，这里只需要处理元素内容
+                else if (!currentElement) {
+                    // 获取 <tag 前面的字符
+                    match = content.match(tagPattern);
+                    // 元素层级的注释都要删掉
+                    if (match) {
+                        text = slice(content, 0, match.index);
+                        if (text) {
+                            addTextChild(text.replace(commentPattern, EMPTY_STRING));
+                        }
+                    }
+                    else {
+                        text = content;
+                        addTextChild(text.replace(commentPattern, EMPTY_STRING));
+                    }
+                }
+                else {
+                    {
+                        if (trim(content)) {
+                            fatal$1("Invalid character is found in <" + currentElement.tag + "> attribute level.");
+                        }
+                    }
+                    text = content;
+                }
+                return text;
+            } ], blockParsers = [
+            // {{#each xx:index}}
+            function (source) {
+                if (startsWith(source, SYNTAX_EACH)) {
+                    {
+                        if (currentElement) {
+                            fatal$1(currentAttribute
+                                ? "The \"each\" block can't be appear in an attribute value."
+                                : "The \"each\" block can't be appear in attribute level.");
+                        }
+                    }
+                    source = slicePrefix(source, SYNTAX_EACH);
+                    var terms = source.replace(/\s+/g, EMPTY_STRING).split(':');
+                    if (terms[0]) {
+                        var literal = trim(terms[0]), index_1 = terms[1] ? trim(terms[1]) : UNDEFINED, match = literal.match(rangePattern);
+                        if (match) {
+                            var parts = literal.split(rangePattern), from = compile(parts[0]), to = compile(parts[2]);
+                            if (from && to) {
+                                return createEach(from, to, trim(match[1]) === '=>', index_1);
+                            }
+                        }
+                        else {
+                            var expr = compile(literal);
+                            if (expr) {
+                                return createEach(expr, UNDEFINED, FALSE, index_1);
+                            }
+                        }
+                    }
+                    {
+                        fatal$1("Invalid each");
+                    }
+                }
+            },
+            // {{#import name}}
+            function (source) {
+                if (startsWith(source, SYNTAX_IMPORT)) {
+                    source = slicePrefix(source, SYNTAX_IMPORT);
+                    if (source) {
+                        if (!currentElement) {
+                            return createImport(source);
+                        }
+                        else {
+                            fatal$1(currentAttribute
+                                ? "The \"import\" block can't be appear in an attribute value."
+                                : "The \"import\" block can't be appear in attribute level.");
+                        }
+                    }
+                    {
+                        fatal$1("Invalid import");
+                    }
+                }
+            },
+            // {{#partial name}}
+            function (source) {
+                if (startsWith(source, SYNTAX_PARTIAL)) {
+                    source = slicePrefix(source, SYNTAX_PARTIAL);
+                    if (source) {
+                        if (!currentElement) {
+                            return createPartial(source);
+                        }
+                        else {
+                            fatal$1(currentAttribute
+                                ? "The \"partial\" block can't be appear in an attribute value."
+                                : "The \"partial\" block can't be appear in attribute level.");
+                        }
+                    }
+                    {
+                        fatal$1("Invalid partial");
+                    }
+                }
+            },
+            // {{#if expr}}
+            function (source) {
+                if (startsWith(source, SYNTAX_IF)) {
+                    source = slicePrefix(source, SYNTAX_IF);
+                    var expr = compile(source);
+                    if (expr) {
+                        return createIf(expr);
+                    }
+                    {
+                        fatal$1("Invalid if");
+                    }
+                }
+            },
+            // {{else if expr}}
+            function (source) {
+                if (startsWith(source, SYNTAX_ELSE_IF)) {
+                    source = slicePrefix(source, SYNTAX_ELSE_IF);
+                    var expr = compile(source);
+                    if (expr) {
+                        return createElseIf(expr);
+                    }
+                    {
+                        fatal$1("Invalid else if");
+                    }
+                }
+            },
+            // {{else}}
+            function (source) {
+                if (startsWith(source, SYNTAX_ELSE)) {
+                    source = slicePrefix(source, SYNTAX_ELSE);
+                    if (!trim(source)) {
+                        return createElse();
+                    }
+                    {
+                        fatal$1("The \"else\" must not be followed by anything.");
+                    }
+                }
+            },
+            // {{...obj}}
+            function (source) {
+                if (startsWith(source, SYNTAX_SPREAD)) {
+                    source = slicePrefix(source, SYNTAX_SPREAD);
+                    var expr = compile(source);
+                    if (expr) {
+                        if (currentElement && currentElement.isComponent) {
+                            return createSpread(expr, expr.type === IDENTIFIER);
+                        }
+                        else {
+                            fatal$1("The spread can only be used by a component.");
+                        }
+                    }
+                    {
+                        fatal$1("Invalid spread");
+                    }
+                }
+            },
+            // {{expr}}
+            function (source) {
+                if (!SYNTAX_COMMENT.test(source)) {
+                    source = trim(source);
+                    var expr = compile(source);
+                    if (expr) {
+                        return createExpression(expr, blockMode === BLOCK_MODE_SAFE);
+                    }
+                    {
+                        fatal$1("Invalid expression");
+                    }
+                }
+            } ], parseHtml = function (code) {
+            while (code) {
+                each(htmlParsers, function (parse) {
+                    var match = parse(code);
+                    if (match) {
+                        code = slice(code, match.length);
+                        return FALSE;
+                    }
+                });
+            }
+        }, parseBlock = function (code) {
+            if (charAt(code) === RAW_SLASH) {
+                /**
+                 * 处理可能存在的自闭合元素，如下
+                 *
+                 * {{#if xx}}
+                 *    <input>
+                 * {{/if}}
+                 */
+                popSelfClosingElementIfNeeded();
+                var name = slice(code, 1);
+                var type = name2Type[name], isCondition = FALSE;
+                if (type === IF) {
+                    var node_1 = pop(ifStack);
+                    if (node_1) {
+                        type = node_1.type;
+                        isCondition = TRUE;
+                    }
+                    else {
+                        fatal$1("The \"if\" block is closing, but it's not open yet.");
+                    }
+                }
+                var node = popStack(type);
+                if (node && isCondition) {
+                    checkCondition(node);
+                }
+            }
+            else {
+                // 开始下一个 block 或表达式
+                each(blockParsers, function (parse) {
+                    var node = parse(code);
+                    if (node) {
+                        addChild(node);
+                        return FALSE;
+                    }
+                });
+            }
+        }, closeBlock = function () {
+            // 确定开始和结束定界符能否配对成功，即 {{ 对 }}，{{{ 对 }}}
+            // 这里不能动 openBlockIndex 和 closeBlockIndex，因为等下要用他俩 slice
+            index = closeBlockIndex + 2;
+            // 这里要用 <=，因为很可能到头了
+            if (index <= length) {
+                if (index < length && charAt(content, index) === '}') {
+                    if (blockMode === BLOCK_MODE_UNSAFE) {
+                        nextIndex = index + 1;
+                    }
+                    else {
+                        fatal$1("{{ and }}} is not a pair.");
+                    }
+                }
+                else {
+                    if (blockMode === BLOCK_MODE_SAFE) {
+                        nextIndex = index;
+                    }
+                    else {
+                        fatal$1("{{{ and }} is not a pair.");
+                    }
+                }
+                pop(blockStack);
+                // }} 左侧的位置
+                addIndex(closeBlockIndex);
+                openBlockIndex = indexOf$1(content, '{{', nextIndex);
+                closeBlockIndex = indexOf$1(content, '}}', nextIndex);
+                // 如果碰到连续的结束定界符，继续 close
+                if (closeBlockIndex >= nextIndex
+                    && (openBlockIndex < 0 || closeBlockIndex < openBlockIndex)) {
+                    return closeBlock();
+                }
+            }
+            else {
+                // 到头了
+                return TRUE;
+            }
+        }, addIndex = function (index) {
+            if (!blockStack.length) {
+                push(indexList, index);
+            }
+        };
+        // 因为存在 mustache 注释内包含插值的情况
+        // 这里把流程设计为先标记切片的位置，标记过程中丢弃无效的 block
+        // 最后处理有效的 block
+        while (TRUE) {
+            addIndex(nextIndex);
+            openBlockIndex = indexOf$1(content, '{{', nextIndex);
+            if (openBlockIndex >= nextIndex) {
+                blockMode = BLOCK_MODE_SAFE;
+                // {{ 左侧的位置
+                addIndex(openBlockIndex);
+                // 跳过 {{
+                openBlockIndex += 2;
+                // {{ 后面总得有内容吧
+                if (openBlockIndex < length) {
+                    if (charAt(content, openBlockIndex) === '{') {
+                        blockMode = BLOCK_MODE_UNSAFE;
+                        openBlockIndex++;
+                    }
+                    // {{ 右侧的位置
+                    addIndex(openBlockIndex);
+                    // block 是否安全
+                    addIndex(blockMode);
+                    // 打开一个 block 就入栈一个
+                    push(blockStack, TRUE);
+                    if (openBlockIndex < length) {
+                        closeBlockIndex = indexOf$1(content, '}}', openBlockIndex);
+                        if (closeBlockIndex >= openBlockIndex) {
+                            // 注释可以嵌套，如 {{！  {{xx}} {{! {{xx}} }}  }}
+                            nextIndex = indexOf$1(content, '{{', openBlockIndex);
+                            if (nextIndex < 0 || closeBlockIndex < nextIndex) {
+                                if (closeBlock()) {
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            fatal$1('The end delimiter is not found.');
+                        }
+                    }
+                    else {
+                        // {{{ 后面没字符串了？
+                        fatal$1('Unterminated template literal.');
+                    }
+                }
+                else {
+                    // {{ 后面没字符串了？
+                    fatal$1('Unterminated template literal.');
+                }
+            }
+            else {
+                break;
+            }
+        }
+        for (var i = 0, length_1 = indexList.length; i < length_1; i += 5) {
+            index = indexList[i];
+            // {{ 左侧的位置
+            openBlockIndex = indexList[i + 1];
+            if (openBlockIndex) {
+                parseHtml(slice(content, index, openBlockIndex));
+            }
+            // {{ 右侧的位置
+            openBlockIndex = indexList[i + 2];
+            blockMode = indexList[i + 3];
+            closeBlockIndex = indexList[i + 4];
+            if (closeBlockIndex) {
+                code = trim(slice(content, openBlockIndex, closeBlockIndex));
+                // 不用处理 {{ }} 和 {{{ }}} 这种空 block
+                if (code) {
+                    parseBlock(code);
+                }
+            }
+            else {
+                blockMode = BLOCK_MODE_NONE;
+                parseHtml(slice(content, index));
+            }
+        }
+        if (nodeStack.length) {
+            /**
+             * 处理可能存在的自闭合元素，如下
+             *
+             * <input>
+             */
+            popSelfClosingElementIfNeeded();
+            {
+                if (nodeStack.length) {
+                    fatal$1('Some nodes is still in the stack.');
+                }
+            }
+        }
+        if (nodeList.length > 0) {
+            removeComment(nodeList);
+        }
+        return nodeList;
+    }
 
-// 全局注册内置指令
-Yox.directive({ event: bindEvent, model: model, binding: binding });
+    var UNDEFINED$1 = '$0';
+    var NULL$1 = '$1';
+    var TRUE$1 = '$2';
+    var FALSE$1 = '$3';
+    var COMMA = ',';
+    var COLON = ':';
+    var QUESTION = '?';
+    var EMPTY = '""';
+    var RETURN = 'return ';
+    /**
+     * 目的是 保证调用参数顺序稳定，减少运行时判断
+     *
+     * [a, undefined, undefined] => [a]
+     * [a, undefined, b, undefined] => [a, undefined, b]
+     */
+    function trimArgs(list) {
+        var args = [], removable = TRUE;
+        each(list, function (arg) {
+            if (isDef(arg)) {
+                removable = FALSE;
+                unshift(args, arg);
+            }
+            else if (!removable) {
+                unshift(args, UNDEFINED$1);
+            }
+        }, TRUE);
+        return args;
+    }
+    /**
+     * 确保表达式的优先级是正确的
+     */
+    function toGroup(code) {
+        // 数组不用加括号
+        if (/^\[[^\]]+\]$/.test(code)
+            // 对象不用加括号
+            || /^{[^\}]+}$/.test(code)
+            // 字符串不用加括号
+            || /^"[^"]+\"$/.test(code)
+            // 一元表达式不用加括号
+            || /^(?:[-+~!]|!!)(?:[\$\w]+|\([\$\w]+\))$/.test(code)
+            // 函数调用不用加括号
+            || /^\w+\([^\)\{\}]*\)$/.test(code)
+            // 避免重复加括号
+            || /^\([^\)]+\)$/.test(code)) {
+            return code;
+        }
+        return /[-+*\/%<>=!&^|,?:]/.test(code)
+            ? "(" + code + ")"
+            : code;
+    }
+    /**
+     * 把 [ 'key1:value1', 'key2:value2' ] 格式转成 `{key1:value1,key2:value2}`
+     */
+    function toObject$1(fields) {
+        return "{" + join(fields, COMMA) + "}";
+    }
+    /**
+     * 把 [ 'item1', 'item2' ] 格式转成 `['item1','item2']`
+     */
+    function toArray$1(items) {
+        return "[" + join(items, COMMA) + "]";
+    }
+    /**
+     * 输出函数调用的格式
+     */
+    function toCall(name, args) {
+        var code = args ? join(trimArgs(args), COMMA) : EMPTY_STRING;
+        return name + "(" + code + ")";
+    }
+    /**
+     * 输出为字符串格式
+     */
+    function toString$1(value) {
+        return value === TRUE
+            ? TRUE$1
+            : value === FALSE
+                ? FALSE$1
+                : value === NULL
+                    ? NULL$1
+                    : value === UNDEFINED
+                        ? UNDEFINED$1
+                        : JSON.stringify(value);
+    }
+    /**
+     * 输出为匿名函数格式
+     */
+    function toFunction(args, code) {
+        return RAW_FUNCTION + "(" + args + "){var " + UNDEFINED$1 + "=void 0," + NULL$1 + "=null," + TRUE$1 + "=!0," + FALSE$1 + "=!1;" + RETURN + code + "}";
+    }
 
-return Yox;
+    function generate(node, renderIdentifier, renderMemberKeypath, renderMemberLiteral, renderCall, holder, depIgnore, stack, inner) {
+        var value, isSpecialNode = FALSE,
+        // 如果是内部临时值，不需要 holder
+        needHolder = holder && !inner, generateChildNode = function (node) {
+            return generate(node, renderIdentifier, renderMemberKeypath, renderMemberLiteral, renderCall, holder, depIgnore, stack, TRUE);
+        };
+        switch (node.type) {
+            case LITERAL:
+                value = toString$1(node.value);
+                break;
+            case UNARY:
+                value = node.operator + generateChildNode(node.node);
+                break;
+            case BINARY:
+                value = toGroup(generateChildNode(node.left))
+                    + node.operator
+                    + toGroup(generateChildNode(node.right));
+                break;
+            case TERNARY:
+                // 虽然三元表达式优先级最低，但无法保证表达式内部没有 ,
+                value = toGroup(generateChildNode(node.test))
+                    + QUESTION
+                    + toGroup(generateChildNode(node.yes))
+                    + COLON
+                    + toGroup(generateChildNode(node.no));
+                break;
+            case ARRAY:
+                var items = node.nodes.map(generateChildNode);
+                value = toArray$1(items);
+                break;
+            case OBJECT:
+                var fields_1 = [];
+                each(node.keys, function (key, index) {
+                    push(fields_1, toString$1(key)
+                        + COLON
+                        + generateChildNode(node.values[index]));
+                });
+                value = toObject$1(fields_1);
+                break;
+            case IDENTIFIER:
+                isSpecialNode = TRUE;
+                var identifier = node;
+                value = toCall(renderIdentifier, [
+                    toString$1(identifier.name),
+                    toString$1(identifier.lookup),
+                    identifier.offset > 0 ? toString$1(identifier.offset) : UNDEFINED,
+                    needHolder ? TRUE$1 : UNDEFINED,
+                    depIgnore ? TRUE$1 : UNDEFINED,
+                    stack ? stack : UNDEFINED
+                ]);
+                break;
+            case MEMBER:
+                isSpecialNode = TRUE;
+                var _a = node, lead = _a.lead, keypath = _a.keypath, nodes = _a.nodes, lookup = _a.lookup, offset = _a.offset, stringifyNodes = nodes ? nodes.map(generateChildNode) : [];
+                if (lead.type === IDENTIFIER) {
+                    // 只能是 a[b] 的形式，因为 a.b 已经在解析时转换成 Identifier 了
+                    value = toCall(renderIdentifier, [
+                        toCall(renderMemberKeypath, [
+                            toString$1(lead.name),
+                            toArray$1(stringifyNodes)
+                        ]),
+                        toString$1(lookup),
+                        offset > 0 ? toString$1(offset) : UNDEFINED,
+                        needHolder ? TRUE$1 : UNDEFINED,
+                        depIgnore ? TRUE$1 : UNDEFINED,
+                        stack ? stack : UNDEFINED
+                    ]);
+                }
+                else if (nodes) {
+                    // "xx"[length]
+                    // format()[a][b]
+                    value = toCall(renderMemberLiteral, [
+                        generateChildNode(lead),
+                        UNDEFINED,
+                        toArray$1(stringifyNodes),
+                        needHolder ? TRUE$1 : UNDEFINED
+                    ]);
+                }
+                else {
+                    // "xx".length
+                    // format().a.b
+                    value = toCall(renderMemberLiteral, [
+                        generateChildNode(lead),
+                        toString$1(keypath),
+                        UNDEFINED,
+                        needHolder ? TRUE$1 : UNDEFINED ]);
+                }
+                break;
+            default:
+                isSpecialNode = TRUE;
+                var args = node.args;
+                value = toCall(renderCall, [
+                    generateChildNode(node.name),
+                    args.length
+                        ? toArray$1(args.map(generateChildNode))
+                        : UNDEFINED,
+                    needHolder ? TRUE$1 : UNDEFINED
+                ]);
+                break;
+        }
+        if (!needHolder) {
+            return value;
+        }
+        // 最外层的值，且 holder 为 true
+        return isSpecialNode
+            ? value
+            : toObject$1([
+                RAW_VALUE + COLON + value
+            ]);
+    }
 
-})));
+    /**
+     * 这里的难点在于处理 Element 的 children，举个例子：
+     *
+     * ['1', _x(expr), _l(expr, index, generate), _x(expr) ? ['1', _x(expr), _l(expr, index, generate)] : y]
+     *
+     * children 用数组表示，其中表达式求出的值可能是任意类型，比如数组或对象，我们无法控制表达式的值最终会是什么类型
+     *
+     * 像 each 或 import 这样的语法，内部其实会产生一个 vnode 数组，这里就出现了两个难点：
+     *
+     * 1. 如何区分 each 或其他语法产生的数组和表达式求值的数组
+     * 2. 如何避免频繁的创建数组
+     *
+     * 我能想到的解决方案是，根据当前节点类型，如果是元素，则确保 children 的每一项的值序列化后都是函数调用的形式
+     *
+     * 这样能确保是从左到右依次执行，也就便于在内部创建一个公共数组，执行一个函数就收集一个值，而不管那个值到底是什么类型
+     *
+     */
+    // 是否正在收集子节点
+    var collectStack = [],
+    // 是否正在收集字符串类型的值
+    stringStack = [], nodeGenerator = {}, RENDER_EXPRESSION_IDENTIFIER = 'a', RENDER_EXPRESSION_MEMBER_KEYPATH = 'b', RENDER_EXPRESSION_MEMBER_LITERAL = 'c', RENDER_EXPRESSION_CALL = 'd', RENDER_TEXT_VNODE = 'e', RENDER_ATTRIBUTE_VNODE = 'f', RENDER_PROPERTY_VNODE = 'g', RENDER_LAZY_VNODE = 'h', RENDER_TRANSITION_VNODE = 'i', RENDER_BINDING_VNODE = 'j', RENDER_MODEL_VNODE = 'k', RENDER_EVENT_METHOD_VNODE = 'l', RENDER_EVENT_NAME_VNODE = 'm', RENDER_DIRECTIVE_VNODE = 'n', RENDER_SPREAD_VNODE = 'o', RENDER_COMMENT_VNODE = 'p', RENDER_ELEMENT_VNODE = 'q', RENDER_COMPONENT_VNODE = 'r', RENDER_SLOT = 's', RENDER_PARTIAL = 't', RENDER_IMPORT = 'u', RENDER_EACH = 'v', RENDER_RANGE = 'w', RENDER_EQUAL_RANGE = 'x', ARG_STACK = 'y';
+    function renderExpression(expr, holder, depIgnore, stack) {
+        return generate(expr, RENDER_EXPRESSION_IDENTIFIER, RENDER_EXPRESSION_MEMBER_KEYPATH, RENDER_EXPRESSION_MEMBER_LITERAL, RENDER_EXPRESSION_CALL, holder, depIgnore, stack);
+    }
+    function stringifyObject(obj) {
+        var fields = [];
+        each$2(obj, function (value, key) {
+            if (isDef(value)) {
+                push(fields, toString$1(key) + COLON + value);
+            }
+        });
+        return toObject$1(fields);
+    }
+    function stringifyFunction(result, arg) {
+        return RAW_FUNCTION + "(" + (arg || EMPTY_STRING) + "){" + (result || EMPTY_STRING) + "}";
+    }
+    function stringifyExpressionVnode(expr) {
+        return toCall(RENDER_TEXT_VNODE, [
+            renderExpression(expr)
+        ]);
+    }
+    function stringifyExpressionArg(expr) {
+        return renderExpression(expr, FALSE, FALSE, ARG_STACK);
+    }
+    function stringifyValue(value, expr, children) {
+        if (isDef(value)) {
+            return toString$1(value);
+        }
+        // 只有一个表达式时，保持原始类型
+        if (expr) {
+            return renderExpression(expr);
+        }
+        // 多个值拼接时，要求是字符串
+        if (children) {
+            // 常见的应用场景是序列化 HTML 元素属性值，处理值时要求字符串，在处理属性名这个级别，不要求字符串
+            // compiler 会把原始字符串编译成 value
+            // compiler 会把单个插值编译成 expr
+            // 因此走到这里，一定是多个插值或是单个特殊插值（比如 If)
+            push(stringStack, TRUE);
+            var result = stringifyChildren(children);
+            pop(stringStack);
+            return result;
+        }
+    }
+    function stringifyChildren(children) {
+        var items = children.map(function (child) {
+            return nodeGenerator[child.type](child);
+        });
+        // 字符串拼接涉及表达式的优先级问题，这里先统一成数组，字符串拼接改成 array.join 有利于一致性
+        return last(stringStack) && items.length > 1
+            ? toArray$1(items) + (".join(" + EMPTY + ")")
+            : join(items, COMMA);
+    }
+    function stringifyIf(node) {
+        var children = node.children, next = node.next,
+        // 是否正在收集子节点
+        defaultValue = last(collectStack)
+            ? toCall(RENDER_COMMENT_VNODE)
+            // 要求是字符串
+            : last(stringStack)
+                ? EMPTY
+                : UNDEFINED$1, yes, no;
+        if (children) {
+            yes = stringifyChildren(children);
+        }
+        if (next) {
+            if (next.type === ELSE_IF) {
+                no = stringifyIf(next);
+            }
+            else if (next.children) {
+                no = stringifyChildren(next.children);
+            }
+        }
+        if (!yes && !no) {
+            return defaultValue;
+        }
+        // 虽然三元表达式优先级最低，但无法保证表达式内部没有 ,
+        // 因此每一个分支都要调用 toGroup
+        return toGroup(renderExpression(node.expr))
+            + QUESTION
+            + toGroup(yes || defaultValue)
+            + COLON
+            + toGroup(no || defaultValue);
+    }
+    function getComponentSlots(children) {
+        var result = {}, slots = {}, addSlot = function (name, nodes) {
+            if (!falsy(nodes)) {
+                name = SLOT_DATA_PREFIX + name;
+                push(slots[name] || (slots[name] = []), nodes);
+            }
+        };
+        each(children, function (child) {
+            // 找到具名 slot
+            if (child.type === ELEMENT) {
+                var element = child;
+                if (element.slot) {
+                    addSlot(element.slot, element.tag === RAW_TEMPLATE
+                        ? element.children
+                        : [element]);
+                    return;
+                }
+            }
+            // 匿名 slot，名称统一为 children
+            addSlot(SLOT_NAME_DEFAULT, [child]);
+        });
+        each$2(slots, function (children, name) {
+            result[name] = stringifyFunction(stringifyChildren(children));
+        });
+        if (!falsy$2(result)) {
+            return stringifyObject(result);
+        }
+    }
+    nodeGenerator[ELEMENT] = function (node) {
+        var tag = node.tag, isComponent = node.isComponent, ref = node.ref, key = node.key, html = node.html, attrs = node.attrs, children = node.children, staticTag, dynamicTag, outputAttrs, outputHTML, outputChilds, outputSlots, outputStatic, outputOption, outputStyle, outputSvg, outputRef, outputKey;
+        if (tag === RAW_SLOT) {
+            var args = [toString$1(SLOT_DATA_PREFIX + node.name)];
+            if (children) {
+                push(args, stringifyFunction(stringifyChildren(children)));
+            }
+            return toCall(RENDER_SLOT, args);
+        }
+        // 如果以 $ 开头，表示动态组件
+        if (codeAt(tag) === 36) {
+            dynamicTag = toString$1(slice(tag, 1));
+        }
+        else {
+            staticTag = toString$1(tag);
+        }
+        push(collectStack, FALSE);
+        if (attrs) {
+            var list_1 = [];
+            each(attrs, function (attr) {
+                push(list_1, nodeGenerator[attr.type](attr));
+            });
+            if (list_1.length) {
+                outputAttrs = stringifyFunction(join(list_1, COMMA));
+            }
+        }
+        if (children) {
+            collectStack[collectStack.length - 1] = TRUE;
+            if (isComponent) {
+                outputSlots = getComponentSlots(children);
+            }
+            else {
+                outputChilds = stringifyFunction(stringifyChildren(children));
+            }
+        }
+        pop(collectStack);
+        if (html) {
+            outputHTML = string(html)
+                ? toString$1(html)
+                : renderExpression(html);
+        }
+        outputStatic = node.isStatic ? TRUE$1 : UNDEFINED;
+        outputOption = node.isOption ? TRUE$1 : UNDEFINED;
+        outputStyle = node.isStyle ? TRUE$1 : UNDEFINED;
+        outputSvg = node.isSvg ? TRUE$1 : UNDEFINED;
+        outputRef = ref ? stringifyValue(ref.value, ref.expr, ref.children) : UNDEFINED;
+        outputKey = key ? stringifyValue(key.value, key.expr, key.children) : UNDEFINED;
+        if (isComponent) {
+            return toCall(RENDER_COMPONENT_VNODE,
+            // 最常用 => 最不常用排序
+            [
+                staticTag,
+                outputAttrs,
+                outputSlots,
+                outputRef,
+                outputKey,
+                dynamicTag ]);
+        }
+        return toCall(RENDER_ELEMENT_VNODE,
+        // 最常用 => 最不常用排序
+        [
+            staticTag,
+            outputAttrs,
+            outputChilds,
+            outputStatic,
+            outputOption,
+            outputStyle,
+            outputSvg,
+            outputHTML,
+            outputRef,
+            outputKey ]);
+    };
+    nodeGenerator[ATTRIBUTE] = function (node) {
+        var value = node.binding
+            ? toCall(RENDER_BINDING_VNODE, [
+                toString$1(node.name),
+                renderExpression(node.expr, TRUE, TRUE)
+            ])
+            : stringifyValue(node.value, node.expr, node.children);
+        return toCall(RENDER_ATTRIBUTE_VNODE, [
+            toString$1(node.name),
+            value
+        ]);
+    };
+    nodeGenerator[PROPERTY] = function (node) {
+        var value = node.binding
+            ? toCall(RENDER_BINDING_VNODE, [
+                toString$1(node.name),
+                renderExpression(node.expr, TRUE, TRUE),
+                toString$1(node.hint)
+            ])
+            : stringifyValue(node.value, node.expr, node.children);
+        return toCall(RENDER_PROPERTY_VNODE, [
+            toString$1(node.name),
+            value
+        ]);
+    };
+    nodeGenerator[DIRECTIVE] = function (node) {
+        var ns = node.ns, name = node.name, key = node.key, value = node.value, expr = node.expr, modifier = node.modifier;
+        if (ns === DIRECTIVE_LAZY) {
+            return toCall(RENDER_LAZY_VNODE, [
+                toString$1(name),
+                toString$1(value)
+            ]);
+        }
+        // <div transition="name">
+        if (ns === RAW_TRANSITION) {
+            return toCall(RENDER_TRANSITION_VNODE, [
+                toString$1(value)
+            ]);
+        }
+        // <input model="id">
+        if (ns === DIRECTIVE_MODEL) {
+            return toCall(RENDER_MODEL_VNODE, [
+                renderExpression(expr, TRUE, TRUE)
+            ]);
+        }
+        var renderName = RENDER_DIRECTIVE_VNODE, args = [
+            toString$1(name),
+            toString$1(key),
+            toString$1(modifier),
+            toString$1(value) ];
+        // 尽可能把表达式编译成函数，这样对外界最友好
+        //
+        // 众所周知，事件指令会编译成函数，对于自定义指令来说，也要尽可能编译成函数
+        //
+        // 比如 o-tap="method()" 或 o-log="{'id': '11'}"
+        // 前者会编译成 handler（调用方法），后者会编译成 getter（取值）
+        if (expr) {
+            // 如果表达式明确是在调用方法，则序列化成 method + args 的形式
+            if (expr.type === CALL) {
+                if (ns === DIRECTIVE_EVENT) {
+                    renderName = RENDER_EVENT_METHOD_VNODE;
+                }
+                // compiler 保证了函数调用的 name 是标识符
+                push(args, toString$1(expr.name.name));
+                // 为了实现运行时动态收集参数，这里序列化成函数
+                if (!falsy(expr.args)) {
+                    // args 函数在触发事件时调用，调用时会传入它的作用域，因此这里要加一个参数
+                    push(args, stringifyFunction(RETURN + toArray$1(expr.args.map(stringifyExpressionArg)), ARG_STACK));
+                }
+            }
+            // 不是调用方法，就是事件转换
+            else if (ns === DIRECTIVE_EVENT) {
+                renderName = RENDER_EVENT_NAME_VNODE;
+                push(args, toString$1(expr.raw));
+            }
+            else if (ns === DIRECTIVE_CUSTOM) {
+                // 取值函数
+                // getter 函数在触发事件时调用，调用时会传入它的作用域，因此这里要加一个参数
+                if (expr.type !== LITERAL) {
+                    push(args, UNDEFINED); // method
+                    push(args, UNDEFINED); // args
+                    push(args, stringifyFunction(RETURN + stringifyExpressionArg(expr), ARG_STACK));
+                }
+            }
+        }
+        return toCall(renderName, args);
+    };
+    nodeGenerator[SPREAD] = function (node) {
+        return toCall(RENDER_SPREAD_VNODE, [
+            renderExpression(node.expr, TRUE, node.binding)
+        ]);
+    };
+    nodeGenerator[TEXT] = function (node) {
+        var result = toString$1(node.text);
+        return last(collectStack)
+            ? toCall(RENDER_TEXT_VNODE, [
+                result
+            ])
+            : result;
+    };
+    nodeGenerator[EXPRESSION] = function (node) {
+        return last(collectStack)
+            ? stringifyExpressionVnode(node.expr)
+            : renderExpression(node.expr);
+    };
+    nodeGenerator[IF] = function (node) {
+        return stringifyIf(node);
+    };
+    nodeGenerator[EACH] = function (node) {
+        // compiler 保证了 children 一定有值
+        var children = stringifyFunction(stringifyChildren(node.children));
+        // 遍历区间
+        if (node.to) {
+            if (node.equal) {
+                return toCall(RENDER_EQUAL_RANGE, [
+                    children,
+                    renderExpression(node.from),
+                    renderExpression(node.to),
+                    toString$1(node.index)
+                ]);
+            }
+            return toCall(RENDER_RANGE, [
+                children,
+                renderExpression(node.from),
+                renderExpression(node.to),
+                toString$1(node.index)
+            ]);
+        }
+        // 遍历数组和对象
+        return toCall(RENDER_EACH, [
+            children,
+            renderExpression(node.from, TRUE),
+            toString$1(node.index)
+        ]);
+    };
+    nodeGenerator[PARTIAL] = function (node) {
+        return toCall(RENDER_PARTIAL, [
+            toString$1(node.name),
+            // compiler 保证了 children 一定有值
+            stringifyFunction(stringifyChildren(node.children))
+        ]);
+    };
+    nodeGenerator[IMPORT] = function (node) {
+        return toCall(RENDER_IMPORT, [
+            toString$1(node.name)
+        ]);
+    };
+    // 序列化代码的参数列表
+    var codeArgs;
+    function generate$1(node) {
+        if (!codeArgs) {
+            codeArgs = join([
+                RENDER_EXPRESSION_IDENTIFIER,
+                RENDER_EXPRESSION_MEMBER_KEYPATH,
+                RENDER_EXPRESSION_MEMBER_LITERAL,
+                RENDER_EXPRESSION_CALL,
+                RENDER_TEXT_VNODE,
+                RENDER_ATTRIBUTE_VNODE,
+                RENDER_PROPERTY_VNODE,
+                RENDER_LAZY_VNODE,
+                RENDER_TRANSITION_VNODE,
+                RENDER_BINDING_VNODE,
+                RENDER_MODEL_VNODE,
+                RENDER_EVENT_METHOD_VNODE,
+                RENDER_EVENT_NAME_VNODE,
+                RENDER_DIRECTIVE_VNODE,
+                RENDER_SPREAD_VNODE,
+                RENDER_COMMENT_VNODE,
+                RENDER_ELEMENT_VNODE,
+                RENDER_COMPONENT_VNODE,
+                RENDER_SLOT,
+                RENDER_PARTIAL,
+                RENDER_IMPORT,
+                RENDER_EACH,
+                RENDER_RANGE,
+                RENDER_EQUAL_RANGE ], COMMA);
+        }
+        return toFunction(codeArgs, nodeGenerator[node.type](node));
+    }
+
+    function setPair(target, name, key, value) {
+        var data = target[name] || (target[name] = {});
+        data[key] = value;
+    }
+    var KEY_DIRECTIVES = 'directives';
+    function render(context, observer, template, filters, partials, directives, transitions) {
+        var $scope = { $keypath: EMPTY_STRING }, $stack = [$scope], $vnode, vnodeStack = [], localPartials = {}, renderedSlots = {}, findValue = function (stack, index, key, lookup, depIgnore, defaultKeypath) {
+            var scope = stack[index], keypath = join$1(scope.$keypath, key), value = stack, holder$1 = holder;
+            // 如果最后还是取不到值，用回最初的 keypath
+            if (defaultKeypath === UNDEFINED) {
+                defaultKeypath = keypath;
+            }
+            // 如果取的是 scope 上直接有的数据，如 $keypath
+            if (scope[key] !== UNDEFINED) {
+                value = scope[key];
+            }
+            // 如果取的是数组项，则要更进一步
+            else if (scope.$item !== UNDEFINED) {
+                scope = scope.$item;
+                // 到这里 scope 可能为空
+                // 比如 new Array(10) 然后遍历这个数组，每一项肯定是空
+                // 取 this
+                if (key === EMPTY_STRING) {
+                    value = scope;
+                }
+                // 取 this.xx
+                else if (scope != NULL && scope[key] !== UNDEFINED) {
+                    value = scope[key];
+                }
+            }
+            if (value === stack) {
+                // 正常取数据
+                value = observer.get(keypath, stack, depIgnore);
+                if (value === stack) {
+                    if (lookup && index > 0) {
+                        {
+                            debug("The data \"" + keypath + "\" can't be found in the current context, start looking up.");
+                        }
+                        return findValue(stack, index - 1, key, lookup, depIgnore, defaultKeypath);
+                    }
+                    // 到头了，最后尝试过滤器
+                    var result = get(filters, key);
+                    if (result) {
+                        holder$1 = result;
+                        holder$1.keypath = key;
+                    }
+                    else {
+                        holder$1.value = UNDEFINED;
+                        holder$1.keypath = defaultKeypath;
+                    }
+                    return holder$1;
+                }
+            }
+            holder$1.value = value;
+            holder$1.keypath = keypath;
+            return holder$1;
+        }, createEventListener = function (type) {
+            return function (event, data) {
+                // 事件名称相同的情况，只可能是监听 DOM 事件，比如写一个 Button 组件
+                // <button on-click="click"> 纯粹的封装了一个原生 click 事件
+                if (type !== event.type) {
+                    event = new CustomEvent(type, event);
+                }
+                context.fire(event, data);
+            };
+        }, createMethodListener = function (name, args, stack) {
+            return function (event, data) {
+                var method = context[name];
+                if (event instanceof CustomEvent) {
+                    var result = UNDEFINED;
+                    if (args) {
+                        var scope = last(stack);
+                        if (scope) {
+                            scope.$event = event;
+                            scope.$data = data;
+                            result = execute(method, context, args(stack));
+                            scope.$event =
+                                scope.$data = UNDEFINED;
+                        }
+                    }
+                    else {
+                        result = execute(method, context, data ? [event, data] : event);
+                    }
+                    return result;
+                }
+                else {
+                    execute(method, context, args ? args(stack) : UNDEFINED);
+                }
+            };
+        }, createGetter = function (getter, stack) {
+            return function () {
+                return getter(stack);
+            };
+        }, renderTextVnode = function (value) {
+            var vnodeList = last(vnodeStack);
+            if (vnodeList) {
+                var text = toString(value);
+                var lastVnode = last(vnodeList);
+                if (lastVnode && lastVnode.isText) {
+                    lastVnode.text += text;
+                }
+                else {
+                    // 注释节点标签名是 '!'，这里区分一下
+                    var textVnode = {
+                        tag: '#',
+                        isText: TRUE,
+                        text: text,
+                        context: context,
+                        keypath: $scope.$keypath
+                    };
+                    push(vnodeList, textVnode);
+                }
+            }
+        }, renderAttributeVnode = function (name, value) {
+            setPair($vnode, $vnode.isComponent ? 'props' : 'nativeAttrs', name, value);
+        }, renderPropertyVnode = function (name, value) {
+            setPair($vnode, 'nativeProps', name, value);
+        }, renderLazyVnode = function (name, value) {
+            setPair($vnode, 'lazy', name, value);
+        }, renderTransitionVnode = function (name) {
+            $vnode.transition = transitions[name];
+            {
+                if (!$vnode.transition) {
+                    fatal("The transition \"" + name + "\" can't be found.");
+                }
+            }
+        }, renderBindingVnode = function (name, holder, hint) {
+            var key = join$1(DIRECTIVE_BINDING, name);
+            setPair($vnode, KEY_DIRECTIVES, key, {
+                ns: DIRECTIVE_BINDING,
+                name: name,
+                key: key,
+                modifier: holder.keypath,
+                hooks: directives[DIRECTIVE_BINDING],
+                hint: hint
+            });
+            return holder.value;
+        }, renderModelVnode = function (holder) {
+            setPair($vnode, KEY_DIRECTIVES, DIRECTIVE_MODEL, {
+                ns: DIRECTIVE_MODEL,
+                name: EMPTY_STRING,
+                key: DIRECTIVE_MODEL,
+                value: holder.value,
+                modifier: holder.keypath,
+                hooks: directives[DIRECTIVE_MODEL]
+            });
+        }, renderEventMethodVnode = function (name, key, modifier, value, method, args) {
+            setPair($vnode, KEY_DIRECTIVES, key, {
+                ns: DIRECTIVE_EVENT,
+                name: name,
+                key: key,
+                value: value,
+                modifier: modifier,
+                hooks: directives[DIRECTIVE_EVENT],
+                handler: createMethodListener(method, args, $stack)
+            });
+        }, renderEventNameVnode = function (name, key, modifier, value, event) {
+            setPair($vnode, KEY_DIRECTIVES, key, {
+                ns: DIRECTIVE_EVENT,
+                name: name,
+                key: key,
+                value: value,
+                modifier: modifier,
+                hooks: directives[DIRECTIVE_EVENT],
+                handler: createEventListener(event)
+            });
+        }, renderDirectiveVnode = function (name, key, modifier, value, method, args, getter) {
+            var hooks = directives[name];
+            {
+                if (!hooks) {
+                    fatal("The directive " + name + " can't be found.");
+                }
+            }
+            setPair($vnode, KEY_DIRECTIVES, key, {
+                ns: DIRECTIVE_CUSTOM,
+                name: name,
+                key: key,
+                value: value,
+                hooks: hooks,
+                modifier: modifier,
+                getter: getter ? createGetter(getter, $stack) : UNDEFINED,
+                handler: method ? createMethodListener(method, args, $stack) : UNDEFINED
+            });
+        }, renderSpreadVnode = function (holder) {
+            var value = holder.value, keypath = holder.keypath;
+            if (object(value)) {
+                // 数组也算一种对象
+                // 延展操作符不支持数组
+                {
+                    if (array(value)) {
+                        fatal("The spread operator can't be used by an array.");
+                    }
+                }
+                for (var key in value) {
+                    setPair($vnode, 'props', key, value[key]);
+                }
+                if (keypath) {
+                    var key = join$1(DIRECTIVE_BINDING, keypath);
+                    setPair($vnode, KEY_DIRECTIVES, key, {
+                        ns: DIRECTIVE_BINDING,
+                        name: EMPTY_STRING,
+                        key: key,
+                        modifier: join$1(keypath, RAW_WILDCARD),
+                        hooks: directives[DIRECTIVE_BINDING]
+                    });
+                }
+            }
+        }, appendVnode = function (vnode) {
+            var vnodeList = last(vnodeStack);
+            if (vnodeList) {
+                push(vnodeList, vnode);
+            }
+            return vnode;
+        }, renderCommentVnode = function () {
+            // 注释节点和文本节点需要有个区分
+            // 如果两者都没有 tag，则 patchVnode 时，会认为两者是 patchable 的
+            return appendVnode({
+                tag: '!',
+                isComment: TRUE,
+                text: EMPTY_STRING,
+                keypath: $scope.$keypath,
+                context: context
+            });
+        }, renderElementVnode = function (tag, attrs, childs, isStatic, isOption, isStyle, isSvg, html, ref, key) {
+            var vnode = {
+                tag: tag,
+                isStatic: isStatic,
+                isOption: isOption,
+                isStyle: isStyle,
+                isSvg: isSvg,
+                ref: ref,
+                key: key,
+                context: context,
+                keypath: $scope.$keypath
+            };
+            if (isDef(html)) {
+                vnode.html = toString(html);
+            }
+            if (attrs) {
+                $vnode = vnode;
+                attrs();
+                $vnode = UNDEFINED;
+            }
+            if (childs) {
+                vnodeStack.push(vnode.children = []);
+                childs();
+                pop(vnodeStack);
+            }
+            return appendVnode(vnode);
+        }, renderComponentVnode = function (staticTag, attrs, slots, ref, key, dynamicTag) {
+            var tag;
+            // 组件支持动态名称
+            if (dynamicTag) {
+                var componentName = observer.get(dynamicTag);
+                {
+                    if (!componentName) {
+                        warn("The dynamic component \"" + dynamicTag + "\" can't be found.");
+                    }
+                }
+                tag = componentName;
+            }
+            else {
+                tag = staticTag;
+            }
+            var vnode = {
+                tag: tag,
+                ref: ref,
+                key: key,
+                context: context,
+                keypath: $scope.$keypath,
+                isComponent: TRUE
+            };
+            if (attrs) {
+                $vnode = vnode;
+                attrs();
+                $vnode = UNDEFINED;
+            }
+            if (slots) {
+                var vnodeSlots = {};
+                for (var name in slots) {
+                    vnodeStack.push([]);
+                    slots[name]();
+                    var vnodes = pop(vnodeStack);
+                    vnodeSlots[name] = vnodes.length ? vnodes : UNDEFINED;
+                }
+                vnode.slots = vnodeSlots;
+            }
+            return appendVnode(vnode);
+        }, renderExpressionIdentifier = function (name, lookup, offset, holder, depIgnore, stack) {
+            var myStack = stack || $stack, index = myStack.length - 1;
+            if (offset) {
+                index -= offset;
+            }
+            var result = findValue(myStack, index, name, lookup, depIgnore);
+            return holder ? result : result.value;
+        }, renderExpressionMemberKeypath = function (identifier, runtimeKeypath) {
+            unshift(runtimeKeypath, identifier);
+            return join(runtimeKeypath, RAW_DOT);
+        }, renderExpressionMemberLiteral = function (value, staticKeypath, runtimeKeypath, holder$1) {
+            if (runtimeKeypath !== UNDEFINED) {
+                staticKeypath = join(runtimeKeypath, RAW_DOT);
+            }
+            var match = get(value, staticKeypath);
+            holder.keypath = UNDEFINED;
+            holder.value = match ? match.value : UNDEFINED;
+            return holder$1 ? holder : holder.value;
+        }, renderExpressionCall = function (fn, args, holder$1) {
+            holder.keypath = UNDEFINED;
+            // 当 holder 为 true, args 为空时，args 会传入 false
+            holder.value = execute(fn, context, args || UNDEFINED);
+            return holder$1 ? holder : holder.value;
+        },
+        // <slot name="xx"/>
+        renderSlot = function (name, defaultRender) {
+            var vnodeList = last(vnodeStack), vnodes = context.get(name);
+            if (vnodeList) {
+                if (vnodes) {
+                    for (var i = 0, length = vnodes.length; i < length; i++) {
+                        push(vnodeList, vnodes[i]);
+                        vnodes[i].slot = name;
+                        vnodes[i].parent = context;
+                    }
+                }
+                else if (defaultRender) {
+                    defaultRender();
+                }
+            }
+            // 不能重复输出相同名称的 slot
+            {
+                if (renderedSlots[name]) {
+                    fatal("The slot \"" + slice(name, SLOT_DATA_PREFIX.length) + "\" can't render more than one time.");
+                }
+                renderedSlots[name] = TRUE;
+            }
+        },
+        // {{#partial name}}
+        //   xx
+        // {{/partial}}
+        renderPartial = function (name, render) {
+            localPartials[name] = render;
+        },
+        // {{> name}}
+        renderImport = function (name) {
+            if (localPartials[name]) {
+                localPartials[name]();
+            }
+            else {
+                var partial = partials[name];
+                if (partial) {
+                    partial(renderExpressionIdentifier, renderExpressionMemberKeypath, renderExpressionMemberLiteral, renderExpressionCall, renderTextVnode, renderAttributeVnode, renderPropertyVnode, renderLazyVnode, renderTransitionVnode, renderBindingVnode, renderModelVnode, renderEventMethodVnode, renderEventNameVnode, renderDirectiveVnode, renderSpreadVnode, renderCommentVnode, renderElementVnode, renderComponentVnode, renderSlot, renderPartial, renderImport, renderEach, renderRange, renderEqualRange, toString);
+                }
+                else {
+                    fatal("The partial \"" + name + "\" can't be found.");
+                }
+            }
+        }, eachHandler = function (generate, item, key, keypath, index, length) {
+            var lastScope = $scope, lastStack = $stack;
+            // each 会改变 keypath
+            $scope = { $keypath: keypath };
+            $stack = lastStack.concat($scope);
+            // 避免模板里频繁读取 list.length
+            if (length !== UNDEFINED) {
+                $scope.$length = length;
+            }
+            // 业务层是否写了 expr:index
+            if (index) {
+                $scope[index] = key;
+            }
+            // 无法通过 context.get($keypath + key) 读取到数据的场景
+            // 必须把 item 写到 scope
+            if (!keypath) {
+                $scope.$item = item;
+            }
+            generate();
+            $scope = lastScope;
+            $stack = lastStack;
+        }, renderEach = function (generate, holder, index) {
+            var keypath = holder.keypath, value = holder.value;
+            if (array(value)) {
+                for (var i = 0, length = value.length; i < length; i++) {
+                    eachHandler(generate, value[i], i, keypath
+                        ? join$1(keypath, EMPTY_STRING + i)
+                        : EMPTY_STRING, index, length);
+                }
+            }
+            else if (object(value)) {
+                for (var key in value) {
+                    eachHandler(generate, value[key], key, keypath
+                        ? join$1(keypath, key)
+                        : EMPTY_STRING, index);
+                }
+            }
+        }, renderRange = function (generate, from, to, index) {
+            var count = 0;
+            if (from < to) {
+                for (var i = from; i < to; i++) {
+                    eachHandler(generate, i, count++, EMPTY_STRING, index);
+                }
+            }
+            else {
+                for (var i = from; i > to; i--) {
+                    eachHandler(generate, i, count++, EMPTY_STRING, index);
+                }
+            }
+        }, renderEqualRange = function (generate, from, to, index) {
+            var count = 0;
+            if (from < to) {
+                for (var i = from; i <= to; i++) {
+                    eachHandler(generate, i, count++, EMPTY_STRING, index);
+                }
+            }
+            else {
+                for (var i = from; i >= to; i--) {
+                    eachHandler(generate, i, count++, EMPTY_STRING, index);
+                }
+            }
+        };
+        return template(renderExpressionIdentifier, renderExpressionMemberKeypath, renderExpressionMemberLiteral, renderExpressionCall, renderTextVnode, renderAttributeVnode, renderPropertyVnode, renderLazyVnode, renderTransitionVnode, renderBindingVnode, renderModelVnode, renderEventMethodVnode, renderEventNameVnode, renderDirectiveVnode, renderSpreadVnode, renderCommentVnode, renderElementVnode, renderComponentVnode, renderSlot, renderPartial, renderImport, renderEach, renderRange, renderEqualRange, toString);
+    }
+
+    var guid$1 = 0,
+    // 这里先写 IE9 支持的接口
+    innerText = 'textContent', innerHTML = 'innerHTML', createEvent = function (event, node) {
+        return event;
+    }, findElement = function (selector) {
+        var node = DOCUMENT.querySelector(selector);
+        if (node) {
+            return node;
+        }
+    }, addEventListener = function (node, type, listener) {
+        node.addEventListener(type, listener, FALSE);
+    }, removeEventListener = function (node, type, listener) {
+        node.removeEventListener(type, listener, FALSE);
+    },
+    // IE9 不支持 classList
+    addElementClass = function (node, className) {
+        node.classList.add(className);
+    }, removeElementClass = function (node, className) {
+        node.classList.remove(className);
+    };
+    {
+        if (DOCUMENT) {
+            // 此时 document.body 不一定有值，比如 script 放在 head 里
+            if (!DOCUMENT.documentElement.classList) {
+                addElementClass = function (node, className) {
+                    var classes = node.className.split(CHAR_WHITESPACE);
+                    if (!has(classes, className)) {
+                        push(classes, className);
+                        node.className = join(classes, CHAR_WHITESPACE);
+                    }
+                };
+                removeElementClass = function (node, className) {
+                    var classes = node.className.split(CHAR_WHITESPACE);
+                    if (remove(classes, className)) {
+                        node.className = join(classes, CHAR_WHITESPACE);
+                    }
+                };
+            }
+        }
+    }
+    var CHAR_WHITESPACE = ' ',
+    /**
+     * 绑定在 HTML 元素上的事件发射器
+     */
+    EMITTER = '$emitter',
+    /**
+     * 跟输入事件配套使用的事件
+     */
+    COMPOSITION_START = 'compositionstart',
+    /**
+     * 跟输入事件配套使用的事件
+     */
+    COMPOSITION_END = 'compositionend', domain = 'http://www.w3.org/', namespaces = {
+        svg: domain + '2000/svg'
+    }, emitterHolders = {}, specialEvents = {};
+    specialEvents[EVENT_MODEL] = {
+        on: function (node, listener) {
+            var locked = FALSE;
+            on(node, COMPOSITION_START, listener[COMPOSITION_START] = function () {
+                locked = TRUE;
+            });
+            on(node, COMPOSITION_END, listener[COMPOSITION_END] = function (event) {
+                locked = FALSE;
+                listener(event);
+            });
+            addEventListener(node, EVENT_INPUT, listener[EVENT_INPUT] = function (event) {
+                if (!locked) {
+                    listener(event);
+                }
+            });
+        },
+        off: function (node, listener) {
+            off(node, COMPOSITION_START, listener[COMPOSITION_START]);
+            off(node, COMPOSITION_END, listener[COMPOSITION_END]);
+            removeEventListener(node, EVENT_INPUT, listener[EVENT_INPUT]);
+            listener[COMPOSITION_START] =
+                listener[COMPOSITION_END] =
+                    listener[EVENT_INPUT] = UNDEFINED;
+        }
+    };
+    function createElement$2(tag, isSvg) {
+        return isSvg
+            ? DOCUMENT.createElementNS(namespaces.svg, tag)
+            : DOCUMENT.createElement(tag);
+    }
+    function createText$1(text) {
+        return DOCUMENT.createTextNode(text);
+    }
+    function createComment(text) {
+        return DOCUMENT.createComment(text);
+    }
+    function prop(node, name, value) {
+        if (value !== UNDEFINED) {
+            set(node, name, value, FALSE);
+        }
+        else {
+            var holder = get(node, name);
+            if (holder) {
+                return holder.value;
+            }
+        }
+    }
+    function removeProp(node, name) {
+        set(node, name, UNDEFINED);
+    }
+    function attr(node, name, value) {
+        if (value !== UNDEFINED) {
+            node.setAttribute(name, value);
+        }
+        else {
+            // value 还可能是 null
+            var value_1 = node.getAttribute(name);
+            if (value_1 != NULL) {
+                return value_1;
+            }
+        }
+    }
+    function removeAttr(node, name) {
+        node.removeAttribute(name);
+    }
+    function before(parentNode, node, beforeNode) {
+        parentNode.insertBefore(node, beforeNode);
+    }
+    function append(parentNode, node) {
+        parentNode.appendChild(node);
+    }
+    function replace(parentNode, node, oldNode) {
+        parentNode.replaceChild(node, oldNode);
+    }
+    function remove$2(parentNode, node) {
+        parentNode.removeChild(node);
+    }
+    function parent(node) {
+        var parentNode = node.parentNode;
+        if (parentNode) {
+            return parentNode;
+        }
+    }
+    function next(node) {
+        var nextSibling = node.nextSibling;
+        if (nextSibling) {
+            return nextSibling;
+        }
+    }
+    var find = findElement;
+    function tag(node) {
+        if (node.nodeType === 1) {
+            return lower(node.tagName);
+        }
+    }
+    function text(node, text, isStyle, isOption) {
+        if (text !== UNDEFINED) {
+            {
+                node[innerText] = text;
+            }
+        }
+        else {
+            return node[innerText];
+        }
+    }
+    function html(node, html, isStyle, isOption) {
+        if (html !== UNDEFINED) {
+            {
+                node[innerHTML] = html;
+            }
+        }
+        else {
+            return node[innerHTML];
+        }
+    }
+    var addClass = addElementClass;
+    var removeClass = removeElementClass;
+    function on(node, type, listener, context) {
+        var emitterKey = node[EMITTER] || (node[EMITTER] = ++guid$1), emitter = emitterHolders[emitterKey] || (emitterHolders[emitterKey] = new Emitter()), nativeListeners = emitter.nativeListeners || (emitter.nativeListeners = {});
+        // 一个元素，相同的事件，只注册一个 native listener
+        if (!nativeListeners[type]) {
+            // 特殊事件
+            var special = specialEvents[type],
+            // 唯一的原生监听器
+            nativeListener = function (event) {
+                var customEvent = event instanceof CustomEvent
+                    ? event
+                    : new CustomEvent(event.type, createEvent(event, node));
+                if (customEvent.type !== type) {
+                    customEvent.type = type;
+                }
+                emitter.fire(type, [customEvent]);
+            };
+            nativeListeners[type] = nativeListener;
+            if (special) {
+                special.on(node, nativeListener);
+            }
+            else {
+                addEventListener(node, type, nativeListener);
+            }
+        }
+        emitter.on(type, {
+            fn: listener,
+            ctx: context
+        });
+    }
+    function off(node, type, listener) {
+        var emitterKey = node[EMITTER], emitter = emitterHolders[emitterKey], listeners = emitter.listeners, nativeListeners = emitter.nativeListeners;
+        // emitter 会根据 type 和 listener 参数进行适当的删除
+        emitter.off(type, listener);
+        // 如果注册的 type 事件都解绑了，则去掉原生监听器
+        if (nativeListeners && !emitter.has(type)) {
+            var special = specialEvents[type], nativeListener = nativeListeners[type];
+            if (special) {
+                special.off(node, nativeListener);
+            }
+            else {
+                removeEventListener(node, type, nativeListener);
+            }
+            delete nativeListeners[type];
+        }
+        if (emitterHolders[emitterKey]
+            && falsy$2(listeners)) {
+            node[EMITTER] = UNDEFINED;
+            delete emitterHolders[emitterKey];
+        }
+    }
+    function addSpecialEvent(type, hooks) {
+        {
+            if (specialEvents[type]) {
+                fatal("The special event \"" + type + "\" already exists.");
+            }
+            info("The special event \"" + type + "\" is added successfully.");
+        }
+        specialEvents[type] = hooks;
+    }
+
+    var domApi = /*#__PURE__*/Object.freeze({
+      createElement: createElement$2,
+      createText: createText$1,
+      createComment: createComment,
+      prop: prop,
+      removeProp: removeProp,
+      attr: attr,
+      removeAttr: removeAttr,
+      before: before,
+      append: append,
+      replace: replace,
+      remove: remove$2,
+      parent: parent,
+      next: next,
+      find: find,
+      tag: tag,
+      text: text,
+      html: html,
+      addClass: addClass,
+      removeClass: removeClass,
+      on: on,
+      off: off,
+      addSpecialEvent: addSpecialEvent
+    });
+
+    /**
+     * 计算属性
+     *
+     * 可配置 cache、deps、get、set 等
+     */
+    var Computed = /** @class */ (function () {
+        function Computed(keypath, sync, cache, deps, observer, getter, setter) {
+            var instance = this;
+            instance.keypath = keypath;
+            instance.cache = cache;
+            instance.deps = deps;
+            instance.context = observer.context;
+            instance.observer = observer;
+            instance.getter = getter;
+            instance.setter = setter;
+            instance.unique = {};
+            instance.watcher = function ($0, $1, $2) {
+                // 计算属性的依赖变了会走进这里
+                var oldValue = instance.value, newValue = instance.get(TRUE);
+                if (newValue !== oldValue) {
+                    observer.diff(keypath, newValue, oldValue);
+                }
+            };
+            instance.watcherOptions = {
+                sync: sync,
+                watcher: instance.watcher
+            };
+            if (instance.fixed = !falsy(deps)) {
+                each(deps, function (dep) {
+                    observer.watch(dep, instance.watcherOptions);
+                });
+            }
+        }
+        /**
+         * 读取计算属性的值
+         *
+         * @param force 是否强制刷新缓存
+         */
+        Computed.prototype.get = function (force) {
+            var instance = this, getter = instance.getter, context = instance.context;
+            // 禁用缓存
+            if (!instance.cache) {
+                instance.value = execute(getter, context);
+            }
+            // 减少取值频率，尤其是处理复杂的计算规则
+            else if (force || !has$2(instance, RAW_VALUE)) {
+                // 如果写死了依赖，则不需要收集依赖
+                if (instance.fixed) {
+                    instance.value = execute(getter, context);
+                }
+                else {
+                    // 清空上次收集的依赖
+                    instance.unbind();
+                    // 开始收集新的依赖
+                    var lastComputed = Computed.current;
+                    Computed.current = instance;
+                    instance.value = execute(getter, context);
+                    // 绑定新的依赖
+                    instance.bind();
+                    Computed.current = lastComputed;
+                }
+            }
+            return instance.value;
+        };
+        Computed.prototype.set = function (value) {
+            var _a = this, setter = _a.setter, context = _a.context;
+            if (setter) {
+                setter.call(context, value);
+            }
+        };
+        /**
+         * 添加依赖
+         *
+         * 这里只是为了保证依赖唯一，最后由 bind() 实现绑定
+         *
+         * @param dep
+         */
+        Computed.prototype.add = function (dep) {
+            this.unique[dep] = TRUE;
+        };
+        /**
+         * 绑定依赖
+         */
+        Computed.prototype.bind = function () {
+            var _a = this, unique = _a.unique, deps = _a.deps, observer = _a.observer, watcherOptions = _a.watcherOptions;
+            each$2(unique, function (_, dep) {
+                push(deps, dep);
+                observer.watch(dep, watcherOptions);
+            });
+            // 用完重置
+            // 方便下次收集依赖
+            this.unique = {};
+        };
+        /**
+         * 解绑依赖
+         */
+        Computed.prototype.unbind = function () {
+            var _a = this, deps = _a.deps, observer = _a.observer, watcher = _a.watcher;
+            each(deps, function (dep) {
+                observer.unwatch(dep, watcher);
+            }, TRUE);
+            deps.length = 0;
+        };
+        return Computed;
+    }());
+
+    function readValue (source, keypath) {
+        if (source == NULL || keypath === EMPTY_STRING) {
+            return source;
+        }
+        var result = get(source, keypath);
+        if (result) {
+            return result.value;
+        }
+    }
+
+    /**
+     * 对比新旧数组
+     *
+     * @param newValue
+     * @param oldValue
+     * @param callback
+     */
+    function diffString (newValue, oldValue, callback) {
+        var newIsString = string(newValue), oldIsString = string(oldValue);
+        if (newIsString || oldIsString) {
+            callback(RAW_LENGTH, newIsString ? newValue.length : UNDEFINED, oldIsString ? oldValue.length : UNDEFINED);
+            return TRUE;
+        }
+    }
+
+    /**
+     * 对比新旧数组
+     *
+     * @param newValue
+     * @param oldValue
+     * @param callback
+     */
+    function diffArray (newValue, oldValue, callback) {
+        var newIsArray = array(newValue), oldIsArray = array(oldValue);
+        if (newIsArray || oldIsArray) {
+            var newLength = newIsArray ? newValue.length : UNDEFINED, oldLength = oldIsArray ? oldValue.length : UNDEFINED;
+            callback(RAW_LENGTH, newLength, oldLength);
+            for (var i = 0, length = Math.max(newLength || 0, oldLength || 0); i < length; i++) {
+                callback('' + i, newValue ? newValue[i] : UNDEFINED, oldValue ? oldValue[i] : UNDEFINED);
+            }
+            return TRUE;
+        }
+    }
+
+    /**
+     * 对比新旧对象
+     *
+     * @param newValue
+     * @param oldValue
+     * @param callback
+     */
+    function diffObject (newValue, oldValue, callback) {
+        var newIsObject = object(newValue), oldIsObject = object(oldValue);
+        if (newIsObject || oldIsObject) {
+            newValue = newIsObject ? newValue : EMPTY_OBJECT;
+            oldValue = oldIsObject ? oldValue : EMPTY_OBJECT;
+            if (newIsObject) {
+                each$2(newValue, function (value, key) {
+                    if (value !== oldValue[key]) {
+                        callback(key, value, oldValue[key]);
+                    }
+                });
+            }
+            if (oldIsObject) {
+                each$2(oldValue, function (value, key) {
+                    if (value !== newValue[key]) {
+                        callback(key, newValue[key], value);
+                    }
+                });
+            }
+        }
+    }
+
+    function diffRecursion(keypath, newValue, oldValue, watchFuzzyKeypaths, callback) {
+        var diff = function (subKeypath, subNewValue, subOldValue) {
+            if (subNewValue !== subOldValue) {
+                var newKeypath_1 = join$1(keypath, subKeypath);
+                each(watchFuzzyKeypaths, function (fuzzyKeypath) {
+                    if (matchFuzzy(newKeypath_1, fuzzyKeypath) !== UNDEFINED) {
+                        callback(fuzzyKeypath, newKeypath_1, subNewValue, subOldValue);
+                    }
+                });
+                diffRecursion(newKeypath_1, subNewValue, subOldValue, watchFuzzyKeypaths, callback);
+            }
+        };
+        diffString(newValue, oldValue, diff)
+            || diffArray(newValue, oldValue, diff)
+            || diffObject(newValue, oldValue, diff);
+    }
+
+    function diffWatcher (keypath, newValue, oldValue, watcher, isRecursive, callback) {
+        var fuzzyKeypaths;
+        // 遍历监听的 keypath，如果未被监听，则无需触发任何事件
+        each$2(watcher, function (_, watchKeypath) {
+            // 模糊监听，如 users.*.name
+            if (isFuzzy(watchKeypath)) {
+                // 如果当前修改的是 users.0 整个对象
+                // users.0 和 users.*.name 无法匹配
+                // 此时要知道设置 users.0 到底会不会改变 users.*.name 需要靠递归了
+                // 如果匹配，则无需递归
+                if (matchFuzzy(keypath, watchKeypath) !== UNDEFINED) {
+                    callback(watchKeypath, keypath, newValue, oldValue);
+                }
+                else if (isRecursive) {
+                    if (fuzzyKeypaths) {
+                        push(fuzzyKeypaths, watchKeypath);
+                    }
+                    else {
+                        fuzzyKeypaths = [watchKeypath];
+                    }
+                }
+                return;
+            }
+            // 不是模糊匹配，直接靠前缀匹配
+            // 比如监听的是 users.0.name，此时修改 users.0，则直接读出子属性值，判断是否相等
+            var length = match(watchKeypath, keypath);
+            if (length >= 0) {
+                var subKeypath = slice(watchKeypath, length), subNewValue = readValue(newValue, subKeypath), subOldValue = readValue(oldValue, subKeypath);
+                if (subNewValue !== subOldValue) {
+                    callback(watchKeypath, watchKeypath, subNewValue, subOldValue);
+                }
+            }
+        });
+        // 存在模糊匹配的需求
+        // 必须对数据进行递归
+        // 性能确实会慢一些，但是很好用啊，几乎可以监听所有的数据
+        if (fuzzyKeypaths) {
+            diffRecursion(keypath, newValue, oldValue, fuzzyKeypaths, callback);
+        }
+    }
+
+    /**
+     * 触发异步变化时，用此函数过滤下，哪些 listener 应该执行
+     *
+     * @param item
+     * @param data
+     */
+    function filterWatcher (_, args, options) {
+        if (options.count && args) {
+            // 采用计数器的原因是，同一个 options 可能执行多次
+            // 比如监听 user.*，如果同批次修改了 user.name 和 user.age
+            // 这个监听器会调用多次，如果第一次执行就把 count 干掉了，第二次就无法执行了
+            options.count--;
+            // 新旧值不相等
+            return args[0] !== args[1];
+        }
+    }
+
+    // 避免频繁创建对象
+    var optionsHolder = {
+        watcher: EMPTY_FUNCTION
+    };
+    /**
+     * 格式化 watch options
+     *
+     * @param options
+     */
+    function formatWatcherOptions (options, immediate) {
+        if (func(options)) {
+            optionsHolder.watcher = options;
+            optionsHolder.immediate = immediate === TRUE;
+            return optionsHolder;
+        }
+        if (options && options.watcher) {
+            return options;
+        }
+        {
+            fatal("watcher should be a function or object.");
+        }
+    }
+
+    /**
+     * 观察者有两种观察模式：
+     *
+     * 1. 同步监听
+     * 2. 异步监听
+     *
+     * 对于`计算属性`这种需要实时变化的对象，即它的依赖变了，它需要立即跟着变，否则会出现不一致的问题
+     * 这种属于同步监听
+     *
+     * 对于外部调用 observer.watch('keypath', listener)，属于异步监听，它只关心是否变了，而不关心是否是立即触发的
+     */
+    var Observer = /** @class */ (function () {
+        function Observer(data, context) {
+            var instance = this;
+            instance.data = data || {};
+            instance.context = context || instance;
+            instance.nextTask = new NextTask();
+            instance.syncEmitter = new Emitter();
+            instance.asyncEmitter = new Emitter();
+            instance.asyncChanges = {};
+        }
+        /**
+         * 获取数据
+         *
+         * @param keypath
+         * @param defaultValue
+         * @param depIgnore
+         * @return
+         */
+        Observer.prototype.get = function (keypath, defaultValue, depIgnore) {
+            var instance = this, currentComputed = Computed.current, data = instance.data, computed = instance.computed;
+            // 传入 '' 获取整个 data
+            if (keypath === EMPTY_STRING) {
+                return data;
+            }
+            // 调用 get 时，外面想要获取依赖必须设置是谁在收集依赖
+            // 如果没设置，则跳过依赖收集
+            if (currentComputed && !depIgnore) {
+                currentComputed.add(keypath);
+            }
+            var result;
+            if (computed) {
+                result = get(computed, keypath);
+            }
+            if (!result) {
+                result = get(data, keypath);
+            }
+            return result ? result.value : defaultValue;
+        };
+        /**
+         * 更新数据
+         *
+         * @param keypath
+         * @param value
+         */
+        Observer.prototype.set = function (keypath, value) {
+            var instance = this, data = instance.data, computed = instance.computed, setValue = function (newValue, keypath) {
+                var oldValue = instance.get(keypath);
+                if (newValue === oldValue) {
+                    return;
+                }
+                var next;
+                each$1(keypath, function (key, index, lastIndex) {
+                    if (index === 0) {
+                        if (computed && computed[key]) {
+                            if (lastIndex === 0) {
+                                computed[key].set(newValue);
+                            }
+                            else {
+                                // 这里 next 可能为空
+                                next = computed[key].get();
+                            }
+                        }
+                        else {
+                            if (lastIndex === 0) {
+                                data[key] = newValue;
+                            }
+                            else {
+                                next = data[key] || (data[key] = {});
+                            }
+                        }
+                        return;
+                    }
+                    if (next) {
+                        if (index === lastIndex) {
+                            next[key] = newValue;
+                        }
+                        else {
+                            next = next[key] || (next[key] = {});
+                        }
+                    }
+                });
+                instance.diff(keypath, newValue, oldValue);
+            };
+            if (string(keypath)) {
+                setValue(value, keypath);
+            }
+            else if (object(keypath)) {
+                each$2(keypath, setValue);
+            }
+        };
+        /**
+         * 同步调用的 diff，用于触发 syncEmitter，以及唤醒 asyncEmitter
+         *
+         * @param keypath
+         * @param newValue
+         * @param oldValue
+         */
+        Observer.prototype.diff = function (keypath, newValue, oldValue) {
+            var instance = this, syncEmitter = instance.syncEmitter, asyncEmitter = instance.asyncEmitter, asyncChanges = instance.asyncChanges,
+            /**
+             * 我们认为 $ 开头的变量是不可递归的
+             * 比如浏览器中常见的 $0 表示当前选中元素
+             * DOM 元素是不能递归的
+             */
+            isRecursive = codeAt(keypath) !== 36;
+            diffWatcher(keypath, newValue, oldValue, syncEmitter.listeners, isRecursive, function (watchKeypath, keypath, newValue, oldValue) {
+                syncEmitter.fire(watchKeypath, [newValue, oldValue, keypath]);
+            });
+            /**
+             * 此处有坑，举个例子
+             *
+             * observer.watch('a', function () {})
+             *
+             * observer.set('a', 1)
+             *
+             * observer.watch('a', function () {})
+             *
+             * 这里，第一个 watcher 应该触发，但第二个不应该，因为它绑定监听时，值已经是最新的了
+             */
+            diffWatcher(keypath, newValue, oldValue, asyncEmitter.listeners, isRecursive, function (watchKeypath, keypath, newValue, oldValue) {
+                each(asyncEmitter.listeners[watchKeypath], function (item) {
+                    item.count++;
+                });
+                var keypaths = (asyncChanges[keypath] || (asyncChanges[keypath] = { value: oldValue, keypaths: [] })).keypaths;
+                if (!has(keypaths, watchKeypath)) {
+                    push(keypaths, watchKeypath);
+                }
+                if (!instance.pending) {
+                    instance.pending = TRUE;
+                    instance.nextTask.append(function () {
+                        if (instance.pending) {
+                            instance.pending = UNDEFINED;
+                            instance.diffAsync();
+                        }
+                    });
+                }
+            });
+        };
+        /**
+         * 异步触发的 diff
+         */
+        Observer.prototype.diffAsync = function () {
+            var instance = this, asyncEmitter = instance.asyncEmitter, asyncChanges = instance.asyncChanges;
+            instance.asyncChanges = {};
+            each$2(asyncChanges, function (change, keypath) {
+                var args = [instance.get(keypath), change.value, keypath];
+                // 不能在这判断新旧值是否相同，相同就不 fire
+                // 因为前面标记了 count，在这中断会导致 count 无法清除
+                each(change.keypaths, function (watchKeypath) {
+                    asyncEmitter.fire(watchKeypath, args, filterWatcher);
+                });
+            });
+        };
+        /**
+         * 添加计算属性
+         *
+         * @param keypath
+         * @param computed
+         */
+        Observer.prototype.addComputed = function (keypath, options) {
+            var cache = TRUE, sync = TRUE, deps = [], getter, setter;
+            if (func(options)) {
+                getter = options;
+            }
+            else if (object(options)) {
+                var computedOptions = options;
+                if (boolean(computedOptions.cache)) {
+                    cache = computedOptions.cache;
+                }
+                if (boolean(computedOptions.sync)) {
+                    sync = computedOptions.sync;
+                }
+                // 因为可能会修改 deps，所以这里创建一个新的 deps，避免影响外部传入的 deps
+                if (array(computedOptions.deps)) {
+                    deps = copy(computedOptions.deps);
+                }
+                if (func(computedOptions.get)) {
+                    getter = computedOptions.get;
+                }
+                if (func(computedOptions.set)) {
+                    setter = computedOptions.set;
+                }
+            }
+            if (getter) {
+                var instance = this, computed = new Computed(keypath, sync, cache, deps, instance, getter, setter);
+                if (!instance.computed) {
+                    instance.computed = {};
+                }
+                instance.computed[keypath] = computed;
+                return computed;
+            }
+        };
+        /**
+         * 移除计算属性
+         *
+         * @param keypath
+         */
+        Observer.prototype.removeComputed = function (keypath) {
+            var instance = this, computed = instance.computed;
+            if (computed && has$2(computed, keypath)) {
+                delete computed[keypath];
+            }
+        };
+        /**
+         * 监听数据变化
+         *
+         * @param keypath
+         * @param watcher
+         * @param immediate
+         */
+        Observer.prototype.watch = function (keypath, watcher, immediate) {
+            var instance = this, context = instance.context, syncEmitter = instance.syncEmitter, asyncEmitter = instance.asyncEmitter, bind = function (keypath, options) {
+                var emitter = options.sync ? syncEmitter : asyncEmitter,
+                // formatWatcherOptions 保证了 options.watcher 一定存在
+                listener = {
+                    fn: options.watcher,
+                    ctx: context,
+                    count: 0
+                };
+                if (options.once) {
+                    listener.max = 1;
+                }
+                emitter.on(keypath, listener);
+                if (options.immediate) {
+                    execute(options.watcher, context, [
+                        instance.get(keypath),
+                        UNDEFINED,
+                        keypath
+                    ]);
+                }
+            };
+            if (string(keypath)) {
+                bind(keypath, formatWatcherOptions(watcher, immediate));
+                return;
+            }
+            each$2(keypath, function (options, keypath) {
+                bind(keypath, formatWatcherOptions(options));
+            });
+        };
+        /**
+         * 取消监听数据变化
+         *
+         * @param keypath
+         * @param watcher
+         */
+        Observer.prototype.unwatch = function (keypath, watcher) {
+            this.syncEmitter.off(keypath, watcher);
+            this.asyncEmitter.off(keypath, watcher);
+        };
+        /**
+         * 取反 keypath 对应的数据
+         *
+         * 不管 keypath 对应的数据是什么类型，操作后都是布尔型
+         *
+         * @param keypath
+         * @return 取反后的布尔值
+         */
+        Observer.prototype.toggle = function (keypath) {
+            var value = !this.get(keypath);
+            this.set(keypath, value);
+            return value;
+        };
+        /**
+         * 递增 keypath 对应的数据
+         *
+         * 注意，最好是整型的加法，如果涉及浮点型，不保证计算正确
+         *
+         * @param keypath 值必须能转型成数字，如果不能，则默认从 0 开始递增
+         * @param step 步进值，默认是 1
+         * @param max 可以递增到的最大值，默认不限制
+         */
+        Observer.prototype.increase = function (keypath, step, max) {
+            var value = toNumber(this.get(keypath), 0) + (step || 1);
+            if (!number(max) || value <= max) {
+                this.set(keypath, value);
+                return value;
+            }
+        };
+        /**
+         * 递减 keypath 对应的数据
+         *
+         * 注意，最好是整型的减法，如果涉及浮点型，不保证计算正确
+         *
+         * @param keypath 值必须能转型成数字，如果不能，则默认从 0 开始递减
+         * @param step 步进值，默认是 1
+         * @param min 可以递减到的最小值，默认不限制
+         */
+        Observer.prototype.decrease = function (keypath, step, min) {
+            var value = toNumber(this.get(keypath), 0) - (step || 1);
+            if (!number(min) || value >= min) {
+                this.set(keypath, value);
+                return value;
+            }
+        };
+        /**
+         * 在数组指定位置插入元素
+         *
+         * @param keypath
+         * @param item
+         * @param index
+         */
+        Observer.prototype.insert = function (keypath, item, index) {
+            var list = this.get(keypath);
+            list = !array(list) ? [] : copy(list);
+            var length = list.length;
+            if (index === TRUE || index === length) {
+                list.push(item);
+            }
+            else if (index === FALSE || index === 0) {
+                list.unshift(item);
+            }
+            else if (index > 0 && index < length) {
+                list.splice(index, 0, item);
+            }
+            else {
+                return;
+            }
+            this.set(keypath, list);
+            return TRUE;
+        };
+        /**
+         * 在数组尾部添加元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Observer.prototype.append = function (keypath, item) {
+            return this.insert(keypath, item, TRUE);
+        };
+        /**
+         * 在数组首部添加元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Observer.prototype.prepend = function (keypath, item) {
+            return this.insert(keypath, item, FALSE);
+        };
+        /**
+         * 通过索引移除数组中的元素
+         *
+         * @param keypath
+         * @param index
+         */
+        Observer.prototype.removeAt = function (keypath, index) {
+            var list = this.get(keypath);
+            if (array(list)
+                && index >= 0
+                && index < list.length) {
+                list = copy(list);
+                list.splice(index, 1);
+                this.set(keypath, list);
+                return TRUE;
+            }
+        };
+        /**
+         * 直接移除数组中的元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Observer.prototype.remove = function (keypath, item) {
+            var list = this.get(keypath);
+            if (array(list)) {
+                list = copy(list);
+                if (remove(list, item)) {
+                    this.set(keypath, list);
+                    return TRUE;
+                }
+            }
+        };
+        /**
+         * 拷贝任意数据，支持深拷贝
+         *
+         * @param data
+         * @param deep
+         */
+        Observer.prototype.copy = function (data, deep) {
+            return copy(data, deep);
+        };
+        /**
+         * 销毁
+         */
+        Observer.prototype.destroy = function () {
+            var instance = this;
+            instance.syncEmitter.off();
+            instance.asyncEmitter.off();
+            instance.nextTask.clear();
+            clear(instance);
+        };
+        return Observer;
+    }());
+
+    /**
+     * 节流调用
+     *
+     * @param fn 需要节制调用的函数
+     * @param delay 调用的时间间隔，单位毫秒
+     * @param immediate 是否立即触发
+     * @return 节流函数
+     */
+    function debounce (fn, delay, immediate) {
+        var timer;
+        return function () {
+            if (!timer) {
+                var args_1 = toArray(arguments);
+                if (immediate) {
+                    execute(fn, UNDEFINED, args_1);
+                }
+                timer = setTimeout(function () {
+                    timer = UNDEFINED;
+                    if (!immediate) {
+                        execute(fn, UNDEFINED, args_1);
+                    }
+                }, delay);
+            }
+        };
+    }
+
+    function bind(node, directive, vnode) {
+        var key = directive.key, name = directive.name, modifier = directive.modifier, handler = directive.handler, lazy = vnode.lazy;
+        if (!handler) {
+            return;
+        }
+        if (lazy) {
+            var value = lazy[name] || lazy[EMPTY_STRING];
+            if (value === TRUE) {
+                name = EVENT_CHANGE;
+            }
+            else if (value > 0) {
+                handler = debounce(handler, value,
+                // 避免连续多次点击，主要用于提交表单场景
+                // 移动端的 tap 事件可自行在业务层打补丁实现
+                name === EVENT_CLICK || name === EVENT_TAP);
+            }
+        }
+        var element;
+        if (vnode.isComponent) {
+            var component_1 = node;
+            if (modifier === MODIFER_NATIVE) {
+                element = component_1.$el;
+                on(element, name, handler);
+                vnode.data[key] = function () {
+                    off(element, name, handler);
+                };
+            }
+            else {
+                // 还原命名空间
+                if (modifier) {
+                    name += RAW_DOT + modifier;
+                }
+                component_1.on(name, handler);
+                vnode.data[key] = function () {
+                    component_1.off(name, handler);
+                };
+            }
+        }
+        else {
+            element = node;
+            on(element, name, handler);
+            vnode.data[key] = function () {
+                off(element, name, handler);
+            };
+        }
+    }
+    function unbind(node, directive, vnode) {
+        execute(vnode.data[directive.key]);
+    }
+
+    var event = /*#__PURE__*/Object.freeze({
+      bind: bind,
+      unbind: unbind
+    });
+
+    function debounceIfNeeded(fn, lazy) {
+        // 应用 lazy
+        return lazy && lazy !== TRUE
+            ? debounce(fn, lazy)
+            : fn;
+    }
+    var inputControl = {
+        set: function (node, value) {
+            node.value = toString(value);
+        },
+        sync: function (node, keypath, context) {
+            context.set(keypath, node.value);
+        },
+        name: RAW_VALUE
+    }, radioControl = {
+        set: function (node, value) {
+            node.checked = node.value === toString(value);
+        },
+        sync: function (node, keypath, context) {
+            if (node.checked) {
+                context.set(keypath, node.value);
+            }
+        },
+        name: 'checked'
+    }, checkboxControl = {
+        set: function (node, value) {
+            node.checked = array(value)
+                ? has(value, node.value, FALSE)
+                : !!value;
+        },
+        sync: function (node, keypath, context) {
+            var value = context.get(keypath);
+            if (array(value)) {
+                if (node.checked) {
+                    context.append(keypath, node.value);
+                }
+                else {
+                    context.removeAt(keypath, indexOf(value, node.value, FALSE));
+                }
+            }
+            else {
+                context.set(keypath, node.checked);
+            }
+        },
+        name: 'checked'
+    }, selectControl = {
+        set: function (node, value) {
+            each(toArray(node.options), node.multiple
+                ? function (option) {
+                    option.selected = has(value, option.value, FALSE);
+                }
+                : function (option, index) {
+                    if (option.value == value) {
+                        node.selectedIndex = index;
+                        return FALSE;
+                    }
+                });
+        },
+        sync: function (node, keypath, context) {
+            var options = node.options;
+            if (node.multiple) {
+                var values_1 = [];
+                each(toArray(options), function (option) {
+                    if (option.selected) {
+                        push(values_1, option.value);
+                    }
+                });
+                context.set(keypath, values_1);
+            }
+            else {
+                context.set(keypath, options[node.selectedIndex].value);
+            }
+        },
+        name: RAW_VALUE
+    };
+    var once = TRUE;
+    function bind$1(node, directive, vnode) {
+        var context = vnode.context, lazy = vnode.lazy, isComponent = vnode.isComponent, dataBinding = directive.modifier, lazyValue = lazy && (lazy[DIRECTIVE_MODEL] || lazy[EMPTY_STRING]), set, unbind;
+        if (isComponent) {
+            var component_1 = node, viewBinding_1 = component_1.$model, viewSyncing_1 = debounceIfNeeded(function (newValue) {
+                context.set(dataBinding, newValue);
+            }, lazyValue);
+            set = function (newValue) {
+                if (set) {
+                    component_1.set(viewBinding_1, newValue);
+                }
+            };
+            unbind = function () {
+                component_1.unwatch(viewBinding_1, viewSyncing_1);
+            };
+            component_1.watch(viewBinding_1, viewSyncing_1);
+        }
+        else {
+            var element_1 = node, control_1 = vnode.tag === 'select'
+                ? selectControl
+                : inputControl,
+            // checkbox,radio,select 监听的是 change 事件
+            eventName_1 = EVENT_CHANGE;
+            if (control_1 === inputControl) {
+                var type = node.type;
+                if (type === 'radio') {
+                    control_1 = radioControl;
+                }
+                else if (type === 'checkbox') {
+                    control_1 = checkboxControl;
+                }
+                // 如果是输入框，则切换成 model 事件
+                // model 事件是个 yox-dom 实现的特殊事件
+                // 不会在输入法组合文字过程中得到触发事件
+                else if (lazyValue !== TRUE) {
+                    eventName_1 = EVENT_MODEL;
+                }
+            }
+            set = function (newValue) {
+                if (set) {
+                    control_1.set(element_1, newValue);
+                }
+            };
+            var sync_1 = debounceIfNeeded(function () {
+                control_1.sync(element_1, dataBinding, context);
+            }, lazyValue);
+            unbind = function () {
+                off(element_1, eventName_1, sync_1);
+            };
+            on(element_1, eventName_1, sync_1);
+            control_1.set(element_1, directive.value);
+        }
+        // 监听数据，修改界面
+        context.watch(dataBinding, set);
+        vnode.data[directive.key] = function () {
+            context.unwatch(dataBinding, set);
+            set = UNDEFINED;
+            unbind();
+        };
+    }
+    function unbind$1(node, directive, vnode) {
+        execute(vnode.data[directive.key]);
+    }
+
+    var model = /*#__PURE__*/Object.freeze({
+      once: once,
+      bind: bind$1,
+      unbind: unbind$1
+    });
+
+    var once$1 = TRUE;
+    function bind$2(node, directive, vnode) {
+        // binding 可能是模糊匹配
+        // 比如延展属性 {{...obj}}，这里 binding 会是 `obj.*`
+        var binding = directive.modifier,
+        // 提前判断好是否是模糊匹配，避免 watcher 频繁执行判断逻辑
+        isFuzzy$1 = isFuzzy(binding), watcher = function (newValue, _, keypath) {
+            if (watcher) {
+                var name = isFuzzy$1
+                    ? matchFuzzy(keypath, binding)
+                    : directive.name;
+                if (vnode.isComponent) {
+                    var component = node;
+                    component.checkProp(name, newValue);
+                    component.set(name, newValue);
+                }
+                else {
+                    var element = node;
+                    if (directive.hint !== UNDEFINED) {
+                        prop(element, name, newValue);
+                    }
+                    else {
+                        attr(element, name, newValue);
+                    }
+                }
+            }
+        };
+        vnode.context.watch(binding, watcher);
+        vnode.data[directive.key] = function () {
+            vnode.context.unwatch(binding, watcher);
+            watcher = UNDEFINED;
+        };
+    }
+    function unbind$2(node, directive, vnode) {
+        execute(vnode.data[directive.key]);
+    }
+
+    var binding = /*#__PURE__*/Object.freeze({
+      once: once$1,
+      bind: bind$2,
+      unbind: unbind$2
+    });
+
+    var globalDirectives = {}, globalTransitions = {}, globalComponents = {}, globalPartials = {}, globalFilters = {}, compileCache = {}, TEMPLATE_COMPUTED = '$$', selectorPattern = /^[#.][-\w+]+$/;
+    var Yox = /** @class */ (function () {
+        function Yox(options) {
+            var instance = this, $options = options || EMPTY_OBJECT;
+            // 为了冒泡 HOOK_BEFORE_CREATE 事件，必须第一时间创建 emitter
+            // 监听各种事件
+            // 支持命名空间
+            instance.$emitter = new Emitter(TRUE);
+            if ($options.events) {
+                instance.on($options.events);
+            }
+            {
+                // 当前组件的直接父组件
+                if ($options.parent) {
+                    instance.$parent = $options.parent;
+                }
+                // 建立好父子连接后，立即触发钩子
+                execute($options[HOOK_BEFORE_CREATE], instance, $options);
+                // 冒泡 before create 事件
+                instance.fire(HOOK_BEFORE_CREATE + NAMESPACE_HOOK, $options);
+            }
+            var data = $options.data, props = $options.props, vnode = $options.vnode, propTypes = $options.propTypes, computed = $options.computed, methods = $options.methods, watchers = $options.watchers, extensions = $options.extensions;
+            instance.$options = $options;
+            if (extensions) {
+                extend(instance, extensions);
+            }
+            // 数据源，默认值仅在创建组件时启用
+            var source = props ? copy(props) : {};
+            {
+                if (propTypes) {
+                    each$2(propTypes, function (rule, key) {
+                        var value = source[key];
+                        {
+                            checkProp($options.name, key, value, rule);
+                        }
+                        if (value === UNDEFINED) {
+                            value = rule.value;
+                            if (value !== UNDEFINED) {
+                                source[key] = rule.type === RAW_FUNCTION
+                                    ? value
+                                    : func(value)
+                                        ? value()
+                                        : value;
+                            }
+                        }
+                    });
+                }
+            }
+            // 先放 props
+            // 当 data 是函数时，可以通过 this.get() 获取到外部数据
+            var observer = instance.$observer = new Observer(source, instance);
+            if (computed) {
+                each$2(computed, function (options, keypath) {
+                    observer.addComputed(keypath, options);
+                });
+            }
+            // 后放 data
+            {
+                if (vnode && object(data)) {
+                    warn("The \"data\" option of child component should be a function which return an object.");
+                }
+            }
+            var extend$1 = func(data) ? execute(data, instance, options) : data;
+            if (object(extend$1)) {
+                each$2(extend$1, function (value, key) {
+                    {
+                        if (has$2(source, key)) {
+                            warn("The data \"" + key + "\" is already used as a prop.");
+                        }
+                    }
+                    source[key] = value;
+                });
+            }
+            if (methods) {
+                each$2(methods, function (method, name) {
+                    {
+                        if (instance[name]) {
+                            fatal("The method \"" + name + "\" is conflicted with built-in methods.");
+                        }
+                    }
+                    instance[name] = method;
+                });
+            }
+            {
+                var placeholder = UNDEFINED, el = $options.el, root = $options.root, model_1 = $options.model, context = $options.context, replace = $options.replace, template = $options.template, transitions = $options.transitions, components = $options.components, directives = $options.directives, partials = $options.partials, filters = $options.filters, slots = $options.slots;
+                if (model_1) {
+                    instance.$model = model_1;
+                }
+                // 把 slots 放进数据里，方便 get
+                if (slots) {
+                    extend(source, slots);
+                }
+                // 检查 template
+                if (string(template)) {
+                    // 传了选择器，则取对应元素的 html
+                    if (selectorPattern.test(template)) {
+                        placeholder = find(template);
+                        if (placeholder) {
+                            template = html(placeholder);
+                            placeholder = UNDEFINED;
+                        }
+                        else {
+                            fatal("The selector \"" + template + "\" can't match an element.");
+                        }
+                    }
+                }
+                // 检查 el
+                if (el) {
+                    if (string(el)) {
+                        var selector = el;
+                        if (selectorPattern.test(selector)) {
+                            placeholder = find(selector);
+                            {
+                                if (!placeholder) {
+                                    fatal("The selector \"" + selector + "\" can't match an element.");
+                                }
+                            }
+                        }
+                        else {
+                            fatal("The \"el\" option should be a selector.");
+                        }
+                    }
+                    else {
+                        placeholder = el;
+                    }
+                    if (!replace) {
+                        append(placeholder, placeholder = createComment(EMPTY_STRING));
+                    }
+                }
+                // 根组件
+                if (root) {
+                    instance.$root = root;
+                }
+                // 当前组件是被哪个组件渲染出来的
+                // 因为有 slot 机制，$context 不一定等于 $parent
+                if (context) {
+                    instance.$context = context;
+                }
+                setFlexibleOptions(instance, RAW_TRANSITION, transitions);
+                setFlexibleOptions(instance, RAW_COMPONENT, components);
+                setFlexibleOptions(instance, RAW_DIRECTIVE, directives);
+                setFlexibleOptions(instance, RAW_PARTIAL, partials);
+                setFlexibleOptions(instance, RAW_FILTER, filters);
+                // 当存在模板和计算属性时
+                // 因为这里把模板当做一种特殊的计算属性
+                // 因此模板这个计算属性的优先级应该最高
+                if (template) {
+                    // 拷贝一份，避免影响外部定义的 watchers
+                    var newWatchers = watchers
+                        ? copy(watchers)
+                        : {};
+                    newWatchers[TEMPLATE_COMPUTED] = {
+                        // 模板一旦变化，立即刷新
+                        sync: TRUE,
+                        watcher: function (vnode) {
+                            instance.update(vnode, instance.$vnode);
+                        }
+                    };
+                    // 当模板的依赖变了，则重新创建 virtual dom
+                    observer.addComputed(TEMPLATE_COMPUTED, {
+                        // 当模板依赖变化时，异步通知模板更新
+                        sync: FALSE,
+                        get: function () {
+                            return instance.render();
+                        }
+                    });
+                    instance.watch(newWatchers);
+                    {
+                        execute(instance.$options[HOOK_AFTER_CREATE], instance);
+                        instance.fire(HOOK_AFTER_CREATE + NAMESPACE_HOOK);
+                    }
+                    // 编译模板
+                    // 在开发阶段，template 是原始的 html 模板
+                    // 在产品阶段，template 是编译后的渲染函数
+                    // 当然，具体是什么需要外部自己控制
+                    instance.$template = string(template)
+                        ? Yox.compile(template)
+                        : template;
+                    if (!vnode) {
+                        {
+                            if (!placeholder) {
+                                fatal('The "el" option is required for root component.');
+                            }
+                        }
+                        vnode = create(domApi, placeholder, instance, EMPTY_STRING);
+                    }
+                    instance.update(instance.get(TEMPLATE_COMPUTED), vnode);
+                    return;
+                }
+                else {
+                    if (placeholder || vnode) {
+                        fatal('The "template" option is required.');
+                    }
+                }
+            }
+            if (watchers) {
+                instance.watch(watchers);
+            }
+            {
+                execute(instance.$options[HOOK_AFTER_CREATE], instance);
+                instance.fire(HOOK_AFTER_CREATE + NAMESPACE_HOOK);
+            }
+        }
+        /**
+         * 定义组件对象
+         */
+        Yox.define = function (options) {
+            return options;
+        };
+        /**
+         * 安装插件
+         *
+         * 插件必须暴露 install 方法
+         */
+        Yox.use = function (plugin) {
+            plugin.install(Yox);
+        };
+        /**
+         * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
+         */
+        Yox.nextTick = function (task, context) {
+            NextTask.shared().append(task, context);
+        };
+        /**
+         * 编译模板，暴露出来是为了打包阶段的模板预编译
+         */
+        Yox.compile = function (template, stringify) {
+            {
+                // 需要编译的都是模板源文件，一旦经过预编译，就成了 render 函数
+                if (func(template)) {
+                    return template;
+                }
+                if (!compileCache[template]) {
+                    var nodes = compile$1(template);
+                    {
+                        if (nodes.length !== 1) {
+                            fatal("The \"template\" option should have just one root element.");
+                        }
+                    }
+                    compileCache[template] = generate$1(nodes[0]);
+                }
+                template = compileCache[template];
+                return stringify
+                    ? template
+                    : new Function("return " + template)();
+            }
+        };
+        /**
+         * 注册全局指令
+         */
+        Yox.directive = function (name, directive) {
+            {
+                if (string(name) && !directive) {
+                    return getResource(globalDirectives, name);
+                }
+                setResource(globalDirectives, name, directive);
+            }
+        };
+        /**
+         * 注册全局过渡动画
+         */
+        Yox.transition = function (name, transition) {
+            {
+                if (string(name) && !transition) {
+                    return getResource(globalTransitions, name);
+                }
+                setResource(globalTransitions, name, transition);
+            }
+        };
+        /**
+         * 注册全局组件
+         */
+        Yox.component = function (name, component) {
+            {
+                if (string(name) && !component) {
+                    return getResource(globalComponents, name);
+                }
+                setResource(globalComponents, name, component);
+            }
+        };
+        /**
+         * 注册全局子模板
+         */
+        Yox.partial = function (name, partial) {
+            {
+                if (string(name) && !partial) {
+                    return getResource(globalPartials, name);
+                }
+                setResource(globalPartials, name, partial, Yox.compile);
+            }
+        };
+        /**
+         * 注册全局过滤器
+         */
+        Yox.filter = function (name, filter) {
+            {
+                if (string(name) && !filter) {
+                    return getResource(globalFilters, name);
+                }
+                setResource(globalFilters, name, filter);
+            }
+        };
+        /**
+         * 取值
+         */
+        Yox.prototype.get = function (keypath, defaultValue) {
+            return this.$observer.get(keypath, defaultValue);
+        };
+        /**
+         * 设值
+         */
+        Yox.prototype.set = function (keypath, value) {
+            // 组件经常有各种异步改值，为了避免组件销毁后依然调用 set
+            // 这里判断一下，至于其他方法的异步调用就算了，业务自己控制吧
+            var $observer = this.$observer;
+            if ($observer) {
+                $observer.set(keypath, value);
+            }
+        };
+        /**
+         * 监听事件，支持链式调用
+         */
+        Yox.prototype.on = function (type, listener) {
+            addEvents(this, type, listener);
+            return this;
+        };
+        /**
+         * 监听一次事件，支持链式调用
+         */
+        Yox.prototype.once = function (type, listener) {
+            addEvents(this, type, listener, TRUE);
+            return this;
+        };
+        /**
+         * 取消监听事件，支持链式调用
+         */
+        Yox.prototype.off = function (type, listener) {
+            this.$emitter.off(type, listener);
+            return this;
+        };
+        /**
+         * 发射事件
+         */
+        Yox.prototype.fire = function (type, data, downward) {
+            // 外部为了使用方便，fire(type) 或 fire(type, data) 就行了
+            // 内部为了保持格式统一
+            // 需要转成 Event，这样还能知道 target 是哪个组件
+            var instance = this, $emitter = instance.$emitter, $parent = instance.$parent, $children = instance.$children, event = type instanceof CustomEvent ? type : new CustomEvent(type), args = [event], isComplete;
+            // 创建完 CustomEvent，如果没有人为操作
+            // 它的 ns 为 undefined
+            // 这里先解析出命名空间，避免每次 fire 都要解析
+            if (event.ns === UNDEFINED) {
+                var namespace = $emitter.parse(event.type);
+                event.type = namespace.type;
+                event.ns = namespace.ns;
+            }
+            // 告诉外部是谁发出的事件
+            if (!event.target) {
+                event.target = instance;
+            }
+            // 比如 fire('name', true) 直接向下发事件
+            if (object(data)) {
+                push(args, data);
+            }
+            else if (data === TRUE) {
+                downward = TRUE;
+            }
+            // 如果手动 fire 带上了事件命名空间
+            // 则命名空间不能是 native，因为 native 有特殊用处
+            {
+                if (event.ns === MODIFER_NATIVE) {
+                    error("The namespace \"" + MODIFER_NATIVE + "\" is not permitted.");
+                }
+            }
+            // 向上发事件会经过自己
+            // 如果向下发事件再经过自己，就产生了一次重叠
+            // 这是没有必要的，而且会导致向下发事件时，外部能接收到该事件，但我们的本意只是想让子组件接收到事件
+            isComplete = downward && event.target === instance
+                ? TRUE
+                : $emitter.fire(event, args);
+            if (isComplete) {
+                if (downward) {
+                    if ($children) {
+                        event.phase = CustomEvent.PHASE_DOWNWARD;
+                        each($children, function (child) {
+                            return isComplete = child.fire(event, data, TRUE);
+                        });
+                    }
+                }
+                else if ($parent) {
+                    event.phase = CustomEvent.PHASE_UPWARD;
+                    isComplete = $parent.fire(event, data);
+                }
+            }
+            return isComplete;
+        };
+        /**
+         * 监听数据变化，支持链式调用
+         */
+        Yox.prototype.watch = function (keypath, watcher, immediate) {
+            this.$observer.watch(keypath, watcher, immediate);
+            return this;
+        };
+        /**
+         * 取消监听数据变化，支持链式调用
+         */
+        Yox.prototype.unwatch = function (keypath, watcher) {
+            this.$observer.unwatch(keypath, watcher);
+            return this;
+        };
+        /**
+         * 加载组件，组件可以是同步或异步，最后会调用 callback
+         *
+         * @param name 组件名称
+         * @param callback 组件加载成功后的回调
+         */
+        Yox.prototype.loadComponent = function (name, callback) {
+            {
+                if (!loadComponent(this.$components, name, callback)) {
+                    {
+                        if (!loadComponent(globalComponents, name, callback)) {
+                            error("The component \"" + name + "\" is not found.");
+                        }
+                    }
+                }
+            }
+        };
+        /**
+         * 创建子组件
+         *
+         * @param options 组件配置
+         * @param vnode 虚拟节点
+         */
+        Yox.prototype.createComponent = function (options, vnode) {
+            {
+                var instance = this;
+                options = copy(options);
+                options.root = instance.$root || instance;
+                options.parent = instance;
+                options.context = vnode.context;
+                options.vnode = vnode;
+                options.replace = TRUE;
+                var props = vnode.props, slots = vnode.slots, directives = vnode.directives, model_2 = directives && directives[DIRECTIVE_MODEL];
+                if (model_2) {
+                    if (!props) {
+                        props = {};
+                    }
+                    var key = options.model || MODEL_PROP_DEFAULT;
+                    props[key] = model_2.value;
+                    options.model = key;
+                }
+                if (props) {
+                    options.props = props;
+                }
+                if (slots) {
+                    options.slots = slots;
+                }
+                var child = new Yox(options);
+                push(instance.$children || (instance.$children = []), child);
+                var node = child.$el;
+                if (node) {
+                    vnode.node = node;
+                }
+                else {
+                    fatal("The root element of component \"" + vnode.tag + "\" is not found.");
+                }
+                return child;
+            }
+        };
+        /**
+         * 注册当前组件级别的指令
+         */
+        Yox.prototype.directive = function (name, directive) {
+            {
+                var instance = this, $directives = instance.$directives;
+                if (string(name) && !directive) {
+                    return getResource($directives, name, Yox.directive);
+                }
+                setResource($directives || (instance.$directives = {}), name, directive);
+            }
+        };
+        /**
+         * 注册当前组件级别的过渡动画
+         */
+        Yox.prototype.transition = function (name, transition) {
+            {
+                var instance = this, $transitions = instance.$transitions;
+                if (string(name) && !transition) {
+                    return getResource($transitions, name, Yox.transition);
+                }
+                setResource($transitions || (instance.$transitions = {}), name, transition);
+            }
+        };
+        /**
+         * 注册当前组件级别的组件
+         */
+        Yox.prototype.component = function (name, component) {
+            {
+                var instance = this, $components = instance.$components;
+                if (string(name) && !component) {
+                    return getResource($components, name, Yox.component);
+                }
+                setResource($components || (instance.$components = {}), name, component);
+            }
+        };
+        /**
+         * 注册当前组件级别的子模板
+         */
+        Yox.prototype.partial = function (name, partial) {
+            {
+                var instance = this, $partials = instance.$partials;
+                if (string(name) && !partial) {
+                    return getResource($partials, name, Yox.partial);
+                }
+                setResource($partials || (instance.$partials = {}), name, partial, Yox.compile);
+            }
+        };
+        /**
+         * 注册当前组件级别的过滤器
+         */
+        Yox.prototype.filter = function (name, filter) {
+            {
+                var instance = this, $filters = instance.$filters;
+                if (string(name) && !filter) {
+                    return getResource($filters, name, Yox.filter);
+                }
+                setResource($filters || (instance.$filters = {}), name, filter);
+            }
+        };
+        /**
+         * 对于某些特殊场景，修改了数据，但是模板的依赖中并没有这一项
+         * 而你非常确定需要更新模板，强制刷新正是你需要的
+         */
+        Yox.prototype.forceUpdate = function (props) {
+            {
+                var instance = this, $options = instance.$options, $vnode = instance.$vnode, $observer = instance.$observer, computed = $observer.computed;
+                if ($vnode && computed) {
+                    var template = computed[TEMPLATE_COMPUTED], oldValue = template.get();
+                    if (props) {
+                        execute($options[HOOK_BEFORE_PROPS_UPDATE], instance, props);
+                        instance.set(props);
+                    }
+                    // 当前可能正在进行下一轮更新
+                    $observer.nextTask.run();
+                    // 没有更新模板，强制刷新
+                    if (!props && oldValue === template.get()) {
+                        instance.update(template.get(TRUE), $vnode);
+                    }
+                }
+            }
+        };
+        /**
+         * 把模板抽象语法树渲染成 virtual dom
+         */
+        Yox.prototype.render = function () {
+            {
+                var instance = this;
+                return render(instance, instance.$observer, instance.$template, merge(instance.$filters, globalFilters), merge(instance.$partials, globalPartials), merge(instance.$directives, globalDirectives), merge(instance.$transitions, globalTransitions));
+            }
+        };
+        /**
+         * 更新 virtual dom
+         *
+         * @param vnode
+         * @param oldVnode
+         */
+        Yox.prototype.update = function (vnode, oldVnode) {
+            {
+                var instance_1 = this, $vnode = instance_1.$vnode, $options_1 = instance_1.$options, afterHook_1;
+                // 每次渲染重置 refs
+                // 在渲染过程中收集最新的 ref
+                // 这样可避免更新时，新的 ref，在前面创建，老的 ref 却在后面删除的情况
+                instance_1.$refs = {};
+                if ($vnode) {
+                    execute($options_1[HOOK_BEFORE_UPDATE], instance_1);
+                    instance_1.fire(HOOK_BEFORE_UPDATE + NAMESPACE_HOOK);
+                    patch(domApi, vnode, oldVnode);
+                    afterHook_1 = HOOK_AFTER_UPDATE;
+                }
+                else {
+                    execute($options_1[HOOK_BEFORE_MOUNT], instance_1);
+                    instance_1.fire(HOOK_BEFORE_MOUNT + NAMESPACE_HOOK);
+                    patch(domApi, vnode, oldVnode);
+                    instance_1.$el = vnode.node;
+                    afterHook_1 = HOOK_AFTER_MOUNT;
+                }
+                instance_1.$vnode = vnode;
+                // 跟 nextTask 保持一个节奏
+                // 这样可以预留一些优化的余地
+                Yox.nextTick(function () {
+                    if (instance_1.$vnode) {
+                        execute($options_1[afterHook_1], instance_1);
+                        instance_1.fire(afterHook_1 + NAMESPACE_HOOK);
+                    }
+                });
+            }
+        };
+        /**
+         * 校验组件参数
+         *
+         * @param props
+         */
+        Yox.prototype.checkProp = function (key, value) {
+            {
+                var _a = this.$options, name = _a.name, propTypes = _a.propTypes;
+                if (propTypes) {
+                    var rule = propTypes[key];
+                    if (rule) {
+                        checkProp(name, key, value, rule);
+                    }
+                }
+            }
+        };
+        /**
+         * 销毁组件
+         */
+        Yox.prototype.destroy = function () {
+            var instance = this, $parent = instance.$parent, $options = instance.$options, $emitter = instance.$emitter, $observer = instance.$observer;
+            {
+                execute($options[HOOK_BEFORE_DESTROY], instance);
+                instance.fire(HOOK_BEFORE_DESTROY + NAMESPACE_HOOK);
+                var $vnode = instance.$vnode;
+                if ($parent && $parent.$children) {
+                    remove($parent.$children, instance);
+                }
+                if ($vnode) {
+                    // virtual dom 通过判断 parent.$vnode 知道宿主组件是否正在销毁
+                    instance.$vnode = UNDEFINED;
+                    destroy(domApi, $vnode, !$parent);
+                }
+            }
+            $observer.destroy();
+            {
+                execute($options[HOOK_AFTER_DESTROY], instance);
+                instance.fire(HOOK_AFTER_DESTROY + NAMESPACE_HOOK);
+            }
+            // 发完 after destroy 事件再解绑所有事件
+            $emitter.off();
+            clear(instance);
+        };
+        /**
+         * 因为组件采用的是异步更新机制，为了在更新之后进行一些操作，可使用 nextTick
+         */
+        Yox.prototype.nextTick = function (task) {
+            this.$observer.nextTask.append(task, this);
+        };
+        /**
+         * 取反 keypath 对应的数据
+         *
+         * 不管 keypath 对应的数据是什么类型，操作后都是布尔型
+         */
+        Yox.prototype.toggle = function (keypath) {
+            return this.$observer.toggle(keypath);
+        };
+        /**
+         * 递增 keypath 对应的数据
+         *
+         * 注意，最好是整型的加法，如果涉及浮点型，不保证计算正确
+         *
+         * @param keypath 值必须能转型成数字，如果不能，则默认从 0 开始递增
+         * @param step 步进值，默认是 1
+         * @param max 可以递增到的最大值，默认不限制
+         */
+        Yox.prototype.increase = function (keypath, step, max) {
+            return this.$observer.increase(keypath, step, max);
+        };
+        /**
+         * 递减 keypath 对应的数据
+         *
+         * 注意，最好是整型的减法，如果涉及浮点型，不保证计算正确
+         *
+         * @param keypath 值必须能转型成数字，如果不能，则默认从 0 开始递减
+         * @param step 步进值，默认是 1
+         * @param min 可以递减到的最小值，默认不限制
+         */
+        Yox.prototype.decrease = function (keypath, step, min) {
+            return this.$observer.decrease(keypath, step, min);
+        };
+        /**
+         * 在数组指定位置插入元素
+         *
+         * @param keypath
+         * @param item
+         * @param index
+         */
+        Yox.prototype.insert = function (keypath, item, index) {
+            return this.$observer.insert(keypath, item, index);
+        };
+        /**
+         * 在数组尾部添加元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Yox.prototype.append = function (keypath, item) {
+            return this.$observer.append(keypath, item);
+        };
+        /**
+         * 在数组首部添加元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Yox.prototype.prepend = function (keypath, item) {
+            return this.$observer.prepend(keypath, item);
+        };
+        /**
+         * 通过索引移除数组中的元素
+         *
+         * @param keypath
+         * @param index
+         */
+        Yox.prototype.removeAt = function (keypath, index) {
+            return this.$observer.removeAt(keypath, index);
+        };
+        /**
+         * 直接移除数组中的元素
+         *
+         * @param keypath
+         * @param item
+         */
+        Yox.prototype.remove = function (keypath, item) {
+            return this.$observer.remove(keypath, item);
+        };
+        /**
+         * 拷贝任意数据，支持深拷贝
+         *
+         * @param data
+         * @param deep
+         */
+        Yox.prototype.copy = function (data, deep) {
+            return this.$observer.copy(data, deep);
+        };
+        /**
+         * core 版本
+         */
+        Yox.version = "1.0.0-alpha.120";
+        /**
+         * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
+         */
+        Yox.is = is;
+        Yox.dom = domApi;
+        Yox.array = array$1;
+        Yox.object = object$1;
+        Yox.string = string$1;
+        Yox.logger = logger;
+        Yox.Event = CustomEvent;
+        Yox.Emitter = Emitter;
+        return Yox;
+    }());
+    var toString$2 = Object.prototype.toString;
+    function matchType(value, type) {
+        return type === 'numeric'
+            ? numeric(value)
+            : lower(toString$2.call(value)) === "[object " + type + "]";
+    }
+    function checkProp(componentName, key, value, rule) {
+        // 传了数据
+        if (value !== UNDEFINED) {
+            var type = rule.type;
+            // 如果不写 type 或 type 不是 字符串 或 数组
+            // 就当做此规则无效，和没写一样
+            if (type) {
+                // 自定义函数判断是否匹配类型
+                // 自己打印警告信息吧
+                if (func(type)) {
+                    type(key, value, componentName);
+                }
+                else {
+                    var matched_1 = FALSE;
+                    // type: 'string'
+                    if (!falsy$1(type)) {
+                        matched_1 = matchType(value, type);
+                    }
+                    // type: ['string', 'number']
+                    else if (!falsy(type)) {
+                        each(type, function (item) {
+                            if (matchType(value, item)) {
+                                matched_1 = TRUE;
+                                return FALSE;
+                            }
+                        });
+                    }
+                    if (!matched_1) {
+                        warn("The type of prop \"" + key + "\" expected to be \"" + type + "\", but is \"" + value + "\".", componentName);
+                    }
+                }
+            }
+            else {
+                warn("The prop \"" + key + "\" in propTypes has no type.", componentName);
+            }
+        }
+        // 没传值但此项是必传项
+        else if (rule.required) {
+            warn("The prop \"" + key + "\" is marked as required, but its value is undefined.", componentName);
+        }
+    }
+    function setFlexibleOptions(instance, key, value) {
+        if (func(value)) {
+            instance[key](execute(value, instance));
+        }
+        else if (object(value)) {
+            instance[key](value);
+        }
+    }
+    function addEvent(instance, type, listener, once) {
+        var options = {
+            fn: listener,
+            ctx: instance
+        };
+        if (once) {
+            options.max = 1;
+        }
+        // YoxInterface 没有声明 $emitter，因为不想让外部访问，
+        // 但是这里要用一次，所以加了 as any
+        instance.$emitter.on(type, options);
+    }
+    function addEvents(instance, type, listener, once) {
+        if (string(type)) {
+            addEvent(instance, type, listener, once);
+        }
+        else {
+            each$2(type, function (value, key) {
+                addEvent(instance, key, value, once);
+            });
+        }
+    }
+    function loadComponent(registry, name, callback) {
+        if (registry && registry[name]) {
+            var component = registry[name];
+            // 注册的是异步加载函数
+            if (func(component)) {
+                registry[name] = [callback];
+                var componentCallback = function (result) {
+                    var queue = registry[name], options = result['default'] || result;
+                    registry[name] = options;
+                    each(queue, function (callback) {
+                        callback(options);
+                    });
+                }, promise = component(componentCallback);
+                if (promise) {
+                    promise.then(componentCallback);
+                }
+            }
+            // 正在加载中
+            else if (array(component)) {
+                push(component, callback);
+            }
+            // 不是异步加载函数，直接同步返回
+            else {
+                callback(component);
+            }
+            return TRUE;
+        }
+    }
+    function getResource(registry, name, lookup) {
+        if (registry && registry[name]) {
+            return registry[name];
+        }
+        else if (lookup) {
+            return lookup(name);
+        }
+    }
+    function setResource(registry, name, value, formatValue) {
+        if (string(name)) {
+            registry[name] = formatValue ? formatValue(value) : value;
+        }
+        else {
+            each$2(name, function (value, key) {
+                registry[key] = formatValue ? formatValue(value) : value;
+            });
+        }
+    }
+    {
+        // 全局注册内置指令
+        Yox.directive({ event: event, model: model, binding: binding });
+        // 全局注册内置过滤器
+        Yox.filter({
+            hasSlot: function (name) {
+                // 不鼓励在过滤器使用 this
+                // 因此过滤器没有 this 的类型声明
+                // 这个内置过滤器是不得不用 this
+                return this.get(SLOT_DATA_PREFIX + name) !== UNDEFINED;
+            }
+        });
+    }
+
+    return Yox;
+
+  }));
+  //# sourceMappingURL=yox.js.map

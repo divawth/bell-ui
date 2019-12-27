@@ -5,6 +5,7 @@ import template from './template/RadioGroup.hbs'
 import {
   TRUE,
   FALSE,
+  RAW_NUMBER,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
@@ -31,7 +32,7 @@ export default Yox.define({
       required: TRUE,
     },
     value: {
-      type: RAW_STRING,
+      type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],
     },
     disabled: {
       type: RAW_BOOLEAN,

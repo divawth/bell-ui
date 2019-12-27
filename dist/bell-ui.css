@@ -977,6 +977,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-button-block {
   display: block;
+  width: 100%;
 }
 .bell-button-block + .bell-button-block {
   margin-left: 0;
@@ -7900,7 +7901,7 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px solid #dcdee2;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: #fff;
   outline: none;
   display: block;
   width: 100%;
@@ -10560,7 +10561,7 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px solid #dcdee2;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: #fff;
   outline: none;
   display: block;
   width: 100%;
