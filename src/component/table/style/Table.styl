@@ -83,6 +83,32 @@ $table-row-highlight = #ebf7ff
 {$selector-prefix + '-table-empty'}
   padding $table-empty-padding-vertical 0
 
+{$selector-prefix + '-table-sorter'}
+  display inline-block
+  position relative
+  width 16px
+  height 16px
+  vertical-align middle
+  user-select none
+  margin-left $ui-icon-text-gap
+  ui-clickable()
+
+{$selector-prefix + '-table-sort-asc'},
+{$selector-prefix + '-table-sort-desc'}
+  position absolute
+  left 0
+  color $brand-disabled
+  font-size 16px
+
+{$selector-prefix + '-table-sort-asc'}
+  top -3px
+
+{$selector-prefix + '-table-sort-desc'}
+  bottom -2px
+
+{$selector-prefix + '-table-sort-active'}
+  color $brand-title
+
 {$selector-prefix + '-table-left'}
   text-align left
 

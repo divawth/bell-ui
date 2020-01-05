@@ -7,6 +7,7 @@ import {
   TRUE,
   RAW_STRING,
   RAW_NUMERIC,
+  RAW_BOOLEAN,
   RAW_DEFAULT,
   RAW_SIZE_ARRAY,
   RAW_SHAPE_CIRCLE,
@@ -53,6 +54,9 @@ export default Yox.define({
     },
     backgroundColor: {
       type: RAW_STRING,
+    },
+    clickable: {
+      type: RAW_BOOLEAN,
     },
     className: {
       type: RAW_STRING,

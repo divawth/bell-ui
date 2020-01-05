@@ -71,7 +71,7 @@ export default {
 ---|---|---|---|---
 status | 状态码 | number | `403`, `404`, `500` | -
 title | 标题 | string | - | -
-subTitle | 内容 | string | - | -
+subTitle | 副标题 | string | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

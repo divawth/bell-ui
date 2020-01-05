@@ -397,6 +397,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-avatar-image {
   background-color: transparent;
 }
+.bell-avatar-clickable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 .bell-avatar-text {
   color: #fff;
   position: absolute;
@@ -8044,12 +8048,10 @@ div::-webkit-scrollbar-thumb:hover {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.bell-input-disabled {
-  background-color: #f5f5f5;
-}
 .bell-input-disabled .bell-input-el {
   color: #c5c8ce;
   border-color: #dcdee2;
+  background-color: #f5f5f5;
   cursor: not-allowed;
 }
 .bell-input-number {
@@ -10170,6 +10172,36 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table-empty {
   padding: 100px 0;
 }
+.bell-table-sorter {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-left: 5px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-table-sort-asc,
+.bell-table-sort-desc {
+  position: absolute;
+  left: 0;
+  color: #c5c8ce;
+  font-size: 16px;
+}
+.bell-table-sort-asc {
+  top: -3px;
+}
+.bell-table-sort-desc {
+  bottom: -2px;
+}
+.bell-table-sort-active {
+  color: #17233d;
+}
 .bell-table-left {
   text-align: left;
 }
@@ -10606,12 +10638,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-textarea-el::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
-.bell-textarea-disabled {
-  background-color: #f5f5f5;
-}
 .bell-textarea-disabled .bell-textarea-el {
   color: #c5c8ce;
   border-color: #dcdee2;
+  background-color: #f5f5f5;
   cursor: not-allowed;
 }
 .bell-thumbnail {

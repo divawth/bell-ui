@@ -14,11 +14,13 @@ declare const _default: import("yox").ComponentOptions<{
     allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
     rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
     clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
-    updateColWidths(): void;
+    sortColumn(key: string, order: string): void;
+    updateColumnWidths(): void;
 }> & ThisType<{
     allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
     rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
     clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
-    updateColWidths(): void;
+    sortColumn(key: string, order: string): void;
+    updateColumnWidths(): void;
 } & import("yox").YoxInterface>;
 export default _default;

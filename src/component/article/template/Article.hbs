@@ -46,6 +46,10 @@ class="${prefix}article
     <div class="${prefix}article-signature">
       {{signature}}
     </div>
+  {{else if hasSlot('signature')}}
+    <div class="${prefix}article-signature">
+      <slot name="signature" />
+    </div>
   {{/if}}
 
 </div>

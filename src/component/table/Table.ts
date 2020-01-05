@@ -3,6 +3,7 @@ import Yox, { Data, CustomEventInterface } from 'yox'
 import template from './template/Table.hbs'
 // import './style/Table.styl'
 
+import Icon from '../icon/Icon'
 import Empty from '../empty/Empty'
 import Button from '../button/Button'
 import Checkbox from '../checkbox/Checkbox'
@@ -24,6 +25,9 @@ interface ButtonConfig {
   shape: string | void,
   onClick: (item: Data, index: number) => void
 }
+
+const SORT_ORDER_ASC = 'asc'
+const SORT_ORDER_DESC = 'desc'
 
 export default Yox.define({
 
@@ -66,8 +70,27 @@ export default Yox.define({
   },
 
   data() {
+
+    let sortKey = UNDEFINED
+    let sortOrder = UNDEFINED
+
+    Yox.array.each(
+      this.get('columns'),
+      function (item: any) {
+        if (item.defaultSortOrder) {
+          sortKey = item.key
+          sortOrder = item.defaultSortOrder
+        }
+      }
+    )
+
     return {
+      SORT_ORDER_ASC,
+      SORT_ORDER_DESC,
+
       colWidths: UNDEFINED,
+      sortKey,
+      sortOrder,
     }
   },
 
@@ -139,8 +162,21 @@ export default Yox.define({
     clickButton(button: ButtonConfig, item: Data, index: number) {
       button.onClick(item, index)
     },
+    sortColumn(key: string, order: string) {
+      this.set({
+        sortKey: key,
+        sortOrder: order,
+      })
+      this.fire(
+        'sort',
+        {
+          key,
+          order,
+        }
+      )
+    },
 
-    updateColWidths() {
+    updateColumnWidths() {
 
       let el = this.$el
       if (!el) {
@@ -198,13 +234,14 @@ export default Yox.define({
   },
 
   components: {
+    Icon,
     Empty,
     Button,
     Checkbox,
   },
 
   afterMount() {
-    this.updateColWidths()
+    this.updateColumnWidths()
   }
 
 })

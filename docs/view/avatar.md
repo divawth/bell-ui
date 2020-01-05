@@ -148,6 +148,26 @@ export default {
 }
 ```
 
+
+> 可点击
+
+```js
+export default {
+  template: `
+    <Avatar
+      src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+      clickable
+      on-click="clickAvatar()"
+    />
+  `,
+  methods: {
+    clickAvatar: function () {
+      console.log('click avatar')
+    }
+  },
+}
+```
+
 #### API
 
 > Props
@@ -163,6 +183,7 @@ alt | 原生 `alt` 属性 | string | - | -
 color | 文字颜色 | string | - | -
 fontSize | 文字大小 | numeric | - | -
 backgroundColor | 背景色 | string | - | -
+clickable | 是否可点击 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -177,3 +198,4 @@ icon | 设置 icon
 名称 | 说明
 ---|---
 error | 图片加载失败时触发
+click | clickable 为 `true` 时可用

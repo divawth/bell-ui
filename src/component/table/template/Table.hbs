@@ -45,6 +45,25 @@ style="
           {{/if}}
         {{else}}
           {{this.title}}
+          {{#if this.sortable}}
+            <div
+              class="${prefix}table-sorter"
+              on-click="sortColumn(this.key, ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC ? SORT_ORDER_DESC : SORT_ORDER_ASC)"
+            >
+              <Icon
+                size="0"
+                name="arrow-up-s-fill"
+                className="${prefix}table-sort-asc
+                  {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
+              />
+              <Icon
+                size="0"
+                name="arrow-down-s-fill"
+                className="${prefix}table-sort-desc
+                  {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
+              />
+            </div>
+          {{/if}}
         {{/if}}
       </td>
       {{/each}}

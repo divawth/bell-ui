@@ -122,7 +122,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 title | 标题 | string | - | -
-subTitle | 内容 | string | - | -
+subTitle | 副标题 | string | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

@@ -47,7 +47,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 title | 标题 | string | - | -
-subTitle | 内容 | string | - | -
+subTitle | 副标题 | string | - | -
 signature | 落款签名 | string | - | -
 showLink | 是否显示链接图标 | boolean | - | -
 className | 自定义类名 | string | - | -
@@ -59,6 +59,8 @@ style | 自定义内联样式 | string | - | -
 ---|---
 cover | 文章封面图
 content | 文章内容
+subTitle | 副标题
+signature | 落款签名
 
 > Events
 

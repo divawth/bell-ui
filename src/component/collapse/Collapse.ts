@@ -6,11 +6,11 @@ import template from './template/Collapse.hbs'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_ARRAY,
   RAW_NUMBER,
-  UNDEFINED,
 } from '../constant'
 
 export default Yox.define({

@@ -3,11 +3,16 @@ class="${prefix}avatar
 {{#if size}} ${prefix}avatar-{{size}}{{/if}}
 {{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if src}} ${prefix}avatar-image{{/if}}
+{{#if clickable}} ${prefix}avatar-clickable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if backgroundColor || style}}
   style="{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
   {{#if style}}{{style}}{{/if}}"
+{{/if}}
+
+{{#if clickable}}
+  on-click="click"
 {{/if}}
 >
 
