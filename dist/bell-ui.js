@@ -600,9 +600,6 @@ module.exports = __webpack_require__(83);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./src/index.styl
-var src = __webpack_require__(82);
-
 // EXTERNAL MODULE: external {"root":"Yox","commonjs":"yox","commonjs2":"yox","amd":"yox"}
 var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_ = __webpack_require__(0);
 var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default = /*#__PURE__*/__webpack_require__.n(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_);
@@ -7202,8 +7199,6 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 };
 
 // CONCATENATED MODULE: ./src/index.ts
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
-
 
 
 
@@ -7361,6 +7356,13 @@ var install = function (Yox) {
 if (typeof window !== 'undefined' && window['Yox']) {
     install(window['Yox']);
 }
+
+// EXTERNAL MODULE: ./src/index.styl
+var src = __webpack_require__(82);
+
+// CONCATENATED MODULE: ./src/index.webpack.ts
+
+
 
 
 /***/ })

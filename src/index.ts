@@ -1,5 +1,3 @@
-import './index.styl'
-
 import Menu from './component/menu/Menu'
 import MenuItem from './component/menu/MenuItem'
 import MenuGroup from './component/menu/MenuGroup'

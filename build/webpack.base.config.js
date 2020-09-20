@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: [
-    './src/index.ts'
+    './src/index.webpack.ts'
   ],
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
@@ -89,7 +89,7 @@ module.exports = {
     alias: {
       'Yox': 'yox',
       '@component': path.resolve(__dirname, '..', 'src', 'component'),
-      '@css': path.resolve(__dirname, '..', 'src', 'css')
+      '@css': path.resolve(__dirname, '..', 'src', 'css'),
     }
   },
   externals: {
