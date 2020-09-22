@@ -171,7 +171,15 @@ const component = {
   Table,
 }
 
-export const install = function (Yox: any) {
+/**
+ * 版本
+ */
+export const version = process.env.NODE_VERSION
+
+/**
+ * 安装插件
+ */
+export function install(Yox: any) {
   let loadingbarElement = Yox.dom.createElement('div')
   Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
   Yox.dom.append(BODY, loadingbarElement)
@@ -181,8 +189,4 @@ export const install = function (Yox: any) {
   Yox.dom.append(BODY, notificationElement)
 
   Yox.component(component)
-}
-
-if (typeof window !== 'undefined' && window[ 'Yox' ]) {
-  install(window[ 'Yox' ])
 }

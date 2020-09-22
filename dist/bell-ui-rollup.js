@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.12.3
+ * bell-ui.js v0.12.4
  * (c) 2018-2020 
  * Released under the MIT License.
  */
@@ -6425,7 +6425,14 @@
       Dialog: Dialog,
       Table: Table,
   };
-  var install = function (Yox) {
+  /**
+   * 版本
+   */
+  var version = "0.12.4";
+  /**
+   * 安装插件
+   */
+  function install(Yox) {
       var loadingbarElement = Yox.dom.createElement('div');
       Yox.dom.prop(loadingbarElement, 'id', 'bell-loadingbar-wrapper');
       Yox.dom.append(BODY, loadingbarElement);
@@ -6433,12 +6440,10 @@
       Yox.dom.prop(notificationElement, 'id', 'bell-notification-wrapper');
       Yox.dom.append(BODY, notificationElement);
       Yox.component(component);
-  };
-  if (typeof window !== 'undefined' && window['Yox']) {
-      install(window['Yox']);
   }
 
   exports.install = install;
+  exports.version = version;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
