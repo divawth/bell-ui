@@ -8,4 +8,5 @@ yarn.*
 *.sketch
 global.d.ts
 tsconfig.json
+rollup.config.js
 README.md

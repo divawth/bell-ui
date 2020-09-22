@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const version = require('../package.json').version
+
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
@@ -75,7 +77,8 @@ module.exports = {
             loader: 'webpack-replace-loader',
             options: {
               arr: [
-                {search: '$\{prefix\}', replace: 'bell-', attr: 'g'}
+                {search: '$\{prefix\}', replace: 'bell-', attr: 'g'},
+                {search: 'process.env.NODE_VERSION', replace: JSON.stringify(version), attr: 'g'},
               ]
             }
           }
