@@ -7347,7 +7347,7 @@ var component = {
 /**
  * 版本
  */
-var version = "0.12.7";
+var version = "0.12.8";
 /**
  * 安装插件
  */
