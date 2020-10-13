@@ -81,7 +81,10 @@ export default Yox.define({
 
         // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
-        me.fire('open.drawer')
+        me.fire({
+          type: 'open',
+          ns: 'drawer',
+        })
 
         setTimeout(
           function () {
@@ -90,7 +93,10 @@ export default Yox.define({
               wrapper,
               function () {
                 if (me.$el) {
-                  me.fire('opened.drawer')
+                  me.fire({
+                    type: 'opened',
+                    ns: 'drawer',
+                  })
                 }
               }
             )
@@ -102,14 +108,20 @@ export default Yox.define({
       else if (oldVisible) {
 
         Yox.dom.removeClass(element, CLASS_FADE)
-        me.fire('close.drawer')
+        me.fire({
+          type: 'close',
+          ns: 'drawer',
+        })
 
         onTransitionEnd(
           wrapper,
           function () {
             if (me.$el) {
               Yox.dom.removeClass(element, CLASS_VISIBLE)
-              me.fire('closed.drawer')
+              me.fire({
+                type: 'closed',
+                ns: 'drawer',
+              })
             }
           }
         )

@@ -6,8 +6,8 @@ declare const _default: import("yox").ComponentOptions<{
     current: unknown;
 }, {
     'change.select': unknown;
-    'change.input': unknown;
-    'enter.input': unknown;
+    change: unknown;
+    enter: unknown;
 }, {
     showError(error: string): void;
     jump(): void;

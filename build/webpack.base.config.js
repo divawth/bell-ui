@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     filename: 'bell-ui.js',
-    library: 'bell',
+    library: 'Bell',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

@@ -59,20 +59,26 @@ export default Yox.define({
   },
 
   events: {
-    'change.checkboxGroup': function (_, data) {
-      this.set({
-        checked: Yox.array.has(
-          data.value,
-          this.get('value')
-        )
-      })
+    change: {
+      listener(_, data) {
+        this.set({
+          checked: Yox.array.has(
+            data.value,
+            this.get('value')
+          )
+        })
+      },
+      ns: 'checkboxGroup',
     }
   },
 
   watchers: {
     checked(checked) {
       this.fire(
-        'change.checkbox',
+        {
+          type: 'change',
+          ns: 'checkbox',
+        },
         {
           checked,
           value: this.get('value'),

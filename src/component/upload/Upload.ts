@@ -123,14 +123,20 @@ export default Yox.define({
         {
           onStart() {
             me.fire(
-              'start.upload',
+              {
+                type: 'start',
+                ns: 'upload',
+              },
               file
             )
           },
           onEnd() {
 
             me.fire(
-              'end.upload',
+              {
+                type: 'end',
+                ns: 'upload',
+              },
               file
             )
 
@@ -141,19 +147,28 @@ export default Yox.define({
           },
           onAbort() {
             me.fire(
-              'abort.upload',
+              {
+                type: 'abort',
+                ns: 'upload',
+              },
               file
             )
           },
           onError() {
             me.fire(
-              'error.upload',
+              {
+                type: 'error',
+                ns: 'upload',
+              },
               file
             )
           },
           onProgress(progress) {
             me.fire(
-              'progress.upload',
+              {
+                type: 'progress',
+                ns: 'upload',
+              },
               {
                 id: file.id,
                 file: file.file,
@@ -163,7 +178,10 @@ export default Yox.define({
           },
           onSuccess(response) {
             me.fire(
-              'success.upload',
+              {
+                type: 'success',
+                ns: 'upload',
+              },
               {
                 id: file.id,
                 file: file.file,

@@ -120,8 +120,14 @@ export default Yox.define({
   },
 
   events: {
-    'click.dropdownItem': function () {
-      this.fire('close.dropdown')
+    click: {
+      listener() {
+        this.fire({
+          type: 'close',
+          ns: 'dropdown',
+        })
+      },
+      ns: 'dropdownItem',
     }
   },
 
@@ -133,7 +139,10 @@ export default Yox.define({
         me.leaveTimer = UNDEFINED
       }
       else {
-        this.fire('open.dropdown')
+        this.fire({
+          type: 'open',
+          ns: 'dropdown',
+        })
       }
     },
     leave() {
@@ -142,7 +151,10 @@ export default Yox.define({
         function () {
           if (me.$el) {
             me.leaveTimer = UNDEFINED
-            me.fire('close.dropdown')
+            me.fire({
+              type: 'close',
+              ns: 'dropdown',
+            })
           }
         },
         300
@@ -150,10 +162,16 @@ export default Yox.define({
     },
     toggleVisible() {
       if (this.get('visible')) {
-        this.fire('close.dropdown')
+        this.fire({
+          type: 'close',
+          ns: 'dropdown',
+        })
       }
       else {
-        this.fire('open.dropdown')
+        this.fire({
+          type: 'open',
+          ns: 'dropdown',
+        })
       }
     }
   },
@@ -172,10 +190,16 @@ export default Yox.define({
         return
       }
       if (me.get('trigger') === RAW_CUSTOM) {
-        me.fire('outside.dropdown')
+        me.fire({
+          type: 'outside',
+          ns: 'dropdown',
+        })
       }
       else {
-        me.fire('close.dropdown')
+        me.fire({
+          type: 'close',
+          ns: 'dropdown',
+        })
       }
     }
 

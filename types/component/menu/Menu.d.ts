@@ -3,7 +3,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     openNames: unknown;
     collapsed: unknown;
 }, {
-    'click.menuItem': unknown;
-    'isOpen.subMenu': unknown;
+    click: unknown;
+    isOpen: unknown;
 }, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

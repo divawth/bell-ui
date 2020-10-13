@@ -118,7 +118,10 @@ export default Yox.define({
   watchers: {
     value(value) {
       this.fire(
-        'change.input',
+        {
+          type: 'change',
+          ns: 'input',
+        },
         { value }
       )
     },
@@ -134,15 +137,24 @@ export default Yox.define({
   methods: {
     handleFocus() {
       this.set('isFocus', TRUE)
-      this.fire('focus.input')
+      this.fire({
+        type: 'focus',
+        ns: 'input',
+      })
     },
     handleBlur() {
       this.set('isFocus', FALSE)
-      this.fire('blur.input')
+      this.fire({
+        type: 'blur',
+        ns: 'input',
+      })
     },
     handleClearClick() {
       this.set('value', '')
-      this.fire('clear.input')
+      this.fire({
+        type: 'clear',
+        ns: 'input',
+      })
     },
   },
 
@@ -166,7 +178,10 @@ export default Yox.define({
       )
 
       if (originalEvent.keyCode === 13) {
-        me.fire('enter.input')
+        me.fire({
+          type: 'enter',
+          ns: 'input',
+        })
       }
 
     }

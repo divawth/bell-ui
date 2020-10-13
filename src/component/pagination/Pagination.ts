@@ -186,32 +186,41 @@ export default Yox.define({
       event.stop()
 
       this.fire(
-        'change.pagination',
+        {
+          type: 'change',
+          ns: 'pagination',
+        },
         {
           pageSize: data.value
         }
       )
 
     },
-    'change.input': function (event) {
+    change: {
+      listener(event) {
 
-      if (event.phase !== Yox.Event.PHASE_UPWARD) {
-        return
-      }
-
-      event.stop()
-
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+  
+        event.stop()
+  
+      },
+      ns: 'input',
     },
-    'enter.input': function (event) {
+    enter: {
+      listener(event) {
 
-      if (event.phase !== Yox.Event.PHASE_UPWARD) {
-        return
-      }
-
-      event.stop()
-
-      this.jump()
-
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+  
+        event.stop()
+  
+        this.jump()
+  
+      },
+      ns: 'input',
     }
   },
 
@@ -219,7 +228,10 @@ export default Yox.define({
     current(current: number) {
       this.set('page', current)
       this.fire(
-        'change.pagination',
+        {
+          type: 'change',
+          ns: 'pagination',
+        },
         {
           current,
         }
@@ -231,7 +243,10 @@ export default Yox.define({
 
     showError(error: string) {
       this.fire(
-        'error.pagination',
+        {
+          type: 'error',
+          ns: 'pagination',
+        },
         {
           error,
         }

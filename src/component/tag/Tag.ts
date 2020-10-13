@@ -58,7 +58,10 @@ export default Yox.define({
   methods: {
     toggleChecked() {
       this.fire(
-        'change.tag',
+        {
+          type: 'change',
+          ns: 'tag',
+        },
         {
           checked: !this.get('checked'),
         }

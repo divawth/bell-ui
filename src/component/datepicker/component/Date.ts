@@ -157,7 +157,10 @@ export default Yox.define({
     },
     click(item: SimpleDate) {
       this.fire(
-        'change.date',
+        {
+          type: 'change',
+          ns: 'date',
+        },
         item
       )
     }

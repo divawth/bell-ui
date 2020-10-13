@@ -63,30 +63,36 @@ export default Yox.define({
   },
 
   events: {
-    'change.collapse': function (event, data) {
+    change: {
+      listener(event, data) {
 
-      // 只接收父级事件，再上一级的就不管了
-      // 避免嵌套面板的问题
-      if (event.target !== this.$parent) {
-        return
-      }
-
-      const name = this.get('name')
-
-      this.set(
-        'opened',
-        Yox.is.array(data.value)
-          ? Yox.array.has(data.value, name, FALSE)
-          : data.value == name
-      )
-
+        // 只接收父级事件，再上一级的就不管了
+        // 避免嵌套面板的问题
+        if (event.target !== this.$parent) {
+          return
+        }
+  
+        const name = this.get('name')
+  
+        this.set(
+          'opened',
+          Yox.is.array(data.value)
+            ? Yox.array.has(data.value, name, FALSE)
+            : data.value == name
+        )
+  
+      },
+      ns: 'collapse',
     }
   },
 
   methods: {
     click() {
       this.fire(
-        'open.collapseItem',
+        {
+          type: 'open',
+          ns: 'collapseItem',
+        },
         {
           name: this.get('name'),
           opened: !this.get('opened'),

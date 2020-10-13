@@ -40,15 +40,21 @@ export default Yox.define({
   },
 
   events: {
-    'activeName.menu': function (_, data) {
-      this.set('isActive', data.activeName === this.get('name'))
+    activeName: {
+      listener(_, data) {
+        this.set('isActive', data.activeName === this.get('name'))
+      },
+      ns: 'menu',
     },
   },
 
   methods: {
     click() {
       this.fire(
-        'click.menuItem',
+        {
+          type: 'click',
+          ns: 'menuItem',
+        },
         {
           name: this.get('name')
         }

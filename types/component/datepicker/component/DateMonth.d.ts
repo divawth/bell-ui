@@ -3,7 +3,7 @@ declare const _default: import("yox").ComponentOptions<{
     datasource: unknown;
     checkedTimestamps: unknown;
 }, unknown, {
-    'change.year': unknown;
+    change: unknown;
 }, {
     click(item: SimpleMonth): void;
 }> & ThisType<{

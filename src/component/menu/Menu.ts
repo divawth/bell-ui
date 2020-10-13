@@ -65,21 +65,30 @@ export default Yox.define({
   watchers: {
     activeName(activeName: boolean) {
       this.fire(
-        'activeName.menu',
+        {
+          type: 'activeName',
+          ns: 'menu',
+        },
         { activeName },
         TRUE
       )
     },
     openNames(openNames: boolean) {
       this.fire(
-        'openNames.menu',
+        {
+          type: 'openNames',
+          ns: 'menu',
+        },
         { openNames },
         TRUE
       )
     },
     collapsed(collapsed: boolean) {
       this.fire(
-        'collapsed.menu',
+        {
+          type: 'collapsed',
+          ns: 'menu',
+        },
         { collapsed },
         TRUE
       )
@@ -87,48 +96,60 @@ export default Yox.define({
   },
 
   events: {
-    'click.menuItem': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_UPWARD
-        && !this.get('inner')
-      ) {
-        this.fire(
-          'change.menu',
-          {
-            activeName: data.name
-          }
-        )
-      }
+    click: {
+      listener(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD
+          && !this.get('inner')
+        ) {
+          this.fire(
+            {
+              type: 'change',
+              ns: 'menu',
+            },
+            {
+              activeName: data.name
+            }
+          )
+        }
+      },
+      ns: 'menuItem',
     },
-    'isOpen.subMenu': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_UPWARD
-        && !this.get('inner')
-      ) {
-
-        const { isOpen, name } = data
-
-        let openNames = this.get('openNames')
-        if (openNames) {
-          openNames = this.copy(openNames)
-        }
-        else {
-          openNames = []
-        }
-
-        if (isOpen) {
-          openNames.push(name)
-        }
-        else {
-          Yox.array.remove(openNames, name)
-        }
-
-        this.fire(
-          'change.menu',
-          {
-            openNames,
+    isOpen: {
+      listener(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD
+          && !this.get('inner')
+        ) {
+  
+          const { isOpen, name } = data
+  
+          let openNames = this.get('openNames')
+          if (openNames) {
+            openNames = this.copy(openNames)
           }
-        )
-
-      }
+          else {
+            openNames = []
+          }
+  
+          if (isOpen) {
+            openNames.push(name)
+          }
+          else {
+            Yox.array.remove(openNames, name)
+          }
+  
+          this.fire(
+            {
+              type: 'change',
+              ns: 'menu',
+            },
+            {
+              openNames,
+            }
+          )
+  
+        }
+      },
+      ns: 'subMenu',
     }
   }
 })

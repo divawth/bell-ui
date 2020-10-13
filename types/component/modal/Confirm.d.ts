@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
-    'closed.dialog': unknown;
+    closed: unknown;
 }, {
     ok(): void;
     cancel(): void;

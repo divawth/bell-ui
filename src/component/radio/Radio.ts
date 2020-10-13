@@ -55,20 +55,26 @@ export default Yox.define({
   },
 
   events: {
-    'change.radioGroup': function (_, data) {
-      if (data.value !== UNDEFINED) {
-        this.set('checked', data.value == this.get('value'))
-      }
-      if (data.disabled !== UNDEFINED) {
-        this.set('disabled', data.disabled)
-      }
+    change: {
+      listener(_, data) {
+        if (data.value !== UNDEFINED) {
+          this.set('checked', data.value == this.get('value'))
+        }
+        if (data.disabled !== UNDEFINED) {
+          this.set('disabled', data.disabled)
+        }
+      },
+      ns: 'radioGroup',
     }
   },
 
   watchers: {
     checked(checked) {
       this.fire(
-        'change.radio',
+        {
+          type: 'change',
+          ns: 'radio',
+        },
         {
           checked,
           value: this.get('value'),

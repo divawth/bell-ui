@@ -99,7 +99,10 @@ export default Yox.define({
       this.updateSelectedOptions(value)
 
       this.fire(
-        'change.select',
+        {
+          type: 'change',
+          ns: 'select',
+        },
         { value }
       )
 
@@ -107,24 +110,26 @@ export default Yox.define({
   },
 
   events: {
+    update: {
+      listener(event, data) {
 
-    'update.selectOption': function (event, data) {
-
-      event.stop()
-
-      const me = this
-
-      if (data.isSelected) {
-        me.selectOption(data.value)
-      }
-      else {
-        me.deselectOption(data.value)
-      }
-
-      if (!me.get('multiple')) {
-        me.set('visible', FALSE)
-      }
-
+        event.stop()
+  
+        const me = this
+  
+        if (data.isSelected) {
+          me.selectOption(data.value)
+        }
+        else {
+          me.deselectOption(data.value)
+        }
+  
+        if (!me.get('multiple')) {
+          me.set('visible', FALSE)
+        }
+  
+      },
+      ns: 'selectOption',
     }
   },
 
@@ -138,14 +143,20 @@ export default Yox.define({
       this.set('value', UNDEFINED)
 
       this.fire(
-        'change.select',
+        {
+          type: 'change',
+          ns: 'select',
+        },
         {
           value: UNDEFINED,
         },
         TRUE
       )
 
-      this.fire('clear.select')
+      this.fire({
+        type: 'clear',
+        ns: 'select',
+      })
 
     },
 
@@ -156,7 +167,10 @@ export default Yox.define({
       this.removeAt('value', index)
 
       this.fire(
-        'change.select',
+        {
+          type: 'change',
+          ns: 'select',
+        },
         {
           value: this.get('value')
         },
@@ -239,7 +253,10 @@ export default Yox.define({
       let selectedOptions = []
 
       this.fire(
-        'change.select',
+        {
+          type: 'change',
+          ns: 'select',
+        },
         {
           value,
           selectedOptions,

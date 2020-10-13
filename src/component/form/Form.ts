@@ -51,7 +51,10 @@ export default Yox.define({
   methods: {
     validate(errors: Data | void) {
       this.fire(
-        'validate.form',
+        {
+          type: 'validate',
+          ns: 'form',
+        },
         { errors },
         TRUE
       )

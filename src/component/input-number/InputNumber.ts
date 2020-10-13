@@ -98,7 +98,10 @@ export default Yox.define({
   watchers: {
     value(value) {
       this.fire(
-        'change.inputNumber',
+        {
+          type: 'change',
+          ns: 'inputNumber',
+        },
         { value }
       )
     }
@@ -146,11 +149,17 @@ export default Yox.define({
     },
     handleFocus() {
       this.set('isFocus', TRUE)
-      this.fire('focus.inputNumber')
+      this.fire({
+        type: 'focus',
+        ns: 'inputNumber',
+      })
     },
     handleBlur() {
       this.set('isFocus', FALSE)
-      this.fire('blur.inputNumber')
+      this.fire({
+        type: 'blur',
+        ns: 'inputNumber',
+      })
     },
   },
 

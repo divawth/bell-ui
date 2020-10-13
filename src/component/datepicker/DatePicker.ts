@@ -183,12 +183,24 @@ export default Yox.define({
   },
 
   events: {
-    'change.input': function (event) {
-      event.stop()
+    change: {
+      listener(event) {
+        event.stop()
+      },
+      ns: 'input',
     },
-    'clear.input': function (event) {
-      event.stop()
-      this.fire('clear.datepicker', TRUE)
+    clear: {
+      listener(event) {
+        event.stop()
+        this.fire(
+          {
+            type: 'clear',
+            ns: 'datepicker',
+          }, 
+          TRUE
+        )
+      },
+      ns: 'input',
     },
     'change.date': function (event, data) {
       event.stop()
@@ -229,8 +241,12 @@ export default Yox.define({
         value: this.get('multiple') ? [] : UNDEFINED,
       })
 
-      this.fire('clear.datepicker', TRUE)
-      this.fire('clear.datepicker')
+      const clearEvent = {
+        type: 'clear',
+        ns: 'datepicker',
+      }
+      this.fire(clearEvent, TRUE)
+      this.fire(clearEvent)
 
     },
 

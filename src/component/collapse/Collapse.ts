@@ -42,7 +42,10 @@ export default Yox.define({
   watchers: {
     value(value) {
       this.fire(
-        'change.collapse',
+        {
+          type: 'change',
+          ns: 'collapse',
+        },
         {
           value,
         },
@@ -52,32 +55,35 @@ export default Yox.define({
   },
 
   events: {
-    'open.collapseItem': function (event, data) {
-      if (event.phase === Yox.Event.PHASE_UPWARD) {
-        event.stop()
-
-        let { name, opened } = data
-
-        let value = this.get('value')
-
-        if (this.get('accordion')) {
-          value = opened ? name : UNDEFINED
-        }
-        else {
-          value = Yox.is.array(value) ? this.copy(value) : []
-          if (opened) {
-            if (!Yox.array.has(value, name, FALSE)) {
-              value.push(name)
-            }
+    open: {
+      listener(event, data) {
+        if (event.phase === Yox.Event.PHASE_UPWARD) {
+          event.stop()
+  
+          let { name, opened } = data
+  
+          let value = this.get('value')
+  
+          if (this.get('accordion')) {
+            value = opened ? name : UNDEFINED
           }
           else {
-            Yox.array.remove(value, name, FALSE)
+            value = Yox.is.array(value) ? this.copy(value) : []
+            if (opened) {
+              if (!Yox.array.has(value, name, FALSE)) {
+                value.push(name)
+              }
+            }
+            else {
+              Yox.array.remove(value, name, FALSE)
+            }
           }
+  
+          this.set('value', value)
+  
         }
-
-        this.set('value', value)
-
-      }
+      },
+      ns: 'collapseItem'
     }
   }
 

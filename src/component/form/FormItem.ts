@@ -70,14 +70,17 @@ export default Yox.define({
   },
 
   events: {
-    'validate.form': function (_, data) {
-      const { errors } = data
-      this.set(
-        'error',
-        errors
-        ? errors[this.get('prop')]
-        : UNDEFINED
-      )
+    validate: {
+      listener(_, data) {
+        const { errors } = data
+        this.set(
+          'error',
+          errors
+          ? errors[this.get('prop')]
+          : UNDEFINED
+        )
+      },
+      ns: 'form',
     }
   }
 

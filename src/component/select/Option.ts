@@ -65,20 +65,23 @@ export default Yox.define({
   },
 
   events: {
-    'change.select': function (_, data) {
+    change: {
+      listener(_, data) {
 
-      const { value, selectedOptions } = data
-
-      const isSelected = isOptionSelected(value, this.get('value'))
-
-      this.set('isSelected', isSelected)
-
-      if (isSelected) {
-        selectedOptions.push({
-          text: this.getText(),
-          value: this.get('value')
-        })
-      }
+        const { value, selectedOptions } = data
+  
+        const isSelected = isOptionSelected(value, this.get('value'))
+  
+        this.set('isSelected', isSelected)
+  
+        if (isSelected) {
+          selectedOptions.push({
+            text: this.getText(),
+            value: this.get('value')
+          })
+        }
+      },
+      ns: 'select',
     },
   },
 
@@ -91,7 +94,10 @@ export default Yox.define({
     },
     fireEvent(isSelected: boolean) {
       this.fire(
-        'update.selectOption',
+        {
+          type: 'update',
+          ns: 'selectOption',
+        },
         {
           isSelected,
           value: this.get('value'),

@@ -7,9 +7,9 @@ interface Tab {
 declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
 }, {
-    'add.tabPanel': unknown;
-    'remove.tabPanel': unknown;
-    'update.tabPanel': unknown;
+    add: unknown;
+    remove: unknown;
+    update: unknown;
 }, {
     handleCloseTab(tab: Tab): void;
     handleClickTab(tab: Tab): void;

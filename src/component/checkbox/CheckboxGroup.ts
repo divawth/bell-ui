@@ -44,30 +44,36 @@ export default Yox.define({
   },
 
   events: {
-    'change.checkbox': function (event, data) {
-      event.stop()
-
-      const value = this.copy(this.get('value'))
-      const { length } = value
-
-      if (data.checked) {
-        if (!Yox.array.has(value, data.value)) {
-          value.push(data.value)
+    change: {
+      listener(event, data) {
+        event.stop()
+  
+        const value = this.copy(this.get('value'))
+        const { length } = value
+  
+        if (data.checked) {
+          if (!Yox.array.has(value, data.value)) {
+            value.push(data.value)
+          }
         }
-      }
-      else {
-        Yox.array.remove(value, data.value)
-      }
-
-      if (value.length !== length) {
-        this.set({ value })
-      }
+        else {
+          Yox.array.remove(value, data.value)
+        }
+  
+        if (value.length !== length) {
+          this.set({ value })
+        }
+      },
+      ns: 'checkbox',
     }
   },
   watchers: {
     value(value) {
       this.fire(
-        'change.checkboxGroup',
+        {
+          type: 'change',
+          ns: 'checkboxGroup',
+        },
         { value },
         TRUE
       )

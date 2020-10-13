@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("yox"), require("soga"));
 	else if(typeof define === 'function' && define.amd)
-		define("bell", ["yox", "soga"], factory);
+		define("Bell", ["yox", "soga"], factory);
 	else if(typeof exports === 'object')
-		exports["bell"] = factory(require("yox"), require("soga"));
+		exports["Bell"] = factory(require("yox"), require("soga"));
 	else
-		root["bell"] = factory(root["Yox"], root["Soga"]);
+		root["Bell"] = factory(root["Yox"], root["Soga"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__28__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -745,7 +745,7 @@ function onTransitionEnd(el, callback) {
     }
 }
 var supportPageOffset = WINDOW.pageXOffset !== UNDEFINED;
-var isCSS1Compat = (DOCUMENT.compatMode || '') === 'CSS1Compat';
+var isCSS1Compat = DOCUMENT.compatMode === 'CSS1Compat';
 function getPageX() {
     return supportPageOffset
         ? WINDOW.pageXOffset
@@ -888,45 +888,66 @@ function scrollTop(element, from, to, duration, endCallback) {
     },
     watchers: {
         activeName: function (activeName) {
-            this.fire('activeName.menu', { activeName: activeName }, TRUE);
+            this.fire({
+                type: 'activeName',
+                ns: 'menu',
+            }, { activeName: activeName }, TRUE);
         },
         openNames: function (openNames) {
-            this.fire('openNames.menu', { openNames: openNames }, TRUE);
+            this.fire({
+                type: 'openNames',
+                ns: 'menu',
+            }, { openNames: openNames }, TRUE);
         },
         collapsed: function (collapsed) {
-            this.fire('collapsed.menu', { collapsed: collapsed }, TRUE);
+            this.fire({
+                type: 'collapsed',
+                ns: 'menu',
+            }, { collapsed: collapsed }, TRUE);
         }
     },
     events: {
-        'click.menuItem': function (event, data) {
-            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
-                && !this.get('inner')) {
-                this.fire('change.menu', {
-                    activeName: data.name
-                });
-            }
+        click: {
+            listener: function (event, data) {
+                if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
+                    && !this.get('inner')) {
+                    this.fire({
+                        type: 'change',
+                        ns: 'menu',
+                    }, {
+                        activeName: data.name
+                    });
+                }
+            },
+            ns: 'menuItem',
         },
-        'isOpen.subMenu': function (event, data) {
-            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
-                && !this.get('inner')) {
-                var isOpen = data.isOpen, name_1 = data.name;
-                var openNames = this.get('openNames');
-                if (openNames) {
-                    openNames = this.copy(openNames);
+        isOpen: {
+            listener: function (event, data) {
+                if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD
+                    && !this.get('inner')) {
+                    var isOpen = data.isOpen, name_1 = data.name;
+                    var openNames = this.get('openNames');
+                    if (openNames) {
+                        openNames = this.copy(openNames);
+                    }
+                    else {
+                        openNames = [];
+                    }
+                    if (isOpen) {
+                        openNames.push(name_1);
+                    }
+                    else {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(openNames, name_1);
+                    }
+                    this.fire({
+                        type: 'change',
+                        ns: 'menu',
+                    }, {
+                        openNames: openNames,
+                    });
                 }
-                else {
-                    openNames = [];
-                }
-                if (isOpen) {
-                    openNames.push(name_1);
-                }
-                else {
-                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(openNames, name_1);
-                }
-                this.fire('change.menu', {
-                    openNames: openNames,
-                });
-            }
+            },
+            ns: 'subMenu',
         }
     }
 }));
@@ -964,13 +985,19 @@ var MenuItem_default = /*#__PURE__*/__webpack_require__.n(MenuItem);
         };
     },
     events: {
-        'activeName.menu': function (_, data) {
-            this.set('isActive', data.activeName === this.get('name'));
+        activeName: {
+            listener: function (_, data) {
+                this.set('isActive', data.activeName === this.get('name'));
+            },
+            ns: 'menu',
         },
     },
     methods: {
         click: function () {
-            this.fire('click.menuItem', {
+            this.fire({
+                type: 'click',
+                ns: 'menuItem',
+            }, {
                 name: this.get('name')
             });
         }
@@ -1129,8 +1156,14 @@ var CLASS_FADE = 'bell-dropdown-fade';
         };
     },
     events: {
-        'click.dropdownItem': function () {
-            this.fire('close.dropdown');
+        click: {
+            listener: function () {
+                this.fire({
+                    type: 'close',
+                    ns: 'dropdown',
+                });
+            },
+            ns: 'dropdownItem',
         }
     },
     methods: {
@@ -1141,7 +1174,10 @@ var CLASS_FADE = 'bell-dropdown-fade';
                 me.leaveTimer = UNDEFINED;
             }
             else {
-                this.fire('open.dropdown');
+                this.fire({
+                    type: 'open',
+                    ns: 'dropdown',
+                });
             }
         },
         leave: function () {
@@ -1149,16 +1185,25 @@ var CLASS_FADE = 'bell-dropdown-fade';
             me.leaveTimer = setTimeout(function () {
                 if (me.$el) {
                     me.leaveTimer = UNDEFINED;
-                    me.fire('close.dropdown');
+                    me.fire({
+                        type: 'close',
+                        ns: 'dropdown',
+                    });
                 }
             }, 300);
         },
         toggleVisible: function () {
             if (this.get('visible')) {
-                this.fire('close.dropdown');
+                this.fire({
+                    type: 'close',
+                    ns: 'dropdown',
+                });
             }
             else {
-                this.fire('open.dropdown');
+                this.fire({
+                    type: 'open',
+                    ns: 'dropdown',
+                });
             }
         }
     },
@@ -1174,10 +1219,16 @@ var CLASS_FADE = 'bell-dropdown-fade';
                 return;
             }
             if (me.get('trigger') === RAW_CUSTOM) {
-                me.fire('outside.dropdown');
+                me.fire({
+                    type: 'outside',
+                    ns: 'dropdown',
+                });
             }
             else {
-                me.fire('close.dropdown');
+                me.fire({
+                    type: 'close',
+                    ns: 'dropdown',
+                });
             }
         };
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_CLICK, onClick);
@@ -1229,7 +1280,10 @@ var SubMenu_default = /*#__PURE__*/__webpack_require__.n(SubMenu);
         isOpen: function (isOpen) {
             var name = this.get('name');
             if (name) {
-                this.fire('isOpen.subMenu', {
+                this.fire({
+                    type: 'isOpen',
+                    ns: 'subMenu',
+                }, {
                     isOpen: isOpen,
                     name: name,
                 });
@@ -1237,19 +1291,31 @@ var SubMenu_default = /*#__PURE__*/__webpack_require__.n(SubMenu);
         }
     },
     events: {
-        'activeName.menu': function (_, data) {
-            this.set('isActive', data.activeName === this.get('name'));
+        activeName: {
+            listener: function (_, data) {
+                this.set('isActive', data.activeName === this.get('name'));
+            },
+            ns: 'menu',
         },
-        'openNames.menu': function (_, data) {
-            this.set('isOpen', data.openNames && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.openNames, this.get('name')));
+        openNames: {
+            listener: function (_, data) {
+                this.set('isOpen', data.openNames && external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.openNames, this.get('name')));
+            },
+            ns: 'menu',
         },
-        'collapsed.menu': function (_, data) {
-            this.set('collapsed', data.collapsed);
+        collapsed: {
+            listener: function (_, data) {
+                this.set('collapsed', data.collapsed);
+            },
+            ns: 'menu',
         },
-        'click.menuItem': function () {
-            if (this.get('mode') !== RAW_INLINE) {
-                this.set('isOpen', FALSE);
-            }
+        click: {
+            listener: function () {
+                if (this.get('mode') !== RAW_INLINE) {
+                    this.set('isOpen', FALSE);
+                }
+            },
+            ns: 'menuItem',
         }
     },
     methods: {
@@ -1370,23 +1436,35 @@ var Drawer_CLASS_FADE = 'bell-drawer-fade';
             if (visible) {
                 // 设置为 display block
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Drawer_CLASS_VISIBLE);
-                me.fire('open.drawer');
+                me.fire({
+                    type: 'open',
+                    ns: 'drawer',
+                });
                 setTimeout(function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Drawer_CLASS_FADE);
                     onTransitionEnd(wrapper, function () {
                         if (me.$el) {
-                            me.fire('opened.drawer');
+                            me.fire({
+                                type: 'opened',
+                                ns: 'drawer',
+                            });
                         }
                     });
                 }, 50);
             }
             else if (oldVisible) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Drawer_CLASS_FADE);
-                me.fire('close.drawer');
+                me.fire({
+                    type: 'close',
+                    ns: 'drawer',
+                });
                 onTransitionEnd(wrapper, function () {
                     if (me.$el) {
                         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Drawer_CLASS_VISIBLE);
-                        me.fire('closed.drawer');
+                        me.fire({
+                            type: 'closed',
+                            ns: 'drawer',
+                        });
                     }
                 });
             }
@@ -1685,7 +1763,10 @@ var TEXT_TYPE_TEXT = 'text';
     },
     watchers: {
         value: function (value) {
-            this.fire('change.input', { value: value });
+            this.fire({
+                type: 'change',
+                ns: 'input',
+            }, { value: value });
         },
         isSecure: function (isSecure) {
             this.set({
@@ -1698,15 +1779,24 @@ var TEXT_TYPE_TEXT = 'text';
     methods: {
         handleFocus: function () {
             this.set('isFocus', TRUE);
-            this.fire('focus.input');
+            this.fire({
+                type: 'focus',
+                ns: 'input',
+            });
         },
         handleBlur: function () {
             this.set('isFocus', FALSE);
-            this.fire('blur.input');
+            this.fire({
+                type: 'blur',
+                ns: 'input',
+            });
         },
         handleClearClick: function () {
             this.set('value', '');
-            this.fire('clear.input');
+            this.fire({
+                type: 'clear',
+                ns: 'input',
+            });
         },
     },
     components: {
@@ -1721,7 +1811,10 @@ var TEXT_TYPE_TEXT = 'text';
             var originalEvent = event.originalEvent;
             me.fire(new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event('keydown.input', originalEvent));
             if (originalEvent.keyCode === 13) {
-                me.fire('enter.input');
+                me.fire({
+                    type: 'enter',
+                    ns: 'input',
+                });
             }
         };
         var onKeyup = function (event) {
@@ -1826,7 +1919,10 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
     },
     watchers: {
         value: function (value) {
-            this.fire('change.inputNumber', { value: value });
+            this.fire({
+                type: 'change',
+                ns: 'inputNumber',
+            }, { value: value });
         }
     },
     computed: {
@@ -1862,11 +1958,17 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         },
         handleFocus: function () {
             this.set('isFocus', TRUE);
-            this.fire('focus.inputNumber');
+            this.fire({
+                type: 'focus',
+                ns: 'inputNumber',
+            });
         },
         handleBlur: function () {
             this.set('isFocus', FALSE);
-            this.fire('blur.inputNumber');
+            this.fire({
+                type: 'blur',
+                ns: 'inputNumber',
+            });
         },
     },
     components: {
@@ -1985,17 +2087,26 @@ fontSizes[RAW_LARGE] = 16;
     },
     watchers: {
         value: function (value) {
-            this.fire('change.input', { value: value });
+            this.fire({
+                type: 'change',
+                ns: 'textarea',
+            }, { value: value });
         },
     },
     methods: {
         handleFocus: function () {
             this.set('isFocus', TRUE);
-            this.fire('focus.input');
+            this.fire({
+                type: 'focus',
+                ns: 'textarea',
+            });
         },
         handleBlur: function () {
             this.set('isFocus', FALSE);
-            this.fire('blur.input');
+            this.fire({
+                type: 'blur',
+                ns: 'textarea',
+            });
         },
     },
     computed: {
@@ -2028,7 +2139,10 @@ fontSizes[RAW_LARGE] = 16;
             var originalEvent = event.originalEvent;
             me.fire(new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event('keydown.input', originalEvent));
             if (originalEvent.keyCode === 13) {
-                me.fire('enter.input');
+                me.fire({
+                    type: 'enter',
+                    ns: 'textarea',
+                });
             }
         };
         var onKeyup = function (event) {
@@ -2101,18 +2215,24 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
         };
     },
     events: {
-        'change.radioGroup': function (_, data) {
-            if (data.value !== UNDEFINED) {
-                this.set('checked', data.value == this.get('value'));
-            }
-            if (data.disabled !== UNDEFINED) {
-                this.set('disabled', data.disabled);
-            }
+        change: {
+            listener: function (_, data) {
+                if (data.value !== UNDEFINED) {
+                    this.set('checked', data.value == this.get('value'));
+                }
+                if (data.disabled !== UNDEFINED) {
+                    this.set('disabled', data.disabled);
+                }
+            },
+            ns: 'radioGroup',
         }
     },
     watchers: {
         checked: function (checked) {
-            this.fire('change.radio', {
+            this.fire({
+                type: 'change',
+                ns: 'radio',
+            }, {
                 checked: checked,
                 value: this.get('value'),
             });
@@ -2180,24 +2300,33 @@ var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
     },
     watchers: {
         disabled: function (disabled) {
-            this.fire('change.radioGroup', {
+            this.fire({
+                type: 'change',
+                ns: 'radioGroup',
+            }, {
                 disabled: disabled,
             }, TRUE);
         },
         value: function (value) {
-            this.fire('change.radioGroup', {
+            this.fire({
+                type: 'change',
+                ns: 'radioGroup',
+            }, {
                 value: value,
             }, TRUE);
         }
     },
     events: {
-        'change.radio': function (event, data) {
-            event.stop();
-            // 只关心选中的
-            if (!data.checked) {
-                return;
-            }
-            this.set('value', data.value);
+        change: {
+            listener: function (event, data) {
+                event.stop();
+                // 只关心选中的
+                if (!data.checked) {
+                    return;
+                }
+                this.set('value', data.value);
+            },
+            ns: 'radio',
         }
     }
 }));
@@ -2249,15 +2378,21 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
         };
     },
     events: {
-        'change.checkboxGroup': function (_, data) {
-            this.set({
-                checked: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, this.get('value'))
-            });
+        change: {
+            listener: function (_, data) {
+                this.set({
+                    checked: external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, this.get('value'))
+                });
+            },
+            ns: 'checkboxGroup',
         }
     },
     watchers: {
         checked: function (checked) {
-            this.fire('change.checkbox', {
+            this.fire({
+                type: 'change',
+                ns: 'checkbox',
+            }, {
                 checked: checked,
                 value: this.get('value'),
             });
@@ -2318,26 +2453,32 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
         }
     },
     events: {
-        'change.checkbox': function (event, data) {
-            event.stop();
-            var value = this.copy(this.get('value'));
-            var length = value.length;
-            if (data.checked) {
-                if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(value, data.value)) {
-                    value.push(data.value);
+        change: {
+            listener: function (event, data) {
+                event.stop();
+                var value = this.copy(this.get('value'));
+                var length = value.length;
+                if (data.checked) {
+                    if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(value, data.value)) {
+                        value.push(data.value);
+                    }
                 }
-            }
-            else {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(value, data.value);
-            }
-            if (value.length !== length) {
-                this.set({ value: value });
-            }
+                else {
+                    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(value, data.value);
+                }
+                if (value.length !== length) {
+                    this.set({ value: value });
+                }
+            },
+            ns: 'checkbox',
         }
     },
     watchers: {
         value: function (value) {
-            this.fire('change.checkboxGroup', { value: value }, TRUE);
+            this.fire({
+                type: 'change',
+                ns: 'checkboxGroup',
+            }, { value: value }, TRUE);
         }
     }
 }));
@@ -2382,7 +2523,10 @@ var Switch_default = /*#__PURE__*/__webpack_require__.n(Switch);
     },
     methods: {
         handleClick: function () {
-            this.fire('change.switch', {
+            this.fire({
+                type: 'change',
+                ns: 'switch',
+            }, {
                 checked: this.toggle('checked')
             });
         }
@@ -2692,7 +2836,10 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
     },
     methods: {
         toggleChecked: function () {
-            this.fire('change.tag', {
+            this.fire({
+                type: 'change',
+                ns: 'tag',
+            }, {
                 checked: !this.get('checked'),
             });
         }
@@ -2772,22 +2919,28 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
         value: function (value) {
             // 在这同步 selectedOptions，可兼顾内外的改动
             this.updateSelectedOptions(value);
-            this.fire('change.select', { value: value });
+            this.fire({
+                type: 'change',
+                ns: 'select',
+            }, { value: value });
         },
     },
     events: {
-        'update.selectOption': function (event, data) {
-            event.stop();
-            var me = this;
-            if (data.isSelected) {
-                me.selectOption(data.value);
-            }
-            else {
-                me.deselectOption(data.value);
-            }
-            if (!me.get('multiple')) {
-                me.set('visible', FALSE);
-            }
+        update: {
+            listener: function (event, data) {
+                event.stop();
+                var me = this;
+                if (data.isSelected) {
+                    me.selectOption(data.value);
+                }
+                else {
+                    me.deselectOption(data.value);
+                }
+                if (!me.get('multiple')) {
+                    me.set('visible', FALSE);
+                }
+            },
+            ns: 'selectOption',
         }
     },
     methods: {
@@ -2795,15 +2948,24 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
             // 停止冒泡，否则会展开下拉框
             event.stop();
             this.set('value', UNDEFINED);
-            this.fire('change.select', {
+            this.fire({
+                type: 'change',
+                ns: 'select',
+            }, {
                 value: UNDEFINED,
             }, TRUE);
-            this.fire('clear.select');
+            this.fire({
+                type: 'clear',
+                ns: 'select',
+            });
         },
         handleRemoveOption: function (event, index) {
             event.stop();
             this.removeAt('value', index);
-            this.fire('change.select', {
+            this.fire({
+                type: 'change',
+                ns: 'select',
+            }, {
                 value: this.get('value')
             }, TRUE);
         },
@@ -2853,7 +3015,10 @@ var Tag_default = /*#__PURE__*/__webpack_require__.n(Tag);
         updateSelectedOptions: function (value) {
             // 用一个空数组，通过事件流收集选中的 option
             var selectedOptions = [];
-            this.fire('change.select', {
+            this.fire({
+                type: 'change',
+                ns: 'select',
+            }, {
                 value: value,
                 selectedOptions: selectedOptions,
             }, TRUE);
@@ -2920,16 +3085,19 @@ function isOptionSelected(values, value) {
         }
     },
     events: {
-        'change.select': function (_, data) {
-            var value = data.value, selectedOptions = data.selectedOptions;
-            var isSelected = isOptionSelected(value, this.get('value'));
-            this.set('isSelected', isSelected);
-            if (isSelected) {
-                selectedOptions.push({
-                    text: this.getText(),
-                    value: this.get('value')
-                });
-            }
+        change: {
+            listener: function (_, data) {
+                var value = data.value, selectedOptions = data.selectedOptions;
+                var isSelected = isOptionSelected(value, this.get('value'));
+                this.set('isSelected', isSelected);
+                if (isSelected) {
+                    selectedOptions.push({
+                        text: this.getText(),
+                        value: this.get('value')
+                    });
+                }
+            },
+            ns: 'select',
         },
     },
     methods: {
@@ -2940,7 +3108,10 @@ function isOptionSelected(values, value) {
             return this.get('text') || external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.text(this.$el);
         },
         fireEvent: function (isSelected) {
-            this.fire('update.selectOption', {
+            this.fire({
+                type: 'update',
+                ns: 'selectOption',
+            }, {
                 isSelected: isSelected,
                 value: this.get('value'),
             });
@@ -3124,35 +3295,50 @@ var Pagination_default = /*#__PURE__*/__webpack_require__.n(Pagination);
                 return;
             }
             event.stop();
-            this.fire('change.pagination', {
+            this.fire({
+                type: 'change',
+                ns: 'pagination',
+            }, {
                 pageSize: data.value
             });
         },
-        'change.input': function (event) {
-            if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                return;
-            }
-            event.stop();
+        change: {
+            listener: function (event) {
+                if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    return;
+                }
+                event.stop();
+            },
+            ns: 'input',
         },
-        'enter.input': function (event) {
-            if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                return;
-            }
-            event.stop();
-            this.jump();
+        enter: {
+            listener: function (event) {
+                if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    return;
+                }
+                event.stop();
+                this.jump();
+            },
+            ns: 'input',
         }
     },
     watchers: {
         current: function (current) {
             this.set('page', current);
-            this.fire('change.pagination', {
+            this.fire({
+                type: 'change',
+                ns: 'pagination',
+            }, {
                 current: current,
             });
         }
     },
     methods: {
         showError: function (error) {
-            this.fire('error.pagination', {
+            this.fire({
+                type: 'error',
+                ns: 'pagination',
+            }, {
                 error: error,
             });
         },
@@ -3279,29 +3465,47 @@ var guid = 0;
             var me = this;
             var ajaxUploader = new external_root_Soga_commonjs_soga_commonjs2_soga_amd_soga_["AjaxUploader"](file.file, {
                 onStart: function () {
-                    me.fire('start.upload', file);
+                    me.fire({
+                        type: 'start',
+                        ns: 'upload',
+                    }, file);
                 },
                 onEnd: function () {
-                    me.fire('end.upload', file);
+                    me.fire({
+                        type: 'end',
+                        ns: 'upload',
+                    }, file);
                     // 重置一下，这样再次选择相同文件才能生效
                     var form = me.$refs.form;
                     form.reset();
                 },
                 onAbort: function () {
-                    me.fire('abort.upload', file);
+                    me.fire({
+                        type: 'abort',
+                        ns: 'upload',
+                    }, file);
                 },
                 onError: function () {
-                    me.fire('error.upload', file);
+                    me.fire({
+                        type: 'error',
+                        ns: 'upload',
+                    }, file);
                 },
                 onProgress: function (progress) {
-                    me.fire('progress.upload', {
+                    me.fire({
+                        type: 'progress',
+                        ns: 'upload',
+                    }, {
                         id: file.id,
                         file: file.file,
                         progress: progress,
                     });
                 },
                 onSuccess: function (response) {
-                    me.fire('success.upload', {
+                    me.fire({
+                        type: 'success',
+                        ns: 'upload',
+                    }, {
                         id: file.id,
                         file: file.file,
                         response: response,
@@ -3983,7 +4187,10 @@ function formatDate(date, format) {
     },
     methods: {
         click: function (item) {
-            this.fire('change.year', {
+            this.fire({
+                type: 'change',
+                ns: 'year',
+            }, {
                 year: item,
             });
         }
@@ -4069,17 +4276,23 @@ function toMonthTimestamp(date) {
         }
     },
     events: {
-        'change.year': function (event, data) {
-            event.stop();
-            this.set({
-                type: RAW_TYPE_MONTH,
-                year: data.year,
-            });
+        change: {
+            listener: function (event, data) {
+                event.stop();
+                this.set({
+                    type: RAW_TYPE_MONTH,
+                    year: data.year,
+                });
+            },
+            ns: 'year',
         },
     },
     methods: {
         click: function (item) {
-            this.fire('change.month', item);
+            this.fire({
+                type: 'change',
+                ns: 'month',
+            }, item);
         }
     }
 }));
@@ -4203,7 +4416,10 @@ function toMonthTimestamp(date) {
             this.set('timestamp', offsetMonth(this.get('timestamp'), offset));
         },
         click: function (item) {
-            this.fire('change.date', item);
+            this.fire({
+                type: 'change',
+                ns: 'date',
+            }, item);
         }
     }
 }));
@@ -4374,13 +4590,19 @@ function getEndTimestamp(startTimestamp, endTimestamp) {
                 return;
             }
             if (item.timestamp > pinDate.timestamp) {
-                me.fire('change.range', {
+                me.fire({
+                    type: 'change',
+                    ns: 'range',
+                }, {
                     start: pinDate,
                     end: item,
                 });
             }
             else {
-                me.fire('change.range', {
+                me.fire({
+                    type: 'change',
+                    ns: 'range',
+                }, {
                     start: item,
                     end: pinDate,
                 });
@@ -4509,7 +4731,10 @@ var DateWeek_default = /*#__PURE__*/__webpack_require__.n(DateWeek);
         },
         click: function (colIndex) {
             var _a = this.get("datasource." + colIndex), start = _a.start, end = _a.end;
-            this.fire('change.week', {
+            this.fire({
+                type: 'change',
+                ns: 'week',
+            }, {
                 start: start,
                 end: end,
             });
@@ -4654,12 +4879,21 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
         },
     },
     events: {
-        'change.input': function (event) {
-            event.stop();
+        change: {
+            listener: function (event) {
+                event.stop();
+            },
+            ns: 'input',
         },
-        'clear.input': function (event) {
-            event.stop();
-            this.fire('clear.datepicker', TRUE);
+        clear: {
+            listener: function (event) {
+                event.stop();
+                this.fire({
+                    type: 'clear',
+                    ns: 'datepicker',
+                }, TRUE);
+            },
+            ns: 'input',
         },
         'change.date': function (event, data) {
             event.stop();
@@ -4694,8 +4928,12 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
             this.set({
                 value: this.get('multiple') ? [] : UNDEFINED,
             });
-            this.fire('clear.datepicker', TRUE);
-            this.fire('clear.datepicker');
+            var clearEvent = {
+                type: 'clear',
+                ns: 'datepicker',
+            };
+            this.fire(clearEvent, TRUE);
+            this.fire(clearEvent);
         },
         handleRemoveItem: function (event, index) {
             event.stop();
@@ -4990,33 +5228,39 @@ var Collapse_default = /*#__PURE__*/__webpack_require__.n(Collapse);
     },
     watchers: {
         value: function (value) {
-            this.fire('change.collapse', {
+            this.fire({
+                type: 'change',
+                ns: 'collapse',
+            }, {
                 value: value,
             }, TRUE);
         }
     },
     events: {
-        'open.collapseItem': function (event, data) {
-            if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                event.stop();
-                var name_1 = data.name, opened = data.opened;
-                var value = this.get('value');
-                if (this.get('accordion')) {
-                    value = opened ? name_1 : UNDEFINED;
-                }
-                else {
-                    value = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(value) ? this.copy(value) : [];
-                    if (opened) {
-                        if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(value, name_1, FALSE)) {
-                            value.push(name_1);
-                        }
+        open: {
+            listener: function (event, data) {
+                if (event.phase === external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    event.stop();
+                    var name_1 = data.name, opened = data.opened;
+                    var value = this.get('value');
+                    if (this.get('accordion')) {
+                        value = opened ? name_1 : UNDEFINED;
                     }
                     else {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(value, name_1, FALSE);
+                        value = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(value) ? this.copy(value) : [];
+                        if (opened) {
+                            if (!external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(value, name_1, FALSE)) {
+                                value.push(name_1);
+                            }
+                        }
+                        else {
+                            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(value, name_1, FALSE);
+                        }
                     }
+                    this.set('value', value);
                 }
-                this.set('value', value);
-            }
+            },
+            ns: 'collapseItem'
         }
     }
 }));
@@ -5069,21 +5313,27 @@ var CollapseItem_default = /*#__PURE__*/__webpack_require__.n(CollapseItem);
         };
     },
     events: {
-        'change.collapse': function (event, data) {
-            // 只接收父级事件，再上一级的就不管了
-            // 避免嵌套面板的问题
-            if (event.target !== this.$parent) {
-                return;
-            }
-            var name = this.get('name');
-            this.set('opened', external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(data.value)
-                ? external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, name, FALSE)
-                : data.value == name);
+        change: {
+            listener: function (event, data) {
+                // 只接收父级事件，再上一级的就不管了
+                // 避免嵌套面板的问题
+                if (event.target !== this.$parent) {
+                    return;
+                }
+                var name = this.get('name');
+                this.set('opened', external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(data.value)
+                    ? external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, name, FALSE)
+                    : data.value == name);
+            },
+            ns: 'collapse',
         }
     },
     methods: {
         click: function () {
-            this.fire('open.collapseItem', {
+            this.fire({
+                type: 'open',
+                ns: 'collapseItem',
+            }, {
                 name: this.get('name'),
                 opened: !this.get('opened'),
             });
@@ -5877,7 +6127,10 @@ var Rate_default = /*#__PURE__*/__webpack_require__.n(Rate);
                 value -= 0.5;
             }
             this.set('value', value);
-            this.fire('change.rate', {
+            this.fire({
+                type: 'change',
+                ns: 'rate',
+            }, {
                 value: value
             });
         },
@@ -5932,70 +6185,85 @@ var Tabs_default = /*#__PURE__*/__webpack_require__.n(Tabs);
         };
     },
     events: {
-        'add.tabPanel': function (event, data) {
-            if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                return;
-            }
-            var target = event.target;
-            var tabName = target.get('name');
-            this.append('tabs', {
-                name: tabName,
-                icon: target.get('icon'),
-                label: target.get('label'),
-                disabled: target.get('disabled'),
-            });
-            if (data.isActive) {
-                this.set({
-                    value: tabName,
-                });
-            }
-        },
-        'remove.tabPanel': function (event) {
-            if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                return;
-            }
-            var target = event.target;
-            var tabName = target.get('name');
-            var tabs = this.get('tabs');
-            var newTabs = tabs.filter(function (item) {
-                return item.name !== tabName;
-            });
-            this.set({
-                tabs: newTabs
-            });
-            if (this.get('value') === tabName) {
-                this.set('value', newTabs[0] ? newTabs[0].name : UNDEFINED);
-            }
-        },
-        'update.tabPanel': function (event) {
-            if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
-                return;
-            }
-            var me = this;
-            var target = event.target;
-            var tabName = target.get('name');
-            var tabs = me.get('tabs');
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(tabs, function (item, index) {
-                if (item.name === tabName) {
-                    me.set("tabs." + index, {
-                        name: tabName,
-                        icon: target.get('icon'),
-                        label: target.get('label'),
-                        disabled: target.get('disabled'),
-                    });
-                    return FALSE;
+        add: {
+            listener: function (event, data) {
+                if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    return;
                 }
-            });
+                var target = event.target;
+                var tabName = target.get('name');
+                this.append('tabs', {
+                    name: tabName,
+                    icon: target.get('icon'),
+                    label: target.get('label'),
+                    disabled: target.get('disabled'),
+                });
+                if (data.isActive) {
+                    this.set({
+                        value: tabName,
+                    });
+                }
+            },
+            ns: 'tabPanel',
+        },
+        remove: {
+            listener: function (event) {
+                if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    return;
+                }
+                var target = event.target;
+                var tabName = target.get('name');
+                var tabs = this.get('tabs');
+                var newTabs = tabs.filter(function (item) {
+                    return item.name !== tabName;
+                });
+                this.set({
+                    tabs: newTabs
+                });
+                if (this.get('value') === tabName) {
+                    this.set('value', newTabs[0] ? newTabs[0].name : UNDEFINED);
+                }
+            },
+            ns: 'tabPanel',
+        },
+        update: {
+            listener: function (event) {
+                if (event.phase !== external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event.PHASE_UPWARD) {
+                    return;
+                }
+                var me = this;
+                var target = event.target;
+                var tabName = target.get('name');
+                var tabs = me.get('tabs');
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(tabs, function (item, index) {
+                    if (item.name === tabName) {
+                        me.set("tabs." + index, {
+                            name: tabName,
+                            icon: target.get('icon'),
+                            label: target.get('label'),
+                            disabled: target.get('disabled'),
+                        });
+                        return FALSE;
+                    }
+                });
+            },
+            ns: 'tabPanel',
         }
     },
     watchers: {
         value: function (value) {
-            this.fire('change.tabs', { value: value }, TRUE);
+            this.fire({
+                type: 'change',
+                ns: 'tabs',
+            }, { value: value }, TRUE);
         },
     },
     methods: {
         handleCloseTab: function (tab) {
-            this.fire('tabRemove.tabs', {
+            this.fire({
+                type: 'tabRemove',
+                ns: 'tabs',
+            }, {
                 name: tab.name
             });
         },
@@ -6051,22 +6319,33 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
     },
     watchers: {
         name: function () {
-            this.fire('update.tabPanel');
+            this.updatePanel();
         },
         icon: function () {
-            this.fire('update.tabPanel');
+            this.updatePanel();
         },
         label: function () {
-            this.fire('update.tabPanel');
+            this.updatePanel();
         },
         disabled: function () {
-            this.fire('update.tabPanel');
+            this.updatePanel();
         },
     },
     events: {
-        'change.tabs': function (_, data) {
-            this.set({
-                isActive: this.get('name') == data.value
+        change: {
+            listener: function (_, data) {
+                this.set({
+                    isActive: this.get('name') == data.value
+                });
+            },
+            ns: 'tabs',
+        }
+    },
+    methods: {
+        updatePanel: function () {
+            this.fire({
+                type: 'update',
+                ns: 'tabPanel',
             });
         }
     },
@@ -6084,12 +6363,18 @@ var TabPanel_default = /*#__PURE__*/__webpack_require__.n(TabPanel);
         }
         var isActive = value === name;
         this.set('isActive', isActive);
-        this.fire('add.tabPanel', {
+        this.fire({
+            type: 'add',
+            ns: 'tabPanel',
+        }, {
             isActive: isActive,
         });
     },
     beforeDestroy: function () {
-        this.fire('remove.tabPanel');
+        this.fire({
+            type: 'remove',
+            ns: 'tabPanel',
+        });
     }
 }));
 
@@ -6295,7 +6580,10 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
     },
     methods: {
         validate: function (errors) {
-            this.fire('validate.form', { errors: errors }, TRUE);
+            this.fire({
+                type: 'validate',
+                ns: 'form',
+            }, { errors: errors }, TRUE);
         },
     }
 }));
@@ -6353,11 +6641,14 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
         }
     },
     events: {
-        'validate.form': function (_, data) {
-            var errors = data.errors;
-            this.set('error', errors
-                ? errors[this.get('prop')]
-                : UNDEFINED);
+        validate: {
+            listener: function (_, data) {
+                var errors = data.errors;
+                this.set('error', errors
+                    ? errors[this.get('prop')]
+                    : UNDEFINED);
+            },
+            ns: 'form',
         }
     }
 }));
@@ -6421,23 +6712,35 @@ var Dialog_CLASS_FADE = 'bell-dialog-fade';
             if (visible) {
                 // 设置为 display block
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_VISIBLE);
-                me.fire('open.dialog');
+                me.fire({
+                    type: 'open',
+                    ns: 'dialog',
+                });
                 setTimeout(function () {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Dialog_CLASS_FADE);
                     onTransitionEnd(wrapper, function () {
                         if (me.$el) {
-                            me.fire('opened.dialog');
+                            me.fire({
+                                type: 'opened',
+                                ns: 'dialog',
+                            });
                         }
                     });
                 }, 50);
             }
             else if (oldVisible) {
                 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_FADE);
-                me.fire('close.dialog');
+                me.fire({
+                    type: 'close',
+                    ns: 'dialog',
+                });
                 onTransitionEnd(wrapper, function () {
                     if (me.$el) {
                         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Dialog_CLASS_VISIBLE);
-                        me.fire('closed.dialog');
+                        me.fire({
+                            type: 'closed',
+                            ns: 'dialog',
+                        });
                     }
                 });
             }
@@ -6798,7 +7101,10 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
             element.style.top = '0px';
             onTransitionEnd(element, function () {
                 if (me.$el) {
-                    me.fire('hide.message');
+                    me.fire({
+                        type: 'hide',
+                        ns: 'message',
+                    });
                 }
             });
         }
@@ -6905,9 +7211,12 @@ var template_Alert_default = /*#__PURE__*/__webpack_require__.n(template_Alert);
         }
     },
     events: {
-        'closed.dialog': function (event) {
-            event.stop();
-            this.destroy();
+        closed: {
+            listener: function (event) {
+                event.stop();
+                this.destroy();
+            },
+            ns: 'dialog',
         }
     },
     methods: {
@@ -6986,9 +7295,12 @@ var Confirm_default = /*#__PURE__*/__webpack_require__.n(Confirm);
         }
     },
     events: {
-        'closed.dialog': function (event) {
-            event.stop();
-            this.destroy();
+        closed: {
+            listener: function (event) {
+                event.stop();
+                this.destroy();
+            },
+            ns: 'dialog',
         }
     },
     methods: {
@@ -7139,7 +7451,10 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
                 }
                 onTransitionEnd(me.$el, function () {
                     if (me.$el) {
-                        me.fire('hide.notification');
+                        me.fire({
+                            type: 'hide',
+                            ns: 'notification',
+                        });
                     }
                 });
             });
@@ -7347,7 +7662,7 @@ var component = {
 /**
  * 版本
  */
-var version = "0.12.8";
+var version = "0.12.9";
 /**
  * 安装插件
  */

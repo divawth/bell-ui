@@ -110,7 +110,10 @@ export default Yox.define({
       this.set('value', value)
 
       this.fire(
-        'change.rate',
+        {
+          type: 'change',
+          ns: 'rate',
+        },
         {
           value
         }

@@ -100,19 +100,25 @@ export default Yox.define({
   },
 
   events: {
-    'change.year': function (event, data) {
-      event.stop()
-      this.set({
-        type: RAW_TYPE_MONTH,
-        year: data.year,
-      })
+    change: {
+      listener(event, data) {
+        event.stop()
+        this.set({
+          type: RAW_TYPE_MONTH,
+          year: data.year,
+        })
+      },
+      ns: 'year',
     },
   },
 
   methods: {
     click(item: SimpleMonth) {
       this.fire(
-        'change.month',
+        {
+          type: 'change',
+          ns: 'month',
+        },
         item
       )
     }

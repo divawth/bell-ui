@@ -93,7 +93,10 @@ export default Yox.define({
         element,
         function () {
           if (me.$el) {
-            me.fire('hide.message')
+            me.fire({
+              type: 'hide',
+              ns: 'message',
+            })
           }
         }
       )

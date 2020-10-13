@@ -2,7 +2,7 @@ import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     value: unknown;
 }, {
-    'update.selectOption': unknown;
+    update: unknown;
 }, {
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveOption(event: CustomEventInterface, index: number): void;

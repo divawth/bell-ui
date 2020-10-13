@@ -4,8 +4,8 @@ declare const _default: import("yox").ComponentOptions<{
     defaultSimpleDate: unknown;
     formatedValues: unknown;
 }, unknown, {
-    'change.input': unknown;
-    'clear.input': unknown;
+    change: unknown;
+    clear: unknown;
     'change.date': unknown;
     'change.year': unknown;
     'change.month': unknown;

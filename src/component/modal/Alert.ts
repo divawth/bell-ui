@@ -57,9 +57,12 @@ export default Yox.define({
   },
 
   events: {
-    'closed.dialog': function (event) {
-      event.stop()
-      this.destroy()
+    closed: {
+      listener(event) {
+        event.stop()
+        this.destroy()
+      },
+      ns: 'dialog',
     }
   },
 

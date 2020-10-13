@@ -75,7 +75,10 @@ export default Yox.define({
 
         // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
-        me.fire('open.dialog')
+        me.fire({
+          type: 'open',
+          ns: 'dialog',
+        })
 
         setTimeout(
           function () {
@@ -85,7 +88,10 @@ export default Yox.define({
               wrapper,
               function () {
                 if (me.$el) {
-                  me.fire('opened.dialog')
+                  me.fire({
+                    type: 'opened',
+                    ns: 'dialog',
+                  })
                 }
               }
             )
@@ -97,14 +103,20 @@ export default Yox.define({
       else if (oldVisible) {
 
         Yox.dom.removeClass(element, CLASS_FADE)
-        me.fire('close.dialog')
+        me.fire({
+          type: 'close',
+          ns: 'dialog',
+        })
 
         onTransitionEnd(
           wrapper,
           function () {
             if (me.$el) {
               Yox.dom.removeClass(element, CLASS_VISIBLE)
-              me.fire('closed.dialog')
+              me.fire({
+                type: 'closed',
+                ns: 'dialog',
+              })
             }
           }
         )

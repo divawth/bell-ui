@@ -51,7 +51,10 @@ export default Yox.define({
       const name = this.get('name')
       if (name) {
         this.fire(
-          'isOpen.subMenu',
+          {
+            type: 'isOpen',
+            ns: 'subMenu',
+          },
           {
             isOpen,
             name,
@@ -62,19 +65,31 @@ export default Yox.define({
   },
 
   events: {
-    'activeName.menu': function (_, data) {
-      this.set('isActive', data.activeName === this.get('name'))
+    activeName: {
+      listener(_, data) {
+        this.set('isActive', data.activeName === this.get('name'))
+      },
+      ns: 'menu',
     },
-    'openNames.menu': function (_, data) {
-      this.set('isOpen', data.openNames && Yox.array.has(data.openNames, this.get('name')))
+    openNames: {
+      listener(_, data) {
+        this.set('isOpen', data.openNames && Yox.array.has(data.openNames, this.get('name')))
+      },
+      ns: 'menu',
     },
-    'collapsed.menu': function (_, data) {
-      this.set('collapsed', data.collapsed)
+    collapsed: {
+      listener(_, data) {
+        this.set('collapsed', data.collapsed)
+      },
+      ns: 'menu',
     },
-    'click.menuItem': function () {
-      if (this.get('mode') !== RAW_INLINE) {
-        this.set('isOpen', FALSE)
-      }
+    click: {
+      listener() {
+        if (this.get('mode') !== RAW_INLINE) {
+          this.set('isOpen', FALSE)
+        }
+      },
+      ns: 'menuItem',
     }
   },
 

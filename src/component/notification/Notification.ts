@@ -99,7 +99,10 @@ export default Yox.define({
           me.$el,
           function () {
             if (me.$el) {
-              me.fire('hide.notification')
+              me.fire({
+                type: 'hide',
+                ns: 'notification',
+              })
             }
           }
         )

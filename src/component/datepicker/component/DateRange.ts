@@ -231,7 +231,10 @@ export default Yox.define({
 
       if (item.timestamp > pinDate.timestamp) {
         me.fire(
-          'change.range',
+          {
+            type: 'change',
+            ns: 'range',
+          },
           {
             start: pinDate,
             end: item,
@@ -240,7 +243,10 @@ export default Yox.define({
       }
       else {
         me.fire(
-          'change.range',
+          {
+            type: 'change',
+            ns: 'range',
+          },
           {
             start: item,
             end: pinDate,

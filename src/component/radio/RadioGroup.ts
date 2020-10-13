@@ -57,7 +57,10 @@ export default Yox.define({
   watchers: {
     disabled(disabled) {
       this.fire(
-        'change.radioGroup',
+        {
+          type: 'change',
+          ns: 'radioGroup',
+        },
         {
           disabled,
         },
@@ -66,7 +69,10 @@ export default Yox.define({
     },
     value(value) {
       this.fire(
-        'change.radioGroup',
+        {
+          type: 'change',
+          ns: 'radioGroup',
+        },
         {
           value,
         },
@@ -75,13 +81,16 @@ export default Yox.define({
     }
   },
   events: {
-    'change.radio': function (event, data) {
-      event.stop()
-      // 只关心选中的
-      if (!data.checked) {
-        return
-      }
-      this.set('value', data.value)
+    change: {
+      listener(event, data) {
+        event.stop()
+        // 只关心选中的
+        if (!data.checked) {
+          return
+        }
+        this.set('value', data.value)
+      },
+      ns: 'radio',
     }
   }
 })

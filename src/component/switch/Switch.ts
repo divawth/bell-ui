@@ -51,7 +51,10 @@ export default Yox.define({
   methods: {
     handleClick() {
       this.fire(
-        'change.switch',
+        {
+          type: 'change',
+          ns: 'switch',
+        },
         {
           checked: this.toggle('checked')
         }

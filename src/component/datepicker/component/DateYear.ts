@@ -76,7 +76,10 @@ export default Yox.define({
   methods: {
     click(item: number) {
       this.fire(
-        'change.year',
+        {
+          type: 'change',
+          ns: 'year',
+        },
         {
           year: item,
         }

@@ -48,7 +48,7 @@ export function onTransitionEnd(el: HTMLElement, callback: () => void) {
 
 
 const supportPageOffset = WINDOW.pageXOffset !== UNDEFINED
-const isCSS1Compat = (DOCUMENT.compatMode || '') === 'CSS1Compat'
+const isCSS1Compat = DOCUMENT.compatMode === 'CSS1Compat'
 
 export function getPageX() {
   return supportPageOffset

@@ -1,7 +1,7 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
     visible: unknown;
 }, {
-    'click.dropdownItem': unknown;
+    click: unknown;
 }, {
     enter(): void;
     leave(): void;

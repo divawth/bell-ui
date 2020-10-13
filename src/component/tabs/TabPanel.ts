@@ -51,23 +51,35 @@ export default Yox.define({
 
   watchers: {
     name() {
-      this.fire('update.tabPanel')
+      this.updatePanel()
     },
     icon() {
-      this.fire('update.tabPanel')
+      this.updatePanel()
     },
     label() {
-      this.fire('update.tabPanel')
+      this.updatePanel()
     },
     disabled() {
-      this.fire('update.tabPanel')
+      this.updatePanel()
     },
   },
 
   events: {
-    'change.tabs': function (_, data) {
-      this.set({
-        isActive: this.get('name') == data.value
+    change: {
+      listener(_, data) {
+        this.set({
+          isActive: this.get('name') == data.value
+        })
+      },
+      ns: 'tabs',
+    }
+  },
+
+  methods: {
+    updatePanel() {
+      this.fire({
+        type: 'update',
+        ns: 'tabPanel',
       })
     }
   },
@@ -94,7 +106,10 @@ export default Yox.define({
     this.set('isActive', isActive)
 
     this.fire(
-      'add.tabPanel',
+      {
+        type: 'add',
+        ns: 'tabPanel',
+      },
       {
         isActive,
       }
@@ -103,7 +118,10 @@ export default Yox.define({
   },
 
   beforeDestroy() {
-    this.fire('remove.tabPanel')
+    this.fire({
+      type: 'remove',
+      ns: 'tabPanel',
+    })
   }
 
 })

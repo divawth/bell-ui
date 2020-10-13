@@ -146,7 +146,10 @@ export default Yox.define({
       const { start, end } = this.get(`datasource.${colIndex}`)
 
       this.fire(
-        'change.week',
+        {
+          type: 'change',
+          ns: 'week',
+        },
         {
           start,
           end,
