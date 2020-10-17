@@ -10,16 +10,16 @@ export default {
 
         <Avatar
           size="large"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
         <Avatar
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
         <Avatar
           size="small"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
       </div>
@@ -28,21 +28,36 @@ export default {
         <Avatar
           shape="circle"
           size="large"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
         <Avatar
           shape="circle"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
         <Avatar
           shape="circle"
           size="small"
-          src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
         />
 
       </div>
+    </div>
+  `
+}
+```
+
+> 自定义大小
+
+```js
+export default {
+  template: `
+    <div>
+      <Avatar
+        size="60"
+        src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+      />
     </div>
   `
 }
@@ -63,7 +78,7 @@ export default {
       </Avatar>
       <Avatar text="U" />
       <Avatar text="USER" />
-      <Avatar src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4" />
+      <Avatar src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg" />
       <Avatar backgroundColor="#fde3cf" color="#f56a00" text="U" />
       <Avatar backgroundColor="#87d068">
         <Icon
@@ -155,7 +170,7 @@ export default {
 export default {
   template: `
     <Avatar
-      src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
+      src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
       clickable
       on-click="clickAvatar()"
     />

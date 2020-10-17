@@ -140,9 +140,7 @@ export default Yox.define({
               file
             )
 
-            // 重置一下，这样再次选择相同文件才能生效
-            const form = me.$refs.form as HTMLFormElement
-            form.reset()
+            me.reset()
 
           },
           onAbort() {
@@ -199,6 +197,11 @@ export default Yox.define({
         headers: me.get('headers'),
         credentials: me.get('withCredentials') ? 'include' : 'omit'
       })
+    },
+
+    reset() {
+      // 重置一下，这样再次选择相同文件才能生效
+      (this.$refs.form as HTMLFormElement).reset()
     },
 
     click() {

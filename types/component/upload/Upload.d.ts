@@ -6,11 +6,13 @@ declare type UploadFile = {
 declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
     upload(files: UploadFile[]): void;
     uploadFile(file: UploadFile): void;
+    reset(): void;
     click(): void;
     changeFiles(event: CustomEventInterface): void;
 }> & ThisType<{
     upload(files: UploadFile[]): void;
     uploadFile(file: UploadFile): void;
+    reset(): void;
     click(): void;
     changeFiles(event: CustomEventInterface): void;
 } & import("yox").YoxInterface>;

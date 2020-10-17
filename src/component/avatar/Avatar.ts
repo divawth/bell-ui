@@ -9,8 +9,8 @@ import {
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_DEFAULT,
-  RAW_SIZE_ARRAY,
   RAW_SHAPE_CIRCLE,
+  UNDEFINED,
 } from '../constant'
 
 import {
@@ -28,7 +28,7 @@ export default Yox.define({
 
   propTypes: {
     size: {
-      type: oneOf(RAW_SIZE_ARRAY),
+      type: [RAW_STRING, RAW_NUMERIC],
       value: RAW_DEFAULT,
     },
     shape: {
@@ -63,6 +63,15 @@ export default Yox.define({
     },
     style: {
       type: RAW_STRING,
+    }
+  },
+
+  computed: {
+    customSize() {
+      const size = this.get('size')
+      return Yox.is.numeric(size)
+        ? size
+        : UNDEFINED
     }
   },
 

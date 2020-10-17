@@ -296,7 +296,7 @@ module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x){var $
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className",["bell-avatar",a("size",$2)?([" bell-avatar-",a("size",$2)].join("")):"",a("shape",$2)?([" bell-avatar-",a("shape",$2)].join("")):"",a("src",$2)?" bell-avatar-image":"",a("clickable",$2)?" bell-avatar-clickable":"",a("className",$2)?([" ",a("className",$2)].join("")):""].join("")),(a("backgroundColor",$2)||a("style",$2))?(g("style.cssText",[a("backgroundColor",$2)?(["background-color: ",a("backgroundColor",$2),";"].join("")):"",a("style",$2)?a("style",$2):""].join(""))):$0,a("clickable",$2)?m("click","event.click",$0,"click","click"):$0},function(){a("src",$2)?(q("img",function(){g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcSet",$2)?(f("srcset",j("srcset",a("srcSet",$2,$0,$2,$2)))):$0,a("alt",$2)?(g("alt",j("alt",a("alt",$2,$0,$2,$2),1))):$0,f("ondragstart","return false"),m("error","event.error",$0,"error.avatar","error.avatar")})):((d(a("hasSlot",$2),["icon"]))?s("$slot_icon"):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text"),(a("color",$2)||a("fontSize",$2))?(g("style.cssText",[a("color",$2)?(["color: ",a("color",$2),";"].join("")):"",a("fontSize",$2)?(["font-size: ",a("fontSize",$2),"px;"].join("")):""].join(""))):$0},function(){e(a("text",$2))},$0,$0,$0,$0,$0,"text")):p()))})};
+module.exports = function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x){var $0=void 0,$1=null,$2=!0,$3=!1;return q("div",function(){g("className",["bell-avatar",(a("size",$2)&&(!a("customSize",$2)))?([" bell-avatar-",a("size",$2)].join("")):"",a("shape",$2)?([" bell-avatar-",a("shape",$2)].join("")):"",a("src",$2)?" bell-avatar-image":"",a("clickable",$2)?" bell-avatar-clickable":"",a("className",$2)?([" ",a("className",$2)].join("")):""].join("")),((a("backgroundColor",$2)||a("customSize",$2))||a("style",$2))?(g("style.cssText",[a("backgroundColor",$2)?(["background-color: ",a("backgroundColor",$2),";"].join("")):"",a("customSize",$2)?(["width: ",a("customSize",$2),"px;height: ",a("customSize",$2),"px;"].join("")):"",a("style",$2)?a("style",$2):""].join(""))):$0,a("clickable",$2)?m("click","event.click",$0,"click","click"):$0},function(){a("src",$2)?(q("img",function(){g("src",j("src",a("src",$2,$0,$2,$2),1)),a("srcSet",$2)?(f("srcset",j("srcset",a("srcSet",$2,$0,$2,$2)))):$0,a("alt",$2)?(g("alt",j("alt",a("alt",$2,$0,$2,$2),1))):$0,f("ondragstart","return false"),m("error","event.error",$0,"error.avatar","error.avatar")})):((d(a("hasSlot",$2),["icon"]))?s("$slot_icon"):(a("text",$2)?(q("span",function(){g("className","bell-avatar-text"),(a("color",$2)||a("fontSize",$2))?(g("style.cssText",[a("color",$2)?(["color: ",a("color",$2),";"].join("")):"",a("fontSize",$2)?(["font-size: ",a("fontSize",$2),"px;"].join("")):""].join(""))):$0},function(){e(a("text",$2))},$0,$0,$0,$0,$0,"text")):p()))})};
 
 /***/ }),
 /* 34 */
@@ -3475,9 +3475,7 @@ var guid = 0;
                         type: 'end',
                         ns: 'upload',
                     }, file);
-                    // 重置一下，这样再次选择相同文件才能生效
-                    var form = me.$refs.form;
-                    form.reset();
+                    me.reset();
                 },
                 onAbort: function () {
                     me.fire({
@@ -3519,6 +3517,10 @@ var guid = 0;
                 headers: me.get('headers'),
                 credentials: me.get('withCredentials') ? 'include' : 'omit'
             });
+        },
+        reset: function () {
+            // 重置一下，这样再次选择相同文件才能生效
+            this.$refs.form.reset();
         },
         click: function () {
             this.$refs.input.click();
@@ -3820,7 +3822,7 @@ var SPACE_HORIZONTAL = 8;
     name: 'bell-Avatar',
     propTypes: {
         size: {
-            type: oneOf(RAW_SIZE_ARRAY),
+            type: [RAW_STRING, RAW_NUMERIC],
             value: RAW_DEFAULT,
         },
         shape: {
@@ -3855,6 +3857,14 @@ var SPACE_HORIZONTAL = 8;
         },
         style: {
             type: RAW_STRING,
+        }
+    },
+    computed: {
+        customSize: function () {
+            var size = this.get('size');
+            return external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(size)
+                ? size
+                : UNDEFINED;
         }
     },
     afterMount: function () {
@@ -7662,7 +7672,7 @@ var component = {
 /**
  * 版本
  */
-var version = "0.12.9";
+var version = "0.13.0";
 /**
  * 安装插件
  */

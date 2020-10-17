@@ -1,13 +1,14 @@
 <div
 class="${prefix}avatar
-{{#if size}} ${prefix}avatar-{{size}}{{/if}}
+{{#if size && !customSize}} ${prefix}avatar-{{size}}{{/if}}
 {{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if src}} ${prefix}avatar-image{{/if}}
 {{#if clickable}} ${prefix}avatar-clickable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if backgroundColor || style}}
+{{#if backgroundColor || customSize || style}}
   style="{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
+  {{#if customSize}}width: {{customSize}}px;height: {{customSize}}px;{{/if}}
   {{#if style}}{{style}}{{/if}}"
 {{/if}}
 
