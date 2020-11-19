@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.13.0
+ * bell-ui.js v0.13.1
  * (c) 2018-2020 
  * Released under the MIT License.
  */
@@ -1594,7 +1594,7 @@
       }
   });
 
-  function template$h(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x){var $0=void 0,$2=!0,$3=!1;return q("label",function(){g("className",["bell-checkbox",a("disabled",$2)?" bell-checkbox-disabled":" bell-checkbox-enabled",a("checked",$2)?" bell-checkbox-active":"",a("isFocus",$2)?" bell-checkbox-focus":"",(d(a("hasSlot",$2),["children"]))?" bell-checkbox-with-label":"",a("indeterminate",$2)?" bell-checkbox-indeterminate":"",a("className",$2)?([" ",a("className",$2)].join("")):""].join("")),a("style",$2)?(g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))):$0;},function(){q("span",function(){g("className","bell-checkbox-icon");},function(){q("input",function(){g("className","bell-checkbox-input"),g("type","checkbox"),k(a("checked",$2,$0,$2,$2)),g("name",j("name",a("name",$2,$0,$2,$2),1)),g("disabled",j("disabled",a("disabled",$2,$0,$2,$2),3)),l("focus","event.focus",$0,"set('isFocus', true)","set",function(y){return ["isFocus",$2]}),l("blur","event.blur",$0,"set('isFocus', false)","set",function(y){return ["isFocus",$3]});});}),s("$slot_children");})}
+  function template$h(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x){var $0=void 0,$2=!0,$3=!1;return q("label",function(){g("className",["bell-checkbox",a("disabled",$2)?" bell-checkbox-disabled":" bell-checkbox-enabled",a("checked",$2)?" bell-checkbox-active":"",a("isFocus",$2)?" bell-checkbox-focus":"",(d(a("hasSlot",$2),["children"]))?" bell-checkbox-with-label":"",a("indeterminate",$2)?" bell-checkbox-indeterminate":"",a("className",$2)?([" ",a("className",$2)].join("")):""].join("")),a("style",$2)?(g("style.cssText",j("style.cssText",a("style",$2,$0,$2,$2),1))):$0;},function(){q("span",function(){g("className","bell-checkbox-icon");},function(){q("input",function(){g("className","bell-checkbox-input"),g("type","checkbox"),g("name",j("name",a("name",$2,$0,$2,$2),1)),g("checked",j("checked",a("checked",$2,$0,$2,$2),3)),g("disabled",j("disabled",a("disabled",$2,$0,$2,$2),3)),l("change","event.change",$0,"onChange()","onChange"),l("focus","event.focus",$0,"set('isFocus', true)","set",function(y){return ["isFocus",$2]}),l("blur","event.blur",$0,"set('isFocus', false)","set",function(y){return ["isFocus",$3]});});}),s("$slot_children");})}
 
   var Checkbox = Yox.define({
       template: template$h,
@@ -1635,21 +1635,39 @@
       events: {
           change: {
               listener: function (_, data) {
-                  this.set({
-                      checked: Yox.array.has(data.value, this.get('value'))
-                  });
+                  var value = this.get('value');
+                  var oldChecked = this.get('checked');
+                  var newChecked = Yox.array.has(data.value, value);
+                  if (oldChecked !== newChecked) {
+                      this.set({
+                          checked: newChecked
+                      });
+                      this.fire({
+                          type: 'change',
+                          ns: 'checkbox',
+                      }, {
+                          checked: newChecked,
+                          value: value,
+                      });
+                  }
               },
               ns: 'checkboxGroup',
           }
       },
-      watchers: {
-          checked: function (checked) {
+      methods: {
+          onChange: function (event) {
+              var target = event.originalEvent.target;
+              var checked = target.checked;
+              this.set({
+                  checked: checked,
+              });
               this.fire({
                   type: 'change',
                   ns: 'checkbox',
               }, {
                   checked: checked,
                   value: this.get('value'),
+                  target: target,
               });
           }
       },
@@ -6753,7 +6771,7 @@
   /**
    * 版本
    */
-  var version = "0.13.0";
+  var version = "0.13.1";
   /**
    * 安装插件
    */

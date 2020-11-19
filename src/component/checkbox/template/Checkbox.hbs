@@ -20,9 +20,10 @@ class="${prefix}checkbox
     <input
       class="${prefix}checkbox-input"
       type="checkbox"
-      model="checked"
       name="{{name}}"
+      checked="{{checked}}"
       disabled="{{disabled}}"
+      on-change="onChange()"
       on-focus="set('isFocus', true)"
       on-blur="set('isFocus', false)"
     >
