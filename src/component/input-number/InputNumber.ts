@@ -194,18 +194,13 @@ export default Yox.define({
       onKeydown
     )
 
-    me.on(
-      RAW_EVENT_BEFORE_DESTROY,
-      function (event) {
-        if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(
-            DOCUMENT,
-            RAW_EVENT_KEYDOWN,
-            onKeydown
-          )
-        }
+    const destroy = function (component) {
+      if (component === me) {
+        Yox.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)
+        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
       }
-    )
+    }
+    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
 
   }
 })

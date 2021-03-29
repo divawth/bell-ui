@@ -143,15 +143,14 @@ export default Yox.define({
     Yox.dom.on(container, RAW_EVENT_SCROLL, onRefresh)
     Yox.dom.on(WINDOW, RAW_EVENT_RESIZE, onRefresh)
 
-    me.on(
-      RAW_EVENT_BEFORE_DESTROY,
-      function (event) {
-        if (event.phase === Yox.Event.PHASE_CURRENT) {
-          Yox.dom.off(container, RAW_EVENT_SCROLL, onRefresh)
-          Yox.dom.off(WINDOW, RAW_EVENT_RESIZE, onRefresh)
-        }
+    const destroy = function (component) {
+      if (component === me) {
+        Yox.dom.off(container, RAW_EVENT_SCROLL, onRefresh)
+        Yox.dom.off(WINDOW, RAW_EVENT_RESIZE, onRefresh)
+        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
       }
-    )
+    }
+    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
 
   }
 

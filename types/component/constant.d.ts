@@ -56,7 +56,7 @@ export declare const RAW_EVENT_MOUSEMOVE = "mousemove";
 export declare const RAW_EVENT_MOUSEUP = "mouseup";
 export declare const RAW_EVENT_SCROLL = "scroll";
 export declare const RAW_EVENT_RESIZE = "resize";
-export declare const RAW_EVENT_BEFORE_DESTROY = "beforeDestroy.hook";
+export declare const RAW_EVENT_BEFORE_DESTROY = "beforeDestroy";
 export declare const RAW_DARK = "dark";
 export declare const RAW_LIGHT = "light";
 export declare const RAW_THEME_ARRAY: string[];

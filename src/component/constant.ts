@@ -67,7 +67,7 @@ export const RAW_EVENT_MOUSEMOVE = 'mousemove'
 export const RAW_EVENT_MOUSEUP = 'mouseup'
 export const RAW_EVENT_SCROLL = 'scroll'
 export const RAW_EVENT_RESIZE = 'resize'
-export const RAW_EVENT_BEFORE_DESTROY = 'beforeDestroy.hook'
+export const RAW_EVENT_BEFORE_DESTROY = 'beforeDestroy'
 
 export const RAW_DARK = 'dark'
 export const RAW_LIGHT = 'light'

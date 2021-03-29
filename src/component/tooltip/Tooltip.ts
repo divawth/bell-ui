@@ -231,18 +231,14 @@ export default Yox.define({
         onClick
       )
 
-      me.on(
-        RAW_EVENT_BEFORE_DESTROY,
-        function (event) {
-          if (event.phase === Yox.Event.PHASE_CURRENT) {
-            Yox.dom.off(
-              DOCUMENT,
-              RAW_CLICK,
-              onClick
-            )
-          }
+      const destroy = function (component) {
+        if (component === me) {
+          Yox.dom.off(DOCUMENT, RAW_CLICK, onClick)
+          Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
         }
-      )
+      }
+      Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
+
     }
   },
 
