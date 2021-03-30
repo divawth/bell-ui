@@ -1,9 +1,8 @@
 docs/
+doc/
 dep/
 build/
-doc/
 src/
-type/
 yarn.*
 *.sketch
 global.d.ts
