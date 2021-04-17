@@ -7703,7 +7703,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.15.9";
+var version = "0.16.0";
 /**
  * 安装插件
  */
