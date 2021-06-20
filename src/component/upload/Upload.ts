@@ -4,16 +4,12 @@ import template from './template/Upload.hbs'
 // import './style/Upload.styl'
 
 import {
+  TRUE,
   FALSE,
   RAW_STRING,
-  RAW_OBJECT,
   RAW_BOOLEAN,
   RAW_FUNCTION,
 } from '../constant'
-
-import {
-  AjaxUploader,
-} from 'soga'
 
 // 为每次选择的文件提供一个全局唯一的 id，便于外部知道触发的事件对应哪次上传
 
@@ -31,16 +27,6 @@ export default Yox.define({
   name: '${prefix}Upload',
 
   propTypes: {
-    action: {
-      type: RAW_STRING,
-    },
-    headers: {
-      type: RAW_OBJECT,
-    },
-    withCredentials: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
-    },
     multiple: {
       type: RAW_BOOLEAN,
       value: FALSE,
@@ -48,14 +34,10 @@ export default Yox.define({
     accept: {
       type: RAW_STRING,
     },
-    data: {
-      type: RAW_OBJECT,
-    },
-    name: {
-      type: RAW_STRING,
-      value: 'file',
-    },
     beforeUpload: {
+      type: RAW_FUNCTION,
+    },
+    upload: {
       type: RAW_FUNCTION,
     },
     className: {
@@ -67,7 +49,7 @@ export default Yox.define({
   },
 
   methods: {
-    upload(files: UploadFile[]) {
+    beforeUpload(files: UploadFile[]) {
 
       const me = this
 
@@ -82,12 +64,12 @@ export default Yox.define({
               Yox.array.each(
                 result,
                 function (item: UploadFile) {
-                  me.uploadFile(item)
+                  me.upload(item)
                 }
               )
             }
             else if (result) {
-              me.uploadFile(result)
+              me.upload(result)
             }
           })
         }
@@ -96,12 +78,12 @@ export default Yox.define({
             Yox.array.each(
               currentFile,
               function (item: UploadFile) {
-                me.uploadFile(item)
+                me.upload(item)
               }
             )
           }
           else if (currentFile) {
-            me.uploadFile(currentFile)
+            me.upload(currentFile)
           }
         }
         return
@@ -110,92 +92,86 @@ export default Yox.define({
       Yox.array.each(
         files,
         function (item) {
-          me.uploadFile(item)
+          me.upload(item)
         }
       )
 
     },
 
-    uploadFile(file: UploadFile) {
+    upload(file: UploadFile) {
+
       const me = this
-      const ajaxUploader = new AjaxUploader(
-        file.file,
-        {
-          onStart() {
-            me.fire(
-              {
-                type: 'start',
-                ns: 'upload',
-              },
-              file
-            )
-          },
-          onEnd() {
+      const upload = me.get('upload')
 
-            me.fire(
-              {
-                type: 'end',
-                ns: 'upload',
-              },
-              file
-            )
+      upload({
+        id: file.id,
+        file: file.file,
+        onStart() {
+          me.fire(
+            {
+              type: 'start',
+              ns: 'upload',
+            },
+            file
+          )
+        },
+        onEnd() {
 
-            me.reset()
+          me.fire(
+            {
+              type: 'end',
+              ns: 'upload',
+            },
+            file
+          )
 
-          },
-          onAbort() {
-            me.fire(
-              {
-                type: 'abort',
-                ns: 'upload',
-              },
-              file
-            )
-          },
-          onError() {
-            me.fire(
-              {
-                type: 'error',
-                ns: 'upload',
-              },
-              file
-            )
-          },
-          onProgress(progress) {
-            me.fire(
-              {
-                type: 'progress',
-                ns: 'upload',
-              },
-              {
-                id: file.id,
-                file: file.file,
-                progress,
-              }
-            )
-          },
-          onSuccess(response) {
-            me.fire(
-              {
-                type: 'success',
-                ns: 'upload',
-              },
-              {
-                id: file.id,
-                file: file.file,
-                response,
-              }
-            )
-          }
+          me.reset()
+
+        },
+        onAbort() {
+          me.fire(
+            {
+              type: 'abort',
+              ns: 'upload',
+            },
+            file
+          )
+        },
+        onError() {
+          me.fire(
+            {
+              type: 'error',
+              ns: 'upload',
+            },
+            file
+          )
+        },
+        onProgress(progress) {
+          me.fire(
+            {
+              type: 'progress',
+              ns: 'upload',
+            },
+            {
+              id: file.id,
+              file: file.file,
+              progress,
+            }
+          )
+        },
+        onSuccess(response) {
+          me.fire(
+            {
+              type: 'success',
+              ns: 'upload',
+            },
+            {
+              id: file.id,
+              file: file.file,
+              response,
+            }
+          )
         }
-      )
-
-      ajaxUploader.upload({
-        action: me.get('action'),
-        fileName: me.get('name'),
-        data: me.get('data'),
-        headers: me.get('headers'),
-        credentials: me.get('withCredentials') ? 'include' : 'omit'
       })
     },
 
@@ -208,13 +184,13 @@ export default Yox.define({
       (this.$refs.input as HTMLInputElement).click()
     },
 
-    changeFiles(event: CustomEventInterface) {
+    onChange(event: CustomEventInterface) {
 
       const files = Yox.array.toArray(
         (event.originalEvent.target as HTMLInputElement).files
       )
 
-      this.upload(
+      this.beforeUpload(
         files.map(function (file) {
           return {
             file,

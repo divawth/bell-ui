@@ -6,7 +6,7 @@
 export default {
   template: `
     <div>
-      <Upload action="https://jsonplaceholder.typicode.com/posts" data="{{data}}">
+      <Upload upload="{{uploadFile}}">
         <Button>Upload files</Button>
       </Upload>
       <img src="{{url}}">
@@ -14,7 +14,8 @@ export default {
   `,
   data: function () {
     return {
-      data: {
+      uploadFile(data) {
+
       }
     }
   }
@@ -25,14 +26,10 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-action | 上传的地址 | string | - | -
-headers | 上传头部信息 | object | - | -
-withCredentials | 上传是否携带 cookie 信息 | boolean | `false`
 multiple | 是否支持多选 | boolean | - | `false`
 accept | 允许什么类型的文件上传，如 `image/*` | string | - | -
-data | 上传需要的值 | object | - | -
-name | 上传文件的文件名 | name | - | `file`
 beforeUpload | 上传前执行的函数 | function | - | -
+upload | 上传单个文件执行的函数，传入的回调函数需按时机调用 | function | - | -
 
 > Events
 
