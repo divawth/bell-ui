@@ -592,7 +592,12 @@ module.exports = __webpack_require__(82);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "version", function() { return /* reexport */ version; });
+__webpack_require__.d(__webpack_exports__, "install", function() { return /* reexport */ install; });
 
 // EXTERNAL MODULE: external {"root":"Yox","commonjs":"yox","commonjs2":"yox","amd":"yox"}
 var external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_ = __webpack_require__(0);
@@ -7675,7 +7680,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.17.0";
+var version = "0.17.1";
 /**
  * 安装插件
  */
@@ -7693,8 +7698,6 @@ function install(Yox) {
 var src = __webpack_require__(81);
 
 // CONCATENATED MODULE: ./src/index.webpack.ts
-/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
-/* concated harmony reexport install */__webpack_require__.d(__webpack_exports__, "install", function() { return install; });
 
 
 

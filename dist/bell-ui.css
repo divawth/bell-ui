@@ -174,6 +174,7 @@ div::-webkit-scrollbar-track {
 div::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 div::-webkit-scrollbar-thumb:hover {
@@ -2028,6 +2029,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-drawer-body::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-drawer-body::-webkit-scrollbar-thumb:hover {
@@ -2169,6 +2171,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-dropdown-overlay::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-dropdown-overlay::-webkit-scrollbar-thumb:hover {
@@ -9468,6 +9471,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #666;
   background-color: #f5f7fa;
   padding: 0 10px;
+  white-space: nowrap;
 }
 .bell-input-prepend .bell-select-button,
 .bell-input-append .bell-select-button,
@@ -9791,6 +9795,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-layout-sider::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-layout-sider::-webkit-scrollbar-thumb:hover {
@@ -9928,6 +9933,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-list::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-list::-webkit-scrollbar-thumb:hover {
@@ -10095,6 +10101,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-menu::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-menu::-webkit-scrollbar-thumb:hover {
@@ -11618,6 +11625,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-table::-webkit-scrollbar-thumb:hover {
@@ -12138,6 +12146,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-textarea-el::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-textarea-el::-webkit-scrollbar-thumb:hover {

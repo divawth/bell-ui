@@ -1,3 +1,4 @@
+import { Data } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
     xsClass: unknown;
     smClass: unknown;
@@ -7,8 +8,8 @@ declare const _default: import("yox").ComponentOptions<{
 }, unknown, {
     'gutterChanged.row': unknown;
 }, {
-    getClass(name: string, data: Record<string, any>): string;
+    getClass(name: string, data: Data): string;
 }> & ThisType<{
-    getClass(name: string, data: Record<string, any>): string;
+    getClass(name: string, data: Data): string;
 } & import("yox").YoxInterface>;
 export default _default;
