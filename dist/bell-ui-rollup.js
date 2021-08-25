@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.17.1
+ * bell-ui.js v0.17.2
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -1596,7 +1596,17 @@
                   if (!data.checked) {
                       return;
                   }
-                  this.set('value', data.value);
+                  var oldValue = this.get('value');
+                  var newValue = data.value;
+                  if (oldValue !== newValue) {
+                      this.set('value', newValue);
+                      this.fire({
+                          type: 'change',
+                          ns: 'radioGroup',
+                      }, {
+                          value: newValue,
+                      });
+                  }
               },
               ns: 'radio',
           }
@@ -1728,6 +1738,16 @@
               type: RAW_STRING,
           }
       },
+      watchers: {
+          value: function (value) {
+              this.fire({
+                  type: 'change',
+                  ns: 'checkboxGroup',
+              }, {
+                  value: value
+              }, TRUE);
+          }
+      },
       events: {
           change: {
               listener: function (event, data) {
@@ -1744,19 +1764,17 @@
                   }
                   if (value.length !== length) {
                       this.set({ value: value });
+                      this.fire({
+                          type: 'change',
+                          ns: 'checkboxGroup',
+                      }, {
+                          value: value
+                      });
                   }
               },
               ns: 'checkbox',
           }
       },
-      watchers: {
-          value: function (value) {
-              this.fire({
-                  type: 'change',
-                  ns: 'checkboxGroup',
-              }, { value: value }, TRUE);
-          }
-      }
   });
 
   var template$j = (function(){var $0=void 0,$2=!0,$5={className:'bell-switch-label'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-switch'+(_o('size',__l.size).value?' bell-switch-'+_w(_o('size',__l.size).value):'')+(_o('disabled',__l.disabled).value?' bell-switch-disabled':' bell-switch-enabled')+(_o('checked',__l.checked).value?' bell-switch-active':'')+(_o('loading',__l.loading).value?' bell-switch-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value&&!_o('loading',__l.loading).value?_c(__i,'events',_f('click','handleClick()','click','',_x.handleClick),'click'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['on'])).value||_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['off'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_o('checked',__l.checked).value?_j('$slot_on',__j):_j('$slot_off',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
@@ -3260,7 +3278,7 @@
       return format
           .replace(/yyyy/i, toString(date.getFullYear()))
           .replace(/MM/i, lpad(date.getMonth() + 1))
-          .replace(/M/i, toString(date.getMonth()))
+          .replace(/M/i, toString(date.getMonth() + 1))
           .replace(/dd/i, lpad(date.getDate()))
           .replace(/d/i, toString(date.getDate()));
   }
@@ -6349,7 +6367,7 @@
   /**
    * 版本
    */
-  var version = "0.17.1";
+  var version = "0.17.2";
   /**
    * 安装插件
    */

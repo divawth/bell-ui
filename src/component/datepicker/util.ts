@@ -203,7 +203,7 @@ export function formatDate(date: Date, format: string) {
   return format
     .replace(/yyyy/i, toString(date.getFullYear()))
     .replace(/MM/i, lpad(date.getMonth() + 1))
-    .replace(/M/i, toString(date.getMonth()))
+    .replace(/M/i, toString(date.getMonth() + 1))
     .replace(/dd/i, lpad(date.getDate()))
     .replace(/d/i, toString(date.getDate()))
 }

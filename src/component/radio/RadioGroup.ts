@@ -88,7 +88,20 @@ export default Yox.define({
         if (!data.checked) {
           return
         }
-        this.set('value', data.value)
+        const oldValue = this.get('value')
+        const newValue = data.value
+        if (oldValue !== newValue) {
+          this.set('value', newValue)
+          this.fire(
+            {
+              type: 'change',
+              ns: 'radioGroup',
+            },
+            {
+              value: newValue,
+            }
+          )
+        }
       },
       ns: 'radio',
     }

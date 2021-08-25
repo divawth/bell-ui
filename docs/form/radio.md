@@ -88,7 +88,7 @@ export default {
 export default {
   template: `
   <RadioGroup name="single" model="value" vertical>
-    <Radio value="1" checked>
+    <Radio value="1">
       亚洲
     </Radio>
     <Radio value="2">
@@ -101,7 +101,7 @@ export default {
   `,
   data: function () {
     return {
-      value: ''
+      value: '1'
     }
   }
 }
@@ -113,7 +113,7 @@ export default {
 export default {
   template: `
   <RadioGroup button name="single" model="value">
-    <Radio value="1" checked>
+    <Radio value="1">
       亚洲
     </Radio>
     <Radio value="2">
@@ -126,7 +126,7 @@ export default {
   `,
   data: function () {
     return {
-      value: ''
+      value: '2'
     }
   }
 }
@@ -139,7 +139,7 @@ export default {
   template: `
   <div>
     <RadioGroup size="large" button name="single" model="value">
-      <Radio value="1" checked>
+      <Radio value="1">
         亚洲
       </Radio>
       <Radio value="2">
@@ -151,7 +151,7 @@ export default {
     </RadioGroup>
     <br><br>
     <RadioGroup button name="single" model="value">
-      <Radio value="1" checked>
+      <Radio value="1">
         亚洲
       </Radio>
       <Radio value="2">
@@ -163,7 +163,7 @@ export default {
     </RadioGroup>
     <br><br>
     <RadioGroup size="small" button name="single" model="value">
-      <Radio value="1" checked>
+      <Radio value="1">
         亚洲
       </Radio>
       <Radio value="2">
@@ -177,7 +177,7 @@ export default {
   `,
   data: function () {
     return {
-      value: ''
+      value: '3'
     }
   }
 }

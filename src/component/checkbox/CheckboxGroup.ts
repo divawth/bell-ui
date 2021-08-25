@@ -43,14 +43,28 @@ export default Yox.define({
     }
   },
 
+  watchers: {
+    value(value) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'checkboxGroup',
+        },
+        {
+          value
+        },
+        TRUE
+      )
+    }
+  },
   events: {
     change: {
       listener(event, data) {
         event.stop()
-  
+
         const value = this.copy(this.get('value'))
         const { length } = value
-  
+
         if (data.checked) {
           if (!Yox.array.has(value, data.value)) {
             value.push(data.value)
@@ -59,24 +73,21 @@ export default Yox.define({
         else {
           Yox.array.remove(value, data.value)
         }
-  
+
         if (value.length !== length) {
           this.set({ value })
+          this.fire(
+            {
+              type: 'change',
+              ns: 'checkboxGroup',
+            },
+            {
+              value
+            },
+          )
         }
       },
       ns: 'checkbox',
     }
   },
-  watchers: {
-    value(value) {
-      this.fire(
-        {
-          type: 'change',
-          ns: 'checkboxGroup',
-        },
-        { value },
-        TRUE
-      )
-    }
-  }
 })

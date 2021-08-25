@@ -8,3 +8,4 @@ router.js
 docs/index.html
 *.html
 yarn.*
+timepicker/

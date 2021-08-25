@@ -1,6 +1,6 @@
 {
   "name": "bell-ui",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "main": "dist/bell-ui.js",
   "types": "dist/bell-ui.d.ts",
   "description": "bell ui",

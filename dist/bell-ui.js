@@ -2332,7 +2332,17 @@ var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
                 if (!data.checked) {
                     return;
                 }
-                this.set('value', data.value);
+                var oldValue = this.get('value');
+                var newValue = data.value;
+                if (oldValue !== newValue) {
+                    this.set('value', newValue);
+                    this.fire({
+                        type: 'change',
+                        ns: 'radioGroup',
+                    }, {
+                        value: newValue,
+                    });
+                }
             },
             ns: 'radio',
         }
@@ -2478,6 +2488,16 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
             type: RAW_STRING,
         }
     },
+    watchers: {
+        value: function (value) {
+            this.fire({
+                type: 'change',
+                ns: 'checkboxGroup',
+            }, {
+                value: value
+            }, TRUE);
+        }
+    },
     events: {
         change: {
             listener: function (event, data) {
@@ -2494,19 +2514,17 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
                 }
                 if (value.length !== length) {
                     this.set({ value: value });
+                    this.fire({
+                        type: 'change',
+                        ns: 'checkboxGroup',
+                    }, {
+                        value: value
+                    });
                 }
             },
             ns: 'checkbox',
         }
     },
-    watchers: {
-        value: function (value) {
-            this.fire({
-                type: 'change',
-                ns: 'checkboxGroup',
-            }, { value: value }, TRUE);
-        }
-    }
 }));
 
 // EXTERNAL MODULE: ./src/component/switch/template/Switch.hbs
@@ -4138,7 +4156,7 @@ function formatDate(date, format) {
     return format
         .replace(/yyyy/i, util_toString(date.getFullYear()))
         .replace(/MM/i, lpad(date.getMonth() + 1))
-        .replace(/M/i, util_toString(date.getMonth()))
+        .replace(/M/i, util_toString(date.getMonth() + 1))
         .replace(/dd/i, lpad(date.getDate()))
         .replace(/d/i, util_toString(date.getDate()));
 }
@@ -7680,7 +7698,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.17.1";
+var version = "0.17.2";
 /**
  * 安装插件
  */
