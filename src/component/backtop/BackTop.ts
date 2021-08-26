@@ -18,7 +18,7 @@ import {
 
 import {
   toNumber,
-  scrollTop,
+  scrollTo,
   onTransitionEnd,
   supportTransform,
 } from '../util'
@@ -132,7 +132,7 @@ export default Yox.define({
 
     const duration = toNumber(this.get('duration'))
     me.on('click', function () {
-      scrollTop(
+      scrollTo(
         containerElement,
         containerElement.scrollTop,
         0,

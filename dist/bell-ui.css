@@ -1826,6 +1826,242 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2d8cf0;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
+.bell-timepicker {
+  display: inline-block;
+}
+.bell-timepicker .bell-dropdown-overlay {
+  padding: 0;
+}
+.bell-timepicker-default .bell-timepicker-value,
+.bell-timepicker-default .bell-timepicker-placeholder {
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 12px;
+  padding-right: 23px;
+}
+.bell-timepicker-default .bell-timepicker-time-icon,
+.bell-timepicker-default .bell-timepicker-clear-icon {
+  right: 9px;
+}
+.bell-timepicker-small .bell-timepicker-value,
+.bell-timepicker-small .bell-timepicker-placeholder {
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 7px;
+  padding-right: 18px;
+}
+.bell-timepicker-small .bell-timepicker-time-icon,
+.bell-timepicker-small .bell-timepicker-clear-icon {
+  right: 4px;
+}
+.bell-timepicker-large .bell-timepicker-value,
+.bell-timepicker-large .bell-timepicker-placeholder {
+  font-size: 16px;
+  height: 38px;
+  line-height: 38px;
+  padding-left: 15px;
+  padding-right: 26px;
+}
+.bell-timepicker-large .bell-timepicker-time-icon,
+.bell-timepicker-large .bell-timepicker-clear-icon {
+  right: 12px;
+}
+.bell-timepicker-info.bell-timepicker-enabled .bell-timepicker-button {
+  border-color: #2db7f5;
+}
+.bell-timepicker-info.bell-timepicker-enabled .bell-timepicker-button:hover {
+  border-color: #2db7f5;
+}
+.bell-timepicker-info.bell-dropdown-fade .bell-timepicker-button {
+  border-color: #2db7f5;
+  box-shadow: 0 0 0 2px rgba(45,183,245,0.2);
+}
+.bell-timepicker-success.bell-timepicker-enabled .bell-timepicker-button {
+  border-color: #19be6b;
+}
+.bell-timepicker-success.bell-timepicker-enabled .bell-timepicker-button:hover {
+  border-color: #19be6b;
+}
+.bell-timepicker-success.bell-dropdown-fade .bell-timepicker-button {
+  border-color: #19be6b;
+  box-shadow: 0 0 0 2px rgba(25,190,107,0.2);
+}
+.bell-timepicker-error.bell-timepicker-enabled .bell-timepicker-button {
+  border-color: #ed4014;
+}
+.bell-timepicker-error.bell-timepicker-enabled .bell-timepicker-button:hover {
+  border-color: #ed4014;
+}
+.bell-timepicker-error.bell-dropdown-fade .bell-timepicker-button {
+  border-color: #ed4014;
+  box-shadow: 0 0 0 2px rgba(237,64,20,0.2);
+}
+.bell-timepicker-warning.bell-timepicker-enabled .bell-timepicker-button {
+  border-color: #f90;
+}
+.bell-timepicker-warning.bell-timepicker-enabled .bell-timepicker-button:hover {
+  border-color: #f90;
+}
+.bell-timepicker-warning.bell-dropdown-fade .bell-timepicker-button {
+  border-color: #f90;
+  box-shadow: 0 0 0 2px rgba(255,153,0,0.2);
+}
+.bell-timepicker-block {
+  display: block;
+  width: 100%;
+}
+.bell-timepicker-panel {
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bell-timepicker-panel-columns {
+  text-align: left;
+  height: 224px;
+  border-bottom: 1px solid #e8eaec;
+}
+.bell-timepicker-panel-column {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 56px;
+  height: 100%;
+  overflow-y: hidden;
+  vertical-align: top;
+  position: relative;
+}
+.bell-timepicker-panel-column::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-timepicker-panel-column::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-timepicker-panel-column::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-timepicker-panel-column::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.bell-timepicker-panel-column::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
+.bell-timepicker-panel-column + .bell-timepicker-panel-column {
+  border-left: 1px solid #e8eaec;
+}
+.bell-timepicker-panel-column:after {
+  content: '';
+  display: block;
+  height: 196px;
+}
+.bell-timepicker-panel-column:hover {
+  overflow-y: auto;
+}
+.bell-timepicker-panel-row {
+  color: #666;
+  font-size: 14px;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 14px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-timepicker-panel-row:hover {
+  background-color: #f5f7fa;
+}
+.bell-timepicker-panel-row-active {
+  background-color: #ecf5ff;
+}
+.bell-timepicker-panel-footer {
+  text-align: right;
+  padding: 9px 12px;
+}
+.bell-timepicker-button {
+  position: relative;
+  border: 1px solid #dcdee2;
+  background-color: #fff;
+  line-height: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.bell-timepicker-value,
+.bell-timepicker-placeholder {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+.bell-timepicker-value {
+  color: #515a6e;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bell-timepicker-placeholder {
+  color: #d2d2d2;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bell-timepicker-time-icon,
+.bell-timepicker-clear-icon {
+  position: absolute;
+  top: 50%;
+}
+.bell-timepicker-time-icon {
+  font-size: 14px;
+  margin-top: -7px;
+  color: #808695;
+  transition: transform 0.3s;
+  transform-origin: center center;
+}
+.bell-timepicker-clear-icon {
+  font-size: 14px;
+  margin-top: -7px;
+  color: #999;
+  display: none;
+}
+.bell-timepicker-enabled .bell-timepicker-button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-timepicker-enabled .bell-timepicker-button:hover {
+  border-color: #2d8cf0;
+}
+.bell-timepicker-disabled .bell-timepicker-button {
+  background-color: #f5f5f5;
+  border-color: #dcdee2;
+  cursor: not-allowed;
+}
+.bell-timepicker-disabled .bell-timepicker-value,
+.bell-timepicker-disabled .bell-timepicker-placeholder {
+  color: #c5c8ce;
+}
+.bell-timepicker-clearable .bell-timepicker-button:hover,
+.bell-timepicker-clearable .bell-timepicker-clear-icon {
+  display: block;
+}
+.bell-timepicker-clearable .bell-timepicker-button:hover + .bell-timepicker-time-icon,
+.bell-timepicker-clearable .bell-timepicker-clear-icon + .bell-timepicker-time-icon {
+  display: none;
+}
+.bell-dropdown-fade .bell-timepicker-button {
+  border-color: #2d8cf0;
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+}
 .bell-dialog {
   position: fixed;
   top: 0;
@@ -11859,6 +12095,9 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+.bell-tag + .bell-tag {
+  margin-left: 8px;
 }
 .bell-tag-checked {
   background-color: #dcdee2;

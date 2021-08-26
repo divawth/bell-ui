@@ -1,4 +1,7 @@
-import { toString } from '../util'
+import {
+  leftPad,
+  toString,
+} from '../util'
 
 export const WEEKS = ['日', '一', '二', '三', '四', '五', '六']
 
@@ -186,12 +189,6 @@ export function createDateViewDatasource(timestamp: number) {
   return result
 }
 
-function lpad(value: number): string {
-  return value < 10
-    ? '0' + value
-    : '' + value
-}
-
 /**
  * yyyy -> 2019
  * M    -> 1
@@ -202,8 +199,8 @@ function lpad(value: number): string {
 export function formatDate(date: Date, format: string) {
   return format
     .replace(/yyyy/i, toString(date.getFullYear()))
-    .replace(/MM/i, lpad(date.getMonth() + 1))
+    .replace(/MM/i, leftPad(date.getMonth() + 1))
     .replace(/M/i, toString(date.getMonth() + 1))
-    .replace(/dd/i, lpad(date.getDate()))
+    .replace(/dd/i, leftPad(date.getDate()))
     .replace(/d/i, toString(date.getDate()))
 }

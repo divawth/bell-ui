@@ -83,6 +83,10 @@ ui-clickable()
 ui-disabled()
   cursor not-allowed
 
+ui-block()
+  display block
+  width 100%
+
 ui-input()
   border 1px solid $brand-border
   border-radius $border-radius-default
@@ -172,21 +176,22 @@ ui-form-button(
     border-radius $border-radius-default
     transition border-color .3s, box-shadow .3s
 
-  {$selector-values}
+  if $selector-values
+    {$selector-values}
 
-    width 100%
-    box-sizing border-box
+      width 100%
+      box-sizing border-box
 
-    > {$selector-prefix + '-tag'}
-      border 0
-      cursor text
-      font-size $font-size-small
-      background-color $brand-tag-bg-color
-      padding 0 $ui-icon-text-gap !important
+      > {$selector-prefix + '-tag'}
+        border 0
+        cursor text
+        font-size $font-size-small
+        background-color $brand-tag-bg-color
+        padding 0 $ui-icon-text-gap !important
 
-      > {$selector-prefix + '-tag-close-icon'}
-        position static
-        vertical-align middle
+        > {$selector-prefix + '-tag-close-icon'}
+          position static
+          vertical-align middle
 
   {$selector-value},
   {$selector-placeholder}

@@ -9,4 +9,5 @@ export declare function toNumber(value: any, defaultValue?: any): number;
 export declare function toString(value: any, defaultValue?: any): string;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
 export declare function oneOf(values: any[]): (key: string, value: any, componentName: string | undefined) => boolean;
-export declare function scrollTop(element: HTMLElement | Window, from: number, to: number, duration?: number, endCallback?: () => void): void;
+export declare function leftPad(value: number): string;
+export declare function scrollTo(element: HTMLElement | Window, from: number, to: number, duration?: number, callback?: () => void): void;

@@ -35,6 +35,7 @@ import BackTop from './component/backtop/BackTop'
 import Avatar from './component/avatar/Avatar'
 import Badge from './component/badge/Badge'
 import DatePicker from './component/datepicker/DatePicker'
+import TimePicker from './component/timepicker/TimePicker'
 
 import Tooltip from './component/tooltip/Tooltip'
 
@@ -118,6 +119,7 @@ const component = {
   OptionGroup,
   Pagination,
   DatePicker,
+  TimePicker,
   Upload,
 
   Tooltip,

@@ -1,0 +1,127 @@
+@import '../../../env'
+
+$timepicker-icon-size = 14px
+
+$timepicker-column-width = 56px
+
+$timepicker-row-color = #666
+$timepicker-row-font-size = 14px
+$timepicker-row-height = 28px
+$timepicker-row-count = 8
+
+$timerpicker-footer-padding = 9px 12px
+
+
+// 从 select 拷来的
+timepicker-size-style(size)
+
+  {$selector-prefix + '-timepicker-value'},
+  {$selector-prefix + '-timepicker-placeholder'}
+    ui-set('font-size', size['font-size'])
+    ui-set('height', size['height'] - 2)
+    ui-set('line-height', size['height'] - 2)
+    ui-set('padding-left', size['button-padding-horizontal'])
+    ui-set('padding-right', size['icon-right'] + $timepicker-icon-size)
+
+  {$selector-prefix + '-timepicker-time-icon'},
+  {$selector-prefix + '-timepicker-clear-icon'}
+    ui-set('right', size['icon-right'])
+
+timepicker-brand-style(style)
+  &{$selector-prefix + '-timepicker-enabled'} {$selector-prefix + '-timepicker-button'}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-timepicker-button'}
+    ui-set('border-color', style['color'])
+
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+
+{$selector-prefix + '-timepicker'}
+  display inline-block
+
+  {$selector-prefix + '-dropdown-overlay'}
+    padding 0
+
+  ui-connect(
+    hash: $form-button-size-hash,
+    each: timepicker-size-style
+  )
+  ui-connect(
+    hash: $status-brand-hash,
+    each: timepicker-brand-style
+  )
+
+{$selector-prefix + '-timepicker-block'}
+  ui-block()
+
+{$selector-prefix + '-timepicker-panel'}
+  display inline-block
+  user-select none
+
+{$selector-prefix + '-timepicker-panel-columns'}
+  text-align left
+  height $timepicker-row-height * $timepicker-row-count
+  border-bottom 1px solid $brand-divider
+
+{$selector-prefix + '-timepicker-panel-column'}
+  display inline-block
+  list-style none
+  margin 0
+  padding 0
+
+  width $timepicker-column-width
+  height 100%
+  overflow-y hidden
+  vertical-align top
+  position relative
+
+  ui-scrollbar()
+
+  + {$selector-prefix + '-timepicker-panel-column'}
+    border-left 1px solid $brand-divider
+
+  &:after
+    content ''
+    display block
+    height $timepicker-row-height * ($timepicker-row-count - 1)
+
+  &:hover
+    overflow-y auto
+
+{$selector-prefix + '-timepicker-panel-row'}
+  color $timepicker-row-color
+  font-size $timepicker-row-font-size
+  height $timepicker-row-height
+  line-height $timepicker-row-height
+  padding-left $timepicker-column-width * 0.25
+  transition background-color .3s
+
+  ui-clickable()
+
+  &:hover
+    background-color $brand-bg-hover
+
+{$selector-prefix + '-timepicker-panel-row-active'}
+  background-color $brand-primary-bg
+
+{$selector-prefix + '-timepicker-panel-footer'}
+  text-align right
+  padding $timerpicker-footer-padding
+
+ui-form-button(
+  $selector-prefix + '-timepicker-enabled',
+  $selector-prefix + '-timepicker-disabled',
+  $selector-prefix + '-timepicker-clearable',
+  $selector-prefix + '-timepicker-button',
+  '',
+  $selector-prefix + '-timepicker-value',
+  $selector-prefix + '-timepicker-placeholder',
+  $selector-prefix + '-timepicker-time-icon',
+  $selector-prefix + '-timepicker-clear-icon',
+  $timepicker-icon-size,
+  $timepicker-icon-size
+)

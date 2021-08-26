@@ -1,0 +1,72 @@
+<Dropdown
+  trigger="custom"
+  visible="{{visible}}"
+  placement="{{placement}}"
+  on-outside="handleOutsideClick()"
+  className="${prefix}timepicker
+
+  {{#if status}} ${prefix}timepicker-{{status}}{{/if}}
+  {{#if size}} ${prefix}timepicker-{{size}}{{/if}}
+  {{#if block}} ${prefix}timepicker-block{{/if}}
+
+  {{#if disabled}} ${prefix}timepicker-disabled
+  {{else}} ${prefix}timepicker-enabled
+  {{/if}}
+
+  {{#if clearable}} ${prefix}timepicker-clearable{{/if}}
+
+  {{#if className}} {{className}}{{/if}}"
+
+  style="{{#if componentWidth}}width: {{componentWidth}}px;{{/if}}
+  {{#if style}}{{style}}{{/if}}"
+>
+
+  <div
+    class="${prefix}timepicker-button"
+
+    {{#if !disabled}}
+      on-click="toggle('visible')"
+    {{/if}}
+  >
+
+    {{#if text}}
+      <div class="${prefix}timepicker-value">
+        {{text}}
+      </div>
+    {{else}}
+      <div class="${prefix}timepicker-placeholder">
+        {{placeholder}}
+      </div>
+    {{/if}}
+
+    {{#if clearable && hasValue}}
+      <Icon
+        name="close-circle-fill"
+        size="0"
+        className="${prefix}timepicker-clear-icon"
+        on-click.native="handleClearClick()"
+      />
+    {{/if}}
+
+    <Icon
+      name="time-line"
+      size="0"
+      className="${prefix}timepicker-time-icon"
+    />
+
+  </div>
+
+  <template slot="overlay">
+
+    <TimePanel
+      hourList="{{hourList}}"
+      minuteList="{{minuteList}}"
+      secondList="{{secondList}}"
+      hourIndex="{{visible ? hourIndex : -1}}"
+      minuteIndex="{{visible ? minuteIndex : -1}}"
+      secondIndex="{{visible ? secondIndex : -1}}"
+    />
+
+  </template>
+
+</Dropdown>

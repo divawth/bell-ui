@@ -1,0 +1,68 @@
+<div
+class="${prefix}timepicker-panel
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <div class="${prefix}timepicker-panel-columns">
+    <ul
+      ref="hourList"
+      class="${prefix}timepicker-panel-column"
+    >
+      {{#each hourList:index}}
+        <li
+          key="{{this}}"
+          class="${prefix}timepicker-panel-row
+          {{#if index === ~/hourIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+          on-click="handleHourClick(index)"
+        >
+          {{leftPad(this)}}
+        </li>
+      {{/each}}
+    </ul>
+    <ul
+      ref="minuteList"
+      class="${prefix}timepicker-panel-column"
+    >
+      {{#each minuteList:index}}
+        <li
+          key="{{this}}"
+          class="${prefix}timepicker-panel-row
+          {{#if index === ~/minuteIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+          on-click="handleMinuteClick(index)"
+        >
+          {{leftPad(this)}}
+        </li>
+      {{/each}}
+    </ul>
+    {{#if secondList.length > 0}}
+      <ul
+        ref="secondList"
+        class="${prefix}timepicker-panel-column"
+      >
+        {{#each secondList:index}}
+          <li
+            key="{{this}}"
+            class="${prefix}timepicker-panel-row
+            {{#if index === ~/secondIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+            on-click="handleSecondClick(index)"
+          >
+            {{leftPad(this)}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+  <div class="${prefix}timepicker-panel-footer">
+    <Button
+      size="small"
+      type="primary"
+      disabled="{{!hasValue}}"
+      on-click="handleSubmitClick()"
+    >
+      确定
+    </Button>
+  </div>
+</div>

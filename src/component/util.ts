@@ -1,5 +1,5 @@
 import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW, BODY } from './constant'
-import Yox, { CustomEventInterface, Listener } from 'yox'
+import Yox, { Listener } from 'yox'
 
 const element = DOCUMENT.createElement('div')
 
@@ -134,12 +134,18 @@ export function oneOf(values: any[]) {
   }
 }
 
-export function scrollTop(
+export function leftPad(value: number) {
+  return value < 10
+    ? '0' + value
+    : '' + value
+}
+
+export function scrollTo(
   element: HTMLElement | Window,
   from: number = 0,
   to: number,
   duration: number = 500,
-  endCallback?: () => void
+  callback?: () => void
 ) {
 
   const difference = Math.abs(from - to)
@@ -147,7 +153,9 @@ export function scrollTop(
 
   function scroll(start, end, step) {
     if (start === end) {
-      endCallback && endCallback()
+      if (callback) {
+        callback()
+      }
       return
     }
 

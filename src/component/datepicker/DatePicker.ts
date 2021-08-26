@@ -195,8 +195,8 @@ export default Yox.define({
         this.fire(
           {
             type: 'clear',
-            ns: 'datepicker',
-          }, 
+            ns: 'datePicker',
+          },
           TRUE
         )
       },
@@ -241,12 +241,13 @@ export default Yox.define({
         value: this.get('multiple') ? [] : UNDEFINED,
       })
 
-      const clearEvent = {
-        type: 'clear',
-        ns: 'datepicker',
-      }
-      this.fire(clearEvent, TRUE)
-      this.fire(clearEvent)
+      this.fire(
+        {
+          type: 'clear',
+          ns: 'datePicker',
+        },
+        TRUE
+      )
 
     },
 
