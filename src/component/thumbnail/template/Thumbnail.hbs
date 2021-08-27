@@ -1,5 +1,9 @@
 <div
 class="${prefix}thumbnail
+{{#if simple}} ${prefix}thumbnail-simple
+{{else}} ${prefix}thumbnail-bordered
+{{/if}}
+
 {{#if loading}} ${prefix}thumbnail-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -21,28 +25,47 @@ style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
       on-error="error.thumbnail"
     >
 
-    {{#if showZoom || showDownload || showDelete}}
+    {{#if showZoom || showUpload || showDownload || showDelete}}
       <div class="${prefix}thumbnail-mask">
         {{#if showZoom}}
-          <Icon
-            name="zoom-in-line"
-            size="0"
-            on-click.native="zoom.thumbnail"
-          />
+          <div class="${prefix}thumbnail-action">
+            <Icon
+              name="zoom-in-line"
+              size="0"
+              on-click.native="zoom.thumbnail"
+            />
+          </div>
+        {{/if}}
+        {{#if showUpload}}
+          <Upload
+            className="${prefix}thumbnail-action"
+            accept="image/*"
+            upload="{{uploadImage}}"
+            beforeUpload="{{beforeUpload}}"
+          >
+            <Icon
+              name="upload-2-line"
+              size="0"
+            />
+          </Upload>
         {{/if}}
         {{#if showDownload}}
-          <Icon
-            name="download-2-line"
-            size="0"
-            on-click.native="download.thumbnail"
-          />
+          <div class="${prefix}thumbnail-action">
+            <Icon
+              name="download-2-line"
+              size="0"
+              on-click.native="download.thumbnail"
+            />
+          </div>
         {{/if}}
         {{#if showDelete}}
-          <Icon
-            name="delete-bin-line"
-            size="0"
-            on-click.native="delete.thumbnail"
-          />
+          <div class="${prefix}thumbnail-action">
+            <Icon
+              name="delete-bin-line"
+              size="0"
+              on-click.native="delete.thumbnail"
+            />
+          </div>
         {{/if}}
       </div>
     {{/if}}

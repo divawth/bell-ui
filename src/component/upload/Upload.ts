@@ -4,7 +4,6 @@ import template from './template/Upload.hbs'
 // import './style/Upload.styl'
 
 import {
-  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -54,12 +53,10 @@ export default Yox.define({
       const me = this
 
       const beforeUpload = me.get('beforeUpload')
-
       if (beforeUpload) {
-        let currentFile = beforeUpload(files)
-        if (currentFile && currentFile.then) {
-          currentFile
-          .then(function (result) {
+        beforeUpload({
+          files,
+          callback(result) {
             if (Yox.is.array(result)) {
               Yox.array.each(
                 result,
@@ -71,21 +68,8 @@ export default Yox.define({
             else if (result) {
               me.upload(result)
             }
-          })
-        }
-        else {
-          if (Yox.is.array(currentFile)) {
-            Yox.array.each(
-              currentFile,
-              function (item: UploadFile) {
-                me.upload(item)
-              }
-            )
           }
-          else if (currentFile) {
-            me.upload(currentFile)
-          }
-        }
+        })
         return
       }
 

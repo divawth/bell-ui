@@ -12,9 +12,7 @@ $thumbnail-icon-gap = 12px
   color $brand-muted
   font-size $font-size-default
   line-height $ui-multiple-line-height
-  border 1px solid $brand-border
   background-color $brand-white
-  padding $thumbnail-padding
   border-radius $thumbnail-border-radius
   text-align center
   position relative
@@ -25,10 +23,10 @@ $thumbnail-icon-gap = 12px
       opacity 1
 
   > {$selector-prefix + '-spin-fixed'}
-    top $thumbnail-padding
-    left $thumbnail-padding
-    right $thumbnail-padding
-    bottom $thumbnail-padding
+    top 0
+    left 0
+    right 0
+    bottom 0
     border-radius $thumbnail-image-border-radius
     background-color $brand-mask-dark-color
 
@@ -51,27 +49,45 @@ $thumbnail-icon-gap = 12px
   opacity 0
   background-color $brand-mask-dark-color
   position absolute
-  top $thumbnail-padding
-  left $thumbnail-padding
-  right $thumbnail-padding
-  bottom $thumbnail-padding
+  top 0
+  left 0
+  right 0
+  bottom 0
   border-radius $thumbnail-image-border-radius
   transition opacity .3s
 
-  > {$selector-prefix + '-icon'}
+  {$selector-prefix + '-icon'}
     color $brand-white
     font-size $thumbnail-icon-size
     transition color .1s
-    ui-clickable()
-
-    + {$selector-prefix + '-icon'}
-      margin-left $thumbnail-icon-gap
 
     &:hover
       color $brand-primary
+
+  {$selector-prefix + '-thumbnail-action'}
+    ui-clickable()
+
+    + {$selector-prefix + '-thumbnail-action'}
+      margin-left $thumbnail-icon-gap
 
 {$selector-prefix + '-thumbnail-placeholder'},
 {$selector-prefix + '-thumbnail-mask'}
   display flex
   align-items center
   justify-content center
+
+{$selector-prefix + '-thumbnail-bordered'}
+  border 1px solid $brand-border
+  padding $thumbnail-padding
+
+  > {$selector-prefix + '-spin-fixed'}
+    top $thumbnail-padding
+    left $thumbnail-padding
+    right $thumbnail-padding
+    bottom $thumbnail-padding
+
+  > {$selector-prefix + '-thumbnail-mask'}
+    top $thumbnail-padding
+    left $thumbnail-padding
+    right $thumbnail-padding
+    bottom $thumbnail-padding

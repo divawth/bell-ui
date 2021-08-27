@@ -28,6 +28,7 @@
   - [Select 选择器](form/select)
   - [Slider 滑块](form/slider)
   - [DatePicker 日期选择器](form/datepicker)
+  - [TimePicker 时间选择器](form/timepicker)
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
   - [Form 表单](form/form)

@@ -66,7 +66,9 @@ export default Yox.define({
       value: RAW_BOTTOM_START,
     },
     defaultValue: {
-      type: oneOf([RAW_DATE, RAW_NUMBER]),
+      type: function (key: string, value: any) {
+
+      }
     },
     placeholder: {
       type: RAW_STRING,
@@ -102,7 +104,7 @@ export default Yox.define({
   data(options) {
 
     const props: Record<string, any> = toTimeProps(
-      options.props.defaultValue,
+      options.props && options.props.defaultValue,
       this.get('hourList'),
       this.get('minuteList'),
       this.get('secondList')

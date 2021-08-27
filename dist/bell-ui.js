@@ -518,7 +518,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-thumbnail-mask'},$6={className:'bell-thumbnail-placeholder'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-thumbnail'+(_o('loading',__l.loading).value?' bell-thumbnail-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),'style.cssText':'width:'+_w(_o('width',__l.width).value)+'px;height:'+_w(_o('height',__l.height).value)+'px;line-height:'+_w(_o('height',__l.height).value)+'px;'+(_o('style',__l.style).value?_w(_o('style',__l.style).value):'')},tag:'div',type:3},$0,function(__j){_o('src',__l.src).value?(__j[__j.length]=_a({context:_x,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-thumbnail-image',src:_o('src',__l.src).value},tag:'img',type:3},function(__i){_o('srcSet',__l.srcSet).value?_c(__i,'nativeAttrs',_o('srcSet',__l.srcSet).value,'srcset'):$0;_o('alt',__l.alt).value?_c(__i,'nativeProps',_o('alt',__l.alt).value,'alt'):$0}),_o('showZoom',__l.showZoom).value||_o('showDownload',__l.showDownload).value||_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_o('showZoom',__l.showZoom).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,props:{name:'zoom-in-line',size:'0'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDownload',__l.showDownload).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,props:{name:'download-2-line',size:'0'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDelete',__l.showDelete).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,props:{name:'delete-bin-line',size:'0'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}):__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){_j('$slot_placeholder',__j)});_o('loading',__l.loading).value?__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-thumbnail-action'},$6={className:'bell-thumbnail-mask'},$7={className:'bell-thumbnail-placeholder'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-thumbnail'+(_o('simple',__l.simple).value?' bell-thumbnail-simple':' bell-thumbnail-bordered')+(_o('loading',__l.loading).value?' bell-thumbnail-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),'style.cssText':'width:'+_w(_o('width',__l.width).value)+'px;height:'+_w(_o('height',__l.height).value)+'px;line-height:'+_w(_o('height',__l.height).value)+'px;'+(_o('style',__l.style).value?_w(_o('style',__l.style).value):'')},tag:'div',type:3},$0,function(__j){_o('src',__l.src).value?(__j[__j.length]=_a({context:_x,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-thumbnail-image',src:_o('src',__l.src).value},tag:'img',type:3},function(__i){_o('srcSet',__l.srcSet).value?_c(__i,'nativeAttrs',_o('srcSet',__l.srcSet).value,'srcset'):$0;_o('alt',__l.alt).value?_c(__i,'nativeProps',_o('alt',__l.alt).value,'alt'):$0}),_o('showZoom',__l.showZoom).value||_o('showUpload',__l.showUpload).value||_o('showDownload',__l.showDownload).value||_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){_o('showZoom',__l.showZoom).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,props:{name:'zoom-in-line',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showUpload',__l.showUpload).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:'image/*',beforeUpload:_o('beforeUpload',__l.beforeUpload).value,className:'bell-thumbnail-action',upload:_o('uploadImage',__l.uploadImage).value},tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'upload-2-line',size:'0'},tag:'Icon',type:4}}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDownload',__l.showDownload).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,props:{name:'download-2-line',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,props:{name:'delete-bin-line',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}):__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){_j('$slot_placeholder',__j)});_o('loading',__l.loading).value?__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}})}})();
 
 /***/ }),
 /* 71 */
@@ -3476,10 +3476,9 @@ var guid = 0;
             var me = this;
             var beforeUpload = me.get('beforeUpload');
             if (beforeUpload) {
-                var currentFile = beforeUpload(files);
-                if (currentFile && currentFile.then) {
-                    currentFile
-                        .then(function (result) {
+                beforeUpload({
+                    files: files,
+                    callback: function (result) {
                         if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(result)) {
                             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(result, function (item) {
                                 me.upload(item);
@@ -3488,18 +3487,8 @@ var guid = 0;
                         else if (result) {
                             me.upload(result);
                         }
-                    });
-                }
-                else {
-                    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(currentFile)) {
-                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(currentFile, function (item) {
-                            me.upload(item);
-                        });
                     }
-                    else if (currentFile) {
-                        me.upload(currentFile);
-                    }
-                }
+                });
                 return;
             }
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(files, function (item) {
@@ -5307,7 +5296,8 @@ var DEFAULT_SECOND_STEP = 1;
             value: RAW_BOTTOM_START,
         },
         defaultValue: {
-            type: oneOf([RAW_DATE, RAW_NUMBER]),
+            type: function (key, value) {
+            }
         },
         placeholder: {
             type: RAW_STRING,
@@ -5340,7 +5330,7 @@ var DEFAULT_SECOND_STEP = 1;
         }
     },
     data: function (options) {
-        var props = toTimeProps(options.props.defaultValue, this.get('hourList'), this.get('minuteList'), this.get('secondList'));
+        var props = toTimeProps(options.props && options.props.defaultValue, this.get('hourList'), this.get('minuteList'), this.get('secondList'));
         props.visible = FALSE;
         return props;
     },
@@ -6877,6 +6867,7 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
 
 
 
+
 /* harmony default export */ var thumbnail_Thumbnail = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Thumbnail_default.a,
     name: 'bell-Thumbnail',
@@ -6889,10 +6880,16 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
             type: RAW_NUMERIC,
             required: TRUE,
         },
+        simple: {
+            type: RAW_BOOLEAN,
+        },
         loading: {
             type: RAW_BOOLEAN,
         },
         showZoom: {
+            type: RAW_BOOLEAN,
+        },
+        showUpload: {
             type: RAW_BOOLEAN,
         },
         showDownload: {
@@ -6910,6 +6907,9 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
         alt: {
             type: RAW_STRING,
         },
+        beforeUpload: {
+            type: RAW_FUNCTION,
+        },
         className: {
             type: RAW_STRING,
         },
@@ -6917,9 +6917,30 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
             type: RAW_STRING,
         }
     },
+    data: function () {
+        var me = this;
+        return {
+            uploadImage: function (data) {
+                var onStart = data.onStart, onEnd = data.onEnd;
+                data.onStart = function () {
+                    me.set('loading', TRUE);
+                    onStart();
+                };
+                data.onEnd = function () {
+                    me.set('loading', FALSE);
+                    onEnd();
+                };
+                me.fire({
+                    type: 'upload',
+                    ns: 'thumbnail',
+                }, data);
+            },
+        };
+    },
     components: {
         Icon: icon_Icon,
         Spin: spin_Spin,
+        Upload: upload_Upload,
     }
 }));
 
@@ -8095,7 +8116,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.17.3";
+var version = "0.17.4";
 /**
  * 安装插件
  */
