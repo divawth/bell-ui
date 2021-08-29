@@ -11,7 +11,7 @@ import {
 } from '../constant'
 
 import {
-  leftPad,
+  padStart,
 } from '../util'
 
 import {
@@ -103,7 +103,7 @@ export default Yox.define({
   },
 
   filters: {
-    leftPad,
+    padStart,
   },
 
   methods: {

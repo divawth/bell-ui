@@ -134,7 +134,7 @@ export function oneOf(values: any[]) {
   }
 }
 
-export function leftPad(value: number) {
+export function padStart(value: number) {
   return value < 10
     ? '0' + value
     : '' + value

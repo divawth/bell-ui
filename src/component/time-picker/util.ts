@@ -1,5 +1,5 @@
 import {
-  leftPad,
+  padStart,
   scrollTo,
 } from '../util'
 
@@ -50,17 +50,17 @@ export function formatTime(hour: number, minute: number, second: number) {
 
   if (hour >= 0) {
     list.push(
-      leftPad(hour)
+      padStart(hour)
     )
   }
   if (minute >= 0) {
     list.push(
-      leftPad(minute)
+      padStart(minute)
     )
   }
   if (second >= 0) {
     list.push(
-      leftPad(second)
+      padStart(second)
     )
   }
 

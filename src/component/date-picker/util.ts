@@ -1,5 +1,5 @@
 import {
-  leftPad,
+  padStart,
   toString,
 } from '../util'
 
@@ -199,8 +199,8 @@ export function createDateViewDatasource(timestamp: number) {
 export function formatDate(date: Date, format: string) {
   return format
     .replace(/yyyy/i, toString(date.getFullYear()))
-    .replace(/MM/i, leftPad(date.getMonth() + 1))
+    .replace(/MM/i, padStart(date.getMonth() + 1))
     .replace(/M/i, toString(date.getMonth() + 1))
-    .replace(/dd/i, leftPad(date.getDate()))
+    .replace(/dd/i, padStart(date.getDate()))
     .replace(/d/i, toString(date.getDate()))
 }

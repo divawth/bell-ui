@@ -4,12 +4,34 @@
 export default {
   template: `
     <Thumbnail
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       width="60"
       height="60"
-      src="https://avatars0.githubusercontent.com/u/17703135?s=60"
-      srcSet="https://avatars0.githubusercontent.com/u/17703135?s=120 2x"
     />
   `,
+}
+```
+
+> 图片裁剪
+
+```js
+export default {
+  template: `
+    <Thumbnail
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
+      width="60"
+      height="60"
+      formatUrl="{{formatUrl}}"
+    />
+  `,
+  data() {
+    return {
+      formatUrl(data) {
+        console.log('formatUrl', data)
+        return 'https://avatars.githubusercontent.com/u/2732303?v=4'
+      }
+    }
+  }
 }
 ```
 
@@ -23,14 +45,13 @@ export default {
 export default {
   template: `
     <Thumbnail
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       width="140"
       height="140"
       showZoom
       showUpload
       showDownload
       showDelete
-      src="https://avatars0.githubusercontent.com/u/17703135?s=140"
-      srcSet="https://avatars0.githubusercontent.com/u/17703135?s=280 2x"
       on-zoom="zoomImage()"
       on-upload="uploadImage()"
       on-download="downloadImage()"
@@ -105,8 +126,7 @@ export default {
     <Thumbnail
       width="140"
       height="140"
-      src="https://avatars0.githubusercontent.com/u/17703135?s=140"
-      srcSet="https://avatars0.githubusercontent.com/u/17703135?s=280 2x"
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       loading
     />
   `,
@@ -121,8 +141,7 @@ export default {
     <Thumbnail
       width="140"
       height="140"
-      src="https://avatars0.githubusercontent.com/u/17703135?s=140"
-      srcSet="https://avatars0.githubusercontent.com/u/17703135?s=280 2x"
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       simple
     />
   `
@@ -136,10 +155,9 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+url | 图片地址 | string | - | -
 width | 显示宽度 | numeric | - | -
 height | 显示宽度 | numeric | - | -
-src | 图片地址 | string | - | -
-srcSet | 原生 `srcset` 属性 | string | - | -
 alt | 原生 `alt` 属性 | string | - | -
 simple | 是否为简洁风格 | boolean | - | -
 loading | 是否加载中 | boolean | - | -
@@ -147,6 +165,7 @@ showZoom | 是否显示放大图标 | boolean | - | -
 showUpload | 是否显示上传图标 | boolean | - | -
 showDownload | 是否显示下载图标 | boolean | - | -
 showDelete | 是否显示删除图标 | boolean | - | -
+formatUrl | 图片裁剪函数 | function | - | -
 beforeUpload | 上传前执行的函数 | function | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

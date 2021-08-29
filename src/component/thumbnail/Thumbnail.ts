@@ -49,6 +49,12 @@ export default Yox.define({
     showDelete: {
       type: RAW_BOOLEAN,
     },
+    url: {
+      type: RAW_STRING,
+    },
+    formatUrl: {
+      type: RAW_FUNCTION,
+    },
     src: {
       type: RAW_STRING,
     },

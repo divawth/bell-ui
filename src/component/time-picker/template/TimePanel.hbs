@@ -18,7 +18,7 @@ class="${prefix}time-picker-panel
           {{#if index === ~/hourIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
           on-click="handleHourClick(index)"
         >
-          {{leftPad(this)}}
+          {{padStart(this)}}
         </li>
       {{/each}}
     </ul>
@@ -33,7 +33,7 @@ class="${prefix}time-picker-panel
           {{#if index === ~/minuteIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
           on-click="handleMinuteClick(index)"
         >
-          {{leftPad(this)}}
+          {{padStart(this)}}
         </li>
       {{/each}}
     </ul>
@@ -49,7 +49,7 @@ class="${prefix}time-picker-panel
             {{#if index === ~/secondIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
             on-click="handleSecondClick(index)"
           >
-            {{leftPad(this)}}
+            {{padStart(this)}}
           </li>
         {{/each}}
       </ul>
