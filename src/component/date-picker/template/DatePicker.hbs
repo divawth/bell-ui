@@ -3,17 +3,17 @@
   visible="{{visible}}"
   placement="{{placement}}"
   on-outside="handleOutsideClick()"
-  className="${prefix}datepicker
+  className="${prefix}date-picker
 
-  {{#if status}} ${prefix}datepicker-{{status}}{{/if}}
-  {{#if size}} ${prefix}datepicker-{{size}}{{/if}}
-  {{#if block}} ${prefix}datepicker-block{{/if}}
+  {{#if status}} ${prefix}date-picker-{{status}}{{/if}}
+  {{#if size}} ${prefix}date-picker-{{size}}{{/if}}
+  {{#if block}} ${prefix}date-picker-block{{/if}}
 
-  {{#if disabled}} ${prefix}datepicker-disabled
-  {{else}} ${prefix}datepicker-enabled
+  {{#if disabled}} ${prefix}date-picker-disabled
+  {{else}} ${prefix}date-picker-enabled
   {{/if}}
 
-  {{#if clearable}} ${prefix}datepicker-clearable{{/if}}
+  {{#if clearable}} ${prefix}date-picker-clearable{{/if}}
 
   {{#if className}} {{className}}{{/if}}"
 
@@ -24,7 +24,7 @@
 >
 
   <div
-    class="${prefix}datepicker-button"
+    class="${prefix}date-picker-button"
 
     {{#if !disabled}}
       on-click="toggle('visible')"
@@ -35,7 +35,7 @@
 
       {{#if multiple && type !== RAW_TYPE_DATE_RANGE && type !== RAW_TYPE_WEEK}}
 
-        <div class="${prefix}datepicker-values">
+        <div class="${prefix}date-picker-values">
           {{#each formatedValues:index}}
             <Tag
               simple
@@ -49,12 +49,12 @@
 
       {{else}}
 
-        <div class="${prefix}datepicker-value">
+        <div class="${prefix}date-picker-value">
           {{formatedValues[0]}}
 
           <!-- week 和 daterange -->
           {{#if formatedValues[1]}}
-            <span class="${prefix}datepicker-separator">
+            <span class="${prefix}date-picker-separator">
               ~
             </span>
             {{formatedValues[1]}}
@@ -65,7 +65,7 @@
 
     {{else}}
 
-      <div class="${prefix}datepicker-placeholder">
+      <div class="${prefix}date-picker-placeholder">
         {{placeholder}}
       </div>
 
@@ -75,7 +75,7 @@
       <Icon
         name="close-circle-fill"
         size="0"
-        className="${prefix}datepicker-clear-icon"
+        className="${prefix}date-picker-clear-icon"
         on-click.native="handleClearClick()"
       />
     {{/if}}
@@ -83,7 +83,7 @@
     <Icon
       name="calendar-line"
       size="0"
-      className="${prefix}datepicker-calendar-icon"
+      className="${prefix}date-picker-calendar-icon"
     />
 
   </div>
@@ -91,10 +91,10 @@
   <template slot="overlay">
 
     {{#if shortcuts && shortcuts.length > 0}}
-      <div class="${prefix}datepicker-shortcut">
+      <div class="${prefix}date-picker-shortcut">
         {{#each shortcuts}}
           <div
-            class="${prefix}datepicker-shortcut-item"
+            class="${prefix}date-picker-shortcut-item"
             on-click="handleShortcutClick(this)"
           >
             {{this.text}}

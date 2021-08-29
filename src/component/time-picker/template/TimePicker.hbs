@@ -3,17 +3,17 @@
   visible="{{visible}}"
   placement="{{placement}}"
   on-outside="handleOutsideClick()"
-  className="${prefix}timepicker
+  className="${prefix}time-picker
 
-  {{#if status}} ${prefix}timepicker-{{status}}{{/if}}
-  {{#if size}} ${prefix}timepicker-{{size}}{{/if}}
-  {{#if block}} ${prefix}timepicker-block{{/if}}
+  {{#if status}} ${prefix}time-picker-{{status}}{{/if}}
+  {{#if size}} ${prefix}time-picker-{{size}}{{/if}}
+  {{#if block}} ${prefix}time-picker-block{{/if}}
 
-  {{#if disabled}} ${prefix}timepicker-disabled
-  {{else}} ${prefix}timepicker-enabled
+  {{#if disabled}} ${prefix}time-picker-disabled
+  {{else}} ${prefix}time-picker-enabled
   {{/if}}
 
-  {{#if clearable}} ${prefix}timepicker-clearable{{/if}}
+  {{#if clearable}} ${prefix}time-picker-clearable{{/if}}
 
   {{#if className}} {{className}}{{/if}}"
 
@@ -22,7 +22,7 @@
 >
 
   <div
-    class="${prefix}timepicker-button"
+    class="${prefix}time-picker-button"
 
     {{#if !disabled}}
       on-click="toggle('visible')"
@@ -30,11 +30,11 @@
   >
 
     {{#if text}}
-      <div class="${prefix}timepicker-value">
+      <div class="${prefix}time-picker-value">
         {{text}}
       </div>
     {{else}}
-      <div class="${prefix}timepicker-placeholder">
+      <div class="${prefix}time-picker-placeholder">
         {{placeholder}}
       </div>
     {{/if}}
@@ -43,7 +43,7 @@
       <Icon
         name="close-circle-fill"
         size="0"
-        className="${prefix}timepicker-clear-icon"
+        className="${prefix}time-picker-clear-icon"
         on-click.native="handleClearClick()"
       />
     {{/if}}
@@ -51,7 +51,7 @@
     <Icon
       name="time-line"
       size="0"
-      className="${prefix}timepicker-time-icon"
+      className="${prefix}time-picker-time-icon"
     />
 
   </div>

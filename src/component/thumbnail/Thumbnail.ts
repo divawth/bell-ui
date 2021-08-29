@@ -58,6 +58,10 @@ export default Yox.define({
     alt: {
       type: RAW_STRING,
     },
+    accept: {
+      type: RAW_STRING,
+      value: 'image/png,image/jpeg,image/jpg,image/gif'
+    },
     beforeUpload: {
       type: RAW_FUNCTION,
     },

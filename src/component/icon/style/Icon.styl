@@ -1,6 +1,9 @@
 @import '../../../env'
 @import './icon/style'
 
+{$selector-prefix + '-icon'}
+  font-size $ui-icon-size
+
 {$selector-prefix + '-icon-spin'}
   // 不加这句没法让 transform 动画生效
   display inline-block

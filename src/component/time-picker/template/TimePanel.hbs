@@ -1,21 +1,21 @@
 <div
-class="${prefix}timepicker-panel
+class="${prefix}time-picker-panel
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
-  <div class="${prefix}timepicker-panel-columns">
+  <div class="${prefix}time-picker-panel-columns">
     <ul
       ref="hourList"
-      class="${prefix}timepicker-panel-column"
+      class="${prefix}time-picker-panel-column"
     >
       {{#each hourList:index}}
         <li
           key="{{this}}"
-          class="${prefix}timepicker-panel-row
-          {{#if index === ~/hourIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+          class="${prefix}time-picker-panel-row
+          {{#if index === ~/hourIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
           on-click="handleHourClick(index)"
         >
           {{leftPad(this)}}
@@ -24,13 +24,13 @@ class="${prefix}timepicker-panel
     </ul>
     <ul
       ref="minuteList"
-      class="${prefix}timepicker-panel-column"
+      class="${prefix}time-picker-panel-column"
     >
       {{#each minuteList:index}}
         <li
           key="{{this}}"
-          class="${prefix}timepicker-panel-row
-          {{#if index === ~/minuteIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+          class="${prefix}time-picker-panel-row
+          {{#if index === ~/minuteIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
           on-click="handleMinuteClick(index)"
         >
           {{leftPad(this)}}
@@ -40,13 +40,13 @@ class="${prefix}timepicker-panel
     {{#if secondList.length > 0}}
       <ul
         ref="secondList"
-        class="${prefix}timepicker-panel-column"
+        class="${prefix}time-picker-panel-column"
       >
         {{#each secondList:index}}
           <li
             key="{{this}}"
-            class="${prefix}timepicker-panel-row
-            {{#if index === ~/secondIndex}} ${prefix}timepicker-panel-row-active{{/if}}"
+            class="${prefix}time-picker-panel-row
+            {{#if index === ~/secondIndex}} ${prefix}time-picker-panel-row-active{{/if}}"
             on-click="handleSecondClick(index)"
           >
             {{leftPad(this)}}
@@ -55,7 +55,7 @@ class="${prefix}timepicker-panel
       </ul>
     {{/if}}
   </div>
-  <div class="${prefix}timepicker-panel-footer">
+  <div class="${prefix}time-picker-panel-footer">
     <Button
       size="small"
       type="primary"

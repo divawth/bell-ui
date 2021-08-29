@@ -1,0 +1,61 @@
+<div
+class="${prefix}date-picker-year ${prefix}date-picker-panel
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}date-picker-header">
+    <span class="${prefix}date-picker-header-button ${prefix}date-picker-prev" on-click="decrease('year', count)">
+      <Icon
+        name="arrow-left-s-line"
+        size="0"
+        className="${prefix}date-picker-header-icon"
+      />
+    </span>
+
+    <span class="${prefix}date-picker-header-year">
+      {{year}}
+    </span>
+    年
+
+    <span class="${prefix}date-picker-header-separator">
+      -
+    </span>
+
+    <span class="${prefix}date-picker-header-year">
+      {{year + count - 1}}
+    </span>
+    年
+
+    <span class="${prefix}date-picker-header-button ${prefix}date-picker-next" on-click="increase('year', count)">
+      <Icon
+        name="arrow-right-s-line"
+        size="0"
+        className="${prefix}date-picker-header-icon"
+      />
+    </span>
+  </div>
+
+  <div class="${prefix}date-picker-body">
+    {{#each datasource}}
+      <div class="${prefix}date-picker-row">
+        {{#each this}}
+          <div
+            class="${prefix}date-picker-col ${prefix}date-picker-col-enabled
+            {{#if isChecked(this)}} ${prefix}date-picker-col-checked
+            {{/if}}"
+            on-click="click(this)"
+          >
+            <div class="${prefix}date-picker-text">
+              {{this}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+
+</div>

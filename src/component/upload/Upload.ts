@@ -15,9 +15,12 @@ import {
 type UploadFile = {
   id: number,
   file: File,
+  name: string,
+  size: number,
 }
 
-let guid = 0
+// 本地文件用负数，避免和数据库自增 id 冲突
+let guid = -1
 
 export default Yox.define({
 
@@ -48,14 +51,14 @@ export default Yox.define({
   },
 
   methods: {
-    beforeUpload(files: UploadFile[]) {
+    beforeUpload(fileList: UploadFile[]) {
 
       const me = this
 
       const beforeUpload = me.get('beforeUpload')
       if (beforeUpload) {
         beforeUpload({
-          files,
+          fileList,
           callback(result) {
             if (Yox.is.array(result)) {
               Yox.array.each(
@@ -74,7 +77,7 @@ export default Yox.define({
       }
 
       Yox.array.each(
-        files,
+        fileList,
         function (item) {
           me.upload(item)
         }
@@ -170,15 +173,17 @@ export default Yox.define({
 
     onChange(event: CustomEventInterface) {
 
-      const files = Yox.array.toArray(
+      const fileList = Yox.array.toArray(
         (event.originalEvent.target as HTMLInputElement).files
       )
 
       this.beforeUpload(
-        files.map(function (file) {
+        fileList.map(function (file) {
           return {
+            id: --guid,
             file,
-            id: ++guid,
+            name: file.name,
+            size: file.size,
           }
         })
       )

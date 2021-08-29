@@ -1,0 +1,82 @@
+<div
+class="${prefix}image-picker
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <div class="${prefix}image-picker-wrapper">
+    {{#each imageList:index}}
+      <div class="${prefix}image-picker-item ${prefix}image-picker-card">
+
+        {{#if this.url || this.base64}}
+          <img
+            class="${prefix}image-picker-image"
+            {{#if this.url}}
+              src="{{this.url}}"
+            {{else if this.base64}}
+              src="{{this.base64}}"
+            {{/if}}
+            {{#if this.name}}
+              alt="{{this.name}}"
+            {{/if}}
+            ondragstart="return false"
+          >
+        {{/if}}
+
+        {{#if this.status === STATUS_UPLOADING}}
+          <div class="${prefix}image-picker-mask">
+            <Circle percent="{{this.progress * 100}}" size="60">
+              上传中
+            </Circle>
+          </div>
+        {{else}}
+          {{#if this.status === STATUS_ERROR}}
+            <div class="${prefix}image-picker-mask">
+              <Circle percent="{{this.progress * 100}}" size="60" strokeColor="#ff5500">
+                <Icon
+                  name="close-line"
+                  size="30"
+                  style="color:#ff5500"
+                />
+              </Circle>
+            </div>
+          {{else if this.size > 0}}
+            <div class="${prefix}image-picker-image-size">
+              {{formatImageSize(this.size)}}
+            </div>
+          {{/if}}
+          <Icon
+            className="${prefix}image-picker-remove-icon"
+            name="close-circle-fill"
+            on-click.native="removeItem(index)"
+          />
+        {{/if}}
+
+      </div>
+    {{/each}}
+
+    {{#if imageList.length < maxCount}}
+      <Upload
+        ref="upload"
+        className="${prefix}image-picker-item ${prefix}image-picker-append"
+        multiple="{{restCount > 1}}"
+        accept="{{accept}}"
+        beforeUpload="{{beforeUploadImage}}"
+      >
+        <Icon
+          className="${prefix}image-picker-append-icon"
+          name="add-line"
+        />
+      </Upload>
+    {{/if}}
+  </div>
+
+  {{#if extra}}
+    <div class="${prefix}image-picker-extra">
+      {{extra}}
+    </div>
+  {{/if}}
+
+</div>

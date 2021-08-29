@@ -13,9 +13,9 @@ export default {
 }
 ```
 
-> 支持三种操作
+> 支持四种操作
 
-三种操作依次为 `放大(zoom)`、`上传(upload)`、`下载(download)`、`删除(delete)`。
+四种操作依次为 `放大(zoom)`、`上传(upload)`、`下载(download)`、`删除(delete)`。
 
 每种操作对应一个事件，如下：
 
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       beforeUpload(data) {
-        data.callback(data.files)
+        data.callback(data.fileList)
       }
     }
   },

@@ -39,7 +39,7 @@ style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
         {{#if showUpload}}
           <Upload
             className="${prefix}thumbnail-action"
-            accept="image/*"
+            accept="{{accept}}"
             upload="{{uploadImage}}"
             beforeUpload="{{beforeUpload}}"
           >

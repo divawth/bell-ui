@@ -1,0 +1,225 @@
+<div
+class="${prefix}date-picker-daterange
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}date-picker-panel">
+    <div class="${prefix}date-picker-header">
+
+      <div class="${prefix}date-picker-prev">
+        <span class="${prefix}date-picker-header-button" on-click="offsetStart(-12)">
+          <Icon
+            name="arrow-left-s-fill"
+            size="0"
+            className="${prefix}date-picker-header-icon"
+          />
+        </span>
+
+        <span class="${prefix}date-picker-header-button" on-click="offsetStart(-1)">
+          <Icon
+            name="arrow-left-s-line"
+            size="0"
+            className="${prefix}date-picker-header-icon"
+          />
+        </span>
+      </div>
+
+      <span class="${prefix}date-picker-header-year">
+        {{startDate.year}}
+      </span>
+      年
+
+      <span class="${prefix}date-picker-header-month">
+        {{startDate.month}}
+      </span>
+      月
+
+      {{#if splitPanel}}
+        <div class="${prefix}date-picker-next">
+          <span class="${prefix}date-picker-header-button" on-click="offsetStart(1)">
+            <Icon
+              name="arrow-right-s-line"
+              size="0"
+              className="${prefix}date-picker-header-icon"
+            />
+          </span>
+
+          <span class="${prefix}date-picker-header-button" on-click="offsetStart(12)">
+            <Icon
+              name="arrow-right-s-fill"
+              size="0"
+              className="${prefix}date-picker-header-icon"
+            />
+          </span>
+        </div>
+      {{/if}}
+
+    </div>
+    <div class="${prefix}date-picker-body">
+      <div class="${prefix}date-picker-weeks">
+        {{#each weeks}}
+          <div class="${prefix}date-picker-col">
+            {{this}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="${prefix}date-picker-days" on-mouseleave="leave()">
+        {{#each startDatasource}}
+          <div class="${prefix}date-picker-row">
+            {{#each this.list}}
+              <div
+                class="${prefix}date-picker-col
+
+                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
+                  {{#if isCurrentMonth(this, ../../startDate)}} ${prefix}date-picker-col-current-month
+
+                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
+                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
+                      {{else}} ${prefix}date-picker-col-range
+                      {{/if}}
+                    {{/if}}
+
+                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
+                    {{/if}}
+
+                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
+                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
+                    {{/if}}
+
+                  {{else}} ${prefix}date-picker-col-adjacent-month
+                  {{/if}}
+                {{else}} ${prefix}date-picker-col-disabled
+                {{/if}}"
+
+                {{#if ../../pinDate}}
+                  on-mouseenter="hover(this)"
+                {{/if}}
+
+                {{#if isEnabled(this)}}
+                  on-click="click(this)"
+                {{/if}}
+              >
+                <div class="${prefix}date-picker-text">
+                  {{this.date}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <div class="${prefix}date-picker-panel">
+    <div class="${prefix}date-picker-header">
+
+      {{#if splitPanel}}
+        <div class="${prefix}date-picker-prev">
+          <span class="${prefix}date-picker-header-button" on-click="offsetEnd(-12)">
+            <Icon
+              name="arrow-left-s-fill"
+              size="0"
+              className="${prefix}date-picker-header-icon"
+            />
+          </span>
+
+          <span class="${prefix}date-picker-header-button" on-click="offsetEnd(-1)">
+            <Icon
+              name="arrow-left-s-line"
+              size="0"
+              className="${prefix}date-picker-header-icon"
+            />
+          </span>
+        </div>
+      {{/if}}
+
+      <span class="${prefix}date-picker-header-year">
+        {{endDate.year}}
+      </span>
+      年
+
+      <span class="${prefix}date-picker-header-month">
+        {{endDate.month}}
+      </span>
+      月
+
+      <div class="${prefix}date-picker-next">
+        <span class="${prefix}date-picker-header-button" on-click="offsetEnd(1)">
+          <Icon
+            name="arrow-right-s-line"
+            size="0"
+            className="${prefix}date-picker-header-icon"
+          />
+        </span>
+
+        <span class="${prefix}date-picker-header-button" on-click="offsetEnd(12)">
+          <Icon
+            name="arrow-right-s-fill"
+            size="0"
+            className="${prefix}date-picker-header-icon"
+          />
+        </span>
+      </div>
+
+    </div>
+    <div class="${prefix}date-picker-body">
+      <div class="${prefix}date-picker-weeks">
+        {{#each weeks}}
+          <div class="${prefix}date-picker-col">
+            {{this}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="${prefix}date-picker-days" on-mouseleave="leave()">
+        {{#each endDatasource}}
+          <div class="${prefix}date-picker-row">
+            {{#each this.list}}
+              <div
+                class="${prefix}date-picker-col
+
+                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
+                  {{#if isCurrentMonth(this, ../../endDate)}} ${prefix}date-picker-col-current-month
+
+                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
+                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
+                      {{else}} ${prefix}date-picker-col-range
+                      {{/if}}
+                    {{/if}}
+
+                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
+                    {{/if}}
+
+                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
+                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
+                    {{/if}}
+
+                  {{else}} ${prefix}date-picker-col-adjacent-month
+                  {{/if}}
+
+                {{else}} ${prefix}date-picker-col-disabled
+                {{/if}}"
+
+                {{#if ../../pinDate}}
+                  on-mouseenter="hover(this)"
+                {{/if}}
+
+                {{#if isEnabled(this)}}
+                  on-click="click(this)"
+                {{/if}}
+              >
+                <div class="${prefix}date-picker-text">
+                  {{this.date}}
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+</div>

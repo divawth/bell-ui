@@ -34,8 +34,9 @@ import Spin from './component/spin/Spin'
 import BackTop from './component/backtop/BackTop'
 import Avatar from './component/avatar/Avatar'
 import Badge from './component/badge/Badge'
-import DatePicker from './component/datepicker/DatePicker'
-import TimePicker from './component/timepicker/TimePicker'
+import DatePicker from './component/date-picker/DatePicker'
+import TimePicker from './component/time-picker/TimePicker'
+import ImagePicker from './component/image-picker/ImagePicker'
 
 import Tooltip from './component/tooltip/Tooltip'
 
@@ -120,6 +121,7 @@ const component = {
   Pagination,
   DatePicker,
   TimePicker,
+  ImagePicker,
   Upload,
 
   Tooltip,

@@ -1,6 +1,6 @@
 {{#if type === RAW_TYPE_DATE}}
   <div
-  class="${prefix}datepicker-date ${prefix}datepicker-panel
+  class="${prefix}date-picker-date ${prefix}date-picker-panel
   {{#if className}} {{className}}{{/if}}"
 
   {{#if style}}
@@ -8,94 +8,94 @@
   {{/if}}
   >
 
-    <div class="${prefix}datepicker-header">
-      <div class="${prefix}datepicker-prev">
-        <span class="${prefix}datepicker-header-button" on-click="offset(-12)">
+    <div class="${prefix}date-picker-header">
+      <div class="${prefix}date-picker-prev">
+        <span class="${prefix}date-picker-header-button" on-click="offset(-12)">
           <Icon
             name="arrow-left-s-fill"
             size="0"
-            className="${prefix}datepicker-header-icon"
+            className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}datepicker-header-button" on-click="offset(-1)">
+        <span class="${prefix}date-picker-header-button" on-click="offset(-1)">
           <Icon
             name="arrow-left-s-line"
             size="0"
-            className="${prefix}datepicker-header-icon"
+            className="${prefix}date-picker-header-icon"
           />
         </span>
       </div>
 
       <span
         {{#if canPickYear}}
-          class="${prefix}datepicker-header-link"
+          class="${prefix}date-picker-header-link"
           on-click="set('type', RAW_TYPE_YEAR)"
         {{/if}}
       >
-        <span class="${prefix}datepicker-header-year">
+        <span class="${prefix}date-picker-header-year">
           {{date.year}}
         </span>
         年
       </span>
       <span
         {{#if canPickMonth}}
-          class="${prefix}datepicker-header-link"
+          class="${prefix}date-picker-header-link"
           on-click="set('type', RAW_TYPE_MONTH)"
         {{/if}}
       >
-        <span class="${prefix}datepicker-header-month">
+        <span class="${prefix}date-picker-header-month">
           {{date.month}}
         </span>
         月
       </span>
 
-      <div class="${prefix}datepicker-next">
-        <span class="${prefix}datepicker-header-button" on-click="offset(1)">
+      <div class="${prefix}date-picker-next">
+        <span class="${prefix}date-picker-header-button" on-click="offset(1)">
           <Icon
             name="arrow-right-s-line"
             size="0"
-            className="${prefix}datepicker-header-icon"
+            className="${prefix}date-picker-header-icon"
           />
         </span>
 
-        <span class="${prefix}datepicker-header-button" on-click="offset(12)">
+        <span class="${prefix}date-picker-header-button" on-click="offset(12)">
           <Icon
             name="arrow-right-s-fill"
             size="0"
-            className="${prefix}datepicker-header-icon"
+            className="${prefix}date-picker-header-icon"
           />
         </span>
       </div>
     </div>
 
-    <div class="${prefix}datepicker-body">
-      <div class="${prefix}datepicker-weeks">
+    <div class="${prefix}date-picker-body">
+      <div class="${prefix}date-picker-weeks">
         {{#each weeks}}
-          <div class="${prefix}datepicker-col">
+          <div class="${prefix}date-picker-col">
             {{this}}
           </div>
         {{/each}}
       </div>
-      <div class="${prefix}datepicker-days">
+      <div class="${prefix}date-picker-days">
         {{#each datasource}}
-          <div class="${prefix}datepicker-row">
+          <div class="${prefix}date-picker-row">
             {{#each this.list}}
               <div
-                class="${prefix}datepicker-col
-                {{#if isEnabled(this)}} ${prefix}datepicker-col-enabled
-                  {{#if isCurrentMonth(this)}} ${prefix}datepicker-col-current-month
-                    {{#if isChecked(this)}} ${prefix}datepicker-col-checked{{/if}}
-                  {{else}} ${prefix}datepicker-col-adjacent-month
+                class="${prefix}date-picker-col
+                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
+                  {{#if isCurrentMonth(this)}} ${prefix}date-picker-col-current-month
+                    {{#if isChecked(this)}} ${prefix}date-picker-col-checked{{/if}}
+                  {{else}} ${prefix}date-picker-col-adjacent-month
                   {{/if}}
-                {{else}} ${prefix}datepicker-col-disabled
+                {{else}} ${prefix}date-picker-col-disabled
                 {{/if}}"
 
                 {{#if isEnabled(this)}}
                   on-click="click(this)"
                 {{/if}}
               >
-                <div class="${prefix}datepicker-text">
+                <div class="${prefix}date-picker-text">
                   {{this.date}}
                 </div>
               </div>

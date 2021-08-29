@@ -4,11 +4,11 @@ import template from './template/Icon.hbs'
 // import './style/Icon.styl'
 
 import {
+  TRUE,
   FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
-  TRUE,
 } from '../constant'
 
 export default Yox.define({
@@ -24,7 +24,6 @@ export default Yox.define({
     },
     size: {
       type: RAW_NUMERIC,
-      value: 14,
     },
     color: {
       type: RAW_STRING,

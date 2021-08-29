@@ -1,0 +1,96 @@
+@import '../../../env'
+
+$image-picker-item-size = 80px
+$image-picker-item-border-radius = 2px
+$image-picker-circle-size = 60px
+$image-picker-remove-icon-size = 18px
+$image-picker-append-icon-size = 30px
+$image-picker-image-size-padding = 2px 4px
+$image-picker-mask-bg = rgba(0,0,0,0.5)
+
+{$selector-prefix + '-image-picker'}
+  position relative
+
+{$selector-prefix + '-image-picker-item'}
+  display inline-block
+  width $image-picker-item-size
+  height $image-picker-item-size
+  box-sizing border-box
+  position relative
+  user-select none
+  vertical-align top
+  margin-right $ui-horizontal-gap
+  margin-bottom $ui-horizontal-gap
+
+  if $image-picker-item-border-radius > 0
+    border-radius $image-picker-item-border-radius
+
+{$selector-prefix + '-image-picker-card'}
+  &:hover
+    {$selector-prefix + '-image-picker-remove-icon'}
+      display block
+
+{$selector-prefix + '-image-picker-image'}
+  width 100%
+  height 100%
+  object-fit cover
+
+{$selector-prefix + '-image-picker-mask'}
+  background-color $image-picker-mask-bg
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+  if $image-picker-item-border-radius > 0
+    border-radius $image-picker-item-border-radius
+
+  {$selector-prefix + '-circle'}
+    position absolute
+    left 50%
+    top 50%
+    margin-left -0.5 * $image-picker-circle-size
+    margin-top -0.5 * $image-picker-circle-size
+
+  {$selector-prefix + '-circle-content'}
+    color #fff
+    font-size 12px
+
+{$selector-prefix + '-image-picker-image-size'}
+  background-color $image-picker-mask-bg
+  color #fff
+  font-size 12px
+  padding $image-picker-image-size-padding
+  white-space nowrap
+  position absolute
+  right 0
+  bottom 0
+
+{$selector-prefix + '-image-picker-remove-icon'}
+  display none
+  color $brand-clear-icon-color
+  font-size $image-picker-remove-icon-size
+  position absolute
+  right -0.5 * $image-picker-remove-icon-size
+  top -0.5 * $image-picker-remove-icon-size
+  ui-clickable()
+
+{$selector-prefix + '-image-picker-append'}
+  border 1px dashed $brand-border
+  background-color $brand-bg-light
+
+{$selector-prefix + '-image-picker-append-icon'}
+  color $brand-border
+  font-size $image-picker-append-icon-size
+  position absolute
+  left 50%
+  top 50%
+  margin-left -0.5 * $image-picker-append-icon-size
+  margin-top -0.5 * $image-picker-append-icon-size
+
+{$selector-prefix + '-image-picker-extra'}
+  color $brand-muted
+  font-size 12px
+  line-height 18px
+  margin-top $ui-vertical-gap - $ui-horizontal-gap
