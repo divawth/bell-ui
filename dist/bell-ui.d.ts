@@ -1,7 +1,7 @@
 /**
  * 版本
  */
-export declare const version = "0.17.5";
+export declare const version = "0.17.6";
 /**
  * 安装插件
  */

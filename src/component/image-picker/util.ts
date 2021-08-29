@@ -1,6 +1,9 @@
 export const STATUS_UPLOADING = 'uploading'
 export const STATUS_ERROR = 'error'
 
+const KB = 1024
+const MB = 1024 * KB
+
 export function readImageFile(item) {
   return new Promise(
     function (resolve) {
@@ -19,5 +22,8 @@ export function readImageFile(item) {
 }
 
 export function formatImageSize(size: number) {
-  return (size / 1024).toFixed(1) + ' KB'
+  if (size >= MB) {
+    return (size / MB).toFixed(1) + ' MB'
+  }
+  return (size / KB).toFixed(1) + ' KB'
 }

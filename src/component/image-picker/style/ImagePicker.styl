@@ -15,6 +15,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   display inline-block
   width $image-picker-item-size
   height $image-picker-item-size
+  background-color $brand-bg-light
   box-sizing border-box
   position relative
   user-select none
@@ -34,6 +35,8 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   width 100%
   height 100%
   object-fit cover
+  if $image-picker-item-border-radius > 0
+    border-radius $image-picker-item-border-radius
 
 {$selector-prefix + '-image-picker-mask'}
   background-color $image-picker-mask-bg
@@ -78,7 +81,6 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
 
 {$selector-prefix + '-image-picker-append'}
   border 1px dashed $brand-border
-  background-color $brand-bg-light
 
 {$selector-prefix + '-image-picker-append-icon'}
   color $brand-border

@@ -8926,6 +8926,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
   width: 80px;
   height: 80px;
+  background-color: #f8f8f8;
   box-sizing: border-box;
   position: relative;
   -webkit-user-select: none;
@@ -8945,6 +8946,7 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 2px;
 }
 .bell-image-picker-mask {
   background-color: rgba(0,0,0,0.5);
@@ -8988,7 +8990,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker-append {
   border: 1px dashed #dcdee2;
-  background-color: #f8f8f8;
 }
 .bell-image-picker-append-icon {
   color: #dcdee2;

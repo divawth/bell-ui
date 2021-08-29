@@ -27,14 +27,14 @@ class="${prefix}image-picker
 
         {{#if this.status === STATUS_UPLOADING}}
           <div class="${prefix}image-picker-mask">
-            <Circle percent="{{this.progress * 100}}" size="60">
+            <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
               上传中
             </Circle>
           </div>
         {{else}}
           {{#if this.status === STATUS_ERROR}}
             <div class="${prefix}image-picker-mask">
-              <Circle percent="{{this.progress * 100}}" size="60" strokeColor="#ff5500">
+              <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60" strokeColor="#ff5500">
                 <Icon
                   name="close-line"
                   size="30"
