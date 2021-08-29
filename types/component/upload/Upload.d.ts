@@ -1,6 +1,6 @@
 import { CustomEventInterface } from 'yox';
 declare type UploadFile = {
-    id: number;
+    id: number | string;
     file: File;
     name: string;
     size: number;

@@ -14,7 +14,7 @@ class="${prefix}image-picker
           <img
             class="${prefix}image-picker-image"
             {{#if this.url}}
-              src="{{this.url}}"
+              src="{{~/formatImageUrl ? formatImageUrl(this.url, 80, 80) : this.url}}"
             {{else if this.base64}}
               src="{{this.base64}}"
             {{/if}}
@@ -22,6 +22,7 @@ class="${prefix}image-picker
               alt="{{this.name}}"
             {{/if}}
             ondragstart="return false"
+            on-click="handleImageClick(this, index)"
           >
         {{/if}}
 

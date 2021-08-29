@@ -46,7 +46,10 @@ export default Yox.define({
       type: RAW_STRING,
       value: 'image/png,image/jpeg,image/jpg,image/gif'
     },
-    upload: {
+    formatImageUrl: {
+      type: RAW_FUNCTION,
+    },
+    uploadImage: {
       type: RAW_FUNCTION,
     },
     className: {
@@ -116,6 +119,18 @@ export default Yox.define({
   },
 
   methods: {
+    handleImageClick(image: object, index: number) {
+      this.fire(
+        {
+          type: 'preview',
+          ns: 'imagePicker'
+        },
+        {
+          image,
+          index,
+        }
+      )
+    },
     getImageIndexById(id: number) {
       const imageList = this.get('imageList')
       for (let i = 0, len = imageList.length; i < len; i++) {
@@ -197,10 +212,10 @@ export default Yox.define({
         return
       }
 
-      const upload = this.get('upload')
+      const uploadImage = this.get('uploadImage')
       const item = me.get(`imageList.${index}`)
 
-      upload({
+      uploadImage({
         id: item.id,
         file: item.file,
         onStart() {

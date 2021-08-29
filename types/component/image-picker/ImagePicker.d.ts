@@ -1,6 +1,7 @@
 declare const _default: import("yox").ComponentOptions<{
     restCount: unknown;
 }, unknown, unknown, {
+    handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
     checkReady(): {
         hasLocal: boolean;
@@ -14,6 +15,7 @@ declare const _default: import("yox").ComponentOptions<{
     fireError(error: string): void;
     fireChange(): void;
 }> & ThisType<{
+    handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
     checkReady(): {
         hasLocal: boolean;

@@ -3,6 +3,8 @@ import Yox, { CustomEventInterface } from 'yox'
 import template from './template/Upload.hbs'
 // import './style/Upload.styl'
 
+import { toString } from '../util'
+
 import {
   FALSE,
   RAW_STRING,
@@ -13,7 +15,7 @@ import {
 // 为每次选择的文件提供一个全局唯一的 id，便于外部知道触发的事件对应哪次上传
 
 type UploadFile = {
-  id: number,
+  id: number | string,
   file: File,
   name: string,
   size: number,
@@ -180,7 +182,8 @@ export default Yox.define({
       this.beforeUpload(
         fileList.map(function (file) {
           return {
-            id: --guid,
+            // 用字符串类型表示本地文件
+            id: toString(guid--),
             file,
             name: file.name,
             size: file.size,
