@@ -31,55 +31,54 @@ style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
       ondragstart="return false"
       on-error="error.thumbnail"
     >
-
-    {{#if showZoom || showUpload || showDownload || showDelete}}
-      <div class="${prefix}thumbnail-mask">
-        {{#if showZoom}}
-          <div class="${prefix}thumbnail-action">
-            <Icon
-              name="zoom-in-line"
-              size="0"
-              on-click.native="zoom.thumbnail"
-            />
-          </div>
-        {{/if}}
-        {{#if showUpload}}
-          <Upload
-            className="${prefix}thumbnail-action"
-            accept="{{accept}}"
-            upload="{{uploadImage}}"
-            beforeUpload="{{beforeUpload}}"
-          >
-            <Icon
-              name="upload-2-line"
-              size="0"
-            />
-          </Upload>
-        {{/if}}
-        {{#if showDownload}}
-          <div class="${prefix}thumbnail-action">
-            <Icon
-              name="download-2-line"
-              size="0"
-              on-click.native="download.thumbnail"
-            />
-          </div>
-        {{/if}}
-        {{#if showDelete}}
-          <div class="${prefix}thumbnail-action">
-            <Icon
-              name="delete-bin-line"
-              size="0"
-              on-click.native="delete.thumbnail"
-            />
-          </div>
-        {{/if}}
-      </div>
-    {{/if}}
-
   {{else}}
     <div class="${prefix}thumbnail-placeholder">
       <slot name="placeholder" />
+    </div>
+  {{/if}}
+
+  {{#if showZoom || showUpload || showDownload || showDelete}}
+    <div class="${prefix}thumbnail-mask">
+      {{#if showZoom}}
+        <div class="${prefix}thumbnail-action">
+          <Icon
+            name="zoom-in-line"
+            size="0"
+            on-click.native="zoom.thumbnail"
+          />
+        </div>
+      {{/if}}
+      {{#if showUpload}}
+        <Upload
+          className="${prefix}thumbnail-action"
+          accept="{{accept}}"
+          upload="{{uploadImage}}"
+          beforeUpload="{{beforeUpload}}"
+        >
+          <Icon
+            name="upload-2-line"
+            size="0"
+          />
+        </Upload>
+      {{/if}}
+      {{#if showDownload}}
+        <div class="${prefix}thumbnail-action">
+          <Icon
+            name="download-2-line"
+            size="0"
+            on-click.native="download.thumbnail"
+          />
+        </div>
+      {{/if}}
+      {{#if showDelete}}
+        <div class="${prefix}thumbnail-action">
+          <Icon
+            name="delete-bin-line"
+            size="0"
+            on-click.native="delete.thumbnail"
+          />
+        </div>
+      {{/if}}
     </div>
   {{/if}}
 
