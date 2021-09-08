@@ -14,7 +14,7 @@ class="${prefix}image-picker
           <img
             class="${prefix}image-picker-image"
             {{#if this.url}}
-              src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: 80, height: 80 }) : this.url}}"
+              src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: 80, height: 80, responsive: true }) : this.url}}"
             {{else if this.base64}}
               src="{{this.base64}}"
             {{/if}}
@@ -48,17 +48,19 @@ class="${prefix}image-picker
               {{formatImageSize(this.size)}}
             </div>
           {{/if}}
-          <Icon
-            className="${prefix}image-picker-remove-icon"
-            name="close-circle-fill"
-            on-click.native="removeItem(index)"
-          />
+          {{#if !readOnly}}
+            <Icon
+              className="${prefix}image-picker-remove-icon"
+              name="close-circle-fill"
+              on-click.native="removeItem(index)"
+            />
+          {{/if}}
         {{/if}}
 
       </div>
     {{/each}}
 
-    {{#if imageList.length < maxCount}}
+    {{#if !readOnly && imageList.length < maxCount}}
       <Upload
         ref="upload"
         className="${prefix}image-picker-item ${prefix}image-picker-append"

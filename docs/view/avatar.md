@@ -10,16 +10,16 @@ export default {
 
         <Avatar
           size="large"
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
         <Avatar
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
         <Avatar
           size="small"
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
       </div>
@@ -28,18 +28,18 @@ export default {
         <Avatar
           shape="circle"
           size="large"
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
         <Avatar
           shape="circle"
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
         <Avatar
           shape="circle"
           size="small"
-          src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+          url="https://avatars0.githubusercontent.com/u/17703135?s=140"
         />
 
       </div>
@@ -56,10 +56,34 @@ export default {
     <div>
       <Avatar
         size="60"
-        src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+        url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       />
     </div>
   `
+}
+```
+
+> 图片裁剪
+
+```js
+export default {
+  template: `
+    <div>
+      <Avatar
+        size="60"
+        url="https://avatars0.githubusercontent.com/u/17703135?s=140"
+        formatUrl="{{formatUrl}}"
+      />
+    </div>
+  `,
+  data() {
+    return {
+      formatUrl(data) {
+        console.log('formatUrl', data)
+        return 'https://avatars.githubusercontent.com/u/2732303?v=4'
+      }
+    }
+  }
 }
 ```
 
@@ -78,7 +102,9 @@ export default {
       </Avatar>
       <Avatar text="U" />
       <Avatar text="USER" />
-      <Avatar src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg" />
+      <Avatar
+        url="https://avatars0.githubusercontent.com/u/17703135?s=140"
+      />
       <Avatar backgroundColor="#fde3cf" color="#f56a00" text="U" />
       <Avatar backgroundColor="#87d068">
         <Icon
@@ -170,7 +196,7 @@ export default {
 export default {
   template: `
     <Avatar
-      src="https://tvax4.sinaimg.cn/crop.0.0.1080.1080.180/002TLsr9ly1gjdgs3owo8j60u00u0tb402.jpg"
+      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
       clickable
       on-click="clickAvatar()"
     />
@@ -192,13 +218,13 @@ export default {
 size | 大小 | string | `default`, `large`, `small` | `default`
 shape | 形状 | string | `circle`, `default` | `default`
 text | 文字 | string | - | -
-src | 图片地址 | string | - | -
-srcSet | 原生 `srcset` 属性 | string | - | -
+url | 图片地址 | string | - | -
 alt | 原生 `alt` 属性 | string | - | -
 color | 文字颜色 | string | - | -
 fontSize | 文字大小 | numeric | - | -
 backgroundColor | 背景色 | string | - | -
 clickable | 是否可点击 | boolean | - | -
+formatUrl | 图片裁剪函数 | function | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

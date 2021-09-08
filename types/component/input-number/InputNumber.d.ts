@@ -1,18 +1,27 @@
 declare const _default: import("yox").ComponentOptions<{
-    computedValue: unknown;
     upDisabled: unknown;
     downDisabled: unknown;
 }, {
     value: unknown;
 }, unknown, {
-    up(): void;
-    down(): void;
+    handleUpClick(): void;
+    handleDownClick(): void;
     handleFocus(): void;
     handleBlur(): void;
+    handleEnterPress(): void;
+    handleInput(): void;
+    handleChange(): void;
+    updateInputValue(value: any): void;
+    fireChange(value: any): void;
 }> & ThisType<{
-    up(): void;
-    down(): void;
+    handleUpClick(): void;
+    handleDownClick(): void;
     handleFocus(): void;
     handleBlur(): void;
+    handleEnterPress(): void;
+    handleInput(): void;
+    handleChange(): void;
+    updateInputValue(value: any): void;
+    fireChange(value: any): void;
 } & import("yox").YoxInterface>;
 export default _default;

@@ -85,6 +85,11 @@ input-number-brand-style(style)
   background-color $brand-bg
   color $brand-content
   box-sizing border-box
+  appearance textfield
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button
+    appearance none
 
   ui-placeholder($brand-placeholder)
 

@@ -10004,6 +10004,14 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
   color: #515a6e;
   box-sizing: border-box;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+.bell-input-number-el::-webkit-outer-spin-button,
+.bell-input-number-el::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
 }
 .bell-input-number-el::-webkit-input-placeholder {
   color: #d2d2d2;
@@ -12185,6 +12193,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
   color: #515a6e;
   border-radius: 4px;
+  white-space: nowrap;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }

@@ -9,7 +9,6 @@ import {
   TRUE,
   FALSE,
   DOCUMENT,
-  UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
@@ -26,6 +25,7 @@ import {
 import {
   oneOf,
   toNumber,
+  toString,
 } from '../util'
 
 export default Yox.define({
@@ -89,63 +89,46 @@ export default Yox.define({
     }
   },
 
-  data() {
+  data(options) {
+    const props = options.props || {}
     return {
       isFocus: FALSE,
+      inputStringValue: toString(props.value),
+    }
+  },
+
+  computed: {
+    upDisabled(): boolean {
+      const max = toNumber(this.get('max'), FALSE)
+      return max !== FALSE
+        && max - this.get('value') < this.get('step')
+    },
+    downDisabled(): boolean {
+      const min = toNumber(this.get('min'), FALSE)
+      return min !== FALSE
+        && this.get('value') - min < this.get('step')
     }
   },
 
   watchers: {
     value(value) {
-      this.fire(
-        {
-          type: 'change',
-          ns: 'inputNumber',
-        },
-        { value }
-      )
-    }
-  },
-
-  computed: {
-    computedValue: {
-      get(): string {
-        return this.get('value')
-      },
-      set(value: string) {
-        this.set('value', toNumber(value, 0))
+      if (this.get('isFocus')) {
+        return
       }
+      this.updateInputValue(value)
     },
-    upDisabled(): boolean {
-      const max = this.get('max')
-      return Yox.is.numeric(max)
-        && max - this.get('value') < this.get('step')
-    },
-    downDisabled(): boolean {
-      const min = this.get('min')
-      return Yox.is.numeric(min)
-        && this.get('value') - min < this.get('step')
-    }
   },
 
   methods: {
-    up() {
-      const max = this.get('max')
-      const step = this.get('step')
-      this.increase(
-        'value',
-        toNumber(step),
-        Yox.is.numeric(max) ? +max : UNDEFINED
-      )
+    handleUpClick() {
+      const inputElement = this.$refs.input as HTMLInputElement
+      inputElement.stepUp()
+      this.handleInput()
     },
-    down() {
-      const min = this.get('min')
-      const step = this.get('step')
-      this.decrease(
-        'value',
-        toNumber(step),
-        Yox.is.numeric(min) ? +min : UNDEFINED
-      )
+    handleDownClick() {
+      const inputElement = this.$refs.input as HTMLInputElement
+      inputElement.stepDown()
+      this.handleInput()
     },
     handleFocus() {
       this.set('isFocus', TRUE)
@@ -161,6 +144,66 @@ export default Yox.define({
         ns: 'inputNumber',
       })
     },
+    handleEnterPress() {
+      this.fire({
+        type: 'enter',
+        ns: 'inputNumber',
+      })
+      this.handleChange()
+    },
+    handleInput() {
+
+      const inputElement = this.$refs.input as HTMLInputElement
+      const inputStringValue = inputElement.value
+
+      const oldValue = this.get('value')
+
+      this.updateInputValue(inputStringValue)
+
+      const newValue = this.get('value')
+
+      if (newValue !== oldValue) {
+        this.fireChange(newValue)
+      }
+
+    },
+    handleChange() {
+
+      const value = this.get('value')
+
+      if (Yox.is.numeric(value)) {
+        return
+      }
+
+      const newValue = ''
+
+      this.updateInputValue(newValue)
+
+      if (newValue !== value) {
+        this.fireChange(newValue)
+      }
+
+    },
+
+    updateInputValue(value: any) {
+      this.set({
+        inputStringValue: toString(value),
+        value: toNumber(value, value),
+      })
+    },
+
+    fireChange(value) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'inputNumber',
+        },
+        {
+          value,
+        }
+      )
+    }
+
   },
 
   components: {
@@ -171,18 +214,31 @@ export default Yox.define({
 
     const me = this
 
+    const inputElement = me.$refs.input as HTMLInputElement
+
+    me.watch(
+      'inputStringValue',
+      function (value) {
+        inputElement.value = value
+      },
+      TRUE
+    )
+
     const onKeydown: Listener = function (event) {
       if (!me.get('isFocus')) {
         return
       }
       // 阻止事件默认行为，避免光标的跳动
       switch ((event.originalEvent as KeyboardEvent).keyCode) {
+        case 13:
+          me.handleEnterPress()
+          break
         case 38:
-          me.up()
+          me.handleUpClick()
           event.prevent()
           break
         case 40:
-          me.down()
+          me.handleDownClick()
           event.prevent()
           break
       }
@@ -194,13 +250,13 @@ export default Yox.define({
       onKeydown
     )
 
-    const destroy = function (component) {
+    const onDestroy = function (component) {
       if (component === me) {
         Yox.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)
-        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
+        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, onDestroy)
       }
     }
-    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
+    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, onDestroy)
 
   }
 })

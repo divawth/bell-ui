@@ -5,16 +5,18 @@ import template from './template/Avatar.hbs'
 
 import {
   TRUE,
+  UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  RAW_FUNCTION,
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
-  UNDEFINED,
 } from '../constant'
 
 import {
   oneOf,
+  toNumber,
   supportTransform,
 } from '../util'
 
@@ -36,6 +38,12 @@ export default Yox.define({
     },
     text: {
       type: RAW_STRING,
+    },
+    url: {
+      type: RAW_STRING,
+    },
+    formatUrl: {
+      type: RAW_FUNCTION,
     },
     src: {
       type: RAW_STRING,
@@ -68,10 +76,7 @@ export default Yox.define({
 
   computed: {
     customSize() {
-      const size = this.get('size')
-      return Yox.is.numeric(size)
-        ? size
-        : UNDEFINED
+      return toNumber(this.get('size'))
     }
   },
 

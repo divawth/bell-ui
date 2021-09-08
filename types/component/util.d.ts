@@ -5,7 +5,7 @@ export declare function getPageX(): number;
 export declare function getPageY(): number;
 export declare const requestAnimationFrame: any;
 export declare function contains(element: HTMLElement, target: HTMLElement): boolean;
-export declare function toNumber(value: any, defaultValue?: any): number;
+export declare function toNumber(value: any, defaultValue?: any): any;
 export declare function toString(value: any, defaultValue?: any): string;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
 export declare function oneOf(values: any[]): (key: string, value: any, componentName: string | undefined) => boolean;

@@ -19,9 +19,18 @@ class="${prefix}input-number
 >
 
   <input
-    type="text"
+    ref="input"
+    type="number"
     class="${prefix}input-number-el"
-    model="computedValue"
+    step="{{step}}"
+
+    {{#if max != null}}
+      max="{{max}}"
+    {{/if}}
+
+    {{#if min != null}}
+      min="{{min}}"
+    {{/if}}
 
     {{#if placeholder}}
       placeholder="{{placeholder}}"
@@ -40,6 +49,8 @@ class="${prefix}input-number
     {{else}}
       on-blur="handleBlur()"
       on-focus="handleFocus()"
+      on-input="handleInput()"
+      on-change="handleChange()"
     {{/if}}
   >
 
@@ -50,7 +61,7 @@ class="${prefix}input-number
           class="${prefix}input-number-up ${prefix}input-number-up-disabled"
         {{else}}
           class="${prefix}input-number-up ${prefix}input-number-up-enabled"
-          on-click="up()"
+          on-click="handleUpClick()"
         {{/if}}
       >
         <Icon
@@ -64,7 +75,7 @@ class="${prefix}input-number
           class="${prefix}input-number-down ${prefix}input-number-down-disabled"
         {{else}}
           class="${prefix}input-number-down ${prefix}input-number-down-enabled"
-          on-click="down()"
+          on-click="handleDownClick()"
         {{/if}}
       >
         <Icon

@@ -6,6 +6,7 @@ export default {
   <InputNumber
     min="1"
     max="100"
+    step="0.01"
     model="value"
     placeholder="请输入..."
   />
@@ -29,7 +30,7 @@ export default {
 }
 ```
 
-> 修改步值（不支持小数）
+> 修改步值
 
 ```js
 export default {

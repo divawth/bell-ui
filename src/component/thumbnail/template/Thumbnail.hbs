@@ -16,7 +16,7 @@ style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
       class="${prefix}thumbnail-image"
 
       {{#if url}}
-        src="{{formatUrl ? formatUrl({ url: url, width: width, height: height }) : url}}"
+        src="{{formatUrl ? formatUrl({ url: url, width: width, height: height, responsive: true }) : url}}"
       {{else}}
         src="{{src}}"
       {{/if}}

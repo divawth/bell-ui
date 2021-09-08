@@ -17,12 +17,18 @@ class="${prefix}avatar
 {{/if}}
 >
 
-  {{#if src}}
+  {{#if url || src}}
     <img
-      src="{{src}}"
+      {{#if url}}
+        src="{{formatUrl ? formatUrl({ url: url, width: customSize, height: customSize, responsive: true }) : url}}"
+      {{else}}
+        src="{{src}}"
+      {{/if}}
+
       {{#if srcSet}}
         srcset="{{srcSet}}"
       {{/if}}
+
       {{#if alt}}
         alt="{{alt}}"
       {{/if}}

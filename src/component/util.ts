@@ -87,11 +87,11 @@ export function contains(element: HTMLElement, target: HTMLElement) {
   return FALSE
 }
 
-export function toNumber(value: any, defaultValue?: any) {
+export function toNumber(value: any, defaultValue?: any): any {
   return Yox.is.numeric(value)
     ? +value
     : defaultValue !== UNDEFINED
-      ? defaultValue as number
+      ? defaultValue
       : 0
 }
 

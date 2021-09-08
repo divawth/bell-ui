@@ -11,6 +11,7 @@ import {
   FALSE,
   RAW_ARRAY,
   RAW_STRING,
+  RAW_BOOLEAN,
   RAW_NUMERIC,
   RAW_FUNCTION,
 } from '../constant'
@@ -51,6 +52,9 @@ export default Yox.define({
     },
     uploadImage: {
       type: RAW_FUNCTION,
+    },
+    readOnly: {
+      type: RAW_BOOLEAN,
     },
     className: {
       type: RAW_STRING,
