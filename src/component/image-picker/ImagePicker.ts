@@ -34,6 +34,14 @@ export default Yox.define({
       type: RAW_ARRAY,
       required: TRUE,
     },
+    imageWidth: {
+      type: RAW_NUMERIC,
+      value: 80,
+    },
+    imageHeight: {
+      type: RAW_NUMERIC,
+      value: 80,
+    },
     extra: {
       type: RAW_STRING,
     },
