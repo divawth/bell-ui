@@ -94,8 +94,9 @@ tag-brand-style(style)
   box-sizing border-box
   transition background-color .3s, border-color .3s, color .3s
 
-  + {$selector-prefix + '-tag'}
-    margin-left $ui-horizontal-gap
+  // 这里用右边距，因为 Tag 可能非常多，导致出现换行的情况
+  // 如有换行，业务层可再加一句 margin-bottom 10px 之类的就能满足需求
+  margin-right $ui-horizontal-gap
 
 {$selector-prefix + '-tag-checked'}
   background-color $brand-border
