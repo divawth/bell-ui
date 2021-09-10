@@ -25,13 +25,26 @@ export function toTimeProps(value: Date | number | void, hourList: number[], min
   }
 
   if (date) {
-    result.hour = date.getHours()
-    result.minute = date.getMinutes()
-    result.second = date.getSeconds()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
 
-    result.hourIndex = hourList.indexOf(result.hour)
-    result.minuteIndex = minuteList.indexOf(result.minute)
-    result.secondIndex = secondList.indexOf(result.second)
+    const hourIndex = hourList.indexOf(hour)
+    const minuteIndex = minuteList.indexOf(minute)
+    const secondIndex = secondList.indexOf(second)
+
+    if (hourIndex >= 0) {
+      result.hour = hour
+      result.hourIndex = hourIndex
+    }
+    if (minuteIndex >= 0) {
+      result.minute = minute
+      result.minuteIndex = minuteIndex
+    }
+    if (secondIndex >= 0) {
+      result.second = second
+      result.secondIndex = secondIndex
+    }
 
     result.text = formatTime(
       result.hour,
