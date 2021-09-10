@@ -183,25 +183,6 @@ export default Yox.define({
   },
 
   events: {
-    change: {
-      listener(event) {
-        event.stop()
-      },
-      ns: 'input',
-    },
-    clear: {
-      listener(event) {
-        event.stop()
-        this.fire(
-          {
-            type: 'clear',
-            ns: 'datePicker',
-          },
-          TRUE
-        )
-      },
-      ns: 'input',
-    },
     'change.date': function (event, data) {
       event.stop()
       this.dateChange(data.timestamp)
@@ -237,9 +218,10 @@ export default Yox.define({
       // 停止冒泡，否则会展开下拉框
       event.stop()
 
-      this.set({
-        value: this.get('multiple') ? [] : UNDEFINED,
-      })
+      const value = this.get('multiple') ? [] : UNDEFINED
+
+      this.set('value', value)
+      this.fireChange(value)
 
       this.fire(
         {
@@ -256,6 +238,7 @@ export default Yox.define({
       event.stop()
 
       this.removeAt('value', index)
+      this.fireChange(this.get('value'))
 
     },
 
@@ -318,14 +301,17 @@ export default Yox.define({
           )
           if (!existed) {
             me.append('value', date)
+            me.fireChange(me.get('value'))
           }
         }
         else {
           me.append('value', date)
+          me.fireChange(me.get('value'))
         }
       }
       else {
         me.set('value', date)
+        me.fireChange(date)
       }
 
       if (!me.get('multiple')) {
@@ -340,7 +326,10 @@ export default Yox.define({
 
     dateRangeChange(start: number, end: number) {
 
-      this.set('value', [new Date(start), new Date(end)])
+      const value = [new Date(start), new Date(end)]
+
+      this.set('value', value)
+      this.fireChange(value)
 
       if (!this.get('multiple')) {
         this.nextTick(
@@ -350,6 +339,18 @@ export default Yox.define({
         )
       }
 
+    },
+
+    fireChange(value) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'datePicker',
+        },
+        {
+          value,
+        }
+      )
     }
   },
 
