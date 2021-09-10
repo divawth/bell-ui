@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.18.4
+ * bell-ui.js v0.18.5
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -4020,22 +4020,6 @@
           },
       },
       events: {
-          change: {
-              listener: function (event) {
-                  event.stop();
-              },
-              ns: 'input',
-          },
-          clear: {
-              listener: function (event) {
-                  event.stop();
-                  this.fire({
-                      type: 'clear',
-                      ns: 'datePicker',
-                  }, TRUE);
-              },
-              ns: 'input',
-          },
           'change.date': function (event, data) {
               event.stop();
               this.dateChange(data.timestamp);
@@ -4066,9 +4050,9 @@
           handleClearClick: function (event) {
               // 停止冒泡，否则会展开下拉框
               event.stop();
-              this.set({
-                  value: this.get('multiple') ? [] : UNDEFINED,
-              });
+              var value = this.get('multiple') ? [] : UNDEFINED;
+              this.set('value', value);
+              this.fireChange(value);
               this.fire({
                   type: 'clear',
                   ns: 'datePicker',
@@ -4077,6 +4061,7 @@
           handleRemoveItem: function (event, index) {
               event.stop();
               this.removeAt('value', index);
+              this.fireChange(this.get('value'));
           },
           handleShortcutClick: function (data) {
               var value = data.onClick.call(this);
@@ -4122,14 +4107,17 @@
                       });
                       if (!existed_1) {
                           me.append('value', date);
+                          me.fireChange(me.get('value'));
                       }
                   }
                   else {
                       me.append('value', date);
+                      me.fireChange(me.get('value'));
                   }
               }
               else {
                   me.set('value', date);
+                  me.fireChange(date);
               }
               if (!me.get('multiple')) {
                   me.nextTick(function () {
@@ -4138,12 +4126,22 @@
               }
           },
           dateRangeChange: function (start, end) {
-              this.set('value', [new Date(start), new Date(end)]);
+              var value = [new Date(start), new Date(end)];
+              this.set('value', value);
+              this.fireChange(value);
               if (!this.get('multiple')) {
                   this.nextTick(function () {
                       this.set('visible', FALSE);
                   });
               }
+          },
+          fireChange: function (value) {
+              this.fire({
+                  type: 'change',
+                  ns: 'datePicker',
+              }, {
+                  value: value,
+              });
           }
       },
   });
@@ -4168,12 +4166,24 @@
           date = new Date(value);
       }
       if (date) {
-          result.hour = date.getHours();
-          result.minute = date.getMinutes();
-          result.second = date.getSeconds();
-          result.hourIndex = hourList.indexOf(result.hour);
-          result.minuteIndex = minuteList.indexOf(result.minute);
-          result.secondIndex = secondList.indexOf(result.second);
+          var hour = date.getHours();
+          var minute = date.getMinutes();
+          var second = date.getSeconds();
+          var hourIndex = hourList.indexOf(hour);
+          var minuteIndex = minuteList.indexOf(minute);
+          var secondIndex = secondList.indexOf(second);
+          if (hourIndex >= 0) {
+              result.hour = hour;
+              result.hourIndex = hourIndex;
+          }
+          if (minuteIndex >= 0) {
+              result.minute = minute;
+              result.minuteIndex = minuteIndex;
+          }
+          if (secondIndex >= 0) {
+              result.second = second;
+              result.secondIndex = secondIndex;
+          }
           result.text = formatTime(result.hour, result.minute, secondList.length > 0 ? result.second : -1);
       }
       return result;
@@ -4510,7 +4520,7 @@
       },
   });
 
-  var template$F = (function(){var $0=void 0,$2=!0,$4=function(__h){return __h.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-item bell-image-picker-card'},$9={className:'bell-image-picker-wrapper'},$10={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$9,tag:'div',type:3},$0,function(__j){_l(_o('imageList',__l.imageList),function(__l,__m,__n,index){__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){_r('url',__l.url).value||_r('base64',__l.base64).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleImageClick(this, index)','click','',_x.handleImageClick,{args:function(__h,__o,__p){return [_p(__l,__h).value,index]}})},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-image-picker-image'},tag:'img',type:3},function(__i){_r('url',__l.url).value?_c(__i,'nativeProps',_s($5,'formatImageUrl').value?_v(_u(_s($5,'formatImageUrl').value,_x,[{height:80,responsive:$2,url:_r('url',__l.url).value,width:80}])).value:_r('url',__l.url).value,'src'):_r('base64',__l.base64).value?_c(__i,'nativeProps',_r('base64',__l.base64).value,'src'):$0;_r('name',__l.name).value?_c(__i,'nativeProps',_r('name',__l.name).value,'alt'):$0;}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_r('status',__l.status).value===_o('STATUS_UPLOADING',__l.STATUS_UPLOADING).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]={isPure:$2,isText:$2,text:'上传中',type:1};}});}):(_r('status',__l.status).value===_o('STATUS_ERROR',__l.STATUS_ERROR).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60',strokeColor:'#ff5500'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'close-line',size:'30',style:'color:#ff5500'},tag:'Icon',type:4};}});}):_r('size',__l.size).value>0?__j[__j.length]={context:_x,nativeProps:$7,tag:'div',text:_w(_v(_u(_o('formatImageSize',__l.formatImageSize,$0,_y&&_y.formatImageSize||_z.formatImageSize).value,_x,[_r('size',__l.size).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},!_o('readOnly',__l.readOnly).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_f('click.native','removeItem(index)','click','native',_x.removeItem,{args:function(__h,__o,__p){return [index]}},$0,$2)},isComponent:$2,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2});});});!_o('readOnly',__l.readOnly).value&&_n($4,'imageList.length',$2).value<_o('maxCount',__l.maxCount).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUploadImage',__l.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_o('restCount',__l.restCount).value>1},ref:'upload',tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_o('extra',__l.extra).value?__j[__j.length]={context:_x,nativeProps:$10,tag:'div',text:_w(_o('extra',__l.extra).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$F = (function(){var $0=void 0,$2=!0,$4=function(__h){return __h.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-wrapper'},$9={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){_l(_o('imageList',__l.imageList),function(__l,__m,__n,index){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker-item bell-image-picker-card','style.cssText':'width: '+_w(_s($5,'imageWidth').value)+'px;height: '+_w(_s($5,'imageHeight').value)+'px'},tag:'div',type:3},$0,function(__j){_r('url',__l.url).value||_r('base64',__l.base64).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleImageClick(this, index)','click','',_x.handleImageClick,{args:function(__h,__o,__p){return [_p(__l,__h).value,index]}})},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-image-picker-image'},tag:'img',type:3},function(__i){_r('url',__l.url).value?_c(__i,'nativeProps',_s($5,'formatImageUrl').value?_v(_u(_s($5,'formatImageUrl').value,_x,[{height:_s($5,'imageHeight').value,responsive:$2,url:_r('url',__l.url).value,width:_s($5,'imageWidth').value}])).value:_r('url',__l.url).value,'src'):_r('base64',__l.base64).value?_c(__i,'nativeProps',_r('base64',__l.base64).value,'src'):$0;_r('name',__l.name).value?_c(__i,'nativeProps',_r('name',__l.name).value,'alt'):$0;}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_r('status',__l.status).value===_o('STATUS_UPLOADING',__l.STATUS_UPLOADING).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]={isPure:$2,isText:$2,text:'上传中',type:1};}});}):(_r('status',__l.status).value===_o('STATUS_ERROR',__l.STATUS_ERROR).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60',strokeColor:'#ff5500'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'close-line',size:'30',style:'color:#ff5500'},tag:'Icon',type:4};}});}):_r('size',__l.size).value>0?__j[__j.length]={context:_x,nativeProps:$7,tag:'div',text:_w(_v(_u(_o('formatImageSize',__l.formatImageSize,$0,_y&&_y.formatImageSize||_z.formatImageSize).value,_x,[_r('size',__l.size).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},!_o('readOnly',__l.readOnly).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_f('click.native','removeItem(index)','click','native',_x.removeItem,{args:function(__h,__o,__p){return [index]}},$0,$2)},isComponent:$2,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2});});});!_o('readOnly',__l.readOnly).value&&_n($4,'imageList.length',$2).value<_o('maxCount',__l.maxCount).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUploadImage',__l.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_o('restCount',__l.restCount).value>1,style:'width: '+_w(_o('imageWidth',__l.imageWidth).value)+'px;height: '+_w(_o('imageHeight',__l.imageHeight).value)+'px'},ref:'upload',tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_o('extra',__l.extra).value?__j[__j.length]={context:_x,nativeProps:$9,tag:'div',text:_w(_o('extra',__l.extra).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var STATUS_UPLOADING = 'uploading';
   var STATUS_ERROR = 'error';
@@ -4544,6 +4554,14 @@
           imageList: {
               type: RAW_ARRAY,
               required: TRUE,
+          },
+          imageWidth: {
+              type: RAW_NUMERIC,
+              value: 80,
+          },
+          imageHeight: {
+              type: RAW_NUMERIC,
+              value: 80,
           },
           extra: {
               type: RAW_STRING,
@@ -7043,7 +7061,7 @@
   /**
    * 版本
    */
-  var version = "0.18.4";
+  var version = "0.18.5";
   /**
    * 安装插件
    */

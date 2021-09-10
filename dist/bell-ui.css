@@ -8924,8 +8924,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker-item {
   display: inline-block;
-  width: 80px;
-  height: 80px;
   background-color: #f8f8f8;
   box-sizing: border-box;
   position: relative;
@@ -10586,6 +10584,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-message-text {
   vertical-align: middle;
+  white-space: nowrap;
 }
 .bell-message-close {
   position: absolute;
@@ -12196,9 +12195,7 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-}
-.bell-tag + .bell-tag {
-  margin-left: 8px;
+  margin-right: 8px;
 }
 .bell-tag-checked {
   background-color: #dcdee2;
