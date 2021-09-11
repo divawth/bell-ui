@@ -19,7 +19,6 @@ export default Yox.define({
   propTypes: {
     name: {
       type: RAW_STRING,
-      required: TRUE,
     },
     value: {
       type: RAW_ARRAY,

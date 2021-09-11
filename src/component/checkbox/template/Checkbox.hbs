@@ -20,7 +20,9 @@ class="${prefix}checkbox
     <input
       class="${prefix}checkbox-input"
       type="checkbox"
-      name="{{name}}"
+      {{#if name}}
+        name="{{name}}"
+      {{/if}}
       checked="{{checked}}"
       disabled="{{disabled}}"
       on-change="onChange()"

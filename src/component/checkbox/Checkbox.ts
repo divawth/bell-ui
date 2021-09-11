@@ -68,16 +68,7 @@ export default Yox.define({
           this.set({
             checked: newChecked
           })
-          this.fire(
-            {
-              type: 'change',
-              ns: 'checkbox',
-            },
-            {
-              checked: newChecked,
-              value,
-            }
-          )
+          this.fireChange(newChecked, value)
         }
       },
       ns: 'checkboxGroup',
@@ -86,11 +77,13 @@ export default Yox.define({
 
   methods: {
     onChange(event) {
-      const { target } = event.originalEvent
-      const { checked } = target
+      const { checked } = event.originalEvent.target
       this.set({
         checked,
       })
+      this.fireChange(checked, this.get('value'))
+    },
+    fireChange(checked, value) {
       this.fire(
         {
           type: 'change',
@@ -98,8 +91,7 @@ export default Yox.define({
         },
         {
           checked,
-          value: this.get('value'),
-          target,
+          value,
         }
       )
     }

@@ -29,7 +29,6 @@ export default Yox.define({
     },
     name: {
       type: RAW_STRING,
-      required: TRUE,
     },
     value: {
       type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],

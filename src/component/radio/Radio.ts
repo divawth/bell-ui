@@ -58,7 +58,12 @@ export default Yox.define({
     change: {
       listener(_, data) {
         if (data.value !== UNDEFINED) {
-          this.set('checked', data.value == this.get('value'))
+          const value = this.get('value')
+          const checked = data.value == value
+          this.set({
+            checked,
+          })
+          this.fireChange(checked, value)
         }
         if (data.disabled !== UNDEFINED) {
           this.set('disabled', data.disabled)
@@ -68,8 +73,15 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    checked(checked) {
+  methods: {
+    handleClick() {
+      const checked = TRUE
+      this.set({
+        checked,
+      })
+      this.fireChange(checked, this.get('value'))
+    },
+    fireChange(checked, value) {
       this.fire(
         {
           type: 'change',
@@ -77,7 +89,7 @@ export default Yox.define({
         },
         {
           checked,
-          value: this.get('value'),
+          value,
         }
       )
     }
