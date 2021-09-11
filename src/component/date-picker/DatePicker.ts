@@ -221,7 +221,6 @@ export default Yox.define({
       const value = this.get('multiple') ? [] : UNDEFINED
 
       this.set('value', value)
-      this.fireChange(value)
 
       this.fire(
         {
@@ -230,6 +229,8 @@ export default Yox.define({
         },
         TRUE
       )
+
+      this.fireChange(value)
 
     },
 

@@ -8,13 +8,13 @@ class="${prefix}image-picker
 >
   <div class="${prefix}image-picker-wrapper">
     {{#each imageList:index}}
-      <div class="${prefix}image-picker-item ${prefix}image-picker-card" style="width: {{~/imageWidth}}px;height: {{~/imageHeight}}px">
+      <div class="${prefix}image-picker-item ${prefix}image-picker-card" style="width: {{~/customImageWidth}}px;height: {{~/customImageHeight}}px">
 
         {{#if this.url || this.base64}}
           <img
             class="${prefix}image-picker-image"
             {{#if this.url}}
-              src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/imageWidth, height: ~/imageHeight, responsive: true }) : this.url}}"
+              src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
             {{else if this.base64}}
               src="{{this.base64}}"
             {{/if}}
@@ -67,7 +67,7 @@ class="${prefix}image-picker
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
-        style="width: {{imageWidth}}px;height: {{imageHeight}}px"
+        style="width: {{customImageWidth}}px;height: {{customImageHeight}}px"
       >
         <Icon
           className="${prefix}image-picker-append-icon"

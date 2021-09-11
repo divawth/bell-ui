@@ -7,7 +7,7 @@ class="${prefix}thumbnail
 {{#if loading}} ${prefix}thumbnail-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
+style="width:{{customWidth}}px;height:{{customWidth}}px;line-height:{{customHeight}}px;
 {{#if style}}{{style}}{{/if}}"
 >
 
@@ -16,7 +16,7 @@ style="width:{{width}}px;height:{{height}}px;line-height:{{height}}px;
       class="${prefix}thumbnail-image"
 
       {{#if url}}
-        src="{{formatUrl ? formatUrl({ url: url, width: width, height: height, responsive: true }) : url}}"
+        src="{{formatUrl ? formatUrl({ url: url, width: customWidth, height: customHeight, responsive: true }) : url}}"
       {{else}}
         src="{{src}}"
       {{/if}}

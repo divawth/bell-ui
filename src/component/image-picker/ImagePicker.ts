@@ -17,6 +17,10 @@ import {
 } from '../constant'
 
 import {
+  toNumber,
+} from '../util'
+
+import {
   STATUS_UPLOADING,
   STATUS_ERROR,
   readImageFile,
@@ -114,6 +118,12 @@ export default Yox.define({
   },
 
   computed: {
+    customImageWidth(): number {
+      return toNumber(this.get('imageWidth'))
+    },
+    customImageHeight(): number {
+      return toNumber(this.get('imageHeight'))
+    },
     restCount(): number {
       const imageCount = this.get('imageList.length')
       const maxCount = this.get('maxCount')
@@ -204,7 +214,7 @@ export default Yox.define({
     upload() {
 
       const me = this
-      const imageList = this.get('imageList')
+      const imageList = me.get('imageList')
 
       Yox.array.each(
         imageList,
@@ -224,7 +234,7 @@ export default Yox.define({
         return
       }
 
-      const uploadImage = this.get('uploadImage')
+      const uploadImage = me.get('uploadImage')
       const item = me.get(`imageList.${index}`)
 
       uploadImage({

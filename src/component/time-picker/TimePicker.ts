@@ -9,8 +9,6 @@ import template from './template/TimePicker.hbs'
 import {
   FALSE,
   UNDEFINED,
-  RAW_DATE,
-  RAW_NUMBER,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,

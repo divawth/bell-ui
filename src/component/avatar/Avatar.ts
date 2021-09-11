@@ -5,7 +5,6 @@ import template from './template/Avatar.hbs'
 
 import {
   TRUE,
-  UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,

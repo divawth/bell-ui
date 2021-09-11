@@ -16,6 +16,10 @@ import {
   RAW_FUNCTION,
 } from '../constant'
 
+import {
+  toNumber,
+} from '../util'
+
 export default Yox.define({
 
   template,
@@ -105,6 +109,15 @@ export default Yox.define({
 
       },
     }
+  },
+
+  computed: {
+    customWidth(): number {
+      return toNumber(this.get('width'))
+    },
+    customHeight(): number {
+      return toNumber(this.get('height'))
+    },
   },
 
   components: {
