@@ -55,6 +55,7 @@ export const RAW_TYPE_TEXT = 'text'
 export const RAW_TYPE_TITLE = 'title'
 export const RAW_TYPE_CONTENT = 'content'
 export const RAW_TYPE_MUTED = 'muted'
+export const RAW_TYPE_PURE = 'pure'
 
 export const RAW_SHAPE_CIRCLE = 'circle'
 export const RAW_SHAPE_ROUND = 'round'

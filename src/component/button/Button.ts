@@ -22,6 +22,7 @@ import {
   RAW_TYPE_DASHED,
   RAW_TYPE_LINK,
   RAW_TYPE_TEXT,
+  RAW_TYPE_PURE,
 } from '../constant'
 
 import {
@@ -46,8 +47,9 @@ export default Yox.define({
         RAW_TYPE_DASHED,
         RAW_TYPE_LINK,
         RAW_TYPE_TEXT,
+        RAW_TYPE_PURE,
       ]),
-      value: 'pure'
+      value: RAW_TYPE_PURE,
     },
     size: {
       type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
