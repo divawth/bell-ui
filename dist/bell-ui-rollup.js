@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.18.5
+ * bell-ui.js v0.18.6
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -62,6 +62,7 @@
   var RAW_TYPE_TITLE = 'title';
   var RAW_TYPE_CONTENT = 'content';
   var RAW_TYPE_MUTED = 'muted';
+  var RAW_TYPE_PURE = 'pure';
   var RAW_SHAPE_CIRCLE = 'circle';
   var RAW_SHAPE_ROUND = 'round';
   var RAW_EVENT_KEYPRESS = 'keypress';
@@ -902,8 +903,9 @@
                   RAW_TYPE_ERROR,
                   RAW_TYPE_DASHED,
                   RAW_TYPE_LINK,
-                  RAW_TYPE_TEXT ]),
-              value: 'pure'
+                  RAW_TYPE_TEXT,
+                  RAW_TYPE_PURE ]),
+              value: RAW_TYPE_PURE,
           },
           size: {
               type: oneOf([RAW_DEFAULT, RAW_LARGE, RAW_SMALL]),
@@ -1508,7 +1510,7 @@
       }
   });
 
-  var template$f = (function(){var $0=void 0,$2=!0,$3=!1,$5={className:'bell-radio-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-radio'+(_o('disabled',__l.disabled).value?' bell-radio-disabled':' bell-radio-enabled')+(_o('checked',__l.checked).value?' bell-radio-active':'')+(_o('isFocus',__l.isFocus).value?' bell-radio-focus':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-radio-with-label':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'label',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value?_c(__i,'events',_f('click',"set('checked', true)",'click','',_x.set,{args:function(__h,__o,__p){return ['checked',$2]}}),'click'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'span',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,events:{blur:_f('blur',"set('isFocus', false)",'blur','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$3]}}),focus:_f('focus',"set('isFocus', true)",'focus','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$2]}})},nativeProps:{className:'bell-radio-input',disabled:_o('disabled',__l.disabled).value,type:'radio',value:_o('value',__l.value).value},tag:'input',type:3},function(__i){_o('name',__l.name).value?_c(__i,'nativeProps',_o('name',__l.name).value,'name'):$0;});});_j('$slot_children',__j);});}})();
+  var template$f = (function(){var $0=void 0,$2=!0,$3=!1,$5={className:'bell-radio-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-radio'+(_o('disabled',__l.disabled).value?' bell-radio-disabled':' bell-radio-enabled')+(_o('checked',__l.checked).value?' bell-radio-active':'')+(_o('isFocus',__l.isFocus).value?' bell-radio-focus':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-radio-with-label':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'label',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value?_c(__i,'events',_f('click','handleClick()','click','',_x.handleClick),'click'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'span',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,events:{blur:_f('blur',"set('isFocus', false)",'blur','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$3]}}),focus:_f('focus',"set('isFocus', true)",'focus','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$2]}})},nativeProps:{className:'bell-radio-input',disabled:_o('disabled',__l.disabled).value,type:'radio',value:_o('value',__l.value).value},tag:'input',type:3},function(__i){_o('name',__l.name).value?_c(__i,'nativeProps',_o('name',__l.name).value,'name'):$0;});});_j('$slot_children',__j);});}})();
 
   var Radio = Yox.define({
       template: template$f,
@@ -1546,7 +1548,12 @@
           change: {
               listener: function (_, data) {
                   if (data.value !== UNDEFINED) {
-                      this.set('checked', data.value == this.get('value'));
+                      var value = this.get('value');
+                      var checked = data.value == value;
+                      this.set({
+                          checked: checked,
+                      });
+                      this.fireChange(checked, value);
                   }
                   if (data.disabled !== UNDEFINED) {
                       this.set('disabled', data.disabled);
@@ -1555,14 +1562,21 @@
               ns: 'radioGroup',
           }
       },
-      watchers: {
-          checked: function (checked) {
+      methods: {
+          handleClick: function () {
+              var checked = TRUE;
+              this.set({
+                  checked: checked,
+              });
+              this.fireChange(checked, this.get('value'));
+          },
+          fireChange: function (checked, value) {
               this.fire({
                   type: 'change',
                   ns: 'radio',
               }, {
                   checked: checked,
-                  value: this.get('value'),
+                  value: value,
               });
           }
       },
@@ -1595,7 +1609,6 @@
           },
           name: {
               type: RAW_STRING,
-              required: TRUE,
           },
           value: {
               type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],
@@ -1662,7 +1675,7 @@
       }
   });
 
-  var template$h = (function(){var $0=void 0,$2=!0,$3=!1,$5={className:'bell-checkbox-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-checkbox'+(_o('disabled',__l.disabled).value?' bell-checkbox-disabled':' bell-checkbox-enabled')+(_o('checked',__l.checked).value?' bell-checkbox-active':'')+(_o('isFocus',__l.isFocus).value?' bell-checkbox-focus':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-checkbox-with-label':'')+(_o('indeterminate',__l.indeterminate).value?' bell-checkbox-indeterminate':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'label',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'span',type:3},$0,function(__j){__j[__j.length]={context:_x,events:{blur:_f('blur',"set('isFocus', false)",'blur','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$3]}}),change:_f('change','onChange()','change','',_x.onChange),focus:_f('focus',"set('isFocus', true)",'focus','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$2]}})},nativeProps:{checked:_o('checked',__l.checked).value,className:'bell-checkbox-input',disabled:_o('disabled',__l.disabled).value,name:_o('name',__l.name).value,type:'checkbox'},tag:'input',type:3};});_j('$slot_children',__j);});}})();
+  var template$h = (function(){var $0=void 0,$2=!0,$3=!1,$5={className:'bell-checkbox-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-checkbox'+(_o('disabled',__l.disabled).value?' bell-checkbox-disabled':' bell-checkbox-enabled')+(_o('checked',__l.checked).value?' bell-checkbox-active':'')+(_o('isFocus',__l.isFocus).value?' bell-checkbox-focus':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-checkbox-with-label':'')+(_o('indeterminate',__l.indeterminate).value?' bell-checkbox-indeterminate':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'label',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'span',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,events:{blur:_f('blur',"set('isFocus', false)",'blur','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$3]}}),change:_f('change','onChange()','change','',_x.onChange),focus:_f('focus',"set('isFocus', true)",'focus','',_x.set,{args:function(__h,__o,__p){return ['isFocus',$2]}})},nativeProps:{checked:_o('checked',__l.checked).value,className:'bell-checkbox-input',disabled:_o('disabled',__l.disabled).value,type:'checkbox'},tag:'input',type:3},function(__i){_o('name',__l.name).value?_c(__i,'nativeProps',_o('name',__l.name).value,'name'):$0;});});_j('$slot_children',__j);});}})();
 
   var Checkbox = Yox.define({
       template: template$h,
@@ -1710,13 +1723,7 @@
                       this.set({
                           checked: newChecked
                       });
-                      this.fire({
-                          type: 'change',
-                          ns: 'checkbox',
-                      }, {
-                          checked: newChecked,
-                          value: value,
-                      });
+                      this.fireChange(newChecked, value);
                   }
               },
               ns: 'checkboxGroup',
@@ -1724,18 +1731,19 @@
       },
       methods: {
           onChange: function (event) {
-              var target = event.originalEvent.target;
-              var checked = target.checked;
+              var checked = event.originalEvent.target.checked;
               this.set({
                   checked: checked,
               });
+              this.fireChange(checked, this.get('value'));
+          },
+          fireChange: function (checked, value) {
               this.fire({
                   type: 'change',
                   ns: 'checkbox',
               }, {
                   checked: checked,
-                  value: this.get('value'),
-                  target: target,
+                  value: value,
               });
           }
       },
@@ -1764,7 +1772,6 @@
       propTypes: {
           name: {
               type: RAW_STRING,
-              required: TRUE,
           },
           value: {
               type: RAW_ARRAY,
@@ -2222,16 +2229,6 @@
               selectedOptions: [],
           };
       },
-      watchers: {
-          value: function (value) {
-              // 在这同步 selectedOptions，可兼顾内外的改动
-              this.updateSelectedOptions(value);
-              this.fire({
-                  type: 'change',
-                  ns: 'select',
-              }, { value: value });
-          },
-      },
       events: {
           update: {
               listener: function (event, data) {
@@ -2255,26 +2252,12 @@
               // 停止冒泡，否则会展开下拉框
               event.stop();
               this.set('value', UNDEFINED);
-              this.fire({
-                  type: 'change',
-                  ns: 'select',
-              }, {
-                  value: UNDEFINED,
-              }, TRUE);
-              this.fire({
-                  type: 'clear',
-                  ns: 'select',
-              });
+              this.fireChange(UNDEFINED);
           },
           handleRemoveOption: function (event, index) {
               event.stop();
               this.removeAt('value', index);
-              this.fire({
-                  type: 'change',
-                  ns: 'select',
-              }, {
-                  value: this.get('value')
-              }, TRUE);
+              this.fireChange(this.get('value'));
           },
           handleOutsideClick: function (event) {
               event.stop();
@@ -2289,10 +2272,12 @@
                       return;
                   }
                   me.append('value', value);
+                  me.fireChange(me.get('value'));
               }
               else {
                   if (values !== value) {
                       me.set('value', value);
+                      me.fireChange(value);
                   }
                   // 更新 UI，因为 watcher 不会被触发
                   else {
@@ -2311,12 +2296,14 @@
                       return;
                   }
                   me.removeAt('value', selectedIndex);
+                  me.fireChange(me.get('value'));
               }
               else {
                   if (values !== value) {
                       return;
                   }
                   me.set('value', UNDEFINED);
+                  me.fireChange(UNDEFINED);
               }
           },
           updateSelectedOptions: function (value) {
@@ -2330,6 +2317,14 @@
                   selectedOptions: selectedOptions,
               }, TRUE);
               this.set('selectedOptions', selectedOptions);
+          },
+          fireChange: function (value) {
+              this.fire({
+                  type: 'change',
+                  ns: 'select',
+              }, {
+                  value: value,
+              });
           }
       },
       components: {
@@ -2338,11 +2333,14 @@
           Dropdown: Dropdown,
       },
       afterMount: function () {
-          this.updateSelectedOptions(this.get('value'));
+          this.watch('value', function (value) {
+              // 在这同步 selectedOptions，可兼顾内外的改动
+              this.updateSelectedOptions(value);
+          }, TRUE);
       }
   });
 
-  var template$n = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-dropdown-item'+(_o('disabled',__l.disabled).value?' bell-dropdown-item-disabled':' bell-dropdown-item-enabled')+(_o('isSelected',__l.isSelected).value?' bell-dropdown-item-active':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value?_c(__i,'events',_f('click','clickOption()','click','',_x.clickOption),'click'):$0;},function(__j){_j('$slot_children',__j,function(){__j[__j.length]={isPure:$2,isText:$2,text:_w(_o('text',__l.text).value),type:1};});});}})();
+  var template$n = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-dropdown-item'+(_o('disabled',__l.disabled).value?' bell-dropdown-item-disabled':' bell-dropdown-item-enabled')+(_o('isSelected',__l.isSelected).value?' bell-dropdown-item-active':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value?_c(__i,'events',_f('click','handleClick()','click','',_x.handleClick),'click'):$0;},function(__j){_j('$slot_children',__j,function(){__j[__j.length]={isPure:$2,isText:$2,text:_w(_o('text',__l.text).value),type:1};});});}})();
 
   function isOptionSelected(values, value) {
       return Yox.is.array(values)
@@ -2389,7 +2387,9 @@
               listener: function (_, data) {
                   var value = data.value, selectedOptions = data.selectedOptions;
                   var isSelected = isOptionSelected(value, this.get('value'));
-                  this.set('isSelected', isSelected);
+                  this.set({
+                      isSelected: isSelected,
+                  });
                   if (isSelected) {
                       selectedOptions.push({
                           text: this.getText(),
@@ -2401,7 +2401,7 @@
           },
       },
       methods: {
-          clickOption: function () {
+          handleClick: function () {
               this.fireEvent(TRUE);
           },
           getText: function () {
@@ -4052,11 +4052,11 @@
               event.stop();
               var value = this.get('multiple') ? [] : UNDEFINED;
               this.set('value', value);
-              this.fireChange(value);
               this.fire({
                   type: 'clear',
                   ns: 'datePicker',
               }, TRUE);
+              this.fireChange(value);
           },
           handleRemoveItem: function (event, index) {
               event.stop();
@@ -4520,7 +4520,7 @@
       },
   });
 
-  var template$F = (function(){var $0=void 0,$2=!0,$4=function(__h){return __h.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-wrapper'},$9={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){_l(_o('imageList',__l.imageList),function(__l,__m,__n,index){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker-item bell-image-picker-card','style.cssText':'width: '+_w(_s($5,'imageWidth').value)+'px;height: '+_w(_s($5,'imageHeight').value)+'px'},tag:'div',type:3},$0,function(__j){_r('url',__l.url).value||_r('base64',__l.base64).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleImageClick(this, index)','click','',_x.handleImageClick,{args:function(__h,__o,__p){return [_p(__l,__h).value,index]}})},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-image-picker-image'},tag:'img',type:3},function(__i){_r('url',__l.url).value?_c(__i,'nativeProps',_s($5,'formatImageUrl').value?_v(_u(_s($5,'formatImageUrl').value,_x,[{height:_s($5,'imageHeight').value,responsive:$2,url:_r('url',__l.url).value,width:_s($5,'imageWidth').value}])).value:_r('url',__l.url).value,'src'):_r('base64',__l.base64).value?_c(__i,'nativeProps',_r('base64',__l.base64).value,'src'):$0;_r('name',__l.name).value?_c(__i,'nativeProps',_r('name',__l.name).value,'alt'):$0;}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_r('status',__l.status).value===_o('STATUS_UPLOADING',__l.STATUS_UPLOADING).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]={isPure:$2,isText:$2,text:'上传中',type:1};}});}):(_r('status',__l.status).value===_o('STATUS_ERROR',__l.STATUS_ERROR).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60',strokeColor:'#ff5500'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'close-line',size:'30',style:'color:#ff5500'},tag:'Icon',type:4};}});}):_r('size',__l.size).value>0?__j[__j.length]={context:_x,nativeProps:$7,tag:'div',text:_w(_v(_u(_o('formatImageSize',__l.formatImageSize,$0,_y&&_y.formatImageSize||_z.formatImageSize).value,_x,[_r('size',__l.size).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},!_o('readOnly',__l.readOnly).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_f('click.native','removeItem(index)','click','native',_x.removeItem,{args:function(__h,__o,__p){return [index]}},$0,$2)},isComponent:$2,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2});});});!_o('readOnly',__l.readOnly).value&&_n($4,'imageList.length',$2).value<_o('maxCount',__l.maxCount).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUploadImage',__l.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_o('restCount',__l.restCount).value>1,style:'width: '+_w(_o('imageWidth',__l.imageWidth).value)+'px;height: '+_w(_o('imageHeight',__l.imageHeight).value)+'px'},ref:'upload',tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_o('extra',__l.extra).value?__j[__j.length]={context:_x,nativeProps:$9,tag:'div',text:_w(_o('extra',__l.extra).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$F = (function(){var $0=void 0,$2=!0,$4=function(__h){return __h.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-wrapper'},$9={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){_l(_o('imageList',__l.imageList),function(__l,__m,__n,index){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-image-picker-item bell-image-picker-card','style.cssText':'width: '+_w(_s($5,'customImageWidth').value)+'px;height: '+_w(_s($5,'customImageHeight').value)+'px'},tag:'div',type:3},$0,function(__j){_r('url',__l.url).value||_r('base64',__l.base64).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleImageClick(this, index)','click','',_x.handleImageClick,{args:function(__h,__o,__p){return [_p(__l,__h).value,index]}})},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-image-picker-image'},tag:'img',type:3},function(__i){_r('url',__l.url).value?_c(__i,'nativeProps',_s($5,'formatImageUrl').value?_v(_u(_s($5,'formatImageUrl').value,_x,[{height:_s($5,'customImageHeight').value,responsive:$2,url:_r('url',__l.url).value,width:_s($5,'customImageWidth').value}])).value:_r('url',__l.url).value,'src'):_r('base64',__l.base64).value?_c(__i,'nativeProps',_r('base64',__l.base64).value,'src'):$0;_r('name',__l.name).value?_c(__i,'nativeProps',_r('name',__l.name).value,'alt'):$0;}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_r('status',__l.status).value===_o('STATUS_UPLOADING',__l.STATUS_UPLOADING).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]={isPure:$2,isText:$2,text:'上传中',type:1};}});}):(_r('status',__l.status).value===_o('STATUS_ERROR',__l.STATUS_ERROR).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{percent:_r('progress',__l.progress).value>0?_r('progress',__l.progress).value*100:0,size:'60',strokeColor:'#ff5500'},tag:'Circle',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'close-line',size:'30',style:'color:#ff5500'},tag:'Icon',type:4};}});}):_r('size',__l.size).value>0?__j[__j.length]={context:_x,nativeProps:$7,tag:'div',text:_w(_v(_u(_o('formatImageSize',__l.formatImageSize,$0,_y&&_y.formatImageSize||_z.formatImageSize).value,_x,[_r('size',__l.size).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},!_o('readOnly',__l.readOnly).value?__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_f('click.native','removeItem(index)','click','native',_x.removeItem,{args:function(__h,__o,__p){return [index]}},$0,$2)},isComponent:$2,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2});});});!_o('readOnly',__l.readOnly).value&&_n($4,'imageList.length',$2).value<_o('maxCount',__l.maxCount).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUploadImage',__l.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_o('restCount',__l.restCount).value>1,style:'width: '+_w(_o('customImageWidth',__l.customImageWidth).value)+'px;height: '+_w(_o('customImageHeight',__l.customImageHeight).value)+'px'},ref:'upload',tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_o('extra',__l.extra).value?__j[__j.length]={context:_x,nativeProps:$9,tag:'div',text:_w(_o('extra',__l.extra).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var STATUS_UPLOADING = 'uploading';
   var STATUS_ERROR = 'error';
@@ -4625,6 +4625,12 @@
           };
       },
       computed: {
+          customImageWidth: function () {
+              return toNumber(this.get('imageWidth'));
+          },
+          customImageHeight: function () {
+              return toNumber(this.get('imageHeight'));
+          },
           restCount: function () {
               var imageCount = this.get('imageList.length');
               var maxCount = this.get('maxCount');
@@ -4695,7 +4701,7 @@
           },
           upload: function () {
               var me = this;
-              var imageList = this.get('imageList');
+              var imageList = me.get('imageList');
               Yox.array.each(imageList, function (item) {
                   if (!item.url) {
                       me.uploadItem(item.id);
@@ -4708,7 +4714,7 @@
               if (index < 0) {
                   return;
               }
-              var uploadImage = this.get('uploadImage');
+              var uploadImage = me.get('uploadImage');
               var item = me.get("imageList." + index);
               uploadImage({
                   id: item.id,
@@ -5984,7 +5990,7 @@
       },
   });
 
-  var template$16 = (function(){var $0=void 0,$2=!0,$5={className:'bell-thumbnail-placeholder'},$6={className:'bell-thumbnail-action'},$7={className:'bell-thumbnail-mask'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-thumbnail'+(_o('simple',__l.simple).value?' bell-thumbnail-simple':' bell-thumbnail-bordered')+(_o('loading',__l.loading).value?' bell-thumbnail-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),'style.cssText':'width:'+_w(_o('width',__l.width).value)+'px;height:'+_w(_o('height',__l.height).value)+'px;line-height:'+_w(_o('height',__l.height).value)+'px;'+(_o('style',__l.style).value?_w(_o('style',__l.style).value):'')},tag:'div',type:3},$0,function(__j){_o('url',__l.url).value||_o('src',__l.src).value?__j[__j.length]=_a({context:_x,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-thumbnail-image'},tag:'img',type:3},function(__i){_o('url',__l.url).value?_c(__i,'nativeProps',_o('formatUrl',__l.formatUrl).value?_v(_u(_o('formatUrl',__l.formatUrl,$0,_y&&_y.formatUrl||_z.formatUrl).value,_x,[{height:_o('height',__l.height).value,responsive:$2,url:_o('url',__l.url).value,width:_o('width',__l.width).value}])).value:_o('url',__l.url).value,'src'):_c(__i,'nativeProps',_o('src',__l.src).value,'src');_o('srcSet',__l.srcSet).value?_c(__i,'nativeAttrs',_o('srcSet',__l.srcSet).value,'srcset'):$0;_o('alt',__l.alt).value?_c(__i,'nativeProps',_o('alt',__l.alt).value,'alt'):$0;}):__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_placeholder',__j);});_o('showZoom',__l.showZoom).value||_o('showUpload',__l.showUpload).value||_o('showDownload',__l.showDownload).value||_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){_o('showZoom',__l.showZoom).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,props:{name:'zoom-in-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showUpload',__l.showUpload).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUpload',__l.beforeUpload).value,className:'bell-thumbnail-action',upload:_o('uploadImage',__l.uploadImage).value},tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'upload-2-line',size:'0'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDownload',__l.showDownload).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,props:{name:'download-2-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,props:{name:'delete-bin-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('loading',__l.loading).value?__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$16 = (function(){var $0=void 0,$2=!0,$5={className:'bell-thumbnail-placeholder'},$6={className:'bell-thumbnail-action'},$7={className:'bell-thumbnail-mask'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-thumbnail'+(_o('simple',__l.simple).value?' bell-thumbnail-simple':' bell-thumbnail-bordered')+(_o('loading',__l.loading).value?' bell-thumbnail-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),'style.cssText':'width:'+_w(_o('customWidth',__l.customWidth).value)+'px;height:'+_w(_o('customWidth',__l.customWidth).value)+'px;line-height:'+_w(_o('customHeight',__l.customHeight).value)+'px;'+(_o('style',__l.style).value?_w(_o('style',__l.style).value):'')},tag:'div',type:3},$0,function(__j){_o('url',__l.url).value||_o('src',__l.src).value?__j[__j.length]=_a({context:_x,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-thumbnail-image'},tag:'img',type:3},function(__i){_o('url',__l.url).value?_c(__i,'nativeProps',_o('formatUrl',__l.formatUrl).value?_v(_u(_o('formatUrl',__l.formatUrl,$0,_y&&_y.formatUrl||_z.formatUrl).value,_x,[{height:_o('customHeight',__l.customHeight).value,responsive:$2,url:_o('url',__l.url).value,width:_o('customWidth',__l.customWidth).value}])).value:_o('url',__l.url).value,'src'):_c(__i,'nativeProps',_o('src',__l.src).value,'src');_o('srcSet',__l.srcSet).value?_c(__i,'nativeAttrs',_o('srcSet',__l.srcSet).value,'srcset'):$0;_o('alt',__l.alt).value?_c(__i,'nativeProps',_o('alt',__l.alt).value,'alt'):$0;}):__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_placeholder',__j);});_o('showZoom',__l.showZoom).value||_o('showUpload',__l.showUpload).value||_o('showDownload',__l.showDownload).value||_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){_o('showZoom',__l.showZoom).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,props:{name:'zoom-in-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showUpload',__l.showUpload).value?__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{accept:_o('accept',__l.accept).value,beforeUpload:_o('beforeUpload',__l.beforeUpload).value,className:'bell-thumbnail-action',upload:_o('uploadImage',__l.uploadImage).value},tag:'Upload',type:4},$0,{$slot_children:function(__j,__k){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{name:'upload-2-line',size:'0'},tag:'Icon',type:4};}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDownload',__l.showDownload).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,props:{name:'download-2-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('showDelete',__l.showDelete).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,props:{name:'delete-bin-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('loading',__l.loading).value?__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var Thumbnail = Yox.define({
       template: template$16,
@@ -6064,6 +6070,14 @@
                   }, data);
               },
           };
+      },
+      computed: {
+          customWidth: function () {
+              return toNumber(this.get('width'));
+          },
+          customHeight: function () {
+              return toNumber(this.get('height'));
+          },
       },
       components: {
           Icon: Icon,
@@ -7061,7 +7075,7 @@
   /**
    * 版本
    */
-  var version = "0.18.5";
+  var version = "0.18.6";
   /**
    * 安装插件
    */

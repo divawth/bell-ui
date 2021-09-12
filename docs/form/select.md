@@ -302,7 +302,7 @@ export default {
   export default {
     template: `
       <div>
-        <Select size="large" multiple model="value" on-change="change()" width="240">
+        <Select size="large" multiple clearable model="value" on-change="change()" width="240">
           {{#each list}}
             <Option value="{{this.value}}" text="{{this.text}}" />
           {{/each}}
@@ -596,7 +596,6 @@ style | 自定义内联样式 | string | - | -
 事件名称 | 说明 | 回调参数
 ---|---|---
 change | 值发生改变的时候回调 | value
-clear | 清空按钮时候触发 | value
 
 > Option Props
 

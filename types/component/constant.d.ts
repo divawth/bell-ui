@@ -46,6 +46,7 @@ export declare const RAW_TYPE_TEXT = "text";
 export declare const RAW_TYPE_TITLE = "title";
 export declare const RAW_TYPE_CONTENT = "content";
 export declare const RAW_TYPE_MUTED = "muted";
+export declare const RAW_TYPE_PURE = "pure";
 export declare const RAW_SHAPE_CIRCLE = "circle";
 export declare const RAW_SHAPE_ROUND = "round";
 export declare const RAW_EVENT_KEYPRESS = "keypress";
