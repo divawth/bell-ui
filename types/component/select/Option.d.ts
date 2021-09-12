@@ -3,11 +3,11 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }, {
     change: unknown;
 }, {
-    clickOption(): void;
+    handleClick(): void;
     getText(): string;
     fireEvent(isSelected: boolean): void;
 }> & ThisType<{
-    clickOption(): void;
+    handleClick(): void;
     getText(): string;
     fireEvent(isSelected: boolean): void;
 } & import("yox").YoxInterface>;

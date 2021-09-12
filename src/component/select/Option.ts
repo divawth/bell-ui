@@ -69,11 +69,13 @@ export default Yox.define({
       listener(_, data) {
 
         const { value, selectedOptions } = data
-  
+
         const isSelected = isOptionSelected(value, this.get('value'))
-  
-        this.set('isSelected', isSelected)
-  
+
+        this.set({
+          isSelected,
+        })
+
         if (isSelected) {
           selectedOptions.push({
             text: this.getText(),
@@ -86,7 +88,7 @@ export default Yox.define({
   },
 
   methods: {
-    clickOption(): void {
+    handleClick(): void {
       this.fireEvent(TRUE)
     },
     getText(): string {

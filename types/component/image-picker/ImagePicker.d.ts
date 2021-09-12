@@ -1,4 +1,6 @@
 declare const _default: import("yox").ComponentOptions<{
+    customImageWidth: unknown;
+    customImageHeight: unknown;
     restCount: unknown;
 }, unknown, unknown, {
     handleImageClick(image: object, index: number): void;

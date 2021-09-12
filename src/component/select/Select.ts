@@ -92,42 +92,25 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    value(value) {
-
-      // 在这同步 selectedOptions，可兼顾内外的改动
-      this.updateSelectedOptions(value)
-
-      this.fire(
-        {
-          type: 'change',
-          ns: 'select',
-        },
-        { value }
-      )
-
-    },
-  },
-
   events: {
     update: {
       listener(event, data) {
 
         event.stop()
-  
+
         const me = this
-  
+
         if (data.isSelected) {
           me.selectOption(data.value)
         }
         else {
           me.deselectOption(data.value)
         }
-  
+
         if (!me.get('multiple')) {
           me.set('visible', FALSE)
         }
-  
+
       },
       ns: 'selectOption',
     }
@@ -142,21 +125,7 @@ export default Yox.define({
 
       this.set('value', UNDEFINED)
 
-      this.fire(
-        {
-          type: 'change',
-          ns: 'select',
-        },
-        {
-          value: UNDEFINED,
-        },
-        TRUE
-      )
-
-      this.fire({
-        type: 'clear',
-        ns: 'select',
-      })
+      this.fireChange(UNDEFINED)
 
     },
 
@@ -166,15 +135,8 @@ export default Yox.define({
 
       this.removeAt('value', index)
 
-      this.fire(
-        {
-          type: 'change',
-          ns: 'select',
-        },
-        {
-          value: this.get('value')
-        },
-        TRUE
+      this.fireChange(
+        this.get('value')
       )
 
     },
@@ -201,12 +163,16 @@ export default Yox.define({
         }
 
         me.append('value', value)
+        me.fireChange(
+          me.get('value')
+        )
 
       }
       else {
 
         if (values !== value) {
           me.set('value', value)
+          me.fireChange(value)
         }
         // 更新 UI，因为 watcher 不会被触发
         else {
@@ -233,6 +199,9 @@ export default Yox.define({
         }
 
         me.removeAt('value', selectedIndex)
+        me.fireChange(
+          me.get('value')
+        )
 
       }
       else {
@@ -242,6 +211,7 @@ export default Yox.define({
         }
 
         me.set('value', UNDEFINED)
+        me.fireChange(UNDEFINED)
 
       }
 
@@ -250,7 +220,7 @@ export default Yox.define({
     updateSelectedOptions(value: any) {
 
       // 用一个空数组，通过事件流收集选中的 option
-      let selectedOptions = []
+      const selectedOptions = []
 
       this.fire(
         {
@@ -266,6 +236,20 @@ export default Yox.define({
 
       this.set('selectedOptions', selectedOptions)
 
+    },
+
+    fireChange(value) {
+
+      this.fire(
+        {
+          type: 'change',
+          ns: 'select',
+        },
+        {
+          value,
+        }
+      )
+
     }
 
   },
@@ -277,8 +261,13 @@ export default Yox.define({
   },
 
   afterMount() {
-    this.updateSelectedOptions(
-      this.get('value')
+    this.watch(
+      'value',
+      function (value) {
+        // 在这同步 selectedOptions，可兼顾内外的改动
+        this.updateSelectedOptions(value)
+      },
+      TRUE
     )
   }
 
