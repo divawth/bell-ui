@@ -33,6 +33,43 @@ export default {
 }
 ```
 
+
+> 限制字数
+
+```js
+export default {
+  template: `
+  <div>
+    <Input
+      size="small"
+      placeholder="Basic usage"
+      model="value"
+      maxLength="20"
+      showCount
+      block
+    />
+    <br><br>
+    <Input
+      placeholder="Basic usage"
+      model="value"
+      maxLength="20"
+      showCount
+      block
+    />
+    <br><br>
+    <Input
+      size="large"
+      placeholder="Basic usage"
+      model="value"
+      maxLength="20"
+      showCount
+      block
+    />
+  </div>
+  `
+}
+```
+
 > 三种大小
 
 ```js
@@ -238,15 +275,16 @@ type | 类型 | string | `text`, `password` | `text`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 placeholder | 输入框内容为空时的提示文本 | string | - | -
-disabled | 禁用输入框 | boolean | - | `false`
-clearable | 是否显示清空按钮 | boolean | - | `false`
-block | 是否为块级元素 | boolean | - | `false`
+disabled | 禁用输入框 | boolean | - | -
+clearable | 是否显示清空按钮 | boolean | - | -
+block | 是否为块级元素 | boolean | - | -
 prefix | 输入框头部图标 | string | - | -
 suffix | 输入框尾部图标 | string | - | -
-secure | 是否可以隐藏显示（仅在 `password` 下有效） | boolean | - | `false`
-autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
-spellCheck | 原生 `spellcheck` 属性 | boolean | - | `false`
-readOnly | 原生 `readonly` 属性 | boolean | - | `false`
+secure | 是否可以隐藏显示（仅在 `password` 下有效） | boolean | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | -
+spellCheck | 原生 `spellcheck` 属性 | boolean | - | -
+readOnly | 原生 `readonly` 属性 | boolean | - | -
+showCount | 显示计数 | boolean | - | -
 maxLength | 原生 `maxlength` 属性 | numeric | - | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

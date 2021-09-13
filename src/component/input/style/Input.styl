@@ -27,6 +27,7 @@ $input-size-hash = {
 }
 
 input-size-style(style)
+  ui-set('font-size', style['font-size'])
 
   > {$selector-prefix + '-input-prepend'},
   > {$selector-prefix + '-input-append'},
@@ -54,8 +55,8 @@ input-size-style(style)
   {$selector-prefix + '-input-el-with-suffix'}
     ui-set('padding-right', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
 
-  {$selector-prefix + '-input-prefix'},
-  {$selector-prefix + '-input-suffix'}
+  {$selector-prefix + '-input-prefix-icon-wrapper'},
+  {$selector-prefix + '-input-suffix-icon-wrapper'}
     ui-set('margin-top', -0.5 * style['font-size'])
 
   {$selector-prefix + '-input-prefix-icon'},
@@ -63,6 +64,10 @@ input-size-style(style)
   {$selector-prefix + '-input-secure-icon'},
   {$selector-prefix + '-input-clear-icon'}
     ui-set('font-size', style['font-size'])
+
+  {$selector-prefix + '-input-prefix-text-wrapper'},
+  {$selector-prefix + '-input-suffix-text-wrapper'}
+    ui-set('line-height', style['height'])
 
 input-brand-style(style)
   {$selector-prefix + '-input-el'}
@@ -106,9 +111,19 @@ input-brand-style(style)
 {$selector-prefix + '-input-prefix'},
 {$selector-prefix + '-input-suffix'}
   position absolute
-  top 50%
+  white-space nowrap
+
+{$selector-prefix + '-input-prefix-icon-wrapper'},
+{$selector-prefix + '-input-suffix-icon-wrapper'}
   color $brand-close-color
+  top 50%
   line-height 0
+
+{$selector-prefix + '-input-prefix-text-wrapper'},
+{$selector-prefix + '-input-suffix-text-wrapper'}
+  color $brand-muted
+  font-size 85%
+  top 0
 
 {$selector-prefix + '-input-secure'},
 {$selector-prefix + '-input-clear'}

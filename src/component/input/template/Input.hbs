@@ -34,7 +34,7 @@ class="${prefix}input
       model="value"
       class="${prefix}input-el
       {{#if prefix}} ${prefix}input-el-with-prefix{{/if}}
-      {{#if suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
+      {{#if hasCount || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
       {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
       {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
 
@@ -68,7 +68,7 @@ class="${prefix}input
     >
 
     {{#if prefix}}
-      <div class="${prefix}input-prefix">
+      <div class="${prefix}input-prefix ${prefix}input-prefix-icon-wrapper">
         <Icon
           name="{{prefix}}"
           size="0"
@@ -77,8 +77,12 @@ class="${prefix}input
       </div>
     {{/if}}
 
-    {{#if suffix}}
-      <div class="${prefix}input-suffix">
+    {{#if hasCount}}
+      <div class="${prefix}input-suffix ${prefix}input-suffix-text-wrapper">
+        {{formatValueLength(value)}} / {{maxLength}}
+      </div>
+    {{else if suffix}}
+      <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper">
         <Icon
           name="{{suffix}}"
           size="0"
@@ -86,7 +90,7 @@ class="${prefix}input
         />
       </div>
     {{else if secure}}
-      <div class="${prefix}input-suffix ${prefix}input-secure" on-click="toggle('isSecure')">
+      <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-secure" on-click="toggle('isSecure')">
         <Icon
           name="{{isSecure ? 'eye-close-line' : 'eye-line'}}"
           size="0"
@@ -94,7 +98,7 @@ class="${prefix}input
         />
       </div>
     {{else if clearable && !disabled}}
-      <div class="${prefix}input-suffix ${prefix}input-clear" on-click="handleClearClick()">
+      <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-clear" on-click="handleClearClick()">
         <Icon
           name="close-circle-fill"
           size="0"

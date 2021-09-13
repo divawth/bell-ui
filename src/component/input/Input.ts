@@ -58,19 +58,15 @@ export default Yox.define({
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     clearable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     secure: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     prefix: {
       type: RAW_STRING,
@@ -80,15 +76,15 @@ export default Yox.define({
     },
     autoFocus: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     spellCheck: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE,
+    },
+    showCount: {
+      type: RAW_BOOLEAN,
     },
     maxLength: {
       type: RAW_NUMERIC,
@@ -112,6 +108,20 @@ export default Yox.define({
 
       TEXT_TYPE_TEXT,
       TEXT_TYPE_PASSWORD,
+    }
+  },
+
+  computed: {
+    hasCount() {
+      return this.get('showCount') && this.get('maxLength') > 0
+    },
+  },
+
+  filters: {
+    formatValueLength(value) {
+      return value
+        ? value.length
+        : 0
     }
   },
 
