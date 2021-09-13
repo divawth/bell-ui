@@ -25,6 +25,27 @@ export default {
 }
 ```
 
+> resize
+
+```js
+export default {
+  template: `
+  <div>
+    <Textarea
+      model="value"
+      placeholder="请输入..."
+      resize="horizontal"
+    />
+    <Textarea
+      model="value"
+      placeholder="请输入..."
+      resize="vertical"
+    />
+  </div>
+  `
+}
+```
+
 > 禁用状态
 
 ```js
@@ -142,6 +163,7 @@ export default {
 value / `model` | 输入框的值 | string | - | -
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
+resize | 拉伸 | string | `horizontal`, `vertical` | -
 placeholder | 输入框内容为空时的提示文本 | string | - | -
 disabled | 禁用输入框 | boolean | - | `false`
 rows | 行数 | number | - | 3

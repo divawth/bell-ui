@@ -4,6 +4,10 @@ class="${prefix}textarea
 {{#if status}} ${prefix}textarea-{{status}}{{/if}}
 {{#if block}} ${prefix}textarea-block{{/if}}
 
+{{#if resize === RAW_HORIZONTAL}} ${prefix}textarea-resize-horizontal
+{{else if resize === RAW_VERTICAL}} ${prefix}textarea-resize-vertical
+{{/if}}
+
 {{#if disabled}} ${prefix}textarea-disabled
 {{else}} ${prefix}textarea-enabled
 {{/if}}

@@ -11,6 +11,8 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_OBJECT,
+  RAW_HORIZONTAL,
+  RAW_VERTICAL,
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
   RAW_EVENT_KEYUP,
@@ -71,6 +73,9 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
+    resize: {
+      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
+    },
     wrap: {
       type: oneOf(['hard', 'soft']),
     },
@@ -106,6 +111,8 @@ export default Yox.define({
 
   data() {
     return {
+      RAW_HORIZONTAL,
+      RAW_VERTICAL,
       isSecure: TRUE,
       isFocus: FALSE,
     }
