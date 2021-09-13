@@ -59,21 +59,21 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: TRUE,
     },
+    showButton: {
+      type: RAW_BOOLEAN,
+      value: TRUE,
+    },
     autoFocus: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     placeholder: {
       type: RAW_STRING,

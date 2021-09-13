@@ -48,6 +48,22 @@ export default {
 }
 ```
 
+> 隐藏按钮
+
+```js
+export default {
+  template: `
+    <InputNumber
+      showButton="{{false}}"
+      model="value"
+    />
+  `,
+  data: {
+    value: 3
+  }
+}
+```
+
 > 三种大小
 
 ```js
@@ -240,11 +256,12 @@ min | 最小值 | numeric | - | -
 step | 每次改变的步进值 | numeric | - | `1`
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
-disabled | 是否禁用 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | -
 editable | 是否可编辑 | boolean | - | `true`
-block | 是否为块级元素 | boolean | - | `false`
-autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
-readOnly | 原生 `readonly` 属性 | boolean | - | `false`
+showButton | 是否显示递增、递减按钮 | boolean | - | `true`
+block | 是否为块级元素 | boolean | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | -
+readOnly | 原生 `readonly` 属性 | boolean | - | -
 placeholder | 占位文本 | string | - | -
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

@@ -54,7 +54,7 @@ class="${prefix}input-number
     {{/if}}
   >
 
-  {{#if !disabled && !readOnly}}
+  {{#if showButton && !disabled && !readOnly}}
     <div class="${prefix}input-number-actions">
       <div
         {{#if upDisabled}}
