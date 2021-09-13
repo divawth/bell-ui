@@ -127,10 +127,19 @@ export function findComponentUpward(parent, componentName: string | string[]) {
 
 export function oneOf(values: any[]) {
   return function (key: string, value: any, componentName: string | undefined) {
-    if (!Yox.array.has(values, value, FALSE)) {
-      Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 [${value}]。`, componentName)
+
+    // 只需要检测有值的情况
+    if (value === UNDEFINED) {
+      return
     }
-    return TRUE
+
+    // 传值在枚举值中
+    if (Yox.array.has(values, value, FALSE)) {
+      return
+    }
+
+    Yox.logger.warn(`${key} 期望是 ${values.join(',')} 中的值，实际传值 [${value}]。`, componentName)
+
   }
 }
 
