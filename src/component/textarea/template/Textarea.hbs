@@ -21,7 +21,7 @@ class="${prefix}textarea
 >
 
   <textarea
-    class="${prefix}textarea-el"
+    class="${prefix}textarea-el{{#if hasCount}} ${prefix}textarea-el-with-word-count{{/if}}"
     model="value"
 
     {{#if wrap}}
@@ -58,5 +58,11 @@ class="${prefix}textarea
     style="{{textareaStyle}}"
   >
   </textarea>
+
+  {{#if hasCount}}
+    <div class="${prefix}textarea-word-count">
+      {{formatValueLength(value)}} / {{maxLength}}
+    </div>
+  {{/if}}
 
 </div>

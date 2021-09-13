@@ -46,6 +46,37 @@ export default {
 }
 ```
 
+> 限制字数
+
+```js
+export default {
+  template: `
+  <div>
+    <Textarea
+      size="small"
+      model="value"
+      placeholder="请输入..."
+      maxLength="30"
+      showCount
+    />
+    <Textarea
+      model="value"
+      placeholder="请输入..."
+      maxLength="30"
+      showCount
+    />
+    <Textarea
+      size="large"
+      model="value"
+      placeholder="请输入..."
+      maxLength="30"
+      showCount
+    />
+  </div>
+  `
+}
+```
+
 > 禁用状态
 
 ```js
@@ -165,13 +196,14 @@ status | 状态 | string | `info`, `warning`, `success`, `error` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 resize | 拉伸 | string | `horizontal`, `vertical` | -
 placeholder | 输入框内容为空时的提示文本 | string | - | -
-disabled | 禁用输入框 | boolean | - | `false`
+disabled | 禁用输入框 | boolean | - | -
 rows | 行数 | number | - | 3
 autoSize | 自适应内容高度，格式如 `{ minRows: 2, maxRows: 6 }` | Object | - | -
-block | 是否为块级元素 | boolean | - | `false`
-autoFocus | 原生 `autofocus` 属性 | boolean | - | `false`
-spellCheck | 原生 `spellcheck` 属性 | boolean | - | `false`
-readOnly | 原生 `readonly` 属性 | boolean | - | `false`
+block | 是否为块级元素 | boolean | - | -
+autoFocus | 原生 `autofocus` 属性 | boolean | - | -
+spellCheck | 原生 `spellcheck` 属性 | boolean | - | -
+readOnly | 原生 `readonly` 属性 | boolean | - | -
+showCount | 显示计数 | boolean | - | -
 maxLength | 原生 `maxlength` 属性 | numeric | - | -
 wrap | 原生 `wrap` 属性 | string | soft, hard | -
 width | 显示宽度 | numeric | - | -

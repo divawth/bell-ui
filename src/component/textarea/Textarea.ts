@@ -71,7 +71,6 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     resize: {
       type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
@@ -81,19 +80,18 @@ export default Yox.define({
     },
     autoFocus: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     spellCheck: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
+    },
+    showCount: {
+      type: RAW_BOOLEAN,
     },
     maxLength: {
       type: RAW_NUMERIC,
@@ -118,36 +116,10 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    value(value) {
-      this.fire(
-        {
-          type: 'change',
-          ns: 'textarea',
-        },
-        { value }
-      )
-    },
-  },
-
-  methods: {
-    handleFocus() {
-      this.set('isFocus', TRUE)
-      this.fire({
-        type: 'focus',
-        ns: 'textarea',
-      })
-    },
-    handleBlur() {
-      this.set('isFocus', FALSE)
-      this.fire({
-        type: 'blur',
-        ns: 'textarea',
-      })
-    },
-  },
-
   computed: {
+    hasCount() {
+      return this.get('showCount') && this.get('maxLength') > 0
+    },
     textareaStyle() {
 
       let size = this.get('size')
@@ -174,6 +146,43 @@ export default Yox.define({
       return `height: ${this.get('rows') * ROW_HEIGHT + PADDING_VERTICAL}px;`
 
     }
+  },
+
+  watchers: {
+    value(value) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'textarea',
+        },
+        { value }
+      )
+    },
+  },
+
+  filters: {
+    formatValueLength(value) {
+      return value
+        ? value.length
+        : 0
+    }
+  },
+
+  methods: {
+    handleFocus() {
+      this.set('isFocus', TRUE)
+      this.fire({
+        type: 'focus',
+        ns: 'textarea',
+      })
+    },
+    handleBlur() {
+      this.set('isFocus', FALSE)
+      this.fire({
+        type: 'blur',
+        ns: 'textarea',
+      })
+    },
   },
 
   afterMount() {

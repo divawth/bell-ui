@@ -1,5 +1,8 @@
 @import '../../../env'
 
+// 不用 $ui-mutiple-line-height，方便计算出一个整数
+$textarea-line-height = 1.5
+
 $textarea-size-hash = {
   default: {
     height: $height-default,
@@ -22,9 +25,18 @@ $textarea-size-hash = {
 }
 
 textarea-size-style(style)
+  ui-set('font-size', style['font-size'])
+
   > {$selector-prefix + '-textarea-el'}
     ui-set('font-size', style['font-size'])
     ui-set('padding', style['padding-vertical'] style['padding-horizontal'])
+
+  > {$selector-prefix + '-textarea-el-with-word-count'}
+    ui-set('padding-bottom', style['padding-vertical'] + style['font-size'] * $textarea-line-height)
+
+  > {$selector-prefix + '-textarea-word-count'}
+    ui-set('right', style['padding-horizontal'])
+    ui-set('bottom', style['padding-vertical'])
 
 textarea-brand-style(style)
   > {$selector-prefix + '-textarea-el'}
@@ -39,6 +51,7 @@ textarea-brand-style(style)
   display inline-block
   box-sizing border-box
   width $ui-form-element-width
+  position relative
   ui-connect(
     hash: $status-brand-hash,
     each: textarea-brand-style
@@ -61,10 +74,16 @@ textarea-brand-style(style)
 
 {$selector-prefix + '-textarea-el'}
   resize none
-  // 不用 $ui-mutiple-line-height，方便计算出一个整数
-  line-height 1.5
+  line-height $textarea-line-height
   ui-input()
   ui-scrollbar()
 
 {$selector-prefix + '-textarea-disabled'}
   ui-input-disabled($selector-prefix + '-textarea-el')
+
+{$selector-prefix + '-textarea-word-count'}
+  position absolute
+  color $brand-muted
+  font-size 85%
+  line-height $textarea-line-height
+  user-select none
