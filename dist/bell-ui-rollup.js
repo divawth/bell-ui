@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.18.6
+ * bell-ui.js v0.18.7
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -210,10 +210,15 @@
   }
   function oneOf(values) {
       return function (key, value, componentName) {
-          if (!Yox.array.has(values, value, FALSE)) {
-              Yox.logger.warn(key + " \u671F\u671B\u662F " + values.join(',') + " \u4E2D\u7684\u503C\uFF0C\u5B9E\u9645\u4F20\u503C [" + value + "]\u3002", componentName);
+          // 只需要检测有值的情况
+          if (value === UNDEFINED) {
+              return;
           }
-          return TRUE;
+          // 传值在枚举值中
+          if (Yox.array.has(values, value, FALSE)) {
+              return;
+          }
+          Yox.logger.warn(key + " \u671F\u671B\u662F " + values.join(',') + " \u4E2D\u7684\u503C\uFF0C\u5B9E\u9645\u4F20\u503C [" + value + "]\u3002", componentName);
       };
   }
   function padStart(value) {
@@ -986,7 +991,7 @@
       },
   });
 
-  var template$c = (function(){var $0=void 0,$2=!0,$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix'},$7={className:'bell-input-suffix'},$8={className:'bell-input-suffix bell-input-secure'},$9={className:'bell-input-suffix bell-input-clear'},$10={className:'bell-input-content'},$11={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'));});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4};}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4};}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$c = (function(){var $0=void 0,$2=!0,$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix bell-input-prefix-icon-wrapper'},$7={className:'bell-input-suffix bell-input-suffix-text-wrapper'},$8={className:'bell-input-suffix bell-input-suffix-icon-wrapper'},$9={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-secure'},$10={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-clear'},$11={className:'bell-input-content'},$12={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('hasCount',__l.hasCount).value||_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'));});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1};}):_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4};}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4};}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$12,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var TEXT_TYPE_PASSWORD = 'password';
   var TEXT_TYPE_TEXT = 'text';
@@ -1013,19 +1018,15 @@
           },
           block: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           disabled: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           clearable: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           secure: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           prefix: {
               type: RAW_STRING,
@@ -1035,15 +1036,15 @@
           },
           autoFocus: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           spellCheck: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           readOnly: {
               type: RAW_BOOLEAN,
-              value: FALSE,
+          },
+          showCount: {
+              type: RAW_BOOLEAN,
           },
           maxLength: {
               type: RAW_NUMERIC,
@@ -1066,6 +1067,18 @@
               TEXT_TYPE_TEXT: TEXT_TYPE_TEXT,
               TEXT_TYPE_PASSWORD: TEXT_TYPE_PASSWORD,
           };
+      },
+      computed: {
+          hasCount: function () {
+              return this.get('showCount') && this.get('maxLength') > 0;
+          },
+      },
+      filters: {
+          formatValueLength: function (value) {
+              return value
+                  ? value.length
+                  : 0;
+          }
       },
       watchers: {
           value: function (value) {
@@ -1152,7 +1165,7 @@
       }
   });
 
-  var template$d = (function(){var $0=void 0,$1=null,$2=!0,$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number'+(_o('status',__l.status).value?' bell-input-number-'+_w(_o('status',__l.status).value):'')+(_o('size',__l.size).value?' bell-input-number-'+_w(_o('size',__l.size).value):'')+(_o('block',__l.block).value?' bell-input-number-block':'')+(_o('disabled',__l.disabled).value?' bell-input-number-disabled':' bell-input-number-enabled')+(_o('isFocus',__l.isFocus).value?' bell-input-number-focus':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number-el',step:_o('step',__l.step).value,type:'number'},ref:'input',tag:'input',type:3},function(__i){_o('max',__l.max).value!=$1?_c(__i,'nativeProps',_o('max',__l.max).value,'max'):$0;_o('min',__l.min).value!=$1?_c(__i,'nativeProps',_o('min',__l.min).value,'min'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value||!_o('editable',__l.editable).value?_c(__i,'nativeProps',$2,'readOnly'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_f('input','handleInput()','input','',_x.handleInput),'input'),_c(__i,'events',_f('change','handleChange()','change','',_x.handleChange),'change'));});!_o('disabled',__l.disabled).value&&!_o('readOnly',__l.readOnly).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_f('click','handleUpClick()','click','',_x.handleUpClick),'click'));},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4};});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_f('click','handleDownClick()','click','',_x.handleDownClick),'click'));},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4};});}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$d = (function(){var $0=void 0,$1=null,$2=!0,$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number'+(_o('status',__l.status).value?' bell-input-number-'+_w(_o('status',__l.status).value):'')+(_o('size',__l.size).value?' bell-input-number-'+_w(_o('size',__l.size).value):'')+(_o('block',__l.block).value?' bell-input-number-block':'')+(_o('disabled',__l.disabled).value?' bell-input-number-disabled':' bell-input-number-enabled')+(_o('isFocus',__l.isFocus).value?' bell-input-number-focus':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number-el',step:_o('step',__l.step).value,type:'number'},ref:'input',tag:'input',type:3},function(__i){_o('max',__l.max).value!=$1?_c(__i,'nativeProps',_o('max',__l.max).value,'max'):$0;_o('min',__l.min).value!=$1?_c(__i,'nativeProps',_o('min',__l.min).value,'min'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value||!_o('editable',__l.editable).value?_c(__i,'nativeProps',$2,'readOnly'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_f('input','handleInput()','input','',_x.handleInput),'input'),_c(__i,'events',_f('change','handleChange()','change','',_x.handleChange),'change'));});_o('showButton',__l.showButton).value&&!_o('disabled',__l.disabled).value&&!_o('readOnly',__l.readOnly).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_f('click','handleUpClick()','click','',_x.handleUpClick),'click'));},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4};});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_f('click','handleDownClick()','click','',_x.handleDownClick),'click'));},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4};});}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var InputNumber = Yox.define({
       template: template$d,
@@ -1182,21 +1195,21 @@
               type: RAW_BOOLEAN,
               value: TRUE,
           },
+          showButton: {
+              type: RAW_BOOLEAN,
+              value: TRUE,
+          },
           autoFocus: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           readOnly: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           disabled: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           block: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           placeholder: {
               type: RAW_STRING,
@@ -1345,7 +1358,7 @@
       }
   });
 
-  var template$e = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-textarea'+(_o('size',__l.size).value?' bell-textarea-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-textarea-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-textarea-block':'')+(_o('disabled',__l.disabled).value?' bell-textarea-disabled':' bell-textarea-enabled')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-textarea-el','style.cssText':_o('textareaStyle',__l.textareaStyle).value},tag:'textarea',type:3},function(__i){_o('wrap',__l.wrap).value?_c(__i,'nativeProps',_o('wrap',__l.wrap).value,'wrap'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'));});});}})();
+  var template$e = (function(){var $0=void 0,$2=!0,$5={className:'bell-textarea-word-count'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-textarea'+(_o('size',__l.size).value?' bell-textarea-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-textarea-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-textarea-block':'')+(_o('resize',__l.resize).value===_o('RAW_HORIZONTAL',__l.RAW_HORIZONTAL).value?' bell-textarea-resize-horizontal':_o('resize',__l.resize).value===_o('RAW_VERTICAL',__l.RAW_VERTICAL).value?' bell-textarea-resize-vertical':'')+(_o('disabled',__l.disabled).value?' bell-textarea-disabled':' bell-textarea-enabled')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-textarea-el'+(_o('hasCount',__l.hasCount).value?' bell-textarea-el-with-word-count':''),'style.cssText':_o('textareaStyle',__l.textareaStyle).value},tag:'textarea',type:3},function(__i){_o('wrap',__l.wrap).value?_c(__i,'nativeProps',_o('wrap',__l.wrap).value,'wrap'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'));});_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var sizes = {};
   var fontSizes = {};
@@ -1381,26 +1394,27 @@
           },
           disabled: {
               type: RAW_BOOLEAN,
-              value: FALSE,
+          },
+          resize: {
+              type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
           },
           wrap: {
               type: oneOf(['hard', 'soft']),
           },
           autoFocus: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           spellCheck: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           readOnly: {
               type: RAW_BOOLEAN,
-              value: FALSE,
           },
           block: {
               type: RAW_BOOLEAN,
-              value: FALSE,
+          },
+          showCount: {
+              type: RAW_BOOLEAN,
           },
           maxLength: {
               type: RAW_NUMERIC,
@@ -1417,35 +1431,16 @@
       },
       data: function () {
           return {
+              RAW_HORIZONTAL: RAW_HORIZONTAL,
+              RAW_VERTICAL: RAW_VERTICAL,
               isSecure: TRUE,
               isFocus: FALSE,
           };
       },
-      watchers: {
-          value: function (value) {
-              this.fire({
-                  type: 'change',
-                  ns: 'textarea',
-              }, { value: value });
-          },
-      },
-      methods: {
-          handleFocus: function () {
-              this.set('isFocus', TRUE);
-              this.fire({
-                  type: 'focus',
-                  ns: 'textarea',
-              });
-          },
-          handleBlur: function () {
-              this.set('isFocus', FALSE);
-              this.fire({
-                  type: 'blur',
-                  ns: 'textarea',
-              });
-          },
-      },
       computed: {
+          hasCount: function () {
+              return this.get('showCount') && this.get('maxLength') > 0;
+          },
           textareaStyle: function () {
               var size = this.get('size');
               var autoSize = this.get('autoSize');
@@ -1465,6 +1460,37 @@
               }
               return "height: " + (this.get('rows') * ROW_HEIGHT + PADDING_VERTICAL) + "px;";
           }
+      },
+      watchers: {
+          value: function (value) {
+              this.fire({
+                  type: 'change',
+                  ns: 'textarea',
+              }, { value: value });
+          },
+      },
+      filters: {
+          formatValueLength: function (value) {
+              return value
+                  ? value.length
+                  : 0;
+          }
+      },
+      methods: {
+          handleFocus: function () {
+              this.set('isFocus', TRUE);
+              this.fire({
+                  type: 'focus',
+                  ns: 'textarea',
+              });
+          },
+          handleBlur: function () {
+              this.set('isFocus', FALSE);
+              this.fire({
+                  type: 'blur',
+                  ns: 'textarea',
+              });
+          },
       },
       afterMount: function () {
           var me = this;
@@ -7075,7 +7101,7 @@
   /**
    * 版本
    */
-  var version = "0.18.6";
+  var version = "0.18.7";
   /**
    * 安装插件
    */
