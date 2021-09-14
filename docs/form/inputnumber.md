@@ -9,8 +9,27 @@ export default {
     step="0.01"
     model="value"
     placeholder="请输入..."
+    showButton
+    on-focus="onFocus()"
+    on-blur="onBlur()"
   />
-  `
+  `,
+  data: {
+    value: 3
+  },
+  watchers: {
+    value(value) {
+      console.log(value)
+    }
+  },
+  methods: {
+    onFocus() {
+      console.log('onFocus')
+    },
+    onBlur() {
+      console.log('onBlur')
+    }
+  }
 }
 ```
 
@@ -25,6 +44,7 @@ export default {
     max="10"
     model="value"
     placeholder="请输入..."
+    showButton
   />
   `,
 }
@@ -40,6 +60,7 @@ export default {
       max="100"
       step="3"
       model="value"
+      showButton
     />
   `,
   data: {
@@ -54,9 +75,30 @@ export default {
 export default {
   template: `
     <InputNumber
-      showButton="{{false}}"
       model="value"
     />
+  `,
+  data: {
+    value: 3
+  }
+}
+```
+
+> 前置/后置标签
+
+```js
+export default {
+  template: `
+    <InputNumber
+      model="value"
+    >
+      <template slot="prepend">
+        ￥
+      </template>
+      <template slot="append">
+        元
+      </template>
+    </InputNumber>
   `,
   data: {
     value: 3
@@ -176,40 +218,6 @@ export default {
 }
 ```
 
-> 是否可编辑
-
-```js
-export default {
-  template: `
-  <div>
-    <InputNumber
-      editable="{{editable}}"
-      size="large"
-      min="1"
-      model="value"
-    />
-    <br><br>
-    <InputNumber
-      editable="{{editable}}"
-      min="1"
-      model="value"
-    />
-    <br><br>
-    <InputNumber
-      editable="{{editable}}"
-      size="small"
-      min="1"
-      model="value"
-    />
-  </div>
-  `,
-  data: {
-    value: 34,
-    editable: false
-  }
-}
-```
-
 > 只读状态
 
 ```js
@@ -257,8 +265,7 @@ step | 每次改变的步进值 | numeric | - | `1`
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | -
-editable | 是否可编辑 | boolean | - | `true`
-showButton | 是否显示递增、递减按钮 | boolean | - | `true`
+showButton | 是否显示递增、递减按钮 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 autoFocus | 原生 `autofocus` 属性 | boolean | - | -
 readOnly | 原生 `readonly` 属性 | boolean | - | -

@@ -176,13 +176,13 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix bell-input-prefix-icon-wrapper'},$7={className:'bell-input-suffix bell-input-suffix-text-wrapper'},$8={className:'bell-input-suffix bell-input-suffix-icon-wrapper'},$9={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-secure'},$10={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-clear'},$11={className:'bell-input-content'},$12={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('hasCount',__l.hasCount).value||_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'))});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1}}):_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4}}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4}}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$12,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix bell-input-prefix-icon-wrapper'},$7={className:'bell-input-suffix bell-input-suffix-text-wrapper'},$8={className:'bell-input-suffix bell-input-suffix-icon-wrapper'},$9={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-secure'},$10={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-clear'},$11={className:'bell-input-content'},$12={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('hasCount',__l.hasCount).value||_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('step',__l.step).value!=$1?_c(__i,'nativeProps',_o('step',__l.step).value,'step'):$0;_o('min',__l.min).value!=$1?_c(__i,'nativeProps',_o('min',__l.min).value,'min'):$0;_o('max',__l.max).value!=$1?_c(__i,'nativeProps',_o('max',__l.max).value,'max'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_g('input','input.input','input','','input','input'),'input'))});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1}}):_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4}}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4}}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$12,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_children',__j)})}})();
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number'+(_o('status',__l.status).value?' bell-input-number-'+_w(_o('status',__l.status).value):'')+(_o('size',__l.size).value?' bell-input-number-'+_w(_o('size',__l.size).value):'')+(_o('block',__l.block).value?' bell-input-number-block':'')+(_o('disabled',__l.disabled).value?' bell-input-number-disabled':' bell-input-number-enabled')+(_o('isFocus',__l.isFocus).value?' bell-input-number-focus':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input-number-el',step:_o('step',__l.step).value,type:'number'},ref:'input',tag:'input',type:3},function(__i){_o('max',__l.max).value!=$1?_c(__i,'nativeProps',_o('max',__l.max).value,'max'):$0;_o('min',__l.min).value!=$1?_c(__i,'nativeProps',_o('min',__l.min).value,'min'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value||!_o('editable',__l.editable).value?_c(__i,'nativeProps',$2,'readOnly'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_f('input','handleInput()','input','',_x.handleInput),'input'),_c(__i,'events',_f('change','handleChange()','change','',_x.handleChange),'change'))});_o('showButton',__l.showButton).value&&!_o('disabled',__l.disabled).value&&!_o('readOnly',__l.readOnly).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_f('click','handleUpClick()','click','',_x.handleUpClick),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4}});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_f('click','handleDownClick()','click','',_x.handleDownClick),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}})}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=__k[__k.length]=_b({context:_x,events:{blur:_f('blur','handleBlur()','blur','',_x.handleBlur,$0,$2),enter:_f('enter','handleEnter()','enter','',_x.handleEnter,$0,$2),focus:_f('focus','handleFocus()','focus','',_x.handleFocus,$0,$2)},isComponent:$2,props:{autoFocus:_o('autoFocus',__l.autoFocus).value,block:_o('block',__l.block).value,className:_o('customClassName',__l.customClassName).value,disabled:_o('disabled',__l.disabled).value,max:_o('max',__l.max).value,min:_o('min',__l.min).value,placeholder:_o('placeholder',__l.placeholder).value,readOnly:_o('readOnly',__l.readOnly).value,size:_o('size',__l.size).value,status:_o('status',__l.status).value,step:_o('step',__l.step).value,style:_o('style',__l.style).value,type:'number',value:_o('value',__l.value).value,width:_o('width',__l.width).value},ref:'input',tag:'Input',type:4},$0,{$slot_append:function(__j,__k){_j('$slot_append',__j)},$slot_children:function(__j,__k){_o('showButton',__l.showButton).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_g('click','up','click','','up'),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4}});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_g('click','down','click','','down'),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}})}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}},$slot_prepend:function(__j,__k){_j('$slot_prepend',__j)}})}})();
 
 /***/ }),
 /* 15 */
@@ -1716,6 +1716,7 @@ var Input_default = /*#__PURE__*/__webpack_require__.n(Input);
 
 
 var TEXT_TYPE_PASSWORD = 'password';
+var TEXT_TYPE_NUMBER = 'number';
 var TEXT_TYPE_TEXT = 'text';
 /* harmony default export */ var input_Input = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Input_default.a,
@@ -1729,7 +1730,7 @@ var TEXT_TYPE_TEXT = 'text';
             value: RAW_DEFAULT,
         },
         type: {
-            type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_PASSWORD]),
+            type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_NUMBER, TEXT_TYPE_PASSWORD]),
             value: TEXT_TYPE_TEXT,
         },
         status: {
@@ -1769,6 +1770,15 @@ var TEXT_TYPE_TEXT = 'text';
             type: RAW_BOOLEAN,
         },
         maxLength: {
+            type: RAW_NUMERIC,
+        },
+        step: {
+            type: RAW_NUMERIC,
+        },
+        min: {
+            type: RAW_NUMERIC,
+        },
+        max: {
             type: RAW_NUMERIC,
         },
         width: {
@@ -1851,11 +1861,25 @@ var TEXT_TYPE_TEXT = 'text';
             }
             var originalEvent = event.originalEvent;
             me.fire(new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.Event('keydown.input', originalEvent));
-            if (originalEvent.keyCode === 13) {
-                me.fire({
-                    type: 'enter',
-                    ns: 'input',
-                });
+            switch (originalEvent.keyCode) {
+                case 13:
+                    me.fire({
+                        type: 'enter',
+                        ns: 'input',
+                    });
+                    break;
+                case 38:
+                    me.fire({
+                        type: 'up',
+                        ns: 'input',
+                    });
+                    break;
+                case 40:
+                    me.fire({
+                        type: 'down',
+                        ns: 'input',
+                    });
+                    break;
             }
         };
         var onKeyup = function (event) {
@@ -1898,6 +1922,7 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
 
 
 
+
 /* harmony default export */ var input_number_InputNumber = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: InputNumber_default.a,
     name: 'bell-InputNumber',
@@ -1922,13 +1947,8 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
             type: RAW_NUMERIC,
             value: 1,
         },
-        editable: {
-            type: RAW_BOOLEAN,
-            value: TRUE,
-        },
         showButton: {
             type: RAW_BOOLEAN,
-            value: TRUE,
         },
         autoFocus: {
             type: RAW_BOOLEAN,
@@ -1963,12 +1983,26 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         };
     },
     computed: {
+        customClassName: function () {
+            var classNames = ['bell-input-number'];
+            var className = this.get('className');
+            if (className) {
+                classNames.push(className);
+            }
+            return classNames.join(' ');
+        },
         upDisabled: function () {
+            if (this.get('disabled') || this.get('readOnly')) {
+                return TRUE;
+            }
             var max = toNumber(this.get('max'), FALSE);
             return max !== FALSE
                 && max - this.get('value') < this.get('step');
         },
         downDisabled: function () {
+            if (this.get('disabled') || this.get('readOnly')) {
+                return TRUE;
+            }
             var min = toNumber(this.get('min'), FALSE);
             return min !== FALSE
                 && this.get('value') - min < this.get('step');
@@ -1983,57 +2017,30 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         },
     },
     methods: {
-        handleUpClick: function () {
-            var inputElement = this.$refs.input;
-            inputElement.stepUp();
-            this.handleInput();
-        },
-        handleDownClick: function () {
-            var inputElement = this.$refs.input;
-            inputElement.stepDown();
-            this.handleInput();
-        },
-        handleFocus: function () {
+        handleFocus: function (event) {
+            event.stop();
             this.set('isFocus', TRUE);
             this.fire({
                 type: 'focus',
                 ns: 'inputNumber',
             });
         },
-        handleBlur: function () {
+        handleBlur: function (event) {
+            event.stop();
             this.set('isFocus', FALSE);
+            this.fire('update');
             this.fire({
                 type: 'blur',
                 ns: 'inputNumber',
             });
         },
-        handleEnterPress: function () {
+        handleEnter: function (event) {
+            event.stop();
+            this.fire('update');
             this.fire({
                 type: 'enter',
                 ns: 'inputNumber',
             });
-            this.handleChange();
-        },
-        handleInput: function () {
-            var inputElement = this.$refs.input;
-            var inputStringValue = inputElement.value;
-            var oldValue = this.get('value');
-            this.updateInputValue(inputStringValue);
-            var newValue = this.get('value');
-            if (newValue !== oldValue) {
-                this.fireChange(newValue);
-            }
-        },
-        handleChange: function () {
-            var value = this.get('value');
-            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(value)) {
-                return;
-            }
-            var newValue = '';
-            this.updateInputValue(newValue);
-            if (newValue !== value) {
-                this.fireChange(newValue);
-            }
         },
         updateInputValue: function (value) {
             this.set({
@@ -2052,40 +2059,56 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
     },
     components: {
         Icon: icon_Icon,
+        Input: input_Input,
     },
     afterMount: function () {
-        var me = this;
-        var inputElement = me.$refs.input;
-        me.watch('inputStringValue', function (value) {
+        var inputElement = this.$refs.input.$refs.input;
+        this.watch('inputStringValue', function (value) {
             inputElement.value = value;
         }, TRUE);
-        var onKeydown = function (event) {
-            if (!me.get('isFocus')) {
+        this
+            .on('input', function (event) {
+            event.stop();
+            var inputStringValue = inputElement.value;
+            var oldValue = this.get('value');
+            this.updateInputValue(inputStringValue);
+            var newValue = this.get('value');
+            if (newValue !== oldValue) {
+                this.fireChange(newValue);
+            }
+        })
+            .on('update', function (event) {
+            event.stop();
+            var value = this.get('value');
+            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(value)) {
                 return;
             }
+            // input 控件如果输入了非数字值，会自动变成 ''
+            // 因此，当读值为 '' 时，需强制设值一次
+            var inputStringValue = this.get('inputStringValue');
+            if (!inputStringValue) {
+                inputElement.value = '';
+            }
+            var newValue = '';
+            this.updateInputValue(newValue);
+            if (newValue !== value) {
+                this.fireChange(newValue);
+            }
+        })
+            .on('up', function (event) {
             // 阻止事件默认行为，避免光标的跳动
-            switch (event.originalEvent.keyCode) {
-                case 13:
-                    me.handleEnterPress();
-                    break;
-                case 38:
-                    me.handleUpClick();
-                    event.prevent();
-                    break;
-                case 40:
-                    me.handleDownClick();
-                    event.prevent();
-                    break;
-            }
-        };
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
-        var onDestroy = function (component) {
-            if (component === me) {
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown);
-                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, onDestroy);
-            }
-        };
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, onDestroy);
+            event.prevent();
+            event.stop();
+            inputElement.stepUp();
+            this.fire('input');
+        })
+            .on('down', function (event) {
+            // 阻止事件默认行为，避免光标的跳动
+            event.prevent();
+            event.stop();
+            inputElement.stepDown();
+            this.fire('input');
+        });
     }
 }));
 
@@ -8489,7 +8512,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.18.7";
+var version = "0.18.8";
 /**
  * 安装插件
  */
