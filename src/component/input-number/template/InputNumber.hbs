@@ -1,13 +1,9 @@
 <Input
   ref="input"
-  type="number"
   className="{{customClassName}}"
   status="{{status}}"
   size="{{size}}"
   block="{{block}}"
-  step="{{step}}"
-  min="{{min}}"
-  max="{{max}}"
   placeholder="{{placeholder}}"
   value="{{value}}"
   disabled="{{disabled}}"
@@ -17,16 +13,33 @@
   style="{{style}}"
   on-focus="handleFocus()"
   on-blur="handleBlur()"
+  on-input="handleInput()"
+  on-keydown="handleKeydown()"
+  on-keyup="handleKeyup()"
   on-enter="handleEnter()"
+  on-up="handleUp()"
+  on-down="handleDown()"
+  on-compositionstart="handleCompositionStart()"
+  on-compositionend="handleCompositionEnd()"
 >
-  {{#if showButton}}
+  <input
+    ref="numberInput"
+    type="number"
+    class="${prefix}input-number-el"
+    step="{{step}}"
+    min="{{min}}"
+    max="{{max}}"
+    value="{{value}}"
+  >
+
+  {{#if showStep}}
     <div class="${prefix}input-number-actions">
       <div
         {{#if upDisabled}}
           class="${prefix}input-number-up ${prefix}input-number-up-disabled"
         {{else}}
           class="${prefix}input-number-up ${prefix}input-number-up-enabled"
-          on-click="up"
+          on-click="handleUp()"
         {{/if}}
       >
         <Icon
@@ -40,7 +53,7 @@
           class="${prefix}input-number-down ${prefix}input-number-down-disabled"
         {{else}}
           class="${prefix}input-number-down ${prefix}input-number-down-enabled"
-          on-click="down"
+          on-click="handleDown()"
         {{/if}}
       >
         <Icon

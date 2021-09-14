@@ -30,7 +30,6 @@ import {
 } from '../util'
 
 const TEXT_TYPE_PASSWORD = 'password'
-const TEXT_TYPE_NUMBER = 'number'
 const TEXT_TYPE_TEXT = 'text'
 
 export default Yox.define({
@@ -48,7 +47,7 @@ export default Yox.define({
       value: RAW_DEFAULT,
     },
     type: {
-      type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_NUMBER, TEXT_TYPE_PASSWORD]),
+      type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_PASSWORD]),
       value: TEXT_TYPE_TEXT,
     },
     status: {
@@ -88,15 +87,6 @@ export default Yox.define({
       type: RAW_BOOLEAN,
     },
     maxLength: {
-      type: RAW_NUMERIC,
-    },
-    step: {
-      type: RAW_NUMERIC,
-    },
-    min: {
-      type: RAW_NUMERIC,
-    },
-    max: {
       type: RAW_NUMERIC,
     },
     width: {
@@ -206,6 +196,8 @@ export default Yox.define({
           break
 
         case 38:
+          // 避免光标跑到最前面
+          event.prevent()
           me.fire({
             type: 'up',
             ns: 'input',
@@ -213,6 +205,8 @@ export default Yox.define({
           break
 
         case 40:
+          // 避免光标跑到最后面
+          event.prevent()
           me.fire({
             type: 'down',
             ns: 'input',

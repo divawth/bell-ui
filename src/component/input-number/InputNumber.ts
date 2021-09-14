@@ -26,6 +26,13 @@ import {
   toString,
 } from '../util'
 
+import {
+  isHelper,
+  isDot,
+  isMinus,
+  isNumber,
+} from './util'
+
 export default Yox.define({
 
   template,
@@ -53,7 +60,10 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 1,
     },
-    showButton: {
+    precision: {
+      type: RAW_NUMERIC,
+    },
+    showStep: {
       type: RAW_BOOLEAN,
     },
     autoFocus: {
@@ -85,7 +95,7 @@ export default Yox.define({
   data(options) {
     const props = options.props || {}
     return {
-      isFocus: FALSE,
+      isComposition: FALSE,
       inputStringValue: toString(props.value),
     }
   },
@@ -99,37 +109,48 @@ export default Yox.define({
       }
       return classNames.join(' ')
     },
+    customPrecision(): number {
+      return toNumber(
+        this.get('precision'),
+        -1
+      )
+    },
+    customMin(): number {
+      return toNumber(
+        this.get('min'),
+        Number.MIN_VALUE
+      )
+    },
+    customMax(): number {
+      return toNumber(
+        this.get('max'),
+        Number.MAX_VALUE
+      )
+    },
     upDisabled(): boolean {
       if (this.get('disabled') || this.get('readOnly')) {
         return TRUE
       }
-      const max = toNumber(this.get('max'), FALSE)
-      return max !== FALSE
-        && max - this.get('value') < this.get('step')
+      return this.get('customMax') - this.get('value') < this.get('step')
     },
     downDisabled(): boolean {
       if (this.get('disabled') || this.get('readOnly')) {
         return TRUE
       }
-      const min = toNumber(this.get('min'), FALSE)
-      return min !== FALSE
-        && this.get('value') - min < this.get('step')
+      return this.get('value') - this.get('customMin') < this.get('step')
     }
   },
 
   watchers: {
     value(value) {
-      if (this.get('isFocus')) {
-        return
-      }
       this.updateInputValue(value)
     },
   },
 
   methods: {
+
     handleFocus(event: CustomEventInterface) {
       event.stop()
-      this.set('isFocus', TRUE)
       this.fire({
         type: 'focus',
         ns: 'inputNumber',
@@ -137,20 +158,121 @@ export default Yox.define({
     },
     handleBlur(event: CustomEventInterface) {
       event.stop()
-      this.set('isFocus', FALSE)
-      this.fire('update')
+      this.correctValue()
       this.fire({
         type: 'blur',
         ns: 'inputNumber',
       })
     },
+    handleInput(event: CustomEventInterface) {
+      event.stop()
+      if (this.get('isComposition')) {
+        return
+      }
+      this.changeValue()
+    },
+    handleKeydown(event: CustomEventInterface) {
+      event.stop()
+
+      if (this.get('isComposition')) {
+        return
+      }
+
+      const { metaKey, ctrlKey, shiftKey, keyCode } = event.originalEvent as KeyboardEvent
+      // 组合键可放行
+      if (metaKey || ctrlKey || shiftKey || isHelper(keyCode)) {
+        return
+      }
+
+      // 在这控制一些非法字符，可以避免光标因为重置 value 而跳到最后的问题
+
+      const textInputElement = this.getTextInput()
+
+      const isFirstChar = textInputElement.selectionStart === textInputElement.selectionEnd
+        && textInputElement.selectionStart === 0
+
+      const inputStringValue = this.get('inputStringValue')
+
+      if (isFirstChar) {
+        if (inputStringValue.indexOf('-') < 0) {
+          // 第一个字符，只能输入 - 和 数字
+          if (isNumber(keyCode) || isMinus(keyCode)) {
+            return
+          }
+        }
+        event.prevent()
+      }
+      else {
+        const dotIndex = inputStringValue.indexOf('.')
+
+        // 不在首位时，只能输入 . 和数字
+        if (isNumber(keyCode)) {
+          const customPrecision = this.get('customPrecision')
+          const precisionLength = dotIndex > 0 ? inputStringValue.substr(dotIndex + 1).length : 0
+          if (customPrecision >= 0 && precisionLength >= customPrecision) {
+            event.prevent()
+          }
+        }
+        else if (isDot(keyCode)) {
+          if (dotIndex > 0) {
+            event.prevent()
+          }
+        }
+        else {
+          event.prevent()
+        }
+      }
+
+    },
+    handleKeyup(event: CustomEventInterface) {
+      event.stop()
+    },
     handleEnter(event: CustomEventInterface) {
       event.stop()
-      this.fire('update')
+      this.correctValue()
       this.fire({
         type: 'enter',
         ns: 'inputNumber',
       })
+    },
+    handleUp(event: CustomEventInterface) {
+      event.stop()
+
+      if (this.get('isComposition')) {
+        return
+      }
+
+      const numberInputElement = this.getNumberInput()
+
+      numberInputElement.stepUp()
+      this.getTextInput().value = numberInputElement.value
+
+      this.changeValue()
+
+    },
+    handleDown(event: CustomEventInterface) {
+      event.stop()
+
+      if (this.get('isComposition')) {
+        return
+      }
+
+      const numberInputElement = this.getNumberInput()
+
+      numberInputElement.stepDown()
+      this.getTextInput().value = numberInputElement.value
+
+      this.changeValue()
+
+    },
+    handleCompositionStart(event: CustomEventInterface) {
+      event.stop()
+      this.set('isComposition', TRUE)
+    },
+    handleCompositionEnd(event: CustomEventInterface) {
+      event.stop()
+      this.set('isComposition', FALSE)
+      this.getTextInput().value = this.get('inputStringValue')
     },
 
     updateInputValue(value: any) {
@@ -158,6 +280,63 @@ export default Yox.define({
         inputStringValue: toString(value),
         value: toNumber(value, value),
       })
+    },
+
+    changeValue() {
+
+      const textInputElement = this.getTextInput()
+
+      const oldStringValue = this.get('inputStringValue')
+      const newStringValue = textInputElement.value
+
+      if (newStringValue !== oldStringValue
+        && newStringValue
+        && newStringValue !== '-'
+        && toNumber(newStringValue, FALSE) === FALSE
+      ) {
+        // 输入了错误字符
+        textInputElement.value = oldStringValue
+        return
+      }
+
+      const oldValue = this.get('value')
+
+      this.updateInputValue(newStringValue)
+
+      const newValue = this.get('value')
+
+      if (newValue !== oldValue) {
+        this.fireChange(newValue)
+      }
+
+    },
+
+    correctValue() {
+
+      const value = this.get('value')
+
+      let newValue = ''
+
+      if (Yox.is.number(value)) {
+        const min = this.get('customMin')
+        const max = this.get('customMax')
+        if (value < min) {
+          newValue = min
+        }
+        else if (value > max) {
+          newValue = max
+        }
+        else {
+          return
+        }
+      }
+
+      this.updateInputValue(newValue)
+
+      if (newValue !== value) {
+        this.fireChange(newValue)
+      }
+
     },
 
     fireChange(value) {
@@ -170,6 +349,14 @@ export default Yox.define({
           value,
         }
       )
+    },
+
+    getTextInput() {
+      return (this.$refs.input as YoxInterface).$refs.input as HTMLInputElement
+    },
+
+    getNumberInput() {
+      return this.$refs.numberInput as HTMLInputElement
     }
 
   },
@@ -181,90 +368,13 @@ export default Yox.define({
 
   afterMount() {
 
-    const inputElement = (this.$refs.input as YoxInterface).$refs.input as HTMLInputElement
-
     this.watch(
       'inputStringValue',
       function (value) {
-        inputElement.value = value
+        this.getTextInput().value = value
+        this.getNumberInput().value = value
       },
       TRUE
-    )
-
-    this
-    .on(
-      'input',
-      function (event: CustomEventInterface) {
-
-        event.stop()
-
-        const inputStringValue = inputElement.value
-        const oldValue = this.get('value')
-
-        this.updateInputValue(inputStringValue)
-
-        const newValue = this.get('value')
-
-        if (newValue !== oldValue) {
-          this.fireChange(newValue)
-        }
-
-      }
-    )
-    .on(
-      'update',
-      function (event: CustomEventInterface) {
-
-        event.stop()
-
-        const value = this.get('value')
-
-        if (Yox.is.numeric(value)) {
-          return
-        }
-
-        // input 控件如果输入了非数字值，会自动变成 ''
-        // 因此，当读值为 '' 时，需强制设值一次
-        const inputStringValue = this.get('inputStringValue')
-        if (!inputStringValue) {
-          inputElement.value = ''
-        }
-
-        const newValue = ''
-
-        this.updateInputValue(newValue)
-
-        if (newValue !== value) {
-          this.fireChange(newValue)
-        }
-
-      }
-    )
-    .on(
-      'up',
-      function (event: CustomEventInterface) {
-
-        // 阻止事件默认行为，避免光标的跳动
-        event.prevent()
-        event.stop()
-
-        inputElement.stepUp()
-        this.fire('input')
-
-      }
-    )
-    .on(
-      'down',
-      function (event: CustomEventInterface) {
-
-        // 阻止事件默认行为，避免光标的跳动
-        event.prevent()
-        event.stop()
-
-        inputElement.stepDown()
-        this.fire('input')
-
-      }
     )
 
   }

@@ -176,13 +176,13 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){
 /* 13 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix bell-input-prefix-icon-wrapper'},$7={className:'bell-input-suffix bell-input-suffix-text-wrapper'},$8={className:'bell-input-suffix bell-input-suffix-icon-wrapper'},$9={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-secure'},$10={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-clear'},$11={className:'bell-input-content'},$12={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('hasCount',__l.hasCount).value||_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('step',__l.step).value!=$1?_c(__i,'nativeProps',_o('step',__l.step).value,'step'):$0;_o('min',__l.min).value!=$1?_c(__i,'nativeProps',_o('min',__l.min).value,'min'):$0;_o('max',__l.max).value!=$1?_c(__i,'nativeProps',_o('max',__l.max).value,'max'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_g('input','input.input','input','','input','input'),'input'))});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1}}):_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4}}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4}}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$12,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_children',__j)})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-prepend'},$6={className:'bell-input-prefix bell-input-prefix-icon-wrapper'},$7={className:'bell-input-suffix bell-input-suffix-text-wrapper'},$8={className:'bell-input-suffix bell-input-suffix-icon-wrapper'},$9={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-secure'},$10={className:'bell-input-suffix bell-input-suffix-icon-wrapper bell-input-clear'},$11={className:'bell-input-content'},$12={className:'bell-input-append'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-input'+(_o('size',__l.size).value?' bell-input-'+_w(_o('size',__l.size).value):'')+(_o('status',__l.status).value?' bell-input-'+_w(_o('status',__l.status).value):'')+(_o('block',__l.block).value?' bell-input-block':'')+(_o('disabled',__l.disabled).value?' bell-input-disabled':' bell-input-enabled')+(!_o('value',__l.value).value?' bell-input-no-value':' bell-input-has-value')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_prepend',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,nativeProps:$11,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,model:_e(_o('value',__l.value)),nativeProps:{className:'bell-input-el'+(_o('prefix',__l.prefix).value?' bell-input-el-with-prefix':'')+(_o('hasCount',__l.hasCount).value||_o('suffix',__l.suffix).value||_o('secure',__l.secure).value||_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?' bell-input-el-with-suffix':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['prepend'])).value?' bell-input-el-with-prepend':'')+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?' bell-input-el-with-append':''),type:_o('currentType',__l.currentType).value},ref:'input',tag:'input',type:3},function(__i){_o('maxLength',__l.maxLength).value?_c(__i,'nativeProps',_o('maxLength',__l.maxLength).value,'maxLength'):$0;_o('placeholder',__l.placeholder).value?_c(__i,'nativeProps',_o('placeholder',__l.placeholder).value,'placeholder'):$0;_o('autoFocus',__l.autoFocus).value?_c(__i,'nativeProps',$2,'autofocus'):$0;_o('readOnly',__l.readOnly).value?_c(__i,'nativeProps',$2,'readOnly'):$0;_o('spellCheck',__l.spellCheck).value?_c(__i,'nativeProps',$2,'spellcheck'):$0;_o('disabled',__l.disabled).value?_c(__i,'nativeProps',$2,'disabled'):(_c(__i,'events',_f('focus','handleFocus()','focus','',_x.handleFocus),'focus'),_c(__i,'events',_f('blur','handleBlur()','blur','',_x.handleBlur),'blur'),_c(__i,'events',_g('input','input.input','input','','input','input'),'input'),_c(__i,'events',_g('compositionstart','compositionstart.input','compositionstart','','compositionstart','input'),'compositionstart'),_c(__i,'events',_g('compositionend','compositionend.input','compositionend','','compositionend','input'),'compositionend'))});_o('prefix',__l.prefix).value?__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-prefix-icon',name:_o('prefix',__l.prefix).value,size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_o('hasCount',__l.hasCount).value?__j[__j.length]=_a({context:_x,nativeProps:$7,tag:'div',type:3},$0,function(__j){__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatValueLength',__l.formatValueLength,$0,_y&&_y.formatValueLength||_z.formatValueLength).value,_x,[_o('value',__l.value).value])).value)+' / '+_w(_o('maxLength',__l.maxLength).value),type:1}}):_o('suffix',__l.suffix).value?__j[__j.length]=_a({context:_x,nativeProps:$8,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-suffix-icon',name:_o('suffix',__l.suffix).value,size:'0'},tag:'Icon',type:4}}):_o('secure',__l.secure).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('isSecure')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['isSecure']}})},nativeProps:$9,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-secure-icon',name:_o('isSecure',__l.isSecure).value?'eye-close-line':'eye-line',size:'0'},tag:'Icon',type:4}}):_o('clearable',__l.clearable).value&&!_o('disabled',__l.disabled).value?__j[__j.length]=_a({context:_x,events:{click:_f('click','handleClearClick()','click','',_x.handleClearClick)},nativeProps:$10,tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}});_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['append'])).value?__j[__j.length]=_a({context:_x,nativeProps:$12,tag:'div',type:3},$0,function(__j){_j('$slot_append',__j)}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_children',__j)})}})();
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=__k[__k.length]=_b({context:_x,events:{blur:_f('blur','handleBlur()','blur','',_x.handleBlur,$0,$2),enter:_f('enter','handleEnter()','enter','',_x.handleEnter,$0,$2),focus:_f('focus','handleFocus()','focus','',_x.handleFocus,$0,$2)},isComponent:$2,props:{autoFocus:_o('autoFocus',__l.autoFocus).value,block:_o('block',__l.block).value,className:_o('customClassName',__l.customClassName).value,disabled:_o('disabled',__l.disabled).value,max:_o('max',__l.max).value,min:_o('min',__l.min).value,placeholder:_o('placeholder',__l.placeholder).value,readOnly:_o('readOnly',__l.readOnly).value,size:_o('size',__l.size).value,status:_o('status',__l.status).value,step:_o('step',__l.step).value,style:_o('style',__l.style).value,type:'number',value:_o('value',__l.value).value,width:_o('width',__l.width).value},ref:'input',tag:'Input',type:4},$0,{$slot_append:function(__j,__k){_j('$slot_append',__j)},$slot_children:function(__j,__k){_o('showButton',__l.showButton).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_g('click','up','click','','up'),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4}});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_g('click','down','click','','down'),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}})}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}},$slot_prepend:function(__j,__k){_j('$slot_prepend',__j)}})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1},$5={className:'bell-input-number-actions'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=__k[__k.length]=_b({context:_x,events:{blur:_f('blur','handleBlur()','blur','',_x.handleBlur,$0,$2),compositionend:_f('compositionend','handleCompositionEnd()','compositionend','',_x.handleCompositionEnd,$0,$2),compositionstart:_f('compositionstart','handleCompositionStart()','compositionstart','',_x.handleCompositionStart,$0,$2),down:_f('down','handleDown()','down','',_x.handleDown,$0,$2),enter:_f('enter','handleEnter()','enter','',_x.handleEnter,$0,$2),focus:_f('focus','handleFocus()','focus','',_x.handleFocus,$0,$2),input:_f('input','handleInput()','input','',_x.handleInput,$0,$2),keydown:_f('keydown','handleKeydown()','keydown','',_x.handleKeydown,$0,$2),keyup:_f('keyup','handleKeyup()','keyup','',_x.handleKeyup,$0,$2),up:_f('up','handleUp()','up','',_x.handleUp,$0,$2)},isComponent:$2,props:{autoFocus:_o('autoFocus',__l.autoFocus).value,block:_o('block',__l.block).value,className:_o('customClassName',__l.customClassName).value,disabled:_o('disabled',__l.disabled).value,placeholder:_o('placeholder',__l.placeholder).value,readOnly:_o('readOnly',__l.readOnly).value,size:_o('size',__l.size).value,status:_o('status',__l.status).value,style:_o('style',__l.style).value,value:_o('value',__l.value).value,width:_o('width',__l.width).value},ref:'input',tag:'Input',type:4},$0,{$slot_append:function(__j,__k){_j('$slot_append',__j)},$slot_children:function(__j,__k){__j[__j.length]={context:_x,nativeProps:{className:'bell-input-number-el',max:_o('max',__l.max).value,min:_o('min',__l.min).value,step:_o('step',__l.step).value,type:'number',value:_o('value',__l.value).value},ref:'numberInput',tag:'input',type:3};_o('showStep',__l.showStep).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('upDisabled',__l.upDisabled).value?_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-disabled','className'):(_c(__i,'nativeProps','bell-input-number-up bell-input-number-up-enabled','className'),_c(__i,'events',_f('click','handleUp()','click','',_x.handleUp),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-up-icon',name:'arrow-up-s-line',size:'0'},tag:'Icon',type:4}});__j[__j.length]=_a({context:_x,tag:'div',type:3},function(__i){_o('downDisabled',__l.downDisabled).value?_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-disabled','className'):(_c(__i,'nativeProps','bell-input-number-down bell-input-number-down-enabled','className'),_c(__i,'events',_f('click','handleDown()','click','',_x.handleDown),'click'))},function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-input-number-down-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}})}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}},$slot_prepend:function(__j,__k){_j('$slot_prepend',__j)}})}})();
 
 /***/ }),
 /* 15 */
@@ -1716,7 +1716,6 @@ var Input_default = /*#__PURE__*/__webpack_require__.n(Input);
 
 
 var TEXT_TYPE_PASSWORD = 'password';
-var TEXT_TYPE_NUMBER = 'number';
 var TEXT_TYPE_TEXT = 'text';
 /* harmony default export */ var input_Input = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Input_default.a,
@@ -1730,7 +1729,7 @@ var TEXT_TYPE_TEXT = 'text';
             value: RAW_DEFAULT,
         },
         type: {
-            type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_NUMBER, TEXT_TYPE_PASSWORD]),
+            type: oneOf([TEXT_TYPE_TEXT, TEXT_TYPE_PASSWORD]),
             value: TEXT_TYPE_TEXT,
         },
         status: {
@@ -1770,15 +1769,6 @@ var TEXT_TYPE_TEXT = 'text';
             type: RAW_BOOLEAN,
         },
         maxLength: {
-            type: RAW_NUMERIC,
-        },
-        step: {
-            type: RAW_NUMERIC,
-        },
-        min: {
-            type: RAW_NUMERIC,
-        },
-        max: {
             type: RAW_NUMERIC,
         },
         width: {
@@ -1869,12 +1859,16 @@ var TEXT_TYPE_TEXT = 'text';
                     });
                     break;
                 case 38:
+                    // 避免光标跑到最前面
+                    event.prevent();
                     me.fire({
                         type: 'up',
                         ns: 'input',
                     });
                     break;
                 case 40:
+                    // 避免光标跑到最后面
+                    event.prevent();
                     me.fire({
                         type: 'down',
                         ns: 'input',
@@ -1915,10 +1909,40 @@ var TEXT_TYPE_TEXT = 'text';
 var InputNumber = __webpack_require__(14);
 var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
 
+// CONCATENATED MODULE: ./src/component/input-number/util.ts
+// 数字键 48-57
+// 大键盘 .(190) -(189)
+// 小键盘 .(110) -(109)
+// 删除键 8
+// shift 16
+// ctrl 17
+// alt 18
+// capslock 20
+// cmd 91、93
+// 方向键 37-40
+function isHelper(keyCode) {
+    return keyCode >= 37 && keyCode <= 40
+        || keyCode >= 16 && keyCode <= 18
+        || keyCode === 8
+        || keyCode === 20
+        || keyCode === 91
+        || keyCode === 93;
+}
+function isDot(keyCode) {
+    return keyCode === 110 || keyCode === 190;
+}
+function isMinus(keyCode) {
+    return keyCode === 109 || keyCode === 189;
+}
+function isNumber(keyCode) {
+    return keyCode >= 48 && keyCode <= 57;
+}
+
 // CONCATENATED MODULE: ./src/component/input-number/InputNumber.ts
 
 
 // import './style/InputNumber.styl'
+
 
 
 
@@ -1947,7 +1971,10 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
             type: RAW_NUMERIC,
             value: 1,
         },
-        showButton: {
+        precision: {
+            type: RAW_NUMERIC,
+        },
+        showStep: {
             type: RAW_BOOLEAN,
         },
         autoFocus: {
@@ -1978,7 +2005,7 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
     data: function (options) {
         var props = options.props || {};
         return {
-            isFocus: FALSE,
+            isComposition: FALSE,
             inputStringValue: util_toString(props.value),
         };
     },
@@ -1991,35 +2018,36 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
             }
             return classNames.join(' ');
         },
+        customPrecision: function () {
+            return toNumber(this.get('precision'), -1);
+        },
+        customMin: function () {
+            return toNumber(this.get('min'), Number.MIN_VALUE);
+        },
+        customMax: function () {
+            return toNumber(this.get('max'), Number.MAX_VALUE);
+        },
         upDisabled: function () {
             if (this.get('disabled') || this.get('readOnly')) {
                 return TRUE;
             }
-            var max = toNumber(this.get('max'), FALSE);
-            return max !== FALSE
-                && max - this.get('value') < this.get('step');
+            return this.get('customMax') - this.get('value') < this.get('step');
         },
         downDisabled: function () {
             if (this.get('disabled') || this.get('readOnly')) {
                 return TRUE;
             }
-            var min = toNumber(this.get('min'), FALSE);
-            return min !== FALSE
-                && this.get('value') - min < this.get('step');
+            return this.get('value') - this.get('customMin') < this.get('step');
         }
     },
     watchers: {
         value: function (value) {
-            if (this.get('isFocus')) {
-                return;
-            }
             this.updateInputValue(value);
         },
     },
     methods: {
         handleFocus: function (event) {
             event.stop();
-            this.set('isFocus', TRUE);
             this.fire({
                 type: 'focus',
                 ns: 'inputNumber',
@@ -2027,26 +2055,148 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         },
         handleBlur: function (event) {
             event.stop();
-            this.set('isFocus', FALSE);
-            this.fire('update');
+            this.correctValue();
             this.fire({
                 type: 'blur',
                 ns: 'inputNumber',
             });
         },
+        handleInput: function (event) {
+            event.stop();
+            if (this.get('isComposition')) {
+                return;
+            }
+            this.changeValue();
+        },
+        handleKeydown: function (event) {
+            event.stop();
+            if (this.get('isComposition')) {
+                return;
+            }
+            var _a = event.originalEvent, metaKey = _a.metaKey, ctrlKey = _a.ctrlKey, shiftKey = _a.shiftKey, keyCode = _a.keyCode;
+            // 组合键可放行
+            if (metaKey || ctrlKey || shiftKey || isHelper(keyCode)) {
+                return;
+            }
+            // 在这控制一些非法字符，可以避免光标因为重置 value 而跳到最后的问题
+            var textInputElement = this.getTextInput();
+            var isFirstChar = textInputElement.selectionStart === textInputElement.selectionEnd
+                && textInputElement.selectionStart === 0;
+            var inputStringValue = this.get('inputStringValue');
+            if (isFirstChar) {
+                if (inputStringValue.indexOf('-') < 0) {
+                    // 第一个字符，只能输入 - 和 数字
+                    if (isNumber(keyCode) || isMinus(keyCode)) {
+                        return;
+                    }
+                }
+                event.prevent();
+            }
+            else {
+                var dotIndex = inputStringValue.indexOf('.');
+                // 不在首位时，只能输入 . 和数字
+                if (isNumber(keyCode)) {
+                    var customPrecision = this.get('customPrecision');
+                    var precisionLength = dotIndex > 0 ? inputStringValue.substr(dotIndex + 1).length : 0;
+                    if (customPrecision >= 0 && precisionLength >= customPrecision) {
+                        event.prevent();
+                    }
+                }
+                else if (isDot(keyCode)) {
+                    if (dotIndex > 0) {
+                        event.prevent();
+                    }
+                }
+                else {
+                    event.prevent();
+                }
+            }
+        },
+        handleKeyup: function (event) {
+            event.stop();
+        },
         handleEnter: function (event) {
             event.stop();
-            this.fire('update');
+            this.correctValue();
             this.fire({
                 type: 'enter',
                 ns: 'inputNumber',
             });
+        },
+        handleUp: function (event) {
+            event.stop();
+            if (this.get('isComposition')) {
+                return;
+            }
+            var numberInputElement = this.getNumberInput();
+            numberInputElement.stepUp();
+            this.getTextInput().value = numberInputElement.value;
+            this.changeValue();
+        },
+        handleDown: function (event) {
+            event.stop();
+            if (this.get('isComposition')) {
+                return;
+            }
+            var numberInputElement = this.getNumberInput();
+            numberInputElement.stepDown();
+            this.getTextInput().value = numberInputElement.value;
+            this.changeValue();
+        },
+        handleCompositionStart: function (event) {
+            event.stop();
+            this.set('isComposition', TRUE);
+        },
+        handleCompositionEnd: function (event) {
+            event.stop();
+            this.set('isComposition', FALSE);
+            this.getTextInput().value = this.get('inputStringValue');
         },
         updateInputValue: function (value) {
             this.set({
                 inputStringValue: util_toString(value),
                 value: toNumber(value, value),
             });
+        },
+        changeValue: function () {
+            var textInputElement = this.getTextInput();
+            var oldStringValue = this.get('inputStringValue');
+            var newStringValue = textInputElement.value;
+            if (newStringValue !== oldStringValue
+                && newStringValue
+                && newStringValue !== '-'
+                && toNumber(newStringValue, FALSE) === FALSE) {
+                // 输入了错误字符
+                textInputElement.value = oldStringValue;
+                return;
+            }
+            var oldValue = this.get('value');
+            this.updateInputValue(newStringValue);
+            var newValue = this.get('value');
+            if (newValue !== oldValue) {
+                this.fireChange(newValue);
+            }
+        },
+        correctValue: function () {
+            var value = this.get('value');
+            var newValue = '';
+            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.number(value)) {
+                var min = this.get('customMin');
+                var max = this.get('customMax');
+                if (value < min) {
+                    newValue = min;
+                }
+                else if (value > max) {
+                    newValue = max;
+                }
+                else {
+                    return;
+                }
+            }
+            this.updateInputValue(newValue);
+            if (newValue !== value) {
+                this.fireChange(newValue);
+            }
         },
         fireChange: function (value) {
             this.fire({
@@ -2055,6 +2205,12 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
             }, {
                 value: value,
             });
+        },
+        getTextInput: function () {
+            return this.$refs.input.$refs.input;
+        },
+        getNumberInput: function () {
+            return this.$refs.numberInput;
         }
     },
     components: {
@@ -2062,53 +2218,10 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
         Input: input_Input,
     },
     afterMount: function () {
-        var inputElement = this.$refs.input.$refs.input;
         this.watch('inputStringValue', function (value) {
-            inputElement.value = value;
+            this.getTextInput().value = value;
+            this.getNumberInput().value = value;
         }, TRUE);
-        this
-            .on('input', function (event) {
-            event.stop();
-            var inputStringValue = inputElement.value;
-            var oldValue = this.get('value');
-            this.updateInputValue(inputStringValue);
-            var newValue = this.get('value');
-            if (newValue !== oldValue) {
-                this.fireChange(newValue);
-            }
-        })
-            .on('update', function (event) {
-            event.stop();
-            var value = this.get('value');
-            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.numeric(value)) {
-                return;
-            }
-            // input 控件如果输入了非数字值，会自动变成 ''
-            // 因此，当读值为 '' 时，需强制设值一次
-            var inputStringValue = this.get('inputStringValue');
-            if (!inputStringValue) {
-                inputElement.value = '';
-            }
-            var newValue = '';
-            this.updateInputValue(newValue);
-            if (newValue !== value) {
-                this.fireChange(newValue);
-            }
-        })
-            .on('up', function (event) {
-            // 阻止事件默认行为，避免光标的跳动
-            event.prevent();
-            event.stop();
-            inputElement.stepUp();
-            this.fire('input');
-        })
-            .on('down', function (event) {
-            // 阻止事件默认行为，避免光标的跳动
-            event.prevent();
-            event.stop();
-            inputElement.stepDown();
-            this.fire('input');
-        });
     }
 }));
 
@@ -8512,7 +8625,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.18.8";
+var version = "0.18.9";
 /**
  * 安装插件
  */

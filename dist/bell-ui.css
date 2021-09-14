@@ -9953,6 +9953,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-number {
   position: relative;
 }
+.bell-input-number-el {
+  display: none;
+}
 .bell-input-number-actions {
   position: absolute;
   top: 1px;

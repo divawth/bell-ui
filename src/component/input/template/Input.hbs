@@ -46,18 +46,6 @@ class="${prefix}input
         placeholder="{{placeholder}}"
       {{/if}}
 
-      {{#if step != null}}
-        step="{{step}}"
-      {{/if}}
-
-      {{#if min != null}}
-        min="{{min}}"
-      {{/if}}
-
-      {{#if max != null}}
-        max="{{max}}"
-      {{/if}}
-
       {{#if autoFocus}}
         autofocus
       {{/if}}
@@ -73,9 +61,11 @@ class="${prefix}input
       {{#if disabled}}
         disabled
       {{else}}
-        on-blur="handleBlur()"
         on-focus="handleFocus()"
+        on-blur="handleBlur()"
         on-input="input.input"
+        on-compositionstart="compositionstart.input"
+        on-compositionend="compositionend.input"
       {{/if}}
 
     >

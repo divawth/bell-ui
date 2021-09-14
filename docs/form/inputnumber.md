@@ -7,9 +7,10 @@ export default {
     min="1"
     max="100"
     step="0.01"
+    precision="2"
     model="value"
     placeholder="请输入..."
-    showButton
+    showStep
     on-focus="onFocus()"
     on-blur="onBlur()"
   />
@@ -44,7 +45,7 @@ export default {
     max="10"
     model="value"
     placeholder="请输入..."
-    showButton
+    showStep
   />
   `,
 }
@@ -60,7 +61,7 @@ export default {
       max="100"
       step="3"
       model="value"
-      showButton
+      showStep
     />
   `,
   data: {
@@ -262,10 +263,11 @@ value / `model` | 当前值 | numeric | - | -
 max | 最大值 | numeric | - | -
 min | 最小值 | numeric | - | -
 step | 每次改变的步进值 | numeric | - | `1`
+precision | 最大精度 | numeric | - | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 disabled | 是否禁用 | boolean | - | -
-showButton | 是否显示递增、递减按钮 | boolean | - | -
+showStep | 是否显示递增、递减按钮 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 autoFocus | 原生 `autofocus` 属性 | boolean | - | -
 readOnly | 原生 `readonly` 属性 | boolean | - | -
