@@ -9754,7 +9754,6 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 40px;
 }
 .bell-input-block {
-  display: block;
   width: 100%;
 }
 .bell-input-el {
@@ -9801,6 +9800,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-suffix {
   position: absolute;
   white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-input-prefix-icon-wrapper,
 .bell-input-suffix-icon-wrapper {
@@ -9837,6 +9840,10 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #f5f7fa;
   padding: 0 10px;
   white-space: nowrap;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-input-prepend .bell-select-button,
 .bell-input-append .bell-select-button,
@@ -9929,29 +9936,26 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
-.bell-input-default > .bell-input-number-actions {
+.bell-input-default .bell-input-number-actions {
   width: 22px;
 }
 .bell-input-default .bell-input-number-up,
 .bell-input-default .bell-input-number-down {
   line-height: 15px;
 }
-.bell-input-small > .bell-input-number-actions {
+.bell-input-small .bell-input-number-actions {
   width: 20px;
 }
 .bell-input-small .bell-input-number-up,
 .bell-input-small .bell-input-number-down {
   line-height: 11px;
 }
-.bell-input-large > .bell-input-number-actions {
+.bell-input-large .bell-input-number-actions {
   width: 26px;
 }
 .bell-input-large .bell-input-number-up,
 .bell-input-large .bell-input-number-down {
   line-height: 19px;
-}
-.bell-input-number {
-  position: relative;
 }
 .bell-input-number-el {
   display: none;
@@ -9989,6 +9993,12 @@ div::-webkit-scrollbar-thumb:hover {
   bottom: 0;
   border-top: 1px solid #dcdee2;
   border-bottom-right-radius: 4px;
+}
+.bell-input-with-append .bell-input-number-up {
+  border-top-right-radius: 0;
+}
+.bell-input-with-append .bell-input-number-down {
+  border-bottom-right-radius: 0;
 }
 .bell-input-number-up-icon,
 .bell-input-number-down-icon {

@@ -103,7 +103,9 @@ input-brand-style(style)
   )
 
 {$selector-prefix + '-input-block'}
-  ui-block()
+  // 这里不能 display block
+  // 因为依赖 inline-table 布局
+  width 100%
 
 {$selector-prefix + '-input-el'}
   ui-input()
@@ -118,6 +120,7 @@ input-brand-style(style)
 {$selector-prefix + '-input-suffix'}
   position absolute
   white-space nowrap
+  user-select none
 
 {$selector-prefix + '-input-prefix-icon-wrapper'},
 {$selector-prefix + '-input-suffix-icon-wrapper'}
@@ -152,6 +155,7 @@ input-brand-style(style)
   background-color $input-prepend-append-bg-color
   padding 0 $input-prepend-append-padding-horizontal
   white-space nowrap
+  user-select none
 
   {$selector-prefix + '-select-button'},
   {$selector-prefix + '-button-pure'}

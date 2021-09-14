@@ -5,7 +5,7 @@ import './component/notification';
 /**
  * 版本
  */
-export declare const version = "0.18.9";
+export declare const version = "0.19.0";
 /**
  * 安装插件
  */

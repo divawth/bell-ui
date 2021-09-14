@@ -118,13 +118,13 @@ export default Yox.define({
     customMin(): number {
       return toNumber(
         this.get('min'),
-        Number.MIN_VALUE
+        Number.NEGATIVE_INFINITY
       )
     },
     customMax(): number {
       return toNumber(
         this.get('max'),
-        Number.MAX_VALUE
+        Number.POSITIVE_INFINITY
       )
     },
     upDisabled(): boolean {

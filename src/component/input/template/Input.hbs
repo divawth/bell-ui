@@ -12,6 +12,9 @@ class="${prefix}input
 {{else}} ${prefix}input-has-value
 {{/if}}
 
+{{#if hasSlot('prepend')}} ${prefix}input-with-prepend{{/if}}
+{{#if hasSlot('append')}} ${prefix}input-with-append{{/if}}
+
 {{#if className}} {{className}}{{/if}}"
 
 {{#if width || style}}
@@ -110,6 +113,8 @@ class="${prefix}input
       </div>
     {{/if}}
 
+    <slot name="children" />
+
   </div>
 
   {{#if hasSlot('append')}}
@@ -117,7 +122,5 @@ class="${prefix}input
       <slot name="append" />
     </div>
   {{/if}}
-
-  <slot name="children" />
 
 </div>

@@ -70,36 +70,45 @@ export default {
 }
 ```
 
-> 隐藏按钮
-
-```js
-export default {
-  template: `
-    <InputNumber
-      model="value"
-    />
-  `,
-  data: {
-    value: 3
-  }
-}
-```
-
 > 前置/后置标签
 
 ```js
 export default {
   template: `
-    <InputNumber
-      model="value"
-    >
-      <template slot="prepend">
-        ￥
-      </template>
-      <template slot="append">
-        元
-      </template>
-    </InputNumber>
+    <div>
+      <InputNumber
+        model="value"
+        showStep
+        block
+      >
+        <template slot="prepend">
+          ￥
+        </template>
+      </InputNumber>
+      <br><br>
+      <InputNumber
+        model="value"
+        showStep
+        block
+      >
+        <template slot="append">
+          元
+        </template>
+      </InputNumber>
+      <br><br>
+      <InputNumber
+        model="value"
+        showStep
+        block
+      >
+        <template slot="prepend">
+          ￥
+        </template>
+        <template slot="append">
+          元
+        </template>
+      </InputNumber>
+    </div>
   `,
   data: {
     value: 3
