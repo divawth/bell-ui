@@ -1,67 +1,32 @@
-<div
-class="${prefix}input-number
-
-{{#if status}} ${prefix}input-number-{{status}}{{/if}}
-{{#if size}} ${prefix}input-number-{{size}}{{/if}}
-{{#if block}} ${prefix}input-number-block{{/if}}
-
-{{#if disabled}} ${prefix}input-number-disabled
-{{else}} ${prefix}input-number-enabled
-{{/if}}
-
-{{#if isFocus}} ${prefix}input-number-focus{{/if}}
-{{#if className}} {{className}}{{/if}}"
-
-{{#if width || style}}
-  style="{{#if width}}width: {{width}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}"
-{{/if}}
+<Input
+  ref="input"
+  type="number"
+  className="{{customClassName}}"
+  status="{{status}}"
+  size="{{size}}"
+  block="{{block}}"
+  step="{{step}}"
+  min="{{min}}"
+  max="{{max}}"
+  placeholder="{{placeholder}}"
+  value="{{value}}"
+  disabled="{{disabled}}"
+  autoFocus="{{autoFocus}}"
+  readOnly="{{readOnly}}"
+  width="{{width}}"
+  style="{{style}}"
+  on-focus="handleFocus()"
+  on-blur="handleBlur()"
+  on-enter="handleEnter()"
 >
-
-  <input
-    ref="input"
-    type="number"
-    class="${prefix}input-number-el"
-    step="{{step}}"
-
-    {{#if max != null}}
-      max="{{max}}"
-    {{/if}}
-
-    {{#if min != null}}
-      min="{{min}}"
-    {{/if}}
-
-    {{#if placeholder}}
-      placeholder="{{placeholder}}"
-    {{/if}}
-
-    {{#if disabled}}
-      disabled
-    {{/if}}
-
-    {{#if autoFocus}}
-      autofocus
-    {{/if}}
-
-    {{#if readOnly || !editable}}
-      readonly
-    {{else}}
-      on-blur="handleBlur()"
-      on-focus="handleFocus()"
-      on-input="handleInput()"
-      on-change="handleChange()"
-    {{/if}}
-  >
-
-  {{#if showButton && !disabled && !readOnly}}
+  {{#if showButton}}
     <div class="${prefix}input-number-actions">
       <div
         {{#if upDisabled}}
           class="${prefix}input-number-up ${prefix}input-number-up-disabled"
         {{else}}
           class="${prefix}input-number-up ${prefix}input-number-up-enabled"
-          on-click="handleUpClick()"
+          on-click="up"
         {{/if}}
       >
         <Icon
@@ -75,7 +40,7 @@ class="${prefix}input-number
           class="${prefix}input-number-down ${prefix}input-number-down-disabled"
         {{else}}
           class="${prefix}input-number-down ${prefix}input-number-down-enabled"
-          on-click="handleDownClick()"
+          on-click="down"
         {{/if}}
       >
         <Icon
@@ -87,4 +52,10 @@ class="${prefix}input-number
     </div>
   {{/if}}
 
-</div>
+  <template slot="prepend">
+    <slot name="prepend" />
+  </template>
+  <template slot="append">
+    <slot name="append" />
+  </template>
+</Input>

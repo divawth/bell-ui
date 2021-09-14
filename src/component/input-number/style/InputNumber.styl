@@ -3,30 +3,19 @@
 $input-number-size-hash = {
   default: {
     height: $height-default,
-    font-size: $font-size-default,
-    padding-horizontal: $padding-horizontal-default,
     actions-width: 22px,
   },
   small: {
     height: $height-small,
-    font-size: $font-size-small,
-    padding-horizontal: $padding-horizontal-small,
     actions-width: 20px,
   }
   large: {
     height: $height-large,
-    font-size: $font-size-large,
-    padding-horizontal: $padding-horizontal-large,
     actions-width: 26px,
   }
 }
 
 input-number-size-style(style)
-  ui-set('height', style['height'])
-
-  > {$selector-prefix + '-input-number-el'}
-    ui-set('font-size', style['font-size'])
-    ui-set('padding', 0 style['padding-horizontal'])
 
   > {$selector-prefix + '-input-number-actions'}
     ui-set('width', style['actions-width'])
@@ -35,74 +24,21 @@ input-number-size-style(style)
   {$selector-prefix + '-input-number-down'}
     ui-set('line-height', 0.5 * (style['height'] - 2))
 
-input-number-brand-style(style)
-  &{$selector-prefix + '-input-number-enabled'}
-    ui-set('border-color', style['color'])
 
-    &:hover
-      ui-set('border-color', style['color'])
-
-    &{$selector-prefix + '-input-number-focus'}
-      ui-set('border-color', style['color'])
-
-      if $ui-shadow-radius > 0
-        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
-
-{$selector-prefix + '-input-number'}
-  position relative
-  box-sizing border-box
-  border-radius $border-radius-default
-  display inline-block
-  border 1px solid $brand-border
-  width $ui-form-element-width
-  overflow hidden
-  vertical-align middle
-  transition border-color .3s, box-shadow .3s
+{$selector-prefix + '-input'}
   ui-connect(
     hash: $input-number-size-hash,
     each: input-number-size-style
   )
-  ui-connect(
-    hash: $status-brand-hash,
-    each: input-number-brand-style
-  )
 
-  + {$selector-prefix + '-input-number'}
-    margin-left $ui-horizontal-gap
-
-{$selector-prefix + '-input-number-block'}
-  ui-block()
-
-{$selector-prefix + '-input-number-disabled'}
-  border-color $brand-border
-
-{$selector-prefix + '-input-number-el'}
-  outline none
-  border 0
-  width 100%
-  height 100%
-  text-align left
-  background-color $brand-bg
-  color $brand-content
-  box-sizing border-box
-  appearance textfield
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button
-    appearance none
-
-  ui-placeholder($brand-placeholder)
-
-  &:disabled
-    background-color $brand-bg-disabled
-    color $brand-disabled
-    ui-disabled()
+{$selector-prefix + '-input-number'}
+  position relative
 
 {$selector-prefix + '-input-number-actions'}
   position absolute
-  top 0
-  bottom 0
-  right 0
+  top 1px
+  bottom 1px
+  right 1px
   opacity 0
   user-select none
   transition opacity .3s
@@ -122,10 +58,12 @@ input-number-brand-style(style)
 
 {$selector-prefix + '-input-number-up'}
   top 0
+  border-top-right-radius $border-radius-default
 
 {$selector-prefix + '-input-number-down'}
   bottom 0
   border-top 1px solid $brand-border
+  border-bottom-right-radius $border-radius-default
 
 {$selector-prefix + '-input-number-up-icon'},
 {$selector-prefix + '-input-number-down-icon'}
@@ -144,14 +82,8 @@ input-number-brand-style(style)
   color $brand-disabled
   ui-disabled()
 
-{$selector-prefix + '-input-number-enabled'}:hover
-  border-color $brand-primary
+{$selector-prefix + '-input-enabled'}:hover
 
   {$selector-prefix + '-input-number-actions'}
     opacity 1
 
-{$selector-prefix + '-input-number-focus'}
-  border-color $brand-primary
-
-  if $ui-shadow-radius > 0
-    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

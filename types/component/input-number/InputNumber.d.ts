@@ -1,27 +1,21 @@
+import { CustomEventInterface, YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
+    customClassName: unknown;
     upDisabled: unknown;
     downDisabled: unknown;
 }, {
     value: unknown;
 }, unknown, {
-    handleUpClick(): void;
-    handleDownClick(): void;
-    handleFocus(): void;
-    handleBlur(): void;
-    handleEnterPress(): void;
-    handleInput(): void;
-    handleChange(): void;
+    handleFocus(event: CustomEventInterface): void;
+    handleBlur(event: CustomEventInterface): void;
+    handleEnter(event: CustomEventInterface): void;
     updateInputValue(value: any): void;
     fireChange(value: any): void;
 }> & ThisType<{
-    handleUpClick(): void;
-    handleDownClick(): void;
-    handleFocus(): void;
-    handleBlur(): void;
-    handleEnterPress(): void;
-    handleInput(): void;
-    handleChange(): void;
+    handleFocus(event: CustomEventInterface): void;
+    handleBlur(event: CustomEventInterface): void;
+    handleEnter(event: CustomEventInterface): void;
     updateInputValue(value: any): void;
     fireChange(value: any): void;
-} & import("yox").YoxInterface>;
+} & YoxInterface>;
 export default _default;

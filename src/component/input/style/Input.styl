@@ -108,6 +108,12 @@ input-brand-style(style)
 {$selector-prefix + '-input-el'}
   ui-input()
 
+  appearance textfield
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button
+    appearance none
+
 {$selector-prefix + '-input-prefix'},
 {$selector-prefix + '-input-suffix'}
   position absolute

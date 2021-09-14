@@ -46,6 +46,18 @@ class="${prefix}input
         placeholder="{{placeholder}}"
       {{/if}}
 
+      {{#if step != null}}
+        step="{{step}}"
+      {{/if}}
+
+      {{#if min != null}}
+        min="{{min}}"
+      {{/if}}
+
+      {{#if max != null}}
+        max="{{max}}"
+      {{/if}}
+
       {{#if autoFocus}}
         autofocus
       {{/if}}
@@ -63,6 +75,7 @@ class="${prefix}input
       {{else}}
         on-blur="handleBlur()"
         on-focus="handleFocus()"
+        on-input="input.input"
       {{/if}}
 
     >
@@ -114,5 +127,7 @@ class="${prefix}input
       <slot name="append" />
     </div>
   {{/if}}
+
+  <slot name="children" />
 
 </div>

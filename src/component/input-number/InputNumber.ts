@@ -1,25 +1,23 @@
-import Yox, { Listener } from 'yox'
+import Yox, { CustomEventInterface, YoxInterface } from 'yox'
 
 import template from './template/InputNumber.hbs'
 // import './style/InputNumber.styl'
 
 import Icon from '../icon/Icon'
+import Input from '../input/Input'
 
 import {
   TRUE,
   FALSE,
-  DOCUMENT,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_SIZE_ARRAY,
   RAW_DEFAULT,
-  RAW_EVENT_KEYDOWN,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
-  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -55,13 +53,8 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 1,
     },
-    editable: {
-      type: RAW_BOOLEAN,
-      value: TRUE,
-    },
     showButton: {
       type: RAW_BOOLEAN,
-      value: TRUE,
     },
     autoFocus: {
       type: RAW_BOOLEAN,
@@ -98,12 +91,26 @@ export default Yox.define({
   },
 
   computed: {
+    customClassName(): string {
+      const classNames = ['${prefix}input-number']
+      const className = this.get('className')
+      if (className) {
+        classNames.push(className)
+      }
+      return classNames.join(' ')
+    },
     upDisabled(): boolean {
+      if (this.get('disabled') || this.get('readOnly')) {
+        return TRUE
+      }
       const max = toNumber(this.get('max'), FALSE)
       return max !== FALSE
         && max - this.get('value') < this.get('step')
     },
     downDisabled(): boolean {
+      if (this.get('disabled') || this.get('readOnly')) {
+        return TRUE
+      }
       const min = toNumber(this.get('min'), FALSE)
       return min !== FALSE
         && this.get('value') - min < this.get('step')
@@ -120,69 +127,30 @@ export default Yox.define({
   },
 
   methods: {
-    handleUpClick() {
-      const inputElement = this.$refs.input as HTMLInputElement
-      inputElement.stepUp()
-      this.handleInput()
-    },
-    handleDownClick() {
-      const inputElement = this.$refs.input as HTMLInputElement
-      inputElement.stepDown()
-      this.handleInput()
-    },
-    handleFocus() {
+    handleFocus(event: CustomEventInterface) {
+      event.stop()
       this.set('isFocus', TRUE)
       this.fire({
         type: 'focus',
         ns: 'inputNumber',
       })
     },
-    handleBlur() {
+    handleBlur(event: CustomEventInterface) {
+      event.stop()
       this.set('isFocus', FALSE)
+      this.fire('update')
       this.fire({
         type: 'blur',
         ns: 'inputNumber',
       })
     },
-    handleEnterPress() {
+    handleEnter(event: CustomEventInterface) {
+      event.stop()
+      this.fire('update')
       this.fire({
         type: 'enter',
         ns: 'inputNumber',
       })
-      this.handleChange()
-    },
-    handleInput() {
-
-      const inputElement = this.$refs.input as HTMLInputElement
-      const inputStringValue = inputElement.value
-
-      const oldValue = this.get('value')
-
-      this.updateInputValue(inputStringValue)
-
-      const newValue = this.get('value')
-
-      if (newValue !== oldValue) {
-        this.fireChange(newValue)
-      }
-
-    },
-    handleChange() {
-
-      const value = this.get('value')
-
-      if (Yox.is.numeric(value)) {
-        return
-      }
-
-      const newValue = ''
-
-      this.updateInputValue(newValue)
-
-      if (newValue !== value) {
-        this.fireChange(newValue)
-      }
-
     },
 
     updateInputValue(value: any) {
@@ -208,15 +176,14 @@ export default Yox.define({
 
   components: {
     Icon,
+    Input,
   },
 
   afterMount() {
 
-    const me = this
+    const inputElement = (this.$refs.input as YoxInterface).$refs.input as HTMLInputElement
 
-    const inputElement = me.$refs.input as HTMLInputElement
-
-    me.watch(
+    this.watch(
       'inputStringValue',
       function (value) {
         inputElement.value = value
@@ -224,39 +191,81 @@ export default Yox.define({
       TRUE
     )
 
-    const onKeydown: Listener = function (event) {
-      if (!me.get('isFocus')) {
-        return
-      }
-      // 阻止事件默认行为，避免光标的跳动
-      switch ((event.originalEvent as KeyboardEvent).keyCode) {
-        case 13:
-          me.handleEnterPress()
-          break
-        case 38:
-          me.handleUpClick()
-          event.prevent()
-          break
-        case 40:
-          me.handleDownClick()
-          event.prevent()
-          break
-      }
-    }
+    this
+    .on(
+      'input',
+      function (event: CustomEventInterface) {
 
-    Yox.dom.on(
-      DOCUMENT,
-      RAW_EVENT_KEYDOWN,
-      onKeydown
+        event.stop()
+
+        const inputStringValue = inputElement.value
+        const oldValue = this.get('value')
+
+        this.updateInputValue(inputStringValue)
+
+        const newValue = this.get('value')
+
+        if (newValue !== oldValue) {
+          this.fireChange(newValue)
+        }
+
+      }
     )
+    .on(
+      'update',
+      function (event: CustomEventInterface) {
 
-    const onDestroy = function (component) {
-      if (component === me) {
-        Yox.dom.off(DOCUMENT, RAW_EVENT_KEYDOWN, onKeydown)
-        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, onDestroy)
+        event.stop()
+
+        const value = this.get('value')
+
+        if (Yox.is.numeric(value)) {
+          return
+        }
+
+        // input 控件如果输入了非数字值，会自动变成 ''
+        // 因此，当读值为 '' 时，需强制设值一次
+        const inputStringValue = this.get('inputStringValue')
+        if (!inputStringValue) {
+          inputElement.value = ''
+        }
+
+        const newValue = ''
+
+        this.updateInputValue(newValue)
+
+        if (newValue !== value) {
+          this.fireChange(newValue)
+        }
+
       }
-    }
-    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, onDestroy)
+    )
+    .on(
+      'up',
+      function (event: CustomEventInterface) {
+
+        // 阻止事件默认行为，避免光标的跳动
+        event.prevent()
+        event.stop()
+
+        inputElement.stepUp()
+        this.fire('input')
+
+      }
+    )
+    .on(
+      'down',
+      function (event: CustomEventInterface) {
+
+        // 阻止事件默认行为，避免光标的跳动
+        event.prevent()
+        event.stop()
+
+        inputElement.stepDown()
+        this.fire('input')
+
+      }
+    )
 
   }
 })
