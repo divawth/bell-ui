@@ -1,16 +1,13 @@
 <div
 class="${prefix}avatar
-{{#if size && !customSize}} ${prefix}avatar-{{size}}{{/if}}
 {{#if shape}} ${prefix}avatar-{{shape}}{{/if}}
 {{#if src}} ${prefix}avatar-image{{/if}}
 {{#if clickable}} ${prefix}avatar-clickable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if backgroundColor || customSize || style}}
-  style="{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
-  {{#if customSize}}width: {{customSize}}px;height: {{customSize}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}"
-{{/if}}
+style="width: {{sizeValue}}px;height: {{sizeValue}}px;line-height: {{sizeValue}}px;
+{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
+{{#if style}}{{style}}{{/if}}"
 
 {{#if clickable}}
   on-click="click"
@@ -20,7 +17,7 @@ class="${prefix}avatar
   {{#if url || src}}
     <img
       {{#if url}}
-        src="{{formatUrl ? formatUrl({ url: url, width: customSize, height: customSize, responsive: true }) : url}}"
+        src="{{formatUrl ? formatUrl({ url: url, width: sizeValue, height: sizeValue, responsive: true }) : url}}"
       {{else}}
         src="{{src}}"
       {{/if}}

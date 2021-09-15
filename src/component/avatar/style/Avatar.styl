@@ -2,23 +2,6 @@
 
 $avatar-bg-color = #ccc
 
-$avatar-size-hash = {
-  default: {
-    size: $height-default,
-  },
-  small: {
-    size: $height-small,
-  },
-  large: {
-    size: $height-large,
-  }
-}
-
-avatar-size-style(style)
-  ui-set('width', style['size'])
-  ui-set('height', style['size'])
-  ui-set('line-height', style['size'])
-
 {$selector-prefix + '-avatar'}
   overflow hidden
   display inline-block
@@ -27,11 +10,6 @@ avatar-size-style(style)
   background-color $avatar-bg-color
   border-radius $border-radius-default
   transition background-color .2s
-
-  ui-connect(
-    hash: $avatar-size-hash,
-    each: avatar-size-style
-  )
 
   + {$selector-prefix + '-avatar'}
     margin-left $ui-horizontal-gap

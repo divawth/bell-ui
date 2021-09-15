@@ -11,6 +11,8 @@ import {
   RAW_FUNCTION,
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
+  RAW_SMALL,
+  RAW_LARGE,
 } from '../constant'
 
 import {
@@ -20,6 +22,10 @@ import {
 } from '../util'
 
 const SPACE_HORIZONTAL = 8
+
+const SIZE_DEFAULT = 32
+const SIZE_SMALL = 24
+const SIZE_LARGE = 40
 
 export default Yox.define({
 
@@ -74,8 +80,19 @@ export default Yox.define({
   },
 
   computed: {
-    customSize() {
-      return toNumber(this.get('size'))
+    sizeValue() {
+      const size = this.get('size')
+      const value = toNumber(size)
+      if (value > 0) {
+        return value
+      }
+      if (size === RAW_SMALL) {
+        return SIZE_SMALL
+      }
+      if (size === RAW_LARGE) {
+        return SIZE_LARGE
+      }
+      return SIZE_DEFAULT
     }
   },
 
