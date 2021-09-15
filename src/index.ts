@@ -19,8 +19,9 @@ import Radio from './component/radio/Radio'
 import RadioGroup from './component/radio/RadioGroup'
 import Checkbox from './component/checkbox/Checkbox'
 import CheckboxGroup from './component/checkbox/CheckboxGroup'
-import Switch from './component/switch/Switch'
 import Slider from './component/slider/Slider'
+import Space from './component/space/Space'
+import Switch from './component/switch/Switch'
 import Select from './component/select/Select'
 import Option from './component/select/Option'
 import OptionGroup from './component/select/OptionGroup'
@@ -113,8 +114,9 @@ const component = {
   RadioGroup,
   Checkbox,
   CheckboxGroup,
-  Switch,
   Slider,
+  Space,
+  Switch,
   Select,
   Option,
   OptionGroup,

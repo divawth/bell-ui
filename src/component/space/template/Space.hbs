@@ -1,0 +1,16 @@
+<div
+class="${prefix}space
+{{#if direction}} ${prefix}space-{{direction}}{{/if}}
+{{#if align}} ${prefix}space-align-{{align}}{{/if}}
+{{#if autoWrap}} ${prefix}space-auto-wrap{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if sizeValue || style}}
+  style="{{#if sizeValue}}gap: {{sizeValue}};{{/if}}
+  {{#if style}}{{style}}{{/if}}"
+{{/if}}
+>
+
+  <slot name="children" />
+
+</div>

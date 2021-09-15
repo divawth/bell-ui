@@ -16,9 +16,6 @@ $checkbox-indeterminate-height = 1px
   display inline-block
   user-select none
   box-sizing border-box
-  vertical-align middle
-  height $height-default
-  line-height $height-default
 
   + {$selector-prefix + '-checkbox'}
     margin-left $checkbox-gap-horizontal
@@ -28,6 +25,9 @@ $checkbox-indeterminate-height = 1px
   color $brand-content
   font-size $font-size-default
   padding-left $font-size-default + $ui-icon-text-gap
+  vertical-align middle
+  height $height-default
+  line-height $height-default
 
   > {$selector-prefix + '-checkbox-icon'}
     position absolute

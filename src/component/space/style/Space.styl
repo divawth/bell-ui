@@ -1,0 +1,39 @@
+@import '../../../env'
+
+{$selector-prefix + '-space'}
+  display inline-flex
+
+{$selector-prefix + '-space-horizontal'}
+  gap $ui-horizontal-gap
+
+  > {$selector-prefix + '-tag'},
+  > {$selector-prefix + '-input'},
+  > {$selector-prefix + '-button'},
+  > {$selector-prefix + '-select'},
+  > {$selector-prefix + '-radio'},
+  > {$selector-prefix + '-checkbox'},
+  > {$selector-prefix + '-switch'},
+  > {$selector-prefix + '-avatar'},
+  > {$selector-prefix + '-thumbnail'}
+    margin-left 0
+
+{$selector-prefix + '-space-vertical'}
+  flex-direction column
+  gap $ui-vertical-gap
+
+  > {$selector-prefix + '-button-block'},
+  > {$selector-prefix + '-select-block'}
+    margin-top 0
+
+{$selector-prefix + '-space-align-center'}
+  align-items center
+
+{$selector-prefix + '-space-align-start'}
+  align-items flex-start
+
+{$selector-prefix + '-space-align-end'}
+  align-items flex-end
+
+{$selector-prefix + '-space-auto-wrap'}
+  flex-wrap wrap
+  gap $ui-vertical-gap $ui-horizontal-gap
