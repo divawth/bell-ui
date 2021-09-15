@@ -7227,21 +7227,6 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
   transition: background-color 0.2s;
 }
-.bell-avatar-default {
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-}
-.bell-avatar-small {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-}
-.bell-avatar-large {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
 .bell-avatar + .bell-avatar {
   margin-left: 8px;
 }
@@ -8097,9 +8082,6 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
   box-sizing: border-box;
-  vertical-align: middle;
-  height: 32px;
-  line-height: 32px;
 }
 .bell-checkbox + .bell-checkbox {
   margin-left: 16px;
@@ -8109,6 +8091,9 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   font-size: 14px;
   padding-left: 19px;
+  vertical-align: middle;
+  height: 32px;
+  line-height: 32px;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
   position: absolute;
@@ -10991,9 +10976,6 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
   box-sizing: border-box;
-  vertical-align: middle;
-  height: 32px;
-  line-height: 32px;
 }
 .bell-radio + .bell-radio {
   margin-left: 16px;
@@ -11003,6 +10985,9 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   font-size: 14px;
   padding-left: 19px;
+  vertical-align: middle;
+  height: 32px;
+  line-height: 32px;
 }
 .bell-radio-with-label > .bell-radio-icon {
   position: absolute;
@@ -12128,7 +12113,9 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-  margin-right: 8px;
+}
+.bell-tag + .bell-tag {
+  margin-left: 8px;
 }
 .bell-tag-checked {
   background-color: #dcdee2;
@@ -12867,6 +12854,44 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-upload > form {
   display: none;
+}
+.bell-space {
+  display: inline-flex;
+}
+.bell-space > .bell-tag,
+.bell-space > .bell-input,
+.bell-space > .bell-button,
+.bell-space > .bell-select,
+.bell-space > .bell-radio,
+.bell-space > .bell-checkbox,
+.bell-space > .bell-switch,
+.bell-space > .bell-avatar,
+.bell-space > .bell-thumbnail {
+  margin-left: 0;
+}
+.bell-space-horizontal {
+  gap: 8px;
+}
+.bell-space-vertical {
+  flex-direction: column;
+  gap: 10px;
+}
+.bell-space-vertical > .bell-button-block,
+.bell-space-vertical > .bell-select-block {
+  margin-top: 0;
+}
+.bell-space-align-center {
+  align-items: center;
+}
+.bell-space-align-start {
+  align-items: flex-start;
+}
+.bell-space-align-end {
+  align-items: flex-end;
+}
+.bell-space-auto-wrap {
+  flex-wrap: wrap;
+  gap: 10px 8px;
 }
 
 

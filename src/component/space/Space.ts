@@ -7,8 +7,6 @@ import {
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
-  RAW_HORIZONTAL,
-  RAW_VERTICAL,
   RAW_ARRAY,
   NULL,
 } from '../constant'
@@ -32,9 +30,8 @@ export default Yox.define({
       type: oneOf(['start', 'end', 'center', 'baseline']),
       value: 'center',
     },
-    direction: {
-      type: oneOf([RAW_HORIZONTAL, RAW_VERTICAL]),
-      value: RAW_HORIZONTAL,
+    vertical: {
+      type: RAW_BOOLEAN,
     },
     autoWrap: {
       type: RAW_BOOLEAN,

@@ -3,9 +3,6 @@
 {$selector-prefix + '-space'}
   display inline-flex
 
-{$selector-prefix + '-space-horizontal'}
-  gap $ui-horizontal-gap
-
   > {$selector-prefix + '-tag'},
   > {$selector-prefix + '-input'},
   > {$selector-prefix + '-button'},
@@ -16,6 +13,9 @@
   > {$selector-prefix + '-avatar'},
   > {$selector-prefix + '-thumbnail'}
     margin-left 0
+
+{$selector-prefix + '-space-horizontal'}
+  gap $ui-horizontal-gap
 
 {$selector-prefix + '-space-vertical'}
   flex-direction column

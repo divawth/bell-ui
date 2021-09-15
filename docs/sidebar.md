@@ -8,6 +8,7 @@
   - [Collapse 折叠面板](layout/collapse)
   - [Divider 分割线](layout/divider)
   - [Layout 布局](layout/layout)
+  - [Space 间距](layout/space)
 - [导航](navigation)
   - [Menu 导航菜单](navigation/menu)
   - [Tabs 标签页](navigation/tabs)

@@ -150,11 +150,11 @@ value / `model` | 滑块选定的值 | numeric | - | 0
 max | 最大值 | numeric | - | 100
 min | 最小值 | numeric | - | 0
 step | 步长 | numeric | - | 1
-showStops | 是否显示断点 | boolean | - | `false`
-showTooltip | 是否显示 tooltip | boolean | - | `false`
-vertical | 是否垂直 | boolean | - | `false`
-disabled | 是否禁用 | boolean | - | `false`
-block | 是否为块级元素 | boolean | - | `false`
+showStops | 是否显示断点 | boolean | - | -
+showTooltip | 是否显示 tooltip | boolean | - | -
+vertical | 是否垂直 | boolean | - | -
+disabled | 是否禁用 | boolean | - | -
+block | 是否为块级元素 | boolean | - | -
 formatTooltip | 格式化 tooltip 内容 | Function | - | -
 width | 显示宽度 | numeric | - | -
 height | 显示高度 | numeric | - | -

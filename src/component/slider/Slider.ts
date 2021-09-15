@@ -50,23 +50,18 @@ export default Yox.define({
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     showStops: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     showTooltip: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     formatTooltip: {
       type: RAW_FUNCTION,

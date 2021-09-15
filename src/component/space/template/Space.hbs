@@ -1,6 +1,9 @@
 <div
 class="${prefix}space
-{{#if direction}} ${prefix}space-{{direction}}{{/if}}
+{{#if vertical}} ${prefix}space-vertical
+{{else}} ${prefix}space-horizontal
+{{/if}}
+
 {{#if align}} ${prefix}space-align-{{align}}{{/if}}
 {{#if autoWrap}} ${prefix}space-auto-wrap{{/if}}
 {{#if className}} {{className}}{{/if}}"
