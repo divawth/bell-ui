@@ -24,10 +24,10 @@ $checkbox-indeterminate-height = 1px
   position relative
   color $brand-content
   font-size $font-size-default
+  // 这里用多行的行高，可增大点击面积
+  line-height $ui-multiple-line-height
   padding-left $font-size-default + $ui-icon-text-gap
   vertical-align middle
-  height $height-default
-  line-height $height-default
 
   > {$selector-prefix + '-checkbox-icon'}
     position absolute
@@ -115,8 +115,8 @@ if $ui-shadow-radius > 0
 
 {$selector-prefix + '-checkbox-vertical'}
   > {$selector-prefix + '-checkbox'}
-    width 100%
-    display block
+    ui-block()
 
     + {$selector-prefix + '-checkbox'}
       margin-left 0
+      margin-top $ui-vertical-gap

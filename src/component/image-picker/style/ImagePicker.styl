@@ -1,6 +1,5 @@
 @import '../../../env'
 
-$image-picker-item-border-radius = 2px
 $image-picker-circle-size = 60px
 $image-picker-remove-icon-size = 18px
 $image-picker-append-icon-size = 30px
@@ -16,8 +15,8 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   box-sizing border-box
   position relative
   user-select none
-  if $image-picker-item-border-radius > 0
-    border-radius $image-picker-item-border-radius
+  if $border-radius-default > 0
+    border-radius $border-radius-default
 
 {$selector-prefix + '-image-picker-card'}
   box-shadow 0 0 1px rgba(0,0,0,0.4)
@@ -29,8 +28,8 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   width 100%
   height 100%
   object-fit cover
-  if $image-picker-item-border-radius > 0
-    border-radius $image-picker-item-border-radius
+  if $border-radius-default > 0
+    border-radius $border-radius-default
 
   ui-clickable()
 
@@ -41,8 +40,8 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   left 0
   right 0
   bottom 0
-  if $image-picker-item-border-radius > 0
-    border-radius $image-picker-item-border-radius
+  if $border-radius-default > 0
+    border-radius $border-radius-default
 
   {$selector-prefix + '-circle'}
     position absolute
@@ -53,12 +52,12 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
 
   {$selector-prefix + '-circle-content'}
     color #fff
-    font-size 12px
+    font-size $ui-font-size - 2
 
 {$selector-prefix + '-image-picker-image-size'}
   background-color $image-picker-mask-bg
   color #fff
-  font-size 12px
+  font-size $ui-font-size - 2
   padding $image-picker-image-size-padding
   white-space nowrap
   position absolute
@@ -88,6 +87,6 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
 
 {$selector-prefix + '-image-picker-extra'}
   color $brand-muted
-  font-size 12px
-  line-height 18px
+  font-size $ui-font-size - 2
+  line-height 1.5 * ($ui-font-size - 2)
   margin-top $ui-vertical-gap

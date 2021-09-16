@@ -1,5 +1,8 @@
 <div
 class="${prefix}form-item
+{{#if extra}} ${prefix}form-item-with-extra{{/if}}
+{{#if showItemMessage}} ${prefix}form-item-with-message{{/if}}
+{{#if labelAlign}} ${prefix}form-item-align-{{labelAlign}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -12,9 +15,8 @@ class="${prefix}form-item
       class="${prefix}form-item-label
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if itemLabelWidth || labelAlign}}
-        style="{{#if itemLabelWidth}}width: {{itemLabelWidth}}px;{{/if}}
-        {{#if labelAlign}}vertical-align: {{labelAlign}};{{/if}}"
+      {{#if itemLabelWidth}}
+        style="{{#if itemLabelWidth}}flex: 0 0 {{itemLabelWidth}}px;{{/if}}"
       {{/if}}
     >
       <slot name="label">
@@ -24,10 +26,18 @@ class="${prefix}form-item
 
     <div class="${prefix}form-item-wrapper">
 
-      <slot name="children" />
+      <div class="${prefix}form-item-controls">
+        <slot name="children" />
+      </div>
 
-      {{#if showMessage && itemMessage}}
-        <div class="${prefix}form-item-error">
+      {{#if extra}}
+        <div class="${prefix}form-item-extra">
+          {{extra}}
+        </div>
+      {{/if}}
+
+      {{#if showItemMessage}}
+        <div class="${prefix}form-item-message">
           {{itemMessage}}
         </div>
       {{/if}}
@@ -44,8 +54,14 @@ class="${prefix}form-item
     >
       <slot name="children" />
 
-      {{#if showMessage && itemMessage}}
-        <div class="${prefix}form-item-error">
+      {{#if extra}}
+        <div class="${prefix}form-item-extra">
+          {{extra}}
+        </div>
+      {{/if}}
+
+      {{#if showItemMessage}}
+        <div class="${prefix}form-item-message">
           {{itemMessage}}
         </div>
       {{/if}}

@@ -33,7 +33,6 @@ export default Yox.define({
     },
     showRequiredMark: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     labelAlign: {
       type: oneOf([RAW_TOP, RAW_BOTTOM, RAW_MIDDLE]),
@@ -43,6 +42,9 @@ export default Yox.define({
       value: TRUE,
     },
     message: {
+      type: RAW_STRING,
+    },
+    extra: {
       type: RAW_STRING,
     },
     className: {
@@ -66,6 +68,9 @@ export default Yox.define({
   computed: {
     itemMessage(): string {
       return this.get('error') || this.get('message')
+    },
+    showItemMessage(): string {
+      return this.get('showMessage') && this.get('itemMessage')
     }
   },
 

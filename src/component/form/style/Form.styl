@@ -2,9 +2,9 @@
 
 $form-item-vertical-gap = 26px
 $form-item-horizontal-gap = 16px
-$form-top-item-vertical-gap = 14px
 $form-item-label-wrapper-gap = 12px
-$form-item-error-gap = 4px
+$form-item-message-font-size = $ui-font-size - 2
+$form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-prefix + '-form'}
   color $brand-content
@@ -15,61 +15,77 @@ $form-item-error-gap = 4px
   {$selector-prefix + '-form-item-label'}
     padding-right $form-item-label-wrapper-gap
 
-  {$selector-prefix + '-form-item'} + {$selector-prefix + '-form-item'}
-    margin-top $form-item-vertical-gap
-
 {$selector-prefix + '-form-label-right'}
   {$selector-prefix + '-form-item-label'}
     text-align right
 
-{$selector-prefix + '-form-label-top'}
-  {$selector-prefix + '-form-item-label'},
-  {$selector-prefix + '-form-item-wrapper'}
-    display block
+{$selector-prefix + '-form-item-align-top'}
+  align-items flex-start
 
-  {$selector-prefix + '-form-item'} + {$selector-prefix + '-form-item'}
-    margin-top $form-top-item-vertical-gap
+{$selector-prefix + '-form-item-align-middle'}
+  align-items center
+
+{$selector-prefix + '-form-item-align-bottom'}
+  align-items flex-end
 
 {$selector-prefix + '-form-item-label-required'}
   &:before
-    content "*"
+    content '*'
     font-size 80%
     font-family SimSun
     color $brand-error
     margin-right $ui-icon-text-gap
 
 {$selector-prefix + '-form-item-label'}
-  display inline-block
+  display block
   font-size $ui-font-size
   height $height-default
   line-height $height-default
   box-sizing border-box
   white-space nowrap
-  vertical-align middle
 
 {$selector-prefix + '-form-item-wrapper'}
-  display inline-block
-  font-size 0
-  position relative
-  vertical-align middle
+  display block
+  flex 1
 
-{$selector-prefix + '-form-item-error'}
-  position absolute
-  top 100%
-  left 0
+{$selector-prefix + '-form-item-controls'}
+  display flex
+  align-items center
+  min-height $height-default
+
+{$selector-prefix + '-form-item-extra'},
+{$selector-prefix + '-form-item-message'}
+  font-size $form-item-message-font-size
+  line-height $form-item-message-line-height
+  margin 0.5 * ($form-item-vertical-gap - $form-item-message-line-height) 0
+
+{$selector-prefix + '-form-item-extra'}
+  color $brand-muted
+
+{$selector-prefix + '-form-item-message'}
   color $brand-error
-  font-size $ui-font-size - 2
-  margin-top $form-item-error-gap
-  white-space nowrap
 
 {$selector-prefix + '-form-inline'}
   {$selector-prefix + '-form-item'}
-    display inline-block
-    vertical-align middle
+    display inline-flex
+    vertical-align top
+    + {$selector-prefix + '-form-item'}
+      margin-left $form-item-horizontal-gap
 
+{$selector-prefix + '-form-block'}
+  {$selector-prefix + '-form-item'}
+    display flex
+    + {$selector-prefix + '-form-item'}
+      margin-top $form-item-vertical-gap
+
+  {$selector-prefix + '-form-item-with-extra'},
+  {$selector-prefix + '-form-item-with-message'}
     + {$selector-prefix + '-form-item'}
       margin-top 0
-      margin-left $form-item-horizontal-gap
+
+{$selector-prefix + '-form-label-top'}
+  {$selector-prefix + '-form-item'}
+    display block
 
 {$selector-prefix + '-form-colon'}
   {$selector-prefix + '-form-item-label'}:after

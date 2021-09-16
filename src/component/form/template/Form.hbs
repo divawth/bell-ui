@@ -1,6 +1,8 @@
 <div
 class="${prefix}form
-{{#if inline}} ${prefix}form-inline{{/if}}
+{{#if inline}} ${prefix}form-inline
+{{else}} ${prefix}form-block
+{{/if}}
 {{#if showColon}} ${prefix}form-colon{{/if}}
 {{#if labelAlign}} ${prefix}form-label-{{labelAlign}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
