@@ -7595,7 +7595,7 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             value: FALSE,
         },
         labelAlign: {
-            type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
+            type: oneOf([RAW_LEFT, RAW_RIGHT]),
             value: RAW_RIGHT,
         },
         labelWidth: {
@@ -8703,7 +8703,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.19.3";
+var version = "0.19.4";
 /**
  * 安装插件
  */

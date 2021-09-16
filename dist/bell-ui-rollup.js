@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.19.3
+ * bell-ui.js v0.19.4
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -6353,7 +6353,7 @@
               value: FALSE,
           },
           labelAlign: {
-              type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
+              type: oneOf([RAW_LEFT, RAW_RIGHT]),
               value: RAW_RIGHT,
           },
           labelWidth: {
@@ -7296,7 +7296,7 @@
   /**
    * 版本
    */
-  var version = "0.19.3";
+  var version = "0.19.4";
   /**
    * 安装插件
    */

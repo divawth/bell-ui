@@ -63,6 +63,8 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   position absolute
   right 0
   bottom 0
+  if $border-radius-default > 0
+    border-bottom-right-radius $border-radius-default
 
 {$selector-prefix + '-image-picker-remove-icon'}
   display none

@@ -10,11 +10,6 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   color $brand-content
   text-align left
 
-{$selector-prefix + '-form-label-left'},
-{$selector-prefix + '-form-label-right'}
-  {$selector-prefix + '-form-item-label'}
-    padding-right $form-item-label-wrapper-gap
-
 {$selector-prefix + '-form-label-right'}
   {$selector-prefix + '-form-item-label'}
     text-align right
@@ -41,6 +36,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   font-size $ui-font-size
   height $height-default
   line-height $height-default
+  padding-right $form-item-label-wrapper-gap
   box-sizing border-box
   white-space nowrap
 
@@ -51,6 +47,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 {$selector-prefix + '-form-item-controls'}
   display flex
   align-items center
+  font-size 0
   min-height $height-default
 
 {$selector-prefix + '-form-item-extra'},
@@ -83,10 +80,6 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   {$selector-prefix + '-form-item-with-message'}
     + {$selector-prefix + '-form-item'}
       margin-top 0
-
-{$selector-prefix + '-form-label-top'}
-  {$selector-prefix + '-form-item'}
-    display block
 
 {$selector-prefix + '-form-colon'}
   {$selector-prefix + '-form-item-label'}:after

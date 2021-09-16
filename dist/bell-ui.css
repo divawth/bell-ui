@@ -8962,6 +8962,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   right: 0;
   bottom: 0;
+  border-bottom-right-radius: 4px;
 }
 .bell-image-picker-remove-icon {
   display: none;
@@ -9494,10 +9495,6 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   text-align: left;
 }
-.bell-form-label-left .bell-form-item-label,
-.bell-form-label-right .bell-form-item-label {
-  padding-right: 12px;
-}
 .bell-form-label-right .bell-form-item-label {
   text-align: right;
 }
@@ -9522,6 +9519,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
   height: 32px;
   line-height: 32px;
+  padding-right: 12px;
   box-sizing: border-box;
   white-space: nowrap;
 }
@@ -9532,6 +9530,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-item-controls {
   display: flex;
   align-items: center;
+  font-size: 0;
   min-height: 32px;
 }
 .bell-form-item-extra,
@@ -9564,9 +9563,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-block .bell-form-item-with-extra + .bell-form-item,
 .bell-form-block .bell-form-item-with-message + .bell-form-item {
   margin-top: 0;
-}
-.bell-form-label-top .bell-form-item {
-  display: block;
 }
 .bell-form-colon .bell-form-item-label:after {
   content: ':';
@@ -10378,6 +10374,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-menu > .bell-dropdown {
   display: block;
+}
+.bell-sub-menu-title {
+  font-weight: bold;
 }
 .bell-menu-item,
 .bell-sub-menu,
@@ -11934,7 +11933,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-table-header td {
   color: #17233d;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.1429;
   font-weight: bold;
   white-space: nowrap;
