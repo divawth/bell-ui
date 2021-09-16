@@ -19,11 +19,11 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   vertical-align top
   margin-right $ui-horizontal-gap
   margin-bottom $ui-horizontal-gap
-
   if $image-picker-item-border-radius > 0
     border-radius $image-picker-item-border-radius
 
 {$selector-prefix + '-image-picker-card'}
+  box-shadow 0 0 1px rgba(0,0,0,0.4)
   &:hover
     {$selector-prefix + '-image-picker-remove-icon'}
       display block
@@ -44,7 +44,6 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   left 0
   right 0
   bottom 0
-
   if $image-picker-item-border-radius > 0
     border-radius $image-picker-item-border-radius
 
