@@ -66,11 +66,12 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   color $brand-error
 
 {$selector-prefix + '-form-inline'}
+  display flex
+  flex-wrap wrap
+  align-items flex-start
+  gap $form-item-horizontal-gap
   {$selector-prefix + '-form-item'}
     display inline-flex
-    vertical-align top
-    + {$selector-prefix + '-form-item'}
-      margin-left $form-item-horizontal-gap
 
 {$selector-prefix + '-form-block'}
   {$selector-prefix + '-form-item'}
