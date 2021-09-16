@@ -6,7 +6,7 @@ class="${prefix}image-picker
   style="{{style}}"
 {{/if}}
 >
-  <div class="${prefix}image-picker-wrapper">
+  <Space autoWrap>
     {{#each imageList:index}}
       <div class="${prefix}image-picker-item ${prefix}image-picker-card" style="width: {{~/customImageWidth}}px;height: {{~/customImageHeight}}px">
 
@@ -75,7 +75,7 @@ class="${prefix}image-picker
         />
       </Upload>
     {{/if}}
-  </div>
+  </Space>
 
   {{#if extra}}
     <div class="${prefix}image-picker-extra">

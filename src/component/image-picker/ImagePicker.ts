@@ -5,6 +5,7 @@ import template from './template/ImagePicker.hbs'
 
 import Icon from '../icon/Icon'
 import Upload from '../upload/Upload'
+import Space from '../space/Space'
 
 import {
   TRUE,
@@ -139,6 +140,7 @@ export default Yox.define({
   components: {
     Icon,
     Upload,
+    Space,
   },
 
   methods: {
