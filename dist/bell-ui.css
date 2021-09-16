@@ -7042,7 +7042,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   box-sizing: border-box;
   border-radius: 4px;
-  line-height: 1.57;
+  line-height: 1.5715;
   padding: 9px 16px;
   transition: opacity 0.3s;
 }
@@ -7440,7 +7440,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-breadcrumb {
   font-size: 14px;
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-breadcrumb-separator {
   -webkit-user-select: none;
@@ -7981,7 +7981,7 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-card-shadow-hover {
   transition: box-shadow 0.3s;
@@ -8012,12 +8012,12 @@ div::-webkit-scrollbar-thumb:hover {
   color: #17233d;
   font-size: 14px;
   font-weight: bold;
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-card-header-sub-title {
   color: #808695;
   font-size: 12px;
-  line-height: 1.15;
+  line-height: 1.1429;
   margin-top: 3px;
 }
 .bell-card-header-extra {
@@ -8044,7 +8044,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-card-media-title {
   font-size: 18px;
   color: #fbfbfb;
-  line-height: 1.15;
+  line-height: 1.1429;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -8054,7 +8054,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-card-media-sub-title {
   font-size: 12px;
   color: #ccc;
-  line-height: 1.15;
+  line-height: 1.1429;
   margin-top: 6px;
   max-width: 100%;
   overflow: hidden;
@@ -8066,7 +8066,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 24px 24px;
   font-size: 14px;
   color: #515a6e;
-  line-height: 1.57;
+  line-height: 1.5715;
   position: relative;
 }
 .bell-card-body + .bell-card-footer {
@@ -8090,10 +8090,9 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   color: #515a6e;
   font-size: 14px;
+  line-height: 1.5715;
   padding-left: 19px;
   vertical-align: middle;
-  height: 32px;
-  line-height: 32px;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
   position: absolute;
@@ -8170,11 +8169,12 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-checkbox-vertical > .bell-checkbox {
-  width: 100%;
   display: block;
+  width: 100%;
 }
 .bell-checkbox-vertical > .bell-checkbox + .bell-checkbox {
   margin-left: 0;
+  margin-top: 10px;
 }
 .bell-circle {
   display: inline-block;
@@ -8187,7 +8187,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-collapse {
   overflow: hidden;
@@ -8218,7 +8218,7 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
   font-size: 14px;
-  line-height: 1.15;
+  line-height: 1.1429;
   padding: 12px 15px;
 }
 .bell-collapse-arrow-icon {
@@ -8237,7 +8237,7 @@ div::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   padding: 12px 15px;
   transition: height 0.1s;
 }
@@ -8916,10 +8916,10 @@ div::-webkit-scrollbar-thumb:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  vertical-align: top;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+.bell-image-picker-card {
+  box-shadow: 0 0 1px rgba(0,0,0,0.4);
 }
 .bell-image-picker-card:hover .bell-image-picker-remove-icon {
   display: block;
@@ -8929,7 +8929,7 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -8940,7 +8940,7 @@ div::-webkit-scrollbar-thumb:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 .bell-image-picker-mask .bell-circle {
   position: absolute;
@@ -8989,7 +8989,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #808695;
   font-size: 12px;
   line-height: 18px;
-  margin-top: 2px;
+  margin-top: 10px;
 }
 .bell-dialog {
   position: fixed;
@@ -9045,7 +9045,7 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.15;
+  line-height: 1.1429;
   font-weight: bold;
   padding: 16px 24px;
   border-bottom: 1px solid #e8eaec;
@@ -9069,7 +9069,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-dialog-body {
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   padding: 24px 24px;
 }
 .bell-dialog-footer {
@@ -9167,7 +9167,7 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.15;
+  line-height: 1.1429;
   font-weight: bold;
   padding: 16px 24px;
   border-bottom: 1px solid #dcdee2;
@@ -9176,7 +9176,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 16px 24px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   word-wrap: break-word;
   overflow-y: auto;
   box-sizing: border-box;
@@ -9307,7 +9307,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-dropdown-overlay {
   font-size: 14px;
-  line-height: 1.15;
+  line-height: 1.1429;
   padding: 4px 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -9498,58 +9498,75 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-label-right .bell-form-item-label {
   padding-right: 12px;
 }
-.bell-form-label-left .bell-form-item + .bell-form-item,
-.bell-form-label-right .bell-form-item + .bell-form-item {
-  margin-top: 26px;
-}
 .bell-form-label-right .bell-form-item-label {
   text-align: right;
 }
-.bell-form-label-top .bell-form-item-label,
-.bell-form-label-top .bell-form-item-wrapper {
-  display: block;
+.bell-form-item-align-top {
+  align-items: flex-start;
 }
-.bell-form-label-top .bell-form-item + .bell-form-item {
-  margin-top: 14px;
+.bell-form-item-align-middle {
+  align-items: center;
+}
+.bell-form-item-align-bottom {
+  align-items: flex-end;
 }
 .bell-form-item-label-required:before {
-  content: "*";
+  content: '*';
   font-size: 80%;
   font-family: SimSun;
   color: #ed4014;
   margin-right: 5px;
 }
 .bell-form-item-label {
-  display: inline-block;
+  display: block;
   font-size: 14px;
   height: 32px;
   line-height: 32px;
   box-sizing: border-box;
   white-space: nowrap;
-  vertical-align: middle;
 }
 .bell-form-item-wrapper {
-  display: inline-block;
-  font-size: 0;
-  position: relative;
-  vertical-align: middle;
+  display: block;
+  flex: 1;
 }
-.bell-form-item-error {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  color: #ed4014;
+.bell-form-item-controls {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+.bell-form-item-extra,
+.bell-form-item-message {
   font-size: 12px;
-  margin-top: 4px;
-  white-space: nowrap;
+  line-height: 18px;
+  margin: 4px 0;
+}
+.bell-form-item-extra {
+  color: #808695;
+}
+.bell-form-item-message {
+  color: #ed4014;
+}
+.bell-form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
 }
 .bell-form-inline .bell-form-item {
-  display: inline-block;
-  vertical-align: middle;
+  display: inline-flex;
 }
-.bell-form-inline .bell-form-item + .bell-form-item {
+.bell-form-block .bell-form-item {
+  display: flex;
+}
+.bell-form-block .bell-form-item + .bell-form-item {
+  margin-top: 26px;
+}
+.bell-form-block .bell-form-item-with-extra + .bell-form-item,
+.bell-form-block .bell-form-item-with-message + .bell-form-item {
   margin-top: 0;
-  margin-left: 16px;
+}
+.bell-form-label-top .bell-form-item {
+  display: block;
 }
 .bell-form-colon .bell-form-item-label:after {
   content: ':';
@@ -10092,7 +10109,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 24px 24px;
   color: #808695;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   text-align: center;
 }
 .bell-link {
@@ -10150,7 +10167,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-list {
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   overflow-y: auto;
   position: relative;
   box-sizing: border-box;
@@ -10469,7 +10486,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 10px 16px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.15;
+  line-height: 1.1429;
   border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
   transition: opacity 0.15s, top 0.3s;
@@ -10588,7 +10605,7 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-notification-title + .bell-notification-content {
   margin-top: 8px;
@@ -10596,7 +10613,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-notification-content {
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
 }
 .bell-notification-icon {
   position: absolute;
@@ -10656,7 +10673,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #17233d;
   font-size: 20px;
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.1429;
 }
 .bell-page-header-back {
   cursor: pointer;
@@ -10984,10 +11001,9 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   color: #515a6e;
   font-size: 14px;
+  line-height: 1.5715;
   padding-left: 19px;
   vertical-align: middle;
-  height: 32px;
-  line-height: 32px;
 }
 .bell-radio-with-label > .bell-radio-icon {
   position: absolute;
@@ -11058,11 +11074,12 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-radio-vertical > .bell-radio {
-  width: 100%;
   display: block;
+  width: 100%;
 }
 .bell-radio-vertical > .bell-radio + .bell-radio {
   margin-left: 0;
+  margin-top: 10px;
 }
 .bell-radio-group {
   display: inline-block;
@@ -11864,7 +11881,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
 }
 .bell-table::-webkit-scrollbar {
   width: 4px;
@@ -11918,7 +11935,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table-header td {
   color: #17233d;
   font-size: 16px;
-  line-height: 1.15;
+  line-height: 1.1429;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
@@ -12466,7 +12483,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
   color: #808695;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
   background-color: #fff;
   border-radius: 4px;
   text-align: center;
@@ -12590,13 +12607,13 @@ div::-webkit-scrollbar-thumb:hover {
   padding-left: 24px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
 }
 .bell-timeline-content p {
   padding: 0;
   margin: 0;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 1.5715;
 }
 .bell-timeline-pending .bell-timeline-item:nth-last-of-type(2):before {
   border-left-style: dotted;
@@ -12632,7 +12649,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-tooltip-content {
   font-size: 12px;
-  line-height: 1.57;
+  line-height: 1.5715;
   text-align: left;
   white-space: nowrap;
   overflow: auto;

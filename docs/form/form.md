@@ -94,13 +94,13 @@ export default {
   template: `
   <div>
     <Form labelWidth="120" showColon>
-      <FormItem label="Input" showRequiredMark>
+      <FormItem label="Input" showRequiredMark extra="这是一段说明文字">
         <Input
           model="form.input"
           placeholder="Enter something..."
         />
       </FormItem>
-      <FormItem label="InputNumber" showRequiredMark>
+      <FormItem label="InputNumber" showRequiredMark showMessage message="这是一段错误提示">
         <InputNumber
           model="form.number"
           placeholder="Enter something..."
@@ -173,7 +173,7 @@ export default {
           </template>
         </Switch>
       </FormItem>
-      <FormItem label="Text" labelAlign="top">
+      <FormItem label="Text">
         <Textarea
           rows="3"
           model="form.textarea"
@@ -294,9 +294,10 @@ style | 自定义内联样式 | string | - | -
 ---|---|---|---|---
 prop | 表单域字段名 | string | - | -
 label | 标签文本 | string | - | -
-labelAlign | 表单域标签垂直对齐方式 | string | `middle`, `top`, `bottom` | `middle`
+labelAlign | 表单域标签垂直对齐方式 | string | `top`, `middle`, `bottom` | -
 showMessage | 是否显示校验错误信息 | boolean | - | `true`
 message | 错误信息 | string | - | -
-showRequiredMark | 是否在 label 左侧添加一个红色 * | boolean | - | `false`
+extra | 额外的提示信息 | string | - | -
+showRequiredMark | 是否在 label 左侧添加一个红色 * | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
