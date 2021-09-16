@@ -694,6 +694,7 @@ var RAW_EVENT_RESIZE = 'resize';
 var RAW_EVENT_BEFORE_DESTROY = 'beforeDestroy';
 var RAW_DARK = 'dark';
 var RAW_LIGHT = 'light';
+var RAW_IMAGE_ACCEPT = 'image/png,image/jpeg,image/jpg,image/gif';
 var RAW_THEME_ARRAY = [
     RAW_DARK,
     RAW_LIGHT,
@@ -5790,7 +5791,7 @@ function formatImageSize(size) {
         },
         accept: {
             type: RAW_STRING,
-            value: 'image/png,image/jpeg,image/jpg,image/gif'
+            value: RAW_IMAGE_ACCEPT,
         },
         formatImageUrl: {
             type: RAW_FUNCTION,
@@ -7472,7 +7473,7 @@ var Thumbnail_default = /*#__PURE__*/__webpack_require__.n(Thumbnail);
         },
         accept: {
             type: RAW_STRING,
-            value: 'image/png,image/jpeg,image/jpg,image/gif'
+            value: RAW_IMAGE_ACCEPT,
         },
         beforeUpload: {
             type: RAW_FUNCTION,
@@ -8695,7 +8696,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.19.1";
+var version = "0.19.2";
 /**
  * 安装插件
  */

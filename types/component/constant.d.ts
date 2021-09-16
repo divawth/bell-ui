@@ -60,6 +60,7 @@ export declare const RAW_EVENT_RESIZE = "resize";
 export declare const RAW_EVENT_BEFORE_DESTROY = "beforeDestroy";
 export declare const RAW_DARK = "dark";
 export declare const RAW_LIGHT = "light";
+export declare const RAW_IMAGE_ACCEPT = "image/png,image/jpeg,image/jpg,image/gif";
 export declare const RAW_THEME_ARRAY: string[];
 export declare const RAW_STATUS_ARRAY: string[];
 export declare const RAW_TYPE_ARRAY: string[];

@@ -14,6 +14,7 @@ import {
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_FUNCTION,
+  RAW_IMAGE_ACCEPT,
 } from '../constant'
 
 import {
@@ -70,7 +71,7 @@ export default Yox.define({
     },
     accept: {
       type: RAW_STRING,
-      value: 'image/png,image/jpeg,image/jpg,image/gif'
+      value: RAW_IMAGE_ACCEPT,
     },
     beforeUpload: {
       type: RAW_FUNCTION,
