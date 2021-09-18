@@ -54,7 +54,7 @@ export default Yox.define({
 
       // 配置两个方向的间距
       if (Yox.is.array(size)) {
-        return `${size[0]}px ${size[1]}px`
+        return `${size[1]}px ${size[0]}px`
       }
 
       // 配置一个方向的间距

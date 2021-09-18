@@ -2,6 +2,8 @@ import Yox from 'yox'
 
 import template from './template/CheckboxGroup.hbs'
 
+import Space from '../space/Space'
+
 import {
   TRUE,
   FALSE,
@@ -9,6 +11,9 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
 } from '../constant'
+
+const CHECKBOX_GAP_HORIZONTAL = 16
+const CHECKBOX_GAP_VERTICAL = 8
 
 export default Yox.define({
 
@@ -39,6 +44,13 @@ export default Yox.define({
     },
     style: {
       type: RAW_STRING,
+    }
+  },
+
+  data() {
+    return {
+      CHECKBOX_GAP_HORIZONTAL,
+      CHECKBOX_GAP_VERTICAL,
     }
   },
 
@@ -89,4 +101,7 @@ export default Yox.define({
       ns: 'checkbox',
     }
   },
+  components: {
+    Space,
+  }
 })

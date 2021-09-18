@@ -3,133 +3,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>button</title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <title>Input</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
-    .bell-app {
-        margin: 30px 0;
-    }
+        .bell-app {
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
     <script src="../../dep/base/base.js"></script>
-    <script src="../../dist/bell.js"></script>
+    <script src="../../dist/bell-ui.js"></script>
+
+    <script id="template-1" type="text/plain">
+        <div>
+            <Button>哈哈</Button>
+            <Tag>哈哈</Tag>
+        </div>
+    </script>
+
     <div class="bell-app" id="app-1"></div>
-    <div class="bell-app" id="app-2"></div>
-    <div class="bell-app" id="app-3"></div>
-    <div class="bell-app" id="app-4"></div>
-    <div class="bell-app" id="app-5"></div>
-    <div class="bell-app" id="app-6"></div>
-
-    <script id="buttonTemplate-1" type="text/plain">
-        <div>
-            <Button label="Default" on-click="click()"></Button>
-            <Button type="primary" label="Primary"></Button>
-            <Button type="ghost" label="Ghost"></Button>
-            <Button type="dashed" label="Dashed"></Button>
-            <Button type="text" label="Text"></Button>
-            <br><br>
-            <Button type="info" label="信息按钮"></Button>
-            <Button type="success" label="成功按钮"></Button>
-            <Button type="warning" label="警告按钮"></Button>
-            <Button type="error" label="错误按钮"></Button>
-        </div>
-    </script>
-
-    <script id="buttonTemplate-2" type="text/plain">
-        <div>
-            <Button type="primary" label="搜索"></Button>
-            <Button type="primary" shape="circle" label="搜索"></Button>
-            <Button type="primary" shape="circle" label="圆角按钮"></Button>
-            <br><br>
-            <Button type="ghost" label="搜索"></Button>
-            <Button type="ghost" shape="circle" label="搜索"></Button>
-            <Button type="ghost" shape="circle" label="圆角按钮"></Button>
-        </div>
-    </script>
-
-    <script id="buttonTemplate-3" type="text/plain">
-        <div>
-            <Button type="primary" size="large" label="Large"></Button>
-            <Button type="primary" label="Default"></Button>
-            <Button type="primary" size="small" label="Small"></Button>
-            <br><br>
-            <Button type="primary" shape="circle" size="large" label="Large"></Button>
-            <Button type="primary" shape="circle" label="Default"></Button>
-            <Button type="primary" shape="circle" size="small" label="Small"></Button>
-        </div>
-    </script>
-
-    <script id="buttonTemplate-4" type="text/plain">
-        <div>
-            <Button type="success" long label="确认提交"></Button>
-            <br><br>
-            <Button type="error" long label="确认删除"></Button>
-        </div>
-    </script>
-
-    <script id="buttonTemplate-5" type="text/plain">
-        <div>
-            <Button label="Default"></Button>
-            <Button disabled label="Default(Disabled)"></Button>
-            <br>
-            <Button type="primary" label="Primary"></Button>
-            <Button type="primary" disabled label="Primary(Disabled)"></Button>
-            <br>
-            <Button type="ghost" label="Ghost"></Button>
-            <Button type="ghost" disabled label="Ghost(Disabled)"></Button>
-            <br>
-            <Button type="dashed" label="Dashed"></Button>
-            <Button type="dashed" disabled label="Dashed(Disabled)"></Button>
-            <br>
-            <Button type="text" label="Text"></Button>
-            <Button type="text" disabled label="Text(Disabled)"></Button>
-        </div>
-    </script>
-
-    <script id="buttonTemplate-6" type="text/plain">
-        <div>
-            <Button type="primary" loading label="Loading..."></Button>
-
-            <Button type="primary"
-                on-click="toLoading()"
-                label="{{#if !loading}}Click me!{{else}} Loading...{{/if}}">
-            </Button>
-
-            <Button type="primary"
-                on-click="toLoading2()"
-                icon="checkmark-round"
-                label="{{#if !loading2}}Click me!{{else}} Loading...{{/if}}">
-            </Button>
-        </div>
-    </script>
 
     <script>
+        Yox.use(Bell)
         new Yox({
             el: '#app-1',
-            template: '#buttonTemplate-1',
-        });
-        new Yox({
-            el: '#app-2',
-            template: '#buttonTemplate-2'
-        });
-        new Yox({
-            el: '#app-3',
-            template: '#buttonTemplate-3'
-        });
-        new Yox({
-            el: '#app-4',
-            template: '#buttonTemplate-4'
-        });
-        new Yox({
-            el: '#app-5',
-            template: '#buttonTemplate-5'
-        });
-        new Yox({
-            el: '#app-6',
-            template: '#buttonTemplate-6'
+            template: '#template-1',
         });
     </script>
+
 </body>
 </html>

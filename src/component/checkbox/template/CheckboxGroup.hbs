@@ -1,11 +1,21 @@
-<div
-class="${prefix}checkbox-group
-{{#if vertical}} ${prefix}checkbox-vertical{{/if}}
+<Space
+className="${prefix}checkbox-group
 {{#if className}} {{className}}{{/if}}"
+
+{{#if vertical}}
+vertical
+align="start"
+size="{{CHECKBOX_GAP_VERTICAL}}"
+{{else}}
+autoWrap
+align="center"
+size="{{[CHECKBOX_GAP_HORIZONTAL, CHECKBOX_GAP_VERTICAL]}}"
+{{/if}}
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
   <slot name="children" />
-</div>
+</Space>
+

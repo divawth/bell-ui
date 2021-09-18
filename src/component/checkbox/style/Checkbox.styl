@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$checkbox-gap-horizontal = 16px
-
 $checkbox-icon-top = 1px
 $checkbox-icon-left = 4px
 $checkbox-icon-width = 4px
@@ -16,9 +14,6 @@ $checkbox-indeterminate-height = 1px
   display inline-block
   user-select none
   box-sizing border-box
-
-  + {$selector-prefix + '-checkbox'}
-    margin-left $checkbox-gap-horizontal
 
 {$selector-prefix + '-checkbox-with-label'}
   position relative
@@ -112,11 +107,3 @@ if $ui-shadow-radius > 0
   {$selector-prefix + '-checkbox-focus'}
     > {$selector-prefix + '-checkbox-icon'}
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
-
-{$selector-prefix + '-checkbox-vertical'}
-  > {$selector-prefix + '-checkbox'}
-    ui-block()
-
-    + {$selector-prefix + '-checkbox'}
-      margin-left 0
-      margin-top $ui-vertical-gap
