@@ -7402,6 +7402,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-badge-status > .bell-badge-dot + .bell-badge-text {
   margin-left: 5px;
 }
+.bell-badge-with-dot-text {
+  white-space: nowrap;
+}
 .bell-badge-ripple > .bell-badge-dot {
   position: relative;
 }
@@ -8083,9 +8086,6 @@ div::-webkit-scrollbar-thumb:hover {
           user-select: none;
   box-sizing: border-box;
 }
-.bell-checkbox + .bell-checkbox {
-  margin-left: 16px;
-}
 .bell-checkbox-with-label {
   position: relative;
   color: #515a6e;
@@ -8167,14 +8167,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-checkbox-focus > .bell-checkbox-icon {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
-}
-.bell-checkbox-vertical > .bell-checkbox {
-  display: block;
-  width: 100%;
-}
-.bell-checkbox-vertical > .bell-checkbox + .bell-checkbox {
-  margin-left: 0;
-  margin-top: 10px;
 }
 .bell-circle {
   display: inline-block;
@@ -10481,6 +10473,7 @@ div::-webkit-scrollbar-thumb:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  white-space: nowrap;
   background-color: #fff;
   padding: 10px 16px;
   color: #515a6e;
@@ -10518,7 +10511,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-message-text {
   vertical-align: middle;
-  white-space: nowrap;
 }
 .bell-message-close {
   position: absolute;
@@ -12879,7 +12871,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-space > .bell-button,
 .bell-space > .bell-select,
 .bell-space > .bell-radio,
-.bell-space > .bell-checkbox,
 .bell-space > .bell-switch,
 .bell-space > .bell-avatar,
 .bell-space > .bell-thumbnail {

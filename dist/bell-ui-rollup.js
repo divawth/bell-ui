@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.19.4
+ * bell-ui.js v0.19.5
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -1924,8 +1924,55 @@
       }
   });
 
-  var template$i = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-checkbox-group'+(_o('vertical',__l.vertical).value?' bell-checkbox-vertical':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_children',__j);});}})();
+  var template$i = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{className:'bell-checkbox-group'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'Space',type:4},function(__i){_o('vertical',__l.vertical).value?(_c(__i,'props',$2,'vertical'),_c(__i,'props','start','align'),_c(__i,'props',_o('CHECKBOX_GAP_VERTICAL',__l.CHECKBOX_GAP_VERTICAL).value,'size')):(_c(__i,'props',$2,'autoWrap'),_c(__i,'props','center','align'),_c(__i,'props',[_o('CHECKBOX_GAP_HORIZONTAL',__l.CHECKBOX_GAP_HORIZONTAL).value,_o('CHECKBOX_GAP_VERTICAL',__l.CHECKBOX_GAP_VERTICAL).value],'size'));_o('style',__l.style).value?_c(__i,'props',_o('style',__l.style).value,'style'):$0;},{$slot_children:function(__j,__k){_j('$slot_children',__j);}});}})();
 
+  var template$j = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_j('$slot_children',__j);});}})();
+
+  var Space = Yox.define({
+      template: template$j,
+      name: 'bell-Space',
+      propTypes: {
+          size: {
+              type: [RAW_NUMERIC, RAW_ARRAY],
+          },
+          align: {
+              type: oneOf(['start', 'end', 'center', 'baseline']),
+              value: 'center',
+          },
+          vertical: {
+              type: RAW_BOOLEAN,
+          },
+          autoWrap: {
+              type: RAW_BOOLEAN,
+          },
+          className: {
+              type: RAW_STRING,
+          },
+          style: {
+              type: RAW_STRING,
+          }
+      },
+      computed: {
+          sizeValue: function () {
+              var size = this.get('size');
+              if (size == NULL) {
+                  return;
+              }
+              // 配置两个方向的间距
+              if (Yox.is.array(size)) {
+                  return size[1] + "px " + size[0] + "px";
+              }
+              // 配置一个方向的间距
+              var value = toNumber(size);
+              if (value > 0) {
+                  return value + 'px';
+              }
+          }
+      }
+  });
+
+  var CHECKBOX_GAP_HORIZONTAL = 16;
+  var CHECKBOX_GAP_VERTICAL = 8;
   var CheckboxGroup = Yox.define({
       template: template$i,
       name: 'bell-CheckboxGroup',
@@ -1953,6 +2000,12 @@
           style: {
               type: RAW_STRING,
           }
+      },
+      data: function () {
+          return {
+              CHECKBOX_GAP_HORIZONTAL: CHECKBOX_GAP_HORIZONTAL,
+              CHECKBOX_GAP_VERTICAL: CHECKBOX_GAP_VERTICAL,
+          };
       },
       watchers: {
           value: function (value) {
@@ -1991,14 +2044,17 @@
               ns: 'checkbox',
           }
       },
+      components: {
+          Space: Space,
+      }
   });
 
-  var template$j = (function(){var $0=void 0,$2=!0,$5={className:'bell-tooltip-arrow'},$6={className:'bell-tooltip-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-slider'+(_o('vertical',__l.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_o('disabled',__l.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_o('block',__l.block).value?' bell-slider-block':'')+(_o('thumbIsDragging',__l.thumbIsDragging).value?' bell-slider-dragging':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('height',__l.height).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width:'+_w(_o('width',__l.width).value)+'px;':'')+(_o('height',__l.height).value?'height:'+_w(_o('height',__l.height).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-slider-track'},tag:'div',type:3},function(__i){!_o('disabled',__l.disabled).value?_c(__i,'events',_g('click','trackClick.slider','click','','trackClick','slider'),'click'):$0;},function(__j){__j[__j.length]={context:_x,nativeProps:{className:'bell-slider-bar','style.cssText':_o('vertical',__l.vertical).value?'height: '+_w(_o('percent',__l.percent).value)+'%;':'width: '+_w(_o('percent',__l.percent).value)+'%;'},tag:'div',type:3};_o('showStops',__l.showStops).value?_l(_o('stops',__l.stops),function(__l,__m,__n){__j[__j.length]={context:_x,key:_p(__l).value,nativeProps:{className:'bell-slider-stop','style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_p(__l).value)+'%;':'left: '+_w(_p(__l).value)+'%;'},tag:'div',type:3};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,events:{mouseenter:_g('mouseenter','thumbMouseEnter.slider','mouseenter','','thumbMouseEnter','slider'),mouseleave:_g('mouseleave','thumbMouseLeave.slider','mouseleave','','thumbMouseLeave','slider')},lazy:{mouseenter:200,mouseleave:200},nativeProps:{className:'bell-slider-thumb','style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_o('percent',__l.percent).value)+'%;':'left: '+_w(_o('percent',__l.percent).value)+'%;'},tag:'div',type:3},function(__i){!_o('disabled',__l.disabled).value?_c(__i,'events',_g('mousedown','thumbMouseDown.slider','mousedown','','thumbMouseDown','slider'),'mousedown'):$0;});_o('showTooltip',__l.showTooltip).value?__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-tooltip-popup bell-tooltip-dark'+(_o('vertical',__l.vertical).value?' bell-tooltip-right':' bell-tooltip-top'),'style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_o('percent',__l.percent).value)+'%;':'left: '+_w(_o('percent',__l.percent).value)+'%;'},ref:'tooltip',tag:'div',type:3},$0,function(__j){__j[__j.length]={context:_x,isPure:$2,isStatic:$2,nativeProps:$5,tag:'div',type:3};__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){_o('formatTooltip',__l.formatTooltip).value?__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatTooltip',__l.formatTooltip,$0,_y&&_y.formatTooltip||_z.formatTooltip).value,_x,[_o('value',__l.value).value])).value),type:1}:__j[__j.length]={isPure:$2,isText:$2,text:_w(_o('value',__l.value).value),type:1};});}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});});}})();
+  var template$k = (function(){var $0=void 0,$2=!0,$5={className:'bell-tooltip-arrow'},$6={className:'bell-tooltip-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-slider'+(_o('vertical',__l.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_o('disabled',__l.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_o('block',__l.block).value?' bell-slider-block':'')+(_o('thumbIsDragging',__l.thumbIsDragging).value?' bell-slider-dragging':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('width',__l.width).value||_o('height',__l.height).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('width',__l.width).value?'width:'+_w(_o('width',__l.width).value)+'px;':'')+(_o('height',__l.height).value?'height:'+_w(_o('height',__l.height).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-slider-track'},tag:'div',type:3},function(__i){!_o('disabled',__l.disabled).value?_c(__i,'events',_g('click','trackClick.slider','click','','trackClick','slider'),'click'):$0;},function(__j){__j[__j.length]={context:_x,nativeProps:{className:'bell-slider-bar','style.cssText':_o('vertical',__l.vertical).value?'height: '+_w(_o('percent',__l.percent).value)+'%;':'width: '+_w(_o('percent',__l.percent).value)+'%;'},tag:'div',type:3};_o('showStops',__l.showStops).value?_l(_o('stops',__l.stops),function(__l,__m,__n){__j[__j.length]={context:_x,key:_p(__l).value,nativeProps:{className:'bell-slider-stop','style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_p(__l).value)+'%;':'left: '+_w(_p(__l).value)+'%;'},tag:'div',type:3};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};__j[__j.length]=_a({context:_x,events:{mouseenter:_g('mouseenter','thumbMouseEnter.slider','mouseenter','','thumbMouseEnter','slider'),mouseleave:_g('mouseleave','thumbMouseLeave.slider','mouseleave','','thumbMouseLeave','slider')},lazy:{mouseenter:200,mouseleave:200},nativeProps:{className:'bell-slider-thumb','style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_o('percent',__l.percent).value)+'%;':'left: '+_w(_o('percent',__l.percent).value)+'%;'},tag:'div',type:3},function(__i){!_o('disabled',__l.disabled).value?_c(__i,'events',_g('mousedown','thumbMouseDown.slider','mousedown','','thumbMouseDown','slider'),'mousedown'):$0;});_o('showTooltip',__l.showTooltip).value?__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-tooltip-popup bell-tooltip-dark'+(_o('vertical',__l.vertical).value?' bell-tooltip-right':' bell-tooltip-top'),'style.cssText':_o('vertical',__l.vertical).value?'bottom: '+_w(_o('percent',__l.percent).value)+'%;':'left: '+_w(_o('percent',__l.percent).value)+'%;'},ref:'tooltip',tag:'div',type:3},$0,function(__j){__j[__j.length]={context:_x,isPure:$2,isStatic:$2,nativeProps:$5,tag:'div',type:3};__j[__j.length]=_a({context:_x,nativeProps:$6,tag:'div',type:3},$0,function(__j){_o('formatTooltip',__l.formatTooltip).value?__j[__j.length]={isPure:$2,isText:$2,text:_w(_v(_u(_o('formatTooltip',__l.formatTooltip,$0,_y&&_y.formatTooltip||_z.formatTooltip).value,_x,[_o('value',__l.value).value])).value),type:1}:__j[__j.length]={isPure:$2,isText:$2,text:_w(_o('value',__l.value).value),type:1};});}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});});}})();
 
   var CLASS_VISIBLE$2 = 'bell-tooltip-visible';
   var CLASS_FADE$2 = 'bell-tooltip-fade';
   var Slider = Yox.define({
-      template: template$j,
+      template: template$k,
       name: 'bell-Slider',
       propTypes: {
           value: {
@@ -2231,51 +2287,6 @@
               updatePosition(originalEvent.pageX, originalEvent.pageY);
           });
       },
-  });
-
-  var template$k = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_j('$slot_children',__j);});}})();
-
-  var Space = Yox.define({
-      template: template$k,
-      name: 'bell-Space',
-      propTypes: {
-          size: {
-              type: [RAW_NUMERIC, RAW_ARRAY],
-          },
-          align: {
-              type: oneOf(['start', 'end', 'center', 'baseline']),
-              value: 'center',
-          },
-          vertical: {
-              type: RAW_BOOLEAN,
-          },
-          autoWrap: {
-              type: RAW_BOOLEAN,
-          },
-          className: {
-              type: RAW_STRING,
-          },
-          style: {
-              type: RAW_STRING,
-          }
-      },
-      computed: {
-          sizeValue: function () {
-              var size = this.get('size');
-              if (size == NULL) {
-                  return;
-              }
-              // 配置两个方向的间距
-              if (Yox.is.array(size)) {
-                  return size[0] + "px " + size[1] + "px";
-              }
-              // 配置一个方向的间距
-              var value = toNumber(size);
-              if (value > 0) {
-                  return value + 'px';
-              }
-          }
-      }
   });
 
   var template$l = (function(){var $0=void 0,$2=!0,$5={className:'bell-switch-label'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-switch'+(_o('size',__l.size).value?' bell-switch-'+_w(_o('size',__l.size).value):'')+(_o('disabled',__l.disabled).value?' bell-switch-disabled':' bell-switch-enabled')+(_o('checked',__l.checked).value?' bell-switch-active':'')+(_o('loading',__l.loading).value?' bell-switch-loading':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('disabled',__l.disabled).value&&!_o('loading',__l.loading).value?_c(__i,'events',_f('click','handleClick()','click','',_x.handleClick),'click'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['on'])).value||_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['off'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_o('checked',__l.checked).value?_j('$slot_on',__j):_j('$slot_off',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
@@ -3309,7 +3320,7 @@
       }
   });
 
-  var template$x = (function(){var $0=void 0,$2=!0,$5={className:'bell-badge-dot'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-badge'+(_o('status',__l.status).value?'-status':'')+(_o('status',__l.status).value?' bell-badge-status-'+_w(_o('status',__l.status).value):_o('type',__l.type).value?' bell-badge-'+_w(_o('type',__l.type).value):'')+(_o('ripple',__l.ripple).value?' bell-badge-ripple':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_children',__j);!_o('hidden',__l.hidden).value?(_o('dot',__l.dot).value?__j[__j.length]={context:_x,isPure:$2,isStatic:$2,nativeProps:$5,tag:'span',type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},_o('text',__l.text).value||_v(_u(_o('isNumeric',__l.isNumeric,$0,_y&&_y.isNumeric||_z.isNumeric).value,_x,[_o('count',__l.count).value])).value?__j[__j.length]={context:_x,nativeProps:{className:'bell-badge-text'+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-badge-text-append':'')},ref:'append',tag:'span',text:_w(_o('text',__l.text).value||_v(_u(_o('formatText',__l.formatText,$0,_y&&_y.formatText||_z.formatText).value,_x,[_o('count',__l.count).value,_o('max',__l.max).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$x = (function(){var $0=void 0,$2=!0,$5={className:'bell-badge-dot'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-badge'+(_o('status',__l.status).value?'-status':'')+(_o('status',__l.status).value?' bell-badge-status-'+_w(_o('status',__l.status).value):_o('type',__l.type).value?' bell-badge-'+_w(_o('type',__l.type).value):'')+(_o('dot',__l.dot).value&&_o('text',__l.text).value?' bell-badge-with-dot-text':'')+(_o('ripple',__l.ripple).value?' bell-badge-ripple':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_children',__j);!_o('hidden',__l.hidden).value?(_o('dot',__l.dot).value?__j[__j.length]={context:_x,isPure:$2,isStatic:$2,nativeProps:$5,tag:'span',type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2},_o('text',__l.text).value||_v(_u(_o('isNumeric',__l.isNumeric,$0,_y&&_y.isNumeric||_z.isNumeric).value,_x,[_o('count',__l.count).value])).value?__j[__j.length]={context:_x,nativeProps:{className:'bell-badge-text'+(_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['children'])).value?' bell-badge-text-append':'')},ref:'append',tag:'span',text:_w(_o('text',__l.text).value||_v(_u(_o('formatText',__l.formatText,$0,_y&&_y.formatText||_z.formatText).value,_x,[_o('count',__l.count).value,_o('max',__l.max).value])).value),type:3}:__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var Badge = Yox.define({
       template: template$x,
@@ -7296,7 +7307,7 @@
   /**
    * 版本
    */
-  var version = "0.19.4";
+  var version = "0.19.5";
   /**
    * 安装插件
    */

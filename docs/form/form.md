@@ -17,7 +17,7 @@ export default {
         <Input
           model="form.username"
           placeholder="Username"
-          status="{{errors.username ? 'error' : ''}}"
+          status="{{errors.username ? 'error' : undefined}}"
         >
           <Icon
             slot="prepend"
@@ -32,7 +32,7 @@ export default {
           type="password"
           model="form.password"
           placeholder="Password"
-          status="{{errors.password ? 'error' : ''}}"
+          status="{{errors.password ? 'error' : undefined}}"
         >
           <Icon
             slot="append"
