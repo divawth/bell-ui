@@ -5,6 +5,8 @@ class="${prefix}badge{{#if status}}-status{{/if}}
 {{else if type}} ${prefix}badge-{{type}}
 {{/if}}
 
+{{#if dot && text}} ${prefix}badge-with-dot-text{{/if}}
+
 {{#if ripple}} ${prefix}badge-ripple{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -25,7 +27,7 @@ class="${prefix}badge{{#if status}}-status{{/if}}
       <span
         ref="append"
         class="${prefix}badge-text
-          {{#if hasSlot('children')}} ${prefix}badge-text-append{{/if}}"
+        {{#if hasSlot('children')}} ${prefix}badge-text-append{{/if}}"
       >
         {{text || formatText(count, max)}}
       </span>
