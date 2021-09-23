@@ -50,6 +50,7 @@
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
+  - [Description 描述列表](view/description)
   - [Empty 空状态](view/empty)
   - [Result 结果页](view/result)
   - [Exception 异常页](view/exception)

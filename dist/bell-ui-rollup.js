@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.19.6
+ * bell-ui.js v0.19.7
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -6253,7 +6253,7 @@
           }
       });
       if (columnItem && columnArray) {
-          columnItem.span = column - columnArray.length;
+          columnItem.span = column - columnArray.length + 1;
       }
       props.cells = cells;
   }
@@ -6276,6 +6276,12 @@
           column: {
               type: RAW_NUMERIC,
           },
+          className: {
+              type: RAW_STRING,
+          },
+          style: {
+              type: RAW_STRING,
+          }
       },
       beforeCreate: function (options) {
           if (!options.slots) {
@@ -7394,7 +7400,7 @@
   /**
    * 版本
    */
-  var version = "0.19.6";
+  var version = "0.19.7";
   /**
    * 安装插件
    */

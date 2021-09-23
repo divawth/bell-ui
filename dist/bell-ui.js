@@ -7475,7 +7475,7 @@ function addSlots2Props(children, props, column) {
         }
     });
     if (columnItem && columnArray) {
-        columnItem.span = column - columnArray.length;
+        columnItem.span = column - columnArray.length + 1;
     }
     props.cells = cells;
 }
@@ -7505,6 +7505,12 @@ var COLUMN_DEFAULT = 3;
         column: {
             type: RAW_NUMERIC,
         },
+        className: {
+            type: RAW_STRING,
+        },
+        style: {
+            type: RAW_STRING,
+        }
     },
     beforeCreate: function (options) {
         if (!options.slots) {

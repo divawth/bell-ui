@@ -60,7 +60,7 @@ export function addSlots2Props(children, props: Record<string, any>, column: num
   )
 
   if (columnItem && columnArray) {
-    columnItem.span = column - columnArray.length
+    columnItem.span = column - columnArray.length + 1
   }
 
   props.cells = cells

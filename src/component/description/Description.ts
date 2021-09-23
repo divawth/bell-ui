@@ -42,6 +42,12 @@ export default Yox.define({
     column: {
       type: RAW_NUMERIC,
     },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STRING,
+    }
   },
 
   beforeCreate(options) {
