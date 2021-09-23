@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.19.7
+ * bell-ui.js v0.19.8
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -699,7 +699,7 @@
       }
   });
 
-  var template$6 = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-text'+(_o('type',__l.type).value?' bell-text-'+_w(_o('type',__l.type).value):'')+(_o('size',__l.size).value?' bell-text-'+_w(_o('size',__l.size).value):'')+(_o('bold',__l.bold).value?' bell-text-bold':'')+(_o('block',__l.block).value?' bell-text-block':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'span',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_'+$0,__j);});}})();
+  var template$6 = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-text'+(_o('type',__l.type).value?' bell-text-'+_w(_o('type',__l.type).value):'')+(_o('size',__l.size).value?' bell-text-'+_w(_o('size',__l.size).value):'')+(_o('bold',__l.bold).value?' bell-text-bold':'')+(_o('block',__l.block).value?' bell-text-block':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'span',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_'+'children',__j);});}})();
 
   var Text = Yox.define({
       template: template$6,
@@ -2867,7 +2867,7 @@
       }
   });
 
-  var template$r = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,events:{click:_f('click','click()','click','',_x.click)},nativeProps:{className:'bell-upload'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_'+$0,__j);__j[__j.length]=_a({context:_x,ref:'form',tag:'form',type:3},$0,function(__j){__j[__j.length]={context:_x,events:{change:_f('change','onChange()','change','',_x.onChange)},nativeProps:{accept:_o('accept',__l.accept).value,multiple:_o('multiple',__l.multiple).value,type:'file'},ref:'input',tag:'input',type:3};});});}})();
+  var template$r = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,events:{click:_f('click','click()','click','',_x.click)},nativeProps:{className:'bell-upload'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_j('$slot_'+'children',__j);__j[__j.length]=_a({context:_x,ref:'form',tag:'form',type:3},$0,function(__j){__j[__j.length]={context:_x,events:{change:_f('change','onChange()','change','',_x.onChange)},nativeProps:{accept:_o('accept',__l.accept).value,multiple:_o('multiple',__l.multiple).value,type:'file'},ref:'input',tag:'input',type:3};});});}})();
 
   // 本地文件用负数，避免和数据库自增 id 冲突
   var guid = -1;
@@ -5438,7 +5438,7 @@
       }
   });
 
-  var template$R = (function(){var $0=void 0,$2=!0,$5={className:'bell-layout-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-layout-header'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['extra'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_'+'extra',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_'+$0,__j);});}})();
+  var template$R = (function(){var $0=void 0,$2=!0,$5={className:'bell-layout-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-layout-header'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['extra'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_'+'extra',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_'+'children',__j);});}})();
 
   var LayoutHeader = Yox.define({
       template: template$R,
@@ -5483,7 +5483,7 @@
       },
   });
 
-  var template$U = (function(){var $0=void 0,$2=!0,$5={className:'bell-layout-sider-logo'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-layout-sider'+(_o('collapsed',__l.collapsed).value?' bell-layout-sider-collapsed':'')+(_o('showTrigger',__l.showTrigger).value?' bell-layout-sider-with-trigger':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('collapsed',__l.collapsed).value||_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('collapsed',__l.collapsed).value?'flex: 0 0 80px;\nwidth: 80px;\nmin-width: 80px;\nmax-width: 80px;':_o('width',__l.width).value?'flex: 0 0 '+_w(_o('width',__l.width).value)+'px;\nwidth: '+_w(_o('width',__l.width).value)+'px;\nmin-width: '+_w(_o('width',__l.width).value)+'px;\nmax-width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['logo'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_'+'logo',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_'+$0,__j);_o('showTrigger',__l.showTrigger).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('collapsed')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['collapsed']}})},nativeProps:{className:'bell-layout-sider-trigger','style.cssText':_o('collapsed',__l.collapsed).value?'width: 80px;':_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':''},tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-layout-sider-trigger-icon',name:'arrow-left-s-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
+  var template$U = (function(){var $0=void 0,$2=!0,$5={className:'bell-layout-sider-logo'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-layout-sider'+(_o('collapsed',__l.collapsed).value?' bell-layout-sider-collapsed':'')+(_o('showTrigger',__l.showTrigger).value?' bell-layout-sider-with-trigger':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('collapsed',__l.collapsed).value||_o('width',__l.width).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('collapsed',__l.collapsed).value?'flex: 0 0 80px;\nwidth: 80px;\nmin-width: 80px;\nmax-width: 80px;':_o('width',__l.width).value?'flex: 0 0 '+_w(_o('width',__l.width).value)+'px;\nwidth: '+_w(_o('width',__l.width).value)+'px;\nmin-width: '+_w(_o('width',__l.width).value)+'px;\nmax-width: '+_w(_o('width',__l.width).value)+'px;':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_v(_u(_o('hasSlot',__l.hasSlot,$0,_y&&_y.hasSlot||_z.hasSlot).value,_x,['logo'])).value?__j[__j.length]=_a({context:_x,nativeProps:$5,tag:'div',type:3},$0,function(__j){_j('$slot_'+'logo',__j);}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};_j('$slot_'+'children',__j);_o('showTrigger',__l.showTrigger).value?__j[__j.length]=_a({context:_x,events:{click:_f('click',"toggle('collapsed')",'click','',_x.toggle,{args:function(__h,__o,__p){return ['collapsed']}})},nativeProps:{className:'bell-layout-sider-trigger','style.cssText':_o('collapsed',__l.collapsed).value?'width: 80px;':_o('width',__l.width).value?'width: '+_w(_o('width',__l.width).value)+'px;':''},tag:'div',type:3},$0,function(__j){__j[__j.length]=__k[__k.length]={context:_x,isComponent:$2,props:{className:'bell-layout-sider-trigger-icon',name:'arrow-left-s-line',size:'0'},tag:'Icon',type:4};}):__j[__j.length]={isComment:$2,isPure:$2,text:'',type:2};});}})();
 
   var LayoutSider = Yox.define({
       template: template$U,
@@ -5512,7 +5512,7 @@
       }
   });
 
-  var template$V = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-link'+(_o('type',__l.type).value?' bell-link-'+_w(_o('type',__l.type).value):'')+(_o('size',__l.size).value?' bell-link-'+_w(_o('size',__l.size).value):'')+(_o('underline',__l.underline).value?' bell-link-underline':'')+(_o('disabled',__l.disabled).value?' bell-link-disabled':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),href:_o('href',__l.href).value||'javascript:void(0)'},tag:'a',type:3},function(__i){_o('target',__l.target).value?_c(__i,'nativeProps',_o('target',__l.target).value,'target'):$0;_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('href',__l.href).value&&!_o('disabled',__l.disabled).value?_c(__i,'events',_g('click','click.link','click','','click','link'),'click'):$0;},function(__j){_j('$slot_'+$0,__j);});}})();
+  var template$V = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeAttrs:{ondragstart:'return false'},nativeProps:{className:'bell-link'+(_o('type',__l.type).value?' bell-link-'+_w(_o('type',__l.type).value):'')+(_o('size',__l.size).value?' bell-link-'+_w(_o('size',__l.size).value):'')+(_o('underline',__l.underline).value?' bell-link-underline':'')+(_o('disabled',__l.disabled).value?' bell-link-disabled':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):''),href:_o('href',__l.href).value||'javascript:void(0)'},tag:'a',type:3},function(__i){_o('target',__l.target).value?_c(__i,'nativeProps',_o('target',__l.target).value,'target'):$0;_o('style',__l.style).value?_c(__i,'nativeProps',_o('style',__l.style).value,'style.cssText'):$0;!_o('href',__l.href).value&&!_o('disabled',__l.disabled).value?_c(__i,'events',_g('click','click.link','click','','click','link'),'click'):$0;},function(__j){_j('$slot_'+'children',__j);});}})();
 
   var Link = Yox.define({
       template: template$V,
@@ -7400,7 +7400,7 @@
   /**
    * 版本
    */
-  var version = "0.19.7";
+  var version = "0.19.8";
   /**
    * 安装插件
    */
