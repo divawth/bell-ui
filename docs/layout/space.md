@@ -105,6 +105,25 @@ export default {
 }
 ```
 
+> 块级显示
+
+```js
+export default {
+  template: `
+    <div>
+      <Space block align="start">
+        Space
+        <Checkbox />
+      </Space>
+      <Space block align="start">
+        Space
+        <Checkbox />
+      </Space>
+    </div>
+  `
+}
+```
+
 > 自定义间距
 
 ```js
@@ -133,6 +152,7 @@ export default {
 align | 对齐方式 | `start`、`end` 、`center`、`baseline` | - | `center`
 vertical | 是否为垂直间距 | boolean | - | -
 size | 间距大小 | numeric | - | -
+block | 是否块级显示 | boolean | - | -
 autoWrap | 是否自动换行，仅在水平间距模式有效 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

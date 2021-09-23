@@ -218,7 +218,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_j('$slot_'+'children',__j)})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(__h){return __h.length-1};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('block',__l.block).value?' bell-space-block':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0},function(__j){_j('$slot_'+'children',__j)})}})();
 
 /***/ }),
 /* 21 */
@@ -2725,6 +2725,9 @@ var Space_default = /*#__PURE__*/__webpack_require__.n(Space);
         align: {
             type: oneOf(['start', 'end', 'center', 'baseline']),
             value: 'center',
+        },
+        block: {
+            type: RAW_BOOLEAN,
         },
         vertical: {
             type: RAW_BOOLEAN,
@@ -8831,7 +8834,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.19.8";
+var version = "0.19.9";
 /**
  * 安装插件
  */

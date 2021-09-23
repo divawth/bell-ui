@@ -30,6 +30,9 @@ export default Yox.define({
       type: oneOf(['start', 'end', 'center', 'baseline']),
       value: 'center',
     },
+    block: {
+      type: RAW_BOOLEAN,
+    },
     vertical: {
       type: RAW_BOOLEAN,
     },

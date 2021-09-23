@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.19.8
+ * bell-ui.js v0.19.9
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -1926,7 +1926,7 @@
 
   var template$i = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=__k[__k.length]=_b({context:_x,isComponent:$2,props:{className:'bell-checkbox-group'+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'Space',type:4},function(__i){_o('vertical',__l.vertical).value?(_c(__i,'props',$2,'vertical'),_c(__i,'props','start','align'),_c(__i,'props',_o('CHECKBOX_GAP_VERTICAL',__l.CHECKBOX_GAP_VERTICAL).value,'size')):(_c(__i,'props',$2,'autoWrap'),_c(__i,'props','center','align'),_c(__i,'props',[_o('CHECKBOX_GAP_HORIZONTAL',__l.CHECKBOX_GAP_HORIZONTAL).value,_o('CHECKBOX_GAP_VERTICAL',__l.CHECKBOX_GAP_VERTICAL).value],'size'));_o('style',__l.style).value?_c(__i,'props',_o('style',__l.style).value,'style'):$0;},{$slot_children:function(__j,__k){_j('$slot_'+'children',__j);}});}})();
 
-  var template$j = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_j('$slot_'+'children',__j);});}})();
+  var template$j = (function(){var $0=void 0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,__a,__b,__c,__d,__e,__f,__g,__l,__m,__j,__k){__j[__j.length]=_a({context:_x,nativeProps:{className:'bell-space'+(_o('vertical',__l.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_o('align',__l.align).value?' bell-space-align-'+_w(_o('align',__l.align).value):'')+(_o('autoWrap',__l.autoWrap).value?' bell-space-auto-wrap':'')+(_o('block',__l.block).value?' bell-space-block':'')+(_o('className',__l.className).value?' '+_w(_o('className',__l.className).value):'')},tag:'div',type:3},function(__i){_o('sizeValue',__l.sizeValue).value||_o('style',__l.style).value?_c(__i,'nativeProps',(_o('sizeValue',__l.sizeValue).value?'gap: '+_w(_o('sizeValue',__l.sizeValue).value)+';':'')+(_o('style',__l.style).value?_w(_o('style',__l.style).value):''),'style.cssText'):$0;},function(__j){_j('$slot_'+'children',__j);});}})();
 
   var Space = Yox.define({
       template: template$j,
@@ -1938,6 +1938,9 @@
           align: {
               type: oneOf(['start', 'end', 'center', 'baseline']),
               value: 'center',
+          },
+          block: {
+              type: RAW_BOOLEAN,
           },
           vertical: {
               type: RAW_BOOLEAN,
@@ -7400,7 +7403,7 @@
   /**
    * 版本
    */
-  var version = "0.19.8";
+  var version = "0.19.9";
   /**
    * 安装插件
    */
