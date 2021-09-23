@@ -1,0 +1,86 @@
+@import '../../../env'
+
+$description-title-font-size = 20px
+$description-header-body-gap = 16px
+
+$description-size-hash = {
+  default: {
+    padding-horizontal: 20px,
+    padding-vertical: 12px,
+  },
+  large: {
+    padding-horizontal: 24px,
+    padding-vertical: 16px,
+  },
+  small: {
+    padding-horizontal: 16px,
+    padding-vertical: 8px,
+  }
+}
+
+description-size-style(size)
+  {$selector-prefix + '-description-cell'}
+    ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
+
+{$selector-prefix + '-description'}
+  width 100%
+  box-sizing border-box
+
+  ui-connect(
+    hash: $description-size-hash,
+    each: description-size-style
+  )
+
+{$selector-prefix + '-description-header'}
+  display table
+  margin-bottom $description-header-body-gap
+
+{$selector-prefix + '-description-title'},
+{$selector-prefix + '-description-extra'}
+  display table-cell
+  vertical-align middle
+  white-space nowrap
+
+{$selector-prefix + '-description-title'}
+  color $brand-title
+  font-size $description-title-font-size
+  font-weight 500
+  line-height $ui-single-line-height
+  width 100%
+
+{$selector-prefix + '-description-table'}
+  color $brand-title
+  font-size $font-size-default
+  ui-table()
+
+{$selector-prefix + '-description-simple'}
+  {$selector-prefix + '-description-item-label'}:after
+    content ':'
+    position relative
+    margin 0 $ui-horizontal-gap 0 2px
+
+{$selector-prefix + '-description-bordered'}
+  {$selector-prefix + '-description-table'}
+    border 1px solid $brand-border
+
+  tr + tr
+    border-top 1px solid $brand-divider
+
+  td + td
+    border-left 1px solid $brand-divider
+
+  {$selector-prefix + '-description-item-label'}
+    background-color $brand-bg-light
+
+{$selector-prefix + '-description-cell'}
+  line-height $ui-multiple-line-height
+
+{$selector-prefix + '-description-item-wrapper'}
+  display flex
+  padding-bottom $description-header-body-gap
+
+{$selector-prefix + '-description-item-label'}
+  white-space nowrap
+
+{$selector-prefix + '-description-item-content'}
+  flex 1

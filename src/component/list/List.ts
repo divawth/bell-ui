@@ -7,7 +7,6 @@ import Spin from '../spin/Spin'
 import Empty from '../empty/Empty'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_SIZE_ARRAY,
@@ -27,15 +26,12 @@ export default Yox.define({
   propTypes: {
     simple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     loading: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     clickable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     size: {
       type: oneOf(RAW_SIZE_ARRAY),

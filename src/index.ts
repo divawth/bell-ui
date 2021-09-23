@@ -76,6 +76,8 @@ import TabPanel from './component/tabs/TabPanel'
 import Dropdown from './component/dropdown/Dropdown'
 import DropdownItem from './component/dropdown/DropdownItem'
 import DropdownMenu from './component/dropdown/DropdownMenu'
+import Description from './component/description/Description'
+import DescriptionItem from './component/description/DescriptionItem'
 
 import Thumbnail from './component/thumbnail/Thumbnail'
 import Timeline from './component/timeline/Timeline'
@@ -167,6 +169,9 @@ const component = {
   Dropdown,
   DropdownItem,
   DropdownMenu,
+
+  Description,
+  DescriptionItem,
 
   Thumbnail,
   Timeline,

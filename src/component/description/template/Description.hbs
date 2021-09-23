@@ -1,0 +1,73 @@
+<div
+class="${prefix}description
+
+{{#if simple}} ${prefix}description-simple
+{{else}} ${prefix}description-bordered
+{{#if size}} ${prefix}description-{{size}}{{/if}}
+{{/if}}
+
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  {{#if title}}
+    <div class="${prefix}description-header">
+      <div class="${prefix}description-title">
+        {{title}}
+      </div>
+      {{#if hasSlot('extra')}}
+        <div class="${prefix}description-extra">
+          <slot name="extra" />
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if simple}}
+    <table class="${prefix}description-table">
+      {{#each cells:rowIndex}}
+        <tr class="${prefix}description-row">
+          {{#each this:colIndex}}
+            <td class="${prefix}description-cell"
+              {{#if this.span > 1}}
+                colspan="{{this.span * 2 - 1}}"
+              {{/if}}
+            >
+              <div class="${prefix}description-item-wrapper">
+                <div class="${prefix}description-item-label">
+                  {{this.label}}
+                </div>
+                <div class="${prefix}description-item-content">
+                  <slot name="{{this.name}}" />
+                </div>
+              </div>
+            </td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </table>
+  {{else}}
+    <table class="${prefix}description-table">
+      {{#each cells:rowIndex}}
+        <tr class="${prefix}description-row">
+          {{#each this:colIndex}}
+            <td class="${prefix}description-cell ${prefix}description-item-label">
+              {{this.label}}
+            </td>
+            <td
+              class="${prefix}description-cell ${prefix}description-item-content"
+              {{#if this.span > 1}}
+                colspan="{{this.span * 2 - 1}}"
+              {{/if}}
+            >
+              <slot name="{{this.name}}" />
+            </td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </table>
+  {{/if}}
+
+</div>
