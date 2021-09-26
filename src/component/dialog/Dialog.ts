@@ -4,6 +4,7 @@ import template from './template/Dialog.hbs'
 // import './style/Dialog.styl'
 
 import Icon from '../icon/Icon'
+import Portal from '../portal/Portal'
 
 import {
   TRUE,
@@ -64,14 +65,22 @@ export default Yox.define({
     }
   },
 
+  data() {
+    return {
+      portalVisible: FALSE,
+    }
+  },
+
   watchers: {
     visible(visible, oldVisible) {
 
       const me = this
-      const element = me.$el
+      const element = me.$refs.dialog as HTMLElement
       const wrapper = me.$refs.wrapper as HTMLElement
 
       if (visible) {
+
+        me.set('portalVisible', TRUE)
 
         // 设置为 display block
         Yox.dom.addClass(element, CLASS_VISIBLE)
@@ -112,6 +121,7 @@ export default Yox.define({
           wrapper,
           function () {
             if (me.$el) {
+              me.set('portalVisible', FALSE)
               Yox.dom.removeClass(element, CLASS_VISIBLE)
               me.fire({
                 type: 'closed',
@@ -136,6 +146,7 @@ export default Yox.define({
 
   components: {
     Icon,
+    Portal,
   }
 
 })
