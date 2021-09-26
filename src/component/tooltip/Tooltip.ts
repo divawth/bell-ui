@@ -59,7 +59,6 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     delay: {
       type: RAW_NUMERIC,
@@ -101,10 +100,11 @@ export default Yox.define({
       this.set('isVisible', FALSE)
     },
     isVisible(visible, oldVisible) {
-      const popup = this.$refs.popup as HTMLElement
+      const me = this
+      const popup = me.$refs.popup as HTMLElement
       if (visible) {
         Yox.dom.addClass(popup, CLASS_VISIBLE)
-        this.setPosition()
+        me.setPosition()
         setTimeout(
           function () {
             Yox.dom.addClass(popup, CLASS_FADE)
@@ -209,7 +209,7 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this
+    const me = this as any
 
     if (me.get('mode') === RAW_CLICK) {
 
@@ -233,6 +233,9 @@ export default Yox.define({
 
       const destroy = function (component) {
         if (component === me) {
+          if (me.timer) {
+            clearTimeout(me.timer)
+          }
           Yox.dom.off(DOCUMENT, RAW_CLICK, onClick)
           Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
         }
@@ -241,12 +244,4 @@ export default Yox.define({
 
     }
   },
-
-  beforeDestroy() {
-    const me = this as any
-    if (me.timer) {
-      clearTimeout(me.timer)
-    }
-  }
-
 })
