@@ -4,7 +4,6 @@ import template from './template/BackTop.hbs'
 // import './style/BackTop.styl'
 
 import Icon from '../icon/Icon'
-import Portal from '../portal/Portal'
 
 import {
   FALSE,
@@ -105,7 +104,6 @@ export default Yox.define({
 
   components: {
     Icon,
-    Portal,
   },
 
   afterMount() {

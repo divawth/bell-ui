@@ -1,21 +1,19 @@
-<Portal selector="{{target}}" visible>
-  <div
-    class="${prefix}backtop
-    {{#if legacy}} ${prefix}backtop-legacy{{/if}}
-    {{#if className}} {{className}}{{/if}}"
+<div
+class="${prefix}backtop
+{{#if legacy}} ${prefix}backtop-legacy{{/if}}
+{{#if className}} {{className}}{{/if}}"
 
-    {{#if bottom || right || style}}
-      style="
-      {{#if bottom}}bottom: {{bottom}}px;{{/if}}
-      {{#if right}}right: {{right}}px;{{/if}}
-      {{#if style}}{{style}}{{/if}}"
-    {{/if}}
+{{#if bottom || right || style}}
+style="
+{{#if bottom}}bottom: {{bottom}}px;{{/if}}
+{{#if right}}right: {{right}}px;{{/if}}
+{{#if style}}{{style}}{{/if}}"
+{{/if}}
 
-    on-click="click.backTop"
-  >
-    <Icon
-      size="0"
-      name="arrow-up-line"
-    />
-  </div>
-</Portal>
+on-click="click.backTop"
+>
+  <Icon
+    size="0"
+    name="arrow-up-line"
+  />
+</div>
