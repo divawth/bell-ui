@@ -9109,10 +9109,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-divider-with-text:before,
 .bell-divider-with-text:after {
   content: '';
-  position: relative;
   display: table-cell;
   border-top: 1px solid #e8eaec;
-  transform: translateY(50%);
+  position: relative;
   top: 50%;
   width: 50%;
 }
