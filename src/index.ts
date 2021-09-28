@@ -192,11 +192,11 @@ export const version = process.env.NODE_VERSION
  */
 export function install(Yox: any) {
   let loadingbarElement = Yox.dom.createElement('div')
-  Yox.dom.prop(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
+  Yox.dom.setProp(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
   Yox.dom.append(BODY, loadingbarElement)
 
   let notificationElement = Yox.dom.createElement('div')
-  Yox.dom.prop(notificationElement, 'id', '${prefix}notification-wrapper')
+  Yox.dom.setProp(notificationElement, 'id', '${prefix}notification-wrapper')
   Yox.dom.append(BODY, notificationElement)
 
   Yox.component(component)

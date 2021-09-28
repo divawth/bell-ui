@@ -64,67 +64,6 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    visible(visible, oldVisible) {
-
-      const me = this
-      const element = me.$el
-      const wrapper = me.$refs.wrapper as HTMLElement
-
-      if (visible) {
-
-        // 设置为 display block
-        Yox.dom.addClass(element, CLASS_VISIBLE)
-        me.fire({
-          type: 'open',
-          ns: 'dialog',
-        })
-
-        setTimeout(
-          function () {
-            Yox.dom.addClass(element, CLASS_FADE)
-
-            onTransitionEnd(
-              wrapper,
-              function () {
-                if (me.$el) {
-                  me.fire({
-                    type: 'opened',
-                    ns: 'dialog',
-                  })
-                }
-              }
-            )
-          },
-          50
-        )
-
-      }
-      else if (oldVisible) {
-
-        Yox.dom.removeClass(element, CLASS_FADE)
-        me.fire({
-          type: 'close',
-          ns: 'dialog',
-        })
-
-        onTransitionEnd(
-          wrapper,
-          function () {
-            if (me.$el) {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
-              me.fire({
-                type: 'closed',
-                ns: 'dialog',
-              })
-            }
-          }
-        )
-
-      }
-    }
-  },
-
   methods: {
     open() {
       this.set('visible', TRUE)
@@ -132,6 +71,74 @@ export default Yox.define({
     close() {
       this.set('visible', FALSE)
     }
+  },
+
+  afterMount() {
+
+    const me = this
+
+    me.watch(
+      'visible',
+      function (visible, oldVisible) {
+
+        const element = me.$el
+        const wrapper = me.$refs.wrapper as HTMLElement
+
+        if (visible) {
+
+          // 设置为 display block
+          Yox.dom.addClass(element, CLASS_VISIBLE)
+          me.fire({
+            type: 'open',
+            ns: 'dialog',
+          })
+
+          setTimeout(
+            function () {
+              Yox.dom.addClass(element, CLASS_FADE)
+
+              onTransitionEnd(
+                wrapper,
+                function () {
+                  if (me.$el) {
+                    me.fire({
+                      type: 'opened',
+                      ns: 'dialog',
+                    })
+                  }
+                }
+              )
+            },
+            50
+          )
+
+        }
+        else if (oldVisible) {
+
+          Yox.dom.removeClass(element, CLASS_FADE)
+          me.fire({
+            type: 'close',
+            ns: 'dialog',
+          })
+
+          onTransitionEnd(
+            wrapper,
+            function () {
+              if (me.$el) {
+                Yox.dom.removeClass(element, CLASS_VISIBLE)
+                me.fire({
+                  type: 'closed',
+                  ns: 'dialog',
+                })
+              }
+            }
+          )
+
+        }
+      },
+      TRUE
+    )
+
   },
 
   components: {
