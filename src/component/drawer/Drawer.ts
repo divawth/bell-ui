@@ -8,6 +8,7 @@ import Icon from '../icon/Icon'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_LEFT,
@@ -70,66 +71,6 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    visible(visible, oldVisible) {
-
-      const me = this
-      const element = this.$el
-      const wrapper = this.$refs.wrapper as HTMLElement
-
-      if (visible) {
-
-        // 设置为 display block
-        Yox.dom.addClass(element, CLASS_VISIBLE)
-        me.fire({
-          type: 'open',
-          ns: 'drawer',
-        })
-
-        setTimeout(
-          function () {
-            Yox.dom.addClass(element, CLASS_FADE)
-            onTransitionEnd(
-              wrapper,
-              function () {
-                if (me.$el) {
-                  me.fire({
-                    type: 'opened',
-                    ns: 'drawer',
-                  })
-                }
-              }
-            )
-          },
-          50
-        )
-
-      }
-      else if (oldVisible) {
-
-        Yox.dom.removeClass(element, CLASS_FADE)
-        me.fire({
-          type: 'close',
-          ns: 'drawer',
-        })
-
-        onTransitionEnd(
-          wrapper,
-          function () {
-            if (me.$el) {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
-              me.fire({
-                type: 'closed',
-                ns: 'drawer',
-              })
-            }
-          }
-        )
-
-      }
-    }
-  },
-
   computed: {
     wrapperStyle() {
       let style = ''
@@ -155,6 +96,78 @@ export default Yox.define({
     close() {
       this.set('visible', FALSE)
     }
+  },
+
+  transitions: {
+    drawer: {
+      enter(node) {
+
+        const me = this as any
+        const drawer = node as HTMLElement
+        const wrapper = me.$refs.wrapper as HTMLElement
+        me.wrapperElement = wrapper
+
+        // 设置为 display block
+        Yox.dom.addClass(drawer, CLASS_VISIBLE)
+        me.fire({
+          type: 'open',
+          ns: 'drawer',
+        })
+
+        setTimeout(
+          function () {
+            if (!me.get('visible')) {
+              return
+            }
+
+            Yox.dom.addClass(drawer, CLASS_FADE)
+            onTransitionEnd(
+              wrapper,
+              function () {
+                if (!me.get('visible')) {
+                  return
+                }
+                me.fire({
+                  type: 'opened',
+                  ns: 'drawer',
+                })
+              }
+            )
+          },
+          50
+        )
+
+      },
+      leave(node, done) {
+
+        const me = this as any
+        const drawer = node as HTMLElement
+        const wrapper = me.wrapperElement as HTMLElement
+        me.wrapperElement = UNDEFINED
+
+        Yox.dom.removeClass(drawer, CLASS_FADE)
+        me.fire({
+          type: 'close',
+          ns: 'drawer',
+        })
+
+        onTransitionEnd(
+          wrapper,
+          function () {
+            if (me.get('visible')) {
+              return
+            }
+            Yox.dom.removeClass(drawer, CLASS_VISIBLE)
+            me.fire({
+              type: 'closed',
+              ns: 'drawer',
+            })
+            done()
+          }
+        )
+
+      }
+    },
   },
 
   components: {

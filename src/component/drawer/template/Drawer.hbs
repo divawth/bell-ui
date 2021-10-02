@@ -1,45 +1,50 @@
-<div
-class="${prefix}drawer
-{{#if placement}} ${prefix}drawer-{{placement}}{{/if}}
-{{#if className}} {{className}}{{/if}}"
-
-{{#if style}}
-  style="{{style}}"
-{{/if}}
->
-
-  {{#if mask}}
+{{#if visible}}
+  <portal>
     <div
-      class="${prefix}drawer-mask"
-      {{#if maskClosable}}
-        on-click="close()"
+      transition="drawer"
+      class="${prefix}drawer
+      {{#if placement}} ${prefix}drawer-{{placement}}{{/if}}
+      {{#if className}} {{className}}{{/if}}"
+
+      {{#if style}}
+        style="{{style}}"
       {{/if}}
-    ></div>
-  {{/if}}
+    >
 
-  <div
-    ref="wrapper"
-    class="${prefix}drawer-wrapper"
-    style="{{wrapperStyle}}"
-  >
-    {{#if  hasSlot('title')}}
-      <div class="${prefix}drawer-header">
-        <slot name="title" />
+      {{#if mask}}
+        <div
+          class="${prefix}drawer-mask"
+          {{#if maskClosable}}
+            on-click="close()"
+          {{/if}}
+        ></div>
+      {{/if}}
+
+      <div
+        ref="wrapper"
+        class="${prefix}drawer-wrapper"
+        style="{{wrapperStyle}}"
+      >
+        {{#if  hasSlot('title')}}
+          <div class="${prefix}drawer-header">
+            <slot name="title" />
+          </div>
+        {{/if}}
+
+        <div class="${prefix}drawer-body">
+          <slot name="content" />
+        </div>
+
+        {{#if closable}}
+          <Icon
+            name="close-line"
+            size="0"
+            className="${prefix}drawer-close"
+            on-click.native="close()"
+          />
+        {{/if}}
       </div>
-    {{/if}}
 
-    <div class="${prefix}drawer-body">
-      <slot name="content" />
     </div>
-
-    {{#if closable}}
-      <Icon
-        name="close-line"
-        size="0"
-        className="${prefix}drawer-close"
-        on-click.native="close()"
-      />
-    {{/if}}
-  </div>
-
-</div>
+  </portal>
+{{/if}}

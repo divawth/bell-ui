@@ -1,60 +1,65 @@
-<div
-class="${prefix}dialog
-{{#if className}} {{className}}{{/if}}"
-
-{{#if style}}
-  style="{{style}}"
-{{/if}}
->
-
-  {{#if mask}}
+{{#if visible}}
+  <portal>
     <div
-      class="${prefix}dialog-mask"
-      {{#if maskClosable}}
-        on-click="close()"
+      transition="dialog"
+      class="${prefix}dialog
+      {{#if className}} {{className}}{{/if}}"
+
+      {{#if style}}
+        style="{{style}}"
       {{/if}}
     >
+
+      {{#if mask}}
+        <div
+          class="${prefix}dialog-mask"
+          {{#if maskClosable}}
+            on-click="close()"
+          {{/if}}
+        >
+        </div>
+      {{/if}}
+
+      <div
+        ref="wrapper"
+        class="${prefix}dialog-wrapper"
+        {{#if width || height}}
+          style="
+            {{#if width}}width:{{width}}px;{{/if}}
+            {{#if height}}height:{{height}}px;{{/if}}"
+        {{/if}}
+      >
+
+        {{#if title || hasSlot('title')}}
+          <div class="${prefix}dialog-header">
+            <slot name="title">
+              {{title}}
+            </slot>
+          </div>
+        {{/if}}
+
+        {{#if hasSlot('content')}}
+          <div class="${prefix}dialog-body">
+            <slot name="content" />
+          </div>
+        {{/if}}
+
+        {{#if hasSlot('footer')}}
+          <div class="${prefix}dialog-footer">
+            <slot name="footer" />
+          </div>
+        {{/if}}
+
+        {{#if closable}}
+          <Icon
+            name="close-line"
+            size="0"
+            className="${prefix}dialog-close"
+            on-click.native="close()"
+          />
+        {{/if}}
+
+      </div>
     </div>
-  {{/if}}
-
-  <div
-    ref="wrapper"
-    class="${prefix}dialog-wrapper"
-    {{#if width || height}}
-      style="
-        {{#if width}}width:{{width}}px;{{/if}}
-        {{#if height}}height:{{height}}px;{{/if}}"
-    {{/if}}
-  >
-
-    {{#if title || hasSlot('title')}}
-      <div class="${prefix}dialog-header">
-        <slot name="title">
-          {{title}}
-        </slot>
-      </div>
-    {{/if}}
-
-    {{#if hasSlot('content')}}
-      <div class="${prefix}dialog-body">
-        <slot name="content" />
-      </div>
-    {{/if}}
-
-    {{#if hasSlot('footer')}}
-      <div class="${prefix}dialog-footer">
-        <slot name="footer" />
-      </div>
-    {{/if}}
-
-    {{#if closable}}
-      <Icon
-        name="close-line"
-        size="0"
-        className="${prefix}dialog-close"
-        on-click.native="close()"
-      />
-    {{/if}}
-
-  </div>
-</div>
+  </portal>
+{{/if}}

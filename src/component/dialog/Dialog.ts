@@ -8,6 +8,7 @@ import Icon from '../icon/Icon'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
@@ -73,72 +74,77 @@ export default Yox.define({
     }
   },
 
-  afterMount() {
+  transitions: {
+    dialog: {
+      enter(node) {
 
-    const me = this
-
-    me.watch(
-      'visible',
-      function (visible, oldVisible) {
-
-        const element = me.$el
+        const me = this as any
+        const dialog = node as HTMLElement
         const wrapper = me.$refs.wrapper as HTMLElement
+        me.wrapperElement = wrapper
 
-        if (visible) {
+        // 设置为 display block
+        Yox.dom.addClass(dialog, CLASS_VISIBLE)
+        me.fire({
+          type: 'open',
+          ns: 'dialog',
+        })
 
-          // 设置为 display block
-          Yox.dom.addClass(element, CLASS_VISIBLE)
-          me.fire({
-            type: 'open',
-            ns: 'dialog',
-          })
+        setTimeout(
+          function () {
+            if (!me.get('visible')) {
+              return
+            }
 
-          setTimeout(
-            function () {
-              Yox.dom.addClass(element, CLASS_FADE)
+            Yox.dom.addClass(dialog, CLASS_FADE)
 
-              onTransitionEnd(
-                wrapper,
-                function () {
-                  if (me.$el) {
-                    me.fire({
-                      type: 'opened',
-                      ns: 'dialog',
-                    })
-                  }
+            onTransitionEnd(
+              wrapper,
+              function () {
+                if (!me.get('visible')) {
+                  return
                 }
-              )
-            },
-            50
-          )
-
-        }
-        else if (oldVisible) {
-
-          Yox.dom.removeClass(element, CLASS_FADE)
-          me.fire({
-            type: 'close',
-            ns: 'dialog',
-          })
-
-          onTransitionEnd(
-            wrapper,
-            function () {
-              if (me.$el) {
-                Yox.dom.removeClass(element, CLASS_VISIBLE)
                 me.fire({
-                  type: 'closed',
+                  type: 'opened',
                   ns: 'dialog',
                 })
               }
-            }
-          )
+            )
+          },
+          50
+        )
 
-        }
       },
-      TRUE
-    )
+      leave(node, done) {
 
+        const me = this as any
+        const dialog = node as HTMLElement
+        const wrapper = me.wrapperElement as HTMLElement
+        me.wrapperElement = UNDEFINED
+
+        Yox.dom.removeClass(dialog, CLASS_FADE)
+        me.fire({
+          type: 'close',
+          ns: 'dialog',
+        })
+
+        onTransitionEnd(
+          wrapper,
+          function () {
+            if (me.get('visible')) {
+              return
+            }
+            Yox.dom.removeClass(dialog, CLASS_VISIBLE)
+            me.fire({
+              type: 'closed',
+              ns: 'dialog',
+            })
+            done()
+          }
+        )
+
+      }
+    },
   },
 
   components: {

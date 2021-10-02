@@ -65,41 +65,45 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    visible(visible, oldVisible) {
+  transitions: {
+    backTop: {
+      enter(node) {
 
-      const me = this
-      const element = me.$el
-
-      if (visible) {
+        const me = this
 
         // 设置为 display block
-        Yox.dom.addClass(element, CLASS_VISIBLE)
+        Yox.dom.addClass(node, CLASS_VISIBLE)
 
         setTimeout(
           function () {
-            Yox.dom.addClass(element, CLASS_FADE)
+            if (!me.get('visible')) {
+              return
+            }
+            Yox.dom.addClass(node, CLASS_FADE)
           },
           50
         )
 
-      }
-      else if (oldVisible) {
+      },
+      leave(node, done) {
 
-        Yox.dom.removeClass(element, CLASS_FADE)
+        const me = this
+
+        Yox.dom.removeClass(node, CLASS_FADE)
 
         onTransitionEnd(
-          element,
+          node,
           function () {
-            if (me.$el) {
-              Yox.dom.removeClass(element, CLASS_VISIBLE)
+            if (me.get('visible')) {
+              return
             }
+            Yox.dom.removeClass(node, CLASS_VISIBLE)
+            done()
           }
         )
 
       }
-
-    }
+    },
   },
 
   components: {
