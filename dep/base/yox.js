@@ -7583,8 +7583,10 @@
               else {
                   customEvent = new CustomEvent(type, createEvent(event));
               }
-              for (var i = 0, length = customListenerList.length; i < length; i++) {
-                  customListenerList[i](customEvent, UNDEFINED$1, TRUE$1);
+              // 避免遍历过程中，数组发生变化，比如增删了
+              var listenerList = customListenerList.slice();
+              for (var i = 0, length = listenerList.length; i < length; i++) {
+                  listenerList[i](customEvent, UNDEFINED$1, TRUE$1);
               }
           };
           nativeListenerMap[type] = nativeListener;
