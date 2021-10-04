@@ -3465,7 +3465,7 @@ function isOptionSelected(values, value) {
             this.fireEvent(TRUE);
         },
         getText: function () {
-            return this.get('text') || external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.text(this.$el);
+            return this.get('text') || external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.getText(this.$el);
         },
         fireEvent: function (isSelected) {
             this.fire({

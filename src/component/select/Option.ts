@@ -92,7 +92,7 @@ export default Yox.define({
       this.fireEvent(TRUE)
     },
     getText(): string {
-      return this.get('text') || Yox.dom.text(this.$el)
+      return this.get('text') || Yox.dom.getText(this.$el)
     },
     fireEvent(isSelected: boolean) {
       this.fire(

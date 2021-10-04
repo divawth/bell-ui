@@ -1938,6 +1938,17 @@
       }
   }
 
+  function getComponentHostVNode(vnode) {
+      var component = vnode.component;
+      return component
+          ? component.$vnode
+          : vnode;
+  }
+  function getFragmentHostVNode(vnode) {
+      return vnode.isFragment
+          ? getFragmentHostVNode(vnode.children[0])
+          : vnode;
+  }
   function insertNodeNatively(api, parentNode, node, referenceNode) {
       if (referenceNode) {
           api.before(parentNode, node, referenceNode);
@@ -1946,7 +1957,48 @@
           api.append(parentNode, node);
       }
   }
-  function insertVNodeNatively(api, parentNode, vnode, before) {
+  function enterVNode(vnode, node) {
+      var data = vnode.data;
+      var transition = vnode.transition;
+      var leaving = data[LEAVING];
+      if (leaving) {
+          leaving();
+      }
+      if (transition) {
+          var enter = transition.enter;
+          if (enter) {
+              enter.call(vnode.context, node);
+          }
+      }
+  }
+  function leaveVNode(vnode, node, done) {
+      var data = vnode.data;
+      var transition = vnode.transition;
+      var leaving = data[LEAVING];
+      if (leaving) {
+          leaving();
+      }
+      if (transition) {
+          var leave = transition.leave;
+          if (leave) {
+              leave.call(vnode.context, node, data[LEAVING] = function () {
+                  if (data[LEAVING]) {
+                      done();
+                      data[LEAVING] = UNDEFINED$1;
+                  }
+              });
+              return TRUE$1;
+          }
+      }
+  }
+  function textVNodeUpdateOperator(api, vnode, oldVNode) {
+      var node = oldVNode.node;
+      vnode.node = node;
+      if (vnode.text !== oldVNode.text) {
+          api.setText(node, vnode.text, vnode.isStyle, vnode.isOption);
+      }
+  }
+  function vnodeInsertOperator(api, parentNode, vnode, before) {
       // 这里不调用 insertNodeNatively，避免判断两次
       if (before) {
           api.before(parentNode, vnode.node, before.node);
@@ -1955,38 +2007,35 @@
           api.append(parentNode, vnode.node);
       }
   }
-  function removeVNodeNatively(api, parentNode, vnode) {
+  function vnodeRemoveOperator(api, parentNode, vnode) {
       api.remove(parentNode, vnode.node);
+  }
+  function vnodeEnterOperator() {
+  }
+  function vnodeLeaveOperator(node, done) {
+      done();
   }
   var textVNodeOperator = {
       create: function(api, vnode) {
           vnode.node = api.createText(vnode.text);
       },
-      update: function(api, vnode, oldVNode) {
-          var node = oldVNode.node;
-          vnode.node = node;
-          if (vnode.text !== oldVNode.text) {
-              api.setText(node, vnode.text, vnode.isStyle, vnode.isOption);
-          }
-      },
+      update: textVNodeUpdateOperator,
       destroy: EMPTY_FUNCTION,
-      insert: insertVNodeNatively,
-      remove: removeVNodeNatively,
+      insert: vnodeInsertOperator,
+      remove: vnodeRemoveOperator,
+      enter: vnodeEnterOperator,
+      leave: vnodeLeaveOperator,
   };
   var commentVNodeOperator = {
       create: function(api, vnode) {
           vnode.node = api.createComment(vnode.text);
       },
-      update: function(api, vnode, oldVNode) {
-          var node = oldVNode.node;
-          vnode.node = node;
-          if (vnode.text !== oldVNode.text) {
-              api.setText(node, vnode.text);
-          }
-      },
+      update: textVNodeUpdateOperator,
       destroy: EMPTY_FUNCTION,
-      insert: insertVNodeNatively,
-      remove: removeVNodeNatively,
+      insert: vnodeInsertOperator,
+      remove: vnodeRemoveOperator,
+      enter: vnodeEnterOperator,
+      leave: vnodeLeaveOperator,
   };
   var elementVNodeOperator = {
       create: function(api, vnode) {
@@ -2084,8 +2133,20 @@
               });
           }
       },
-      insert: insertVNodeNatively,
-      remove: removeVNodeNatively,
+      insert: vnodeInsertOperator,
+      remove: vnodeRemoveOperator,
+      enter: function(vnode) {
+          if (vnode.data) {
+              enterVNode(vnode, vnode.node);
+          }
+      },
+      leave: function(vnode, done) {
+          if (vnode.data
+              && leaveVNode(vnode, vnode.node, done)) {
+              return;
+          }
+          done();
+      },
   };
   var componentVNodeOperator = {
       create: function(api, vnode) {
@@ -2103,7 +2164,8 @@
                               // 用完就删掉
                               delete data[VNODE];
                           }
-                          enterVNode(vnode, createComponent(api, vnode, options));
+                          createComponent(api, vnode, options);
+                          vnode.operator.enter(vnode);
                       }
                   }
                   // 同步组件
@@ -2154,12 +2216,36 @@
           }
       },
       insert: function(api, parentNode, vnode, before) {
-          var componentVNode = vnode.component.$vnode;
-          insertVNode(api, parentNode, componentVNode, before);
+          insertVNode(api, parentNode, getComponentHostVNode(vnode), before);
       },
       remove: function(api, parentNode, vnode) {
-          var componentVNode = vnode.component.$vnode;
-          removeVNode(api, parentNode, componentVNode);
+          removeVNode(api, parentNode, getComponentHostVNode(vnode));
+      },
+      enter: function(vnode) {
+          if (vnode.component) {
+              var hostVNode = getComponentHostVNode(vnode);
+              if (vnode.transition) {
+                  enterVNode(vnode, hostVNode.node);
+              }
+              else {
+                  hostVNode.operator.enter(hostVNode);
+              }
+          }
+      },
+      leave: function(vnode, done) {
+          if (vnode.component) {
+              var hostVNode = getComponentHostVNode(vnode);
+              if (vnode.transition) {
+                  if (leaveVNode(vnode, hostVNode.node, done)) {
+                      return;
+                  }
+              }
+              else {
+                  hostVNode.operator.leave(hostVNode, done);
+                  return;
+              }
+          }
+          done();
       },
   };
   var fragmentVNodeOperator = {
@@ -2167,7 +2253,7 @@
           each$2(vnode.children, function (child) {
               createVNode(api, child);
           });
-          vnode.node = getFragmentHostNode(vnode);
+          vnode.node = getFragmentHostVNode(vnode).node;
       },
       update: function(api, vnode, oldVNode) {
           var node = oldVNode.node;
@@ -2189,6 +2275,8 @@
               removeVNode(api, parentNode, child);
           });
       },
+      enter: vnodeEnterOperator,
+      leave: vnodeLeaveOperator,
   };
   var portalVNodeOperator = {
       create: function(api, vnode) {
@@ -2211,7 +2299,7 @@
           });
           // 用注释占用节点在模板里的位置
           // 这样删除或替换节点，才有找到它应该在的位置
-          vnode.node = api.createComment('portal');
+          vnode.node = api.createComment(EMPTY_STRING);
       },
       update: function(api, vnode, oldVNode) {
           var node = oldVNode.node;
@@ -2226,25 +2314,22 @@
           });
       },
       insert: function(api, parentNode, vnode, before) {
-          insertVNodeNatively(api, parentNode, vnode);
+          vnodeInsertOperator(api, parentNode, vnode);
           var actualParentNode = vnode.parentNode;
           each$2(vnode.children, function (child) {
               insertVNode(api, actualParentNode, child);
           });
       },
       remove: function(api, parentNode, vnode) {
-          removeVNodeNatively(api, parentNode, vnode);
+          vnodeRemoveOperator(api, parentNode, vnode);
           var actualParentNode = vnode.parentNode;
           each$2(vnode.children, function (child) {
               removeVNode(api, actualParentNode, child);
           });
-      }
+      },
+      enter: vnodeEnterOperator,
+      leave: vnodeLeaveOperator,
   };
-  function getFragmentHostNode(vnode) {
-      return vnode.isFragment
-          ? getFragmentHostNode(vnode.children[0])
-          : vnode.node;
-  }
   function isPatchable(vnode, oldVNode) {
       return vnode.type === oldVNode.type
           && vnode.tag === oldVNode.tag
@@ -2290,18 +2375,18 @@
       }
   }
   function insertVNode(api, parentNode, vnode, before) {
-      var isEnterable = vnode.data && !api.parent(vnode.node);
-      vnode.operator.insert(api, parentNode, vnode, before);
+      var operator = vnode.operator;
+      operator.insert(api, parentNode, vnode, before);
       // 普通元素和组件的占位节点都会走到这里
       // 但是占位节点不用 enter，而是等组件加载回来之后再调 enter
-      if (isEnterable) {
+      if (operator.enter !== vnodeEnterOperator) {
           // 执行到这时，组件还没有挂载到 DOM 树
           // 如果此时直接触发 enter，外部还需要做多余的工作，比如 setTimeout
           // 索性这里直接等挂载到 DOM 数之后再触发
           // 注意：YoxInterface 没有声明 $nextTask，因为不想让外部访问，
           // 但是这里要用一次，所以加了 as any
           vnode.context.$nextTask.prepend(function () {
-              enterVNode(vnode, vnode.component);
+              operator.enter(vnode);
           });
       }
   }
@@ -2320,72 +2405,10 @@
       vnode.operator.destroy(api, vnode);
   }
   function removeVNode(api, parentNode, vnode) {
-      var component = vnode.component;
       var operator = vnode.operator;
-      var done = function () {
+      operator.leave(vnode, function () {
           operator.remove(api, parentNode, vnode);
-      };
-      if (!vnode.data
-          // 异步组件，还没加载成功就被删除了
-          || (vnode.isComponent && !component)) {
-          done();
-          return;
-      }
-      leaveVNode(vnode, component, done);
-  }
-  /**
-   * vnode 触发 enter hook 时，外部一般会做一些淡入动画
-   */
-  function enterVNode(vnode, component) {
-      // 如果组件根元素和组件本身都写了 transition
-      // 优先用外面定义的
-      // 因为这明确是在覆盖配置
-      var data = vnode.data;
-      var transition = vnode.transition;
-      if (component && !transition) {
-          // 再看组件根元素是否有 transition
-          transition = component.$vnode.transition;
-      }
-      var leaving = data[LEAVING];
-      if (leaving) {
-          leaving();
-      }
-      if (transition) {
-          var enter = transition.enter;
-          if (enter) {
-              enter.call(vnode.context, vnode.node);
-          }
-      }
-  }
-  /**
-   * vnode 触发 leave hook 时，外部一般会做一些淡出动画
-   * 动画结束后才能移除节点，否则无法产生动画
-   * 这里由外部调用 done 来通知内部动画结束
-   */
-  function leaveVNode(vnode, component, done) {
-      // 如果组件根元素和组件本身都写了 transition
-      // 优先用外面定义的
-      // 因为这明确是在覆盖配置
-      var data = vnode.data;
-      var transition = vnode.transition;
-      if (component && !transition) {
-          // 再看组件根元素是否有 transition
-          transition = component.$vnode.transition;
-      }
-      if (transition) {
-          var leave = transition.leave;
-          if (leave) {
-              leave.call(vnode.context, vnode.node, data[LEAVING] = function () {
-                  if (data[LEAVING]) {
-                      done();
-                      data[LEAVING] = UNDEFINED$1;
-                  }
-              });
-              return;
-          }
-      }
-      // 如果没有淡出动画，直接结束
-      done();
+      });
   }
   function updateChildren(api, parentNode, children, oldChildren) {
       var startIndex = 0, endIndex = children.length - 1, startVNode = children[startIndex], endVNode = children[endIndex], oldStartIndex = 0, oldEndIndex = oldChildren.length - 1, oldStartVNode = oldChildren[oldStartIndex], oldEndVNode = oldChildren[oldEndIndex], oldKeyToIndex, oldIndex;
