@@ -18,8 +18,7 @@
   style="
   {{#if width}}width:{{width}}px;{{/if}}
   {{#if height}}height:{{height}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}
-  "
+  {{#if style}}{{style}}{{/if}}"
 {{/if}}
 >
 
@@ -57,52 +56,33 @@
       {{/each}}
     {{/if}}
 
-    <div
-      class="${prefix}slider-thumb"
-      style="
-      {{#if vertical}}
-        bottom: {{percent}}%;
-      {{else}}
-        left: {{percent}}%;
-      {{/if}}"
-
-      on-mouseenter="thumbMouseEnter.slider"
-      on-mouseleave="thumbMouseLeave.slider"
-      lazy-mouseenter="200"
-      lazy-mouseleave="200"
-
-      {{#if !disabled}}
-        on-mousedown="thumbMouseDown.slider"
-      {{/if}}
-
+    <Tooltip
+      ref="tooltip"
+      placement="{{vertical ? RAW_RIGHT : RAW_TOP}}"
+      content="{{formatTooltip ? formatTooltip(value) : value}}"
+      mode="{{RAW_CUSTOM}}"
     >
-    </div>
-
-    {{#if showTooltip}}
       <div
-        ref="tooltip"
-        class="${prefix}tooltip ${prefix}tooltip-dark
-        {{#if vertical}} ${prefix}tooltip-right
-        {{else}} ${prefix}tooltip-top
-        {{/if}}"
+        class="${prefix}slider-thumb"
         style="
         {{#if vertical}}
           bottom: {{percent}}%;
         {{else}}
           left: {{percent}}%;
         {{/if}}"
-      >
-        <div class="${prefix}tooltip-arrow"></div>
-        <div class="${prefix}tooltip-content">
-          {{#if formatTooltip}}
-            {{formatTooltip(value)}}
-          {{else}}
-            {{value}}
-          {{/if}}
-        </div>
-      </div>
-    {{/if}}
 
+        on-mouseenter="thumbMouseEnter.slider"
+        on-mouseleave="thumbMouseLeave.slider"
+        lazy-mouseenter="200"
+        lazy-mouseleave="200"
+
+        {{#if !disabled}}
+          on-mousedown="thumbMouseDown.slider"
+        {{/if}}
+
+      >
+      </div>
+    </Tooltip>
   </div>
 
 </div>

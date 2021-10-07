@@ -7,6 +7,11 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     fireOpen(): void;
     fireClose(): void;
     toggleVisible(): void;
+    getOverlayPosition(): {
+        left: string;
+        top: string;
+    };
+    refreshOverlayPosition(): void;
     setOverlayStyle(el: HTMLElement, style: Data, clear?: boolean): void;
 }> & ThisType<{
     enter(): void;
@@ -14,6 +19,11 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     fireOpen(): void;
     fireClose(): void;
     toggleVisible(): void;
+    getOverlayPosition(): {
+        left: string;
+        top: string;
+    };
+    refreshOverlayPosition(): void;
     setOverlayStyle(el: HTMLElement, style: Data, clear?: boolean): void;
 } & YoxInterface>;
 export default _default;

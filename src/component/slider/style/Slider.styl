@@ -4,15 +4,11 @@ $slider-bg-color = #e8eaec
 
 $slider-thickness = 4px
 $slider-thumb-size = 12px
-$slider-tooltip-gap = 5px
 
 {$selector-prefix + '-slider'}
   display inline-block
   user-select none
   box-sizing border-box
-
-  {$selector-prefix + '-tooltip'}
-    top auto
 
 {$selector-prefix + '-slider-track'}
   background-color $slider-bg-color
@@ -64,9 +60,6 @@ $slider-tooltip-gap = 5px
     left 50%
     margin-bottom -0.5 * $slider-thumb-size
 
-  {$selector-prefix + '-tooltip'}
-    left 0.5 * $slider-thumb-size + $slider-tooltip-gap
-
 {$selector-prefix + '-slider-horizontal'}
   width $ui-form-element-width
   padding 0.5 * ($slider-thumb-size - $slider-thickness) 0.5 * $slider-thumb-size
@@ -86,9 +79,6 @@ $slider-tooltip-gap = 5px
   {$selector-prefix + '-slider-thumb'}
     top 50%
     margin-top -0.5 * $slider-thumb-size
-
-  {$selector-prefix + '-tooltip'}
-    bottom 0.5 * $slider-thumb-size + $slider-tooltip-gap
 
 {$selector-prefix + '-slider-enabled'}
   {$selector-prefix + '-slider-track'}

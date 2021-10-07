@@ -3,6 +3,8 @@ import Yox, { CustomEventInterface } from 'yox'
 import template from './template/Slider.hbs'
 // import './style/Slider.styl'
 
+import Tooltip from '../tooltip/Tooltip'
+
 import {
   TRUE,
   FALSE,
@@ -13,17 +15,16 @@ import {
   RAW_FUNCTION,
   RAW_EVENT_MOUSEMOVE,
   RAW_EVENT_MOUSEUP,
+  RAW_RIGHT,
+  RAW_TOP,
+  RAW_CUSTOM,
 } from '../constant'
 
 import {
   toNumber,
   getPageX,
   getPageY,
-  onTransitionEnd,
 } from '../util'
-
-const CLASS_VISIBLE = '${prefix}tooltip-visible'
-const CLASS_FADE = '${prefix}tooltip-fade'
 
 export default Yox.define({
 
@@ -82,50 +83,12 @@ export default Yox.define({
 
   data() {
     return {
+      RAW_TOP,
+      RAW_RIGHT,
+      RAW_CUSTOM,
       thumbIsDragging: FALSE,
       mouseInThumb: FALSE,
       tooltipVisible: FALSE,
-    }
-  },
-
-  watchers: {
-    value() {
-
-      const tooltip = this.$refs.tooltip as HTMLElement
-      if (!tooltip) {
-        return
-      }
-
-      this.updateTooltipPosition(tooltip)
-
-    },
-    tooltipVisible(visible, oldVisible) {
-
-      const tooltip = this.$refs.tooltip as HTMLElement
-      if (!tooltip) {
-        return
-      }
-
-      if (visible) {
-        Yox.dom.addClass(tooltip, CLASS_VISIBLE)
-        this.updateTooltipPosition(tooltip)
-        setTimeout(
-          function () {
-            Yox.dom.addClass(tooltip, CLASS_FADE)
-          },
-          50
-        )
-      }
-      else if (oldVisible) {
-        Yox.dom.removeClass(tooltip, CLASS_FADE)
-        onTransitionEnd(
-          tooltip,
-          function () {
-            Yox.dom.removeClass(tooltip, CLASS_VISIBLE)
-          }
-        )
-      }
-
     }
   },
 
@@ -173,23 +136,21 @@ export default Yox.define({
     }
   },
 
-  methods: {
-    updateTooltipPosition(tooltip: HTMLElement) {
-
-      const { offsetWidth, offsetHeight } = tooltip
-      if (!offsetWidth || !offsetHeight) {
-        return
+  watchers: {
+    value() {
+      this.nextTick(function () {
+        const tooltip = this.$refs.tooltip as any
+        tooltip.refresh()
+      })
+    },
+    tooltipVisible(value, oldValue) {
+      const tooltip = this.$refs.tooltip as any
+      if (value) {
+        tooltip.open()
       }
-
-      if (this.get('vertical')) {
-        tooltip.style.marginBottom = -0.5 * offsetHeight + 'px'
-        tooltip.style.marginLeft = '0px'
+      else if (oldValue) {
+        tooltip.close()
       }
-      else {
-        tooltip.style.marginLeft = -0.5 * offsetWidth + 'px'
-        tooltip.style.marginBottom = '0px'
-      }
-
     }
   },
 
@@ -210,7 +171,6 @@ export default Yox.define({
     const onMouseMove = function (event: CustomEventInterface) {
 
       const originalEvent = event.originalEvent as MouseEvent
-
       updatePosition(originalEvent.pageX, originalEvent.pageY)
 
     }
@@ -292,7 +252,7 @@ export default Yox.define({
 
         me.set({
           mouseInThumb: TRUE,
-          tooltipVisible: TRUE
+          tooltipVisible: me.get('showTooltip'),
         })
 
       }
@@ -323,7 +283,7 @@ export default Yox.define({
 
         me.set({
           thumbIsDragging: TRUE,
-          tooltipVisible: TRUE
+          tooltipVisible: me.get('showTooltip'),
         })
 
       }
@@ -336,13 +296,16 @@ export default Yox.define({
 
         updateValues()
 
-        const originalEvent = (event.originalEvent as CustomEventInterface).originalEvent as MouseEvent
+        const originalEvent = event.originalEvent as MouseEvent
         updatePosition(originalEvent.pageX, originalEvent.pageY)
 
       }
     )
 
+  },
 
+  components: {
+    Tooltip,
   },
 
 })

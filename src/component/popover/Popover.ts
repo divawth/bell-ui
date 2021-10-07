@@ -35,6 +35,8 @@ import {
   oneOf,
   contains,
   toNumber,
+  getPageX,
+  getPageY,
   onTransitionEnd,
 } from '../util'
 
@@ -171,11 +173,105 @@ export default Yox.define({
       }
     },
 
+    getOverlayPosition() {
+
+      const me = this as any
+
+      const placement = me.get('placement')
+      const offsetX = toNumber(me.get('offsetX')) || 0
+      const offsetY = toNumber(me.get('offsetY')) || 0
+      const gap = toNumber(me.get('gap')) || 0
+
+      const triggerElement = me.$refs.trigger as HTMLElement
+      const triggerRect = triggerElement.getBoundingClientRect()
+      const triggerLeft = getPageX() + triggerRect.left
+      const triggerTop = getPageY() + triggerRect.top
+
+      let x = 0, y = 0
+
+      if (placement === RAW_TOP
+        || placement === RAW_TOP_START
+        || placement === RAW_TOP_END
+      ) {
+        y = triggerTop - gap
+      }
+      else if (placement === RAW_BOTTOM
+        || placement === RAW_BOTTOM_START
+        || placement === RAW_BOTTOM_END
+      ) {
+        y = triggerTop + triggerRect.height + gap
+      }
+      else if (placement === RAW_LEFT
+        || placement === RAW_LEFT_START
+        || placement === RAW_LEFT_END
+      ) {
+        x = triggerLeft - gap
+      }
+      else if (placement === RAW_RIGHT
+        || placement === RAW_RIGHT_START
+        || placement === RAW_RIGHT_END
+      ) {
+        x = triggerLeft + triggerRect.width + gap
+      }
+
+      if (placement === RAW_TOP
+        || placement === RAW_BOTTOM
+      ) {
+        x = triggerLeft + 0.5 * triggerRect.width
+      }
+      else if (placement === RAW_TOP_START
+        || placement === RAW_BOTTOM_START
+      ) {
+        x = triggerLeft
+      }
+      else if (placement === RAW_TOP_END
+        || placement === RAW_BOTTOM_END
+      ) {
+        x = triggerLeft + triggerRect.width
+      }
+      else if (placement === RAW_LEFT
+        || placement === RAW_RIGHT
+      ) {
+        y = triggerTop + 0.5 * triggerRect.height
+      }
+      else if (placement === RAW_LEFT_START
+        || placement === RAW_RIGHT_START
+      ) {
+        y = triggerTop
+      }
+      else if (placement === RAW_LEFT_END
+        || placement === RAW_RIGHT_END
+      ) {
+        y = triggerTop + triggerRect.height
+      }
+
+      return {
+        left: (x + offsetX) + 'px',
+        top: (y + offsetY) + 'px',
+      }
+
+    },
+
+    refreshOverlayPosition() {
+
+      const overlayElement = this.$refs.overlay as HTMLElement
+      if (!overlayElement) {
+        return
+      }
+
+      this.setOverlayStyle(
+        overlayElement,
+        this.getOverlayPosition()
+      )
+
+    },
+
     setOverlayStyle(el: HTMLElement, style: Data, clear?: boolean) {
       const target = el.style
       for (let key in style) {
         target[key] = style[key] != NULL && !clear ? style[key] : ''
       }
+      this.set('overlayStyle', clear ? UNDEFINED : style)
     },
 
   },
@@ -187,83 +283,11 @@ export default Yox.define({
         const me = this as any
 
         const placement = me.get('placement')
-        const offsetX = toNumber(me.get('offsetX')) || 0
-        const offsetY = toNumber(me.get('offsetY')) || 0
-        const gap = toNumber(me.get('gap')) || 0
-
-        const triggerElement = me.$refs.trigger as HTMLElement
-        const triggerRect = triggerElement.getBoundingClientRect()
-        const triggerLeft = window.pageXOffset + triggerRect.left
-        const triggerTop = window.pageYOffset + triggerRect.top
 
         Yox.dom.addClass(node, CLASS_OVERLAY)
         Yox.dom.addClass(node, '${prefix}popover-overlay-' + placement)
 
-        let x = 0, y = 0
-
-        if (placement === RAW_TOP
-          || placement === RAW_TOP_START
-          || placement === RAW_TOP_END
-        ) {
-          y = triggerTop - gap
-        }
-        else if (placement === RAW_BOTTOM
-          || placement === RAW_BOTTOM_START
-          || placement === RAW_BOTTOM_END
-        ) {
-          y = triggerTop + triggerRect.height + gap
-        }
-        else if (placement === RAW_LEFT
-          || placement === RAW_LEFT_START
-          || placement === RAW_LEFT_END
-        ) {
-          x = triggerLeft - gap
-        }
-        else if (placement === RAW_RIGHT
-          || placement === RAW_RIGHT_START
-          || placement === RAW_RIGHT_END
-        ) {
-          x = triggerLeft + triggerRect.width + gap
-        }
-
-        if (placement === RAW_TOP
-          || placement === RAW_BOTTOM
-        ) {
-          x = triggerLeft + 0.5 * triggerRect.width
-        }
-        else if (placement === RAW_TOP_START
-          || placement === RAW_BOTTOM_START
-        ) {
-          x = triggerLeft
-        }
-        else if (placement === RAW_TOP_END
-          || placement === RAW_BOTTOM_END
-        ) {
-          x = triggerLeft + triggerRect.width
-        }
-        else if (placement === RAW_LEFT
-          || placement === RAW_RIGHT
-        ) {
-          y = triggerTop + 0.5 * triggerRect.height
-        }
-        else if (placement === RAW_LEFT_START
-          || placement === RAW_RIGHT_START
-        ) {
-          y = triggerTop
-        }
-        else if (placement === RAW_LEFT_END
-          || placement === RAW_RIGHT_END
-        ) {
-          y = triggerTop + triggerRect.height
-        }
-
-        const overlayStyle = {
-          left: (x + offsetX) + 'px',
-          top: (y + offsetY) + 'px',
-        }
-
-        me.set('overlayStyle', overlayStyle)
-        me.setOverlayStyle(node, overlayStyle)
+        me.setOverlayStyle(node, me.getOverlayPosition())
 
         me.animateTimer = setTimeout(
           function () {
@@ -295,7 +319,6 @@ export default Yox.define({
         onTransitionEnd(
           node,
           function () {
-            me.set('overlayStyle', UNDEFINED)
             me.setOverlayStyle(node, overlayStyle, TRUE)
             Yox.dom.removeClass(node, CLASS_OVERLAY_TRANSITION)
             Yox.dom.removeClass(node, CLASS_OVERLAY)
