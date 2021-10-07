@@ -62,6 +62,12 @@ export default Yox.define({
     visible: {
       type: RAW_BOOLEAN,
     },
+    offsetX: {
+      type: RAW_NUMERIC,
+    },
+    offsetY: {
+      type: RAW_NUMERIC,
+    },
     gap: {
       type: RAW_NUMERIC,
       value: 5,
@@ -139,6 +145,8 @@ export default Yox.define({
         const me = this as any
 
         const placement = me.get('placement')
+        const offsetX = toNumber(me.get('offsetX')) || 0
+        const offsetY = toNumber(me.get('offsetY')) || 0
         const gap = toNumber(me.get('gap'))
 
         const triggerElement = me.$refs.trigger as HTMLElement
@@ -149,62 +157,67 @@ export default Yox.define({
         Yox.dom.addClass(node, CLASS_OVERLAY)
         Yox.dom.addClass(node, '${prefix}popover-overlay-' + placement)
 
-        const overlayStyle: Data = { }
+        let x = 0, y = 0
 
         if (placement === RAW_TOP
           || placement === RAW_TOP_START
           || placement === RAW_TOP_END
         ) {
-          overlayStyle['top'] = (triggerTop - gap) + 'px'
+          y = triggerTop - gap
         }
         else if (placement === RAW_BOTTOM
           || placement === RAW_BOTTOM_START
           || placement === RAW_BOTTOM_END
         ) {
-          overlayStyle['top'] = (triggerTop + triggerRect.height + gap) + 'px'
+          y = triggerTop + triggerRect.height + gap
         }
         else if (placement === RAW_LEFT
           || placement === RAW_LEFT_START
           || placement === RAW_LEFT_END
         ) {
-          overlayStyle['left'] = (triggerLeft - gap) + 'px'
+          x = triggerLeft - gap
         }
         else if (placement === RAW_RIGHT
           || placement === RAW_RIGHT_START
           || placement === RAW_RIGHT_END
         ) {
-          overlayStyle['left'] = (triggerLeft + triggerRect.width + gap) + 'px'
+          x = triggerLeft + triggerRect.width + gap
         }
 
         if (placement === RAW_TOP
           || placement === RAW_BOTTOM
         ) {
-          overlayStyle['left'] = (triggerLeft + 0.5 * triggerRect.width) + 'px'
+          x = triggerLeft + 0.5 * triggerRect.width
         }
         else if (placement === RAW_TOP_START
           || placement === RAW_BOTTOM_START
         ) {
-          overlayStyle['left'] = triggerLeft + 'px'
+          x = triggerLeft
         }
         else if (placement === RAW_TOP_END
           || placement === RAW_BOTTOM_END
         ) {
-          overlayStyle['left'] = (triggerLeft + triggerRect.width) + 'px'
+          x = triggerLeft + triggerRect.width
         }
         else if (placement === RAW_LEFT
           || placement === RAW_RIGHT
         ) {
-          overlayStyle['top'] = (triggerTop + 0.5 * triggerRect.height) + 'px'
+          y = triggerTop + 0.5 * triggerRect.height
         }
         else if (placement === RAW_LEFT_START
           || placement === RAW_RIGHT_START
         ) {
-          overlayStyle['top'] = triggerTop + 'px'
+          y = triggerTop
         }
         else if (placement === RAW_LEFT_END
           || placement === RAW_RIGHT_END
         ) {
-          overlayStyle['top'] = (triggerTop + triggerRect.height) + 'px'
+          y = triggerTop + triggerRect.height
+        }
+
+        const overlayStyle = {
+          left: (x + offsetX) + 'px',
+          top: (y + offsetY) + 'px',
         }
 
         me.set({
