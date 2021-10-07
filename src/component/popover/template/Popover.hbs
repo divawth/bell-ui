@@ -1,0 +1,24 @@
+<fragment>
+  <slot
+    ref="trigger"
+    {{#if trigger === RAW_CLICK}}
+      on-click="toggleVisible()"
+    {{else if trigger === RAW_HOVER}}
+      on-mouseenter="enter()"
+      on-mouseleave="leave()"
+    {{/if}}
+  />
+  {{#if visible}}
+    <portal>
+      <slot
+        name="overlay"
+        ref="overlay"
+        transition="overlay"
+        {{#if trigger === RAW_HOVER}}
+          on-mouseenter="enter()"
+          on-mouseleave="leave()"
+        {{/if}}
+      />
+    </portal>
+  {{/if}}
+</fragment>

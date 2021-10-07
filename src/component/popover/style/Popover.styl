@@ -1,0 +1,111 @@
+@import '../../../env'
+
+{$selector-prefix + '-popover-overlay'}
+  position absolute
+  display block
+  opacity 0
+
+{$selector-prefix + '-popover-overlay-transition'}
+  transition transform .3s cubic-bezier(.23,1,.32,1),
+              opacity .3s cubic-bezier(.23,1,.32,1)
+
+{$selector-prefix + '-popover-overlay-fade'}
+  opacity 1
+
+
+
+
+{$selector-prefix + '-popover-overlay-top'},
+{$selector-prefix + '-popover-overlay-top-start'},
+{$selector-prefix + '-popover-overlay-top-end'}
+  transform scaleY(0) translateY(-100%)
+  transform-origin center top
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1) translateY(-100%)
+
+
+
+{$selector-prefix + '-popover-overlay-bottom'},
+{$selector-prefix + '-popover-overlay-bottom-start'},
+{$selector-prefix + '-popover-overlay-bottom-end'}
+  transform scaleY(0)
+  transform-origin center top
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1)
+
+
+
+{$selector-prefix + '-popover-overlay-left'},
+{$selector-prefix + '-popover-overlay-left-start'},
+{$selector-prefix + '-popover-overlay-left-end'}
+  transform scaleX(0) translateX(-100%)
+  transform-origin left center
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1) translateX(-100%)
+
+
+
+{$selector-prefix + '-popover-overlay-right'},
+{$selector-prefix + '-popover-overlay-right-start'},
+{$selector-prefix + '-popover-overlay-right-end'}
+  transform scaleX(0)
+  transform-origin left center
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1)
+
+
+
+
+
+{$selector-prefix + '-popover-overlay-top'}
+  transform scaleY(0) translateX(-50%) translateY(-100%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1) translateX(-50%) translateY(-100%)
+
+{$selector-prefix + '-popover-overlay-top-end'}
+  transform scaleY(0) translateX(-100%) translateY(-100%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1) translateX(-100%) translateY(-100%)
+
+{$selector-prefix + '-popover-overlay-bottom'}
+  transform scaleY(0) translateX(-50%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1) translateX(-50%)
+
+{$selector-prefix + '-popover-overlay-bottom-end'}
+  transform scaleY(0) translateX(-100%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleY(1) translateX(-100%)
+
+
+{$selector-prefix + '-popover-overlay-left'}
+  transform scaleX(0) translateX(-100%) translateY(-50%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1) translateX(-100%) translateY(-50%)
+
+{$selector-prefix + '-popover-overlay-left-end'}
+  transform scaleX(0) translateX(-100%) translateY(-100%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1) translateX(-100%) translateY(-100%)
+
+{$selector-prefix + '-popover-overlay-right'}
+  transform scaleX(0) translateY(-50%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1) translateY(-50%)
+
+{$selector-prefix + '-popover-overlay-right-end'}
+  transform scaleX(0) translateY(-100%)
+
+  &{$selector-prefix + '-popover-overlay-fade'}
+    transform scaleX(1) translateY(-100%)

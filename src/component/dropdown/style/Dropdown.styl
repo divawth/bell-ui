@@ -1,12 +1,7 @@
 @import '../../../env'
 
-$dropdown-trigger-overlay-gap = 5px
 $dropdown-overlay-inset = 4px
 $dropdown-menu-min-width = 100px
-
-{$selector-prefix + '-dropdown'}
-  display inline-block
-  position relative
 
 {$selector-prefix + '-dropdown-menu'}
   min-width $dropdown-menu-min-width
@@ -52,12 +47,7 @@ $dropdown-menu-min-width = 100px
   user-select none
   box-sizing border-box
 
-  position absolute
-  display none
-
   z-index $zindex-dropdown
-  transition transform .3s cubic-bezier(.23,1,.32,1),
-              opacity .3s cubic-bezier(.23,1,.32,1)
 
   background-color $brand-bg
   border-radius $border-radius-default
@@ -69,121 +59,3 @@ $dropdown-menu-min-width = 100px
 
   {$selector-prefix + '-dropdown-item-enabled'}:hover
     background-color $brand-bg-hover
-
-{$selector-prefix + '-dropdown-visible'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    display block
-    opacity 0
-
-{$selector-prefix + '-dropdown-fade'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    opacity 1
-
-{$selector-prefix + '-dropdown-top'},
-{$selector-prefix + '-dropdown-top-start'},
-{$selector-prefix + '-dropdown-top-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    bottom 100%
-    margin-bottom $dropdown-trigger-overlay-gap
-    transform scaleY(0)
-    transform-origin center bottom
-
-  &{$selector-prefix + '-dropdown-fade'}
-    > {$selector-prefix + '-dropdown-overlay'}
-      transform scaleY(1)
-
-{$selector-prefix + '-dropdown-top'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    left 50%
-
-{$selector-prefix + '-dropdown-top-start'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    left 0
-
-{$selector-prefix + '-dropdown-top-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    right 0
-
-
-
-
-{$selector-prefix + '-dropdown-left'},
-{$selector-prefix + '-dropdown-left-start'},
-{$selector-prefix + '-dropdown-left-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    right 100%
-    margin-right $dropdown-trigger-overlay-gap
-    transform scaleX(0)
-    transform-origin right center
-
-  &{$selector-prefix + '-dropdown-fade'}
-    > {$selector-prefix + '-dropdown-overlay'}
-      transform scaleX(1)
-
-{$selector-prefix + '-dropdown-left'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    top 50%
-
-{$selector-prefix + '-dropdown-left-start'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    top 0
-
-{$selector-prefix + '-dropdown-left-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    bottom 0
-
-
-
-
-{$selector-prefix + '-dropdown-right'},
-{$selector-prefix + '-dropdown-right-start'},
-{$selector-prefix + '-dropdown-right-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    left 100%
-    margin-left $dropdown-trigger-overlay-gap
-    transform scaleX(0)
-    transform-origin left center
-
-  &{$selector-prefix + '-dropdown-fade'}
-    > {$selector-prefix + '-dropdown-overlay'}
-      transform scaleX(1)
-
-{$selector-prefix + '-dropdown-right'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    top 50%
-
-{$selector-prefix + '-dropdown-right-start'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    top 0
-
-{$selector-prefix + '-dropdown-right-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    bottom 0
-
-
-
-
-
-{$selector-prefix + '-dropdown-bottom'},
-{$selector-prefix + '-dropdown-bottom-start'},
-{$selector-prefix + '-dropdown-bottom-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    margin-top $dropdown-trigger-overlay-gap
-    transform scaleY(0)
-    transform-origin center top
-
-  &{$selector-prefix + '-dropdown-fade'}
-    > {$selector-prefix + '-dropdown-overlay'}
-      transform scaleY(1)
-
-{$selector-prefix + '-dropdown-bottom'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    left 50%
-
-{$selector-prefix + '-dropdown-bottom-start'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    left 0
-
-{$selector-prefix + '-dropdown-bottom-end'}
-  > {$selector-prefix + '-dropdown-overlay'}
-    right 0

@@ -1,37 +1,19 @@
-<div
-class="${prefix}dropdown ${prefix}dropdown-{{placement}}
-{{#if className}} {{className}}{{/if}}"
-
-{{#if style}}
-  style="{{style}}"
-{{/if}}
+<Popover
+  placement="{{placement}}"
+  trigger="{{trigger}}"
+  visible="{{visible}}"
+  gap="5"
 >
+  <slot />
 
   <div
-    class="${prefix}dropdown-trigger"
-    {{#if trigger === RAW_CLICK}}
-      on-click="toggleVisible()"
-    {{else if trigger === RAW_HOVER}}
-      on-mouseenter="enter()"
-      on-mouseleave="leave()"
-    {{/if}}
-  >
-    <slot name="children" />
-  </div>
-
-  <div
+    slot="overlay"
     ref="overlay"
     class="${prefix}dropdown-overlay"
     {{#if height > 0}}
       style="max-height: {{height}}px;"
     {{/if}}
-
-    {{#if trigger === RAW_HOVER}}
-      on-mouseenter="enter()"
-      on-mouseleave="leave()"
-    {{/if}}
   >
     <slot name="overlay" />
   </div>
-
-</div>
+</Popover>
