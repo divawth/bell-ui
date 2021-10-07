@@ -16,11 +16,6 @@ $tooltip-arrow-offset = -2px
 $tooltip-arrow-gap = 10px
 $tooltip-arrow-size = 5px
 
-
-{$selector-prefix + '-tooltip'}
-  position relative
-  display inline-block
-
 {$selector-prefix + '-tooltip-arrow'},
 {$selector-prefix + '-tooltip-arrow'}:before
   position absolute
@@ -31,20 +26,10 @@ $tooltip-arrow-size = 5px
 {$selector-prefix + '-tooltip-arrow'}:before
   content ''
 
-{$selector-prefix + '-tooltip-popup'}
-  position absolute
+{$selector-prefix + '-tooltip'}
   font-size 0
   line-height 0
-  display none
   z-index $zindex-tooltip
-  transition opacity .3s
-
-{$selector-prefix + '-tooltip-visible'}
-  display block
-  opacity 0
-
-{$selector-prefix + '-tooltip-fade'}
-  opacity 1
 
 {$selector-prefix + '-tooltip-content'}
   font-size $font-size-small
@@ -103,24 +88,15 @@ $tooltip-arrow-size = 5px
     top -1 * ($tooltip-arrow-size - 1)
 
 {$selector-prefix + '-tooltip-bottom'}
-
-  left 50%
-
   > {$selector-prefix + '-tooltip-arrow'}
     left 50%
     margin-left - $tooltip-arrow-size
 
 {$selector-prefix + '-tooltip-bottom-start'}
-
-  left 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     left $tooltip-arrow-gap
 
 {$selector-prefix + '-tooltip-bottom-end'}
-
-  right 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     right $tooltip-arrow-gap
 
@@ -130,8 +106,6 @@ $tooltip-arrow-size = 5px
 {$selector-prefix + '-tooltip-top'},
 {$selector-prefix + '-tooltip-top-start'},
 {$selector-prefix + '-tooltip-top-end'}
-
-  top 0
   padding-bottom $tooltip-padding-inner
 
   > {$selector-prefix + '-tooltip-arrow'},
@@ -149,24 +123,15 @@ $tooltip-arrow-size = 5px
 
 
 {$selector-prefix + '-tooltip-top'}
-
-  left 50%
-
   > {$selector-prefix + '-tooltip-arrow'}
     left 50%
     margin-left - $tooltip-arrow-size
 
 {$selector-prefix + '-tooltip-top-start'}
-
-  left 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     left $tooltip-arrow-gap
 
 {$selector-prefix + '-tooltip-top-end'}
-
-  right 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     right $tooltip-arrow-gap
 
@@ -177,8 +142,6 @@ $tooltip-arrow-size = 5px
 {$selector-prefix + '-tooltip-left'},
 {$selector-prefix + '-tooltip-left-start'},
 {$selector-prefix + '-tooltip-left-end'}
-
-  left 0
   padding-right $tooltip-padding-inner
 
   > {$selector-prefix + '-tooltip-arrow'},
@@ -195,24 +158,15 @@ $tooltip-arrow-size = 5px
     right -1 * ($tooltip-arrow-size - 1)
 
 {$selector-prefix + '-tooltip-left'}
-
-  top 50%
-
   > {$selector-prefix + '-tooltip-arrow'}
     top 50%
     margin-top - $tooltip-arrow-size
 
 {$selector-prefix + '-tooltip-left-start'}
-
-  top 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     top $tooltip-arrow-gap
 
 {$selector-prefix + '-tooltip-left-end'}
-
-  bottom 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     bottom $tooltip-arrow-gap
 
@@ -221,8 +175,6 @@ $tooltip-arrow-size = 5px
 {$selector-prefix + '-tooltip-right'},
 {$selector-prefix + '-tooltip-right-start'},
 {$selector-prefix + '-tooltip-right-end'}
-
-  left 100%
   padding-left $tooltip-padding-inner
 
   > {$selector-prefix + '-tooltip-arrow'},
@@ -240,21 +192,14 @@ $tooltip-arrow-size = 5px
 
 
 {$selector-prefix + '-tooltip-right'}
-  top 50%
-
   > {$selector-prefix + '-tooltip-arrow'}
     top 50%
     margin-top - $tooltip-arrow-size
 
 {$selector-prefix + '-tooltip-right-start'}
-  top 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     top $tooltip-arrow-gap
 
 {$selector-prefix + '-tooltip-right-end'}
-  bottom 0
-
   > {$selector-prefix + '-tooltip-arrow'}
     bottom $tooltip-arrow-gap
-

@@ -28,6 +28,7 @@ import {
   RAW_RIGHT_END,
   RAW_BOTTOM_START,
   RAW_BOTTOM_END,
+  HOVER_DELAY,
 } from '../constant'
 
 import {
@@ -62,6 +63,10 @@ export default Yox.define({
     visible: {
       type: RAW_BOOLEAN,
     },
+    delay: {
+      type: RAW_NUMERIC,
+      value: HOVER_DELAY,
+    },
     offsetX: {
       type: RAW_NUMERIC,
     },
@@ -70,62 +75,99 @@ export default Yox.define({
     },
     gap: {
       type: RAW_NUMERIC,
-      value: 5,
     },
   },
 
   data() {
     return {
       overlayStyle: UNDEFINED,
-      addFadeStyle: UNDEFINED,
-      removeFadeStyle: UNDEFINED,
+      isHover: FALSE,
       RAW_HOVER,
       RAW_CLICK,
       RAW_CUSTOM,
     }
   },
 
+  watchers: {
+    disabled(value) {
+      if (value && this.get('visible')) {
+        this.fireClose()
+      }
+    }
+  },
+
   methods: {
     enter() {
       const me = this as any
+      me.set('isHover', TRUE)
+
       if (me.leaveTimer) {
         clearTimeout(me.leaveTimer)
         me.leaveTimer = UNDEFINED
+        return
+      }
+
+      const delay = toNumber(me.get('delay'))
+      if (delay > 0) {
+        me.enterTimer = setTimeout(
+          function () {
+            if (me.get('isHover')) {
+              me.fireOpen()
+            }
+          },
+          delay
+        )
       }
       else {
-        this.fire({
-          type: 'open',
-          ns: 'popover',
-        })
+        me.fireOpen()
       }
     },
     leave() {
       const me = this as any
+      me.set('isHover', FALSE)
       me.leaveTimer = setTimeout(
         function () {
-          if (me.$el) {
-            me.leaveTimer = UNDEFINED
-            me.fire({
-              type: 'close',
-              ns: 'popover',
-            })
-          }
+          me.fireClose()
         },
         300
       )
     },
+    fireOpen() {
+
+      const me = this as any
+
+      if (me.enterTimer) {
+        clearTimeout(me.enterTimer)
+        me.enterTimer = UNDEFINED
+      }
+
+      me.fire({
+        type: 'open',
+        ns: 'popover',
+      })
+
+    },
+    fireClose() {
+
+      const me = this as any
+
+      if (me.leaveTimer) {
+        clearTimeout(me.leaveTimer)
+        me.leaveTimer = UNDEFINED
+      }
+
+      me.fire({
+        type: 'close',
+        ns: 'popover',
+      })
+
+    },
     toggleVisible() {
       if (this.get('visible')) {
-        this.fire({
-          type: 'close',
-          ns: 'popover',
-        })
+        this.fireClose()
       }
       else {
-        this.fire({
-          type: 'open',
-          ns: 'popover',
-        })
+        this.fireOpen()
       }
     },
 
@@ -147,7 +189,7 @@ export default Yox.define({
         const placement = me.get('placement')
         const offsetX = toNumber(me.get('offsetX')) || 0
         const offsetY = toNumber(me.get('offsetY')) || 0
-        const gap = toNumber(me.get('gap'))
+        const gap = toNumber(me.get('gap')) || 0
 
         const triggerElement = me.$refs.trigger as HTMLElement
         const triggerRect = triggerElement.getBoundingClientRect()
@@ -220,10 +262,7 @@ export default Yox.define({
           top: (y + offsetY) + 'px',
         }
 
-        me.set({
-          overlayStyle,
-        })
-
+        me.set('overlayStyle', overlayStyle)
         me.setOverlayStyle(node, overlayStyle)
 
         me.animateTimer = setTimeout(
@@ -237,7 +276,7 @@ export default Yox.define({
               20
             )
           },
-          20
+          30
         )
 
       },
@@ -256,6 +295,7 @@ export default Yox.define({
         onTransitionEnd(
           node,
           function () {
+            me.set('overlayStyle', UNDEFINED)
             me.setOverlayStyle(node, overlayStyle, TRUE)
             Yox.dom.removeClass(node, CLASS_OVERLAY_TRANSITION)
             Yox.dom.removeClass(node, CLASS_OVERLAY)
@@ -288,10 +328,7 @@ export default Yox.define({
         })
       }
       else {
-        me.fire({
-          type: 'close',
-          ns: 'popover',
-        })
+        me.fireClose()
       }
     }
 
@@ -303,6 +340,9 @@ export default Yox.define({
 
     const destroy = function (component: YoxInterface) {
       if (component === me) {
+        if (me.enterTimer) {
+          clearTimeout(me.enterTimer)
+        }
         if (me.leaveTimer) {
           clearTimeout(me.leaveTimer)
         }

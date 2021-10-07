@@ -7,7 +7,9 @@ export default {
   template: `
     <div>
       <Tooltip content="这里是提示文字">
-        当鼠标经过这段文字时，会显示一个气泡框
+        <span>
+          当鼠标经过这段文字时，会显示一个气泡框
+        </span>
       </Tooltip>
     </div>
   `

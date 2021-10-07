@@ -1,15 +1,5 @@
-declare const _default: import("yox").ComponentOptions<unknown, {
-    disabled: unknown;
-    isVisible: unknown;
-}, unknown, {
-    setPosition(): void;
-    enter(): void;
-    leave(): void;
-    click(): void;
-}> & ThisType<{
-    setPosition(): void;
-    enter(): void;
-    leave(): void;
-    click(): void;
-} & import("yox").YoxInterface>;
+declare const _default: import("yox").ComponentOptions<unknown, unknown, {
+    open: unknown;
+    close: unknown;
+}, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;
