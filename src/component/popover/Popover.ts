@@ -56,9 +56,11 @@ export default Yox.define({
       type: oneOf([RAW_HOVER, RAW_CLICK, RAW_CUSTOM]),
       value: RAW_HOVER,
     },
+    disabled: {
+      type: RAW_BOOLEAN,
+    },
     visible: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     gap: {
       type: RAW_NUMERIC,
@@ -134,7 +136,7 @@ export default Yox.define({
     overlay: {
       enter(node) {
 
-        const me = this
+        const me = this as any
 
         const placement = me.get('placement')
         const gap = toNumber(me.get('gap'))
@@ -211,18 +213,18 @@ export default Yox.define({
 
         me.setOverlayStyle(node, overlayStyle)
 
-        setTimeout(
+        me.animateTimer = setTimeout(
           function () {
             Yox.dom.addClass(node, CLASS_OVERLAY_TRANSITION)
+
+            me.animateTimer = setTimeout(
+              function () {
+                Yox.dom.addClass(node, CLASS_OVERLAY_FADE)
+              },
+              20
+            )
           },
           20
-        )
-
-        setTimeout(
-          function () {
-            Yox.dom.addClass(node, CLASS_OVERLAY_FADE)
-          },
-          40
         )
 
       },
@@ -254,7 +256,7 @@ export default Yox.define({
 
   afterMount() {
 
-    const me = this
+    const me = this as any
 
     const onClick = function (event: CustomEventInterface) {
       if (!me.get('visible')) {
@@ -288,6 +290,12 @@ export default Yox.define({
 
     const destroy = function (component: YoxInterface) {
       if (component === me) {
+        if (me.leaveTimer) {
+          clearTimeout(me.leaveTimer)
+        }
+        if (me.animateTimer) {
+          clearTimeout(me.animateTimer)
+        }
         Yox.dom.off(DOCUMENT, RAW_CLICK, onClick)
         Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
       }
