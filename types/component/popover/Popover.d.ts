@@ -1,4 +1,4 @@
-import { YoxInterface, Data } from 'yox';
+import { YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<unknown, {
     disabled: unknown;
 }, unknown, {
@@ -8,11 +8,11 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     fireClose(): void;
     toggleVisible(): void;
     getOverlayPosition(): {
-        left: string;
-        top: string;
+        left: any;
+        top: any;
     };
     refreshOverlayPosition(): void;
-    setOverlayStyle(el: HTMLElement, style: Data, clear?: boolean): void;
+    setOverlayPosition(el: HTMLElement, left: number | void, top: number | void): void;
 }> & ThisType<{
     enter(): void;
     leave(): void;
@@ -20,10 +20,10 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     fireClose(): void;
     toggleVisible(): void;
     getOverlayPosition(): {
-        left: string;
-        top: string;
+        left: any;
+        top: any;
     };
     refreshOverlayPosition(): void;
-    setOverlayStyle(el: HTMLElement, style: Data, clear?: boolean): void;
+    setOverlayPosition(el: HTMLElement, left: number | void, top: number | void): void;
 } & YoxInterface>;
 export default _default;
