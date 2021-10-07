@@ -6,6 +6,8 @@ import template from './template/Tooltip.hbs'
 import Popover from '../popover/Popover'
 
 import {
+  TRUE,
+  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
@@ -16,8 +18,6 @@ import {
   RAW_THEME_ARRAY,
   RAW_DARK,
   HOVER_DELAY,
-  TRUE,
-  FALSE,
 } from '../constant'
 
 import {
