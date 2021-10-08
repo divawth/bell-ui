@@ -4,8 +4,8 @@ $date-picker-icon-size = 14px
 
 $date-picker-separator-gap = 5px
 
-$date-picker-dropdown-width = 260px
-$date-picker-date-range-dropdown-width = 520px
+$date-picker-overlay-width = 260px
+$date-picker-date-range-overlay-width = 520px
 
 $date-picker-grid-gap-vertical = 8px
 $date-picker-panel-padding = 5px 12px $date-picker-grid-gap-vertical
@@ -99,10 +99,10 @@ date-picker-brand-style(style)
   {$selector-prefix + '-date-picker-month'},
   {$selector-prefix + '-date-picker-year'},
   {$selector-prefix + '-date-picker-week'}
-    width $date-picker-dropdown-width
+    width $date-picker-overlay-width
 
   {$selector-prefix + '-date-picker-daterange'}
-    width $date-picker-date-range-dropdown-width
+    width $date-picker-date-range-overlay-width
 
 {$selector-prefix + '-date-picker-block'}
   ui-block()

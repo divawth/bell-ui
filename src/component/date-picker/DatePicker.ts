@@ -1,7 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import Tag from '../tag/Tag'
-import Dropdown from '../dropdown/Dropdown'
+import Popover from '../popover/Popover'
 import DateView from './component/Date'
 import DateRange from './component/DateRange'
 import DateWeek from './component/DateWeek'
@@ -153,7 +153,7 @@ export default Yox.define({
 
   components: {
     Tag,
-    Dropdown,
+    Popover,
     DateView,
     DateRange,
     DateWeek,
@@ -359,8 +359,8 @@ export default Yox.define({
 
   afterUpdate() {
     if (this.get('visible') && this.get('multiple')) {
-      const dropdown = this.$refs.dropdown as any
-      dropdown.refresh()
+      const overlay = this.$refs.overlay as any
+      overlay.refreshOverlayRect()
     }
   }
 

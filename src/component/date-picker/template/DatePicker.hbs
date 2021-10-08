@@ -1,10 +1,10 @@
-<Dropdown
-  ref="dropdown"
+<Popover
+  ref="overlay"
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
   visible="{{visible}}"
+  gap="5"
   on-outside="handleOutsideClick()"
-  className="${prefix}date-picker-overlay"
 >
 
   <div
@@ -86,7 +86,10 @@
 
   </div>
 
-  <template slot="overlay">
+  <div
+    slot="overlay"
+    class="${prefix}date-picker-overlay"
+  >
 
     {{#if shortcuts && shortcuts.length > 0}}
       <div class="${prefix}date-picker-shortcut">
@@ -138,6 +141,6 @@
       />
     {{/if}}
 
-  </template>
+  </div>
 
-</Dropdown>
+</Popover>

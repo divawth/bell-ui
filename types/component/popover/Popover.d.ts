@@ -7,23 +7,25 @@ declare const _default: import("yox").ComponentOptions<unknown, {
     fireOpen(): void;
     fireClose(): void;
     toggleVisible(): void;
-    getOverlayPosition(): {
-        left: any;
-        top: any;
+    getOverlayRect(): {
+        x: any;
+        y: any;
+        width: any;
     };
-    refreshOverlayPosition(): void;
-    setOverlayPosition(el: HTMLElement, left: number | void, top: number | void): void;
+    refreshOverlayRect(): void;
+    setOverlayRect(el: HTMLElement, x: number | void, y: number | void, width: number | void): void;
 }> & ThisType<{
     enter(): void;
     leave(): void;
     fireOpen(): void;
     fireClose(): void;
     toggleVisible(): void;
-    getOverlayPosition(): {
-        left: any;
-        top: any;
+    getOverlayRect(): {
+        x: any;
+        y: any;
+        width: any;
     };
-    refreshOverlayPosition(): void;
-    setOverlayPosition(el: HTMLElement, left: number | void, top: number | void): void;
+    refreshOverlayRect(): void;
+    setOverlayRect(el: HTMLElement, x: number | void, y: number | void, width: number | void): void;
 } & YoxInterface>;
 export default _default;

@@ -1,6 +1,6 @@
 import Yox, { CustomEventInterface } from 'yox'
 
-import Dropdown from '../dropdown/Dropdown'
+import Popover from '../popover/Popover'
 import TimePanel from './TimePanel'
 
 import template from './template/TimePicker.hbs'
@@ -116,7 +116,7 @@ export default Yox.define({
   },
 
   components: {
-    Dropdown,
+    Popover,
     TimePanel,
   },
 

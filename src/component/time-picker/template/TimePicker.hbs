@@ -1,12 +1,9 @@
-<Dropdown
-  ref="dropdown"
+<Popover
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
   visible="{{visible}}"
+  gap="5"
   on-outside="handleOutsideClick()"
-
-  style="{{#if componentWidth}}width: {{componentWidth}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}"
 >
 
   <div
@@ -56,7 +53,12 @@
 
   </div>
 
-  <template slot="overlay">
+  <div
+    slot="overlay"
+    {{#if componentWidth}}
+      style="width: {{componentWidth}}px;"
+    {{/if}}
+  >
 
     <TimePanel
       hourList="{{hourList}}"
@@ -67,6 +69,6 @@
       secondIndex="{{visible ? secondIndex : -1}}"
     />
 
-  </template>
+  </div>
 
-</Dropdown>
+</Popover>
