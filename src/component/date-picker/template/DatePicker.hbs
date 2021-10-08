@@ -1,33 +1,31 @@
 <Dropdown
-  trigger="custom"
-  visible="{{visible}}"
+  ref="dropdown"
   placement="{{placement}}"
+  trigger="{{RAW_CUSTOM}}"
+  visible="{{visible}}"
   on-outside="handleOutsideClick()"
-  className="${prefix}date-picker
-
-  {{#if status}} ${prefix}date-picker-{{status}}{{/if}}
-  {{#if size}} ${prefix}date-picker-{{size}}{{/if}}
-  {{#if block}} ${prefix}date-picker-block{{/if}}
-
-  {{#if disabled}} ${prefix}date-picker-disabled
-  {{else}} ${prefix}date-picker-enabled
-  {{/if}}
-
-  {{#if clearable}} ${prefix}date-picker-clearable{{/if}}
-
-  {{#if className}} {{className}}{{/if}}"
-
-  {{#if width || style}}
-    style="{{#if width}}width: {{width}}px;{{/if}}
-    {{#if style}}{{style}}{{/if}}"
-  {{/if}}
+  className="${prefix}date-picker-overlay"
 >
 
   <div
-    class="${prefix}date-picker-button"
+    class="${prefix}date-picker
+    {{#if status}} ${prefix}date-picker-{{status}}{{/if}}
+    {{#if size}} ${prefix}date-picker-{{size}}{{/if}}
+    {{#if block}} ${prefix}date-picker-block{{/if}}
+    {{#if visible}} ${prefix}date-picker-opened{{/if}}
+    {{#if clearable}} ${prefix}date-picker-clearable{{/if}}
+    {{#if disabled}} ${prefix}date-picker-disabled
+    {{else}} ${prefix}date-picker-enabled
+    {{/if}}
+    {{#if className}} {{className}}{{/if}}"
 
     {{#if !disabled}}
       on-click="toggle('visible')"
+    {{/if}}
+
+    {{#if width || style}}
+      style="{{#if width}}width: {{width}}px;{{/if}}
+      {{#if style}}{{style}}{{/if}}"
     {{/if}}
   >
 

@@ -169,11 +169,11 @@ ui-scrollbar(size = 4px)
 
 
 ui-form-button(
+  $selector-base,
   $selector-enabled,
   $selector-disabled,
   $selector-opened,
   $selector-clearable,
-  $selector-button,
   $selector-values,
   $selector-value,
   $selector-placeholder,
@@ -182,7 +182,7 @@ ui-form-button(
   $right-icon-size,
   $clear-icon-size)
 
-  {$selector-button}
+  {$selector-base}
 
     position relative
     border 1px solid $brand-border

@@ -67,13 +67,13 @@ date-picker-size-style(size)
     ui-set('right', size['icon-right'])
 
 date-picker-brand-style(style)
-  &{$selector-prefix + '-date-picker-enabled'} {$selector-prefix + '-date-picker-button'}
+  &{$selector-prefix + '-date-picker-enabled'}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-date-picker-button'}
+  &{$selector-prefix + '-date-picker-opened'}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
@@ -83,8 +83,17 @@ date-picker-brand-style(style)
   width $ui-form-element-width
   display inline-block
 
-  {$selector-prefix + '-dropdown-overlay'}
-    padding 0
+  ui-connect(
+    hash: $form-button-size-hash,
+    each: date-picker-size-style
+  )
+  ui-connect(
+    hash: $status-brand-hash,
+    each: date-picker-brand-style
+  )
+
+{$selector-prefix + '-date-picker-overlay'}
+  padding 0
 
   {$selector-prefix + '-date-picker-date'},
   {$selector-prefix + '-date-picker-month'},
@@ -94,15 +103,6 @@ date-picker-brand-style(style)
 
   {$selector-prefix + '-date-picker-daterange'}
     width $date-picker-date-range-dropdown-width
-
-  ui-connect(
-    hash: $form-button-size-hash,
-    each: date-picker-size-style
-  )
-  ui-connect(
-    hash: $status-brand-hash,
-    each: date-picker-brand-style
-  )
 
 {$selector-prefix + '-date-picker-block'}
   ui-block()
@@ -298,11 +298,11 @@ date-picker-brand-style(style)
     width 25%
 
 ui-form-button(
+  $selector-prefix + '-date-picker',
   $selector-prefix + '-date-picker-enabled',
   $selector-prefix + '-date-picker-disabled',
   $selector-prefix + '-date-picker-opened',
   $selector-prefix + '-date-picker-clearable',
-  $selector-prefix + '-date-picker-button',
   $selector-prefix + '-date-picker-values',
   $selector-prefix + '-date-picker-value',
   $selector-prefix + '-date-picker-placeholder',

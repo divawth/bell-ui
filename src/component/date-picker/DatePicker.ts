@@ -29,6 +29,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
+  RAW_CUSTOM,
 } from '../constant'
 
 import {
@@ -143,6 +144,7 @@ export default Yox.define({
       RAW_TYPE_WEEK,
       RAW_TYPE_YEAR,
       RAW_TYPE_MONTH,
+      RAW_CUSTOM,
 
       visible: FALSE,
       formatText: props.format || defaultFormat[props.type || RAW_TYPE_DATE]
@@ -354,5 +356,12 @@ export default Yox.define({
       )
     }
   },
+
+  afterUpdate() {
+    if (this.get('visible') && this.get('multiple')) {
+      const dropdown = this.$refs.dropdown as any
+      dropdown.refresh()
+    }
+  }
 
 })

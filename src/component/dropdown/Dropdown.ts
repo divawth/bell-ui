@@ -42,7 +42,6 @@ export default Yox.define({
     },
     height: {
       type: RAW_NUMERIC,
-      value: 280,
     },
     className: {
       type: RAW_STRING,

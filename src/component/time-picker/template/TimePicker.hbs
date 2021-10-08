@@ -1,32 +1,32 @@
 <Dropdown
-  trigger="custom"
-  visible="{{visible}}"
+  ref="dropdown"
   placement="{{placement}}"
+  trigger="{{RAW_CUSTOM}}"
+  visible="{{visible}}"
   on-outside="handleOutsideClick()"
-  className="${prefix}time-picker
-
-  {{#if status}} ${prefix}time-picker-{{status}}{{/if}}
-  {{#if size}} ${prefix}time-picker-{{size}}{{/if}}
-  {{#if block}} ${prefix}time-picker-block{{/if}}
-
-  {{#if disabled}} ${prefix}time-picker-disabled
-  {{else}} ${prefix}time-picker-enabled
-  {{/if}}
-
-  {{#if clearable}} ${prefix}time-picker-clearable{{/if}}
-
-  {{#if className}} {{className}}{{/if}}"
 
   style="{{#if componentWidth}}width: {{componentWidth}}px;{{/if}}
   {{#if style}}{{style}}{{/if}}"
 >
 
   <div
-    class="${prefix}time-picker-button"
+    class="${prefix}time-picker
+    {{#if status}} ${prefix}time-picker-{{status}}{{/if}}
+    {{#if size}} ${prefix}time-picker-{{size}}{{/if}}
+    {{#if block}} ${prefix}time-picker-block{{/if}}
+    {{#if visible}} ${prefix}time-picker-opened{{/if}}
+    {{#if clearable}} ${prefix}time-picker-clearable{{/if}}
+    {{#if disabled}} ${prefix}time-picker-disabled
+    {{else}} ${prefix}time-picker-enabled
+    {{/if}}
+    {{#if className}} {{className}}{{/if}}"
 
     {{#if !disabled}}
       on-click="toggle('visible')"
     {{/if}}
+
+    style="{{#if componentWidth}}width: {{componentWidth}}px;{{/if}}
+    {{#if style}}{{style}}{{/if}}"
   >
 
     {{#if text}}

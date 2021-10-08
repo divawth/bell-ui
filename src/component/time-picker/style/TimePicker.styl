@@ -28,13 +28,13 @@ time-picker-size-style(size)
     ui-set('right', size['icon-right'])
 
 time-picker-brand-style(style)
-  &{$selector-prefix + '-time-picker-enabled'} {$selector-prefix + '-time-picker-button'}
+  &{$selector-prefix + '-time-picker-enabled'}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-time-picker-button'}
+  &{$selector-prefix + '-time-picker-opened'}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
@@ -42,9 +42,6 @@ time-picker-brand-style(style)
 
 {$selector-prefix + '-time-picker'}
   display inline-block
-
-  {$selector-prefix + '-dropdown-overlay'}
-    padding 0
 
   ui-connect(
     hash: $form-button-size-hash,
@@ -54,6 +51,9 @@ time-picker-brand-style(style)
     hash: $status-brand-hash,
     each: time-picker-brand-style
   )
+
+{$selector-prefix + '-time-picker-overlay'}
+  padding 0
 
 {$selector-prefix + '-time-picker-block'}
   ui-block()
@@ -113,11 +113,11 @@ time-picker-brand-style(style)
   padding $time-picker-footer-padding
 
 ui-form-button(
+  $selector-prefix + '-time-picker',
   $selector-prefix + '-time-picker-enabled',
   $selector-prefix + '-time-picker-disabled',
   $selector-prefix + '-time-picker-opened',
   $selector-prefix + '-time-picker-clearable',
-  $selector-prefix + '-time-picker-button',
   '',
   $selector-prefix + '-time-picker-value',
   $selector-prefix + '-time-picker-placeholder',

@@ -20,6 +20,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
+  RAW_CUSTOM,
 } from '../constant'
 
 import {
@@ -109,6 +110,7 @@ export default Yox.define({
     )
 
     props.visible = FALSE
+    props.RAW_CUSTOM = RAW_CUSTOM
 
     return props
   },
