@@ -39,9 +39,9 @@
 {{else}}
 
   <Dropdown
+    placement="{{mode === RAW_HORIZONTAL ? RAW_BOTTOM : RAW_RIGHT_START}}"
     trigger="{{RAW_CUSTOM}}"
     visible="{{isOpen}}"
-    placement="{{mode === RAW_HORIZONTAL ? RAW_BOTTOM : RAW_RIGHT_START}}"
     on-outside="handleOutsideClick()"
   >
     <div

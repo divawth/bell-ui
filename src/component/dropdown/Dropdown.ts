@@ -40,7 +40,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: FALSE,
     },
-    height: {
+    maxHeight: {
       type: RAW_NUMERIC,
     },
     className: {
@@ -61,13 +61,43 @@ export default Yox.define({
         })
       },
       ns: 'dropdownItem',
+    },
+    open: {
+      listener(event) {
+        event.stop()
+        this.fire({
+          type: 'open',
+          ns: 'dropdown',
+        })
+      },
+      ns: 'popover',
+    },
+    close: {
+      listener(event) {
+        event.stop()
+        this.fire({
+          type: 'close',
+          ns: 'dropdown',
+        })
+      },
+      ns: 'popover',
+    },
+    outside: {
+      listener(event) {
+        event.stop()
+        this.fire({
+          type: 'outside',
+          ns: 'dropdown',
+        })
+      },
+      ns: 'popover',
     }
   },
 
   methods: {
     refresh() {
       const popover = this.$refs.popover as any
-      popover.refreshOverlayPosition()
+      popover.refreshOverlayRect()
     },
   },
 

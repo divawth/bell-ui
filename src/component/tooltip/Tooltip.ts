@@ -107,7 +107,7 @@ export default Yox.define({
     },
     refresh() {
       const popover = this.$refs.popover as any
-      popover.refreshOverlayPosition()
+      popover.refreshOverlayRect()
     },
   },
 

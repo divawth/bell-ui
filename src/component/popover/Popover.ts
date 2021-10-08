@@ -65,6 +65,9 @@ export default Yox.define({
     visible: {
       type: RAW_BOOLEAN,
     },
+    widthAlign: {
+      type: RAW_BOOLEAN,
+    },
     delay: {
       type: RAW_NUMERIC,
       value: HOVER_DELAY,
@@ -172,10 +175,11 @@ export default Yox.define({
       }
     },
 
-    getOverlayPosition() {
+    getOverlayRect() {
 
       const me = this as any
 
+      const widthAlign = me.get('widthAlign')
       const placement = me.get('placement')
       const offsetX = toNumber(me.get('offsetX'), 0)
       const offsetY = toNumber(me.get('offsetY'), 0)
@@ -245,32 +249,35 @@ export default Yox.define({
       }
 
       return {
-        left: x + offsetX,
-        top: y + offsetY,
+        x: x + offsetX,
+        y: y + offsetY,
+        width: widthAlign ? triggerRect.width : UNDEFINED,
       }
 
     },
 
-    refreshOverlayPosition() {
+    refreshOverlayRect() {
 
       const overlayElement = this.$refs.overlay as HTMLElement
       if (!overlayElement) {
         return
       }
 
-      const overlayPosition = this.getOverlayPosition()
-      this.setOverlayPosition(
+      const overlayRect = this.getOverlayRect()
+      this.setOverlayRect(
         overlayElement,
-        overlayPosition.left,
-        overlayPosition.top
+        overlayRect.x,
+        overlayRect.y,
+        overlayRect.width
       )
 
     },
 
-    setOverlayPosition(el: HTMLElement, left: number | void, top: number | void) {
+    setOverlayRect(el: HTMLElement, x: number | void, y: number | void, width: number | void) {
       const target = el.style
-      target.left = left != NULL ? left + 'px' : ''
-      target.top = top != NULL ? top + 'px' : ''
+      target.left = x != NULL ? x + 'px' : ''
+      target.top = y != NULL ? y + 'px' : ''
+      target.width = width != NULL ? width + 'px' : ''
     },
 
   },
@@ -286,11 +293,12 @@ export default Yox.define({
         Yox.dom.addClass(node, CLASS_OVERLAY)
         Yox.dom.addClass(node, '${prefix}popover-overlay-' + placement)
 
-        const overlayPosition = me.getOverlayPosition()
-        me.setOverlayPosition(
+        const overlayRect = me.getOverlayRect()
+        me.setOverlayRect(
           node,
-          overlayPosition.left,
-          overlayPosition.top
+          overlayRect.x,
+          overlayRect.y,
+          overlayRect.width
         )
 
         me.animateTimer = setTimeout(
@@ -317,7 +325,7 @@ export default Yox.define({
         onTransitionEnd(
           node,
           function () {
-            me.setOverlayPosition(node, UNDEFINED, UNDEFINED)
+            me.setOverlayRect(node, UNDEFINED, UNDEFINED, UNDEFINED)
             Yox.dom.removeClass(node, CLASS_OVERLAY_TRANSITION)
             Yox.dom.removeClass(node, CLASS_OVERLAY)
             done()
