@@ -9,6 +9,7 @@ import {
   RAW_NUMERIC,
   RAW_DEFAULT,
   RAW_SIZE_ARRAY,
+  RAW_SLOT_CHILDREN,
 } from '../constant'
 
 import {
@@ -16,7 +17,6 @@ import {
 } from '../util'
 
 import {
-  SLOT_CHILDREN,
   addSlots2Props,
 } from './util'
 
@@ -59,7 +59,7 @@ export default Yox.define({
     const props = options.props || (options.props = {})
 
     addSlots2Props(
-      options.slots[SLOT_CHILDREN],
+      options.slots[RAW_SLOT_CHILDREN],
       props,
       props.column || COLUMN_DEFAULT,
     )
@@ -69,7 +69,7 @@ export default Yox.define({
   beforePropsUpdate(props) {
 
     addSlots2Props(
-      props[SLOT_CHILDREN],
+      props[RAW_SLOT_CHILDREN],
       props,
       props.column || COLUMN_DEFAULT,
     )

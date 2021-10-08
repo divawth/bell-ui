@@ -1,8 +1,5 @@
-import { UNDEFINED } from '../constant'
+import { UNDEFINED, RAW_SLOT_PREFIX, RAW_SLOT_CHILDREN } from '../constant'
 import { toNumber } from '../util'
-
-export const SLOT_PREFIX = '$slot_'
-export const SLOT_CHILDREN = SLOT_PREFIX + 'children'
 
 type DescriptionItem = {
   label: string
@@ -46,7 +43,7 @@ export function addSlots2Props(children, props: Record<string, any>, column: num
         }
 
         columnArray.push(columnItem)
-        props[SLOT_PREFIX + name] = vnode.slots[SLOT_CHILDREN]
+        props[RAW_SLOT_PREFIX + name] = vnode.slots[RAW_SLOT_CHILDREN]
 
         columnSpanSum += columnItem.span
 

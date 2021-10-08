@@ -6,7 +6,6 @@ $select-prefix-icon-size = 16px
 $select-prefix-icon-color = #666
 
 $select-dropdown-overlay-height = 200px
-$select-group-item-inset = 10px
 
 select-size-style(size)
 
@@ -40,13 +39,13 @@ select-size-style(size)
     ui-set('right', size['icon-right'])
 
 select-brand-style(style)
-  &{$selector-prefix + '-select-enabled'} {$selector-prefix + '-select-button'}
+  &{$selector-prefix + '-select-enabled'}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-prefix + '-dropdown-fade'} {$selector-prefix + '-select-button'}
+  &{$selector-prefix + '-select-opened'}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
@@ -58,18 +57,9 @@ select-brand-style(style)
   display inline-block
   user-select none
   text-align left
-  position relative
-  vertical-align middle
 
   + {$selector-prefix + '-select'}
     margin-left $ui-horizontal-gap
-
-  > {$selector-prefix + '-dropdown-overlay'}
-    width 100%
-    max-height $select-dropdown-overlay-height
-
-  {$selector-prefix + '-dropdown-item-active'}
-    color $brand-primary
 
   ui-connect(
     hash: $form-button-size-hash,
@@ -80,6 +70,13 @@ select-brand-style(style)
     each: select-brand-style
   )
 
+{$selector-prefix + '-select-overlay'}
+  width $ui-form-element-width
+  max-height $select-dropdown-overlay-height
+
+  {$selector-prefix + '-dropdown-item-active'}
+    color $brand-primary
+
 {$selector-prefix + '-select-block'}
   ui-block()
 
@@ -87,16 +84,12 @@ select-brand-style(style)
     margin-left 0
     margin-top $ui-vertical-gap
 
-{$selector-prefix + '-select-group'}
-  {$selector-prefix + '-dropdown-item'}
-    padding-left $select-group-item-inset + $dropdown-item-padding-horizontal
-
 {$selector-prefix + '-select-group-title'}
   color $brand-muted
   font-size 90%
   padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
 
-{$selector-prefix + '-select-button-with-prefix'}
+{$selector-prefix + '-select-with-prefix'}
   display inline-table
   width 100%
 
@@ -119,26 +112,26 @@ select-brand-style(style)
   color $select-prefix-icon-color
   font-size $select-prefix-icon-size
 
-// 必须写具体路径，否则 select 嵌套在一个 dropdown 下面，会被影响
-{$selector-prefix + '-dropdown-fade'}
-  > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
+{$selector-prefix + '-select-opened'}
+  > {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
-{$selector-prefix + '-dropdown-top'},
-{$selector-prefix + '-dropdown-top-start'},
-{$selector-prefix + '-dropdown-top-end'}
-  > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
+{$selector-prefix + '-select-top'},
+{$selector-prefix + '-select-top-start'},
+{$selector-prefix + '-select-top-end'}
+  > {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
-  &{$selector-prefix + '-dropdown-fade'}
-    > {$selector-prefix + '-dropdown-trigger'} {$selector-prefix + '-select-arrow-icon'}
+  &{$selector-prefix + '-select-opened'}
+    > {$selector-prefix + '-select-arrow-icon'}
       transform rotate(0)
 
 ui-form-button(
   $selector-prefix + '-select-enabled',
   $selector-prefix + '-select-disabled',
+  $selector-prefix + '-select-opened',
   $selector-prefix + '-select-clearable',
-  $selector-prefix + '-select-button',
+  $selector-prefix + '-select',
   $selector-prefix + '-select-values',
   $selector-prefix + '-select-value',
   $selector-prefix + '-select-placeholder',

@@ -7,7 +7,7 @@ declare const _default: import("yox").ComponentOptions<unknown, unknown, {
     handleOutsideClick(event: CustomEventInterface): void;
     selectOption(value: any): void;
     deselectOption(value: any): void;
-    updateSelectedOptions(value: any): void;
+    updateSelectedOptions(selectedValue: any): void;
     fireChange(value: any): void;
 }> & ThisType<{
     handleClearClick(event: CustomEventInterface): void;
@@ -15,7 +15,7 @@ declare const _default: import("yox").ComponentOptions<unknown, unknown, {
     handleOutsideClick(event: CustomEventInterface): void;
     selectOption(value: any): void;
     deselectOption(value: any): void;
-    updateSelectedOptions(value: any): void;
+    updateSelectedOptions(selectedValue: any): void;
     fireChange(value: any): void;
 } & import("yox").YoxInterface>;
 export default _default;

@@ -171,6 +171,7 @@ ui-scrollbar(size = 4px)
 ui-form-button(
   $selector-enabled,
   $selector-disabled,
+  $selector-opened,
   $selector-clearable,
   $selector-button,
   $selector-values,
@@ -242,32 +243,27 @@ ui-form-button(
     display none
 
   {$selector-enabled}
-    {$selector-button}
-      ui-clickable()
+    ui-clickable()
 
-    {$selector-button}:hover
+    &:hover
       border-color $brand-primary
 
   {$selector-disabled}
-
-    {$selector-button}
-      background-color $brand-bg-disabled
-      border-color $brand-border
-      ui-disabled()
+    background-color $brand-bg-disabled
+    border-color $brand-border
+    ui-disabled()
 
     {$selector-value},
     {$selector-placeholder}
       color $brand-disabled
 
-  {$selector-clearable}
-    {$selector-button}:hover
+  {$selector-opened}
+    border-color $brand-primary
+    if $ui-shadow-radius > 0
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+  {$selector-clearable}:hover
     {$selector-clear-icon}
       display block
       + {$selector-right-icon}
         display none
-
-  {$selector-prefix + '-dropdown-fade'}
-    {$selector-button}
-      border-color $brand-primary
-      if $ui-shadow-radius > 0
-        box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

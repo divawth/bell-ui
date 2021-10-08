@@ -28,7 +28,13 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
+  RAW_CUSTOM,
+  RAW_SLOT_CHILDREN,
 } from '../constant'
+
+import {
+  isOptionSelected,
+} from './util'
 
 export default Yox.define({
 
@@ -87,6 +93,7 @@ export default Yox.define({
 
   data() {
     return {
+      RAW_CUSTOM,
       visible: FALSE,
       selectedOptions: [],
     }
@@ -217,22 +224,38 @@ export default Yox.define({
 
     },
 
-    updateSelectedOptions(value: any) {
+    updateSelectedOptions(selectedValue: any) {
 
-      // 用一个空数组，通过事件流收集选中的 option
+      const children = this.get(RAW_SLOT_CHILDREN)
+      if (!children) {
+        return
+      }
+
       const selectedOptions = []
 
-      this.fire(
-        {
-          type: 'change',
-          ns: 'select',
-        },
-        {
-          value,
-          selectedOptions,
-        },
-        TRUE
-      )
+      const findOptions = function (children) {
+        children.vnodes.forEach(
+          function (vnode) {
+            if (vnode.tag === 'Option' && vnode.props) {
+              const { text, value } = vnode.props
+              if (isOptionSelected(selectedValue, value)) {
+                selectedOptions.push({
+                  text,
+                  value,
+                })
+              }
+            }
+            else if (vnode.tag === 'OptionGroup' && vnode.slots) {
+              const children = vnode.slots[RAW_SLOT_CHILDREN]
+              if (children) {
+                findOptions(children)
+              }
+            }
+          }
+        )
+      }
+
+      findOptions(children)
 
       this.set('selectedOptions', selectedOptions)
 
@@ -269,6 +292,13 @@ export default Yox.define({
       },
       TRUE
     )
+  },
+
+  afterUpdate() {
+    if (this.get('visible') && this.get('multiple')) {
+      const dropdown = this.$refs.dropdown as any
+      dropdown.refresh()
+    }
   }
 
 })

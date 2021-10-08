@@ -58,6 +58,8 @@ export declare const RAW_EVENT_MOUSEUP = "mouseup";
 export declare const RAW_EVENT_SCROLL = "scroll";
 export declare const RAW_EVENT_RESIZE = "resize";
 export declare const RAW_EVENT_BEFORE_DESTROY = "beforeDestroy";
+export declare const RAW_SLOT_PREFIX = "$slot_";
+export declare const RAW_SLOT_CHILDREN: string;
 export declare const RAW_DARK = "dark";
 export declare const RAW_LIGHT = "light";
 export declare const RAW_IMAGE_ACCEPT = "image/png,image/jpeg,image/jpg,image/gif";

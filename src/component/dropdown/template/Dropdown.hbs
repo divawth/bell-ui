@@ -1,4 +1,5 @@
 <Popover
+  ref="popover"
   placement="{{placement}}"
   trigger="{{trigger}}"
   visible="{{visible}}"
@@ -8,9 +9,12 @@
 
   <div
     slot="overlay"
-    class="${prefix}dropdown-overlay"
-    {{#if height > 0}}
-      style="max-height: {{height}}px;"
+    class="${prefix}dropdown-overlay
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if height || style}}
+      style="{{#if height}}max-height: {{height}}px;{{/if}}
+      {{#if style}}{{style}}{{/if}}"
     {{/if}}
   >
     <slot name="overlay" />

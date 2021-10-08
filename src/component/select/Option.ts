@@ -14,11 +14,9 @@ import {
   findComponentUpward,
 } from '../util'
 
-function isOptionSelected(values: any[] | any, value: any) {
-  return Yox.is.array(values)
-    ? Yox.array.has(values, value, FALSE)
-    : values == value
-}
+import {
+  isOptionSelected,
+} from './util'
 
 export default Yox.define({
 
@@ -64,29 +62,6 @@ export default Yox.define({
     }
   },
 
-  events: {
-    change: {
-      listener(_, data) {
-
-        const { value, selectedOptions } = data
-
-        const isSelected = isOptionSelected(value, this.get('value'))
-
-        this.set({
-          isSelected,
-        })
-
-        if (isSelected) {
-          selectedOptions.push({
-            text: this.getText(),
-            value: this.get('value')
-          })
-        }
-      },
-      ns: 'select',
-    },
-  },
-
   methods: {
     handleClick(): void {
       this.fireEvent(TRUE)
@@ -106,14 +81,6 @@ export default Yox.define({
         }
       )
     }
-  },
-
-  afterMount() {
-    this.fireEvent(this.get('isSelected'))
-  },
-
-  beforeDestroy() {
-    this.fireEvent(FALSE)
   }
 
 })

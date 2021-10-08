@@ -1,37 +1,37 @@
 
 <Dropdown
-
+  ref="dropdown"
   placement="{{placement}}"
-  trigger="custom"
+  trigger="{{RAW_CUSTOM}}"
   visible="{{visible}}"
-
   on-outside="handleOutsideClick()"
-
-  className="${prefix}select
-  {{#if status}} ${prefix}select-{{status}}{{/if}}
-  {{#if size}} ${prefix}select-{{size}}{{/if}}
-  {{#if block}} ${prefix}select-block{{/if}}
-
-  {{#if disabled}} ${prefix}select-disabled
-  {{else}} ${prefix}select-enabled
-  {{/if}}
-
-  {{#if clearable}} ${prefix}select-clearable{{/if}}
-  {{#if className}} {{className}}{{/if}}"
-
-  {{#if width || style}}
-    style="{{#if width}}width: {{width}}px;{{/if}}
-    {{#if style}}{{style}}{{/if}}"
+  className="${prefix}select-overlay"
+  {{#if width}}
+    style="width: {{width}}px;"
   {{/if}}
 >
 
   <div
-    class="${prefix}select-button
-    {{#if prefix || hasSlot('prefix')}} ${prefix}select-button-with-prefix
-    {{/if}}"
+    class="${prefix}select
+    {{#if status}} ${prefix}select-{{status}}{{/if}}
+    {{#if size}} ${prefix}select-{{size}}{{/if}}
+    {{#if placement}} ${prefix}select-{{placement}}{{/if}}
+    {{#if block}} ${prefix}select-block{{/if}}
+    {{#if visible}} ${prefix}select-opened{{/if}}
+    {{#if clearable}} ${prefix}select-clearable{{/if}}
+    {{#if disabled}} ${prefix}select-disabled
+    {{else}} ${prefix}select-enabled
+    {{/if}}
+    {{#if prefix || hasSlot('prefix')}} ${prefix}select-with-prefix{{/if}}
+    {{#if className}} {{className}}{{/if}}"
 
     {{#if !disabled}}
       on-click="toggle('visible')"
+    {{/if}}
+
+    {{#if width || style}}
+      style="{{#if width}}width: {{width}}px;{{/if}}
+      {{#if style}}{{style}}{{/if}}"
     {{/if}}
   >
 

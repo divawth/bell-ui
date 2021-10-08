@@ -70,6 +70,9 @@ export const RAW_EVENT_SCROLL = 'scroll'
 export const RAW_EVENT_RESIZE = 'resize'
 export const RAW_EVENT_BEFORE_DESTROY = 'beforeDestroy'
 
+export const RAW_SLOT_PREFIX = '$slot_'
+export const RAW_SLOT_CHILDREN = RAW_SLOT_PREFIX + 'children'
+
 export const RAW_DARK = 'dark'
 export const RAW_LIGHT = 'light'
 

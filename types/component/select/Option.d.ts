@@ -1,8 +1,6 @@
 declare const _default: import("yox").ComponentOptions<unknown, {
     isSelected: unknown;
-}, {
-    change: unknown;
-}, {
+}, unknown, {
     handleClick(): void;
     getText(): string;
     fireEvent(isSelected: boolean): void;

@@ -65,6 +65,13 @@ export default Yox.define({
     }
   },
 
+  methods: {
+    refresh() {
+      const popover = this.$refs.popover as any
+      popover.refreshOverlayPosition()
+    },
+  },
+
   components: {
     Popover,
   }
