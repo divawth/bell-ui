@@ -39,36 +39,36 @@
 {{else}}
 
   <Dropdown
-
-    className="${prefix}sub-menu
-    {{#if isActive}} ${prefix}menu-active{{/if}}
-    {{#if className}} {{className}}{{/if}}"
-
-    {{#if style}}
-      style="{{style}}"
-    {{/if}}
-
-    trigger="custom"
+    trigger="{{RAW_CUSTOM}}"
     visible="{{isOpen}}"
-    placement="{{mode === 'horizontal' ? 'bottom' : 'right-start'}}"
+    placement="{{mode === RAW_HORIZONTAL ? RAW_BOTTOM : RAW_RIGHT_START}}"
     on-outside="handleOutsideClick()"
-
   >
     <div
-      class="${prefix}sub-menu-title"
-      {{#if !collapsed}}
-        on-click="toggle('isOpen')"
-        lazy-click="300"
+      class="${prefix}sub-menu
+      {{#if isActive}} ${prefix}menu-active{{/if}}
+      {{#if className}} {{className}}{{/if}}"
+
+      {{#if style}}
+        style="{{style}}"
       {{/if}}
     >
-      <slot name="title" />
-      {{#if !collapsed}}
-        <Icon
-          name="arrow-down-s-line"
-          size="0"
-          className="${prefix}sub-menu-arrow-icon"
-        />
-      {{/if}}
+      <div
+        class="${prefix}sub-menu-title"
+        {{#if !collapsed}}
+          on-click="toggle('isOpen')"
+          lazy-click="300"
+        {{/if}}
+      >
+        <slot name="title" />
+        {{#if !collapsed}}
+          <Icon
+            name="arrow-down-s-line"
+            size="0"
+            className="${prefix}sub-menu-arrow-icon"
+          />
+        {{/if}}
+      </div>
     </div>
 
     <template slot="overlay">

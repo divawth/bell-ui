@@ -8,6 +8,10 @@ import {
   FALSE,
   RAW_STRING,
   RAW_INLINE,
+  RAW_CUSTOM,
+  RAW_HORIZONTAL,
+  RAW_BOTTOM,
+  RAW_RIGHT_START,
 } from '../constant'
 
 import {
@@ -37,8 +41,11 @@ export default Yox.define({
     const menu = findComponentUpward(options.parent, '${prefix}Menu')
     const name = this.get('name')
     const openNames = menu.get('openNames')
-
     return {
+      RAW_CUSTOM,
+      RAW_HORIZONTAL,
+      RAW_BOTTOM,
+      RAW_RIGHT_START,
       isOpen: openNames && Yox.array.has(openNames, name),
       isActive: menu.get('activeName') === name,
       mode: menu.get('mode'),
