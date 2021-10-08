@@ -297,20 +297,21 @@ ui-dropdown-overlay(
     padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
     transition background-color .3s, color .3s
 
-    + {$selector-item-divided}
-      margin-top $dropdown-overlay-inset
-      border-top 1px solid $brand-divider
-      padding-top $dropdown-item-padding-vertical + $dropdown-overlay-inset
-      position relative
+    if $selector-item-divided
+      + {$selector-item-divided}
+        margin-top $dropdown-overlay-inset
+        border-top 1px solid $brand-divider
+        padding-top $dropdown-item-padding-vertical + $dropdown-overlay-inset
+        position relative
 
-      &:before
-        content ''
-        background-color $brand-bg
-        position absolute
-        top 0
-        left 0
-        right 0
-        height $dropdown-overlay-inset
+        &:before
+          content ''
+          background-color $brand-bg
+          position absolute
+          top 0
+          left 0
+          right 0
+          height $dropdown-overlay-inset
 
   {$selector-item-active}
     background-color $brand-bg-active

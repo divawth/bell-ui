@@ -1,24 +1,22 @@
 
-<Dropdown
-  ref="dropdown"
+<Popover
+  ref="popover"
   placement="{{placement}}"
   trigger="{{RAW_CUSTOM}}"
   visible="{{visible}}"
+  gap="5"
   on-outside="handleOutsideClick()"
-  className="${prefix}select-overlay"
-  {{#if width}}
-    style="width: {{width}}px;"
-  {{/if}}
+  widthAlign
 >
 
   <div
     class="${prefix}select
     {{#if status}} ${prefix}select-{{status}}{{/if}}
     {{#if size}} ${prefix}select-{{size}}{{/if}}
-    {{#if placement}} ${prefix}select-{{placement}}{{/if}}
     {{#if block}} ${prefix}select-block{{/if}}
     {{#if visible}} ${prefix}select-opened{{/if}}
     {{#if clearable}} ${prefix}select-clearable{{/if}}
+    {{#if placement === RAW_TOP}} ${prefix}select-reversed{{/if}}
     {{#if disabled}} ${prefix}select-disabled
     {{else}} ${prefix}select-enabled
     {{/if}}
@@ -92,8 +90,11 @@
 
   </div>
 
-  <template slot="overlay">
+  <div
+    slot="overlay"
+    class="${prefix}select-overlay"
+  >
     <slot name="children" />
-  </template>
+  </div>
 
-</Dropdown>
+</Popover>

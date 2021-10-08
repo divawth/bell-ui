@@ -5,7 +5,7 @@ import template from './template/Select.hbs'
 
 import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
-import Dropdown from '../dropdown/Dropdown'
+import Popover from '../popover/Popover'
 
 import {
   oneOf,
@@ -22,8 +22,8 @@ import {
   RAW_NUMBER,
   RAW_SIZE_ARRAY,
   RAW_DEFAULT,
-  RAW_PLACEMENT_ARRAY,
-  RAW_BOTTOM_START,
+  RAW_TOP,
+  RAW_BOTTOM,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_ERROR,
@@ -59,23 +59,19 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     placement: {
-      type: oneOf(RAW_PLACEMENT_ARRAY),
-      value: RAW_BOTTOM_START,
+      type: oneOf([RAW_TOP, RAW_BOTTOM]),
+      value: RAW_BOTTOM,
     },
     multiple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     clearable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     prefix: {
       type: RAW_STRING,
@@ -92,7 +88,9 @@ export default Yox.define({
   },
 
   data() {
+
     return {
+      RAW_TOP,
       RAW_CUSTOM,
       visible: FALSE,
       selectedOptions: [],
@@ -280,7 +278,7 @@ export default Yox.define({
   components: {
     Tag,
     Icon,
-    Dropdown,
+    Popover,
   },
 
   afterMount() {
@@ -296,8 +294,8 @@ export default Yox.define({
 
   afterUpdate() {
     if (this.get('visible') && this.get('multiple')) {
-      const dropdown = this.$refs.dropdown as any
-      dropdown.refresh()
+      const popover = this.$refs.popover as any
+      popover.refreshOverlayRect()
     }
   }
 

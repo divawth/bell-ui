@@ -252,19 +252,19 @@ export default {
   height: 400,
   template: `
     <div style="margin-top: 200px;">
-      <Select placement="top-start" size="large" model="value">
+      <Select placement="top" size="large" model="value">
         {{#each list}}
           <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <br><br>
-      <Select placement="top-start" model="value">
+      <Select placement="top" model="value">
         {{#each list}}
           <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
       </Select>
       <br><br>
-      <Select placement="top-start" size="small" model="value">
+      <Select placement="top" size="small" model="value">
         {{#each list}}
           <Option value="{{this.value}}" text="{{this.text}}" />
         {{/each}}
@@ -580,9 +580,9 @@ export default {
 ---|---|---|---|---
 value | 选中值 | string | - | -
 multiple | 是否支持多选 | boolean | - | -
-disabled | 是否禁用 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | -
 clearable | 是否可以清空选项，只在单选时有效 | boolean | - | -
-block | 是否为块级元素 | boolean | - | `false`
+block | 是否为块级元素 | boolean | - | -
 size | 大小 | string | `default`, `small`, `large` | `default`
 placement | 弹窗的展开方向 | string | `bottom`, `top` | -
 placeholder | 选择框默认文字 | string | - | -

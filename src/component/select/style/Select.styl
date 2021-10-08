@@ -74,7 +74,7 @@ select-brand-style(style)
   width $ui-form-element-width
   max-height $select-overlay-height
 
-  {$selector-prefix + '-dropdown-item-active'}
+  {$selector-prefix + '-select-option-active'}
     color $brand-primary
 
 {$selector-prefix + '-select-block'}
@@ -116,9 +116,7 @@ select-brand-style(style)
   > {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
-{$selector-prefix + '-select-top'},
-{$selector-prefix + '-select-top-start'},
-{$selector-prefix + '-select-top-end'}
+{$selector-prefix + '-select-reversed'}
   > {$selector-prefix + '-select-arrow-icon'}
     transform rotate(-180deg)
 
@@ -139,4 +137,13 @@ ui-form-button(
   $selector-prefix + '-select-clear-icon',
   $select-icon-size,
   $select-icon-size
+)
+
+ui-dropdown-overlay(
+  $selector-prefix + '-select-overlay',
+  $selector-prefix + '-select-option',
+  $selector-prefix + '-select-option-active',
+  $selector-prefix + '-select-option-enabled',
+  $selector-prefix + '-select-option-disabled',
+  ''
 )
