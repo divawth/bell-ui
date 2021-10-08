@@ -267,3 +267,58 @@ ui-form-button(
       display block
       + {$selector-right-icon}
         display none
+
+ui-dropdown-overlay(
+  $selector-base,
+  $selector-item,
+  $selector-item-active,
+  $selector-item-enabled,
+  $selector-item-disabled,
+  $selector-item-divided)
+
+  {$selector-base}
+    font-size $ui-font-size
+    line-height $ui-single-line-height
+    padding $dropdown-overlay-inset 0
+
+    overflow-y auto
+    overflow-x hidden
+    user-select none
+    ui-scrollbar()
+
+    &:hover {$selector-item-active}
+      background-color transparent
+
+    {$selector-item-enabled}:hover
+      background-color $brand-bg-hover
+
+  {$selector-item}
+    ui-ellipsis()
+    padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
+    transition background-color .3s, color .3s
+
+    + {$selector-item-divided}
+      margin-top $dropdown-overlay-inset
+      border-top 1px solid $brand-divider
+      padding-top $dropdown-item-padding-vertical + $dropdown-overlay-inset
+      position relative
+
+      &:before
+        content ''
+        background-color $brand-bg
+        position absolute
+        top 0
+        left 0
+        right 0
+        height $dropdown-overlay-inset
+
+  {$selector-item-active}
+    background-color $brand-bg-active
+
+  {$selector-item-enabled}
+    color $brand-content
+    ui-clickable()
+
+  {$selector-item-disabled}
+    color $brand-disabled
+    ui-disabled()

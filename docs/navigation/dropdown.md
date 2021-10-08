@@ -31,7 +31,6 @@ export default {
         visible="{{visible2}}"
         on-open="set('visible2', true)"
         on-close="set('visible2', false)"
-        style="margin-left: 20px"
       >
         <Button type="primary">
           下拉菜单
@@ -80,7 +79,6 @@ export default {
         on-open="set('visible2', true)"
         on-close="set('visible2', false)"
         trigger="click"
-        style="margin-left: 20px"
       >
         <a href="javascript:void(0)">
           click 触发
@@ -97,7 +95,6 @@ export default {
       <Dropdown
         visible="{{visible3}}"
         trigger="custom"
-        style="margin-left: 20px"
       >
         <a href="javascript:void(0)" on-click="set('visible3', true)">
           custom 触发
@@ -151,7 +148,6 @@ export default {
         visible="{{visible2}}"
         on-open="set('visible2', true)"
         on-close="set('visible2', false)"
-        style="margin-left: 20px"
       >
         <a href="javascript:void(0)">
           菜单(居中)
@@ -170,7 +166,6 @@ export default {
         on-open="set('visible3', true)"
         on-close="set('visible3', false)"
         placement="bottom-end"
-        style="margin-left: 20px"
       >
         <a href="javascript:void(0)">
           菜单(右)
