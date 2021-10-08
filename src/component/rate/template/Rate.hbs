@@ -20,22 +20,22 @@ class="${prefix}rate
 
   {{#each 1 => count}}
     <Icon
-      name="{{iconName}}"
-      size="{{iconSize}}"
+      name="{{~/iconName}}"
+      size="{{~/iconSize}}"
       className="${prefix}rate-icon-full
-      {{#if activeValue - this >= 0}} ${prefix}rate-icon-active{{/if}}"
+      {{#if ~/activeValue - this >= 0}} ${prefix}rate-icon-active{{/if}}"
 
-      {{#if !readOnly}}
+      {{#if !~/readOnly}}
         on-mousemove.native="handleMove($event, this)"
         on-click.native="handleClick($event, this)"
       {{/if}}
     >
-      {{#if half}}
+      {{#if ~/half}}
         <Icon
-          name="{{iconName}}"
-          size="{{iconSize}}"
+          name="{{~/iconName}}"
+          size="{{~/iconSize}}"
           className="${prefix}rate-icon-half
-          {{#if activeValue - this >= -0.5}} ${prefix}rate-icon-active{{/if}}"
+          {{#if ~/activeValue - this >= -0.5}} ${prefix}rate-icon-active{{/if}}"
         />
       {{/if}}
     </Icon>

@@ -112,9 +112,9 @@ export default {
 ---|---|---|---|---
 value / `model` | 当前 star 数 | numeric | - | `0`
 count | star 总数 | numeric | - | `5`
-half | 是否允许半选 | boolean | - | `false`
-readOnly | 是否只读 | boolean | - | `false`
-iconName | 图标名称 | string | - | `star`
+half | 是否允许半选 | boolean | - | -
+readOnly | 是否只读 | boolean | - | -
+iconName | 图标名称 | string | - | `star-fill`
 iconSize | 图标尺寸 | numeric | - | `18`
 type | 风格 | string | `primary`, `info`, `warning`, `success`, `error` | `warning`
 texts | 提示文字组 | string[] | - | -

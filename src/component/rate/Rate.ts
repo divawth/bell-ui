@@ -36,11 +36,9 @@ export default Yox.define({
     },
     half: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     readOnly: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     texts: {
       type: RAW_ARRAY,
