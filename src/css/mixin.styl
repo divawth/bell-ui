@@ -274,7 +274,9 @@ ui-dropdown-overlay(
   $selector-item-active,
   $selector-item-enabled,
   $selector-item-disabled,
-  $selector-item-divided)
+  $selector-item-divided,
+  $active-color,
+  $active-bg-color)
 
   {$selector-base}
     font-size $ui-font-size
@@ -284,6 +286,7 @@ ui-dropdown-overlay(
     overflow-y auto
     overflow-x hidden
     user-select none
+    box-shadow $brand-layer-shadow
     ui-scrollbar()
 
     &:hover {$selector-item-active}
@@ -313,9 +316,6 @@ ui-dropdown-overlay(
           right 0
           height $dropdown-overlay-inset
 
-  {$selector-item-active}
-    background-color $brand-bg-active
-
   {$selector-item-enabled}
     color $brand-content
     ui-clickable()
@@ -323,3 +323,10 @@ ui-dropdown-overlay(
   {$selector-item-disabled}
     color $brand-disabled
     ui-disabled()
+
+  {$selector-item-active}
+    if $active-color
+      color $active-color
+
+    if $active-bg-color
+      background-color $active-bg-color
