@@ -1,7 +1,7 @@
 import Yox, { CustomEventInterface } from 'yox'
 
 import Icon from '../icon/Icon'
-import Dropdown from '../dropdown/Dropdown'
+import Popover from '../popover/Popover'
 import template from './template/SubMenu.hbs'
 
 import {
@@ -49,6 +49,7 @@ export default Yox.define({
       isOpen: openNames && Yox.array.has(openNames, name),
       isActive: menu.get('activeName') === name,
       mode: menu.get('mode'),
+      theme: menu.get('theme'),
       collapsed: menu.get('collapsed'),
     }
   },
@@ -109,7 +110,7 @@ export default Yox.define({
 
   components: {
     Icon,
-    Dropdown,
+    Popover,
   }
 
 })

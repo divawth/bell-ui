@@ -62,9 +62,6 @@ dark: {
 menu-theme-style(style)
   ui-set('background-color', style['bg-color'])
 
-  {$selector-prefix + '-dropdown-overlay'}
-    ui-set('background-color', style['bg-color'])
-
   {$selector-prefix + '-menu-item-disabled'}
     ui-set('color', style['item-disabled-color'])
 
@@ -110,6 +107,9 @@ menu-theme-style(style)
       ui-set('color', style['inline-item-active-color'])
       ui-set('background-color', style['inline-item-active-bg-color'])
 
+menu-overlay-theme-style(style)
+  ui-set('background-color', style['bg-color'])
+
 {$selector-prefix + '-menu'}
   display block
   font-size $ui-font-size
@@ -147,8 +147,13 @@ menu-theme-style(style)
   > {$selector-prefix + '-icon'}:first-child
     margin-right $menu-icon-title-gap
 
-{$selector-prefix + '-menu'} {$selector-prefix + '-dropdown-overlay'}
+{$selector-prefix + '-menu-overlay'}
   min-width 180px
+
+  ui-connect(
+    hash: $menu-theme-hash,
+    each: menu-overlay-theme-style
+  )
 
 {$selector-prefix + '-menu-item-enabled'},
 {$selector-prefix + '-sub-menu-title'}

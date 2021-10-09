@@ -38,10 +38,11 @@
 
 {{else}}
 
-  <Dropdown
+  <Popover
     placement="{{mode === RAW_HORIZONTAL ? RAW_BOTTOM : RAW_RIGHT_START}}"
     trigger="{{RAW_CUSTOM}}"
     visible="{{isOpen}}"
+    gap="5"
     on-outside="handleOutsideClick()"
   >
     <div
@@ -71,10 +72,14 @@
       </div>
     </div>
 
-    <template slot="overlay">
+    <div
+      slot="overlay"
+      class="${prefix}menu-overlay
+      {{#if theme}} ${prefix}menu-{{theme}}{{/if}}"
+    >
       <slot name="children" />
-    </template>
+    </div>
 
-  </Dropdown>
+  </Popover>
 
 {{/if}}
