@@ -20,8 +20,8 @@
   var SYNTAX_COMMENT = /^!(?:\s|--)/;
   var TAG_SLOT = 'slot';
   var TAG_PORTAL = 'portal';
-  var TAG_TEMPLATE = 'template';
   var TAG_FRAGMENT = 'fragment';
+  var TAG_TEMPLATE = 'template';
   var ATTR_TO = 'to';
   var ATTR_KEY = 'key';
   var ATTR_REF = 'ref';
@@ -38,6 +38,7 @@
   var VNODE_TYPE_COMPONENT = 4;
   var VNODE_TYPE_FRAGMENT = 5;
   var VNODE_TYPE_PORTAL = 6;
+  var VNODE_TYPE_SLOT = 7;
   var DIRECTIVE_ON = 'on';
   var DIRECTIVE_LAZY = 'lazy';
   var DIRECTIVE_MODEL = 'model';
@@ -79,6 +80,7 @@
   var RAW_TRANSITION = 'transition';
   var RAW_THIS = 'this';
   var RAW_FUNCTION = 'function';
+  var RAW_LENGTH = 'length';
   var RAW_WILDCARD = '*';
   var RAW_DOT = '.';
   var RAW_SLASH = '/';
@@ -864,16 +866,6 @@
       }
   }
   /**
-   * 清空对象所有的键值对
-   *
-   * @param object
-   */
-  function clear(object) {
-      each(object, function (_, key) {
-          delete object[key];
-      });
-  }
-  /**
    * 扩展对象
    *
    * @return
@@ -1016,7 +1008,6 @@
     __proto__: null,
     keys: keys,
     each: each,
-    clear: clear,
     extend: extend,
     merge: merge,
     copy: copy,
@@ -1640,10 +1631,7 @@
       };
   }
   function update$3(api, vnode, oldVNode) {
-      var data = vnode.data;
-      var lazy = vnode.lazy;
-      var events = vnode.events;
-      var oldEvents = oldVNode && oldVNode.events;
+      var data = vnode.data, lazy = vnode.lazy, events = vnode.events, oldEvents = oldVNode && oldVNode.events;
       if (events !== oldEvents) {
           var element = vnode.node, component = vnode.component, destroy = data[EVENT$1] || (data[EVENT$1] = {});
           if (events) {
@@ -1676,15 +1664,14 @@
       }
   }
   function remove$4(api, vnode) {
-      var data = vnode.data;
-      var events = vnode.events;
-      var destroy = data[EVENT$1];
+      var data = vnode.data, events = vnode.events, destroy = data[EVENT$1];
       if (events && destroy) {
           for (var key in events) {
               destroy[key]();
               delete destroy[key];
           }
       }
+      data[EVENT$1] = UNDEFINED$1;
   }
 
   function debounceIfNeeded(fn, lazy) {
@@ -1828,11 +1815,7 @@
       };
   }
   function update$2(api, vnode, oldVNode) {
-      var data = vnode.data;
-      var node = vnode.node;
-      var component = vnode.component;
-      var model = vnode.model;
-      var oldModel = oldVNode && oldVNode.model;
+      var data = vnode.data, node = vnode.node, component = vnode.component, model = vnode.model, oldModel = oldVNode && oldVNode.model;
       if (model) {
           if (!oldModel) {
               data[MODEL] = addModel(api, node, component, vnode);
@@ -1935,19 +1918,20 @@
       var component = vnode.component;
       if (component) {
           component.destroy();
+          // 移除时，组件可能已经发生过变化，即 shadow 不是创建时那个对象了
+          vnode.shadow = component.$vnode;
+          vnode.component = UNDEFINED$1;
       }
   }
 
-  function getComponentHostVNode(vnode) {
-      var component = vnode.component;
-      return component
-          ? component.$vnode
-          : vnode;
-  }
-  function getFragmentHostVNode(vnode) {
-      return vnode.isFragment
-          ? getFragmentHostVNode(vnode.children[0])
-          : vnode;
+  function getFragmentHostNode(api, vnode) {
+      if (vnode.isFragment || vnode.isSlot) {
+          var child = vnode.children[0];
+          return child
+              ? getFragmentHostNode(api, child)
+              : api.createComment(EMPTY_STRING);
+      }
+      return vnode.node;
   }
   function insertNodeNatively(api, parentNode, node, referenceNode) {
       if (referenceNode) {
@@ -1957,46 +1941,25 @@
           api.append(parentNode, node);
       }
   }
-  function enterVNode(vnode, node) {
-      var data = vnode.data;
-      var transition = vnode.transition;
-      var leaving = data[LEAVING];
-      if (leaving) {
-          leaving();
-      }
-      if (transition) {
-          var enter = transition.enter;
-          if (enter) {
-              enter.call(vnode.context, node);
-          }
-      }
-  }
-  function leaveVNode(vnode, node, done) {
-      var data = vnode.data;
-      var transition = vnode.transition;
-      var leaving = data[LEAVING];
-      if (leaving) {
-          leaving();
-      }
-      if (transition) {
-          var leave = transition.leave;
-          if (leave) {
-              leave.call(vnode.context, node, data[LEAVING] = function () {
-                  if (data[LEAVING]) {
-                      done();
-                      data[LEAVING] = UNDEFINED$1;
-                  }
-              });
-              return TRUE$1;
-          }
-      }
-  }
   function textVNodeUpdateOperator(api, vnode, oldVNode) {
       var node = oldVNode.node;
       vnode.node = node;
+      vnode.parentNode = oldVNode.parentNode;
       if (vnode.text !== oldVNode.text) {
           api.setText(node, vnode.text, vnode.isStyle, vnode.isOption);
       }
+  }
+  function elementVNodeEnterOperator(vnode) {
+      if (vnode.data) {
+          enterVNode(vnode, vnode.node);
+      }
+  }
+  function elementVNodeLeaveOperator(vnode, done) {
+      if (vnode.data
+          && leaveVNode(vnode, vnode.node, done)) {
+          return;
+      }
+      done();
   }
   function vnodeInsertOperator(api, parentNode, vnode, before) {
       // 这里不调用 insertNodeNatively，避免判断两次
@@ -2007,13 +1970,34 @@
           api.append(parentNode, vnode.node);
       }
   }
-  function vnodeRemoveOperator(api, parentNode, vnode) {
-      api.remove(parentNode, vnode.node);
+  function vnodeRemoveOperator(api, vnode) {
+      api.remove(vnode.parentNode, vnode.node);
   }
-  function vnodeEnterOperator() {
-  }
-  function vnodeLeaveOperator(node, done) {
+  function vnodeLeaveOperator(vnode, done) {
       done();
+  }
+  function vnodeCreateChildrenOperator(api, vnode) {
+      each$2(vnode.children, function (child) {
+          createVNode(api, child);
+      });
+  }
+  function vnodeUpdateChildrenOperator(api, parentNode, vnode, oldVNode) {
+      updateChildren(api, parentNode, vnode.children, oldVNode.children || EMPTY_ARRAY);
+  }
+  function vnodeDestroyChildrenOperator(api, vnode) {
+      each$2(vnode.children, function (child) {
+          destroyVNode(api, child);
+      });
+  }
+  function vnodeInsertChildrenOperator(api, parentNode, vnode, before) {
+      each$2(vnode.children, function (child) {
+          insertVNode(api, parentNode, child, before);
+      });
+  }
+  function vnodeRemoveChildrenOperator(api, vnode) {
+      each$2(vnode.children, function (child) {
+          removeVNode(api, child);
+      });
   }
   var textVNodeOperator = {
       create: function(api, vnode) {
@@ -2023,7 +2007,7 @@
       destroy: EMPTY_FUNCTION,
       insert: vnodeInsertOperator,
       remove: vnodeRemoveOperator,
-      enter: vnodeEnterOperator,
+      enter: EMPTY_FUNCTION,
       leave: vnodeLeaveOperator,
   };
   var commentVNodeOperator = {
@@ -2034,7 +2018,7 @@
       destroy: EMPTY_FUNCTION,
       insert: vnodeInsertOperator,
       remove: vnodeRemoveOperator,
-      enter: vnodeEnterOperator,
+      enter: EMPTY_FUNCTION,
       leave: vnodeLeaveOperator,
   };
   var elementVNodeOperator = {
@@ -2062,8 +2046,9 @@
       },
       update: function(api, vnode, oldVNode) {
           var node = oldVNode.node;
-          vnode.data = oldVNode.data;
           vnode.node = node;
+          vnode.parentNode = oldVNode.parentNode;
+          vnode.data = oldVNode.data;
           update$7(api, vnode, oldVNode);
           update$6(api, vnode, oldVNode);
           update$5(api, vnode, oldVNode);
@@ -2081,7 +2066,7 @@
           var oldText = oldVNode.text, oldHtml = oldVNode.html, oldChildren = oldVNode.children;
           if (string$1(text)) {
               if (oldChildren) {
-                  removeVNodes(api, node, oldChildren);
+                  removeVNodes(api, oldChildren);
               }
               if (text !== oldText) {
                   api.setText(node, text, isStyle, isOption);
@@ -2089,7 +2074,7 @@
           }
           else if (string$1(html)) {
               if (oldChildren) {
-                  removeVNodes(api, node, oldChildren);
+                  removeVNodes(api, oldChildren);
               }
               if (html !== oldHtml) {
                   api.setHtml(node, html, isStyle, isOption);
@@ -2112,7 +2097,7 @@
           }
           // 有旧的没新的 - 删除节点
           else if (oldChildren) {
-              removeVNodes(api, node, oldChildren);
+              removeVNodes(api, oldChildren);
           }
           // 有旧的 text 没有新的 text
           else if (oldText || oldHtml) {
@@ -2135,18 +2120,8 @@
       },
       insert: vnodeInsertOperator,
       remove: vnodeRemoveOperator,
-      enter: function(vnode) {
-          if (vnode.data) {
-              enterVNode(vnode, vnode.node);
-          }
-      },
-      leave: function(vnode, done) {
-          if (vnode.data
-              && leaveVNode(vnode, vnode.node, done)) {
-              return;
-          }
-          done();
-      },
+      enter: elementVNodeEnterOperator,
+      leave: elementVNodeLeaveOperator,
   };
   var componentVNodeOperator = {
       create: function(api, vnode) {
@@ -2187,6 +2162,7 @@
           var data = oldVNode.data;
           vnode.data = data;
           vnode.node = oldVNode.node;
+          vnode.parentNode = oldVNode.parentNode;
           vnode.component = oldVNode.component;
           // 组件正在异步加载，更新为最新的 vnode
           // 当异步加载完成时才能用上最新的 vnode
@@ -2216,32 +2192,46 @@
           }
       },
       insert: function(api, parentNode, vnode, before) {
-          insertVNode(api, parentNode, getComponentHostVNode(vnode), before);
+          var shadow = vnode.shadow;
+          if (shadow) {
+              shadow.operator.insert(api, parentNode, shadow, before);
+              shadow.parentNode = parentNode;
+          }
+          else {
+              vnodeInsertOperator(api, parentNode, vnode, before);
+          }
       },
-      remove: function(api, parentNode, vnode) {
-          removeVNode(api, parentNode, getComponentHostVNode(vnode));
+      remove: function(api, vnode) {
+          var shadow = vnode.shadow;
+          if (shadow) {
+              shadow.operator.remove(api, shadow);
+              shadow.parentNode = UNDEFINED$1;
+          }
+          else {
+              vnodeRemoveOperator(api, vnode);
+          }
       },
       enter: function(vnode) {
-          if (vnode.component) {
-              var hostVNode = getComponentHostVNode(vnode);
+          var shadow = vnode.shadow;
+          if (shadow) {
               if (vnode.transition) {
-                  enterVNode(vnode, hostVNode.node);
+                  enterVNode(vnode, shadow.node);
               }
               else {
-                  hostVNode.operator.enter(hostVNode);
+                  shadow.operator.enter(shadow);
               }
           }
       },
       leave: function(vnode, done) {
-          if (vnode.component) {
-              var hostVNode = getComponentHostVNode(vnode);
+          var shadow = vnode.shadow;
+          if (shadow) {
               if (vnode.transition) {
-                  if (leaveVNode(vnode, hostVNode.node, done)) {
+                  if (leaveVNode(vnode, shadow.node, done)) {
                       return;
                   }
               }
               else {
-                  hostVNode.operator.leave(hostVNode, done);
+                  shadow.operator.leave(shadow, done);
                   return;
               }
           }
@@ -2250,85 +2240,87 @@
   };
   var fragmentVNodeOperator = {
       create: function(api, vnode) {
-          each$2(vnode.children, function (child) {
-              createVNode(api, child);
-          });
-          vnode.node = getFragmentHostVNode(vnode).node;
+          vnodeCreateChildrenOperator(api, vnode);
+          vnode.node = getFragmentHostNode(api, vnode);
       },
       update: function(api, vnode, oldVNode) {
-          var node = oldVNode.node;
-          vnode.node = node;
-          updateChildren(api, api.parent(node), vnode.children, oldVNode ? oldVNode.children : EMPTY_ARRAY);
+          var parentNode = oldVNode.parentNode;
+          vnode.node = oldVNode.node;
+          vnode.parentNode = parentNode;
+          vnodeUpdateChildrenOperator(api, parentNode, vnode, oldVNode);
       },
-      destroy: function(api, vnode) {
-          each$2(vnode.children, function (child) {
-              destroyVNode(api, child);
-          });
-      },
-      insert: function(api, parentNode, vnode, before) {
-          each$2(vnode.children, function (child) {
-              insertVNode(api, parentNode, child, before);
-          });
-      },
-      remove: function(api, parentNode, vnode) {
-          each$2(vnode.children, function (child) {
-              removeVNode(api, parentNode, child);
-          });
-      },
-      enter: vnodeEnterOperator,
+      destroy: vnodeDestroyChildrenOperator,
+      insert: vnodeInsertChildrenOperator,
+      remove: vnodeRemoveChildrenOperator,
+      enter: EMPTY_FUNCTION,
       leave: vnodeLeaveOperator,
   };
   var portalVNodeOperator = {
       create: function(api, vnode) {
-          var parentNode = UNDEFINED$1;
+          var target = UNDEFINED$1;
           if (vnode.to) {
-              parentNode = api.find(vnode.to);
+              target = api.find(vnode.to);
               {
-                  if (!parentNode) {
+                  if (!target) {
                       fatal(("Failed to locate portal target with selector \"" + (vnode.to) + "\"."));
                   }
               }
           }
           // 用 body 元素兜底
-          if (!parentNode) {
-              parentNode = api.getBodyElement();
+          if (!target) {
+              target = api.getBodyElement();
           }
-          vnode.parentNode = parentNode;
-          each$2(vnode.children, function (child) {
-              createVNode(api, child);
-          });
+          vnode.target = target;
+          vnodeCreateChildrenOperator(api, vnode);
           // 用注释占用节点在模板里的位置
           // 这样删除或替换节点，才有找到它应该在的位置
           vnode.node = api.createComment(EMPTY_STRING);
       },
       update: function(api, vnode, oldVNode) {
-          var node = oldVNode.node;
+          var target = oldVNode.target;
+          vnode.node = oldVNode.node;
+          vnode.parentNode = oldVNode.parentNode;
+          vnode.target = target;
+          vnodeUpdateChildrenOperator(api, target, vnode, oldVNode);
+      },
+      destroy: vnodeDestroyChildrenOperator,
+      insert: function(api, parentNode, vnode) {
+          vnodeInsertOperator(api, parentNode, vnode);
+          vnodeInsertChildrenOperator(api, vnode.target, vnode);
+      },
+      remove: function(api, vnode) {
+          vnodeRemoveOperator(api, vnode);
+          vnodeRemoveChildrenOperator(api, vnode);
+      },
+      enter: EMPTY_FUNCTION,
+      leave: vnodeLeaveOperator,
+  };
+  var slotVNodeOperator = {
+      create: function(api, vnode) {
+          vnodeCreateChildrenOperator(api, vnode);
+          vnode.data = {};
+          vnode.node = getFragmentHostNode(api, vnode);
+          update$4(api, vnode);
+          update$3(api, vnode);
+      },
+      update: function(api, vnode, oldVNode) {
           var parentNode = oldVNode.parentNode;
-          vnode.node = node;
+          vnode.node = oldVNode.node;
           vnode.parentNode = parentNode;
-          updateChildren(api, parentNode, vnode.children, oldVNode ? oldVNode.children : EMPTY_ARRAY);
+          vnode.data = oldVNode.data;
+          update$4(api, vnode, oldVNode);
+          update$3(api, vnode, oldVNode);
+          vnodeUpdateChildrenOperator(api, parentNode, vnode, oldVNode);
       },
       destroy: function(api, vnode) {
-          each$2(vnode.children, function (child) {
-              destroyVNode(api, child);
-          });
+          remove$5(api, vnode);
+          remove$4(api, vnode);
+          vnodeDestroyChildrenOperator(api, vnode);
       },
-      insert: function(api, parentNode, vnode, before) {
-          vnodeInsertOperator(api, parentNode, vnode);
-          var actualParentNode = vnode.parentNode;
-          each$2(vnode.children, function (child) {
-              insertVNode(api, actualParentNode, child);
-          });
-      },
-      remove: function(api, parentNode, vnode) {
-          vnodeRemoveOperator(api, parentNode, vnode);
-          var actualParentNode = vnode.parentNode;
-          each$2(vnode.children, function (child) {
-              removeVNode(api, actualParentNode, child);
-          });
-      },
-      enter: vnodeEnterOperator,
-      leave: vnodeLeaveOperator,
+      insert: vnodeInsertChildrenOperator,
+      remove: vnodeRemoveChildrenOperator,
+      enter: elementVNodeEnterOperator,
+      leave: elementVNodeLeaveOperator,
   };
   function isPatchable(vnode, oldVNode) {
       return vnode.type === oldVNode.type
@@ -2350,9 +2342,10 @@
       return result || EMPTY_OBJECT;
   }
   function createComponent(api, vnode, options) {
-      var child = (vnode.parent || vnode.context).createComponent(options, vnode);
+      var data = vnode.data, child = (vnode.parent || vnode.context).createComponent(options, vnode);
       vnode.component = child;
-      vnode.data[LOADING] = FALSE$1;
+      vnode.shadow = child.$vnode;
+      data[LOADING] = FALSE$1;
       update$4(api, vnode);
       update$3(api, vnode);
       update$2(api, vnode);
@@ -2377,9 +2370,10 @@
   function insertVNode(api, parentNode, vnode, before) {
       var operator = vnode.operator;
       operator.insert(api, parentNode, vnode, before);
+      vnode.parentNode = parentNode;
       // 普通元素和组件的占位节点都会走到这里
       // 但是占位节点不用 enter，而是等组件加载回来之后再调 enter
-      if (operator.enter !== vnodeEnterOperator) {
+      if (operator.enter !== EMPTY_FUNCTION) {
           // 执行到这时，组件还没有挂载到 DOM 树
           // 如果此时直接触发 enter，外部还需要做多余的工作，比如 setTimeout
           // 索性这里直接等挂载到 DOM 数之后再触发
@@ -2390,13 +2384,13 @@
           });
       }
   }
-  function removeVNodes(api, parentNode, vnodes, startIndex, endIndex) {
+  function removeVNodes(api, vnodes, startIndex, endIndex) {
       var vnode, start = startIndex || 0, end = endIndex !== UNDEFINED$1 ? endIndex : vnodes.length - 1;
       while (start <= end) {
           vnode = vnodes[start];
           if (vnode) {
               destroyVNode(api, vnode);
-              removeVNode(api, parentNode, vnode);
+              removeVNode(api, vnode);
           }
           start++;
       }
@@ -2404,11 +2398,42 @@
   function destroyVNode(api, vnode) {
       vnode.operator.destroy(api, vnode);
   }
-  function removeVNode(api, parentNode, vnode) {
+  function removeVNode(api, vnode) {
       var operator = vnode.operator;
       operator.leave(vnode, function () {
-          operator.remove(api, parentNode, vnode);
+          operator.remove(api, vnode);
+          vnode.parentNode = UNDEFINED$1;
       });
+  }
+  function enterVNode(vnode, node) {
+      var data = vnode.data, transition = vnode.transition, leaving = data[LEAVING];
+      if (leaving) {
+          leaving();
+      }
+      if (transition) {
+          var enter = transition.enter;
+          if (enter) {
+              enter.call(vnode.context, node);
+          }
+      }
+  }
+  function leaveVNode(vnode, node, done) {
+      var data = vnode.data, transition = vnode.transition, leaving = data[LEAVING];
+      if (leaving) {
+          leaving();
+      }
+      if (transition) {
+          var leave = transition.leave;
+          if (leave) {
+              leave.call(vnode.context, node, data[LEAVING] = function () {
+                  if (data[LEAVING]) {
+                      done();
+                      data[LEAVING] = UNDEFINED$1;
+                  }
+              });
+              return TRUE$1;
+          }
+      }
   }
   function updateChildren(api, parentNode, children, oldChildren) {
       var startIndex = 0, endIndex = children.length - 1, startVNode = children[startIndex], endVNode = children[endIndex], oldStartIndex = 0, oldEndIndex = oldChildren.length - 1, oldStartVNode = oldChildren[oldStartIndex], oldEndVNode = oldChildren[oldEndIndex], oldKeyToIndex, oldIndex;
@@ -2481,7 +2506,7 @@
           addVNodes(api, parentNode, children, startIndex, endIndex, children[endIndex + 1]);
       }
       else if (startIndex > endIndex) {
-          removeVNodes(api, parentNode, oldChildren, oldStartIndex, oldEndIndex);
+          removeVNodes(api, oldChildren, oldStartIndex, oldEndIndex);
       }
   }
   function updateVNode(api, vnode, oldVNode) {
@@ -2498,12 +2523,12 @@
           // 同步加载的组件，初始化时不会传入占位节点
           // 它内部会自动生成一个注释节点，当它的根 vnode 和注释节点对比时，必然无法 patch
           // 于是走进此分支，为新组件创建一个 DOM 节点，然后继续 createComponent 后面的流程
-          var parentNode = api.parent(oldVNode.node);
+          var parentNode = oldVNode.parentNode;
           createVNode(api, vnode);
           if (parentNode) {
               insertVNode(api, parentNode, vnode, oldVNode);
               destroyVNode(api, oldVNode);
-              removeVNode(api, parentNode, oldVNode);
+              removeVNode(api, oldVNode);
           }
           return;
       }
@@ -2511,6 +2536,7 @@
   }
   function create(api, node, context) {
       var vnode = {
+          parentNode: api.parent(node),
           node: node,
           context: context,
       };
@@ -2522,15 +2548,13 @@
               vnode.operator = elementVNodeOperator;
               break;
           case 3:
-              vnode.isPure =
-                  vnode.isText = TRUE$1;
+              vnode.isPure = TRUE$1;
               vnode.text = node.nodeValue;
               vnode.type = VNODE_TYPE_TEXT;
               vnode.operator = textVNodeOperator;
               break;
           case 8:
-              vnode.isPure =
-                  vnode.isComment = TRUE$1;
+              vnode.isPure = TRUE$1;
               vnode.text = node.nodeValue;
               vnode.type = VNODE_TYPE_COMMENT;
               vnode.operator = commentVNodeOperator;
@@ -2541,14 +2565,41 @@
   function destroy(api, vnode, isRemove) {
       destroyVNode(api, vnode);
       if (isRemove) {
-          var parentNode = api.parent(vnode.node);
-          {
-              if (!parentNode) {
-                  fatal("The vnode can't be destroyed without a parent node.");
-              }
-          }
-          removeVNode(api, parentNode, vnode);
+          removeVNode(api, vnode);
       }
+  }
+  function clone(vnode) {
+      return {
+          type: vnode.type,
+          tag: vnode.tag,
+          isComponent: vnode.isComponent,
+          isFragment: vnode.isFragment,
+          isSlot: vnode.isSlot,
+          isSvg: vnode.isSvg,
+          isStyle: vnode.isStyle,
+          isOption: vnode.isOption,
+          isStatic: vnode.isStatic,
+          isPure: vnode.isPure,
+          slots: vnode.slots,
+          props: vnode.props,
+          nativeProps: vnode.nativeProps,
+          nativeAttrs: vnode.nativeAttrs,
+          nativeStyles: vnode.nativeStyles,
+          directives: vnode.directives,
+          events: vnode.events,
+          lazy: vnode.lazy,
+          transition: vnode.transition,
+          model: vnode.model,
+          to: vnode.to,
+          ref: vnode.ref,
+          key: vnode.key,
+          text: vnode.text,
+          html: vnode.html,
+          children: vnode.children,
+          parent: vnode.parent,
+          context: vnode.context,
+          operator: vnode.operator,
+      };
   }
 
   /**
@@ -2626,6 +2677,7 @@
   name2Type['partial'] = PARTIAL;
   specialTag2VNodeType[TAG_FRAGMENT] = VNODE_TYPE_FRAGMENT;
   specialTag2VNodeType[TAG_PORTAL] = VNODE_TYPE_PORTAL;
+  specialTag2VNodeType[TAG_SLOT] = VNODE_TYPE_SLOT;
   function parseStyleString(value, callback) {
       var parts = value.split(';');
       for (var i = 0, len = parts.length; i < len; i++) {
@@ -4237,9 +4289,7 @@
           }
           else if (currentElement) {
               if (isAttribute) {
-                  if (isSpecialAttr(currentElement, branchNode)) {
-                      bindSpecialAttr(currentElement, branchNode);
-                  }
+                  checkAttribute(currentElement, branchNode);
               }
           }
           // 弹出过程可能会修改 branchNode.isStatic，因此这段放在最后执行
@@ -4438,7 +4488,7 @@
       }, checkElement = function (element) {
           var tag = element.tag;
           var slot = element.slot;
-          var isTemplate = tag === TAG_TEMPLATE, isFragment = tag === TAG_FRAGMENT, isPortal = tag === TAG_PORTAL, isSlot = tag === TAG_SLOT;
+          var isTemplate = tag === TAG_TEMPLATE, isFragment = tag === TAG_FRAGMENT, isPortal = tag === TAG_PORTAL;
           {
               if (isTemplate) {
                   if (element.key) {
@@ -4459,37 +4509,42 @@
           if ((isTemplate || isFragment || isPortal) && !element.children) {
               replaceChild(element);
           }
-          // <slot /> 如果没写 name，自动加上默认名称
-          else if (isSlot && !element.name) {
-              var attr = createAttribute(element, ATTR_NAME);
-              attr.value = SLOT_NAME_DEFAULT;
-              element.name = attr;
-          }
           // 处理浏览器兼容问题
-          else {
+          else if (tag !== TAG_SLOT) {
               compatElement(element);
           }
-      }, bindSpecialAttr = function (element, attr) {
+      }, checkAttribute = function (element, attr) {
           var name = attr.name;
           var value = attr.value;
-          var isStringValueRequired = name === ATTR_SLOT;
+          var isSlot = name === ATTR_SLOT;
           {
-              // 因为要拎出来给 element，所以不能用 if
-              if (last(nodeStack) !== element) {
-                  fatal$1(("The \"" + name + "\" can't be used in an if block."));
-              }
-              // 对于所有特殊属性来说，空字符串是肯定不行的，没有任何意义
-              if (value === EMPTY_STRING) {
-                  fatal$1(("The value of \"" + name + "\" is empty."));
-              }
-              else if (isStringValueRequired && falsy$1(value)) {
-                  fatal$1(("The value of \"" + name + "\" can only be a string literal."));
+              if (isSlot) {
+                  // 只能是 <template> 和 其他原生标签
+                  if (specialTag2VNodeType[element.tag]) {
+                      fatal$1(("The \"slot\" attribute can't be used in <" + (element.tag) + ">."));
+                  }
               }
           }
-          element[name] = isStringValueRequired ? value : attr;
-          replaceChild(attr);
-          if (attr.isStatic) {
-              attr.isStatic = FALSE$1;
+          if (isSpecialAttr(element, attr)) {
+              var isStringValueRequired = isSlot;
+              {
+                  // 因为要拎出来给 element，所以不能用 if
+                  if (last(nodeStack) !== element) {
+                      fatal$1(("The \"" + name + "\" can't be used in an if block."));
+                  }
+                  // 对于所有特殊属性来说，空字符串是肯定不行的，没有任何意义
+                  if (value === EMPTY_STRING) {
+                      fatal$1(("The value of \"" + name + "\" is empty."));
+                  }
+                  else if (isStringValueRequired && falsy$1(value)) {
+                      fatal$1(("The value of \"" + name + "\" can only be a string literal."));
+                  }
+              }
+              element[name] = isStringValueRequired ? value : attr;
+              replaceChild(attr);
+              if (attr.isStatic) {
+                  attr.isStatic = FALSE$1;
+              }
           }
       }, replaceChild = function (oldNode, newNode) {
           var currentBranch = last(nodeStack), isAttr, list, index;
@@ -5419,8 +5474,8 @@
           var args = ref.args;
           var newArgs = args ? trimArgs(args) : [];
       return newArgs.length
-          ? ("" + name + (toTuple('(', ')', ',', TRUE$1, 1, newArgs).toString(tabSize)))
-          : (name + "()");
+          ? ("" + (name.toString(tabSize)) + (toTuple('(', ')', ',', TRUE$1, 1, newArgs).toString(tabSize)))
+          : ((name.toString(tabSize)) + "()");
   };
   var Precedence = function(value) {
       this.value = value;
@@ -5482,7 +5537,7 @@
           var returnValue = ref.returnValue;
           var currentTabSize = tabSize || 0, nextTabSize = currentTabSize + 1, currentIndentSize = repeat(INDENT, currentTabSize), nextIndentSize = repeat(INDENT, nextTabSize), tuple = args ? toTuple(EMPTY_STRING, EMPTY_STRING, ',', FALSE$1, 1, args).toString(currentTabSize) : EMPTY_STRING, code = [];
       if (body) {
-          push(code, body.toString(nextTabSize));
+          push(code, body.toString(nextTabSize) + (returnValue ? ';' : EMPTY_STRING));
       }
       if (returnValue) {
           push(code, ("return " + (returnValue.toString(nextTabSize))));
@@ -5533,7 +5588,7 @@
           var item = ref.item;
       return toAssign(toMember(array, [
           toMember(array, [
-              toPrimitive('length')
+              toPrimitive(RAW_LENGTH)
           ])
       ]), item).toString(tabSize);
   };
@@ -5542,6 +5597,12 @@
   }
   function toTuple(left, right, separator, breakLine, offset, items) {
       return new Tuple(left, right, separator, breakLine, offset, items);
+  }
+  function toStatement(items, precedence) {
+      if (precedence) {
+          return toTuple('(', ')', ',', TRUE$1, 1, items);
+      }
+      return toTuple(EMPTY_STRING, EMPTY_STRING, ',', TRUE$1, 0, items);
   }
   function toList(items, join) {
       var result = toTuple('[', ']', ',', TRUE$1, 1, items);
@@ -5806,68 +5867,68 @@
   // 是否正在收集动态 child
   dynamicChildrenStack = [TRUE$1], 
   // 收集属性值
-  attributeValueStack = [], magicVariables = [MAGIC_VAR_KEYPATH, MAGIC_VAR_LENGTH, MAGIC_VAR_EVENT, MAGIC_VAR_DATA], nodeGenerator = {}, FIELD_NATIVE_ATTRIBUTES = 'nativeAttrs', FIELD_NATIVE_PROPERTIES = 'nativeProps', FIELD_NATIVE_STYLES = 'nativeStyles', FIELD_PROPERTIES = 'props', FIELD_DIRECTIVES = 'directives', FIELD_EVENTS = 'events', FIELD_MODEL = 'model', FIELD_LAZY = 'lazy', FIELD_TRANSITION = 'transition', FIELD_CHILDREN = 'children';
+  attributeValueStack = [], magicVariables = [MAGIC_VAR_KEYPATH, MAGIC_VAR_LENGTH, MAGIC_VAR_EVENT, MAGIC_VAR_DATA], nodeGenerator = {}, FIELD_NATIVE_ATTRIBUTES = 'nativeAttrs', FIELD_NATIVE_PROPERTIES = 'nativeProps', FIELD_NATIVE_STYLES = 'nativeStyles', FIELD_PROPERTIES = 'props', FIELD_DIRECTIVES = 'directives', FIELD_EVENTS = 'events', FIELD_MODEL = 'model', FIELD_LAZY = 'lazy', FIELD_TRANSITION = 'transition', FIELD_CHILDREN = 'children', FIELD_SLOTS = 'slots';
   // 下面这些值需要根据外部配置才能确定
-  var isUglify = UNDEFINED$1, currentTextVNode = UNDEFINED$1, RENDER_ELEMENT_VNODE = EMPTY_STRING, RENDER_COMPONENT_VNODE = EMPTY_STRING, APPEND_ATTRIBUTE = EMPTY_STRING, RENDER_STYLE_STRING = EMPTY_STRING, RENDER_STYLE_EXPR = EMPTY_STRING, RENDER_TRANSITION = EMPTY_STRING, RENDER_MODEL = EMPTY_STRING, RENDER_EVENT_METHOD = EMPTY_STRING, RENDER_EVENT_NAME = EMPTY_STRING, RENDER_DIRECTIVE = EMPTY_STRING, RENDER_SPREAD = EMPTY_STRING, RENDER_SLOT = EMPTY_STRING, RENDER_PARTIAL = EMPTY_STRING, RENDER_EACH = EMPTY_STRING, RENDER_RANGE = EMPTY_STRING, LOOKUP_KEYPATH = EMPTY_STRING, LOOKUP_PROP = EMPTY_STRING, GET_THIS = EMPTY_STRING, GET_THIS_BY_INDEX = EMPTY_STRING, GET_PROP = EMPTY_STRING, GET_PROP_BY_INDEX = EMPTY_STRING, READ_KEYPATH = EMPTY_STRING, EXECUTE_FUNCTION = EMPTY_STRING, SET_HOLDER = EMPTY_STRING, TO_STRING = EMPTY_STRING, OPERATOR_TEXT_VNODE = EMPTY_STRING, OPERATOR_COMMENT_VNODE = EMPTY_STRING, OPERATOR_ELEMENT_VNODE = EMPTY_STRING, OPERATOR_COMPONENT_VNODE = EMPTY_STRING, OPERATOR_FRAGMENT_VNODE = EMPTY_STRING, OPERATOR_PORTAL_VNODE = EMPTY_STRING, ARG_INSTANCE = EMPTY_STRING, ARG_FILTERS = EMPTY_STRING, ARG_GLOBAL_FILTERS = EMPTY_STRING, ARG_LOCAL_PARTIALS = EMPTY_STRING, ARG_PARTIALS = EMPTY_STRING, ARG_GLOBAL_PARTIALS = EMPTY_STRING, ARG_DIRECTIVES = EMPTY_STRING, ARG_GLOBAL_DIRECTIVES = EMPTY_STRING, ARG_TRANSITIONS = EMPTY_STRING, ARG_GLOBAL_TRANSITIONS = EMPTY_STRING, ARG_STACK = EMPTY_STRING, ARG_VNODE = EMPTY_STRING, ARG_CHILDREN = EMPTY_STRING, ARG_COMPONENTS = EMPTY_STRING, ARG_SCOPE = EMPTY_STRING, ARG_KEYPATH = EMPTY_STRING, ARG_LENGTH = EMPTY_STRING, ARG_EVENT = EMPTY_STRING, ARG_DATA = EMPTY_STRING;
+  var isUglify = UNDEFINED$1, currentTextVNode = UNDEFINED$1, RENDER_COMPOSE_VNODE = EMPTY_STRING, APPEND_ATTRIBUTE = EMPTY_STRING, RENDER_STYLE_STRING = EMPTY_STRING, RENDER_STYLE_EXPR = EMPTY_STRING, RENDER_TRANSITION = EMPTY_STRING, RENDER_MODEL = EMPTY_STRING, RENDER_EVENT_METHOD = EMPTY_STRING, RENDER_EVENT_NAME = EMPTY_STRING, RENDER_DIRECTIVE = EMPTY_STRING, RENDER_SPREAD = EMPTY_STRING, RENDER_SLOTS = EMPTY_STRING, RENDER_SLOT_CHILDREN = EMPTY_STRING, RENDER_PARTIAL = EMPTY_STRING, RENDER_EACH = EMPTY_STRING, RENDER_RANGE = EMPTY_STRING, LOOKUP_KEYPATH = EMPTY_STRING, LOOKUP_PROP = EMPTY_STRING, GET_THIS = EMPTY_STRING, GET_THIS_BY_INDEX = EMPTY_STRING, GET_PROP = EMPTY_STRING, GET_PROP_BY_INDEX = EMPTY_STRING, READ_KEYPATH = EMPTY_STRING, EXECUTE_FUNCTION = EMPTY_STRING, SET_HOLDER = EMPTY_STRING, TO_STRING = EMPTY_STRING, OPERATOR_TEXT_VNODE = EMPTY_STRING, OPERATOR_COMMENT_VNODE = EMPTY_STRING, OPERATOR_ELEMENT_VNODE = EMPTY_STRING, OPERATOR_COMPONENT_VNODE = EMPTY_STRING, OPERATOR_FRAGMENT_VNODE = EMPTY_STRING, OPERATOR_PORTAL_VNODE = EMPTY_STRING, OPERATOR_SLOT_VNODE = EMPTY_STRING, ARG_INSTANCE = EMPTY_STRING, ARG_FILTERS = EMPTY_STRING, ARG_GLOBAL_FILTERS = EMPTY_STRING, ARG_LOCAL_PARTIALS = EMPTY_STRING, ARG_PARTIALS = EMPTY_STRING, ARG_GLOBAL_PARTIALS = EMPTY_STRING, ARG_DIRECTIVES = EMPTY_STRING, ARG_GLOBAL_DIRECTIVES = EMPTY_STRING, ARG_TRANSITIONS = EMPTY_STRING, ARG_GLOBAL_TRANSITIONS = EMPTY_STRING, ARG_STACK = EMPTY_STRING, ARG_VNODE = EMPTY_STRING, ARG_CHILDREN = EMPTY_STRING, ARG_COMPONENTS = EMPTY_STRING, ARG_SCOPE = EMPTY_STRING, ARG_KEYPATH = EMPTY_STRING, ARG_LENGTH = EMPTY_STRING, ARG_EVENT = EMPTY_STRING, ARG_DATA = EMPTY_STRING;
   function init() {
       if (isUglify === PUBLIC_CONFIG.uglifyCompiled) {
           return;
       }
       if (PUBLIC_CONFIG.uglifyCompiled) {
-          RENDER_ELEMENT_VNODE = '_a';
-          RENDER_COMPONENT_VNODE = '_b';
-          APPEND_ATTRIBUTE = '_c';
-          RENDER_STYLE_STRING = '_d';
-          RENDER_STYLE_EXPR = '_e';
-          RENDER_TRANSITION = '_f';
-          RENDER_MODEL = '_g';
-          RENDER_EVENT_METHOD = '_h';
-          RENDER_EVENT_NAME = '_i';
-          RENDER_DIRECTIVE = '_j';
-          RENDER_SPREAD = '_k';
-          RENDER_SLOT = '_l';
-          RENDER_PARTIAL = '_m';
-          RENDER_EACH = '_n';
-          RENDER_RANGE = '_o';
-          LOOKUP_KEYPATH = '_p';
-          LOOKUP_PROP = '_q';
-          GET_THIS = '_r';
-          GET_THIS_BY_INDEX = '_s';
-          GET_PROP = '_t';
-          GET_PROP_BY_INDEX = '_u';
-          READ_KEYPATH = '_v';
-          EXECUTE_FUNCTION = '_w';
-          SET_HOLDER = '_x';
-          TO_STRING = '_y';
-          OPERATOR_TEXT_VNODE = '_z';
-          OPERATOR_COMMENT_VNODE = '_A';
-          OPERATOR_ELEMENT_VNODE = '_B';
-          OPERATOR_COMPONENT_VNODE = '_C';
-          OPERATOR_FRAGMENT_VNODE = '_D';
-          OPERATOR_PORTAL_VNODE = '_E';
-          ARG_INSTANCE = '_F';
-          ARG_FILTERS = '_G';
-          ARG_GLOBAL_FILTERS = '_H';
-          ARG_LOCAL_PARTIALS = '_I';
-          ARG_PARTIALS = '_J';
-          ARG_GLOBAL_PARTIALS = '_K';
-          ARG_DIRECTIVES = '_L';
-          ARG_GLOBAL_DIRECTIVES = '_M';
-          ARG_TRANSITIONS = '_N';
-          ARG_GLOBAL_TRANSITIONS = '_O';
-          ARG_STACK = '_P';
-          ARG_VNODE = '_Q';
-          ARG_CHILDREN = '_R';
-          ARG_COMPONENTS = '_S';
-          ARG_SCOPE = '_T';
-          ARG_KEYPATH = '_U';
-          ARG_LENGTH = '_V';
-          ARG_EVENT = '_W';
-          ARG_DATA = '_X';
+          RENDER_COMPOSE_VNODE = '_a';
+          APPEND_ATTRIBUTE = '_b';
+          RENDER_STYLE_STRING = '_c';
+          RENDER_STYLE_EXPR = '_d';
+          RENDER_TRANSITION = '_e';
+          RENDER_MODEL = '_f';
+          RENDER_EVENT_METHOD = '_g';
+          RENDER_EVENT_NAME = '_h';
+          RENDER_DIRECTIVE = '_i';
+          RENDER_SPREAD = '_j';
+          RENDER_SLOTS = '_l';
+          RENDER_SLOT_CHILDREN = '_m';
+          RENDER_PARTIAL = '_n';
+          RENDER_EACH = '_o';
+          RENDER_RANGE = '_p';
+          LOOKUP_KEYPATH = '_q';
+          LOOKUP_PROP = '_r';
+          GET_THIS = '_s';
+          GET_THIS_BY_INDEX = '_t';
+          GET_PROP = '_u';
+          GET_PROP_BY_INDEX = '_v';
+          READ_KEYPATH = '_w';
+          EXECUTE_FUNCTION = '_x';
+          SET_HOLDER = '_y';
+          TO_STRING = '_z';
+          OPERATOR_TEXT_VNODE = '_A';
+          OPERATOR_COMMENT_VNODE = '_B';
+          OPERATOR_ELEMENT_VNODE = '_C';
+          OPERATOR_COMPONENT_VNODE = '_D';
+          OPERATOR_FRAGMENT_VNODE = '_E';
+          OPERATOR_PORTAL_VNODE = '_F';
+          OPERATOR_SLOT_VNODE = '_G';
+          ARG_INSTANCE = '_H';
+          ARG_FILTERS = '_I';
+          ARG_GLOBAL_FILTERS = '_J';
+          ARG_LOCAL_PARTIALS = '_K';
+          ARG_PARTIALS = '_L';
+          ARG_GLOBAL_PARTIALS = '_M';
+          ARG_DIRECTIVES = '_N';
+          ARG_GLOBAL_DIRECTIVES = '_O';
+          ARG_TRANSITIONS = '_P';
+          ARG_GLOBAL_TRANSITIONS = '_Q';
+          ARG_STACK = '_R';
+          ARG_VNODE = '_S';
+          ARG_CHILDREN = '_T';
+          ARG_COMPONENTS = '_U';
+          ARG_SCOPE = '_V';
+          ARG_KEYPATH = '_W';
+          ARG_LENGTH = '_X';
+          ARG_EVENT = '_Y';
+          ARG_DATA = '_Z';
       }
       else {
-          RENDER_ELEMENT_VNODE = 'renderElementVNode';
-          RENDER_COMPONENT_VNODE = 'renderComponentVNode';
+          RENDER_COMPOSE_VNODE = 'renderComposeVNode';
           APPEND_ATTRIBUTE = 'appendAttribute';
           RENDER_STYLE_STRING = 'renderStyleStyle';
           RENDER_STYLE_EXPR = 'renderStyleExpr';
@@ -5877,7 +5938,8 @@
           RENDER_EVENT_NAME = 'renderEventName';
           RENDER_DIRECTIVE = 'renderDirective';
           RENDER_SPREAD = 'renderSpread';
-          RENDER_SLOT = 'renderSlot';
+          RENDER_SLOTS = 'renderSlots';
+          RENDER_SLOT_CHILDREN = 'renderSlotChildren';
           RENDER_PARTIAL = 'renderPartial';
           RENDER_EACH = 'renderEach';
           RENDER_RANGE = 'renderRange';
@@ -5897,6 +5959,7 @@
           OPERATOR_COMPONENT_VNODE = 'componentVNodeOperator';
           OPERATOR_FRAGMENT_VNODE = 'fragmentVNodeOperator';
           OPERATOR_PORTAL_VNODE = 'portalVNodeOperator';
+          OPERATOR_SLOT_VNODE = 'slotVNodeOperator';
           ARG_INSTANCE = 'instance';
           ARG_FILTERS = 'filters';
           ARG_GLOBAL_FILTERS = 'globalFilters';
@@ -5926,7 +5989,6 @@
       return toMap({
           type: toPrimitive(VNODE_TYPE_COMMENT),
           isPure: toPrimitive(TRUE$1),
-          isComment: toPrimitive(TRUE$1),
           operator: OPERATOR_COMMENT_VNODE,
           text: this.text,
       }).toString(tabSize);
@@ -5942,7 +6004,6 @@
       return toMap({
           type: toPrimitive(VNODE_TYPE_TEXT),
           isPure: toPrimitive(TRUE$1),
-          isText: toPrimitive(TRUE$1),
           operator: OPERATOR_TEXT_VNODE,
           text: this.buffer,
       }).toString(tabSize);
@@ -6016,14 +6077,14 @@
           getIndex = addVar(toAnonymousFunction([
               ARG_STACK
           ], UNDEFINED$1, toBinary(toMember(ARG_STACK, [
-              toPrimitive('length')
+              toPrimitive(RAW_LENGTH)
           ]), '-', toPrimitive(1 + offset))), TRUE$1);
       }
       else {
           getIndex = addVar(toAnonymousFunction([
               ARG_STACK
           ], UNDEFINED$1, toBinary(toMember(ARG_STACK, [
-              toPrimitive('length')
+              toPrimitive(RAW_LENGTH)
           ]), '-', toPrimitive(1))), TRUE$1);
       }
       var filter = toPrimitive(UNDEFINED$1);
@@ -6206,6 +6267,11 @@
   function generateNodesToList(nodes) {
       return toList(mapNodes(nodes));
   }
+  function generateStatementIfNeeded(nodes) {
+      return nodes.length === 1
+          ? nodes[0]
+          : toStatement(nodes, TRUE$1);
+  }
   function appendDynamicChildVNode(vnode) {
       currentTextVNode = vnode instanceof TextVNode
           ? vnode
@@ -6273,7 +6339,8 @@
       var nativeAttributeList = [], nativePropertyList = [], propertyList = [], style = UNDEFINED$1, lazyList = [], transition = UNDEFINED$1, model = UNDEFINED$1, 
       // 最后收集事件指令、自定义指令、动态属性
       eventList = [], customDirectiveList = [], otherList = [];
-      each$2(attrs, function (attr) {
+      for (var i = 0, len = attrs.length; i < len; i++) {
+          var attr = attrs[i];
           if (attr.type === ATTRIBUTE) {
               var attributeNode = attr;
               if (isComponent) {
@@ -6311,7 +6378,7 @@
           else {
               push(otherList, attr);
           }
-      });
+      }
       return {
           nativeAttributeList: nativeAttributeList,
           nativePropertyList: nativePropertyList,
@@ -6356,19 +6423,21 @@
       push(result, otherList);
       return result;
   }
-  function parseChildren(children) {
-      var dynamicChildren = UNDEFINED$1, staticChildren = UNDEFINED$1, isDynamic = FALSE$1;
-      each$2(children, function (node) {
-          if (!node.isStatic) {
-              isDynamic = TRUE$1;
-              return FALSE$1;
-          }
-      });
+  function parseChildren(children, forceDynamic) {
+      var dynamicChildren = UNDEFINED$1, staticChildren = UNDEFINED$1, isDynamic = forceDynamic || FALSE$1;
+      if (!isDynamic) {
+          each$2(children, function (node) {
+              if (!node.isStatic) {
+                  isDynamic = TRUE$1;
+                  return FALSE$1;
+              }
+          });
+      }
       push(dynamicChildrenStack, isDynamic);
       if (isDynamic) {
           dynamicChildren = toAnonymousFunction([
               ARG_CHILDREN
-          ], generateNodesToTuple(children));
+          ], generateNodesToTuple(children), ARG_CHILDREN);
       }
       else {
           staticChildren = generateNodesToList(children);
@@ -6398,18 +6467,7 @@
           tag: dynamicTag
               ? generateExpression(dynamicTag)
               : toPrimitive(tag)
-      }), outputAttrs = UNDEFINED$1, outputChildren = UNDEFINED$1, outputSlots = UNDEFINED$1;
-      if (tag === TAG_SLOT) {
-          // slot 不可能有 html、text 属性
-          // 因此 slot 的子节点只存在于 children 中
-          var args = [
-              toBinary(toPrimitive(SLOT_DATA_PREFIX), '+', generateAttributeValue(node.name)),
-              ARG_CHILDREN ];
-          if (children) {
-              push(args, toAnonymousFunction(UNDEFINED$1, generateNodesToTuple(children)));
-          }
-          return toCall(RENDER_SLOT, args);
-      }
+      }), isFragment = vnodeType === VNODE_TYPE_FRAGMENT, isPortal = vnodeType === VNODE_TYPE_PORTAL, isSlot = vnodeType === VNODE_TYPE_SLOT, outputAttrs = UNDEFINED$1, outputChildren = UNDEFINED$1, outputSlots = UNDEFINED$1;
       // 先序列化 children，再序列化 attrs，原因需要举两个例子：
       // 例子1：
       // <div on-click="output(this)"></div> 如果 this 序列化成 $scope，如果外部修改了 this，因为模板没有计入此依赖，不会刷新，因此 item 是旧的
@@ -6423,7 +6481,10 @@
       push(attributeStack, FALSE$1);
       push(componentStack, isComponent);
       if (children) {
-          if (isComponent) {
+          if (isSlot) {
+              outputChildren = toStatement(mapNodes(children), TRUE$1);
+          }
+          else if (isComponent) {
               outputSlots = generateComponentSlots(children);
           }
           else {
@@ -6543,27 +6604,45 @@
           if (otherList.length) {
               outputAttrs = toAnonymousFunction([
                   ARG_VNODE
-              ], generateNodesToTuple(otherList));
+              ], generateNodesToTuple(otherList), ARG_VNODE);
           }
       }
       pop(vnodeStack);
       pop(attributeStack);
       pop(componentStack);
       if (vnodeType === VNODE_TYPE_ELEMENT) {
-          vnode.set('isElement', toPrimitive(TRUE$1));
           vnode.set('operator', OPERATOR_ELEMENT_VNODE);
       }
-      if (vnodeType === VNODE_TYPE_COMPONENT) {
-          vnode.set('isComponent', toPrimitive(TRUE$1));
-          vnode.set('operator', OPERATOR_COMPONENT_VNODE);
-      }
-      if (vnodeType === VNODE_TYPE_FRAGMENT) {
+      else if (isFragment) {
           vnode.set('isFragment', toPrimitive(TRUE$1));
           vnode.set('operator', OPERATOR_FRAGMENT_VNODE);
       }
-      if (vnodeType === VNODE_TYPE_PORTAL) {
-          vnode.set('isPortal', toPrimitive(TRUE$1));
+      else if (isPortal) {
           vnode.set('operator', OPERATOR_PORTAL_VNODE);
+      }
+      else if (isComponent) {
+          vnode.set('isComponent', toPrimitive(TRUE$1));
+          vnode.set('operator', OPERATOR_COMPONENT_VNODE);
+      }
+      else if (isSlot) {
+          vnode.set('isSlot', toPrimitive(TRUE$1));
+          vnode.set('operator', OPERATOR_SLOT_VNODE);
+          var nameAttr = node.name, argName = toPrimitive(SLOT_DATA_PREFIX + SLOT_NAME_DEFAULT);
+          if (nameAttr) {
+              // 如果 name 是字面量，直接拼出结果
+              argName = isDef(nameAttr.value)
+                  ? toPrimitive(SLOT_DATA_PREFIX + nameAttr.value)
+                  : toBinary(toPrimitive(SLOT_DATA_PREFIX), '+', generateAttributeValue(nameAttr));
+          }
+          var renderSlot = toCall(RENDER_SLOT_CHILDREN, [
+              argName,
+              ARG_CHILDREN
+          ]);
+          outputChildren = toAnonymousFunction([
+              ARG_CHILDREN
+          ], outputChildren
+              ? toBinary(renderSlot, '||', outputChildren)
+              : renderSlot, ARG_CHILDREN);
       }
       if (node.isOption) {
           vnode.set('isOption', toPrimitive(TRUE$1));
@@ -6578,32 +6657,30 @@
           vnode.set('isStatic', toPrimitive(TRUE$1));
           vnode.set('isPure', toPrimitive(TRUE$1));
       }
-      var result;
-      if (isComponent) {
-          if (outputAttrs || outputSlots) {
-              result = toCall(RENDER_COMPONENT_VNODE, [
-                  vnode,
-                  outputAttrs || toPrimitive(UNDEFINED$1),
-                  outputSlots || toPrimitive(UNDEFINED$1)
-              ]);
-          }
-          else {
-              result = vnode;
-          }
-          result = appendComponentVNode(result);
+      if (outputChildren) {
+          vnode.set(FIELD_CHILDREN, toCall(outputChildren, [
+              toList()
+          ]));
       }
-      else {
-          if (outputAttrs || outputChildren) {
-              result = toCall(RENDER_ELEMENT_VNODE, [
-                  vnode,
-                  outputAttrs || toPrimitive(UNDEFINED$1),
-                  outputChildren || toPrimitive(UNDEFINED$1) ]);
-          }
-          else {
-              result = vnode;
-          }
+      if (outputSlots) {
+          vnode.set(FIELD_SLOTS, toCall(RENDER_SLOTS, [
+              outputSlots
+          ]));
       }
-      return generateVNode(result);
+      var list = [], result = outputAttrs
+          ? toCall(outputAttrs, [
+              vnode ])
+          : vnode;
+      if (isFragment || isPortal || isSlot) {
+          push(list, toCall(RENDER_COMPOSE_VNODE, [
+              result,
+              ARG_CHILDREN ]));
+          return generateStatementIfNeeded(list);
+      }
+      push(list, result);
+      return generateVNode(isComponent
+          ? appendComponentVNode(generateStatementIfNeeded(list))
+          : generateStatementIfNeeded(list));
   };
   nodeGenerator[ATTRIBUTE] = function (node) {
       return toCall(APPEND_ATTRIBUTE, [
@@ -6876,16 +6953,14 @@
           if (last(attributeValueStack)) {
               return createAttributeValue(children);
           }
-          var nodes = mapNodes(children);
-          if (nodes.length === 1) {
-              return nodes[0];
-          }
-          return toTuple('(', ')', ',', TRUE$1, 1, nodes);
+          return generateStatementIfNeeded(mapNodes(children));
       }
   }
   nodeGenerator[IF] = function (node) {
       var next = node.next;
-      var attributeValue = last(attributeValueStack), defaultValue = getBranchDefaultValue(), result = toTernary(generateExpression(node.expr), getBranchValue(node.children) || defaultValue, next ? nodeGenerator[next.type](next) : defaultValue);
+      var attributeValue = last(attributeValueStack), defaultValue = getBranchDefaultValue(), result = toTernary(generateExpression(node.expr), getBranchValue(node.children) || defaultValue, next
+          ? nodeGenerator[next.type](next)
+          : defaultValue);
       if (attributeValue) {
           attributeValue.append(result);
           return toPrimitive(UNDEFINED$1);
@@ -6895,7 +6970,9 @@
   nodeGenerator[ELSE_IF] = function (node) {
       var next = node.next;
       var defaultValue = getBranchDefaultValue();
-      return toTernary(generateExpression(node.expr), getBranchValue(node.children) || defaultValue, next ? nodeGenerator[next.type](next) : defaultValue);
+      return toTernary(generateExpression(node.expr), getBranchValue(node.children) || defaultValue, next
+          ? nodeGenerator[next.type](next)
+          : defaultValue);
   };
   nodeGenerator[ELSE] = function (node) {
       return getBranchValue(node.children) || getBranchDefaultValue();
@@ -6970,8 +7047,7 @@
       init();
       init$1();
       return generate$2([
-          RENDER_ELEMENT_VNODE,
-          RENDER_COMPONENT_VNODE,
+          RENDER_COMPOSE_VNODE,
           APPEND_ATTRIBUTE,
           RENDER_STYLE_STRING,
           RENDER_STYLE_EXPR,
@@ -6981,7 +7057,8 @@
           RENDER_EVENT_NAME,
           RENDER_DIRECTIVE,
           RENDER_SPREAD,
-          RENDER_SLOT,
+          RENDER_SLOTS,
+          RENDER_SLOT_CHILDREN,
           RENDER_PARTIAL,
           RENDER_EACH,
           RENDER_RANGE,
@@ -7001,6 +7078,7 @@
           OPERATOR_COMPONENT_VNODE,
           OPERATOR_FRAGMENT_VNODE,
           OPERATOR_PORTAL_VNODE,
+          OPERATOR_SLOT_VNODE,
           ARG_INSTANCE,
           ARG_FILTERS,
           ARG_GLOBAL_FILTERS,
@@ -7024,38 +7102,10 @@
       // 模板渲染过程收集的 vnode
       children = [], 
       // 模板渲染过程收集的组件
-      components = [], renderElementVNode = function (vnode, createAttributes, createChildren) {
-          if (createAttributes) {
-              createAttributes(vnode);
+      components = [], renderComposeVNode = function (vnode, children) {
+          if (vnode.children.length) {
+              children[children.length] = vnode;
           }
-          if (createChildren) {
-              var children = [];
-              createChildren(children);
-              vnode.children = children;
-          }
-          return vnode;
-      }, renderComponentVNode = function (vnode, createAttributes, createSlots) {
-          if (createAttributes) {
-              createAttributes(vnode);
-          }
-          if (createSlots) {
-              var result = {};
-              for (var name in createSlots) {
-                  var children = [], components = [];
-                  createSlots[name](children, components);
-                  // 就算是 undefined 也必须有值，用于覆盖旧值
-                  result[name] = children.length
-                      ? {
-                          vnodes: children,
-                          components: components.length
-                              ? components
-                              : UNDEFINED$1
-                      }
-                      : UNDEFINED$1;
-              }
-              vnode.slots = result;
-          }
-          return vnode;
       }, appendAttribute = function (vnode, key, value, name) {
           if (name) {
               if (vnode[key]) {
@@ -7201,9 +7251,25 @@
                   appendAttribute(vnode, key, value[name], name);
               }
           }
+      }, renderSlots = function (render) {
+          var result = {};
+          for (var name in render) {
+              var children = [], components = [];
+              render[name](children, components);
+              // 就算是 undefined 也必须有值，用于覆盖旧值
+              result[name] = children.length
+                  ? {
+                      vnodes: children,
+                      components: components.length
+                          ? components
+                          : UNDEFINED$1
+                  }
+                  : UNDEFINED$1;
+          }
+          return result;
       }, 
       // <slot name="xx"/>
-      renderSlot = function (name, children, render) {
+      renderSlotChildren = function (name, children) {
           dependencies[name] = children;
           var result = rootScope[name];
           if (result) {
@@ -7215,11 +7281,10 @@
                   }
               }
               for (var i$1 = 0, length$1 = vnodes.length; i$1 < length$1; i$1++) {
-                  children[children.length] = vnodes[i$1];
+                  children[children.length] = clone(vnodes[i$1]);
               }
-              return;
+              return TRUE$1;
           }
-          render && render();
       }, 
       // {{> name}}
       renderPartial = function (name, scope, keypath, children, components, renderLocal, render) {
@@ -7395,7 +7460,7 @@
           }
           return holder;
       }, renderTemplate = function (render, scope, keypath, children, components) {
-          render(renderElementVNode, renderComponentVNode, appendAttribute, renderStyleString, renderStyleExpr, renderTransition, renderModel, renderEventMethod, renderEventName, renderDirective, renderSpread, renderSlot, renderPartial, renderEach, renderRange, lookupKeypath, lookupProp, getThis, getThisByIndex, getProp, getPropByIndex, readKeypath, execute, setHolder, toString$1, textVNodeOperator, commentVNodeOperator, elementVNodeOperator, componentVNodeOperator, fragmentVNodeOperator, portalVNodeOperator, instance, filters, globalFilters, localPartials, partials, globalPartials, directives, globalDirectives, transitions, globalTransitions, scope, keypath, children, components);
+          render(renderComposeVNode, appendAttribute, renderStyleString, renderStyleExpr, renderTransition, renderModel, renderEventMethod, renderEventName, renderDirective, renderSpread, renderSlots, renderSlotChildren, renderPartial, renderEach, renderRange, lookupKeypath, lookupProp, getThis, getThisByIndex, getProp, getPropByIndex, readKeypath, execute, setHolder, toString$1, textVNodeOperator, commentVNodeOperator, elementVNodeOperator, componentVNodeOperator, fragmentVNodeOperator, portalVNodeOperator, slotVNodeOperator, instance, filters, globalFilters, localPartials, partials, globalPartials, directives, globalDirectives, transitions, globalTransitions, scope, keypath, children, components);
       };
       renderTemplate(template, rootScope, rootKeypath, children, components);
       {
@@ -7818,7 +7883,7 @@
   function diffString (newValue, oldValue, callback) {
       var newIsString = string$1(newValue), oldIsString = string$1(oldValue);
       if (newIsString || oldIsString) {
-          callback('length', newIsString ? newValue.length : UNDEFINED$1, oldIsString ? oldValue.length : UNDEFINED$1);
+          callback(RAW_LENGTH, newIsString ? newValue.length : UNDEFINED$1, oldIsString ? oldValue.length : UNDEFINED$1);
           return TRUE$1;
       }
   }
@@ -7834,7 +7899,7 @@
       var newIsArray = array$1(newValue), oldIsArray = array$1(oldValue);
       if (newIsArray || oldIsArray) {
           var newLength = newIsArray ? newValue.length : UNDEFINED$1, oldLength = oldIsArray ? oldValue.length : UNDEFINED$1;
-          callback('length', newLength, oldLength);
+          callback(RAW_LENGTH, newLength, oldLength);
           for (var i = 0, length = Math.max(newLength || 0, oldLength || 0); i < length; i++) {
               callback(
               // 把 number 转成 string
@@ -8409,7 +8474,7 @@
       instance.syncEmitter.off();
       instance.asyncEmitter.off();
       instance.nextTask.clear();
-      clear(instance);
+      instance.data = {};
   };
 
   var LifeCycle = function() {
