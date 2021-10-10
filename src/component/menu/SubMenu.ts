@@ -98,13 +98,16 @@ export default Yox.define({
         }
       },
       ns: 'menuItem',
-    }
-  },
+    },
+    outside: {
+      listener(event) {
 
-  methods: {
-    handleOutsideClick(event: CustomEventInterface) {
-      event.stop()
-      this.set('isOpen', FALSE)
+        event.stop()
+
+        this.set('isOpen', FALSE)
+
+      },
+      ns: 'popover',
     }
   },
 

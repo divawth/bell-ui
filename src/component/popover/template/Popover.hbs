@@ -16,6 +16,7 @@
         name="overlay"
         ref="overlay"
         transition="overlay"
+        on-click="click()"
         {{#if !disabled}}
           {{#if trigger === RAW_HOVER}}
             on-mouseenter="enter()"

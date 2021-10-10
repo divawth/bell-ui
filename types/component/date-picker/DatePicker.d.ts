@@ -9,11 +9,11 @@ declare const _default: import("yox").ComponentOptions<{
     'change.month': unknown;
     'change.week': unknown;
     'change.range': unknown;
+    outside: unknown;
 }, {
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveItem(event: CustomEventInterface, index: number): void;
     handleShortcutClick(data: Shortcut): void;
-    handleOutsideClick(event: CustomEventInterface): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
     fireChange(value: any): void;
@@ -21,7 +21,6 @@ declare const _default: import("yox").ComponentOptions<{
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveItem(event: CustomEventInterface, index: number): void;
     handleShortcutClick(data: Shortcut): void;
-    handleOutsideClick(event: CustomEventInterface): void;
     dateChange(timestamp: number, dateFormat?: string): void;
     dateRangeChange(start: number, end: number): void;
     fireChange(value: any): void;

@@ -118,6 +118,16 @@ export default Yox.define({
 
       },
       ns: 'selectOption',
+    },
+    outside: {
+      listener(event) {
+
+        event.stop()
+
+        this.set('visible', FALSE)
+
+      },
+      ns: 'popover',
     }
   },
 
@@ -143,14 +153,6 @@ export default Yox.define({
       this.fireChange(
         this.get('value')
       )
-
-    },
-
-    handleOutsideClick(event: CustomEventInterface) {
-
-      event.stop()
-
-      this.set('visible', FALSE)
 
     },
 

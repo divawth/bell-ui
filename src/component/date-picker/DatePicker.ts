@@ -202,7 +202,6 @@ export default Yox.define({
       date.setMonth(data.month - 1)
       this.dateChange(toTimestamp(date), MONTH_FORMAT)
     },
-
     'change.week': function (event, data: SimpleRange) {
       event.stop()
       this.dateRangeChange(data.start.timestamp, data.end.timestamp)
@@ -210,6 +209,17 @@ export default Yox.define({
     'change.range': function (event, data: SimpleRange) {
       event.stop()
       this.dateRangeChange(data.start.timestamp, data.end.timestamp)
+    },
+
+    outside: {
+      listener(event) {
+
+        event.stop()
+
+        this.set('visible', FALSE)
+
+      },
+      ns: 'popover',
     }
   },
 
@@ -246,6 +256,7 @@ export default Yox.define({
     },
 
     handleShortcutClick(data: Shortcut) {
+
       const value = data.onClick.call(this)
       if (Yox.is.array(value)) {
         if (!value[0] || !value[1]) {
@@ -271,14 +282,6 @@ export default Yox.define({
           toTimestamp(value as any)
         )
       }
-    },
-
-    handleOutsideClick(event: CustomEventInterface) {
-
-      event.stop()
-
-      this.set('visible', FALSE)
-
     },
 
     dateChange(timestamp: number, dateFormat = DATE_FORMAT) {

@@ -8990,6 +8990,7 @@ div::-webkit-scrollbar-thumb:hover {
   left: 0;
   height: 100%;
   display: none;
+  z-index: 4;
 }
 .bell-dialog-visible {
   display: block;
@@ -9136,6 +9137,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 0;
   bottom: 0;
   display: none;
+  z-index: 3;
 }
 .bell-drawer-visible {
   display: block;
@@ -10213,7 +10215,7 @@ div::-webkit-scrollbar-thumb:hover {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 2;
+  z-index: 4;
 }
 .bell-loadingbar {
   background-color: #f8f8f8;
@@ -10441,7 +10443,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 0;
   left: 50%;
   opacity: 0;
-  z-index: 2;
+  z-index: 4;
   transform: translateX(-50%);
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -10515,7 +10517,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: fixed;
   right: 0;
   top: 15px;
-  z-index: 2;
+  z-index: 4;
 }
 .bell-notification {
   position: relative;

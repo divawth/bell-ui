@@ -128,13 +128,13 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){r
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_CLICK',_U.RAW_CLICK).value?_b(_R,'events',_g('click','toggleVisible()','click','',_G.toggleVisible),'click'):_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,ref:'trigger',tag:'slot',type:7}),_S);_q('visible',_U.visible).value?_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_overlay',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,ref:'overlay',tag:'slot',transition:_e('overlay',_O&&_O.overlay||_P.overlay),type:7}),_S);return _S}([]),context:_G,operator:_E,tag:'portal',type:6},_S):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,isFragment:$2,operator:_D,tag:'fragment',type:5},_S)}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_CLICK',_U.RAW_CLICK).value?_b(_R,'events',_g('click','toggleVisible()','click','',_G.toggleVisible),'click'):_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,ref:'trigger',tag:'slot',type:7}),_S);_q('visible',_U.visible).value?_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_overlay',_S);return _S}([]),context:_G,events:{click:_g('click','click()','click','',_G.click)},isSlot:$2,operator:_F,ref:'overlay',tag:'slot',transition:_e('overlay',_O&&_O.overlay||_P.overlay),type:7}),_S);return _S}([]),context:_G,operator:_E,tag:'portal',type:6},_S):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,isFragment:$2,operator:_D,tag:'fragment',type:5},_S)}})();
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_q('mode',_U.mode).value==='inline'?_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]=function(_R){!_q('collapsed',_U.collapsed).value?(_b(_R,'lazy',300,'click'),_b(_R,'events',_g('click',"toggle('isOpen')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['isOpen']}}),'click')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_title',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);!_q('collapsed',_U.collapsed).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-sub-menu-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu-title'},operator:_B,tag:'div',type:3});_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{inner:$2,mode:_q('mode',_U.mode).value},ref:'menu',slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S)}}),tag:'Menu',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu'+(_q('isOpen',_U.isOpen).value?' bell-menu-open':'')+(_q('isActive',_U.isActive).value?' bell-menu-active':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3}):_S[_S.length]=_T[_T.length]={context:_G,events:{outside:_g('outside','handleOutsideClick()','outside','',_G.handleOutsideClick,$0,$2)},isComponent:$2,operator:_C,props:{gap:'5',placement:_q('mode',_U.mode).value===_q('RAW_HORIZONTAL',_U.RAW_HORIZONTAL).value?_q('RAW_BOTTOM',_U.RAW_BOTTOM).value:_q('RAW_RIGHT_START',_U.RAW_RIGHT_START).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('isOpen',_U.isOpen).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]=function(_R){!_q('collapsed',_U.collapsed).value?(_b(_R,'lazy',300,'click'),_b(_R,'events',_g('click',"toggle('isOpen')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['isOpen']}}),'click')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_title',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);!_q('collapsed',_U.collapsed).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-sub-menu-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu-title'},operator:_B,tag:'div',type:3});return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu'+(_q('isActive',_U.isActive).value?' bell-menu-active':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:{className:'bell-menu-overlay'+(_q('theme',_U.theme).value?' bell-menu-'+_y(_q('theme',_U.theme).value):'')},operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_q('mode',_U.mode).value==='inline'?_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]=function(_R){!_q('collapsed',_U.collapsed).value?(_b(_R,'lazy',300,'click'),_b(_R,'events',_g('click',"toggle('isOpen')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['isOpen']}}),'click')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_title',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);!_q('collapsed',_U.collapsed).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-sub-menu-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu-title'},operator:_B,tag:'div',type:3});_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{inner:$2,mode:_q('mode',_U.mode).value},ref:'menu',slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S)}}),tag:'Menu',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu'+(_q('isOpen',_U.isOpen).value?' bell-menu-open':'')+(_q('isActive',_U.isActive).value?' bell-menu-active':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3}):_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{gap:'5',placement:_q('mode',_U.mode).value===_q('RAW_HORIZONTAL',_U.RAW_HORIZONTAL).value?_q('RAW_BOTTOM',_U.RAW_BOTTOM).value:_q('RAW_RIGHT_START',_U.RAW_RIGHT_START).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('isOpen',_U.isOpen).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]=function(_R){!_q('collapsed',_U.collapsed).value?(_b(_R,'lazy',300,'click'),_b(_R,'events',_g('click',"toggle('isOpen')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['isOpen']}}),'click')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_title',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);!_q('collapsed',_U.collapsed).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-sub-menu-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu-title'},operator:_B,tag:'div',type:3});return _S}([]),context:_G,nativeProps:{className:'bell-sub-menu'+(_q('isActive',_U.isActive).value?' bell-menu-active':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:{className:'bell-menu-overlay'+(_q('theme',_U.theme).value?' bell-menu-'+_y(_q('theme',_U.theme).value):'')},operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 7 */
@@ -242,7 +242,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){r
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-select-prefix'},$6={className:'bell-select-placeholder'},$7={className:'bell-select-values'},$8={className:'bell-select-value'},$9={className:'bell-select-overlay'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,events:{outside:_g('outside','handleOutsideClick()','outside','',_G.handleOutsideClick,$0,$2)},isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value,widthAlign:$2},ref:'popover',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;_q('width',_U.width).value||_q('style',_U.style).value?_R.nativeStyles=_c((_q('width',_U.width).value?'width: '+_y(_q('width',_U.width).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')):$0;return _R}({children:function(_S){_q('prefix',_U.prefix).value||_x(_w(_q('hasSlot',_U.hasSlot,$0,_H&&_H.hasSlot||_I.hasSlot).value,_G,['prefix'])).value?_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_prefix',_S)||(_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-select-prefix-icon',name:_q('prefix',_U.prefix).value,size:'0'},tag:'Icon',type:4});return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_p($4,'selectedOptions.length',$2).value===0?_S[_S.length]={context:_G,nativeProps:$6,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3}:_q('multiple',_U.multiple).value?_S[_S.length]={children:function(_S){_n(_q('selectedOptions',_U.selectedOptions),function(_U,_V,_W,index){_S[_S.length]=_T[_T.length]={context:_G,events:{close:_g('close','handleRemoveOption($event, index)','close','',_G.handleRemoveOption,{args:function(_Q,_X,_Y){return [_X,index]}},$2)},isComponent:$2,operator:_C,props:{closable:$2,simple:$2},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:_y(_t('text',_U.text).value),type:1}}}),tag:'Tag',type:4}});return _S}([]),context:_G,nativeProps:$7,operator:_B,tag:'div',type:3}:_S[_S.length]={context:_G,nativeProps:$8,operator:_B,tag:'div',text:_y(_p($4,'selectedOptions.0.text',$2).value),type:3};_q('clearable',_U.clearable).value&&_p($4,'selectedOptions.length',$2).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-select-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-select-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-select'+(_q('status',_U.status).value?' bell-select-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-select-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-select-block':'')+(_q('visible',_U.visible).value?' bell-select-opened':'')+(_q('clearable',_U.clearable).value?' bell-select-clearable':'')+(_q('placement',_U.placement).value===_q('RAW_TOP',_U.RAW_TOP).value?' bell-select-reversed':'')+(_q('disabled',_U.disabled).value?' bell-select-disabled':' bell-select-enabled')+(_q('prefix',_U.prefix).value||_x(_w(_q('hasSlot',_U.hasSlot,$0,_H&&_H.hasSlot||_I.hasSlot).value,_G,['prefix'])).value?' bell-select-with-prefix':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:$9,operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-select-prefix'},$6={className:'bell-select-placeholder'},$7={className:'bell-select-values'},$8={className:'bell-select-value'},$9={className:'bell-select-overlay'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value,widthAlign:$2},ref:'popover',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;_q('width',_U.width).value||_q('style',_U.style).value?_R.nativeStyles=_c((_q('width',_U.width).value?'width: '+_y(_q('width',_U.width).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')):$0;return _R}({children:function(_S){_q('prefix',_U.prefix).value||_x(_w(_q('hasSlot',_U.hasSlot,$0,_H&&_H.hasSlot||_I.hasSlot).value,_G,['prefix'])).value?_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_prefix',_S)||(_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-select-prefix-icon',name:_q('prefix',_U.prefix).value,size:'0'},tag:'Icon',type:4});return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_p($4,'selectedOptions.length',$2).value===0?_S[_S.length]={context:_G,nativeProps:$6,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3}:_q('multiple',_U.multiple).value?_S[_S.length]={children:function(_S){_n(_q('selectedOptions',_U.selectedOptions),function(_U,_V,_W,index){_S[_S.length]=_T[_T.length]={context:_G,events:{close:_g('close','handleRemoveOption($event, index)','close','',_G.handleRemoveOption,{args:function(_Q,_X,_Y){return [_X,index]}},$2)},isComponent:$2,operator:_C,props:{closable:$2,simple:$2},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:_y(_t('text',_U.text).value),type:1}}}),tag:'Tag',type:4}});return _S}([]),context:_G,nativeProps:$7,operator:_B,tag:'div',type:3}:_S[_S.length]={context:_G,nativeProps:$8,operator:_B,tag:'div',text:_y(_p($4,'selectedOptions.0.text',$2).value),type:3};_q('clearable',_U.clearable).value&&_p($4,'selectedOptions.length',$2).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-select-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-select-arrow-icon',name:'arrow-down-s-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-select'+(_q('status',_U.status).value?' bell-select-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-select-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-select-block':'')+(_q('visible',_U.visible).value?' bell-select-opened':'')+(_q('clearable',_U.clearable).value?' bell-select-clearable':'')+(_q('placement',_U.placement).value===_q('RAW_TOP',_U.RAW_TOP).value?' bell-select-reversed':'')+(_q('disabled',_U.disabled).value?' bell-select-disabled':' bell-select-enabled')+(_q('prefix',_U.prefix).value||_x(_w(_q('hasSlot',_U.hasSlot,$0,_H&&_H.hasSlot||_I.hasSlot).value,_G,['prefix'])).value?' bell-select-with-prefix':'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:$9,operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 25 */
@@ -344,7 +344,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){r
 /* 41 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-date-picker-values'},$6={className:'bell-date-picker-separator'},$7={className:'bell-date-picker-value'},$8={className:'bell-date-picker-placeholder'},$9={className:'bell-date-picker-shortcut-item'},$10={className:'bell-date-picker-shortcut'},$11={className:'bell-date-picker-overlay'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,events:{outside:_g('outside','handleOutsideClick()','outside','',_G.handleOutsideClick,$0,$2)},isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value},ref:'overlay',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;_q('width',_U.width).value||_q('style',_U.style).value?_R.nativeStyles=_c((_q('width',_U.width).value?'width: '+_y(_q('width',_U.width).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')):$0;return _R}({children:function(_S){_p($4,'formatedValues.length',$2).value>0?_q('multiple',_U.multiple).value&&_q('type',_U.type).value!==_q('RAW_TYPE_DATE_RANGE',_U.RAW_TYPE_DATE_RANGE).value&&_q('type',_U.type).value!==_q('RAW_TYPE_WEEK',_U.RAW_TYPE_WEEK).value?_S[_S.length]={children:function(_S){_n(_q('formatedValues',_U.formatedValues),function(_U,_V,_W,index){_S[_S.length]=_T[_T.length]={context:_G,events:{close:_g('close','handleRemoveItem($event, index)','close','',_G.handleRemoveItem,{args:function(_Q,_X,_Y){return [_X,index]}},$2)},isComponent:$2,operator:_C,props:{closable:$2,simple:$2},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:_y(_r(_U).value),type:1}}}),tag:'Tag',type:4}});return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3}:_S[_S.length]={children:function(_S){_S[_S.length]={isPure:$2,operator:_z,text:_y(_p($4,'formatedValues.0',$2).value),type:1};_p($4,'formatedValues.1',$2).value?(_S[_S.length]={context:_G,isPure:$2,isStatic:$2,nativeProps:$6,operator:_B,tag:'span',text:'~',type:3},_S[_S.length]={isPure:$2,operator:_z,text:_y(_p($4,'formatedValues.1',$2).value),type:1}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$7,operator:_B,tag:'div',type:3}:_S[_S.length]={context:_G,nativeProps:$8,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3};_q('clearable',_U.clearable).value&&_p($4,'formatedValues.length',$2).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-date-picker-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-date-picker-calendar-icon',name:'calendar-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-date-picker'+(_q('status',_U.status).value?' bell-date-picker-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-date-picker-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-date-picker-block':'')+(_q('visible',_U.visible).value?' bell-date-picker-opened':'')+(_q('clearable',_U.clearable).value?' bell-date-picker-clearable':'')+(_q('disabled',_U.disabled).value?' bell-date-picker-disabled':' bell-date-picker-enabled')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_q('shortcuts',_U.shortcuts).value&&_p($4,'shortcuts.length',$2).value>0?_S[_S.length]={children:function(_S){_n(_q('shortcuts',_U.shortcuts),function(_U,_V,_W){_S[_S.length]={context:_G,events:{click:_g('click','handleShortcutClick(this)','click','',_G.handleShortcutClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value]}})},nativeProps:$9,operator:_B,tag:'div',text:_y(_t('text',_U.text).value),type:3}});return _S}([]),context:_G,nativeProps:$10,operator:_B,tag:'div',type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_q('type',_U.type).value===_q('RAW_TYPE_DATE',_U.RAW_TYPE_DATE).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickMonth:$2,canPickYear:$2,checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value,disabledDate:_q('disabledDate',_U.disabledDate).value},tag:'DateView',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_DATE_RANGE',_U.RAW_TYPE_DATE_RANGE).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{checkedEndDate:_p($4,'value.1',$2).value,checkedStartDate:_p($4,'value.0',$2).value,defaultEndDate:_p($4,'defaultSimpleDate.timestamp',$2).value,defaultStartDate:_p($4,'defaultSimpleDate.timestamp',$2).value,disabledDate:_q('disabledDate',_U.disabledDate).value,splitPanel:_q('splitPanel',_U.splitPanel).value},tag:'DateRange',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_WEEK',_U.RAW_TYPE_WEEK).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickMonth:$2,canPickYear:$2,checkedDate:_p($4,'value.0',$2).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateWeek',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_YEAR',_U.RAW_TYPE_YEAR).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateYear',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_MONTH',_U.RAW_TYPE_MONTH).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickYear:$2,checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateMonth',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$11,operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-date-picker-values'},$6={className:'bell-date-picker-separator'},$7={className:'bell-date-picker-value'},$8={className:'bell-date-picker-placeholder'},$9={className:'bell-date-picker-shortcut-item'},$10={className:'bell-date-picker-shortcut'},$11={className:'bell-date-picker-overlay'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value},ref:'overlay',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;_q('width',_U.width).value||_q('style',_U.style).value?_R.nativeStyles=_c((_q('width',_U.width).value?'width: '+_y(_q('width',_U.width).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')):$0;return _R}({children:function(_S){_p($4,'formatedValues.length',$2).value>0?_q('multiple',_U.multiple).value&&_q('type',_U.type).value!==_q('RAW_TYPE_DATE_RANGE',_U.RAW_TYPE_DATE_RANGE).value&&_q('type',_U.type).value!==_q('RAW_TYPE_WEEK',_U.RAW_TYPE_WEEK).value?_S[_S.length]={children:function(_S){_n(_q('formatedValues',_U.formatedValues),function(_U,_V,_W,index){_S[_S.length]=_T[_T.length]={context:_G,events:{close:_g('close','handleRemoveItem($event, index)','close','',_G.handleRemoveItem,{args:function(_Q,_X,_Y){return [_X,index]}},$2)},isComponent:$2,operator:_C,props:{closable:$2,simple:$2},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:_y(_r(_U).value),type:1}}}),tag:'Tag',type:4}});return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3}:_S[_S.length]={children:function(_S){_S[_S.length]={isPure:$2,operator:_z,text:_y(_p($4,'formatedValues.0',$2).value),type:1};_p($4,'formatedValues.1',$2).value?(_S[_S.length]={context:_G,isPure:$2,isStatic:$2,nativeProps:$6,operator:_B,tag:'span',text:'~',type:3},_S[_S.length]={isPure:$2,operator:_z,text:_y(_p($4,'formatedValues.1',$2).value),type:1}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$7,operator:_B,tag:'div',type:3}:_S[_S.length]={context:_G,nativeProps:$8,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3};_q('clearable',_U.clearable).value&&_p($4,'formatedValues.length',$2).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-date-picker-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-date-picker-calendar-icon',name:'calendar-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-date-picker'+(_q('status',_U.status).value?' bell-date-picker-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-date-picker-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-date-picker-block':'')+(_q('visible',_U.visible).value?' bell-date-picker-opened':'')+(_q('clearable',_U.clearable).value?' bell-date-picker-clearable':'')+(_q('disabled',_U.disabled).value?' bell-date-picker-disabled':' bell-date-picker-enabled')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_q('shortcuts',_U.shortcuts).value&&_p($4,'shortcuts.length',$2).value>0?_S[_S.length]={children:function(_S){_n(_q('shortcuts',_U.shortcuts),function(_U,_V,_W){_S[_S.length]={context:_G,events:{click:_g('click','handleShortcutClick(this)','click','',_G.handleShortcutClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value]}})},nativeProps:$9,operator:_B,tag:'div',text:_y(_t('text',_U.text).value),type:3}});return _S}([]),context:_G,nativeProps:$10,operator:_B,tag:'div',type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_q('type',_U.type).value===_q('RAW_TYPE_DATE',_U.RAW_TYPE_DATE).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickMonth:$2,canPickYear:$2,checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value,disabledDate:_q('disabledDate',_U.disabledDate).value},tag:'DateView',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_DATE_RANGE',_U.RAW_TYPE_DATE_RANGE).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{checkedEndDate:_p($4,'value.1',$2).value,checkedStartDate:_p($4,'value.0',$2).value,defaultEndDate:_p($4,'defaultSimpleDate.timestamp',$2).value,defaultStartDate:_p($4,'defaultSimpleDate.timestamp',$2).value,disabledDate:_q('disabledDate',_U.disabledDate).value,splitPanel:_q('splitPanel',_U.splitPanel).value},tag:'DateRange',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_WEEK',_U.RAW_TYPE_WEEK).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickMonth:$2,canPickYear:$2,checkedDate:_p($4,'value.0',$2).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateWeek',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_YEAR',_U.RAW_TYPE_YEAR).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateYear',type:4}:_q('type',_U.type).value===_q('RAW_TYPE_MONTH',_U.RAW_TYPE_MONTH).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{canPickYear:$2,checkedDate:_q('value',_U.value).value,defaultDate:_p($4,'defaultSimpleDate.timestamp',$2).value},tag:'DateMonth',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$11,operator:_B,tag:'div',type:3}}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 42 */
@@ -356,7 +356,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){r
 /* 43 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-time-picker-value'},$6={className:'bell-time-picker-placeholder'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,events:{outside:_g('outside','handleOutsideClick()','outside','',_G.handleOutsideClick,$0,$2)},isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;return _R}({children:function(_S){_q('text',_U.text).value?_S[_S.length]={context:_G,nativeProps:$5,operator:_B,tag:'div',text:_y(_q('text',_U.text).value),type:3}:_S[_S.length]={context:_G,nativeProps:$6,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3};_q('clearable',_U.clearable).value&&_q('hasValue',_U.hasValue).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-time-picker-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-time-picker-time-icon',name:'time-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-time-picker'+(_q('status',_U.status).value?' bell-time-picker-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-time-picker-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-time-picker-block':'')+(_q('visible',_U.visible).value?' bell-time-picker-opened':'')+(_q('clearable',_U.clearable).value?' bell-time-picker-clearable':'')+(_q('disabled',_U.disabled).value?' bell-time-picker-disabled':' bell-time-picker-enabled')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},nativeStyles:_c((_q('componentWidth',_U.componentWidth).value?'width: '+_y(_q('componentWidth',_U.componentWidth).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')),operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]=function(_R){_q('componentWidth',_U.componentWidth).value?_R.nativeStyles=_c('width: '+_y(_q('componentWidth',_U.componentWidth).value)+'px;'):$0;return _R}({children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{hourIndex:_q('visible',_U.visible).value?_q('hourIndex',_U.hourIndex).value:-1,hourList:_q('hourList',_U.hourList).value,minuteIndex:_q('visible',_U.visible).value?_q('minuteIndex',_U.minuteIndex).value:-1,minuteList:_q('minuteList',_U.minuteList).value,secondIndex:_q('visible',_U.visible).value?_q('secondIndex',_U.secondIndex).value:-1,secondList:_q('secondList',_U.secondList).value},tag:'TimePanel',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-time-picker-overlay'},operator:_B,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_Q){return _Q.length-1},$5={className:'bell-time-picker-value'},$6={className:'bell-time-picker-placeholder'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CUSTOM',_U.RAW_CUSTOM).value,visible:_q('visible',_U.visible).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=function(_R){!_q('disabled',_U.disabled).value?_b(_R,'events',_g('click',"toggle('visible')",'click','',_G.toggle,{args:function(_Q,_X,_Y){return ['visible']}}),'click'):$0;return _R}({children:function(_S){_q('text',_U.text).value?_S[_S.length]={context:_G,nativeProps:$5,operator:_B,tag:'div',text:_y(_q('text',_U.text).value),type:3}:_S[_S.length]={context:_G,nativeProps:$6,operator:_B,tag:'div',text:_y(_q('placeholder',_U.placeholder).value),type:3};_q('clearable',_U.clearable).value&&_q('hasValue',_U.hasValue).value?_S[_S.length]=_T[_T.length]={context:_G,events:{'click.native':_g('click.native','handleClearClick()','click','native',_G.handleClearClick,$0,$0,$2)},isComponent:$2,operator:_C,props:{className:'bell-time-picker-clear-icon',name:'close-circle-fill',size:'0'},tag:'Icon',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-time-picker-time-icon',name:'time-line',size:'0'},tag:'Icon',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-time-picker'+(_q('status',_U.status).value?' bell-time-picker-'+_y(_q('status',_U.status).value):'')+(_q('size',_U.size).value?' bell-time-picker-'+_y(_q('size',_U.size).value):'')+(_q('block',_U.block).value?' bell-time-picker-block':'')+(_q('visible',_U.visible).value?' bell-time-picker-opened':'')+(_q('clearable',_U.clearable).value?' bell-time-picker-clearable':'')+(_q('disabled',_U.disabled).value?' bell-time-picker-disabled':' bell-time-picker-enabled')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},nativeStyles:_c((_q('componentWidth',_U.componentWidth).value?'width: '+_y(_q('componentWidth',_U.componentWidth).value)+'px;':'')+(_q('style',_U.style).value?_y(_q('style',_U.style).value):'')),operator:_B,tag:'div',type:3})},$slot_overlay:function(_S,_T){_S[_S.length]=function(_R){_q('componentWidth',_U.componentWidth).value?_R.nativeStyles=_c('width: '+_y(_q('componentWidth',_U.componentWidth).value)+'px;'):$0;return _R}({children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{hourIndex:_q('visible',_U.visible).value?_q('hourIndex',_U.hourIndex).value:-1,hourList:_q('hourList',_U.hourList).value,minuteIndex:_q('visible',_U.visible).value?_q('minuteIndex',_U.minuteIndex).value:-1,minuteList:_q('minuteList',_U.minuteList).value,secondIndex:_q('visible',_U.visible).value?_q('secondIndex',_U.secondIndex).value:-1,secondList:_q('secondList',_U.secondList).value},tag:'TimePanel',type:4};return _S}([]),context:_G,nativeProps:{className:'bell-time-picker-overlay'},operator:_B,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 44 */
@@ -1187,6 +1187,9 @@ var CLASS_OVERLAY_FADE = 'bell-popover-overlay-fade';
         }
     },
     methods: {
+        click: function (event) {
+            event.stop();
+        },
         enter: function () {
             var me = this;
             me.set('isHover', TRUE);
@@ -1472,12 +1475,13 @@ var SubMenu_default = /*#__PURE__*/__webpack_require__.n(SubMenu);
                 }
             },
             ns: 'menuItem',
-        }
-    },
-    methods: {
-        handleOutsideClick: function (event) {
-            event.stop();
-            this.set('isOpen', FALSE);
+        },
+        outside: {
+            listener: function (event) {
+                event.stop();
+                this.set('isOpen', FALSE);
+            },
+            ns: 'popover',
         }
     },
     components: {
@@ -3489,6 +3493,13 @@ function isOptionSelected(values, value) {
                 }
             },
             ns: 'selectOption',
+        },
+        outside: {
+            listener: function (event) {
+                event.stop();
+                this.set('visible', FALSE);
+            },
+            ns: 'popover',
         }
     },
     methods: {
@@ -3502,10 +3513,6 @@ function isOptionSelected(values, value) {
             event.stop();
             this.removeAt('value', index);
             this.fireChange(this.get('value'));
-        },
-        handleOutsideClick: function (event) {
-            event.stop();
-            this.set('visible', FALSE);
         },
         selectOption: function (value) {
             var me = this;
@@ -3622,13 +3629,14 @@ var Option_default = /*#__PURE__*/__webpack_require__.n(Option);
     propTypes: {
         value: {
             type: [RAW_STRING, RAW_NUMBER],
-        },
-        disabled: {
-            type: RAW_BOOLEAN,
-            value: FALSE,
+            required: TRUE,
         },
         text: {
             type: RAW_STRING,
+            required: TRUE,
+        },
+        disabled: {
+            type: RAW_BOOLEAN,
         },
         className: {
             type: RAW_STRING,
@@ -5450,6 +5458,13 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
         'change.range': function (event, data) {
             event.stop();
             this.dateRangeChange(data.start.timestamp, data.end.timestamp);
+        },
+        outside: {
+            listener: function (event) {
+                event.stop();
+                this.set('visible', FALSE);
+            },
+            ns: 'popover',
         }
     },
     methods: {
@@ -5490,10 +5505,6 @@ defaultFormat[RAW_TYPE_YEAR] = YEAR_FORMAT;
                 }
                 this.dateChange(toTimestamp(value));
             }
-        },
-        handleOutsideClick: function (event) {
-            event.stop();
-            this.set('visible', FALSE);
         },
         dateChange: function (timestamp, dateFormat) {
             if (dateFormat === void 0) { dateFormat = DATE_FORMAT; }
@@ -5901,28 +5912,44 @@ var DEFAULT_SECOND_STEP = 1;
         }
     },
     events: {
-        'change.timePanel': function (event, data) {
-            event.stop();
-            var hourIndex = data.hourIndex, minuteIndex = data.minuteIndex, secondIndex = data.secondIndex;
-            this.set({
-                hourIndex: hourIndex,
-                minuteIndex: minuteIndex,
-                secondIndex: secondIndex,
-                text: formatTime(this.get('hourList')[hourIndex], this.get('minuteList')[minuteIndex], this.get('secondList')[secondIndex])
-            });
+        change: {
+            listener: function (event, data) {
+                event.stop();
+                var hourIndex = data.hourIndex, minuteIndex = data.minuteIndex, secondIndex = data.secondIndex;
+                this.set({
+                    hourIndex: hourIndex,
+                    minuteIndex: minuteIndex,
+                    secondIndex: secondIndex,
+                    text: formatTime(this.get('hourList')[hourIndex], this.get('minuteList')[minuteIndex], this.get('secondList')[secondIndex])
+                });
+            },
+            ns: 'timePanel',
         },
-        'submit.timePanel': function (event, data) {
-            event.stop();
-            var hour = data.hour, minute = data.minute, second = data.second;
-            this.set({
-                hour: hour,
-                minute: minute,
-                second: second,
-                visible: FALSE,
-                text: formatTime(hour, minute, second),
-            });
-            this.fireChange(hour, minute, second);
+        submit: {
+            listener: function (event, data) {
+                event.stop();
+                var hour = data.hour, minute = data.minute, second = data.second;
+                this.set({
+                    hour: hour,
+                    minute: minute,
+                    second: second,
+                    visible: FALSE,
+                    text: formatTime(hour, minute, second),
+                });
+                this.fireChange(hour, minute, second);
+            },
+            ns: 'timePanel',
         },
+        outside: {
+            listener: function (event) {
+                event.stop();
+                this.set({
+                    visible: FALSE,
+                    text: formatTime(this.get('hour'), this.get('minute'), this.get('second'))
+                });
+            },
+            ns: 'popover',
+        }
     },
     methods: {
         handleClearClick: function (event) {
@@ -5931,13 +5958,6 @@ var DEFAULT_SECOND_STEP = 1;
             var props = toTimeProps(UNDEFINED, this.get('hourList'), this.get('minuteList'), this.get('secondList'));
             this.set(props);
             this.fireChange(props.hour, props.minute, props.second);
-        },
-        handleOutsideClick: function (event) {
-            event.stop();
-            this.set({
-                visible: FALSE,
-                text: formatTime(this.get('hour'), this.get('minute'), this.get('second'))
-            });
         },
         fireChange: function (hour, minute, second) {
             var data = {
@@ -8952,7 +8972,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.21.0";
+var version = "0.21.1";
 /**
  * 安装插件
  */

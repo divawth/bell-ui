@@ -157,39 +157,64 @@ export default Yox.define({
   },
 
   events: {
-    'change.timePanel': function (event, data) {
-      event.stop()
+    change: {
+      listener(event, data) {
 
-      const { hourIndex, minuteIndex, secondIndex } = data
+        event.stop()
 
-      this.set({
-        hourIndex,
-        minuteIndex,
-        secondIndex,
-        text: formatTime(
-          this.get('hourList')[hourIndex],
-          this.get('minuteList')[minuteIndex],
-          this.get('secondList')[secondIndex]
-        )
-      })
+        const { hourIndex, minuteIndex, secondIndex } = data
 
+        this.set({
+          hourIndex,
+          minuteIndex,
+          secondIndex,
+          text: formatTime(
+            this.get('hourList')[hourIndex],
+            this.get('minuteList')[minuteIndex],
+            this.get('secondList')[secondIndex]
+          )
+        })
+
+      },
+      ns: 'timePanel',
     },
-    'submit.timePanel': function (event, data) {
-      event.stop()
+    submit: {
+      listener(event, data) {
 
-      const { hour, minute, second } = data
+        event.stop()
 
-      this.set({
-        hour,
-        minute,
-        second,
-        visible: FALSE,
-        text: formatTime(hour, minute, second),
-      })
+        const { hour, minute, second } = data
 
-      this.fireChange(hour, minute, second)
+        this.set({
+          hour,
+          minute,
+          second,
+          visible: FALSE,
+          text: formatTime(hour, minute, second),
+        })
 
+        this.fireChange(hour, minute, second)
+
+      },
+      ns: 'timePanel',
     },
+    outside: {
+      listener(event) {
+
+        event.stop()
+
+        this.set({
+          visible: FALSE,
+          text: formatTime(
+            this.get('hour'),
+            this.get('minute'),
+            this.get('second')
+          )
+        })
+
+      },
+      ns: 'popover',
+    }
   },
 
   methods: {
@@ -209,21 +234,6 @@ export default Yox.define({
       this.set(props)
 
       this.fireChange(props.hour, props.minute, props.second)
-
-    },
-
-    handleOutsideClick(event: CustomEventInterface) {
-
-      event.stop()
-
-      this.set({
-        visible: FALSE,
-        text: formatTime(
-          this.get('hour'),
-          this.get('minute'),
-          this.get('second')
-        )
-      })
 
     },
 

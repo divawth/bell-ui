@@ -7,15 +7,14 @@ declare const _default: import("yox").ComponentOptions<{
     secondList: unknown;
     hasValue: unknown;
 }, unknown, {
-    'change.timePanel': unknown;
-    'submit.timePanel': unknown;
+    change: unknown;
+    submit: unknown;
+    outside: unknown;
 }, {
     handleClearClick(event: CustomEventInterface): void;
-    handleOutsideClick(event: CustomEventInterface): void;
     fireChange(hour: number, minute: number, second: number): void;
 }> & ThisType<{
     handleClearClick(event: CustomEventInterface): void;
-    handleOutsideClick(event: CustomEventInterface): void;
     fireChange(hour: number, minute: number, second: number): void;
 } & import("yox").YoxInterface>;
 export default _default;

@@ -101,6 +101,9 @@ export default Yox.define({
   },
 
   methods: {
+    click(event: CustomEventInterface) {
+      event.stop()
+    },
     enter() {
       const me = this as any
       me.set('isHover', TRUE)

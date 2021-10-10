@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Option.hbs'
 
@@ -27,13 +27,14 @@ export default Yox.define({
   propTypes: {
     value: {
       type: [RAW_STRING, RAW_NUMBER],
-    },
-    disabled: {
-      type: RAW_BOOLEAN,
-      value: FALSE,
+      required: TRUE,
     },
     text: {
       type: RAW_STRING,
+      required: TRUE,
+    },
+    disabled: {
+      type: RAW_BOOLEAN,
     },
     className: {
       type: RAW_STRING,
