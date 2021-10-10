@@ -8972,7 +8972,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.21.1";
+var version = "0.21.2";
 /**
  * 安装插件
  */
