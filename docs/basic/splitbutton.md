@@ -64,6 +64,55 @@ export default {
 }
 ```
 
+> 按钮大小
+
+```js
+export default {
+  template: `
+    <div>
+      <SplitButton size="small" menu="{{menu}}">
+        Button
+      </SplitButton>
+      <br><br>
+      <SplitButton menu="{{menu}}">
+        Button
+      </SplitButton>
+      <br><br>
+      <SplitButton size="large" menu="{{menu}}">
+        Button
+      </SplitButton>
+    </div>
+  `,
+  data: {
+    menu: [
+      { text: '创建' },
+      { text: '删除', disabled: true },
+    ]
+  }
+}
+```
+
+> 菜单对齐方式
+
+```js
+export default {
+  template: `
+    <div>
+      <SplitButton menu="{{menu}}" placement="bottom-end">
+        Button
+      </SplitButton>
+    </div>
+  `,
+  data: {
+    menu: [
+      { text: '创建' },
+      { text: '修改' },
+      { text: '删除' },
+    ]
+  }
+}
+```
+
 #### API
 
 > Props
