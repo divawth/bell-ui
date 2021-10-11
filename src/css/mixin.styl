@@ -290,8 +290,9 @@ ui-dropdown-overlay(
     box-shadow $brand-layer-shadow
     ui-scrollbar()
 
-    &:hover {$selector-item-active}
-      background-color transparent
+    if $selector-item-active
+      &:hover {$selector-item-active}
+        background-color transparent
 
     {$selector-item-enabled}:hover
       background-color $brand-bg-hover
@@ -321,13 +322,15 @@ ui-dropdown-overlay(
     color $brand-content
     ui-clickable()
 
-  {$selector-item-disabled}
-    color $brand-disabled
-    ui-disabled()
+  if $selector-item-disabled
+    {$selector-item-disabled}
+      color $brand-disabled
+      ui-disabled()
 
-  {$selector-item-active}
-    if $active-color
-      color $active-color
+  if $selector-item-active
+    {$selector-item-active}
+      if $active-color
+        color $active-color
 
-    if $active-bg-color
-      background-color $active-bg-color
+      if $active-bg-color
+        background-color $active-bg-color

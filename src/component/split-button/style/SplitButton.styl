@@ -1,0 +1,15 @@
+@import '../../../env'
+
+{$selector-prefix + '-split-button-menu'}
+  min-width $dropdown-menu-min-width
+
+ui-dropdown-overlay(
+  $selector-prefix + '-split-button-menu',
+  $selector-prefix + '-split-button-menu-item',
+  '',
+  $selector-prefix + '-split-button-menu-item-enabled',
+  $selector-prefix + '-split-button-menu-item-disabled',
+  '',
+  $brand-primary,
+  $brand-bg-active
+)

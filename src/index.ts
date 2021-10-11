@@ -32,6 +32,7 @@ import Upload from './component/upload/Upload'
 import Alert from './component/alert/Alert'
 import Article from './component/article/Article'
 import Spin from './component/spin/Spin'
+import SplitButton from './component/split-button/SplitButton'
 import BackTop from './component/backtop/BackTop'
 import Avatar from './component/avatar/Avatar'
 import Badge from './component/badge/Badge'
@@ -134,6 +135,7 @@ const component = {
   Alert,
   Article,
   Spin,
+  SplitButton,
   BackTop,
   Avatar,
   Badge,

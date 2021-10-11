@@ -1,0 +1,59 @@
+<ButtonGroup
+  className="${prefix}split-button
+  {{#if className}} {{className}}{{/if}}"
+
+  {{#if style}}
+    style="{{style}}"
+  {{/if}}
+>
+  <Button
+    type="{{type}}"
+    loading="{{loading}}"
+    disabled="{{disabled}}"
+    on-click="handleButtonClick()"
+  >
+    <slot name="children" />
+  </Button>
+
+  <Popover
+    placement="{{placement}}"
+    trigger="{{RAW_CLICK}}"
+    visible="{{menuVisible}}"
+    disabled="{{disabled || loading}}"
+    gap="5"
+  >
+
+    <Button
+      type="{{type}}"
+      disabled="{{disabled}}"
+      {{#if loading}}
+        className="${prefix}button-loading"
+      {{/if}}
+    >
+      <Icon
+        name="arrow-down-s-line"
+      />
+    </Button>
+
+    <div
+      slot="overlay"
+      class="${prefix}split-button-menu"
+    >
+      {{#each menu:index}}
+        <div
+          class="${prefix}split-button-menu-item
+          {{#if this.disabled}} ${prefix}split-button-menu-item-disabled
+          {{else}} ${prefix}split-button-menu-item-enabled
+          {{/if}}"
+
+          {{#if !this.disabled}}
+            on-click="handleItemClick(this, index)"
+          {{/if}}
+        >
+          {{this.text}}
+        </div>
+      {{/each}}
+    </div>
+  </Popover>
+
+</ButtonGroup>

@@ -130,6 +130,9 @@ button-brand-style(style)
   ui-set('border-color', style['border-color'])
   ui-set('background-color', style['bg-color'])
 
+  &:before
+    border-color $button-group-separator-color
+
   &{$selector-prefix + '-button-enabled'}
     &:hover
       ui-set('color', style['hover-color'])
@@ -188,6 +191,19 @@ ui-button-group-separator(hoverColor, activeColor)
 
   transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
 
+  &:before
+    border-style solid
+    border-color transparent
+
+  ui-connect(
+    hash: $button-size-hash,
+    each: button-size
+  )
+  ui-connect(
+    hash: $button-brand-hash,
+    each: button-brand-style
+  )
+
   &{$selector-prefix + '-button-ghost'}
     color $brand-white
     border-color $brand-white
@@ -204,15 +220,6 @@ ui-button-group-separator(hoverColor, activeColor)
 
   &{$selector-prefix + '-button-link'}
     color $brand-primary
-
-  ui-connect(
-    hash: $button-size-hash,
-    each: button-size
-  )
-  ui-connect(
-    hash: $button-brand-hash,
-    each: button-brand-style
-  )
 
   + {$selector-prefix + '-button'}
     margin-left $ui-horizontal-gap
@@ -276,6 +283,8 @@ ui-button-group-separator(hoverColor, activeColor)
 {$selector-prefix + '-button-loading'}
   cursor default
   opacity $ui-opacity-disabled
+  &:before
+    opacity $ui-opacity-disabled
 
 {$selector-prefix + '-button-block'}
   ui-block()
@@ -294,16 +303,9 @@ ui-button-group-separator(hoverColor, activeColor)
   {$selector-prefix + '-button-dashed'}:before
     border-style dashed
 
-{$selector-prefix + '-button'}:before
-  border-style solid
-  border-color transparent
-
-{$selector-prefix + '-button-primary'} + {$selector-prefix + '-button-primary'}
-  &:before
-    border-color $button-group-separator-color
-
 {$selector-prefix + '-button-group-horizontal'}
   > {$selector-prefix + '-button'}
+    vertical-align top
 
     + {$selector-prefix + '-button'}
       margin-left 0
