@@ -37,6 +37,9 @@ export default {
       <Button type="text">
         Text
       </Button>
+      <Button type="text">
+        <Icon name="apple-fill" />
+      </Button>
     </div>
   `
 }
@@ -77,9 +80,6 @@ export default {
 
       <Button ghost type="dashed">
         Dashed
-      </Button>
-      <Button ghost type="link">
-        Link
       </Button>
 
     </div>

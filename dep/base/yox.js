@@ -1,5 +1,5 @@
 /**
- * yox.js v1.0.0-alpha.227
+ * yox.js v1.0.0-alpha.231
  * (c) 2017-2021 musicode
  * Released under the MIT License.
  */
@@ -1982,7 +1982,7 @@
       });
   }
   function vnodeUpdateChildrenOperator(api, parentNode, vnode, oldVNode) {
-      updateChildren(api, parentNode, vnode.children, oldVNode.children || EMPTY_ARRAY);
+      updateChildren(api, parentNode, vnode.children, oldVNode.children);
   }
   function vnodeDestroyChildrenOperator(api, vnode) {
       each$2(vnode.children, function (child) {
@@ -2271,10 +2271,13 @@
               target = api.getBodyElement();
           }
           vnode.target = target;
-          vnodeCreateChildrenOperator(api, vnode);
           // 用注释占用节点在模板里的位置
           // 这样删除或替换节点，才有找到它应该在的位置
           vnode.node = api.createComment(EMPTY_STRING);
+          each$2(vnode.children, function (child) {
+              createVNode(api, child);
+              insertVNode(api, target, child);
+          });
       },
       update: function(api, vnode, oldVNode) {
           var target = oldVNode.target;
@@ -2283,15 +2286,14 @@
           vnode.target = target;
           vnodeUpdateChildrenOperator(api, target, vnode, oldVNode);
       },
-      destroy: vnodeDestroyChildrenOperator,
-      insert: function(api, parentNode, vnode) {
-          vnodeInsertOperator(api, parentNode, vnode);
-          vnodeInsertChildrenOperator(api, vnode.target, vnode);
+      destroy: function(api, vnode) {
+          each$2(vnode.children, function (child) {
+              destroyVNode(api, child);
+              removeVNode(api, child);
+          });
       },
-      remove: function(api, vnode) {
-          vnodeRemoveOperator(api, vnode);
-          vnodeRemoveChildrenOperator(api, vnode);
-      },
+      insert: vnodeInsertOperator,
+      remove: vnodeRemoveOperator,
       enter: EMPTY_FUNCTION,
       leave: vnodeLeaveOperator,
   };
@@ -2536,9 +2538,9 @@
   }
   function create(api, node, context) {
       var vnode = {
-          parentNode: api.parent(node),
-          node: node,
           context: context,
+          node: node,
+          parentNode: api.parent(node),
       };
       switch (node.nodeType) {
           case 1:
@@ -5885,47 +5887,47 @@
           RENDER_EVENT_NAME = '_h';
           RENDER_DIRECTIVE = '_i';
           RENDER_SPREAD = '_j';
-          RENDER_SLOTS = '_l';
-          RENDER_SLOT_CHILDREN = '_m';
-          RENDER_PARTIAL = '_n';
-          RENDER_EACH = '_o';
-          RENDER_RANGE = '_p';
-          LOOKUP_KEYPATH = '_q';
-          LOOKUP_PROP = '_r';
-          GET_THIS = '_s';
-          GET_THIS_BY_INDEX = '_t';
-          GET_PROP = '_u';
-          GET_PROP_BY_INDEX = '_v';
-          READ_KEYPATH = '_w';
-          EXECUTE_FUNCTION = '_x';
-          SET_HOLDER = '_y';
-          TO_STRING = '_z';
-          OPERATOR_TEXT_VNODE = '_A';
-          OPERATOR_COMMENT_VNODE = '_B';
-          OPERATOR_ELEMENT_VNODE = '_C';
-          OPERATOR_COMPONENT_VNODE = '_D';
-          OPERATOR_FRAGMENT_VNODE = '_E';
-          OPERATOR_PORTAL_VNODE = '_F';
-          OPERATOR_SLOT_VNODE = '_G';
-          ARG_INSTANCE = '_H';
-          ARG_FILTERS = '_I';
-          ARG_GLOBAL_FILTERS = '_J';
-          ARG_LOCAL_PARTIALS = '_K';
-          ARG_PARTIALS = '_L';
-          ARG_GLOBAL_PARTIALS = '_M';
-          ARG_DIRECTIVES = '_N';
-          ARG_GLOBAL_DIRECTIVES = '_O';
-          ARG_TRANSITIONS = '_P';
-          ARG_GLOBAL_TRANSITIONS = '_Q';
-          ARG_STACK = '_R';
-          ARG_VNODE = '_S';
-          ARG_CHILDREN = '_T';
-          ARG_COMPONENTS = '_U';
-          ARG_SCOPE = '_V';
-          ARG_KEYPATH = '_W';
-          ARG_LENGTH = '_X';
-          ARG_EVENT = '_Y';
-          ARG_DATA = '_Z';
+          RENDER_SLOTS = '_k';
+          RENDER_SLOT_CHILDREN = '_l';
+          RENDER_PARTIAL = '_m';
+          RENDER_EACH = '_n';
+          RENDER_RANGE = '_o';
+          LOOKUP_KEYPATH = '_p';
+          LOOKUP_PROP = '_q';
+          GET_THIS = '_r';
+          GET_THIS_BY_INDEX = '_s';
+          GET_PROP = '_t';
+          GET_PROP_BY_INDEX = '_u';
+          READ_KEYPATH = '_v';
+          EXECUTE_FUNCTION = '_w';
+          SET_HOLDER = '_x';
+          TO_STRING = '_y';
+          OPERATOR_TEXT_VNODE = '_z';
+          OPERATOR_COMMENT_VNODE = '_A';
+          OPERATOR_ELEMENT_VNODE = '_B';
+          OPERATOR_COMPONENT_VNODE = '_C';
+          OPERATOR_FRAGMENT_VNODE = '_D';
+          OPERATOR_PORTAL_VNODE = '_E';
+          OPERATOR_SLOT_VNODE = '_F';
+          ARG_INSTANCE = '_G';
+          ARG_FILTERS = '_H';
+          ARG_GLOBAL_FILTERS = '_I';
+          ARG_LOCAL_PARTIALS = '_J';
+          ARG_PARTIALS = '_K';
+          ARG_GLOBAL_PARTIALS = '_L';
+          ARG_DIRECTIVES = '_M';
+          ARG_GLOBAL_DIRECTIVES = '_N';
+          ARG_TRANSITIONS = '_O';
+          ARG_GLOBAL_TRANSITIONS = '_P';
+          ARG_STACK = '_Q';
+          ARG_VNODE = '_R';
+          ARG_CHILDREN = '_S';
+          ARG_COMPONENTS = '_T';
+          ARG_SCOPE = '_U';
+          ARG_KEYPATH = '_V';
+          ARG_LENGTH = '_W';
+          ARG_EVENT = '_X';
+          ARG_DATA = '_Y';
       }
       else {
           RENDER_COMPOSE_VNODE = 'renderComposeVNode';
@@ -9310,7 +9312,7 @@
   /**
    * core 版本
    */
-  Yox.version = "1.0.0-alpha.227";
+  Yox.version = "1.0.0-alpha.231";
   /**
    * 方便外部共用的通用逻辑，特别是写插件，减少重复代码
    */
