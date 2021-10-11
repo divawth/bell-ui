@@ -6,7 +6,7 @@
     <title>
         layout
     </title>
-    <link rel="stylesheet" type="text/css" href="../../dist/bell.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/bell-ui.css">
 
     <style>
 
@@ -26,7 +26,7 @@
 </head>
 <body>
     <script src="../../dep/base/yox.js"></script>
-    <script src="../../dist/bell.js"></script>
+    <script src="../../dist/bell-ui.js"></script>
 
     <div id="app-1" class="bell-app"></div>
     <div id="app-2" class="bell-app"></div>
@@ -35,73 +35,48 @@
     <div id="app-5" class="bell-app"></div>
 
     <script id="template-1" type="text/plain">
-        <Select list="{{data}}" model="value" style="width: 200px" defaultText="请选择...">
+        <Select model="value">
+            {{#each list}}
+                <Option text="{{this.text}}" value="{{this.value}}" />
+            {{/each}}
         </Select>
     </script>
 
-    <script id="template-2" type="text/plain">
-        <div>
-            <Select list="{{data}}" size="large" style="width: 200px" model="value" defaultText="请选择..." ></Select>
-
-            <Select list="{{data}}" model="value" style="width: 200px" defaultText="请选择..." ></Select>
-
-            <Select list="{{data}}" size="small" style="width: 200px" model="value" defaultText="请选择..." ></Select>
-        </div>
-    </script>
-
-    <script id="template-3" type="text/plain">
-        <div>
-            <Select list="{{data}}" disabled="true" style="width: 200px" model="value" defaultText="请选择..." ></Select>
-        </div>
-    </script>
-
-    <script id="template-4" type="text/plain">
-        <div>
-            <Select list="{{data}}" placement="top" size="large" style="width: 200px" model="value" defaultText="请选择..." ></Select>
-
-            <Select list="{{data}}" placement="top" model="value" style="width: 200px" defaultText="请选择..." ></Select>
-
-            <Select list="{{data}}" placement="top" size="small" style="width: 200px" model="value" defaultText="请选择..." ></Select>
-        </div>
-    </script>
-
-    <script id="template-5" type="text/plain">
-    </script>
-
     <script>
-        new Yox({
+        Yox.use(Bell)
+        var instance = new Yox({
             el: '#app-1',
             template: '#template-1',
             data: {
-                value: '1',
+                value: 1,
                 data: [
                     {
                         text: '所有',
-                        val: 1
+                        value: 1
                     },
                     {
                         text: '正常',
-                        val: 2
+                        value: 2
                     },
                     {
                         text: '星标',
-                        val: 3
+                        value: 3
                     },
                     {
                         text: '已解决',
-                        val: 4
+                        value: 4
                     },
                     {
                         text: '延期解决',
-                        val: 5
+                        value: 5
                     },
                     {
                         text: '不解决',
-                        val: 6
+                        value: 6
                     },
                     {
                         text: '已删除',
-                        val: 7
+                        value: 7
                     }
                 ]
             },
@@ -112,87 +87,6 @@
             }
         });
 
-        new Yox({
-            el: '#app-2',
-            template: '#template-2',
-            data: {
-                value: '1',
-                data: [
-                    {
-                        text: 'option 1',
-                        val: '1'
-                    },
-                    {
-                        text: 'option 2',
-                        val: '2'
-                    },
-                    {
-                        text: 'option 3',
-                        val: '3'
-                    },
-                    {
-                        text: 'option 4',
-                        val: '4'
-                    }
-                ]
-            },
-        });
-
-        new Yox({
-            el: '#app-3',
-            template: '#template-3',
-            data: {
-                value: '1',
-                data: [
-                    {
-                        text: 'option 1',
-                        val: '1'
-                    },
-                    {
-                        text: 'option 2',
-                        val: '2'
-                    },
-                    {
-                        text: 'option 3',
-                        val: '3'
-                    },
-                    {
-                        text: 'option 4',
-                        val: '4'
-                    }
-                ]
-            },
-        });
-
-        new Yox({
-            el: '#app-4',
-            template: '#template-4',
-            data: {
-                value: '1',
-                data: [
-                    {
-                        text: 'option 1',
-                        val: '1'
-                    },
-                    {
-                        text: 'option 2',
-                        val: '2'
-                    },
-                    {
-                        text: 'option 3',
-                        val: '3'
-                    },
-                    {
-                        text: 'option 4',
-                        val: '4'
-                    }
-                ]
-            },
-        });
-        // new Yox({
-        //     el: '#app-5',
-        //     template: '#template-5'
-        // });
     </script>
 
 </body>

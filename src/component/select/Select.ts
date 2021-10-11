@@ -183,7 +183,10 @@ export default Yox.define({
         }
         // 更新 UI，因为 watcher 不会被触发
         else {
-          this.updateSelectedOptions(value)
+          this.updateSelectedOptions(
+            value,
+            this.get(RAW_SLOT_CHILDREN)
+          )
         }
 
       }
@@ -224,9 +227,8 @@ export default Yox.define({
 
     },
 
-    updateSelectedOptions(selectedValue: any) {
+    updateSelectedOptions(selectedValue: any, children: any) {
 
-      const children = this.get(RAW_SLOT_CHILDREN)
       if (!children) {
         return
       }
@@ -288,7 +290,10 @@ export default Yox.define({
       'value',
       function (value) {
         // 在这同步 selectedOptions，可兼顾内外的改动
-        this.updateSelectedOptions(value)
+        this.updateSelectedOptions(
+          value,
+          this.get(RAW_SLOT_CHILDREN)
+        )
       },
       TRUE
     )
@@ -298,6 +303,15 @@ export default Yox.define({
     if (this.get('visible') && this.get('multiple')) {
       const popover = this.$refs.popover as any
       popover.refreshOverlayRect()
+    }
+  },
+
+  beforePropsUpdate(props) {
+    if (props && props[RAW_SLOT_CHILDREN]) {
+      this.updateSelectedOptions(
+        this.get('value'),
+        props[RAW_SLOT_CHILDREN]
+      )
     }
   }
 
