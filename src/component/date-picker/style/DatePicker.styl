@@ -42,44 +42,44 @@ $date-picker-shortcut-item-padding = 8px 10px
 // 从 select 拷来的
 date-picker-size-style(size)
 
-  {$selector-prefix + '-date-picker-value'},
-  {$selector-prefix + '-date-picker-placeholder'}
+  {$selector-class-prefix + '-date-picker-value'},
+  {$selector-class-prefix + '-date-picker-placeholder'}
     ui-set('font-size', size['font-size'])
     ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['icon-right'] + $date-picker-icon-size)
 
-  {$selector-prefix + '-date-picker-values'}
+  {$selector-class-prefix + '-date-picker-values'}
     ui-set(
       'padding',
       size['button-padding-vertical'] size['icon-right'] + $date-picker-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
     )
 
-    > {$selector-prefix + '-tag'}
+    > {$selector-class-prefix + '-tag'}
       ui-set('height', size['tag-height'])
       ui-set('line-height', size['tag-height'])
       ui-set('margin-right', size['tag-gap-horizontal'])
       ui-set('margin-bottom', size['tag-gap-vertical'])
 
-  {$selector-prefix + '-date-picker-calendar-icon'},
-  {$selector-prefix + '-date-picker-clear-icon'}
+  {$selector-class-prefix + '-date-picker-calendar-icon'},
+  {$selector-class-prefix + '-date-picker-clear-icon'}
     ui-set('right', size['icon-right'])
 
 date-picker-brand-style(style)
-  &{$selector-prefix + '-date-picker-enabled'}
+  &{$selector-class-prefix + '-date-picker-enabled'}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-prefix + '-date-picker-opened'}
+  &{$selector-class-prefix + '-date-picker-opened'}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
       box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-{$selector-prefix + '-date-picker'}
+{$selector-class-prefix + '-date-picker'}
   width $ui-form-element-width
   display inline-block
 
@@ -92,27 +92,27 @@ date-picker-brand-style(style)
     each: date-picker-brand-style
   )
 
-{$selector-prefix + '-date-picker-overlay'}
+{$selector-class-prefix + '-date-picker-overlay'}
   padding 0
   background-color $brand-bg
   box-shadow $brand-layer-shadow
 
-  {$selector-prefix + '-date-picker-date'},
-  {$selector-prefix + '-date-picker-month'},
-  {$selector-prefix + '-date-picker-year'},
-  {$selector-prefix + '-date-picker-week'}
+  {$selector-class-prefix + '-date-picker-date'},
+  {$selector-class-prefix + '-date-picker-month'},
+  {$selector-class-prefix + '-date-picker-year'},
+  {$selector-class-prefix + '-date-picker-week'}
     width $date-picker-overlay-width
 
-  {$selector-prefix + '-date-picker-daterange'}
+  {$selector-class-prefix + '-date-picker-daterange'}
     width $date-picker-date-range-overlay-width
 
-{$selector-prefix + '-date-picker-block'}
+{$selector-class-prefix + '-date-picker-block'}
   ui-block()
 
-{$selector-prefix + '-date-picker-separator'}
+{$selector-class-prefix + '-date-picker-separator'}
   margin 0 $date-picker-separator-gap
 
-{$selector-prefix + '-date-picker-shortcut'}
+{$selector-class-prefix + '-date-picker-shortcut'}
   position absolute
   left 0
   top 0
@@ -126,7 +126,7 @@ date-picker-brand-style(style)
   background-color $date-picker-shortcut-bg-color
   border-right 1px solid $brand-divider
 
-{$selector-prefix + '-date-picker-shortcut-item'}
+{$selector-class-prefix + '-date-picker-shortcut-item'}
   ui-ellipsis()
   ui-clickable()
   padding $date-picker-shortcut-item-padding
@@ -134,15 +134,15 @@ date-picker-brand-style(style)
   &:hover
     color $brand-primary
 
-{$selector-prefix + '-date-picker-shortcut'} + {$selector-prefix + '-date-picker-panel'},
-{$selector-prefix + '-date-picker-shortcut'} + {$selector-prefix + '-date-picker-daterange'}
+{$selector-class-prefix + '-date-picker-shortcut'} + {$selector-class-prefix + '-date-picker-panel'},
+{$selector-class-prefix + '-date-picker-shortcut'} + {$selector-class-prefix + '-date-picker-daterange'}
   margin-left $date-picker-shortcut-width
 
-{$selector-prefix + '-date-picker-header'},
-{$selector-prefix + '-date-picker-body'}
+{$selector-class-prefix + '-date-picker-header'},
+{$selector-class-prefix + '-date-picker-body'}
   user-select none
 
-{$selector-prefix + '-date-picker-header'}
+{$selector-class-prefix + '-date-picker-header'}
   color $brand-content
   font-size $date-picker-header-font-size
   font-weight 400
@@ -151,22 +151,22 @@ date-picker-brand-style(style)
   text-align center
   position relative
 
-{$selector-prefix + '-date-picker-prev'},
-{$selector-prefix + '-date-picker-next'}
+{$selector-class-prefix + '-date-picker-prev'},
+{$selector-class-prefix + '-date-picker-next'}
   position absolute
   top 0.5 * ($date-picker-header-height - $date-picker-header-button-height)
   line-height 0
 
-{$selector-prefix + '-date-picker-prev'}
+{$selector-class-prefix + '-date-picker-prev'}
   left 0
 
-{$selector-prefix + '-date-picker-next'}
+{$selector-class-prefix + '-date-picker-next'}
   right 0
 
-{$selector-prefix + '-date-picker-header-icon'}
+{$selector-class-prefix + '-date-picker-header-icon'}
   font-size $date-picker-header-icon-size
 
-{$selector-prefix + '-date-picker-header-link'}
+{$selector-class-prefix + '-date-picker-header-link'}
   transition color .3s
   ui-clickable()
 
@@ -174,22 +174,22 @@ date-picker-brand-style(style)
     color $brand-primary
 
 // 定宽，右对齐，避免数字变动时，整个元素在跳动
-{$selector-prefix + '-date-picker-header-year'},
-{$selector-prefix + '-date-picker-header-month'}
+{$selector-class-prefix + '-date-picker-header-year'},
+{$selector-class-prefix + '-date-picker-header-month'}
   margin-right $ui-icon-text-gap
   text-align right
   display inline-block
 
-{$selector-prefix + '-date-picker-header-year'}
+{$selector-class-prefix + '-date-picker-header-year'}
   width 36px
 
-{$selector-prefix + '-date-picker-header-month'}
+{$selector-class-prefix + '-date-picker-header-month'}
   width 22px
 
-{$selector-prefix + '-date-picker-header-separator'}
+{$selector-class-prefix + '-date-picker-header-separator'}
   margin 0 $date-picker-separator-gap
 
-{$selector-prefix + '-date-picker-header-button'}
+{$selector-class-prefix + '-date-picker-header-button'}
   color $brand-close-color
   display inline-block
   width $date-picker-header-button-width
@@ -201,21 +201,21 @@ date-picker-brand-style(style)
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-date-picker-weeks'}
+{$selector-class-prefix + '-date-picker-weeks'}
   background-color $date-picker-week-bg-color
   line-height $date-picker-week-height
 
-  > {$selector-prefix + '-date-picker-col'}
+  > {$selector-class-prefix + '-date-picker-col'}
     padding 0
     vertical-align top
 
-{$selector-prefix + '-date-picker-row'}
+{$selector-class-prefix + '-date-picker-row'}
   margin-top $date-picker-row-gap
 
   &:first-child
     margin-top $date-picker-grid-gap-vertical
 
-{$selector-prefix + '-date-picker-col'}
+{$selector-class-prefix + '-date-picker-col'}
   width 14.285%
   color $date-picker-item-color
   font-size $date-picker-item-font-size
@@ -224,52 +224,52 @@ date-picker-brand-style(style)
   text-align center
   padding 0 $date-picker-item-padding
 
-{$selector-prefix + '-date-picker-col-checked'}
+{$selector-class-prefix + '-date-picker-col-checked'}
   border-radius $border-radius-round
 
-{$selector-prefix + '-date-picker-col-start'},
-{$selector-prefix + '-date-picker-col-end'}
+{$selector-class-prefix + '-date-picker-col-start'},
+{$selector-class-prefix + '-date-picker-col-end'}
   background-color $date-picker-item-range-bg-color
 
-{$selector-prefix + '-date-picker-col-start'}
+{$selector-class-prefix + '-date-picker-col-start'}
   border-top-right-radius 0
   border-bottom-right-radius 0
 
-{$selector-prefix + '-date-picker-col-end'}
+{$selector-class-prefix + '-date-picker-col-end'}
   border-top-left-radius 0
   border-bottom-left-radius 0
 
-{$selector-prefix + '-date-picker-col-range'}
+{$selector-class-prefix + '-date-picker-col-range'}
   background-color $date-picker-item-range-bg-color
 
-{$selector-prefix + '-date-picker-col-enabled'}
+{$selector-class-prefix + '-date-picker-col-enabled'}
   ui-clickable()
   &:hover
     color $brand-primary
 
-{$selector-prefix + '-date-picker-col-disabled'}
+{$selector-class-prefix + '-date-picker-col-disabled'}
   color $brand-disabled
   ui-disabled()
 
-{$selector-prefix + '-date-picker-col-adjacent-month'}
+{$selector-class-prefix + '-date-picker-col-adjacent-month'}
   color $brand-disabled
 
-{$selector-prefix + '-date-picker-text'}
+{$selector-class-prefix + '-date-picker-text'}
   border-radius $border-radius-round
   box-sizing border-box
   height $date-picker-item-height - 2 * $date-picker-item-padding
   line-height $date-picker-item-height - 2 * $date-picker-item-padding
 
-{$selector-prefix + '-date-picker-col-checked'}
-  > {$selector-prefix + '-date-picker-text'}
+{$selector-class-prefix + '-date-picker-col-checked'}
+  > {$selector-class-prefix + '-date-picker-text'}
     color $date-picker-item-checked-color
     background-color $date-picker-item-checked-bg-color
 
-{$selector-prefix + '-date-picker-panel'}
+{$selector-class-prefix + '-date-picker-panel'}
   box-sizing border-box
   padding $date-picker-panel-padding
 
-  + {$selector-prefix + '-date-picker-panel'}
+  + {$selector-class-prefix + '-date-picker-panel'}
     position relative
     &:before
       content ''
@@ -280,36 +280,36 @@ date-picker-brand-style(style)
       width 1px
       background-color $brand-divider
 
-{$selector-prefix + '-date-picker-daterange'},
-{$selector-prefix + '-date-picker-week'}
-  {$selector-prefix + '-date-picker-col'}
+{$selector-class-prefix + '-date-picker-daterange'},
+{$selector-class-prefix + '-date-picker-week'}
+  {$selector-class-prefix + '-date-picker-col'}
     padding $date-picker-item-padding
 
-{$selector-prefix + '-date-picker-daterange'}
-  {$selector-prefix + '-date-picker-panel'}
+{$selector-class-prefix + '-date-picker-daterange'}
+  {$selector-class-prefix + '-date-picker-panel'}
     display inline-block
     width 50%
 
-{$selector-prefix + '-date-picker-month'},
-{$selector-prefix + '-date-picker-year'}
+{$selector-class-prefix + '-date-picker-month'},
+{$selector-class-prefix + '-date-picker-year'}
 
-  {$selector-prefix + '-date-picker-row'} + {$selector-prefix + '-date-picker-row'}
+  {$selector-class-prefix + '-date-picker-row'} + {$selector-class-prefix + '-date-picker-row'}
     margin-top $date-picker-month-row-gap
 
-  {$selector-prefix + '-date-picker-col'}
+  {$selector-class-prefix + '-date-picker-col'}
     width 25%
 
 ui-form-button(
-  $selector-prefix + '-date-picker',
-  $selector-prefix + '-date-picker-enabled',
-  $selector-prefix + '-date-picker-disabled',
-  $selector-prefix + '-date-picker-opened',
-  $selector-prefix + '-date-picker-clearable',
-  $selector-prefix + '-date-picker-values',
-  $selector-prefix + '-date-picker-value',
-  $selector-prefix + '-date-picker-placeholder',
-  $selector-prefix + '-date-picker-calendar-icon',
-  $selector-prefix + '-date-picker-clear-icon',
+  $selector-class-prefix + '-date-picker',
+  $selector-class-prefix + '-date-picker-enabled',
+  $selector-class-prefix + '-date-picker-disabled',
+  $selector-class-prefix + '-date-picker-opened',
+  $selector-class-prefix + '-date-picker-clearable',
+  $selector-class-prefix + '-date-picker-values',
+  $selector-class-prefix + '-date-picker-value',
+  $selector-class-prefix + '-date-picker-placeholder',
+  $selector-class-prefix + '-date-picker-calendar-icon',
+  $selector-class-prefix + '-date-picker-clear-icon',
   $date-picker-icon-size,
   $date-picker-icon-size
 )

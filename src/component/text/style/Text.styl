@@ -34,7 +34,7 @@ text-size-style(size)
   ui-set('font-size', size['font-size'])
   ui-set('line-height', size['line-height'])
 
-{$selector-prefix + '-text'}
+{$selector-class-prefix + '-text'}
   ui-connect(
     hash: $text-size-hash,
     each: text-size-style
@@ -44,8 +44,8 @@ text-size-style(size)
     each: text-brand-style
   )
 
-{$selector-prefix + '-text-bold'}
+{$selector-class-prefix + '-text-bold'}
   font-weight bold
 
-{$selector-prefix + '-text-block'}
+{$selector-class-prefix + '-text-block'}
   display block

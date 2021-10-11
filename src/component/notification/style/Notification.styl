@@ -22,7 +22,7 @@ $notification-icon-top-with-title = 15px
 $notification-close-icon-top-with-title = 18px
 
 notification-brand-style(style)
-  > {$selector-prefix + '-notification-icon'}
+  > {$selector-class-prefix + '-notification-icon'}
     ui-set('color', style['color'])
 
 {$selector-id-prefix + '-notification-wrapper'}
@@ -31,7 +31,7 @@ notification-brand-style(style)
   top $notification-wrapper-top
   z-index $zindex-notification
 
-{$selector-prefix + '-notification'}
+{$selector-class-prefix + '-notification'}
   position relative
   opacity 0
   padding $notification-padding-vertical $notification-padding-horizontal
@@ -47,51 +47,51 @@ notification-brand-style(style)
     each: notification-brand-style
   )
 
-  + {$selector-prefix + '-notification'}
+  + {$selector-class-prefix + '-notification'}
     margin-top $notification-vertical-gap
 
-{$selector-prefix + '-notification-with-icon'}
+{$selector-class-prefix + '-notification-with-icon'}
   padding-left $notification-padding-horizontal + $notification-icon-size + $notification-icon-gap
 
-{$selector-prefix + '-notification-with-close'}
+{$selector-class-prefix + '-notification-with-close'}
   padding-right $notification-close-icon-right + $close-icon-size
 
-{$selector-prefix + '-notification-with-title'}
-  &{$selector-prefix + '-notification-with-icon'}
+{$selector-class-prefix + '-notification-with-title'}
+  &{$selector-class-prefix + '-notification-with-icon'}
     padding-left $notification-padding-horizontal + $notification-icon-size-with-title + $notification-icon-gap-with-title
 
-  {$selector-prefix + '-notification-icon'}
+  {$selector-class-prefix + '-notification-icon'}
     top $notification-icon-top-with-title
     font-size $notification-icon-size-with-title
 
-  {$selector-prefix + '-notification-close'}
+  {$selector-class-prefix + '-notification-close'}
     top $notification-close-icon-top-with-title
 
-{$selector-prefix + '-notification-visible'}
+{$selector-class-prefix + '-notification-visible'}
   opacity 1
   transform translateX(0)
 
-{$selector-prefix + '-notification-title'}
+{$selector-class-prefix + '-notification-title'}
   ui-ellipsis()
   color $brand-title
   font-size $font-size-large
   line-height $ui-single-line-height
 
-  + {$selector-prefix + '-notification-content'}
+  + {$selector-class-prefix + '-notification-content'}
     margin-top $notification-title-content-gap
 
-{$selector-prefix + '-notification-content'}
+{$selector-class-prefix + '-notification-content'}
   color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
 
-{$selector-prefix + '-notification-icon'}
+{$selector-class-prefix + '-notification-icon'}
   position absolute
   left $notification-padding-horizontal
   top $notification-icon-top
   font-size $notification-icon-size
 
-{$selector-prefix + '-notification-close'}
+{$selector-class-prefix + '-notification-close'}
   position absolute
   right $notification-close-icon-right
   top $notification-close-icon-top

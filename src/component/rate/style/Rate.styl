@@ -23,27 +23,27 @@ $rate-brand-hash = {
 }
 
 rate-brand-style(style)
-  {$selector-prefix + '-rate-icon-active'}
+  {$selector-class-prefix + '-rate-icon-active'}
     ui-set('color', style['color'])
 
-{$selector-prefix + '-rate'}
+{$selector-class-prefix + '-rate'}
   display inline-block
   ui-connect(
     hash: $rate-brand-hash,
     each: rate-brand-style
   )
 
-{$selector-prefix + '-rate-icon-full'}
+{$selector-class-prefix + '-rate-icon-full'}
   color $rate-icon-color
   display inline-block
   line-height 1
   position relative
   transition color .3s
 
-  + {$selector-prefix + '-rate-icon-full'}
+  + {$selector-class-prefix + '-rate-icon-full'}
     margin-left $rate-icon-gap
 
-{$selector-prefix + '-rate-icon-half'}
+{$selector-class-prefix + '-rate-icon-half'}
   position absolute
   left 0
   top 0
@@ -54,15 +54,15 @@ rate-brand-style(style)
   opacity 0
   transition opacity .3s
 
-  &{$selector-prefix + '-rate-icon-active'}
+  &{$selector-class-prefix + '-rate-icon-active'}
     opacity 1
 
-{$selector-prefix + '-rate-text'}
+{$selector-class-prefix + '-rate-text'}
   margin-left $rate-icon-gap
   font-size $font-size-default
   color $brand-content
   vertical-align top
 
-{$selector-prefix + '-rate-live'}
-  > {$selector-prefix + '-rate-icon-full'}
+{$selector-class-prefix + '-rate-live'}
+  > {$selector-class-prefix + '-rate-icon-full'}
     ui-clickable()

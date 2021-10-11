@@ -2,16 +2,16 @@
 
 $split-button-menu-height = 200px
 
-{$selector-prefix + '-split-button-menu'}
+{$selector-class-prefix + '-split-button-menu'}
   min-width $dropdown-menu-min-width
   max-height $split-button-menu-height
 
 ui-dropdown-overlay(
-  $selector-prefix + '-split-button-menu',
-  $selector-prefix + '-split-button-menu-item',
+  $selector-class-prefix + '-split-button-menu',
+  $selector-class-prefix + '-split-button-menu-item',
   '',
-  $selector-prefix + '-split-button-menu-item-enabled',
-  $selector-prefix + '-split-button-menu-item-disabled',
+  $selector-class-prefix + '-split-button-menu-item-enabled',
+  $selector-class-prefix + '-split-button-menu-item-disabled',
   '',
   $brand-primary,
   $brand-bg-active

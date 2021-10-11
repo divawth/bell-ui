@@ -38,13 +38,13 @@ spin-brand-style(style)
   ui-set('color', style['color'])
 
 spin-size-style(style)
-  {$selector-prefix + '-spin-icon'}
+  {$selector-class-prefix + '-spin-icon'}
     ui-set('font-size', style['icon-size'])
 
-  {$selector-prefix + '-spin-text'}
+  {$selector-class-prefix + '-spin-text'}
     ui-set('font-size', style['font-size'])
 
-{$selector-prefix + '-spin'}
+{$selector-class-prefix + '-spin'}
   display inline-block
   text-align center
   line-height 1.7
@@ -57,10 +57,10 @@ spin-size-style(style)
     each: spin-size-style
   )
 
-{$selector-prefix + '-spin-icon'}
+{$selector-class-prefix + '-spin-icon'}
   vertical-align top
 
-{$selector-prefix + '-spin-fixed'}
+{$selector-class-prefix + '-spin-fixed'}
 
   position absolute
   top 0
@@ -70,22 +70,22 @@ spin-size-style(style)
 
   z-index $zindex-normal
 
-  > {$selector-prefix + '-spin-content'}
+  > {$selector-class-prefix + '-spin-content'}
     position absolute
     top 50%
     left 50%
     transform translate(-50%, -50%)
 
-  &{$selector-prefix + '-spin-light'}
+  &{$selector-class-prefix + '-spin-light'}
     background-color $brand-mask-light-color
 
-    &{$selector-prefix + '-spin-legacy'}
+    &{$selector-class-prefix + '-spin-legacy'}
       background-color $brand-mask-light-color-legacy
       opacity $brand-mask-light-opacity-legacy
 
-  &{$selector-prefix + '-spin-dark'}
+  &{$selector-class-prefix + '-spin-dark'}
     background-color $brand-mask-dark-color
 
-    &{$selector-prefix + '-spin-legacy'}
+    &{$selector-class-prefix + '-spin-legacy'}
       background-color $brand-mask-dark-color-legacy
       opacity $brand-mask-dark-opacity-legacy

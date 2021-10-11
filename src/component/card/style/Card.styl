@@ -23,64 +23,64 @@ $card-body-padding-vertical = 24px
 $card-footer-padding-vertical = 24px
 
 
-{$selector-prefix + '-card'}
+{$selector-class-prefix + '-card'}
   background-color $brand-bg
   border-radius $border-radius-default
   color $brand-content
   font-size $font-size-default
   line-height $ui-single-line-height
 
-{$selector-prefix + '-card-shadow-hover'}
+{$selector-class-prefix + '-card-shadow-hover'}
   transition box-shadow .3s
 
-{$selector-prefix + '-card-shadow-always'},
-{$selector-prefix + '-card-shadow-hover'}:hover
+{$selector-class-prefix + '-card-shadow-always'},
+{$selector-class-prefix + '-card-shadow-hover'}:hover
   box-shadow $brand-card-shadow
 
-{$selector-prefix + '-card-bordered'}
+{$selector-class-prefix + '-card-bordered'}
   border 1px solid $brand-border
 
-{$selector-prefix + '-card-header'}
+{$selector-class-prefix + '-card-header'}
   position relative
   padding $card-header-padding-vertical $card-padding-horizontal
 
-  {$selector-prefix + '-avatar'}
+  {$selector-class-prefix + '-avatar'}
     margin-right $card-header-avatar-title-gap
     vertical-align middle
 
-  + {$selector-prefix + '-card-body'}
+  + {$selector-class-prefix + '-card-body'}
     border-top 1px solid $brand-divider
 
-{$selector-prefix + '-card-header-detail'}
+{$selector-class-prefix + '-card-header-detail'}
   display inline-block
   vertical-align middle
 
-{$selector-prefix + '-card-header-title'}
+{$selector-class-prefix + '-card-header-title'}
   color $brand-title
   font-size $card-header-title-font-size
   font-weight bold
   line-height $ui-single-line-height
 
-{$selector-prefix + '-card-header-sub-title'}
+{$selector-class-prefix + '-card-header-sub-title'}
   color $brand-muted
   font-size $card-header-sub-title-font-size
   line-height $ui-single-line-height
   margin-top $card-header-sub-title-gap
 
-{$selector-prefix + '-card-header-extra'}
+{$selector-class-prefix + '-card-header-extra'}
   position absolute
   right $card-padding-horizontal
   top 50%
   transform translateY(-50%)
 
-{$selector-prefix + '-card-media'}
+{$selector-class-prefix + '-card-media'}
   position relative
 
   > img
     display block
     width 100%
 
-{$selector-prefix + '-card-media-detail'}
+{$selector-class-prefix + '-card-media-detail'}
   position absolute
   left 0
   right 0
@@ -88,14 +88,14 @@ $card-footer-padding-vertical = 24px
   padding $card-media-detail-padding
   background-color $card-media-detail-bg-color
 
-{$selector-prefix + '-card-media-title'}
+{$selector-class-prefix + '-card-media-title'}
   font-size $card-media-title-font-size
   color $card-media-title-color
   line-height $ui-single-line-height
   max-width 100%
   ui-ellipsis()
 
-{$selector-prefix + '-card-media-sub-title'}
+{$selector-class-prefix + '-card-media-sub-title'}
   font-size $card-media-sub-title-font-size
   color $card-media-sub-title-color
   line-height $ui-single-line-height
@@ -103,15 +103,15 @@ $card-footer-padding-vertical = 24px
   max-width 100%
   ui-ellipsis()
 
-{$selector-prefix + '-card-body'}
+{$selector-class-prefix + '-card-body'}
   padding $card-body-padding-vertical $card-padding-horizontal
   font-size $font-size-default
   color $brand-content
   line-height $ui-multiple-line-height
   position relative
 
-  + {$selector-prefix + '-card-footer'}
+  + {$selector-class-prefix + '-card-footer'}
     padding-top 0
 
-{$selector-prefix + '-card-footer'}
+{$selector-class-prefix + '-card-footer'}
   padding $card-footer-padding-vertical $card-padding-horizontal

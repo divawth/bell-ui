@@ -17,24 +17,24 @@ $input-number-size-hash = {
 
 input-number-size-style(style)
 
-  {$selector-prefix + '-input-number-actions'}
+  {$selector-class-prefix + '-input-number-actions'}
     ui-set('width', style['actions-width'])
 
-  {$selector-prefix + '-input-number-up'},
-  {$selector-prefix + '-input-number-down'}
+  {$selector-class-prefix + '-input-number-up'},
+  {$selector-class-prefix + '-input-number-down'}
     ui-set('line-height', 0.5 * (style['height'] - 2))
 
 
-{$selector-prefix + '-input'}
+{$selector-class-prefix + '-input'}
   ui-connect(
     hash: $input-number-size-hash,
     each: input-number-size-style
   )
 
-{$selector-prefix + '-input-number-el'}
+{$selector-class-prefix + '-input-number-el'}
   display none
 
-{$selector-prefix + '-input-number-actions'}
+{$selector-class-prefix + '-input-number-actions'}
   position absolute
   top 1px
   bottom 1px
@@ -44,8 +44,8 @@ input-number-size-style(style)
   transition opacity .3s
   border-left 1px solid $brand-border
 
-{$selector-prefix + '-input-number-up'},
-{$selector-prefix + '-input-number-down'}
+{$selector-class-prefix + '-input-number-up'},
+{$selector-class-prefix + '-input-number-down'}
   position absolute
   left 0
   width 100%
@@ -56,40 +56,40 @@ input-number-size-style(style)
   box-sizing border-box
   transition color .3s
 
-{$selector-prefix + '-input-number-up'}
+{$selector-class-prefix + '-input-number-up'}
   top 0
   border-top-right-radius $border-radius-default
 
-{$selector-prefix + '-input-number-down'}
+{$selector-class-prefix + '-input-number-down'}
   bottom 0
   border-top 1px solid $brand-border
   border-bottom-right-radius $border-radius-default
 
-{$selector-prefix + '-input-with-append'}
-  {$selector-prefix + '-input-number-up'}
+{$selector-class-prefix + '-input-with-append'}
+  {$selector-class-prefix + '-input-number-up'}
     border-top-right-radius 0
-  {$selector-prefix + '-input-number-down'}
+  {$selector-class-prefix + '-input-number-down'}
     border-bottom-right-radius 0
 
-{$selector-prefix + '-input-number-up-icon'},
-{$selector-prefix + '-input-number-down-icon'}
+{$selector-class-prefix + '-input-number-up-icon'},
+{$selector-class-prefix + '-input-number-down-icon'}
   line-height inherit
 
-{$selector-prefix + '-input-number-up-enabled'},
-{$selector-prefix + '-input-number-down-enabled'}
+{$selector-class-prefix + '-input-number-up-enabled'},
+{$selector-class-prefix + '-input-number-down-enabled'}
   color $brand-close-color
   ui-clickable()
 
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-input-number-up-disabled'},
-{$selector-prefix + '-input-number-down-disabled'}
+{$selector-class-prefix + '-input-number-up-disabled'},
+{$selector-class-prefix + '-input-number-down-disabled'}
   color $brand-disabled
   ui-disabled()
 
-{$selector-prefix + '-input-enabled'}:hover
+{$selector-class-prefix + '-input-enabled'}:hover
 
-  {$selector-prefix + '-input-number-actions'}
+  {$selector-class-prefix + '-input-number-actions'}
     opacity 1
 

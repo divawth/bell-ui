@@ -4,18 +4,18 @@ $divider-horizontal-gap = 12px
 $divider-vertical-gap = 8px
 $divider-text-gap = 10px
 
-{$selector-prefix + '-divider'}
+{$selector-class-prefix + '-divider'}
   box-sizing border-box
   background-color $brand-divider
 
-{$selector-prefix + '-divider-horizontal'}
+{$selector-class-prefix + '-divider-horizontal'}
   display block
   clear both
   width 100%
   height 1px
   margin $divider-horizontal-gap 0
 
-{$selector-prefix + '-divider-vertical'}
+{$selector-class-prefix + '-divider-vertical'}
   display inline-block
   vertical-align middle
   position relative
@@ -24,14 +24,14 @@ $divider-text-gap = 10px
   top -.06em
   margin 0 $divider-vertical-gap
 
-{$selector-prefix + '-divider-text'}
+{$selector-class-prefix + '-divider-text'}
   margin 0 $divider-text-gap
 
-{$selector-prefix + '-divider-dashed'}
+{$selector-class-prefix + '-divider-dashed'}
   background-color transparent
   border-top 1px dashed $brand-divider
 
-{$selector-prefix + '-divider-with-text'}
+{$selector-class-prefix + '-divider-with-text'}
 
   display table
   white-space nowrap
@@ -51,18 +51,18 @@ $divider-text-gap = 10px
     top 50%
     width 50%
 
-  &{$selector-prefix + '-divider-dashed'}
+  &{$selector-class-prefix + '-divider-dashed'}
     &:before,
     &:after
       border-top-style dashed
 
-  &{$selector-prefix + '-divider-left'}
+  &{$selector-class-prefix + '-divider-left'}
     &:before
       width 5%
     &:after
       width 95%
 
-  &{$selector-prefix + '-divider-right'}
+  &{$selector-class-prefix + '-divider-right'}
     &:before
       width 95%
     &:after

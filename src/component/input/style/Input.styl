@@ -29,48 +29,48 @@ $input-size-hash = {
 input-size-style(style)
   ui-set('font-size', style['font-size'])
 
-  > {$selector-prefix + '-input-prepend'},
-  > {$selector-prefix + '-input-append'},
-  {$selector-prefix + '-input-el'}
+  > {$selector-class-prefix + '-input-prepend'},
+  > {$selector-class-prefix + '-input-append'},
+  {$selector-class-prefix + '-input-el'}
     ui-set('height', style['height'])
 
-  > {$selector-prefix + '-input-prepend'},
-  > {$selector-prefix + '-input-append'}
+  > {$selector-class-prefix + '-input-prepend'},
+  > {$selector-class-prefix + '-input-append'}
     ui-set('min-width', style['height'])
 
-  {$selector-prefix + '-input-el'}
+  {$selector-class-prefix + '-input-el'}
     ui-set('font-size', style['font-size'])
     ui-set('line-height', style['height'])
     ui-set('padding', 0 style['padding-horizontal'])
 
-  {$selector-prefix + '-input-prefix'}
+  {$selector-class-prefix + '-input-prefix'}
     ui-set('left', style['padding-horizontal'])
 
-  {$selector-prefix + '-input-suffix'}
+  {$selector-class-prefix + '-input-suffix'}
     ui-set('right', style['padding-horizontal'])
 
-  {$selector-prefix + '-input-el-with-prefix'}
+  {$selector-class-prefix + '-input-el-with-prefix'}
     ui-set('padding-left', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
 
-  {$selector-prefix + '-input-el-with-suffix'}
+  {$selector-class-prefix + '-input-el-with-suffix'}
     ui-set('padding-right', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
 
-  {$selector-prefix + '-input-prefix-icon-wrapper'},
-  {$selector-prefix + '-input-suffix-icon-wrapper'}
+  {$selector-class-prefix + '-input-prefix-icon-wrapper'},
+  {$selector-class-prefix + '-input-suffix-icon-wrapper'}
     ui-set('margin-top', -0.5 * style['font-size'])
 
-  {$selector-prefix + '-input-prefix-icon'},
-  {$selector-prefix + '-input-suffix-icon'},
-  {$selector-prefix + '-input-secure-icon'},
-  {$selector-prefix + '-input-clear-icon'}
+  {$selector-class-prefix + '-input-prefix-icon'},
+  {$selector-class-prefix + '-input-suffix-icon'},
+  {$selector-class-prefix + '-input-secure-icon'},
+  {$selector-class-prefix + '-input-clear-icon'}
     ui-set('font-size', style['font-size'])
 
-  {$selector-prefix + '-input-prefix-text-wrapper'},
-  {$selector-prefix + '-input-suffix-text-wrapper'}
+  {$selector-class-prefix + '-input-prefix-text-wrapper'},
+  {$selector-class-prefix + '-input-suffix-text-wrapper'}
     ui-set('line-height', style['height'])
 
 input-brand-style(style)
-  {$selector-prefix + '-input-el'}
+  {$selector-class-prefix + '-input-el'}
     ui-set('border-color', style['color'])
 
     &:hover
@@ -81,16 +81,16 @@ input-brand-style(style)
       if $ui-shadow-radius > 0
         box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-{$selector-prefix + '-input'}
+{$selector-class-prefix + '-input'}
   display inline-table
   width $ui-form-element-width
   vertical-align middle
   box-sizing border-box
 
-  + {$selector-prefix + '-input'}
+  + {$selector-class-prefix + '-input'}
     margin-left $ui-horizontal-gap
 
-  + {$selector-prefix + '-input-block'}
+  + {$selector-class-prefix + '-input-block'}
     margin-left 0
 
   ui-connect(
@@ -102,12 +102,12 @@ input-brand-style(style)
     each: input-size-style
   )
 
-{$selector-prefix + '-input-block'}
+{$selector-class-prefix + '-input-block'}
   // 这里不能 display block
   // 因为依赖 inline-table 布局
   width 100%
 
-{$selector-prefix + '-input-el'}
+{$selector-class-prefix + '-input-el'}
   ui-input()
 
   appearance textfield
@@ -116,34 +116,34 @@ input-brand-style(style)
   &::-webkit-inner-spin-button
     appearance none
 
-{$selector-prefix + '-input-prefix'},
-{$selector-prefix + '-input-suffix'}
+{$selector-class-prefix + '-input-prefix'},
+{$selector-class-prefix + '-input-suffix'}
   position absolute
   white-space nowrap
   user-select none
 
-{$selector-prefix + '-input-prefix-icon-wrapper'},
-{$selector-prefix + '-input-suffix-icon-wrapper'}
+{$selector-class-prefix + '-input-prefix-icon-wrapper'},
+{$selector-class-prefix + '-input-suffix-icon-wrapper'}
   color $brand-close-color
   top 50%
   line-height 0
 
-{$selector-prefix + '-input-prefix-text-wrapper'},
-{$selector-prefix + '-input-suffix-text-wrapper'}
+{$selector-class-prefix + '-input-prefix-text-wrapper'},
+{$selector-class-prefix + '-input-suffix-text-wrapper'}
   color $brand-muted
   font-size 85%
   top 0
 
-{$selector-prefix + '-input-secure'},
-{$selector-prefix + '-input-clear'}
+{$selector-class-prefix + '-input-secure'},
+{$selector-class-prefix + '-input-clear'}
   transition color .3s
   ui-clickable()
 
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-input-prepend'},
-{$selector-prefix + '-input-append'}
+{$selector-class-prefix + '-input-prepend'},
+{$selector-class-prefix + '-input-append'}
   display table-cell
   vertical-align middle
   text-align center
@@ -157,84 +157,84 @@ input-brand-style(style)
   white-space nowrap
   user-select none
 
-  {$selector-prefix + '-select-button'},
-  {$selector-prefix + '-button-pure'}
+  {$selector-class-prefix + '-select-button'},
+  {$selector-class-prefix + '-button-pure'}
     border-color transparent !important
     box-shadow none !important
     background-color transparent !important
 
-  {$selector-prefix + '-select-placeholder'},
-  {$selector-prefix + '-select-value'},
-  {$selector-prefix + '-button-pure'}
+  {$selector-class-prefix + '-select-placeholder'},
+  {$selector-class-prefix + '-select-value'},
+  {$selector-class-prefix + '-button-pure'}
     color inherit
     font-size inherit
 
-  {$selector-prefix + '-select'},
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-select'},
+  {$selector-class-prefix + '-button'}
     margin-top -1px
     margin-bottom -1px
     vertical-align top
 
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-button'}
     height inherit
     line-height inherit
     position relative
 
-  {$selector-prefix + '-button-pure'}:hover
+  {$selector-class-prefix + '-button-pure'}:hover
     color $brand-content !important
 
-{$selector-prefix + '-input-prepend'}
+{$selector-class-prefix + '-input-prepend'}
   border-right none
   border-top-left-radius $border-radius-default
   border-bottom-left-radius $border-radius-default
 
-  {$selector-prefix + '-select'},
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-select'},
+  {$selector-class-prefix + '-button'}
     margin-left - $input-prepend-append-padding-horizontal - 1
     margin-right - $input-prepend-append-padding-horizontal - 1
 
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-button'}
     border-top-right-radius 0
     border-bottom-right-radius 0
 
-{$selector-prefix + '-input-append'}
+{$selector-class-prefix + '-input-append'}
   border-left none
   border-top-right-radius $border-radius-default
   border-bottom-right-radius $border-radius-default
 
-  {$selector-prefix + '-select'},
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-select'},
+  {$selector-class-prefix + '-button'}
     margin-left - $input-prepend-append-padding-horizontal - 1
     margin-right - $input-prepend-append-padding-horizontal - 1
 
-  {$selector-prefix + '-button'}
+  {$selector-class-prefix + '-button'}
     border-top-left-radius 0
     border-bottom-left-radius 0
 
-{$selector-prefix + '-input-content'}
+{$selector-class-prefix + '-input-content'}
   position relative
   box-sizing border-box
 
-{$selector-prefix + '-input-clear'}
+{$selector-class-prefix + '-input-clear'}
   display none
 
-{$selector-prefix + '-input-no-value'}
-  {$selector-prefix + '-input-clear'}
+{$selector-class-prefix + '-input-no-value'}
+  {$selector-class-prefix + '-input-clear'}
     display none
 
-{$selector-prefix + '-input-has-value'}
-  {$selector-prefix + '-input-el'}:focus + {$selector-prefix + '-input-clear'},
-  &:hover {$selector-prefix + '-input-clear'}
+{$selector-class-prefix + '-input-has-value'}
+  {$selector-class-prefix + '-input-el'}:focus + {$selector-class-prefix + '-input-clear'},
+  &:hover {$selector-class-prefix + '-input-clear'}
     display block
 
-{$selector-prefix + '-input-el-with-prepend'}
+{$selector-class-prefix + '-input-el-with-prepend'}
   border-top-left-radius 0
   border-bottom-left-radius 0
 
-{$selector-prefix + '-input-el-with-append'}
+{$selector-class-prefix + '-input-el-with-append'}
   border-top-right-radius 0
   border-bottom-right-radius 0
 
-{$selector-prefix + '-input-disabled'}
-  ui-input-disabled($selector-prefix + '-input-el')
+{$selector-class-prefix + '-input-disabled'}
+  ui-input-disabled($selector-class-prefix + '-input-el')
 

@@ -16,21 +16,21 @@ $tooltip-arrow-offset = -2px
 $tooltip-arrow-gap = 10px
 $tooltip-arrow-size = 5px
 
-{$selector-prefix + '-tooltip-arrow'},
-{$selector-prefix + '-tooltip-arrow'}:before
+{$selector-class-prefix + '-tooltip-arrow'},
+{$selector-class-prefix + '-tooltip-arrow'}:before
   position absolute
   width 0
   height 0
   border $tooltip-arrow-size solid transparent
 
-{$selector-prefix + '-tooltip-arrow'}:before
+{$selector-class-prefix + '-tooltip-arrow'}:before
   content ''
 
-{$selector-prefix + '-tooltip'}
+{$selector-class-prefix + '-tooltip'}
   font-size 0
   line-height 0
 
-{$selector-prefix + '-tooltip-content'}
+{$selector-class-prefix + '-tooltip-content'}
   font-size $font-size-small
   line-height $ui-multiple-line-height
 
@@ -44,161 +44,161 @@ $tooltip-arrow-size = 5px
   border-radius $border-radius-default
   box-sizing border-box
 
-{$selector-prefix + '-tooltip-dark'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-dark'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     border-color $tooltip-dark-border-color
     &:before
       border-color $tooltip-dark-bg-color
 
-  > {$selector-prefix + '-tooltip-content'}
+  > {$selector-class-prefix + '-tooltip-content'}
     color $tooltip-dark-color
     border-color $tooltip-dark-border-color
     background-color $tooltip-dark-bg-color
 
-{$selector-prefix + '-tooltip-light'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-light'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     border-color $tooltip-light-border-color
     &:before
       border-color $tooltip-light-bg-color
 
-  > {$selector-prefix + '-tooltip-content'}
+  > {$selector-class-prefix + '-tooltip-content'}
     color $tooltip-light-color
     border-color $tooltip-light-border-color
     background-color $tooltip-light-bg-color
 
 
-{$selector-prefix + '-tooltip-bottom'},
-{$selector-prefix + '-tooltip-bottom-start'},
-{$selector-prefix + '-tooltip-bottom-end'}
+{$selector-class-prefix + '-tooltip-bottom'},
+{$selector-class-prefix + '-tooltip-bottom-start'},
+{$selector-class-prefix + '-tooltip-bottom-end'}
 
   padding-top $tooltip-padding-inner
 
-  > {$selector-prefix + '-tooltip-arrow'},
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'},
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     border-top-color transparent
     border-left-color transparent
     border-right-color transparent
 
-  > {$selector-prefix + '-tooltip-arrow'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     top $tooltip-arrow-offset
 
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     left -1 * $tooltip-arrow-size
     top -1 * ($tooltip-arrow-size - 1)
 
-{$selector-prefix + '-tooltip-bottom'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-bottom'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     left 50%
     margin-left - $tooltip-arrow-size
 
-{$selector-prefix + '-tooltip-bottom-start'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-bottom-start'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     left $tooltip-arrow-gap
 
-{$selector-prefix + '-tooltip-bottom-end'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-bottom-end'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     right $tooltip-arrow-gap
 
 
 
 
-{$selector-prefix + '-tooltip-top'},
-{$selector-prefix + '-tooltip-top-start'},
-{$selector-prefix + '-tooltip-top-end'}
+{$selector-class-prefix + '-tooltip-top'},
+{$selector-class-prefix + '-tooltip-top-start'},
+{$selector-class-prefix + '-tooltip-top-end'}
   padding-bottom $tooltip-padding-inner
 
-  > {$selector-prefix + '-tooltip-arrow'},
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'},
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     border-bottom-color transparent
     border-left-color transparent
     border-right-color transparent
 
-  > {$selector-prefix + '-tooltip-arrow'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     bottom $tooltip-arrow-offset
 
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     left -1 * $tooltip-arrow-size
     bottom -1 * ($tooltip-arrow-size - 1)
 
 
-{$selector-prefix + '-tooltip-top'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-top'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     left 50%
     margin-left - $tooltip-arrow-size
 
-{$selector-prefix + '-tooltip-top-start'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-top-start'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     left $tooltip-arrow-gap
 
-{$selector-prefix + '-tooltip-top-end'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-top-end'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     right $tooltip-arrow-gap
 
 
 
 
 
-{$selector-prefix + '-tooltip-left'},
-{$selector-prefix + '-tooltip-left-start'},
-{$selector-prefix + '-tooltip-left-end'}
+{$selector-class-prefix + '-tooltip-left'},
+{$selector-class-prefix + '-tooltip-left-start'},
+{$selector-class-prefix + '-tooltip-left-end'}
   padding-right $tooltip-padding-inner
 
-  > {$selector-prefix + '-tooltip-arrow'},
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'},
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     border-top-color transparent
     border-bottom-color transparent
     border-right-color transparent
 
-  > {$selector-prefix + '-tooltip-arrow'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     right $tooltip-arrow-offset
 
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     top -1 * $tooltip-arrow-size
     right -1 * ($tooltip-arrow-size - 1)
 
-{$selector-prefix + '-tooltip-left'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-left'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     top 50%
     margin-top - $tooltip-arrow-size
 
-{$selector-prefix + '-tooltip-left-start'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-left-start'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     top $tooltip-arrow-gap
 
-{$selector-prefix + '-tooltip-left-end'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-left-end'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     bottom $tooltip-arrow-gap
 
 
 
-{$selector-prefix + '-tooltip-right'},
-{$selector-prefix + '-tooltip-right-start'},
-{$selector-prefix + '-tooltip-right-end'}
+{$selector-class-prefix + '-tooltip-right'},
+{$selector-class-prefix + '-tooltip-right-start'},
+{$selector-class-prefix + '-tooltip-right-end'}
   padding-left $tooltip-padding-inner
 
-  > {$selector-prefix + '-tooltip-arrow'},
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'},
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     border-top-color transparent
     border-left-color transparent
     border-bottom-color transparent
 
-  > {$selector-prefix + '-tooltip-arrow'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     left $tooltip-arrow-offset
 
-  > {$selector-prefix + '-tooltip-arrow'}:before
+  > {$selector-class-prefix + '-tooltip-arrow'}:before
     top -1 * $tooltip-arrow-size
     left -1 * ($tooltip-arrow-size - 1)
 
 
-{$selector-prefix + '-tooltip-right'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-right'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     top 50%
     margin-top - $tooltip-arrow-size
 
-{$selector-prefix + '-tooltip-right-start'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-right-start'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     top $tooltip-arrow-gap
 
-{$selector-prefix + '-tooltip-right-end'}
-  > {$selector-prefix + '-tooltip-arrow'}
+{$selector-class-prefix + '-tooltip-right-end'}
+  > {$selector-class-prefix + '-tooltip-arrow'}
     bottom $tooltip-arrow-gap

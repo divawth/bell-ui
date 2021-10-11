@@ -10,12 +10,12 @@ $checkbox-indeterminate-left = 2px
 $checkbox-indeterminate-width = 8px
 $checkbox-indeterminate-height = 1px
 
-{$selector-prefix + '-checkbox'}
+{$selector-class-prefix + '-checkbox'}
   display inline-block
   user-select none
   box-sizing border-box
 
-{$selector-prefix + '-checkbox-with-label'}
+{$selector-class-prefix + '-checkbox-with-label'}
   position relative
   color $brand-content
   font-size $font-size-default
@@ -24,18 +24,18 @@ $checkbox-indeterminate-height = 1px
   padding-left $font-size-default + $ui-icon-text-gap
   vertical-align middle
 
-  > {$selector-prefix + '-checkbox-icon'}
+  > {$selector-class-prefix + '-checkbox-icon'}
     position absolute
     left 0
     top 50%
     margin-top -0.5 * $font-size-default
 
-{$selector-prefix + '-checkbox-active'}
-  > {$selector-prefix + '-checkbox-icon'}:after
+{$selector-class-prefix + '-checkbox-active'}
+  > {$selector-class-prefix + '-checkbox-icon'}:after
     transform rotate(45deg) scale(1)
 
-{$selector-prefix + '-checkbox-indeterminate'}
-  > {$selector-prefix + '-checkbox-icon'}:after
+{$selector-class-prefix + '-checkbox-indeterminate'}
+  > {$selector-class-prefix + '-checkbox-icon'}:after
     transform rotate(0deg) scale(1)
 
     top $checkbox-indeterminate-top
@@ -43,7 +43,7 @@ $checkbox-indeterminate-height = 1px
     width $checkbox-indeterminate-width
     height $checkbox-indeterminate-height
 
-{$selector-prefix + '-checkbox-icon'}
+{$selector-class-prefix + '-checkbox-icon'}
   display inline-block
   position relative
   width $font-size-default
@@ -71,32 +71,32 @@ $checkbox-indeterminate-height = 1px
     transform scale(0)
 
 
-{$selector-prefix + '-checkbox-input'}
+{$selector-class-prefix + '-checkbox-input'}
   position absolute
   opacity 0
 
-{$selector-prefix + '-checkbox-enabled'},
-{$selector-prefix + '-checkbox-enabled'} input
+{$selector-class-prefix + '-checkbox-enabled'},
+{$selector-class-prefix + '-checkbox-enabled'} input
   ui-clickable()
 
-{$selector-prefix + '-checkbox-disabled'},
-{$selector-prefix + '-checkbox-disabled'} input
+{$selector-class-prefix + '-checkbox-disabled'},
+{$selector-class-prefix + '-checkbox-disabled'} input
   ui-disabled()
 
-{$selector-prefix + '-checkbox-enabled'}:hover
-  > {$selector-prefix + '-checkbox-icon'}
+{$selector-class-prefix + '-checkbox-enabled'}:hover
+  > {$selector-class-prefix + '-checkbox-icon'}
     border-color $brand-primary
 
-{$selector-prefix + '-checkbox-active'},
-{$selector-prefix + '-checkbox-indeterminate'}
-  > {$selector-prefix + '-checkbox-icon'}
+{$selector-class-prefix + '-checkbox-active'},
+{$selector-class-prefix + '-checkbox-indeterminate'}
+  > {$selector-class-prefix + '-checkbox-icon'}
     background-color $brand-primary
     border-color $brand-primary
 
-{$selector-prefix + '-checkbox-disabled'}
+{$selector-class-prefix + '-checkbox-disabled'}
   color $brand-disabled
 
-  > {$selector-prefix + '-checkbox-icon'}
+  > {$selector-class-prefix + '-checkbox-icon'}
     background-color $brand-bg-disabled
     border-color $brand-border
 
@@ -104,6 +104,6 @@ $checkbox-indeterminate-height = 1px
       border-color $brand-disabled
 
 if $ui-shadow-radius > 0
-  {$selector-prefix + '-checkbox-focus'}
-    > {$selector-prefix + '-checkbox-icon'}
+  {$selector-class-prefix + '-checkbox-focus'}
+    > {$selector-class-prefix + '-checkbox-icon'}
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow

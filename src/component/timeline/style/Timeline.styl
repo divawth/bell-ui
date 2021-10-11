@@ -11,7 +11,7 @@ $timeline-dot-size = 14px
 $timeline-content-top = -4px
 $timeline-content-padding-left = 24px
 
-{$selector-prefix + '-timeline-item'}
+{$selector-class-prefix + '-timeline-item'}
   padding-bottom $timeline-item-gap
   position relative
 
@@ -28,24 +28,24 @@ $timeline-content-padding-left = 24px
     &:before
       display none
 
-{$selector-prefix + '-timeline-dot'},
-{$selector-prefix + '-timeline-custom'}
+{$selector-class-prefix + '-timeline-dot'},
+{$selector-class-prefix + '-timeline-custom'}
   position absolute
   width $timeline-dot-size
   height $timeline-dot-size
 
-{$selector-prefix + '-timeline-dot'}
+{$selector-class-prefix + '-timeline-dot'}
   box-sizing border-box
   border-radius $border-radius-circle
   border $timeline-line-width solid $timeline-line-color
 
-{$selector-prefix + '-timeline-custom'}
+{$selector-class-prefix + '-timeline-custom'}
   text-align center
 
-  > {$selector-prefix + '-icon'}
+  > {$selector-class-prefix + '-icon'}
     vertical-align top
 
-{$selector-prefix + '-timeline-content'}
+{$selector-class-prefix + '-timeline-content'}
 
   position relative
   top $timeline-content-top
@@ -61,7 +61,7 @@ $timeline-content-padding-left = 24px
     font-size $font-size-default
     line-height $ui-multiple-line-height
 
-{$selector-prefix + '-timeline-pending'}
-  {$selector-prefix + '-timeline-item'}
+{$selector-class-prefix + '-timeline-pending'}
+  {$selector-class-prefix + '-timeline-item'}
     &:nth-last-of-type(2):before
       border-left-style dotted

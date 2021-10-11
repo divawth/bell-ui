@@ -13,16 +13,16 @@ $article-blockquote-border-width = 4px
 $article-blockquote-padding-vertical = 12px
 $article-blockquote-padding-horizontal = 18px
 
-{$selector-prefix + '-article'}
+{$selector-class-prefix + '-article'}
   img
     max-width 100%
 
-{$selector-prefix + '-article-title'}
+{$selector-class-prefix + '-article-title'}
   color: $brand-title
   line-height 1.5
   font-size $article-title-font-size
 
-{$selector-prefix + '-article-link'}
+{$selector-class-prefix + '-article-link'}
   color $brand-link
   font-size $font-size-large
   margin-left $article-title-link-gap
@@ -33,16 +33,16 @@ $article-blockquote-padding-horizontal = 18px
   &:hover
     color $brand-link-hover
 
-{$selector-prefix + '-article-sub-title'}
+{$selector-class-prefix + '-article-sub-title'}
   color $brand-muted
   font-size $font-size-large
   line-height 1.8
   margin-top $article-title-sub-title-gap
 
-  + {$selector-prefix + '-article-content'}
+  + {$selector-class-prefix + '-article-content'}
     margin-top $article-title-content-gap
 
-{$selector-prefix + '-article-cover'}
+{$selector-class-prefix + '-article-cover'}
   margin $article-title-content-gap 0
   text-align center
 
@@ -50,10 +50,10 @@ $article-blockquote-padding-horizontal = 18px
     border-radius $article-cover-border-radius
     vertical-align top
 
-  + {$selector-prefix + '-article-content'}
+  + {$selector-class-prefix + '-article-content'}
     margin-top $article-title-content-gap
 
-{$selector-prefix + '-article-content'}
+{$selector-class-prefix + '-article-content'}
 
   font-size $font-size-large
   line-height 1.9
@@ -74,7 +74,7 @@ $article-blockquote-padding-horizontal = 18px
     margin $article-paragraph-gap + 4 0
     background-color $brand-bg-light
 
-{$selector-prefix + '-article-signature'}
+{$selector-class-prefix + '-article-signature'}
   color $brand-muted
   font-size $font-size-default
   margin-top $article-title-content-gap

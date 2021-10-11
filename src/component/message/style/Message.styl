@@ -8,10 +8,10 @@ $message-close-icon-right = 12px
 $message-close-icon-top = 12px
 
 message-brand-style(style)
-  > {$selector-prefix + '-message-icon'}
+  > {$selector-class-prefix + '-message-icon'}
     ui-set('color', style['color'])
 
-{$selector-prefix + '-message'}
+{$selector-class-prefix + '-message'}
   position fixed
   top 0
   left 50%
@@ -35,24 +35,24 @@ message-brand-style(style)
     each: message-brand-style
   )
 
-{$selector-prefix + '-message-with-close'}
+{$selector-class-prefix + '-message-with-close'}
   padding-right $message-close-icon-right + $close-icon-size + $ui-icon-text-gap
 
-{$selector-prefix + '-message-visible'}
+{$selector-class-prefix + '-message-visible'}
   opacity 1
 
-{$selector-prefix + '-message-center'}
+{$selector-class-prefix + '-message-center'}
   text-align center
 
-{$selector-prefix + '-message-icon'}
+{$selector-class-prefix + '-message-icon'}
   font-size $message-icon-size
   margin-right $ui-icon-text-gap
   vertical-align middle
 
-{$selector-prefix + '-message-text'}
+{$selector-class-prefix + '-message-text'}
   vertical-align middle
 
-{$selector-prefix + '-message-close'}
+{$selector-class-prefix + '-message-close'}
   position absolute
   right $message-close-icon-right
   top $message-close-icon-top

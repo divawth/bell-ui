@@ -57,13 +57,13 @@ tag-size-style(style)
   ui-set('line-height', style['height'] - 2)
   ui-set('padding', 0 style['padding-horizontal'])
 
-  &{$selector-prefix + '-tag-pure'}
+  &{$selector-class-prefix + '-tag-pure'}
     ui-set('line-height', style['height'])
 
-  &{$selector-prefix + '-tag-closable'}
+  &{$selector-class-prefix + '-tag-closable'}
     ui-set('padding-right', style['close-width'])
 
-  > {$selector-prefix + '-tag-close-icon'}
+  > {$selector-class-prefix + '-tag-close-icon'}
     ui-set('width', style['close-width'])
 
 tag-brand-style(style)
@@ -71,18 +71,18 @@ tag-brand-style(style)
   ui-set('border-color', style['border-color'])
   ui-set('color', style['color'])
 
-  > {$selector-prefix + '-tag-close-icon'}
+  > {$selector-class-prefix + '-tag-close-icon'}
     ui-set('color', style['color'])
 
-  &{$selector-prefix + '-tag-checked'}
+  &{$selector-class-prefix + '-tag-checked'}
     ui-set('background-color', style['color'])
     ui-set('border-color', style['color'])
     ui-set('color', style['text-color'])
 
-    > {$selector-prefix + '-tag-close-icon'}
+    > {$selector-class-prefix + '-tag-close-icon'}
       ui-set('color', style['text-color'])
 
-{$selector-prefix + '-tag'}
+{$selector-class-prefix + '-tag'}
   display inline-block
   position relative
   border 1px solid $brand-border
@@ -93,14 +93,14 @@ tag-brand-style(style)
   box-sizing border-box
   transition background-color .3s, border-color .3s, color .3s
 
-{$selector-prefix + '-tag-checked'}
+{$selector-class-prefix + '-tag-checked'}
   background-color $brand-border
 
-{$selector-prefix + '-tag-checkable'}
+{$selector-class-prefix + '-tag-checkable'}
   user-select none
   ui-clickable()
 
-{$selector-prefix + '-tag-close-icon'}
+{$selector-class-prefix + '-tag-close-icon'}
   position absolute
   top 0
   right 0
@@ -116,7 +116,7 @@ tag-brand-style(style)
     color $brand-close-color-hover
 
 // 放在最后，避免被覆盖
-{$selector-prefix + '-tag'}
+{$selector-class-prefix + '-tag'}
   ui-connect(
     hash: $tag-size-hash,
     each: tag-size-style
@@ -126,11 +126,11 @@ tag-brand-style(style)
     each: tag-brand-style
   )
 
-{$selector-prefix + '-tag-pure'}
+{$selector-class-prefix + '-tag-pure'}
   border 0
   background-color transparent
   color $brand-white
 
-  > {$selector-prefix + '-tag-close-icon'},
-  > {$selector-prefix + '-tag-close-icon'}:hover
+  > {$selector-class-prefix + '-tag-close-icon'},
+  > {$selector-class-prefix + '-tag-close-icon'}:hover
     color inherit

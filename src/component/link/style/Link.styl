@@ -34,7 +34,7 @@ link-size-style(size)
   ui-set('font-size', size['font-size'])
   ui-set('line-height', size['line-height'])
 
-{$selector-prefix + '-link'}
+{$selector-class-prefix + '-link'}
   text-decoration none
   ui-clickable()
   ui-connect(
@@ -46,10 +46,10 @@ link-size-style(size)
     each: link-brand-style
   )
 
-{$selector-prefix + '-link-underline'}
+{$selector-class-prefix + '-link-underline'}
   text-decoration underline
 
-{$selector-prefix + '-link-disabled'},
-{$selector-prefix + '-link-disabled'}:hover
+{$selector-class-prefix + '-link-disabled'},
+{$selector-class-prefix + '-link-disabled'}:hover
   color $brand-disabled
   ui-disabled()

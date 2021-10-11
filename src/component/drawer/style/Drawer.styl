@@ -7,7 +7,7 @@ $drawer-body-padding-vertical = 16px
 $drawer-close-font-size = 20px
 $drawer-close-size = 18px
 
-{$selector-prefix + '-drawer'}
+{$selector-class-prefix + '-drawer'}
   position fixed
   left 0
   right 0
@@ -16,20 +16,20 @@ $drawer-close-size = 18px
   display none
   z-index $zindex-drawer
 
-{$selector-prefix + '-drawer-visible'}
+{$selector-class-prefix + '-drawer-visible'}
   display block
 
-{$selector-prefix + '-drawer-fade'}
-  > {$selector-prefix + '-drawer-mask'}
+{$selector-class-prefix + '-drawer-fade'}
+  > {$selector-class-prefix + '-drawer-mask'}
     opacity $ui-opacity-mask
 
-{$selector-prefix + '-drawer-wrapper'}
+{$selector-class-prefix + '-drawer-wrapper'}
   position absolute
   background-color $brand-bg
   box-shadow $brand-dialog-shadow
   transition transform .3s
 
-{$selector-prefix + '-drawer-header'}
+{$selector-class-prefix + '-drawer-header'}
   ui-ellipsis()
   color $brand-title
   font-size $font-size-large
@@ -38,7 +38,7 @@ $drawer-close-size = 18px
   padding $drawer-header-padding-vertical $drawer-padding-horizontal
   border-bottom 1px solid $brand-border
 
-{$selector-prefix + '-drawer-body'}
+{$selector-class-prefix + '-drawer-body'}
   padding $drawer-body-padding-vertical $drawer-padding-horizontal
   color $brand-content
   font-size $font-size-default
@@ -49,7 +49,7 @@ $drawer-close-size = 18px
   height calc(100% - 50px)
   ui-scrollbar()
 
-{$selector-prefix + '-drawer-close'}
+{$selector-class-prefix + '-drawer-close'}
   position absolute
   right $drawer-padding-horizontal
   top $drawer-header-padding-vertical
@@ -65,7 +65,7 @@ $drawer-close-size = 18px
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-drawer-mask'}
+{$selector-class-prefix + '-drawer-mask'}
   position absolute
   left 0
   right 0
@@ -77,52 +77,52 @@ $drawer-close-size = 18px
 
 
 
-{$selector-prefix + '-drawer-left'}
-  > {$selector-prefix + '-drawer-wrapper'}
+{$selector-class-prefix + '-drawer-left'}
+  > {$selector-class-prefix + '-drawer-wrapper'}
     transform translate(-100%)
     left 0
     top 0
     bottom 0
 
-  &{$selector-prefix + '-drawer-fade'}
-    > {$selector-prefix + '-drawer-wrapper'}
+  &{$selector-class-prefix + '-drawer-fade'}
+    > {$selector-class-prefix + '-drawer-wrapper'}
       transform translate(0)
 
 
-{$selector-prefix + '-drawer-right'}
+{$selector-class-prefix + '-drawer-right'}
 
-  > {$selector-prefix + '-drawer-wrapper'}
+  > {$selector-class-prefix + '-drawer-wrapper'}
     transform translate(100%)
     right 0
     top 0
     bottom 0
 
-  &{$selector-prefix + '-drawer-fade'}
-    > {$selector-prefix + '-drawer-wrapper'}
+  &{$selector-class-prefix + '-drawer-fade'}
+    > {$selector-class-prefix + '-drawer-wrapper'}
       transform translate(0)
 
 
-{$selector-prefix + '-drawer-top'}
+{$selector-class-prefix + '-drawer-top'}
 
-  > {$selector-prefix + '-drawer-wrapper'}
+  > {$selector-class-prefix + '-drawer-wrapper'}
     transform translateY(-100%)
     top 0
     left 0
     right 0
 
-  &{$selector-prefix + '-drawer-fade'}
-    > {$selector-prefix + '-drawer-wrapper'}
+  &{$selector-class-prefix + '-drawer-fade'}
+    > {$selector-class-prefix + '-drawer-wrapper'}
       transform translate(0)
 
 
-{$selector-prefix + '-drawer-bottom'}
+{$selector-class-prefix + '-drawer-bottom'}
 
-  > {$selector-prefix + '-drawer-wrapper'}
+  > {$selector-class-prefix + '-drawer-wrapper'}
     transform translateY(100%)
     bottom 0
     left 0
     right 0
 
-  &{$selector-prefix + '-drawer-fade'}
-    > {$selector-prefix + '-drawer-wrapper'}
+  &{$selector-class-prefix + '-drawer-fade'}
+    > {$selector-class-prefix + '-drawer-wrapper'}
       transform translate(0)

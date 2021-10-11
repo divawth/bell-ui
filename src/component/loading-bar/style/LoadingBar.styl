@@ -21,7 +21,7 @@ $loadingbar-brand-hash = {
 }
 
 loadingbar-brand-style(style)
-  {$selector-prefix + '-loadingbar-indicator'}
+  {$selector-class-prefix + '-loadingbar-indicator'}
     ui-set('background-color', style['color'])
 
 {$selector-id-prefix + '-loadingbar-wrapper'}
@@ -31,14 +31,14 @@ loadingbar-brand-style(style)
   top 0
   z-index $zindex-loadingbar
 
-{$selector-prefix + '-loadingbar'}
+{$selector-class-prefix + '-loadingbar'}
   background-color $loadingbar-bg-color
   ui-connect(
     hash: $loadingbar-brand-hash,
     each: loadingbar-brand-style
   )
 
-{$selector-prefix + '-loadingbar-indicator'}
+{$selector-class-prefix + '-loadingbar-indicator'}
   // 给一个足够大的值，使得右侧是半圆
   border-top-right-radius 50px
   border-bottom-right-radius 50px

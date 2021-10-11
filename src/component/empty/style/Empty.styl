@@ -2,7 +2,7 @@
 
 $empty-icon-content-gap = 10px
 
-{$selector-prefix + '-empty'}
+{$selector-class-prefix + '-empty'}
   color $brand-muted
   font-size $font-size-default
   text-align center
@@ -13,15 +13,15 @@ $empty-icon-content-gap = 10px
     url('~@component/empty/image/empty-default@2x.png') 2x
   )
 
-{$selector-prefix + '-empty-with-content'}
+{$selector-class-prefix + '-empty-with-content'}
   padding-top 80 + $empty-icon-content-gap
 
-{$selector-prefix + '-empty-simple'}
+{$selector-class-prefix + '-empty-simple'}
   padding-top 41px
   background-image url('~@component/empty/image/empty-simple.png')
   background-image -webkit-image-set(
     url('~@component/empty/image/empty-simple@2x.png') 2x
   )
 
-  &{$selector-prefix + '-empty-with-content'}
+  &{$selector-class-prefix + '-empty-with-content'}
     padding-top 41 + $empty-icon-content-gap

@@ -114,11 +114,11 @@ button-size(size)
   ui-set('min-width', size['height'])
   ui-set('padding', 0 size['padding-horizontal'])
 
-  &{$selector-prefix + '-button-text'},
-  &{$selector-prefix + '-button-link'}
+  &{$selector-class-prefix + '-button-text'},
+  &{$selector-class-prefix + '-button-link'}
     ui-set('line-height', size['height'])
 
-  {$selector-prefix + '-button-loading-icon'}
+  {$selector-class-prefix + '-button-loading-icon'}
     ui-set('font-size', size['loading-size'])
 
 button-circle-size(style)
@@ -133,7 +133,7 @@ button-brand-style(style)
   &:before
     border-color $button-group-separator-color
 
-  &{$selector-prefix + '-button-enabled'}
+  &{$selector-class-prefix + '-button-enabled'}
     &:hover
       ui-set('color', style['hover-color'])
       ui-set('border-color', style['hover-border-color'])
@@ -150,11 +150,11 @@ button-brand-style(style)
 
     ui-button-group-separator(style['hover-border-color'], style['active-border-color'])
 
-  &{$selector-prefix + '-button-ghost'}
+  &{$selector-class-prefix + '-button-ghost'}
     ui-set('color', style['border-color'])
     ui-set('border-color', style['border-color'])
 
-    &{$selector-prefix + '-button-enabled'}
+    &{$selector-class-prefix + '-button-enabled'}
       &:hover
         ui-set('color', style['hover-border-color'])
         ui-set('border-color', style['hover-border-color'])
@@ -164,19 +164,19 @@ button-brand-style(style)
         ui-set('border-color', style['active-border-color'])
 
 button-group-size(size)
-  > {$selector-prefix + '-button'}
+  > {$selector-class-prefix + '-button'}
     button-size(size)
 
 ui-button-group-separator(hoverColor, activeColor)
   &:hover:before,
-  &:hover + {$selector-prefix + '-button'}:before
+  &:hover + {$selector-class-prefix + '-button'}:before
     ui-set('border-color', hoverColor)
 
   &:active:before,
-  &:active + {$selector-prefix + '-button'}:before
+  &:active + {$selector-class-prefix + '-button'}:before
     ui-set('border-color', activeColor)
 
-{$selector-prefix + '-button'}
+{$selector-class-prefix + '-button'}
   display inline-block
   text-align center
   user-select none
@@ -204,42 +204,42 @@ ui-button-group-separator(hoverColor, activeColor)
     each: button-brand-style
   )
 
-  &{$selector-prefix + '-button-ghost'}
+  &{$selector-class-prefix + '-button-ghost'}
     color $brand-white
     border-color $brand-white
     background-color transparent !important
     transition color .2s, border-color .2s, box-shadow .2s
 
-  &{$selector-prefix + '-button-text'},
-  &{$selector-prefix + '-button-link'}
+  &{$selector-class-prefix + '-button-text'},
+  &{$selector-class-prefix + '-button-link'}
     border 0
     background-color transparent
 
     &:focus
       box-shadow none
 
-  &{$selector-prefix + '-button-link'}
+  &{$selector-class-prefix + '-button-link'}
     color $brand-primary
 
-  + {$selector-prefix + '-button'}
+  + {$selector-class-prefix + '-button'}
     margin-left $ui-horizontal-gap
 
-  > {$selector-prefix + '-icon'} + span,
-  > span + {$selector-prefix + '-icon'}
+  > {$selector-class-prefix + '-icon'} + span,
+  > span + {$selector-class-prefix + '-icon'}
     margin-left $ui-icon-text-gap
 
-  {$selector-prefix + '-icon'}
+  {$selector-class-prefix + '-icon'}
     line-height inherit
 
-  {$selector-prefix + '-icon'},
+  {$selector-class-prefix + '-icon'},
   > span
     display inline-block
     vertical-align top
 
-{$selector-prefix + '-button-dashed'}
+{$selector-class-prefix + '-button-dashed'}
   border-style dashed
 
-{$selector-prefix + '-button-circle'}
+{$selector-class-prefix + '-button-circle'}
   padding 0
   border-radius $border-radius-circle
   ui-connect(
@@ -247,14 +247,14 @@ ui-button-group-separator(hoverColor, activeColor)
     each: button-circle-size
   )
 
-{$selector-prefix + '-button-round'}
+{$selector-class-prefix + '-button-round'}
   border-radius $border-radius-round
 
-{$selector-prefix + '-button-enabled'}
+{$selector-class-prefix + '-button-enabled'}
   ui-clickable()
   ui-button-group-separator($brand-primary, $brand-primary)
 
-  &{$selector-prefix + '-button-link'}:hover
+  &{$selector-class-prefix + '-button-link'}:hover
     color $brand-primary-hover
 
   &:hover,
@@ -266,48 +266,48 @@ ui-button-group-separator(hoverColor, activeColor)
     &:focus
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
-{$selector-prefix + '-button-disabled'}
+{$selector-class-prefix + '-button-disabled'}
   border-color $brand-border
   background-color $brand-bg-disabled
   color $brand-disabled
   ui-disabled()
 
-  &{$selector-prefix + '-button-text'},
-  &{$selector-prefix + '-button-link'}
+  &{$selector-class-prefix + '-button-text'},
+  &{$selector-class-prefix + '-button-link'}
     color $brand-disabled
 
-  &{$selector-prefix + '-button-ghost'}
+  &{$selector-class-prefix + '-button-ghost'}
     border-color $brand-border
     color $brand-disabled
 
-{$selector-prefix + '-button-loading'}
+{$selector-class-prefix + '-button-loading'}
   cursor default
   opacity $ui-opacity-disabled
   &:before
     opacity $ui-opacity-disabled
 
-{$selector-prefix + '-button-block'}
+{$selector-class-prefix + '-button-block'}
   ui-block()
 
-  + {$selector-prefix + '-button-block'}
+  + {$selector-class-prefix + '-button-block'}
     margin-left 0
     margin-top $ui-vertical-gap
 
-{$selector-prefix + '-button-group'}
+{$selector-class-prefix + '-button-group'}
   display inline-block
   ui-connect(
     hash: $button-size-hash,
     each: button-group-size
   )
 
-  {$selector-prefix + '-button-dashed'}:before
+  {$selector-class-prefix + '-button-dashed'}:before
     border-style dashed
 
-{$selector-prefix + '-button-group-horizontal'}
-  > {$selector-prefix + '-button'}
+{$selector-class-prefix + '-button-group-horizontal'}
+  > {$selector-class-prefix + '-button'}
     vertical-align top
 
-    + {$selector-prefix + '-button'}
+    + {$selector-class-prefix + '-button'}
       margin-left 0
       border-left none
 
@@ -322,7 +322,7 @@ ui-button-group-separator(hoverColor, activeColor)
     &:not(:first-child):not(:last-child)
       border-radius 0
 
-  > {$selector-prefix + '-button-enabled'}
+  > {$selector-class-prefix + '-button-enabled'}
     position relative
     &:before
       content ''
@@ -344,12 +344,12 @@ ui-button-group-separator(hoverColor, activeColor)
     &:active
       z-index $zindex-normal
 
-{$selector-prefix + '-button-group-vertical'}
-  > {$selector-prefix + '-button'}
+{$selector-class-prefix + '-button-group-vertical'}
+  > {$selector-class-prefix + '-button'}
     display block
     width 100%
 
-    + {$selector-prefix + '-button'}
+    + {$selector-class-prefix + '-button'}
       margin-left 0px
       border-top none
 
@@ -364,7 +364,7 @@ ui-button-group-separator(hoverColor, activeColor)
     &:not(:first-child):not(:last-child)
       border-radius 0
 
-  > {$selector-prefix + '-button-enabled'}
+  > {$selector-class-prefix + '-button-enabled'}
     position relative
     &:before
       content ' '
@@ -386,8 +386,8 @@ ui-button-group-separator(hoverColor, activeColor)
     &:active
       z-index $zindex-normal
 
-{$selector-prefix + '-button-group-round'}
-  > {$selector-prefix + '-button'}
+{$selector-class-prefix + '-button-group-round'}
+  > {$selector-class-prefix + '-button'}
 
     &:first-child:not(:last-child)
       border-top-left-radius $border-radius-round

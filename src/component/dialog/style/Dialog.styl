@@ -13,7 +13,7 @@ $dialog-footer-padding-horizontal = 16px
 $dialog-close-font-size = 20px
 $dialog-close-size = 18px
 
-{$selector-prefix + '-dialog'}
+{$selector-class-prefix + '-dialog'}
   position fixed
   top 0
   right 0
@@ -22,18 +22,18 @@ $dialog-close-size = 18px
   display none
   z-index $zindex-dialog
 
-{$selector-prefix + '-dialog-visible'}
+{$selector-class-prefix + '-dialog-visible'}
   display block
 
-{$selector-prefix + '-dialog-fade'}
-  > {$selector-prefix + '-dialog-wrapper'}
+{$selector-class-prefix + '-dialog-fade'}
+  > {$selector-class-prefix + '-dialog-wrapper'}
     margin-top 0
     opacity 1
 
-  > {$selector-prefix + '-dialog-mask'}
+  > {$selector-class-prefix + '-dialog-mask'}
     opacity $ui-opacity-mask
 
-{$selector-prefix + '-dialog-mask'}
+{$selector-class-prefix + '-dialog-mask'}
   position absolute
   top 0
   right 0
@@ -45,7 +45,7 @@ $dialog-close-size = 18px
   background-color #000
   transition opacity .2s
 
-{$selector-prefix + '-dialog-wrapper'}
+{$selector-class-prefix + '-dialog-wrapper'}
   max-height 100%
   overflow hidden
   position absolute
@@ -62,7 +62,7 @@ $dialog-close-size = 18px
   transition margin-top .6s cubic-bezier(.23,1,.32,1),
               opacity .6s cubic-bezier(.23,1,.32,1)
 
-{$selector-prefix + '-dialog-header'}
+{$selector-class-prefix + '-dialog-header'}
   ui-ellipsis()
   color $brand-title
   font-size $font-size-large
@@ -71,7 +71,7 @@ $dialog-close-size = 18px
   padding $dialog-header-padding-vertical $dialog-padding-horizontal
   border-bottom 1px solid $brand-divider
 
-{$selector-prefix + '-dialog-close'}
+{$selector-class-prefix + '-dialog-close'}
   position absolute
   right $dialog-padding-horizontal
   top $dialog-header-padding-vertical
@@ -87,12 +87,12 @@ $dialog-close-size = 18px
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-dialog-body'}
+{$selector-class-prefix + '-dialog-body'}
   font-size $font-size-default
   line-height $ui-multiple-line-height
   padding $dialog-body-padding-vertical $dialog-padding-horizontal
 
-{$selector-prefix + '-dialog-footer'}
+{$selector-class-prefix + '-dialog-footer'}
   border-top 1px solid $brand-divider
   text-align right
   padding $dialog-footer-padding-vertical $dialog-footer-padding-horizontal

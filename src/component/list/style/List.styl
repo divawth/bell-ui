@@ -21,14 +21,14 @@ $list-size-hash = {
 }
 
 list-size-style(size)
-  {$selector-prefix + '-list-header'}
+  {$selector-class-prefix + '-list-header'}
     ui-set('padding', size['header-padding'])
 
-  {$selector-prefix + '-list-item'}
+  {$selector-class-prefix + '-list-item'}
     ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
 
 
-{$selector-prefix + '-list'}
+{$selector-class-prefix + '-list'}
   color $brand-content
   font-size $font-size-default
   line-height $ui-multiple-line-height
@@ -41,25 +41,25 @@ list-size-style(size)
   )
   ui-scrollbar()
 
-{$selector-prefix + '-list-empty'}
+{$selector-class-prefix + '-list-empty'}
   padding $list-empty-padding-vertical 0
 
-{$selector-prefix + '-list-header'}
+{$selector-class-prefix + '-list-header'}
   color $brand-title
   font-size $font-size-default
 
-{$selector-prefix + '-list-item'}
+{$selector-class-prefix + '-list-item'}
   position relative
   border-top 1px solid $brand-border
 
   &:first-child
     border-top 0
 
-  > {$selector-prefix + '-avatar'}
+  > {$selector-class-prefix + '-avatar'}
     vertical-align middle
     margin-right $ui-horizontal-gap
 
-{$selector-prefix + '-list-item-clickable'}
+{$selector-class-prefix + '-list-item-clickable'}
   user-select none
   transition background-color .3s
   ui-clickable()
@@ -67,10 +67,10 @@ list-size-style(size)
   &:hover
     background-color $brand-bg-hover
 
-{$selector-prefix + '-list-bordered'}
+{$selector-class-prefix + '-list-bordered'}
   border 1px solid $brand-border
   border-radius $border-radius-default
 
-  > {$selector-prefix + '-list-header'}
+  > {$selector-class-prefix + '-list-header'}
     background-color $brand-bg-light
     border-bottom 1px solid $brand-border

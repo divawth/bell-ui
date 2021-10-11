@@ -21,12 +21,12 @@ $radio-button-size-hash = {
 }
 
 radio-button-brand-style(color)
-  > {$selector-prefix + '-radio-enabled'}
+  > {$selector-class-prefix + '-radio-enabled'}
 
     &:hover
       ui-set('color', color)
 
-    &{$selector-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-active'}
       ui-set('border-color', color)
       ui-set('background-color', color)
 
@@ -34,22 +34,22 @@ radio-button-brand-style(color)
         ui-set('background-color', color)
 
 radio-button-size-style(size)
-  > {$selector-prefix + '-radio'}
+  > {$selector-class-prefix + '-radio'}
     ui-set('font-size', size['font-size'])
     ui-set('height', size['height'])
     ui-set('line-height', size['height'] - 2)
     ui-set('min-width', size['height'])
     ui-set('padding', 0 size['padding-horizontal'])
 
-{$selector-prefix + '-radio'}
+{$selector-class-prefix + '-radio'}
   display inline-block
   user-select none
   box-sizing border-box
 
-  + {$selector-prefix + '-radio'}
+  + {$selector-class-prefix + '-radio'}
     margin-left $radio-gap-horizontal
 
-{$selector-prefix + '-radio-with-label'}
+{$selector-class-prefix + '-radio-with-label'}
   position relative
   color $brand-content
   font-size $font-size-default
@@ -58,18 +58,18 @@ radio-button-size-style(size)
   padding-left $font-size-default + $ui-icon-text-gap
   vertical-align middle
 
-  > {$selector-prefix + '-radio-icon'}
+  > {$selector-class-prefix + '-radio-icon'}
     position absolute
     left 0
     top 50%
     margin-top -0.5 * $font-size-default
 
-{$selector-prefix + '-radio-active'}
-  > {$selector-prefix + '-radio-icon'}:after
+{$selector-class-prefix + '-radio-active'}
+  > {$selector-class-prefix + '-radio-icon'}:after
     opacity 1
     transform scale(1)
 
-{$selector-prefix + '-radio-icon'}
+{$selector-class-prefix + '-radio-icon'}
   display inline-block
   position relative
   width $font-size-default
@@ -101,62 +101,62 @@ radio-button-size-style(size)
     transition transform .2s, opacity .2s
 
 
-{$selector-prefix + '-radio-input'}
+{$selector-class-prefix + '-radio-input'}
   position absolute
   opacity 0
 
-{$selector-prefix + '-radio-enabled'},
-{$selector-prefix + '-radio-enabled'} input
+{$selector-class-prefix + '-radio-enabled'},
+{$selector-class-prefix + '-radio-enabled'} input
   ui-clickable()
 
-{$selector-prefix + '-radio-disabled'},
-{$selector-prefix + '-radio-disabled'} input
+{$selector-class-prefix + '-radio-disabled'},
+{$selector-class-prefix + '-radio-disabled'} input
   ui-disabled()
 
-{$selector-prefix + '-radio-enabled'}:hover,
-{$selector-prefix + '-radio-active'}
-  > {$selector-prefix + '-radio-icon'}
+{$selector-class-prefix + '-radio-enabled'}:hover,
+{$selector-class-prefix + '-radio-active'}
+  > {$selector-class-prefix + '-radio-icon'}
     border-color $brand-primary
 
-{$selector-prefix + '-radio-enabled'}
-  > {$selector-prefix + '-radio-icon'}:after
+{$selector-class-prefix + '-radio-enabled'}
+  > {$selector-class-prefix + '-radio-icon'}:after
     background-color $brand-primary
 
-{$selector-prefix + '-radio-disabled'}
+{$selector-class-prefix + '-radio-disabled'}
   color $brand-disabled
 
-  > {$selector-prefix + '-radio-icon'}
+  > {$selector-class-prefix + '-radio-icon'}
     border-color $brand-border
 
     &:after
       background-color $brand-disabled
 
 if $ui-shadow-radius > 0
-  &{$selector-prefix + '-radio-focus'}
-    > {$selector-prefix + '-radio-icon'}
+  &{$selector-class-prefix + '-radio-focus'}
+    > {$selector-class-prefix + '-radio-icon'}
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
-{$selector-prefix + '-radio-vertical'}
-  > {$selector-prefix + '-radio'}
+{$selector-class-prefix + '-radio-vertical'}
+  > {$selector-class-prefix + '-radio'}
     ui-block()
 
-    + {$selector-prefix + '-radio'}
+    + {$selector-class-prefix + '-radio'}
       margin-left 0
       margin-top $ui-vertical-gap
 
-{$selector-prefix + '-radio-group'}
+{$selector-class-prefix + '-radio-group'}
   display inline-block
 
-{$selector-prefix + '-radio-button'}
+{$selector-class-prefix + '-radio-button'}
   display inline-block
 
-  + {$selector-prefix + '-radio-button'}
+  + {$selector-class-prefix + '-radio-button'}
     margin-left $ui-horizontal-gap
 
-  {$selector-prefix + '-radio-icon'}
+  {$selector-class-prefix + '-radio-icon'}
     display none
 
-  > {$selector-prefix + '-radio'}
+  > {$selector-class-prefix + '-radio'}
     border 1px solid $brand-border
     background-color $brand-bg
     color $brand-content
@@ -170,19 +170,19 @@ if $ui-shadow-radius > 0
       border-top-right-radius $border-radius-default
       border-bottom-right-radius $border-radius-default
 
-    + {$selector-prefix + '-radio'}
+    + {$selector-class-prefix + '-radio'}
       margin-left 0
       border-left none
 
-  > {$selector-prefix + '-radio-disabled'}
+  > {$selector-class-prefix + '-radio-disabled'}
     border-color $brand-border
     background-color $brand-bg-disabled
     color $brand-disabled
 
-    &{$selector-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-active'}
       background-color $brand-bg-checked-disabled
 
-  > {$selector-prefix + '-radio-enabled'}
+  > {$selector-class-prefix + '-radio-enabled'}
 
     &:before
       content ''
@@ -196,11 +196,11 @@ if $ui-shadow-radius > 0
     &:first-child:before
       content none
 
-    &{$selector-prefix + '-radio-active'},
-    &{$selector-prefix + '-radio-active'}:hover
+    &{$selector-class-prefix + '-radio-active'},
+    &{$selector-class-prefix + '-radio-active'}:hover
       color $brand-white
 
-    &{$selector-prefix + '-radio-active'}
+    &{$selector-class-prefix + '-radio-active'}
       z-index $zindex-normal
 
   radio-button-brand-style($brand-primary)

@@ -10,42 +10,42 @@ $page-header-back-title-gap = 10px
 $page-header-title-tags-gap = 12px
 $page-header-header-body-gap = 16px
 
-{$selector-prefix + '-page-header'}
+{$selector-class-prefix + '-page-header'}
   padding $page-header-padding-vertical $layout-padding-horizontal
 
-  > {$selector-prefix + '-breadcrumb'}
+  > {$selector-class-prefix + '-breadcrumb'}
     margin-bottom $page-header-breadcrumb-header-gap
 
-{$selector-prefix + '-page-header-with-back'},
-{$selector-prefix + '-page-header-with-tags'},
-{$selector-prefix + '-page-header-with-extra'}
-  {$selector-prefix + '-page-header-header'}
+{$selector-class-prefix + '-page-header-with-back'},
+{$selector-class-prefix + '-page-header-with-tags'},
+{$selector-class-prefix + '-page-header-with-extra'}
+  {$selector-class-prefix + '-page-header-header'}
     display table
 
-  {$selector-prefix + '-page-header-back'},
-  {$selector-prefix + '-page-header-title'},
-  {$selector-prefix + '-page-header-tags'},
-  {$selector-prefix + '-page-header-extra'}
+  {$selector-class-prefix + '-page-header-back'},
+  {$selector-class-prefix + '-page-header-title'},
+  {$selector-class-prefix + '-page-header-tags'},
+  {$selector-class-prefix + '-page-header-extra'}
     display table-cell
     vertical-align middle
     white-space nowrap
 
-{$selector-prefix + '-page-header-with-back'},
-{$selector-prefix + '-page-header-with-extra'}
-  {$selector-prefix + '-page-header-title'}
+{$selector-class-prefix + '-page-header-with-back'},
+{$selector-class-prefix + '-page-header-with-extra'}
+  {$selector-class-prefix + '-page-header-title'}
     width 100%
 
-{$selector-prefix + '-page-header-with-tags'}
-  {$selector-prefix + '-page-header-title'}
+{$selector-class-prefix + '-page-header-with-tags'}
+  {$selector-class-prefix + '-page-header-title'}
     width 1px
 
-{$selector-prefix + '-page-header-title'}
+{$selector-class-prefix + '-page-header-title'}
   color $brand-title
   font-size $page-header-title-font-size
   font-weight 500
   line-height $ui-single-line-height
 
-{$selector-prefix + '-page-header-back'}
+{$selector-class-prefix + '-page-header-back'}
   ui-clickable()
 
   color $brand-title
@@ -60,13 +60,13 @@ $page-header-header-body-gap = 16px
   &:hover
     color $brand-primary
 
-{$selector-prefix + '-page-header-tags'}
+{$selector-class-prefix + '-page-header-tags'}
   width 100%
   padding-left $page-header-title-tags-gap
 
-{$selector-prefix + '-page-header-back'},
-{$selector-prefix + '-page-header-extra'}
+{$selector-class-prefix + '-page-header-back'},
+{$selector-class-prefix + '-page-header-extra'}
   width 1px
 
-{$selector-prefix + '-page-header-body'}
+{$selector-class-prefix + '-page-header-body'}
   margin-top $page-header-header-body-gap

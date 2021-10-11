@@ -43,10 +43,10 @@ alert-brand-style(style)
   ui-set('border-color', style['border-color'])
   ui-set('background-color', style['bg-color'])
 
-  {$selector-prefix + '-alert-status-icon'}
+  {$selector-class-prefix + '-alert-status-icon'}
     ui-set('color', style['color'])
 
-{$selector-prefix + '-alert'}
+{$selector-class-prefix + '-alert'}
   border 1px solid
   position relative
   box-sizing border-box
@@ -60,44 +60,44 @@ alert-brand-style(style)
     each: alert-brand-style
   )
 
-{$selector-prefix + '-alert-banner'}
+{$selector-class-prefix + '-alert-banner'}
   border 0
   border-radius 0
 
-{$selector-prefix + '-alert-center'}
+{$selector-class-prefix + '-alert-center'}
   text-align center
 
-{$selector-prefix + '-alert-status-icon'}
+{$selector-class-prefix + '-alert-status-icon'}
   position absolute
   left $alert-padding-horizontal
   top $alert-padding-vertical + $alert-status-icon-top
   font-size $alert-status-icon-size
 
-{$selector-prefix + '-alert-with-title'}
-  > {$selector-prefix + '-alert-status-icon'}
+{$selector-class-prefix + '-alert-with-title'}
+  > {$selector-class-prefix + '-alert-status-icon'}
     top $alert-padding-vertical + $alert-status-icon-top-with-title
     font-size $alert-status-icon-size-with-title
 
-{$selector-prefix + '-alert-with-icon'}
+{$selector-class-prefix + '-alert-with-icon'}
   padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-status-icon-gap
 
-  &{$selector-prefix + '-alert-with-title'}
+  &{$selector-class-prefix + '-alert-with-title'}
     padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-status-icon-gap-with-title
 
-{$selector-prefix + '-alert-title'}
+{$selector-class-prefix + '-alert-title'}
   white-space nowrap
   color $brand-title
   font-size $font-size-default
 
-  + {$selector-prefix + '-alert-content'}
+  + {$selector-class-prefix + '-alert-content'}
     font-size $font-size-small
     margin-top $alert-title-content-gap
 
-{$selector-prefix + '-alert-content'}
+{$selector-class-prefix + '-alert-content'}
   color $brand-content
   font-size $font-size-default
 
-{$selector-prefix + '-alert-close'}
+{$selector-class-prefix + '-alert-close'}
   position absolute
   right $alert-padding-horizontal
   top $alert-padding-vertical
@@ -117,7 +117,7 @@ alert-brand-style(style)
   &:hover
     color $brand-primary-hover
 
-{$selector-prefix + '-alert-close-icon'}
+{$selector-class-prefix + '-alert-close-icon'}
   position absolute
   left 50%
   top 50%
@@ -129,10 +129,10 @@ alert-brand-style(style)
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-alert-with-close'}
-  {$selector-prefix + '-alert-title'},
-  {$selector-prefix + '-alert-content'}
+{$selector-class-prefix + '-alert-with-close'}
+  {$selector-class-prefix + '-alert-title'},
+  {$selector-class-prefix + '-alert-content'}
     margin-right $close-icon-size + $ui-icon-text-gap
 
-  {$selector-prefix + '-alert-title'} + {$selector-prefix + '-alert-content'}
+  {$selector-class-prefix + '-alert-title'} + {$selector-class-prefix + '-alert-content'}
     margin-right 0

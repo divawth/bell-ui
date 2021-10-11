@@ -15,32 +15,32 @@ $time-picker-footer-padding = 9px 12px
 // 从 select 拷来的
 time-picker-size-style(size)
 
-  {$selector-prefix + '-time-picker-value'},
-  {$selector-prefix + '-time-picker-placeholder'}
+  {$selector-class-prefix + '-time-picker-value'},
+  {$selector-class-prefix + '-time-picker-placeholder'}
     ui-set('font-size', size['font-size'])
     ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['icon-right'] + $time-picker-icon-size)
 
-  {$selector-prefix + '-time-picker-time-icon'},
-  {$selector-prefix + '-time-picker-clear-icon'}
+  {$selector-class-prefix + '-time-picker-time-icon'},
+  {$selector-class-prefix + '-time-picker-clear-icon'}
     ui-set('right', size['icon-right'])
 
 time-picker-brand-style(style)
-  &{$selector-prefix + '-time-picker-enabled'}
+  &{$selector-class-prefix + '-time-picker-enabled'}
     ui-set('border-color', style['color'])
 
     &:hover
       ui-set('border-color', style['color'])
 
-  &{$selector-prefix + '-time-picker-opened'}
+  &{$selector-class-prefix + '-time-picker-opened'}
     ui-set('border-color', style['color'])
 
     if $ui-shadow-radius > 0
       box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-{$selector-prefix + '-time-picker'}
+{$selector-class-prefix + '-time-picker'}
   display inline-block
 
   ui-connect(
@@ -52,24 +52,24 @@ time-picker-brand-style(style)
     each: time-picker-brand-style
   )
 
-{$selector-prefix + '-time-picker-overlay'}
+{$selector-class-prefix + '-time-picker-overlay'}
   padding 0
   background-color $brand-bg
   box-shadow $brand-layer-shadow
 
-{$selector-prefix + '-time-picker-block'}
+{$selector-class-prefix + '-time-picker-block'}
   ui-block()
 
-{$selector-prefix + '-time-picker-panel'}
+{$selector-class-prefix + '-time-picker-panel'}
   display inline-block
   user-select none
 
-{$selector-prefix + '-time-picker-panel-columns'}
+{$selector-class-prefix + '-time-picker-panel-columns'}
   text-align left
   height $time-picker-row-height * $time-picker-row-count
   border-bottom 1px solid $brand-divider
 
-{$selector-prefix + '-time-picker-panel-column'}
+{$selector-class-prefix + '-time-picker-panel-column'}
   display inline-block
   list-style none
   margin 0
@@ -83,7 +83,7 @@ time-picker-brand-style(style)
 
   ui-scrollbar()
 
-  + {$selector-prefix + '-time-picker-panel-column'}
+  + {$selector-class-prefix + '-time-picker-panel-column'}
     border-left 1px solid $brand-divider
 
   &:after
@@ -94,7 +94,7 @@ time-picker-brand-style(style)
   &:hover
     overflow-y auto
 
-{$selector-prefix + '-time-picker-panel-row'}
+{$selector-class-prefix + '-time-picker-panel-row'}
   color $time-picker-row-color
   font-size $time-picker-row-font-size
   height $time-picker-row-height
@@ -107,24 +107,24 @@ time-picker-brand-style(style)
   &:hover
     background-color $brand-bg-hover
 
-{$selector-prefix + '-time-picker-panel-row-active'}
+{$selector-class-prefix + '-time-picker-panel-row-active'}
   background-color $brand-primary-bg
 
-{$selector-prefix + '-time-picker-panel-footer'}
+{$selector-class-prefix + '-time-picker-panel-footer'}
   text-align right
   padding $time-picker-footer-padding
 
 ui-form-button(
-  $selector-prefix + '-time-picker',
-  $selector-prefix + '-time-picker-enabled',
-  $selector-prefix + '-time-picker-disabled',
-  $selector-prefix + '-time-picker-opened',
-  $selector-prefix + '-time-picker-clearable',
+  $selector-class-prefix + '-time-picker',
+  $selector-class-prefix + '-time-picker-enabled',
+  $selector-class-prefix + '-time-picker-disabled',
+  $selector-class-prefix + '-time-picker-opened',
+  $selector-class-prefix + '-time-picker-clearable',
   '',
-  $selector-prefix + '-time-picker-value',
-  $selector-prefix + '-time-picker-placeholder',
-  $selector-prefix + '-time-picker-time-icon',
-  $selector-prefix + '-time-picker-clear-icon',
+  $selector-class-prefix + '-time-picker-value',
+  $selector-class-prefix + '-time-picker-placeholder',
+  $selector-class-prefix + '-time-picker-time-icon',
+  $selector-class-prefix + '-time-picker-clear-icon',
   $time-picker-icon-size,
   $time-picker-icon-size
 )

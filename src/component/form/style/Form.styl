@@ -6,29 +6,29 @@ $form-item-label-wrapper-gap = 12px
 $form-item-message-font-size = $ui-font-size - 2
 $form-item-message-line-height = 1.5 * $form-item-message-font-size
 
-{$selector-prefix + '-form'}
+{$selector-class-prefix + '-form'}
   color $brand-content
   text-align left
 
-{$selector-prefix + '-form-label-left'},
-{$selector-prefix + '-form-label-right'}
-  {$selector-prefix + '-form-item-label'}
+{$selector-class-prefix + '-form-label-left'},
+{$selector-class-prefix + '-form-label-right'}
+  {$selector-class-prefix + '-form-item-label'}
     padding-right $form-item-label-wrapper-gap
 
-{$selector-prefix + '-form-label-right'}
-  {$selector-prefix + '-form-item-label'}
+{$selector-class-prefix + '-form-label-right'}
+  {$selector-class-prefix + '-form-item-label'}
     text-align right
 
-{$selector-prefix + '-form-item-align-top'}
+{$selector-class-prefix + '-form-item-align-top'}
   align-items flex-start
 
-{$selector-prefix + '-form-item-align-middle'}
+{$selector-class-prefix + '-form-item-align-middle'}
   align-items center
 
-{$selector-prefix + '-form-item-align-bottom'}
+{$selector-class-prefix + '-form-item-align-bottom'}
   align-items flex-end
 
-{$selector-prefix + '-form-item-label-required'}
+{$selector-class-prefix + '-form-item-label-required'}
   &:before
     content '*'
     font-size 80%
@@ -36,7 +36,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
     color $brand-error
     margin-right $ui-icon-text-gap
 
-{$selector-prefix + '-form-item-label'}
+{$selector-class-prefix + '-form-item-label'}
   display block
   font-size $ui-font-size
   height $height-default
@@ -44,53 +44,53 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   box-sizing border-box
   white-space nowrap
 
-{$selector-prefix + '-form-item-wrapper'}
+{$selector-class-prefix + '-form-item-wrapper'}
   display block
   flex 1
 
-{$selector-prefix + '-form-item-controls'}
+{$selector-class-prefix + '-form-item-controls'}
   display flex
   align-items center
   font-size 0
   min-height $height-default
 
-{$selector-prefix + '-form-item-extra'},
-{$selector-prefix + '-form-item-message'}
+{$selector-class-prefix + '-form-item-extra'},
+{$selector-class-prefix + '-form-item-message'}
   font-size $form-item-message-font-size
   line-height $form-item-message-line-height
   margin 0.5 * ($form-item-vertical-gap - $form-item-message-line-height) 0
 
-{$selector-prefix + '-form-item-extra'}
+{$selector-class-prefix + '-form-item-extra'}
   color $brand-muted
 
-{$selector-prefix + '-form-item-message'}
+{$selector-class-prefix + '-form-item-message'}
   color $brand-error
 
-{$selector-prefix + '-form-inline'}
+{$selector-class-prefix + '-form-inline'}
   display flex
   flex-wrap wrap
   align-items flex-start
   gap $form-item-horizontal-gap
-  {$selector-prefix + '-form-item'}
+  {$selector-class-prefix + '-form-item'}
     display inline-flex
 
-{$selector-prefix + '-form-block'}
-  {$selector-prefix + '-form-item'}
+{$selector-class-prefix + '-form-block'}
+  {$selector-class-prefix + '-form-item'}
     display flex
-    + {$selector-prefix + '-form-item'}
+    + {$selector-class-prefix + '-form-item'}
       margin-top $form-item-vertical-gap
 
-  {$selector-prefix + '-form-item-with-extra'},
-  {$selector-prefix + '-form-item-with-message'}
-    + {$selector-prefix + '-form-item'}
+  {$selector-class-prefix + '-form-item-with-extra'},
+  {$selector-class-prefix + '-form-item-with-message'}
+    + {$selector-class-prefix + '-form-item'}
       margin-top 0
 
-{$selector-prefix + '-form-label-top'}
-  {$selector-prefix + '-form-item'}
+{$selector-class-prefix + '-form-label-top'}
+  {$selector-class-prefix + '-form-item'}
     display block
 
-{$selector-prefix + '-form-colon'}
-  {$selector-prefix + '-form-item-label'}:after
+{$selector-class-prefix + '-form-colon'}
+  {$selector-class-prefix + '-form-item-label'}:after
     content ':'
     position relative
     top -0.5px

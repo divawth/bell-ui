@@ -19,10 +19,10 @@ $description-size-hash = {
 }
 
 description-size-style(size)
-  {$selector-prefix + '-description-cell'}
+  {$selector-class-prefix + '-description-cell'}
     ui-set('padding', size['padding-vertical'] size['padding-horizontal'])
 
-{$selector-prefix + '-description'}
+{$selector-class-prefix + '-description'}
   width 100%
   box-sizing border-box
 
@@ -31,39 +31,39 @@ description-size-style(size)
     each: description-size-style
   )
 
-{$selector-prefix + '-description-header'}
+{$selector-class-prefix + '-description-header'}
   display table
   margin-bottom $description-header-body-gap
 
-{$selector-prefix + '-description-title'},
-{$selector-prefix + '-description-extra'}
+{$selector-class-prefix + '-description-title'},
+{$selector-class-prefix + '-description-extra'}
   display table-cell
   vertical-align middle
   white-space nowrap
 
-{$selector-prefix + '-description-title'}
+{$selector-class-prefix + '-description-title'}
   color $brand-title
   font-size $description-title-font-size
   font-weight 500
   line-height $ui-single-line-height
   width 100%
 
-{$selector-prefix + '-description-table'}
+{$selector-class-prefix + '-description-table'}
   color $brand-title
   font-size $font-size-default
   ui-table()
 
-{$selector-prefix + '-description-simple'}
-  {$selector-prefix + '-description-cell'}
+{$selector-class-prefix + '-description-simple'}
+  {$selector-class-prefix + '-description-cell'}
     padding 0
 
-  {$selector-prefix + '-description-item-label'}:after
+  {$selector-class-prefix + '-description-item-label'}:after
     content ':'
     position relative
     margin 0 $ui-horizontal-gap 0 2px
 
-{$selector-prefix + '-description-bordered'}
-  {$selector-prefix + '-description-table'}
+{$selector-class-prefix + '-description-bordered'}
+  {$selector-class-prefix + '-description-table'}
     border 1px solid $brand-border
 
   tr + tr
@@ -72,19 +72,19 @@ description-size-style(size)
   td + td
     border-left 1px solid $brand-divider
 
-  {$selector-prefix + '-description-item-label'}
+  {$selector-class-prefix + '-description-item-label'}
     background-color $brand-bg-light
 
-{$selector-prefix + '-description-cell'}
+{$selector-class-prefix + '-description-cell'}
   vertical-align top
   line-height $ui-multiple-line-height
 
-{$selector-prefix + '-description-item-wrapper'}
+{$selector-class-prefix + '-description-item-wrapper'}
   display flex
   padding-bottom $description-header-body-gap
 
-{$selector-prefix + '-description-item-label'}
+{$selector-class-prefix + '-description-item-label'}
   white-space nowrap
 
-{$selector-prefix + '-description-item-content'}
+{$selector-class-prefix + '-description-item-content'}
   flex 1

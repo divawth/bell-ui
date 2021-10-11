@@ -7,7 +7,7 @@ $backtop-bg-color = rgba(0,0,0,0.6)
 $backtop-bg-color-legacy = #000
 $backtop-bg-opacity-legacy = 0.6
 
-{$selector-prefix + '-backtop'}
+{$selector-class-prefix + '-backtop'}
   position fixed
   right $layout-padding-horizontal
   bottom $layout-padding-vertical
@@ -26,19 +26,19 @@ $backtop-bg-opacity-legacy = 0.6
 
   background-color $backtop-bg-color
 
-  {$selector-prefix + '-icon'}
+  {$selector-class-prefix + '-icon'}
     color $brand-white
     font-size $backtop-icon-size
     line-height inherit
 
-  &{$selector-prefix + '-backtop-legacy'}
+  &{$selector-class-prefix + '-backtop-legacy'}
     background-color $backtop-bg-color-legacy
     opacity $backtop-bg-opacity-legacy
 
-{$selector-prefix + '-backtop-visible'}
+{$selector-class-prefix + '-backtop-visible'}
   display block
 
-{$selector-prefix + '-backtop-fade'}
+{$selector-class-prefix + '-backtop-fade'}
   opacity 1
 
 

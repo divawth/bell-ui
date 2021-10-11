@@ -10,7 +10,7 @@ $table-body-cell-padding-horizontal = 18px
 $table-empty-padding-vertical = 100px
 $table-row-highlight = #ebf7ff
 
-{$selector-prefix + '-table'}
+{$selector-class-prefix + '-table'}
   width 100%
   box-sizing border-box
   background-color $brand-bg
@@ -25,7 +25,7 @@ $table-row-highlight = #ebf7ff
   > table
     ui-table()
 
-{$selector-prefix + '-table-stripe'}
+{$selector-class-prefix + '-table-stripe'}
   tbody
     > tr:nth-child(2n)
       background-color $brand-bg-light
@@ -34,13 +34,13 @@ $table-row-highlight = #ebf7ff
         background-color $table-row-highlight
 
 
-{$selector-prefix + '-table-bordered'}
+{$selector-class-prefix + '-table-bordered'}
   border 1px solid $brand-border
 
   td + td
     border-left 1px solid $brand-divider
 
-{$selector-prefix + '-table-header'}
+{$selector-class-prefix + '-table-header'}
   border-bottom 1px solid $brand-divider
 
   td
@@ -53,7 +53,7 @@ $table-row-highlight = #ebf7ff
     background-color $brand-bg-light
     padding $table-header-cell-padding-vertical $table-header-cell-padding-horizontal
 
-{$selector-prefix + '-table-body'}
+{$selector-class-prefix + '-table-body'}
 
   tr:hover
     background-color $table-row-highlight
@@ -66,10 +66,10 @@ $table-row-highlight = #ebf7ff
     vertical-align middle
     padding $table-body-cell-padding-vertical $table-body-cell-padding-horizontal
 
-{$selector-prefix + '-table-empty'}
+{$selector-class-prefix + '-table-empty'}
   padding $table-empty-padding-vertical 0
 
-{$selector-prefix + '-table-sorter'}
+{$selector-class-prefix + '-table-sorter'}
   display inline-block
   position relative
   width 16px
@@ -79,27 +79,27 @@ $table-row-highlight = #ebf7ff
   margin-left $ui-icon-text-gap
   ui-clickable()
 
-{$selector-prefix + '-table-sort-asc'},
-{$selector-prefix + '-table-sort-desc'}
+{$selector-class-prefix + '-table-sort-asc'},
+{$selector-class-prefix + '-table-sort-desc'}
   position absolute
   left 0
   color $brand-disabled
   font-size 16px
 
-{$selector-prefix + '-table-sort-asc'}
+{$selector-class-prefix + '-table-sort-asc'}
   top -3px
 
-{$selector-prefix + '-table-sort-desc'}
+{$selector-class-prefix + '-table-sort-desc'}
   bottom -2px
 
-{$selector-prefix + '-table-sort-active'}
+{$selector-class-prefix + '-table-sort-active'}
   color $brand-title
 
-{$selector-prefix + '-table-left'}
+{$selector-class-prefix + '-table-left'}
   text-align left
 
-{$selector-prefix + '-table-center'}
+{$selector-class-prefix + '-table-center'}
   text-align center
 
-{$selector-prefix + '-table-right'}
+{$selector-class-prefix + '-table-right'}
   text-align right

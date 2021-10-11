@@ -27,19 +27,19 @@ $textarea-size-hash = {
 textarea-size-style(style)
   ui-set('font-size', style['font-size'])
 
-  > {$selector-prefix + '-textarea-el'}
+  > {$selector-class-prefix + '-textarea-el'}
     ui-set('font-size', style['font-size'])
     ui-set('padding', style['padding-vertical'] style['padding-horizontal'])
 
-  > {$selector-prefix + '-textarea-el-with-word-count'}
+  > {$selector-class-prefix + '-textarea-el-with-word-count'}
     ui-set('padding-bottom', style['padding-vertical'] + style['font-size'] * $textarea-line-height)
 
-  > {$selector-prefix + '-textarea-word-count'}
+  > {$selector-class-prefix + '-textarea-word-count'}
     ui-set('right', style['padding-horizontal'])
     ui-set('bottom', style['padding-vertical'])
 
 textarea-brand-style(style)
-  > {$selector-prefix + '-textarea-el'}
+  > {$selector-class-prefix + '-textarea-el'}
     ui-set('border-color', style['color'])
 
     &:focus
@@ -47,7 +47,7 @@ textarea-brand-style(style)
       if $ui-shadow-radius > 0
         box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
-{$selector-prefix + '-textarea'}
+{$selector-class-prefix + '-textarea'}
   display inline-block
   box-sizing border-box
   width $ui-form-element-width
@@ -61,27 +61,27 @@ textarea-brand-style(style)
     each: textarea-size-style
   )
 
-{$selector-prefix + '-textarea-block'}
+{$selector-class-prefix + '-textarea-block'}
   ui-block()
 
-{$selector-prefix + '-textarea-resize-horizontal'}
-  {$selector-prefix + '-textarea-el'}
+{$selector-class-prefix + '-textarea-resize-horizontal'}
+  {$selector-class-prefix + '-textarea-el'}
     resize horizontal
 
-{$selector-prefix + '-textarea-resize-vertical'}
-  {$selector-prefix + '-textarea-el'}
+{$selector-class-prefix + '-textarea-resize-vertical'}
+  {$selector-class-prefix + '-textarea-el'}
     resize vertical
 
-{$selector-prefix + '-textarea-el'}
+{$selector-class-prefix + '-textarea-el'}
   resize none
   line-height $textarea-line-height
   ui-input()
   ui-scrollbar()
 
-{$selector-prefix + '-textarea-disabled'}
-  ui-input-disabled($selector-prefix + '-textarea-el')
+{$selector-class-prefix + '-textarea-disabled'}
+  ui-input-disabled($selector-class-prefix + '-textarea-el')
 
-{$selector-prefix + '-textarea-word-count'}
+{$selector-class-prefix + '-textarea-word-count'}
   position absolute
   color $brand-muted
   font-size 85%

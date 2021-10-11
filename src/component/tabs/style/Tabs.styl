@@ -25,36 +25,36 @@ $tabs-bar-size-hash = {
 }
 
 size-size-style(style)
-  {$selector-prefix + '-tabs-tab'}
+  {$selector-class-prefix + '-tabs-tab'}
     ui-set('font-size', style['font-size'])
     ui-set('height', style['height'])
     ui-set('line-height', style['height'])
     ui-set('padding', 0 style['padding-horizontal'])
 
-  &{$selector-prefix + '-tabs-card'} {$selector-prefix + '-tabs-tab'}
+  &{$selector-class-prefix + '-tabs-card'} {$selector-class-prefix + '-tabs-tab'}
     ui-set('line-height', style['height'] - 2)
 
 
-{$selector-prefix + '-tabs'}
+{$selector-class-prefix + '-tabs'}
   ui-connect(
     hash: $tabs-bar-size-hash,
     each: size-size-style
   )
 
-{$selector-prefix + '-tabs-bar'}
+{$selector-class-prefix + '-tabs-bar'}
   border-bottom 1px solid $brand-border
 
-  + {$selector-prefix + '-tabs-content'}
+  + {$selector-class-prefix + '-tabs-content'}
     margin-top $tabs-nav-content-gap
 
-{$selector-prefix + '-tabs-nav'}
+{$selector-class-prefix + '-tabs-nav'}
   margin-bottom -1px
   position relative
   overflow hidden
   white-space nowrap
   user-select none
 
-{$selector-prefix + '-tabs-tab'}
+{$selector-class-prefix + '-tabs-tab'}
   display inline-block
   position relative
   box-sizing border-box
@@ -70,10 +70,10 @@ size-size-style(style)
       height 0
       background-color $brand-primary
 
-{$selector-prefix + '-tabs-tab-icon'}
+{$selector-class-prefix + '-tabs-tab-icon'}
   margin-right $ui-icon-text-gap
 
-{$selector-prefix + '-tabs-tab-close-icon'}
+{$selector-class-prefix + '-tabs-tab-close-icon'}
   color $brand-close-color
   margin-right -6px
   margin-left $ui-icon-text-gap
@@ -86,7 +86,7 @@ size-size-style(style)
   &:hover
     color $brand-close-color-hover
 
-{$selector-prefix + '-tabs-tab-enabled'}
+{$selector-class-prefix + '-tabs-tab-enabled'}
   border-color $brand-border
   color $brand-content
   ui-clickable()
@@ -94,33 +94,33 @@ size-size-style(style)
   &:hover
     color $brand-primary
 
-{$selector-prefix + '-tabs-tab-active'}
+{$selector-class-prefix + '-tabs-tab-active'}
   color $brand-primary
   border-color $brand-primary
 
-  &{$selector-prefix + '-tabs-tab-enabled'}
+  &{$selector-class-prefix + '-tabs-tab-enabled'}
     cursor default
 
   if $tabs-indicator-height > 0
     &:after
       height $tabs-indicator-height
 
-{$selector-prefix + '-tabs-tab-disabled'}
+{$selector-class-prefix + '-tabs-tab-disabled'}
   color $brand-disabled
   ui-disabled()
 
   &:after
     background-color $brand-disabled
 
-{$selector-prefix + '-tabs-panel'}
+{$selector-class-prefix + '-tabs-panel'}
   display none
 
-{$selector-prefix + '-tabs-panel-active'}
+{$selector-class-prefix + '-tabs-panel-active'}
   display block
 
-{$selector-prefix + '-tabs-card'}
+{$selector-class-prefix + '-tabs-card'}
 
-  {$selector-prefix + '-tabs-tab'}
+  {$selector-class-prefix + '-tabs-tab'}
     border 1px solid $brand-border
     border-left-width 0
     transition all .2s cubic-bezier(.645,.045,.355,1)
@@ -131,9 +131,9 @@ size-size-style(style)
     &:after
       display none
 
-    &{$selector-prefix + '-tabs-tab-enabled'}
+    &{$selector-class-prefix + '-tabs-tab-enabled'}
       background-color $brand-bg-light
 
-    &{$selector-prefix + '-tabs-tab-active'}
+    &{$selector-class-prefix + '-tabs-tab-active'}
       border-bottom-color $tabs-card-bg-color-active
       background-color $tabs-card-bg-color-active

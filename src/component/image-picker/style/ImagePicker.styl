@@ -6,10 +6,10 @@ $image-picker-append-icon-size = 30px
 $image-picker-image-size-padding = 2px 4px
 $image-picker-mask-bg = rgba(0,0,0,0.5)
 
-{$selector-prefix + '-image-picker'}
+{$selector-class-prefix + '-image-picker'}
   position relative
 
-{$selector-prefix + '-image-picker-item'}
+{$selector-class-prefix + '-image-picker-item'}
   display inline-block
   background-color $brand-bg-light
   box-sizing border-box
@@ -18,13 +18,13 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   if $border-radius-default > 0
     border-radius $border-radius-default
 
-{$selector-prefix + '-image-picker-card'}
+{$selector-class-prefix + '-image-picker-card'}
   box-shadow 0 0 1px rgba(0,0,0,0.4)
   &:hover
-    {$selector-prefix + '-image-picker-remove-icon'}
+    {$selector-class-prefix + '-image-picker-remove-icon'}
       display block
 
-{$selector-prefix + '-image-picker-image'}
+{$selector-class-prefix + '-image-picker-image'}
   width 100%
   height 100%
   object-fit cover
@@ -33,7 +33,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
 
   ui-clickable()
 
-{$selector-prefix + '-image-picker-mask'}
+{$selector-class-prefix + '-image-picker-mask'}
   background-color $image-picker-mask-bg
   position absolute
   top 0
@@ -43,18 +43,18 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   if $border-radius-default > 0
     border-radius $border-radius-default
 
-  {$selector-prefix + '-circle'}
+  {$selector-class-prefix + '-circle'}
     position absolute
     left 50%
     top 50%
     margin-left -0.5 * $image-picker-circle-size
     margin-top -0.5 * $image-picker-circle-size
 
-  {$selector-prefix + '-circle-content'}
+  {$selector-class-prefix + '-circle-content'}
     color #fff
     font-size $ui-font-size - 2
 
-{$selector-prefix + '-image-picker-image-size'}
+{$selector-class-prefix + '-image-picker-image-size'}
   background-color $image-picker-mask-bg
   color #fff
   font-size $ui-font-size - 2
@@ -66,7 +66,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   if $border-radius-default > 0
     border-bottom-right-radius $border-radius-default
 
-{$selector-prefix + '-image-picker-remove-icon'}
+{$selector-class-prefix + '-image-picker-remove-icon'}
   display none
   color $brand-clear-icon-color
   font-size $image-picker-remove-icon-size
@@ -75,10 +75,10 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   top -0.5 * $image-picker-remove-icon-size
   ui-clickable()
 
-{$selector-prefix + '-image-picker-append'}
+{$selector-class-prefix + '-image-picker-append'}
   border 1px dashed $brand-border
 
-{$selector-prefix + '-image-picker-append-icon'}
+{$selector-class-prefix + '-image-picker-append-icon'}
   color $brand-border
   font-size $image-picker-append-icon-size
   position absolute
@@ -87,7 +87,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   margin-left -0.5 * $image-picker-append-icon-size
   margin-top -0.5 * $image-picker-append-icon-size
 
-{$selector-prefix + '-image-picker-extra'}
+{$selector-class-prefix + '-image-picker-extra'}
   color $brand-muted
   font-size $ui-font-size - 2
   line-height 1.5 * ($ui-font-size - 2)

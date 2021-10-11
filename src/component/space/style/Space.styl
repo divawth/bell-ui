@@ -1,41 +1,41 @@
 @import '../../../env'
 
-{$selector-prefix + '-space'}
+{$selector-class-prefix + '-space'}
   display inline-flex
 
-  > {$selector-prefix + '-tag'},
-  > {$selector-prefix + '-input'},
-  > {$selector-prefix + '-button'},
-  > {$selector-prefix + '-select'},
-  > {$selector-prefix + '-radio'},
-  > {$selector-prefix + '-switch'},
-  > {$selector-prefix + '-avatar'},
-  > {$selector-prefix + '-thumbnail'}
+  > {$selector-class-prefix + '-tag'},
+  > {$selector-class-prefix + '-input'},
+  > {$selector-class-prefix + '-button'},
+  > {$selector-class-prefix + '-select'},
+  > {$selector-class-prefix + '-radio'},
+  > {$selector-class-prefix + '-switch'},
+  > {$selector-class-prefix + '-avatar'},
+  > {$selector-class-prefix + '-thumbnail'}
     margin-left 0
 
-{$selector-prefix + '-space-horizontal'}
+{$selector-class-prefix + '-space-horizontal'}
   gap $ui-horizontal-gap
 
-{$selector-prefix + '-space-vertical'}
+{$selector-class-prefix + '-space-vertical'}
   flex-direction column
   gap $ui-vertical-gap
 
-  > {$selector-prefix + '-button-block'},
-  > {$selector-prefix + '-select-block'}
+  > {$selector-class-prefix + '-button-block'},
+  > {$selector-class-prefix + '-select-block'}
     margin-top 0
 
-{$selector-prefix + '-space-align-center'}
+{$selector-class-prefix + '-space-align-center'}
   align-items center
 
-{$selector-prefix + '-space-align-start'}
+{$selector-class-prefix + '-space-align-start'}
   align-items flex-start
 
-{$selector-prefix + '-space-align-end'}
+{$selector-class-prefix + '-space-align-end'}
   align-items flex-end
 
-{$selector-prefix + '-space-auto-wrap'}
+{$selector-class-prefix + '-space-auto-wrap'}
   flex-wrap wrap
   gap $ui-vertical-gap $ui-horizontal-gap
 
-{$selector-prefix + '-space-block'}
+{$selector-class-prefix + '-space-block'}
   display flex

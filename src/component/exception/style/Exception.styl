@@ -7,38 +7,38 @@ $exception-icon-gap = 24px
 $exception-title-font-size = 24px
 $exception-extra-gap = 32px
 
-{$selector-prefix + '-exception'}
+{$selector-class-prefix + '-exception'}
   text-align center
   // 顶部固定一张高度为 294 的图，再加上间距
   padding $exception-padding-vertical + $exception-icon-gap + 294 $exception-padding-horizontal $exception-padding-vertical
 
-{$selector-prefix + '-exception-403'}
+{$selector-class-prefix + '-exception-403'}
   background url('~@component/exception/image/exception-403.png') no-repeat 50% $exception-padding-vertical
   background-image -webkit-image-set(
     url('~@component/exception/image/exception-403@2x.png') 2x
   )
 
-{$selector-prefix + '-exception-404'}
+{$selector-class-prefix + '-exception-404'}
   background url('~@component/exception/image/exception-404.png') no-repeat 50% $exception-padding-vertical
   background-image -webkit-image-set(
     url('~@component/exception/image/exception-404@2x.png') 2x
   )
 
-{$selector-prefix + '-exception-500'}
+{$selector-class-prefix + '-exception-500'}
   background url('~@component/exception/image/exception-500.png') no-repeat 50% $exception-padding-vertical
   background-image -webkit-image-set(
     url('~@component/exception/image/exception-500@2x.png') 2x
   )
 
-{$selector-prefix + '-exception-title'}
+{$selector-class-prefix + '-exception-title'}
   color $brand-title
   font-size $exception-title-font-size
   line-height 1.8
 
-{$selector-prefix + '-exception-sub-title'}
+{$selector-class-prefix + '-exception-sub-title'}
   color $brand-content
   font-size $font-size-default
   line-height 1.6
 
-{$selector-prefix + '-exception-extra'}
+{$selector-class-prefix + '-exception-extra'}
   margin-top $exception-extra-gap

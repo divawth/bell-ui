@@ -34,7 +34,7 @@ switch-size-style(size)
   ui-set('height', size['height'])
   ui-set('padding-left', $switch-thumb-width + $switch-thumb-gap)
 
-  &{$selector-prefix + '-switch-active'}
+  &{$selector-class-prefix + '-switch-active'}
     ui-set('padding-left', 0)
     ui-set('padding-right', $switch-thumb-width + $switch-thumb-gap)
 
@@ -54,12 +54,12 @@ switch-size-style(size)
     ui-set('width', $switch-loading-width)
     ui-set('height', $switch-loading-height)
 
-  > {$selector-prefix + '-switch-label'}
+  > {$selector-class-prefix + '-switch-label'}
     ui-set('line-height', size['height'])
     ui-set('height', size['height'])
 
 // 放在 selector-switch 前面，因为它的 border-color 要被 ui-switch 覆盖
-{$selector-prefix + '-switch-loading'}
+{$selector-class-prefix + '-switch-loading'}
   opacity $ui-opacity-disabled
 
   &:after
@@ -72,7 +72,7 @@ switch-size-style(size)
     animation bell-switch-loading 1s linear infinite
     transition transform .3s
 
-{$selector-prefix + '-switch'}
+{$selector-class-prefix + '-switch'}
   display inline-block
   position relative
   user-select none
@@ -101,17 +101,17 @@ switch-size-style(size)
     each: switch-size-style
   )
 
-  + {$selector-prefix + '-switch'}
+  + {$selector-class-prefix + '-switch'}
     margin-left $ui-horizontal-gap
 
-{$selector-prefix + '-switch-label'}
+{$selector-class-prefix + '-switch-label'}
   color $brand-white
   font-size $font-size-small
   margin-left $switch-thumb-label-gap
   margin-right $switch-label-gap
   text-shadow 0 1px 0 rgba(0,0,0,0.1)
 
-{$selector-prefix + '-switch-active'}
+{$selector-class-prefix + '-switch-active'}
   background-color $brand-primary
 
   &:before
@@ -121,21 +121,21 @@ switch-size-style(size)
     left 100%
     border-left-color $brand-primary
 
-  > {$selector-prefix + '-switch-label'}
+  > {$selector-class-prefix + '-switch-label'}
     margin-left $switch-label-gap
     margin-right $switch-thumb-label-gap
 
-{$selector-prefix + '-switch-enabled'},
-{$selector-prefix + '-switch-enabled'}:before
+{$selector-class-prefix + '-switch-enabled'},
+{$selector-class-prefix + '-switch-enabled'}:before
   ui-clickable()
 
-{$selector-prefix + '-switch-disabled'},
-{$selector-prefix + '-switch-disabled'}:before,
-{$selector-prefix + '-switch-loading'},
-{$selector-prefix + '-switch-loading'}:before
+{$selector-class-prefix + '-switch-disabled'},
+{$selector-class-prefix + '-switch-disabled'}:before,
+{$selector-class-prefix + '-switch-loading'},
+{$selector-class-prefix + '-switch-loading'}:before
   ui-disabled()
 
-{$selector-prefix + '-switch-disabled'}
+{$selector-class-prefix + '-switch-disabled'}
   opacity $ui-opacity-disabled
 
 

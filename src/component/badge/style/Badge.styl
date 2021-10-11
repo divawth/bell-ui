@@ -45,46 +45,46 @@ $badge-status-hash = {
 }
 
 badge-brand-style(style)
-  > {$selector-prefix + '-badge-text'},
-  > {$selector-prefix + '-badge-dot'}
+  > {$selector-class-prefix + '-badge-text'},
+  > {$selector-class-prefix + '-badge-dot'}
     ui-set('background-color', style['color'])
 
 badge-status-style(style)
-  > {$selector-prefix + '-badge-dot'}
+  > {$selector-class-prefix + '-badge-dot'}
     ui-set('background-color', style['color'])
 
-  &{$selector-prefix + '-badge-ripple'}
-    > {$selector-prefix + '-badge-dot'}:after
+  &{$selector-class-prefix + '-badge-ripple'}
+    > {$selector-class-prefix + '-badge-dot'}:after
       ui-set('border-color', style['color'])
 
-{$selector-prefix + '-badge'},
-{$selector-prefix + '-badge-status'}
+{$selector-class-prefix + '-badge'},
+{$selector-class-prefix + '-badge-status'}
   display inline-block
 
-{$selector-prefix + '-badge'}
+{$selector-class-prefix + '-badge'}
   position relative
 
   // 避免底部有空隙，即 badge height > avatar height
-  > {$selector-prefix + '-avatar'}
+  > {$selector-class-prefix + '-avatar'}
     vertical-align middle
 
-{$selector-prefix + '-badge-dot'}
+{$selector-class-prefix + '-badge-dot'}
   display inline-block
   box-sizing border-box
   border-radius $border-radius-circle
 
-{$selector-prefix + '-badge-text'}
+{$selector-class-prefix + '-badge-text'}
   box-sizing border-box
   white-space nowrap
 
 // 漂浮的角标
-{$selector-prefix + '-badge'}
+{$selector-class-prefix + '-badge'}
   ui-connect(
     hash: $badge-brand-hash,
     each: badge-brand-style
   )
 
-  > {$selector-prefix + '-badge-dot'}
+  > {$selector-class-prefix + '-badge-dot'}
     position absolute
     right -0.5 * $badge-dot-size
     top -0.5 * $badge-dot-size
@@ -92,7 +92,7 @@ badge-status-style(style)
     height $badge-dot-size
     border 1px solid $brand-white
 
-  > {$selector-prefix + '-badge-text'}
+  > {$selector-class-prefix + '-badge-text'}
     border-radius $border-radius-round
     display inline-block
     text-align center
@@ -103,7 +103,7 @@ badge-status-style(style)
     line-height $badge-text-height
     padding 0 $badge-padding-horizontal
 
-  > {$selector-prefix + '-badge-text-append'}
+  > {$selector-class-prefix + '-badge-text-append'}
     border 1px solid $brand-white
     line-height $badge-text-height - 2
     position absolute
@@ -112,30 +112,30 @@ badge-status-style(style)
     transform translate(-50%, -50%)
 
 // 状态点
-{$selector-prefix + '-badge-status'}
+{$selector-class-prefix + '-badge-status'}
   ui-connect(
     hash: $badge-status-hash,
     each: badge-status-style
   )
 
-  > {$selector-prefix + '-badge-dot'}
+  > {$selector-class-prefix + '-badge-dot'}
     width $badge-status-dot-size
     height $badge-status-dot-size
     vertical-align middle
 
-  > {$selector-prefix + '-badge-text'}
+  > {$selector-class-prefix + '-badge-text'}
     color $brand-content
     font-size $font-size-default
 
-  > {$selector-prefix + '-badge-dot'} + {$selector-prefix + '-badge-text'}
+  > {$selector-class-prefix + '-badge-dot'} + {$selector-class-prefix + '-badge-text'}
     margin-left $ui-icon-text-gap
 
 
-{$selector-prefix + '-badge-with-dot-text'}
+{$selector-class-prefix + '-badge-with-dot-text'}
   white-space nowrap
 
-{$selector-prefix + '-badge-ripple'}
-  > {$selector-prefix + '-badge-dot'}
+{$selector-class-prefix + '-badge-ripple'}
+  > {$selector-class-prefix + '-badge-dot'}
     position relative
     &:after
       content ''
