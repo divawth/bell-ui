@@ -8424,6 +8424,11 @@ var LoadingBar_default = /*#__PURE__*/__webpack_require__.n(LoadingBar);
 var loading_bar_instance = UNDEFINED;
 function add(props) {
     var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-loadingbar-wrapper');
+    if (!wrapper) {
+        wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.setProp(wrapper, 'id', 'bell-loadingbar-wrapper');
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, wrapper);
+    }
     loading_bar_instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
         el: wrapper,
         props: props,
@@ -8888,6 +8893,7 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
 // CONCATENATED MODULE: ./src/component/notification/index.ts
 
 
+
 var notification_config = {};
 function addNotification(status, data, onClose) {
     var props = { status: status };
@@ -8899,8 +8905,14 @@ function addNotification(status, data, onClose) {
     else {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
     }
+    var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notification-wrapper');
+    if (!wrapper) {
+        wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.setProp(wrapper, 'id', 'bell-notification-wrapper');
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, wrapper);
+    }
     var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: '#bell-notification-wrapper',
+        el: wrapper,
         props: props,
     }, notification_Notification));
     instance.on('hide.notification', function () {
@@ -9014,100 +9026,92 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 
 
 
-
-var src_component = {
-    Menu: menu_Menu,
-    MenuItem: menu_MenuItem,
-    MenuGroup: menu_MenuGroup,
-    SubMenu: menu_SubMenu,
-    Icon: icon_Icon,
-    Text: text_Text,
-    Drawer: drawer_Drawer,
-    Breadcrumb: breadcrumb_Breadcrumb,
-    BreadcrumbItem: breadcrumb_BreadcrumbItem,
-    Button: button_Button,
-    ButtonGroup: button_ButtonGroup,
-    Input: input_Input,
-    InputNumber: input_number_InputNumber,
-    Textarea: textarea_Textarea,
-    Radio: radio_Radio,
-    RadioGroup: radio_RadioGroup,
-    Checkbox: checkbox_Checkbox,
-    CheckboxGroup: checkbox_CheckboxGroup,
-    Slider: slider_Slider,
-    Space: space_Space,
-    Switch: switch_Switch,
-    Select: select_Select,
-    Option: select_Option,
-    OptionGroup: select_OptionGroup,
-    Pagination: pagination_Pagination,
-    DatePicker: date_picker_DatePicker,
-    TimePicker: time_picker_TimePicker,
-    ImagePicker: image_picker_ImagePicker,
-    Upload: upload_Upload,
-    Tooltip: tooltip_Tooltip,
-    Alert: alert_Alert,
-    Article: article_Article,
-    Spin: spin_Spin,
-    SplitButton: split_button_SplitButton,
-    BackTop: backtop_BackTop,
-    Avatar: avatar_Avatar,
-    Badge: badge_Badge,
-    Card: card_Card,
-    CardHeader: card_CardHeader,
-    CardMedia: card_CardMedia,
-    CardBody: card_CardBody,
-    CardFooter: card_CardFooter,
-    PageHeader: page_header_PageHeader,
-    Layout: layout_Layout,
-    LayoutHeader: layout_LayoutHeader,
-    LayoutContent: layout_LayoutContent,
-    LayoutFooter: layout_LayoutFooter,
-    LayoutSider: layout_LayoutSider,
-    Collapse: collapse_Collapse,
-    CollapseItem: collapse_CollapseItem,
-    Link: link_Link,
-    List: list_List,
-    ListItem: list_ListItem,
-    Empty: empty_Empty,
-    Result: result_Result,
-    Exception: exception_Exception,
-    Divider: divider_Divider,
-    Circle: circle_Circle,
-    Progress: progress_Progress,
-    Popover: popover_Popover,
-    Tag: tag_Tag,
-    Rate: rate_Rate,
-    Tabs: tabs_Tabs,
-    TabPanel: tabs_TabPanel,
-    Dropdown: dropdown_Dropdown,
-    DropdownItem: dropdown_DropdownItem,
-    DropdownMenu: dropdown_DropdownMenu,
-    Description: description_Description,
-    DescriptionItem: DescriptionItem,
-    Thumbnail: thumbnail_Thumbnail,
-    Timeline: timeline_Timeline,
-    TimelineItem: timeline_TimelineItem,
-    Form: form_Form,
-    FormItem: form_FormItem,
-    Dialog: dialog_Dialog,
-    Table: table_Table,
-};
 /**
  * 版本
  */
-var version = "0.21.4";
+var version = "0.21.5";
 /**
  * 安装插件
  */
 function install(Yox) {
-    var loadingbarElement = Yox.dom.createElement('div');
-    Yox.dom.setProp(loadingbarElement, 'id', 'bell-loadingbar-wrapper');
-    Yox.dom.append(BODY, loadingbarElement);
-    var notificationElement = Yox.dom.createElement('div');
-    Yox.dom.setProp(notificationElement, 'id', 'bell-notification-wrapper');
-    Yox.dom.append(BODY, notificationElement);
-    Yox.component(src_component);
+    Yox.component({
+        Menu: menu_Menu,
+        MenuItem: menu_MenuItem,
+        MenuGroup: menu_MenuGroup,
+        SubMenu: menu_SubMenu,
+        Icon: icon_Icon,
+        Text: text_Text,
+        Drawer: drawer_Drawer,
+        Breadcrumb: breadcrumb_Breadcrumb,
+        BreadcrumbItem: breadcrumb_BreadcrumbItem,
+        Button: button_Button,
+        ButtonGroup: button_ButtonGroup,
+        Input: input_Input,
+        InputNumber: input_number_InputNumber,
+        Textarea: textarea_Textarea,
+        Radio: radio_Radio,
+        RadioGroup: radio_RadioGroup,
+        Checkbox: checkbox_Checkbox,
+        CheckboxGroup: checkbox_CheckboxGroup,
+        Slider: slider_Slider,
+        Space: space_Space,
+        Switch: switch_Switch,
+        Select: select_Select,
+        Option: select_Option,
+        OptionGroup: select_OptionGroup,
+        Pagination: pagination_Pagination,
+        DatePicker: date_picker_DatePicker,
+        TimePicker: time_picker_TimePicker,
+        ImagePicker: image_picker_ImagePicker,
+        Upload: upload_Upload,
+        Tooltip: tooltip_Tooltip,
+        Alert: alert_Alert,
+        Article: article_Article,
+        Spin: spin_Spin,
+        SplitButton: split_button_SplitButton,
+        BackTop: backtop_BackTop,
+        Avatar: avatar_Avatar,
+        Badge: badge_Badge,
+        Card: card_Card,
+        CardHeader: card_CardHeader,
+        CardMedia: card_CardMedia,
+        CardBody: card_CardBody,
+        CardFooter: card_CardFooter,
+        PageHeader: page_header_PageHeader,
+        Layout: layout_Layout,
+        LayoutHeader: layout_LayoutHeader,
+        LayoutContent: layout_LayoutContent,
+        LayoutFooter: layout_LayoutFooter,
+        LayoutSider: layout_LayoutSider,
+        Collapse: collapse_Collapse,
+        CollapseItem: collapse_CollapseItem,
+        Link: link_Link,
+        List: list_List,
+        ListItem: list_ListItem,
+        Empty: empty_Empty,
+        Result: result_Result,
+        Exception: exception_Exception,
+        Divider: divider_Divider,
+        Circle: circle_Circle,
+        Progress: progress_Progress,
+        Popover: popover_Popover,
+        Tag: tag_Tag,
+        Rate: rate_Rate,
+        Tabs: tabs_Tabs,
+        TabPanel: tabs_TabPanel,
+        Dropdown: dropdown_Dropdown,
+        DropdownItem: dropdown_DropdownItem,
+        DropdownMenu: dropdown_DropdownMenu,
+        Description: description_Description,
+        DescriptionItem: DescriptionItem,
+        Thumbnail: thumbnail_Thumbnail,
+        Timeline: timeline_Timeline,
+        TimelineItem: timeline_TimelineItem,
+        Form: form_Form,
+        FormItem: form_FormItem,
+        Dialog: dialog_Dialog,
+        Table: table_Table,
+    });
 }
 
 // EXTERNAL MODULE: ./src/index.styl

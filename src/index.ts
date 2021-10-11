@@ -95,97 +95,6 @@ import './component/message'
 import './component/modal'
 import './component/notification'
 
-import { BODY } from './component/constant'
-
-const component = {
-  Menu,
-  MenuItem,
-  MenuGroup,
-  SubMenu,
-  Icon,
-  Text,
-  Drawer,
-
-  Breadcrumb,
-  BreadcrumbItem,
-
-  Button,
-  ButtonGroup,
-  Input,
-  InputNumber,
-  Textarea,
-  Radio,
-  RadioGroup,
-  Checkbox,
-  CheckboxGroup,
-  Slider,
-  Space,
-  Switch,
-  Select,
-  Option,
-  OptionGroup,
-  Pagination,
-  DatePicker,
-  TimePicker,
-  ImagePicker,
-  Upload,
-
-  Tooltip,
-
-  Alert,
-  Article,
-  Spin,
-  SplitButton,
-  BackTop,
-  Avatar,
-  Badge,
-
-  Card,
-  CardHeader,
-  CardMedia,
-  CardBody,
-  CardFooter,
-
-  PageHeader,
-  Layout,
-  LayoutHeader,
-  LayoutContent,
-  LayoutFooter,
-  LayoutSider,
-
-  Collapse,
-  CollapseItem,
-  Link,
-  List,
-  ListItem,
-  Empty,
-  Result,
-  Exception,
-  Divider,
-  Circle,
-  Progress,
-  Popover,
-  Tag,
-  Rate,
-  Tabs,
-  TabPanel,
-
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-
-  Description,
-  DescriptionItem,
-
-  Thumbnail,
-  Timeline,
-  TimelineItem,
-  Form,
-  FormItem,
-  Dialog,
-  Table,
-}
-
 /**
  * 版本
  */
@@ -195,13 +104,92 @@ export const version = process.env.NODE_VERSION
  * 安装插件
  */
 export function install(Yox: any) {
-  let loadingbarElement = Yox.dom.createElement('div')
-  Yox.dom.setProp(loadingbarElement, 'id', '${prefix}loadingbar-wrapper')
-  Yox.dom.append(BODY, loadingbarElement)
+  Yox.component({
+    Menu,
+    MenuItem,
+    MenuGroup,
+    SubMenu,
+    Icon,
+    Text,
+    Drawer,
 
-  let notificationElement = Yox.dom.createElement('div')
-  Yox.dom.setProp(notificationElement, 'id', '${prefix}notification-wrapper')
-  Yox.dom.append(BODY, notificationElement)
+    Breadcrumb,
+    BreadcrumbItem,
 
-  Yox.component(component)
+    Button,
+    ButtonGroup,
+    Input,
+    InputNumber,
+    Textarea,
+    Radio,
+    RadioGroup,
+    Checkbox,
+    CheckboxGroup,
+    Slider,
+    Space,
+    Switch,
+    Select,
+    Option,
+    OptionGroup,
+    Pagination,
+    DatePicker,
+    TimePicker,
+    ImagePicker,
+    Upload,
+
+    Tooltip,
+
+    Alert,
+    Article,
+    Spin,
+    SplitButton,
+    BackTop,
+    Avatar,
+    Badge,
+
+    Card,
+    CardHeader,
+    CardMedia,
+    CardBody,
+    CardFooter,
+
+    PageHeader,
+    Layout,
+    LayoutHeader,
+    LayoutContent,
+    LayoutFooter,
+    LayoutSider,
+
+    Collapse,
+    CollapseItem,
+    Link,
+    List,
+    ListItem,
+    Empty,
+    Result,
+    Exception,
+    Divider,
+    Circle,
+    Progress,
+    Popover,
+    Tag,
+    Rate,
+    Tabs,
+    TabPanel,
+
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+
+    Description,
+    DescriptionItem,
+
+    Thumbnail,
+    Timeline,
+    TimelineItem,
+    Form,
+    FormItem,
+    Dialog,
+    Table,
+  })
 }
