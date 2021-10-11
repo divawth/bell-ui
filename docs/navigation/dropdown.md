@@ -189,7 +189,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-placement | 下拉框显示方位 | string | top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end | `bottom`
+placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom`
 trigger | 触发方式 | string | hover（悬停）click（点击）custom（自定义） | `hover`
 visible | 下拉框是否展开 | boolean | - | `false`
 

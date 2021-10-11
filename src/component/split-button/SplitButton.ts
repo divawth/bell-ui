@@ -25,6 +25,7 @@ import {
   RAW_CLICK,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM_START,
+  RAW_ARRAY,
 } from '../constant'
 
 import {
@@ -56,7 +57,7 @@ export default Yox.define({
       value: RAW_BOTTOM_START,
     },
     menu: {
-      type: RAW_TYPE_ARRAY,
+      type: RAW_ARRAY,
       required: TRUE,
     },
     loading: {

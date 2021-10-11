@@ -7493,23 +7493,9 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
   transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
-.bell-button.bell-button-ghost {
-  color: #fff;
-  border-color: #fff;
-  background-color: transparent !important;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-.bell-button.bell-button-text,
-.bell-button.bell-button-link {
-  border: 0;
-  background-color: transparent;
-}
-.bell-button.bell-button-text:focus,
-.bell-button.bell-button-link:focus {
-  box-shadow: none;
-}
-.bell-button.bell-button-link {
-  color: #2d8cf0;
+.bell-button:before {
+  border-style: solid;
+  border-color: transparent;
 }
 .bell-button-default {
   border-radius: 4px;
@@ -7561,6 +7547,9 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2d8cf0;
   background-color: #2d8cf0;
 }
+.bell-button-primary:before {
+  border-color: rgba(255,255,255,0.4);
+}
 .bell-button-primary.bell-button-enabled:hover {
   color: #fff;
   border-color: #57a3f3;
@@ -7598,6 +7587,9 @@ div::-webkit-scrollbar-thumb:hover {
   color: #fff;
   border-color: #19be6b;
   background-color: #19be6b;
+}
+.bell-button-success:before {
+  border-color: rgba(255,255,255,0.4);
 }
 .bell-button-success.bell-button-enabled:hover {
   color: #fff;
@@ -7637,6 +7629,9 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #ed4014;
   background-color: #ed4014;
 }
+.bell-button-error:before {
+  border-color: rgba(255,255,255,0.4);
+}
 .bell-button-error.bell-button-enabled:hover {
   color: #fff;
   border-color: #f16643;
@@ -7674,6 +7669,9 @@ div::-webkit-scrollbar-thumb:hover {
   color: #fff;
   border-color: #2db7f5;
   background-color: #2db7f5;
+}
+.bell-button-info:before {
+  border-color: rgba(255,255,255,0.4);
 }
 .bell-button-info.bell-button-enabled:hover {
   color: #fff;
@@ -7713,6 +7711,9 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #f90;
   background-color: #f90;
 }
+.bell-button-warning:before {
+  border-color: rgba(255,255,255,0.4);
+}
 .bell-button-warning.bell-button-enabled:hover {
   color: #fff;
   border-color: #ffad33;
@@ -7745,6 +7746,24 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-button-warning.bell-button-ghost.bell-button-enabled:active {
   color: #f29100;
   border-color: #f29100;
+}
+.bell-button.bell-button-ghost {
+  color: #fff;
+  border-color: #fff;
+  background-color: transparent !important;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.bell-button.bell-button-text,
+.bell-button.bell-button-link {
+  border: 0;
+  background-color: transparent;
+}
+.bell-button.bell-button-text:focus,
+.bell-button.bell-button-link:focus {
+  box-shadow: none;
+}
+.bell-button.bell-button-link {
+  color: #2d8cf0;
 }
 .bell-button + .bell-button {
   margin-left: 8px;
@@ -7824,6 +7843,9 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: default;
   opacity: 0.5;
 }
+.bell-button-loading:before {
+  opacity: 0.5;
+}
 .bell-button-block {
   display: block;
   width: 100%;
@@ -7883,12 +7905,8 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-button-group .bell-button-dashed:before {
   border-style: dashed;
 }
-.bell-button:before {
-  border-style: solid;
-  border-color: transparent;
-}
-.bell-button-primary + .bell-button-primary:before {
-  border-color: rgba(255,255,255,0.4);
+.bell-button-group-horizontal > .bell-button {
+  vertical-align: top;
 }
 .bell-button-group-horizontal > .bell-button + .bell-button {
   margin-left: 0;
@@ -11728,6 +11746,61 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-spin-fixed.bell-spin-dark.bell-spin-legacy {
   background-color: #000;
   opacity: 0.2;
+}
+.bell-split-button-menu {
+  min-width: 100px;
+  max-height: 200px;
+}
+.bell-split-button-menu {
+  font-size: 14px;
+  line-height: 1.1429;
+  padding: 4px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+.bell-split-button-menu::-webkit-scrollbar {
+  width: 4px;
+}
+.bell-split-button-menu::-webkit-scrollbar {
+  height: 4px;
+}
+.bell-split-button-menu::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,0);
+}
+.bell-split-button-menu::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.bell-split-button-menu::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
+.bell-split-button-menu .bell-split-button-menu-item-enabled:hover {
+  background-color: #f5f7fa;
+}
+.bell-split-button-menu-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.bell-split-button-menu-item-enabled {
+  color: #515a6e;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-split-button-menu-item-disabled {
+  color: #c5c8ce;
+  cursor: not-allowed;
 }
 .bell-slider {
   display: inline-block;
