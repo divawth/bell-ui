@@ -35,11 +35,15 @@
     <div id="app-5" class="bell-app"></div>
 
     <script id="template-1" type="text/plain">
-        <Select model="value">
-            {{#each list}}
-                <Option text="{{this.text}}" value="{{this.value}}" />
-            {{/each}}
-        </Select>
+        <div>
+            {{#if visible}}
+                <Select model="value">
+                    {{#each list}}
+                        <Option text="{{this.text}}" value="{{this.value}}" />
+                    {{/each}}
+                </Select>
+            {{/if}}
+        </div>
     </script>
 
     <script>
@@ -48,8 +52,9 @@
             el: '#app-1',
             template: '#template-1',
             data: {
+                visible: true,
                 value: 1,
-                data: [
+                list: [
                     {
                         text: '所有',
                         value: 1

@@ -1,7 +1,10 @@
 @import '../../../env'
 
+$split-button-menu-height = 200px
+
 {$selector-prefix + '-split-button-menu'}
   min-width $dropdown-menu-min-width
+  max-height $split-button-menu-height
 
 ui-dropdown-overlay(
   $selector-prefix + '-split-button-menu',
