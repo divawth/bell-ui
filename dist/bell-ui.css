@@ -7497,6 +7497,24 @@ div::-webkit-scrollbar-thumb:hover {
   border-style: solid;
   border-color: transparent;
 }
+.bell-button.bell-button-ghost {
+  color: #fff;
+  border-color: #fff;
+  background-color: transparent !important;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.bell-button.bell-button-text,
+.bell-button.bell-button-link {
+  border: 0;
+  background-color: transparent;
+}
+.bell-button.bell-button-text:focus,
+.bell-button.bell-button-link:focus {
+  box-shadow: none;
+}
+.bell-button.bell-button-link {
+  color: #2d8cf0;
+}
 .bell-button-default {
   border-radius: 4px;
   font-size: 14px;
@@ -7746,24 +7764,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-button-warning.bell-button-ghost.bell-button-enabled:active {
   color: #f29100;
   border-color: #f29100;
-}
-.bell-button.bell-button-ghost {
-  color: #fff;
-  border-color: #fff;
-  background-color: transparent !important;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-.bell-button.bell-button-text,
-.bell-button.bell-button-link {
-  border: 0;
-  background-color: transparent;
-}
-.bell-button.bell-button-text:focus,
-.bell-button.bell-button-link:focus {
-  box-shadow: none;
-}
-.bell-button.bell-button-link {
-  color: #2d8cf0;
 }
 .bell-button + .bell-button {
   margin-left: 8px;
