@@ -68,6 +68,7 @@ import Exception from './component/exception/Exception'
 import Divider from './component/divider/Divider'
 
 import Circle from './component/circle/Circle'
+import Popover from './component/popover/Popover'
 import Progress from './component/progress/Progress'
 import Tag from './component/tag/Tag'
 import Rate from './component/rate/Rate'
@@ -161,6 +162,7 @@ const component = {
   Divider,
   Circle,
   Progress,
+  Popover,
   Tag,
   Rate,
   Tabs,

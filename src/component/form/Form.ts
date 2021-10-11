@@ -10,6 +10,7 @@ import {
   RAW_BOOLEAN,
   RAW_LEFT,
   RAW_RIGHT,
+  RAW_TOP,
   RAW_NUMERIC,
 } from '../constant'
 
@@ -26,14 +27,12 @@ export default Yox.define({
   propTypes: {
     inline: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     showColon: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     labelAlign: {
-      type: oneOf([RAW_LEFT, RAW_RIGHT]),
+      type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
       value: RAW_RIGHT,
     },
     labelWidth: {

@@ -230,7 +230,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4={className:'be
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4={className:'bell-tooltip-arrow'},$5=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{delay:_q('delay',_U.delay).value,offsetX:_q('offsetX',_U.offsetX).value,offsetY:_q('offsetY',_U.offsetY).value,placement:_q('placement',_U.placement).value,trigger:_q('mode',_U.mode).value,visible:_q('isVisible',_U.isVisible).value},ref:'popover',slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S)},$slot_overlay:function(_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]={context:_G,isPure:$2,isStatic:$2,nativeProps:$4,operator:_B,tag:'div',type:3};_S[_S.length]=function(_R){_q('maxWidth',_U.maxWidth).value||_q('maxHeight',_U.maxHeight).value?_R.nativeStyles=_c((_q('maxWidth',_U.maxWidth).value?'max-width: '+_y(_q('maxWidth',_U.maxWidth).value)+'px;':'')+(_q('maxHeight',_U.maxHeight).value?'max-height: '+_y(_q('maxHeight',_U.maxHeight).value)+'px;':'')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_content',_S)||(_S[_S.length]={isPure:$2,operator:_z,text:_y(_q('content',_U.content).value),type:1});return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:{className:'bell-tooltip-content'},operator:_B,tag:'div',type:3});return _S}([]),context:_G,nativeProps:{className:'bell-tooltip'+(_q('theme',_U.theme).value?' bell-tooltip-'+_y(_q('theme',_U.theme).value):'')+(_q('placement',_U.placement).value?' bell-tooltip-'+_y(_q('placement',_U.placement).value):'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4={className:'bell-tooltip-arrow'},$5=function(_Q){return _Q.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{offsetX:_q('offsetX',_U.offsetX).value,offsetY:_q('offsetY',_U.offsetY).value,placement:_q('placement',_U.placement).value,showDelay:_q('delay',_U.delay).value,trigger:_q('mode',_U.mode).value,visible:_q('isVisible',_U.isVisible).value},ref:'popover',slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S)},$slot_overlay:function(_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]={context:_G,isPure:$2,isStatic:$2,nativeProps:$4,operator:_B,tag:'div',type:3};_S[_S.length]=function(_R){_q('maxWidth',_U.maxWidth).value||_q('maxHeight',_U.maxHeight).value?_R.nativeStyles=_c((_q('maxWidth',_U.maxWidth).value?'max-width: '+_y(_q('maxWidth',_U.maxWidth).value)+'px;':'')+(_q('maxHeight',_U.maxHeight).value?'max-height: '+_y(_q('maxHeight',_U.maxHeight).value)+'px;':'')):$0;return _R}({children:function(_S){_a({children:function(_S){_l('$slot_content',_S)||(_S[_S.length]={isPure:$2,operator:_z,text:_y(_q('content',_U.content).value),type:1});return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);return _S}([]),context:_G,nativeProps:{className:'bell-tooltip-content'},operator:_B,tag:'div',type:3});return _S}([]),context:_G,nativeProps:{className:'bell-tooltip'+(_q('theme',_U.theme).value?' bell-tooltip-'+_y(_q('theme',_U.theme).value):'')+(_q('placement',_U.placement).value?' bell-tooltip-'+_y(_q('placement',_U.placement).value):'')+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 23 */
@@ -1157,9 +1157,13 @@ var CLASS_OVERLAY_FADE = 'bell-popover-overlay-fade';
         widthAlign: {
             type: RAW_BOOLEAN,
         },
-        delay: {
+        showDelay: {
             type: RAW_NUMERIC,
             value: HOVER_DELAY,
+        },
+        hideDelay: {
+            type: RAW_NUMERIC,
+            value: 300,
         },
         offsetX: {
             type: RAW_NUMERIC,
@@ -1198,13 +1202,14 @@ var CLASS_OVERLAY_FADE = 'bell-popover-overlay-fade';
                 me.leaveTimer = UNDEFINED;
                 return;
             }
-            var delay = toNumber(me.get('delay'));
-            if (delay > 0) {
+            var showDelay = toNumber(me.get('showDelay'));
+            if (showDelay > 0) {
                 me.enterTimer = setTimeout(function () {
+                    me.enterTimer = UNDEFINED;
                     if (me.get('isHover')) {
                         me.fireOpen();
                     }
-                }, delay);
+                }, showDelay);
             }
             else {
                 me.fireOpen();
@@ -1213,9 +1218,16 @@ var CLASS_OVERLAY_FADE = 'bell-popover-overlay-fade';
         leave: function () {
             var me = this;
             me.set('isHover', FALSE);
-            me.leaveTimer = setTimeout(function () {
+            var hideDelay = toNumber(me.get('hideDelay'));
+            if (hideDelay > 0) {
+                me.leaveTimer = setTimeout(function () {
+                    me.leaveTimer = UNDEFINED;
+                    me.fireClose();
+                }, hideDelay);
+            }
+            else {
                 me.fireClose();
-            }, 300);
+            }
         },
         fireOpen: function () {
             var me = this;
@@ -7842,14 +7854,12 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
     propTypes: {
         inline: {
             type: RAW_BOOLEAN,
-            value: FALSE,
         },
         showColon: {
             type: RAW_BOOLEAN,
-            value: FALSE,
         },
         labelAlign: {
-            type: oneOf([RAW_LEFT, RAW_RIGHT]),
+            type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
             value: RAW_RIGHT,
         },
         labelWidth: {
@@ -8893,6 +8903,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 
 
 
+
 var src_component = {
     Menu: menu_Menu,
     MenuItem: menu_MenuItem,
@@ -8952,6 +8963,7 @@ var src_component = {
     Divider: divider_Divider,
     Circle: circle_Circle,
     Progress: progress_Progress,
+    Popover: popover_Popover,
     Tag: tag_Tag,
     Rate: rate_Rate,
     Tabs: tabs_Tabs,
@@ -8972,7 +8984,7 @@ var src_component = {
 /**
  * 版本
  */
-var version = "0.21.2";
+var version = "0.21.3";
 /**
  * 安装插件
  */

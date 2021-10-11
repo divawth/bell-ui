@@ -68,9 +68,13 @@ export default Yox.define({
     widthAlign: {
       type: RAW_BOOLEAN,
     },
-    delay: {
+    showDelay: {
       type: RAW_NUMERIC,
       value: HOVER_DELAY,
+    },
+    hideDelay: {
+      type: RAW_NUMERIC,
+      value: 300,
     },
     offsetX: {
       type: RAW_NUMERIC,
@@ -114,15 +118,16 @@ export default Yox.define({
         return
       }
 
-      const delay = toNumber(me.get('delay'))
-      if (delay > 0) {
+      const showDelay = toNumber(me.get('showDelay'))
+      if (showDelay > 0) {
         me.enterTimer = setTimeout(
           function () {
+            me.enterTimer = UNDEFINED
             if (me.get('isHover')) {
               me.fireOpen()
             }
           },
-          delay
+          showDelay
         )
       }
       else {
@@ -132,12 +137,20 @@ export default Yox.define({
     leave() {
       const me = this as any
       me.set('isHover', FALSE)
-      me.leaveTimer = setTimeout(
-        function () {
-          me.fireClose()
-        },
-        300
-      )
+
+      const hideDelay = toNumber(me.get('hideDelay'))
+      if (hideDelay > 0) {
+        me.leaveTimer = setTimeout(
+          function () {
+            me.leaveTimer = UNDEFINED
+            me.fireClose()
+          },
+          hideDelay
+        )
+      }
+      else {
+        me.fireClose()
+      }
     },
     fireOpen() {
 

@@ -252,15 +252,36 @@ export default {
 }
 ```
 
+> labelAlign - top
+
+```js
+export default {
+  isViewFullBlock: true,
+  template: `
+  <Form labelAlign="top" labelWidth="100">
+    <FormItem label="Title">
+      <Input />
+    </FormItem>
+    <FormItem label="Title name">
+      <Input />
+    </FormItem>
+    <FormItem label="Aligned title">
+      <Input />
+    </FormItem>
+  </Form>
+  `
+}
+```
+
 #### Form API
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-inline | 是否开启行内表单模式 | boolean | - | `false`
-showColon | 是否显示 label 后面的冒号 | boolean | - | `false`
-labelAlign | 表单域标签的位置 | string | `left`, `right` | `right`
+inline | 是否开启行内表单模式 | boolean | - | -
+showColon | 是否显示 label 后面的冒号 | boolean | - | -
+labelAlign | 表单域标签的位置 | string | `left`, `right`, `top` | `right`
 labelWidth | 表单域标签的宽度 | number | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
