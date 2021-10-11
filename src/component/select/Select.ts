@@ -36,6 +36,10 @@ import {
   isOptionSelected,
 } from './util'
 
+import {
+  fireClickEvent,
+} from '../event'
+
 export default Yox.define({
 
   template,
@@ -137,6 +141,7 @@ export default Yox.define({
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
+      fireClickEvent(event)
 
       this.set('value', UNDEFINED)
 

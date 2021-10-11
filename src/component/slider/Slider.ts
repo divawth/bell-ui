@@ -26,6 +26,10 @@ import {
   getPageY,
 } from '../util'
 
+import {
+  fireClickEvent,
+} from '../event'
+
 export default Yox.define({
 
   template,
@@ -293,6 +297,7 @@ export default Yox.define({
       function (event) {
 
         event.stop()
+        fireClickEvent(event)
 
         updateValues()
 

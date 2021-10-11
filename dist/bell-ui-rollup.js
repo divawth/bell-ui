@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.21.5
+ * bell-ui.js v0.21.6
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -460,6 +460,28 @@
 
   var template$4 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_CLICK',_U.RAW_CLICK).value?_b(_R,'events',_g('click','toggleVisible()','click','',_G.toggleVisible),'click'):_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,ref:'trigger',tag:'slot',type:7}),_S);_q('visible',_U.visible).value?_a({children:function(_S){_a(function(_R){!_q('disabled',_U.disabled).value?_q('trigger',_U.trigger).value===_q('RAW_HOVER',_U.RAW_HOVER).value?(_b(_R,'events',_g('mouseenter','enter()','mouseenter','',_G.enter),'mouseenter'),_b(_R,'events',_g('mouseleave','leave()','mouseleave','',_G.leave),'mouseleave')):$0:$0;return _R}({children:function(_S){_l('$slot_overlay',_S);return _S}([]),context:_G,events:{click:_g('click','click()','click','',_G.click)},isSlot:$2,operator:_F,ref:'overlay',tag:'slot',transition:_e('overlay',_O&&_O.overlay||_P.overlay),type:7}),_S);return _S}([]),context:_G,operator:_E,tag:'portal',type:6},_S):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,isFragment:$2,operator:_D,tag:'fragment',type:5},_S);}})();
 
+  var emitter = new Yox();
+  /**
+   * 有些组件会调用 `event.stop()` 阻止事件冒泡
+   *
+   * 但是，有些地方需要监听全局点击事件，这些组件的点击事件不能被忽略
+   *
+   * 因此，我们加一个全局方法，让组件再调用 `event.stop()` 之后再调用 `fireClickEvent()`
+   *
+   * @param event
+   */
+  function fireClickEvent(event, isFromPopover) {
+      // event 一般会被调用 `event.stop()`
+      // 如果直接 fire 原事件，相当于 fire 了一个 stoped 事件，这是不对的
+      emitter.fire(new Yox.Event('click', event.originalEvent), { isFromPopover: isFromPopover });
+  }
+  function onClickEvent(listener) {
+      emitter.on('click', listener);
+  }
+  function offClickEvent(listener) {
+      emitter.off('click', listener);
+  }
+
   var CLASS_OVERLAY = 'bell-popover-overlay';
   var CLASS_OVERLAY_TRANSITION = 'bell-popover-overlay-transition';
   var CLASS_OVERLAY_FADE = 'bell-popover-overlay-fade';
@@ -520,6 +542,7 @@
       methods: {
           click: function (event) {
               event.stop();
+              fireClickEvent(event, TRUE);
           },
           enter: function () {
               var me = this;
@@ -693,7 +716,7 @@
       },
       afterMount: function () {
           var me = this;
-          var onClick = function (event) {
+          var onNativeClick = function (event) {
               if (!me.get('visible')) {
                   return;
               }
@@ -713,7 +736,13 @@
                   me.fireClose();
               }
           };
-          Yox.dom.on(DOCUMENT, RAW_CLICK, onClick);
+          var onGlobalClick = function (event, data) {
+              if (!data.isFromPopover) {
+                  onNativeClick(event);
+              }
+          };
+          Yox.dom.on(DOCUMENT, RAW_CLICK, onNativeClick);
+          onClickEvent(onGlobalClick);
           var destroy = function (component) {
               if (component === me) {
                   if (me.enterTimer) {
@@ -725,7 +754,8 @@
                   if (me.animateTimer) {
                       clearTimeout(me.animateTimer);
                   }
-                  Yox.dom.off(DOCUMENT, RAW_CLICK, onClick);
+                  offClickEvent(onGlobalClick);
+                  Yox.dom.off(DOCUMENT, RAW_CLICK, onNativeClick);
                   Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy);
               }
           };
@@ -2476,6 +2506,7 @@
           })
               .on('trackClick.slider', function (event) {
               event.stop();
+              fireClickEvent(event);
               updateValues();
               var originalEvent = event.originalEvent;
               updatePosition(originalEvent.pageX, originalEvent.pageY);
@@ -2670,6 +2701,7 @@
           handleClearClick: function (event) {
               // 停止冒泡，否则会展开下拉框
               event.stop();
+              fireClickEvent(event);
               this.set('value', UNDEFINED);
               this.fireChange(UNDEFINED);
           },
@@ -3334,7 +3366,7 @@
       }
   });
 
-  var template$w = (function(){var $0=void 0,$2=!0,$5={className:'bell-split-button-menu'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]=function(_R){_q('style',_U.style).value?_b(_R,'props',_q('style',_U.style).value,'style'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{className:'bell-split-button'+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,events:{click:_g('click','handleButtonClick()','click','',_G.handleButtonClick,$0,$2)},isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value,loading:_q('loading',_U.loading).value,type:_q('type',_U.type).value},slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);}}),tag:'Button',type:4};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value||_q('loading',_U.loading).value,gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CLICK',_U.RAW_CLICK).value,visible:_q('menuVisible',_U.menuVisible).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]=function(_R){_q('loading',_U.loading).value?_b(_R,'props','bell-button-loading','className'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value,type:_q('type',_U.type).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{name:'arrow-down-s-line'},tag:'Icon',type:4};}}),tag:'Button',type:4});},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_n(_q('menu',_U.menu),function(_U,_V,_W,index){_S[_S.length]=function(_R){!_t('disabled',_U.disabled).value?_b(_R,'events',_g('click','handleItemClick(this, index)','click','',_G.handleItemClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value,index]}}),'click'):$0;return _R}({context:_G,nativeProps:{className:'bell-split-button-menu-item'+(_t('disabled',_U.disabled).value?' bell-split-button-menu-item-disabled':' bell-split-button-menu-item-enabled')},operator:_B,tag:'div',text:_y(_t('text',_U.text).value),type:3});});return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3};}}),tag:'Popover',type:4};}}),tag:'ButtonGroup',type:4});}})();
+  var template$w = (function(){var $0=void 0,$2=!0,$5={className:'bell-split-button-menu'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=_T[_T.length]=function(_R){_q('style',_U.style).value?_b(_R,'props',_q('style',_U.style).value,'style'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{className:'bell-split-button'+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):''),size:_q('size',_U.size).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,events:{click:_g('click','handleButtonClick()','click','',_G.handleButtonClick,$0,$2)},isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value,loading:_q('loading',_U.loading).value,type:_q('type',_U.type).value},slots:_k({$slot_children:function(_S,_T){_a({children:function(_S){_l('$slot_children',_S);return _S}([]),context:_G,isSlot:$2,operator:_F,tag:'slot',type:7},_S);}}),tag:'Button',type:4};_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value||_q('loading',_U.loading).value,gap:'5',placement:_q('placement',_U.placement).value,trigger:_q('RAW_CLICK',_U.RAW_CLICK).value,visible:_q('menuVisible',_U.menuVisible).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]=function(_R){_q('loading',_U.loading).value?_b(_R,'props','bell-button-loading','className'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{disabled:_q('disabled',_U.disabled).value,type:_q('type',_U.type).value},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{name:'arrow-down-s-line'},tag:'Icon',type:4};}}),tag:'Button',type:4});},$slot_overlay:function(_S,_T){_S[_S.length]={children:function(_S){_n(_q('menu',_U.menu),function(_U,_V,_W,index){_S[_S.length]=function(_R){!_t('disabled',_U.disabled).value?_b(_R,'events',_g('click','handleItemClick(this, index)','click','',_G.handleItemClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value,index]}}),'click'):$0;return _R}({context:_G,nativeProps:{className:'bell-split-button-menu-item'+(_t('disabled',_U.disabled).value?' bell-split-button-menu-item-disabled':' bell-split-button-menu-item-enabled')},operator:_B,tag:'div',text:_y(_t('text',_U.text).value),type:3});});return _S}([]),context:_G,nativeProps:$5,operator:_B,tag:'div',type:3};}}),tag:'Popover',type:4};}}),tag:'ButtonGroup',type:4});}})();
 
   var SplitButton = Yox.define({
       template: template$w,
@@ -3383,6 +3415,7 @@
           click: function (event) {
               if (event.phase === Yox.Event.PHASE_UPWARD) {
                   event.stop();
+                  fireClickEvent(event);
               }
           },
           open: function (event) {
@@ -3397,6 +3430,7 @@
       methods: {
           handleButtonClick: function (event) {
               event.stop();
+              fireClickEvent(event);
               this.fire({
                   type: 'click',
                   ns: 'splitButton',
@@ -4577,6 +4611,7 @@
           handleClearClick: function (event) {
               // 停止冒泡，否则会展开下拉框
               event.stop();
+              fireClickEvent(event);
               var value = this.get('multiple') ? [] : UNDEFINED;
               this.set('value', value);
               this.fire({
@@ -5039,6 +5074,7 @@
           handleClearClick: function (event) {
               // 停止冒泡，否则会展开下拉框
               event.stop();
+              fireClickEvent(event);
               var props = toTimeProps(UNDEFINED, this.get('hourList'), this.get('minuteList'), this.get('secondList'));
               this.set(props);
               this.fireChange(props.hour, props.minute, props.second);
@@ -6332,6 +6368,7 @@
           click: {
               listener: function (event) {
                   event.stop();
+                  fireClickEvent(event, TRUE);
                   this.fire({
                       type: 'close',
                       ns: 'dropdown',
@@ -7555,7 +7592,7 @@
   /**
    * 版本
    */
-  var version = "0.21.5";
+  var version = "0.21.6";
   /**
    * 安装插件
    */

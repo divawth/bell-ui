@@ -32,6 +32,10 @@ import {
   oneOf,
 } from '../util'
 
+import {
+  fireClickEvent
+} from '../event'
+
 export default Yox.define({
 
   template,
@@ -85,6 +89,7 @@ export default Yox.define({
     click(event) {
       if (event.phase === Yox.Event.PHASE_UPWARD) {
         event.stop()
+        fireClickEvent(event)
       }
     },
     open(event) {
@@ -100,6 +105,7 @@ export default Yox.define({
   methods: {
     handleButtonClick(event: CustomEventInterface) {
       event.stop()
+      fireClickEvent(event)
       this.fire(
         {
           type: 'click',

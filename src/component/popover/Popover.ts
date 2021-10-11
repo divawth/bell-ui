@@ -40,6 +40,12 @@ import {
   onTransitionEnd,
 } from '../util'
 
+import {
+  fireClickEvent,
+  offClickEvent,
+  onClickEvent,
+} from '../event'
+
 const CLASS_OVERLAY = '${prefix}popover-overlay'
 const CLASS_OVERLAY_TRANSITION = '${prefix}popover-overlay-transition'
 const CLASS_OVERLAY_FADE = '${prefix}popover-overlay-fade'
@@ -107,6 +113,7 @@ export default Yox.define({
   methods: {
     click(event: CustomEventInterface) {
       event.stop()
+      fireClickEvent(event, TRUE)
     },
     enter() {
       const me = this as any
@@ -356,7 +363,7 @@ export default Yox.define({
 
     const me = this as any
 
-    const onClick = function (event: CustomEventInterface) {
+    const onNativeClick = function (event: CustomEventInterface) {
       if (!me.get('visible')) {
         return
       }
@@ -377,11 +384,19 @@ export default Yox.define({
       }
     }
 
+    const onGlobalClick = function (event: CustomEventInterface, data: Data) {
+      if (!data.isFromPopover) {
+        onNativeClick(event)
+      }
+    }
+
     Yox.dom.on(
       DOCUMENT,
       RAW_CLICK,
-      onClick
+      onNativeClick
     )
+
+    onClickEvent(onGlobalClick)
 
     const destroy = function (component: YoxInterface) {
       if (component === me) {
@@ -394,7 +409,8 @@ export default Yox.define({
         if (me.animateTimer) {
           clearTimeout(me.animateTimer)
         }
-        Yox.dom.off(DOCUMENT, RAW_CLICK, onClick)
+        offClickEvent(onGlobalClick)
+        Yox.dom.off(DOCUMENT, RAW_CLICK, onNativeClick)
         Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
       }
     }

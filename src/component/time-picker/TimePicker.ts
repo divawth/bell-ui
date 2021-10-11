@@ -34,6 +34,10 @@ import {
   toNumber,
 } from '../util'
 
+import {
+  fireClickEvent,
+} from '../event'
+
 const DEFAULT_HOUR_STEP = 1
 const DEFAULT_MINUTE_STEP = 1
 const DEFAULT_SECOND_STEP = 1
@@ -223,6 +227,7 @@ export default Yox.define({
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
+      fireClickEvent(event)
 
       const props = toTimeProps(
         UNDEFINED,

@@ -51,6 +51,10 @@ import {
   oneOf,
 } from '../util'
 
+import {
+  fireClickEvent,
+} from '../event'
+
 const YEAR_FORMAT = 'yyyy'
 const MONTH_FORMAT = 'yyyy-MM'
 const DATE_FORMAT = 'yyyy-MM-dd'
@@ -229,6 +233,7 @@ export default Yox.define({
 
       // 停止冒泡，否则会展开下拉框
       event.stop()
+      fireClickEvent(event)
 
       const value = this.get('multiple') ? [] : UNDEFINED
 

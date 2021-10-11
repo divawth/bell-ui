@@ -15,11 +15,16 @@ import {
   RAW_CUSTOM,
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM,
+  TRUE,
 } from '../constant'
 
 import {
   oneOf,
 } from '../util'
+
+import {
+  fireClickEvent,
+} from '../event'
 
 export default Yox.define({
 
@@ -55,6 +60,7 @@ export default Yox.define({
     click: {
       listener(event) {
         event.stop()
+        fireClickEvent(event, TRUE)
         this.fire({
           type: 'close',
           ns: 'dropdown',
