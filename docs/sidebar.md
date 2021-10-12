@@ -40,6 +40,7 @@
   - [Alert 警告提示](view/alert)
   - [Message 全局消息提示](view/message)
   - [Notification 通知提醒](view/notification)
+  - [Popconfirm 气泡确认](view/popconfirm)
   - [Modal 模态框](view/modal)
   - [Dialog 对话框](view/dialog)
   - [Tooltip 文字提示](view/tooltip)

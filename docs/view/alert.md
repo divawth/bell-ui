@@ -216,11 +216,11 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-status | 颜色 | string | `info`, `warning`, `success`, `error` | `warning`
-showIcon | 是否显示状态图标 | boolean | - | `false`
-closable | 是否显示关闭按钮 | boolean | - | `false`
-center | 文字是否居中 | boolean | - | `false`
-banner | 是否为页面顶部通告 | boolean | - | `false`
+status | 状态 | string | `info`, `warning`, `success`, `error` | `warning`
+showIcon | 是否显示状态图标 | boolean | - | -
+closable | 是否显示关闭按钮 | boolean | - | -
+center | 文字是否居中 | boolean | - | -
+banner | 是否为页面顶部通告 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
