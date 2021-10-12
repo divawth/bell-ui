@@ -1,0 +1,55 @@
+@import '../../../env'
+
+$popconfirm-padding-horizontal = 16px
+$popconfirm-padding-vertical = 12px
+
+$popconfirm-status-icon-gap = 8px
+$popconfirm-status-icon-size = 16px
+$popconfirm-status-icon-top = 2px
+
+popconfirm-brand-style(style)
+  {$selector-class-prefix + '-popconfirm-status-icon'}
+    ui-set('color', style['color'])
+
+{$selector-class-prefix + '-popconfirm'}
+  font-size 0
+  line-height 0
+
+  ui-connect(
+    hash: $status-brand-hash,
+    each: popconfirm-brand-style
+  )
+
+  > {$selector-class-prefix + '-popover-arrow'}
+    border-color $brand-divider
+    &:before
+      border-color $brand-white
+
+  > {$selector-class-prefix + '-popover-content'}
+    color $brand-content
+    border-color $brand-divider
+    background-color $brand-white
+
+    font-size $font-size-default
+    line-height $ui-multiple-line-height
+
+    text-align left
+    position relative
+
+    padding $popconfirm-padding-vertical $popconfirm-padding-horizontal
+    box-shadow $brand-message-shadow
+    border-radius $border-radius-default
+
+{$selector-class-prefix + '-popconfirm-status-icon'}
+  position absolute
+  left $popconfirm-padding-horizontal
+  top $popconfirm-padding-vertical + $popconfirm-status-icon-top
+  font-size $popconfirm-status-icon-size
+
+{$selector-class-prefix + '-popconfirm-with-icon'}
+  > {$selector-class-prefix + '-popover-content'}
+    padding-left $popconfirm-padding-horizontal + $popconfirm-status-icon-size + $popconfirm-status-icon-gap
+
+{$selector-class-prefix + '-popconfirm-footer'}
+  text-align right
+  margin-top $ui-vertical-gap

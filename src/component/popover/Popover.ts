@@ -203,7 +203,7 @@ export default Yox.define({
       const me = this as any
 
       const widthAlign = me.get('widthAlign')
-      const placement = me.get('placement')
+      const placement = me.get('placement') || RAW_BOTTOM
       const offsetX = toNumber(me.get('offsetX'), 0)
       const offsetY = toNumber(me.get('offsetY'), 0)
       const gap = toNumber(me.get('gap'), 0)
@@ -313,7 +313,7 @@ export default Yox.define({
 
         const me = this as any
 
-        const placement = me.get('placement')
+        const placement = me.get('placement') || RAW_BOTTOM
 
         Yox.dom.addClass(node, CLASS_POPOVER)
         Yox.dom.addClass(node, '${prefix}popover-' + placement)

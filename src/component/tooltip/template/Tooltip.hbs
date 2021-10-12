@@ -19,7 +19,6 @@
       style="{{style}}"
     {{/if}}
   >
-    <div class="${prefix}popover-arrow"></div>
     <div
       class="${prefix}popover-content"
       {{#if maxWidth || maxHeight}}
@@ -31,5 +30,6 @@
         {{content}}
       </slot>
     </div>
+    <div class="${prefix}popover-arrow"></div>
   </div>
 </Popover>

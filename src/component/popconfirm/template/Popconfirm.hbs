@@ -1,0 +1,66 @@
+<Popover
+  ref="popover"
+  placement="{{placement}}"
+  trigger="{{RAW_CLICK}}"
+  visible="{{isVisible}}"
+>
+  <slot />
+
+  <div
+    slot="overlay"
+    class="${prefix}popconfirm
+    {{#if status}} ${prefix}popconfirm-{{status}}{{/if}}
+    {{#if showIcon}} ${prefix}popconfirm-with-icon{{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if style}}
+      style="{{style}}"
+    {{/if}}
+  >
+    <div
+      class="${prefix}popover-content"
+      {{#if maxWidth || maxHeight}}
+        style="{{#if maxWidth}}max-width: {{maxWidth}}px;{{/if}}
+        {{#if maxHeight}}max-height: {{maxHeight}}px;{{/if}}"
+      {{/if}}
+    >
+
+      {{#if showIcon}}
+        <Icon
+          name="{{
+            status === RAW_TYPE_SUCCESS
+              ? 'checkbox-circle-fill'
+              : status === RAW_TYPE_WARNING
+                ? 'error-warning-fill'
+                : status === RAW_TYPE_ERROR
+                  ? 'close-circle-fill'
+                  : 'information-fill'
+          }}"
+          className="${prefix}popconfirm-status-icon"
+        />
+      {{/if}}
+
+      <div class="${prefix}popconfirm-title">
+        {{title}}
+      </div>
+
+      <div class="${prefix}popconfirm-footer">
+        <Button
+          size="small"
+          on-click="handleCancelClick()"
+        >
+          {{cancelText}}
+        </Button>
+        <Button
+          size="small"
+          type="{{okType || status}}"
+          on-click="handleOkClick()"
+        >
+          {{okText}}
+        </Button>
+      </div>
+
+    </div>
+    <div class="${prefix}popover-arrow"></div>
+  </div>
+</Popover>
