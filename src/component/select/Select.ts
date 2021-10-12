@@ -234,11 +234,12 @@ export default Yox.define({
 
     updateSelectedOptions(selectedValue: any, children: any) {
 
+      const selectedOptions = []
+
       if (!children) {
+        this.set('selectedOptions', selectedOptions)
         return
       }
-
-      const selectedOptions = []
 
       const findOptions = function (children) {
         children.vnodes.forEach(
@@ -312,12 +313,10 @@ export default Yox.define({
   },
 
   beforePropsUpdate(props) {
-    if (props && props[RAW_SLOT_CHILDREN]) {
-      this.updateSelectedOptions(
-        this.get('value'),
-        props[RAW_SLOT_CHILDREN]
-      )
-    }
+    this.updateSelectedOptions(
+      this.get('value'),
+      props && props[RAW_SLOT_CHILDREN]
+    )
   }
 
 })

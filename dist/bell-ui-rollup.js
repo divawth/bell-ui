@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.21.8
+ * bell-ui.js v0.21.9
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -2754,10 +2754,11 @@
               }
           },
           updateSelectedOptions: function (selectedValue, children) {
+              var selectedOptions = [];
               if (!children) {
+                  this.set('selectedOptions', selectedOptions);
                   return;
               }
-              var selectedOptions = [];
               var findOptions = function (children) {
                   children.vnodes.forEach(function (vnode) {
                       if (vnode.tag === 'Option' && vnode.props) {
@@ -2807,9 +2808,7 @@
           }
       },
       beforePropsUpdate: function (props) {
-          if (props && props[RAW_SLOT_CHILDREN]) {
-              this.updateSelectedOptions(this.get('value'), props[RAW_SLOT_CHILDREN]);
-          }
+          this.updateSelectedOptions(this.get('value'), props && props[RAW_SLOT_CHILDREN]);
       }
   });
 
@@ -7592,7 +7591,7 @@
   /**
    * 版本
    */
-  var version = "0.21.8";
+  var version = "0.21.9";
   /**
    * 安装插件
    */

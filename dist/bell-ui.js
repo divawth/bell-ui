@@ -3613,10 +3613,11 @@ function isOptionSelected(values, value) {
             }
         },
         updateSelectedOptions: function (selectedValue, children) {
+            var selectedOptions = [];
             if (!children) {
+                this.set('selectedOptions', selectedOptions);
                 return;
             }
-            var selectedOptions = [];
             var findOptions = function (children) {
                 children.vnodes.forEach(function (vnode) {
                     if (vnode.tag === 'Option' && vnode.props) {
@@ -3666,9 +3667,7 @@ function isOptionSelected(values, value) {
         }
     },
     beforePropsUpdate: function (props) {
-        if (props && props[RAW_SLOT_CHILDREN]) {
-            this.updateSelectedOptions(this.get('value'), props[RAW_SLOT_CHILDREN]);
-        }
+        this.updateSelectedOptions(this.get('value'), props && props[RAW_SLOT_CHILDREN]);
     }
 }));
 
@@ -9075,7 +9074,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.21.8";
+var version = "0.21.9";
 /**
  * 安装插件
  */
