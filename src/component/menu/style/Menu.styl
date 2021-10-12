@@ -10,7 +10,10 @@ $menu-arrow-icon-size = 16px
 $menu-arrow-icon-top = 16px
 
 $menu-dark-bg = #363e4f
-$menu-light-bg = #f0faff
+$menu-light-bg = #fafafa
+
+$menu-item-dark-bg = #363e4f
+$menu-item-light-bg = #f0faff
 
 $menu-group-title-height = 34px
 $menu-horizontal-item-height = 64px
@@ -32,10 +35,11 @@ $menu-theme-hash = {
     horizontal-item-active-color: $brand-primary,
 
     vertical-item-active-color: $brand-primary,
-    vertical-item-active-bg-color: $menu-light-bg,
+    vertical-item-active-bg-color: $menu-item-light-bg,
 
+    inline-bg-color: $menu-light-bg,
   inline-item-active-color: $brand-primary,
-    inline-item-active-bg-color: $menu-light-bg,
+    inline-item-active-bg-color: $menu-item-light-bg,
   },
 
 dark: {
@@ -51,7 +55,7 @@ dark: {
     horizontal-item-active-color: $layout-light-bg-color,
 
     vertical-item-active-color: $brand-primary,
-    vertical-item-active-bg-color: $menu-dark-bg,
+    vertical-item-active-bg-color: $menu-item-dark-bg,
 
     inline-bg-color: $menu-dark-bg,
     inline-item-active-color: $layout-light-bg-color,
