@@ -46,9 +46,9 @@ import {
   onClickEvent,
 } from '../event'
 
-const CLASS_OVERLAY = '${prefix}popover-overlay'
-const CLASS_OVERLAY_TRANSITION = '${prefix}popover-overlay-transition'
-const CLASS_OVERLAY_FADE = '${prefix}popover-overlay-fade'
+const CLASS_POPOVER = '${prefix}popover'
+const CLASS_POPOVER_TRANSITION = '${prefix}popover-transition'
+const CLASS_POPOVER_FADE = '${prefix}popover-fade'
 
 export default Yox.define({
 
@@ -315,8 +315,8 @@ export default Yox.define({
 
         const placement = me.get('placement')
 
-        Yox.dom.addClass(node, CLASS_OVERLAY)
-        Yox.dom.addClass(node, '${prefix}popover-overlay-' + placement)
+        Yox.dom.addClass(node, CLASS_POPOVER)
+        Yox.dom.addClass(node, '${prefix}popover-' + placement)
 
         const overlayRect = me.getOverlayRect()
         me.setOverlayRect(
@@ -328,11 +328,11 @@ export default Yox.define({
 
         me.animateTimer = setTimeout(
           function () {
-            Yox.dom.addClass(node, CLASS_OVERLAY_TRANSITION)
+            Yox.dom.addClass(node, CLASS_POPOVER_TRANSITION)
 
             me.animateTimer = setTimeout(
               function () {
-                Yox.dom.addClass(node, CLASS_OVERLAY_FADE)
+                Yox.dom.addClass(node, CLASS_POPOVER_FADE)
               },
               20
             )
@@ -345,14 +345,14 @@ export default Yox.define({
 
         const me = this
 
-        Yox.dom.removeClass(node, CLASS_OVERLAY_FADE)
+        Yox.dom.removeClass(node, CLASS_POPOVER_FADE)
 
         onTransitionEnd(
           node,
           function () {
             me.setOverlayRect(node, UNDEFINED, UNDEFINED, UNDEFINED)
-            Yox.dom.removeClass(node, CLASS_OVERLAY_TRANSITION)
-            Yox.dom.removeClass(node, CLASS_OVERLAY)
+            Yox.dom.removeClass(node, CLASS_POPOVER_TRANSITION)
+            Yox.dom.removeClass(node, CLASS_POPOVER)
             done()
           }
         )

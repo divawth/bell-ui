@@ -13,16 +13,15 @@
     slot="overlay"
     class="${prefix}tooltip
     {{#if theme}} ${prefix}tooltip-{{theme}}{{/if}}
-    {{#if placement}} ${prefix}tooltip-{{placement}}{{/if}}
     {{#if className}} {{className}}{{/if}}"
 
     {{#if style}}
       style="{{style}}"
     {{/if}}
   >
-    <div class="${prefix}tooltip-arrow"></div>
+    <div class="${prefix}popover-arrow"></div>
     <div
-      class="${prefix}tooltip-content"
+      class="${prefix}popover-content"
       {{#if maxWidth || maxHeight}}
         style="{{#if maxWidth}}max-width: {{maxWidth}}px;{{/if}}
         {{#if maxHeight}}max-height: {{maxHeight}}px;{{/if}}"

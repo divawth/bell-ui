@@ -1,6 +1,12 @@
 @import '../../../env'
 
-{$selector-class-prefix + '-popover-overlay'}
+$popover-arrow-padding-inner = 8px
+$popover-arrow-offset = -2px
+// 箭头与 popover 两侧的距离
+$popover-arrow-gap = 10px
+$popover-arrow-size = 5px
+
+{$selector-class-prefix + '-popover'}
   position absolute
   display block
   opacity 0
@@ -9,107 +15,262 @@
   box-sizing border-box
   border-radius $border-radius-default
 
-{$selector-class-prefix + '-popover-overlay-transition'}
+{$selector-class-prefix + '-popover-transition'}
   transition transform .3s cubic-bezier(.23,1,.32,1),
               opacity .3s cubic-bezier(.23,1,.32,1)
 
-{$selector-class-prefix + '-popover-overlay-fade'}
+{$selector-class-prefix + '-popover-fade'}
   opacity 1
 
 
 
 
-{$selector-class-prefix + '-popover-overlay-top'},
-{$selector-class-prefix + '-popover-overlay-top-start'},
-{$selector-class-prefix + '-popover-overlay-top-end'}
+{$selector-class-prefix + '-popover-top'},
+{$selector-class-prefix + '-popover-top-start'},
+{$selector-class-prefix + '-popover-top-end'}
   transform scaleY(0) translateY(-100%)
   transform-origin center top
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1) translateY(-100%)
 
 
 
-{$selector-class-prefix + '-popover-overlay-bottom'},
-{$selector-class-prefix + '-popover-overlay-bottom-start'},
-{$selector-class-prefix + '-popover-overlay-bottom-end'}
+{$selector-class-prefix + '-popover-bottom'},
+{$selector-class-prefix + '-popover-bottom-start'},
+{$selector-class-prefix + '-popover-bottom-end'}
   transform scaleY(0)
   transform-origin center top
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1)
 
 
 
-{$selector-class-prefix + '-popover-overlay-left'},
-{$selector-class-prefix + '-popover-overlay-left-start'},
-{$selector-class-prefix + '-popover-overlay-left-end'}
+{$selector-class-prefix + '-popover-left'},
+{$selector-class-prefix + '-popover-left-start'},
+{$selector-class-prefix + '-popover-left-end'}
   transform scaleX(0) translateX(-100%)
   transform-origin left center
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1) translateX(-100%)
 
 
 
-{$selector-class-prefix + '-popover-overlay-right'},
-{$selector-class-prefix + '-popover-overlay-right-start'},
-{$selector-class-prefix + '-popover-overlay-right-end'}
+{$selector-class-prefix + '-popover-right'},
+{$selector-class-prefix + '-popover-right-start'},
+{$selector-class-prefix + '-popover-right-end'}
   transform scaleX(0)
   transform-origin left center
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1)
 
 
 
 
 
-{$selector-class-prefix + '-popover-overlay-top'}
+{$selector-class-prefix + '-popover-top'}
   transform scaleY(0) translateX(-50%) translateY(-100%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1) translateX(-50%) translateY(-100%)
 
-{$selector-class-prefix + '-popover-overlay-top-end'}
+{$selector-class-prefix + '-popover-top-end'}
   transform scaleY(0) translateX(-100%) translateY(-100%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1) translateX(-100%) translateY(-100%)
 
-{$selector-class-prefix + '-popover-overlay-bottom'}
+{$selector-class-prefix + '-popover-bottom'}
   transform scaleY(0) translateX(-50%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1) translateX(-50%)
 
-{$selector-class-prefix + '-popover-overlay-bottom-end'}
+{$selector-class-prefix + '-popover-bottom-end'}
   transform scaleY(0) translateX(-100%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleY(1) translateX(-100%)
 
 
-{$selector-class-prefix + '-popover-overlay-left'}
+{$selector-class-prefix + '-popover-left'}
   transform scaleX(0) translateX(-100%) translateY(-50%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1) translateX(-100%) translateY(-50%)
 
-{$selector-class-prefix + '-popover-overlay-left-end'}
+{$selector-class-prefix + '-popover-left-end'}
   transform scaleX(0) translateX(-100%) translateY(-100%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1) translateX(-100%) translateY(-100%)
 
-{$selector-class-prefix + '-popover-overlay-right'}
+{$selector-class-prefix + '-popover-right'}
   transform scaleX(0) translateY(-50%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1) translateY(-50%)
 
-{$selector-class-prefix + '-popover-overlay-right-end'}
+{$selector-class-prefix + '-popover-right-end'}
   transform scaleX(0) translateY(-100%)
 
-  &{$selector-class-prefix + '-popover-overlay-fade'}
+  &{$selector-class-prefix + '-popover-fade'}
     transform scaleX(1) translateY(-100%)
+
+
+
+
+// 带箭头的 popover
+
+{$selector-class-prefix + '-popover-arrow'},
+{$selector-class-prefix + '-popover-arrow'}:before
+  position absolute
+  width 0
+  height 0
+  border $popover-arrow-size solid transparent
+
+{$selector-class-prefix + '-popover-arrow'}:before
+  content ''
+
+{$selector-class-prefix + '-popover-content'}
+  border 1px solid transparent
+  box-sizing border-box
+
+{$selector-class-prefix + '-popover-bottom'},
+{$selector-class-prefix + '-popover-bottom-start'},
+{$selector-class-prefix + '-popover-bottom-end'}
+
+  padding-top $popover-arrow-padding-inner
+
+  > {$selector-class-prefix + '-popover-arrow'},
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    border-top-color transparent !important
+    border-left-color transparent !important
+    border-right-color transparent !important
+
+  > {$selector-class-prefix + '-popover-arrow'}
+    top $popover-arrow-offset
+
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    left -1 * $popover-arrow-size
+    top -1 * ($popover-arrow-size - 1)
+
+{$selector-class-prefix + '-popover-bottom'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    left 50%
+    margin-left - $popover-arrow-size
+
+{$selector-class-prefix + '-popover-bottom-start'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    left $popover-arrow-gap
+
+{$selector-class-prefix + '-popover-bottom-end'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    right $popover-arrow-gap
+
+
+
+
+{$selector-class-prefix + '-popover-top'},
+{$selector-class-prefix + '-popover-top-start'},
+{$selector-class-prefix + '-popover-top-end'}
+  padding-bottom $popover-arrow-padding-inner
+
+  > {$selector-class-prefix + '-popover-arrow'},
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    border-bottom-color transparent !important
+    border-left-color transparent !important
+    border-right-color transparent !important
+
+  > {$selector-class-prefix + '-popover-arrow'}
+    bottom $popover-arrow-offset
+
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    left -1 * $popover-arrow-size
+    bottom -1 * ($popover-arrow-size - 1)
+
+
+{$selector-class-prefix + '-popover-top'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    left 50%
+    margin-left - $popover-arrow-size
+
+{$selector-class-prefix + '-popover-top-start'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    left $popover-arrow-gap
+
+{$selector-class-prefix + '-popover-top-end'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    right $popover-arrow-gap
+
+
+
+
+
+{$selector-class-prefix + '-popover-left'},
+{$selector-class-prefix + '-popover-left-start'},
+{$selector-class-prefix + '-popover-left-end'}
+  padding-right $popover-arrow-padding-inner
+
+  > {$selector-class-prefix + '-popover-arrow'},
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    border-top-color transparent !important
+    border-bottom-color transparent !important
+    border-right-color transparent !important
+
+  > {$selector-class-prefix + '-popover-arrow'}
+    right $popover-arrow-offset
+
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    top -1 * $popover-arrow-size
+    right -1 * ($popover-arrow-size - 1)
+
+{$selector-class-prefix + '-popover-left'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    top 50%
+    margin-top - $popover-arrow-size
+
+{$selector-class-prefix + '-popover-left-start'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    top $popover-arrow-gap
+
+{$selector-class-prefix + '-popover-left-end'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    bottom $popover-arrow-gap
+
+
+
+{$selector-class-prefix + '-popover-right'},
+{$selector-class-prefix + '-popover-right-start'},
+{$selector-class-prefix + '-popover-right-end'}
+  padding-left $popover-arrow-padding-inner
+
+  > {$selector-class-prefix + '-popover-arrow'},
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    border-top-color transparent !important
+    border-left-color transparent !important
+    border-bottom-color transparent !important
+
+  > {$selector-class-prefix + '-popover-arrow'}
+    left $popover-arrow-offset
+
+  > {$selector-class-prefix + '-popover-arrow'}:before
+    top -1 * $popover-arrow-size
+    left -1 * ($popover-arrow-size - 1)
+
+
+{$selector-class-prefix + '-popover-right'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    top 50%
+    margin-top - $popover-arrow-size
+
+{$selector-class-prefix + '-popover-right-start'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    top $popover-arrow-gap
+
+{$selector-class-prefix + '-popover-right-end'}
+  > {$selector-class-prefix + '-popover-arrow'}
+    bottom $popover-arrow-gap
