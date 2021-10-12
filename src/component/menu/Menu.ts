@@ -5,7 +5,6 @@ import template from './template/Menu.hbs'
 
 import {
   TRUE,
-  FALSE,
 
   RAW_ARRAY,
   RAW_STRING,
@@ -39,7 +38,6 @@ export default Yox.define({
     },
     collapsed: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     activeName: {
       type: RAW_STRING,
@@ -52,7 +50,6 @@ export default Yox.define({
     },
     inner: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -86,13 +83,33 @@ export default Yox.define({
     collapsed(collapsed: boolean) {
       this.fire(
         {
-          type: 'collapsed',
+          type: 'change',
           ns: 'menu',
         },
         { collapsed },
         TRUE
       )
-    }
+    },
+    theme(theme) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'menu',
+        },
+        { theme },
+        TRUE
+      )
+    },
+    mode(mode) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'menu',
+        },
+        { mode },
+        TRUE
+      )
+    },
   },
 
   events: {
@@ -119,9 +136,9 @@ export default Yox.define({
         if (event.phase === Yox.Event.PHASE_UPWARD
           && !this.get('inner')
         ) {
-  
+
           const { isOpen, name } = data
-  
+
           let openNames = this.get('openNames')
           if (openNames) {
             openNames = this.copy(openNames)
@@ -129,14 +146,14 @@ export default Yox.define({
           else {
             openNames = []
           }
-  
+
           if (isOpen) {
             openNames.push(name)
           }
           else {
             Yox.array.remove(openNames, name)
           }
-  
+
           this.fire(
             {
               type: 'change',
@@ -146,7 +163,7 @@ export default Yox.define({
               openNames,
             }
           )
-  
+
         }
       },
       ns: 'subMenu',

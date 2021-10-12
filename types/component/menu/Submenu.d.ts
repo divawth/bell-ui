@@ -3,7 +3,7 @@ declare const _default: import("yox").ComponentOptions<unknown, {
 }, {
     activeName: unknown;
     openNames: unknown;
-    collapsed: unknown;
+    change: unknown;
     click: unknown;
     outside: unknown;
 }, unknown> & ThisType<import("yox").YoxInterface>;

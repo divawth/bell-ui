@@ -85,9 +85,9 @@ export default Yox.define({
       },
       ns: 'menu',
     },
-    collapsed: {
+    change: {
       listener(_, data) {
-        this.set('collapsed', data.collapsed)
+        this.set(data)
       },
       ns: 'menu',
     },

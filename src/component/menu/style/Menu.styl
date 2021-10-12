@@ -5,6 +5,7 @@ $menu-vertical-padding = 20px
 $menu-icon-title-gap = 10px
 $menu-title-arrow-gap = 15px
 
+$menu-icon-size = 14px
 $menu-arrow-icon-size = 16px
 $menu-arrow-icon-top = 16px
 
@@ -145,10 +146,12 @@ menu-overlay-theme-style(style)
     text-decoration none
 
   > {$selector-class-prefix + '-icon'}:first-child
+    font-size $menu-icon-size
     margin-right $menu-icon-title-gap
 
 {$selector-class-prefix + '-menu-overlay'}
   min-width 180px
+  box-shadow $brand-layer-shadow
 
   ui-connect(
     hash: $menu-theme-hash,
@@ -166,6 +169,13 @@ menu-overlay-theme-style(style)
   height $menu-vertical-item-height
   line-height $menu-vertical-item-height
   padding 0 $menu-vertical-padding
+
+  + {$selector-class-prefix + '-menu'} > {$selector-class-prefix + '-menu-item'}
+    padding-left $menu-vertical-padding + $menu-icon-size + $menu-icon-title-gap
+
+{$selector-class-prefix + '-sub-menu-title'}
+  + {$selector-class-prefix + '-menu'} > {$selector-class-prefix + '-menu-item'}
+    padding-left $menu-vertical-padding + $menu-icon-size + $menu-icon-title-gap
 
 {$selector-class-prefix + '-sub-menu-arrow-icon'}
   font-size $menu-arrow-icon-size

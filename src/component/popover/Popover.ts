@@ -213,19 +213,21 @@ export default Yox.define({
       const triggerLeft = getPageX() + triggerRect.left
       const triggerTop = getPageY() + triggerRect.top
 
-      let x = 0, y = 0
+      let x = 0, y = 0, isVertical = FALSE
 
       if (placement === RAW_TOP
         || placement === RAW_TOP_START
         || placement === RAW_TOP_END
       ) {
         y = triggerTop - gap
+        isVertical = TRUE
       }
       else if (placement === RAW_BOTTOM
         || placement === RAW_BOTTOM_START
         || placement === RAW_BOTTOM_END
       ) {
         y = triggerTop + triggerRect.height + gap
+        isVertical = TRUE
       }
       else if (placement === RAW_LEFT
         || placement === RAW_LEFT_START
@@ -274,7 +276,7 @@ export default Yox.define({
       return {
         x: x + offsetX,
         y: y + offsetY,
-        width: widthAlign ? triggerRect.width : UNDEFINED,
+        width: isVertical && widthAlign ? triggerRect.width : UNDEFINED,
       }
 
     },
