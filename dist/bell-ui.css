@@ -11161,6 +11161,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-popconfirm-footer {
   text-align: right;
+  white-space: nowrap;
   margin-top: 10px;
 }
 .bell-progress {
@@ -11962,6 +11963,11 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-spin-fixed.bell-spin-dark.bell-spin-legacy {
   background-color: #000;
   opacity: 0.2;
+}
+.bell-split-button + .bell-split-button,
+.bell-split-button + .bell-button,
+.bell-button + .bell-split-button {
+  margin-left: 8px;
 }
 .bell-split-button-menu {
   min-width: 100px;

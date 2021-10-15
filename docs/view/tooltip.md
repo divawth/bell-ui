@@ -232,6 +232,7 @@ export default {
 content | Tooltip 的文本 | string | - | -
 theme | 主题 | string | dark, light | dark
 placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom`
+disabled | 是否禁用弹出提示 | boolean | - | -
 delay | 显示延时 | string, number | - | 0
 mode | 交互模式 | string | click, hover | hover
 maxWidth | 浮层的最大宽度 | string, number | - | -
