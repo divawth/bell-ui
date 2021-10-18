@@ -31,12 +31,11 @@ class="${prefix}tag
 {{/if}}
 >
 
-  <slot name="children" />
+  <slot />
 
   {{#if closable}}
     <Icon
       name="close-line"
-      size="0"
       className="${prefix}tag-close-icon"
       on-click.native="close.tag"
     />

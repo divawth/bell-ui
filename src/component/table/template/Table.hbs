@@ -51,13 +51,11 @@ style="
               on-click="sortColumn(this.key, ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC ? SORT_ORDER_DESC : SORT_ORDER_ASC)"
             >
               <Icon
-                size="0"
                 name="arrow-up-s-fill"
                 className="${prefix}table-sort-asc
                   {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
               />
               <Icon
-                size="0"
                 name="arrow-down-s-fill"
                 className="${prefix}table-sort-desc
                   {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
@@ -72,7 +70,7 @@ style="
 
   {{#if list.length > 0}}
     <tbody class="${prefix}table-body">
-      <slot name="children">
+      <slot>
         {{#each list:index}}
         <tr>
           {{#each ../columns}}

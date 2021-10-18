@@ -23,7 +23,6 @@ style="width: {{width}}px;right: {{right}}px;"
               ? 'close-circle-fill'
               : 'information-fill'
       }}"
-      size="0"
       className="${prefix}notification-icon"
     />
   {{/if}}
@@ -43,7 +42,6 @@ style="width: {{width}}px;right: {{right}}px;"
   {{#if duration == 0}}
     <Icon
       name="close-line"
-      size="0"
       className="${prefix}notification-close"
       on-click.native="hide()"
     />

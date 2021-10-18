@@ -14,7 +14,6 @@ class="${prefix}message
             ? 'close-circle-fill'
             : 'information-fill'
     }}"
-    size="0"
     className="${prefix}message-icon"
   />
 
@@ -25,7 +24,6 @@ class="${prefix}message
   {{#if closable}}
     <Icon
       name="close-line"
-      size="0"
       className="${prefix}message-close"
       on-click.native="hide()"
     />

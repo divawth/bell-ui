@@ -12,11 +12,10 @@ class="${prefix}spin
 {{/if}}
 >
   <div ref="content" class="${prefix}spin-content">
-    <slot name="children">
+    <slot>
       <Icon
         spin
         name="{{icon}}"
-        size="0"
         className="${prefix}spin-icon"
       />
       {{#if text}}

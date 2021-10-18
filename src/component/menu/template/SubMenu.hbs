@@ -30,7 +30,7 @@
     </div>
 
     <Menu ref="menu" mode="{{mode}}" inner>
-      <slot name="children" />
+      <slot />
     </Menu>
 
   </div>
@@ -74,7 +74,7 @@
       class="${prefix}menu-overlay
       {{#if theme}} ${prefix}menu-{{theme}}{{/if}}"
     >
-      <slot name="children" />
+      <slot />
     </div>
 
   </Popover>

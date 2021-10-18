@@ -29,7 +29,6 @@ class="${prefix}button
     {{#if loading}}
       <Icon
         spin
-        size="0"
         name="loader-5-line"
         className="${prefix}button-loading-icon"
       />
@@ -39,10 +38,10 @@ class="${prefix}button
   {{#if hasSlot('children')}}
     {{#if loading || hasSlot('prefix') || hasSlot('suffix')}}
       <span>
-        <slot name="children" />
+        <slot />
       </span>
     {{else}}
-      <slot name="children" />
+      <slot />
     {{/if}}
   {{/if}}
 

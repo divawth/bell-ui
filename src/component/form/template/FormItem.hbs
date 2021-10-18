@@ -27,7 +27,7 @@ class="${prefix}form-item
     <div class="${prefix}form-item-wrapper">
 
       <div class="${prefix}form-item-controls">
-        <slot name="children" />
+        <slot />
       </div>
 
       {{#if extra}}
@@ -52,7 +52,7 @@ class="${prefix}form-item
         style="margin-left: {{itemLabelWidth}}px;"
       {{/if}}
     >
-      <slot name="children" />
+      <slot />
 
       {{#if extra}}
         <div class="${prefix}form-item-extra">

@@ -77,7 +77,6 @@ class="${prefix}input
       <div class="${prefix}input-prefix ${prefix}input-prefix-icon-wrapper">
         <Icon
           name="{{prefix}}"
-          size="0"
           className="${prefix}input-prefix-icon"
         />
       </div>
@@ -91,7 +90,6 @@ class="${prefix}input
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper">
         <Icon
           name="{{suffix}}"
-          size="0"
           className="${prefix}input-suffix-icon"
         />
       </div>
@@ -99,7 +97,6 @@ class="${prefix}input
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-secure" on-click="toggle('isSecure')">
         <Icon
           name="{{isSecure ? 'eye-close-line' : 'eye-line'}}"
-          size="0"
           className="${prefix}input-secure-icon"
         />
       </div>
@@ -107,13 +104,12 @@ class="${prefix}input
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-clear" on-click="handleClearClick()">
         <Icon
           name="close-circle-fill"
-          size="0"
           className="${prefix}input-clear-icon"
         />
       </div>
     {{/if}}
 
-    <slot name="children" />
+    <slot />
 
   </div>
 

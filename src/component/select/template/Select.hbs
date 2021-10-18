@@ -37,7 +37,6 @@
         <slot name="prefix">
           <Icon
             name="{{prefix}}"
-            size="0"
             className="${prefix}select-prefix-icon"
           />
         </slot>
@@ -75,7 +74,6 @@
     {{#if clearable && selectedOptions.length}}
       <Icon
         name="close-circle-fill"
-        size="0"
         className="${prefix}select-clear-icon"
         on-click.native="handleClearClick()"
       />
@@ -83,7 +81,6 @@
 
     <Icon
       name="arrow-down-s-line"
-      size="0"
       className="${prefix}select-arrow-icon"
     />
 
@@ -93,7 +90,7 @@
     slot="overlay"
     class="${prefix}select-overlay"
   >
-    <slot name="children" />
+    <slot />
   </div>
 
 </Popover>

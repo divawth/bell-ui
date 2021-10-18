@@ -17,14 +17,14 @@
       <slot name="header" />
     </div>
     <div class="${prefix}list-body">
-      <slot name="children">
+      <slot>
         <ListEmpty>
           <slot name="empty" />
         </ListEmpty>
       </slot>
     </div>
   {{else}}
-    <slot name="children">
+    <slot>
       <ListEmpty>
         <slot name="empty" />
       </ListEmpty>

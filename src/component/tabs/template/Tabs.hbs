@@ -42,7 +42,6 @@ class="${prefix}tabs
             <Icon
               className="${prefix}tabs-tab-close-icon"
               name="close-line"
-              size="0"
               on-click.native="handleCloseTab(this)"
             />
           {{/if}}
@@ -53,7 +52,7 @@ class="${prefix}tabs
   </div>
 
   <div class="${prefix}tabs-content">
-    <slot name="children" />
+    <slot />
   </div>
 
 </div>
