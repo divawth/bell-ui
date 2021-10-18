@@ -18,7 +18,7 @@ class="${prefix}pagination
         {{#if current === 1}} ${prefix}pagination-custom-disabled{{/if}}"
 
         {{#if current > 1}}
-          on-click="decrease('current', 1, 1)"
+          on-click="decreaseCurrent(1)"
         {{/if}}
       >
         <slot name="prev" />
@@ -26,22 +26,20 @@ class="${prefix}pagination
 
     {{else}}
 
-      <button
+      <div
         key="prev"
-        class="${prefix}pagination-item ${prefix}pagination-prev"
+        class="${prefix}pagination-item ${prefix}pagination-prev
+        {{#if current === 1}} ${prefix}pagination-item-disabled{{/if}}"
 
         {{#if current > 1}}
-          on-click="decrease('current', 1, 1)"
-        {{else}}
-          disabled
+          on-click="decreaseCurrent(1)"
         {{/if}}
       >
         <Icon
           name="arrow-left-s-line"
-          size="0"
           className="${prefix}pagination-icon"
         />
-      </button>
+      </div>
 
     {{/if}}
   {{/partial}}
@@ -55,7 +53,7 @@ class="${prefix}pagination
         {{#if current === count}} ${prefix}pagination-custom-disabled{{/if}}"
 
         {{#if current < count}}
-          on-click="increase('current', 1, count)"
+          on-click="increaseCurrent(1)"
         {{/if}}
       >
         <slot name="next" />
@@ -63,22 +61,20 @@ class="${prefix}pagination
 
     {{else}}
 
-      <button
+      <div
         key="next"
-        class="${prefix}pagination-item ${prefix}pagination-next"
+        class="${prefix}pagination-item ${prefix}pagination-next
+        {{#if current === count}} ${prefix}pagination-item-disabled{{/if}}"
 
         {{#if current < count}}
-          on-click="increase('current', 1, count)"
-        {{else}}
-          disabled
+          on-click="increaseCurrent(1)"
         {{/if}}
       >
         <Icon
           name="arrow-right-s-line"
-          size="0"
           className="${prefix}pagination-icon"
         />
-      </button>
+      </div>
 
     {{/if}}
   {{/partial}}
@@ -94,12 +90,12 @@ class="${prefix}pagination
       model="pageSize"
       size="{{size}}"
       placement="{{placement}}"
-      on-change="pageSizeChange()"
     >
       {{#each pageSizeList}}
-        <Option value="{{this.value}}" text="{{this.text}}">
-          {{this.text}}
-        </Option>
+        <Option
+          value="{{this.value}}"
+          text="{{this.text}}"
+        />
       {{/each}}
     </Select>
   {{/if}}
@@ -142,11 +138,10 @@ class="${prefix}pagination
           <div
             key="prev-ellipsis"
             class="${prefix}pagination-ellipsis"
-            on-click="decrease('current', 5, 1)"
+            on-click="decreaseCurrent(5)"
           >
             <Icon
               name="arrow-left-s-fill"
-              size="0"
               className="${prefix}pagination-icon"
             />
           </div>
@@ -156,27 +151,26 @@ class="${prefix}pagination
           <div
             key="next-ellipsis"
             class="${prefix}pagination-ellipsis"
-            on-click="increase('current', 5, ../count)"
+            on-click="increaseCurrent(5)"
           >
             <Icon
               name="arrow-right-s-fill"
-              size="0"
               className="${prefix}pagination-icon"
             />
           </div>
 
         {{else}}
 
-          <button
+          <div
             key="page{{this.value}}"
             class="${prefix}pagination-item
-            {{#if this.active}} ${prefix}pagination-active{{/if}}"
+            {{#if this.active}} ${prefix}pagination-item-active{{/if}}"
             {{#if !this.active}}
-              on-click="set('current', this.value)"
+              on-click="setCurrent(this.value)"
             {{/if}}
           >
             {{this.value}}
-          </button>
+          </div>
 
         {{/if}}
 
@@ -198,6 +192,7 @@ class="${prefix}pagination
         className="${prefix}pagination-jumper-input"
       />
       <Button
+        size="{{size}}"
         type="primary"
         on-click="jump()"
       >

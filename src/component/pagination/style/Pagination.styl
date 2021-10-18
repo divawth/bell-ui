@@ -26,7 +26,7 @@ pagination-size-style(style)
   {$selector-class-prefix + '-pagination-item'}
     ui-set('min-width', style['height'])
     ui-set('height', style['height'])
-    ui-set('line-height', style['height'] - 2)
+    ui-set('line-height', style['height'])
     ui-set('font-size', style['font-size'])
     ui-set('padding', 0 style['padding-horizontal'])
 
@@ -52,14 +52,14 @@ pagination-size-style(style)
   background-color $brand-bg
   transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
 
-  &:disabled
-    color $brand-disabled
-    border-color $brand-border
-    background-color $brand-bg-disabled
-    ui-disabled()
-
   + {$selector-class-prefix + '-pagination-item'}
     margin-left $ui-horizontal-gap
+
+{$selector-class-prefix + '-pagination-item-disabled'}
+  color $brand-disabled
+  border-color $brand-border
+  background-color $brand-bg-disabled
+  ui-disabled()
 
 {$selector-class-prefix + '-pagination-custom-prev'},
 {$selector-class-prefix + '-pagination-custom-next'}
@@ -70,15 +70,15 @@ pagination-size-style(style)
   color $brand-disabled
   ui-disabled()
 
-{$selector-class-prefix + '-pagination-active'}
+{$selector-class-prefix + '-pagination-item-active'}
   cursor default
 
 {$selector-class-prefix + '-pagination-item'}:hover,
-{$selector-class-prefix + '-pagination-active'}
+{$selector-class-prefix + '-pagination-item-active'}
   color $brand-primary
   border-color $brand-primary
 
-  &:disabled
+  &{$selector-class-prefix + '-pagination-item-disabled'}
     color $brand-disabled
     border-color $brand-border
 

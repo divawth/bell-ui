@@ -129,10 +129,12 @@ export default {
       <Pagination
         total="100000"
         size="small"
+        showJumper
       />
       <br><br>
       <Pagination
         total="100000"
+        showJumper
       />
     </div>
   `

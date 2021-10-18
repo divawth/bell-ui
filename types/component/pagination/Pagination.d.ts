@@ -11,8 +11,14 @@ declare const _default: import("yox").ComponentOptions<{
 }, {
     showError(error: string): void;
     jump(): void;
+    setCurrent(current: number): void;
+    decreaseCurrent(step: number): void;
+    increaseCurrent(step: number): void;
 }> & ThisType<{
     showError(error: string): void;
     jump(): void;
+    setCurrent(current: number): void;
+    decreaseCurrent(step: number): void;
+    increaseCurrent(step: number): void;
 } & import("yox").YoxInterface>;
 export default _default;

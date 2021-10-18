@@ -41,7 +41,6 @@ export default Yox.define({
     },
     simple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     total: {
       type: RAW_NUMERIC,
@@ -60,15 +59,12 @@ export default Yox.define({
     },
     showJumper: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     showTotal: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     hideOnSinglePage: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     placement: {
       type: oneOf([RAW_TOP, RAW_BOTTOM]),
@@ -202,9 +198,9 @@ export default Yox.define({
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
         }
-  
+
         event.stop()
-  
+
       },
       ns: 'input',
     },
@@ -214,11 +210,11 @@ export default Yox.define({
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
         }
-  
+
         event.stop()
-  
+
         this.jump()
-  
+
       },
       ns: 'input',
     }
@@ -227,15 +223,6 @@ export default Yox.define({
   watchers: {
     current(current: number) {
       this.set('page', current)
-      this.fire(
-        {
-          type: 'change',
-          ns: 'pagination',
-        },
-        {
-          current,
-        }
-      )
     }
   },
 
@@ -265,7 +252,7 @@ export default Yox.define({
             this.showError('min')
           }
           else {
-            this.set('current', page)
+            this.setCurrent(page)
           }
         }
         else {
@@ -276,6 +263,37 @@ export default Yox.define({
         this.showError('empty')
       }
     },
+
+    setCurrent(current: number) {
+      if (this.get('current') === current) {
+        return
+      }
+      this.set('current', current)
+      this.fire(
+        {
+          type: 'change',
+          ns: 'pagination',
+        },
+        {
+          current,
+        }
+      )
+    },
+
+    decreaseCurrent(step: number) {
+      const value = toNumber(this.get('current'), 1) - step
+      this.setCurrent(
+        value < 1 ? 1 : value
+      )
+    },
+
+    increaseCurrent(step: number) {
+      const value = toNumber(this.get('current'), 1) + step
+      const count = this.get('count')
+      this.setCurrent(
+        value > count ? count : value
+      )
+    }
 
   },
 
