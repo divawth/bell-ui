@@ -113,10 +113,10 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked / `model` | 是否选中 | boolean | - | `false`
+checked / `model` | 是否选中 | boolean | - | -
 size | 大小 | string | `default`, `small` | `default`
-disabled | 是否禁用 | boolean | - | `false`
-loading | 是否正在加载 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | -
+loading | 是否正在加载 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

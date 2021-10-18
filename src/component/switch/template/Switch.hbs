@@ -22,11 +22,7 @@ class="${prefix}switch
 
   {{#if hasSlot('on') || hasSlot('off')}}
     <div class="${prefix}switch-label">
-      {{#if checked}}
-        <slot name="on" />
-      {{else}}
-        <slot name="off" />
-      {{/if}}
+      <slot name="{{checked ? 'on' : 'off'}}" />
     </div>
   {{/if}}
 

@@ -9,10 +9,17 @@ class="${prefix}table
 
 {{#if className}} {{className}}{{/if}}"
 
-style="
-{{#if width}}width: {{width}}px; overflow-x: auto;{{/if}}
-{{#if height}}height: {{height}}px; overflow-y: auto;{{/if}}
-{{#if style}}{{style}}{{/if}}"
+{{#if width || height || style}}
+  style="{{[
+    {
+      width: width ? width + 'px' : undefined,
+      overflowX: width ? 'auto' : undefined,
+      height: height ? height + 'px' : undefined,
+      overflowY: height ? 'auto': undefined,
+    },
+    style
+  ]}}"
+{{/if}}
 >
 
 {{#if colWidths}}
@@ -20,7 +27,7 @@ style="
 <table>
   <colgroup>
     {{#each columns:index}}
-      <col width="{{../colWidths[index]}}">
+      <col width="{{~/colWidths[index]}}">
     {{/each}}
   </colgroup>
 
@@ -35,7 +42,7 @@ style="
         {{#if this.key === 'selection'}}
           {{#if list.length > 0}}
             <Checkbox
-              checked="{{../allChecked}}"
+              checked="{{~/allChecked}}"
               on-change="allCheckedChange()"
             />
           {{else}}
@@ -48,17 +55,17 @@ style="
           {{#if this.sortable}}
             <div
               class="${prefix}table-sorter"
-              on-click="sortColumn(this.key, ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC ? SORT_ORDER_DESC : SORT_ORDER_ASC)"
+              on-click="sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC ? ~/SORT_ORDER_DESC : ~/SORT_ORDER_ASC)"
             >
               <Icon
                 name="arrow-up-s-fill"
                 className="${prefix}table-sort-asc
-                  {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
+                  {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC}} ${prefix}table-sort-active{{/if}}"
               />
               <Icon
                 name="arrow-down-s-fill"
                 className="${prefix}table-sort-desc
-                  {{#if ../sortKey === this.key && ../sortOrder === SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
+                  {{#if ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_DESC}} ${prefix}table-sort-active{{/if}}"
               />
             </div>
           {{/if}}
@@ -73,7 +80,7 @@ style="
       <slot>
         {{#each list:index}}
         <tr>
-          {{#each ../columns}}
+          {{#each ~/columns}}
 
             {{#if this.actions && this.actions.length}}
 

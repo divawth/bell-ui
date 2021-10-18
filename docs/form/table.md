@@ -736,8 +736,8 @@ export default {
 ---|---|---|---|---
 list | 数据 | Array | - | []
 columns | 标题数据和对应的 name | Array | - | []
-stripe | 间隔显示不同颜色 | boolean | - | `false`
-simple | 是否使用简洁版本 | boolean | - | `false`
+stripe | 间隔显示不同颜色 | boolean | - | -
+simple | 是否使用简洁版本 | boolean | - | -
 width | 设置表格的宽度 | numeric | - | -
 height | 设置表格的高度 | numeric | - | -
 className | 自定义类名 | string | - | -

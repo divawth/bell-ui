@@ -10,12 +10,12 @@ import Checkbox from '../checkbox/Checkbox'
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 interface ButtonConfig {
@@ -49,11 +49,9 @@ export default Yox.define({
     },
     stripe: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     simple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     height: {
       type: RAW_NUMERIC,
@@ -65,7 +63,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -242,6 +240,12 @@ export default Yox.define({
 
   afterMount() {
     this.updateColumnWidths()
+    // 再来一次，确保拿到了最新宽度
+    this.nextTick(
+      function () {
+        this.updateColumnWidths()
+      }
+    )
   }
 
 })
