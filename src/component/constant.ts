@@ -119,6 +119,12 @@ export const RAW_PLACEMENT_ARRAY = [
   RAW_RIGHT_END
 ]
 
+export const RAW_STYLE_TYPE = [
+  RAW_STRING,
+  RAW_OBJECT,
+  RAW_ARRAY,
+]
+
 export const WINDOW = window
 export const DOCUMENT = document
 export const BODY = DOCUMENT.body

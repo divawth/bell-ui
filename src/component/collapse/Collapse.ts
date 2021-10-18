@@ -11,6 +11,7 @@ import {
   RAW_BOOLEAN,
   RAW_ARRAY,
   RAW_NUMBER,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 export default Yox.define({
@@ -25,17 +26,15 @@ export default Yox.define({
     },
     accordion: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     simple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -59,11 +58,11 @@ export default Yox.define({
       listener(event, data) {
         if (event.phase === Yox.Event.PHASE_UPWARD) {
           event.stop()
-  
+
           let { name, opened } = data
-  
+
           let value = this.get('value')
-  
+
           if (this.get('accordion')) {
             value = opened ? name : UNDEFINED
           }
@@ -78,9 +77,9 @@ export default Yox.define({
               Yox.array.remove(value, name, FALSE)
             }
           }
-  
+
           this.set('value', value)
-  
+
         }
       },
       ns: 'collapseItem'

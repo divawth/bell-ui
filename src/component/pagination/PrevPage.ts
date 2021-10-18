@@ -1,7 +1,6 @@
 import Yox from 'yox'
 
 import template from './template/PrevPage.hbs'
-// import './style/PrevPage.styl'
 
 import {
   RAW_BOOLEAN,

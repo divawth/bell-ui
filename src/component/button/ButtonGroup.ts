@@ -11,6 +11,7 @@ import {
   RAW_DEFAULT,
   RAW_SHAPE_CIRCLE,
   RAW_SHAPE_ROUND,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -39,7 +40,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

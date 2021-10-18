@@ -16,7 +16,6 @@ import {
   RAW_DEFAULT,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
@@ -26,6 +25,7 @@ import {
   RAW_PLACEMENT_ARRAY,
   RAW_BOTTOM_START,
   RAW_ARRAY,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -74,7 +74,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

@@ -4,10 +4,14 @@ class="${prefix}icon
 {{#if spin}} ${prefix}icon-spin{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if size > 0 || color || style}}
-  style="{{#if size > 0}}font-size: {{size}}px;{{/if}}
-  {{#if color}}color: {{color}};{{/if}}
-  {{#if style}}{{style}}{{/if}}"
+{{#if color || size > 0 || style}}
+  style="{{[
+    {
+      color: color || undefined,
+      fontSize: size > 0 ? size + 'px' : undefined,
+    },
+    style
+  ]}}"
 {{/if}}
 >
   <slot name="children" />

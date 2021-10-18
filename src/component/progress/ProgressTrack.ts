@@ -1,7 +1,6 @@
 import Yox from 'yox'
 
 import template from './template/ProgressTrack.hbs'
-// import './style/ProgressTrack.styl'
 
 import {
   RAW_BOOLEAN,

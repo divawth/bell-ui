@@ -4,11 +4,12 @@ import template from './template/Space.hbs'
 // import './style/Space.styl'
 
 import {
+  NULL,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_ARRAY,
-  NULL,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -43,7 +44,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

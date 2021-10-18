@@ -7,7 +7,12 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  RAW_STYLE_TYPE,
 } from '../constant'
+
+import {
+  toNumber,
+} from '../util'
 
 export default Yox.define({
 
@@ -32,7 +37,16 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
+    }
+  },
+
+  computed: {
+    customWidth() {
+      if (this.get('collapsed')) {
+        return 200
+      }
+      return toNumber(this.get('width'))
     }
   },
 

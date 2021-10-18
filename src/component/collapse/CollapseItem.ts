@@ -9,6 +9,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -38,7 +39,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -71,16 +72,16 @@ export default Yox.define({
         if (event.target !== this.$parent) {
           return
         }
-  
+
         const name = this.get('name')
-  
+
         this.set(
           'opened',
           Yox.is.array(data.value)
             ? Yox.array.has(data.value, name, FALSE)
             : data.value == name
         )
-  
+
       },
       ns: 'collapse',
     }

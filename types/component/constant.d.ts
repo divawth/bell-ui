@@ -68,6 +68,7 @@ export declare const RAW_STATUS_ARRAY: string[];
 export declare const RAW_TYPE_ARRAY: string[];
 export declare const RAW_SIZE_ARRAY: string[];
 export declare const RAW_PLACEMENT_ARRAY: string[];
+export declare const RAW_STYLE_TYPE: string[];
 export declare const WINDOW: Window & typeof globalThis;
 export declare const DOCUMENT: Document;
 export declare const BODY: HTMLElement;

@@ -4,13 +4,13 @@ import template from './template/Card.hbs'
 // import './style/Card.styl'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMERIC,
   RAW_ALWAYS,
   RAW_HOVER,
   RAW_NEVER,
-  RAW_NUMERIC,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -26,7 +26,6 @@ export default Yox.define({
   propTypes: {
     simple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     shadow: {
       type: oneOf([RAW_ALWAYS, RAW_HOVER, RAW_NEVER]),
@@ -39,7 +38,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 })

@@ -8,8 +8,12 @@ class="${prefix}card ${prefix}card-shadow-{{shadow}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if width || style}}
-  style="{{#if width}}width: {{width}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}"
+  style="{{[
+    width
+      ? { width: width + 'px' }
+      : undefined,
+    style
+  ]}}"
 {{/if}}
 >
   <slot name="children" />

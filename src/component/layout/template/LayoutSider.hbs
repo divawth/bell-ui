@@ -3,22 +3,18 @@
 {{#if showTrigger}} ${prefix}layout-sider-with-trigger{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if collapsed || width || style}}
-  style="
-  {{#if collapsed}}
-    flex: 0 0 80px;
-    width: 80px;
-    min-width: 80px;
-    max-width: 80px;
-  {{else if width}}
-    flex: 0 0 {{width}}px;
-    width: {{width}}px;
-    min-width: {{width}}px;
-    max-width: {{width}}px;
-  {{/if}}
-  {{#if style}}
-    {{style}}
-  {{/if}}"
+{{#if customWidth || style}}
+  style="{{[
+    customWidth
+      ? {
+          flex: '0 0 ' + customWidth + 'px',
+          width: customWidth + 'px',
+          minWidth: customWidth + 'px',
+          maxWidth: customWidth + 'px',
+        }
+      : undefined,
+    style
+  ]}}"
 {{/if}}
 >
 
@@ -35,17 +31,12 @@
     <div
       class="${prefix}layout-sider-trigger"
       on-click="toggle('collapsed')"
-      style="
-      {{#if collapsed}}
-        width: 80px;
-      {{else if width}}
-        width: {{width}}px;
+      {{#if customWidth}}
+        style="{{ { width: customWidth + 'px' } }}"
       {{/if}}
-      "
     >
       <Icon
         name="arrow-left-s-line"
-        size="0"
         className="${prefix}layout-sider-trigger-icon"
       />
     </div>

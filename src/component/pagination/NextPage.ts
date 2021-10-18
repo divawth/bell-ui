@@ -1,7 +1,6 @@
 import Yox from 'yox'
 
 import template from './template/NextPage.hbs'
-// import './style/NextPage.styl'
 
 import {
   RAW_BOOLEAN,

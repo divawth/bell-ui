@@ -23,6 +23,7 @@ import {
   RAW_TYPE_LINK,
   RAW_TYPE_TEXT,
   RAW_TYPE_PURE,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -74,7 +75,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

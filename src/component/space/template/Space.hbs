@@ -10,11 +10,13 @@ class="${prefix}space
 {{#if className}} {{className}}{{/if}}"
 
 {{#if sizeValue || style}}
-  style="{{#if sizeValue}}gap: {{sizeValue}};{{/if}}
-  {{#if style}}{{style}}{{/if}}"
+  style="{{[
+    sizeValue
+      ? { gap: sizeValue }
+      : undefined,
+    style
+  ]}}"
 {{/if}}
 >
-
   <slot name="children" />
-
 </div>
