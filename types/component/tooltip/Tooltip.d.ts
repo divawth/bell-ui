@@ -1,6 +1,7 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
     open: unknown;
     close: unknown;
+    outside: unknown;
 }, {
     open(): void;
     close(): void;

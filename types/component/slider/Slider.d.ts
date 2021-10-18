@@ -4,5 +4,7 @@ declare const _default: import("yox").ComponentOptions<{
 }, {
     value: unknown;
     tooltipVisible: unknown;
-}, unknown, unknown> & ThisType<import("yox").YoxInterface>;
+}, {
+    outside: unknown;
+}, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

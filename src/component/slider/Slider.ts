@@ -18,10 +18,12 @@ import {
   RAW_RIGHT,
   RAW_TOP,
   RAW_CUSTOM,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
   toNumber,
+  toBoolean,
   getPageX,
   getPageY,
 } from '../util'
@@ -81,7 +83,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -155,6 +157,19 @@ export default Yox.define({
       else if (oldValue) {
         tooltip.close()
       }
+    }
+  },
+
+  events: {
+    outside: {
+      listener(event) {
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+        event.stop()
+        this.set('tooltipVisible', FALSE)
+      },
+      ns: 'tooltip'
     }
   },
 
@@ -256,7 +271,7 @@ export default Yox.define({
 
         me.set({
           mouseInThumb: TRUE,
-          tooltipVisible: me.get('showTooltip'),
+          tooltipVisible: toBoolean(me.get('showTooltip')),
         })
 
       }
@@ -287,7 +302,7 @@ export default Yox.define({
 
         me.set({
           thumbIsDragging: TRUE,
-          tooltipVisible: me.get('showTooltip'),
+          tooltipVisible: toBoolean(me.get('showTooltip')),
         })
 
       }

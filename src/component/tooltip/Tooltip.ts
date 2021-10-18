@@ -95,6 +95,16 @@ export default Yox.define({
         this.close()
       },
       ns: 'popover',
+    },
+    outside: {
+      listener(event) {
+        event.stop()
+        this.fire({
+          type: 'outside',
+          ns: 'tooltip',
+        })
+      },
+      ns: 'popover',
     }
   },
 

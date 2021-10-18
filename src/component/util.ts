@@ -104,6 +104,12 @@ export function toString(value: any, defaultValue?: any) {
   return '' + value
 }
 
+export function toBoolean(value: any) {
+  return Yox.is.boolean(value)
+    ? value
+    : FALSE
+}
+
 export function findComponentUpward(parent, componentName: string | string[]) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ]

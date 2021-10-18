@@ -15,10 +15,13 @@
 {{#if className}} {{className}}{{/if}}"
 
 {{#if width || height || style}}
-  style="
-  {{#if width}}width:{{width}}px;{{/if}}
-  {{#if height}}height:{{height}}px;{{/if}}
-  {{#if style}}{{style}}{{/if}}"
+  style="{{[
+    {
+      width: width ? width + 'px' : undefined,
+      height: height ? height + 'px' : undefined,
+    },
+    style
+  ]}}"
 {{/if}}
 >
 
@@ -31,12 +34,10 @@
 
     <div
       class="${prefix}slider-bar"
-      style="
-      {{#if vertical}}
-        height: {{percent}}%;
-      {{else}}
-        width: {{percent}}%;
-      {{/if}}"
+      style="{{ {
+        width: vertical ? undefined : percent + '%',
+        height: vertical ? percent + '%' : undefined,
+      } }}"
     >
     </div>
 
@@ -45,12 +46,10 @@
         <div
           key="{{this}}"
           class="${prefix}slider-stop"
-          style="
-          {{#if vertical}}
-            bottom: {{this}}%;
-          {{else}}
-            left: {{this}}%;
-          {{/if}}"
+          style="{{ {
+            left: ~/vertical ? undefined : this + '%',
+            bottom: ~/vertical ? this + '%' : undefined,
+          } }}"
         >
         </div>
       {{/each}}
@@ -64,12 +63,11 @@
     >
       <div
         class="${prefix}slider-thumb"
-        style="
-        {{#if vertical}}
-          bottom: {{percent}}%;
-        {{else}}
-          left: {{percent}}%;
-        {{/if}}"
+
+        style="{{ {
+          left: vertical ? undefined : percent + '%',
+          bottom: vertical ? percent + '%' : undefined,
+        } }}"
 
         on-mouseenter="thumbMouseEnter.slider"
         on-mouseleave="thumbMouseLeave.slider"
