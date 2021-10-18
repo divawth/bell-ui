@@ -4,7 +4,7 @@ import template from './template/List.hbs'
 // import './style/List.styl'
 
 import Spin from '../spin/Spin'
-import Empty from '../empty/Empty'
+import ListEmpty from './ListEmpty'
 
 import {
   RAW_STRING,
@@ -47,7 +47,7 @@ export default Yox.define({
 
   components: {
     Spin,
-    Empty,
+    ListEmpty,
   }
 
 })

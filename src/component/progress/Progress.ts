@@ -3,8 +3,9 @@ import Yox from 'yox'
 import template from './template/Progress.hbs'
 // import './style/Progress.styl'
 
+import ProgressTrack from './ProgressTrack'
+
 import {
-  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
@@ -35,15 +36,12 @@ export default Yox.define({
     },
     inside: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     active: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
@@ -52,4 +50,8 @@ export default Yox.define({
       type: RAW_STRING,
     }
   },
+
+  components: {
+    ProgressTrack,
+  }
 })

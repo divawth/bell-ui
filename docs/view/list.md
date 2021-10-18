@@ -152,6 +152,21 @@ export default {
 }
 ```
 
+
+> 列表为空
+
+```js
+export default {
+  template: `
+  <List>
+    <template slot="empty">
+      空空的
+    </template>
+  </List>
+  `
+}
+```
+
 > 聊天列表
 
 ```js

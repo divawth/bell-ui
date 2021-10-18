@@ -9,76 +9,6 @@ class="${prefix}pagination
 {{/if}}
 >
 
-  {{#partial prevPage}}
-    {{#if hasSlot('prev')}}
-
-      <div
-        key="prev"
-        class="${prefix}pagination-custom-prev
-        {{#if current === 1}} ${prefix}pagination-custom-disabled{{/if}}"
-
-        {{#if current > 1}}
-          on-click="decreaseCurrent(1)"
-        {{/if}}
-      >
-        <slot name="prev" />
-      </div>
-
-    {{else}}
-
-      <div
-        key="prev"
-        class="${prefix}pagination-item ${prefix}pagination-prev
-        {{#if current === 1}} ${prefix}pagination-item-disabled{{/if}}"
-
-        {{#if current > 1}}
-          on-click="decreaseCurrent(1)"
-        {{/if}}
-      >
-        <Icon
-          name="arrow-left-s-line"
-          className="${prefix}pagination-icon"
-        />
-      </div>
-
-    {{/if}}
-  {{/partial}}
-
-  {{#partial nextPage}}
-    {{#if hasSlot('next')}}
-
-      <div
-        key="next"
-        class="${prefix}pagination-custom-next
-        {{#if current === count}} ${prefix}pagination-custom-disabled{{/if}}"
-
-        {{#if current < count}}
-          on-click="increaseCurrent(1)"
-        {{/if}}
-      >
-        <slot name="next" />
-      </div>
-
-    {{else}}
-
-      <div
-        key="next"
-        class="${prefix}pagination-item ${prefix}pagination-next
-        {{#if current === count}} ${prefix}pagination-item-disabled{{/if}}"
-
-        {{#if current < count}}
-          on-click="increaseCurrent(1)"
-        {{/if}}
-      >
-        <Icon
-          name="arrow-right-s-line"
-          className="${prefix}pagination-icon"
-        />
-      </div>
-
-    {{/if}}
-  {{/partial}}
-
   {{#if showTotal}}
     <span class="${prefix}pagination-total">
       共 {{total}} 条
@@ -104,7 +34,12 @@ class="${prefix}pagination
 
     <div class="${prefix}pagination-simple">
 
-      {{> prevPage}}
+      <PrevPage
+        key="prev"
+        disabled="{{current === 1}}"
+      >
+        <slot name="prev" />
+      </PrevPage>
 
       <Input
         ref="simpleInput"
@@ -121,7 +56,12 @@ class="${prefix}pagination
         {{count}}
       </span>
 
-      {{> nextPage}}
+      <NextPage
+        key="next"
+        disabled="{{current === count}}"
+      >
+        <slot name="next" />
+      </NextPage>
 
     </div>
 
@@ -129,7 +69,12 @@ class="${prefix}pagination
 
     <div class="${prefix}pagination-list">
 
-      {{> prevPage}}
+      <PrevPage
+        key="prev"
+        disabled="{{current === 1}}"
+      >
+        <slot name="prev" />
+      </PrevPage>
 
       {{#each pageList}}
 
@@ -176,7 +121,12 @@ class="${prefix}pagination
 
       {{/each}}
 
-      {{> nextPage}}
+      <NextPage
+        key="next"
+        disabled="{{current === count}}"
+      >
+        <slot name="next" />
+      </NextPage>
 
     </div>
 

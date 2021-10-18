@@ -7,10 +7,11 @@ import Icon from '../icon/Icon'
 import Input from '../input/Input'
 import Button from '../button/Button'
 import Select from '../select/Select'
+import PrevPage from './PrevPage'
+import NextPage from './NextPage'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_ARRAY,
@@ -192,6 +193,28 @@ export default Yox.define({
       )
 
     },
+    'click.prevPage': function (event) {
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
+      }
+
+      event.stop()
+
+      this.decreaseCurrent(1)
+
+    },
+    'click.nextPage': function (event) {
+
+      if (event.phase !== Yox.Event.PHASE_UPWARD) {
+        return
+      }
+
+      event.stop()
+
+      this.increaseCurrent(1)
+
+    },
     change: {
       listener(event) {
 
@@ -302,6 +325,8 @@ export default Yox.define({
     Input,
     Button,
     Select,
+    PrevPage,
+    NextPage,
   }
 
 })

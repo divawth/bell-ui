@@ -19,55 +19,44 @@ class="${prefix}progress
 {{/if}}
 >
 
-  {{#partial text}}
+  {{#if inside}}
+    <ProgressTrack
+      vertical="{{vertical}}"
+      inside="{{inside}}"
+      thickness="{{thickness}}"
+      percent="{{percent}}"
+    >
+      <slot />
+    </ProgressTrack>
+  {{else}}
+
+    {{#if !vertical && hasSlot('children')}}
+      <div class="${prefix}progress-block">
+        <ProgressTrack
+          vertical="{{vertical}}"
+          inside="{{inside}}"
+          thickness="{{thickness}}"
+          percent="{{percent}}"
+        >
+          <slot />
+        </ProgressTrack>
+      </div>
+    {{else}}
+      <ProgressTrack
+        vertical="{{vertical}}"
+        inside="{{inside}}"
+        thickness="{{thickness}}"
+        percent="{{percent}}"
+      >
+        <slot />
+      </ProgressTrack>
+    {{/if}}
+
     {{#if hasSlot('children')}}
       <div class="${prefix}progress-text">
         <slot name="children" />
       </div>
     {{/if}}
-  {{/partial}}
-
-  {{#partial track}}
-    <div
-      class="${prefix}progress-track"
-      {{#if vertical}}
-        style="width: {{thickness}}px;"
-      {{else}}
-        style="height: {{thickness}}px;"
-      {{/if}}
-    >
-      <div
-        class="${prefix}progress-bar"
-        style="
-        {{#if vertical}}
-          height: {{percent}}%;
-          width: {{thickness}}px;
-        {{else}}
-          width: {{percent}}%;
-          height: {{thickness}}px;
-          line-height: {{thickness}}px;
-        {{/if}}"
-      >
-        {{#if inside}}
-          {{> text}}
-        {{/if}}
-      </div>
-    </div>
-  {{/partial}}
-
-  {{#if inside}}
-    {{> track}}
-  {{else}}
-
-    {{#if !vertical && hasSlot('children')}}
-      <div class="${prefix}progress-block">
-        {{> track}}
-      </div>
-    {{else}}
-      {{> track}}
-    {{/if}}
-
-    {{> text}}
 
   {{/if}}
 

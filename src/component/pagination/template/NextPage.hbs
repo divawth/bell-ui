@@ -1,0 +1,30 @@
+{{#if hasSlot('children')}}
+
+  <div
+    class="${prefix}pagination-custom-next
+    {{#if disabled}} ${prefix}pagination-custom-disabled{{/if}}"
+
+    {{#if !disabled}}
+      on-click="click.nextPage"
+    {{/if}}
+  >
+    <slot />
+  </div>
+
+{{else}}
+
+  <div
+    class="${prefix}pagination-item ${prefix}pagination-next
+    {{#if disabled}} ${prefix}pagination-item-disabled{{/if}}"
+
+    {{#if !disabled}}
+      on-click="click.nextPage"
+    {{/if}}
+  >
+    <Icon
+      name="arrow-right-s-line"
+      className="${prefix}pagination-icon"
+    />
+  </div>
+
+{{/if}}

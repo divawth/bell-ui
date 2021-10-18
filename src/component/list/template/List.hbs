@@ -12,28 +12,22 @@
 {{/if}}
 >
 
-  {{#partial empty}}
-    <div class="${prefix}list-empty">
-      <slot name="empty">
-        <Empty>
-          暂无数据
-        </Empty>
-      </slot>
-    </div>
-  {{/partial}}
-
   {{#if hasSlot('header')}}
     <div class="${prefix}list-header">
       <slot name="header" />
     </div>
     <div class="${prefix}list-body">
       <slot name="children">
-        {{> empty}}
+        <ListEmpty>
+          <slot name="empty" />
+        </ListEmpty>
       </slot>
     </div>
   {{else}}
     <slot name="children">
-      {{> empty}}
+      <ListEmpty>
+        <slot name="empty" />
+      </ListEmpty>
     </slot>
   {{/if}}
 

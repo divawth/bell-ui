@@ -1,0 +1,24 @@
+<div
+  class="${prefix}progress-track"
+  style="{{ {
+    width: vertical ? thickness + 'px' : undefined,
+    height: vertical ? undefined : thickness + 'px'
+  } }}"
+>
+  <div
+    class="${prefix}progress-bar"
+    style="{{ {
+      width: vertical ? thickness + 'px' : percent + '%',
+      height: vertical ? percent + '%' : thickness + 'px',
+      lineHeight: vertical ? undefined : thickness + 'px'
+    } }}"
+  >
+    {{#if inside}}
+      {{#if hasSlot('children')}}
+        <div class="${prefix}progress-text">
+          <slot />
+        </div>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

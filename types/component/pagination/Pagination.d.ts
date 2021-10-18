@@ -6,6 +6,8 @@ declare const _default: import("yox").ComponentOptions<{
     current: unknown;
 }, {
     'change.select': unknown;
+    'click.prevPage': unknown;
+    'click.nextPage': unknown;
     change: unknown;
     enter: unknown;
 }, {

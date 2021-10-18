@@ -1,0 +1,30 @@
+{{#if hasSlot('children')}}
+
+  <div
+    class="${prefix}pagination-custom-prev
+    {{#if disabled}} ${prefix}pagination-custom-disabled{{/if}}"
+
+    {{#if !disabled}}
+      on-click="click.prevPage"
+    {{/if}}
+  >
+    <slot />
+  </div>
+
+{{else}}
+
+  <div
+    class="${prefix}pagination-item ${prefix}pagination-prev
+    {{#if disabled}} ${prefix}pagination-item-disabled{{/if}}"
+
+    {{#if !disabled}}
+      on-click="click.prevPage"
+    {{/if}}
+  >
+    <Icon
+      name="arrow-left-s-line"
+      className="${prefix}pagination-icon"
+    />
+  </div>
+
+{{/if}}
