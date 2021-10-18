@@ -216,11 +216,11 @@ Radio
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked / `model` | 是否选中 | boolean | - | `false`
+checked / `model` | 是否选中 | boolean | - | -
 label | 标签文本 | string | - | -
 name | 原生属性 `name` | string | - | -
 value | value | string | - | -
-disabled | 是否禁用 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -240,8 +240,8 @@ RadioGroup
 value / `model` | 当前选中的值 | string | - | -
 name | 原生属性 `name` | string | - | -
 size | 大小, 按钮状态下生效 | string | `default`, `small`, `large` | `default`
-disabled | 是否禁用 | boolean | - | `false`
-vertical | 是否垂直排列，按钮样式下无效 | boolean | - | `false`
-button | 按钮形式 | boolean | - | `false`
+disabled | 是否禁用 | boolean | - | -
+vertical | 是否垂直排列，按钮样式下无效 | boolean | - | -
+button | 按钮形式 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

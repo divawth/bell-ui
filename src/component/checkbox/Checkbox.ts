@@ -10,6 +10,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -34,21 +35,18 @@ export default Yox.define({
     },
     indeterminate: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     checked: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

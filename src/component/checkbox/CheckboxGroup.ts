@@ -6,10 +6,10 @@ import Space from '../space/Space'
 
 import {
   TRUE,
-  FALSE,
   RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 const CHECKBOX_GAP_HORIZONTAL = 16
@@ -33,17 +33,15 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

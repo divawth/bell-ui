@@ -4,12 +4,12 @@ import template from './template/RadioGroup.hbs'
 
 import {
   TRUE,
-  FALSE,
   RAW_NUMBER,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
   RAW_SIZE_ARRAY,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -35,21 +35,18 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     button: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     },
   },
 

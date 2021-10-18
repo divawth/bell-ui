@@ -25,6 +25,7 @@ import {
   RAW_SMALL,
   RAW_LARGE,
   RAW_EVENT_BEFORE_DESTROY,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -103,7 +104,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     },
   },
 
@@ -111,7 +112,6 @@ export default Yox.define({
     return {
       RAW_HORIZONTAL,
       RAW_VERTICAL,
-      isSecure: TRUE,
       isFocus: FALSE,
     }
   },
@@ -122,6 +122,7 @@ export default Yox.define({
     },
     textareaStyle() {
 
+      let rows = this.get('rows')
       let size = this.get('size')
       let autoSize = this.get('autoSize')
 
@@ -132,18 +133,26 @@ export default Yox.define({
       const PADDING_VERTICAL = 2 * (1 + sizes[size])
 
       if (autoSize) {
-        let rows = this.get('rows')
         let value = this.get('value')
         if (Yox.is.object(autoSize)) {
           rows = value ? value.split('\n').length : autoSize.minRows
-          return `min-height: ${autoSize.minRows * ROW_HEIGHT + PADDING_VERTICAL}px;max-height: ${autoSize.maxRows * ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
+          return {
+            minHeight: autoSize.minRows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+            maxHeight: autoSize.maxRows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+            height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+          }
         }
 
         rows = value ? value.split('\n').length : 1
-        return `min-height: ${ROW_HEIGHT + PADDING_VERTICAL}px;height: ${rows * ROW_HEIGHT + PADDING_VERTICAL}px;`
+        return {
+          minHeight: ROW_HEIGHT + PADDING_VERTICAL + 'px',
+          height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+        }
       }
 
-      return `height: ${this.get('rows') * ROW_HEIGHT + PADDING_VERTICAL}px;`
+      return {
+        height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+      }
 
     }
   },
