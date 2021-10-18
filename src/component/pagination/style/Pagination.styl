@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$pagination-element-gap = 10px
-
 $pagination-simple-input-width = 55px
 $pagination-jumper-input-width = 100px
 $pagination-select-width = 100px
@@ -82,13 +80,9 @@ pagination-size-style(style)
     color $brand-disabled
     border-color $brand-border
 
-if $ui-shadow-radius > 0
-  {$selector-class-prefix + '-pagination-item'}:focus
-    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
-
 {$selector-class-prefix + '-pagination-custom-prev'} + {$selector-class-prefix + '-pagination-item'},
 {$selector-class-prefix + '-pagination-item'} + {$selector-class-prefix + '-pagination-custom-next'}
-  margin-left $pagination-element-gap
+  margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-ellipsis'}
   display inline-block
@@ -128,12 +122,12 @@ if $ui-shadow-radius > 0
 
   {$selector-class-prefix + '-select'}
     width $pagination-select-width
-    margin-right $pagination-element-gap
+    margin-right $ui-horizontal-gap
     vertical-align top
 
 {$selector-class-prefix + '-pagination-jumper'}
   display inline-block
-  margin-left $pagination-element-gap
+  margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-jumper-input'}
   width $pagination-jumper-input-width
@@ -147,16 +141,16 @@ if $ui-shadow-radius > 0
   vertical-align top
 
 {$selector-class-prefix + '-pagination-total'}
-  margin-right $pagination-element-gap
+  margin-right $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-simple'}
   display inline-block
 
   > {$selector-class-prefix + '-pagination-prev'}
-    margin-right $pagination-element-gap
+    margin-right $ui-horizontal-gap
 
   > {$selector-class-prefix + '-pagination-next'}
-    margin-left $pagination-element-gap
+    margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-pagination-separator'}
   color $brand-muted
