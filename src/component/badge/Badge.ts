@@ -15,6 +15,7 @@ import {
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -55,21 +56,18 @@ export default Yox.define({
     },
     dot: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     hidden: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     ripple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

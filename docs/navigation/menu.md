@@ -282,4 +282,4 @@ mode | 菜单类型 | string | horizontal, vertical, inline | horizontal
 theme | 主题 | string | light、dark | dark
 activeName | 默认选中菜单 | string | - | -
 openNames | 默认展开的 sub menu | array | - | []
-collapsed | 在 mode 状态下, 收起菜单 | boolean | - | false
+collapsed | 在 mode 状态下, 收起菜单 | boolean | - | -

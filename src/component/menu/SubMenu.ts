@@ -12,6 +12,7 @@ import {
   RAW_HORIZONTAL,
   RAW_BOTTOM,
   RAW_RIGHT_START,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -32,7 +33,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

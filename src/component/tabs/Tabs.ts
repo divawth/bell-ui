@@ -16,6 +16,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -54,7 +55,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -71,10 +72,10 @@ export default Yox.define({
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
         }
-  
+
         const { target } = event
         const tabName = target.get('name')
-  
+
         this.append(
           'tabs',
           {
@@ -84,13 +85,13 @@ export default Yox.define({
             disabled: target.get('disabled'),
           }
         )
-  
+
         if (data.isActive) {
           this.set({
             value: tabName,
           })
         }
-  
+
       },
       ns: 'tabPanel',
     },
@@ -100,10 +101,10 @@ export default Yox.define({
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
         }
-  
+
         const { target } = event
         const tabName = target.get('name')
-  
+
         const tabs: Tab[] = this.get('tabs')
         const newTabs = tabs.filter(function (item) {
           return item.name !== tabName
@@ -111,11 +112,11 @@ export default Yox.define({
         this.set({
           tabs: newTabs
         })
-  
+
         if (this.get('value') === tabName) {
           this.set('value', newTabs[0] ? newTabs[0].name : UNDEFINED)
         }
-  
+
       },
       ns: 'tabPanel',
     },
@@ -125,12 +126,12 @@ export default Yox.define({
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
         }
-  
+
         const me = this
         const { target } = event
         const tabName = target.get('name')
         const tabs: Tab[] = me.get('tabs')
-  
+
         Yox.array.each(
           tabs,
           function (item, index) {
@@ -148,7 +149,7 @@ export default Yox.define({
             }
           }
         )
-  
+
       },
       ns: 'tabPanel',
     }

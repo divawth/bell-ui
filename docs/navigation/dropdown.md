@@ -191,7 +191,7 @@ export default {
 ---|---|---|---|---
 placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom`
 trigger | 触发方式 | string | hover（悬停）click（点击）custom（自定义） | `hover`
-visible | 下拉框是否展开 | boolean | - | `false`
+visible | 下拉框是否展开 | boolean | - | -
 
 > Events
 
@@ -211,7 +211,7 @@ overlay | open/close 的元素
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-divided | 显示分割线 | boolean | - | false
-disabled | 禁用该项 | boolean | - | false
-active | 标记该项为选中状态 | boolean | - | false
-name | 用来标识这一项 | string | - | false
+divided | 显示分割线 | boolean | - | -
+disabled | 禁用该项 | boolean | - | -
+active | 标记该项为选中状态 | boolean | - | -
+name | 用来标识这一项 | string | - | -

@@ -13,8 +13,12 @@
     {{#if className}} {{className}}{{/if}}"
 
     {{#if maxHeight || style}}
-      style="{{#if maxHeight}}max-height: {{maxHeight}}px;{{/if}}
-      {{#if style}}{{style}}{{/if}}"
+      style="{{[
+        maxHeight
+          ? { maxHeight: maxHeight + 'px' }
+          : undefined,
+        style
+      ]}}"
     {{/if}}
   >
     <slot name="overlay" />

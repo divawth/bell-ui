@@ -4,7 +4,10 @@ class="${prefix}loadingbar
 >
   <div
     class="${prefix}loadingbar-indicator"
-    style="width: {{percent}}%;height: {{height}}px;
-      {{#if color}}color: {{color}};{{/if}}"
+    style="{{ {
+      width: percent + '%',
+      height: height + 'px',
+      color: color || undefined
+    } }}"
   ></div>
 </div>

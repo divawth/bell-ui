@@ -4,6 +4,7 @@ import template from './template/MenuGroup.hbs'
 
 import {
   RAW_STRING,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -24,7 +25,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

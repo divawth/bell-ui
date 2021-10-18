@@ -238,11 +238,11 @@ current / `model` | 当前页码 | numeric | - | `1`
 total | 设置总条数 | numeric | - | -
 pageSize | 每页条数 | numeric | - | `10`
 pageSizeOptions | 配置每页条数 | numeric[] | - | -
-showTotal | 是否显示总条数 | boolean | - | `false`
-showJumper | 是否显示跳转 | boolean | - | `false`
-hideOnSinglePage | 小于 1 页时是否隐藏 | boolean | - | `false`
+showTotal | 是否显示总条数 | boolean | - | -
+showJumper | 是否显示跳转 | boolean | - | -
+hideOnSinglePage | 小于 1 页时是否隐藏 | boolean | - | -
 size | 大小 | string | `default`, `small` | `default`
-simple | 是否使用简洁版本 | boolean | - | `false`
+simple | 是否使用简洁版本 | boolean | - | -
 placement | 选择每页条数的浮层的展开方向 | string | `bottom`, `top` | `bottom`
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

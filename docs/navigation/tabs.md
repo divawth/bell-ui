@@ -191,7 +191,7 @@ export default {
 value / `model` | 当前选中的 tab 的 name 值 | string | - | -
 type | tabs 类型 | string | `card` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
-closable | 是否可以关闭页签，仅在 `type="card"` 时有效 | boolean | - | `false`
+closable | 是否可以关闭页签，仅在 `type="card"` 时有效 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -208,6 +208,6 @@ tabRemove | 删除 tab 时触发（仅开启 closable 时有效） | `{name: ''}
 name | 用于标识当前面板，对应 value | string | - | 该选项卡在选项卡列表中的顺序值，如第一个选项卡则为 '1'
 label | 选项卡头显示文字 | string | - | -
 icon | 选项卡图标 | string | - | -
-disabled | 是否禁用该选项卡 | boolean | - | `false`
+disabled | 是否禁用该选项卡 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
