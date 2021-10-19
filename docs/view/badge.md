@@ -206,9 +206,9 @@ export default {
 count | 数值 | numeric | - | -
 max | 封顶的数值，超过显示为 `${max}+` | numeric | - | `99`
 text | 文本 | string | - | -
-dot | 不展示数值，只有一个小红点 | boolean | - | `false`
-hidden | 是否隐藏 | boolean | - | `false`
-ripple | 是否有发散动画 | boolean | - | `false`
+dot | 不展示数值，只有一个小红点 | boolean | - | -
+hidden | 是否隐藏 | boolean | - | -
+ripple | 是否有发散动画 | boolean | - | -
 type | 风格 | string | `primary`, `info`, `success`, `warning`, `error` | `error`
 status | 状态 | string | `default`, `processing`, `info`, `success`, `warning`, `error` | -
 className | 自定义类名 | string | - | -

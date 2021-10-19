@@ -603,4 +603,4 @@ change | 值发生改变的时候回调 | value
 ---|---|---|---|---
 value | 当前值 | string, number | - | -
 text | 选中时展示的文本 | string | - | -
-disabled | 是否禁用 | boolean | - | false
+disabled | 是否禁用 | boolean | - | -

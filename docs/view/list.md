@@ -222,9 +222,9 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-simple | 是否是简洁风格 | boolean | - | false
-loading | 是否展示 loading | boolean | - | false
-clickable | 列表项是否可点击 | boolean | - | false
+simple | 是否是简洁风格 | boolean | - | -
+loading | 是否展示 loading | boolean | - | -
+clickable | 列表项是否可点击 | boolean | - | -
 size | 列表的大小 | string | default, small, large | default
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
