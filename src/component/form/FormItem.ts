@@ -4,13 +4,13 @@ import template from './template/FormItem.hbs'
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TOP,
   RAW_BOTTOM,
   RAW_MIDDLE,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -51,7 +51,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

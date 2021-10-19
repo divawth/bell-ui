@@ -6,13 +6,13 @@ import template from './template/Rate.hbs'
 import Icon from '../icon/Icon'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
   RAW_ARRAY,
   RAW_TYPE_WARNING,
   RAW_TYPE_ARRAY,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -59,7 +59,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

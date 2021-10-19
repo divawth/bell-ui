@@ -5,13 +5,13 @@ import template from './template/Form.hbs'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_LEFT,
   RAW_RIGHT,
   RAW_TOP,
   RAW_NUMERIC,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -42,7 +42,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

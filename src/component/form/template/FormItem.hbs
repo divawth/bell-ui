@@ -16,7 +16,9 @@ class="${prefix}form-item
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
 
       {{#if itemLabelWidth}}
-        style="{{#if itemLabelWidth}}flex: 0 0 {{itemLabelWidth}}px;{{/if}}"
+        style="{{ {
+          flex: '0 0 ' + itemLabelWidth + 'px'
+        } }}"
       {{/if}}
     >
       <slot name="label">
@@ -49,7 +51,9 @@ class="${prefix}form-item
     <div
       class="${prefix}form-item-wrapper"
       {{#if itemLabelWidth}}
-        style="margin-left: {{itemLabelWidth}}px;"
+        style="{{ {
+          marginLeft: itemLabelWidth + 'px'
+        } }}"
       {{/if}}
     >
       <slot />

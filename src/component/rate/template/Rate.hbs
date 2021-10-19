@@ -45,7 +45,9 @@ class="${prefix}rate
     <span
       class="${prefix}rate-text"
       {{! 只要设置相同的 line-height 就能居中对齐 }}
-      style="line-height: {{iconSize}}px"
+      style="{{ {
+        lineHeight: iconSize + 'px'
+      } }}"
     >
       <slot>
         {{texts[activeValue - 1]}}

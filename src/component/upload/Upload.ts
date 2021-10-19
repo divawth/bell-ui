@@ -10,6 +10,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 // 为每次选择的文件提供一个全局唯一的 id，便于外部知道触发的事件对应哪次上传
@@ -48,7 +49,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
