@@ -112,7 +112,7 @@ export default {
 type | 风格 | string | `primary`, `success`, `error`, `info`, `warning` | `primary`
 size | 大小 | string | `default`, `small`, `large` | `default`
 theme | fixed 状态下的主题 | string | `light`, `dark` | `light`
-fixed | 是否固定 | boolean | - | `false`
+fixed | 是否固定 | boolean | - | -
 icon | 图标 | string | - | `loader-line`
 text | 文字 | string | - | -
 className | 自定义类名 | string | - | -

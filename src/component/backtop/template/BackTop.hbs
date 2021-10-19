@@ -7,10 +7,13 @@
       {{#if className}} {{className}}{{/if}}"
 
       {{#if bottom || right || style}}
-      style="
-      {{#if bottom}}bottom: {{bottom}}px;{{/if}}
-      {{#if right}}right: {{right}}px;{{/if}}
-      {{#if style}}{{style}}{{/if}}"
+        style="{{[
+          {
+            bottom: bottom ? bottom + 'px' : undefined,
+            right: right ? right + 'px' : undefined
+          },
+          style
+        ]}}"
       {{/if}}
 
       on-click="click.backTop"

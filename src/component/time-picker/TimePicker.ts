@@ -131,7 +131,7 @@ export default Yox.define({
       if (width > 0) {
         return width
       }
-      return this.get('needSecond') ? 168 : 112
+      return this.get('needSecond') ? 168 : 120
     },
     needSecond(): boolean {
       return this.get('format') !== 'HH:mm'

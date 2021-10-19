@@ -8,7 +8,13 @@ class="${prefix}image-picker
 >
   <Space autoWrap>
     {{#each imageList:index}}
-      <div class="${prefix}image-picker-item ${prefix}image-picker-card" style="width: {{~/customImageWidth}}px;height: {{~/customImageHeight}}px">
+      <div
+        class="${prefix}image-picker-item ${prefix}image-picker-card"
+        style="{{ {
+          width: ~/customImageWidth + 'px',
+          height: ~/customImageHeight + 'px'
+        } }}"
+      >
 
         {{#if this.url || this.base64}}
           <img
@@ -39,7 +45,7 @@ class="${prefix}image-picker
                 <Icon
                   name="close-line"
                   size="30"
-                  style="color:#ff5500"
+                  color="#ff5500"
                 />
               </Circle>
             </div>
@@ -67,7 +73,10 @@ class="${prefix}image-picker
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
-        style="width: {{customImageWidth}}px;height: {{customImageHeight}}px"
+        style="{{ {
+          width: customImageWidth + 'px',
+          height: customImageHeight + 'px'
+        } }}"
       >
         <Icon
           className="${prefix}image-picker-append-icon"

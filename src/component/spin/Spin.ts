@@ -6,7 +6,6 @@ import template from './template/Spin.hbs'
 import Icon from '../icon/Icon'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_DEFAULT,
@@ -15,6 +14,7 @@ import {
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
   RAW_THEME_ARRAY,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -43,7 +43,6 @@ export default Yox.define({
     },
     fixed: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     icon: {
       type: RAW_STRING,
@@ -56,7 +55,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     },
   },
 
