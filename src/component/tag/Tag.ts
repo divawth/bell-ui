@@ -6,12 +6,12 @@ import template from './template/Tag.hbs'
 import Icon from '../icon/Icon'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_SIZE_ARRAY,
   RAW_TYPE_ARRAY,
   RAW_DEFAULT,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -34,15 +34,12 @@ export default Yox.define({
     },
     checkable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     checked: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     color: {
       type: RAW_STRING,
@@ -51,7 +48,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

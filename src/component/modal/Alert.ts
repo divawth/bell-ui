@@ -7,7 +7,6 @@ import Dialog from '../dialog/Dialog'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
@@ -37,7 +36,6 @@ export default Yox.define({
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     width: {
       type: RAW_NUMERIC,

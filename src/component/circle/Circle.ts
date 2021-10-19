@@ -4,10 +4,10 @@ import template from './template/Circle.hbs'
 // import './style/Circle.styl'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -23,7 +23,6 @@ export default Yox.define({
   propTypes: {
     dashboard: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     percent: {
       type: RAW_NUMERIC,
@@ -57,7 +56,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -68,36 +67,30 @@ export default Yox.define({
         : this.get('strokeWidth')
     },
     trailStyle() {
-      let style = []
-      let len = this.get('len')
       if (this.get('dashboard')) {
-        style = [
-          `stroke-dasharray: ${len - 75}px ${len}px`,
-          `stroke-dashoffset: -${75 / 2}px`,
-          'transition: stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s'
-        ]
+        const len = this.get('len')
+        return {
+          strokeDasharray: `${len - 75}px ${len}px`,
+          strokeDashoffset: `-${75 / 2}px`,
+          transition: 'stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s'
+        }
       }
-      return style.join(';')
     },
     pathStyle() {
-      let style = []
-      let percent = this.get('percent')
-      let len = this.get('len')
+      const percent = this.get('percent')
+      const len = this.get('len')
       if (this.get('dashboard')) {
-        style = [
-          `stroke-dasharray: ${(percent / 100) * (len - 75)}px ${len}px`,
-          `stroke-dashoffset: -${75 / 2}px`,
-          'transition: stroke-dashoffset .3s ease 0s, stroke-dasharray .6s ease 0s, stroke .6s, stroke-width .06s ease .6s'
-        ]
+        return {
+          strokeDasharray: `${(percent / 100) * (len - 75)}px ${len}px`,
+          strokeDashoffset: `-${75 / 2}px`,
+          transition: 'stroke-dashoffset .3s ease 0s, stroke-dasharray .6s ease 0s, stroke .6s, stroke-width .06s ease .6s'
+        }
       }
-      else {
-        style = [
-          `stroke-dasharray: ${len}px ${len}px`,
-          `stroke-dashoffset: ${((100 - percent) / 100 * len)}px`,
-          'transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
-        ]
+      return {
+        strokeDasharray: `${len}px ${len}px`,
+        strokeDashoffset: `${((100 - percent) / 100 * len)}px`,
+        transition: 'stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
       }
-      return style.join(';')
     },
     radius() {
       return 50 - this.get('strokeWidth') / 2

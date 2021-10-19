@@ -128,4 +128,4 @@ strokeWidth | 进度环的线宽 | number | 6 | 6
 strokeColor | 进度环的颜色 | string | - | #2db7f5
 trailWidth | 进度环背景的线宽 | number | - | -
 trailColor | 进度环背景的颜色 | string | - | #eaeef2
-dashboard | 是否显示为仪表盘 | boolean | - | false
+dashboard | 是否显示为仪表盘 | boolean | - | -

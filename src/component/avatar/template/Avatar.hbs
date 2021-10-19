@@ -5,9 +5,15 @@ class="${prefix}avatar
 {{#if clickable}} ${prefix}avatar-clickable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="width: {{sizeValue}}px;height: {{sizeValue}}px;line-height: {{sizeValue}}px;
-{{#if backgroundColor}}background-color: {{backgroundColor}};{{/if}}
-{{#if style}}{{style}}{{/if}}"
+style="{{[
+  {
+    width: sizeValue + 'px',
+    height: sizeValue + 'px',
+    lineHeight: sizeValue + 'px',
+    backgroundColor: backgroundColor || undefined
+  },
+  style
+]}}"
 
 {{#if clickable}}
   on-click="click"
@@ -39,8 +45,10 @@ style="width: {{sizeValue}}px;height: {{sizeValue}}px;line-height: {{sizeValue}}
       ref="text"
       class="${prefix}avatar-text"
       {{#if color || fontSize}}
-        style="{{#if color}}color: {{color}};{{/if}}
-        {{#if fontSize}}font-size: {{fontSize}}px;{{/if}}"
+        style="{{ {
+          color: color || undefined,
+          fontSize: fontSize ? fontSize + 'px' : undefined
+        } }}"
       {{/if}}
     >
       {{text}}

@@ -9,7 +9,10 @@ class="${prefix}notification
 {{#if duration == 0}} ${prefix}notification-with-close
 {{/if}}"
 
-style="width: {{width}}px;right: {{right}}px;"
+style="{{ {
+  width: width + 'px',
+  right: right + 'px'
+} }}"
 >
 
   {{#if status}}

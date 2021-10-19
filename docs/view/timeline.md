@@ -122,7 +122,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-pending | 是否最后一段变成虚线 | boolean | - | `false`
+pending | 是否最后一段变成虚线 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

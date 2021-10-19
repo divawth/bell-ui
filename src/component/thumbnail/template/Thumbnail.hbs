@@ -7,8 +7,14 @@ class="${prefix}thumbnail
 {{#if loading}} ${prefix}thumbnail-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="width:{{customWidth}}px;height:{{customHeight}}px;line-height:{{customHeight}}px;
-{{#if style}}{{style}}{{/if}}"
+style="{{[
+  {
+    width: customWidth + 'px',
+    height: customHeight + 'px',
+    lineHeight: customHeight + 'px'
+  },
+  style
+]}}"
 >
 
   {{#if url || src}}

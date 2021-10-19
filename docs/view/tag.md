@@ -159,11 +159,11 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-checked | 标签是否已选中 | - | - | `false`
+checked | 标签是否已选中 | - | - | -
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
 size | 大小 | string | `default`, `large` | `default`
-closable | 是否可以关闭 | boolean | - | `false`
-checkable | 标签是否可以选择 | boolean | - | `false`
+closable | 是否可以关闭 | boolean | - | -
+checkable | 标签是否可以选择 | boolean | - | -
 color | 自定义颜色 | string | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

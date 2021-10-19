@@ -6,7 +6,6 @@ import template from './template/Alert.hbs'
 import Icon from '../icon/Icon'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_STATUS_ARRAY,
@@ -14,6 +13,7 @@ import {
   RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
   RAW_TYPE_ERROR,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -33,25 +33,21 @@ export default Yox.define({
     },
     showIcon: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     banner: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     center: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

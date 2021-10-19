@@ -46,7 +46,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-simple | 是否为简洁版 | boolean | - | `false`
+simple | 是否为简洁版 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

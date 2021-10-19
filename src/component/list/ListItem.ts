@@ -5,6 +5,7 @@ import template from './template/ListItem.hbs'
 import {
   FALSE,
   RAW_STRING,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -22,7 +23,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

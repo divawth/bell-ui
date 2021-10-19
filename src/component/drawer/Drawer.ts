@@ -15,6 +15,7 @@ import {
   RAW_RIGHT,
   RAW_BOTTOM,
   RAW_TOP,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -51,7 +52,7 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: TRUE,
     },
-    mask: {
+    showMask: {
       type: RAW_BOOLEAN,
       value: TRUE,
     },
@@ -61,31 +62,30 @@ export default Yox.define({
     },
     visible: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
   computed: {
     wrapperStyle() {
-      let style = ''
       const placement = this.get('placement')
       if (placement === RAW_LEFT
         || placement === RAW_RIGHT
       ) {
         const width = toNumber(this.get('width'))
-        style = `width: ${width}px;`
+        return {
+          width: width + 'px'
+        }
       }
-      else {
-        const height = toNumber(this.get('height'))
-        style = `height: ${height}px;`
+      const height = toNumber(this.get('height'))
+      return {
+        height: height + 'px'
       }
-      return style
     }
   },
 

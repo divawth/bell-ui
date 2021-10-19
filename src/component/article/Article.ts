@@ -8,6 +8,7 @@ import Icon from '../icon/Icon'
 import {
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 export default Yox.define({
@@ -33,7 +34,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

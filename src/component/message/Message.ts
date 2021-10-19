@@ -7,7 +7,6 @@ import Icon from '../icon/Icon'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_STATUS_ARRAY,
@@ -42,11 +41,9 @@ export default Yox.define({
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     center: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     }
   },
 

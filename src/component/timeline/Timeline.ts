@@ -7,6 +7,7 @@ import {
   FALSE,
   RAW_BOOLEAN,
   RAW_STRING,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 export default Yox.define({
@@ -18,13 +19,12 @@ export default Yox.define({
   propTypes: {
     pending: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 })

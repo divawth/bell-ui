@@ -24,8 +24,10 @@
     <div
       class="${prefix}popover-content"
       {{#if maxWidth || maxHeight}}
-        style="{{#if maxWidth}}max-width: {{maxWidth}}px;{{/if}}
-        {{#if maxHeight}}max-height: {{maxHeight}}px;{{/if}}"
+        style="{{ {
+          maxWidth: maxWidth ? maxWidth + 'px' : undefined,
+          maxHeight: maxHeight ? maxHeight + 'px' : undefined
+        } }}"
       {{/if}}
     >
       <slot name="content">

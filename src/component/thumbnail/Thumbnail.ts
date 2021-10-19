@@ -15,6 +15,7 @@ import {
   RAW_BOOLEAN,
   RAW_FUNCTION,
   RAW_IMAGE_ACCEPT,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -80,7 +81,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

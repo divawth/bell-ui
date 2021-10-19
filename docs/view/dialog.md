@@ -75,8 +75,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-visible / `model` | 是否显示对话框 | boolean | - | `false`
-mask | 是否显示遮罩 | boolean | - | `true`
+visible / `model` | 是否显示对话框 | boolean | - | -
+showMask | 是否显示遮罩 | boolean | - | `true`
 closable | 是否展示关闭按钮 | boolean | - | `true`
 maskClosable | 点击遮罩是否关闭对话框 | boolean | - | `true`
 width | 显示宽度 | numeric | - | `500`

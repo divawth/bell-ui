@@ -10,7 +10,7 @@
       {{/if}}
     >
 
-      {{#if mask}}
+      {{#if showMask}}
         <div
           class="${prefix}dialog-mask"
           {{#if maskClosable}}
@@ -24,9 +24,10 @@
         ref="wrapper"
         class="${prefix}dialog-wrapper"
         {{#if width || height}}
-          style="
-            {{#if width}}width:{{width}}px;{{/if}}
-            {{#if height}}height:{{height}}px;{{/if}}"
+          style="{{ {
+            width: width ? width + 'px' : undefined,
+            height: height ? height + 'px' : undefined
+          } }}"
         {{/if}}
       >
 

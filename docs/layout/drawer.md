@@ -114,11 +114,11 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-visible / `model` | 抽屉是否显示 | boolean | - | `false`
+visible / `model` | 抽屉是否显示 | boolean | - | -
 width | 抽屉宽度，当 `placement` 为 `left` 或 `right` 时生效 | numeric | - | `256`
 height | 抽屉高度，当 `placement` 为 `top` 或 `bottom` 时生效 | numeric | - | `256`
 closable | 是否显示右上角的关闭按钮 | boolean | - | `true`
-mask | 是否显示遮罩层 | boolean | - | `true`
+showMask | 是否显示遮罩层 | boolean | - | `true`
 maskClosable | 是否允许点击遮罩层关闭 | boolean | - | `true`
 placement | 显示抽屉的方位 | string | `left`, `right`, `top`, `bottom` | `left`
 className | 自定义类名 | string | - | -

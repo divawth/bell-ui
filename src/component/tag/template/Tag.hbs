@@ -12,18 +12,15 @@ class="${prefix}tag
 {{#if className}} {{className}}{{/if}}"
 
 {{#if color || style}}
-  style="{{#if color}}
-    {{#if checkable}}
-      {{#if checked}}
-        background-color: {{color}};
-      {{else}}
-        color: {{color}};
-      {{/if}}
-    {{else}}
-      background-color: {{color}};
-    {{/if}}
-  {{/if}}
-  {{#if style}}{{style}}{{/if}}"
+  style="{{[
+    color
+      ? {
+          backgroundColor: !checkable || checked ? color : undefined,
+          color: checkable && !checked ? color : undefined,
+        }
+      : undefined,
+    style
+  ]}}"
 {{/if}}
 
 {{#if checkable}}

@@ -12,6 +12,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -36,9 +37,8 @@ export default Yox.define({
     },
     visible: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
-    mask: {
+    showMask: {
       type: RAW_BOOLEAN,
       value: TRUE,
     },
@@ -61,7 +61,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

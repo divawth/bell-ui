@@ -148,8 +148,8 @@ export default {
 status | 类型 | string | `info`, `warning`, `success`, `error` | -
 percent | 百分比，取值范围 `0-100` | numeric | - | `0`
 thickness | 进度环的粗细 | numeric | - | `8`
-inside | 内容是否显示在内部 | boolean | - | `false`
-vertical | 是否是垂直进度条 | boolean | - | `false`
-active | 是否有动画效果 | boolean | - | `false`
+inside | 内容是否显示在内部 | boolean | - | -
+vertical | 是否是垂直进度条 | boolean | - | -
+active | 是否有动画效果 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
