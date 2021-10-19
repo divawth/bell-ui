@@ -15,6 +15,7 @@ import {
   RAW_FUNCTION,
   RAW_DATE,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../../constant'
 
 import {
@@ -47,17 +48,15 @@ export default Yox.define({
     },
     canPickYear: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     canPickMonth: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

@@ -21,8 +21,12 @@
       on-click="toggle('visible')"
     {{/if}}
 
-    style="{{#if componentWidth}}width: {{componentWidth}}px;{{/if}}
-    {{#if style}}{{style}}{{/if}}"
+    style="{{[
+      componentWidth
+        ? { width: componentWidth + 'px' }
+        : undefined,
+      style
+    ]}}"
   >
 
     {{#if text}}
@@ -54,7 +58,7 @@
     slot="overlay"
     class="${prefix}time-picker-overlay"
     {{#if componentWidth}}
-      style="width: {{componentWidth}}px;"
+      style="{{ { width: componentWidth + 'px' } }}"
     {{/if}}
   >
 

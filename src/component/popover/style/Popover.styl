@@ -143,7 +143,8 @@ $popover-arrow-size = 5px
 {$selector-class-prefix + '-popover-bottom-start'},
 {$selector-class-prefix + '-popover-bottom-end'}
 
-  padding-top $popover-arrow-padding-inner
+  &{$selector-class-prefix + '-popover-with-arrow'}
+    padding-top $popover-arrow-padding-inner
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
@@ -177,7 +178,9 @@ $popover-arrow-size = 5px
 {$selector-class-prefix + '-popover-top'},
 {$selector-class-prefix + '-popover-top-start'},
 {$selector-class-prefix + '-popover-top-end'}
-  padding-bottom $popover-arrow-padding-inner
+
+  &{$selector-class-prefix + '-popover-with-arrow'}
+    padding-bottom $popover-arrow-padding-inner
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
@@ -213,7 +216,9 @@ $popover-arrow-size = 5px
 {$selector-class-prefix + '-popover-left'},
 {$selector-class-prefix + '-popover-left-start'},
 {$selector-class-prefix + '-popover-left-end'}
-  padding-right $popover-arrow-padding-inner
+
+  &{$selector-class-prefix + '-popover-with-arrow'}
+    padding-right $popover-arrow-padding-inner
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
@@ -246,7 +251,9 @@ $popover-arrow-size = 5px
 {$selector-class-prefix + '-popover-right'},
 {$selector-class-prefix + '-popover-right-start'},
 {$selector-class-prefix + '-popover-right-end'}
-  padding-left $popover-arrow-padding-inner
+
+  &{$selector-class-prefix + '-popover-with-arrow'}
+    padding-left $popover-arrow-padding-inner
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before

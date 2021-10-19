@@ -8,6 +8,7 @@ import {
   RAW_STRING,
   RAW_ARRAY,
   RAW_NUMBER,
+  RAW_STYLE_TYPE,
 } from '../../constant'
 
 import {
@@ -30,7 +31,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

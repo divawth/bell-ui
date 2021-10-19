@@ -406,14 +406,14 @@ value | 日期 | Date | - | -
 format | 日期显示格式 | string | - | `yyyy-MM-dd`
 placement | 日期选择器出现的位置 | string | `bottom-start`
 placeholder | 占位文本 | string | -
-splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | `false`
-multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | `false`
-disabled | 禁用后无法再选择 | boolean | `false`
-block | 是否为块级元素 | boolean | - | `false`
+splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | -
+multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | -
+disabled | 禁用后无法再选择 | boolean | -
+block | 是否为块级元素 | boolean | - | -
 shortcuts | 快捷方式 | Array | -
 defaultDate | 默认显示视图的日期 | Date | -
 disabledDate | 不可选择的日期 | Function | -
-clearable | 是否显示清除按钮 | boolean | `false`
+clearable | 是否显示清除按钮 | boolean | -
 width | 宽度 | numeric | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

@@ -113,10 +113,10 @@ status | 状态 | string | `info`, `warning`, `success`, `error` | -
 format | 日期显示格式 | string | - | `HH:mm:ss`
 placement | 日期选择器出现的位置 | string | `bottom-start`
 placeholder | 占位文本 | string | -
-disabled | 禁用后无法再选择 | boolean | `false`
-block | 是否为块级元素 | boolean | - | `false`
+disabled | 禁用后无法再选择 | boolean | -
+block | 是否为块级元素 | boolean | - | -
 defaultValue | 默认显示视图的时间 | Date、number | -
-clearable | 是否显示清除按钮 | boolean | `false`
+clearable | 是否显示清除按钮 | boolean | -
 width | 宽度 | numeric | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

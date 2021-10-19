@@ -30,6 +30,7 @@ import {
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
   RAW_CUSTOM,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -86,7 +87,6 @@ export default Yox.define({
     },
     splitPanel: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     defaultDate: {
       type: RAW_DATE,
@@ -101,15 +101,12 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     multiple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     placement: {
       type: oneOf(RAW_PLACEMENT_ARRAY),
@@ -127,7 +124,6 @@ export default Yox.define({
     },
     clearable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     width: {
       type: RAW_NUMERIC,
@@ -136,7 +132,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

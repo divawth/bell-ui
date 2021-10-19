@@ -21,6 +21,7 @@ import {
   RAW_TYPE_ERROR,
   RAW_TYPE_WARNING,
   RAW_CUSTOM,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
@@ -58,11 +59,9 @@ export default Yox.define({
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     block: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     placement: {
       type: oneOf(RAW_PLACEMENT_ARRAY),
@@ -79,7 +78,6 @@ export default Yox.define({
     },
     clearable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     format: {
       type: RAW_STRING,
@@ -100,7 +98,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -133,7 +131,7 @@ export default Yox.define({
       if (width > 0) {
         return width
       }
-      return this.get('needSecond') ? 170 : 125
+      return this.get('needSecond') ? 168 : 112
     },
     needSecond(): boolean {
       return this.get('format') !== 'HH:mm'

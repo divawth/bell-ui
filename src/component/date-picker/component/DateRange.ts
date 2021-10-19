@@ -15,13 +15,13 @@ import {
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_DATE,
   RAW_STRING,
   RAW_NUMBER,
   RAW_FUNCTION,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../../constant'
 
 function getEndTimestamp(startTimestamp: number, endTimestamp: number) {
@@ -47,7 +47,6 @@ export default Yox.define({
   propTypes: {
     splitPanel: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     defaultStartDate: {
       type: [RAW_DATE, RAW_NUMBER],
@@ -68,7 +67,7 @@ export default Yox.define({
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

@@ -88,8 +88,8 @@
                 {{else}} ${prefix}date-picker-col-disabled
                 {{/if}}
 
-                {{#if ../../checkedTimestamp >= ../start.timestamp
-                  && ../../checkedTimestamp < ../end.timestamp}}
+                {{#if ~/checkedTimestamp >= ../start.timestamp
+                  && ~/checkedTimestamp < ../end.timestamp}}
                   {{#if colIndex === 0}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-start
                   {{else if colIndex === $length - 1}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
                   {{else}} ${prefix}date-picker-col-range

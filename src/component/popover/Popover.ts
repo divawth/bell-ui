@@ -74,6 +74,9 @@ export default Yox.define({
     widthAlign: {
       type: RAW_BOOLEAN,
     },
+    showArrow: {
+      type: RAW_BOOLEAN,
+    },
     showDelay: {
       type: RAW_NUMERIC,
       value: HOVER_DELAY,
@@ -317,6 +320,9 @@ export default Yox.define({
 
         Yox.dom.addClass(node, CLASS_POPOVER)
         Yox.dom.addClass(node, '${prefix}popover-' + placement)
+        if (me.get('showArrow')) {
+          Yox.dom.addClass(node, '${prefix}popover-with-arrow')
+        }
 
         const overlayRect = me.getOverlayRect()
         me.setOverlayRect(

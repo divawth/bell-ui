@@ -14,12 +14,12 @@ import {
 } from '../util'
 
 import {
-  FALSE,
   RAW_DATE,
   RAW_STRING,
   RAW_NUMBER,
   RAW_ARRAY,
   RAW_BOOLEAN,
+  RAW_STYLE_TYPE,
 } from '../../constant'
 
 function toMonthTimestamp(date: Date | number | void) {
@@ -44,13 +44,12 @@ export default Yox.define({
     },
     canPickYear: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,
     },
     style: {
-      type: RAW_STRING,
+      type: RAW_STYLE_TYPE,
     }
   },
 

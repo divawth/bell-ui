@@ -71,19 +71,19 @@ class="${prefix}date-picker-daterange
                 class="${prefix}date-picker-col
 
                 {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
-                  {{#if isCurrentMonth(this, ../../startDate)}} ${prefix}date-picker-col-current-month
+                  {{#if isCurrentMonth(this, ~/startDate)}} ${prefix}date-picker-col-current-month
 
-                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
-                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
+                    {{#if this.timestamp === ~/computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
+                      {{#if ~/computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
                       {{else}} ${prefix}date-picker-col-range
                       {{/if}}
                     {{/if}}
 
-                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
+                    {{#if this.timestamp === ~/computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
                     {{/if}}
 
-                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
-                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
+                    {{#if ~/computedCheckedStartTimestamp < this.timestamp
+                      && ~/computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
                     {{/if}}
 
                   {{else}} ${prefix}date-picker-col-adjacent-month
@@ -91,7 +91,7 @@ class="${prefix}date-picker-daterange
                 {{else}} ${prefix}date-picker-col-disabled
                 {{/if}}"
 
-                {{#if ../../pinDate}}
+                {{#if ~/pinDate}}
                   on-mouseenter="hover(this)"
                 {{/if}}
 
@@ -174,19 +174,19 @@ class="${prefix}date-picker-daterange
                 class="${prefix}date-picker-col
 
                 {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
-                  {{#if isCurrentMonth(this, ../../endDate)}} ${prefix}date-picker-col-current-month
+                  {{#if isCurrentMonth(this, ~/endDate)}} ${prefix}date-picker-col-current-month
 
-                    {{#if this.timestamp === ../../computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
-                      {{#if ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
+                    {{#if this.timestamp === ~/computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
+                      {{#if ~/computedCheckedEndTimestamp}} ${prefix}date-picker-col-start
                       {{else}} ${prefix}date-picker-col-range
                       {{/if}}
                     {{/if}}
 
-                    {{#if this.timestamp === ../../computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
+                    {{#if this.timestamp === ~/computedCheckedEndTimestamp}} ${prefix}date-picker-col-checked ${prefix}date-picker-col-end
                     {{/if}}
 
-                    {{#if ../../computedCheckedStartTimestamp < this.timestamp
-                      && ../../computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
+                    {{#if ~/computedCheckedStartTimestamp < this.timestamp
+                      && ~/computedCheckedEndTimestamp > this.timestamp}} ${prefix}date-picker-col-range
                     {{/if}}
 
                   {{else}} ${prefix}date-picker-col-adjacent-month
@@ -195,7 +195,7 @@ class="${prefix}date-picker-daterange
                 {{else}} ${prefix}date-picker-col-disabled
                 {{/if}}"
 
-                {{#if ../../pinDate}}
+                {{#if ~/pinDate}}
                   on-mouseenter="hover(this)"
                 {{/if}}
 
