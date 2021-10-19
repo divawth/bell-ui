@@ -40,6 +40,9 @@ export default {
         <Button type="primary">
           确定
         </Button>
+        <SplitButton type="error" menu="{{menu}}">
+          删除
+        </SplitButton>
       </template>
 
       <template slot="content">
@@ -48,6 +51,12 @@ export default {
 
     </PageHeader>
   `,
+  data: {
+    menu: [
+      {text: '文章'},
+      {text: '评论'},
+    ]
+  },
   methods: {
     back() {
       console.log('back')

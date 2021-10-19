@@ -120,6 +120,16 @@ export default {
         placeholder="请输入..."
         width="400"
       >
+        <Button slot="prepend">
+          搜索
+        </Button>
+      </Input>
+      <br><br>
+      <Input
+        model="value2"
+        placeholder="请输入..."
+        width="400"
+      >
         <Button slot="append">
           搜索
         </Button>
@@ -130,9 +140,20 @@ export default {
         placeholder="请输入..."
         width="400"
       >
-        <Select slot="prepend" width="90">
+        <Select slot="prepend" width="120">
           <Option value="www1" text="www1" />
           <Option value="www2" text="www2" />
+        </Select>
+      </Input>
+      <br><br>
+      <Input
+        model="value3"
+        placeholder="请输入..."
+        width="400"
+      >
+        <Select slot="append" width="120">
+          <Option value="美元" text="美元" />
+          <Option value="欧元" text="欧元" />
         </Select>
       </Input>
       <br><br>

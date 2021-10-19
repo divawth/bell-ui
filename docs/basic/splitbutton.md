@@ -98,7 +98,7 @@ export default {
 export default {
   template: `
     <div>
-      <SplitButton menu="{{menu}}" placement="bottom-end">
+      <SplitButton menu="{{menu}}" placement="bottom-start">
         Button
       </SplitButton>
     </div>
@@ -121,7 +121,7 @@ export default {
 ---|---|---|---|---
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
-placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom-start`
+placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom-end`
 menu | 菜单数据 | array | - | -
 loading |  是否为正在加载状态 | boolean | - | -
 disabled | 是否为禁用状态 | boolean | - | -

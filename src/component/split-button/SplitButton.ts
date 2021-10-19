@@ -23,7 +23,7 @@ import {
   RAW_TYPE_ERROR,
   RAW_CLICK,
   RAW_PLACEMENT_ARRAY,
-  RAW_BOTTOM_START,
+  RAW_BOTTOM_END,
   RAW_ARRAY,
   RAW_STYLE_TYPE,
 } from '../constant'
@@ -58,7 +58,7 @@ export default Yox.define({
     },
     placement: {
       type: oneOf(RAW_PLACEMENT_ARRAY),
-      value: RAW_BOTTOM_START,
+      value: RAW_BOTTOM_END,
     },
     menu: {
       type: RAW_ARRAY,

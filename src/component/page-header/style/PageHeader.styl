@@ -48,6 +48,7 @@ $page-header-header-body-gap = 16px
 {$selector-class-prefix + '-page-header-back'}
   ui-clickable()
 
+  width 1px
   color $brand-title
   font-size $page-header-back-icon-size
   padding-right $page-header-back-title-gap
@@ -64,9 +65,19 @@ $page-header-header-body-gap = 16px
   width 100%
   padding-left $page-header-title-tags-gap
 
-{$selector-class-prefix + '-page-header-back'},
+  {$selector-class-prefix + '-tag'} + {$selector-class-prefix + '-tag'}
+    margin-left $ui-horizontal-gap
+
 {$selector-class-prefix + '-page-header-extra'}
   width 1px
+
+  > div,
+  > button
+    vertical-align middle
+
+  {$selector-class-prefix + '-button'} + {$selector-class-prefix + '-split-button'},
+  {$selector-class-prefix + '-split-button'} + {$selector-class-prefix + '-button'}
+    margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-page-header-body'}
   margin-top $page-header-header-body-gap

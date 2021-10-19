@@ -188,32 +188,35 @@ input-brand-style(style)
   border-top-left-radius $border-radius-default
   border-bottom-left-radius $border-radius-default
 
-  {$selector-class-prefix + '-select'},
-  {$selector-class-prefix + '-button'}
+  > {$selector-class-prefix + '-select'},
+  > {$selector-class-prefix + '-button'}
     margin-left - $input-prepend-append-padding-horizontal - 1
     margin-right - $input-prepend-append-padding-horizontal - 1
-
-  {$selector-class-prefix + '-button'}
     border-top-right-radius 0
     border-bottom-right-radius 0
+
+  > {$selector-class-prefix + '-select'}:hover,
+  > {$selector-class-prefix + '-select-opened'}
+    z-index $zindex-normal
 
 {$selector-class-prefix + '-input-append'}
   border-left none
   border-top-right-radius $border-radius-default
   border-bottom-right-radius $border-radius-default
 
-  {$selector-class-prefix + '-select'},
-  {$selector-class-prefix + '-button'}
+  > {$selector-class-prefix + '-select'},
+  > {$selector-class-prefix + '-button'}
     margin-left - $input-prepend-append-padding-horizontal - 1
     margin-right - $input-prepend-append-padding-horizontal - 1
-
-  {$selector-class-prefix + '-button'}
     border-top-left-radius 0
     border-bottom-left-radius 0
 
 {$selector-class-prefix + '-input-content'}
   position relative
   box-sizing border-box
+
+  &:hover
+    z-index $zindex-normal
 
 {$selector-class-prefix + '-input-clear'}
   display none
