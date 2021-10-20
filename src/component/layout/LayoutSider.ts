@@ -44,7 +44,7 @@ export default Yox.define({
   computed: {
     customWidth() {
       if (this.get('collapsed')) {
-        return 200
+        return 80
       }
       return toNumber(this.get('width'))
     }

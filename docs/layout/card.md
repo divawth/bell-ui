@@ -146,7 +146,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-simple | 是否是简洁风格（无边框） | boolean | - | `false`
+simple | 是否是简洁风格（无边框） | boolean | - | -
 shadow | 何时显示阴影 | string | `always`, `hover`, `never` | `always`
 width | 显示宽度 | numeric | - | -
 className | 自定义类名 | string | - | -

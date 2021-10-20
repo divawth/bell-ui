@@ -3,7 +3,6 @@ import Yox from 'yox'
 import template from './template/ButtonGroup.hbs'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_SMALL,
@@ -34,7 +33,6 @@ export default Yox.define({
     },
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,

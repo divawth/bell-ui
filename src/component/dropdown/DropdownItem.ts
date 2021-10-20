@@ -3,7 +3,6 @@ import Yox from 'yox'
 import template from './template/DropdownItem.hbs'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_STYLE_TYPE,
@@ -21,15 +20,12 @@ export default Yox.define({
     },
     divided: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     disabled: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     active: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,

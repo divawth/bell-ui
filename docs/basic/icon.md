@@ -38,6 +38,6 @@ export default {
 name | 图标名称 | string | - | -
 size | 图标的大小，单位是 px | string | - | `14`
 color | 图标的颜色 | string | - | -
-spin | 是否展示图标动画 | boolean | - | `false`
+spin | 是否展示图标动画 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

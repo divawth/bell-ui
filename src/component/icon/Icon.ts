@@ -5,7 +5,6 @@ import template from './template/Icon.hbs'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
@@ -31,7 +30,6 @@ export default Yox.define({
     },
     spin: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,

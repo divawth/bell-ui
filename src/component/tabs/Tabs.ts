@@ -46,7 +46,6 @@ export default Yox.define({
     },
     closable: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     value: {
       type: RAW_STRING,

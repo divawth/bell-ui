@@ -4,7 +4,6 @@ import template from './template/Divider.hbs'
 // import './style/Divider.styl'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_LEFT,
@@ -26,11 +25,9 @@ export default Yox.define({
   propTypes: {
     vertical: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     dashed: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     align: {
       type: oneOf([RAW_CENTER, RAW_LEFT, RAW_RIGHT]),

@@ -26,7 +26,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-multiple | 是否支持多选 | boolean | - | `false`
+multiple | 是否支持多选 | boolean | - | -
 accept | 允许什么类型的文件上传，如 `image/*` | string | - | -
 beforeUpload | 上传前执行的函数 | function | - | -
 upload | 上传单个文件执行的函数，传入的回调函数需按时机调用 | function | - | -

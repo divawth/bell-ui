@@ -7,7 +7,6 @@ import Popover from '../popover/Popover'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
@@ -44,7 +43,6 @@ export default Yox.define({
     },
     visible: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     maxHeight: {
       type: RAW_NUMERIC,

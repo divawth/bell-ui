@@ -347,12 +347,12 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error`, `dashed`, `link`, `text` | -
-ghost | 是否是幽灵按钮 | boolean | - | `false`
+ghost | 是否是幽灵按钮 | boolean | - | -
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `circle`, `round` | -
-block | 开启后，按钮的长度为 100% | boolean | - | `false`
-loading |  是否为正在加载状态 | boolean | - | `false`
-disabled | 是否为禁用状态 | boolean | - | `false`
+block | 开启后，按钮的长度为 100% | boolean | - | -
+loading |  是否为正在加载状态 | boolean | - | -
+disabled | 是否为禁用状态 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -376,5 +376,5 @@ suffix | 自定义右边的内容，常用于右侧图标
 ---|---|---|---|---
 size | 按钮大小 | string | `default`, `large`, `small` | `default`
 shape | 按钮形状 | string | `round` | -
-vertical | 是否纵向排列按钮组 | boolean | - | `false`
+vertical | 是否纵向排列按钮组 | boolean | - | -
 

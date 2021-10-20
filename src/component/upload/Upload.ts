@@ -6,7 +6,6 @@ import template from './template/Upload.hbs'
 import { toString } from '../util'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
@@ -34,7 +33,6 @@ export default Yox.define({
   propTypes: {
     multiple: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     accept: {
       type: RAW_STRING,

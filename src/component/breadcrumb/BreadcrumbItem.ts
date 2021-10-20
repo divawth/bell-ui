@@ -3,7 +3,6 @@ import Yox from 'yox'
 import template from './template/BreadcrumbItem.hbs'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_STYLE_TYPE,
@@ -22,7 +21,6 @@ export default Yox.define({
   propTypes: {
     last: {
       type: RAW_BOOLEAN,
-      value: FALSE,
     },
     className: {
       type: RAW_STRING,

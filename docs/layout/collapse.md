@@ -141,8 +141,8 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 value / `model` | 当前激活的面板(如果是手风琴模式，绑定值类型需要为 `string`，否则为 `string[]`) | string / string[] | - | -
-accordion | 是否使用手风琴效果 | boolean | - | `false`
-simple | 是否是简洁风格 | boolean | - | `false`
+accordion | 是否使用手风琴效果 | boolean | - | -
+simple | 是否是简洁风格 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -152,7 +152,7 @@ style | 自定义内联样式 | string | - | -
 ---|---|---|---|---
 title | 面板标题 | string | - | -
 name | 唯一标志符 | string | - | -
-disabled | 禁用后的面板展开与否将无法通过用户交互改变 | boolean | - | `false`
+disabled | 禁用后的面板展开与否将无法通过用户交互改变 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

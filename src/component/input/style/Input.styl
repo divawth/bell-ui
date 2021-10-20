@@ -236,7 +236,8 @@ input-brand-style(style)
   border-bottom-right-radius 0
 
 {$selector-class-prefix + '-input-with-append'}
-  {$selector-class-prefix + '-input-content'}:hover
+  > {$selector-class-prefix + '-input-content'}:hover
+  &{$selector-class-prefix + '-input-focused'} > {$selector-class-prefix + '-input-content'}
     z-index $zindex-normal
 
 {$selector-class-prefix + '-input-disabled'}
