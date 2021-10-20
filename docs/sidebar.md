@@ -52,6 +52,7 @@
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
+  - [Statistic 统计数值](view/statistic)
   - [Description 描述列表](view/description)
   - [Empty 空状态](view/empty)
   - [Result 结果页](view/result)

@@ -1,6 +1,6 @@
 $statistic-content-height = 37px
 $statistic-content-placeholder-height = 16px
-$statistic-content-font-size = $statistic-content-height / $ui-multiple-line-height
+$statistic-content-font-size = floor($statistic-content-height / $ui-multiple-line-height)
 $statistic-content-space-vertical = ($statistic-content-height - $statistic-content-font-size) / 2
 
 {$selector-class-prefix + '-statistic'}
@@ -23,13 +23,18 @@ $statistic-content-space-vertical = ($statistic-content-height - $statistic-cont
   border-radius $border-radius-default
 
 {$selector-class-prefix + '-statistic-content-prefix'}
+  display inline-block
   margin-right $ui-icon-text-gap
 
   > {$selector-class-prefix + '-icon'}
     font-size $statistic-content-font-size
 
 {$selector-class-prefix + '-statistic-content-suffix'}
+  display inline-block
   margin-left $ui-icon-text-gap
 
   > {$selector-class-prefix + '-icon'}
     font-size $statistic-content-font-size
+
+{$selector-class-prefix + '-statistic-content-value'}
+  display inline-block

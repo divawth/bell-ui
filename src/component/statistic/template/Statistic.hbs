@@ -21,23 +21,23 @@ class="${prefix}statistic
       <div class="${prefix}statistic-content-placeholder"></div>
     {{else}}
       {{#if prefix || hasSlot('prefix')}}
-        <span class="${prefix}statistic-content-prefix">
+        <div class="${prefix}statistic-content-prefix">
           <slot name="prefix">
             {{prefix}}
           </slot>
-        </span>
+        </div>
       {{/if}}
 
-      <span class="${prefix}statistic-content-value">
+      <div class="${prefix}statistic-content-value">
         {{value}}
-      </span>
+      </div>
 
       {{#if suffix || hasSlot('suffix')}}
-        <span class="${prefix}statistic-content-suffix">
+        <div class="${prefix}statistic-content-suffix">
           <slot name="suffix">
             {{suffix}}
           </slot>
-        </span>
+        </div>
       {{/if}}
     {{/if}}
   </div>
