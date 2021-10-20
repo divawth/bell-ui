@@ -9902,9 +9902,6 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   box-sizing: border-box;
 }
-.bell-input-content:hover {
-  z-index: 1;
-}
 .bell-input-clear {
   display: none;
 }
@@ -9922,6 +9919,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-el-with-append {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+.bell-input-with-append > .bell-input-content:hover,
+.bell-input-with-append.bell-input-focused > .bell-input-content {
+  z-index: 1;
 }
 .bell-input-disabled .bell-input-el {
   color: #c5c8ce;
@@ -12136,6 +12137,42 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-slider-block.bell-slider-horizontal {
   width: 100%;
+}
+.bell-statistic {
+  font-size: 14px;
+  line-height: 1.5715;
+}
+.bell-statistic-title {
+  color: #808695;
+  margin-bottom: 4px;
+}
+.bell-statistic-content {
+  color: #17233d;
+  font-size: 23px;
+}
+.bell-statistic-content-placeholder {
+  width: 100%;
+  height: 16px;
+  margin-top: 14px;
+  background-color: rgba(190,190,190,0.2);
+  border-radius: 4px;
+}
+.bell-statistic-content-prefix {
+  display: inline-block;
+  margin-right: 5px;
+}
+.bell-statistic-content-prefix > .bell-icon {
+  font-size: 23px;
+}
+.bell-statistic-content-suffix {
+  display: inline-block;
+  margin-left: 5px;
+}
+.bell-statistic-content-suffix > .bell-icon {
+  font-size: 23px;
+}
+.bell-statistic-content-value {
+  display: inline-block;
 }
 .bell-switch-loading {
   opacity: 0.5;

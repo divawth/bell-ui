@@ -1,3 +1,4 @@
+$statistic-title-content-gap = 4px
 $statistic-content-height = 37px
 $statistic-content-placeholder-height = 16px
 $statistic-content-font-size = floor($statistic-content-height / $ui-multiple-line-height)
@@ -9,7 +10,7 @@ $statistic-content-space-vertical = ($statistic-content-height - $statistic-cont
 
 {$selector-class-prefix + '-statistic-title'}
   color $brand-muted
-  margin-bottom 4px
+  margin-bottom $statistic-title-content-gap
 
 {$selector-class-prefix + '-statistic-content'}
   color $brand-title
