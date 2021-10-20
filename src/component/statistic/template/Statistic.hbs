@@ -1,0 +1,45 @@
+<div
+class="${prefix}statistic
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}statistic-title">
+    {{title}}
+  </div>
+
+  <div
+    class="${prefix}statistic-content"
+    {{#if color}}
+      style="{{ { color: color } }}"
+    {{/if}}
+  >
+    {{#if loading}}
+      <div class="${prefix}statistic-content-placeholder"></div>
+    {{else}}
+      {{#if prefix || hasSlot('prefix')}}
+        <span class="${prefix}statistic-content-prefix">
+          <slot name="prefix">
+            {{prefix}}
+          </slot>
+        </span>
+      {{/if}}
+
+      <span class="${prefix}statistic-content-value">
+        {{value}}
+      </span>
+
+      {{#if suffix || hasSlot('suffix')}}
+        <span class="${prefix}statistic-content-suffix">
+          <slot name="suffix">
+            {{suffix}}
+          </slot>
+        </span>
+      {{/if}}
+    {{/if}}
+  </div>
+
+</div>

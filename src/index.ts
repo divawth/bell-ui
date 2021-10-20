@@ -21,6 +21,7 @@ import Checkbox from './component/checkbox/Checkbox'
 import CheckboxGroup from './component/checkbox/CheckboxGroup'
 import Slider from './component/slider/Slider'
 import Space from './component/space/Space'
+import Statistic from './component/statistic/Statistic'
 import Switch from './component/switch/Switch'
 import Select from './component/select/Select'
 import Option from './component/select/Option'
@@ -128,6 +129,7 @@ export function install(Yox: any) {
     CheckboxGroup,
     Slider,
     Space,
+    Statistic,
     Switch,
     Select,
     Option,
