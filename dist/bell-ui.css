@@ -10738,6 +10738,7 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px solid #dcdee2;
   background-color: #fff;
   transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  box-sizing: border-box;
 }
 .bell-pagination-item + .bell-pagination-item {
   margin-left: 8px;
