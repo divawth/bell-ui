@@ -317,8 +317,17 @@ export default Yox.define({
     handleDragStart(index: number) {
       this.set('draggingIndex', index)
     },
+    handleDragEnd(index: number) {
+      // https://stackoverflow.com/questions/38111946/is-there-a-defined-ordering-between-dragend-and-drop-events
+      // dragend 事件会在 drop 事件之后触发，做一些清理工作
+      this.set('draggingIndex', -1)
+    },
     handleDragOver(index: number) {
       const draggingIndex = this.get('draggingIndex')
+
+      if (draggingIndex < 0) {
+        return FALSE
+      }
 
       if (draggingIndex !== index) {
         this.addDraggingItemClass(index)
@@ -331,6 +340,10 @@ export default Yox.define({
     handleDragEnter(index: number) {
       const draggingIndex = this.get('draggingIndex')
 
+      if (draggingIndex < 0) {
+        return FALSE
+      }
+
       if (draggingIndex !== index) {
         this.addDraggingItemClass(index)
       }
@@ -338,11 +351,21 @@ export default Yox.define({
       return FALSE
     },
     handleDragLeave(index: number) {
+      const draggingIndex = this.get('draggingIndex')
+
+      if (draggingIndex < 0) {
+        return
+      }
+
       this.removeDraggingItemClass(index)
     },
     handleDragDrop(index: number) {
       const draggingIndex = this.get('draggingIndex')
       const imageList = this.get('imageList')
+
+      if (draggingIndex < 0) {
+        return FALSE
+      }
 
       if (draggingIndex >= 0
         && draggingIndex < imageList.length
