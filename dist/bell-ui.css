@@ -8928,7 +8928,7 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
 }
 .bell-image-picker-card {
-  box-shadow: 0 0 1px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 .bell-image-picker-card:hover .bell-image-picker-remove-icon {
   display: block;
@@ -9000,6 +9000,16 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 12px;
   line-height: 18px;
   margin-top: 10px;
+}
+.bell-image-picker-items-wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+}
+.bell-drag-enter-active {
+  border-color: #2b85e4;
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+  transition: all 0.1s ease-in-out;
 }
 .bell-dialog {
   position: fixed;

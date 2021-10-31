@@ -16,6 +16,13 @@ declare const _default: import("yox").ComponentOptions<{
     uploadItem(id: number): void;
     fireError(error: string): void;
     fireChange(): void;
+    addDraggingItemClass(index: number): void;
+    removeDraggingItemClass(index: number): void;
+    handleDragStart(index: number): void;
+    handleDragOver(index: number): false;
+    handleDragEnter(index: number): false;
+    handleDragLeave(index: number): void;
+    handleDragDrop(index: number): false;
 }> & ThisType<{
     handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
@@ -30,5 +37,12 @@ declare const _default: import("yox").ComponentOptions<{
     uploadItem(id: number): void;
     fireError(error: string): void;
     fireChange(): void;
+    addDraggingItemClass(index: number): void;
+    removeDraggingItemClass(index: number): void;
+    handleDragStart(index: number): void;
+    handleDragOver(index: number): false;
+    handleDragEnter(index: number): false;
+    handleDragLeave(index: number): void;
+    handleDragDrop(index: number): false;
 } & import("yox").YoxInterface>;
 export default _default;

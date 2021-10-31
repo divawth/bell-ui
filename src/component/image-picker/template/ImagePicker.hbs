@@ -36,7 +36,9 @@ class="${prefix}image-picker
             {{#if this.name}}
               alt="{{this.name}}"
             {{/if}}
-            on-click="handleImageClick(this, index)"
+            {{#if ~/draggingIndex < 0}}
+              on-click="handleImageClick(this, index)"
+            {{/if}}
           >
         {{/if}}
 
@@ -66,7 +68,9 @@ class="${prefix}image-picker
             <Icon
               className="${prefix}image-picker-remove-icon"
               name="close-circle-fill"
-              on-click.native="removeItem(index)"
+              {{#if ~/draggingIndex < 0}}
+                on-click.native="removeItem(index)"
+              {{/if}}
             />
           {{/if}}
         {{/if}}
@@ -92,7 +96,7 @@ class="${prefix}image-picker
         />
       </Upload>
     {{/if}}
-    </div>
+  </div>
 
   {{#if extra}}
     <div class="${prefix}image-picker-extra">
