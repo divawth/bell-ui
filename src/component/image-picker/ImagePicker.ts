@@ -325,6 +325,10 @@ export default Yox.define({
     handleDragOver(index: number) {
       const draggingIndex = this.get('draggingIndex')
 
+      if (draggingIndex < 0) {
+        return FALSE
+      }
+
       if (draggingIndex !== index) {
         this.addDraggingItemClass(index)
       }
@@ -336,6 +340,10 @@ export default Yox.define({
     handleDragEnter(index: number) {
       const draggingIndex = this.get('draggingIndex')
 
+      if (draggingIndex < 0) {
+        return FALSE
+      }
+
       if (draggingIndex !== index) {
         this.addDraggingItemClass(index)
       }
@@ -343,18 +351,27 @@ export default Yox.define({
       return FALSE
     },
     handleDragLeave(index: number) {
+      const draggingIndex = this.get('draggingIndex')
+
+      if (draggingIndex < 0) {
+        return
+      }
+
       this.removeDraggingItemClass(index)
     },
     handleDragDrop(index: number) {
       const draggingIndex = this.get('draggingIndex')
       const imageList = this.get('imageList')
 
-      this.removeDraggingItemClass(index)
+      if (draggingIndex < 0) {
+        return FALSE
+      }
 
       if (draggingIndex >= 0
         && draggingIndex < imageList.length
         && draggingIndex !== index
       ) {
+        this.removeDraggingItemClass(index)
 
         const startImageItem = imageList[draggingIndex]
         const newImageList = this.copy(imageList)
