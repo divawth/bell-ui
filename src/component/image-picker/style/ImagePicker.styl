@@ -19,7 +19,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
     border-radius $border-radius-default
 
 {$selector-class-prefix + '-image-picker-card'}
-  box-shadow 0 0 1px rgba(0,0,0,0.4)
+  border 1px solid rgba(0,0,0,0.1)
   &:hover
     {$selector-class-prefix + '-image-picker-remove-icon'}
       display block
@@ -92,3 +92,13 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   font-size $ui-font-size - 2
   line-height 1.5 * ($ui-font-size - 2)
   margin-top $ui-vertical-gap
+
+{$selector-class-prefix + '-image-picker-items-wrapper'}
+  display inline-flex
+  flex-wrap wrap
+  gap $ui-vertical-gap $ui-horizontal-gap
+
+{$selector-class-prefix + '-drag-enter-active'}
+  border-color $brand-primary-active
+  box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+  transition all 0.1s ease-in-out

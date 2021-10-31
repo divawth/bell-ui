@@ -6,9 +6,18 @@ class="${prefix}image-picker
   style="{{style}}"
 {{/if}}
 >
-  <Space autoWrap>
+  <div
+    ref="imagePickerList"
+    class="${prefix}image-picker-items-wrapper"
+  >
     {{#each imageList:index}}
       <div
+        draggable="true"
+        on-dragstart="handleDragStart(index)"
+        on-dragover="handleDragOver(index)"
+        on-dragenter="handleDragEnter(index)"
+        on-dragleave="handleDragLeave(index)"
+        on-drop="handleDragDrop(index)"
         class="${prefix}image-picker-item ${prefix}image-picker-card"
         style="{{ {
           width: ~/customImageWidth + 'px',
@@ -27,7 +36,6 @@ class="${prefix}image-picker
             {{#if this.name}}
               alt="{{this.name}}"
             {{/if}}
-            ondragstart="return false"
             on-click="handleImageClick(this, index)"
           >
         {{/if}}
@@ -84,7 +92,7 @@ class="${prefix}image-picker
         />
       </Upload>
     {{/if}}
-  </Space>
+    </div>
 
   {{#if extra}}
     <div class="${prefix}image-picker-extra">

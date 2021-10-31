@@ -84,6 +84,7 @@ export default Yox.define({
     return {
       STATUS_UPLOADING,
       STATUS_ERROR,
+      draggingIndex: -1,
       beforeUploadImage(data) {
         const restCount = me.get('restCount')
         const fileList = data.fileList
@@ -296,7 +297,79 @@ export default Yox.define({
           imageList: this.get('imageList')
         }
       )
-    }
+    },
+    addDraggingItemClass(index: number) {
+      const imagePickerListRef = this.$refs.imagePickerList as any
+      const targetChild = imagePickerListRef.children[index]
+
+      if (targetChild) {
+        Yox.dom.addClass(targetChild, '${prefix}drag-enter-active')
+      }
+    },
+    removeDraggingItemClass(index: number) {
+      const imagePickerListRef = this.$refs.imagePickerList as any
+      const targetChild = imagePickerListRef.children[index]
+
+      if (targetChild) {
+        Yox.dom.removeClass(targetChild, '${prefix}drag-enter-active')
+      }
+    },
+    handleDragStart(index: number) {
+      this.set('draggingIndex', index)
+    },
+    handleDragOver(index: number) {
+      const draggingIndex = this.get('draggingIndex')
+
+      if (draggingIndex !== index) {
+        this.addDraggingItemClass(index)
+      }
+
+      // https://hijiangtao.github.io/2020/05/04/Drag-and-Drop-note/
+      // 返回 false, 阻止浏览器这种默认行为
+      return FALSE
+    },
+    handleDragEnter(index: number) {
+      const draggingIndex = this.get('draggingIndex')
+
+      if (draggingIndex !== index) {
+        this.addDraggingItemClass(index)
+      }
+
+      return FALSE
+    },
+    handleDragLeave(index: number) {
+      this.removeDraggingItemClass(index)
+    },
+    handleDragDrop(index: number) {
+      const draggingIndex = this.get('draggingIndex')
+      const imageList = this.get('imageList')
+
+      if (draggingIndex >= 0
+        && draggingIndex < imageList.length
+        && draggingIndex !== index
+      ) {
+        this.removeDraggingItemClass(index)
+
+        const startImageItem = imageList[draggingIndex]
+        const newImageList = this.copy(imageList)
+
+        if (draggingIndex < index) {
+          newImageList.splice(index + 1, 0, startImageItem)
+          newImageList.splice(draggingIndex, 1)
+        }
+        else {
+          newImageList.splice(index, 0, startImageItem)
+          newImageList.splice(draggingIndex + 1, 1)
+        }
+
+        this.set('imageList', newImageList)
+        this.fireChange()
+      }
+
+      this.set('draggingIndex', -1)
+
+      return FALSE
+    },
   }
 
 })
