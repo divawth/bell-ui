@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.22.5
+ * bell-ui.js v0.22.6
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -5191,7 +5191,7 @@
       },
   });
 
-  var template$L = (function(){var $0=void 0,$2=!0,$4=function(_Q){return _Q.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-item bell-image-picker-card',draggable:$2},$9={className:'bell-image-picker-items-wrapper'},$10={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]={children:function(_S){_n(_q('imageList',_U.imageList),function(_U,_V,_W,index){_S[_S.length]={children:function(_S){_t('url',_U.url).value||_t('base64',_U.base64).value?_S[_S.length]=function(_R){_t('url',_U.url).value?_b(_R,'nativeProps',_u($5,'formatImageUrl').value?_x(_w(_u($5,'formatImageUrl').value,_G,[{height:_u($5,'customImageHeight').value,responsive:$2,url:_t('url',_U.url).value,width:_u($5,'customImageWidth').value}])).value:_t('url',_U.url).value,'src'):_t('base64',_U.base64).value?_b(_R,'nativeProps',_t('base64',_U.base64).value,'src'):$0;_t('name',_U.name).value?_b(_R,'nativeProps',_t('name',_U.name).value,'alt'):$0;_u($5,'draggingIndex').value<0?_b(_R,'events',_g('click','handleImageClick(this, index)','click','',_G.handleImageClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value,index]}}),'click'):$0;return _R}({context:_G,nativeProps:{className:'bell-image-picker-image'},operator:_B,tag:'img',type:3}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_t('status',_U.status).value===_q('STATUS_UPLOADING',_U.STATUS_UPLOADING).value?_S[_S.length]={children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{percent:_t('progress',_U.progress).value>0?_t('progress',_U.progress).value*100:0,size:'60'},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:'上传中',type:1};}}),tag:'Circle',type:4};return _S}([]),context:_G,nativeProps:$6,operator:_B,tag:'div',type:3}:(_t('status',_U.status).value===_q('STATUS_ERROR',_U.STATUS_ERROR).value?_S[_S.length]={children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{percent:_t('progress',_U.progress).value>0?_t('progress',_U.progress).value*100:0,size:'60',strokeColor:'#ff5500'},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{color:'#ff5500',name:'close-line',size:'30'},tag:'Icon',type:4};}}),tag:'Circle',type:4};return _S}([]),context:_G,nativeProps:$6,operator:_B,tag:'div',type:3}:_t('size',_U.size).value>0?_S[_S.length]={context:_G,nativeProps:$7,operator:_B,tag:'div',text:_y(_x(_w(_q('formatImageSize',_U.formatImageSize,$0,_H&&_H.formatImageSize||_I.formatImageSize).value,_G,[_t('size',_U.size).value])).value),type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2},!_q('readOnly',_U.readOnly).value?_S[_S.length]=_T[_T.length]=function(_R){_u($5,'draggingIndex').value<0?_b(_R,'events',_g('click.native','removeItem(index)','click','native',_G.removeItem,{args:function(_Q,_X,_Y){return [index]}},$0,$2),'click.native'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2});return _S}([]),context:_G,events:{dragenter:_g('dragenter','handleDragEnter(index)','dragenter','',_G.handleDragEnter,{args:function(_Q,_X,_Y){return [index]}}),dragleave:_g('dragleave','handleDragLeave(index)','dragleave','',_G.handleDragLeave,{args:function(_Q,_X,_Y){return [index]}}),dragover:_g('dragover','handleDragOver(index)','dragover','',_G.handleDragOver,{args:function(_Q,_X,_Y){return [index]}}),dragstart:_g('dragstart','handleDragStart(index)','dragstart','',_G.handleDragStart,{args:function(_Q,_X,_Y){return [index]}}),drop:_g('drop','handleDragDrop(index)','drop','',_G.handleDragDrop,{args:function(_Q,_X,_Y){return [index]}})},nativeProps:$8,nativeStyles:{height:_u($5,'customImageHeight').value+'px',width:_u($5,'customImageWidth').value+'px'},operator:_B,tag:'div',type:3};});!_q('readOnly',_U.readOnly).value&&_p($4,'imageList.length',$2).value<_q('maxCount',_U.maxCount).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{accept:_q('accept',_U.accept).value,beforeUpload:_q('beforeUploadImage',_U.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_q('restCount',_U.restCount).value>1,style:{height:_q('customImageHeight',_U.customImageHeight).value+'px',width:_q('customImageWidth',_U.customImageWidth).value+'px'}},ref:'upload',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$9,operator:_B,ref:'imagePickerList',tag:'div',type:3};_q('extra',_U.extra).value?_S[_S.length]={context:_G,nativeProps:$10,operator:_B,tag:'div',text:_y(_q('extra',_U.extra).value),type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-image-picker'+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3});}})();
+  var template$L = (function(){var $0=void 0,$2=!0,$4=function(_Q){return _Q.length-1},$5=function(){return 0},$6={className:'bell-image-picker-mask'},$7={className:'bell-image-picker-image-size'},$8={className:'bell-image-picker-item bell-image-picker-card',draggable:$2},$9={className:'bell-image-picker-items-wrapper'},$10={className:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_U,_V,_S,_T){_S[_S.length]=function(_R){_q('style',_U.style).value?_R.nativeStyles=_d(_q('style',_U.style).value):$0;return _R}({children:function(_S){_S[_S.length]={children:function(_S){_n(_q('imageList',_U.imageList),function(_U,_V,_W,index){_S[_S.length]={children:function(_S){_t('url',_U.url).value||_t('base64',_U.base64).value?_S[_S.length]=function(_R){_t('url',_U.url).value?_b(_R,'nativeProps',_u($5,'formatImageUrl').value?_x(_w(_u($5,'formatImageUrl').value,_G,[{height:_u($5,'customImageHeight').value,responsive:$2,url:_t('url',_U.url).value,width:_u($5,'customImageWidth').value}])).value:_t('url',_U.url).value,'src'):_t('base64',_U.base64).value?_b(_R,'nativeProps',_t('base64',_U.base64).value,'src'):$0;_t('name',_U.name).value?_b(_R,'nativeProps',_t('name',_U.name).value,'alt'):$0;_u($5,'draggingIndex').value<0?_b(_R,'events',_g('click','handleImageClick(this, index)','click','',_G.handleImageClick,{args:function(_Q,_X,_Y){return [_r(_U,_Q).value,index]}}),'click'):$0;return _R}({context:_G,nativeProps:{className:'bell-image-picker-image'},operator:_B,tag:'img',type:3}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};_t('status',_U.status).value===_q('STATUS_UPLOADING',_U.STATUS_UPLOADING).value?_S[_S.length]={children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{percent:_t('progress',_U.progress).value>0?_t('progress',_U.progress).value*100:0,size:'60'},slots:_k({$slot_children:function(_S,_T){_S[_S.length]={isPure:$2,operator:_z,text:'上传中',type:1};}}),tag:'Circle',type:4};return _S}([]),context:_G,nativeProps:$6,operator:_B,tag:'div',type:3}:(_t('status',_U.status).value===_q('STATUS_ERROR',_U.STATUS_ERROR).value?_S[_S.length]={children:function(_S){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{percent:_t('progress',_U.progress).value>0?_t('progress',_U.progress).value*100:0,size:'60',strokeColor:'#ff5500'},slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{color:'#ff5500',name:'close-line',size:'30'},tag:'Icon',type:4};}}),tag:'Circle',type:4};return _S}([]),context:_G,nativeProps:$6,operator:_B,tag:'div',type:3}:_t('size',_U.size).value>0?_S[_S.length]={context:_G,nativeProps:$7,operator:_B,tag:'div',text:_y(_x(_w(_q('formatImageSize',_U.formatImageSize,$0,_H&&_H.formatImageSize||_I.formatImageSize).value,_G,[_t('size',_U.size).value])).value),type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2},!_q('readOnly',_U.readOnly).value?_S[_S.length]=_T[_T.length]=function(_R){_u($5,'draggingIndex').value<0?_b(_R,'events',_g('click.native','removeItem(index)','click','native',_G.removeItem,{args:function(_Q,_X,_Y){return [index]}},$0,$2),'click.native'):$0;return _R}({context:_G,isComponent:$2,operator:_C,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}):_S[_S.length]={isPure:$2,operator:_A,text:'',type:2});return _S}([]),context:_G,events:{dragend:_g('dragend','handleDragEnd()','dragend','',_G.handleDragEnd),dragenter:_g('dragenter','handleDragEnter(index)','dragenter','',_G.handleDragEnter,{args:function(_Q,_X,_Y){return [index]}}),dragleave:_g('dragleave','handleDragLeave(index)','dragleave','',_G.handleDragLeave,{args:function(_Q,_X,_Y){return [index]}}),dragover:_g('dragover','handleDragOver(index)','dragover','',_G.handleDragOver,{args:function(_Q,_X,_Y){return [index]}}),dragstart:_g('dragstart','handleDragStart(index)','dragstart','',_G.handleDragStart,{args:function(_Q,_X,_Y){return [index]}}),drop:_g('drop','handleDragDrop(index)','drop','',_G.handleDragDrop,{args:function(_Q,_X,_Y){return [index]}})},nativeProps:$8,nativeStyles:{height:_u($5,'customImageHeight').value+'px',width:_u($5,'customImageWidth').value+'px'},operator:_B,tag:'div',type:3};});!_q('readOnly',_U.readOnly).value&&_p($4,'imageList.length',$2).value<_q('maxCount',_U.maxCount).value?_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{accept:_q('accept',_U.accept).value,beforeUpload:_q('beforeUploadImage',_U.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_q('restCount',_U.restCount).value>1,style:{height:_q('customImageHeight',_U.customImageHeight).value+'px',width:_q('customImageWidth',_U.customImageWidth).value+'px'}},ref:'upload',slots:_k({$slot_children:function(_S,_T){_S[_S.length]=_T[_T.length]={context:_G,isComponent:$2,operator:_C,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:$9,operator:_B,ref:'imagePickerList',tag:'div',type:3};_q('extra',_U.extra).value?_S[_S.length]={context:_G,nativeProps:$10,operator:_B,tag:'div',text:_y(_q('extra',_U.extra).value),type:3}:_S[_S.length]={isPure:$2,operator:_A,text:'',type:2};return _S}([]),context:_G,nativeProps:{className:'bell-image-picker'+(_q('className',_U.className).value?' '+_y(_q('className',_U.className).value):'')},operator:_B,tag:'div',type:3});}})();
 
   var STATUS_UPLOADING = 'uploading';
   var STATUS_ERROR = 'error';
@@ -5455,8 +5455,16 @@
           handleDragStart: function (index) {
               this.set('draggingIndex', index);
           },
+          handleDragEnd: function () {
+              // https://stackoverflow.com/questions/38111946/is-there-a-defined-ordering-between-dragend-and-drop-events
+              // dragend 事件会在 drop 事件之后触发，做一些清理工作
+              this.set('draggingIndex', -1);
+          },
           handleDragOver: function (index) {
               var draggingIndex = this.get('draggingIndex');
+              if (draggingIndex < 0) {
+                  return FALSE;
+              }
               if (draggingIndex !== index) {
                   this.addDraggingItemClass(index);
               }
@@ -5466,16 +5474,26 @@
           },
           handleDragEnter: function (index) {
               var draggingIndex = this.get('draggingIndex');
+              if (draggingIndex < 0) {
+                  return FALSE;
+              }
               if (draggingIndex !== index) {
                   this.addDraggingItemClass(index);
               }
               return FALSE;
           },
           handleDragLeave: function (index) {
+              var draggingIndex = this.get('draggingIndex');
+              if (draggingIndex < 0) {
+                  return;
+              }
               this.removeDraggingItemClass(index);
           },
           handleDragDrop: function (index) {
               var draggingIndex = this.get('draggingIndex');
+              if (draggingIndex < 0) {
+                  return FALSE;
+              }
               var imageList = this.get('imageList');
               if (draggingIndex >= 0
                   && draggingIndex < imageList.length
@@ -7852,7 +7870,7 @@
   /**
    * 版本
    */
-  var version = "0.22.5";
+  var version = "0.22.6";
   /**
    * 安装插件
    */

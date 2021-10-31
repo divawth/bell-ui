@@ -19,6 +19,7 @@ declare const _default: import("yox").ComponentOptions<{
     addDraggingItemClass(index: number): void;
     removeDraggingItemClass(index: number): void;
     handleDragStart(index: number): void;
+    handleDragEnd(): void;
     handleDragOver(index: number): false;
     handleDragEnter(index: number): false;
     handleDragLeave(index: number): void;
@@ -40,6 +41,7 @@ declare const _default: import("yox").ComponentOptions<{
     addDraggingItemClass(index: number): void;
     removeDraggingItemClass(index: number): void;
     handleDragStart(index: number): void;
+    handleDragEnd(): void;
     handleDragOver(index: number): false;
     handleDragEnter(index: number): false;
     handleDragLeave(index: number): void;
