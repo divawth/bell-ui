@@ -23,6 +23,7 @@ import Slider from './component/slider/Slider'
 import Space from './component/space/Space'
 import Statistic from './component/statistic/Statistic'
 import Switch from './component/switch/Switch'
+import Skeleton from './component/skeleton/Skeleton'
 import Select from './component/select/Select'
 import Option from './component/select/Option'
 import OptionGroup from './component/select/OptionGroup'
@@ -131,6 +132,7 @@ export function install(Yox: any) {
     Space,
     Statistic,
     Switch,
+    Skeleton,
     Select,
     Option,
     OptionGroup,

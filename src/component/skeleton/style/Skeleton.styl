@@ -1,0 +1,69 @@
+@import '../../../env'
+
+$skeleton-header-content-gap = 16px
+$skeleton-title-paragraph-gap = 28px
+
+{$selector-class-prefix + '-skeleton'}
+  display block
+
+{$selector-class-prefix + '-skeleton-with-avatar'}
+  display table
+
+  {$selector-class-prefix + '-skeleton-header'}
+  {$selector-class-prefix + '-skeleton-content'}
+    display table-cell
+    vertical-align top
+
+{$selector-class-prefix + '-skeleton-avatar-circle'}
+  border-radius 50%
+
+{$selector-class-prefix + '-skeleton-avatar-round'}
+  border-radius $border-radius-default
+
+{$selector-class-prefix + '-skeleton-avatar'},
+{$selector-class-prefix + '-skeleton-title'},
+{$selector-class-prefix + '-skeleton-row'}
+  background-color $brand-skeleton-light
+
+{$selector-class-prefix + '-skeleton-title'},
+{$selector-class-prefix + '-skeleton-row'}
+  border-radius $border-radius-default
+
+{$selector-class-prefix + '-skeleton-title'}
+  margin-top $skeleton-row-height
+
+{$selector-class-prefix + '-skeleton-row'}
+  + {$selector-class-prefix + '-skeleton-row'}
+    margin-top $skeleton-row-height
+
+{$selector-class-prefix + '-skeleton-header'}
+  padding-right $skeleton-header-content-gap
+
+  + {$selector-class-prefix + '-skeleton-content'}
+    width 100%
+
+{$selector-class-prefix + '-skeleton-title'}
+  + {$selector-class-prefix + '-skeleton-paragraph'}
+    margin-top $skeleton-title-paragraph-gap
+
+{$selector-class-prefix + '-skeleton-paragraph'}
+  list-style none
+  margin 0
+  padding 0
+
+
+
+@keyframes {$selector-animation-prefix + '-skeleton-loading'}
+  0%
+    background-position 100% 50%
+
+  to
+    background-position 0 50%
+
+{$selector-class-prefix + '-skeleton-active'}
+  {$selector-class-prefix + '-skeleton-avatar'},
+  {$selector-class-prefix + '-skeleton-title'},
+  {$selector-class-prefix + '-skeleton-row'}
+    background linear-gradient(90deg, $brand-skeleton-light 25%, $brand-skeleton-dark 37%, $brand-skeleton-light 63%)
+    background-size 400% 100%
+    animation bell-skeleton-loading 1.4s ease infinite

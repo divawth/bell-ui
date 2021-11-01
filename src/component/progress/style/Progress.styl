@@ -100,7 +100,7 @@ ui-progress()
       animation bell-progress-vertical-active 2s ease-in-out infinite
 
 
-@keyframes bell-progress-horizontal-active
+@keyframes {$selector-animation-prefix + '-progress-horizontal-active'}
   0%
     opacity .3
     width 0
@@ -110,7 +110,7 @@ ui-progress()
     width 100%
 
 
-@keyframes bell-progress-vertical-active
+@keyframes {$selector-animation-prefix + '-progress-vertical-active'}
   0%
     opacity .3
     height 0

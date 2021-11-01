@@ -3,6 +3,8 @@ import Yox from 'yox'
 import template from './template/Statistic.hbs'
 // import './style/Statistic.styl'
 
+import Skeleton from '../skeleton/Skeleton'
+
 import {
   TRUE,
   RAW_NUMBER,
@@ -43,5 +45,9 @@ export default Yox.define({
     style: {
       type: RAW_STYLE_TYPE,
     }
+  },
+
+  components: {
+    Skeleton,
   }
 })

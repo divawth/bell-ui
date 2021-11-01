@@ -1,0 +1,58 @@
+{{#if loading}}
+  <div
+    class="${prefix}skeleton
+    {{#if active}} ${prefix}skeleton-active{{/if}}
+    {{#if avatarSize}} ${prefix}skeleton-with-avatar{{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if style}}
+      style="{{style}}"
+    {{/if}}
+  >
+
+    {{#if avatarSize}}
+      <div class="${prefix}skeleton-header">
+        <div
+          class="${prefix}skeleton-avatar ${prefix}skeleton-avatar-{{avatarShape}}"
+          style="{{ {
+            width: avatarSize,
+            height: avatarSize,
+          } }}"
+        ></div>
+      </div>
+    {{/if}}
+
+    <div class="${prefix}skeleton-content">
+      {{#if titleWidth}}
+        <div
+          class="${prefix}skeleton-title"
+          style="{{ {
+            width: titleWidth,
+            height: ROW_HEIGHT + 'px',
+            marginTop: ((avatarSize - ROW_HEIGHT) / 2) + 'px'
+          } }}"
+        >
+        </div>
+      {{/if}}
+
+      {{#if paragraphWidth}}
+        <ul
+          class="${prefix}skeleton-paragraph"
+        >
+          {{#each 0 -> paragraphRows:index}}
+            <li
+              class="${prefix}skeleton-row"
+              style="{{ {
+                height: ~/ROW_HEIGHT + 'px',
+                width: index === ~/paragraphRows - 1 ? ~/paragraphWidth : undefined
+              } }}"
+            ></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+
+  </div>
+{{else}}
+  <slot />
+{{/if}}

@@ -11,15 +11,17 @@ class="${prefix}statistic
     {{title}}
   </div>
 
-  <div
-    class="${prefix}statistic-content"
-    {{#if color}}
-      style="{{ { color: color } }}"
-    {{/if}}
+  <Skeleton
+    loading="{{loading}}"
+    title="{{ { width: '100%' } }}"
+    paragraph="{{false}}"
   >
-    {{#if loading}}
-      <div class="${prefix}statistic-content-placeholder"></div>
-    {{else}}
+    <div
+      class="${prefix}statistic-content"
+      {{#if color}}
+        style="{{ { color: color } }}"
+      {{/if}}
+    >
       {{#if prefix || hasSlot('prefix')}}
         <div class="${prefix}statistic-content-prefix">
           <slot name="prefix">
@@ -39,7 +41,7 @@ class="${prefix}statistic
           </slot>
         </div>
       {{/if}}
-    {{/if}}
-  </div>
+    </div>
+  </Skeleton>
 
 </div>
