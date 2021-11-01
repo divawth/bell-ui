@@ -2,7 +2,7 @@
   <div
     class="${prefix}skeleton
     {{#if active}} ${prefix}skeleton-active{{/if}}
-    {{#if avatarSize}} ${prefix}skeleton-with-avatar{{/if}}
+    {{#if imageSize}} ${prefix}skeleton-with-image{{/if}}
     {{#if className}} {{className}}{{/if}}"
 
     {{#if style}}
@@ -10,41 +10,28 @@
     {{/if}}
   >
 
-    {{#if avatarSize}}
+    {{#if imageSize}}
       <div class="${prefix}skeleton-header">
         <div
-          class="${prefix}skeleton-avatar ${prefix}skeleton-avatar-{{avatarShape}}"
+          class="${prefix}skeleton-image ${prefix}skeleton-image-{{imageShape}}"
           style="{{ {
-            width: avatarSize,
-            height: avatarSize,
+            width: imageSize,
+            height: imageSize,
           } }}"
         ></div>
       </div>
     {{/if}}
 
     <div class="${prefix}skeleton-content">
-      {{#if titleWidth}}
-        <div
-          class="${prefix}skeleton-title"
-          style="{{ {
-            width: titleWidth,
-            height: ROW_HEIGHT + 'px',
-            marginTop: ((avatarSize - ROW_HEIGHT) / 2) + 'px'
-          } }}"
-        >
-        </div>
-      {{/if}}
-
-      {{#if paragraphWidth}}
+      {{#if computedText}}
         <ul
-          class="${prefix}skeleton-paragraph"
+          class="${prefix}skeleton-text"
         >
-          {{#each 0 -> paragraphRows:index}}
+          {{#each computedText:index}}
             <li
-              class="${prefix}skeleton-row"
+              class="${prefix}skeleton-text-row"
               style="{{ {
-                height: ~/ROW_HEIGHT + 'px',
-                width: index === ~/paragraphRows - 1 ? ~/paragraphWidth : undefined
+                width: this.width
               } }}"
             ></li>
           {{/each}}

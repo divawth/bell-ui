@@ -1,12 +1,11 @@
 @import '../../../env'
 
 $skeleton-header-content-gap = 16px
-$skeleton-title-paragraph-gap = 28px
 
 {$selector-class-prefix + '-skeleton'}
   display block
 
-{$selector-class-prefix + '-skeleton-with-avatar'}
+{$selector-class-prefix + '-skeleton-with-image'}
   display table
 
   {$selector-class-prefix + '-skeleton-header'}
@@ -14,26 +13,21 @@ $skeleton-title-paragraph-gap = 28px
     display table-cell
     vertical-align top
 
-{$selector-class-prefix + '-skeleton-avatar-circle'}
+{$selector-class-prefix + '-skeleton-image-circle'}
   border-radius 50%
 
-{$selector-class-prefix + '-skeleton-avatar-round'}
+{$selector-class-prefix + '-skeleton-image-round'}
   border-radius $border-radius-default
 
-{$selector-class-prefix + '-skeleton-avatar'},
-{$selector-class-prefix + '-skeleton-title'},
-{$selector-class-prefix + '-skeleton-row'}
+{$selector-class-prefix + '-skeleton-image'},
+{$selector-class-prefix + '-skeleton-text-row'}
   background-color $brand-skeleton-light
 
-{$selector-class-prefix + '-skeleton-title'},
-{$selector-class-prefix + '-skeleton-row'}
+{$selector-class-prefix + '-skeleton-text-row'}
+  height $skeleton-row-height
   border-radius $border-radius-default
 
-{$selector-class-prefix + '-skeleton-title'}
-  margin-top $skeleton-row-height
-
-{$selector-class-prefix + '-skeleton-row'}
-  + {$selector-class-prefix + '-skeleton-row'}
+  + {$selector-class-prefix + '-skeleton-text-row'}
     margin-top $skeleton-row-height
 
 {$selector-class-prefix + '-skeleton-header'}
@@ -42,11 +36,7 @@ $skeleton-title-paragraph-gap = 28px
   + {$selector-class-prefix + '-skeleton-content'}
     width 100%
 
-{$selector-class-prefix + '-skeleton-title'}
-  + {$selector-class-prefix + '-skeleton-paragraph'}
-    margin-top $skeleton-title-paragraph-gap
-
-{$selector-class-prefix + '-skeleton-paragraph'}
+{$selector-class-prefix + '-skeleton-text'}
   list-style none
   margin 0
   padding 0
@@ -61,9 +51,8 @@ $skeleton-title-paragraph-gap = 28px
     background-position 0 50%
 
 {$selector-class-prefix + '-skeleton-active'}
-  {$selector-class-prefix + '-skeleton-avatar'},
-  {$selector-class-prefix + '-skeleton-title'},
-  {$selector-class-prefix + '-skeleton-row'}
+  {$selector-class-prefix + '-skeleton-image'},
+  {$selector-class-prefix + '-skeleton-text-row'}
     background linear-gradient(90deg, $brand-skeleton-light 25%, $brand-skeleton-dark 37%, $brand-skeleton-light 63%)
     background-size 400% 100%
     animation bell-skeleton-loading 1.4s ease infinite

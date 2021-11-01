@@ -13,7 +13,6 @@ import {
   RAW_LARGE,
   RAW_SHAPE_CIRCLE,
   RAW_SHAPE_ROUND,
-  SKELETON_ROW_HEIGHT,
 } from '../constant'
 
 export default Yox.define({
@@ -23,15 +22,11 @@ export default Yox.define({
   name: '${prefix}Skeleton',
 
   propTypes: {
-    title: {
+    text: {
       type: [RAW_BOOLEAN, RAW_OBJECT],
       value: TRUE,
     },
-    paragraph: {
-      type: [RAW_BOOLEAN, RAW_OBJECT],
-      value: TRUE,
-    },
-    avatar: {
+    image: {
       type: [RAW_BOOLEAN, RAW_OBJECT],
     },
     loading: {
@@ -48,77 +43,56 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      ROW_HEIGHT: SKELETON_ROW_HEIGHT,
-    }
-  },
-
   computed: {
-    titleWidth() {
-      const title = this.get('title')
-      if (title) {
-        const defaultWidth = '38%'
-        if (Yox.is.boolean(title)) {
-          return defaultWidth
+    computedText() {
+      const text = this.get('text')
+      if (text) {
+        let rows = 3
+        if (Yox.is.object(text) && text.rows) {
+          rows = text.rows
         }
-        if (Yox.is.number(title.width)) {
-          return title.width + 'px'
+
+        const allWidth = Yox.is.array(text.width) ? text.width : []
+        const lastWidth = Yox.is.number(text.width) ? text.width : (rows > 1 ? '60%' : '100%')
+
+        const result = []
+        for (let i = 0; i < rows; i++) {
+          let width = allWidth[i] || (i === rows - 1 ? lastWidth : '100%')
+          result.push({
+            width: Yox.is.number(width) ? width + 'px' : width
+          })
         }
-        return title.width || defaultWidth
+
+        return result
       }
     },
-    paragraphWidth() {
-      const paragraph = this.get('paragraph')
-      if (paragraph) {
-        const defaultWidth = '61%'
-        if (Yox.is.boolean(paragraph)) {
-          return defaultWidth
-        }
-        if (Yox.is.number(paragraph.width)) {
-          return paragraph.width + 'px'
-        }
-        return paragraph.width || defaultWidth
-      }
-    },
-    paragraphRows() {
-      const paragraph = this.get('paragraph')
-      if (paragraph) {
-        if (Yox.is.boolean(paragraph)) {
-          return 3
-        }
-        if (Yox.is.number(paragraph.rows)) {
-          return paragraph.rows
-        }
-      }
-    },
-    avatarSize() {
-      const avatar = this.get('avatar')
-      if (avatar) {
-        const defaultSize = 32
-        if (Yox.is.boolean(avatar)) {
+    imageSize() {
+      const image = this.get('image')
+      if (image) {
+        const defaultSize = 48
+        if (Yox.is.boolean(image)) {
           return defaultSize
         }
-        if (Yox.is.number(avatar.size)) {
-          return avatar.size
+        if (Yox.is.number(image.size)) {
+          return image.size
         }
-        if (avatar.size === RAW_SMALL) {
-          return 24
+        if (image.size === RAW_SMALL) {
+          return 36
         }
-        if (avatar.size === RAW_LARGE) {
-          return 40
+        if (image.size === RAW_LARGE) {
+          return 60
         }
         return defaultSize
       }
     },
-    avatarShape() {
-      const avatar = this.get('avatar')
-      if (avatar) {
+    imageShape() {
+      const image = this.get('image')
+      if (image) {
         const defaultShape = RAW_SHAPE_CIRCLE
-        if (Yox.is.boolean(avatar)) {
+        if (Yox.is.boolean(image)) {
           return defaultShape
         }
-        if (avatar.shape === RAW_SHAPE_ROUND) {
+        if (image.shape === RAW_SHAPE_ROUND) {
           return RAW_SHAPE_ROUND
         }
         return defaultShape

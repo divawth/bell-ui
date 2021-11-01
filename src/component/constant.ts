@@ -130,4 +130,3 @@ export const DOCUMENT = document
 export const BODY = DOCUMENT.body
 
 export const HOVER_DELAY = 100
-export const SKELETON_ROW_HEIGHT = 16

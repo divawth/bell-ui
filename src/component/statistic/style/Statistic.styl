@@ -13,6 +13,9 @@ $statistic-content-space-vertical = ($statistic-content-height - $statistic-cont
   color $brand-muted
   margin-bottom $statistic-title-content-gap
 
+  + {$selector-class-prefix + '-skeleton'}
+    margin-top $statistic-content-height - $statistic-content-space-vertical - $skeleton-row-height
+
 {$selector-class-prefix + '-statistic-content'}
   color $brand-title
   font-size $statistic-content-font-size
