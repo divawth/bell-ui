@@ -12,7 +12,9 @@ class="${prefix}image-picker
   >
     {{#each imageList:index}}
       <div
-        draggable="true"
+        on-mouseenter="handleMouseEnter(index)"
+        on-mouseleave="handleMouseLeave(index)"
+        draggable="{{canDraggable}}"
         on-dragstart="handleDragStart(index)"
         on-dragend="handleDragEnd()"
         on-dragover="handleDragOver(index)"
@@ -20,14 +22,17 @@ class="${prefix}image-picker
         on-dragleave="handleDragLeave(index)"
         on-drop="handleDragDrop(index)"
         class="${prefix}image-picker-item ${prefix}image-picker-card"
+
         style="{{ {
           width: ~/customImageWidth + 'px',
           height: ~/customImageHeight + 'px'
+
         } }}"
       >
 
         {{#if this.url || this.base64}}
           <img
+            draggable="{{canDraggable}}"
             class="${prefix}image-picker-image"
             {{#if this.url}}
               src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
@@ -65,13 +70,11 @@ class="${prefix}image-picker
               {{formatImageSize(this.size)}}
             </div>
           {{/if}}
-          {{#if !readOnly}}
+          {{#if !readOnly && draggingIndex < 0}}
             <Icon
               className="${prefix}image-picker-remove-icon"
               name="close-circle-fill"
-              {{#if ~/draggingIndex < 0}}
-                on-click.native="removeItem(index)"
-              {{/if}}
+              on-click.native="removeItem(index)"
             />
           {{/if}}
         {{/if}}

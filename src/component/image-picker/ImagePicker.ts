@@ -132,6 +132,12 @@ export default Yox.define({
       const imageCount = this.get('imageList.length')
       const maxCount = this.get('maxCount')
       return maxCount - imageCount
+    },
+    canDraggable(): boolean {
+      const readOnly = this.get('readOnly')
+      const imageList = this.get('imageList')
+
+      return !readOnly && imageList.length > 1
     }
   },
 
@@ -298,24 +304,34 @@ export default Yox.define({
         }
       )
     },
-    addDraggingItemClass(index: number) {
+    addImgWrapperItemClass(index: number, className: string) {
       const imagePickerListRef = this.$refs.imagePickerList as any
       const targetChild = imagePickerListRef.children[index]
 
       if (targetChild) {
-        Yox.dom.addClass(targetChild, '${prefix}drag-enter-active')
+        Yox.dom.addClass(targetChild, className)
       }
     },
-    removeDraggingItemClass(index: number) {
+    removeImgWrapperItemClass(index: number, className: string) {
       const imagePickerListRef = this.$refs.imagePickerList as any
       const targetChild = imagePickerListRef.children[index]
 
       if (targetChild) {
-        Yox.dom.removeClass(targetChild, '${prefix}drag-enter-active')
+        Yox.dom.removeClass(targetChild, className)
       }
+    },
+    handleMouseEnter(index: number) {
+      // https://stackoverflow.com/questions/11989289/css-html5-hover-state-remains-after-drag-and-drop
+      // drag 拖拽的时候，hover 状态仍然会保留，改用监听 mouseenter 和 mouseleave 来添加删除 class
+      // 并再 dragstart 的时候删除添加的 class，使 active 状态失效
+      this.addImgWrapperItemClass(index, '${prefix}mouse-enter-active')
+    },
+    handleMouseLeave(index: number) {
+      this.removeImgWrapperItemClass(index, '${prefix}mouse-enter-active')
     },
     handleDragStart(index: number) {
       this.set('draggingIndex', index)
+      this.removeImgWrapperItemClass(index, '${prefix}mouse-enter-active')
     },
     handleDragEnd() {
       // https://stackoverflow.com/questions/38111946/is-there-a-defined-ordering-between-dragend-and-drop-events
@@ -329,7 +345,7 @@ export default Yox.define({
       }
 
       if (draggingIndex !== index) {
-        this.addDraggingItemClass(index)
+        this.addImgWrapperItemClass(index, '${prefix}drag-enter-active')
       }
 
       // https://hijiangtao.github.io/2020/05/04/Drag-and-Drop-note/
@@ -343,7 +359,7 @@ export default Yox.define({
       }
 
       if (draggingIndex !== index) {
-        this.addDraggingItemClass(index)
+        this.addImgWrapperItemClass(index, '${prefix}drag-enter-active')
       }
 
       return FALSE
@@ -354,7 +370,7 @@ export default Yox.define({
         return
       }
 
-      this.removeDraggingItemClass(index)
+      this.removeImgWrapperItemClass(index, '${prefix}drag-enter-active')
     },
     handleDragDrop(index: number) {
       const draggingIndex = this.get('draggingIndex')
@@ -368,7 +384,7 @@ export default Yox.define({
         && draggingIndex < imageList.length
         && draggingIndex !== index
       ) {
-        this.removeDraggingItemClass(index)
+        this.removeImgWrapperItemClass(index, '${prefix}drag-enter-active')
 
         const startImageItem = imageList[draggingIndex]
         const newImageList = this.copy(imageList)
