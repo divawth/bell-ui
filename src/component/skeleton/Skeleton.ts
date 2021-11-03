@@ -69,20 +69,19 @@ export default Yox.define({
     imageSize() {
       const image = this.get('image')
       if (image) {
-        const defaultSize = 48
-        if (Yox.is.boolean(image)) {
-          return defaultSize
+        let size = 48
+        if (Yox.is.object(image)) {
+          if (Yox.is.number(image.size)) {
+            size = image.size
+          }
+          if (image.size === RAW_SMALL) {
+            size = 36
+          }
+          if (image.size === RAW_LARGE) {
+            size = 60
+          }
         }
-        if (Yox.is.number(image.size)) {
-          return image.size
-        }
-        if (image.size === RAW_SMALL) {
-          return 36
-        }
-        if (image.size === RAW_LARGE) {
-          return 60
-        }
-        return defaultSize
+        return size + 'px'
       }
     },
     imageShape() {
