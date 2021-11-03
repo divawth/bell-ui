@@ -8930,7 +8930,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-card {
   border: 1px solid rgba(0,0,0,0.1);
 }
-.bell-image-picker-card:hover .bell-image-picker-remove-icon {
+.bell-image-picker-card-mouse-enter .bell-image-picker-remove-icon {
   display: block;
 }
 .bell-image-picker-image {
@@ -9006,7 +9006,7 @@ div::-webkit-scrollbar-thumb:hover {
   flex-wrap: wrap;
   gap: 10px 8px;
 }
-.bell-drag-enter-active {
+.bell-image-picker-card-drag-enter {
   border-color: #2b85e4;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
   transition: all 0.1s ease-in-out;
@@ -11918,6 +11918,67 @@ div::-webkit-scrollbar-thumb:hover {
   color: #2d8cf0;
   background-color: #f5f7fa;
 }
+.bell-skeleton {
+  display: block;
+}
+.bell-skeleton-with-image {
+  display: table;
+}
+.bell-skeleton-with-image .bell-skeleton-content {
+  display: table-cell;
+  vertical-align: top;
+}
+.bell-skeleton-image-circle {
+  border-radius: 50%;
+}
+.bell-skeleton-image-round {
+  border-radius: 4px;
+}
+.bell-skeleton-image,
+.bell-skeleton-text-row {
+  background-color: rgba(190,190,190,0.2);
+}
+.bell-skeleton-text-row {
+  height: 16px;
+  border-radius: 4px;
+}
+.bell-skeleton-text-row + .bell-skeleton-text-row {
+  margin-top: 16px;
+}
+.bell-skeleton-header {
+  padding-right: 16px;
+}
+.bell-skeleton-header + .bell-skeleton-content {
+  width: 100%;
+}
+.bell-skeleton-text {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bell-skeleton-active .bell-skeleton-image,
+.bell-skeleton-active .bell-skeleton-text-row {
+  background: linear-gradient(90deg, rgba(190,190,190,0.2) 25%, rgba(129,129,129,0.24) 37%, rgba(190,190,190,0.2) 63%);
+  background-size: 400% 100%;
+  -webkit-animation: bell-skeleton-loading 1.4s ease infinite;
+          animation: bell-skeleton-loading 1.4s ease infinite;
+}
+@-webkit-keyframes bell-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+@keyframes bell-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
 .bell-spin {
   display: inline-block;
   text-align: center;
@@ -12157,16 +12218,12 @@ div::-webkit-scrollbar-thumb:hover {
   color: #808695;
   margin-bottom: 4px;
 }
+.bell-statistic-title + .bell-skeleton {
+  margin-top: 14px;
+}
 .bell-statistic-content {
   color: #17233d;
   font-size: 23px;
-}
-.bell-statistic-content-placeholder {
-  width: 100%;
-  height: 16px;
-  margin-top: 14px;
-  background-color: rgba(190,190,190,0.2);
-  border-radius: 4px;
 }
 .bell-statistic-content-prefix {
   display: inline-block;

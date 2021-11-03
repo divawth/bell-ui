@@ -2,6 +2,7 @@ declare const _default: import("yox").ComponentOptions<{
     customImageWidth: unknown;
     customImageHeight: unknown;
     restCount: unknown;
+    canDraggable: unknown;
 }, unknown, unknown, {
     handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
@@ -16,8 +17,10 @@ declare const _default: import("yox").ComponentOptions<{
     uploadItem(id: number): void;
     fireError(error: string): void;
     fireChange(): void;
-    addDraggingItemClass(index: number): void;
-    removeDraggingItemClass(index: number): void;
+    addImgWrapperItemClass(index: number, className: string): void;
+    removeImgWrapperItemClass(index: number, className: string): void;
+    handleMouseEnter(index: number): void;
+    handleMouseLeave(index: number): void;
     handleDragStart(index: number): void;
     handleDragEnd(): void;
     handleDragOver(index: number): false;
@@ -38,8 +41,10 @@ declare const _default: import("yox").ComponentOptions<{
     uploadItem(id: number): void;
     fireError(error: string): void;
     fireChange(): void;
-    addDraggingItemClass(index: number): void;
-    removeDraggingItemClass(index: number): void;
+    addImgWrapperItemClass(index: number, className: string): void;
+    removeImgWrapperItemClass(index: number, className: string): void;
+    handleMouseEnter(index: number): void;
+    handleMouseLeave(index: number): void;
     handleDragStart(index: number): void;
     handleDragEnd(): void;
     handleDragOver(index: number): false;
