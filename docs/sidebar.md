@@ -56,6 +56,7 @@
   - [Description 描述列表](view/description)
   - [Empty 空状态](view/empty)
   - [Result 结果页](view/result)
+  - [Skeleton 骨架屏](view/skeleton)
   - [Exception 异常页](view/exception)
   - [Timeline 时间轴](view/timeline)
 
