@@ -20,7 +20,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
 
 {$selector-class-prefix + '-image-picker-card'}
   border 1px solid rgba(0,0,0,0.1)
-{$selector-class-prefix + '-mouse-enter-active'}
+{$selector-class-prefix + '-image-picker-card-mouse-enter'}
   {$selector-class-prefix + '-image-picker-remove-icon'}
     display block
 
@@ -98,7 +98,7 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   flex-wrap wrap
   gap $ui-vertical-gap $ui-horizontal-gap
 
-{$selector-class-prefix + '-drag-enter-active'}
+{$selector-class-prefix + '-image-picker-card-drag-enter'}
   border-color $brand-primary-active
   box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
   transition all 0.1s ease-in-out
