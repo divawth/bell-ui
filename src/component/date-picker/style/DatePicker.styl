@@ -41,11 +41,11 @@ $date-picker-shortcut-item-padding = 8px 10px
 
 // 从 select 拷来的
 date-picker-size-style(size)
+  ui-set('font-size', size['font-size'])
+  ui-set('min-height', size['height'])
 
   {$selector-class-prefix + '-date-picker-value'},
   {$selector-class-prefix + '-date-picker-placeholder'}
-    ui-set('font-size', size['font-size'])
-    ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['icon-right'] + $date-picker-icon-size)

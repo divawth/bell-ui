@@ -8269,10 +8269,12 @@ div::-webkit-scrollbar-thumb:hover {
   width: 200px;
   display: inline-block;
 }
+.bell-date-picker-default {
+  font-size: 14px;
+  min-height: 32px;
+}
 .bell-date-picker-default .bell-date-picker-value,
 .bell-date-picker-default .bell-date-picker-placeholder {
-  font-size: 14px;
-  height: 30px;
   line-height: 30px;
   padding-left: 12px;
   padding-right: 23px;
@@ -8290,10 +8292,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-default .bell-date-picker-clear-icon {
   right: 9px;
 }
+.bell-date-picker-small {
+  font-size: 12px;
+  min-height: 24px;
+}
 .bell-date-picker-small .bell-date-picker-value,
 .bell-date-picker-small .bell-date-picker-placeholder {
-  font-size: 12px;
-  height: 22px;
   line-height: 22px;
   padding-left: 7px;
   padding-right: 18px;
@@ -8311,10 +8315,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-small .bell-date-picker-clear-icon {
   right: 4px;
 }
+.bell-date-picker-large {
+  font-size: 16px;
+  min-height: 40px;
+}
 .bell-date-picker-large .bell-date-picker-value,
 .bell-date-picker-large .bell-date-picker-placeholder {
-  font-size: 16px;
-  height: 38px;
   line-height: 38px;
   padding-left: 15px;
   padding-right: 26px;
@@ -8680,10 +8686,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker {
   display: inline-block;
 }
+.bell-time-picker-default {
+  font-size: 14px;
+  min-height: 32px;
+}
 .bell-time-picker-default .bell-time-picker-value,
 .bell-time-picker-default .bell-time-picker-placeholder {
-  font-size: 14px;
-  height: 30px;
   line-height: 30px;
   padding-left: 12px;
   padding-right: 23px;
@@ -8692,10 +8700,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker-default .bell-time-picker-clear-icon {
   right: 9px;
 }
+.bell-time-picker-small {
+  font-size: 12px;
+  min-height: 24px;
+}
 .bell-time-picker-small .bell-time-picker-value,
 .bell-time-picker-small .bell-time-picker-placeholder {
-  font-size: 12px;
-  height: 22px;
   line-height: 22px;
   padding-left: 7px;
   padding-right: 18px;
@@ -8704,10 +8714,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker-small .bell-time-picker-clear-icon {
   right: 4px;
 }
+.bell-time-picker-large {
+  font-size: 16px;
+  min-height: 40px;
+}
 .bell-time-picker-large .bell-time-picker-value,
 .bell-time-picker-large .bell-time-picker-placeholder {
-  font-size: 16px;
-  height: 38px;
   line-height: 38px;
   padding-left: 15px;
   padding-right: 26px;
@@ -9126,6 +9138,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-divider-with-text {
   display: table;
+  border-collapse: collapse;
   white-space: nowrap;
   background-color: transparent;
   border-top: 0;
@@ -9372,6 +9385,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-description-header {
   display: table;
+  border-collapse: collapse;
   margin-bottom: 16px;
 }
 .bell-description-title,
@@ -9574,6 +9588,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-input {
   display: inline-table;
+  border-collapse: collapse;
   width: 200px;
   vertical-align: middle;
   box-sizing: border-box;
@@ -9627,14 +9642,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-default {
   font-size: 14px;
 }
-.bell-input-default > .bell-input-prepend,
-.bell-input-default > .bell-input-append,
+.bell-input-default .bell-input-prepend-wrapper,
+.bell-input-default .bell-input-append-wrapper,
 .bell-input-default .bell-input-el {
   height: 32px;
 }
-.bell-input-default > .bell-input-prepend,
-.bell-input-default > .bell-input-append {
+.bell-input-default .bell-input-prepend-wrapper,
+.bell-input-default .bell-input-append-wrapper {
   min-width: 32px;
+  line-height: 30px;
 }
 .bell-input-default .bell-input-el {
   font-size: 14px;
@@ -9670,14 +9686,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-small {
   font-size: 12px;
 }
-.bell-input-small > .bell-input-prepend,
-.bell-input-small > .bell-input-append,
+.bell-input-small .bell-input-prepend-wrapper,
+.bell-input-small .bell-input-append-wrapper,
 .bell-input-small .bell-input-el {
   height: 24px;
 }
-.bell-input-small > .bell-input-prepend,
-.bell-input-small > .bell-input-append {
+.bell-input-small .bell-input-prepend-wrapper,
+.bell-input-small .bell-input-append-wrapper {
   min-width: 24px;
+  line-height: 22px;
 }
 .bell-input-small .bell-input-el {
   font-size: 12px;
@@ -9713,14 +9730,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-large {
   font-size: 16px;
 }
-.bell-input-large > .bell-input-prepend,
-.bell-input-large > .bell-input-append,
+.bell-input-large .bell-input-prepend-wrapper,
+.bell-input-large .bell-input-append-wrapper,
 .bell-input-large .bell-input-el {
   height: 40px;
 }
-.bell-input-large > .bell-input-prepend,
-.bell-input-large > .bell-input-append {
+.bell-input-large .bell-input-prepend-wrapper,
+.bell-input-large .bell-input-append-wrapper {
   min-width: 40px;
+  line-height: 38px;
 }
 .bell-input-large .bell-input-el {
   font-size: 16px;
@@ -9831,11 +9849,14 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-append {
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
   width: 1px;
+}
+.bell-input-prepend-wrapper,
+.bell-input-append-wrapper {
+  text-align: center;
+  box-sizing: border-box;
   border: 1px solid #dcdee2;
   font-size: 12px;
-  box-sizing: border-box;
   color: #666;
   background-color: #f5f7fa;
   padding: 0 10px;
@@ -9845,64 +9866,64 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
 }
-.bell-input-prepend .bell-select-button,
-.bell-input-append .bell-select-button,
-.bell-input-prepend .bell-button-pure,
-.bell-input-append .bell-button-pure {
-  border-color: transparent !important;
-  box-shadow: none !important;
-  background-color: transparent !important;
+.bell-input-prepend-wrapper .bell-select,
+.bell-input-append-wrapper .bell-select,
+.bell-input-prepend-wrapper .bell-button-pure,
+.bell-input-append-wrapper .bell-button-pure {
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
 }
-.bell-input-prepend .bell-select-placeholder,
-.bell-input-append .bell-select-placeholder,
-.bell-input-prepend .bell-select-value,
-.bell-input-append .bell-select-value,
-.bell-input-prepend .bell-button-pure,
-.bell-input-append .bell-button-pure {
+.bell-input-prepend-wrapper .bell-select-placeholder,
+.bell-input-append-wrapper .bell-select-placeholder,
+.bell-input-prepend-wrapper .bell-select-value,
+.bell-input-append-wrapper .bell-select-value,
+.bell-input-prepend-wrapper .bell-button-pure,
+.bell-input-append-wrapper .bell-button-pure {
   color: inherit;
   font-size: inherit;
 }
-.bell-input-prepend .bell-select,
-.bell-input-append .bell-select,
-.bell-input-prepend .bell-button,
-.bell-input-append .bell-button {
+.bell-input-prepend-wrapper .bell-select,
+.bell-input-append-wrapper .bell-select,
+.bell-input-prepend-wrapper .bell-button,
+.bell-input-append-wrapper .bell-button {
   margin-top: -1px;
   margin-bottom: -1px;
   vertical-align: top;
 }
-.bell-input-prepend .bell-button,
-.bell-input-append .bell-button {
+.bell-input-prepend-wrapper .bell-button,
+.bell-input-append-wrapper .bell-button {
   height: inherit;
   line-height: inherit;
   position: relative;
 }
-.bell-input-prepend .bell-button-pure:hover,
-.bell-input-append .bell-button-pure:hover {
+.bell-input-prepend-wrapper .bell-button-pure:hover,
+.bell-input-append-wrapper .bell-button-pure:hover {
   color: #515a6e !important;
 }
-.bell-input-prepend {
+.bell-input-prepend-wrapper {
   border-right: none;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-.bell-input-prepend > .bell-select,
-.bell-input-prepend > .bell-button {
+.bell-input-prepend-wrapper > .bell-select,
+.bell-input-prepend-wrapper > .bell-button {
   margin-left: -11px;
   margin-right: -11px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.bell-input-prepend > .bell-select:hover,
-.bell-input-prepend > .bell-select-opened {
+.bell-input-prepend-wrapper > .bell-select:hover,
+.bell-input-prepend-wrapper > .bell-select-opened {
   z-index: 1;
 }
-.bell-input-append {
+.bell-input-append-wrapper {
   border-left: none;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-.bell-input-append > .bell-select,
-.bell-input-append > .bell-button {
+.bell-input-append-wrapper > .bell-select,
+.bell-input-append-wrapper > .bell-button {
   margin-left: -11px;
   margin-right: -11px;
   border-top-left-radius: 0;
@@ -10661,6 +10682,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-page-header-with-tags .bell-page-header-header,
 .bell-page-header-with-extra .bell-page-header-header {
   display: table;
+  border-collapse: collapse;
 }
 .bell-page-header-with-back .bell-page-header-back,
 .bell-page-header-with-tags .bell-page-header-back,
@@ -11228,6 +11250,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-progress-with-text {
   display: table;
+  border-collapse: collapse;
 }
 .bell-progress-block,
 .bell-progress-block + .bell-progress-text {
@@ -11603,10 +11626,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select + .bell-select {
   margin-left: 8px;
 }
+.bell-select-default {
+  font-size: 14px;
+  min-height: 32px;
+}
 .bell-select-default .bell-select-value,
 .bell-select-default .bell-select-placeholder {
-  font-size: 14px;
-  height: 30px;
   line-height: 30px;
   padding-left: 12px;
   padding-right: 23px;
@@ -11629,10 +11654,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-default .bell-select-clear-icon {
   right: 9px;
 }
+.bell-select-small {
+  font-size: 12px;
+  min-height: 24px;
+}
 .bell-select-small .bell-select-value,
 .bell-select-small .bell-select-placeholder {
-  font-size: 12px;
-  height: 22px;
   line-height: 22px;
   padding-left: 7px;
   padding-right: 18px;
@@ -11655,10 +11682,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-small .bell-select-clear-icon {
   right: 4px;
 }
+.bell-select-large {
+  font-size: 16px;
+  min-height: 40px;
+}
 .bell-select-large .bell-select-value,
 .bell-select-large .bell-select-placeholder {
-  font-size: 16px;
-  height: 38px;
   line-height: 38px;
   padding-left: 15px;
   padding-right: 26px;
@@ -11740,6 +11769,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-select-with-prefix {
   display: inline-table;
+  border-collapse: collapse;
   width: 100%;
 }
 .bell-select-with-prefix > .bell-select-values,
@@ -11923,6 +11953,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-skeleton-with-image {
   display: table;
+  border-collapse: collapse;
 }
 .bell-skeleton-with-image .bell-skeleton-content {
   display: table-cell;

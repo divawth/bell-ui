@@ -9,10 +9,11 @@ $select-overlay-height = 200px
 
 select-size-style(size)
 
+  ui-set('font-size', size['font-size'])
+  ui-set('min-height', size['height'])
+
   {$selector-class-prefix + '-select-value'},
   {$selector-class-prefix + '-select-placeholder'}
-    ui-set('font-size', size['font-size'])
-    ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['icon-right'] + $select-icon-size)

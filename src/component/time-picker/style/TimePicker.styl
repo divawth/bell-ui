@@ -14,11 +14,11 @@ $time-picker-footer-padding = 9px 12px
 
 // 从 select 拷来的
 time-picker-size-style(size)
+  ui-set('font-size', size['font-size'])
+  ui-set('min-height', size['height'])
 
   {$selector-class-prefix + '-time-picker-value'},
   {$selector-class-prefix + '-time-picker-placeholder'}
-    ui-set('font-size', size['font-size'])
-    ui-set('height', size['height'] - 2)
     ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
     ui-set('padding-right', size['icon-right'] + $time-picker-icon-size)
