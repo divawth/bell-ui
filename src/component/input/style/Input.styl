@@ -29,14 +29,15 @@ $input-size-hash = {
 input-size-style(style)
   ui-set('font-size', style['font-size'])
 
-  > {$selector-class-prefix + '-input-prepend'},
-  > {$selector-class-prefix + '-input-append'},
+  {$selector-class-prefix + '-input-prepend-wrapper'},
+  {$selector-class-prefix + '-input-append-wrapper'},
   {$selector-class-prefix + '-input-el'}
     ui-set('height', style['height'])
 
-  > {$selector-class-prefix + '-input-prepend'},
-  > {$selector-class-prefix + '-input-append'}
+  {$selector-class-prefix + '-input-prepend-wrapper'},
+  {$selector-class-prefix + '-input-append-wrapper'}
     ui-set('min-width', style['height'])
+    ui-set('line-height', style['height'] - 2)
 
   {$selector-class-prefix + '-input-el'}
     ui-set('font-size', style['font-size'])
@@ -82,7 +83,7 @@ input-brand-style(style)
         box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
 {$selector-class-prefix + '-input'}
-  display inline-table
+  ui-table-faker(true)
   width $ui-form-element-width
   vertical-align middle
   box-sizing border-box
@@ -146,18 +147,21 @@ input-brand-style(style)
 {$selector-class-prefix + '-input-append'}
   display table-cell
   vertical-align middle
-  text-align center
   width 1px
+
+{$selector-class-prefix + '-input-prepend-wrapper'},
+{$selector-class-prefix + '-input-append-wrapper'}
+  text-align center
+  box-sizing border-box
   border 1px solid $brand-border
   font-size $input-prepend-append-font-size
-  box-sizing border-box
   color $input-prepend-append-color
   background-color $input-prepend-append-bg-color
   padding 0 $input-prepend-append-padding-horizontal
   white-space nowrap
   user-select none
 
-  {$selector-class-prefix + '-select-button'},
+  {$selector-class-prefix + '-select'},
   {$selector-class-prefix + '-button-pure'}
     border-color transparent !important
     box-shadow none !important
@@ -183,7 +187,7 @@ input-brand-style(style)
   {$selector-class-prefix + '-button-pure'}:hover
     color $brand-content !important
 
-{$selector-class-prefix + '-input-prepend'}
+{$selector-class-prefix + '-input-prepend-wrapper'}
   border-right none
   border-top-left-radius $border-radius-default
   border-bottom-left-radius $border-radius-default
@@ -199,7 +203,7 @@ input-brand-style(style)
   > {$selector-class-prefix + '-select-opened'}
     z-index $zindex-normal
 
-{$selector-class-prefix + '-input-append'}
+{$selector-class-prefix + '-input-append-wrapper'}
   border-left none
   border-top-right-radius $border-radius-default
   border-bottom-right-radius $border-radius-default

@@ -29,7 +29,9 @@ class="${prefix}input
 
   {{#if hasSlot('prepend')}}
     <div class="${prefix}input-prepend">
-      <slot name="prepend" />
+      <div class="${prefix}input-prepend-wrapper">
+        <slot name="prepend" />
+      </div>
     </div>
   {{/if}}
 
@@ -119,7 +121,9 @@ class="${prefix}input
 
   {{#if hasSlot('append')}}
     <div class="${prefix}input-append">
-      <slot name="append" />
+      <div class="${prefix}input-append-wrapper">
+        <slot name="append" />
+      </div>
     </div>
   {{/if}}
 

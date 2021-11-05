@@ -34,6 +34,7 @@ ui-row()
 
 ui-justified(selector-item)
   display table
+  border-collapse collapse
 
   > {selector-item}
     display table-cell
@@ -117,6 +118,14 @@ ui-input-disabled($selector)
     border-color $brand-border
     background-color $brand-bg-disabled
     ui-disabled()
+
+ui-table-faker(inline = false)
+  if inline
+    display inline-table
+  else
+    display table
+
+  border-collapse collapse
 
 ui-table()
   box-sizing border-box
