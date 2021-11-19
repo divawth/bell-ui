@@ -5,6 +5,7 @@
 // shift 16
 // ctrl 17
 // alt 18
+// tab 9
 // capslock 20
 // cmd 91、93
 // 方向键 37-40
@@ -12,6 +13,7 @@ export function isHelper(keyCode: number) {
   return keyCode >= 37 && keyCode <= 40
   || keyCode >= 16 && keyCode <= 18
   || keyCode === 8
+  || keyCode === 9
   || keyCode === 20
   || keyCode === 91
   || keyCode === 93
