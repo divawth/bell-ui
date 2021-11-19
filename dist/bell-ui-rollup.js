@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.22.8
+ * bell-ui.js v0.22.9
  * (c) 2018-2021 
  * Released under the MIT License.
  */
@@ -1378,6 +1378,7 @@
   // shift 16
   // ctrl 17
   // alt 18
+  // tab 9
   // capslock 20
   // cmd 91、93
   // 方向键 37-40
@@ -1385,6 +1386,7 @@
       return keyCode >= 37 && keyCode <= 40
           || keyCode >= 16 && keyCode <= 18
           || keyCode === 8
+          || keyCode === 9
           || keyCode === 20
           || keyCode === 91
           || keyCode === 93;
@@ -7970,7 +7972,7 @@
   /**
    * 版本
    */
-  var version = "0.22.8";
+  var version = "0.22.9";
   /**
    * 安装插件
    */

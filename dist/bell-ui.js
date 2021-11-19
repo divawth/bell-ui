@@ -2173,6 +2173,7 @@ var InputNumber_default = /*#__PURE__*/__webpack_require__.n(InputNumber);
 // shift 16
 // ctrl 17
 // alt 18
+// tab 9
 // capslock 20
 // cmd 91、93
 // 方向键 37-40
@@ -2180,6 +2181,7 @@ function isHelper(keyCode) {
     return keyCode >= 37 && keyCode <= 40
         || keyCode >= 16 && keyCode <= 18
         || keyCode === 8
+        || keyCode === 9
         || keyCode === 20
         || keyCode === 91
         || keyCode === 93;
@@ -9553,7 +9555,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.22.8";
+var version = "0.22.9";
 /**
  * 安装插件
  */
