@@ -9,12 +9,11 @@ $statistic-content-space-vertical = ($statistic-content-height - $statistic-cont
   font-size $ui-font-size
   line-height $ui-multiple-line-height
 
-
 {$selector-class-prefix + '-statistic-header'}
-  margin-bottom $statistic-header-content-gap
   display flex
   justify-content space-between
   align-items center
+  margin-bottom $statistic-header-content-gap
 
   + {$selector-class-prefix + '-skeleton'}
     margin-top $statistic-content-height - $statistic-content-space-vertical - $skeleton-row-height

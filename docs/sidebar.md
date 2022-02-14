@@ -36,6 +36,10 @@
   - [Form 表单](form/form)
   - [Upload 上传](form/upload)
 
+- [数据展示](data)
+  - [Statistic 统计数值](data/statistic)
+  - [Analysis 分析卡片](data/analysis)
+
 - [视图](layout)
   - [Alert 警告提示](view/alert)
   - [Message 全局消息提示](view/message)
@@ -52,7 +56,6 @@
   - [Tag 标签](view/tag)
   - [Drawer 抽屉](layout/drawer)
   - [List 列表](view/list)
-  - [Statistic 统计数值](view/statistic)
   - [Description 描述列表](view/description)
   - [Empty 空状态](view/empty)
   - [Result 结果页](view/result)

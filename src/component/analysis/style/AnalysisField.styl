@@ -1,0 +1,27 @@
+@import '../../../env'
+
+$analysis-field-gap-horizontal = 16px
+
+{$selector-class-prefix + '-analysis-field'}
+  display inline-flex
+  flex-direction row
+  align-items center
+  color $brand-content
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
+
+  + {$selector-class-prefix + '-analysis-field'}
+    margin-left $analysis-field-gap-horizontal
+
+{$selector-class-prefix + '-analysis-field-value'}
+  margin-left $ui-horizontal-gap
+
+{$selector-class-prefix + '-analysis-field-icon-up'},
+{$selector-class-prefix + '-analysis-field-icon-down'}
+  font-size 18px
+
+{$selector-class-prefix + '-analysis-field-icon-up'}
+  color red
+
+{$selector-class-prefix + '-analysis-field-icon-down'}
+  color green

@@ -1,0 +1,48 @@
+@import '../../../env'
+
+$analysis-header-value-gap = 4px
+$analysis-icon-question-size = 18px
+$analysis-value-font-size = 30px
+$analysis-value-height = 38px
+$analysis-header-padding-vertical = 20px
+$analysis-footer-padding-vertical = 9px
+$analysis-content-height = 46px
+
+{$selector-class-prefix + '-analysis'}
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
+  padding 0 $card-padding-horizontal
+  border-radius $border-radius-default
+  box-shadow $brand-card-shadow
+
+{$selector-class-prefix + '-analysis-skeleton'}
+  padding $analysis-header-padding-vertical 0
+
+{$selector-class-prefix + '-analysis-header'}
+  display flex
+  justify-content space-between
+  align-items center
+  padding-top $analysis-header-padding-vertical
+
+{$selector-class-prefix + '-analysis-title'}
+  color $brand-muted
+
+{$selector-class-prefix + '-analysis-icon-question'}
+  color $brand-muted
+  font-size $analysis-icon-question-size
+
+{$selector-class-prefix + '-analysis-value'}
+  color $brand-title
+  font-size $analysis-value-font-size
+  line-height $analysis-value-height
+  margin-top $analysis-header-value-gap
+
+{$selector-class-prefix + '-analysis-content'}
+  height $analysis-content-height
+  display flex
+  align-items flex-end
+
+{$selector-class-prefix + '-analysis-footer'}
+  padding $analysis-footer-padding-vertical 0
+  border-top 1px solid $brand-divider
+  margin-top $analysis-footer-padding-vertical

@@ -1,0 +1,28 @@
+<div
+class="${prefix}analysis-field
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <span class="${prefix}analysis-field-label">
+    {{label}}
+  </span>
+  <span class="${prefix}analysis-field-value">
+    {{value}}
+  </span>
+
+  {{#if up}}
+    <Icon
+      name="arrow-up-s-fill"
+      className="${prefix}analysis-field-icon-up"
+    />
+  {{else if down}}
+    <Icon
+      name="arrow-down-s-fill"
+      className="${prefix}analysis-field-icon-down"
+    />
+  {{/if}}
+
+</div>

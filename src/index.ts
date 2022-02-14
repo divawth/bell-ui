@@ -33,6 +33,8 @@ import Upload from './component/upload/Upload'
 
 import Alert from './component/alert/Alert'
 import Article from './component/article/Article'
+import Analysis from './component/analysis/Analysis'
+import AnalysisField from './component/analysis/AnalysisField'
 import Spin from './component/spin/Spin'
 import SplitButton from './component/split-button/SplitButton'
 import BackTop from './component/backtop/BackTop'
@@ -146,6 +148,8 @@ export function install(Yox: any) {
 
     Alert,
     Article,
+    Analysis,
+    AnalysisField,
     Spin,
     SplitButton,
     BackTop,

@@ -1,0 +1,45 @@
+<div
+class="${prefix}analysis
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}analysis-header">
+    <div class="${prefix}analysis-title">
+      {{title}}
+    </div>
+    {{#if tooltip}}
+      <Tooltip placement="{{RAW_TOP}}" content="{{tooltip}}">
+        <Icon
+          className="${prefix}analysis-icon-question"
+          name="question-line"
+        />
+      </Tooltip>
+    {{/if}}
+  </div>
+
+  <Skeleton
+    loading="{{loading}}"
+    text="{{ { rows: 3 } }}"
+    className="${prefix}analysis-skeleton"
+  >
+    <div class="${prefix}analysis-value">
+      {{value}}
+    </div>
+
+    {{#if hasSlot('content')}}
+      <div class="${prefix}analysis-content">
+        <div class="${prefix}analysis-content-wrapper">
+          <slot name="content" />
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="${prefix}analysis-footer">
+      <slot name="footer" />
+    </div>
+  </Skeleton>
+</div>
