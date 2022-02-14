@@ -1,45 +1,32 @@
 @import '../../../env'
 
-$spin-brand-hash = {
-  primary: {
-    color: $brand-primary
-  },
-  success: {
-    color: $brand-success
-  },
-  info: {
-    color: $brand-info
-  },
-  error: {
-    color: $brand-error
-  },
-  warning: {
-    color: $brand-warning
-  }
-}
-
 $spin-size-hash = {
   default: {
-    icon-size: 20px,
+    dot-item-size: 9px,
+    dot-list-size: 20px,
     font-size: $font-size-default,
   },
   small: {
-    icon-size: 16px,
+    dot-item-size: 6px,
+    dot-list-size: 14px,
     font-size: $font-size-small,
   },
   large: {
-    icon-size: 30px,
+    dot-item-size: 14px,
+    dot-list-size: 32px,
     font-size: $font-size-large,
   }
 }
 
 
-spin-brand-style(style)
-  ui-set('color', style['color'])
-
 spin-size-style(style)
-  {$selector-class-prefix + '-spin-icon'}
-    ui-set('font-size', style['icon-size'])
+  {$selector-class-prefix + '-spin-dot-list'}
+    ui-set('width', style['dot-list-size'])
+    ui-set('height', style['dot-list-size'])
+
+  {$selector-class-prefix + '-spin-dot-item'}
+    ui-set('width', style['dot-item-size'])
+    ui-set('height', style['dot-item-size'])
 
   {$selector-class-prefix + '-spin-text'}
     ui-set('font-size', style['font-size'])
@@ -47,20 +34,13 @@ spin-size-style(style)
 {$selector-class-prefix + '-spin'}
   display inline-block
   text-align center
-  line-height 1.7
-  ui-connect(
-    hash: $spin-brand-hash,
-    each: spin-brand-style
-  )
   ui-connect(
     hash: $spin-size-hash,
     each: spin-size-style
   )
 
-{$selector-class-prefix + '-spin-icon'}
-  vertical-align top
-
 {$selector-class-prefix + '-spin-fixed'}
+  background-color $brand-mask-light-color
 
   position absolute
   top 0
@@ -70,22 +50,56 @@ spin-size-style(style)
 
   z-index $zindex-normal
 
-  > {$selector-class-prefix + '-spin-content'}
+  > {$selector-class-prefix + '-spin-wrapper'}
     position absolute
     top 50%
     left 50%
     transform translate(-50%, -50%)
 
-  &{$selector-class-prefix + '-spin-light'}
-    background-color $brand-mask-light-color
+{$selector-class-prefix + '-spin-dot-list'}
+  display inline-block
+  position relative
+  transform rotate(45deg)
+  animation bell-spin-rotate 1.2s infinite linear
 
-    &{$selector-class-prefix + '-spin-legacy'}
-      background-color $brand-mask-light-color-legacy
-      opacity $brand-mask-light-opacity-legacy
+{$selector-class-prefix + '-spin-dot-item'}
+  position absolute
+  display block
+  background-color $brand-primary
+  border-radius 100%
+  transform scale(.75)
+  transform-origin 50% 50%
+  opacity 0.3
+  animation bell-spin-move 1s infinite linear alternate
 
-  &{$selector-class-prefix + '-spin-dark'}
-    background-color $brand-mask-dark-color
+  &:nth-child(1)
+    top 0
+    left 0
 
-    &{$selector-class-prefix + '-spin-legacy'}
-      background-color $brand-mask-dark-color-legacy
-      opacity $brand-mask-dark-opacity-legacy
+  &:nth-child(2)
+    top 0
+    right 0
+    animation-delay .4s
+
+  &:nth-child(3)
+    right 0
+    bottom 0
+    animation-delay .8s
+
+  &:nth-child(4)
+    bottom 0
+    left 0
+    animation-delay 1.2s
+
+{$selector-class-prefix + '-spin-text'}
+  color $brand-primary
+  line-height $ui-multiple-line-height
+  margin-top $ui-icon-text-gap
+
+@keyframes {$selector-animation-prefix + '-spin-move'}
+  to
+    opacity 1
+
+@keyframes {$selector-animation-prefix + '-spin-rotate'}
+  to
+    transform rotate(405deg)

@@ -1,28 +1,24 @@
 <div
 class="${prefix}spin
-{{#if type}} ${prefix}spin-{{type}}{{/if}}
 {{#if size}} ${prefix}spin-{{size}}{{/if}}
-{{#if theme}} ${prefix}spin-{{theme}}{{/if}}
 {{#if fixed}} ${prefix}spin-fixed{{/if}}
-{{#if legacy}} ${prefix}spin-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
-  <div ref="content" class="${prefix}spin-content">
-    <slot>
-      <Icon
-        spin
-        name="{{icon}}"
-        className="${prefix}spin-icon"
-      />
-      {{#if text}}
-        <div class="${prefix}spin-text">
-          {{text}}
-        </div>
-      {{/if}}
-    </slot>
+  <div class="${prefix}spin-wrapper">
+    <div class="${prefix}spin-dot-list">
+      <i class="${prefix}spin-dot-item"></i>
+      <i class="${prefix}spin-dot-item"></i>
+      <i class="${prefix}spin-dot-item"></i>
+      <i class="${prefix}spin-dot-item"></i>
+    </div>
+    {{#if text}}
+      <div class="${prefix}spin-text">
+        {{text}}
+      </div>
+    {{/if}}
   </div>
 </div>

@@ -19,38 +19,13 @@ export default {
 ```js
 export default {
   template: `
-    <Spin text="正在加载..." />
-  `
-}
-```
-
-> 设置类型
-
-```js
-export default {
-  template: `
-  <div>
-    <Spin type="success" />
-    <br><br>
-    <Spin type="error" />
-    <br><br>
-    <Spin type="warning" />
-    <br><br>
-    <Spin type="info" />
-  </div>
-  `
-}
-```
-
-> 自定义图标
-
-```js
-export default {
-  template: `
-  <Spin
-    icon="refresh-line"
-    text="加载中..."
-  />
+    <div>
+      <Spin size="small" text="正在加载..." />
+      <br><br>
+      <Spin text="正在加载..." />
+      <br><br>
+      <Spin size="large" text="正在加载..." />
+    </div>
   `
 }
 ```
@@ -75,7 +50,6 @@ export default {
         {{#if visible}}
           <Spin
             size="large"
-            theme="{{isDark ? 'dark' : 'light'}}"
             fixed
           />
         {{/if}}
@@ -83,8 +57,6 @@ export default {
       <br>
       切换显示状态：
       <Switch model="visible" />
-      切换主题：
-      <Switch model="isDark" />
 
       <style>
         .demo-spin-article {
@@ -97,7 +69,6 @@ export default {
   data: function () {
     return {
       visible: false,
-      isDark: false
     }
   }
 }
@@ -109,17 +80,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-type | 风格 | string | `primary`, `success`, `error`, `info`, `warning` | `primary`
 size | 大小 | string | `default`, `small`, `large` | `default`
-theme | fixed 状态下的主题 | string | `light`, `dark` | `light`
 fixed | 是否固定 | boolean | - | -
-icon | 图标 | string | - | `loader-line`
 text | 文字 | string | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
-
-> Slots
-
-参数 | 说明
----|---
-children | 内容完全自定义
