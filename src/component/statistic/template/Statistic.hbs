@@ -7,8 +7,11 @@ class="${prefix}statistic
 {{/if}}
 >
 
-  <div class="${prefix}statistic-title">
-    {{title}}
+  <div class="${prefix}statistic-header">
+    <div class="${prefix}statistic-title">
+      {{title}}
+    </div>
+    <slot name="extra" />
   </div>
 
   <Skeleton

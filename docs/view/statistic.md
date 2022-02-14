@@ -16,7 +16,11 @@ export default {
   template: `
     <div>
       <Statistic title="Active Users" value="112,893" />
-      <Statistic title="Active Users" value="112,893" color="red" />
+      <Statistic title="Active Users" value="112,893" color="red">
+        <Tooltip slot="extra" placement="top" content="这里是提示文字">
+          <Icon name="question-line" />
+        </Tooltip>
+      </Statistic>
     </div>
   `
 }

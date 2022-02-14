@@ -1,6 +1,6 @@
 @import '../../../env'
 
-$statistic-title-content-gap = 4px
+$statistic-header-content-gap = 4px
 $statistic-content-height = 37px
 $statistic-content-font-size = floor($statistic-content-height / $ui-multiple-line-height)
 $statistic-content-space-vertical = ($statistic-content-height - $statistic-content-font-size) / 2
@@ -9,12 +9,18 @@ $statistic-content-space-vertical = ($statistic-content-height - $statistic-cont
   font-size $ui-font-size
   line-height $ui-multiple-line-height
 
-{$selector-class-prefix + '-statistic-title'}
-  color $brand-muted
-  margin-bottom $statistic-title-content-gap
+
+{$selector-class-prefix + '-statistic-header'}
+  margin-bottom $statistic-header-content-gap
+  display flex
+  justify-content space-between
+  align-items center
 
   + {$selector-class-prefix + '-skeleton'}
     margin-top $statistic-content-height - $statistic-content-space-vertical - $skeleton-row-height
+
+{$selector-class-prefix + '-statistic-title'}
+  color $brand-muted
 
 {$selector-class-prefix + '-statistic-content'}
   color $brand-title
