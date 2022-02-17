@@ -88,8 +88,9 @@ select-brand-style(style)
   padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
 
 {$selector-class-prefix + '-select-with-prefix'}
-  ui-table-faker(true)
-  width 100%
+  display inline-flex
+  flex-direction row
+  align-items center
 
   > {$selector-class-prefix + '-select-values'},
   > {$selector-class-prefix + '-select-value'},
@@ -97,14 +98,8 @@ select-brand-style(style)
     padding-left $ui-icon-text-gap
 
 {$selector-class-prefix + '-select-prefix'}
-  display table-cell
-  vertical-align middle
-  width 1px
-
-  // 不用 block 位置会偏一些
-  > {$selector-class-prefix + '-avatar'},
-  > {$selector-class-prefix + '-icon'}
-    display block
+  display flex
+  align-items center
 
 {$selector-class-prefix + '-select-prefix-icon'}
   color $select-prefix-icon-color

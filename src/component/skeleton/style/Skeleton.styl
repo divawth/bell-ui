@@ -6,12 +6,9 @@ $skeleton-header-content-gap = 16px
   display block
 
 {$selector-class-prefix + '-skeleton-with-image'}
-  ui-table-faker()
-
-  {$selector-class-prefix + '-skeleton-header'}
-  {$selector-class-prefix + '-skeleton-content'}
-    display table-cell
-    vertical-align top
+  display flex
+  flex-direction row
+  align-items flex-start
 
 {$selector-class-prefix + '-skeleton-image-circle'}
   border-radius 50%
@@ -34,7 +31,7 @@ $skeleton-header-content-gap = 16px
   padding-right $skeleton-header-content-gap
 
   + {$selector-class-prefix + '-skeleton-content'}
-    width 100%
+    flex 1
 
 {$selector-class-prefix + '-skeleton-text'}
   list-style none

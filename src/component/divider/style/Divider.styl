@@ -33,7 +33,10 @@ $divider-text-gap = 10px
 
 {$selector-class-prefix + '-divider-with-text'}
 
-  ui-table-faker()
+  display flex
+  flex-direction row
+  align-items center
+
   white-space nowrap
   background-color transparent
   border-top 0
@@ -45,10 +48,7 @@ $divider-text-gap = 10px
   &:before,
   &:after
     content ''
-    display table-cell
     border-top 1px solid $brand-divider
-    position relative
-    top 50%
     width 50%
 
   &{$selector-class-prefix + '-divider-dashed'}

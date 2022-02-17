@@ -4,8 +4,6 @@ $backtop-size = 40px
 $backtop-icon-size = 24px
 
 $backtop-bg-color = rgba(0,0,0,0.6)
-$backtop-bg-color-legacy = #000
-$backtop-bg-opacity-legacy = 0.6
 
 {$selector-class-prefix + '-backtop'}
   position fixed
@@ -30,10 +28,6 @@ $backtop-bg-opacity-legacy = 0.6
     color $brand-white
     font-size $backtop-icon-size
     line-height inherit
-
-  &{$selector-class-prefix + '-backtop-legacy'}
-    background-color $backtop-bg-color-legacy
-    opacity $backtop-bg-opacity-legacy
 
 {$selector-class-prefix + '-backtop-visible'}
   display block

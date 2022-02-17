@@ -44,18 +44,12 @@ ui-progress()
       padding-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-progress-with-text'}
-  ui-table-faker()
-
-{$selector-class-prefix + '-progress-block'},
-{$selector-class-prefix + '-progress-block'} + {$selector-class-prefix + '-progress-text'}
-  display table-cell
-  vertical-align middle
+  display flex
+  flex-direction row
+  align-items center
 
 {$selector-class-prefix + '-progress-block'}
-  width 100%
-
-{$selector-class-prefix + '-progress-block'} + {$selector-class-prefix + '-progress-text'}
-  width 1px
+  flex 1
 
 {$selector-class-prefix + '-progress-horizontal'}
   {$selector-class-prefix + '-progress-bar'}

@@ -27,7 +27,7 @@ function addNotification(status: string,  data: Data, onClose?: Function) {
   let wrapper = Yox.dom.find('#${prefix}notification-wrapper') as HTMLElement
   if (!wrapper) {
     wrapper = Yox.dom.createElement('div') as HTMLElement
-    Yox.dom.setProp(wrapper, 'id', '${prefix}notification-wrapper')
+    Yox.dom.setAttr(wrapper, 'id', '${prefix}notification-wrapper')
     Yox.dom.append(BODY, wrapper)
   }
 

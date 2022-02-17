@@ -32,14 +32,6 @@ ui-row()
   display flex
   flex-direction row
 
-ui-justified(selector-item)
-  display table
-  border-collapse collapse
-
-  > {selector-item}
-    display table-cell
-    width 1%
-
 ui-apply(style, selector = '')
   if selector
     {selector}
@@ -91,11 +83,31 @@ ui-block()
 ui-input()
   border 1px solid $brand-border
   border-radius $border-radius-default
-  box-sizing border-box
   background-color $brand-bg
+  width 100%
+  ui-input-el()
+
+  &:hover
+    ui-input-hover($brand-primary)
+
+  &:focus
+    ui-input-focus($brand-primary, $brand-primary-shadow)
+
+ui-input-faker()
+  border 1px solid $brand-border
+  border-radius $border-radius-default
+  background-color $brand-bg
+
+  &:hover
+    ui-input-hover($brand-primary)
+
+ui-input-el()
+  width 100%
+  border-radius $border-radius-default
+  box-sizing border-box
+  border 0
   outline none
   display block
-  width 100%
   cursor text
   color $brand-title
   font-size $ui-font-size
@@ -103,14 +115,14 @@ ui-input()
 
   ui-placeholder($brand-placeholder)
 
-  &:hover
-    border-color $brand-primary
+ui-input-hover($brand-primary)
+  border-color $brand-primary
 
-  &:focus
-    border-color $brand-primary
+ui-input-focus($brand-primary, $brand-primary-shadow)
+  border-color $brand-primary
 
-    if $ui-shadow-radius > 0
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+  if $ui-shadow-radius > 0
+    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 ui-input-disabled($selector)
   {$selector}
@@ -118,14 +130,6 @@ ui-input-disabled($selector)
     border-color $brand-border
     background-color $brand-bg-disabled
     ui-disabled()
-
-ui-table-faker(inline = false)
-  if inline
-    display inline-table
-  else
-    display table
-
-  border-collapse collapse
 
 ui-table()
   box-sizing border-box

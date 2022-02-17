@@ -25,7 +25,6 @@ class="${prefix}badge{{#if status}}-status{{/if}}
 
     {{#if text || isNumeric(count)}}
       <span
-        ref="append"
         class="${prefix}badge-text
         {{#if hasSlot('children')}} ${prefix}badge-text-append{{/if}}"
       >

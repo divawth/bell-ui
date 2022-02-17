@@ -16,39 +16,30 @@ $page-header-header-body-gap = 16px
   > {$selector-class-prefix + '-breadcrumb'}
     margin-bottom $page-header-breadcrumb-header-gap
 
-{$selector-class-prefix + '-page-header-with-back'},
-{$selector-class-prefix + '-page-header-with-tags'},
-{$selector-class-prefix + '-page-header-with-extra'}
-  {$selector-class-prefix + '-page-header-header'}
-    ui-table-faker()
-
-  {$selector-class-prefix + '-page-header-back'},
-  {$selector-class-prefix + '-page-header-title'},
-  {$selector-class-prefix + '-page-header-tags'},
-  {$selector-class-prefix + '-page-header-extra'}
-    display table-cell
-    vertical-align middle
-    white-space nowrap
+{$selector-class-prefix + '-page-header-header'}
+  display flex
+  flex-direction row
+  align-items center
 
 {$selector-class-prefix + '-page-header-with-back'},
 {$selector-class-prefix + '-page-header-with-extra'}
   {$selector-class-prefix + '-page-header-title'}
-    width 100%
+    flex 1
 
 {$selector-class-prefix + '-page-header-with-tags'}
   {$selector-class-prefix + '-page-header-title'}
-    width 1px
+    flex 0
 
 {$selector-class-prefix + '-page-header-title'}
   color $brand-title
   font-size $page-header-title-font-size
   font-weight 500
   line-height $ui-single-line-height
+  white-space nowrap
 
 {$selector-class-prefix + '-page-header-back'}
   ui-clickable()
 
-  width 1px
   color $brand-title
   font-size $page-header-back-icon-size
   padding-right $page-header-back-title-gap
@@ -62,22 +53,15 @@ $page-header-header-body-gap = 16px
     color $brand-primary
 
 {$selector-class-prefix + '-page-header-tags'}
-  width 100%
+  flex 1
   padding-left $page-header-title-tags-gap
+  white-space nowrap
 
   {$selector-class-prefix + '-tag'} + {$selector-class-prefix + '-tag'}
     margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-page-header-extra'}
-  width 1px
-
-  > div,
-  > button
-    vertical-align middle
-
-  {$selector-class-prefix + '-button'} + {$selector-class-prefix + '-split-button'},
-  {$selector-class-prefix + '-split-button'} + {$selector-class-prefix + '-button'}
-    margin-left $ui-horizontal-gap
+  white-space nowrap
 
 {$selector-class-prefix + '-page-header-body'}
   margin-top $page-header-header-body-gap

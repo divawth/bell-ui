@@ -19,7 +19,6 @@ import {
 import {
   oneOf,
   toNumber,
-  supportTransform,
 } from '../util'
 
 const SPACE_HORIZONTAL = 8
@@ -98,10 +97,6 @@ export default Yox.define({
   },
 
   afterMount() {
-
-    if (!supportTransform) {
-      return
-    }
 
     const me = this
 

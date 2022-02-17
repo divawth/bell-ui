@@ -19,7 +19,6 @@ import {
 import {
   oneOf,
   onTransitionEnd,
-  supportTransform,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}message-visible'
@@ -103,14 +102,5 @@ export default Yox.define({
   components: {
     Icon,
   },
-
-  afterMount() {
-
-    if (!supportTransform) {
-      const element = this.$el
-      element.style.marginLeft = -0.5 * element.offsetWidth + 'px'
-    }
-
-  }
 
 })

@@ -21,7 +21,6 @@ import {
   toNumber,
   scrollTo,
   onTransitionEnd,
-  supportTransform,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}backtop-visible'
@@ -62,7 +61,6 @@ export default Yox.define({
   data() {
     return {
       visible: FALSE,
-      legacy: !supportTransform,
     }
   },
 

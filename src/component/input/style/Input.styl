@@ -31,59 +31,39 @@ input-size-style(style)
 
   {$selector-class-prefix + '-input-prepend-wrapper'},
   {$selector-class-prefix + '-input-append-wrapper'},
-  {$selector-class-prefix + '-input-el'}
+  {$selector-class-prefix + '-input-content'}
     ui-set('height', style['height'])
-
-  {$selector-class-prefix + '-input-prepend-wrapper'},
-  {$selector-class-prefix + '-input-append-wrapper'}
-    ui-set('min-width', style['height'])
-    ui-set('line-height', style['height'] - 2)
 
   {$selector-class-prefix + '-input-el'}
     ui-set('font-size', style['font-size'])
-    ui-set('line-height', style['height'])
     ui-set('padding', 0 style['padding-horizontal'])
 
   {$selector-class-prefix + '-input-prefix'}
-    ui-set('left', style['padding-horizontal'])
+    ui-set('margin-left', style['padding-horizontal'])
 
   {$selector-class-prefix + '-input-suffix'}
-    ui-set('right', style['padding-horizontal'])
+    ui-set('margin-right', style['padding-horizontal'])
 
-  {$selector-class-prefix + '-input-el-with-prefix'}
-    ui-set('padding-left', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
-
-  {$selector-class-prefix + '-input-el-with-suffix'}
-    ui-set('padding-right', style['padding-horizontal'] + style['font-size'] + $ui-icon-text-gap)
-
-  {$selector-class-prefix + '-input-prefix-icon-wrapper'},
-  {$selector-class-prefix + '-input-suffix-icon-wrapper'}
-    ui-set('margin-top', -0.5 * style['font-size'])
-
-  {$selector-class-prefix + '-input-prefix-icon'},
-  {$selector-class-prefix + '-input-suffix-icon'},
-  {$selector-class-prefix + '-input-secure-icon'},
-  {$selector-class-prefix + '-input-clear-icon'}
+  {$selector-class-prefix + '-input-content-icon'}
     ui-set('font-size', style['font-size'])
 
-  {$selector-class-prefix + '-input-prefix-text-wrapper'},
-  {$selector-class-prefix + '-input-suffix-text-wrapper'}
-    ui-set('line-height', style['height'])
-
 input-brand-style(style)
-  {$selector-class-prefix + '-input-el'}
+  > {$selector-class-prefix + '-input-content'}
     ui-set('border-color', style['color'])
 
     &:hover
-      ui-set('border-color', style['color'])
+      ui-input-hover(style['color'])
 
-    &:focus
-      ui-set('border-color', style['color'])
-      if $ui-shadow-radius > 0
-        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+  &{$selector-class-prefix + '-input-focused'}
+    > {$selector-class-prefix + '-input-content'}
+      ui-input-focus(style['color'], style['shadow-color'])
+
 
 {$selector-class-prefix + '-input'}
-  ui-table-faker(true)
+  display inline-flex
+  flex-direction row
+  align-items center
+
   width $ui-form-element-width
   vertical-align middle
   box-sizing border-box
@@ -104,12 +84,12 @@ input-brand-style(style)
   )
 
 {$selector-class-prefix + '-input-block'}
-  // 这里不能 display block
-  // 因为依赖 inline-table 布局
+  display flex
   width 100%
 
 {$selector-class-prefix + '-input-el'}
-  ui-input()
+  ui-input-el()
+  height 100%
 
   appearance textfield
 
@@ -119,21 +99,17 @@ input-brand-style(style)
 
 {$selector-class-prefix + '-input-prefix'},
 {$selector-class-prefix + '-input-suffix'}
-  position absolute
   white-space nowrap
   user-select none
 
 {$selector-class-prefix + '-input-prefix-icon-wrapper'},
 {$selector-class-prefix + '-input-suffix-icon-wrapper'}
   color $brand-close-color
-  top 50%
-  line-height 0
 
 {$selector-class-prefix + '-input-prefix-text-wrapper'},
 {$selector-class-prefix + '-input-suffix-text-wrapper'}
   color $brand-muted
   font-size 85%
-  top 0
 
 {$selector-class-prefix + '-input-secure'},
 {$selector-class-prefix + '-input-clear'}
@@ -143,14 +119,10 @@ input-brand-style(style)
   &:hover
     color $brand-close-color-hover
 
-{$selector-class-prefix + '-input-prepend'},
-{$selector-class-prefix + '-input-append'}
-  display table-cell
-  vertical-align middle
-  width 1px
-
 {$selector-class-prefix + '-input-prepend-wrapper'},
 {$selector-class-prefix + '-input-append-wrapper'}
+  display flex
+  align-items center
   text-align center
   box-sizing border-box
   border 1px solid $brand-border
@@ -216,8 +188,15 @@ input-brand-style(style)
     border-bottom-left-radius 0
 
 {$selector-class-prefix + '-input-content'}
+  flex 1
   position relative
-  box-sizing border-box
+  ui-input-faker()
+
+{$selector-class-prefix + '-input-content-with-prefix'},
+{$selector-class-prefix + '-input-content-with-suffix'}
+  display flex
+  flex-direction row
+  align-items center
 
 {$selector-class-prefix + '-input-clear'}
   display none
@@ -227,23 +206,28 @@ input-brand-style(style)
     display none
 
 {$selector-class-prefix + '-input-has-value'}
-  {$selector-class-prefix + '-input-el'}:focus + {$selector-class-prefix + '-input-clear'},
+  &{$selector-class-prefix + '-input-focused'} {$selector-class-prefix + '-input-clear'},
   &:hover {$selector-class-prefix + '-input-clear'}
     display block
 
-{$selector-class-prefix + '-input-el-with-prepend'}
-  border-top-left-radius 0
-  border-bottom-left-radius 0
-
-{$selector-class-prefix + '-input-el-with-append'}
-  border-top-right-radius 0
-  border-bottom-right-radius 0
+{$selector-class-prefix + '-input-with-prepend'}
+  > {$selector-class-prefix + '-input-content'}
+    border-top-left-radius 0
+    border-bottom-left-radius 0
 
 {$selector-class-prefix + '-input-with-append'}
+  > {$selector-class-prefix + '-input-content'}
+    border-top-right-radius 0
+    border-bottom-right-radius 0
+
   > {$selector-class-prefix + '-input-content'}:hover
   &{$selector-class-prefix + '-input-focused'} > {$selector-class-prefix + '-input-content'}
     z-index $zindex-normal
 
+{$selector-class-prefix + '-input-focused'}
+  > {$selector-class-prefix + '-input-content'}
+    ui-input-focus($brand-primary, $brand-primary-shadow)
+
 {$selector-class-prefix + '-input-disabled'}
-  ui-input-disabled($selector-class-prefix + '-input-el')
+  ui-input-disabled($selector-class-prefix + '-input-content')
 

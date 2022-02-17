@@ -35,17 +35,26 @@ class="${prefix}input
     </div>
   {{/if}}
 
-  <div class="${prefix}input-content">
+  <div
+    class="${prefix}input-content
+    {{#if prefix}} ${prefix}input-content-with-prefix{{/if}}
+    {{#if hasCount || suffix || secure || clearable && !disabled}} ${prefix}input-content-with-suffix{{/if}}"
+  >
+
+    {{#if prefix}}
+      <div class="${prefix}input-prefix ${prefix}input-prefix-icon-wrapper">
+        <Icon
+          name="{{prefix}}"
+          className="${prefix}input-content-icon"
+        />
+      </div>
+    {{/if}}
 
     <input
       ref="input"
       type="{{currentType}}"
       model="value"
-      class="${prefix}input-el
-      {{#if prefix}} ${prefix}input-el-with-prefix{{/if}}
-      {{#if hasCount || suffix || secure || clearable && !disabled}} ${prefix}input-el-with-suffix{{/if}}
-      {{#if hasSlot('prepend')}} ${prefix}input-el-with-prepend{{/if}}
-      {{#if hasSlot('append')}} ${prefix}input-el-with-append{{/if}}"
+      class="${prefix}input-el"
 
       {{#if maxLength}}
         maxlength="{{maxLength}}"
@@ -79,15 +88,6 @@ class="${prefix}input
 
     >
 
-    {{#if prefix}}
-      <div class="${prefix}input-prefix ${prefix}input-prefix-icon-wrapper">
-        <Icon
-          name="{{prefix}}"
-          className="${prefix}input-prefix-icon"
-        />
-      </div>
-    {{/if}}
-
     {{#if hasCount}}
       <div class="${prefix}input-suffix ${prefix}input-suffix-text-wrapper">
         {{formatValueLength(value)}} / {{maxLength}}
@@ -96,21 +96,21 @@ class="${prefix}input
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper">
         <Icon
           name="{{suffix}}"
-          className="${prefix}input-suffix-icon"
+          className="${prefix}input-content-icon"
         />
       </div>
     {{else if secure}}
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-secure" on-click="toggle('isSecure')">
         <Icon
           name="{{isSecure ? 'eye-close-line' : 'eye-line'}}"
-          className="${prefix}input-secure-icon"
+          className="${prefix}input-content-icon"
         />
       </div>
     {{else if clearable && !disabled}}
       <div class="${prefix}input-suffix ${prefix}input-suffix-icon-wrapper ${prefix}input-clear" on-click="handleClearClick()">
         <Icon
           name="close-circle-fill"
-          className="${prefix}input-clear-icon"
+          className="${prefix}input-content-icon"
         />
       </div>
     {{/if}}

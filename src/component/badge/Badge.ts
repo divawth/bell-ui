@@ -4,7 +4,6 @@ import template from './template/Badge.hbs'
 // import './style/Badge.styl'
 
 import {
-  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMBER,
@@ -20,7 +19,6 @@ import {
 
 import {
   oneOf,
-  supportTransform,
 } from '../util'
 
 export default Yox.define({
@@ -80,36 +78,6 @@ export default Yox.define({
         ? max + '+'
         : count
     }
-  },
-
-  watchers: {
-    count() {
-      this.updatePosition()
-    },
-    max() {
-      this.updatePosition()
-    },
-    hidden() {
-      this.updatePosition()
-    }
-  },
-
-  methods: {
-    updatePosition() {
-      if (supportTransform) {
-        return
-      }
-      const append = this.$refs.append as HTMLElement
-      if (!append || !Yox.string.has(append.className, '${prefix}badge-text-append')) {
-        return
-      }
-      append.style.marginLeft = -0.5 * append.offsetWidth + 'px'
-      append.style.marginTop = -0.5 * append.offsetHeight + 'px'
-    }
-  },
-
-  afterMount() {
-    this.updatePosition()
   }
 
 })
