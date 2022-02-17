@@ -19,13 +19,12 @@ time-picker-size-style(size)
 
   {$selector-class-prefix + '-time-picker-value'},
   {$selector-class-prefix + '-time-picker-placeholder'}
-    ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
-    ui-set('padding-right', size['icon-right'] + $time-picker-icon-size)
+    ui-set('padding-right', size['button-padding-horizontal'])
 
   {$selector-class-prefix + '-time-picker-time-icon'},
   {$selector-class-prefix + '-time-picker-clear-icon'}
-    ui-set('right', size['icon-right'])
+    ui-set('margin-right', size['icon-right'])
 
 time-picker-brand-style(style)
   &{$selector-class-prefix + '-time-picker-enabled'}

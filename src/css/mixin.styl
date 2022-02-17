@@ -96,6 +96,7 @@ ui-input()
 ui-input-faker()
   border 1px solid $brand-border
   border-radius $border-radius-default
+  box-sizing border-box
   background-color $brand-bg
 
   &:hover
@@ -197,10 +198,15 @@ ui-form-button(
 
   {$selector-base}
 
+    display flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+
     position relative
     border 1px solid $brand-border
     background-color $brand-bg
-    line-height 0
+    line-height $ui-single-line-height
 
     box-sizing border-box
     border-radius $border-radius-default
@@ -209,7 +215,7 @@ ui-form-button(
   if $selector-values
     {$selector-values}
 
-      width 100%
+      flex 1
       box-sizing border-box
 
       > {$selector-class-prefix + '-tag'}
@@ -225,7 +231,7 @@ ui-form-button(
 
   {$selector-value},
   {$selector-placeholder}
-    width 100%
+    flex 1
     box-sizing border-box
     ui-ellipsis()
 
@@ -237,21 +243,14 @@ ui-form-button(
     color $brand-placeholder
     user-select none
 
-  {$selector-right-icon},
-  {$selector-clear-icon}
-    position absolute
-    top 50%
-
   {$selector-right-icon}
     font-size $right-icon-size
-    margin-top -0.5 * $right-icon-size
     color $brand-muted
     transition transform .3s
     transform-origin center center
 
   {$selector-clear-icon}
     font-size $clear-icon-size
-    margin-top -0.5 * $clear-icon-size
     color $brand-clear-icon-color
     display none
 

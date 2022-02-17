@@ -29,8 +29,8 @@ $input-size-hash = {
 input-size-style(style)
   ui-set('font-size', style['font-size'])
 
-  {$selector-class-prefix + '-input-prepend-wrapper'},
-  {$selector-class-prefix + '-input-append-wrapper'},
+  {$selector-class-prefix + '-input-prepend'},
+  {$selector-class-prefix + '-input-append'},
   {$selector-class-prefix + '-input-content'}
     ui-set('height', style['height'])
 
@@ -119,8 +119,8 @@ input-brand-style(style)
   &:hover
     color $brand-close-color-hover
 
-{$selector-class-prefix + '-input-prepend-wrapper'},
-{$selector-class-prefix + '-input-append-wrapper'}
+{$selector-class-prefix + '-input-prepend'},
+{$selector-class-prefix + '-input-append'}
   display flex
   align-items center
   text-align center
@@ -145,21 +145,12 @@ input-brand-style(style)
     color inherit
     font-size inherit
 
-  {$selector-class-prefix + '-select'},
-  {$selector-class-prefix + '-button'}
-    margin-top -1px
-    margin-bottom -1px
-    vertical-align top
-
   {$selector-class-prefix + '-button'}
     height inherit
     line-height inherit
     position relative
 
-  {$selector-class-prefix + '-button-pure'}:hover
-    color $brand-content !important
-
-{$selector-class-prefix + '-input-prepend-wrapper'}
+{$selector-class-prefix + '-input-prepend'}
   border-right none
   border-top-left-radius $border-radius-default
   border-bottom-left-radius $border-radius-default
@@ -175,7 +166,7 @@ input-brand-style(style)
   > {$selector-class-prefix + '-select-opened'}
     z-index $zindex-normal
 
-{$selector-class-prefix + '-input-append-wrapper'}
+{$selector-class-prefix + '-input-append'}
   border-left none
   border-top-right-radius $border-radius-default
   border-bottom-right-radius $border-radius-default

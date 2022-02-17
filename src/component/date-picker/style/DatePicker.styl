@@ -46,14 +46,13 @@ date-picker-size-style(size)
 
   {$selector-class-prefix + '-date-picker-value'},
   {$selector-class-prefix + '-date-picker-placeholder'}
-    ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
-    ui-set('padding-right', size['icon-right'] + $date-picker-icon-size)
+    ui-set('padding-right', size['button-padding-horizontal'])
 
   {$selector-class-prefix + '-date-picker-values'}
     ui-set(
       'padding',
-      size['button-padding-vertical'] size['icon-right'] + $date-picker-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
+      size['button-padding-vertical'] size['button-padding-horizontal'] size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
     )
 
     > {$selector-class-prefix + '-tag'}
@@ -64,7 +63,7 @@ date-picker-size-style(size)
 
   {$selector-class-prefix + '-date-picker-calendar-icon'},
   {$selector-class-prefix + '-date-picker-clear-icon'}
-    ui-set('right', size['icon-right'])
+    ui-set('margin-right', size['icon-right'])
 
 date-picker-brand-style(style)
   &{$selector-class-prefix + '-date-picker-enabled'}

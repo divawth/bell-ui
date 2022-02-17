@@ -14,14 +14,13 @@ select-size-style(size)
 
   {$selector-class-prefix + '-select-value'},
   {$selector-class-prefix + '-select-placeholder'}
-    ui-set('line-height', size['height'] - 2)
     ui-set('padding-left', size['button-padding-horizontal'])
-    ui-set('padding-right', size['icon-right'] + $select-icon-size)
+    ui-set('padding-right', size['button-padding-horizontal'])
 
   {$selector-class-prefix + '-select-values'}
     ui-set(
       'padding',
-      size['button-padding-vertical'] size['icon-right'] + $select-icon-size size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
+      size['button-padding-vertical'] size['button-padding-horizontal'] size['button-padding-vertical'] - size['tag-gap-vertical'] size['button-padding-vertical']
     )
 
     > {$selector-class-prefix + '-tag'}
@@ -31,13 +30,11 @@ select-size-style(size)
       ui-set('margin-bottom', size['tag-gap-vertical'])
 
   {$selector-class-prefix + '-select-prefix'}
-    ui-set('height', size['height'] - 2)
-    ui-set('line-height', size['height'] - 2)
-    ui-set('padding-left', size['button-padding-horizontal'])
+    ui-set('margin-left', size['button-padding-horizontal'])
 
   {$selector-class-prefix + '-select-arrow-icon'},
   {$selector-class-prefix + '-select-clear-icon'}
-    ui-set('right', size['icon-right'])
+    ui-set('margin-right', size['icon-right'])
 
 select-brand-style(style)
   &{$selector-class-prefix + '-select-enabled'}

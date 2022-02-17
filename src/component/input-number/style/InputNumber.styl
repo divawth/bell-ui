@@ -31,17 +31,23 @@ input-number-size-style(style)
     each: input-number-size-style
   )
 
+
+{$selector-class-prefix + '-input-number'}
+  > {$selector-class-prefix + '-input-content'}
+    display flex
+    flex-direction row
+    align-items center
+
 {$selector-class-prefix + '-input-number-el'}
   display none
 
 {$selector-class-prefix + '-input-number-actions'}
-  position absolute
-  top 1px
-  bottom 1px
-  right 1px
+  position relative
+  height 100%
   opacity 0
   user-select none
   transition opacity .3s
+  box-sizing border-box
   border-left 1px solid $brand-border
 
 {$selector-class-prefix + '-input-number-up'},
