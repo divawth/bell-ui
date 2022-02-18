@@ -9692,13 +9692,13 @@ div::-webkit-scrollbar-thumb:hover {
   width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 0;
   outline: none;
   display: block;
   cursor: text;
   color: #17233d;
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  border: 0;
   height: 100%;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
@@ -12942,7 +12942,6 @@ div::-webkit-scrollbar-thumb:hover {
   width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 0;
   outline: none;
   display: block;
   cursor: text;

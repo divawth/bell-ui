@@ -9582,7 +9582,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.24.1";
+var version = "0.24.2";
 /**
  * 安装插件
  */
