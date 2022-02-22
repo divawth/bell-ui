@@ -8939,6 +8939,9 @@ div::-webkit-scrollbar-thumb:hover {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-image-picker-mask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(0,0,0,0.5);
   position: absolute;
   top: 0;
@@ -8947,16 +8950,15 @@ div::-webkit-scrollbar-thumb:hover {
   bottom: 0;
   border-radius: 4px;
 }
-.bell-image-picker-mask .bell-circle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -30px;
-  margin-top: -30px;
-}
 .bell-image-picker-mask .bell-circle-content {
   color: #fff;
   font-size: 12px;
+}
+.bell-image-picker-mask-message {
+  color: #dfdfdf;
+  font-size: 14px;
+  line-height: 1.5715;
+  width: 80%;
 }
 .bell-image-picker-image-size {
   background-color: rgba(0,0,0,0.5);

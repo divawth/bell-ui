@@ -46,29 +46,25 @@ class="${prefix}image-picker
           >
         {{/if}}
 
-        {{#if this.status === STATUS_UPLOADING}}
+        {{#if this.status === ~/STATUS_UPLOADING}}
           <div class="${prefix}image-picker-mask">
             <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
               上传中
             </Circle>
           </div>
         {{else}}
-          {{#if this.status === STATUS_ERROR}}
+          {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
             <div class="${prefix}image-picker-mask">
-              <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60" strokeColor="#ff5500">
-                <Icon
-                  name="close-line"
-                  size="30"
-                  color="#ff5500"
-                />
-              </Circle>
+              <div class="${prefix}image-picker-mask-message">
+                {{{this.message}}}
+              </div>
             </div>
           {{else if this.size > 0}}
             <div class="${prefix}image-picker-image-size">
               {{formatImageSize(this.size)}}
             </div>
           {{/if}}
-          {{#if !readOnly && draggingIndex < 0}}
+          {{#if !~/readOnly && ~/draggingIndex < 0}}
             <Icon
               className="${prefix}image-picker-remove-icon"
               name="close-circle-fill"

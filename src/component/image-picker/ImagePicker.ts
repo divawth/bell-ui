@@ -26,6 +26,7 @@ import {
 import {
   STATUS_UPLOADING,
   STATUS_ERROR,
+  STATUS_FAILURE,
   readImageFile,
   formatImageSize,
 } from './util'
@@ -61,6 +62,18 @@ export default Yox.define({
     maxCount: {
       type: RAW_NUMERIC,
     },
+    minWidth: {
+      type: RAW_NUMERIC,
+    },
+    minHeight: {
+      type: RAW_NUMERIC,
+    },
+    maxWidth: {
+      type: RAW_NUMERIC,
+    },
+    maxHeight: {
+      type: RAW_NUMERIC,
+    },
     accept: {
       type: RAW_STRING,
       value: RAW_IMAGE_ACCEPT,
@@ -87,6 +100,7 @@ export default Yox.define({
     return {
       STATUS_UPLOADING,
       STATUS_ERROR,
+      STATUS_FAILURE,
       draggingIndex: -1,
       beforeUploadImage(data) {
         const restCount = me.get('restCount')
@@ -98,21 +112,63 @@ export default Yox.define({
           return
         }
 
-        // 校验图片大小
-        const maxSize = me.get('maxSize')
-        if (maxSize > 0) {
-          for (let i = 0, len = fileList.length; i < len; i++) {
-            if (fileList[i].size > maxSize) {
-              me.fireError(`图片大小不能超过 ${formatImageSize(maxSize)}`)
-              return
-            }
-          }
-        }
-
         Promise.all(
           fileList.map(readImageFile)
         )
-        .then(function (newList) {
+        .then(function (newList: any[]) {
+
+          // 校验图片
+          const maxSize = me.get('maxSize')
+
+          const minWidth = me.get('minWidth')
+          const minHeight = me.get('minHeight')
+
+          const maxWidth = me.get('maxWidth')
+          const maxHeight = me.get('maxHeight')
+
+          for (let i = 0, len = newList.length; i < len; i++) {
+            const item = newList[i]
+            let errors = []
+            if (maxSize > 0) {
+              if (item.size > maxSize) {
+                errors.push(
+                  `图片尺寸不能超过 ${formatImageSize(maxSize)}`
+                )
+              }
+            }
+            if (minWidth > 0) {
+              if (item.width < minWidth) {
+                errors.push(
+                  `图片宽度不能小于 ${minWidth}px`
+                )
+              }
+            }
+            if (minHeight > 0) {
+              if (item.height < minHeight) {
+                errors.push(
+                  `图片高度不能小于 ${minHeight}px`
+                )
+              }
+            }
+            if (maxWidth > 0) {
+              if (item.width > maxWidth) {
+                errors.push(
+                  `图片宽度不能大于 ${maxWidth}px`
+                )
+              }
+            }
+            if (maxHeight > 0) {
+              if (item.height > maxHeight) {
+                errors.push(
+                  `图片高度不能大于 ${maxHeight}px`
+                )
+              }
+            }
+            if (errors.length) {
+              item.status = STATUS_ERROR
+              item.message = errors.join('<br>')
+            }
+          }
 
           const upload = me.$refs.upload as any
           upload.reset()
@@ -189,7 +245,7 @@ export default Yox.define({
         if (imageList[i].status === STATUS_UPLOADING) {
           result.hasUploading = TRUE
         }
-        else if (imageList[i].status === STATUS_ERROR) {
+        else if (imageList[i].status === STATUS_ERROR || imageList[i].status === STATUS_FAILURE) {
           result.hasError = TRUE
         }
         if (!imageList[i].url) {
@@ -216,7 +272,9 @@ export default Yox.define({
 
       items.forEach(
         function (item: any) {
-          me.uploadItem(item.id)
+          if (item.status !== STATUS_ERROR && !item.url) {
+            me.uploadItem(item.id)
+          }
         }
       )
 
@@ -233,7 +291,7 @@ export default Yox.define({
       Yox.array.each(
         imageList,
         function (item: any) {
-          if (!item.url) {
+          if (item.status !== STATUS_ERROR && !item.url) {
             me.uploadItem(item.id)
           }
         }
@@ -264,7 +322,8 @@ export default Yox.define({
         onError() {
           const index = me.getImageIndexById(id)
           if (index >= 0) {
-            me.set(`imageList.${index}.status`, STATUS_ERROR)
+            me.set(`imageList.${index}.status`, STATUS_FAILURE)
+            me.set(`imageList.${index}.message`, '上传失败')
             me.fireChange()
           }
         },

@@ -5,6 +5,7 @@ $image-picker-remove-icon-size = 18px
 $image-picker-append-icon-size = 30px
 $image-picker-image-size-padding = 2px 4px
 $image-picker-mask-bg = rgba(0,0,0,0.5)
+$image-picker-mask-text = #dfdfdf
 
 {$selector-class-prefix + '-image-picker'}
   position relative
@@ -34,6 +35,9 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   ui-clickable()
 
 {$selector-class-prefix + '-image-picker-mask'}
+  display flex
+  justify-content center
+  align-items center
   background-color $image-picker-mask-bg
   position absolute
   top 0
@@ -43,16 +47,15 @@ $image-picker-mask-bg = rgba(0,0,0,0.5)
   if $border-radius-default > 0
     border-radius $border-radius-default
 
-  {$selector-class-prefix + '-circle'}
-    position absolute
-    left 50%
-    top 50%
-    margin-left -0.5 * $image-picker-circle-size
-    margin-top -0.5 * $image-picker-circle-size
-
   {$selector-class-prefix + '-circle-content'}
     color #fff
     font-size $ui-font-size - 2
+
+{$selector-class-prefix + '-image-picker-mask-message'}
+  color $image-picker-mask-text
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
+  width 80%
 
 {$selector-class-prefix + '-image-picker-image-size'}
   background-color $image-picker-mask-bg

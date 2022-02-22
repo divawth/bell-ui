@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.24.2
+ * bell-ui.js v0.24.3
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -5278,18 +5278,31 @@
       },
   });
 
-  var template$O = (function(){var $0=void 0,$2=!0,$4=function(_S){return _S.length-1},$5=function(){return 0},$6={class:'bell-image-picker-mask'},$7={class:'bell-image-picker-image-size'},$8={class:'bell-image-picker-items-wrapper'},$9={class:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_m(_s('imageList',_W.imageList),function(_W,_X,_Y,index){_U[_U.length]={children:function(_U){_v('url',_W.url).value||_v('base64',_W.base64).value?_U[_U.length]=function(_T){_v('url',_W.url).value?_o(_T,'nativeAttrs','src',_w($5,'formatImageUrl').value?_z(_y(_w($5,'formatImageUrl').value,_I,[{height:_w($5,'customImageHeight').value,responsive:$2,url:_v('url',_W.url).value,width:_w($5,'customImageWidth').value}])).value:_v('url',_W.url).value):_v('base64',_W.base64).value?_o(_T,'nativeAttrs','src',_v('base64',_W.base64).value):$0;_v('name',_W.name).value?_o(_T,'nativeAttrs','alt',_v('name',_W.name).value):$0;_w($5,'draggingIndex').value<0?_o(_T,'events','click',_f('click','handleImageClick(this, index)','click','',_I.handleImageClick,{args:function(_S,_Z,_1){return [_t(_W,_S).value,index]}})):$0;return _T}({context:_I,nativeAttrs:{class:'bell-image-picker-image',draggable:_q('draggable',_s('canDraggable',_W.canDraggable).value)},operator:_D,tag:'img',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_v('status',_W.status).value===_s('STATUS_UPLOADING',_W.STATUS_UPLOADING).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{percent:_v('progress',_W.progress).value>0?_v('progress',_W.progress).value*100:0,size:'60'},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'上传中',type:1};}}),tag:'Circle',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:(_v('status',_W.status).value===_s('STATUS_ERROR',_W.STATUS_ERROR).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{percent:_v('progress',_W.progress).value>0?_v('progress',_W.progress).value*100:0,size:'60',strokeColor:'#ff5500'},slots:_j({$slot_children:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{color:'#ff5500',name:'close-line',size:'30'},tag:'Icon',type:4};}}),tag:'Circle',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_v('size',_W.size).value>0?_U[_U.length]={context:_I,nativeAttrs:$7,operator:_D,tag:'div',text:_A(_z(_y(_s('formatImageSize',_W.formatImageSize,$0,_J&&_J.formatImageSize||_K.formatImageSize).value,_I,[_v('size',_W.size).value])).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2},!_s('readOnly',_W.readOnly).value&&_s('draggingIndex',_W.draggingIndex).value<0?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','removeItem(index)','click','native',_I.removeItem,{args:function(_S,_Z,_1){return [index]}},$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,events:{dragend:_f('dragend','handleDragEnd()','dragend','',_I.handleDragEnd),dragenter:_f('dragenter','handleDragEnter(index)','dragenter','',_I.handleDragEnter,{args:function(_S,_Z,_1){return [index]}}),dragleave:_f('dragleave','handleDragLeave(index)','dragleave','',_I.handleDragLeave,{args:function(_S,_Z,_1){return [index]}}),dragover:_f('dragover','handleDragOver(index)','dragover','',_I.handleDragOver,{args:function(_S,_Z,_1){return [index]}}),dragstart:_f('dragstart','handleDragStart(index)','dragstart','',_I.handleDragStart,{args:function(_S,_Z,_1){return [index]}}),drop:_f('drop','handleDragDrop(index)','drop','',_I.handleDragDrop,{args:function(_S,_Z,_1){return [index]}}),mouseenter:_f('mouseenter','handleMouseEnter(index)','mouseenter','',_I.handleMouseEnter,{args:function(_S,_Z,_1){return [index]}}),mouseleave:_f('mouseleave','handleMouseLeave(index)','mouseleave','',_I.handleMouseLeave,{args:function(_S,_Z,_1){return [index]}})},nativeAttrs:{class:'bell-image-picker-item bell-image-picker-card',draggable:_q('draggable',_s('canDraggable',_W.canDraggable).value)},nativeStyles:{height:_w($5,'customImageHeight').value+'px',width:_w($5,'customImageWidth').value+'px'},operator:_D,tag:'div',type:3};});!_s('readOnly',_W.readOnly).value&&_r($4,'imageList.length',$2).value<_s('maxCount',_W.maxCount).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{accept:_s('accept',_W.accept).value,beforeUpload:_s('beforeUploadImage',_W.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_s('restCount',_W.restCount).value>1,style:{height:_s('customImageHeight',_W.customImageHeight).value+'px',width:_s('customImageWidth',_W.customImageWidth).value+'px'}},ref:'upload',slots:_j({$slot_children:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$8,operator:_D,ref:'imagePickerList',tag:'div',type:3};_s('extra',_W.extra).value?_U[_U.length]={context:_I,nativeAttrs:$9,operator:_D,tag:'div',text:_A(_s('extra',_W.extra).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-image-picker'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$O = (function(){var $0=void 0,$2=!0,$4=function(_S){return _S.length-1},$5=function(){return 0},$6={class:'bell-image-picker-mask'},$7={class:'bell-image-picker-mask-message'},$8={class:'bell-image-picker-image-size'},$9={class:'bell-image-picker-items-wrapper'},$10={class:'bell-image-picker-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_m(_s('imageList',_W.imageList),function(_W,_X,_Y,index){_U[_U.length]={children:function(_U){_v('url',_W.url).value||_v('base64',_W.base64).value?_U[_U.length]=function(_T){_v('url',_W.url).value?_o(_T,'nativeAttrs','src',_w($5,'formatImageUrl').value?_z(_y(_w($5,'formatImageUrl').value,_I,[{height:_w($5,'customImageHeight').value,responsive:$2,url:_v('url',_W.url).value,width:_w($5,'customImageWidth').value}])).value:_v('url',_W.url).value):_v('base64',_W.base64).value?_o(_T,'nativeAttrs','src',_v('base64',_W.base64).value):$0;_v('name',_W.name).value?_o(_T,'nativeAttrs','alt',_v('name',_W.name).value):$0;_w($5,'draggingIndex').value<0?_o(_T,'events','click',_f('click','handleImageClick(this, index)','click','',_I.handleImageClick,{args:function(_S,_Z,_1){return [_t(_W,_S).value,index]}})):$0;return _T}({context:_I,nativeAttrs:{class:'bell-image-picker-image',draggable:_q('draggable',_s('canDraggable',_W.canDraggable).value)},operator:_D,tag:'img',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_v('status',_W.status).value===_w($5,'STATUS_UPLOADING').value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{percent:_v('progress',_W.progress).value>0?_v('progress',_W.progress).value*100:0,size:'60'},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'上传中',type:1};}}),tag:'Circle',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:(_v('status',_W.status).value===_w($5,'STATUS_ERROR').value||_v('status',_W.status).value==_w($5,'STATUS_FAILURE').value?_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,html:_A(_v('message',_W.message).value),nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_v('size',_W.size).value>0?_U[_U.length]={context:_I,nativeAttrs:$8,operator:_D,tag:'div',text:_A(_z(_y(_s('formatImageSize',_W.formatImageSize,$0,_J&&_J.formatImageSize||_K.formatImageSize).value,_I,[_v('size',_W.size).value])).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2},!_w($5,'readOnly').value&&_w($5,'draggingIndex').value<0?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','removeItem(index)','click','native',_I.removeItem,{args:function(_S,_Z,_1){return [index]}},$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-image-picker-remove-icon',name:'close-circle-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,events:{dragend:_f('dragend','handleDragEnd()','dragend','',_I.handleDragEnd),dragenter:_f('dragenter','handleDragEnter(index)','dragenter','',_I.handleDragEnter,{args:function(_S,_Z,_1){return [index]}}),dragleave:_f('dragleave','handleDragLeave(index)','dragleave','',_I.handleDragLeave,{args:function(_S,_Z,_1){return [index]}}),dragover:_f('dragover','handleDragOver(index)','dragover','',_I.handleDragOver,{args:function(_S,_Z,_1){return [index]}}),dragstart:_f('dragstart','handleDragStart(index)','dragstart','',_I.handleDragStart,{args:function(_S,_Z,_1){return [index]}}),drop:_f('drop','handleDragDrop(index)','drop','',_I.handleDragDrop,{args:function(_S,_Z,_1){return [index]}}),mouseenter:_f('mouseenter','handleMouseEnter(index)','mouseenter','',_I.handleMouseEnter,{args:function(_S,_Z,_1){return [index]}}),mouseleave:_f('mouseleave','handleMouseLeave(index)','mouseleave','',_I.handleMouseLeave,{args:function(_S,_Z,_1){return [index]}})},nativeAttrs:{class:'bell-image-picker-item bell-image-picker-card',draggable:_q('draggable',_s('canDraggable',_W.canDraggable).value)},nativeStyles:{height:_w($5,'customImageHeight').value+'px',width:_w($5,'customImageWidth').value+'px'},operator:_D,tag:'div',type:3};});!_s('readOnly',_W.readOnly).value&&_r($4,'imageList.length',$2).value<_s('maxCount',_W.maxCount).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{accept:_s('accept',_W.accept).value,beforeUpload:_s('beforeUploadImage',_W.beforeUploadImage).value,className:'bell-image-picker-item bell-image-picker-append',multiple:_s('restCount',_W.restCount).value>1,style:{height:_s('customImageHeight',_W.customImageHeight).value+'px',width:_s('customImageWidth',_W.customImageWidth).value+'px'}},ref:'upload',slots:_j({$slot_children:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-image-picker-append-icon',name:'add-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$9,operator:_D,ref:'imagePickerList',tag:'div',type:3};_s('extra',_W.extra).value?_U[_U.length]={context:_I,nativeAttrs:$10,operator:_D,tag:'div',text:_A(_s('extra',_W.extra).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-image-picker'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var STATUS_UPLOADING = 'uploading';
   var STATUS_ERROR = 'error';
+  var STATUS_FAILURE = 'failure';
   var KB = 1024;
   var MB = 1024 * KB;
   function readImageFile(item) {
       return new Promise(function (resolve) {
           var reader = new FileReader();
           reader.onload = function (event) {
-              item.base64 = event.target.result;
-              resolve(item);
+              var base64 = event.target.result;
+              item.base64 = base64;
+              var image = new Image();
+              image.src = base64;
+              image.onload = function () {
+                  item.width = image.naturalWidth;
+                  item.height = image.naturalHeight;
+                  image.onload = image.onerror = null;
+                  resolve(item);
+              };
+              image.onerror = function () {
+                  image.onload = image.onerror = null;
+                  resolve(item);
+              };
           };
           reader.onerror = function () {
               item.status = STATUS_ERROR;
@@ -5332,6 +5345,18 @@
           maxCount: {
               type: RAW_NUMERIC,
           },
+          minWidth: {
+              type: RAW_NUMERIC,
+          },
+          minHeight: {
+              type: RAW_NUMERIC,
+          },
+          maxWidth: {
+              type: RAW_NUMERIC,
+          },
+          maxHeight: {
+              type: RAW_NUMERIC,
+          },
           accept: {
               type: RAW_STRING,
               value: RAW_IMAGE_ACCEPT,
@@ -5357,6 +5382,7 @@
           return {
               STATUS_UPLOADING: STATUS_UPLOADING,
               STATUS_ERROR: STATUS_ERROR,
+              STATUS_FAILURE: STATUS_FAILURE,
               draggingIndex: -1,
               beforeUploadImage: function (data) {
                   var restCount = me.get('restCount');
@@ -5366,18 +5392,47 @@
                       me.fireError("\u4EC5\u53EF\u4EE5\u9009\u62E9 " + restCount + " \u5F20\u56FE\u7247");
                       return;
                   }
-                  // 校验图片大小
-                  var maxSize = me.get('maxSize');
-                  if (maxSize > 0) {
-                      for (var i = 0, len = fileList.length; i < len; i++) {
-                          if (fileList[i].size > maxSize) {
-                              me.fireError("\u56FE\u7247\u5927\u5C0F\u4E0D\u80FD\u8D85\u8FC7 " + formatImageSize(maxSize));
-                              return;
-                          }
-                      }
-                  }
                   Promise.all(fileList.map(readImageFile))
                       .then(function (newList) {
+                      // 校验图片
+                      var maxSize = me.get('maxSize');
+                      var minWidth = me.get('minWidth');
+                      var minHeight = me.get('minHeight');
+                      var maxWidth = me.get('maxWidth');
+                      var maxHeight = me.get('maxHeight');
+                      for (var i = 0, len = newList.length; i < len; i++) {
+                          var item = newList[i];
+                          var errors = [];
+                          if (maxSize > 0) {
+                              if (item.size > maxSize) {
+                                  errors.push("\u56FE\u7247\u5C3A\u5BF8\u4E0D\u80FD\u8D85\u8FC7 " + formatImageSize(maxSize));
+                              }
+                          }
+                          if (minWidth > 0) {
+                              if (item.width < minWidth) {
+                                  errors.push("\u56FE\u7247\u5BBD\u5EA6\u4E0D\u80FD\u5C0F\u4E8E " + minWidth + "px");
+                              }
+                          }
+                          if (minHeight > 0) {
+                              if (item.height < minHeight) {
+                                  errors.push("\u56FE\u7247\u9AD8\u5EA6\u4E0D\u80FD\u5C0F\u4E8E " + minHeight + "px");
+                              }
+                          }
+                          if (maxWidth > 0) {
+                              if (item.width > maxWidth) {
+                                  errors.push("\u56FE\u7247\u5BBD\u5EA6\u4E0D\u80FD\u5927\u4E8E " + maxWidth + "px");
+                              }
+                          }
+                          if (maxHeight > 0) {
+                              if (item.height > maxHeight) {
+                                  errors.push("\u56FE\u7247\u9AD8\u5EA6\u4E0D\u80FD\u5927\u4E8E " + maxHeight + "px");
+                              }
+                          }
+                          if (errors.length) {
+                              item.status = STATUS_ERROR;
+                              item.message = errors.join('<br>');
+                          }
+                      }
                       var upload = me.$refs.upload;
                       upload.reset();
                       me.appendItems(newList);
@@ -5441,7 +5496,7 @@
                   if (imageList[i].status === STATUS_UPLOADING) {
                       result.hasUploading = TRUE;
                   }
-                  else if (imageList[i].status === STATUS_ERROR) {
+                  else if (imageList[i].status === STATUS_ERROR || imageList[i].status === STATUS_FAILURE) {
                       result.hasError = TRUE;
                   }
                   if (!imageList[i].url) {
@@ -5459,7 +5514,9 @@
               me.set('imageList', imageList);
               me.fireChange();
               items.forEach(function (item) {
-                  me.uploadItem(item.id);
+                  if (item.status !== STATUS_ERROR && !item.url) {
+                      me.uploadItem(item.id);
+                  }
               });
           },
           removeItem: function (index) {
@@ -5470,7 +5527,7 @@
               var me = this;
               var imageList = me.get('imageList');
               Yox.array.each(imageList, function (item) {
-                  if (!item.url) {
+                  if (item.status !== STATUS_ERROR && !item.url) {
                       me.uploadItem(item.id);
                   }
               });
@@ -5496,7 +5553,8 @@
                   onError: function () {
                       var index = me.getImageIndexById(id);
                       if (index >= 0) {
-                          me.set("imageList." + index + ".status", STATUS_ERROR);
+                          me.set("imageList." + index + ".status", STATUS_FAILURE);
+                          me.set("imageList." + index + ".message", '上传失败');
                           me.fireChange();
                       }
                   },
@@ -7968,7 +8026,7 @@
   /**
    * 版本
    */
-  var version = "0.24.2";
+  var version = "0.24.3";
   /**
    * 安装插件
    */
