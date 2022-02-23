@@ -10,6 +10,12 @@ $image-picker-mask-text = #dfdfdf
 {$selector-class-prefix + '-image-picker'}
   position relative
 
+  {$selector-class-prefix + '-image-picker-append'}
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+
 {$selector-class-prefix + '-image-picker-item'}
   display inline-block
   background-color $brand-bg-light
@@ -21,6 +27,7 @@ $image-picker-mask-text = #dfdfdf
 
 {$selector-class-prefix + '-image-picker-card'}
   border 1px solid rgba(0,0,0,0.1)
+
 {$selector-class-prefix + '-image-picker-card-mouse-enter'}
   {$selector-class-prefix + '-image-picker-remove-icon'}
     display block
@@ -36,6 +43,7 @@ $image-picker-mask-text = #dfdfdf
 
 {$selector-class-prefix + '-image-picker-mask'}
   display flex
+  flex-direction column
   justify-content center
   align-items center
   background-color $image-picker-mask-bg
@@ -49,18 +57,21 @@ $image-picker-mask-text = #dfdfdf
 
   {$selector-class-prefix + '-circle-content'}
     color #fff
-    font-size $ui-font-size - 2
+    font-size $font-size-small
 
-{$selector-class-prefix + '-image-picker-mask-message'}
+{$selector-class-prefix + '-image-picker-message'}
   color $image-picker-mask-text
   font-size $ui-font-size
   line-height $ui-multiple-line-height
   width 80%
 
+{$selector-class-prefix + '-image-picker-reupload'}
+  margin-top $ui-vertical-gap
+
 {$selector-class-prefix + '-image-picker-image-size'}
   background-color $image-picker-mask-bg
   color #fff
-  font-size $ui-font-size - 2
+  font-size $font-size-small
   padding $image-picker-image-size-padding
   white-space nowrap
   position absolute
@@ -82,18 +93,18 @@ $image-picker-mask-text = #dfdfdf
   border 1px dashed $brand-border
 
 {$selector-class-prefix + '-image-picker-append-icon'}
-  color $brand-border
+  color $brand-content
   font-size $image-picker-append-icon-size
-  position absolute
-  left 50%
-  top 50%
-  margin-left -0.5 * $image-picker-append-icon-size
-  margin-top -0.5 * $image-picker-append-icon-size
+
+{$selector-class-prefix + '-image-picker-append-text'}
+  color $brand-content
+  font-size $ui-font-size
+  margin-top $ui-vertical-gap
 
 {$selector-class-prefix + '-image-picker-extra'}
   color $brand-muted
-  font-size $ui-font-size - 2
-  line-height 1.5 * ($ui-font-size - 2)
+  font-size $font-size-small
+  line-height 1.5 * ($font-size-small)
   margin-top $ui-vertical-gap
 
 {$selector-class-prefix + '-image-picker-items-wrapper'}

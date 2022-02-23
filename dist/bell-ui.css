@@ -8912,6 +8912,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker {
   position: relative;
 }
+.bell-image-picker .bell-image-picker-append {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .bell-image-picker-item {
   display: inline-block;
   background-color: #fafafa;
@@ -8940,6 +8946,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker-mask {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(0,0,0,0.5);
@@ -8954,11 +8961,14 @@ div::-webkit-scrollbar-thumb:hover {
   color: #fff;
   font-size: 12px;
 }
-.bell-image-picker-mask-message {
+.bell-image-picker-message {
   color: #dfdfdf;
   font-size: 14px;
   line-height: 1.5715;
   width: 80%;
+}
+.bell-image-picker-reupload {
+  margin-top: 10px;
 }
 .bell-image-picker-image-size {
   background-color: rgba(0,0,0,0.5);
@@ -8985,13 +8995,13 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px dashed #dcdee2;
 }
 .bell-image-picker-append-icon {
-  color: #dcdee2;
+  color: #515a6e;
   font-size: 30px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -15px;
-  margin-top: -15px;
+}
+.bell-image-picker-append-text {
+  color: #515a6e;
+  font-size: 14px;
+  margin-top: 10px;
 }
 .bell-image-picker-extra {
   color: #808695;

@@ -6,15 +6,17 @@ declare const _default: import("yox").ComponentOptions<{
 }, unknown, unknown, {
     handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
+    validateImageList(imageList: any[]): void;
     checkReady(): {
         hasLocal: boolean;
         hasUploading: boolean;
         hasError: boolean;
     };
     appendItems(items: any[]): void;
+    replaceItem(item: any, index: number): void;
     removeItem(index: number): void;
     upload(): void;
-    uploadItem(id: number): void;
+    uploadItem(id: number, index: number): void;
     fireError(error: string): void;
     fireChange(): void;
     addImgWrapperItemClass(index: number, className: string): void;
@@ -30,15 +32,17 @@ declare const _default: import("yox").ComponentOptions<{
 }> & ThisType<{
     handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;
+    validateImageList(imageList: any[]): void;
     checkReady(): {
         hasLocal: boolean;
         hasUploading: boolean;
         hasError: boolean;
     };
     appendItems(items: any[]): void;
+    replaceItem(item: any, index: number): void;
     removeItem(index: number): void;
     upload(): void;
-    uploadItem(id: number): void;
+    uploadItem(id: number, index: number): void;
     fireError(error: string): void;
     fireChange(): void;
     addImgWrapperItemClass(index: number, className: string): void;

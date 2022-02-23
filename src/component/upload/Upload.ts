@@ -9,6 +9,7 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
+  RAW_NUMERIC,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -31,6 +32,9 @@ export default Yox.define({
   name: '${prefix}Upload',
 
   propTypes: {
+    index: {
+      type: RAW_NUMERIC,
+    },
     multiple: {
       type: RAW_BOOLEAN,
     },
@@ -58,7 +62,9 @@ export default Yox.define({
 
       const beforeUpload = me.get('beforeUpload')
       if (beforeUpload) {
+        const index = me.get('index')
         beforeUpload({
+          index,
           fileList,
           callback(result) {
             if (Yox.is.array(result)) {
@@ -89,9 +95,11 @@ export default Yox.define({
     upload(file: UploadFile) {
 
       const me = this
+      const index = me.get('index')
       const upload = me.get('upload')
 
       upload({
+        index,
         id: file.id,
         file: file.file,
         onStart() {

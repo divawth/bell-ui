@@ -4,6 +4,7 @@ import template from './template/ImagePicker.hbs'
 // import './style/ImagePicker.styl'
 
 import Icon from '../icon/Icon'
+import Button from '../button/Button'
 import Upload from '../upload/Upload'
 import Space from '../space/Space'
 
@@ -102,6 +103,23 @@ export default Yox.define({
       STATUS_ERROR,
       STATUS_FAILURE,
       draggingIndex: -1,
+      uploadingCount: 0,
+      beforeReuploadImage(data) {
+
+        const { index, fileList } = data
+
+        readImageFile(fileList[0]).then(function (item) {
+
+          me.validateImageList([item])
+
+          const reupload = me.$refs.reupload as any
+          reupload.reset()
+
+          me.replaceItem(item, index)
+
+        })
+
+      },
       beforeUploadImage(data) {
         const restCount = me.get('restCount')
         const fileList = data.fileList
@@ -117,58 +135,7 @@ export default Yox.define({
         )
         .then(function (newList: any[]) {
 
-          // 校验图片
-          const maxSize = me.get('maxSize')
-
-          const minWidth = me.get('minWidth')
-          const minHeight = me.get('minHeight')
-
-          const maxWidth = me.get('maxWidth')
-          const maxHeight = me.get('maxHeight')
-
-          for (let i = 0, len = newList.length; i < len; i++) {
-            const item = newList[i]
-            let errors = []
-            if (maxSize > 0) {
-              if (item.size > maxSize) {
-                errors.push(
-                  `图片尺寸不能超过 ${formatImageSize(maxSize)}`
-                )
-              }
-            }
-            if (minWidth > 0) {
-              if (item.width < minWidth) {
-                errors.push(
-                  `图片宽度不能小于 ${minWidth}px`
-                )
-              }
-            }
-            if (minHeight > 0) {
-              if (item.height < minHeight) {
-                errors.push(
-                  `图片高度不能小于 ${minHeight}px`
-                )
-              }
-            }
-            if (maxWidth > 0) {
-              if (item.width > maxWidth) {
-                errors.push(
-                  `图片宽度不能大于 ${maxWidth}px`
-                )
-              }
-            }
-            if (maxHeight > 0) {
-              if (item.height > maxHeight) {
-                errors.push(
-                  `图片高度不能大于 ${maxHeight}px`
-                )
-              }
-            }
-            if (errors.length) {
-              item.status = STATUS_ERROR
-              item.message = errors.join('<br>')
-            }
-          }
+          me.validateImageList(newList)
 
           const upload = me.$refs.upload as any
           upload.reset()
@@ -193,10 +160,10 @@ export default Yox.define({
       return maxCount - imageCount
     },
     canDraggable(): boolean {
+      const uploadingCount = this.get('uploadingCount')
       const readOnly = this.get('readOnly')
       const imageList = this.get('imageList')
-
-      return !readOnly && imageList.length > 1
+      return !uploadingCount && !readOnly && imageList.length > 1
     }
   },
 
@@ -206,6 +173,7 @@ export default Yox.define({
 
   components: {
     Icon,
+    Button,
     Upload,
     Space,
   },
@@ -231,6 +199,64 @@ export default Yox.define({
         }
       }
       return -1
+    },
+    validateImageList(imageList: any[]) {
+
+      const me = this
+
+      // 校验图片
+      const maxSize = me.get('maxSize')
+
+      const minWidth = me.get('minWidth')
+      const minHeight = me.get('minHeight')
+
+      const maxWidth = me.get('maxWidth')
+      const maxHeight = me.get('maxHeight')
+
+      for (let i = 0, len = imageList.length; i < len; i++) {
+        const item = imageList[i]
+        let errors = []
+        if (maxSize > 0) {
+          if (item.size > maxSize) {
+            errors.push(
+              `图片尺寸不能超过 ${formatImageSize(maxSize)}`
+            )
+          }
+        }
+        if (minWidth > 0) {
+          if (item.width < minWidth) {
+            errors.push(
+              `图片宽度不能小于 ${minWidth}px`
+            )
+          }
+        }
+        if (minHeight > 0) {
+          if (item.height < minHeight) {
+            errors.push(
+              `图片高度不能小于 ${minHeight}px`
+            )
+          }
+        }
+        if (maxWidth > 0) {
+          if (item.width > maxWidth) {
+            errors.push(
+              `图片宽度不能大于 ${maxWidth}px`
+            )
+          }
+        }
+        if (maxHeight > 0) {
+          if (item.height > maxHeight) {
+            errors.push(
+              `图片高度不能大于 ${maxHeight}px`
+            )
+          }
+        }
+        if (errors.length) {
+          item.status = STATUS_ERROR
+          item.message = errors.join('<br>')
+        }
+      }
+
     },
     checkReady() {
 
@@ -260,6 +286,7 @@ export default Yox.define({
 
       const me = this
       const imageList = me.copy(me.get('imageList'))
+      const length = imageList.length
 
       items.forEach(
         function (item) {
@@ -271,12 +298,23 @@ export default Yox.define({
       me.fireChange()
 
       items.forEach(
-        function (item: any) {
-          if (item.status !== STATUS_ERROR && !item.url) {
-            me.uploadItem(item.id)
-          }
+        function (item: any, index) {
+          me.uploadItem(item.id, length + index)
         }
       )
+
+    },
+    replaceItem(item: any, index: number) {
+
+      const me = this
+      const imageList = me.copy(me.get('imageList'))
+
+      imageList.splice(index, 1, item)
+
+      me.set('imageList', imageList)
+      me.fireChange()
+
+      me.uploadItem(item.id, index)
 
     },
     removeItem(index: number) {
@@ -290,24 +328,25 @@ export default Yox.define({
 
       Yox.array.each(
         imageList,
-        function (item: any) {
-          if (item.status !== STATUS_ERROR && !item.url) {
-            me.uploadItem(item.id)
-          }
+        function (item: any, index: number) {
+          me.uploadItem(item.id, index)
         }
       )
 
     },
-    uploadItem(id: number) {
+    uploadItem(id: number, index: number) {
 
       const me = this
-      const index = me.getImageIndexById(id)
-      if (index < 0) {
+
+      const item = me.get(`imageList.${index}`)
+      // 如果校验未通过，或者已上传成功，则直接返回
+      if (item.status === STATUS_ERROR || item.url) {
         return
       }
 
       const uploadImage = me.get('uploadImage')
-      const item = me.get(`imageList.${index}`)
+
+      me.increase('uploadingCount')
 
       uploadImage({
         id: item.id,
@@ -319,11 +358,12 @@ export default Yox.define({
             me.fireChange()
           }
         },
-        onError() {
+        onError(error: string) {
           const index = me.getImageIndexById(id)
           if (index >= 0) {
             me.set(`imageList.${index}.status`, STATUS_FAILURE)
-            me.set(`imageList.${index}.message`, '上传失败')
+            me.set(`imageList.${index}.message`, error || '上传失败')
+            me.decrease('uploadingCount')
             me.fireChange()
           }
         },
@@ -338,6 +378,7 @@ export default Yox.define({
           const index = me.getImageIndexById(id)
           if (index >= 0) {
             me.set(`imageList.${index}`, data)
+            me.decrease('uploadingCount')
             me.fireChange()
           }
         }

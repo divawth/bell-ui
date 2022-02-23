@@ -14,7 +14,7 @@ class="${prefix}image-picker
       <div
         on-mouseenter="handleMouseEnter(index)"
         on-mouseleave="handleMouseLeave(index)"
-        draggable="{{canDraggable}}"
+        draggable="{{~/canDraggable}}"
         on-dragstart="handleDragStart(index)"
         on-dragend="handleDragEnd()"
         on-dragover="handleDragOver(index)"
@@ -30,7 +30,7 @@ class="${prefix}image-picker
 
         {{#if this.url || this.base64}}
           <img
-            draggable="{{canDraggable}}"
+            draggable="{{~/canDraggable}}"
             class="${prefix}image-picker-image"
             {{#if this.url}}
               src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
@@ -47,17 +47,32 @@ class="${prefix}image-picker
         {{/if}}
 
         {{#if this.status === ~/STATUS_UPLOADING}}
-          <div class="${prefix}image-picker-mask">
+          <div
+            class="${prefix}image-picker-mask"
+          >
             <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
               上传中
             </Circle>
           </div>
         {{else}}
           {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
-            <div class="${prefix}image-picker-mask">
-              <div class="${prefix}image-picker-mask-message">
+            <div
+              class="${prefix}image-picker-mask"
+            >
+              <div class="${prefix}image-picker-message">
                 {{{this.message}}}
               </div>
+              <Upload
+                ref="reupload"
+                index="{{index}}"
+                className="${prefix}image-picker-reupload"
+                accept="{{accept}}"
+                beforeUpload="{{beforeReuploadImage}}"
+              >
+                <Button size="small">
+                  <Icon name="upload-2-line" />
+                </Button>
+              </Upload>
             </div>
           {{else if this.size > 0}}
             <div class="${prefix}image-picker-image-size">
@@ -76,7 +91,7 @@ class="${prefix}image-picker
       </div>
     {{/each}}
 
-    {{#if !readOnly && imageList.length < maxCount}}
+    {{#if !readOnly && restCount > 0}}
       <Upload
         ref="upload"
         className="${prefix}image-picker-item ${prefix}image-picker-append"
@@ -92,6 +107,9 @@ class="${prefix}image-picker
           className="${prefix}image-picker-append-icon"
           name="add-line"
         />
+        <div class="${prefix}image-picker-append-text">
+          上传图片
+        </div>
       </Upload>
     {{/if}}
   </div>
