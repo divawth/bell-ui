@@ -6532,6 +6532,9 @@ var CLASS_CARD_DRAG_ENTER = 'bell-image-picker-card-drag-enter';
         formatImageUrl: {
             type: RAW_FUNCTION,
         },
+        cropImage: {
+            type: RAW_FUNCTION,
+        },
         uploadImage: {
             type: RAW_FUNCTION,
         },
@@ -6728,43 +6731,59 @@ var CLASS_CARD_DRAG_ENTER = 'bell-image-picker-card-drag-enter';
             if (item.status === STATUS_ERROR || item.url) {
                 return;
             }
-            var uploadImage = me.get('uploadImage');
-            me.increase('uploadingCount');
-            uploadImage({
-                id: item.id,
-                file: item.file,
-                onStart: function () {
-                    var index = me.getImageIndexById(id);
-                    if (index >= 0) {
-                        me.set("imageList." + index + ".status", STATUS_UPLOADING);
-                        me.fireChange();
+            var uploadHandler = function (item) {
+                var uploadImage = me.get('uploadImage');
+                me.increase('uploadingCount');
+                uploadImage({
+                    id: item.id,
+                    file: item.file,
+                    onStart: function () {
+                        var index = me.getImageIndexById(id);
+                        if (index >= 0) {
+                            me.set("imageList." + index + ".status", STATUS_UPLOADING);
+                            me.fireChange();
+                        }
+                    },
+                    onError: function (error) {
+                        var index = me.getImageIndexById(id);
+                        if (index >= 0) {
+                            me.set("imageList." + index + ".status", STATUS_FAILURE);
+                            me.set("imageList." + index + ".message", error || '上传失败');
+                            me.decrease('uploadingCount');
+                            me.fireChange();
+                        }
+                    },
+                    onProgress: function (progress) {
+                        var index = me.getImageIndexById(id);
+                        if (index >= 0) {
+                            me.set("imageList." + index + ".progress", progress);
+                            me.fireChange();
+                        }
+                    },
+                    onSuccess: function (data) {
+                        var index = me.getImageIndexById(id);
+                        if (index >= 0) {
+                            me.set("imageList." + index, data);
+                            me.decrease('uploadingCount');
+                            me.fireChange();
+                        }
                     }
-                },
-                onError: function (error) {
-                    var index = me.getImageIndexById(id);
-                    if (index >= 0) {
-                        me.set("imageList." + index + ".status", STATUS_FAILURE);
-                        me.set("imageList." + index + ".message", error || '上传失败');
-                        me.decrease('uploadingCount');
-                        me.fireChange();
+                });
+            };
+            var cropImage = me.get('cropImage');
+            if (item.base64 && cropImage) {
+                cropImage({
+                    index: index,
+                    base64: item.base64,
+                    callback: function (result) {
+                        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(item, result);
+                        uploadHandler(item);
                     }
-                },
-                onProgress: function (progress) {
-                    var index = me.getImageIndexById(id);
-                    if (index >= 0) {
-                        me.set("imageList." + index + ".progress", progress);
-                        me.fireChange();
-                    }
-                },
-                onSuccess: function (data) {
-                    var index = me.getImageIndexById(id);
-                    if (index >= 0) {
-                        me.set("imageList." + index, data);
-                        me.decrease('uploadingCount');
-                        me.fireChange();
-                    }
-                }
-            });
+                });
+            }
+            else {
+                uploadHandler(item);
+            }
         },
         fireError: function (error) {
             this.fire({
@@ -9672,7 +9691,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.24.4";
+var version = "0.24.5";
 /**
  * 安装插件
  */

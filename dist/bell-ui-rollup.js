@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.24.4
+ * bell-ui.js v0.24.5
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -5371,6 +5371,9 @@
           formatImageUrl: {
               type: RAW_FUNCTION,
           },
+          cropImage: {
+              type: RAW_FUNCTION,
+          },
           uploadImage: {
               type: RAW_FUNCTION,
           },
@@ -5567,43 +5570,59 @@
               if (item.status === STATUS_ERROR || item.url) {
                   return;
               }
-              var uploadImage = me.get('uploadImage');
-              me.increase('uploadingCount');
-              uploadImage({
-                  id: item.id,
-                  file: item.file,
-                  onStart: function () {
-                      var index = me.getImageIndexById(id);
-                      if (index >= 0) {
-                          me.set("imageList." + index + ".status", STATUS_UPLOADING);
-                          me.fireChange();
+              var uploadHandler = function (item) {
+                  var uploadImage = me.get('uploadImage');
+                  me.increase('uploadingCount');
+                  uploadImage({
+                      id: item.id,
+                      file: item.file,
+                      onStart: function () {
+                          var index = me.getImageIndexById(id);
+                          if (index >= 0) {
+                              me.set("imageList." + index + ".status", STATUS_UPLOADING);
+                              me.fireChange();
+                          }
+                      },
+                      onError: function (error) {
+                          var index = me.getImageIndexById(id);
+                          if (index >= 0) {
+                              me.set("imageList." + index + ".status", STATUS_FAILURE);
+                              me.set("imageList." + index + ".message", error || '上传失败');
+                              me.decrease('uploadingCount');
+                              me.fireChange();
+                          }
+                      },
+                      onProgress: function (progress) {
+                          var index = me.getImageIndexById(id);
+                          if (index >= 0) {
+                              me.set("imageList." + index + ".progress", progress);
+                              me.fireChange();
+                          }
+                      },
+                      onSuccess: function (data) {
+                          var index = me.getImageIndexById(id);
+                          if (index >= 0) {
+                              me.set("imageList." + index, data);
+                              me.decrease('uploadingCount');
+                              me.fireChange();
+                          }
                       }
-                  },
-                  onError: function (error) {
-                      var index = me.getImageIndexById(id);
-                      if (index >= 0) {
-                          me.set("imageList." + index + ".status", STATUS_FAILURE);
-                          me.set("imageList." + index + ".message", error || '上传失败');
-                          me.decrease('uploadingCount');
-                          me.fireChange();
+                  });
+              };
+              var cropImage = me.get('cropImage');
+              if (item.base64 && cropImage) {
+                  cropImage({
+                      index: index,
+                      base64: item.base64,
+                      callback: function (result) {
+                          Yox.object.extend(item, result);
+                          uploadHandler(item);
                       }
-                  },
-                  onProgress: function (progress) {
-                      var index = me.getImageIndexById(id);
-                      if (index >= 0) {
-                          me.set("imageList." + index + ".progress", progress);
-                          me.fireChange();
-                      }
-                  },
-                  onSuccess: function (data) {
-                      var index = me.getImageIndexById(id);
-                      if (index >= 0) {
-                          me.set("imageList." + index, data);
-                          me.decrease('uploadingCount');
-                          me.fireChange();
-                      }
-                  }
-              });
+                  });
+              }
+              else {
+                  uploadHandler(item);
+              }
           },
           fireError: function (error) {
               this.fire({
@@ -8057,7 +8076,7 @@
   /**
    * 版本
    */
-  var version = "0.24.4";
+  var version = "0.24.5";
   /**
    * 安装插件
    */

@@ -9001,7 +9001,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-append-text {
   color: #515a6e;
   font-size: 14px;
-  margin-top: 10px;
 }
 .bell-image-picker-extra {
   color: #808695;
@@ -10797,7 +10796,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   display: block;
   opacity: 0;
-  z-index: 12;
+  z-index: 11;
   box-sizing: border-box;
   border-radius: 4px;
 }

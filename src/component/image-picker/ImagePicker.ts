@@ -82,6 +82,9 @@ export default Yox.define({
     formatImageUrl: {
       type: RAW_FUNCTION,
     },
+    cropImage: {
+      type: RAW_FUNCTION,
+    },
     uploadImage: {
       type: RAW_FUNCTION,
     },
@@ -344,45 +347,65 @@ export default Yox.define({
         return
       }
 
-      const uploadImage = me.get('uploadImage')
+      const uploadHandler = function (item) {
 
-      me.increase('uploadingCount')
+        const uploadImage = me.get('uploadImage')
 
-      uploadImage({
-        id: item.id,
-        file: item.file,
-        onStart() {
-          const index = me.getImageIndexById(id)
-          if (index >= 0) {
-            me.set(`imageList.${index}.status`, STATUS_UPLOADING)
-            me.fireChange()
+        me.increase('uploadingCount')
+
+        uploadImage({
+          id: item.id,
+          file: item.file,
+          onStart() {
+            const index = me.getImageIndexById(id)
+            if (index >= 0) {
+              me.set(`imageList.${index}.status`, STATUS_UPLOADING)
+              me.fireChange()
+            }
+          },
+          onError(error: string) {
+            const index = me.getImageIndexById(id)
+            if (index >= 0) {
+              me.set(`imageList.${index}.status`, STATUS_FAILURE)
+              me.set(`imageList.${index}.message`, error || '上传失败')
+              me.decrease('uploadingCount')
+              me.fireChange()
+            }
+          },
+          onProgress(progress: number) {
+            const index = me.getImageIndexById(id)
+            if (index >= 0) {
+              me.set(`imageList.${index}.progress`, progress)
+              me.fireChange()
+            }
+          },
+          onSuccess(data) {
+            const index = me.getImageIndexById(id)
+            if (index >= 0) {
+              me.set(`imageList.${index}`, data)
+              me.decrease('uploadingCount')
+              me.fireChange()
+            }
           }
-        },
-        onError(error: string) {
-          const index = me.getImageIndexById(id)
-          if (index >= 0) {
-            me.set(`imageList.${index}.status`, STATUS_FAILURE)
-            me.set(`imageList.${index}.message`, error || '上传失败')
-            me.decrease('uploadingCount')
-            me.fireChange()
+        })
+
+      }
+
+      const cropImage = me.get('cropImage')
+
+      if (item.base64 && cropImage) {
+        cropImage({
+          index,
+          base64: item.base64,
+          callback(result) {
+            Yox.object.extend(item, result)
+            uploadHandler(item)
           }
-        },
-        onProgress(progress: number) {
-          const index = me.getImageIndexById(id)
-          if (index >= 0) {
-            me.set(`imageList.${index}.progress`, progress)
-            me.fireChange()
-          }
-        },
-        onSuccess(data) {
-          const index = me.getImageIndexById(id)
-          if (index >= 0) {
-            me.set(`imageList.${index}`, data)
-            me.decrease('uploadingCount')
-            me.fireChange()
-          }
-        }
-      })
+        })
+      }
+      else {
+        uploadHandler(item)
+      }
 
     },
     fireError(error: string) {
