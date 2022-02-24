@@ -12,15 +12,19 @@ class="${prefix}image-picker
   >
     {{#each imageList:index}}
       <div
-        on-mouseenter="handleMouseEnter(index)"
-        on-mouseleave="handleMouseLeave(index)"
         draggable="{{~/canDraggable}}"
-        on-dragstart="handleDragStart(index)"
-        on-dragend="handleDragEnd()"
-        on-dragover="handleDragOver(index)"
-        on-dragenter="handleDragEnter(index)"
-        on-dragleave="handleDragLeave(index)"
-        on-drop="handleDragDrop(index)"
+        {{#if ~/canDraggable}}
+          on-mouseenter="handleMouseEnter(index)"
+          on-mouseleave="handleMouseLeave(index)"
+          on-dragstart="handleDragStart(index)"
+          on-dragend="handleDragEnd()"
+          on-dragover="handleDragOver(index)"
+          on-dragenter="handleDragEnter(index)"
+          on-dragleave="handleDragLeave(index)"
+          on-drop="handleDragDrop(index)"
+        {{else}}
+          ondragstart="return false"
+        {{/if}}
         class="${prefix}image-picker-item ${prefix}image-picker-card"
         style="{{ {
           width: ~/customImageWidth + 'px',
