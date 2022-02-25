@@ -52,7 +52,6 @@ select-brand-style(style)
 {$selector-class-prefix + '-select'}
   width $ui-form-element-width
   box-sizing border-box
-  display inline-block
   user-select none
   text-align left
 
@@ -73,7 +72,7 @@ select-brand-style(style)
   max-height $select-overlay-height
 
 {$selector-class-prefix + '-select-block'}
-  ui-block()
+  ui-flex-block()
 
   + {$selector-class-prefix + '-select-block'}
     margin-left 0
@@ -85,7 +84,6 @@ select-brand-style(style)
   padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
 
 {$selector-class-prefix + '-select-with-prefix'}
-  display inline-flex
   flex-direction row
   align-items center
 

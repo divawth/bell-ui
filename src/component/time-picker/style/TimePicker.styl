@@ -40,8 +40,6 @@ time-picker-brand-style(style)
       box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
 
 {$selector-class-prefix + '-time-picker'}
-  display inline-block
-
   ui-connect(
     hash: $form-button-size-hash,
     each: time-picker-size-style
@@ -57,7 +55,7 @@ time-picker-brand-style(style)
   box-shadow $brand-layer-shadow
 
 {$selector-class-prefix + '-time-picker-block'}
-  ui-block()
+  ui-flex-block()
 
 {$selector-class-prefix + '-time-picker-panel'}
   display inline-block

@@ -2,6 +2,7 @@
 class="${prefix}form-item
 {{#if extra}} ${prefix}form-item-with-extra{{/if}}
 {{#if showItemMessage}} ${prefix}form-item-with-message{{/if}}
+{{#if adaptive}} ${prefix}form-item-adaptive{{/if}}
 {{#if labelAlign}} ${prefix}form-item-align-{{labelAlign}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -15,7 +16,7 @@ class="${prefix}form-item
       class="${prefix}form-item-label
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if itemLabelWidth}}
+      {{#if itemLabelWidth && formLabelAlign !== RAW_TOP}}
         style="{{ {
           flex: '0 0 ' + itemLabelWidth + 'px'
         } }}"

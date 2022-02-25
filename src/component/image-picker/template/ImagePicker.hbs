@@ -13,9 +13,9 @@ class="${prefix}image-picker
     {{#each imageList:index}}
       <div
         draggable="{{~/canDraggable}}"
+        on-mouseenter="handleMouseEnter(index)"
+        on-mouseleave="handleMouseLeave(index)"
         {{#if ~/canDraggable}}
-          on-mouseenter="handleMouseEnter(index)"
-          on-mouseleave="handleMouseLeave(index)"
           on-dragstart="handleDragStart(index)"
           on-dragend="handleDragEnd()"
           on-dragover="handleDragOver(index)"

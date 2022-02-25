@@ -7,8 +7,13 @@ $form-item-message-font-size = $font-size-small
 $form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-class-prefix + '-form'}
+  display flex
+  flex-direction column
   color $brand-content
   text-align left
+
+{$selector-class-prefix + '-form-item-adaptive'}
+  flex 1
 
 {$selector-class-prefix + '-form-label-left'},
 {$selector-class-prefix + '-form-label-right'}
@@ -45,14 +50,17 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   white-space nowrap
 
 {$selector-class-prefix + '-form-item-wrapper'}
-  display block
   flex 1
+  display flex
+  flex-direction column
+  align-items flex-start
 
 {$selector-class-prefix + '-form-item-controls'}
+  flex 1
   display flex
+  flex-direction row
   align-items center
-  font-size 0
-  min-height $height-default
+  width 100%
 
 {$selector-class-prefix + '-form-item-extra'},
 {$selector-class-prefix + '-form-item-message'}
@@ -67,7 +75,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   color $brand-error
 
 {$selector-class-prefix + '-form-inline'}
-  display flex
+  flex-direction row
   flex-wrap wrap
   align-items flex-start
   gap $form-item-horizontal-gap
@@ -77,6 +85,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 {$selector-class-prefix + '-form-block'}
   {$selector-class-prefix + '-form-item'}
     display flex
+    flex-direction row
     + {$selector-class-prefix + '-form-item'}
       margin-top $form-item-vertical-gap
 
@@ -87,7 +96,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-class-prefix + '-form-label-top'}
   {$selector-class-prefix + '-form-item'}
-    display block
+    flex-direction column
 
 {$selector-class-prefix + '-form-colon'}
   {$selector-class-prefix + '-form-item-label'}:after

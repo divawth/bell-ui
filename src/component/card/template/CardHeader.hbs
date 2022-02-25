@@ -7,24 +7,28 @@ class="${prefix}card-header
 {{/if}}
 >
 
-  <slot name="avatar" />
+  <div class="${prefix}card-header-wrapper">
 
-  <div class="${prefix}card-header-detail">
-    <div class="${prefix}card-header-title">
-      <slot name="title" />
+    <slot name="avatar" />
+
+    <div class="${prefix}card-header-info">
+      <div class="${prefix}card-header-title">
+        <slot name="title" />
+      </div>
+
+      {{#if hasSlot('subTitle')}}
+        <div class="${prefix}card-header-sub-title">
+          <slot name="subTitle" />
+        </div>
+      {{/if}}
     </div>
 
-    {{#if hasSlot('subTitle')}}
-      <div class="${prefix}card-header-sub-title">
-        <slot name="subTitle" />
-      </div>
-    {{/if}}
   </div>
 
   {{#if hasSlot('extra')}}
-    <span class="${prefix}card-header-extra">
+    <div class="${prefix}card-header-extra">
       <slot name="extra" />
-    </span>
+    </div>
   {{/if}}
 
 </div>

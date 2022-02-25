@@ -7,8 +7,8 @@ $card-header-sub-title-gap = 3px
 
 $card-header-avatar-title-gap = 8px
 
-$card-media-detail-bg-color = rgba(0,0,0,.54)
-$card-media-detail-padding = 12px 24px
+$card-media-info-bg-color = rgba(0,0,0,.54)
+$card-media-info-padding = 12px 24px
 $card-media-title-font-size = 18px
 $card-media-title-color = #fbfbfb
 $card-media-sub-title-font-size = 12px
@@ -22,6 +22,8 @@ $card-footer-padding-vertical = 24px
 
 
 {$selector-class-prefix + '-card'}
+  display flex
+  flex-direction column
   background-color $brand-bg
   border-radius $border-radius-default
   color $brand-content
@@ -39,19 +41,22 @@ $card-footer-padding-vertical = 24px
   border 1px solid $brand-border
 
 {$selector-class-prefix + '-card-header'}
-  position relative
+  display flex
+  flex-direction row
+  justify-content space-between
+  align-items center
   padding $card-header-padding-vertical $card-padding-horizontal
 
   {$selector-class-prefix + '-avatar'}
     margin-right $card-header-avatar-title-gap
-    vertical-align middle
 
   + {$selector-class-prefix + '-card-body'}
     border-top 1px solid $brand-divider
 
-{$selector-class-prefix + '-card-header-detail'}
-  display inline-block
-  vertical-align middle
+{$selector-class-prefix + '-card-header-wrapper'}
+  display flex
+  flex-direction row
+  align-items center
 
 {$selector-class-prefix + '-card-header-title'}
   color $brand-title
@@ -65,12 +70,6 @@ $card-footer-padding-vertical = 24px
   line-height $ui-single-line-height
   margin-top $card-header-sub-title-gap
 
-{$selector-class-prefix + '-card-header-extra'}
-  position absolute
-  right $card-padding-horizontal
-  top 50%
-  transform translateY(-50%)
-
 {$selector-class-prefix + '-card-media'}
   position relative
 
@@ -78,34 +77,35 @@ $card-footer-padding-vertical = 24px
     display block
     width 100%
 
-{$selector-class-prefix + '-card-media-detail'}
+{$selector-class-prefix + '-card-media-info'}
   position absolute
   left 0
   right 0
   bottom 0
-  padding $card-media-detail-padding
-  background-color $card-media-detail-bg-color
+  padding $card-media-info-padding
+  background-color $card-media-info-bg-color
 
 {$selector-class-prefix + '-card-media-title'}
-  font-size $card-media-title-font-size
   color $card-media-title-color
+  font-size $card-media-title-font-size
   line-height $ui-single-line-height
   max-width 100%
   ui-ellipsis()
 
 {$selector-class-prefix + '-card-media-sub-title'}
-  font-size $card-media-sub-title-font-size
   color $card-media-sub-title-color
+  font-size $card-media-sub-title-font-size
   line-height $ui-single-line-height
   margin-top $card-media-sub-title-gap
   max-width 100%
   ui-ellipsis()
 
 {$selector-class-prefix + '-card-body'}
-  padding $card-body-padding-vertical $card-padding-horizontal
-  font-size $font-size-default
+  flex 1
   color $brand-content
+  font-size $font-size-default
   line-height $ui-multiple-line-height
+  padding $card-body-padding-vertical $card-padding-horizontal
   position relative
 
   + {$selector-class-prefix + '-card-footer'}

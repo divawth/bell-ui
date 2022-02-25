@@ -80,7 +80,6 @@ date-picker-brand-style(style)
 
 {$selector-class-prefix + '-date-picker'}
   width $ui-form-element-width
-  display inline-block
 
   ui-connect(
     hash: $form-button-size-hash,
@@ -106,7 +105,7 @@ date-picker-brand-style(style)
     width $date-picker-date-range-overlay-width
 
 {$selector-class-prefix + '-date-picker-block'}
-  ui-block()
+  ui-flex-block()
 
 {$selector-class-prefix + '-date-picker-separator'}
   margin 0 $date-picker-separator-gap

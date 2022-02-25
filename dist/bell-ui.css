@@ -7993,6 +7993,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-bottom-right-radius: 100px;
 }
 .bell-card {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   border-radius: 4px;
   color: #515a6e;
@@ -8010,19 +8012,22 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px solid #dcdee2;
 }
 .bell-card-header {
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 18px 24px;
 }
 .bell-card-header .bell-avatar {
   margin-right: 8px;
-  vertical-align: middle;
 }
 .bell-card-header + .bell-card-body {
   border-top: 1px solid #e8eaec;
 }
-.bell-card-header-detail {
-  display: inline-block;
-  vertical-align: middle;
+.bell-card-header-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .bell-card-header-title {
   color: #17233d;
@@ -8036,12 +8041,6 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
   margin-top: 3px;
 }
-.bell-card-header-extra {
-  position: absolute;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-}
 .bell-card-media {
   position: relative;
 }
@@ -8049,7 +8048,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
   width: 100%;
 }
-.bell-card-media-detail {
+.bell-card-media-info {
   position: absolute;
   left: 0;
   right: 0;
@@ -8058,8 +8057,8 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0,0,0,0.54);
 }
 .bell-card-media-title {
-  font-size: 18px;
   color: #fbfbfb;
+  font-size: 18px;
   line-height: 1.1429;
   max-width: 100%;
   overflow: hidden;
@@ -8068,8 +8067,8 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
 }
 .bell-card-media-sub-title {
-  font-size: 12px;
   color: #ccc;
+  font-size: 12px;
   line-height: 1.1429;
   margin-top: 6px;
   max-width: 100%;
@@ -8079,10 +8078,11 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
 }
 .bell-card-body {
-  padding: 24px 24px;
-  font-size: 14px;
+  flex: 1;
   color: #515a6e;
+  font-size: 14px;
   line-height: 1.5715;
+  padding: 24px 24px;
   position: relative;
 }
 .bell-card-body + .bell-card-footer {
@@ -8263,7 +8263,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-date-picker {
   width: 200px;
-  display: inline-block;
 }
 .bell-date-picker-default {
   font-size: 14px;
@@ -8386,7 +8385,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 520px;
 }
 .bell-date-picker-block {
-  display: block;
+  display: flex;
   width: 100%;
 }
 .bell-date-picker-separator {
@@ -8586,7 +8585,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 25%;
 }
 .bell-date-picker {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -8673,9 +8672,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-clearable:hover .bell-date-picker-clear-icon + .bell-date-picker-calendar-icon {
   display: none;
 }
-.bell-time-picker {
-  display: inline-block;
-}
 .bell-time-picker-default {
   font-size: 14px;
   min-height: 32px;
@@ -8761,7 +8757,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
 }
 .bell-time-picker-block {
-  display: block;
+  display: flex;
   width: 100%;
 }
 .bell-time-picker-panel {
@@ -8837,7 +8833,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 9px 12px;
 }
 .bell-time-picker {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -9495,8 +9491,13 @@ div::-webkit-scrollbar-thumb:hover {
   margin-top: 32px;
 }
 .bell-form {
+  display: flex;
+  flex-direction: column;
   color: #515a6e;
   text-align: left;
+}
+.bell-form-item-adaptive {
+  flex: 1;
 }
 .bell-form-label-left .bell-form-item-label,
 .bell-form-label-right .bell-form-item-label {
@@ -9530,14 +9531,17 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
 }
 .bell-form-item-wrapper {
-  display: block;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .bell-form-item-controls {
+  flex: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  font-size: 0;
-  min-height: 32px;
+  width: 100%;
 }
 .bell-form-item-extra,
 .bell-form-item-message {
@@ -9552,7 +9556,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #ed4014;
 }
 .bell-form-inline {
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 16px;
@@ -9562,6 +9566,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-form-block .bell-form-item {
   display: flex;
+  flex-direction: row;
 }
 .bell-form-block .bell-form-item + .bell-form-item {
   margin-top: 26px;
@@ -9571,7 +9576,7 @@ div::-webkit-scrollbar-thumb:hover {
   margin-top: 0;
 }
 .bell-form-label-top .bell-form-item {
-  display: block;
+  flex-direction: column;
 }
 .bell-form-colon .bell-form-item-label:after {
   content: ':';
@@ -11505,7 +11510,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select {
   width: 200px;
   box-sizing: border-box;
-  display: inline-block;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -11635,7 +11639,7 @@ div::-webkit-scrollbar-thumb:hover {
   max-height: 200px;
 }
 .bell-select-block {
-  display: block;
+  display: flex;
   width: 100%;
 }
 .bell-select-block + .bell-select-block {
@@ -11648,7 +11652,6 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 8px 12px;
 }
 .bell-select-with-prefix {
-  display: inline-flex;
   flex-direction: row;
   align-items: center;
 }
@@ -11675,7 +11678,7 @@ div::-webkit-scrollbar-thumb:hover {
   transform: rotate(0);
 }
 .bell-select {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

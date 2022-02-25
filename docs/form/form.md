@@ -181,12 +181,14 @@ export default {
         />
       </FormItem>
       <FormItem>
-        <Button type="primary">
-          Submit
-        </Button>
-        <Button>
-          Cancel
-        </Button>
+        <Space>
+          <Button type="primary">
+            Submit
+          </Button>
+          <Button>
+            Cancel
+          </Button>
+        </Space>
       </FormItem>
     </Form>
   </div>

@@ -41,6 +41,9 @@ export default Yox.define({
       type: RAW_BOOLEAN,
       value: TRUE,
     },
+    adaptive: {
+      type: RAW_BOOLEAN,
+    },
     message: {
       type: RAW_STRING,
     },
@@ -60,8 +63,10 @@ export default Yox.define({
     const form = findComponentUpward(options.parent, '${prefix}Form')
 
     return {
+      RAW_TOP,
       error: UNDEFINED,
       itemLabelWidth: form.get('labelWidth'),
+      formLabelAlign: form.get('labelAlign'),
     }
   },
 
