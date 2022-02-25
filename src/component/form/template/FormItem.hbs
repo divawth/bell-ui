@@ -11,7 +11,6 @@ class="${prefix}form-item
 {{/if}}
 >
   {{#if label || hasSlot('label')}}
-
     <label
       class="${prefix}form-item-label
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
@@ -26,54 +25,34 @@ class="${prefix}form-item
         {{label}}
       </slot>
     </label>
-
-    <div class="${prefix}form-item-wrapper">
-
-      <div class="${prefix}form-item-controls">
-        <slot />
-      </div>
-
-      {{#if extra}}
-        <div class="${prefix}form-item-extra">
-          {{extra}}
-        </div>
-      {{/if}}
-
-      {{#if showItemMessage}}
-        <div class="${prefix}form-item-message">
-          {{itemMessage}}
-        </div>
-      {{/if}}
-
-    </div>
-
-  {{else}}
-
-    <div
-      class="${prefix}form-item-wrapper"
-      {{#if itemLabelWidth}}
-        style="{{ {
-          marginLeft: itemLabelWidth + 'px'
-        } }}"
-      {{/if}}
-    >
-      <slot />
-
-      {{#if extra}}
-        <div class="${prefix}form-item-extra">
-          {{extra}}
-        </div>
-      {{/if}}
-
-      {{#if showItemMessage}}
-        <div class="${prefix}form-item-message">
-          {{itemMessage}}
-        </div>
-      {{/if}}
-
-    </div>
-
   {{/if}}
+
+  <div
+    class="${prefix}form-item-wrapper"
+    {{#if itemLabelWidth}}
+      style="{{ {
+        marginLeft: itemLabelWidth + 'px'
+      } }}"
+    {{/if}}
+  >
+
+    <div class="${prefix}form-item-controls">
+      <slot />
+    </div>
+
+    {{#if extra}}
+      <div class="${prefix}form-item-extra">
+        {{extra}}
+      </div>
+    {{/if}}
+
+    {{#if showItemMessage}}
+      <div class="${prefix}form-item-message">
+        {{itemMessage}}
+      </div>
+    {{/if}}
+
+  </div>
 
 
 </div>

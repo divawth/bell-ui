@@ -49,11 +49,13 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   box-sizing border-box
   white-space nowrap
 
+  + {$selector-class-prefix + '-form-item-wrapper'}
+    margin-left 0 !important
+
 {$selector-class-prefix + '-form-item-wrapper'}
   flex 1
   display flex
   flex-direction column
-  align-items flex-start
 
 {$selector-class-prefix + '-form-item-controls'}
   flex 1
