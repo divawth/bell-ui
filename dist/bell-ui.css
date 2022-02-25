@@ -8962,7 +8962,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 12px;
 }
 .bell-image-picker-message {
-  color: #dfdfdf;
+  color: #fff;
   font-size: 14px;
   line-height: 1.5715;
   width: 80%;
@@ -9444,6 +9444,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-description-item-content {
   flex: 1;
+  word-break: break-all;
 }
 .bell-empty {
   color: #808695;

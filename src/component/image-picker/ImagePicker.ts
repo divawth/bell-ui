@@ -63,6 +63,12 @@ export default Yox.define({
     maxCount: {
       type: RAW_NUMERIC,
     },
+    minRatio: {
+      type: RAW_NUMERIC,
+    },
+    maxRatio: {
+      type: RAW_NUMERIC,
+    },
     minWidth: {
       type: RAW_NUMERIC,
     },
@@ -208,13 +214,16 @@ export default Yox.define({
       const me = this
 
       // 校验图片
-      const maxSize = me.get('maxSize')
+      const maxSize = toNumber(me.get('maxSize'))
 
-      const minWidth = me.get('minWidth')
-      const minHeight = me.get('minHeight')
+      const minRatio = toNumber(me.get('minRatio'))
+      const maxRatio = toNumber(me.get('maxRatio'))
 
-      const maxWidth = me.get('maxWidth')
-      const maxHeight = me.get('maxHeight')
+      const minWidth = toNumber(me.get('minWidth'))
+      const minHeight = toNumber(me.get('minHeight'))
+
+      const maxWidth = toNumber(me.get('maxWidth'))
+      const maxHeight = toNumber(me.get('maxHeight'))
 
       for (let i = 0, len = imageList.length; i < len; i++) {
         const item = imageList[i]
@@ -224,6 +233,23 @@ export default Yox.define({
             errors.push(
               `图片尺寸不能超过 ${formatImageSize(maxSize)}`
             )
+          }
+        }
+        if (item.height > 0) {
+          const ratio = item.width / item.height
+          if (minRatio > 0) {
+            if (ratio < minRatio) {
+              errors.push(
+                `图片宽高比不能小于 ${minRatio}`
+              )
+            }
+          }
+          if (maxRatio > 0) {
+            if (ratio > maxRatio) {
+              errors.push(
+                `图片宽高比不能大于 ${maxRatio}`
+              )
+            }
           }
         }
         if (minWidth > 0) {
