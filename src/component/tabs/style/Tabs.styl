@@ -36,10 +36,16 @@ size-size-style(style)
 
 
 {$selector-class-prefix + '-tabs'}
+  display flex
+  flex-direction column
+
   ui-connect(
     hash: $tabs-bar-size-hash,
     each: size-size-style
   )
+
+{$selector-class-prefix + '-tabs-content'}
+  flex 1
 
 {$selector-class-prefix + '-tabs-bar'}
   border-bottom 1px solid $brand-border
@@ -114,6 +120,7 @@ size-size-style(style)
 
 {$selector-class-prefix + '-tabs-panel'}
   display none
+  height 100%
 
 {$selector-class-prefix + '-tabs-panel-active'}
   display block

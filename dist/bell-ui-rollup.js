@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.24.7
+ * bell-ui.js v0.24.8
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -8102,7 +8102,7 @@
   /**
    * 版本
    */
-  var version = "0.24.7";
+  var version = "0.24.8";
   /**
    * 安装插件
    */

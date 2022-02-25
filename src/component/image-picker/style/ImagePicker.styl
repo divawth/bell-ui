@@ -1,7 +1,7 @@
 @import '../../../env'
 
 $image-picker-circle-size = 60px
-$image-picker-remove-icon-size = 18px
+$image-picker-remove-icon-size = 20px
 $image-picker-append-icon-size = 30px
 $image-picker-image-size-padding = 2px 4px
 $image-picker-mask-bg = rgba(0,0,0,0.5)
@@ -19,7 +19,7 @@ $image-picker-mask-text = #fff
 {$selector-class-prefix + '-image-picker-item'}
   display inline-block
   background-color $brand-bg-light
-  box-sizing border-box
+  box-sizing content-box
   position relative
   user-select none
   if $border-radius-default > 0
@@ -27,18 +27,19 @@ $image-picker-mask-text = #fff
 
 {$selector-class-prefix + '-image-picker-card'}
   border 1px solid rgba(0,0,0,0.1)
+  display flex
+  justify-content center
+  align-items center
 
 {$selector-class-prefix + '-image-picker-card-mouse-enter'}
   {$selector-class-prefix + '-image-picker-remove-icon'}
     display block
 
 {$selector-class-prefix + '-image-picker-image'}
-  width 100%
-  height 100%
-  object-fit cover
+  max-width 100%
+  max-height 100%
   if $border-radius-default > 0
     border-radius $border-radius-default
-
   ui-clickable()
 
 {$selector-class-prefix + '-image-picker-mask'}

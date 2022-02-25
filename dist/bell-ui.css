@@ -8917,7 +8917,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-item {
   display: inline-block;
   background-color: #fafafa;
-  box-sizing: border-box;
+  box-sizing: content-box;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8927,15 +8927,16 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker-card {
   border: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .bell-image-picker-card-mouse-enter .bell-image-picker-remove-icon {
   display: block;
 }
 .bell-image-picker-image {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 4px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -8980,10 +8981,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-remove-icon {
   display: none;
   color: #999;
-  font-size: 18px;
+  font-size: 20px;
   position: absolute;
-  right: -9px;
-  top: -9px;
+  right: -10px;
+  top: -10px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -12536,6 +12537,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table-right {
   text-align: right;
 }
+.bell-tabs {
+  display: flex;
+  flex-direction: column;
+}
 .bell-tabs-default .bell-tabs-tab {
   font-size: 14px;
   height: 40px;
@@ -12562,6 +12567,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-tabs-large.bell-tabs-card .bell-tabs-tab {
   line-height: 46px;
+}
+.bell-tabs-content {
+  flex: 1;
 }
 .bell-tabs-bar {
   border-bottom: 1px solid #dcdee2;
@@ -12639,6 +12647,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-tabs-panel {
   display: none;
+  height: 100%;
 }
 .bell-tabs-panel-active {
   display: block;
