@@ -28,16 +28,17 @@
   <div
     class="${prefix}slider-track"
     {{#if !disabled}}
-      on-click="trackClick.slider"
+      on-mousedown="trackMouseDown()"
     {{/if}}
   >
 
     <div
       class="${prefix}slider-bar"
-      style="{{ {
-        width: vertical ? undefined : percent + '%',
-        height: vertical ? percent + '%' : undefined,
-      } }}"
+      style="{{
+        vertical
+        ? formatBarStyle(percentArray, 'bottom', 'top')
+        : formatBarStyle(percentArray, 'left', 'right')
+      }}"
     >
     </div>
 
@@ -55,32 +56,39 @@
       {{/each}}
     {{/if}}
 
-    <Tooltip
-      ref="tooltip"
-      placement="{{vertical ? RAW_RIGHT : RAW_TOP}}"
-      content="{{formatTooltip ? formatTooltip(value) : value}}"
-      mode="{{RAW_CUSTOM}}"
-    >
-      <div
-        class="${prefix}slider-thumb"
-
-        style="{{ {
-          left: vertical ? undefined : percent + '%',
-          bottom: vertical ? percent + '%' : undefined,
-        } }}"
-
-        on-mouseenter="thumbMouseEnter.slider"
-        on-mouseleave="thumbMouseLeave.slider"
-        lazy-mouseenter="200"
-        lazy-mouseleave="200"
-
-        {{#if !disabled}}
-          on-mousedown="thumbMouseDown.slider"
-        {{/if}}
-
+    {{#each percentArray:index}}
+      <Tooltip
+        ref="{{'tooltip' + index}}"
+        placement="{{~/vertical ? ~/RAW_RIGHT : ~/RAW_TOP}}"
+        content="{{~/formatTooltip ? ~/formatTooltip(this.value) : this.value}}"
+        mode="{{~/RAW_CUSTOM}}"
       >
-      </div>
-    </Tooltip>
+        <div
+          class="${prefix}slider-thumb"
+
+          style="{{
+            ~/vertical
+            ? {
+              bottom: this.percent + '%'
+            }
+            : {
+              left: this.percent + '%'
+            }
+          }}"
+
+          on-mouseenter="thumbMouseEnter($event, index)"
+          on-mouseleave="thumbMouseLeave($event, index)"
+          lazy-mouseenter="200"
+          lazy-mouseleave="200"
+
+          {{#if !~/disabled}}
+            on-mousedown="thumbMouseDown($event, index)"
+          {{/if}}
+
+        >
+        </div>
+      </Tooltip>
+    {{/each}}
   </div>
 
 </div>

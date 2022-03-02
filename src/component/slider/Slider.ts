@@ -9,6 +9,7 @@ import {
   TRUE,
   FALSE,
   DOCUMENT,
+  RAW_ARRAY,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_NUMERIC,
@@ -32,6 +33,25 @@ import {
   fireClickEvent,
 } from '../event'
 
+function getPercentByValue(min: number, max: number, rawValue: any) {
+
+  const range = max - min
+
+  let value = toNumber(rawValue)
+
+  if (value > max) {
+    value = max
+  }
+  else if (value < min) {
+    value = min
+  }
+
+  return range > 0
+    ? (value - min) / range * 100
+    : 0
+
+}
+
 export default Yox.define({
 
   template,
@@ -40,7 +60,7 @@ export default Yox.define({
 
   propTypes: {
     value: {
-      type: RAW_NUMERIC,
+      type: [RAW_NUMERIC, RAW_ARRAY],
       value: 0,
     },
     max: {
@@ -92,37 +112,58 @@ export default Yox.define({
       RAW_TOP,
       RAW_RIGHT,
       RAW_CUSTOM,
-      thumbIsDragging: FALSE,
-      mouseInThumb: FALSE,
-      tooltipVisible: FALSE,
+      inInteraction: FALSE,
+      hoverThumbIndex: -1,
+      dragThumbIndex: -1,
+      showTooltipIndex: -1,
     }
   },
 
   computed: {
-    percent(): number {
-
-      const min = toNumber(this.get('min'))
-      const max = toNumber(this.get('max'))
-      const range = max - min
-
-      let value = toNumber(this.get('value'))
-      if (value > max) {
-        value = max
+    isRange(): boolean {
+      const value = this.get('value')
+      return Yox.is.array(value)
+    },
+    minNumber(): number {
+      return toNumber(this.get('min'))
+    },
+    maxNumber(): number {
+      return toNumber(this.get('max'))
+    },
+    stepNumber(): number {
+      return toNumber(this.get('step'))
+    },
+    percentArray: {
+      deps: ['value', 'value.*'],
+      get() {
+        const min = this.get('minNumber')
+        const max = this.get('maxNumber')
+        const value = this.get('value')
+        if (Yox.is.array(value)) {
+          return [
+            {
+              value: value[0],
+              percent: getPercentByValue(min, max, value[0])
+            },
+            {
+              value: value[1],
+              percent: getPercentByValue(min, max, value[1])
+            },
+          ]
+        }
+        return [
+          {
+            value,
+            percent: getPercentByValue(min, max, value),
+          }
+        ]
       }
-      else if (value < min) {
-        value = min
-      }
-
-      return range > 0
-        ? (value - min) / range * 100
-        : 0
-
     },
     stops(): number[] {
 
-      const min = toNumber(this.get('min'))
-      const max = toNumber(this.get('max'))
-      const step = toNumber(this.get('step'))
+      const min = this.get('minNumber')
+      const max = this.get('maxNumber')
+      const step = this.get('stepNumber')
       const range = max - min
 
       const result: number[] = []
@@ -142,40 +183,109 @@ export default Yox.define({
     }
   },
 
+  filters: {
+    formatBarStyle(percentArray: any[], fromName, toName): any {
+
+      let fromPercnet = percentArray[0].percent
+      let toPercent: number
+
+      if (percentArray[1]) {
+        toPercent = percentArray[1].percent
+        if (fromPercnet > toPercent) {
+          fromPercnet = percentArray[1].percent
+          toPercent = percentArray[0].percent
+        }
+      }
+      else {
+        toPercent = fromPercnet
+        fromPercnet = 0
+      }
+
+      const style = {}
+      style[fromName] = fromPercnet + '%'
+      style[toName] = (100 - toPercent) + '%'
+
+      return style
+
+    }
+  },
+
   watchers: {
     value() {
-      this.nextTick(function () {
-        const tooltip = this.$refs.tooltip as any
-        tooltip.refresh()
-      })
+      // @ts-ignore
+      this.refreshTooltip()
     },
-    tooltipVisible(value, oldValue) {
-      const tooltip = this.$refs.tooltip as any
-      if (value) {
-        tooltip.open()
-      }
-      else if (oldValue) {
+    'value.*': function () {
+      // @ts-ignore
+      this.refreshTooltip()
+    },
+    showTooltipIndex(value, oldValue) {
+      if (oldValue >= 0) {
+        const tooltip = this.$refs['tooltip' + oldValue] as any
         tooltip.close()
+      }
+      if (value >= 0) {
+        const tooltip = this.$refs['tooltip' + value] as any
+        tooltip.open()
       }
     }
   },
 
-  events: {
-    outside: {
-      listener(event) {
-        if (event.phase !== Yox.Event.PHASE_UPWARD) {
-          return
-        }
-        event.stop()
-        this.set('tooltipVisible', FALSE)
-      },
-      ns: 'tooltip'
+  methods: {
+    refreshTooltip() {
+      const index = this.get('showTooltipIndex')
+      if (index < 0) {
+        return
+      }
+      this.nextTick(function () {
+        const tooltip = this.$refs['tooltip' + index] as any
+        tooltip.refresh()
+      })
+    },
+    trackMouseDown(event: CustomEventInterface) {
+      event.stop()
+      fireClickEvent(event)
+      // @ts-ignore
+      this.onTrackMouseDown(event)
+    },
+    thumbMouseEnter(event: CustomEventInterface, index: number) {
+      event.stop()
+      if (!this.get('inInteraction')) {
+        this.set({
+          inInteraction: TRUE,
+          hoverThumbIndex: index,
+          showTooltipIndex: this.get('showTooltip') ? index : -1,
+        })
+      }
+    },
+    thumbMouseLeave(event: CustomEventInterface) {
+      event.stop()
+      this.set('hoverThumbIndex', -1)
+      if (this.get('dragThumbIndex') < 0) {
+        this.set({
+          inInteraction: FALSE,
+          showTooltipIndex: -1,
+        })
+      }
+    },
+    thumbMouseDown(event: CustomEventInterface, index: number) {
+      event.stop()
+      this.set({
+        inInteraction: TRUE,
+        dragThumbIndex: index,
+        showTooltipIndex: this.get('showTooltip') ? index : -1,
+      })
+      // @ts-ignore
+      this.onThumbMouseDown()
     }
   },
 
   afterMount() {
 
     const me = this
+
+    let isRange = FALSE
+    let dragThumbIndex = -1
 
     let isVertical = FALSE
     let min = 0
@@ -187,26 +297,72 @@ export default Yox.define({
     let trackRight = 0
     let trackBottom = 0
 
-    const onMouseMove = function (event: CustomEventInterface) {
+    const onTrackMouseDown = function (event: CustomEventInterface) {
 
-      const originalEvent = event.originalEvent as MouseEvent
-      updatePosition(originalEvent.pageX, originalEvent.pageY)
+      updateVariable()
 
-    }
+      const { pageX, pageY } = event.originalEvent as MouseEvent
+      const ratio = getRatio(pageX, pageY)
 
-    const onMouseUp = function () {
+      if (isRange) {
+        // 当前坐标距离哪个 thumb 近就移动哪个
+        const percent = ratio * 100
+        const percentArray = me.get('percentArray')
 
-      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onMouseMove)
-      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onMouseUp)
+        updatePosition(
+          ratio,
+          Math.abs(percentArray[0].percent - percent) > Math.abs(percentArray[1].percent - percent)
+            ? 1
+            : 0
+        )
 
-      me.set('thumbIsDragging', FALSE)
-      if (!me.get('mouseInThumb')) {
-        me.set('tooltipVisible', FALSE)
+        updateValue()
+
+      }
+      else {
+        updatePosition(ratio)
       }
 
     }
 
-    const updatePosition = function (x: number, y: number) {
+    const onThumbMouseDown = function () {
+
+      updateVariable()
+
+      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove)
+      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp)
+
+    }
+
+    const onThumbMouseMove = function (event: CustomEventInterface) {
+
+      const { pageX, pageY } = event.originalEvent as MouseEvent
+
+      updatePosition(
+        getRatio(pageX, pageY),
+        dragThumbIndex
+      )
+
+    }
+
+    const onThumbMouseUp = function () {
+
+      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove)
+      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp)
+
+      updateValue()
+
+      me.set('dragThumbIndex', -1)
+      if (me.get('hoverThumbIndex') < 0) {
+        me.set({
+          inInteraction: FALSE,
+          showTooltipIndex: -1,
+        })
+      }
+
+    }
+
+    const getRatio = function (x: number, y: number) {
 
       let ratio = 0
 
@@ -229,10 +385,20 @@ export default Yox.define({
         ratio = (x - trackLeft) / (trackRight - trackLeft)
       }
 
+      return ratio
+
+    }
+
+    const updatePosition = function (ratio: number, index?: number) {
+
       let newValue = (max - min) * ratio + min
       if (step > 0) {
         let count = Math.round(newValue / step)
-        me.set('value', step * count)
+        newValue = step * count
+      }
+
+      if (isRange) {
+        me.set('value.' + index, newValue)
       }
       else {
         me.set('value', newValue)
@@ -240,12 +406,15 @@ export default Yox.define({
 
     }
 
-    const updateValues = function () {
+    const updateVariable = function () {
+
+      isRange = me.get('isRange')
+      dragThumbIndex = me.get('dragThumbIndex')
 
       isVertical = me.get('vertical')
-      max = toNumber(me.get('max'))
-      min = toNumber(me.get('min'))
-      step = toNumber(me.get('step'))
+      max = me.get('maxNumber')
+      min = me.get('minNumber')
+      step = me.get('stepNumber')
 
       const { top, left, right, bottom } = me.$el.getBoundingClientRect()
 
@@ -262,65 +431,28 @@ export default Yox.define({
 
     }
 
-    me
-    .on(
-      'thumbMouseEnter.slider',
-      function (event) {
+    const updateValue = function () {
 
-        event.stop()
+      const value = me.get('value')
 
-        me.set({
-          mouseInThumb: TRUE,
-          tooltipVisible: toBoolean(me.get('showTooltip')),
-        })
+      if (Yox.is.array(value)) {
 
-      }
-    )
-    .on(
-      'thumbMouseLeave.slider',
-      function (event) {
+        const value = me.copy(me.get('value'))
 
-        event.stop()
-
-        me.set('mouseInThumb', FALSE)
-        if (!me.get('thumbIsDragging')) {
-          me.set('tooltipVisible', FALSE)
+        // 交换值
+        if (value[0] > value[1]) {
+          value[0] = value.splice(1, 1, value[0])[0]
         }
 
-      }
-    )
-    .on(
-      'thumbMouseDown.slider',
-      function (event) {
-
-        event.stop()
-
-        updateValues()
-
-        Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onMouseMove)
-        Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onMouseUp)
-
-        me.set({
-          thumbIsDragging: TRUE,
-          tooltipVisible: toBoolean(me.get('showTooltip')),
-        })
+        me.set('value', value)
 
       }
-    )
-    .on(
-      'trackClick.slider',
-      function (event) {
+    }
 
-        event.stop()
-        fireClickEvent(event)
-
-        updateValues()
-
-        const originalEvent = event.originalEvent as MouseEvent
-        updatePosition(originalEvent.pageX, originalEvent.pageY)
-
-      }
-    )
+    // @ts-ignore
+    this.onTrackMouseDown = onTrackMouseDown
+    // @ts-ignore
+    this.onThumbMouseDown = onThumbMouseDown
 
   },
 
