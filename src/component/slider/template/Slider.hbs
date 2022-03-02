@@ -10,8 +10,6 @@
 
 {{#if block}} ${prefix}slider-block{{/if}}
 
-{{#if thumbIsDragging}} ${prefix}slider-dragging{{/if}}
-
 {{#if className}} {{className}}{{/if}}"
 
 {{#if width || height || style}}
@@ -36,8 +34,8 @@
       class="${prefix}slider-bar"
       style="{{
         vertical
-        ? formatBarStyle(percentArray, reverse, 'bottom', 'top')
-        : formatBarStyle(percentArray, reverse, 'left', 'right')
+          ? formatBarStyle(percentArray, reverse, 'bottom', 'top')
+          : formatBarStyle(percentArray, reverse, 'left', 'right')
       }}"
     >
     </div>
@@ -61,7 +59,9 @@
         mode="{{~/RAW_CUSTOM}}"
       >
         <div
-          class="${prefix}slider-thumb"
+          class="${prefix}slider-thumb
+          {{#if ~/dragThumbIndex === index}} ${prefix}slider-thumb-dragging{{/if}}
+          "
 
           style="{{
             ~/vertical
