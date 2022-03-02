@@ -36,8 +36,8 @@
       class="${prefix}slider-bar"
       style="{{
         vertical
-        ? formatBarStyle(percentArray, 'bottom', 'top')
-        : formatBarStyle(percentArray, 'left', 'right')
+        ? formatBarStyle(percentArray, reverse, 'bottom', 'top')
+        : formatBarStyle(percentArray, reverse, 'left', 'right')
       }}"
     >
     </div>
@@ -45,12 +45,9 @@
     {{#if showStops}}
       {{#each stops}}
         <div
-          key="{{this}}"
+          key="{{this.value}}"
           class="${prefix}slider-stop"
-          style="{{ {
-            left: ~/vertical ? undefined : this + '%',
-            bottom: ~/vertical ? this + '%' : undefined,
-          } }}"
+          style="{{this.style}}"
         >
         </div>
       {{/each}}
@@ -68,12 +65,8 @@
 
           style="{{
             ~/vertical
-            ? {
-              bottom: this.percent + '%'
-            }
-            : {
-              left: this.percent + '%'
-            }
+              ? formatThumbStyle(this.percent, ~/reverse, 'bottom', 'top')
+              : formatThumbStyle(this.percent, ~/reverse, 'left', 'right')
           }}"
 
           on-mouseenter="thumbMouseEnter($event, index)"

@@ -24,7 +24,6 @@ import {
 
 import {
   toNumber,
-  toBoolean,
   getPageX,
   getPageY,
 } from '../util'
@@ -82,6 +81,9 @@ export default Yox.define({
       type: RAW_BOOLEAN,
     },
     disabled: {
+      type: RAW_BOOLEAN,
+    },
+    reverse: {
       type: RAW_BOOLEAN,
     },
     showStops: {
@@ -159,22 +161,32 @@ export default Yox.define({
         ]
       }
     },
-    stops(): number[] {
+    stops(): object[] {
 
+      const vertical = this.get('vertical')
+      const reverse = this.get('reverse')
       const min = this.get('minNumber')
       const max = this.get('maxNumber')
       const step = this.get('stepNumber')
       const range = max - min
 
-      const result: number[] = []
+      const result: object[] = []
 
       if (max - min > step) {
         let count = Math.floor(range / step)
         let interval = 100 / count
         for (let i = 1; i < count; i++) {
-          result.push(
-            i * interval
-          )
+
+          let value = i * interval
+          let percent = value + '%'
+
+          result.push({
+            value,
+            style: vertical
+              ? (reverse ? { top: percent } : { bottom: percent })
+              : (reverse ? { right: percent } : { left: percent })
+          })
+
         }
       }
 
@@ -184,7 +196,7 @@ export default Yox.define({
   },
 
   filters: {
-    formatBarStyle(percentArray: any[], fromName, toName): any {
+    formatBarStyle(percentArray: any[], reverse: boolean, fromName: string, toName: string): any {
 
       let fromPercnet = percentArray[0].percent
       let toPercent: number
@@ -201,9 +213,27 @@ export default Yox.define({
         fromPercnet = 0
       }
 
+      if (reverse) {
+        const temp = fromName
+        fromName = toName
+        toName = temp
+      }
+
       const style = {}
       style[fromName] = fromPercnet + '%'
       style[toName] = (100 - toPercent) + '%'
+
+      return style
+
+    },
+    formatThumbStyle(percent: number, reverse: boolean, name: string, reverseName: string): any {
+
+      if (reverse) {
+        name = reverseName
+      }
+
+      const style = {}
+      style[name] = percent + '%'
 
       return style
 
@@ -288,6 +318,7 @@ export default Yox.define({
     let dragThumbIndex = -1
 
     let isVertical = FALSE
+    let isReverse = FALSE
     let min = 0
     let max = 0
     let step = 0
@@ -385,7 +416,7 @@ export default Yox.define({
         ratio = (x - trackLeft) / (trackRight - trackLeft)
       }
 
-      return ratio
+      return isReverse ? (1 - ratio) : ratio
 
     }
 
@@ -412,6 +443,7 @@ export default Yox.define({
       dragThumbIndex = me.get('dragThumbIndex')
 
       isVertical = me.get('vertical')
+      isReverse = me.get('reverse')
       max = me.get('maxNumber')
       min = me.get('minNumber')
       step = me.get('stepNumber')
