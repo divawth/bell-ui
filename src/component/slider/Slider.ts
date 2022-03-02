@@ -219,23 +219,17 @@ export default Yox.define({
         toName = temp
       }
 
-      const style = {}
-      style[fromName] = fromPercnet + '%'
-      style[toName] = (100 - toPercent) + '%'
-
-      return style
-
-    },
-    formatThumbStyle(percent: number, reverse: boolean, name: string, reverseName: string): any {
-
-      if (reverse) {
-        name = reverseName
+      return {
+        [fromName]: fromPercnet + '%',
+        [toName]: (100 - toPercent) + '%'
       }
 
-      const style = {}
-      style[name] = percent + '%'
+    },
+    formatThumbStyle(percent: number, name: string): any {
 
-      return style
+      return {
+        [name]: percent + '%'
+      }
 
     }
   },

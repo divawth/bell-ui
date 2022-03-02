@@ -65,8 +65,8 @@
 
           style="{{
             ~/vertical
-              ? formatThumbStyle(this.percent, ~/reverse, 'bottom', 'top')
-              : formatThumbStyle(this.percent, ~/reverse, 'left', 'right')
+              ? formatThumbStyle(this.percent, ~/reverse ? 'top' : 'bottom')
+              : formatThumbStyle(this.percent, ~/reverse ? 'right' : 'left')
           }}"
 
           on-mouseenter="thumbMouseEnter($event, index)"
