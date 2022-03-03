@@ -34,8 +34,8 @@
       class="${prefix}slider-bar"
       style="{{
         vertical
-          ? formatBarStyle(percentArray, reverse, 'bottom', 'top')
-          : formatBarStyle(percentArray, reverse, 'left', 'right')
+          ? formatBarStyle(valuePercentArray, reverse, 'bottom', 'top')
+          : formatBarStyle(valuePercentArray, reverse, 'left', 'right')
       }}"
     >
     </div>
@@ -51,7 +51,7 @@
       {{/each}}
     {{/if}}
 
-    {{#each percentArray:index}}
+    {{#each valuePercentArray:index}}
       <Tooltip
         ref="{{'tooltip' + index}}"
         placement="{{~/vertical ? ~/RAW_RIGHT : ~/RAW_TOP}}"
@@ -60,8 +60,8 @@
       >
         <div
           class="${prefix}slider-thumb
-          {{#if ~/dragThumbIndex === index}} ${prefix}slider-thumb-dragging{{/if}}
-          "
+          {{#if ~/hoverThumbIndex === index}} ${prefix}slider-thumb-hover{{/if}}
+          {{#if ~/dragThumbIndex === index}} ${prefix}slider-thumb-dragging{{/if}}"
 
           style="{{
             ~/vertical

@@ -8,6 +8,7 @@ import Tooltip from '../tooltip/Tooltip'
 import {
   TRUE,
   FALSE,
+  UNDEFINED,
   DOCUMENT,
   RAW_ARRAY,
   RAW_STRING,
@@ -114,6 +115,8 @@ export default Yox.define({
       RAW_TOP,
       RAW_RIGHT,
       RAW_CUSTOM,
+      // innerValue 在交互时不能变，交互完了之后，和 value 同步一次最新值即可
+      innerValue: this.get('value'),
       inInteraction: FALSE,
       hoverThumbIndex: -1,
       dragThumbIndex: -1,
@@ -135,28 +138,28 @@ export default Yox.define({
     stepNumber(): number {
       return toNumber(this.get('step'))
     },
-    percentArray: {
-      deps: ['value', 'value.*'],
+    valuePercentArray: {
+      deps: ['innerValue', 'innerValue.*'],
       get() {
         const min = this.get('minNumber')
         const max = this.get('maxNumber')
-        const value = this.get('value')
-        if (Yox.is.array(value)) {
+        const innerValue = this.get('innerValue')
+        if (Yox.is.array(innerValue)) {
           return [
             {
-              value: value[0],
-              percent: getPercentByValue(min, max, value[0])
+              value: innerValue[0],
+              percent: getPercentByValue(min, max, innerValue[0])
             },
             {
-              value: value[1],
-              percent: getPercentByValue(min, max, value[1])
+              value: innerValue[1],
+              percent: getPercentByValue(min, max, innerValue[1])
             },
           ]
         }
         return [
           {
-            value,
-            percent: getPercentByValue(min, max, value),
+            value: innerValue,
+            percent: getPercentByValue(min, max, innerValue),
           }
         ]
       }
@@ -196,16 +199,16 @@ export default Yox.define({
   },
 
   filters: {
-    formatBarStyle(percentArray: any[], reverse: boolean, fromName: string, toName: string): any {
+    formatBarStyle(valuePercentArray: any[], reverse: boolean, fromName: string, toName: string): any {
 
-      let fromPercnet = percentArray[0].percent
+      let fromPercnet = valuePercentArray[0].percent
       let toPercent: number
 
-      if (percentArray[1]) {
-        toPercent = percentArray[1].percent
+      if (valuePercentArray[1]) {
+        toPercent = valuePercentArray[1].percent
         if (fromPercnet > toPercent) {
-          fromPercnet = percentArray[1].percent
-          toPercent = percentArray[0].percent
+          fromPercnet = valuePercentArray[1].percent
+          toPercent = valuePercentArray[0].percent
         }
       }
       else {
@@ -234,14 +237,29 @@ export default Yox.define({
     }
   },
 
+  events: {
+    outside: {
+      listener(event) {
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+        event.stop()
+        this.set('showTooltipIndex', -1)
+      },
+      ns: 'tooltip'
+    }
+  },
+
   watchers: {
-    value() {
+    'valuePercentArray.*.value': function () {
       // @ts-ignore
       this.refreshTooltip()
     },
-    'value.*': function () {
-      // @ts-ignore
-      this.refreshTooltip()
+    value(value) {
+      if (this.get('inInteraction')) {
+        return
+      }
+      this.set('innerValue', value)
     },
     showTooltipIndex(value, oldValue) {
       if (oldValue >= 0) {
@@ -297,7 +315,6 @@ export default Yox.define({
       this.set({
         inInteraction: TRUE,
         dragThumbIndex: index,
-        showTooltipIndex: this.get('showTooltip') ? index : -1,
       })
       // @ts-ignore
       this.onThumbMouseDown()
@@ -332,11 +349,11 @@ export default Yox.define({
       if (isRange) {
         // 当前坐标距离哪个 thumb 近就移动哪个
         const percent = ratio * 100
-        const percentArray = me.get('percentArray')
+        const valuePercentArray = me.get('valuePercentArray')
 
         updatePosition(
           ratio,
-          Math.abs(percentArray[0].percent - percent) > Math.abs(percentArray[1].percent - percent)
+          Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)
             ? 1
             : 0
         )
@@ -423,10 +440,28 @@ export default Yox.define({
       }
 
       if (isRange) {
-        me.set('value.' + index, newValue)
+
+        me.set('innerValue.' + index, newValue)
+
+        const value = me.copy(
+          me.get('innerValue')
+        )
+
+        // 交换值
+        if (value[0] > value[1]) {
+          const temp = value[0]
+          value[0] = value[1]
+          value[1] = temp
+        }
+
+        me.set('value', value)
+
       }
       else {
-        me.set('value', newValue)
+        me.set({
+          innerValue: newValue,
+          value: newValue,
+        })
       }
 
     }
@@ -458,21 +493,10 @@ export default Yox.define({
     }
 
     const updateValue = function () {
-
-      const value = me.get('value')
-
-      if (Yox.is.array(value)) {
-
-        const value = me.copy(me.get('value'))
-
-        // 交换值
-        if (value[0] > value[1]) {
-          value[0] = value.splice(1, 1, value[0])[0]
-        }
-
-        me.set('value', value)
-
-      }
+      me.set(
+        'innerValue',
+        me.get('value')
+      )
     }
 
     // @ts-ignore

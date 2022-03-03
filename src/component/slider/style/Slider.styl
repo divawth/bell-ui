@@ -98,8 +98,10 @@ $slider-thumb-size = 12px
     border-color $brand-disabled
     ui-disabled()
 
+{$selector-class-prefix + '-slider-thumb-hover'},
 {$selector-class-prefix + '-slider-thumb-dragging'}
   transform scale(1.3)
+  z-index $zindex-normal
 
 {$selector-class-prefix + '-slider-block'}
   display block

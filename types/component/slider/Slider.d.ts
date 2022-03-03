@@ -3,11 +3,13 @@ declare const _default: import("yox").ComponentOptions<{
     minNumber: unknown;
     maxNumber: unknown;
     stepNumber: unknown;
-    percentArray: unknown;
+    valuePercentArray: unknown;
     stops: unknown;
 }, {
+    'valuePercentArray.*.value': unknown;
     value: unknown;
-    'value.*': unknown;
     showTooltipIndex: unknown;
-}, unknown, unknown> & ThisType<import("yox").YoxInterface>;
+}, {
+    outside: unknown;
+}, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;
