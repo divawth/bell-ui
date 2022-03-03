@@ -40,6 +40,10 @@ $slider-thumb-size = 12px
   border 2px solid $brand-primary
   transition transform .3s
 
+  if $ui-shadow-radius > 0
+    &:focus
+      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
 {$selector-class-prefix + '-slider-vertical'}
   height $ui-form-element-width
   padding 0.5 * $slider-thumb-size 0.5 * ($slider-thumb-size - $slider-thickness)

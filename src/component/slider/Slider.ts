@@ -117,7 +117,6 @@ export default Yox.define({
       RAW_CUSTOM,
       // innerValue 在交互时不能变，交互完了之后，和 value 同步一次最新值即可
       innerValue: this.get('value'),
-      inInteraction: FALSE,
       hoverThumbIndex: -1,
       dragThumbIndex: -1,
       showTooltipIndex: -1,
@@ -256,10 +255,11 @@ export default Yox.define({
       this.refreshTooltip()
     },
     value(value) {
-      if (this.get('inInteraction')) {
-        return
+      if (this.get('hoverThumbIndex') < 0
+        && this.get('dragThumbIndex') < 0
+      ) {
+        this.set('innerValue', value)
       }
-      this.set('innerValue', value)
     },
     showTooltipIndex(value, oldValue) {
       if (oldValue >= 0) {
@@ -292,9 +292,14 @@ export default Yox.define({
     },
     thumbMouseEnter(event: CustomEventInterface, index: number) {
       event.stop()
-      if (!this.get('inInteraction')) {
+      const dragThumbIndex = this.get('dragThumbIndex')
+      if (dragThumbIndex >= 0) {
+        if (dragThumbIndex === index) {
+          this.set('hoverThumbIndex', index)
+        }
+      }
+      else {
         this.set({
-          inInteraction: TRUE,
           hoverThumbIndex: index,
           showTooltipIndex: this.get('showTooltip') ? index : -1,
         })
@@ -305,7 +310,6 @@ export default Yox.define({
       this.set('hoverThumbIndex', -1)
       if (this.get('dragThumbIndex') < 0) {
         this.set({
-          inInteraction: FALSE,
           showTooltipIndex: -1,
         })
       }
@@ -313,7 +317,6 @@ export default Yox.define({
     thumbMouseDown(event: CustomEventInterface, index: number) {
       event.stop()
       this.set({
-        inInteraction: TRUE,
         dragThumbIndex: index,
       })
       // @ts-ignore
@@ -397,7 +400,6 @@ export default Yox.define({
       me.set('dragThumbIndex', -1)
       if (me.get('hoverThumbIndex') < 0) {
         me.set({
-          inInteraction: FALSE,
           showTooltipIndex: -1,
         })
       }
