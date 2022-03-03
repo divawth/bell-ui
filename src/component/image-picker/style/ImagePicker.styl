@@ -6,6 +6,7 @@ $image-picker-append-icon-size = 30px
 $image-picker-image-size-padding = 2px 4px
 $image-picker-mask-bg = rgba(0,0,0,0.5)
 $image-picker-mask-text = #fff
+$image-picker-mask-text-shadow = rgba(0,0,0,0.5)
 
 {$selector-class-prefix + '-image-picker'}
   position relative
@@ -64,6 +65,8 @@ $image-picker-mask-text = #fff
   color $image-picker-mask-text
   font-size $ui-font-size
   line-height $ui-multiple-line-height
+  text-shadow 1px 1px 2px $image-picker-mask-text-shadow
+  text-align center
   width 80%
 
 {$selector-class-prefix + '-image-picker-reupload'}

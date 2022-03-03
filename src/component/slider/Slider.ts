@@ -6,9 +6,7 @@ import template from './template/Slider.hbs'
 import Tooltip from '../tooltip/Tooltip'
 
 import {
-  TRUE,
   FALSE,
-  UNDEFINED,
   DOCUMENT,
   RAW_ARRAY,
   RAW_STRING,
@@ -17,8 +15,8 @@ import {
   RAW_FUNCTION,
   RAW_EVENT_MOUSEMOVE,
   RAW_EVENT_MOUSEUP,
-  RAW_RIGHT,
   RAW_TOP,
+  RAW_RIGHT,
   RAW_CUSTOM,
   RAW_STYLE_TYPE,
 } from '../constant'
