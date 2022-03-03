@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.24.8
+ * bell-ui.js v0.24.9
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -196,11 +196,6 @@
               : '';
       }
       return '' + value;
-  }
-  function toBoolean(value) {
-      return Yox.is.boolean(value)
-          ? value
-          : FALSE;
   }
   function findComponentUpward(parent, componentName) {
       if (typeof componentName === 'string') {
@@ -2237,7 +2232,7 @@
       }
   });
 
-  var template$k = (function(){var $0=void 0,$2=!0,$4={class:'bell-slider-bar'},$6={class:'bell-slider-stop'},$7=function(){return 0};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','click',_g('click','trackClick.slider','click','','trackClick','slider')):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:{height:_s('vertical',_W.vertical).value?_s('percent',_W.percent).value+'%':$0,width:_s('vertical',_W.vertical).value?$0:_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3};_s('showStops',_W.showStops).value?_m(_s('stops',_W.stops),function(_W,_X,_Y){_U[_U.length]={context:_I,key:_t(_W).value,nativeAttrs:$6,nativeStyles:{bottom:_w($7,'vertical').value?_t(_W).value+'%':$0,left:_w($7,'vertical').value?$0:_t(_W).value+'%'},operator:_D,tag:'div',type:3};}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{content:_s('formatTooltip',_W.formatTooltip).value?_z(_y(_s('formatTooltip',_W.formatTooltip,$0,_J&&_J.formatTooltip||_K.formatTooltip).value,_I,[_s('value',_W.value).value])).value:_s('value',_W.value).value,mode:_s('RAW_CUSTOM',_W.RAW_CUSTOM).value,placement:_s('vertical',_W.vertical).value?_s('RAW_RIGHT',_W.RAW_RIGHT).value:_s('RAW_TOP',_W.RAW_TOP).value},ref:'tooltip',slots:_j({$slot_children:function(_U,_V){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','mousedown',_g('mousedown','thumbMouseDown.slider','mousedown','','thumbMouseDown','slider')):$0;return _T}({context:_I,events:{mouseenter:_g('mouseenter','thumbMouseEnter.slider','mouseenter','','thumbMouseEnter','slider'),mouseleave:_g('mouseleave','thumbMouseLeave.slider','mouseleave','','thumbMouseLeave','slider')},lazy:{mouseenter:200,mouseleave:200},nativeAttrs:{class:'bell-slider-thumb'},nativeStyles:{bottom:_s('vertical',_W.vertical).value?_s('percent',_W.percent).value+'%':$0,left:_s('vertical',_W.vertical).value?$0:_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3});}}),tag:'Tooltip',type:4};return _U}([]),context:_I,nativeAttrs:{class:'bell-slider-track'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider'+(_s('vertical',_W.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_s('disabled',_W.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_s('block',_W.block).value?' bell-slider-block':'')+(_s('thumbIsDragging',_W.thumbIsDragging).value?' bell-slider-dragging':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$k = (function(){var $0=void 0,$2=!0,$4={class:'bell-slider-bar'},$6={class:'bell-slider-stop'},$7=function(){return 0};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','mousedown',_f('mousedown','trackMouseDown()','mousedown','',_I.trackMouseDown)):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:_c(_s('vertical',_W.vertical).value?_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'bottom','top'])).value:_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'left','right'])).value),operator:_D,tag:'div',type:3};_s('showStops',_W.showStops).value?_m(_s('stops',_W.stops),function(_W,_X,_Y){_U[_U.length]={context:_I,key:_v('value',_W.value).value,nativeAttrs:$6,nativeStyles:_c(_v('style',_W.style).value),operator:_D,tag:'div',type:3};}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_m(_s('valuePercentArray',_W.valuePercentArray),function(_W,_X,_Y,index){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{content:_w($7,'formatTooltip').value?_z(_y(_w($7,'formatTooltip').value,_I,[_v('value',_W.value).value])).value:_v('value',_W.value).value,mode:_w($7,'RAW_CUSTOM').value,placement:_w($7,'vertical').value?_w($7,'RAW_RIGHT').value:_w($7,'RAW_TOP').value},ref:'tooltip'+index,slots:_j({$slot_children:function(_U,_V){_U[_U.length]=function(_T){!_w($7,'disabled').value?(_o(_T,'nativeAttrs','tabindex','0'),_o(_T,'lazy','mouseenter',200),_o(_T,'lazy','mouseleave',200),_o(_T,'events','mouseenter',_f('mouseenter','thumbMouseEnter($event, index)','mouseenter','',_I.thumbMouseEnter,{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mouseleave',_f('mouseleave','thumbMouseLeave($event, index)','mouseleave','',_I.thumbMouseLeave,{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mousedown',_f('mousedown','thumbMouseDown($event, index)','mousedown','',_I.thumbMouseDown,{args:function(_S,_Z,_1){return [_Z,index]}}))):$0;return _T}({context:_I,nativeAttrs:{class:'bell-slider-thumb'+(_w($7,'hoverThumbIndex').value===index?' bell-slider-thumb-hover':'')+(_w($7,'dragThumbIndex').value===index?' bell-slider-thumb-dragging':'')},nativeStyles:_c(_w($7,'vertical').value?_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'top':'bottom'])).value:_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'right':'left'])).value),operator:_D,tag:'div',type:3});}}),tag:'Tooltip',type:4};});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider-track'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider'+(_s('vertical',_W.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_s('disabled',_W.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_s('block',_W.block).value?' bell-slider-block':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var template$l = (function(){var $0=void 0,$2=!0,$5={class:'bell-popover-arrow'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{disabled:_s('disabled',_W.disabled).value,offsetX:_s('offsetX',_W.offsetX).value,offsetY:_s('offsetY',_W.offsetY).value,placement:_s('placement',_W.placement).value,showArrow:$2,showDelay:_s('delay',_W.delay).value,trigger:_s('mode',_W.mode).value,visible:_s('isVisible',_W.isVisible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){_s('maxWidth',_W.maxWidth).value||_s('maxHeight',_W.maxHeight).value?_T.nativeStyles={maxHeight:_s('maxHeight',_W.maxHeight).value?_s('maxHeight',_W.maxHeight).value+'px':$0,maxWidth:_s('maxWidth',_W.maxWidth).value?_s('maxWidth',_W.maxWidth).value+'px':$0}:$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_content',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-popover-content'},operator:_D,tag:'div',type:3});_U[_U.length]={context:_I,isPure:$2,isStatic:$2,nativeAttrs:$5,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-tooltip'+(_s('theme',_W.theme).value?' bell-tooltip-'+_A(_s('theme',_W.theme).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}}),tag:'Popover',type:4};}})();
 
@@ -2334,12 +2329,25 @@
       },
   });
 
+  function getPercentByValue(min, max, rawValue) {
+      var range = max - min;
+      var value = toNumber(rawValue);
+      if (value > max) {
+          value = max;
+      }
+      else if (value < min) {
+          value = min;
+      }
+      return range > 0
+          ? (value - min) / range * 100
+          : 0;
+  }
   var Slider = Yox.define({
       template: template$k,
       name: 'bell-Slider',
       propTypes: {
           value: {
-              type: RAW_NUMERIC,
+              type: [RAW_NUMERIC, RAW_ARRAY],
               value: 0,
           },
           max: {
@@ -2361,6 +2369,9 @@
               type: RAW_BOOLEAN,
           },
           disabled: {
+              type: RAW_BOOLEAN,
+          },
+          reverse: {
               type: RAW_BOOLEAN,
           },
           showStops: {
@@ -2390,58 +2401,107 @@
               RAW_TOP: RAW_TOP,
               RAW_RIGHT: RAW_RIGHT,
               RAW_CUSTOM: RAW_CUSTOM,
-              thumbIsDragging: FALSE,
-              mouseInThumb: FALSE,
-              tooltipVisible: FALSE,
+              innerValue: this.get('value'),
+              hoverThumbIndex: -1,
+              dragThumbIndex: -1,
+              showTooltipIndex: -1,
           };
       },
       computed: {
-          percent: function () {
-              var min = toNumber(this.get('min'));
-              var max = toNumber(this.get('max'));
-              var range = max - min;
-              var value = toNumber(this.get('value'));
-              if (value > max) {
-                  value = max;
+          isRange: function () {
+              var value = this.get('value');
+              return Yox.is.array(value);
+          },
+          minNumber: function () {
+              return toNumber(this.get('min'));
+          },
+          maxNumber: function () {
+              return toNumber(this.get('max'));
+          },
+          stepNumber: function () {
+              return toNumber(this.get('step'));
+          },
+          valuePercentArray: {
+              deps: ['innerValue', 'innerValue.*'],
+              get: function () {
+                  var min = this.get('minNumber');
+                  var max = this.get('maxNumber');
+                  var innerValue = this.get('innerValue');
+                  if (Yox.is.array(innerValue)) {
+                      return [
+                          {
+                              value: innerValue[0],
+                              percent: getPercentByValue(min, max, innerValue[0])
+                          },
+                          {
+                              value: innerValue[1],
+                              percent: getPercentByValue(min, max, innerValue[1])
+                          } ];
+                  }
+                  return [
+                      {
+                          value: innerValue,
+                          percent: getPercentByValue(min, max, innerValue),
+                      }
+                  ];
               }
-              else if (value < min) {
-                  value = min;
-              }
-              return range > 0
-                  ? (value - min) / range * 100
-                  : 0;
           },
           stops: function () {
-              var min = toNumber(this.get('min'));
-              var max = toNumber(this.get('max'));
-              var step = toNumber(this.get('step'));
+              var vertical = this.get('vertical');
+              var reverse = this.get('reverse');
+              var min = this.get('minNumber');
+              var max = this.get('maxNumber');
+              var step = this.get('stepNumber');
               var range = max - min;
               var result = [];
               if (max - min > step) {
                   var count = Math.floor(range / step);
                   var interval = 100 / count;
                   for (var i = 1; i < count; i++) {
-                      result.push(i * interval);
+                      var value = i * interval;
+                      var percent = value + '%';
+                      result.push({
+                          value: value,
+                          style: vertical
+                              ? (reverse ? { top: percent } : { bottom: percent })
+                              : (reverse ? { right: percent } : { left: percent })
+                      });
                   }
               }
               return result;
           }
       },
-      watchers: {
-          value: function () {
-              this.nextTick(function () {
-                  var tooltip = this.$refs.tooltip;
-                  tooltip.refresh();
-              });
+      filters: {
+          formatBarStyle: function (valuePercentArray, reverse, fromName, toName) {
+              var _a;
+              var fromPercnet = valuePercentArray[0].percent;
+              var toPercent;
+              if (valuePercentArray[1]) {
+                  toPercent = valuePercentArray[1].percent;
+                  if (fromPercnet > toPercent) {
+                      fromPercnet = valuePercentArray[1].percent;
+                      toPercent = valuePercentArray[0].percent;
+                  }
+              }
+              else {
+                  toPercent = fromPercnet;
+                  fromPercnet = 0;
+              }
+              if (reverse) {
+                  var temp = fromName;
+                  fromName = toName;
+                  toName = temp;
+              }
+              return _a = {},
+                  _a[fromName] = fromPercnet + '%',
+                  _a[toName] = (100 - toPercent) + '%',
+                  _a;
           },
-          tooltipVisible: function (value, oldValue) {
-              var tooltip = this.$refs.tooltip;
-              if (value) {
-                  tooltip.open();
-              }
-              else if (oldValue) {
-                  tooltip.close();
-              }
+          formatThumbStyle: function (percent, name) {
+              var _a;
+              return _a = {},
+                  _a[name] = percent + '%',
+                  _a;
           }
       },
       events: {
@@ -2451,14 +2511,92 @@
                       return;
                   }
                   event.stop();
-                  this.set('tooltipVisible', FALSE);
+                  this.set('showTooltipIndex', -1);
               },
               ns: 'tooltip'
           }
       },
+      watchers: {
+          'valuePercentArray.*.value': function () {
+              // @ts-ignore
+              this.refreshTooltip();
+          },
+          value: function (value) {
+              if (this.get('hoverThumbIndex') < 0
+                  && this.get('dragThumbIndex') < 0) {
+                  this.set('innerValue', value);
+              }
+          },
+          hoverThumbIndex: function (index) {
+              if (index >= 0) {
+                  this.set('showTooltipIndex', this.get('showTooltip') ? index : -1);
+              }
+              else if (this.get('dragThumbIndex') < 0) {
+                  this.set('showTooltipIndex', -1);
+              }
+          },
+          dragThumbIndex: function (index) {
+              if (index < 0 && this.get('hoverThumbIndex') < 0) {
+                  this.set('showTooltipIndex', -1);
+              }
+          },
+          showTooltipIndex: function (index, oldIndex) {
+              if (oldIndex >= 0) {
+                  var tooltip = this.$refs['tooltip' + oldIndex];
+                  tooltip.close();
+              }
+              if (index >= 0) {
+                  var tooltip = this.$refs['tooltip' + index];
+                  tooltip.open();
+              }
+          }
+      },
+      methods: {
+          refreshTooltip: function () {
+              var index = this.get('showTooltipIndex');
+              if (index < 0) {
+                  return;
+              }
+              this.nextTick(function () {
+                  var tooltip = this.$refs['tooltip' + index];
+                  tooltip.refresh();
+              });
+          },
+          trackMouseDown: function (event) {
+              event.stop();
+              fireClickEvent(event);
+              // @ts-ignore
+              this.onTrackMouseDown(event);
+          },
+          thumbMouseEnter: function (event, index) {
+              event.stop();
+              var dragThumbIndex = this.get('dragThumbIndex');
+              if (dragThumbIndex >= 0) {
+                  if (dragThumbIndex === index) {
+                      this.set('hoverThumbIndex', index);
+                  }
+              }
+              else {
+                  this.set('hoverThumbIndex', index);
+              }
+          },
+          thumbMouseLeave: function (event) {
+              event.stop();
+              this.set('hoverThumbIndex', -1);
+          },
+          thumbMouseDown: function (event, index) {
+              event.stop();
+              this.set('dragThumbIndex', index);
+              // @ts-ignore
+              this.onThumbMouseDown();
+          }
+      },
       afterMount: function () {
           var me = this;
+          var isRange = FALSE;
+          var dragThumbIndex = -1;
           var isVertical = FALSE;
+          var isReverse = FALSE;
           var min = 0;
           var max = 0;
           var step = 0;
@@ -2466,19 +2604,37 @@
           var trackTop = 0;
           var trackRight = 0;
           var trackBottom = 0;
-          var onMouseMove = function (event) {
-              var originalEvent = event.originalEvent;
-              updatePosition(originalEvent.pageX, originalEvent.pageY);
-          };
-          var onMouseUp = function () {
-              Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onMouseMove);
-              Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onMouseUp);
-              me.set('thumbIsDragging', FALSE);
-              if (!me.get('mouseInThumb')) {
-                  me.set('tooltipVisible', FALSE);
+          var onTrackMouseDown = function (event) {
+              updateVariable();
+              var _a = event.originalEvent, pageX = _a.pageX, pageY = _a.pageY;
+              var ratio = getRatio(pageX, pageY);
+              if (isRange) {
+                  // 当前坐标距离哪个 thumb 近就移动哪个
+                  var percent = ratio * 100;
+                  var valuePercentArray = me.get('valuePercentArray');
+                  updatePosition(ratio, Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)
+                      ? 1
+                      : 0);
+              }
+              else {
+                  updatePosition(ratio);
               }
           };
-          var updatePosition = function (x, y) {
+          var onThumbMouseDown = function () {
+              updateVariable();
+              Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove);
+              Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp);
+          };
+          var onThumbMouseMove = function (event) {
+              var _a = event.originalEvent, pageX = _a.pageX, pageY = _a.pageY;
+              updatePosition(getRatio(pageX, pageY), dragThumbIndex);
+          };
+          var onThumbMouseUp = function () {
+              Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove);
+              Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp);
+              me.set('dragThumbIndex', -1);
+          };
+          var getRatio = function (x, y) {
               var ratio = 0;
               if (isVertical) {
                   if (y < trackTop) {
@@ -2498,20 +2654,40 @@
                   }
                   ratio = (x - trackLeft) / (trackRight - trackLeft);
               }
+              return isReverse ? (1 - ratio) : ratio;
+          };
+          var updatePosition = function (ratio, index) {
               var newValue = (max - min) * ratio + min;
               if (step > 0) {
                   var count = Math.round(newValue / step);
-                  me.set('value', step * count);
+                  newValue = step * count;
+              }
+              if (isRange) {
+                  me.set('innerValue.' + index, newValue);
+                  var value = me.copy(me.get('innerValue'));
+                  // 交换值
+                  if (value[0] > value[1]) {
+                      var temp = value[0];
+                      value[0] = value[1];
+                      value[1] = temp;
+                  }
+                  me.set('value', value);
               }
               else {
-                  me.set('value', newValue);
+                  me.set({
+                      innerValue: newValue,
+                      value: newValue,
+                  });
               }
           };
-          var updateValues = function () {
+          var updateVariable = function () {
+              isRange = me.get('isRange');
+              dragThumbIndex = me.get('dragThumbIndex');
               isVertical = me.get('vertical');
-              max = toNumber(me.get('max'));
-              min = toNumber(me.get('min'));
-              step = toNumber(me.get('step'));
+              isReverse = me.get('reverse');
+              max = me.get('maxNumber');
+              min = me.get('minNumber');
+              step = me.get('stepNumber');
               var _a = me.$el.getBoundingClientRect(), top = _a.top, left = _a.left, right = _a.right, bottom = _a.bottom;
               if (isVertical) {
                   var pageY = getPageY();
@@ -2524,38 +2700,10 @@
                   trackRight = pageX + right;
               }
           };
-          me
-              .on('thumbMouseEnter.slider', function (event) {
-              event.stop();
-              me.set({
-                  mouseInThumb: TRUE,
-                  tooltipVisible: toBoolean(me.get('showTooltip')),
-              });
-          })
-              .on('thumbMouseLeave.slider', function (event) {
-              event.stop();
-              me.set('mouseInThumb', FALSE);
-              if (!me.get('thumbIsDragging')) {
-                  me.set('tooltipVisible', FALSE);
-              }
-          })
-              .on('thumbMouseDown.slider', function (event) {
-              event.stop();
-              updateValues();
-              Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onMouseMove);
-              Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onMouseUp);
-              me.set({
-                  thumbIsDragging: TRUE,
-                  tooltipVisible: toBoolean(me.get('showTooltip')),
-              });
-          })
-              .on('trackClick.slider', function (event) {
-              event.stop();
-              fireClickEvent(event);
-              updateValues();
-              var originalEvent = event.originalEvent;
-              updatePosition(originalEvent.pageX, originalEvent.pageY);
-          });
+          // @ts-ignore
+          this.onTrackMouseDown = onTrackMouseDown;
+          // @ts-ignore
+          this.onThumbMouseDown = onThumbMouseDown;
       },
       components: {
           Tooltip: Tooltip,
@@ -5751,10 +5899,196 @@
       }
   });
 
-  var template$P = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse'+(_s('simple',_W.simple).value?' bell-collapse-simple':' bell-collapse-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$P = (function(){var $0=void 0,$2=!0,$4={class:'bell-carousel-list'},$5=function(_S){return _S.length-1},$6=function(){return 0};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$4,operator:_D,ref:'list',tag:'div',type:3};_s('count',_W.count).value>1?_U[_U.length]={children:function(_U){_n(0,_s('count',_W.count).value,$0,function(_W,_X,_Y,i){_U[_U.length]=function(_T){_w($6,'trigger').value===_w($6,'RAW_CLICK').value?_o(_T,'events','click',_f('click','go(i)','click','',_I.go,{args:function(_S,_Z,_1){return [i]}})):_o(_T,'events','mouseenter',_f('mouseenter','go(i)','mouseenter','',_I.go,{args:function(_S,_Z,_1){return [i]}}));return _T}({context:_I,nativeAttrs:{class:'bell-carousel-indicator-item'+(_w($6,'index').value===i?' bell-carousel-indicator-item-active':'')},operator:_D,tag:'div',type:3});});return _U}([]),context:_I,nativeAttrs:{class:'bell-carousel-indicator'+(_s('indicatorType',_W.indicatorType).value?' bell-carousel-indicator-'+_A(_s('indicatorType',_W.indicatorType).value):'')+(_s('indicatorPosition',_W.indicatorPosition).value?' bell-carousel-indicator-'+_A(_s('indicatorPosition',_W.indicatorPosition).value):'')},operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-carousel'+(_s('direction',_W.direction).value?' bell-carousel-'+_A(_s('direction',_W.direction).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},nativeStyles:_c([_s('size',_W.size).value?{height:_r($5,'size.height',$2).value+'px',width:_r($5,'size.width',$2).value+'px'}:$0,_s('style',_W.style).value]),operator:_D,tag:'div',type:3};}})();
+
+  var Carousel = Yox.define({
+      template: template$P,
+      name: 'bell-Carousel',
+      propTypes: {
+          autoPlay: {
+              type: RAW_BOOLEAN,
+          },
+          interval: {
+              type: RAW_NUMERIC,
+              value: 3000,
+          },
+          trigger: {
+              type: oneOf([RAW_CLICK, RAW_HOVER]),
+              value: RAW_CLICK
+          },
+          indicatorType: {
+              type: oneOf(['dot', 'line']),
+              value: 'dot'
+          },
+          indicatorPosition: {
+              type: oneOf([
+                  RAW_TOP,
+                  RAW_RIGHT,
+                  RAW_BOTTOM,
+                  RAW_LEFT ]),
+              value: RAW_BOTTOM,
+          },
+          className: {
+              type: RAW_STRING,
+          },
+          style: {
+              type: RAW_STYLE_TYPE,
+          }
+      },
+      data: function (options) {
+          var children = options.slots[RAW_SLOT_CHILDREN];
+          return {
+              RAW_CLICK: RAW_CLICK,
+              RAW_HOVER: RAW_HOVER,
+              RAW_TOP: RAW_TOP,
+              RAW_RIGHT: RAW_RIGHT,
+              RAW_BOTTOM: RAW_BOTTOM,
+              RAW_LEFT: RAW_LEFT,
+              index: 0,
+              count: children.vnodes.length,
+              size: UNDEFINED,
+          };
+      },
+      computed: {
+          direction: function () {
+              var indicatorPosition = this.get('indicatorPosition');
+              return indicatorPosition === 'left' || indicatorPosition === 'right'
+                  ? 'vertical'
+                  : 'horizontal';
+          }
+      },
+      events: {
+          sizeChange: {
+              listener: function (event, data) {
+                  if (event.phase !== Yox.Event.PHASE_UPWARD) {
+                      return;
+                  }
+                  event.stop();
+                  this.set('size', data);
+              },
+              ns: 'carouselItem'
+          }
+      },
+      watchers: {
+          index: function (value) {
+              // @ts-ignore
+              this.move(value, TRUE);
+          },
+          direction: function () {
+              // @ts-ignore
+              this.move(this.get('index'));
+          }
+      },
+      methods: {
+          go: function (index) {
+              this.set('index', index);
+          },
+          prev: function () {
+              var index = this.get('index') - 1;
+              var count = this.get('count');
+              // @ts-ignore
+              this.go(index < 0 ? (count - 1) : index);
+          },
+          next: function () {
+              var index = this.get('index') + 1;
+              var count = this.get('count');
+              // @ts-ignore
+              this.go(index === count ? 0 : index);
+          },
+          move: function (index, animated) {
+              var size = this.get('size');
+              if (!size) {
+                  return;
+              }
+              var element = this.$refs.list;
+              element.style.transitionDuration = animated ? '0.2s' : '';
+              element.style.transform = this.get('direction') === 'horizontal'
+                  ? ('translateX(-' + (index * size.width) + 'px)')
+                  : ('translateY(-' + (index * size.height) + 'px)');
+          }
+      },
+      afterMount: function () {
+          var me = this;
+          var autoPlayTimer;
+          var autoPlayHandler = function () {
+              // @ts-ignore
+              me.next();
+              autoPlayTimer = window.setTimeout(autoPlayHandler, me.get('interval'));
+          };
+          me.watch('autoPlay', function (newValue) {
+              if (newValue) {
+                  autoPlayTimer = window.setTimeout(autoPlayHandler, me.get('interval'));
+              }
+              else if (autoPlayTimer) {
+                  clearTimeout(autoPlayTimer);
+                  autoPlayTimer = 0;
+              }
+          }, TRUE);
+          var destroy = function (component) {
+              if (component === me) {
+                  if (autoPlayTimer) {
+                      clearTimeout(autoPlayTimer);
+                  }
+                  Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy);
+              }
+          };
+          Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy);
+      },
+      beforePropsUpdate: function (props) {
+          var children = props[RAW_SLOT_CHILDREN];
+          this.set('count', children.vnodes.length);
+      }
+  });
+
+  var template$Q = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-carousel-item'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+
+  var CarouselItem = Yox.define({
+      template: template$Q,
+      name: 'bell-CarouselItem',
+      propTypes: {
+          className: {
+              type: RAW_STRING,
+          },
+          style: {
+              type: RAW_STYLE_TYPE,
+          }
+      },
+      afterMount: function () {
+          var me = this;
+          var element = me.$el;
+          var updateSize = function (width, height) {
+              me.fire({
+                  type: 'sizeChange',
+                  ns: 'carouselItem',
+              }, {
+                  width: width,
+                  height: height,
+              });
+          };
+          updateSize(element.clientWidth, element.clientHeight);
+          // @ts-ignore
+          if (ResizeObserver) {
+              // @ts-ignore
+              var resizeObserver_1 = new ResizeObserver(function (entries) {
+                  var _a = entries[0].contentRect, width = _a.width, height = _a.height;
+                  updateSize(width, height);
+              });
+              resizeObserver_1.observe(element);
+              var destroy_1 = function (component) {
+                  if (component === me) {
+                      resizeObserver_1.disconnect();
+                      Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy_1);
+                  }
+              };
+              Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy_1);
+          }
+      }
+  });
+
+  var template$R = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse'+(_s('simple',_W.simple).value?' bell-collapse-simple':' bell-collapse-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Collapse = Yox.define({
-      template: template$P,
+      template: template$R,
       name: 'bell-Collapse',
       propTypes: {
           value: {
@@ -5812,10 +6146,10 @@
       }
   });
 
-  var template$Q = (function(){var $0=void 0,$2=!0,$5={class:'bell-collapse-extra'},$6={class:'bell-collapse-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','click',_f('click','click()','click','',_I.click)):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-collapse-arrow-icon',name:'arrow-right-s-line'},tag:'Icon',type:4};_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('title',_W.title).value),type:1};return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse-header'},operator:_D,tag:'div',type:3});_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse-item'+(_s('opened',_W.opened).value?' bell-collapse-opened':'')+(_s('disabled',_W.disabled).value?' bell-collapse-disabled':' bell-collapse-enabled')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$S = (function(){var $0=void 0,$2=!0,$5={class:'bell-collapse-extra'},$6={class:'bell-collapse-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','click',_f('click','click()','click','',_I.click)):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-collapse-arrow-icon',name:'arrow-right-s-line'},tag:'Icon',type:4};_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('title',_W.title).value),type:1};return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse-header'},operator:_D,tag:'div',type:3});_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-collapse-item'+(_s('opened',_W.opened).value?' bell-collapse-opened':'')+(_s('disabled',_W.disabled).value?' bell-collapse-disabled':' bell-collapse-enabled')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var CollapseItem = Yox.define({
-      template: template$Q,
+      template: template$S,
       name: 'bell-CollapseItem',
       propTypes: {
           title: {
@@ -5882,10 +6216,10 @@
       }
   });
 
-  var template$R = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('width',_W.width).value?{width:_s('width',_W.width).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card bell-card-shadow-'+_A(_s('shadow',_W.shadow).value)+(_s('simple',_W.simple).value?' bell-card-simple':' bell-card-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$T = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('width',_W.width).value?{width:_s('width',_W.width).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card bell-card-shadow-'+_A(_s('shadow',_W.shadow).value)+(_s('simple',_W.simple).value?' bell-card-simple':' bell-card-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Card = Yox.define({
-      template: template$R,
+      template: template$T,
       name: 'bell-Card',
       propTypes: {
           simple: {
@@ -5907,10 +6241,10 @@
       },
   });
 
-  var template$S = (function(){var $0=void 0,$2=!0,$4={class:'bell-card-header-title'},$6={class:'bell-card-header-sub-title'},$7={class:'bell-card-header-info'},$8={class:'bell-card-header-wrapper'},$9={class:'bell-card-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_avatar',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$4,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_subTitle',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-card-header'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$U = (function(){var $0=void 0,$2=!0,$4={class:'bell-card-header-title'},$6={class:'bell-card-header-sub-title'},$7={class:'bell-card-header-info'},$8={class:'bell-card-header-wrapper'},$9={class:'bell-card-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_avatar',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$4,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_subTitle',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-card-header'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var CardHeader = Yox.define({
-      template: template$S,
+      template: template$U,
       name: 'bell-CardHeader',
       propTypes: {
           className: {
@@ -5922,10 +6256,10 @@
       },
   });
 
-  var template$T = (function(){var $0=void 0,$2=!0,$5={class:'bell-card-media-title'},$6={class:'bell-card-media-sub-title'},$7={class:'bell-card-media-info'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_subTitle',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-card-media'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$V = (function(){var $0=void 0,$2=!0,$5={class:'bell-card-media-title'},$6={class:'bell-card-media-sub-title'},$7={class:'bell-card-media-info'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['subTitle'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_subTitle',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-card-media'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var CardMedia = Yox.define({
-      template: template$T,
+      template: template$V,
       name: 'bell-CardMedia',
       propTypes: {
           className: {
@@ -5937,10 +6271,10 @@
       },
   });
 
-  var template$U = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card-body'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$W = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card-body'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var CardBody = Yox.define({
-      template: template$U,
+      template: template$W,
       name: 'bell-CardBody',
       propTypes: {
           className: {
@@ -5952,10 +6286,10 @@
       },
   });
 
-  var template$V = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card-footer'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$X = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-card-footer'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var CardFooter = Yox.define({
-      template: template$V,
+      template: template$X,
       name: 'bell-CardFooter',
       propTypes: {
           className: {
@@ -5967,10 +6301,10 @@
       },
   });
 
-  var template$W = (function(){var $0=void 0,$2=!0,$5={class:'bell-page-header-title'},$6={class:'bell-page-header-tags'},$7={class:'bell-page-header-extra'},$8={class:'bell-page-header-header'},$9={class:'bell-page-header-body'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_breadcrumb',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_U[_U.length]={children:function(_U){_s('showBack',_W.showBack).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','back.pageHeader','click','native','back','pageHeader',$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-page-header-back',name:'arrow-left-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['tags'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_tags',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['content'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_content',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-page-header'+(_s('showBack',_W.showBack).value?' bell-page-header-with-back':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['tags'])).value?' bell-page-header-with-tags':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?' bell-page-header-with-extra':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$Y = (function(){var $0=void 0,$2=!0,$5={class:'bell-page-header-title'},$6={class:'bell-page-header-tags'},$7={class:'bell-page-header-extra'},$8={class:'bell-page-header-header'},$9={class:'bell-page-header-body'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_breadcrumb',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_U[_U.length]={children:function(_U){_s('showBack',_W.showBack).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','back.pageHeader','click','native','back','pageHeader',$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-page-header-back',name:'arrow-left-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['tags'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_tags',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['content'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_content',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-page-header'+(_s('showBack',_W.showBack).value?' bell-page-header-with-back':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['tags'])).value?' bell-page-header-with-tags':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?' bell-page-header-with-extra':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var PageHeader = Yox.define({
-      template: template$W,
+      template: template$Y,
       name: 'bell-PageHeader',
       propTypes: {
           title: {
@@ -5992,10 +6326,10 @@
       }
   });
 
-  var template$X = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout'+(_s('vertical',_W.vertical).value?' bell-layout-vertical':' bell-layout-horizontal')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$Z = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout'+(_s('vertical',_W.vertical).value?' bell-layout-vertical':' bell-layout-horizontal')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Layout = Yox.define({
-      template: template$X,
+      template: template$Z,
       name: 'bell-Layout',
       propTypes: {
           vertical: {
@@ -6010,10 +6344,10 @@
       }
   });
 
-  var template$Y = (function(){var $0=void 0,$2=!0,$5={class:'bell-layout-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-header'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$_ = (function(){var $0=void 0,$2=!0,$5={class:'bell-layout-header-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-header'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var LayoutHeader = Yox.define({
-      template: template$Y,
+      template: template$_,
       name: 'bell-LayoutHeader',
       propTypes: {
           className: {
@@ -6025,10 +6359,10 @@
       },
   });
 
-  var template$Z = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-content'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$$ = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-content'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var LayoutContent = Yox.define({
-      template: template$Z,
+      template: template$$,
       name: 'bell-LayoutContent',
       propTypes: {
           className: {
@@ -6040,10 +6374,10 @@
       },
   });
 
-  var template$_ = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-footer'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$10 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-footer'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var LayoutFooter = Yox.define({
-      template: template$_,
+      template: template$10,
       name: 'bell-LayoutFooter',
       propTypes: {
           className: {
@@ -6055,10 +6389,10 @@
       },
   });
 
-  var template$$ = (function(){var $0=void 0,$2=!0,$5={class:'bell-layout-sider-logo'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('customWidth',_W.customWidth).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('customWidth',_W.customWidth).value?{flex:'0 0 '+_s('customWidth',_W.customWidth).value+'px',maxWidth:_s('customWidth',_W.customWidth).value+'px',minWidth:_s('customWidth',_W.customWidth).value+'px',width:_s('customWidth',_W.customWidth).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['logo'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_logo',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_s('showTrigger',_W.showTrigger).value?_U[_U.length]=function(_T){_s('customWidth',_W.customWidth).value?_T.nativeStyles={width:_s('customWidth',_W.customWidth).value+'px'}:$0;return _T}({children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-layout-sider-trigger-icon',name:'arrow-left-s-line'},tag:'Icon',type:4};return _U}([]),context:_I,events:{click:_f('click',"toggle('collapsed')",'click','',_I.toggle,{args:function(_S,_Z,_1){return ['collapsed']}})},nativeAttrs:{class:'bell-layout-sider-trigger'},operator:_D,tag:'div',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-sider'+(_s('collapsed',_W.collapsed).value?' bell-layout-sider-collapsed':'')+(_s('showTrigger',_W.showTrigger).value?' bell-layout-sider-with-trigger':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$11 = (function(){var $0=void 0,$2=!0,$5={class:'bell-layout-sider-logo'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('customWidth',_W.customWidth).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('customWidth',_W.customWidth).value?{flex:'0 0 '+_s('customWidth',_W.customWidth).value+'px',maxWidth:_s('customWidth',_W.customWidth).value+'px',minWidth:_s('customWidth',_W.customWidth).value+'px',width:_s('customWidth',_W.customWidth).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['logo'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_logo',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_s('showTrigger',_W.showTrigger).value?_U[_U.length]=function(_T){_s('customWidth',_W.customWidth).value?_T.nativeStyles={width:_s('customWidth',_W.customWidth).value+'px'}:$0;return _T}({children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-layout-sider-trigger-icon',name:'arrow-left-s-line'},tag:'Icon',type:4};return _U}([]),context:_I,events:{click:_f('click',"toggle('collapsed')",'click','',_I.toggle,{args:function(_S,_Z,_1){return ['collapsed']}})},nativeAttrs:{class:'bell-layout-sider-trigger'},operator:_D,tag:'div',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-layout-sider'+(_s('collapsed',_W.collapsed).value?' bell-layout-sider-collapsed':'')+(_s('showTrigger',_W.showTrigger).value?' bell-layout-sider-with-trigger':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var LayoutSider = Yox.define({
-      template: template$$,
+      template: template$11,
       model: 'collapsed',
       name: 'bell-LayoutSider',
       propTypes: {
@@ -6092,10 +6426,10 @@
       }
   });
 
-  var template$10 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('target',_W.target).value?_o(_T,'nativeAttrs','target',_s('target',_W.target).value):$0;_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('href',_W.href).value&&!_s('disabled',_W.disabled).value?_o(_T,'events','click',_g('click','click.link','click','','click','link')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-link'+(_s('type',_W.type).value?' bell-link-'+_A(_s('type',_W.type).value):'')+(_s('size',_W.size).value?' bell-link-'+_A(_s('size',_W.size).value):'')+(_s('underline',_W.underline).value?' bell-link-underline':'')+(_s('disabled',_W.disabled).value?' bell-link-disabled':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):''),href:_s('href',_W.href).value||'javascript:void(0)',ondragstart:'return false'},operator:_D,tag:'a',type:3});}})();
+  var template$12 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('target',_W.target).value?_o(_T,'nativeAttrs','target',_s('target',_W.target).value):$0;_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('href',_W.href).value&&!_s('disabled',_W.disabled).value?_o(_T,'events','click',_g('click','click.link','click','','click','link')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-link'+(_s('type',_W.type).value?' bell-link-'+_A(_s('type',_W.type).value):'')+(_s('size',_W.size).value?' bell-link-'+_A(_s('size',_W.size).value):'')+(_s('underline',_W.underline).value?' bell-link-underline':'')+(_s('disabled',_W.disabled).value?' bell-link-disabled':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):''),href:_s('href',_W.href).value||'javascript:void(0)',ondragstart:'return false'},operator:_D,tag:'a',type:3});}})();
 
   var Link = Yox.define({
-      template: template$10,
+      template: template$12,
       name: 'bell-Link',
       propTypes: {
           type: {
@@ -6135,14 +6469,14 @@
       }
   });
 
-  var template$11 = (function(){var $0=void 0,$2=!0,$5={class:'bell-list-header'},$6={class:'bell-list-body'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['header'])).value?(_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_header',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3},_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_empty',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ListEmpty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}):_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_empty',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ListEmpty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_s('loading',_W.loading).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-list'+(_s('size',_W.size).value?' bell-list-'+_A(_s('size',_W.size).value):'')+(_s('simple',_W.simple).value?' bell-list-simple':' bell-list-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$13 = (function(){var $0=void 0,$2=!0,$5={class:'bell-list-header'},$6={class:'bell-list-body'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['header'])).value?(_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_header',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3},_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_empty',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ListEmpty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}):_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_empty',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ListEmpty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);_s('loading',_W.loading).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-list'+(_s('size',_W.size).value?' bell-list-'+_A(_s('size',_W.size).value):'')+(_s('simple',_W.simple).value?' bell-list-simple':' bell-list-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
-  var template$12 = (function(){var $2=!0,$4={class:'bell-list-empty'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'暂无数据',type:1};}}),tag:'Empty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$4,operator:_D,tag:'div',type:3};}})();
+  var template$14 = (function(){var $2=!0,$4={class:'bell-list-empty'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'暂无数据',type:1};}}),tag:'Empty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$4,operator:_D,tag:'div',type:3};}})();
 
-  var template$13 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-empty'+(_s('simple',_W.simple).value?' bell-empty-simple':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-empty-with-content':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$15 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-empty'+(_s('simple',_W.simple).value?' bell-empty-simple':'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-empty-with-content':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Empty = Yox.define({
-      template: template$13,
+      template: template$15,
       name: 'bell-Empty',
       propTypes: {
           simple: {
@@ -6158,14 +6492,14 @@
   });
 
   var ListEmpty = Yox.define({
-      template: template$12,
+      template: template$14,
       components: {
           Empty: Empty,
       }
   });
 
   var List = Yox.define({
-      template: template$11,
+      template: template$13,
       name: 'bell-List',
       propTypes: {
           simple: {
@@ -6194,10 +6528,10 @@
       }
   });
 
-  var template$14 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;_s('clickable',_W.clickable).value?_o(_T,'events','click',_g('click','click.listItem','click','','click','listItem')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-list-item'+(_s('clickable',_W.clickable).value?' bell-list-item-clickable':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$16 = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;_s('clickable',_W.clickable).value?_o(_T,'events','click',_g('click','click.listItem','click','','click','listItem')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-list-item'+(_s('clickable',_W.clickable).value?' bell-list-item-clickable':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var ListItem = Yox.define({
-      template: template$14,
+      template: template$16,
       name: 'bell-ListItem',
       propTypes: {
           className: {
@@ -6217,10 +6551,10 @@
       }
   });
 
-  var template$15 = (function(){var $0=void 0,$2=!0,$5={class:'bell-result-icon'},$6={class:'bell-result-title'},$7={class:'bell-result-sub-title'},$8={class:'bell-result-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_icon',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-result-status-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('subTitle',_W.subTitle).value?_U[_U.length]={context:_I,nativeAttrs:$7,operator:_D,tag:'div',text:_A(_s('subTitle',_W.subTitle).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-result'+(_s('status',_W.status).value?' bell-result-'+_A(_s('status',_W.status).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$17 = (function(){var $0=void 0,$2=!0,$5={class:'bell-result-icon'},$6={class:'bell-result-title'},$7={class:'bell-result-sub-title'},$8={class:'bell-result-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_icon',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-result-status-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('subTitle',_W.subTitle).value?_U[_U.length]={context:_I,nativeAttrs:$7,operator:_D,tag:'div',text:_A(_s('subTitle',_W.subTitle).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-result'+(_s('status',_W.status).value?' bell-result-'+_A(_s('status',_W.status).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Result = Yox.define({
-      template: template$15,
+      template: template$17,
       name: 'bell-Result',
       propTypes: {
           title: {
@@ -6252,10 +6586,10 @@
       }
   });
 
-  var template$16 = (function(){var $0=void 0,$2=!0,$5={class:'bell-exception-title'},$6={class:'bell-exception-sub-title'},$7={class:'bell-exception-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('subTitle',_W.subTitle).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('subTitle',_W.subTitle).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-exception'+(_s('status',_W.status).value?' bell-exception-'+_A(_s('status',_W.status).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$18 = (function(){var $0=void 0,$2=!0,$5={class:'bell-exception-title'},$6={class:'bell-exception-sub-title'},$7={class:'bell-exception-extra'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('subTitle',_W.subTitle).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('subTitle',_W.subTitle).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-exception'+(_s('status',_W.status).value?' bell-exception-'+_A(_s('status',_W.status).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Exception = Yox.define({
-      template: template$16,
+      template: template$18,
       name: 'bell-Exception',
       propTypes: {
           title: {
@@ -6276,10 +6610,10 @@
       },
   });
 
-  var template$17 = (function(){var $0=void 0,$2=!0,$5={class:'bell-divider-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-divider'+(_s('vertical',_W.vertical).value?' bell-divider-vertical':' bell-divider-horizontal')+(_s('dashed',_W.dashed).value?' bell-divider-dashed':'')+(_s('align',_W.align).value?' bell-divider-'+_A(_s('align',_W.align).value):'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-divider-with-text':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$19 = (function(){var $0=void 0,$2=!0,$5={class:'bell-divider-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-divider'+(_s('vertical',_W.vertical).value?' bell-divider-vertical':' bell-divider-horizontal')+(_s('dashed',_W.dashed).value?' bell-divider-dashed':'')+(_s('align',_W.align).value?' bell-divider-'+_A(_s('align',_W.align).value):'')+(_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-divider-with-text':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Divider = Yox.define({
-      template: template$17,
+      template: template$19,
       name: 'bell-Divider',
       propTypes: {
           vertical: {
@@ -6301,10 +6635,10 @@
       },
   });
 
-  var template$18 = (function(){var $0=void 0,$2=!0,$5={viewBox:'0 0 100 100'},$6={class:'bell-circle-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,isSvg:$2,nativeAttrs:{d:_s('path',_W.path).value,'fill-opacity':'0',stroke:_s('trailColor',_W.trailColor).value,'stroke-width':_s('trailWidth',_W.trailWidth).value},nativeStyles:_c(_s('trailStyle',_W.trailStyle).value),operator:_D,tag:'path',type:3};_U[_U.length]={context:_I,isSvg:$2,nativeAttrs:{d:_s('path',_W.path).value,'fill-opacity':'0',stroke:_s('strokeColor',_W.strokeColor).value,'stroke-linecap':_s('strokeLinecap',_W.strokeLinecap).value,'stroke-width':_s('strokeWidth',_W.strokeWidth).value},nativeStyles:_c(_s('pathStyle',_W.pathStyle).value),operator:_D,tag:'path',type:3};return _U}([]),context:_I,isSvg:$2,nativeAttrs:$5,operator:_D,tag:'svg',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-circle'+(_s('dashboard',_W.dashboard).value?' bell-circle-dashboard':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},nativeStyles:_c([{height:_s('size',_W.size).value+'px',width:_s('size',_W.size).value+'px'},_s('style',_W.style).value]),operator:_D,tag:'div',type:3};}})();
+  var template$1a = (function(){var $0=void 0,$2=!0,$5={viewBox:'0 0 100 100'},$6={class:'bell-circle-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,isSvg:$2,nativeAttrs:{d:_s('path',_W.path).value,'fill-opacity':'0',stroke:_s('trailColor',_W.trailColor).value,'stroke-width':_s('trailWidth',_W.trailWidth).value},nativeStyles:_c(_s('trailStyle',_W.trailStyle).value),operator:_D,tag:'path',type:3};_U[_U.length]={context:_I,isSvg:$2,nativeAttrs:{d:_s('path',_W.path).value,'fill-opacity':'0',stroke:_s('strokeColor',_W.strokeColor).value,'stroke-linecap':_s('strokeLinecap',_W.strokeLinecap).value,'stroke-width':_s('strokeWidth',_W.strokeWidth).value},nativeStyles:_c(_s('pathStyle',_W.pathStyle).value),operator:_D,tag:'path',type:3};return _U}([]),context:_I,isSvg:$2,nativeAttrs:$5,operator:_D,tag:'svg',type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-circle'+(_s('dashboard',_W.dashboard).value?' bell-circle-dashboard':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},nativeStyles:_c([{height:_s('size',_W.size).value+'px',width:_s('size',_W.size).value+'px'},_s('style',_W.style).value]),operator:_D,tag:'div',type:3};}})();
 
   var Circle = Yox.define({
-      template: template$18,
+      template: template$1a,
       name: 'bell-Circle',
       propTypes: {
           dashboard: {
@@ -6395,10 +6729,10 @@
       }
   });
 
-  var template$19 = (function(){var $0=void 0,$2=!0,$5={class:'bell-popconfirm-title'},$6={class:'bell-popconfirm-footer'},$7={class:'bell-popover-arrow'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{placement:_s('placement',_W.placement).value,showArrow:$2,trigger:_s('RAW_CLICK',_W.RAW_CLICK).value,visible:_s('isVisible',_W.isVisible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){_s('maxWidth',_W.maxWidth).value||_s('maxHeight',_W.maxHeight).value?_T.nativeStyles={maxHeight:_s('maxHeight',_W.maxHeight).value?_s('maxHeight',_W.maxHeight).value+'px':$0,maxWidth:_s('maxWidth',_W.maxWidth).value?_s('maxWidth',_W.maxWidth).value+'px':$0}:$0;return _T}({children:function(_U){_s('showIcon',_W.showIcon).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-popconfirm-status-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','handleCancelClick()','click','',_I.handleCancelClick,$0,$2)},isComponent:$2,operator:_E,props:{size:'small'},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('cancelText',_W.cancelText).value),type:1};}}),tag:'Button',type:4};_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','handleOkClick()','click','',_I.handleOkClick,$0,$2)},isComponent:$2,operator:_E,props:{size:'small',type:_s('okType',_W.okType).value||_s('status',_W.status).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-popover-content'},operator:_D,tag:'div',type:3});_U[_U.length]={context:_I,isPure:$2,isStatic:$2,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-popconfirm'+(_s('status',_W.status).value?' bell-popconfirm-'+_A(_s('status',_W.status).value):'')+(_s('showIcon',_W.showIcon).value?' bell-popconfirm-with-icon':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}}),tag:'Popover',type:4};}})();
+  var template$1b = (function(){var $0=void 0,$2=!0,$5={class:'bell-popconfirm-title'},$6={class:'bell-popconfirm-footer'},$7={class:'bell-popover-arrow'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{placement:_s('placement',_W.placement).value,showArrow:$2,trigger:_s('RAW_CLICK',_W.RAW_CLICK).value,visible:_s('isVisible',_W.isVisible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){_s('maxWidth',_W.maxWidth).value||_s('maxHeight',_W.maxHeight).value?_T.nativeStyles={maxHeight:_s('maxHeight',_W.maxHeight).value?_s('maxHeight',_W.maxHeight).value+'px':$0,maxWidth:_s('maxWidth',_W.maxWidth).value?_s('maxWidth',_W.maxWidth).value+'px':$0}:$0;return _T}({children:function(_U){_s('showIcon',_W.showIcon).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-popconfirm-status-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','handleCancelClick()','click','',_I.handleCancelClick,$0,$2)},isComponent:$2,operator:_E,props:{size:'small'},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('cancelText',_W.cancelText).value),type:1};}}),tag:'Button',type:4};_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','handleOkClick()','click','',_I.handleOkClick,$0,$2)},isComponent:$2,operator:_E,props:{size:'small',type:_s('okType',_W.okType).value||_s('status',_W.status).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-popover-content'},operator:_D,tag:'div',type:3});_U[_U.length]={context:_I,isPure:$2,isStatic:$2,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-popconfirm'+(_s('status',_W.status).value?' bell-popconfirm-'+_A(_s('status',_W.status).value):'')+(_s('showIcon',_W.showIcon).value?' bell-popconfirm-with-icon':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}}),tag:'Popover',type:4};}})();
 
   var Popconfirm = Yox.define({
-      template: template$19,
+      template: template$1b,
       name: 'bell-Popconfirm',
       propTypes: {
           status: {
@@ -6487,12 +6821,12 @@
       },
   });
 
-  var template$1a = (function(){var $0=void 0,$2=!0,$5={class:'bell-progress-block'},$6={class:'bell-progress-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('inside',_W.inside).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4}:(!_s('vertical',_W.vertical).value&&_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4};return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4},_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,nativeAttrs:{class:'bell-progress'+(_s('status',_W.status).value?' bell-progress-'+_A(_s('status',_W.status).value):'')+(_s('active',_W.active).value?' bell-progress-active':'')+(_s('inside',_W.inside).value?' bell-progress-inside':' bell-progress-outside')+(_s('vertical',_W.vertical).value?' bell-progress-vertical':' bell-progress-horizontal')+(!_s('inside',_W.inside).value&&!_s('vertical',_W.vertical).value&&_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-progress-with-text':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1c = (function(){var $0=void 0,$2=!0,$5={class:'bell-progress-block'},$6={class:'bell-progress-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('inside',_W.inside).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4}:(!_s('vertical',_W.vertical).value&&_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4};return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{inside:_s('inside',_W.inside).value,percent:_s('percent',_W.percent).value,thickness:_s('thickness',_W.thickness).value,vertical:_s('vertical',_W.vertical).value},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);}}),tag:'ProgressTrack',type:4},_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,nativeAttrs:{class:'bell-progress'+(_s('status',_W.status).value?' bell-progress-'+_A(_s('status',_W.status).value):'')+(_s('active',_W.active).value?' bell-progress-active':'')+(_s('inside',_W.inside).value?' bell-progress-inside':' bell-progress-outside')+(_s('vertical',_W.vertical).value?' bell-progress-vertical':' bell-progress-horizontal')+(!_s('inside',_W.inside).value&&!_s('vertical',_W.vertical).value&&_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?' bell-progress-with-text':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
-  var template$1b = (function(){var $0=void 0,$2=!0,$5={class:'bell-progress-text'},$6={class:'bell-progress-bar'},$7={class:'bell-progress-track'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_s('inside',_W.inside).value?_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$6,nativeStyles:{height:_s('vertical',_W.vertical).value?_s('percent',_W.percent).value+'%':_s('thickness',_W.thickness).value+'px',lineHeight:_s('vertical',_W.vertical).value?$0:_s('thickness',_W.thickness).value+'px',width:_s('vertical',_W.vertical).value?_s('thickness',_W.thickness).value+'px':_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$7,nativeStyles:{height:_s('vertical',_W.vertical).value?$0:_s('thickness',_W.thickness).value+'px',width:_s('vertical',_W.vertical).value?_s('thickness',_W.thickness).value+'px':$0},operator:_D,tag:'div',type:3};}})();
+  var template$1d = (function(){var $0=void 0,$2=!0,$5={class:'bell-progress-text'},$6={class:'bell-progress-bar'},$7={class:'bell-progress-track'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_s('inside',_W.inside).value?_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$6,nativeStyles:{height:_s('vertical',_W.vertical).value?_s('percent',_W.percent).value+'%':_s('thickness',_W.thickness).value+'px',lineHeight:_s('vertical',_W.vertical).value?$0:_s('thickness',_W.thickness).value+'px',width:_s('vertical',_W.vertical).value?_s('thickness',_W.thickness).value+'px':_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$7,nativeStyles:{height:_s('vertical',_W.vertical).value?$0:_s('thickness',_W.thickness).value+'px',width:_s('vertical',_W.vertical).value?_s('thickness',_W.thickness).value+'px':$0},operator:_D,tag:'div',type:3};}})();
 
   var ProgressTrack = Yox.define({
-      template: template$1b,
+      template: template$1d,
       propTypes: {
           vertical: {
               type: RAW_BOOLEAN,
@@ -6510,7 +6844,7 @@
   });
 
   var Progress = Yox.define({
-      template: template$1a,
+      template: template$1c,
       name: 'bell-Progress',
       propTypes: {
           percent: {
@@ -6545,10 +6879,10 @@
       }
   });
 
-  var template$1c = (function(){var $0=void 0,$2=!0,$4={type:'hidden'},$5=function(_S){return _S.length-1},$6=function(){return 0},$7={class:'bell-rate-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('readOnly',_W.readOnly).value?_o(_T,'events','mouseleave',_f('mouseleave','handleLeave()','mouseleave','',_I.handleLeave)):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,model:_e(_s('value',_W.value)),nativeAttrs:$4,operator:_D,tag:'input',type:3};_n(1,_s('count',_W.count).value,$2,function(_W,_X,_Y){_U[_U.length]=_V[_V.length]=function(_T){!_w($6,'readOnly').value?(_o(_T,'events','mousemove.native',_f('mousemove.native','handleMove($event, this)','mousemove','native',_I.handleMove,{args:function(_S,_Z,_1){return [_Z,_W]}},$0,$2)),_o(_T,'events','click.native',_f('click.native','handleClick($event, this)','click','native',_I.handleClick,{args:function(_S,_Z,_1){return [_Z,_W]}},$0,$2))):$0;return _T}({context:_I,isComponent:$2,operator:_E,props:{className:'bell-rate-icon-full'+(_w($6,'activeValue').value-_W>=0?' bell-rate-icon-active':''),name:_w($6,'iconName').value,size:_w($6,'iconSize').value},slots:_j({$slot_children:function(_U,_V){_w($6,'half').value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-rate-icon-half'+(_w($6,'activeValue').value-_W>=-0.5?' bell-rate-icon-active':''),name:_w($6,'iconName').value,size:_w($6,'iconSize').value},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};}}),tag:'Icon',type:4});});_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value||_s('texts',_W.texts).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_r($5,['texts',_s('activeValue',_W.activeValue).value-1].join('.'),$2).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,nativeStyles:{lineHeight:_s('iconSize',_W.iconSize).value+'px'},operator:_D,tag:'span',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-rate'+(_s('type',_W.type).value?' bell-rate-'+_A(_s('type',_W.type).value):'')+(_s('readOnly',_W.readOnly).value?' bell-rate-dead':' bell-rate-live')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1e = (function(){var $0=void 0,$2=!0,$4={type:'hidden'},$5=function(_S){return _S.length-1},$6=function(){return 0},$7={class:'bell-rate-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('readOnly',_W.readOnly).value?_o(_T,'events','mouseleave',_f('mouseleave','handleLeave()','mouseleave','',_I.handleLeave)):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,model:_e(_s('value',_W.value)),nativeAttrs:$4,operator:_D,tag:'input',type:3};_n(1,_s('count',_W.count).value,$2,function(_W,_X,_Y){_U[_U.length]=_V[_V.length]=function(_T){!_w($6,'readOnly').value?(_o(_T,'events','mousemove.native',_f('mousemove.native','handleMove($event, this)','mousemove','native',_I.handleMove,{args:function(_S,_Z,_1){return [_Z,_W]}},$0,$2)),_o(_T,'events','click.native',_f('click.native','handleClick($event, this)','click','native',_I.handleClick,{args:function(_S,_Z,_1){return [_Z,_W]}},$0,$2))):$0;return _T}({context:_I,isComponent:$2,operator:_E,props:{className:'bell-rate-icon-full'+(_w($6,'activeValue').value-_W>=0?' bell-rate-icon-active':''),name:_w($6,'iconName').value,size:_w($6,'iconSize').value},slots:_j({$slot_children:function(_U,_V){_w($6,'half').value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-rate-icon-half'+(_w($6,'activeValue').value-_W>=-0.5?' bell-rate-icon-active':''),name:_w($6,'iconName').value,size:_w($6,'iconSize').value},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};}}),tag:'Icon',type:4});});_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['children'])).value||_s('texts',_W.texts).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_r($5,['texts',_s('activeValue',_W.activeValue).value-1].join('.'),$2).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,nativeStyles:{lineHeight:_s('iconSize',_W.iconSize).value+'px'},operator:_D,tag:'span',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-rate'+(_s('type',_W.type).value?' bell-rate-'+_A(_s('type',_W.type).value):'')+(_s('readOnly',_W.readOnly).value?' bell-rate-dead':' bell-rate-live')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Rate = Yox.define({
-      template: template$1c,
+      template: template$1e,
       name: 'bell-Rate',
       propTypes: {
           count: {
@@ -6638,10 +6972,10 @@
       }
   });
 
-  var template$1d = (function(){var $0=void 0,$2=!0,$5=function(_S){return _S.length-2},$6={class:'bell-tabs-bar'},$7={class:'bell-tabs-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('tabs',_W.tabs),function(_W,_X,_Y){_U[_U.length]=function(_T){!_v('disabled',_W.disabled).value?_o(_T,'events','click',_f('click','handleClickTab(this)','click','',_I.handleClickTab,{args:function(_S,_Z,_1){return [_t(_W,_S).value]}})):$0;return _T}({children:function(_U){_v('icon',_W.icon).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-tabs-tab-icon',name:_v('icon',_W.icon).value},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('label',_W.label).value),type:1};_w($5,'closable').value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','handleCloseTab(this)','click','native',_I.handleCloseTab,{args:function(_S,_Z,_1){return [_t(_W,_S).value]}},$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-tabs-tab-close-icon',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-tab'+(_v('disabled',_W.disabled).value?' bell-tabs-tab-disabled':' bell-tabs-tab-enabled')+(_v('name',_W.name).value===_w($5,'value').value?' bell-tabs-tab-active':'')},operator:_D,tag:'div',type:3});});return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-nav'+(_s('closable',_W.closable).value?' bell-tabs-nav-closable':'')},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs'+(_s('type',_W.type).value?' bell-tabs-'+_A(_s('type',_W.type).value):'')+(_s('size',_W.size).value?' bell-tabs-'+_A(_s('size',_W.size).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1f = (function(){var $0=void 0,$2=!0,$5=function(_S){return _S.length-2},$6={class:'bell-tabs-bar'},$7={class:'bell-tabs-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('tabs',_W.tabs),function(_W,_X,_Y){_U[_U.length]=function(_T){!_v('disabled',_W.disabled).value?_o(_T,'events','click',_f('click','handleClickTab(this)','click','',_I.handleClickTab,{args:function(_S,_Z,_1){return [_t(_W,_S).value]}})):$0;return _T}({children:function(_U){_v('icon',_W.icon).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-tabs-tab-icon',name:_v('icon',_W.icon).value},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('label',_W.label).value),type:1};_w($5,'closable').value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','handleCloseTab(this)','click','native',_I.handleCloseTab,{args:function(_S,_Z,_1){return [_t(_W,_S).value]}},$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-tabs-tab-close-icon',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-tab'+(_v('disabled',_W.disabled).value?' bell-tabs-tab-disabled':' bell-tabs-tab-enabled')+(_v('name',_W.name).value===_w($5,'value').value?' bell-tabs-tab-active':'')},operator:_D,tag:'div',type:3});});return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-nav'+(_s('closable',_W.closable).value?' bell-tabs-nav-closable':'')},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs'+(_s('type',_W.type).value?' bell-tabs-'+_A(_s('type',_W.type).value):'')+(_s('size',_W.size).value?' bell-tabs-'+_A(_s('size',_W.size).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Tabs = Yox.define({
-      template: template$1d,
+      template: template$1f,
       name: 'bell-Tabs',
       propTypes: {
           type: {
@@ -6763,10 +7097,10 @@
       }
   });
 
-  var template$1e = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-panel'+(_s('isActive',_W.isActive).value?' bell-tabs-panel-active':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1g = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-tabs-panel'+(_s('isActive',_W.isActive).value?' bell-tabs-panel-active':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var TabPanel = Yox.define({
-      template: template$1e,
+      template: template$1g,
       name: 'bell-TabPanel',
       propTypes: {
           name: {
@@ -6855,10 +7189,10 @@
       }
   });
 
-  var template$1f = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{gap:'5',placement:_s('placement',_W.placement).value,trigger:_s('trigger',_W.trigger).value,visible:_s('visible',_W.visible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('maxHeight',_W.maxHeight).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('maxHeight',_W.maxHeight).value?{maxHeight:_s('maxHeight',_W.maxHeight).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_overlay',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-overlay'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}}),tag:'Popover',type:4};}})();
+  var template$1h = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{gap:'5',placement:_s('placement',_W.placement).value,trigger:_s('trigger',_W.trigger).value,visible:_s('visible',_W.visible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('maxHeight',_W.maxHeight).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('maxHeight',_W.maxHeight).value?{maxHeight:_s('maxHeight',_W.maxHeight).value+'px'}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_overlay',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-overlay'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}}),tag:'Popover',type:4};}})();
 
   var Dropdown = Yox.define({
-      template: template$1f,
+      template: template$1h,
       name: 'bell-Dropdown',
       propTypes: {
           placement: {
@@ -6936,10 +7270,10 @@
       }
   });
 
-  var template$1g = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('disabled',_W.disabled).value?_o(_T,'events','click',_g('click','click.dropdownItem','click','','click','dropdownItem')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-item'+(_s('divided',_W.divided).value?' bell-dropdown-item-divided':'')+(_s('active',_W.active).value?' bell-dropdown-item-active':'')+(_s('disabled',_W.disabled).value?' bell-dropdown-item-disabled':' bell-dropdown-item-enabled')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1i = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;!_s('disabled',_W.disabled).value?_o(_T,'events','click',_g('click','click.dropdownItem','click','','click','dropdownItem')):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-item'+(_s('divided',_W.divided).value?' bell-dropdown-item-divided':'')+(_s('active',_W.active).value?' bell-dropdown-item-active':'')+(_s('disabled',_W.disabled).value?' bell-dropdown-item-disabled':' bell-dropdown-item-enabled')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var DropdownItem = Yox.define({
-      template: template$1g,
+      template: template$1i,
       name: 'bell-DropdownItem',
       propTypes: {
           name: {
@@ -6963,10 +7297,10 @@
       },
   });
 
-  var template$1h = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-menu'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1j = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-dropdown-menu'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var DropdownMenu = Yox.define({
-      template: template$1h,
+      template: template$1j,
       name: 'bell-DropdownMenu',
       propTypes: {
           className: {
@@ -6978,7 +7312,7 @@
       },
   });
 
-  var template$1i = (function(){var $0=void 0,$2=!0,$5={class:'bell-description-title'},$6={class:'bell-description-extra'},$7={class:'bell-description-header'},$8={class:'bell-description-item-label'},$9={class:'bell-description-item-content'},$10={class:'bell-description-item-wrapper'},$11={class:'bell-description-row'},$12={class:'bell-description-table'},$13={class:'bell-description-cell bell-description-item-label'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('title',_W.title).value?_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('simple',_W.simple).value?_U[_U.length]={children:function(_U){_m(_s('cells',_W.cells),function(_W,_X,_Y,rowIndex){_U[_U.length]={children:function(_U){_m(_t(_W),function(_W,_X,_Y,colIndex){_U[_U.length]=function(_T){_v('span',_W.span).value>1?_o(_T,'nativeAttrs','colspan',_p('colspan',_v('span',_W.span).value*2-1)):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$8,operator:_D,tag:'div',text:_A(_v('label',_W.label).value),type:3};_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_'+(_v('name',_W.name).value),_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$10,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-description-cell'},operator:_D,tag:'td',type:3});});return _U}([]),context:_I,nativeAttrs:$11,operator:_D,tag:'tr',type:3};});return _U}([]),context:_I,nativeAttrs:$12,operator:_D,tag:'table',type:3}:_U[_U.length]={children:function(_U){_m(_s('cells',_W.cells),function(_W,_X,_Y,rowIndex){_U[_U.length]={children:function(_U){_m(_t(_W),function(_W,_X,_Y,colIndex){_U[_U.length]={context:_I,nativeAttrs:$13,operator:_D,tag:'td',text:_A(_v('label',_W.label).value),type:3};_U[_U.length]=function(_T){_v('span',_W.span).value>1?_o(_T,'nativeAttrs','colspan',_p('colspan',_v('span',_W.span).value*2-1)):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_'+(_v('name',_W.name).value),_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-description-cell bell-description-item-content'},operator:_D,tag:'td',type:3});});return _U}([]),context:_I,nativeAttrs:$11,operator:_D,tag:'tr',type:3};});return _U}([]),context:_I,nativeAttrs:$12,operator:_D,tag:'table',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-description'+(_s('simple',_W.simple).value?' bell-description-simple':' bell-description-bordered'+(_s('size',_W.size).value?' bell-description-'+_A(_s('size',_W.size).value):''))+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1k = (function(){var $0=void 0,$2=!0,$5={class:'bell-description-title'},$6={class:'bell-description-extra'},$7={class:'bell-description-header'},$8={class:'bell-description-item-label'},$9={class:'bell-description-item-content'},$10={class:'bell-description-item-wrapper'},$11={class:'bell-description-row'},$12={class:'bell-description-table'},$13={class:'bell-description-cell bell-description-item-label'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('title',_W.title).value?_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['extra'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_extra',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('simple',_W.simple).value?_U[_U.length]={children:function(_U){_m(_s('cells',_W.cells),function(_W,_X,_Y,rowIndex){_U[_U.length]={children:function(_U){_m(_t(_W),function(_W,_X,_Y,colIndex){_U[_U.length]=function(_T){_v('span',_W.span).value>1?_o(_T,'nativeAttrs','colspan',_p('colspan',_v('span',_W.span).value*2-1)):$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$8,operator:_D,tag:'div',text:_A(_v('label',_W.label).value),type:3};_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_'+(_v('name',_W.name).value),_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:$10,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-description-cell'},operator:_D,tag:'td',type:3});});return _U}([]),context:_I,nativeAttrs:$11,operator:_D,tag:'tr',type:3};});return _U}([]),context:_I,nativeAttrs:$12,operator:_D,tag:'table',type:3}:_U[_U.length]={children:function(_U){_m(_s('cells',_W.cells),function(_W,_X,_Y,rowIndex){_U[_U.length]={children:function(_U){_m(_t(_W),function(_W,_X,_Y,colIndex){_U[_U.length]={context:_I,nativeAttrs:$13,operator:_D,tag:'td',text:_A(_v('label',_W.label).value),type:3};_U[_U.length]=function(_T){_v('span',_W.span).value>1?_o(_T,'nativeAttrs','colspan',_p('colspan',_v('span',_W.span).value*2-1)):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_'+(_v('name',_W.name).value),_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-description-cell bell-description-item-content'},operator:_D,tag:'td',type:3});});return _U}([]),context:_I,nativeAttrs:$11,operator:_D,tag:'tr',type:3};});return _U}([]),context:_I,nativeAttrs:$12,operator:_D,tag:'table',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-description'+(_s('simple',_W.simple).value?' bell-description-simple':' bell-description-bordered'+(_s('size',_W.size).value?' bell-description-'+_A(_s('size',_W.size).value):''))+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   function addSlots2Props(children, props, column) {
       if (!children) {
@@ -7023,7 +7357,7 @@
 
   var COLUMN_DEFAULT = 3;
   var Description = Yox.define({
-      template: template$1i,
+      template: template$1k,
       name: 'bell-Description',
       propTypes: {
           title: {
@@ -7070,10 +7404,10 @@
       },
   });
 
-  var template$1j = (function(){var $0=void 0,$2=!0,$5={class:'bell-thumbnail-placeholder'},$6={class:'bell-thumbnail-action'},$7={class:'bell-thumbnail-mask'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_s('url',_W.url).value||_s('src',_W.src).value?_U[_U.length]=function(_T){_s('url',_W.url).value?_o(_T,'nativeAttrs','src',_s('formatUrl',_W.formatUrl).value?_z(_y(_s('formatUrl',_W.formatUrl,$0,_J&&_J.formatUrl||_K.formatUrl).value,_I,[{height:_s('customHeight',_W.customHeight).value,responsive:$2,url:_s('url',_W.url).value,width:_s('customWidth',_W.customWidth).value}])).value:_s('url',_W.url).value):_o(_T,'nativeAttrs','src',_s('src',_W.src).value);_s('srcSet',_W.srcSet).value?_o(_T,'nativeAttrs','srcset',_s('srcSet',_W.srcSet).value):$0;_s('alt',_W.alt).value?_o(_T,'nativeAttrs','alt',_s('alt',_W.alt).value):$0;return _T}({context:_I,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{class:'bell-thumbnail-image',ondragstart:'return false'},operator:_D,tag:'img',type:3}):_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_placeholder',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('showZoom',_W.showZoom).value||_s('showUpload',_W.showUpload).value||_s('showDownload',_W.showDownload).value||_s('showDelete',_W.showDelete).value?_U[_U.length]={children:function(_U){_s('showZoom',_W.showZoom).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'zoom-in-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showUpload',_W.showUpload).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{accept:_s('accept',_W.accept).value,beforeUpload:_s('beforeUpload',_W.beforeUpload).value,className:'bell-thumbnail-action',upload:_s('uploadImage',_W.uploadImage).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{name:'upload-2-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showDownload',_W.showDownload).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'download-2-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showDelete',_W.showDelete).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'delete-bin-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('loading',_W.loading).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-thumbnail'+(_s('simple',_W.simple).value?' bell-thumbnail-simple':' bell-thumbnail-bordered')+(_s('loading',_W.loading).value?' bell-thumbnail-loading':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},nativeStyles:_c([{height:_s('customHeight',_W.customHeight).value+'px',lineHeight:_s('customHeight',_W.customHeight).value+'px',width:_s('customWidth',_W.customWidth).value+'px'},_s('style',_W.style).value]),operator:_D,tag:'div',type:3};}})();
+  var template$1l = (function(){var $0=void 0,$2=!0,$5={class:'bell-thumbnail-placeholder'},$6={class:'bell-thumbnail-action'},$7={class:'bell-thumbnail-mask'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_s('url',_W.url).value||_s('src',_W.src).value?_U[_U.length]=function(_T){_s('url',_W.url).value?_o(_T,'nativeAttrs','src',_s('formatUrl',_W.formatUrl).value?_z(_y(_s('formatUrl',_W.formatUrl,$0,_J&&_J.formatUrl||_K.formatUrl).value,_I,[{height:_s('customHeight',_W.customHeight).value,responsive:$2,url:_s('url',_W.url).value,width:_s('customWidth',_W.customWidth).value}])).value:_s('url',_W.url).value):_o(_T,'nativeAttrs','src',_s('src',_W.src).value);_s('srcSet',_W.srcSet).value?_o(_T,'nativeAttrs','srcset',_s('srcSet',_W.srcSet).value):$0;_s('alt',_W.alt).value?_o(_T,'nativeAttrs','alt',_s('alt',_W.alt).value):$0;return _T}({context:_I,events:{error:_g('error','error.thumbnail','error','','error','thumbnail')},nativeAttrs:{class:'bell-thumbnail-image',ondragstart:'return false'},operator:_D,tag:'img',type:3}):_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_placeholder',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('showZoom',_W.showZoom).value||_s('showUpload',_W.showUpload).value||_s('showDownload',_W.showDownload).value||_s('showDelete',_W.showDelete).value?_U[_U.length]={children:function(_U){_s('showZoom',_W.showZoom).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','zoom.thumbnail','click','native','zoom','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'zoom-in-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showUpload',_W.showUpload).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{accept:_s('accept',_W.accept).value,beforeUpload:_s('beforeUpload',_W.beforeUpload).value,className:'bell-thumbnail-action',upload:_s('uploadImage',_W.uploadImage).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{name:'upload-2-line'},tag:'Icon',type:4};}}),tag:'Upload',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showDownload',_W.showDownload).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','download.thumbnail','click','native','download','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'download-2-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showDelete',_W.showDelete).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_g('click.native','delete.thumbnail','click','native','delete','thumbnail',$0,$2)},isComponent:$2,operator:_E,props:{name:'delete-bin-line'},tag:'Icon',type:4};return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('loading',_W.loading).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{fixed:$2,size:'large'},tag:'Spin',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-thumbnail'+(_s('simple',_W.simple).value?' bell-thumbnail-simple':' bell-thumbnail-bordered')+(_s('loading',_W.loading).value?' bell-thumbnail-loading':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},nativeStyles:_c([{height:_s('customHeight',_W.customHeight).value+'px',lineHeight:_s('customHeight',_W.customHeight).value+'px',width:_s('customWidth',_W.customWidth).value+'px'},_s('style',_W.style).value]),operator:_D,tag:'div',type:3};}})();
 
   var Thumbnail = Yox.define({
-      template: template$1j,
+      template: template$1l,
       name: 'bell-Thumbnail',
       propTypes: {
           width: {
@@ -7166,10 +7500,10 @@
       }
   });
 
-  var template$1k = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-timeline'+(_s('pending',_W.pending).value?' bell-timeline-pending':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1m = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-timeline'+(_s('pending',_W.pending).value?' bell-timeline-pending':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Timeline = Yox.define({
-      template: template$1k,
+      template: template$1m,
       name: 'bell-Timeline',
       propTypes: {
           pending: {
@@ -7184,10 +7518,10 @@
       },
   });
 
-  var template$1l = (function(){var $0=void 0,$2=!0,$5={class:'bell-timeline-custom'},$6={class:'bell-timeline-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['dot'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_dot',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]=function(_T){_s('color',_W.color).value?_T.nativeStyles={borderColor:_s('color',_W.color).value}:$0;return _T}({context:_I,nativeAttrs:{class:'bell-timeline-dot'},operator:_D,tag:'div',type:3});_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-timeline-item'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1n = (function(){var $0=void 0,$2=!0,$5={class:'bell-timeline-custom'},$6={class:'bell-timeline-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['dot'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_dot',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]=function(_T){_s('color',_W.color).value?_T.nativeStyles={borderColor:_s('color',_W.color).value}:$0;return _T}({context:_I,nativeAttrs:{class:'bell-timeline-dot'},operator:_D,tag:'div',type:3});_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-timeline-item'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var TimelineItem = Yox.define({
-      template: template$1l,
+      template: template$1n,
       name: 'bell-TimelineItem',
       propTypes: {
           color: {
@@ -7202,10 +7536,10 @@
       },
   });
 
-  var template$1m = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-form'+(_s('inline',_W.inline).value?' bell-form-inline':' bell-form-block')+(_s('showColon',_W.showColon).value?' bell-form-colon':'')+(_s('labelAlign',_W.labelAlign).value?' bell-form-label-'+_A(_s('labelAlign',_W.labelAlign).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1o = (function(){var $0=void 0,$2=!0;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-form'+(_s('inline',_W.inline).value?' bell-form-inline':' bell-form-block')+(_s('showColon',_W.showColon).value?' bell-form-colon':'')+(_s('labelAlign',_W.labelAlign).value?' bell-form-label-'+_A(_s('labelAlign',_W.labelAlign).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var Form = Yox.define({
-      template: template$1m,
+      template: template$1o,
       name: 'bell-Form',
       propTypes: {
           inline: {
@@ -7238,10 +7572,10 @@
       }
   });
 
-  var template$1n = (function(){var $0=void 0,$2=!0,$5={class:'bell-form-item-controls'},$6={class:'bell-form-item-extra'},$7={class:'bell-form-item-message'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('label',_W.label).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['label'])).value?_U[_U.length]=function(_T){_s('itemLabelWidth',_W.itemLabelWidth).value&&_s('formLabelAlign',_W.formLabelAlign).value!==_s('RAW_TOP',_W.RAW_TOP).value?_T.nativeStyles={flex:'0 0 '+_s('itemLabelWidth',_W.itemLabelWidth).value+'px'}:$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_label',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('label',_W.label).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item-label'+(_s('showRequiredMark',_W.showRequiredMark).value?' bell-form-item-label-required':'')},operator:_D,tag:'label',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=function(_T){_s('itemLabelWidth',_W.itemLabelWidth).value?_T.nativeStyles={marginLeft:_s('itemLabelWidth',_W.itemLabelWidth).value+'px'}:$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('extra',_W.extra).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('extra',_W.extra).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showItemMessage',_W.showItemMessage).value?_U[_U.length]={context:_I,nativeAttrs:$7,operator:_D,tag:'div',text:_A(_s('itemMessage',_W.itemMessage).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item-wrapper'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item'+(_s('extra',_W.extra).value?' bell-form-item-with-extra':'')+(_s('showItemMessage',_W.showItemMessage).value?' bell-form-item-with-message':'')+(_s('adaptive',_W.adaptive).value?' bell-form-item-adaptive':'')+(_s('labelAlign',_W.labelAlign).value?' bell-form-item-align-'+_A(_s('labelAlign',_W.labelAlign).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1p = (function(){var $0=void 0,$2=!0,$5={class:'bell-form-item-controls'},$6={class:'bell-form-item-extra'},$7={class:'bell-form-item-message'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('label',_W.label).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['label'])).value?_U[_U.length]=function(_T){_s('itemLabelWidth',_W.itemLabelWidth).value&&_s('formLabelAlign',_W.formLabelAlign).value!==_s('RAW_TOP',_W.RAW_TOP).value?_T.nativeStyles={flex:'0 0 '+_s('itemLabelWidth',_W.itemLabelWidth).value+'px'}:$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_label',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('label',_W.label).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item-label'+(_s('showRequiredMark',_W.showRequiredMark).value?' bell-form-item-label-required':'')},operator:_D,tag:'label',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=function(_T){_s('itemLabelWidth',_W.itemLabelWidth).value?_T.nativeStyles={marginLeft:_s('itemLabelWidth',_W.itemLabelWidth).value+'px'}:$0;return _T}({children:function(_U){_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3};_s('extra',_W.extra).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('extra',_W.extra).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('showItemMessage',_W.showItemMessage).value?_U[_U.length]={context:_I,nativeAttrs:$7,operator:_D,tag:'div',text:_A(_s('itemMessage',_W.itemMessage).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item-wrapper'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-form-item'+(_s('extra',_W.extra).value?' bell-form-item-with-extra':'')+(_s('showItemMessage',_W.showItemMessage).value?' bell-form-item-with-message':'')+(_s('adaptive',_W.adaptive).value?' bell-form-item-adaptive':'')+(_s('labelAlign',_W.labelAlign).value?' bell-form-item-align-'+_A(_s('labelAlign',_W.labelAlign).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var FormItem = Yox.define({
-      template: template$1n,
+      template: template$1p,
       name: 'bell-FormItem',
       propTypes: {
           prop: {
@@ -7306,12 +7640,12 @@
       }
   });
 
-  var template$1o = (function(){var $0=void 0,$2=!0,$5={class:'bell-dialog-header'},$6={class:'bell-dialog-body'},$7={class:'bell-dialog-footer'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_s('visible',_W.visible).value?_a({children:function(_U){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('showMask',_W.showMask).value?_U[_U.length]=function(_T){_s('maskClosable',_W.maskClosable).value?_o(_T,'events','click',_f('click','close()','click','',_I.close)):$0;return _T}({context:_I,nativeAttrs:{class:'bell-dialog-mask'},operator:_D,tag:'div',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value?_T.nativeStyles={height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0}:$0;return _T}({children:function(_U){_s('title',_W.title).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('title',_W.title).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['content'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_content',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['footer'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_footer',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('closable',_W.closable).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','close()','click','native',_I.close,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-dialog-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-dialog-wrapper'},operator:_D,ref:'wrapper',tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-dialog'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',transition:_d('dialog',_Q&&_Q.dialog||_R.dialog),type:3});return _U}([]),context:_I,operator:_G,tag:'portal',type:6},_U):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};}})();
+  var template$1q = (function(){var $0=void 0,$2=!0,$5={class:'bell-dialog-header'},$6={class:'bell-dialog-body'},$7={class:'bell-dialog-footer'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_s('visible',_W.visible).value?_a({children:function(_U){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_s('showMask',_W.showMask).value?_U[_U.length]=function(_T){_s('maskClosable',_W.maskClosable).value?_o(_T,'events','click',_f('click','close()','click','',_I.close)):$0;return _T}({context:_I,nativeAttrs:{class:'bell-dialog-mask'},operator:_D,tag:'div',type:3}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value?_T.nativeStyles={height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0}:$0;return _T}({children:function(_U){_s('title',_W.title).value||_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['title'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_title',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('title',_W.title).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$5,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['content'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_content',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_z(_y(_s('hasSlot',_W.hasSlot,$0,_J&&_J.hasSlot||_K.hasSlot).value,_I,['footer'])).value?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_footer',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('closable',_W.closable).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','close()','click','native',_I.close,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-dialog-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-dialog-wrapper'},operator:_D,ref:'wrapper',tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-dialog'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',transition:_d('dialog',_Q&&_Q.dialog||_R.dialog),type:3});return _U}([]),context:_I,operator:_G,tag:'portal',type:6},_U):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};}})();
 
   var CLASS_VISIBLE$2 = 'bell-dialog-visible';
   var CLASS_FADE$2 = 'bell-dialog-fade';
   var Dialog = Yox.define({
-      template: template$1o,
+      template: template$1q,
       model: 'visible',
       name: 'bell-Dialog',
       propTypes: {
@@ -7413,12 +7747,12 @@
       }
   });
 
-  var template$1p = (function(){var $0=void 0,$2=!0,$4=function(_S){return _S.length-1},$5=function(){return 0},$6={class:'bell-table-sorter'},$7={class:'bell-table-header'},$8={class:'bell-table-body'},$9={class:'bell-table-empty'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,overflowX:_s('width',_W.width).value?'auto':$0,overflowY:_s('height',_W.height).value?'auto':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_s('colWidths',_W.colWidths).value?(_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('columns',_W.columns),function(_W,_X,_Y,index){_U[_U.length]={context:_I,nativeAttrs:{width:_r($5,['colWidths',index].join('.')).value},operator:_D,tag:'col',type:3};});return _U}([]),context:_I,operator:_D,tag:'colgroup',type:3};_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('columns',_W.columns),function(_W,_X,_Y){_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_v('key',_W.key).value==='selection'?_r($4,'list.length',$2).value>0?_U[_U.length]=_V[_V.length]={context:_I,events:{change:_f('change','allCheckedChange()','change','',_I.allCheckedChange,$0,$2)},isComponent:$2,operator:_E,props:{checked:_w($5,'allChecked').value},tag:'Checkbox',type:4}:_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{disabled:$2},tag:'Checkbox',type:4}:(_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('title',_W.title).value),type:1},_v('sortable',_W.sortable).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-table-sort-asc'+(_w($5,'sortKey').value===_v('key',_W.key).value&&_w($5,'sortOrder').value===_w($5,'SORT_ORDER_ASC').value?' bell-table-sort-active':''),name:'arrow-up-s-fill'},tag:'Icon',type:4};_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-table-sort-desc'+(_w($5,'sortKey').value===_v('key',_W.key).value&&_w($5,'sortOrder').value===_w($5,'SORT_ORDER_DESC').value?' bell-table-sort-active':''),name:'arrow-down-s-fill'},tag:'Icon',type:4};return _U}([]),context:_I,events:{click:_f('click','sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC ? ~/SORT_ORDER_DESC : ~/SORT_ORDER_ASC)','click','',_I.sortColumn,{args:function(_S,_Z,_1){return [_v('key',_W.key,_S).value,_w($5,'sortKey',_S).value===_v('key',_W.key,_S).value&&_w($5,'sortOrder',_S).value===_w($5,'SORT_ORDER_ASC',_S).value?_w($5,'SORT_ORDER_DESC',_S).value:_w($5,'SORT_ORDER_ASC',_S).value]}})},nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,operator:_D,tag:'td',type:3});});return _U}([]),context:_I,operator:_D,tag:'tr',type:3};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'thead',type:3};_r($4,'list.length',$2).value>0?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_m(_s('list',_W.list),function(_W,_X,_Y,index){_U[_U.length]={children:function(_U){_m(_w($5,'columns'),function(_W,_X,_Y){_v('actions',_W.actions).value&&_r($4,'actions.length').value?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_m(_v('actions',_W.actions),function(_W,_X,_Y){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','clickButton(this, list[index], index)','click','',_I.clickButton,{args:function(_S,_Z,_1){return [_t(_W,_S).value,_r($4,['list',index].join('.'),$2,_S).value,index]}},$2)},isComponent:$2,operator:_E,props:{block:_v('block',_W.block).value,className:_v('className',_W.className).value,disabled:_v('disabled',_W.disabled).value,shape:_v('shape',_W.shape).value,size:_v('size',_W.size).value,type:_v('type',_W.type).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('text',_W.text).value),type:1};}}),tag:'Button',type:4};});return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value!==$0?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_v('dangerous',_W.dangerous).value?_U[_U.length]={context:_I,html:_A(_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value),operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_B,text:_A(_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value),type:1};return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_v('key',_W.key).value==='selection'?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{change:_f('change','rowCheckedChange($event, $data, index)','change','',_I.rowCheckedChange,{args:function(_S,_Z,_1){return [_Z,_1,index]}},$2)},isComponent:$2,operator:_E,props:{checked:_z(_y(_s('inArray',_W.inArray,$0,_J&&_J.inArray||_K.inArray).value,_I,[_s('selection',_W.selection).value,_r($4,['list',index,'key'].join('.'),$2).value])).value},tag:'Checkbox',type:4};return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('key',_W.key).value)+' is not found.',type:1};return _U}([]),context:_I,operator:_D,tag:'td',type:3});});return _U}([]),context:_I,operator:_D,tag:'tr',type:3};}));return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'tbody',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,operator:_D,tag:'table',type:3},_r($4,'list.length',$2).value===0?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_empty',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'暂无数据',type:1};}}),tag:'Empty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-table'+(_s('stripe',_W.stripe).value?' bell-table-stripe':'')+(_s('simple',_W.simple).value?' bell-table-simple':' bell-table-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
+  var template$1r = (function(){var $0=void 0,$2=!0,$4=function(_S){return _S.length-1},$5=function(){return 0},$6={class:'bell-table-sorter'},$7={class:'bell-table-header'},$8={class:'bell-table-body'},$9={class:'bell-table-empty'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,overflowX:_s('width',_W.width).value?'auto':$0,overflowY:_s('height',_W.height).value?'auto':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_s('colWidths',_W.colWidths).value?(_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('columns',_W.columns),function(_W,_X,_Y,index){_U[_U.length]={context:_I,nativeAttrs:{width:_r($5,['colWidths',index].join('.')).value},operator:_D,tag:'col',type:3};});return _U}([]),context:_I,operator:_D,tag:'colgroup',type:3};_U[_U.length]={children:function(_U){_U[_U.length]={children:function(_U){_m(_s('columns',_W.columns),function(_W,_X,_Y){_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_v('key',_W.key).value==='selection'?_r($4,'list.length',$2).value>0?_U[_U.length]=_V[_V.length]={context:_I,events:{change:_f('change','allCheckedChange()','change','',_I.allCheckedChange,$0,$2)},isComponent:$2,operator:_E,props:{checked:_w($5,'allChecked').value},tag:'Checkbox',type:4}:_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{disabled:$2},tag:'Checkbox',type:4}:(_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('title',_W.title).value),type:1},_v('sortable',_W.sortable).value?_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-table-sort-asc'+(_w($5,'sortKey').value===_v('key',_W.key).value&&_w($5,'sortOrder').value===_w($5,'SORT_ORDER_ASC').value?' bell-table-sort-active':''),name:'arrow-up-s-fill'},tag:'Icon',type:4};_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-table-sort-desc'+(_w($5,'sortKey').value===_v('key',_W.key).value&&_w($5,'sortOrder').value===_w($5,'SORT_ORDER_DESC').value?' bell-table-sort-active':''),name:'arrow-down-s-fill'},tag:'Icon',type:4};return _U}([]),context:_I,events:{click:_f('click','sortColumn(this.key, ~/sortKey === this.key && ~/sortOrder === ~/SORT_ORDER_ASC ? ~/SORT_ORDER_DESC : ~/SORT_ORDER_ASC)','click','',_I.sortColumn,{args:function(_S,_Z,_1){return [_v('key',_W.key,_S).value,_w($5,'sortKey',_S).value===_v('key',_W.key,_S).value&&_w($5,'sortOrder',_S).value===_w($5,'SORT_ORDER_ASC',_S).value?_w($5,'SORT_ORDER_DESC',_S).value:_w($5,'SORT_ORDER_ASC',_S).value]}})},nativeAttrs:$6,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2});return _U}([]),context:_I,operator:_D,tag:'td',type:3});});return _U}([]),context:_I,operator:_D,tag:'tr',type:3};return _U}([]),context:_I,nativeAttrs:$7,operator:_D,tag:'thead',type:3};_r($4,'list.length',$2).value>0?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_children',_U)||(_m(_s('list',_W.list),function(_W,_X,_Y,index){_U[_U.length]={children:function(_U){_m(_w($5,'columns'),function(_W,_X,_Y){_v('actions',_W.actions).value&&_r($4,'actions.length').value?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_m(_v('actions',_W.actions),function(_W,_X,_Y){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','clickButton(this, list[index], index)','click','',_I.clickButton,{args:function(_S,_Z,_1){return [_t(_W,_S).value,_r($4,['list',index].join('.'),$2,_S).value,index]}},$2)},isComponent:$2,operator:_E,props:{block:_v('block',_W.block).value,className:_v('className',_W.className).value,disabled:_v('disabled',_W.disabled).value,shape:_v('shape',_W.shape).value,size:_v('size',_W.size).value,type:_v('type',_W.type).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('text',_W.text).value),type:1};}}),tag:'Button',type:4};});return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value!==$0?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_v('dangerous',_W.dangerous).value?_U[_U.length]={context:_I,html:_A(_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value),operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_B,text:_A(_r($4,['list',index,_v('key',_W.key).value].join('.'),$2).value),type:1};return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_v('key',_W.key).value==='selection'?_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,events:{change:_f('change','rowCheckedChange($event, $data, index)','change','',_I.rowCheckedChange,{args:function(_S,_Z,_1){return [_Z,_1,index]}},$2)},isComponent:$2,operator:_E,props:{checked:_z(_y(_s('inArray',_W.inArray,$0,_J&&_J.inArray||_K.inArray).value,_I,[_s('selection',_W.selection).value,_r($4,['list',index,'key'].join('.'),$2).value])).value},tag:'Checkbox',type:4};return _U}([]),context:_I,operator:_D,tag:'td',type:3}):_U[_U.length]=function(_T){_v('align',_W.align).value?_o(_T,'nativeAttrs','class','bell-table-'+_A(_v('align',_W.align).value)):$0;return _T}({children:function(_U){_U[_U.length]={isPure:$2,operator:_B,text:_A(_v('key',_W.key).value)+' is not found.',type:1};return _U}([]),context:_I,operator:_D,tag:'td',type:3});});return _U}([]),context:_I,operator:_D,tag:'tr',type:3};}));return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$8,operator:_D,tag:'tbody',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,operator:_D,tag:'table',type:3},_r($4,'list.length',$2).value===0?_U[_U.length]={children:function(_U){_a({children:function(_U){_k('$slot_empty',_U)||(_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:'暂无数据',type:1};}}),tag:'Empty',type:4});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:$9,operator:_D,tag:'div',type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-table'+(_s('stripe',_W.stripe).value?' bell-table-stripe':'')+(_s('simple',_W.simple).value?' bell-table-simple':' bell-table-bordered')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3});}})();
 
   var SORT_ORDER_ASC = 'asc';
   var SORT_ORDER_DESC = 'desc';
   var Table = Yox.define({
-      template: template$1p,
+      template: template$1r,
       name: 'bell-Table',
       propTypes: {
           list: {
@@ -7588,10 +7922,10 @@
       }
   });
 
-  var template$1q = (function(){var $0=void 0,$4={class:'bell-loadingbar-indicator'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:{color:_s('color',_W.color).value||$0,height:_s('height',_W.height).value+'px',width:_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-loadingbar'+(_s('type',_W.type).value?' bell-loadingbar-'+_A(_s('type',_W.type).value):'')},operator:_D,tag:'div',type:3};}})();
+  var template$1s = (function(){var $0=void 0,$4={class:'bell-loadingbar-indicator'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:{color:_s('color',_W.color).value||$0,height:_s('height',_W.height).value+'px',width:_s('percent',_W.percent).value+'%'},operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-loadingbar'+(_s('type',_W.type).value?' bell-loadingbar-'+_A(_s('type',_W.type).value):'')},operator:_D,tag:'div',type:3};}})();
 
   var LoadingBar = Yox.define({
-      template: template$1q,
+      template: template$1s,
       name: 'bell-LoadingBar',
       propTypes: {
           type: {
@@ -7677,11 +8011,11 @@
       }
   };
 
-  var template$1r = (function(){var $0=void 0,$2=!0,$5={class:'bell-message-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-message-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'span',text:_A(_s('content',_W.content).value),type:3};_s('closable',_W.closable).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','hide()','click','native',_I.hide,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-message-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-message'+(_s('status',_W.status).value?' bell-message-'+_A(_s('status',_W.status).value):'')+(_s('center',_W.center).value?' bell-message-center':'')+(_s('closable',_W.closable).value?' bell-message-with-close':'')},operator:_D,tag:'div',type:3};}})();
+  var template$1t = (function(){var $0=void 0,$2=!0,$5={class:'bell-message-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-message-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4};_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'span',text:_A(_s('content',_W.content).value),type:3};_s('closable',_W.closable).value?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','hide()','click','native',_I.hide,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-message-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-message'+(_s('status',_W.status).value?' bell-message-'+_A(_s('status',_W.status).value):'')+(_s('center',_W.center).value?' bell-message-center':'')+(_s('closable',_W.closable).value?' bell-message-with-close':'')},operator:_D,tag:'div',type:3};}})();
 
   var CLASS_VISIBLE$3 = 'bell-message-visible';
   var Message = Yox.define({
-      template: template$1r,
+      template: template$1t,
       name: 'bell-Message',
       propTypes: {
           status: {
@@ -7785,10 +8119,10 @@
       }
   };
 
-  var template$1s = (function(){var $0=void 0,$2=!0,$3=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-modal',closable:_s('closable',_W.closable).value,maskClosable:$3,showMask:$2,title:_s('title',_W.title).value,width:_s('width',_W.width).value},ref:'dialog',slots:_j({$slot_content:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1};},$slot_footer:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','ok()','click','',_I.ok,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('okType',_W.okType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};}}),tag:'Dialog',type:4};}})();
+  var template$1u = (function(){var $0=void 0,$2=!0,$3=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-modal',closable:_s('closable',_W.closable).value,maskClosable:$3,showMask:$2,title:_s('title',_W.title).value,width:_s('width',_W.width).value},ref:'dialog',slots:_j({$slot_content:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1};},$slot_footer:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','ok()','click','',_I.ok,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('okType',_W.okType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};}}),tag:'Dialog',type:4};}})();
 
   var Alert$1 = Yox.define({
-      template: template$1s,
+      template: template$1u,
       name: 'bell-Alert',
       propTypes: {
           title: {
@@ -7849,10 +8183,10 @@
       }
   });
 
-  var template$1t = (function(){var $0=void 0,$2=!0,$3=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-modal',closable:_s('closable',_W.closable).value,maskClosable:$3,showMask:$2,title:_s('title',_W.title).value,width:_s('width',_W.width).value},ref:'dialog',slots:_j({$slot_content:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1};},$slot_footer:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','cancel()','click','',_I.cancel,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('cancelType',_W.cancelType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('cancelText',_W.cancelText).value),type:1};}}),tag:'Button',type:4};_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','ok()','click','',_I.ok,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('okType',_W.okType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};}}),tag:'Dialog',type:4};}})();
+  var template$1v = (function(){var $0=void 0,$2=!0,$3=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-modal',closable:_s('closable',_W.closable).value,maskClosable:$3,showMask:$2,title:_s('title',_W.title).value,width:_s('width',_W.width).value},ref:'dialog',slots:_j({$slot_content:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1};},$slot_footer:function(_U,_V){_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','cancel()','click','',_I.cancel,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('cancelType',_W.cancelType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('cancelText',_W.cancelText).value),type:1};}}),tag:'Button',type:4};_U[_U.length]=_V[_V.length]={context:_I,events:{click:_f('click','ok()','click','',_I.ok,$0,$2)},isComponent:$2,operator:_E,props:{type:_s('okType',_W.okType).value},slots:_j({$slot_children:function(_U,_V){_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('okText',_W.okText).value),type:1};}}),tag:'Button',type:4};}}),tag:'Dialog',type:4};}})();
 
   var Confirm = Yox.define({
-      template: template$1t,
+      template: template$1v,
       name: 'bell-Confirm',
       propTypes: {
           title: {
@@ -7975,11 +8309,11 @@
       }, Confirm));
   };
 
-  var template$1u = (function(){var $0=void 0,$2=!0,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_s('status',_W.status).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-notification-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('content',_W.content).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('content',_W.content).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('duration',_W.duration).value==0?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','hide()','click','native',_I.hide,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-notification-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-notification'+(_s('status',_W.status).value?' bell-notification-'+_A(_s('status',_W.status).value)+' bell-notification-with-icon':'')+(_s('title',_W.title).value?' bell-notification-with-title':'')+(_s('duration',_W.duration).value==0?' bell-notification-with-close':'')},nativeStyles:{right:_s('right',_W.right).value+'px',width:_s('width',_W.width).value+'px'},operator:_D,tag:'div',type:3};}})();
+  var template$1w = (function(){var $0=void 0,$2=!0,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]={children:function(_U){_s('status',_W.status).value?_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{className:'bell-notification-icon',name:_s('status',_W.status).value===_s('RAW_TYPE_SUCCESS',_W.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_s('status',_W.status).value===_s('RAW_TYPE_WARNING',_W.RAW_TYPE_WARNING).value?'error-warning-fill':_s('status',_W.status).value===_s('RAW_TYPE_ERROR',_W.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('title',_W.title).value?_U[_U.length]={context:_I,nativeAttrs:$5,operator:_D,tag:'div',text:_A(_s('title',_W.title).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('content',_W.content).value?_U[_U.length]={context:_I,nativeAttrs:$6,operator:_D,tag:'div',text:_A(_s('content',_W.content).value),type:3}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_s('duration',_W.duration).value==0?_U[_U.length]=_V[_V.length]={context:_I,events:{'click.native':_f('click.native','hide()','click','native',_I.hide,$0,$0,$2)},isComponent:$2,operator:_E,props:{className:'bell-notification-close',name:'close-line'},tag:'Icon',type:4}:_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};return _U}([]),context:_I,nativeAttrs:{class:'bell-notification'+(_s('status',_W.status).value?' bell-notification-'+_A(_s('status',_W.status).value)+' bell-notification-with-icon':'')+(_s('title',_W.title).value?' bell-notification-with-title':'')+(_s('duration',_W.duration).value==0?' bell-notification-with-close':'')},nativeStyles:{right:_s('right',_W.right).value+'px',width:_s('width',_W.width).value+'px'},operator:_D,tag:'div',type:3};}})();
 
   var CLASS_VISIBLE$4 = 'bell-notification-visible';
   var Notification = Yox.define({
-      template: template$1u,
+      template: template$1w,
       name: 'bell-Notification',
       propTypes: {
           title: {
@@ -8102,7 +8436,7 @@
   /**
    * 版本
    */
-  var version = "0.24.8";
+  var version = "0.24.9";
   /**
    * 安装插件
    */
@@ -8160,6 +8494,8 @@
           LayoutContent: LayoutContent,
           LayoutFooter: LayoutFooter,
           LayoutSider: LayoutSider,
+          Carousel: Carousel,
+          CarouselItem: CarouselItem,
           Collapse: Collapse,
           CollapseItem: CollapseItem,
           Link: Link,

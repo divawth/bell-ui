@@ -1,0 +1,43 @@
+<div
+class="${prefix}carousel
+{{#if direction}} ${prefix}carousel-{{direction}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+style="{{[
+  size
+  ? {
+      width: size.width + 'px',
+      height: size.height + 'px'
+    }
+  : undefined,
+  style
+]}}"
+>
+  <div
+    ref="list"
+    class="${prefix}carousel-list"
+  >
+    <slot />
+  </div>
+  {{#if count > 1}}
+    <div
+      class="${prefix}carousel-indicator
+      {{#if indicatorType}} ${prefix}carousel-indicator-{{indicatorType}}{{/if}}
+      {{#if indicatorPosition}} ${prefix}carousel-indicator-{{indicatorPosition}}{{/if}}"
+    >
+      {{#each 0 -> count:i}}
+        <div
+          class="${prefix}carousel-indicator-item
+          {{#if ~/index === i}} ${prefix}carousel-indicator-item-active{{/if}}"
+          {{#if ~/trigger === ~/RAW_CLICK}}
+            on-click="go(i)"
+          {{else}}
+            on-mouseenter="go(i)"
+          {{/if}}
+        >
+
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

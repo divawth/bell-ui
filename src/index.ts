@@ -46,6 +46,9 @@ import ImagePicker from './component/image-picker/ImagePicker'
 
 import Tooltip from './component/tooltip/Tooltip'
 
+import Carousel from './component/carousel/Carousel'
+import CarouselItem from './component/carousel/CarouselItem'
+
 import Collapse from './component/collapse/Collapse'
 import CollapseItem from './component/collapse/CollapseItem'
 
@@ -169,6 +172,8 @@ export function install(Yox: any) {
     LayoutFooter,
     LayoutSider,
 
+    Carousel,
+    CarouselItem,
     Collapse,
     CollapseItem,
     Link,

@@ -6,6 +6,7 @@
   - [SplitButton 按钮](basic/splitbutton)
 - [布局](layout)
   - [Card 卡片](layout/card)
+  - [Carousel 图片轮播](layout/carousel)
   - [Collapse 折叠面板](layout/collapse)
   - [Divider 分割线](layout/divider)
   - [Layout 布局](layout/layout)
