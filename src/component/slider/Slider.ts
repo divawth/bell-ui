@@ -115,7 +115,6 @@ export default Yox.define({
       RAW_TOP,
       RAW_RIGHT,
       RAW_CUSTOM,
-      // innerValue 在交互时不能变，交互完了之后，和 value 同步一次最新值即可
       innerValue: this.get('value'),
       hoverThumbIndex: -1,
       dragThumbIndex: -1,
@@ -261,13 +260,26 @@ export default Yox.define({
         this.set('innerValue', value)
       }
     },
-    showTooltipIndex(value, oldValue) {
-      if (oldValue >= 0) {
-        const tooltip = this.$refs['tooltip' + oldValue] as any
+    hoverThumbIndex(index) {
+      if (index >= 0) {
+        this.set('showTooltipIndex', this.get('showTooltip') ? index : -1)
+      }
+      else if (this.get('dragThumbIndex') < 0) {
+        this.set('showTooltipIndex', -1)
+      }
+    },
+    dragThumbIndex(index) {
+      if (index < 0 && this.get('hoverThumbIndex') < 0) {
+        this.set('showTooltipIndex', -1)
+      }
+    },
+    showTooltipIndex(index, oldIndex) {
+      if (oldIndex >= 0) {
+        const tooltip = this.$refs['tooltip' + oldIndex] as any
         tooltip.close()
       }
-      if (value >= 0) {
-        const tooltip = this.$refs['tooltip' + value] as any
+      if (index >= 0) {
+        const tooltip = this.$refs['tooltip' + index] as any
         tooltip.open()
       }
     }
@@ -299,26 +311,16 @@ export default Yox.define({
         }
       }
       else {
-        this.set({
-          hoverThumbIndex: index,
-          showTooltipIndex: this.get('showTooltip') ? index : -1,
-        })
+        this.set('hoverThumbIndex', index)
       }
     },
     thumbMouseLeave(event: CustomEventInterface) {
       event.stop()
       this.set('hoverThumbIndex', -1)
-      if (this.get('dragThumbIndex') < 0) {
-        this.set({
-          showTooltipIndex: -1,
-        })
-      }
     },
     thumbMouseDown(event: CustomEventInterface, index: number) {
       event.stop()
-      this.set({
-        dragThumbIndex: index,
-      })
+      this.set('dragThumbIndex', index)
       // @ts-ignore
       this.onThumbMouseDown()
     }
@@ -361,8 +363,6 @@ export default Yox.define({
             : 0
         )
 
-        updateValue()
-
       }
       else {
         updatePosition(ratio)
@@ -395,14 +395,7 @@ export default Yox.define({
       Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove)
       Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp)
 
-      updateValue()
-
       me.set('dragThumbIndex', -1)
-      if (me.get('hoverThumbIndex') < 0) {
-        me.set({
-          showTooltipIndex: -1,
-        })
-      }
 
     }
 
@@ -492,13 +485,6 @@ export default Yox.define({
         trackRight = pageX + right
       }
 
-    }
-
-    const updateValue = function () {
-      me.set(
-        'innerValue',
-        me.get('value')
-      )
     }
 
     // @ts-ignore

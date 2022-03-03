@@ -128,9 +128,18 @@ export default {
           placeholder="Select date"
         />
       </FormItem>
-      <FormItem label="Slider">
+      <FormItem label="Slider1">
         <Slider
-          model="form.slider"
+          model="form.slider1"
+          min="0"
+          max="10"
+          showStops
+          showTooltip
+        />
+      </FormItem>
+      <FormItem label="Slider2">
+        <Slider
+          model="form.slider2"
           min="0"
           max="10"
           showStops
@@ -202,7 +211,8 @@ export default {
         switch: true,
         date: '',
         time: '',
-        slider: 5,
+        slider1: 5,
+        slider2: [2, 8],
         textarea: ''
       }
     }

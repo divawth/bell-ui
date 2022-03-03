@@ -8,6 +8,8 @@ declare const _default: import("yox").ComponentOptions<{
 }, {
     'valuePercentArray.*.value': unknown;
     value: unknown;
+    hoverThumbIndex: unknown;
+    dragThumbIndex: unknown;
     showTooltipIndex: unknown;
 }, {
     outside: unknown;
