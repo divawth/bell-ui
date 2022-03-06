@@ -8,7 +8,6 @@ import DateYear from './DateYear'
 
 import {
   TRUE,
-  FALSE,
   RAW_STRING,
   RAW_ARRAY,
   RAW_NUMBER,
@@ -125,27 +124,38 @@ export default Yox.define({
     }
   },
 
-  events: {
-    'change.year': function (event, data) {
-      event.stop()
-      const date = new Date(this.get('timestamp'))
-      date.setFullYear(data.year)
-      this.set({
-        type: RAW_TYPE_DATE,
-        timestamp: date.getTime()
-      })
+  events: [
+    {
+      type: 'change',
+      ns: 'year',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        const date = new Date(this.get('timestamp'))
+        date.setFullYear(data.year)
+        // @ts-ignore
+        this.set({
+          type: RAW_TYPE_DATE,
+          timestamp: date.getTime()
+        })
+      }
     },
-    'change.month': function (event, data) {
-      event.stop()
-      const date = new Date(this.get('timestamp'))
-      date.setFullYear(data.year)
-      date.setMonth(data.month - 1)
-      this.set({
-        type: RAW_TYPE_DATE,
-        timestamp: date.getTime()
-      })
+    {
+      type: 'change',
+      ns: 'month',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        const date = new Date(this.get('timestamp'))
+        date.setMonth(data.month - 1)
+        // @ts-ignore
+        this.set({
+          type: RAW_TYPE_DATE,
+          timestamp: date.getTime()
+        })
+      }
     }
-  },
+  ],
 
   methods: {
     offset(offset: number) {

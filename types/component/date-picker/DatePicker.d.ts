@@ -3,14 +3,7 @@ import { Shortcut } from './util';
 declare const _default: import("yox").ComponentOptions<{
     defaultSimpleDate: unknown;
     formatedValues: unknown;
-}, unknown, {
-    'change.date': unknown;
-    'change.year': unknown;
-    'change.month': unknown;
-    'change.week': unknown;
-    'change.range': unknown;
-    outside: unknown;
-}, {
+}, unknown, unknown[], {
     handleClearClick(event: CustomEventInterface): void;
     handleRemoveItem(event: CustomEventInterface, index: number): void;
     handleShortcutClick(data: Shortcut): void;

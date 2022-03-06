@@ -92,6 +92,7 @@ date-picker-brand-style(style)
 
 {$selector-class-prefix + '-date-picker-overlay'}
   padding 0
+  user-select none
   background-color $brand-bg
   box-shadow $brand-layer-shadow
 
@@ -135,10 +136,6 @@ date-picker-brand-style(style)
 {$selector-class-prefix + '-date-picker-shortcut'} + {$selector-class-prefix + '-date-picker-panel'},
 {$selector-class-prefix + '-date-picker-shortcut'} + {$selector-class-prefix + '-date-picker-daterange'}
   margin-left $date-picker-shortcut-width
-
-{$selector-class-prefix + '-date-picker-header'},
-{$selector-class-prefix + '-date-picker-body'}
-  user-select none
 
 {$selector-class-prefix + '-date-picker-header'}
   color $brand-content

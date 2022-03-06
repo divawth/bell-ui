@@ -184,44 +184,70 @@ export default Yox.define({
     },
   },
 
-  events: {
-    'change.date': function (event, data) {
-      event.stop()
-      this.dateChange(data.timestamp)
+  events: [
+    {
+      type: 'change',
+      ns: 'date',
+      listener(event, data) {
+        event.stop()
+        // @ts-ignore
+        this.dateChange(data.timestamp)
+      }
     },
-    'change.year': function (event, data) {
-      event.stop()
-      const date = new Date()
-      date.setFullYear(data.year)
-      this.dateChange(toTimestamp(date), YEAR_FORMAT)
+    {
+      type: 'change',
+      ns: 'year',
+      listener(event, data) {
+        event.stop()
+        const date = new Date()
+        date.setFullYear(data.year)
+        // @ts-ignore
+        this.dateChange(toTimestamp(date), YEAR_FORMAT)
+      }
     },
-    'change.month': function (event, data: SimpleDate) {
-      event.stop()
-      const date = new Date()
-      date.setFullYear(data.year)
-      date.setMonth(data.month - 1)
-      this.dateChange(toTimestamp(date), MONTH_FORMAT)
+    {
+      type: 'change',
+      ns: 'month',
+      listener(event, data: SimpleDate) {
+        event.stop()
+        const date = new Date()
+        date.setFullYear(data.year)
+        date.setMonth(data.month - 1)
+        // @ts-ignore
+        this.dateChange(toTimestamp(date), MONTH_FORMAT)
+      }
     },
-    'change.week': function (event, data: SimpleRange) {
-      event.stop()
-      this.dateRangeChange(data.start.timestamp, data.end.timestamp)
+    {
+      type: 'change',
+      ns: 'week',
+      listener(event, data: SimpleDate) {
+        event.stop()
+        // @ts-ignore
+        this.dateRangeChange(data.start.timestamp, data.end.timestamp)
+      }
     },
-    'change.range': function (event, data: SimpleRange) {
-      event.stop()
-      this.dateRangeChange(data.start.timestamp, data.end.timestamp)
+    {
+      type: 'change',
+      ns: 'range',
+      listener(event, data: SimpleDate) {
+        event.stop()
+        // @ts-ignore
+        this.dateRangeChange(data.start.timestamp, data.end.timestamp)
+      }
     },
-
-    outside: {
+    {
       listener(event) {
 
         event.stop()
 
+        // @ts-ignore
         this.set('visible', FALSE)
 
       },
+      type: 'outside',
       ns: 'popover',
     }
-  },
+  ],
 
   methods: {
 

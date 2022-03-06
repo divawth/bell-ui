@@ -174,49 +174,34 @@ export default Yox.define({
     }
   },
 
-  events: {
-    'change.select': function (event, data) {
+  events: [
+    {
+      type: 'change',
+      ns: 'select',
+      listener(event, data) {
 
-      if (event.phase !== Yox.Event.PHASE_UPWARD) {
-        return
-      }
-
-      event.stop()
-
-      this.fire(
-        {
-          type: 'change',
-          ns: 'pagination',
-        },
-        {
-          pageSize: data.value
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
         }
-      )
 
-    },
-    'click.prevPage': function (event) {
+        event.stop()
 
-      if (event.phase !== Yox.Event.PHASE_UPWARD) {
-        return
+        // @ts-ignore
+        this.fire(
+          {
+            type: 'change',
+            ns: 'pagination',
+          },
+          {
+            pageSize: data.value
+          }
+        )
+
       }
-
-      event.stop()
-
-      this.decreaseCurrent(1)
-
     },
-    'click.nextPage': function (event) {
-
-      if (event.phase !== Yox.Event.PHASE_UPWARD) {
-        return
-      }
-
-      event.stop()
-
-      this.increaseCurrent(1)
-
-    },
-    change: {
+    {
+      type: 'click',
+      ns: 'prevPage',
       listener(event) {
 
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
@@ -225,10 +210,44 @@ export default Yox.define({
 
         event.stop()
 
-      },
+        // @ts-ignore
+        this.decreaseCurrent(1)
+
+      }
+    },
+    {
+      type: 'click',
+      ns: 'nextPage',
+      listener(event) {
+
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+
+        event.stop()
+
+        // @ts-ignore
+        this.increaseCurrent(1)
+
+      }
+    },
+    {
+      type: 'change',
       ns: 'input',
+      listener(event) {
+
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+
+        // @ts-ignore
+        event.stop()
+
+      }
     },
-    enter: {
+    {
+      type: 'enter',
+      ns: 'input',
       listener(event) {
 
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
@@ -237,12 +256,12 @@ export default Yox.define({
 
         event.stop()
 
+        // @ts-ignore
         this.jump()
 
-      },
-      ns: 'input',
+      }
     }
-  },
+  ],
 
   watchers: {
     current(current: number) {

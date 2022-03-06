@@ -4,13 +4,7 @@ declare const _default: import("yox").ComponentOptions<{
     count: unknown;
 }, {
     current: unknown;
-}, {
-    'change.select': unknown;
-    'click.prevPage': unknown;
-    'click.nextPage': unknown;
-    change: unknown;
-    enter: unknown;
-}, {
+}, unknown[], {
     showError(error: string): void;
     jump(): void;
     setCurrent(current: number): void;

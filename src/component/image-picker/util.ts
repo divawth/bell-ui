@@ -1,3 +1,5 @@
+import { NULL } from '../constant'
+
 export const STATUS_UPLOADING = 'uploading'
 export const STATUS_ERROR = 'error'
 export const STATUS_FAILURE = 'failure'
@@ -9,7 +11,7 @@ export function readImageFile(item) {
   return new Promise(
     function (resolve) {
       const reader = new FileReader()
-      reader.onload = function (event) {
+      reader.onload = function (event: any) {
 
         const base64 = event.target.result as string
         item.base64 = base64
@@ -19,11 +21,11 @@ export function readImageFile(item) {
         image.onload = function () {
           item.width = image.naturalWidth
           item.height = image.naturalHeight
-          image.onload = image.onerror = null
+          image.onload = image.onerror = NULL
           resolve(item)
         }
         image.onerror = function () {
-          image.onload = image.onerror = null
+          image.onload = image.onerror = NULL
           resolve(item)
         }
       }

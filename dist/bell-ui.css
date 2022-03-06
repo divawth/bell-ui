@@ -174,7 +174,6 @@ div::-webkit-scrollbar-track {
 div::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 div::-webkit-scrollbar-thumb:hover {
@@ -8460,6 +8459,10 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-date-picker-overlay {
   padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
 }
@@ -8507,13 +8510,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-shortcut + .bell-date-picker-panel,
 .bell-date-picker-shortcut + .bell-date-picker-daterange {
   margin-left: 90px;
-}
-.bell-date-picker-header,
-.bell-date-picker-body {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 .bell-date-picker-header {
   color: #515a6e;
@@ -8841,6 +8837,10 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-time-picker-overlay {
   padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
 }
@@ -8850,10 +8850,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-time-picker-panel {
   display: inline-block;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 .bell-time-picker-panel-columns {
   text-align: left;
@@ -8883,7 +8879,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker-panel-column::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-time-picker-panel-column::-webkit-scrollbar-thumb:hover {
@@ -9306,7 +9301,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-drawer-body::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-drawer-body::-webkit-scrollbar-thumb:hover {
@@ -9403,7 +9397,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-dropdown-overlay::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-dropdown-overlay::-webkit-scrollbar-thumb:hover {
@@ -9877,9 +9870,14 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-input-prepend .bell-select,
 .bell-input-append .bell-select,
+.bell-input-prepend .bell-button,
+.bell-input-append .bell-button {
+  border: 0;
+}
+.bell-input-prepend .bell-select,
+.bell-input-append .bell-select,
 .bell-input-prepend .bell-button-pure,
 .bell-input-append .bell-button-pure {
-  border: 0;
   box-shadow: none;
   background-color: transparent;
 }
@@ -9891,12 +9889,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-append .bell-button-pure {
   color: inherit;
   font-size: inherit;
-}
-.bell-input-prepend .bell-button,
-.bell-input-append .bell-button {
-  height: inherit;
-  line-height: inherit;
-  position: relative;
 }
 .bell-input-prepend {
   border-right: none;
@@ -10105,7 +10097,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-layout-sider::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-layout-sider::-webkit-scrollbar-thumb:hover {
@@ -10243,7 +10234,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-list::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-list::-webkit-scrollbar-thumb:hover {
@@ -10408,7 +10398,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-menu::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-menu::-webkit-scrollbar-thumb:hover {
@@ -11883,7 +11872,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-overlay::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-select-overlay::-webkit-scrollbar-thumb:hover {
@@ -12124,7 +12112,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-split-button-menu::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-split-button-menu::-webkit-scrollbar-thumb:hover {
@@ -12528,7 +12515,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-table::-webkit-scrollbar-thumb:hover {
@@ -13097,7 +13083,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-textarea-el::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
 .bell-textarea-el::-webkit-scrollbar-thumb:hover {

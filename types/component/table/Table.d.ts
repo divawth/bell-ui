@@ -11,15 +11,15 @@ declare const _default: import("yox").ComponentOptions<{
 }, {
     selection: unknown;
 }, unknown, {
-    allCheckedChange(event: CustomEventInterface, data: Data): void;
-    rowCheckedChange(event: CustomEventInterface, data: Data, index: number): void;
-    clickButton(button: ButtonConfig, item: Data, index: number): void;
+    allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
+    rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
+    clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
     sortColumn(key: string, order: string): void;
     updateColumnWidths(): void;
 }> & ThisType<{
-    allCheckedChange(event: CustomEventInterface, data: Data): void;
-    rowCheckedChange(event: CustomEventInterface, data: Data, index: number): void;
-    clickButton(button: ButtonConfig, item: Data, index: number): void;
+    allCheckedChange(event: CustomEventInterface, data: Record<string, any>): void;
+    rowCheckedChange(event: CustomEventInterface, data: Record<string, any>, index: number): void;
+    clickButton(button: ButtonConfig, item: Record<string, any>, index: number): void;
     sortColumn(key: string, order: string): void;
     updateColumnWidths(): void;
 } & import("yox").YoxInterface>;

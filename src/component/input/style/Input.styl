@@ -134,8 +134,11 @@ input-brand-style(style)
   user-select none
 
   {$selector-class-prefix + '-select'},
-  {$selector-class-prefix + '-button-pure'}
+  {$selector-class-prefix + '-button'}
     border 0
+
+  {$selector-class-prefix + '-select'},
+  {$selector-class-prefix + '-button-pure'}
     box-shadow none
     background-color transparent
 
@@ -144,11 +147,6 @@ input-brand-style(style)
   {$selector-class-prefix + '-button-pure'}
     color inherit
     font-size inherit
-
-  {$selector-class-prefix + '-button'}
-    height inherit
-    line-height inherit
-    position relative
 
 {$selector-class-prefix + '-input-prepend'}
   border-right none
