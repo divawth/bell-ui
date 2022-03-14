@@ -28,6 +28,7 @@ export default {
 ---|---|---|---|---
 multiple | 是否支持多选 | boolean | - | -
 accept | 允许什么类型的文件上传，如 `image/*` | string | - | -
+draggable | 是否支持拖拽上传 | boolean | - | -
 beforeUpload | 上传前执行的函数 | function | - | -
 upload | 上传单个文件执行的函数，传入的回调函数需按时机调用 | function | - | -
 

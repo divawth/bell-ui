@@ -6,6 +6,9 @@ import template from './template/Upload.hbs'
 import { toString } from '../util'
 
 import {
+  TRUE,
+  FALSE,
+  UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_FUNCTION,
@@ -15,7 +18,7 @@ import {
 
 // 为每次选择的文件提供一个全局唯一的 id，便于外部知道触发的事件对应哪次上传
 
-type UploadFile = {
+type LocalFile = {
   id: number | string,
   file: File,
   name: string,
@@ -34,6 +37,9 @@ export default Yox.define({
   propTypes: {
     index: {
       type: RAW_NUMERIC,
+    },
+    draggable: {
+      type: RAW_BOOLEAN,
     },
     multiple: {
       type: RAW_BOOLEAN,
@@ -55,22 +61,59 @@ export default Yox.define({
     }
   },
 
+  data() {
+    return {
+      isFileHover: FALSE,
+    }
+  },
+
   methods: {
-    beforeUpload(fileList: UploadFile[]) {
+    beforeUpload(fileList: FileList) {
 
       const me = this
+      const accept = me.get('accept')
+
+      const acceptPattern = accept
+        ? new RegExp(accept.replace(/\*/g, '.'))
+        : UNDEFINED
+
+      const files = Yox.array.toArray(fileList)
+      .filter(
+        function (file) {
+          return acceptPattern
+            ? acceptPattern.test(file.type)
+            : TRUE
+        }
+      )
+      .map(
+        function (file) {
+          return {
+            // 用字符串类型表示本地文件
+            id: toString(guid--),
+            file,
+            name: file.name,
+            size: file.size,
+          }
+        }
+      )
+
+      if (files.length > 1
+        && !me.get('multiple')
+      ) {
+        files.length = 1
+      }
 
       const beforeUpload = me.get('beforeUpload')
       if (beforeUpload) {
         const index = me.get('index')
         beforeUpload({
           index,
-          fileList,
+          files,
           callback(result) {
             if (Yox.is.array(result)) {
               Yox.array.each(
                 result,
-                function (item: UploadFile) {
+                function (item: LocalFile) {
                   me.upload(item)
                 }
               )
@@ -84,7 +127,7 @@ export default Yox.define({
       }
 
       Yox.array.each(
-        fileList,
+        files,
         function (item) {
           me.upload(item)
         }
@@ -92,7 +135,7 @@ export default Yox.define({
 
     },
 
-    upload(file: UploadFile) {
+    upload(file: LocalFile) {
 
       const me = this
       const index = me.get('index')
@@ -176,30 +219,37 @@ export default Yox.define({
       (this.$refs.form as HTMLFormElement).reset()
     },
 
-    click() {
+    handleClick() {
       (this.$refs.input as HTMLInputElement).click()
     },
 
-    onChange(event: CustomEventInterface) {
+    handleDragenter() {
+      this.set('isFileHover', TRUE)
+    },
 
-      const fileList = Yox.array.toArray(
+    handleDragleave() {
+      this.set('isFileHover', FALSE)
+    },
+
+    handleDragover(event: CustomEventInterface) {
+      // 默认情况下，元素是不允许放置的
+      event.prevent()
+    },
+
+    handleDrop(event: CustomEventInterface) {
+      event.prevent()
+      this.set('isFileHover', FALSE)
+      this.beforeUpload(
+        (event.originalEvent as DragEvent).dataTransfer.files
+      )
+    },
+
+    handleChange(event: CustomEventInterface) {
+      this.beforeUpload(
         (event.originalEvent.target as HTMLInputElement).files
       )
-
-      this.beforeUpload(
-        fileList.map(function (file) {
-          return {
-            // 用字符串类型表示本地文件
-            id: toString(guid--),
-            file,
-            name: file.name,
-            size: file.size,
-          }
-        })
-      )
-
     }
 
-  },
+  }
 
 })
