@@ -1,8 +1,4 @@
 import { DOCUMENT, NULL } from '../constant'
-import {
-  padStart,
-  toString,
-} from '../util'
 
 export const STATUS_UPLOADING = 'uploading'
 export const STATUS_ERROR = 'error'
@@ -76,38 +72,4 @@ export function formatFileSize(size: number) {
     return (size / MB).toFixed(1) + ' MB'
   }
   return (size / KB).toFixed(1) + ' KB'
-}
-
-const SECOND = 1
-const MINUTE = 60 * SECOND
-const HOUR = 60 * MINUTE
-const DAY = 24 * MINUTE
-
-export function formatVideoDuration(duration: number) {
-  const day = Math.floor(duration / DAY)
-  duration %= DAY
-
-  const hour = Math.floor(duration / HOUR)
-  duration %= HOUR
-
-  const minute = Math.floor(duration / MINUTE)
-  duration %= MINUTE
-
-  const second = Math.floor(duration / SECOND)
-
-  const result: string[] = [
-    padStart(minute),
-    padStart(second),
-  ]
-  if (day > 0 || hour > 0) {
-    result.unshift(
-      padStart(hour)
-    )
-    if (day > 0) {
-      result.unshift(
-        toString(day)
-      )
-    }
-  }
-  return result.join(':')
 }

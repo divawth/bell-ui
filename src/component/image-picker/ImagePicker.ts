@@ -22,6 +22,7 @@ import {
 
 import {
   toNumber,
+  formatSecond,
 } from '../util'
 
 import {
@@ -30,7 +31,6 @@ import {
   STATUS_FAILURE,
   readLocalFile,
   formatFileSize,
-  formatVideoDuration,
 } from './util'
 
 const CLASS_CARD_MOUSE_ENTER = '${prefix}image-picker-card-mouse-enter'
@@ -313,14 +313,14 @@ export default Yox.define({
         if (minDuration > 0) {
           if (item.duration < minDuration) {
             errors.push(
-              `${target}时长不能小于 ${formatVideoDuration(minDuration)}`
+              `${target}时长不能小于 ${formatSecond(minDuration)}`
             )
           }
         }
         if (maxDuration > 0) {
           if (item.duration > maxDuration) {
             errors.push(
-              `${target}时长不能超过 ${formatVideoDuration(maxDuration)}`
+              `${target}时长不能超过 ${formatSecond(maxDuration)}`
             )
           }
         }

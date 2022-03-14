@@ -149,6 +149,42 @@ export function oneOf(values: any[]) {
   }
 }
 
+export function formatSecond(value: number, format = 'd:hh:mm:ss', SECOND = 1) {
+
+  const MINUTE = 60 * SECOND
+  const HOUR = 60 * MINUTE
+  const DAY = 24 * MINUTE
+
+  const day = Math.floor(value / DAY)
+  value %= DAY
+
+  const hour = Math.floor(value / HOUR)
+  value %= HOUR
+
+  const minute = Math.floor(value / MINUTE)
+  value %= MINUTE
+
+  const second = Math.floor(value / SECOND)
+
+  if (!day) {
+    format = format.replace(/dd:/, '').replace(/d:/, '')
+    if (!hour) {
+      format = format.replace(/hh:/, '').replace(/h:/, '')
+    }
+  }
+
+  return format
+    .replace(/dd/i, padStart(day))
+    .replace(/d/i, toString(day))
+    .replace(/hh/i, padStart(hour))
+    .replace(/h/i, toString(hour))
+    .replace(/mm/i, padStart(minute))
+    .replace(/m/i, toString(minute))
+    .replace(/ss/i, padStart(second))
+    .replace(/s/i, toString(second))
+
+}
+
 export function padStart(value: number) {
   return value < 10
     ? '0' + value
