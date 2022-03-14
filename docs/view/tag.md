@@ -124,6 +124,26 @@ export default {
 }
 ```
 
+> 带图标的标签
+
+```js
+export default {
+  template: `
+    <div>
+      <Tag icon="alipay-fill" color="#4B5CFA">
+        支付宝
+      </Tag>
+      <Tag icon="wechat-fill" color="#3BB95A">
+        微信
+      </Tag>
+      <Tag icon="weibo-fill" color="#CD352A">
+        微博
+      </Tag>
+    </div>
+  `
+}
+```
+
 > 纯色标签
 
 ```js
@@ -162,6 +182,7 @@ export default {
 checked | 标签是否已选中 | - | - | -
 type | 按钮类型 | string | `primary`, `info`, `success`, `warning`, `error` | -
 size | 大小 | string | `default`, `large` | `default`
+icon | 图标 | string | - | -
 closable | 是否可以关闭 | boolean | - | -
 checkable | 标签是否可以选择 | boolean | - | -
 color | 自定义颜色 | string | - | -

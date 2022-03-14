@@ -28,14 +28,27 @@ class="${prefix}tag
 {{/if}}
 >
 
+  {{#if hasSlot('icon') || icon}}
+    <div class="${prefix}tag-icon">
+      <slot name="icon">
+        <Icon
+          name="{{icon}}"
+        />
+      </slot>
+    </div>
+  {{/if}}
+
   <slot />
 
   {{#if closable}}
-    <Icon
-      name="close-line"
-      className="${prefix}tag-close-icon"
-      on-click.native="close.tag"
-    />
+    <div
+      class="${prefix}tag-close-button"
+      on-click="close.tag"
+    >
+      <Icon
+        name="close-line"
+      />
+    </div>
   {{/if}}
 
 </div>
