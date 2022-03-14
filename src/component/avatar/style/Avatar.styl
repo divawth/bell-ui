@@ -3,19 +3,14 @@
 $avatar-bg-color = #ccc
 
 {$selector-class-prefix + '-avatar'}
+  display inline-flex
+  align-items center
+  justify-content center
   overflow hidden
-  display inline-block
-  text-align center
   position relative
   background-color $avatar-bg-color
   border-radius $border-radius-default
   transition background-color .2s
-
-  + {$selector-class-prefix + '-avatar'}
-    margin-left $ui-horizontal-gap
-
-  > {$selector-class-prefix + '-icon'}
-    vertical-align middle
 
   > img
     width 100%
@@ -27,7 +22,6 @@ $avatar-bg-color = #ccc
 {$selector-class-prefix + '-avatar-clickable'}
   ui-clickable()
 
-// 只有 CSS3 可以缩放文本缩放
 {$selector-class-prefix + '-avatar-text'}
   color $brand-white
   position absolute

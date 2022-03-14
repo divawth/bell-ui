@@ -7218,19 +7218,14 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.8;
 }
 .bell-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  display: inline-block;
-  text-align: center;
   position: relative;
   background-color: #ccc;
   border-radius: 4px;
   transition: background-color 0.2s;
-}
-.bell-avatar + .bell-avatar {
-  margin-left: 8px;
-}
-.bell-avatar > .bell-icon {
-  vertical-align: middle;
 }
 .bell-avatar > img {
   width: 100%;
@@ -7282,8 +7277,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-backtop-fade {
   opacity: 1;
 }
-.bell-badge,
-.bell-badge-status {
+.bell-badge {
   display: inline-block;
 }
 .bell-badge {
@@ -7328,11 +7322,19 @@ div::-webkit-scrollbar-thumb:hover {
   width: 10px;
   height: 10px;
   border: 1px solid #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .bell-badge > .bell-badge-text {
   border-radius: 100px;
   display: inline-block;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   color: #fff;
   font-size: 12px;
   min-width: 20px;
@@ -7343,10 +7345,18 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-badge > .bell-badge-text-append {
   border: 1px solid #fff;
   line-height: 18px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   position: absolute;
   left: 100%;
   top: 0;
   transform: translate(-50%, -50%);
+}
+.bell-badge-status {
+  display: inline-flex;
+  align-items: center;
 }
 .bell-badge-status-info > .bell-badge-dot {
   background-color: #2db7f5;
@@ -7387,14 +7397,13 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-badge-status > .bell-badge-dot {
   width: 6px;
   height: 6px;
-  vertical-align: middle;
+}
+.bell-badge-status > .bell-badge-dot + .bell-badge-text {
+  margin-left: 6px;
 }
 .bell-badge-status > .bell-badge-text {
   color: #515a6e;
   font-size: 14px;
-}
-.bell-badge-status > .bell-badge-dot + .bell-badge-text {
-  margin-left: 6px;
 }
 .bell-badge-with-dot-text {
   white-space: nowrap;
@@ -8104,7 +8113,6 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
   line-height: 1.5715;
   padding-left: 20px;
-  vertical-align: middle;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
   position: absolute;
@@ -8991,7 +8999,8 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker {
   position: relative;
 }
-.bell-image-picker .bell-image-picker-append {
+.bell-image-picker .bell-image-picker-append,
+.bell-image-picker .bell-image-picker-mask {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9025,11 +9034,7 @@ div::-webkit-scrollbar-thumb:hover {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-image-picker-mask {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
   position: absolute;
   top: 0;
   left: 0;
@@ -9041,19 +9046,29 @@ div::-webkit-scrollbar-thumb:hover {
   color: #fff;
   font-size: 12px;
 }
+.bell-image-picker-image-name {
+  color: #515a6e;
+  font-size: 14px;
+  line-height: 1.5715;
+  text-align: center;
+  width: 80%;
+}
 .bell-image-picker-message {
   color: #fff;
   font-size: 14px;
   line-height: 1.5715;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(200,200,200,0.5);
   text-align: center;
   width: 80%;
 }
-.bell-image-picker-reupload {
+.bell-image-picker-action {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
   margin-top: 10px;
 }
 .bell-image-picker-image-size {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.6);
   color: #fff;
   font-size: 12px;
   padding: 2px 4px;
@@ -9675,7 +9690,6 @@ div::-webkit-scrollbar-thumb:hover {
   flex-direction: row;
   align-items: center;
   width: 200px;
-  vertical-align: middle;
   box-sizing: border-box;
 }
 .bell-input + .bell-input {
@@ -11192,9 +11206,6 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   margin-top: 10px;
 }
-.bell-progress {
-  vertical-align: middle;
-}
 .bell-progress-info .bell-progress-bar {
   background-color: #2db7f5;
 }
@@ -11208,6 +11219,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #f90;
 }
 .bell-progress-track {
+  flex: 1;
   background-color: #e8eaec;
   border-radius: 100px;
 }
@@ -11229,15 +11241,12 @@ div::-webkit-scrollbar-thumb:hover {
   margin-right: 8px;
 }
 .bell-progress-outside.bell-progress-horizontal > .bell-progress-text {
-  padding-left: 8px;
+  margin-left: 8px;
 }
 .bell-progress-with-text {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-.bell-progress-block {
-  flex: 1;
 }
 .bell-progress-horizontal .bell-progress-bar {
   position: relative;
@@ -11336,7 +11345,6 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
   line-height: 1.5715;
   padding-left: 20px;
-  vertical-align: middle;
 }
 .bell-radio-with-label > .bell-radio-icon {
   position: absolute;
@@ -12748,18 +12756,22 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
 }
 .bell-tag {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
   border: 1px solid #dcdee2;
   background-color: #fafafa;
   color: #515a6e;
   border-radius: 4px;
+  line-height: 1.1429;
   white-space: nowrap;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 .bell-tag-checked {
   background-color: #dcdee2;
+}
+.bell-tag-closable {
+  padding-right: 0;
 }
 .bell-tag-checkable {
   -webkit-user-select: none;
@@ -12769,58 +12781,41 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.bell-tag-close-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  color: #aaa;
-  font-size: 14px;
-  line-height: inherit;
-  transition: color 0.3s;
+.bell-tag-icon {
+  line-height: 0;
+  margin-right: 4px;
+}
+.bell-tag-close-button {
+  line-height: 0;
+  margin-left: 4px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.bell-tag-close-icon:hover {
+.bell-tag-close-button > .bell-icon {
+  color: #aaa;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+.bell-tag-close-button > .bell-icon:hover {
   color: #666;
 }
 .bell-tag-default {
   font-size: 12px;
   height: 24px;
-  line-height: 22px;
   padding: 0 8px;
-}
-.bell-tag-default.bell-tag-pure {
-  line-height: 24px;
-}
-.bell-tag-default.bell-tag-closable {
-  padding-right: 22px;
-}
-.bell-tag-default > .bell-tag-close-icon {
-  width: 22px;
 }
 .bell-tag-large {
   font-size: 14px;
   height: 28px;
-  line-height: 26px;
   padding: 0 10px;
-}
-.bell-tag-large.bell-tag-pure {
-  line-height: 28px;
-}
-.bell-tag-large.bell-tag-closable {
-  padding-right: 26px;
-}
-.bell-tag-large > .bell-tag-close-icon {
-  width: 26px;
 }
 .bell-tag-primary {
   background-color: #ecf5ff;
   border-color: #b3d8ff;
   color: #2d8cf0;
 }
-.bell-tag-primary > .bell-tag-close-icon {
+.bell-tag-primary .bell-tag-icon > .bell-icon,
+.bell-tag-primary .bell-tag-close-button > .bell-icon {
   color: #2d8cf0;
 }
 .bell-tag-primary.bell-tag-checked {
@@ -12828,7 +12823,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2d8cf0;
   color: #fff;
 }
-.bell-tag-primary.bell-tag-checked > .bell-tag-close-icon {
+.bell-tag-primary.bell-tag-checked .bell-tag-icon > .bell-icon,
+.bell-tag-primary.bell-tag-checked .bell-tag-close-button > .bell-icon {
   color: #fff;
 }
 .bell-tag-success {
@@ -12836,7 +12832,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #8ce6b0;
   color: #19be6b;
 }
-.bell-tag-success > .bell-tag-close-icon {
+.bell-tag-success .bell-tag-icon > .bell-icon,
+.bell-tag-success .bell-tag-close-button > .bell-icon {
   color: #19be6b;
 }
 .bell-tag-success.bell-tag-checked {
@@ -12844,7 +12841,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #19be6b;
   color: #fff;
 }
-.bell-tag-success.bell-tag-checked > .bell-tag-close-icon {
+.bell-tag-success.bell-tag-checked .bell-tag-icon > .bell-icon,
+.bell-tag-success.bell-tag-checked .bell-tag-close-button > .bell-icon {
   color: #fff;
 }
 .bell-tag-error {
@@ -12852,7 +12850,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #ffa39e;
   color: #ed4014;
 }
-.bell-tag-error > .bell-tag-close-icon {
+.bell-tag-error .bell-tag-icon > .bell-icon,
+.bell-tag-error .bell-tag-close-button > .bell-icon {
   color: #ed4014;
 }
 .bell-tag-error.bell-tag-checked {
@@ -12860,7 +12859,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #ed4014;
   color: #fff;
 }
-.bell-tag-error.bell-tag-checked > .bell-tag-close-icon {
+.bell-tag-error.bell-tag-checked .bell-tag-icon > .bell-icon,
+.bell-tag-error.bell-tag-checked .bell-tag-close-button > .bell-icon {
   color: #fff;
 }
 .bell-tag-info {
@@ -12868,7 +12868,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #91d5ff;
   color: #2db7f5;
 }
-.bell-tag-info > .bell-tag-close-icon {
+.bell-tag-info .bell-tag-icon > .bell-icon,
+.bell-tag-info .bell-tag-close-button > .bell-icon {
   color: #2db7f5;
 }
 .bell-tag-info.bell-tag-checked {
@@ -12876,7 +12877,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2db7f5;
   color: #fff;
 }
-.bell-tag-info.bell-tag-checked > .bell-tag-close-icon {
+.bell-tag-info.bell-tag-checked .bell-tag-icon > .bell-icon,
+.bell-tag-info.bell-tag-checked .bell-tag-close-button > .bell-icon {
   color: #fff;
 }
 .bell-tag-warning {
@@ -12884,7 +12886,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #ffe58f;
   color: #f90;
 }
-.bell-tag-warning > .bell-tag-close-icon {
+.bell-tag-warning .bell-tag-icon > .bell-icon,
+.bell-tag-warning .bell-tag-close-button > .bell-icon {
   color: #f90;
 }
 .bell-tag-warning.bell-tag-checked {
@@ -12892,7 +12895,8 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #f90;
   color: #fff;
 }
-.bell-tag-warning.bell-tag-checked > .bell-tag-close-icon {
+.bell-tag-warning.bell-tag-checked .bell-tag-icon > .bell-icon,
+.bell-tag-warning.bell-tag-checked .bell-tag-close-button > .bell-icon {
   color: #fff;
 }
 .bell-tag-pure {
@@ -12900,8 +12904,8 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
   color: #fff;
 }
-.bell-tag-pure > .bell-tag-close-icon,
-.bell-tag-pure > .bell-tag-close-icon:hover {
+.bell-tag-pure .bell-tag-close-button > .bell-icon,
+.bell-tag-pure .bell-tag-close-button > .bell-icon:hover {
   color: inherit;
 }
 .bell-text-default {

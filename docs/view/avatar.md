@@ -92,7 +92,7 @@ export default {
 ```js
 export default {
   template: `
-    <div>
+    <Space>
       <Avatar>
         <Icon
           slot="icon"
@@ -113,7 +113,7 @@ export default {
           size="22"
         />
       </Avatar>
-    </div>
+    </Space>
   `
 }
 ```

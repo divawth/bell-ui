@@ -57,8 +57,7 @@ badge-status-style(style)
     > {$selector-class-prefix + '-badge-dot'}:after
       ui-set('border-color', style['color'])
 
-{$selector-class-prefix + '-badge'},
-{$selector-class-prefix + '-badge-status'}
+{$selector-class-prefix + '-badge'}
   display inline-block
 
 {$selector-class-prefix + '-badge'}
@@ -91,11 +90,13 @@ badge-status-style(style)
     width $badge-dot-size
     height $badge-dot-size
     border 1px solid $brand-white
+    user-select none
 
   > {$selector-class-prefix + '-badge-text'}
     border-radius $border-radius-round
     display inline-block
     text-align center
+    user-select none
     color $brand-white
     font-size $font-size-small
     min-width $badge-text-height
@@ -106,6 +107,7 @@ badge-status-style(style)
   > {$selector-class-prefix + '-badge-text-append'}
     border 1px solid $brand-white
     line-height $badge-text-height - 2
+    user-select none
     position absolute
     left 100%
     top 0
@@ -117,19 +119,19 @@ badge-status-style(style)
     hash: $badge-status-hash,
     each: badge-status-style
   )
+  display inline-flex
+  align-items center
 
   > {$selector-class-prefix + '-badge-dot'}
     width $badge-status-dot-size
     height $badge-status-dot-size
-    vertical-align middle
+
+    + {$selector-class-prefix + '-badge-text'}
+      margin-left $ui-icon-text-gap
 
   > {$selector-class-prefix + '-badge-text'}
     color $brand-content
     font-size $font-size-default
-
-  > {$selector-class-prefix + '-badge-dot'} + {$selector-class-prefix + '-badge-text'}
-    margin-left $ui-icon-text-gap
-
 
 {$selector-class-prefix + '-badge-with-dot-text'}
   white-space nowrap

@@ -14,9 +14,9 @@ ui-progress()
 
 {$selector-class-prefix + '-progress'}
   ui-progress()
-  vertical-align middle
 
 {$selector-class-prefix + '-progress-track'}
+  flex 1
   background-color $progress-bg-color
   border-radius $border-radius-round
 
@@ -41,15 +41,12 @@ ui-progress()
 {$selector-class-prefix + '-progress-outside'}
   &{$selector-class-prefix + '-progress-horizontal'}
     > {$selector-class-prefix + '-progress-text'}
-      padding-left $ui-horizontal-gap
+      margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-progress-with-text'}
   display flex
   flex-direction row
   align-items center
-
-{$selector-class-prefix + '-progress-block'}
-  flex 1
 
 {$selector-class-prefix + '-progress-horizontal'}
   {$selector-class-prefix + '-progress-bar'}

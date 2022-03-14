@@ -30,27 +30,12 @@ class="${prefix}progress
     </ProgressTrack>
   {{else}}
 
-    {{#if !vertical && hasSlot('children')}}
-      <div class="${prefix}progress-block">
-        <ProgressTrack
-          vertical="{{vertical}}"
-          inside="{{inside}}"
-          thickness="{{thickness}}"
-          percent="{{percent}}"
-        >
-          <slot />
-        </ProgressTrack>
-      </div>
-    {{else}}
-      <ProgressTrack
-        vertical="{{vertical}}"
-        inside="{{inside}}"
-        thickness="{{thickness}}"
-        percent="{{percent}}"
-      >
-        <slot />
-      </ProgressTrack>
-    {{/if}}
+    <ProgressTrack
+      vertical="{{vertical}}"
+      inside="{{inside}}"
+      thickness="{{thickness}}"
+      percent="{{percent}}"
+    />
 
     {{#if hasSlot('children')}}
       <div class="${prefix}progress-text">
