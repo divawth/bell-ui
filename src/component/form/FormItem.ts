@@ -79,6 +79,12 @@ export default Yox.define({
     }
   },
 
+  filters: {
+    formatMessage(msg: string) {
+      return msg.replace(/\n/g, '<br>')
+    }
+  },
+
   events: {
     validate: {
       listener(_, data) {

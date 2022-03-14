@@ -42,13 +42,13 @@ class="${prefix}form-item
 
     {{#if extra}}
       <div class="${prefix}form-item-extra">
-        {{extra}}
+        {{{formatMessage(extra)}}}
       </div>
     {{/if}}
 
     {{#if showItemMessage}}
       <div class="${prefix}form-item-message">
-        {{itemMessage}}
+        {{{formatMessage(itemMessage)}}}
       </div>
     {{/if}}
 

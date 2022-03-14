@@ -90,7 +90,7 @@ export default {
 ```js
 export default {
   isViewFullBlock: true,
-  height: 600,
+  height: 1200,
   template: `
   <div>
     <Form labelWidth="120" showColon>
@@ -100,8 +100,22 @@ export default {
           placeholder="Enter something..."
         />
       </FormItem>
+      <FormItem label="Input" showRequiredMark extra="第一行文字\n第二行文字">
+        <Input
+          model="form.input"
+          placeholder="Enter something..."
+        />
+      </FormItem>
       <FormItem label="InputNumber" showRequiredMark showMessage message="这是一段错误提示">
         <InputNumber
+          status="error"
+          model="form.number"
+          placeholder="Enter something..."
+        />
+      </FormItem>
+      <FormItem label="InputNumber" showRequiredMark showMessage message="第一个错误提示\n第二个错误提示">
+        <InputNumber
+          status="error"
           model="form.number"
           placeholder="Enter something..."
         />
@@ -158,6 +172,22 @@ export default {
       </FormItem>
       <FormItem label="Checkbox">
         <CheckboxGroup model="form.checkbox">
+          <Checkbox value="eat">
+            Eat
+          </Checkbox>
+          <Checkbox value="sleep">
+            Sleep
+          </Checkbox>
+          <Checkbox value="run">
+            Run
+          </Checkbox>
+          <Checkbox value="movie">
+            Movie
+          </Checkbox>
+        </CheckboxGroup>
+      </FormItem>
+      <FormItem label="Checkbox">
+        <CheckboxGroup vertical model="form.checkbox" style="margin-top: 4px">
           <Checkbox value="eat">
             Eat
           </Checkbox>
