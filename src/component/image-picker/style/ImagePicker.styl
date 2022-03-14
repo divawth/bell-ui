@@ -3,19 +3,22 @@
 $image-picker-circle-size = 60px
 $image-picker-remove-icon-size = 20px
 $image-picker-append-icon-size = 30px
+$image-picker-message-action-gap = 10px
 $image-picker-image-size-padding = 2px 4px
-$image-picker-mask-bg = rgba(0,0,0,0.5)
+$image-picker-mask-bg = rgba(0,0,0,0.6)
 $image-picker-mask-text = #fff
-$image-picker-mask-text-shadow = rgba(0,0,0,0.5)
+$image-picker-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-image-picker'}
   position relative
 
-  {$selector-class-prefix + '-image-picker-append'}
+  {$selector-class-prefix + '-image-picker-append'},
+  {$selector-class-prefix + '-image-picker-mask'}
     display flex
     flex-direction column
     justify-content center
     align-items center
+
 
 {$selector-class-prefix + '-image-picker-item'}
   display inline-block
@@ -44,10 +47,6 @@ $image-picker-mask-text-shadow = rgba(0,0,0,0.5)
   ui-clickable()
 
 {$selector-class-prefix + '-image-picker-mask'}
-  display flex
-  flex-direction column
-  justify-content center
-  align-items center
   background-color $image-picker-mask-bg
   position absolute
   top 0
@@ -61,6 +60,13 @@ $image-picker-mask-text-shadow = rgba(0,0,0,0.5)
     color #fff
     font-size $font-size-small
 
+{$selector-class-prefix + '-image-picker-image-name'}
+  color $brand-content
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
+  text-align center
+  width 80%
+
 {$selector-class-prefix + '-image-picker-message'}
   color $image-picker-mask-text
   font-size $ui-font-size
@@ -69,8 +75,11 @@ $image-picker-mask-text-shadow = rgba(0,0,0,0.5)
   text-align center
   width 80%
 
-{$selector-class-prefix + '-image-picker-reupload'}
-  margin-top $ui-vertical-gap
+{$selector-class-prefix + '-image-picker-action'}
+  color $image-picker-mask-text
+  font-size $ui-font-size
+  text-align center
+  margin-top $image-picker-message-action-gap
 
 {$selector-class-prefix + '-image-picker-image-size'}
   background-color $image-picker-mask-bg

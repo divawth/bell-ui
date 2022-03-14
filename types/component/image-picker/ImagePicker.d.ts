@@ -1,4 +1,5 @@
 declare const _default: import("yox").ComponentOptions<{
+    isVideoPicker: unknown;
     customImageWidth: unknown;
     customImageHeight: unknown;
     restCount: unknown;

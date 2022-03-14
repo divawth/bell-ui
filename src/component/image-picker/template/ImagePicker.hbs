@@ -48,6 +48,10 @@ class="${prefix}image-picker
               on-click="handleImageClick(this, index)"
             {{/if}}
           >
+        {{else if this.name}}
+          <div class="${prefix}image-picker-image-name">
+            {{this.name}}
+          </div>
         {{/if}}
 
         {{#if this.status === ~/STATUS_UPLOADING}}
@@ -60,27 +64,24 @@ class="${prefix}image-picker
           </div>
         {{else}}
           {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
-            <div
-              class="${prefix}image-picker-mask"
+            <Upload
+              draggable
+              ref="reupload"
+              index="{{index}}"
+              className="${prefix}image-picker-mask"
+              accept="{{accept}}"
+              beforeUpload="{{beforeReuploadImage}}"
             >
               <div class="${prefix}image-picker-message">
                 {{{this.message}}}
               </div>
-              <Upload
-                ref="reupload"
-                index="{{index}}"
-                className="${prefix}image-picker-reupload"
-                accept="{{accept}}"
-                beforeUpload="{{beforeReuploadImage}}"
-              >
-                <Button size="small">
-                  <Icon name="upload-2-line" />
-                </Button>
-              </Upload>
-            </div>
+              <div class="${prefix}image-picker-action">
+                重新上传
+              </div>
+            </Upload>
           {{else if this.size > 0}}
             <div class="${prefix}image-picker-image-size">
-              {{formatImageSize(this.size)}}
+              {{formatFileSize(this.size)}}
             </div>
           {{/if}}
           {{#if !~/readOnly && ~/draggingIndex < 0}}
@@ -97,6 +98,7 @@ class="${prefix}image-picker
 
     {{#if !readOnly && restCount > 0}}
       <Upload
+        draggable
         ref="upload"
         className="${prefix}image-picker-item ${prefix}image-picker-append"
         multiple="{{restCount > 1}}"
@@ -112,7 +114,11 @@ class="${prefix}image-picker
           name="add-line"
         />
         <div class="${prefix}image-picker-append-text">
-          上传图片
+          {{#if isVideoPicker}}
+            上传视频
+          {{else}}
+            上传图片
+          {{/if}}
         </div>
       </Upload>
     {{/if}}

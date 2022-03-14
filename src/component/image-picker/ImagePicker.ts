@@ -28,8 +28,9 @@ import {
   STATUS_UPLOADING,
   STATUS_ERROR,
   STATUS_FAILURE,
-  readImageFile,
-  formatImageSize,
+  readLocalFile,
+  formatFileSize,
+  formatVideoDuration,
 } from './util'
 
 const CLASS_CARD_MOUSE_ENTER = '${prefix}image-picker-card-mouse-enter'
@@ -57,6 +58,9 @@ export default Yox.define({
     extra: {
       type: RAW_STRING,
     },
+    minSize: {
+      type: RAW_NUMERIC,
+    },
     maxSize: {
       type: RAW_NUMERIC,
     },
@@ -75,10 +79,16 @@ export default Yox.define({
     minHeight: {
       type: RAW_NUMERIC,
     },
+    minDuration: {
+      type: RAW_NUMERIC,
+    },
     maxWidth: {
       type: RAW_NUMERIC,
     },
     maxHeight: {
+      type: RAW_NUMERIC,
+    },
+    maxDuration: {
       type: RAW_NUMERIC,
     },
     accept: {
@@ -117,7 +127,7 @@ export default Yox.define({
 
         const { index, fileList } = data
 
-        readImageFile(fileList[0]).then(function (item) {
+        readLocalFile(fileList[0]).then(function (item) {
 
           me.validateImageList([item])
 
@@ -135,12 +145,17 @@ export default Yox.define({
 
         // 校验可选数量
         if (fileList.length > restCount) {
-          me.fireError(`仅可以选择 ${restCount} 张图片`)
+          if (me.get('isVideoPicker')) {
+            me.fireError(`仅可以选择 ${restCount} 个视频`)
+          }
+          else {
+            me.fireError(`仅可以选择 ${restCount} 张图片`)
+          }
           return
         }
 
         Promise.all(
-          fileList.map(readImageFile)
+          fileList.map(readLocalFile)
         )
         .then(function (newList: any[]) {
 
@@ -157,6 +172,9 @@ export default Yox.define({
   },
 
   computed: {
+    isVideoPicker(): boolean {
+      return this.get('accept').indexOf('video') >= 0
+    },
     customImageWidth(): number {
       return toNumber(this.get('imageWidth'))
     },
@@ -177,7 +195,7 @@ export default Yox.define({
   },
 
   filters: {
-    formatImageSize,
+    formatFileSize,
   },
 
   components: {
@@ -213,7 +231,9 @@ export default Yox.define({
 
       const me = this
 
-      // 校验图片
+      const target = me.get('isVideoPicker') ? '视频' : '图片'
+
+      const minSize = toNumber(me.get('minSize'))
       const maxSize = toNumber(me.get('maxSize'))
 
       const minRatio = toNumber(me.get('minRatio'))
@@ -225,13 +245,23 @@ export default Yox.define({
       const maxWidth = toNumber(me.get('maxWidth'))
       const maxHeight = toNumber(me.get('maxHeight'))
 
+      const minDuration = toNumber(me.get('minDuration'))
+      const maxDuration = toNumber(me.get('maxDuration'))
+
       for (let i = 0, len = imageList.length; i < len; i++) {
         const item = imageList[i]
         let errors = []
+        if (minSize > 0) {
+          if (item.size < minSize) {
+            errors.push(
+              `${target}尺寸不能小于 ${formatFileSize(minSize)}`
+            )
+          }
+        }
         if (maxSize > 0) {
           if (item.size > maxSize) {
             errors.push(
-              `图片尺寸不能超过 ${formatImageSize(maxSize)}`
+              `${target}尺寸不能超过 ${formatFileSize(maxSize)}`
             )
           }
         }
@@ -240,14 +270,14 @@ export default Yox.define({
           if (minRatio > 0) {
             if (ratio < minRatio) {
               errors.push(
-                `图片宽高比不能小于 ${minRatio}`
+                `${target}宽高比不能小于 ${minRatio}`
               )
             }
           }
           if (maxRatio > 0) {
             if (ratio > maxRatio) {
               errors.push(
-                `图片宽高比不能大于 ${maxRatio}`
+                `${target}宽高比不能大于 ${maxRatio}`
               )
             }
           }
@@ -255,28 +285,42 @@ export default Yox.define({
         if (minWidth > 0) {
           if (item.width < minWidth) {
             errors.push(
-              `图片宽度不能小于 ${minWidth}px`
+              `${target}宽度不能小于 ${minWidth}px`
             )
           }
         }
         if (minHeight > 0) {
           if (item.height < minHeight) {
             errors.push(
-              `图片高度不能小于 ${minHeight}px`
+              `${target}高度不能小于 ${minHeight}px`
             )
           }
         }
         if (maxWidth > 0) {
           if (item.width > maxWidth) {
             errors.push(
-              `图片宽度不能大于 ${maxWidth}px`
+              `${target}宽度不能大于 ${maxWidth}px`
             )
           }
         }
         if (maxHeight > 0) {
           if (item.height > maxHeight) {
             errors.push(
-              `图片高度不能大于 ${maxHeight}px`
+              `${target}高度不能大于 ${maxHeight}px`
+            )
+          }
+        }
+        if (minDuration > 0) {
+          if (item.duration < minDuration) {
+            errors.push(
+              `${target}时长不能小于 ${formatVideoDuration(minDuration)}`
+            )
+          }
+        }
+        if (maxDuration > 0) {
+          if (item.duration > maxDuration) {
+            errors.push(
+              `${target}时长不能超过 ${formatVideoDuration(maxDuration)}`
             )
           }
         }

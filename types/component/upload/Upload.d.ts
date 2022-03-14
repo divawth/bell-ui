@@ -5,7 +5,9 @@ declare type LocalFile = {
     name: string;
     size: number;
 };
-declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    acceptPattern: unknown;
+}, unknown, unknown, {
     beforeUpload(fileList: FileList): void;
     upload(file: LocalFile): void;
     reset(): void;

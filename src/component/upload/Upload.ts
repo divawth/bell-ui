@@ -67,17 +67,22 @@ export default Yox.define({
     }
   },
 
+  computed: {
+    acceptPattern(): RegExp | void {
+      const accept = this.get('accept')
+      return accept
+        ? new RegExp('(' + accept.replace(/\*/g, '.').replace(/\s*,\s*/g, '|') + ')')
+        : UNDEFINED
+    }
+  },
+
   methods: {
     beforeUpload(fileList: FileList) {
 
       const me = this
-      const accept = me.get('accept')
+      const acceptPattern = me.get('acceptPattern')
 
-      const acceptPattern = accept
-        ? new RegExp(accept.replace(/\*/g, '.'))
-        : UNDEFINED
-
-      const files = Yox.array.toArray(fileList)
+      const formatedFileList = Yox.array.toArray(fileList)
       .filter(
         function (file) {
           return acceptPattern
@@ -97,10 +102,10 @@ export default Yox.define({
         }
       )
 
-      if (files.length > 1
+      if (formatedFileList.length > 1
         && !me.get('multiple')
       ) {
-        files.length = 1
+        formatedFileList.length = 1
       }
 
       const beforeUpload = me.get('beforeUpload')
@@ -108,7 +113,7 @@ export default Yox.define({
         const index = me.get('index')
         beforeUpload({
           index,
-          files,
+          fileList: formatedFileList,
           callback(result) {
             if (Yox.is.array(result)) {
               Yox.array.each(
@@ -127,7 +132,7 @@ export default Yox.define({
       }
 
       Yox.array.each(
-        files,
+        formatedFileList,
         function (item) {
           me.upload(item)
         }
