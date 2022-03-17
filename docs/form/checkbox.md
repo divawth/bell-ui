@@ -46,6 +46,12 @@ export default {
         <Checkbox value="github">
           Github
         </Checkbox>
+        <Checkbox value="google">
+          Google
+        </Checkbox>
+        <Checkbox value="microsoft">
+          Microsoft
+        </Checkbox>
       </CheckboxGroup>
       <p>
         {{social}}

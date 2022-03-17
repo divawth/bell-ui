@@ -16,7 +16,7 @@ class="${prefix}checkbox
 {{/if}}
 >
 
-  <span class="${prefix}checkbox-icon">
+  <div class="${prefix}checkbox-icon">
     <input
       class="${prefix}checkbox-input"
       type="checkbox"
@@ -29,7 +29,7 @@ class="${prefix}checkbox
       on-focus="set('isFocus', true)"
       on-blur="set('isFocus', false)"
     >
-  </span>
+  </div>
 
   <slot />
 

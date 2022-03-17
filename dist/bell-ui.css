@@ -8100,7 +8100,9 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 24px 24px;
 }
 .bell-checkbox {
-  display: inline-block;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -8108,17 +8110,13 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
 }
 .bell-checkbox-with-label {
-  position: relative;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
-  padding-left: 20px;
+  line-height: 1.1429;
+  white-space: nowrap;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -7px;
+  margin-right: 6px;
 }
 .bell-checkbox-active > .bell-checkbox-icon:after {
   transform: rotate(45deg) scale(1);
@@ -8131,7 +8129,6 @@ div::-webkit-scrollbar-thumb:hover {
   height: 1px;
 }
 .bell-checkbox-icon {
-  display: inline-block;
   position: relative;
   width: 14px;
   height: 14px;
@@ -8188,14 +8185,14 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-checkbox-focus > .bell-checkbox-icon {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
-.bell-checkbox-group.bell-checkbox-horizontal > .bell-checkbox + .bell-checkbox {
-  margin-left: 16px;
+.bell-checkbox-group {
+  display: inline-block;
+}
+.bell-checkbox-group.bell-checkbox-horizontal > .bell-checkbox {
+  margin-right: 16px;
 }
 .bell-checkbox-group.bell-checkbox-vertical > .bell-checkbox {
-  display: block;
-}
-.bell-checkbox-group.bell-checkbox-vertical > .bell-checkbox + .bell-checkbox {
-  margin-top: 8px;
+  display: flex;
 }
 .bell-circle {
   display: inline-block;
@@ -9700,12 +9697,6 @@ div::-webkit-scrollbar-thumb:hover {
   align-items: center;
   width: 200px;
   box-sizing: border-box;
-}
-.bell-input + .bell-input {
-  margin-left: 8px;
-}
-.bell-input + .bell-input-block {
-  margin-left: 0;
 }
 .bell-input-info > .bell-input-content {
   border-color: #2db7f5;
@@ -11338,7 +11329,9 @@ div::-webkit-scrollbar-thumb:hover {
   }
 }
 .bell-radio {
-  display: inline-block;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -11346,24 +11339,19 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
 }
 .bell-radio-with-label {
-  position: relative;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
-  padding-left: 20px;
+  line-height: 1.1429;
+  white-space: nowrap;
 }
 .bell-radio-with-label > .bell-radio-icon {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -7px;
+  margin-right: 6px;
 }
 .bell-radio-active > .bell-radio-icon:after {
   opacity: 1;
   transform: scale(1);
 }
 .bell-radio-icon {
-  display: inline-block;
   position: relative;
   width: 14px;
   height: 14px;
@@ -11421,17 +11409,13 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-radio-vertical > .bell-radio {
-  display: block;
-  width: 100%;
+  display: flex;
 }
 .bell-radio-group {
   display: inline-block;
 }
-.bell-radio-group.bell-radio-horizontal > .bell-radio + .bell-radio {
-  margin-left: 16px;
-}
-.bell-radio-group.bell-radio-vertical > .bell-radio + .bell-radio {
-  margin-top: 10px;
+.bell-radio-group.bell-radio-horizontal > .bell-radio {
+  margin-right: 16px;
 }
 .bell-radio-button {
   display: inline-block;
@@ -11629,9 +11613,6 @@ div::-webkit-scrollbar-thumb:hover {
           user-select: none;
   text-align: left;
 }
-.bell-select + .bell-select {
-  margin-left: 8px;
-}
 .bell-select-default {
   font-size: 14px;
   min-height: 32px;
@@ -11754,10 +11735,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-block {
   display: flex;
   width: 100%;
-}
-.bell-select-block + .bell-select-block {
-  margin-left: 0;
-  margin-top: 10px;
 }
 .bell-select-group-title {
   color: #808695;
@@ -12110,9 +12087,6 @@ div::-webkit-scrollbar-thumb:hover {
   to {
     transform: rotate(405deg);
   }
-}
-.bell-split-button + .bell-split-button {
-  margin-left: 8px;
 }
 .bell-split-button-menu {
   min-width: 100px;
@@ -13311,10 +13285,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-space {
   display: inline-flex;
 }
-.bell-space > .bell-input,
-.bell-space > .bell-button,
-.bell-space > .bell-split-button,
-.bell-space > .bell-select {
+.bell-space > .bell-button {
   margin-left: 0;
 }
 .bell-space-horizontal {

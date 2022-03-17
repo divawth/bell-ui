@@ -73,10 +73,7 @@ date-picker-brand-style(style)
       ui-set('border-color', style['color'])
 
   &{$selector-class-prefix + '-date-picker-opened'}
-    ui-set('border-color', style['color'])
-
-    if $ui-shadow-radius > 0
-      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+    ui-focus(style['color'], style['shadow-color'])
 
 {$selector-class-prefix + '-date-picker'}
   width $ui-form-element-width

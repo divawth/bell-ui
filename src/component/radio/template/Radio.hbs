@@ -19,7 +19,7 @@ class="${prefix}radio
 {{/if}}
 >
 
-  <span class="${prefix}radio-icon">
+  <div class="${prefix}radio-icon">
     <input
       class="${prefix}radio-input"
       type="radio"
@@ -31,7 +31,7 @@ class="${prefix}radio
       on-focus="set('isFocus', true)"
       on-blur="set('isFocus', false)"
     >
-  </span>
+  </div>
 
   <slot />
 

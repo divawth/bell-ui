@@ -43,6 +43,18 @@ export default {
     <Radio value="usa">
       美国
     </Radio>
+    <Radio value="uk">
+      英国
+    </Radio>
+    <Radio value="fr">
+      法国
+    </Radio>
+    <Radio value="ru">
+      俄罗斯
+    </Radio>
+    <Radio value="ge">
+      德国
+    </Radio>
   </RadioGroup>
   `,
   data: function () {

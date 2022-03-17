@@ -34,10 +34,7 @@ time-picker-brand-style(style)
       ui-set('border-color', style['color'])
 
   &{$selector-class-prefix + '-time-picker-opened'}
-    ui-set('border-color', style['color'])
-
-    if $ui-shadow-radius > 0
-      box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+    ui-focus(style['color'], style['shadow-color'])
 
 {$selector-class-prefix + '-time-picker'}
   ui-connect(

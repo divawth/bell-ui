@@ -11,26 +11,22 @@ $checkbox-indeterminate-width = 8px
 $checkbox-indeterminate-height = 1px
 
 $checkbox-gap-horizontal = 16px
-$checkbox-gap-vertical = 8px
 
 {$selector-class-prefix + '-checkbox'}
-  display inline-block
+  height $height-default
+  display inline-flex
+  align-items center
   user-select none
   box-sizing border-box
 
 {$selector-class-prefix + '-checkbox-with-label'}
-  position relative
   color $brand-content
   font-size $font-size-default
-  // 这里用多行的行高，可增大点击面积
-  line-height $ui-multiple-line-height
-  padding-left $font-size-default + $ui-icon-text-gap
+  line-height $ui-single-line-height
+  white-space nowrap
 
   > {$selector-class-prefix + '-checkbox-icon'}
-    position absolute
-    left 0
-    top 50%
-    margin-top -0.5 * $font-size-default
+    margin-right $ui-icon-text-gap
 
 {$selector-class-prefix + '-checkbox-active'}
   > {$selector-class-prefix + '-checkbox-icon'}:after
@@ -46,7 +42,6 @@ $checkbox-gap-vertical = 8px
     height $checkbox-indeterminate-height
 
 {$selector-class-prefix + '-checkbox-icon'}
-  display inline-block
   position relative
   width $font-size-default
   height $font-size-default
@@ -110,15 +105,13 @@ if $ui-shadow-radius > 0
     > {$selector-class-prefix + '-checkbox-icon'}
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
-
 {$selector-class-prefix + '-checkbox-group'}
+  display inline-block
+
   &{$selector-class-prefix + '-checkbox-horizontal'}
     > {$selector-class-prefix + '-checkbox'}
       margin-right $checkbox-gap-horizontal
 
   &{$selector-class-prefix + '-checkbox-vertical'}
     > {$selector-class-prefix + '-checkbox'}
-      display block
-
-      + {$selector-class-prefix + '-checkbox'}
-        margin-top $checkbox-gap-vertical
+      display flex

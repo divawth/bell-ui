@@ -42,23 +42,20 @@ radio-button-size-style(size)
     ui-set('padding', 0 size['padding-horizontal'])
 
 {$selector-class-prefix + '-radio'}
-  display inline-block
+  height $height-default
+  display inline-flex
+  align-items center
   user-select none
   box-sizing border-box
 
 {$selector-class-prefix + '-radio-with-label'}
-  position relative
   color $brand-content
   font-size $font-size-default
-  // 这里用多行的行高，可增大点击面积
-  line-height $ui-multiple-line-height
-  padding-left $font-size-default + $ui-icon-text-gap
+  line-height $ui-single-line-height
+  white-space nowrap
 
   > {$selector-class-prefix + '-radio-icon'}
-    position absolute
-    left 0
-    top 50%
-    margin-top -0.5 * $font-size-default
+    margin-right $ui-icon-text-gap
 
 {$selector-class-prefix + '-radio-active'}
   > {$selector-class-prefix + '-radio-icon'}:after
@@ -66,7 +63,6 @@ radio-button-size-style(size)
     transform scale(1)
 
 {$selector-class-prefix + '-radio-icon'}
-  display inline-block
   position relative
   width $font-size-default
   height $font-size-default
@@ -134,7 +130,7 @@ if $ui-shadow-radius > 0
 
 {$selector-class-prefix + '-radio-vertical'}
   > {$selector-class-prefix + '-radio'}
-    ui-block()
+    display flex
 
 {$selector-class-prefix + '-radio-group'}
   display inline-block
@@ -142,10 +138,6 @@ if $ui-shadow-radius > 0
   &{$selector-class-prefix + '-radio-horizontal'}
     > {$selector-class-prefix + '-radio'}
       margin-right $radio-gap-horizontal
-
-  &{$selector-class-prefix + '-radio-vertical'}
-    > {$selector-class-prefix + '-radio'} + {$selector-class-prefix + '-radio'}
-      margin-top $ui-vertical-gap
 
 {$selector-class-prefix + '-radio-button'}
   display inline-block
