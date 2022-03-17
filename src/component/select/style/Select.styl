@@ -55,9 +55,6 @@ select-brand-style(style)
   user-select none
   text-align left
 
-  + {$selector-class-prefix + '-select'}
-    margin-left $ui-horizontal-gap
-
   ui-connect(
     hash: $form-button-size-hash,
     each: select-size-style
@@ -73,10 +70,6 @@ select-brand-style(style)
 
 {$selector-class-prefix + '-select-block'}
   ui-flex-block()
-
-  + {$selector-class-prefix + '-select-block'}
-    margin-left 0
-    margin-top $ui-vertical-gap
 
 {$selector-class-prefix + '-select-group-title'}
   color $brand-muted

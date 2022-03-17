@@ -67,12 +67,6 @@ input-brand-style(style)
   width $ui-form-element-width
   box-sizing border-box
 
-  + {$selector-class-prefix + '-input'}
-    margin-left $ui-horizontal-gap
-
-  + {$selector-class-prefix + '-input-block'}
-    margin-left 0
-
   ui-connect(
     hash: $status-brand-hash,
     each: input-brand-style
