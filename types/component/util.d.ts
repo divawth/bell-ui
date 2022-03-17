@@ -1,5 +1,6 @@
 export declare const screenWidth: number;
 export declare const supportTransform: boolean;
+export declare const supportFlexGap: boolean;
 export declare function onTransitionEnd(el: HTMLElement, callback: () => void): void;
 export declare function getPageX(): number;
 export declare function getPageY(): number;

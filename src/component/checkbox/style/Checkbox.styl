@@ -10,6 +10,9 @@ $checkbox-indeterminate-left = 2px
 $checkbox-indeterminate-width = 8px
 $checkbox-indeterminate-height = 1px
 
+$checkbox-gap-horizontal = 16px
+$checkbox-gap-vertical = 8px
+
 {$selector-class-prefix + '-checkbox'}
   display inline-block
   user-select none
@@ -106,3 +109,16 @@ if $ui-shadow-radius > 0
   {$selector-class-prefix + '-checkbox-focus'}
     > {$selector-class-prefix + '-checkbox-icon'}
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+
+
+{$selector-class-prefix + '-checkbox-group'}
+  &{$selector-class-prefix + '-checkbox-horizontal'}
+    > {$selector-class-prefix + '-checkbox'} + {$selector-class-prefix + '-checkbox'}
+      margin-left $checkbox-gap-horizontal
+
+  &{$selector-class-prefix + '-checkbox-vertical'}
+    > {$selector-class-prefix + '-checkbox'}
+      display block
+
+      + {$selector-class-prefix + '-checkbox'}
+        margin-top $checkbox-gap-vertical

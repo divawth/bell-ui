@@ -8188,6 +8188,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-checkbox-focus > .bell-checkbox-icon {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
+.bell-checkbox-group.bell-checkbox-horizontal > .bell-checkbox + .bell-checkbox {
+  margin-left: 16px;
+}
+.bell-checkbox-group.bell-checkbox-vertical > .bell-checkbox {
+  display: block;
+}
+.bell-checkbox-group.bell-checkbox-vertical > .bell-checkbox + .bell-checkbox {
+  margin-top: 8px;
+}
 .bell-circle {
   display: inline-block;
   position: relative;
@@ -11336,9 +11345,6 @@ div::-webkit-scrollbar-thumb:hover {
           user-select: none;
   box-sizing: border-box;
 }
-.bell-radio + .bell-radio {
-  margin-left: 16px;
-}
 .bell-radio-with-label {
   position: relative;
   color: #515a6e;
@@ -11418,18 +11424,17 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
   width: 100%;
 }
-.bell-radio-vertical > .bell-radio + .bell-radio {
-  margin-left: 0;
-  margin-top: 10px;
-}
 .bell-radio-group {
   display: inline-block;
 }
+.bell-radio-group.bell-radio-horizontal > .bell-radio + .bell-radio {
+  margin-left: 16px;
+}
+.bell-radio-group.bell-radio-vertical > .bell-radio + .bell-radio {
+  margin-top: 10px;
+}
 .bell-radio-button {
   display: inline-block;
-}
-.bell-radio-button + .bell-radio-button {
-  margin-left: 8px;
 }
 .bell-radio-button .bell-radio-icon {
   display: none;
@@ -11439,18 +11444,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
   color: #515a6e;
   transition: border-color 0.2s, color 0.2s, background-color 0.2s, box-shadow 0.2s;
-}
-.bell-radio-button > .bell-radio:first-child {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.bell-radio-button > .bell-radio:last-child {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.bell-radio-button > .bell-radio + .bell-radio {
-  margin-left: 0;
-  border-left: none;
 }
 .bell-radio-button > .bell-radio-disabled {
   border-color: #dcdee2;
@@ -11463,10 +11456,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-radio-button > .bell-radio-enabled:before {
   content: '';
   position: absolute;
-  width: 1px;
-  left: -1px;
-  top: -1px;
-  bottom: -1px;
   transition: background-color 0.2s;
 }
 .bell-radio-button > .bell-radio-enabled:first-child:before {
@@ -11478,6 +11467,40 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-radio-button > .bell-radio-enabled.bell-radio-active {
   z-index: 1;
+}
+.bell-radio-button.bell-radio-horizontal > .bell-radio + .bell-radio {
+  border-left: none;
+}
+.bell-radio-button.bell-radio-horizontal > .bell-radio:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.bell-radio-button.bell-radio-horizontal > .bell-radio:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.bell-radio-button.bell-radio-horizontal > .bell-radio-enabled:before {
+  width: 1px;
+  left: -1px;
+  top: -1px;
+  bottom: -1px;
+}
+.bell-radio-button.bell-radio-vertical > .bell-radio + .bell-radio {
+  border-top: none;
+}
+.bell-radio-button.bell-radio-vertical > .bell-radio:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.bell-radio-button.bell-radio-vertical > .bell-radio:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.bell-radio-button.bell-radio-vertical > .bell-radio-enabled:before {
+  height: 1px;
+  left: -1px;
+  right: -1px;
+  top: -1px;
 }
 .bell-radio-button > .bell-radio-enabled:hover {
   color: #2d8cf0;
@@ -12448,9 +12471,6 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 16px;
   height: 16px;
 }
-.bell-switch + .bell-switch {
-  margin-left: 8px;
-}
 .bell-switch-label {
   color: #fff;
   font-size: 12px;
@@ -13119,9 +13139,6 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   box-sizing: content-box;
 }
-.bell-thumbnail + .bell-thumbnail {
-  margin-left: 8px;
-}
 .bell-thumbnail:hover .bell-thumbnail-mask {
   opacity: 1;
 }
@@ -13294,15 +13311,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-space {
   display: inline-flex;
 }
-.bell-space > .bell-tag,
 .bell-space > .bell-input,
 .bell-space > .bell-button,
 .bell-space > .bell-split-button,
-.bell-space > .bell-select,
-.bell-space > .bell-radio,
-.bell-space > .bell-switch,
-.bell-space > .bell-avatar,
-.bell-space > .bell-thumbnail {
+.bell-space > .bell-select {
   margin-left: 0;
 }
 .bell-space-horizontal {

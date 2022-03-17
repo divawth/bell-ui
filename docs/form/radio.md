@@ -112,17 +112,31 @@ export default {
 ```js
 export default {
   template: `
-  <RadioGroup button name="single" model="value">
-    <Radio value="1">
-      亚洲
-    </Radio>
-    <Radio value="2">
-      欧洲
-    </Radio>
-    <Radio value="3">
-      非洲
-    </Radio>
-  </RadioGroup>
+  <div>
+    <RadioGroup button name="single" model="value">
+      <Radio value="1">
+        亚洲
+      </Radio>
+      <Radio value="2">
+        欧洲
+      </Radio>
+      <Radio value="3">
+        非洲
+      </Radio>
+    </RadioGroup>
+    <br><br>
+    <RadioGroup button vertical name="single" model="value">
+      <Radio value="1">
+        亚洲
+      </Radio>
+      <Radio value="2">
+        欧洲
+      </Radio>
+      <Radio value="3">
+        非洲
+      </Radio>
+    </RadioGroup>
+  </div>
   `,
   data: function () {
     return {

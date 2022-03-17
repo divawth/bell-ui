@@ -15,6 +15,7 @@ import {
 import {
   oneOf,
   toNumber,
+  supportFlexGap,
 } from '../util'
 
 export default Yox.define({
@@ -45,6 +46,12 @@ export default Yox.define({
     },
     style: {
       type: RAW_STYLE_TYPE,
+    }
+  },
+
+  data() {
+    return {
+      supportFlexGap,
     }
   },
 

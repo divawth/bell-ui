@@ -28,6 +28,7 @@ export const screenWidth = WINDOW.screen.availWidth
 const transitionEnd = testCSS('transition') ? 'transitionend' : ''
 
 export const supportTransform = testCSS('transform') ? TRUE : FALSE
+export const supportFlexGap = testCSS('gap') ? TRUE : FALSE
 
 export function onTransitionEnd(el: HTMLElement, callback: () => void) {
   // 如果 el 已经被隐藏，则直接调用 callback

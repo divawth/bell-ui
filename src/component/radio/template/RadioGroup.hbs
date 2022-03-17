@@ -19,7 +19,9 @@ class="{{#if button}}${prefix}radio-button
 
 {{/if}}
 
-{{#if vertical}} ${prefix}radio-vertical{{/if}}
+{{#if vertical}} ${prefix}radio-vertical
+{{else}} ${prefix}radio-horizontal
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

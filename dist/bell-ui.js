@@ -200,7 +200,7 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){r
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:(_s('button',_W.button).value?'bell-radio-button'+(_s('size',_W.size).value?' bell-radio-button-'+_A(_s('size',_W.size).value):'')+(_s('disabled',_W.disabled).value?' bell-radio-button-disabled':' bell-radio-button-enable'):'bell-radio-group'+(_s('disabled',_W.disabled).value?' bell-radio-group-disabled':' bell-radio-group-enabled'))+(_s('vertical',_W.vertical).value?' bell-radio-vertical':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:(_s('button',_W.button).value?'bell-radio-button'+(_s('size',_W.size).value?' bell-radio-button-'+_A(_s('size',_W.size).value):'')+(_s('disabled',_W.disabled).value?' bell-radio-button-disabled':' bell-radio-button-enable'):'bell-radio-group'+(_s('disabled',_W.disabled).value?' bell-radio-group-disabled':' bell-radio-group-enabled'))+(_s('vertical',_W.vertical).value?' bell-radio-vertical':' bell-radio-horizontal')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
 
 /***/ }),
 /* 18 */
@@ -212,25 +212,25 @@ module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){r
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]=function(_T){_s('vertical',_W.vertical).value?(_o(_T,'props','vertical',$2),_o(_T,'props','align','start'),_o(_T,'props','size',_p('size',_s('CHECKBOX_GAP_VERTICAL',_W.CHECKBOX_GAP_VERTICAL).value))):(_o(_T,'props','autoWrap',$2),_o(_T,'props','align','center'),_o(_T,'props','size',_p('size',[_s('CHECKBOX_GAP_HORIZONTAL',_W.CHECKBOX_GAP_HORIZONTAL).value,_s('CHECKBOX_GAP_VERTICAL',_W.CHECKBOX_GAP_VERTICAL).value])));_s('style',_W.style).value?_o(_T,'props','style',_s('style',_W.style).value):$0;return _T}({context:_I,isComponent:$2,operator:_E,props:{className:'bell-checkbox-group'+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U)}}),tag:'Space',type:4})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-checkbox-group'+(_s('vertical',_W.vertical).value?' bell-checkbox-vertical':' bell-checkbox-horizontal')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('sizeValue',_W.sizeValue).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('sizeValue',_W.sizeValue).value?{gap:_s('sizeValue',_W.sizeValue).value}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-space'+(_s('vertical',_W.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_s('align',_W.align).value?' bell-space-align-'+_A(_s('align',_W.align).value):'')+(_s('autoWrap',_W.autoWrap).value?' bell-space-auto-wrap':'')+(_s('block',_W.block).value?' bell-space-block':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4={class:'bell-slider-bar'},$5=function(_S){return _S.length-1},$6={class:'bell-slider-stop'},$7=function(){return 0};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','mousedown',_f('mousedown','trackMouseDown()','mousedown','','trackMouseDown')):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:_c(_s('vertical',_W.vertical).value?_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'bottom','top'])).value:_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'left','right'])).value),operator:_D,tag:'div',type:3};_s('showStops',_W.showStops).value?_m(_s('stops',_W.stops),function(_W,_X,_Y){_U[_U.length]={context:_I,key:_v('value',_W.value).value,nativeAttrs:$6,nativeStyles:_c(_v('style',_W.style).value),operator:_D,tag:'div',type:3}}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_m(_s('valuePercentArray',_W.valuePercentArray),function(_W,_X,_Y,index){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{content:_w($7,'formatTooltip').value?_z(_y(_w($7,'formatTooltip').value,_I,[_v('value',_W.value).value])).value:_v('value',_W.value).value,mode:_w($7,'RAW_CUSTOM').value,placement:_w($7,'vertical').value?_w($7,'RAW_RIGHT').value:_w($7,'RAW_TOP').value},ref:'tooltip'+index,slots:_j({$slot_children:function(_U,_V){_U[_U.length]=function(_T){!_w($7,'disabled').value?(_o(_T,'nativeAttrs','tabindex','0'),_o(_T,'lazy','mouseenter',200),_o(_T,'lazy','mouseleave',200),_o(_T,'events','mouseenter',_f('mouseenter','thumbMouseEnter($event, index)','mouseenter','','thumbMouseEnter',{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mouseleave',_f('mouseleave','thumbMouseLeave($event, index)','mouseleave','','thumbMouseLeave',{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mousedown',_f('mousedown','thumbMouseDown($event, index)','mousedown','','thumbMouseDown',{args:function(_S,_Z,_1){return [_Z,index]}}))):$0;return _T}({context:_I,nativeAttrs:{class:'bell-slider-thumb'+(_w($7,'hoverThumbIndex').value===index?' bell-slider-thumb-hover':'')+(_w($7,'dragThumbIndex').value===index?' bell-slider-thumb-dragging':'')},nativeStyles:_c(_w($7,'vertical').value?_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'top':'bottom'])).value:_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'right':'left'])).value),operator:_D,tag:'div',type:3})}}),tag:'Tooltip',type:4}});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider-track'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider'+(_s('vertical',_W.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_s('disabled',_W.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_s('block',_W.block).value?' bell-slider-block':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4={class:'bell-slider-bar'},$5=function(_S){return _S.length-1},$6={class:'bell-slider-stop'},$7=function(){return 0};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('width',_W.width).value||_s('height',_W.height).value||_s('style',_W.style).value?_T.nativeStyles=_c([{height:_s('height',_W.height).value?_s('height',_W.height).value+'px':$0,width:_s('width',_W.width).value?_s('width',_W.width).value+'px':$0},_s('style',_W.style).value]):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){!_s('disabled',_W.disabled).value?_o(_T,'events','mousedown',_f('mousedown','trackMouseDown()','mousedown','','trackMouseDown')):$0;return _T}({children:function(_U){_U[_U.length]={context:_I,nativeAttrs:$4,nativeStyles:_c(_s('vertical',_W.vertical).value?_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'bottom','top'])).value:_z(_y(_s('formatBarStyle',_W.formatBarStyle,$0,_J&&_J.formatBarStyle||_K.formatBarStyle).value,_I,[_s('valuePercentArray',_W.valuePercentArray).value,_s('reverse',_W.reverse).value,'left','right'])).value),operator:_D,tag:'div',type:3};_s('showStops',_W.showStops).value?_m(_s('stops',_W.stops),function(_W,_X,_Y){_U[_U.length]={context:_I,key:_v('value',_W.value).value,nativeAttrs:$6,nativeStyles:_c(_v('style',_W.style).value),operator:_D,tag:'div',type:3}}):_U[_U.length]={isPure:$2,operator:_C,text:'',type:2};_m(_s('valuePercentArray',_W.valuePercentArray),function(_W,_X,_Y,index){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{content:_w($7,'formatTooltip').value?_z(_y(_w($7,'formatTooltip').value,_I,[_v('value',_W.value).value])).value:_v('value',_W.value).value,mode:_w($7,'RAW_CUSTOM').value,placement:_w($7,'vertical').value?_w($7,'RAW_RIGHT').value:_w($7,'RAW_TOP').value},ref:'tooltip'+index,slots:_j({$slot_children:function(_U,_V){_U[_U.length]=function(_T){!_w($7,'disabled').value?(_o(_T,'nativeAttrs','tabindex','0'),_o(_T,'lazy','mouseenter',200),_o(_T,'lazy','mouseleave',200),_o(_T,'events','mouseenter',_f('mouseenter','thumbMouseEnter($event, index)','mouseenter','','thumbMouseEnter',{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mouseleave',_f('mouseleave','thumbMouseLeave($event, index)','mouseleave','','thumbMouseLeave',{args:function(_S,_Z,_1){return [_Z,index]}})),_o(_T,'events','mousedown',_f('mousedown','thumbMouseDown($event, index)','mousedown','','thumbMouseDown',{args:function(_S,_Z,_1){return [_Z,index]}}))):$0;return _T}({context:_I,nativeAttrs:{class:'bell-slider-thumb'+(_w($7,'hoverThumbIndex').value===index?' bell-slider-thumb-hover':'')+(_w($7,'dragThumbIndex').value===index?' bell-slider-thumb-dragging':'')},nativeStyles:_c(_w($7,'vertical').value?_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'top':'bottom'])).value:_z(_y(_s('formatThumbStyle',_W.formatThumbStyle,$0,_J&&_J.formatThumbStyle||_K.formatThumbStyle).value,_I,[_v('percent',_W.percent).value,_w($7,'reverse').value?'right':'left'])).value),operator:_D,tag:'div',type:3})}}),tag:'Tooltip',type:4}});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider-track'},operator:_D,tag:'div',type:3});return _U}([]),context:_I,nativeAttrs:{class:'bell-slider'+(_s('vertical',_W.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_s('disabled',_W.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_s('block',_W.block).value?' bell-slider-block':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1},$5={class:'bell-popover-arrow'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{disabled:_s('disabled',_W.disabled).value,offsetX:_s('offsetX',_W.offsetX).value,offsetY:_s('offsetY',_W.offsetY).value,placement:_s('placement',_W.placement).value,showArrow:$2,showDelay:_s('delay',_W.delay).value,trigger:_s('mode',_W.mode).value,visible:_s('isVisible',_W.isVisible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U)},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){_s('maxWidth',_W.maxWidth).value||_s('maxHeight',_W.maxHeight).value?_T.nativeStyles={maxHeight:_s('maxHeight',_W.maxHeight).value?_s('maxHeight',_W.maxHeight).value+'px':$0,maxWidth:_s('maxWidth',_W.maxWidth).value?_s('maxWidth',_W.maxWidth).value+'px':$0}:$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_content',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-popover-content'},operator:_D,tag:'div',type:3});_U[_U.length]={context:_I,isPure:$2,isStatic:$2,nativeAttrs:$5,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-tooltip'+(_s('theme',_W.theme).value?' bell-tooltip-'+_A(_s('theme',_W.theme).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1},$5={class:'bell-popover-arrow'};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=_V[_V.length]={context:_I,isComponent:$2,operator:_E,props:{disabled:_s('disabled',_W.disabled).value,offsetX:_s('offsetX',_W.offsetX).value,offsetY:_s('offsetY',_W.offsetY).value,placement:_s('placement',_W.placement).value,showArrow:$2,showDelay:_s('delay',_W.delay).value,trigger:_s('mode',_W.mode).value,visible:_s('isVisible',_W.isVisible).value},ref:'popover',slots:_j({$slot_children:function(_U,_V){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U)},$slot_overlay:function(_U,_V){_U[_U.length]=function(_T){_s('style',_W.style).value?_T.nativeStyles=_c(_s('style',_W.style).value):$0;return _T}({children:function(_U){_U[_U.length]=function(_T){_s('maxWidth',_W.maxWidth).value||_s('maxHeight',_W.maxHeight).value?_T.nativeStyles={maxHeight:_s('maxHeight',_W.maxHeight).value?_s('maxHeight',_W.maxHeight).value+'px':$0,maxWidth:_s('maxWidth',_W.maxWidth).value?_s('maxWidth',_W.maxWidth).value+'px':$0}:$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_content',_U)||(_U[_U.length]={isPure:$2,operator:_B,text:_A(_s('content',_W.content).value),type:1});return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-popover-content'},operator:_D,tag:'div',type:3});_U[_U.length]={context:_I,isPure:$2,isStatic:$2,nativeAttrs:$5,operator:_D,tag:'div',type:3};return _U}([]),context:_I,nativeAttrs:{class:'bell-tooltip'+(_s('theme',_W.theme).value?' bell-tooltip-'+_A(_s('theme',_W.theme).value):'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}}),tag:'Popover',type:4}}})();
+module.exports = (function(){var $0=void 0,$1=null,$2=!0,$3=!1,$4=function(_S){return _S.length-1};;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_R,_W,_X,_U,_V){_U[_U.length]=function(_T){_s('sizeValue',_W.sizeValue).value||_s('style',_W.style).value?_T.nativeStyles=_c([_s('sizeValue',_W.sizeValue).value?{gap:_s('sizeValue',_W.sizeValue).value}:$0,_s('style',_W.style).value]):$0;return _T}({children:function(_U){_a({children:function(_U){_k('$slot_children',_U);return _U}([]),context:_I,isSlot:$2,operator:_H,tag:'slot',type:7},_U);return _U}([]),context:_I,nativeAttrs:{class:'bell-space'+(_s('vertical',_W.vertical).value?' bell-space-vertical':' bell-space-horizontal')+(_s('align',_W.align).value?' bell-space-align-'+_A(_s('align',_W.align).value):'')+(_s('autoWrap',_W.autoWrap).value?' bell-space-auto-wrap':'')+(_s('block',_W.block).value?' bell-space-block':'')+(!_s('supportFlexGap',_W.supportFlexGap).value?' bell-space-legacy':'')+(_s('className',_W.className).value?' '+_A(_s('className',_W.className).value):'')},operator:_D,tag:'div',type:3})}})();
 
 /***/ }),
 /* 23 */
@@ -843,6 +843,7 @@ function testCSS(property) {
 var screenWidth = WINDOW.screen.availWidth;
 var transitionEnd = testCSS('transition') ? 'transitionend' : '';
 var supportTransform = testCSS('transform') ? TRUE : FALSE;
+var supportFlexGap = testCSS('gap') ? TRUE : FALSE;
 function onTransitionEnd(el, callback) {
     // 如果 el 已经被隐藏，则直接调用 callback
     if (transitionEnd && (el.offsetWidth || el.offsetHeight)) {
@@ -2998,69 +2999,10 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
 var CheckboxGroup = __webpack_require__(19);
 var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
 
-// EXTERNAL MODULE: ./src/component/space/template/Space.hbs
-var Space = __webpack_require__(20);
-var Space_default = /*#__PURE__*/__webpack_require__.n(Space);
-
-// CONCATENATED MODULE: ./src/component/space/Space.ts
-
-
-// import './style/Space.styl'
-
-
-/* harmony default export */ var space_Space = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
-    template: Space_default.a,
-    name: 'bell-Space',
-    propTypes: {
-        size: {
-            type: [RAW_NUMERIC, RAW_ARRAY],
-        },
-        align: {
-            type: oneOf(['start', 'end', 'center', 'baseline']),
-            value: 'center',
-        },
-        block: {
-            type: RAW_BOOLEAN,
-        },
-        vertical: {
-            type: RAW_BOOLEAN,
-        },
-        autoWrap: {
-            type: RAW_BOOLEAN,
-        },
-        className: {
-            type: RAW_STRING,
-        },
-        style: {
-            type: RAW_STYLE_TYPE,
-        }
-    },
-    computed: {
-        sizeValue: function () {
-            var size = this.get('size');
-            if (size == NULL) {
-                return;
-            }
-            // 配置两个方向的间距
-            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(size)) {
-                return size[1] + "px " + size[0] + "px";
-            }
-            // 配置一个方向的间距
-            var value = toNumber(size);
-            if (value > 0) {
-                return value + 'px';
-            }
-        }
-    }
-}));
-
 // CONCATENATED MODULE: ./src/component/checkbox/CheckboxGroup.ts
 
 
 
-
-var CHECKBOX_GAP_HORIZONTAL = 16;
-var CHECKBOX_GAP_VERTICAL = 8;
 /* harmony default export */ var checkbox_CheckboxGroup = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: CheckboxGroup_default.a,
     name: 'bell-CheckboxGroup',
@@ -3086,12 +3028,6 @@ var CHECKBOX_GAP_VERTICAL = 8;
         style: {
             type: RAW_STYLE_TYPE,
         }
-    },
-    data: function () {
-        return {
-            CHECKBOX_GAP_HORIZONTAL: CHECKBOX_GAP_HORIZONTAL,
-            CHECKBOX_GAP_VERTICAL: CHECKBOX_GAP_VERTICAL,
-        };
     },
     watchers: {
         value: function (value) {
@@ -3130,17 +3066,14 @@ var CHECKBOX_GAP_VERTICAL = 8;
             ns: 'checkbox',
         }
     },
-    components: {
-        Space: space_Space,
-    }
 }));
 
 // EXTERNAL MODULE: ./src/component/slider/template/Slider.hbs
-var Slider = __webpack_require__(21);
+var Slider = __webpack_require__(20);
 var Slider_default = /*#__PURE__*/__webpack_require__.n(Slider);
 
 // EXTERNAL MODULE: ./src/component/tooltip/template/Tooltip.hbs
-var Tooltip = __webpack_require__(22);
+var Tooltip = __webpack_require__(21);
 var Tooltip_default = /*#__PURE__*/__webpack_require__.n(Tooltip);
 
 // CONCATENATED MODULE: ./src/component/tooltip/Tooltip.ts
@@ -3631,6 +3564,67 @@ function getPercentByValue(min, max, rawValue) {
     components: {
         Tooltip: tooltip_Tooltip,
     },
+}));
+
+// EXTERNAL MODULE: ./src/component/space/template/Space.hbs
+var Space = __webpack_require__(22);
+var Space_default = /*#__PURE__*/__webpack_require__.n(Space);
+
+// CONCATENATED MODULE: ./src/component/space/Space.ts
+
+
+// import './style/Space.styl'
+
+
+/* harmony default export */ var space_Space = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
+    template: Space_default.a,
+    name: 'bell-Space',
+    propTypes: {
+        size: {
+            type: [RAW_NUMERIC, RAW_ARRAY],
+        },
+        align: {
+            type: oneOf(['start', 'end', 'center', 'baseline']),
+            value: 'center',
+        },
+        block: {
+            type: RAW_BOOLEAN,
+        },
+        vertical: {
+            type: RAW_BOOLEAN,
+        },
+        autoWrap: {
+            type: RAW_BOOLEAN,
+        },
+        className: {
+            type: RAW_STRING,
+        },
+        style: {
+            type: RAW_STYLE_TYPE,
+        }
+    },
+    data: function () {
+        return {
+            supportFlexGap: supportFlexGap,
+        };
+    },
+    computed: {
+        sizeValue: function () {
+            var size = this.get('size');
+            if (size == NULL) {
+                return;
+            }
+            // 配置两个方向的间距
+            if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.array(size)) {
+                return size[1] + "px " + size[0] + "px";
+            }
+            // 配置一个方向的间距
+            var value = toNumber(size);
+            if (value > 0) {
+                return value + 'px';
+            }
+        }
+    }
 }));
 
 // EXTERNAL MODULE: ./src/component/statistic/template/Statistic.hbs
@@ -10291,7 +10285,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.25.1";
+var version = "0.25.2";
 /**
  * 安装插件
  */

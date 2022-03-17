@@ -46,9 +46,6 @@ radio-button-size-style(size)
   user-select none
   box-sizing border-box
 
-  + {$selector-class-prefix + '-radio'}
-    margin-left $radio-gap-horizontal
-
 {$selector-class-prefix + '-radio-with-label'}
   position relative
   color $brand-content
@@ -139,18 +136,19 @@ if $ui-shadow-radius > 0
   > {$selector-class-prefix + '-radio'}
     ui-block()
 
-    + {$selector-class-prefix + '-radio'}
-      margin-left 0
-      margin-top $ui-vertical-gap
-
 {$selector-class-prefix + '-radio-group'}
   display inline-block
 
+  &{$selector-class-prefix + '-radio-horizontal'}
+    > {$selector-class-prefix + '-radio'} + {$selector-class-prefix + '-radio'}
+      margin-left $radio-gap-horizontal
+
+  &{$selector-class-prefix + '-radio-vertical'}
+    > {$selector-class-prefix + '-radio'} + {$selector-class-prefix + '-radio'}
+      margin-top $ui-vertical-gap
+
 {$selector-class-prefix + '-radio-button'}
   display inline-block
-
-  + {$selector-class-prefix + '-radio-button'}
-    margin-left $ui-horizontal-gap
 
   {$selector-class-prefix + '-radio-icon'}
     display none
@@ -160,18 +158,6 @@ if $ui-shadow-radius > 0
     background-color $brand-bg
     color $brand-content
     transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
-
-    &:first-child
-      border-top-left-radius $border-radius-default
-      border-bottom-left-radius $border-radius-default
-
-    &:last-child
-      border-top-right-radius $border-radius-default
-      border-bottom-right-radius $border-radius-default
-
-    + {$selector-class-prefix + '-radio'}
-      margin-left 0
-      border-left none
 
   > {$selector-class-prefix + '-radio-disabled'}
     border-color $brand-border
@@ -186,10 +172,6 @@ if $ui-shadow-radius > 0
     &:before
       content ''
       position absolute
-      width 1px
-      left -1px
-      top -1px
-      bottom -1px
       transition background-color .2s
 
     &:first-child:before
@@ -201,6 +183,44 @@ if $ui-shadow-radius > 0
 
     &{$selector-class-prefix + '-radio-active'}
       z-index $zindex-normal
+
+  &{$selector-class-prefix + '-radio-horizontal'}
+    > {$selector-class-prefix + '-radio'}
+      + {$selector-class-prefix + '-radio'}
+        border-left none
+
+      &:first-child
+        border-top-left-radius $border-radius-default
+        border-bottom-left-radius $border-radius-default
+
+      &:last-child
+        border-top-right-radius $border-radius-default
+        border-bottom-right-radius $border-radius-default
+
+    > {$selector-class-prefix + '-radio-enabled'}:before
+      width 1px
+      left -1px
+      top -1px
+      bottom -1px
+
+  &{$selector-class-prefix + '-radio-vertical'}
+    > {$selector-class-prefix + '-radio'}
+      + {$selector-class-prefix + '-radio'}
+        border-top none
+
+      &:first-child
+        border-top-left-radius $border-radius-default
+        border-top-right-radius $border-radius-default
+
+      &:last-child
+        border-bottom-left-radius $border-radius-default
+        border-bottom-right-radius $border-radius-default
+
+    > {$selector-class-prefix + '-radio-enabled'}:before
+      height 1px
+      left -1px
+      right -1px
+      top -1px
 
   radio-button-brand-style($brand-primary)
 

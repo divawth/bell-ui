@@ -7,6 +7,7 @@ class="${prefix}space
 {{#if align}} ${prefix}space-align-{{align}}{{/if}}
 {{#if autoWrap}} ${prefix}space-auto-wrap{{/if}}
 {{#if block}} ${prefix}space-block{{/if}}
+{{#if !supportFlexGap}} ${prefix}space-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if sizeValue || style}}
