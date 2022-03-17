@@ -187,7 +187,7 @@ export default {
         </CheckboxGroup>
       </FormItem>
       <FormItem label="Checkbox">
-        <CheckboxGroup vertical model="form.checkbox" style="margin-top: 4px">
+        <CheckboxGroup vertical model="form.checkbox">
           <Checkbox value="eat">
             Eat
           </Checkbox>
