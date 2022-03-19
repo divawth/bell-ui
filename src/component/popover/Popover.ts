@@ -34,6 +34,7 @@ import {
 import {
   oneOf,
   contains,
+  toPixel,
   toNumber,
   getPageX,
   getPageY,
@@ -303,9 +304,9 @@ export default Yox.define({
 
     setOverlayRect(el: HTMLElement, x: number | void, y: number | void, width: number | void) {
       const target = el.style
-      target.left = x != NULL ? x + 'px' : ''
-      target.top = y != NULL ? y + 'px' : ''
-      target.width = width != NULL ? width + 'px' : ''
+      target.left = x != NULL ? toPixel(x as number) : ''
+      target.top = y != NULL ? toPixel(y as number) : ''
+      target.width = width != NULL ? toPixel(width as number) : ''
     },
 
   },

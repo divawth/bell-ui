@@ -1,0 +1,41 @@
+@import '../../../env'
+
+ui-responsive-col($index, $breakpoint = '')
+
+  $col-name = '-col-'
+  if $breakpoint
+    $col-name += $breakpoint + '-'
+
+  $percent = (100 / (24 / $index)) + '%'
+
+  {$selector-class-prefix + $col-name + $index}
+    display block
+    flex 0 0 $percent
+    max-width $percent
+
+  {$selector-class-prefix + $col-name + 'order-' + $index}
+    order $index
+
+  {$selector-class-prefix + $col-name + 'offset-' + $index}
+    margin-left $percent
+
+  {$selector-class-prefix + $col-name + 'pull-' + $index}
+    right $percent
+
+  {$selector-class-prefix + $col-name + 'push-' + $index}
+    left $percent
+
+{$selector-class-prefix + '-col'}
+  position relative
+  max-width 100%
+  min-height 1px
+  box-sizing border-box
+
+for index in (1..24)
+  ui-responsive-col(index)
+
+breakpoints = 'xs' 'sm' 'md' 'lg' 'xl' 'xxl'
+
+for breakpoint in breakpoints
+  for index in (1..24)
+    ui-responsive-col(index, breakpoint)

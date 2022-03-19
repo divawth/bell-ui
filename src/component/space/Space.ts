@@ -14,6 +14,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
   toNumber,
   supportFlexGap,
 } from '../util'
@@ -71,7 +72,7 @@ export default Yox.define({
       // 配置一个方向的间距
       const value = toNumber(size)
       if (value > 0) {
-        return value + 'px'
+        return toPixel(value)
       }
 
     }

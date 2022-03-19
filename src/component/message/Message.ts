@@ -18,6 +18,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
   onTransitionEnd,
 } from '../util'
 
@@ -63,7 +64,7 @@ export default Yox.define({
 
       const element = me.$el
       Yox.dom.addClass(element, CLASS_VISIBLE)
-      element.style.top = top + 'px'
+      element.style.top = toPixel(top)
 
       if (duration > 0) {
         setTimeout(

@@ -15,6 +15,8 @@ import {
   RAW_SHAPE_ROUND,
 } from '../constant'
 
+import { toPixel } from '../util'
+
 export default Yox.define({
 
   template,
@@ -59,7 +61,7 @@ export default Yox.define({
         for (let i = 0; i < rows; i++) {
           let width = allWidth[i] || (i === rows - 1 ? lastWidth : '100%')
           result.push({
-            width: Yox.is.number(width) ? width + 'px' : width
+            width: Yox.is.number(width) ? toPixel(width) : width
           })
         }
 
@@ -81,7 +83,7 @@ export default Yox.define({
             size = 60
           }
         }
-        return size + 'px'
+        return toPixel(size)
       }
     },
     imageShape() {

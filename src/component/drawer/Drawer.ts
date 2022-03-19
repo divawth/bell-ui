@@ -20,6 +20,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
   toNumber,
   onTransitionEnd,
 } from '../util'
@@ -79,12 +80,12 @@ export default Yox.define({
       ) {
         const width = toNumber(this.get('width'))
         return {
-          width: width + 'px'
+          width: toPixel(width)
         }
       }
       const height = toNumber(this.get('height'))
       return {
-        height: height + 'px'
+        height: toPixel(height)
       }
     }
   },

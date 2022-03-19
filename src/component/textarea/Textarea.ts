@@ -29,7 +29,7 @@ import {
 } from '../constant'
 
 import {
-  oneOf,
+  oneOf, toPixel,
 } from '../util'
 
 const sizes = {}
@@ -137,21 +137,21 @@ export default Yox.define({
         if (Yox.is.object(autoSize)) {
           rows = value ? value.split('\n').length : autoSize.minRows
           return {
-            minHeight: autoSize.minRows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
-            maxHeight: autoSize.maxRows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
-            height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+            minHeight: toPixel(autoSize.minRows * ROW_HEIGHT + PADDING_VERTICAL),
+            maxHeight: toPixel(autoSize.maxRows * ROW_HEIGHT + PADDING_VERTICAL),
+            height: toPixel(rows * ROW_HEIGHT + PADDING_VERTICAL),
           }
         }
 
         rows = value ? value.split('\n').length : 1
         return {
-          minHeight: ROW_HEIGHT + PADDING_VERTICAL + 'px',
-          height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+          minHeight: toPixel(ROW_HEIGHT + PADDING_VERTICAL),
+          height: toPixel(rows * ROW_HEIGHT + PADDING_VERTICAL),
         }
       }
 
       return {
-        height: rows * ROW_HEIGHT + PADDING_VERTICAL + 'px',
+        height: toPixel(rows * ROW_HEIGHT + PADDING_VERTICAL),
       }
 
     }

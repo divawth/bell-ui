@@ -1,11 +1,13 @@
 <div class="${prefix}row
-{{#if gutter}} ${prefix}row-gutter{{/if}}
-{{#if type}} ${prefix}row-{{type}}{{/if}}
+{{#if !autoWrap}} ${prefix}row-no-wrap{{/if}}
+{{#if breakpoint}} ${prefix}row-{{breakpoint}}{{/if}}
 {{#if justify}} ${prefix}row-justify-{{justify}}{{/if}}
 {{#if align}} ${prefix}row-align-{{align}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{inlineStyle}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
+{{/if}}
 >
   <slot />
 </div>

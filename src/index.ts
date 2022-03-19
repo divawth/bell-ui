@@ -1,3 +1,6 @@
+import Row from './component/grid/Row'
+import Col from './component/grid/Col'
+
 import Menu from './component/menu/Menu'
 import MenuItem from './component/menu/MenuItem'
 import MenuGroup from './component/menu/MenuGroup'
@@ -113,6 +116,9 @@ export const version = process.env.NODE_VERSION
  */
 export function install(Yox: any) {
   Yox.component({
+    Row,
+    Col,
+
     Menu,
     MenuItem,
     MenuGroup,
