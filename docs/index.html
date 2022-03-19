@@ -17,26 +17,6 @@
       .bell-docsify-view tr:nth-child(2n) {
         background: transparent;
       }
-      .bell-docsify-view .bell-row .bell-col {
-        color: #fff;
-        padding: 10px 0;
-        text-align: center;
-        background-color: rgba(0,153,229,.9);
-      }
-      .bell-docsify-view .bell-row .bell-col:nth-child(2n + 1) {
-        background-color: rgba(0,160,233,0.7);
-      }
-      .bell-docsify-view .bell-row-gutter .bell-col {
-        background-color: transparent !important;
-      }
-      .bell-docsify-view .bell-row-gutter .bell-col div {
-        color: #fff;
-        padding: 10px 0;
-        text-align: center;
-        background-color: rgba(0,153,229,.9);
-      }.bell-docsify-view .bell-row .bell-col:nth-child(2n + 1) div {
-        background-color: rgba(0,160,233,0.7);
-      }
       .layout-demo {
         box-shadow: 1px 1px 3px rgba(0,0,0,.3)
       }
@@ -85,6 +65,11 @@
         z-index: 0;
       }
 
+      #components-grid-demo-flex .bell-row,
+      #components-grid-demo-flex-align .bell-row,
+      #components-grid-demo-flex-order .bell-row {
+        background: rgba(128, 128, 128, 0.08);
+      }
       .grid-demo .demo-row,[id^=components-grid-demo-] .demo-row,.grid-demo .code-box-demo .demo-row,[id^=components-grid-demo-] .code-box-demo .demo-row {
           margin-bottom: 8px;
           overflow: hidden;

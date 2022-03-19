@@ -9,6 +9,7 @@
   - [Carousel 图片轮播](layout/carousel)
   - [Collapse 折叠面板](layout/collapse)
   - [Divider 分割线](layout/divider)
+  - [Grid 栅格](layout/grid)
   - [Layout 布局](layout/layout)
   - [Space 间距](layout/space)
 - [导航](navigation)

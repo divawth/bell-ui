@@ -37,9 +37,11 @@ export default Yox.define({
     },
     justify: {
       type: oneOf(['start', 'end', 'center', 'space-around', 'space-between']),
+      value: 'start',
     },
     align: {
       type: oneOf([RAW_TOP, RAW_MIDDLE, RAW_BOTTOM]),
+      value: RAW_TOP,
     },
     autoWrap: {
       type: RAW_BOOLEAN,

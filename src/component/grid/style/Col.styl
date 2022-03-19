@@ -31,6 +31,9 @@ ui-responsive-col($index, $breakpoint = '')
   min-height 1px
   box-sizing border-box
 
+{$selector-class-prefix + '-col-0'}
+  display none
+
 for index in (1..24)
   ui-responsive-col(index)
 
