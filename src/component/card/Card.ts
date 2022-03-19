@@ -15,6 +15,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -41,4 +42,26 @@ export default Yox.define({
       type: RAW_STYLE_TYPE,
     }
   },
+
+  computed: {
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const width = this.get('width')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
+  }
 })

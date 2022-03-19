@@ -42,17 +42,13 @@ class="${prefix}rate
   {{/each}}
 
   {{#if hasSlot('children') || texts}}
-    <span
+    <div
       class="${prefix}rate-text"
-      {{! 只要设置相同的 line-height 就能居中对齐 }}
-      style="{{ {
-        lineHeight: iconSize + 'px'
-      } }}"
     >
       <slot>
         {{texts[activeValue - 1]}}
       </slot>
-    </span>
+    </div>
   {{/if}}
 
 </div>

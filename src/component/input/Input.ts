@@ -117,7 +117,7 @@ export default Yox.define({
     hasCount() {
       return this.get('showCount') && this.get('maxLength') > 0
     },
-    inlineStyle() {
+    inlineStyle(): object[] | void {
       const result: object[] = []
 
       const width = this.get('width')

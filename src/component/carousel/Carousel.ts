@@ -22,6 +22,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -76,7 +77,6 @@ export default Yox.define({
       index: 0,
       count: children.vnodes.length,
       size: UNDEFINED,
-
     }
   },
 
@@ -86,7 +86,27 @@ export default Yox.define({
       return indicatorPosition === 'left' || indicatorPosition === 'right'
         ? 'vertical'
         : 'horizontal'
-    }
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const size = this.get('size')
+      if (size) {
+        result.push({
+          width: toPixel(size.width),
+          height: toPixel(size.height),
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   },
 
   events: {

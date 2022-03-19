@@ -26,10 +26,7 @@ class="${prefix}image-picker
           ondragstart="return false"
         {{/if}}
         class="${prefix}image-picker-item ${prefix}image-picker-card"
-        style="{{ {
-          width: ~/customImageWidth + 'px',
-          height: ~/customImageHeight + 'px'
-        } }}"
+        style="{{~/imageStyle}}"
       >
 
         {{#if this.url || this.base64}}
@@ -104,10 +101,7 @@ class="${prefix}image-picker
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
-        style="{{ {
-          width: customImageWidth + 'px',
-          height: customImageHeight + 'px'
-        } }}"
+        style="{{~/imageStyle}}"
       >
         <Icon
           className="${prefix}image-picker-append-icon"

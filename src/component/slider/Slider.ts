@@ -22,6 +22,7 @@ import {
 } from '../constant'
 
 import {
+  toPixel,
   toNumber,
   getPageX,
   getPageY,
@@ -191,7 +192,35 @@ export default Yox.define({
 
       return result
 
-    }
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const customStyle: Record<string, string> = {}
+
+      const width = this.get('width')
+      const height = this.get('height')
+
+      if (width) {
+        customStyle.width = toPixel(width)
+      }
+      if (height) {
+        customStyle.height = toPixel(height)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        result.push(customStyle)
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   },
 
   filters: {

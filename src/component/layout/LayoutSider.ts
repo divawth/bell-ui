@@ -11,7 +11,7 @@ import {
 } from '../constant'
 
 import {
-  toNumber,
+  toNumber, toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -42,12 +42,42 @@ export default Yox.define({
   },
 
   computed: {
-    customWidth() {
+    customWidth(): number {
       if (this.get('collapsed')) {
         return 80
       }
       return toNumber(this.get('width'))
-    }
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const customWidth = this.get('customWidth')
+      if (customWidth) {
+        result.push({
+          flex: '0 0 ' + toPixel(customWidth),
+          width: toPixel(customWidth),
+          minWidth: toPixel(customWidth),
+          maxWidth: toPixel(customWidth),
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
+    triggerStyle(): Record<string, string> | void {
+      const customWidth = this.get('customWidth')
+      if (customWidth) {
+        return {
+          width: toPixel(customWidth)
+        }
+      }
+    },
   },
 
   components: {

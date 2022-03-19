@@ -120,6 +120,25 @@ export default Yox.define({
     hasCount() {
       return this.get('showCount') && this.get('maxLength') > 0
     },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const width = this.get('width')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
     textareaStyle() {
 
       let rows = this.get('rows')

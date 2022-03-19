@@ -22,13 +22,8 @@
       on-click="toggle('visible')"
     {{/if}}
 
-    {{#if width || style}}
-      style="{{[
-        width
-          ? { width: width + 'px' }
-          : undefined,
-        style
-      ]}}"
+    {{#if inlineStyle}}
+      style="{{inlineStyle}}"
     {{/if}}
   >
 

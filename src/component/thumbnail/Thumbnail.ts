@@ -19,7 +19,7 @@ import {
 } from '../constant'
 
 import {
-  toNumber,
+  toNumber, toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -119,6 +119,27 @@ export default Yox.define({
     },
     customHeight(): number {
       return toNumber(this.get('height'))
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const customWidth = this.get('customWidth')
+      const customHeight = this.get('customHeight')
+
+      result.push({
+        width: toPixel(customWidth),
+        height: toPixel(customHeight),
+        lineHeight: toPixel(customHeight),
+      })
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
     },
   },
 

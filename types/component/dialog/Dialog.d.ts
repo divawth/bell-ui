@@ -1,4 +1,6 @@
-declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    wrapperStyle: unknown;
+}, unknown, unknown, {
     open(): void;
     close(): void;
 }> & ThisType<{

@@ -12,6 +12,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -65,6 +66,26 @@ export default Yox.define({
       return this.get('percent') === 0 && this.get('dashboard')
         ? 0
         : this.get('strokeWidth')
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const size = this.get('size')
+      if (size) {
+        result.push({
+          width: toPixel(size),
+          height: toPixel(size),
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
     },
     trailStyle() {
       if (this.get('dashboard')) {

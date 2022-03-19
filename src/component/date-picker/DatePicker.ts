@@ -50,6 +50,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 import {
@@ -162,6 +163,25 @@ export default Yox.define({
   },
 
   computed: {
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const width = this.get('width')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
     defaultSimpleDate(): SimpleDate {
       const defaultDate = this.get('defaultDate')
       return toSimpleDate(toTimestamp(defaultDate))

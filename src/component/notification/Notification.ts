@@ -17,8 +17,9 @@ import {
 
 import {
   oneOf,
-  onTransitionEnd,
+  toPixel,
   toNumber,
+  onTransitionEnd,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}notification-visible'
@@ -60,6 +61,20 @@ export default Yox.define({
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
     }
+  },
+
+  computed: {
+    inlineStyle(): Record<string, string> {
+      const customStyle: Record<string, string> = {}
+
+      const width = this.get('width')
+      const right = this.get('right')
+
+      customStyle.width = toPixel(width)
+      customStyle.right = toPixel(right)
+
+      return customStyle
+    },
   },
 
   methods: {

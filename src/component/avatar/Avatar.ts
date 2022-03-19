@@ -18,6 +18,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
   toNumber,
 } from '../util'
 
@@ -93,6 +94,52 @@ export default Yox.define({
         return SIZE_LARGE
       }
       return SIZE_DEFAULT
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const customStyle: Record<string, string> = {}
+
+      const sizeValue = this.get('sizeValue')
+      customStyle.width = toPixel(sizeValue)
+      customStyle.height = toPixel(sizeValue)
+
+      const backgroundColor = this.get('backgroundColor')
+      if (backgroundColor) {
+        customStyle.backgroundColor = backgroundColor
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        result.push(customStyle)
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
+    textStyle() {
+
+      const customStyle: Record<string, string> = {}
+
+      const color = this.get('color')
+      const fontSize = this.get('fontSize')
+
+      if (color) {
+        customStyle.color = color
+      }
+      if (fontSize) {
+        customStyle.fontSize = toPixel(fontSize)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        return customStyle
+      }
+
     }
   },
 

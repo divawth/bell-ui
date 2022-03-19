@@ -16,6 +16,7 @@ import {
 } from '../constant'
 
 import {
+  toPixel,
   screenWidth,
   onTransitionEnd,
 } from '../util'
@@ -63,6 +64,28 @@ export default Yox.define({
     style: {
       type: RAW_STYLE_TYPE,
     }
+  },
+
+  computed: {
+    wrapperStyle(): Record<string, string> {
+
+      const customStyle: Record<string, string> = {}
+
+      const width = this.get('width')
+      const height = this.get('height')
+
+      if (width) {
+        customStyle.width = toPixel(width)
+      }
+      if (height) {
+        customStyle.fontSize = toPixel(height)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        return customStyle
+      }
+
+    },
   },
 
   methods: {

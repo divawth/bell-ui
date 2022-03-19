@@ -9,16 +9,8 @@ class="${prefix}table
 
 {{#if className}} {{className}}{{/if}}"
 
-{{#if width || height || style}}
-  style="{{[
-    {
-      width: width ? width + 'px' : undefined,
-      overflowX: width ? 'auto' : undefined,
-      height: height ? height + 'px' : undefined,
-      overflowY: height ? 'auto': undefined,
-    },
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
 

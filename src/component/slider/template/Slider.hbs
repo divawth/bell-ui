@@ -12,14 +12,8 @@
 
 {{#if className}} {{className}}{{/if}}"
 
-{{#if width || height || style}}
-  style="{{[
-    {
-      width: width ? width + 'px' : undefined,
-      height: height ? height + 'px' : undefined,
-    },
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
 

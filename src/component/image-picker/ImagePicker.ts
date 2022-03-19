@@ -21,6 +21,7 @@ import {
 } from '../constant'
 
 import {
+  toPixel,
   toNumber,
   formatSecond,
 } from '../util'
@@ -175,12 +176,6 @@ export default Yox.define({
     isVideoPicker(): boolean {
       return this.get('accept').indexOf('video') >= 0
     },
-    customImageWidth(): number {
-      return toNumber(this.get('imageWidth'))
-    },
-    customImageHeight(): number {
-      return toNumber(this.get('imageHeight'))
-    },
     restCount(): number {
       const imageCount = this.get('imageList.length')
       const maxCount = this.get('maxCount')
@@ -191,7 +186,20 @@ export default Yox.define({
       const readOnly = this.get('readOnly')
       const imageList = this.get('imageList')
       return !uploadingCount && !readOnly && imageList.length > 1
-    }
+    },
+    imageStyle(): Record<string, string> {
+
+      const customStyle: Record<string, string> = {}
+
+      const imageWidth = this.get('imageWidth')
+      const imageHeight = this.get('imageHeight')
+
+      customStyle.width = toPixel(imageWidth)
+      customStyle.height = toPixel(imageHeight)
+
+      return customStyle
+
+    },
   },
 
   filters: {

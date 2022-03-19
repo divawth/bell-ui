@@ -23,11 +23,8 @@
       <div
         ref="wrapper"
         class="${prefix}dialog-wrapper"
-        {{#if width || height}}
-          style="{{ {
-            width: width ? width + 'px' : undefined,
-            height: height ? height + 'px' : undefined
-          } }}"
+        {{#if wrapperStyle}}
+          style="{{wrapperStyle}}"
         {{/if}}
       >
 

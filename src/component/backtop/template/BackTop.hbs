@@ -5,14 +5,8 @@
       class="${prefix}backtop
       {{#if className}} {{className}}{{/if}}"
 
-      {{#if bottom || right || style}}
-        style="{{[
-          {
-            bottom: bottom ? bottom + 'px' : undefined,
-            right: right ? right + 'px' : undefined
-          },
-          style
-        ]}}"
+      {{#if inlineStyle}}
+        style="{{inlineStyle}}"
       {{/if}}
 
       on-click="click.backTop"

@@ -18,6 +18,7 @@ import {
 } from '../constant'
 
 import {
+  toPixel,
   toNumber,
   scrollTo,
   onTransitionEnd,
@@ -62,6 +63,37 @@ export default Yox.define({
     return {
       visible: FALSE,
     }
+  },
+
+  computed: {
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const customStyle: Record<string, string> = {}
+
+      const bottom = this.get('bottom')
+      const right = this.get('right')
+
+      if (bottom) {
+        customStyle.bottom = toPixel(bottom)
+      }
+      if (right) {
+        customStyle.right = toPixel(right)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        result.push(customStyle)
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   },
 
   transitions: {

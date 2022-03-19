@@ -8,6 +8,7 @@ interface ButtonConfig {
 }
 declare const _default: import("yox").ComponentOptions<{
     allChecked: unknown;
+    inlineStyle: unknown;
 }, {
     selection: unknown;
 }, unknown, {

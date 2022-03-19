@@ -5,6 +5,7 @@ declare const _default: import("yox").ComponentOptions<{
     stepNumber: unknown;
     valuePercentArray: unknown;
     stops: unknown;
+    inlineStyle: unknown;
 }, {
     'valuePercentArray.*.value': unknown;
     value: unknown;

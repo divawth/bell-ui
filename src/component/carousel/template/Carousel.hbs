@@ -3,15 +3,9 @@ class="${prefix}carousel
 {{#if direction}} ${prefix}carousel-{{direction}}{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{[
-  size
-  ? {
-      width: size.width + 'px',
-      height: size.height + 'px'
-    }
-  : undefined,
-  style
-]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
+{{/if}}
 >
   <div
     ref="list"

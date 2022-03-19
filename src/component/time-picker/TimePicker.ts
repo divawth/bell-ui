@@ -32,6 +32,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
   toNumber,
 } from '../util'
 
@@ -132,6 +133,33 @@ export default Yox.define({
         return width
       }
       return this.get('needSecond') ? 168 : 120
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const width = this.get('componentWidth')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
+    overlayStyle(): object | void {
+      const width = this.get('componentWidth')
+      if (width) {
+        return {
+          width: toPixel(width)
+        }
+      }
     },
     needSecond(): boolean {
       return this.get('format') !== 'HH:mm'

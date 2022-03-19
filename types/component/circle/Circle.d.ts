@@ -1,5 +1,6 @@
 declare const _default: import("yox").ComponentOptions<{
     computedStrokeWidth: unknown;
+    inlineStyle: unknown;
     trailStyle: unknown;
     pathStyle: unknown;
     radius: unknown;

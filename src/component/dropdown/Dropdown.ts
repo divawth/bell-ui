@@ -20,6 +20,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 import {
@@ -53,6 +54,28 @@ export default Yox.define({
     style: {
       type: RAW_STYLE_TYPE,
     }
+  },
+
+  computed: {
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const maxHeight = this.get('maxHeight')
+      if (maxHeight) {
+        result.push({
+          maxHeight: toPixel(maxHeight)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   },
 
   events: {

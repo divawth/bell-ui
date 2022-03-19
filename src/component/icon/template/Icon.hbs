@@ -4,14 +4,8 @@ class="${prefix}icon
 {{#if spin}} ${prefix}icon-spin{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if color || size > 0 || style}}
-  style="{{[
-    {
-      color: color || undefined,
-      fontSize: size > 0 ? size + 'px' : undefined,
-    },
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
   <slot />

@@ -12,13 +12,8 @@
     class="${prefix}dropdown-overlay
     {{#if className}} {{className}}{{/if}}"
 
-    {{#if maxHeight || style}}
-      style="{{[
-        maxHeight
-          ? { maxHeight: maxHeight + 'px' }
-          : undefined,
-        style
-      ]}}"
+    {{#if inlineStyle}}
+      style="{{inlineStyle}}"
     {{/if}}
   >
     <slot name="overlay" />

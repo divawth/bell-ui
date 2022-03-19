@@ -27,16 +27,18 @@ rate-brand-style(style)
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-rate'}
-  display inline-block
+  display inline-flex
+  align-items center
   ui-connect(
     hash: $rate-brand-hash,
     each: rate-brand-style
   )
 
+  > {$selector-class-prefix + '-icon'}
+    display block
+
 {$selector-class-prefix + '-rate-icon-full'}
   color $rate-icon-color
-  display inline-block
-  line-height 1
   position relative
   transition color .3s
 
@@ -61,7 +63,6 @@ rate-brand-style(style)
   margin-left $rate-icon-gap
   font-size $font-size-default
   color $brand-content
-  vertical-align top
 
 {$selector-class-prefix + '-rate-live'}
   > {$selector-class-prefix + '-rate-icon-full'}

@@ -1,6 +1,7 @@
 import { CustomEventInterface } from 'yox';
 import { Shortcut } from './util';
 declare const _default: import("yox").ComponentOptions<{
+    inlineStyle: unknown;
     defaultSimpleDate: unknown;
     formatedValues: unknown;
 }, unknown, unknown[], {

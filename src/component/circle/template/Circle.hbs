@@ -3,13 +3,9 @@ class="${prefix}circle
 {{#if dashboard}} ${prefix}circle-dashboard{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{[
-  {
-    width: size + 'px',
-    height: size + 'px'
-  },
-  style
-]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
+{{/if}}
 >
   <svg viewBox="0 0 100 100">
     <path

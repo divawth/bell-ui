@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import template from './template/Tooltip.hbs'
 // import './style/Tooltip.styl'
@@ -24,7 +24,7 @@ import {
 } from '../constant'
 
 import {
-  oneOf,
+  oneOf, toPixel,
 } from '../util'
 
 export default Yox.define({
@@ -80,6 +80,28 @@ export default Yox.define({
     return {
       isVisible: FALSE,
     }
+  },
+
+  computed: {
+    contentStyle(): Record<string, string> | void {
+
+      const customStyle: Record<string, string> = {}
+
+      const maxWidth = this.get('maxWidth')
+      const maxHeight = this.get('maxHeight')
+
+      if (maxWidth) {
+        customStyle.maxWidth = toPixel(maxWidth)
+      }
+      if (maxHeight) {
+        customStyle.maxHeight = toPixel(maxHeight)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        return customStyle
+      }
+
+    },
   },
 
   events: {

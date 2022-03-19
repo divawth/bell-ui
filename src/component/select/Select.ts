@@ -8,7 +8,7 @@ import Icon from '../icon/Icon'
 import Popover from '../popover/Popover'
 
 import {
-  oneOf,
+  oneOf, toPixel,
 } from '../util'
 
 import {
@@ -93,13 +93,34 @@ export default Yox.define({
   },
 
   data() {
-
     return {
       RAW_TOP,
       RAW_CUSTOM,
       visible: FALSE,
       selectedOptions: [],
     }
+  },
+
+  computed: {
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const width = this.get('width')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   },
 
   events: {

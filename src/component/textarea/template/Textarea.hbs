@@ -14,13 +14,8 @@ class="${prefix}textarea
 
 {{#if className}} {{className}}{{/if}}"
 
-{{#if width || style}}
-  style="{{[
-    width
-      ? { width: width + 'px' }
-      : undefined,
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
 

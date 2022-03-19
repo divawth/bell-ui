@@ -3,18 +3,8 @@
 {{#if showTrigger}} ${prefix}layout-sider-with-trigger{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if customWidth || style}}
-  style="{{[
-    customWidth
-      ? {
-          flex: '0 0 ' + customWidth + 'px',
-          width: customWidth + 'px',
-          minWidth: customWidth + 'px',
-          maxWidth: customWidth + 'px',
-        }
-      : undefined,
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
 
@@ -31,8 +21,8 @@
     <div
       class="${prefix}layout-sider-trigger"
       on-click="toggle('collapsed')"
-      {{#if customWidth}}
-        style="{{ { width: customWidth + 'px' } }}"
+      {{#if triggerStyle}}
+        style="{{triggerStyle}}"
       {{/if}}
     >
       <Icon

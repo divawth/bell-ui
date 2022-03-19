@@ -1,4 +1,6 @@
-declare const _default: import("yox").ComponentOptions<unknown, unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    inlineStyle: unknown;
+}, unknown, {
     click: unknown;
     open: unknown;
     close: unknown;

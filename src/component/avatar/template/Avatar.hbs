@@ -5,14 +5,9 @@ class="${prefix}avatar
 {{#if clickable}} ${prefix}avatar-clickable{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-style="{{[
-  {
-    width: sizeValue + 'px',
-    height: sizeValue + 'px',
-    backgroundColor: backgroundColor || undefined
-  },
-  style
-]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
+{{/if}}
 
 {{#if clickable}}
   on-click="click"
@@ -43,11 +38,8 @@ style="{{[
     <span
       ref="text"
       class="${prefix}avatar-text"
-      {{#if color || fontSize}}
-        style="{{ {
-          color: color || undefined,
-          fontSize: fontSize ? fontSize + 'px' : undefined
-        } }}"
+      {{#if textStyle}}
+        style="{{textStyle}}"
       {{/if}}
     >
       {{text}}

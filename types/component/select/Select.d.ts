@@ -1,5 +1,7 @@
 import { CustomEventInterface } from 'yox';
-declare const _default: import("yox").ComponentOptions<unknown, unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    inlineStyle: unknown;
+}, unknown, {
     update: unknown;
     outside: unknown;
 }, {
