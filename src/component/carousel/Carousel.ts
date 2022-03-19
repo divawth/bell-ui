@@ -160,8 +160,8 @@ export default Yox.define({
 
       element.style.transitionDuration = animated ? '0.2s' : ''
       element.style.transform = this.get('direction') === 'horizontal'
-        ? ('translateX(-' + (index * size.width) + 'px)')
-        : ('translateY(-' + (index * size.height) + 'px)')
+        ? ('translateX(-' + toPixel(index * size.width) + ')')
+        : ('translateY(-' + toPixel(index * size.height) + ')')
 
     }
   },

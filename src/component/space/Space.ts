@@ -66,7 +66,7 @@ export default Yox.define({
 
       // 配置两个方向的间距
       if (Yox.is.array(size)) {
-        return `${size[1]}px ${size[0]}px`
+        return toPixel(size[1]) + ' ' + toPixel(size[0])
       }
 
       // 配置一个方向的间距
