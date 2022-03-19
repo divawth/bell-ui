@@ -28,6 +28,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 const TEXT_TYPE_PASSWORD = 'password'
@@ -116,6 +117,25 @@ export default Yox.define({
     hasCount() {
       return this.get('showCount') && this.get('maxLength') > 0
     },
+    inlineStyle() {
+      const result: object[] = []
+
+      const width = this.get('width')
+      if (width) {
+        result.push({
+          width: toPixel(width)
+        })
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    }
   },
 
   filters: {

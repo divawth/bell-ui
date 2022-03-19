@@ -13,6 +13,8 @@ import {
 
 import {
   oneOf,
+  toPixel,
+  toPercent,
 } from '../util'
 
 export default Yox.define({
@@ -36,6 +38,34 @@ export default Yox.define({
     },
     color: {
       type: RAW_STRING,
+    }
+  },
+
+  computed: {
+    indicatorStyle() {
+      const result: object[] = []
+
+      const customStyle: Record<string, string> = {}
+
+      const percent = this.get('percent')
+      const height = this.get('height')
+      const color = this.get('color')
+      customStyle.width = toPercent(percent)
+      customStyle.height = toPixel(height)
+      if (color) {
+        customStyle.color = color
+      }
+
+      result.push(customStyle)
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
     }
   },
 

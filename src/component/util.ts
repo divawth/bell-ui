@@ -115,6 +115,10 @@ export function toPixel(value: number) {
   return value + 'px'
 }
 
+export function toPercent(value: number) {
+  return value + '%'
+}
+
 export function findComponentUpward(parent, componentName: string | string[]) {
   if (typeof componentName === 'string') {
     componentName = [ componentName ]

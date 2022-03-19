@@ -23,6 +23,7 @@ import {
 
 import {
   oneOf,
+  toPixel,
 } from '../util'
 
 import {
@@ -79,6 +80,27 @@ export default Yox.define({
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
       isVisible: FALSE,
+    }
+  },
+
+  computed: {
+    contentStyle() {
+
+      const customStyle: Record<string, string> = {}
+
+      const maxWidth = this.get('maxWidth')
+      const maxHeight = this.get('maxHeight')
+      if (maxWidth) {
+        customStyle.maxWidth = toPixel(maxWidth)
+      }
+      if (maxHeight) {
+        customStyle.maxHeight = toPixel(maxHeight)
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        return customStyle
+      }
+
     }
   },
 

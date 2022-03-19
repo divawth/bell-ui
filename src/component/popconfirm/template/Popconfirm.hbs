@@ -20,11 +20,8 @@
   >
     <div
       class="${prefix}popover-content"
-      {{#if maxWidth || maxHeight}}
-        style="{{ {
-          maxWidth: maxWidth ? maxWidth + 'px' : undefined,
-          maxHeight: maxHeight ? maxHeight + 'px' : undefined
-        } }}"
+      {{#if contentStyle}}
+        style="{{contentStyle}}"
       {{/if}}
     >
 
