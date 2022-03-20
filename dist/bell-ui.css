@@ -181,10 +181,10 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-row {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
 }
-.bell-row-no-wrap {
-  flex-wrap: nowrap;
+.bell-row-auto-wrap {
+  flex-wrap: wrap;
 }
 .bell-row-justify-start {
   justify-content: flex-start;
@@ -10996,7 +10996,6 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 24px 24px;
 }
 .bell-checkbox {
-  height: 32px;
   display: inline-flex;
   align-items: center;
   -webkit-user-select: none;
@@ -11006,6 +11005,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
 }
 .bell-checkbox-with-label {
+  height: 32px;
   color: #515a6e;
   font-size: 14px;
   line-height: 1.1429;
@@ -12016,6 +12016,13 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2b85e4;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
   transition: all 0.1s ease-in-out;
+}
+.bell-image-picker-legacy .bell-image-picker-items-wrapper {
+  margin-bottom: -10px;
+}
+.bell-image-picker-legacy .bell-image-picker-item {
+  margin-right: 8px;
+  margin-bottom: 10px;
 }
 .bell-dialog {
   position: fixed;
@@ -14225,7 +14232,6 @@ div::-webkit-scrollbar-thumb:hover {
   }
 }
 .bell-radio {
-  height: 32px;
   display: inline-flex;
   align-items: center;
   -webkit-user-select: none;
@@ -14235,6 +14241,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
 }
 .bell-radio-with-label {
+  height: 32px;
   color: #515a6e;
   font-size: 14px;
   line-height: 1.1429;
@@ -16185,12 +16192,8 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-space > .bell-button {
   margin-left: 0;
 }
-.bell-space-horizontal {
-  gap: 8px;
-}
 .bell-space-vertical {
   flex-direction: column;
-  gap: 10px;
 }
 .bell-space-vertical > .bell-button-block,
 .bell-space-vertical > .bell-select-block {
@@ -16207,7 +16210,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-space-auto-wrap {
   flex-wrap: wrap;
-  gap: 10px 8px;
 }
 .bell-space-block {
   display: flex;

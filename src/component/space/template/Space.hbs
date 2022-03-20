@@ -10,13 +10,8 @@ class="${prefix}space
 {{#if !supportFlexGap}} ${prefix}space-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if sizeValue || style}}
-  style="{{[
-    sizeValue
-      ? { gap: sizeValue }
-      : undefined,
-    style
-  ]}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
   <slot />

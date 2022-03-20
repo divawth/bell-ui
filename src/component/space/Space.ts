@@ -28,6 +28,7 @@ export default Yox.define({
   propTypes: {
     size: {
       type: [RAW_NUMERIC, RAW_ARRAY],
+      value: [8, 10],
     },
     align: {
       type: oneOf(['start', 'end', 'center', 'baseline']),
@@ -57,7 +58,7 @@ export default Yox.define({
   },
 
   computed: {
-    sizeValue() {
+    sizeArray() {
 
       const size = this.get('size')
       if (size == NULL) {
@@ -65,17 +66,50 @@ export default Yox.define({
       }
 
       // 配置两个方向的间距
-      if (Yox.is.array(size)) {
-        return toPixel(size[1]) + ' ' + toPixel(size[0])
+      if (Yox.is.array(size) && (size[0] > 0 || size[1] > 0)) {
+        return size
       }
 
       // 配置一个方向的间距
       const value = toNumber(size)
       if (value > 0) {
-        return toPixel(value)
+        return [value]
       }
 
-    }
+    },
+    inlineStyle(): object[] | void {
+      const result: object[] = []
+
+      const sizeArray = this.get('sizeArray')
+      if (sizeArray) {
+        const gapStyle: Record<string, string> = {}
+        const horizontalGap = sizeArray[0]
+        const verticalGap = sizeArray[1]
+        if (supportFlexGap) {
+          if (horizontalGap > 0) {
+            gapStyle.columnGap = toPixel(horizontalGap)
+          }
+          if (verticalGap > 0) {
+            gapStyle.rowGap = toPixel(verticalGap)
+          }
+        }
+        else if (verticalGap > 0 && this.get('autoWrap')) {
+          gapStyle.marginBottom = toPixel(-verticalGap)
+        }
+        if (Yox.object.keys(gapStyle).length > 0) {
+          result.push(gapStyle)
+        }
+      }
+
+      const style = this.get('style')
+      if (style) {
+        result.push(style)
+      }
+
+      if (result.length > 0) {
+        return result
+      }
+    },
   }
 
 })

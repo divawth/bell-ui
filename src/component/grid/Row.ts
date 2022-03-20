@@ -16,7 +16,11 @@ import {
   RAW_BOOLEAN,
 } from '../constant'
 
-import { oneOf, toPixel } from '../util'
+import {
+  oneOf,
+  toPixel,
+  supportFlexGap,
+} from '../util'
 
 import {
   parseGutter,
@@ -78,19 +82,29 @@ export default Yox.define({
 
       const result: object[] = []
 
+      const customStyle: Record<string, string | number> = {}
+
       const responsiveGutter = this.get('responsiveGutter')
       if (responsiveGutter) {
         if (responsiveGutter[0] > 0) {
-          result.push({
-            marginLeft: toPixel(responsiveGutter[0] / -2),
-            marginRight: toPixel(responsiveGutter[0] / -2),
-          })
+          const horizontalGutter = toPixel(responsiveGutter[0] / -2)
+          customStyle.marginLeft = horizontalGutter
+          customStyle.marginRight = horizontalGutter
         }
         if (responsiveGutter[1] > 0) {
-          result.push({
-            rowGap: toPixel(responsiveGutter[1]),
-          })
+          if (supportFlexGap) {
+            customStyle.rowGap = toPixel(responsiveGutter[1])
+          }
+          else {
+            const verticalGutter = toPixel(responsiveGutter[1] / -2)
+            customStyle.marginTop = verticalGutter
+            customStyle.marginBottom = verticalGutter
+          }
         }
+      }
+
+      if (Yox.object.keys(customStyle).length > 0) {
+        result.push(customStyle)
       }
 
       const style = this.get('style')

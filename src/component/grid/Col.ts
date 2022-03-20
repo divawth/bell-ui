@@ -10,7 +10,11 @@ import {
   RAW_STYLE_TYPE,
 } from '../constant'
 
-import { findComponentUpward, toPixel } from '../util'
+import {
+  toPixel,
+  supportFlexGap,
+  findComponentUpward,
+} from '../util'
 
 import {
   responsiveArray
@@ -163,12 +167,20 @@ export default Yox.define({
       }
 
       const responsiveGutter = this.get('responsiveGutter')
-      if (responsiveGutter && responsiveGutter[0] > 0) {
-        customStyle.paddingLeft = toPixel(responsiveGutter[0] / 2)
-        customStyle.paddingRight = toPixel(responsiveGutter[0] / 2)
+      if (responsiveGutter) {
+        if (responsiveGutter[0] > 0) {
+          const horizontalGutter = toPixel(responsiveGutter[0] / 2)
+          customStyle.paddingLeft = horizontalGutter
+          customStyle.paddingRight = horizontalGutter
+        }
+        if (responsiveGutter[1] > 0 && !supportFlexGap) {
+          const verticalGutter = toPixel(responsiveGutter[1] / 2)
+          customStyle.paddingTop = verticalGutter
+          customStyle.paddingBottom = verticalGutter
+        }
       }
 
-      if (Yox.object.keys(customStyle).length) {
+      if (Yox.object.keys(customStyle).length > 0) {
         result.push(customStyle)
       }
 
@@ -177,7 +189,7 @@ export default Yox.define({
         result.push(style)
       }
 
-      if (result.length) {
+      if (result.length > 0) {
         return result
       }
 

@@ -128,3 +128,10 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   border-color $brand-primary-active
   box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
   transition all 0.1s ease-in-out
+
+{$selector-class-prefix + '-image-picker-legacy'}
+  {$selector-class-prefix + '-image-picker-items-wrapper'}
+    margin-bottom -1 * $ui-vertical-gap
+  {$selector-class-prefix + '-image-picker-item'}
+    margin-right $ui-horizontal-gap
+    margin-bottom $ui-vertical-gap

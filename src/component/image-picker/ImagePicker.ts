@@ -24,6 +24,7 @@ import {
   toPixel,
   toNumber,
   formatSecond,
+  supportFlexGap,
 } from '../util'
 
 import {
@@ -122,6 +123,7 @@ export default Yox.define({
       STATUS_UPLOADING,
       STATUS_ERROR,
       STATUS_FAILURE,
+      supportFlexGap,
       draggingIndex: -1,
       uploadingCount: 0,
       beforeReuploadImage(data) {

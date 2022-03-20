@@ -1,5 +1,6 @@
 <div
 class="${prefix}image-picker
+{{#if !supportFlexGap}} ${prefix}image-picker-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
