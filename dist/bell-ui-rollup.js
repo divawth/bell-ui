@@ -1,5 +1,5 @@
 /**
- * bell-ui.js v0.25.5
+ * bell-ui.js v0.25.6
  * (c) 2018-2022 
  * Released under the MIT License.
  */
@@ -307,21 +307,35 @@
       xxl: '(min-width: 1600px)',
   };
   var responsiveArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+  function eachBreakpoints(callback) {
+      Yox.array.each(responsiveArray, function (key) {
+          callback(key, window.matchMedia(responsiveMap[key]));
+      });
+  }
+  function getCurrentBreakpoint() {
+      var result;
+      eachBreakpoints(function (breakpoint, mql) {
+          if (mql.matches) {
+              result = breakpoint;
+          }
+      });
+      return result;
+  }
   var store = new Yox({
       data: {
-          breakpoint: UNDEFINED,
+          breakpoint: getCurrentBreakpoint(),
       }
   });
-  Yox.array.each(responsiveArray, function (key) {
-      var matchMediaQuery = responsiveMap[key];
+  eachBreakpoints(function (breakpoint, mql) {
       var listener = function (event) {
           if (event.matches) {
-              store.set('breakpoint', key);
+              store.set('breakpoint', breakpoint);
+          }
+          else if (store.get('breakpoint') === breakpoint) {
+              store.set('breakpoint', getCurrentBreakpoint());
           }
       };
-      var mql = window.matchMedia(matchMediaQuery);
       mql.addListener(listener);
-      listener(mql);
   });
   function getBreakpoint() {
       return store.get('breakpoint');
@@ -9451,7 +9465,7 @@
   /**
    * 版本
    */
-  var version = "0.25.5";
+  var version = "0.25.6";
   /**
    * 安装插件
    */

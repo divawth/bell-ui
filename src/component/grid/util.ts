@@ -1,5 +1,4 @@
 import Yox, { Watcher } from 'yox'
-import { TRUE, UNDEFINED } from '../constant'
 
 type breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 
@@ -14,24 +13,50 @@ const responsiveMap: Record<breakpoint, string> = {
 
 export const responsiveArray: breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl']
 
+function eachBreakpoints(callback: (breakpoint: breakpoint, mql: MediaQueryList) => void) {
+  Yox.array.each(
+    responsiveArray,
+    function (key) {
+      callback(
+        key,
+        window.matchMedia(responsiveMap[key])
+      )
+    }
+  )
+}
+
+function getCurrentBreakpoint() {
+  let result: breakpoint
+  eachBreakpoints(
+    function (breakpoint, mql) {
+      if (mql.matches) {
+        result = breakpoint
+      }
+    }
+  )
+  return result
+}
+
 const store = new Yox({
   data: {
-    breakpoint: UNDEFINED,
+    breakpoint: getCurrentBreakpoint(),
   }
 })
 
-Yox.array.each(
-  responsiveArray,
-  function (key) {
-    const matchMediaQuery = responsiveMap[key]
-    const listener = (event: { matches: boolean }) => {
+eachBreakpoints(
+  function (breakpoint, mql) {
+    const listener = function (event: { matches: boolean }) {
       if (event.matches) {
-        store.set('breakpoint', key)
+        store.set('breakpoint', breakpoint)
+      }
+      else if (store.get('breakpoint') === breakpoint) {
+        store.set(
+          'breakpoint',
+          getCurrentBreakpoint()
+        )
       }
     }
-    const mql = window.matchMedia(matchMediaQuery)
     mql.addListener(listener)
-    listener(mql)
   }
 )
 

@@ -1023,7 +1023,6 @@ function scrollTo(element, from, to, duration, callback) {
 
 // CONCATENATED MODULE: ./src/component/grid/util.ts
 
-
 var responsiveMap = {
     xs: '(max-width: 575px)',
     sm: '(min-width: 576px)',
@@ -1033,21 +1032,35 @@ var responsiveMap = {
     xxl: '(min-width: 1600px)',
 };
 var responsiveArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+function eachBreakpoints(callback) {
+    external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(responsiveArray, function (key) {
+        callback(key, window.matchMedia(responsiveMap[key]));
+    });
+}
+function getCurrentBreakpoint() {
+    var result;
+    eachBreakpoints(function (breakpoint, mql) {
+        if (mql.matches) {
+            result = breakpoint;
+        }
+    });
+    return result;
+}
 var store = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a({
     data: {
-        breakpoint: UNDEFINED,
+        breakpoint: getCurrentBreakpoint(),
     }
 });
-external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.each(responsiveArray, function (key) {
-    var matchMediaQuery = responsiveMap[key];
+eachBreakpoints(function (breakpoint, mql) {
     var listener = function (event) {
         if (event.matches) {
-            store.set('breakpoint', key);
+            store.set('breakpoint', breakpoint);
+        }
+        else if (store.get('breakpoint') === breakpoint) {
+            store.set('breakpoint', getCurrentBreakpoint());
         }
     };
-    var mql = window.matchMedia(matchMediaQuery);
     mql.addListener(listener);
-    listener(mql);
 });
 function getBreakpoint() {
     return store.get('breakpoint');
@@ -11136,7 +11149,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.25.5";
+var version = "0.25.6";
 /**
  * 安装插件
  */
