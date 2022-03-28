@@ -13,6 +13,7 @@ class="${prefix}image-picker
   >
     {{#each imageList:index}}
       <div
+        key="{{this.id}}"
         draggable="{{~/canDraggable}}"
         on-mouseenter="handleMouseEnter(index)"
         on-mouseleave="handleMouseLeave(index)"
@@ -32,7 +33,7 @@ class="${prefix}image-picker
 
         {{#if this.url || this.base64}}
           <img
-            draggable="{{~/canDraggable}}"
+            draggable="false"
             class="${prefix}image-picker-image"
             {{#if this.url}}
               src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
