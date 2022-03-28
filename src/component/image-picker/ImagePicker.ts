@@ -23,7 +23,7 @@ import {
 import {
   toPixel,
   toNumber,
-  formatSecond,
+  formatMillisecond,
   supportFlexGap,
 } from '../util'
 
@@ -37,6 +37,12 @@ import {
 
 const CLASS_CARD_MOUSE_ENTER = '${prefix}image-picker-card-mouse-enter'
 const CLASS_CARD_DRAG_ENTER = '${prefix}image-picker-card-drag-enter'
+
+const formatDurationOptinos = {
+  format: 'd:HH:mm:ss',
+  trimDay: TRUE,
+  trimHour: TRUE
+}
 
 export default Yox.define({
 
@@ -323,14 +329,14 @@ export default Yox.define({
         if (minDuration > 0) {
           if (item.duration < minDuration) {
             errors.push(
-              `${target}时长不能小于 ${formatSecond(minDuration)}`
+              `${target}时长不能小于 ${formatMillisecond(minDuration * 1000, formatDurationOptinos)}`
             )
           }
         }
         if (maxDuration > 0) {
           if (item.duration > maxDuration) {
             errors.push(
-              `${target}时长不能超过 ${formatSecond(maxDuration)}`
+              `${target}时长不能超过 ${formatMillisecond(maxDuration * 1000, formatDurationOptinos)}`
             )
           }
         }

@@ -13,6 +13,10 @@ export declare function toPixel(value: number): string;
 export declare function toPercent(value: number): string;
 export declare function findComponentUpward(parent: any, componentName: string | string[]): any;
 export declare function oneOf(values: any[]): (key: string, value: any, componentName: string) => void;
-export declare function formatSecond(value: number, format?: string, SECOND?: number): string;
-export declare function padStart(value: number): string;
+export declare function formatMillisecond(value: number, options: {
+    format: string;
+    trimDay?: boolean;
+    trimHour?: boolean;
+}): string;
+export declare function padStart(value: number, length?: number): string;
 export declare function scrollTo(element: HTMLElement | Window, from: number, to: number, duration?: number, callback?: () => void): void;

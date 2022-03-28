@@ -1,5 +1,6 @@
 import Row from './component/grid/Row'
 import Col from './component/grid/Col'
+import Countdown from './component/countdown/Countdown'
 
 import Menu from './component/menu/Menu'
 import MenuItem from './component/menu/MenuItem'
@@ -118,6 +119,7 @@ export function install(Yox: any) {
   Yox.component({
     Row,
     Col,
+    Countdown,
 
     Menu,
     MenuItem,

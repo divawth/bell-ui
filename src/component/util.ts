@@ -158,46 +158,82 @@ export function oneOf(values: any[]) {
   }
 }
 
-export function formatSecond(value: number, format = 'd:hh:mm:ss', SECOND = 1) {
+const SECOND = 1000
+const MINUTE = 60 * SECOND
+const HOUR = 60 * MINUTE
+const DAY = 24 * HOUR
 
-  const MINUTE = 60 * SECOND
-  const HOUR = 60 * MINUTE
-  const DAY = 24 * MINUTE
+export function formatMillisecond(
+  value: number,
+  options: {
+    format: string,
+    trimDay?: boolean,
+    trimHour?: boolean,
+  }
+) {
 
-  const day = Math.floor(value / DAY)
-  value %= DAY
+  let { format, trimDay, trimHour } = options
 
-  const hour = Math.floor(value / HOUR)
-  value %= HOUR
+  const showDay = format.indexOf('d') >= 0
+  const showHour = format.indexOf('H') >= 0
+  const showMinute = format.indexOf('m') >= 0
+  const showSecond = format.indexOf('s') >= 0
 
-  const minute = Math.floor(value / MINUTE)
-  value %= MINUTE
+  let day = 0
+  if (showDay) {
+    day = Math.floor(value / DAY)
+    value %= DAY
+  }
 
-  const second = Math.floor(value / SECOND)
+  let hour = 0
+  if (showHour) {
+    hour = Math.floor(value / HOUR)
+    value %= HOUR
+  }
 
-  if (!day) {
+  let minute = 0
+  if (showMinute) {
+    minute = Math.floor(value / MINUTE)
+    value %= MINUTE
+  }
+
+  let second = 0
+  if (showSecond) {
+    second = Math.floor(value / SECOND)
+    value %= SECOND
+  }
+
+  if (!day && trimDay) {
     format = format.replace(/dd:/, '').replace(/d:/, '')
-    if (!hour) {
-      format = format.replace(/hh:/, '').replace(/h:/, '')
+    if (!hour && trimHour) {
+      format = format.replace(/HH:/, '').replace(/H:/, '')
     }
   }
 
   return format
-    .replace(/dd/i, padStart(day))
-    .replace(/d/i, toString(day))
-    .replace(/hh/i, padStart(hour))
-    .replace(/h/i, toString(hour))
-    .replace(/mm/i, padStart(minute))
-    .replace(/m/i, toString(minute))
-    .replace(/ss/i, padStart(second))
-    .replace(/s/i, toString(second))
+    .replace(/dd/, padStart(day))
+    .replace(/d/, toString(day))
+    .replace(/HH/, padStart(hour))
+    .replace(/H/, toString(hour))
+    .replace(/mm/, padStart(minute))
+    .replace(/m/, toString(minute))
+    .replace(/SSS/, padStart(value, 3))
+    .replace(/ss/, padStart(second))
+    .replace(/s/, toString(second))
 
 }
 
-export function padStart(value: number) {
-  return value < 10
-    ? '0' + value
-    : '' + value
+export function padStart(value: number, length = 2) {
+
+  const text = toString(value)
+
+  const arrayLength = length - text.length + 1
+  if (arrayLength > 0) {
+    return new Array(arrayLength).join('0') + value
+  }
+
+  return text
+
 }
 
 export function scrollTo(
