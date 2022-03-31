@@ -1,6 +1,7 @@
 import Row from './component/grid/Row'
 import Col from './component/grid/Col'
 import Countdown from './component/countdown/Countdown'
+import ResizeObserver from './component/resize-observer/ResizeObserver'
 
 import Menu from './component/menu/Menu'
 import MenuItem from './component/menu/MenuItem'
@@ -51,7 +52,6 @@ import ImagePicker from './component/image-picker/ImagePicker'
 import Tooltip from './component/tooltip/Tooltip'
 
 import Carousel from './component/carousel/Carousel'
-import CarouselItem from './component/carousel/CarouselItem'
 
 import Collapse from './component/collapse/Collapse'
 import CollapseItem from './component/collapse/CollapseItem'
@@ -120,6 +120,7 @@ export function install(Yox: any) {
     Row,
     Col,
     Countdown,
+    ResizeObserver,
 
     Menu,
     MenuItem,
@@ -181,7 +182,6 @@ export function install(Yox: any) {
     LayoutSider,
 
     Carousel,
-    CarouselItem,
     Collapse,
     CollapseItem,
     Link,

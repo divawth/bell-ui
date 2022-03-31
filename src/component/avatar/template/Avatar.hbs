@@ -29,7 +29,7 @@ class="${prefix}avatar
       {{#if alt}}
         alt="{{alt}}"
       {{/if}}
-      ondragstart="return false"
+      draggable="false"
       on-error="error.avatar"
     >
   {{else if hasSlot('icon')}}

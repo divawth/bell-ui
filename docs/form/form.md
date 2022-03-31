@@ -125,15 +125,9 @@ export default {
           model="form.select"
           placeholder="请选择..."
         >
-          <Option value="beijing">
-            北京
-          </Option>
-          <Option value="shanghai">
-            上海
-          </Option>
-          <Option value="shenzhen">
-            深圳
-          </Option>
+          <Option value="beijing" text="北京" />
+          <Option value="shanghai" text="上海" />
+          <Option value="shenzhen" text="深圳" />
         </Select>
       </FormItem>
       <FormItem label="DatePicker">

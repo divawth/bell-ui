@@ -8,7 +8,8 @@ import Icon from '../icon/Icon'
 import Popover from '../popover/Popover'
 
 import {
-  oneOf, toPixel,
+  oneOf,
+  toPixel,
 } from '../util'
 
 import {
@@ -256,18 +257,20 @@ export default Yox.define({
 
     updateSelectedOptions(selectedValue: any, children: any) {
 
+      const me = this
       const selectedOptions = []
 
       if (!children) {
-        this.set('selectedOptions', selectedOptions)
+        me.set('selectedOptions', selectedOptions)
         return
       }
 
       const findOptions = function (children) {
-        children.vnodes.forEach(
+        children.forEach(
           function (vnode) {
-            if (vnode.tag === 'Option' && vnode.props) {
-              const { text, value } = vnode.props
+            const { tag, props, slots } = vnode
+            if (tag === 'Option' && props) {
+              const { text, value } = props
               if (isOptionSelected(selectedValue, value)) {
                 selectedOptions.push({
                   text,
@@ -275,8 +278,8 @@ export default Yox.define({
                 })
               }
             }
-            else if (vnode.tag === 'OptionGroup' && vnode.slots) {
-              const children = vnode.slots[RAW_SLOT_CHILDREN]
+            else if (tag === 'OptionGroup' && slots && slots[RAW_SLOT_CHILDREN]) {
+              const children = slots[RAW_SLOT_CHILDREN](me)
               if (children) {
                 findOptions(children)
               }
@@ -287,7 +290,7 @@ export default Yox.define({
 
       findOptions(children)
 
-      this.set('selectedOptions', selectedOptions)
+      me.set('selectedOptions', selectedOptions)
 
     },
 

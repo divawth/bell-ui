@@ -6,6 +6,6 @@ declare const _default: import("yox").ComponentOptions<{
     index: unknown;
     direction: unknown;
 }, {
-    sizeChange: unknown;
+    resize: unknown;
 }, unknown> & ThisType<YoxInterface>;
 export default _default;

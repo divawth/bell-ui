@@ -93,7 +93,9 @@ export default Yox.define({
             gapStyle.rowGap = toPixel(verticalGap)
           }
         }
-        else if (verticalGap > 0 && this.get('autoWrap')) {
+        else if (this.get('vertical')
+          || (verticalGap > 0 && this.get('autoWrap'))
+        ) {
           gapStyle.marginBottom = toPixel(-verticalGap)
         }
         if (Yox.object.keys(gapStyle).length > 0) {
@@ -108,6 +110,33 @@ export default Yox.define({
 
       if (result.length > 0) {
         return result
+      }
+    },
+    itemStyle(): Record<string, string> | void {
+      if (supportFlexGap) {
+        return
+      }
+      const sizeArray = this.get('sizeArray')
+      if (sizeArray) {
+        const result: Record<string, string> = {}
+        const horizontalGap = sizeArray[0]
+        const verticalGap = sizeArray[1]
+        if (this.get('vertical')) {
+          if (verticalGap > 0) {
+            result.marginBottom = toPixel(verticalGap)
+          }
+        }
+        else {
+          if (horizontalGap > 0) {
+            result.marginRight = toPixel(horizontalGap)
+          }
+          if (verticalGap > 0 && this.get('autoWrap')) {
+            result.marginBottom = toPixel(verticalGap)
+          }
+        }
+        if (Yox.object.keys(result).length > 0) {
+          return result
+        }
       }
     },
   }

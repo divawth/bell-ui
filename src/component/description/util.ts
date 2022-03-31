@@ -1,3 +1,4 @@
+import { VNode, YoxInterface } from 'yox'
 import { UNDEFINED, RAW_SLOT_PREFIX, RAW_SLOT_CHILDREN } from '../constant'
 import { toNumber } from '../util'
 
@@ -7,11 +8,7 @@ type DescriptionItem = {
   span: number
 }
 
-export function addSlots2Props(children, props: Record<string, any>, column: number) {
-
-  if (!children) {
-    return
-  }
+export function addSlots2Props(instance: YoxInterface, children: VNode[], props: Record<string, any>, column: number) {
 
   let cells: DescriptionItem[][] = []
   let columnArray: DescriptionItem[] | void
@@ -19,7 +16,7 @@ export function addSlots2Props(children, props: Record<string, any>, column: num
   let columnSpanSum = 0
   let index = 0
 
-  children.vnodes.forEach(
+  children.forEach(
     function (vnode: any) {
       if (vnode.tag === 'DescriptionItem') {
 
@@ -43,7 +40,7 @@ export function addSlots2Props(children, props: Record<string, any>, column: num
         }
 
         columnArray.push(columnItem)
-        props[RAW_SLOT_PREFIX + name] = vnode.slots[RAW_SLOT_CHILDREN]
+        props[RAW_SLOT_PREFIX + name] = vnode.slots[RAW_SLOT_CHILDREN](instance)
 
         columnSpanSum += columnItem.span
 

@@ -11,7 +11,13 @@ class="${prefix}carousel
     ref="list"
     class="${prefix}carousel-list"
   >
-    <slot />
+    {{#each @children:index}}
+      <ResizeObserver delay="1000">
+        <div class="${prefix}carousel-item">
+          <slot name="children.{{index}}" />
+        </div>
+      </ResizeObserver>
+    {{/each}}
   </div>
   {{#if count > 1}}
     <div

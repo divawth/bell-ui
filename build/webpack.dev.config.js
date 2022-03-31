@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config.js')
 
-const port = 8080
+const port = 8090
 
 module.exports = merge(
   baseConfig,

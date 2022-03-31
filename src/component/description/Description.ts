@@ -51,26 +51,30 @@ export default Yox.define({
     }
   },
 
-  beforeCreate(options) {
-
-    if (!options.slots) {
-      return
+  data() {
+    const data = { }
+    const children = this.get(RAW_SLOT_CHILDREN)
+    if (children) {
+      addSlots2Props(
+        this,
+        children,
+        data,
+        this.get('column') || COLUMN_DEFAULT
+      )
     }
-
-    const props = options.props || (options.props = {})
-
-    addSlots2Props(
-      options.slots[RAW_SLOT_CHILDREN],
-      props,
-      props.column || COLUMN_DEFAULT,
-    )
-
+    return data
   },
 
   beforePropsUpdate(props) {
 
+    const children = props[RAW_SLOT_CHILDREN]
+    if (!children) {
+      return
+    }
+
     addSlots2Props(
-      props[RAW_SLOT_CHILDREN],
+      this,
+      children,
       props,
       props.column || COLUMN_DEFAULT,
     )

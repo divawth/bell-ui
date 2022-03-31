@@ -3,6 +3,8 @@ import Yox, { YoxInterface } from 'yox'
 import template from './template/Carousel.hbs'
 // import './style/Carousel.styl'
 
+import ResizeObserver from '../resize-observer/ResizeObserver'
+
 import {
   TRUE,
   UNDEFINED,
@@ -15,6 +17,8 @@ import {
   RAW_RIGHT,
   RAW_BOTTOM,
   RAW_LEFT,
+  RAW_VERTICAL,
+  RAW_HORIZONTAL,
   RAW_STYLE_TYPE,
   RAW_SLOT_CHILDREN,
   RAW_EVENT_BEFORE_DESTROY,
@@ -64,8 +68,8 @@ export default Yox.define({
     }
   },
 
-  data(options) {
-    const children = options.slots[RAW_SLOT_CHILDREN]
+  data() {
+    const children = this.get(RAW_SLOT_CHILDREN)
     return {
       RAW_CLICK,
       RAW_HOVER,
@@ -75,7 +79,9 @@ export default Yox.define({
       RAW_LEFT,
 
       index: 0,
-      count: children.vnodes.length,
+      count: children
+        ? children.length
+        : 0,
       size: UNDEFINED,
     }
   },
@@ -84,8 +90,8 @@ export default Yox.define({
     direction() {
       const indicatorPosition = this.get('indicatorPosition')
       return indicatorPosition === 'left' || indicatorPosition === 'right'
-        ? 'vertical'
-        : 'horizontal'
+        ? RAW_VERTICAL
+        : RAW_HORIZONTAL
     },
     inlineStyle(): object[] | void {
       const result: object[] = []
@@ -110,7 +116,7 @@ export default Yox.define({
   },
 
   events: {
-    sizeChange: {
+    resize: {
       listener(event, data) {
         if (event.phase !== Yox.Event.PHASE_UPWARD) {
           return
@@ -118,7 +124,7 @@ export default Yox.define({
         event.stop()
         this.set('size', data)
       },
-      ns: 'carouselItem'
+      ns: 'resizeObserver'
     }
   },
 
@@ -159,17 +165,22 @@ export default Yox.define({
       const element = this.$refs.list as HTMLElement
 
       element.style.transitionDuration = animated ? '0.2s' : ''
-      element.style.transform = this.get('direction') === 'horizontal'
+      element.style.transform = this.get('direction') === RAW_HORIZONTAL
         ? ('translateX(-' + toPixel(index * size.width) + ')')
         : ('translateY(-' + toPixel(index * size.height) + ')')
 
     }
   },
 
+  components: {
+    ResizeObserver
+  },
+
   afterMount() {
 
     const me = this
 
+    // 自动播放
     let autoPlayTimer: number
 
     const autoPlayHandler = function () {
@@ -217,7 +228,7 @@ export default Yox.define({
 
     const children = props[RAW_SLOT_CHILDREN]
 
-    this.set('count', children.vnodes.length)
+    this.set('count', children ? children.length : 0)
 
   }
 

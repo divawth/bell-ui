@@ -7,30 +7,22 @@ export default {
   template: `
   <div>
     <Carousel>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-        >
-      </CarouselItem>
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+      >
     </Carousel>
     <style>
       .carousel-img {
@@ -53,30 +45,22 @@ export default {
   template: `
   <div>
     <Carousel autoPlay>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-        >
-      </CarouselItem>
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+      >
     </Carousel>
     <style>
       .carousel-img {
@@ -109,30 +93,22 @@ export default {
     <br>
     <br>
     <Carousel trigger="{{trigger}}">
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-        >
-      </CarouselItem>
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+      >
     </Carousel>
     <style>
       .carousel-img {
@@ -187,30 +163,22 @@ export default {
     </Form>
     <br>
     <Carousel indicatorType="{{indicatorType}}" indicatorPosition="{{indicatorPosition}}">
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-        >
-      </CarouselItem>
-      <CarouselItem>
-        <img
-          class="carousel-img"
-          src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-        >
-      </CarouselItem>
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+      >
+      <img
+        class="carousel-img"
+        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+      >
     </Carousel>
     <style>
       .carousel-img {
@@ -237,12 +205,5 @@ interval | 自动切换的间隔时长 | numeric | - | `3000`
 trigger | 触发切换的方式	 | string | `click`、`hover` | `click`
 indicatorType | 指示器类型 | string | `dot`、`line` | `dot`
 indicatorPosition | 指示器位置 | string | `top`、`right`、`bottom`、`left` | `bottom`
-className | 自定义类名 | string | - | -
-style | 自定义内联样式 | string | - | -
-
-> CarouselItem Props
-
-参数 | 说明 | 类型 | 可选值 | 默认值
----|---|---|---|---
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

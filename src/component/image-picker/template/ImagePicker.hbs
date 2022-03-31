@@ -24,8 +24,6 @@ class="${prefix}image-picker
           on-dragenter="handleDragEnter(index)"
           on-dragleave="handleDragLeave(index)"
           on-drop="handleDragDrop(index)"
-        {{else}}
-          ondragstart="return false"
         {{/if}}
         class="${prefix}image-picker-item ${prefix}image-picker-card"
         style="{{~/imageStyle}}"

@@ -74,11 +74,8 @@ export default Yox.define({
   },
 
   methods: {
-    onChange(event) {
-      const { checked } = event.originalEvent.target
-      this.set({
-        checked,
-      })
+    onChange() {
+      const checked = this.toggle('checked')
       this.fireChange(checked, this.get('value'))
     },
     fireChange(checked, value) {
