@@ -11,12 +11,14 @@ class="${prefix}carousel
     ref="list"
     class="${prefix}carousel-list"
   >
-    {{#each @children:index}}
-      <ResizeObserver delay="1000">
-        <div class="${prefix}carousel-item">
-          <slot name="children.{{index}}" />
-        </div>
-      </ResizeObserver>
+    {{#each @children}}
+      {{#if !this.isComment}}
+        <ResizeObserver delay="1000">
+          <div class="${prefix}carousel-item">
+            <vnode value="{{this}}" />
+          </div>
+        </ResizeObserver>
+      {{/if}}
     {{/each}}
   </div>
   {{#if count > 1}}

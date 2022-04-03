@@ -13,14 +13,16 @@ class="${prefix}space
   style="{{inlineStyle}}"
 {{/if}}
 >
-  {{#each @children:index}}
-    <div
-      class="${prefix}space-item"
-      {{#if itemStyle}}
-        style="{{itemStyle}}"
-      {{/if}}
-    >
-      <slot name="children.{{index}}" />
-    </div>
+  {{#each @children}}
+    {{#if !this.isComment}}
+      <div
+        class="${prefix}space-item"
+        {{#if itemStyle}}
+          style="{{itemStyle}}"
+        {{/if}}
+      >
+        <vnode value="{{this}}" />
+      </div>
+    {{/if}}
   {{/each}}
 </div>

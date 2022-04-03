@@ -69,7 +69,6 @@ export default Yox.define({
         timerTimestamp = 0
         clearTimeout(timerRef)
       }
-      console.log(element, actualWidth, actualHeight, Date.now())
       me.fire(
         {
           type: 'resize',
