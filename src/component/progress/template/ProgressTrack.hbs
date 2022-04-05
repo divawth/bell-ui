@@ -7,7 +7,7 @@
     style="{{barStyle}}"
   >
     {{#if inside}}
-      {{#if hasSlot('children')}}
+      {{#if @children}}
         <div class="${prefix}progress-text">
           <slot />
         </div>

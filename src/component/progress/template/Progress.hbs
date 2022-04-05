@@ -11,7 +11,7 @@ class="${prefix}progress
 {{else}} ${prefix}progress-horizontal
 {{/if}}
 
-{{#if !inside && !vertical && hasSlot('children')}} ${prefix}progress-with-text{{/if}}
+{{#if !inside && !vertical && @children}} ${prefix}progress-with-text{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -37,7 +37,7 @@ class="${prefix}progress
       percent="{{percent}}"
     />
 
-    {{#if hasSlot('children')}}
+    {{#if @children}}
       <div class="${prefix}progress-text">
         <slot />
       </div>

@@ -32,7 +32,7 @@ class="${prefix}avatar
       draggable="false"
       on-error="error.avatar"
     >
-  {{else if hasSlot('icon')}}
+  {{else if @icon}}
     <slot name="icon" />
   {{else if text}}
     <span

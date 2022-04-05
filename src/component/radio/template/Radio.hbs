@@ -7,7 +7,7 @@ class="${prefix}radio
 
 {{#if checked}} ${prefix}radio-active{{/if}}
 {{#if isFocus}} ${prefix}radio-focus{{/if}}
-{{#if hasSlot('children')}} ${prefix}radio-with-label{{/if}}
+{{#if @children}} ${prefix}radio-with-label{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

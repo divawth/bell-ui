@@ -20,7 +20,7 @@ class="${prefix}switch
 {{/if}}
 >
 
-  {{#if hasSlot('on') || hasSlot('off')}}
+  {{#if @on || @off}}
     <div class="${prefix}switch-label">
       <slot name="{{checked ? 'on' : 'off'}}" />
     </div>

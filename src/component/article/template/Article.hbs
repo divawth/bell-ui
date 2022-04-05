@@ -25,13 +25,13 @@ class="${prefix}article
     <div class="${prefix}article-sub-title">
       {{subTitle}}
     </div>
-  {{else if hasSlot('subTitle')}}
+  {{else if @subTitle}}
     <div class="${prefix}article-sub-title">
       <slot name="subTitle" />
     </div>
   {{/if}}
 
-  {{#if hasSlot('cover')}}
+  {{#if @cover}}
     <div class="${prefix}article-cover">
       <slot name="cover" />
     </div>
@@ -45,7 +45,7 @@ class="${prefix}article
     <div class="${prefix}article-signature">
       {{signature}}
     </div>
-  {{else if hasSlot('signature')}}
+  {{else if @signature}}
     <div class="${prefix}article-signature">
       <slot name="signature" />
     </div>

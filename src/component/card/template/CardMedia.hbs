@@ -9,16 +9,16 @@ class="${prefix}card-media
 
   <slot />
 
-  {{#if hasSlot('title') || hasSlot('subTitle')}}
+  {{#if @title || @subTitle}}
     <div class="${prefix}card-media-info">
 
-      {{#if hasSlot('title')}}
+      {{#if @title}}
         <div class="${prefix}card-media-title">
           <slot name="title" />
         </div>
       {{/if}}
 
-      {{#if hasSlot('subTitle')}}
+      {{#if @subTitle}}
         <div class="${prefix}card-media-sub-title">
           <slot name="subTitle" />
         </div>

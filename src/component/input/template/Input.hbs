@@ -12,8 +12,8 @@ class="${prefix}input
 {{else}} ${prefix}input-has-value
 {{/if}}
 
-{{#if hasSlot('prepend')}} ${prefix}input-with-prepend{{/if}}
-{{#if hasSlot('append')}} ${prefix}input-with-append{{/if}}
+{{#if @prepend}} ${prefix}input-with-prepend{{/if}}
+{{#if @append}} ${prefix}input-with-append{{/if}}
 
 {{#if className}} {{className}}{{/if}}"
 
@@ -22,7 +22,7 @@ class="${prefix}input
 {{/if}}
 >
 
-  {{#if hasSlot('prepend')}}
+  {{#if @prepend}}
     <div class="${prefix}input-prepend">
       <slot name="prepend" />
     </div>
@@ -112,7 +112,7 @@ class="${prefix}input
 
   </div>
 
-  {{#if hasSlot('append')}}
+  {{#if @append}}
     <div class="${prefix}input-append">
       <slot name="append" />
     </div>

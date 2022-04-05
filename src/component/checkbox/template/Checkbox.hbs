@@ -7,7 +7,7 @@ class="${prefix}checkbox
 
 {{#if checked}} ${prefix}checkbox-active{{/if}}
 {{#if isFocus}} ${prefix}checkbox-focus{{/if}}
-{{#if hasSlot('children')}} ${prefix}checkbox-with-label{{/if}}
+{{#if @children}} ${prefix}checkbox-with-label{{/if}}
 {{#if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
 {{#if className}} {{className}}{{/if}}"
 

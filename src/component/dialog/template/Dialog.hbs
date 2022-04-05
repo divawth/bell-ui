@@ -28,7 +28,7 @@
         {{/if}}
       >
 
-        {{#if title || hasSlot('title')}}
+        {{#if title || @title}}
           <div class="${prefix}dialog-header">
             <slot name="title">
               {{title}}
@@ -36,13 +36,13 @@
           </div>
         {{/if}}
 
-        {{#if hasSlot('content')}}
+        {{#if @content}}
           <div class="${prefix}dialog-body">
             <slot name="content" />
           </div>
         {{/if}}
 
-        {{#if hasSlot('footer')}}
+        {{#if @footer}}
           <div class="${prefix}dialog-footer">
             <slot name="footer" />
           </div>

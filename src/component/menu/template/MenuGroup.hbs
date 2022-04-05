@@ -10,7 +10,7 @@ class="${prefix}menu-group
     {{title}}
   </div>
 
-  {{#if hasSlot('children')}}
+  {{#if @children}}
     <Menu
       inner
       mode="{{mode === 'inline' ? 'inline' : 'vertical'}}"

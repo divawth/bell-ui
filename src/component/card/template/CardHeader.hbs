@@ -16,7 +16,7 @@ class="${prefix}card-header
         <slot name="title" />
       </div>
 
-      {{#if hasSlot('subTitle')}}
+      {{#if @subTitle}}
         <div class="${prefix}card-header-sub-title">
           <slot name="subTitle" />
         </div>
@@ -25,7 +25,7 @@ class="${prefix}card-header
 
   </div>
 
-  {{#if hasSlot('extra')}}
+  {{#if @extra}}
     <div class="${prefix}card-header-extra">
       <slot name="extra" />
     </div>

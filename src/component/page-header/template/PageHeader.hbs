@@ -1,8 +1,8 @@
 <div
 class="${prefix}page-header
 {{#if showBack}} ${prefix}page-header-with-back{{/if}}
-{{#if hasSlot('tags')}} ${prefix}page-header-with-tags{{/if}}
-{{#if hasSlot('extra')}} ${prefix}page-header-with-extra{{/if}}
+{{#if @tags}} ${prefix}page-header-with-tags{{/if}}
+{{#if @extra}} ${prefix}page-header-with-extra{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -26,13 +26,13 @@ class="${prefix}page-header
       {{title}}
     </div>
 
-    {{#if hasSlot('tags')}}
+    {{#if @tags}}
       <div class="${prefix}page-header-tags">
         <slot name="tags" />
       </div>
     {{/if}}
 
-    {{#if hasSlot('extra')}}
+    {{#if @extra}}
       <div class="${prefix}page-header-extra">
         <slot name="extra" />
       </div>
@@ -40,7 +40,7 @@ class="${prefix}page-header
 
   </div>
 
-  {{#if hasSlot('content')}}
+  {{#if @content}}
     <div class="${prefix}page-header-body">
       <slot name="content" />
     </div>

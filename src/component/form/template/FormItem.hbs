@@ -10,7 +10,7 @@ class="${prefix}form-item
   style="{{style}}"
 {{/if}}
 >
-  {{#if label || hasSlot('label')}}
+  {{#if label || @label}}
     <label
       class="${prefix}form-item-label
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"

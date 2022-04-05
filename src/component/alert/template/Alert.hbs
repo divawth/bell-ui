@@ -4,8 +4,8 @@ class="${prefix}alert
 {{#if banner}} ${prefix}alert-banner{{/if}}
 {{#if center}} ${prefix}alert-center{{/if}}
 {{#if showIcon}} ${prefix}alert-with-icon{{/if}}
-{{#if hasSlot('title')}} ${prefix}alert-with-title{{/if}}
-{{#if closable || hasSlot('close')}} ${prefix}alert-with-close{{/if}}
+{{#if @title}} ${prefix}alert-with-title{{/if}}
+{{#if closable || @close}} ${prefix}alert-with-close{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -27,13 +27,13 @@ class="${prefix}alert
     />
   {{/if}}
 
-  {{#if hasSlot('title')}}
+  {{#if @title}}
     <div class="${prefix}alert-title">
       <slot name="title" />
     </div>
   {{/if}}
 
-  {{#if hasSlot('children')}}
+  {{#if @children}}
     <div class="${prefix}alert-content">
       <slot />
     </div>

@@ -1,7 +1,7 @@
 <div
 class="${prefix}empty
 {{#if simple}} ${prefix}empty-simple{{/if}}
-{{#if hasSlot('children')}} ${prefix}empty-with-content{{/if}}
+{{#if @children}} ${prefix}empty-with-content{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

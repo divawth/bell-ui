@@ -35,8 +35,8 @@ class="${prefix}button
     {{/if}}
   </slot>
 
-  {{#if hasSlot('children')}}
-    {{#if loading || hasSlot('prefix') || hasSlot('suffix')}}
+  {{#if @children}}
+    {{#if loading || @prefix || @suffix}}
       <span>
         <slot />
       </span>

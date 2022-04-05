@@ -28,7 +28,7 @@ class="${prefix}tag
 {{/if}}
 >
 
-  {{#if hasSlot('icon') || icon}}
+  {{#if @icon || icon}}
     <div class="${prefix}tag-icon">
       <slot name="icon">
         <Icon

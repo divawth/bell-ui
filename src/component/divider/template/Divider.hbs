@@ -5,14 +5,14 @@ class="${prefix}divider
 {{/if}}
 {{#if dashed}} ${prefix}divider-dashed{{/if}}
 {{#if align}} ${prefix}divider-{{align}}{{/if}}
-{{#if hasSlot('children')}} ${prefix}divider-with-text{{/if}}
+{{#if @children}} ${prefix}divider-with-text{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
-  {{#if hasSlot('children')}}
+  {{#if @children}}
     <div class="${prefix}divider-text">
       <slot />
     </div>

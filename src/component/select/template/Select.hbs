@@ -19,7 +19,7 @@
     {{#if disabled}} ${prefix}select-disabled
     {{else}} ${prefix}select-enabled
     {{/if}}
-    {{#if prefix || hasSlot('prefix')}} ${prefix}select-with-prefix{{/if}}
+    {{#if prefix || @prefix}} ${prefix}select-with-prefix{{/if}}
     {{#if className}} {{className}}{{/if}}"
 
     {{#if !disabled}}
@@ -31,7 +31,7 @@
     {{/if}}
   >
 
-    {{#if prefix || hasSlot('prefix')}}
+    {{#if prefix || @prefix}}
       <div class="${prefix}select-prefix">
         <slot name="prefix">
           <Icon
