@@ -43,7 +43,7 @@ class="${prefix}date-picker-year ${prefix}date-picker-panel
         {{#each this}}
           <div
             class="${prefix}date-picker-col ${prefix}date-picker-col-enabled
-            {{#if isChecked(this)}} ${prefix}date-picker-col-checked
+            {{#if isChecked(this, ~/checkedYears)}} ${prefix}date-picker-col-checked
             {{/if}}"
             on-click="click(this)"
           >

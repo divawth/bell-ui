@@ -70,7 +70,7 @@ class="${prefix}date-picker-daterange
               <div
                 class="${prefix}date-picker-col
 
-                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
+                {{#if isEnabled(this, ~/disabledDate)}} ${prefix}date-picker-col-enabled
                   {{#if isCurrentMonth(this, ~/startDate)}} ${prefix}date-picker-col-current-month
 
                     {{#if this.timestamp === ~/computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
@@ -95,7 +95,7 @@ class="${prefix}date-picker-daterange
                   on-mouseenter="hover(this)"
                 {{/if}}
 
-                {{#if isEnabled(this)}}
+                {{#if isEnabled(this, ~/disabledDate)}}
                   on-click="click(this)"
                 {{/if}}
               >
@@ -173,7 +173,7 @@ class="${prefix}date-picker-daterange
               <div
                 class="${prefix}date-picker-col
 
-                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
+                {{#if isEnabled(this, ~/disabledDate)}} ${prefix}date-picker-col-enabled
                   {{#if isCurrentMonth(this, ~/endDate)}} ${prefix}date-picker-col-current-month
 
                     {{#if this.timestamp === ~/computedCheckedStartTimestamp}} ${prefix}date-picker-col-checked
@@ -199,7 +199,7 @@ class="${prefix}date-picker-daterange
                   on-mouseenter="hover(this)"
                 {{/if}}
 
-                {{#if isEnabled(this)}}
+                {{#if isEnabled(this, ~/disabledDate)}}
                   on-click="click(this)"
                 {{/if}}
               >

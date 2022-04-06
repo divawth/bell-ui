@@ -92,8 +92,7 @@ export default Yox.define({
   },
 
   filters: {
-    isChecked(item: SimpleMonth) {
-      const checkedTimestamps = this.get('checkedTimestamps')
+    isChecked(item: SimpleMonth, checkedTimestamps: number[]) {
       return Yox.array.has(checkedTimestamps, item.timestamp)
     }
   },

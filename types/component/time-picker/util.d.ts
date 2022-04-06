@@ -10,4 +10,4 @@ export declare function toTimeProps(value: Date | number | void, hourList: numbe
 export declare function formatTime(hour: number, minute: number, second: number): string;
 export declare function createRangeList(start: number, end: number, step: number): number[];
 export declare function getValidTimeItemIndex(listLength: number, index: number): number;
-export declare function scrollTimeItemInToView(listElement: HTMLElement, index: number): void;
+export declare function scrollTimeItemInToView(listElement: HTMLElement, index: number, animated?: boolean): void;

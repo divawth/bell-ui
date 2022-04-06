@@ -1,5 +1,5 @@
-<div
-class="${prefix}time-picker-panel
+<ResizeObserver
+className="${prefix}time-picker-panel
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -58,6 +58,12 @@ class="${prefix}time-picker-panel
   <div class="${prefix}time-picker-panel-footer">
     <Button
       size="small"
+      on-click="handleNowClick()"
+    >
+      此刻
+    </Button>
+    <Button
+      size="small"
       type="primary"
       disabled="{{!hasValue}}"
       on-click="handleSubmitClick()"
@@ -65,4 +71,4 @@ class="${prefix}time-picker-panel
       确定
     </Button>
   </div>
-</div>
+</ResizeObserver>

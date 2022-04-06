@@ -95,7 +95,7 @@ export function getValidTimeItemIndex(listLength: number, index: number) {
     : -1
 }
 
-export function scrollTimeItemInToView(listElement: HTMLElement, index: number) {
+export function scrollTimeItemInToView(listElement: HTMLElement, index: number, animated?: boolean) {
 
   const itemElement = listElement.children[index]
   if (!itemElement) {
@@ -106,7 +106,7 @@ export function scrollTimeItemInToView(listElement: HTMLElement, index: number) 
     listElement,
     listElement.scrollTop,
     (itemElement as HTMLElement).offsetHeight * index,
-    600
+    animated ? 600 : 0
   )
 
 }

@@ -1,6 +1,7 @@
 import Yox from 'yox'
 
 import Button from '../button/Button'
+import ResizeObserver from '../resize-observer/ResizeObserver'
 import template from './template/TimePanel.hbs'
 
 import {
@@ -9,9 +10,11 @@ import {
   RAW_STRING,
   RAW_NUMBER,
   RAW_STYLE_TYPE,
+  RAW_BOOLEAN,
 } from '../constant'
 
 import {
+  getNowTime,
   padStart,
 } from '../util'
 
@@ -83,24 +86,32 @@ export default Yox.define({
   },
 
   watchers: {
-    hourIndex(newValue) {
-      scrollTimeItemInToView(
-        this.$refs.hourList as HTMLElement,
-        newValue
-      )
+    hourIndex() {
+      this.scrollHourIntoView(TRUE)
     },
-    minuteIndex(newValue) {
-      scrollTimeItemInToView(
-        this.$refs.minuteList as HTMLElement,
-        newValue
-      )
+    minuteIndex() {
+      this.scrollMinuteIntoView(TRUE)
     },
-    secondIndex(newValue) {
-      scrollTimeItemInToView(
-        this.$refs.secondList as HTMLElement,
-        newValue
-      )
+    secondIndex() {
+      this.scrollSecondIntoView(TRUE)
     },
+  },
+
+  events: {
+    resize: {
+      listener(event, data) {
+        if (event.phase !== Yox.Event.PHASE_UPWARD) {
+          return
+        }
+        event.stop()
+        if (data.height > 0) {
+          this.scrollHourIntoView()
+          this.scrollMinuteIntoView()
+          this.scrollSecondIntoView()
+        }
+      },
+      ns: 'resizeObserver'
+    }
   },
 
   filters: {
@@ -108,6 +119,36 @@ export default Yox.define({
   },
 
   methods: {
+    scrollHourIntoView(animated?: boolean) {
+      const hourIndex = this.get('hourIndex')
+      if (hourIndex >= 0) {
+        scrollTimeItemInToView(
+          this.$refs.hourList as HTMLElement,
+          hourIndex,
+          animated
+        )
+      }
+    },
+    scrollMinuteIntoView(animated?: boolean) {
+      const minuteIndex = this.get('minuteIndex')
+      if (minuteIndex >= 0) {
+        scrollTimeItemInToView(
+          this.$refs.minuteList as HTMLElement,
+          minuteIndex,
+          animated
+        )
+      }
+    },
+    scrollSecondIntoView(animated?: boolean) {
+      const secondIndex = this.get('secondIndex')
+      if (secondIndex >= 0) {
+        scrollTimeItemInToView(
+          this.$refs.secondList as HTMLElement,
+          secondIndex,
+          animated
+        )
+      }
+    },
     handleHourClick(hourIndex: number) {
 
       let minuteIndex = this.get('validMinuteIndex')
@@ -151,6 +192,50 @@ export default Yox.define({
       }
 
       this.fireChange(hourIndex, minuteIndex, secondIndex)
+
+    },
+    handleNowClick() {
+
+      const date = new Date(getNowTime())
+
+      const hour = date.getHours()
+      let hourIndex = -1
+
+      const hourList = this.get('hourList')
+      if (hourList) {
+        hourIndex = hourList.indexOf(hour)
+      }
+
+      const minute = date.getMinutes()
+      let minuteIndex = -1
+
+      const minuteList = this.get('minuteList')
+      if (minuteList) {
+        minuteIndex = minuteList.indexOf(minute)
+      }
+
+      const second = date.getMinutes()
+      let secondIndex = -1
+
+      const secondList = this.get('secondList')
+      if (this.get('showSecond') && secondList) {
+        secondIndex = secondList.indexOf(second)
+      }
+
+      this.fireChange(hourIndex, minuteIndex, secondIndex)
+
+      this.fire(
+        {
+          type: 'submit',
+          ns: 'timePanel',
+        },
+        {
+          hour,
+          minute,
+          second,
+        }
+      )
+
 
     },
     handleSubmitClick() {
@@ -200,11 +285,12 @@ export default Yox.define({
           secondIndex,
         }
       )
-    }
+    },
   },
 
   components: {
     Button,
+    ResizeObserver,
   },
 
 })

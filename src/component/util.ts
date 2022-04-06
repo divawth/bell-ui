@@ -158,6 +158,10 @@ export function oneOf(values: any[]) {
   }
 }
 
+export function getNowTime() {
+  return Date.now()
+}
+
 const SECOND = 1000
 const MINUTE = 60 * SECOND
 const HOUR = 60 * MINUTE
@@ -245,7 +249,7 @@ export function scrollTo(
 ) {
 
   const difference = Math.abs(from - to)
-  const step = Math.ceil(difference / duration * 50)
+  const step = duration > 0 ? Math.ceil(difference / duration * 50) : difference
 
   function scroll(start, end, step) {
     if (start === end) {

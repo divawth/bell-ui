@@ -81,8 +81,8 @@
             {{#each this.list:colIndex}}
               <div
                 class="${prefix}date-picker-col
-                {{#if isEnabled(this)}} ${prefix}date-picker-col-enabled
-                  {{#if isCurrentMonth(this)}} ${prefix}date-picker-col-current-month
+                {{#if isEnabled(this, ~/disabledDate)}} ${prefix}date-picker-col-enabled
+                  {{#if isCurrentMonth(this, ~/date)}} ${prefix}date-picker-col-current-month
                   {{else}} ${prefix}date-picker-col-adjacent-month
                   {{/if}}
                 {{else}} ${prefix}date-picker-col-disabled
@@ -97,7 +97,7 @@
                 {{/if}}
                 "
 
-                {{#if isEnabled(this)}}
+                {{#if isEnabled(this, ~/disabledDate)}}
                   on-click="click(../rowIndex)"
                 {{/if}}
               >

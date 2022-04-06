@@ -98,13 +98,11 @@ export default Yox.define({
   },
 
   filters: {
-    isCurrentMonth(item: SimpleDate) {
-      const date = this.get('date')
+    isCurrentMonth(item: SimpleDate, date: SimpleDate) {
       return date.year === item.year && date.month === item.month
     },
 
-    isEnabled(item: SimpleDate) {
-      const disabledDate = this.get('disabledDate')
+    isEnabled(item: SimpleDate, disabledDate: ((item: SimpleDate) => boolean) | void) {
       return disabledDate
         ? disabledDate(item)
         : TRUE

@@ -8,7 +8,10 @@ import {
   RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
-import { toNumber } from '../util'
+import {
+  toNumber,
+  getNowTime,
+} from '../util'
 
 export default Yox.define({
 
@@ -40,7 +43,7 @@ export default Yox.define({
 
         // 需要延时的情况下，
         if (delay > 0) {
-          const now = Date.now()
+          const now = getNowTime()
           const rest = timerTimestamp > 0 ? now - timerTimestamp : delay
           if (!timerRef) {
             timerTimestamp = now

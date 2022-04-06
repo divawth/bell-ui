@@ -161,8 +161,7 @@ export default Yox.define({
       return base.year === item.year && base.month === item.month
     },
 
-    isEnabled(item: SimpleDate) {
-      const disabledDate = this.get('disabledDate')
+    isEnabled(item: SimpleDate, disabledDate: ((item: SimpleDate) => boolean) | void) {
       return disabledDate
         ? disabledDate(item)
         : TRUE

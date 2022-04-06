@@ -68,8 +68,7 @@ export default Yox.define({
   },
 
   filters: {
-    isChecked(year: number) {
-      const checkedYears = this.get('checkedYears')
+    isChecked(year: number, checkedYears: number[]) {
       return Yox.array.has(checkedYears, year)
     }
   },
