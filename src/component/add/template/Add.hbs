@@ -1,0 +1,24 @@
+<div
+class="${prefix}add
+{{#if className}} {{className}}{{/if}}"
+
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
+{{/if}}
+
+on-click="click.add"
+>
+
+  <div class="${prefix}add-icon">
+    <slot name="icon">
+      <Icon
+        name="add-line"
+      />
+    </slot>
+  </div>
+
+  <div class="${prefix}add-title">
+    <slot name="title" />
+  </div>
+
+</div>

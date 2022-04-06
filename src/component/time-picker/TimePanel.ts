@@ -236,7 +236,6 @@ export default Yox.define({
         }
       )
 
-
     },
     handleSubmitClick() {
 

@@ -3,6 +3,7 @@ import Yox from 'yox'
 import template from './template/ImagePicker.hbs'
 // import './style/ImagePicker.styl'
 
+import Add from '../add/Add'
 import Icon from '../icon/Icon'
 import Button from '../button/Button'
 import Upload from '../upload/Upload'
@@ -215,6 +216,7 @@ export default Yox.define({
   },
 
   components: {
+    Add,
     Icon,
     Button,
     Upload,

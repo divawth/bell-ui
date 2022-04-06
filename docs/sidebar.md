@@ -65,6 +65,7 @@
   - [Exception 异常页](view/exception)
   - [Timeline 时间轴](view/timeline)
   - [Countdown 倒计时](view/countdown)
+  - [Add 添加](view/add)
 
 - [其它](layout)
   - [BackTop 返回顶部](other/backTop)

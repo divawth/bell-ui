@@ -1,0 +1,31 @@
+@import '../../../env'
+
+$add-icon-size = 30px
+$add-icon-title-gap = 10px
+
+{$selector-class-prefix + '-add'}
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+
+  line-height $ui-multiple-line-height
+
+  ui-clickable()
+  border 1px dashed $brand-border
+  background-color $brand-bg-light
+  box-sizing content-box
+  user-select none
+  if $border-radius-default > 0
+    border-radius $border-radius-default
+
+{$selector-class-prefix + '-add-icon'}
+  line-height 0
+  > {$selector-class-prefix + '-icon'}
+    color $brand-content
+    font-size $add-icon-size
+
+{$selector-class-prefix + '-add-title'}
+  color $brand-content
+  font-size $ui-font-size
+  margin-top $add-icon-title-gap

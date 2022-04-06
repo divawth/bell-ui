@@ -1,5 +1,6 @@
 import Row from './component/grid/Row'
 import Col from './component/grid/Col'
+import Add from './component/add/Add'
 import Countdown from './component/countdown/Countdown'
 import ResizeObserver from './component/resize-observer/ResizeObserver'
 
@@ -119,6 +120,7 @@ export function install(Yox: any) {
   Yox.component({
     Row,
     Col,
+    Add,
     Countdown,
     ResizeObserver,
 

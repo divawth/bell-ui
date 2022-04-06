@@ -97,23 +97,22 @@ class="${prefix}image-picker
       <Upload
         draggable
         ref="upload"
-        className="${prefix}image-picker-item ${prefix}image-picker-append"
+        className="${prefix}image-picker-item"
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
         style="{{~/imageStyle}}"
       >
-        <Icon
-          className="${prefix}image-picker-append-icon"
-          name="add-line"
-        />
-        <div class="${prefix}image-picker-append-text">
+        <Add
+          width="{{~/imageWidth}}"
+          height="{{~/imageHeight}}"
+        >
           {{#if isVideoPicker}}
             上传视频
           {{else}}
             上传图片
           {{/if}}
-        </div>
+        </Add>
       </Upload>
     {{/if}}
   </div>
