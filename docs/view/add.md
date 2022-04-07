@@ -9,11 +9,7 @@ export default {
   height: 200,
   template: `
   <div>
-    <Add>
-      <template slot="title">
-        添加图片
-      </template>
-    </Add>
+    <Add title="添加图片" />
   </div>
   `
 }
@@ -25,6 +21,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
+title | 标题 | string | - | -
 width | 显示宽度 | numeric | - | 100
 height | 显示高度 | numeric | - | 100
 className | 自定义类名 | string | - | -
@@ -41,4 +38,3 @@ click | 点击后触发 | -
 名称 | 说明
 ---|---
 icon | 自定义图标，默认是 +
-title | 自定义标题

@@ -19,6 +19,9 @@ export default Yox.define({
   name: '${prefix}Add',
 
   propTypes: {
+    title: {
+      type: RAW_STRING,
+    },
     width: {
       type: RAW_NUMERIC,
       value: 100,

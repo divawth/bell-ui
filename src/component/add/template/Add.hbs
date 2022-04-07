@@ -17,8 +17,10 @@ on-click="click.add"
     </slot>
   </div>
 
-  <div class="${prefix}add-title">
-    <slot name="title" />
-  </div>
+  {{#if title}}
+    <div class="${prefix}add-title">
+      {{title}}
+    </div>
+  {{/if}}
 
 </div>
