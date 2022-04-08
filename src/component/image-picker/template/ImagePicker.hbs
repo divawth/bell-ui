@@ -101,18 +101,13 @@ class="${prefix}image-picker
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
-        style="{{~/imageStyle}}"
+        style="{{imageStyle}}"
       >
         <Add
-          width="{{~/imageWidth}}"
-          height="{{~/imageHeight}}"
-        >
-          {{#if isVideoPicker}}
-            上传视频
-          {{else}}
-            上传图片
-          {{/if}}
-        </Add>
+          title="{{isVideoPicker ? '上传视频' : '上传图片'}}"
+          width="{{imageWidth}}"
+          height="{{imageHeight}}"
+        />
       </Upload>
     {{/if}}
   </div>

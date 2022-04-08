@@ -10,6 +10,7 @@ import {
   RAW_NUMERIC,
   RAW_STYLE_TYPE,
 } from '../constant'
+
 import { toPixel } from '../util'
 
 export default Yox.define({
