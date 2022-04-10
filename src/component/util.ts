@@ -27,6 +27,7 @@ export const screenWidth = WINDOW.screen.availWidth
 
 const transitionEnd = testCSS('transition') ? 'transitionend' : ''
 
+export const isMac = /Macintosh/i.test(navigator.userAgent)
 export const supportTransform = testCSS('transform') ? TRUE : FALSE
 export const supportFlexGap = testCSS('gap') ? TRUE : FALSE
 

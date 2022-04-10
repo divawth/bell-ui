@@ -14449,6 +14449,106 @@ div::-webkit-scrollbar-thumb:hover {
   min-width: 24px;
   padding: 0 7px;
 }
+.bell-tree-node {
+  display: flex;
+  align-items: center;
+  color: #515a6e;
+  font-size: 14px;
+  line-height: 1.5715;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bell-tree-node + .bell-tree-node {
+  margin-top: 4px;
+}
+.bell-tree-node .bell-checkbox + .bell-tree-node-content {
+  margin-left: 4px;
+}
+.bell-tree-node-disabled {
+  color: #c5c8ce;
+}
+.bell-tree-switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-tree-switcher .bell-icon {
+  color: #515a6e;
+}
+.bell-tree-switcher + .bell-checkbox {
+  margin-left: 4px;
+}
+.bell-tree-indent {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+.bell-tree-indent-unit {
+  width: 24px;
+  height: 24px;
+}
+.bell-tree-node-content {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-tree-node-content .bell-icon + .bell-tree-node-title {
+  margin-left: 4px;
+}
+.bell-tree-node-block .bell-tree-node-content {
+  flex: auto;
+}
+.bell-tree-node-selected .bell-tree-node-content {
+  background-color: #bae7ff;
+  border-radius: 2px;
+}
+.bell-tree-node-disabled .bell-tree-node-content {
+  cursor: not-allowed;
+}
+.bell-tree-show-line .bell-tree-node-leaf > .bell-tree-switcher {
+  position: relative;
+}
+.bell-tree-show-line .bell-tree-node-leaf > .bell-tree-switcher:before {
+  position: absolute;
+  top: -4px;
+  left: 12px;
+  width: 8px;
+  height: 16px;
+  border-left: 1px solid #e8eaec;
+  border-bottom: 1px solid #e8eaec;
+  content: "";
+}
+.bell-tree-show-line .bell-tree-node-leaf > .bell-tree-switcher:after {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  bottom: -4px;
+  border-left: 1px solid #e8eaec;
+  content: "";
+}
+.bell-tree-show-line .bell-tree-node-last > .bell-tree-switcher:after {
+  display: none;
+}
+.bell-tree-show-line .bell-tree-indent-unit {
+  position: relative;
+  height: 100%;
+}
+.bell-tree-show-line .bell-tree-indent-unit:before {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: 12px;
+  border-right: 1px solid #e8eaec;
+  content: "";
+}
 .bell-rate {
   display: inline-flex;
   align-items: center;

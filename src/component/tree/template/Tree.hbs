@@ -1,0 +1,38 @@
+<div
+class="${prefix}tree
+{{#if showLine}} ${prefix}tree-show-line{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  {{#each data:index}}
+    <TreeNode
+      expandedKeys="{{~/innerExpandedKeys}}"
+      selectedKeys="{{~/innerSelectedKeys}}"
+      checkedKeys="{{~/innerCheckedKeys}}"
+      disabledKeys="{{~/innerDisabledKeys}}"
+      selectable="{{~/selectable}}"
+      checkable="{{~/checkable}}"
+      block="{{~/blockNode}}"
+      showLine="{{~/showLine}}"
+      showIndeterminate="{{!~/checkStrictly}}"
+      last="{{index === $length - 1}}"
+      indent="{{0}}"
+      node="{{this}}"
+    >
+      <template slot="switcherIcon">
+        <slot name="switcherIcon" />
+      </template>
+      <template slot="branchIcon">
+        <slot name="branchIcon" />
+      </template>
+      <template slot="leafIcon">
+        <slot name="leafIcon" />
+      </template>
+    </TreeNode>
+  {{/each}}
+
+</div>

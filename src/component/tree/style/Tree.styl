@@ -1,0 +1,112 @@
+@import '../../../env'
+
+$tree-indent-size = 24px
+$tree-node-content-selected-bg-color = #bae7ff
+$tree-node-gap = 4px
+$tree-element-gap = 4px
+
+{$selector-class-prefix + '-tree-node'}
+  display flex
+  align-items center
+
+  color $brand-content
+  font-size $ui-font-size
+  line-height $ui-multiple-line-height
+
+  user-select none
+
+  + {$selector-class-prefix + '-tree-node'}
+    margin-top $tree-node-gap
+
+  {$selector-class-prefix + '-checkbox'} + {$selector-class-prefix + '-tree-node-content'}
+    margin-left $tree-element-gap
+
+{$selector-class-prefix + '-tree-node-disabled'}
+  color $brand-disabled
+
+{$selector-class-prefix + '-tree-switcher'}
+  display flex
+  justify-content center
+  align-items center
+  width $tree-indent-size
+  height $tree-indent-size
+  ui-clickable()
+
+  {$selector-class-prefix + '-icon'}
+    color $brand-content
+
+  + {$selector-class-prefix + '-checkbox'}
+    margin-left $tree-element-gap
+
+{$selector-class-prefix + '-tree-indent'}
+  display flex
+  align-items center
+  align-self stretch
+
+{$selector-class-prefix + '-tree-indent-unit'}
+  width $tree-indent-size
+  height $tree-indent-size
+
+{$selector-class-prefix + '-tree-node-content'}
+  display flex
+  align-items center
+  padding 0 $tree-element-gap
+  ui-clickable()
+
+  {$selector-class-prefix + '-icon'} + {$selector-class-prefix + '-tree-node-title'}
+    margin-left $tree-element-gap
+
+{$selector-class-prefix + '-tree-node-block'}
+  {$selector-class-prefix + '-tree-node-content'}
+    flex auto
+
+{$selector-class-prefix + '-tree-node-selected'}
+  {$selector-class-prefix + '-tree-node-content'}
+    background-color $tree-node-content-selected-bg-color
+    border-radius 2px
+
+{$selector-class-prefix + '-tree-node-disabled'}
+  {$selector-class-prefix + '-tree-node-content'}
+    ui-disabled()
+
+{$selector-class-prefix + '-tree-show-line'}
+
+  {$selector-class-prefix + '-tree-node-leaf'}
+
+    > {$selector-class-prefix + '-tree-switcher'}
+      position relative
+
+      &:before
+        position absolute
+        top $tree-node-gap * -1
+        left 0.5 * $tree-indent-size
+        width 0.5 * $tree-indent-size - $tree-element-gap
+        height 0.5 * $tree-indent-size + $tree-node-gap
+        border-left 1px solid $brand-divider
+        border-bottom 1px solid $brand-divider
+        content ""
+
+      &:after
+        position absolute
+        top 0.5 * $tree-indent-size
+        left 0.5 * $tree-indent-size
+        bottom $tree-node-gap * -1
+        border-left 1px solid $brand-divider
+        content ""
+
+  {$selector-class-prefix + '-tree-node-last'}
+    > {$selector-class-prefix + '-tree-switcher'}
+      &:after
+        display none
+
+  {$selector-class-prefix + '-tree-indent-unit'}
+    position relative
+    height 100%
+
+    &:before
+      position absolute
+      top $tree-node-gap * -1
+      bottom $tree-node-gap * -1
+      left 0.5 * $tree-indent-size
+      border-right 1px solid $brand-divider
+      content ""

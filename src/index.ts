@@ -84,6 +84,7 @@ import Circle from './component/circle/Circle'
 import Popover from './component/popover/Popover'
 import Popconfirm from './component/popconfirm/Popconfirm'
 import Progress from './component/progress/Progress'
+import Tree from './component/tree/Tree'
 import Tag from './component/tag/Tag'
 import Rate from './component/rate/Rate'
 import Tabs from './component/tabs/Tabs'
@@ -197,6 +198,7 @@ export function install(Yox: any) {
     Progress,
     Popover,
     Popconfirm,
+    Tree,
     Tag,
     Rate,
     Tabs,

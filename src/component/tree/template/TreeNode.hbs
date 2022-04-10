@@ -1,0 +1,102 @@
+<fragment>
+  <div
+    class="${prefix}tree-node
+    {{#if !hasChildren}} ${prefix}tree-node-leaf{{/if}}
+    {{#if block}} ${prefix}tree-node-block{{/if}}
+    {{#if last}} ${prefix}tree-node-last{{/if}}
+    {{#if expanded}} ${prefix}tree-node-expanded{{/if}}
+    {{#if selected}} ${prefix}tree-node-selected{{/if}}
+    {{#if disabled}} ${prefix}tree-node-disabled{{/if}}"
+  >
+    {{#if indent > 0}}
+      <div class="${prefix}tree-indent">
+        {{#each 0->indent}}
+          <div class="${prefix}tree-indent-unit"></div>
+        {{/each}}
+      </div>
+    {{/if}}
+    <div
+      class="${prefix}tree-switcher"
+      {{#if hasChildren}}
+        on-click="handleExpandClick()"
+      {{/if}}
+    >
+      {{#if hasChildren}}
+        <slot name="switcherIcon">
+          {{#if showLine}}
+            <Icon
+              name="{{expanded ? 'checkbox-indeterminate-line' : 'add-box-line'}}"
+              size="14"
+            />
+          {{else}}
+            <Icon
+              name="{{expanded ? 'arrow-drop-down-fill' : 'arrow-drop-right-fill'}}"
+              size="24"
+            />
+          {{/if}}
+        </slot>
+      {{/if}}
+    </div>
+
+    {{#if checkable}}
+      <Checkbox
+        checked="{{checked}}"
+        disabled="{{disabled}}"
+        indeterminate="{{indeterminate}}"
+        on-change="handleCheckedChange($data)"
+      />
+    {{/if}}
+
+    <div
+      class="${prefix}tree-node-content"
+      title="{{node.title}}"
+      {{#if !disabled}}
+        {{#if selectable}}
+          on-click="handleSelectClick()"
+        {{else if checkable}}
+          on-click="handleCheckClick()"
+        {{/if}}
+      {{/if}}
+    >
+      {{#if hasChildren}}
+        <slot name="branchIcon" />
+      {{else}}
+        <slot name="leafIcon" />
+      {{/if}}
+
+      <div
+        class="${prefix}tree-node-title"
+      >
+        {{node.title}}
+      </div>
+    </div>
+  </div>
+  {{#if expanded && hasChildren}}
+    {{#each node.children:index}}
+      <TreeNode
+        expandedKeys="{{~/expandedKeys}}"
+        selectedKeys="{{~/selectedKeys}}"
+        checkedKeys="{{~/checkedKeys}}"
+        disabledKeys="{{~/disabledKeys}}"
+        selectable="{{~/selectable}}"
+        checkable="{{~/checkable}}"
+        block="{{~/block}}"
+        showLine="{{~/showLine}}"
+        showIndeterminate="{{~/showIndeterminate}}"
+        last="{{index === $length - 1}}"
+        indent="{{~/indent + 1}}"
+        node="{{this}}"
+      >
+        <template slot="switcherIcon">
+          <slot name="switcherIcon" />
+        </template>
+        <template slot="branchIcon">
+          <slot name="branchIcon" />
+        </template>
+        <template slot="leafIcon">
+          <slot name="leafIcon" />
+        </template>
+      </TreeNode>
+    {{/each}}
+  {{/if}}
+</fragment>
