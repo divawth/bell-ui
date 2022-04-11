@@ -5,6 +5,7 @@ import template from './template/Select.hbs'
 
 import Tag from '../tag/Tag'
 import Icon from '../icon/Icon'
+import Empty from '../empty/Empty'
 import Popover from '../popover/Popover'
 
 import {
@@ -313,6 +314,7 @@ export default Yox.define({
   components: {
     Tag,
     Icon,
+    Empty,
     Popover,
   },
 

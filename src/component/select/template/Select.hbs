@@ -89,7 +89,11 @@
     slot="overlay"
     class="${prefix}select-overlay"
   >
-    <slot />
+    <slot>
+      <Empty simple>
+        暂无数据
+      </Empty>
+    </slot>
   </div>
 
 </Popover>
