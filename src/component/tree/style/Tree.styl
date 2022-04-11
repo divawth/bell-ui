@@ -1,7 +1,6 @@
 @import '../../../env'
 
 $tree-indent-size = 24px
-$tree-node-content-selected-bg-color = #bae7ff
 $tree-node-gap = 4px
 $tree-element-gap = 4px
 
@@ -60,10 +59,17 @@ $tree-element-gap = 4px
   {$selector-class-prefix + '-tree-node-content'}
     flex auto
 
+{$selector-class-prefix + '-tree-node-selectable'}
+  {$selector-class-prefix + '-tree-node-content'}
+    border-radius 2px
+    transition color .2s, background-color .2s
+    &:hover
+      background-color $brand-bg-active
+
 {$selector-class-prefix + '-tree-node-selected'}
   {$selector-class-prefix + '-tree-node-content'}
-    background-color $tree-node-content-selected-bg-color
-    border-radius 2px
+    color $brand-primary
+    background-color $brand-bg-active
 
 {$selector-class-prefix + '-tree-node-disabled'}
   {$selector-class-prefix + '-tree-node-content'}

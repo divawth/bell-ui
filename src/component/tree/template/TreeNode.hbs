@@ -6,7 +6,9 @@
     {{#if last}} ${prefix}tree-node-last{{/if}}
     {{#if expanded}} ${prefix}tree-node-expanded{{/if}}
     {{#if selected}} ${prefix}tree-node-selected{{/if}}
-    {{#if disabled}} ${prefix}tree-node-disabled{{/if}}"
+    {{#if disabled}} ${prefix}tree-node-disabled
+    {{else if selectable}} ${prefix}tree-node-selectable
+    {{/if}}"
   >
     {{#if indent > 0}}
       <div class="${prefix}tree-indent">

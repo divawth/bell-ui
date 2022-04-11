@@ -172,10 +172,16 @@ export default Yox.define({
           }
         }
         else {
-          Yox.array.remove(selectedKeys, key)
+          if (this.get('multiple') && !data.multiple && selectedKeys.length > 1) {
+            selectedKeys.length = 1
+            selectedKeys[0] = key
+          }
+          else {
+            Yox.array.remove(selectedKeys, key)
+          }
         }
 
-        this.set('innerSelectedKeys', selectedKeys)
+        this.set('selectedKeys', selectedKeys)
 
         this.fire(
           {
