@@ -163,9 +163,11 @@ const TreeNode = Yox.define({
         const loadData = me.get('loadData')
         const hasChildren = me.get('hasChildren')
         if (loadData && !hasChildren) {
+
           me.set({
             isLoading: TRUE
           })
+
           loadData(node)
           .then(function (children: any[]) {
             if (children && children.length > 0) {
@@ -181,6 +183,7 @@ const TreeNode = Yox.define({
               isLoading: FALSE
             })
           })
+
           return
         }
       }
