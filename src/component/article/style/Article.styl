@@ -8,7 +8,6 @@ $article-title-content-gap = 30px
 $article-paragraph-gap = 15px
 $article-image-gap = 10px
 
-$article-cover-border-radius = 8px
 $article-blockquote-border-width = 4px
 $article-blockquote-padding-vertical = 12px
 $article-blockquote-padding-horizontal = 18px
@@ -19,8 +18,8 @@ $article-blockquote-padding-horizontal = 18px
 
 {$selector-class-prefix + '-article-title'}
   color: $brand-title
-  line-height 1.5
   font-size $article-title-font-size
+  line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-article-link'}
   color $brand-link
@@ -47,7 +46,7 @@ $article-blockquote-padding-horizontal = 18px
   text-align center
 
   img
-    border-radius $article-cover-border-radius
+    border-radius $border-radius-default
     vertical-align top
 
   + {$selector-class-prefix + '-article-content'}

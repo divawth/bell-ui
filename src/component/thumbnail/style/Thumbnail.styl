@@ -1,8 +1,6 @@
 @import '../../../env'
 
 $thumbnail-padding = 2px
-$thumbnail-border-radius = 4px
-$thumbnail-image-border-radius = 3px
 $thumbnail-image-background-color = $brand-bg-light
 $thumbnail-icon-size = 16px
 $thumbnail-icon-gap = 12px
@@ -13,7 +11,7 @@ $thumbnail-icon-gap = 12px
   font-size $font-size-default
   line-height $ui-multiple-line-height
   background-color $brand-white
-  border-radius $thumbnail-border-radius
+  border-radius $border-radius-default
   text-align center
   position relative
   box-sizing content-box
@@ -27,7 +25,7 @@ $thumbnail-icon-gap = 12px
     left 0
     right 0
     bottom 0
-    border-radius $thumbnail-image-border-radius
+    border-radius $border-radius-default
     background-color $brand-mask-dark-color
 
   {$selector-class-prefix + '-spin-icon'}
@@ -41,7 +39,7 @@ $thumbnail-icon-gap = 12px
 {$selector-class-prefix + '-thumbnail-placeholder'}
   width 100%
   height 100%
-  border-radius $thumbnail-image-border-radius
+  border-radius $border-radius-default
   background-color $thumbnail-image-background-color
   vertical-align top
 
@@ -53,7 +51,7 @@ $thumbnail-icon-gap = 12px
   left 0
   right 0
   bottom 0
-  border-radius $thumbnail-image-border-radius
+  border-radius $border-radius-default
   transition opacity .3s
 
   {$selector-class-prefix + '-icon'}

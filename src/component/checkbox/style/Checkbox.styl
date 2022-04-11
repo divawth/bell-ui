@@ -43,11 +43,13 @@ $checkbox-gap-horizontal = 16px
   position relative
   width $checkbox-icon-size
   height $checkbox-icon-size
-  border-radius $border-radius-small
   box-sizing border-box
   border 1px solid $brand-border
   background-color $brand-bg
   transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
+
+  if $border-radius-small > 0
+    border-radius $border-radius-small
 
   &:after
     content ''
