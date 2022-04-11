@@ -9877,60 +9877,37 @@ function setCheckedKey(checkedKeys, disabledKeys, key, checked, checkStrictly, d
             type: RAW_STYLE_TYPE,
         }
     },
-    data: function () {
-        var data = this.get('data');
-        var checkStrictly = this.get('checkStrictly');
-        var defaultExpandedKeys = this.get('defaultExpandedKeys');
-        var defaultSelectedKeys = this.get('defaultSelectedKeys');
-        var defaultCheckedKeys = this.get('defaultCheckedKeys');
-        var expandedKeys = this.get('expandedKeys');
-        var selectedKeys = this.get('selectedKeys');
-        var checkedKeys = this.get('checkedKeys');
-        var disabledKeys = this.get('disabledKeys');
-        var innerExpandedKeys = (expandedKeys || defaultExpandedKeys || []).slice();
-        formatExpandedKeys(data, innerExpandedKeys);
-        if (this.get('defaultExpandAll')) {
-            expandAll(data, innerExpandedKeys);
+    computed: {
+        innerExpandedKeys: function () {
+            var data = this.get('data');
+            var expandedKeys = this.get('expandedKeys');
+            var defaultExpandedKeys = this.get('defaultExpandedKeys');
+            var innerExpandedKeys = (expandedKeys || defaultExpandedKeys || []).slice();
+            formatExpandedKeys(data, innerExpandedKeys);
+            if (this.get('defaultExpandAll')) {
+                expandAll(data, innerExpandedKeys);
+            }
+            return innerExpandedKeys;
+        },
+        innerSelectedKeys: function () {
+            var selectedKeys = this.get('selectedKeys');
+            var defaultSelectedKeys = this.get('defaultSelectedKeys');
+            return (selectedKeys || defaultSelectedKeys || []).slice();
+        },
+        innerCheckedKeys: function () {
+            var data = this.get('data');
+            var checkStrictly = this.get('checkStrictly');
+            var checkedKeys = this.get('checkedKeys');
+            var defaultCheckedKeys = this.get('defaultCheckedKeys');
+            var innerDisabledKeys = this.get('innerDisabledKeys');
+            var innerCheckedKeys = (checkedKeys || defaultCheckedKeys || []).slice();
+            formatCheckedKeys(data, innerCheckedKeys, innerDisabledKeys, checkStrictly);
+            return innerCheckedKeys;
+        },
+        innerDisabledKeys: function () {
+            var disabledKeys = this.get('disabledKeys');
+            return (disabledKeys || []).slice();
         }
-        var innerDisabledKeys = (disabledKeys || []).slice();
-        var innerCheckedKeys = (checkedKeys || defaultCheckedKeys || []).slice();
-        formatCheckedKeys(data, innerCheckedKeys, innerDisabledKeys, checkStrictly);
-        return {
-            innerExpandedKeys: innerExpandedKeys,
-            innerSelectedKeys: (selectedKeys || defaultSelectedKeys || []).slice(),
-            innerCheckedKeys: innerCheckedKeys,
-            innerDisabledKeys: innerDisabledKeys,
-        };
-    },
-    watchers: {
-        expandedKeys: function (expandedKeys) {
-            var innerExpandedKeys = (expandedKeys || []).slice();
-            formatExpandedKeys(this.get('data'), innerExpandedKeys);
-            this.set({
-                innerExpandedKeys: innerExpandedKeys,
-            });
-        },
-        selectedKeys: function (selectedKeys) {
-            this.set({
-                innerSelectedKeys: selectedKeys
-                    ? selectedKeys.slice()
-                    : []
-            });
-        },
-        checkedKeys: function (checkedKeys) {
-            var innerCheckedKeys = (checkedKeys || []).slice();
-            formatCheckedKeys(this.get('data'), innerCheckedKeys, this.get('disabledKeys'), this.get('checkStrictly'));
-            this.set({
-                innerCheckedKeys: innerCheckedKeys,
-            });
-        },
-        disabledKeys: function (disabledKeys) {
-            this.set({
-                innerDisabledKeys: disabledKeys
-                    ? disabledKeys.slice()
-                    : []
-            });
-        },
     },
     events: {
         expand: {
@@ -9945,7 +9922,7 @@ function setCheckedKey(checkedKeys, disabledKeys, key, checked, checkStrictly, d
                 else {
                     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.remove(expandedKeys, key);
                 }
-                this.set('innerExpandedKeys', expandedKeys);
+                this.set('expandedKeys', expandedKeys);
                 this.fire({
                     type: 'expand',
                     ns: 'tree'
@@ -9990,8 +9967,8 @@ function setCheckedKey(checkedKeys, disabledKeys, key, checked, checkStrictly, d
                 event.stop();
                 var checkedKeys = this.copy(this.get('innerCheckedKeys'));
                 var checked = data.checked, node = data.node;
-                setCheckedKey(checkedKeys, this.get('disabledKeys'), node.key, checked, this.get('checkStrictly'), this.get('data'));
-                this.set('innerCheckedKeys', checkedKeys);
+                setCheckedKey(checkedKeys, this.get('innerDisabledKeys'), node.key, checked, this.get('checkStrictly'), this.get('data'));
+                this.set('checkedKeys', checkedKeys);
                 this.fire({
                     type: 'check',
                     ns: 'tree'
@@ -11956,7 +11933,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.26.6";
+var version = "0.26.7";
 /**
  * 安装插件
  */

@@ -1,9 +1,9 @@
-declare const _default: import("yox").ComponentOptions<unknown, {
-    expandedKeys: unknown;
-    selectedKeys: unknown;
-    checkedKeys: unknown;
-    disabledKeys: unknown;
-}, {
+declare const _default: import("yox").ComponentOptions<{
+    innerExpandedKeys: unknown;
+    innerSelectedKeys: unknown;
+    innerCheckedKeys: unknown;
+    innerDisabledKeys: unknown;
+}, unknown, {
     expand: unknown;
     select: unknown;
     check: unknown;
