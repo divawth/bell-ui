@@ -5,5 +5,6 @@ declare const TreeNode: import("yox").ComponentOptions<{
     selected: unknown;
     disabled: unknown;
     hasChildren: unknown;
+    isLeaf: unknown;
 }, unknown, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default TreeNode;

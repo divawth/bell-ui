@@ -10,6 +10,7 @@ import {
   RAW_STRING,
   RAW_ARRAY,
   RAW_BOOLEAN,
+  RAW_FUNCTION,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -71,6 +72,9 @@ export default Yox.define({
     },
     blockNode:  {
       type: RAW_BOOLEAN,
+    },
+    loadData: {
+      type: RAW_FUNCTION,
     },
     className: {
       type: RAW_STRING,

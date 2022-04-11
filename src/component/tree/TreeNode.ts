@@ -13,6 +13,7 @@ import {
   RAW_NUMERIC,
   RAW_ARRAY,
   RAW_OBJECT,
+  RAW_FUNCTION,
 } from '../constant'
 
 import { isMac } from '../util'
@@ -51,6 +52,9 @@ const TreeNode = Yox.define({
     showIndeterminate: {
       type: RAW_BOOLEAN,
     },
+    loadData: {
+      type: RAW_FUNCTION,
+    },
     last: {
       type: RAW_BOOLEAN,
     },
@@ -60,6 +64,12 @@ const TreeNode = Yox.define({
     node: {
       type: RAW_OBJECT,
     },
+  },
+
+  data() {
+    return {
+      isLoading: FALSE,
+    }
   },
 
   computed: {
@@ -114,25 +124,68 @@ const TreeNode = Yox.define({
     hasChildren() {
       const children = this.get('node.children')
       return children && children.length > 0
+    },
+    isLeaf() {
+      const isLeaf = this.get('node.isLeaf')
+      if (isLeaf) {
+        return TRUE
+      }
+      if (this.get('loadData')) {
+        return FALSE
+      }
+      return !this.get('hasChildren')
     }
   },
 
   methods: {
     handleExpandClick() {
 
-      const node = this.get('node')
-      const expanded = this.get('expanded')
+      const me = this
 
-      this.fire(
-        {
-          type: 'expand',
-          ns: 'treeNode'
-        },
-        {
-          node,
-          expanded: !expanded,
+      const node = me.get('node')
+      const expanded = !me.get('expanded')
+
+      const fireExpandEvent = function () {
+        me.fire(
+          {
+            type: 'expand',
+            ns: 'treeNode'
+          },
+          {
+            node,
+            expanded,
+          }
+        )
+      }
+
+      if (expanded) {
+        // 如果是展开，需判断是否要加载数据
+        const loadData = me.get('loadData')
+        const hasChildren = me.get('hasChildren')
+        if (loadData && !hasChildren) {
+          me.set({
+            isLoading: TRUE
+          })
+          loadData(node)
+          .then(function (children: any[]) {
+            if (children && children.length > 0) {
+              me.set('node.children', children)
+              fireExpandEvent()
+            }
+            else {
+              me.set('node.isLeaf', TRUE)
+            }
+          })
+          .finally(function () {
+            me.set({
+              isLoading: FALSE
+            })
+          })
+          return
         }
-      )
+      }
+
+      fireExpandEvent()
 
     },
     handleSelectClick(event) {
