@@ -5,10 +5,10 @@ class="${prefix}checkbox
 {{else}} ${prefix}checkbox-enabled
 {{/if}}
 
-{{#if checked}} ${prefix}checkbox-active{{/if}}
+{{#if checked}} ${prefix}checkbox-active
+{{else if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
 {{#if isFocus}} ${prefix}checkbox-focus{{/if}}
 {{#if @children}} ${prefix}checkbox-with-label{{/if}}
-{{#if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}

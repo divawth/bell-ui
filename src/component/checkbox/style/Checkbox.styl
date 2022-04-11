@@ -1,14 +1,10 @@
 @import '../../../env'
 
+$checkbox-icon-size = $font-size-default
 $checkbox-icon-top = 1px
 $checkbox-icon-left = 4px
 $checkbox-icon-width = 4px
 $checkbox-icon-height = 8px
-
-$checkbox-indeterminate-top = 5px
-$checkbox-indeterminate-left = 2px
-$checkbox-indeterminate-width = 8px
-$checkbox-indeterminate-height = 1px
 
 $checkbox-gap-horizontal = 16px
 
@@ -34,17 +30,19 @@ $checkbox-gap-horizontal = 16px
 
 {$selector-class-prefix + '-checkbox-indeterminate'}
   > {$selector-class-prefix + '-checkbox-icon'}:after
-    transform rotate(0deg) scale(1)
+    background-color $brand-primary
+    border 0
+    transform translate(-50%, -50%) rotate(0deg) scale(1)
 
-    top $checkbox-indeterminate-top
-    left $checkbox-indeterminate-left
-    width $checkbox-indeterminate-width
-    height $checkbox-indeterminate-height
+    top 50%
+    left 50%
+    width 0.5 * $checkbox-icon-size
+    height 0.5 * $checkbox-icon-size
 
 {$selector-class-prefix + '-checkbox-icon'}
   position relative
-  width $font-size-default
-  height $font-size-default
+  width $checkbox-icon-size
+  height $checkbox-icon-size
   border-radius $border-radius-small
   box-sizing border-box
   border 1px solid $brand-border
@@ -84,8 +82,7 @@ $checkbox-gap-horizontal = 16px
   > {$selector-class-prefix + '-checkbox-icon'}
     border-color $brand-primary
 
-{$selector-class-prefix + '-checkbox-active'},
-{$selector-class-prefix + '-checkbox-indeterminate'}
+{$selector-class-prefix + '-checkbox-active'}
   > {$selector-class-prefix + '-checkbox-icon'}
     background-color $brand-primary
     border-color $brand-primary
