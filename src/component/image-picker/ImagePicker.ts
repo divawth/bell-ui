@@ -1,13 +1,14 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/ImagePicker.hbs'
 // import './style/ImagePicker.styl'
 
 import Add from '../add/Add'
 import Icon from '../icon/Icon'
+import Space from '../space/Space'
 import Button from '../button/Button'
 import Upload from '../upload/Upload'
-import Space from '../space/Space'
+import Closeable from '../closeable/Closeable'
 
 import {
   TRUE,
@@ -218,9 +219,10 @@ export default Yox.define({
   components: {
     Add,
     Icon,
+    Space,
     Button,
     Upload,
-    Space,
+    Closeable,
   },
 
   methods: {
@@ -408,7 +410,8 @@ export default Yox.define({
       me.uploadItem(item.id, index)
 
     },
-    removeItem(index: number) {
+    removeItem(event: CustomEventInterface, index: number) {
+      event.stop()
       this.removeAt('imageList', index)
       this.fireChange()
     },

@@ -1,0 +1,14 @@
+$closeable-icon-size = 20px
+
+{$selector-class-prefix + '-closeable'}
+  display inline-block
+  position relative
+
+{$selector-class-prefix + '-closeable-icon'}
+  display none
+  color $brand-clear-icon-color
+  font-size $closeable-icon-size
+  position absolute
+  right -0.5 * $closeable-icon-size
+  top -0.5 * $closeable-icon-size
+  ui-clickable()

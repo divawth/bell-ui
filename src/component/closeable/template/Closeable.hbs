@@ -1,0 +1,21 @@
+<div
+class="${prefix}closeable
+{{#if className}} {{className}}{{/if}}"
+
+{{#if draggable}}
+  draggable
+{{/if}}
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <slot />
+  {{#if showClose}}
+    <Icon
+      className="${prefix}closeable-icon"
+      name="close-circle-fill"
+      on-click.native="close.closeable"
+    />
+  {{/if}}
+</div>

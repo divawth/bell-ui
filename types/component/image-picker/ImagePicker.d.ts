@@ -1,3 +1,4 @@
+import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
     isVideoPicker: unknown;
     restCount: unknown;
@@ -14,7 +15,7 @@ declare const _default: import("yox").ComponentOptions<{
     };
     appendItems(items: any[]): void;
     replaceItem(item: any, index: number): void;
-    removeItem(index: number): void;
+    removeItem(event: CustomEventInterface, index: number): void;
     upload(): void;
     uploadItem(id: number, index: number): void;
     fireError(error: string): void;
@@ -40,7 +41,7 @@ declare const _default: import("yox").ComponentOptions<{
     };
     appendItems(items: any[]): void;
     replaceItem(item: any, index: number): void;
-    removeItem(index: number): void;
+    removeItem(event: CustomEventInterface, index: number): void;
     upload(): void;
     uploadItem(id: number, index: number): void;
     fireError(error: string): void;

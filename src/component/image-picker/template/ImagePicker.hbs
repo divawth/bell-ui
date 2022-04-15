@@ -12,20 +12,22 @@ class="${prefix}image-picker
     class="${prefix}image-picker-items-wrapper"
   >
     {{#each imageList:index}}
-      <div
+      <Closeable
         key="{{this.id}}"
+        showClose="{{!~/readOnly && ~/draggingIndex < 0}}"
         draggable="{{~/canDraggable}}"
-        on-mouseenter="handleMouseEnter(index)"
-        on-mouseleave="handleMouseLeave(index)"
+        on-close="removeItem($event, index)"
+        on-mouseenter.native="handleMouseEnter(index)"
+        on-mouseleave.native="handleMouseLeave(index)"
         {{#if ~/canDraggable}}
-          on-dragstart="handleDragStart(index)"
-          on-dragend="handleDragEnd()"
-          on-dragover="handleDragOver(index)"
-          on-dragenter="handleDragEnter(index)"
-          on-dragleave="handleDragLeave(index)"
-          on-drop="handleDragDrop(index)"
+          on-dragstart.native="handleDragStart(index)"
+          on-dragend.native="handleDragEnd()"
+          on-dragover.native="handleDragOver(index)"
+          on-dragenter.native="handleDragEnter(index)"
+          on-dragleave.native="handleDragLeave(index)"
+          on-drop.native="handleDragDrop(index)"
         {{/if}}
-        class="${prefix}image-picker-item ${prefix}image-picker-card"
+        className="${prefix}image-picker-item ${prefix}image-picker-card"
         style="{{~/imageStyle}}"
       >
 
@@ -81,16 +83,9 @@ class="${prefix}image-picker
               {{formatFileSize(this.size)}}
             </div>
           {{/if}}
-          {{#if !~/readOnly && ~/draggingIndex < 0}}
-            <Icon
-              className="${prefix}image-picker-remove-icon"
-              name="close-circle-fill"
-              on-click.native="removeItem(index)"
-            />
-          {{/if}}
         {{/if}}
 
-      </div>
+      </Closeable>
     {{/each}}
 
     {{#if !readOnly && restCount > 0}}
