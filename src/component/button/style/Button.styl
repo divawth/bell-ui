@@ -189,7 +189,7 @@ ui-button-group-separator(hoverColor, activeColor)
   color $brand-content
   background-color $brand-bg
 
-  transition color .2s, border-color .2s, box-shadow .2s, background-color .2s
+  transition color $form-control-transition-duration, border-color $form-control-transition-duration, box-shadow $form-control-transition-duration, background-color $form-control-transition-duration
 
   &:before
     border-style solid
@@ -199,7 +199,7 @@ ui-button-group-separator(hoverColor, activeColor)
     color $brand-white
     border-color $brand-white
     background-color transparent !important
-    transition color .2s, border-color .2s, box-shadow .2s
+    transition color $form-control-transition-duration, border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   &{$selector-class-prefix + '-button-text'},
   &{$selector-class-prefix + '-button-link'}
@@ -333,7 +333,7 @@ ui-button-group-separator(hoverColor, activeColor)
       left -1px
       top -1px
       bottom -1px
-      transition border-color .2s
+      transition border-color $form-control-transition-duration
 
     &:first-child:before
       content none
@@ -375,7 +375,7 @@ ui-button-group-separator(hoverColor, activeColor)
       left -1px
       right -1px
       top -1px
-      transition border-color .2s
+      transition border-color $form-control-transition-duration
 
     &:first-child:before
       content none

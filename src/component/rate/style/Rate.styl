@@ -40,7 +40,7 @@ rate-brand-style(style)
 {$selector-class-prefix + '-rate-icon-full'}
   color $rate-icon-color
   position relative
-  transition color .3s
+  transition color $form-control-transition-duration
 
   + {$selector-class-prefix + '-rate-icon-full'}
     margin-left $rate-icon-gap
@@ -54,7 +54,7 @@ rate-brand-style(style)
   overflow hidden
   line-height 1
   opacity 0
-  transition opacity .3s
+  transition opacity $form-control-transition-duration
 
   &{$selector-class-prefix + '-rate-icon-active'}
     opacity 1

@@ -174,7 +174,7 @@ div::-webkit-scrollbar-track {
 div::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 div::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -9961,6 +9961,28 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
   margin-top: 10px;
 }
+.bell-closeable {
+  display: inline-block;
+  position: relative;
+}
+.bell-closeable-icon {
+  display: none;
+  color: #999;
+  font-size: 20px;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-upload {
+  display: inline-block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-upload > form {
+  display: none;
+}
 .bell-alert {
   border: 1px solid;
   position: relative;
@@ -9968,7 +9990,7 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 2px;
   line-height: 1.5715;
   padding: 9px 16px;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .bell-alert-info {
   border-color: #91d5ff;
@@ -10048,7 +10070,7 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
   text-align: center;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -10090,7 +10112,7 @@ div::-webkit-scrollbar-thumb:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -10387,7 +10409,7 @@ div::-webkit-scrollbar-thumb:hover {
       -ms-user-select: none;
           user-select: none;
   color: #515a6e;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -10755,10 +10777,10 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-button-disabled {
-  border-color: #dcdee2;
   background-color: #f5f5f5;
   color: #c5c8ce;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-button-disabled.bell-button-text,
 .bell-button-disabled.bell-button-link {
@@ -10935,7 +10957,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
 }
 .bell-card-shadow-hover {
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.2s;
 }
 .bell-card-shadow-always,
 .bell-card-shadow-hover:hover {
@@ -11062,7 +11084,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
   border: 1px solid #dcdee2;
   background-color: #fff;
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 2px;
 }
 .bell-checkbox-icon:after {
@@ -11119,6 +11141,233 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-checkbox-group.bell-checkbox-vertical > .bell-checkbox {
   display: flex;
+}
+.bell-color-picker {
+  display: inline-block;
+  border: 1px solid #dcdee2;
+  padding: 3px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.bell-color-picker-default {
+  width: 32px;
+  height: 32px;
+}
+.bell-color-picker-small {
+  width: 24px;
+  height: 24px;
+}
+.bell-color-picker-large {
+  width: 40px;
+  height: 40px;
+}
+.bell-color-picker-info.bell-color-picker-enabled {
+  border-color: #2db7f5;
+}
+.bell-color-picker-info.bell-color-picker-enabled:hover {
+  border-color: #2db7f5;
+}
+.bell-color-picker-info.bell-color-picker-opened {
+  border-color: #2db7f5;
+  box-shadow: 0 0 0 2px rgba(45,183,245,0.2);
+}
+.bell-color-picker-success.bell-color-picker-enabled {
+  border-color: #19be6b;
+}
+.bell-color-picker-success.bell-color-picker-enabled:hover {
+  border-color: #19be6b;
+}
+.bell-color-picker-success.bell-color-picker-opened {
+  border-color: #19be6b;
+  box-shadow: 0 0 0 2px rgba(25,190,107,0.2);
+}
+.bell-color-picker-error.bell-color-picker-enabled {
+  border-color: #ed4014;
+}
+.bell-color-picker-error.bell-color-picker-enabled:hover {
+  border-color: #ed4014;
+}
+.bell-color-picker-error.bell-color-picker-opened {
+  border-color: #ed4014;
+  box-shadow: 0 0 0 2px rgba(237,64,20,0.2);
+}
+.bell-color-picker-warning.bell-color-picker-enabled {
+  border-color: #f90;
+}
+.bell-color-picker-warning.bell-color-picker-enabled:hover {
+  border-color: #f90;
+}
+.bell-color-picker-warning.bell-color-picker-opened {
+  border-color: #f90;
+  box-shadow: 0 0 0 2px rgba(255,153,0,0.2);
+}
+.bell-color-picker-overlay {
+  width: 260px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+.bell-color-picker-block {
+  display: block;
+  width: 100%;
+}
+.bell-color-picker-opened {
+  border-color: #2d8cf0;
+  box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
+}
+.bell-color-picker-enabled {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-color-picker-enabled:hover {
+  border-color: #2d8cf0;
+}
+.bell-color-picker-disabled {
+  cursor: not-allowed;
+  border-color: #dcdee2;
+}
+.bell-color-picker-color {
+  height: 100%;
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
+}
+.bell-color-picker-panel {
+  background-color: #fff;
+  padding: 12px;
+}
+.bell-color-picker-pallete {
+  height: 200px;
+}
+.bell-color-picker-pallete + .bell-color-picker-slider {
+  margin-top: 14px;
+}
+.bell-color-picker-pallete-layer {
+  height: 100%;
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
+}
+.bell-color-picker-pallete-layer:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(rgba(0,0,0,0), #000);
+}
+.bell-color-picker-slider,
+.bell-color-picker-slider-track {
+  height: 12px;
+  border-radius: 6px;
+}
+.bell-color-picker-pallete,
+.bell-color-picker-slider {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.bell-color-picker-hue-slider-track,
+.bell-color-picker-slider-mask {
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
+}
+.bell-color-picker-slider-mask,
+.bell-color-picker-thumb-color {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.bell-color-picker-slider-mask {
+  border-radius: 6px;
+}
+.bell-color-picker-thumb-color {
+  border-radius: 7px;
+}
+.bell-color-picker-thumb {
+  box-sizing: border-box;
+  background-color: #fff;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin-left: -7px;
+}
+.bell-color-picker-thumb {
+  bottom: -1px;
+}
+.bell-color-picker-thumb-color {
+  border: 2px solid #fff;
+}
+.bell-color-picker-pallete > .bell-color-picker-thumb {
+  margin-bottom: -7px;
+}
+.bell-color-picker-hue-slider-track {
+  background-image: linear-gradient(90deg, #f00, #ff0 16.66%, #0f0 33.33%, #0ff 50%, #00f 66.66%, #f0f 83.33%, #f00);
+}
+.bell-color-picker-alpha-slider {
+  margin-top: 8px;
+}
+.bell-color-picker-slider + .bell-color-picker-mode {
+  margin-top: 12px;
+}
+.bell-color-picker-mode {
+  display: flex;
+  align-items: center;
+}
+.bell-color-picker-mode .bell-input-el {
+  padding: 0 !important;
+}
+.bell-color-picker-mode-switcher {
+  width: 45px;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-color-picker-mode-switcher + div {
+  flex: 1;
+}
+.bell-color-picker-rgb-input {
+  display: flex;
+  align-items: center;
+}
+.bell-color-picker-rgb-input > .bell-input {
+  width: auto;
+  flex: 1;
+}
+.bell-color-picker-rgb-input > .bell-input + .bell-input {
+  margin-left: 8px;
+}
+.bell-color-picker-swatches {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.bell-color-picker-value,
+.bell-color-picker-alpha-slider-track,
+.bell-color-picker-swatch {
+  background-image: linear-gradient(45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(-45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(45deg, rgba(0,0,0,0) 75%, #ddd 75%), linear-gradient(-45deg, rgba(0,0,0,0) 75%, #ddd 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+  background-repeat: repeat;
+}
+.bell-color-picker-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+}
+.bell-color-picker-swatch-color {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-circle {
   display: inline-block;
@@ -11476,7 +11725,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
 }
 .bell-date-picker-header-link {
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -11504,7 +11753,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 26px;
   height: 26px;
   line-height: 26px;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -11619,7 +11868,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
   box-sizing: border-box;
   border-radius: 2px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .bell-date-picker-values {
   flex: 1;
@@ -11662,7 +11911,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-calendar-icon {
   font-size: 14px;
   color: #808695;
-  transition: transform 0.3s;
+  transition: transform 0.2s;
   transform-origin: center center;
 }
 .bell-date-picker-clear-icon {
@@ -11679,8 +11928,8 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-date-picker-disabled {
   background-color: #f5f5f5;
-  border-color: #dcdee2;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-date-picker-disabled .bell-date-picker-value,
 .bell-date-picker-disabled .bell-date-picker-placeholder {
@@ -11819,7 +12068,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker-panel-column::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-time-picker-panel-column::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -11841,7 +12090,7 @@ div::-webkit-scrollbar-thumb:hover {
   height: 28px;
   line-height: 28px;
   padding-left: 14px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -11868,7 +12117,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
   box-sizing: border-box;
   border-radius: 2px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .bell-time-picker-value,
 .bell-time-picker-placeholder {
@@ -11896,7 +12145,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-time-picker-time-icon {
   font-size: 14px;
   color: #808695;
-  transition: transform 0.3s;
+  transition: transform 0.2s;
   transform-origin: center center;
 }
 .bell-time-picker-clear-icon {
@@ -11913,8 +12162,8 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-time-picker-disabled {
   background-color: #f5f5f5;
-  border-color: #dcdee2;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-time-picker-disabled .bell-time-picker-value,
 .bell-time-picker-disabled .bell-time-picker-placeholder {
@@ -11940,6 +12189,7 @@ div::-webkit-scrollbar-thumb:hover {
   align-items: center;
 }
 .bell-image-picker-item {
+  display: block;
   background-color: #fafafa;
   box-sizing: content-box;
   position: relative;
@@ -11958,7 +12208,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-card[draggable="true"] {
   cursor: move;
 }
-.bell-image-picker-card-mouse-enter .bell-image-picker-remove-icon {
+.bell-image-picker-card-mouse-enter .bell-closeable-icon {
   display: block;
 }
 .bell-image-picker-image {
@@ -12016,16 +12266,6 @@ div::-webkit-scrollbar-thumb:hover {
   right: 0;
   bottom: 0;
   border-bottom-right-radius: 2px;
-}
-.bell-image-picker-remove-icon {
-  display: none;
-  color: #999;
-  font-size: 20px;
-  position: absolute;
-  right: -10px;
-  top: -10px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-image-picker-extra {
   color: #808695;
@@ -12251,7 +12491,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-drawer-body::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-drawer-body::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -12266,7 +12506,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 18px;
   text-align: center;
   color: #aaa;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -12281,7 +12521,7 @@ div::-webkit-scrollbar-thumb:hover {
   bottom: 0;
   background-color: #000;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .bell-drawer-left > .bell-drawer-wrapper {
   transform: translate(-100%);
@@ -12347,7 +12587,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-dropdown-overlay::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-dropdown-overlay::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -12364,7 +12604,7 @@ div::-webkit-scrollbar-thumb:hover {
   text-overflow: ellipsis;
   word-break: keep-all;
   padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .bell-dropdown-item + .bell-dropdown-item-divided {
   margin-top: 4px;
@@ -12743,7 +12983,7 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: text;
   color: #17233d;
   font-size: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   border: 0;
   height: 100%;
   -webkit-appearance: textfield;
@@ -12786,7 +13026,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-input-secure,
 .bell-input-clear {
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -12864,6 +13104,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-content {
   flex: 1;
   position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
   border: 1px solid #dcdee2;
   border-radius: 2px;
   box-sizing: border-box;
@@ -12900,15 +13141,24 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-with-append.bell-input-focused > .bell-input-content {
   z-index: 1;
 }
+.bell-input-align-left .bell-input-el {
+  text-align: left;
+}
+.bell-input-align-center .bell-input-el {
+  text-align: center;
+}
+.bell-input-align-right .bell-input-el {
+  text-align: right;
+}
 .bell-input-focused > .bell-input-content {
   border-color: #2d8cf0;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
 }
 .bell-input-disabled .bell-input-content {
   color: #c5c8ce;
-  border-color: #dcdee2;
   background-color: #f5f5f5;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-input-disabled .bell-input-el {
   color: #c5c8ce;
@@ -12951,7 +13201,7 @@ div::-webkit-scrollbar-thumb:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
   box-sizing: border-box;
   border-left: 1px solid #dcdee2;
 }
@@ -12965,7 +13215,7 @@ div::-webkit-scrollbar-thumb:hover {
   text-align: center;
   background-color: #fafafa;
   box-sizing: border-box;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 .bell-input-number-up {
   top: 0;
@@ -13044,7 +13294,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-layout-sider::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-layout-sider::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -13181,7 +13431,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-list::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-list::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -13209,7 +13459,7 @@ div::-webkit-scrollbar-thumb:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -13345,7 +13595,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-menu::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-menu::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -13518,7 +13768,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 12px;
   color: #aaa;
   font-size: 16px;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -13619,7 +13869,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 16px;
   text-align: center;
   color: #aaa;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -13657,7 +13907,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #17233d;
   font-size: 20px;
   padding-right: 10px;
-  transition: color 0.3s;
+  transition: color 0.2s;
   position: relative;
   left: -3px;
 }
@@ -13707,9 +13957,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-pagination-item-disabled {
   color: #c5c8ce;
-  border-color: #dcdee2;
   background-color: #f5f5f5;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-pagination-custom-prev,
 .bell-pagination-custom-next {
@@ -14292,7 +14542,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
   border: 1px solid #dcdee2;
   background-color: #fff;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .bell-radio-icon:after {
   content: '';
@@ -14585,7 +14835,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-rate-icon-full {
   color: #e9e9e9;
   position: relative;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 .bell-rate-icon-full + .bell-rate-icon-full {
   margin-left: 8px;
@@ -14599,7 +14849,7 @@ div::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
   line-height: 1;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .bell-rate-icon-half.bell-rate-icon-active {
   opacity: 1;
@@ -14825,7 +15075,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
   box-sizing: border-box;
   border-radius: 2px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .bell-select-values {
   flex: 1;
@@ -14868,7 +15118,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-arrow-icon {
   font-size: 14px;
   color: #808695;
-  transition: transform 0.3s;
+  transition: transform 0.2s;
   transform-origin: center center;
 }
 .bell-select-clear-icon {
@@ -14885,8 +15135,8 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-select-disabled {
   background-color: #f5f5f5;
-  border-color: #dcdee2;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-select-disabled .bell-select-value,
 .bell-select-disabled .bell-select-placeholder {
@@ -14927,7 +15177,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-overlay::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-select-overlay::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -14944,7 +15194,7 @@ div::-webkit-scrollbar-thumb:hover {
   text-overflow: ellipsis;
   word-break: keep-all;
   padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .bell-select-option-enabled {
   color: #515a6e;
@@ -15164,7 +15414,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-split-button-menu::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-split-button-menu::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -15178,7 +15428,7 @@ div::-webkit-scrollbar-thumb:hover {
   text-overflow: ellipsis;
   word-break: keep-all;
   padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .bell-split-button-menu-item-enabled {
   color: #515a6e;
@@ -15279,8 +15529,8 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #c5c8ce;
 }
 .bell-slider-disabled .bell-slider-thumb {
-  border-color: #c5c8ce;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-slider-thumb:focus,
 .bell-slider-thumb-hover,
@@ -15417,7 +15667,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
   padding: 0;
   background-color: #ccc;
-  transition: border-color 0.3s, background-color 0.3s;
+  transition: border-color 0.2s, background-color 0.2s;
   border-radius: 100px;
   box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
 }
@@ -15564,7 +15814,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-table::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
@@ -15738,7 +15988,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 16px;
   text-align: center;
   overflow: hidden;
-  transition: color 0.3s;
+  transition: color 0.2s;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -15806,7 +16056,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
   white-space: nowrap;
   box-sizing: border-box;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 .bell-tag-checked {
   background-color: #dcdee2;
@@ -15835,7 +16085,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-tag-close-button > .bell-icon {
   color: #aaa;
   font-size: 14px;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 .bell-tag-close-button > .bell-icon:hover {
   color: #666;
@@ -16095,7 +16345,7 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: text;
   color: #17233d;
   font-size: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .bell-textarea-el::-webkit-input-placeholder {
   color: #d2d2d2;
@@ -16128,16 +16378,16 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-textarea-el::-webkit-scrollbar-thumb {
   background-color: #d1d1d1;
   border-radius: 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 .bell-textarea-el::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
 .bell-textarea-disabled .bell-textarea-el {
   color: #c5c8ce;
-  border-color: #dcdee2;
   background-color: #f5f5f5;
   cursor: not-allowed;
+  border-color: #dcdee2;
 }
 .bell-textarea-word-count {
   position: absolute;
@@ -16194,7 +16444,7 @@ div::-webkit-scrollbar-thumb:hover {
   right: 0;
   bottom: 0;
   border-radius: 2px;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .bell-thumbnail-mask .bell-icon {
   color: #fff;
@@ -16320,14 +16570,6 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   border-color: #e8eaec;
   background-color: #fff;
-}
-.bell-upload {
-  display: inline-block;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-.bell-upload > form {
-  display: none;
 }
 .bell-space {
   display: inline-flex;

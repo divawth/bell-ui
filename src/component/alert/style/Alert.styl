@@ -53,7 +53,7 @@ alert-brand-style(style)
   border-radius $border-radius-default
   line-height $ui-multiple-line-height
   padding $alert-padding-vertical $alert-padding-horizontal
-  transition opacity .3s
+  transition opacity $form-control-transition-duration
 
   ui-connect(
     hash: $alert-brand-hash,
@@ -110,7 +110,7 @@ alert-brand-style(style)
   color $brand-primary
   user-select none
   text-align center
-  transition color .3s
+  transition color $form-control-transition-duration
 
   ui-clickable()
 

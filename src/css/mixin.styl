@@ -123,7 +123,7 @@ ui-input-el()
   cursor text
   color $brand-title
   font-size $ui-font-size
-  transition border-color .3s, box-shadow .3s
+  transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   ui-placeholder($brand-placeholder)
 
@@ -186,7 +186,7 @@ ui-scrollbar(size = 4px)
   &::-webkit-scrollbar-thumb
     background-color #d1d1d1
     border-radius 10px
-    transition background-color .3s
+    transition background-color $form-control-transition-duration
 
   &::-webkit-scrollbar-thumb:hover
     background-color #b3b3b3
@@ -219,7 +219,7 @@ ui-form-button(
 
     box-sizing border-box
     border-radius $border-radius-default
-    transition border-color .3s, box-shadow .3s
+    transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   if $selector-values
     {$selector-values}
@@ -255,7 +255,7 @@ ui-form-button(
   {$selector-right-icon}
     font-size $right-icon-size
     color $brand-muted
-    transition transform .3s
+    transition transform $form-control-transition-duration
     transform-origin center center
 
   {$selector-clear-icon}
@@ -315,7 +315,7 @@ ui-dropdown-overlay(
   {$selector-item}
     ui-ellipsis()
     padding $dropdown-item-padding-vertical $dropdown-item-padding-horizontal
-    transition background-color .3s, color .3s
+    transition background-color $form-control-transition-duration, color $form-control-transition-duration
 
     if $selector-item-divided
       + {$selector-item-divided}

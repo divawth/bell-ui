@@ -83,7 +83,7 @@ tag-brand-style(style)
   line-height $ui-single-line-height
   white-space nowrap
   box-sizing border-box
-  transition background-color .3s, border-color .3s, color .3s
+  transition background-color $form-control-transition-duration, border-color $form-control-transition-duration, color $form-control-transition-duration
 
 {$selector-class-prefix + '-tag-checked'}
   background-color $brand-border
@@ -108,7 +108,7 @@ tag-brand-style(style)
     color $brand-close-color
     font-size $tag-close-icon-size
 
-    transition color .3s
+    transition color $form-control-transition-duration
 
     &:hover
       color $brand-close-color-hover
