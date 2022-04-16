@@ -1,8 +1,6 @@
 import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
-    componentWidth: unknown;
     inlineStyle: unknown;
-    overlayStyle: unknown;
     needSecond: unknown;
     hourList: unknown;
     minuteList: unknown;

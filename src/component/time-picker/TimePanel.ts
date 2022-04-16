@@ -48,12 +48,6 @@ export default Yox.define({
     secondIndex: {
       type: RAW_NUMBER,
     },
-    className: {
-      type: RAW_STRING,
-    },
-    style: {
-      type: RAW_STYLE_TYPE,
-    }
   },
 
   computed: {

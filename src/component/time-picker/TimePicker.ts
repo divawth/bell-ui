@@ -124,20 +124,10 @@ export default Yox.define({
   },
 
   computed: {
-    componentWidth(): number {
-      if (this.get('block')) {
-        return
-      }
-      const width = this.get('width')
-      if (width > 0) {
-        return width
-      }
-      return this.get('needSecond') ? 168 : 120
-    },
     inlineStyle(): object[] | void {
       const result: object[] = []
 
-      const width = this.get('componentWidth')
+      const width = this.get('width')
       if (width) {
         result.push({
           width: toPixel(width)
@@ -151,14 +141,6 @@ export default Yox.define({
 
       if (result.length > 0) {
         return result
-      }
-    },
-    overlayStyle(): object | void {
-      const width = this.get('componentWidth')
-      if (width) {
-        return {
-          width: toPixel(width)
-        }
       }
     },
     needSecond(): boolean {

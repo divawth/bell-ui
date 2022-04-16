@@ -11969,6 +11969,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-date-picker-clearable:hover .bell-date-picker-clear-icon + .bell-date-picker-calendar-icon {
   display: none;
 }
+.bell-time-picker {
+  width: 200px;
+}
 .bell-time-picker-default {
   font-size: 14px;
   min-height: 32px;
