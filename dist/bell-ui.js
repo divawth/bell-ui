@@ -3976,13 +3976,17 @@ function normalizeValue(value) {
     return normalizeSaturation(value);
 }
 function normalizeAlpha(alpha) {
-    return alpha > 1 ? 1 : alpha < 0 ? 0 : alpha;
+    return alpha > 1 ? 1 : alpha < 0 ? 0 : (Math.floor(alpha * 100) / 100);
 }
 function formatRgb(rgb, alpha) {
+    var separator = ', ';
+    var name = 'rgb';
+    var value = rgb.join(separator);
     if (alpha != NULL) {
-        return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + alpha + ")";
+        name = 'rgba';
+        value += separator + alpha;
     }
-    return "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
+    return name + "(" + value + ")";
 }
 function getColorByName(color) {
     var ctx = DOCUMENT
@@ -4665,6 +4669,22 @@ var swatchGaps = [10, 8];
                 };
             }
         },
+        colorValue: function () {
+            var showAlpha = this.get('showAlpha');
+            var alpha = UNDEFINED;
+            if (showAlpha) {
+                alpha = this.get('alpha');
+            }
+            var mode = this.get('mode');
+            var rgb = this.get('rgb');
+            if (mode === MODE_HEX) {
+                return rgb2hex(rgb[0], rgb[1], rgb[2], alpha);
+            }
+            else if (mode === MODE_RGB) {
+                return formatRgb(rgb, alpha);
+            }
+            return '';
+        }
     },
     watchers: {
         value: function (value) {
@@ -4690,6 +4710,8 @@ var swatchGaps = [10, 8];
                     hsv: hsv,
                     rgb: hsv2rgb(hsv[0], hsv[1], hsv[2])
                 });
+                // @ts-ignore
+                this.fireChange();
             },
             ns: 'colorPanel'
         },
@@ -4705,6 +4727,8 @@ var swatchGaps = [10, 8];
             listener: function (event, data) {
                 event.stop();
                 this.set(data);
+                // @ts-ignore
+                this.fireChange();
             },
             ns: 'colorPanel'
         },
@@ -4724,6 +4748,8 @@ var swatchGaps = [10, 8];
                 this.set({
                     mode: modes[newIndex]
                 });
+                // @ts-ignore
+                this.fireChange();
             },
             ns: 'colorPanel'
         }
@@ -4735,6 +4761,18 @@ var swatchGaps = [10, 8];
                 rgb: rgb,
                 hsv: hsv,
                 alpha: alpha,
+            });
+            // @ts-ignore
+            this.fireChange();
+        },
+        fireChange: function () {
+            var value = this.get('colorValue');
+            this.set('value', value);
+            this.fire({
+                type: 'change',
+                ns: 'colorPicker',
+            }, {
+                value: value,
             });
         }
     },

@@ -8,6 +8,7 @@ import ColorPanel from './ColorPanel'
 
 import {
   FALSE,
+  UNDEFINED,
   RAW_ARRAY,
   RAW_STRING,
   RAW_NUMERIC,
@@ -25,10 +26,12 @@ import {
 } from '../constant'
 
 import {
+  rgb2hex,
   hsv2rgb,
   formatRgb,
   parseColor,
   MODE_HEX,
+  MODE_RGB,
   COLOR_DEFAULT,
 } from './util'
 
@@ -137,6 +140,26 @@ export default Yox.define({
         }
       }
     },
+    colorValue() {
+
+      const showAlpha = this.get('showAlpha')
+      let alpha = UNDEFINED
+      if (showAlpha) {
+        alpha = this.get('alpha')
+      }
+
+      const mode = this.get('mode')
+      const rgb = this.get('rgb')
+      if (mode === MODE_HEX) {
+        return rgb2hex(rgb[0], rgb[1], rgb[2], alpha)
+      }
+      else if (mode === MODE_RGB) {
+        return formatRgb(rgb, alpha)
+      }
+
+      return ''
+
+    }
   },
 
   watchers: {
@@ -164,6 +187,8 @@ export default Yox.define({
           hsv,
           rgb: hsv2rgb(hsv[0], hsv[1], hsv[2])
         })
+        // @ts-ignore
+        this.fireChange()
       },
       ns: 'colorPanel'
     },
@@ -182,6 +207,8 @@ export default Yox.define({
       listener(event, data) {
         event.stop()
         this.set(data)
+        // @ts-ignore
+        this.fireChange()
       },
       ns: 'colorPanel'
     },
@@ -204,6 +231,8 @@ export default Yox.define({
         this.set({
           mode: modes[newIndex]
         })
+        // @ts-ignore
+        this.fireChange()
 
       },
       ns: 'colorPanel'
@@ -218,6 +247,21 @@ export default Yox.define({
         hsv,
         alpha,
       })
+      // @ts-ignore
+      this.fireChange()
+    },
+    fireChange() {
+      const value = this.get('colorValue')
+      this.set('value', value)
+      this.fire(
+        {
+          type: 'change',
+          ns: 'colorPicker',
+        },
+        {
+          value,
+        }
+      )
     }
   },
 

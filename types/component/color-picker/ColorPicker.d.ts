@@ -1,6 +1,7 @@
 declare const _default: import("yox").ComponentOptions<{
     inlineStyle: unknown;
     colorStyle: unknown;
+    colorValue: unknown;
 }, {
     value: unknown;
 }, {

@@ -18,14 +18,23 @@ export function normalizeValue(value: number) {
 }
 
 export function normalizeAlpha(alpha: number) {
-  return alpha > 1 ? 1 : alpha < 0 ? 0 : alpha
+  return alpha > 1 ? 1 : alpha < 0 ? 0 : (Math.floor(alpha * 100) / 100)
 }
 
 export function formatRgb(rgb: number[], alpha: number | void) {
+
+  const separator = ', '
+
+  let name = 'rgb'
+  let value = rgb.join(separator)
+
   if (alpha != NULL) {
-    return `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`
+    name = 'rgba'
+    value += separator + alpha
   }
-  return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`
+
+  return `${name}(${value})`
+
 }
 
 export function getColorByName(color: string) {
