@@ -136,6 +136,18 @@ export default {
           placeholder="Select date"
         />
       </FormItem>
+      <FormItem label="TimePicker">
+        <TimePicker
+          model="form.time"
+          placeholder="Select time"
+        />
+      </FormItem>
+      <FormItem label="ColorPicker">
+        <ColorPicker
+          model="form.color"
+          showAlpha
+        />
+      </FormItem>
       <FormItem label="Slider1">
         <Slider
           model="form.slider1"
