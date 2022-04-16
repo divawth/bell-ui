@@ -11,3 +11,6 @@ import { CustomEventInterface, Listener } from 'yox';
 export declare function fireClickEvent(event: CustomEventInterface, isFromPopover?: boolean): void;
 export declare function onClickEvent(listener: Listener): void;
 export declare function offClickEvent(listener: Listener): void;
+export declare function startDrag(): void;
+export declare function endDrag(): void;
+export declare function isClickEvent(): boolean;

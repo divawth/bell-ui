@@ -45,6 +45,7 @@ import {
   fireClickEvent,
   offClickEvent,
   onClickEvent,
+  isClickEvent,
 } from '../event'
 
 const CLASS_POPOVER = '${prefix}popover'
@@ -373,7 +374,7 @@ export default Yox.define({
     const me = this as any
 
     const onNativeClick = function (event: CustomEventInterface) {
-      if (!me.get('visible')) {
+      if (!me.get('visible') || !isClickEvent()) {
         return
       }
       const trigger = me.$refs.trigger as HTMLElement

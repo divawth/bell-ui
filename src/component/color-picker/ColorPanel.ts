@@ -36,6 +36,11 @@ import {
   spaceItemStyle,
 } from '../util'
 
+import {
+  endDrag,
+  startDrag,
+} from '../event'
+
 const swatchGaps = [10, 8]
 
 export default Yox.define({
@@ -191,6 +196,8 @@ export default Yox.define({
         return
       }
 
+      startDrag()
+
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onPalleteMouseMove)
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onPalleteMouseUp)
 
@@ -226,6 +233,7 @@ export default Yox.define({
       Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onPalleteMouseUp)
 
       palleteEl = UNDEFINED
+      endDrag()
 
     }
 
@@ -238,6 +246,8 @@ export default Yox.define({
       if (!hueEl) {
         return
       }
+
+      startDrag()
 
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onHueMouseMove)
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onHueMouseUp)
@@ -275,6 +285,7 @@ export default Yox.define({
       Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onHueMouseUp)
 
       hueEl = UNDEFINED
+      endDrag()
 
     }
 
@@ -288,6 +299,8 @@ export default Yox.define({
       if (!alphaEl) {
         return
       }
+
+      startDrag()
 
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onAlphaMouseMove)
       Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onAlphaMouseUp)
@@ -319,6 +332,7 @@ export default Yox.define({
       Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onAlphaMouseUp)
 
       alphaEl = UNDEFINED
+      endDrag()
 
     }
 

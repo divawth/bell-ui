@@ -1,4 +1,5 @@
 import Yox, { CustomEventInterface, Listener } from 'yox'
+import { TRUE } from './constant'
 
 const emitter = new Yox()
 
@@ -26,4 +27,24 @@ export function onClickEvent(listener: Listener) {
 
 export function offClickEvent(listener: Listener) {
   emitter.off('click', listener)
+}
+
+let startDragTime = 0
+let endDragTime = 0
+
+export function startDrag() {
+  startDragTime = Date.now()
+  endDragTime = 0
+}
+
+export function endDrag() {
+  endDragTime = Date.now()
+}
+
+export function isClickEvent() {
+  // 拖拽结束时，mouseup 之后会紧接着触发 click，此时要判断间隔，如果大于 200ms 才算是 click
+  if (endDragTime > 0) {
+    return Date.now() - endDragTime > 200
+  }
+  return TRUE
 }
