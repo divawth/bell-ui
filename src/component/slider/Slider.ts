@@ -323,13 +323,7 @@ export default Yox.define({
         tooltip.refresh()
       })
     },
-    trackMouseDown(event: CustomEventInterface) {
-      event.stop()
-      fireClickEvent(event)
-      // @ts-ignore
-      this.onTrackMouseDown(event)
-    },
-    thumbMouseEnter(event: CustomEventInterface, index: number) {
+    onThumbMouseEnter(event: CustomEventInterface, index: number) {
       event.stop()
       const dragThumbIndex = this.get('dragThumbIndex')
       if (dragThumbIndex >= 0) {
@@ -341,16 +335,10 @@ export default Yox.define({
         this.set('hoverThumbIndex', index)
       }
     },
-    thumbMouseLeave(event: CustomEventInterface) {
+    onThumbMouseLeave(event: CustomEventInterface) {
       event.stop()
       this.set('hoverThumbIndex', -1)
     },
-    thumbMouseDown(event: CustomEventInterface, index: number) {
-      event.stop()
-      this.set('dragThumbIndex', index)
-      // @ts-ignore
-      this.onThumbMouseDown()
-    }
   },
 
   afterMount() {
@@ -372,6 +360,9 @@ export default Yox.define({
     let trackBottom = 0
 
     const onTrackMouseDown = function (event: CustomEventInterface) {
+
+      event.stop()
+      fireClickEvent(event)
 
       updateVariable()
 
@@ -397,7 +388,10 @@ export default Yox.define({
 
     }
 
-    const onThumbMouseDown = function () {
+    const onThumbMouseDown = function (event: CustomEventInterface, index: number) {
+
+      event.stop()
+      me.set('dragThumbIndex', index)
 
       updateVariable()
 
