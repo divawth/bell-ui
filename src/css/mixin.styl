@@ -73,8 +73,16 @@ ui-clickable()
   cursor pointer
   -webkit-tap-highlight-color rgba(0,0,0,0)
 
-ui-disabled()
+ui-enabled(hasBorder = false)
+  ui-clickable()
+  if hasBorder
+    &:hover
+      border-color $brand-primary
+
+ui-disabled(hasBorder = false)
   cursor not-allowed
+  if hasBorder
+    border-color $brand-border
 
 ui-block()
   display block
@@ -125,9 +133,8 @@ ui-input-hover($brand-primary)
 ui-input-disabled($selector)
   {$selector}
     color $brand-disabled
-    border-color $brand-border
     background-color $brand-bg-disabled
-    ui-disabled()
+    ui-disabled(true)
 
 ui-focus($brand-primary, $brand-primary-shadow)
   border-color $brand-primary
@@ -183,7 +190,6 @@ ui-scrollbar(size = 4px)
 
   &::-webkit-scrollbar-thumb:hover
     background-color #b3b3b3
-
 
 ui-form-button(
   $selector-base,
@@ -258,15 +264,11 @@ ui-form-button(
     display none
 
   {$selector-enabled}
-    ui-clickable()
-
-    &:hover
-      border-color $brand-primary
+    ui-enabled(true)
 
   {$selector-disabled}
     background-color $brand-bg-disabled
-    border-color $brand-border
-    ui-disabled()
+    ui-disabled(true)
 
     {$selector-value},
     {$selector-placeholder}

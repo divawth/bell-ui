@@ -295,6 +295,7 @@ value / `model` | 输入框的值 | string | - | -
 type | 类型 | string | `text`, `password` | `text`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 size | 大小 | string | `default`, `small`, `large` | `default`
+align | 文本对齐方式 | string | `left`, `center`, `right` | -
 placeholder | 输入框内容为空时的提示文本 | string | - | -
 disabled | 禁用输入框 | boolean | - | -
 clearable | 是否显示清空按钮 | boolean | - | -

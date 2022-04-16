@@ -14,9 +14,9 @@ import {
 
 import {
   oneOf,
-  toPixel,
   toNumber,
-  supportFlexGap,
+  spaceListStyle,
+  spaceItemStyle,
 } from '../util'
 
 export default Yox.define({
@@ -51,12 +51,6 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      supportFlexGap,
-    }
-  },
-
   computed: {
     sizeArray() {
 
@@ -78,66 +72,19 @@ export default Yox.define({
 
     },
     inlineStyle(): object[] | void {
-      const result: object[] = []
-
-      const sizeArray = this.get('sizeArray')
-      if (sizeArray) {
-        const gapStyle: Record<string, string> = {}
-        const horizontalGap = sizeArray[0]
-        const verticalGap = sizeArray[1]
-        if (supportFlexGap) {
-          if (horizontalGap > 0) {
-            gapStyle.columnGap = toPixel(horizontalGap)
-          }
-          if (verticalGap > 0) {
-            gapStyle.rowGap = toPixel(verticalGap)
-          }
-        }
-        else if (this.get('vertical')
-          || (verticalGap > 0 && this.get('autoWrap'))
-        ) {
-          gapStyle.marginBottom = toPixel(-verticalGap)
-        }
-        if (Yox.object.keys(gapStyle).length > 0) {
-          result.push(gapStyle)
-        }
-      }
-
-      const style = this.get('style')
-      if (style) {
-        result.push(style)
-      }
-
-      if (result.length > 0) {
-        return result
-      }
+      return spaceListStyle(
+        this.get('sizeArray'),
+        this.get('vertical'),
+        this.get('autoWrap'),
+        this.get('style')
+      )
     },
     itemStyle(): Record<string, string> | void {
-      if (supportFlexGap) {
-        return
-      }
-      const sizeArray = this.get('sizeArray')
-      if (sizeArray) {
-        const result: Record<string, string> = {}
-        const horizontalGap = sizeArray[0]
-        const verticalGap = sizeArray[1]
-        if (this.get('vertical')) {
-          if (verticalGap > 0) {
-            result.marginBottom = toPixel(verticalGap)
-          }
-        }
-        else {
-          if (horizontalGap > 0) {
-            result.marginRight = toPixel(horizontalGap)
-          }
-          if (verticalGap > 0 && this.get('autoWrap')) {
-            result.marginBottom = toPixel(verticalGap)
-          }
-        }
-        if (Yox.object.keys(result).length > 0) {
-          return result
-        }
-      }
+      return spaceItemStyle(
+        this.get('sizeArray'),
+        this.get('vertical'),
+        this.get('autoWrap')
+      )
     },
   }
 

@@ -13,6 +13,9 @@ import {
   RAW_STRING,
   RAW_NUMBER,
   RAW_NUMERIC,
+  RAW_LEFT,
+  RAW_CENTER,
+  RAW_RIGHT,
   RAW_EVENT_KEYDOWN,
   RAW_EVENT_KEYPRESS,
   RAW_EVENT_KEYUP,
@@ -54,6 +57,9 @@ export default Yox.define({
     },
     status: {
       type: oneOf([RAW_TYPE_INFO, RAW_TYPE_SUCCESS, RAW_TYPE_ERROR, RAW_TYPE_WARNING]),
+    },
+    align: {
+      type: oneOf([RAW_LEFT, RAW_CENTER, RAW_RIGHT]),
     },
     placeholder: {
       type: RAW_STRING,

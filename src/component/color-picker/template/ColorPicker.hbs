@@ -1,0 +1,53 @@
+<Popover
+  placement="{{placement}}"
+  trigger="{{RAW_CUSTOM}}"
+  visible="{{visible}}"
+  gap="5"
+>
+
+  <div
+    class="${prefix}color-picker
+    {{#if status}} ${prefix}color-picker-{{status}}{{/if}}
+    {{#if size}} ${prefix}color-picker-{{size}}{{/if}}
+    {{#if block}} ${prefix}color-picker-block{{/if}}
+    {{#if visible}} ${prefix}color-picker-opened{{/if}}
+    {{#if disabled}} ${prefix}color-picker-disabled
+    {{else}} ${prefix}color-picker-enabled
+    {{/if}}
+    {{#if className}} {{className}}{{/if}}"
+
+    {{#if !disabled}}
+      on-click="toggle('visible')"
+    {{/if}}
+
+    {{#if inlineStyle}}
+      style="{{inlineStyle}}"
+    {{/if}}
+  >
+
+    <div class="${prefix}color-picker-value">
+      <div
+        class="${prefix}color-picker-color"
+        {{#if colorStyle}}
+          style="{{colorStyle}}"
+        {{/if}}
+      >
+      </div>
+    </div>
+
+  </div>
+
+  <ColorPanel
+    slot="overlay"
+    className="${prefix}color-picker-overlay"
+    mode="{{mode}}"
+    swatches="{{swatches}}"
+    showAlpha="{{showAlpha}}"
+    rgb="{{rgb}}"
+    hue="{{hsv[0]}}"
+    saturation="{{hsv[1]}}"
+    value="{{hsv[2]}}"
+    alpha="{{alpha}}"
+  />
+
+</Popover>

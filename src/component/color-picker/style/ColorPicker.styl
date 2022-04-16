@@ -1,0 +1,205 @@
+$color-picker-padding = 3px
+$color-picker-overlay-width = 260px
+$color-picker-panel-padding = 12px
+$color-picker-pallete-height = 200px
+$color-picker-pallete-slider-gap = 14px
+$color-picker-thumb-size = 14px
+$color-picker-slider-height = 12px
+$color-picker-slider-gap = 8px
+$color-picker-slider-mode-gap = 12px
+$color-picker-mode-switcher-width = 45px
+$color-picker-mode-swatch-gap = 12px
+$color-picker-swatch-size = 18px
+$color-picker-inset-shadow = inset 0 0 2px 0 rgba(0,0,0,0.2)
+
+// 从 select 拷来的
+color-picker-size-style(size)
+  ui-set('width', size['height'])
+  ui-set('height', size['height'])
+
+color-picker-brand-style(style)
+  &{$selector-class-prefix + '-color-picker-enabled'}
+    ui-set('border-color', style['color'])
+
+    &:hover
+      ui-set('border-color', style['color'])
+
+  &{$selector-class-prefix + '-color-picker-opened'}
+    ui-focus(style['color'], style['shadow-color'])
+
+{$selector-class-prefix + '-color-picker'}
+  display inline-block
+  border 1px solid $brand-border
+  padding $color-picker-padding
+  position relative
+  box-sizing border-box
+  border-radius $border-radius-default
+  transition border-color .3s, box-shadow .3s
+
+  ui-connect(
+    hash: $form-button-size-hash,
+    each: color-picker-size-style
+  )
+  ui-connect(
+    hash: $status-brand-hash,
+    each: color-picker-brand-style
+  )
+
+{$selector-class-prefix + '-color-picker-overlay'}
+  width $color-picker-overlay-width
+  box-shadow $brand-layer-shadow
+
+{$selector-class-prefix + '-color-picker-block'}
+  ui-block()
+
+{$selector-class-prefix + '-color-picker-opened'}
+  ui-focus($brand-primary, $brand-primary-shadow)
+
+{$selector-class-prefix + '-color-picker-enabled'}
+  ui-enabled(true)
+
+{$selector-class-prefix + '-color-picker-disabled'}
+  ui-disabled(true)
+
+{$selector-class-prefix + '-color-picker-color'}
+  height 100%
+  box-shadow $color-picker-inset-shadow
+
+{$selector-class-prefix + '-color-picker-panel'}
+  background-color $brand-bg
+  padding $color-picker-panel-padding
+
+{$selector-class-prefix + '-color-picker-pallete'}
+  height $color-picker-pallete-height
+  + {$selector-class-prefix + '-color-picker-slider'}
+    margin-top $color-picker-pallete-slider-gap
+
+{$selector-class-prefix + '-color-picker-pallete-layer'}
+  height 100%
+  box-shadow $color-picker-inset-shadow
+  &:after
+    content ''
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background-image linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0))
+
+{$selector-class-prefix + '-color-picker-slider'},
+{$selector-class-prefix + '-color-picker-slider-track'}
+  height $color-picker-slider-height
+  border-radius 0.5 * $color-picker-slider-height
+
+{$selector-class-prefix + '-color-picker-pallete'},
+{$selector-class-prefix + '-color-picker-slider'}
+  position relative
+  user-select none
+
+{$selector-class-prefix + '-color-picker-hue-slider-track'},
+{$selector-class-prefix + '-color-picker-slider-mask'}
+  box-shadow $color-picker-inset-shadow
+
+{$selector-class-prefix + '-color-picker-slider-mask'},
+{$selector-class-prefix + '-color-picker-thumb-color'}
+  content ''
+  position absolute
+  top 0
+  right 0
+  bottom 0
+  left 0
+
+{$selector-class-prefix + '-color-picker-slider-mask'}
+  border-radius 0.5 * $color-picker-slider-height
+
+{$selector-class-prefix + '-color-picker-thumb-color'}
+  border-radius 0.5 * $color-picker-thumb-size
+
+{$selector-class-prefix + '-color-picker-thumb'}
+  box-sizing border-box
+  background-color $brand-white
+
+  width $color-picker-thumb-size
+  height $color-picker-thumb-size
+  border-radius 0.5 * $color-picker-thumb-size
+  box-shadow 0 0 2px 0 rgba(0,0,0,0.5)
+
+  position absolute
+  left 0
+  bottom 0
+  margin-left -0.5 * $color-picker-thumb-size
+
+if $color-picker-thumb-size != $color-picker-slider-height
+  {$selector-class-prefix + '-color-picker-thumb'}
+    bottom -0.5 * ($color-picker-thumb-size - $color-picker-slider-height)
+
+{$selector-class-prefix + '-color-picker-thumb-color'}
+  border 2px solid $brand-white
+
+{$selector-class-prefix + '-color-picker-pallete'}
+  > {$selector-class-prefix + '-color-picker-thumb'}
+    margin-bottom -0.5 * $color-picker-thumb-size
+
+{$selector-class-prefix + '-color-picker-hue-slider-track'}
+  background-image linear-gradient(90deg, red, rgb(255, 255, 0) 16.66%, rgb(0, 255, 0) 33.33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 66.66%, rgb(255, 0, 255) 83.33%, red)
+
+{$selector-class-prefix + '-color-picker-alpha-slider'}
+  margin-top $color-picker-slider-gap
+
+{$selector-class-prefix + '-color-picker-slider'} + {$selector-class-prefix + '-color-picker-mode'}
+  margin-top $color-picker-slider-mode-gap
+
+{$selector-class-prefix + '-color-picker-mode'}
+  display flex
+  align-items center
+
+  {$selector-class-prefix + '-input-el'}
+    padding 0 !important
+
+{$selector-class-prefix + '-color-picker-mode-switcher'}
+  width $color-picker-mode-switcher-width
+  padding 0
+  text-align left
+  ui-clickable()
+
+  + div
+    flex 1
+
+{$selector-class-prefix + '-color-picker-rgb-input'}
+  display flex
+  align-items center
+
+  > {$selector-class-prefix + '-input'}
+    width auto
+    flex 1
+
+    + {$selector-class-prefix + '-input'}
+      margin-left $ui-horizontal-gap
+
+{$selector-class-prefix + '-color-picker-swatches'}
+  margin-top $color-picker-mode-swatch-gap
+  display flex
+  flex-wrap wrap
+
+{$selector-class-prefix + '-color-picker-value'},
+{$selector-class-prefix + '-color-picker-alpha-slider-track'},
+{$selector-class-prefix + '-color-picker-swatch'}
+  background-image linear-gradient(45deg, #DDD 25%, #0000 25%),
+                    linear-gradient(-45deg, #DDD 25%, #0000 25%),
+                    linear-gradient(45deg, #0000 75%, #DDD 75%),
+                    linear-gradient(-45deg, #0000 75%, #DDD 75%)
+  background-size 12px 12px
+  background-position 0 0, 0 6px, 6px -6px, -6px 0px
+  background-repeat repeat
+
+{$selector-class-prefix + '-color-picker-swatch'}
+  width $color-picker-swatch-size
+  height $color-picker-swatch-size
+  border-radius $border-radius-default
+
+{$selector-class-prefix + '-color-picker-swatch-color'}
+  width 100%
+  height 100%
+  border-radius $border-radius-default
+  box-shadow $color-picker-inset-shadow
+  ui-clickable()

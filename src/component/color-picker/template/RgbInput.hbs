@@ -1,0 +1,41 @@
+
+<div class="${prefix}color-picker-rgb-input">
+  <Input
+    block
+    size="small"
+    value="{{rgb[0]}}"
+    align="center"
+    on-change="onChange($event, 'redText', $data.value)"
+    on-blur="onSubmit()"
+    on-enter="onSubmit()"
+  />
+  <Input
+    block
+    size="small"
+    value="{{rgb[1]}}"
+    align="center"
+    on-change="onChange($event, 'greenText', $data.value)"
+    on-blur="onSubmit()"
+    on-enter="onSubmit()"
+  />
+  <Input
+    block
+    size="small"
+    value="{{rgb[2]}}"
+    align="center"
+    on-change="onChange($event, 'blueText', $data.value)"
+    on-blur="onSubmit()"
+    on-enter="onSubmit()"
+  />
+  {{#if alpha != null}}
+    <Input
+      block
+      size="small"
+      value="{{alphaPercent}}"
+      align="center"
+      on-change="onChange($event, 'alphaText', $data.value)"
+      on-blur="onSubmit()"
+      on-enter="onSubmit()"
+    />
+  {{/if}}
+</div>

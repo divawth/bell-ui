@@ -277,3 +277,65 @@ export function scrollTo(
   }
   scroll(from, to, step)
 }
+
+
+export function spaceListStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: any): object[] | void {
+  const result: object[] = []
+
+  if (gaps) {
+    const gapStyle: Record<string, string> = {}
+    const horizontalGap = gaps[0]
+    const verticalGap = gaps[1]
+    if (supportFlexGap) {
+      if (horizontalGap > 0) {
+        gapStyle.columnGap = toPixel(horizontalGap)
+      }
+      if (verticalGap > 0) {
+        gapStyle.rowGap = toPixel(verticalGap)
+      }
+    }
+    else if (vertical
+      || (verticalGap > 0 && autoWrap)
+    ) {
+      gapStyle.marginBottom = toPixel(-verticalGap)
+    }
+    if (Yox.object.keys(gapStyle).length > 0) {
+      result.push(gapStyle)
+    }
+  }
+
+  if (style) {
+    result.push(style)
+  }
+
+  if (result.length > 0) {
+    return result
+  }
+}
+
+export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean): Record<string, string> | void {
+  if (supportFlexGap) {
+    return
+  }
+  if (gaps) {
+    const result: Record<string, string> = {}
+    const horizontalGap = gaps[0]
+    const verticalGap = gaps[1]
+    if (vertical) {
+      if (verticalGap > 0) {
+        result.marginBottom = toPixel(verticalGap)
+      }
+    }
+    else {
+      if (horizontalGap > 0) {
+        result.marginRight = toPixel(horizontalGap)
+      }
+      if (verticalGap > 0 && autoWrap) {
+        result.marginBottom = toPixel(verticalGap)
+      }
+    }
+    if (Yox.object.keys(result).length > 0) {
+      return result
+    }
+  }
+}

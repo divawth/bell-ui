@@ -267,10 +267,9 @@ ui-button-group-separator(hoverColor, activeColor)
       box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 {$selector-class-prefix + '-button-disabled'}
-  border-color $brand-border
   background-color $brand-bg-disabled
   color $brand-disabled
-  ui-disabled()
+  ui-disabled(true)
 
   &{$selector-class-prefix + '-button-text'},
   &{$selector-class-prefix + '-button-link'}

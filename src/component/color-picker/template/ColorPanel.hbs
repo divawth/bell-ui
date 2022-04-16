@@ -1,0 +1,100 @@
+<div
+  class="${prefix}color-picker-panel
+  {{#if className}} {{className}}{{/if}}"
+>
+  <div
+    ref="pallete"
+    class="${prefix}color-picker-pallete"
+    on-mousedown="onPalleteMouseDown()"
+  >
+    <div
+      class="${prefix}color-picker-pallete-layer"
+      style="{{palleteLayerStyle}}"
+    >
+    </div>
+    <ColorThumb
+      style="{{palleteThumbStyle}}"
+      color="{{palleteThumbColor}}"
+    />
+  </div>
+
+  <div
+    ref="hue"
+    class="${prefix}color-picker-slider ${prefix}color-picker-hue-slider"
+    on-mousedown="onHueMouseDown()"
+  >
+    <div class="${prefix}color-picker-slider-track ${prefix}color-picker-hue-slider-track"></div>
+    <ColorThumb
+      style="{{hueThumbStyle}}"
+      color="{{hueThumbColor}}"
+    />
+  </div>
+
+  {{#if showAlpha}}
+    <div
+      ref="alpha"
+      class="${prefix}color-picker-slider ${prefix}color-picker-alpha-slider"
+      on-mousedown="onAlphaMouseDown()"
+    >
+      <div class="${prefix}color-picker-slider-track ${prefix}color-picker-alpha-slider-track"></div>
+      <div
+        class="${prefix}color-picker-slider-mask"
+        style="{{alphaMaskStyle}}"
+      ></div>
+      <ColorThumb
+        style="{{alphaThumbStyle}}"
+        color="{{alphaThumbColor}}"
+      />
+    </div>
+  {{/if}}
+
+  <div class="${prefix}color-picker-mode">
+    <Button
+      size="small"
+      type="text"
+      className="${prefix}color-picker-mode-switcher"
+      on-click="modeChange.colorPanel"
+    >
+      {{formatMode(mode, showAlpha)}}
+    </Button>
+
+    {{#if mode === MODE_HEX}}
+      <HexInput
+        rgb="{{rgb}}"
+        alpha="{{showAlpha ? alpha : undefined}}"
+      />
+    {{else if mode === MODE_RGB}}
+      <RgbInput
+        rgb="{{rgb}}"
+        alpha="{{showAlpha ? alpha : undefined}}"
+      />
+    {{/if}}
+  </div>
+
+  {{#if swatches && swatches.length > 0}}
+    <div
+      class="${prefix}color-picker-swatches"
+      {{#if swatchListStyle}}
+        style="{{swatchListStyle}}"
+      {{/if}}
+    >
+      {{#each swatches}}
+        <div
+          class="${prefix}color-picker-swatch"
+          {{#if ~/swatchItemStyle}}
+            style="{{~/swatchItemStyle}}"
+          {{/if}}
+          on-click="selectColor(this)"
+        >
+          <div
+            class="${prefix}color-picker-swatch-color"
+            style="{{ {
+              backgroundColor: this
+            } }}"
+          >
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

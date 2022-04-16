@@ -26,6 +26,7 @@ import Radio from './component/radio/Radio'
 import RadioGroup from './component/radio/RadioGroup'
 import Checkbox from './component/checkbox/Checkbox'
 import CheckboxGroup from './component/checkbox/CheckboxGroup'
+import ColorPicker from './component/color-picker/ColorPicker'
 import Slider from './component/slider/Slider'
 import Space from './component/space/Space'
 import Statistic from './component/statistic/Statistic'
@@ -147,6 +148,7 @@ export function install(Yox: any) {
     RadioGroup,
     Checkbox,
     CheckboxGroup,
+    ColorPicker,
     Slider,
     Space,
     Statistic,
