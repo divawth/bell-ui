@@ -160,7 +160,6 @@ if $color-picker-thumb-size != $color-picker-slider-height
   width $color-picker-mode-switcher-width
   padding 0
   text-align left
-  ui-clickable()
 
   + div
     flex 1
@@ -198,8 +197,8 @@ if $color-picker-thumb-size != $color-picker-slider-height
   border-radius $border-radius-default
 
 {$selector-class-prefix + '-color-picker-swatch-color'}
-  width 100%
   height 100%
   border-radius $border-radius-default
   box-shadow $color-picker-inset-shadow
+  user-select none
   ui-clickable()
