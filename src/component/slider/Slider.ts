@@ -6,7 +6,7 @@ import template from './template/Slider.hbs'
 import Tooltip from '../tooltip/Tooltip'
 
 import {
-  FALSE,
+  UNDEFINED,
   DOCUMENT,
   RAW_ARRAY,
   RAW_STRING,
@@ -24,12 +24,11 @@ import {
 import {
   toPixel,
   toNumber,
-  getPageX,
-  getPageY,
 } from '../util'
 
 import {
-  fireClickEvent,
+  endDrag,
+  startDrag,
 } from '../event'
 
 function getPercentByValue(min: number, max: number, rawValue: any) {
@@ -345,105 +344,98 @@ export default Yox.define({
 
     const me = this
 
-    let isRange = FALSE
+    let element: HTMLElement | void
     let dragThumbIndex = -1
-
-    let isVertical = FALSE
-    let isReverse = FALSE
     let min = 0
     let max = 0
     let step = 0
 
-    let trackLeft = 0
-    let trackTop = 0
-    let trackRight = 0
-    let trackBottom = 0
-
     const onTrackMouseDown = function (event: CustomEventInterface) {
 
       event.stop()
-      fireClickEvent(event)
 
-      updateVariable()
+      element = me.$el
+      if (!element) {
+        return
+      }
 
-      const { pageX, pageY } = event.originalEvent as MouseEvent
-      const ratio = getRatio(pageX, pageY)
+      max = me.get('maxNumber')
+      min = me.get('minNumber')
+      step = me.get('stepNumber')
 
-      if (isRange) {
+      const ratio = getRatio(event)
+
+      dragThumbIndex = 0
+      if (me.get('isRange')) {
         // 当前坐标距离哪个 thumb 近就移动哪个
         const percent = ratio * 100
         const valuePercentArray = me.get('valuePercentArray')
 
+        if (Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)) {
+          dragThumbIndex = 1
+        }
+
         updatePosition(
           ratio,
-          Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)
-            ? 1
-            : 0
+          dragThumbIndex
         )
-
       }
       else {
         updatePosition(ratio)
       }
 
-    }
+      me.set('dragThumbIndex', dragThumbIndex)
 
-    const onThumbMouseDown = function (event: CustomEventInterface, index: number) {
+      startDrag()
 
-      event.stop()
-      me.set('dragThumbIndex', index)
-
-      updateVariable()
-
-      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove)
-      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp)
+      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onTrackMouseMove)
+      Yox.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onTrackMouseUp)
 
     }
 
-    const onThumbMouseMove = function (event: CustomEventInterface) {
-
-      const { pageX, pageY } = event.originalEvent as MouseEvent
+    const onTrackMouseMove = function (event: CustomEventInterface) {
 
       updatePosition(
-        getRatio(pageX, pageY),
+        getRatio(event),
         dragThumbIndex
       )
 
     }
 
-    const onThumbMouseUp = function () {
+    const onTrackMouseUp = function () {
 
-      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove)
-      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp)
+      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onTrackMouseMove)
+      Yox.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onTrackMouseUp)
 
       me.set('dragThumbIndex', -1)
 
+      element = UNDEFINED
+      endDrag()
+
     }
 
-    const getRatio = function (x: number, y: number) {
+    const getRatio = function (event: CustomEventInterface) {
+
+      const mouseEvent = event.originalEvent as MouseEvent
+      const rect = (element as HTMLElement).getBoundingClientRect()
 
       let ratio = 0
 
-      if (isVertical) {
-        if (y < trackTop) {
-          y = trackTop
-        }
-        else if (y > trackBottom) {
-          y = trackBottom
-        }
-        ratio = (trackBottom - y) / (trackBottom - trackTop)
+      if (me.get('vertical')) {
+        ratio = (rect.bottom - mouseEvent.clientY) / rect.height
       }
       else {
-        if (x < trackLeft) {
-          x = trackLeft
-        }
-        else if (x > trackRight) {
-          x = trackRight
-        }
-        ratio = (x - trackLeft) / (trackRight - trackLeft)
+        ratio = (mouseEvent.clientX - rect.left) / rect.width
       }
 
-      return isReverse ? (1 - ratio) : ratio
+      if (ratio < 0) {
+        ratio = 0
+      }
+      else if (ratio > 1) {
+        ratio = 1
+      }
+
+      return me.get('reverse') ? (1 - ratio) : ratio
 
     }
 
@@ -455,7 +447,7 @@ export default Yox.define({
         newValue = step * count
       }
 
-      if (isRange) {
+      if (me.get('isRange')) {
 
         me.set('innerValue.' + index, newValue)
 
@@ -482,36 +474,8 @@ export default Yox.define({
 
     }
 
-    const updateVariable = function () {
-
-      isRange = me.get('isRange')
-      dragThumbIndex = me.get('dragThumbIndex')
-
-      isVertical = me.get('vertical')
-      isReverse = me.get('reverse')
-      max = me.get('maxNumber')
-      min = me.get('minNumber')
-      step = me.get('stepNumber')
-
-      const { top, left, right, bottom } = me.$el.getBoundingClientRect()
-
-      if (isVertical) {
-        const pageY = getPageY()
-        trackTop = pageY + top
-        trackBottom = pageY + bottom
-      }
-      else {
-        const pageX = getPageX()
-        trackLeft = pageX + left
-        trackRight = pageX + right
-      }
-
-    }
-
     // @ts-ignore
     this.onTrackMouseDown = onTrackMouseDown
-    // @ts-ignore
-    this.onThumbMouseDown = onThumbMouseDown
 
   },
 

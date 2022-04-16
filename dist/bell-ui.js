@@ -284,7 +284,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-slider-bar'},$6={class:'bell-slider-stop'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_T.push(function(_S){!_r(_Q,'disabled',_U.disabled).value?_n(_S,'events','mousedown',_e('mousedown','onTrackMouseDown()','mousedown','','onTrackMouseDown')):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,nativeAttrs:$5,nativeStyles:_b(_r(_Q,'vertical',_U.vertical).value?_x(_w(_r(_Q,'formatBarStyle',_U.formatBarStyle,_H&&_H.formatBarStyle||_I.formatBarStyle).value,_G,[_r(_Q,'valuePercentArray',_U.valuePercentArray).value,_r(_Q,'reverse',_U.reverse).value,'bottom','top'])).value:_x(_w(_r(_Q,'formatBarStyle',_U.formatBarStyle,_H&&_H.formatBarStyle||_I.formatBarStyle).value,_G,[_r(_Q,'valuePercentArray',_U.valuePercentArray).value,_r(_Q,'reverse',_U.reverse).value,'left','right'])).value),operator:_B,tag:'div',type:3});_r(_Q,'showStops',_U.showStops).value?_j(_r(_Q,'stops',_U.stops),function(_Q,_U,_V,_W){_T.push({context:_G,key:_t(_Q,'value',_U.value).value,nativeAttrs:$6,nativeStyles:_b(_t(_Q,'style',_U.style).value),operator:_B,tag:'div',type:3})}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_j(_r(_Q,'valuePercentArray',_U.valuePercentArray),function(_Q,_U,_V,_W,index){_T.push({context:_G,isComponent:$3,operator:_C,props:{content:_u(_Q,0,'formatTooltip').value?_x(_w(_u(_Q,0,'formatTooltip').value,_G,[_t(_Q,'value',_U.value).value])).value:_t(_Q,'value',_U.value).value,mode:_u(_Q,0,'RAW_CUSTOM').value,placement:_u(_Q,0,'vertical').value?_u(_Q,0,'RAW_RIGHT').value:_u(_Q,0,'RAW_TOP').value},ref:'tooltip'+index,slots:{$slot_children:function(_R){var _T=[];_T.push(function(_S){!_u(_Q,0,'disabled').value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'lazy','mouseenter',200),_n(_S,'lazy','mouseleave',200),_n(_S,'events','mouseenter',_e('mouseenter','onThumbMouseEnter($event, index)','mouseenter','','onThumbMouseEnter',{execute:function(_X,_Y){return [_X,index]}})),_n(_S,'events','mouseleave',_e('mouseleave','onThumbMouseLeave($event, index)','mouseleave','','onThumbMouseLeave',{execute:function(_X,_Y){return [_X,index]}})),_n(_S,'events','mousedown',_e('mousedown','onThumbMouseDown($event, index)','mousedown','','onThumbMouseDown',{execute:function(_X,_Y){return [_X,index]}}))):$1;return _S}({context:_G,nativeAttrs:{class:'bell-slider-thumb'+(_u(_Q,0,'hoverThumbIndex').value===index?' bell-slider-thumb-hover':'')+(_u(_Q,0,'dragThumbIndex').value===index?' bell-slider-thumb-dragging':'')},nativeStyles:_b(_u(_Q,0,'vertical').value?_x(_w(_r(_Q,'formatThumbStyle',_U.formatThumbStyle,_H&&_H.formatThumbStyle||_I.formatThumbStyle).value,_G,[_t(_Q,'percent',_U.percent).value,_u(_Q,0,'reverse').value?'top':'bottom'])).value:_x(_w(_r(_Q,'formatThumbStyle',_U.formatThumbStyle,_H&&_H.formatThumbStyle||_I.formatThumbStyle).value,_G,[_t(_Q,'percent',_U.percent).value,_u(_Q,0,'reverse').value?'right':'left'])).value),operator:_B,tag:'div',type:3}));return _T.length?_T:$1}},tag:'Tooltip',type:4})});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-slider-track'},operator:_B,tag:'div',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-slider'+(_r(_Q,'vertical',_U.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_r(_Q,'disabled',_U.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_r(_Q,'block',_U.block).value?' bell-slider-block':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-slider-bar'},$6={class:'bell-slider-stop'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_T.push(function(_S){!_r(_Q,'disabled',_U.disabled).value?_n(_S,'events','mousedown',_e('mousedown','onTrackMouseDown()','mousedown','','onTrackMouseDown')):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,nativeAttrs:$5,nativeStyles:_b(_r(_Q,'vertical',_U.vertical).value?_x(_w(_r(_Q,'formatBarStyle',_U.formatBarStyle,_H&&_H.formatBarStyle||_I.formatBarStyle).value,_G,[_r(_Q,'valuePercentArray',_U.valuePercentArray).value,_r(_Q,'reverse',_U.reverse).value,'bottom','top'])).value:_x(_w(_r(_Q,'formatBarStyle',_U.formatBarStyle,_H&&_H.formatBarStyle||_I.formatBarStyle).value,_G,[_r(_Q,'valuePercentArray',_U.valuePercentArray).value,_r(_Q,'reverse',_U.reverse).value,'left','right'])).value),operator:_B,tag:'div',type:3});_r(_Q,'showStops',_U.showStops).value?_j(_r(_Q,'stops',_U.stops),function(_Q,_U,_V,_W){_T.push({context:_G,key:_t(_Q,'value',_U.value).value,nativeAttrs:$6,nativeStyles:_b(_t(_Q,'style',_U.style).value),operator:_B,tag:'div',type:3})}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_j(_r(_Q,'valuePercentArray',_U.valuePercentArray),function(_Q,_U,_V,_W,index){_T.push({context:_G,isComponent:$3,operator:_C,props:{content:_u(_Q,0,'formatTooltip').value?_x(_w(_u(_Q,0,'formatTooltip').value,_G,[_t(_Q,'value',_U.value).value])).value:_t(_Q,'value',_U.value).value,mode:_u(_Q,0,'RAW_CUSTOM').value,placement:_u(_Q,0,'vertical').value?_u(_Q,0,'RAW_RIGHT').value:_u(_Q,0,'RAW_TOP').value},ref:'tooltip'+index,slots:{$slot_children:function(_R){var _T=[];_T.push(function(_S){!_u(_Q,0,'disabled').value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'lazy','mouseenter',200),_n(_S,'lazy','mouseleave',200),_n(_S,'events','mouseenter',_e('mouseenter','onThumbMouseEnter($event, index)','mouseenter','','onThumbMouseEnter',{execute:function(_X,_Y){return [_X,index]}})),_n(_S,'events','mouseleave',_e('mouseleave','onThumbMouseLeave($event, index)','mouseleave','','onThumbMouseLeave',{execute:function(_X,_Y){return [_X,index]}}))):$1;return _S}({context:_G,nativeAttrs:{class:'bell-slider-thumb'+(_u(_Q,0,'hoverThumbIndex').value===index?' bell-slider-thumb-hover':'')+(_u(_Q,0,'dragThumbIndex').value===index?' bell-slider-thumb-dragging':'')},nativeStyles:_b(_u(_Q,0,'vertical').value?_x(_w(_r(_Q,'formatThumbStyle',_U.formatThumbStyle,_H&&_H.formatThumbStyle||_I.formatThumbStyle).value,_G,[_t(_Q,'percent',_U.percent).value,_u(_Q,0,'reverse').value?'top':'bottom'])).value:_x(_w(_r(_Q,'formatThumbStyle',_U.formatThumbStyle,_H&&_H.formatThumbStyle||_I.formatThumbStyle).value,_G,[_t(_Q,'percent',_U.percent).value,_u(_Q,0,'reverse').value?'right':'left'])).value),operator:_B,tag:'div',type:3}));return _T.length?_T:$1}},tag:'Tooltip',type:4})});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-slider-track'},operator:_B,tag:'div',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-slider'+(_r(_Q,'vertical',_U.vertical).value?' bell-slider-vertical':' bell-slider-horizontal')+(_r(_Q,'disabled',_U.disabled).value?' bell-slider-disabled':' bell-slider-enabled')+(_r(_Q,'block',_U.block).value?' bell-slider-block':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
 
 /***/ }),
 /* 32 */
@@ -5189,72 +5189,66 @@ function getPercentByValue(min, max, rawValue) {
     },
     afterMount: function () {
         var me = this;
-        var isRange = FALSE;
+        var element;
         var dragThumbIndex = -1;
-        var isVertical = FALSE;
-        var isReverse = FALSE;
         var min = 0;
         var max = 0;
         var step = 0;
-        var trackLeft = 0;
-        var trackTop = 0;
-        var trackRight = 0;
-        var trackBottom = 0;
         var onTrackMouseDown = function (event) {
             event.stop();
-            fireClickEvent(event);
-            updateVariable();
-            var _a = event.originalEvent, pageX = _a.pageX, pageY = _a.pageY;
-            var ratio = getRatio(pageX, pageY);
-            if (isRange) {
+            element = me.$el;
+            if (!element) {
+                return;
+            }
+            max = me.get('maxNumber');
+            min = me.get('minNumber');
+            step = me.get('stepNumber');
+            var ratio = getRatio(event);
+            dragThumbIndex = 0;
+            if (me.get('isRange')) {
                 // 当前坐标距离哪个 thumb 近就移动哪个
                 var percent = ratio * 100;
                 var valuePercentArray = me.get('valuePercentArray');
-                updatePosition(ratio, Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)
-                    ? 1
-                    : 0);
+                if (Math.abs(valuePercentArray[0].percent - percent) > Math.abs(valuePercentArray[1].percent - percent)) {
+                    dragThumbIndex = 1;
+                }
+                updatePosition(ratio, dragThumbIndex);
             }
             else {
                 updatePosition(ratio);
             }
+            me.set('dragThumbIndex', dragThumbIndex);
+            startDrag();
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onTrackMouseMove);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onTrackMouseUp);
         };
-        var onThumbMouseDown = function (event, index) {
-            event.stop();
-            me.set('dragThumbIndex', index);
-            updateVariable();
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove);
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp);
+        var onTrackMouseMove = function (event) {
+            updatePosition(getRatio(event), dragThumbIndex);
         };
-        var onThumbMouseMove = function (event) {
-            var _a = event.originalEvent, pageX = _a.pageX, pageY = _a.pageY;
-            updatePosition(getRatio(pageX, pageY), dragThumbIndex);
-        };
-        var onThumbMouseUp = function () {
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onThumbMouseMove);
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onThumbMouseUp);
+        var onTrackMouseUp = function () {
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_MOUSEMOVE, onTrackMouseMove);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.off(DOCUMENT, RAW_EVENT_MOUSEUP, onTrackMouseUp);
             me.set('dragThumbIndex', -1);
+            element = UNDEFINED;
+            endDrag();
         };
-        var getRatio = function (x, y) {
+        var getRatio = function (event) {
+            var mouseEvent = event.originalEvent;
+            var rect = element.getBoundingClientRect();
             var ratio = 0;
-            if (isVertical) {
-                if (y < trackTop) {
-                    y = trackTop;
-                }
-                else if (y > trackBottom) {
-                    y = trackBottom;
-                }
-                ratio = (trackBottom - y) / (trackBottom - trackTop);
+            if (me.get('vertical')) {
+                ratio = (rect.bottom - mouseEvent.clientY) / rect.height;
             }
             else {
-                if (x < trackLeft) {
-                    x = trackLeft;
-                }
-                else if (x > trackRight) {
-                    x = trackRight;
-                }
-                ratio = (x - trackLeft) / (trackRight - trackLeft);
+                ratio = (mouseEvent.clientX - rect.left) / rect.width;
             }
-            return isReverse ? (1 - ratio) : ratio;
+            if (ratio < 0) {
+                ratio = 0;
+            }
+            else if (ratio > 1) {
+                ratio = 1;
+            }
+            return me.get('reverse') ? (1 - ratio) : ratio;
         };
         var updatePosition = function (ratio, index) {
             var newValue = (max - min) * ratio + min;
@@ -5262,7 +5256,7 @@ function getPercentByValue(min, max, rawValue) {
                 var count = Math.round(newValue / step);
                 newValue = step * count;
             }
-            if (isRange) {
+            if (me.get('isRange')) {
                 me.set('innerValue.' + index, newValue);
                 var value = me.copy(me.get('innerValue'));
                 // 交换值
@@ -5280,30 +5274,8 @@ function getPercentByValue(min, max, rawValue) {
                 });
             }
         };
-        var updateVariable = function () {
-            isRange = me.get('isRange');
-            dragThumbIndex = me.get('dragThumbIndex');
-            isVertical = me.get('vertical');
-            isReverse = me.get('reverse');
-            max = me.get('maxNumber');
-            min = me.get('minNumber');
-            step = me.get('stepNumber');
-            var _a = me.$el.getBoundingClientRect(), top = _a.top, left = _a.left, right = _a.right, bottom = _a.bottom;
-            if (isVertical) {
-                var pageY = getPageY();
-                trackTop = pageY + top;
-                trackBottom = pageY + bottom;
-            }
-            else {
-                var pageX = getPageX();
-                trackLeft = pageX + left;
-                trackRight = pageX + right;
-            }
-        };
         // @ts-ignore
         this.onTrackMouseDown = onTrackMouseDown;
-        // @ts-ignore
-        this.onThumbMouseDown = onThumbMouseDown;
     },
     components: {
         Tooltip: tooltip_Tooltip,
