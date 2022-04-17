@@ -6,14 +6,10 @@
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
-      <TimePicker
-        on-change="change()"
-      />
-    </div>
+    <TimePicker
+      on-change="change()"
+    />
   `,
   methods: {
     change(_, data) {
@@ -27,15 +23,11 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
-      <TimePicker
-        clearable
-        block
-      />
-    </div>
+    <TimePicker
+      clearable
+      block
+    />
   `,
 }
 ```
@@ -44,10 +36,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
+    <div>
       <TimePicker
         status="info"
       />
@@ -72,14 +62,10 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
-      <TimePicker
-        format="HH:mm"
-      />
-    </div>
+    <TimePicker
+      format="HH:mm"
+    />
   `,
 }
 ```
@@ -88,10 +74,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px">
+    <div>
       <TimePicker size="small" placeholder="Select time" />
       <br><br>
       <TimePicker placeholder="Select time" />
@@ -111,13 +95,13 @@ export default {
 size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 format | 日期显示格式 | string | - | `HH:mm:ss`
-placement | 日期选择器出现的位置 | string | `bottom-start`
-placeholder | 占位文本 | string | -
-disabled | 禁用后无法再选择 | boolean | -
+placement | 日期选择器出现的位置 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom-start`
+placeholder | 占位文本 | string | - | -
+disabled | 禁用后无法再选择 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
-defaultValue | 默认显示视图的时间 | Date、number | -
-clearable | 是否显示清除按钮 | boolean | -
-width | 宽度 | numeric | -
+defaultValue | 默认显示视图的时间 | Date、number | - | -
+clearable | 是否显示清除按钮 | boolean | - | -
+width | 宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

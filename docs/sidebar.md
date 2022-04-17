@@ -33,6 +33,7 @@
   - [Slider 滑块](form/slider)
   - [DatePicker 日期选择器](form/datepicker)
   - [TimePicker 时间选择器](form/timepicker)
+  - [ColorPicker 颜色选择器](form/colorpicker)
   - [InputNumber 数字输入框](form/inputnumber)
   - [Rate 评分](form/rate)
   - [Form 表单](form/form)
@@ -65,6 +66,7 @@
   - [Exception 异常页](view/exception)
   - [Timeline 时间轴](view/timeline)
   - [Countdown 倒计时](view/countdown)
+  - [Closeable 可关闭](view/closeable)
   - [Add 添加](view/add)
 
 - [其它](layout)

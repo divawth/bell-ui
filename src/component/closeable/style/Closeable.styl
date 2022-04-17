@@ -4,6 +4,11 @@ $closeable-icon-size = 20px
   display inline-block
   position relative
 
+{$selector-class-prefix + '-closeable-show-always'},
+{$selector-class-prefix + '-closeable-show-hover'}:hover
+  > {$selector-class-prefix + '-closeable-icon'}
+    display block
+
 {$selector-class-prefix + '-closeable-icon'}
   display none
   color $brand-clear-icon-color

@@ -1,5 +1,8 @@
 <div
 class="${prefix}closeable
+{{#if showClose === RAW_ALWAYS}} ${prefix}closeable-show-always
+{{else if showClose === RAW_HOVER}} ${prefix}closeable-show-hover
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if draggable}}
@@ -11,7 +14,7 @@ class="${prefix}closeable
 {{/if}}
 >
   <slot />
-  {{#if showClose}}
+  {{#if needClose}}
     <Icon
       className="${prefix}closeable-icon"
       name="close-circle-fill"

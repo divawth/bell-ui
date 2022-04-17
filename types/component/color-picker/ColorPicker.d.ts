@@ -4,6 +4,7 @@ declare const _default: import("yox").ComponentOptions<{
     colorValue: unknown;
 }, {
     value: unknown;
+    showAlpha: unknown;
 }, {
     outside: unknown;
     hsvChange: unknown;

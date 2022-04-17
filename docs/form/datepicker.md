@@ -6,10 +6,8 @@
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
+    <div>
       <DatePicker
         model="value"
         type="date"
@@ -39,8 +37,6 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
     <DatePicker
       model="value"
@@ -57,10 +53,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
+    <div>
       <DatePicker
         status="info"
         placeholder="Select date"
@@ -89,10 +83,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px">
+    <div>
       <DatePicker
         type="date"
         shortcuts="{{shortcuts1}}"
@@ -174,10 +166,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 400px;">
+    <div>
       <DatePicker
         splitPanel
         type="dateRange"
@@ -192,10 +182,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 500,
   template: `
-    <div style="height: 450px;">
+    <div>
       <DatePicker
         multiple
         type="date"
@@ -224,10 +212,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 600,
   template: `
-    <div style="height: 550px;">
+    <div>
       <DatePicker
         type="date"
         defaultDate="{{defaultDate}}"
@@ -280,10 +266,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 600,
   template: `
-    <div style="height: 550px">
+    <div>
       <DatePicker
         value="{{value1}}"
         format="yyyy年MM月dd日"
@@ -341,10 +325,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 350px">
+    <div>
       <DatePicker
         type="date"
         disabledDate="{{disabledDate1}}"
@@ -379,10 +361,8 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 400,
   template: `
-    <div style="height: 350px">
+    <div>
       <DatePicker size="small" type="date" placeholder="Select date" />
       <br><br>
       <DatePicker type="date" placeholder="Select date" />
@@ -404,17 +384,17 @@ size | 大小 | string | `default`, `small`, `large` | `default`
 status | 状态 | string | `info`, `warning`, `success`, `error` | -
 value | 日期 | Date | - | -
 format | 日期显示格式 | string | - | `yyyy-MM-dd`
-placement | 日期选择器出现的位置 | string | `bottom-start`
-placeholder | 占位文本 | string | -
-splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | -
-multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | -
-disabled | 禁用后无法再选择 | boolean | -
+placement | 日期选择器出现的位置 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom-start`
+placeholder | 占位文本 | string | - | -
+splitPanel | 开启后，左右面板不联动，仅在 `dateRange` 下可用 | boolean | - | -
+multiple | 开启后，可以选择多个日期，仅在 `date` 下可用 | boolean | - | -
+disabled | 禁用后无法再选择 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
-shortcuts | 快捷方式 | Array | -
-defaultDate | 默认显示视图的日期 | Date | -
-disabledDate | 不可选择的日期 | Function | -
-clearable | 是否显示清除按钮 | boolean | -
-width | 宽度 | numeric | -
+shortcuts | 快捷方式 | Array | - | -
+defaultDate | 默认显示视图的日期 | Date | - | -
+disabledDate | 不可选择的日期 | Function | - | -
+clearable | 是否显示清除按钮 | boolean | - | -
+width | 宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

@@ -167,6 +167,13 @@ export default Yox.define({
     value(value: string) {
       // @ts-ignore
       this.setColor(value)
+    },
+    showAlpha() {
+      this.set({
+        alpha: 1,
+      })
+      // @ts-ignore
+      this.fireChange()
     }
   },
 

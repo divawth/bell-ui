@@ -14,7 +14,7 @@ class="${prefix}image-picker
     {{#each imageList:index}}
       <Closeable
         key="{{this.id}}"
-        showClose="{{!~/readOnly && ~/draggingIndex < 0}}"
+        needClose="{{!~/readOnly && ~/draggingIndex < 0}}"
         draggable="{{~/canDraggable}}"
         on-close="removeItem($event, index)"
         on-mouseenter.native="handleMouseEnter(index)"
