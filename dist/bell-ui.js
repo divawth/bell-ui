@@ -3972,7 +3972,7 @@ function normalizeHue(hue) {
 }
 // 0 ≤ saturation ≤ 1
 function normalizeSaturation(saturation) {
-    return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation);
+    return saturation > 1 ? 1 : saturation < 0 ? 0 : saturation;
 }
 // 0 ≤ value ≤ 1
 function normalizeValue(value) {
@@ -3999,8 +3999,6 @@ function getModeByColor(color) {
     }
 }
 function hsv2rgb(h, s, v) {
-    s /= 100;
-    v /= 100;
     var r = 0;
     var g = 0;
     var b = 0;
@@ -4080,8 +4078,8 @@ function rgb2hsv(r, g, b) {
     }
     return [
         h,
-        s * 100,
-        v * 100,
+        s,
+        v,
     ];
 }
 /**
@@ -4426,8 +4424,8 @@ var swatchGaps = [10, 8];
             var saturation = this.get('saturation');
             var value = this.get('value');
             return {
-                left: saturation + "%",
-                bottom: value + "%",
+                left: saturation * 100 + "%",
+                bottom: value * 100 + "%",
             };
         },
         palleteThumbColor: function () {
@@ -4439,7 +4437,7 @@ var swatchGaps = [10, 8];
         hueThumbStyle: function () {
             var hue = this.get('hue');
             return {
-                left: (hue / 359) * 100 + "%",
+                left: (hue / 359.9999) * 100 + "%",
             };
         },
         hueThumbColor: function () {

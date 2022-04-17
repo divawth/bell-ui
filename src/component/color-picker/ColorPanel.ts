@@ -101,8 +101,8 @@ export default Yox.define({
       const saturation = this.get('saturation')
       const value = this.get('value')
       return {
-        left: `${saturation}%`,
-        bottom: `${value}%`,
+        left: `${saturation * 100}%`,
+        bottom: `${value * 100}%`,
       }
     },
     palleteThumbColor() {
@@ -114,7 +114,7 @@ export default Yox.define({
     hueThumbStyle() {
       const hue = this.get('hue')
       return {
-        left: `${(hue / 359) * 100}%`,
+        left: `${(hue / 359.9999) * 100}%`,
       }
     },
     hueThumbColor() {
@@ -175,7 +175,6 @@ export default Yox.define({
           color,
         }
       )
-
     },
   },
 

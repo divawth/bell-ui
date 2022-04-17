@@ -10,12 +10,12 @@ export function normalizeHue(hue: number) {
   return 359.9999 * (hue > 1 ? 1 : hue < 0 ? 0 : hue)
 }
 
-// 0 ≤ saturation ≤ 100
+// 0 ≤ saturation ≤ 1
 export function normalizeSaturation(saturation: number) {
-  return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation)
+  return saturation > 1 ? 1 : saturation < 0 ? 0 : saturation
 }
 
-// 0 ≤ value ≤ 100
+// 0 ≤ value ≤ 1
 export function normalizeValue(value: number) {
   return normalizeSaturation(value)
 }
@@ -44,9 +44,6 @@ export function getModeByColor(color: string) {
 }
 
 export function hsv2rgb(h: number, s: number, v: number) {
-
-	s /= 100
-	v /= 100
 
 	let r = 0
 	let g = 0
@@ -135,8 +132,8 @@ export function rgb2hsv(r: number, g: number, b: number) {
 
   return [
     h,
-    s * 100,
-    v * 100,
+    s,
+    v,
   ]
 }
 
