@@ -23,7 +23,7 @@ import {
 import {
   MODE_HEX,
   MODE_RGB,
-  formatRgb,
+  stringifyRgb,
   normalizeAlpha,
   normalizeHue,
   normalizeSaturation,
@@ -108,7 +108,7 @@ export default Yox.define({
     palleteThumbColor() {
       const rgb = this.get('rgb')
       if (rgb) {
-        return formatRgb(rgb)
+        return stringifyRgb(rgb)
       }
     },
     hueThumbStyle() {
@@ -125,7 +125,7 @@ export default Yox.define({
       const rgb = this.get('rgb')
       if (rgb) {
         return {
-          backgroundImage: `linear-gradient(to right, ${formatRgb(rgb, 0)} 0%, ${formatRgb(rgb, 1)} 100%)`
+          backgroundImage: `linear-gradient(to right, ${stringifyRgb(rgb, 0)} 0%, ${stringifyRgb(rgb, 1)} 100%)`
         }
       }
     },
@@ -139,7 +139,7 @@ export default Yox.define({
       const rgb = this.get('rgb')
       if (rgb) {
         const alpha = this.get('alpha')
-        return formatRgb(rgb, alpha)
+        return stringifyRgb(rgb, alpha)
       }
     },
     swatchListStyle(): object[] | void {
@@ -259,7 +259,7 @@ export default Yox.define({
       const mouseEvent = event.originalEvent as MouseEvent
       const rect = (hueEl as HTMLElement).getBoundingClientRect()
 
-      const hue = ((mouseEvent.clientX - rect.left) / rect.width) * 360
+      const hue = (mouseEvent.clientX - rect.left) / rect.width
 
       me.fire(
         {

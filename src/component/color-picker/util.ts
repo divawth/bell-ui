@@ -1,4 +1,4 @@
-import { DOCUMENT, NULL, UNDEFINED } from '../constant'
+import { DOCUMENT, NULL } from '../constant'
 import { toNumber } from '../util'
 
 export const MODE_HEX = 'hex'
@@ -7,37 +7,21 @@ export const COLOR_DEFAULT = '#000'
 
 // 0 ≤ hue ＜ 360
 export function normalizeHue(hue: number) {
-  return hue >= 360 ? 359 : hue < 0 ? 0 : Math.round(hue)
+  return 359.9999 * (hue > 1 ? 1 : hue < 0 ? 0 : hue)
 }
 
-// 0 ≤ saturation ≤ 1
+// 0 ≤ saturation ≤ 100
 export function normalizeSaturation(saturation: number) {
-  return Math.round(100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation))
+  return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation)
 }
 
-// 0 ≤ value ≤ 1
+// 0 ≤ value ≤ 100
 export function normalizeValue(value: number) {
   return normalizeSaturation(value)
 }
 
 export function normalizeAlpha(alpha: number) {
-  return alpha > 1 ? 1 : alpha < 0 ? 0 : (Math.floor(alpha * 100) / 100)
-}
-
-export function formatRgb(rgb: number[], alpha: number | void) {
-
-  const separator = ', '
-
-  let name = 'rgb'
-  let value = rgb.join(separator)
-
-  if (alpha != NULL) {
-    name = 'rgba'
-    value += separator + alpha
-  }
-
-  return `${name}(${value})`
-
+  return alpha > 1 ? 1 : alpha < 0 ? 0 : alpha
 }
 
 export function getColorByName(color: string) {
@@ -113,9 +97,9 @@ export function hsv2rgb(h: number, s: number, v: number) {
 	}
 
 	return [
-    Math.round(r * 255),
-    Math.round(g * 255),
-    Math.round(b * 255)
+    r * 255,
+    g * 255,
+    b * 255
   ]
 
 }
@@ -150,9 +134,9 @@ export function rgb2hsv(r: number, g: number, b: number) {
   }
 
   return [
-    Math.round(h),
-    Math.round(s * 100),
-    Math.round(v * 100)
+    h,
+    s * 100,
+    v * 100,
   ]
 }
 
@@ -191,7 +175,7 @@ export function hex2rgb(hex: string) {
   }
 
   if (hex.length === 4) {
-    alpha = parseInt(hex.slice(3, 4).repeat(2), 16) / 255
+    alpha = parseInt(new Array(3).join(hex.slice(3, 4)), 16) / 255
     hex = hex.slice(0, 3)
   }
 
@@ -212,7 +196,27 @@ export function hex2rgb(hex: string) {
   return rgb
 }
 
-function rgba(rgb: string) {
+export function stringifyRgb(rgb: number[], alpha: number | void) {
+
+  const separator = ', '
+
+  let name = 'rgb'
+  let value = [
+    Math.floor(rgb[0]),
+    Math.floor(rgb[1]),
+    Math.floor(rgb[2]),
+  ].join(separator)
+
+  if (typeof alpha === 'number') {
+    name = 'rgba'
+    value += separator + (Math.floor(alpha * 100) / 100)
+  }
+
+  return `${name}(${value})`
+
+}
+
+function parseRgb(rgb: string) {
   return rgb.replace(/ *rgba?\(([^)]+)\) */i, '$1').split(',').map(
     function (value: string) {
       return toNumber(value)
@@ -223,15 +227,14 @@ function rgba(rgb: string) {
 const converts = {
   rgb: {
     hex(color: string) {
-      const value = rgba(color)
+      const value = parseRgb(color)
       return rgb2hex(value[0], value[1], value[2], value[3])
     }
   },
   hex: {
     rgb(color: string) {
       const rgba = hex2rgb(color)
-      const alpha = rgba.length === 4 ? rgba.pop() : UNDEFINED
-      return formatRgb(rgba, alpha)
+      return stringifyRgb(rgba, rgba[4])
     }
   },
 }
@@ -254,12 +257,12 @@ export function parseColor(value: string, alphaEnabled: boolean) {
     color = converts[mode][MODE_RGB](value)
   }
 
-  const array = rgba(color)
-  const hsv = rgb2hsv(array[0], array[1], array[2])
+  const rgba = parseRgb(color)
+  const hsv = rgb2hsv(rgba[0], rgba[1], rgba[2])
 
   return {
     hsv,
-    rgb: [array[0], array[1], array[2]],
-    alpha: alphaEnabled && array[3] != NULL ? array[3] : 1,
+    rgb: [rgba[0], rgba[1], rgba[2]],
+    alpha: alphaEnabled && rgba[3] != NULL ? rgba[3] : 1,
   }
 }

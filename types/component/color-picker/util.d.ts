@@ -5,7 +5,6 @@ export declare function normalizeHue(hue: number): number;
 export declare function normalizeSaturation(saturation: number): number;
 export declare function normalizeValue(value: number): number;
 export declare function normalizeAlpha(alpha: number): number;
-export declare function formatRgb(rgb: number[], alpha: number | void): string;
 export declare function getColorByName(color: string): string;
 export declare function getModeByColor(color: string): "rgb" | "hex";
 export declare function hsv2rgb(h: number, s: number, v: number): number[];
@@ -25,6 +24,7 @@ export declare function rgb2hex(r: number, g: number, b: number, a: number | voi
  * @param {string} hex hex颜色值 eg: #000、#325312、#b2c343
  */
 export declare function hex2rgb(hex: string): number[];
+export declare function stringifyRgb(rgb: number[], alpha: number | void): string;
 export declare function parseColor(value: string, alphaEnabled: boolean): {
     hsv: number[];
     rgb: any[];

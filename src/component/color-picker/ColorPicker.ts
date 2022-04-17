@@ -7,6 +7,7 @@ import Popover from '../popover/Popover'
 import ColorPanel from './ColorPanel'
 
 import {
+  TRUE,
   FALSE,
   UNDEFINED,
   RAW_ARRAY,
@@ -28,7 +29,7 @@ import {
 import {
   rgb2hex,
   hsv2rgb,
-  formatRgb,
+  stringifyRgb,
   parseColor,
   MODE_HEX,
   MODE_RGB,
@@ -136,7 +137,7 @@ export default Yox.define({
       if (rgb) {
         const alpha = this.get('alpha')
         return {
-          backgroundColor: formatRgb(rgb, alpha),
+          backgroundColor: stringifyRgb(rgb, alpha),
         }
       }
     },
@@ -154,7 +155,7 @@ export default Yox.define({
         return rgb2hex(rgb[0], rgb[1], rgb[2], alpha)
       }
       else if (mode === MODE_RGB) {
-        return formatRgb(rgb, alpha)
+        return stringifyRgb(rgb, alpha)
       }
 
       return ''
@@ -200,7 +201,10 @@ export default Yox.define({
 
       event.stop()
       // @ts-ignore
-      this.setColor(data.color)
+      if (this.setColor(data.color)) {
+        // @ts-ignore
+        this.fireChange()
+      }
 
     },
     alphaChange: {
@@ -241,14 +245,24 @@ export default Yox.define({
 
   methods: {
     setColor(value: string) {
+
       const { rgb, hsv, alpha } = parseColor(value, this.get('showAlpha'))
+      const oldRgb = this.get('rgb')
+
+      // hex 转 hsv，有时因为精度会导致值不一样
+      // 这里用 rgb 判断一下，如果新旧值相同，则不再转 hsv
+      if (rgb2hex(rgb[0], rgb[1], rgb[2]) === rgb2hex(oldRgb[0], oldRgb[1], oldRgb[2])) {
+        return
+      }
+
       this.set({
         rgb,
         hsv,
         alpha,
       })
-      // @ts-ignore
-      this.fireChange()
+
+      return TRUE
+
     },
     fireChange() {
       const value = this.get('colorValue')

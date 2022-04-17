@@ -6,14 +6,13 @@ import Input from '../input/Input'
 
 import {
   TRUE,
-  NULL,
   UNDEFINED,
   RAW_ARRAY,
   RAW_NUMBER,
 } from '../constant'
 
 import {
-  formatRgb,
+  stringifyRgb,
   getColorByName,
 } from './util'
 
@@ -47,6 +46,24 @@ export default Yox.define({
   },
 
   computed: {
+    red() {
+      const rgb = this.get('rgb')
+      return rgb
+        ? toString(Math.floor(rgb[0]))
+        : ''
+    },
+    green() {
+      const rgb = this.get('rgb')
+      return rgb
+        ? toString(Math.floor(rgb[1]))
+        : ''
+    },
+    blue() {
+      const rgb = this.get('rgb')
+      return rgb
+        ? toString(Math.floor(rgb[2]))
+        : ''
+    },
     alphaPercent() {
       const alpha = this.get('alpha')
       if (typeof alpha === 'number') {
@@ -78,7 +95,7 @@ export default Yox.define({
 
       const alphaMatch = alphaText.match(/\s*(\d+)%\s*/)
 
-      const rgb = formatRgb(
+      const rgb = stringifyRgb(
         [
           toNumber(redText),
           toNumber(greenText),
@@ -103,11 +120,11 @@ export default Yox.define({
 
     this.watch(
       'rgb',
-      function (rgb) {
+      function () {
         this.set({
-          redText: rgb ? toString(rgb[0]) : '',
-          greenText: rgb ? toString(rgb[1]) : '',
-          blueText: rgb ? toString(rgb[2]) : '',
+          redText: this.get('red'),
+          greenText: this.get('green'),
+          blueText: this.get('blue'),
         })
       },
       TRUE

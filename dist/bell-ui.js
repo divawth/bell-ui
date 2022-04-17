@@ -278,7 +278,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return functio
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-color-picker-rgb-input'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'redText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'redText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_q(_Q,_Q.length-1,'rgb.0',$3).value},tag:'Input',type:4});_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'greenText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'greenText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_q(_Q,_Q.length-1,'rgb.1',$3).value},tag:'Input',type:4});_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'blueText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'blueText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_q(_Q,_Q.length-1,'rgb.2',$3).value},tag:'Input',type:4});_r(_Q,'alpha',_U.alpha).value!=$2?_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'alphaText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'alphaText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_r(_Q,'alphaPercent',_U.alphaPercent).value},tag:'Input',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'div',type:3})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-color-picker-rgb-input'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'redText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'redText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_r(_Q,'red',_U.red).value},tag:'Input',type:4});_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'greenText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'greenText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_r(_Q,'green',_U.green).value},tag:'Input',type:4});_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'blueText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'blueText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_r(_Q,'blue',_U.blue).value},tag:'Input',type:4});_r(_Q,'alpha',_U.alpha).value!=$2?_T.push({context:_G,events:{blur:_e('blur','onSubmit()','blur','','onSubmit',$1,$3),change:_e('change',"onChange($event, 'alphaText', $data.value)",'change','','onChange',{execute:function(_X,_Y){return [_X,'alphaText',_Y.value]}},$3),enter:_e('enter','onSubmit()','enter','','onSubmit',$1,$3)},isComponent:$3,operator:_C,props:{align:'center',block:$3,size:'small',value:_r(_Q,'alphaPercent',_U.alphaPercent).value},tag:'Input',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'div',type:3})}})();
 
 /***/ }),
 /* 31 */
@@ -3968,28 +3968,18 @@ var MODE_RGB = 'rgb';
 var COLOR_DEFAULT = '#000';
 // 0 ≤ hue ＜ 360
 function normalizeHue(hue) {
-    return hue >= 360 ? 359 : hue < 0 ? 0 : Math.round(hue);
+    return 359.9999 * (hue > 1 ? 1 : hue < 0 ? 0 : hue);
 }
 // 0 ≤ saturation ≤ 1
 function normalizeSaturation(saturation) {
-    return Math.round(100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation));
+    return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation);
 }
 // 0 ≤ value ≤ 1
 function normalizeValue(value) {
     return normalizeSaturation(value);
 }
 function normalizeAlpha(alpha) {
-    return alpha > 1 ? 1 : alpha < 0 ? 0 : (Math.floor(alpha * 100) / 100);
-}
-function formatRgb(rgb, alpha) {
-    var separator = ', ';
-    var name = 'rgb';
-    var value = rgb.join(separator);
-    if (alpha != NULL) {
-        name = 'rgba';
-        value += separator + alpha;
-    }
-    return name + "(" + value + ")";
+    return alpha > 1 ? 1 : alpha < 0 ? 0 : alpha;
 }
 function getColorByName(color) {
     var ctx = DOCUMENT
@@ -4058,9 +4048,9 @@ function hsv2rgb(h, s, v) {
         }
     }
     return [
-        Math.floor(r * 255),
-        Math.floor(g * 255),
-        Math.floor(b * 255)
+        r * 255,
+        g * 255,
+        b * 255
     ];
 }
 function rgb2hsv(r, g, b) {
@@ -4089,9 +4079,9 @@ function rgb2hsv(r, g, b) {
         h = 60 * ((r - g) / diff) + 240;
     }
     return [
-        Math.floor(h),
-        Math.floor(s * 100),
-        Math.floor(v * 100)
+        h,
+        s * 100,
+        v * 100,
     ];
 }
 /**
@@ -4124,7 +4114,7 @@ function hex2rgb(hex) {
         hex = hex.slice(0, 6);
     }
     if (hex.length === 4) {
-        alpha = parseInt(hex.slice(3, 4).repeat(2), 16) / 255;
+        alpha = parseInt(new Array(3).join(hex.slice(3, 4)), 16) / 255;
         hex = hex.slice(0, 3);
     }
     if (hex.length === 3) {
@@ -4140,7 +4130,21 @@ function hex2rgb(hex) {
     }
     return rgb;
 }
-function util_rgba(rgb) {
+function stringifyRgb(rgb, alpha) {
+    var separator = ', ';
+    var name = 'rgb';
+    var value = [
+        Math.floor(rgb[0]),
+        Math.floor(rgb[1]),
+        Math.floor(rgb[2]),
+    ].join(separator);
+    if (typeof alpha === 'number') {
+        name = 'rgba';
+        value += separator + (Math.floor(alpha * 100) / 100);
+    }
+    return name + "(" + value + ")";
+}
+function parseRgb(rgb) {
     return rgb.replace(/ *rgba?\(([^)]+)\) */i, '$1').split(',').map(function (value) {
         return toNumber(value);
     });
@@ -4148,15 +4152,14 @@ function util_rgba(rgb) {
 var converts = {
     rgb: {
         hex: function (color) {
-            var value = util_rgba(color);
+            var value = parseRgb(color);
             return rgb2hex(value[0], value[1], value[2], value[3]);
         }
     },
     hex: {
         rgb: function (color) {
             var rgba = hex2rgb(color);
-            var alpha = rgba.length === 4 ? rgba.pop() : UNDEFINED;
-            return formatRgb(rgba, alpha);
+            return stringifyRgb(rgba, rgba[4]);
         }
     },
 };
@@ -4175,12 +4178,12 @@ function parseColor(value, alphaEnabled) {
     if (mode !== MODE_RGB) {
         color = converts[mode][MODE_RGB](value);
     }
-    var array = util_rgba(color);
-    var hsv = rgb2hsv(array[0], array[1], array[2]);
+    var rgba = parseRgb(color);
+    var hsv = rgb2hsv(rgba[0], rgba[1], rgba[2]);
     return {
         hsv: hsv,
-        rgb: [array[0], array[1], array[2]],
-        alpha: alphaEnabled && array[3] != NULL ? array[3] : 1,
+        rgb: [rgba[0], rgba[1], rgba[2]],
+        alpha: alphaEnabled && rgba[3] != NULL ? rgba[3] : 1,
     };
 }
 
@@ -4282,6 +4285,24 @@ var RgbInput_default = /*#__PURE__*/__webpack_require__.n(RgbInput);
         };
     },
     computed: {
+        red: function () {
+            var rgb = this.get('rgb');
+            return rgb
+                ? util_toString(Math.floor(rgb[0]))
+                : '';
+        },
+        green: function () {
+            var rgb = this.get('rgb');
+            return rgb
+                ? util_toString(Math.floor(rgb[1]))
+                : '';
+        },
+        blue: function () {
+            var rgb = this.get('rgb');
+            return rgb
+                ? util_toString(Math.floor(rgb[2]))
+                : '';
+        },
         alphaPercent: function () {
             var alpha = this.get('alpha');
             if (typeof alpha === 'number') {
@@ -4308,7 +4329,7 @@ var RgbInput_default = /*#__PURE__*/__webpack_require__.n(RgbInput);
                 return;
             }
             var alphaMatch = alphaText.match(/\s*(\d+)%\s*/);
-            var rgb = formatRgb([
+            var rgb = stringifyRgb([
                 toNumber(redText),
                 toNumber(greenText),
                 toNumber(blueText),
@@ -4322,11 +4343,11 @@ var RgbInput_default = /*#__PURE__*/__webpack_require__.n(RgbInput);
         },
     },
     afterMount: function () {
-        this.watch('rgb', function (rgb) {
+        this.watch('rgb', function () {
             this.set({
-                redText: rgb ? util_toString(rgb[0]) : '',
-                greenText: rgb ? util_toString(rgb[1]) : '',
-                blueText: rgb ? util_toString(rgb[2]) : '',
+                redText: this.get('red'),
+                greenText: this.get('green'),
+                blueText: this.get('blue'),
             });
         }, TRUE);
         this.watch('alpha', function () {
@@ -4412,7 +4433,7 @@ var swatchGaps = [10, 8];
         palleteThumbColor: function () {
             var rgb = this.get('rgb');
             if (rgb) {
-                return formatRgb(rgb);
+                return stringifyRgb(rgb);
             }
         },
         hueThumbStyle: function () {
@@ -4429,7 +4450,7 @@ var swatchGaps = [10, 8];
             var rgb = this.get('rgb');
             if (rgb) {
                 return {
-                    backgroundImage: "linear-gradient(to right, " + formatRgb(rgb, 0) + " 0%, " + formatRgb(rgb, 1) + " 100%)"
+                    backgroundImage: "linear-gradient(to right, " + stringifyRgb(rgb, 0) + " 0%, " + stringifyRgb(rgb, 1) + " 100%)"
                 };
             }
         },
@@ -4443,7 +4464,7 @@ var swatchGaps = [10, 8];
             var rgb = this.get('rgb');
             if (rgb) {
                 var alpha = this.get('alpha');
-                return formatRgb(rgb, alpha);
+                return stringifyRgb(rgb, alpha);
             }
         },
         swatchListStyle: function () {
@@ -4518,7 +4539,7 @@ var swatchGaps = [10, 8];
         var onHueMouseMove = function (event) {
             var mouseEvent = event.originalEvent;
             var rect = hueEl.getBoundingClientRect();
-            var hue = ((mouseEvent.clientX - rect.left) / rect.width) * 360;
+            var hue = (mouseEvent.clientX - rect.left) / rect.width;
             me.fire({
                 type: 'hsvChange',
                 ns: 'colorPanel',
@@ -4672,7 +4693,7 @@ var swatchGaps = [10, 8];
             if (rgb) {
                 var alpha = this.get('alpha');
                 return {
-                    backgroundColor: formatRgb(rgb, alpha),
+                    backgroundColor: stringifyRgb(rgb, alpha),
                 };
             }
         },
@@ -4688,7 +4709,7 @@ var swatchGaps = [10, 8];
                 return rgb2hex(rgb[0], rgb[1], rgb[2], alpha);
             }
             else if (mode === MODE_RGB) {
-                return formatRgb(rgb, alpha);
+                return stringifyRgb(rgb, alpha);
             }
             return '';
         }
@@ -4728,7 +4749,10 @@ var swatchGaps = [10, 8];
             }
             event.stop();
             // @ts-ignore
-            this.setColor(data.color);
+            if (this.setColor(data.color)) {
+                // @ts-ignore
+                this.fireChange();
+            }
         },
         alphaChange: {
             listener: function (event, data) {
@@ -4764,19 +4788,21 @@ var swatchGaps = [10, 8];
     methods: {
         setColor: function (value) {
             var _a = parseColor(value, this.get('showAlpha')), rgb = _a.rgb, hsv = _a.hsv, alpha = _a.alpha;
+            var oldRgb = this.get('rgb');
+            // hex 转 hsv，有时因为精度会导致值不一样
+            // 这里用 rgb 判断一下，如果新旧值相同，则不再转 hsv
+            if (rgb2hex(rgb[0], rgb[1], rgb[2]) === rgb2hex(oldRgb[0], oldRgb[1], oldRgb[2])) {
+                return;
+            }
             this.set({
                 rgb: rgb,
                 hsv: hsv,
                 alpha: alpha,
             });
-            // @ts-ignore
-            this.fireChange();
+            return TRUE;
         },
         fireChange: function () {
             var value = this.get('colorValue');
-            var hsv = this.get('hsv');
-            var rgb = this.get('rgb');
-            console.log(hsv, rgb, value);
             this.set('value', value);
             this.fire({
                 type: 'change',
