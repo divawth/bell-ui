@@ -419,14 +419,9 @@ export default Yox.define({
       const mouseEvent = event.originalEvent as MouseEvent
       const rect = (element as HTMLElement).getBoundingClientRect()
 
-      let ratio = 0
-
-      if (me.get('vertical')) {
-        ratio = (rect.bottom - mouseEvent.clientY) / rect.height
-      }
-      else {
-        ratio = (mouseEvent.clientX - rect.left) / rect.width
-      }
+      let ratio = me.get('vertical')
+        ? (rect.bottom - mouseEvent.clientY) / rect.height
+        : (mouseEvent.clientX - rect.left) / rect.width
 
       if (ratio < 0) {
         ratio = 0

@@ -79,7 +79,11 @@ export default Yox.define({
       const alphaMatch = alphaText.match(/\s*(\d+)%\s*/)
 
       const rgb = formatRgb(
-        [toNumber(redText), toNumber(greenText), toNumber(blueText)],
+        [
+          toNumber(redText),
+          toNumber(greenText),
+          toNumber(blueText),
+        ],
         alphaMatch ? (toNumber(alphaMatch[1]) / 100) : UNDEFINED
       )
 

@@ -1,18 +1,21 @@
-import { DOCUMENT, NULL } from "../constant"
-import { toNumber } from "../util"
+import { DOCUMENT, NULL, UNDEFINED } from '../constant'
+import { toNumber } from '../util'
 
 export const MODE_HEX = 'hex'
 export const MODE_RGB = 'rgb'
 export const COLOR_DEFAULT = '#000'
 
+// 0 ≤ hue ＜ 360
 export function normalizeHue(hue: number) {
-  return hue > 359 ? 359 : hue < 0 ? 0 : hue
+  return hue >= 360 ? 359 : hue < 0 ? 0 : Math.round(hue)
 }
 
+// 0 ≤ saturation ≤ 1
 export function normalizeSaturation(saturation: number) {
-  return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation)
+  return Math.round(100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation))
 }
 
+// 0 ≤ value ≤ 1
 export function normalizeValue(value: number) {
   return normalizeSaturation(value)
 }
@@ -58,7 +61,6 @@ export function getModeByColor(color: string) {
 
 export function hsv2rgb(h: number, s: number, v: number) {
 
-  h /= 1
 	s /= 100
 	v /= 100
 
@@ -228,7 +230,8 @@ const converts = {
   hex: {
     rgb(color: string) {
       const rgba = hex2rgb(color)
-      return formatRgb(rgba, rgba[3])
+      const alpha = rgba.length === 4 ? rgba.pop() : UNDEFINED
+      return formatRgb(rgba, alpha)
     }
   },
 }

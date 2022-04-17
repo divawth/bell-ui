@@ -92,9 +92,9 @@ export default Yox.define({
 
   computed: {
     palleteLayerStyle() {
-      const hue = this.get('hue')
+      const hueThumbColor = this.get('hueThumbColor')
       return {
-        backgroundImage: `linear-gradient(90deg, white, hsl(${hue}, 100%, 50%))`
+        backgroundImage: `linear-gradient(90deg, white, ${hueThumbColor})`
       }
     },
     palleteThumbStyle() {
@@ -132,7 +132,7 @@ export default Yox.define({
     alphaThumbStyle() {
       const alpha = this.get('alpha')
       return {
-        left: `${(alpha / 1) * 100}%`,
+        left: `${alpha * 100}%`,
       }
     },
     alphaThumbColor() {
@@ -205,11 +205,11 @@ export default Yox.define({
 
     const onPalleteMouseMove = function (event: CustomEventInterface) {
 
-      const { clientX, clientY } = event.originalEvent as MouseEvent
-      const { width, height, left, bottom } = (palleteEl as HTMLElement).getBoundingClientRect()
+      const mouseEvent = event.originalEvent as MouseEvent
+      const rect = (palleteEl as HTMLElement).getBoundingClientRect()
 
-      const saturation = (clientX - left) / width
-      const value = (bottom - clientY) / height
+      const saturation = (mouseEvent.clientX - rect.left) / rect.width
+      const value = (rect.bottom - mouseEvent.clientY) / rect.height
 
       me.fire(
         {
@@ -256,12 +256,10 @@ export default Yox.define({
 
     const onHueMouseMove = function (event: CustomEventInterface) {
 
-      const { clientX } = event.originalEvent as MouseEvent
-      const { width, left } = (hueEl as HTMLElement).getBoundingClientRect()
+      const mouseEvent = event.originalEvent as MouseEvent
+      const rect = (hueEl as HTMLElement).getBoundingClientRect()
 
-      const hue = Math.round(
-        ((clientX - left) / width) * 359
-      )
+      const hue = ((mouseEvent.clientX - rect.left) / rect.width) * 360
 
       me.fire(
         {
@@ -309,10 +307,10 @@ export default Yox.define({
 
     const onAlphaMouseMove = function (event: CustomEventInterface) {
 
-      const { clientX } = event.originalEvent as MouseEvent
-      const { width, left } = (alphaEl as HTMLElement).getBoundingClientRect()
+      const mouseEvent = event.originalEvent as MouseEvent
+      const rect = (alphaEl as HTMLElement).getBoundingClientRect()
 
-      const alpha = (clientX - left) / width
+      const alpha = (mouseEvent.clientX - rect.left) / rect.width
 
       me.fire(
         {

@@ -3966,12 +3966,15 @@ var HexInput_default = /*#__PURE__*/__webpack_require__.n(HexInput);
 var MODE_HEX = 'hex';
 var MODE_RGB = 'rgb';
 var COLOR_DEFAULT = '#000';
+// 0 ≤ hue ＜ 360
 function normalizeHue(hue) {
-    return hue > 359 ? 359 : hue < 0 ? 0 : hue;
+    return hue >= 360 ? 359 : hue < 0 ? 0 : Math.round(hue);
 }
+// 0 ≤ saturation ≤ 1
 function normalizeSaturation(saturation) {
-    return 100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation);
+    return Math.round(100 * (saturation > 1 ? 1 : saturation < 0 ? 0 : saturation));
 }
+// 0 ≤ value ≤ 1
 function normalizeValue(value) {
     return normalizeSaturation(value);
 }
@@ -4006,7 +4009,6 @@ function getModeByColor(color) {
     }
 }
 function hsv2rgb(h, s, v) {
-    h /= 1;
     s /= 100;
     v /= 100;
     var r = 0;
@@ -4056,9 +4058,9 @@ function hsv2rgb(h, s, v) {
         }
     }
     return [
-        Math.round(r * 255),
-        Math.round(g * 255),
-        Math.round(b * 255)
+        Math.floor(r * 255),
+        Math.floor(g * 255),
+        Math.floor(b * 255)
     ];
 }
 function rgb2hsv(r, g, b) {
@@ -4087,9 +4089,9 @@ function rgb2hsv(r, g, b) {
         h = 60 * ((r - g) / diff) + 240;
     }
     return [
-        Math.round(h),
-        Math.round(s * 100),
-        Math.round(v * 100)
+        Math.floor(h),
+        Math.floor(s * 100),
+        Math.floor(v * 100)
     ];
 }
 /**
@@ -4138,7 +4140,7 @@ function hex2rgb(hex) {
     }
     return rgb;
 }
-function rgba(rgb) {
+function util_rgba(rgb) {
     return rgb.replace(/ *rgba?\(([^)]+)\) */i, '$1').split(',').map(function (value) {
         return toNumber(value);
     });
@@ -4146,14 +4148,15 @@ function rgba(rgb) {
 var converts = {
     rgb: {
         hex: function (color) {
-            var value = rgba(color);
+            var value = util_rgba(color);
             return rgb2hex(value[0], value[1], value[2], value[3]);
         }
     },
     hex: {
         rgb: function (color) {
             var rgba = hex2rgb(color);
-            return formatRgb(rgba, rgba[3]);
+            var alpha = rgba.length === 4 ? rgba.pop() : UNDEFINED;
+            return formatRgb(rgba, alpha);
         }
     },
 };
@@ -4172,7 +4175,7 @@ function parseColor(value, alphaEnabled) {
     if (mode !== MODE_RGB) {
         color = converts[mode][MODE_RGB](value);
     }
-    var array = rgba(color);
+    var array = util_rgba(color);
     var hsv = rgb2hsv(array[0], array[1], array[2]);
     return {
         hsv: hsv,
@@ -4305,7 +4308,11 @@ var RgbInput_default = /*#__PURE__*/__webpack_require__.n(RgbInput);
                 return;
             }
             var alphaMatch = alphaText.match(/\s*(\d+)%\s*/);
-            var rgb = formatRgb([toNumber(redText), toNumber(greenText), toNumber(blueText)], alphaMatch ? (toNumber(alphaMatch[1]) / 100) : UNDEFINED);
+            var rgb = formatRgb([
+                toNumber(redText),
+                toNumber(greenText),
+                toNumber(blueText),
+            ], alphaMatch ? (toNumber(alphaMatch[1]) / 100) : UNDEFINED);
             this.fire({
                 type: 'colorChange',
                 ns: 'rgbInput'
@@ -4389,9 +4396,9 @@ var swatchGaps = [10, 8];
     },
     computed: {
         palleteLayerStyle: function () {
-            var hue = this.get('hue');
+            var hueThumbColor = this.get('hueThumbColor');
             return {
-                backgroundImage: "linear-gradient(90deg, white, hsl(" + hue + ", 100%, 50%))"
+                backgroundImage: "linear-gradient(90deg, white, " + hueThumbColor + ")"
             };
         },
         palleteThumbStyle: function () {
@@ -4429,7 +4436,7 @@ var swatchGaps = [10, 8];
         alphaThumbStyle: function () {
             var alpha = this.get('alpha');
             return {
-                left: (alpha / 1) * 100 + "%",
+                left: alpha * 100 + "%",
             };
         },
         alphaThumbColor: function () {
@@ -4477,10 +4484,10 @@ var swatchGaps = [10, 8];
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onPalleteMouseUp);
         };
         var onPalleteMouseMove = function (event) {
-            var _a = event.originalEvent, clientX = _a.clientX, clientY = _a.clientY;
-            var _b = palleteEl.getBoundingClientRect(), width = _b.width, height = _b.height, left = _b.left, bottom = _b.bottom;
-            var saturation = (clientX - left) / width;
-            var value = (bottom - clientY) / height;
+            var mouseEvent = event.originalEvent;
+            var rect = palleteEl.getBoundingClientRect();
+            var saturation = (mouseEvent.clientX - rect.left) / rect.width;
+            var value = (rect.bottom - mouseEvent.clientY) / rect.height;
             me.fire({
                 type: 'hsvChange',
                 ns: 'colorPanel',
@@ -4509,9 +4516,9 @@ var swatchGaps = [10, 8];
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onHueMouseUp);
         };
         var onHueMouseMove = function (event) {
-            var clientX = event.originalEvent.clientX;
-            var _a = hueEl.getBoundingClientRect(), width = _a.width, left = _a.left;
-            var hue = Math.round(((clientX - left) / width) * 359);
+            var mouseEvent = event.originalEvent;
+            var rect = hueEl.getBoundingClientRect();
+            var hue = ((mouseEvent.clientX - rect.left) / rect.width) * 360;
             me.fire({
                 type: 'hsvChange',
                 ns: 'colorPanel',
@@ -4540,9 +4547,9 @@ var swatchGaps = [10, 8];
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.on(DOCUMENT, RAW_EVENT_MOUSEUP, onAlphaMouseUp);
         };
         var onAlphaMouseMove = function (event) {
-            var clientX = event.originalEvent.clientX;
-            var _a = alphaEl.getBoundingClientRect(), width = _a.width, left = _a.left;
-            var alpha = (clientX - left) / width;
+            var mouseEvent = event.originalEvent;
+            var rect = alphaEl.getBoundingClientRect();
+            var alpha = (mouseEvent.clientX - rect.left) / rect.width;
             me.fire({
                 type: 'alphaChange',
                 ns: 'colorPanel',
@@ -4767,6 +4774,9 @@ var swatchGaps = [10, 8];
         },
         fireChange: function () {
             var value = this.get('colorValue');
+            var hsv = this.get('hsv');
+            var rgb = this.get('rgb');
+            console.log(hsv, rgb, value);
             this.set('value', value);
             this.fire({
                 type: 'change',
@@ -5235,13 +5245,9 @@ function getPercentByValue(min, max, rawValue) {
         var getRatio = function (event) {
             var mouseEvent = event.originalEvent;
             var rect = element.getBoundingClientRect();
-            var ratio = 0;
-            if (me.get('vertical')) {
-                ratio = (rect.bottom - mouseEvent.clientY) / rect.height;
-            }
-            else {
-                ratio = (mouseEvent.clientX - rect.left) / rect.width;
-            }
+            var ratio = me.get('vertical')
+                ? (rect.bottom - mouseEvent.clientY) / rect.height
+                : (mouseEvent.clientX - rect.left) / rect.width;
             if (ratio < 0) {
                 ratio = 0;
             }
