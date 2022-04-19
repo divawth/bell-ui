@@ -11,10 +11,14 @@ $closeable-icon-size = 20px
 
 {$selector-class-prefix + '-closeable-icon'}
   display none
-  color $brand-clear-icon-color
+  color $brand-close-color
   font-size $closeable-icon-size
   position absolute
   right -0.5 * $closeable-icon-size
   top -0.5 * $closeable-icon-size
+  transition color $form-control-transition-duration
   user-select none
   ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover

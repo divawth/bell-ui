@@ -6,10 +6,48 @@
 
 ```js
 export default {
-  height: 200,
   template: `
   <div>
-    <Add title="添加图片" />
+    <Add
+      title="添加图片"
+      block
+    />
+  </div>
+  `
+}
+```
+
+> 垂直排列
+
+```js
+export default {
+  template: `
+  <div>
+    <Add
+      title="添加图片"
+      vertical
+    />
+  </div>
+  `
+}
+```
+
+> 自定义图标
+
+```js
+export default {
+  template: `
+  <div>
+    <Add
+      title="添加图片"
+      vertical
+    >
+      <Icon
+        slot="icon"
+        name="apple-fill"
+        size="18"
+      />
+    </Add>
   </div>
   `
 }
@@ -22,6 +60,8 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 title | 标题 | string | - | -
+block | 是否块级显示 | boolean | - | -
+vertical | 是否垂直排列 | boolean | - | -
 width | 显示宽度 | numeric | - | 100
 height | 显示高度 | numeric | - | 100
 className | 自定义类名 | string | - | -

@@ -8,6 +8,7 @@ import Icon from '../icon/Icon'
 import {
   RAW_STRING,
   RAW_NUMERIC,
+  RAW_BOOLEAN,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -31,6 +32,12 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 100,
     },
+    block: {
+      type: RAW_BOOLEAN,
+    },
+    vertical: {
+      type: RAW_BOOLEAN,
+    },
     className: {
       type: RAW_STRING,
     },
@@ -47,10 +54,17 @@ export default Yox.define({
       const width = this.get('width')
       const height = this.get('height')
 
-      result.push({
-        width: toPixel(width),
-        height: toPixel(height),
-      })
+      if (this.get('block')) {
+        result.push({
+          height: toPixel(height),
+        })
+      }
+      else {
+        result.push({
+          width: toPixel(width),
+          height: toPixel(height),
+        })
+      }
 
       const style = this.get('style')
       if (style) {

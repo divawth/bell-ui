@@ -1,6 +1,5 @@
 <div
 class="${prefix}image-picker
-{{#if !supportFlexGap}} ${prefix}image-picker-legacy{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -34,7 +33,8 @@ class="${prefix}image-picker
         {{#if this.url || this.base64}}
           <img
             draggable="false"
-            class="${prefix}image-picker-image"
+            class="${prefix}image-picker-image
+            {{#if imageMode}} ${prefix}image-picker-image-{{hyphenate(imageMode)}}{{/if}}"
             {{#if this.url}}
               src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
             {{else if this.base64}}
@@ -99,6 +99,8 @@ class="${prefix}image-picker
         style="{{imageStyle}}"
       >
         <Add
+          block
+          vertical
           title="{{isVideoPicker ? '上传视频' : '上传图片'}}"
           width="{{imageWidth}}"
           height="{{imageHeight}}"

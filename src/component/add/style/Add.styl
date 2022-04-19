@@ -4,7 +4,7 @@ $add-icon-size = 30px
 $add-icon-title-gap = 10px
 
 {$selector-class-prefix + '-add'}
-  display flex
+  display inline-flex
   flex-direction column
   justify-content center
   align-items center
@@ -13,12 +13,30 @@ $add-icon-title-gap = 10px
 
   border 1px dashed $brand-border
   background-color $brand-bg-light
+  transition border-color $form-control-transition-duration, background-color $form-control-transition-duration
   box-sizing content-box
   user-select none
   ui-clickable()
 
   if $border-radius-default > 0
     border-radius $border-radius-default
+
+  &:hover
+    border-color $brand-primary
+    background-color $brand-bg-hover
+
+{$selector-class-prefix + '-add-block'}
+  ui-flex-block()
+
+{$selector-class-prefix + '-add-horizontal'}
+  flex-direction row
+  {$selector-class-prefix + '-add-title'}
+    margin-left $add-icon-title-gap
+
+{$selector-class-prefix + '-add-vertical'}
+  flex-direction column
+  {$selector-class-prefix + '-add-title'}
+    margin-top $add-icon-title-gap
 
 {$selector-class-prefix + '-add-icon'}
   line-height 0
@@ -29,4 +47,3 @@ $add-icon-title-gap = 10px
 {$selector-class-prefix + '-add-title'}
   color $brand-content
   font-size $ui-font-size
-  margin-top $add-icon-title-gap

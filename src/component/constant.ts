@@ -27,9 +27,11 @@ export const RAW_HOVER = 'hover'
 export const RAW_CLICK = 'click'
 export const RAW_CUSTOM = 'custom'
 
-
 export const RAW_CENTER = 'center'
 export const RAW_MIDDLE = 'middle'
+
+export const RAW_SCALE_TO_FILL = 'scaleToFill'
+export const RAW_ASPECT_FIT = 'aspectFit'
 
 export const RAW_TOP = 'top'
 export const RAW_TOP_START = 'top-start'

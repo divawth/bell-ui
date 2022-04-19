@@ -9933,13 +9933,14 @@ div::-webkit-scrollbar-thumb:hover {
   }
 }
 .bell-add {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   line-height: 1.5715;
   border: 1px dashed #dcdee2;
   background-color: #fafafa;
+  transition: border-color 0.2s, background-color 0.2s;
   box-sizing: content-box;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -9948,6 +9949,26 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   border-radius: 2px;
+}
+.bell-add:hover {
+  border-color: #2d8cf0;
+  background-color: #f5f7fa;
+}
+.bell-add-block {
+  display: flex;
+  width: 100%;
+}
+.bell-add-horizontal {
+  flex-direction: row;
+}
+.bell-add-horizontal .bell-add-title {
+  margin-left: 10px;
+}
+.bell-add-vertical {
+  flex-direction: column;
+}
+.bell-add-vertical .bell-add-title {
+  margin-top: 10px;
 }
 .bell-add-icon {
   line-height: 0;
@@ -9959,7 +9980,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-add-title {
   color: #515a6e;
   font-size: 14px;
-  margin-top: 10px;
 }
 .bell-closeable {
   display: inline-block;
@@ -9971,17 +9991,21 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-closeable-icon {
   display: none;
-  color: #999;
+  color: #aaa;
   font-size: 20px;
   position: absolute;
   right: -10px;
   top: -10px;
+  transition: color 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-closeable-icon:hover {
+  color: #666;
 }
 .bell-upload {
   display: inline-block;
@@ -12243,11 +12267,17 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 .bell-image-picker-image {
-  max-width: 100%;
-  max-height: 100%;
   border-radius: 2px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.bell-image-picker-image-aspect-fit {
+  max-width: 100%;
+  max-height: 100%;
+}
+.bell-image-picker-image-scale-to-fill {
+  width: 100%;
+  height: 100%;
 }
 .bell-image-picker-mask {
   background-color: rgba(0,0,0,0.6);
@@ -12313,13 +12343,6 @@ div::-webkit-scrollbar-thumb:hover {
   border-color: #2b85e4;
   box-shadow: 0 0 0 2px rgba(45,140,240,0.2);
   transition: all 0.1s ease-in-out;
-}
-.bell-image-picker-legacy .bell-image-picker-items-wrapper {
-  margin-bottom: -10px;
-}
-.bell-image-picker-legacy .bell-image-picker-item {
-  margin-right: 8px;
-  margin-bottom: 10px;
 }
 .bell-dialog {
   position: fixed;
@@ -16657,6 +16680,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-space-block {
   display: flex;
+}
+.bell-space-item {
+  line-height: 0;
 }
 
 

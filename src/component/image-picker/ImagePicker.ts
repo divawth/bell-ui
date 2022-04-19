@@ -20,13 +20,15 @@ import {
   RAW_FUNCTION,
   RAW_IMAGE_ACCEPT,
   RAW_STYLE_TYPE,
+  RAW_SCALE_TO_FILL,
+  RAW_ASPECT_FIT,
 } from '../constant'
 
 import {
+  oneOf,
   toPixel,
   toNumber,
   formatMillisecond,
-  supportFlexGap,
 } from '../util'
 
 import {
@@ -64,6 +66,10 @@ export default Yox.define({
     imageHeight: {
       type: RAW_NUMERIC,
       value: 80,
+    },
+    imageMode: {
+      type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
+      value: RAW_SCALE_TO_FILL,
     },
     extra: {
       type: RAW_STRING,
@@ -131,7 +137,6 @@ export default Yox.define({
       STATUS_UPLOADING,
       STATUS_ERROR,
       STATUS_FAILURE,
-      supportFlexGap,
       draggingIndex: -1,
       uploadingCount: 0,
       beforeReuploadImage(data) {
@@ -213,6 +218,7 @@ export default Yox.define({
   },
 
   filters: {
+    hyphenate: Yox.string.hyphenate,
     formatFileSize,
   },
 

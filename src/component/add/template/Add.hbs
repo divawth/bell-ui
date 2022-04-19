@@ -1,5 +1,9 @@
 <div
 class="${prefix}add
+{{#if block}} ${prefix}add-block{{/if}}
+{{#if vertical}} ${prefix}add-vertical
+{{else}} ${prefix}add-horizontal
+{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if inlineStyle}}
