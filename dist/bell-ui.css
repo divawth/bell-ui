@@ -9991,11 +9991,15 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-closeable-icon {
   display: none;
+  border-radius: 50%;
   color: #aaa;
+  background-color: #fff;
   font-size: 20px;
   position: absolute;
   right: -10px;
   top: -10px;
+  z-index: 1;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
   transition: color 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -12337,7 +12341,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-items-wrapper {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 10px 8px;
 }
 .bell-image-picker-card-drag-enter {
   border-color: #2b85e4;

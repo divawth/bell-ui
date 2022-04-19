@@ -28,6 +28,8 @@ import {
   oneOf,
   toPixel,
   toNumber,
+  spaceListStyle,
+  spaceItemStyle,
   formatMillisecond,
 } from '../util'
 
@@ -70,6 +72,10 @@ export default Yox.define({
     imageMode: {
       type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
       value: RAW_SCALE_TO_FILL,
+    },
+    gap: {
+      type: RAW_ARRAY,
+      value: [8, 10],
     },
     extra: {
       type: RAW_STRING,
@@ -202,18 +208,25 @@ export default Yox.define({
       const imageList = this.get('imageList')
       return !uploadingCount && !readOnly && imageList.length > 1
     },
-    imageStyle(): Record<string, string> {
-
-      const customStyle: Record<string, string> = {}
-
+    imageItemsStyle(): object[] | void {
+      return spaceListStyle(
+        this.get('gap'),
+        FALSE,
+        TRUE,
+      )
+    },
+    imageItemStyle(): Record<string, string> | void {
       const imageWidth = this.get('imageWidth')
       const imageHeight = this.get('imageHeight')
-
-      customStyle.width = toPixel(imageWidth)
-      customStyle.height = toPixel(imageHeight)
-
-      return customStyle
-
+      return spaceItemStyle(
+        this.get('gap'),
+        FALSE,
+        TRUE,
+        {
+          width: toPixel(imageWidth),
+          height: toPixel(imageHeight),
+        }
+      )
     },
   },
 

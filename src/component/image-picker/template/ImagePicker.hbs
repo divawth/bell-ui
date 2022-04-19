@@ -9,6 +9,9 @@ class="${prefix}image-picker
   <div
     ref="imagePickerList"
     class="${prefix}image-picker-items-wrapper"
+    {{#if imageItemsStyle}}
+      style="{{imageItemsStyle}}"
+    {{/if}}
   >
     {{#each imageList:index}}
       <Closeable
@@ -27,7 +30,9 @@ class="${prefix}image-picker
           on-drop.native="handleDragDrop(index)"
         {{/if}}
         className="${prefix}image-picker-item ${prefix}image-picker-card"
-        style="{{~/imageStyle}}"
+        {{#if ~/imageItemStyle}}
+          style="{{~/imageItemStyle}}"
+        {{/if}}
       >
 
         {{#if this.url || this.base64}}
@@ -96,7 +101,9 @@ class="${prefix}image-picker
         multiple="{{restCount > 1}}"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
-        style="{{imageStyle}}"
+        {{#if ~/imageItemStyle}}
+          style="{{~/imageItemStyle}}"
+        {{/if}}
       >
         <Add
           block

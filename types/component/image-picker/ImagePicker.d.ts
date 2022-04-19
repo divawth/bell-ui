@@ -3,7 +3,8 @@ declare const _default: import("yox").ComponentOptions<{
     isVideoPicker: unknown;
     restCount: unknown;
     canDraggable: unknown;
-    imageStyle: unknown;
+    imageItemsStyle: unknown;
+    imageItemStyle: unknown;
 }, unknown, unknown, {
     handleImageClick(image: object, index: number): void;
     getImageIndexById(id: number): number;

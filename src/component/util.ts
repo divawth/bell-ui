@@ -313,12 +313,9 @@ export function spaceListStyle(gaps: number[] | void, vertical: boolean, autoWra
   }
 }
 
-export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean): Record<string, string> | void {
-  if (supportFlexGap) {
-    return
-  }
-  if (gaps) {
-    const result: Record<string, string> = {}
+export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: Record<string, string>): Record<string, string> | void {
+  const result: Record<string, string> = style || {}
+  if (!supportFlexGap && gaps) {
     const horizontalGap = gaps[0]
     const verticalGap = gaps[1]
     if (vertical) {
@@ -334,8 +331,8 @@ export function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWra
         result.marginBottom = toPixel(verticalGap)
       }
     }
-    if (Yox.object.keys(result).length > 0) {
-      return result
-    }
+  }
+  if (Yox.object.keys(result).length > 0) {
+    return result
   }
 }

@@ -23,4 +23,4 @@ export declare function formatMillisecond(value: number, options: {
 export declare function padStart(value: number, length?: number): string;
 export declare function scrollTo(element: HTMLElement | Window, from: number, to: number, duration?: number, callback?: () => void): void;
 export declare function spaceListStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: any): object[] | void;
-export declare function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean): Record<string, string> | void;
+export declare function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: Record<string, string>): Record<string, string> | void;
