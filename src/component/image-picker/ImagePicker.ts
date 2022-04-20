@@ -8,7 +8,7 @@ import Icon from '../icon/Icon'
 import Space from '../space/Space'
 import Button from '../button/Button'
 import Upload from '../upload/Upload'
-import Closeable from '../closeable/Closeable'
+import Closable from '../closable/Closable'
 
 import {
   TRUE,
@@ -241,7 +241,7 @@ export default Yox.define({
     Space,
     Button,
     Upload,
-    Closeable,
+    Closable,
   },
 
   methods: {

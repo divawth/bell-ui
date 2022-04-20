@@ -25,23 +25,31 @@
         class="${prefix}drawer-wrapper"
         style="{{wrapperStyle}}"
       >
-        {{#if @title}}
+        {{#if @title || @extra || closable}}
           <div class="${prefix}drawer-header">
-            <slot name="title" />
+            <div class="${prefix}drawer-title-wrapper">
+              {{#if closable}}
+                <Icon
+                  name="close-line"
+                  className="${prefix}drawer-close"
+                  on-click.native="close()"
+                />
+              {{/if}}
+              <div class="${prefix}drawer-title">
+                <slot name="title" />
+              </div>
+            </div>
+            {{#if @extra}}
+              <div class="${prefix}drawer-extra">
+                <slot name="extra" />
+              </div>
+            {{/if}}
           </div>
         {{/if}}
 
         <div class="${prefix}drawer-body">
           <slot name="content" />
         </div>
-
-        {{#if closable}}
-          <Icon
-            name="close-line"
-            className="${prefix}drawer-close"
-            on-click.native="close()"
-          />
-        {{/if}}
       </div>
 
     </div>

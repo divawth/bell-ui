@@ -1,7 +1,7 @@
 import Yox from 'yox'
 
-import template from './template/Closeable.hbs'
-// import './style/Closeable.styl'
+import template from './template/Closable.hbs'
+// import './style/Closable.styl'
 
 import {
   RAW_STRING,
@@ -17,7 +17,7 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}Closeable',
+  name: '${prefix}Closable',
 
   propTypes: {
     needClose: {

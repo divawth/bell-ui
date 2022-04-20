@@ -1,4 +1,4 @@
-#### Closeable 可关闭组件
+#### Closable 可关闭组件
 
 为显示内容的右上角添加一个关闭按钮，可设置显示关闭按钮的方式，或完全自定义显示方式。
 
@@ -8,7 +8,7 @@
 export default {
   template: `
     <div>
-      <Closeable
+      <Closable
         needClose
         showClose="hover"
         on-close="close()"
@@ -16,7 +16,7 @@ export default {
         <div>
           内容
         </div>
-      </Closeable>
+      </Closable>
     </div>
   `,
   methods: {
@@ -33,7 +33,7 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-needClose | 是否需要关闭按钮 | boolean | - | -
+needClose | 是否需要关闭按钮（是否创建 DOM 节点） | boolean | - | -
 showClose | 显示关闭按钮的方式，不传表示自定义 | string | `always`, `hover` | -
 draggable | 是否可以拖拽 | boolean | - | -
 className | 自定义类名 | string | - | -

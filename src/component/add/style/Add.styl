@@ -1,6 +1,7 @@
 @import '../../../env'
 
-$add-icon-size = 30px
+$add-horizontal-icon-size = 20px
+$add-vertical-icon-size = 30px
 $add-icon-title-gap = 10px
 
 {$selector-class-prefix + '-add'}
@@ -30,11 +31,19 @@ $add-icon-title-gap = 10px
 
 {$selector-class-prefix + '-add-horizontal'}
   flex-direction row
+
+  {$selector-class-prefix + '-add-icon'} > {$selector-class-prefix + '-icon'}
+    font-size $add-horizontal-icon-size
+
   {$selector-class-prefix + '-add-title'}
     margin-left $add-icon-title-gap
 
 {$selector-class-prefix + '-add-vertical'}
   flex-direction column
+
+  {$selector-class-prefix + '-add-icon'} > {$selector-class-prefix + '-icon'}
+    font-size $add-vertical-icon-size
+
   {$selector-class-prefix + '-add-title'}
     margin-top $add-icon-title-gap
 
@@ -42,7 +51,6 @@ $add-icon-title-gap = 10px
   line-height 0
   > {$selector-class-prefix + '-icon'}
     color $brand-content
-    font-size $add-icon-size
 
 {$selector-class-prefix + '-add-title'}
   color $brand-content

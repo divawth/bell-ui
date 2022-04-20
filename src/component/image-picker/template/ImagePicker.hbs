@@ -14,7 +14,7 @@ class="${prefix}image-picker
     {{/if}}
   >
     {{#each imageList:index}}
-      <Closeable
+      <Closable
         key="{{this.id}}"
         needClose="{{!~/readOnly && ~/draggingIndex < 0}}"
         draggable="{{~/canDraggable}}"
@@ -90,7 +90,7 @@ class="${prefix}image-picker
           {{/if}}
         {{/if}}
 
-      </Closeable>
+      </Closable>
     {{/each}}
 
     {{#if !readOnly && restCount > 0}}

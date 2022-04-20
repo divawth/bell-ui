@@ -108,6 +108,52 @@ export default {
 }
 ```
 
+> 额外操作
+
+操作按钮建议放在抽屉的右上角，可以使用 extra 插槽来实现。
+
+```js
+export default {
+  template: `
+    <div>
+      <Button on-click="set('visible', true)" type="primary">
+        Open
+      </Button>
+      <Drawer closable model="visible" width="400">
+        <template slot="title">
+          Basic Drawer
+        </template>
+        <template slot="extra">
+          <Space>
+            <Button
+              type="primary"
+              on-click="set('visible', false)"
+            >
+              确定
+            </Button>
+            <Button
+              on-click="set('visible', false)"
+            >
+              取消
+            </Button>
+          </Space>
+        </template>
+        <template slot="content">
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </template>
+      </Drawer>
+    </div>
+  `,
+  data: function () {
+    return {
+      visible: false
+    }
+  }
+}
+```
+
 #### API
 
 > Props
@@ -129,6 +175,7 @@ style | 自定义内联样式 | string | - | -
 参数 | 说明
 ---|---
 title | 标题
+extra | 额外操作
 content | 内容
 
 > Events

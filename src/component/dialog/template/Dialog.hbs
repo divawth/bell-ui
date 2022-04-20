@@ -28,11 +28,20 @@
         {{/if}}
       >
 
-        {{#if title || @title}}
+        {{#if title || @title || closable}}
           <div class="${prefix}dialog-header">
-            <slot name="title">
-              {{title}}
-            </slot>
+            <div class="${prefix}dialog-title">
+              <slot name="title">
+                {{title}}
+              </slot>
+            </div>
+            {{#if closable}}
+              <Icon
+                name="close-line"
+                className="${prefix}dialog-close"
+                on-click.native="close()"
+              />
+            {{/if}}
           </div>
         {{/if}}
 
@@ -46,14 +55,6 @@
           <div class="${prefix}dialog-footer">
             <slot name="footer" />
           </div>
-        {{/if}}
-
-        {{#if closable}}
-          <Icon
-            name="close-line"
-            className="${prefix}dialog-close"
-            on-click.native="close()"
-          />
         {{/if}}
 
       </div>

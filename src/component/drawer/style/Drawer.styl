@@ -4,8 +4,7 @@ $drawer-padding-horizontal = 24px
 $drawer-header-padding-vertical = 16px
 $drawer-body-padding-vertical = 16px
 
-$drawer-close-font-size = 20px
-$drawer-close-size = 18px
+$drawer-close-font-size = 22px
 
 {$selector-class-prefix + '-drawer'}
   position fixed
@@ -24,21 +23,22 @@ $drawer-close-size = 18px
     opacity $ui-opacity-mask
 
 {$selector-class-prefix + '-drawer-wrapper'}
+  display flex
+  flex-flow column nowrap
   position absolute
   background-color $brand-bg
   box-shadow $brand-dialog-shadow
   transition transform .3s
 
 {$selector-class-prefix + '-drawer-header'}
-  ui-ellipsis()
-  color $brand-title
-  font-size $font-size-large
-  line-height $ui-single-line-height
-  font-weight bold
+  display flex
+  justify-content space-between
+  align-items center
   padding $drawer-header-padding-vertical $drawer-padding-horizontal
   border-bottom 1px solid $brand-border
 
 {$selector-class-prefix + '-drawer-body'}
+  flex-grow 1
   padding $drawer-body-padding-vertical $drawer-padding-horizontal
   color $brand-content
   font-size $font-size-default
@@ -46,25 +46,33 @@ $drawer-close-size = 18px
   word-wrap break-word
   overflow-y auto
   box-sizing border-box
-  height calc(100% - 50px)
   ui-scrollbar()
 
+{$selector-class-prefix + '-drawer-title-wrapper'}
+  flex 1
+  display flex
+  align-items center
+
 {$selector-class-prefix + '-drawer-close'}
-  position absolute
-  right $drawer-padding-horizontal
-  top $drawer-header-padding-vertical
-  font-size $drawer-close-font-size
-  width $drawer-close-size
-  height $drawer-close-size
-  line-height $drawer-close-size
-  text-align center
   color $brand-close-color
+  font-size $drawer-close-font-size
+  line-height $drawer-close-font-size
   transition color $form-control-transition-duration
   user-select none
   ui-clickable()
 
   &:hover
     color $brand-close-color-hover
+
+  + {$selector-class-prefix + '-drawer-title'}
+    margin-left $ui-horizontal-gap
+
+{$selector-class-prefix + '-drawer-title'}
+  flex 1
+  color $brand-title
+  font-size $font-size-large
+  line-height $ui-single-line-height
+  font-weight 500
 
 {$selector-class-prefix + '-drawer-mask'}
   position absolute

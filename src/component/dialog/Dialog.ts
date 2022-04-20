@@ -6,6 +6,7 @@ import template from './template/Dialog.hbs'
 import Icon from '../icon/Icon'
 
 import {
+  BODY,
   TRUE,
   FALSE,
   UNDEFINED,
@@ -86,6 +87,19 @@ export default Yox.define({
       }
 
     },
+  },
+
+  watchers: {
+    visible(visible) {
+      const bodyStyle = BODY.style
+      if (visible) {
+        this.set('bodyOverflow', bodyStyle.overflow)
+        bodyStyle.overflow = 'hidden'
+      }
+      else {
+        bodyStyle.overflow = this.get('bodyOverflow')
+      }
+    }
   },
 
   methods: {

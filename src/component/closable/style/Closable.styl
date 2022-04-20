@@ -1,0 +1,28 @@
+$closable-icon-size = 20px
+
+{$selector-class-prefix + '-closable'}
+  display inline-block
+  position relative
+
+{$selector-class-prefix + '-closable-show-always'},
+{$selector-class-prefix + '-closable-show-hover'}:hover
+  > {$selector-class-prefix + '-closable-icon'}
+    display block
+
+{$selector-class-prefix + '-closable-icon'}
+  display none
+  border-radius 50%
+  color $brand-close-color
+  background-color $brand-white
+  font-size $closable-icon-size
+  position absolute
+  right -0.5 * $closable-icon-size
+  top -0.5 * $closable-icon-size
+  z-index $zindex-normal
+  box-shadow $brand-icon-shadow
+  transition color $form-control-transition-duration
+  user-select none
+  ui-clickable()
+
+  &:hover
+    color $brand-close-color-hover

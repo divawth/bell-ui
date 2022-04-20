@@ -9961,11 +9961,17 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-add-horizontal {
   flex-direction: row;
 }
+.bell-add-horizontal .bell-add-icon > .bell-icon {
+  font-size: 20px;
+}
 .bell-add-horizontal .bell-add-title {
   margin-left: 10px;
 }
 .bell-add-vertical {
   flex-direction: column;
+}
+.bell-add-vertical .bell-add-icon > .bell-icon {
+  font-size: 30px;
 }
 .bell-add-vertical .bell-add-title {
   margin-top: 10px;
@@ -9975,21 +9981,20 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-add-icon > .bell-icon {
   color: #515a6e;
-  font-size: 30px;
 }
 .bell-add-title {
   color: #515a6e;
   font-size: 14px;
 }
-.bell-closeable {
+.bell-closable {
   display: inline-block;
   position: relative;
 }
-.bell-closeable-show-always > .bell-closeable-icon,
-.bell-closeable-show-hover:hover > .bell-closeable-icon {
+.bell-closable-show-always > .bell-closable-icon,
+.bell-closable-show-hover:hover > .bell-closable-icon {
   display: block;
 }
-.bell-closeable-icon {
+.bell-closable-icon {
   display: none;
   border-radius: 50%;
   color: #aaa;
@@ -10008,7 +10013,7 @@ div::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-.bell-closeable-icon:hover {
+.bell-closable-icon:hover {
   color: #666;
 }
 .bell-upload {
@@ -12267,7 +12272,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-card[draggable="true"] {
   cursor: move;
 }
-.bell-image-picker-card-mouse-enter .bell-closeable-icon {
+.bell-image-picker-card-mouse-enter .bell-closable-icon {
   display: block;
 }
 .bell-image-picker-image {
@@ -12395,27 +12400,23 @@ div::-webkit-scrollbar-thumb:hover {
   transition: margin-top 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .bell-dialog-header {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: keep-all;
-  color: #17233d;
-  font-size: 16px;
-  line-height: 1.1429;
-  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 16px 24px;
   border-bottom: 1px solid #e8eaec;
 }
+.bell-dialog-title {
+  flex: 1;
+  color: #17233d;
+  font-size: 16px;
+  line-height: 1.1429;
+  font-weight: 500;
+}
 .bell-dialog-close {
-  position: absolute;
-  right: 24px;
-  top: 16px;
-  font-size: 20px;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
   color: #aaa;
+  font-size: 22px;
+  line-height: 22px;
   transition: color 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -12513,24 +12514,22 @@ div::-webkit-scrollbar-thumb:hover {
   opacity: 0.5;
 }
 .bell-drawer-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
   position: absolute;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: transform 0.3s;
 }
 .bell-drawer-header {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: keep-all;
-  color: #17233d;
-  font-size: 16px;
-  line-height: 1.1429;
-  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 16px 24px;
   border-bottom: 1px solid #dcdee2;
 }
 .bell-drawer-body {
+  flex-grow: 1;
   padding: 16px 24px;
   color: #515a6e;
   font-size: 14px;
@@ -12538,7 +12537,6 @@ div::-webkit-scrollbar-thumb:hover {
   word-wrap: break-word;
   overflow-y: auto;
   box-sizing: border-box;
-  height: calc(100% - 50px);
 }
 .bell-drawer-body::-webkit-scrollbar {
   width: 4px;
@@ -12557,16 +12555,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-drawer-body::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
+.bell-drawer-title-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
 .bell-drawer-close {
-  position: absolute;
-  right: 24px;
-  top: 16px;
-  font-size: 20px;
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
   color: #aaa;
+  font-size: 22px;
+  line-height: 22px;
   transition: color 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -12577,6 +12574,16 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-drawer-close:hover {
   color: #666;
+}
+.bell-drawer-close + .bell-drawer-title {
+  margin-left: 8px;
+}
+.bell-drawer-title {
+  flex: 1;
+  color: #17233d;
+  font-size: 16px;
+  line-height: 1.1429;
+  font-weight: 500;
 }
 .bell-drawer-mask {
   position: absolute;

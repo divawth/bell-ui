@@ -10,8 +10,7 @@ $dialog-body-padding-vertical = 24px
 $dialog-footer-padding-vertical = 10px
 $dialog-footer-padding-horizontal = 16px
 
-$dialog-close-font-size = 20px
-$dialog-close-size = 18px
+$dialog-close-font-size = 22px
 
 {$selector-class-prefix + '-dialog'}
   position fixed
@@ -63,24 +62,23 @@ $dialog-close-size = 18px
               opacity .6s cubic-bezier(.23,1,.32,1)
 
 {$selector-class-prefix + '-dialog-header'}
-  ui-ellipsis()
-  color $brand-title
-  font-size $font-size-large
-  line-height $ui-single-line-height
-  font-weight bold
+  display flex
+  justify-content space-between
+  align-items center
   padding $dialog-header-padding-vertical $dialog-padding-horizontal
   border-bottom 1px solid $brand-divider
 
+{$selector-class-prefix + '-dialog-title'}
+  flex 1
+  color $brand-title
+  font-size $font-size-large
+  line-height $ui-single-line-height
+  font-weight 500
+
 {$selector-class-prefix + '-dialog-close'}
-  position absolute
-  right $dialog-padding-horizontal
-  top $dialog-header-padding-vertical
-  font-size $dialog-close-font-size
-  width $dialog-close-size
-  height $dialog-close-size
-  line-height $dialog-close-size
-  text-align center
   color $brand-close-color
+  font-size $dialog-close-font-size
+  line-height $dialog-close-font-size
   transition color $form-control-transition-duration
   user-select none
   ui-clickable()
