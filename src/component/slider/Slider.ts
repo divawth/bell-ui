@@ -299,16 +299,6 @@ export default Yox.define({
         this.set('showTooltipIndex', -1)
       }
     },
-    showTooltipIndex(index, oldIndex) {
-      if (oldIndex >= 0) {
-        const tooltip = this.$refs['tooltip' + oldIndex] as any
-        tooltip.close()
-      }
-      if (index >= 0) {
-        const tooltip = this.$refs['tooltip' + index] as any
-        tooltip.open()
-      }
-    }
   },
 
   methods: {

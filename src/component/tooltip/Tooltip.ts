@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Tooltip.hbs'
 // import './style/Tooltip.styl'
@@ -45,6 +45,12 @@ export default Yox.define({
       type: oneOf(RAW_PLACEMENT_ARRAY),
       value: RAW_BOTTOM,
     },
+    defaultVisible: {
+      type: RAW_BOOLEAN,
+    },
+    visible: {
+      type: RAW_BOOLEAN,
+    },
     disabled: {
       type: RAW_BOOLEAN,
     },
@@ -77,66 +83,77 @@ export default Yox.define({
   },
 
   data() {
+    const visible = this.get('visible')
+    const defaultVisible = this.get('defaultVisible')
     return {
-      isVisible: FALSE,
+      isVisible: typeof visible === 'boolean'
+        ? visible
+        : typeof defaultVisible === 'boolean'
+          ? defaultVisible
+          : FALSE,
+    }
+  },
+
+  watchers: {
+    visible(value) {
+      this.set({
+        isVisible: value,
+      })
     }
   },
 
   computed: {
     contentStyle(): Record<string, string> | void {
 
-      const customStyle: Record<string, string> = {}
-
       const maxWidth = this.get('maxWidth')
       const maxHeight = this.get('maxHeight')
 
-      if (maxWidth) {
-        customStyle.maxWidth = toPixel(maxWidth)
-      }
-      if (maxHeight) {
-        customStyle.maxHeight = toPixel(maxHeight)
-      }
-
-      if (Yox.object.keys(customStyle).length > 0) {
-        return customStyle
+      if (maxWidth || maxHeight) {
+        const result: Record<string, string> = {}
+        if (maxWidth) {
+          result.maxWidth = toPixel(maxWidth)
+        }
+        if (maxHeight) {
+          result.maxHeight = toPixel(maxHeight)
+        }
+        return result
       }
 
     },
-  },
-
-  events: {
-    open: {
-      listener(event) {
-        event.stop()
-        this.open()
-      },
-      ns: 'popover',
-    },
-    close: {
-      listener(event) {
-        event.stop()
-        this.close()
-      },
-      ns: 'popover',
-    },
-    outside: {
-      listener(event) {
-        event.stop()
-        this.fire({
-          type: 'outside',
-          ns: 'tooltip',
-        })
-      },
-      ns: 'popover',
-    }
   },
 
   methods: {
-    open() {
+    onPopoverOpen(event: CustomEventInterface) {
+      event.stop()
       this.set('isVisible', TRUE)
+      // @ts-ignore
+      this.fireChange(TRUE)
     },
-    close() {
+    onPopoverClose(event: CustomEventInterface) {
+      event.stop()
       this.set('isVisible', FALSE)
+      // @ts-ignore
+      this.fireChange(FALSE)
+    },
+    onPopoverOutside(event: CustomEventInterface) {
+      event.stop()
+      this.fire({
+        type: 'outside',
+        ns: 'tooltip',
+      })
+    },
+    fireChange(visible: boolean) {
+      if (this.get('visible') !== visible) {
+        this.fire(
+          {
+            type: 'change',
+            ns: 'tooltip',
+          },
+          {
+            visible,
+          }
+        )
+      }
     },
     refresh() {
       const popover = this.$refs.popover as any

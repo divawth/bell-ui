@@ -6,6 +6,7 @@ export declare function onTransitionEnd(el: HTMLElement, callback: () => void): 
 export declare function getPageX(): number;
 export declare function getPageY(): number;
 export declare const requestAnimationFrame: any;
+export declare function readElementRectInfo(element: HTMLElement, callback: (rect: object) => void): void;
 export declare function contains(element: HTMLElement, target: HTMLElement): boolean;
 export declare function toNumber(value: any, defaultValue?: any): any;
 export declare function toString(value: any, defaultValue?: any): string;

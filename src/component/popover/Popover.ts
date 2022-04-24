@@ -39,6 +39,7 @@ import {
   getPageX,
   getPageY,
   onTransitionEnd,
+  readElementRectInfo,
 } from '../util'
 
 import {
@@ -318,34 +319,46 @@ export default Yox.define({
 
         const me = this as any
 
+        const triggerElement = me.$refs.trigger as HTMLElement
         const placement = me.get('placement') || RAW_BOTTOM
 
-        Yox.dom.addClass(node, CLASS_POPOVER)
-        Yox.dom.addClass(node, '${prefix}popover-' + placement)
-        if (me.get('showArrow')) {
-          Yox.dom.addClass(node, '${prefix}popover-with-arrow')
-        }
-
-        const overlayRect = me.getOverlayRect()
-        me.setOverlayRect(
-          node,
-          overlayRect.x,
-          overlayRect.y,
-          overlayRect.width
-        )
-
-        me.animateTimer = setTimeout(
+        readElementRectInfo(
+          triggerElement,
           function () {
-            Yox.dom.addClass(node, CLASS_POPOVER_TRANSITION)
+
+            if (!me.$el || !me.get('visible')) {
+              return
+            }
+
+            Yox.dom.addClass(node, CLASS_POPOVER)
+            Yox.dom.addClass(node, '${prefix}popover-' + placement)
+            if (me.get('showArrow')) {
+              Yox.dom.addClass(node, '${prefix}popover-with-arrow')
+            }
+
+            const overlayRect = me.getOverlayRect()
+            me.setOverlayRect(
+              node,
+              overlayRect.x,
+              overlayRect.y,
+              overlayRect.width
+            )
 
             me.animateTimer = setTimeout(
               function () {
-                Yox.dom.addClass(node, CLASS_POPOVER_FADE)
+                Yox.dom.addClass(node, CLASS_POPOVER_TRANSITION)
+
+                me.animateTimer = setTimeout(
+                  function () {
+                    Yox.dom.addClass(node, CLASS_POPOVER_FADE)
+                  },
+                  20
+                )
               },
-              20
+              30
             )
-          },
-          30
+
+          }
         )
 
       },

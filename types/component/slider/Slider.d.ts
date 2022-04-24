@@ -11,7 +11,6 @@ declare const _default: import("yox").ComponentOptions<{
     value: unknown;
     hoverThumbIndex: unknown;
     dragThumbIndex: unknown;
-    showTooltipIndex: unknown;
 }, {
     outside: unknown;
 }, unknown> & ThisType<import("yox").YoxInterface>;

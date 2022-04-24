@@ -1,16 +1,6 @@
 declare const _default: import("yox").ComponentOptions<{
     contentStyle: unknown;
-}, unknown, {
-    open: unknown;
-    close: unknown;
-    outside: unknown;
 }, {
-    open(): void;
-    close(): void;
-    refresh(): void;
-}> & ThisType<{
-    open(): void;
-    close(): void;
-    refresh(): void;
-} & import("yox").YoxInterface>;
+    visible: unknown;
+}, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

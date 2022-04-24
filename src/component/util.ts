@@ -79,6 +79,23 @@ export const requestAnimationFrame = (
   }
 )
 
+export function readElementRectInfo(element: HTMLElement, callback: (rect: object) => void) {
+
+  const rectInfo = element.getBoundingClientRect()
+  if (rectInfo.width > 0 || rectInfo.height > 0) {
+    callback(rectInfo)
+    return
+  }
+
+  setTimeout(
+    function () {
+      readElementRectInfo(element, callback)
+    },
+    20
+  )
+
+}
+
 export function contains(element: HTMLElement, target: HTMLElement) {
   if (element.contains && element.contains(target)) {
     return TRUE
