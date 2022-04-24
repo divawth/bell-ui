@@ -68,22 +68,20 @@ export default Yox.define({
   },
 
   computed: {
-    wrapperStyle(): Record<string, string> {
-
-      const customStyle: Record<string, string> = {}
+    wrapperStyle(): Record<string, string> | void {
 
       const width = this.get('width')
       const height = this.get('height')
 
-      if (width) {
-        customStyle.width = toPixel(width)
-      }
-      if (height) {
-        customStyle.fontSize = toPixel(height)
-      }
-
-      if (Yox.object.keys(customStyle).length > 0) {
-        return customStyle
+      if (width || height) {
+        const result: Record<string, string> = {}
+        if (width) {
+          result.width = toPixel(width)
+        }
+        if (height) {
+          result.height = toPixel(height)
+        }
+        return result
       }
 
     },
