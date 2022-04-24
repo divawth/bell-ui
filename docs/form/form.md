@@ -105,6 +105,13 @@ export default {
           model="form.input"
           placeholder="Enter something..."
         />
+        <Tooltip slot="tooltip" content="这里是提示文字">
+          <Icon
+            name="question-line"
+            color="#aaa"
+            size="18"
+          />
+        </Tooltip>
       </FormItem>
       <FormItem label="InputNumber" showRequiredMark showMessage message="这是一段错误提示">
         <InputNumber
@@ -347,3 +354,9 @@ extra | 额外的提示信息 | string | - | -
 showRequiredMark | 是否在 label 左侧添加一个红色 * | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
+
+> Slots
+
+参数 | 说明
+---|---
+tooltip | 提示插槽

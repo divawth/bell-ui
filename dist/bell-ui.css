@@ -10860,6 +10860,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-button-group {
   display: inline-block;
+  white-space: nowrap;
 }
 .bell-button-group-default > .bell-button {
   border-radius: 2px;
@@ -12850,7 +12851,7 @@ div::-webkit-scrollbar-thumb:hover {
   padding-right: 12px;
 }
 .bell-form-label-right .bell-form-item-label {
-  text-align: right;
+  justify-content: flex-end;
 }
 .bell-form-item-align-top {
   align-items: flex-start;
@@ -12869,20 +12870,29 @@ div::-webkit-scrollbar-thumb:hover {
   margin-right: 6px;
 }
 .bell-form-item-label {
-  display: block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 14px;
   height: 32px;
-  line-height: 32px;
+  line-height: 1.5715;
   box-sizing: border-box;
   white-space: nowrap;
 }
 .bell-form-item-label + .bell-form-item-wrapper {
   margin-left: 0 !important;
 }
+.bell-form-item-tooltip {
+  cursor: help;
+  display: block;
+  line-height: 0;
+  margin-left: 3px;
+}
 .bell-form-item-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-self: stretch;
 }
 .bell-form-item-controls {
   flex: 1;
@@ -12928,8 +12938,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-form-colon .bell-form-item-label:after {
   content: ':';
-  position: relative;
-  top: -0.5px;
   margin-left: 4px;
 }
 .bell-input {

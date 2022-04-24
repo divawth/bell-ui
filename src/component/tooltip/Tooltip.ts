@@ -24,7 +24,8 @@ import {
 } from '../constant'
 
 import {
-  oneOf, toPixel,
+  oneOf,
+  toPixel,
 } from '../util'
 
 export default Yox.define({
