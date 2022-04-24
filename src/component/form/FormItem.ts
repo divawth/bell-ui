@@ -36,6 +36,7 @@ export default Yox.define({
     },
     labelAlign: {
       type: oneOf([RAW_TOP, RAW_BOTTOM, RAW_MIDDLE]),
+      value: RAW_TOP,
     },
     showMessage: {
       type: RAW_BOOLEAN,
