@@ -24,6 +24,11 @@ class="${prefix}form-item
       <slot name="label">
         {{label}}
       </slot>
+      {{#if @tooltip}}
+        <span class="${prefix}form-item-tooltip">
+          <slot name="tooltip" />
+        </span>
+      {{/if}}
     </label>
   {{/if}}
 

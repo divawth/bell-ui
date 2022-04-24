@@ -2,6 +2,7 @@
 
 $form-item-vertical-gap = 26px
 $form-item-horizontal-gap = 16px
+$form-item-label-tooltip-gap = 3px
 $form-item-label-wrapper-gap = 12px
 $form-item-message-font-size = $font-size-small
 $form-item-message-line-height = 1.5 * $form-item-message-font-size
@@ -22,7 +23,7 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-class-prefix + '-form-label-right'}
   {$selector-class-prefix + '-form-item-label'}
-    text-align right
+    justify-content flex-end
 
 {$selector-class-prefix + '-form-item-align-top'}
   align-items flex-start
@@ -42,20 +43,29 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
     margin-right $ui-icon-text-gap
 
 {$selector-class-prefix + '-form-item-label'}
-  display block
+  display flex
+  justify-content flex-start
+  align-items center
   font-size $ui-font-size
   height $height-default
-  line-height $height-default
+  line-height $ui-multiple-line-height
   box-sizing border-box
   white-space nowrap
 
   + {$selector-class-prefix + '-form-item-wrapper'}
     margin-left 0 !important
 
+{$selector-class-prefix + '-form-item-tooltip'}
+  cursor help
+  display block
+  line-height 0
+  margin-left $form-item-label-tooltip-gap
+
 {$selector-class-prefix + '-form-item-wrapper'}
   flex 1
   display flex
   flex-direction column
+  align-self stretch
 
 {$selector-class-prefix + '-form-item-controls'}
   flex 1
@@ -103,6 +113,4 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 {$selector-class-prefix + '-form-colon'}
   {$selector-class-prefix + '-form-item-label'}:after
     content ':'
-    position relative
-    top -0.5px
     margin-left 4px
