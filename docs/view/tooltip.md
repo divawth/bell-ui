@@ -183,9 +183,23 @@ export default {
 ```js
 export default {
   template: `
-    <Tooltip content="Tooltip 文字提示" mode="click">
+    <Tooltip content="Tooltip 文字提示" trigger="click">
       <Button>
         点击显示
+      </Button>
+    </Tooltip>
+  `
+}
+```
+
+> 外部控制是否显示
+
+```js
+export default {
+  template: `
+    <Tooltip theme="light" content="Tooltip 文字提示" visible>
+      <Button>
+        默认显示
       </Button>
     </Tooltip>
   `
@@ -198,7 +212,7 @@ export default {
 export default {
   template: `
     <div>
-      <Tooltip mode="click" max-height="60">
+      <Tooltip trigger="click" max-height="60">
         <Button>设置最大宽高</Button>
         <div slot="content">
           这里是提示文字
@@ -216,7 +230,7 @@ export default {
 ```js
 export default {
   template: `
-    <Tooltip content="Tooltip 文字提示" mode="click" offsetX="10" offsetY="100">
+    <Tooltip content="Tooltip 文字提示" trigger="click" offsetX="10" offsetY="100">
       <Button>
         点击显示
       </Button>
@@ -232,9 +246,11 @@ export default {
 content | Tooltip 的文本 | string | - | -
 theme | 主题 | string | dark, light | dark
 placement | 菜单显示方位 | string | `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end` | `bottom`
+defaultVisible | 是否默认显示 | boolean | - | -
+visible | 手动控制浮层是否显示 | boolean | - | -
 disabled | 是否禁用弹出提示 | boolean | - | -
 delay | 显示延时 | string, number | - | 0
-mode | 交互模式 | string | click, hover | hover
+trigger | 触发浮层显示的方式 | string | `click`, `hover` | `hover`
 maxWidth | 浮层的最大宽度 | string, number | - | -
 maxHeight | 浮层的最大高度 | string, number | - | -
 offsetX | 浮层距离目标元素 x 轴的位置偏移 | number | - | -

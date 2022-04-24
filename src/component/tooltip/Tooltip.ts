@@ -58,8 +58,8 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: HOVER_DELAY,
     },
-    mode: {
-      type: oneOf([RAW_HOVER, RAW_CLICK, RAW_CUSTOM]),
+    trigger: {
+      type: oneOf([RAW_HOVER, RAW_CLICK]),
       value: RAW_HOVER,
     },
     maxWidth: {
@@ -94,15 +94,13 @@ export default Yox.define({
     }
   },
 
-  watchers: {
-    visible(value) {
-      this.set({
-        isVisible: value,
-      })
-    }
-  },
-
   computed: {
+    mode() {
+      const visible = this.get('visible')
+      return typeof visible === 'boolean'
+        ? RAW_CUSTOM
+        : this.get('trigger')
+    },
     contentStyle(): Record<string, string> | void {
 
       const maxWidth = this.get('maxWidth')
@@ -120,6 +118,14 @@ export default Yox.define({
       }
 
     },
+  },
+
+  watchers: {
+    visible(value) {
+      this.set({
+        isVisible: value,
+      })
+    }
   },
 
   methods: {
