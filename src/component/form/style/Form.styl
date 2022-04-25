@@ -4,8 +4,6 @@ $form-item-vertical-gap = 26px
 $form-item-horizontal-gap = 16px
 $form-item-label-tooltip-gap = 3px
 $form-item-label-wrapper-gap = 12px
-$form-item-message-font-size = $font-size-small
-$form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-class-prefix + '-form'}
   display flex
@@ -52,9 +50,6 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   box-sizing border-box
   white-space nowrap
 
-  + {$selector-class-prefix + '-form-item-wrapper'}
-    margin-left 0 !important
-
 {$selector-class-prefix + '-form-item-tooltip'}
   cursor help
   display block
@@ -76,9 +71,9 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
 
 {$selector-class-prefix + '-form-item-extra'},
 {$selector-class-prefix + '-form-item-message'}
-  font-size $form-item-message-font-size
-  line-height $form-item-message-line-height
-  margin 0.5 * ($form-item-vertical-gap - $form-item-message-line-height) 0
+  font-size $font-size-small
+  line-height $ui-multiple-line-height
+  margin 0.5 * ($form-item-vertical-gap - ($font-size-small * $ui-multiple-line-height)) 0
 
 {$selector-class-prefix + '-form-item-extra'}
   color $brand-muted
@@ -91,13 +86,14 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
   flex-wrap wrap
   align-items flex-start
   gap $form-item-horizontal-gap
+
   {$selector-class-prefix + '-form-item'}
     display inline-flex
 
-{$selector-class-prefix + '-form-block'}
+{$selector-class-prefix + '-form-horizontal'},
+{$selector-class-prefix + '-form-vertical'}
   {$selector-class-prefix + '-form-item'}
     display flex
-    flex-direction row
     + {$selector-class-prefix + '-form-item'}
       margin-top $form-item-vertical-gap
 
@@ -106,7 +102,11 @@ $form-item-message-line-height = 1.5 * $form-item-message-font-size
     + {$selector-class-prefix + '-form-item'}
       margin-top 0
 
-{$selector-class-prefix + '-form-label-top'}
+{$selector-class-prefix + '-form-horizontal'}
+  {$selector-class-prefix + '-form-item'}
+    flex-direction row
+
+{$selector-class-prefix + '-form-vertical'}
   {$selector-class-prefix + '-form-item'}
     flex-direction column
 

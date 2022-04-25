@@ -4,6 +4,8 @@ import template from './template/MenuGroup.hbs'
 
 import {
   RAW_STRING,
+  RAW_INLINE,
+  RAW_VERTICAL,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -32,6 +34,8 @@ export default Yox.define({
   data(options) {
     const menu = findComponentUpward(options.parent, '${prefix}Menu')
     return {
+      RAW_INLINE,
+      RAW_VERTICAL,
       mode: menu.get('mode'),
     }
   },

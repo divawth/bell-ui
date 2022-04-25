@@ -1,6 +1,6 @@
 <div
 class="${prefix}form-item
-{{#if extra}} ${prefix}form-item-with-extra{{/if}}
+{{#if extra || @extra}} ${prefix}form-item-with-extra{{/if}}
 {{#if showItemMessage}} ${prefix}form-item-with-message{{/if}}
 {{#if adaptive}} ${prefix}form-item-adaptive{{/if}}
 {{#if labelAlign}} ${prefix}form-item-align-{{labelAlign}}{{/if}}
@@ -15,9 +15,9 @@ class="${prefix}form-item
       class="${prefix}form-item-label
       {{#if showRequiredMark}} ${prefix}form-item-label-required{{/if}}"
 
-      {{#if itemLabelWidth && formLabelAlign !== RAW_TOP}}
+      {{#if itemLabelWidth}}
         style="{{ {
-          flex: '0 0 ' + itemLabelWidth + 'px'
+          flex: '0 0 ' + itemLabelWidth
         } }}"
       {{/if}}
     >
@@ -34,9 +34,11 @@ class="${prefix}form-item
 
   <div
     class="${prefix}form-item-wrapper"
-    {{#if itemLabelWidth}}
+    {{#if itemLabelWidth
+      && (!label && !@label)
+    }}
       style="{{ {
-        marginLeft: itemLabelWidth + 'px'
+        marginLeft: itemLabelWidth
       } }}"
     {{/if}}
   >
@@ -49,6 +51,10 @@ class="${prefix}form-item
       <div class="${prefix}form-item-extra">
         {{{formatMessage(extra)}}}
       </div>
+    {{else if @extra}}
+      <div class="${prefix}form-item-extra">
+        <slot name="extra" />
+      </div>
     {{/if}}
 
     {{#if showItemMessage}}
@@ -58,6 +64,5 @@ class="${prefix}form-item
     {{/if}}
 
   </div>
-
 
 </div>

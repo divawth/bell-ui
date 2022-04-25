@@ -13,7 +13,7 @@ class="${prefix}menu-group
   {{#if @children}}
     <Menu
       inner
-      mode="{{mode === 'inline' ? 'inline' : 'vertical'}}"
+      mode="{{mode === RAW_INLINE ? RAW_INLINE : RAW_VERTICAL}}"
     >
       <slot />
     </Menu>

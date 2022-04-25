@@ -1,6 +1,6 @@
-> 行内表单
+> 布局方式
 
-设置属性 inline，表单元素可以水平排列。
+三种布局方式
 
 ```js
 export default {
@@ -8,12 +8,26 @@ export default {
   height: 300,
   template: `
   <div>
+    <RadioGroup button model="layout">
+      <Radio value="inline">
+        inline
+      </Radio>
+      <Radio value="horizontal">
+        horizontal
+      </Radio>
+      <Radio value="vertical">
+        vertical
+      </Radio>
+    </RadioGroup>
+    <br>
+    <br>
     <Form
       ref="form"
-      inline
+      layout="{{layout}}"
+      labelWidth="100"
       showMessage
     >
-      <FormItem prop="username">
+      <FormItem label="用户名" prop="username">
         <Input
           model="form.username"
           placeholder="Username"
@@ -27,7 +41,7 @@ export default {
           />
         </Input>
       </FormItem>
-      <FormItem prop="password">
+      <FormItem label="密码" prop="password">
         <Input
           type="password"
           model="form.password"
@@ -54,6 +68,7 @@ export default {
   </div>
   `,
   data: {
+    layout: 'inline',
     errors: null,
     form: {
       username: '',
@@ -100,11 +115,17 @@ export default {
           placeholder="Enter something..."
         />
       </FormItem>
-      <FormItem label="Input" showRequiredMark extra="第一行文字\n第二行文字">
+      <FormItem label="Input" showRequiredMark>
         <Input
           model="form.input"
           placeholder="Enter something..."
         />
+        <template slot="extra">
+          提示文字<br>
+          <Link size="small">
+            查看详情
+          </Link>
+        </template>
         <Tooltip slot="tooltip" content="这里是提示文字">
           <Icon
             name="question-line"
@@ -305,36 +326,15 @@ export default {
 }
 ```
 
-> labelAlign - top
-
-```js
-export default {
-  isViewFullBlock: true,
-  template: `
-  <Form labelAlign="top" labelWidth="100">
-    <FormItem label="Title">
-      <Input />
-    </FormItem>
-    <FormItem label="Title name">
-      <Input />
-    </FormItem>
-    <FormItem label="Aligned title">
-      <Input />
-    </FormItem>
-  </Form>
-  `
-}
-```
-
 #### Form API
 
 > Props
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-inline | 是否开启行内表单模式 | boolean | - | -
+layout | 表单布局模式 | string | `inline`、`horizontal`、`vertical` | `horizontal`
 showColon | 是否显示 label 后面的冒号 | boolean | - | -
-labelAlign | 表单域标签的位置 | string | `left`, `right`, `top` | `right`
+labelAlign | 表单域标签的位置 | string | `left`, `right` | `right`
 labelWidth | 表单域标签的宽度 | number | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
@@ -359,4 +359,5 @@ style | 自定义内联样式 | string | - | -
 
 参数 | 说明
 ---|---
-tooltip | 提示插槽
+tooltip | 问号提示插槽
+extra | 额外的提示信息插槽

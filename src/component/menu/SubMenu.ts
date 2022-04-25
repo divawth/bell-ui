@@ -1,4 +1,4 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox from 'yox'
 
 import Icon from '../icon/Icon'
 import Popover from '../popover/Popover'
@@ -7,8 +7,8 @@ import template from './template/SubMenu.hbs'
 import {
   FALSE,
   RAW_STRING,
-  RAW_INLINE,
   RAW_CUSTOM,
+  RAW_INLINE,
   RAW_HORIZONTAL,
   RAW_BOTTOM,
   RAW_RIGHT_START,
@@ -44,6 +44,7 @@ export default Yox.define({
     const openNames = menu.get('openNames')
     return {
       RAW_CUSTOM,
+      RAW_INLINE,
       RAW_HORIZONTAL,
       RAW_BOTTOM,
       RAW_RIGHT_START,

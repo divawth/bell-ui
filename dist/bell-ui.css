@@ -12922,9 +12922,6 @@ div::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
   white-space: nowrap;
 }
-.bell-form-item-label + .bell-form-item-wrapper {
-  margin-left: 0 !important;
-}
 .bell-form-item-tooltip {
   cursor: help;
   display: block;
@@ -12947,8 +12944,8 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-item-extra,
 .bell-form-item-message {
   font-size: 12px;
-  line-height: 18px;
-  margin: 4px 0;
+  line-height: 1.5715;
+  margin: 3.571000000000002px 0;
 }
 .bell-form-item-extra {
   color: #808695;
@@ -12965,18 +12962,24 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-inline .bell-form-item {
   display: inline-flex;
 }
-.bell-form-block .bell-form-item {
+.bell-form-horizontal .bell-form-item,
+.bell-form-vertical .bell-form-item {
   display: flex;
-  flex-direction: row;
 }
-.bell-form-block .bell-form-item + .bell-form-item {
+.bell-form-horizontal .bell-form-item + .bell-form-item,
+.bell-form-vertical .bell-form-item + .bell-form-item {
   margin-top: 26px;
 }
-.bell-form-block .bell-form-item-with-extra + .bell-form-item,
-.bell-form-block .bell-form-item-with-message + .bell-form-item {
+.bell-form-horizontal .bell-form-item-with-extra + .bell-form-item,
+.bell-form-vertical .bell-form-item-with-extra + .bell-form-item,
+.bell-form-horizontal .bell-form-item-with-message + .bell-form-item,
+.bell-form-vertical .bell-form-item-with-message + .bell-form-item {
   margin-top: 0;
 }
-.bell-form-label-top .bell-form-item {
+.bell-form-horizontal .bell-form-item {
+  flex-direction: row;
+}
+.bell-form-vertical .bell-form-item {
   flex-direction: column;
 }
 .bell-form-colon .bell-form-item-label:after {

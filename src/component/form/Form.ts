@@ -9,8 +9,10 @@ import {
   RAW_BOOLEAN,
   RAW_LEFT,
   RAW_RIGHT,
-  RAW_TOP,
   RAW_NUMERIC,
+  RAW_INLINE,
+  RAW_VERTICAL,
+  RAW_HORIZONTAL,
   RAW_STYLE_TYPE,
 } from '../constant'
 
@@ -25,14 +27,15 @@ export default Yox.define({
   name: '${prefix}Form',
 
   propTypes: {
-    inline: {
-      type: RAW_BOOLEAN,
+    layout: {
+      type: oneOf([RAW_INLINE, RAW_HORIZONTAL, RAW_VERTICAL]),
+      value: RAW_HORIZONTAL,
     },
     showColon: {
       type: RAW_BOOLEAN,
     },
     labelAlign: {
-      type: oneOf([RAW_LEFT, RAW_RIGHT, RAW_TOP]),
+      type: oneOf([RAW_LEFT, RAW_RIGHT]),
       value: RAW_RIGHT,
     },
     labelWidth: {
@@ -43,6 +46,21 @@ export default Yox.define({
     },
     style: {
       type: RAW_STYLE_TYPE,
+    }
+  },
+
+  watchers: {
+    layout(value) {
+      this.fire(
+        {
+          type: 'layoutChange',
+          ns: 'form',
+        },
+        {
+          layout: value,
+        },
+        TRUE
+      )
     }
   },
 

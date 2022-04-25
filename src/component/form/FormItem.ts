@@ -10,11 +10,13 @@ import {
   RAW_TOP,
   RAW_BOTTOM,
   RAW_MIDDLE,
+  RAW_HORIZONTAL,
   RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
   oneOf,
+  toPixel,
   findComponentUpward,
 } from '../util'
 
@@ -65,13 +67,22 @@ export default Yox.define({
 
     return {
       RAW_TOP,
+      RAW_HORIZONTAL,
       error: UNDEFINED,
-      itemLabelWidth: form.get('labelWidth'),
-      formLabelAlign: form.get('labelAlign'),
+      formLayout: form.get('layout'),
+      formLabelWidth: form.get('labelWidth'),
     }
+
   },
 
   computed: {
+    itemLabelWidth(): string {
+      const formLayout = this.get('formLayout')
+      const formLabelWidth = this.get('formLabelWidth')
+      return formLayout === RAW_HORIZONTAL && formLabelWidth
+        ? toPixel(formLabelWidth)
+        : ''
+    },
     itemMessage(): string {
       return this.get('error') || this.get('message')
     },
@@ -87,6 +98,14 @@ export default Yox.define({
   },
 
   events: {
+    layoutChange: {
+      listener(_, data) {
+        this.set({
+          formLayout: data.layout,
+        })
+      },
+      ns: 'form',
+    },
     validate: {
       listener(_, data) {
         const { errors } = data
