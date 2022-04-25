@@ -53,6 +53,7 @@ import Badge from './component/badge/Badge'
 import DatePicker from './component/date-picker/DatePicker'
 import TimePicker from './component/time-picker/TimePicker'
 import ImagePicker from './component/image-picker/ImagePicker'
+import Image from './component/image/Image'
 
 import Tooltip from './component/tooltip/Tooltip'
 
@@ -99,7 +100,6 @@ import DropdownMenu from './component/dropdown/DropdownMenu'
 import Description from './component/description/Description'
 import DescriptionItem from './component/description/DescriptionItem'
 
-import Thumbnail from './component/thumbnail/Thumbnail'
 import Timeline from './component/timeline/Timeline'
 import TimelineItem from './component/timeline/TimelineItem'
 
@@ -165,6 +165,7 @@ export function install(Yox: any) {
     DatePicker,
     TimePicker,
     ImagePicker,
+    Image,
     Upload,
 
     Tooltip,
@@ -219,7 +220,6 @@ export function install(Yox: any) {
     Description,
     DescriptionItem,
 
-    Thumbnail,
     Timeline,
     TimelineItem,
     Form,

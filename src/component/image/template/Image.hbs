@@ -1,10 +1,10 @@
 <div
-class="${prefix}thumbnail
-{{#if simple}} ${prefix}thumbnail-simple
-{{else}} ${prefix}thumbnail-bordered
+class="${prefix}image
+{{#if simple}} ${prefix}image-simple
+{{else}} ${prefix}image-bordered
 {{/if}}
-{{#if customHeight <= 100}} ${prefix}thumbnail-small{{/if}}
-{{#if message}} ${prefix}thumbnail-with-message{{/if}}
+{{#if customHeight <= 100}} ${prefix}image-small{{/if}}
+{{#if message}} ${prefix}image-with-message{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if inlineStyle}}
@@ -14,8 +14,8 @@ class="${prefix}thumbnail
 
   {{#if url || base64}}
     <img
-      class="${prefix}thumbnail-image
-      {{#if mode}} ${prefix}thumbnail-image-{{hyphenate(mode)}}{{/if}}"
+      class="${prefix}image-native
+      {{#if mode}} ${prefix}image-native-{{hyphenate(mode)}}{{/if}}"
 
       {{#if url}}
         src="{{
@@ -36,28 +36,28 @@ class="${prefix}thumbnail
         alt="{{alt}}"
       {{/if}}
       draggable="false"
-      on-error="error.thumbnail"
+      on-error="error.image"
     >
   {{else}}
     <div
-      class="${prefix}thumbnail-placeholder
-      {{#if !@placeholder}} ${prefix}thumbnail-placeholder-empty{{/if}}"
+      class="${prefix}image-placeholder
+      {{#if !@placeholder}} ${prefix}image-placeholder-empty{{/if}}"
     >
       <slot name="placeholder" />
     </div>
   {{/if}}
 
   {{#if message || showZoom}}
-    <div class="${prefix}thumbnail-mask">
+    <div class="${prefix}image-mask">
       {{#if message}}
-        <div class="${prefix}thumbnail-message">
+        <div class="${prefix}image-message">
           {{{message}}}
         </div>
       {{else if showZoom}}
-        <div class="${prefix}thumbnail-action">
+        <div class="${prefix}image-action">
           <Icon
             name="zoom-in-line"
-            on-click.native="zoom.thumbnail"
+            on-click.native="zoom.image"
           />
         </div>
       {{/if}}
@@ -69,7 +69,7 @@ class="${prefix}thumbnail
     {{#if uploadImage}}
       <Upload
         ref="upload"
-        className="${prefix}thumbnail-footer"
+        className="${prefix}image-footer"
         accept="{{accept}}"
         beforeUpload="{{beforeUploadImage}}"
       >
@@ -77,8 +77,8 @@ class="${prefix}thumbnail
       </Upload>
     {{else}}
       <div
-        class="${prefix}thumbnail-footer"
-        on-click="upload.thumbnail"
+        class="${prefix}image-footer"
+        on-click="uploadClick.image"
       >
         {{uploadTitle}}
       </div>

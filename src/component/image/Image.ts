@@ -1,7 +1,7 @@
 import Yox from 'yox'
 
-import template from './template/Thumbnail.hbs'
-// import './style/Thumbnail.styl'
+import template from './template/Image.hbs'
+// import './style/Image.styl'
 
 import Icon from '../icon/Icon'
 import Spin from '../spin/Spin'
@@ -36,16 +36,16 @@ export default Yox.define({
 
   template,
 
-  name: '${prefix}Thumbnail',
+  name: '${prefix}Image',
 
   propTypes: {
     width: {
       type: RAW_NUMERIC,
-      required: TRUE,
+      value: 80,
     },
     height: {
       type: RAW_NUMERIC,
-      required: TRUE,
+      value: 80,
     },
     mode: {
       type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
@@ -183,8 +183,8 @@ export default Yox.define({
             })
             me.fire(
               {
-                type: 'change',
-                ns: 'thumbnail',
+                type: 'uploadSuccess',
+                ns: 'image',
               },
               {
                 image: data,
