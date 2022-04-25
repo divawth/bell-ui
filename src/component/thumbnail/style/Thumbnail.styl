@@ -1,9 +1,11 @@
 @import '../../../env'
 
 $thumbnail-padding = 2px
-$thumbnail-image-background-color = $brand-bg-light
 $thumbnail-icon-size = 16px
-$thumbnail-icon-gap = 12px
+
+$thumbnail-mask-bg = rgba(0,0,0,0.4)
+$thumbnail-mask-text = #fff
+$thumbnail-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-thumbnail'}
   display inline-block
@@ -14,11 +16,8 @@ $thumbnail-icon-gap = 12px
   border-radius $border-radius-default
   text-align center
   position relative
+  user-select none
   box-sizing content-box
-
-  &:hover
-    {$selector-class-prefix + '-thumbnail-mask'}
-      opacity 1
 
   > {$selector-class-prefix + '-spin-fixed'}
     top 0
@@ -31,17 +30,59 @@ $thumbnail-icon-gap = 12px
   {$selector-class-prefix + '-spin-icon'}
     color $brand-white
 
-{$selector-class-prefix + '-thumbnail-loading'}:hover
+{$selector-class-prefix + '-thumbnail'}:hover,
+{$selector-class-prefix + '-thumbnail-with-message'}
   {$selector-class-prefix + '-thumbnail-mask'}
-    opacity 0
+    opacity 1
 
 {$selector-class-prefix + '-thumbnail-image'},
 {$selector-class-prefix + '-thumbnail-placeholder'}
-  width 100%
   height 100%
   border-radius $border-radius-default
-  background-color $thumbnail-image-background-color
+  background-color $brand-bg-light
   vertical-align top
+
+{$selector-class-prefix + '-thumbnail-image-aspect-fit'}
+  max-width 100%
+  max-height 100%
+
+{$selector-class-prefix + '-thumbnail-image-scale-to-fill'}
+  width 100%
+  height 100%
+
+{$selector-class-prefix + '-thumbnail-placeholder-empty'}
+  background $brand-bg-light url('~@component/thumbnail/image/placeholder-default.png') no-repeat 50% 35%
+  background-image -webkit-image-set(
+    url('~@component/thumbnail/image/placeholder-default@2x.png') 2x
+  )
+
+{$selector-class-prefix + '-thumbnail-small'}
+  {$selector-class-prefix + '-thumbnail-placeholder-empty'}
+    background-image url('~@component/thumbnail/image/placeholder-small.png')
+    background-image -webkit-image-set(
+      url('~@component/thumbnail/image/placeholder-small@2x.png') 2x
+    )
+
+{$selector-class-prefix + '-thumbnail-footer'}
+  display block
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 20%
+  min-height 24px
+  white-space nowrap
+  color $brand-white
+  font-size $font-size-small
+  line-height $ui-single-line-height
+  background-color $brand-action-bg-color
+  border-bottom-left-radius $border-radius-default
+  border-bottom-right-radius $border-radius-default
+  transition background-color $form-control-transition-duration
+  ui-clickable()
+
+  &:hover
+    background-color $brand-action-bg-color-hover
 
 {$selector-class-prefix + '-thumbnail-mask'}
   opacity 0
@@ -57,18 +98,28 @@ $thumbnail-icon-gap = 12px
   {$selector-class-prefix + '-icon'}
     color $brand-white
     font-size $thumbnail-icon-size
-    transition color .1s
+    transition color $form-control-transition-duration
 
     &:hover
       color $brand-primary
 
-  {$selector-class-prefix + '-thumbnail-action'}
-    ui-clickable()
+{$selector-class-prefix + '-thumbnail-with-message'}
+  {$selector-class-prefix + '-thumbnail-mask'}
+    background-color $thumbnail-mask-bg
 
-    + {$selector-class-prefix + '-thumbnail-action'}
-      margin-left $thumbnail-icon-gap
+{$selector-class-prefix + '-thumbnail-message'}
+  color $thumbnail-mask-text
+  font-size $font-size-small
+  line-height $ui-multiple-line-height
+  text-shadow 1px 1px 2px $thumbnail-mask-text-shadow
+  text-align center
+  width 80%
+
+{$selector-class-prefix + '-thumbnail-action'}
+  ui-clickable()
 
 {$selector-class-prefix + '-thumbnail-placeholder'},
+{$selector-class-prefix + '-thumbnail-footer'},
 {$selector-class-prefix + '-thumbnail-mask'}
   display flex
   align-items center
@@ -78,14 +129,13 @@ $thumbnail-icon-gap = 12px
   border 1px solid $brand-border
   padding $thumbnail-padding
 
-  > {$selector-class-prefix + '-spin-fixed'}
-    top $thumbnail-padding
+  > {$selector-class-prefix + '-spin-fixed'},
+  > {$selector-class-prefix + '-thumbnail-mask'},
+  > {$selector-class-prefix + '-thumbnail-footer'}
     left $thumbnail-padding
     right $thumbnail-padding
     bottom $thumbnail-padding
 
+  > {$selector-class-prefix + '-spin-fixed'},
   > {$selector-class-prefix + '-thumbnail-mask'}
     top $thumbnail-padding
-    left $thumbnail-padding
-    right $thumbnail-padding
-    bottom $thumbnail-padding

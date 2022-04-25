@@ -35,11 +35,7 @@ export default {
 }
 ```
 
-> 支持四种操作
-
-四种操作依次为 `放大(zoom)`、`上传(upload)`、`下载(download)`、`删除(delete)`。
-
-每种操作对应一个事件，如下：
+> 放大操作
 
 ```js
 export default {
@@ -49,36 +45,13 @@ export default {
       width="140"
       height="140"
       showZoom
-      showUpload
-      showDownload
-      showDelete
       on-zoom="zoomImage()"
-      on-upload="uploadImage()"
-      on-download="downloadImage()"
-      on-delete="deleteImage()"
-      beforeUpload="{{beforeUpload}}"
     />
   `,
-  data() {
-    return {
-      beforeUpload(data) {
-        data.callback(data.fileList)
-      }
-    }
-  },
   methods: {
     zoomImage() {
       console.log('zoom')
     },
-    uploadImage(_, data) {
-      console.log('upload', data)
-    },
-    downloadImage() {
-      window.open('https://avatars0.githubusercontent.com/u/17703135')
-    },
-    deleteImage() {
-      console.log('delete')
-    }
   }
 }
 ```
@@ -102,7 +75,7 @@ export default {
 }
 ```
 
-> 加载中
+> 使用上传样式，但实际不上传
 
 ```js
 export default {
@@ -110,26 +83,52 @@ export default {
     <Thumbnail
       width="140"
       height="140"
-      loading
+      uploadTitle="上传图片"
+      on-upload="upload()"
     >
-      <template slot="placeholder">
-        随便显示啥
-      </template>
     </Thumbnail>
-  `
+  `,
+  methods: {
+    upload() {
+      console.log('upload')
+    }
+  }
 }
 ```
 
+> 上传
+
 ```js
 export default {
   template: `
     <Thumbnail
-      width="140"
-      height="140"
-      url="https://avatars0.githubusercontent.com/u/17703135?s=140"
-      loading
-    />
+      width="100"
+      height="100"
+      mode="aspectFit"
+      uploadTitle="上传图片"
+      uploadImage="{{uploadImage}}"
+      on-change="change()"
+    >
+    </Thumbnail>
   `,
+  data: {
+    uploadImage(data) {
+      console.log('upload', data)
+      data.onStart()
+      setTimeout(
+        function () {
+          data.onError('服务器异常')
+          // data.onSuccess({})
+        },
+        1000
+      )
+    }
+  },
+  methods: {
+    change(event, data) {
+      console.log('change', event, data)
+    }
+  }
 }
 ```
 
@@ -162,9 +161,6 @@ alt | 原生 `alt` 属性 | string | - | -
 simple | 是否为简洁风格 | boolean | - | -
 loading | 是否加载中 | boolean | - | -
 showZoom | 是否显示放大图标 | boolean | - | -
-showUpload | 是否显示上传图标 | boolean | - | -
-showDownload | 是否显示下载图标 | boolean | - | -
-showDelete | 是否显示删除图标 | boolean | - | -
 formatUrl | 图片裁剪函数 | function | - | -
 beforeUpload | 上传前执行的函数 | function | - | -
 className | 自定义类名 | string | - | -
@@ -182,6 +178,3 @@ placeholder | 自定义占位图
 ---|---
 error | 图片加载失败时触发
 zoom | 点击放大图标时触发
-upload | 点击下载图标时触发
-download | 点击下载图标时触发
-delete | 点击删除图标时触发

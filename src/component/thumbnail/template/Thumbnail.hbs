@@ -3,8 +3,8 @@ class="${prefix}thumbnail
 {{#if simple}} ${prefix}thumbnail-simple
 {{else}} ${prefix}thumbnail-bordered
 {{/if}}
-
-{{#if loading}} ${prefix}thumbnail-loading{{/if}}
+{{#if customHeight <= 100}} ${prefix}thumbnail-small{{/if}}
+{{#if message}} ${prefix}thumbnail-with-message{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if inlineStyle}}
@@ -12,18 +12,24 @@ class="${prefix}thumbnail
 {{/if}}
 >
 
-  {{#if url || src}}
+  {{#if url || base64}}
     <img
-      class="${prefix}thumbnail-image"
+      class="${prefix}thumbnail-image
+      {{#if mode}} ${prefix}thumbnail-image-{{hyphenate(mode)}}{{/if}}"
 
       {{#if url}}
-        src="{{formatUrl ? formatUrl({ url: url, width: customWidth, height: customHeight, responsive: true }) : url}}"
-      {{else}}
-        src="{{src}}"
-      {{/if}}
-
-      {{#if srcSet}}
-        srcset="{{srcSet}}"
+        src="{{
+          formatUrl
+          ? formatUrl({
+              url: url,
+              width: customWidth,
+              height: customHeight,
+              responsive: true
+            })
+          : url
+        }}"
+      {{else if base64}}
+        src="{{base64}}"
       {{/if}}
 
       {{#if alt}}
@@ -33,14 +39,21 @@ class="${prefix}thumbnail
       on-error="error.thumbnail"
     >
   {{else}}
-    <div class="${prefix}thumbnail-placeholder">
+    <div
+      class="${prefix}thumbnail-placeholder
+      {{#if !@placeholder}} ${prefix}thumbnail-placeholder-empty{{/if}}"
+    >
       <slot name="placeholder" />
     </div>
   {{/if}}
 
-  {{#if showZoom || showUpload || showDownload || showDelete}}
+  {{#if message || showZoom}}
     <div class="${prefix}thumbnail-mask">
-      {{#if showZoom}}
+      {{#if message}}
+        <div class="${prefix}thumbnail-message">
+          {{{message}}}
+        </div>
+      {{else if showZoom}}
         <div class="${prefix}thumbnail-action">
           <Icon
             name="zoom-in-line"
@@ -48,40 +61,33 @@ class="${prefix}thumbnail
           />
         </div>
       {{/if}}
-      {{#if showUpload}}
-        <Upload
-          className="${prefix}thumbnail-action"
-          accept="{{accept}}"
-          upload="{{uploadImage}}"
-          beforeUpload="{{beforeUpload}}"
-        >
-          <Icon
-            name="upload-2-line"
-          />
-        </Upload>
-      {{/if}}
-      {{#if showDownload}}
-        <div class="${prefix}thumbnail-action">
-          <Icon
-            name="download-2-line"
-            on-click.native="download.thumbnail"
-          />
-        </div>
-      {{/if}}
-      {{#if showDelete}}
-        <div class="${prefix}thumbnail-action">
-          <Icon
-            name="delete-bin-line"
-            on-click.native="delete.thumbnail"
-          />
-        </div>
-      {{/if}}
     </div>
   {{/if}}
 
-  {{#if loading}}
+
+  {{#if uploadTitle}}
+    {{#if uploadImage}}
+      <Upload
+        ref="upload"
+        className="${prefix}thumbnail-footer"
+        accept="{{accept}}"
+        beforeUpload="{{beforeUploadImage}}"
+      >
+        {{uploadTitle}}
+      </Upload>
+    {{else}}
+      <div
+        class="${prefix}thumbnail-footer"
+        on-click="upload.thumbnail"
+      >
+        {{uploadTitle}}
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if isLoading}}
     <Spin
-      size="large"
+      size="small"
       fixed
     />
   {{/if}}

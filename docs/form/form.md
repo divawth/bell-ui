@@ -78,7 +78,7 @@ export default {
   methods: {
     handleSubmit() {
 
-      // 通过第三方校验器获得一个校验结果，推荐使用 x-validator
+      // 通过第三方校验器获得一个校验结果，推荐使用 @yorkjs/validator
       let errors = {
         username: 'username 错误',
         password: 'password 错误'
