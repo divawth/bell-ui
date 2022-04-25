@@ -7,7 +7,5 @@ declare const _default: import("yox").ComponentOptions<{
     alphaMaskStyle: unknown;
     alphaThumbStyle: unknown;
     alphaThumbColor: unknown;
-    swatchListStyle: unknown;
-    swatchItemStyle: unknown;
 }, unknown, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

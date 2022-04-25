@@ -9986,6 +9986,42 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   font-size: 14px;
 }
+.bell-color-swatch {
+  display: flex;
+  flex-wrap: wrap;
+}
+.bell-color-swatch-item {
+  outline: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  background-image: linear-gradient(45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(-45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(45deg, rgba(0,0,0,0) 75%, #ddd 75%), linear-gradient(-45deg, rgba(0,0,0,0) 75%, #ddd 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+  background-repeat: repeat;
+}
+.bell-color-swatch-item:focus .bell-color-swatch-item-color:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  filter: blur(2px);
+}
+.bell-color-swatch-item-color {
+  height: 100%;
+  position: relative;
+  border-radius: 2px;
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 .bell-closable {
   display: inline-block;
   position: relative;
@@ -11312,6 +11348,9 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
   padding: 12px;
 }
+.bell-color-picker-panel > .bell-color-swatch {
+  margin-top: 12px;
+}
 .bell-color-picker-pallete {
   height: 200px;
 }
@@ -11419,34 +11458,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-color-picker-rgb-input > .bell-input + .bell-input {
   margin-left: 8px;
 }
-.bell-color-picker-swatches {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-}
 .bell-color-picker-value,
-.bell-color-picker-alpha-slider-track,
-.bell-color-picker-swatch {
+.bell-color-picker-alpha-slider-track {
   background-image: linear-gradient(45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(-45deg, #ddd 25%, rgba(0,0,0,0) 25%), linear-gradient(45deg, rgba(0,0,0,0) 75%, #ddd 75%), linear-gradient(-45deg, rgba(0,0,0,0) 75%, #ddd 75%);
   background-size: 12px 12px;
   background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
   background-repeat: repeat;
-}
-.bell-color-picker-swatch {
-  width: 18px;
-  height: 18px;
-  border-radius: 2px;
-}
-.bell-color-picker-swatch-color {
-  height: 100%;
-  border-radius: 2px;
-  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.2);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-circle {
   display: inline-block;

@@ -1,0 +1,27 @@
+<div
+class="${prefix}color-swatch
+{{#if className}} {{className}}{{/if}}"
+
+{{#if swatchListStyle}}
+  style="{{swatchListStyle}}"
+{{/if}}
+>
+  {{#each swatches}}
+    <div
+      tabindex="0"
+      class="${prefix}color-swatch-item"
+      {{#if ~/swatchItemStyle}}
+        style="{{~/swatchItemStyle}}"
+      {{/if}}
+      on-click="onColorClick(this)"
+    >
+      <div
+        class="${prefix}color-swatch-item-color"
+        style="{{ {
+          backgroundColor: this
+        } }}"
+      >
+      </div>
+    </div>
+  {{/each}}
+</div>

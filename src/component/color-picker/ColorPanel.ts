@@ -1,15 +1,14 @@
-import Yox, { CustomEventInterface } from 'yox'
+import Yox, { CustomEventInterface, Data } from 'yox'
 
 import template from './template/ColorPanel.hbs'
 
 import Button from '../button/Button'
+import ColorSwatch from '../color-swatch/ColorSwatch'
 import ColorThumb from './ColorThumb'
 import HexInput from './HexInput'
 import RgbInput from './RgbInput'
 
 import {
-  TRUE,
-  FALSE,
   DOCUMENT,
   UNDEFINED,
   RAW_ARRAY,
@@ -32,16 +31,12 @@ import {
 
 import {
   oneOf,
-  spaceListStyle,
-  spaceItemStyle,
 } from '../util'
 
 import {
   endDrag,
   startDrag,
 } from '../event'
-
-const swatchGaps = [10, 8]
 
 export default Yox.define({
 
@@ -142,20 +137,6 @@ export default Yox.define({
         return stringifyRgb(rgb, alpha)
       }
     },
-    swatchListStyle(): object[] | void {
-      return spaceListStyle(
-        swatchGaps,
-        FALSE,
-        TRUE
-      )
-    },
-    swatchItemStyle(): Record<string, string> | void {
-      return spaceItemStyle(
-        swatchGaps,
-        FALSE,
-        TRUE
-      )
-    },
   },
 
   filters: {
@@ -165,14 +146,15 @@ export default Yox.define({
   },
 
   methods: {
-    selectColor(color: string) {
+    onSwatchChange(event: CustomEventInterface, data: Data) {
+      event.stop()
       this.fire(
         {
           type: 'colorChange',
           ns: 'colorPanel',
         },
         {
-          color,
+          color: data.color,
         }
       )
     },
@@ -344,6 +326,7 @@ export default Yox.define({
 
   components: {
     Button,
+    ColorSwatch,
     ColorThumb,
     HexInput,
     RgbInput,

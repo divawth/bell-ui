@@ -107,7 +107,7 @@ export default {
 }
 ```
 
-> 色板
+> 色卡
 
 ```js
 export default {
@@ -119,7 +119,7 @@ export default {
         '#18A058',
         '#2080F0',
         '#F0A020',
-        'rgba(208, 48, 80, 1)'
+        'rgba(208, 48, 80, 0.5)'
       ]}}"
     />
   `
@@ -139,8 +139,8 @@ disabled | 禁用后无法再选择 | boolean | - | -
 block | 是否为块级元素 | boolean | - | -
 showAlpha | 是否显示透明度 | boolean | - | -
 defaultValue | 默认选择的颜色 | string | - | -
-modes | 色彩模式，近支持 `hex` 和 `rgb` | array | - | -
-swatches | 色板 | array | - | -
+modes | 色彩模式，近支持 `hex` 和 `rgb` | string[] | - | -
+swatches | 色卡 | string[] | - | -
 width | 宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -

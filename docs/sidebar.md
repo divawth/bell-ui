@@ -68,6 +68,7 @@
 
 - [零件](widget)
   - [Add 添加](widget/add)
+  - [ColorSwatch 色卡](widget/colorswatch)
   - [Countdown 倒计时](widget/countdown)
   - [Closable 可关闭](widget/closable)
   - [FooterBar 底栏](widget/footerbar)

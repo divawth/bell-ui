@@ -72,29 +72,9 @@
   </div>
 
   {{#if swatches && swatches.length > 0}}
-    <div
-      class="${prefix}color-picker-swatches"
-      {{#if swatchListStyle}}
-        style="{{swatchListStyle}}"
-      {{/if}}
-    >
-      {{#each swatches}}
-        <div
-          class="${prefix}color-picker-swatch"
-          {{#if ~/swatchItemStyle}}
-            style="{{~/swatchItemStyle}}"
-          {{/if}}
-          on-click="selectColor(this)"
-        >
-          <div
-            class="${prefix}color-picker-swatch-color"
-            style="{{ {
-              backgroundColor: this
-            } }}"
-          >
-          </div>
-        </div>
-      {{/each}}
-    </div>
+    <ColorSwatch
+      swatches="{{swatches}}"
+      on-change="onSwatchChange()"
+    />
   {{/if}}
 </div>

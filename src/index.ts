@@ -1,6 +1,7 @@
 import Row from './component/grid/Row'
 import Col from './component/grid/Col'
 import Add from './component/add/Add'
+import ColorSwatch from './component/color-swatch/ColorSwatch'
 import Countdown from './component/countdown/Countdown'
 import Closable from './component/closable/Closable'
 import FooterBar from './component/footer-bar/FooterBar'
@@ -125,6 +126,7 @@ export function install(Yox: any) {
     Row,
     Col,
     Add,
+    ColorSwatch,
     Countdown,
     Closable,
     FooterBar,

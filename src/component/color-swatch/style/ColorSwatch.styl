@@ -1,0 +1,31 @@
+$color-swatch-item-size = 18px
+
+{$selector-class-prefix + '-color-swatch'}
+  display flex
+  flex-wrap wrap
+
+{$selector-class-prefix + '-color-swatch-item'}
+  outline 0
+  width $color-swatch-item-size
+  height $color-swatch-item-size
+  border-radius $border-radius-default
+  ui-transparent-bg()
+
+  &:focus {$selector-class-prefix + '-color-swatch-item-color'}:after
+    content ''
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background inherit
+    filter blur(2px)
+
+{$selector-class-prefix + '-color-swatch-item-color'}
+  height 100%
+  position relative
+  border-radius $border-radius-default
+  box-shadow $brand-color-swatch-shadow
+  user-select none
+  ui-clickable()
+
