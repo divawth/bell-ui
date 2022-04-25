@@ -109,7 +109,7 @@ export default {
           <Icon
             name="question-line"
             color="#aaa"
-            size="18"
+            size="16"
           />
         </Tooltip>
       </FormItem>

@@ -22,6 +22,9 @@ import {
   RAW_STYLE_TYPE,
   RAW_SCALE_TO_FILL,
   RAW_ASPECT_FIT,
+  RAW_ALWAYS,
+  RAW_HOVER,
+  RAW_NEVER,
 } from '../constant'
 
 import {
@@ -126,6 +129,10 @@ export default Yox.define({
     uploadImage: {
       type: RAW_FUNCTION,
     },
+    showSize: {
+      type: oneOf([RAW_ALWAYS, RAW_HOVER, RAW_NEVER]),
+      value: RAW_ALWAYS,
+    },
     readOnly: {
       type: RAW_BOOLEAN,
     },
@@ -140,6 +147,7 @@ export default Yox.define({
   data() {
     const me = this
     return {
+      RAW_NEVER,
       STATUS_UPLOADING,
       STATUS_ERROR,
       STATUS_FAILURE,
@@ -194,6 +202,10 @@ export default Yox.define({
   },
 
   computed: {
+    needSize(): boolean {
+      const showSize = this.get('showSize')
+      return showSize && showSize !== RAW_NEVER
+    },
     isVideoPicker(): boolean {
       return this.get('accept').indexOf('video') >= 0
     },

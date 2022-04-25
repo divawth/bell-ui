@@ -140,6 +140,18 @@ export default {
 }
 ```
 
+> 带阴影的自定义内容
+
+```js
+export default {
+  template: `
+  <Card shadow="hover" width="100">
+    自定义内容
+  </Card>
+  `
+}
+```
+
 #### API
 
 > Card Props

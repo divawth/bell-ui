@@ -35,10 +35,6 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   &[draggable="true"]
     cursor move
 
-{$selector-class-prefix + '-image-picker-card-mouse-enter'}
-  {$selector-class-prefix + '-closable-icon'}
-    display block
-
 {$selector-class-prefix + '-image-picker-image'}
   if $border-radius-default > 0
     border-radius $border-radius-default
@@ -89,8 +85,9 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   margin-top $image-picker-message-action-gap
 
 {$selector-class-prefix + '-image-picker-image-size'}
+  display none
   background-color $image-picker-mask-bg
-  color #fff
+  color $brand-white
   font-size $font-size-small
   padding $image-picker-image-size-padding
   white-space nowrap
@@ -99,6 +96,15 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   bottom 0
   if $border-radius-default > 0
     border-bottom-right-radius $border-radius-default
+
+{$selector-class-prefix + '-image-picker-card-show-size-always'},
+{$selector-class-prefix + '-image-picker-card-show-size-hover'}{$selector-class-prefix + '-image-picker-card-mouse-enter'}
+  > {$selector-class-prefix + '-image-picker-image-size'}
+    display block
+
+{$selector-class-prefix + '-image-picker-card-mouse-enter'}
+  {$selector-class-prefix + '-closable-icon'}
+    display block
 
 {$selector-class-prefix + '-image-picker-extra'}
   color $brand-muted

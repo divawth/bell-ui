@@ -29,7 +29,8 @@ class="${prefix}image-picker
           on-dragleave.native="handleDragLeave(index)"
           on-drop.native="handleDragDrop(index)"
         {{/if}}
-        className="${prefix}image-picker-item ${prefix}image-picker-card"
+        className="${prefix}image-picker-item ${prefix}image-picker-card
+        {{#if ~/needSize}} ${prefix}image-picker-card-show-size-{{showSize}}{{/if}}"
         {{#if ~/imageItemStyle}}
           style="{{~/imageItemStyle}}"
         {{/if}}
@@ -83,7 +84,7 @@ class="${prefix}image-picker
                 重新上传
               </div>
             </Upload>
-          {{else if this.size > 0}}
+          {{else if ~/needSize && this.size > 0}}
             <div class="${prefix}image-picker-image-size">
               {{formatFileSize(this.size)}}
             </div>
