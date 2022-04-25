@@ -716,13 +716,13 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 103 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form'+(_r(_Q,'layout',_U.layout).value?' bell-form-'+_y(_r(_Q,'layout',_U.layout).value):'')+(_r(_Q,'showColon',_U.showColon).value?' bell-form-colon':'')+(_r(_Q,'labelAlign',_U.labelAlign).value?' bell-form-label-'+_y(_r(_Q,'labelAlign',_U.labelAlign).value):'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form'+(_r(_Q,'layout',_U.layout).value?' bell-form-'+_y(_r(_Q,'layout',_U.layout).value):'')+(_r(_Q,'showColon',_U.showColon).value?' bell-form-colon':'')+(_r(_Q,'labelAlign',_U.labelAlign).value?' bell-form-label-'+_y(_r(_Q,'labelAlign',_U.labelAlign).value):'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
 
 /***/ }),
 /* 104 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-form-item-tooltip'},$6={class:'bell-form-item-controls'},$7={class:'bell-form-item-extra'},$8={class:'bell-form-item-message'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'label',_U.label).value||_r(_Q,'$slot_label',_U.$slot_label).value?_T.push(function(_S){_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value?_S.nativeStyles={flex:'0 0 '+_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value}:$1;return _S}({children:function(){var _T=[];($0={children:_l('$slot_label')||function(){var _T=[];_T.push({isPure:$3,operator:_z,text:_y(_r(_Q,'label',_U.label).value),type:1});return _T.length?_T:$1}(),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));_r(_Q,'$slot_tooltip',_U.$slot_tooltip).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_tooltip'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'span',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item-label'+(_r(_Q,'showRequiredMark',_U.showRequiredMark).value?' bell-form-item-label-required':'')},operator:_B,tag:'label',type:3})):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push(function(_S){_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value&&!_r(_Q,'label',_U.label).value&&!_r(_Q,'$slot_label',_U.$slot_label).value?_S.nativeStyles={marginLeft:_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value}:$1;return _S}({children:function(){var _T=[];_T.push({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3});_r(_Q,'extra',_U.extra).value?_T.push({context:_G,html:_y(_x(_w(_r(_Q,'formatMessage',_U.formatMessage,_H&&_H.formatMessage||_I.formatMessage).value,_G,[_r(_Q,'extra',_U.extra).value])).value),nativeAttrs:$7,operator:_B,tag:'div',type:3}):_r(_Q,'$slot_extra',_U.$slot_extra).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_extra'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'showItemMessage',_U.showItemMessage).value?_T.push({context:_G,html:_y(_x(_w(_r(_Q,'formatMessage',_U.formatMessage,_H&&_H.formatMessage||_I.formatMessage).value,_G,[_r(_Q,'itemMessage',_U.itemMessage).value])).value),nativeAttrs:$8,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item-wrapper'},operator:_B,tag:'div',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item'+(_r(_Q,'extra',_U.extra).value||_r(_Q,'$slot_extra',_U.$slot_extra).value?' bell-form-item-with-extra':'')+(_r(_Q,'showItemMessage',_U.showItemMessage).value?' bell-form-item-with-message':'')+(_r(_Q,'adaptive',_U.adaptive).value?' bell-form-item-adaptive':'')+(_r(_Q,'labelAlign',_U.labelAlign).value?' bell-form-item-align-'+_y(_r(_Q,'labelAlign',_U.labelAlign).value):'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-form-item-tooltip'},$6={class:'bell-form-item-controls'},$7={class:'bell-form-item-extra'},$8={class:'bell-form-item-message'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'inlineStyle',_U.inlineStyle).value?_S.nativeStyles=_b(_r(_Q,'inlineStyle',_U.inlineStyle).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'label',_U.label).value||_r(_Q,'$slot_label',_U.$slot_label).value?_T.push(function(_S){_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value?_S.nativeStyles={flex:'0 0 '+_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value}:$1;return _S}({children:function(){var _T=[];($0={children:_l('$slot_label')||function(){var _T=[];_T.push({isPure:$3,operator:_z,text:_y(_r(_Q,'label',_U.label).value),type:1});return _T.length?_T:$1}(),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));_r(_Q,'$slot_tooltip',_U.$slot_tooltip).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_tooltip'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'span',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item-label'+(_r(_Q,'showRequiredMark',_U.showRequiredMark).value?' bell-form-item-label-required':'')},operator:_B,tag:'label',type:3})):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push(function(_S){_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value&&!_r(_Q,'label',_U.label).value&&!_r(_Q,'$slot_label',_U.$slot_label).value?_S.nativeStyles={marginLeft:_r(_Q,'itemLabelWidth',_U.itemLabelWidth).value}:$1;return _S}({children:function(){var _T=[];_T.push({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3});_r(_Q,'extra',_U.extra).value?_T.push({context:_G,html:_y(_x(_w(_r(_Q,'formatMessage',_U.formatMessage,_H&&_H.formatMessage||_I.formatMessage).value,_G,[_r(_Q,'extra',_U.extra).value])).value),nativeAttrs:$7,operator:_B,tag:'div',type:3}):_r(_Q,'$slot_extra',_U.$slot_extra).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_extra'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$7,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'showItemMessage',_U.showItemMessage).value?_T.push({context:_G,html:_y(_x(_w(_r(_Q,'formatMessage',_U.formatMessage,_H&&_H.formatMessage||_I.formatMessage).value,_G,[_r(_Q,'itemMessage',_U.itemMessage).value])).value),nativeAttrs:$8,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item-wrapper'},operator:_B,tag:'div',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-form-item'+(_r(_Q,'extra',_U.extra).value||_r(_Q,'$slot_extra',_U.$slot_extra).value?' bell-form-item-with-extra':'')+(_r(_Q,'showItemMessage',_U.showItemMessage).value?' bell-form-item-with-message':'')+(_r(_Q,'adaptive',_U.adaptive).value?' bell-form-item-adaptive':'')+(_r(_Q,'labelAlign',_U.labelAlign).value?' bell-form-item-align-'+_y(_r(_Q,'labelAlign',_U.labelAlign).value):'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
 
 /***/ }),
 /* 105 */
@@ -11925,10 +11925,14 @@ var TimelineItem_default = /*#__PURE__*/__webpack_require__.n(TimelineItem);
 var Form = __webpack_require__(103);
 var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
 
+// CONCATENATED MODULE: ./src/component/form/util.ts
+var formInlineItemGaps = [16, 26];
+
 // CONCATENATED MODULE: ./src/component/form/Form.ts
 
 
 // import './style/Form.styl'
+
 
 
 /* harmony default export */ var form_Form = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
@@ -11956,6 +11960,16 @@ var Form_default = /*#__PURE__*/__webpack_require__.n(Form);
             type: RAW_STYLE_TYPE,
         }
     },
+    computed: {
+        inlineStyle: function () {
+            var layout = this.get('layout');
+            var style = this.get('style');
+            if (layout === RAW_INLINE) {
+                return spaceListStyle(formInlineItemGaps, FALSE, TRUE, style);
+            }
+            return style;
+        }
+    },
     watchers: {
         layout: function (value) {
             this.fire({
@@ -11981,6 +11995,7 @@ var FormItem = __webpack_require__(104);
 var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
 
 // CONCATENATED MODULE: ./src/component/form/FormItem.ts
+
 
 
 
@@ -12033,6 +12048,14 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
         };
     },
     computed: {
+        inlineStyle: function () {
+            var formLayout = this.get('formLayout');
+            var style = this.get('style');
+            if (formLayout === RAW_INLINE) {
+                return spaceItemStyle(formInlineItemGaps, FALSE, TRUE, style);
+            }
+            return style;
+        },
         itemLabelWidth: function () {
             var formLayout = this.get('formLayout');
             var formLabelWidth = this.get('formLabelWidth');

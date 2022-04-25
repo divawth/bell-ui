@@ -5,6 +5,7 @@ import template from './template/Form.hbs'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_LEFT,
@@ -18,7 +19,12 @@ import {
 
 import {
   oneOf,
+  spaceListStyle,
 } from '../util'
+
+import {
+  formInlineItemGaps,
+} from './util'
 
 export default Yox.define({
 
@@ -46,6 +52,22 @@ export default Yox.define({
     },
     style: {
       type: RAW_STYLE_TYPE,
+    }
+  },
+
+  computed: {
+    inlineStyle() {
+      const layout = this.get('layout')
+      const style = this.get('style')
+      if (layout === RAW_INLINE) {
+        return spaceListStyle(
+          formInlineItemGaps,
+          FALSE,
+          TRUE,
+          style
+        )
+      }
+      return style
     }
   },
 

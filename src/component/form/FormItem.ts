@@ -4,12 +4,14 @@ import template from './template/FormItem.hbs'
 
 import {
   TRUE,
+  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_TOP,
   RAW_BOTTOM,
   RAW_MIDDLE,
+  RAW_INLINE,
   RAW_HORIZONTAL,
   RAW_STYLE_TYPE,
 } from '../constant'
@@ -17,8 +19,13 @@ import {
 import {
   oneOf,
   toPixel,
+  spaceItemStyle,
   findComponentUpward,
 } from '../util'
+
+import {
+  formInlineItemGaps,
+} from './util'
 
 export default Yox.define({
 
@@ -76,6 +83,19 @@ export default Yox.define({
   },
 
   computed: {
+    inlineStyle() {
+      const formLayout = this.get('formLayout')
+      const style = this.get('style')
+      if (formLayout === RAW_INLINE) {
+        return spaceItemStyle(
+          formInlineItemGaps,
+          FALSE,
+          TRUE,
+          style
+        )
+      }
+      return style
+    },
     itemLabelWidth(): string {
       const formLayout = this.get('formLayout')
       const formLabelWidth = this.get('formLabelWidth')

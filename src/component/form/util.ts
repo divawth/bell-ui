@@ -1,0 +1,1 @@
+export const formInlineItemGaps = [16, 26]

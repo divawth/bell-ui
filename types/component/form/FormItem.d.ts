@@ -1,4 +1,5 @@
 declare const _default: import("yox").ComponentOptions<{
+    inlineStyle: unknown;
     itemLabelWidth: unknown;
     itemMessage: unknown;
     showItemMessage: unknown;

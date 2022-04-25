@@ -1,8 +1,6 @@
-declare const _default: import("yox").ComponentOptions<unknown, {
+declare const _default: import("yox").ComponentOptions<{
+    inlineStyle: unknown;
+}, {
     layout: unknown;
-}, unknown, {
-    validate(errors: void | Record<string, any>): void;
-}> & ThisType<{
-    validate(errors: void | Record<string, any>): void;
-} & import("yox").YoxInterface>;
+}, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

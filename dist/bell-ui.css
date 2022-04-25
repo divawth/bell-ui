@@ -12957,7 +12957,6 @@ div::-webkit-scrollbar-thumb:hover {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 16px;
 }
 .bell-form-inline .bell-form-item {
   display: inline-flex;
