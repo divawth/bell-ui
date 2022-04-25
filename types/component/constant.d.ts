@@ -21,6 +21,7 @@ export declare const RAW_NEVER = "never";
 export declare const RAW_HOVER = "hover";
 export declare const RAW_CLICK = "click";
 export declare const RAW_CUSTOM = "custom";
+export declare const RAW_RESIZE = "resize";
 export declare const RAW_CENTER = "center";
 export declare const RAW_MIDDLE = "middle";
 export declare const RAW_SCALE_TO_FILL = "scaleToFill";

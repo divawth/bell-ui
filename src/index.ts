@@ -3,6 +3,7 @@ import Col from './component/grid/Col'
 import Add from './component/add/Add'
 import Countdown from './component/countdown/Countdown'
 import Closable from './component/closable/Closable'
+import FooterBar from './component/footer-bar/FooterBar'
 import ResizeObserver from './component/resize-observer/ResizeObserver'
 
 import Menu from './component/menu/Menu'
@@ -126,6 +127,7 @@ export function install(Yox: any) {
     Add,
     Countdown,
     Closable,
+    FooterBar,
     ResizeObserver,
 
     Menu,

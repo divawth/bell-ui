@@ -1,0 +1,24 @@
+@import '../../../env'
+
+$footer-bar-box-shadow = 0 -1px 4px 0 rgba(0,0,0,0.05)
+
+{$selector-class-prefix + '-footer-bar'}
+  display flex
+  align-items center
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  box-sizing border-box
+  background-color $brand-bg
+  padding $dialog-footer-padding-vertical $dialog-footer-padding-horizontal
+  box-shadow $footer-bar-box-shadow
+
+{$selector-class-prefix + '-footer-bar-align-start'}
+  justify-content flex-start
+
+{$selector-class-prefix + '-footer-bar-align-center'}
+  justify-content center
+
+{$selector-class-prefix + '-footer-bar-align-end'}
+  justify-content flex-end

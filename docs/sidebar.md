@@ -65,9 +65,12 @@
   - [Skeleton 骨架屏](view/skeleton)
   - [Exception 异常页](view/exception)
   - [Timeline 时间轴](view/timeline)
-  - [Countdown 倒计时](view/countdown)
-  - [Closable 可关闭](view/closable)
-  - [Add 添加](view/add)
+
+- [零件](widget)
+  - [Add 添加](widget/add)
+  - [Countdown 倒计时](widget/countdown)
+  - [Closable 可关闭](widget/closable)
+  - [FooterBar 底栏](widget/footerbar)
 
 - [其它](layout)
   - [BackTop 返回顶部](other/backTop)

@@ -8,11 +8,13 @@ import {
   TRUE,
   FALSE,
   UNDEFINED,
+  WINDOW,
   DOCUMENT,
   RAW_NUMERIC,
   RAW_HOVER,
   RAW_CLICK,
   RAW_CUSTOM,
+  RAW_RESIZE,
   RAW_BOOLEAN,
   RAW_EVENT_BEFORE_DESTROY,
   RAW_BOTTOM,
@@ -386,6 +388,10 @@ export default Yox.define({
 
     const me = this as any
 
+    const onWindowResize = function () {
+      me.refreshOverlayRect()
+    }
+
     const onNativeClick = function (event: CustomEventInterface) {
       if (!me.get('visible') || !isClickEvent()) {
         return
@@ -414,6 +420,12 @@ export default Yox.define({
     }
 
     Yox.dom.on(
+      WINDOW,
+      RAW_RESIZE,
+      onWindowResize
+    )
+
+    Yox.dom.on(
       DOCUMENT,
       RAW_CLICK,
       onNativeClick
@@ -433,6 +445,7 @@ export default Yox.define({
           clearTimeout(me.animateTimer)
         }
         offClickEvent(onGlobalClick)
+        Yox.dom.off(WINDOW, RAW_RESIZE, onWindowResize)
         Yox.dom.off(DOCUMENT, RAW_CLICK, onNativeClick)
         Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
       }

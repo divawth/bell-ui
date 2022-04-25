@@ -10016,6 +10016,27 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-closable-icon:hover {
   color: #666;
 }
+.bell-footer-bar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 10px 16px;
+  box-shadow: 0 -1px 4px 0 rgba(0,0,0,0.05);
+}
+.bell-footer-bar-align-start {
+  justify-content: flex-start;
+}
+.bell-footer-bar-align-center {
+  justify-content: center;
+}
+.bell-footer-bar-align-end {
+  justify-content: flex-end;
+}
 .bell-upload {
   display: inline-block;
   -webkit-user-select: none;

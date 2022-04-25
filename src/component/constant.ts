@@ -26,6 +26,7 @@ export const RAW_NEVER = 'never'
 export const RAW_HOVER = 'hover'
 export const RAW_CLICK = 'click'
 export const RAW_CUSTOM = 'custom'
+export const RAW_RESIZE = 'resize'
 
 export const RAW_CENTER = 'center'
 export const RAW_MIDDLE = 'middle'
