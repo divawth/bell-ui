@@ -3,9 +3,7 @@ declare const _default: import("yox").ComponentOptions<{
     customWidth: unknown;
     customHeight: unknown;
     inlineStyle: unknown;
-}, unknown, unknown, {
-    uploadImage(item: any): void;
-}> & ThisType<{
-    uploadImage(item: any): void;
-} & import("yox").YoxInterface>;
+}, {
+    url: unknown;
+}, unknown, unknown> & ThisType<import("yox").YoxInterface>;
 export default _default;

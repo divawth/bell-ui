@@ -33,7 +33,6 @@ import {
   toNumber,
   spaceListStyle,
   spaceItemStyle,
-  formatMillisecond,
 } from '../util'
 
 import {
@@ -42,6 +41,7 @@ import {
   STATUS_FAILURE,
   readLocalFile,
   formatFileSize,
+  validateFile,
 } from './util'
 
 const CLASS_CARD_MOUSE_ENTER = '${prefix}image-picker-card-mouse-enter'
@@ -101,16 +101,16 @@ export default Yox.define({
     minWidth: {
       type: RAW_NUMERIC,
     },
-    minHeight: {
-      type: RAW_NUMERIC,
-    },
-    minDuration: {
-      type: RAW_NUMERIC,
-    },
     maxWidth: {
       type: RAW_NUMERIC,
     },
+    minHeight: {
+      type: RAW_NUMERIC,
+    },
     maxHeight: {
+      type: RAW_NUMERIC,
+    },
+    minDuration: {
       type: RAW_NUMERIC,
     },
     maxDuration: {
@@ -175,7 +175,7 @@ export default Yox.define({
 
         // 校验可选数量
         if (fileList.length > restCount) {
-          if (me.get('isVideoPicker')) {
+          if (me.get('isVideoUploader')) {
             me.fireError(`仅可以选择 ${restCount} 个视频`)
           }
           else {
@@ -206,8 +206,9 @@ export default Yox.define({
       const showSize = this.get('showSize')
       return showSize && showSize !== RAW_NEVER
     },
-    isVideoPicker(): boolean {
-      return this.get('accept').indexOf('video') >= 0
+    isVideoUploader(): boolean {
+      const accept = this.get('accept')
+      return accept ? accept.indexOf('video') >= 0 : FALSE
     },
     restCount(): number {
       const imageCount = this.get('imageList.length')
@@ -282,8 +283,6 @@ export default Yox.define({
 
       const me = this
 
-      const target = me.get('isVideoPicker') ? '视频' : '图片'
-
       const minSize = toNumber(me.get('minSize'))
       const maxSize = toNumber(me.get('maxSize'))
 
@@ -300,85 +299,18 @@ export default Yox.define({
       const maxDuration = toNumber(me.get('maxDuration'))
 
       for (let i = 0, len = imageList.length; i < len; i++) {
+
         const item = imageList[i]
-        let errors = []
-        if (minSize > 0) {
-          if (item.size < minSize) {
-            errors.push(
-              `${target}尺寸不能小于 ${formatFileSize(minSize)}`
-            )
-          }
-        }
-        if (maxSize > 0) {
-          if (item.size > maxSize) {
-            errors.push(
-              `${target}尺寸不能超过 ${formatFileSize(maxSize)}`
-            )
-          }
-        }
-        if (item.height > 0) {
-          const ratio = item.width / item.height
-          if (minRatio > 0) {
-            if (ratio < minRatio) {
-              errors.push(
-                `${target}宽高比不能小于 ${minRatio}`
-              )
-            }
-          }
-          if (maxRatio > 0) {
-            if (ratio > maxRatio) {
-              errors.push(
-                `${target}宽高比不能大于 ${maxRatio}`
-              )
-            }
-          }
-        }
-        if (minWidth > 0) {
-          if (item.width < minWidth) {
-            errors.push(
-              `${target}宽度不能小于 ${minWidth}px`
-            )
-          }
-        }
-        if (minHeight > 0) {
-          if (item.height < minHeight) {
-            errors.push(
-              `${target}高度不能小于 ${minHeight}px`
-            )
-          }
-        }
-        if (maxWidth > 0) {
-          if (item.width > maxWidth) {
-            errors.push(
-              `${target}宽度不能大于 ${maxWidth}px`
-            )
-          }
-        }
-        if (maxHeight > 0) {
-          if (item.height > maxHeight) {
-            errors.push(
-              `${target}高度不能大于 ${maxHeight}px`
-            )
-          }
-        }
-        if (minDuration > 0) {
-          if (item.duration < minDuration) {
-            errors.push(
-              `${target}时长不能小于 ${formatMillisecond(minDuration * 1000, formatDurationOptinos)}`
-            )
-          }
-        }
-        if (maxDuration > 0) {
-          if (item.duration > maxDuration) {
-            errors.push(
-              `${target}时长不能超过 ${formatMillisecond(maxDuration * 1000, formatDurationOptinos)}`
-            )
-          }
-        }
+
+        const errors = validateFile(
+          item, minSize, maxSize, minRatio, maxRatio,
+          minWidth, maxWidth, minHeight, maxHeight, minDuration, maxDuration
+        )
         if (errors.length) {
           item.status = STATUS_ERROR
           item.message = errors.join('<br>')
         }
+
       }
 
     },

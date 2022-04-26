@@ -8,7 +8,6 @@ import Spin from '../spin/Spin'
 import Upload from '../upload/Upload'
 
 import {
-  TRUE,
   UNDEFINED,
   RAW_STRING,
   RAW_NUMERIC,
@@ -30,6 +29,8 @@ import {
   STATUS_UPLOADING,
   STATUS_FAILURE,
   readLocalFile,
+  validateFile,
+  STATUS_ERROR,
 } from '../image-picker/util'
 
 export default Yox.define({
@@ -41,30 +42,60 @@ export default Yox.define({
   propTypes: {
     width: {
       type: RAW_NUMERIC,
-      value: 80,
+      value: 60,
     },
     height: {
       type: RAW_NUMERIC,
-      value: 80,
+      value: 60,
     },
     mode: {
       type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
       value: RAW_SCALE_TO_FILL,
     },
+    minSize: {
+      type: RAW_NUMERIC,
+    },
+    maxSize: {
+      type: RAW_NUMERIC,
+    },
+    minRatio: {
+      type: RAW_NUMERIC,
+    },
+    maxRatio: {
+      type: RAW_NUMERIC,
+    },
+    minWidth: {
+      type: RAW_NUMERIC,
+    },
+    maxWidth: {
+      type: RAW_NUMERIC,
+    },
+    minHeight: {
+      type: RAW_NUMERIC,
+    },
+    maxHeight: {
+      type: RAW_NUMERIC,
+    },
+    minDuration: {
+      type: RAW_NUMERIC,
+    },
+    maxDuration: {
+      type: RAW_NUMERIC,
+    },
     simple: {
       type: RAW_BOOLEAN,
     },
-    showZoom: {
+    showPreview: {
       type: RAW_BOOLEAN,
     },
     url: {
       type: RAW_STRING,
     },
-    formatUrl: {
-      type: RAW_FUNCTION,
-    },
     alt: {
       type: RAW_STRING,
+    },
+    formatImageUrl: {
+      type: RAW_FUNCTION,
     },
     uploadTitle: {
       type: RAW_STRING,
@@ -90,20 +121,31 @@ export default Yox.define({
   data() {
     const me = this
     return {
-      base64: '',
-      status: UNDEFINED,
-      progress: 0,
-      message: '',
+      image: {
+        url: me.get('url'),
+        base64: '',
+        status: UNDEFINED,
+        progress: 0,
+        message: '',
+      },
       beforeUploadImage(data) {
 
         const fileList = data.fileList as any[]
 
-        readLocalFile(fileList[0]).then(function (item) {
+        readLocalFile(fileList[0]).then(function (image) {
+
+          // @ts-ignore
+          me.validateImage(image)
+
+          me.set({
+            image,
+          })
 
           const upload = me.$refs.upload as any
           upload.reset()
 
-          me.uploadImage(item)
+          // @ts-ignore
+          me.uploadImage(image)
 
         })
 
@@ -113,7 +155,7 @@ export default Yox.define({
 
   computed: {
     isLoading(): boolean {
-      return this.get('status') === STATUS_UPLOADING
+      return this.get('image.status') === STATUS_UPLOADING
     },
     customWidth(): number {
       return toNumber(this.get('width'))
@@ -144,55 +186,87 @@ export default Yox.define({
     },
   },
 
+  watchers: {
+    url(url) {
+      this.set('image.url', url)
+    }
+  },
+
   filters: {
     hyphenate: Yox.string.hyphenate,
   },
 
   methods: {
-    zoomImage(event: CustomEventInterface) {
-      event.stop()
-      this.fire(
-        {
-          type: 'zoom',
-          ns: 'image',
-        },
-        {
-          url: this.get('url'),
-        }
-      )
-    },
-    uploadImage(item: any) {
+    validateImage(image: any) {
 
       const me = this
 
-      const uploadHandler = function (item) {
+      const minSize = toNumber(me.get('minSize'))
+      const maxSize = toNumber(me.get('maxSize'))
+
+      const minRatio = toNumber(me.get('minRatio'))
+      const maxRatio = toNumber(me.get('maxRatio'))
+
+      const minWidth = toNumber(me.get('minWidth'))
+      const minHeight = toNumber(me.get('minHeight'))
+
+      const maxWidth = toNumber(me.get('maxWidth'))
+      const maxHeight = toNumber(me.get('maxHeight'))
+
+      const minDuration = toNumber(me.get('minDuration'))
+      const maxDuration = toNumber(me.get('maxDuration'))
+
+      const errors = validateFile(
+        image, minSize, maxSize, minRatio, maxRatio,
+        minWidth, maxWidth, minHeight, maxHeight, minDuration, maxDuration
+      )
+
+      if (errors.length) {
+        image.status = STATUS_ERROR
+        image.message = errors.join('<br>')
+      }
+
+    },
+    previewImage(event: CustomEventInterface) {
+      event.stop()
+      this.fire(
+        {
+          type: 'preview',
+          ns: 'image',
+        },
+        {
+          url: this.get('image.url'),
+        }
+      )
+    },
+    uploadImage(image: any) {
+
+      const me = this
+
+      // 如果校验未通过，或者已上传成功，则直接返回
+      if (image.status === STATUS_ERROR || image.url) {
+        return
+      }
+
+      const uploadHandler = function (image) {
 
         const uploadImage = me.get('uploadImage')
 
         uploadImage({
-          id: item.id,
-          file: item.file,
+          id: image.id,
+          file: image.file,
           onStart() {
-            me.set({
-              status: STATUS_UPLOADING,
-              message: '',
-            })
+            me.set('image.status', STATUS_UPLOADING)
           },
           onError(error: string) {
-            me.set({
-              status: STATUS_FAILURE,
-              message: error || '上传失败',
-            })
+            me.set('image.status', STATUS_FAILURE)
+            me.set('image.message', error || '上传失败')
           },
           onProgress(progress: number) {
-            me.set({
-              progress,
-            })
+            me.set('image.progress', progress)
           },
           onSuccess(data) {
-            me.set({
-              status: UNDEFINED,
-            })
+            me.set('image.status', UNDEFINED)
             me.fire(
               {
                 type: 'uploadSuccess',
@@ -207,25 +281,20 @@ export default Yox.define({
 
       }
 
-      const { base64 } = item
-      if (base64) {
-        me.set({
-          base64
-        })
-        const cropImage = me.get('cropImage')
-        if (cropImage) {
-          cropImage({
-            base64,
-            callback(result) {
-              Yox.object.extend(item, result)
-              uploadHandler(item)
-            }
-          })
-          return
-        }
-      }
+      const cropImage = me.get('cropImage')
 
-      uploadHandler(item)
+      if (image.base64 && cropImage) {
+        cropImage({
+          base64: image.base64,
+          callback(result) {
+            Yox.object.extend(image, result)
+            uploadHandler(image)
+          }
+        })
+      }
+      else {
+        uploadHandler(image)
+      }
 
     }
   },

@@ -1,4 +1,5 @@
-import { DOCUMENT, NULL } from '../constant'
+import { DOCUMENT, NULL, TRUE } from '../constant'
+import { formatMillisecond } from '../util'
 
 export const STATUS_UPLOADING = 'uploading'
 export const STATUS_ERROR = 'error'
@@ -7,6 +8,12 @@ export const STATUS_FAILURE = 'failure'
 const KB = 1024
 const MB = 1024 * KB
 const GB = 1024 * MB
+
+const formatDurationOptinos = {
+  format: 'd:HH:mm:ss',
+  trimDay: TRUE,
+  trimHour: TRUE,
+}
 
 export function readLocalFile(item) {
   return new Promise(
@@ -62,6 +69,89 @@ export function readLocalFile(item) {
       }
     }
   )
+}
+
+export function validateFile(item: any, minSize: number, maxSize: number,
+  minRatio: number, maxRatio: number,minWidth: number, maxWidth: number,
+  minHeight: number, maxHeight: number, minDuration: number, maxDuration: number) {
+
+  let errors = []
+  if (minSize > 0) {
+    if (item.size < minSize) {
+      errors.push(
+        `尺寸不能小于 ${formatFileSize(minSize)}`
+      )
+    }
+  }
+  if (maxSize > 0) {
+    if (item.size > maxSize) {
+      errors.push(
+        `尺寸不能超过 ${formatFileSize(maxSize)}`
+      )
+    }
+  }
+  if (item.height > 0) {
+    const ratio = item.width / item.height
+    if (minRatio > 0) {
+      if (ratio < minRatio) {
+        errors.push(
+          `宽高比不能小于 ${minRatio}`
+        )
+      }
+    }
+    if (maxRatio > 0) {
+      if (ratio > maxRatio) {
+        errors.push(
+          `宽高比不能大于 ${maxRatio}`
+        )
+      }
+    }
+  }
+  if (minWidth > 0) {
+    if (item.width < minWidth) {
+      errors.push(
+        `宽度不能小于 ${minWidth}px`
+      )
+    }
+  }
+  if (minHeight > 0) {
+    if (item.height < minHeight) {
+      errors.push(
+        `高度不能小于 ${minHeight}px`
+      )
+    }
+  }
+  if (maxWidth > 0) {
+    if (item.width > maxWidth) {
+      errors.push(
+        `宽度不能大于 ${maxWidth}px`
+      )
+    }
+  }
+  if (maxHeight > 0) {
+    if (item.height > maxHeight) {
+      errors.push(
+        `高度不能大于 ${maxHeight}px`
+      )
+    }
+  }
+  if (minDuration > 0) {
+    if (item.duration < minDuration) {
+      errors.push(
+        `时长不能小于 ${formatMillisecond(minDuration * 1000, formatDurationOptinos)}`
+      )
+    }
+  }
+  if (maxDuration > 0) {
+    if (item.duration > maxDuration) {
+      errors.push(
+        `时长不能超过 ${formatMillisecond(maxDuration * 1000, formatDurationOptinos)}`
+      )
+    }
+  }
+
+  return errors
+
 }
 
 export function formatFileSize(size: number) {

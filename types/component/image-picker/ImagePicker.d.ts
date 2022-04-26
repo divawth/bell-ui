@@ -1,7 +1,7 @@
 import { CustomEventInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
     needSize: unknown;
-    isVideoPicker: unknown;
+    isVideoUploader: unknown;
     restCount: unknown;
     canDraggable: unknown;
     imageItemsStyle: unknown;

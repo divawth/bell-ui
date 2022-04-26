@@ -4,7 +4,7 @@ class="${prefix}image
 {{else}} ${prefix}image-bordered
 {{/if}}
 {{#if customHeight <= 100}} ${prefix}image-small{{/if}}
-{{#if message}} ${prefix}image-with-message{{/if}}
+{{#if image.message}} ${prefix}image-with-message{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if inlineStyle}}
@@ -12,23 +12,23 @@ class="${prefix}image
 {{/if}}
 >
 
-  {{#if url || base64}}
+  {{#if image.url || image.base64}}
     <img
       class="${prefix}image-native
       {{#if mode}} ${prefix}image-native-{{hyphenate(mode)}}{{/if}}"
 
-      {{#if base64}}
-        src="{{base64}}"
+      {{#if image.base64}}
+        src="{{image.base64}}"
       {{else}}
         src="{{
-          formatUrl
-          ? formatUrl({
-              url: url,
+          formatImageUrl
+          ? formatImageUrl({
+              url: image.url,
               width: customWidth,
               height: customHeight,
               responsive: true
             })
-          : url
+          : image.url
         }}"
       {{/if}}
 
@@ -46,17 +46,17 @@ class="${prefix}image
     </div>
   {{/if}}
 
-  {{#if message || showZoom}}
+  {{#if image.message || showPreview}}
     <div class="${prefix}image-mask">
-      {{#if message}}
+      {{#if image.message}}
         <div class="${prefix}image-message">
-          {{{message}}}
+          {{{image.message}}}
         </div>
-      {{else if showZoom}}
+      {{else if showPreview}}
         <div class="${prefix}image-action">
           <Icon
             name="zoom-in-line"
-            on-click.native="zoomImage()"
+            on-click.native="previewImage()"
           />
         </div>
       {{/if}}
