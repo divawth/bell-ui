@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Image.hbs'
 // import './style/Image.styl'
@@ -149,6 +149,18 @@ export default Yox.define({
   },
 
   methods: {
+    zoomImage(event: CustomEventInterface) {
+      event.stop()
+      this.fire(
+        {
+          type: 'zoom',
+          ns: 'image',
+        },
+        {
+          url: this.get('url'),
+        }
+      )
+    },
     uploadImage(item: any) {
 
       const me = this

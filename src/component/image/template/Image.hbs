@@ -17,7 +17,9 @@ class="${prefix}image
       class="${prefix}image-native
       {{#if mode}} ${prefix}image-native-{{hyphenate(mode)}}{{/if}}"
 
-      {{#if url}}
+      {{#if base64}}
+        src="{{base64}}"
+      {{else}}
         src="{{
           formatUrl
           ? formatUrl({
@@ -28,15 +30,12 @@ class="${prefix}image
             })
           : url
         }}"
-      {{else if base64}}
-        src="{{base64}}"
       {{/if}}
 
       {{#if alt}}
         alt="{{alt}}"
       {{/if}}
       draggable="false"
-      on-error="error.image"
     >
   {{else}}
     <div
@@ -57,7 +56,7 @@ class="${prefix}image
         <div class="${prefix}image-action">
           <Icon
             name="zoom-in-line"
-            on-click.native="zoom.image"
+            on-click.native="zoomImage()"
           />
         </div>
       {{/if}}
