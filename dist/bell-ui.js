@@ -12000,6 +12000,9 @@ var formInlineItemGaps = [16, 26];
         showColon: {
             type: RAW_BOOLEAN,
         },
+        scrollToFirstError: {
+            type: RAW_BOOLEAN,
+        },
         labelAlign: {
             type: oneOf([RAW_LEFT, RAW_RIGHT]),
             value: RAW_RIGHT,
@@ -12039,7 +12042,10 @@ var formInlineItemGaps = [16, 26];
             this.fire({
                 type: 'validate',
                 ns: 'form',
-            }, { errors: errors }, TRUE);
+            }, {
+                errors: errors,
+                hasScrolled: FALSE,
+            }, TRUE);
         },
     }
 }));
@@ -12099,6 +12105,7 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
             error: UNDEFINED,
             formLayout: form.get('layout'),
             formLabelWidth: form.get('labelWidth'),
+            formScrollToFirstError: form.get('scrollToFirstError'),
         };
     },
     computed: {
@@ -12141,9 +12148,19 @@ var FormItem_default = /*#__PURE__*/__webpack_require__.n(FormItem);
         validate: {
             listener: function (_, data) {
                 var errors = data.errors;
-                this.set('error', errors
+                var error = errors
                     ? errors[this.get('prop')]
-                    : UNDEFINED);
+                    : UNDEFINED;
+                this.set({
+                    error: error
+                });
+                if (!data.hasScrolled && this.get('formScrollToFirstError')) {
+                    var el = this.$el;
+                    if (el.scrollIntoView) {
+                        el.scrollIntoView();
+                    }
+                    data.hasScrolled = TRUE;
+                }
             },
             ns: 'form',
         }

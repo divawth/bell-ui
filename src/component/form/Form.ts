@@ -40,6 +40,9 @@ export default Yox.define({
     showColon: {
       type: RAW_BOOLEAN,
     },
+    scrollToFirstError: {
+      type: RAW_BOOLEAN,
+    },
     labelAlign: {
       type: oneOf([RAW_LEFT, RAW_RIGHT]),
       value: RAW_RIGHT,
@@ -93,7 +96,10 @@ export default Yox.define({
           type: 'validate',
           ns: 'form',
         },
-        { errors },
+        {
+          errors,
+          hasScrolled: FALSE,
+        },
         TRUE
       )
     },

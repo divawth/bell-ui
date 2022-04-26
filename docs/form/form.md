@@ -26,6 +26,7 @@ export default {
       layout="{{layout}}"
       labelWidth="100"
       showMessage
+      scrollToFirstError
     >
       <FormItem label="用户名" prop="username">
         <Input
@@ -334,6 +335,7 @@ export default {
 ---|---|---|---|---
 layout | 表单布局模式 | string | `inline`、`horizontal`、`vertical` | `horizontal`
 showColon | 是否显示 label 后面的冒号 | boolean | - | -
+scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean | - | -
 labelAlign | 表单域标签的位置 | string | `left`, `right` | `right`
 labelWidth | 表单域标签的宽度 | number | - | -
 className | 自定义类名 | string | - | -

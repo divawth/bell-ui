@@ -78,6 +78,7 @@ export default Yox.define({
       error: UNDEFINED,
       formLayout: form.get('layout'),
       formLabelWidth: form.get('labelWidth'),
+      formScrollToFirstError: form.get('scrollToFirstError'),
     }
 
   },
@@ -128,13 +129,24 @@ export default Yox.define({
     },
     validate: {
       listener(_, data) {
+
         const { errors } = data
-        this.set(
-          'error',
-          errors
+        const error = errors
           ? errors[this.get('prop')]
           : UNDEFINED
-        )
+
+        this.set({
+          error
+        })
+
+        if (!data.hasScrolled && this.get('formScrollToFirstError')) {
+          const el = this.$el
+          if (el.scrollIntoView) {
+            el.scrollIntoView()
+          }
+          data.hasScrolled = TRUE
+        }
+
       },
       ns: 'form',
     }

@@ -14,15 +14,6 @@ $form-item-label-wrapper-gap = 12px
 {$selector-class-prefix + '-form-item-adaptive'}
   flex 1
 
-{$selector-class-prefix + '-form-label-left'},
-{$selector-class-prefix + '-form-label-right'}
-  {$selector-class-prefix + '-form-item-label'}
-    padding-right $form-item-label-wrapper-gap
-
-{$selector-class-prefix + '-form-label-right'}
-  {$selector-class-prefix + '-form-item-label'}
-    justify-content flex-end
-
 {$selector-class-prefix + '-form-item-align-top'}
   align-items flex-start
 
@@ -81,6 +72,11 @@ $form-item-label-wrapper-gap = 12px
 {$selector-class-prefix + '-form-item-message'}
   color $brand-error
 
+{$selector-class-prefix + '-form-colon'}
+  {$selector-class-prefix + '-form-item-label'}:after
+    content ':'
+    margin-left 4px
+
 {$selector-class-prefix + '-form-inline'}
   flex-direction row
   flex-wrap wrap
@@ -106,10 +102,19 @@ $form-item-label-wrapper-gap = 12px
     flex-direction row
 
 {$selector-class-prefix + '-form-vertical'}
+  {$selector-class-prefix + '-form-item-label'}
+    align-self stretch
   {$selector-class-prefix + '-form-item'}
     flex-direction column
 
-{$selector-class-prefix + '-form-colon'}
-  {$selector-class-prefix + '-form-item-label'}:after
-    content ':'
-    margin-left 4px
+{$selector-class-prefix + '-form-inline'},
+{$selector-class-prefix + '-form-horizontal'}
+
+  &{$selector-class-prefix + '-form-label-left'},
+  &{$selector-class-prefix + '-form-label-right'}
+    {$selector-class-prefix + '-form-item-label'}
+      padding-right $form-item-label-wrapper-gap
+
+  &{$selector-class-prefix + '-form-label-right'}
+    {$selector-class-prefix + '-form-item-label'}
+      justify-content flex-end
