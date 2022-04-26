@@ -13297,7 +13297,7 @@ external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notifi
 /**
  * 版本
  */
-var version = "0.27.4";
+var version = "0.27.5";
 /**
  * 安装插件
  */
