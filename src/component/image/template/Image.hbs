@@ -67,29 +67,36 @@ class="${prefix}image
 
   {{#if uploadTitle}}
     {{#if uploadImage}}
-      <Upload
-        ref="upload"
-        className="${prefix}image-footer"
-        accept="{{accept}}"
-        beforeUpload="{{beforeUploadImage}}"
-      >
-        {{uploadTitle}}
-      </Upload>
+      {{#if isUploading}}
+        <div
+          class="${prefix}image-footer ${prefix}image-footer-disabled"
+        >
+          {{uploadingTitle}}
+          <LoadingBar
+            manual
+            className="${prefix}image-progress"
+            percent="{{image.progress > 0 ? image.progress * 100 : 0}}"
+            height="2"
+          />
+        </div>
+      {{else}}
+        <Upload
+          ref="upload"
+          className="${prefix}image-footer ${prefix}image-footer-enabled"
+          accept="{{accept}}"
+          beforeUpload="{{beforeUploadImage}}"
+        >
+          {{uploadTitle}}
+        </Upload>
+      {{/if}}
     {{else}}
       <div
-        class="${prefix}image-footer"
+        class="${prefix}image-footer ${prefix}image-footer-enabled"
         on-click="uploadClick.image"
       >
         {{uploadTitle}}
       </div>
     {{/if}}
-  {{/if}}
-
-  {{#if isLoading}}
-    <Spin
-      size="small"
-      fixed
-    />
   {{/if}}
 
 </div>

@@ -4,8 +4,8 @@ import template from './template/Image.hbs'
 // import './style/Image.styl'
 
 import Icon from '../icon/Icon'
-import Spin from '../spin/Spin'
 import Upload from '../upload/Upload'
+import LoadingBar from '../loading-bar/LoadingBar'
 
 import {
   UNDEFINED,
@@ -100,6 +100,10 @@ export default Yox.define({
     uploadTitle: {
       type: RAW_STRING,
     },
+    uploadingTitle: {
+      type: RAW_STRING,
+      value: '正在上传...',
+    },
     uploadImage: {
       type: RAW_FUNCTION,
     },
@@ -154,7 +158,7 @@ export default Yox.define({
   },
 
   computed: {
-    isLoading(): boolean {
+    isUploading(): boolean {
       return this.get('image.status') === STATUS_UPLOADING
     },
     customWidth(): number {
@@ -257,6 +261,7 @@ export default Yox.define({
           file: image.file,
           onStart() {
             me.set('image.status', STATUS_UPLOADING)
+            me.set('image.progress', 0)
           },
           onError(error: string) {
             me.set('image.status', STATUS_FAILURE)
@@ -301,8 +306,8 @@ export default Yox.define({
 
   components: {
     Icon,
-    Spin,
     Upload,
+    LoadingBar,
   }
 
 })

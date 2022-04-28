@@ -4,11 +4,16 @@ import template from './template/LoadingBar.hbs'
 // import './style/LoadingBar.styl'
 
 import {
+  TRUE,
   UNDEFINED,
   RAW_STRING,
   RAW_NUMBER,
+  RAW_NUMERIC,
+  RAW_BOOLEAN,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
+  RAW_STYLE_TYPE,
+  RAW_EVENT_BEFORE_DESTROY,
 } from '../constant'
 
 import {
@@ -29,7 +34,7 @@ export default Yox.define({
       value: RAW_TYPE_PRIMARY,
     },
     height: {
-      type: RAW_NUMBER,
+      type: RAW_NUMERIC,
       value: 2,
     },
     percent: {
@@ -38,6 +43,15 @@ export default Yox.define({
     },
     color: {
       type: RAW_STRING,
+    },
+    manual: {
+      type: RAW_BOOLEAN,
+    },
+    className: {
+      type: RAW_STRING,
+    },
+    style: {
+      type: RAW_STYLE_TYPE,
     }
   },
 
@@ -45,13 +59,15 @@ export default Yox.define({
     indicatorStyle() {
       const result: object[] = []
 
-      const customStyle: Record<string, string> = {}
-
       const percent = this.get('percent')
       const height = this.get('height')
       const color = this.get('color')
-      customStyle.width = toPercent(percent)
-      customStyle.height = toPixel(height)
+
+      const customStyle: Record<string, string> = {
+        width: toPercent(percent),
+        height: toPixel(height),
+      }
+
       if (color) {
         customStyle.color = color
       }
@@ -70,13 +86,15 @@ export default Yox.define({
   },
 
   afterMount() {
+
     const me = this as any
+
+    let timer: number | undefined
+
     const next = function () {
-      me.timer = setTimeout(
+      timer = window.setTimeout(
         function () {
-          if (!me.timer) {
-            return
-          }
+          timer = UNDEFINED
           const value = me.increase('percent', Math.floor(Math.random() * 10), 98)
           if (value < 98) {
             next()
@@ -85,14 +103,34 @@ export default Yox.define({
         300
       )
     }
-    next()
-  },
 
-  beforeDestroy() {
-    const me = this as any
-    if (me.timer) {
-      clearTimeout(me.timer)
-      me.timer = UNDEFINED
+    me.watch(
+      'manual',
+      function (manual: boolean) {
+        if (manual) {
+          if (timer) {
+            clearTimeout(timer)
+            timer = UNDEFINED
+          }
+        }
+        else {
+          next()
+        }
+      },
+      TRUE
+    )
+
+    const destroy = function (component: any) {
+      if (component === me) {
+        if (timer) {
+          clearTimeout(timer)
+          timer = UNDEFINED
+        }
+        Yox.lifeCycle.off(RAW_EVENT_BEFORE_DESTROY, destroy)
+      }
     }
+    Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
+
   }
+
 })

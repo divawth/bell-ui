@@ -414,6 +414,7 @@ export default Yox.define({
             const index = me.getImageIndexById(id)
             if (index >= 0) {
               me.set(`imageList.${index}.status`, STATUS_UPLOADING)
+              me.set(`imageList.${index}.progress`, 0)
               me.fireChange()
             }
           },

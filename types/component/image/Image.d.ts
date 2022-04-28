@@ -1,5 +1,5 @@
 declare const _default: import("yox").ComponentOptions<{
-    isLoading: unknown;
+    isUploading: unknown;
     customWidth: unknown;
     customHeight: unknown;
     inlineStyle: unknown;

@@ -1,6 +1,12 @@
 <div
 class="${prefix}loadingbar
-{{#if type}} ${prefix}loadingbar-{{type}}{{/if}}"
+{{#if type}} ${prefix}loadingbar-{{type}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+
 >
   <div
     class="${prefix}loadingbar-indicator"

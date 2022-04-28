@@ -6,7 +6,7 @@ export declare function normalizeSaturation(saturation: number): number;
 export declare function normalizeValue(value: number): number;
 export declare function normalizeAlpha(alpha: number): number;
 export declare function getColorByName(color: string): string;
-export declare function getModeByColor(color: string): "hex" | "rgb";
+export declare function getModeByColor(color: string): "rgb" | "hex";
 export declare function hsv2rgb(h: number, s: number, v: number): number[];
 export declare function rgb2hsv(r: number, g: number, b: number): number[];
 /**

@@ -1,7 +1,9 @@
 @import '../../../env'
 
-$image-padding = 2px
+$image-padding = 1px
 $image-icon-size = 16px
+
+$image-content-bg = #f5f5f5
 
 $image-mask-bg = rgba(0,0,0,0.4)
 $image-mask-text = #fff
@@ -39,7 +41,7 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
 {$selector-class-prefix + '-image-placeholder'}
   height 100%
   border-radius $border-radius-default
-  background-color $brand-bg-light
+  background-color $image-content-bg
   vertical-align top
 
 {$selector-class-prefix + '-image-native-aspect-fit'}
@@ -51,7 +53,7 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   height 100%
 
 {$selector-class-prefix + '-image-placeholder-empty'}
-  background $brand-bg-light url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
+  background $image-content-bg url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
   background-image -webkit-image-set(
     url('~@component/image/image/placeholder-default@2x.png') 2x
   )
@@ -76,17 +78,28 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   height 20%
   min-height 24px
   white-space nowrap
-  color $brand-white
   font-size $font-size-small
   line-height $ui-single-line-height
-  background-color $brand-action-bg-color
   border-bottom-left-radius $border-radius-default
   border-bottom-right-radius $border-radius-default
+
+{$selector-class-prefix + '-image-footer-enabled'}
+  color $brand-white
+  background-color $brand-action-bg-color
   transition background-color $form-control-transition-duration
   ui-clickable()
-
   &:hover
     background-color $brand-action-bg-color-hover
+
+{$selector-class-prefix + '-image-footer-disabled'}
+  color $brand-disabled
+  background-color $brand-bg-disabled
+
+{$selector-class-prefix + '-image-progress'}
+  position absolute
+  left 0
+  right 0
+  top -2px
 
 {$selector-class-prefix + '-image-mask'}
   opacity 0
