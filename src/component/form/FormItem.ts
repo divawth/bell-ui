@@ -43,10 +43,6 @@ export default Yox.define({
     showRequiredMark: {
       type: RAW_BOOLEAN,
     },
-    labelAlign: {
-      type: oneOf([RAW_TOP, RAW_BOTTOM, RAW_MIDDLE]),
-      value: RAW_TOP,
-    },
     showMessage: {
       type: RAW_BOOLEAN,
       value: TRUE,
@@ -78,7 +74,6 @@ export default Yox.define({
       error: UNDEFINED,
       formLayout: form.get('layout'),
       formLabelWidth: form.get('labelWidth'),
-      formScrollToFirstError: form.get('scrollToFirstError'),
     }
 
   },
@@ -139,7 +134,7 @@ export default Yox.define({
           error
         })
 
-        if (!data.hasScrolled && this.get('formScrollToFirstError')) {
+        if (!data.hasScrolled && data.scrollToFirstError) {
           const el = this.$el
           if (el.scrollIntoView) {
             el.scrollIntoView()

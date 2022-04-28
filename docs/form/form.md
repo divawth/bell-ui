@@ -337,7 +337,7 @@ layout | 表单布局模式 | string | `inline`、`horizontal`、`vertical` | `h
 showColon | 是否显示 label 后面的冒号 | boolean | - | -
 scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean | - | -
 labelAlign | 表单域标签的位置 | string | `left`, `right` | `right`
-labelWidth | 表单域标签的宽度 | number | - | -
+labelWidth | 表单域标签的宽度 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 
@@ -349,7 +349,6 @@ style | 自定义内联样式 | string | - | -
 ---|---|---|---|---
 prop | 表单域字段名 | string | - | -
 label | 标签文本 | string | - | -
-labelAlign | 表单域标签垂直对齐方式 | string | `top`, `middle`, `bottom` | -
 showMessage | 是否显示校验错误信息 | boolean | - | `true`
 message | 错误信息 | string | - | -
 extra | 额外的提示信息 | string | - | -

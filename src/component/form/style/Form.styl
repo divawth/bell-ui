@@ -1,7 +1,6 @@
 @import '../../../env'
 
-$form-item-vertical-gap = 26px
-$form-item-horizontal-gap = 16px
+$form-item-vertical-gap = 24px
 $form-item-label-tooltip-gap = 3px
 $form-item-label-wrapper-gap = 12px
 
@@ -11,17 +10,11 @@ $form-item-label-wrapper-gap = 12px
   color $brand-content
   text-align left
 
-{$selector-class-prefix + '-form-item-adaptive'}
-  flex 1
-
-{$selector-class-prefix + '-form-item-align-top'}
+{$selector-class-prefix + '-form-item'}
   align-items flex-start
 
-{$selector-class-prefix + '-form-item-align-middle'}
-  align-items center
-
-{$selector-class-prefix + '-form-item-align-bottom'}
-  align-items flex-end
+{$selector-class-prefix + '-form-item-adaptive'}
+  flex 1
 
 {$selector-class-prefix + '-form-item-label-required'}
   &:before

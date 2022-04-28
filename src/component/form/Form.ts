@@ -99,6 +99,7 @@ export default Yox.define({
         {
           errors,
           hasScrolled: FALSE,
+          scrollToFirstError: this.get('scrollToFirstError'),
         },
         TRUE
       )

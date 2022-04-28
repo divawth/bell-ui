@@ -12284,6 +12284,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker {
   position: relative;
+  line-height: 0;
 }
 .bell-image-picker .bell-image-picker-mask {
   display: flex;
@@ -12336,6 +12337,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-mask .bell-circle-content {
   color: #fff;
   font-size: 12px;
+  line-height: 1.5715;
 }
 .bell-image-picker-image-name {
   color: #515a6e;
@@ -12359,6 +12361,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-action {
   color: #fff;
   font-size: 14px;
+  line-height: 1.1429;
   text-align: center;
   margin-top: 10px;
 }
@@ -12367,6 +12370,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0,0,0,0.6);
   color: #fff;
   font-size: 12px;
+  line-height: 1.1429;
   padding: 2px 4px;
   white-space: nowrap;
   position: absolute;
@@ -13017,17 +13021,11 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
   text-align: left;
 }
-.bell-form-item-adaptive {
-  flex: 1;
-}
-.bell-form-item-align-top {
+.bell-form-item {
   align-items: flex-start;
 }
-.bell-form-item-align-middle {
-  align-items: center;
-}
-.bell-form-item-align-bottom {
-  align-items: flex-end;
+.bell-form-item-adaptive {
+  flex: 1;
 }
 .bell-form-item-label-required:before {
   content: '*';
@@ -13069,7 +13067,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-form-item-message {
   font-size: 12px;
   line-height: 1.5715;
-  margin: 3.571000000000002px 0;
+  margin: 2.571000000000002px 0;
 }
 .bell-form-item-extra {
   color: #808695;
@@ -13095,7 +13093,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-form-horizontal .bell-form-item + .bell-form-item,
 .bell-form-vertical .bell-form-item + .bell-form-item {
-  margin-top: 26px;
+  margin-top: 24px;
 }
 .bell-form-horizontal .bell-form-item-with-extra + .bell-form-item,
 .bell-form-vertical .bell-form-item-with-extra + .bell-form-item,
