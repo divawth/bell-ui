@@ -68,10 +68,9 @@ export default {
       data.onStart()
       setTimeout(
         function () {
-          data.onError('服务器异常')
-          // data.onSuccess({})
+          data.onSuccess({})
         },
-        1000
+        500
       )
     }
   },
@@ -162,6 +161,7 @@ showPreview | 是否显示预览图标 | boolean | - | -
 accept | 允许什么类型的文件上传，如 `image/*` | string | - | -
 formatImageUrl | 图片裁剪函数 | function | - | -
 uploadTitle | 上传按钮标题 | string | - | -
+uploadingTitle | 正在上传的提示话术 | string | - | -
 uploadImage | 上传函数 | function | - | -
 cropImage | 上传前的图片裁剪函数 | function | - | -
 className | 自定义类名 | string | - | -
