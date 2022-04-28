@@ -9,6 +9,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-image-picker'}
   position relative
+  line-height 0
 
   {$selector-class-prefix + '-image-picker-mask'}
     display flex
@@ -61,6 +62,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   {$selector-class-prefix + '-circle-content'}
     color #fff
     font-size $font-size-small
+    line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-image-picker-image-name'}
   color $brand-content
@@ -81,6 +83,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
 {$selector-class-prefix + '-image-picker-action'}
   color $image-picker-mask-text
   font-size $ui-font-size
+  line-height $ui-single-line-height
   text-align center
   margin-top $image-picker-message-action-gap
 
@@ -89,6 +92,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   background-color $image-picker-mask-bg
   color $brand-white
   font-size $font-size-small
+  line-height $ui-single-line-height
   padding $image-picker-image-size-padding
   white-space nowrap
   position absolute
