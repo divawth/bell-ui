@@ -4,6 +4,7 @@ class="${prefix}image
 {{else}} ${prefix}image-bordered
 {{/if}}
 {{#if customHeight <= 100}} ${prefix}image-small{{/if}}
+{{#if uploadTitle}} ${prefix}image-with-upload{{/if}}
 {{#if image.message}} ${prefix}image-with-message{{/if}}
 {{#if className}} {{className}}{{/if}}"
 

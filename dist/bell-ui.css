@@ -12446,12 +12446,15 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
 }
 .bell-image-placeholder-empty {
-  background: #fafafa url(img/placeholder-default.png) no-repeat 50% 35%;
+  background: #fafafa url(img/placeholder-default.png) no-repeat 50% 50%;
   background-image: -webkit-image-set(url(img/placeholder-default@2x.png) 2x);
 }
 .bell-image-small .bell-image-placeholder-empty {
   background-image: url(img/placeholder-small.png);
   background-image: -webkit-image-set(url(img/placeholder-small@2x.png) 2x);
+}
+.bell-image-with-upload .bell-image-placeholder-empty {
+  background-position: 50% 35%;
 }
 .bell-image-footer {
   display: block;
