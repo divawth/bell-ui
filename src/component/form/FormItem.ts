@@ -104,13 +104,7 @@ export default Yox.define({
     },
     showItemMessage(): string {
       return this.get('showMessage') && this.get('itemMessage')
-    }
-  },
-
-  filters: {
-    formatMessage(msg: string) {
-      return msg.replace(/\n/g, '<br>')
-    }
+    },
   },
 
   events: {

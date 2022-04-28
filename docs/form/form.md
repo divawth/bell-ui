@@ -142,7 +142,7 @@ export default {
           placeholder="Enter something..."
         />
       </FormItem>
-      <FormItem label="InputNumber" showRequiredMark showMessage message="第一个错误提示\n第二个错误提示">
+      <FormItem label="InputNumber" showRequiredMark showMessage extra="提示文字" message="错误文字">
         <InputNumber
           status="error"
           model="form.number"

@@ -1,7 +1,6 @@
 <div
 class="${prefix}form-item
-{{#if extra || @extra}} ${prefix}form-item-with-extra{{/if}}
-{{#if showItemMessage}} ${prefix}form-item-with-message{{/if}}
+{{#if extra || @extra || showItemMessage}} ${prefix}form-item-with-help{{/if}}
 {{#if adaptive}} ${prefix}form-item-adaptive{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -46,19 +45,23 @@ class="${prefix}form-item
       <slot />
     </div>
 
-    {{#if extra}}
-      <div class="${prefix}form-item-extra">
-        {{{formatMessage(extra)}}}
-      </div>
-    {{else if @extra}}
-      <div class="${prefix}form-item-extra">
-        <slot name="extra" />
-      </div>
-    {{/if}}
+    {{#if extra || @extra || showItemMessage}}
+      <div class="${prefix}form-item-help">
+        {{#if extra}}
+          <div class="${prefix}form-item-extra">
+            {{extra}}
+          </div>
+        {{else if @extra}}
+          <div class="${prefix}form-item-extra">
+            <slot name="extra" />
+          </div>
+        {{/if}}
 
-    {{#if showItemMessage}}
-      <div class="${prefix}form-item-message">
-        {{{formatMessage(itemMessage)}}}
+        {{#if showItemMessage}}
+          <div class="${prefix}form-item-message">
+            {{itemMessage}}
+          </div>
+        {{/if}}
       </div>
     {{/if}}
 

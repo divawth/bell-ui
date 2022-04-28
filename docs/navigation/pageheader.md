@@ -34,15 +34,17 @@ export default {
       </template>
 
       <template slot="extra">
-        <Button>
-          取消
-        </Button>
-        <Button type="primary">
-          确定
-        </Button>
-        <SplitButton type="error" menu="{{menu}}">
-          删除
-        </SplitButton>
+        <Space>
+          <Button>
+            取消
+          </Button>
+          <Button type="primary">
+            确定
+          </Button>
+          <SplitButton type="error" menu="{{menu}}">
+            删除
+          </SplitButton>
+        </Space>
       </template>
 
       <template slot="content">

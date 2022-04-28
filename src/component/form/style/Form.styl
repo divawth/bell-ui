@@ -53,11 +53,14 @@ $form-item-label-wrapper-gap = 12px
   align-items center
   width 100%
 
-{$selector-class-prefix + '-form-item-extra'},
-{$selector-class-prefix + '-form-item-message'}
+{$selector-class-prefix + '-form-item-help'}
+  display flex
+  align-items center
+  box-sizing border-box
+  padding 0.5 * ($form-item-vertical-gap - floor($font-size-small * $ui-multiple-line-height)) 0
+  min-height $form-item-vertical-gap
   font-size $font-size-small
   line-height $ui-multiple-line-height
-  margin 0.5 * ($form-item-vertical-gap - ($font-size-small * $ui-multiple-line-height)) 0
 
 {$selector-class-prefix + '-form-item-extra'}
   color $brand-muted
@@ -85,8 +88,7 @@ $form-item-label-wrapper-gap = 12px
     + {$selector-class-prefix + '-form-item'}
       margin-top $form-item-vertical-gap
 
-  {$selector-class-prefix + '-form-item-with-extra'},
-  {$selector-class-prefix + '-form-item-with-message'}
+  {$selector-class-prefix + '-form-item-with-help'}
     + {$selector-class-prefix + '-form-item'}
       margin-top 0
 
