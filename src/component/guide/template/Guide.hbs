@@ -1,0 +1,35 @@
+<div
+class="${prefix}guide
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <div class="${prefix}guide-header">
+    <div class="${prefix}guide-title">
+      <slot name="title">
+        {{title}}
+      </slot>
+    </div>
+    {{#if @extra}}
+      <div class="${prefix}guide-extra">
+        <slot name="extra" />
+      </div>
+    {{/if}}
+  </div>
+
+  {{#if content || @content}}
+    <div class="${prefix}guide-body">
+      <slot name="content">
+        {{content}}
+      </slot>
+    </div>
+  {{/if}}
+
+  {{#if @footer}}
+    <div class="${prefix}guide-footer">
+      <slot name="footer" />
+    </div>
+  {{/if}}
+</div>

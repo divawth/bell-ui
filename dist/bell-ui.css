@@ -10222,7 +10222,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #57a3f3;
 }
 .bell-article-sub-title {
-  color: #808695;
+  color: #969799;
   font-size: 16px;
   line-height: 1.8;
   margin-top: 10px;
@@ -10261,7 +10261,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
 }
 .bell-article-signature {
-  color: #808695;
+  color: #969799;
   font-size: 14px;
   margin-top: 30px;
   line-height: 1.8;
@@ -11102,7 +11102,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.1429;
 }
 .bell-card-header-sub-title {
-  color: #808695;
+  color: #969799;
   font-size: 12px;
   line-height: 1.1429;
   margin-top: 3px;
@@ -12010,7 +12010,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-date-picker-calendar-icon {
   font-size: 14px;
-  color: #808695;
+  color: #969799;
   transition: transform 0.2s;
   transform-origin: center center;
 }
@@ -12247,7 +12247,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-time-picker-time-icon {
   font-size: 14px;
-  color: #808695;
+  color: #969799;
   transition: transform 0.2s;
   transform-origin: center center;
 }
@@ -12386,7 +12386,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 .bell-image-picker-extra {
-  color: #808695;
+  color: #969799;
   font-size: 12px;
   line-height: 1.5715;
   margin-top: 10px;
@@ -12402,7 +12402,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image {
   display: inline-block;
-  color: #808695;
+  color: #969799;
   font-size: 14px;
   line-height: 1.5715;
   background-color: #fff;
@@ -12825,6 +12825,31 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-drawer-bottom.bell-drawer-fade > .bell-drawer-wrapper {
   transform: translate(0);
 }
+.bell-guide {
+  padding: 24px 16px;
+}
+.bell-guide-header,
+.bell-guide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bell-guide-title {
+  flex: 1;
+  color: #17233d;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.bell-guide-body {
+  color: #969799;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 12px;
+}
+.bell-guide-footer {
+  margin-top: 12px;
+}
 .bell-dropdown-menu {
   min-width: 100px;
 }
@@ -12983,7 +13008,7 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: break-all;
 }
 .bell-empty {
-  color: #808695;
+  color: #969799;
   font-size: 14px;
   text-align: center;
   padding-top: 80px;
@@ -13088,7 +13113,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.5715;
 }
 .bell-form-item-extra {
-  color: #808695;
+  color: #969799;
 }
 .bell-form-item-message {
   color: #ed4014;
@@ -13297,7 +13322,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-input-prefix-text-wrapper,
 .bell-input-suffix-text-wrapper {
-  color: #808695;
+  color: #969799;
   font-size: 85%;
 }
 .bell-input-secure,
@@ -13620,7 +13645,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-layout-footer {
   flex: 0 0 auto;
   padding: 24px 24px;
-  color: #808695;
+  color: #969799;
   font-size: 14px;
   line-height: 1.5715;
   text-align: center;
@@ -13667,7 +13692,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
 }
 .bell-link-muted {
-  color: #808695;
+  color: #969799;
 }
 .bell-link-underline {
   text-decoration: underline;
@@ -13818,7 +13843,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #2d8cf0;
 }
 .bell-menu-light .bell-menu-group-title {
-  color: #808695;
+  color: #969799;
 }
 .bell-menu-light.bell-menu-horizontal > .bell-menu-item-active {
   color: #2d8cf0;
@@ -14363,7 +14388,7 @@ div::-webkit-scrollbar-thumb:hover {
   margin-left: 8px;
 }
 .bell-pagination-separator {
-  color: #808695;
+  color: #969799;
   margin: 0 6px;
 }
 .bell-pagination-count {
@@ -15326,7 +15351,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 100%;
 }
 .bell-select-group-title {
-  color: #808695;
+  color: #969799;
   font-size: 90%;
   padding: 8px 12px;
 }
@@ -15409,7 +15434,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-select-arrow-icon {
   font-size: 14px;
-  color: #808695;
+  color: #969799;
   transition: transform 0.2s;
   transform-origin: center center;
 }
@@ -15853,10 +15878,10 @@ div::-webkit-scrollbar-thumb:hover {
   padding-top: 20px;
 }
 .bell-analysis-title {
-  color: #808695;
+  color: #969799;
 }
 .bell-analysis-icon-question {
-  color: #808695;
+  color: #969799;
   font-size: 18px;
 }
 .bell-analysis-value {
@@ -15913,7 +15938,7 @@ div::-webkit-scrollbar-thumb:hover {
   margin-top: 14px;
 }
 .bell-statistic-title {
-  color: #808695;
+  color: #969799;
 }
 .bell-statistic-content {
   color: #17233d;
@@ -16533,7 +16558,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #515a6e;
 }
 .bell-text-muted {
-  color: #808695;
+  color: #969799;
 }
 .bell-text-bold {
   font-weight: bold;
@@ -16688,7 +16713,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-textarea-word-count {
   position: absolute;
-  color: #808695;
+  color: #969799;
   font-size: 85%;
   line-height: 1.5;
   -webkit-user-select: none;

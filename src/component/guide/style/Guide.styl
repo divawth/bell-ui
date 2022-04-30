@@ -1,0 +1,28 @@
+$guide-gap = 12px
+$guide-padding-vertical = 24px
+$guide-padding-horizontal = 16px
+
+{$selector-class-prefix + '-guide'}
+  padding $guide-padding-vertical $guide-padding-horizontal
+
+{$selector-class-prefix + '-guide-header'},
+{$selector-class-prefix + '-guide-footer'}
+  display flex
+  justify-content space-between
+  align-items center
+
+{$selector-class-prefix + '-guide-title'}
+  flex 1
+  color $brand-title
+  font-size $font-size-huge
+  line-height $height-small
+  font-weight 500
+
+{$selector-class-prefix + '-guide-body'}
+  color $brand-muted
+  font-size $font-size-default
+  line-height $height-mini
+  margin-top $guide-gap
+
+{$selector-class-prefix + '-guide-footer'}
+  margin-top $guide-gap

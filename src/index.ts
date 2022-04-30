@@ -15,6 +15,7 @@ import SubMenu from './component/menu/SubMenu'
 import Icon from './component/icon/Icon'
 import Text from './component/text/Text'
 import Drawer from './component/drawer/Drawer'
+import Guide from './component/guide/Guide'
 
 import Breadcrumb from './component/breadcrumb/Breadcrumb'
 import BreadcrumbItem from './component/breadcrumb/BreadcrumbItem'
@@ -139,6 +140,7 @@ export function install(Yox: any) {
     Icon,
     Text,
     Drawer,
+    Guide,
 
     Breadcrumb,
     BreadcrumbItem,
