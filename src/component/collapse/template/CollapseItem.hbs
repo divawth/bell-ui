@@ -17,20 +17,21 @@ class="${prefix}collapse-item
       on-click="click()"
     {{/if}}
   >
+    <div class="${prefix}collapse-title-wrapper">
+      <Icon
+        name="arrow-right-s-line"
+        className="${prefix}collapse-arrow-icon"
+      />
+      <div class="${prefix}collapse-title">
+        {{title}}
+      </div>
+    </div>
 
     {{#if @extra}}
       <div class="${prefix}collapse-extra">
         <slot name="extra" />
       </div>
     {{/if}}
-
-    <Icon
-      name="arrow-right-s-line"
-      className="${prefix}collapse-arrow-icon"
-    />
-
-    {{title}}
-
   </div>
 
   <div class="${prefix}collapse-content">

@@ -37,13 +37,13 @@ radio-button-size-style(size)
   > {$selector-class-prefix + '-radio'}
     ui-set('font-size', size['font-size'])
     ui-set('height', size['height'])
-    ui-set('line-height', size['height'] - 2)
     ui-set('min-width', size['height'])
     ui-set('padding', 0 size['padding-horizontal'])
 
 {$selector-class-prefix + '-radio'}
   display inline-flex
   align-items center
+  line-height $ui-multiple-line-height
   user-select none
   box-sizing border-box
 
@@ -51,7 +51,6 @@ radio-button-size-style(size)
   height $height-default
   color $brand-content
   font-size $font-size-default
-  line-height $ui-single-line-height
   white-space nowrap
 
   > {$selector-class-prefix + '-radio-icon'}
@@ -90,7 +89,7 @@ radio-button-size-style(size)
 
     opacity 0
     transform scale(0)
-    transition transform .2s, opacity .2s
+    transition transform $form-control-transition-duration, opacity $form-control-transition-duration
 
 
 {$selector-class-prefix + '-radio-input'}
@@ -149,7 +148,7 @@ if $ui-shadow-radius > 0
     border 1px solid $brand-border
     background-color $brand-bg
     color $brand-content
-    transition border-color .2s, color .2s, background-color .2s, box-shadow .2s
+    transition border-color $form-control-transition-duration, color $form-control-transition-duration, background-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   > {$selector-class-prefix + '-radio-disabled'}
     border-color $brand-border
@@ -164,7 +163,7 @@ if $ui-shadow-radius > 0
     &:before
       content ''
       position absolute
-      transition background-color .2s
+      transition background-color $form-control-transition-duration
 
     &:first-child:before
       content none

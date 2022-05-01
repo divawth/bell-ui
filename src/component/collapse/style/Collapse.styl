@@ -10,6 +10,7 @@ $collapse-content-padding-vertical = 12px
 {$selector-class-prefix + '-collapse'}
   overflow hidden
   border 1px solid $brand-border
+  line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-collapse-simple'}
   border-left 0
@@ -31,33 +32,35 @@ $collapse-content-padding-vertical = 12px
   border-top 1px solid $brand-border
 
 {$selector-class-prefix + '-collapse-header'}
+  display flex
+  justify-content space-between
+  align-items center
   user-select none
-  font-size $font-size-default
-  line-height $ui-single-line-height
   padding $collapse-header-padding-vertical $collapse-padding-horizontal
 
+{$selector-class-prefix + '-collapse-title-wrapper'}
+  flex 1
+  display flex
+  align-items center
+
+{$selector-class-prefix + '-collapse-title'}
+  font-size $font-size-default
+
 {$selector-class-prefix + '-collapse-arrow-icon'}
-  color inherit
-  display inline-block
   font-size $collapse-arrow-icon-size
   margin-right $ui-icon-text-gap
-  vertical-align top
   transition transform .2s
-
-{$selector-class-prefix + '-collapse-extra'}
-  float right
 
 {$selector-class-prefix + '-collapse-content'}
   display none
   overflow hidden
   color $brand-content
   font-size $font-size-default
-  line-height $ui-multiple-line-height
   padding $collapse-content-padding-vertical $collapse-padding-horizontal
   transition height .1s
 
 {$selector-class-prefix + '-collapse-opened'}
-  > {$selector-class-prefix + '-collapse-header'} > {$selector-class-prefix + '-collapse-arrow-icon'}
+  {$selector-class-prefix + '-collapse-arrow-icon'}
     transform rotate(90deg)
 
   > {$selector-class-prefix + '-collapse-content'}

@@ -7,22 +7,8 @@ class="${prefix}card-header
 {{/if}}
 >
 
-  <div class="${prefix}card-header-wrapper">
-
-    <slot name="avatar" />
-
-    <div class="${prefix}card-header-info">
-      <div class="${prefix}card-header-title">
-        <slot name="title" />
-      </div>
-
-      {{#if @subTitle}}
-        <div class="${prefix}card-header-sub-title">
-          <slot name="subTitle" />
-        </div>
-      {{/if}}
-    </div>
-
+  <div class="${prefix}card-header-title">
+    <slot name="title" />
   </div>
 
   {{#if @extra}}

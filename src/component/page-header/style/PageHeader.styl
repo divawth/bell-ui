@@ -11,6 +11,7 @@ $page-header-title-tags-gap = 12px
 $page-header-header-body-gap = 16px
 
 {$selector-class-prefix + '-page-header'}
+  line-height $ui-multiple-line-height
   padding $page-header-padding-vertical $layout-padding-horizontal
 
   > {$selector-class-prefix + '-breadcrumb'}
@@ -33,8 +34,7 @@ $page-header-header-body-gap = 16px
 {$selector-class-prefix + '-page-header-title'}
   color $brand-title
   font-size $page-header-title-font-size
-  font-weight 500
-  line-height $ui-single-line-height
+  font-weight $font-weight-bold
   white-space nowrap
 
 {$selector-class-prefix + '-page-header-back'}
@@ -55,7 +55,7 @@ $page-header-header-body-gap = 16px
 
 {$selector-class-prefix + '-page-header-tags'}
   flex 1
-  padding-left $page-header-title-tags-gap
+  margin-left $page-header-title-tags-gap
   white-space nowrap
 
   {$selector-class-prefix + '-tag'} + {$selector-class-prefix + '-tag'}

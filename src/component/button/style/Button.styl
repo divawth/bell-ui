@@ -193,18 +193,18 @@ ui-button-group-separator(hoverColor, activeColor)
 
   &:before
     border-style solid
-    border-color transparent
+    border-color $brand-transparent-color
 
   &{$selector-class-prefix + '-button-ghost'}
     color $brand-white
     border-color $brand-white
-    background-color transparent !important
+    background-color $brand-transparent-color !important
     transition color $form-control-transition-duration, border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
 
   &{$selector-class-prefix + '-button-text'},
   &{$selector-class-prefix + '-button-link'}
     border 0
-    background-color transparent
+    background-color $brand-transparent-color
 
     &:focus
       box-shadow none

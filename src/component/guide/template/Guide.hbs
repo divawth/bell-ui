@@ -19,11 +19,9 @@ class="${prefix}guide
     {{/if}}
   </div>
 
-  {{#if content || @content}}
+  {{#if @children}}
     <div class="${prefix}guide-body">
-      <slot name="content">
-        {{content}}
-      </slot>
+      <slot />
     </div>
   {{/if}}
 

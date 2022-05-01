@@ -28,7 +28,7 @@ $divider-text-gap = 16px
   margin 0 $divider-text-gap
 
 {$selector-class-prefix + '-divider-dashed'}
-  background-color transparent
+  background-color $brand-transparent-color
   border-top 1px dashed $brand-divider
 
 {$selector-class-prefix + '-divider-with-text'}
@@ -38,12 +38,12 @@ $divider-text-gap = 16px
   align-items center
 
   white-space nowrap
-  background-color transparent
+  background-color $brand-transparent-color
   border-top 0
 
   color $brand-title
   font-size $font-size-default
-  font-weight 500
+  font-weight $font-weight-bold
 
   &:before,
   &:after

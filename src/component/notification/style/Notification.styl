@@ -34,6 +34,7 @@ notification-brand-style(style)
 {$selector-class-prefix + '-notification'}
   position relative
   opacity 0
+  line-height $ui-multiple-line-height
   padding $notification-padding-vertical $notification-padding-horizontal
   border-radius $border-radius-default
   box-sizing border-box
@@ -75,7 +76,6 @@ notification-brand-style(style)
   ui-ellipsis()
   color $brand-title
   font-size $font-size-large
-  line-height $ui-single-line-height
 
   + {$selector-class-prefix + '-notification-content'}
     margin-top $notification-title-content-gap
@@ -83,7 +83,6 @@ notification-brand-style(style)
 {$selector-class-prefix + '-notification-content'}
   color $brand-content
   font-size $font-size-default
-  line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-notification-icon'}
   position absolute

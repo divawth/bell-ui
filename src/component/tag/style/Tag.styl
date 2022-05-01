@@ -80,7 +80,7 @@ tag-brand-style(style)
   background-color $brand-bg-light
   color $brand-content
   border-radius $border-radius-default
-  line-height $ui-single-line-height
+  line-height $ui-multiple-line-height
   white-space nowrap
   box-sizing border-box
   transition background-color $form-control-transition-duration, border-color $form-control-transition-duration, color $form-control-transition-duration
@@ -127,7 +127,7 @@ tag-brand-style(style)
 
 {$selector-class-prefix + '-tag-pure'}
   border 0
-  background-color transparent
+  background-color $brand-transparent-color
   color $brand-white
 
   {$selector-class-prefix + '-tag-close-button'} > {$selector-class-prefix + '-icon'},

@@ -14,7 +14,7 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   color $brand-muted
   font-size $font-size-default
   line-height $ui-multiple-line-height
-  background-color $brand-white
+  background-color $brand-bg
   border-radius $border-radius-default
   text-align center
   position relative
@@ -79,17 +79,16 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   min-height 24px
   white-space nowrap
   font-size $font-size-small
-  line-height $ui-single-line-height
   border-bottom-left-radius $border-radius-default
   border-bottom-right-radius $border-radius-default
 
 {$selector-class-prefix + '-image-footer-enabled'}
-  color $brand-white
-  background-color $brand-action-bg-color
+  color $brand-text-mask-title-color
+  background-color $brand-text-mask-bg-color
   transition background-color $form-control-transition-duration
   ui-clickable()
   &:hover
-    background-color $brand-action-bg-color-hover
+    background-color $brand-text-mask-bg-color-hover
 
 {$selector-class-prefix + '-image-footer-disabled'}
   color $brand-disabled

@@ -1,7 +1,7 @@
 @import '../../../env'
 
-$description-title-font-size = 20px
-$description-header-body-gap = 16px
+$description-header-body-gap = 20px
+$description-item-gap = 16px
 
 $description-size-hash = {
   default: {
@@ -25,6 +25,7 @@ description-size-style(size)
 {$selector-class-prefix + '-description'}
   width 100%
   box-sizing border-box
+  line-height $ui-multiple-line-height
 
   ui-connect(
     hash: $description-size-hash,
@@ -43,9 +44,8 @@ description-size-style(size)
 
 {$selector-class-prefix + '-description-title'}
   color $brand-title
-  font-size $description-title-font-size
-  font-weight 500
-  line-height $ui-single-line-height
+  font-size $font-size-large
+  font-weight $font-weight-bold
   width 100%
 
 {$selector-class-prefix + '-description-table'}
@@ -81,7 +81,7 @@ description-size-style(size)
 
 {$selector-class-prefix + '-description-item-wrapper'}
   display flex
-  padding-bottom $description-header-body-gap
+  padding-bottom $description-item-gap
 
 {$selector-class-prefix + '-description-item-label'}
   white-space nowrap

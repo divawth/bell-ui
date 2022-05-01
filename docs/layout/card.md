@@ -37,20 +37,6 @@ export default {
   height: 640,
   template: `
   <Card>
-    <CardHeader>
-      <template slot="title">
-        标题
-      </template>
-
-      <template slot="subTitle">
-        副标题
-      </template>
-
-      <Avatar
-        slot="avatar"
-        src="https://avatars0.githubusercontent.com/u/17703135?s=400&u=612ef7e55a4394c89e2f53f8f360c9b3b2336ace&v=4"
-      />
-    </CardHeader>
 
     <CardMedia>
 
@@ -184,9 +170,7 @@ style | 自定义内联样式 | string | - | -
 参数 | 说明
 ---|---
 title | 标题
-subTitle | 子标题
 extra | 标题栏右侧的内容
-avatar | 头像
 
 
 

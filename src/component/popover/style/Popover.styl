@@ -130,13 +130,13 @@ $popover-arrow-size = 5px
   position absolute
   width 0
   height 0
-  border $popover-arrow-size solid transparent
+  border $popover-arrow-size solid $brand-transparent-color
 
 {$selector-class-prefix + '-popover-arrow'}:before
   content ''
 
 {$selector-class-prefix + '-popover-content'}
-  border 1px solid transparent
+  border 1px solid $brand-transparent-color
   box-sizing border-box
 
 {$selector-class-prefix + '-popover-bottom'},
@@ -148,9 +148,9 @@ $popover-arrow-size = 5px
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
-    border-top-color transparent !important
-    border-left-color transparent !important
-    border-right-color transparent !important
+    border-top-color $brand-transparent-color !important
+    border-left-color $brand-transparent-color !important
+    border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     top $popover-arrow-offset
@@ -184,9 +184,9 @@ $popover-arrow-size = 5px
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
-    border-bottom-color transparent !important
-    border-left-color transparent !important
-    border-right-color transparent !important
+    border-bottom-color $brand-transparent-color !important
+    border-left-color $brand-transparent-color !important
+    border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     bottom $popover-arrow-offset
@@ -222,9 +222,9 @@ $popover-arrow-size = 5px
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
-    border-top-color transparent !important
-    border-bottom-color transparent !important
-    border-right-color transparent !important
+    border-top-color $brand-transparent-color !important
+    border-bottom-color $brand-transparent-color !important
+    border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     right $popover-arrow-offset
@@ -257,9 +257,9 @@ $popover-arrow-size = 5px
 
   > {$selector-class-prefix + '-popover-arrow'},
   > {$selector-class-prefix + '-popover-arrow'}:before
-    border-top-color transparent !important
-    border-left-color transparent !important
-    border-bottom-color transparent !important
+    border-top-color $brand-transparent-color !important
+    border-left-color $brand-transparent-color !important
+    border-bottom-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     left $popover-arrow-offset

@@ -8,8 +8,6 @@ $dialog-padding-horizontal = 24px
 $dialog-header-padding-vertical = 16px
 $dialog-body-padding-vertical = 24px
 
-$dialog-close-font-size = 22px
-
 {$selector-class-prefix + '-dialog'}
   position fixed
   top 0
@@ -28,7 +26,7 @@ $dialog-close-font-size = 22px
     opacity 1
 
   > {$selector-class-prefix + '-dialog-mask'}
-    opacity $ui-opacity-mask
+    background-color $brand-modal-bg-color
 
 {$selector-class-prefix + '-dialog-mask'}
   position absolute
@@ -37,10 +35,9 @@ $dialog-close-font-size = 22px
   bottom 0
   left 0
 
-  opacity 0
   user-select none
-  background-color #000
-  transition opacity .2s
+  background-color $brand-transparent-color
+  transition background-color $form-control-transition-duration
 
 {$selector-class-prefix + '-dialog-wrapper'}
   max-height 100%
@@ -53,9 +50,10 @@ $dialog-close-font-size = 22px
   margin-top -20px
   opacity 0
 
+  line-height $ui-multiple-line-height
   border-radius $border-radius-default
   background-color $brand-bg
-  box-shadow $brand-dialog-shadow
+  box-shadow $brand-modal-shadow
   transition margin-top .6s cubic-bezier(.23,1,.32,1),
               opacity .6s cubic-bezier(.23,1,.32,1)
 
@@ -70,13 +68,12 @@ $dialog-close-font-size = 22px
   flex 1
   color $brand-title
   font-size $font-size-large
-  line-height $ui-single-line-height
-  font-weight 500
+  font-weight $font-weight-bold
 
 {$selector-class-prefix + '-dialog-close'}
   color $brand-close-color
-  font-size $dialog-close-font-size
-  line-height $dialog-close-font-size
+  font-size $modal-close-icon-size
+  line-height $modal-close-icon-size
   transition color $form-control-transition-duration
   user-select none
   ui-clickable()
@@ -86,10 +83,11 @@ $dialog-close-font-size = 22px
 
 {$selector-class-prefix + '-dialog-body'}
   font-size $font-size-default
-  line-height $ui-multiple-line-height
   padding $dialog-body-padding-vertical $dialog-padding-horizontal
 
 {$selector-class-prefix + '-dialog-footer'}
   border-top 1px solid $brand-divider
-  text-align right
+  display flex
+  justify-content flex-end
+  align-items center
   padding $dialog-footer-padding-vertical $dialog-footer-padding-horizontal

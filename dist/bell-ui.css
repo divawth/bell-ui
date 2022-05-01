@@ -10281,7 +10281,7 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
 }
 .bell-avatar-image {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-avatar-clickable {
   -webkit-user-select: none;
@@ -10503,7 +10503,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-breadcrumb {
   font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
 }
 .bell-breadcrumb-separator {
   -webkit-user-select: none;
@@ -10529,7 +10529,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-breadcrumb-text {
   color: #515a6e;
   cursor: text;
-  font-weight: bold;
+  font-weight: 500;
 }
 .bell-breadcrumb-item .bell-icon {
   margin-right: 6px;
@@ -10556,18 +10556,18 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-button:before {
   border-style: solid;
-  border-color: transparent;
+  border-color: rgba(0,0,0,0);
 }
 .bell-button.bell-button-ghost {
   color: #fff;
   border-color: #fff;
-  background-color: transparent !important;
+  background-color: rgba(0,0,0,0) !important;
   transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .bell-button.bell-button-text,
 .bell-button.bell-button-link {
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-button.bell-button-text:focus,
 .bell-button.bell-button-link:focus {
@@ -11062,10 +11062,9 @@ div::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+  box-sizing: border-box;
   border-radius: 2px;
-  color: #515a6e;
-  font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
 }
 .bell-card-shadow-hover {
   transition: box-shadow 0.2s;
@@ -11079,33 +11078,17 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-card-header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 18px 24px;
 }
-.bell-card-header .bell-avatar {
-  margin-right: 8px;
-}
 .bell-card-header + .bell-card-body {
   border-top: 1px solid #e8eaec;
 }
-.bell-card-header-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 .bell-card-header-title {
   color: #17233d;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.1429;
-}
-.bell-card-header-sub-title {
-  color: #969799;
-  font-size: 12px;
-  line-height: 1.1429;
-  margin-top: 3px;
+  font-size: 16px;
+  font-weight: 500;
 }
 .bell-card-media {
   position: relative;
@@ -11120,12 +11103,11 @@ div::-webkit-scrollbar-thumb:hover {
   right: 0;
   bottom: 0;
   padding: 12px 24px;
-  background-color: rgba(0,0,0,0.54);
+  background-color: rgba(0,0,0,0.5);
 }
 .bell-card-media-title {
-  color: #fbfbfb;
-  font-size: 18px;
-  line-height: 1.1429;
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -11133,10 +11115,9 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
 }
 .bell-card-media-sub-title {
-  color: #ccc;
+  color: rgba(255,255,255,0.7);
   font-size: 12px;
-  line-height: 1.1429;
-  margin-top: 6px;
+  margin-top: 2px;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -11147,7 +11128,6 @@ div::-webkit-scrollbar-thumb:hover {
   flex: 1;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
   padding: 24px 24px;
   position: relative;
 }
@@ -11155,11 +11135,14 @@ div::-webkit-scrollbar-thumb:hover {
   padding-top: 0;
 }
 .bell-card-footer {
+  color: #515a6e;
+  font-size: 14px;
   padding: 24px 24px;
 }
 .bell-checkbox {
   display: inline-flex;
   align-items: center;
+  line-height: 1.5715;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -11170,7 +11153,6 @@ div::-webkit-scrollbar-thumb:hover {
   height: 32px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.1429;
   white-space: nowrap;
 }
 .bell-checkbox-with-label > .bell-checkbox-icon {
@@ -11476,7 +11458,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  line-height: 1.1429;
+  line-height: 1.5715;
 }
 .bell-carousel {
   display: block;
@@ -11573,6 +11555,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-collapse {
   overflow: hidden;
   border: 1px solid #dcdee2;
+  line-height: 1.5715;
 }
 .bell-collapse-simple {
   border-left: 0;
@@ -11594,35 +11577,37 @@ div::-webkit-scrollbar-thumb:hover {
   border-top: 1px solid #dcdee2;
 }
 .bell-collapse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  font-size: 14px;
-  line-height: 1.1429;
   padding: 12px 15px;
 }
+.bell-collapse-title-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.bell-collapse-title {
+  font-size: 14px;
+}
 .bell-collapse-arrow-icon {
-  color: inherit;
-  display: inline-block;
   font-size: 16px;
   margin-right: 6px;
-  vertical-align: top;
   transition: transform 0.2s;
-}
-.bell-collapse-extra {
-  float: right;
 }
 .bell-collapse-content {
   display: none;
   overflow: hidden;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
   padding: 12px 15px;
   transition: height 0.1s;
 }
-.bell-collapse-opened > .bell-collapse-header > .bell-collapse-arrow-icon {
+.bell-collapse-opened .bell-collapse-arrow-icon {
   transform: rotate(90deg);
 }
 .bell-collapse-opened > .bell-collapse-content {
@@ -11965,7 +11950,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   border: 1px solid #dcdee2;
   background-color: #fff;
-  line-height: 1.1429;
+  line-height: 1.5715;
   box-sizing: border-box;
   border-radius: 2px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -12217,7 +12202,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   border: 1px solid #dcdee2;
   background-color: #fff;
-  line-height: 1.1429;
+  line-height: 1.5715;
   box-sizing: border-box;
   border-radius: 2px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -12294,6 +12279,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-image-picker-item {
   display: block;
+  line-height: 1.5715;
   background-color: #fafafa;
   box-sizing: content-box;
   position: relative;
@@ -12326,7 +12312,7 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
 }
 .bell-image-picker-mask {
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.5);
   position: absolute;
   top: 0;
   left: 0;
@@ -12337,12 +12323,10 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-image-picker-mask .bell-circle-content {
   color: #fff;
   font-size: 12px;
-  line-height: 1.5715;
 }
 .bell-image-picker-image-name {
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
   text-align: center;
   width: 80%;
   overflow: hidden;
@@ -12351,26 +12335,23 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
 }
 .bell-image-picker-message {
-  color: #fff;
+  color: rgba(255,255,255,0.9);
   font-size: 14px;
-  line-height: 1.5715;
   text-shadow: 1px 1px 2px rgba(200,200,200,0.5);
   text-align: center;
   width: 80%;
 }
 .bell-image-picker-action {
-  color: #fff;
+  color: rgba(255,255,255,0.9);
   font-size: 14px;
-  line-height: 1.1429;
   text-align: center;
   margin-top: 10px;
 }
 .bell-image-picker-image-size {
   display: none;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.5);
   color: #fff;
   font-size: 12px;
-  line-height: 1.1429;
   padding: 2px 4px;
   white-space: nowrap;
   position: absolute;
@@ -12466,12 +12447,11 @@ div::-webkit-scrollbar-thumb:hover {
   min-height: 24px;
   white-space: nowrap;
   font-size: 12px;
-  line-height: 1.1429;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 .bell-image-footer-enabled {
-  color: #fff;
+  color: rgba(255,255,255,0.9);
   background-color: rgba(0,0,0,0.5);
   transition: background-color 0.2s;
   cursor: pointer;
@@ -12563,7 +12543,7 @@ div::-webkit-scrollbar-thumb:hover {
   opacity: 1;
 }
 .bell-dialog-fade > .bell-dialog-mask {
-  opacity: 0.5;
+  background-color: rgba(0,0,0,0.5);
 }
 .bell-dialog-mask {
   position: absolute;
@@ -12571,13 +12551,12 @@ div::-webkit-scrollbar-thumb:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background-color: #000;
-  transition: opacity 0.2s;
+  background-color: rgba(0,0,0,0);
+  transition: background-color 0.2s;
 }
 .bell-dialog-wrapper {
   max-height: 100%;
@@ -12588,6 +12567,7 @@ div::-webkit-scrollbar-thumb:hover {
   transform: translate(-50%, -50%);
   margin-top: -20px;
   opacity: 0;
+  line-height: 1.5715;
   border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -12604,7 +12584,6 @@ div::-webkit-scrollbar-thumb:hover {
   flex: 1;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.1429;
   font-weight: 500;
 }
 .bell-dialog-close {
@@ -12624,12 +12603,13 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-dialog-body {
   font-size: 14px;
-  line-height: 1.5715;
   padding: 24px 24px;
 }
 .bell-dialog-footer {
   border-top: 1px solid #e8eaec;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   padding: 10px 16px;
 }
 .bell-divider {
@@ -12656,7 +12636,7 @@ div::-webkit-scrollbar-thumb:hover {
   margin: 0 16px;
 }
 .bell-divider-dashed {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
   border-top: 1px dashed #e8eaec;
 }
 .bell-divider-with-text {
@@ -12664,7 +12644,7 @@ div::-webkit-scrollbar-thumb:hover {
   flex-direction: row;
   align-items: center;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
   border-top: 0;
   color: #17233d;
   font-size: 14px;
@@ -12705,15 +12685,16 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 .bell-drawer-fade > .bell-drawer-mask {
-  opacity: 0.5;
+  background-color: rgba(0,0,0,0.5);
 }
 .bell-drawer-wrapper {
   display: flex;
   flex-flow: column nowrap;
   position: absolute;
+  line-height: 1.5715;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: transform 0.3s;
+  transition: transform 0.2s;
 }
 .bell-drawer-header {
   display: flex;
@@ -12727,7 +12708,6 @@ div::-webkit-scrollbar-thumb:hover {
   padding: 16px 24px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
   word-wrap: break-word;
   overflow-y: auto;
   box-sizing: border-box;
@@ -12776,7 +12756,6 @@ div::-webkit-scrollbar-thumb:hover {
   flex: 1;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.1429;
   font-weight: 500;
 }
 .bell-drawer-mask {
@@ -12785,9 +12764,8 @@ div::-webkit-scrollbar-thumb:hover {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #000;
-  opacity: 0;
-  transition: opacity 0.2s;
+  background-color: rgba(0,0,0,0);
+  transition: background-color 0.2s;
 }
 .bell-drawer-left > .bell-drawer-wrapper {
   transform: translate(-100%);
@@ -12855,7 +12833,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-dropdown-overlay {
   font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
   padding: 4px 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -12884,7 +12862,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
 .bell-dropdown-overlay:hover .bell-dropdown-item-active {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-dropdown-overlay .bell-dropdown-item-enabled:hover {
   background-color: #f5f7fa;
@@ -12894,13 +12872,13 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: keep-all;
-  padding: 8px 12px;
+  padding: 5px 12px;
   transition: background-color 0.2s, color 0.2s;
 }
 .bell-dropdown-item + .bell-dropdown-item-divided {
   margin-top: 4px;
   border-top: 1px solid #e8eaec;
-  padding-top: 12px;
+  padding-top: 9px;
   position: relative;
 }
 .bell-dropdown-item + .bell-dropdown-item-divided:before {
@@ -12927,6 +12905,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-description {
   width: 100%;
   box-sizing: border-box;
+  line-height: 1.5715;
 }
 .bell-description-default .bell-description-cell {
   padding: 12px 20px;
@@ -12941,7 +12920,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .bell-description-title,
 .bell-description-extra {
@@ -12949,9 +12928,8 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-description-title {
   color: #17233d;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.1429;
   width: 100%;
 }
 .bell-description-table {
@@ -12970,7 +12948,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-description-table tr {
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-description-simple .bell-description-cell {
   padding: 0;
@@ -13367,7 +13345,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-input-prepend .bell-button-pure,
 .bell-input-append .bell-button-pure {
   box-shadow: none;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-input-prepend .bell-select-placeholder,
 .bell-input-append .bell-select-placeholder,
@@ -13913,7 +13891,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
 }
 .bell-sub-menu-title {
-  font-weight: bold;
+  font-weight: 500;
 }
 .bell-menu-item,
 .bell-sub-menu,
@@ -14034,10 +14012,10 @@ div::-webkit-scrollbar-thumb:hover {
           user-select: none;
   white-space: nowrap;
   background-color: #fff;
-  padding: 10px 16px;
+  padding: 8px 16px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
   border-radius: 2px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
   transition: opacity 0.15s, top 0.3s;
@@ -14105,6 +14083,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-notification {
   position: relative;
   opacity: 0;
+  line-height: 1.5715;
   padding: 18px 16px;
   border-radius: 2px;
   box-sizing: border-box;
@@ -14155,7 +14134,6 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
   color: #17233d;
   font-size: 16px;
-  line-height: 1.1429;
 }
 .bell-notification-title + .bell-notification-content {
   margin-top: 8px;
@@ -14163,7 +14141,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-notification-content {
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.5715;
 }
 .bell-notification-icon {
   position: absolute;
@@ -14190,6 +14167,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #666;
 }
 .bell-page-header {
+  line-height: 1.5715;
   padding: 16px 24px;
 }
 .bell-page-header > .bell-breadcrumb {
@@ -14211,7 +14189,6 @@ div::-webkit-scrollbar-thumb:hover {
   color: #17233d;
   font-size: 20px;
   font-weight: 500;
-  line-height: 1.1429;
   white-space: nowrap;
 }
 .bell-page-header-back {
@@ -14233,7 +14210,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-page-header-tags {
   flex: 1;
-  padding-left: 12px;
+  margin-left: 12px;
   white-space: nowrap;
 }
 .bell-page-header-tags .bell-tag + .bell-tag {
@@ -14281,7 +14258,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-pagination-custom-prev,
 .bell-pagination-custom-next {
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-pagination-custom-disabled {
   color: #c5c8ce;
@@ -14505,13 +14482,13 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 0;
   height: 0;
-  border: 5px solid transparent;
+  border: 5px solid rgba(0,0,0,0);
 }
 .bell-popover-arrow:before {
   content: '';
 }
 .bell-popover-content {
-  border: 1px solid transparent;
+  border: 1px solid rgba(0,0,0,0);
   box-sizing: border-box;
 }
 .bell-popover-bottom.bell-popover-with-arrow,
@@ -14525,9 +14502,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-popover-bottom > .bell-popover-arrow:before,
 .bell-popover-bottom-start > .bell-popover-arrow:before,
 .bell-popover-bottom-end > .bell-popover-arrow:before {
-  border-top-color: transparent !important;
-  border-left-color: transparent !important;
-  border-right-color: transparent !important;
+  border-top-color: rgba(0,0,0,0) !important;
+  border-left-color: rgba(0,0,0,0) !important;
+  border-right-color: rgba(0,0,0,0) !important;
 }
 .bell-popover-bottom > .bell-popover-arrow,
 .bell-popover-bottom-start > .bell-popover-arrow,
@@ -14561,9 +14538,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-popover-top > .bell-popover-arrow:before,
 .bell-popover-top-start > .bell-popover-arrow:before,
 .bell-popover-top-end > .bell-popover-arrow:before {
-  border-bottom-color: transparent !important;
-  border-left-color: transparent !important;
-  border-right-color: transparent !important;
+  border-bottom-color: rgba(0,0,0,0) !important;
+  border-left-color: rgba(0,0,0,0) !important;
+  border-right-color: rgba(0,0,0,0) !important;
 }
 .bell-popover-top > .bell-popover-arrow,
 .bell-popover-top-start > .bell-popover-arrow,
@@ -14597,9 +14574,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-popover-left > .bell-popover-arrow:before,
 .bell-popover-left-start > .bell-popover-arrow:before,
 .bell-popover-left-end > .bell-popover-arrow:before {
-  border-top-color: transparent !important;
-  border-bottom-color: transparent !important;
-  border-right-color: transparent !important;
+  border-top-color: rgba(0,0,0,0) !important;
+  border-bottom-color: rgba(0,0,0,0) !important;
+  border-right-color: rgba(0,0,0,0) !important;
 }
 .bell-popover-left > .bell-popover-arrow,
 .bell-popover-left-start > .bell-popover-arrow,
@@ -14633,9 +14610,9 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-popover-right > .bell-popover-arrow:before,
 .bell-popover-right-start > .bell-popover-arrow:before,
 .bell-popover-right-end > .bell-popover-arrow:before {
-  border-top-color: transparent !important;
-  border-left-color: transparent !important;
-  border-bottom-color: transparent !important;
+  border-top-color: rgba(0,0,0,0) !important;
+  border-left-color: rgba(0,0,0,0) !important;
+  border-bottom-color: rgba(0,0,0,0) !important;
 }
 .bell-popover-right > .bell-popover-arrow,
 .bell-popover-right-start > .bell-popover-arrow,
@@ -14831,6 +14808,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-radio {
   display: inline-flex;
   align-items: center;
+  line-height: 1.5715;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -14841,7 +14819,6 @@ div::-webkit-scrollbar-thumb:hover {
   height: 32px;
   color: #515a6e;
   font-size: 14px;
-  line-height: 1.1429;
   white-space: nowrap;
 }
 .bell-radio-with-label > .bell-radio-icon {
@@ -14999,21 +14976,18 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-radio-button-default > .bell-radio {
   font-size: 14px;
   height: 32px;
-  line-height: 30px;
   min-width: 32px;
   padding: 0 12px;
 }
 .bell-radio-button-large > .bell-radio {
   font-size: 16px;
   height: 40px;
-  line-height: 38px;
   min-width: 40px;
   padding: 0 15px;
 }
 .bell-radio-button-small > .bell-radio {
   font-size: 12px;
   height: 24px;
-  line-height: 22px;
   min-width: 24px;
   padding: 0 7px;
 }
@@ -15353,7 +15327,7 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-select-group-title {
   color: #969799;
   font-size: 90%;
-  padding: 8px 12px;
+  padding: 5px 12px;
 }
 .bell-select-with-prefix {
   flex-direction: row;
@@ -15389,7 +15363,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: relative;
   border: 1px solid #dcdee2;
   background-color: #fff;
-  line-height: 1.1429;
+  line-height: 1.5715;
   box-sizing: border-box;
   border-radius: 2px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -15471,7 +15445,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-select-overlay {
   font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
   padding: 4px 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -15500,7 +15474,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #b3b3b3;
 }
 .bell-select-overlay:hover .bell-select-option-active {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-select-overlay .bell-select-option-enabled:hover {
   background-color: #f5f7fa;
@@ -15510,7 +15484,7 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: keep-all;
-  padding: 8px 12px;
+  padding: 5px 12px;
   transition: background-color 0.2s, color 0.2s;
 }
 .bell-select-option-enabled {
@@ -15708,7 +15682,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-split-button-menu {
   font-size: 14px;
-  line-height: 1.1429;
+  line-height: 1.5715;
   padding: 4px 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -15744,7 +15718,7 @@ div::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: keep-all;
-  padding: 8px 12px;
+  padding: 5px 12px;
   transition: background-color 0.2s, color 0.2s;
 }
 .bell-split-button-menu-item-enabled {
@@ -16151,7 +16125,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-table > table tr {
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
 }
 .bell-table-stripe tbody > tr:nth-child(2n) {
   background-color: #fafafa;
@@ -16171,8 +16145,8 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-table-header td {
   color: #17233d;
   font-size: 14px;
-  line-height: 1.1429;
-  font-weight: bold;
+  line-height: 1.5715;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   background-color: #fafafa;
@@ -16371,7 +16345,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
   color: #515a6e;
   border-radius: 2px;
-  line-height: 1.1429;
+  line-height: 1.5715;
   white-space: nowrap;
   box-sizing: border-box;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
@@ -16514,7 +16488,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-tag-pure {
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0);
   color: #fff;
 }
 .bell-tag-pure .bell-tag-close-button > .bell-icon,
@@ -16561,7 +16535,7 @@ div::-webkit-scrollbar-thumb:hover {
   color: #969799;
 }
 .bell-text-bold {
-  font-weight: bold;
+  font-weight: 500;
 }
 .bell-text-block {
   display: block;

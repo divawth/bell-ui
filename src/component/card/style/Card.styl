@@ -1,19 +1,7 @@
-@import '../../../env'
-
 $card-header-padding-vertical = 18px
-$card-header-title-font-size = 14px
-$card-header-sub-title-font-size = 12px
-$card-header-sub-title-gap = 3px
 
-$card-header-avatar-title-gap = 8px
-
-$card-media-info-bg-color = rgba(0,0,0,.54)
 $card-media-info-padding = 12px 24px
-$card-media-title-font-size = 18px
-$card-media-title-color = #fbfbfb
-$card-media-sub-title-font-size = 12px
-$card-media-sub-title-color = #ccc
-$card-media-sub-title-gap = 6px
+$card-media-sub-title-gap = 2px
 
 // 因为 body 有些行间距，body 要设置的稍微小一点点，才会看起来相等
 $card-body-padding-vertical = 24px
@@ -25,10 +13,9 @@ $card-footer-padding-vertical = 24px
   display flex
   flex-direction column
   background-color $brand-bg
+  box-sizing border-box
   border-radius $border-radius-default
-  color $brand-content
-  font-size $font-size-default
-  line-height $ui-single-line-height
+  line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-card-shadow-hover'}
   transition box-shadow $form-control-transition-duration
@@ -42,33 +29,17 @@ $card-footer-padding-vertical = 24px
 
 {$selector-class-prefix + '-card-header'}
   display flex
-  flex-direction row
   justify-content space-between
   align-items center
   padding $card-header-padding-vertical $card-padding-horizontal
 
-  {$selector-class-prefix + '-avatar'}
-    margin-right $card-header-avatar-title-gap
-
   + {$selector-class-prefix + '-card-body'}
     border-top 1px solid $brand-divider
 
-{$selector-class-prefix + '-card-header-wrapper'}
-  display flex
-  flex-direction row
-  align-items center
-
 {$selector-class-prefix + '-card-header-title'}
   color $brand-title
-  font-size $card-header-title-font-size
-  font-weight bold
-  line-height $ui-single-line-height
-
-{$selector-class-prefix + '-card-header-sub-title'}
-  color $brand-muted
-  font-size $card-header-sub-title-font-size
-  line-height $ui-single-line-height
-  margin-top $card-header-sub-title-gap
+  font-size $font-size-large
+  font-weight $font-weight-bold
 
 {$selector-class-prefix + '-card-media'}
   position relative
@@ -83,19 +54,17 @@ $card-footer-padding-vertical = 24px
   right 0
   bottom 0
   padding $card-media-info-padding
-  background-color $card-media-info-bg-color
+  background-color $brand-text-mask-bg-color
 
 {$selector-class-prefix + '-card-media-title'}
-  color $card-media-title-color
-  font-size $card-media-title-font-size
-  line-height $ui-single-line-height
+  color $brand-text-mask-title-color
+  font-size $font-size-large
   max-width 100%
   ui-ellipsis()
 
 {$selector-class-prefix + '-card-media-sub-title'}
-  color $card-media-sub-title-color
-  font-size $card-media-sub-title-font-size
-  line-height $ui-single-line-height
+  color $brand-text-mask-sub-title-color
+  font-size $font-size-small
   margin-top $card-media-sub-title-gap
   max-width 100%
   ui-ellipsis()
@@ -104,7 +73,6 @@ $card-footer-padding-vertical = 24px
   flex 1
   color $brand-content
   font-size $font-size-default
-  line-height $ui-multiple-line-height
   padding $card-body-padding-vertical $card-padding-horizontal
   position relative
 
@@ -112,4 +80,6 @@ $card-footer-padding-vertical = 24px
     padding-top 0
 
 {$selector-class-prefix + '-card-footer'}
+  color $brand-content
+  font-size $font-size-default
   padding $card-footer-padding-vertical $card-padding-horizontal

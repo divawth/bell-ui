@@ -4,8 +4,6 @@ $drawer-padding-horizontal = 24px
 $drawer-header-padding-vertical = 16px
 $drawer-body-padding-vertical = 16px
 
-$drawer-close-font-size = 22px
-
 {$selector-class-prefix + '-drawer'}
   position fixed
   left 0
@@ -20,15 +18,16 @@ $drawer-close-font-size = 22px
 
 {$selector-class-prefix + '-drawer-fade'}
   > {$selector-class-prefix + '-drawer-mask'}
-    opacity $ui-opacity-mask
+    background-color $brand-modal-bg-color
 
 {$selector-class-prefix + '-drawer-wrapper'}
   display flex
   flex-flow column nowrap
   position absolute
+  line-height $ui-multiple-line-height
   background-color $brand-bg
-  box-shadow $brand-dialog-shadow
-  transition transform .3s
+  box-shadow $brand-modal-shadow
+  transition transform $form-control-transition-duration
 
 {$selector-class-prefix + '-drawer-header'}
   display flex
@@ -42,7 +41,6 @@ $drawer-close-font-size = 22px
   padding $drawer-body-padding-vertical $drawer-padding-horizontal
   color $brand-content
   font-size $font-size-default
-  line-height $ui-multiple-line-height
   word-wrap break-word
   overflow-y auto
   box-sizing border-box
@@ -55,8 +53,8 @@ $drawer-close-font-size = 22px
 
 {$selector-class-prefix + '-drawer-close'}
   color $brand-close-color
-  font-size $drawer-close-font-size
-  line-height $drawer-close-font-size
+  font-size $modal-close-icon-size
+  line-height $modal-close-icon-size
   transition color $form-control-transition-duration
   user-select none
   ui-clickable()
@@ -71,8 +69,7 @@ $drawer-close-font-size = 22px
   flex 1
   color $brand-title
   font-size $font-size-large
-  line-height $ui-single-line-height
-  font-weight 500
+  font-weight $font-weight-bold
 
 {$selector-class-prefix + '-drawer-mask'}
   position absolute
@@ -80,9 +77,8 @@ $drawer-close-font-size = 22px
   right 0
   top 0
   bottom 0
-  background-color #000
-  opacity 0
-  transition opacity $form-control-transition-duration
+  background-color $brand-transparent-color
+  transition background-color $form-control-transition-duration
 
 
 

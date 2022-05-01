@@ -7,13 +7,12 @@ export default {
       title="功能标题"
       style="background-color:#f8f8f8"
     >
+      解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的
+
       <template slot="extra">
         <Button size="small" type="primary">
           操作文档
         </Button>
-      </template>
-      <template slot="content">
-        解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的解释这个功能具体是做什么的
       </template>
       <template slot="footer">
         <Text type="muted">
@@ -41,5 +40,5 @@ style | 自定义内联样式 | string | - | -
 参数 | 说明
 ---|---
 extra | 自定义右上角内容
-content | 自定义内容文本
+children | 自定义内容区
 footer | 自定义底部内容

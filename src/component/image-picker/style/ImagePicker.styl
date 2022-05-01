@@ -3,9 +3,6 @@
 $image-picker-circle-size = 60px
 $image-picker-message-action-gap = 10px
 $image-picker-image-size-padding = 2px 4px
-$image-picker-mask-bg = rgba(0,0,0,0.6)
-$image-picker-mask-text = #fff
-$image-picker-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-image-picker'}
   position relative
@@ -20,6 +17,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-image-picker-item'}
   display block
+  line-height $ui-multiple-line-height
   background-color $brand-bg-light
   box-sizing content-box
   position relative
@@ -50,7 +48,7 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   height 100%
 
 {$selector-class-prefix + '-image-picker-mask'}
-  background-color $image-picker-mask-bg
+  background-color $brand-text-mask-bg-color
   position absolute
   top 0
   left 0
@@ -62,37 +60,32 @@ $image-picker-mask-text-shadow = rgba(200,200,200,0.5)
   {$selector-class-prefix + '-circle-content'}
     color #fff
     font-size $font-size-small
-    line-height $ui-multiple-line-height
 
 {$selector-class-prefix + '-image-picker-image-name'}
   color $brand-content
-  font-size $ui-font-size
-  line-height $ui-multiple-line-height
+  font-size $font-size-default
   text-align center
   width 80%
   ui-ellipsis()
 
 {$selector-class-prefix + '-image-picker-message'}
-  color $image-picker-mask-text
-  font-size $ui-font-size
-  line-height $ui-multiple-line-height
-  text-shadow 1px 1px 2px $image-picker-mask-text-shadow
+  color $brand-text-mask-title-color
+  font-size $font-size-default
+  text-shadow $brand-text-mask-text-shadow
   text-align center
   width 80%
 
 {$selector-class-prefix + '-image-picker-action'}
-  color $image-picker-mask-text
-  font-size $ui-font-size
-  line-height $ui-single-line-height
+  color $brand-text-mask-title-color
+  font-size $font-size-default
   text-align center
   margin-top $image-picker-message-action-gap
 
 {$selector-class-prefix + '-image-picker-image-size'}
   display none
-  background-color $image-picker-mask-bg
+  background-color $brand-text-mask-bg-color
   color $brand-white
   font-size $font-size-small
-  line-height $ui-single-line-height
   padding $image-picker-image-size-padding
   white-space nowrap
   position absolute
