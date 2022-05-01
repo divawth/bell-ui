@@ -3,15 +3,13 @@ $alert-padding-vertical = 8px
 
 $alert-title-content-gap = 4px
 
-$alert-close-size = $font-size-default * $ui-multiple-line-height
-$alert-close-size-with-title = $font-size-large * $ui-multiple-line-height
+$alert-close-size = floor($font-size-default * $ui-multiple-line-height)
+$alert-close-size-with-title = floor($font-size-large * $ui-multiple-line-height)
 
 $alert-status-icon-gap = 8px
-$alert-status-icon-size = 16px
-$alert-status-icon-top = 3px
+$alert-status-icon-top = 2px
 
-$alert-status-icon-gap-with-title = 12px
-$alert-status-icon-size-with-title = 22px
+$alert-status-icon-gap-with-title = 10px
 $alert-status-icon-top-with-title = 2px
 
 alert-brand-style(style)
@@ -43,22 +41,22 @@ alert-brand-style(style)
   position absolute
   left $alert-padding-horizontal
   top $alert-padding-vertical + $alert-status-icon-top
-  font-size $alert-status-icon-size
+  font-size $message-status-icon-size-default
 
 {$selector-class-prefix + '-alert-with-title'}
   > {$selector-class-prefix + '-alert-status-icon'}
     top $alert-padding-vertical + $alert-status-icon-top-with-title
-    font-size $alert-status-icon-size-with-title
+    font-size $message-status-icon-size-large
 
   > {$selector-class-prefix + '-alert-close'}
     height $alert-close-size-with-title
     min-width $alert-close-size-with-title
 
 {$selector-class-prefix + '-alert-with-icon'}
-  padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-status-icon-gap
+  padding-left $alert-padding-horizontal + $message-status-icon-size-default + $alert-status-icon-gap
 
   &{$selector-class-prefix + '-alert-with-title'}
-    padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-status-icon-gap-with-title
+    padding-left $alert-padding-horizontal + $message-status-icon-size-large + $alert-status-icon-gap-with-title
 
 {$selector-class-prefix + '-alert-title'}
   color $brand-title

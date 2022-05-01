@@ -10130,19 +10130,19 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-alert-status-icon {
   position: absolute;
   left: 15px;
-  top: 11px;
-  font-size: 16px;
+  top: 10px;
+  font-size: 18px;
 }
 .bell-alert-with-title > .bell-alert-status-icon {
   top: 10px;
-  font-size: 22px;
+  font-size: 24px;
 }
 .bell-alert-with-title > .bell-alert-close {
-  height: 25.144px;
-  min-width: 25.144px;
+  height: 25px;
+  min-width: 25px;
 }
 .bell-alert-with-icon {
-  padding-left: 39px;
+  padding-left: 41px;
 }
 .bell-alert-with-icon.bell-alert-with-title {
   padding-left: 49px;
@@ -10165,8 +10165,8 @@ div::-webkit-scrollbar-thumb:hover {
   top: 8px;
   color: #aaa;
   font-size: 12px;
-  height: 22.000999999999998px;
-  min-width: 22.000999999999998px;
+  height: 22px;
+  min-width: 22px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -10185,10 +10185,10 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 16px;
 }
 .bell-alert-with-close > .bell-alert-title {
-  margin-right: 31.144px;
+  margin-right: 31px;
 }
 .bell-alert-with-close > .bell-alert-content {
-  margin-right: 28.000999999999998px;
+  margin-right: 28px;
 }
 .bell-alert-with-close > .bell-alert-title + .bell-alert-content {
   margin-right: 0;
@@ -14065,14 +14065,14 @@ div::-webkit-scrollbar-thumb:hover {
 #bell-notification-wrapper {
   position: fixed;
   right: 0;
-  top: 15px;
+  top: 24px;
   z-index: 12;
 }
 .bell-notification {
   position: relative;
   opacity: 0;
   line-height: 1.5715;
-  padding: 18px 16px;
+  padding: 16px 24px;
   border-radius: 2px;
   box-sizing: border-box;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
@@ -14093,23 +14093,21 @@ div::-webkit-scrollbar-thumb:hover {
   color: #f90;
 }
 .bell-notification + .bell-notification {
-  margin-top: 15px;
+  margin-top: 16px;
 }
 .bell-notification-with-icon {
-  padding-left: 46px;
-}
-.bell-notification-with-close {
-  padding-right: 28px;
+  padding-left: 50px;
 }
 .bell-notification-with-title.bell-notification-with-icon {
-  padding-left: 54px;
+  padding-left: 58px;
 }
-.bell-notification-with-title .bell-notification-icon {
-  top: 15px;
-  font-size: 30px;
-}
-.bell-notification-with-title .bell-notification-close {
+.bell-notification-with-title > .bell-notification-icon {
   top: 18px;
+  font-size: 24px;
+}
+.bell-notification-with-title > .bell-notification-close {
+  height: 25px;
+  min-width: 25px;
 }
 .bell-notification-visible {
   opacity: 1;
@@ -14122,27 +14120,34 @@ div::-webkit-scrollbar-thumb:hover {
   word-break: keep-all;
   color: #17233d;
   font-size: 16px;
+  margin-right: 31px;
 }
 .bell-notification-title + .bell-notification-content {
-  margin-top: 8px;
+  margin-top: 6px;
+  margin-right: 0;
 }
 .bell-notification-content {
   color: #515a6e;
   font-size: 14px;
+  margin-right: 28px;
 }
 .bell-notification-icon {
   position: absolute;
-  left: 16px;
-  top: 17px;
-  font-size: 22px;
+  left: 24px;
+  top: 18px;
+  font-size: 18px;
 }
 .bell-notification-close {
   position: absolute;
-  right: 12px;
-  top: 21px;
-  font-size: 16px;
-  text-align: center;
+  right: 24px;
+  top: 16px;
   color: #aaa;
+  font-size: 12px;
+  height: 22px;
+  min-width: 22px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   transition: color 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -14153,6 +14158,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 .bell-notification-close:hover {
   color: #666;
+}
+.bell-notification-close-icon {
+  font-size: 16px;
 }
 .bell-page-header {
   line-height: 1.5715;

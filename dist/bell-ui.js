@@ -770,7 +770,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return functio
 /* 112 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_r(_Q,'status',_U.status).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'title',_U.title).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'title',_U.title).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'content',_U.content).value?_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'content',_U.content).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'duration',_U.duration).value==0?_T.push({context:_G,events:{'click.native':_e('click.native','hide()','click','native','hide',$1,$1,$3)},isComponent:$3,operator:_C,props:{className:'bell-notification-close',name:'close-line'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-notification'+(_r(_Q,'status',_U.status).value?' bell-notification-'+_y(_r(_Q,'status',_U.status).value)+' bell-notification-with-icon':'')+(_r(_Q,'title',_U.title).value?' bell-notification-with-title':'')+(_r(_Q,'duration',_U.duration).value==0?' bell-notification-with-close':'')},nativeStyles:_b(_r(_Q,'inlineStyle',_U.inlineStyle).value),operator:_B,tag:'div',type:3})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'},$7={class:'bell-notification-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_r(_Q,'status',_U.status).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'title',_U.title).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'title',_U.title).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'content',_U.content).value?_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'content',_U.content).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,events:{click:_e('click','hide()','click','','hide')},nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-notification'+(_r(_Q,'status',_U.status).value?' bell-notification-'+_y(_r(_Q,'status',_U.status).value)+' bell-notification-with-icon':'')+(_r(_Q,'title',_U.title).value?' bell-notification-with-title':'')},nativeStyles:_b(_r(_Q,'inlineStyle',_U.inlineStyle).value),operator:_B,tag:'div',type:3})}})();
 
 /***/ }),
 /* 113 */
@@ -13131,22 +13131,29 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
             RAW_TYPE_SUCCESS: RAW_TYPE_SUCCESS,
             RAW_TYPE_WARNING: RAW_TYPE_WARNING,
             RAW_TYPE_ERROR: RAW_TYPE_ERROR,
+            isVisible: FALSE,
         };
     },
     computed: {
         inlineStyle: function () {
-            var customStyle = {};
             var width = this.get('width');
             var right = this.get('right');
-            customStyle.width = toPixel(width);
-            customStyle.right = toPixel(right);
-            return customStyle;
+            return {
+                width: toPixel(width),
+                right: toPixel(right),
+            };
         },
     },
     methods: {
         show: function () {
             var me = this;
+            if (me.get('isVisible')) {
+                return;
+            }
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, Notification_CLASS_VISIBLE);
+            me.set({
+                isVisible: TRUE,
+            });
             var duration = toNumber(me.get('duration'));
             if (duration > 0) {
                 setTimeout(function () {
@@ -13158,7 +13165,13 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
         },
         hide: function () {
             var me = this;
+            if (!me.get('isVisible')) {
+                return;
+            }
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notification_CLASS_VISIBLE);
+            me.set({
+                isVisible: FALSE,
+            });
             me.nextTick(function () {
                 if (!me.$el) {
                     return;
@@ -13217,6 +13230,9 @@ function addNotification(status, data, onClose) {
     }, 300);
 }
 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notification = {
+    open: function (props, onClose) {
+        addNotification('', props, onClose);
+    },
     success: function (props, onClose) {
         addNotification('success', props, onClose);
     },

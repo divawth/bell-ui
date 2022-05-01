@@ -1,13 +1,7 @@
 <div
 class="${prefix}notification
-
-{{#if status}} ${prefix}notification-{{status}} ${prefix}notification-with-icon
-{{/if}}
-
-{{#if title}} ${prefix}notification-with-title{{/if}}
-
-{{#if duration == 0}} ${prefix}notification-with-close
-{{/if}}"
+{{#if status}} ${prefix}notification-{{status}} ${prefix}notification-with-icon{{/if}}
+{{#if title}} ${prefix}notification-with-title{{/if}}"
 
 style="{{inlineStyle}}"
 >
@@ -39,12 +33,14 @@ style="{{inlineStyle}}"
     </div>
   {{/if}}
 
-  {{#if duration == 0}}
+  <div
+    class="${prefix}notification-close"
+    on-click="hide()"
+  >
     <Icon
       name="close-line"
-      className="${prefix}notification-close"
-      on-click.native="hide()"
+      className="${prefix}notification-close-icon"
     />
-  {{/if}}
+  </div>
 
 </div>

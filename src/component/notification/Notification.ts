@@ -6,6 +6,8 @@ import template from './template/Notification.hbs'
 import Icon from '../icon/Icon'
 
 import {
+  TRUE,
+  FALSE,
   RAW_STRING,
   RAW_NUMERIC,
   RAW_STATUS_ARRAY,
@@ -60,20 +62,18 @@ export default Yox.define({
       RAW_TYPE_SUCCESS,
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
+      isVisible: FALSE,
     }
   },
 
   computed: {
     inlineStyle(): Record<string, string> {
-      const customStyle: Record<string, string> = {}
-
       const width = this.get('width')
       const right = this.get('right')
-
-      customStyle.width = toPixel(width)
-      customStyle.right = toPixel(right)
-
-      return customStyle
+      return {
+        width: toPixel(width),
+        right: toPixel(right),
+      }
     },
   },
 
@@ -82,8 +82,15 @@ export default Yox.define({
     show() {
 
       const me = this
+      if (me.get('isVisible')) {
+        return
+      }
 
       Yox.dom.addClass(me.$el, CLASS_VISIBLE)
+
+      me.set({
+        isVisible: TRUE,
+      })
 
       const duration = toNumber(me.get('duration'))
 
@@ -103,8 +110,15 @@ export default Yox.define({
     hide() {
 
       const me = this
+      if (!me.get('isVisible')) {
+        return
+      }
 
       Yox.dom.removeClass(me.$el, CLASS_VISIBLE)
+
+      me.set({
+        isVisible: FALSE,
+      })
 
       me.nextTick(function () {
         if (!me.$el) {

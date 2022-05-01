@@ -60,6 +60,9 @@ function addNotification(status: string,  data: Data, onClose?: Function) {
 }
 
 (Yox.prototype as any).$notification = {
+  open(props: Data, onClose?: Function) {
+    addNotification('', props, onClose)
+  },
   success(props: Data, onClose?: Function) {
     addNotification('success', props, onClose)
   },

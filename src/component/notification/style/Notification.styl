@@ -1,25 +1,21 @@
 @import '../../../env'
 
-$notification-wrapper-top = 15px
+$notification-wrapper-top = 24px
+$notification-vertical-gap = 16px
 
-$notification-vertical-gap = 15px
+$notification-padding-vertical = 16px
+$notification-padding-horizontal = 24px
 
-$notification-padding-vertical = 18px
-$notification-padding-horizontal = 16px
+$notification-title-content-gap = 6px
 
-$notification-title-content-gap = 8px
+$notification-close-size = floor($font-size-default * $ui-multiple-line-height)
+$notification-close-size-with-title = floor($font-size-large * $ui-multiple-line-height)
 
 $notification-icon-gap = 8px
-$notification-icon-size = 22px
-$notification-icon-top = 17px
+$notification-icon-top = 2px
 
-$notification-close-icon-top = 21px
-$notification-close-icon-right = 12px
-
-$notification-icon-gap-with-title = 8px
-$notification-icon-size-with-title = 30px
-$notification-icon-top-with-title = 15px
-$notification-close-icon-top-with-title = 18px
+$notification-icon-gap-with-title = 10px
+$notification-icon-top-with-title = 2px
 
 notification-brand-style(style)
   > {$selector-class-prefix + '-notification-icon'}
@@ -52,21 +48,19 @@ notification-brand-style(style)
     margin-top $notification-vertical-gap
 
 {$selector-class-prefix + '-notification-with-icon'}
-  padding-left $notification-padding-horizontal + $notification-icon-size + $notification-icon-gap
-
-{$selector-class-prefix + '-notification-with-close'}
-  padding-right $notification-close-icon-right + $message-close-icon-size
+  padding-left $notification-padding-horizontal + $message-status-icon-size-default + $notification-icon-gap
 
 {$selector-class-prefix + '-notification-with-title'}
   &{$selector-class-prefix + '-notification-with-icon'}
-    padding-left $notification-padding-horizontal + $notification-icon-size-with-title + $notification-icon-gap-with-title
+    padding-left $notification-padding-horizontal + $message-status-icon-size-large + $notification-icon-gap-with-title
 
-  {$selector-class-prefix + '-notification-icon'}
-    top $notification-icon-top-with-title
-    font-size $notification-icon-size-with-title
+  > {$selector-class-prefix + '-notification-icon'}
+    top $notification-padding-vertical + $notification-icon-top-with-title
+    font-size $message-status-icon-size-large
 
-  {$selector-class-prefix + '-notification-close'}
-    top $notification-close-icon-top-with-title
+  > {$selector-class-prefix + '-notification-close'}
+    height $notification-close-size-with-title
+    min-width $notification-close-size-with-title
 
 {$selector-class-prefix + '-notification-visible'}
   opacity 1
@@ -76,30 +70,43 @@ notification-brand-style(style)
   ui-ellipsis()
   color $brand-title
   font-size $font-size-large
+  margin-right $notification-close-size-with-title + $ui-icon-text-gap
 
   + {$selector-class-prefix + '-notification-content'}
     margin-top $notification-title-content-gap
+    margin-right 0
 
 {$selector-class-prefix + '-notification-content'}
   color $brand-content
   font-size $font-size-default
+  margin-right $notification-close-size + $ui-icon-text-gap
 
 {$selector-class-prefix + '-notification-icon'}
   position absolute
   left $notification-padding-horizontal
-  top $notification-icon-top
-  font-size $notification-icon-size
+  top $notification-padding-vertical + $notification-icon-top
+  font-size $message-status-icon-size-default
 
 {$selector-class-prefix + '-notification-close'}
   position absolute
-  right $notification-close-icon-right
-  top $notification-close-icon-top
-  font-size $message-close-icon-size
-  text-align center
+  right $notification-padding-horizontal
+  top $notification-padding-vertical
+
   color $brand-close-color
+  font-size $font-size-small
+  height $notification-close-size
+  min-width $notification-close-size
+
+  display flex
+  justify-content flex-end
+  align-items center
+
   transition color $form-control-transition-duration
   user-select none
   ui-clickable()
 
   &:hover
     color $brand-close-color-hover
+
+{$selector-class-prefix + '-notification-close-icon'}
+  font-size $message-close-icon-size
