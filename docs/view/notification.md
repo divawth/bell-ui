@@ -13,23 +13,23 @@
 export default {
   template: `
     <div>
-      <Button on-click="open()">
+      <Button on-click="open1()">
         提醒
       </Button>
-      <Button on-click="open1()">
+      <Button on-click="open2()">
         提醒（仅内容）
       </Button>
     </div>
   `,
   methods: {
-    open: function () {
-      this.$notification.success({
+    open1: function () {
+      this.$notification.open({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息'
       })
     },
-    open1: function () {
-      this.$notification.success({
+    open2: function () {
+      this.$notification.open({
         content: '这是标题这是标题这是标题'
       })
     }
@@ -45,8 +45,8 @@ export default {
 export default {
   template: `
   <div>
-    <Button type="success" on-click="open()">
-      Succ
+    <Button type="success" on-click="open1()">
+      success
     </Button>
     <Button type="info" on-click="open2()">
       info
@@ -61,41 +61,37 @@ export default {
   `,
 
   methods: {
-    open: function () {
+    open1: function () {
       this.$notification.success({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
-        width: 320
       })
     },
     open2: function () {
       this.$notification.info({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
-        width: 320
       })
     },
     open3: function () {
       this.$notification.warning({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
-        width: 320
       })
     },
     open4: function () {
       this.$notification.error({
         title: '这是标题这是标题这是标题',
         content: '这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息这是消息消息',
-        width: 320
       })
     }
   }
 }
 ```
 
-> 可关闭
+> 手动关闭
 
-duration 为 0 的时候出现关闭按钮
+duration 为 0 时，没有自动关闭，必须手动点击关闭按钮
 
 ```js
 export default {
@@ -112,7 +108,6 @@ export default {
         title: '标题',
         content: '对方不想和你说话，并且向你抛出了一个异常',
         duration: 0,
-        width: 330
       })
     }
   }
@@ -199,6 +194,7 @@ export default {
 
 > 通过直接调用以下方法来使用组件：
 
+- this.$notification.open(content, onClose)
 - this.$notification.info(content, onClose)
 - this.$notification.success(content, onClose)
 - this.$notification.warning(content, onClose)
@@ -208,8 +204,8 @@ export default {
 
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
-content | 自定义文本 | string | - | -
 title | 自定义标题 | string | - | -
+content | 自定义文本 | string | - | -
 right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
 duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
 width | 显示宽度 | number | - | `320`
