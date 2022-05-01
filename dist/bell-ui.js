@@ -248,7 +248,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-radio-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;!_r(_Q,'disabled',_U.disabled).value?_n(_S,'events','click',_e('click','handleClick()','click','','handleClick')):$1;return _S}({children:function(){var _T=[];_T.push({children:function(){var _T=[];_T.push(function(_S){_r(_Q,'name',_U.name).value?_n(_S,'nativeAttrs','name',_r(_Q,'name',_U.name).value):$1;return _S}({context:_G,events:{blur:_e('blur',"set('isFocus', false)",'blur','','set',{execute:function(_X,_Y){return ['isFocus',$4]}}),focus:_e('focus',"set('isFocus', true)",'focus','','set',{execute:function(_X,_Y){return ['isFocus',$3]}})},nativeAttrs:{class:'bell-radio-input',disabled:_p('disabled',_r(_Q,'disabled',_U.disabled).value,$4),type:'radio',value:_r(_Q,'value',_U.value).value},operator:_B,tag:'input',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'div',type:3});($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-radio'+(_r(_Q,'disabled',_U.disabled).value?' bell-radio-disabled':' bell-radio-enabled')+(_r(_Q,'checked',_U.checked).value?' bell-radio-active':'')+(_r(_Q,'isFocus',_U.isFocus).value?' bell-radio-focus':'')+(_r(_Q,'$slot_children',_U.$slot_children).value?' bell-radio-with-label':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'label',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-radio-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;!_r(_Q,'disabled',_U.disabled).value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'events','click',_e('click','onClick()','click','','onClick'))):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,isPure:$3,isStatic:$3,nativeAttrs:$5,operator:_B,tag:'div',type:3});($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-radio'+(_r(_Q,'disabled',_U.disabled).value?' bell-radio-disabled':' bell-radio-enabled')+(_r(_Q,'checked',_U.checked).value?' bell-radio-active':'')+(_r(_Q,'$slot_children',_U.$slot_children).value?' bell-radio-with-label':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'label',type:3}))}})();
 
 /***/ }),
 /* 26 */
@@ -260,7 +260,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return functio
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-checkbox-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];_T.push({children:function(){var _T=[];_T.push(function(_S){_r(_Q,'name',_U.name).value?_n(_S,'nativeAttrs','name',_r(_Q,'name',_U.name).value):$1;return _S}({context:_G,events:{blur:_e('blur',"set('isFocus', false)",'blur','','set',{execute:function(_X,_Y){return ['isFocus',$4]}}),change:_e('change','onChange()','change','','onChange'),focus:_e('focus',"set('isFocus', true)",'focus','','set',{execute:function(_X,_Y){return ['isFocus',$3]}})},nativeAttrs:{checked:_p('checked',_r(_Q,'checked',_U.checked).value,$4),class:'bell-checkbox-input',disabled:_p('disabled',_r(_Q,'disabled',_U.disabled).value,$4),type:'checkbox'},operator:_B,tag:'input',type:3}));return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'div',type:3});($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-checkbox'+(_r(_Q,'disabled',_U.disabled).value?' bell-checkbox-disabled':' bell-checkbox-enabled')+(_r(_Q,'checked',_U.checked).value?' bell-checkbox-active':_r(_Q,'indeterminate',_U.indeterminate).value?' bell-checkbox-indeterminate':'')+(_r(_Q,'isFocus',_U.isFocus).value?' bell-checkbox-focus':'')+(_r(_Q,'$slot_children',_U.$slot_children).value?' bell-checkbox-with-label':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'label',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-checkbox-icon'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){!_r(_Q,'disabled',_U.disabled).value?(_n(_S,'nativeAttrs','tabindex','0'),_n(_S,'events','click',_e('click','onClick()','click','','onClick'))):$1;_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];_T.push({context:_G,isPure:$3,isStatic:$3,nativeAttrs:$5,operator:_B,tag:'div',type:3});($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-checkbox'+(_r(_Q,'disabled',_U.disabled).value?' bell-checkbox-disabled':' bell-checkbox-enabled')+(_r(_Q,'checked',_U.checked).value?' bell-checkbox-active':_r(_Q,'indeterminate',_U.indeterminate).value?' bell-checkbox-indeterminate':'')+(_r(_Q,'$slot_children',_U.$slot_children).value?' bell-checkbox-with-label':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'label',type:3}))}})();
 
 /***/ }),
 /* 28 */
@@ -3789,21 +3789,19 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
             type: RAW_STYLE_TYPE,
         }
     },
-    data: function () {
-        return {
-            isFocus: FALSE,
-        };
-    },
     events: {
         change: {
             listener: function (_, data) {
                 if (data.value !== UNDEFINED) {
                     var value = this.get('value');
-                    var checked = data.value == value;
-                    this.set({
-                        checked: checked,
-                    });
-                    this.fireChange(checked, value);
+                    var oldChecked = this.get('checked');
+                    var newChecked = data.value == value;
+                    if (oldChecked !== newChecked) {
+                        this.set({
+                            checked: newChecked
+                        });
+                        this.fireChange(newChecked, value);
+                    }
                 }
                 if (data.disabled !== UNDEFINED) {
                     this.set('disabled', data.disabled);
@@ -3813,7 +3811,7 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
         }
     },
     methods: {
-        handleClick: function () {
+        onClick: function () {
             var checked = TRUE;
             this.set({
                 checked: checked,
@@ -3967,31 +3965,30 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
             type: RAW_STYLE_TYPE,
         }
     },
-    data: function () {
-        return {
-            isFocus: FALSE,
-        };
-    },
     events: {
         change: {
             listener: function (_, data) {
-                var value = this.get('value');
-                var oldChecked = this.get('checked');
-                var newChecked = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, value);
-                if (oldChecked !== newChecked) {
-                    this.set({
-                        checked: newChecked
-                    });
-                    this.fireChange(newChecked, value);
+                if (data.value !== UNDEFINED) {
+                    var value = this.get('value');
+                    var oldChecked = this.get('checked');
+                    var newChecked = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.array.has(data.value, value);
+                    if (oldChecked !== newChecked) {
+                        this.set({
+                            checked: newChecked
+                        });
+                        this.fireChange(newChecked, value);
+                    }
+                }
+                if (data.disabled !== UNDEFINED) {
+                    this.set('disabled', data.disabled);
                 }
             },
             ns: 'checkboxGroup',
         }
     },
     methods: {
-        onChange: function () {
-            var checked = this.toggle('checked');
-            this.fireChange(checked, this.get('value'));
+        onClick: function () {
+            this.fireChange(this.toggle('checked'), this.get('value'));
         },
         fireChange: function (checked, value) {
             this.fire({
@@ -4055,6 +4052,14 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
         }
     },
     watchers: {
+        disabled: function (disabled) {
+            this.fire({
+                type: 'change',
+                ns: 'checkboxGroup',
+            }, {
+                disabled: disabled,
+            }, TRUE);
+        },
         value: function (value) {
             this.fire({
                 type: 'change',

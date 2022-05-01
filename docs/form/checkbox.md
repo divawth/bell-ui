@@ -163,7 +163,6 @@ Checkbox
 ---|---|---|---|---
 checked / `model` | 只在单独使用时有效 | boolean | - | -
 label | 标签文本 | string | - | -
-name | 原生属性 `name` | string | - | -
 value | value | string | - | -
 disabled | 是否禁用 | boolean | - | -
 indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | - | -
@@ -184,7 +183,6 @@ CheckboxGroup
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 value / `model` | 选中的项 | string[] | - | -
-name | 原生属性 `name` | string | - | -
 disabled | 是否禁用 | boolean | - | -
 vertical | 是否垂直排列 | boolean | - | -
 className | 自定义类名 | string | - | -

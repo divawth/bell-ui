@@ -56,7 +56,7 @@ input-brand-style(style)
 
   &{$selector-class-prefix + '-input-focused'}
     > {$selector-class-prefix + '-input-content'}
-      ui-focus(style['color'], style['shadow-color'])
+      ui-focus(style['shadow-color'], style['color'])
 
 
 {$selector-class-prefix + '-input'}
@@ -222,7 +222,7 @@ input-brand-style(style)
 
 {$selector-class-prefix + '-input-focused'}
   > {$selector-class-prefix + '-input-content'}
-    ui-focus($brand-primary, $brand-primary-shadow)
+    ui-focus($brand-primary-shadow, $brand-primary)
 
 {$selector-class-prefix + '-input-disabled'}
   ui-input-disabled($selector-class-prefix + '-input-content')

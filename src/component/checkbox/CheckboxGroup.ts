@@ -17,9 +17,6 @@ export default Yox.define({
   name: '${prefix}CheckboxGroup',
 
   propTypes: {
-    name: {
-      type: RAW_STRING,
-    },
     value: {
       type: RAW_ARRAY,
       value() {
@@ -41,6 +38,18 @@ export default Yox.define({
   },
 
   watchers: {
+    disabled(disabled) {
+      this.fire(
+        {
+          type: 'change',
+          ns: 'checkboxGroup',
+        },
+        {
+          disabled,
+        },
+        TRUE
+      )
+    },
     value(value) {
       this.fire(
         {

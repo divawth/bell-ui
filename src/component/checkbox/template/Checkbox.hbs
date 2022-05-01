@@ -7,30 +7,18 @@ class="${prefix}checkbox
 
 {{#if checked}} ${prefix}checkbox-active
 {{else if indeterminate}} ${prefix}checkbox-indeterminate{{/if}}
-{{#if isFocus}} ${prefix}checkbox-focus{{/if}}
 {{#if @children}} ${prefix}checkbox-with-label{{/if}}
 {{#if className}} {{className}}{{/if}}"
+
+{{#if !disabled}}
+  tabindex="0"
+  on-click="onClick()"
+{{/if}}
 
 {{#if style}}
   style="{{style}}"
 {{/if}}
 >
-
-  <div class="${prefix}checkbox-icon">
-    <input
-      class="${prefix}checkbox-input"
-      type="checkbox"
-      {{#if name}}
-        name="{{name}}"
-      {{/if}}
-      checked="{{checked}}"
-      disabled="{{disabled}}"
-      on-change="onChange()"
-      on-focus="set('isFocus', true)"
-      on-blur="set('isFocus', false)"
-    >
-  </div>
-
+  <div class="${prefix}checkbox-icon"></div>
   <slot />
-
 </label>

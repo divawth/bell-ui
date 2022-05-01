@@ -1,10 +1,10 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, {
     change: unknown;
 }, {
-    handleClick(): void;
-    fireChange(checked: any, value: any): void;
+    onClick(): void;
+    fireChange(checked: boolean, value: string | number | boolean): void;
 }> & ThisType<{
-    handleClick(): void;
-    fireChange(checked: any, value: any): void;
+    onClick(): void;
+    fireChange(checked: boolean, value: string | number | boolean): void;
 } & import("yox").YoxInterface>;
 export default _default;

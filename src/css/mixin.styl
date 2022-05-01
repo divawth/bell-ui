@@ -103,7 +103,7 @@ ui-input()
     ui-input-hover($brand-primary)
 
   &:focus
-    ui-focus($brand-primary, $brand-primary-shadow)
+    ui-focus($brand-primary-shadow, $brand-primary)
 
 ui-input-faker()
   border 1px solid $brand-border
@@ -136,11 +136,12 @@ ui-input-disabled($selector)
     background-color $brand-bg-disabled
     ui-disabled(true)
 
-ui-focus($brand-primary, $brand-primary-shadow)
-  border-color $brand-primary
+ui-focus($shadow-color, $border-color = '')
+  if $border-color
+    border-color $border-color
 
   if $ui-shadow-radius > 0
-    box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+    box-shadow 0 0 0 $ui-shadow-radius $shadow-color
 
 ui-table()
   box-sizing border-box
@@ -284,7 +285,7 @@ ui-form-button(
       color $brand-disabled
 
   {$selector-opened}
-    ui-focus($brand-primary, $brand-primary-shadow)
+    ui-focus($brand-primary-shadow, $brand-primary)
 
   {$selector-clearable}:hover
     {$selector-clear-icon}

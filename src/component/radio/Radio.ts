@@ -5,7 +5,6 @@ import template from './template/Radio.hbs'
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -26,9 +25,6 @@ export default Yox.define({
   name: '${prefix}Radio',
 
   propTypes: {
-    name: {
-      type: RAW_STRING,
-    },
     value: {
       type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],
       required: TRUE,
@@ -47,22 +43,19 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      isFocus: FALSE,
-    }
-  },
-
   events: {
     change: {
       listener(_, data) {
         if (data.value !== UNDEFINED) {
           const value = this.get('value')
-          const checked = data.value == value
-          this.set({
-            checked,
-          })
-          this.fireChange(checked, value)
+          const oldChecked = this.get('checked')
+          const newChecked = data.value == value
+          if (oldChecked !== newChecked) {
+            this.set({
+              checked: newChecked
+            })
+            this.fireChange(newChecked, value)
+          }
         }
         if (data.disabled !== UNDEFINED) {
           this.set('disabled', data.disabled)
@@ -73,14 +66,17 @@ export default Yox.define({
   },
 
   methods: {
-    handleClick() {
+    onClick() {
       const checked = TRUE
       this.set({
         checked,
       })
-      this.fireChange(checked, this.get('value'))
+      this.fireChange(
+        checked,
+        this.get('value')
+      )
     },
-    fireChange(checked, value) {
+    fireChange(checked: boolean, value: string | number | boolean) {
       this.fire(
         {
           type: 'change',
@@ -100,10 +96,6 @@ export default Yox.define({
 
     const radioGroup = findComponentUpward(options.parent, '${prefix}RadioGroup')
     if (radioGroup) {
-      if (props.name === UNDEFINED) {
-        props.name = radioGroup.get('name')
-      }
-
       if (props.disabled === UNDEFINED) {
         props.disabled = radioGroup.get('disabled')
       }

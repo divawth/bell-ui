@@ -19,8 +19,8 @@ time-picker-size-style(size)
 
   {$selector-class-prefix + '-time-picker-value'},
   {$selector-class-prefix + '-time-picker-placeholder'}
-    ui-set('padding-left', size['button-padding-horizontal'])
-    ui-set('padding-right', size['button-padding-horizontal'])
+    ui-set('padding-left', size['padding-horizontal'])
+    ui-set('padding-right', size['padding-horizontal'])
 
   {$selector-class-prefix + '-time-picker-time-icon'},
   {$selector-class-prefix + '-time-picker-clear-icon'}
@@ -34,7 +34,7 @@ time-picker-brand-style(style)
       ui-set('border-color', style['color'])
 
   &{$selector-class-prefix + '-time-picker-opened'}
-    ui-focus(style['color'], style['shadow-color'])
+    ui-focus(style['shadow-color'], style['color'])
 
 {$selector-class-prefix + '-time-picker'}
   width $ui-form-element-width

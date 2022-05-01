@@ -6,7 +6,6 @@ class="${prefix}radio
 {{/if}}
 
 {{#if checked}} ${prefix}radio-active{{/if}}
-{{#if isFocus}} ${prefix}radio-focus{{/if}}
 {{#if @children}} ${prefix}radio-with-label{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -15,24 +14,10 @@ class="${prefix}radio
 {{/if}}
 
 {{#if !disabled}}
-  on-click="handleClick()"
+  tabindex="0"
+  on-click="onClick()"
 {{/if}}
 >
-
-  <div class="${prefix}radio-icon">
-    <input
-      class="${prefix}radio-input"
-      type="radio"
-      {{#if name}}
-        name="{{name}}"
-      {{/if}}
-      value="{{value}}"
-      disabled="{{disabled}}"
-      on-focus="set('isFocus', true)"
-      on-blur="set('isFocus', false)"
-    >
-  </div>
-
+  <div class="${prefix}radio-icon"></div>
   <slot />
-
 </label>

@@ -2,24 +2,6 @@
 
 $radio-gap-horizontal = 16px
 
-$radio-button-size-hash = {
-  default: {
-    height: $height-default,
-    font-size: $font-size-default,
-    padding-horizontal: $padding-horizontal-default,
-  },
-  large: {
-    height: $height-large,
-    font-size: $font-size-large,
-    padding-horizontal: $padding-horizontal-large,
-  },
-  small: {
-    height: $height-small,
-    font-size: $font-size-small,
-    padding-horizontal: $padding-horizontal-small,
-  },
-}
-
 radio-button-brand-style(color)
   > {$selector-class-prefix + '-radio-enabled'}
 
@@ -44,6 +26,7 @@ radio-button-size-style(size)
   display inline-flex
   align-items center
   line-height $ui-multiple-line-height
+  outline 0
   user-select none
   box-sizing border-box
 
@@ -56,11 +39,6 @@ radio-button-size-style(size)
   > {$selector-class-prefix + '-radio-icon'}
     margin-right $ui-icon-text-gap
 
-{$selector-class-prefix + '-radio-active'}
-  > {$selector-class-prefix + '-radio-icon'}:after
-    opacity 1
-    transform scale(1)
-
 {$selector-class-prefix + '-radio-icon'}
   position relative
   width $font-size-default
@@ -69,7 +47,8 @@ radio-button-size-style(size)
   box-sizing border-box
   border 1px solid $brand-border
   background-color $brand-bg
-  transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
+  transition border-color $form-control-transition-duration,
+            box-shadow $form-control-transition-duration
 
   &:after
     content ''
@@ -85,35 +64,35 @@ radio-button-size-style(size)
     margin-left -0.5 * ($font-size-default - 6)
 
     border-radius $border-radius-circle
-    background-color $brand-border
 
     opacity 0
     transform scale(0)
-    transition transform $form-control-transition-duration, opacity $form-control-transition-duration
+    transition transform $form-control-transition-duration,
+              opacity $form-control-transition-duration
 
-
-{$selector-class-prefix + '-radio-input'}
-  position absolute
-  opacity 0
-
-{$selector-class-prefix + '-radio-enabled'},
-{$selector-class-prefix + '-radio-enabled'} input
-  ui-clickable()
-
-{$selector-class-prefix + '-radio-disabled'},
-{$selector-class-prefix + '-radio-disabled'} input
-  ui-disabled()
-
-{$selector-class-prefix + '-radio-enabled'}:hover,
 {$selector-class-prefix + '-radio-active'}
   > {$selector-class-prefix + '-radio-icon'}
     border-color $brand-primary
+    &:after
+      opacity 1
+      transform scale(1)
 
 {$selector-class-prefix + '-radio-enabled'}
+  ui-clickable()
+
   > {$selector-class-prefix + '-radio-icon'}:after
     background-color $brand-primary
 
+  &:hover
+    > {$selector-class-prefix + '-radio-icon'}
+      border-color $brand-primary
+
+  &:focus
+    > {$selector-class-prefix + '-radio-icon'}
+      ui-focus($brand-primary-shadow)
+
 {$selector-class-prefix + '-radio-disabled'}
+  ui-disabled()
   color $brand-disabled
 
   > {$selector-class-prefix + '-radio-icon'}
@@ -121,11 +100,6 @@ radio-button-size-style(size)
 
     &:after
       background-color $brand-disabled
-
-if $ui-shadow-radius > 0
-  &{$selector-class-prefix + '-radio-focus'}
-    > {$selector-class-prefix + '-radio-icon'}
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 {$selector-class-prefix + '-radio-vertical'}
   > {$selector-class-prefix + '-radio'}
@@ -217,6 +191,6 @@ if $ui-shadow-radius > 0
 
   // 必须放最后
   ui-connect(
-    hash: $radio-button-size-hash,
+    hash: $form-button-size-hash,
     each: radio-button-size-style
   )

@@ -23,7 +23,7 @@ color-picker-brand-style(style)
       ui-set('border-color', style['color'])
 
   &{$selector-class-prefix + '-color-picker-opened'}
-    ui-focus(style['color'], style['shadow-color'])
+    ui-focus(style['shadow-color'], style['color'])
 
 {$selector-class-prefix + '-color-picker'}
   display inline-block
@@ -51,7 +51,7 @@ color-picker-brand-style(style)
   ui-block()
 
 {$selector-class-prefix + '-color-picker-opened'}
-  ui-focus($brand-primary, $brand-primary-shadow)
+  ui-focus($brand-primary-shadow, $brand-primary)
 
 {$selector-class-prefix + '-color-picker-enabled'}
   ui-enabled(true)

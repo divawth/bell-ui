@@ -36,7 +36,7 @@ RadioGroup
 ```js
 export default {
   template: `
-  <RadioGroup name="country" model="value" on-change="change()">
+  <RadioGroup model="value" on-change="change()">
     <Radio value="cn">
       中国
     </Radio>
@@ -99,7 +99,7 @@ export default {
 ```js
 export default {
   template: `
-  <RadioGroup name="single" model="value" vertical>
+  <RadioGroup model="value" vertical>
     <Radio value="1">
       亚洲
     </Radio>
@@ -125,7 +125,7 @@ export default {
 export default {
   template: `
   <div>
-    <RadioGroup button name="single" model="value">
+    <RadioGroup button model="value">
       <Radio value="1">
         亚洲
       </Radio>
@@ -137,7 +137,7 @@ export default {
       </Radio>
     </RadioGroup>
     <br><br>
-    <RadioGroup button vertical name="single" model="value">
+    <RadioGroup button vertical model="value">
       <Radio value="1">
         亚洲
       </Radio>
@@ -164,7 +164,7 @@ export default {
 export default {
   template: `
   <div>
-    <RadioGroup size="large" button name="single" model="value">
+    <RadioGroup size="large" button model="value">
       <Radio value="1">
         亚洲
       </Radio>
@@ -176,7 +176,7 @@ export default {
       </Radio>
     </RadioGroup>
     <br><br>
-    <RadioGroup button name="single" model="value">
+    <RadioGroup button model="value">
       <Radio value="1">
         亚洲
       </Radio>
@@ -188,7 +188,7 @@ export default {
       </Radio>
     </RadioGroup>
     <br><br>
-    <RadioGroup size="small" button name="single" model="value">
+    <RadioGroup size="small" button model="value">
       <Radio value="1">
         亚洲
       </Radio>
@@ -214,7 +214,7 @@ export default {
 ```js
 export default {
   template: `
-  <RadioGroup button disabled name="single" model="value">
+  <RadioGroup button disabled model="value">
     <Radio value="1" checked>
       亚洲
     </Radio>
@@ -244,7 +244,6 @@ Radio
 ---|---|---|---|---
 checked / `model` | 是否选中 | boolean | - | -
 label | 标签文本 | string | - | -
-name | 原生属性 `name` | string | - | -
 value | value | string | - | -
 disabled | 是否禁用 | boolean | - | -
 className | 自定义类名 | string | - | -
@@ -264,7 +263,6 @@ RadioGroup
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 value / `model` | 当前选中的值 | string | - | -
-name | 原生属性 `name` | string | - | -
 size | 大小, 按钮状态下生效 | string | `default`, `small`, `large` | `default`
 disabled | 是否禁用 | boolean | - | -
 vertical | 是否垂直排列，按钮样式下无效 | boolean | - | -

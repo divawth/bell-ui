@@ -1,6 +1,3 @@
-@import '../../../env'
-
-$checkbox-icon-size = $font-size-default
 $checkbox-icon-top = 1px
 $checkbox-icon-left = 4px
 $checkbox-icon-width = 4px
@@ -12,6 +9,7 @@ $checkbox-gap-horizontal = 16px
   display inline-flex
   align-items center
   line-height $ui-multiple-line-height
+  outline 0
   user-select none
   box-sizing border-box
 
@@ -36,17 +34,19 @@ $checkbox-gap-horizontal = 16px
 
     top 50%
     left 50%
-    width 0.5 * $checkbox-icon-size
-    height 0.5 * $checkbox-icon-size
+    width 0.5 * $font-size-default
+    height 0.5 * $font-size-default
 
 {$selector-class-prefix + '-checkbox-icon'}
   position relative
-  width $checkbox-icon-size
-  height $checkbox-icon-size
+  width $font-size-default
+  height $font-size-default
   box-sizing border-box
   border 1px solid $brand-border
   background-color $brand-bg
-  transition background-color $form-control-transition-duration, border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
+  transition background-color $form-control-transition-duration,
+            border-color $form-control-transition-duration,
+            box-shadow $form-control-transition-duration
 
   if $border-radius-small > 0
     border-radius $border-radius-small
@@ -67,29 +67,24 @@ $checkbox-gap-horizontal = 16px
 
     transform scale(0)
 
-
-{$selector-class-prefix + '-checkbox-input'}
-  position absolute
-  opacity 0
-
-{$selector-class-prefix + '-checkbox-enabled'},
-{$selector-class-prefix + '-checkbox-enabled'} input
-  ui-clickable()
-
-{$selector-class-prefix + '-checkbox-disabled'},
-{$selector-class-prefix + '-checkbox-disabled'} input
-  ui-disabled()
-
-{$selector-class-prefix + '-checkbox-enabled'}:hover
-  > {$selector-class-prefix + '-checkbox-icon'}
-    border-color $brand-primary
-
 {$selector-class-prefix + '-checkbox-active'}
   > {$selector-class-prefix + '-checkbox-icon'}
     background-color $brand-primary
     border-color $brand-primary
 
+{$selector-class-prefix + '-checkbox-enabled'}
+  ui-clickable()
+
+  :hover
+    > {$selector-class-prefix + '-checkbox-icon'}
+      border-color $brand-primary
+
+  &:focus
+    > {$selector-class-prefix + '-checkbox-icon'}
+      ui-focus($brand-primary-shadow)
+
 {$selector-class-prefix + '-checkbox-disabled'}
+  ui-disabled()
   color $brand-disabled
 
   > {$selector-class-prefix + '-checkbox-icon'}
@@ -98,11 +93,6 @@ $checkbox-gap-horizontal = 16px
 
     &:after
       border-color $brand-disabled
-
-if $ui-shadow-radius > 0
-  {$selector-class-prefix + '-checkbox-focus'}
-    > {$selector-class-prefix + '-checkbox-icon'}
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
 {$selector-class-prefix + '-checkbox-group'}
   display inline-block

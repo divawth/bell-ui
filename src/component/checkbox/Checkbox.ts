@@ -5,7 +5,6 @@ import template from './template/Checkbox.hbs'
 
 import {
   TRUE,
-  FALSE,
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
@@ -26,9 +25,6 @@ export default Yox.define({
   name: '${prefix}Checkbox',
 
   propTypes: {
-    name: {
-      type: RAW_STRING,
-    },
     value: {
       type: [RAW_STRING, RAW_NUMBER, RAW_BOOLEAN],
       required: TRUE,
@@ -50,23 +46,22 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      isFocus: FALSE,
-    }
-  },
-
   events: {
     change: {
       listener(_, data) {
-        const value = this.get('value')
-        const oldChecked = this.get('checked')
-        const newChecked = Yox.array.has(data.value, value)
-        if (oldChecked !== newChecked) {
-          this.set({
-            checked: newChecked
-          })
-          this.fireChange(newChecked, value)
+        if (data.value !== UNDEFINED) {
+          const value = this.get('value')
+          const oldChecked = this.get('checked')
+          const newChecked = Yox.array.has(data.value, value)
+          if (oldChecked !== newChecked) {
+            this.set({
+              checked: newChecked
+            })
+            this.fireChange(newChecked, value)
+          }
+        }
+        if (data.disabled !== UNDEFINED) {
+          this.set('disabled', data.disabled)
         }
       },
       ns: 'checkboxGroup',
@@ -74,11 +69,13 @@ export default Yox.define({
   },
 
   methods: {
-    onChange() {
-      const checked = this.toggle('checked')
-      this.fireChange(checked, this.get('value'))
+    onClick() {
+      this.fireChange(
+        this.toggle('checked'),
+        this.get('value')
+      )
     },
-    fireChange(checked, value) {
+    fireChange(checked: boolean, value: string | number | boolean) {
       this.fire(
         {
           type: 'change',
@@ -98,10 +95,6 @@ export default Yox.define({
 
     const checkboxGroup = findComponentUpward(options.parent, '${prefix}CheckboxGroup')
     if (checkboxGroup) {
-      if (props.name === UNDEFINED) {
-        props.name = checkboxGroup.get('name')
-      }
-
       if (props.disabled === UNDEFINED) {
         props.disabled = checkboxGroup.get('disabled')
       }
