@@ -6,13 +6,20 @@
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 340,
   template: `
-  <div>
-    <Alert>
-      默认 warning
-    </Alert>
+  <Alert>
+    默认 warning
+  </Alert>
+  `
+}
+```
+
+> 四种样式
+
+```js
+export default {
+  template: `
+  <Space block vertical>
     <Alert status="success">
       成功信息
     </Alert>
@@ -25,61 +32,19 @@ export default {
     <Alert status="warning">
       警告信息
     </Alert>
-    <style>
-      .bell-alert {
-        margin-bottom: 10px;
-      }
-    </style>
-  </div>
+  </Space>
   `
 }
 ```
 
-> 标题
-
-```js
-export default {
-  isViewFullBlock: true,
-  height: 340,
-  template: `
-  <div>
-    <Alert status="success">
-      <template slot="title">
-        标题
-      </template>
-      内容
-    </Alert>
-    <Alert status="error">
-      <template slot="title">
-        标题
-      </template>
-      内容
-    </Alert>
-    <Alert status="info">
-      <template slot="title">
-        标题
-      </template>
-      内容
-    </Alert>
-    <Alert status="warning">
-      <template slot="title">
-        标题
-      </template>
-      内容
-    </Alert>
-  </div>
-  `
-}
-```
-
-> 图标
+> 带图标的
 
 ```js
 export default {
   isViewFullBlock: true,
   height: 680,
   template: `
-  <div>
+  <Space block vertical>
     <Alert status="success" showIcon>
       内容
     </Alert>
@@ -93,83 +58,50 @@ export default {
       内容
     </Alert>
 
-    <Alert status="success" showIcon>
-      <template slot="title">
-        标题
-      </template>
+    <Alert title="标题" status="success" showIcon>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="error" showIcon>
-      <template slot="title">
-        标题
-      </template>
+    <Alert title="标题" status="error" showIcon>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="info" showIcon>
-      <template slot="title">
-        标题
-      </template>
+    <Alert title="标题" status="info" showIcon>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-    <Alert status="warning" showIcon>
-      <template slot="title">
-        标题
-      </template>
+    <Alert title="标题" status="warning" showIcon>
       内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
     </Alert>
-  </div>
+  </Space>
   `
 }
 ```
 
-> 关闭按钮
+
+
+> 可关闭的
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 300,
   template: `
-  <div>
-    <Alert status="success" showIcon closable>
-      <template slot="title">
-        标题
-      </template>
-      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+  <Space block vertical>
+    <Alert closable>
+      警告信息
     </Alert>
-    <Alert status="error" showIcon closable>
-      <template slot="title">
-        标题
-      </template>
-      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    <Alert
+      status="error"
+      title="标题文字"
+      closable
+    >
+      错误信息
     </Alert>
-    <Alert status="info" showIcon closable>
-      <template slot="title">
-        标题
-      </template>
-      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    <Alert
+      status="error"
+      title="标题文字"
+      closable
+      showIcon
+    >
+      错误信息
     </Alert>
-    <Alert status="warning" showIcon closable>
-      <template slot="title">
-        标题
-      </template>
-      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
-    </Alert>
-  </div>
-  `
-}
-```
-
-> 居中
-
-```js
-export default {
-  isViewFullBlock: true,
-  template: `
-  <div>
-    <Alert status="success" closable center>
-      内容内容内容内容内容内容内容
-    </Alert>
-  </div>
+  </Space>
   `
 }
 ```
@@ -178,11 +110,15 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
   template: `
-  <Alert status="success" closable banner>
-    内容内容内容内容内容内容内容
-  </Alert>
+  <Space block vertical>
+    <Alert banner>
+      内容内容内容内容内容内容内容
+    </Alert>
+    <Alert status="success" closable banner>
+      内容内容内容内容内容内容内容
+    </Alert>
+  </Space>
   `
 }
 ```
@@ -192,13 +128,11 @@ export default {
 
 ```js
 export default {
-  isViewFullBlock: true,
-  height: 300,
   template: `
   <Alert closable on-close="close()">
     设置了回调的 alert
     <template slot="close">
-      知道了
+      我知道了
     </template>
   </Alert>
   `,
@@ -217,9 +151,9 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 status | 状态 | string | `info`, `warning`, `success`, `error` | `warning`
+title | 标题 | string | - | -
 showIcon | 是否显示状态图标 | boolean | - | -
 closable | 是否显示关闭按钮 | boolean | - | -
-center | 文字是否居中 | boolean | - | -
 banner | 是否为页面顶部通告 | boolean | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
@@ -235,5 +169,5 @@ close | 点击关闭按钮后触发 | -
 名称 | 说明
 ---|---
 close | 关闭按钮
-title | 标题
 children | 内容
+close | 自定义关闭按钮

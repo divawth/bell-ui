@@ -2,9 +2,8 @@
 class="${prefix}alert
 {{#if status}} ${prefix}alert-{{status}}{{/if}}
 {{#if banner}} ${prefix}alert-banner{{/if}}
-{{#if center}} ${prefix}alert-center{{/if}}
+{{#if title}} ${prefix}alert-with-title{{/if}}
 {{#if showIcon}} ${prefix}alert-with-icon{{/if}}
-{{#if @title}} ${prefix}alert-with-title{{/if}}
 {{#if closable || @close}} ${prefix}alert-with-close{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
@@ -27,9 +26,9 @@ class="${prefix}alert
     />
   {{/if}}
 
-  {{#if @title}}
+  {{#if title}}
     <div class="${prefix}alert-title">
-      <slot name="title" />
+      {{title}}
     </div>
   {{/if}}
 
@@ -39,7 +38,7 @@ class="${prefix}alert
     </div>
   {{/if}}
 
-  {{#if closable}}
+  {{#if closable || @close}}
     <div ref="close" class="${prefix}alert-close" on-click="close.alert">
       <slot name="close">
         <Icon

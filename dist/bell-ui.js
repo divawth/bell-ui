@@ -392,7 +392,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return functio
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-alert-title'},$6={class:'bell-alert-content'},$7={class:'bell-alert-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'showIcon',_U.showIcon).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-alert-status-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'$slot_title',_U.$slot_title).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_title'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$5,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'$slot_children',_U.$slot_children).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'closable',_U.closable).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_close')||function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-alert-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,events:{click:_f('click','close.alert','click','','close','alert')},nativeAttrs:$7,operator:_B,ref:'close',tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-alert'+(_r(_Q,'status',_U.status).value?' bell-alert-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'banner',_U.banner).value?' bell-alert-banner':'')+(_r(_Q,'center',_U.center).value?' bell-alert-center':'')+(_r(_Q,'showIcon',_U.showIcon).value?' bell-alert-with-icon':'')+(_r(_Q,'$slot_title',_U.$slot_title).value?' bell-alert-with-title':'')+(_r(_Q,'closable',_U.closable).value||_r(_Q,'$slot_close',_U.$slot_close).value?' bell-alert-with-close':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-alert-title'},$6={class:'bell-alert-content'},$7={class:'bell-alert-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push(function(_S){_r(_Q,'style',_U.style).value?_S.nativeStyles=_b(_r(_Q,'style',_U.style).value):$1;return _S}({children:function(){var _T=[];_r(_Q,'showIcon',_U.showIcon).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-alert-status-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'title',_U.title).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'title',_U.title).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'$slot_children',_U.$slot_children).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_children'),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'closable',_U.closable).value||_r(_Q,'$slot_close',_U.$slot_close).value?_T.push({children:function(){var _T=[];($0={children:_l('$slot_close')||function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-alert-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,isSlot:$3,operator:_F,tag:'slot',type:7},$0.children&&$0.children.length&&_T.push($0));return _T.length?_T:$1}(),context:_G,events:{click:_f('click','close.alert','click','','close','alert')},nativeAttrs:$7,operator:_B,ref:'close',tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-alert'+(_r(_Q,'status',_U.status).value?' bell-alert-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'banner',_U.banner).value?' bell-alert-banner':'')+(_r(_Q,'title',_U.title).value?' bell-alert-with-title':'')+(_r(_Q,'showIcon',_U.showIcon).value?' bell-alert-with-icon':'')+(_r(_Q,'closable',_U.closable).value||_r(_Q,'$slot_close',_U.$slot_close).value?' bell-alert-with-close':'')+(_r(_Q,'className',_U.className).value?' '+_y(_r(_Q,'className',_U.className).value):'')},operator:_B,tag:'div',type:3}))}})();
 
 /***/ }),
 /* 50 */
@@ -3769,9 +3769,6 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
     model: 'checked',
     name: 'bell-Radio',
     propTypes: {
-        name: {
-            type: RAW_STRING,
-        },
         value: {
             type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],
             required: TRUE,
@@ -3832,9 +3829,6 @@ var Radio_default = /*#__PURE__*/__webpack_require__.n(Radio);
         var props = options.props || (options.props = {});
         var radioGroup = findComponentUpward(options.parent, 'bell-RadioGroup');
         if (radioGroup) {
-            if (props.name === UNDEFINED) {
-                props.name = radioGroup.get('name');
-            }
             if (props.disabled === UNDEFINED) {
                 props.disabled = radioGroup.get('disabled');
             }
@@ -3861,9 +3855,6 @@ var RadioGroup_default = /*#__PURE__*/__webpack_require__.n(RadioGroup);
         size: {
             type: oneOf(RAW_SIZE_ARRAY),
             value: RAW_DEFAULT,
-        },
-        name: {
-            type: RAW_STRING,
         },
         value: {
             type: [RAW_NUMBER, RAW_BOOLEAN, RAW_STRING],
@@ -3942,9 +3933,6 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
     model: 'checked',
     name: 'bell-Checkbox',
     propTypes: {
-        name: {
-            type: RAW_STRING,
-        },
         value: {
             type: [RAW_STRING, RAW_NUMBER, RAW_BOOLEAN],
             required: TRUE,
@@ -4004,9 +3992,6 @@ var Checkbox_default = /*#__PURE__*/__webpack_require__.n(Checkbox);
         var props = options.props || (options.props = {});
         var checkboxGroup = findComponentUpward(options.parent, 'bell-CheckboxGroup');
         if (checkboxGroup) {
-            if (props.name === UNDEFINED) {
-                props.name = checkboxGroup.get('name');
-            }
             if (props.disabled === UNDEFINED) {
                 props.disabled = checkboxGroup.get('disabled');
             }
@@ -4029,9 +4014,6 @@ var CheckboxGroup_default = /*#__PURE__*/__webpack_require__.n(CheckboxGroup);
     template: CheckboxGroup_default.a,
     name: 'bell-CheckboxGroup',
     propTypes: {
-        name: {
-            type: RAW_STRING,
-        },
         value: {
             type: RAW_ARRAY,
             value: function () {
@@ -6669,6 +6651,9 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
             type: oneOf(RAW_STATUS_ARRAY),
             value: RAW_TYPE_WARNING,
         },
+        title: {
+            type: RAW_STRING,
+        },
         showIcon: {
             type: RAW_BOOLEAN,
         },
@@ -6676,9 +6661,6 @@ var Alert_default = /*#__PURE__*/__webpack_require__.n(Alert);
             type: RAW_BOOLEAN,
         },
         closable: {
-            type: RAW_BOOLEAN,
-        },
-        center: {
             type: RAW_BOOLEAN,
         },
         className: {

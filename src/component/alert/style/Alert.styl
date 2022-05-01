@@ -1,43 +1,18 @@
-@import '../../../env'
+$alert-padding-horizontal = 15px
+$alert-padding-vertical = 8px
 
-$alert-padding-horizontal = 16px
-$alert-padding-vertical = 9px
+$alert-title-content-gap = 4px
 
-$alert-title-content-gap = 2px
-
-$alert-close-height = 21px
-$alert-close-font-size = 12px
+$alert-close-size = $font-size-default * $ui-multiple-line-height
+$alert-close-size-with-title = $font-size-large * $ui-multiple-line-height
 
 $alert-status-icon-gap = 8px
 $alert-status-icon-size = 16px
-$alert-status-icon-top = 2px
+$alert-status-icon-top = 3px
 
 $alert-status-icon-gap-with-title = 12px
 $alert-status-icon-size-with-title = 22px
 $alert-status-icon-top-with-title = 2px
-
-$alert-brand-hash = {
-  info: {
-    border-color: $brand-info-border,
-    bg-color: $brand-info-bg,
-    color: $brand-info,
-  },
-  success: {
-    border-color: $brand-success-border,
-    bg-color: $brand-success-bg,
-    color: $brand-success,
-  },
-  error: {
-    border-color: $brand-error-border,
-    bg-color: $brand-error-bg,
-    color: $brand-error,
-  },
-  warning: {
-    border-color: $brand-warning-border,
-    bg-color: $brand-warning-bg,
-    color: $brand-warning,
-  },
-}
 
 alert-brand-style(style)
   ui-set('border-color', style['border-color'])
@@ -56,16 +31,13 @@ alert-brand-style(style)
   transition opacity $form-control-transition-duration
 
   ui-connect(
-    hash: $alert-brand-hash,
+    hash: $status-brand-hash,
     each: alert-brand-style
   )
 
 {$selector-class-prefix + '-alert-banner'}
   border 0
   border-radius 0
-
-{$selector-class-prefix + '-alert-center'}
-  text-align center
 
 {$selector-class-prefix + '-alert-status-icon'}
   position absolute
@@ -78,6 +50,10 @@ alert-brand-style(style)
     top $alert-padding-vertical + $alert-status-icon-top-with-title
     font-size $alert-status-icon-size-with-title
 
+  > {$selector-class-prefix + '-alert-close'}
+    height $alert-close-size-with-title
+    min-width $alert-close-size-with-title
+
 {$selector-class-prefix + '-alert-with-icon'}
   padding-left $alert-padding-horizontal + $alert-status-icon-size + $alert-status-icon-gap
 
@@ -85,12 +61,11 @@ alert-brand-style(style)
     padding-left $alert-padding-horizontal + $alert-status-icon-size-with-title + $alert-status-icon-gap-with-title
 
 {$selector-class-prefix + '-alert-title'}
-  white-space nowrap
   color $brand-title
-  font-size $font-size-default
+  font-size $font-size-large
+  white-space nowrap
 
   + {$selector-class-prefix + '-alert-content'}
-    font-size $font-size-small
     margin-top $alert-title-content-gap
 
 {$selector-class-prefix + '-alert-content'}
@@ -102,37 +77,32 @@ alert-brand-style(style)
   right $alert-padding-horizontal
   top $alert-padding-vertical
 
-  font-size $alert-close-font-size
-  min-width $alert-close-height
-  height $alert-close-height
-  line-height $alert-close-height
+  color $brand-close-color
+  font-size $font-size-small
+  height $alert-close-size
+  min-width $alert-close-size
 
-  color $brand-primary
-  text-align center
+  display flex
+  justify-content flex-end
+  align-items center
+
   transition color $form-control-transition-duration
 
   user-select none
   ui-clickable()
 
   &:hover
-    color $brand-primary-hover
-
-{$selector-class-prefix + '-alert-close-icon'}
-  position absolute
-  left 50%
-  top 50%
-  margin-left -0.5 * $close-icon-size
-  margin-top -0.5 * $close-icon-size
-  color $brand-close-color
-  font-size $close-icon-size
-
-  &:hover
     color $brand-close-color-hover
 
-{$selector-class-prefix + '-alert-with-close'}
-  {$selector-class-prefix + '-alert-title'},
-  {$selector-class-prefix + '-alert-content'}
-    margin-right $close-icon-size + $ui-icon-text-gap
+{$selector-class-prefix + '-alert-close-icon'}
+  font-size $message-close-icon-size
 
-  {$selector-class-prefix + '-alert-title'} + {$selector-class-prefix + '-alert-content'}
+{$selector-class-prefix + '-alert-with-close'}
+  > {$selector-class-prefix + '-alert-title'}
+    margin-right $alert-close-size-with-title + $ui-icon-text-gap
+
+  > {$selector-class-prefix + '-alert-content'}
+    margin-right $alert-close-size + $ui-icon-text-gap
+
+  > {$selector-class-prefix + '-alert-title'} + {$selector-class-prefix + '-alert-content'}
     margin-right 0

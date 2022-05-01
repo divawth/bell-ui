@@ -31,6 +31,9 @@ export default Yox.define({
       type: oneOf(RAW_STATUS_ARRAY),
       value: RAW_TYPE_WARNING,
     },
+    title: {
+      type: RAW_STRING,
+    },
     showIcon: {
       type: RAW_BOOLEAN,
     },
@@ -38,9 +41,6 @@ export default Yox.define({
       type: RAW_BOOLEAN,
     },
     closable: {
-      type: RAW_BOOLEAN,
-    },
-    center: {
       type: RAW_BOOLEAN,
     },
     className: {

@@ -55,7 +55,7 @@ notification-brand-style(style)
   padding-left $notification-padding-horizontal + $notification-icon-size + $notification-icon-gap
 
 {$selector-class-prefix + '-notification-with-close'}
-  padding-right $notification-close-icon-right + $close-icon-size
+  padding-right $notification-close-icon-right + $message-close-icon-size
 
 {$selector-class-prefix + '-notification-with-title'}
   &{$selector-class-prefix + '-notification-with-icon'}
@@ -94,7 +94,7 @@ notification-brand-style(style)
   position absolute
   right $notification-close-icon-right
   top $notification-close-icon-top
-  font-size $close-icon-size
+  font-size $message-close-icon-size
   text-align center
   color $brand-close-color
   transition color $form-control-transition-duration
