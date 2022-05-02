@@ -1,7 +1,6 @@
 <div
 class="${prefix}message
 {{#if status}} ${prefix}message-{{status}}{{/if}}
-{{#if center}} ${prefix}message-center{{/if}}
 {{#if closable}} ${prefix}message-with-close{{/if}}"
 >
   <Icon
@@ -17,15 +16,17 @@ class="${prefix}message
     className="${prefix}message-icon"
   />
 
-  <span class="${prefix}message-text">
+  <div class="${prefix}message-content">
     {{content}}
-  </span>
+  </div>
 
   {{#if closable}}
-    <Icon
-      name="close-line"
-      className="${prefix}message-close"
-      on-click.native="hide()"
-    />
+    <div class="${prefix}message-close">
+      <Icon
+        name="close-line"
+        className="${prefix}message-close-icon"
+        on-click.native="hide()"
+      />
+    </div>
   {{/if}}
 </div>

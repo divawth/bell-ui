@@ -1,11 +1,10 @@
-@import '../../../env'
-
 $message-padding-vertical = 8px
 $message-padding-horizontal = 16px
 
-$message-icon-size = 18px
-$message-close-icon-right = 12px
-$message-close-icon-top = 12px
+$message-close-size = floor($font-size-default * $ui-multiple-line-height)
+
+$message-icon-gap = 8px
+$message-icon-top = 2px
 
 message-brand-style(style)
   > {$selector-class-prefix + '-message-icon'}
@@ -19,12 +18,9 @@ message-brand-style(style)
   z-index $zindex-message
   transform translateX(-50%)
 
-  user-select none
   white-space nowrap
   background-color $brand-bg
-  padding $message-padding-vertical $message-padding-horizontal
-  color $brand-content
-  font-size $font-size-default
+  padding $message-padding-vertical $message-padding-horizontal $message-padding-vertical $message-padding-horizontal + $message-status-icon-size-default + $message-icon-gap
   line-height $ui-multiple-line-height
   border-radius $border-radius-default
   box-shadow $brand-message-shadow
@@ -36,31 +32,42 @@ message-brand-style(style)
   )
 
 {$selector-class-prefix + '-message-with-close'}
-  padding-right $message-close-icon-right + $message-close-icon-size + $ui-icon-text-gap
+  > {$selector-class-prefix + '-message-content'}
+    margin-right $message-close-size + $ui-icon-text-gap
 
 {$selector-class-prefix + '-message-visible'}
   opacity 1
 
-{$selector-class-prefix + '-message-center'}
-  text-align center
-
 {$selector-class-prefix + '-message-icon'}
-  font-size $message-icon-size
-  margin-right $ui-icon-text-gap
-  vertical-align middle
+  position absolute
+  left $message-padding-horizontal
+  top $message-padding-vertical + $message-icon-top
+  font-size $message-status-icon-size-default
 
-{$selector-class-prefix + '-message-text'}
-  vertical-align middle
+{$selector-class-prefix + '-message-content'}
+  color $brand-content
+  font-size $font-size-default
 
 {$selector-class-prefix + '-message-close'}
   position absolute
-  right $message-close-icon-right
-  top $message-close-icon-top
+  right $message-padding-horizontal
+  top $message-padding-vertical
 
   color $brand-close-color
-  font-size $message-close-icon-size
+  font-size $font-size-small
+  height $message-close-size
+  min-width $message-close-size
+
+  display flex
+  justify-content flex-end
+  align-items center
+
   transition color $form-control-transition-duration
+  user-select none
   ui-clickable()
 
   &:hover
     color $brand-close-color-hover
+
+{$selector-class-prefix + '-message-close-icon'}
+  font-size $message-close-icon-size

@@ -46,13 +46,13 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 4500,
     },
-    width: {
-      type: RAW_NUMERIC,
-      value: 320,
-    },
     right: {
       type: RAW_NUMERIC,
       value: 15,
+    },
+    width: {
+      type: RAW_NUMERIC,
+      value: 320,
     },
   },
 

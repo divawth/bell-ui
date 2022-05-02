@@ -752,7 +752,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bel
 /* 109 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-message-text'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-message-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4});_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'span',text:_y(_r(_Q,'content',_U.content).value),type:3});_r(_Q,'closable',_U.closable).value?_T.push({context:_G,events:{'click.native':_e('click.native','hide()','click','native','hide',$1,$1,$3)},isComponent:$3,operator:_C,props:{className:'bell-message-close',name:'close-line'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-message'+(_r(_Q,'status',_U.status).value?' bell-message-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'center',_U.center).value?' bell-message-center':'')+(_r(_Q,'closable',_U.closable).value?' bell-message-with-close':'')},operator:_B,tag:'div',type:3})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-message-content'},$6={class:'bell-message-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-message-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4});_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'content',_U.content).value),type:3});_r(_Q,'closable',_U.closable).value?_T.push({children:function(){var _T=[];_T.push({context:_G,events:{'click.native':_e('click.native','hide()','click','native','hide',$1,$1,$3)},isComponent:$3,operator:_C,props:{className:'bell-message-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,nativeAttrs:$6,operator:_B,tag:'div',type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-message'+(_r(_Q,'status',_U.status).value?' bell-message-'+_y(_r(_Q,'status',_U.status).value):'')+(_r(_Q,'closable',_U.closable).value?' bell-message-with-close':'')},operator:_B,tag:'div',type:3})}})();
 
 /***/ }),
 /* 110 */
@@ -770,7 +770,7 @@ module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1;return functio
 /* 112 */
 /***/ (function(module, exports) {
 
-module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'},$7={class:'bell-notification-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_r(_Q,'status',_U.status).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'title',_U.title).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'title',_U.title).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'content',_U.content).value?_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'content',_U.content).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,events:{click:_e('click','hide()','click','','hide')},nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-notification'+(_r(_Q,'status',_U.status).value?' bell-notification-'+_y(_r(_Q,'status',_U.status).value)+' bell-notification-with-icon':'')+(_r(_Q,'title',_U.title).value?' bell-notification-with-title':'')},nativeStyles:_b(_r(_Q,'inlineStyle',_U.inlineStyle).value),operator:_B,tag:'div',type:3})}})();
+module.exports = (function(){var $0,$1=void 0,$2=null,$3=!0,$4=!1,$5={class:'bell-notification-title'},$6={class:'bell-notification-content'},$7={class:'bell-notification-close'};return function(_a,_b,_c,_d,_e,_f,_g,_h,_i,_j,_k,_l,_m,_n,_o,_p,_q,_r,_s,_t,_u,_v,_w,_x,_y,_z,_A,_B,_C,_D,_E,_F,_G,_H,_I,_J,_K,_L,_M,_N,_O,_P,_Q,_U,_V,_T){_T.push({children:function(){var _T=[];_r(_Q,'status',_U.status).value?_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-icon',name:_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_SUCCESS',_U.RAW_TYPE_SUCCESS).value?'checkbox-circle-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_WARNING',_U.RAW_TYPE_WARNING).value?'error-warning-fill':_r(_Q,'status',_U.status).value===_r(_Q,'RAW_TYPE_ERROR',_U.RAW_TYPE_ERROR).value?'close-circle-fill':'information-fill'},tag:'Icon',type:4}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'title',_U.title).value?_T.push({context:_G,nativeAttrs:$5,operator:_B,tag:'div',text:_y(_r(_Q,'title',_U.title).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_r(_Q,'content',_U.content).value?_T.push({context:_G,nativeAttrs:$6,operator:_B,tag:'div',text:_y(_r(_Q,'content',_U.content).value),type:3}):_T.push({isComment:$3,isPure:$3,operator:_A,text:'',type:2});_T.push({children:function(){var _T=[];_T.push({context:_G,isComponent:$3,operator:_C,props:{className:'bell-notification-close-icon',name:'close-line'},tag:'Icon',type:4});return _T.length?_T:$1}(),context:_G,events:{click:_e('click','hide()','click','','hide')},nativeAttrs:$7,operator:_B,tag:'div',type:3});return _T.length?_T:$1}(),context:_G,nativeAttrs:{class:'bell-notification'+(_r(_Q,'status',_U.status).value?' bell-notification-'+_y(_r(_Q,'status',_U.status).value)+' bell-notification-with-icon':'')+(_r(_Q,'title',_U.title).value?' bell-notification-with-title':'')},operator:_B,tag:'div',type:3})}})();
 
 /***/ }),
 /* 113 */
@@ -12780,9 +12780,14 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
         closable: {
             type: RAW_BOOLEAN,
         },
-        center: {
-            type: RAW_BOOLEAN,
-        }
+        duration: {
+            type: RAW_NUMERIC,
+            value: 2000,
+        },
+        top: {
+            type: RAW_NUMERIC,
+            value: 15,
+        },
     },
     data: function () {
         return {
@@ -12790,14 +12795,23 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
             RAW_TYPE_SUCCESS: RAW_TYPE_SUCCESS,
             RAW_TYPE_WARNING: RAW_TYPE_WARNING,
             RAW_TYPE_ERROR: RAW_TYPE_ERROR,
+            isVisible: FALSE,
         };
     },
     methods: {
-        show: function (top, duration) {
+        show: function () {
             var me = this;
+            if (me.get('isVisible')) {
+                return;
+            }
+            var top = this.get('top');
             var element = me.$el;
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Message_CLASS_VISIBLE);
             element.style.top = toPixel(top);
+            me.set({
+                isVisible: TRUE,
+            });
+            var duration = toNumber(me.get('duration'));
             if (duration > 0) {
                 setTimeout(function () {
                     if (me.$el) {
@@ -12808,9 +12822,15 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
         },
         hide: function () {
             var me = this;
+            if (!me.get('isVisible')) {
+                return;
+            }
             var element = me.$el;
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Message_CLASS_VISIBLE);
             element.style.top = '0px';
+            me.set({
+                isVisible: FALSE,
+            });
             onTransitionEnd(element, function () {
                 if (me.$el) {
                     me.fire({
@@ -12831,13 +12851,15 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
 
 
 var config = {};
-function addMessage(status, arg, onClose) {
+function addMessage(status, arg) {
     var props = { status: status };
+    var onClose;
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, config);
     if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(arg)) {
         props.content = arg;
     }
     else {
+        onClose = arg.onClose;
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
     var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
@@ -12852,22 +12874,22 @@ function addMessage(status, arg, onClose) {
     });
     setTimeout(function () {
         if (instance.$el) {
-            instance.show(props.top || 15, props.duration || 2000);
+            instance.show();
         }
     }, 300);
 }
 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$message = {
-    success: function (arg, onClose) {
-        addMessage('success', arg, onClose);
+    success: function (arg) {
+        addMessage('success', arg);
     },
-    info: function (arg, onClose) {
-        addMessage('info', arg, onClose);
+    info: function (arg) {
+        addMessage('info', arg);
     },
-    warning: function (arg, onClose) {
-        addMessage('warning', arg, onClose);
+    warning: function (arg) {
+        addMessage('warning', arg);
     },
-    error: function (arg, onClose) {
-        addMessage('error', arg, onClose);
+    error: function (arg) {
+        addMessage('error', arg);
     },
     config: function (arg) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(config, arg);
@@ -13116,13 +13138,13 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
             type: RAW_NUMERIC,
             value: 4500,
         },
-        width: {
-            type: RAW_NUMERIC,
-            value: 320,
-        },
         right: {
             type: RAW_NUMERIC,
             value: 15,
+        },
+        width: {
+            type: RAW_NUMERIC,
+            value: 320,
         },
     },
     data: function () {
@@ -13134,23 +13156,18 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
             isVisible: FALSE,
         };
     },
-    computed: {
-        inlineStyle: function () {
-            var width = this.get('width');
-            var right = this.get('right');
-            return {
-                width: toPixel(width),
-                right: toPixel(right),
-            };
-        },
-    },
     methods: {
         show: function () {
             var me = this;
             if (me.get('isVisible')) {
                 return;
             }
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(me.$el, Notification_CLASS_VISIBLE);
+            var width = this.get('width');
+            var right = this.get('right');
+            var element = me.$el;
+            element.style.right = toPixel(right);
+            element.style.width = toPixel(width);
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notification_CLASS_VISIBLE);
             me.set({
                 isVisible: TRUE,
             });
@@ -13197,15 +13214,17 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
 
 
 var notification_config = {};
-function addNotification(status, data, onClose) {
+function addNotification(status, arg) {
     var props = { status: status };
-    // 先写 config，可支持 data 覆盖全局配置
+    var onClose;
+    // 先写 config，可支持 arg 覆盖全局配置
     external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, notification_config);
-    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(data)) {
-        props.content = data;
+    if (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.is.string(arg)) {
+        props.content = arg;
     }
     else {
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, data);
+        onClose = arg.onClose;
+        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
     var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notification-wrapper');
     if (!wrapper) {
@@ -13230,20 +13249,20 @@ function addNotification(status, data, onClose) {
     }, 300);
 }
 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notification = {
-    open: function (props, onClose) {
-        addNotification('', props, onClose);
+    open: function (props) {
+        addNotification('', props);
     },
-    success: function (props, onClose) {
-        addNotification('success', props, onClose);
+    success: function (props) {
+        addNotification('success', props);
     },
-    info: function (props, onClose) {
-        addNotification('info', props, onClose);
+    info: function (props) {
+        addNotification('info', props);
     },
-    warning: function (props, onClose) {
-        addNotification('warning', props, onClose);
+    warning: function (props) {
+        addNotification('warning', props);
     },
-    error: function (props, onClose) {
-        addNotification('error', props, onClose);
+    error: function (props) {
+        addNotification('error', props);
     },
     config: function (options) {
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(notification_config, options);

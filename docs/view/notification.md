@@ -194,11 +194,11 @@ export default {
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$notification.open(content, onClose)
-- this.$notification.info(content, onClose)
-- this.$notification.success(content, onClose)
-- this.$notification.warning(content, onClose)
-- this.$notification.error(content, onClose)
+- this.$notification.open(options)
+- this.$notification.info(options)
+- this.$notification.success(options)
+- this.$notification.warning(options)
+- this.$notification.error(options)
 
 > Props
 
@@ -209,12 +209,13 @@ content | 自定义文本 | string | - | -
 right | 提示组件距离右侧的距离，单位像素 | number | - | `15`
 duration | 默认自动关闭的延时，单位毫秒 | number | - | `4500`
 width | 显示宽度 | number | - | `320`
+onClose | 关闭时调用 | Function | - | -
 
 > Events
 
 事件名称 | 说明 | 回调参数
 ---|---|---
-close | 关闭 alert 时触发的事件 | -
+close | 关闭 notification 时触发的事件 | -
 
 > 另外提供了全局配置方法
 

@@ -3,25 +3,37 @@ import { BODY } from '../constant'
 
 import Notification from './Notification'
 
-interface Config {
+type Arg = {
+  content: string
+  title?: string
+  right?: number
+  width?: number
   duration?: number
-  top?: number
+  onClose?: Function
+}
+
+type Config = {
+  right?: number
+  width?: number
+  duration?: number
 }
 
 let config: Config = {}
 
-function addNotification(status: string,  data: Data, onClose?: Function) {
+function addNotification(status: string, arg: string | Arg) {
 
   let props: Data = { status }
+  let onClose: Function | void
 
-  // 先写 config，可支持 data 覆盖全局配置
+  // 先写 config，可支持 arg 覆盖全局配置
   Yox.object.extend(props, config)
 
-  if (Yox.is.string(data)) {
-    props.content = data
+  if (Yox.is.string(arg)) {
+    props.content = arg
   }
   else {
-    Yox.object.extend(props, data)
+    onClose = (arg as Arg).onClose
+    Yox.object.extend(props, arg as Arg)
   }
 
   let wrapper = Yox.dom.find('#${prefix}notification-wrapper') as HTMLElement
@@ -60,22 +72,22 @@ function addNotification(status: string,  data: Data, onClose?: Function) {
 }
 
 (Yox.prototype as any).$notification = {
-  open(props: Data, onClose?: Function) {
-    addNotification('', props, onClose)
+  open(props: string | Arg) {
+    addNotification('', props)
   },
-  success(props: Data, onClose?: Function) {
-    addNotification('success', props, onClose)
+  success(props: string | Arg) {
+    addNotification('success', props)
   },
-  info(props: Data, onClose?: Function) {
-    addNotification('info', props, onClose)
+  info(props: string | Arg) {
+    addNotification('info', props)
   },
-  warning(props: Data, onClose?: Function) {
-    addNotification('warning', props, onClose)
+  warning(props: string | Arg) {
+    addNotification('warning', props)
   },
-  error(props: Data, onClose?: Function) {
-    addNotification('error', props, onClose)
+  error(props: string | Arg) {
+    addNotification('error', props)
   },
-  config(options: Data) {
+  config(options: Config) {
     Yox.object.extend(config, options)
   }
 }

@@ -104,7 +104,7 @@ export default {
     open: function () {
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
-        duration: 10000
+        duration: 10000,
       })
     }
   }
@@ -150,7 +150,7 @@ export default {
     open: function () {
       this.$message.config({
         top: 50,
-        duration: 13000
+        duration: 1000
       });
       this.$message.error({
         content: '对方不想和你说话，并且向你抛出了一个异常',
@@ -168,10 +168,10 @@ export default {
 
 > 通过直接调用以下方法来使用组件：
 
-- this.$message.info(content, onClose)
-- this.$message.success(content, onClose)
-- this.$message.warning(content, onClose)
-- this.$message.error(content, onClose)
+- this.$message.info(options)
+- this.$message.success(options)
+- this.$message.warning(options)
+- this.$message.error(options)
 
 > Props
 
@@ -179,7 +179,6 @@ export default {
 ---|---|---|---|---
 content | 自定义文本 | string | - | -
 closable | 是否显示关闭按钮 | boolean | - | -
-center | 文字是否居中 | boolean | - | -
 top | 提示组件距离顶端的距离，单位像素 | number | - | `15`
 duration | 默认自动关闭的延时，单位毫秒 | number | - | `2000`
 onClose | 关闭时调用 | Function | - | -

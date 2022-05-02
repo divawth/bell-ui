@@ -13994,15 +13994,9 @@ div::-webkit-scrollbar-thumb:hover {
   opacity: 0;
   z-index: 12;
   transform: translateX(-50%);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   white-space: nowrap;
   background-color: #fff;
-  padding: 8px 16px;
-  color: #515a6e;
-  font-size: 14px;
+  padding: 8px 16px 8px 42px;
   line-height: 1.5715;
   border-radius: 2px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
@@ -14020,35 +14014,46 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-message-warning > .bell-message-icon {
   color: #f90;
 }
-.bell-message-with-close {
-  padding-right: 34px;
+.bell-message-with-close > .bell-message-content {
+  margin-right: 28px;
 }
 .bell-message-visible {
   opacity: 1;
 }
-.bell-message-center {
-  text-align: center;
-}
 .bell-message-icon {
+  position: absolute;
+  left: 16px;
+  top: 10px;
   font-size: 18px;
-  margin-right: 6px;
-  vertical-align: middle;
 }
-.bell-message-text {
-  vertical-align: middle;
+.bell-message-content {
+  color: #515a6e;
+  font-size: 14px;
 }
 .bell-message-close {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 16px;
+  top: 8px;
   color: #aaa;
-  font-size: 16px;
+  font-size: 12px;
+  height: 22px;
+  min-width: 22px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   transition: color 0.2s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .bell-message-close:hover {
   color: #666;
+}
+.bell-message-close-icon {
+  font-size: 16px;
 }
 .bell-modal .bell-dialog-header {
   border-bottom: 0;

@@ -7,7 +7,9 @@ import Icon from '../icon/Icon'
 
 import {
   TRUE,
+  FALSE,
   RAW_STRING,
+  RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_STATUS_ARRAY,
   RAW_TYPE_INFO,
@@ -19,6 +21,7 @@ import {
 import {
   oneOf,
   toPixel,
+  toNumber,
   onTransitionEnd,
 } from '../util'
 
@@ -42,9 +45,14 @@ export default Yox.define({
     closable: {
       type: RAW_BOOLEAN,
     },
-    center: {
-      type: RAW_BOOLEAN,
-    }
+    duration: {
+      type: RAW_NUMERIC,
+      value: 2000,
+    },
+    top: {
+      type: RAW_NUMERIC,
+      value: 15,
+    },
   },
 
   data() {
@@ -53,19 +61,30 @@ export default Yox.define({
       RAW_TYPE_SUCCESS,
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
+      isVisible: FALSE,
     }
   },
 
   methods: {
 
-    show(top: number, duration: number) {
+    show() {
 
       const me = this
+      if (me.get('isVisible')) {
+        return
+      }
+
+      const top = this.get('top')
 
       const element = me.$el
       Yox.dom.addClass(element, CLASS_VISIBLE)
       element.style.top = toPixel(top)
 
+      me.set({
+        isVisible: TRUE,
+      })
+
+      const duration = toNumber(me.get('duration'))
       if (duration > 0) {
         setTimeout(
           function () {
@@ -81,10 +100,17 @@ export default Yox.define({
     hide() {
 
       const me = this
+      if (!me.get('isVisible')) {
+        return
+      }
 
       const element = me.$el
       Yox.dom.removeClass(element, CLASS_VISIBLE)
       element.style.top = '0px'
+
+      me.set({
+        isVisible: FALSE,
+      })
 
       onTransitionEnd(
         element,

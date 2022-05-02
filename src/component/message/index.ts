@@ -6,13 +6,20 @@ import {
 
 import Message from './Message'
 
-type Arg = string | Data
+type Arg = {
+  content: string
+  closable?: boolean
+  top?: number
+  duration?: number
+  onClose?: Function
+}
 
 const config: Data = {}
 
-function addMessage(status: string, arg: Arg, onClose?: Function) {
+function addMessage(status: string, arg: string | Arg) {
 
   const props: Data = { status }
+  let onClose: Function | void
 
   Yox.object.extend(props, config)
 
@@ -20,7 +27,8 @@ function addMessage(status: string, arg: Arg, onClose?: Function) {
     props.content = arg as string
   }
   else {
-    Yox.object.extend(props, arg as Data)
+    onClose = (arg as Arg).onClose
+    Yox.object.extend(props, arg as Arg)
   }
 
   const instance: any = new Yox(
@@ -43,7 +51,7 @@ function addMessage(status: string, arg: Arg, onClose?: Function) {
   setTimeout(
     function () {
       if (instance.$el) {
-        instance.show(props.top || 15, props.duration || 2000)
+        instance.show()
       }
     },
     300
@@ -52,19 +60,22 @@ function addMessage(status: string, arg: Arg, onClose?: Function) {
 }
 
 (Yox.prototype as any).$message = {
-  success(arg: Arg, onClose?: Function) {
-    addMessage('success', arg, onClose)
+  success(arg: string | Arg) {
+    addMessage('success', arg)
   },
-  info(arg: Arg, onClose?: Function) {
-    addMessage('info', arg, onClose)
+  info(arg: string | Arg) {
+    addMessage('info', arg)
   },
-  warning(arg: Arg, onClose?: Function) {
-    addMessage('warning', arg, onClose)
+  warning(arg: string | Arg) {
+    addMessage('warning', arg)
   },
-  error(arg: Arg, onClose?: Function) {
-    addMessage('error', arg, onClose)
+  error(arg: string | Arg) {
+    addMessage('error', arg)
   },
-  config(arg: Data) {
+  config(arg: {
+    top: number,
+    duration: number,
+  }) {
     Yox.object.extend(config, arg)
   }
 }
