@@ -1,6 +1,6 @@
 import Yox from 'yox'
 
-import { BODY, UNDEFINED } from '../constant'
+import { BODY, TRUE, UNDEFINED } from '../constant'
 
 import LoadingBar from './LoadingBar'
 
@@ -15,18 +15,14 @@ let instance = UNDEFINED
 
 function add(props: Config | void) {
 
-  let wrapper = Yox.dom.find('#${prefix}loadingbar-wrapper') as HTMLElement
-  if (!wrapper) {
-    wrapper = Yox.dom.createElement('div') as HTMLElement
-    Yox.dom.setAttr(wrapper, 'id', '${prefix}loadingbar-wrapper')
-    Yox.dom.append(BODY, wrapper)
-  }
+  const newProps = props ? Yox.object.copy(props) : {}
+  newProps.fixed = TRUE
 
   instance = new Yox(
     Yox.object.extend(
       {
-        el: wrapper,
-        props,
+        el: BODY,
+        props: newProps,
       },
       LoadingBar
     )

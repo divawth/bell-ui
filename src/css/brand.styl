@@ -97,29 +97,52 @@ $brand-text-mask-text-shadow = 1px 1px 2px rgba(200,200,200,0.5)
 $layout-dark-bg-color = #515a6e
 $layout-light-bg-color = $brand-white
 
+$brand-primary-hash = {
+  color: $brand-primary,
+  bg-color: $brand-primary-bg,
+  border-color: $brand-primary-border,
+  shadow-color: $brand-primary-shadow,
+}
+
+$brand-info-hash = {
+  color: $brand-info,
+  bg-color: $brand-info-bg,
+  border-color: $brand-info-border,
+  shadow-color: $brand-info-shadow,
+}
+
+$brand-success-hash = {
+  color: $brand-success,
+  bg-color: $brand-success-bg,
+  border-color: $brand-success-border,
+  shadow-color: $brand-success-shadow,
+}
+
+$brand-error-hash = {
+  color: $brand-error,
+  bg-color: $brand-error-bg,
+  border-color: $brand-error-border,
+  shadow-color: $brand-error-shadow,
+}
+
+$brand-warning-hash = {
+  color: $brand-warning,
+  bg-color: $brand-warning-bg,
+  border-color: $brand-warning-border,
+  shadow-color: $brand-warning-shadow,
+}
+
 $status-brand-hash = {
-  info: {
-    color: $brand-info,
-    bg-color: $brand-info-bg,
-    border-color: $brand-info-border,
-    shadow-color: $brand-info-shadow,
-  },
-  success: {
-    color: $brand-success,
-    bg-color: $brand-success-bg,
-    border-color: $brand-success-border,
-    shadow-color: $brand-success-shadow,
-  },
-  error: {
-    color: $brand-error,
-    bg-color: $brand-error-bg,
-    border-color: $brand-error-border,
-    shadow-color: $brand-error-shadow,
-  },
-  warning: {
-    color: $brand-warning,
-    bg-color: $brand-warning-bg,
-    border-color: $brand-warning-border,
-    shadow-color: $brand-warning-shadow,
-  },
+  info: $brand-info-hash,
+  success: $brand-success-hash,
+  error: $brand-error-hash,
+  warning: $brand-warning-hash,
+}
+
+$type-brand-hash = {
+  primary: $brand-primary-hash,
+  info: $brand-info-hash,
+  success: $brand-success-hash,
+  error: $brand-error-hash,
+  warning: $brand-warning-hash,
 }

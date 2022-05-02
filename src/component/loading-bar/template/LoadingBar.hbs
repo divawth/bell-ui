@@ -1,10 +1,11 @@
 <div
 class="${prefix}loadingbar
 {{#if type}} ${prefix}loadingbar-{{type}}{{/if}}
+{{#if fixed}} ${prefix}loadingbar-fixed{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}}
-  style="{{style}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 
 >

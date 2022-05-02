@@ -74,9 +74,9 @@ class="${prefix}image
           {{uploadingTitle}}
           <LoadingBar
             manual
+            outside
             className="${prefix}image-progress"
             percent="{{image.progress > 0 ? image.progress * 100 : 0}}"
-            height="2"
           />
         </div>
       {{else}}

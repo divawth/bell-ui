@@ -1,40 +1,24 @@
-$loadingbar-bg-color = #f8f8f8
-
-$loadingbar-brand-hash = {
-  primary: {
-    color: $brand-primary
-  },
-  success: {
-    color: $brand-success
-  },
-  error: {
-    color: $brand-error
-  },
-  info: {
-    color: $brand-info
-  },
-  warning: {
-    color: $brand-warning
-  }
-}
+$loadingbar-bg-color = rgba(245,245,245,0.7)
 
 loadingbar-brand-style(style)
   {$selector-class-prefix + '-loadingbar-indicator'}
     ui-set('background-color', style['color'])
 
-{$selector-id-prefix + '-loadingbar-wrapper'}
-  position fixed
+{$selector-class-prefix + '-loadingbar'}
+  background-color $loadingbar-bg-color
+  position absolute
   left 0
   right 0
   top 0
-  z-index $zindex-loadingbar
-
-{$selector-class-prefix + '-loadingbar'}
-  background-color $loadingbar-bg-color
+  box-shadow $brand-color-swatch-shadow
   ui-connect(
-    hash: $loadingbar-brand-hash,
+    hash: $type-brand-hash,
     each: loadingbar-brand-style
   )
+
+{$selector-class-prefix + '-loadingbar-fixed'}
+  position fixed
+  z-index $zindex-loadingbar
 
 {$selector-class-prefix + '-loadingbar-indicator'}
   // 给一个足够大的值，使得右侧是半圆

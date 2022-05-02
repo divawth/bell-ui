@@ -19,6 +19,7 @@ import {
 import {
   oneOf,
   toPixel,
+  toNumber,
   toPercent,
 } from '../util'
 
@@ -44,7 +45,13 @@ export default Yox.define({
     color: {
       type: RAW_STRING,
     },
+    fixed: {
+      type: RAW_BOOLEAN,
+    },
     manual: {
+      type: RAW_BOOLEAN,
+    },
+    outside: {
       type: RAW_BOOLEAN,
     },
     className: {
@@ -56,23 +63,17 @@ export default Yox.define({
   },
 
   computed: {
-    indicatorStyle() {
+    inlineStyle() {
+
       const result: object[] = []
 
-      const percent = this.get('percent')
-      const height = this.get('height')
-      const color = this.get('color')
-
-      const customStyle: Record<string, string> = {
-        width: toPercent(percent),
-        height: toPixel(height),
+      const outside = this.get('outside')
+      if (outside) {
+        const height = toNumber(this.get('height'))
+        result.push({
+          top: toPixel(-height)
+        })
       }
-
-      if (color) {
-        customStyle.color = color
-      }
-
-      result.push(customStyle)
 
       const style = this.get('style')
       if (style) {
@@ -82,6 +83,25 @@ export default Yox.define({
       if (result.length > 0) {
         return result
       }
+
+    },
+    indicatorStyle() {
+
+      const percent = this.get('percent')
+      const height = this.get('height')
+      const color = this.get('color')
+
+      const result: Record<string, string> = {
+        width: toPercent(percent),
+        height: toPixel(height),
+      }
+
+      if (color) {
+        result.color = color
+      }
+
+      return result
+
     }
   },
 
