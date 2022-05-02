@@ -1,8 +1,5 @@
 @import '../../../env'
 
-$notification-wrapper-top = 24px
-$notification-vertical-gap = 16px
-
 $notification-padding-vertical = 16px
 $notification-padding-horizontal = 24px
 
@@ -21,15 +18,11 @@ notification-brand-style(style)
   > {$selector-class-prefix + '-notification-icon'}
     ui-set('color', style['color'])
 
-{$selector-id-prefix + '-notification-wrapper'}
-  position fixed
-  right 0
-  top $notification-wrapper-top
-  z-index $zindex-notification
-
 {$selector-class-prefix + '-notification'}
-  position relative
+  position fixed
   opacity 0
+  display none
+  z-index $zindex-notification
   line-height $ui-multiple-line-height
   padding $notification-padding-vertical $notification-padding-horizontal
   border-radius $border-radius-default
@@ -37,15 +30,19 @@ notification-brand-style(style)
   box-shadow $brand-message-shadow
   background-color $brand-bg
   transform translateX(100%)
-  transition opacity .2s, transform .2s
+  transition opacity .15s, top .2s, transform .2s
 
   ui-connect(
     hash: $status-brand-hash,
     each: notification-brand-style
   )
 
-  + {$selector-class-prefix + '-notification'}
-    margin-top $notification-vertical-gap
+{$selector-class-prefix + '-notification-visible'}
+  display block
+
+{$selector-class-prefix + '-notification-fade'}
+  opacity 1
+  transform translateX(0)
 
 {$selector-class-prefix + '-notification-with-icon'}
   padding-left $notification-padding-horizontal + $message-status-icon-size-default + $notification-icon-gap
@@ -61,10 +58,6 @@ notification-brand-style(style)
   > {$selector-class-prefix + '-notification-close'}
     height $notification-close-size-with-title
     min-width $notification-close-size-with-title
-
-{$selector-class-prefix + '-notification-visible'}
-  opacity 1
-  transform translateX(0)
 
 {$selector-class-prefix + '-notification-title'}
   ui-ellipsis()

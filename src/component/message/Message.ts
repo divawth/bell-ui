@@ -26,6 +26,7 @@ import {
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}message-visible'
+const CLASS_FADE = '${prefix}message-fade'
 
 export default Yox.define({
 
@@ -49,6 +50,10 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 2000,
     },
+    gap: {
+      type: RAW_NUMERIC,
+      value: 12,
+    },
     top: {
       type: RAW_NUMERIC,
       value: 15,
@@ -62,39 +67,70 @@ export default Yox.define({
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
       isVisible: FALSE,
+      actualTop: 0,
     }
   },
 
   methods: {
+    move(distance: number) {
 
-    show() {
+      const me = this
+      if (!me.get('isVisible')) {
+        return
+      }
+
+      const element = me.$el
+      if (element) {
+        const gap = toNumber(this.get('gap'))
+        const actualTop = this.get('actualTop') - distance - gap
+        me.set({
+          actualTop,
+        })
+        element.style.top = toPixel(actualTop)
+      }
+
+    },
+    show(height: number, count: number) {
 
       const me = this
       if (me.get('isVisible')) {
         return
       }
 
-      const top = this.get('top')
+      const gap = toNumber(this.get('gap'))
+      const top = toNumber(this.get('top')) + height + count * gap
+
+      me.set({
+        isVisible: TRUE,
+        actualTop: top,
+      })
 
       const element = me.$el
       Yox.dom.addClass(element, CLASS_VISIBLE)
       element.style.top = toPixel(top)
 
-      me.set({
-        isVisible: TRUE,
-      })
+      setTimeout(
+        function () {
+          if (!me.$el) {
+            return
+          }
 
-      const duration = toNumber(me.get('duration'))
-      if (duration > 0) {
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.hide()
-            }
-          },
-          duration
-        )
-      }
+          Yox.dom.addClass(element, CLASS_FADE)
+
+          const duration = toNumber(me.get('duration'))
+          if (duration > 0) {
+            setTimeout(
+              function () {
+                if (me.$el) {
+                  me.hide()
+                }
+              },
+              duration
+            )
+          }
+        },
+        50
+      )
 
     },
     hide() {
@@ -104,25 +140,27 @@ export default Yox.define({
         return
       }
 
-      const element = me.$el
-      Yox.dom.removeClass(element, CLASS_VISIBLE)
-      element.style.top = '0px'
-
       me.set({
         isVisible: FALSE,
       })
 
+      const element = me.$el
+      Yox.dom.removeClass(element, CLASS_FADE)
+
       onTransitionEnd(
         element,
         function () {
-          if (me.$el) {
-            me.fire({
-              type: 'hide',
-              ns: 'message',
-            })
+          if (!me.$el) {
+            return
           }
+          Yox.dom.removeClass(element, CLASS_VISIBLE)
+          me.fire({
+            type: 'hide',
+            ns: 'message',
+          })
         }
       )
+
     }
   },
 

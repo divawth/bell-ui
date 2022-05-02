@@ -25,6 +25,7 @@ import {
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}notification-visible'
+const CLASS_FADE = '${prefix}notification-fade'
 
 export default Yox.define({
 
@@ -46,6 +47,10 @@ export default Yox.define({
       type: RAW_NUMERIC,
       value: 4500,
     },
+    gap: {
+      type: RAW_NUMERIC,
+      value: 16,
+    },
     right: {
       type: RAW_NUMERIC,
       value: 15,
@@ -63,47 +68,74 @@ export default Yox.define({
       RAW_TYPE_WARNING,
       RAW_TYPE_ERROR,
       isVisible: FALSE,
+      actualTop: 0,
     }
   },
 
-  computed: {
-    inlineStyle(): Record<string, string> {
-      const width = this.get('width')
-      const right = this.get('right')
-      return {
-        width: toPixel(width),
-        right: toPixel(right),
-      }
-    },
-  },
-
   methods: {
+    move(distance: number) {
 
-    show() {
+      const me = this
+      if (!me.get('isVisible')) {
+        return
+      }
+
+      const element = me.$el
+      if (element) {
+        const gap = toNumber(this.get('gap'))
+        const actualTop = this.get('actualTop') - distance - gap
+        me.set({
+          actualTop,
+        })
+        element.style.top = toPixel(actualTop)
+      }
+
+    },
+    show(height: number, count: number) {
 
       const me = this
       if (me.get('isVisible')) {
         return
       }
 
-      Yox.dom.addClass(me.$el, CLASS_VISIBLE)
+      const gap = toNumber(this.get('gap'))
+      const width = toNumber(this.get('width'))
+      const right = toNumber(this.get('right'))
+      const top = 24 + height + count * gap
 
       me.set({
         isVisible: TRUE,
+        actualTop: top,
       })
 
-      const duration = toNumber(me.get('duration'))
+      const element = me.$el
+      Yox.dom.addClass(element, CLASS_VISIBLE)
+      element.style.top = toPixel(top)
+      element.style.right = toPixel(right)
+      element.style.width = toPixel(width)
 
-      if (duration > 0) {
-        setTimeout(
-          function () {
-            if (me.$el) {
-              me.hide()
-            }
-          },
-          duration
-        )
-      }
+      setTimeout(
+        function () {
+          if (!me.$el) {
+            return
+          }
+
+          Yox.dom.addClass(element, CLASS_FADE)
+
+          const duration = toNumber(me.get('duration'))
+          if (duration > 0) {
+            setTimeout(
+              function () {
+                if (me.$el) {
+                  me.hide()
+                }
+              },
+              duration
+            )
+          }
+        },
+        50
+      )
 
     },
 
@@ -114,28 +146,27 @@ export default Yox.define({
         return
       }
 
-      Yox.dom.removeClass(me.$el, CLASS_VISIBLE)
-
       me.set({
         isVisible: FALSE,
       })
 
-      me.nextTick(function () {
-        if (!me.$el) {
-          return
-        }
-        onTransitionEnd(
-          me.$el,
-          function () {
-            if (me.$el) {
-              me.fire({
-                type: 'hide',
-                ns: 'notification',
-              })
-            }
+      const element = me.$el
+      Yox.dom.removeClass(element, CLASS_FADE)
+
+      onTransitionEnd(
+        element,
+        function () {
+          if (!me.$el) {
+            return
           }
-        )
-      })
+          Yox.dom.removeClass(element, CLASS_VISIBLE)
+          me.fire({
+            type: 'hide',
+            ns: 'notification',
+          })
+        }
+      )
+
     }
   },
 

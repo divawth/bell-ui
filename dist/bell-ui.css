@@ -13992,6 +13992,8 @@ div::-webkit-scrollbar-thumb:hover {
   top: 0;
   left: 50%;
   opacity: 0;
+  margin-top: -20px;
+  display: none;
   z-index: 12;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -14000,7 +14002,7 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 1.5715;
   border-radius: 2px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
-  transition: opacity 0.15s, top 0.3s;
+  transition: opacity 0.15s, top 0.2s, margin-top 0.2s;
 }
 .bell-message-info > .bell-message-icon {
   color: #2db7f5;
@@ -14014,11 +14016,15 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-message-warning > .bell-message-icon {
   color: #f90;
 }
+.bell-message-visible {
+  display: block;
+}
+.bell-message-fade {
+  opacity: 1;
+  margin-top: 0;
+}
 .bell-message-with-close > .bell-message-content {
   margin-right: 28px;
-}
-.bell-message-visible {
-  opacity: 1;
 }
 .bell-message-icon {
   position: absolute;
@@ -14067,15 +14073,11 @@ div::-webkit-scrollbar-thumb:hover {
   border-top: 0;
   padding: 0 24px 24px;
 }
-#bell-notification-wrapper {
-  position: fixed;
-  right: 0;
-  top: 24px;
-  z-index: 12;
-}
 .bell-notification {
-  position: relative;
+  position: fixed;
   opacity: 0;
+  display: none;
+  z-index: 12;
   line-height: 1.5715;
   padding: 16px 24px;
   border-radius: 2px;
@@ -14083,7 +14085,7 @@ div::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
   background-color: #fff;
   transform: translateX(100%);
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.15s, top 0.2s, transform 0.2s;
 }
 .bell-notification-info > .bell-notification-icon {
   color: #2db7f5;
@@ -14097,8 +14099,12 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-notification-warning > .bell-notification-icon {
   color: #f90;
 }
-.bell-notification + .bell-notification {
-  margin-top: 16px;
+.bell-notification-visible {
+  display: block;
+}
+.bell-notification-fade {
+  opacity: 1;
+  transform: translateX(0);
 }
 .bell-notification-with-icon {
   padding-left: 50px;
@@ -14113,10 +14119,6 @@ div::-webkit-scrollbar-thumb:hover {
 .bell-notification-with-title > .bell-notification-close {
   height: 25px;
   min-width: 25px;
-}
-.bell-notification-visible {
-  opacity: 1;
-  transform: translateX(0);
 }
 .bell-notification-title {
   overflow: hidden;

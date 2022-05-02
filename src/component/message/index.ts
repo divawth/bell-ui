@@ -1,10 +1,7 @@
 import Yox, { Data } from 'yox'
 
-import {
-  BODY,
-} from '../constant'
-
 import Message from './Message'
+import { addComponent } from './util'
 
 type Arg = {
   content: string
@@ -31,30 +28,11 @@ function addMessage(status: string, arg: string | Arg) {
     Yox.object.extend(props, arg as Arg)
   }
 
-  const instance: any = new Yox(
-    Yox.object.extend(
-      {
-        el: BODY,
-        props,
-      },
-      Message
-    )
-  )
-
-  instance.on('hide.message', function () {
-    if (onClose) {
-      onClose()
-    }
-    instance.destroy()
-  })
-
-  setTimeout(
-    function () {
-      if (instance.$el) {
-        instance.show()
-      }
-    },
-    300
+  addComponent(
+    Message,
+    props,
+    'hide.message',
+    onClose
   )
 
 }

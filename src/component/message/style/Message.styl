@@ -15,6 +15,8 @@ message-brand-style(style)
   top 0
   left 50%
   opacity 0
+  margin-top -20px
+  display none
   z-index $zindex-message
   transform translateX(-50%)
 
@@ -24,19 +26,23 @@ message-brand-style(style)
   line-height $ui-multiple-line-height
   border-radius $border-radius-default
   box-shadow $brand-message-shadow
-  transition opacity .15s, top .3s
+  transition opacity .15s, top .2s, margin-top .2s
 
   ui-connect(
     hash: $status-brand-hash,
     each: message-brand-style
   )
 
+{$selector-class-prefix + '-message-visible'}
+  display block
+
+{$selector-class-prefix + '-message-fade'}
+  opacity 1
+  margin-top 0
+
 {$selector-class-prefix + '-message-with-close'}
   > {$selector-class-prefix + '-message-content'}
     margin-right $message-close-size + $ui-icon-text-gap
-
-{$selector-class-prefix + '-message-visible'}
-  opacity 1
 
 {$selector-class-prefix + '-message-icon'}
   position absolute

@@ -12765,6 +12765,7 @@ var Message_default = /*#__PURE__*/__webpack_require__.n(Message);
 
 
 var Message_CLASS_VISIBLE = 'bell-message-visible';
+var Message_CLASS_FADE = 'bell-message-fade';
 /* harmony default export */ var message_Message = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Message_default.a,
     name: 'bell-Message',
@@ -12784,6 +12785,10 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
             type: RAW_NUMERIC,
             value: 2000,
         },
+        gap: {
+            type: RAW_NUMERIC,
+            value: 12,
+        },
         top: {
             type: RAW_NUMERIC,
             value: 15,
@@ -12796,48 +12801,73 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
             RAW_TYPE_WARNING: RAW_TYPE_WARNING,
             RAW_TYPE_ERROR: RAW_TYPE_ERROR,
             isVisible: FALSE,
+            actualTop: 0,
         };
     },
     methods: {
-        show: function () {
+        move: function (distance) {
+            var me = this;
+            if (!me.get('isVisible')) {
+                return;
+            }
+            var element = me.$el;
+            if (element) {
+                var gap = toNumber(this.get('gap'));
+                var actualTop = this.get('actualTop') - distance - gap;
+                me.set({
+                    actualTop: actualTop,
+                });
+                element.style.top = toPixel(actualTop);
+            }
+        },
+        show: function (height, count) {
             var me = this;
             if (me.get('isVisible')) {
                 return;
             }
-            var top = this.get('top');
+            var gap = toNumber(this.get('gap'));
+            var top = toNumber(this.get('top')) + height + count * gap;
+            me.set({
+                isVisible: TRUE,
+                actualTop: top,
+            });
             var element = me.$el;
             external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Message_CLASS_VISIBLE);
             element.style.top = toPixel(top);
-            me.set({
-                isVisible: TRUE,
-            });
-            var duration = toNumber(me.get('duration'));
-            if (duration > 0) {
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.hide();
-                    }
-                }, duration);
-            }
+            setTimeout(function () {
+                if (!me.$el) {
+                    return;
+                }
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Message_CLASS_FADE);
+                var duration = toNumber(me.get('duration'));
+                if (duration > 0) {
+                    setTimeout(function () {
+                        if (me.$el) {
+                            me.hide();
+                        }
+                    }, duration);
+                }
+            }, 50);
         },
         hide: function () {
             var me = this;
             if (!me.get('isVisible')) {
                 return;
             }
-            var element = me.$el;
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Message_CLASS_VISIBLE);
-            element.style.top = '0px';
             me.set({
                 isVisible: FALSE,
             });
+            var element = me.$el;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Message_CLASS_FADE);
             onTransitionEnd(element, function () {
-                if (me.$el) {
-                    me.fire({
-                        type: 'hide',
-                        ns: 'message',
-                    });
+                if (!me.$el) {
+                    return;
                 }
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Message_CLASS_VISIBLE);
+                me.fire({
+                    type: 'hide',
+                    ns: 'message',
+                });
             });
         }
     },
@@ -12845,6 +12875,54 @@ var Message_CLASS_VISIBLE = 'bell-message-visible';
         Icon: icon_Icon,
     },
 }));
+
+// CONCATENATED MODULE: ./src/component/message/util.ts
+
+
+var map = {};
+function addComponent(component, props, hideEvent, onClose) {
+    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
+        el: BODY,
+        props: props,
+    }, component));
+    instance.on(hideEvent, function () {
+        if (onClose) {
+            onClose();
+        }
+        instance.destroy();
+        // 通知后面的移位
+        var originalList = map[hideEvent];
+        var copyList = originalList.slice();
+        var removed = UNDEFINED;
+        for (var i = 0, len = copyList.length; i < len; i++) {
+            var item = copyList[i];
+            if (item.instance === instance) {
+                removed = item;
+                originalList.splice(i, 1);
+            }
+            else if (removed) {
+                // @ts-ignore
+                item.instance.move(removed.height);
+            }
+        }
+    });
+    setTimeout(function () {
+        if (instance.$el) {
+            var list = map[hideEvent] || (map[hideEvent] = []);
+            var height = 0;
+            var count = list.length;
+            for (var i = 0; i < count; i++) {
+                height += list[i].height;
+            }
+            // @ts-ignore
+            instance.show(height, count);
+            list.push({
+                instance: instance,
+                height: instance.$el.clientHeight,
+            });
+        }
+    }, 300);
+}
 
 // CONCATENATED MODULE: ./src/component/message/index.ts
 
@@ -12862,21 +12940,7 @@ function addMessage(status, arg) {
         onClose = arg.onClose;
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
-    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: BODY,
-        props: props,
-    }, message_Message));
-    instance.on('hide.message', function () {
-        if (onClose) {
-            onClose();
-        }
-        instance.destroy();
-    });
-    setTimeout(function () {
-        if (instance.$el) {
-            instance.show();
-        }
-    }, 300);
+    addComponent(message_Message, props, 'hide.message', onClose);
 }
 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$message = {
     success: function (arg) {
@@ -13121,6 +13185,7 @@ var Notification_default = /*#__PURE__*/__webpack_require__.n(Notification);
 
 
 var Notification_CLASS_VISIBLE = 'bell-notification-visible';
+var Notification_CLASS_FADE = 'bell-notification-fade';
 /* harmony default export */ var notification_Notification = (external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.define({
     template: Notification_default.a,
     name: 'bell-Notification',
@@ -13138,6 +13203,10 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
             type: RAW_NUMERIC,
             value: 4500,
         },
+        gap: {
+            type: RAW_NUMERIC,
+            value: 16,
+        },
         right: {
             type: RAW_NUMERIC,
             value: 15,
@@ -13154,52 +13223,76 @@ var Notification_CLASS_VISIBLE = 'bell-notification-visible';
             RAW_TYPE_WARNING: RAW_TYPE_WARNING,
             RAW_TYPE_ERROR: RAW_TYPE_ERROR,
             isVisible: FALSE,
+            actualTop: 0,
         };
     },
     methods: {
-        show: function () {
+        move: function (distance) {
+            var me = this;
+            if (!me.get('isVisible')) {
+                return;
+            }
+            var element = me.$el;
+            if (element) {
+                var gap = toNumber(this.get('gap'));
+                var actualTop = this.get('actualTop') - distance - gap;
+                me.set({
+                    actualTop: actualTop,
+                });
+                element.style.top = toPixel(actualTop);
+            }
+        },
+        show: function (height, count) {
             var me = this;
             if (me.get('isVisible')) {
                 return;
             }
-            var width = this.get('width');
-            var right = this.get('right');
-            var element = me.$el;
-            element.style.right = toPixel(right);
-            element.style.width = toPixel(width);
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notification_CLASS_VISIBLE);
+            var gap = toNumber(this.get('gap'));
+            var width = toNumber(this.get('width'));
+            var right = toNumber(this.get('right'));
+            var top = 24 + height + count * gap;
             me.set({
                 isVisible: TRUE,
+                actualTop: top,
             });
-            var duration = toNumber(me.get('duration'));
-            if (duration > 0) {
-                setTimeout(function () {
-                    if (me.$el) {
-                        me.hide();
-                    }
-                }, duration);
-            }
+            var element = me.$el;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notification_CLASS_VISIBLE);
+            element.style.top = toPixel(top);
+            element.style.right = toPixel(right);
+            element.style.width = toPixel(width);
+            setTimeout(function () {
+                if (!me.$el) {
+                    return;
+                }
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.addClass(element, Notification_CLASS_FADE);
+                var duration = toNumber(me.get('duration'));
+                if (duration > 0) {
+                    setTimeout(function () {
+                        if (me.$el) {
+                            me.hide();
+                        }
+                    }, duration);
+                }
+            }, 50);
         },
         hide: function () {
             var me = this;
             if (!me.get('isVisible')) {
                 return;
             }
-            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(me.$el, Notification_CLASS_VISIBLE);
             me.set({
                 isVisible: FALSE,
             });
-            me.nextTick(function () {
+            var element = me.$el;
+            external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Notification_CLASS_FADE);
+            onTransitionEnd(element, function () {
                 if (!me.$el) {
                     return;
                 }
-                onTransitionEnd(me.$el, function () {
-                    if (me.$el) {
-                        me.fire({
-                            type: 'hide',
-                            ns: 'notification',
-                        });
-                    }
+                external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.removeClass(element, Notification_CLASS_VISIBLE);
+                me.fire({
+                    type: 'hide',
+                    ns: 'notification',
                 });
             });
         }
@@ -13226,27 +13319,7 @@ function addNotification(status, arg) {
         onClose = arg.onClose;
         external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend(props, arg);
     }
-    var wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.find('#bell-notification-wrapper');
-    if (!wrapper) {
-        wrapper = external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.createElement('div');
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.setAttr(wrapper, 'id', 'bell-notification-wrapper');
-        external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.dom.append(BODY, wrapper);
-    }
-    var instance = new external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a(external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.object.extend({
-        el: wrapper,
-        props: props,
-    }, notification_Notification));
-    instance.on('hide.notification', function () {
-        if (onClose) {
-            onClose();
-        }
-        instance.destroy();
-    });
-    setTimeout(function () {
-        if (instance.$el) {
-            instance.show();
-        }
-    }, 300);
+    addComponent(notification_Notification, props, 'hide.notification', onClose);
 }
 external_root_Yox_commonjs_yox_commonjs2_yox_amd_yox_default.a.prototype.$notification = {
     open: function (props) {

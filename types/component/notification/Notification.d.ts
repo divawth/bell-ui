@@ -1,8 +1,10 @@
 declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
-    show(): void;
+    move(distance: number): void;
+    show(height: number, count: number): void;
     hide(): void;
 }> & ThisType<{
-    show(): void;
+    move(distance: number): void;
+    show(height: number, count: number): void;
     hide(): void;
 } & import("yox").YoxInterface>;
 export default _default;

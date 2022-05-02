@@ -1,5 +1,5 @@
 import Yox, { Data } from 'yox'
-import { BODY } from '../constant'
+import { addComponent } from '../message/util'
 
 import Notification from './Notification'
 
@@ -36,37 +36,11 @@ function addNotification(status: string, arg: string | Arg) {
     Yox.object.extend(props, arg as Arg)
   }
 
-  let wrapper = Yox.dom.find('#${prefix}notification-wrapper') as HTMLElement
-  if (!wrapper) {
-    wrapper = Yox.dom.createElement('div') as HTMLElement
-    Yox.dom.setAttr(wrapper, 'id', '${prefix}notification-wrapper')
-    Yox.dom.append(BODY, wrapper)
-  }
-
-  const instance: any = new Yox(
-    Yox.object.extend(
-      {
-        el: wrapper,
-        props,
-      },
-      Notification
-    )
-  )
-
-  instance.on('hide.notification', function () {
-    if (onClose) {
-      onClose()
-    }
-    instance.destroy()
-  })
-
-  setTimeout(
-    function () {
-      if (instance.$el) {
-        instance.show()
-      }
-    },
-    300
+  addComponent(
+    Notification,
+    props,
+    'hide.notification',
+    onClose
   )
 
 }
