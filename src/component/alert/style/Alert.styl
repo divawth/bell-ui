@@ -1,6 +1,9 @@
 $alert-padding-horizontal = 15px
 $alert-padding-vertical = 8px
 
+$alert-padding-horizontal-with-title = 15px
+$alert-padding-vertical-with-title = 12px
+
 $alert-title-content-gap = 4px
 
 $alert-close-size = floor($font-size-default * $ui-multiple-line-height)
@@ -44,11 +47,13 @@ alert-brand-style(style)
   font-size $message-status-icon-size-default
 
 {$selector-class-prefix + '-alert-with-title'}
+  padding $alert-padding-vertical-with-title $alert-padding-horizontal-with-title
   > {$selector-class-prefix + '-alert-status-icon'}
-    top $alert-padding-vertical + $alert-status-icon-top-with-title
+    top $alert-padding-vertical-with-title + $alert-status-icon-top-with-title
     font-size $message-status-icon-size-large
 
   > {$selector-class-prefix + '-alert-close'}
+    top $alert-padding-vertical-with-title
     height $alert-close-size-with-title
     min-width $alert-close-size-with-title
 

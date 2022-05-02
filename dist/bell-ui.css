@@ -10133,11 +10133,15 @@ div::-webkit-scrollbar-thumb:hover {
   top: 10px;
   font-size: 18px;
 }
+.bell-alert-with-title {
+  padding: 12px 15px;
+}
 .bell-alert-with-title > .bell-alert-status-icon {
-  top: 10px;
+  top: 14px;
   font-size: 24px;
 }
 .bell-alert-with-title > .bell-alert-close {
+  top: 12px;
   height: 25px;
   min-width: 25px;
 }
