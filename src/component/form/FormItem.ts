@@ -8,16 +8,12 @@ import {
   UNDEFINED,
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_TOP,
-  RAW_BOTTOM,
-  RAW_MIDDLE,
   RAW_INLINE,
   RAW_HORIZONTAL,
   RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
-  oneOf,
   toPixel,
   spaceItemStyle,
   findComponentUpward,
@@ -69,7 +65,6 @@ export default Yox.define({
     const form = findComponentUpward(options.parent, '${prefix}Form')
 
     return {
-      RAW_TOP,
       RAW_HORIZONTAL,
       error: UNDEFINED,
       formLayout: form.get('layout'),

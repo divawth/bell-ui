@@ -1,0 +1,14 @@
+<div
+class="${prefix}steps
+{{#if size}} ${prefix}steps-{{size}}{{/if}}
+{{#if vertical}} ${prefix}steps-vertical
+{{else}} ${prefix}steps-horizontal
+{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+  <slot />
+</div>

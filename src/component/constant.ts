@@ -31,6 +31,10 @@ export const RAW_RESIZE = 'resize'
 export const RAW_CENTER = 'center'
 export const RAW_MIDDLE = 'middle'
 
+export const RAW_WAIT = 'wait'
+export const RAW_PROCESS = 'process'
+export const RAW_FINISH = 'finish'
+
 export const RAW_SCALE_TO_FILL = 'scaleToFill'
 export const RAW_ASPECT_FIT = 'aspectFit'
 

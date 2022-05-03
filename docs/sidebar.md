@@ -17,9 +17,9 @@
   - [Tabs 标签页](navigation/tabs)
   - [Dropdown 下拉框](navigation/dropdown)
   - [Pagination 分页](navigation/pagination)
+  - [Steps 步骤条](navigation/steps)
   - [Breadcrumb 面包屑](navigation/breadcrumb)
   - [PageHeader 页头](navigation/pageheader)
-  - [Badge 徽标数](view/badge)
   - [LoadingBar 加载条](other/loadingbar)
 
 - [表单](layout)
@@ -53,6 +53,7 @@
   - [Tooltip 文字提示](view/tooltip)
   - [Progress 进度条](other/progress)
   - [Circle 进度环](other/circle)
+  - [Badge 徽标数](view/badge)
   - [Avatar 头像](view/avatar)
   - [Article 文章](view/article)
   - [Guide 指南](view/guide)

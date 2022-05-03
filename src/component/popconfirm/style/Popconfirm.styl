@@ -3,8 +3,6 @@
 $popconfirm-padding-horizontal = 16px
 $popconfirm-padding-vertical = 12px
 
-$popconfirm-status-icon-gap = 8px
-$popconfirm-status-icon-size = 16px
 $popconfirm-status-icon-top = 2px
 
 popconfirm-brand-style(style)
@@ -44,11 +42,11 @@ popconfirm-brand-style(style)
   position absolute
   left $popconfirm-padding-horizontal
   top $popconfirm-padding-vertical + $popconfirm-status-icon-top
-  font-size $popconfirm-status-icon-size
+  font-size $message-status-icon-size-default
 
 {$selector-class-prefix + '-popconfirm-with-icon'}
   > {$selector-class-prefix + '-popover-content'}
-    padding-left $popconfirm-padding-horizontal + $popconfirm-status-icon-size + $popconfirm-status-icon-gap
+    padding-left $popconfirm-padding-horizontal + $message-status-icon-size-default + $ui-horizontal-gap
 
 {$selector-class-prefix + '-popconfirm-footer'}
   text-align right

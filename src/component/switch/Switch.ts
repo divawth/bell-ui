@@ -46,7 +46,7 @@ export default Yox.define({
   },
 
   methods: {
-    handleClick() {
+    onClick() {
       this.fire(
         {
           type: 'change',

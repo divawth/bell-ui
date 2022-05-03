@@ -1,0 +1,39 @@
+<div
+class="${prefix}step
+{{#if stepStatus}} ${prefix}step-{{stepStatus}}{{/if}}
+{{#if className}} {{className}}{{/if}}"
+
+{{#if style}}
+  style="{{style}}"
+{{/if}}
+>
+
+  <div class="${prefix}step-indicator">
+    {{#if stepStatus === RAW_FINISH}}
+      <Icon
+        name="check-fill"
+        className="${prefix}step-icon"
+      />
+    {{else if stepStatus === RAW_TYPE_ERROR}}
+      <Icon
+        name="close-fill"
+        className="${prefix}step-icon"
+      />
+    {{else}}
+      {{stepNumber}}
+    {{/if}}
+  </div>
+
+  <div class="${prefix}step-content">
+    <div class="${prefix}step-title">
+      {{title}}
+    </div>
+
+    {{#if description}}
+      <div class="${prefix}step-description">
+        {{description}}
+      </div>
+    {{/if}}
+  </div>
+
+</div>

@@ -35,6 +35,8 @@ import Space from './component/space/Space'
 import Statistic from './component/statistic/Statistic'
 import Switch from './component/switch/Switch'
 import Skeleton from './component/skeleton/Skeleton'
+import Steps from './component/steps/Steps'
+import Step from './component/steps/Step'
 import Select from './component/select/Select'
 import Option from './component/select/Option'
 import OptionGroup from './component/select/OptionGroup'
@@ -160,6 +162,8 @@ export function install(Yox: any) {
     Statistic,
     Switch,
     Skeleton,
+    Steps,
+    Step,
     Select,
     Option,
     OptionGroup,

@@ -1,0 +1,163 @@
+$steps-vertical-line-gap = 6px
+$steps-icon-size-default = 20px
+$steps-icon-size-small = 14px
+
+{$selector-class-prefix + '-steps'}
+  display flex
+  line-height $ui-multiple-line-height
+
+{$selector-class-prefix + '-step'}
+  display flex
+  overflow hidden
+
+{$selector-class-prefix + '-step-finish'}
+  {$selector-class-prefix + '-step-indicator'}
+    border-color $brand-primary
+    color $brand-primary
+
+{$selector-class-prefix + '-step-process'}
+  {$selector-class-prefix + '-step-indicator'}
+    border-color $brand-primary
+    background-color $brand-primary
+    color $brand-white
+
+{$selector-class-prefix + '-step-wait'}
+  {$selector-class-prefix + '-step-indicator'}
+    background-color $brand-bg-disabled
+    color $brand-disabled
+
+  {$selector-class-prefix + '-step-title'}
+    color $brand-muted
+
+{$selector-class-prefix + '-step-error'}
+  {$selector-class-prefix + '-step-indicator'}
+    border-color $brand-error
+    color $brand-error
+
+  {$selector-class-prefix + '-step-title'},
+  {$selector-class-prefix + '-step-description'}
+    color $brand-error
+
+{$selector-class-prefix + '-step-indicator'}
+  display flex
+  justify-content center
+  align-items center
+  user-select none
+  font-size $font-size-large
+  width $height-default
+  height $height-default
+  background-color $brand-bg
+  color $brand-content
+  border 1px solid $brand-border
+  border-radius $border-radius-circle
+  box-sizing border-box
+
+{$selector-class-prefix + '-step-icon'}
+  font-size $steps-icon-size-default
+
+{$selector-class-prefix + '-step-title'}
+  display inline-block
+  color $brand-title
+  font-size $font-size-large
+  line-height $height-default
+
+{$selector-class-prefix + '-step-description'}
+  color $brand-muted
+  font-size $font-size-default
+
+{$selector-class-prefix + '-steps-horizontal'}
+  flex-direction row
+
+  {$selector-class-prefix + '-step'}
+    flex 1
+
+    + {$selector-class-prefix + '-step'}
+      padding-left 0.5 * $height-default
+
+  {$selector-class-prefix + '-step-indicator'}
+    margin-right $ui-horizontal-gap
+
+  {$selector-class-prefix + '-step-title'}
+    position relative
+    padding-right 0.5 * $height-default
+
+    &:after
+      content ''
+      position absolute
+      left 100%
+      width 9999px
+      top 0.5 * $height-default
+      height 1px
+      background-color $brand-divider
+
+  {$selector-class-prefix + '-step-finish'}
+    {$selector-class-prefix + '-step-title'}:after
+      background-color $brand-primary
+
+  {$selector-class-prefix + '-step'}:last-child
+    flex none
+
+    {$selector-class-prefix + '-step-title'}
+      padding-right 0
+      &:after
+        display none
+
+{$selector-class-prefix + '-steps-vertical'}
+  flex-direction column
+
+  {$selector-class-prefix + '-step'}
+    position relative
+
+    &:after
+      content ''
+      position absolute
+      top $height-default + $steps-vertical-line-gap
+      bottom $steps-vertical-line-gap
+      left 0.5 * $height-default
+      width 1px
+      background-color $brand-divider
+
+  {$selector-class-prefix + '-step-content'}
+    padding-bottom $ui-vertical-gap
+
+  {$selector-class-prefix + '-step-indicator'}
+    margin-right 0.5 * $height-default
+
+  {$selector-class-prefix + '-step-finish'}:after
+    background-color $brand-primary
+
+  {$selector-class-prefix + '-step'}:last-child
+    &:after
+      display none
+    {$selector-class-prefix + '-step-content'}
+      padding-bottom 0
+
+{$selector-class-prefix + '-steps-small'}
+  {$selector-class-prefix + '-step-indicator'}
+    font-size $font-size-small
+    width $height-small
+    height $height-small
+
+  {$selector-class-prefix + '-step-icon'}
+    font-size $steps-icon-size-small
+
+  {$selector-class-prefix + '-step-title'}
+    line-height $height-small
+
+  &{$selector-class-prefix + '-steps-horizontal'}
+    {$selector-class-prefix + '-step'} + {$selector-class-prefix + '-step'}
+      padding-left 0.5 * $height-small
+
+    {$selector-class-prefix + '-step-title'}
+      padding-right 0.5 * $height-small
+
+      &:after
+        top 0.5 * $height-small
+
+  &{$selector-class-prefix + '-steps-vertical'}
+    {$selector-class-prefix + '-step'}:after
+      left 0.5 * $height-small
+      top $height-small + $steps-vertical-line-gap
+
+    {$selector-class-prefix + '-step-indicator'}
+      margin-right 0.5 * $height-small
