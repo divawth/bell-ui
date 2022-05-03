@@ -3,8 +3,6 @@
 $backtop-size = 40px
 $backtop-icon-size = 24px
 
-$backtop-bg-color = rgba(0,0,0,0.6)
-
 {$selector-class-prefix + '-backtop'}
   position fixed
   right $layout-padding-horizontal
@@ -17,13 +15,16 @@ $backtop-bg-color = rgba(0,0,0,0.6)
   height $backtop-size
   line-height $backtop-size
   border-radius $border-radius-default
-  transition opacity .3s
+  transition opacity .3s, background-color .3s
   box-sizing border-box
 
   user-select none
   ui-clickable()
 
-  background-color $backtop-bg-color
+  background-color $brand-text-mask-bg-color
+
+  &:hover
+    background-color $brand-text-mask-bg-color-hover
 
   {$selector-class-prefix + '-icon'}
     color $brand-white

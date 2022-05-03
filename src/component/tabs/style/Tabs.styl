@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$tabs-nav-content-gap = 16px
-$tabs-close-icon-size = 16px
 $tabs-indicator-height = 2px
 
 $tabs-card-bg-color-active = $brand-white
@@ -51,7 +49,7 @@ size-size-style(style)
   border-bottom 1px solid $brand-border
 
   + {$selector-class-prefix + '-tabs-content'}
-    margin-top $tabs-nav-content-gap
+    margin-top $layout-padding-vertical
 
 {$selector-class-prefix + '-tabs-nav'}
   margin-bottom -1px
@@ -61,7 +59,8 @@ size-size-style(style)
   user-select none
 
 {$selector-class-prefix + '-tabs-tab'}
-  display inline-block
+  display inline-flex
+  align-items center
   position relative
   box-sizing border-box
   vertical-align bottom
@@ -81,11 +80,8 @@ size-size-style(style)
 
 {$selector-class-prefix + '-tabs-tab-close-icon'}
   color $brand-close-color
-  margin-right -6px
   margin-left $ui-icon-text-gap
-  font-size $tabs-close-icon-size
-  text-align center
-  overflow hidden
+  font-size $message-close-icon-size
   transition color $form-control-transition-duration
   ui-clickable()
 

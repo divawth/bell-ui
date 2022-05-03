@@ -1,8 +1,5 @@
 @import '../../../env'
 
-$notification-padding-vertical = 16px
-$notification-padding-horizontal = 24px
-
 $notification-title-content-gap = 6px
 
 $notification-close-size = floor($font-size-default * $ui-multiple-line-height)
@@ -24,7 +21,7 @@ notification-brand-style(style)
   display none
   z-index $zindex-notification
   line-height $ui-multiple-line-height
-  padding $notification-padding-vertical $notification-padding-horizontal
+  padding $layout-child-padding-vertical $layout-padding-horizontal
   border-radius $border-radius-default
   box-sizing border-box
   box-shadow $brand-message-shadow
@@ -45,14 +42,14 @@ notification-brand-style(style)
   transform translateX(0)
 
 {$selector-class-prefix + '-notification-with-icon'}
-  padding-left $notification-padding-horizontal + $message-status-icon-size-default + $notification-icon-gap
+  padding-left $layout-padding-horizontal + $message-status-icon-size-default + $notification-icon-gap
 
 {$selector-class-prefix + '-notification-with-title'}
   &{$selector-class-prefix + '-notification-with-icon'}
-    padding-left $notification-padding-horizontal + $message-status-icon-size-large + $notification-icon-gap-with-title
+    padding-left $layout-padding-horizontal + $message-status-icon-size-large + $notification-icon-gap-with-title
 
   > {$selector-class-prefix + '-notification-icon'}
-    top $notification-padding-vertical + $notification-icon-top-with-title
+    top $layout-child-padding-vertical + $notification-icon-top-with-title
     font-size $message-status-icon-size-large
 
   > {$selector-class-prefix + '-notification-close'}
@@ -76,14 +73,14 @@ notification-brand-style(style)
 
 {$selector-class-prefix + '-notification-icon'}
   position absolute
-  left $notification-padding-horizontal
-  top $notification-padding-vertical + $notification-icon-top
+  left $layout-padding-horizontal
+  top $layout-child-padding-vertical + $notification-icon-top
   font-size $message-status-icon-size-default
 
 {$selector-class-prefix + '-notification-close'}
   position absolute
-  right $notification-padding-horizontal
-  top $notification-padding-vertical
+  right $layout-padding-horizontal
+  top $layout-child-padding-vertical
 
   color $brand-close-color
   font-size $font-size-small

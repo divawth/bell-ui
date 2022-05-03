@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$page-header-padding-vertical = 16px
-
 $page-header-back-icon-size = 20px
 $page-header-title-font-size = 20px
 
@@ -12,7 +10,7 @@ $page-header-header-body-gap = 16px
 
 {$selector-class-prefix + '-page-header'}
   line-height $ui-multiple-line-height
-  padding $page-header-padding-vertical $layout-padding-horizontal
+  padding $layout-child-padding-vertical $layout-padding-horizontal
 
   > {$selector-class-prefix + '-breadcrumb'}
     margin-bottom $page-header-breadcrumb-header-gap

@@ -1,13 +1,6 @@
 $card-header-padding-vertical = 18px
-
-$card-media-info-padding = 12px 24px
+$card-media-info-padding-horizontal = 12px
 $card-media-sub-title-gap = 2px
-
-// 因为 body 有些行间距，body 要设置的稍微小一点点，才会看起来相等
-$card-body-padding-vertical = 24px
-
-$card-footer-padding-vertical = 24px
-
 
 {$selector-class-prefix + '-card'}
   display flex
@@ -31,7 +24,7 @@ $card-footer-padding-vertical = 24px
   display flex
   justify-content space-between
   align-items center
-  padding $card-header-padding-vertical $card-padding-horizontal
+  padding $card-header-padding-vertical $layout-padding-horizontal
 
   + {$selector-class-prefix + '-card-body'}
     border-top 1px solid $brand-divider
@@ -53,7 +46,7 @@ $card-footer-padding-vertical = 24px
   left 0
   right 0
   bottom 0
-  padding $card-media-info-padding
+  padding $card-media-info-padding-horizontal $layout-padding-horizontal
   background-color $brand-text-mask-bg-color
 
 {$selector-class-prefix + '-card-media-title'}
@@ -73,7 +66,7 @@ $card-footer-padding-vertical = 24px
   flex 1
   color $brand-content
   font-size $font-size-default
-  padding $card-body-padding-vertical $card-padding-horizontal
+  padding $layout-padding-vertical $layout-padding-horizontal
   position relative
 
   + {$selector-class-prefix + '-card-footer'}
@@ -82,4 +75,4 @@ $card-footer-padding-vertical = 24px
 {$selector-class-prefix + '-card-footer'}
   color $brand-content
   font-size $font-size-default
-  padding $card-footer-padding-vertical $card-padding-horizontal
+  padding $layout-padding-vertical $layout-padding-horizontal

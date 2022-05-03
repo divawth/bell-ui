@@ -3,11 +3,6 @@
 @import '../../../css/selector'
 @import '../../../css/mixin'
 
-$dialog-padding-horizontal = 24px
-
-$dialog-header-padding-vertical = 16px
-$dialog-body-padding-vertical = 24px
-
 {$selector-class-prefix + '-dialog'}
   position fixed
   top 0
@@ -61,7 +56,7 @@ $dialog-body-padding-vertical = 24px
   display flex
   justify-content space-between
   align-items center
-  padding $dialog-header-padding-vertical $dialog-padding-horizontal
+  padding $layout-child-padding-vertical $layout-padding-horizontal
   border-bottom 1px solid $brand-divider
 
 {$selector-class-prefix + '-dialog-title'}
@@ -83,7 +78,7 @@ $dialog-body-padding-vertical = 24px
 
 {$selector-class-prefix + '-dialog-body'}
   font-size $font-size-default
-  padding $dialog-body-padding-vertical $dialog-padding-horizontal
+  padding $layout-padding-vertical $layout-padding-horizontal
 
 {$selector-class-prefix + '-dialog-footer'}
   border-top 1px solid $brand-divider

@@ -1,9 +1,5 @@
 @import '../../../env'
 
-$drawer-padding-horizontal = 24px
-$drawer-header-padding-vertical = 16px
-$drawer-body-padding-vertical = 16px
-
 {$selector-class-prefix + '-drawer'}
   position fixed
   left 0
@@ -33,12 +29,12 @@ $drawer-body-padding-vertical = 16px
   display flex
   justify-content space-between
   align-items center
-  padding $drawer-header-padding-vertical $drawer-padding-horizontal
+  padding $layout-child-padding-vertical $layout-padding-horizontal
   border-bottom 1px solid $brand-border
 
 {$selector-class-prefix + '-drawer-body'}
   flex-grow 1
-  padding $drawer-body-padding-vertical $drawer-padding-horizontal
+  padding $layout-child-padding-vertical $layout-padding-horizontal
   color $brand-content
   font-size $font-size-default
   word-wrap break-word
