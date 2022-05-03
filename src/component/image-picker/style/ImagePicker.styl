@@ -6,7 +6,7 @@ $image-picker-image-size-padding = 2px 4px
 
 {$selector-class-prefix + '-image-picker'}
   position relative
-  line-height 0
+  line-height $ui-multiple-line-height
 
   {$selector-class-prefix + '-image-picker-mask'}
     display flex
@@ -17,7 +17,6 @@ $image-picker-image-size-padding = 2px 4px
 
 {$selector-class-prefix + '-image-picker-item'}
   display block
-  line-height $ui-multiple-line-height
   background-color $brand-bg-light
   box-sizing content-box
   position relative
@@ -102,12 +101,6 @@ $image-picker-image-size-padding = 2px 4px
 {$selector-class-prefix + '-image-picker-card-mouse-enter'}
   {$selector-class-prefix + '-closable-icon'}
     display block
-
-{$selector-class-prefix + '-image-picker-extra'}
-  color $brand-muted
-  font-size $font-size-small
-  line-height $ui-multiple-line-height
-  margin-top $ui-vertical-gap
 
 {$selector-class-prefix + '-image-picker-items-wrapper'}
   display inline-flex

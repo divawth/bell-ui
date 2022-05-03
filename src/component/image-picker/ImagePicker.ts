@@ -80,9 +80,6 @@ export default Yox.define({
       type: RAW_ARRAY,
       value: [8, 10],
     },
-    extra: {
-      type: RAW_STRING,
-    },
     minSize: {
       type: RAW_NUMERIC,
     },
