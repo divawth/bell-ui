@@ -125,18 +125,14 @@ $popover-arrow-size = 5px
 
 // 带箭头的 popover
 
-{$selector-class-prefix + '-popover-arrow'},
-{$selector-class-prefix + '-popover-arrow'}:before
+{$selector-class-prefix + '-popover-arrow'}
   position absolute
   width 0
   height 0
   border $popover-arrow-size solid $brand-transparent-color
 
-{$selector-class-prefix + '-popover-arrow'}:before
-  content ''
-
 {$selector-class-prefix + '-popover-content'}
-  border 1px solid $brand-transparent-color
+  line-height $ui-multiple-line-height
   box-sizing border-box
 
 {$selector-class-prefix + '-popover-bottom'},
@@ -146,18 +142,13 @@ $popover-arrow-size = 5px
   &{$selector-class-prefix + '-popover-with-arrow'}
     padding-top $popover-arrow-padding-inner
 
-  > {$selector-class-prefix + '-popover-arrow'},
-  > {$selector-class-prefix + '-popover-arrow'}:before
+  > {$selector-class-prefix + '-popover-arrow'}
     border-top-color $brand-transparent-color !important
     border-left-color $brand-transparent-color !important
     border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     top $popover-arrow-offset
-
-  > {$selector-class-prefix + '-popover-arrow'}:before
-    left -1 * $popover-arrow-size
-    top -1 * ($popover-arrow-size - 1)
 
 {$selector-class-prefix + '-popover-bottom'}
   > {$selector-class-prefix + '-popover-arrow'}
@@ -182,18 +173,13 @@ $popover-arrow-size = 5px
   &{$selector-class-prefix + '-popover-with-arrow'}
     padding-bottom $popover-arrow-padding-inner
 
-  > {$selector-class-prefix + '-popover-arrow'},
-  > {$selector-class-prefix + '-popover-arrow'}:before
+  > {$selector-class-prefix + '-popover-arrow'}
     border-bottom-color $brand-transparent-color !important
     border-left-color $brand-transparent-color !important
     border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     bottom $popover-arrow-offset
-
-  > {$selector-class-prefix + '-popover-arrow'}:before
-    left -1 * $popover-arrow-size
-    bottom -1 * ($popover-arrow-size - 1)
 
 
 {$selector-class-prefix + '-popover-top'}
@@ -220,18 +206,13 @@ $popover-arrow-size = 5px
   &{$selector-class-prefix + '-popover-with-arrow'}
     padding-right $popover-arrow-padding-inner
 
-  > {$selector-class-prefix + '-popover-arrow'},
-  > {$selector-class-prefix + '-popover-arrow'}:before
+  > {$selector-class-prefix + '-popover-arrow'}
     border-top-color $brand-transparent-color !important
     border-bottom-color $brand-transparent-color !important
     border-right-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     right $popover-arrow-offset
-
-  > {$selector-class-prefix + '-popover-arrow'}:before
-    top -1 * $popover-arrow-size
-    right -1 * ($popover-arrow-size - 1)
 
 {$selector-class-prefix + '-popover-left'}
   > {$selector-class-prefix + '-popover-arrow'}
@@ -255,18 +236,13 @@ $popover-arrow-size = 5px
   &{$selector-class-prefix + '-popover-with-arrow'}
     padding-left $popover-arrow-padding-inner
 
-  > {$selector-class-prefix + '-popover-arrow'},
-  > {$selector-class-prefix + '-popover-arrow'}:before
+  > {$selector-class-prefix + '-popover-arrow'}
     border-top-color $brand-transparent-color !important
     border-left-color $brand-transparent-color !important
     border-bottom-color $brand-transparent-color !important
 
   > {$selector-class-prefix + '-popover-arrow'}
     left $popover-arrow-offset
-
-  > {$selector-class-prefix + '-popover-arrow'}:before
-    top -1 * $popover-arrow-size
-    left -1 * ($popover-arrow-size - 1)
 
 
 {$selector-class-prefix + '-popover-right'}

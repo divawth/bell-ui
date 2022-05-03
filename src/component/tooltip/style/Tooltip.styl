@@ -4,11 +4,9 @@ $tooltip-padding = 8px 12px
 
 $tooltip-dark-color = $brand-white
 $tooltip-dark-bg-color = #606060
-$tooltip-dark-border-color = #555
 
 $tooltip-light-color = $brand-content
 $tooltip-light-bg-color = $brand-white
-$tooltip-light-border-color = $brand-divider
 
 {$selector-class-prefix + '-tooltip'}
   font-size 0
@@ -16,35 +14,28 @@ $tooltip-light-border-color = $brand-divider
 
   > {$selector-class-prefix + '-popover-content'}
     font-size $font-size-small
-    line-height $ui-multiple-line-height
 
     text-align left
     white-space nowrap
     overflow auto
 
     padding $tooltip-padding
-    box-shadow $brand-message-shadow
+    box-shadow $brand-layer-shadow
     border-radius $border-radius-default
 
 {$selector-class-prefix + '-tooltip-dark'}
   > {$selector-class-prefix + '-popover-arrow'}
-    border-color $tooltip-dark-border-color
-    &:before
-      border-color $tooltip-dark-bg-color
+    border-color $tooltip-dark-bg-color
 
   > {$selector-class-prefix + '-popover-content'}
     color $tooltip-dark-color
-    border-color $tooltip-dark-border-color
     background-color $tooltip-dark-bg-color
 
 {$selector-class-prefix + '-tooltip-light'}
   > {$selector-class-prefix + '-popover-arrow'}
-    border-color $tooltip-light-border-color
-    &:before
-      border-color $tooltip-light-bg-color
+    border-color $tooltip-light-bg-color
 
   > {$selector-class-prefix + '-popover-content'}
     color $tooltip-light-color
-    border-color $tooltip-light-border-color
     background-color $tooltip-light-bg-color
 
