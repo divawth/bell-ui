@@ -9,17 +9,14 @@ $alert-title-content-gap = 4px
 $alert-close-size = floor($font-size-default * $ui-multiple-line-height)
 $alert-close-size-with-title = floor($font-size-large * $ui-multiple-line-height)
 
-$alert-status-icon-gap = 8px
-$alert-status-icon-top = 2px
-
-$alert-status-icon-gap-with-title = 10px
-$alert-status-icon-top-with-title = 2px
+$alert-indicator-gap = 8px
+$alert-indicator-gap-with-title = 10px
 
 alert-brand-style(style)
   ui-set('border-color', style['border-color'])
   ui-set('background-color', style['bg-color'])
 
-  {$selector-class-prefix + '-alert-status-icon'}
+  {$selector-class-prefix + '-alert-indicator'}
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-alert'}
@@ -40,16 +37,23 @@ alert-brand-style(style)
   border 0
   border-radius 0
 
-{$selector-class-prefix + '-alert-status-icon'}
+{$selector-class-prefix + '-alert-indicator'}
+  display flex
+  align-items center
   position absolute
   left $alert-padding-horizontal
-  top $alert-padding-vertical + $alert-status-icon-top
+  top $alert-padding-vertical
+  height $alert-close-size
   font-size $message-status-icon-size-default
+
+  > {$selector-class-prefix + '-icon'}
+    font-size inherit
 
 {$selector-class-prefix + '-alert-with-title'}
   padding $alert-padding-vertical-with-title $alert-padding-horizontal-with-title
-  > {$selector-class-prefix + '-alert-status-icon'}
-    top $alert-padding-vertical-with-title + $alert-status-icon-top-with-title
+  > {$selector-class-prefix + '-alert-indicator'}
+    top $alert-padding-vertical-with-title
+    height $alert-close-size-with-title
     font-size $message-status-icon-size-large
 
   > {$selector-class-prefix + '-alert-close'}
@@ -58,10 +62,10 @@ alert-brand-style(style)
     min-width $alert-close-size-with-title
 
 {$selector-class-prefix + '-alert-with-icon'}
-  padding-left $alert-padding-horizontal + $message-status-icon-size-default + $alert-status-icon-gap
+  padding-left $alert-padding-horizontal + $message-status-icon-size-default + $alert-indicator-gap
 
   &{$selector-class-prefix + '-alert-with-title'}
-    padding-left $alert-padding-horizontal + $message-status-icon-size-large + $alert-status-icon-gap-with-title
+    padding-left $alert-padding-horizontal + $message-status-icon-size-large + $alert-indicator-gap-with-title
 
 {$selector-class-prefix + '-alert-title'}
   color $brand-title

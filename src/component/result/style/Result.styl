@@ -3,13 +3,13 @@
 $result-padding-vertical = 48px
 $result-padding-horizontal = 32px
 
-$result-icon-gap = 24px
+$result-indicator-gap = 24px
 $result-icon-size = 70px
 $result-title-font-size = 24px
 $result-extra-gap = 32px
 
 result-brand-style(style)
-  > {$selector-class-prefix + '-result-icon'}
+  > {$selector-class-prefix + '-result-indicator'}
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-result'}
@@ -20,10 +20,10 @@ result-brand-style(style)
     each: result-brand-style
   )
 
-{$selector-class-prefix + '-result-icon'}
-  margin-bottom $result-icon-gap
+{$selector-class-prefix + '-result-indicator'}
+  margin-bottom $result-indicator-gap
 
-{$selector-class-prefix + '-result-status-icon'}
+{$selector-class-prefix + '-result-icon'}
   font-size $result-icon-size
 
 {$selector-class-prefix + '-result-title'}

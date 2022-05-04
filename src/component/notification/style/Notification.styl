@@ -5,14 +5,11 @@ $notification-title-content-gap = 6px
 $notification-close-size = floor($font-size-default * $ui-multiple-line-height)
 $notification-close-size-with-title = floor($font-size-large * $ui-multiple-line-height)
 
-$notification-icon-gap = 8px
-$notification-icon-top = 2px
-
-$notification-icon-gap-with-title = 10px
-$notification-icon-top-with-title = 2px
+$notification-indicator-gap = 8px
+$notification-indicator-gap-with-title = 10px
 
 notification-brand-style(style)
-  > {$selector-class-prefix + '-notification-icon'}
+  > {$selector-class-prefix + '-notification-indicator'}
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-notification'}
@@ -42,14 +39,14 @@ notification-brand-style(style)
   transform translateX(0)
 
 {$selector-class-prefix + '-notification-with-icon'}
-  padding-left $layout-padding-horizontal + $message-status-icon-size-default + $notification-icon-gap
+  padding-left $layout-padding-horizontal + $message-status-icon-size-default + $notification-indicator-gap
 
 {$selector-class-prefix + '-notification-with-title'}
   &{$selector-class-prefix + '-notification-with-icon'}
-    padding-left $layout-padding-horizontal + $message-status-icon-size-large + $notification-icon-gap-with-title
+    padding-left $layout-padding-horizontal + $message-status-icon-size-large + $notification-indicator-gap-with-title
 
-  > {$selector-class-prefix + '-notification-icon'}
-    top $layout-child-padding-vertical + $notification-icon-top-with-title
+  > {$selector-class-prefix + '-notification-indicator'}
+    height $notification-close-size-with-title
     font-size $message-status-icon-size-large
 
   > {$selector-class-prefix + '-notification-close'}
@@ -71,11 +68,17 @@ notification-brand-style(style)
   font-size $font-size-default
   margin-right $notification-close-size + $ui-icon-text-gap
 
-{$selector-class-prefix + '-notification-icon'}
+{$selector-class-prefix + '-notification-indicator'}
+  display flex
+  align-items center
   position absolute
   left $layout-padding-horizontal
-  top $layout-child-padding-vertical + $notification-icon-top
+  top $layout-child-padding-vertical
+  height $notification-close-size
   font-size $message-status-icon-size-default
+
+  > {$selector-class-prefix + '-icon'}
+    font-size inherit
 
 {$selector-class-prefix + '-notification-close'}
   position absolute

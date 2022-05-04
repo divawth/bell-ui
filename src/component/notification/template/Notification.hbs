@@ -5,18 +5,11 @@ class="${prefix}notification
 >
 
   {{#if status}}
-    <Icon
-      name="{{
-        status === RAW_TYPE_SUCCESS
-          ? 'checkbox-circle-fill'
-          : status === RAW_TYPE_WARNING
-            ? 'error-warning-fill'
-            : status === RAW_TYPE_ERROR
-              ? 'close-circle-fill'
-              : 'information-fill'
-      }}"
-      className="${prefix}notification-icon"
-    />
+    <div class="${prefix}notification-indicator">
+      <Icon
+        name="{{iconName}}"
+      />
+    </div>
   {{/if}}
 
   {{#if title}}

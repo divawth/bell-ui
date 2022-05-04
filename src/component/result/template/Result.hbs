@@ -8,19 +8,11 @@ class="${prefix}result
 {{/if}}
 >
 
-  <div class="${prefix}result-icon">
+  <div class="${prefix}result-indicator">
     <slot name="icon">
       <Icon
-        name="{{
-          status === RAW_TYPE_SUCCESS
-            ? 'checkbox-circle-fill'
-            : status === RAW_TYPE_WARNING
-              ? 'error-warning-fill'
-              : status === RAW_TYPE_ERROR
-                ? 'close-circle-fill'
-                : 'information-fill'
-        }}"
-        className="${prefix}result-status-icon"
+        name="{{iconName}}"
+        className="${prefix}result-icon"
       />
     </slot>
   </div>

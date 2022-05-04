@@ -26,18 +26,11 @@
     >
 
       {{#if showIcon}}
-        <Icon
-          name="{{
-            status === RAW_TYPE_SUCCESS
-              ? 'checkbox-circle-fill'
-              : status === RAW_TYPE_WARNING
-                ? 'error-warning-fill'
-                : status === RAW_TYPE_ERROR
-                  ? 'close-circle-fill'
-                  : 'information-fill'
-          }}"
-          className="${prefix}popconfirm-status-icon"
-        />
+        <div class="${prefix}popconfirm-indicator">
+          <Icon
+            name="{{iconName}}"
+          />
+        </div>
       {{/if}}
 
       <div class="${prefix}popconfirm-title">

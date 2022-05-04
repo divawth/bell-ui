@@ -9,15 +9,13 @@ import {
   RAW_STRING,
   RAW_BOOLEAN,
   RAW_STATUS_ARRAY,
-  RAW_TYPE_INFO,
-  RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
-  RAW_TYPE_ERROR,
   RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
   oneOf,
+  getStatusIconName,
 } from '../util'
 
 export default Yox.define({
@@ -51,13 +49,12 @@ export default Yox.define({
     }
   },
 
-  data() {
-    return {
-      RAW_TYPE_INFO,
-      RAW_TYPE_SUCCESS,
-      RAW_TYPE_WARNING,
-      RAW_TYPE_ERROR,
-    }
+  computed: {
+    iconName() {
+      return getStatusIconName(
+        this.get('status')
+      )
+    },
   },
 
   components: {

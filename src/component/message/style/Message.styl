@@ -3,11 +3,8 @@ $message-padding-horizontal = 16px
 
 $message-close-size = floor($font-size-default * $ui-multiple-line-height)
 
-$message-icon-gap = 8px
-$message-icon-top = 2px
-
 message-brand-style(style)
-  > {$selector-class-prefix + '-message-icon'}
+  > {$selector-class-prefix + '-message-indicator'}
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-message'}
@@ -22,7 +19,7 @@ message-brand-style(style)
 
   white-space nowrap
   background-color $brand-bg
-  padding $message-padding-vertical $message-padding-horizontal $message-padding-vertical $message-padding-horizontal + $message-status-icon-size-default + $message-icon-gap
+  padding $message-padding-vertical $message-padding-horizontal $message-padding-vertical $message-padding-horizontal + $message-status-icon-size-default + $ui-horizontal-gap
   line-height $ui-multiple-line-height
   border-radius $border-radius-default
   box-shadow $brand-message-shadow
@@ -44,11 +41,17 @@ message-brand-style(style)
   > {$selector-class-prefix + '-message-content'}
     margin-right $message-close-size + $ui-icon-text-gap
 
-{$selector-class-prefix + '-message-icon'}
+{$selector-class-prefix + '-message-indicator'}
+  display flex
+  align-items center
   position absolute
   left $message-padding-horizontal
-  top $message-padding-vertical + $message-icon-top
+  top $message-padding-vertical
+  height $message-close-size
   font-size $message-status-icon-size-default
+
+  > {$selector-class-prefix + '-icon'}
+    font-size inherit
 
 {$selector-class-prefix + '-message-content'}
   color $brand-content

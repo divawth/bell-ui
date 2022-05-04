@@ -1,4 +1,4 @@
-import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW, BODY } from './constant'
+import { UNDEFINED, NULL, DOCUMENT, TRUE, FALSE, WINDOW, BODY, RAW_TYPE_SUCCESS, RAW_TYPE_WARNING, RAW_TYPE_ERROR } from './constant'
 import Yox, { Listener } from 'yox'
 
 const element = DOCUMENT.createElement('div')
@@ -295,6 +295,15 @@ export function scrollTo(
   scroll(from, to, step)
 }
 
+export function getStatusIconName(status: string) {
+  return status === RAW_TYPE_SUCCESS
+    ? 'checkbox-circle-fill'
+    : status === RAW_TYPE_WARNING
+      ? 'error-warning-fill'
+      : status === RAW_TYPE_ERROR
+        ? 'close-circle-fill'
+        : 'information-fill'
+}
 
 export function spaceListStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: any): object[] | void {
   const result: object[] = []

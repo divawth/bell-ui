@@ -1,12 +1,12 @@
 @import '../../../env'
 
-$popconfirm-padding-horizontal = 16px
 $popconfirm-padding-vertical = 12px
+$popconfirm-padding-horizontal = 16px
 
-$popconfirm-status-icon-top = 2px
+$popconfirm-indicator-height = floor($font-size-default * $ui-multiple-line-height)
 
 popconfirm-brand-style(style)
-  {$selector-class-prefix + '-popconfirm-status-icon'}
+  {$selector-class-prefix + '-popconfirm-indicator'}
     ui-set('color', style['color'])
 
 {$selector-class-prefix + '-popconfirm'}
@@ -33,11 +33,17 @@ popconfirm-brand-style(style)
     box-shadow $brand-layer-shadow
     border-radius $border-radius-default
 
-{$selector-class-prefix + '-popconfirm-status-icon'}
+{$selector-class-prefix + '-popconfirm-indicator'}
+  display flex
+  align-items center
   position absolute
   left $popconfirm-padding-horizontal
-  top $popconfirm-padding-vertical + $popconfirm-status-icon-top
+  top $popconfirm-padding-vertical
+  height $popconfirm-indicator-height
   font-size $message-status-icon-size-default
+
+  > {$selector-class-prefix + '-icon'}
+    font-size inherit
 
 {$selector-class-prefix + '-popconfirm-with-icon'}
   > {$selector-class-prefix + '-popover-content'}

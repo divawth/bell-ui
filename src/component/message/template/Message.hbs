@@ -3,18 +3,12 @@ class="${prefix}message
 {{#if status}} ${prefix}message-{{status}}{{/if}}
 {{#if closable}} ${prefix}message-with-close{{/if}}"
 >
-  <Icon
-    name="{{
-      status === RAW_TYPE_SUCCESS
-        ? 'checkbox-circle-fill'
-        : status === RAW_TYPE_WARNING
-          ? 'error-warning-fill'
-          : status === RAW_TYPE_ERROR
-            ? 'close-circle-fill'
-            : 'information-fill'
-    }}"
-    className="${prefix}message-icon"
-  />
+
+  <div class="${prefix}message-indicator">
+    <Icon
+      name="{{iconName}}"
+    />
+  </div>
 
   <div class="${prefix}message-content">
     {{content}}

@@ -23,5 +23,6 @@ export declare function formatMillisecond(value: number, options: {
 }): string;
 export declare function padStart(value: number, length?: number): string;
 export declare function scrollTo(element: HTMLElement | Window, from: number, to: number, duration?: number, callback?: () => void): void;
+export declare function getStatusIconName(status: string): "checkbox-circle-fill" | "error-warning-fill" | "close-circle-fill" | "information-fill";
 export declare function spaceListStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: any): object[] | void;
 export declare function spaceItemStyle(gaps: number[] | void, vertical: boolean, autoWrap: boolean, style?: Record<string, string>): Record<string, string> | void;

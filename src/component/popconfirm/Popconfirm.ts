@@ -13,10 +13,7 @@ import {
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_CLICK,
-  RAW_TYPE_INFO,
-  RAW_TYPE_SUCCESS,
   RAW_TYPE_WARNING,
-  RAW_TYPE_ERROR,
   RAW_STATUS_ARRAY,
   RAW_STYLE_TYPE,
 } from '../constant'
@@ -24,6 +21,7 @@ import {
 import {
   oneOf,
   toPixel,
+  getStatusIconName,
 } from '../util'
 
 import {
@@ -75,15 +73,16 @@ export default Yox.define({
   data() {
     return {
       RAW_CLICK,
-      RAW_TYPE_INFO,
-      RAW_TYPE_SUCCESS,
-      RAW_TYPE_WARNING,
-      RAW_TYPE_ERROR,
       isVisible: FALSE,
     }
   },
 
   computed: {
+    iconName() {
+      return getStatusIconName(
+        this.get('status')
+      )
+    },
     contentStyle() {
 
       const customStyle: Record<string, string> = {}

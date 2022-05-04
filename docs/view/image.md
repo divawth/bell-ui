@@ -146,7 +146,7 @@ export default {
 url | 图片地址 | string | - | -
 width | 显示宽度 | numeric | - | `60`
 height | 显示宽度 | numeric | - | `60`
-mode | 显示模式 | string | `scaleToFit`、`aspectFit` | `scaleToFit`
+mode | 显示模式 | string | `contain`、`stretch` | `stretch`
 minSize | 允许上传文件的最小尺寸 | numeric | - | -
 maxSize | 允许上传文件的最大尺寸 | numeric | - | -
 minRatio | 允许上传文件的最小宽高比 | numeric | - | -

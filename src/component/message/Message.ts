@@ -13,9 +13,6 @@ import {
   RAW_BOOLEAN,
   RAW_STATUS_ARRAY,
   RAW_TYPE_INFO,
-  RAW_TYPE_SUCCESS,
-  RAW_TYPE_WARNING,
-  RAW_TYPE_ERROR,
 } from '../constant'
 
 import {
@@ -23,6 +20,7 @@ import {
   toPixel,
   toNumber,
   onTransitionEnd,
+  getStatusIconName,
 } from '../util'
 
 const CLASS_VISIBLE = '${prefix}message-visible'
@@ -62,13 +60,17 @@ export default Yox.define({
 
   data() {
     return {
-      RAW_TYPE_INFO,
-      RAW_TYPE_SUCCESS,
-      RAW_TYPE_WARNING,
-      RAW_TYPE_ERROR,
       isVisible: FALSE,
       actualTop: 0,
     }
+  },
+
+  computed: {
+    iconName(): string {
+      return getStatusIconName(
+        this.get('status')
+      )
+    },
   },
 
   methods: {
