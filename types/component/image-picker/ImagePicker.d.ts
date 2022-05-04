@@ -4,7 +4,7 @@ declare const _default: import("yox").ComponentOptions<{
     isVideoUploader: unknown;
     restCount: unknown;
     canDraggable: unknown;
-    imageItemsStyle: unknown;
+    inlineStyle: unknown;
     imageItemStyle: unknown;
 }, unknown, unknown, {
     handleImageClick(image: object, index: number): void;

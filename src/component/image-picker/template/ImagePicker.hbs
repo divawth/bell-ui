@@ -2,118 +2,110 @@
 class="${prefix}image-picker
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}}
-  style="{{style}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
-  <div
-    ref="imagePickerList"
-    class="${prefix}image-picker-items-wrapper"
-    {{#if imageItemsStyle}}
-      style="{{imageItemsStyle}}"
-    {{/if}}
-  >
-    {{#each imageList:index}}
-      <Closable
-        key="{{this.id}}"
-        needClose="{{!~/readOnly && ~/draggingIndex < 0}}"
-        draggable="{{~/canDraggable}}"
-        on-close="removeItem($event, index)"
-        on-mouseenter.native="handleMouseEnter(index)"
-        on-mouseleave.native="handleMouseLeave(index)"
-        {{#if ~/canDraggable}}
-          on-dragstart.native="handleDragStart(index)"
-          on-dragend.native="handleDragEnd()"
-          on-dragover.native="handleDragOver(index)"
-          on-dragenter.native="handleDragEnter(index)"
-          on-dragleave.native="handleDragLeave(index)"
-          on-drop.native="handleDragDrop(index)"
-        {{/if}}
-        className="${prefix}image-picker-item ${prefix}image-picker-card
-        {{#if ~/needSize}} ${prefix}image-picker-card-show-size-{{showSize}}{{/if}}"
-        {{#if ~/imageItemStyle}}
-          style="{{~/imageItemStyle}}"
-        {{/if}}
-      >
+  {{#each imageList:index}}
+    <Closable
+      key="{{this.id}}"
+      needClose="{{!~/readOnly && ~/draggingIndex < 0}}"
+      draggable="{{~/canDraggable}}"
+      on-close="removeItem($event, index)"
+      on-mouseenter.native="handleMouseEnter(index)"
+      on-mouseleave.native="handleMouseLeave(index)"
+      {{#if ~/canDraggable}}
+        on-dragstart.native="handleDragStart(index)"
+        on-dragend.native="handleDragEnd()"
+        on-dragover.native="handleDragOver(index)"
+        on-dragenter.native="handleDragEnter(index)"
+        on-dragleave.native="handleDragLeave(index)"
+        on-drop.native="handleDragDrop(index)"
+      {{/if}}
+      className="${prefix}image-picker-item ${prefix}image-picker-card
+      {{#if ~/needSize}} ${prefix}image-picker-card-show-size-{{showSize}}{{/if}}"
+      {{#if ~/imageItemStyle}}
+        style="{{~/imageItemStyle}}"
+      {{/if}}
+    >
 
-        {{#if this.url || this.base64}}
-          <img
-            draggable="false"
-            class="${prefix}image-picker-image
-            {{#if imageMode}} ${prefix}image-picker-image-{{imageMode}}{{/if}}"
-            {{#if this.url}}
-              src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
-            {{else if this.base64}}
-              src="{{this.base64}}"
-            {{/if}}
-            {{#if this.name}}
-              alt="{{this.name}}"
-            {{/if}}
-            {{#if ~/draggingIndex < 0}}
-              on-click="handleImageClick(this, index)"
-            {{/if}}
-          >
-        {{else if this.name}}
-          <div class="${prefix}image-picker-image-name">
-            {{this.name}}
-          </div>
-        {{/if}}
-
-        {{#if this.status === ~/STATUS_UPLOADING}}
-          <div
-            class="${prefix}image-picker-mask"
-          >
-            <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
-              上传中
-            </Circle>
-          </div>
-        {{else}}
-          {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
-            <Upload
-              draggable
-              ref="reupload"
-              index="{{index}}"
-              className="${prefix}image-picker-mask"
-              accept="{{accept}}"
-              beforeUpload="{{beforeReuploadImage}}"
-            >
-              <div class="${prefix}image-picker-message">
-                {{{this.message}}}
-              </div>
-              <div class="${prefix}image-picker-action">
-                重新上传
-              </div>
-            </Upload>
-          {{else if ~/needSize && this.size > 0}}
-            <div class="${prefix}image-picker-image-size">
-              {{formatFileSize(this.size)}}
-            </div>
+      {{#if this.url || this.base64}}
+        <img
+          draggable="false"
+          class="${prefix}image-picker-image
+          {{#if imageMode}} ${prefix}image-picker-image-{{imageMode}}{{/if}}"
+          {{#if this.url}}
+            src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
+          {{else if this.base64}}
+            src="{{this.base64}}"
           {{/if}}
-        {{/if}}
+          {{#if this.name}}
+            alt="{{this.name}}"
+          {{/if}}
+          {{#if ~/draggingIndex < 0}}
+            on-click="handleImageClick(this, index)"
+          {{/if}}
+        >
+      {{else if this.name}}
+        <div class="${prefix}image-picker-image-name">
+          {{this.name}}
+        </div>
+      {{/if}}
 
-      </Closable>
-    {{/each}}
-
-    {{#if !readOnly && restCount > 0}}
-      <Upload
-        draggable
-        ref="upload"
-        className="${prefix}image-picker-item"
-        multiple="{{restCount > 1}}"
-        accept="{{accept}}"
-        beforeUpload="{{beforeUploadImage}}"
-        {{#if ~/imageItemStyle}}
-          style="{{~/imageItemStyle}}"
+      {{#if this.status === ~/STATUS_UPLOADING}}
+        <div
+          class="${prefix}image-picker-mask"
+        >
+          <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
+            上传中
+          </Circle>
+        </div>
+      {{else}}
+        {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
+          <Upload
+            draggable
+            ref="reupload"
+            index="{{index}}"
+            className="${prefix}image-picker-mask"
+            accept="{{accept}}"
+            beforeUpload="{{beforeReuploadImage}}"
+          >
+            <div class="${prefix}image-picker-message">
+              {{{this.message}}}
+            </div>
+            <div class="${prefix}image-picker-action">
+              重新上传
+            </div>
+          </Upload>
+        {{else if ~/needSize && this.size > 0}}
+          <div class="${prefix}image-picker-image-size">
+            {{formatFileSize(this.size)}}
+          </div>
         {{/if}}
-      >
-        <Add
-          block
-          vertical
-          title="{{isVideoUploader ? '上传视频' : '上传图片'}}"
-          width="{{imageWidth}}"
-          height="{{imageHeight}}"
-        />
-      </Upload>
-    {{/if}}
-  </div>
+      {{/if}}
+
+    </Closable>
+  {{/each}}
+
+  {{#if !readOnly && restCount > 0}}
+    <Upload
+      draggable
+      ref="upload"
+      className="${prefix}image-picker-item"
+      multiple="{{restCount > 1}}"
+      accept="{{accept}}"
+      beforeUpload="{{beforeUploadImage}}"
+      {{#if ~/imageItemStyle}}
+        style="{{~/imageItemStyle}}"
+      {{/if}}
+    >
+      <Add
+        block
+        vertical
+        title="{{isVideoUploader ? '上传视频' : '上传图片'}}"
+        width="{{imageWidth}}"
+        height="{{imageHeight}}"
+      />
+    </Upload>
+  {{/if}}
 </div>

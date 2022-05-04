@@ -212,11 +212,12 @@ export default Yox.define({
       const imageList = this.get('imageList')
       return !uploadingCount && !readOnly && imageList.length > 1
     },
-    imageItemsStyle(): object[] | void {
+    inlineStyle(): object[] | void {
       return spaceListStyle(
         this.get('gap'),
         FALSE,
         TRUE,
+        this.get('style')
       )
     },
     imageItemStyle(): Record<string, string> | void {
@@ -476,19 +477,19 @@ export default Yox.define({
       )
     },
     addImgWrapperItemClass(index: number, className: string) {
-      const imagePickerListRef = this.$refs.imagePickerList as any
-      const targetChild = imagePickerListRef.children[index]
+      const element = this.$el as HTMLElement
+      const targetChild = element.children[index]
 
       if (targetChild) {
-        Yox.dom.addClass(targetChild, className)
+        Yox.dom.addClass(targetChild as HTMLElement, className)
       }
     },
     removeImgWrapperItemClass(index: number, className: string) {
-      const imagePickerListRef = this.$refs.imagePickerList as any
-      const targetChild = imagePickerListRef.children[index]
+      const element = this.$el as HTMLElement
+      const targetChild = element.children[index]
 
       if (targetChild) {
-        Yox.dom.removeClass(targetChild, className)
+        Yox.dom.removeClass(targetChild as HTMLElement, className)
       }
     },
     handleMouseEnter(index: number) {
