@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const version = require('../package.json').version
 
@@ -126,6 +127,16 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: `bell-ui.css`
+    }),
+    new OptimizeCssAssetsPlugin({
+      // 针对配置中 ExtractTextPlugin 实例导出的文件的文件名运行，而不是源 CSS 文件的文件名。
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        safe: true,
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+      canPrint: false
     })
   ]
 }
