@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$progress-bg-color = #e8eaec
-
 progress-brand-style(style)
   {$selector-class-prefix + '-progress-bar'}
     ui-set('background-color', style['color'])
@@ -17,7 +15,7 @@ ui-progress()
 
 {$selector-class-prefix + '-progress-track'}
   flex 1
-  background-color $progress-bg-color
+  background-color $brand-bg-placeholder
   border-radius $border-radius-round
 
 {$selector-class-prefix + '-progress-bar'}

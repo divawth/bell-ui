@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$rate-icon-gap = 8px
-
 $rate-icon-color = #e9e9e9
 
 $rate-brand-hash = {
@@ -43,7 +41,7 @@ rate-brand-style(style)
   transition color $form-control-transition-duration
 
   + {$selector-class-prefix + '-rate-icon-full'}
-    margin-left $rate-icon-gap
+    margin-left $ui-horizontal-gap
 
 {$selector-class-prefix + '-rate-icon-half'}
   position absolute
@@ -60,7 +58,7 @@ rate-brand-style(style)
     opacity 1
 
 {$selector-class-prefix + '-rate-text'}
-  margin-left $rate-icon-gap
+  margin-left $ui-horizontal-gap
   font-size $font-size-default
   color $brand-content
 

@@ -3,8 +3,6 @@
 $image-padding = 1px
 $image-icon-size = 16px
 
-$image-content-bg = #f5f5f5
-
 $image-mask-bg = rgba(0,0,0,0.4)
 $image-mask-text = #fff
 $image-mask-text-shadow = rgba(200,200,200,0.5)
@@ -41,7 +39,7 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
 {$selector-class-prefix + '-image-placeholder'}
   height 100%
   border-radius $border-radius-default
-  background-color $image-content-bg
+  background-color $brand-bg-placeholder
   vertical-align top
 
 {$selector-class-prefix + '-image-native-contain'}
@@ -53,7 +51,7 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   height 100%
 
 {$selector-class-prefix + '-image-placeholder-empty'}
-  background $image-content-bg url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
+  background $brand-bg-placeholder url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
   background-image -webkit-image-set(
     url('~@component/image/image/placeholder-default@2x.png') 2x
   )

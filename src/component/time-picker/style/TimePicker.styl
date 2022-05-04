@@ -1,11 +1,7 @@
 @import '../../../env'
 
-$time-picker-icon-size = 14px
-
 $time-picker-column-width = 56px
 
-$time-picker-row-color = #666
-$time-picker-row-font-size = 14px
 $time-picker-row-height = 28px
 $time-picker-row-count = 8
 
@@ -91,8 +87,8 @@ time-picker-brand-style(style)
     overflow-y auto
 
 {$selector-class-prefix + '-time-picker-panel-row'}
-  color $time-picker-row-color
-  font-size $time-picker-row-font-size
+  color $brand-content
+  font-size $font-size-default
   height $time-picker-row-height
   line-height $time-picker-row-height
   padding-left $time-picker-column-width * 0.25
@@ -123,6 +119,6 @@ ui-form-button(
   $selector-class-prefix + '-time-picker-placeholder',
   $selector-class-prefix + '-time-picker-time-icon',
   $selector-class-prefix + '-time-picker-clear-icon',
-  $time-picker-icon-size,
-  $time-picker-icon-size
+  $select-close-icon-size,
+  $select-close-icon-size
 )
