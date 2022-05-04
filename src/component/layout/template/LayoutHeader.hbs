@@ -6,12 +6,14 @@
 {{/if}}
 >
 
+  <div class="${prefix}layout-header-content">
+    <slot />
+  </div>
+
   {{#if @extra}}
     <div class="${prefix}layout-header-extra">
       <slot name="extra" />
     </div>
   {{/if}}
-
-  <slot />
 
 </div>

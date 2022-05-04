@@ -1,6 +1,7 @@
 @import '../../../env'
 
-$tooltip-padding = 8px 12px
+$tooltip-padding-vertical = 6px
+$tooltip-padding-horizontal = 8px
 
 $tooltip-dark-color = $brand-white
 $tooltip-dark-bg-color = #606060
@@ -19,7 +20,7 @@ $tooltip-light-bg-color = $brand-white
     white-space nowrap
     overflow auto
 
-    padding $tooltip-padding
+    padding $tooltip-padding-vertical $tooltip-padding-horizontal
     box-shadow $brand-layer-shadow
     border-radius $border-radius-default
 
