@@ -35,8 +35,9 @@ export const RAW_WAIT = 'wait'
 export const RAW_PROCESS = 'process'
 export const RAW_FINISH = 'finish'
 
-export const RAW_SCALE_TO_FILL = 'scaleToFill'
-export const RAW_ASPECT_FIT = 'aspectFit'
+export const RAW_STRETCH = 'stretch'
+export const RAW_CONTAIN = 'contain'
+// 以后再支持 cover
 
 export const RAW_TOP = 'top'
 export const RAW_TOP_START = 'top-start'

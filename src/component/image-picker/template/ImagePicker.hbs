@@ -40,7 +40,7 @@ class="${prefix}image-picker
           <img
             draggable="false"
             class="${prefix}image-picker-image
-            {{#if imageMode}} ${prefix}image-picker-image-{{hyphenate(imageMode)}}{{/if}}"
+            {{#if imageMode}} ${prefix}image-picker-image-{{imageMode}}{{/if}}"
             {{#if this.url}}
               src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
             {{else if this.base64}}

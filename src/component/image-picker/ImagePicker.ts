@@ -20,8 +20,8 @@ import {
   RAW_FUNCTION,
   RAW_IMAGE_ACCEPT,
   RAW_STYLE_TYPE,
-  RAW_SCALE_TO_FILL,
-  RAW_ASPECT_FIT,
+  RAW_STRETCH,
+  RAW_CONTAIN,
   RAW_ALWAYS,
   RAW_HOVER,
   RAW_NEVER,
@@ -47,12 +47,6 @@ import {
 const CLASS_CARD_MOUSE_ENTER = '${prefix}image-picker-card-mouse-enter'
 const CLASS_CARD_DRAG_ENTER = '${prefix}image-picker-card-drag-enter'
 
-const formatDurationOptinos = {
-  format: 'd:HH:mm:ss',
-  trimDay: TRUE,
-  trimHour: TRUE
-}
-
 export default Yox.define({
 
   template,
@@ -73,8 +67,8 @@ export default Yox.define({
       value: 80,
     },
     imageMode: {
-      type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
-      value: RAW_SCALE_TO_FILL,
+      type: oneOf([RAW_STRETCH, RAW_CONTAIN]),
+      value: RAW_STRETCH,
     },
     gap: {
       type: RAW_ARRAY,
@@ -241,7 +235,6 @@ export default Yox.define({
   },
 
   filters: {
-    hyphenate: Yox.string.hyphenate,
     formatFileSize,
   },
 

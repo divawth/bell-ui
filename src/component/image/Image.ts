@@ -15,8 +15,8 @@ import {
   RAW_FUNCTION,
   RAW_IMAGE_ACCEPT,
   RAW_STYLE_TYPE,
-  RAW_SCALE_TO_FILL,
-  RAW_ASPECT_FIT,
+  RAW_STRETCH,
+  RAW_CONTAIN,
 } from '../constant'
 
 import {
@@ -49,8 +49,8 @@ export default Yox.define({
       value: 60,
     },
     mode: {
-      type: oneOf([RAW_SCALE_TO_FILL, RAW_ASPECT_FIT]),
-      value: RAW_SCALE_TO_FILL,
+      type: oneOf([RAW_STRETCH, RAW_CONTAIN]),
+      value: RAW_STRETCH,
     },
     minSize: {
       type: RAW_NUMERIC,
@@ -194,10 +194,6 @@ export default Yox.define({
     url(url) {
       this.set('image.url', url)
     }
-  },
-
-  filters: {
-    hyphenate: Yox.string.hyphenate,
   },
 
   methods: {

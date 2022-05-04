@@ -16,7 +16,7 @@ class="${prefix}image
   {{#if image.url || image.base64}}
     <img
       class="${prefix}image-native
-      {{#if mode}} ${prefix}image-native-{{hyphenate(mode)}}{{/if}}"
+      {{#if mode}} ${prefix}image-native-{{mode}}{{/if}}"
 
       {{#if image.base64}}
         src="{{image.base64}}"
