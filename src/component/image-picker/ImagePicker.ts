@@ -117,6 +117,9 @@ export default Yox.define({
     cropImage: {
       type: RAW_FUNCTION,
     },
+    uploadTitle: {
+      type: RAW_STRING,
+    },
     uploadImage: {
       type: RAW_FUNCTION,
     },

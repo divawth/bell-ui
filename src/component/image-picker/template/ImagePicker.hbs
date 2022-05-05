@@ -23,7 +23,7 @@ class="${prefix}image-picker
         on-drop.native="handleDragDrop(index)"
       {{/if}}
       className="${prefix}image-picker-item ${prefix}image-picker-card
-      {{#if ~/needSize}} ${prefix}image-picker-card-show-size-{{showSize}}{{/if}}"
+      {{#if ~/needSize}} ${prefix}image-picker-card-show-size-{{~/showSize}}{{/if}}"
       {{#if ~/imageItemStyle}}
         style="{{~/imageItemStyle}}"
       {{/if}}
@@ -33,7 +33,7 @@ class="${prefix}image-picker
         <img
           draggable="false"
           class="${prefix}image-picker-image
-          {{#if imageMode}} ${prefix}image-picker-image-{{imageMode}}{{/if}}"
+          {{#if ~/imageMode}} ${prefix}image-picker-image-{~/imageMode}}{{/if}}"
           {{#if this.url}}
             src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
           {{else if this.base64}}
@@ -67,8 +67,8 @@ class="${prefix}image-picker
             ref="reupload"
             index="{{index}}"
             className="${prefix}image-picker-mask"
-            accept="{{accept}}"
-            beforeUpload="{{beforeReuploadImage}}"
+            accept="{{~/accept}}"
+            beforeUpload="{{~/beforeReuploadImage}}"
           >
             <div class="${prefix}image-picker-message">
               {{{this.message}}}
@@ -102,7 +102,7 @@ class="${prefix}image-picker
       <Add
         block
         vertical
-        title="{{isVideoUploader ? '上传视频' : '上传图片'}}"
+        title="{{uploadTitle || (isVideoUploader ? '上传视频' : '上传图片')}}"
         width="{{imageWidth}}"
         height="{{imageHeight}}"
       />

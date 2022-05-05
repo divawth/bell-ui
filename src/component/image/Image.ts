@@ -13,10 +13,10 @@ import {
   RAW_NUMERIC,
   RAW_BOOLEAN,
   RAW_FUNCTION,
-  RAW_IMAGE_ACCEPT,
-  RAW_STYLE_TYPE,
   RAW_STRETCH,
   RAW_CONTAIN,
+  RAW_IMAGE_ACCEPT,
+  RAW_STYLE_TYPE,
 } from '../constant'
 
 import {
