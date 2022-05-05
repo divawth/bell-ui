@@ -1,11 +1,7 @@
 @import '../../../env'
 
 $image-padding = 1px
-$image-icon-size = 16px
-
-$image-mask-bg = rgba(0,0,0,0.4)
-$image-mask-text = #fff
-$image-mask-text-shadow = rgba(200,200,200,0.5)
+$image-icon-size = 20px
 
 {$selector-class-prefix + '-image'}
   display inline-block
@@ -50,21 +46,21 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
   width 100%
   height 100%
 
-{$selector-class-prefix + '-image-placeholder-empty'}
+{$selector-class-prefix + '-image-placeholder-default'}
   background $brand-bg-placeholder url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
   background-image -webkit-image-set(
     url('~@component/image/image/placeholder-default@2x.png') 2x
   )
 
 {$selector-class-prefix + '-image-small'}
-  {$selector-class-prefix + '-image-placeholder-empty'}
+  {$selector-class-prefix + '-image-placeholder-default'}
     background-image url('~@component/image/image/placeholder-small.png')
     background-image -webkit-image-set(
       url('~@component/image/image/placeholder-small@2x.png') 2x
     )
 
 {$selector-class-prefix + '-image-with-upload'}
-  {$selector-class-prefix + '-image-placeholder-empty'}
+  {$selector-class-prefix + '-image-placeholder-default'}
     background-position 50% 35%
 
 {$selector-class-prefix + '-image-footer'}
@@ -113,13 +109,13 @@ $image-mask-text-shadow = rgba(200,200,200,0.5)
 
 {$selector-class-prefix + '-image-with-message'}
   {$selector-class-prefix + '-image-mask'}
-    background-color $image-mask-bg
+    background-color $brand-text-mask-bg-color
 
 {$selector-class-prefix + '-image-message'}
-  color $image-mask-text
+  color $brand-text-mask-title-color
   font-size $font-size-small
   line-height $ui-multiple-line-height
-  text-shadow 1px 1px 2px $image-mask-text-shadow
+  text-shadow $brand-text-mask-text-shadow
   text-align center
   width 80%
 
