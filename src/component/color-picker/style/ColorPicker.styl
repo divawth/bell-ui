@@ -25,6 +25,9 @@ color-picker-brand-style(style)
   &{$selector-class-prefix + '-color-picker-opened'}
     ui-focus(style['shadow-color'], style['color'])
 
+  &:focus
+    ui-focus(style['shadow-color'])
+
 {$selector-class-prefix + '-color-picker'}
   display inline-block
   border 1px solid $brand-border
@@ -33,6 +36,10 @@ color-picker-brand-style(style)
   box-sizing border-box
   border-radius $border-radius-default
   transition border-color $form-control-transition-duration, box-shadow $form-control-transition-duration
+  outline 0
+
+  &:focus
+    ui-focus($brand-primary-shadow)
 
   ui-connect(
     hash: $form-button-size-hash,

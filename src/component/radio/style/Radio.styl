@@ -149,6 +149,9 @@ radio-button-size-style(size)
     &{$selector-class-prefix + '-radio-active'}
       z-index $zindex-normal
 
+    &:focus
+      ui-focus($brand-primary-shadow)
+
   &{$selector-class-prefix + '-radio-horizontal'}
     > {$selector-class-prefix + '-radio'}
       + {$selector-class-prefix + '-radio'}

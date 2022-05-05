@@ -44,11 +44,18 @@ select-brand-style(style)
   &{$selector-class-prefix + '-select-opened'}
     ui-focus(style['shadow-color'], style['color'])
 
+  &:focus
+    ui-focus(style['shadow-color'])
+
 {$selector-class-prefix + '-select'}
   width $ui-form-element-width
   box-sizing border-box
   user-select none
   text-align left
+  outline 0
+
+  &:focus
+    ui-focus($brand-primary-shadow)
 
   ui-connect(
     hash: $form-button-size-hash,
