@@ -1,14 +1,13 @@
 <div
 class="${prefix}switch
-
 {{#if size}} ${prefix}switch-{{size}}{{/if}}
+{{#if checked}} ${prefix}switch-checked{{/if}}
 
-{{#if disabled}} ${prefix}switch-disabled
+{{#if loading}} ${prefix}switch-loading
+{{else if disabled}} ${prefix}switch-disabled
 {{else}} ${prefix}switch-enabled
 {{/if}}
 
-{{#if checked}} ${prefix}switch-active{{/if}}
-{{#if loading}} ${prefix}switch-loading{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if style}}
@@ -16,9 +15,12 @@ class="${prefix}switch
 {{/if}}
 
 {{#if !disabled && !loading}}
+  tabindex="0"
   on-click="onClick()"
 {{/if}}
 >
+
+  <div class="${prefix}switch-thumb"></div>
 
   {{#if @on || @off}}
     <div class="${prefix}switch-label">

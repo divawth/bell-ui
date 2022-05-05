@@ -144,9 +144,8 @@ button-brand-style(style)
       ui-set('border-color', style['active-border-color'])
       ui-set('background-color', style['active-bg-color'])
 
-    if $ui-shadow-radius > 0
-      &:focus
-        box-shadow 0 0 0 $ui-shadow-radius style['shadow-color']
+    &:focus
+      ui-focus(style['shadow-color'])
 
     ui-button-group-separator(style['hover-border-color'], style['active-border-color'])
 
@@ -262,9 +261,8 @@ ui-button-group-separator(hoverColor, activeColor)
     color $brand-primary
     border-color $brand-primary
 
-  if $ui-shadow-radius > 0
-    &:focus
-      box-shadow 0 0 0 $ui-shadow-radius $brand-primary-shadow
+  &:focus
+    ui-focus($brand-primary-shadow)
 
 {$selector-class-prefix + '-button-disabled'}
   background-color $brand-bg-disabled

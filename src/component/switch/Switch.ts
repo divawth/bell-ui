@@ -1,4 +1,4 @@
-import Yox from 'yox'
+import Yox, { CustomEventInterface } from 'yox'
 
 import template from './template/Switch.hbs'
 // import './style/Switch.styl'
@@ -46,7 +46,8 @@ export default Yox.define({
   },
 
   methods: {
-    onClick() {
+    onClick(event: CustomEventInterface) {
+      event.stop()
       this.fire(
         {
           type: 'change',

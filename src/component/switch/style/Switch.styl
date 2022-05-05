@@ -1,24 +1,23 @@
 @import '../../../env'
 
-$switch-bg-color = #ccc
+$switch-bg-color = #b7b7b7
+$switch-inner-shadow = inset 0 0 4px rgba(0,0,0,0.1)
 
 // thumb 到边框的距离
 $switch-thumb-gap = 2px
 
 // 文本到两侧的距离
-$switch-thumb-label-gap = 4px
-$switch-label-gap = 8px
+$switch-thumb-label-gap = 5px
+$switch-label-edge-gap = 7px
 
 $switch-size-hash = {
   default: {
     width: 44px,
     height: 22px,
-    thumb-loading-gap: 3px,
   },
   small: {
     width: 28px,
     height: 16px,
-    thumb-loading-gap: 2px,
   }
 }
 
@@ -26,116 +25,111 @@ switch-size-style(size)
 
   $switch-thumb-width = size['height'] - 2 * $switch-thumb-gap
   $switch-thumb-height = size['height'] - 2 * $switch-thumb-gap
-
-  $switch-loading-width = size['height'] - 2 * $switch-thumb-gap - 2 * size['thumb-loading-gap']
-  $switch-loading-height = size['height'] - 2 * $switch-thumb-gap - 2 * size['thumb-loading-gap']
+  $switch-active-thumb-width = $switch-thumb-width + floor($switch-thumb-width * 0.3)
 
   ui-set('min-width', size['width'])
   ui-set('height', size['height'])
   ui-set('padding-left', $switch-thumb-width + $switch-thumb-gap)
 
-  &{$selector-class-prefix + '-switch-active'}
+  &{$selector-class-prefix + '-switch-enabled'}:active
+    > {$selector-class-prefix + '-switch-thumb'}
+      ui-set('width', $switch-active-thumb-width)
+
+    &{$selector-class-prefix + '-switch-checked'}
+      > {$selector-class-prefix + '-switch-thumb'}
+        // stylus string % operator
+        left "calc(100% - %s)" % ($switch-active-thumb-width + $switch-thumb-gap)
+
+  &{$selector-class-prefix + '-switch-checked'}
     ui-set('padding-left', 0)
     ui-set('padding-right', $switch-thumb-width + $switch-thumb-gap)
 
-    &:before
-      ui-set('margin-left', - ($switch-thumb-width + $switch-thumb-gap))
+    > {$selector-class-prefix + '-switch-thumb'}
+      // stylus string % operator
+      left "calc(100% - %s)" % ($switch-thumb-width + $switch-thumb-gap)
 
-    &:after
-      ui-set('margin-left', - ($switch-loading-width + $switch-thumb-gap + size['thumb-loading-gap']))
-
-  &:before
+  > {$selector-class-prefix + '-switch-thumb'}
     ui-set('width', $switch-thumb-width)
     ui-set('height', $switch-thumb-height)
 
-  &:after
-    ui-set('left', $switch-thumb-gap + size['thumb-loading-gap'])
-    ui-set('top', $switch-thumb-gap + size['thumb-loading-gap'])
-    ui-set('width', $switch-loading-width)
-    ui-set('height', $switch-loading-height)
-
-  > {$selector-class-prefix + '-switch-label'}
-    ui-set('line-height', size['height'])
-    ui-set('height', size['height'])
-
-// 放在 selector-switch 前面，因为它的 border-color 要被 ui-switch 覆盖
-{$selector-class-prefix + '-switch-loading'}
-  opacity $ui-opacity-disabled
-
-  &:after
-    content ''
-    border-radius $border-radius-circle
-    position absolute
-    border 1px solid transparent
-    box-sizing border-box
-
-    animation bell-switch-loading 1s linear infinite
-    transition transform .3s
+  > {$selector-class-prefix + '-switch-thumb'}:after
+    ui-set('width', $switch-thumb-width - 2 * $switch-thumb-gap)
+    ui-set('height', $switch-thumb-width - 2 * $switch-thumb-gap)
 
 {$selector-class-prefix + '-switch'}
-  display inline-block
+  display inline-flex
+  align-items center
   position relative
   user-select none
   box-sizing border-box
+  outline 0
   padding 0
   background-color $switch-bg-color
-  transition border-color $form-control-transition-duration, background-color $form-control-transition-duration
   border-radius $border-radius-round
-  box-shadow inset 0 0 4px rgba(0,0,0,0.1)
+  box-shadow $switch-inner-shadow
+  transition border-color $form-control-transition-duration,
+            background-color $form-control-transition-duration,
+            box-shadow $form-control-transition-duration
 
-  &:before
-    content ''
-    position absolute
-    left $switch-thumb-gap
-    top $switch-thumb-gap
-    border-radius $border-radius-circle
-    background-color $brand-white
-    transition left .3s, margin-left .3s
-    box-shadow 0 1px 1px rgba(0,0,0,0.1)
-
-  &:after
-    border-left-color $switch-bg-color
+  &:focus
+    box-shadow $switch-inner-shadow, 0 0 0 $ui-shadow-radius $brand-primary-shadow
 
   ui-connect(
     hash: $switch-size-hash,
     each: switch-size-style
   )
 
+{$selector-class-prefix + '-switch-thumb'}
+  position absolute
+  left $switch-thumb-gap
+  top $switch-thumb-gap
+  display flex
+  justify-content center
+  align-items center
+  // 给一个足够大的值就行
+  border-radius 100px
+  background-color $brand-white
+  transition left $form-control-transition-duration, width $form-control-transition-duration
+  box-shadow $brand-icon-shadow
+
 {$selector-class-prefix + '-switch-label'}
   color $brand-white
   font-size $font-size-small
+  line-height $ui-multiple-line-height
   margin-left $switch-thumb-label-gap
-  margin-right $switch-label-gap
+  margin-right $switch-label-edge-gap
   white-space nowrap
-  text-shadow 0 1px 0 rgba(0,0,0,0.1)
+  transition margin $form-control-transition-duration
+  text-shadow $brand-text-mask-text-shadow
 
-{$selector-class-prefix + '-switch-active'}
+{$selector-class-prefix + '-switch-checked'}
   background-color $brand-primary
 
-  &:before
-    left 100%
-
-  &:after
-    left 100%
+  > {$selector-class-prefix + '-switch-thumb'}:after
     border-left-color $brand-primary
 
   > {$selector-class-prefix + '-switch-label'}
-    margin-left $switch-label-gap
+    margin-left $switch-label-edge-gap
     margin-right $switch-thumb-label-gap
 
-{$selector-class-prefix + '-switch-enabled'},
-{$selector-class-prefix + '-switch-enabled'}:before
+{$selector-class-prefix + '-switch-enabled'}
   ui-clickable()
 
 {$selector-class-prefix + '-switch-disabled'},
-{$selector-class-prefix + '-switch-disabled'}:before,
-{$selector-class-prefix + '-switch-loading'},
-{$selector-class-prefix + '-switch-loading'}:before
+{$selector-class-prefix + '-switch-loading'}
+  opacity $ui-opacity-disabled
   ui-disabled()
 
-{$selector-class-prefix + '-switch-disabled'}
-  opacity $ui-opacity-disabled
+{$selector-class-prefix + '-switch-loading'}
+  > {$selector-class-prefix + '-switch-thumb'}:after
+    content ''
+    border 1px solid $brand-transparent-color
+    border-left-color $switch-bg-color
+    box-sizing border-box
+    border-radius $border-radius-circle
 
+    animation bell-switch-loading 1s linear infinite
+    transition transform $form-control-transition-duration
 
 @keyframes {$selector-animation-prefix + '-switch-loading'}
   0%
