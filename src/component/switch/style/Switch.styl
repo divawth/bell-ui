@@ -128,7 +128,7 @@ switch-size-style(size)
     box-sizing border-box
     border-radius $border-radius-circle
 
-    animation bell-switch-loading 1s linear infinite
+    animation "%s 1s linear infinite" % ($selector-animation-prefix + '-switch-loading')
     transition transform $form-control-transition-duration
 
 @keyframes {$selector-animation-prefix + '-switch-loading'}

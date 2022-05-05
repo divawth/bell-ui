@@ -60,7 +60,7 @@ spin-size-style(style)
   display inline-block
   position relative
   transform rotate(45deg)
-  animation bell-spin-rotate 1.2s infinite linear
+  animation "%s 1.2s infinite linear" % ($selector-animation-prefix + '-spin-rotate')
 
 {$selector-class-prefix + '-spin-dot-item'}
   position absolute
@@ -70,7 +70,7 @@ spin-size-style(style)
   transform scale(.75)
   transform-origin 50% 50%
   opacity 0.3
-  animation bell-spin-move 1s infinite linear alternate
+  animation "%s 1s infinite linear alternate" % ($selector-animation-prefix + '-spin-move')
 
   &:nth-child(1)
     top 0

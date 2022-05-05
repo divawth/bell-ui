@@ -7,7 +7,7 @@
 {$selector-class-prefix + '-icon-spin'}
   // 不加这句没法让 transform 动画生效
   display inline-block
-  animation 1s linear infinite bell-icon-spin
+  animation "%s 1s linear infinite" % ($selector-animation-prefix + '-icon-spin')
 
 @keyframes {$selector-animation-prefix + '-icon-spin'}
   0%

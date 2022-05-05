@@ -81,12 +81,12 @@ ui-progress()
   &{$selector-class-prefix + '-progress-horizontal'}
     {$selector-class-prefix + '-progress-bar'}:before
       top 0
-      animation bell-progress-horizontal-active 2s ease-in-out infinite
+      animation "%s 2s ease-in-out infinite" % ($selector-animation-prefix + '-progress-horizontal-active')
 
   &{$selector-class-prefix + '-progress-vertical'}
     {$selector-class-prefix + '-progress-bar'}:before
       right 0
-      animation bell-progress-vertical-active 2s ease-in-out infinite
+      animation "%s 2s ease-in-out infinite" % ($selector-animation-prefix + '-progress-vertical-active')
 
 
 @keyframes {$selector-animation-prefix + '-progress-horizontal-active'}

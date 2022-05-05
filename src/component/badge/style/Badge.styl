@@ -149,7 +149,7 @@ badge-status-style(style)
       border-radius $border-radius-circle
       box-sizing border-box
       border 1px solid
-      animation bell-badge-ripple 1.2s infinite ease-in-out
+      animation "%s 1.2s infinite ease-in-out" % ($selector-animation-prefix + '-badge-ripple')
 
 @keyframes {$selector-animation-prefix + '-badge-ripple'}
   0%
