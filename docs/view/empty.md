@@ -47,6 +47,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 simple | 是否为简洁版 | boolean | - | -
+space | 设置垂直方向的空白，避免和相邻元素靠的太近 | numeric | - | -
 className | 自定义类名 | string | - | -
 style | 自定义内联样式 | string | - | -
 

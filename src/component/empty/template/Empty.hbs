@@ -4,8 +4,8 @@ class="${prefix}empty
 {{#if @children}} ${prefix}empty-with-content{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
-{{#if style}}
-  style="{{style}}"
+{{#if inlineStyle}}
+  style="{{inlineStyle}}"
 {{/if}}
 >
   <slot />
