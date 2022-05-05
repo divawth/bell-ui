@@ -9,19 +9,21 @@ $image-icon-size = 20px
   font-size $font-size-default
   line-height $ui-multiple-line-height
   background-color $brand-bg
-  border-radius $border-radius-default
   text-align center
   position relative
   user-select none
   box-sizing content-box
+  if $border-radius-default > 0
+    border-radius $border-radius-default
 
   > {$selector-class-prefix + '-spin-fixed'}
     top 0
     left 0
     right 0
     bottom 0
-    border-radius $border-radius-default
     background-color $brand-mask-dark-color
+    if $border-radius-default > 0
+      border-radius $border-radius-default
 
   {$selector-class-prefix + '-spin-icon'}
     color $brand-white
@@ -31,20 +33,24 @@ $image-icon-size = 20px
   {$selector-class-prefix + '-image-mask'}
     opacity 1
 
-{$selector-class-prefix + '-image-native'},
+{$selector-class-prefix + '-image'} img,
+{$selector-class-prefix + '-image-placeholder'}
+  background-color $brand-bg-placeholder
+  if $border-radius-default > 0
+    border-radius $border-radius-default
+
 {$selector-class-prefix + '-image-placeholder'}
   height 100%
-  border-radius $border-radius-default
-  background-color $brand-bg-placeholder
-  vertical-align top
 
-{$selector-class-prefix + '-image-native-contain'}
-  max-width 100%
-  max-height 100%
+{$selector-class-prefix + '-image-contain'}
+  img
+    max-width 100%
+    max-height 100%
 
-{$selector-class-prefix + '-image-native-stretch'}
-  width 100%
-  height 100%
+{$selector-class-prefix + '-image-stretch'}
+  img
+    width 100%
+    height 100%
 
 {$selector-class-prefix + '-image-placeholder-default'}
   background $brand-bg-placeholder url('~@component/image/image/placeholder-default.png') no-repeat 50% 50%
@@ -59,12 +65,15 @@ $image-icon-size = 20px
       url('~@component/image/image/placeholder-small@2x.png') 2x
     )
 
+  {$selector-class-prefix + '-image-message'},
+  {$selector-class-prefix + '-image-footer'}
+    font-size $font-size-small
+
 {$selector-class-prefix + '-image-with-upload'}
   {$selector-class-prefix + '-image-placeholder-default'}
     background-position 50% 35%
 
 {$selector-class-prefix + '-image-footer'}
-  display block
   position absolute
   bottom 0
   left 0
@@ -72,9 +81,10 @@ $image-icon-size = 20px
   height 20%
   min-height 24px
   white-space nowrap
-  font-size $font-size-small
-  border-bottom-left-radius $border-radius-default
-  border-bottom-right-radius $border-radius-default
+  font-size $font-size-default
+  if $border-radius-default > 0
+    border-bottom-left-radius $border-radius-default
+    border-bottom-right-radius $border-radius-default
 
 {$selector-class-prefix + '-image-footer-enabled'}
   color $brand-text-mask-title-color
@@ -96,8 +106,10 @@ $image-icon-size = 20px
   left 0
   right 0
   bottom 0
-  border-radius $border-radius-default
   transition opacity $form-control-transition-duration
+
+  if $border-radius-default > 0
+    border-radius $border-radius-default
 
   {$selector-class-prefix + '-icon'}
     color $brand-white
@@ -113,7 +125,7 @@ $image-icon-size = 20px
 
 {$selector-class-prefix + '-image-message'}
   color $brand-text-mask-title-color
-  font-size $font-size-small
+  font-size $font-size-default
   line-height $ui-multiple-line-height
   text-shadow $brand-text-mask-text-shadow
   text-align center

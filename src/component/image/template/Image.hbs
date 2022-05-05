@@ -3,6 +3,7 @@ class="${prefix}image
 {{#if simple}} ${prefix}image-simple
 {{else}} ${prefix}image-bordered
 {{/if}}
+{{#if mode}} ${prefix}image-{{mode}}{{/if}}
 {{#if customHeight <= 100}} ${prefix}image-small{{/if}}
 {{#if uploadTitle}} ${prefix}image-with-upload{{/if}}
 {{#if image.message}} ${prefix}image-with-message{{/if}}
@@ -15,9 +16,6 @@ class="${prefix}image
 
   {{#if image.url || image.base64}}
     <img
-      class="${prefix}image-native
-      {{#if mode}} ${prefix}image-native-{{mode}}{{/if}}"
-
       {{#if image.base64}}
         src="{{image.base64}}"
       {{else}}

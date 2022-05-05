@@ -9,6 +9,7 @@ import Space from '../space/Space'
 import Button from '../button/Button'
 import Upload from '../upload/Upload'
 import Closable from '../closable/Closable'
+import LoadingBar from '../loading-bar/LoadingBar'
 
 import {
   TRUE,
@@ -120,6 +121,9 @@ export default Yox.define({
     uploadTitle: {
       type: RAW_STRING,
     },
+    uploadingTitle: {
+      type: RAW_STRING,
+    },
     uploadImage: {
       type: RAW_FUNCTION,
     },
@@ -204,6 +208,11 @@ export default Yox.define({
       const accept = this.get('accept')
       return accept ? accept.indexOf('video') >= 0 : FALSE
     },
+    uploadText(): string {
+      const uploadTitle = this.get('uploadTitle')
+      const isVideoUploader = this.get('isVideoUploader')
+      return uploadTitle || (isVideoUploader ? '上传视频' : '上传图片')
+    },
     restCount(): number {
       const imageCount = this.get('imageList.length')
       const maxCount = this.get('maxCount')
@@ -240,15 +249,6 @@ export default Yox.define({
 
   filters: {
     formatFileSize,
-  },
-
-  components: {
-    Add,
-    Icon,
-    Space,
-    Button,
-    Upload,
-    Closable,
   },
 
   methods: {
@@ -581,6 +581,16 @@ export default Yox.define({
 
       return FALSE
     },
-  }
+  },
+
+  components: {
+    Add,
+    Icon,
+    Space,
+    Button,
+    Upload,
+    Closable,
+    LoadingBar,
+  },
 
 })

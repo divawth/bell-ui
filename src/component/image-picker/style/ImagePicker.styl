@@ -1,7 +1,5 @@
 @import '../../../env'
 
-$image-picker-circle-size = 60px
-$image-picker-message-action-gap = 10px
 $image-picker-image-size-padding = 2px 4px
 
 {$selector-class-prefix + '-image-picker'}
@@ -9,42 +7,39 @@ $image-picker-image-size-padding = 2px 4px
   flex-wrap wrap
   line-height $ui-multiple-line-height
 
-{$selector-class-prefix + '-image-picker-item'}
+{$selector-class-prefix + '-image-picker-card'}
   display block
   background-color $brand-bg-light
   box-sizing content-box
   position relative
   user-select none
+  border 1px solid $brand-divider
   if $border-radius-default > 0
     border-radius $border-radius-default
-
-{$selector-class-prefix + '-image-picker-card'}
-  border 1px solid rgba(0,0,0,0.1)
-  display flex
-  justify-content center
-  align-items center
-
   &[draggable="true"]
     cursor move
 
-{$selector-class-prefix + '-image-picker-image'}
+{$selector-class-prefix + '-image-picker-item'} img
   ui-clickable()
   if $border-radius-default > 0
     border-radius $border-radius-default
 
-{$selector-class-prefix + '-image-picker-image-contain'}
+{$selector-class-prefix + '-image-picker-contain'} img
   max-width 100%
   max-height 100%
 
-{$selector-class-prefix + '-image-picker-image-stretch'}
+{$selector-class-prefix + '-image-picker-stretch'} img
   width 100%
   height 100%
 
-{$selector-class-prefix + '-image-picker-mask'}
+{$selector-class-prefix + '-image-picker-card'},
+{$selector-class-prefix + '-image-picker-mask'},
+{$selector-class-prefix + '-image-picker-footer'}
   display flex
-  flex-direction column
   justify-content center
   align-items center
+
+{$selector-class-prefix + '-image-picker-mask'}
   background-color $brand-text-mask-bg-color
   position absolute
   top 0
@@ -53,10 +48,6 @@ $image-picker-image-size-padding = 2px 4px
   bottom 0
   if $border-radius-default > 0
     border-radius $border-radius-default
-
-  {$selector-class-prefix + '-circle-content'}
-    color $brand-text-mask-title-color
-    font-size $font-size-small
 
 {$selector-class-prefix + '-image-picker-image-name'}
   color $brand-content
@@ -72,11 +63,35 @@ $image-picker-image-size-padding = 2px 4px
   text-align center
   width 80%
 
-{$selector-class-prefix + '-image-picker-action'}
-  color $brand-text-mask-title-color
+{$selector-class-prefix + '-image-picker-footer'}
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 20%
+  min-height 24px
+  white-space nowrap
   font-size $font-size-default
-  text-align center
-  margin-top $image-picker-message-action-gap
+  if $border-radius-default > 0
+    border-bottom-left-radius $border-radius-default
+    border-bottom-right-radius $border-radius-default
+
+{$selector-class-prefix + '-image-picker-footer-enabled'}
+  color $brand-text-mask-title-color
+  background-color $brand-text-mask-bg-color
+  transition background-color $form-control-transition-duration
+  ui-clickable()
+  &:hover
+    background-color $brand-text-mask-bg-color-hover
+
+{$selector-class-prefix + '-image-picker-footer-disabled'}
+  color $brand-disabled
+  background-color $brand-bg-disabled
+
+{$selector-class-prefix + '-image-picker-small'}
+  {$selector-class-prefix + '-image-picker-message'},
+  {$selector-class-prefix + '-image-picker-footer'}
+    font-size $font-size-small
 
 {$selector-class-prefix + '-image-picker-image-size'}
   display none

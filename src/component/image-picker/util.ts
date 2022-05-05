@@ -79,14 +79,14 @@ export function validateFile(item: any, minSize: number, maxSize: number,
   if (minSize > 0) {
     if (item.size < minSize) {
       errors.push(
-        `尺寸不能小于 ${formatFileSize(minSize)}`
+        `大小不能小于 ${formatFileSize(minSize)}`
       )
     }
   }
   if (maxSize > 0) {
     if (item.size > maxSize) {
       errors.push(
-        `尺寸不能超过 ${formatFileSize(maxSize)}`
+        `大小不能超过 ${formatFileSize(maxSize)}`
       )
     }
   }

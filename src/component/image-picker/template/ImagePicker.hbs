@@ -1,5 +1,7 @@
 <div
 class="${prefix}image-picker
+{{#if imageMode}} ${prefix}image-picker-{{imageMode}}{{/if}}
+{{#if imageHeight <= 100}} ${prefix}image-picker-small{{/if}}
 {{#if className}} {{className}}{{/if}}"
 
 {{#if inlineStyle}}
@@ -32,8 +34,6 @@ class="${prefix}image-picker
       {{#if this.url || this.base64}}
         <img
           draggable="false"
-          class="${prefix}image-picker-image
-          {{#if ~/imageMode}} ${prefix}image-picker-image-{~/imageMode}}{{/if}}"
           {{#if this.url}}
             src="{{~/formatImageUrl ? ~/formatImageUrl({ url: this.url, width: ~/customImageWidth, height: ~/customImageHeight, responsive: true }) : this.url}}"
           {{else if this.base64}}
@@ -54,29 +54,32 @@ class="${prefix}image-picker
 
       {{#if this.status === ~/STATUS_UPLOADING}}
         <div
-          class="${prefix}image-picker-mask"
+          class="${prefix}image-picker-footer ${prefix}image-picker-footer-disabled"
         >
-          <Circle percent="{{this.progress > 0 ? this.progress * 100 : 0}}" size="60">
-            上传中
-          </Circle>
+          {{uploadingTitle || '正在上传...'}}
+          <LoadingBar
+            manual
+            outside
+            className="${prefix}image-picker-progress"
+            percent="{{this.progress > 0 ? this.progress * 100 : 0}}"
+          />
         </div>
       {{else}}
         {{#if this.status === ~/STATUS_ERROR || this.status == ~/STATUS_FAILURE}}
-          <Upload
-            draggable
-            ref="reupload"
-            index="{{index}}"
-            className="${prefix}image-picker-mask"
-            accept="{{~/accept}}"
-            beforeUpload="{{~/beforeReuploadImage}}"
-          >
+          <div class="${prefix}image-picker-mask">
             <div class="${prefix}image-picker-message">
               {{{this.message}}}
             </div>
-            <div class="${prefix}image-picker-action">
-              重新上传
-            </div>
-          </Upload>
+            <Upload
+              ref="reupload"
+              index="{{index}}"
+              className="${prefix}image-picker-footer ${prefix}image-picker-footer-enabled"
+              accept="{{~/accept}}"
+              beforeUpload="{{~/beforeReuploadImage}}"
+            >
+              {{uploadText}}
+            </Upload>
+          </div>
         {{else if ~/needSize && this.size > 0}}
           <div class="${prefix}image-picker-image-size">
             {{formatFileSize(this.size)}}
@@ -102,7 +105,7 @@ class="${prefix}image-picker
       <Add
         block
         vertical
-        title="{{uploadTitle || (isVideoUploader ? '上传视频' : '上传图片')}}"
+        title="{{uploadText}}"
         width="{{imageWidth}}"
         height="{{imageHeight}}"
       />

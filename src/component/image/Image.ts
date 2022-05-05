@@ -176,7 +176,6 @@ export default Yox.define({
       result.push({
         width: toPixel(customWidth),
         height: toPixel(customHeight),
-        lineHeight: toPixel(customHeight),
       })
 
       const style = this.get('style')
