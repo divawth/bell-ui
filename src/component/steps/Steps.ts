@@ -49,18 +49,8 @@ export default Yox.define({
     }
   },
 
-  data() {
+  beforeRender() {
     const children = this.get(RAW_SLOT_CHILDREN)
-    if (children) {
-      setStepIndex(
-        children
-      )
-    }
-    return { }
-  },
-
-  beforePropsUpdate(props) {
-    const children = props[RAW_SLOT_CHILDREN]
     if (children) {
       setStepIndex(
         children

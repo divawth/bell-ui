@@ -3,17 +3,14 @@
 ```
 export default {
   template: `
-    <div>
+    <Space vertical>
       <Link size="small">
         link
       </Link>
       <Link>
         link
       </Link>
-      <Link size="large">
-        link
-      </Link>
-    </div>
+    </Space>
   `
 }
 ```
@@ -23,7 +20,7 @@ export default {
 ```
 export default {
   template: `
-    <div>
+    <Space vertical>
       <Link>
         link
       </Link>
@@ -51,7 +48,7 @@ export default {
       <Link type="muted">
         link
       </Link>
-    </div>
+    </Space>
   `
 }
 ```
@@ -99,7 +96,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 文本颜色 | string | primary, success, error, info, warning, title, content, muted | `primary`
-size | 文本大小 | string | default, small, large | `default`
+size | 文本大小 | string | small | -
 underline | 是否显示下划线 | boolean | - | -
 disabled | 是否禁用 | boolean | - | -
 href | 原生 href | string | - | -

@@ -1,5 +1,6 @@
 import { YoxInterface } from 'yox';
 declare const _default: import("yox").ComponentOptions<{
+    count: unknown;
     direction: unknown;
     inlineStyle: unknown;
 }, {

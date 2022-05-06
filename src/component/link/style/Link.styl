@@ -12,39 +12,22 @@ $link-brand-hash = {
   muted: $brand-muted,
 }
 
-$link-size-hash = {
-  default: {
-    font-size: $font-size-default,
-    line-height: 1.477,
-  },
-  small: {
-    font-size: $font-size-small,
-    line-height: 1.333
-  },
-  large: {
-    font-size: $font-size-large,
-    line-height: 1.625
-  },
-}
-
 link-brand-style(color)
   ui-set('color', color)
 
-link-size-style(size)
-  ui-set('font-size', size['font-size'])
-  ui-set('line-height', size['line-height'])
-
 {$selector-class-prefix + '-link'}
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
   text-decoration none
+  outline 0
   ui-clickable()
-  ui-connect(
-    hash: $link-size-hash,
-    each: link-size-style
-  )
   ui-connect(
     hash: $link-brand-hash,
     each: link-brand-style
   )
+
+{$selector-class-prefix + '-link-small'}
+  font-size $font-size-small
 
 {$selector-class-prefix + '-link-underline'}
   text-decoration underline

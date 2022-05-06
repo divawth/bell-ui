@@ -6,8 +6,7 @@ import template from './template/Link.hbs'
 import {
   RAW_STRING,
   RAW_BOOLEAN,
-  RAW_DEFAULT,
-  RAW_SIZE_ARRAY,
+  RAW_SMALL,
   RAW_TYPE_PRIMARY,
   RAW_TYPE_INFO,
   RAW_TYPE_SUCCESS,
@@ -44,8 +43,7 @@ export default Yox.define({
       value: RAW_TYPE_PRIMARY,
     },
     size: {
-      type: oneOf(RAW_SIZE_ARRAY),
-      value: RAW_DEFAULT,
+      type: oneOf([RAW_SMALL]),
     },
     underline: {
       type: RAW_BOOLEAN,

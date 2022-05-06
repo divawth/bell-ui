@@ -12,37 +12,20 @@ $text-brand-hash = {
   muted: $brand-muted,
 }
 
-$text-size-hash = {
-  default: {
-    font-size: $font-size-default,
-    line-height: 1.477,
-  },
-  small: {
-    font-size: $font-size-small,
-    line-height: 1.333
-  },
-  large: {
-    font-size: $font-size-large,
-    line-height: 1.625
-  },
-}
-
 text-brand-style(color)
   ui-set('color', color)
 
-text-size-style(size)
-  ui-set('font-size', size['font-size'])
-  ui-set('line-height', size['line-height'])
-
 {$selector-class-prefix + '-text'}
-  ui-connect(
-    hash: $text-size-hash,
-    each: text-size-style
-  )
+  font-size $font-size-default
+  line-height $ui-multiple-line-height
+
   ui-connect(
     hash: $text-brand-hash,
     each: text-brand-style
   )
+
+{$selector-class-prefix + '-text-small'}
+  font-size $font-size-small
 
 {$selector-class-prefix + '-text-bold'}
   font-weight $font-weight-bold

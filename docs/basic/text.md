@@ -3,17 +3,14 @@
 ```
 export default {
   template: `
-    <div>
+    <Space vertical>
       <Text size="small">
         text
       </Text>
       <Text>
         text
       </Text>
-      <Text size="large">
-        text
-      </Text>
-    </div>
+    </Space>
   `
 }
 ```
@@ -23,7 +20,7 @@ export default {
 ```
 export default {
   template: `
-    <div>
+    <Space vertical>
       <Text>
         text
       </Text>
@@ -51,7 +48,7 @@ export default {
       <Text type="muted">
         text
       </Text>
-    </div>
+    </Space>
   `
 }
 ```
@@ -92,7 +89,7 @@ export default {
 参数 | 说明 | 类型 | 可选值 | 默认值
 ---|---|---|---|---
 type | 文本颜色 | string | primary, success, error, info, warning, title, content, muted | -
-size | 文本大小 | string | default, small, large | `default`
+size | 文本大小 | string | small | -
 bold | 是否粗体 | boolean | - | -
 block | 是否块级 | boolean | - | -
 className | 自定义类名 | string | - | -

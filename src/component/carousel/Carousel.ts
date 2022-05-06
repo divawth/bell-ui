@@ -69,7 +69,6 @@ export default Yox.define({
   },
 
   data() {
-    const children = this.get(RAW_SLOT_CHILDREN)
     return {
       RAW_CLICK,
       RAW_HOVER,
@@ -79,14 +78,14 @@ export default Yox.define({
       RAW_LEFT,
 
       index: 0,
-      count: children
-        ? children.length
-        : 0,
       size: UNDEFINED,
     }
   },
 
   computed: {
+    count() {
+      return this.get(`${RAW_SLOT_CHILDREN}.length`) || 0
+    },
     direction() {
       const indicatorPosition = this.get('indicatorPosition')
       return indicatorPosition === 'left' || indicatorPosition === 'right'
@@ -223,13 +222,5 @@ export default Yox.define({
     Yox.lifeCycle.on(RAW_EVENT_BEFORE_DESTROY, destroy)
 
   },
-
-  beforePropsUpdate(props) {
-
-    const children = props[RAW_SLOT_CHILDREN]
-
-    this.set('count', children ? children.length : 0)
-
-  }
 
 })
