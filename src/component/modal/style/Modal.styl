@@ -1,10 +1,55 @@
+$modal-padding-vertical = 24px
+$modal-padding-horizontal = 32px
+$modal-title-content-gap = 8px
+$modal-content-footer-gap = 24px
+
 {$selector-class-prefix + '-modal'}
+  {$selector-class-prefix + '-dialog-wrapper'}
+    padding $modal-padding-vertical $modal-padding-horizontal $modal-padding-vertical $modal-padding-horizontal + $message-status-icon-size-default + $ui-horizontal-gap
 
-  {$selector-class-prefix + '-dialog-header'}
-    border-bottom 0
-    padding-bottom 0
-    padding-top $layout-padding-vertical
+{$selector-class-prefix + '-modal-indicator'}
+  display flex
+  align-items center
+  position absolute
+  left $modal-padding-horizontal
+  top $modal-padding-vertical
+  height floor($font-size-default * $ui-multiple-line-height)
+  font-size $message-status-icon-size-default
 
-  {$selector-class-prefix + '-dialog-footer'}
-    border-top 0
-    padding 0 $layout-padding-horizontal $layout-padding-vertical
+  > {$selector-class-prefix + '-modal-indicator-icon'}
+    font-size inherit
+
+{$selector-class-prefix + '-modal-title'}
+  color $brand-title
+  font-size $font-size-large
+  white-space nowrap
+
+  + {$selector-class-prefix + '-modal-content'}
+    margin-top $modal-title-content-gap
+
+{$selector-class-prefix + '-modal-content'}
+  color $brand-content
+  font-size $font-size-default
+
+{$selector-class-prefix + '-modal-footer'}
+  display flex
+  justify-content flex-end
+  align-items center
+  margin-top $modal-content-footer-gap
+
+
+{$selector-class-prefix + '-modal-with-title'}
+  {$selector-class-prefix + '-dialog-wrapper'}
+    padding-left $modal-padding-horizontal + $message-status-icon-size-large + $ui-horizontal-gap
+
+  {$selector-class-prefix + '-modal-indicator'}
+    height floor($font-size-large * $ui-multiple-line-height)
+    font-size $message-status-icon-size-large
+
+{$selector-class-prefix + '-modal-alert'}
+  {$selector-class-prefix + '-modal-indicator-icon'}
+    color $brand-info
+
+{$selector-class-prefix + '-modal-confirm'}
+  {$selector-class-prefix + '-modal-indicator-icon'}
+    color $brand-warning

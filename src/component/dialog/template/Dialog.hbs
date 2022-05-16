@@ -28,35 +28,38 @@
         {{/if}}
       >
 
-        {{#if title || @title || closable}}
-          <div class="${prefix}dialog-header">
-            <div class="${prefix}dialog-title">
-              <slot name="title">
-                {{title}}
-              </slot>
+        {{#if @children}}
+          <slot />
+        {{else}}
+          {{#if title || @title || closable}}
+            <div class="${prefix}dialog-header">
+              <div class="${prefix}dialog-title">
+                <slot name="title">
+                  {{title}}
+                </slot>
+              </div>
+              {{#if closable}}
+                <Icon
+                  name="close-line"
+                  className="${prefix}dialog-close"
+                  on-click.native="close()"
+                />
+              {{/if}}
             </div>
-            {{#if closable}}
-              <Icon
-                name="close-line"
-                className="${prefix}dialog-close"
-                on-click.native="close()"
-              />
-            {{/if}}
-          </div>
-        {{/if}}
+          {{/if}}
 
-        {{#if @content}}
-          <div class="${prefix}dialog-body">
-            <slot name="content" />
-          </div>
-        {{/if}}
+          {{#if @content}}
+            <div class="${prefix}dialog-body">
+              <slot name="content" />
+            </div>
+          {{/if}}
 
-        {{#if @footer}}
-          <div class="${prefix}dialog-footer">
-            <slot name="footer" />
-          </div>
+          {{#if @footer}}
+            <div class="${prefix}dialog-footer">
+              <slot name="footer" />
+            </div>
+          {{/if}}
         {{/if}}
-
       </div>
     </div>
   </portal>

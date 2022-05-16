@@ -2,17 +2,30 @@
   showMask
   ref="dialog"
   width="{{width}}"
-  title="{{title}}"
   maskClosable="{{false}}"
-  closable="{{closable}}"
-  className="${prefix}modal"
+  className="${prefix}modal ${prefix}modal-confirm
+  {{#if title}} ${prefix}modal-with-title{{/if}}"
 >
 
-  <template slot="content">
-    {{content}}
-  </template>
+  <div class="${prefix}modal-indicator">
+    <Icon
+      slot="icon"
+      name="{{iconName}}"
+      className="${prefix}modal-indicator-icon"
+    />
+  </div>
 
-  <template slot="footer">
+  {{#if title}}
+    <div class="${prefix}modal-title">
+      {{title}}
+    </div>
+  {{/if}}
+
+  <div class="${prefix}modal-content">
+    {{content}}
+  </div>
+
+  <div class="${prefix}modal-footer">
     <Button
       type="{{cancelType}}"
       on-click="cancel()"
@@ -25,6 +38,6 @@
     >
       {{okText}}
     </Button>
-  </template>
+  </div>
 
 </Dialog>

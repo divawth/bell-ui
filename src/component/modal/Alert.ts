@@ -9,13 +9,15 @@ import {
   TRUE,
   RAW_STRING,
   RAW_BOOLEAN,
+  RAW_NUMERIC,
   RAW_FUNCTION,
   RAW_TYPE_ARRAY,
   RAW_TYPE_PRIMARY,
-  RAW_NUMERIC,
+  RAW_TYPE_INFO,
 } from '../constant'
 
 import {
+  getStatusIconName,
   oneOf,
   screenWidth,
 } from '../util'
@@ -51,6 +53,12 @@ export default Yox.define({
     },
     onOk: {
       type: RAW_FUNCTION,
+    }
+  },
+
+  data() {
+    return {
+      iconName: getStatusIconName(RAW_TYPE_INFO),
     }
   },
 
