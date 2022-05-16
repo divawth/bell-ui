@@ -1,10 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    inlineStyle: unknown;
-    itemLabelWidth: unknown;
-    itemMessage: unknown;
-    showItemMessage: unknown;
-}, unknown, {
-    layoutChange: unknown;
-    validate: unknown;
-}, unknown> & ThisType<import("yox").YoxInterface>;
+declare const _default;
 export default _default;

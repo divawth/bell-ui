@@ -1,12 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    iconName: unknown;
-}, unknown, unknown, {
-    move(distance: number): void;
-    show(height: number, count: number): void;
-    hide(): void;
-}> & ThisType<{
-    move(distance: number): void;
-    show(height: number, count: number): void;
-    hide(): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

@@ -58,6 +58,12 @@ $image-icon-size = 20px
     url('~@component/image/image/placeholder-default@2x.png') 2x
   )
 
+{$selector-class-prefix + '-image-small'},
+{$selector-class-prefix + '-image-mini'}
+  {$selector-class-prefix + '-image-message'},
+  {$selector-class-prefix + '-image-footer'}
+    font-size $font-size-small
+
 {$selector-class-prefix + '-image-small'}
   {$selector-class-prefix + '-image-placeholder-default'}
     background-image url('~@component/image/image/placeholder-small.png')
@@ -65,13 +71,19 @@ $image-icon-size = 20px
       url('~@component/image/image/placeholder-small@2x.png') 2x
     )
 
-  {$selector-class-prefix + '-image-message'},
-  {$selector-class-prefix + '-image-footer'}
-    font-size $font-size-small
+{$selector-class-prefix + '-image-mini'}
+  {$selector-class-prefix + '-image-placeholder-default'}
+    background-image url('~@component/image/image/placeholder-mini.png')
+    background-image -webkit-image-set(
+      url('~@component/image/image/placeholder-mini@2x.png') 2x
+    )
 
 {$selector-class-prefix + '-image-with-upload'}
   {$selector-class-prefix + '-image-placeholder-default'}
     background-position 50% 35%
+  &{$selector-class-prefix + '-image-mini'}
+    {$selector-class-prefix + '-image-placeholder-default'}
+      background-position 50% 25%
 
 {$selector-class-prefix + '-image-footer'}
   position absolute
@@ -82,6 +94,7 @@ $image-icon-size = 20px
   min-height 24px
   white-space nowrap
   font-size $font-size-default
+  line-height 1
   if $border-radius-default > 0
     border-bottom-left-radius $border-radius-default
     border-bottom-right-radius $border-radius-default

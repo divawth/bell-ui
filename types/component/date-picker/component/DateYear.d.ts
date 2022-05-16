@@ -1,9 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    datasource: unknown;
-    checkedYears: unknown;
-}, unknown, unknown, {
-    click(item: number): void;
-}> & ThisType<{
-    click(item: number): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

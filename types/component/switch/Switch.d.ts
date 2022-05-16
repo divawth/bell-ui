@@ -1,7 +1,3 @@
 import { CustomEventInterface } from 'yox';
-declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
-    onClick(event: CustomEventInterface): void;
-}> & ThisType<{
-    onClick(event: CustomEventInterface): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

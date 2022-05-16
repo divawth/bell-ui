@@ -1,12 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    wrapperStyle: unknown;
-}, {
-    visible: unknown;
-}, unknown, {
-    open(): void;
-    close(): void;
-}> & ThisType<{
-    open(): void;
-    close(): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

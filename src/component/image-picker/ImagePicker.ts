@@ -182,10 +182,7 @@ export default Yox.define({
           return
         }
 
-        Promise.all(
-          fileList.map(readLocalFile)
-        )
-        .then(function (newList: any[]) {
+        fileList.map(readLocalFile).then(function (newList: any[]) {
 
           me.validateImageList(newList)
 

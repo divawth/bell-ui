@@ -1,9 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    swatchListStyle: unknown;
-    swatchItemStyle: unknown;
-}, unknown, unknown, {
-    onColorClick(color: string): void;
-}> & ThisType<{
-    onColorClick(color: string): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

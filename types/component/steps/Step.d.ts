@@ -1,8 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    stepStatus: unknown;
-    stepNumber: unknown;
-}, unknown, {
-    currentChange: unknown;
-    statusChange: unknown;
-}, unknown> & ThisType<import("yox").YoxInterface>;
+declare const _default;
 export default _default;

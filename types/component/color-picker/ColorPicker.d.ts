@@ -1,15 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    inlineStyle: unknown;
-    colorStyle: unknown;
-    colorValue: unknown;
-}, {
-    value: unknown;
-    showAlpha: unknown;
-}, {
-    outside: unknown;
-    hsvChange: unknown;
-    colorChange: unknown;
-    alphaChange: unknown;
-    modeChange: unknown;
-}, unknown> & ThisType<import("yox").YoxInterface>;
+declare const _default;
 export default _default;

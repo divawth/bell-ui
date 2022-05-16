@@ -1,7 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    responsiveClass: unknown;
-    inlineStyle: unknown;
-}, unknown, {
-    change: unknown;
-}, unknown> & ThisType<import("yox").YoxInterface>;
+declare const _default;
 export default _default;

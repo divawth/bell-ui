@@ -1,12 +1,2 @@
-declare const _default: import("yox").ComponentOptions<{
-    date: unknown;
-    datasource: unknown;
-    checkedTimestamp: unknown;
-}, unknown, unknown[], {
-    offset(offset: number): void;
-    click(colIndex: number): void;
-}> & ThisType<{
-    offset(offset: number): void;
-    click(colIndex: number): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;

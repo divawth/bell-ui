@@ -1,6 +1,2 @@
-declare const _default: import("yox").ComponentOptions<unknown, unknown, unknown, {
-    toggleChecked(): void;
-}> & ThisType<{
-    toggleChecked(): void;
-} & import("yox").YoxInterface>;
+declare const _default;
 export default _default;
