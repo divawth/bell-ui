@@ -235,6 +235,7 @@ ui-form-button(
     {$selector-values}
 
       flex 1
+      line-height 0
       box-sizing border-box
 
       > {$selector-class-prefix + '-tag'}
@@ -242,11 +243,7 @@ ui-form-button(
         cursor text
         font-size $font-size-small
         background-color $brand-tag-bg-color
-        padding 0 $ui-icon-text-gap !important
-
-        > {$selector-class-prefix + '-tag-close-icon'}
-          position static
-          vertical-align middle
+        padding 0 $ui-icon-text-gap
 
   {$selector-value},
   {$selector-placeholder}
